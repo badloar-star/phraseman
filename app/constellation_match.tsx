@@ -55,11 +55,17 @@ import type {
 } from './types/constellations';
 
 /** Эмоуты F10: id серверные, тексты — на языке матча (studyTarget en v1). */
-const EMOTES: ReadonlyArray<{ id: string; text: string }> = [
-  { id: 'well_played', text: 'Well played!' },
-  { id: 'not_bad', text: 'Not bad…' },
-  { id: 'too_easy', text: 'Too easy!' },
-  { id: 'gg', text: 'GG' },
+// Реплики-эмоуты на языке матча (studyTarget=en) + эмодзи-иконка. id совпадают
+// с серверными CONSTELLATION_EMOTE_IDS (submit.ts). Перевод — мелким шрифтом в меню.
+const EMOTES: ReadonlyArray<{ id: string; emoji: string; text: string; hint: string }> = [
+  { id: 'well_played', emoji: '👏', text: 'Well played!', hint: 'отлично' },
+  { id: 'too_easy', emoji: '😎', text: 'Too easy!', hint: 'легко' },
+  { id: 'on_fire', emoji: '🔥', text: "I'm on fire!", hint: 'в ударе' },
+  { id: 'lucky_star', emoji: '⭐', text: 'Lucky star!', hint: 'везёт' },
+  { id: 'thinking', emoji: '🤔', text: 'Let me think…', hint: 'думаю' },
+  { id: 'not_bad', emoji: '😏', text: 'Not bad…', hint: 'неплохо' },
+  { id: 'ouch', emoji: '😅', text: 'Ouch!', hint: 'ай' },
+  { id: 'gg', emoji: '🤝', text: 'GG!', hint: 'хорошая игра' },
 ];
 const EMOTE_SHOW_MS = 3000;
 
@@ -85,6 +91,7 @@ export default function ConstellationMatchScreen() {
   const [exitAsk, setExitAsk] = useState(false);
   const [countdown, setCountdown] = useState<number | null>(null);
   const countdownDoneRef = useRef(false);
+  const [emoteMenuOpen, setEmoteMenuOpen] = useState(false);
   const navigatedRef = useRef(false);
   const prevRoundRef = useRef(0);
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -319,7 +326,7 @@ export default function ConstellationMatchScreen() {
     const def = EMOTES.find((e) => e.id === last.emoteId);
     if (!def) return null;
     const sender = match.players.find((p) => p.slot === last.slot);
-    return { text: def.text, name: sender?.name ?? '', slot: last.slot };
+    return { text: `${def.emoji} ${def.text}`, name: sender?.name ?? '', slot: last.slot };
   }, [match, nowSec]); // nowSec — чтобы пузырь сам гас
 
   const skyColors = useMemo(
@@ -459,18 +466,19 @@ export default function ConstellationMatchScreen() {
 
       {/* Нижняя зона: щит + эмоуты в choose; статусы */}
       {isChoose && myPublic.status === 'alive' ? (
-        <View style={styles.bottomRow}>
+        <View style={[styles.bottomRow, { paddingBottom: insets.bottom + 6 }]}>
+          {/* Раздел «Бонусы»: Щит сияния (тактический козырь). */}
           {!myPublic.shieldUsed ? (
             <TouchableOpacity
               testID="constellation-shield"
-              style={[styles.shieldBtn, {
-                borderColor: shieldMode ? t.accent : t.border,
-                backgroundColor: shieldMode ? `${t.accent}22` : 'transparent',
+              style={[styles.actionBtn, {
+                borderColor: shieldMode ? '#FFD166' : t.border,
+                backgroundColor: shieldMode ? 'rgba(255,209,102,0.16)' : 'rgba(12,18,44,0.7)',
               }]}
-              onPress={() => { setShieldMode((v) => !v); setSheetKey(null); }}
+              onPress={() => { setShieldMode((v) => !v); setSheetKey(null); hapticLightImpact(); }}
             >
-              <Ionicons name="shield" size={16} color={shieldMode ? t.accent : t.textSecond} />
-              <Text style={{ color: shieldMode ? t.accent : t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
+              <Ionicons name="shield" size={18} color={shieldMode ? '#FFD166' : t.textSecond} />
+              <Text style={{ color: shieldMode ? '#FFD166' : t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
                 {shieldMode
                   ? triLang(lang, {
                     ru: 'Тапни свою звезду', uk: 'Тапни свою зірку', es: 'Toca tu estrella',
@@ -478,21 +486,35 @@ export default function ConstellationMatchScreen() {
                     tr: 'Yıldızına dokun', pl: 'Dotknij swojej gwiazdy',
                   })
                   : triLang(lang, {
-                    ru: 'Щит сияния', uk: 'Щит сяйва', es: 'Escudo', 'pt-BR': 'Escudo',
+                    ru: 'Щит', uk: 'Щит', es: 'Escudo', 'pt-BR': 'Escudo',
                     vi: 'Khiên', id: 'Perisai', tr: 'Kalkan', pl: 'Tarcza',
                   })}
               </Text>
             </TouchableOpacity>
-          ) : null}
-          <View style={styles.emoteRow}>
-            {EMOTES.map((e) => (
-              <TouchableOpacity key={e.id} style={[styles.emoteBtn, { borderColor: t.border }]}
-                onPress={() => onEmote(e.id)}>
-                <Text style={{ color: t.textSecond, fontSize: f.caption - 1 }}>{e.text}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          ) : <View style={{ flex: 1 }} />}
+          {/* Отдельная кнопка «Реакции» → анимированное выпадающее меню. */}
+          <TouchableOpacity
+            testID="constellation-emote-toggle"
+            style={[styles.actionBtn, {
+              flex: 0, width: 52,
+              borderColor: emoteMenuOpen ? '#8B7BFF' : t.border,
+              backgroundColor: emoteMenuOpen ? 'rgba(139,123,255,0.16)' : 'rgba(12,18,44,0.7)',
+            }]}
+            onPress={() => { setEmoteMenuOpen((v) => !v); hapticLightImpact(); }}
+          >
+            <Ionicons name="happy-outline" size={20} color={emoteMenuOpen ? '#8B7BFF' : t.textSecond} />
+          </TouchableOpacity>
         </View>
+      ) : null}
+
+      {/* Анимированное выпадающее меню реакций (реплики на языке матча + перевод) */}
+      {emoteMenuOpen && !iAmOut ? (
+        <EmoteMenu
+          lang={lang}
+          bottomInset={insets.bottom}
+          onPick={(id) => { onEmote(id); setEmoteMenuOpen(false); }}
+          onClose={() => setEmoteMenuOpen(false)}
+        />
       ) : null}
 
       {/* Шторка цели (choose) */}
@@ -674,6 +696,52 @@ export default function ConstellationMatchScreen() {
 }
 
 // ── Баннер фазы + кольцевой таймер (2.2/2.3) ─────────────────────────────────
+
+// ── Меню реакций (эмоуты) ────────────────────────────────────────────────────
+
+interface EmoteMenuProps {
+  lang: Lang;
+  bottomInset: number;
+  onPick: (id: string) => void;
+  onClose: () => void;
+}
+
+const EmoteMenu = memo(function EmoteMenu({ lang, bottomInset, onPick, onClose }: EmoteMenuProps) {
+  const { theme: t, f } = useTheme();
+  const y = useSharedValue(40);
+  const op = useSharedValue(0);
+  useEffect(() => {
+    y.value = withTiming(0, { duration: 240, easing: Easing.out(Easing.cubic) });
+    op.value = withTiming(1, { duration: 200 });
+  }, [y, op]);
+  const animStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: y.value }],
+    opacity: op.value,
+  }));
+  return (
+    <>
+      <TouchableOpacity style={styles.emoteBackdrop} activeOpacity={1} onPress={onClose} />
+      <Animated.View style={[styles.emoteMenu, { bottom: bottomInset + 64 }, animStyle]}>
+        <Text style={[styles.emoteMenuTitle, { color: t.textSecond }]}>
+          {triLang(lang, {
+            ru: 'Реакция · на языке матча', uk: 'Реакція · мовою матчу',
+            es: 'Reacción · en idioma del match', 'pt-BR': 'Reação · no idioma',
+            vi: 'Phản ứng', id: 'Reaksi', tr: 'Tepki', pl: 'Reakcja',
+          })}
+        </Text>
+        <View style={styles.emoteGrid}>
+          {EMOTES.map((e) => (
+            <TouchableOpacity key={e.id} style={styles.emoteCell} onPress={() => onPick(e.id)} activeOpacity={0.8}>
+              <Text style={styles.emoteCellEmoji}>{e.emoji}</Text>
+              <Text style={[styles.emoteCellText, { color: t.textPrimary }]} numberOfLines={1}>{e.text}</Text>
+              <Text style={[styles.emoteCellHint, { color: t.textSecond, fontSize: f.caption - 2 }]}>{e.hint}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </Animated.View>
+    </>
+  );
+});
 
 // ── Отсчёт 3-2-1 перед игрой ─────────────────────────────────────────────────
 
@@ -1250,28 +1318,52 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
     paddingHorizontal: 14,
-    paddingBottom: 18,
+    paddingTop: 6,
   },
-  shieldBtn: {
+  actionBtn: {
+    flex: 1,
+    height: 46,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 6,
     borderWidth: 1,
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    borderRadius: 14,
   },
-  emoteRow: {
+  emoteBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 40,
+  },
+  emoteMenu: {
+    position: 'absolute',
+    left: 14,
+    right: 14,
+    zIndex: 41,
+    backgroundColor: 'rgba(14,22,54,0.98)',
+    borderWidth: 1,
+    borderColor: 'rgba(160,180,255,0.25)',
+    borderRadius: 20,
+    padding: 14,
+  },
+  emoteMenuTitle: { fontSize: 12, fontWeight: '700', textAlign: 'center', marginBottom: 10 },
+  emoteGrid: {
     flexDirection: 'row',
-    gap: 6,
-    marginLeft: 'auto',
+    flexWrap: 'wrap',
+    gap: 8,
+    justifyContent: 'center',
   },
-  emoteBtn: {
+  emoteCell: {
+    width: '31%',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderRadius: 14,
+    backgroundColor: 'rgba(139,123,255,0.1)',
     borderWidth: 1,
-    borderRadius: 999,
-    paddingHorizontal: 9,
-    paddingVertical: 7,
+    borderColor: 'rgba(140,160,220,0.15)',
   },
+  emoteCellEmoji: { fontSize: 22 },
+  emoteCellText: { fontSize: 11.5, fontWeight: '700', marginTop: 4 },
+  emoteCellHint: { marginTop: 1 },
   waitCard: {
     position: 'absolute',
     left: 14,

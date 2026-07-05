@@ -27,7 +27,8 @@ import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import {
-  hapticCelebrate, hapticError, hapticHeavyImpact, hapticMediumImpact, hapticSuccess, hapticWarning,
+  hapticCelebrate, hapticError, hapticHeavyImpact, hapticLightImpact,
+  hapticMediumImpact, hapticSuccess, hapticWarning,
 } from '../hooks/use-haptics';
 import {
   submitAnswer,
@@ -194,22 +195,33 @@ export default function ConstellationMatchScreen() {
 
   const secondsLeft = match ? Math.max(0, Math.ceil(match.phaseDeadlineAt / 1000) - nowSec) : 0;
 
+  // onStarPress СТАБИЛЕН (пустые deps) — иначе каждый snapshot/тик менял бы
+  // колбэк и ломал memo карты (главная причина лагов). Актуальное состояние
+  // читаем через ref, обновляемый эффектом ниже.
+  const starPressStateRef = useRef({
+    match, uid, mySlot, myPublic, shieldMode, legalTargets, matchId,
+  });
+  starPressStateRef.current = { match, uid, mySlot, myPublic, shieldMode, legalTargets, matchId };
   const onStarPress = useCallback((key: string) => {
-    if (!match || !uid || mySlot === null) return;
-    if (match.phase !== 'choose' || myPublic?.status !== 'alive') return;
-    if (shieldMode) {
-      if (match.stars[key]?.owner === mySlot && !myPublic.shieldUsed) {
+    const s = starPressStateRef.current;
+    if (!s.match || !s.uid || s.mySlot === null) return;
+    if (s.match.phase !== 'choose' || s.myPublic?.status !== 'alive') return;
+    if (s.shieldMode) {
+      if (s.match.stars[key]?.owner === s.mySlot && !s.myPublic.shieldUsed) {
         setShieldMode(false);
         setBusy(true);
-        void submitUseShield(matchId, uid, key)
+        void submitUseShield(s.matchId, s.uid, key)
           .then(() => hapticSuccess())
           .catch(() => hapticError())
           .finally(() => setBusy(false));
       }
       return;
     }
-    if (legalTargets.includes(key)) setSheetKey(key);
-  }, [match, uid, mySlot, myPublic, shieldMode, legalTargets, matchId]);
+    if (s.legalTargets.includes(key)) {
+      hapticLightImpact(); // мгновенный отклик на выбор цели
+      setSheetKey(key);
+    }
+  }, []);
 
   const confirmTarget = useCallback(() => {
     if (!sheetKey || !uid || busy) return;
@@ -850,6 +862,9 @@ const QuizOverlay = memo(function QuizOverlay({
   useEffect(() => { setPickedIndex(null); }, [qIndex]);
   const handlePick = useCallback((i: number) => {
     if (busy) return;
+    // Мгновенная вибрация выбора (жалоба «нет реакции при выборе») — до сетевого
+    // ответа. На плитках только вибрация, без звука (правило проекта).
+    hapticLightImpact();
     setPickedIndex(i);
     onAnswer(i);
   }, [busy, onAnswer]);

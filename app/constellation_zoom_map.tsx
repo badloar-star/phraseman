@@ -12,7 +12,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { Ionicons } from '@expo/vector-icons';
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -31,7 +31,7 @@ function clamp(v: number, lo: number, hi: number): number {
   return Math.min(hi, Math.max(lo, v));
 }
 
-export function ConstellationZoomMap(props: SkyMapProps) {
+function ConstellationZoomMapInner(props: SkyMapProps) {
   const scale = useSharedValue(1);
   const savedScale = useSharedValue(1);
   const tx = useSharedValue(0);
@@ -139,3 +139,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(12,18,44,0.86)',
   },
 });
+
+// memo: карта тяжёлая (37 SVG-гексов). Родитель тикает nowSec каждую секунду —
+// без memo карта перерисовывалась бы каждую секунду (главный источник лагов).
+// Пропсы стабилизированы в родителе (onStarPress через ref).
+export const ConstellationZoomMap = memo(ConstellationZoomMapInner);

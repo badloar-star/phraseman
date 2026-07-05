@@ -1038,7 +1038,12 @@ function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | 
     const localIds = Array.isArray(local) ? local.filter((x): x is string => typeof x === 'string') : [];
     return JSON.stringify([...new Set([...cloudIds, ...localIds])]);
   }
-  if (!cloud || typeof cloud !== 'object' || !local || typeof local !== 'object') return cloudValue;
+  // Локаль — читаемая object-мапа, но облако нечитаемо (пустая строка / битый JSON).
+  // Владение аддитивно: НЕ роняем реальные локальные покупки (аватары/ауры/счётчики
+  // Сокровищницы) в пользу пустого облака — иначе в cloud-wins ветке офлайн-покупки
+  // терялись бы (аудит K2: массивы были защищены, мапы — нет). Возвращаем локаль.
+  if (!cloud || typeof cloud !== 'object') return localValue ?? cloudValue;
+  if (!local || typeof local !== 'object') return cloudValue;
   const cloudMap = cloud as Record<string, unknown>;
   const localMap = local as Record<string, unknown>;
   const merged: Record<string, unknown> = { ...cloudMap };

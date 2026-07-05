@@ -86,6 +86,24 @@ describe('K2 owned/purchased union restore (offline purchases survive cloud-wins
       const merged = JSON.parse(mergeOwnedRestoreValue(cloud, local));
       expect(merged['av-1']).toBe('gradCloud:black');
     });
+
+    // Регресс аудита K2: cloud-wins ветка проверяла только !== null/undefined, но
+    // пустую строку/битый JSON НЕ отсекала. При object-owned мапе это стирало
+    // локальные покупки (аватары/ауры/счётчики) — массивы были защищены, мапы нет.
+    it('keeps local map when cloud value is an empty string (offline purchase survives)', () => {
+      const local = JSON.stringify({ 'av-offline': 'grad:white' });
+      expect(mergeOwnedRestoreValue('', local)).toBe(local);
+    });
+
+    it('keeps local map when cloud value is corrupt JSON', () => {
+      const local = JSON.stringify({ 'card-x': 3 });
+      expect(mergeOwnedRestoreValue('{not json', local)).toBe(local);
+    });
+
+    it('keeps local map when cloud value is JSON null', () => {
+      const local = JSON.stringify({ 'aura-offline': true });
+      expect(mergeOwnedRestoreValue('null', local)).toBe(local);
+    });
   });
 
   describe('routing through mergeLessonRestoreValue (the actual restore call site)', () => {

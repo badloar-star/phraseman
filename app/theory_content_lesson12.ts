@@ -129,7 +129,8 @@ export const LESSON12_THEORY: {
           examples: [
             { en: 'go → went', ru: 'идти / ехать', uk: 'іти / їхати', es: 'ir', hi: 'went' },
             { en: 'come → came', ru: 'приходить', uk: 'приходити', es: 'venir', hi: 'came' },
-            { en: 'see → saw', ru: 'видеть', uk: 'бачити', es: 'ver', hi: 'saw' },
+            { en: 'see → saw', ru: 'видеть', uk: 'бачити', es: 'ver',
+            'pt-BR': 'ver', hi: 'saw' },
             { en: 'get → got', ru: 'получать', uk: 'отримувати', es: 'conseguir', hi: 'got' },
             { en: 'have → had', ru: 'иметь', uk: 'мати', es: 'tener', hi: 'had' },
             { en: 'say → said', ru: 'говорить', uk: 'говорити', es: 'decir', hi: 'said' },

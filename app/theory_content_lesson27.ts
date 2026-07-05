@@ -182,7 +182,8 @@ export const LESSON27_THEORY: { titleRu: string; titleUk: string; titleEs: strin
           kind: 'drill',
           drill: {
             type: 'word_bank',
-            prompt: { ru: 'Она сказала, что позвонит мне.', es: 'Ella dijo que me llamaría.' },
+            prompt: { ru: 'Она сказала, что позвонит мне.', es: 'Ella dijo que me llamaría.',
+            'pt-BR': 'Ela disse que ia me ligar.' },
             answer: ['She', 'said', 'she', 'would', 'call', 'me'],
             slotLabels: [{ ru: 'кто', es: 'quién' }, { ru: 'сказала', es: 'dijo' }, { ru: 'кто', es: 'quién' }, { ru: 'will → would', es: 'will → would' }, { ru: 'глагол', es: 'verbo' }, { ru: 'кому', es: 'a quién' }],
             distractors: ['will', 'me?'],

@@ -43,6 +43,7 @@ export const DARK_LOGIC_PART2: VictoriaRow[] = [
     en: 'Appeal to authority',
     ru: 'Апелляция к авторитету',
     uk: 'Апеляція до авторитету',
+    'pt-BR': 'Apelo à autoridade',
     literalRu: 'Обращение к власти',
     literalUk: 'Звернення до влади',
     transcription: '/əˈpiːl tuː ɔːˈθɒrəti/',

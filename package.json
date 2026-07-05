@@ -172,6 +172,7 @@
     "heisenberg:raw-strings": "npx tsx ./scripts/heisenberg_raw_string_audit.ts",
     "heisenberg:raw-strings:strict": "npx tsx ./scripts/heisenberg_raw_string_audit.ts --strict",
     "heisenberg:translate": "node ./scripts/heisenberg_translate_blocks.mjs",
+    "heisenberg:apply": "node ./scripts/heisenberg_apply_translations.mjs",
     "dump:lesson-intros-json": "npx tsx ./scripts/dump_lesson_content_export.ts",
     "dump:lesson-content": "npx tsx ./scripts/dump_lesson_content_export.ts",
     "audit:correct-presence": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs ./scripts/audit_correct_word_presence.ts",

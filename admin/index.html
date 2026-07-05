@@ -15438,6 +15438,29 @@
       await Promise.all(chunk.map((uid) => fetchNameForUid(uid)));
     }
   }
+
+  // Дозагрузка имён авторов идей: карточка рендерится сразу (имя = '?', если его
+  // нет в записи/кэше), затем по uid подтягивается реальное имя из users и
+  // подставляется В МЕСТЕ — без перерисовки всего списка (иначе стёрлись бы
+  // textarea/тон в pending-карточках). Ищет узлы с data-idea-uid, у которых
+  // отрисовано «? · uid …», и заменяет «?» на найденное имя.
+  async function enrichIdeaAuthorNames(rootEl, uids) {
+    try {
+      if (!rootEl) return;
+      const need = [...new Set((uids || []).filter(Boolean))];
+      if (!need.length) return;
+      await fetchNamesForUidSet(need);
+      need.forEach((uid) => {
+        const name = window._refNameCache[uid];
+        if (!name) return;
+        rootEl.querySelectorAll('[data-idea-uid="' + (window.CSS && CSS.escape ? CSS.escape(uid) : uid) + '"]').forEach((node) => {
+          const nameSpan = node.querySelector('[data-idea-author-name]');
+          if (nameSpan && nameSpan.textContent === '?') nameSpan.textContent = name;
+        });
+      });
+    } catch (e) { /* имя — не критично, тихо игнорируем */ }
+  }
+
   function refStatusLabel(st) {
     if (st === 'pending') return '⏳ ждёт урок 1';
     if (st === 'qualified') return '🎓 урок 1 пройден — ждёт «Открыть» у реферера';
@@ -27913,7 +27936,7 @@
       const uidFullEsc = escapeHtml(uidFull);
       const uShort = uidFull ? escapeHtml(uidFull.slice(-8)) : '—';
       const cachedU = uidFull ? (window._users || []).find(u => u.uid === uidFull) : null;
-      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || '?');
+      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || (uidFull && window._refNameCache && window._refNameCache[uidFull]) || '?');
       const plat = escapeHtml(r.platform || (cachedU && cachedU.platform) || '—');
       const id = r.id;
       const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '';
@@ -27940,7 +27963,7 @@
             <span style="font-size:18px">💡</span>
             <div style="flex:1">
               <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
-              <div style="color:#666;font-size:11px">${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px">${uName} · uid ${uShort}</button>` : `${uName} · uid ${uShort}`} · ${plat} · ${date}</div>
+              <div style="color:#666;font-size:11px" ${uidFull ? `data-idea-uid="${uidFullEsc}"` : ''}>${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px"><span data-idea-author-name>${uName}</span> · uid ${uShort}</button>` : `<span data-idea-author-name>${uName}</span> · uid ${uShort}`} · ${plat} · ${date}</div>
             </div>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
@@ -27975,6 +27998,13 @@
     list.querySelectorAll('span[data-idea-tone-badge]').forEach(span => {
       renderIdeaToneBadge(span.dataset.ideaToneBadge);
     });
+
+    // Дотянуть имена авторов, у которых в записи имени нет (осталось «?»).
+    const missing = ideas
+      .filter(r => !(r.userName || r.name))
+      .map(r => (r.uid ? String(r.uid).trim() : ''))
+      .filter(Boolean);
+    if (missing.length) void enrichIdeaAuthorNames(list, missing);
   }
 
   // Обновляет визуальный бейдж рядом с кнопкой «Задать тон» для конкретной идеи.
@@ -28131,7 +28161,7 @@
       const uidFullEsc = escapeHtml(uidFull);
       const uShort = uidFull ? escapeHtml(uidFull.slice(-8)) : '—';
       const cachedU = uidFull ? (window._users || []).find(u => u.uid === uidFull) : null;
-      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || '?');
+      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || (uidFull && window._refNameCache && window._refNameCache[uidFull]) || '?');
       const plat = escapeHtml(r.platform || (cachedU && cachedU.platform) || '—');
       const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '—';
       // Точный текст, который ушёл пользователю в модалку (decisionMessageRu).
@@ -28147,7 +28177,7 @@
             <span style="font-size:18px">${approved ? '✅' : '✖️'}</span>
             <div style="flex:1">
               <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
-              <div style="color:#666;font-size:11px">${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px">${uName} · uid ${uShort}</button>` : `${uName} · uid ${uShort}`} · ${plat} · создана ${createdDate}</div>
+              <div style="color:#666;font-size:11px" ${uidFull ? `data-idea-uid="${uidFullEsc}"` : ''}>${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px"><span data-idea-author-name>${uName}</span> · uid ${uShort}</button>` : `<span data-idea-author-name>${uName}</span> · uid ${uShort}`} · ${plat} · создана ${createdDate}</div>
             </div>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
@@ -28173,6 +28203,13 @@
         if (uid) void loadUserToCacheAndOpen(uid);
       });
     });
+
+    // Дотянуть имена авторов, у которых в записи имени нет (осталось «?»).
+    const missing = sorted
+      .filter(r => !(r.userName || r.name))
+      .map(r => (r.uid ? String(r.uid).trim() : ''))
+      .filter(Boolean);
+    if (missing.length) void enrichIdeaAuthorNames(list, missing);
   }
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────

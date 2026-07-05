@@ -96,4 +96,53 @@ describe('speaking recognition start options', () => {
     const noMeter = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', volumeMeter: false });
     expect(noMeter.volumeChangeEventOptions).toBeUndefined();
   });
+
+  // ===== holdToTalk (разговорный режим ИИ-диалогов) =====
+  // Конец речи задаёт палец (onPressOut → stop()), а НЕ OEM-endpointer. Поэтому
+  // continuous:true + растянутые таймеры тишины держат движок открытым, пока
+  // зажата кнопка — иначе на Android агрессивный endpointer рвёт реплику на паузе
+  // («микрофон закрывается сам»).
+
+  it('holdToTalk opens a continuous session so the finger, not the endpointer, ends speech', () => {
+    const hold = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', holdToTalk: true });
+    expect(hold.continuous).toBe(true);
+    // Default / omitted stays single-shot (pronunciation scoring relies on the endpointer).
+    const tap = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', holdToTalk: false });
+    expect(tap.continuous).toBe(false);
+    const omitted = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi' });
+    expect(omitted.continuous).toBe(false);
+  });
+
+  it('holdToTalk stretches the Android silence timers so a pause inside a reply does not cut it off', () => {
+    (Platform as any).OS = 'android';
+
+    const hold = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', holdToTalk: true });
+    expect(hold.androidIntentOptions).toEqual({
+      EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 600,
+      EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 60000,
+      EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 60000,
+    });
+  });
+
+  it('REGRESSION: pronunciation scoring (no holdToTalk) keeps the tight endpointer timers', () => {
+    (Platform as any).OS = 'android';
+
+    // Оценка произношения НЕ передаёт holdToTalk → штатный endpointer 1500/3000мс,
+    // continuous:false. Разговорный режим не должен «протечь» в скоринг.
+    const scoring = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi' });
+    expect(scoring.continuous).toBe(false);
+    expect(scoring.androidIntentOptions).toEqual({
+      EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 800,
+      EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1500,
+      EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 3000,
+    });
+  });
+
+  it('does not add the Android silence timers on iOS regardless of holdToTalk', () => {
+    (Platform as any).OS = 'ios';
+    const hold = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', holdToTalk: true });
+    expect(hold.androidIntentOptions).toBeUndefined();
+    // continuous still reflects the flag (iOS session handling reads it too).
+    expect(hold.continuous).toBe(true);
+  });
 });

@@ -24,13 +24,15 @@ describe('release notes modal gate', () => {
     mockGetAppReleaseBuildId.mockReturnValue(73);
   });
 
-  it('offers the modal to existing onboarded users on the release build', async () => {
+  it('never offers the modal while the master switch is disabled, even for eligible existing users', async () => {
     await AsyncStorage.multiSet([
       ['install_date', String(RELEASE_NOTES_NEW_USER_CUTOFF_MS - 1)],
       ['onboarding_done', '1'],
     ]);
 
-    await expect(shouldOfferReleaseNotesModal()).resolves.toBe(true);
+    // RELEASE_NOTES_MODAL_ENABLED is currently false: the "What's New" text is
+    // stale, so the modal must stay hidden regardless of eligibility.
+    await expect(shouldOfferReleaseNotesModal()).resolves.toBe(false);
   });
 
   it('does not offer the modal to new users installed on or after the cutoff', async () => {

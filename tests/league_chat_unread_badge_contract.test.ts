@@ -54,22 +54,25 @@ describe('league chat unread badge wiring', () => {
     expect(combined).toContain('initialRoom={leagueGroupMeta}');
   });
 
-  it('keeps league chat messages wide with inline reactions and Compass avatar bubbles', () => {
+  it('renders league chat as a flat Threads-style feed with inline reactions and a Compass AI post', () => {
     const panel = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
     const reactions = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatReactions.tsx'), 'utf8');
     const compass = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatCompassPost.tsx'), 'utf8');
 
-    expect(panel).toContain('paddingHorizontal: 8');
-    expect(panel).toContain("maxWidth: '86%'");
+    // Threads-стиль: сообщения — плоская лента слева (flex:1), реакции inline compact,
+    // без пузырей/рамок и без лево/право-выравнивания по isMine.
     expect(panel).toContain('compact');
-    expect(panel).not.toContain('marginLeft: isMine ? 0 : sideOffset, marginRight: isMine ? sideOffset : 0');
+    expect(panel).toContain('flex: 1, minWidth: 0');
+    expect(panel).not.toContain('sideOffset');
+    // Метка времени в строке автора («имя · время»).
+    expect(panel).toContain('timeLabelText');
 
     expect(reactions).toContain('compact?: boolean');
     expect(reactions).toContain("flexWrap: compact ? 'nowrap' : 'wrap'");
 
+    // Пост Компаса: аватар + бейдж «AI», плоский акцентный фон, без рамки-пузыря.
     expect(compass).toContain("import { compassIconSource } from '../constants/weeklyCompassIcons';");
     expect(compass).toContain('compassIconSource(themeMode)');
-    expect(compass).toContain("maxWidth: '86%'");
-    expect(compass).toContain('borderBottomLeftRadius: 6');
+    expect(compass).not.toContain('borderBottomLeftRadius: 6');
   });
 });

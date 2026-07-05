@@ -114,6 +114,41 @@ describe('OpenAI runtime cost controls', () => {
     }
   });
 
+  test('Codex sessions are firewalled from local OpenAI API use except TTS voiceover generation', () => {
+    const agents = read('AGENTS.md');
+    const nodeGuard = read('scripts/openai-dev-guard.mjs');
+    const pythonGuard = read('tools/openai_dev_guard.py');
+
+    expect(agents).toContain('Codex OpenAI API Firewall');
+    expect(agents).toContain('The only OpenAI API use allowed from Codex is TTS/voiceover generation through `/v1/audio/speech`');
+    expect(agents).toContain('OPENAI_TTS_API_KEY');
+    expect(agents).toContain('not the generic `OPENAI_API_KEY`');
+
+    expect(nodeGuard).toContain('requireCodexOpenAiTtsOnly');
+    expect(nodeGuard).toContain('CODEX_THREAD_ID');
+    expect(nodeGuard).toContain("endpoint === 'audio/speech'");
+    expect(pythonGuard).toContain('require_codex_openai_tts_only');
+    expect(pythonGuard).toContain('CODEX_THREAD_ID');
+    expect(pythonGuard).toContain('endpoint == "audio/speech"');
+
+    for (const rel of [
+      'scripts/ai-pr-reviewer.mjs',
+      'scripts/generate-clean-onboarding-dalle-assets.mjs',
+      'scripts/gustav_execute_fr_lesson_llm_review_batch.mjs',
+      'functions/scripts/eval_explain_prompt.mjs',
+      'tools/generate_youtube_pack_dalle.py',
+      'tools/generate_chains_unique_phrase_pack_openai_v3.py',
+      'tools/generate_chains_unique_explanations.py',
+    ]) {
+      expect(read(rel)).toContain(rel.endsWith('.py') ? 'require_codex_openai_tts_only' : 'requireCodexOpenAiTtsOnly');
+    }
+
+    expect(read('scripts/generate_audio.mjs')).toContain('OPENAI_TTS_API_KEY');
+    expect(read('scripts/regen_phrase_audio.mjs')).toContain('OPENAI_TTS_API_KEY');
+    expect(read('tools/fix_venga_first_en_audio.py')).toContain('OPENAI_TTS_API_KEY');
+    expect(read('tools/generate_chains_unique_explanations.py')).not.toContain('OPENAI_TTS_API_KEY');
+  });
+
   test('admin v2 has a read-only OpenAI budget dashboard backed by billing collections', () => {
     const adminHtml = read('admin/index.html');
     const adminFirebase = read('admin/v2/scripts/admin-firebase.js');

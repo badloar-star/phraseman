@@ -18,7 +18,13 @@ import { ttsLocaleForStudyTarget } from '../app/phrase_target_utils';
 import type { StudyTargetLang } from '../app/study_target_lang_dev';
 
 const ANSWER_SPEECH_MIN_WAIT_TIMEOUT_MS = 1800;
-const ANSWER_SPEECH_MAX_WAIT_TIMEOUT_MS = 6500;
+// Потолок фолбэк-таймера. Он ТОЛЬКО страховка от зависшего TTS — реальная озвучка
+// снимается по onDone/onStopped/onError мгновенно. Прежний потолок 6500 мс обрезал
+// длинные фразы (13+ слов) на пути со скачиванием клипа (grace 4500 мс + ~5.6 с речи
+// = ~10 с, упиралось в 6.5 с → фраза не дозвучивала, «Моя практика» перескакивала
+// на следующую). Поднимаем до 12 с: длинные фразы дозвучивают, зависший TTS всё равно
+// разожмётся не позже 12 с (а обычно раньше — по onError/onStopped).
+const ANSWER_SPEECH_MAX_WAIT_TIMEOUT_MS = 12000;
 const ANSWER_SPEECH_FIRST_CLIP_GRACE_MS = 4500;
 const ANSWER_SPEECH_SYSTEM_TTS_GRACE_MS = 600;
 

@@ -29,6 +29,8 @@ import {
   normalizeManualUpdateMode,
   normalizeManualUpdatePlatform,
   shouldShowManualUpdate,
+  isAiGloballyDisabled,
+  isCompassEnabled,
   parsePromoUntilMs,
   shouldShowPromoBanner,
   isPromoBannerEnabled,
@@ -84,6 +86,17 @@ describe('remote_flags', () => {
       applyRemoteConfigSnapshot({ bools: { referral_enabled: true, league_xp_promotion_enabled: true } });
       expect(isReferralEnabled()).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(true);
+    });
+
+    it('ai_global_disable — над-флаг: выключает весь ИИ, перекрывая compass_enabled', () => {
+      // По умолчанию ИИ работает.
+      applyRemoteConfigSnapshot({ bools: { ai_global_disable: false, compass_enabled: true } });
+      expect(isAiGloballyDisabled()).toBe(false);
+      expect(isCompassEnabled()).toBe(true);
+      // Рубильник ВКЛ — весь ИИ выключен, даже если compass_enabled=true.
+      applyRemoteConfigSnapshot({ bools: { ai_global_disable: true, compass_enabled: true } });
+      expect(isAiGloballyDisabled()).toBe(true);
+      expect(isCompassEnabled()).toBe(false);
     });
 
     it('streak_freeze_cost_shards override применяется и клампится', () => {

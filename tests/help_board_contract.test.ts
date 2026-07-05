@@ -86,20 +86,26 @@ describe('help board product contract', () => {
     expect(panel).toContain('hideHelpBoardTopic');
     expect(panel).toContain('hideHelpBoardComment');
     expect(panel).not.toContain('hideHelpBoardCompass');
-    expect(panel).toContain('Connection unavailable');
-    expect(panel).toContain('Help Board server is not deployed yet.');
-    expect(panel).toContain('Account sync failed. Reopen the app and try again.');
-    expect(panel).toContain('Could not send');
-    expect(panel).toContain('commentAvatar');
+    // Тексты ошибок локализованы (triLang) — проверяем обработчики всех статусов,
+    // а не английские хардкод-строки (их больше нет — тексты переведены на 8 языков).
+    expect(panel).toContain('serverUnavailableMsg');
+    expect(panel).toContain('offlineMsg');
+    expect(panel).toContain('authMsg');
+    expect(panel).toContain('couldNotSendMsg');
+    expect(panel).toContain('topicSubmitErrorMessage');
+    // Threads-стиль: hex-аватар автора (personAvatar) + акцентный бейдж Компаса.
+    expect(panel).toContain('personAvatar');
+    expect(panel).toContain('compassBadge');
     expect(panel).toContain('comment.isCompass');
     expect(panel).not.toContain("actionRow('compass'");
     expect(panel).not.toContain('>{copy.helpful}</Text>');
     expect(panel).not.toContain('>{copy.hide}</Text>');
     expect(panel).toContain('accessibilityLabel={copy.helpful}');
-    expect(panel).toContain('width: 44, height: 44');
+    // Плоский ряд действий: тап-зона сохранена через hitSlop, а не круглыми кнопками.
+    expect(panel).toContain('hitSlop={HIT}');
     // Лайк: тоггл с мгновенной подсветкой «уже лайкнуто» + счётчик + откат при ошибке.
     expect(panel).toContain('toggleVote');
-    expect(panel).toContain("liked ? 'thumbs-up' : 'thumbs-up-outline'");
+    expect(panel).toContain("liked ? 'heart' : 'heart-outline'");
     expect(panel).toContain('getMyHelpBoardVotes');
     expect(panel).toContain('copy.voteFailed');
     // Жалоба: диалог выбора причины + внятный фидбек (в т.ч. «уже жаловался»).

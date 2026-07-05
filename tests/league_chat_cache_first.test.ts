@@ -194,7 +194,7 @@ describe('league chat cache-first behavior', () => {
 
     expect(source).toContain('setOptimisticMessages((cur) =>');
     expect(source.indexOf('setOptimisticMessages((cur) =>')).toBeLessThan(
-      source.indexOf('await sendLeagueChatMessage(room, text)'),
+      source.indexOf('await sendLeagueChatMessage(room, text'),
     );
     expect(source).not.toContain('Сообщение отправлено');
   });

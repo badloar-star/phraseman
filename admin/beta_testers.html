@@ -235,9 +235,29 @@
       </header>
       <main>
         <div class="toolbar">
-          <input id="assign-uid" type="search" placeholder="UID или ник — назначить бета-тестером">
+          <input id="assign-uid" type="search" placeholder="UID, ник или email — найти и открыть">
           <button id="assign-btn" type="button" class="btn-primary">Найти и открыть</button>
           <button id="refresh" type="button">Обновить список</button>
+        </div>
+
+        <div id="search-block" class="hidden">
+          <div class="section-title">Результаты поиска (<span id="search-count">0</span>) — выбери нужного по email</div>
+          <div class="table-card">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ник</th>
+                    <th>Email</th>
+                    <th>UID</th>
+                    <th>Бета</th>
+                    <th>Plus</th>
+                  </tr>
+                </thead>
+                <tbody id="search-rows"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         <div class="section-title">Бета-тестеры (<span id="count">0</span>)</div>
@@ -247,6 +267,7 @@
               <thead>
                 <tr>
                   <th>Ник</th>
+                  <th>Email</th>
                   <th>UID</th>
                   <th>Аура</th>
                   <th>Plus</th>
@@ -254,7 +275,7 @@
                 </tr>
               </thead>
               <tbody id="rows">
-                <tr><td colspan="5" class="muted" style="text-align:center;padding:38px">Загрузка...</td></tr>
+                <tr><td colspan="6" class="muted" style="text-align:center;padding:38px">Загрузка...</td></tr>
               </tbody>
             </table>
           </div>
@@ -311,6 +332,13 @@
       const p = readProgress(data);
       return p.user_name || data.user_name || data.displayName || uid;
     }
+    // Email аккаунта — как во вкладке «Юзеры» (index.html): из users/{uid}.linkedAuth.
+    // Fallback на прогресс/корневые поля на случай старых документов.
+    function emailOf(data) {
+      const la = (data && typeof data.linkedAuth === 'object') ? data.linkedAuth : null;
+      const p = readProgress(data);
+      return (la && la.email) || data.email || data.lowerEmail || p.user_email || '';
+    }
     function parseOwned(progress) {
       try {
         const raw = progress.avatar_aura_owned_v1;
@@ -358,6 +386,7 @@
           return {
             uid: d.id,
             name: nameOf(data, d.id),
+            email: emailOf(data),
             aura: p.user_avatar_aura || '',
             ownsNimbus: !!parseOwned(p)[NIMBUS_AURA_ID],
             plus: isPlusForever(p),
@@ -381,12 +410,13 @@
       $('count').textContent = String(betaRows.length);
       $('status').textContent = betaRows.length + ' бета-тестеров';
       if (!betaRows.length) {
-        $('rows').innerHTML = '<tr><td colspan="5" class="muted" style="text-align:center;padding:38px">Пока никого. Впиши UID или ник выше и назначь.</td></tr>';
+        $('rows').innerHTML = '<tr><td colspan="6" class="muted" style="text-align:center;padding:38px">Пока никого. Впиши UID или ник выше и назначь.</td></tr>';
         return;
       }
       $('rows').innerHTML = betaRows.map((r) => `
         <tr>
           <td><button type="button" class="nick-btn" data-uid="${escapeHtml(r.uid)}">${escapeHtml(r.name)}</button></td>
+          <td>${r.email ? `<a href="mailto:${escapeHtml(r.email)}" style="color:var(--acc-soft);text-decoration:none">${escapeHtml(r.email)}</a>` : '<span class="muted">—</span>'}</td>
           <td class="muted" style="font-size:11px">${escapeHtml(r.uid)}</td>
           <td>${r.aura === NIMBUS_AURA_ID ? '<span class="pill">🔵 Нимб</span>' : (r.ownsNimbus ? '<span class="pill">есть Нимб</span>' : '<span class="muted">—</span>')}</td>
           <td>${r.plus ? '<span class="pill plus">Plus ∞</span>' : '<span class="muted">—</span>'}</td>
@@ -399,26 +429,65 @@
     }
 
     // ── Поиск юзера для назначения ──────────────────────────────────────────
+    // Один ник могут носить много юзеров — поэтому при нескольких совпадениях
+    // показываем их в ОТДЕЛЬНОЙ таблице результатов (с email, как во вкладке
+    // «Юзеры»), не затирая список бета-тестеров. По любому можно открыть карточку.
+    function candidateOf(d) {
+      const data = d.data() || {}; const p = readProgress(data);
+      return {
+        uid: d.id,
+        name: nameOf(data, d.id),
+        email: emailOf(data),
+        isBeta: String(p.beta_tester || '') === 'true',
+        plus: isPlusForever(p),
+      };
+    }
+    function renderSearchResults(cands) {
+      $('search-count').textContent = String(cands.length);
+      $('search-block').classList.remove('hidden');
+      $('search-rows').innerHTML = cands.map((r) => `
+        <tr>
+          <td><button type="button" class="nick-btn" data-uid="${escapeHtml(r.uid)}">${escapeHtml(r.name)}</button></td>
+          <td>${r.email ? `<a href="mailto:${escapeHtml(r.email)}" style="color:var(--acc-soft);text-decoration:none">${escapeHtml(r.email)}</a>` : '<span class="muted">—</span>'}</td>
+          <td class="muted" style="font-size:11px">${escapeHtml(r.uid)}</td>
+          <td>${r.isBeta ? '<span class="pill">✓</span>' : '<span class="muted">—</span>'}</td>
+          <td>${r.plus ? '<span class="pill plus">Plus ∞</span>' : '<span class="muted">—</span>'}</td>
+        </tr>
+      `).join('');
+      $('search-rows').querySelectorAll('.nick-btn').forEach((btn) => {
+        btn.addEventListener('click', () => openCard(btn.dataset.uid));
+      });
+    }
+    function clearSearchResults() {
+      $('search-block').classList.add('hidden');
+      $('search-rows').innerHTML = '';
+    }
+
     async function findAndOpen() {
       const term = $('assign-uid').value.trim();
-      if (!term) { toast('Впиши UID или ник', 'err'); return; }
+      if (!term) { toast('Впиши UID, ник или email', 'err'); return; }
       $('assign-btn').disabled = true;
       try {
         // 1) пробуем как UID напрямую
         const direct = await getDoc(doc(db, 'users', term));
-        if (direct.exists()) { openCard(term); return; }
-        // 2) ищем по нику
-        const q = query(collection(db, 'users'), where('progress.user_name', '==', term), limit(10));
-        const snap = await getDocs(q);
-        if (snap.empty) { toast('Не найдено по UID и нику: ' + term, 'err'); return; }
-        if (snap.docs.length === 1) { openCard(snap.docs[0].id); return; }
-        // несколько кандидатов — покажем в списке (перезапишем таблицу выбором)
-        toast(snap.docs.length + ' совпадений — выбери из списка', 'ok');
-        betaRows = snap.docs.map((d) => {
-          const data = d.data() || {}; const p = readProgress(data);
-          return { uid: d.id, name: nameOf(data, d.id), aura: p.user_avatar_aura || '', ownsNimbus: !!parseOwned(p)[NIMBUS_AURA_ID], plus: isPlusForever(p), since: p.beta_tester_since || '' };
-        });
-        renderRows();
+        if (direct.exists()) { clearSearchResults(); openCard(term); return; }
+
+        // 2) собираем кандидатов по нику и по email (email — как во вкладке «Юзеры»)
+        const byUid = new Map();
+        const [byName, byEmail] = await Promise.all([
+          getDocs(query(collection(db, 'users'), where('progress.user_name', '==', term), limit(25))),
+          term.includes('@')
+            ? getDocs(query(collection(db, 'users'), where('linkedAuth.email', '==', term), limit(25)))
+            : Promise.resolve({ docs: [] }),
+        ]);
+        [...byName.docs, ...byEmail.docs].forEach((d) => { if (!byUid.has(d.id)) byUid.set(d.id, candidateOf(d)); });
+        const cands = Array.from(byUid.values());
+
+        if (!cands.length) { toast('Не найдено по UID, нику и email: ' + term, 'err'); return; }
+        if (cands.length === 1) { clearSearchResults(); openCard(cands[0].uid); return; }
+        // несколько юзеров с этим именем/почтой — показываем отдельным списком с email
+        toast(cands.length + ' совпадений — выбери по email', 'ok');
+        renderSearchResults(cands);
       } catch (e) {
         toast('Ошибка: ' + e.message, 'err');
       } finally {
@@ -433,6 +502,7 @@
       if (!snap.exists()) { toast('Юзер не найден', 'err'); return; }
       const data = snap.data() || {};
       const p = readProgress(data);
+      const email = emailOf(data);
       const isBeta = String(p.beta_tester || '') === 'true';
       const ownsNimbus = !!parseOwned(p)[NIMBUS_AURA_ID];
       const activeNimbus = p.user_avatar_aura === NIMBUS_AURA_ID;
@@ -444,6 +514,7 @@
           <h3>Профиль</h3>
           <div class="drow"><span class="k">UID</span><span class="v" style="font-size:11px">${escapeHtml(uid)}</span></div>
           <div class="drow"><span class="k">Ник</span><span class="v">${escapeHtml(nameOf(data, uid))}</span></div>
+          <div class="drow"><span class="k">Email</span><span class="v">${email ? `<a href="mailto:${escapeHtml(email)}" style="color:var(--acc-soft);text-decoration:none">${escapeHtml(email)}</a>` : '<span class="muted">—</span>'}</span></div>
           <div class="drow"><span class="k">Бета-статус</span><span class="v">${isBeta ? '<span class="pill">✓ бета</span>' : '<span class="pill off">нет</span>'}</span></div>
           <div class="drow"><span class="k">Аура «Нимб»</span><span class="v">${activeNimbus ? '<span class="pill">🔵 активна</span>' : ownsNimbus ? '<span class="pill">в наличии</span>' : '<span class="muted">нет</span>'}</span></div>
           <div class="drow"><span class="k">Plus навсегда</span><span class="v">${plus ? '<span class="pill plus">Plus ∞</span>' : '<span class="muted">нет</span>'}</span></div>

@@ -1899,7 +1899,7 @@ export default function DiagnosticTest() {
             style={{
               paddingHorizontal: 20,
               paddingTop: 10,
-              paddingBottom: Math.max(12, bottomInset + 12),
+              paddingBottom: Math.max(20, bottomInset + 16),
               borderTopWidth: 1,
               borderTopColor: t.border,
             }}

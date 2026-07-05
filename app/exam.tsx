@@ -25,6 +25,7 @@ import { useEnergy } from '../components/EnergyContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
+import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
 import XpGainBadge from '../components/XpGainBadge';
@@ -1627,9 +1628,13 @@ export default function ExamScreen() {
       </View>
 
       {/* Progress bar */}
-        <View style={{height:3,backgroundColor:sx.ghost,marginHorizontal:16,borderRadius:2,overflow:'hidden',marginBottom:8}}>
-        <View style={{height:'100%',width:`${(answered/questions.length)*100}%` as any,backgroundColor:t.textSecond,borderRadius:2}}/>
-      </View>
+      <GradientProgressBar
+        progress={questions.length > 0 ? answered / questions.length : 0}
+        accent={t.accent}
+        height={6}
+        trackColor={sx.ghost}
+        style={{ marginHorizontal: 16, marginBottom: 8 }}
+      />
 
       <BouncyScrollView
         decelerationRate="normal"
@@ -1685,7 +1690,7 @@ export default function ExamScreen() {
       <View style={{
         position:'absolute', bottom:0, left:0, right:0,
         borderTopWidth:0.5, borderTopColor:t.border,
-        paddingBottom: Math.max(bottomInset, 8),
+        paddingBottom: Math.max(20, bottomInset + 16),
         paddingHorizontal:12, paddingTop:10, gap:8,
       }}>
         {/* Row 1: Skip / Next (primary actions) */}

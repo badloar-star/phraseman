@@ -25,6 +25,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
+import GradientProgressBar from '../components/GradientProgressBar';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
@@ -480,9 +481,6 @@ export default function TrainerWordsSession() {
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <View style={styles.headerRight}>
-              <Text style={[{ color: sx.muted, fontSize: f.caption }]}>
-                {current + 1} / {deck.length}
-              </Text>
               {deck[current] ? (
                 <ReportErrorButton
                   screen="trainer_words"
@@ -496,9 +494,11 @@ export default function TrainerWordsSession() {
           </View>
 
           {/* Прогресс-бар */}
-          <View style={[styles.progressBar, { backgroundColor: t.bgSurface }]}>
-            <View style={[styles.progressFill, { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#4A9EFF', width: `${((current) / deck.length) * 100}%` }]} />
-          </View>
+          <GradientProgressBar
+            progress={deck.length > 0 ? current / deck.length : 0}
+            accent={isCompassTheme ? COMPASS_RICH.champagne : '#4A9EFF'}
+            style={styles.progressBar}
+          />
 
           {/* Стек карточек */}
           <View style={styles.deckContainer}>
@@ -603,13 +603,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   progressBar: {
-    height: 4,
-    borderRadius: 2,
     marginHorizontal: 16,
     marginBottom: 8,
-    overflow: 'hidden',
   },
-  progressFill: { height: '100%', borderRadius: 2 },
   deckContainer: {
     flex: 1,
     alignItems: 'center',

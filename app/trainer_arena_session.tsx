@@ -22,6 +22,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import BounceView from '../components/BounceView';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
+import GradientProgressBar from '../components/GradientProgressBar';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -299,9 +300,6 @@ export default function TrainerArenaSession() {
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-              <Text style={{ color: sx.muted, fontSize: f.caption }}>
-                {current + 1} / {items.length}
-              </Text>
               <ReportErrorButton
                 variant="icon-flag"
                 screen="trainer_arena"
@@ -314,12 +312,11 @@ export default function TrainerArenaSession() {
           </View>
 
           {/* Прогресс */}
-          <View style={[styles.progressBar, { backgroundColor: t.bgSurface }]}>
-            <View style={[styles.progressFill, {
-              backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#E05050',
-              width: `${(current / items.length) * 100}%`,
-            }]} />
-          </View>
+          <GradientProgressBar
+            progress={items.length > 0 ? current / items.length : 0}
+            accent={isCompassTheme ? COMPASS_RICH.champagne : '#E05050'}
+            style={styles.progressBar}
+          />
 
           <View style={{ flex: 1, padding: 16, gap: 16, justifyContent: 'center' }}>
             {/* Правило/тема (если есть) */}
@@ -385,8 +382,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
-  progressBar: { height: 4, borderRadius: 2, marginHorizontal: 16, overflow: 'hidden' },
-  progressFill: { height: '100%', borderRadius: 2 },
+  progressBar: { marginHorizontal: 16 },
   questionBox: {
     borderRadius: 18,
     borderWidth: StyleSheet.hairlineWidth,

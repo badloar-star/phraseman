@@ -7,6 +7,7 @@ import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-nati
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { lightenHex } from '../components/GradientProgressBar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -1580,7 +1581,12 @@ export default function LevelExam() {
                   style={{ height: '100%', width: `${progressPct}%` as any, borderRadius: 3 }}
                 />
               ) : (
-                <View style={{ height: '100%', width: `${progressPct}%` as any, backgroundColor: t.accent, borderRadius: 3 }} />
+                <LinearGradient
+                  colors={[t.accent, lightenHex(t.accent, 0.28)]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={{ height: '100%', width: `${progressPct}%` as any, borderRadius: 3 }}
+                />
               )}
             </View>
           </View>

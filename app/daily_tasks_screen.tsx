@@ -17,6 +17,8 @@ import { GOLD_RICH, goldTaskAccent, goldShadow } from '../constants/goldTheme';
 import { localizedDailyTaskStrings } from './daily_tasks_es_locale';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
+import { lightenHex } from '../components/GradientProgressBar';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
@@ -2622,9 +2624,6 @@ export default function DailyTasksScreen() {
                 : isBusinessTheme
                     ? t.accent
                     : meta.tone;
-            const progressLabel = isArenaCombo && comboReq
-                ? `${Math.round(pct)}%`
-                : `${Math.min(current, task.target)}/${task.target}`;
             const taskFillPct = Math.max(0, Math.min(pct, 100));
             const taskFillSizeStyle = completed || claimed
                 ? { right: 0 }
@@ -2673,7 +2672,16 @@ export default function DailyTasksScreen() {
                 <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]}/>
                 <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]}/>
                 <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
-                  <View style={[dailyTaskStyles.taskCapsuleBottomFill, { ...taskFillSizeStyle, backgroundColor: claimed ? (isGoldTheme ? GOLD_RICH.agedGold : 'rgba(255,255,255,0.36)') : taskAccent }]}/>
+                  <View style={[dailyTaskStyles.taskCapsuleBottomFill, taskFillSizeStyle]}>
+                    <LinearGradient
+                      colors={claimed
+                        ? (isGoldTheme ? [GOLD_RICH.agedGold, GOLD_RICH.champagne] : ['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.46)'])
+                        : [taskAccent, lightenHex(taskAccent, 0.28)]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      style={dailyTaskStyles.taskCapsuleBottomFillGradient}
+                    />
+                  </View>
                 </View>
                 {/* Плашка Premium */}
                 {isPremiumTask && (<Animated.View pointerEvents="box-none" style={{
@@ -2713,12 +2721,7 @@ export default function DailyTasksScreen() {
                       </Text>
                     </TouchableOpacity>) : claimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
                       <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
-                    </View>) : (<View style={[dailyTaskStyles.taskProgressValuePill, {
-                          backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.24)' : 'rgba(255,255,255,0.085)',
-                          borderColor: isGoldTheme ? goldHairline : `${taskAccent}34`,
-                      }]}>
-                      <Text numberOfLines={1} style={{ color: isGoldTheme ? t.textPrimary : 'rgba(255,255,255,0.78)', fontSize: f.body, fontWeight: '900' }}>{progressLabel}</Text>
-                    </View>)}
+                    </View>) : null}
                     {!completed && !claimed && rerollsLeft > 0 && (<TouchableOpacity onPress={(e) => {
                         e.stopPropagation();
                         hapticTap();
@@ -3033,6 +3036,11 @@ const dailyTaskStyles = StyleSheet.create({
         left: 0,
         top: 0,
         bottom: 0,
+        borderRadius: 999,
+        overflow: 'hidden',
+    },
+    taskCapsuleBottomFillGradient: {
+        flex: 1,
         borderRadius: 999,
     },
     taskMainRow: {

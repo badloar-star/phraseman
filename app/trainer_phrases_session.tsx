@@ -29,6 +29,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
+import GradientProgressBar from '../components/GradientProgressBar';
 import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
@@ -706,9 +707,6 @@ export default function TrainerPhrasesSession() {
                 pl: 'Frazy',
               })}
             </Text>
-            <Text style={{ color: sx.muted, fontSize: f.caption }}>
-              {current + 1} / {deck.length}
-            </Text>
             {card ? (
               <ReportErrorButton
                 screen="trainer_phrases"
@@ -725,9 +723,11 @@ export default function TrainerPhrasesSession() {
           </View>
 
           {/* Прогресс */}
-          <View style={[styles.progressBar, { backgroundColor: t.bgSurface }]}>
-            <View style={[styles.progressFill, { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#40C080', width: `${(current / deck.length) * 100}%` }]} />
-          </View>
+          <GradientProgressBar
+            progress={deck.length > 0 ? current / deck.length : 0}
+            accent={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'}
+            style={styles.progressBar}
+          />
 
           {/* Лейбл режима */}
           <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
@@ -761,8 +761,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   headerTitle: { fontWeight: '700' },
-  progressBar: { height: 4, borderRadius: 2, marginHorizontal: 16, overflow: 'hidden' },
-  progressFill: { height: '100%', borderRadius: 2 },
+  progressBar: { marginHorizontal: 16 },
   translationBox: {
     borderRadius: 16,
     borderWidth: StyleSheet.hairlineWidth,

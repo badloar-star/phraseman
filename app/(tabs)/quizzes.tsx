@@ -1384,6 +1384,7 @@ function QuizGame({
   // «Пульт»: дневной лимит/замки квизов снимаются, когда фича переведена в «Фри».
   const isPremium = useFeatureAccess('quizzes');
   const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { width: windowWidth } = useWindowDimensions();
   const isLightTheme = themeMode === 'light';
   /** Текст на тёмном градиенте (океан/сакура): не t.text* — они для светлых карточек */
@@ -2483,8 +2484,8 @@ function QuizGame({
             style={{ flex:1 }}
             decelerationRate="normal"
             contentContainerStyle={planQuizId
-              ? { flexGrow: 1, paddingHorizontal: 16, paddingTop: 10, paddingBottom: 14, justifyContent: 'space-between', overflow: 'hidden' }
-              : { paddingHorizontal:20, paddingTop:20, paddingBottom:40 }}
+              ? { flexGrow: 1, paddingHorizontal: 16, paddingTop: 10, paddingBottom: Math.max(14, bottomInset + 14), justifyContent: 'space-between', overflow: 'hidden' }
+              : { paddingHorizontal:20, paddingTop:20, paddingBottom: Math.max(40, bottomInset + 24) }}
             keyboardShouldPersistTaps="handled"
             scrollEnabled={!planQuizId}
             showsVerticalScrollIndicator={!planQuizId}

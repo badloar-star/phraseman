@@ -36,7 +36,8 @@ export type FeatureGate =
   | 'quizzes'
   | 'arena'
   | 'energy'
-  | 'extra_languages';
+  | 'extra_languages'
+  | 'speaking_club';
 
 /** Соответствие фича → булев флаг remote_config. Держать в синхроне с RemoteBoolKey. */
 const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
@@ -56,6 +57,7 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   arena: 'gate_arena_premium',
   energy: 'gate_energy_premium',
   extra_languages: 'gate_extra_languages_premium',
+  speaking_club: 'gate_speaking_club_premium',
 };
 
 /** Полный список фич — для итерации в админке/тестах. */

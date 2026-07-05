@@ -125,6 +125,9 @@ export type RemoteBoolKey =
   | 'gate_energy_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
+  // «Разговорный клуб»: true = free получает 1 миссию в день, безлимит за Plus;
+  // false = аварийное «фри для всех» (premium-капы сервера применяются и к free).
+  | 'gate_speaking_club_premium'
   // Раздел «Топ хелперов» (борд топ-репортёров багов) в настройках. Дефолт TRUE =
   // kill-switch: борд показывается, админ может выключить его в «Пульте» живьём
   // (onSnapshot), без релиза — тогда пункт в настройках прячется и сам экран отдаёт
@@ -346,6 +349,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_arena_premium: true,
   gate_energy_premium: true,
   gate_extra_languages_premium: true,
+  gate_speaking_club_premium: true,
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
   // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
   top_helpers_enabled: true,

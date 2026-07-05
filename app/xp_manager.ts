@@ -102,7 +102,8 @@ export type XPSource =
   | 'exam_complete'
   | 'achievement_reward'
   | 'level_up_bonus'
-  | 'plan_task_complete';   // Завершение задачи персонального плана
+  | 'plan_task_complete'    // Завершение задачи персонального плана
+  | 'club_mission_complete'; // Первое прохождение миссии «Разговорного клуба»
 
 interface XPResult {
   finalDelta: number;

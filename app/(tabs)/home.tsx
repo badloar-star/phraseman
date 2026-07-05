@@ -329,7 +329,7 @@ type HomeMenuIconAlign = {
     x: number;
     y: number;
 };
-type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice';
+type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice' | 'dialogs';
 const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
 };
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
@@ -2217,6 +2217,23 @@ export default function HomeScreen() {
                 label: s.home.attestTile,
                 path: '/diagnostic_test' as const,
                 img: menuImages.test,
+            },
+            {
+                key: 'speaking_club',
+                kind: 'image' as const,
+                iconKey: 'dialogs' as const,
+                label: triLang(lang, {
+                    ru: 'Разговорный клуб',
+                    uk: 'Розмовний клуб',
+                    es: 'Club de charla',
+                    'pt-BR': "Clube de conversa",
+                    vi: "CLB hội thoại",
+                    id: "Klub bicara",
+                    tr: "Konuşma kulübü",
+                    pl: "Klub rozmów",
+                }),
+                path: '/speaking_club_home' as const,
+                img: menuImages.dialogs,
             },
         ];
         const visibleActivityQuickItems = activityQuickItems;

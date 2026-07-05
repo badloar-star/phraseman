@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 
 const ROOT = process.cwd();
 const INPUTS_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'core_lessons_32', 'fr_lesson_builder_inputs_v1.json');
+const RECONCILIATION_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'core_lessons_32', 'fr_lesson_sequence_reconciliation_report.json');
 const RESEARCH_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'research_best_practices', 'fr_feature_research_packets.json');
 const OUT_DIR = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons');
 const AUDIT_PATH = path.join(OUT_DIR, 'fr_lesson_rebuild_candidate_audit.json');
@@ -1439,6 +1440,271 @@ const LESSON27_ROWS = [
   row('The hotel where they stay is quiet.', 'Отель, где они останавливаются, тихий.', 'Готель, де вони зупиняються, тихий.', "L'hôtel où ils restent est calme.", "L'hôtel ___ ils restent est calme", 'où', ['qui', 'que', "qu'"], 'relative_ou_place'),
 ];
 
+const LESSON28_ROWS = [
+  row('The person I am talking about is my neighbor.', 'Человек, о котором я говорю, мой сосед.', 'Людина, про яку я говорю, мій сусід.', 'La personne dont je parle est mon voisin.', 'La personne ___ je parle est mon voisin', 'dont', ['qui', 'que', 'où'], 'dont_parler_de_person'),
+  row('The book I need is on the table.', 'Книга, которая мне нужна, на столе.', 'Книжка, яка мені потрібна, на столі.', "Le livre dont j'ai besoin est sur la table.", "Le livre ___ j'ai besoin est sur la table", 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The thing I am afraid of is not here.', 'Вещь, которой я боюсь, не здесь.', 'Річ, якої я боюся, не тут.', "La chose dont j'ai peur n'est pas ici.", "La chose ___ j'ai peur n'est pas ici", 'dont', ['qui', 'que', 'où'], 'dont_avoir_peur_de'),
+  row('The reason he is talking about is serious.', 'Причина, о которой он говорит, серьезная.', 'Причина, про яку він говорить, серйозна.', 'La raison dont il parle est sérieuse.', 'La raison ___ il parle est sérieuse', 'dont', ['qui', 'que', 'où'], 'dont_parler_de_reason'),
+  row('The topic we are discussing is important.', 'Тема, которую мы обсуждаем, важная.', 'Тема, яку ми обговорюємо, важлива.', 'Le sujet dont nous discutons est important.', 'Le sujet ___ nous discutons est important', 'dont', ['qui', 'que', 'où'], 'dont_discuter_de'),
+  row('The friend she remembers lives here.', 'Друг, которого она помнит, живет здесь.', 'Друг, якого вона памʼятає, живе тут.', "L'ami dont elle se souvient habite ici.", "L'ami ___ elle se souvient habite ici", 'dont', ['qui', 'que', 'où'], 'dont_se_souvenir_de'),
+  row('The project they are proud of is moving forward.', 'Проект, которым они гордятся, продвигается.', 'Проєкт, яким вони пишаються, просувається.', 'Le projet dont ils sont fiers avance.', 'Le projet ___ ils sont fiers avance', 'dont', ['qui', 'que', 'où'], 'dont_etre_fier_de'),
+  row('The solution everyone is talking about is simple.', 'Решение, о котором все говорят, простое.', 'Рішення, про яке всі говорять, просте.', 'La solution dont tout le monde parle est simple.', 'La solution ___ tout le monde parle est simple', 'dont', ['qui', 'que', 'où'], 'dont_parler_de_solution'),
+  row('The object you need is in the bag.', 'Предмет, который тебе нужен, в сумке.', 'Предмет, який тобі потрібен, у сумці.', "L'objet dont tu as besoin est dans le sac.", "L'objet ___ tu as besoin est dans le sac", 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The course I remember was useful.', 'Курс, который я помню, был полезным.', 'Курс, який я памʼятаю, був корисним.', 'Le cours dont je me souviens était utile.', 'Le cours ___ je me souviens était utile', 'dont', ['qui', 'que', 'où'], 'dont_se_souvenir_de'),
+  row('The man whose brother works here is kind.', 'Мужчина, чей брат работает здесь, добрый.', 'Чоловік, чий брат працює тут, добрий.', "L'homme dont le frère travaille ici est gentil.", "L'homme ___ le frère travaille ici est gentil", 'dont', ['qui', 'que', 'où'], 'dont_possession_person'),
+  row('The woman whose car is red is here.', 'Женщина, чья машина красная, здесь.', 'Жінка, чия машина червона, тут.', 'La femme dont la voiture est rouge est ici.', 'La femme ___ la voiture est rouge est ici', 'dont', ['qui', 'que', 'où'], 'dont_possession_person'),
+  row('The book whose cover is blue is new.', 'Книга, обложка которой синяя, новая.', 'Книжка, обкладинка якої синя, нова.', 'Le livre dont la couverture est bleue est nouveau.', 'Le livre ___ la couverture est bleue est nouveau', 'dont', ['qui', 'que', 'où'], 'dont_possession_object'),
+  row('The house whose door is yellow is old.', 'Дом, дверь которого желтая, старый.', 'Будинок, двері якого жовті, старий.', 'La maison dont la porte est jaune est ancienne.', 'La maison ___ la porte est jaune est ancienne', 'dont', ['qui', 'que', 'où'], 'dont_possession_place'),
+  row('The boy whose parents live in Lyon is my friend.', 'Мальчик, чьи родители живут в Лионе, мой друг.', 'Хлопець, чиї батьки живуть у Ліоні, мій друг.', 'Le garçon dont les parents habitent à Lyon est mon ami.', 'Le garçon ___ les parents habitent à Lyon est mon ami', 'dont', ['qui', 'que', 'où'], 'dont_possession_person'),
+  row('The city whose center is old attracts tourists.', 'Город, центр которого старый, привлекает туристов.', 'Місто, центр якого старий, приваблює туристів.', 'La ville dont le centre est ancien attire les touristes.', 'La ville ___ le centre est ancien attire les touristes', 'dont', ['qui', 'que', 'où'], 'dont_possession_place'),
+  row('The song whose title is short is famous.', 'Песня, название которой короткое, известная.', 'Пісня, назва якої коротка, відома.', 'La chanson dont le titre est court est célèbre.', 'La chanson ___ le titre est court est célèbre', 'dont', ['qui', 'que', 'où'], 'dont_possession_thing'),
+  row('The restaurant whose terrace is large is full.', 'Ресторан, терраса которого большая, полный.', 'Ресторан, тераса якого велика, повний.', 'Le restaurant dont la terrasse est grande est plein.', 'Le restaurant ___ la terrasse est grande est plein', 'dont', ['qui', 'que', 'où'], 'dont_possession_place'),
+  row('The student whose grades are good works a lot.', 'Ученик, чьи оценки хорошие, много работает.', 'Учень, чиї оцінки добрі, багато працює.', "L'élève dont les notes sont bonnes travaille beaucoup.", "L'élève ___ les notes sont bonnes travaille beaucoup", 'dont', ['qui', 'que', 'où'], 'dont_possession_person'),
+  row('The film whose ending is sad is long.', 'Фильм, конец которого грустный, длинный.', 'Фільм, кінець якого сумний, довгий.', 'Le film dont la fin est triste est long.', 'Le film ___ la fin est triste est long', 'dont', ['qui', 'que', 'où'], 'dont_possession_thing'),
+  row('I have three friends, two of whom speak French.', 'У меня есть три друга, двое из которых говорят по-французски.', 'У мене є три друзі, двоє з яких говорять французькою.', "J'ai trois amis, dont deux parlent français.", "J'ai trois amis, ___ deux parlent français", 'dont', ['qui', 'que', 'où'], 'dont_group_member'),
+  row('She has several books, one of which is rare.', 'У нее несколько книг, одна из которых редкая.', 'У неї кілька книжок, одна з яких рідкісна.', 'Elle a plusieurs livres, dont un est rare.', 'Elle a plusieurs livres, ___ un est rare', 'dont', ['qui', 'que', 'où'], 'dont_group_member'),
+  row('We have five exercises, three of which are difficult.', 'У нас пять упражнений, три из которых трудные.', 'У нас пʼять вправ, три з яких складні.', 'Nous avons cinq exercices, dont trois sont difficiles.', 'Nous avons cinq exercices, ___ trois sont difficiles', 'dont', ['qui', 'que', 'où'], 'dont_group_member'),
+  row('They visit two museums, one of which is free.', 'Они посещают два музея, один из которых бесплатный.', 'Вони відвідують два музеї, один з яких безкоштовний.', 'Ils visitent deux musées, dont un est gratuit.', 'Ils visitent deux musées, ___ un est gratuit', 'dont', ['qui', 'que', 'où'], 'dont_group_member'),
+  row('I have two reasons, one of which is very simple.', 'У меня две причины, одна из которых очень простая.', 'У мене дві причини, одна з яких дуже проста.', "J'ai deux raisons, dont une est très simple.", "J'ai deux raisons, ___ une est très simple", 'dont', ['qui', 'que', 'où'], 'dont_group_member'),
+  row('The key you need is here.', 'Ключ, который тебе нужен, здесь.', 'Ключ, який тобі потрібен, тут.', 'La clé dont tu as besoin est ici.', 'La clé ___ tu as besoin est ici', 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The document we need is ready.', 'Документ, который нам нужен, готов.', 'Документ, який нам потрібен, готовий.', 'Le document dont nous avons besoin est prêt.', 'Le document ___ nous avons besoin est prêt', 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The advice I need is simple.', 'Совет, который мне нужен, простой.', 'Порада, яка мені потрібна, проста.', "Le conseil dont j'ai besoin est simple.", "Le conseil ___ j'ai besoin est simple", 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The help she needs arrives today.', 'Помощь, которая ей нужна, приходит сегодня.', 'Допомога, яка їй потрібна, приходить сьогодні.', "L'aide dont elle a besoin arrive aujourd'hui.", "L'aide ___ elle a besoin arrive aujourd'hui", 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The information they need is clear.', 'Информация, которая им нужна, понятная.', 'Інформація, яка їм потрібна, зрозуміла.', 'Les informations dont ils ont besoin sont claires.', 'Les informations ___ ils ont besoin sont claires', 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+  row('The noise the child is afraid of comes from the street.', 'Шум, которого боится ребенок, идет с улицы.', 'Шум, якого боїться дитина, йде з вулиці.', "Le bruit dont l'enfant a peur vient de la rue.", "Le bruit ___ l'enfant a peur vient de la rue", 'dont', ['qui', 'que', 'où'], 'dont_avoir_peur_de'),
+  row('The question you are afraid of is easy.', 'Вопрос, которого ты боишься, легкий.', 'Питання, якого ти боїшся, легке.', 'La question dont tu as peur est facile.', 'La question ___ tu as peur est facile', 'dont', ['qui', 'que', 'où'], 'dont_avoir_peur_de'),
+  row('The mistake we are afraid of is possible.', 'Ошибка, которой мы боимся, возможна.', 'Помилка, якої ми боїмося, можлива.', "L'erreur dont nous avons peur est possible.", "L'erreur ___ nous avons peur est possible", 'dont', ['qui', 'que', 'où'], 'dont_avoir_peur_de'),
+  row('The problem he is afraid of is not serious.', 'Проблема, которой он боится, несерьезная.', 'Проблема, якої він боїться, несерйозна.', "Le problème dont il a peur n'est pas grave.", "Le problème ___ il a peur n'est pas grave", 'dont', ['qui', 'que', 'où'], 'dont_avoir_peur_de'),
+  row('The exam she is afraid of starts tomorrow.', 'Экзамен, которого она боится, начинается завтра.', 'Іспит, якого вона боїться, починається завтра.', "L'examen dont elle a peur commence demain.", "L'examen ___ elle a peur commence demain", 'dont', ['qui', 'que', 'où'], 'dont_avoir_peur_de'),
+  row('The result I am happy with is clear.', 'Результат, которым я доволен, понятный.', 'Результат, яким я задоволений, зрозумілий.', 'Le résultat dont je suis content est clair.', 'Le résultat ___ je suis content est clair', 'dont', ['qui', 'que', 'où'], 'dont_etre_content_de'),
+  row('The decision she is responsible for is important.', 'Решение, за которое она отвечает, важное.', 'Рішення, за яке вона відповідає, важливе.', 'La décision dont elle est responsable est importante.', 'La décision ___ elle est responsable est importante', 'dont', ['qui', 'que', 'où'], 'dont_etre_responsable_de'),
+  row('The work we are proud of is finished.', 'Работа, которой мы гордимся, закончена.', 'Робота, якою ми пишаємося, завершена.', 'Le travail dont nous sommes fiers est terminé.', 'Le travail ___ nous sommes fiers est terminé', 'dont', ['qui', 'que', 'où'], 'dont_etre_fier_de'),
+  row('The answer you are sure of is correct.', 'Ответ, в котором ты уверен, правильный.', 'Відповідь, у якій ти впевнений, правильна.', 'La réponse dont tu es sûr est correcte.', 'La réponse ___ tu es sûr est correcte', 'dont', ['qui', 'que', 'où'], 'dont_etre_sur_de'),
+  row('The change they are happy with arrives soon.', 'Изменение, которым они довольны, скоро приходит.', 'Зміна, якою вони задоволені, скоро приходить.', 'Le changement dont ils sont contents arrive bientôt.', 'Le changement ___ ils sont contents arrive bientôt', 'dont', ['qui', 'que', 'où'], 'dont_etre_content_de'),
+  row('The book that is on the table is mine.', 'Книга, которая на столе, моя.', 'Книжка, яка на столі, моя.', 'Le livre qui est sur la table est à moi.', 'Le livre ___ est sur la table est à moi', 'qui', ['dont', 'que', 'où'], 'relative_contrast_qui_subject'),
+  row('The book that I am reading is short.', 'Книга, которую я читаю, короткая.', 'Книжка, яку я читаю, коротка.', 'Le livre que je lis est court.', 'Le livre ___ je lis est court', 'que', ['dont', 'qui', 'où'], 'relative_contrast_que_cod'),
+  row('The city where we live is quiet.', 'Город, где мы живем, тихий.', 'Місто, де ми живемо, тихе.', 'La ville où nous habitons est calme.', 'La ville ___ nous habitons est calme', 'où', ['dont', 'qui', 'que'], 'relative_contrast_ou_place'),
+  row('The person I am talking about is arriving.', 'Человек, о котором я говорю, приходит.', 'Людина, про яку я говорю, приходить.', 'La personne dont je parle arrive.', 'La personne ___ je parle arrive', 'dont', ['qui', 'que', 'où'], 'dont_parler_de_person'),
+  row('The person who is speaking is arriving.', 'Человек, который говорит, приходит.', 'Людина, яка говорить, приходить.', 'La personne qui parle arrive.', 'La personne ___ parle arrive', 'qui', ['dont', 'que', 'où'], 'relative_contrast_qui_subject'),
+  row('The idea that you suggest is useful.', 'Идея, которую ты предлагаешь, полезная.', 'Ідея, яку ти пропонуєш, корисна.', "L'idée que tu proposes est utile.", "L'idée ___ tu proposes est utile", 'que', ['dont', 'qui', 'où'], 'relative_contrast_que_cod'),
+  row('The idea you are talking about is useful.', 'Идея, о которой ты говоришь, полезная.', 'Ідея, про яку ти говориш, корисна.', "L'idée dont tu parles est utile.", "L'idée ___ tu parles est utile", 'dont', ['qui', 'que', 'où'], 'dont_parler_de_thing'),
+  row('The day when I leave is Monday.', 'День, когда я уезжаю, понедельник.', 'День, коли я їду, понеділок.', 'Le jour où je pars est lundi.', 'Le jour ___ je pars est lundi', 'où', ['dont', 'qui', 'que'], 'relative_contrast_ou_time'),
+  row('The pen whose color changes is new.', 'Ручка, цвет которой меняется, новая.', 'Ручка, колір якої змінюється, нова.', 'Le stylo dont la couleur change est nouveau.', 'Le stylo ___ la couleur change est nouveau', 'dont', ['qui', 'que', 'où'], 'dont_possession_object'),
+  row('The bag I need is light.', 'Сумка, которая мне нужна, легкая.', 'Сумка, яка мені потрібна, легка.', "Le sac dont j'ai besoin est léger.", "Le sac ___ j'ai besoin est léger", 'dont', ['qui', 'que', 'où'], 'dont_avoir_besoin_de_object'),
+];
+
+const LESSON29_ROWS = [
+  row('I would like a coffee, please.', 'Я хотел бы кофе, пожалуйста.', 'Я хотів би каву, будь ласка.', "Je voudrais un café, s'il vous plaît.", 'Je ___ un café, s\'il vous plaît', 'voudrais', ['veux', 'voudrai', 'voulais'], 'conditionnel_polite_vouloir_je'),
+  row('We would like to order now.', 'Мы хотели бы заказать сейчас.', 'Ми хотіли б замовити зараз.', 'Nous voudrions commander maintenant.', 'Nous ___ commander maintenant', 'voudrions', ['voulons', 'voudrons', 'voulions'], 'conditionnel_polite_vouloir_nous'),
+  row('She would like a glass of water.', 'Она хотела бы стакан воды.', 'Вона хотіла б склянку води.', "Elle voudrait un verre d'eau.", "Elle ___ un verre d'eau", 'voudrait', ['veut', 'voudra', 'voulait'], 'conditionnel_polite_vouloir_elle'),
+  row('They would like a table near the window.', 'Они хотели бы столик у окна.', 'Вони хотіли б столик біля вікна.', 'Ils voudraient une table près de la fenêtre.', 'Ils ___ une table près de la fenêtre', 'voudraient', ['veulent', 'voudront', 'voulaient'], 'conditionnel_polite_vouloir_ils'),
+  row('I would like to speak with the teacher.', 'Я хотел бы поговорить с учителем.', 'Я хотів би поговорити з учителем.', "J'aimerais parler avec le professeur.", "J'___ parler avec le professeur", 'aimerais', ['aime', 'aimerai', 'aimais'], 'conditionnel_polite_aimer_je'),
+  row('We would like to visit the museum.', 'Мы хотели бы посетить музей.', 'Ми хотіли б відвідати музей.', 'Nous aimerions visiter le musée.', 'Nous ___ visiter le musée', 'aimerions', ['aimons', 'aimerons', 'aimions'], 'conditionnel_wish_aimer_nous'),
+  row('Would you like to come with us? (formal)', 'Вы хотели бы пойти с нами?', 'Ви хотіли б піти з нами?', 'Aimeriez-vous venir avec nous ?', '___-vous venir avec nous', 'Aimeriez', ['Aimez', 'Aimerez', 'Aimiez'], 'conditionnel_polite_invitation_formal'),
+  row('Would you like to try this dish? (informal)', 'Ты хотел бы попробовать это блюдо?', 'Ти хотів би спробувати цю страву?', 'Tu aimerais essayer ce plat ?', 'Tu ___ essayer ce plat', 'aimerais', ['aimes', 'aimeras', 'aimais'], 'conditionnel_polite_invitation_informal'),
+  row('Could you help me, please? (formal)', 'Не могли бы вы мне помочь, пожалуйста?', 'Чи могли б ви мені допомогти, будь ласка?', "Pourriez-vous m'aider, s'il vous plaît ?", "___-vous m'aider, s'il vous plaît", 'Pourriez', ['Pouvez', 'Pourrez', 'Pouviez'], 'conditionnel_polite_pouvoir_formal'),
+  row('Could you repeat, please? (informal)', 'Не мог бы ты повторить, пожалуйста?', 'Чи міг би ти повторити, будь ласка?', "Tu pourrais répéter, s'il te plaît ?", "Tu ___ répéter, s'il te plaît", 'pourrais', ['peux', 'pourras', 'pouvais'], 'conditionnel_polite_pouvoir_informal'),
+  row('Could we leave earlier?', 'Мы могли бы уйти раньше?', 'Ми могли б піти раніше?', 'Nous pourrions partir plus tôt ?', 'Nous ___ partir plus tôt', 'pourrions', ['pouvons', 'pourrons', 'pouvions'], 'conditionnel_possibility_pouvoir_nous'),
+  row('They could arrive late.', 'Они могли бы приехать поздно.', 'Вони могли б приїхати пізно.', 'Ils pourraient arriver tard.', 'Ils ___ arriver tard', 'pourraient', ['peuvent', 'pourront', 'pouvaient'], 'conditionnel_possibility_pouvoir_ils'),
+  row('You should rest. (informal)', 'Тебе следовало бы отдохнуть.', 'Тобі варто було б відпочити.', 'Tu devrais te reposer.', 'Tu ___ te reposer', 'devrais', ['dois', 'devras', 'devais'], 'conditionnel_advice_devoir_tu'),
+  row('You should call the doctor. (formal)', 'Вам следовало бы позвонить врачу.', 'Вам варто було б подзвонити лікарю.', 'Vous devriez appeler le médecin.', 'Vous ___ appeler le médecin', 'devriez', ['devez', 'devrez', 'deviez'], 'conditionnel_advice_devoir_vous'),
+  row('He should study more.', 'Ему следовало бы больше заниматься.', 'Йому варто було б більше вчитися.', 'Il devrait étudier davantage.', 'Il ___ étudier davantage', 'devrait', ['doit', 'devra', 'devait'], 'conditionnel_advice_devoir_il'),
+  row('We should be more careful.', 'Нам следовало бы быть осторожнее.', 'Нам варто було б бути обережнішими.', 'Nous devrions être plus prudents.', 'Nous ___ être plus prudents', 'devrions', ['devons', 'devrons', 'devions'], 'conditionnel_advice_devoir_nous'),
+  row('I should leave now.', 'Мне следовало бы уйти сейчас.', 'Мені варто було б піти зараз.', 'Je devrais partir maintenant.', 'Je ___ partir maintenant', 'devrais', ['dois', 'devrai', 'devais'], 'conditionnel_advice_devoir_je'),
+  row('You should not wait here. (informal)', 'Тебе не следовало бы ждать здесь.', 'Тобі не варто було б чекати тут.', 'Tu ne devrais pas attendre ici.', 'Tu ne ___ pas attendre ici', 'devrais', ['dois', 'devras', 'devais'], 'conditionnel_advice_negative'),
+  row('I would take the train.', 'Я бы взял поезд.', 'Я б поїхав потягом.', 'Je prendrais le train.', 'Je ___ le train', 'prendrais', ['prends', 'prendrai', 'prenais'], 'conditionnel_choice_prendre_je'),
+  row('She would choose the blue one.', 'Она бы выбрала синий.', 'Вона б обрала синій.', 'Elle choisirait le bleu.', 'Elle ___ le bleu', 'choisirait', ['choisit', 'choisira', 'choisissait'], 'conditionnel_choice_regular_ir'),
+  row('We would finish tomorrow.', 'Мы бы закончили завтра.', 'Ми б закінчили завтра.', 'Nous finirions demain.', 'Nous ___ demain', 'finirions', ['finissons', 'finirons', 'finissions'], 'conditionnel_regular_ir_nous'),
+  row('They would speak more slowly.', 'Они бы говорили медленнее.', 'Вони б говорили повільніше.', 'Ils parleraient plus lentement.', 'Ils ___ plus lentement', 'parleraient', ['parlent', 'parleront', 'parlaient'], 'conditionnel_regular_er_ils'),
+  row('I would wait outside.', 'Я бы подождал снаружи.', 'Я б зачекав надворі.', "J'attendrais dehors.", "J'___ dehors", 'attendrais', ['attends', 'attendrai', 'attendais'], 'conditionnel_regular_re_je'),
+  row('You would understand quickly. (informal)', 'Ты бы быстро понял.', 'Ти б швидко зрозумів.', 'Tu comprendrais vite.', 'Tu ___ vite', 'comprendrais', ['comprends', 'comprendras', 'comprenais'], 'conditionnel_irregular_like_prendre'),
+  row('I would have time tomorrow.', 'У меня было бы время завтра.', 'У мене був би час завтра.', "J'aurais le temps demain.", "J'___ le temps demain", 'aurais', ['ai', 'aurai', 'avais'], 'conditionnel_irregular_avoir_je'),
+  row('She would be ready at eight.', 'Она была бы готова в восемь.', 'Вона була б готова о восьмій.', 'Elle serait prête à huit heures.', 'Elle ___ prête à huit heures', 'serait', ['est', 'sera', 'était'], 'conditionnel_irregular_etre_elle'),
+  row('We would go together.', 'Мы бы пошли вместе.', 'Ми б пішли разом.', 'Nous irions ensemble.', 'Nous ___ ensemble', 'irions', ['allons', 'irons', 'allions'], 'conditionnel_irregular_aller_nous'),
+  row('They would come tomorrow.', 'Они бы пришли завтра.', 'Вони б прийшли завтра.', 'Ils viendraient demain.', 'Ils ___ demain', 'viendraient', ['viennent', 'viendront', 'venaient'], 'conditionnel_irregular_venir_ils'),
+  row('I would do it today.', 'Я бы сделал это сегодня.', 'Я б зробив це сьогодні.', "Je le ferais aujourd'hui.", "Je le ___ aujourd'hui", 'ferais', ['fais', 'ferai', 'faisais'], 'conditionnel_irregular_faire_je'),
+  row('You would see the difference. (formal)', 'Вы бы увидели разницу.', 'Ви б побачили різницю.', 'Vous verriez la différence.', 'Vous ___ la différence', 'verriez', ['voyez', 'verrez', 'voyiez'], 'conditionnel_irregular_voir_vous'),
+  row('If I had time, I would come.', 'Если бы у меня было время, я бы пришел.', 'Якби в мене був час, я б прийшов.', "Si j'avais le temps, je viendrais.", "Si j'avais le temps, je ___", 'viendrais', ['viens', 'viendrai', 'venais'], 'conditionnel_si_imparfait_main'),
+  row('If she could, she would help us.', 'Если бы она могла, она бы нам помогла.', 'Якби вона могла, вона б нам допомогла.', 'Si elle pouvait, elle nous aiderait.', 'Si elle pouvait, elle nous ___', 'aiderait', ['aide', 'aidera', 'aidait'], 'conditionnel_si_imparfait_help'),
+  row('If we lived nearby, we would visit often.', 'Если бы мы жили рядом, мы бы часто заходили.', 'Якби ми жили поруч, ми б часто заходили.', 'Si nous habitions près d’ici, nous passerions souvent.', 'Si nous habitions près d’ici, nous ___ souvent', 'passerions', ['passons', 'passerons', 'passions'], 'conditionnel_si_imparfait_hypothesis'),
+  row('If you were free, what would you do? (informal)', 'Если бы ты был свободен, что бы ты сделал?', 'Якби ти був вільний, що б ти зробив?', 'Si tu étais libre, que ferais-tu ?', 'Si tu étais libre, que ___-tu', 'ferais', ['fais', 'feras', 'faisais'], 'conditionnel_si_question'),
+  row('If they had a car, they would leave earlier.', 'Если бы у них была машина, они бы уехали раньше.', 'Якби в них була машина, вони б поїхали раніше.', 'S’ils avaient une voiture, ils partiraient plus tôt.', 'S’ils avaient une voiture, ils ___ plus tôt', 'partiraient', ['partent', 'partiront', 'partaient'], 'conditionnel_si_imparfait_partir'),
+  row('I would like to ask a question.', 'Я хотел бы задать вопрос.', 'Я хотів би поставити запитання.', "J'aimerais poser une question.", "J'___ poser une question", 'aimerais', ['aime', 'aimerai', 'aimais'], 'conditionnel_classroom_request'),
+  row('Could you write that on the board? (formal)', 'Не могли бы вы написать это на доске?', 'Чи могли б ви написати це на дошці?', 'Pourriez-vous écrire cela au tableau ?', '___-vous écrire cela au tableau', 'Pourriez', ['Pouvez', 'Pourrez', 'Pouviez'], 'conditionnel_classroom_request_pouvoir'),
+  row('I would prefer the second option.', 'Я бы предпочел второй вариант.', 'Я б надав перевагу другому варіанту.', 'Je préférerais la deuxième option.', 'Je ___ la deuxième option', 'préférerais', ['préfère', 'préférerai', 'préférais'], 'conditionnel_preference'),
+  row('We would rather stay here.', 'Мы бы предпочли остаться здесь.', 'Ми б краще залишилися тут.', 'Nous préférerions rester ici.', 'Nous ___ rester ici', 'préférerions', ['préférons', 'préférerons', 'préférions'], 'conditionnel_preference_nous'),
+  row('That would be possible.', 'Это было бы возможно.', 'Це було б можливо.', 'Ce serait possible.', 'Ce ___ possible', 'serait', ['est', 'sera', 'était'], 'conditionnel_polite_possibility'),
+  row('That would help me a lot.', 'Это бы мне очень помогло.', 'Це б мені дуже допомогло.', "Cela m'aiderait beaucoup.", "Cela m'___ beaucoup", 'aiderait', ['aide', 'aidera', 'aidait'], 'conditionnel_effect'),
+  row('It would be better to start now.', 'Было бы лучше начать сейчас.', 'Було б краще почати зараз.', 'Il vaudrait mieux commencer maintenant.', 'Il ___ mieux commencer maintenant', 'vaudrait', ['vaut', 'vaudra', 'valait'], 'conditionnel_advice_valoir'),
+  row('You should check the answer. (formal)', 'Вам стоит проверить ответ.', 'Вам варто перевірити відповідь.', 'Vous devriez vérifier la réponse.', 'Vous ___ vérifier la réponse', 'devriez', ['devez', 'devrez', 'deviez'], 'conditionnel_advice_check'),
+  row('Could I use your phone?', 'Мог бы я воспользоваться вашим телефоном?', 'Чи міг би я скористатися вашим телефоном?', 'Je pourrais utiliser votre téléphone ?', 'Je ___ utiliser votre téléphone', 'pourrais', ['peux', 'pourrai', 'pouvais'], 'conditionnel_permission_je'),
+  row('Would it be possible to pay by card?', 'Можно было бы оплатить картой?', 'Чи можна було б оплатити карткою?', 'Serait-il possible de payer par carte ?', '___-il possible de payer par carte', 'Serait', ['Est', 'Sera', 'Était'], 'conditionnel_polite_impersonal'),
+  row('I would not say that.', 'Я бы так не сказал.', 'Я б так не сказав.', 'Je ne dirais pas ça.', 'Je ne ___ pas ça', 'dirais', ['dis', 'dirai', 'disais'], 'conditionnel_negative_dire'),
+  row('We would not do that.', 'Мы бы этого не сделали.', 'Ми б цього не зробили.', 'Nous ne ferions pas cela.', 'Nous ne ___ pas cela', 'ferions', ['faisons', 'ferons', 'faisions'], 'conditionnel_negative_faire'),
+  row('You would not have time. (informal)', 'У тебя не было бы времени.', 'У тебе не було б часу.', "Tu n'aurais pas le temps.", "Tu n'___ pas le temps", 'aurais', ['as', 'auras', 'avais'], 'conditionnel_negative_avoir'),
+  row('I would be very grateful.', 'Я был бы очень благодарен.', 'Я був би дуже вдячний.', 'Je vous serais très reconnaissant.', 'Je vous ___ très reconnaissant', 'serais', ['suis', 'serai', 'étais'], 'conditionnel_polite_formula'),
+  row('Could you send me the address? (formal)', 'Не могли бы вы отправить мне адрес?', 'Чи могли б ви надіслати мені адресу?', "Pourriez-vous m'envoyer l'adresse ?", "___-vous m'envoyer l'adresse", 'Pourriez', ['Pouvez', 'Pourrez', 'Pouviez'], 'conditionnel_polite_request_send'),
+];
+
+const LESSON30_ROWS = [
+  row('I have to speak with the teacher.', 'Мне нужно поговорить с учителем.', 'Мені потрібно поговорити з учителем.', 'Il faut que je parle avec le professeur.', 'Il faut que je ___ avec le professeur', 'parle', ['parler', 'parlerai', 'parlais'], 'subjunctive_il_faut_regular_er_je'),
+  row('You have to finish the exercise. (informal)', 'Тебе нужно закончить упражнение.', 'Тобі потрібно закінчити вправу.', "Il faut que tu finisses l'exercice.", "Il faut que tu ___ l'exercice", 'finisses', ['finis', 'finiras', 'finissais'], 'subjunctive_il_faut_regular_ir_tu'),
+  row('She has to answer today.', 'Ей нужно ответить сегодня.', 'Їй потрібно відповісти сьогодні.', "Il faut qu'elle réponde aujourd'hui.", "Il faut qu'elle ___ aujourd'hui", 'réponde', ['répond', 'répondra', 'répondait'], 'subjunctive_il_faut_regular_re_elle'),
+  row('We have to leave early.', 'Нам нужно уйти рано.', 'Нам потрібно піти рано.', 'Il faut que nous partions tôt.', 'Il faut que nous ___ tôt', 'partions', ['partons', 'partirons', 'partions hier'], 'subjunctive_il_faut_nous'),
+  row('You have to wait here. (formal)', 'Вам нужно ждать здесь.', 'Вам потрібно чекати тут.', 'Il faut que vous attendiez ici.', 'Il faut que vous ___ ici', 'attendiez', ['attendez', 'attendrez', 'attendiez hier'], 'subjunctive_il_faut_vous'),
+  row('They have to choose quickly.', 'Им нужно быстро выбрать.', 'Їм потрібно швидко обрати.', 'Il faut qu’ils choisissent vite.', 'Il faut qu’ils ___ vite', 'choisissent', ['choisissent demain', 'choisiront', 'choisissaient'], 'subjunctive_il_faut_ils'),
+  row('I have to go to the bank.', 'Мне нужно сходить в банк.', 'Мені потрібно піти до банку.', "Il faut que j'aille à la banque.", "Il faut que j'___ à la banque", 'aille', ['vais', 'irai', 'allais'], 'subjunctive_il_faut_aller_je'),
+  row('You have to be careful. (informal)', 'Тебе нужно быть осторожным.', 'Тобі потрібно бути обережним.', 'Il faut que tu sois prudent.', 'Il faut que tu ___ prudent', 'sois', ['es', 'seras', 'étais'], 'subjunctive_il_faut_etre_tu'),
+  row('She has to have the address.', 'Ей нужно иметь адрес.', 'Їй потрібно мати адресу.', "Il faut qu'elle ait l'adresse.", "Il faut qu'elle ___ l'adresse", 'ait', ['a', 'aura', 'avait'], 'subjunctive_il_faut_avoir_elle'),
+  row('We have to do the work.', 'Нам нужно сделать работу.', 'Нам потрібно зробити роботу.', 'Il faut que nous fassions le travail.', 'Il faut que nous ___ le travail', 'fassions', ['faisons', 'ferons', 'faisions'], 'subjunctive_il_faut_faire_nous'),
+  row('You have to be able to explain it. (formal)', 'Вам нужно уметь это объяснить.', 'Вам потрібно вміти це пояснити.', "Il faut que vous puissiez l'expliquer.", "Il faut que vous ___ l'expliquer", 'puissiez', ['pouvez', 'pourrez', 'pouviez'], 'subjunctive_il_faut_pouvoir_vous'),
+  row('They have to know the answer.', 'Им нужно знать ответ.', 'Їм потрібно знати відповідь.', 'Il faut qu’ils sachent la réponse.', 'Il faut qu’ils ___ la réponse', 'sachent', ['savent', 'sauront', 'savaient'], 'subjunctive_il_faut_savoir_ils'),
+  row('You must not forget the key. (informal)', 'Тебе нельзя забыть ключ.', 'Тобі не можна забути ключ.', "Il ne faut pas que tu oublies la clé.", "Il ne faut pas que tu ___ la clé", 'oublies', ['oublie', 'oublieras', 'oubliais'], 'subjunctive_il_ne_faut_pas'),
+  row('We have to be there before seven.', 'Нам нужно быть там до семи.', 'Нам потрібно бути там до сьомої.', "Il faut qu'on soit là avant sept heures.", "Il faut qu'on ___ là avant sept heures", 'soit', ['est', 'sera', 'était'], 'subjunctive_il_faut_on'),
+  row('Do I have to take the train?', 'Мне нужно сесть на поезд?', 'Мені потрібно сісти на потяг?', 'Faut-il que je prenne le train ?', 'Faut-il que je ___ le train', 'prenne', ['prends', 'prendrai', 'prenais'], 'subjunctive_question_faut_il'),
+  row('I want you to come tomorrow. (informal)', 'Я хочу, чтобы ты пришел завтра.', 'Я хочу, щоб ти прийшов завтра.', 'Je veux que tu viennes demain.', 'Je veux que tu ___ demain', 'viennes', ['viens', 'viendras', 'venais'], 'subjunctive_want_vouloir_tu'),
+  row('She wants us to stay here.', 'Она хочет, чтобы мы остались здесь.', 'Вона хоче, щоб ми залишилися тут.', 'Elle veut que nous restions ici.', 'Elle veut que nous ___ ici', 'restions', ['restons', 'resterons', 'restions hier'], 'subjunctive_want_vouloir_nous'),
+  row('We want you to understand. (formal)', 'Мы хотим, чтобы вы поняли.', 'Ми хочемо, щоб ви зрозуміли.', 'Nous voulons que vous compreniez.', 'Nous voulons que vous ___', 'compreniez', ['comprenez', 'comprendrez', 'compreniez hier'], 'subjunctive_want_vouloir_vous'),
+  row('I would like you to help me. (informal)', 'Я хотел бы, чтобы ты мне помог.', 'Я хотів би, щоб ти мені допоміг.', "Je voudrais que tu m'aides.", "Je voudrais que tu m'___", 'aides', ['aide', 'aideras', 'aidais'], 'subjunctive_wish_voudrais_tu'),
+  row('I would like you to call me by my first name. (formal)', 'Я хотел бы, чтобы вы называли меня по имени.', 'Я хотів би, щоб ви називали мене на імʼя.', "J'aimerais que vous m'appeliez par mon prénom.", "J'aimerais que vous m'___ par mon prénom", 'appeliez', ['appelez', 'appellerez', 'appeliez hier'], 'subjunctive_wish_aimerais_vous'),
+  row('He hopes that everything goes well.', 'Он надеется, что всё пройдет хорошо.', 'Він сподівається, що все пройде добре.', 'Il souhaite que tout se passe bien.', 'Il souhaite que tout se ___ bien', 'passe', ['passera', 'passait', 'passer'], 'subjunctive_wish_souhaiter'),
+  row('She prefers that I be there.', 'Она предпочитает, чтобы я был там.', 'Вона воліє, щоб я був там.', 'Elle préfère que je sois là.', 'Elle préfère que je ___ là', 'sois', ['suis', 'serai', 'étais'], 'subjunctive_preference_etre'),
+  row('I ask that he answer quickly.', 'Я прошу, чтобы он быстро ответил.', 'Я прошу, щоб він швидко відповів.', 'Je demande qu’il réponde vite.', 'Je demande qu’il ___ vite', 'réponde', ['répond', 'répondra', 'répondait'], 'subjunctive_request_demander'),
+  row('We ask that you be ready. (formal)', 'Мы просим, чтобы вы были готовы.', 'Ми просимо, щоб ви були готові.', 'Nous demandons que vous soyez prêts.', 'Nous demandons que vous ___ prêts', 'soyez', ['êtes', 'serez', 'étiez'], 'subjunctive_request_etre_vous'),
+  row('The children have to do their homework.', 'Дети должны сделать домашнее задание.', 'Діти мають зробити домашнє завдання.', 'Il faut que les enfants fassent leurs devoirs.', 'Il faut que les enfants ___ leurs devoirs', 'fassent', ['font', 'feront', 'faisaient'], 'subjunctive_il_faut_faire_ils'),
+  row('It is important that you sleep. (informal)', 'Важно, чтобы ты поспал.', 'Важливо, щоб ти поспав.', 'Il est important que tu dormes.', 'Il est important que tu ___', 'dormes', ['dors', 'dormiras', 'dormais'], 'subjunctive_judgment_important'),
+  row('It is necessary that we leave.', 'Необходимо, чтобы мы ушли.', 'Необхідно, щоб ми пішли.', 'Il est nécessaire que nous partions.', 'Il est nécessaire que nous ___', 'partions', ['partons', 'partirons', 'partions hier'], 'subjunctive_necessity_necessaire'),
+  row('It is better that you wait. (formal)', 'Лучше, чтобы вы подождали.', 'Краще, щоб ви зачекали.', 'Il vaut mieux que vous attendiez.', 'Il vaut mieux que vous ___', 'attendiez', ['attendez', 'attendrez', 'attendiez hier'], 'subjunctive_advice_valoir_mieux'),
+  row('It is possible that he arrives late.', 'Возможно, он приедет поздно.', 'Можливо, він приїде пізно.', 'Il est possible qu’il arrive tard.', 'Il est possible qu’il ___ tard', 'arrive', ['arrivera', 'arrivait', 'arriver'], 'subjunctive_possibility'),
+  row('It is a pity that she cannot come.', 'Жаль, что она не может прийти.', 'Шкода, що вона не може прийти.', 'Il est dommage qu’elle ne puisse pas venir.', 'Il est dommage qu’elle ne ___ pas venir', 'puisse', ['peut', 'pourra', 'pouvait'], 'subjunctive_emotion_dommage'),
+  row('I am happy that you are here. (informal)', 'Я рад, что ты здесь.', 'Я радий, що ти тут.', 'Je suis content que tu sois ici.', 'Je suis content que tu ___ ici', 'sois', ['es', 'seras', 'étais'], 'subjunctive_emotion_content'),
+  row('I am sad that they are leaving.', 'Мне грустно, что они уходят.', 'Мені сумно, що вони йдуть.', 'Je suis triste qu’ils partent.', 'Je suis triste qu’ils ___', 'partent', ['partiront', 'partaient', 'partir'], 'subjunctive_emotion_triste'),
+  row('I am afraid that it is too late.', 'Я боюсь, что уже слишком поздно.', 'Я боюся, що вже занадто пізно.', "J'ai peur qu'il soit trop tard.", "J'ai peur qu'il ___ trop tard", 'soit', ['est', 'sera', 'était'], 'subjunctive_fear'),
+  row('I doubt that she knows the answer.', 'Я сомневаюсь, что она знает ответ.', 'Я сумніваюся, що вона знає відповідь.', 'Je doute qu’elle sache la réponse.', 'Je doute qu’elle ___ la réponse', 'sache', ['sait', 'saura', 'savait'], 'subjunctive_doubt_savoir'),
+  row('I do not think that he is coming.', 'Я не думаю, что он придет.', 'Я не думаю, що він прийде.', 'Je ne pense pas qu’il vienne.', 'Je ne pense pas qu’il ___', 'vienne', ['vient', 'viendra', 'venait'], 'subjunctive_negative_opinion'),
+  row('I think that he is coming.', 'Я думаю, что он придет.', 'Я думаю, що він прийде.', 'Je pense qu’il vient.', 'Je pense qu’il ___', 'vient', ['vienne', 'viendra', 'venait'], 'indicative_affirmative_opinion_contrast'),
+  row('I believe that she is right.', 'Я считаю, что она права.', 'Я вважаю, що вона має рацію.', 'Je crois qu’elle a raison.', 'Je crois qu’elle ___ raison', 'a', ['ait', 'aura', 'avait'], 'indicative_affirmative_belief_contrast'),
+  row('I do not believe that she is right.', 'Я не верю, что она права.', 'Я не вірю, що вона має рацію.', 'Je ne crois pas qu’elle ait raison.', 'Je ne crois pas qu’elle ___ raison', 'ait', ['a', 'aura', 'avait'], 'subjunctive_negative_belief'),
+  row('It is certain that he is coming.', 'Точно, что он придет.', 'Точно, що він прийде.', 'Il est certain qu’il vient.', 'Il est certain qu’il ___', 'vient', ['vienne', 'viendra', 'venait'], 'indicative_certainty_contrast'),
+  row('It is not certain that he is coming.', 'Не точно, что он придет.', 'Не точно, що він прийде.', 'Il n’est pas certain qu’il vienne.', 'Il n’est pas certain qu’il ___', 'vienne', ['vient', 'viendra', 'venait'], 'subjunctive_uncertainty'),
+  row('I am giving you the keys so that you can enter.', 'Я даю тебе ключи, чтобы ты мог войти.', 'Я даю тобі ключі, щоб ти міг увійти.', 'Je te donne les clés pour que tu puisses entrer.', 'Je te donne les clés pour que tu ___ entrer', 'puisses', ['peux', 'pourras', 'pouvais'], 'subjunctive_pour_que_pouvoir'),
+  row('We speak slowly so that you understand. (formal)', 'Мы говорим медленно, чтобы вы поняли.', 'Ми говоримо повільно, щоб ви зрозуміли.', 'Nous parlons lentement pour que vous compreniez.', 'Nous parlons lentement pour que vous ___', 'compreniez', ['comprenez', 'comprendrez', 'compreniez hier'], 'subjunctive_pour_que_comprendre'),
+  row('She closes the door so that the baby sleeps.', 'Она закрывает дверь, чтобы ребенок спал.', 'Вона зачиняє двері, щоб дитина спала.', 'Elle ferme la porte pour que le bébé dorme.', 'Elle ferme la porte pour que le bébé ___', 'dorme', ['dort', 'dormira', 'dormait'], 'subjunctive_pour_que_dormir'),
+  row('I have to have my passport.', 'Мне нужно иметь паспорт.', 'Мені потрібно мати паспорт.', "Il faut que j'aie mon passeport.", "Il faut que j'___ mon passeport", 'aie', ['ai', 'aurai', 'avais'], 'subjunctive_avoir_je'),
+  row('You have to trust yourself. (informal)', 'Тебе нужно верить в себя.', 'Тобі потрібно вірити в себе.', 'Il faut que tu aies confiance en toi.', 'Il faut que tu ___ confiance en toi', 'aies', ['as', 'auras', 'avais'], 'subjunctive_avoir_tu'),
+  row('She has to pay attention.', 'Ей нужно быть внимательной.', 'Їй потрібно бути уважною.', 'Il faut qu’elle fasse attention.', 'Il faut qu’elle ___ attention', 'fasse', ['fait', 'fera', 'faisait'], 'subjunctive_faire_elle'),
+  row('We have to know the truth.', 'Нам нужно знать правду.', 'Нам потрібно знати правду.', 'Il faut que nous sachions la vérité.', 'Il faut que nous ___ la vérité', 'sachions', ['savons', 'saurons', 'savions'], 'subjunctive_savoir_nous'),
+  row('You have to go to reception. (formal)', 'Вам нужно пойти на стойку регистрации.', 'Вам потрібно піти на рецепцію.', "Il faut que vous alliez à l'accueil.", "Il faut que vous ___ à l'accueil", 'alliez', ['allez', 'irez', 'alliez hier'], 'subjunctive_aller_vous'),
+  row('They have to be ready.', 'Им нужно быть готовыми.', 'Їм потрібно бути готовими.', 'Il faut qu’ils soient prêts.', 'Il faut qu’ils ___ prêts', 'soient', ['sont', 'seront', 'étaient'], 'subjunctive_etre_ils'),
+  row('They need to have time. (feminine plural)', 'Им нужно иметь время.', 'Їм потрібно мати час.', 'Il faut qu’elles aient le temps.', 'Il faut qu’elles ___ le temps', 'aient', ['ont', 'auront', 'avaient'], 'subjunctive_avoir_elles'),
+];
+
+const LESSON31_ROWS = [
+  row('I have the car repaired.', 'Я отдаю машину в ремонт.', 'Я віддаю машину в ремонт.', 'Je fais réparer la voiture.', 'Je fais ___ la voiture', 'réparer', ['répare', 'réparé', 'réparait'], 'faire_causative_service_repair'),
+  row('She has the dress shortened.', 'Она отдает платье укоротить.', 'Вона віддає сукню вкоротити.', 'Elle fait raccourcir la robe.', 'Elle fait ___ la robe', 'raccourcir', ['raccourcit', 'raccourci', 'raccourcissait'], 'faire_causative_service_clothes'),
+  row('We have the windows cleaned.', 'Мы заказываем мытье окон.', 'Ми замовляємо миття вікон.', 'Nous faisons nettoyer les fenêtres.', 'Nous faisons ___ les fenêtres', 'nettoyer', ['nettoyons', 'nettoyé', 'nettoyions'], 'faire_causative_service_cleaning'),
+  row('They have the computer fixed.', 'Они отдают компьютер починить.', 'Вони віддають компʼютер полагодити.', "Ils font réparer l'ordinateur.", "Ils font ___ l'ordinateur", 'réparer', ['réparent', 'réparé', 'réparaient'], 'faire_causative_service_repair'),
+  row('I am going to have a key made.', 'Я собираюсь сделать дубликат ключа.', 'Я збираюся зробити дублікат ключа.', 'Je vais faire faire une clé.', 'Je vais faire ___ une clé', 'faire', ['fais', 'fait', 'faisais'], 'faire_faire_get_made'),
+  row('She had a copy made.', 'Она сделала копию.', 'Вона зробила копію.', 'Elle a fait faire une copie.', 'Elle a fait ___ une copie', 'faire', ['fait', 'faisait', 'fera'], 'faire_faire_get_made_past'),
+  row('We are having the living room repainted.', 'Мы заказываем перекраску гостиной.', 'Ми замовляємо перефарбування вітальні.', 'Nous faisons repeindre le salon.', 'Nous faisons ___ le salon', 'repeindre', ['repeignons', 'repeint', 'repeignions'], 'faire_causative_service_painting'),
+  row('You have the bike repaired. (informal)', 'Ты отдаешь велосипед в ремонт.', 'Ти віддаєш велосипед у ремонт.', 'Tu fais réparer le vélo.', 'Tu fais ___ le vélo', 'réparer', ['répares', 'réparé', 'réparais'], 'faire_causative_service_repair'),
+  row('He has the meal delivered.', 'Он заказывает доставку еды.', 'Він замовляє доставку їжі.', 'Il fait livrer le repas.', 'Il fait ___ le repas', 'livrer', ['livre', 'livré', 'livrait'], 'faire_causative_delivery'),
+  row('We had the package sent.', 'Мы отправили посылку через кого-то.', 'Ми відправили посилку через когось.', 'Nous avons fait envoyer le colis.', 'Nous avons fait ___ le colis', 'envoyer', ['envoyé', 'envoyons', 'envoyions'], 'faire_causative_past_invariable_fait'),
+  row('I make the children study.', 'Я заставляю детей учиться.', 'Я змушую дітей вчитися.', 'Je fais étudier les enfants.', 'Je fais ___ les enfants', 'étudier', ['étudient', 'étudié', 'étudiaient'], 'faire_causative_agent_only'),
+  row('She makes her brother wait.', 'Она заставляет брата ждать.', 'Вона змушує брата чекати.', 'Elle fait attendre son frère.', 'Elle fait ___ son frère', 'attendre', ['attend', 'attendu', 'attendait'], 'faire_causative_agent_only'),
+  row('We make the team work.', 'Мы заставляем команду работать.', 'Ми змушуємо команду працювати.', "Nous faisons travailler l'équipe.", "Nous faisons ___ l'équipe", 'travailler', ['travaille', 'travaillé', 'travaillait'], 'faire_causative_agent_only'),
+  row('They make the dog bark.', 'Они заставляют собаку лаять.', 'Вони змушують собаку гавкати.', 'Ils font aboyer le chien.', 'Ils font ___ le chien', 'aboyer', ['aboie', 'aboyé', 'aboyait'], 'faire_causative_agent_only'),
+  row('The teacher makes the students repeat.', 'Учитель заставляет учеников повторять.', 'Учитель змушує учнів повторювати.', 'Le professeur fait répéter les élèves.', 'Le professeur fait ___ les élèves', 'répéter', ['répètent', 'répété', 'répétaient'], 'faire_causative_classroom'),
+  row('I have my son mow the lawn.', 'Я поручаю сыну косить газон.', 'Я доручаю синові косити газон.', 'Je fais tondre le gazon à mon fils.', 'Je fais ___ le gazon à mon fils', 'tondre', ['tonds', 'tondu', 'tondait'], 'faire_causative_recipient_agent'),
+  row('She has Michel sew the dress.', 'Она поручает Мишелю сшить платье.', 'Вона доручає Мішелю пошити сукню.', 'Elle fait coudre la robe à Michel.', 'Elle fait ___ la robe à Michel', 'coudre', ['coud', 'cousu', 'cousait'], 'faire_causative_recipient_agent'),
+  row('We have the children watched by Céline.', 'Мы поручаем Селин присматривать за детьми.', 'Ми доручаємо Селін доглядати дітей.', 'Nous faisons garder les enfants par Céline.', 'Nous faisons ___ les enfants par Céline', 'garder', ['gardons', 'gardé', 'gardions'], 'faire_causative_recipient_agent'),
+  row('He has the source found by Pierrette.', 'Он поручает Пьеррет найти источник.', 'Він доручає Пʼєретт знайти джерело.', 'Il fait trouver la source par Pierrette.', 'Il fait ___ la source par Pierrette', 'trouver', ['trouve', 'trouvé', 'trouvait'], 'faire_causative_recipient_agent'),
+  row('I have Paul read the report.', 'Я поручаю Полю прочитать отчет.', 'Я доручаю Полю прочитати звіт.', 'Je fais lire le rapport à Paul.', 'Je fais ___ le rapport à Paul', 'lire', ['lis', 'lu', 'lisait'], 'faire_causative_recipient_agent'),
+  row('I have it repaired.', 'Я отдаю это в ремонт.', 'Я віддаю це в ремонт.', 'Je le fais réparer.', 'Je le fais ___', 'réparer', ['répare', 'réparé', 'réparait'], 'faire_causative_object_pronoun'),
+  row('She has it sewn.', 'Она отдает это сшить.', 'Вона віддає це пошити.', 'Elle la fait coudre.', 'Elle la fait ___', 'coudre', ['coud', 'cousu', 'cousait'], 'faire_causative_object_pronoun'),
+  row('We have them cleaned.', 'Мы отдаем их почистить.', 'Ми віддаємо їх почистити.', 'Nous les faisons nettoyer.', 'Nous les faisons ___', 'nettoyer', ['nettoyons', 'nettoyé', 'nettoyions'], 'faire_causative_object_pronoun'),
+  row('I had it repaired yesterday.', 'Я отдал это в ремонт вчера.', 'Я віддав це в ремонт учора.', "Je l'ai fait réparer hier.", "Je l'ai fait ___ hier", 'réparer', ['réparé', 'répare', 'réparais'], 'faire_causative_past_participle_invariable'),
+  row('She had it shortened.', 'Она отдала это укоротить.', 'Вона віддала це вкоротити.', "Elle l'a fait raccourcir.", "Elle l'a fait ___", 'raccourcir', ['raccourci', 'raccourcit', 'raccourcissait'], 'faire_causative_past_participle_invariable'),
+  row('I have him read it.', 'Я заставляю его это читать.', 'Я змушую його це читати.', 'Je le lui fais lire.', 'Je le lui fais ___', 'lire', ['lit', 'lu', 'lisait'], 'faire_causative_double_pronoun'),
+  row('She has her sew it.', 'Она поручает ей это сшить.', 'Вона доручає їй це пошити.', 'Elle la lui fait coudre.', 'Elle la lui fait ___', 'coudre', ['coud', 'cousu', 'cousait'], 'faire_causative_double_pronoun'),
+  row('We have them explain it to us.', 'Мы просим их объяснить это нам.', 'Ми просимо їх пояснити це нам.', 'Nous le leur faisons expliquer.', 'Nous le leur faisons ___', 'expliquer', ['expliquent', 'expliqué', 'expliquaient'], 'faire_causative_double_pronoun'),
+  row('I am getting my hair cut.', 'Я стригусь.', 'Я стрижуся.', 'Je me fais couper les cheveux.', 'Je me fais ___ les cheveux', 'couper', ['coupé', 'coupe', 'coupais'], 'se_faire_reflexive_service'),
+  row('She is getting her nails done.', 'Она делает маникюр.', 'Вона робить манікюр.', 'Elle se fait faire les ongles.', 'Elle se fait ___ les ongles', 'faire', ['fait', 'fera', 'faisait'], 'se_faire_faire_service'),
+  row('We are getting our passport photos taken.', 'Мы делаем фотографии на паспорт.', 'Ми робимо фото на паспорт.', 'Nous nous faisons prendre des photos d’identité.', 'Nous nous faisons ___ des photos d’identité', 'prendre', ['prenons', 'pris', 'prenions'], 'se_faire_reflexive_service'),
+  row('He got his phone stolen.', 'У него украли телефон.', 'У нього вкрали телефон.', 'Il s’est fait voler son téléphone.', 'Il s’est fait ___ son téléphone', 'voler', ['volé', 'vole', 'volait'], 'se_faire_reflexive_unwanted'),
+  row('They got criticized.', 'Их раскритиковали.', 'Їх розкритикували.', 'Ils se sont fait critiquer.', 'Ils se sont fait ___', 'critiquer', ['critiqués', 'critiquent', 'critiquaient'], 'se_faire_reflexive_invariable_fait'),
+  row('Let me study.', 'Дай мне поучиться.', 'Дай мені повчитися.', 'Laisse-moi étudier.', 'Laisse-moi ___', 'étudier', ['étudie', 'étudié', 'étudiais'], 'laisser_infinitive_let_me'),
+  row('Let him speak.', 'Дай ему говорить.', 'Дай йому говорити.', 'Laisse-le parler.', 'Laisse-le ___', 'parler', ['parle', 'parlé', 'parlait'], 'laisser_infinitive_let_him'),
+  row('Let us finish.', 'Дайте нам закончить.', 'Дайте нам закінчити.', 'Laissez-nous finir.', 'Laissez-nous ___', 'finir', ['finissons', 'fini', 'finissions'], 'laisser_infinitive_let_us'),
+  row('She lets the children play.', 'Она позволяет детям играть.', 'Вона дозволяє дітям гратися.', 'Elle laisse jouer les enfants.', 'Elle laisse ___ les enfants', 'jouer', ['jouent', 'joué', 'jouaient'], 'laisser_infinitive_allow'),
+  row('We let the guests enter.', 'Мы позволяем гостям войти.', 'Ми дозволяємо гостям увійти.', 'Nous laissons entrer les invités.', 'Nous laissons ___ les invités', 'entrer', ['entrent', 'entré', 'entraient'], 'laisser_infinitive_allow'),
+  row('They let the dog sleep.', 'Они дают собаке спать.', 'Вони дають собаці спати.', 'Ils laissent dormir le chien.', 'Ils laissent ___ le chien', 'dormir', ['dort', 'dormi', 'dormait'], 'laisser_infinitive_allow'),
+  row('Do not let them leave.', 'Не дай им уйти.', 'Не дай їм піти.', 'Ne les laisse pas partir.', 'Ne les laisse pas ___', 'partir', ['partent', 'parti', 'partaient'], 'laisser_infinitive_negative'),
+  row('I let him decide.', 'Я позволяю ему решать.', 'Я дозволяю йому вирішувати.', 'Je le laisse décider.', 'Je le laisse ___', 'décider', ['décide', 'décidé', 'décidait'], 'laisser_infinitive_object_pronoun'),
+  row('She lets us choose.', 'Она позволяет нам выбрать.', 'Вона дозволяє нам обрати.', 'Elle nous laisse choisir.', 'Elle nous laisse ___', 'choisir', ['choisissons', 'choisi', 'choisissions'], 'laisser_infinitive_object_pronoun'),
+  row('We let them work quietly.', 'Мы даем им спокойно работать.', 'Ми даємо їм спокійно працювати.', 'Nous les laissons travailler tranquillement.', 'Nous les laissons ___ tranquillement', 'travailler', ['travaillent', 'travaillé', 'travaillaient'], 'laisser_infinitive_object_pronoun'),
+  row('I have the work done.', 'Я заказываю выполнение работы.', 'Я замовляю виконання роботи.', 'Je fais faire le travail.', 'Je fais ___ le travail', 'faire', ['fais', 'fait', 'faisais'], 'faire_causative_contrast'),
+  row('She has the phone repaired.', 'Она отдает телефон в ремонт.', 'Вона віддає телефон у ремонт.', 'Elle fait réparer le téléphone.', 'Elle fait ___ le téléphone', 'réparer', ['répare', 'réparé', 'réparait'], 'faire_causative_contrast'),
+  row('He lets the child read.', 'Он позволяет ребенку читать.', 'Він дозволяє дитині читати.', "Il laisse lire l'enfant.", "Il laisse ___ l'enfant", 'lire', ['lit', 'lu', 'lisait'], 'laisser_vs_faire_contrast'),
+  row('He makes the child read.', 'Он заставляет ребенка читать.', 'Він змушує дитину читати.', "Il fait lire l'enfant.", "Il fait ___ l'enfant", 'lire', ['lit', 'lu', 'lisait'], 'faire_vs_laisser_contrast'),
+  row('I am having the curtains changed.', 'Я заказываю замену штор.', 'Я замовляю заміну штор.', 'Je fais changer les rideaux.', 'Je fais ___ les rideaux', 'changer', ['change', 'changé', 'changeais'], 'faire_causative_service_home'),
+  row('We will have the room cleaned tomorrow.', 'Мы закажем уборку комнаты завтра.', 'Ми замовимо прибирання кімнати завтра.', 'Nous ferons nettoyer la chambre demain.', 'Nous ferons ___ la chambre demain', 'nettoyer', ['nettoyons', 'nettoyé', 'nettoyions'], 'faire_causative_future'),
+  row('They are going to have the documents translated.', 'Они собираются заказать перевод документов.', 'Вони збираються замовити переклад документів.', 'Ils vont faire traduire les documents.', 'Ils vont faire ___ les documents', 'traduire', ['traduisent', 'traduit', 'traduisaient'], 'faire_causative_service_translation'),
+];
+
+const LESSON32_ROWS = [
+  row('Could you repeat more slowly, please?', 'Не могли бы вы повторить медленнее, пожалуйста?', 'Чи могли б ви повторити повільніше, будь ласка?', "Pourriez-vous répéter plus lentement, s'il vous plaît ?", "___-vous répéter plus lentement, s'il vous plaît", 'Pourriez', ['Pouvez', 'Pourrez', 'Pouviez'], 'mixed_conditionnel_polite_request'),
+  row('I have to have my phone repaired.', 'Мне нужно отдать телефон в ремонт.', 'Мені потрібно віддати телефон у ремонт.', 'Il faut que je fasse réparer mon téléphone.', 'Il faut que je ___ réparer mon téléphone', 'fasse', ['fais', 'ferai', 'faisais'], 'mixed_subjunctive_faire_causative'),
+  row('The problem I am talking about is urgent.', 'Проблема, о которой я говорю, срочная.', 'Проблема, про яку я говорю, термінова.', 'Le problème dont je parle est urgent.', 'Le problème ___ je parle est urgent', 'dont', ['que', 'qui', 'où'], 'mixed_relative_dont'),
+  row('I am going there tomorrow.', 'Я иду туда завтра.', 'Я йду туди завтра.', "J'y vais demain.", "J'___ vais demain", 'y', ['en', 'le', 'lui'], 'mixed_y_pronoun'),
+  row('I give it to him.', 'Я даю это ему.', 'Я даю це йому.', 'Je le lui donne.', 'Je ___ lui donne', 'le', ['la', 'les', 'en'], 'mixed_double_pronoun'),
+  row('When I arrived, she was already waiting.', 'Когда я приехал, она уже ждала.', 'Коли я приїхав, вона вже чекала.', "Quand je suis arrivé, elle attendait déjà.", 'Quand je suis ___, elle attendait déjà', 'arrivé', ['arrive', 'arrivais', 'arriverai'], 'mixed_passe_compose_imparfait'),
+  row('If you come tomorrow, we will start early.', 'Если ты придешь завтра, мы начнем рано.', 'Якщо ти прийдеш завтра, ми почнемо рано.', 'Si tu viens demain, nous commencerons tôt.', 'Si tu viens demain, nous ___ tôt', 'commencerons', ['commençons', 'commencerions', 'commencions'], 'mixed_si_present_future'),
+  row('I am having the documents translated.', 'Я заказываю перевод документов.', 'Я замовляю переклад документів.', 'Je fais traduire les documents.', 'Je fais ___ les documents', 'traduire', ['traduis', 'traduit', 'traduisais'], 'mixed_faire_causative'),
+  row('Let me explain.', 'Дай мне объяснить.', 'Дай мені пояснити.', 'Laisse-moi expliquer.', 'Laisse-moi ___', 'expliquer', ['explique', 'expliqué', 'expliquais'], 'mixed_laisser_infinitive'),
+  row('The woman who works here is helpful.', 'Женщина, которая здесь работает, помогает.', 'Жінка, яка тут працює, допомагає.', 'La femme qui travaille ici aide beaucoup.', 'La femme ___ travaille ici aide beaucoup', 'qui', ['que', 'dont', 'où'], 'mixed_relative_qui'),
+  row('The answer that I chose was correct.', 'Ответ, который я выбрал, был правильным.', 'Відповідь, яку я обрав, була правильною.', "La réponse que j'ai choisie était correcte.", "La réponse ___ j'ai choisie était correcte", 'que', ['qui', 'dont', 'où'], 'mixed_relative_que'),
+  row('This explanation is better.', 'Это объяснение лучше.', 'Це пояснення краще.', 'Cette explication est meilleure.', 'Cette explication est ___', 'meilleure', ['mieux', 'bon', 'bien'], 'mixed_comparative_meilleur'),
+  row('You explain better now. (informal)', 'Теперь ты объясняешь лучше.', 'Тепер ти пояснюєш краще.', 'Tu expliques mieux maintenant.', 'Tu expliques ___ maintenant', 'mieux', ['meilleur', 'bonne', 'bon'], 'mixed_adverb_mieux'),
+  row('I have lived here for three months.', 'Я живу здесь три месяца.', 'Я живу тут три місяці.', "J'habite ici depuis trois mois.", "J'habite ici ___ trois mois", 'depuis', ['pendant', 'il y a', 'pour'], 'mixed_depuis_duration'),
+  row('I do not know him.', 'Я его не знаю.', 'Я його не знаю.', 'Je ne le connais pas.', 'Je ne ___ connais pas', 'le', ['lui', 'en', 'y'], 'mixed_object_pronoun_negation'),
+  row('She wrote to them yesterday.', 'Она написала им вчера.', 'Вона написала їм учора.', 'Elle leur a écrit hier.', 'Elle ___ a écrit hier', 'leur', ['les', 'lui', 'en'], 'mixed_indirect_pronoun'),
+  row('She went to Paris last week.', 'Она поехала в Париж на прошлой неделе.', 'Вона поїхала до Парижа минулого тижня.', 'Elle est allée à Paris la semaine dernière.', 'Elle est ___ à Paris la semaine dernière', 'allée', ['allé', 'aller', 'allait'], 'mixed_passe_compose_etre_agreement'),
+  row('We bought some yesterday.', 'Мы купили немного вчера.', 'Ми купили трохи вчора.', 'Nous en avons acheté hier.', 'Nous ___ avons acheté hier', 'en', ['y', 'les', 'leur'], 'mixed_en_quantity'),
+  row('He is interested in it.', 'Он этим интересуется.', 'Він цим цікавиться.', "Il s'y intéresse.", "Il s'___ intéresse", 'y', ['en', 'le', 'lui'], 'mixed_y_a_complement'),
+  row('I remember it.', 'Я это помню.', 'Я це памʼятаю.', "Je m'en souviens.", "Je m'___ souviens", 'en', ['y', 'le', 'lui'], 'mixed_en_de_complement'),
+  row('Where do you live? (formal)', 'Где вы живете?', 'Де ви живете?', 'Où habitez-vous ?', 'Où ___-vous', 'habitez', ['habiter', 'habitez-vous', 'habitais'], 'mixed_question_inversion'),
+  row('The city where I studied is beautiful.', 'Город, где я учился, красивый.', 'Місто, де я навчався, красиве.', "La ville où j'ai étudié est belle.", "La ville ___ j'ai étudié est belle", 'où', ['qui', 'que', 'dont'], 'mixed_relative_ou'),
+  row('The boy whose parents are here is calm.', 'Мальчик, чьи родители здесь, спокоен.', 'Хлопець, чиї батьки тут, спокійний.', 'Le garçon dont les parents sont ici est calme.', 'Le garçon ___ les parents sont ici est calme', 'dont', ['que', 'qui', 'où'], 'mixed_possession_dont'),
+  row('You should check the address. (informal)', 'Тебе стоит проверить адрес.', 'Тобі варто перевірити адресу.', "Tu devrais vérifier l'adresse.", "Tu ___ vérifier l'adresse", 'devrais', ['dois', 'devras', 'devais'], 'mixed_conditionnel_advice'),
+  row('I had my bike repaired.', 'Я отдал велосипед в ремонт.', 'Я віддав велосипед у ремонт.', "J'ai fait réparer mon vélo.", "J'ai fait ___ mon vélo", 'réparer', ['réparé', 'répare', 'réparais'], 'mixed_faire_causative_past'),
+  row('Do not give it to him. (informal)', 'Не давай это ему.', 'Не давай це йому.', 'Ne le lui donne pas.', 'Ne ___ lui donne pas', 'le', ['la', 'les', 'en'], 'mixed_double_pronoun_negative_imperative'),
+  row('Think about it. (informal)', 'Подумай об этом.', 'Подумай про це.', 'Pense-y.', 'Pense-___', 'y', ['en', 'le', 'lui'], 'mixed_y_imperative'),
+  row('Do not take any of it. (informal)', 'Не бери этого.', 'Не бери цього.', "N'en prends pas.", "N'___ prends pas", 'en', ['y', 'le', 'lui'], 'mixed_en_negative_imperative'),
+  row('It is important that you answer. (formal)', 'Важно, чтобы вы ответили.', 'Важливо, щоб ви відповіли.', 'Il est important que vous répondiez.', 'Il est important que vous ___', 'répondiez', ['répondez', 'répondrez', 'répondiez hier'], 'mixed_subjunctive_judgment'),
+  row('I think that he is right.', 'Я думаю, что он прав.', 'Я думаю, що він має рацію.', 'Je pense qu’il a raison.', 'Je pense qu’il ___ raison', 'a', ['ait', 'aura', 'avait'], 'mixed_indicative_opinion'),
+  row('I do not think that he is right.', 'Я не думаю, что он прав.', 'Я не думаю, що він має рацію.', 'Je ne pense pas qu’il ait raison.', 'Je ne pense pas qu’il ___ raison', 'ait', ['a', 'aura', 'avait'], 'mixed_subjunctive_negative_opinion'),
+  row('If I had more time, I would practice more.', 'Если бы у меня было больше времени, я бы больше практиковался.', 'Якби в мене було більше часу, я б більше практикувався.', "Si j'avais plus de temps, je pratiquerais davantage.", "Si j'avais plus de temps, je ___ davantage", 'pratiquerais', ['pratique', 'pratiquerai', 'pratiquais'], 'mixed_si_imparfait_conditionnel'),
+  row('I would like a room for two nights.', 'Я хотел бы номер на две ночи.', 'Я хотів би номер на дві ночі.', 'Je voudrais une chambre pour deux nuits.', 'Je ___ une chambre pour deux nuits', 'voudrais', ['veux', 'voudrai', 'voulais'], 'mixed_travel_polite_request'),
+  row('We need a table near the window.', 'Нам нужен столик у окна.', 'Нам потрібен столик біля вікна.', "Nous avons besoin d'une table près de la fenêtre.", "Nous avons besoin ___ table près de la fenêtre", "d'une", ['une', 'à une', 'de la'], 'mixed_avoir_besoin_de'),
+  row('The table we reserved is ready.', 'Столик, который мы забронировали, готов.', 'Столик, який ми забронювали, готовий.', 'La table que nous avons réservée est prête.', 'La table ___ nous avons réservée est prête', 'que', ['qui', 'dont', 'où'], 'mixed_dialogue_restaurant_relative'),
+  row('The app that I use every day is useful.', 'Приложение, которым я пользуюсь каждый день, полезное.', 'Застосунок, яким я користуюся щодня, корисний.', "L'application que j'utilise tous les jours est utile.", "L'application ___ j'utilise tous les jours est utile", 'que', ['qui', 'dont', 'où'], 'mixed_daily_relative_que'),
+  row('The lesson I need is available.', 'Урок, который мне нужен, доступен.', 'Урок, який мені потрібен, доступний.', "La leçon dont j'ai besoin est disponible.", "La leçon ___ j'ai besoin est disponible", 'dont', ['que', 'qui', 'où'], 'mixed_learning_dont'),
+  row('I started yesterday, but I was tired.', 'Я начал вчера, но был уставшим.', 'Я почав учора, але був втомлений.', "J'ai commencé hier, mais j'étais fatigué.", "J'ai commencé hier, mais j'___ fatigué", 'étais', ['ai été', 'serai', 'sois'], 'mixed_passe_compose_imparfait_state'),
+  row('We are going to send them to her.', 'Мы собираемся отправить их ей.', 'Ми збираємося надіслати їх їй.', 'Nous allons les lui envoyer.', 'Nous allons ___ lui envoyer', 'les', ['le', 'la', 'en'], 'mixed_double_pronoun_infinitive'),
+  row('He speaks to me about it every day.', 'Он говорит мне об этом каждый день.', 'Він говорить мені про це щодня.', "Il m'en parle tous les jours.", "Il m'___ parle tous les jours", 'en', ['y', 'le', 'lui'], 'mixed_en_indirect_combo'),
+  row('She lets us choose the date.', 'Она позволяет нам выбрать дату.', 'Вона дозволяє нам обрати дату.', 'Elle nous laisse choisir la date.', 'Elle nous laisse ___ la date', 'choisir', ['choisissons', 'choisi', 'choisirons'], 'mixed_laisser_dialogue'),
+  row('We are having the apartment cleaned.', 'Мы заказываем уборку квартиры.', 'Ми замовляємо прибирання квартири.', "Nous faisons nettoyer l'appartement.", "Nous faisons ___ l'appartement", 'nettoyer', ['nettoyons', 'nettoyé', 'nettoyions'], 'mixed_service_faire_causative'),
+  row('The answer is the least clear.', 'Ответ самый непонятный.', 'Відповідь найменш зрозуміла.', 'La réponse est la moins claire.', 'La réponse est ___ moins claire', 'la', ['le', 'les', 'de'], 'mixed_superlative_agreement'),
+  row('This is what I am afraid of.', 'Вот чего я боюсь.', 'Ось чого я боюся.', "C'est ce dont j'ai peur.", "C'est ce ___ j'ai peur", 'dont', ['que', 'qui', 'où'], 'mixed_ce_dont'),
+  row('What I want is simple.', 'То, чего я хочу, просто.', 'Те, чого я хочу, просте.', 'Ce que je veux est simple.', 'Ce ___ je veux est simple', 'que', ['qui', 'dont', 'où'], 'mixed_ce_que'),
+  row('What worries me is the time.', 'То, что меня беспокоит, это время.', 'Те, що мене турбує, це час.', "Ce qui m'inquiète, c'est l'heure.", "Ce ___ m'inquiète, c'est l'heure", 'qui', ['que', 'dont', 'où'], 'mixed_ce_qui'),
+  row('Before leaving, I checked the address.', 'Перед уходом я проверил адрес.', 'Перед виходом я перевірив адресу.', "Avant de partir, j'ai vérifié l'adresse.", 'Avant de ___, j’ai vérifié l’adresse', 'partir', ['pars', 'parti', 'partais'], 'mixed_infinitive_after_preposition'),
+  row('I am ready to explain it to you. (informal)', 'Я готов объяснить тебе это.', 'Я готовий пояснити тобі це.', 'Je suis prêt à te l’expliquer.', 'Je suis prêt à te l’___', 'expliquer', ['explique', 'expliqué', 'expliquais'], 'mixed_infinitive_pronoun_order'),
+  row('Final review: I would like you to send it to me.', 'Финальное повторение: я хотел бы, чтобы ты отправил это мне.', 'Фінальне повторення: я хотів би, щоб ти надіслав це мені.', "Révision finale : j'aimerais que tu me l'envoies.", "Révision finale : j'aimerais que tu me l'___", 'envoies', ['envois', 'enverras', 'envoyais'], 'mixed_final_subjunctive_pronoun'),
+  row('Final review: if it is ready, send it to us.', 'Финальное повторение: если это готово, отправь это нам.', 'Фінальне повторення: якщо це готове, надішли це нам.', "Révision finale : si c'est prêt, envoie-le-nous.", "Révision finale : si c'est prêt, envoie-___-nous", 'le', ['lui', 'en', 'y'], 'mixed_final_imperative_pronoun'),
+];
+
 const LESSON_ROWS_BY_ID = new Map([
   [1, LESSON1_ROWS],
   [2, LESSON2_ROWS],
@@ -1467,6 +1733,11 @@ const LESSON_ROWS_BY_ID = new Map([
   [25, LESSON25_ROWS],
   [26, LESSON26_ROWS],
   [27, LESSON27_ROWS],
+  [28, LESSON28_ROWS],
+  [29, LESSON29_ROWS],
+  [30, LESSON30_ROWS],
+  [31, LESSON31_ROWS],
+  [32, LESSON32_ROWS],
 ]);
 
 function row(englishBase, russianMeaning, ukrainianMeaning, proposedFrench, text, correct, distractors, category) {
@@ -1620,7 +1891,7 @@ function buildLesson(lessonId, inputs, researchPackets) {
       claimCovered: 'A1 French practice supports beginner greetings, introductions and classroom-level interactions.',
     },
   ];
-  const sourceEvidence = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27].includes(lessonId) ? [
+  const sourceEvidence = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32].includes(lessonId) ? [
     ...sharedEvidence,
     {
       sourceId: 'tv5monde_grammar',
@@ -1788,8 +2059,57 @@ function renderMarkdown(ledger) {
   return lines.join('\n');
 }
 
+function sameJson(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function validateScopeSequenceReconciliation(inputs, ledgers) {
+  const ledgersByLessonId = new Map(ledgers.map(({ lessonId, ledger }) => [lessonId, ledger]));
+  const mismatches = [];
+
+  for (const input of inputs.lessons) {
+    const ledger = ledgersByLessonId.get(input.lessonId);
+    const issues = [];
+    if (!ledger) {
+      mismatches.push({
+        lessonId: input.lessonId,
+        issues: ['missing_ledger'],
+      });
+      continue;
+    }
+    if (ledger.lessonId !== input.lessonId) issues.push('lessonId');
+    if (ledger.cefrBand !== input.cefrBand) issues.push('cefrBand');
+    if (ledger.action !== input.action) issues.push('action');
+    if (!sameJson(ledger.targetConcepts, input.targetConcepts)) issues.push('targetConcepts');
+    if (!sameJson(ledger.targetGrammarFocus, input.targetGrammarFocus)) issues.push('targetGrammarFocus');
+    if (!sameJson(ledger.targetVocabularyFocus, input.targetVocabularyFocus)) issues.push('targetVocabularyFocus');
+    if (!sameJson(ledger.sourceCandidateLessons, input.sourceCandidateLessons)) issues.push('sourceCandidateLessons');
+    if (ledger.rows.length !== 50) issues.push('rowCount');
+    if (ledger.studyTarget !== 'fr' || ledger.targetContentLang !== 'fr' || ledger.aiOutputLang !== 'fr') {
+      issues.push('languageIdentity');
+    }
+    if (ledger.activationApproved !== false || ledger.activeAppSeedAllowed !== false) {
+      issues.push('activationClosed');
+    }
+    if (issues.length > 0) {
+      mismatches.push({
+        lessonId: input.lessonId,
+        issues,
+      });
+    }
+  }
+
+  return {
+    expectedLessons: inputs.lessons.length,
+    checkedLedgers: ledgers.length,
+    mismatchCount: mismatches.length,
+    mismatches,
+  };
+}
+
 function main() {
   const inputs = readJson(INPUTS_PATH);
+  const reconciliation = readJson(RECONCILIATION_PATH);
   const researchPackets = readJson(RESEARCH_PATH);
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -1809,11 +2129,38 @@ function main() {
     };
   });
 
+  const missingLedgerPaths = Array.from({ length: 32 }, (_, index) => index + 1)
+    .filter((lessonId) => !LESSON_ROWS_BY_ID.has(lessonId))
+    .map((lessonId) => `docs/gustav/generated/fr/lessons/lesson${lessonId}_row_ledger.json`);
+  const preRebuildReconciliationRequiredLedgers = (reconciliation.targetRows || [])
+    .filter((row) => row.status === 'REBUILD_REQUIRED')
+    .map((row) => ({
+      lessonId: row.targetLessonId,
+      path: `docs/gustav/generated/fr/lessons/lesson${row.targetLessonId}_row_ledger.json`,
+      action: row.action,
+      reason: row.reason,
+      bestCurrentCandidate: row.bestCurrentCandidate,
+    }));
+  const postRebuildScopeReconciliation = validateScopeSequenceReconciliation(inputs, ledgers);
+  const scopeSequenceReconciliationPassed =
+    missingLedgerPaths.length === 0 &&
+    postRebuildScopeReconciliation.expectedLessons === 32 &&
+    postRebuildScopeReconciliation.checkedLedgers === 32 &&
+    postRebuildScopeReconciliation.mismatchCount === 0;
+
   const audit = {
     schemaVersion: 'gustav-fr-lesson-rebuild-candidate-audit-v1',
     generatedAt: new Date().toISOString(),
     status: 'HOLD',
     activationApproved: false,
+    reconciliationReport: 'docs/gustav/generated/fr/core_lessons_32/fr_lesson_sequence_reconciliation_report.json',
+    reconciliationSummary: reconciliation.summary,
+    postRebuildScopeReconciliation,
+    gates: {
+      candidate_ledgers_present_gate: missingLedgerPaths.length === 0 ? 'PASS' : 'HOLD',
+      scope_sequence_reconciliation_gate: scopeSequenceReconciliationPassed ? 'PASS' : 'HOLD',
+      activationApproved: false,
+    },
     ledgers: ledgers.map(({ lessonId, ledger }) => ({
       lessonId,
       path: `docs/gustav/generated/fr/lessons/lesson${lessonId}_row_ledger.json`,
@@ -1822,10 +2169,16 @@ function main() {
       gates: ledger.gates,
       hash: sha256(JSON.stringify(ledger)),
     })),
-    nextRequiredLedgers: Array.from({ length: 32 }, (_, index) => index + 1)
-      .filter((lessonId) => !LESSON_ROWS_BY_ID.has(lessonId))
-      .map((lessonId) => `docs/gustav/generated/fr/lessons/lesson${lessonId}_row_ledger.json`),
-    nextRequiredGates: ['llm_source_review_gate', 'audio_manifest_gate', 'server_pack_gate', 'runtime_loader_gate'],
+    nextRequiredLedgers: missingLedgerPaths,
+    preRebuildReconciliationRequiredLedgers,
+    reconciliationRequiredLedgers: postRebuildScopeReconciliation.mismatches,
+    nextRequiredGates: [
+      ...(scopeSequenceReconciliationPassed ? [] : ['scope_sequence_reconciliation_gate']),
+      'llm_source_review_gate',
+      'audio_manifest_gate',
+      'server_pack_gate',
+      'runtime_loader_gate',
+    ],
   };
   fs.writeFileSync(AUDIT_PATH, `${JSON.stringify(audit, null, 2)}\n`);
 

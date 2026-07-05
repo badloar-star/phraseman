@@ -82,16 +82,102 @@ and misleads (many contain stale numbers).
     `node scripts/gustav_feature_parity_matrix.mjs` and use the generated matrix
     to choose the next builder. Do not promote a surface that is `BLOCK` or
     `HOLD` in the matrix.
-13. **Trusted brain mode.** Gustav work uses `reasoningLevel=high` by default
-    and `reasoningLevel=deep` for atlas, syllabus, prompt, admin/server/storage,
-    activation or cross-surface decisions. Before generating content, validate
-    the trusted brain with `node scripts/gustav_validate_trusted_brain.mjs`.
-    Content without trusted-source evidence remains `HOLD`.
+13. **Trusted brain mode.** Gustav production-language work uses
+    `reasoningLevel=deep` / `maximum_extended_reasoning` by default. This is
+    mandatory for atlas, syllabus, content, prompt, admin/server/storage,
+    runtime, cloud, activation, cross-surface and any user-visible linguistic
+    decision. `standard` reasoning is allowed only for mechanical read-only
+    report regeneration after deep evidence packets already exist. Before
+    generating content, validate the trusted brain with
+    `node scripts/gustav_validate_trusted_brain.mjs`. Content without
+    trusted-source evidence remains `HOLD`.
 14. **Work orders drive generation.** After the feature matrix, run
     `node scripts/gustav_builder_work_orders.mjs`. Build French only from
     `docs/gustav/generated/work_orders/fr_builder_work_orders.json`, starting
     with the research packet work order. A builder without a work order is
     planning drift and remains `HOLD`.
+15. **No blind translation.** Gustav may copy English product shape, item-count
+    targets, schemas, loader/admin/server workflow shape and test intent. It
+    must not copy English lesson order, phrase wording, quiz distractors,
+    flashcards, arena questions, personal practice, collectible text, AI prompt
+    teaching rules or explanations as French content unless a deep research
+    packet explicitly marks the item as a source-backed direct equivalent.
+16. **Daily Phrase means idioms and vivid expressions.** For every target
+    language, `daily_phrase_builder` must mirror the English Daily Phrase
+    product type and field shape: interesting idioms, fixed expressions,
+    culturally useful sayings or memorable colloquial turns, not ordinary
+    travel/service sentences or generic lesson phrases. It must preserve the
+    English field structure (`phrase`, `literal`, `meaning`, `text`, plus
+    source-locale variants), study the English explanation style only as a
+    product-shape template, and produce the same kind of lively,
+    origin/usage/anti-calque breakdown from inside the target language. The
+    learner-facing `text`, `literal`, `meaning`, examples and notes must not
+    compare with English, cite English idioms, or use English as the explanation
+    frame. Every phrase, literal, meaning and explanation requires per-row
+    official or dictionary source coverage; otherwise the row remains `HOLD`.
+    Daily Phrase also requires admin parity: admin status, preview, source
+    review, validation report, activation switch and rollback surfaces must be
+    mapped before production activation.
+17. **Gustav content uses the spec/build/review skill chain.** Every new
+    target-language content creation or feature-parity pass must run through
+    the local Gustav skills as the base workflow: `gustav-spec` first,
+    `gustav-build` second, `gustav-review` third. The spec pass writes a
+    concrete requirement/evidence contract before content is built; the build
+    pass implements only that spec and keeps `activationApproved=false`; the
+    review pass checks requirement-by-requirement and returns `PASS`, `HOLD`,
+    `BLOCK`, or `NOT VERIFIED` with exact fixes. Gustav may still create
+    read-only audits in `docs/gustav/runs/<runId>/...`, but any generated
+    content intended to become a French pack, prompt, quiz, lesson, vocabulary
+    bank, daily phrase bank, flashcard set, arena bank, personal practice bank,
+    admin surface, server/storage path or activation gate must have an explicit
+    spec/build/review trail. The required shared skill reference is
+    `.agents/skills/gustav-spec/references/phrase-man-french-blueprint.md`.
+18. **Standard Quiz product style is locked.** Target-language standard quiz
+    banks must preserve the English `easy` / `medium` / `hard` product style:
+    a source-locale meaning prompt (`ru`, `uk`, etc.) followed by four complete
+    target-language sentence choices, one correct index (or an explicitly
+    supported multi-correct row), and aligned per-choice explanations. A
+    fill-in-the-blank grammar drill such as `___ cafe` is not an acceptable
+    replacement for the standard quiz surface unless a separate product spec
+    creates a new drill mode. For French `fr`, the choices must be full French
+    phrases/sentences with realistic learner-error distractors, not copied
+    English rows and not lesson-row fan-out. Any generated standard quiz sample
+    that changes this style is `BLOCK_PRODUCT_STYLE_DRIFT` and must be
+    superseded before further quiz-bank generation.
+19. **Official flashcard packs use `gustav_flashcard_pack_generator`.** Target-
+    language marketplace flashcard packs for French and future languages must
+    start from the reusable generator contract, not from ad hoc pack writing.
+    The English flashcard marketplace is product-shape evidence only: pack
+    density, metadata, categories, price shards, card-detail fields, and review
+    style. It is never accepted as a row-by-row source to translate. Target
+    packs must be native to the language and culture where relevant, cite
+    trusted sources per accepted row, keep source-locale copy (`ru`, `uk`, etc.)
+    reviewed, and stay `activationApproved=false` until source evidence,
+    duplicate audit, target storage isolation, server dry-run, admin workflow,
+    rollback, and final production gates pass. French examples include both
+    learner-utility packs and culture-native packs such as cafe/terrace,
+    boulangerie/market, metro/train, bureaucracy, and apero/social rituals.
+20. **Marketplace flashcard descriptions must keep the English product-copy
+    voice.** Any official target-language flashcard pack description must follow
+    the English marketplace copy principle: scene first, conflict/tension,
+    concrete social fantasy, useful promise, compact voice, and a little bite.
+    Bland taxonomy text such as "набор для...", "contains phrases about...",
+    "this pack teaches..." or generic topic summaries is
+    `BLOCK_PRODUCT_COPY_DRIFT`. The copy may be culture-native and playful, but
+    must still describe the actual learning value and must not invent facts not
+    supported by the pack rows.
+21. **French official flashcard packs are done only at activation-readiness.**
+    For French flashcard marketplace packs, content-candidate gates are not
+    enough. A completed handoff must include
+    `admin/french-flashcard-packs-workflow.js`,
+    `admin/french-flashcard-packs-admin.js`,
+    `fr_flashcard_packs_runtime_activation_evidence.json`,
+    `fr_flashcard_packs_admin_activation_handoff.json`, and
+    `fr_flashcard_packs_activation_readiness_final_gate.json`. The final status
+    must be `READY_FOR_EXPLICIT_ACTIVATION_APPROVAL`, with `productionReady=true`
+    and `activationApproved=false`. Live Firebase upload execution and the final
+    approval receipt remain explicit external steps, never automatic builder
+    behavior.
 
 ## System map (30-second version)
 

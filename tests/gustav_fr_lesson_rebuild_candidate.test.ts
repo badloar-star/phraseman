@@ -29,6 +29,11 @@ const LESSON24_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr'
 const LESSON25_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson25_row_ledger.json');
 const LESSON26_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson26_row_ledger.json');
 const LESSON27_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson27_row_ledger.json');
+const LESSON28_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson28_row_ledger.json');
+const LESSON29_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson29_row_ledger.json');
+const LESSON30_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson30_row_ledger.json');
+const LESSON31_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson31_row_ledger.json');
+const LESSON32_LEDGER_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'lesson32_row_ledger.json');
 const AUDIT_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'lessons', 'fr_lesson_rebuild_candidate_audit.json');
 const BUILDER_INPUTS_PATH = path.join(
   ROOT,
@@ -70,6 +75,11 @@ describe('Gustav French lesson rebuild candidate', () => {
     const lesson25 = JSON.parse(fs.readFileSync(LESSON25_LEDGER_PATH, 'utf8'));
     const lesson26 = JSON.parse(fs.readFileSync(LESSON26_LEDGER_PATH, 'utf8'));
     const lesson27 = JSON.parse(fs.readFileSync(LESSON27_LEDGER_PATH, 'utf8'));
+    const lesson28 = JSON.parse(fs.readFileSync(LESSON28_LEDGER_PATH, 'utf8'));
+    const lesson29 = JSON.parse(fs.readFileSync(LESSON29_LEDGER_PATH, 'utf8'));
+    const lesson30 = JSON.parse(fs.readFileSync(LESSON30_LEDGER_PATH, 'utf8'));
+    const lesson31 = JSON.parse(fs.readFileSync(LESSON31_LEDGER_PATH, 'utf8'));
+    const lesson32 = JSON.parse(fs.readFileSync(LESSON32_LEDGER_PATH, 'utf8'));
     const audit = JSON.parse(fs.readFileSync(AUDIT_PATH, 'utf8'));
     const builderInputs = JSON.parse(fs.readFileSync(BUILDER_INPUTS_PATH, 'utf8'));
     const lesson1Input = builderInputs.lessons.find((lesson: any) => lesson.lessonId === 1);
@@ -145,6 +155,15 @@ describe('Gustav French lesson rebuild candidate', () => {
     expect(audit.schemaVersion).toBe('gustav-fr-lesson-rebuild-candidate-audit-v1');
     expect(audit.status).toBe('HOLD');
     expect(audit.activationApproved).toBe(false);
+    expect(audit.reconciliationReport).toBe(
+      'docs/gustav/generated/fr/core_lessons_32/fr_lesson_sequence_reconciliation_report.json',
+    );
+    expect(audit.reconciliationSummary.rebuildRequired).toBeGreaterThan(0);
+    expect(audit.gates.candidate_ledgers_present_gate).toBe('PASS');
+    expect(audit.postRebuildScopeReconciliation.expectedLessons).toBe(32);
+    expect(audit.postRebuildScopeReconciliation.checkedLedgers).toBe(32);
+    expect(audit.postRebuildScopeReconciliation.mismatchCount).toBe(0);
+    expect(audit.gates.scope_sequence_reconciliation_gate).toBe('PASS');
     expect(lesson2.schemaVersion).toBe('gustav-french-lesson-row-ledger-v1-candidate');
     expect(lesson2.lessonId).toBe(2);
     expect(lesson2.action).toBe('MERGE_AND_REBUILD');
@@ -1002,13 +1021,223 @@ describe('Gustav French lesson rebuild candidate', () => {
       expect(row.activationStatus).toBe('blocked');
     }
 
+    expect(lesson28.schemaVersion).toBe('gustav-french-lesson-row-ledger-v1-candidate');
+    expect(lesson28.lessonId).toBe(28);
+    expect(lesson28.action).toBe('MOVE_AND_REBUILD');
+    expect(lesson28.targetConcepts).toEqual(expect.arrayContaining(['avoir', 'relative_dont']));
+    expect(lesson28.targetGrammarFocus).toEqual(
+      expect.arrayContaining(['relative dont', 'de-linked relatives', 'possession/need links']),
+    );
+    expect(lesson28.activationApproved).toBe(false);
+    expect(lesson28.activeAppSeedAllowed).toBe(false);
+    expect(lesson28.rows).toHaveLength(50);
+
+    const lesson28Text = JSON.stringify(lesson28.rows);
+    expect(lesson28Text).toContain('La personne dont je parle est mon voisin.');
+    expect(lesson28Text).toContain("Le livre dont j'ai besoin est sur la table.");
+    expect(lesson28Text).toContain('Le sujet dont nous discutons est important.');
+    expect(lesson28Text).toContain("L'homme dont le frère travaille ici est gentil.");
+    expect(lesson28Text).toContain('Le livre dont la couverture est bleue est nouveau.');
+    expect(lesson28Text).toContain("J'ai trois amis, dont deux parlent français.");
+    expect(lesson28Text).toContain('La clé dont tu as besoin est ici.');
+    expect(lesson28Text).toContain("Le bruit dont l'enfant a peur vient de la rue.");
+    expect(lesson28Text).toContain('Le résultat dont je suis content est clair.');
+    expect(lesson28Text).toContain('Le livre qui est sur la table est à moi.');
+    expect(lesson28Text).toContain('Le livre que je lis est court.');
+    expect(lesson28Text).toContain("L'idée dont tu parles est utile.");
+    expect(lesson28Text).toContain("Le sac dont j'ai besoin est léger.");
+    expect(lesson28Text).not.toMatch(MOJIBAKE_RE);
+
+    for (const row of lesson28.rows) {
+      expect(row.studyTarget).toBe('fr');
+      expect(row.targetContentLang).toBe('fr');
+      expect(row.aiOutputLang).toBe('fr');
+      expect(row.wordsFr[0].distractors).toHaveLength(3);
+      expect(row.wordsFr[0].distractors).not.toContain(row.wordsFr[0].correct);
+      expect(row.evidenceClaimIds).toEqual(expect.arrayContaining(['tv5monde_grammar', 'le_robert_conjugation']));
+      expect(row.activationStatus).toBe('blocked');
+    }
+
+    expect(lesson29.schemaVersion).toBe('gustav-french-lesson-row-ledger-v1-candidate');
+    expect(lesson29.lessonId).toBe(29);
+    expect(lesson29.action).toBe('MERGE_AND_REBUILD');
+    expect(lesson29.targetConcepts).toEqual(expect.arrayContaining(['conditionnel']));
+    expect(lesson29.targetGrammarFocus).toEqual(
+      expect.arrayContaining(['conditionnel present', 'polite requests', 'advice']),
+    );
+    expect(lesson29.activationApproved).toBe(false);
+    expect(lesson29.activeAppSeedAllowed).toBe(false);
+    expect(lesson29.rows).toHaveLength(50);
+
+    const lesson29Text = JSON.stringify(lesson29.rows);
+    expect(lesson29Text).toContain("Je voudrais un café, s'il vous plaît.");
+    expect(lesson29Text).toContain("J'aimerais parler avec le professeur.");
+    expect(lesson29Text).toContain("Pourriez-vous m'aider, s'il vous plaît ?");
+    expect(lesson29Text).toContain('Tu devrais te reposer.');
+    expect(lesson29Text).toContain('Je prendrais le train.');
+    expect(lesson29Text).toContain("J'aurais le temps demain.");
+    expect(lesson29Text).toContain("Si j'avais le temps, je viendrais.");
+    expect(lesson29Text).toContain('Si tu étais libre, que ferais-tu ?');
+    expect(lesson29Text).toContain("J'aimerais poser une question.");
+    expect(lesson29Text).toContain('Il vaudrait mieux commencer maintenant.');
+    expect(lesson29Text).toContain('Serait-il possible de payer par carte ?');
+    expect(lesson29Text).toContain('Je vous serais très reconnaissant.');
+    expect(lesson29Text).toContain("Pourriez-vous m'envoyer l'adresse ?");
+    expect(lesson29Text).not.toMatch(MOJIBAKE_RE);
+
+    for (const row of lesson29.rows) {
+      expect(row.studyTarget).toBe('fr');
+      expect(row.targetContentLang).toBe('fr');
+      expect(row.aiOutputLang).toBe('fr');
+      expect(row.wordsFr[0].distractors).toHaveLength(3);
+      expect(row.wordsFr[0].distractors).not.toContain(row.wordsFr[0].correct);
+      expect(row.evidenceClaimIds).toEqual(expect.arrayContaining(['tv5monde_grammar', 'le_robert_conjugation']));
+      expect(row.activationStatus).toBe('blocked');
+    }
+
+    expect(lesson30.schemaVersion).toBe('gustav-french-lesson-row-ledger-v1-candidate');
+    expect(lesson30.lessonId).toBe(30);
+    expect(lesson30.action).toBe('BUILD_NEW');
+    expect(lesson30.targetConcepts).toEqual(expect.arrayContaining(['subjunctive_awareness']));
+    expect(lesson30.targetGrammarFocus).toEqual(
+      expect.arrayContaining(['subjunctive awareness', 'il faut que', 'wishes/necessity']),
+    );
+    expect(lesson30.activationApproved).toBe(false);
+    expect(lesson30.activeAppSeedAllowed).toBe(false);
+    expect(lesson30.rows).toHaveLength(50);
+
+    const lesson30Text = JSON.stringify(lesson30.rows);
+    expect(lesson30Text).toContain('Il faut que je parle avec le professeur.');
+    expect(lesson30Text).toContain("Il faut que j'aille à la banque.");
+    expect(lesson30Text).toContain('Il faut que tu sois prudent.');
+    expect(lesson30Text).toContain('Il faut que nous fassions le travail.');
+    expect(lesson30Text).toContain('Faut-il que je prenne le train ?');
+    expect(lesson30Text).toContain('Je veux que tu viennes demain.');
+    expect(lesson30Text).toContain("J'aimerais que vous m'appeliez par mon prénom.");
+    expect(lesson30Text).toContain('Il faut que les enfants fassent leurs devoirs.');
+    expect(lesson30Text).toContain('Il est dommage qu’elle ne puisse pas venir.');
+    expect(lesson30Text).toContain('Je ne pense pas qu’il vienne.');
+    expect(lesson30Text).toContain('Je pense qu’il vient.');
+    expect(lesson30Text).toContain('Je ne crois pas qu’elle ait raison.');
+    expect(lesson30Text).toContain('Il n’est pas certain qu’il vienne.');
+    expect(lesson30Text).toContain('Je te donne les clés pour que tu puisses entrer.');
+    expect(lesson30Text).toContain("Il faut que j'aie mon passeport.");
+    expect(lesson30Text).toContain('Il faut que nous sachions la vérité.');
+    expect(lesson30Text).toContain('Il faut qu’elles aient le temps.');
+    expect(lesson30Text).not.toMatch(MOJIBAKE_RE);
+
+    for (const row of lesson30.rows) {
+      expect(row.studyTarget).toBe('fr');
+      expect(row.targetContentLang).toBe('fr');
+      expect(row.aiOutputLang).toBe('fr');
+      expect(row.wordsFr[0].distractors).toHaveLength(3);
+      expect(row.wordsFr[0].distractors).not.toContain(row.wordsFr[0].correct);
+      expect(row.evidenceClaimIds).toEqual(expect.arrayContaining(['tv5monde_grammar', 'le_robert_conjugation']));
+      expect(row.activationStatus).toBe('blocked');
+    }
+
+    expect(lesson31.schemaVersion).toBe('gustav-french-lesson-row-ledger-v1-candidate');
+    expect(lesson31.lessonId).toBe(31);
+    expect(lesson31.action).toBe('KEEP_WITH_REVIEW');
+    expect(lesson31.targetConcepts).toEqual(expect.arrayContaining(['faire_causative']));
+    expect(lesson31.targetGrammarFocus).toEqual(
+      expect.arrayContaining(['faire causative', 'laisser + infinitive', 'advanced verb chains']),
+    );
+    expect(lesson31.activationApproved).toBe(false);
+    expect(lesson31.activeAppSeedAllowed).toBe(false);
+    expect(lesson31.rows).toHaveLength(50);
+
+    const lesson31Text = JSON.stringify(lesson31.rows);
+    expect(lesson31Text).toContain('Je fais réparer la voiture.');
+    expect(lesson31Text).toContain('Je vais faire faire une clé.');
+    expect(lesson31Text).toContain('Nous avons fait envoyer le colis.');
+    expect(lesson31Text).toContain('Je fais tondre le gazon à mon fils.');
+    expect(lesson31Text).toContain('Je le fais réparer.');
+    expect(lesson31Text).toContain("Je l'ai fait réparer hier.");
+    expect(lesson31Text).toContain('Je le lui fais lire.');
+    expect(lesson31Text).toContain('Je me fais couper les cheveux.');
+    expect(lesson31Text).toContain('Ils se sont fait critiquer.');
+    expect(lesson31Text).toContain('Laisse-moi étudier.');
+    expect(lesson31Text).toContain('Ne les laisse pas partir.');
+    expect(lesson31Text).toContain('Nous les laissons travailler tranquillement.');
+    expect(lesson31Text).toContain('Je fais faire le travail.');
+    expect(lesson31Text).toContain('Elle fait réparer le téléphone.');
+    expect(lesson31Text).toContain("Il laisse lire l'enfant.");
+    expect(lesson31Text).toContain('Ils vont faire traduire les documents.');
+    expect(lesson31Text).not.toMatch(MOJIBAKE_RE);
+
+    for (const row of lesson31.rows) {
+      expect(row.studyTarget).toBe('fr');
+      expect(row.targetContentLang).toBe('fr');
+      expect(row.aiOutputLang).toBe('fr');
+      expect(row.wordsFr[0].distractors).toHaveLength(3);
+      expect(row.wordsFr[0].distractors).not.toContain(row.wordsFr[0].correct);
+      expect(row.evidenceClaimIds).toEqual(expect.arrayContaining(['tv5monde_grammar', 'le_robert_conjugation']));
+      expect(row.activationStatus).toBe('blocked');
+    }
+
+    expect(lesson32.schemaVersion).toBe('gustav-french-lesson-row-ledger-v1-candidate');
+    expect(lesson32.lessonId).toBe(32);
+    expect(lesson32.action).toBe('KEEP_WITH_REVIEW');
+    expect(lesson32.targetConcepts).toEqual(expect.arrayContaining(['mixed_review']));
+    expect(lesson32.targetGrammarFocus).toEqual(
+      expect.arrayContaining(['mixed review', 'dialogue integration', 'exam readiness', 'targeted weak spots']),
+    );
+    expect(lesson32.activationApproved).toBe(false);
+    expect(lesson32.activeAppSeedAllowed).toBe(false);
+    expect(lesson32.rows).toHaveLength(50);
+
+    const lesson32Text = JSON.stringify(lesson32.rows);
+    expect(lesson32Text).toContain("Pourriez-vous répéter plus lentement, s'il vous plaît ?");
+    expect(lesson32Text).toContain('Il faut que je fasse réparer mon téléphone.');
+    expect(lesson32Text).toContain('Le problème dont je parle est urgent.');
+    expect(lesson32Text).toContain('Je le lui donne.');
+    expect(lesson32Text).toContain('Quand je suis arrivé, elle attendait déjà.');
+    expect(lesson32Text).toContain('Je fais traduire les documents.');
+    expect(lesson32Text).toContain('Je ne le connais pas.');
+    expect(lesson32Text).toContain('Le garçon dont les parents sont ici est calme.');
+    expect(lesson32Text).toContain('Il est important que vous répondiez.');
+    expect(lesson32Text).toContain('Je pense qu’il a raison.');
+    expect(lesson32Text).toContain('Je ne pense pas qu’il ait raison.');
+    expect(lesson32Text).toContain("Si j'avais plus de temps, je pratiquerais davantage.");
+    expect(lesson32Text).toContain("J'ai commencé hier, mais j'étais fatigué.");
+    expect(lesson32Text).toContain('Elle nous laisse choisir la date.');
+    expect(lesson32Text).toContain("C'est ce dont j'ai peur.");
+    expect(lesson32Text).toContain("Avant de partir, j'ai vérifié l'adresse.");
+    expect(lesson32Text).toContain("Révision finale : j'aimerais que tu me l'envoies.");
+    expect(lesson32Text).toContain("Révision finale : si c'est prêt, envoie-le-nous.");
+    expect(lesson32Text).not.toMatch(MOJIBAKE_RE);
+
+    for (const row of lesson32.rows) {
+      expect(row.studyTarget).toBe('fr');
+      expect(row.targetContentLang).toBe('fr');
+      expect(row.aiOutputLang).toBe('fr');
+      expect(row.wordsFr[0].distractors).toHaveLength(3);
+      expect(row.wordsFr[0].distractors).not.toContain(row.wordsFr[0].correct);
+      expect(row.evidenceClaimIds).toEqual(expect.arrayContaining(['tv5monde_grammar', 'le_robert_conjugation']));
+      expect(row.activationStatus).toBe('blocked');
+    }
+
     expect(audit.ledgers.map((item: any) => item.lessonId)).toEqual([
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
     ]);
     expect(audit.ledgers.map((item: any) => item.rowCount)).toEqual([
-      50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+      50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
     ]);
-    expect(audit.nextRequiredLedgers).toHaveLength(5);
-    expect(audit.nextRequiredLedgers[0]).toBe('docs/gustav/generated/fr/lessons/lesson28_row_ledger.json');
+    expect(audit.nextRequiredLedgers).toEqual([]);
+    expect(audit.preRebuildReconciliationRequiredLedgers).toHaveLength(audit.reconciliationSummary.rebuildRequired);
+    expect(audit.preRebuildReconciliationRequiredLedgers.map((item: any) => item.lessonId)).toEqual(
+      expect.arrayContaining([1, 2, 3, 4, 5, 6, 7, 8]),
+    );
+    expect(audit.reconciliationRequiredLedgers).toEqual([]);
+    expect(audit.nextRequiredGates).toEqual(
+      expect.arrayContaining([
+        'llm_source_review_gate',
+        'audio_manifest_gate',
+        'server_pack_gate',
+        'runtime_loader_gate',
+      ]),
+    );
+    expect(audit.nextRequiredGates).not.toContain('scope_sequence_reconciliation_gate');
   });
 });

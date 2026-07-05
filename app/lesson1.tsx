@@ -1058,9 +1058,6 @@ const LessonContent = React.memo(function LessonContent({
                 +{xpToastAmount} XP
               </Animated.Text>
             )}
-            <Text style={{ color: t.gold, fontSize: isSmallScreen ? 10 : f.label, fontWeight: '700' }}>★{score}</Text>
-            <Text style={{ color: t.correct, fontSize: isSmallScreen ? 10 : f.label, fontWeight: '700' }}>●{correctCount}</Text>
-            <Text style={{ color: t.wrong, fontSize: isSmallScreen ? 10 : f.label, fontWeight: '700' }}>●{wrongCount}</Text>
           </View>
         </View>
       </View>

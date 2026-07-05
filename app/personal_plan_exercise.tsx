@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 // ════════════════════════════════════════════════════════════════════════════
 // ПРАВИЛО UX (важно, действует во ВСЁМ этом экране):
 // Разбор ответа («почему так» / «разберём спокойно» / подтверждение) показывается
@@ -19,6 +20,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
@@ -742,9 +744,20 @@ function PlanPronunciationRecorder({
       finishAttemptTimerRef.current = setTimeout(finishAttempt, delayMs);
     };
 
+    // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
+    // — на редких OEM 'start' не эмитится), а не сразу после start() (прогрев
+    // ~100-300мс терял начало речи). На Android звук молчит, играет вибро.
+    let cuePlayed = false;
+    const playCueOnce = () => {
+      if (cuePlayed) return;
+      cuePlayed = true;
+      playRecordStart();
+    };
+
     const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
       // Первый результат = движок точно жив (на редких OEM 'start' не эмитится).
       clearRecognizerWatchdog();
+      playCueOnce();
       clearFinishAttemptTimer();
       const alternatives = Array.isArray(event?.results) ? event.results : [];
       considerAlternatives(alternatives);
@@ -765,6 +778,7 @@ function PlanPronunciationRecorder({
     // Любой признак жизни движка снимает watchdog «заглохшего» распознавателя.
     const startSub = speechModule.addListener('start', () => {
       clearRecognizerWatchdog();
+      playCueOnce();
     });
     const resultSub = speechModule.addListener('result', applyResult);
     const noMatchSub = speechModule.addListener('nomatch', () => {
@@ -958,9 +972,9 @@ function PlanPronunciationRecorder({
       } catch {
         onDevice = false;
       }
-      // On Android, an audio cue can steal audio focus or smear the first word
-      // while the recognizer is warming up. Haptic tap + red state are enough.
-      if (Platform.OS !== 'android') playRecordStart();
+      // cue перенесён в слушатель 'start' — играет по реальному старту движка,
+      // а не сразу после speechModule.start() (иначе терялось начало речи).
+      // На Android звук и так молчит (use-record-start-cue) — только вибро.
       setPronunciationListening(true);
       setPronunciationScoring(true);
       setTranscript('');
@@ -1172,85 +1186,30 @@ function PlanPronunciationRecorder({
 // скользящая стрелка ▼ над текущей ячейкой и счётчик N/N справа.
 function PlanExerciseProgressRail({
   correct,
-  current,
   target,
   accent,
-  mutedColor,
-  correctColor,
   trackColor,
 }: {
   correct: number;
-  current: number;
   target: number;
   accent: string;
-  mutedColor: string;
-  correctColor: string;
   trackColor: string;
 }) {
   const cellCount = Math.max(1, target);
-  const displayCell = Math.min(Math.max(0, current), cellCount - 1);
-  const [barWidth, setBarWidth] = useState(0);
-  const arrowAnim = useRef(new Animated.Value(0)).current;
-  const prevCell = useRef(displayCell);
-
-  useEffect(() => {
-    if (barWidth === 0) return;
-    const cellW = (barWidth - (cellCount - 1) * 4) / cellCount;
-    const targetX = displayCell * (cellW + 4);
-    const isBack = displayCell < prevCell.current;
-    prevCell.current = displayCell;
-    Animated.spring(arrowAnim, {
-      toValue: targetX,
-      useNativeDriver: true,
-      tension: isBack ? 280 : 140,
-      friction: isBack ? 10 : 12,
-    }).start();
-  }, [displayCell, barWidth, cellCount, arrowAnim]);
+  const progress = Math.min(Math.max(0, correct), cellCount) / cellCount;
 
   return (
-    <View style={styles.progressRailRow}>
-      <View
-        accessibilityRole="progressbar"
-        accessibilityLabel={`Прогресс задания: ${correct} из ${target}`}
+    <View
+      style={styles.progressRailRow}
+      accessibilityRole="progressbar"
+      accessibilityLabel={`Прогресс задания: ${correct} из ${target}`}
+    >
+      <GradientProgressBar
+        progress={progress}
+        accent={accent}
+        trackColor={trackColor}
         style={styles.progressRailTrack}
-        onLayout={(e) => setBarWidth(e.nativeEvent.layout.width)}
-      >
-        {barWidth > 0 ? (
-          <View style={styles.progressArrowRow}>
-            <Animated.View style={{ position: 'absolute', top: 0, transform: [{ translateX: arrowAnim }] }}>
-              <Text
-                style={{
-                  color: correctColor,
-                  fontSize: 8,
-                  lineHeight: 10,
-                  textAlign: 'center',
-                  width: (barWidth - (cellCount - 1) * 4) / cellCount,
-                }}
-              >
-                ▼
-              </Text>
-            </Animated.View>
-          </View>
-        ) : null}
-        <View style={styles.progressCellsRow}>
-          {Array.from({ length: cellCount }).map((_, i) => (
-            <View
-              key={i}
-              style={[
-                styles.progressCell,
-                {
-                  backgroundColor: i < correct
-                    ? correctColor
-                    : i === displayCell
-                    ? 'rgba(255,255,255,0.85)'
-                    : trackColor,
-                },
-              ]}
-            />
-          ))}
-        </View>
-      </View>
-      <Text style={[styles.progressCounter, { color: mutedColor }]}>{displayCell + 1}/{cellCount}</Text>
+      />
     </View>
   );
 }
@@ -1486,6 +1445,7 @@ function PlanExerciseFeedbackInline({
 export default function PersonalPlanExerciseScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { playCorrect } = useCorrectSound();
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleExerciseScroll = useCallback((e: any) => {
@@ -1716,9 +1676,6 @@ export default function PersonalPlanExerciseScreen() {
     })();
   }, [answerAudioSource, answerAudioPlayer, speakPhraseFallback]);
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
-  const progressRailCurrent = lastResult === 'correct'
-    ? Math.max(0, correctIds.length - 1)
-    : correctIds.length;
   const done = !advancing && (completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult));
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
   const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
@@ -2094,8 +2051,6 @@ export default function PersonalPlanExerciseScreen() {
             <Text numberOfLines={1} style={[styles.backText, { color: t.textPrimary, fontSize: f.bodyLg }]}>{chromeTitle}</Text>
           </TouchableOpacity>
           <View style={styles.headerStats}>
-            <Text style={[styles.statText, { color: t.correct, fontSize: f.label }]}>●{correctIds.length}</Text>
-            <Text style={[styles.statText, { color: t.textMuted, fontSize: f.label }]}>/{targetCorrect}</Text>
             {hasBundledCompatibilityPlanContentDay(planId, dayIndex) ? (
               <ReportErrorButton
                 variant="icon-flag"
@@ -2109,15 +2064,12 @@ export default function PersonalPlanExerciseScreen() {
         </View>
         <PlanExerciseProgressRail
           correct={correctIds.length}
-          current={progressRailCurrent}
           target={targetCorrect}
           accent={accent}
-          mutedColor={t.textMuted}
-          correctColor={t.correct}
           trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
         />
 
-        <BouncyScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
+        <BouncyScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"
@@ -2531,7 +2483,6 @@ type PersonalPlanExerciseStyles = {
   back: ViewStyle;
   backText: TextStyle;
   headerStats: ViewStyle;
-  statText: TextStyle;
   reportFlag: ViewStyle;
   headerCopy: ViewStyle;
   headerModeIcon: ViewStyle;
@@ -2541,10 +2492,6 @@ type PersonalPlanExerciseStyles = {
   progressRail: ViewStyle;
   progressRailRow: ViewStyle;
   progressRailTrack: ViewStyle;
-  progressArrowRow: ViewStyle;
-  progressCellsRow: ViewStyle;
-  progressCounter: TextStyle;
-  progressCell: ViewStyle;
   scroll: ViewStyle;
   questionBlock: ViewStyle;
   footer: ViewStyle;
@@ -2666,7 +2613,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     justifyContent: 'flex-end',
     gap: 2,
   },
-  statText: { fontWeight: '700' },
   reportFlag: { marginLeft: 10, paddingHorizontal: 4 },
   headerCopy: { flex: 1, minWidth: 0 },
   headerModeIcon: {
@@ -2693,15 +2639,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     marginHorizontal: 14,
     marginBottom: 8,
   },
-  progressRailTrack: { flex: 1, flexDirection: 'column', gap: 2 },
-  progressArrowRow: { height: 10, position: 'relative' },
-  progressCellsRow: { flexDirection: 'row', gap: 4 },
-  progressCounter: { fontSize: 12, minWidth: 34, textAlign: 'right', fontWeight: '600' },
-  progressCell: {
-    flex: 1,
-    height: 8,
-    borderRadius: 4,
-  },
+  progressRailTrack: { flex: 1 },
   scroll: { padding: 16, paddingBottom: 34, flexGrow: 1 },
   questionBlock: { gap: 14, paddingTop: 8, paddingBottom: 4 },
   optionsSpacer: { flex: 1, minHeight: 12 },

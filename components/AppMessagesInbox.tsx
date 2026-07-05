@@ -590,6 +590,7 @@ function AppMessagesInbox() {
           accessibilityLabel={copy.close}
           activeOpacity={0.75}
           onPress={closeInbox}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
         >
           <Ionicons name="close" size={21} color={chrome.text} />
@@ -840,6 +841,7 @@ function AppMessagesInbox() {
               hapticTap();
               setSelectedId(null);
             }}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />

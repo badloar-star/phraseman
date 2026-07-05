@@ -8,6 +8,7 @@ import {
   type PlayerSlot,
   type RoundAction,
 } from './engine';
+import { STAR_COUNT } from './hex';
 
 const CFG: ConstellationConfig = CONSTELLATION_DEFAULTS;
 
@@ -275,6 +276,44 @@ describe('constellations/engine — ядра, выбивание, возрожд
     expect(state.players[1].status).toBe('out');
   });
 
+  // ── 7.4: зафиксированное поведение краевых случаев движка ────────────────
+  test('возрождение без свободных звёзд: остаётся falling, свет сохранён, не крашит', () => {
+    const s = makeState();
+    // Все звёзды заняты игроком 0 → нет ни одной нейтральной для рождения.
+    for (const key of Object.keys(s.stars)) s.stars[key] = { owner: 0, radiance: 0 };
+    s.players[1] = { ...s.players[1], status: 'falling', fallingLight: 1, cores: 0 };
+    const { state, events } = resolveRound(s, {
+      ...noInput(),
+      falling: [{ slot: 1, answeredCorrect: true }],
+    }, CFG);
+    expect(state.players[1].status).toBe('falling'); // не возродился — некуда
+    expect(state.players[1].fallingLight).toBe(2);   // но свет накоплен (возродится, как освободится)
+    expect(events.some((e) => e.type === 'reborn')).toBe(false);
+  });
+
+  test('дуэль за чужой home с последним ядром: победитель дуэли выбивает владельца', () => {
+    const s = makeState();
+    s.players[1] = { ...s.players[1], cores: 1 };
+    const { state, events } = resolveRound(s, {
+      ...noInput(),
+      duels: [{ starKey: HOMES[1], slots: [0, 1], winner: 0 }],
+    }, CFG);
+    expect(state.players[1].cores).toBe(0);
+    expect(state.stars[HOMES[1]].owner).toBe(0);
+    expect(events.some((e) => e.type === 'eliminated' && e.slot === 1)).toBe(true);
+  });
+
+  test('иммутабельность: resolveRound не мутирует переданный state (клон)', () => {
+    const s = makeState();
+    s.players[1] = { ...s.players[1], cores: 1 };
+    const before = structuredClone(s);
+    resolveRound(s, {
+      ...noInput(),
+      attacks: [{ slot: 0, target: HOMES[1], correctAll: true, perfect: false }],
+    }, CFG);
+    expect(s).toEqual(before); // исходный state нетронут
+  });
+
   test('невредимость возрождённого: удар по home под щитом не снимает ядро (1.3)', () => {
     const s = makeState({ round: 3 });
     s.players[1] = { ...s.players[1], cores: 2, homeShieldUntilRound: 4 }; // защищён до раунда 4
@@ -336,21 +375,36 @@ describe('constellations/engine — завершение матча', () => {
     expect(state.stage).toBe('finished');
   });
 
-  test('ранняя победа по доле карты (70%)', () => {
-    const s = makeState();
-    // отдаём slot0 26 звёзд (70% от 37 = 25.9 → 26)
-    const keys = Object.keys(s.stars);
+  // Порог ранней победы вычисляется ИЗ конфига (а не хардкод «26/70%»), иначе
+  // тест проходит случайно при смене mapSharePct (7.5 — устранение хрупкости).
+  const earlyWinThreshold = Math.ceil((STAR_COUNT * CFG.earlyWin.mapSharePct) / 100);
+
+  /** Сделать так, чтобы у slot0 стало РОВНО n звёзд (остальные — нейтральные). */
+  const giveStars = (s: MatchState, n: number): void => {
+    // Сброс: всё нейтрально, затем отдаём ровно n первых ключей slot0.
+    for (const key of Object.keys(s.stars)) s.stars[key] = { owner: null, radiance: 0 };
     let given = 0;
-    for (const key of keys) {
-      if (given >= 26) break;
-      if (s.stars[key].owner === null || s.stars[key].owner === 0) {
-        s.stars[key] = { owner: 0, radiance: 0 };
-        given += 1;
-      }
+    for (const key of Object.keys(s.stars)) {
+      if (given >= n) break;
+      s.stars[key] = { owner: 0, radiance: 0 };
+      given += 1;
     }
+  };
+
+  test(`ранняя победа при доле карты ≥ порога (${earlyWinThreshold} из ${STAR_COUNT})`, () => {
+    const s = makeState();
+    giveStars(s, earlyWinThreshold);
     const { state, events } = resolveRound(s, noInput(), CFG);
     expect(state.stage).toBe('finished');
     expect(events.some((e) => e.type === 'early_win' && e.slot === 0)).toBe(true);
+  });
+
+  test('НЕТ ранней победы при доле на 1 звезду ниже порога (негатив-кейс)', () => {
+    const s = makeState();
+    giveStars(s, earlyWinThreshold - 1);
+    const { state, events } = resolveRound(s, noInput(), CFG);
+    expect(state.stage).not.toBe('finished');
+    expect(events.some((e) => e.type === 'early_win')).toBe(false);
   });
 
   test('выбил всех (остальные out) → ранняя победа', () => {

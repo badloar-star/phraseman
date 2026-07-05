@@ -1752,6 +1752,27 @@ function QuizGame({
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [idx, done, reviewing, phrases.length, TIMER_SECONDS]);
 
+  // Анти-залипание после пейвола энергии: юзер исчерпал энергию → открыл модал
+  // «получить премиум» → вернулся назад в квиз, НЕ купив премиум. Раньше он
+  // оставался на живом вопросе с 0 энергии: ответить нельзя (handleChoice
+  // блокирует), модала с кнопкой выхода нет — экран «висел». Теперь при
+  // возврате фокуса, если энергия по-прежнему 0 и это не безлимит, снова
+  // показываем модал энергии — у юзера всегда есть видимая кнопка выхода/
+  // действия, а не мёртвый экран.
+  useFocusEffect(
+    useCallback(() => {
+      if (
+        !done &&
+        !testerEnergyDisabledRef.current &&
+        currentEnergyRef.current === 0 &&
+        answeredRef.current
+      ) {
+        setShowNoEnergyModal(true);
+      }
+      return undefined;
+    }, [done]),
+  );
+
   // Обработка завершения квиза с переменной наградой
   useEffect(() => {
     if (!done || score === 0 || phrases.length === 0 || reviewing) return;

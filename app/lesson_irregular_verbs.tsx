@@ -195,6 +195,43 @@ function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
   return verb.ru;
 }
 
+/**
+ * Русские (и локализованные) подписи-времена под английскими формами глагола.
+ * По просьбе пользователя: под base/past/pp — время по-русски, плюс отдельная
+ * строка-пример будущего (в английском нет отдельной формы: will + base).
+ * Формы: base = настоящее/инфинитив, past = прошедшее, pp = причастие.
+ * Возвращаем подписи для колонок base/past/pp и строку будущего (will + base).
+ */
+function verbTenseCaptions(lang: Lang): {
+  present: string;
+  pastT: string;
+  participle: string;
+  future: (base: string) => string;
+} {
+  if (lang === 'uk') {
+    return {
+      present: 'теперішнє',
+      pastT: 'минуле',
+      participle: 'дієприкметник',
+      future: (base) => `майбутнє: will ${base}`,
+    };
+  }
+  if (lang === 'es') {
+    return {
+      present: 'presente',
+      pastT: 'pasado',
+      participle: 'participio',
+      future: (base) => `futuro: will ${base}`,
+    };
+  }
+  return {
+    present: 'настоящее',
+    pastT: 'прошлое',
+    participle: 'причастие',
+    future: (base) => `будущее: will ${base}`,
+  };
+}
+
 function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularVerb[]): string[] {
   if (verbs.length === 0) return [];
   const v0 = verbs[0];
@@ -695,6 +732,31 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
             ))}
           </View>
 
+          {/* Русские подписи-времена под формами (base→past→pp) + пример будущего */}
+          {(() => {
+            const tc = verbTenseCaptions(lang);
+            const tenseByKey: Record<FormKey, string> = {
+              base: tc.present,
+              past: tc.pastT,
+              pp: tc.participle,
+            };
+            return (
+              <View style={{ alignItems: 'center', gap: 2 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
+                  {chainForms.map((cf, i) => (
+                    <React.Fragment key={`cap-${cf.key}`}>
+                      {i > 0 && <Text style={{ color: 'transparent', fontSize: f.label }}>→</Text>}
+                      <Text style={{ color: sx.ghost, fontSize: f.label, minWidth: 60, textAlign: 'center' }}>
+                        {tenseByKey[cf.key]}
+                      </Text>
+                    </React.Fragment>
+                  ))}
+                </View>
+                <Text style={{ color: sx.ghost, fontSize: f.label }}>{tc.future(verb.base)}</Text>
+              </View>
+            );
+          })()}
+
           {/* Step dots — aligned to visual chain order (base→past→pp) */}
           <View style={{ flexDirection: 'row', gap: 6 }}>
             {chainForms.map((cf, i) => {
@@ -866,17 +928,19 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
           {allVerbs.map(verb => {
             const count = globalCounts[verb.base] ?? 0;
             const learned = count >= REQUIRED;
+            const tc = verbTenseCaptions(lang);
             return (
               <View
                 key={verb.base}
-                style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 11, borderBottomWidth: 0.5, borderBottomColor: t.border }}
+                style={{ flexDirection: 'row', alignItems: 'flex-start', paddingVertical: 11, borderBottomWidth: 0.5, borderBottomColor: t.border }}
               >
                 <TouchableOpacity
                   onPress={() => speakAudio(verb.base, undefined, { language: 'en-US' })}
                   activeOpacity={0.6}
-                  style={{ width: COL.base, flexDirection: 'row', alignItems: 'center', gap: 5 }}
+                  style={{ width: COL.base }}
                 >
                   <Text style={{ color: learned ? sx.second : sx.primary, fontSize: f.body, fontWeight: '600', flexShrink: 0 }}>{verb.base}</Text>
+                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 1 }}>{tc.present}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => speakAudio(verb.past, undefined, { language: 'en-US' })}
@@ -884,6 +948,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
                   style={{ width: COL.past }}
                 >
                   <Text style={{ color: sx.second, fontSize: f.body, flexShrink: 0 }}>{verb.past}</Text>
+                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 1 }}>{tc.pastT}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => speakAudio(verb.pp, undefined, { language: 'en-US' })}
@@ -891,9 +956,11 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
                   style={{ width: COL.pp }}
                 >
                   <Text style={{ color: sx.second, fontSize: f.body, flexShrink: 0 }}>{verb.pp}</Text>
+                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 1 }}>{tc.participle}</Text>
                 </TouchableOpacity>
                 <View style={{ width: COL.tr }}>
                   <Text style={{ color: sx.muted, fontSize: f.sub, flexShrink: 0 }}>{irregularVerbTranslation(verb, lang)}</Text>
+                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 2 }}>{tc.future(verb.base)}</Text>
                 </View>
                 <View style={{ width: COL.save, alignItems: 'center', justifyContent: 'center' }}>
                   <AddToFlashcard

@@ -91,7 +91,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   settings_invite_friend: 'settings',
   premium_modal: 'settings',
   avatar_select: 'settings',
-  beta_testers: 'settings',
   privacy_screen: 'settings',
   terms_screen: 'settings',
   pos_analytics_audit: 'statistics',

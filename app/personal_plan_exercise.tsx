@@ -1660,6 +1660,52 @@ export default function PersonalPlanExerciseScreen() {
   // Авто-раскладка дистракторов (эталон урока): короткие варианты → сетка 2 кол., длинные → список на всю ширину.
   const useGridOptions = choiceOptions.length > 0 && choiceOptions.every((opt: string) => opt.trim().length <= 14);
   const currentCorrectAnswer = item && 'correctAnswer' in item ? item.correctAnswer : '';
+
+  // Озвучка фразы ПРИ ОТВЕТЕ. Раньше при ответе играл только звук «правильно», а
+  // сама фраза не проговаривалась. Возвращаем голос: играем approved-MP3 фразы, а
+  // если MP3 для этого задания нет — мягкий TTS-фолбэк (на экране плана это
+  // допустимо — пользователь явно попросил озвучивать ответы).
+  const { speak: speakPhraseFallback } = useAudio();
+  const answerAudioUri = item && 'audioReady' in item && item.audioReady && 'audioUri' in item
+    ? (item as { audioUri?: string }).audioUri
+    : undefined;
+  const answerAudioText = (item && 'correctAnswer' in item && item.correctAnswer)
+    || (item && 'targetText' in item ? (item as { targetText?: string }).targetText : '')
+    || '';
+  const answerAudioSource = useMemo(() => {
+    if (!answerAudioUri) return null;
+    const remoteUrl = getPlanAudioUrl(answerAudioUri);
+    if (remoteUrl) return remoteUrl;
+    const assetModule = getPersonalPlanRuntimeAudioAssetModule(answerAudioUri);
+    return assetModule ? { assetId: assetModule } : answerAudioUri;
+  }, [answerAudioUri]);
+  const answerAudioPlayer = useAudioPlayer(
+    answerAudioSource,
+    answerAudioSource ? { downloadFirst: false, updateInterval: 250 } : undefined,
+  );
+  const answerAudioTextRef = useRef(answerAudioText);
+  useEffect(() => { answerAudioTextRef.current = answerAudioText; }, [answerAudioText]);
+  const speakCurrentPhrase = useCallback(() => {
+    void (async () => {
+      if (answerAudioSource) {
+        try {
+          await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE);
+        } catch {
+          // best-effort режим
+        }
+        try {
+          try { answerAudioPlayer.volume = 1; } catch { /* некоторые рантаймы не дают volume */ }
+          await answerAudioPlayer.seekTo(0);
+          answerAudioPlayer.play();
+          return;
+        } catch {
+          // упал MP3 — уходим в TTS ниже
+        }
+      }
+      const text = answerAudioTextRef.current;
+      if (text) speakPhraseFallback(text, 0.9, { language: 'en-US', voice: '' });
+    })();
+  }, [answerAudioSource, answerAudioPlayer, speakPhraseFallback]);
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
   const progressRailCurrent = lastResult === 'correct'
     ? Math.max(0, correctIds.length - 1)
@@ -1795,6 +1841,7 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       hapticSuccess();
       playCorrect();
+      speakCurrentPhrase();
     } else hapticError();
 
     await submitAndStorePlanExerciseAnswer(session, {
@@ -1825,6 +1872,7 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       hapticSuccess();
       playCorrect();
+      speakCurrentPhrase();
     } else hapticError();
 
     await submitAndStorePlanExerciseAnswer(session, {
@@ -1855,6 +1903,7 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       hapticSuccess();
       playCorrect();
+      speakCurrentPhrase();
     } else hapticError();
 
     await submitAndStorePlanExerciseAnswer(session, {
@@ -2015,11 +2064,16 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   return (
-    <View style={[styles.safe, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
+    <View style={[styles.safe, { backgroundColor: t.bgPrimary }]}>
+      {/* Градиент заполняет ВЕСЬ экран, включая зону статус-бара: раньше
+          paddingTop:insets.top стоял на внешнем View, из-за чего верхняя полоса
+          красилась плоским bgPrimary (в тёмной теме — почти чёрным). Теперь
+          инсет уходит на контент (header), а фон под статус-баром = градиент,
+          как в экране урока. */}
       <LinearGradient colors={isGold ? ['#171008', '#090704'] : t.bgGradient} style={styles.fill}>
         {/* Тот же верхний фейд под safe-area, что на главной/в личном плане. */}
         <TopFadeMask scrollY={fadeScrollY} zIndex={2} />
-        <View style={styles.header}>
+        <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
           <TouchableOpacity
             activeOpacity={0.78}
             onPress={() => safeRouterBack(router, '/personal_plan')}

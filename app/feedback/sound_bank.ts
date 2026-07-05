@@ -24,7 +24,9 @@ import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 const SOURCES = {
   tap: require('../../assets/audio/ui/tap.wav'),
   pop: require('../../assets/audio/ui/pop.wav'),
-  correct: require('../../assets/audio/ui/correct.wav'),
+  // Прежний «правильный» звук из раздела Планы (correct.mp3) — пользователь
+  // просил вернуть именно его ВЕЗДЕ. Заменяем сгенерённый плейсхолдер correct.wav.
+  correct: require('../../assets/audio/correct.mp3'),
   wrong: require('../../assets/audio/ui/wrong.wav'),
   spark: require('../../assets/audio/ui/spark.wav'),
   crack: require('../../assets/audio/ui/crack.wav'),
@@ -61,10 +63,13 @@ export type SoundName = keyof typeof SOURCES;
 const DEFAULT_VOLUME: Record<SoundName, number> = {
   tap: 0.06,
   pop: 0.12,
-  correct: 0.25,
+  // Тот же уровень, что в Планах (useCorrectSound → 0.1), чтобы звук был идентичен.
+  correct: 0.1,
   wrong: 0.2,
-  spark: 0.3,
-  crack: 0.3,
+  spark: 0.22,
+  // «Первая молния» (вход в уровень на n===5) звучала слишком резко/сильно —
+  // приглушаем, чтобы стингер был мягче.
+  crack: 0.16,
   rumble: 0.4,
   thunder: 0.5,
   thunder_far: 0.28,

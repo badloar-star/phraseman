@@ -20,7 +20,6 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -57,7 +56,8 @@ const DEFAULT_COLORS = {
   wide: 'rgba(255, 210, 122, 0.55)',
   mid: 'rgba(255, 246, 230, 0.9)',
   core: '#FFFFFF',
-  flash: 'rgba(255,255,255,0.85)',
+  // Мягкий тёплый flash вместо чистого белого — снижает контраст пиковой вспышки.
+  flash: 'rgba(255, 236, 190, 0.4)',
 };
 
 // Детерминированный джиттер по seed (без Math.random в рендере worklet-путей;
@@ -129,35 +129,30 @@ export const LightningOverlay = forwardRef<
       setMainPath(buildMainChannel(w, h, seed));
       setBranches(buildBranches(w, h, seed));
 
-      // Болт: полная 70мс → 0.15 60мс → (новый путь) 0.9 80мс → затухание 300мс.
+      // A11y: НИКАКОГО стробоскопа. Белый flash-слой на весь экран с быстрым
+      // двойным миганием (переходы 45-70мс, частота >3Гц + большая яркая площадь)
+      // — классический эпилептический триггер. Поэтому: болт — один плавный
+      // подъём и мягкое затухание; flash — одна короткая слабая вспышка без
+      // повторных миганий. Второй «канал» двойного удара тоже убран (это и
+      // давало второе резкое мигание).
       if (big) {
         boltOpacity.value = withSequence(
-          withTiming(1, { duration: 70 }),
-          withTiming(0.15, { duration: 60 }),
-          withTiming(0.9, { duration: 80 }),
-          withTiming(0, { duration: 300, easing: Easing.out(Easing.quad) }),
+          withTiming(1, { duration: 110, easing: Easing.out(Easing.quad) }),
+          withTiming(0, { duration: 420, easing: Easing.out(Easing.quad) }),
         );
-        // Второй путь чуть позже, чтобы двойной удар шёл «по новому каналу».
-        const seed2 = seed + 4242;
-        setTimeout(() => {
-          setMainPath(buildMainChannel(w, h, seed2));
-          setBranches(buildBranches(w, h, seed2));
-        }, 130);
-        // Белая вспышка: двойное мигание.
+        // Одна мягкая вспышка (пик 0.4 из DEFAULT_COLORS), без двойного мигания.
         flashOpacity.value = withSequence(
-          withTiming(0.85, { duration: 50 }),
-          withTiming(0.1, { duration: 70 }),
-          withTiming(0.6, { duration: 60 }),
-          withTiming(0, { duration: 260, easing: Easing.out(Easing.quad) }),
+          withTiming(1, { duration: 90, easing: Easing.out(Easing.quad) }),
+          withTiming(0, { duration: 380, easing: Easing.out(Easing.quad) }),
         );
       } else {
         boltOpacity.value = withSequence(
-          withTiming(1, { duration: 60 }),
-          withTiming(0, { duration: 260, easing: Easing.out(Easing.quad) }),
+          withTiming(1, { duration: 100, easing: Easing.out(Easing.quad) }),
+          withTiming(0, { duration: 340, easing: Easing.out(Easing.quad) }),
         );
         flashOpacity.value = withSequence(
-          withTiming(0.5, { duration: 45 }),
-          withTiming(0, { duration: 220, easing: Easing.out(Easing.quad) }),
+          withTiming(0.7, { duration: 80, easing: Easing.out(Easing.quad) }),
+          withTiming(0, { duration: 300, easing: Easing.out(Easing.quad) }),
         );
       }
     },
@@ -166,23 +161,11 @@ export const LightningOverlay = forwardRef<
 
   useImperativeHandle(ref, () => ({ strike }), [strike]);
 
-  // Гроза: при входе в level 3 — конечная серия слабых зарниц (не бесконечно).
+  // Гроза (level 3): раньше здесь шла повторяющаяся серия белых зарниц на весь
+  // экран — это тоже стробоскоп (мелькание фонового слоя). Убрано ради a11y:
+  // грозовой слой больше не мигает. Edge-glow рамка уровня остаётся статичной.
   useEffect(() => {
-    if (level >= 3 && focused) {
-      stormFlicker.value = withRepeat(
-        withSequence(
-          withDelay(
-            700,
-            withTiming(0.22, { duration: 90, easing: Easing.out(Easing.quad) }),
-          ),
-          withTiming(0, { duration: 260 }),
-        ),
-        6, // 5-6 зарниц, КОНЕЧНО
-        false,
-      );
-    } else {
-      stormFlicker.value = withTiming(0, { duration: 150 });
-    }
+    stormFlicker.value = 0;
     return () => cancelAnimation(stormFlicker);
   }, [level, focused, stormFlicker]);
 
@@ -211,19 +194,10 @@ export const LightningOverlay = forwardRef<
     opacity: Math.max(flashOpacity.value, stormFlicker.value),
   }));
 
-  // Edge-glow по уровню — рамка-свечение (тем ярче, чем выше уровень).
-  const edgeStyle = useMemo(() => {
-    if (level < 2) return null;
-    const strong = level >= 3;
-    return {
-      borderColor: strong ? 'rgba(255,210,122,0.5)' : 'rgba(255,210,122,0.3)',
-      borderWidth: strong ? 3 : 2,
-      shadowColor: '#FFD27A',
-      shadowOpacity: strong ? 0.6 : 0.35,
-      shadowRadius: strong ? 24 : 14,
-      shadowOffset: { width: 0, height: 0 },
-    };
-  }, [level]);
+  // Статичная жёлтая edge-glow рамка убрана по просьбе пользователя: постоянная
+  // обводка на экране урока раздражала. Анимация разряда/вспышки остаётся —
+  // именно она даёт ощущение серии, а не статичная рамка.
+  const edgeStyle = null;
 
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="none">

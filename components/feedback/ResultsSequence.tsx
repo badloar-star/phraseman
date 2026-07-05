@@ -156,8 +156,17 @@ export function ResultsSequence({
   }, [xp]);
 
   // Прыжок в финальное состояние (тап-скип).
+  // Первый тап по экрану — доигрывает анимацию до конца и разблокирует CTA.
+  // Повторный тап (когда всё уже показано) — сразу закрывает секвенцию через
+  // onCtaPrimary. Это ключевой фикс «залипания»: раньше юзер тапал по
+  // просвечивающим снизу кнопкам («Следующий урок» и т.п.), попадал в
+  // прозрачный оверлей и ничего не происходило. Теперь любой повторный тап по
+  // экрану гарантированно уводит к рабочим кнопкам.
   const skipToEnd = useCallback(() => {
-    if (skippedRef.current) return;
+    if (skippedRef.current) {
+      onCtaPrimary();
+      return;
+    }
     skippedRef.current = true;
     clearAllTimers();
     badgeSV.value = withTiming(1, { duration: 120 });
@@ -166,7 +175,7 @@ export function ResultsSequence({
     setXpDisplay(xp > 0 ? xp : 0);
     if (intensity === 'full') setShowConfetti(true);
     setCtaReady(true);
-  }, [badgeSV, starSVs, ctaSV, xp, intensity, clearAllTimers]);
+  }, [badgeSV, starSVs, ctaSV, xp, intensity, clearAllTimers, onCtaPrimary]);
 
   useEffect(() => {
     const push = (fn: () => void, ms: number) => {

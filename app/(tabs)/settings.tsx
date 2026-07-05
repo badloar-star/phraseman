@@ -69,7 +69,6 @@ import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_lead
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
-import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { isIdeasEnabled, isPromoCodesEnabled, isTopHelpersEnabled } from '../remote_flags';
 import { getLoyaltyGiftState } from '../loyalty_gift';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
@@ -186,7 +185,6 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
 export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
-  const effectiveOs = useEffectivePlatformOS();
   const { theme: t, isDark, themeMode, fontSize, setFontSize, f, isFlat: isFlatUi } = useTheme();
   const isCompassTheme = false;
   /**
@@ -1368,14 +1366,6 @@ export default function SettingsMain() {
               );
             }}
           />
-          {effectiveOs === 'android' ? (
-            <SettingsRow
-              icon="people"
-              color="green"
-              label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta', 'Testadores beta', 'Người thử nghiệm beta', 'Penguji beta', 'Beta test kullanıcıları', 'Beta testerzy')}
-              onPress={() => router.push('/beta_testers' as any)}
-            />
-          ) : null}
           {ENABLE_DEV_TOOLS ? (
             <SettingsRow
               icon="construct"

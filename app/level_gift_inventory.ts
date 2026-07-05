@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { sanitizeLevelGiftForStudyTarget, type GiftDef } from './level_gift_system';
+import { rollF2pLevelGiftForUser, sanitizeLevelGiftForStudyTarget, type GiftDef } from './level_gift_system';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export const UNCLAIMED_GIFTS_KEY = 'unclaimed_level_gifts';
@@ -292,4 +292,48 @@ export const loadPendingLevelGiftCount = async (studyTarget?: RuntimeStudyTarget
   const count = items.reduce((sum, item) => sum + item.giftCount, 0);
   await writePendingGiftCountCache(count);
   return count;
+};
+
+/**
+ * Гарантия подарка за уровень (декуплировано от показа модала).
+ *
+ * Раньше подарок роллился и сохранялся ТОЛЬКО когда открывался модал уровня.
+ * Если модал не показывался (краш/закрытие приложения/гонка на старте), подарок
+ * терялся навсегда. Теперь эту функцию вызываем ПРЯМО в момент детекции
+ * level-up (xp_manager): для каждого нового уровня подарок катается один раз и
+ * сразу кладётся в инвентарь. Идемпотентно: если для уровня уже есть подарок
+ * (single/dual) или он уже забран — ничего не делаем и возвращаем сохранённый.
+ * Возвращаемый подарок используем как preRolledGift для модала, чтобы то, что
+ * показали, совпадало с тем, что лежит в разделе «Подарки».
+ */
+export const ensureUnclaimedGiftForLevel = async (
+  level: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<GiftDef | null> => {
+  if (!Number.isFinite(level) || level <= 0) return null;
+  try {
+    const [singleRaw, dualRaw, claimedRaw] = await AsyncStorage.multiGet([
+      UNCLAIMED_GIFTS_KEY,
+      UNCLAIMED_DUAL_GIFTS_KEY,
+      CLAIMED_GIFTS_KEY,
+    ]);
+    const single = parseJsonRecord<GiftDef>(singleRaw[1]);
+    if (single[level]) return sanitizeLevelGiftForStudyTarget(single[level], storageStudyTarget(studyTarget));
+    const dual = parseJsonRecord<PremPair>(dualRaw[1]);
+    if (dual[level]) {
+      const f2p = dual[level].f2p;
+      return f2p ? sanitizeLevelGiftForStudyTarget(f2p, storageStudyTarget(studyTarget)) : null;
+    }
+    // Уже забранный подарок этого уровня не воскрешаем.
+    const claimed = parseJsonRecord<string>(claimedRaw[1]);
+    if (claimed[level]) return null;
+
+    // Ни в одном хранилище нет — катаем F2P-подарок и сохраняем в инвентарь.
+    const gift = await rollF2pLevelGiftForUser(level, { studyTarget });
+    await saveUnclaimedGift(level, gift);
+    return gift;
+  } catch {
+    // Сбой гарантии не должен ломать поток начисления XP.
+    return null;
+  }
 };

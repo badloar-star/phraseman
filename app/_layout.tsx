@@ -27,6 +27,8 @@ import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetCo
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
+import { loadUnclaimedGifts } from './level_gift_inventory';
+import type { GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
 import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from './personal_plan_activation';
@@ -132,6 +134,7 @@ import { syncWidgetData } from './widget_bridge';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
 import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
+import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
 import {
   getIntroFullAccessState,
@@ -513,7 +516,10 @@ async function preloadVectorIconFonts() {
 // ── Daily Login Bonus + Comeback Bonus — запускается при каждом старте ────────
 const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
   try {
-    const today = new Date().toISOString().split('T')[0];
+    // Локальная дата устройства (см. app/local_date.ts) — иначе вечером в UTC+N
+    // или утром в UTC-N дневной бонус за вход/comeback-бонус несправедливо
+    // сбрасывается, хотя пользователь заходит каждый календарный день.
+    const today = getLocalDayKey();
 
     // ── 1. Daily Login Bonus ────────────────────────────────────────────────
     // Храним consecutive login days отдельно от lesson-цепочки (дней подряд)
@@ -531,10 +537,8 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
       if (__DEV__) console.warn('[_layout]', e);
     }
 
-    if (login.lastDate !== today) {
-      const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split('T')[0];
-      const consecutive = login.lastDate === yesterdayStr
+    if (!isSameLocalOrUtcDay(login.lastDate)) {
+      const consecutive = isYesterdayFlexible(login.lastDate)
         ? login.consecutiveDays + 1
         : 1;
 
@@ -680,6 +684,10 @@ function GlobalLevelUpHandler() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
   const [userName, setUserName] = useState('');
+  // Подарок за уровень уже сохранён в инвентарь в момент level-up (xp_manager →
+  // ensureUnclaimedGiftForLevel). Забираем его сюда, чтобы модал ПОКАЗАЛ ровно
+  // тот же подарок, что лежит в разделе «Подарки» (без повторного ролла).
+  const [giftPreRolled, setGiftPreRolled] = useState<GiftDef | undefined>(undefined);
 
   const levelUpOpacity    = useRef(new Animated.Value(0)).current;
   const levelUpTranslateY = useRef(new Animated.Value(40)).current;
@@ -897,6 +905,27 @@ function GlobalLevelUpHandler() {
       })();
     }
   };
+
+  // При открытии модала подарка — берём УЖЕ сохранённый в инвентарь подарок
+  // этого уровня (его положил xp_manager в момент level-up). Модал покажет ровно
+  // его (preRolledGift), без повторного ролла → показанное = лежащее в «Подарках».
+  useEffect(() => {
+    if (!showGiftModal || currentLevel <= 0) {
+      setGiftPreRolled(undefined);
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      try {
+        const map = await loadUnclaimedGifts();
+        const saved = map[currentLevel];
+        if (!cancelled) setGiftPreRolled(saved ?? undefined);
+      } catch {
+        if (!cancelled) setGiftPreRolled(undefined);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [showGiftModal, currentLevel]);
 
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
@@ -1150,6 +1179,7 @@ function GlobalLevelUpHandler() {
           lang={lang}
           onClose={onGiftClose}
           deliveryMode="inventory"
+          preRolledGift={giftPreRolled}
           studyTarget={studyTarget}
         />
       )}
@@ -2717,7 +2747,6 @@ function AppContent() {
       {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
         <Stack.Screen key={name} name={name} />
       ))}
-      <Stack.Screen name="beta_testers" />
       <Stack.Screen name="privacy_screen" />
       <Stack.Screen name="terms_screen" />
       <Stack.Screen name="lingman_videos" />

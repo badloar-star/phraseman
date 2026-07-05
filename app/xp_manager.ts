@@ -36,6 +36,8 @@ import {
   restoredXPForOld250VisibleLevel,
   XP_LEVEL_RESTORE_250_TO_400_KEY,
 } from './xp_level_restore';
+import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
+import { ensureUnclaimedGiftForLevel } from './level_gift_inventory';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -400,15 +402,17 @@ export const registerXP = async (
     totalXpWritten = true;
     // Offline: streak_count не приходит через mirrorProgressResultToLocal —
     // обновляем локально сами чтобы UI показывал правильный стрик сразу.
+    // Ключ дня — ЛОКАЛЬНАЯ дата устройства (getLocalDayKey), не UTC: иначе
+    // пользователь вечером в UTC+N или утром в UTC-N может "пропустить" день
+    // по UTC-часам, хотя занимался каждый календарный день у себя дома.
+    // isYesterdayFlexible на переходный период принимает и старый (UTC), и
+    // новый (локальный) ключ "вчера" как валидный — чтобы апдейт не сжёг стрик.
     if (finalDelta > 0) {
-      const todayKey = new Date().toISOString().slice(0, 10);
+      const todayKey = getLocalDayKey();
       const lastDate = await AsyncStorage.getItem('last_active_date');
-      if (lastDate !== todayKey) {
+      if (!isSameLocalOrUtcDay(lastDate)) {
         const prevStreak = Number((await AsyncStorage.getItem('streak_count')) ?? '0') || 0;
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yKey = yesterday.toISOString().slice(0, 10);
-        const next = lastDate === yKey ? prevStreak + 1 : 1;
+        const next = isYesterdayFlexible(lastDate) ? prevStreak + 1 : 1;
         await AsyncStorage.multiSet([
           ['streak_count', String(next)],
           ['last_active_date', todayKey],
@@ -449,6 +453,12 @@ export const registerXP = async (
         try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
         for (let lvl = prevLvl + 1; lvl <= newLvl; lvl++) {
           if (!queue.includes(lvl)) queue.push(lvl);
+          // ГАРАНТИЯ подарка за уровень: катаем и кладём подарок в инвентарь
+          // ПРЯМО СЕЙЧАС, не дожидаясь показа модала. Даже если модал уровня
+          // не появится (краш/закрытие/гонка), подарок не потеряется — юзер
+          // найдёт его в разделе «Подарки». Идемпотентно, фоном (не блокируем
+          // горячий путь начисления XP).
+          void ensureUnclaimedGiftForLevel(lvl).catch(() => {});
         }
         await AsyncStorage.multiSet([
           ['user_avatar', newAv],

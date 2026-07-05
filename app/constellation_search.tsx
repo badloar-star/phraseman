@@ -35,6 +35,7 @@ import {
 } from './services/constellations_db';
 import { ensureArenaAuthUid } from './user_id_policy';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CONSTELLATION_INTRO_SEEN_KEY } from './constellation_intro';
 
 // Джингл «Звездопада» (F2a — единственный звук v1). Пока — торжественный
 // ассет приложения; фирменный джингл заменит его тем же require.
@@ -188,6 +189,13 @@ export default function ConstellationSearchScreen() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      // Первый вход в режим → онбординг (F6). Один раз, флаг в AsyncStorage.
+      const introSeen = await AsyncStorage.getItem(CONSTELLATION_INTRO_SEEN_KEY);
+      if (cancelled) return;
+      if (introSeen !== '1') {
+        router.replace('/constellation_intro' as any);
+        return;
+      }
       const uid = await ensureArenaAuthUid();
       if (cancelled) return;
       if (!uid) { setState({ kind: 'error' }); return; }

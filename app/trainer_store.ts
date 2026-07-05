@@ -127,6 +127,26 @@ function withTrainerCategory(item: TrainerItem): TrainerItem {
     : item;
 }
 
+/**
+ * Старые записи в AsyncStorage могли попасть туда испорченными (mojibake:
+ * кириллица, перекодированная как latin1/cp1251 в старой сборке). Такую
+ * строку глазами не починить — только выбросить, чтобы упало на другой
+ * доступный перевод/needs-review вместо кракозябр.
+ */
+const MOJIBAKE_PATTERN = /[ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß][€™°ˆ]/;
+
+function isMojibake(text: string | undefined): boolean {
+  return !!text && MOJIBAKE_PATTERN.test(text);
+}
+
+function withSanitizedTranslations(item: TrainerItem): TrainerItem {
+  const fixes: Partial<TrainerItem> = {};
+  if (isMojibake(item.translationRu)) fixes.translationRu = '';
+  if (isMojibake(item.translationUk)) fixes.translationUk = '';
+  if (isMojibake(item.translationEs)) fixes.translationEs = '';
+  return Object.keys(fixes).length ? { ...item, ...fixes } : item;
+}
+
 const TRAINER_PLANNED_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const satisfies readonly PlannedInterfaceLang[];
 
 const TRAINER_TRANSLATION_NEEDS_REVIEW: Record<PlannedInterfaceLang, string> = {
@@ -159,7 +179,7 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
   const key = trainerStoreKey(studyTarget);
   try {
     const raw = await AsyncStorage.getItem(key);
-    const items = raw ? (JSON.parse(raw) as TrainerItem[]).map(withTrainerCategory) : [];
+    const items = raw ? (JSON.parse(raw) as TrainerItem[]).map(withTrainerCategory).map(withSanitizedTranslations) : [];
     trainerStoreCache.set(key, items);
     return items;
   } catch {

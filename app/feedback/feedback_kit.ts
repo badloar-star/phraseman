@@ -91,11 +91,16 @@ export const fk = {
     else haptics.tap();
   },
 
-  /** Обрыв серии: «шипение остывания». fromValue — значение серии до обрыва. */
+  /**
+   * Обрыв серии: «шипение остывания» + error haptic. fromValue — значение серии
+   * до обрыва. Обрыв — это всё же неверный ответ, поэтому несёт тот же error
+   * haptic, что и fk.wrong() (сохраняем прежнюю тактильную обратную связь ошибки),
+   * а звук — «остывание» вместо «тупа».
+   */
   comboBreak(fromValue: number): void {
     if (fromValue <= 0) return;
     sfx('fizzle');
-    haptics.light();
+    haptics.wrong();
   },
 
   /** «Вжух» смены задания. */

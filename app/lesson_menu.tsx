@@ -20,6 +20,7 @@ import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import fk from './feedback/feedback_kit';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
@@ -1314,7 +1315,11 @@ export default function LessonMenu() {
         {menuItems.filter(item => !item.hidden).map((item)=>(
           <PremiumCard key={item.testID} testID={item.testID} level={2} onPress={() => {
             if (item.disabled) return;
-            hapticTap();
+            // [FeedbackKit] Карточка раздела уже объёмная (PremiumCard со своим
+            // press-откликом) — НЕ оборачиваем в PressableScale; добавляем только
+            // тихий клик касания. fk.tap сам даёт тот же light haptic (кулдаун 80мс
+            // исключает двойную вибрацию с внутренним hapticTap карточки).
+            fk.tap();
             item.onPress();
           }}
             onLongPress={item.onLongPress && !item.disabled ? item.onLongPress : undefined}

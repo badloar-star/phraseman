@@ -1,6 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Haptics from 'expo-haptics';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -53,7 +52,10 @@ import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
-import { useCorrectSound } from '../hooks/use-correct-sound';
+import fk from './feedback/feedback_kit';
+import { comboLevelFor } from './feedback/combo_engine';
+import ComboRing from '../components/feedback/ComboRing';
+import LightningOverlay, { type LightningOverlayHandle } from '../components/feedback/LightningOverlay';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
@@ -1036,10 +1038,7 @@ const LessonContent = React.memo(function LessonContent({
           </View>
 
           {comboCount >= 3 && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, backgroundColor: '#FF9500', borderRadius: 10, paddingHorizontal: isSmallScreen ? 5 : 7, paddingVertical: 3 }}>
-              <Text style={{ fontSize: 11 }}>🔥</Text>
-              <Text style={{ color: '#fff', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label }}>+{comboCount >= 5 ? '200' : '100'}%</Text>
-            </View>
+            <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />
           )}
           {/* Stats row — XP toast floats absolutely; row wrap + shrink so ●wrong не режется у края */}
           <View
@@ -1342,7 +1341,11 @@ const LessonContent = React.memo(function LessonContent({
                             handleWordPress(word);
                           }, 170);
                         }
-                        requestAnimationFrame(() => { void hapticTap(); });
+                        // [FeedbackKit] Плитка уже имеет 3D-нажатие (DuoPressable),
+                        // поэтому НЕ оборачиваем в PressableScale — только добавляем
+                        // тихий клик касания. fk.tap сам даёт тот же light haptic
+                        // (общий кулдаун 80мс исключает двойную вибрацию).
+                        requestAnimationFrame(() => { fk.tap(); });
                       }}
                     >
                       <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={1}>{displayText}</Text>
@@ -1414,7 +1417,7 @@ const LessonContent = React.memo(function LessonContent({
                   disabled={!canUse50}
                   onPress={() => {
                     if (!canUse50) return;
-                    hapticTap();
+                    fk.tap();
                     // Настоящее 50/50: затемняем ровно половину НЕВЕРНЫХ плиток (округление
                     // вверх), правильная всегда остаётся видимой среди других бликующих.
                     const wrongIdx = wordOptionItems.filter(o => !o.isCorrectOption).map(o => o.index);
@@ -1450,7 +1453,7 @@ const LessonContent = React.memo(function LessonContent({
 
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: lessonId } }); return; } router.push(isInteractiveTheoryLesson(lessonId) ? { pathname: '/hint', params: { id: lessonId } } : { pathname: '/lesson_help', params: { id: lessonId } }); }}>
+          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { fk.tap(); if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: lessonId } }); return; } router.push(isInteractiveTheoryLesson(lessonId) ? { pathname: '/hint', params: { id: lessonId } } : { pathname: '/lesson_help', params: { id: lessonId } }); }}>
             <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={sx.second} />
             <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
@@ -1565,7 +1568,7 @@ const LessonContent = React.memo(function LessonContent({
               })}
               style={{ flex: 1, alignItems: 'center' }}
               onPress={() => {
-                hapticTap();
+                fk.tap();
                 setExplainOpen(true);
               }}
             >
@@ -1602,7 +1605,7 @@ const LessonContent = React.memo(function LessonContent({
               })}
               style={{ flex: 1, alignItems: 'center' }}
               onPress={() => {
-                hapticTap();
+                fk.tap();
                 onReplayPhraseAudio();
               }}
             >
@@ -1626,7 +1629,7 @@ const LessonContent = React.memo(function LessonContent({
             testID={status === 'result' ? 'lesson1-next' : 'lesson1-undo'}
             style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
             onPress={() => {
-              hapticTap();
+              fk.tap();
               if (status === 'result') { goNext(); return; }
               if (settings.hardMode) {
                 const words = typedText.trim().split(/\s+/);
@@ -1657,7 +1660,7 @@ const LessonContent = React.memo(function LessonContent({
               style={{ flex: 1, alignItems: 'center' }}
               onPress={() => {
                 if (!canManuallyCheckAnswer) return;
-                hapticTap();
+                fk.tap();
                 checkAnswer(selectedAnswer);
               }}
             >
@@ -1817,7 +1820,6 @@ const LessonContent = React.memo(function LessonContent({
 export default function LessonScreen() {
   const router = useRouter();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
-  const { playCorrect } = useCorrectSound();
   const { height: windowH, width: windowW } = useWindowDimensions();
   const compact = windowH < 780;
   const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
@@ -2010,6 +2012,9 @@ export default function LessonScreen() {
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
+  // [FeedbackKit] Императивный ref молнии серии (5/10). Оверлей смонтирован поверх
+  // корневого контейнера экрана; сам гасится при blur (Perf Bible).
+  const lightningRef = useRef<LightningOverlayHandle>(null);
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
@@ -2823,6 +2828,11 @@ export default function LessonScreen() {
         return next;
       });
     }
+    // [FeedbackKit] Значение серии ДО любых сбросов этого ответа (ветка ошибки
+    // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
+    // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
+    // ниже читает correctStreakRef.current как и раньше.
+    const streakBeforeAnswer = correctStreakRef.current;
     // Определяем реальную ячейку прогресса: при replay ошибки обновляем ячейку из очереди, не текущую
     const progressCell = overridePhraseCell ?? cellIndex;
     if (isRight) {
@@ -3033,10 +3043,21 @@ export default function LessonScreen() {
     }
     persistErrorReplayToStorage();
 
+    // [FeedbackKit] Ощущения исхода (звук+вибра). Экономика/серия уже посчитаны
+    // выше — здесь только «мягкость». fk сам уважает тумблеры звука/вибры.
     if (isRight) {
-      playCorrect();
-    } else if (settings.haptics) {
-      try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
+      // correctStreakRef уже инкрементирован в блоке XP выше.
+      fk.correct();
+      fk.combo(correctStreakRef.current);
+      // Молния через экран на порогах 5 (одиночная) и 10 (двойной удар).
+      if (correctStreakRef.current === 5) lightningRef.current?.strike(false);
+      else if (correctStreakRef.current === 10) lightningRef.current?.strike(true);
+    } else if (streakBeforeAnswer >= 3) {
+      // Обрыв заметной серии — «шипение остывания».
+      fk.comboBreak(streakBeforeAnswer);
+    } else {
+      // Обычная ошибка — мягкий низкий «туп» + error haptic.
+      fk.wrong();
     }
 
     // Сразу показываем результат — НЕ ждать AsyncStorage (await раньше давал 1–3 с задержки UI).
@@ -3715,6 +3736,11 @@ export default function LessonScreen() {
                 lessonHintSupportBlocked={lessonHintSupportBlocked}
                   />
         </SafeAreaView>
+
+        {/* [FeedbackKit] Молния серии поверх всего экрана (absolute fill,
+            pointerEvents none внутри). Рисует только при strike() на 5/10;
+            edge-glow по уровню серии; сама гаснет при blur (Perf Bible). */}
+        <LightningOverlay ref={lightningRef} level={comboLevelFor(comboCount)} />
 
         {/* ── Medal tier toast (premium) ── */}
         {medalToast && (

@@ -38,8 +38,6 @@ import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
-import { getUserSettingsSnapshot, applyUserSettingsNow } from '../user_settings_store';
-import { uiSoundsLabel, uiSoundsSub } from '../feedback/feedback_i18n';
 import {
   clampHomeFeatureTipReplayCount,
   HOME_FEATURE_TIPS_DONE_KEY,
@@ -426,9 +424,6 @@ export default function SettingsMain() {
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
   const [hapticTap,  setHapticTap]   = useState(() => appSnapshot.settings?.tapHaptics ?? true);
-  // FeedbackKit «Звуки эффектов»: источник истины — user_settings_store (fk читает
-  // его синхронно). Инициализируемся из снапшота стора, пишем через applyUserSettingsNow.
-  const [uiSounds, setUiSounds] = useState(() => getUserSettingsSnapshot().uiSounds !== false);
   // Согласие на аналитику, юр-документы и удаление аккаунта переехали на
   // отдельный экран /privacy_settings (ряд «Приватность и данные»). Здесь эта
   // логика больше не живёт.
@@ -1259,25 +1254,6 @@ export default function SettingsMain() {
             }
           />
 
-          {/* Звуки эффектов (FeedbackKit) — глушит только UI-звуки (клики/верно-
-              ошибка/награды/гроза), не трогая озвучку фраз/TTS. Источник истины —
-              user_settings_store.uiSounds (fk читает его синхронно). */}
-          <SettingsRow
-            icon="musical-notes"
-            color="pink"
-            label={uiSoundsLabel(lang)}
-            sub={uiSoundsSub(lang)}
-            hideChevron
-            right={
-              <CustomSwitch
-                value={uiSounds}
-                onValueChange={val => {
-                  setUiSounds(val);
-                  applyUserSettingsNow({ ...getUserSettingsSnapshot(), uiSounds: val });
-                }}
-              />
-            }
-          />
         </SettingsGroup>
 
         <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />

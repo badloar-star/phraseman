@@ -1,6 +1,7 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
+import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -386,7 +387,20 @@ export default function DuelResultsScreen() {
   const scaleAnim = useRef(new Animated.Value(0.7)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  // Маска шапки (ScreenGradient topFade → TopFadeMask) слушает scrollY порогом
+  // showThreshold=6 — будим JS только на пересечении порога, скролл идёт UI-потоком.
+  const topFadeShown = useSharedValue(false);
+  const notifyTopFade = useCallback((y: number) => { topFadeScrollY.setValue(y); }, [topFadeScrollY]);
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
+    onScrollWorklet: (y: number) => {
+      'worklet';
+      const shown = y > 6;
+      if (shown !== topFadeShown.value) {
+        topFadeShown.value = shown;
+        runOnJS(notifyTopFade)(y);
+      }
+    },
+  });
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const flyX = useRef(new Animated.Value(0)).current;
   const flyY = useRef(new Animated.Value(0)).current;
@@ -1498,7 +1512,7 @@ export default function DuelResultsScreen() {
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
       <BouncyWrap style={bouncyStyle}>
-      <Animated.ScrollView
+      <Reanimated.ScrollView
         decelerationRate="normal"
         bounces
         alwaysBounceVertical
@@ -1506,7 +1520,7 @@ export default function DuelResultsScreen() {
         contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 16 }]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true, listener: (e: any) => { onBouncyScroll(e); } })}
+        onScroll={onAnimatedScroll}
       >
         <TapScale
           accessibilityRole="button"
@@ -2370,7 +2384,7 @@ export default function DuelResultsScreen() {
             </TouchableOpacity>
           )}
         </View>
-      </Animated.ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
 
       {/* Модалка разбора вопросов */}

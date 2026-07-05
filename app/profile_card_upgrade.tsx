@@ -23,7 +23,6 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import ScreenGradient from '../components/ScreenGradient';
 import AvatarView from '../components/AvatarView';
 import ProfileCardMotionFx from '../components/ProfileCardMotionFx';
-import ProfileCardBadge from '../components/ProfileCardBadge';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
@@ -151,7 +150,6 @@ export default function ProfileCardUpgradeScreen() {
   const [shards, setShards] = useState(0);
   const [busy, setBusy] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<ProfileCardLevel>(1);
-  const [publicView, setPublicView] = useState(false);
   const [me, setMe] = useState<MePreview>(FALLBACK_ME);
 
   // Фича включена решением владельца 2026-07-05; гейт оставлен как аварийный рубильник.
@@ -421,8 +419,7 @@ export default function ProfileCardUpgradeScreen() {
               {`${profileCardLevelRoman(selectedLevel)} · ${levelName(selectedLevel)}`}
             </Text>
 
-            {!publicView ? (
-              <View style={{
+            <View style={{
                 width: CARD_W,
                 borderRadius: 18,
                 overflow: 'hidden',
@@ -504,61 +501,6 @@ export default function ProfileCardUpgradeScreen() {
                   accentSoft={vis.colors.accentSoft}
                   enabled={selectedLevel >= 1}
                 />
-              </View>
-            ) : (
-              <View style={{ width: CARD_W }}>
-                {/* «Для всех»: так тебя увидят в списках — строка с бейджем уровня */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 11, borderWidth: 1, borderColor: t.border }}>
-                  <AvatarView avatar={me.avatar || undefined} level={me.level} size={36} auraId={null} />
-                  <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>{me.name}</Text>
-                    {selectedLevel >= 1 ? (
-                      <ProfileCardBadge level={selectedLevel} size="sm" style={{ marginTop: 3 }} />
-                    ) : null}
-                  </View>
-                  <Text style={{ color: t.gold, fontSize: f.sub, fontWeight: '900' }}>{formatCompact(me.xp)} XP</Text>
-                </View>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 10, lineHeight: 18 }}>
-                  {triLang(lang as Lang, {
-                    ru: 'Бейдж уровня виден рядом с твоим ником в Друзьях, Арене и Лиге. Полная карточка — при тапе на игрока.',
-                    uk: 'Бейдж рівня видно біля твого ніка в Друзях, Арені та Лізі. Повна картка — по тапу на гравця.',
-                    es: 'La insignia de nivel aparece junto a tu nombre en Amigos, Arena y Liga. La tarjeta completa, al tocar al jugador.',
-                    'pt-BR': 'O selo de nível aparece ao lado do seu nome em Amigos, Arena e Liga. O cartão completo, ao tocar no jogador.',
-                    vi: 'Huy hiệu cấp hiển thị cạnh tên bạn trong Bạn bè, Đấu trường và Giải đấu. Thẻ đầy đủ hiện khi chạm vào người chơi.',
-                    id: 'Lencana level tampil di samping namamu di Teman, Arena, dan Liga. Kartu penuh muncul saat pemain diketuk.',
-                    tr: 'Seviye rozeti Arkadaşlar, Arena ve Lig’de adının yanında görünür. Tam kart, oyuncuya dokununca açılır.',
-                    pl: 'Odznaka poziomu jest widoczna obok twojego nicku w Znajomych, Arenie i Lidze. Pełna karta — po tapnięciu gracza.',
-                  })}
-                </Text>
-              </View>
-            )}
-
-            {/* Переключатель «Для тебя / Для всех» */}
-            <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface, borderRadius: 999, padding: 3, marginTop: 14, borderWidth: 1, borderColor: t.border }}>
-              {[false, true].map((isPublic) => (
-                <TouchableOpacity
-                  key={String(isPublic)}
-                  testID={isPublic ? 'profile-card-view-public' : 'profile-card-view-self'}
-                  onPress={() => { hapticTap(); setPublicView(isPublic); }}
-                  activeOpacity={0.85}
-                  style={{
-                    borderRadius: 999,
-                    paddingVertical: 7,
-                    paddingHorizontal: 18,
-                    backgroundColor: publicView === isPublic ? t.bgSurface2 : 'transparent',
-                  }}
-                >
-                  <Text style={{
-                    color: publicView === isPublic ? t.textPrimary : t.textMuted,
-                    fontSize: f.caption,
-                    fontWeight: '900',
-                  }}>
-                    {isPublic
-                      ? triLang(lang as Lang, { ru: 'Для всех', uk: 'Для всіх', es: 'Para todos', 'pt-BR': 'Para todos', vi: 'Cho mọi người', id: 'Untuk semua', tr: 'Herkese', pl: 'Dla wszystkich' })
-                      : triLang(lang as Lang, { ru: 'Для тебя', uk: 'Для тебе', es: 'Para ti', 'pt-BR': 'Para você', vi: 'Cho bạn', id: 'Untukmu', tr: 'Sana', pl: 'Dla ciebie' })}
-                  </Text>
-                </TouchableOpacity>
-              ))}
             </View>
           </View>
 

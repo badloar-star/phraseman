@@ -3,6 +3,18 @@ import path from 'path';
 import { profileCardLevelLabel } from '../components/profileCardLabel';
 import type { ProfileCardLevel } from '../app/profile_card_system';
 
+// Обрезаем цепочку импортов profile_card_system → shards_system → … → remote_flags:
+// у remote_flags module-scope __DEV__, которого в jest нет (моки — как в соседних
+// тестах карточки).
+jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+jest.mock('../app/shards_system', () => ({
+  getShardsBalance: jest.fn(),
+  spendShards: jest.fn(),
+  forceSyncShardsToCloud: jest.fn(async () => {}),
+}));
+jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: false, IS_EXPO_GO: true }));
+
 describe('profile card label has no "CARD" prefix', () => {
   it('returns the Russian product name for ru, "Lv N" otherwise', () => {
     expect(profileCardLevelLabel(0, true)).toBe('Стандарт');

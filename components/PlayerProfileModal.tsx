@@ -11,6 +11,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
+  ActivityIndicator,
   Animated,
   Easing,
   InteractionManager,
@@ -45,6 +46,8 @@ import type { RankTier } from '../app/types/arena';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMultipliersFirestore } from '../app/xp_manager';
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
+import { syncToCloud } from '../app/cloud_sync';
+import { oskolokImageForPackShards } from '../app/oskolok';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
@@ -69,17 +72,19 @@ import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import {
   fxKindForProfileCard,
+  getNextProfileCardLevel,
   getProfileCardLegendNo,
   getProfileCardLevelDef,
   getProfileCardSnapshot,
   PROFILE_CARD_GRADIENTS,
   PROFILE_CARD_LEVEL_NAME_RU,
-  PROFILE_CARD_MAX_LEVEL,
   PROFILE_CARD_SURFACES,
   PROFILE_CARD_THEME_COLORS,
   normalizeProfileCardLevel,
   profileCardLevelRoman,
   themeForProfileCardLevel,
+  upgradeProfileCardLevel,
+  ProfileCardLevel,
   ProfileCardMotion,
   ProfileCardSnapshot,
   ProfileCardTheme,
@@ -260,6 +265,10 @@ function PlayerProfileModalBody({
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
   const [cardStats, setCardStats] = useState<ProfileCardStats | null>(null);
+  // Превью апгрейда прямо на открытой карточке: null = настоящий уровень, иначе
+  // карточка целиком преображается в выбранный уровень (визуал+эффекты+блоки).
+  const [previewLevel, setPreviewLevel] = useState<ProfileCardLevel | null>(null);
+  const [upgradeBusy, setUpgradeBusy] = useState(false);
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   // Profile-level activity like the current user has already placed today (toggle state).
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
@@ -297,8 +306,16 @@ function PlayerProfileModalBody({
   const storedAuraId = isMe ? myInfo.aura : player.aura;
   const effectiveAuraId = getEffectiveAvatarAuraId(storedAuraId, showPremium, showVip);
   const usesPremiumAura = effectiveAuraId === PREMIUM_AVATAR_AURA_ID;
-  const cardDef = getProfileCardLevelDef(profileCardLevel);
-  const cardVisual = getProfileCardVisual(profileCardSnapshot);
+  // Всё ВИЗУАЛЬНОЕ рисуем от displayCardLevel (уровень превью, если оно активно),
+  // а логика покупки/кнопки живёт на настоящем profileCardLevel.
+  const nextRealLevel = getNextProfileCardLevel(profileCardLevel);
+  const displayCardLevel: ProfileCardLevel = isMe && previewLevel !== null ? previewLevel : profileCardLevel;
+  const displaySnapshot: ProfileCardSnapshot = displayCardLevel === profileCardSnapshot.level
+    ? profileCardSnapshot
+    : normalizeProfileCardSnapshotForLevel({ profileCardLevel: displayCardLevel });
+  const cardDef = getProfileCardLevelDef(displayCardLevel);
+  const cardVisual = getProfileCardVisual(displaySnapshot);
+  const nextLevelVisual = PROFILE_CARD_VISUALS[themeForProfileCardLevel(nextRealLevel ?? profileCardLevel)];
   const crownUid = player.friendUid || player.uid || '';
   const leagueCrownCount = Math.max(
     0,
@@ -352,7 +369,7 @@ function PlayerProfileModalBody({
   const shimmerOpacity = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1] });
   // Анимацию карточки рисует теперь ProfileCardMotionFx (единый движок) — старые
   // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
-  const prestigeActive = profileCardLevel > 0;
+  const prestigeActive = displayCardLevel > 0;
   const compassProfileSurface = isCompassTheme && !prestigeActive;
   const prestigeSurfaceStyle = prestigeActive
     ? { backgroundColor: cardVisual.surface, borderWidth: 1, borderColor: cardVisual.surfaceBorder }
@@ -412,7 +429,9 @@ function PlayerProfileModalBody({
   useEffect(() => {
     let cancelled = false;
     setCardStats(null);
-    if (profileCardLevel < 2) {
+    // Свою карточку грузим всегда (нужно для превью будущих уровней), чужую — только
+    // если её уровень реально открывает блоки.
+    if (!isMe && profileCardLevel < 2) {
       return () => { cancelled = true; };
     }
     if (isMe) {
@@ -466,18 +485,80 @@ function PlayerProfileModalBody({
     return () => { cancelled = true; };
   }, [isMe, profileCardLevel, player.friendUid, player.uid]);
 
-  const handleOpenUpgrade = useCallback(() => {
+  // Тап по круглой кнопке: карточка ПРЯМО ЗДЕСЬ преображается в следующий уровень
+  // (никакого отдельного экрана). Повторные тапы листают уровни дальше до V,
+  // после V — возврат к настоящей карточке.
+  const handleUpgradeButtonTap = useCallback(() => {
     hapticTap();
-    // Сначала закрываем модал (родитель обнуляет player), потом пушим маршрут —
-    // иначе экран апгрейда отрисуется ПОД прозрачным RN-модалом.
-    onClose();
-    router.push('/profile_card_upgrade' as any);
-  }, [onClose, router]);
+    setPreviewLevel((prev) => (prev === null ? getNextProfileCardLevel(profileCardLevel) : getNextProfileCardLevel(prev)));
+  }, [profileCardLevel]);
+
+  const handleExitPreview = useCallback(() => {
+    hapticTap();
+    setPreviewLevel(null);
+  }, []);
+
+  const handleBuyPreviewedLevel = useCallback(async () => {
+    if (upgradeBusy || previewLevel === null || nextRealLevel === null || previewLevel !== nextRealLevel) return;
+    hapticTap();
+    setUpgradeBusy(true);
+    try {
+      const result = await upgradeProfileCardLevel();
+      if (result.ok === true) {
+        const fresh = await getProfileCardSnapshot().catch(() => null);
+        if (fresh) setProfileCardSnapshot(normalizeProfileCardSnapshotForLevel(fresh));
+        setPreviewLevel(null);
+        if (result.legendNo) {
+          const legendNo = result.legendNo;
+          setCardStats((prev) => (prev ? { ...prev, legendNo } : prev));
+        }
+        // Покупка = публичная смена вида: бейдж в списках должен смениться сразу.
+        void syncToCloud({ forceNow: true });
+        const boughtName = lang === 'ru'
+          ? PROFILE_CARD_LEVEL_NAME_RU[result.level]
+          : getProfileCardLevelDef(result.level).name;
+        onFriendRequestToast(triLang(lang as Lang, {
+          ru: `Карточка улучшена: ${boughtName}`,
+          uk: `Картку покращено: ${boughtName}`,
+          es: `Tarjeta mejorada: ${boughtName}`,
+          'pt-BR': `Cartão melhorado: ${boughtName}`,
+          vi: `Đã nâng cấp thẻ: ${boughtName}`,
+          id: `Kartu ditingkatkan: ${boughtName}`,
+          tr: `Kart yükseltildi: ${boughtName}`,
+          pl: `Karta ulepszona: ${boughtName}`,
+        }), 'info');
+        return;
+      }
+      if (result.reason === 'insufficient') {
+        // Осколков не хватает — закрываем модал и ведём в магазин с готовой суммой.
+        onClose();
+        router.push({
+          pathname: '/shards_shop',
+          params: { need: String(Math.max(0, result.need ?? 0)), source: 'profile_card_upgrade' },
+        } as any);
+        return;
+      }
+      onFriendRequestToast(triLang(lang as Lang, {
+        ru: 'Не получилось обновить карточку. Попробуй ещё раз.',
+        uk: 'Не вдалося оновити картку. Спробуй ще раз.',
+        es: 'No se pudo mejorar la tarjeta. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível melhorar o cartão. Tente novamente.',
+        vi: 'Không thể nâng cấp thẻ. Hãy thử lại.',
+        id: 'Kartu belum bisa ditingkatkan. Coba lagi.',
+        tr: 'Kart yükseltilemedi. Tekrar dene.',
+        pl: 'Nie udało się ulepszyć karty. Spróbuj ponownie.',
+      }), 'error');
+    } finally {
+      setUpgradeBusy(false);
+    }
+  }, [lang, nextRealLevel, onClose, onFriendRequestToast, previewLevel, router, upgradeBusy]);
 
   useEffect(() => {
     setFriendRequestBusy(false);
     setRemoveFriendConfirmOpen(false);
     setFriendRequestSentUids(new Set());
+    setPreviewLevel(null);
+    setUpgradeBusy(false);
   }, [player.uid, player.friendUid]);
 
   useEffect(() => {
@@ -911,9 +992,10 @@ function PlayerProfileModalBody({
             />
           </Pressable>
         ) : null}
-        {isMe && ENABLE_PROFILE_CARD && profileCardLevel < PROFILE_CARD_MAX_LEVEL ? (
-          // Маленькая круглая кнопка апгрейда на СВОЕЙ карточке — вход в лестницу
-          // уровней. Золото + мягкий пульс (переиспользуем shimmer-луп плашки PLUS).
+        {isMe && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
+          // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
+          // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
+          // Модель: заливка градиентом следующего уровня + бриллиант (в превью — номер).
           <TouchableOpacity
             testID="player-profile-upgrade-card"
             accessibilityRole="button"
@@ -928,7 +1010,8 @@ function PlayerProfileModalBody({
               pl: 'Ulepsz kartę',
             })}
             hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
-            onPress={handleOpenUpgrade}
+            onPress={handleUpgradeButtonTap}
+            activeOpacity={0.85}
             style={{
               position: 'absolute',
               top: PROFILE_HEADER_ACTION_TOP,
@@ -937,20 +1020,32 @@ function PlayerProfileModalBody({
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
+              overflow: 'hidden',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: 'rgba(250,204,21,0.16)',
               borderWidth: 1,
-              borderColor: 'rgba(250,204,21,0.55)',
-              shadowColor: '#FACC15',
-              shadowOpacity: 0.5,
-              shadowRadius: 8,
+              borderColor: 'rgba(255,255,255,0.35)',
+              shadowColor: nextLevelVisual.shadowColor,
+              shadowOpacity: 0.55,
+              shadowRadius: 9,
               shadowOffset: { width: 0, height: 0 },
-              elevation: 6,
+              elevation: 7,
             }}
           >
+            <LinearGradient
+              colors={[nextLevelVisual.accent, nextLevelVisual.secondary]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
             <Animated.View style={{ opacity: shimmerOpacity }}>
-              <Ionicons name="arrow-up" size={22} color={monoIcon(themeMode, '#FACC15')} />
+              {previewLevel === null ? (
+                <Ionicons name="diamond" size={19} color={monoIcon(themeMode, '#111827', MONO_ICON.onLight)} />
+              ) : (
+                <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontSize: 15, fontWeight: '900' }}>
+                  {profileCardLevelRoman(previewLevel)}
+                </Text>
+              )}
             </Animated.View>
           </TouchableOpacity>
         ) : null}
@@ -962,7 +1057,7 @@ function PlayerProfileModalBody({
               end={{ x: 1, y: 1 }}
               style={StyleSheet.absoluteFill}
             />
-            {profileCardLevel > 0 && (
+            {displayCardLevel > 0 && (
               <View pointerEvents="none" style={{
                 position: 'absolute',
                 left: 18,
@@ -976,7 +1071,7 @@ function PlayerProfileModalBody({
                 владелец и другие игроки видели ОДИН и тот же эффект уровня. Заменил
                 старые inline Animated glint/частицы. */}
             <ProfileCardMotionFx
-              kind={fxKindForProfileCard(profileCardSnapshot.level, profileCardSnapshot.motion)}
+              kind={fxKindForProfileCard(displaySnapshot.level, displaySnapshot.motion)}
               radius={0}
               accent={cardVisual.accent}
               secondary={cardVisual.secondary}
@@ -987,7 +1082,7 @@ function PlayerProfileModalBody({
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ padding: 24, paddingBottom: Math.max(96, bottomInset + 72) }}
+          contentContainerStyle={{ padding: 24, paddingBottom: Math.max(96, bottomInset + 72) + (isMe && previewLevel !== null ? 112 : 0) }}
         >
         <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: prestigeActive ? cardVisual.accentStrong : t.border, alignSelf: 'center', marginBottom: 20 }} />
         {showPremium && (
@@ -1025,7 +1120,7 @@ function PlayerProfileModalBody({
             )}
           </Animated.View>
         )}
-        {profileCardLevel > 0 && (
+        {displayCardLevel > 0 && (
           <LinearGradient
             colors={[cardVisual.accent, cardVisual.secondary]}
             start={{ x: 0, y: 0 }}
@@ -1046,7 +1141,7 @@ function PlayerProfileModalBody({
           }}>
             <Ionicons name="sparkles" size={13} color="#111827" />
             <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontWeight: '900', fontSize: f.caption, letterSpacing: 0.4 }}>
-              {profileCardLevelRoman(profileCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[profileCardLevel] : cardDef.name}
+              {profileCardLevelRoman(displayCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
             </Text>
           </LinearGradient>
         )}
@@ -1055,7 +1150,7 @@ function PlayerProfileModalBody({
             <View style={{ width: 44 }} />
             <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
               {/* Уровень III+ обещает «усиленную рамку аватара» — кольцо цвета уровня. */}
-              <View style={profileCardLevel >= 3 ? { padding: 3, borderRadius: 999, borderWidth: 2, borderColor: cardVisual.accentStrong } : null}>
+              <View style={displayCardLevel >= 3 ? { padding: 3, borderRadius: 999, borderWidth: 2, borderColor: cardVisual.accentStrong } : null}>
                 <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
                   <AvatarView
                     avatar={avatarStr}
@@ -1243,7 +1338,7 @@ function PlayerProfileModalBody({
           </View>
         </View>
         {/* Блоки, открываемые уровнями карточки: II «Выучено», III «Арена», IV «Путь», V «Легенда». */}
-        {profileCardLevel >= 2 && cardStats && (cardStats.wordsLearned !== null || cardStats.phrasesLearned !== null) && (
+        {displayCardLevel >= 2 && cardStats && (cardStats.wordsLearned !== null || cardStats.phrasesLearned !== null) && (
           <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
             <Ionicons name="book" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
             <View>
@@ -1265,7 +1360,7 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
-        {profileCardLevel >= 3 && cardStats && cardStats.arenaWins !== null && (
+        {displayCardLevel >= 3 && cardStats && cardStats.arenaWins !== null && (
           <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
             <Ionicons name="podium" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
             <View>
@@ -1291,7 +1386,7 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
-        {profileCardLevel >= 4 && cardStats && cardStats.appDays !== null && (
+        {displayCardLevel >= 4 && cardStats && cardStats.appDays !== null && (
           <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
             <Ionicons name="compass" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
             <View>
@@ -1313,7 +1408,7 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
-        {profileCardLevel >= 5 && (
+        {displayCardLevel >= 5 && (
           <View style={[
             { flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 },
             prestigeSurfaceStyle,
@@ -1545,6 +1640,89 @@ function PlayerProfileModalBody({
           </View>
         )}
         </ScrollView>
+        {isMe && previewLevel !== null && (
+          // Панель превью: карточка выше уже преобразилась в выбранный уровень —
+          // здесь имя уровня, выход из превью и покупка СЛЕДУЮЩЕГО уровня.
+          <View style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            paddingHorizontal: 16,
+            paddingTop: 12,
+            paddingBottom: Math.max(14, bottomInset + 10),
+            backgroundColor: 'rgba(3,8,5,0.92)',
+            borderTopWidth: 1,
+            borderTopColor: cardVisual.accentStrong,
+          }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+              <Text style={{ color: cardVisual.secondary, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.4 }} numberOfLines={1}>
+                {triLang(lang as Lang, {
+                  ru: 'Превью',
+                  uk: 'Превʼю',
+                  es: 'Vista previa',
+                  'pt-BR': 'Prévia',
+                  vi: 'Xem trước',
+                  id: 'Pratinjau',
+                  tr: 'Önizleme',
+                  pl: 'Podgląd',
+                })} · {profileCardLevelRoman(displayCardLevel)} {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
+              </Text>
+              <TouchableOpacity
+                testID="player-profile-preview-exit"
+                accessibilityRole="button"
+                onPress={handleExitPreview}
+                hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
+              >
+                <Ionicons name="close" size={18} color={t.textMuted} />
+              </TouchableOpacity>
+            </View>
+            {previewLevel === nextRealLevel ? (
+              <TouchableOpacity
+                testID="player-profile-preview-buy"
+                disabled={upgradeBusy}
+                onPress={handleBuyPreviewedLevel}
+                activeOpacity={0.88}
+                style={{ borderRadius: 14, paddingVertical: 13, alignItems: 'center', backgroundColor: '#FACC15', opacity: upgradeBusy ? 0.7 : 1, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
+              >
+                <Text style={{ color: monoIcon(themeMode, '#1A1205', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '900' }}>
+                  {triLang(lang as Lang, {
+                    ru: `Улучшить · ${cardDef.cost}`,
+                    uk: `Покращити · ${cardDef.cost}`,
+                    es: `Mejorar · ${cardDef.cost}`,
+                    'pt-BR': `Melhorar · ${cardDef.cost}`,
+                    vi: `Nâng cấp · ${cardDef.cost}`,
+                    id: `Tingkatkan · ${cardDef.cost}`,
+                    tr: `Yükselt · ${cardDef.cost}`,
+                    pl: `Ulepsz · ${cardDef.cost}`,
+                  })}
+                </Text>
+                {upgradeBusy ? (
+                  <ActivityIndicator size="small" color="#1A1205" />
+                ) : (
+                  <Image source={oskolokImageForPackShards(cardDef.cost)} style={{ width: 18, height: 18 }} contentFit="contain" />
+                )}
+              </TouchableOpacity>
+            ) : (
+              <View style={{ borderRadius: 14, paddingVertical: 13, alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.07)' }}>
+                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '800' }}>
+                  {nextRealLevel !== null
+                    ? triLang(lang as Lang, {
+                        ru: `Сначала уровень ${profileCardLevelRoman(nextRealLevel)}`,
+                        uk: `Спочатку рівень ${profileCardLevelRoman(nextRealLevel)}`,
+                        es: `Primero el nivel ${profileCardLevelRoman(nextRealLevel)}`,
+                        'pt-BR': `Primeiro o nível ${profileCardLevelRoman(nextRealLevel)}`,
+                        vi: `Trước tiên cấp ${profileCardLevelRoman(nextRealLevel)}`,
+                        id: `Level ${profileCardLevelRoman(nextRealLevel)} dulu`,
+                        tr: `Önce seviye ${profileCardLevelRoman(nextRealLevel)}`,
+                        pl: `Najpierw poziom ${profileCardLevelRoman(nextRealLevel)}`,
+                      })
+                    : ''}
+                </Text>
+              </View>
+            )}
+          </View>
+        )}
       </Animated.View>
     </Animated.View>
     <ThemedConfirmModal

@@ -106,6 +106,9 @@ describe('owner runtime direction contract', () => {
       'app/lesson_complete.tsx': 1,
       'app/premium_revenuecat_state.ts': 1,
       'app/profile_card_upgrade.tsx': 1,
+      // Покупка уровня карточки прямо из модала профиля (превью-на-месте, 2026-07-05):
+      // смена вида публичная — бейдж в списках должен обновиться немедленно.
+      'components/PlayerProfileModal.tsx': 1,
       // xp_manager потерял свой forceNow-вызов в b687f4b80 (MVP «Разговорного клуба») —
       // аллоулист приведён к факту 2026-07-05.
     };

@@ -20,7 +20,7 @@ import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 import DuoPressable from '../components/DuoPressable';
 import { useEnergy } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
@@ -49,6 +49,36 @@ type ScreenState =
   | { kind: 'error' }
   | { kind: 'starfall'; matchId: string };
 
+/** Живые подсказки во время поиска (голос Компаса). Крутятся ~7с каждая.
+ *  Пул из основ/стратегии/драмы/обучения — новичок цепляет знания уже в ожидании. */
+type Hint = { title: (l: Lang) => string; body: (l: Lang) => string };
+const SEARCH_HINTS: Hint[] = [
+  {
+    title: (l) => triLang(l, { ru: 'Как играть', uk: 'Як грати', es: 'Cómo jugar', 'pt-BR': 'Como jogar', vi: 'Cách chơi', id: 'Cara main', tr: 'Nasıl oynanır', pl: 'Jak grać' }),
+    body: (l) => triLang(l, { ru: 'Ответил верно — звезда твоя. Ошибся — попытка сгорела, жди следующий раунд.', uk: 'Відповів вірно — зірка твоя. Помилився — чекай наступний раунд.', es: 'Aciertas y la estrella es tuya. Fallas y esperas la siguiente ronda.', 'pt-BR': 'Acertou, a estrela é sua. Errou, espere a próxima rodada.', vi: 'Đúng thì sao là của bạn. Sai thì chờ vòng sau.', id: 'Benar, bintang jadi milikmu. Salah, tunggu ronde berikutnya.', tr: 'Doğru cevap yıldızı senin yapar. Yanlışta sonraki turu bekle.', pl: 'Dobra odpowiedź — gwiazda twoja. Błąd — czekaj na następną rundę.' }),
+  },
+  {
+    title: (l) => triLang(l, { ru: 'Совет', uk: 'Порада', es: 'Consejo', 'pt-BR': 'Dica', vi: 'Mẹo', id: 'Tips', tr: 'İpucu', pl: 'Wskazówka' }),
+    body: (l) => triLang(l, { ru: 'Захватывай звёзды рядом со своими — созвездие растёт и даёт бонус очков.', uk: 'Захоплюй зірки поруч зі своїми — сузір’я росте й дає бонус.', es: 'Captura estrellas junto a las tuyas: la constelación crece y da puntos.', 'pt-BR': 'Capture estrelas perto das suas: a constelação cresce e dá pontos.', vi: 'Chiếm sao gần sao của bạn — chòm sao lớn lên và cho điểm.', id: 'Rebut bintang dekat milikmu — rasi tumbuh dan beri poin.', tr: 'Kendi yıldızlarının yanındakileri al — takımyıldız büyür, puan verir.', pl: 'Zdobywaj gwiazdy obok swoich — gwiazdozbiór rośnie i daje punkty.' }),
+  },
+  {
+    title: (l) => triLang(l, { ru: 'Полярная', uk: 'Полярна', es: 'Estrella Polar', 'pt-BR': 'Estrela Polar', vi: 'Sao Bắc Cực', id: 'Bintang Kutub', tr: 'Kutup Yıldızı', pl: 'Gwiazda Polarna' }),
+    body: (l) => triLang(l, { ru: 'Звезда в центре приносит очки каждый раунд. За неё дерутся все.', uk: 'Зірка в центрі дає очки щораунду. За неї б’ються всі.', es: 'La estrella central da puntos cada ronda. Todos pelean por ella.', 'pt-BR': 'A estrela central dá pontos toda rodada. Todos brigam por ela.', vi: 'Sao trung tâm cho điểm mỗi vòng. Ai cũng tranh giành.', id: 'Bintang tengah beri poin tiap ronde. Semua memperebutkannya.', tr: 'Merkez yıldız her tur puan verir. Herkes onun için savaşır.', pl: 'Środkowa gwiazda daje punkty co rundę. Walczą o nią wszyscy.' }),
+  },
+  {
+    title: (l) => triLang(l, { ru: 'Не сдавайся', uk: 'Не здавайся', es: 'No te rindas', 'pt-BR': 'Não desista', vi: 'Đừng bỏ cuộc', id: 'Jangan menyerah', tr: 'Pes etme', pl: 'Nie poddawaj się' }),
+    body: (l) => triLang(l, { ru: 'Выбили? Стань падающей звездой и вернись в игру двумя верными ответами.', uk: 'Вибили? Стань падаючою зіркою й повернись двома вірними відповідями.', es: '¿Te eliminaron? Vuelve como estrella fugaz con dos aciertos.', 'pt-BR': 'Eliminado? Volte como estrela cadente com dois acertos.', vi: 'Bị loại? Thành sao băng và quay lại với hai câu đúng.', id: 'Tereliminasi? Jadi bintang jatuh dan kembali dengan dua jawaban benar.', tr: 'Elendin mi? Kayan yıldız ol, iki doğru cevapla geri dön.', pl: 'Wybity? Zostań spadającą gwiazdą i wróć dwiema dobrymi odpowiedziami.' }),
+  },
+  {
+    title: (l) => triLang(l, { ru: 'Дуэль', uk: 'Дуель', es: 'Duelo', 'pt-BR': 'Duelo', vi: 'Đấu', id: 'Duel', tr: 'Düello', pl: 'Pojedynek' }),
+    body: (l) => triLang(l, { ru: 'Целитесь в одну звезду вдвоём? Будет блиц — решает знание, не скорость связи.', uk: 'Двоє на одну зірку? Буде бліц — вирішує знання.', es: '¿Dos por la misma estrella? Habrá duelo: gana el saber, no el ping.', 'pt-BR': 'Dois na mesma estrela? Haverá duelo: vence o saber, não o ping.', vi: 'Hai người một sao? Sẽ có đấu nhanh — kiến thức quyết định.', id: 'Dua orang satu bintang? Ada duel — pengetahuan yang menentukan.', tr: 'İki kişi tek yıldıza mı? Düello olur — bilgi kazandırır.', pl: 'Dwóch na jedną gwiazdę? Będzie pojedynek — liczy się wiedza.' }),
+  },
+  {
+    title: (l) => triLang(l, { ru: 'Ошибка — не беда', uk: 'Помилка — не біда', es: 'Errar está bien', 'pt-BR': 'Errar tudo bem', vi: 'Sai cũng ổn', id: 'Salah tak apa', tr: 'Hata sorun değil', pl: 'Błąd to nie problem' }),
+    body: (l) => triLang(l, { ru: 'Ответил неверно — сразу покажем правило. Так и учишься.', uk: 'Відповів неправильно — одразу покажемо правило. Так і вчишся.', es: 'Si fallas, te mostramos la regla al instante. Así aprendes.', 'pt-BR': 'Se errar, mostramos a regra na hora. É assim que se aprende.', vi: 'Trả lời sai — hiện quy tắc ngay. Học là vậy.', id: 'Jawab salah — aturan langsung muncul. Begitu caranya belajar.', tr: 'Yanlış cevapta kuralı hemen gösteririz. Böyle öğrenirsin.', pl: 'Zła odpowiedź — od razu pokażemy zasadę. Tak się uczysz.' }),
+  },
+];
+
 /** Цвета слотов игроков (совпадают с CONSTELLATION_SLOT_COLORS матча). */
 const SLOT_COLORS = ['#8B7BFF', '#37E0C8', '#FFB454', '#FF6B8A'] as const;
 /** Орбитальные соперники: угол/радиус/цвет для точек вокруг ядра. */
@@ -72,6 +102,7 @@ export default function ConstellationSearchScreen() {
   // Поэтапное подключение: слот 0 — ты (сразу), остальные «находятся» в
   // случайные моменты (презентация ожидания; реальный состав придёт с матчем).
   const [slotsFilled, setSlotsFilled] = useState(1);
+  const [hintIdx, setHintIdx] = useState(0);
 
   const uidRef = useRef<string | null>(null);
   const navigatedRef = useRef(false);
@@ -212,6 +243,15 @@ export default function ConstellationSearchScreen() {
     return () => clearInterval(id);
   }, [focused, state.kind]);
 
+  // Ротация подсказок каждые ~7с (голос Компаса). Гейт фокусом.
+  useEffect(() => {
+    if (!focused || state.kind !== 'searching') return;
+    const id = setInterval(() => {
+      setHintIdx((i) => (i + 1) % SEARCH_HINTS.length);
+    }, 7000);
+    return () => clearInterval(id);
+  }, [focused, state.kind]);
+
   // Слоты 2–4 «подключаются» БЫСТРО (1.5с / 3.5с / 6с) — раньше были 4/11/20с,
   // и при быстром матче игрок видел «1 из 4», а потом «бац» — игра. Теперь сбор
   // визуально успевает даже при мгновенном матче на 4 живых.
@@ -339,6 +379,22 @@ export default function ConstellationSearchScreen() {
               pl: `${searchingCount} szuka · ${elapsedSec}s`,
             })}
           </Text>
+
+          {/* Живая подсказка (голос Компаса). Иконка Компаса НАД плашкой справа,
+              плашка крупная — текст не втискивается (просьба владельца). */}
+          <View style={styles.hintWrap}>
+            <View style={styles.hintCompass}>
+              <Text style={styles.hintCompassIcon}>🧭</Text>
+            </View>
+            <View style={styles.hintCard}>
+              <Text style={[styles.hintTitle, { color: '#8B7BFF' }]}>
+                {SEARCH_HINTS[hintIdx].title(lang)}
+              </Text>
+              <Text style={[styles.hintBody, { color: t.textSecond }]}>
+                {SEARCH_HINTS[hintIdx].body(lang)}
+              </Text>
+            </View>
+          </View>
 
           <TouchableOpacity
             testID="constellation-search-cancel"
@@ -597,12 +653,44 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontVariant: ['tabular-nums'],
   },
+  hintWrap: {
+    width: '100%',
+    maxWidth: 380,
+    marginTop: 18,
+    alignItems: 'stretch',
+  },
+  hintCompass: {
+    alignSelf: 'flex-end',
+    width: 40,
+    height: 40,
+    borderRadius: 14,
+    backgroundColor: 'rgba(139,123,255,0.18)',
+    borderWidth: 1,
+    borderColor: 'rgba(139,123,255,0.4)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    marginBottom: -14,
+    zIndex: 2,
+  },
+  hintCompassIcon: { fontSize: 20 },
+  hintCard: {
+    backgroundColor: 'rgba(12,18,44,0.86)',
+    borderWidth: 1,
+    borderColor: 'rgba(140,160,220,0.15)',
+    borderRadius: 18,
+    paddingHorizontal: 18,
+    paddingTop: 20,
+    paddingBottom: 16,
+  },
+  hintTitle: { fontSize: 12, fontWeight: '800', letterSpacing: 0.3 },
+  hintBody: { fontSize: 13.5, lineHeight: 19, marginTop: 5 },
   cancelBtn: {
     borderWidth: 1,
     borderRadius: 999,
     paddingHorizontal: 26,
     paddingVertical: 11,
-    marginTop: 6,
+    marginTop: 16,
   },
   gateBtn: {
     borderRadius: 14,

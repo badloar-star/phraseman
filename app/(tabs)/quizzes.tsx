@@ -876,7 +876,7 @@ function StreakBreak({ show, old, themeMode, t, f }: { show:boolean; old:number;
 
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
 function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:QuizMenuSelection)=>void; sourceGated?: boolean }) {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { theme:t , f, themeMode: rawThemeMode } = useTheme();
   const themeMode = rawThemeMode as QuizVisualThemeMode;
@@ -1159,7 +1159,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
       </View>
 
       <BouncyWrap>
-      <ScrollView
+      <Reanimated.ScrollView
         style={{ flex: 1 }}
         decelerationRate="normal"
         contentContainerStyle={{
@@ -1175,7 +1175,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
         bounces
         alwaysBounceVertical
         overScrollMode="always"
-        onScroll={onBouncyScroll}
+        onScroll={onAnimatedScroll}
         scrollEventThrottle={16}
       >
         <View style={{ gap: 10 }}>
@@ -1266,7 +1266,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
             </Text>
           </View>
         )}
-      </ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
       </Reanimated.View>
       </ContentWrap>

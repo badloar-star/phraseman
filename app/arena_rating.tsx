@@ -212,7 +212,7 @@ export default function DuelRatingScreen() {
   const [rankPickerTop, setRankPickerTop] = useState(0);
   const rankRowRef = useRef<View>(null);
   const rankListRef = useRef<ScrollView>(null);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
 
   const pickerMaxH = useMemo(() => Math.round(Dimensions.get('window').height * 0.58), []);
@@ -311,7 +311,7 @@ export default function DuelRatingScreen() {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} bounces alwaysBounceVertical overScrollMode="always" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         {/* Моя карточка */}
         <LinearGradient
           colors={t.cardGradient}
@@ -569,7 +569,7 @@ export default function DuelRatingScreen() {
             <MatchRow key={match.id} match={match} t={t} f={f} lang={lang} themeMode={themeMode} />
           ))}
         </View>
-      </ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
       </Reanimated.View>
     </ScreenGradient>

@@ -2387,15 +2387,16 @@ export default function LessonScreen() {
   /**
    * Выход с урока. Не используем replace('/lesson_menu'): при canGoBack() === false
    * replace подменяет только верхний экран, и под ним снова оказывается тот же lesson_menu —
-   * визуально «то же окно» и лишний шаг в стеке. dismiss(1) / dismissTo снимают копию.
+   * визуально «то же окно» и лишний шаг в стеке.
+   * НЕ используем router.dismiss(1): это нативный imperative dismiss, который на
+   * Android/Fabric ломает teardown стекового (не модального) экрана и даёт чёрный
+   * неотзывчивый экран (см. предупреждение про router.back() в navigation_back.ts).
+   * safeRouterBack — тот же безопасный путь (replace вместо native back/dismiss),
+   * которым пользуется весь остальной код.
    */
   const navigateUpFromLessonScreen = useCallback(() => {
     if (from === 'lesson_menu') {
       const popToMenu = () => {
-        if (router.canDismiss()) {
-          router.dismiss(1);
-          return;
-        }
         if (router.canGoBack()) {
           safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
           return;

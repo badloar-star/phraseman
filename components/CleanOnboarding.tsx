@@ -2036,6 +2036,7 @@ const styles = StyleSheet.create({
     lineHeight: 39,
     fontWeight: '900',
     letterSpacing: 0,
+    textAlign: 'center',
   },
   welcomeSubtitle: {
     color: '#BBC1D1',
@@ -2043,6 +2044,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontWeight: '700',
     marginTop: 34,
+    textAlign: 'center',
   },
   welcomeButtons: {
     gap: 14,

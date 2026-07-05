@@ -16,6 +16,7 @@
 import * as admin from 'firebase-admin';
 import {
   botAnswerPlan,
+  botFocusBoost,
   botStyle,
   chooseBotTarget,
   synthesizeBotProfiles,
@@ -232,7 +233,9 @@ export async function createConstellationMatch(humans: HumanEntry[]): Promise<st
     phase: 'choose',
     round: 1,
     roundsTotal: cfg.roundsTotal,
-    phaseDeadlineAt: now + cfg.choosePhaseSec * 1000,
+    // 1-й раунд: +фора на клиентский отсчёт «3-2-1» (таймер выбора не тикает
+    // под отсчётом; серверу — запас на прогрев вопросов). Дальше форы нет.
+    phaseDeadlineAt: now + (cfg.firstRoundLeadInSec + cfg.choosePhaseSec) * 1000,
     mapSeed: matchId,
     homes: map.homes,
     stars: state.stars,
@@ -515,11 +518,13 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
     questionsBySlot.set(a.slot, dealt);
   }
 
-  // Планы ботов на выданные вопросы.
+  // Планы ботов на выданные вопросы. focusBoost — бот «собирается» под угрозой
+  // (защита дома / добивание), аудит: адаптация вместо фиксированной точности.
   const finalBots = updatedBots.map((bot) => {
     const assignment = assignments.find((a) => a.slot === bot.slot);
     if (!assignment) return { ...bot, plan: null };
-    const plan = botAnswerPlan(bot.profile, questionsBySlot.get(bot.slot)?.length ?? 0, rand);
+    const focusBoost = botFocusBoost(state, bot.slot, assignment.target ?? null);
+    const plan = botAnswerPlan(bot.profile, questionsBySlot.get(bot.slot)?.length ?? 0, rand, focusBoost);
     return { ...bot, plan };
   });
 

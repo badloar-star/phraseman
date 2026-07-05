@@ -3,6 +3,7 @@ import { createInitialMatchState, legalTargets } from './engine';
 import { createSeededRand } from './hex';
 import {
   botAnswerPlan,
+  botFocusBoost,
   botStyle,
   chooseBotTarget,
   synthesizeBotProfiles,
@@ -164,5 +165,50 @@ describe('constellations/bots — выбор цели (стратегия)', () 
     const seen = new Set<string>();
     for (let i = 0; i < 30; i += 1) seen.add(botStyle(`bot-uid-${i}-xyz`));
     expect(seen.size).toBeGreaterThan(1);
+  });
+
+  test('самозащита (аудит): дом уязвим + враг рядом → бот бьёт угрозу, а не идёт за очками', () => {
+    const state = makeState();
+    // Дом бота slot0 = '3,0', ядер мало; вражеская звезда slot1 вплотную к дому.
+    state.players[0] = { ...state.players[0], cores: 1 };
+    state.stars['2,0'] = { owner: 1, radiance: 0 }; // сосед дома '3,0', чужая
+    const rand = createSeededRand('defend-1');
+    let defended = 0;
+    for (let i = 0; i < 30; i += 1) {
+      if (chooseBotTarget(state, 0, rand, 'expander') === '2,0') defended += 1;
+    }
+    expect(defended).toBeGreaterThan(18); // ~75% времени защищается
+  });
+});
+
+describe('constellations/bots — адаптация точности под давление (аудит)', () => {
+  test('botFocusBoost: дом уязвим → положительный буст, спокойно → 0', () => {
+    const state = makeState();
+    expect(botFocusBoost(state, 0, null)).toBe(0); // 3 ядра, угроз нет
+    state.players[0] = { ...state.players[0], cores: 1 };
+    expect(botFocusBoost(state, 0, null)).toBeGreaterThan(0); // дом под угрозой
+  });
+
+  test('botFocusBoost: добивание чужого дома с 1 ядром → буст', () => {
+    const state = makeState();
+    state.players[1] = { ...state.players[1], cores: 1 };
+    expect(botFocusBoost(state, 0, state.players[1].homeStarKey)).toBeGreaterThan(0);
+  });
+
+  test('focusBoost поднимает фактическую точность бота', () => {
+    const rand = createSeededRand('boost-acc');
+    const [bot] = synthesizeBotProfiles(1, 5, CFG.bots, rand);
+    const count = (boost: number) => {
+      const r = createSeededRand(`boost-${boost}`);
+      let correct = 0;
+      let total = 0;
+      for (let i = 0; i < 300; i += 1) {
+        const plan = botAnswerPlan(bot, 2, r, boost);
+        correct += plan.correct.filter(Boolean).length;
+        total += plan.correct.length;
+      }
+      return correct / total;
+    };
+    expect(count(0.15)).toBeGreaterThan(count(0));
   });
 });

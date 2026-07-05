@@ -18,7 +18,7 @@ import {
   type MatchState,
   type PlayerSlot,
 } from './engine';
-import { parseHexKey, ringOf } from './hex';
+import { hexKey, neighborsInMap, parseHexKey, ringOf } from './hex';
 
 // Серверный срез пула ников (тот же генератор, что app/constants/bot_names.ts).
 const BOT_NAME_POOL: readonly string[] = [
@@ -107,17 +107,42 @@ export function botAnswerPlan(
   profile: BotProfile,
   questionCount: number,
   rand: () => number,
+  focusBoost: number = 0,
 ): BotAnswerPlan {
+  // Адаптация под давление (аудит): в критический момент (защита дома, добивание)
+  // бот «собирается» — точность растёт на focusBoost, как человек, который
+  // старается сильнее. Кап 0.97, чтобы бот не стал идеальной машиной.
+  const effAccuracy = Math.min(0.97, profile.accuracy + Math.max(0, focusBoost));
   const correct: boolean[] = [];
   const timesMs: number[] = [];
   for (let i = 0; i < questionCount; i += 1) {
-    correct.push(rand() < profile.accuracy);
+    correct.push(rand() < effAccuracy);
     const spread = 4000 + rand() * 16000; // 4–20 сек
     timesMs.push(Math.round(spread));
   }
   const allCorrect = correct.every(Boolean);
   const perfect = allCorrect && rand() >= SKIP_PERFECT_CHANCE;
   return { correct, timesMs, perfect };
+}
+
+/**
+ * Насколько бот «собран» в этом ходу (аудит: адаптация под угрозу). Даёт буст
+ * точности, когда ставка высока: свой дом под угрозой (мало ядер) ИЛИ бот
+ * добивает чужой дом. Чистая функция от состояния — детерминированно.
+ */
+export function botFocusBoost(state: MatchState, slot: PlayerSlot, targetKey: string | null): number {
+  const me = state.players[slot];
+  if (!me || me.status !== 'alive') return 0;
+  // Защита: мой дом уязвим (ядер ≤1) — я собран.
+  if (me.cores <= 1) return 0.15;
+  // Атака ва-банк: добиваю чужой дом с последним ядром.
+  if (targetKey) {
+    const victim = state.players.find(
+      (p) => p.status === 'alive' && p.slot !== slot && p.homeStarKey === targetKey && p.cores === 1,
+    );
+    if (victim) return 0.12;
+  }
+  return 0;
 }
 
 const POLAR_KEY = '0,0';
@@ -154,6 +179,22 @@ export function chooseBotTarget(
     (p) => p.status === 'alive' && p.slot !== slot && p.homeStarKey === key && p.cores === 1,
   ));
   if (finisher) return finisher;
+
+  // 1b. Самозащита (аудит: боты не должны слепо атаковать под угрозой вылета).
+  // Если мой дом уязвим (ядер ≤1) и рядом с ним стоит вражеская звезда —
+  // приоритетно бью именно её: отодвигаю фронт от дома, а не иду за очками.
+  const me = state.players[slot];
+  if (me && me.status === 'alive' && me.cores <= 1) {
+    const homeNeighbors = new Set(
+      neighborsInMap(parseHexKey(me.homeStarKey)).map((n) => hexKey(n)),
+    );
+    const threat = targets.find((key) => {
+      const owner = state.stars[key]?.owner;
+      return homeNeighbors.has(key) && owner !== null && owner !== slot;
+    });
+    // 75% времени защищаемся; изредка всё же жадничаем (человечность).
+    if (threat && rand() < 0.75) return threat;
+  }
 
   // 2. Полярная — тянет ТОЛЬКО центрового сильно; расширенец/агрессор идут туда
   //    редко (разнообразие: не все рвутся в центр, жалоба владельца).

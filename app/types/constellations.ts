@@ -148,7 +148,6 @@ export interface ConstellationQueueEntry {
 export interface ConstellationAnswerResult {
   ok: boolean;
   correct?: boolean;
-  correctIndex?: number;
   done?: boolean;
   duplicate?: boolean;
 }

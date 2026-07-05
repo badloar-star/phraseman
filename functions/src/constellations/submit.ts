@@ -165,10 +165,12 @@ export async function handleConstellationSubmit(
         ...(done ? { doneAt: now } : {}),
       });
       if (done) markRoundDone();
+      // correctIndex клиенту НЕ отдаём (аудит): по спеку D6 разборов в режиме
+      // нет, клиенту достаточно факта correct. Иначе клиент мог бы копить пары
+      // «вопрос → правильный ответ» для будущих повторов вопросов из банка.
       return {
         ok: true,
         correct,
-        correctIndex: key?.correctIndex ?? -1,
         done,
         phaseCheck: 'answer',
       };

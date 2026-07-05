@@ -65,6 +65,8 @@ describe('constellations/config — дефолты и парсер admin_runtime
     expect(CONSTELLATION_DEFAULTS.rebirth.correctToRespawn).toBe(2);
     expect(CONSTELLATION_DEFAULTS.rebirth.minRoundsLeftToFall).toBe(4);
     expect(CONSTELLATION_DEFAULTS.matchmaking.botFillDelaySec).toBe(30);
+    expect(CONSTELLATION_DEFAULTS.bots.enabled).toBe(true);
+    expect(CONSTELLATION_DEFAULTS.bots.maxPerMatch).toBe(3);
     expect(CONSTELLATION_DEFAULTS.starfall.chancePct).toBe(5);
     expect(CONSTELLATION_DEFAULTS.starfall.pityMatches).toBe(25);
     expect(CONSTELLATION_DEFAULTS.starfall.matchCap).toBe(12);

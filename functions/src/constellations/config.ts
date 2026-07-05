@@ -72,8 +72,17 @@ export const CONSTELLATION_DEFAULTS = {
   // ── Матчмейкинг (B1–B3) ────────────────────────────────────────────────
   matchmaking: { botFillDelaySec: 30, minHumans: 1 },
 
-  // ── Человечность ботов (B4) ────────────────────────────────────────────
-  bots: { accuracyMin: 0.5, accuracyMax: 0.85, answerMsMin: 4000, answerMsMax: 20000 },
+  // ── Человечность ботов (B4) + управление из админки ────────────────────
+  // enabled: kill-switch ботов (false → добора ботами нет, только живые).
+  // maxPerMatch: сколько ботов максимум в матче (0 → чисто живые матчи).
+  bots: {
+    enabled: true,
+    maxPerMatch: 3,
+    accuracyMin: 0.5,
+    accuracyMax: 0.85,
+    answerMsMin: 4000,
+    answerMsMax: 20000,
+  },
 
   // ── Бонус-матч «Звездопад» (C1) ────────────────────────────────────────
   starfall: {
@@ -162,8 +171,8 @@ export function constellationConfigFromData(raw: unknown): ConstellationConfig {
   return mergeSection(CONSTELLATION_DEFAULTS, raw);
 }
 
-const RUNTIME_CONFIG_COLLECTION = 'admin_runtime_config';
-const RUNTIME_CONFIG_DOC = 'constellations';
+export const RUNTIME_CONFIG_COLLECTION = 'admin_runtime_config';
+export const RUNTIME_CONFIG_DOC = 'constellations';
 
 /**
  * Читает конфиг из admin_runtime_config/constellations. НИКОГДА не бросает:

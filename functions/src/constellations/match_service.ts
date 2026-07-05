@@ -159,7 +159,10 @@ export async function createConstellationMatch(humans: HumanEntry[]): Promise<st
   const rand = createSeededRand(matchId);
 
   const matchRankIndex = Math.max(0, ...humans.map((h) => h.rankIndex ?? 0));
-  const bots = synthesizeBotProfiles(4 - humans.length, matchRankIndex, cfg.bots, rand);
+  // Управление ботами из админки: kill-switch + кап числа ботов на матч.
+  // enabled=false или maxPerMatch=0 → чисто живые матчи (недобор — матч меньше 4).
+  const botsWanted = cfg.bots.enabled ? Math.min(4 - humans.length, cfg.bots.maxPerMatch) : 0;
+  const bots = synthesizeBotProfiles(Math.max(0, botsWanted), matchRankIndex, cfg.bots, rand);
 
   // Случайное распределение слотов: люди не всегда slot 0 (боты неотличимы, B5).
   const participants: Array<{ uid: string; human?: HumanEntry; bot?: BotProfile }> = [

@@ -149,11 +149,15 @@ const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey } = require('./shard_survey');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { constellationSubmitAction } = require('./constellations/submit');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { constellationAdmin } = require('./constellations/admin');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { tryMatchConstellationUser, constellationQueueCron, fillConstellationAfterDelay } = require('./constellations/queue') as {
   tryMatchConstellationUser: (userId: string) => Promise<void>;
@@ -279,6 +283,9 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
+exports.submitShardSurvey = submitShardSurvey;
+exports.getActiveShardSurvey = getActiveShardSurvey;
+exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.shardsApplyDelta = shardsApplyDelta;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
@@ -288,6 +295,7 @@ exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
 exports.constellationSubmitAction = constellationSubmitAction;
+exports.constellationAdmin = constellationAdmin;
 
 // ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
 // Мгновенный подбор на записи в очередь (B2); cron добирает ботами после

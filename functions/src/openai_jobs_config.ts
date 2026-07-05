@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'constellations';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -63,6 +63,9 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
   // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
   support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
+  // Квизы «Созвездий»: генерация вопросов с судьёй-валидатором дистракторов.
+  // Дешёвая модель, щедрый кап (кэш досыпается фоном), kill-switch → только кэш+банк.
+  constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
 };
 
 export interface JobConfig {

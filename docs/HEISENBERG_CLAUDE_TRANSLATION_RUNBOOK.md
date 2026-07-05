@@ -97,9 +97,25 @@ judged-файлом с БОЛЬШИМ номером (`packet_0008.judged.jsonl`
 - Конвейер ничего не пишет в исходники приложения и не создаёт аппрувов:
   `reviewerImportAllowed=false` навсегда, GO-строки ждут apply-этапа.
 
-## Apply-этап (ещё не построен)
+## Apply-этап
 
-Запись GO-строк из `accepted_rows.jsonl` в app-исходники по `keyPath`/
-`targetSlot` (sourceLocales-карты, суффикс-поля) либо в серверные паки для
-объёмных `plan_content_*` (5 локалей × 6 МБ инлайном раздуют бандл — см.
-Performance Bible в AGENTS.md). До его появления переводы копятся в леджерах.
+```bash
+npm run heisenberg:apply -- --ledger <accepted_rows.jsonl> --locale pt-BR            # dry-run
+npm run heisenberg:apply -- --ledger <...> --locale pt-BR --execute                  # запись
+npx tsc --noEmit   # ОБЯЗАТЕЛЬНО после --execute
+```
+
+v1 вставляет `'<locale>': '...'` в локале-контейнеры `{ru, uk, es}` через
+точный AST-индекс путей. Занятые другими сессиями файлы пропускает; parent с
+уже существующей локалью — `already-present`. Урок пилота: **745/1000 строк
+блоков уже имели pt-BR в коде** — блоки завышают бэклог, реальный объём
+~в 4 раза меньше; apply-dry-run — самый честный замер остатка.
+
+Известные ограничения v1 (задачи следующих сессий):
+- типы части моделей (`LessonPhrase`, `CardItem`, `GeneratedPhraseTemplate`,
+  theory-типы части уроков) не содержат `'pt-BR'` — нужны optional-поля в
+  типах И рантайм-пикеры, читающие новую локаль (иначе данные мертвы);
+  такие файлы откатывать по tsc и вести списком;
+- суффикс-слоты (`titleES`, `text_es`) не поддержаны;
+- объёмные `plan_content_*` для 5 локалей лучше выносить в серверные паки
+  (Performance Bible в AGENTS.md), а не инлайнить 30 МБ в бандл.

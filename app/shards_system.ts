@@ -1184,6 +1184,11 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
       if (queue.length === 0) return { resolved: 0, pending: 0 };
       const uid = await getCanonicalUserId().catch(() => null);
       if (!uid) return { resolved: 0, pending: queue.length };
+      // Снимок локального баланса ДО проигрывания. Он уже включает оптимистичные
+      // эффекты всех дельт очереди (их применили при постановке). Коррекцию сервера
+      // считаем относительно ЭТОГО снимка, а применяем к ТЕКУЩЕЙ локали под локом —
+      // так конкурентная легальная операция (её opId не в этом снапшоте) не теряется.
+      const localSnapshot = await getShardsBalance();
       const confirmed: string[] = [];
       let latestBalance: number | null = null;
       let pending = 0;
@@ -1213,21 +1218,29 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
       }
       if (confirmed.length > 0) await removeShardDeltas(confirmed);
       if (latestBalance !== null) {
-        // Аудит K3 (находки A+B): после проигрывания всей очереди серверный баланс
-        // авторитетен — он уже включает КАЖДУЮ поставленную дельту. Раньше зеркалили
-        // с latestUpdatedAtMs (для alreadyApplied/insufficient сервер отдаёт СТАРУЮ
-        // метку prevUpdatedAtMs), и timestamp-guard в replaceShardsBalanceLocal
-        // отвергал зеркалирование именно когда локаль реально расходилась (свежий
-        // оптимистичный стамп > старой серверной метки). loadShardsFromCloud
-        // завышенную локаль со стампом earn/spend не опускает — расхождение
-        // закреплялось. Фикс: НЕ передаём updatedAtMs → guard не срабатывает,
-        // ставится свежий монотонный стамп, авторитетный серверный баланс
-        // безусловно применяется (и опускает завышенную локаль, и поднимает
-        // заниженную). Часы клиента/сервера тут больше не сравниваются (находка C).
-        await replaceShardsBalanceLocal(latestBalance, {
-          op: 'replace',
-          reason: 'shard_delta_queue_reconcile',
-        }).catch(() => {});
+        // Аудит K3 (находки A+B): серверный баланс авторитетен, timestamp-guard его
+        // отвергал (при alreadyApplied/insufficient сервер отдаёт СТАРУЮ метку) →
+        // расхождение закреплялось. Но НЕЛЬЗЯ слепо писать latestBalance: пока шёл
+        // async-replay (секунды на вызов), пользователь мог сделать легальный earn/
+        // spend — его дельты нет в latestBalance (её opId не в снапшоте очереди), и
+        // безусловная перезапись её бы стёрла (регресс аудита-фикса).
+        // Решение: коррекция = latestBalance − localSnapshot (насколько сервер
+        // разошёлся со снимком ДО replay). Применяем её к ТЕКУЩЕЙ локали ПОД ЛОКОМ —
+        // конкурентная дельта, увеличившая локаль после снимка, сохраняется.
+        const correction = latestBalance - localSnapshot;
+        if (correction !== 0) {
+          const meta: ShardBalanceMeta = { updatedAtMs: Date.now(), op: 'replace', reason: 'shard_delta_queue_reconcile' };
+          const reconciled = await withStorageLock(async () => {
+            const current = await getShardsBalance();
+            const next = Math.max(0, current + correction);
+            await persistLocalBalance(next, meta);
+            return next;
+          }).catch(() => null);
+          if (reconciled !== null) {
+            setShardsBalanceMemory(reconciled);
+            await emitShardsBalanceUpdated(reconciled, meta);
+          }
+        }
       }
       return { resolved: confirmed.length, pending };
     } catch (error) {

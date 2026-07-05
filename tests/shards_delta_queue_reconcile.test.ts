@@ -77,7 +77,7 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
     return resumePendingShardDeltas().then(async (res) => {
       expect(res.resolved).toBe(1);
       // Раньше guard отвергал зеркало (локальная метка новее) → оставалось 500.
-      // Теперь серверный баланс безусловно применён.
+      // Теперь коррекция (300−500=−200) применена к текущей локали (500) → 300.
       await expect(getShardsBalance()).resolves.toBe(300);
       // Очередь очищена.
       expect(queueStore.items).toHaveLength(0);
@@ -112,6 +112,45 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
       expect(res.pending).toBe(1);
       expect(queueStore.items).toHaveLength(1); // не снят
       await expect(getShardsBalance()).resolves.toBe(50); // локаль не тронута
+    });
+  });
+
+  // Регресс аудита-фикса (находка ре-аудита): пока идёт async-replay, пользователь
+  // делает легальный earn +30. Его дельты нет в latestBalance (opId не в снапшоте
+  // очереди). Раньше reconcile СЛЕПО писал latestBalance и стирал +30. Теперь
+  // reconcile применяет КОРРЕКЦИЮ (latestBalance − localSnapshot) к ТЕКУЩЕЙ локали.
+  it('does NOT clobber a concurrent legal earn applied during the async replay', () => {
+    // Снимок до replay = 100 (очередь op-a +50 уже применена оптимистично ранее).
+    mockStorage[STORAGE_KEY] = '100';
+    queueStore.items = [{ opId: 'op-a', delta: 50, type: 'earn', reason: 'r', createdAtMs: 1 }];
+    // Сервер подтверждает op-a: его баланс = 100 (тоже включает +50). correction=0.
+    // МОДЕЛИРУЕМ гонку: во время серверного вызова пользователь заработал +30 →
+    // локаль стала 130. Делаем это в мок-ответе callable (побочный эффект до resolve).
+    applyResult.mockImplementation(() => {
+      mockStorage[STORAGE_KEY] = '130'; // конкурентный earn +30 применился локально
+      return { ok: true, alreadyApplied: false, insufficient: false, balance: 100, shardsUpdatedAtMs: 5000 };
+    });
+
+    return resumePendingShardDeltas().then(async () => {
+      // correction = 100 − 100 = 0 → к текущей локали (130) применяется 0 → 130.
+      // Конкурентный +30 СОХРАНЁН (раньше слепое зеркало откатило бы до 100).
+      await expect(getShardsBalance()).resolves.toBe(130);
+    });
+  });
+
+  it('applies the server correction on top of the current (concurrently changed) balance', () => {
+    // Снимок 100; сервер реально насчитал 90 (например insufficient-spend вернул
+    // осколки иначе / рассинхрон) → correction = −10. Во время replay конкурентный
+    // earn +40 сделал локаль 140. Итог: 140 + (−10) = 130, а не слепые 90.
+    mockStorage[STORAGE_KEY] = '100';
+    queueStore.items = [{ opId: 'op-s', delta: 5, type: 'spend', reason: 'r', createdAtMs: 1 }];
+    applyResult.mockImplementation(() => {
+      mockStorage[STORAGE_KEY] = '140';
+      return { ok: false, alreadyApplied: false, insufficient: true, balance: 90, shardsUpdatedAtMs: 1000 };
+    });
+
+    return resumePendingShardDeltas().then(async () => {
+      await expect(getShardsBalance()).resolves.toBe(130);
     });
   });
 });

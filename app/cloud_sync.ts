@@ -1971,7 +1971,13 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
       key === 'streak_count' ||
       key === 'last_active_date' ||
-      key === 'streak_last_date'
+      key === 'streak_last_date' ||
+      // app_version / device_platform принадлежат ТЕКУЩЕМУ устройству и пишутся
+      // заново при каждом запуске (_layout.tsx). Их нельзя воскрешать из облака:
+      // иначе restore перетирает свежую версию старой, boot-sync уезжает обратно
+      // старым значением, и в админке залипает неактуальная версия приложения.
+      key === 'app_version' ||
+      key === 'device_platform'
     ) {
       continue;
     }

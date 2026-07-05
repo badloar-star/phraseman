@@ -19,7 +19,7 @@
  */
 import { getUserSettingsSnapshot } from '../user_settings_store';
 import * as haptics from './haptics';
-import { play, ladderName, type SoundName } from './sound_bank';
+import { play, type SoundName } from './sound_bank';
 import { comboLevelFor } from './combo_engine';
 
 /** Разрешены ли UI-звуки прямо сейчас (синхронно из снапшота настроек). */
@@ -45,9 +45,8 @@ export const fk = {
     haptics.tap();
   },
 
-  /** Плитка легла в слот. */
+  /** Плитка легла в слот. Звук 'pop' удалён — остаётся тактильный отклик. */
   pop(): void {
-    sfx('pop');
     haptics.pop();
   },
 
@@ -77,16 +76,11 @@ export const fk = {
     if (n <= 0) return;
     const level = comboLevelFor(n);
 
-    // Нота лесенки: индекс = n-1 (1-й верный → ladder_00), потолок ladder_10.
-    sfx(ladderName(n - 1));
-
-    // Пороговый стингер при точном входе в уровень. Звук ВТОРОЙ молнии (n===10,
-    // 'thunder') пользователю нравился — возвращаем его. (Раньше убирали как
-    // «гул завершения», но это разные вещи: завершение урока озвучивает
-    // ResultsSequence через medal/star/chord, thunder туда не входит.)
-    if (n === 3) {
-      sfx('spark');
-    } else if (n === 5) {
+    // Звуки серии оставлены ТОЛЬКО на двух молниях (по решению пользователя):
+    //  - crack на n===5 (1-я молния), thunder на n===10 (2-я молния).
+    // Лесенка нот (ladder), spark (n===3) и fizzle убраны из звука; вибрация
+    // на каждый верный ответ остаётся.
+    if (n === 5) {
       sfx('crack');
     } else if (n === 10) {
       sfx('thunder');
@@ -107,17 +101,20 @@ export const fk = {
    */
   comboBreak(fromValue: number): void {
     if (fromValue <= 0) return;
-    sfx('fizzle');
+    // Звук 'fizzle' убран — остаётся только error-хаптика.
     haptics.wrong();
   },
 
-  /** «Вжух» смены задания. */
+  /** Смена задания. Звук 'whoosh' убран — остаётся лёгкая вибрация. */
   transition(): void {
-    sfx('whoosh');
     haptics.light();
   },
 
-  /** Финальные вехи награды (звезда/медаль/аккорд) + success haptic. */
+  /**
+   * Финальные вехи награды. По решению пользователя звук оставлен ТОЛЬКО у трёх
+   * звёзд (star_1/2/3) на экране завершения; medal и chord — без звука, только
+   * success-хаптика.
+   */
   milestone(kind: MilestoneKind): void {
     switch (kind) {
       case 'star1':
@@ -130,18 +127,15 @@ export const fk = {
         sfx('star_3');
         break;
       case 'medal':
-        sfx('medal');
-        break;
       case 'chord':
-        sfx('chord');
+        // Звук убран — только хаптика ниже.
         break;
     }
     haptics.success();
   },
 
-  /** Тик счётчика XP (частый — хост троттлит ≥70мс). Только тихий звук, без вибры. */
+  /** Тик счётчика XP. Звук 'tick' убран — метод оставлен как no-op для хостов. */
   tick(): void {
-    sfx('tick');
   },
 } as const;
 

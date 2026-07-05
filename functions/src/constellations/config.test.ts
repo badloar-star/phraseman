@@ -63,7 +63,7 @@ describe('constellations/config — дефолты и парсер admin_runtime
     expect(CONSTELLATION_DEFAULTS.polarDust.matchCap).toBe(2);
     expect(CONSTELLATION_DEFAULTS.polarDust.dailyCap).toBe(4);
     expect(CONSTELLATION_DEFAULTS.rebirth.correctToRespawn).toBe(2);
-    expect(CONSTELLATION_DEFAULTS.rebirth.minRoundsLeftToFall).toBe(4);
+    expect(CONSTELLATION_DEFAULTS.rebirth.minRoundsLeftToFall).toBe(3); // аудит: шанс на возрождение под конец
     expect(CONSTELLATION_DEFAULTS.matchmaking.botFillDelaySec).toBe(8);
     expect(CONSTELLATION_DEFAULTS.bots.enabled).toBe(true);
     expect(CONSTELLATION_DEFAULTS.bots.maxPerMatch).toBe(3);

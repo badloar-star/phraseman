@@ -187,19 +187,34 @@ describe('constellations/engine — щит и дуэли', () => {
 });
 
 describe('constellations/engine — ядра, выбивание, возрождение', () => {
-  test('успешная атака дома снимает ядро; 0 ядер → все звёзды атакующему + бонус', () => {
+  test('успешная атака дома снимает ядро; 0 ядер → СМЕЖНЫЕ звёзды атакующему + бонус', () => {
     const s = makeState();
     s.players[1] = { ...s.players[1], cores: 1 };
-    s.stars['2,-2'] = { owner: 1, radiance: 0 }; // ещё одна звезда жертвы
+    s.stars['2,-2'] = { owner: 1, radiance: 0 }; // звезда жертвы, СМЕЖНАЯ с домом '3,-3'
     const { state, events } = resolveRound(s, {
       ...noInput(),
       attacks: [{ slot: 0, target: HOMES[1], correctAll: true, perfect: false }],
     }, CFG);
     expect(state.players[1].cores).toBe(0);
     expect(state.stars[HOMES[1]].owner).toBe(0);
+    // Смежная с захваченным домом — наследуется захватчиком (волна фронта).
     expect(state.stars['2,-2']).toEqual({ owner: 0, radiance: 0 });
     expect(state.players[0].bonusPoints).toBeGreaterThanOrEqual(CFG.scoring.eliminationBonus);
     expect(events.some((e) => e.type === 'eliminated' && e.slot === 1)).toBe(true);
+  });
+
+  test('выбивание: ОТРЕЗАННАЯ звезда жертвы освобождается, не достаётся лидеру (аудит: снежок)', () => {
+    const s = makeState();
+    s.players[1] = { ...s.players[1], cores: 1 };
+    // Далёкая звезда жертвы, НЕ смежная с её домом '3,-3' → после выбивания
+    // должна стать нейтральной, а не перейти slot 0 через анклав.
+    s.stars['-2,2'] = { owner: 1, radiance: 0 };
+    const { state } = resolveRound(s, {
+      ...noInput(),
+      attacks: [{ slot: 0, target: HOMES[1], correctAll: true, perfect: false }],
+    }, CFG);
+    expect(state.stars[HOMES[1]].owner).toBe(0); // дом — захватчику (точка удара)
+    expect(state.stars['-2,2'].owner).toBeNull(); // отрезанная — освобождена
   });
 
   test('первый вылет при >3 оставшихся раундах → падающая звезда', () => {
@@ -263,13 +278,16 @@ describe('constellations/engine — ядра, выбивание, возрожд
   test('невредимость возрождённого: удар по home под щитом не снимает ядро (1.3)', () => {
     const s = makeState({ round: 3 });
     s.players[1] = { ...s.players[1], cores: 2, homeShieldUntilRound: 4 }; // защищён до раунда 4
-    const { state } = resolveRound(s, {
+    const { state, events } = resolveRound(s, {
       ...noInput(),
       attacks: [{ slot: 0, target: HOMES[1], correctAll: true, perfect: false }],
     }, CFG);
     expect(state.players[1].cores).toBe(2); // ядро не снято
     expect(state.players[1].status).toBe('alive');
     expect(state.stars[HOMES[1]].owner).toBe(1); // звезда осталась
+    // Событие честное: щит отразил, а НЕ ложное «ядро потеряно» (аудит-фикс).
+    expect(events.some((e) => e.type === 'home_shielded' && e.slot === 1)).toBe(true);
+    expect(events.some((e) => e.type === 'core_lost' && e.slot === 1)).toBe(false);
   });
 });
 

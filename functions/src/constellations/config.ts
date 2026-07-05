@@ -19,6 +19,11 @@ export const CONSTELLATION_DEFAULTS = {
   choosePhaseSec: 12,
   answerPhaseSec: 38,
   questionMaxSec: 15,
+  // Предстартовая фора ТОЛЬКО перед 1-м раундом: клиент крутит отсчёт «3-2-1»,
+  // и таймер выбора цели не должен тикать под ним (жалоба «3-2-1 идёт поверх
+  // уже начавшегося таймера»). Заодно даёт серверу этот запас на прогрев
+  // вопросов. Клиентский отсчёт ~2.55с → берём 3с с запасом.
+  firstRoundLeadInSec: 3,
 
   // ── Дуэль «Столкновение» (A4a) ─────────────────────────────────────────
   duel: {
@@ -48,7 +53,7 @@ export const CONSTELLATION_DEFAULTS = {
     // Индекс = раунды подряд удержания (0-based); за пределами массива — последнее.
     polarHoldByStreak: [5, 5, 5, 3, 3, 2, 2, 2, 2, 2],
     polarHoldPerRound: 5, // legacy-фолбэк, если byStreak пуст
-    eliminationBonus: 40,
+    eliminationBonus: 25, // 40→25 (аудит: снежок): выбивание больше не решает матч разом
     constellationBonusPerRound: 3, // 2→3 (1.4): «собери большое» как ось очков
     constellationBigBonus: 2,      // доп. за созвездие из 5+ звёзд
     constellationBigSize: 5,
@@ -67,7 +72,8 @@ export const CONSTELLATION_DEFAULTS = {
 
   // ── Возрождение «Падающая звезда» (A11 + 1.3) ──────────────────────────
   // homeCores:2 (было 1) + невредимость home 1 раунд — иначе добьют сразу.
-  rebirth: { correctToRespawn: 2, minRoundsLeftToFall: 4, maxPerMatch: 1, homeCores: 2, shieldRounds: 1 },
+  // minRoundsLeftToFall 4→3 (аудит): даём шанс на возрождение даже под конец матча.
+  rebirth: { correctToRespawn: 2, minRoundsLeftToFall: 3, maxPerMatch: 1, homeCores: 2, shieldRounds: 1 },
 
   // ── Матчмейкинг (B1–B3) ────────────────────────────────────────────────
   // botFillDelaySec 8с (было 30): одиночный игрок против ботов ждал ПОЛНЫЕ 30с —

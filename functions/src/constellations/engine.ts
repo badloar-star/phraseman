@@ -94,6 +94,8 @@ export interface RoundInput {
 
 export type RoundEventType =
   | 'shield'
+  // Щит возрождённого (1.3) отразил удар по home: ядро цело, звезда на месте.
+  | 'home_shielded'
   | 'capture'
   | 'core_lost'
   | 'eliminated'
@@ -224,6 +226,47 @@ function ringCap(starKey: string, cfg: ConstellationConfig): number {
   return ring === 'inner' || ring === 'polar' ? cfg.radiance.maxCenter : cfg.radiance.max;
 }
 
+/**
+ * Раздача звёзд выбитой жертвы (аудит — гашение снежка). Точка удара `hitKey`
+ * всегда переходит захватчику. Из остальных звёзд жертвы захватчик получает
+ * только те, что СМЕЖНЫ с его владениями (фронт расширяется естественно, волной
+ * от захваченной звезды); несмежные ОСВОБОЖДАЮТСЯ (owner:null) — их отвоёвывают
+ * заново. Так одно выбивание не отдаёт лидеру пол-карты через анклавы.
+ */
+function inheritEliminatedStars(
+  state: MatchState,
+  attacker: PlayerSlot,
+  victim: PlayerSlot,
+  hitKey: string,
+): void {
+  const victimStars = new Set(ownedStarKeys(state, victim));
+  // Точка удара — гарантированно захватчику, стартовая точка волны.
+  state.stars[hitKey] = { owner: attacker, radiance: 0 };
+  victimStars.delete(hitKey);
+
+  // Волна: звезда переходит захватчику, если смежна с уже его звездой.
+  // Повторяем, пока на очередном проходе кто-то присоединяется (анклав, целиком
+  // отрезанный от фронта захватчика, так и останется нейтральным).
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const key of [...victimStars]) {
+      const touchesAttacker = neighborsInMap(parseHexKey(key))
+        .some((n) => state.stars[hexKey(n)]?.owner === attacker);
+      if (touchesAttacker) {
+        state.stars[key] = { owner: attacker, radiance: 0 };
+        victimStars.delete(key);
+        changed = true;
+      }
+    }
+  }
+
+  // Остаток жертвы — нейтральные звёзды (нужно отвоёвывать снова).
+  for (const key of victimStars) {
+    state.stars[key] = { owner: null, radiance: 0 };
+  }
+}
+
 /** Ядро резолва: применяет один успешный удар по звезде (атака или дуэль). */
 function applyAttackSuccess(
   state: MatchState,
@@ -242,17 +285,20 @@ function applyAttackSuccess(
   if (defender && defender.status === 'alive' && defender.homeStarKey === starKey && defender.cores > 0) {
     // 1.3: возрождённый неуязвим по home первые shieldRounds — удар просто
     // не проходит (звезда остаётся, ядро цело), даёт камбэку встать на ноги.
+    // Событие home_shielded, а НЕ core_lost: ядро не снято, ложного «пробили»
+    // на клиенте быть не должно (аудит-фикс).
     if (defender.homeShieldUntilRound && state.round <= defender.homeShieldUntilRound) {
-      events.push({ type: 'core_lost', slot: defender.slot, starKey, amount: defender.cores });
+      events.push({ type: 'home_shielded', slot: defender.slot, starKey });
       return;
     }
     defender.cores -= 1;
     events.push({ type: 'core_lost', slot: defender.slot, starKey, amount: defender.cores });
     if (defender.cores > 0) return;
-    // 0 ядер → выбывание: ВСЕ звёзды жертвы переходят захватчику (A6).
-    for (const key of ownedStarKeys(state, defender.slot)) {
-      state.stars[key] = { owner: attacker, radiance: 0 };
-    }
+    // 0 ядер → выбывание. Аудит (снежок): захватчику достаются только СМЕЖНЫЕ с
+    // его владениями звёзды жертвы (естественное расширение фронта), остальные
+    // ОСВОБОЖДАЮТСЯ (нейтральные) — их ещё нужно отвоевать, лидер не забирает
+    // пол-карты одним выбиванием. Захваченная home уже посчитана как смежная.
+    inheritEliminatedStars(state, attacker, defender.slot, starKey);
     state.players[attacker].bonusPoints += cfg.scoring.eliminationBonus;
     const roundsLeft = cfg.roundsTotal - state.round;
     const canFall = !defender.rebirthUsed && roundsLeft >= cfg.rebirth.minRoundsLeftToFall;

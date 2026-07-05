@@ -280,7 +280,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [lobbyAcceptDeadlineAt, setLobbyAcceptDeadlineAt] = useState<number | null>(null);
     const lobbyAcceptBarAnim = useRef(new Animated.Value(1)).current;
     const lobbyAcceptBarAnimRunRef = useRef<Animated.CompositeAnimation | null>(null);
-    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const eliteCtaPulse = useRef(new Animated.Value(0)).current;
     const eliteRadarPulse = useRef(new Animated.Value(0)).current;
@@ -1925,7 +1925,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={[styles.bodyScrollContent, isTab ? { paddingBottom: tabContentBottomPad } : null]} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={[styles.bodyScrollContent, isTab ? { paddingBottom: tabContentBottomPad } : null]} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled bounces alwaysBounceVertical overScrollMode="always" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -2693,7 +2693,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             pl: "Lobby areny",
         })}/>
         </View>
-      </ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
       </Reanimated.View>
       </SafeAreaView>

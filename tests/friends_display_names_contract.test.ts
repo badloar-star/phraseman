@@ -17,7 +17,7 @@ describe('friends display names contract', () => {
   });
 
   it('keeps name-index search results visible even when the public profile is not hydrated yet', () => {
-    expect(friendsTabSource).toContain('const displayProfile = profileWithLookupDisplayName(result.uid, fetched, result.name)');
+    expect(friendsTabSource).toContain('const displayProfile = profileWithLookupDisplayName(result.uid, merged, result.name || result.profile?.name)');
     expect(friendsTabSource).toContain('setFoundUser(displayProfile)');
   });
 

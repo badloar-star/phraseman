@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["REPLACE_WITH_APPLE_TEAM_ID.app.phraseman"],
+        "appIDs": ["KZPP5PAG8Y.app.phraseman"],
         "components": [
           { "/": "/phraseman/invite*", "comment": "Referral invite deep link" },
           { "/": "/phraseman/duel*", "comment": "Arena duel deep link" }

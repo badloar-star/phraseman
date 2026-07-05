@@ -17,11 +17,11 @@ import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
-import { subscribeConstellationMatch } from './services/constellations_db';
+import { subscribeConstellationMatch, subscribeConstellationResult } from './services/constellations_db';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { CONSTELLATION_SLOT_COLORS } from './constellation_sky_map';
 import { parseHexKey } from './constellations_hex';
-import type { ConstellationMatch } from './types/constellations';
+import type { ConstellationMatch, ConstellationResult } from './types/constellations';
 
 /** Детерминированное имя созвездия от сида матча (одно у всех участников). */
 function constellationName(seed: string, lang: string): string {
@@ -62,14 +62,22 @@ export default function ConstellationResultsScreen() {
 
   const [uid, setUid] = useState<string | null>(null);
   const [match, setMatch] = useState<ConstellationMatch | null>(null);
+  const [result, setResult] = useState<ConstellationResult | null>(null);
   const [toast, setToast] = useState('');
 
   useEffect(() => { void ensureArenaAuthUid().then(setUid); }, []);
   useEffect(() => {
     if (!matchId) return;
-    const unsub = subscribeConstellationMatch(matchId, setMatch);
-    return unsub;
+    const unsubMatch = subscribeConstellationMatch(matchId, setMatch);
+    const unsubResult = subscribeConstellationResult(matchId, setResult);
+    return () => { unsubMatch(); unsubResult(); };
   }, [matchId]);
+
+  // Моя строка наград из results-дока (появляется после серверной финализации).
+  const myReward = useMemo(
+    () => result?.players.find((p) => p.uid === uid) ?? null,
+    [result, uid],
+  );
 
   const ranked = useMemo(() => {
     if (!match) return [];
@@ -152,13 +160,49 @@ export default function ConstellationResultsScreen() {
                   })
                   : p.name}
               </Text>
-              <Text style={styles.podPts}>{p.bonusPoints}</Text>
+              <Text style={styles.podPts}>
+                {result?.players.find((r) => r.uid === p.uid)?.points ?? p.liveScore ?? p.bonusPoints}
+              </Text>
               {match.starfall.golden && p.starfallEarned > 0 ? (
                 <Text style={styles.podShards}>◆ {p.starfallEarned}</Text>
               ) : null}
             </View>
           ))}
         </View>
+
+        {/* Мои награды: полёт XP/осколков/★ (F5, появляется после финализации) */}
+        {myReward ? (
+          <View style={styles.rewardRow}>
+            <View style={styles.rewardChip}>
+              <Text style={styles.rewardVal}>+{myReward.xpGained}</Text>
+              <Text style={[styles.rewardLab, { color: t.textSecond }]}>XP</Text>
+            </View>
+            {myReward.shardsGained > 0 ? (
+              <View style={styles.rewardChip}>
+                <Text style={[styles.rewardVal, { color: '#FFD166' }]}>◆ {myReward.shardsGained}</Text>
+                <Text style={[styles.rewardLab, { color: t.textSecond }]}>
+                  {triLang(lang, {
+                    ru: 'осколки', uk: 'уламки', es: 'fragmentos', 'pt-BR': 'fragmentos',
+                    vi: 'mảnh', id: 'pecahan', tr: 'parça', pl: 'odłamki',
+                  })}
+                </Text>
+              </View>
+            ) : null}
+            {myReward.starDelta !== 0 ? (
+              <View style={styles.rewardChip}>
+                <Text style={[styles.rewardVal, { color: myReward.starDelta > 0 ? '#63E6A4' : '#FF7A9E' }]}>
+                  {myReward.starDelta > 0 ? '+' : ''}{myReward.starDelta}★
+                </Text>
+                <Text style={[styles.rewardLab, { color: t.textSecond }]}>
+                  {triLang(lang, {
+                    ru: 'ранг', uk: 'ранг', es: 'rango', 'pt-BR': 'rank',
+                    vi: 'hạng', id: 'peringkat', tr: 'rütbe', pl: 'ranga',
+                  })}
+                </Text>
+              </View>
+            ) : null}
+          </View>
+        ) : null}
 
         {/* Именное созвездие */}
         <View style={[styles.constCard, { borderColor: '#2A3A6A' }]}>
@@ -279,6 +323,10 @@ const styles = StyleSheet.create({
   podName: { fontSize: 11, fontWeight: '700', maxWidth: '100%' },
   podPts: { color: '#FFD166', fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
   podShards: { color: '#FFD166', fontSize: 10, opacity: 0.8 },
+  rewardRow: { flexDirection: 'row', justifyContent: 'center', gap: 22, marginTop: 4 },
+  rewardChip: { alignItems: 'center' },
+  rewardVal: { color: '#EAF2FF', fontSize: 18, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  rewardLab: { fontSize: 10, marginTop: 1, textTransform: 'uppercase', letterSpacing: 0.4 },
   constCard: {
     flex: 1,
     borderWidth: 1,

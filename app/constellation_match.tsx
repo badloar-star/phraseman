@@ -300,7 +300,7 @@ export default function ConstellationMatchScreen() {
                   vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty',
                 }) : p.name}
               </Text>
-              <Text style={[styles.playerScore, { color: t.textPrimary }]}>{p.bonusPoints}</Text>
+              <Text style={[styles.playerScore, { color: t.textPrimary }]}>{p.liveScore ?? p.bonusPoints}</Text>
             </View>
             <View style={[styles.playerDot, p.roundDone && styles.playerDotDone]} />
           </View>

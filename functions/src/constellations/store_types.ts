@@ -91,6 +91,8 @@ export interface MatchPlayerPublic {
   fallingLight: number;
   shieldUsed: boolean;
   bonusPoints: number;
+  /** Полный live-счёт = стоимость владеемых звёзд по кольцам + bonusPoints (0.2). */
+  liveScore: number;
   perfectCaptures: number;
   dustEarned: number;
   /** Осколки, накапанные событиями «Звездопада» (виден live-счётчик, F2a). */
@@ -180,6 +182,8 @@ export function publicPlayersFromState(
   extras: {
     starfallBySlot: Record<number, number>;
     roundDoneSlots: ReadonlySet<number>;
+    /** slot → полный счёт (звёзды+бонусы). Считает вызывающий (у него scoring). */
+    liveScoreBySlot?: Record<number, number>;
   },
 ): MatchPlayerPublic[] {
   return state.players.map((p) => {
@@ -195,6 +199,7 @@ export function publicPlayersFromState(
       fallingLight: p.fallingLight,
       shieldUsed: p.shieldUsed,
       bonusPoints: p.bonusPoints,
+      liveScore: extras.liveScoreBySlot?.[p.slot] ?? p.bonusPoints,
       perfectCaptures: p.perfectCaptures,
       dustEarned: p.dustEarned,
       starfallEarned: extras.starfallBySlot[p.slot] ?? 0,
@@ -203,4 +208,18 @@ export function publicPlayersFromState(
     if (m?.aura) out.aura = m.aura;
     return out;
   });
+}
+
+/** Полный счёт по слотам: стоимость владеемых звёзд + bonusPoints (0.2/A8). */
+export function liveScoreBySlotFromState(
+  state: MatchState,
+  starValueOf: (starKey: string) => number,
+): Record<number, number> {
+  const bySlot: Record<number, number> = {};
+  for (const p of state.players) bySlot[p.slot] = p.bonusPoints;
+  for (const [key, star] of Object.entries(state.stars)) {
+    if (star.owner === null) continue;
+    bySlot[star.owner] = (bySlot[star.owner] ?? 0) + starValueOf(key);
+  }
+  return bySlot;
 }

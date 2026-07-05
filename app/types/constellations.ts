@@ -30,11 +30,40 @@ export interface ConstellationMatchPlayer {
   fallingLight: number;
   shieldUsed: boolean;
   bonusPoints: number;
+  /** Полный live-счёт = стоимость звёзд по кольцам + bonusPoints (0.2). */
+  liveScore?: number;
   perfectCaptures: number;
   dustEarned: number;
   starfallEarned: number;
   roundDone: boolean;
   place?: number;
+}
+
+/** Строка игрока в constellation_results — с начисленными наградами (E1–E4). */
+export interface ConstellationResultPlayer {
+  uid: string;
+  slot: ConstellationSlot;
+  name: string;
+  place: number;
+  points: number;
+  dustEarned: number;
+  starfallEarned: number;
+  perfectCaptures: number;
+  xpGained: number;
+  shardsGained: number;
+  starDelta: number;
+  srDelta: number;
+  collectibleEligible: boolean;
+}
+
+export interface ConstellationResult {
+  matchId: string;
+  finishedAt: number;
+  golden: boolean;
+  uids: string[];
+  players: ConstellationResultPlayer[];
+  wagerBySlot: Record<number, number>;
+  createdAt: number;
 }
 
 export interface ConstellationRoundEvent {

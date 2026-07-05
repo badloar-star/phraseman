@@ -18,6 +18,7 @@ import type {
   ConstellationMatch,
   ConstellationPlayerPrivate,
   ConstellationQueueEntry,
+  ConstellationResult,
 } from '../types/constellations';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -130,6 +131,19 @@ export function subscribeMyConstellationPlayer(
   if (!db) return () => {};
   return db.collection('constellation_players').doc(`${matchId}_${userId}`).onSnapshot(
     (snap: any) => onChange(snap?.exists ? (snap.data() as ConstellationPlayerPrivate) : null),
+    () => onChange(null),
+  );
+}
+
+/** Результат матча с начисленными наградами (constellation_results, E1–E4/F5). */
+export function subscribeConstellationResult(
+  matchId: string,
+  onChange: (result: ConstellationResult | null) => void,
+): () => void {
+  const db = getDb();
+  if (!db) return () => {};
+  return db.collection('constellation_results').doc(matchId).onSnapshot(
+    (snap: any) => onChange(snap?.exists ? (snap.data() as ConstellationResult) : null),
     () => onChange(null),
   );
 }

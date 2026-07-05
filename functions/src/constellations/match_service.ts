@@ -32,8 +32,11 @@ import {
   type RoundAction,
   type RoundEvent,
 } from './engine';
-import { createSeededRand, generateMap, validateMapSymmetry } from './hex';
+import { createSeededRand, generateMap, parseHexKey, ringOf, validateMapSymmetry } from './hex';
+import { computeMatchRewards } from './rewards';
 import { computeFinalScores, rankPlayers, starPointsFor } from './scoring';
+import { applyStarDelta } from '../arena_rank_progression';
+import { seasonIdForDate } from '../arena_season';
 import {
   attackQuestionSpec,
   buildRoundInput,
@@ -42,6 +45,7 @@ import {
 } from './service_core';
 import {
   CONSTELLATION_SCHEMA_VERSION,
+  liveScoreBySlotFromState,
   publicPlayersFromState,
   type ConstellationMatchDoc,
   type ConstellationPlayerDoc,
@@ -651,9 +655,11 @@ export async function resolveCurrentRound(matchId: string): Promise<void> {
       if (p.aura) m.aura = p.aura;
       return m;
     });
+    const starValueOf = (key: string) => cfg.scoring.starPoints[ringOf(parseHexKey(key))];
     const players = publicPlayersFromState(resolution.state, meta, {
       starfallBySlot,
       roundDoneSlots: new Set(),
+      liveScoreBySlot: liveScoreBySlotFromState(resolution.state, starValueOf),
     });
 
     tx.update(matchRef, {
@@ -734,6 +740,126 @@ export async function finalizeConstellationMatch(matchId: string): Promise<void>
     const placeByUid = new Map(ranked.map((r) => [r.uid, r.place]));
     const now = Date.now();
 
+    // ── Начисление наград (E1–E4): только людям, идемпотентно под resultProcessedAt.
+    const botUids = new Set(server.bots.map((b) => b.uid));
+    const humanUids = match.players.map((p) => p.uid).filter((u) => !botUids.has(u));
+    const livingHumans = state.players.filter(
+      (p) => !botUids.has(p.uid) && p.status !== 'out',
+    ).length;
+    const isTutorial = (match as { tutorial?: boolean }).tutorial === true;
+
+    // Читаем профили и статистику режима игроков-людей ВНУТРИ транзакции.
+    const profileRefs = new Map(humanUids.map((u) => [u, db.collection('arena_profiles').doc(u)]));
+    const userRefs = new Map(humanUids.map((u) => [u, db.collection('users').doc(u)]));
+    const profileSnaps = new Map<string, FirebaseFirestore.DocumentSnapshot>();
+    const userSnaps = new Map<string, FirebaseFirestore.DocumentSnapshot>();
+    for (const u of humanUids) {
+      profileSnaps.set(u, await tx.get(profileRefs.get(u) as FirebaseFirestore.DocumentReference));
+      userSnaps.set(u, await tx.get(userRefs.get(u) as FirebaseFirestore.DocumentReference));
+    }
+
+    const rewardByUid = new Map<string, ReturnType<typeof computeMatchRewards>>();
+    for (const player of state.players) {
+      if (botUids.has(player.uid)) continue;
+      const uSnap = userSnaps.get(player.uid);
+      const matchesBefore = Number(
+        (uSnap?.data() as { constellation_stats?: { matchesPlayed?: number } } | undefined)
+          ?.constellation_stats?.matchesPlayed ?? 0,
+      );
+      const reward = computeMatchRewards({
+        place: placeByUid.get(player.uid) ?? 4,
+        isBot: false,
+        golden: match.starfall.golden,
+        wager: match.wagerBySlot[player.slot] ?? 0,
+        dustEarned: player.dustEarned,
+        starfallEarned: server.starfallBySlot[player.slot] ?? 0,
+        matchesPlayedBefore: matchesBefore,
+        perfectCaptures: player.perfectCaptures,
+        livingHumans,
+        cfg,
+      });
+      rewardByUid.set(player.uid, reward);
+
+      // ── Ранг/★/SR/XP в arena_profiles (общий с ареной ранг, E1/E2).
+      const pRef = profileRefs.get(player.uid) as FirebaseFirestore.DocumentReference;
+      const pSnap = profileSnaps.get(player.uid);
+      const pData = (pSnap?.exists ? pSnap.data() : undefined) as Record<string, unknown> | undefined;
+      const rank = (pData?.rank ?? {}) as { tier?: string; level?: string; stars?: number };
+      const oldTier = typeof rank.tier === 'string' ? rank.tier : 'bronze';
+      const oldLevel = typeof rank.level === 'string' ? rank.level : 'I';
+      const oldStars = typeof rank.stars === 'number' ? rank.stars : 0;
+      const wasCeiling = oldTier === 'legend' && oldLevel === 'III';
+      // На потолке двигаем SR, ниже — звёзды (как дуэльная арена).
+      const progressed = applyStarDelta(
+        { tier: oldTier, level: oldLevel, stars: oldStars },
+        wasCeiling ? 0 : reward.starDelta,
+      );
+      const nowSeason = seasonIdForDate(new Date(now));
+      const staleSeason = pData?.seasonId !== nowSeason;
+      const curSr = staleSeason ? 0 : Number(pData?.sr ?? 0);
+      const newSr = wasCeiling ? Math.max(0, curSr + reward.srDelta) : curSr;
+
+      if (!pSnap?.exists) {
+        tx.set(pRef, {
+          userId: player.uid,
+          displayName: player.uid === match.players.find((p) => p.slot === player.slot)?.uid
+            ? match.players.find((p) => p.slot === player.slot)?.name ?? 'Игрок'
+            : 'Игрок',
+          rank: { tier: progressed.tier, level: progressed.level, stars: progressed.stars },
+          xp: reward.xp,
+          seasonId: nowSeason,
+          sr: newSr,
+          updatedAt: now,
+        }, { merge: true });
+      } else {
+        tx.update(pRef, {
+          'rank.tier': progressed.tier,
+          'rank.level': progressed.level,
+          'rank.stars': progressed.stars,
+          xp: Number(pData?.xp ?? 0) + reward.xp,
+          seasonId: nowSeason,
+          sr: newSr,
+          updatedAt: now,
+        });
+      }
+
+      // ── Осколки в users.shards + shard_log (серверный леджер, C4).
+      const uRef = userRefs.get(player.uid) as FirebaseFirestore.DocumentReference;
+      const uSnapData = userSnaps.get(player.uid)?.data() as
+        | { shards?: number; constellation_stats?: { matchesPlayed?: number } }
+        | undefined;
+      const before = Number(uSnapData?.shards ?? 0);
+      const after = before + reward.shards;
+      const wonPlace = placeByUid.get(player.uid) ?? 4;
+      tx.set(uRef, {
+        ...(reward.shards !== 0 ? {
+          shards: after,
+          shards_updated_at_ms: now,
+          shards_updated_op: 'earn',
+          shards_updated_reason: 'constellation_match',
+        } : {}),
+        constellation_stats: {
+          matchesPlayed: matchesBefore + 1,
+          lastPlace: wonPlace,
+          lastMatchId: matchId,
+          updatedAt: now,
+        },
+        updatedAt: now,
+      }, { merge: true });
+      if (reward.shards !== 0) {
+        tx.set(uRef.collection('shard_log').doc(), {
+          ts: new Date(now).toISOString(),
+          type: 'earn',
+          amount: reward.shards,
+          reason: match.starfall.golden ? 'constellation_starfall' : 'constellation_match',
+          balanceBefore: before,
+          balanceAfter: after,
+          matchId,
+          place: wonPlace,
+        });
+      }
+    }
+
     tx.update(matchRef, {
       players: match.players.map((p) => ({
         ...p,
@@ -747,16 +873,25 @@ export async function finalizeConstellationMatch(matchId: string): Promise<void>
       finishedAt: match.finishedAt ?? now,
       golden: match.starfall.golden,
       uids: match.players.map((p) => p.uid),
-      players: match.players.map((p) => ({
-        uid: p.uid,
-        slot: p.slot,
-        name: p.name,
-        place: placeByUid.get(p.uid) ?? 4,
-        points: totalByUid.get(p.uid) ?? 0,
-        dustEarned: p.dustEarned,
-        starfallEarned: server.starfallBySlot[p.slot] ?? 0,
-        perfectCaptures: p.perfectCaptures,
-      })),
+      players: match.players.map((p) => {
+        const reward = rewardByUid.get(p.uid);
+        return {
+          uid: p.uid,
+          slot: p.slot,
+          name: p.name,
+          place: placeByUid.get(p.uid) ?? 4,
+          points: totalByUid.get(p.uid) ?? 0,
+          dustEarned: p.dustEarned,
+          starfallEarned: server.starfallBySlot[p.slot] ?? 0,
+          perfectCaptures: p.perfectCaptures,
+          // Награды для экрана результатов (полёт XP/осколков/★).
+          xpGained: reward?.xp ?? 0,
+          shardsGained: reward?.shards ?? 0,
+          starDelta: reward?.starDelta ?? 0,
+          srDelta: reward?.srDelta ?? 0,
+          collectibleEligible: !isTutorial && (reward?.collectibleEligible ?? false),
+        };
+      }),
       wagerBySlot: match.wagerBySlot,
       createdAt: now,
     });

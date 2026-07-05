@@ -54,6 +54,11 @@ describe('ai dialog callable error mapping', () => {
     expect(getPremiumDialogErrorMessage(freeLimit, { lang: 'pt-BR' })).toContain('diálogo grátis');
     expect(getPremiumDialogErrorMessage(freeLimit, { hasPremiumAccess: true, lang: 'vi' }))
       .toContain('máy chủ chưa nhận ra quyền này');
-    expect(getPremiumDialogErrorMessage(network, { lang: 'pl' })).toContain('Połączenie');
+    // network теперь показывает забавную (рандомную) плашку из aiErrorToast.
+    // Проверяем не конкретную формулировку, а что локализация случилась: польский
+    // вариант непустой и БЕЗ кириллицы (русский фолбэк был бы на кириллице).
+    const plNetwork = getPremiumDialogErrorMessage(network, { lang: 'pl' });
+    expect(plNetwork.length).toBeGreaterThan(0);
+    expect(plNetwork).not.toMatch(/[а-яё]/i);
   });
 });

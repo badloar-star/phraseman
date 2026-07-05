@@ -6,6 +6,13 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { triLang, type Lang } from '../constants/i18n';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import {
+  aiOffline,
+  AiOfflineError,
+  aiErrorToast,
+  aiGlobalBudgetToast,
+  AI_GLOBAL_BUDGET_ERROR_CODE,
+} from './ai_kill_switch_copy';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -38,8 +45,10 @@ export interface PremiumDialogRequest {
   /** Характер персонажа (имя, манера речи, настроение) — задаёт живой голос. */
   persona?: string;
   scenarioId?: string;
-  /** UI/native-help language. Dialogue replies stay English; server uses this for brief meta-help. */
+  /** UI/native-help language. Server uses this for brief meta-help. */
   interfaceLang?: Lang;
+  /** Изучаемый язык (StudyTarget 'en'|'fr'). Реплики собеседника — на этом языке. Отсутствие ⇒ сервер 'en'. */
+  studyTarget?: string;
   /** companion-режим */
   memory?: DialogMemory;
   isPremium?: boolean;
@@ -69,6 +78,7 @@ export interface PremiumDialogResponse {
 export type PremiumDialogErrorKind =
   | 'free_limit'
   | 'premium_limit'
+  | 'global_budget'
   | 'rate_limited'
   | 'auth_required'
   | 'age_restricted'
@@ -83,6 +93,10 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
 
   if (text.includes('dialog_free_limit')) return 'free_limit';
   if (text.includes('dialog_premium_cap')) return 'premium_limit';
+  // Глобальный бюджет ИИ иссяк (на всех сразу) — сервер шлёт resource-exhausted
+  // с сообщением 'explain_global_budget'. ВАЖНО: проверяем ДО общего
+  // resource-exhausted, иначе это ошибочно уедет в 'rate_limited'.
+  if (text.includes(AI_GLOBAL_BUDGET_ERROR_CODE)) return 'global_budget';
   if (text.includes('dialog_rate_limited') || text.includes('resource-exhausted')) return 'rate_limited';
   if (text.includes('auth_required') || text.includes('unauthenticated')) return 'auth_required';
   if (text.includes('age_restricted')) return 'age_restricted';
@@ -138,6 +152,12 @@ export function getPremiumDialogErrorMessage(
         tr: 'Bugünkü diyalog limiti doldu. Yarın tekrar dene.',
         pl: 'Dzisiejszy limit dialogów został wyczerpany. Spróbuj jutro.',
       });
+    case 'global_budget': {
+      // Глобальный бюджет ИИ иссяк (на всех). Забавная плашка вместо сухого
+      // «сервис недоступен» — тот же набор, что и в разборе ошибок.
+      const budget = aiGlobalBudgetToast(lang);
+      return `${budget.title}\n\n${budget.message}`;
+    }
     case 'rate_limited':
       return triLang(lang, {
         ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
@@ -172,39 +192,15 @@ export function getPremiumDialogErrorMessage(
         pl: 'Dialogi AI są dostępne tylko od 16 lat. Ten tryb jest teraz zablokowany ze względów bezpieczeństwa.',
       });
     case 'provider_unavailable':
-      return triLang(lang, {
-        ru: 'Сейчас не получилось получить ответ. Попробуй ещё раз чуть позже.',
-        uk: 'Зараз не вдалося отримати відповідь. Спробуй ще раз трохи пізніше.',
-        es: 'El servicio de IA no responde ahora. Inténtalo un poco más tarde.',
-        'pt-BR': 'O serviço de IA não está respondendo agora. Tente de novo um pouco mais tarde.',
-        vi: 'Dịch vụ AI hiện không phản hồi. Hãy thử lại sau một chút.',
-        id: 'Layanan AI sedang tidak merespons. Coba lagi beberapa saat nanti.',
-        tr: 'AI servisi şu anda yanıt vermiyor. Biraz sonra tekrar dene.',
-        pl: 'Usługa AI teraz nie odpowiada. Spróbuj ponownie trochę później.',
-      });
     case 'network':
-      return triLang(lang, {
-        ru: 'Связь прервалась. Проверь интернет и попробуй ещё раз.',
-        uk: 'Зв’язок перервався. Перевір інтернет і спробуй ще раз.',
-        es: 'Se cortó la conexión. Revisa internet e inténtalo otra vez.',
-        'pt-BR': 'A conexão caiu. Verifique a internet e tente novamente.',
-        vi: 'Kết nối bị gián đoạn. Hãy kiểm tra internet rồi thử lại.',
-        id: 'Koneksi terputus. Periksa internet lalu coba lagi.',
-        tr: 'Bağlantı kesildi. İnternetini kontrol edip tekrar dene.',
-        pl: 'Połączenie zostało przerwane. Sprawdź internet i spróbuj ponownie.',
-      });
     case 'unknown':
-    default:
-      return triLang(lang, {
-        ru: 'Не получилось получить ответ. Попробуй ещё раз.',
-        uk: 'Не вдалося отримати відповідь. Спробуй ще раз.',
-        es: 'No se pudo obtener la respuesta. Inténtalo otra vez.',
-        'pt-BR': 'Não foi possível receber a resposta. Tente novamente.',
-        vi: 'Không lấy được câu trả lời. Hãy thử lại.',
-        id: 'Tidak bisa mendapatkan jawaban. Coba lagi.',
-        tr: 'Yanıt alınamadı. Tekrar dene.',
-        pl: 'Nie udało się uzyskać odpowiedzi. Spróbuj ponownie.',
-      });
+    default: {
+      // ИИ не ответил / связь оборвалась / непонятный сбой. Забавная плашка
+      // вместо сухого текста — тот же набор, что и в разборе ошибок; зовёт
+      // «попробуй ещё раз», и кнопка «Повторить» для этих видов доступна.
+      const copy = aiErrorToast(lang);
+      return `${copy.title}\n\n${copy.message}`;
+    }
   }
 }
 
@@ -220,6 +216,7 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
     persona: req.persona,
     scenarioId: req.scenarioId,
     interfaceLang: req.interfaceLang,
+    studyTarget: req.studyTarget ?? 'en',
     memory: req.memory,
     isPremium: req.isPremium,
     objectives: req.objectives,
@@ -228,6 +225,9 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
 }
 
 export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<PremiumDialogResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   // Возрастная группа берётся из единого источника (age_gate) и уходит на сервер
   // для safety-флага и возрастного гейта (defense-in-depth поверх клиентского блока).
   const key = premiumDialogSendRequestKey(req);
@@ -260,6 +260,8 @@ export interface PremiumDialogReviewRequest {
   interfaceLang?: Lang;
   scenarioId?: string;
   goalEn?: string;
+  /** Изучаемый язык (StudyTarget 'en'|'fr'). Отсутствие ⇒ сервер 'en'. */
+  studyTarget?: string;
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */
@@ -287,6 +289,7 @@ function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string 
     cefr: req.cefr,
     interfaceLang: req.interfaceLang,
     scenarioId: req.scenarioId,
+    studyTarget: req.studyTarget ?? 'en',
   });
 }
 
@@ -298,6 +301,9 @@ function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string 
 export async function callPremiumDialogReview(
   req: PremiumDialogReviewRequest,
 ): Promise<PremiumDialogReviewResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = premiumDialogReviewRequestKey(req);
   const existing = premiumDialogReviewInFlight.get(key);
   if (existing) return existing;
@@ -325,6 +331,8 @@ export interface PremiumDialogTranslateRequest {
   /** Код языка интерфейса (Lang): 'ru' | 'uk' | 'es' | … */
   targetLang: Lang;
   scenarioId?: string;
+  /** Изучаемый язык (StudyTarget 'en'|'fr') — язык ИСХОДНОЙ реплики. Отсутствие ⇒ сервер 'en'. */
+  studyTarget?: string;
 }
 
 export interface PremiumDialogTranslateResponse {
@@ -339,6 +347,7 @@ function premiumDialogTranslateRequestKey(req: PremiumDialogTranslateRequest): s
     text: req.text,
     targetLang: req.targetLang,
     scenarioId: req.scenarioId,
+    studyTarget: req.studyTarget ?? 'en',
   });
 }
 
@@ -350,6 +359,9 @@ function premiumDialogTranslateRequestKey(req: PremiumDialogTranslateRequest): s
 export async function callPremiumDialogTranslate(
   req: PremiumDialogTranslateRequest,
 ): Promise<PremiumDialogTranslateResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = premiumDialogTranslateRequestKey(req);
   const existing = premiumDialogTranslateInFlight.get(key);
   if (existing) return existing;

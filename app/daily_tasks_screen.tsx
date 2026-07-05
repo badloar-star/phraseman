@@ -44,6 +44,7 @@ import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { useScreen } from '../hooks/use-screen';
+import SurveyTaskCard from '../components/SurveyTaskCard';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 
 const safeDailyTaskEventPart = (value: unknown): string =>
@@ -2164,7 +2165,10 @@ export default function DailyTasksScreen() {
                 return;
             }
             await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level);
-            router.replace('/quizzes_screen');
+            // push (не replace): экран заданий дейликов должен остаться в стеке, чтобы «назад»
+            // из квиза возвращал на список заданий, а не проваливался на экран под ним.
+            // (quizzes_screen — это Stack.Screen, а не вкладка таб-бара — см. app/_layout.tsx.)
+            router.push('/quizzes_screen');
         };
         const openDiagnosticOrFrenchGate = () => {
             if (!diagnosticContentAvailableForTarget(studyTarget)) {
@@ -2421,6 +2425,10 @@ export default function DailyTasksScreen() {
 
       <BouncyWrap>
       <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+
+        {/* Бонусная карточка опроса за осколки — сама решает, показываться ли
+            (spec shard-survey §1.1: отдельная карточка сверху, не входит в набор 3). */}
+        <SurveyTaskCard />
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента

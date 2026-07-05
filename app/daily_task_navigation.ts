@@ -66,7 +66,10 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       return;
     }
     await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level);
-    router.replace('/quizzes_screen');
+    // push (не replace): экран заданий дейликов должен остаться в стеке, чтобы «назад»
+    // из квиза возвращал на список заданий, а не проваливался на экран под ним.
+    // (quizzes_screen — это Stack.Screen, а не вкладка таб-бара — см. app/_layout.tsx.)
+    router.push('/quizzes_screen');
   };
 
   const openDiagnosticOrFrenchGate = () => {

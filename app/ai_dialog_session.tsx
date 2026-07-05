@@ -8,6 +8,7 @@ import {
   Animated,
   Easing,
   KeyboardAvoidingView,
+  Linking,
   Platform,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -17,6 +18,7 @@ import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -47,6 +49,7 @@ import { buildScenarioGreeting } from './ai_dialog_greeting';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
 import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
+import { aiOffline, aiOfflineDialogScreen } from './ai_kill_switch_copy';
 import {
   callPremiumDialogSend,
   callPremiumDialogTranslate,
@@ -83,7 +86,22 @@ import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 
 const RECOMMENDED_EXCHANGES = 8;
-type VoiceInputStatus = 'idle' | 'requesting' | 'listening' | 'unavailable' | 'denied' | 'stalled';
+// 'unavailable' — устройство/движок реально не умеет распознавание (жёсткий отказ).
+// 'error' — транзиентный сбой (движок дал error/nomatch без текста, start() кинул):
+// стоит предложить «Повторить», а не пугать «недоступно на этом устройстве».
+type VoiceInputStatus =
+  | 'idle'
+  | 'requesting'
+  | 'listening'
+  | 'unavailable'
+  | 'denied'
+  | 'stalled'
+  | 'error';
+
+// Разговорный режим: после отпускания пальца ждём финальный результат
+// распознавателя перед авто-отправкой (последний `result` часто прилетает уже
+// после stop()). Достаточно, чтобы досдать хвост, но незаметно для юзера.
+const CONVERSATION_SEND_GRACE_MS = 450;
 
 // Вернуть аудио-сессию в «громкое воспроизведение» после голосового ввода:
 // без сброса озвучка ответов Компаса и любые mp3 после микрофона играют тихо
@@ -171,7 +189,7 @@ export default function AiDialogSession() {
   // «Фри» снимает замок, но НЕ выдаёт премиум-квоту реплик.
   const dialogAccess = useFeatureAccess('ai_dialog');
   const router = useRouter();
-  const { speak } = useAudio();
+  const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
   const { playRecordStart } = useRecordStartCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
@@ -211,6 +229,24 @@ export default function AiDialogSession() {
   const [voiceInputStatus, setVoiceInputStatus] = useState<VoiceInputStatus>('idle');
   const voiceInputListenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const voiceInputMountedRef = useRef(true);
+  // ── Разговорный режим «зажми и говори» (hands-free болталка) ────────────────
+  // Когда включён: кнопка микрофона работает на удержание (onPressIn → слушаю,
+  // onPressOut → авто-отправка распознанного), а ответ ИИ сразу озвучивается.
+  // Конец речи определяет ПАЛЕЦ (отпустил), а не OEM-endpointer — это обходит
+  // «микрофон Android закрывается сам» и исключает эхо (mic и динамик никогда не
+  // открыты одновременно: пока звучит ответ, палец отпущен и запись закрыта).
+  const [conversationMode, setConversationMode] = useState(false);
+  // Свежее значение флага для колбэков send/распознавания без stale-closure и
+  // без пересоздания send при каждом переключении тумблера.
+  const conversationModeRef = useRef(false);
+  useEffect(() => {
+    conversationModeRef.current = conversationMode;
+  }, [conversationMode]);
+  // Последний распознанный текст: onPressOut читает его, чтобы отправить реплику
+  // (локальная `latest` внутри startVoiceInput недоступна снаружи).
+  const latestTranscriptRef = useRef('');
+  // Идёт озвучка ответа ИИ (для подсказки «Отвечает…» под полем ввода).
+  const [aiSpeaking, setAiSpeaking] = useState(false);
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
   // может принять start() и не прислать НИ start, НИ result, НИ error — без
   // таймера кнопка микрофона зависла бы в «Слушаю…» навсегда.
@@ -300,6 +336,7 @@ export default function AiDialogSession() {
           text: clean,
           targetLang: lang,
           scenarioId: scenario.id,
+          studyTarget,
         });
         const translation = String(res.translation ?? '').trim();
         if (!translation) throw new Error('empty_translation');
@@ -346,6 +383,9 @@ export default function AiDialogSession() {
   const startVoiceInput = useCallback(async () => {
     if (sending || ended || voiceInputStatus === 'requesting') return;
     hapticTap();
+    // Глушим играющий ответ-TTS перед стартом микрофона: иначе он течёт в
+    // распознаватель и портит транскрипт (образец: SpeakingPanel stopListening).
+    stopSpeaking();
     if (!hasPremiumAccess) {
       void trackEvent('paywall_shown', { context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
       router.push({
@@ -382,6 +422,8 @@ export default function AiDialogSession() {
       const next = value.trim();
       if (!next) return;
       latest = next;
+      // Дублируем в ref: onPressOut (разговорный режим) читает его для авто-отправки.
+      latestTranscriptRef.current = next;
       if (!voiceInputMountedRef.current) return;
       setInput(next);
       if (lastErrorMessage) {
@@ -390,13 +432,24 @@ export default function AiDialogSession() {
       }
     };
 
+    // cue играем по ПЕРВОМУ признаку, что движок реально слушает (а не сразу
+    // после start() — прогрев ~100-300мс терял начало речи). На редких OEM 'start'
+    // не эмитится и сразу приходит result — поэтому один раз по любому из них.
+    let cuePlayed = false;
+    const playCueOnce = () => {
+      if (cuePlayed) return;
+      cuePlayed = true;
+      playRecordStart();
+    };
     // Любой признак жизни движка снимает watchdog: на редких OEM 'start' не
     // эмитится, а сразу приходит result — снимаем и там, и там.
     const startSub = speechModule.addListener('start', () => {
       clearRecognizerWatchdog();
+      playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: any) => {
       clearRecognizerWatchdog();
+      playCueOnce();
       const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
         ? event.results
         : [];
@@ -424,7 +477,8 @@ export default function AiDialogSession() {
       clearRecognizerWatchdog();
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
-      if (voiceInputMountedRef.current) setVoiceInputStatus(latest ? 'idle' : 'unavailable');
+      // Есть текст — молча оставляем его; иначе транзиентный сбой → 'error' с «Повторить».
+      if (voiceInputMountedRef.current) setVoiceInputStatus(latest ? 'idle' : 'error');
     });
     const noMatchSub = speechModule.addListener('nomatch', () => {
       clearRecognizerWatchdog();
@@ -472,13 +526,17 @@ export default function AiDialogSession() {
           onDevice,
           // Голосовой ввод не переслушивают — файл записи не нужен, не пишем.
           persistRecording: false,
+          // Разговорный режим = зажми-и-говори: держим движок открытым, пока
+          // зажата кнопка (иначе Android-endpointer рвёт речь на паузе).
+          holdToTalk: conversationModeRef.current,
         }),
       );
-      playRecordStart();
+      // cue теперь в playCueOnce (слушатели 'start'/'result').
     } catch {
       clearRecognizerWatchdog();
       cleanupVoiceInputListeners();
-      if (voiceInputMountedRef.current) setVoiceInputStatus('unavailable');
+      // start() кинул — почти всегда транзиентно (сервис занят/умер); даём «Повторить».
+      if (voiceInputMountedRef.current) setVoiceInputStatus('error');
     }
   }, [
     cleanupVoiceInputListeners,
@@ -493,6 +551,7 @@ export default function AiDialogSession() {
     scenario,
     sending,
     speechModule,
+    stopSpeaking,
     voiceInputStatus,
   ]);
 
@@ -597,6 +656,30 @@ export default function AiDialogSession() {
     [gameEnabled, objectives, temperament],
   );
 
+  // Озвучить реплику ИИ в разговорном режиме. Микрофон к этому моменту закрыт
+  // (press-and-hold: палец отпущен) — поэтому эха нет. Индикатор «Отвечает…»
+  // гасим по onDone/onError/onStopped. Вне разговорного режима — no-op (озвучка
+  // остаётся ручной, по тапу на реплику).
+  const speakAiReply = useCallback(
+    (rawText: string) => {
+      if (!conversationModeRef.current) return;
+      const clean = stripMarkers(rawText).trim();
+      if (!clean) return;
+      setAiSpeaking(true);
+      const done = () => {
+        if (voiceInputMountedRef.current) setAiSpeaking(false);
+      };
+      speak(clean, undefined, {
+        language: 'en-US',
+        voice: '',
+        onDone: done,
+        onStopped: done,
+        onError: done,
+      });
+    },
+    [speak],
+  );
+
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
@@ -642,10 +725,13 @@ export default function AiDialogSession() {
           persona: scenario.persona,
           scenarioId: scenario.id,
           interfaceLang: lang,
+          studyTarget,
           isPremium: hasPremiumAccess,
           ...gameRequestFields,
         });
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        // Разговорный режим: сразу озвучиваем ответ вслух (иначе no-op).
+        speakAiReply(res.assistantMessage);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyTurnState(res.turnState);
         // Бесплатный диалог списываем ТОЛЬКО здесь — после успешного ответа ИИ.
@@ -661,8 +747,59 @@ export default function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router, lang, gameRequestFields, applyTurnState],
+    [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router, lang, gameRequestFields, applyTurnState, speakAiReply],
   );
+
+  // ── Press-and-hold для разговорного режима ─────────────────────────────────
+  // Grace-таймер отложенной авто-отправки после отпускания пальца.
+  const conversationSendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearConversationSendTimer = useCallback(() => {
+    if (conversationSendTimerRef.current != null) {
+      clearTimeout(conversationSendTimerRef.current);
+      conversationSendTimerRef.current = null;
+    }
+  }, []);
+
+  // Зажал микрофон (разговорный режим): начинаем слушать с чистого листа.
+  const handleMicPressIn = useCallback(() => {
+    if (!conversationModeRef.current) return;
+    if (sending || ended || aiSpeaking) return;
+    clearConversationSendTimer();
+    latestTranscriptRef.current = '';
+    void startVoiceInput();
+  }, [sending, ended, aiSpeaking, clearConversationSendTimer, startVoiceInput]);
+
+  // Отпустил микрофон (разговорный режим): останавливаем движок и после короткого
+  // grace-периода (досдать финальный result) авто-отправляем распознанное.
+  const handleMicPressOut = useCallback(() => {
+    if (!conversationModeRef.current) return;
+    clearRecognizerWatchdog();
+    try {
+      speechModule?.stop();
+    } catch {
+      /* сервис мог умереть — не мешаем */
+    }
+    clearConversationSendTimer();
+    conversationSendTimerRef.current = setTimeout(() => {
+      conversationSendTimerRef.current = null;
+      if (!voiceInputMountedRef.current) return;
+      const text = latestTranscriptRef.current.trim();
+      cleanupVoiceInputListeners();
+      restoreLoudPlaybackMode();
+      setVoiceInputStatus('idle');
+      if (text) void send(text);
+    }, CONVERSATION_SEND_GRACE_MS);
+  }, [
+    clearRecognizerWatchdog,
+    speechModule,
+    clearConversationSendTimer,
+    cleanupVoiceInputListeners,
+    send,
+  ]);
+
+  useEffect(() => {
+    return () => clearConversationSendTimer();
+  }, [clearConversationSendTimer]);
 
   // Повтор последней отправки после ошибки сети. Реплика пользователя уже в чате,
   // поэтому НЕ пушим её заново — только заново зовём ИИ с той же историей.
@@ -696,10 +833,12 @@ export default function AiDialogSession() {
         persona: scenario.persona,
         scenarioId: scenario.id,
         interfaceLang: lang,
+        studyTarget,
         isPremium: hasPremiumAccess,
         ...gameRequestFields,
       });
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+      speakAiReply(res.assistantMessage);
       applyTurnState(res.turnState);
       if (consumesFreeDialog) void markFreeDialogUsed();
     } catch (error) {
@@ -709,7 +848,7 @@ export default function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario, lang, gameRequestFields, applyTurnState]);
+  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario, lang, gameRequestFields, applyTurnState, speakAiReply]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -757,6 +896,7 @@ export default function AiDialogSession() {
       interfaceLang: lang,
       scenarioId: scenario.id,
       goalEn: scenario.goalEn,
+      studyTarget,
     })
       .then((res) => {
         setReview(res);
@@ -812,7 +952,9 @@ export default function AiDialogSession() {
     return (
       <View
         style={{
-          backgroundColor: t.bgSurface,
+          backgroundColor: glassFill(t.bgSurface, 0.46),
+          borderTopWidth: 1,
+          borderTopColor: glassFill(t.accent, 0.14),
           borderRadius: 12,
           padding: 12,
           marginTop: 12,
@@ -916,7 +1058,42 @@ export default function AiDialogSession() {
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
   const voiceInputHint =
-    voiceInputStatus === 'listening'
+    // Разговорный режим: свои подсказки имеют приоритет («Отвечает…» → «Говори…»
+    // при удержании → «Зажми и говори» в покое).
+    conversationMode && aiSpeaking
+      ? triLang(lang, {
+          ru: 'Отвечает…',
+          uk: 'Відповідає…',
+          es: 'Respondiendo…',
+          'pt-BR': 'Respondendo…',
+          vi: 'Đang trả lời…',
+          id: 'Menjawab…',
+          tr: 'Yanıtlıyor…',
+          pl: 'Odpowiada…',
+        })
+      : conversationMode && voiceInputStatus === 'listening'
+        ? triLang(lang, {
+            ru: 'Говори… (отпусти, когда закончишь)',
+            uk: 'Говори… (відпусти, коли закінчиш)',
+            es: 'Habla… (suelta al terminar)',
+            'pt-BR': 'Fale… (solte ao terminar)',
+            vi: 'Nói… (thả ra khi xong)',
+            id: 'Bicara… (lepas saat selesai)',
+            tr: 'Konuş… (bitince bırak)',
+            pl: 'Mów… (puść, gdy skończysz)',
+          })
+        : conversationMode && (voiceInputStatus === 'idle' || voiceInputStatus === 'requesting') && !sending
+          ? triLang(lang, {
+              ru: 'Зажми микрофон и говори',
+              uk: 'Затисни мікрофон і говори',
+              es: 'Mantén pulsado el micro y habla',
+              'pt-BR': 'Segure o microfone e fale',
+              vi: 'Giữ micrô và nói',
+              id: 'Tahan mikrofon dan bicara',
+              tr: 'Mikrofona basılı tut ve konuş',
+              pl: 'Przytrzymaj mikrofon i mów',
+            })
+          : voiceInputStatus === 'listening'
       ? triLang(lang, {
           ru: 'Слушаю…',
           uk: 'Слухаю…',
@@ -938,16 +1115,16 @@ export default function AiDialogSession() {
             tr: 'Mikrofon izni gerekli',
             pl: 'Potrzebny dostęp do mikrofonu',
           })
-        : voiceInputStatus === 'stalled'
+        : voiceInputStatus === 'stalled' || voiceInputStatus === 'error'
           ? triLang(lang, {
-              ru: 'Не удалось запустить микрофон. Попробуй ещё раз',
-              uk: 'Не вдалося запустити мікрофон. Спробуй ще раз',
-              es: 'No se pudo iniciar el micrófono. Inténtalo de nuevo',
-              'pt-BR': 'Não foi possível iniciar o microfone. Tente de novo',
-              vi: 'Không khởi động được micrô. Hãy thử lại',
-              id: 'Tidak bisa memulai mikrofon. Coba lagi',
-              tr: 'Mikrofon başlatılamadı. Tekrar dene',
-              pl: 'Nie udało się uruchomić mikrofonu. Spróbuj ponownie',
+              ru: 'Не удалось расслышать. Попробуй ещё раз',
+              uk: 'Не вдалося розчути. Спробуй ще раз',
+              es: 'No se pudo escuchar. Inténtalo de nuevo',
+              'pt-BR': 'Não deu para ouvir. Tente de novo',
+              vi: 'Chưa nghe rõ. Hãy thử lại',
+              id: 'Belum terdengar. Coba lagi',
+              tr: 'Duyulamadı. Tekrar dene',
+              pl: 'Nie udało się usłyszeć. Spróbuj ponownie',
             })
         : voiceInputStatus === 'unavailable'
           ? triLang(lang, {
@@ -988,6 +1165,37 @@ export default function AiDialogSession() {
             }}
           >
             <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  // Глобальный рубильник ИИ: не пускаем внутрь диалога — показываем забавную
+  // заглушку «кафе/аэропорт закрыто» по категории ситуации (владелец: не пускать).
+  if (aiOffline()) {
+    const offline = aiOfflineDialogScreen(lang, scenario.category, scenario.id);
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name={scenario.icon as any} size={40} color={t.textMuted} />
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {offline.title}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {offline.message}
+          </Text>
+          <TouchableOpacity
+            accessibilityRole="button"
+            onPress={() => {
+              hapticTap();
+              safeRouterBack(router, '/(tabs)/home' as any);
+            }}
+            style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}
+          >
+            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>
+              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}
+            </Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -1320,13 +1528,13 @@ export default function AiDialogSession() {
                     // Пузырь собеседника — слева, светлая карточка, «хвостик» снизу-слева.
                     <View
                       style={{
-                        backgroundColor: t.bgCard,
+                        backgroundColor: glassFill(t.bgCard, 0.46),
                         borderRadius: 20,
                         borderBottomLeftRadius: 6,
                         paddingHorizontal: 16,
                         paddingVertical: 12,
-                        borderWidth: 0.5,
-                        borderColor: t.border,
+                        borderTopWidth: 1,
+                        borderTopColor: glassFill(t.accent, 0.14),
                         maxWidth: '82%',
                         flexShrink: 1,
                         shadowColor: t.shadowDark,
@@ -1585,10 +1793,10 @@ export default function AiDialogSession() {
                   alignSelf: 'center',
                   maxWidth: '90%',
                   alignItems: 'center',
-                  backgroundColor: t.bgSurface,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 14,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   paddingHorizontal: 16,
                   paddingVertical: 12,
                   marginBottom: 12,
@@ -1635,11 +1843,11 @@ export default function AiDialogSession() {
             {ended && gameEnabled && isTerminalOutcome(outcome) && !hasPremiumAccess && (
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 18,
                   padding: 18,
-                  borderWidth: 1,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   marginTop: 6,
                   marginBottom: 6,
                 }}
@@ -1688,10 +1896,8 @@ export default function AiDialogSession() {
 
                 <View
                   style={{
-                    backgroundColor: t.bgSurface,
+                    backgroundColor: glassFill(t.bgCard, 0.32),
                     borderRadius: 14,
-                    borderWidth: 0.5,
-                    borderColor: t.border,
                     padding: 12,
                     gap: 8,
                   }}
@@ -1853,7 +2059,7 @@ export default function AiDialogSession() {
                     style={{
                       flexDirection: 'row',
                       gap: 10,
-                      backgroundColor: t.bgSurface,
+                      backgroundColor: glassFill(t.bgCard, 0.32),
                       borderRadius: 12,
                       padding: 12,
                       marginBottom: 12,
@@ -2034,11 +2240,11 @@ export default function AiDialogSession() {
             {ended && !(gameEnabled && isTerminalOutcome(outcome)) && (
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
                   padding: 16,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   marginTop: 6,
                 }}
               >
@@ -2116,9 +2322,9 @@ export default function AiDialogSession() {
               <View
                 style={{
                   borderRadius: 16,
-                  borderWidth: 1,
-                  borderColor: t.border,
-                  backgroundColor: t.bgCard,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   paddingHorizontal: 14,
                   paddingVertical: 12,
                   flexDirection: 'row',
@@ -2165,6 +2371,108 @@ export default function AiDialogSession() {
                 paddingBottom: 12,
               }}
             >
+              {/* Тумблер разговорного режима «зажми и говори» — только там, где
+                  голосовой ввод в принципе поддерживается устройством. */}
+              {speechModule && (
+                <TouchableOpacity
+                  onPress={() => {
+                    hapticTap();
+                    if (!hasPremiumAccess) {
+                      void trackEvent('paywall_shown', {
+                        context: 'ai_voice_input',
+                        source: 'ai_dialog_conversation_toggle',
+                      });
+                      router.push({
+                        pathname: '/premium_modal',
+                        params: { context: 'ai_voice_input', source: 'ai_dialog_conversation_toggle' },
+                      } as never);
+                      return;
+                    }
+                    setConversationMode((prev) => {
+                      const next = !prev;
+                      void trackEvent('ai_dialog_conversation_mode_toggled', {
+                        scenarioId: scenario.id,
+                        on: next,
+                      });
+                      if (!next) {
+                        // Выключаем — гасим всё голосовое, чтобы не «зависло».
+                        clearConversationSendTimer();
+                        clearRecognizerWatchdog();
+                        try {
+                          speechModule?.abort();
+                        } catch {
+                          /* no-op */
+                        }
+                        cleanupVoiceInputListeners();
+                        restoreLoudPlaybackMode();
+                        setVoiceInputStatus('idle');
+                      }
+                      return next;
+                    });
+                  }}
+                  activeOpacity={0.8}
+                  accessibilityRole="switch"
+                  accessibilityState={{ checked: conversationMode }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignSelf: 'flex-start',
+                    gap: 7,
+                    paddingHorizontal: 12,
+                    paddingVertical: 7,
+                    marginBottom: 8,
+                    borderRadius: 16,
+                    borderWidth: 0.5,
+                    borderColor: conversationMode ? t.accent : t.border,
+                    backgroundColor: conversationMode ? t.accent : t.bgSurface,
+                  }}
+                >
+                  <Ionicons
+                    name="chatbubbles-outline"
+                    size={15}
+                    color={conversationMode ? t.correctText : t.textSecond}
+                  />
+                  <Text
+                    style={{
+                      color: conversationMode ? t.correctText : t.textSecond,
+                      fontSize: f.caption,
+                      fontWeight: '800',
+                    }}
+                    maxFontSizeMultiplier={1.1}
+                  >
+                    {triLang(lang, {
+                      ru: 'Разговор вслух',
+                      uk: 'Розмова вголос',
+                      es: 'Conversar en voz alta',
+                      'pt-BR': 'Conversar em voz alta',
+                      vi: 'Trò chuyện bằng giọng nói',
+                      id: 'Ngobrol dengan suara',
+                      tr: 'Sesli konuşma',
+                      pl: 'Rozmowa na głos',
+                    })}
+                  </Text>
+                  {!hasPremiumAccess && (
+                    <View
+                      style={{
+                        borderRadius: 7,
+                        paddingHorizontal: 5,
+                        paddingVertical: 1,
+                        backgroundColor: conversationMode ? t.bgPrimary : t.accent,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: conversationMode ? t.accent : t.correctText,
+                          fontSize: 8,
+                          fontWeight: '900',
+                        }}
+                      >
+                        PLUS
+                      </Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+              )}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               <TextInput
                 value={input}
@@ -2209,20 +2517,43 @@ export default function AiDialogSession() {
                 maxFontSizeMultiplier={1.2}
               />
               <TouchableOpacity
-                onPress={voiceInputStatus === 'listening' ? stopVoiceInput : () => void startVoiceInput()}
-                disabled={sending || voiceInputStatus === 'requesting'}
+                // Разговорный режим — удержание (говоришь, пока держишь). Обычный
+                // режим — прежний тап-toggle (старт/стоп по нажатию).
+                onPress={
+                  conversationMode
+                    ? undefined
+                    : voiceInputStatus === 'listening'
+                      ? stopVoiceInput
+                      : () => void startVoiceInput()
+                }
+                onPressIn={conversationMode ? handleMicPressIn : undefined}
+                onPressOut={conversationMode ? handleMicPressOut : undefined}
+                disabled={sending || aiSpeaking || voiceInputStatus === 'requesting'}
                 activeOpacity={0.82}
                 accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Голосовой ввод Plus',
-                  uk: 'Голосове введення Plus',
-                  es: 'Entrada por voz Plus',
-                  'pt-BR': 'Entrada por voz Plus',
-                  vi: 'Nhập bằng giọng nói Plus',
-                  id: 'Input suara Plus',
-                  tr: 'Plus sesle giriş',
-                  pl: 'Wpisywanie głosem Plus',
-                })}
+                accessibilityLabel={
+                  conversationMode
+                    ? triLang(lang, {
+                        ru: 'Зажми и говори',
+                        uk: 'Затисни і говори',
+                        es: 'Mantén pulsado y habla',
+                        'pt-BR': 'Segure e fale',
+                        vi: 'Giữ và nói',
+                        id: 'Tahan dan bicara',
+                        tr: 'Basılı tut ve konuş',
+                        pl: 'Przytrzymaj i mów',
+                      })
+                    : triLang(lang, {
+                        ru: 'Голосовой ввод Plus',
+                        uk: 'Голосове введення Plus',
+                        es: 'Entrada por voz Plus',
+                        'pt-BR': 'Entrada por voz Plus',
+                        vi: 'Nhập bằng giọng nói Plus',
+                        id: 'Input suara Plus',
+                        tr: 'Plus sesle giriş',
+                        pl: 'Wpisywanie głosem Plus',
+                      })
+                }
                 style={{
                   width: 44,
                   height: 44,
@@ -2237,7 +2568,13 @@ export default function AiDialogSession() {
                 }}
               >
                 <Ionicons
-                  name={voiceInputStatus === 'listening' ? 'stop' : 'mic-outline'}
+                  name={
+                    voiceInputStatus === 'listening'
+                      ? conversationMode
+                        ? 'mic'
+                        : 'stop'
+                      : 'mic-outline'
+                  }
                   size={21}
                   color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
                 />
@@ -2297,19 +2634,61 @@ export default function AiDialogSession() {
               </TouchableOpacity>
               </View>
               {voiceInputHint ? (
-                <Text
-                  style={{
-                    color: voiceInputStatus === 'listening' ? t.accent : t.textMuted,
-                    fontSize: f.caption,
-                    fontWeight: '800',
-                    marginTop: 6,
-                    paddingHorizontal: 6,
-                  }}
-                  numberOfLines={1}
-                  maxFontSizeMultiplier={1.1}
-                >
-                  {voiceInputHint}
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginTop: 6, paddingHorizontal: 6 }}>
+                  <Text
+                    style={{
+                      color: voiceInputStatus === 'listening' ? t.accent : t.textMuted,
+                      fontSize: f.caption,
+                      fontWeight: '800',
+                    }}
+                    numberOfLines={1}
+                    maxFontSizeMultiplier={1.1}
+                  >
+                    {voiceInputHint}
+                  </Text>
+                  {voiceInputStatus === 'denied' ? (
+                    <TouchableOpacity
+                      accessibilityRole="button"
+                      onPress={() => {
+                        hapticTap();
+                        Linking.openSettings().catch(() => {});
+                      }}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                      <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900' }}>
+                        {triLang(lang, {
+                          ru: 'Открыть настройки',
+                          uk: 'Відкрити налаштування',
+                          es: 'Abrir ajustes',
+                          'pt-BR': 'Abrir ajustes',
+                          vi: 'Mở cài đặt',
+                          id: 'Buka pengaturan',
+                          tr: 'Ayarları aç',
+                          pl: 'Otwórz ustawienia',
+                        })}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : voiceInputStatus === 'error' || voiceInputStatus === 'stalled' ? (
+                    <TouchableOpacity
+                      accessibilityRole="button"
+                      onPress={() => void startVoiceInput()}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                      <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900' }}>
+                        {triLang(lang, {
+                          ru: 'Повторить',
+                          uk: 'Повторити',
+                          es: 'Reintentar',
+                          'pt-BR': 'Tentar de novo',
+                          vi: 'Thử lại',
+                          id: 'Coba lagi',
+                          tr: 'Tekrar dene',
+                          pl: 'Ponów',
+                        })}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : null}
+                </View>
               ) : null}
             </View>
           )}

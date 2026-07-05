@@ -69,8 +69,17 @@ describe('constellations/config — дефолты и парсер admin_runtime
     expect(CONSTELLATION_DEFAULTS.starfall.pityMatches).toBe(25);
     expect(CONSTELLATION_DEFAULTS.starfall.matchCap).toBe(12);
     expect(CONSTELLATION_DEFAULTS.starfall.dailyCap).toBe(20);
-    expect(CONSTELLATION_DEFAULTS.earlyWin.mapSharePct).toBe(70);
+    expect(CONSTELLATION_DEFAULTS.earlyWin.mapSharePct).toBe(60); // 1.4
     expect(CONSTELLATION_DEFAULTS.newbieProtectionMatches).toBe(5);
     expect(CONSTELLATION_DEFAULTS.rewards.xpByPlace).toEqual([60, 40, 25, 15]);
+    // Балансовый патч этапа 1 (менять только через мастер-план):
+    expect(CONSTELLATION_DEFAULTS.rewards.shardsByPlace).toEqual([3, 1, 1, 0]); // 1.6
+    expect(CONSTELLATION_DEFAULTS.attackQuestionsCap).toBe(5); // 1.5
+    expect(CONSTELLATION_DEFAULTS.radiance.maxCenter).toBe(3); // 1.5
+    expect(CONSTELLATION_DEFAULTS.radiance.captureWear).toBe(1); // 1.5
+    expect(CONSTELLATION_DEFAULTS.scoring.polarHoldByStreak).toEqual([5, 5, 5, 3, 3, 2, 2, 2, 2, 2]); // 1.1
+    expect(CONSTELLATION_DEFAULTS.scoring.constellationBonusPerRound).toBe(3); // 1.4
+    expect(CONSTELLATION_DEFAULTS.rebirth.homeCores).toBe(2); // 1.3
+    expect(CONSTELLATION_DEFAULTS.underdog.maxStarsForDiscount).toBe(3); // 1.4
   });
 });

@@ -149,21 +149,33 @@ export function chooseBotTarget(
     if (rand() < 0.85) return POLAR_KEY;
   }
 
+  // Лидер по числу звёзд (1.7): бот, если сам не лидер, охотнее кусает лидера,
+  //    иначе игрок безнаказанно вырывается против пассивных ботов.
+  const starCounts = new Map<PlayerSlot, number>();
+  for (const star of Object.values(state.stars)) {
+    if (star.owner !== null) starCounts.set(star.owner, (starCounts.get(star.owner) ?? 0) + 1);
+  }
+  let leaderSlot: PlayerSlot | null = null;
+  let leaderCount = -1;
+  for (const [s, c] of starCounts) if (c > leaderCount) { leaderCount = c; leaderSlot = s; }
+  const iAmLeader = leaderSlot === slot;
+
   // 3. Расширение. Ключевая правка: бот СНАЧАЛА берёт лёгкие достижимые цели —
   //    нейтральные звёзды без брони (высокий шанс успешного захвата), а не
   //    кидается на дорогие армированные и проваливает их («не захватывает»).
   //    Вес: нейтральные +3, каждый уровень брони −1.5, дорогое кольцо — лёгкий
-  //    бонус (амбиция), но он не перебивает штраф за броню.
+  //    бонус (амбиция); звезда лидера — доп-вес (ганк), если бот сам не лидер.
   const ringWeight = { outer: 0.4, middle: 0.8, inner: 1.2, polar: 1.6 } as const;
   const weighted = targets.map((key) => {
     const star = state.stars[key];
     const neutralBonus = star.owner === null ? 3 : 0;
     const enemyOwnedBonus = star.owner !== null && star.owner !== slot ? 0.6 : 0;
+    const gankLeaderBonus = !iAmLeader && star.owner === leaderSlot ? 2 : 0;
     const armorPenalty = star.radiance * 1.5;
     const ambition = ringWeight[ringOf(parseHexKey(key))];
     return {
       key,
-      weight: Math.max(0.15, neutralBonus + enemyOwnedBonus + ambition - armorPenalty + rand() * 0.4),
+      weight: Math.max(0.15, neutralBonus + enemyOwnedBonus + gankLeaderBonus + ambition - armorPenalty + rand() * 0.4),
     };
   });
   // Идём к цели с наибольшим весом (не чисто случайно) — но со «слегка» случайным

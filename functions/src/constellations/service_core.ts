@@ -37,34 +37,71 @@ export interface AttackQuestionSpec {
   isBossAssault: boolean;
 }
 
+/** Число звёзд, владеемых слотом (для underdog-скидки). */
+function starCountOf(state: MatchState, slot: number): number {
+  let n = 0;
+  for (const star of Object.values(state.stars)) if (star.owner === slot) n += 1;
+  return n;
+}
+
+/**
+ * Скидка догоняющего (1.4): если атакующий владеет ≤ maxStarsForDiscount звёзд
+ * И цель принадлежит лидеру (больше всех звёзд) — минус questionDiscount вопрос.
+ * Rubber-band: отстающему легче кусать лидера, снежный ком тормозится.
+ */
+function underdogDiscount(
+  state: MatchState,
+  targetKey: string,
+  attackerSlot: number | undefined,
+  cfg: ConstellationConfig,
+): number {
+  if (attackerSlot === undefined) return 0;
+  const target = state.stars[targetKey];
+  if (!target || target.owner === null || target.owner === attackerSlot) return 0;
+  if (starCountOf(state, attackerSlot) > cfg.underdog.maxStarsForDiscount) return 0;
+  // Цель у лидера?
+  const counts = new Map<number, number>();
+  for (const star of Object.values(state.stars)) {
+    if (star.owner !== null) counts.set(star.owner, (counts.get(star.owner) ?? 0) + 1);
+  }
+  let leader = -1;
+  let leaderCount = -1;
+  for (const [slot, c] of counts) if (c > leaderCount) { leaderCount = c; leader = slot; }
+  return target.owner === leader ? cfg.underdog.questionDiscount : 0;
+}
+
 /**
  * Сколько и каких вопросов выдаётся на атаку цели (A2/A5/A6):
  * кольцо + Сияние, дом = 2 среднего + Сияние, последнее ядро = босс-штурм
  * (3 внутреннего, Сияние игнорируется), общий кап attackQuestionsCap.
+ * attackerSlot нужен для underdog-скидки (1.4); минимум вопросов — всегда 1.
  */
 export function attackQuestionSpec(
   state: MatchState,
   targetKey: string,
   matchRankIndex: number,
   cfg: ConstellationConfig,
+  attackerSlot?: number,
 ): AttackQuestionSpec {
   const star = state.stars[targetKey];
   const owner = star?.owner !== null && star !== undefined ? state.players[star.owner] : null;
   const isHome = !!owner && owner.status === 'alive' && owner.homeStarKey === targetKey && owner.cores > 0;
+  const discount = underdogDiscount(state, targetKey, attackerSlot, cfg);
+  const withDiscount = (n: number) => Math.max(1, n - discount);
 
   if (isHome && owner.cores === 1) {
     return {
-      count: Math.min(cfg.bossAssaultQuestions, cfg.attackQuestionsCap),
+      count: withDiscount(Math.min(cfg.bossAssaultQuestions, cfg.attackQuestionsCap)),
       level: levelForRing('inner', matchRankIndex),
       isBossAssault: true,
     };
   }
   if (isHome) {
-    const count = Math.min(cfg.questionsPerRing.middle + star.radiance, cfg.attackQuestionsCap);
+    const count = withDiscount(Math.min(cfg.questionsPerRing.middle + star.radiance, cfg.attackQuestionsCap));
     return { count, level: levelForRing('middle', matchRankIndex), isBossAssault: false };
   }
   const ring = ringOf(parseHexKey(targetKey));
-  const count = Math.min(cfg.questionsPerRing[ring] + (star?.radiance ?? 0), cfg.attackQuestionsCap);
+  const count = withDiscount(Math.min(cfg.questionsPerRing[ring] + (star?.radiance ?? 0), cfg.attackQuestionsCap));
   return { count, level: levelForRing(ring, matchRankIndex), isBossAssault: false };
 }
 

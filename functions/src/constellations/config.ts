@@ -28,7 +28,8 @@ export const CONSTELLATION_DEFAULTS = {
 
   // ── Вопросы по кольцам (A2) ────────────────────────────────────────────
   questionsPerRing: { outer: 1, middle: 2, inner: 2, polar: 3 },
-  attackQuestionsCap: 4,
+  // Кап 5 (было 4): чтобы Сияние 2 в центре давало заметный скачок (1.5).
+  attackQuestionsCap: 5,
 
   // ── Родная звезда и штурмы (A6) ────────────────────────────────────────
   homeCores: 3,
@@ -36,14 +37,21 @@ export const CONSTELLATION_DEFAULTS = {
 
   // ── Сияние и Щит (A5/A5a) ──────────────────────────────────────────────
   shieldPerMatch: 1,
-  radiance: { perfectCapture: 1, max: 2 },
+  // maxByRing (1.5): центр труднее отнять (Сияние до 3 в inner/polar), внешние 2.
+  // Позиционная игра: захват чужой звезды НЕ обнуляет Сияние, а понижает на 1.
+  radiance: { perfectCapture: 1, max: 2, maxCenter: 3, captureWear: 1 },
 
   // ── Очки (A7/A7a/A8, F4) ───────────────────────────────────────────────
   scoring: {
     starPoints: { outer: 10, middle: 20, inner: 30, polar: 50 },
-    polarHoldPerRound: 5,
+    // Затухающий доход Полярной (1.1): держать центр всю игру больше не авто-победа.
+    // Индекс = раунды подряд удержания (0-based); за пределами массива — последнее.
+    polarHoldByStreak: [5, 5, 5, 3, 3, 2, 2, 2, 2, 2],
+    polarHoldPerRound: 5, // legacy-фолбэк, если byStreak пуст
     eliminationBonus: 40,
-    constellationBonusPerRound: 2,
+    constellationBonusPerRound: 3, // 2→3 (1.4): «собери большое» как ось очков
+    constellationBigBonus: 2,      // доп. за созвездие из 5+ звёзд
+    constellationBigSize: 5,
     constellationMinSize: 3,
     lastRoundCaptureMultiplier: 2,
   },
@@ -52,12 +60,14 @@ export const CONSTELLATION_DEFAULTS = {
   polarDust: { perRounds: 3, matchCap: 2, dailyCap: 4 },
 
   // ── Ранняя победа (A9) ─────────────────────────────────────────────────
-  earlyWin: { mapSharePct: 70 },
+  earlyWin: { mapSharePct: 60 }, // 70→60 (1.4): короче «мёртвый хвост»
 
-  // ── Возрождение «Падающая звезда» (A11) ────────────────────────────────
-  // minRoundsLeftToFall: падение доступно, если до конца матча БОЛЬШЕ 3
-  // раундов, т.е. осталось ≥ 4 — иначе сразу экран поражения.
-  rebirth: { correctToRespawn: 2, minRoundsLeftToFall: 4, maxPerMatch: 1 },
+  // ── Догоняющий (1.4): атаки по лидеру дешевле, если звёзд мало ──────────
+  underdog: { maxStarsForDiscount: 3, questionDiscount: 1 },
+
+  // ── Возрождение «Падающая звезда» (A11 + 1.3) ──────────────────────────
+  // homeCores:2 (было 1) + невредимость home 1 раунд — иначе добьют сразу.
+  rebirth: { correctToRespawn: 2, minRoundsLeftToFall: 4, maxPerMatch: 1, homeCores: 2, shieldRounds: 1 },
 
   // ── Матчмейкинг (B1–B3) ────────────────────────────────────────────────
   matchmaking: { botFillDelaySec: 30, minHumans: 1 },

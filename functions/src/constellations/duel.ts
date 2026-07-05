@@ -33,8 +33,17 @@ function answerAt(answers: readonly DuelAnswer[], i: number): DuelAnswer {
   return answers[i] ?? NOT_ANSWERED;
 }
 
-/** Кому очко за вопрос: null — никому (оба мимо). */
-function pointWinner(a: DuelAnswer, b: DuelAnswer): 0 | 1 | null {
+/**
+ * Очки за основной вопрос (1.2): дуэль про ЗНАНИЕ, не про пинг.
+ * Оба верно → очко ОБОИМ (ничья по вопросу). Один верно → очко ему. Оба мимо → 0.
+ * Возвращает [дельта A, дельта B]. Скорость здесь НЕ решает.
+ */
+function pointDeltas(a: DuelAnswer, b: DuelAnswer): [number, number] {
+  return [a.correct ? 1 : 0, b.correct ? 1 : 0];
+}
+
+/** Внезапная смерть: первый ВЕРНЫЙ забирает; оба верно → быстрейший; оба мимо → никто. */
+function suddenDeathWinner(a: DuelAnswer, b: DuelAnswer): 0 | 1 | null {
   if (a.correct && b.correct) return a.timeMs <= b.timeMs ? 0 : 1;
   if (a.correct) return 0;
   if (b.correct) return 1;
@@ -49,11 +58,13 @@ export function scoreDuel(
   let decidedAtQuestion = MAIN_QUESTIONS - 1;
 
   for (let i = 0; i < MAIN_QUESTIONS; i += 1) {
-    const taker = pointWinner(answerAt(answersA, i), answerAt(answersB, i));
-    if (taker !== null) points[taker] += 1;
+    const [da, db] = pointDeltas(answerAt(answersA, i), answerAt(answersB, i));
+    points[0] += da;
+    points[1] += db;
     decidedAtQuestion = i;
     const remaining = MAIN_QUESTIONS - 1 - i;
-    if (Math.abs(points[0] - points[1]) > remaining) break; // отставание не отыграть
+    // Отрыв недостижим оставшимися вопросами (макс по +1 обоим) → досрочно.
+    if (Math.abs(points[0] - points[1]) > remaining) break;
   }
 
   if (points[0] !== points[1]) {
@@ -65,8 +76,8 @@ export function scoreDuel(
     };
   }
 
-  // Внезапная смерть (4-й вопрос): первый верный; оба мимо — никто.
-  const winner = pointWinner(answerAt(answersA, MAIN_QUESTIONS), answerAt(answersB, MAIN_QUESTIONS));
+  // Ничья по знанию → внезапная смерть (4-й вопрос): здесь скорость решает.
+  const winner = suddenDeathWinner(answerAt(answersA, MAIN_QUESTIONS), answerAt(answersB, MAIN_QUESTIONS));
   return {
     winner,
     points,

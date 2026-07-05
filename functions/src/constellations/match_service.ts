@@ -406,7 +406,8 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
     }
   }
   for (const single of conflicts.singles) {
-    const spec = attackQuestionSpec(state, single.target as string, matchRankIndex, cfg);
+    // attackerSlot для underdog-скидки (1.4): отстающему легче кусать лидера.
+    const spec = attackQuestionSpec(state, single.target as string, matchRankIndex, cfg, single.slot);
     assignments.push({
       slot: single.slot,
       kind: 'attack',

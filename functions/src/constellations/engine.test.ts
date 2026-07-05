@@ -76,13 +76,16 @@ describe('constellations/engine — конфликты (Столкновение
     expect(res.outpaced).toEqual([]);
   });
 
-  test('трое на одну звезду → дуэль двух с лучшим рейтингом, третий «опоздал»', () => {
+  test('трое на одну звезду → дуэль двух БЛИЖАЙШИХ по силе, третий «опоздал» (1.2)', () => {
+    // Рейтинги 100/300/200: минимальный разрыв у пары {100,200}=100 (slots 0,2)
+    // берётся первым в порядке перебора. slot 1 (300) — самый сильный — «опоздал».
+    // Так система больше НЕ штрафует сильных, сталкивая их лбами.
     const res = detectConflicts(
       [action(0, '0,0'), action(1, '0,0'), action(2, '0,0')],
       { 0: 100, 1: 300, 2: 200, 3: 0 },
     );
-    expect(res.duels).toEqual([{ starKey: '0,0', slots: [1, 2] }]);
-    expect(res.outpaced).toEqual([0]);
+    expect(res.duels).toEqual([{ starKey: '0,0', slots: [0, 2] }]);
+    expect(res.outpaced).toEqual([1]);
   });
 });
 
@@ -110,14 +113,15 @@ describe('constellations/engine — резолв атак', () => {
     expect(state.stars['2,0'].owner).toBeNull();
   });
 
-  test('успех против чужой: переход, Сияние сбрасывается', () => {
+  test('успех против чужой: переход, Сияние ИЗНАШИВАЕТСЯ на 1, не обнуляется (1.5)', () => {
     const s = makeState();
     s.stars['2,0'] = { owner: 1, radiance: 2 };
     const { state } = resolveRound(s, {
       ...noInput(),
       attacks: [{ slot: 0, target: '2,0', correctAll: true, perfect: false }],
     }, CFG);
-    expect(state.stars['2,0']).toEqual({ owner: 0, radiance: 0 });
+    // Позиционная игра: укреплённый рубеж дороже отбивать — броня 2→1, не 0.
+    expect(state.stars['2,0']).toEqual({ owner: 0, radiance: 1 });
   });
 
   test('исходное состояние не мутируется (иммутабельность)', () => {
@@ -128,6 +132,27 @@ describe('constellations/engine — резолв атак', () => {
       attacks: [{ slot: 0, target: '2,0', correctAll: true, perfect: true }],
     }, CFG);
     expect(s).toEqual(before);
+  });
+
+  test('Сияние центра держится выше: перехват Полярной с бронёй 3 → 2, не 0 (1.5)', () => {
+    const s = makeState();
+    s.stars['0,0'] = { owner: 1, radiance: 3 }; // центр, maxCenter=3
+    const { state } = resolveRound(s, {
+      ...noInput(),
+      attacks: [{ slot: 0, target: '0,0', correctAll: true, perfect: false }],
+    }, CFG);
+    expect(state.stars['0,0']).toEqual({ owner: 0, radiance: 2 }); // износ на 1
+  });
+
+  test('идеальный захват чужой брони: износ −1, потом +1 за идеал (1.5)', () => {
+    const s = makeState();
+    s.stars['2,0'] = { owner: 1, radiance: 2 };
+    const { state } = resolveRound(s, {
+      ...noInput(),
+      attacks: [{ slot: 0, target: '2,0', correctAll: true, perfect: true }],
+    }, CFG);
+    // среднее кольцо cap 2: worn 2→1, +1 идеал = 2
+    expect(state.stars['2,0']).toEqual({ owner: 0, radiance: 2 });
   });
 });
 
@@ -197,7 +222,7 @@ describe('constellations/engine — ядра, выбивание, возрожд
     expect(state.players[1].status).toBe('out');
   });
 
-  test('падающая звезда: 2 верных ответа → возрождение на свободном внешнем кольце с 1 ядром', () => {
+  test('падающая звезда: 2 верных ответа → возрождение с 2 ядрами и невредимостью home (1.3)', () => {
     const s = makeState();
     s.players[1] = { ...s.players[1], status: 'falling', fallingLight: 1, cores: 0 };
     const { state, events } = resolveRound(s, {
@@ -206,8 +231,9 @@ describe('constellations/engine — ядра, выбивание, возрожд
     }, CFG);
     const p = state.players[1];
     expect(p.status).toBe('alive');
-    expect(p.cores).toBe(1);
+    expect(p.cores).toBe(2); // 1.3: 2 ядра, не 1 — иначе добьют сразу
     expect(p.rebirthUsed).toBe(true);
+    expect(p.homeShieldUntilRound).toBe(state.round + CFG.rebirth.shieldRounds - 1);
     const home = state.players[1].homeStarKey;
     expect(state.stars[home].owner).toBe(1);
     expect(events.some((e) => e.type === 'reborn' && e.slot === 1)).toBe(true);
@@ -233,10 +259,22 @@ describe('constellations/engine — ядра, выбивание, возрожд
     }, CFG);
     expect(state.players[1].status).toBe('out');
   });
+
+  test('невредимость возрождённого: удар по home под щитом не снимает ядро (1.3)', () => {
+    const s = makeState({ round: 3 });
+    s.players[1] = { ...s.players[1], cores: 2, homeShieldUntilRound: 4 }; // защищён до раунда 4
+    const { state } = resolveRound(s, {
+      ...noInput(),
+      attacks: [{ slot: 0, target: HOMES[1], correctAll: true, perfect: false }],
+    }, CFG);
+    expect(state.players[1].cores).toBe(2); // ядро не снято
+    expect(state.players[1].status).toBe('alive');
+    expect(state.stars[HOMES[1]].owner).toBe(1); // звезда осталась
+  });
 });
 
 describe('constellations/engine — Полярная и созвездия', () => {
-  test('удержание Полярной: +5 очков за раунд, +1 пыль за каждые 3 раунда, кап 2', () => {
+  test('удержание Полярной: ЗАТУХАЮЩИЙ доход byStreak, пыль каждые 3 раунда кап 2 (1.1)', () => {
     let s = makeState();
     s.stars['0,0'] = { owner: 0, radiance: 0 };
     let dustEvents = 0;
@@ -245,7 +283,10 @@ describe('constellations/engine — Полярная и созвездия', () 
       dustEvents += res.events.filter((e) => e.type === 'polar_dust').length;
       s = res.state;
     }
-    expect(s.players[0].bonusPoints).toBe(9 * CFG.scoring.polarHoldPerRound + /* созвездий нет */ 0);
+    // byStreak [5,5,5,3,3,2,2,2,2,2] за 9 раундов: 5+5+5+3+3+2+2+2+2 = 29 (было 45).
+    const expected = CFG.scoring.polarHoldByStreak.slice(0, 9).reduce((a, b) => a + b, 0);
+    expect(expected).toBe(29);
+    expect(s.players[0].bonusPoints).toBe(expected);
     expect(s.players[0].dustEarned).toBe(2); // 3-й и 6-й раунды; 9-й упёрся в кап
     expect(dustEvents).toBe(2);
   });

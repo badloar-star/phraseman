@@ -13,12 +13,15 @@ describe('constellations/duel — блиц до 3 очков (A4a)', () => {
     expect(res.suddenDeath).toBe(false);
   });
 
-  test('оба верно — очко быстрейшему (серверные метки)', () => {
+  test('оба верно на вопрос — очко ОБОИМ, не быстрейшему (1.2 — знание, не пинг)', () => {
+    // Все 3 вопроса оба верны → 3:3 → ничья по знанию → внезапная смерть.
     const res = scoreDuel(
-      [ans(true, 2000), ans(true, 9000), ans(true, 2000)],
-      [ans(true, 3000), ans(true, 1000), ans(true, 8000)],
+      [ans(true, 2000), ans(true, 9000), ans(true, 2000), ans(true, 1000)],
+      [ans(true, 3000), ans(true, 1000), ans(true, 8000), ans(true, 5000)],
     );
-    expect(res.points).toEqual([2, 1]);
+    expect(res.points).toEqual([3, 3]);
+    expect(res.suddenDeath).toBe(true);
+    // В внезапной смерти скорость решает: A быстрее (1000 < 5000).
     expect(res.winner).toBe(0);
   });
 
@@ -86,12 +89,14 @@ describe('constellations/duel — блиц до 3 очков (A4a)', () => {
     expect(res.decidedAtQuestion).toBe(1);
   });
 
-  test('равное время при обоих верных — очко никому не даётся дважды: разруливается индексом игрока (детерминизм)', () => {
+  test('оба верно на вопрос → очко ОБОИМ (1.2); ничья ведёт к внезапной смерти', () => {
+    // 1-й вопрос оба верны (1:1), 2-3 оба мимо (0) → 1:1 → внезапная смерть.
     const res = scoreDuel(
-      [ans(true, 5000), ans(false, 1000), ans(false, 1000), ans(false, 1000)],
-      [ans(true, 5000), ans(false, 2000), ans(false, 2000), ans(false, 2000)],
+      [ans(true, 5000), ans(false, 1000), ans(false, 1000), ans(true, 3000)],
+      [ans(true, 5000), ans(false, 2000), ans(false, 2000), ans(false, 4000)],
     );
-    // одинаковое время → очко первому по индексу (детерминированно, не рандом)
-    expect(res.points[0] + res.points[1]).toBe(1);
+    expect(res.points).toEqual([1, 1]);
+    expect(res.suddenDeath).toBe(true);
+    expect(res.winner).toBe(0); // A верен в внезапной смерти
   });
 });

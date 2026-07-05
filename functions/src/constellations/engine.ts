@@ -48,6 +48,8 @@ export interface PlayerMatchState {
   perfectCaptures: number;
   dustEarned: number;
   polarRoundsHeld: number;
+  /** Возрождённый неуязвим по home до этого раунда включительно (1.3); 0 = нет. */
+  homeShieldUntilRound?: number;
 }
 
 export interface MatchState {
@@ -193,14 +195,33 @@ export function detectConflicts(
       singles.push(attackers[0]);
       continue;
     }
-    const byRating = [...attackers].sort(
-      (a, b) => ratingBySlot[b.slot] - ratingBySlot[a.slot] || a.slot - b.slot,
-    );
-    const pair = byRating.slice(0, 2).map((a) => a.slot).sort((a, b) => a - b);
-    duels.push({ starKey, slots: [pair[0], pair[1]] });
-    for (const late of byRating.slice(2)) outpaced.push(late.slot);
+    // 1.2: дуэль между двумя БЛИЖАЙШИМИ по силе, а не топ-2 по рейтингу —
+    // иначе система штрафовала сильных (их всегда сталкивали лбами). Ищем пару
+    // с минимальной разницей рейтинга; остальные атакующие «опоздали».
+    let best: [PlayerSlot, PlayerSlot] | null = null;
+    let bestGap = Number.POSITIVE_INFINITY;
+    for (let i = 0; i < attackers.length; i += 1) {
+      for (let j = i + 1; j < attackers.length; j += 1) {
+        const gap = Math.abs(ratingBySlot[attackers[i].slot] - ratingBySlot[attackers[j].slot]);
+        if (gap < bestGap) {
+          bestGap = gap;
+          best = [attackers[i].slot, attackers[j].slot];
+        }
+      }
+    }
+    const pair = (best as [PlayerSlot, PlayerSlot]).slice().sort((a, b) => a - b) as [PlayerSlot, PlayerSlot];
+    duels.push({ starKey, slots: pair });
+    for (const a of attackers) {
+      if (a.slot !== pair[0] && a.slot !== pair[1]) outpaced.push(a.slot);
+    }
   }
   return { duels, singles, outpaced };
+}
+
+/** Кап Сияния для звезды по кольцу (1.5): центр (inner/polar) — maxCenter, иначе max. */
+function ringCap(starKey: string, cfg: ConstellationConfig): number {
+  const ring = ringOf(parseHexKey(starKey));
+  return ring === 'inner' || ring === 'polar' ? cfg.radiance.maxCenter : cfg.radiance.max;
 }
 
 /** Ядро резолва: применяет один успешный удар по звезде (атака или дуэль). */
@@ -219,6 +240,12 @@ function applyAttackSuccess(
 
   // Удар по родной звезде живого владельца → снимает ядро (A6).
   if (defender && defender.status === 'alive' && defender.homeStarKey === starKey && defender.cores > 0) {
+    // 1.3: возрождённый неуязвим по home первые shieldRounds — удар просто
+    // не проходит (звезда остаётся, ядро цело), даёт камбэку встать на ноги.
+    if (defender.homeShieldUntilRound && state.round <= defender.homeShieldUntilRound) {
+      events.push({ type: 'core_lost', slot: defender.slot, starKey, amount: defender.cores });
+      return;
+    }
     defender.cores -= 1;
     events.push({ type: 'core_lost', slot: defender.slot, starKey, amount: defender.cores });
     if (defender.cores > 0) return;
@@ -236,8 +263,17 @@ function applyAttackSuccess(
     return;
   }
 
-  // Обычный захват: нейтральная или чужая звезда (A4/A5).
-  const radiance = perfect ? Math.min(cfg.radiance.perfectCapture, cfg.radiance.max) : 0;
+  // Обычный захват: нейтральная или чужая звезда (A4/A5, 1.5).
+  // Позиционная игра: захват НЕ обнуляет вражескую броню в 0, а понижает на
+  // captureWear (укреплённый рубеж дороже отбивать). Свой идеальный захват
+  // добавляет Сияние поверх изношенного, до капа кольца (центр — до maxCenter).
+  const ringMax = ringCap(starKey, cfg);
+  const prevRadiance = star.radiance;
+  const worn = star.owner !== null && star.owner !== attacker
+    ? Math.max(0, prevRadiance - cfg.radiance.captureWear)
+    : 0;
+  const gained = perfect ? cfg.radiance.perfectCapture : 0;
+  const radiance = Math.min(ringMax, worn + gained);
   state.stars[starKey] = { owner: attacker, radiance };
   if (perfect) state.players[attacker].perfectCaptures += 1;
   // «Последний раунд ×2 очков за захваты» (F4): бонус = стоимость звезды × (множитель − 1).
@@ -248,27 +284,47 @@ function applyAttackSuccess(
   events.push({ type: eventType, slot: attacker, starKey });
 }
 
-/** Свободная звезда для возрождения: внешнее кольцо, максимально далеко от врагов (A11). */
+/**
+ * Свободная звезда для возрождения (A11, 1.3): БЛИЖЕ к действию, а не в дальний
+ * угол. Оценка = (близость к ближайшей нейтральной цели, чтобы сразу расширяться)
+ * − (близость к лидеру, чтобы не воскреснуть ему в пасть). Возрождённый получает
+ * шанс на камбэк, а не отсроченное поражение.
+ */
 function pickRebirthStar(state: MatchState, forSlot: PlayerSlot): string | null {
-  const enemyKeys = Object.keys(state.stars).filter((key) => {
-    const owner = state.stars[key].owner;
-    return owner !== null && owner !== forSlot;
-  });
-  const scoreOf = (key: string): number => {
-    if (enemyKeys.length === 0) return 0;
-    const h = parseHexKey(key);
-    return Math.min(...enemyKeys.map((e) => hexDistance(h, parseHexKey(e))));
-  };
-  const pickBest = (candidates: string[]): string | null => {
-    if (candidates.length === 0) return null;
-    return candidates.sort((a, b) => scoreOf(b) - scoreOf(a) || (a < b ? -1 : 1))[0];
-  };
   const free = Object.keys(state.stars).filter((key) => state.stars[key].owner === null);
-  const outerFree = free.filter((key) => ringOf(parseHexKey(key)) === 'outer');
-  // Edge case спека: нет свободной на внешнем → ближайшая к краю любого кольца.
-  return pickBest(outerFree) ?? pickBest(
-    [...free].sort((a, b) => hexDistance(parseHexKey(b), { q: 0, r: 0 }) - hexDistance(parseHexKey(a), { q: 0, r: 0 })),
-  );
+  if (free.length === 0) return null;
+
+  // Лидер по числу владеемых звёзд (кроме нас).
+  const starsBySlot = new Map<PlayerSlot, number>();
+  for (const star of Object.values(state.stars)) {
+    if (star.owner !== null && star.owner !== forSlot) {
+      starsBySlot.set(star.owner, (starsBySlot.get(star.owner) ?? 0) + 1);
+    }
+  }
+  let leaderSlot: PlayerSlot | null = null;
+  let leaderCount = -1;
+  for (const [slot, count] of starsBySlot) {
+    if (count > leaderCount) { leaderCount = count; leaderSlot = slot; }
+  }
+  const leaderKeys = leaderSlot !== null
+    ? Object.keys(state.stars).filter((k) => state.stars[k].owner === leaderSlot)
+    : [];
+
+  const nearestFreeGap = (key: string): number => {
+    const h = parseHexKey(key);
+    const others = free.filter((f) => f !== key);
+    if (others.length === 0) return 3;
+    return Math.min(...others.map((f) => hexDistance(h, parseHexKey(f))));
+  };
+  const nearLeader = (key: string): number => {
+    if (leaderKeys.length === 0) return 6;
+    const h = parseHexKey(key);
+    return Math.min(...leaderKeys.map((l) => hexDistance(h, parseHexKey(l))));
+  };
+  // Хотим: рядом со свободными (низкий gap → есть куда расширяться) и подальше
+  // от лидера (высокий nearLeader). Оценка тем больше, чем лучше по обоим.
+  const scoreOf = (key: string): number => nearLeader(key) - nearestFreeGap(key);
+  return [...free].sort((a, b) => scoreOf(b) - scoreOf(a) || (a < b ? -1 : 1))[0];
 }
 
 export interface RoundResolution {
@@ -295,7 +351,7 @@ export function resolveRound(
     const star = state.stars[shield.starKey];
     if (!player || player.status !== 'alive' || player.shieldUsed) continue;
     if (!star || star.owner !== shield.slot) continue;
-    star.radiance = Math.min(cfg.radiance.max, star.radiance + 1);
+    star.radiance = Math.min(ringCap(shield.starKey, cfg), star.radiance + 1);
     player.shieldUsed = true;
     events.push({ type: 'shield', slot: shield.slot, starKey: shield.starKey });
   }
@@ -324,25 +380,34 @@ export function resolveRound(
     if (player.fallingLight < cfg.rebirth.correctToRespawn) continue;
     const starKey = pickRebirthStar(state, outcome.slot);
     if (!starKey) continue; // нет свободных звёзд — продолжает падать (крайне редко)
+    // 1.3: 2 ядра (было 1) + невредимость home на shieldRounds раундов — иначе
+    // возрождённого добивают в тот же раунд и камбэк мёртв.
     state.stars[starKey] = { owner: outcome.slot, radiance: 0 };
     state.players[outcome.slot] = {
       ...player,
       homeStarKey: starKey,
-      cores: 1,
+      cores: cfg.rebirth.homeCores,
       status: 'alive',
       fallingLight: 0,
       rebirthUsed: true,
+      homeShieldUntilRound: state.round + cfg.rebirth.shieldRounds,
     };
     events.push({ type: 'reborn', slot: outcome.slot, starKey });
   }
 
-  // 5. Доход Полярной (A7): очки каждый полный раунд, пыль редко, с капом.
+  // 5. Доход Полярной (A7, 1.1): ЗАТУХАЮЩИЙ доход по числу раундов удержания —
+  //    держать центр всю игру больше не авто-победа.
   const polarOwner = state.stars[POLAR_KEY]?.owner ?? null;
   for (const player of state.players) {
     if (player.slot === polarOwner && player.status === 'alive') {
-      player.bonusPoints += cfg.scoring.polarHoldPerRound;
+      const streak = player.polarRoundsHeld; // сколько раундов уже держал (0-based индекс дохода)
+      const table = cfg.scoring.polarHoldByStreak;
+      const income = table.length > 0
+        ? table[Math.min(streak, table.length - 1)]
+        : cfg.scoring.polarHoldPerRound;
+      player.bonusPoints += income;
       player.polarRoundsHeld += 1;
-      events.push({ type: 'polar_income', slot: player.slot, amount: cfg.scoring.polarHoldPerRound });
+      events.push({ type: 'polar_income', slot: player.slot, amount: income });
       const earnsDust = player.polarRoundsHeld % cfg.polarDust.perRounds === 0
         && player.dustEarned < cfg.polarDust.matchCap;
       if (earnsDust) {
@@ -354,13 +419,20 @@ export function resolveRound(
     }
   }
 
-  // 6. Бонус смежности «собери созвездие» (A7a) — каждый раунд.
+  // 6. Бонус смежности «собери созвездие» (A7a, 1.4) — каждый раунд. Плюс
+  //    доп-бонус за БОЛЬШОЕ созвездие (5+ звёзд) — альтернативная ось очков
+  //    для отстающего, кому не взять дорогой центр.
   for (const player of state.players) {
     if (player.status !== 'alive') continue;
     const bonus = (() => {
       const groups = connectedGroups(ownedStarKeys(state, player.slot));
-      const qualifying = groups.filter((g) => g.length >= cfg.scoring.constellationMinSize);
-      return qualifying.length * cfg.scoring.constellationBonusPerRound;
+      let total = 0;
+      for (const g of groups) {
+        if (g.length < cfg.scoring.constellationMinSize) continue;
+        total += cfg.scoring.constellationBonusPerRound;
+        if (g.length >= cfg.scoring.constellationBigSize) total += cfg.scoring.constellationBigBonus;
+      }
+      return total;
     })();
     if (bonus > 0) {
       player.bonusPoints += bonus;

@@ -31,20 +31,20 @@ describe('constellations/scoring — бонус смежности (созвез
     expect(roundConstellationBonus(['0,0', '1,0'], opts)).toBe(0);
   });
 
-  test('созвездие из 3+ даёт бонус за ГРУППУ, не за звезду', () => {
-    expect(roundConstellationBonus(['0,0', '1,0', '1,-1'], opts)).toBe(2);
-    expect(roundConstellationBonus(['0,0', '1,0', '1,-1', '0,1', '2,-1'], opts)).toBe(2);
+  test('созвездие из 3+ даёт бонус за ГРУППУ, не за звезду (perGroup=3, 1.4)', () => {
+    expect(roundConstellationBonus(['0,0', '1,0', '1,-1'], opts)).toBe(3);
+    expect(roundConstellationBonus(['0,0', '1,0', '1,-1', '0,1', '2,-1'], opts)).toBe(3);
   });
 
   test('два отдельных созвездия — бонус за каждое', () => {
     // группа у центра + группа на противоположном краю
     const groupA = ['0,0', '1,0', '1,-1'];
     const groupB = ['-3,0', '-3,1', '-2,0'];
-    expect(roundConstellationBonus([...groupA, ...groupB], opts)).toBe(4);
+    expect(roundConstellationBonus([...groupA, ...groupB], opts)).toBe(6);
   });
 
   test('одинокие звезды рядом с группой не ломают счёт групп', () => {
-    expect(roundConstellationBonus(['0,0', '1,0', '1,-1', '3,0'], opts)).toBe(2);
+    expect(roundConstellationBonus(['0,0', '1,0', '1,-1', '3,0'], opts)).toBe(3);
   });
 });
 

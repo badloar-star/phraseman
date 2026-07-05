@@ -43,12 +43,12 @@ describe('constellations/service_core — число вопросов на ат�
     expect(attackQuestionSpec(s, '0,0', 0, CFG).count).toBe(3); // Полярная
   });
 
-  test('Сияние добавляет +1 за уровень, кап 4', () => {
+  test('Сияние добавляет +1 за уровень, кап 5 (1.5 — центр даёт заметный скачок)', () => {
     const s = makeState();
     s.stars['2,0'] = { owner: 1, radiance: 2 };
-    expect(attackQuestionSpec(s, '2,0', 0, CFG).count).toBe(4); // 2+2
+    expect(attackQuestionSpec(s, '2,0', 0, CFG).count).toBe(4); // 2+2 (среднее)
     s.stars['0,0'] = { owner: 1, radiance: 2 };
-    expect(attackQuestionSpec(s, '0,0', 0, CFG).count).toBe(4); // 3+2 → кап 4
+    expect(attackQuestionSpec(s, '0,0', 0, CFG).count).toBe(5); // 3+2 = 5 (Полярная, кап 5)
   });
 
   test('атака родной звезды: 2 вопроса среднего уровня + Сияние', () => {
@@ -70,6 +70,34 @@ describe('constellations/service_core — число вопросов на ат�
     expect(spec.isBossAssault).toBe(true);
     expect(spec.count).toBe(3);
     expect(spec.level).toBe(levelForRing('inner', 0));
+  });
+
+  test('underdog-скидка (1.4): отстающий (≤3 звезды) атакует лидера — минус вопрос', () => {
+    const s = makeState();
+    // slot0 (атакующий) — только дом (1 звезда, отстающий). slot1 — лидер: дом + куча.
+    s.stars['2,-2'] = { owner: 1, radiance: 0 };
+    s.stars['1,0'] = { owner: 1, radiance: 0 };
+    s.stars['0,0'] = { owner: 1, radiance: 0 };
+    s.stars['1,-1'] = { owner: 1, radiance: 0 }; // лидер владеет 5 звёздами (дом+4)
+    // Полярная лидера базово 3 вопроса → со скидкой 2.
+    expect(attackQuestionSpec(s, '0,0', 0, CFG, 0).count).toBe(2);
+    // Без attackerSlot скидки нет — 3 вопроса.
+    expect(attackQuestionSpec(s, '0,0', 0, CFG).count).toBe(3);
+  });
+
+  test('underdog-скидка НЕ применяется, если атакующий не отстаёт', () => {
+    const s = makeState();
+    // Дать slot0 много звёзд → не отстающий.
+    for (const k of ['2,0', '2,1', '3,-1', '2,-2']) s.stars[k] = { owner: 0, radiance: 0 };
+    s.stars['0,0'] = { owner: 1, radiance: 0 };
+    expect(attackQuestionSpec(s, '0,0', 0, CFG, 0).count).toBe(3); // без скидки
+  });
+
+  test('минимум вопросов на атаку — всегда 1 (скидка не уводит в 0)', () => {
+    const s = makeState();
+    s.stars['3,-1'] = { owner: 1, radiance: 0 }; // внешнее кольцо лидера = 1 вопрос
+    for (const k of ['2,0', '1,0', '0,0', '1,-1']) s.stars[k] = { owner: 1, radiance: 0 };
+    expect(attackQuestionSpec(s, '3,-1', 0, CFG, 0).count).toBe(1); // 1-1=0 → min 1
   });
 });
 

@@ -13,6 +13,7 @@ import { scheduleAfterRootNavigationReady } from './paywall_navigation';
 import { getCurrentWeekStartIso, WEEKLY_XP_KEY, WEEKLY_XP_PERIOD_START_KEY } from './weekly_xp';
 import { getStoredStudyTarget } from './study_target';
 import { lessonPassCountKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { getLocalDayKey, isSameLocalOrUtcDay } from './local_date';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -1232,8 +1233,7 @@ export const scheduleStreakWarningIfNeeded = async (
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
 
-    const _d = new Date();
-    const today = `${_d.getFullYear()}-${String(_d.getMonth() + 1).padStart(2, '0')}-${String(_d.getDate()).padStart(2, '0')}`;
+    const today = getLocalDayKey();
 
     // Проверяем: цепочка > 0 и урок сегодня ещё не выполнен
     const [streakRaw, lastActiveRaw, notifEnabledRaw] = await Promise.all([
@@ -1246,7 +1246,9 @@ export const scheduleStreakWarningIfNeeded = async (
     const streak = parseInt(streakRaw || '0') || 0;
     if (streak === 0) return;
 
-    const lessonDoneToday = lastActiveRaw === today;
+    // isSameLocalOrUtcDay: last_active_date мог быть записан ДО миграции на
+    // локальную дату (старая UTC-схема) — переходный период принимает оба.
+    const lessonDoneToday = isSameLocalOrUtcDay(lastActiveRaw);
 
     // Если урок уже пройден — ничего не нужно
     if (lessonDoneToday) {

@@ -1,12 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLocalDayKey } from './local_date';
 
 export type StreakFreezeRecord = {
   active?: unknown;
   date?: unknown;
 };
 
+// Локальная дата устройства — см. app/local_date.ts. Заморозка живёт максимум
+// один день, так что здесь достаточно единой схемы (не нужен гибкий UTC/local
+// компаратор): freeze.date пишется и читается в одном и том же локальном формате.
 export const streakFreezeDateKey = (date: Date = new Date()): string =>
-  date.toISOString().split('T')[0];
+  getLocalDayKey(date);
 
 export function isStreakFreezeActiveToday(
   freeze: StreakFreezeRecord | null | undefined,

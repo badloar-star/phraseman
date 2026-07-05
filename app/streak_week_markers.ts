@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLocalDayKey } from './local_date';
 
 export type StreakWeekDayMarkerKind = 'freeze' | 'revive' | 'repair';
 
@@ -11,23 +12,59 @@ type StoredWeekMarkers = {
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
-export function streakWeekMarkerDateKey(date: Date = new Date()): string {
+/**
+ * Ключ дня, соответствующий UTC-midnight конкретного Date. Используется ТОЛЬКО
+ * для round-trip арифметики уже существующих ключей (addDaysToDateKey и
+ * recordStreakWeekMarker разбирают ключ через `${dateKey}T00:00:00.000Z`, затем
+ * снова сворачивают в ключ этой функцией) — это чистая арифметика ключей, не
+ * связанная с локальным/UTC "сегодня" пользователя.
+ */
+function dateKeyFromUtcMidnight(date: Date): string {
   return date.toISOString().split('T')[0];
+}
+
+/**
+ * Ключ "сегодня" БЕЗ явного Date — здесь важна локальная дата устройства (см.
+ * app/local_date.ts), иначе вечером в UTC+N или утром в UTC-N маркер недели
+ * ляжет не в тот день/неделю.
+ */
+export function streakWeekMarkerDateKey(date?: Date): string {
+  return date ? dateKeyFromUtcMidnight(date) : getLocalDayKey();
 }
 
 export function addDaysToDateKey(dateKey: string, days: number): string {
   const time = Date.parse(`${dateKey}T00:00:00.000Z`);
   if (!Number.isFinite(time)) return streakWeekMarkerDateKey();
-  return streakWeekMarkerDateKey(new Date(time + days * MS_PER_DAY));
+  return dateKeyFromUtcMidnight(new Date(time + days * MS_PER_DAY));
 }
 
-export function streakWeekMarkerWeekKey(date: Date = new Date()): string {
-  const utc = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+function weekKeyFromDayKey(dayKey: string): string {
+  const ms = Date.parse(`${dayKey}T00:00:00.000Z`);
+  const utc = new Date(Number.isFinite(ms) ? ms : Date.now());
   const day = utc.getUTCDay() || 7;
   utc.setUTCDate(utc.getUTCDate() + 4 - day);
   const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
   const weekNum = Math.ceil((((utc.getTime() - yearStart.getTime()) / MS_PER_DAY) + 1) / 7);
   return `${utc.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+}
+
+/**
+ * Неделя для УЖЕ ИЗВЕСТНОГО ключа дня (используется при записи маркера для
+ * конкретной прошедшей даты — recordStreakWeekMarker).
+ */
+export function streakWeekMarkerWeekKeyForDayKey(dayKey: string): string {
+  return weekKeyFromDayKey(dayKey);
+}
+
+/**
+ * Неделя "сейчас" — если Date не передан, использует ЛОКАЛЬНЫЙ день устройства
+ * (см. app/local_date.ts). Если Date передан явно (тесты, симуляция конкретного
+ * момента) — интерпретируется как ЛОКАЛЬНЫЙ календарный день этого момента,
+ * т.к. это реальный wall-clock момент "сейчас", а не ключ из хранилища.
+ */
+export function streakWeekMarkerWeekKey(date?: Date): string {
+  const dayKey = date ? getLocalDayKey(date) : getLocalDayKey();
+  return weekKeyFromDayKey(dayKey);
 }
 
 export function weekIndexFromDateKey(dateKey: string): number | null {
@@ -53,7 +90,7 @@ export async function recordStreakWeekMarker(
   dateKey: string,
   kind: StreakWeekDayMarkerKind,
 ): Promise<void> {
-  const weekKey = streakWeekMarkerWeekKey(new Date(`${dateKey}T00:00:00.000Z`));
+  const weekKey = streakWeekMarkerWeekKeyForDayKey(dateKey);
   const stored = normalizeStoredMarkers(await AsyncStorage.getItem(STREAK_WEEK_MARKERS_KEY), weekKey);
   stored.marks[dateKey] = kind;
   await AsyncStorage.setItem(STREAK_WEEK_MARKERS_KEY, JSON.stringify(stored));

@@ -19,6 +19,7 @@ import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
 import { recordMissedStreakWeekMarkersEndingYesterday } from './streak_week_markers';
 import { invalidateWagerAfterRevive } from './streak_wager';
+import { getLocalDayKey, getLocalYesterdayKey } from './local_date';
 
 const STORAGE_KEY = 'streak_revive_v1';
 /** Окно показа модалки после потери цепочки. После — оффер сгорает. */
@@ -66,7 +67,7 @@ export function getReviveCostPerLostStreakDay(lostStreakDays: number): number {
   return Math.max(1, Math.round((computeReviveCost(days) / days) * 10) / 10);
 }
 
-const todayKey = (): string => new Date().toISOString().split('T')[0];
+const todayKey = (): string => getLocalDayKey();
 
 const normalizeMissedDays = (value: unknown): number => Math.max(1, Math.floor(Number(value) || 0));
 
@@ -153,11 +154,7 @@ export type ReviveResult =
   | { ok: true; restoredStreak: number; spent: number }
   | { ok: false; reason: 'no_offer' | 'expired' | 'insufficient_shards' | 'spend_failed' | 'persist_failed' };
 
-const yesterdayKey = (): string => {
-  const d = new Date();
-  d.setDate(d.getDate() - 1);
-  return d.toISOString().split('T')[0];
-};
+const yesterdayKey = (): string => getLocalYesterdayKey();
 
 /**
  * Списывает осколки и восстанавливает streak_count = lostStreak.

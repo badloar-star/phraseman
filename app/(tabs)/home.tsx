@@ -21,6 +21,7 @@ import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, L
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
+import { getLocalDayKey, isSameLocalOrUtcDay } from '../local_date';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { applyTodaysBoonsOnAppOpen } from '../boons/boon_bootstrap';
 import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
@@ -1804,7 +1805,7 @@ export default function HomeScreen() {
                     setStreakAtRisk(true);
                 }
                 if (!hasPremiumAccess) {
-                    const today = new Date().toISOString().split('T')[0];
+                    const today = getLocalDayKey();
                     const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
                     if (shownToday !== today) {
                         await AsyncStorage.setItem('streak_paywall_shown', today);
@@ -1895,7 +1896,7 @@ export default function HomeScreen() {
     const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
         hapticTap();
-        const today = new Date().toISOString().split('T')[0];
+        const today = getLocalDayKey();
         const freeAvailable = hasPremiumAccess && !premiumFreezeUsed;
         if (!hasPremiumAccess) {
             router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streak) } } as any);
@@ -1933,7 +1934,7 @@ export default function HomeScreen() {
         }
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
         const lastActive = await AsyncStorage.getItem('last_active_date').catch(() => null);
-        const frozenDate = lastActive && lastActive < today ? addDaysToDateKey(lastActive, 1) : today;
+        const frozenDate = lastActive && !isSameLocalOrUtcDay(lastActive) ? addDaysToDateKey(lastActive, 1) : today;
         await recordStreakWeekMarker(frozenDate, 'freeze').catch(() => {});
         setWeekMarkers(await readCurrentStreakWeekMarkers().catch(() => weekMarkers));
         setFreezeActive(true);

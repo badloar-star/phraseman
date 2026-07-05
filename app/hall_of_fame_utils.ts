@@ -11,6 +11,12 @@ import { incrementStreakLostCount } from './paywall_personalization';
 import { repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
+import {
+  getLocalDayKey,
+  isDayBeforeYesterdayFlexible,
+  isSameLocalOrUtcDay,
+  isYesterdayFlexible,
+} from './local_date';
 import type { Lang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
@@ -177,35 +183,34 @@ export const updateStreakOnActivity = async (): Promise<number> => {
   try {
     await repairDevSeededStreakInStorage();
 
-    const today = new Date().toISOString().split('T')[0];
+    // Ключ дня — ЛОКАЛЬНАЯ дата устройства: пользователь, занимающийся каждый
+    // календарный день у себя дома вечером в UTC+N или утром в UTC-N, не должен
+    // терять стрик из-за того, что его локальный день не совпал с UTC-днём.
+    // isSameLocalOrUtcDay/isYesterdayFlexible/isDayBeforeYesterdayFlexible
+    // на переходный период принимают И старый (UTC), И новый (локальный) ключ —
+    // last_active_date, записанный ДО этого апдейта, ещё может быть в старой схеме.
+    const today = getLocalDayKey();
     const lastActiveKey = 'last_active_date';
     const lastActive = await AsyncStorage.getItem(lastActiveKey);
 
-    // Считаем вчерашнюю дату
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-
     let streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
 
-    if (lastActive === today) {
+    if (isSameLocalOrUtcDay(lastActive)) {
       // Уже активны сегодня — цепочку не меняем
-    } else if (lastActive === yesterdayStr) {
+    } else if (isYesterdayFlexible(lastActive)) {
       // Активны вчера — продолжаем цепочку
       streak += 1;
       logStreakExtended(streak);
-    } else if (lastActive === null || lastActive < yesterdayStr) {
+    } else {
       // Пропустили день — проверяем заморозку / починку цепочки
-      const dayBefore = new Date();
-      dayBefore.setDate(dayBefore.getDate() - 2);
-      const dayBeforeStr = dayBefore.toISOString().split('T')[0];
       const missedDays = lastActive ? countMissedDays(lastActive, today) : 1;
+      const missedExactlyOneDay = lastActive !== null && isDayBeforeYesterdayFlexible(lastActive);
 
       const freezeRaw = await AsyncStorage.getItem('streak_freeze');
       const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
 
       // 1. Заморозка активна и пропущен ровно 1 день
-      if (isStreakFreezeActiveToday(freeze, today) && lastActive && lastActive >= dayBeforeStr) {
+      if (isStreakFreezeActiveToday(freeze, today) && lastActive && missedExactlyOneDay) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
         await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
         // streak не меняем — заморозка спасла. Расходник потрачен — юзер должен узнать
@@ -218,7 +223,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
         });
       }
       // 2. Цепочка починена сегодня (2 урока выполнено)
-      else if (lastActive && lastActive >= dayBeforeStr && await wasRepairedToday()) {
+      else if (lastActive && missedExactlyOneDay && await wasRepairedToday()) {
         // streak не меняем — починка спасла
       }
       // 3. Первый вход в приложение
@@ -226,7 +231,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
         streak = 1;
       }
       // 4. Chain Shield активен — защищает от потери цепочки
-      else if (lastActive && lastActive >= dayBeforeStr) {
+      else if (lastActive && missedExactlyOneDay) {
         const csRaw = await AsyncStorage.getItem('chain_shield');
         if (csRaw) {
           const cs = JSON.parse(csRaw) as { daysLeft: number; grantedAt: string };
@@ -288,7 +293,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
     await AsyncStorage.setItem(lastActiveKey, today);
 
     // Достижения по цепочке + пари (только при реальном изменении — не в firstLoads)
-    if (lastActive !== today) {
+    if (!isSameLocalOrUtcDay(lastActive)) {
       checkAchievements({ type: 'streak', streak }).catch(() => {});
       checkWagerProgress(streak).catch(() => {});
     }
@@ -497,19 +502,13 @@ export const addOrUpdateScore = async (
  */
 export const checkStreakLossPending = async (): Promise<{ willLose: boolean; streakBefore: number }> => {
   try {
-    const today = new Date().toISOString().split('T')[0];
-    const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-    const dayBefore = new Date(); dayBefore.setDate(dayBefore.getDate() - 2);
-    const dayBeforeStr = dayBefore.toISOString().split('T')[0];
-
     const lastActive = await AsyncStorage.getItem('last_active_date');
     // Уже активен сегодня или вчера — цепочка в порядке
-    if (!lastActive || lastActive === today || lastActive >= yesterdayStr) {
+    if (!lastActive || isSameLocalOrUtcDay(lastActive) || isYesterdayFlexible(lastActive)) {
       return { willLose: false, streakBefore: 0 };
     }
     // Пропущено более 1 дня — заморозка уже не поможет, не показываем
-    if (lastActive < dayBeforeStr) {
+    if (!isDayBeforeYesterdayFlexible(lastActive)) {
       return { willLose: false, streakBefore: 0 };
     }
 
@@ -518,7 +517,7 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
 
     const freezeRaw = await AsyncStorage.getItem('streak_freeze');
     const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
-    const todayStr = new Date().toISOString().split('T')[0];
+    const todayStr = getLocalDayKey();
     // Заморозка уже активна сегодня — цепочка сохранится автоматически
     if (isStreakFreezeActiveToday(freeze, todayStr)) return { willLose: false, streakBefore: streak };
 

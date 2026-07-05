@@ -187,3 +187,73 @@ describe('registerXP', () => {
     expect(addWeeklyXp).toHaveBeenCalledWith(5);
   });
 });
+
+describe('registerXP: offline streak_count fallback respects local-day transition', () => {
+  let simulatedZone = 'UTC';
+
+  // See tests/streak_local_date_migration.test.ts for why process.env.TZ can't
+  // be used here — this mock re-derives the flexible comparators in terms of
+  // getLocalDayKey so they stay self-consistent under a simulated IANA zone.
+  jest.mock('../app/local_date', () => {
+    const actual = jest.requireActual('../app/local_date');
+    const getLocalDayKey = (date: Date = new Date()) =>
+      actual.localDayKeyForTimeZone(date, simulatedZone);
+    const isSameLocalOrUtcDay = (dayKey: string | null | undefined, reference: Date = new Date()) =>
+      !!dayKey && (dayKey === getLocalDayKey(reference) || dayKey === actual.getUtcDayKey(reference));
+    const isYesterdayFlexible = (dayKey: string | null | undefined, reference: Date = new Date()) => {
+      if (!dayKey) return false;
+      const localYesterday = actual.addLocalDays(getLocalDayKey(reference), -1);
+      const utcYesterday = actual.addLocalDays(actual.getUtcDayKey(reference), -1);
+      return dayKey === localYesterday || dayKey === utcYesterday;
+    };
+    return { ...actual, getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible };
+  });
+
+  beforeEach(async () => {
+    jest.clearAllMocks();
+    await AsyncStorage.clear();
+    simulatedZone = 'Australia/Brisbane'; // UTC+10, no DST
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('extends the offline streak fallback across a local-day boundary that is still the same UTC day', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+
+    // Evening session: 2026-07-04 21:00 local (UTC+10) = 2026-07-04T11:00:00Z.
+    jest.useFakeTimers().setSystemTime(new Date('2026-07-04T11:00:00.000Z'));
+    await AsyncStorage.setItem('user_total_xp', '0');
+    await registerXP(5, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'lesson:tz-day1:complete_xp' });
+    expect(await AsyncStorage.getItem('last_active_date')).toBe('2026-07-04');
+    expect(await AsyncStorage.getItem('streak_count')).toBe('1');
+
+    // Next evening: 2026-07-05 21:00 local (UTC+10) = 2026-07-05T11:00:00Z.
+    jest.setSystemTime(new Date('2026-07-05T11:00:00.000Z'));
+    await registerXP(5, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'lesson:tz-day2:complete_xp' });
+
+    expect(await AsyncStorage.getItem('streak_count')).toBe('2');
+    expect(await AsyncStorage.getItem('last_active_date')).toBe('2026-07-05');
+  });
+
+  it('honors a legacy UTC-format last_active_date as "yesterday" during the migration window', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+
+    // Legacy build wrote last_active_date via UTC day key.
+    jest.useFakeTimers().setSystemTime(new Date('2026-07-04T20:00:00.000Z'));
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '0'],
+      ['last_active_date', '2026-07-04'],
+      ['streak_count', '3'],
+    ]);
+
+    // New local-date code runs the next local day: 2026-07-05 06:00 local (UTC+10)
+    // = 2026-07-04T20:00:00Z + 10h... use an explicit later instant instead.
+    jest.setSystemTime(new Date('2026-07-05T10:00:00.000Z')); // 2026-07-05 20:00 local (UTC+10)
+    await registerXP(5, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'lesson:tz-legacy:complete_xp' });
+
+    expect(await AsyncStorage.getItem('streak_count')).toBe('4'); // extended, not burned to 1
+    expect(await AsyncStorage.getItem('last_active_date')).toBe('2026-07-05');
+  });
+});

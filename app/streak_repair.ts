@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isStreakFreezeActiveToday } from './streak_freeze';
 import { recordMissedStreakWeekMarkersEndingYesterday } from './streak_week_markers';
+import { getLocalDayKey, isDayBeforeYesterdayFlexible, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 
 export interface RepairState {
   eligibleDate:  string | null;   // YYYY-MM-DD когда стала доступна починка
@@ -24,7 +25,11 @@ export interface RepairState {
 
 const KEY = 'streak_repair_v1';
 
-const today = () => new Date().toISOString().split('T')[0];
+// Локальная дата устройства — см. app/local_date.ts. repairDate/eligibleDate
+// сравниваются точным равенством (это state текущей сессии починки, не стрик),
+// но lastActive из last_active_date сравнивается гибко (isYesterdayFlexible и
+// т.д.), т.к. он мог быть записан ДО миграции на локальную дату (старая UTC-схема).
+const today = () => getLocalDayKey();
 
 /** Returns true if s looks like a valid YYYY-MM-DD date string */
 const isValidDateStr = (s: string | null | undefined): s is string =>
@@ -61,10 +66,6 @@ const save = async (state: RepairState) => {
 export const isRepairEligible = async (): Promise<boolean> => {
   try {
     const t = today();
-    const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-    const dayBefore = new Date(); dayBefore.setDate(dayBefore.getDate() - 2);
-    const dayBeforeStr = dayBefore.toISOString().split('T')[0];
 
     const [lastActive, streakRaw, freezeRaw, repair] = await Promise.all([
       AsyncStorage.getItem('last_active_date'),
@@ -75,8 +76,8 @@ export const isRepairEligible = async (): Promise<boolean> => {
 
     // Guard against missing or malformed date strings
     if (!isValidDateStr(lastActive)) return false;
-    if (lastActive >= yesterdayStr) return false;                // не пропустил
-    if (lastActive < dayBeforeStr) return false;                 // пропустил 2+ дней
+    if (isSameLocalOrUtcDay(lastActive) || isYesterdayFlexible(lastActive)) return false; // не пропустил
+    if (!isDayBeforeYesterdayFlexible(lastActive)) return false;  // пропустил 2+ дней (или lastActive в будущем)
 
     const streak = parseInt(streakRaw ?? '0');
     if (isNaN(streak) || streak <= 1) return false;             // цепочка уже 0–1

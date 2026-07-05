@@ -1,0 +1,301 @@
+video|slot|role|phrase_en|translation_ru|note
+1|1|hook|Stop translating|Хватит переводить|direct challenge
+1|2|spark|Say it|Скажи это|simple command
+1|3|bait|I'm good|Мне норм|not always я хороший
+1|4|slang|Cut it out|Завязывай|natural scolding
+1|5|punch|Shut up|Да ладно|often surprise, not silence
+2|1|hook|You're cooked|Тебе конец|viral doom slang
+2|2|spark|Calm down|Остынь|conflict phrase
+2|3|bait|I'm dead|Я ору|not literal death
+2|4|slang|No way|Да ну|reaction bait
+2|5|punch|Get real|Очнись|blunt ending
+3|1|hook|That's bullshit|Это бред|strong hook
+3|2|spark|Prove it|Докажи|comment trigger
+3|3|bait|Bull shit|Бычье дерьмо|looks literal, phrase is bullshit
+3|4|slang|Total bullshit|Полный бред|repetition with force
+3|5|punch|Stop lying|Не ври|argument bait
+4|1|hook|Fuck off|Отвали|strong profanity hook
+4|2|spark|Back off|Отстань|boundary phrase
+4|3|bait|Piss off|Вали отсюда|not pee away
+4|4|slang|Screw you|Пошел ты|insult phrase
+4|5|punch|Leave me|Оставь меня|emotional close
+5|1|hook|This hits|Цепляет|TikTok wording
+5|2|spark|Hits different|Иначе заходит|viral phrase
+5|3|bait|Hit on|Клеиться|not ударить сверху
+5|4|slang|Ping me|Пиши мне|message me slang
+5|5|punch|Hard pass|Точно нет|commentable refusal
+6|1|hook|You're wrong|Ты не прав|comment bait
+6|2|spark|Watch closely|Смотри лучше|view retention
+6|3|bait|You're welcome|Пожалуйста|not you are welcome
+6|4|slang|My bad|Мой косяк|casual apology
+6|5|punch|Fair enough|Ладно честно|soft landing
+7|1|hook|No cap|Без вранья|Gen Z hook
+7|2|spark|Real talk|Серьезно|native vibe
+7|3|bait|That's cap|Это вранье|not only кепка
+7|4|slang|That's fire|Это огонь|not literal fire
+7|5|punch|Low key|По-тихому|slang retention
+8|1|hook|Red flag|Красный флаг|dating hook
+8|2|spark|Run fast|Беги быстро|drama
+8|3|bait|Green flag|Хороший знак|not literal flag
+8|4|slang|Toxic much|Токсично прям|comment bait
+8|5|punch|Dump him|Брось его|dating drama
+9|1|hook|Stop texting|Хватит писать|dating pain
+9|2|spark|Text back|Ответь ему|common action
+9|3|bait|Hit me|Напиши мне|not beat me
+9|4|slang|Ghost me|Игнорь меня|modern dating
+9|5|punch|Move on|Живи дальше|emotional close
+10|1|hook|You're cringe|Ты кринж|strong label
+10|2|spark|Act normal|Веди себя нормально|social pressure
+10|3|bait|That's sick|Это круто|not always illness
+10|4|slang|So awkward|Так неловко|relatable
+10|5|punch|Fix yourself|Исправься|provocative
+11|1|hook|Don't lie|Не ври|instant conflict
+11|2|spark|Be honest|Честно скажи|comment bait
+11|3|bait|I lied|Я соврал|not lay
+11|4|slang|Sounds fake|Звучит фальшиво|internet tone
+11|5|punch|Try again|Еще раз|teacher snap
+12|1|hook|Speak human|Говори проще|learning pain
+12|2|spark|Talk less|Хватит слов|blunt command
+12|3|bait|Say less|Я понял|not fewer words only
+12|4|slang|Say what|Чего|surprise phrase
+12|5|punch|Use this|Бери это|practical CTA
+13|1|hook|Your English|Твой инглиш|personal hook
+13|2|spark|Sounds Russian|Звучит русски|pain hook
+13|3|bait|Make sense|Иметь смысл|not делать смысл
+13|4|slang|Sounds off|Звучит странно|useful judgement
+13|5|punch|Sounds native|Звучит живо|aspiration
+14|1|hook|Don't translate|Не переводи|core premise
+14|2|spark|Think English|Думай на английском|learning hook
+14|3|bait|Take place|Происходить|not взять место
+14|4|slang|Take care|Береги себя|not take заботу
+14|5|punch|Take notes|Записывай|retention
+15|1|hook|This hurts|Это больно|emotional hook
+15|2|spark|It stings|Задевает|nuance
+15|3|bait|I'm hurt|Мне больно|not я ранен only
+15|4|slang|That hurt|Задело|short drama
+15|5|punch|Cry later|Плачь потом|spicy close
+16|1|hook|Holy shit|Вот черт|profane reaction
+16|2|spark|No kidding|Да ладно|surprised reaction
+16|3|bait|No shit|Еще бы|not literal shit
+16|4|slang|For real|Серьезно|reaction phrase
+16|5|punch|You wish|Мечтай|sarcastic close
+17|1|hook|You're fired|Ты уволен|dramatic
+17|2|spark|Show up|Появись|work phrase
+17|3|bait|Work out|Получится|not work outside
+17|4|slang|Clock out|Закончить смену|work slang
+17|5|punch|Boss move|Ход босса|meme vibe
+18|1|hook|That's illegal|Это незаконно|strong hook
+18|2|spark|Call them|Позвони им|action
+18|3|bait|Call out|Пристыдить|not call outside
+18|4|slang|Call bullshit|Назвать бредом|confrontation
+18|5|punch|Lawyer up|Найми юриста|drama close
+19|1|hook|He cheated|Он изменил|dating drama
+19|2|spark|She knew|Она знала|story bait
+19|3|bait|Cheat on|Изменять|not cheat на
+19|4|slang|Mess around|Мутить|messy dating
+19|5|punch|Cut ties|Рви связи|sharp advice
+20|1|hook|Stop apologizing|Хватит извиняться|self-worth hook
+20|2|spark|Own it|Признай это|confidence
+20|3|bait|My fault|Я виноват|not my mistake only
+20|4|slang|No worries|Все норм|not no worries literal
+20|5|punch|Move faster|Поторопись|pushy close
+21|1|hook|You're toxic|Ты токсик|viral insult
+21|2|spark|That's gaslighting|Это газлайтинг|comment magnet
+21|3|bait|Gas light|Газовый свет|literal trap
+21|4|slang|Play victim|Строй из себя жертву|conflict
+21|5|punch|Stop whining|Не ной|aggressive close
+22|1|hook|He's broke|Он без денег|status hook
+22|2|spark|Pay up|Плати уже|money conflict
+22|3|bait|I'm broke|Я без денег|not broken
+22|4|slang|Cheap move|Дешевый ход|judgement
+22|5|punch|Split bills|Разделить счет|dating comments
+23|1|hook|She's lying|Она врет|story hook
+23|2|spark|Check receipts|Проверь пруфы|internet evidence
+23|3|bait|Got receipts|Есть пруфы|not store receipts only
+23|4|slang|Caught lying|Поймали на лжи|drama
+23|5|punch|Drop proof|Кидай пруф|comment bait
+24|1|hook|That's sus|Это мутно|slang hook
+24|2|spark|Looks sketchy|Мутно выглядит|suspicion
+24|3|bait|Acting sus|Ведет себя мутно|not sauce
+24|4|slang|Kinda weird|Чет странно|casual
+24|5|punch|Trust nobody|Никому не верь|drama close
+25|1|hook|You're basic|Ты банальный|insult hook
+25|2|spark|Be original|Будь собой|aspiration
+25|3|bait|Basic bitch|Банальная стерва|slang insult
+25|4|slang|So vanilla|Слишком пресно|not flavor only
+25|5|punch|Try harder|Старайся лучше|provocative
+26|1|hook|I'm done|С меня хватит|breakup hook
+26|2|spark|Walk away|Уходи|boundary
+26|3|bait|We're done|Мы закончили|not cooked only
+26|4|slang|Over it|Достало|emotion
+26|5|punch|Bye forever|Прощай навсегда|dramatic
+27|1|hook|Don't settle|Не соглашайся на меньшее|self-worth
+27|2|spark|Raise standards|Подними планку|aspiration
+27|3|bait|Settle down|Остепениться|not settle вниз
+27|4|slang|Do better|Будь лучше|meme phrase
+27|5|punch|Know your worth|Знай себе цену|empowerment
+28|1|hook|That's pathetic|Это убого|harsh hook
+28|2|spark|Grow up|Повзрослей|common insult
+28|3|bait|Pathetic excuse|Жалкая отмазка|vocab bait
+28|4|slang|Cry harder|Плачь сильней|toxic meme
+28|5|punch|Skill issue|Скилл ишью|internet insult
+29|1|hook|He's trash|Он мусор|strong opinion
+29|2|spark|Trash talk|Грязный треп|sports slang
+29|3|bait|Talk shit|Нести хрень|not talk feces
+29|4|slang|Shit happens|Бывает|not literal
+29|5|punch|Move smarter|Думай головой|advice
+30|1|hook|This slaps|Это качает|music slang
+30|2|spark|Slaps hard|Сильно качает|viral phrase
+30|3|bait|Still slaps|Все еще качает|not slap face only
+30|4|slang|Banger song|Трек пушка|music comments
+30|5|punch|Play louder|Врубай громче|energy
+31|1|hook|You're delulu|Ты делулу|Gen Z hook
+31|2|spark|Wake up|Проснись|reality check
+31|3|bait|Stay delulu|Живи в иллюзиях|not standard word
+31|4|slang|Main character|Главный герой|meme identity
+31|5|punch|Touch grass|Потрогай траву|internet phrase
+32|1|hook|Nobody cares|Всем плевать|harsh hook
+32|2|spark|Move quietly|Делай тихо|hustle tone
+32|3|bait|I care|Мне важно|not care for only
+32|4|slang|Don't overshare|Не сливай всё|social advice
+32|5|punch|Stay private|Будь закрыт|modern advice
+33|1|hook|You're late|Ты опоздал|everyday conflict
+33|2|spark|Hurry up|Давай быстрее|command
+33|3|bait|I'm late|Я опаздываю|not I am late person
+33|4|slang|Running late|Опаздываю|common phrase
+33|5|punch|Too late|Слишком поздно|punch
+34|1|hook|Don't flake|Не сливайся|slang hook
+34|2|spark|Show commitment|Держи слово|social pressure
+34|3|bait|Flake out|Слиться|not хлопья
+34|4|slang|Bail out|Свалить|not prison only
+34|5|punch|Come through|Приходи|social slang
+35|1|hook|He's thirsty|Он липнет|dating slang
+35|2|spark|Chill out|Остынь|tone control
+35|3|bait|So thirsty|Сильно липнет|not water only
+35|4|slang|Hit different|Иначе заходит|singular slang variant
+35|5|punch|Stop simping|Не унижайся|dating bait
+36|1|hook|She ghosted|Она пропала|dating hook
+36|2|spark|Text first|Напиши первым|comment split
+36|3|bait|Ghosted you|Тебя слили|not ghost literal
+36|4|slang|Left on read|Прочитали молча|messenger pain
+36|5|punch|Delete chat|Сотри чат|emotional action
+37|1|hook|That's savage|Это жестко|viral compliment
+37|2|spark|Savage move|Жесткий ход|commentable
+37|3|bait|Savage reply|Жесткий ответ|not wild person only
+37|4|slang|Cold blooded|Хладнокровно|dramatic
+37|5|punch|No mercy|Без пощады|punch
+38|1|hook|You're soft|Ты слабак|insult hook
+38|2|spark|Toughen up|Стань жестче|command
+38|3|bait|Soft launch|Мягкий намек|not launch soft
+38|4|slang|Go hard|Жми жестко|motivation
+38|5|punch|Stop folding|Не сдавайся|slang
+39|1|hook|I'm pissed|Я зол|anger hook
+39|2|spark|Don't push|Не дави|boundary
+39|3|bait|Pissed drunk|В хлам|UK slang drunk
+39|4|slang|Pissed off|Взбешен|anger phrase
+39|5|punch|Fuck this|Да ну нах|profane close
+40|1|hook|That's nasty|Это мерзко|strong reaction
+40|2|spark|Nasty work|Грязный ход|internet phrase
+40|3|bait|Nasty shot|Крутой бросок|not always мерзко
+40|4|slang|Dirty move|Подлый ход|drama
+40|5|punch|Clean up|Исправляй|command
+41|1|hook|You're salty|Ты бесишься|slang hook
+41|2|spark|Stay mad|Злись дальше|comment bait
+41|3|bait|Salty reply|Обиженный ответ|not salty food
+41|4|slang|Mad weird|Очень странно|internet tone
+41|5|punch|Cope harder|Утешайся дальше|meme insult
+42|1|hook|Don't choke|Не облажайся|pressure hook
+42|2|spark|Lock in|Соберись|focus slang
+42|3|bait|Choke hard|Жестко слить|not only throat
+42|4|slang|Fold under pressure|Сдаться под давлением|pressure phrase
+42|5|punch|Clutch up|Затащи|sports slang
+43|1|hook|You're broke|Ты без денег|money hook
+43|2|spark|Level up|Прокачайся|aspiration
+43|3|bait|Dead broke|Совсем без денег|not broken
+43|4|slang|Go broke|Разориться|finance slang
+43|5|punch|Get paid|Зарабатывай|money close
+44|1|hook|This sucks|Это отстой|common complaint
+44|2|spark|Fix it|Исправь это|action
+44|3|bait|Sucks hard|Полный отстой|not suck literally
+44|4|slang|Kinda sucks|Так себе|soft complaint
+44|5|punch|Step up|Поднажми|challenge close
+45|1|hook|You're annoying|Ты бесишь|conflict hook
+45|2|spark|Stop talking|Хватит болтать|direct
+45|3|bait|So annoying|Так бесит|vocab bait
+45|4|slang|Too much|Чересчур|judgement
+45|5|punch|Read the room|Чувствуй обстановку|social skill
+46|1|hook|It's over|Все кончено|drama hook
+46|2|spark|Let go|Отпусти|emotional
+46|3|bait|Over you|Забыл тебя|not above only
+46|4|slang|Game over|Игра окончена|meme
+46|5|punch|Never again|Больше никогда|dramatic close
+47|1|hook|You're fake|Ты фейк|identity hook
+47|2|spark|Act real|Будь настоящим|challenge
+47|3|bait|Fake it|Делай вид|not only counterfeit
+47|4|slang|Fake friend|Липовый друг|relatable
+47|5|punch|Cut them|Рви с ними|advice
+48|1|hook|That's wild|Это дико|reaction hook
+48|2|spark|Wild story|Дикая история|story cue
+48|3|bait|Go wild|Оторвись|not only animal
+48|4|slang|Wilding out|Отрывается|slang phrase
+48|5|punch|Keep watching|Смотри дальше|retention
+49|1|hook|Don't fold|Не сдавайся|hustle hook
+49|2|spark|Stay sharp|Будь начеку|advice
+49|3|bait|Fold early|Сдаться рано|not only fold paper
+49|4|slang|Hold the line|Держи позицию|boundary
+49|5|punch|Stand firm|Стой твердо|motivation
+50|1|hook|That's mid|Так себе|Gen Z hook
+50|2|spark|Rate honestly|Честно оцени|comment prompt
+50|3|bait|So mid|Средняк|slang meaning
+50|4|slang|Mid as hell|Полный середняк|profane-ish
+50|5|punch|Develop taste|Развивай вкус|judgement
+51|1|hook|You're needy|Ты липкий|dating hook
+51|2|spark|Need space|Нужна дистанция|relationship phrase
+51|3|bait|Act needy|Липнешь|not just needy poor
+51|4|slang|Too clingy|Слишком липкий|dating
+51|5|punch|Back away|Отойди|boundary
+52|1|hook|I'm in|Я в деле|agreement hook
+52|2|spark|Let's go|Погнали|energy
+52|3|bait|I'm down|Я согласен|not I am down only
+52|4|slang|Down bad|Сильно залип|slang
+52|5|punch|Say yes|Скажи да|CTA
+53|1|hook|You're doomed|Тебе крышка|doom hook
+53|2|spark|Too risky|Слишком опасно|tension
+53|3|bait|Totally cooked|Все плохо|not cooked food
+53|4|slang|Burned out|Выгорел|work pain
+53|5|punch|Save yourself|Спасай себя|drama
+54|1|hook|This bangs|Это пушка|music hook
+54|2|spark|Bangs hard|Качает жестко|slang
+54|3|bait|It bangs|Качает|not only удар
+54|4|slang|No skips|Без проходных|music culture
+54|5|punch|Replay it|Вруби снова|engagement
+55|1|hook|Don't snitch|Не стучи|street phrase
+55|2|spark|Keep quiet|Молчи|command
+55|3|bait|You snitch|Ты стукач|not bird
+55|4|slang|Rat out|Сдать кого-то|slang
+55|5|punch|Trust gone|Доверия нет|drama
+56|1|hook|You're extra|Ты перебор|slang hook
+56|2|spark|Too dramatic|Слишком драматично|judgement
+56|3|bait|So extra|Перебор|not extra item only
+56|4|slang|Drama queen|Королева драмы|meme
+56|5|punch|Tone down|Сбавь тон|advice
+57|1|hook|That's petty|Это мелочно|social hook
+57|2|spark|Petty move|Мелкий ход|comment
+57|3|bait|Petty drama|Мелочная драма|not petit only
+57|4|slang|Loser energy|Вайб лузера|insult
+57|5|punch|Let it go|Отпусти это|advice
+58|1|hook|Don't flex|Не понтуйся|status hook
+58|2|spark|Flex harder|Понтуйся сильней|sarcasm
+58|3|bait|Flexing hard|Сильно понтуется|not bend only
+58|4|slang|Weird flex|Странный понт|meme phrase
+58|5|punch|Stay humble|Будь скромней|close
+59|1|hook|You're messy|Ты проблемный|drama hook
+59|2|spark|Messy drama|Грязная драма|story hook
+59|3|bait|Messy breakup|Скандальный разрыв|not messy room only
+59|4|slang|Mess up|Облажаться|common phrasal
+59|5|punch|Clean slate|С чистого листа|hope close
+60|1|hook|Memorize this|Запомни это|direct final hook
+60|2|spark|Stop guessing|Не гадай|learning pain
+60|3|bait|I can't|Не могу|not I cannot only
+60|4|slang|Can't even|Не могу уже|viral reaction
+60|5|punch|Thank me|Благодари потом|confident close

@@ -1,0 +1,301 @@
+video|slot|role|phrase_en|translation_ru|note
+1|1|hook|Say it right|Скажи верно|language speaking hook
+1|2|phrasal|Ease into|Войди мягко|routine transition scene door
+1|3|bait|Bring it up|Подними тему|not carry object scene meeting topic
+1|4|phrasal|Follow along|Следи дальше|learning screen scene phone
+1|5|phrase|Try again|Попробуй еще|practice scene notebook
+2|1|hook|Sound less stiff|Звучи живее|language speaking hook
+2|2|phrasal|Lean in|Включись|focus scene meeting
+2|3|bait|Turn it down|Сделай тише|not refuse only scene volume phone
+2|4|phrasal|Keep it simple|Проще|explain simple scene whiteboard
+2|5|phrase|That fits|Это подходит|choice scene checklist
+3|1|hook|Stop word swapping|Не меняй слова|language translation hook
+3|2|phrasal|Think ahead|Думай вперед|planning scene calendar
+3|3|bait|Take it in|Осмысли это|not take object scene learning
+3|4|phrasal|Go stepwise|Иди шагами|process scene notes
+3|5|phrase|Clear enough|Достаточно ясно|clarity scene board
+4|1|hook|Use real chunks|Бери блоками|language chunks hook
+4|2|phrasal|Build on|Развивай это|idea notes scene laptop
+4|3|bait|Come down to|Сводиться к|not descend scene summary board
+4|4|phrasal|Map out|Наметь план|planning scene map notes
+4|5|phrase|Good point|Верно сказано|conversation scene talk
+5|1|hook|Speak in chunks|Говори блоками|language speaking hook
+5|2|phrasal|Zoom in|Приблизь|screen detail scene laptop
+5|3|bait|Zoom out|Смотри шире|not camera only scene big picture
+5|4|phrasal|Mark down|Отметь|notes checklist scene pen
+5|5|phrasal|Cross out|Вычеркни|paper editing scene pen
+6|1|hook|Fix this mistake|Исправь ошибку|language correction hook
+6|2|phrasal|Pair up|Разбейтесь|group task scene people
+6|3|bait|Team up|Объединитесь|not sports only scene teamwork
+6|4|phrasal|Join in|Входи в круг|group activity scene
+6|5|phrase|I'm with you|Я с тобой|support scene friend
+7|1|hook|Upgrade your reply|Улучши ответ|language chat hook
+7|2|phrasal|Answer back|Ответь резко|reply scene phone
+7|3|bait|Talk back|Дерзить|not answer normally scene teen argument
+7|4|phrasal|Speak plainly|Говори ясно|clear speech scene meeting
+7|5|phrase|I hear you|Я понимаю|empathy scene conversation
+8|1|hook|Stop sounding translated|Не звучит живо|translation hook
+8|2|phrasal|Blend it in|Встрой это|editing scene laptop
+8|3|bait|Work it in|Вплети это|not work job scene writing
+8|4|phrasal|Leave room|Оставь место|planning scene calendar
+8|5|phrase|Makes it smoother|Так плавней|language improvement scene
+9|1|hook|Use this answer|Ответь вот так|language answer hook
+9|2|phrasal|Check back|Проверь позже|phone reminder scene
+9|3|bait|Check around|Поспрашивай|not look around scene asking people
+9|4|phrasal|Ask around|Поспрашивай|people question scene
+9|5|phrasal|Report back|Отпишись потом|status update scene phone
+10|1|hook|Say it casually|Скажи проще|language casual hook
+10|2|phrasal|Pop in|Заскочи|quick visit scene door
+10|3|bait|Pop up|Всплыть|not jump up scene notification
+10|4|phrasal|Drop in|Зайди быстро|quick visit scene office door
+10|5|phrasal|Walk in|Войди|door entrance scene
+11|1|hook|Stop overthinking it|Не мудри|language hook thinking
+11|2|phrasal|Narrow down|Сузь выбор|choice scene checklist
+11|3|bait|Boil down to|Сводиться к|not cooking scene summary
+11|4|phrasal|Sum it up|Сведи к сути|summary scene notes
+11|5|phrase|Short version|Коротко|summary scene paper
+12|1|hook|Choose this wording|Выбери это|language wording hook
+12|2|phrasal|Swap out|Замени|editing scene laptop
+12|3|bait|Switch over|Переключись|not turn lights scene device
+12|4|phrasal|Change over|Перейди|switch system scene laptop
+12|5|phrase|Better choice|Лучший выбор|options scene cards
+13|1|hook|Learn this chunk|Выучи блок|language chunk hook
+13|2|phrasal|Read through|Прочитай все|document scene desk
+13|3|bait|Skim through|Пробеги глазами|not skin scene reading
+13|4|phrasal|Look through|Просмотри|document scene pages
+13|5|phrasal|Line by line|По строкам|reading scene document
+14|1|hook|Use it today|Примени сегодня|language practice hook
+14|2|phrasal|Settle in|Освойся|new place scene room
+14|3|bait|Settle for|Согласись на|not sit down scene compromise
+14|4|phrasal|Fit in|Впишись|group scene people
+14|5|phrase|Feels natural|Звучит живо|language natural scene
+15|1|hook|Don't translate that|Не переводи так|translation trap hook
+15|2|phrasal|Deal with|Разберись с|problem scene laptop
+15|3|bait|Do without|Обойтись без|not do outside scene missing item
+15|4|phrasal|Get through|Переживи|hard time scene phone
+15|5|phrase|You'll manage|Справишься|encouragement scene
+16|1|hook|Say this instead|Скажи иначе|language correction hook
+16|2|phrasal|Tap into|Задействуй|resource scene laptop
+16|3|bait|Buy into|Поверить в|not buying item scene idea
+16|4|phrasal|Lean on|Опираться на|support scene friend
+16|5|phrase|That helps|Это помогает|help scene desk
+17|1|hook|Stop robotic English|Не как робот|language natural hook
+17|2|phrasal|Loosen it up|Сделай мягче|writing edit scene laptop
+17|3|bait|Tighten it up|Сделай четче|not tight clothes scene editing
+17|4|phrasal|Clean it up|Приведи в вид|editing cleanup scene desk
+17|5|phrasal|Smooth it out|Сгладь это|editing scene notes
+18|1|hook|Make it shorter|Скажи короче|language concise hook
+18|2|phrasal|Cut back on|Урежь|budget habit scene receipt
+18|3|bait|Cut it down|Сократи это|not cut object only scene editing
+18|4|phrasal|Trim down|Сократи|editing scene scissors paper
+18|5|phrase|Too wordy|Много слов|writing scene laptop
+19|1|hook|Speak more directly|Говори прямей|language direct hook
+19|2|phrasal|Spell it out|Объясни ясно|explain scene whiteboard
+19|3|bait|Lay out|Разложи ясно|not lie down scene plan
+19|4|phrasal|Point to|Укажи на|screen pointer scene
+19|5|phrase|That's clearer|Так яснее|clarity scene board
+20|1|hook|Remember the pattern|Запомни схему|language pattern hook
+20|2|phrasal|Line up|Выстрой|queue order scene
+20|3|bait|Line up with|Совпадать с|not stand in queue scene matching
+20|4|phrasal|Match up|Совпадает|matching scene puzzle
+20|5|phrase|Same idea|Та же мысль|idea scene notes
+21|1|hook|Watch the verb|Смотри глагол|grammar hook
+21|2|phrasal|Go around|Обойди|route scene map phone
+21|3|bait|Get around to|Добраться до|not travel around scene task
+21|4|phrasal|Come around|Передумать|change mind scene talk
+21|5|phrase|Changed my mind|Я передумал|decision scene
+22|1|hook|Use fewer words|Меньше слов|concise hook
+22|2|phrasal|Fill in|Заполни|form scene pen
+22|3|bait|Fill in for|Подменить|not fill form scene workplace
+22|4|phrasal|Cover for|Прикрой|work shift scene office
+22|5|phrase|Need backup|Нужна замена|work help scene
+23|1|hook|This sounds native|Так живее|native phrase hook
+23|2|phrasal|Hold off|Повремени|wait scene calendar
+23|3|bait|Hold out|Держаться|not hold outside scene endurance
+23|4|phrasal|Wait it out|Пережди|waiting scene clock
+23|5|phrase|Give it time|Дай время|patience scene clock
+24|1|hook|Say it softer|Скажи мягче|softening hook
+24|2|phrasal|Back down|Отступи|conflict calm scene
+24|3|bait|Back this up|Подтверди это|not move backward scene proof
+24|4|phrasal|Tone it down|Смягчи тон|conversation scene
+24|5|phrase|No need|Не надо|soft refusal scene
+25|1|hook|Use this opener|Начни вот так|conversation opener hook
+25|2|phrasal|Start off|Начни|begin scene notebook
+25|3|bait|Kick off|Начать|not kick ball scene event
+25|4|phrasal|Open with|Начни с|presentation scene
+25|5|phrase|First thing|Сначала|sequence scene
+26|1|hook|Fix your opener|Исправь старт|opening hook
+26|2|phrasal|Lead with|Начни с|presentation scene
+26|3|bait|Lead up to|Подвести к|not lead person scene story
+26|4|phrasal|Set the stage|Задай фон|presentation scene
+26|5|phrase|Here's why|Вот почему|explain scene
+27|1|hook|Use this closer|Закрой вот так|closing hook
+27|2|phrasal|Close out|Заверши|meeting end scene laptop
+27|3|bait|Sign off|Попрощайся|not sign paper scene email
+27|4|phrasal|Wrap it up|Заверши|finish meeting scene
+27|5|phrase|That's all|Это все|ending scene
+28|1|hook|Don't sound rude|Не груби|polite hook
+28|2|phrasal|Soften up|Смягчи|tone scene conversation
+28|3|bait|Come off as|Выглядеть как|not come off object scene impression
+28|4|phrasal|Phrase it better|Сформулируй|writing scene laptop
+28|5|phrase|Sounds polite|Звучит мягко|polite scene
+29|1|hook|Say no nicely|Откажи мягко|polite refusal hook
+29|2|phrasal|Opt out|Откажись|choice scene form
+29|3|bait|Pass up|Упустить шанс|not pass upward scene opportunity
+29|4|phrasal|Bow out|Выйди из|leave plan scene
+29|5|phrase|Maybe next time|В другой раз|calendar scene
+30|1|hook|Ask like this|Спроси вот так|question hook
+30|2|phrasal|Ask for|Попроси|request scene counter
+30|3|bait|Ask after|Справиться о|not ask later scene caring
+30|4|phrasal|Check with|Сверься с|phone message scene
+30|5|phrase|Any chance|Есть шанс|request scene
+31|1|hook|Reply like this|Ответь вот так|reply hook
+31|2|phrasal|Get back to|Вернусь к|reply later scene email
+31|3|bait|Come back with|Вернуться с|not return physically scene answer
+31|4|phrasal|Follow with|Добавь затем|writing scene notes
+31|5|phrase|Quick answer|Короткий ответ|chat scene
+32|1|hook|Use better tone|Тон получше|tone hook
+32|2|phrasal|Sound out|Произнеси|pronunciation scene
+32|3|bait|Sound off|Высказаться|not turn sound off scene opinion
+32|4|phrasal|Speak slowly|Говори медленно|speaking scene
+32|5|phrase|Clear voice|Четкий голос|microphone scene
+33|1|hook|Don't say maybe|Не говори maybe|word choice hook
+33|2|phrasal|Commit to|Решись на|decision scene checklist
+33|3|bait|Settle on|Остановись на|not sit on scene choice
+33|4|phrasal|Go with|Выбери|choice scene cards
+33|5|phrase|I'm sure|Я уверен|confidence scene
+34|1|hook|Say maybe better|Скажи мягче|soft maybe hook
+34|2|phrasal|Lean toward|Склоняться к|decision scene options
+34|3|bait|Rule in|Включить|not law rule scene list
+34|4|phrasal|Think about|Подумай о|thinking scene notes
+34|5|phrase|Could be|Может быть|uncertainty scene
+35|1|hook|Use phone English|Фразы для чата|phone hook
+35|2|phrasal|Call in|Позвонить|call scene phone
+35|3|bait|Call on|Вызвать|not phone call scene class
+35|4|phrasal|Message back|Ответь в чат|message phone scene
+35|5|phrase|Seen this|Видел это|phone message scene
+36|1|hook|Fix your message|Исправь чат|message hook
+36|2|phrasal|Type out|Напиши целиком|typing scene phone
+36|3|bait|Send off|Отправить|not send away scene email
+36|4|phrasal|Forward on|Перешли дальше|forward message scene
+36|5|phrase|Draft saved|Черновик есть|phone draft scene
+37|1|hook|Use work English|Офисные фразы|office hook
+37|2|phrasal|Bring in|Привлечь|office meeting scene
+37|3|bait|Phase out|Убрать постепенно|not phase science scene product
+37|4|phrasal|Roll out|Запустить|product launch scene office
+37|5|phrase|On schedule|По графику|calendar office scene
+38|1|hook|Sound professional|Звучи делово|office tone hook
+38|2|phrasal|Take on|Взяться за|task scene office
+38|3|bait|Hand over|Передать|not hand over head scene office
+38|4|phrasal|Pass off|Выдать за|presentation scene proof
+38|5|phrase|Looks solid|Выглядит крепко|work review scene
+39|1|hook|Use meeting chunks|Фразы встреч|meeting hook
+39|2|phrasal|Bring forward|Перенести раньше|calendar scene
+39|3|bait|Push back|Перенести позже|not push physically scene calendar
+39|4|phrasal|Move up|Сдвинуть раньше|calendar scene
+39|5|phrasal|Move back|Сдвинуть позже|calendar scene
+40|1|hook|Calendar English|Фразы календаря|calendar hook
+40|2|phrasal|Block off|Забронируй|calendar time scene
+40|3|bait|Pencil in|Записать условно|not pencil object only scene calendar
+40|4|phrasal|Book in|Записать|calendar booking scene
+40|5|phrase|Time works|Время подходит|calendar scene
+41|1|hook|Use travel chunks|Фразы в пути|travel hook
+41|2|phrasal|Head back|Возвращайся|travel return scene
+41|3|bait|Set out|Отправиться|not set object scene journey
+41|4|phrasal|Check through|Проверить все|airport papers scene
+41|5|phrase|Gate changed|Выход сменили|airport scene
+42|1|hook|Travel smarter|Говори в пути|travel hook
+42|2|phrasal|Pack up|Собирай вещи|suitcase scene
+42|3|bait|Take along|Захвати|not take long scene bag
+42|4|phrase|Cabin bag|Ручная кладь|airport bag scene
+42|5|phrase|Bag checked|Багаж сдан|airport counter scene
+43|1|hook|Use food English|Фразы про еду|food hook
+43|2|phrasal|Heat up|Разогрей|food microwave scene
+43|3|bait|Eat up|Доедай|not eat upward scene plate
+43|4|phrasal|Cut into|Нарежь|food cutting scene
+43|5|phrase|Looks fresh|Выглядит свежо|food scene
+44|1|hook|Order like this|Закажи так|food order hook
+44|2|phrasal|Pick at|Ковырять|food plate scene
+44|3|bait|Dig in|Начинай есть|not dig ground scene meal
+44|4|phrasal|Serve up|Подай|food table scene
+44|5|phrase|No onions|Без лука|restaurant scene
+45|1|hook|Use money chunks|Фразы про деньги|money hook
+45|2|phrasal|Add up|Сходиться|numbers receipt scene
+45|3|bait|Run up|Накопить счет|not run upward scene bill
+45|4|phrasal|Pay down|Гасить долг|debt payment scene
+45|5|phrase|Card declined|Карта не прошла|payment scene
+46|1|hook|Talk about price|Про цену|money hook
+46|2|phrasal|Knock off|Скинуть цену|discount scene shop
+46|3|bait|Mark up|Наценить|not mark paper scene price
+46|4|phrasal|Save on|Сэкономить на|shopping scene
+46|5|phrase|Too pricey|Дороговато|price scene
+47|1|hook|Use home English|Фразы дома|home hook
+47|2|phrasal|Tidy up|Прибери|room cleaning scene
+47|3|bait|Put out|Потушить|not put outside scene candle
+47|4|phrasal|Wipe down|Протри|clean table scene
+47|5|phrase|Door's open|Дверь открыта|home door scene
+48|1|hook|Home phrases|Фразы для дома|home hook
+48|2|phrasal|Lock up|Запри все|door lock scene
+48|3|bait|Let in|Впусти|not allow abstract scene door
+48|4|phrasal|Let out|Выпусти|door pet scene
+48|5|phrase|Lights off|Свет выключен|home light scene
+49|1|hook|Use friend English|Фразы друзьям|friends hook
+49|2|phrasal|Meet up|Встретимся|friends meeting scene
+49|3|bait|Catch on with|Прижиться у|not understand only scene trend
+49|4|phrasal|Tag along|Пойти вместе|friends walking scene
+49|5|phrase|I'm nearby|Я рядом|map phone scene
+50|1|hook|Talk about plans|Про планы|plans hook
+50|2|phrasal|Plan on|Планировать|calendar scene
+50|3|bait|Bank on|Рассчитывать на|not bank money scene trust
+50|4|phrasal|Count on|Рассчитывать|support scene friend
+50|5|phrase|Sounds doable|Вроде можно|planning scene
+51|1|hook|Use emotion chunks|Фразы эмоций|emotion hook
+51|2|phrasal|Open out|Раскрыться|feelings talk scene
+51|3|bait|Bottle up|Держать в себе|not bottle object scene emotions
+51|4|phrasal|Let loose|Расслабиться|party calm scene
+51|5|phrase|Feeling better|Полегче|emotion scene
+52|1|hook|Say feelings simply|Про чувства проще|emotion hook
+52|2|phrasal|Cheer on|Поддержать|support scene crowd
+52|3|bait|Wear down|Измотать|not clothes only scene tired
+52|4|phrasal|Lift up|Подбодрить|support scene friend
+52|5|phrase|I'm okay|Я норм|calm face scene
+53|1|hook|Use study chunks|Фразы учебы|study hook
+53|2|phrasal|Go back over|Повтори снова|study review scene
+53|3|bait|Brush past|Едва задеть|not study brush up scene passing
+53|4|phrasal|Read up on|Почитай про|study search scene
+53|5|phrase|Test tomorrow|Тест завтра|calendar study scene
+54|1|hook|Study smarter|Учись умнее|study hook
+54|2|phrasal|Write out|Выпиши|notes scene
+54|3|bait|Work through|Проработай|not work job scene exercises
+54|4|phrasal|Practice with|Практикуй с|study partner scene
+54|5|phrase|Almost done|Почти готово|study scene
+55|1|hook|Use tech English|Техно фразы|tech hook
+55|2|phrasal|Boot up|Загрузи|computer start scene
+55|3|bait|Log out|Выйди из|not go outside scene account
+55|4|phrasal|Sync up|Сведи вместе|devices scene
+55|5|phrase|File missing|Файла нет|laptop error scene
+56|1|hook|Fix tech talk|Про технику|tech hook
+56|2|phrasal|Power down|Выключи|device power scene
+56|3|bait|Freeze up|Зависнуть|not cold scene computer
+56|4|phrasal|Load up|Загрузи|loading screen scene
+56|5|phrase|Screen froze|Экран завис|computer scene
+57|1|hook|Use polite chunks|Вежливые фразы|polite hook
+57|2|phrasal|Reach back|Ответить позже|email reply scene
+57|3|bait|Get back with|Вернуться с|not return physically scene answer
+57|4|phrasal|Thanks again|Спасибо еще|polite message scene
+57|5|phrase|Much appreciated|Очень ценю|polite scene
+58|1|hook|Ask politely|Спроси мягко|polite request hook
+58|2|phrasal|Run by|Согласовать с|not run nearby scene approval
+58|3|bait|Clear with|Согласовать|not clean scene manager
+58|4|phrasal|Check first|Сначала проверь|approval scene
+58|5|phrase|Would that work|Так подойдет|polite question scene
+59|1|hook|Use final chunks|Финальные фразы|final hook
+59|2|phrasal|Circle around|Вернуться к|discussion scene
+59|3|bait|Come full circle|Вернуться к началу|not circle shape scene discussion
+59|4|phrasal|End with|Закончить на|presentation scene
+59|5|phrase|Final note|Напоследок|closing scene
+60|1|hook|Last useful set|Последний набор|final hook
+60|2|phrasal|Keep in mind|Имей в виду|memory note scene
+60|3|bait|Bear in mind|Учти|not animal scene note
+60|4|phrasal|Take note|Запомни|note scene
+60|5|phrase|Use it|Применяй|practice scene

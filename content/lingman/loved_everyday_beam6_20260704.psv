@@ -1,0 +1,301 @@
+video|slot|role|phrase_en|translation_ru|note
+1|1|hook|Everyone saves these|Сохрани это|universal save hook
+1|2|phrase|Works for everyone|Всем зайдёт|universal use
+1|3|bait|I'm sorted|Мне хватает|bait not sorted objects
+1|4|phrasal|Come with me|Идём со мной|simple invite
+1|5|phrase|You're safe|Ты в норме|reassurance
+2|1|hook|Replies people like|Ответы любят|reply hook
+2|2|phrase|Sounds thoughtful|Звучит тепло|warm reply
+2|3|bait|Bit much|Перебор|bait not quantity only
+2|4|phrasal|Hear me out|Выслушай меня|listen before judging
+2|5|phrase|Dead serious|Я серьёзно|sincere
+3|1|hook|Sound kinder instantly|Звучит добрей|kindness hook
+3|2|phrase|Please relax|Расслабься|calm phrase
+3|3|bait|Go right ahead|Пожалуйста|bait not direction only
+3|4|phrase|All forgiven|Прощаю|soft reply
+3|5|phrase|You matter|Ты важен|support
+4|1|hook|Text smarter today|Пиши умнее|text hook
+4|2|phrase|Send it over|Пришли это|message action
+4|3|bait|Hit send|Нажми отправить|bait not punch send
+4|4|phrasal|Read it through|Прочти всё|check message
+4|5|phrase|Sounds clear|Всё ясно|message clarity
+5|1|hook|Agree without boring|Соглашайся живо|agreement hook
+5|2|phrase|Works perfectly|Отлично|agreement
+5|3|bait|I follow you|Понимаю тебя|bait not walking behind
+5|4|phrase|Point taken|Принято|accept point
+5|5|phrase|I'm beside you|Я рядом|support agreement
+6|1|hook|Disagree gently now|Спорь мягко|soft disagreement hook
+6|2|phrase|I see differently|Вижу иначе|gentle disagreement
+6|3|bait|Close but no|Не совсем|bait not physical distance
+6|4|phrase|Maybe not|Скорее нет|soft no
+6|5|phrase|I get that|Понимаю|acknowledge
+7|1|hook|Ask cleaner questions|Спрашивай чётче|question hook
+7|2|phrase|What changed|Что изменилось|clarify
+7|3|bait|Why though|Почему так|bait not thought only
+7|4|phrase|Which one|Который|choice question
+7|5|phrase|Any reason|Есть причина|ask reason
+8|1|hook|Plans sound smoother|Планы легче|planning hook
+8|2|phrase|Book it|Забронируй|arrange
+8|3|bait|Pencil me in|Запиши меня|bait not pencil object
+8|4|phrase|Same time|В то же время|schedule
+8|5|phrase|I'm available|Я свободен|availability
+9|1|hook|Time phrases matter|Время важно|time hook
+9|2|phrase|Late again|Опаздываю|late status
+9|3|bait|Time's up|Время вышло|bait not time upstairs
+9|4|phrase|Just in time|Как раз|time phrase
+9|5|phrase|Make it quick|Быстрее|speed request
+10|1|hook|Work replies win|Работа проще|work hook
+10|2|phrase|Looks doable|Выполнимо|work reaction
+10|3|bait|Lead from here|Веди дальше|bait not location only
+10|4|phrasal|Hand it off|Передай дальше|delegate
+10|5|phrase|I'm on track|Иду по плану|progress
+11|1|hook|Meetings sound easier|Встречи легче|meeting hook
+11|2|phrase|Let's recap|Подведём итог|meeting recap
+11|3|bait|Table this|Отложим это|bait not furniture table
+11|4|phrase|Good catch|Заметил верно|meeting praise
+11|5|phrase|Next point|Следующий пункт|meeting flow
+12|1|hook|Emails feel human|Письма живее|email hook
+12|2|phrase|Following up|Напоминаю|email opener
+12|3|bait|Looping you in|Ввожу тебя|bait not a loop
+12|4|phrase|Attached below|Прикрепил ниже|email attachment
+12|5|phrase|Thanks plenty|Спасибо большое|polite close
+13|1|hook|Calls stop awkwardness|Звонки проще|phone hook
+13|2|phrase|Can you hear|Меня слышно|call check
+13|3|bait|You're breaking up|Связь рвётся|bait not breakup only
+13|4|phrase|Call dropped|Звонок сорвался|call problem
+13|5|phrase|I'll text|Я напишу|fallback
+14|1|hook|Tech words save|Техника проще|tech hook
+14|2|phrase|It crashed|Вылетело|device problem
+14|3|bait|Log out fully|Выйди полностью|bait not just leave
+14|4|phrasal|Back it up|Сохрани копию|backup
+14|5|phrase|Retry once|Ещё раз|retry
+15|1|hook|Money talk calmer|Деньги проще|money hook
+15|2|phrase|Payment failed|Платёж отклонён|payment issue
+15|3|bait|I'm covered|За меня платят|bait not blanket
+15|4|phrase|Split evenly|Поровну|pay split
+15|5|phrase|Settle later|Оплачу позже|payment
+16|1|hook|Food phrases everyone|Еда понятней|food hook
+16|2|phrase|Menu please|Меню, пожалуйста|restaurant
+16|3|bait|I'm stuffed|Я объелся|bait not filled with objects
+16|4|phrase|Less spicy|Не так остро|food request
+16|5|phrase|Bill please|Счёт, пожалуйста|restaurant
+17|1|hook|Shop without stress|Покупай легче|shopping hook
+17|2|phrase|Any discount|Есть скидка|shopping question
+17|3|bait|Try it on|Примерь|bait not try abstractly
+17|4|phrase|Wrong size|Не тот размер|shopping issue
+17|5|phrase|I'll take it|Беру|buy
+18|1|hook|Travel sounds safer|Путешествуй проще|travel hook
+18|2|phrase|Passport ready|Паспорт готов|travel prep
+18|3|bait|Drop luggage|Сдай багаж|bait not drop on floor
+18|4|phrase|New gate|Новый гейт|airport
+18|5|phrase|Boarding now|Посадка сейчас|airport
+19|1|hook|Hotel phrases help|Отель проще|hotel hook
+19|2|phrase|Room key|Ключ от номера|hotel
+19|3|bait|Checkout time|Пора выезжать|bait not shopping only
+19|4|phrase|Late checkout|Поздний выезд|hotel request
+19|5|phrase|Quiet room|Тихий номер|hotel preference
+20|1|hook|Directions stop panic|Путь без паники|directions hook
+20|2|phrase|Go straight|Иди прямо|direction
+20|3|bait|Make a right|Поверни направо|bait not create rights
+20|4|phrase|Across street|Через дорогу|direction
+20|5|phrase|Near entrance|У входа|location
+21|1|hook|Home talk matters|Дома легче|home hook
+21|2|phrase|Shoes off|Сними обувь|home rule
+21|3|bait|Visit me|Заходи ко мне|bait not browser visit only
+21|4|phrase|Entry is open|Вход открыт|home
+21|5|phrase|Make tea|Завари чай|home action
+22|1|hook|Errands get easier|Дела проще|errands hook
+22|2|phrase|Pick this up|Забери это|errand
+22|3|bait|Drop it off|Оставь это|bait not drop down
+22|4|phrase|Nearly arrived|Почти приехал|errand status
+22|5|phrase|Need anything|Что-нибудь надо|offer help
+23|1|hook|Health phrases save|Здоровье важно|health hook
+23|2|phrase|I feel dizzy|Кружится голова|health
+23|3|bait|Faint suddenly|Потерять сознание|bait not suddenly passing
+23|4|phrase|Call a doctor|Вызови врача|health
+23|5|phrase|Need rest|Нужен отдых|health
+24|1|hook|Safety words stick|Безопасность важна|safety hook
+24|2|phrase|Stay close|Держись рядом|safety
+24|3|bait|Mind out|Осторожно|bait not mind noun
+24|4|phrase|Call security|Вызови охрану|safety
+24|5|phrase|Still okay|Я в порядке|safety status
+25|1|hook|Feelings sound real|Чувства живые|feelings hook
+25|2|phrase|I'm overwhelmed|Мне тяжело|feeling
+25|3|bait|I'm touched|Меня тронуло|bait not physically touched
+25|4|phrase|I miss you|Скучаю|feeling
+25|5|phrase|Feels strange|Странно|feeling
+26|1|hook|Support people remember|Поддержку помнят|support hook
+26|2|phrase|Proud of you|Горжусь тобой|support
+26|3|bait|You have me|Я рядом|bait not possession only
+26|4|phrase|Lean on me|Опирайся на меня|support
+26|5|phrase|Keep breathing|Дыши ровно|calm support
+27|1|hook|Apologies land better|Извиняйся лучше|apology hook
+27|2|phrase|I owe you|Я должен тебе|apology
+27|3|bait|I caused it|Моя вина|bait not technical fault only
+27|4|phrase|I regret it|Я жалею|apology
+27|5|phrase|Won't happen again|Больше не будет|promise
+28|1|hook|Boundaries stay kind|Границы мягче|boundary hook
+28|2|phrase|Not comfortable|Мне неудобно|boundary
+28|3|bait|I'm out|Я пас|bait not outside only
+28|4|phrase|Please stop|Остановись|boundary
+28|5|phrase|Respect that|Уважай это|boundary
+29|1|hook|Dating sounds normal|Свидание проще|dating hook
+29|2|phrase|You free tonight|Ты свободен вечером|date ask
+29|3|bait|Invite them out|Позови гулять|bait not outside only
+29|4|phrase|Enjoyed tonight|Было здорово|date close
+29|5|phrase|Message me later|Напиши позже|date follow up
+30|1|hook|Friendship phrases work|Дружба легче|friendship hook
+30|2|phrase|Missed you|Скучал по тебе|friendship
+30|3|bait|Make peace|Помирись|bait not makeup cosmetics
+30|4|phrase|Let's catch up|Давай поболтаем|friendship
+30|5|phrase|I'm glad|Я рад|friendship
+31|1|hook|Family talk softer|Семья мягче|family hook
+31|2|phrase|Call mom|Позвони маме|family
+31|3|bait|Resemble dad|Похож на папу|bait not taking after
+31|4|phrase|Family dinner|Семейный ужин|family
+31|5|phrase|Come home|Возвращайся домой|family
+32|1|hook|Parent phrases calm|Родителям легче|parent hook
+32|2|phrase|Use your words|Скажи словами|parenting
+32|3|bait|Time out|Пауза|bait not time outside
+32|4|phrase|Hands off|Руки убери|parenting
+32|5|phrase|Good try|Хорошая попытка|parenting
+33|1|hook|Motivation worth saving|Сохрани мотивацию|motivation hook
+33|2|phrase|Start small|Начни малым|motivation
+33|3|bait|Don't drop it|Не бросай|bait not physical dropping only
+33|4|phrase|You grew fast|Ты вырос|motivation
+33|5|phrase|One step|Шаг за шагом|motivation
+34|1|hook|Problems sound manageable|Проблемы проще|problem hook
+34|2|phrase|What's wrong|Что не так|problem ask
+34|3|bait|Deal with it|Разберись с этим|bait not business deal
+34|4|phrase|We need help|Нужна помощь|problem
+34|5|phrase|Let's fix this|Давай исправим|solution
+35|1|hook|Fixes sound simple|Решения проще|fix hook
+35|2|phrase|Patch it|Залатай|repair
+35|3|bait|Bypass issue|Обойди проблему|bait not walking around
+35|4|phrase|Try another way|Попробуй иначе|solution
+35|5|phrase|It worked|Сработало|result
+36|1|hook|Learning feels lighter|Учёба легче|learning hook
+36|2|phrase|Say it aloud|Скажи вслух|learning
+36|3|bait|Absorb quickly|Быстро схвати|bait not only lift
+36|4|phrase|Repeat once|Повтори раз|practice
+36|5|phrase|Use examples|Используй пример|learning
+37|1|hook|Study phrases stick|Учёба цепляет|study hook
+37|2|phrase|Take a note|Запиши|study
+37|3|bait|Refresh basics|Освежи базу|bait not brush object
+37|4|phrase|Check answers|Проверь ответы|study
+37|5|phrase|Try speaking|Попробуй говорить|study
+38|1|hook|Smalltalk opens doors|Болтовня помогает|small talk hook
+38|2|phrase|Long day|Долгий день|small talk
+38|3|bait|What's new|Что нового|bait not new object only
+38|4|phrase|Busy week|Загруженная неделя|small talk
+38|5|phrase|Nice seeing you|Рад был видеть|small talk close
+39|1|hook|Weather talk works|Погода помогает|weather hook
+39|2|phrase|Looks chilly|Прохладно|weather
+39|3|bait|It's pouring|Льёт как из ведра|bait not pouring drink
+39|4|phrase|Take a coat|Возьми пальто|weather
+39|5|phrase|Feels humid|Влажно|weather
+40|1|hook|Compliments feel better|Комплименты лучше|compliment hook
+40|2|phrase|Great choice|Отличный выбор|compliment
+40|3|bait|Looks sharp|Стильно|bait not physically sharp
+40|4|phrase|Nice work|Классная работа|compliment
+40|5|phrase|You shine|Ты сияешь|compliment
+41|1|hook|Reactions sound alive|Реакции живые|reaction hook
+41|2|phrase|Can't be true|Не может быть|reaction
+41|3|bait|You're joking|Да ладно|bait not lying accusation
+41|4|phrase|That's huge|Вот это да|reaction
+41|5|phrase|Crazy story|Дикая история|reaction
+42|1|hook|Humor makes friends|Юмор сближает|humor hook
+42|2|phrase|Good timing|Вовремя|humor
+42|3|bait|Cracks me up|Меня смешит|bait not physical cracks
+42|4|phrase|Too funny|Слишком смешно|humor
+42|5|phrase|Nice joke|Хорошая шутка|humor
+43|1|hook|Online English matters|Онлайн важно|online hook
+43|2|phrase|Link works|Ссылка работает|online
+43|3|bait|Create account|Создай аккаунт|bait not signature only
+43|4|phrase|Page loaded|Страница открылась|online
+43|5|phrase|Share link|Поделись ссылкой|online
+44|1|hook|Social replies pop|Соцсети цепляют|social hook
+44|2|phrase|Post later|Выложи позже|social
+44|3|bait|Blow up|Взорваться в сети|bait not explosion only
+44|4|phrase|Tag me|Отметь меня|social
+44|5|phrase|Looks edited|Похоже на монтаж|social reaction
+45|1|hook|Stress phrases help|Стресс легче|stress hook
+45|2|phrase|I'm drained|Я выжат|stress
+45|3|bait|Feel burned|Выгораешь|bait not literal fire
+45|4|phrase|Need silence|Нужна тишина|stress
+45|5|phrase|Long shift|Долгая смена|work stress
+46|1|hook|Decisions sound clean|Решай чётче|decision hook
+46|2|phrase|Choose one|Выбери один|decision
+46|3|bait|Sleep on it|Подумай до утра|bait not sleep on object
+46|4|phrase|Either option|Любой вариант|decision
+46|5|phrase|I'm leaning left|Склоняюсь влево|decision
+47|1|hook|Negotiations feel easier|Договориться легче|negotiation hook
+47|2|phrase|Meet halfway|Сойдёмся посередине|negotiation
+47|3|bait|Give a little|Уступи немного|bait not gift only
+47|4|phrase|Sounds reasonable|Звучит разумно|negotiation
+47|5|phrase|Let's agree|Договорились|negotiation
+48|1|hook|Questions unlock talking|Вопросы открывают|question hook
+48|2|phrase|Who else|Кто ещё|question
+48|3|bait|What for|Зачем|bait not for object
+48|4|phrase|Where exactly|Где именно|question
+48|5|phrase|From when|С каких пор|question
+49|1|hook|End chats smoothly|Закрывай чат|ending hook
+49|2|phrase|Talk soon|Скоро спишемся|chat close
+49|3|bait|I'm leaving|Я пошёл|bait not switched off only
+49|4|phrase|Catch you later|Увидимся позже|chat close
+49|5|phrase|Have fun|Веселись|goodbye
+50|1|hook|Hosting sounds warmer|Принимай теплее|hosting hook
+50|2|phrase|Step inside|Заходи внутрь|hosting
+50|3|bait|Take some|Угощайся|bait not assist yourself
+50|4|phrase|Sit anywhere|Садись где хочешь|hosting
+50|5|phrase|Feel at home|Будь как дома|hosting
+51|1|hook|Routine phrases stick|Быт цепляет|routine hook
+51|2|phrase|Rest well|Спокойной ночи|routine
+51|3|bait|Stay up|Не ложись|bait not stay upstairs
+51|4|phrase|Wake early|Вставай рано|routine
+51|5|phrase|Get dressed|Одевайся|routine
+52|1|hook|Fitness talk simple|Спорт проще|fitness hook
+52|2|phrase|Warm up first|Сначала разомнись|fitness
+52|3|bait|Train today|Тренируйся|bait not solve only
+52|4|phrase|Stretch slowly|Тянись медленно|fitness
+52|5|phrase|Have water|Пей воду|fitness
+53|1|hook|Cleaning phrases useful|Уборка полезна|cleaning hook
+53|2|phrase|Wipe it down|Протри|cleaning
+53|3|bait|Store it away|Убери это|bait not put far
+53|4|phrase|Trash it|Выброси|cleaning
+53|5|phrase|Looks tidy|Чисто|cleaning
+54|1|hook|Transport talk helps|Транспорт проще|transport hook
+54|2|phrase|Bus leaves|Автобус уходит|transport
+54|3|bait|Board now|Садись|bait not get above
+54|4|phrase|Missed stop|Проехал остановку|transport
+54|5|phrase|Next station|Следующая станция|transport
+55|1|hook|Service phrases save|Сервис проще|service hook
+55|2|phrase|Need assistance|Нужна помощь|service
+55|3|bait|Hold please|Подождите|bait not holding object
+55|4|phrase|Wrong order|Не тот заказ|service
+55|5|phrase|Manager please|Менеджера|service
+56|1|hook|Secrets sound natural|Секреты мягче|secret hook
+56|2|phrase|Between us|Между нами|secret
+56|3|bait|Stay silent|Молчи|bait not remain quiet
+56|4|phrase|Quietly though|По-тихому|secret slang
+56|5|phrase|Don't tell|Не говори|secret
+57|1|hook|Refusals stay polite|Отказывай мягко|refusal hook
+57|2|phrase|Can't make it|Не смогу|refusal
+57|3|bait|I'll pass|Я пас|bait not walking past only
+57|4|phrase|Another day maybe|В другой день|refusal
+57|5|phrase|Thanks anyway|Всё равно спасибо|refusal
+58|1|hook|Modern phrases land|Современные фразы|modern hook
+58|2|phrase|Feels off|Что-то не так|modern reaction
+58|3|bait|Lands differently|Иначе заходит|bait not physical landing
+58|4|phrase|That's real|Это правда|modern response
+58|5|phrase|Big mood|Жиза|modern slang
+59|1|hook|Save this batch|Сохрани набор|save hook
+59|2|phrase|Use tomorrow|Используй завтра|daily use
+59|3|bait|Stick with it|Не бросай|bait not glue stick
+59|4|phrase|Repeat daily|Повторяй каждый день|practice
+59|5|phrase|Share with friends|Поделись с друзьями|share CTA
+60|1|hook|People love these|Людям зайдёт|final hook
+60|2|phrase|Sounds natural|Звучит живо|final
+60|3|bait|You do you|Будь собой|bait not physically do yourself
+60|4|phrase|Keep learning|Учись дальше|final
+60|5|phrase|Save the list|Сохрани список|final save

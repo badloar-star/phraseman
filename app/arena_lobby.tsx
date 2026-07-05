@@ -1640,7 +1640,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 }
                 return {
                     uid: f.uid,
-                    name: name || '?????',
+                    name: name || defaultPlayerName,
                     totalXp,
                     avatar: avatarRaw || undefined,
                     aura: auraRaw || undefined,
@@ -1664,7 +1664,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             setArenaFriendProfiles(map);
         })();
         return () => { cancelled = true; };
-    }, [arenaFriends]);
+    }, [arenaFriends, defaultPlayerName]);
     const othersInQueueBadge = queueOthersCount > 0 ? (<View style={[
             styles.queueActivityBadge,
             {

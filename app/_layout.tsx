@@ -2735,6 +2735,10 @@ function AppContent() {
       {/* «Созвездия» (specs/constellations.md): поиск живёт с дефолтным freeze —
           подписка очереди работает и в фоне, редирект в матч случится при возврате. */}
       <Stack.Screen name="constellation_search" options={{ animation: 'none' }} />
+      {/* Живой матч — realtime-исключение как arena_game: фазовый таймер и
+          подписки должны рендерить актуальное состояние (perf_freeze_contract). */}
+      <Stack.Screen name="constellation_match" options={{ animation: 'none', freezeOnBlur: false }} />
+      <Stack.Screen name="constellation_results" />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />

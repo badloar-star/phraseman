@@ -13,6 +13,14 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle, Line, RadialGradient, Stop, Defs } from 'react-native-svg';
+import Animated, {
+  Easing,
+  useAnimatedProps,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
+import { ConstellationStarfield } from './constellation_starfield';
 import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -88,6 +96,19 @@ function constellationName(seed: string, lang: string): string {
   // Fallback — английский (не русский): турок не должен видеть кириллицу.
   const dict = table[lang] ?? table.en;
   return dict.pattern(dict.adj[adjIdx], dict.animal[animalIdx]);
+}
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+/** Звезда созвездия «зажигается» с масштабом (каскад по индексу) — созвездие
+ *  собирается на глазах, а не появляется готовым. Одноразово, не цикл. */
+function PopStar({ x, y, delay }: { x: number; y: number; delay: number }) {
+  const s = useSharedValue(0);
+  useEffect(() => {
+    s.value = withDelay(delay, withTiming(1, { duration: 420, easing: Easing.out(Easing.back(1.6)) }));
+  }, [s, delay]);
+  const props = useAnimatedProps(() => ({ r: 10 * s.value, opacity: s.value }));
+  return <AnimatedCircle cx={x} cy={y} fill="url(#resStar)" animatedProps={props} />;
 }
 
 export default function ConstellationResultsScreen() {
@@ -177,6 +198,7 @@ export default function ConstellationResultsScreen() {
   return (
     <View style={styles.root}>
       <LinearGradient colors={skyColors} style={StyleSheet.absoluteFill} />
+      <ConstellationStarfield count={44} />
       <View style={styles.body}>
         <Text style={[styles.header, { color: t.textPrimary, fontSize: f.h2 }]}>
           {triLang(lang, {
@@ -276,7 +298,7 @@ export default function ConstellationResultsScreen() {
               );
             })}
             {myOutline.map((p, i) => (
-              <Circle key={`s${i}`} cx={p.x} cy={p.y} r={10} fill="url(#resStar)" />
+              <PopStar key={`s${i}`} x={p.x} y={p.y} delay={i * 120} />
             ))}
           </Svg>
           <Text style={[styles.constName, { color: t.textPrimary, fontSize: f.sub + 1 }]}>{name}</Text>

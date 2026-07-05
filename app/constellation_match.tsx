@@ -42,6 +42,7 @@ import {
 import { ensureArenaAuthUid } from './user_id_policy';
 import { CONSTELLATION_SLOT_COLORS } from './constellation_sky_map';
 import { ConstellationZoomMap } from './constellation_zoom_map';
+import { ConstellationStarfield } from './constellation_starfield';
 import { starName } from './constellation_star_names';
 import { hexKey, neighborsInMap, parseHexKey, ringOf } from './constellations_hex';
 import type {
@@ -317,6 +318,7 @@ export default function ConstellationMatchScreen() {
   return (
     <View style={styles.root}>
       <LinearGradient colors={skyColors} style={StyleSheet.absoluteFill} />
+      <ConstellationStarfield count={38} />
 
       {/* HUD: выход, раунд, таймер фазы, фаза */}
       <View style={[styles.hud, { paddingTop: insets.top + 8 }]}>
@@ -455,6 +457,7 @@ export default function ConstellationMatchScreen() {
           starKey={sheetKey}
           match={match}
           busy={busy}
+          bottomInset={insets.bottom}
           onConfirm={confirmTarget}
           onClose={() => setSheetKey(null)}
         />
@@ -473,6 +476,7 @@ export default function ConstellationMatchScreen() {
           lastRule={lastRule}
           secondsLeft={secondsLeft}
           phaseTotalSec={isDuel ? 10 : 38}
+          bottomInset={insets.bottom}
           onAnswer={onAnswer}
           onRuleSeen={() => setLastRule(null)}
         />
@@ -717,12 +721,13 @@ interface TargetSheetProps {
   starKey: string;
   match: ConstellationMatch;
   busy: boolean;
+  bottomInset: number;
   onConfirm: () => void;
   onClose: () => void;
 }
 
 const TargetSheet = memo(function TargetSheet({
-  lang, starKey, match, busy, onConfirm, onClose,
+  lang, starKey, match, busy, bottomInset, onConfirm, onClose,
 }: TargetSheetProps) {
   const { theme: t, f } = useTheme();
   const star = match.stars[starKey];
@@ -755,7 +760,7 @@ const TargetSheet = memo(function TargetSheet({
   const name = starName(starKey);
 
   return (
-    <View style={[sheetStyles.sheet, { backgroundColor: 'rgba(8,13,30,0.96)', borderColor: '#2A3A6A' }]}>
+    <View style={[sheetStyles.sheet, { backgroundColor: 'rgba(8,13,30,0.96)', borderColor: '#2A3A6A', bottom: 14 + bottomInset }]}>
       <View style={sheetStyles.head}>
         <View style={{ flex: 1 }}>
           <Text style={[sheetStyles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
@@ -852,12 +857,13 @@ interface QuizOverlayProps {
   lastRule: { correct: boolean; rule: string } | null;
   secondsLeft: number;
   phaseTotalSec: number;
+  bottomInset: number;
   onAnswer: (index: number) => void;
   onRuleSeen: () => void;
 }
 
 const QuizOverlay = memo(function QuizOverlay({
-  lang, isDuel, qIndex, total, question, options, busy, lastRule, secondsLeft, phaseTotalSec, onAnswer, onRuleSeen,
+  lang, isDuel, qIndex, total, question, options, busy, lastRule, secondsLeft, phaseTotalSec, bottomInset, onAnswer, onRuleSeen,
 }: QuizOverlayProps) {
   const { theme: t, f } = useTheme();
   const budgetFrac = Math.max(0, Math.min(1, secondsLeft / Math.max(1, phaseTotalSec)));
@@ -874,7 +880,11 @@ const QuizOverlay = memo(function QuizOverlay({
     onAnswer(i);
   }, [busy, onAnswer]);
   return (
-    <View style={[quizStyles.box, { backgroundColor: 'rgba(8,13,30,0.97)', borderColor: isDuel ? '#FFD166' : '#2A3A6A' }]}>
+    <View style={[quizStyles.box, {
+      backgroundColor: 'rgba(8,13,30,0.97)',
+      borderColor: isDuel ? '#FFD166' : '#2A3A6A',
+      bottom: 14 + bottomInset, // над системной навигацией Android (жалоба)
+    }]}>
       {/* Полоса бюджета фазы (2.3): игрок видит, сколько времени тает, прямо
           над вопросом — не «внезапно время вышло». Краснеет на ≤5с. */}
       <View style={quizStyles.budgetTrack}>
@@ -896,12 +906,18 @@ const QuizOverlay = memo(function QuizOverlay({
           })}
         </Text>
       ) : null}
-      <Text style={[quizStyles.meta, { color: t.textSecond, fontSize: f.caption - 1 }]}>
-        {qIndex + 1}/{total}
-      </Text>
-      <Text style={[quizStyles.question, { color: t.textPrimary, fontSize: f.sub + 2 }]}>
-        {question}
-      </Text>
+      {/* Заголовок вопроса скрыт, пока показано правило (lastRule) — иначе виден
+          НОВЫЙ вопрос над правилом СТАРОГО («вопросы смешивались»). */}
+      {!lastRule ? (
+        <>
+          <Text style={[quizStyles.meta, { color: t.textSecond, fontSize: f.caption - 1 }]}>
+            {qIndex + 1}/{total}
+          </Text>
+          <Text style={[quizStyles.question, { color: t.textPrimary, fontSize: f.sub + 2 }]}>
+            {question}
+          </Text>
+        </>
+      ) : null}
       {lastRule ? (
         <View style={[quizStyles.rule, {
           borderLeftColor: lastRule.correct ? '#63E6A4' : '#FF8080',

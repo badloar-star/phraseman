@@ -47,7 +47,6 @@ import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMulti
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { syncToCloud } from '../app/cloud_sync';
-import { oskolokImageForPackShards } from '../app/oskolok';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
@@ -159,9 +158,10 @@ const DEFAULT_PROFILE_CARD_SNAPSHOT: ProfileCardSnapshot = {
   motion: 'none',
   publicFocus: 'balanced',
 };
-const PROFILE_HEADER_ACTION_SIZE = 44;
-const PROFILE_HEADER_ACTION_TOP = 14;
-const PROFILE_HEADER_ACTION_RIGHT = 14;
+const PROFILE_HEADER_ACTION_SIZE = 42;
+// Отступы больше радиуса угла шторки (30), чтобы круглые кнопки не срезались скруглением.
+const PROFILE_HEADER_ACTION_TOP = 18;
+const PROFILE_HEADER_ACTION_RIGHT = 18;
 const PROFILE_HEADER_ACTION_GAP = 10;
 
 // Цвета/градиенты/подложки живут в profile_card_system.ts (одни и те же на модалке
@@ -271,6 +271,8 @@ function PlayerProfileModalBody({
   const [upgradeBusy, setUpgradeBusy] = useState(false);
   // Анимация «морфа» при смене уровня карточки (превью или покупка).
   const levelSwitchAnim = useRef(new Animated.Value(1)).current;
+  // Выезд панели превью снизу (0 = спрятана под краем, 1 = на месте).
+  const previewPanelAnim = useRef(new Animated.Value(0)).current;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   // Profile-level activity like the current user has already placed today (toggle state).
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
@@ -502,6 +504,16 @@ function PlayerProfileModalBody({
       useNativeDriver: true,
     }).start();
   }, [displayCardLevel, levelSwitchAnim]);
+
+  // Панель превью выезжает снизу при входе в режим превью и уезжает при выходе.
+  useEffect(() => {
+    Animated.timing(previewPanelAnim, {
+      toValue: isMe && previewLevel !== null ? 1 : 0,
+      duration: 260,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [isMe, previewLevel, previewPanelAnim]);
 
   // Тап по круглой кнопке: карточка ПРЯМО ЗДЕСЬ преображается в следующий уровень
   // (никакого отдельного экрана). Повторные тапы листают уровни дальше до V,
@@ -958,9 +970,9 @@ function PlayerProfileModalBody({
             borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
-            borderWidth: 1,
-            borderColor: prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairline : 'rgba(255,255,255,0.14)',
+            backgroundColor: prestigeActive ? 'rgba(0,0,0,0.34)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
+            borderWidth: compassProfileSurface ? 1 : 0,
+            borderColor: compassProfileSurface ? COMPASS_RICH.hairline : 'transparent',
             overflow: compassProfileSurface ? 'hidden' : 'visible',
             ...(compassProfileSurface ? compassShadow(1) : null),
           }}
@@ -981,13 +993,13 @@ function PlayerProfileModalBody({
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
-              backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
+              backgroundColor: isAlreadyFriend
+                ? (compassProfileSurface ? COMPASS_RICH.charcoalRaised : prestigeActive ? 'rgba(240,84,84,0.22)' : 'rgba(240,84,84,0.16)')
+                : (prestigeActive ? 'rgba(0,0,0,0.34)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)'),
               alignItems: 'center',
               justifyContent: 'center',
-              borderWidth: 1,
-              borderColor: isAlreadyFriend
-                ? (compassProfileSurface ? COMPASS_RICH.copper : (t.wrong ?? t.border))
-                : (prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairline : 'rgba(255,255,255,0.14)'),
+              borderWidth: compassProfileSurface ? 1 : 0,
+              borderColor: compassProfileSurface ? COMPASS_RICH.hairline : 'transparent',
               overflow: compassProfileSurface ? 'hidden' : 'visible',
               ...(compassProfileSurface ? compassShadow(1) : null),
               opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
@@ -1657,7 +1669,8 @@ function PlayerProfileModalBody({
           // Панель превью: карточка выше уже преобразилась в выбранный уровень —
           // здесь имя уровня, выход из превью и покупка СЛЕДУЮЩЕГО уровня.
           // Плавающая скруглённая панель без обводок — часть модала, а не «приклейка».
-          <View style={{
+          // Выезжает снизу (previewPanelAnim).
+          <Animated.View style={{
             position: 'absolute',
             left: 12,
             right: 12,
@@ -1672,6 +1685,8 @@ function PlayerProfileModalBody({
             shadowRadius: 16,
             shadowOffset: { width: 0, height: 6 },
             elevation: 10,
+            opacity: previewPanelAnim,
+            transform: [{ translateY: previewPanelAnim.interpolate({ inputRange: [0, 1], outputRange: [90, 0] }) }],
           }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
               <Text style={{ color: cardVisual.secondary, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.4 }} numberOfLines={1}>
@@ -1718,7 +1733,7 @@ function PlayerProfileModalBody({
                 {upgradeBusy ? (
                   <ActivityIndicator size="small" color="#1A1205" />
                 ) : (
-                  <Image source={oskolokImageForPackShards(cardDef.cost)} style={{ width: 18, height: 18 }} contentFit="contain" />
+                  <Ionicons name="diamond" size={16} color="#1A1205" />
                 )}
               </TouchableOpacity>
             ) : (
@@ -1739,7 +1754,7 @@ function PlayerProfileModalBody({
                 </Text>
               </View>
             )}
-          </View>
+          </Animated.View>
         )}
       </Animated.View>
     </Animated.View>

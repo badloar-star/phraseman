@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import Reanimated from 'react-native-reanimated';
+import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
 import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -154,7 +154,20 @@ export default function PersonalPlanStatsScreen() {
   const fade = useRef(new Animated.Value(planStatsWarm ? 1 : 0)).current;
   const slide = useRef(new Animated.Value(planStatsWarm ? 0 : 20)).current;
   const dayRailRef = useRef<ScrollView | null>(null);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  // TopFadeMask слушает fadeScrollY порогом (showThreshold=6) — будим JS только на
+  // пересечении порога, сам скролл обрабатывается UI-потоком (onAnimatedScroll).
+  const topFadeShown = useSharedValue(false);
+  const notifyTopFade = useCallback((y: number) => { fadeScrollY.setValue(y); }, [fadeScrollY]);
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
+    onScrollWorklet: (y: number) => {
+      'worklet';
+      const shown = y > 6;
+      if (shown !== topFadeShown.value) {
+        topFadeShown.value = shown;
+        runOnJS(notifyTopFade)(y);
+      }
+    },
+  });
   const bouncyStyle = useBouncyStyle(bouncyStretch);
 
   const load = useCallback(async () => {
@@ -321,15 +334,15 @@ export default function PersonalPlanStatsScreen() {
         </View>
 
         <BouncyWrap>
-        <Animated.ScrollView
+        <Animated.View style={{ flex: 1, opacity: fade, transform: [{ translateY: slide }] }}>
+        <Reanimated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
           bounces
           alwaysBounceVertical
           overScrollMode="always"
           contentContainerStyle={styles.scroll}
-          style={{ opacity: fade, transform: [{ translateY: slide }] }}
-          onScroll={(e: any) => { onBouncyScroll(e); fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0); }}
+          onScroll={onAnimatedScroll}
           scrollEventThrottle={16}
         >
           {/* Overall progress hero */}
@@ -448,7 +461,8 @@ export default function PersonalPlanStatsScreen() {
               ))}
             </LinearGradient>
           ) : null}
-        </Animated.ScrollView>
+        </Reanimated.ScrollView>
+        </Animated.View>
         </BouncyWrap>
         </Reanimated.View>
       </LinearGradient>

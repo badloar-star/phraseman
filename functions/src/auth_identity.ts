@@ -95,6 +95,45 @@ function normalizeAuthLinkMetadata(value: unknown): AuthLinkMetadata | undefined
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
+/**
+ * Дополняет metadata email/displayName из Firebase Auth, если клиент их не прислал.
+ *
+ * Корень бага «пустой linkedAuth.email у google/apple»: старые клиенты (и часть
+ * путей входа) не клали email в linkMetadata, и он записывался как null, хотя в
+ * Firebase Auth email ЕСТЬ и достоверен. Firebase Auth — источник правды для
+ * провайдерского email, поэтому добираем его здесь на сервере. Значения, которые
+ * клиент прислал явно, НЕ перезаписываем.
+ */
+async function enrichMetadataFromAuth(
+  authUid: string,
+  provider: AuthProvider | null,
+  metadata?: AuthLinkMetadata,
+): Promise<AuthLinkMetadata | undefined> {
+  if (!provider) return metadata;
+  const hasEmail = metadata != null
+    && Object.prototype.hasOwnProperty.call(metadata, 'email')
+    && cleanNullableString(metadata.email, 320) != null;
+  const hasDisplayName = metadata != null
+    && Object.prototype.hasOwnProperty.call(metadata, 'displayName')
+    && cleanNullableString(metadata.displayName, 160) != null;
+  if (hasEmail && hasDisplayName) return metadata;
+
+  let rec: admin.auth.UserRecord | null = null;
+  try {
+    rec = await admin.auth().getUser(authUid);
+  } catch {
+    return metadata; // auth недоступен — оставляем как есть (не рушим вход)
+  }
+  const authEmail = cleanNullableString(rec.email, 320)
+    ?? cleanNullableString(rec.providerData.find((p) => p.email)?.email, 320);
+  const authDisplayName = cleanNullableString(rec.displayName, 160);
+
+  const out: AuthLinkMetadata = { ...(metadata ?? {}) };
+  if (!hasEmail && authEmail) out.email = authEmail;
+  if (!hasDisplayName && authDisplayName) out.displayName = authDisplayName;
+  return Object.keys(out).length > 0 ? out : metadata;
+}
+
 function readProgressXp(data: FirebaseFirestore.DocumentData | undefined): number {
   const raw = (data?.progress as { user_total_xp?: unknown } | undefined)?.user_total_xp;
   const n = parseInt(String(raw ?? '0'), 10);
@@ -754,6 +793,10 @@ export async function ensureStableLinkForAuth(
         : null;
   const allowProviderRelink = Boolean(provider);
   const allowAnonRelink = !allowProviderRelink;
+
+  // Добираем email/displayName из Firebase Auth, если клиент их не прислал —
+  // иначе linkedAuth.email пишется null и юзера не найти по почте в админке.
+  metadata = await enrichMetadataFromAuth(authUid, provider, metadata);
 
   if (provider) {
     const existingLinkSnap = await db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null);

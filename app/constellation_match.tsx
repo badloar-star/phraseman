@@ -19,6 +19,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -61,6 +62,7 @@ export default function ConstellationMatchScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const focused = useIsScreenFocused();
+  const insets = useSafeAreaInsets();
 
   const [uid, setUid] = useState<string | null>(null);
   const [match, setMatch] = useState<ConstellationMatch | null>(null);
@@ -225,7 +227,7 @@ export default function ConstellationMatchScreen() {
       <LinearGradient colors={skyColors} style={StyleSheet.absoluteFill} />
 
       {/* HUD: раунд, таймер фазы, фаза */}
-      <View style={styles.hud}>
+      <View style={[styles.hud, { paddingTop: insets.top + 8 }]}>
         <View style={[styles.roundBox, { borderColor: t.border }]}>
           <Text style={[styles.roundText, { color: t.textSecond, fontSize: f.caption }]}>
             {triLang(lang, {
@@ -285,9 +287,10 @@ export default function ConstellationMatchScreen() {
         ))}
       </View>
 
-      {/* Карта: статичный премиум-наклон (жесты — полировка) */}
+      {/* Карта: объём нарисован внутри SVG (грани/высоты) — без RN-perspective,
+          он смещал и обрезал проекцию на устройстве. Геометрия — по aspect viewBox. */}
       <View style={styles.mapBox}>
-        <View style={styles.mapTilt}>
+        <View style={styles.mapFrame}>
           <ConstellationSkyMap
             stars={match.stars}
             homes={match.homes}
@@ -656,7 +659,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    paddingTop: 54,
     paddingHorizontal: 14,
   },
   roundBox: {
@@ -664,7 +666,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 9,
     paddingVertical: 5,
-    backgroundColor: 'rgba(5,9,20,0.5)',
+    backgroundColor: 'rgba(13,20,44,0.9)',
   },
   roundText: { fontVariant: ['tabular-nums'] },
   timerPill: {
@@ -675,7 +677,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 9,
     paddingVertical: 5,
-    backgroundColor: 'rgba(5,9,20,0.5)',
+    backgroundColor: 'rgba(13,20,44,0.9)',
   },
   timerText: { fontWeight: '800', fontVariant: ['tabular-nums'] },
   goldChip: {
@@ -729,10 +731,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#5E6B8F',
   },
   playerDotDone: { backgroundColor: '#63E6A4' },
-  mapBox: { flex: 1, minHeight: 0 },
-  mapTilt: {
+  mapBox: {
     flex: 1,
-    transform: [{ perspective: 900 }, { rotateX: '16deg' }, { scale: 1.02 }],
+    minHeight: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mapFrame: {
+    // Геометрия строго по viewBox карты (360×400): вписываемся без обрезки.
+    width: '100%',
+    maxWidth: 430,
+    aspectRatio: 360 / 400,
+    maxHeight: '100%',
   },
   emoteBubble: {
     position: 'absolute',

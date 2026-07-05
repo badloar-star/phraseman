@@ -153,9 +153,10 @@ const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { constellationSubmitAction } = require('./constellations/submit');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, constellationQueueCron } = require('./constellations/queue') as {
+const { tryMatchConstellationUser, constellationQueueCron, fillConstellationAfterDelay } = require('./constellations/queue') as {
   tryMatchConstellationUser: (userId: string) => Promise<void>;
   constellationQueueCron: () => Promise<void>;
+  fillConstellationAfterDelay: (userId: string) => Promise<void>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
@@ -289,16 +290,27 @@ exports.constellationSubmitAction = constellationSubmitAction;
 // Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
 // bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
 export const onConstellationQueueWrite = functions.firestore.onDocumentWritten(
-  'constellation_queue/{userId}',
+  // timeoutSeconds 90: после мгновенной попытки функция «досыпает» до
+  // bot_fill_delay (30с) и добирает матч ботами точно в срок — игрок не ждёт
+  // минутный cron (он остаётся страховкой).
+  { document: 'constellation_queue/{userId}', timeoutSeconds: 90 },
   async (event) => {
     const after = event.data?.after;
     if (!after?.exists) return;
-    const data = after.data() as { matchId?: string } | undefined;
+    const data = after.data() as { matchId?: string; joinedAt?: number } | undefined;
     if (data?.matchId) return;
+    // Реагируем только на СОЗДАНИЕ записи поиска (не на server-side update).
+    if (event.data?.before.exists) return;
+    const userId = event.params.userId as string;
     try {
-      await tryMatchConstellationUser(event.params.userId as string);
+      await tryMatchConstellationUser(userId);
     } catch (e) {
-      console.warn('onConstellationQueueWrite', e);
+      console.warn('onConstellationQueueWrite tryMatch', e);
+    }
+    try {
+      await fillConstellationAfterDelay(userId);
+    } catch (e) {
+      console.warn('onConstellationQueueWrite botFill', e);
     }
   },
 );

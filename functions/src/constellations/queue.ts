@@ -90,6 +90,39 @@ export async function tryMatchConstellationUser(userId: string): Promise<void> {
   }
 }
 
+/**
+ * Точный добор к bot_fill_delay (B3): триггер очереди «досыпает» до дедлайна
+ * записи и, если игрок всё ещё не заматчен живыми, немедленно собирает матч
+ * с ботами. Минутный cron остаётся страховкой (инстанс триггера могли убить).
+ */
+export async function fillConstellationAfterDelay(userId: string): Promise<void> {
+  const cfg = await resolveConstellationConfig(db);
+  const ref = db.collection(QUEUE).doc(userId);
+  const first = await ref.get();
+  const entry = first.data() as QueueDoc | undefined;
+  if (!first.exists || !entry || entry.matchId) return;
+
+  const deadline = (entry.joinedAt ?? Date.now()) + cfg.matchmaking.botFillDelaySec * 1000;
+  const waitMs = Math.min(Math.max(deadline - Date.now(), 0), 45_000);
+  if (waitMs > 0) await new Promise((r) => setTimeout(r, waitMs));
+
+  const fresh = await ref.get();
+  const freshEntry = fresh.data() as QueueDoc | undefined;
+  if (!fresh.exists || !freshEntry || freshEntry.matchId) return; // успели живые
+
+  // Берём с собой до 2 других ждущих (их дедлайн тоже близко) и добиваем ботами.
+  const window = await readQueueWindow();
+  const now = Date.now();
+  const others = window
+    .filter((e) => !e.matchId && e.id !== userId && now - (e.joinedAt ?? 0) <= STALE_ENTRY_MS)
+    .slice(0, 2);
+  try {
+    await createConstellationMatch([{ ...freshEntry, id: userId }, ...others].map(toHuman));
+  } catch (e) {
+    console.warn('fillConstellationAfterDelay race (cron подстрахует)', e);
+  }
+}
+
 /** Минутный cron: полные матчи → добор ботами → чистка → watchdog → счётчик. */
 export async function constellationQueueCron(): Promise<void> {
   const now = Date.now();

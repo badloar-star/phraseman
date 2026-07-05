@@ -61,6 +61,9 @@ export default function ConstellationSearchScreen() {
   const [elapsedSec, setElapsedSec] = useState(0);
   const [searchingCount, setSearchingCount] = useState(0);
   const [dots, setDots] = useState('…');
+  // Поэтапное подключение: слот 0 — ты (сразу), остальные «находятся» в
+  // случайные моменты (презентация ожидания; реальный состав придёт с матчем).
+  const [slotsFilled, setSlotsFilled] = useState(1);
 
   const uidRef = useRef<string | null>(null);
   const navigatedRef = useRef(false);
@@ -165,6 +168,19 @@ export default function ConstellationSearchScreen() {
     return () => clearInterval(id);
   }, [focused, state.kind]);
 
+  // Слоты 2–4 «подключаются» в случайные адекватные моменты (4–10с, 11–18с, 20–27с) —
+  // к моменту серверного добора (~30с) экран уже собрал лобби визуально.
+  useEffect(() => {
+    if (state.kind !== 'searching') return;
+    const delays = [
+      4000 + Math.random() * 6000,
+      11000 + Math.random() * 7000,
+      20000 + Math.random() * 7000,
+    ];
+    const timers = delays.map((ms, i) => setTimeout(() => setSlotsFilled(2 + i), ms));
+    return () => timers.forEach(clearTimeout);
+  }, [state.kind]);
+
   const handleCancel = useCallback(() => {
     cleanupSubs();
     if (uidRef.current) void leaveConstellationQueue(uidRef.current);
@@ -194,6 +210,35 @@ export default function ConstellationSearchScreen() {
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
             {title}{dots}
+          </Text>
+          <View style={styles.slotRow}>
+            {[0, 1, 2, 3].map((i) => {
+              const filled = i < slotsFilled;
+              return (
+                <View
+                  key={i}
+                  style={[styles.slot, {
+                    borderColor: filled ? t.accent : t.border,
+                    borderStyle: filled ? 'solid' : 'dashed',
+                    backgroundColor: filled ? `${t.accent}22` : 'transparent',
+                  }]}
+                >
+                  {filled ? (
+                    <Ionicons name={i === 0 ? 'person' : 'person-add'} size={17} color={t.accent} />
+                  ) : (
+                    <Text style={{ color: t.textSecond, fontSize: f.caption }}>…</Text>
+                  )}
+                </View>
+              );
+            })}
+          </View>
+          <Text style={[styles.sub, { color: t.textSecond, fontSize: f.caption }]}>
+            {triLang(lang, {
+              ru: `игроки: ${slotsFilled}/4`, uk: `гравці: ${slotsFilled}/4`,
+              es: `jugadores: ${slotsFilled}/4`, 'pt-BR': `jogadores: ${slotsFilled}/4`,
+              vi: `người chơi: ${slotsFilled}/4`, id: `pemain: ${slotsFilled}/4`,
+              tr: `oyuncular: ${slotsFilled}/4`, pl: `gracze: ${slotsFilled}/4`,
+            })}
           </Text>
           <Text style={[styles.sub, { color: t.textSecond, fontSize: f.caption }]}>
             {triLang(lang, {
@@ -376,6 +421,18 @@ const styles = StyleSheet.create({
     width: 14,
     height: 14,
     borderRadius: 7,
+  },
+  slotRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  slot: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontWeight: '800',

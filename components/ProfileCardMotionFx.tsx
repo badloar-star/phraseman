@@ -72,8 +72,10 @@ function useFxLoop(duration: number, linear = false): SharedValue<number> {
 
 type SheenColors = readonly [string, string, ...string[]];
 
+// Тонкий, едва заметный проход света: узкая полоса, мягкие края, низкая яркость —
+// «дорогой» перелив вместо жирной белой полосы (фидбек владельца 2026-07-05).
 const DEFAULT_SHEEN_COLORS: SheenColors = [
-  'transparent', 'rgba(255,255,255,0.22)', 'rgba(255,255,255,0.32)', 'rgba(255,255,255,0.22)', 'transparent',
+  'transparent', 'rgba(255,255,255,0.05)', 'rgba(255,255,255,0.11)', 'rgba(255,255,255,0.05)', 'transparent',
 ];
 
 function SheenBand({ radius, colors }: { radius: number; colors?: SheenColors }) {
@@ -95,7 +97,7 @@ function SheenBand({ radius, colors }: { radius: number; colors?: SheenColors })
       cancelAnimation(sweep);
       sweep.value = 0;
       sweep.value = withRepeat(
-        withTiming(1, { duration: 3400, easing: Easing.inOut(Easing.ease) }),
+        withTiming(1, { duration: 5600, easing: Easing.inOut(Easing.ease) }),
         -1,
         false,
       );
@@ -116,9 +118,10 @@ function SheenBand({ radius, colors }: { radius: number; colors?: SheenColors })
     };
   }, [sweep, w, isFocused]);
 
-  const band = Math.max(56, w * 0.4);
+  // Узкая полоса (≤22% ширины) и длинная пауза между проходами: свет «скользнул и ушёл».
+  const band = Math.min(110, Math.max(48, w * 0.22));
   const style = useAnimatedStyle(() => {
-    const pass = 0.6;
+    const pass = 0.42;
     const t = Math.min(1, sweep.value / pass);
     const x = interpolate(t, [0, 1], [-band, w + band]);
     return { transform: [{ translateX: x }, { rotateZ: '16deg' }] } as any;
@@ -144,21 +147,37 @@ function SheenBand({ radius, colors }: { radius: number; colors?: SheenColors })
   );
 }
 
-/** «Дышащий» кант: рамка цвета уровня плавно набирает и отпускает яркость. */
-function GlowPulse({ radius, color, maxOpacity = 0.55 }: { radius: number; color: string; maxOpacity?: number }) {
-  const progress = useFxLoop(2600);
+/** «Дышащее» свечение: мягкий градиент цвета уровня от верхней кромки, плавно
+ * набирает и отпускает яркость. Никаких рамок — только тон (правило владельца). */
+function GlowPulse({ radius, color, maxOpacity = 0.5 }: { radius: number; color: string; maxOpacity?: number }) {
+  const progress = useFxLoop(3200);
   const style = useAnimatedStyle(() => ({
-    opacity: interpolate(progress.value, [0, 0.5, 1], [0.22, maxOpacity, 0.22]),
+    opacity: interpolate(progress.value, [0, 0.5, 1], [0.2, maxOpacity, 0.2]),
   }));
   return (
     <Reanimated.View
       pointerEvents="none"
       style={[
-        StyleSheet.absoluteFill,
-        { borderRadius: radius, borderWidth: 1.5, borderColor: color },
+        {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 150,
+          borderTopLeftRadius: radius,
+          borderTopRightRadius: radius,
+          overflow: 'hidden',
+        },
         style,
       ]}
-    />
+    >
+      <LinearGradient
+        colors={[`${color}47`, `${color}14`, 'transparent']}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+    </Reanimated.View>
   );
 }
 
@@ -296,11 +315,12 @@ function DriftBlobs({ radius, accentSoft, secondary }: { radius: number; accentS
 }
 
 // Золото→циан→фиолет: голографический проход «Легенды» вместо белого блика.
+// Той же деликатности, что и обычный шиин — переливается, а не светит.
 const LEGEND_SHEEN_COLORS: SheenColors = [
   'transparent',
-  'rgba(255,210,74,0.28)',
-  'rgba(103,232,249,0.26)',
-  'rgba(192,132,252,0.28)',
+  'rgba(255,210,74,0.13)',
+  'rgba(103,232,249,0.12)',
+  'rgba(192,132,252,0.13)',
   'transparent',
 ];
 

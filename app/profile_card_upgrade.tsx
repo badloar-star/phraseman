@@ -339,7 +339,7 @@ export default function ProfileCardUpgradeScreen() {
   const miniRow = (icon: string, value: string, label: string) => (
     <View style={{
       flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8,
-      backgroundColor: vis.surfaces.surface, borderWidth: 1, borderColor: vis.surfaces.surfaceBorder,
+      backgroundColor: vis.surfaces.surface,
       borderRadius: 10, paddingHorizontal: 10, paddingVertical: 7,
     }}>
       <Text style={{ fontSize: 12 }}>{icon}</Text>
@@ -397,8 +397,6 @@ export default function ProfileCardUpgradeScreen() {
                     borderRadius: 12,
                     paddingVertical: 9,
                     alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: selected ? chipColors.accent : t.border,
                     backgroundColor: selected ? chipColors.accentSoft : t.bgSurface,
                   }}
                 >
@@ -423,8 +421,6 @@ export default function ProfileCardUpgradeScreen() {
                 width: CARD_W,
                 borderRadius: 18,
                 overflow: 'hidden',
-                borderWidth: 1.5,
-                borderColor: vis.colors.accentStrong,
                 shadowColor: vis.colors.shadowColor,
                 shadowOpacity: 0.3,
                 shadowRadius: 18,
@@ -439,7 +435,7 @@ export default function ProfileCardUpgradeScreen() {
                 />
                 <View style={{ padding: 14 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                    <View style={{ width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: vis.colors.accentSoft, borderWidth: 1, borderColor: vis.colors.accentStrong }}>
+                    <View style={{ width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: vis.colors.accentSoft }}>
                       <AvatarView avatar={me.avatar || undefined} level={me.level} size={39} auraId={null} />
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
@@ -481,8 +477,8 @@ export default function ProfileCardUpgradeScreen() {
                   {selectedLevel >= 5 ? (
                     <View style={{
                       marginTop: 8, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 10,
-                      borderWidth: 1, borderColor: vis.colors.accentStrong, alignItems: 'center',
-                      backgroundColor: vis.surfaces.surface,
+                      alignItems: 'center',
+                      backgroundColor: vis.colors.accentSoft,
                     }}>
                       <Text style={{ color: vis.colors.secondary, fontSize: 12, fontWeight: '900' }} numberOfLines={1}>
                         {me.legendNo && currentLevel >= 5
@@ -504,7 +500,7 @@ export default function ProfileCardUpgradeScreen() {
             </View>
           </View>
 
-          <View style={{ marginTop: 16, borderRadius: 16, borderWidth: 1, borderColor: vis.colors.accentStrong, backgroundColor: vis.colors.accentSoft, padding: 14 }}>
+          <View style={{ marginTop: 16, borderRadius: 16, backgroundColor: vis.colors.accentSoft, padding: 14 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', marginBottom: 4 }}>
               {levelName(selectedLevel)}
             </Text>

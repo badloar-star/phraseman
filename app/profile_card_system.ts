@@ -659,26 +659,29 @@ export const PROFILE_CARD_THEME_COLORS: Record<ProfileCardTheme, ProfileCardThem
   },
 };
 
-/** Диагональный градиент фона карточки по теме (тот же на модалке профиля и превью апгрейда). */
+/** Диагональный градиент фона карточки по теме (тот же на модалке профиля и превью
+ * апгрейда). Глубокие, насыщенные вверху → почти чёрные внизу: «дорогой» вид без обводок. */
 export const PROFILE_CARD_GRADIENTS: Record<ProfileCardTheme, [string, string, string]> = {
-  classic: ['#202329', '#252931', '#202329'],
-  gold: ['#161106', '#2A210D', '#111827'],
-  emerald: ['#0A2416', '#123B22', '#0A1420'],
-  sapphire: ['#081C33', '#0D2C4A', '#0A1120'],
-  amethyst: ['#1D1038', '#2B1854', '#0F0A20'],
-  legend: ['#16121F', '#0A0812', '#131019'],
+  classic: ['#23262C', '#1B1E23', '#16181D'],
+  gold: ['#453313', '#231807', '#0F0B05'],
+  emerald: ['#11402A', '#0A2818', '#05140C'],
+  sapphire: ['#103B63', '#092743', '#04101F'],
+  amethyst: ['#38206B', '#1F1145', '#0D0724'],
+  legend: ['#2B2140', '#171021', '#191108'],
 };
 
 export type ProfileCardSurfaceColors = { surface: string; surfaceBorder: string };
 
-/** Подложка плиток метрик/строк на престижной карточке. */
+/** Подложка плиток метрик/строк на престижной карточке.
+ * ПРАВИЛО владельца: НИКАКИХ обводок у контейнеров — только тон, отличный от фона.
+ * surfaceBorder оставлен в типе для совместимости, но в UI не рисуется. */
 export const PROFILE_CARD_SURFACES: Record<ProfileCardTheme, ProfileCardSurfaceColors> = {
-  classic: { surface: 'rgba(255,255,255,0.055)', surfaceBorder: 'rgba(148,163,184,0.16)' },
-  gold: { surface: 'rgba(250,204,21,0.075)', surfaceBorder: 'rgba(250,204,21,0.25)' },
-  emerald: { surface: 'rgba(52,211,153,0.075)', surfaceBorder: 'rgba(52,211,153,0.25)' },
-  sapphire: { surface: 'rgba(56,189,248,0.075)', surfaceBorder: 'rgba(56,189,248,0.25)' },
-  amethyst: { surface: 'rgba(167,139,250,0.075)', surfaceBorder: 'rgba(167,139,250,0.25)' },
-  legend: { surface: 'rgba(242,223,167,0.07)', surfaceBorder: 'rgba(242,223,167,0.26)' },
+  classic: { surface: 'rgba(255,255,255,0.07)', surfaceBorder: 'transparent' },
+  gold: { surface: 'rgba(250,204,21,0.12)', surfaceBorder: 'transparent' },
+  emerald: { surface: 'rgba(52,211,153,0.12)', surfaceBorder: 'transparent' },
+  sapphire: { surface: 'rgba(56,189,248,0.12)', surfaceBorder: 'transparent' },
+  amethyst: { surface: 'rgba(167,139,250,0.13)', surfaceBorder: 'transparent' },
+  legend: { surface: 'rgba(242,223,167,0.12)', surfaceBorder: 'transparent' },
 };
 
 export function resolveProfileCardDisplay(input: {

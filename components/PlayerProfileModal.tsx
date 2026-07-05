@@ -269,6 +269,8 @@ function PlayerProfileModalBody({
   // карточка целиком преображается в выбранный уровень (визуал+эффекты+блоки).
   const [previewLevel, setPreviewLevel] = useState<ProfileCardLevel | null>(null);
   const [upgradeBusy, setUpgradeBusy] = useState(false);
+  // Анимация «морфа» при смене уровня карточки (превью или покупка).
+  const levelSwitchAnim = useRef(new Animated.Value(1)).current;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   // Profile-level activity like the current user has already placed today (toggle state).
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
@@ -371,8 +373,9 @@ function PlayerProfileModalBody({
   // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
   const prestigeActive = displayCardLevel > 0;
   const compassProfileSurface = isCompassTheme && !prestigeActive;
+  // ПРАВИЛО владельца: никаких обводок у контейнеров — поверхность отличается ТОНОМ.
   const prestigeSurfaceStyle = prestigeActive
-    ? { backgroundColor: cardVisual.surface, borderWidth: 1, borderColor: cardVisual.surfaceBorder }
+    ? { backgroundColor: cardVisual.surface, borderWidth: 0, borderColor: 'transparent' }
     : compassProfileSurface
       ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderWidth: 1, borderColor: COMPASS_RICH.hairlineQuiet, overflow: 'hidden' as const }
       : { backgroundColor: t.bgSurface, borderWidth: 0, borderColor: 'transparent' };
@@ -484,6 +487,21 @@ function PlayerProfileModalBody({
     })();
     return () => { cancelled = true; };
   }, [isMe, profileCardLevel, player.friendUid, player.uid]);
+
+  // «Морф» при каждой смене отображаемого уровня: фон/эффекты проявляются заново,
+  // шторка едва заметно пружинит масштабом.
+  const prevDisplayLevelRef = useRef(displayCardLevel);
+  useEffect(() => {
+    if (prevDisplayLevelRef.current === displayCardLevel) return;
+    prevDisplayLevelRef.current = displayCardLevel;
+    levelSwitchAnim.setValue(0);
+    Animated.timing(levelSwitchAnim, {
+      toValue: 1,
+      duration: 380,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [displayCardLevel, levelSwitchAnim]);
 
   // Тап по круглой кнопке: карточка ПРЯМО ЗДЕСЬ преображается в следующий уровень
   // (никакого отдельного экрана). Повторные тапы листают уровни дальше до V,
@@ -899,11 +917,13 @@ function PlayerProfileModalBody({
         borderTopRightRadius: compassProfileSurface ? 14 : 30,
         maxHeight: '90%',
         overflow: 'hidden',
-        transform: [{ translateY: slideAnim }],
-        borderTopWidth: prestigeActive ? 1 : 0.5,
-        borderLeftWidth: prestigeActive ? 1 : 0,
-        borderRightWidth: prestigeActive ? 1 : 0,
-        borderColor: prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairlineStrong : t.border,
+        transform: [
+          { translateY: slideAnim },
+          { scale: levelSwitchAnim.interpolate({ inputRange: [0, 1], outputRange: [0.982, 1] }) },
+        ],
+        // Без обводок (правило владельца): модал держат скругление, градиент и тень.
+        borderTopWidth: prestigeActive ? 0 : 0.5,
+        borderColor: compassProfileSurface ? COMPASS_RICH.hairlineStrong : t.border,
         shadowColor: prestigeActive ? cardVisual.shadowColor : '#000',
         shadowOpacity: prestigeActive ? 0.34 : compassProfileSurface ? 0.58 : 0.18,
         shadowRadius: prestigeActive ? 22 : compassProfileSurface ? 24 : 12,
@@ -1023,8 +1043,6 @@ function PlayerProfileModalBody({
               overflow: 'hidden',
               alignItems: 'center',
               justifyContent: 'center',
-              borderWidth: 1,
-              borderColor: 'rgba(255,255,255,0.35)',
               shadowColor: nextLevelVisual.shadowColor,
               shadowOpacity: 0.55,
               shadowRadius: 9,
@@ -1050,34 +1068,29 @@ function PlayerProfileModalBody({
           </TouchableOpacity>
         ) : null}
         {prestigeActive && (
-          <>
+          // При смене уровня (превью/покупка) фон и эффекты мягко проявляются заново —
+          // «морф» карточки вместо мгновенной подмены.
+          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: levelSwitchAnim }]}>
             <LinearGradient
               colors={cardVisual.gradient}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={StyleSheet.absoluteFill}
             />
-            {displayCardLevel > 0 && (
-              <View pointerEvents="none" style={{
-                position: 'absolute',
-                left: 18,
-                right: 18,
-                top: 18,
-                height: 1,
-                backgroundColor: cardVisual.accentStrong,
-              }} />
-            )}
+            {/* Глубина без обводок: два мягких тональных пятна цвета уровня. */}
+            <View pointerEvents="none" style={{ position: 'absolute', top: -70, left: -50, width: 240, height: 240, borderRadius: 120, backgroundColor: cardVisual.accentSoft }} />
+            <View pointerEvents="none" style={{ position: 'absolute', top: 150, right: -90, width: 300, height: 300, borderRadius: 150, backgroundColor: cardVisual.accentSoft, opacity: 0.45 }} />
             {/* Единый движок анимаций (тот же, что в превью «Моя карточка») — чтобы
                 владелец и другие игроки видели ОДИН и тот же эффект уровня. Заменил
                 старые inline Animated glint/частицы. */}
             <ProfileCardMotionFx
               kind={fxKindForProfileCard(displaySnapshot.level, displaySnapshot.motion)}
-              radius={0}
+              radius={30}
               accent={cardVisual.accent}
               secondary={cardVisual.secondary}
               accentSoft={cardVisual.accentSoft}
             />
-          </>
+          </Animated.View>
         )}
         <ScrollView
           bounces={false}
@@ -1150,7 +1163,7 @@ function PlayerProfileModalBody({
             <View style={{ width: 44 }} />
             <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
               {/* Уровень III+ обещает «усиленную рамку аватара» — кольцо цвета уровня. */}
-              <View style={displayCardLevel >= 3 ? { padding: 3, borderRadius: 999, borderWidth: 2, borderColor: cardVisual.accentStrong } : null}>
+              <View style={displayCardLevel >= 3 ? { padding: 5, borderRadius: 999, backgroundColor: cardVisual.surface } : null}>
                 <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
                   <AvatarView
                     avatar={avatarStr}
@@ -1412,7 +1425,7 @@ function PlayerProfileModalBody({
           <View style={[
             { flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 },
             prestigeSurfaceStyle,
-            { borderWidth: 1, borderColor: cardVisual.accentStrong },
+            { backgroundColor: cardVisual.accentSoft },
           ]}>
             <Text style={{ fontSize: f.numLg }}>👑</Text>
             <View>
@@ -1643,17 +1656,22 @@ function PlayerProfileModalBody({
         {isMe && previewLevel !== null && (
           // Панель превью: карточка выше уже преобразилась в выбранный уровень —
           // здесь имя уровня, выход из превью и покупка СЛЕДУЮЩЕГО уровня.
+          // Плавающая скруглённая панель без обводок — часть модала, а не «приклейка».
           <View style={{
             position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            paddingHorizontal: 16,
+            left: 12,
+            right: 12,
+            bottom: Math.max(12, bottomInset + 8),
+            paddingHorizontal: 14,
             paddingTop: 12,
-            paddingBottom: Math.max(14, bottomInset + 10),
-            backgroundColor: 'rgba(3,8,5,0.92)',
-            borderTopWidth: 1,
-            borderTopColor: cardVisual.accentStrong,
+            paddingBottom: 12,
+            borderRadius: 20,
+            backgroundColor: 'rgba(4,9,6,0.94)',
+            shadowColor: '#000',
+            shadowOpacity: 0.4,
+            shadowRadius: 16,
+            shadowOffset: { width: 0, height: 6 },
+            elevation: 10,
           }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
               <Text style={{ color: cardVisual.secondary, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.4 }} numberOfLines={1}>

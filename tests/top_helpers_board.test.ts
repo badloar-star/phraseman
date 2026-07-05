@@ -33,10 +33,11 @@ describe('parseHelperDoc', () => {
     expect(parseHelperDoc('u', undefined)).toBeNull();
   });
 
-  it('подставляет тире, если имя пустое, и не роняется на мусоре', () => {
-    const row = parseHelperDoc('u', { confirmed: 2 });
+  it('подставляет осмысленный плейсхолдер, если имя пустое, и не роняется на мусоре', () => {
+    const row = parseHelperDoc('user1234', { confirmed: 2 });
     expect(row).not.toBeNull();
-    expect(row!.displayName).toBe('—');
+    // Нет имени в проекции → «Игрок #<хвост uid>», а не голое «—» (как в остальном проекте).
+    expect(row!.displayName).toBe('Игрок #1234');
     expect(row!.isPremium).toBe(false);
     expect(row!.avatar).toBeUndefined();
   });

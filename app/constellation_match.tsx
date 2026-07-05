@@ -19,6 +19,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Svg, { Circle } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
@@ -322,19 +323,6 @@ export default function ConstellationMatchScreen() {
             <Text style={styles.goldChipText}>◆ {myPublic.starfallEarned}</Text>
           </View>
         ) : null}
-        <View style={[styles.phaseTag, { backgroundColor: isChoose ? t.accent : '#FFC65C' }]}>
-          <Text style={styles.phaseTagText}>
-            {isChoose
-              ? triLang(lang, {
-                ru: 'ВЫБОР ЦЕЛИ', uk: 'ВИБІР ЦІЛІ', es: 'ELIGE OBJETIVO', 'pt-BR': 'ESCOLHA ALVO',
-                vi: 'CHỌN MỤC TIÊU', id: 'PILIH TARGET', tr: 'HEDEF SEÇ', pl: 'WYBIERZ CEL',
-              })
-              : triLang(lang, {
-                ru: 'ОТВЕЧАЙ!', uk: 'ВІДПОВІДАЙ!', es: '¡RESPONDE!', 'pt-BR': 'RESPONDA!',
-                vi: 'TRẢ LỜI!', id: 'JAWAB!', tr: 'CEVAPLA!', pl: 'ODPOWIADAJ!',
-              })}
-          </Text>
-        </View>
       </View>
 
       {/* Полоса игроков */}
@@ -357,6 +345,19 @@ export default function ConstellationMatchScreen() {
           </View>
         ))}
       </View>
+
+      {/* Крупный баннер фазы + кольцевой таймер (2.2/2.3): всегда ясно, что
+          происходит и сколько осталось. Тускнеет для падающих/выбитых. */}
+      {!iAmOut ? (
+        <PhaseBanner
+          lang={lang}
+          isChoose={isChoose}
+          isDuel={!!isDuel}
+          isFalling={iAmFalling}
+          secondsLeft={secondsLeft}
+          phaseTotalSec={isChoose ? 12 : 38}
+        />
+      ) : null}
 
       {/* Карта: объём нарисован внутри SVG (грани/высоты). Обёрнута в зум/пан
           (2.5) — два пальца масштабируют/двигают, кнопки ＋/－/центр дублируют. */}
@@ -442,6 +443,8 @@ export default function ConstellationMatchScreen() {
           options={currentQuestion.options}
           busy={busy}
           lastRule={lastRule}
+          secondsLeft={secondsLeft}
+          phaseTotalSec={isDuel ? 10 : 38}
           onAnswer={onAnswer}
           onRuleSeen={() => setLastRule(null)}
         />
@@ -590,6 +593,95 @@ export default function ConstellationMatchScreen() {
   );
 }
 
+// ── Баннер фазы + кольцевой таймер (2.2/2.3) ─────────────────────────────────
+
+interface PhaseBannerProps {
+  lang: Lang;
+  isChoose: boolean;
+  isDuel: boolean;
+  isFalling: boolean;
+  secondsLeft: number;
+  phaseTotalSec: number;
+}
+
+const RING_R = 20;
+const RING_C = 2 * Math.PI * RING_R;
+
+const PhaseBanner = memo(function PhaseBanner({
+  lang, isChoose, isDuel, isFalling, secondsLeft, phaseTotalSec,
+}: PhaseBannerProps) {
+  const frac = Math.max(0, Math.min(1, secondsLeft / Math.max(1, phaseTotalSec)));
+  const low = secondsLeft <= 5;
+  const ringColor = low ? '#FF6B8A' : isChoose ? '#8B7BFF' : '#F6A93B';
+
+  const label = isFalling
+    ? triLang(lang, {
+      ru: 'ПАДАЮЩАЯ ЗВЕЗДА', uk: 'ПАДАЮЧА ЗІРКА', es: 'ESTRELLA FUGAZ', 'pt-BR': 'ESTRELA CADENTE',
+      vi: 'SAO BĂNG', id: 'BINTANG JATUH', tr: 'KAYAN YILDIZ', pl: 'SPADAJĄCA GWIAZDA',
+    })
+    : isDuel
+      ? triLang(lang, {
+        ru: 'СТОЛКНОВЕНИЕ', uk: 'ЗІТКНЕННЯ', es: 'COLISIÓN', 'pt-BR': 'COLISÃO',
+        vi: 'VA CHẠM', id: 'TABRAKAN', tr: 'ÇARPIŞMA', pl: 'ZDERZENIE',
+      })
+      : isChoose
+        ? triLang(lang, {
+          ru: 'ВЫБОР ЦЕЛИ', uk: 'ВИБІР ЦІЛІ', es: 'ELIGE OBJETIVO', 'pt-BR': 'ESCOLHA ALVO',
+          vi: 'CHỌN MỤC TIÊU', id: 'PILIH TARGET', tr: 'HEDEF SEÇ', pl: 'WYBIERZ CEL',
+        })
+        : triLang(lang, {
+          ru: 'ОТВЕЧАЙ', uk: 'ВІДПОВІДАЙ', es: 'RESPONDE', 'pt-BR': 'RESPONDA',
+          vi: 'TRẢ LỜI', id: 'JAWAB', tr: 'CEVAPLA', pl: 'ODPOWIADAJ',
+        });
+
+  const hint = isFalling
+    ? triLang(lang, {
+      ru: 'отвечай, чтобы вернуться', uk: 'відповідай, щоб повернутись', es: 'responde para volver',
+      'pt-BR': 'responda para voltar', vi: 'trả lời để quay lại', id: 'jawab untuk kembali',
+      tr: 'dönmek için cevapla', pl: 'odpowiadaj, by wrócić',
+    })
+    : isDuel
+      ? triLang(lang, {
+        ru: 'дуэль за звезду', uk: 'дуель за зірку', es: 'duelo por la estrella',
+        'pt-BR': 'duelo pela estrela', vi: 'đấu tay đôi', id: 'duel bintang',
+        tr: 'yıldız düellosu', pl: 'pojedynek o gwiazdę',
+      })
+      : isChoose
+        ? triLang(lang, {
+          ru: 'выбери звезду для захвата', uk: 'обери зірку для захоплення', es: 'elige estrella a capturar',
+          'pt-BR': 'escolha a estrela', vi: 'chọn sao để chiếm', id: 'pilih bintang',
+          tr: 'ele geçirilecek yıldızı seç', pl: 'wybierz gwiazdę',
+        })
+        : triLang(lang, {
+          ru: 'ответь верно', uk: 'відповідай правильно', es: 'responde bien',
+          'pt-BR': 'responda certo', vi: 'trả lời đúng', id: 'jawab benar',
+          tr: 'doğru cevapla', pl: 'odpowiedz dobrze',
+        });
+
+  return (
+    <View style={styles.bannerRow} pointerEvents="none">
+      <View style={[styles.bannerPill, { borderColor: `${ringColor}66` }]}>
+        <View style={styles.bannerTimer}>
+          <Svg width={44} height={44}>
+            <Circle cx={22} cy={22} r={RING_R} fill="none" stroke="rgba(150,170,230,0.15)" strokeWidth={4} />
+            <Circle
+              cx={22} cy={22} r={RING_R} fill="none" stroke={ringColor} strokeWidth={4}
+              strokeLinecap="round" strokeDasharray={RING_C}
+              strokeDashoffset={RING_C * (1 - frac)}
+              transform="rotate(-90 22 22)"
+            />
+          </Svg>
+          <Text style={[styles.bannerTimerText, { color: ringColor }]}>{secondsLeft}</Text>
+        </View>
+        <View style={styles.bannerLabels}>
+          <Text style={[styles.bannerLabel, { color: '#EAF2FF' }]}>{label}</Text>
+          <Text style={styles.bannerHint}>{hint}</Text>
+        </View>
+      </View>
+    </View>
+  );
+});
+
 // ── Шторка цели ──────────────────────────────────────────────────────────────
 
 interface TargetSheetProps {
@@ -730,16 +822,30 @@ interface QuizOverlayProps {
   options: string[];
   busy: boolean;
   lastRule: { correct: boolean; rule: string } | null;
+  secondsLeft: number;
+  phaseTotalSec: number;
   onAnswer: (index: number) => void;
   onRuleSeen: () => void;
 }
 
 const QuizOverlay = memo(function QuizOverlay({
-  lang, isDuel, qIndex, total, question, options, busy, lastRule, onAnswer, onRuleSeen,
+  lang, isDuel, qIndex, total, question, options, busy, lastRule, secondsLeft, phaseTotalSec, onAnswer, onRuleSeen,
 }: QuizOverlayProps) {
   const { theme: t, f } = useTheme();
+  const budgetFrac = Math.max(0, Math.min(1, secondsLeft / Math.max(1, phaseTotalSec)));
+  const budgetLow = secondsLeft <= 5;
   return (
     <View style={[quizStyles.box, { backgroundColor: 'rgba(8,13,30,0.97)', borderColor: isDuel ? '#FFD166' : '#2A3A6A' }]}>
+      {/* Полоса бюджета фазы (2.3): игрок видит, сколько времени тает, прямо
+          над вопросом — не «внезапно время вышло». Краснеет на ≤5с. */}
+      <View style={quizStyles.budgetTrack}>
+        <View
+          style={[
+            quizStyles.budgetFill,
+            { width: `${budgetFrac * 100}%`, backgroundColor: budgetLow ? '#FF6B8A' : (isDuel ? '#FFD166' : '#8B7BFF') },
+          ]}
+        />
+      </View>
       {isDuel ? (
         <Text style={quizStyles.duelBadge}>
           ⚡ {triLang(lang, {
@@ -878,13 +984,32 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,209,102,0.4)',
   },
   goldChipText: { color: '#FFD166', fontWeight: '800', fontSize: 11 },
-  phaseTag: {
-    marginLeft: 'auto',
-    borderRadius: 999,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+  bannerRow: {
+    alignItems: 'center',
+    marginTop: 6,
+    marginBottom: 2,
   },
-  phaseTagText: { color: '#06122B', fontWeight: '800', fontSize: 9, letterSpacing: 1.2 },
+  bannerPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingLeft: 6,
+    paddingRight: 18,
+    paddingVertical: 6,
+    borderRadius: 999,
+    borderWidth: 1,
+    backgroundColor: 'rgba(14,22,54,0.72)',
+  },
+  bannerTimer: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+  bannerTimerText: {
+    position: 'absolute',
+    fontSize: 16,
+    fontWeight: '900',
+    fontVariant: ['tabular-nums'],
+  },
+  bannerLabels: {},
+  bannerLabel: { fontSize: 14, fontWeight: '800', letterSpacing: 0.4 },
+  bannerHint: { fontSize: 10.5, fontWeight: '600', color: '#93A3CB', marginTop: 1 },
   playersRow: {
     flexDirection: 'row',
     gap: 6,
@@ -1061,6 +1186,14 @@ const quizStyles = StyleSheet.create({
     borderRadius: 22,
     padding: 16,
   },
+  budgetTrack: {
+    height: 5,
+    borderRadius: 5,
+    backgroundColor: 'rgba(150,170,230,0.15)',
+    overflow: 'hidden',
+    marginBottom: 12,
+  },
+  budgetFill: { height: '100%', borderRadius: 5 },
   duelBadge: {
     color: '#FFD166',
     fontSize: 10,

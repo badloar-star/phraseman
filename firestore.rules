@@ -132,6 +132,11 @@ service cloud.firestore {
         // Клиенту незачем их трогать; блокируем, чтобы аналитика не подделывалась.
         'referral_vip_last_source',
         'promo_vip_last_code',
+        // Live-маркер «урок 1 пройден живым событием» (progressSubmitEvent). По нему
+        // referralApply мгновенно квалифицирует приглашённого — подделка клиентом дала бы
+        // бесплатный VIP, поэтому блокируем ВСЕГДА (как premium), а не только после миграции.
+        'lesson1_pass_live',
+        'lesson_progress_v2::fr::lesson1_pass_live',
         // Collectibles: server-only, always blocked regardless of migration flag.
         'collectibles_owned_v1',
         'collectibles_state_v1',

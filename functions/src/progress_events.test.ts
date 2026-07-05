@@ -93,6 +93,38 @@ describe('progress_events engine', () => {
     expect(result.progressPatch.lesson7_pass_count).toBe('3');
     expect(result.progressPatch.lesson7_cellIndex).toBe('50');
     expect(result.progressPatch.unlocked_lessons).toBe('[1,2,7,8]');
+    // pass_live — только для урока 1 (реферальная квалификация).
+    expect(result.progressPatch.lesson7_pass_live).toBeUndefined();
+  });
+
+  it('ставит live-маркер lesson1_pass_live при живом passed-событии урока 1 (en и fr)', () => {
+    const enEvent = normalizeProgressEvent({
+      eventId: 'lesson:1:complete:001',
+      type: 'lesson_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { lessonId: 1, score: 3, passed: true, xpDelta: 80 },
+    });
+    const enResult = applyProgressEvent({}, enEvent, now);
+    expect(enResult.progressPatch.lesson1_pass_live).toBe('1');
+
+    const frEvent = normalizeProgressEvent({
+      eventId: 'lesson:fr:1:complete:001',
+      type: 'lesson_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { lessonId: 1, score: 3, passed: true, xpDelta: 80, studyTarget: 'fr' },
+    });
+    const frResult = applyProgressEvent({}, frEvent, now);
+    expect(frResult.progressPatch['lesson_progress_v2::fr::lesson1_pass_live']).toBe('1');
+
+    // НЕ passed → маркера нет.
+    const failEvent = normalizeProgressEvent({
+      eventId: 'lesson:1:complete:002',
+      type: 'lesson_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { lessonId: 1, score: 1, passed: false, xpDelta: 10 },
+    });
+    const failResult = applyProgressEvent({}, failEvent, now);
+    expect(failResult.progressPatch.lesson1_pass_live).toBeUndefined();
   });
 
   it('updates exam best pct, passed flag, pass count and next level unlock', () => {
@@ -303,6 +335,19 @@ describe('progress_events engine', () => {
     expect(patch['level_exams_v2::fr::level_exam_B1_best_pct']).toBeUndefined();
     expect(patch['level_exams_v2::fr::level_exam_B1_pass_count']).toBeUndefined();
     expect(patch['level_exams_v2::fr::level_exam_B1_completed_at']).toBe('2026-06-13');
+  });
+
+  it('НЕ мигрирует live-маркер lesson1_pass_live из клиентского снапшота (антифрод рефералки)', () => {
+    const patch = buildMigrationPatch({
+      lesson1_pass_live: '1',
+      'lesson_progress_v2::fr::lesson1_pass_live': '1',
+      lesson1_pass_count: '1',
+    }, {}, now);
+
+    expect(patch.lesson1_pass_live).toBeUndefined();
+    expect(patch['lesson_progress_v2::fr::lesson1_pass_live']).toBeUndefined();
+    // pass_count мигрирует как раньше — но квалификацию по нему apply больше не даёт.
+    expect(patch.lesson1_pass_count).toBe('1');
   });
 
   it('recognizes server-owned progress keys for rules and sync filtering', () => {

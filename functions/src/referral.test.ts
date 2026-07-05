@@ -7,8 +7,8 @@ import {
   buildReferralVipProgressPatch,
   cleanReferralDisplayName,
   referralDisplayNameFromUserData,
-  hasReferralExistingAccountActivity,
   hasCompletedFirstLesson,
+  hasLiveFirstLessonPass,
   isReferralAccountTooEstablishedForApply,
   isSnapshotMigrationWrite,
   referralClaimSlotsLeft,
@@ -180,27 +180,57 @@ describe('referralApply new-account gate — регрессия: существ�
     expect(isReferralAccountTooEstablishedForApply({ created_at: { toMillis: () => NOW - MAX_AGE - 1 } }, NOW, MAX_AGE)).toBe(true);
   });
 
-  it('считает аккаунт существующим по реальной активности, даже если created_at свежий или отсутствует', () => {
-    expect(hasReferralExistingAccountActivity({ user_total_xp: '25' })).toBe(true);
-    expect(hasReferralExistingAccountActivity({ lesson1_pass_count: '1' })).toBe(true);
-    expect(hasReferralExistingAccountActivity({ lesson1_best_score: '2.5' })).toBe(true);
-    expect(hasReferralExistingAccountActivity({ lesson1_progress: JSON.stringify(['correct', 'empty']) })).toBe(true);
-    expect(hasReferralExistingAccountActivity({ 'lesson_progress_v2::fr::1': JSON.stringify(['wrong']) })).toBe(true);
-    expect(hasReferralExistingAccountActivity({ lesson1_words: JSON.stringify({ I: 1 }) })).toBe(true);
-    expect(isReferralAccountTooEstablishedForApply({ progress: { user_total_xp: '10' } }, NOW, MAX_AGE)).toBe(true);
+  it('считает аккаунт старым по createTime документа (метаданные Firestore, клиент не подделает)', () => {
+    // created_at «свежий» (клиент мог переписать) — но createTime дока старый → отказ.
+    expect(isReferralAccountTooEstablishedForApply(
+      { created_at: NOW - 1000 }, NOW, MAX_AGE, NOW - MAX_AGE - 1,
+    )).toBe(true);
+    // Оба свежие → ок.
+    expect(isReferralAccountTooEstablishedForApply(
+      { created_at: NOW - 1000 }, NOW, MAX_AGE, NOW - 1000,
+    )).toBe(false);
+    // createTime свежий, но created_at старый (merge перенёс старую личность) → отказ.
+    expect(isReferralAccountTooEstablishedForApply(
+      { created_at: NOW - MAX_AGE - 1 }, NOW, MAX_AGE, NOW - 1000,
+    )).toBe(true);
+  });
+
+  it('УЧЕБНАЯ АКТИВНОСТЬ больше НЕ отсекает свежий аккаунт (фикс воронки 2026-07-04): друг мог пройти урок 1 до ввода кода', () => {
+    expect(isReferralAccountTooEstablishedForApply(
+      { created_at: NOW - 1000, progress: { user_total_xp: '150', lesson1_pass_count: '1' } },
+      NOW,
+      MAX_AGE,
+      NOW - 1000,
+    )).toBe(false);
+    // Без created_at и без createTime (док ещё не создан толком) — не отсекаем.
+    expect(isReferralAccountTooEstablishedForApply(
+      { progress: { user_total_xp: '10' } }, NOW, MAX_AGE,
+    )).toBe(false);
   });
 
   it('разрешает свежий пустой аккаунт без учебной активности', () => {
     expect(isReferralAccountTooEstablishedForApply({ created_at: NOW - 1000, progress: {} }, NOW, MAX_AGE)).toBe(false);
-    expect(hasReferralExistingAccountActivity({
-      user_total_xp: '0',
-      weekly_xp: '0',
-      streak_count: '0',
-      unlocked_lessons: JSON.stringify([1]),
-      lesson1_progress: JSON.stringify(['empty', 'empty']),
-      lesson1_pass_count: '0',
-      lesson1_best_score: '0',
-    })).toBe(false);
+  });
+
+  it('maxAccountAgeMs=0 полностью выключает проверку', () => {
+    expect(isReferralAccountTooEstablishedForApply(
+      { created_at: NOW - MAX_AGE * 10 }, NOW, 0, NOW - MAX_AGE * 10,
+    )).toBe(false);
+  });
+});
+
+describe('hasLiveFirstLessonPass — live-маркер урока 1 (квалификация при apply)', () => {
+  it('true по en и fr live-маркерам', () => {
+    expect(hasLiveFirstLessonPass({ lesson1_pass_live: '1' })).toBe(true);
+    expect(hasLiveFirstLessonPass({ 'lesson_progress_v2::fr::lesson1_pass_live': '1' })).toBe(true);
+  });
+
+  it('false без маркера — голому lesson1_pass_count не доверяем (мог прийти миграцией)', () => {
+    expect(hasLiveFirstLessonPass(undefined)).toBe(false);
+    expect(hasLiveFirstLessonPass({})).toBe(false);
+    expect(hasLiveFirstLessonPass({ lesson1_pass_count: '3' })).toBe(false);
+    expect(hasLiveFirstLessonPass({ lesson1_pass_live: '' })).toBe(false);
+    expect(hasLiveFirstLessonPass({ lesson1_pass_live: '0' })).toBe(false);
   });
 });
 

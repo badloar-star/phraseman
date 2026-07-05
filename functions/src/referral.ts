@@ -121,13 +121,12 @@ export function referralClaimSlotsLeft(
 const MAX_CLAIMS_PER_CALL = 20;
 
 /**
- * Квалифицировать ли referee СРАЗУ при apply по уже имеющемуся прогрессу.
- * false (строго): нет — прогресс на момент apply мог быть подсунут миграцией снапшота
- * (клиентский lesson1_pass_count), что давало бы free-премиум без прохождения. Квалификацию
- * делает только триггер на ЖИВОМ событии урока (с отсевом миграции). Цена строгого режима:
- * редкий честный кейс «прошёл урок 1 ДО ввода кода» квалифицируется на следующем событии урока.
+ * Квалификация СРАЗУ при apply — только по live-маркеру (LESSON1_LIVE_PASS_KEYS).
+ * Голому lesson1_pass_count при apply НЕ доверяем: его мог подсунуть progressMigrateSnapshot
+ * (клиентский снапшот), что давало бы free-премиум без прохождения. Live-маркер пишет только
+ * сервер при живом passed-событии урока 1 — ему доверять можно. Кейс «прошёл урок 1 ДО ввода
+ * кода» теперь квалифицируется мгновенно, а не застревает в pending навсегда.
  */
-const REFEREE_QUALIFY_ON_APPLY = false;
 
 /**
  * Антифрод: код принимаем только от «нового» пользователя — того, у кого, по сути,
@@ -170,6 +169,27 @@ type AttributionStatus =
 const LESSON1_PASS_KEYS = ['lesson1_pass_count', 'lesson_progress_v2::fr::lesson1_pass_count'] as const;
 
 /**
+ * Live-маркер «урок 1 пройден ЖИВЫМ событием» (progressSubmitEvent → applyLessonFields).
+ * Пишет ТОЛЬКО сервер при passed-событии урока 1; миграция снапшота его НЕ ставит,
+ * клиентская запись заблокирована firestore.rules (server-authoritative список).
+ * Поэтому маркеру можно доверять для мгновенной квалификации при apply: честный кейс
+ * «прошёл урок 1 ДО ввода кода» больше не застревает в pending навсегда, а фрод через
+ * progressMigrateSnapshot (подсунутый lesson1_pass_count) маркера не имеет.
+ */
+export const LESSON1_LIVE_PASS_KEYS = ['lesson1_pass_live', 'lesson_progress_v2::fr::lesson1_pass_live'] as const;
+
+/** Чистая функция: урок 1 пройден живым серверным событием (не миграцией). */
+export function hasLiveFirstLessonPass(
+  progress: Record<string, unknown> | undefined,
+): boolean {
+  if (!progress) return false;
+  return LESSON1_LIVE_PASS_KEYS.some((key) => {
+    const v = progress[key];
+    return v != null && String(v) !== '' && String(v) !== '0' && String(v) !== 'false';
+  });
+}
+
+/**
  * Чистая функция: пройден ли РЕАЛЬНО первый урок (любого курса). Экспортируется для тестов.
  * `progress` — это users/{id}.progress (map строк).
  */
@@ -201,11 +221,6 @@ function parseMs(value: unknown): number {
   return 0;
 }
 
-function positiveNumber(value: unknown): boolean {
-  const n = Number(value);
-  return Number.isFinite(n) && n > 0;
-}
-
 export function cleanReferralDisplayName(value: unknown): string {
   const s = String(value ?? '').trim().replace(/\s+/g, ' ').slice(0, 80);
   if (!s) return '';
@@ -226,70 +241,42 @@ export function referralDisplayNameFromUserData(
     || null;
 }
 
-function jsonObjectHasPositiveNumber(value: unknown): boolean {
-  if (value == null) return false;
-  try {
-    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
-    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return false;
-    return Object.values(parsed as Record<string, unknown>).some((v) => {
-      if (positiveNumber(v)) return true;
-      if (v && typeof v === 'object') {
-        return Object.values(v as Record<string, unknown>).some(positiveNumber);
-      }
-      return false;
-    });
-  } catch {
-    return false;
-  }
-}
-
-function lessonProgressHasAnswered(value: unknown): boolean {
-  try {
-    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
-    if (!Array.isArray(parsed)) return false;
-    return parsed.some((cell) => cell === 'correct' || cell === 'replay_correct' || cell === 'wrong');
-  } catch {
-    return false;
-  }
-}
-
-export function hasReferralExistingAccountActivity(
-  progress: Record<string, unknown> | undefined,
-): boolean {
-  if (!progress || typeof progress !== 'object') return false;
-  if (positiveNumber(progress.user_total_xp)) return true;
-  if (positiveNumber(progress.weekly_xp)) return true;
-  if (positiveNumber(progress.streak_count)) return true;
-  if (jsonObjectHasPositiveNumber(progress.daily_stats)) return true;
-  if (jsonObjectHasPositiveNumber(progress.stats_daily_breakdown_v1)) return true;
-  if (jsonObjectHasPositiveNumber(progress.stats_daily_breakdown)) return true;
-
-  for (const [key, value] of Object.entries(progress)) {
-    if (/^(?:lesson_progress_v2::fr::)?lesson\d+_(?:best_score|pass_count)$/.test(key) && positiveNumber(value)) {
-      return true;
-    }
-    if ((/^lesson\d+_progress$/.test(key) || /^lesson_progress_v2::fr::\d+$/.test(key)) && lessonProgressHasAnswered(value)) {
-      return true;
-    }
-    if (/^(?:lesson_progress_v2::fr::)?lesson\d+_words$/.test(key) && jsonObjectHasPositiveNumber(value)) {
-      return true;
-    }
-  }
-  return false;
-}
-
+/**
+ * «Аккаунт слишком старый для реферального кода» (антифрод referralApply).
+ *
+ * Два независимых сигнала возраста, отсекаем по ЛЮБОМУ:
+ *  - `docCreateTimeMs` — Firestore-метаданные createTime документа users/{stableId}.
+ *    Ставится сервером при создании документа и НЕ переписывается клиентом никогда —
+ *    главный, неподделываемый сигнал «когда этот stableId появился».
+ *  - `created_at` — прикладное поле (пишет клиент при первом синке). Клиент может его
+ *    переписать, но оно ловит случаи, когда в СВЕЖИЙ документ смержили старую личность
+ *    (auth-merge переносит created_at) — createTime дока при этом свежий.
+ *
+ * Проверку «есть любая учебная активность» УБРАЛИ (2026-07-04): она не ловила
+ * умышленного фарм-бота (он просто заводит чистый аккаунт), зато резала главный честный
+ * сценарий — друг установил по ссылке, прошёл урок-другой и только потом ввёл код
+ * (apply часто задерживается: auth_links создаётся асинхронно). Фактические защиты от
+ * фарма — окно 72ч по неподделываемому createTime, live-маркер урока 1 для квалификации
+ * (см. LESSON1_LIVE_PASS_KEYS) и дневной/месячный капы обналичивания.
+ */
 export function isReferralAccountTooEstablishedForApply(
   userData: admin.firestore.DocumentData | undefined,
   nowMs: number,
   maxAccountAgeMs: number = REFEREE_MAX_ACCOUNT_AGE_MS,
+  docCreateTimeMs?: number,
 ): boolean {
-  if (!userData) return false;
-  const createdAtMs = parseMs(userData.created_at);
-  if (maxAccountAgeMs > 0 && createdAtMs > 0 && nowMs - createdAtMs > maxAccountAgeMs) {
+  if (maxAccountAgeMs <= 0) return false;
+  if (
+    typeof docCreateTimeMs === 'number' &&
+    Number.isFinite(docCreateTimeMs) &&
+    docCreateTimeMs > 0 &&
+    nowMs - docCreateTimeMs > maxAccountAgeMs
+  ) {
     return true;
   }
-  const progress = (userData as { progress?: Record<string, unknown> }).progress;
-  return hasReferralExistingAccountActivity(progress);
+  if (!userData) return false;
+  const createdAtMs = parseMs(userData.created_at);
+  return createdAtMs > 0 && nowMs - createdAtMs > maxAccountAgeMs;
 }
 
 function hasLesson1DoneProgress(
@@ -582,14 +569,20 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
         refCode: d?.refCode ?? refCode,
         referrerStableId: d?.referrerStableId,
         status: d?.status,
+        hasLivePass: false,
       };
     }
+    const userSnap = await tx.get(userRef);
     if (REFEREE_MAX_ACCOUNT_AGE_MS > 0) {
-      const userSnap = await tx.get(userRef);
+      // createTime — метаданные Firestore (сервер), клиент подделать не может.
+      const docCreateTimeMs = userSnap.exists && userSnap.createTime
+        ? userSnap.createTime.toMillis()
+        : undefined;
       if (userSnap.exists && isReferralAccountTooEstablishedForApply(
         userSnap.data(),
         Date.now(),
         REFEREE_MAX_ACCOUNT_AGE_MS,
+        docCreateTimeMs,
       )) {
         throw new HttpsError('failed-precondition', 'REFERRAL_REFEREE_ACCOUNT_TOO_OLD');
       }
@@ -613,18 +606,25 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
       createdAt: now,
       updatedAt: now,
     });
-    return { ok: true, already: false, referrerStableId: ownerStableId, refCode };
+    const refereeProgress = (userSnap.data() as { progress?: Record<string, unknown> } | undefined)?.progress;
+    return {
+      ok: true,
+      already: false,
+      referrerStableId: ownerStableId,
+      refCode,
+      hasLivePass: hasLiveFirstLessonPass(refereeProgress),
+    };
   });
-  // НЕ квалифицируем сразу по факту уже существующего прогресса: его мог подсунуть
-  // progressMigrateSnapshot (клиентский lesson1_pass_count) → free-премиум без прохождения.
-  // Квалификацию делает ТОЛЬКО триггер referralOnUserProgressUpdated на ЖИВОМ событии урока
-  // (там же отсев миграции). Это «строгий» режим: см. REFEREE_QUALIFY_ON_APPLY.
-  if (result?.ok && REFEREE_QUALIFY_ON_APPLY) {
+  // Мгновенная квалификация ТОЛЬКО по live-маркеру (сервер ставит его при живом
+  // passed-событии урока 1; миграция снапшота маркер не ставит — фрод не проходит).
+  // markRefereeQualified сам перепроверяет всё в транзакции (идемпотентно).
+  if (result?.ok && !result.already && result.hasLivePass) {
     await markRefereeQualified(db, refereeStableId).catch((e) => {
       console.warn('[referral] qualify after apply failed', e);
     });
   }
-  return result;
+  const { hasLivePass: _hasLivePass, ...response } = result;
+  return response;
 });
 
 /**

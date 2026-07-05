@@ -385,7 +385,7 @@ function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string
 }
 
 export default function ClubScreen() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   // openChat=1 — открыть сразу чат лиги (кнопка чата в шапке главного экрана).
@@ -1231,8 +1231,8 @@ export default function ClubScreen() {
       </View>
 
       <BouncyWrap>
-      <ScrollView
-        ref={contentScrollRef}
+      <Reanimated.ScrollView
+        ref={contentScrollRef as any}
         scrollEnabled
         decelerationRate="normal"
         bounces
@@ -1246,7 +1246,7 @@ export default function ClubScreen() {
           paddingBottom: 16,
           gap: 12,
         }}
-        onScroll={onBouncyScroll}
+        onScroll={onAnimatedScroll}
         scrollEventThrottle={16}
       >
 
@@ -1992,7 +1992,7 @@ export default function ClubScreen() {
         </View>
         )}
 
-      </ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
       </Reanimated.View>
 

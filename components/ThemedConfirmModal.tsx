@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
-import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Modal, PanResponder, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
@@ -64,6 +64,64 @@ function ThemedConfirmModal({
   const modalRadius = isCompassTheme ? 14 : 16;
   const buttonRadius = isCompassTheme ? 9 : 12;
 
+  // Свайп-вниз по карточке = закрыть (в дополнение к тапу по фону и кнопке
+  // «Отмена»). Лёгкая версия на встроенном PanResponder — без reanimated и
+  // gesture-handler, чтобы не тащить тяжёлую машинерию в общий компонент.
+  // Тянем только вниз; отпустил ниже порога/резким движением — закрыли, иначе
+  // карточка пружинит назад.
+  const dragY = useRef(new Animated.Value(0)).current;
+
+  // Сброс позиции при каждом открытии — иначе после закрытия свайпом карточка
+  // осталась бы «уехавшей» вниз на следующем показе.
+  useEffect(() => {
+    if (visible) dragY.setValue(0);
+  }, [visible, dragY]);
+
+  const panResponder = useMemo(
+    () =>
+      PanResponder.create({
+        // Перехватываем жест только на явном вертикальном движении вниз, чтобы
+        // не мешать нажатиям на кнопки внутри карточки.
+        onMoveShouldSetPanResponder: (_evt, g) =>
+          g.dy > 6 && Math.abs(g.dy) > Math.abs(g.dx),
+        onPanResponderMove: (_evt, g) => {
+          // Только вниз (вверх не тянем — чуть-чуть сопротивления, если дёрнули вверх).
+          dragY.setValue(g.dy > 0 ? g.dy : g.dy * 0.12);
+        },
+        onPanResponderRelease: (_evt, g) => {
+          const shouldClose = g.dy > 90 || g.vy > 1.2;
+          if (shouldClose) {
+            Animated.timing(dragY, {
+              toValue: 600,
+              duration: 180,
+              useNativeDriver: true,
+            }).start(() => {
+              hapticTap();
+              onCancel();
+            });
+          } else {
+            Animated.spring(dragY, {
+              toValue: 0,
+              damping: 16,
+              stiffness: 180,
+              mass: 0.9,
+              useNativeDriver: true,
+            }).start();
+          }
+        },
+        onPanResponderTerminate: () => {
+          Animated.spring(dragY, {
+            toValue: 0,
+            damping: 16,
+            stiffness: 180,
+            mass: 0.9,
+            useNativeDriver: true,
+          }).start();
+        },
+      }),
+    [dragY, onCancel],
+  );
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
       {/* Тап по затемнённому фону = отмена. На iOS нет аппаратной кнопки «назад»,
@@ -83,7 +141,11 @@ function ThemedConfirmModal({
           padding: 24,
         }}
       >
-        <Pressable onPress={(e) => e.stopPropagation()} style={{ width: '100%', maxWidth: 360 }}>
+        <Animated.View
+          {...panResponder.panHandlers}
+          style={{ width: '100%', maxWidth: 360, transform: [{ translateY: dragY }] }}
+        >
+        <Pressable onPress={(e) => e.stopPropagation()} style={{ width: '100%' }}>
         <LinearGradient
           testID={testIDPrefix ? `${testIDPrefix}-modal` : undefined}
           colors={modalColors}
@@ -200,6 +262,7 @@ function ThemedConfirmModal({
           </View>
         </LinearGradient>
         </Pressable>
+        </Animated.View>
       </Pressable>
     </Modal>
   );

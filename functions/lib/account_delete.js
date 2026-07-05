@@ -135,6 +135,7 @@ const FIELD_QUERY_SPECS = [
     { collection: 'error_reports', field: 'uid', values: 'stable' },
     { collection: 'review_promo_claims', field: 'uid', values: 'stable' },
     { collection: 'vip_survey_responses', field: 'uid', values: 'stable' },
+    { collection: 'shard_survey_responses', field: 'uid', values: 'stable' },
     { collection: 'subscription_cancel_surveys', field: 'uid', values: 'stable' },
     { collection: 'revenuecat_premium_events', field: 'uid', values: 'both' },
     { collection: 'revenuecat_premium_events', field: 'candidates', values: 'both', op: 'array-contains' },

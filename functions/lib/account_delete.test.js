@@ -77,6 +77,7 @@ describe('accountDelete query plan', () => {
         expect(keys.has('error_reports.uid.==.stable-123')).toBe(true);
         expect(keys.has('review_promo_claims.uid.==.stable-123')).toBe(true);
         expect(keys.has('vip_survey_responses.uid.==.stable-123')).toBe(true);
+        expect(keys.has('shard_survey_responses.uid.==.stable-123')).toBe(true);
         expect(keys.has('daily_phrase_saves.uid.==.stable-123')).toBe(true);
         expect(keys.has('daily_phrase_saves.authUid.==.auth-456')).toBe(true);
         expect(keys.has('arena_club_contributions.stableUid.==.stable-123')).toBe(true);

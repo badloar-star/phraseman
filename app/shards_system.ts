@@ -51,7 +51,10 @@ export type ShardSource =
   | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
   | 'plan_day_complete'     // +2 Завершён день персонального плана (разово на день плана)
-  | 'trainer_perfect_session'; // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
+  | 'trainer_perfect_session' // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
+  | 'survey_completed';     // Пройден опрос за осколки (сервер submitShardSurvey, идемпотентно).
+                            // ВНИМАНИЕ: 3 ниже — лишь дефолт каталога для UI/справки;
+                            // реальная награда берётся из конфига опроса (rewardShards 1..20).
   // Награда за баг-репорт начисляется админом вручную при подтверждении (admin/index.html,
   // reason 'bug_fixed', shards += 1) — отдельного ShardSource в каталоге для неё нет.
 
@@ -74,6 +77,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   preposition_drill_perfect: 1,
   plan_day_complete: 2,
   trainer_perfect_session: 1,
+  survey_completed: 3,
 };
 
 const STORAGE_KEY = 'shards_balance';

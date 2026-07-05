@@ -93,7 +93,7 @@ export default function FlashcardsAudioScreen() {
   const { speak, stop } = useAudio();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
-  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const requestedSourceId = useMemo(() => routeParamString(params.source).trim(), [params.source]);
   const requestedFilter = useMemo(() => routeParamString(params.filter).trim(), [params.filter]);
@@ -1038,9 +1038,20 @@ export default function FlashcardsAudioScreen() {
                   </Animated.View>
                 </>
               ) : currentCard ? (
-                <Animated.View key="active-card" style={styles.cardLayer}>
+                // Тап по самой карточке = переиграть текущую сторону (как в
+                // спикинге: слушать одним тапом, не целясь в кнопку внизу).
+                // Только когда нет перехода между карточками — иначе тап во время
+                // анимации мог бы дважды дёрнуть воспроизведение.
+                <TouchableOpacity
+                  key="active-card"
+                  activeOpacity={0.9}
+                  onPress={replayCurrentSide}
+                  accessibilityRole="button"
+                  accessibilityLabel="Replay current card audio"
+                  style={styles.cardLayer}
+                >
                   {renderCardLayer({ card: currentCard, side }, frontRotate, backRotate)}
-                </Animated.View>
+                </TouchableOpacity>
               ) : null}
             </View>
           </View>

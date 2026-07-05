@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
 import { Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
+import { glassFill } from '../../components/GlassSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { Category, CategoryId } from './types';
 
@@ -72,11 +73,11 @@ export default function FlashcardsCategoryTiles({
                   width: tileW,
                   height: tileW,
                   borderRadius: 16,
-                  borderWidth: 1,
-                  borderColor: active ? t.accent : t.border,
-                  backgroundColor: active ? `${t.accent}18` : t.bgSurface,
                   alignItems: 'center',
                   justifyContent: 'center',
+                  ...(active
+                    ? { borderWidth: 1, borderColor: t.accent, backgroundColor: `${t.accent}18` }
+                    : { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46) }),
                 }}
               >
                 {active && (

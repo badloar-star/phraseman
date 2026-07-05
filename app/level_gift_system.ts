@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { addArenaPlaysBonusForToday } from './arena_daily_limit';
+import { addEnergy } from './energy_system';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
   OFFICIAL_DARK_LOGIC_EN_ID,
@@ -1191,7 +1192,16 @@ const applyEnergyBonusN = async (
   const accumulatedAmount = (existing?.amount ?? 0) + n;
   const bonus: BonusEnergyState = { amount: accumulatedAmount, expiresAt: getTomorrowMidnightMs() };
   await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify(bonus));
-  await setEnergy(currentEnergy);
+  // Бонус поднял эффективный потолок энергии (см. energy_system.getEffectiveMaxEnergyValue) —
+  // сразу заполняем новые слоты, иначе потолок вырос, а энергия осталась прежней (слоты пустые).
+  let nextEnergy = currentEnergy;
+  try {
+    const state = await addEnergy(n);
+    nextEnergy = state.current;
+  } catch {
+    // addEnergy сам логирует; UI не ломаем — оставляем прежнее значение.
+  }
+  await setEnergy(nextEnergy);
   return { success: true, energyBoostAlreadyActive };
 };
 

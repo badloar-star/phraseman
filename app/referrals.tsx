@@ -30,6 +30,7 @@ import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { isReferralCloudEnabled } from './referral_cloud';
 import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
 import { safeRouterBack } from './navigation_back';
+import { glassFill } from '../components/GlassSurface';
 
 function makeL(lang: Lang) {
   return (
@@ -277,10 +278,10 @@ export default function ReferralsScreen() {
         style={{
           borderRadius: 18,
           padding: 14,
-          backgroundColor: t.bgCard,
-          borderWidth: 1,
-          borderColor: claimable ? t.accent : t.border,
           gap: 12,
+          ...(claimable
+            ? { backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: t.accent }
+            : { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }),
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
@@ -354,7 +355,7 @@ export default function ReferralsScreen() {
             </Text>
           </View>
 
-          <View style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, gap: 10 }}>
+          <View style={{ borderRadius: 20, padding: 18, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), gap: 10 }}>
             <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
               <Ionicons name="people-outline" size={24} color={t.accent} />
             </View>

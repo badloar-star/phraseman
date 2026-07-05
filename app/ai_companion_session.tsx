@@ -31,6 +31,7 @@ import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import AiTypingBubble from '../components/AiTypingBubble';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -107,10 +108,11 @@ export default function AiCompanionSession() {
         history,
         memory,
         interfaceLang: lang,
+        studyTarget,
         isPremium: hasPremiumAccess,
       });
     },
-    [ensureMemory, hasPremiumAccess, lang],
+    [ensureMemory, hasPremiumAccess, lang, studyTarget],
   );
 
   const send = useCallback(
@@ -316,11 +318,12 @@ export default function AiCompanionSession() {
                 <View
                   key={i}
                   style={{
-                    backgroundColor: isUser ? t.bgSurface : t.bgCard,
+                    backgroundColor: isUser ? t.bgSurface : glassFill(t.bgCard, 0.46),
                     borderRadius: 16,
                     padding: 16,
-                    borderWidth: 0.5,
-                    borderColor: t.border,
+                    ...(isUser
+                      ? { borderWidth: 0.5, borderColor: t.border }
+                      : { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }),
                     marginBottom: 10,
                     alignSelf: isUser ? 'flex-end' : 'stretch',
                     maxWidth: isUser ? '88%' : '100%',
@@ -427,11 +430,11 @@ export default function AiCompanionSession() {
               <View
                 style={{
                   borderRadius: 14,
-                  borderWidth: 1,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   paddingVertical: 12,
                   paddingHorizontal: 14,
-                  backgroundColor: t.bgCard,
-                  borderColor: t.border,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   marginBottom: 8,
                   flexDirection: 'row',
                   alignItems: 'flex-start',

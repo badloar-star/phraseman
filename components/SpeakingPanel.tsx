@@ -325,6 +325,13 @@ export function SpeakingPanel({
   const [recordingUri, setRecordingUri] = useState<string | null>(null);
   // Плеер повтора своей записи; пересоздаётся на каждый тап, гасится на анмаунте.
   const replayPlayerRef = useRef<AudioPlayer | null>(null);
+  // Токен последнего запроса воспроизведения (эталон / слово / «Моя запись»).
+  // Каждый тап инкрементирует его. Переключение аудиорежима асинхронно, поэтому
+  // фактический speak()/play() отложен в .finally(); к этому моменту мог прилететь
+  // новый тап. Сверяем токен — говорит/играет ТОЛЬКО последний запрос, промежуточные
+  // тихо отваливаются. Без этого параллельные тапы перетасовывали stop/speak и
+  // обрывали друг друга («ломали» озвучку).
+  const playbackTokenRef = useRef(0);
   // Гард от двойного финиша: end и error могут прийти оба, а финиш теперь
   // асинхронный (контрольный прогон) — второй вызов запустил бы его дважды.
   const finishingRef = useRef(false);
@@ -563,14 +570,23 @@ export function SpeakingPanel({
   const speakWord = useCallback(
     (word: string) => {
       hapticTap();
+      // Токен + синхронный stop: быстрые повторные тапы по словам не перетасовывают
+      // stop/speak и не обрывают друг друга — озвучивается только последнее слово.
+      const token = ++playbackTokenRef.current;
       try {
         replayPlayerRef.current?.pause();
+      } catch {
+        /* no-op */
+      }
+      try {
+        Speech.stop();
       } catch {
         /* no-op */
       }
       void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
         .catch(() => undefined)
         .finally(() => {
+          if (playbackTokenRef.current !== token) return;
           try {
             Speech.stop();
             Speech.speak(word, { language: recognitionLocale });
@@ -1450,6 +1466,10 @@ export function SpeakingPanel({
   const playMyRecording = useCallback(() => {
     if (!recordingUri) return;
     hapticTap();
+    // Токен: пока переключается аудиорежим, повторный тап мог застолбить свой
+    // запрос — тогда НЕ создаём ещё один плеер (иначе накапливались лишние плееры
+    // и одновременно играло несколько записей).
+    const token = ++playbackTokenRef.current;
     try {
       Speech.stop();
     } catch {
@@ -1460,11 +1480,13 @@ export function SpeakingPanel({
     } catch {
       /* no-op */
     }
+    replayPlayerRef.current = null;
     // Сначала «громкое воспроизведение»: после распознавания сессия всё ещё в
     // записи, и без сброса запись играла бы тихо через разговорный динамик.
     void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => undefined)
       .finally(() => {
+        if (playbackTokenRef.current !== token) return;
         try {
           const player = createAudioPlayer(recordingUri);
           replayPlayerRef.current = player;
@@ -1484,8 +1506,16 @@ export function SpeakingPanel({
   // студийным клипам урока (хосты разные), а TTS покрывает любую фразу.
   const playReference = useCallback(() => {
     hapticTap();
+    // Синхронно глушим всё, что играет ПРЯМО СЕЙЧAS, и застолбляем свой токен —
+    // так повторный тап мгновенно перебивает предыдущий, а не накапливает speak().
+    const token = ++playbackTokenRef.current;
     try {
       replayPlayerRef.current?.pause();
+    } catch {
+      /* no-op */
+    }
+    try {
+      Speech.stop();
     } catch {
       /* no-op */
     }
@@ -1494,6 +1524,8 @@ export function SpeakingPanel({
     void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => undefined)
       .finally(() => {
+        // Пока переключался режим, мог прилететь новый тап — тогда молчим.
+        if (playbackTokenRef.current !== token) return;
         try {
           Speech.stop();
           Speech.speak(targetText, { language: recognitionLocale });

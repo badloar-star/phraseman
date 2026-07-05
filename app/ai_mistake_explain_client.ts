@@ -2,6 +2,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
+import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
@@ -57,6 +58,9 @@ function explainMistakeRequestKey(req: ExplainMistakeRequest): string {
 }
 
 export async function callExplainMistake(req: ExplainMistakeRequest): Promise<ExplainMistakeResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = explainMistakeRequestKey(req);
   const existing = explainMistakeInFlight.get(key);
   if (existing) return existing;

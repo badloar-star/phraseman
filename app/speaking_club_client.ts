@@ -9,6 +9,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import type { DialogChatTurn } from './ai_dialog_client';
+import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 
 const FUNCTIONS_REGION = 'us-central1';
 const clubSendInFlight = new Map<string, Promise<SpeakingClubSendResponse>>();
@@ -197,6 +198,9 @@ function clubSendRequestKey(req: SpeakingClubSendRequest): string {
 }
 
 export async function callSpeakingClubSend(req: SpeakingClubSendRequest): Promise<SpeakingClubSendResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = clubSendRequestKey(req);
   const existing = clubSendInFlight.get(key);
   if (existing) return existing;
@@ -227,6 +231,9 @@ function clubReviewRequestKey(req: SpeakingClubReviewRequest): string {
 }
 
 export async function callSpeakingClubReview(req: SpeakingClubReviewRequest): Promise<SpeakingClubReviewResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = clubReviewRequestKey(req);
   const existing = clubReviewInFlight.get(key);
   if (existing) return existing;

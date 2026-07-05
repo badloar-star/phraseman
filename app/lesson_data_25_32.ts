@@ -7408,7 +7408,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'student', correct: 'student', distractors: ['study', 'studio', 'staff', 'stuff', 'stay'] },
       { text: 'rewrite', correct: 'rewrite', distractors: ['writes', 'writing', 'wrote', 'written', 'writer'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
-      { text: 'graduation', correct: 'graduation', distractors: ['gradual', 'gravity', 'gratitude', 'grade', 'grammar'] },
+      { text: 'graduation', correct: 'graduation', distractors: ['gravity', 'gratitude', 'grammar', 'garage', 'guarantee'] },
       { text: 'thesis', correct: 'thesis', distractors: ['these', 'those', 'theater', 'theory', 'theft'] },
     ],
   },
@@ -7814,8 +7814,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_46',
     english: 'She let that helpful guide show that ancient map to that tourist group.',
-    russian: 'Она разрешила тому готовому помочь гиду показать древнюю карту той группе туристов.',
-    ukrainian: 'Вона дозволила тому помічному гіду показати стародавню мапу тій групі туристів.',
+    russian: 'Она разрешила тому готовому помочь гиду показать ту древнюю карту той группе туристов.',
+    ukrainian: 'Вона дозволила тому помічному гіду показати ту стародавню мапу тій групі туристів.',
     spanish: 'Ella permitió que esa guía servicial mostrara ese mapa antiguo a ese grupo turístico.',
     words: [
       { text: 'She', correct: 'She', distractors: ['her', 'hers', 'he', 'they', 'it'] },

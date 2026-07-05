@@ -20,6 +20,7 @@ import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -782,7 +783,7 @@ export default function FlashcardsAudioScreen() {
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(bottomInset, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.summaryPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+        <View style={[styles.summaryPanel, { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
           <View style={styles.summaryRow}>
             <View style={[styles.summaryIcon, { backgroundColor: t.accent }]}>
               <Ionicons name="headset-outline" size={24} color={t.correctText} />
@@ -849,13 +850,13 @@ export default function FlashcardsAudioScreen() {
         <Text style={[styles.sectionTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{text.sets}</Text>
 
         {loadingSources && sources.length === 0 ? (
-          <View style={[styles.emptyPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+          <View style={[styles.emptyPanel, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>{text.loading}</Text>
           </View>
         ) : null}
 
         {!loadingSources && sources.length === 0 ? (
-          <View style={[styles.emptyPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+          <View style={[styles.emptyPanel, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>{loadError || text.empty}</Text>
             <TapScale onPress={() => void loadSources(false)} style={[styles.secondaryButton, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
               <Ionicons name="refresh" size={18} color={t.textSecond} />
@@ -873,10 +874,9 @@ export default function FlashcardsAudioScreen() {
               activeOpacity={0.86}
               style={[
                 styles.sourceRow,
-                {
-                  backgroundColor: selected ? `${source.accent}18` : t.bgCard,
-                  borderColor: selected ? source.accent : t.border,
-                },
+                selected
+                  ? { backgroundColor: `${source.accent}22`, borderWidth: 1, borderColor: source.accent }
+                  : { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
               ]}
             >
               <View style={[styles.sourceIcon, { backgroundColor: `${source.accent}24` }]}>
@@ -1088,7 +1088,7 @@ export default function FlashcardsAudioScreen() {
     <>
       {renderHeader(backToSetup)}
       <View style={[styles.doneWrap, { paddingBottom: Math.max(bottomInset, 16) + 12 }]}>
-        <View style={[styles.donePanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+        <View style={[styles.donePanel, { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
           <View style={[styles.doneIcon, { backgroundColor: t.correctBg }]}>
             <Ionicons name="checkmark-circle" size={46} color={t.correct} />
           </View>
@@ -1175,7 +1175,6 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   summaryPanel: {
-    borderWidth: 1,
     borderRadius: 18,
     padding: 14,
     gap: 14,
@@ -1239,7 +1238,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   emptyPanel: {
-    borderWidth: 1,
     borderRadius: 16,
     padding: 16,
     alignItems: 'center',
@@ -1257,7 +1255,6 @@ const styles = StyleSheet.create({
   sourceRow: {
     minHeight: 66,
     borderRadius: 17,
-    borderWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 10,
     flexDirection: 'row',
@@ -1400,7 +1397,6 @@ const styles = StyleSheet.create({
   donePanel: {
     width: '100%',
     maxWidth: 420,
-    borderWidth: 1,
     borderRadius: 22,
     padding: 22,
     alignItems: 'center',

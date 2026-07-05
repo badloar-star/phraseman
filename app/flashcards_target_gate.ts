@@ -2,7 +2,10 @@ import type { Lang } from '../constants/i18n';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import type { CardItem } from './flashcards/types';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
-import { getCachedFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
+import {
+  getCachedFrenchRemoteFlashcards,
+  getCachedFrenchRemoteMarketplacePacks,
+} from './french_flashcard_remote_runtime';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type FlashcardsSourceGatedSurface =
@@ -14,7 +17,10 @@ export type FlashcardsSourceGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
   surface: FlashcardsSourceGatedSurface;
-  reason?: 'french_flashcards_source_gate' | 'french_flashcards_server_system_cards_available';
+  reason?:
+    | 'french_flashcards_source_gate'
+    | 'french_flashcards_server_system_cards_available'
+    | 'french_flashcards_server_marketplace_packs_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -29,6 +35,7 @@ export const FRENCH_FLASHCARDS_REQUIRED_EVIDENCE = Object.freeze([
 export function flashcardsSourceGateForTarget(
   studyTarget: RuntimeStudyTarget,
   surface: FlashcardsSourceGatedSurface,
+  sourceLocale?: unknown,
 ): FlashcardsSourceGate {
   const target = storageStudyTarget(studyTarget);
   if (target !== 'fr') {
@@ -42,12 +49,20 @@ export function flashcardsSourceGateForTarget(
   }
 
   const systemCardsEnabled = surface === 'system_cards';
+  const marketplacePacksEnabled =
+    surface === 'official_marketplace_packs' &&
+    getCachedFrenchRemoteMarketplacePacks(sourceLocale).length > 0;
+  const enabled = systemCardsEnabled || marketplacePacksEnabled;
   return {
-    enabled: systemCardsEnabled,
+    enabled,
     studyTarget: 'fr',
     surface,
-    reason: systemCardsEnabled ? 'french_flashcards_server_system_cards_available' : 'french_flashcards_source_gate',
-    blockedRoutes: systemCardsEnabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
+    reason: systemCardsEnabled
+      ? 'french_flashcards_server_system_cards_available'
+      : marketplacePacksEnabled
+        ? 'french_flashcards_server_marketplace_packs_available'
+        : 'french_flashcards_source_gate',
+    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
     requiredEvidence: FRENCH_FLASHCARDS_REQUIRED_EVIDENCE,
   };
 }
@@ -55,12 +70,13 @@ export function flashcardsSourceGateForTarget(
 export function flashcardsSourceGatedContentAvailableForTarget(
   studyTarget: RuntimeStudyTarget,
   surface: FlashcardsSourceGatedSurface,
+  sourceLocale?: unknown,
 ): boolean {
-  return flashcardsSourceGateForTarget(studyTarget, surface).enabled;
+  return flashcardsSourceGateForTarget(studyTarget, surface, sourceLocale).enabled;
 }
 
-export function flashcardsOfficialPacksAvailableForTarget(studyTarget: RuntimeStudyTarget): boolean {
-  return flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'official_marketplace_packs');
+export function flashcardsOfficialPacksAvailableForTarget(studyTarget: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
+  return flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'official_marketplace_packs', sourceLocale);
 }
 
 export function flashcardsCommunityPacksAvailableForTarget(studyTarget: RuntimeStudyTarget): boolean {

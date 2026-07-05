@@ -7,6 +7,7 @@ import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
+import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,6 +16,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
+import { glassFill } from '../../components/GlassSurface';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
@@ -35,6 +37,8 @@ import { CompassBriefingHost } from '../compass';
 import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
+import { configureAccordionLayout } from '../../constants/layoutAnimation';
+import { MOTION_DURATION } from '../../constants/motion';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
 import { HELPFUL_REPORTS_CONFIRMED_KEY, SPECIAL_TITLES, TITLES, getEarnedSpecialTitles, getTitleString } from '../../constants/titles';
@@ -516,6 +520,8 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
 export default function HomeScreen() {
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
+    // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
+    const nav = useGuardedNav();
     const { theme: t, isDark, f, themeMode } = useTheme();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
@@ -612,6 +618,14 @@ export default function HomeScreen() {
     const homeFeatureTipTouchStartRef = useRef<{ x: number; y: number } | null>(null);
     const homeFeatureTipSwipeHandledRef = useRef(false);
     const homeFeatureTipHintPulse = useRef(new Animated.Value(0)).current;
+    // Кросс-фейд содержимого карточки при смене подсказки (1 = видно, 0 = скрыто на миг перехода).
+    const homeFeatureTipContentAnim = useRef(new Animated.Value(1)).current;
+    // Ключ текущей подсказки — источник для проигрывания кросс-фейда при её смене.
+    const homeFeatureTipContentKey = `${homeFeatureTipsReplayCount}:${homeFeatureTipIndex}`;
+    const homeFeatureTipContentKeyRef = useRef(homeFeatureTipContentKey);
+    // Отслеживаем предыдущую видимость карточки, чтобы анимировать сдвиг контента ниже
+    // только на реальном появлении/исчезновении (а не на каждом ре-рендере).
+    const homeFeatureTipCardWasVisibleRef = useRef(false);
     // Початкове значення підбираємо за поточною мовою інтерфейсу,
     // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
     const [, setGreeting] = useState(() => triLang(lang, {
@@ -1117,6 +1131,8 @@ export default function HomeScreen() {
         AsyncStorage.setItem(HOME_FEATURE_TIPS_INDEX_KEY, String(clamped)).catch(() => {});
     }, [homeFeatureTips.length]);
     const completeHomeFeatureTips = useCallback(() => {
+        // Последняя карточка исчезает → блоки ниже плавно возвращаются вверх.
+        configureAccordionLayout();
         setHomeFeatureTipsDone(true);
         AsyncStorage.multiSet([
             [HOME_FEATURE_TIPS_DONE_KEY, '1'],
@@ -1187,6 +1203,8 @@ export default function HomeScreen() {
     }, [handleHomeFeatureTipNext, handleHomeFeatureTipPrevious]);
     const resetHomeFeatureTipsFromHome = useCallback(() => {
         hapticTap();
+        // Карточки снова включили → блоки ниже плавно уезжают вниз, освобождая место.
+        configureAccordionLayout();
         setHomeFeatureTipIndex(0);
         setHomeFeatureTipsDone(false);
         setHomeFeatureTipsHydrated(true);
@@ -1199,6 +1217,8 @@ export default function HomeScreen() {
     }, []);
     useEffect(() => {
         const sub = DeviceEventEmitter.addListener(HOME_FEATURE_TIPS_RESET_EVENT, (nextReplayCount?: number) => {
+            // Повторное включение подсказок из настроек → плавный сдвиг контента ниже.
+            configureAccordionLayout();
             if (typeof nextReplayCount === 'number') {
                 setHomeFeatureTipsReplayCount(clampHomeFeatureTipReplayCount(nextReplayCount));
             }
@@ -1225,6 +1245,42 @@ export default function HomeScreen() {
             loop.stop();
         };
     }, [homeFeatureTipHintPulse, homeFeatureTipIndex, homeFeatureTipsDone, homeFeatureTipsHydrated, homeOnboardingDone]);
+    // Кросс-фейд содержимого при листании подсказок: контент плавно уходит и возвращается,
+    // а не «прыгает». useNativeDriver — не грузит JS-поток (Performance Bible).
+    const homeFeatureTipCardVisible = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
+    useEffect(() => {
+        if (!homeFeatureTipCardVisible) {
+            homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
+            homeFeatureTipContentAnim.setValue(1);
+            return;
+        }
+        // Первое появление карточки: контент уже въезжает вместе с самим блоком (LayoutAnimation),
+        // отдельный кросс-фейд не запускаем — только фиксируем текущий ключ.
+        if (!homeFeatureTipCardWasVisibleRef.current || homeFeatureTipContentKeyRef.current === homeFeatureTipContentKey) {
+            homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
+            homeFeatureTipContentAnim.setValue(1);
+            return;
+        }
+        homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
+        homeFeatureTipContentAnim.setValue(0);
+        const anim = Animated.timing(homeFeatureTipContentAnim, {
+            toValue: 1,
+            duration: MOTION_DURATION.normal,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+        });
+        anim.start();
+        return () => {
+            anim.stop();
+        };
+    }, [homeFeatureTipCardVisible, homeFeatureTipContentAnim, homeFeatureTipContentKey]);
+    // Синхронизируем «была ли видна карточка» для ветки первого появления в кросс-фейде.
+    // Появление/исчезновение карточки со сдвигом контента ниже анимируется через
+    // configureAccordionLayout(), вызываемый в call-site'ах ПЕРЕД setState (LayoutAnimation
+    // применяется к следующей мутации разметки, поэтому в useEffect после коммита — поздно).
+    useEffect(() => {
+        homeFeatureTipCardWasVisibleRef.current = homeFeatureTipCardVisible;
+    }, [homeFeatureTipCardVisible]);
     // Открыть «Личный план» с проверкой доступа: фри без премиума → пейвол (не сам план).
     // Сам экран плана тоже защищён входным замком — это лишь чтобы не мелькал экран.
     const openPersonalPlan = useCallback(() => {
@@ -2064,7 +2120,7 @@ export default function HomeScreen() {
             <TapScale onPress={() => setLoginBonus(null)} accessibilityLabel={loginBonusCloseLabel} style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusChrome.closeBg }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
           </LinearGradient>
         </View>)}
-      {showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>
+      {showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>
           <Text style={{ fontSize: 28 }}>🚀</Text>
           <View style={{ flex: 1 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, {
@@ -2090,7 +2146,7 @@ export default function HomeScreen() {
           </View>
           <TapScale onPress={() => setComebackBanner(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
         </View>)}
-      {showRepairCard && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, borderWidth: 1, borderColor: '#FF9500' + '99' }}>
+      {showRepairCard && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, borderWidth: 1, borderColor: '#FF9500' + '99' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 8 }}>
             <Text style={{ fontSize: 26 }}>🛠️</Text>
             <View style={{ flex: 1 }}>
@@ -2348,7 +2404,7 @@ export default function HomeScreen() {
                 <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
-                    router.push('/avatar_select');
+                    nav.push('/avatar_select');
                 }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ flexShrink: 0 }}>
                   <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
                 </TouchableOpacity>
@@ -2394,7 +2450,7 @@ export default function HomeScreen() {
                 <TouchableOpacity activeOpacity={0.82} onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
-                    router.push('/streak_stats');
+                    nav.push('/streak_stats');
                 }} accessibilityRole="button" accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`} style={{
                     width: experimentalStatusStreakWidth,
                     minHeight: experimentalStatusTopRowHeight,
@@ -2481,7 +2537,7 @@ export default function HomeScreen() {
                 )}
                 <TouchableOpacity activeOpacity={0.75} onPress={() => {
                     hapticTap();
-                    router.push('/shards_shop');
+                    nav.push('/shards_shop');
                   }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
                   <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                     <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
@@ -2507,7 +2563,7 @@ export default function HomeScreen() {
 
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <Animated.View style={sectionStyle(1)}>
-          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); router.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
+          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 1 : (isGoldTheme ? 1 : 0.5), borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : t.border, padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
@@ -2526,7 +2582,7 @@ export default function HomeScreen() {
                       <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
-                    router.push('/avatar_select');
+                    nav.push('/avatar_select');
                 }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ marginRight: eliteStatsCompact ? 10 : 12 }}>
                         <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
                       </TouchableOpacity>
@@ -2679,7 +2735,7 @@ export default function HomeScreen() {
                     <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
-                    router.push('/avatar_select');
+                    nav.push('/avatar_select');
                 }} accessibilityRole="button" accessibilityLabel="Avatar">
                       <AvatarView avatar={userAvatar} level={level} size={44} auraId={effectiveUserAvatarAura}/>
                     </TouchableOpacity>
@@ -2912,7 +2968,13 @@ export default function HomeScreen() {
                 {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
                 <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.11 : 0.08, backgroundColor: homeFeatureTipAccent }]} pointerEvents="none"/>
-                <View style={{ gap: 9, justifyContent: 'center', minHeight: 92 }}>
+                <Animated.View style={{
+                  gap: 9,
+                  justifyContent: 'center',
+                  minHeight: 92,
+                  opacity: homeFeatureTipContentAnim,
+                  transform: [{ translateY: homeFeatureTipContentAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+                }}>
                   <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }} numberOfLines={2}>
                     {currentHomeFeatureTip.title}
                   </Text>
@@ -2947,7 +3009,7 @@ export default function HomeScreen() {
                       ) : null}
                     </View>
                   ) : null}
-                </View>
+                </Animated.View>
               </LinearGradient>
             </TouchableOpacity>
           ) : null}
@@ -3053,7 +3115,7 @@ export default function HomeScreen() {
             </Text>
           </View>
           <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 8 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); router.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
@@ -3186,7 +3248,7 @@ export default function HomeScreen() {
 
             {homeLeagueChest && (<TouchableOpacity testID="home-league-open" activeOpacity={0.88} onPress={() => {
                     hapticTap();
-                    router.push('/league_screen');
+                    nav.push('/league_screen');
                 }} style={{ borderRadius: 24, overflow: 'hidden' }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
                     ru: 'Цель лиги',
                     uk: 'Ціль ліги',
@@ -3234,7 +3296,7 @@ export default function HomeScreen() {
 
           {/* ТРЕНЕР — стационарная кнопка, всегда видна */}
           <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); router.push('/trainer'); }} style={{
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); }} style={{
                 borderRadius: isGoldTheme ? 14 : 16,
                 borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
                 borderColor: USE_ELITE_HOME_STATUS
@@ -3449,7 +3511,7 @@ export default function HomeScreen() {
 
           {homeLeagueChest && (<TouchableOpacity testID="home-league-open" activeOpacity={0.88} onPress={() => {
                     hapticTap();
-                    router.push('/league_screen');
+                    nav.push('/league_screen');
                 }} style={{ marginHorizontal: 16, marginBottom: 12 }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
                     ru: 'Цель лиги',
                     uk: 'Ціль ліги',
@@ -3629,7 +3691,7 @@ export default function HomeScreen() {
       {/* Баннер сбоя — только когда грузить было нечего (первый запуск + оффлайн). */}
       {loadFailedNoData ? (
         <View pointerEvents="box-none" style={{ position: 'absolute', left: 16, right: 16, bottom: 24 + bottomInset, alignItems: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: t.bgCard, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: t.accent + '40' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: t.accent + '40' }}>
             <Ionicons name="cloud-offline-outline" size={22} color={t.textMuted} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: 13, fontWeight: '600' }}>
               {triLang(lang, {
@@ -3772,7 +3834,7 @@ export default function HomeScreen() {
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
           <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setTitleModalVisible(false)} />
           <View style={{ maxHeight: Math.min(SCREEN_H * 0.74, 620), width: '100%', maxWidth: 560, alignSelf: 'center' }}>
-            <View style={{ borderRadius: 22, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, elevation: 24 }}>
+            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, elevation: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: f.h2 + 5 }} numberOfLines={1}>

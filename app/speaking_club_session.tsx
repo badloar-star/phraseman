@@ -22,6 +22,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { setAudioModeAsync } from 'expo-audio';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import AiTypingBubble from '../components/AiTypingBubble';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -33,6 +34,7 @@ import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
+import { aiOffline, aiOfflineDialogScreen } from './ai_kill_switch_copy';
 import { trackEvent, type AnalyticsEvent } from './analytics';
 import { registerXP } from './xp_manager';
 import { stripMarkers } from './ai_dialog_markup';
@@ -385,11 +387,22 @@ export default function SpeakingClubSession() {
       setErrorMessage('');
     };
 
+    // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
+    // — на редких OEM 'start' не эмитится), а не сразу после start() (прогрев
+    // ~100-300мс терял начало речи). На Android звук молчит, играет вибро.
+    let cuePlayed = false;
+    const playCueOnce = () => {
+      if (cuePlayed) return;
+      cuePlayed = true;
+      playRecordStart();
+    };
     const startSub = speechModule.addListener('start', () => {
       clearWatchdog();
+      playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: { results?: Array<{ transcript?: string }> }) => {
       clearWatchdog();
+      playCueOnce();
       const alternatives = Array.isArray(event?.results) ? event.results : [];
       const top = String(alternatives[0]?.transcript ?? '').trim();
       if (top) {
@@ -466,7 +479,7 @@ export default function SpeakingClubSession() {
           holdToTalk: true,
         }),
       );
-      playRecordStart();
+      // cue теперь в playCueOnce (слушатели 'start'/'result').
     } catch {
       clearWatchdog();
       cleanupListeners();
@@ -524,6 +537,34 @@ export default function SpeakingClubSession() {
           </Text>
           <TouchableOpacity onPress={() => safeRouterBack(router, '/speaking_club_home' as never)} style={{ marginTop: 12 }}>
             <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>← OK</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  // Глобальный рубильник ИИ: миссия голосовая (нужен ИИ-собеседник) — не пускаем
+  // внутрь, показываем забавную заглушку. Миссии разговорные → категория social.
+  if (aiOffline()) {
+    const offline = aiOfflineDialogScreen(lang, 'social', mission.id);
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Text style={{ fontSize: 40 }}>{mission.icon}</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {offline.title}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {offline.message}
+          </Text>
+          <TouchableOpacity
+            accessibilityRole="button"
+            onPress={() => { hapticTap(); safeRouterBack(router, '/speaking_club_home' as never); }}
+            style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}
+          >
+            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>
+              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}
+            </Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -660,10 +701,10 @@ export default function SpeakingClubSession() {
             style={{
               marginHorizontal: 14,
               marginBottom: 8,
-              backgroundColor: t.bgCard,
+              backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 14,
-              borderWidth: 0.5,
-              borderColor: t.border,
+              borderTopWidth: 1,
+              borderTopColor: glassFill(t.accent, 0.14),
               padding: 10,
             }}
           >
@@ -684,10 +725,10 @@ export default function SpeakingClubSession() {
             {messages.length === 0 && !ended && (
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 14,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: 12,
                 }}
               >
@@ -718,12 +759,13 @@ export default function SpeakingClubSession() {
                   style={{
                     alignSelf: isAi ? 'flex-start' : 'flex-end',
                     maxWidth: '86%',
-                    backgroundColor: isAi ? t.bgCard : t.accent + '26',
+                    backgroundColor: isAi ? glassFill(t.bgCard, 0.46) : t.accent + '26',
                     borderRadius: 14,
                     borderBottomLeftRadius: isAi ? 4 : 14,
                     borderBottomRightRadius: isAi ? 14 : 4,
-                    borderWidth: 0.5,
-                    borderColor: t.border,
+                    ...(isAi
+                      ? { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
+                      : { borderWidth: 0.5, borderColor: t.border }),
                     paddingHorizontal: 12,
                     paddingVertical: 8,
                   }}
@@ -779,10 +821,10 @@ export default function SpeakingClubSession() {
             {ended && (
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: 14,
                   marginTop: 4,
                 }}
@@ -824,7 +866,7 @@ export default function SpeakingClubSession() {
                       <Text style={{ color: t.textPrimary, fontSize: f.sub }}>💛 {review.praise}</Text>
                     )}
                     {review.corrections.map((c, i) => (
-                      <View key={i} style={{ backgroundColor: t.bgSurface, borderRadius: 10, padding: 8 }}>
+                      <View key={i} style={{ backgroundColor: glassFill(t.bgCard, 0.32), borderRadius: 10, padding: 8 }}>
                         <Text style={{ color: t.wrong, fontSize: f.sub }}>{c.original}</Text>
                         <Text style={{ color: t.correct, fontSize: f.sub, fontWeight: '700' }}>→ {c.corrected}</Text>
                         {!!c.note && <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>{c.note}</Text>}

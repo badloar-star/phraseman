@@ -31,9 +31,12 @@ const REMOTE_CONFIG_DOC = 'app';
 const TOP_HELPERS_LIMIT = 10;
 
 /** Кэш последнего снимка топа (мгновенный первый кадр + офлайн). */
-const SNAPSHOT_CACHE_KEY = 'top_helpers_snapshot_v1';
+// v2 (2026-07-04): смена версии = сброс старого кэша у всех устройств. Старые снапшоты
+// (_v1) содержали «—»/уровень 1 из-за прежнего бага источника профиля — при v2 клиент
+// их не видит и подтягивает свежие данные из Firestore. Кулдаун-логика не тронута.
+const SNAPSHOT_CACHE_KEY = 'top_helpers_snapshot_v2';
 /** Таймстамп последнего успешного запроса к Firestore (кулдаун 3 ч). */
-const REMOTE_REFRESH_AT_KEY = 'top_helpers_remote_at_v1';
+const REMOTE_REFRESH_AT_KEY = 'top_helpers_remote_at_v2';
 /** Кулдаун обновления топа — 3 часа (требование: дёшево по Firebase). */
 export const TOP_HELPERS_REFRESH_COOLDOWN_MS = 3 * 60 * 60 * 1000;
 
@@ -54,6 +57,8 @@ export interface TopHelperRow {
   isVip: boolean;
   isLifetime: boolean;
   profileCardLevel?: number;
+  /** Настоящий игровой уровень (цифра на аватарке). НЕ profileCardLevel (тот — флаг 0..1). */
+  gameLevel?: number;
   profileCardTheme?: string;
   leagueCrownExpiresAt?: number;
   leagueCrownCount?: number;
@@ -106,11 +111,14 @@ export function parseHelperDoc(id: string, data: Record<string, unknown> | undef
   const confirmed = toInt(data.confirmed);
   if (confirmed <= 0) return null;
   const name = toStr(data.displayName, 60);
+  // Нет имени в проекции (юзер без онбординга/ника) → осмысленный плейсхолдер
+  // «Игрок #xxxx» по хвосту uid, как в остальном проекте (не голое «—»).
+  const fallbackName = `Игрок #${id.slice(-4)}`;
   const row: TopHelperRow = {
     uid: id,
     place: 0,
     confirmed,
-    displayName: name || '—',
+    displayName: name || fallbackName,
     isPremium: !!data.isPremium,
     isVip: !!data.isVip,
     isLifetime: !!data.isLifetime,
@@ -123,6 +131,8 @@ export function parseHelperDoc(id: string, data: Record<string, unknown> | undef
   if (frame) row.frame = frame;
   const cardLevel = toInt(data.profileCardLevel);
   if (cardLevel > 0) row.profileCardLevel = cardLevel;
+  const gameLevel = toInt(data.gameLevel);
+  if (gameLevel > 0) row.gameLevel = gameLevel;
   const cardTheme = toStr(data.profileCardTheme);
   if (cardTheme) row.profileCardTheme = cardTheme;
   const crownCount = toInt(data.leagueCrownCount);

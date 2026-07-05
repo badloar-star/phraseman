@@ -36,12 +36,14 @@ import { useCardPackShardPaywall } from './useCardPackShardPaywall';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 
 import { oskolokImageForPackShards } from '../oskolok';
-import { actionToastTri, emitAppEvent } from '../events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { packTileImageForPack } from './packMarketplaceIcons';
+import { hasActivePackGiftVoucher } from './pack_trial_gift';
 import DuoPressable from '../../components/DuoPressable';
+import GlassSurface, { glassFill } from '../../components/GlassSurface';
 import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
@@ -269,8 +271,8 @@ function UnownedMarketPackCard({
           height: tileW,
           borderRadius: TILE_RADIUS,
           overflow: 'hidden',
-          borderWidth: 1,
-          borderColor: t.border,
+          borderTopWidth: 1,
+          borderTopColor: glassFill(t.accent, 0.14),
         },
         cardShadow,
       ]}
@@ -416,6 +418,9 @@ export default function FlashcardsCategoryHub({
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
   const [ugcReportHintPackId, setUgcReportHintPackId] = useState<string | null>(null);
   const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
+  // Подарок-ваучер на бесплатный официальный набор (48 ч). Без этого флага пейвол
+  // никогда не откроется в режиме 'voucher' и подарок нельзя забрать с этого экрана.
+  const [hasPackVoucher, setHasPackVoucher] = useState(false);
 
   const refreshHiddenCommunityPacks = useCallback(async (optimisticPackId?: string | null) => {
     if (optimisticPackId) {
@@ -437,6 +442,10 @@ export default function FlashcardsCategoryHub({
         const ok = await hasMeaningfulCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setHasUnfinishedPackDraft(ok);
       })();
+      void (async () => {
+        const voucher = await hasActivePackGiftVoucher(studyTarget);
+        if (!cancelled) setHasPackVoucher(voucher);
+      })();
       void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
@@ -444,8 +453,28 @@ export default function FlashcardsCategoryHub({
     }, [lang, refreshHiddenCommunityPacks, studyTarget]),
   );
 
+  // Ваучер выдаётся/сгорает вне фокуса этого экрана (подарок за уровень, redeem
+  // в пейволе) — держим флаг в актуальном состоянии по событиям, а не только на фокус.
+  useEffect(() => {
+    let cancelled = false;
+    const refreshVoucher = () => {
+      void (async () => {
+        const voucher = await hasActivePackGiftVoucher(studyTarget);
+        if (!cancelled) setHasPackVoucher(voucher);
+      })();
+    };
+    const subSet = onAppEvent('pack_trial_gift_set', refreshVoucher);
+    const subConsumed = onAppEvent('pack_trial_gift_consumed', refreshVoucher);
+    return () => {
+      cancelled = true;
+      subSet.remove();
+      subConsumed.remove();
+    };
+  }, [studyTarget]);
+
   const { openPaywall, CardPackPaywallModalEl } = useCardPackShardPaywall({
     balance: shardBalance,
+    hasVoucher: hasPackVoucher,
     studyTarget,
     lang,
     router,
@@ -691,29 +720,25 @@ export default function FlashcardsCategoryHub({
           >
             <View style={{ width: tileW, position: 'relative', opacity: dimWhileOtherBuying ? 0.55 : 1 }}>
               {owned ? (
-                <View
-                  style={[
-                    {
-                      width: tileW,
-                      height: tileW,
-                      borderRadius: TILE_RADIUS,
-                      borderWidth: 1.5,
-                      borderColor: t.accent,
-                      backgroundColor: t.bgSurface,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingHorizontal: 4,
-                      position: 'relative',
-                    },
-                    shadowForTile(t, 'owned'),
-                  ]}
+                <GlassSurface
+                  tone="raised"
+                  radius={TILE_RADIUS}
+                  highlight
+                  style={{
+                    width: tileW,
+                    height: tileW,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingHorizontal: 4,
+                    position: 'relative',
+                  }}
                 >
                   {packPng ? (
                     <Image source={packPng} style={{ width: packTileIconSize, height: packTileIconSize }} contentFit="contain" />
                   ) : (
                     <Ionicons name={ion} size={packTileIconSize} color={t.textPrimary} />
                   )}
-                </View>
+                </GlassSurface>
               ) : (
                 <UnownedMarketPackCard
                   t={t}
@@ -852,24 +877,19 @@ export default function FlashcardsCategoryHub({
               } as any)
             }
           >
-            <View
-              style={[
-                {
-                  width: tileW,
-                  height: tileW,
-                  borderRadius: TILE_RADIUS,
-                  borderWidth: 1,
-                  borderColor: t.border,
-                  backgroundColor: t.bgSurface,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative',
-                },
-                shadowForTile(t, 'base'),
-              ]}
+            <GlassSurface
+              radius={TILE_RADIUS}
+              highlight
+              style={{
+                width: tileW,
+                height: tileW,
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              }}
             >
               <Ionicons name={cat.icon as any} size={iconSize} color={t.textPrimary} />
-            </View>
+            </GlassSurface>
           </HubTileShell>
           <Text style={labelStyle(true)} numberOfLines={2}>
             {label}
@@ -904,25 +924,20 @@ export default function FlashcardsCategoryHub({
           reduceMotion={reduceMotion}
           onPress={onTrainingPress}
         >
-          <View
-            style={[
-              {
-                width: tileW,
-                height: tileW,
-                borderRadius: TILE_RADIUS,
-                borderWidth: 1,
-                borderColor: t.border,
-                backgroundColor: t.bgSurface,
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              },
-              shadowForTile(t, 'base'),
-            ]}
+          <GlassSurface
+            radius={TILE_RADIUS}
+            highlight
+            style={{
+              width: tileW,
+              height: tileW,
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
           >
             <Ionicons name="play-circle-outline" size={iconSize} color={t.textPrimary} />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </View>
+          </GlassSurface>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -957,25 +972,20 @@ export default function FlashcardsCategoryHub({
           reduceMotion={reduceMotion}
           onPress={onAudioPress}
         >
-          <View
-            style={[
-              {
-                width: tileW,
-                height: tileW,
-                borderRadius: TILE_RADIUS,
-                borderWidth: 1,
-                borderColor: t.border,
-                backgroundColor: t.bgSurface,
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              },
-              shadowForTile(t, 'base'),
-            ]}
+          <GlassSurface
+            radius={TILE_RADIUS}
+            highlight
+            style={{
+              width: tileW,
+              height: tileW,
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
           >
             <Ionicons name="headset-outline" size={iconSize} color={t.textPrimary} />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </View>
+          </GlassSurface>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -1010,24 +1020,19 @@ export default function FlashcardsCategoryHub({
           reduceMotion={reduceMotion}
           onPress={() => router.push('/collectibles_screen' as any)}
         >
-          <View
-            style={[
-              {
-                width: tileW,
-                height: tileW,
-                borderRadius: TILE_RADIUS,
-                borderWidth: 1,
-                borderColor: t.border,
-                backgroundColor: t.bgSurface,
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              },
-              shadowForTile(t, 'base'),
-            ]}
+          <GlassSurface
+            radius={TILE_RADIUS}
+            highlight
+            style={{
+              width: tileW,
+              height: tileW,
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
           >
             <Ionicons name="albums-outline" size={iconSize} color={t.textPrimary} />
-          </View>
+          </GlassSurface>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}

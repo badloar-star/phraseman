@@ -5,7 +5,7 @@ import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_CONTENT_UNLOCK, IS_BETA_TESTER } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, AppState, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { Animated, AppState, Easing, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -17,6 +17,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import type { Theme, ThemeMode } from '../../constants/theme';
+import { glassFill } from '../../components/GlassSurface';
 import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { SOURCE_COLORS } from './constants';
@@ -504,7 +505,7 @@ function FlashcardListItemImpl({
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={onOpenPremium}
-        style={[cardStyle, { position: 'relative', backgroundColor: t.bgCard, borderColor: t.border, justifyContent: 'center', alignItems: 'center', height: cardHeight }]}
+        style={[cardStyle, { position: 'relative', backgroundColor: glassFill(t.bgCard, 0.46), borderColor: glassFill(t.accent, 0.14), justifyContent: 'center', alignItems: 'center', height: cardHeight }]}
       >
         <PlusBadge themeMode={themeMode} size="sm" style={{ position: 'absolute', top: 12, right: 12 }} />
         <Ionicons name="lock-closed" size={32} color={t.textMuted} />
@@ -599,7 +600,7 @@ function FlashcardListItemImpl({
                   { overflow: 'hidden' },
                   usePackFace
                     ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : { backgroundColor: t.bgCard, borderColor: t.border },
+                    : { backgroundColor: glassFill(t.bgCard, 0.46), borderColor: glassFill(t.accent, 0.14) },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -769,7 +770,7 @@ function FlashcardListItemImpl({
                   { overflow: 'hidden' },
                   usePackFace
                     ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : { backgroundColor: t.bgSurface, borderColor: `${t.accent}80` },
+                    : { backgroundColor: glassFill(t.bgSurface, 0.46), borderColor: `${t.accent}80` },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -899,24 +900,25 @@ function FlashcardListItemImpl({
             }
           >
             <Animated.View style={{ opacity: cFrontOp }}>
-              <TouchableOpacity
+              <Pressable
                 onPress={speakFront}
                 accessibilityRole="button"
                 accessibilityLabel={voiceLabel}
                 hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                style={{
+                style={({ pressed }) => ({
                   width: 30,
                   height: 30,
                   borderRadius: 15,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: `${t.bgSurface}F0`,
+                  backgroundColor: pressed ? `${t.accent}33` : `${t.bgSurface}F0`,
                   borderWidth: 1,
-                  borderColor: t.border,
-                }}
+                  borderColor: pressed ? t.accent : t.border,
+                  transform: [{ scale: pressed ? 0.92 : 1 }],
+                })}
               >
                 <Ionicons name="volume-medium" size={15} color={t.accent} />
-              </TouchableOpacity>
+              </Pressable>
             </Animated.View>
           </View>
           <View
@@ -929,24 +931,25 @@ function FlashcardListItemImpl({
             }
           >
             <Animated.View style={{ opacity: cBackOp }}>
-              <TouchableOpacity
+              <Pressable
                 onPress={speakBack}
                 accessibilityRole="button"
                 accessibilityLabel={voiceLabel}
                 hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                style={{
+                style={({ pressed }) => ({
                   width: 30,
                   height: 30,
                   borderRadius: 15,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: `${t.bgSurface}F0`,
+                  backgroundColor: pressed ? `${t.accent}33` : `${t.bgSurface}F0`,
                   borderWidth: 1,
-                  borderColor: t.border,
-                }}
+                  borderColor: pressed ? t.accent : t.border,
+                  transform: [{ scale: pressed ? 0.92 : 1 }],
+                })}
               >
                 <Ionicons name="volume-medium" size={15} color={t.accent} />
-              </TouchableOpacity>
+              </Pressable>
             </Animated.View>
           </View>
           {hasDetails && (
@@ -986,8 +989,8 @@ function FlashcardListItemImpl({
             renderToHardwareTextureAndroid={effectiveOs === 'android'}
             style={[
               {
-                backgroundColor: t.bgSurface,
-                borderColor: t.border,
+                backgroundColor: glassFill(t.bgSurface, 0.46),
+                borderColor: glassFill(t.accent, 0.14),
                 borderLeftWidth: 1,
                 borderRightWidth: 1,
                 borderBottomWidth: 1,

@@ -16,6 +16,7 @@ import DuoPressable from '../../components/DuoPressable';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
+import { glassFill } from '../../components/GlassSurface';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
@@ -684,9 +685,9 @@ function FriendRow({
       testID={`friend-row-${profile.uid}`}
       style={{
         flexDirection: 'row', alignItems: 'center',
-        backgroundColor: chrome.card,
+        backgroundColor: glassFill(chrome.card, 0.46),
         borderRadius: 16, padding: 14, marginBottom: 10,
-        borderWidth: 0.5, borderColor: chrome.border,
+        borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),
       }}
     >
       <TouchableOpacity
@@ -800,8 +801,8 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
   return (
     <View testID={`friend-request-row-${profile.uid}`} style={{
       flexDirection: 'row', alignItems: 'center',
-      backgroundColor: chrome.card, borderRadius: 16, padding: 14, marginBottom: 10,
-      borderWidth: 0.5, borderColor: chrome.border, gap: 12,
+      backgroundColor: glassFill(chrome.card, 0.46), borderRadius: 16, padding: 14, marginBottom: 10,
+      borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), gap: 12,
     }}>
       <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask} animateShimmer={false}>
         <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} animateAura={false} />
@@ -1527,8 +1528,8 @@ function ActivityTab({
             testID={`friends-activity-row-${event.uid}-${event.id}`}
             style={{
               flexDirection: 'row', alignItems: 'flex-start', gap: 12,
-              backgroundColor: chrome.card, borderRadius: 16, padding: 14, marginBottom: 10,
-              borderWidth: 0.5, borderColor: isMilestone ? color + '55' : chrome.border,
+              backgroundColor: glassFill(chrome.card, 0.46), borderRadius: 16, padding: 14, marginBottom: 10,
+              borderTopWidth: 1, borderTopColor: isMilestone ? color + '55' : glassFill(t.accent, 0.14),
             }}
           >
             <TouchableOpacity
@@ -1630,8 +1631,8 @@ function ActivityTab({
               testID="friends-activity-digest"
               style={{
                 flexDirection: 'row', alignItems: 'center', gap: 12,
-                backgroundColor: t.accent + '14', borderRadius: 16, padding: 14, marginBottom: 14,
-                borderWidth: 0.5, borderColor: t.accent + '44',
+                backgroundColor: glassFill(t.accent, 0.14), borderRadius: 16, padding: 14, marginBottom: 14,
+                borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),
               }}
             >
               <View style={{
@@ -3122,9 +3123,9 @@ export default function FriendsTabScreen() {
                   marginBottom: 16,
                   borderRadius: 16,
                   padding: 14,
-                  backgroundColor: chrome.card,
-                  borderWidth: 1,
-                  borderColor: chrome.border,
+                  backgroundColor: glassFill(chrome.card, 0.46),
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   gap: 12,
                 }}
               >

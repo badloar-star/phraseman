@@ -169,48 +169,73 @@ export default function LevelGiftsInventoryScreen() {
                     })}
                   </Text>
                 </View>
-                {activeItems.map((gift) => (
-                  <View
-                    key={gift.key}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 11,
-                      borderRadius: 18,
-                      paddingVertical: 11,
-                      paddingHorizontal: 12,
-                      backgroundColor: t.bgCard,
-                      borderWidth: 1,
-                      borderColor: `${gift.accent}70`,
-                    }}
-                  >
-                    <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: `${gift.accent}22` }}>
-                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} contentFit="contain" />
+                {activeItems.map((gift) => {
+                  const chipStyle = {
+                    flexDirection: 'row' as const,
+                    alignItems: 'center' as const,
+                    gap: 11,
+                    borderRadius: 18,
+                    paddingVertical: 11,
+                    paddingHorizontal: 12,
+                    backgroundColor: t.bgCard,
+                    borderWidth: 1,
+                    borderColor: `${gift.accent}70`,
+                  };
+                  const chipInner = (
+                    <View style={chipStyle}>
+                      <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: `${gift.accent}22` }}>
+                        <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} contentFit="contain" />
+                      </View>
+                      <View style={{ flex: 1, minWidth: 0 }}>
+                        <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '900' }}>
+                          {gift.title}
+                        </Text>
+                        <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2 }}>
+                          {gift.desc}
+                        </Text>
+                        {!!gift.hint && (
+                          <Text style={{ color: gift.actionRoute ? gift.accent : t.textMuted, fontSize: f.sub - 1, lineHeight: f.sub + 3, marginTop: 3, fontWeight: gift.actionRoute ? '800' : '400' }}>
+                            {gift.hint}
+                          </Text>
+                        )}
+                      </View>
+                      <View style={{ alignItems: 'flex-end', gap: 4 }}>
+                        <View style={{ borderRadius: 999, paddingHorizontal: 9, paddingVertical: 5, backgroundColor: `${gift.accent}18` }}>
+                          <Text style={{ color: gift.accent, fontSize: 10, fontWeight: '900', textTransform: 'uppercase' }}>
+                            {triLang(lang, {
+                              ru: 'Активно',
+                              uk: 'Активно',
+                              es: 'Activo',
+                              'pt-BR': 'Ativo',
+                              vi: 'Đang bật',
+                              id: 'Aktif',
+                              tr: 'Aktif',
+                              pl: 'Aktywne',
+                            })}
+                          </Text>
+                        </View>
+                        {!!gift.actionRoute && (
+                          <Ionicons name="chevron-forward" size={16} color={gift.accent} />
+                        )}
+                      </View>
                     </View>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '900' }}>
-                        {gift.title}
-                      </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2 }}>
-                        {gift.desc}
-                      </Text>
+                  );
+                  return gift.actionRoute ? (
+                    <TapScale
+                      key={gift.key}
+                      onPress={() => {
+                        hapticTap();
+                        router.push(gift.actionRoute as never);
+                      }}
+                    >
+                      {chipInner}
+                    </TapScale>
+                  ) : (
+                    <View key={gift.key}>
+                      {chipInner}
                     </View>
-                    <View style={{ borderRadius: 999, paddingHorizontal: 9, paddingVertical: 5, backgroundColor: `${gift.accent}18` }}>
-                      <Text style={{ color: gift.accent, fontSize: 10, fontWeight: '900', textTransform: 'uppercase' }}>
-                        {triLang(lang, {
-                          ru: 'Активно',
-                          uk: 'Активно',
-                          es: 'Activo',
-                          'pt-BR': 'Ativo',
-                          vi: 'Đang bật',
-                          id: 'Aktif',
-                          tr: 'Aktif',
-                          pl: 'Aktywne',
-                        })}
-                      </Text>
-                    </View>
-                  </View>
-                ))}
+                  );
+                })}
               </View>
             )}
             {items.length === 0 ? (

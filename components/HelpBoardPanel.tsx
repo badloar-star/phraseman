@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AvatarView from './AvatarView';
+import GlassSurface from './GlassSurface';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -68,17 +69,6 @@ function boardCopy(lang: string) {
     unanswered: triLang(lang as any, { ru: 'Без ответа', uk: 'Без відповіді', es: 'Sin respuesta', 'pt-BR': 'Sem resposta', vi: 'Chua tra loi', id: 'Belum dijawab', tr: 'Yanitsiz', pl: 'Bez odpowiedzi' }),
     best: triLang(lang as any, { ru: 'Лучшие', uk: 'Найкращі', es: 'Mejores', 'pt-BR': 'Melhores', vi: 'Tot nhat', id: 'Terbaik', tr: 'En iyi', pl: 'Najlepsze' }),
     ask: triLang(lang as any, { ru: 'Создать тему', uk: 'Створити тему', es: 'Crear tema', 'pt-BR': 'Criar tema', vi: 'Tao chu de', id: 'Buat topik', tr: 'Konu ac', pl: 'Utworz temat' }),
-    allowAi: triLang(lang as any, { ru: 'Разрешить ответ ИИ', uk: 'Дозволити відповідь ШІ', es: 'Permitir respuesta de IA', 'pt-BR': 'Permitir resposta da IA', vi: 'Cho phep AI tra loi', id: 'Izinkan jawaban AI', tr: 'AI yanitina izin ver', pl: 'Zezwol na odpowiedz AI' }),
-    allowAiHint: triLang(lang as any, {
-      ru: 'Компас напишет ответ на твою тему. Сними галочку — ответит только сообщество.',
-      uk: 'Компас напише відповідь на твою тему. Зніми галочку — відповість лише спільнота.',
-      es: 'Compass responderá a tu tema. Desmárcalo y solo responderá la comunidad.',
-      'pt-BR': 'Compass responderá ao seu tema. Desmarque e só a comunidade responde.',
-      vi: 'Compass se tra loi chu de cua ban. Bo chon de chi cong dong tra loi.',
-      id: 'Compass akan menjawab topikmu. Hapus centang agar hanya komunitas menjawab.',
-      tr: 'Compass konuna yanit verir. Isareti kaldir, sadece topluluk yanitlasin.',
-      pl: 'Compass odpowie na Twoj temat. Odznacz, aby odpowiedziala tylko spolecznosc.',
-    }),
     topicTitle: triLang(lang as any, { ru: 'Название темы', uk: 'Назва теми', es: 'Titulo', 'pt-BR': 'Titulo', vi: 'Tieu de', id: 'Judul', tr: 'Baslik', pl: 'Tytul' }),
     question: triLang(lang as any, { ru: 'Вопрос или пример', uk: 'Питання або приклад', es: 'Pregunta o ejemplo', 'pt-BR': 'Pergunta ou exemplo', vi: 'Cau hoi hoac vi du', id: 'Pertanyaan atau contoh', tr: 'Soru veya ornek', pl: 'Pytanie lub przyklad' }),
     send: triLang(lang as any, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gui', id: 'Kirim', tr: 'Gonder', pl: 'Wyslij' }),
@@ -309,8 +299,6 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
   const [composerOpen, setComposerOpen] = useState(false);
   const [titleDraft, setTitleDraft] = useState('');
   const [questionDraft, setQuestionDraft] = useState('');
-  // Тумблер «Разрешить ответ ИИ» в композере. По умолчанию включён.
-  const [allowCompass, setAllowCompass] = useState(true);
   const [commentDraft, setCommentDraft] = useState('');
   // Реплай как в Telegram: цель ответа (плашка над полем ввода) + подсветка цитируемого.
   const [replyTarget, setReplyTarget] = useState<HelpBoardComment | null>(null);
@@ -457,7 +445,8 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
       authorAura: '',
       status: 'visible',
       compassAnswer: '',
-      compassStatus: allowCompass ? 'pending' : 'hidden',
+      // Компас сам решит, отвечать ли; оптимистично показываем «думает».
+      compassStatus: 'pending',
       helpfulScore: 0,
       compassHelpfulScore: 0,
       commentCount: 0,
@@ -473,10 +462,9 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     setTitleDraft('');
     setQuestionDraft('');
     setComposerOpen(false);
-    setAllowCompass(true);
     setTopicSubmitting(true);
     try {
-      const status = await createHelpBoardTopic({ scope, title, text, allowCompass });
+      const status = await createHelpBoardTopic({ scope, title, text });
       if (status === 'created') {
         setTimeout(() => {
           setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
@@ -495,7 +483,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
       setTopicSubmitting(false);
       topicSubmitInFlightRef.current = false;
     }
-  }, [allowCompass, canWrite, copy.restricted, questionDraft, scope, showToast, titleDraft, topicSubmitting]);
+  }, [canWrite, copy.restricted, questionDraft, scope, showToast, titleDraft, topicSubmitting]);
 
   const submitComment = useCallback(async () => {
     if (!selectedId || commentDraft.trim().length < 2 || busy) return;
@@ -688,7 +676,9 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
         onPress={() => setReportTarget(null)}
         style={{ flex: 1, justifyContent: 'center', padding: 24, backgroundColor: 'rgba(0,0,0,0.55)' }}
       >
-        <TouchableOpacity activeOpacity={1} style={{ borderRadius: 18, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 16, gap: 8 }}>
+        <TouchableOpacity activeOpacity={1}>
+          {/* Плотный фон (не стекло): модал поверх затемнения — прозрачность мутит. */}
+          <View style={{ borderRadius: 18, backgroundColor: t.bgCard, padding: 18, gap: 10 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}>{copy.report}</Text>
           <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 4 }}>{copy.reportSubtitle}</Text>
           {reportReasons.map((r) => (
@@ -698,7 +688,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               accessibilityRole="button"
               accessibilityLabel={r.label}
               onPress={() => void submitReport(r.code, r.label)}
-              style={{ minHeight: 46, borderRadius: 12, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12, opacity: reportSending ? 0.5 : 1 }}
+              style={{ minHeight: 46, borderRadius: 12, backgroundColor: t.bgSurface2, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12, opacity: reportSending ? 0.5 : 1 }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{r.label}</Text>
             </TouchableOpacity>
@@ -711,6 +701,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
           >
             <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{copy.cancel}</Text>
           </TouchableOpacity>
+          </View>
         </TouchableOpacity>
       </TouchableOpacity>
     </Modal>
@@ -871,7 +862,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
             multiline
             maxLength={900}
             editable={!busy && canWrite}
-            style={{ flex: 1, minHeight: 40, maxHeight: 110, borderRadius: 14, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 12, paddingVertical: 9, fontSize: f.body, textAlignVertical: 'top' }}
+            style={{ flex: 1, minHeight: 40, maxHeight: 110, borderRadius: 14, backgroundColor: 'rgba(0,0,0,0.22)', color: t.textPrimary, paddingHorizontal: 12, paddingVertical: 9, fontSize: f.body, textAlignVertical: 'top' }}
           />
           <TouchableOpacity
             activeOpacity={0.84}
@@ -924,9 +915,9 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
         </TouchableOpacity>
       </View>
       {!canWrite ? (
-        <View style={{ borderRadius: 12, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgSurface, padding: 10, marginBottom: 10 }}>
+        <GlassSurface tone="subtle" radius={12} style={{ padding: 10, marginBottom: 10 }}>
           <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35), fontWeight: '800' }}>{copy.restricted}</Text>
-        </View>
+        </GlassSurface>
       ) : null}
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 12 }} nestedScrollEnabled>
         {visibleTopics.length === 0 ? (
@@ -1013,7 +1004,10 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
           >
-          <View style={{ borderRadius: 18, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 14, gap: 10 }}>
+          {/* Модал — ПЛОТНЫЙ фон (не стекло): за ним затемняющий оверлей, и
+              прозрачная плитка давала мутную «кашу». Обводки убраны, элементы
+              разведены отступами и заметной заливкой полей. */}
+          <View style={{ borderRadius: 18, backgroundColor: t.bgCard, padding: 18, gap: 14 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}>{copy.ask}</Text>
             <TextInput
               value={titleDraft}
@@ -1021,7 +1015,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               placeholder={copy.topicTitle}
               placeholderTextColor={t.textGhost}
               maxLength={120}
-              style={{ minHeight: 42, borderRadius: 12, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 12, fontSize: f.body, fontWeight: '800' }}
+              style={{ minHeight: 46, borderRadius: 12, backgroundColor: t.bgSurface2, color: t.textPrimary, paddingHorizontal: 14, fontSize: f.body, fontWeight: '800' }}
             />
             <TextInput
               value={questionDraft}
@@ -1030,34 +1024,16 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               placeholderTextColor={t.textGhost}
               multiline
               maxLength={2200}
-              style={{ minHeight: 150, maxHeight: 220, borderRadius: 12, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 12, paddingVertical: 10, fontSize: f.body, textAlignVertical: 'top' }}
+              style={{ minHeight: 150, maxHeight: 220, borderRadius: 12, backgroundColor: t.bgSurface2, color: t.textPrimary, paddingHorizontal: 14, paddingVertical: 12, fontSize: f.body, textAlignVertical: 'top' }}
             />
-            {/* Тумблер «Разрешить ответ ИИ». Включён по умолчанию; сняв его,
-                автор получает тему без ответа Компаса (отвечает только сообщество). */}
-            <TouchableOpacity
-              activeOpacity={0.8}
-              accessibilityRole="switch"
-              accessibilityState={{ checked: allowCompass }}
-              accessibilityLabel={copy.allowAi}
-              onPress={() => { hapticTap(); setAllowCompass((v) => !v); }}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 4 }}
-            >
-              <View style={{ width: 22, height: 22, borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: allowCompass ? t.accent : 'transparent', borderWidth: allowCompass ? 0 : 1.5, borderColor: t.textGhost }}>
-                {allowCompass ? <Ionicons name="checkmark" size={16} color={t.correctText} /> : null}
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <Ionicons name="compass" size={15} color={t.accent} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.allowAi}</Text>
-                </View>
-                <Text style={{ color: t.textGhost, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', lineHeight: Math.round(f.caption * 1.3), marginTop: 2 }}>{copy.allowAiHint}</Text>
-              </View>
-            </TouchableOpacity>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 8 }}>
-              <TouchableOpacity onPress={() => { setComposerOpen(false); setAllowCompass(true); }} style={{ minHeight: 40, borderRadius: 12, borderWidth: 0.5, borderColor: t.border, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 14 }}>
+            {/* Компас сам решает, отвечать ли на тему (по её характеру): вопросы по
+                языку — всегда, оффтоп — только если есть что сказать по делу.
+                Пользовательского тумблера «разрешить ИИ» больше нет. */}
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 10, marginTop: 4 }}>
+              <TouchableOpacity onPress={() => { setComposerOpen(false); }} style={{ minHeight: 42, borderRadius: 12, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{copy.cancel}</Text>
               </TouchableOpacity>
-              <TouchableOpacity disabled={topicSubmitting || titleDraft.trim().length < 4 || questionDraft.trim().length < 8} onPress={submitTopic} style={{ minHeight: 40, borderRadius: 12, backgroundColor: t.accent, opacity: topicSubmitting || titleDraft.trim().length < 4 || questionDraft.trim().length < 8 ? 0.45 : 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 14 }}>
+              <TouchableOpacity disabled={topicSubmitting || titleDraft.trim().length < 4 || questionDraft.trim().length < 8} onPress={submitTopic} style={{ minHeight: 42, borderRadius: 12, backgroundColor: t.accent, opacity: topicSubmitting || titleDraft.trim().length < 4 || questionDraft.trim().length < 8 ? 0.45 : 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}>
                 <Text style={{ color: t.correctText, fontSize: f.caption, fontWeight: '900' }}>{copy.send}</Text>
               </TouchableOpacity>
             </View>

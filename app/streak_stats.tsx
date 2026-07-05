@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import StatsArtBackdrop from '../components/StatsArtBackdrop';
 import StatsCardArtSurface from '../components/StatsCardArtSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -1520,7 +1521,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               </Text>
 
               {/* Твой вызов */}
-              <View style={{ borderRadius: 18, padding: 14, marginBottom: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: statsHairline(themeMode, 'wager') }}>
+              <View style={{ borderRadius: 18, padding: 14, marginBottom: 12, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                   <View style={{ width: 30, height: 30, borderRadius: 10, backgroundColor: statsSoftBg(themeMode, 'wager', 'strong'), alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name={TIER_ICONS_WAGER[clampTierIdx(selectedTier)]} size={17} color={wagerAccent}/>
@@ -2410,7 +2411,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
       </View>
 
       {/* График 7 дней — из бывшего «Ритма недели». Подпись — лучший/слабый день. */}
-      <View style={{ marginTop: 16, borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance') }}>
+      <View style={{ marginTop: 16, borderRadius: 16, padding: 12, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }}>
         <StatBars
           bars={metrics.rhythmDays.map((d): StatBar => ({
             key: d.date,

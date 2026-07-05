@@ -265,10 +265,10 @@ export function buildOfficialTrainingSourcesFromIds(
   lang: Lang,
   studyTarget?: RuntimeStudyTarget,
 ): TrainingSource[] {
-  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) return [];
-  return bundledPacksForOwned(ownedIds)
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)) return [];
+  return bundledPacksForOwned(ownedIds, studyTarget, lang)
     .map((pack) => {
-      const cards = buildMarketplaceOwnedCards([pack]);
+      const cards = buildMarketplaceOwnedCards([pack], lang, studyTarget);
       return {
         id: packKey(pack),
         kind: 'official' as const,

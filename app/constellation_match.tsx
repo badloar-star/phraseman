@@ -21,7 +21,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import { BackHandler, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import Animated, {
-  Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming,
+  Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DuoPressable from '../components/DuoPressable';
@@ -29,11 +29,14 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   hapticCelebrate, hapticError, hapticHeavyImpact, hapticLightImpact,
   hapticMediumImpact, hapticSuccess, hapticWarning,
 } from '../hooks/use-haptics';
 import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
+import { useDevForceLowEnd, setDevForceLowEnd } from '../hooks/dev_force_low_end';
+import { ENABLE_DEV_TOOLS } from './config';
 import {
   submitAnswer,
   submitChooseTarget,
@@ -84,6 +87,8 @@ export default function ConstellationMatchScreen() {
   const { lang } = useLang();
   const focused = useIsScreenFocused();
   const insets = useSafeAreaInsets();
+  // dev-only тумблер авто-лайта (F9) — см. кнопку «лайт» в HUD ниже.
+  const devForceLowEnd = useDevForceLowEnd();
 
   const [uid, setUid] = useState<string | null>(null);
   const [match, setMatch] = useState<ConstellationMatch | null>(null);
@@ -91,7 +96,10 @@ export default function ConstellationMatchScreen() {
   const [nowSec, setNowSec] = useState(() => Math.floor(Date.now() / 1000));
   const [sheetKey, setSheetKey] = useState<string | null>(null);
   const [shieldMode, setShieldMode] = useState(false);
-  const [lastResult, setLastResult] = useState<{ correct: boolean } | null>(null);
+  // Обратная связь на ответ: индекс выбранной плитки + верно/неверно, для
+  // короткой подсветки БЕЗ модалки. qIndex — чтобы фидбек не «прилип» к
+  // следующему вопросу (сбрасывается при смене вопроса/раунда).
+  const [answerFeedback, setAnswerFeedback] = useState<{ qIndex: number; index: number; correct: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const [flashKey, setFlashKey] = useState<string | null>(null);
   const [toast, setToast] = useState('');
@@ -118,6 +126,9 @@ export default function ConstellationMatchScreen() {
   }), [lang]);
 
   useEffect(() => { void ensureArenaAuthUid().then(setUid); }, []);
+  // Dev-форс живёт только в рамках этого экрана матча — не должен «утекать»
+  // и подменять реальный тир на результатах/интро после выхода.
+  useEffect(() => () => setDevForceLowEnd(null), []);
 
   // Подписки на матч и свой док.
   useEffect(() => {
@@ -203,7 +214,7 @@ export default function ConstellationMatchScreen() {
       prevRoundRef.current = match.round;
       setSheetKey(null);
       setShieldMode(false);
-      setLastResult(null);
+      setAnswerFeedback(null);
       const capture = match.roundEvents.find(
         (e) => (e.type === 'capture' || e.type === 'duel_capture') && e.starKey,
       );
@@ -322,7 +333,11 @@ export default function ConstellationMatchScreen() {
     const actionId = `ans_${matchId}_r${me.round}_q${qIndex}`;
     const apply = (res: { correct?: boolean }) => {
       if (res.correct) hapticSuccess(); else hapticError();
-      setLastResult({ correct: !!res.correct });
+      // БЕЗ модалки «Верно/Мимо» (просьба владельца): только мгновенная
+      // подсветка выбранной плитки (зелёная/красная), следующий вопрос
+      // приходит сам через onSnapshot (me.answers.length++). Подсветку
+      // держим коротко, чтобы глаз считал результат до смены вопроса.
+      setAnswerFeedback({ qIndex, index: answerIndex, correct: !!res.correct });
     };
     void submitAnswer(matchId, uid, qIndex, answerIndex, actionId)
       .then(apply)
@@ -441,6 +456,24 @@ export default function ConstellationMatchScreen() {
           <View style={styles.goldChip}>
             <Text style={styles.goldChipText}>◆ {myPublic.starfallEarned}</Text>
           </View>
+        ) : null}
+        {/* dev-only: ручная проверка авто-лайта (F9) — не собирается в стор-сборку
+            и скрыта от обычных игроков (ENABLE_DEV_TOOLS гасится в проде/сторе). */}
+        {ENABLE_DEV_TOOLS ? (
+          <TouchableOpacity
+            testID="constellation-match-dev-lowend-toggle"
+            onPress={() => {
+              hapticLightImpact();
+              setDevForceLowEnd(devForceLowEnd ? null : true);
+            }}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            style={[styles.devLowEndChip, devForceLowEnd ? styles.devLowEndChipActive : null]}
+          >
+            <Ionicons name="battery-half-outline" size={12} color={devForceLowEnd ? '#0A0F26' : t.textSecond} />
+            <Text style={[styles.devLowEndChipText, devForceLowEnd ? { color: '#0A0F26' } : { color: t.textSecond }]}>
+              лайт
+            </Text>
+          </TouchableOpacity>
         ) : null}
       </View>
 
@@ -606,13 +639,12 @@ export default function ConstellationMatchScreen() {
           targetLabel={targetLabel}
           targetColor={targetColor}
           busy={busy}
-          lastResult={lastResult}
+          answerFeedback={answerFeedback}
           secondsLeft={secondsLeft}
           phaseTotalSec={phaseTotalSec}
           deadlineMs={match.phaseDeadlineAt}
           bottomInset={insets.bottom}
           onAnswer={onAnswer}
-          onResultSeen={() => setLastResult(null)}
         />
       ) : null}
 
@@ -659,30 +691,9 @@ export default function ConstellationMatchScreen() {
         </View>
       ) : null}
 
-      {/* Падающая звезда (A11) */}
+      {/* Падающая звезда (A11/2.10): дрейфующая звезда + прогресс-бар света. */}
       {iAmFalling ? (
-        <View style={[styles.fallingBanner, { borderColor: '#FF7A9E' }]}>
-          <Text style={styles.fallingTitle}>
-            {triLang(lang, {
-              ru: '💫 Ты — Падающая звезда', uk: '💫 Ти — Падаюча зірка',
-              es: '💫 Eres una estrella fugaz', 'pt-BR': '💫 Você é uma estrela cadente',
-              vi: '💫 Bạn là sao băng', id: '💫 Kamu bintang jatuh',
-              tr: '💫 Kayan yıldızsın', pl: '💫 Jesteś spadającą gwiazdą',
-            })}
-          </Text>
-          <Text style={[styles.fallingSub, { color: t.textSecond, fontSize: f.caption }]}>
-            {triLang(lang, {
-              ru: `Свет: ${myPublic.fallingLight}/2 · отвечай верно, чтобы возродиться`,
-              uk: `Світло: ${myPublic.fallingLight}/2 · відповідай вірно, щоб відродитись`,
-              es: `Luz: ${myPublic.fallingLight}/2 · responde bien para renacer`,
-              'pt-BR': `Luz: ${myPublic.fallingLight}/2 · responda certo para renascer`,
-              vi: `Ánh sáng: ${myPublic.fallingLight}/2`,
-              id: `Cahaya: ${myPublic.fallingLight}/2`,
-              tr: `Işık: ${myPublic.fallingLight}/2`,
-              pl: `Światło: ${myPublic.fallingLight}/2`,
-            })}
-          </Text>
-        </View>
+        <FallingStarBanner lang={lang} light={myPublic.fallingLight} needed={2} />
       ) : null}
 
       {/* Выбит окончательно (A11): «Звезда погасла» */}
@@ -838,6 +849,66 @@ const EmoteMenu = memo(function EmoteMenu({ lang, bottomInset, onPick, onClose }
   );
 });
 
+// ── Падающая звезда (2.10): драма вместо статичного баннера ─────────────────
+
+const FallingStarBanner = memo(function FallingStarBanner({
+  lang, light, needed,
+}: { lang: Lang; light: number; needed: number }) {
+  const { theme: t, f } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const focused = useIsScreenFocused();
+  // Мягкий дрейф звезды по горизонтали + лёгкое покачивание вверх-вниз.
+  // Бесконечный loop гейтится focused+reduceMotion (Performance Bible).
+  const drift = useSharedValue(0);
+  useEffect(() => {
+    if (reduceMotion || !focused) { drift.value = 0.5; return; }
+    drift.value = 0;
+    drift.value = withRepeat(
+      withTiming(1, { duration: 2600, easing: Easing.inOut(Easing.sin) }),
+      -1, true,
+    );
+  }, [drift, reduceMotion, focused]);
+  const starStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: (drift.value - 0.5) * 26 },
+      { translateY: Math.sin(drift.value * Math.PI) * -6 },
+    ],
+  }));
+  const frac = Math.max(0, Math.min(1, light / Math.max(1, needed)));
+
+  return (
+    <View style={[styles.fallingBanner, { borderColor: '#FF7A9E' }]}>
+      <View style={styles.fallingHead}>
+        <Animated.Text style={[styles.fallingStar, starStyle]}>✦</Animated.Text>
+        <Text style={styles.fallingTitle}>
+          {triLang(lang, {
+            ru: 'Ты — Падающая звезда', uk: 'Ти — Падаюча зірка',
+            es: 'Eres una estrella fugaz', 'pt-BR': 'Você é uma estrela cadente',
+            vi: 'Bạn là sao băng', id: 'Kamu bintang jatuh',
+            tr: 'Kayan yıldızsın', pl: 'Jesteś spadającą gwiazdą',
+          })}
+        </Text>
+      </View>
+      {/* Прогресс-бар света: needed делений, заполненные светятся. */}
+      <View style={styles.fallingTrack}>
+        <View style={[styles.fallingFill, { width: `${frac * 100}%` }]} />
+      </View>
+      <Text style={[styles.fallingSub, { color: t.textSecond, fontSize: f.caption }]}>
+        {triLang(lang, {
+          ru: `Свет ${light}/${needed} · отвечай верно, чтобы возродиться`,
+          uk: `Світло ${light}/${needed} · відповідай вірно, щоб відродитись`,
+          es: `Luz ${light}/${needed} · responde bien para renacer`,
+          'pt-BR': `Luz ${light}/${needed} · responda certo para renascer`,
+          vi: `Ánh sáng ${light}/${needed} · trả lời đúng để hồi sinh`,
+          id: `Cahaya ${light}/${needed} · jawab benar untuk bangkit`,
+          tr: `Işık ${light}/${needed} · doğru cevapla ve diril`,
+          pl: `Światło ${light}/${needed} · odpowiadaj dobrze, by odrodzić się`,
+        })}
+      </Text>
+    </View>
+  );
+});
+
 // ── Отсчёт 3-2-1 перед игрой ─────────────────────────────────────────────────
 
 const RoundCountdown = memo(function RoundCountdown({ value, lang }: { value: number; lang: Lang }) {
@@ -904,11 +975,13 @@ const PhaseBanner = memo(function PhaseBanner({
 
   // Входная анимация баннера при СМЕНЕ фазы (deadlineMs) — «влетает» сверху и
   // пружинит, привлекает внимание к тому, что происходит (просьба владельца).
+  const bannerReduceMotion = useReduceMotion();
   const enter = useSharedValue(0);
   useEffect(() => {
+    if (bannerReduceMotion) { enter.value = 1; return; } // 8.4: без «влёта»
     enter.value = 0;
     enter.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.back(1.4)) });
-  }, [deadlineMs, enter]);
+  }, [deadlineMs, enter, bannerReduceMotion]);
   const enterStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: (1 - enter.value) * -18 }, { scale: 0.9 + enter.value * 0.1 }],
     opacity: enter.value,
@@ -1125,17 +1198,17 @@ interface QuizOverlayProps {
   targetLabel: string | null;
   targetColor: string;
   busy: boolean;
-  lastResult: { correct: boolean } | null;
+  /** Обратная связь на ответ: индекс плитки + верно/неверно (для подсветки). */
+  answerFeedback: { qIndex: number; index: number; correct: boolean } | null;
   secondsLeft: number;
   phaseTotalSec: number;
   deadlineMs: number;
   bottomInset: number;
   onAnswer: (index: number) => void;
-  onResultSeen: () => void;
 }
 
 const QuizOverlay = memo(function QuizOverlay({
-  lang, isDuel, qIndex, total, question, options, targetLabel, targetColor, busy, lastResult, secondsLeft, phaseTotalSec, deadlineMs, bottomInset, onAnswer, onResultSeen,
+  lang, isDuel, qIndex, total, question, options, targetLabel, targetColor, busy, answerFeedback, secondsLeft, phaseTotalSec, deadlineMs, bottomInset, onAnswer,
 }: QuizOverlayProps) {
   const { theme: t, f } = useTheme();
   const budgetLow = secondsLeft <= 5;
@@ -1153,9 +1226,12 @@ const QuizOverlay = memo(function QuizOverlay({
   const budgetStyle = useAnimatedStyle(() => ({
     width: `${budgetProg.value * 100}%`,
   }));
-  // Микрофидбек плиток (2.9): подсветка выбранной до прихода правила/след. вопроса.
+  // Микрофидбек плиток (2.9): подсветка выбранной сразу при тапе (до ответа
+  // сервера — нейтрально-акцентная), затем зелёная/красная по answerFeedback.
   const [pickedIndex, setPickedIndex] = useState<number | null>(null);
   useEffect(() => { setPickedIndex(null); }, [qIndex]);
+  // Фидбек показываем только для ТЕКУЩЕГО вопроса (иначе «прилипнет» к след.).
+  const fb = answerFeedback && answerFeedback.qIndex === qIndex ? answerFeedback : null;
   // Время фазы вышло — блокируем варианты (жалоба «нет ограничения после
   // таймера»): раньше кнопки оставались активными до прихода нового снапшота,
   // хотя сервер такой ответ всё равно отклонит («не та фаза»/просрочен).
@@ -1169,11 +1245,13 @@ const QuizOverlay = memo(function QuizOverlay({
     onAnswer(i);
   }, [busy, timeUp, onAnswer]);
   // Вход: квиз «выезжает» снизу при появлении нового вопроса (привлекает внимание).
+  const quizReduceMotion = useReduceMotion();
   const enter = useSharedValue(0);
   useEffect(() => {
+    if (quizReduceMotion) { enter.value = 1; return; } // 8.4: без «выезда»
     enter.value = 0;
     enter.value = withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) });
-  }, [qIndex, enter]);
+  }, [qIndex, enter, quizReduceMotion]);
   const enterStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: (1 - enter.value) * 40 }],
     opacity: enter.value,
@@ -1208,8 +1286,8 @@ const QuizOverlay = memo(function QuizOverlay({
         </Text>
       ) : null}
       {/* Мини-контекст цели (аудит): игрок всегда видит, ЗА КАКУЮ звезду бьётся
-          и чья она — цветная точка владельца + имя. Скрыт при показе результата. */}
-      {!lastResult && targetLabel ? (
+          и чья она — цветная точка владельца + имя. */}
+      {targetLabel ? (
         <View style={quizStyles.targetRow}>
           <View style={[quizStyles.targetDot, { backgroundColor: targetColor }]} />
           <Text numberOfLines={1} style={[quizStyles.targetText, { color: t.textSecond, fontSize: f.caption }]}>
@@ -1221,63 +1299,50 @@ const QuizOverlay = memo(function QuizOverlay({
           </Text>
         </View>
       ) : null}
-      {/* Заголовок вопроса скрыт, пока показан результат (lastResult) — иначе
-          виден НОВЫЙ вопрос над результатом СТАРОГО («вопросы смешивались»).
-          Разборов (rule) в режиме больше нет — только факт верно/неверно. */}
-      {!lastResult ? (
-        <>
-          <Text style={[quizStyles.meta, { color: t.textSecond, fontSize: f.caption - 1 }]}>
-            {qIndex + 1}/{total}
-          </Text>
-          <Text style={[quizStyles.question, { color: t.textPrimary, fontSize: f.sub + 2 }]}>
-            {question}
-          </Text>
-        </>
-      ) : null}
-      {lastResult ? (
-        <View style={[quizStyles.rule, {
-          borderLeftColor: lastResult.correct ? '#63E6A4' : '#FF8080',
-          backgroundColor: lastResult.correct ? 'rgba(99,230,164,0.08)' : 'rgba(255,128,128,0.08)',
-        }]}>
-          <Text style={{ color: lastResult.correct ? '#63E6A4' : '#FF8080', fontWeight: '800', fontSize: f.caption }}>
-            {lastResult.correct
-              ? triLang(lang, { ru: 'Верно!', uk: 'Вірно!', es: '¡Correcto!', 'pt-BR': 'Certo!', vi: 'Đúng!', id: 'Benar!', tr: 'Doğru!', pl: 'Dobrze!' })
-              : triLang(lang, { ru: 'Мимо', uk: 'Повз', es: 'Fallo', 'pt-BR': 'Errou', vi: 'Sai', id: 'Salah', tr: 'Yanlış', pl: 'Pudło' })}
-          </Text>
-          <TouchableOpacity onPress={onResultSeen} style={quizStyles.ruleNext}>
-            <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Дальше →', uk: 'Далі →', es: 'Sigue →', 'pt-BR': 'Próx →', vi: 'Tiếp →', id: 'Lanjut →', tr: 'Devam →', pl: 'Dalej →' })}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <View style={quizStyles.opts}>
-          {options.map((opt, i) => {
-            const picked = pickedIndex === i;
-            // Пока busy (ответ ушёл) подсвечиваем выбранную нейтрально-акцентно;
-            // цвет верно/неверно придёт мгновенно следом с правилом (2.9).
-            const bColor = picked ? '#8B7BFF' : '#1E2A4A';
-            const bg = picked ? 'rgba(139,123,255,0.16)' : 'transparent';
-            return (
-              <TouchableOpacity
-                key={i}
-                testID={`constellation-opt-${i}`}
-                style={[quizStyles.opt, {
-                  borderColor: bColor,
-                  backgroundColor: bg,
-                  borderWidth: picked ? 1.5 : 1,
-                  opacity: (busy || timeUp) && !picked ? 0.5 : 1,
-                }]}
-                disabled={busy || timeUp}
-                onPress={() => handlePick(i)}
-                activeOpacity={0.85}
-              >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: picked ? '800' : '600' }}>{opt}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      )}
+      {/* Вопрос всегда виден — БЕЗ модалки «Верно/Мимо» (просьба владельца):
+          ответил → плитка мгновенно красится зелёным/красным → следующий
+          вопрос приходит сам через onSnapshot. Никакого экрана «Дальше». */}
+      <Text style={[quizStyles.meta, { color: t.textSecond, fontSize: f.caption - 1 }]}>
+        {qIndex + 1}/{total}
+      </Text>
+      <Text style={[quizStyles.question, { color: t.textPrimary, fontSize: f.sub + 2 }]}>
+        {question}
+      </Text>
+      <View style={quizStyles.opts}>
+        {options.map((opt, i) => {
+          const picked = pickedIndex === i;
+          const isFbTile = fb?.index === i;
+          // Подсветка: пришёл фидбек → зелёная (верно) / красная (мимо) на
+          // выбранной; до фидбека — нейтрально-акцентная на выбранной.
+          let bColor = '#1E2A4A';
+          let bg = 'transparent';
+          if (isFbTile) {
+            bColor = fb.correct ? '#63E6A4' : '#FF8080';
+            bg = fb.correct ? 'rgba(99,230,164,0.16)' : 'rgba(255,128,128,0.16)';
+          } else if (picked) {
+            bColor = '#8B7BFF';
+            bg = 'rgba(139,123,255,0.16)';
+          }
+          const highlighted = isFbTile || picked;
+          return (
+            <TouchableOpacity
+              key={i}
+              testID={`constellation-opt-${i}`}
+              style={[quizStyles.opt, {
+                borderColor: bColor,
+                backgroundColor: bg,
+                borderWidth: highlighted ? 1.5 : 1,
+                opacity: (busy || timeUp) && !highlighted ? 0.5 : 1,
+              }]}
+              disabled={busy || timeUp}
+              onPress={() => handlePick(i)}
+              activeOpacity={0.85}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: highlighted ? '800' : '600' }}>{opt}</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </Animated.View>
   );
 });
@@ -1369,6 +1434,22 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,209,102,0.4)',
   },
   goldChipText: { color: '#FFD166', fontWeight: '800', fontSize: 11 },
+  devLowEndChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+    borderRadius: 999,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    backgroundColor: 'rgba(120,140,220,0.10)',
+    borderWidth: 1,
+    borderColor: 'rgba(120,140,220,0.25)',
+  },
+  devLowEndChipActive: {
+    backgroundColor: '#FFD166',
+    borderColor: '#FFD166',
+  },
+  devLowEndChipText: { fontWeight: '800', fontSize: 10 },
   bannerRow: {
     alignItems: 'center',
     marginTop: 6,
@@ -1534,6 +1615,28 @@ const styles = StyleSheet.create({
   },
   fallingTitle: { color: '#FF7A9E', fontWeight: '800', fontSize: 15 },
   fallingSub: { textAlign: 'center' },
+  fallingHead: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  fallingStar: {
+    color: '#FFD9E6',
+    fontSize: 18,
+    textShadowColor: 'rgba(255,122,158,0.9)',
+    textShadowRadius: 12,
+    textShadowOffset: { width: 0, height: 0 },
+  },
+  fallingTrack: {
+    width: '70%',
+    height: 6,
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,122,158,0.18)',
+    overflow: 'hidden',
+    marginTop: 6,
+    marginBottom: 2,
+  },
+  fallingFill: {
+    height: '100%',
+    borderRadius: 6,
+    backgroundColor: '#FF7A9E',
+  },
   outOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(4,6,14,0.9)',
@@ -1623,10 +1726,4 @@ const quizStyles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: 'rgba(20,31,66,0.5)',
   },
-  rule: {
-    borderLeftWidth: 3,
-    borderRadius: 10,
-    padding: 12,
-  },
-  ruleNext: { alignSelf: 'flex-end', marginTop: 8 },
 });

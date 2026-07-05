@@ -306,7 +306,7 @@ export default function TrainerArenaSession() {
                 dataId={`trainer_arena_${item?.key ?? 'unknown'}`}
                 dataText={`${q.question} | ${q.options.join(' / ')} | ✓ ${q.correct}`}
                 accessibilityLabel="Сообщить об ошибке в вопросе"
-                style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}
+                style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: t.bgCard }}
               />
             </View>
           </View>
@@ -332,7 +332,8 @@ export default function TrainerArenaSession() {
               isCompassTheme && compassShadow(2),
               {
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
                 borderRadius: isCompassTheme ? 10 : 18,
                 opacity: flashAnim,
                 overflow: isCompassTheme ? 'hidden' : 'visible',
@@ -358,7 +359,7 @@ export default function TrainerArenaSession() {
                     key={i}
                     onPress={() => void pick(i)}
                     disabled={locked}
-                    style={[styles.optionBtn, isCompassTheme && compassShadow(state === 'idle' ? 1 : 2), { backgroundColor: bg, borderColor: bc, borderRadius: isCompassTheme ? 9 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                    style={[styles.optionBtn, isCompassTheme && compassShadow(state === 'idle' ? 1 : 2), { backgroundColor: bg, borderColor: bc, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (state === 'idle' ? 0 : 1.5), borderRadius: isCompassTheme ? 9 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                   >
                     {isCompassTheme ? <CompassDepthSurface radius={9} selected={state !== 'idle'} quiet={state === 'idle'} /> : null}
                     <Text style={[styles.optionText, { color: tc, fontSize: f.body }]}>{opt}</Text>
@@ -385,7 +386,6 @@ const styles = StyleSheet.create({
   progressBar: { marginHorizontal: 16 },
   questionBox: {
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
     padding: 24,
     alignItems: 'center',
     minHeight: 100,
@@ -394,7 +394,6 @@ const styles = StyleSheet.create({
   questionText: { fontWeight: '700', textAlign: 'center', lineHeight: 28 },
   optionBtn: {
     borderRadius: 14,
-    borderWidth: 1.5,
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',

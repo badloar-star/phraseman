@@ -401,7 +401,7 @@ function FrenchLingmanExamUnavailable({
           </TapScale>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
-          <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+          <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
             <Ionicons name="shield-checkmark-outline" size={40} color={t.textSecond} />
           </View>
           <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
@@ -943,7 +943,7 @@ export default function ExamScreen() {
           </View>
         )}
         <View style={{alignItems:'center',marginBottom:24}}>
-          <View style={{width:90,height:90,borderRadius:45,backgroundColor:t.bgCard,borderWidth:1.5,borderColor:t.border,justifyContent:'center',alignItems:'center',marginBottom:16}}>
+          <View style={{width:90,height:90,borderRadius:45,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center',marginBottom:16}}>
             <Ionicons name="ribbon-outline" size={40} color={t.textSecond}/>
           </View>
           <Text style={{color:sx.primary,fontSize:f.numMd+6,fontWeight:'700',textAlign:'center'}}>
@@ -1119,9 +1119,8 @@ export default function ExamScreen() {
               onPress={()=>{ setIdx(i); setPhase('quiz'); }}
             >
               <View style={{
-                width:28, height:28, borderRadius:14, borderWidth:1,
-                borderColor: isAnswered ? '#D4A017' : t.wrong,
-                backgroundColor: isAnswered ? 'rgba(212,160,23,0.12)' : t.wrongBg,
+                width:28, height:28, borderRadius:14,
+                backgroundColor: isAnswered ? 'rgba(212,160,23,0.18)' : t.wrongBg,
                 justifyContent:'center', alignItems:'center', marginRight:12,
               }}>
                 <Text style={{color:isAnswered?'#D4A017':t.wrong,fontSize:f.label,fontWeight:'700'}}>{i+1}</Text>
@@ -1232,7 +1231,7 @@ export default function ExamScreen() {
         </View>
       )}
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
-        <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,borderWidth:1.5,borderColor:t.border,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
+        <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
         <Text style={{color:sx.primary,fontSize:f.numLg,fontWeight:'700',marginBottom:8}}>
@@ -1698,7 +1697,7 @@ export default function ExamScreen() {
           {chosen === null ? (
             <TouchableOpacity
               style={{
-                flex:1, height:52, borderRadius:14, borderWidth:1, borderColor:t.border,
+                flex:1, height:52, borderRadius:14,
                 backgroundColor:t.bgCard, justifyContent:'center', alignItems:'center',
               }}
               onPress={skipToNext}

@@ -4,8 +4,8 @@
 // Дизайн: без обводок контейнеров (правило проекта), тон/градиент; клик-звук
 // только на управляющих кнопках, варианты ответа — только вибрация.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
@@ -25,6 +25,7 @@ import { replaceShardsBalanceLocal, getShardsBalance } from './shards_system';
 import { emitAppEvent, actionToastTri } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
+import { markSurveyDailyTaskDone } from './survey_daily_task';
 
 type AnswersState = Record<string, { optionId?: string; comment?: string }>;
 
@@ -39,6 +40,19 @@ export default function SurveyScreen() {
 
   const [answers, setAnswers] = useState<AnswersState>({});
   const [submitting, setSubmitting] = useState(false);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [finalReward, setFinalReward] = useState<number | null>(null); // не-null → показать финальный экран
+  const stepAnim = useRef(new Animated.Value(1)).current; // 1 = виден, 0 = уходит
+
+  const currentQuestion = survey?.questions[stepIndex];
+  const isLastStep = !!survey && stepIndex >= survey.questions.length - 1;
+
+  const currentAnswered = useMemo(() => {
+    if (!currentQuestion) return false;
+    const a = answers[currentQuestion.id];
+    if (currentQuestion.type === 'text') return !!a?.comment && a.comment.trim().length > 0;
+    return !!a?.optionId;
+  }, [currentQuestion, answers]);
 
   const allAnswered = useMemo(() => {
     if (!survey) return false;
@@ -48,6 +62,21 @@ export default function SurveyScreen() {
       return !!a?.optionId;
     });
   }, [survey, answers]);
+
+  // Плавный переход между вопросами: fade+slide out → сменить индекс → in.
+  // Guard от двойного тапа: пока анимация идёт, повторные вызовы игнорируем —
+  // иначе быстрые тапы «Дальше» сбивали индекс/анимацию.
+  const animatingRef = useRef(false);
+  const goToStep = useCallback((next: number) => {
+    if (animatingRef.current) return;
+    animatingRef.current = true;
+    Animated.timing(stepAnim, { toValue: 0, duration: 160, useNativeDriver: true }).start(() => {
+      setStepIndex(next);
+      Animated.timing(stepAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start(() => {
+        animatingRef.current = false;
+      });
+    });
+  }, [stepAnim]);
 
   const pickOption = useCallback((qId: string, optionId: string) => {
     hapticTap();
@@ -88,24 +117,29 @@ export default function SurveyScreen() {
         });
       }
       hapticSuccess();
+      // Отметить опрос выполненным как 4-е задание дня (для зачёта «любые 3 из 4»).
+      await markSurveyDailyTaskDone();
       if (res.reward > 0) {
         emitAppEvent('shards_earned', { amount: res.reward, reasonKey: 'survey_completed' });
+        // Награда есть → показываем ФИНАЛЬНЫЙ экран (анимация осколков + свой текст).
+        // Уход с экрана — по кнопке «Готово».
+        setFinalReward(res.reward);
+      } else {
+        // reward===0 → опрос уже был пройден (идемпотентность сервера). Финал без
+        // награды не показываем — тихо закрываем с коротким тостом.
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: 'Опрос уже пройден.', uk: 'Опитування вже пройдено.', es: 'Encuesta ya completada.',
+          'pt-BR': 'Pesquisa já respondida.', vi: 'Đã hoàn thành khảo sát.', id: 'Survei sudah diisi.',
+          tr: 'Anket zaten tamamlandı.', pl: 'Ankieta już wypełniona.',
+        }));
+        clearPrimedSurvey();
+        safeRouterBack(router);
       }
-      emitAppEvent('action_toast', actionToastTri('success', {
-        ru: res.reward > 0 ? `+${res.reward} 💎 за опрос. Спасибо!` : 'Опрос уже пройден.',
-        uk: res.reward > 0 ? `+${res.reward} 💎 за опитування. Дякуємо!` : 'Опитування вже пройдено.',
-        es: res.reward > 0 ? `+${res.reward} 💎 por la encuesta. ¡Gracias!` : 'Encuesta ya completada.',
-        'pt-BR': res.reward > 0 ? `+${res.reward} 💎 pela pesquisa. Obrigado!` : 'Pesquisa já respondida.',
-        vi: res.reward > 0 ? `+${res.reward} 💎 cho khảo sát. Cảm ơn!` : 'Đã hoàn thành khảo sát.',
-        id: res.reward > 0 ? `+${res.reward} 💎 untuk survei. Terima kasih!` : 'Survei sudah diisi.',
-        tr: res.reward > 0 ? `+${res.reward} 💎 anket için. Teşekkürler!` : 'Anket zaten tamamlandı.',
-        pl: res.reward > 0 ? `+${res.reward} 💎 za ankietę. Dzięki!` : 'Ankieta już wypełniona.',
-      }));
-      clearPrimedSurvey();
-      safeRouterBack(router);
     } catch (e: unknown) {
       const raw = String((e as { message?: string })?.message ?? e ?? '').toLowerCase();
-      const msg = raw.includes('unknown_survey')
+      const msg = raw.includes('rate_limited') || raw.includes('resource-exhausted')
+        ? { ru: 'Слишком много опросов подряд. Попробуй позже.', uk: 'Забагато опитувань поспіль. Спробуй пізніше.', es: 'Demasiadas encuestas seguidas. Inténtalo más tarde.', 'pt-BR': 'Muitas pesquisas seguidas. Tente mais tarde.', vi: 'Quá nhiều khảo sát liên tiếp. Thử lại sau.', id: 'Terlalu banyak survei berturut-turut. Coba nanti.', tr: 'Arka arkaya çok fazla anket. Sonra dene.', pl: 'Zbyt wiele ankiet z rzędu. Spróbuj później.' }
+        : raw.includes('unknown_survey')
         ? { ru: 'Опрос уже недоступен.', uk: 'Опитування вже недоступне.', es: 'La encuesta ya no está disponible.', 'pt-BR': 'A pesquisa não está mais disponível.', vi: 'Khảo sát không còn khả dụng.', id: 'Survei sudah tidak tersedia.', tr: 'Anket artık kullanılamıyor.', pl: 'Ankieta jest już niedostępna.' }
         : raw.includes('unauthenticated') || raw.includes('no_profile')
         ? { ru: 'Нужен вход в облако. Попробуй снова.', uk: 'Потрібен вхід у хмару. Спробуй ще раз.', es: 'Hace falta sesión en la nube. Inténtalo de nuevo.', 'pt-BR': 'É preciso entrar na nuvem. Tente de novo.', vi: 'Cần đăng nhập đám mây. Thử lại.', id: 'Perlu masuk ke cloud. Coba lagi.', tr: 'Bulut oturumu gerekiyor. Tekrar dene.', pl: 'Wymagane logowanie do chmury. Spróbuj ponownie.' }
@@ -139,53 +173,83 @@ export default function SurveyScreen() {
     );
   }
 
-  const answeredCount = survey.questions.filter((q) => {
-    const a = answers[q.id];
-    return q.type === 'text' ? !!a?.comment?.trim() : !!a?.optionId;
-  }).length;
+  // ── ФИНАЛЬНЫЙ ЭКРАН (после последнего вопроса) ────────────────────────────
+  if (finalReward !== null) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={styles.finalBox}>
+              <View style={[styles.finalBadge, { backgroundColor: survey.accentColor || t.bgCard }]}>
+                <Text style={{ fontSize: 44 }}>💎</Text>
+              </View>
+              {finalReward > 0 && (
+                <Text style={{ color: sx.second, fontSize: f.h1, fontWeight: '900', marginTop: 8 }}>+{finalReward}</Text>
+              )}
+              <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 12 }}>
+                {survey.finalTitle?.trim() || triLang(lang, {
+                  ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!',
+                  vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!',
+                })}
+              </Text>
+              {!!survey.finalSubtitle?.trim() && (
+                <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
+                  {survey.finalSubtitle}
+                </Text>
+              )}
+              <TapScale onPress={() => { hapticTap(); clearPrimedSurvey(); safeRouterBack(router); }} style={[styles.primaryBtn, { backgroundColor: sx.primary, marginTop: 28, alignSelf: 'stretch' }]}>
+                <Text style={{ color: t.bgPrimary, fontWeight: '800', fontSize: f.body }}>
+                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Bitti', pl: 'Gotowe' })}
+                </Text>
+              </TapScale>
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  const total = survey.questions.length;
+  const onNext = () => {
+    if (!currentAnswered) return;
+    if (isLastStep) { void onSubmit(); return; }
+    hapticTap();
+    goToStep(stepIndex + 1);
+  };
+  const onPrev = () => {
+    if (stepIndex === 0) { safeRouterBack(router); return; }
+    hapticTap();
+    goToStep(stepIndex - 1);
+  };
 
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={styles.header}>
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router); }} style={{ marginRight: 12, padding: 4 }}>
+            <TapScale onPress={() => { hapticTap(); onPrev(); }} style={{ marginRight: 12, padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <View style={{ flex: 1 }}>
-              <Text numberOfLines={2} style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>{survey.title}</Text>
-              {!!survey.subtitle && (
-                <Text numberOfLines={2} style={{ color: sx.muted, fontSize: f.label, marginTop: 2 }}>{survey.subtitle}</Text>
-              )}
+              <Text numberOfLines={1} style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>{survey.title}</Text>
             </View>
-            <Text style={{ color: sx.second, fontSize: f.numMd, fontWeight: '700' }}>{answeredCount}/{survey.questions.length}</Text>
+            <Text style={{ color: sx.second, fontSize: f.numMd, fontWeight: '700' }}>{stepIndex + 1}/{total}</Text>
           </View>
 
-          <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 16, paddingBottom: 120 }} keyboardShouldPersistTaps="handled">
-            <View style={[styles.rewardPill, { backgroundColor: t.bgCard }]}>
-              <Text style={{ color: sx.second, fontSize: f.body, fontWeight: '700' }}>
-                💎 {triLang(lang, {
-                  ru: `Награда за опрос: ${survey.rewardShards}`,
-                  uk: `Нагорода за опитування: ${survey.rewardShards}`,
-                  es: `Recompensa: ${survey.rewardShards}`,
-                  'pt-BR': `Recompensa: ${survey.rewardShards}`,
-                  vi: `Phần thưởng: ${survey.rewardShards}`,
-                  id: `Hadiah: ${survey.rewardShards}`,
-                  tr: `Ödül: ${survey.rewardShards}`,
-                  pl: `Nagroda: ${survey.rewardShards}`,
-                })}
-              </Text>
-            </View>
+          <View style={[styles.progressTrack, { backgroundColor: sx.ghost }]}>
+            <View style={{ height: '100%', borderRadius: 3, backgroundColor: survey.accentColor || sx.second, width: `${((stepIndex + 1) / total) * 100}%` }} />
+          </View>
 
-            {survey.questions.map((q, idx) => (
+          <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16, paddingBottom: 120 }} keyboardShouldPersistTaps="handled">
+            {currentQuestion && (
+              <Animated.View style={{ opacity: stepAnim, transform: [{ translateX: stepAnim.interpolate({ inputRange: [0, 1], outputRange: [40, 0] }) }] }}>
               <QuestionBlock
-                key={q.id}
-                index={idx + 1}
-                question={q}
-                selectedOption={answers[q.id]?.optionId}
-                comment={answers[q.id]?.comment ?? ''}
-                onPick={(optId) => pickOption(q.id, optId)}
-                onComment={(txt) => setComment(q.id, txt)}
+                index={stepIndex + 1}
+                question={currentQuestion}
+                selectedOption={answers[currentQuestion.id]?.optionId}
+                comment={answers[currentQuestion.id]?.comment ?? ''}
+                onPick={(optId) => pickOption(currentQuestion.id, optId)}
+                onComment={(txt) => setComment(currentQuestion.id, txt)}
                 sx={sx}
                 cardBg={t.bgCard}
                 fontBody={f.body}
@@ -196,23 +260,23 @@ export default function SurveyScreen() {
                   tr: 'Cevabını yaz…', pl: 'Wpisz odpowiedź…',
                 })}
               />
-            ))}
+              </Animated.View>
+            )}
           </ScrollView>
 
           <View style={styles.footer}>
             <TapScale
-              disabled={!allAnswered || submitting}
-              onPress={onSubmit}
-              style={[styles.primaryBtn, { backgroundColor: allAnswered && !submitting ? sx.primary : sx.ghost, opacity: allAnswered && !submitting ? 1 : 0.6 }]}
+              disabled={!currentAnswered || submitting}
+              onPress={onNext}
+              style={[styles.primaryBtn, { backgroundColor: currentAnswered && !submitting ? (survey.accentColor || sx.primary) : sx.ghost, opacity: currentAnswered && !submitting ? 1 : 0.6 }]}
             >
               {submitting ? (
                 <ActivityIndicator color={t.bgPrimary} />
               ) : (
                 <Text style={{ color: t.bgPrimary, fontWeight: '800', fontSize: f.body }}>
-                  {triLang(lang, {
-                    ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
-                    vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
-                  })}
+                  {isLastStep
+                    ? triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })
+                    : triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Próximo', vi: 'Tiếp', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' })}
                 </Text>
               )}
             </TapScale>
@@ -279,7 +343,9 @@ function QuestionBlock({ index, question, selectedOption, comment, onPick, onCom
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 },
   centerBox: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 20, padding: 24 },
-  rewardPill: { alignSelf: 'flex-start', paddingHorizontal: 16, paddingVertical: 10, borderRadius: 16 },
+  finalBox: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28 },
+  finalBadge: { width: 96, height: 96, borderRadius: 48, alignItems: 'center', justifyContent: 'center' },
+  progressTrack: { height: 6, borderRadius: 3, marginHorizontal: 16, marginBottom: 4, overflow: 'hidden' },
   questionCard: { borderRadius: 20, padding: 16 },
   optionRow: { flexDirection: 'row', alignItems: 'center', borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12 },
   textInput: { borderRadius: 14, padding: 12, minHeight: 90, textAlignVertical: 'top', fontSize: 15 },

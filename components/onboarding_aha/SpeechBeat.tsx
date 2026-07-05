@@ -31,6 +31,10 @@ import type { AhaSpeechStatus, SpeechBeatProps, TriText } from './aha_types';
 // Android-движок может принять start() и молчать вечно — 7с и выходим в shadow.
 const WATCHDOG_MS = 7000;
 
+// Градиент кнопки, пока она зажата (идёт запись) — «микрофонный» красный, как в
+// уроках/плане. Локальная константа: в теме АХ-сцены отдельного ключа нет.
+const HOLD_ACTIVE_GRADIENT = ['#FF6E78', '#FF4A55', '#E5484D'] as const;
+
 type Sub = { remove?: () => void } | undefined;
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -199,6 +203,10 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
             volumeMeter: false,
             // Файл записи нужен: питает «Мою запись» на карте слов.
             persistRecording: true,
+            // «Зажми и говори»: конец речи задаёт палец (onPressOut → stop()), а не
+            // агрессивный OEM-endpointer Android, который иначе рвёт реплику на
+            // паузе / закрывает микрофон сразу. Держит сессию открытой, пока зажато.
+            holdToTalk: true,
           }),
         );
         // Микрофон реально жив — канонический сигнал «запись пошла».
@@ -249,6 +257,15 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     }
     beginAttempt(speech);
   }, [beginAttempt, goFallback]);
+
+  // «Зажми и говори»: отпускание пальца завершает реплику. stop() досылает
+  // финальный результат — end-слушатель дальше сам скорит лучшую гипотезу.
+  // Ничего не делаем, если мы ещё не в фазе прослушивания (палец отпустили до
+  // того, как микрофон реально стартовал — частый кейс на первом запросе прав).
+  const stopListening = useCallback(() => {
+    if (status !== 'listening') return;
+    safeCall(() => speechRef.current?.stop());
+  }, [status]);
 
   // «Моя запись»: сначала громкая сессия, иначе wav играет еле слышно.
   const playMyRecording = useCallback(() => {
@@ -310,22 +327,42 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
 
   return (
     <View style={styles.root}>
-      {status === 'preprompt' && (
-        <View style={styles.bubble}>
-          <Text style={styles.bubbleTitle}>{t(AHA_STRINGS.speakTitle)}</Text>
-          <Text style={styles.bubbleBody}>{t(AHA_STRINGS.speakBody)}</Text>
-          <PrimaryCta label={t(AHA_STRINGS.speakAllow)} onPress={() => void startListening()} />
-          <Pressable onPressIn={pressTap} onPress={() => goFallback('not_now')} hitSlop={10}>
-            <Text style={styles.linkText}>{t(AHA_STRINGS.speakNotNow)}</Text>
-          </Pressable>
-        </View>
-      )}
-
-      {isListeningPhase && (
+      {/* Preprompt + фаза прослушивания — ОДИН блок с ОДНОЙ hold-кнопкой, которая
+          НЕ размонтируется между «до начала» и «слушаю». Иначе палец, начавший
+          удержание на preprompt-кнопке, не получил бы событие отпускания после
+          того, как та исчезла со сменой статуса — и запись бы не остановилась. */}
+      {(status === 'preprompt' || isListeningPhase) && (
         <View style={styles.centerBlock}>
-          <LiveTargetLine target={targetText} transcript={transcript} />
-          <MicPulseRing active={status === 'listening'} />
-          <Text style={styles.statusText}>{t(AHA_STRINGS.listening)}</Text>
+          {status === 'preprompt' ? (
+            <View style={styles.bubble}>
+              <Text style={styles.bubbleTitle}>{t(AHA_STRINGS.speakTitle)}</Text>
+              <Text style={styles.bubbleBody}>{t(AHA_STRINGS.speakBody)}</Text>
+            </View>
+          ) : (
+            <>
+              <LiveTargetLine target={targetText} transcript={transcript} />
+              <MicPulseRing active={status === 'listening'} />
+            </>
+          )}
+          {/* «Зажми и говори»: press-in начинает слушать, press-out завершает.
+              Конец речи задаёт палец, а не капризный OEM-endpointer Android. */}
+          <HoldCta
+            label={
+              status === 'listening'
+                ? t(AHA_STRINGS.speakHoldListening)
+                : status === 'requesting' || status === 'scoring'
+                ? t(AHA_STRINGS.listening)
+                : t(AHA_STRINGS.speakHoldIdle)
+            }
+            active={status === 'listening'}
+            onPressIn={() => void startListening()}
+            onPressOut={stopListening}
+          />
+          {status === 'preprompt' && (
+            <Pressable onPressIn={pressTap} onPress={() => goFallback('not_now')} hitSlop={10}>
+              <Text style={styles.linkText}>{t(AHA_STRINGS.speakNotNow)}</Text>
+            </Pressable>
+          )}
         </View>
       )}
 
@@ -493,6 +530,44 @@ function PrimaryCta({ label, onPress }: { label: string; onPress: () => void }) 
     <Pressable onPressIn={pressTap} onPress={onPress} style={styles.ctaWrap}>
       <LinearGradient
         colors={AHA_THEME.ctaGradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.ctaGradient}
+      >
+        <Text style={styles.ctaText}>{label}</Text>
+      </LinearGradient>
+    </Pressable>
+  );
+}
+
+/**
+ * Кнопка «зажми и говори»: press-in начинает, press-out завершает. Пока зажата
+ * (`active`), подсвечена красным как «идёт запись». Гаптик на нажатии.
+ */
+function HoldCta({
+  label,
+  active,
+  onPressIn,
+  onPressOut,
+}: {
+  label: string;
+  active: boolean;
+  onPressIn: () => void;
+  onPressOut: () => void;
+}) {
+  return (
+    <Pressable
+      onPressIn={() => {
+        pressTap();
+        onPressIn();
+      }}
+      onPressOut={onPressOut}
+      style={styles.ctaWrap}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+    >
+      <LinearGradient
+        colors={active ? HOLD_ACTIVE_GRADIENT : AHA_THEME.ctaGradient}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.ctaGradient}

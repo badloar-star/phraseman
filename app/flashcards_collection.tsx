@@ -31,6 +31,7 @@ import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import PlusBadge from '../components/PlusBadge';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useTheme } from '../components/ThemeContext';
@@ -258,13 +259,13 @@ export function primeCustomFlashcardsCache(studyTarget?: RuntimeStudyTarget) {
 let stagedOwnedPackMarketCards: CardItem[] | null = null;
 let stagedOwnedPackMarketCardsTarget: 'en' | 'fr' | null = null;
 
-export function stageOwnedPackCardsForNavigation(packId: string, studyTarget?: RuntimeStudyTarget): boolean {
+export function stageOwnedPackCardsForNavigation(packId: string, studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
   stagedOwnedPackMarketCards = null;
   stagedOwnedPackMarketCardsTarget = null;
-  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) return false;
-  const packs = bundledPacksForOwned([packId]);
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)) return false;
+  const packs = bundledPacksForOwned([packId], studyTarget, sourceLocale);
   if (packs.length === 0) return false;
-  stagedOwnedPackMarketCards = buildMarketplaceOwnedCards(packs);
+  stagedOwnedPackMarketCards = buildMarketplaceOwnedCards(packs, sourceLocale, studyTarget);
   stagedOwnedPackMarketCardsTarget = storageStudyTarget(studyTarget);
   return stagedOwnedPackMarketCards.length > 0;
 }
@@ -295,7 +296,7 @@ export default function FlashcardsScreen() {
   const customCardsCache = _customCardsCacheByTarget[flashcardsTarget] ?? null;
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
-  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const [flashcardPackTick, setFlashcardPackTick] = useState(0);
   useEffect(() => {
@@ -303,6 +304,18 @@ export default function FlashcardsScreen() {
     prefetchFrenchRemoteFlashcards(lang);
     let cancelled = false;
     ensureFrenchRemoteFlashcards(lang)
+      .then(() => {
+        if (!cancelled) setFlashcardPackTick((value) => value + 1);
+      })
+      .catch(() => {
+        if (!cancelled) setFlashcardPackTick((value) => value + 1);
+      });
+    return () => { cancelled = true; };
+  }, [lang, studyTarget]);
+  useEffect(() => {
+    if (storageStudyTarget(studyTarget) !== 'fr') return;
+    let cancelled = false;
+    loadMarketplacePacks(studyTarget, lang)
       .then(() => {
         if (!cancelled) setFlashcardPackTick((value) => value + 1);
       })
@@ -386,7 +399,7 @@ export default function FlashcardsScreen() {
     return officialPacksEnabled ? consumeStagedOwnedPackMarketCards(studyTarget) ?? [] : [];
   });
   const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(
-    () => (officialPacksEnabled ? reserveBundledMarketPacks() : []),
+    () => (officialPacksEnabled ? reserveBundledMarketPacks(studyTarget, lang) : []),
   );
   /** Список купленных паков из хранилища — для `?pack=` до отрисовки `marketCards` (иначе гонка с кэшем). */
   const [ownedPackIdList, setOwnedPackIdList] = useState<string[]>([]);
@@ -719,7 +732,7 @@ export default function FlashcardsScreen() {
       readFlashcardsProgress(studyTarget),
       AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
       officialPacksEnabled ? loadAccessiblePackIds(studyTarget) : Promise.resolve([] as string[]),
-      officialPacksEnabled ? loadBuiltMarketplaceCardsCache(studyTarget).catch((): null => null) : Promise.resolve(null),
+      officialPacksEnabled ? loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((): null => null) : Promise.resolve(null),
       communityPacksEnabled ? loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []) : Promise.resolve([] as string[]),
     ]);
     const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
@@ -735,16 +748,16 @@ export default function FlashcardsScreen() {
       setMarketCards(builtMarketCache.cards);
       setOwnedPackIdList(ownedIdsEarly);
       setCommunityOwnedIdList(communityOwnedEarly);
-      setMarketPackCatalog(reserveBundledMarketPacks());
+      setMarketPackCatalog(reserveBundledMarketPacks(studyTarget, lang));
     } else if (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) {
       /** Одразу з бандла — не чекаємо Firestore у `marketPromise`, інакше `?pack=` показує порожній custom. */
       setOwnedPackIdList(ownedIdsEarly);
       setCommunityOwnedIdList(communityOwnedEarly);
-      const ownedBundled = bundledPacksForOwned(ownedIdsEarly);
+      const ownedBundled = bundledPacksForOwned(ownedIdsEarly, studyTarget, lang);
       if (ownedBundled.length > 0) {
-        setMarketCards(buildMarketplaceOwnedCards(ownedBundled));
+        setMarketCards(buildMarketplaceOwnedCards(ownedBundled, lang, studyTarget));
       }
-      setMarketPackCatalog(reserveBundledMarketPacks());
+      setMarketPackCatalog(reserveBundledMarketPacks(studyTarget, lang));
     } else if (!officialPacksEnabled) {
       setMarketCards([]);
       setOwnedPackIdList([]);
@@ -819,7 +832,7 @@ export default function FlashcardsScreen() {
       }
       const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw] = await Promise.all([
         loadAccessiblePackIds(studyTarget),
-        loadMarketplacePacks(),
+        loadMarketplacePacks(studyTarget, lang),
         communityPacksEnabled ? loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []) : Promise.resolve([] as string[]),
         communityPacksEnabled ? loadPublishedCommunityMarketPacks(studyTarget).catch((): FlashcardMarketPack[] => []) : Promise.resolve([] as FlashcardMarketPack[]),
         isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
@@ -836,7 +849,7 @@ export default function FlashcardsScreen() {
       }
       setMarketPackCatalog(mergedCatalog);
       const ownedOfficialPacks = marketPacks.filter((pack) => ownedIds.includes(pack.id));
-      const officialBuilt = buildMarketplaceOwnedCards(ownedOfficialPacks);
+      const officialBuilt = buildMarketplaceOwnedCards(ownedOfficialPacks, lang, studyTarget);
       const authorCommunityIds =
         userSid == null
           ? []
@@ -854,7 +867,7 @@ export default function FlashcardsScreen() {
       );
       const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
       setMarketCards(builtMarket);
-      void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget);
+      void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget, lang);
       if (mustDelayForEmptyMarketOnly) setLoading(false);
       return {
         ownedIds,
@@ -1749,9 +1762,9 @@ export default function FlashcardsScreen() {
               paddingVertical: 10,
               paddingHorizontal: 12,
               borderRadius: 15,
-              borderWidth: 1,
-              borderColor: t.border,
-              backgroundColor: t.bgCard,
+              borderTopWidth: 1,
+              borderTopColor: glassFill(t.accent, 0.14),
+              backgroundColor: glassFill(t.bgSurface, 0.46),
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',

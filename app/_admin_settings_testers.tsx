@@ -191,16 +191,12 @@ import {
   AdminBackground, AdminNavContext, ButtonRow, CHAPTERS, ToggleRow,
   AccordionSection, type AdminChapterId,
 } from '../components/admin_panel/ui';
-import ScenariosSection from '../components/admin_panel/sections/ScenariosSection';
 import RewardModalsExtraSection from '../components/admin_panel/sections/RewardModalsExtraSection';
 import SystemModalsExtraSection from '../components/admin_panel/sections/SystemModalsExtraSection';
 import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
-import GiftsCatalogSection from '../components/admin_panel/sections/GiftsCatalogSection';
-import CollectibleDropModalsSection from '../components/admin_panel/sections/CollectibleDropModalsSection';
 import CompassSection from '../components/admin_panel/sections/CompassSection';
-import ConsentsSection from '../components/admin_panel/sections/ConsentsSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -2529,6 +2525,19 @@ export default function SettingsTestersFunctions() {
 
         <AdminNavContext.Provider value={{ chapter: navChapter, query: navQuery }}>
         <ScrollView testID="screen-settings-testers" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
+          {/* Новые разделы админки — всегда в САМОМ ВЕРХУ (правило владельца). */}
+          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1, borderColor: ACCENT_BORDER, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
+            <ButtonRow
+              testID="admin-section-tasks-surveys"
+              icon="list-outline"
+              label="📋 Задания-опросы"
+              sub="Добавить/убрать задание-опрос (4-я плашка в «Вызовах дня»)"
+              onPress={() => router.push('/admin_tasks_lab' as any)}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+          </View>
           {quickVisible && (<>
           <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1, borderColor: ACCENT_BORDER, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
@@ -2540,17 +2549,6 @@ export default function SettingsTestersFunctions() {
               </Text>
             </View>
             <ButtonRow
-              testID="admin-activate-vip-profile"
-              icon="sparkles-outline"
-              label="💚 Активировать Plus на моём профиле"
-              sub="30 дней Plus-доступа + зелёная анимация. Пишет только vip_* и не трогает реальный Plus (premium)."
-              onPress={activateVipOnCurrentProfile}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-              confirm="Активировать Plus на своём профиле?"
-            />
-            <ButtonRow
               testID="admin-preview-vip-celebration-top"
               icon="sparkles-outline"
               label="💚 Показать VIP-анимацию"
@@ -2560,27 +2558,6 @@ export default function SettingsTestersFunctions() {
               f={f}
               doHaptic={doHaptic}
               confirm="Показать VIP-анимацию?"
-            />
-            <ButtonRow
-              testID="admin-preview-vip-survey-notification"
-              icon="chatbubbles-outline"
-              label="💚 VIP survey тестовое уведомление"
-              sub="Добавляет inbox-уведомление на главную. Завершение опроса отправляет реальные ответы в админку и активирует VIP через callable."
-              onPress={showVipSurveyNotificationPreview}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-              confirm="Добавить VIP survey уведомление?"
-            />
-            <ButtonRow
-              testID="trainer-quick-seed-weak-open"
-              icon="barbell-outline"
-              label="Trainer: seed weak + open hub"
-              sub="Seed weak TrainerStore, enable QA premium, open /trainer"
-              onPress={openTrainerQaHub}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
             />
             <ButtonRow
               testID="stats-quick-365-random-open"
@@ -2821,16 +2798,6 @@ export default function SettingsTestersFunctions() {
             />
           </AccordionSection>
 
-          <AccordionSection
-            id="cosmetics_preview"
-            icon="sparkles-outline"
-            title="Аватары и ауры"
-            badge={AVATARS.length + AVATAR_AURAS.length}
-            open={openSection === 'cosmetics_preview'}
-            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
-          >
-            <AdminCosmeticsPreview f={f} />
-          </AccordionSection>
 
           {/* ── 1. СОСТОЯНИЕ АККАУНТА ── */}
           <AccordionSection id="account" icon="settings-outline" title="Состояние аккаунта" badge={6}
@@ -2920,73 +2887,6 @@ export default function SettingsTestersFunctions() {
             />
           </AccordionSection>
 
-          <AccordionSection id="friends_admin" icon="people-outline" title="Друзья — QA и подарки" badge={7}
-            open={openSection === 'friends_admin'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            <View style={{ paddingHorizontal: 18, paddingVertical: 12, borderBottomWidth: 0.5, borderBottomColor: ACCENT_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
-              <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg, fontWeight: '900' }}>Social QA hub</Text>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 4, lineHeight: 17 }}>
-                Подготовка friend list, gifts, входящей модалки, activity feed и кешей для Maestro/dev-проверок.
-              </Text>
-            </View>
-            <ButtonRow
-              testID="admin-friends-open"
-              icon="people-circle-outline"
-              label="Открыть экран друзей"
-              sub="Переход на production-вкладку Friends без seed"
-              onPress={() => router.push('/(tabs)/friends' as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-friends-seed-buddy"
-              icon="person-add-outline"
-              label="Seed QA-друга"
-              sub="Добавляет QA Friend Buddy в friends, leaderboard и SWR-профиль"
-              onPress={() => { void seedAdminFriendsBuddy({ openFriends: true }); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-friends-seed-shards"
-              icon="diamond-outline"
-              label="Дать 120 осколков для подарков"
-              sub="Синхронизирует локальный баланс и users/{uid}.shards"
-              onPress={() => { void seedAdminFriendShards(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-friends-seed-incoming-gift"
-              icon="gift-outline"
-              label="Seed входящего подарка"
-              sub="Создаёт unseen friend_gift и открывает Friends для модалки «Подарок получен»"
-              onPress={() => { void seedAdminIncomingFriendGift(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-friends-seed-activity"
-              icon="pulse-outline"
-              label="Seed активности друга"
-              sub="Level-up, gift_sent и achievement в ленту активности"
-              onPress={() => { void seedAdminFriendActivity(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-friends-open-arena"
-              icon="flash-outline"
-              label="Открыть Arena после seed-друга"
-              sub="Проверка friend card в вызове друга на арене"
-              onPress={() => {
-                void seedAdminFriendsBuddy().then(() => router.push('/(tabs)/arena' as any));
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-friends-clear-cache"
-              icon="refresh-circle-outline"
-              label="Сбросить friends/activity кеши"
-              sub="Чистит SWR и activity cache, не удаляя реальные Firestore-документы"
-              onPress={() => { void clearAdminFriendsQaState(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-          </AccordionSection>
 
           {/* ── 1.5 AUTH (Google / Apple) ── */}
           <AccordionSection id="auth_dev" icon="key-outline" title="🔐 Auth (Google/Apple)" badge={6}
@@ -3256,130 +3156,8 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 3. МОДАЛКИ УРОКОВ ── */}
-          <AccordionSection id="lesson_modals" icon="school-outline" title="Модалки — Уроки" badge={5}
-            open={openSection === 'lesson_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            {([5, 4, 3, 2] as const).map(score => (
-              <ButtonRow key={`lc_${score}`} icon="school-outline"
-                label={`📋 Завершение урока — ${score}/5`}
-                sub={`lesson_complete id=2, score=${score}`}
-                onPress={() => router.push({ pathname: '/lesson_complete', params: { id: '2', unlocked: score === 5 ? '1' : '0' } } as any)}
-                t={t} f={f} doHaptic={doHaptic} />
-            ))}
-            <ButtonRow icon="ribbon-outline" label="🎓 Сертификат Профессора Лингмана — превью"
-              sub="Редактируемые поля + текстовый share + засеять/удалить мой сертификат"
-              onPress={() => setCertificatePreviewVisible(true)}
-              t={t} f={f} doHaptic={doHaptic} />
-          </AccordionSection>
 
           {/* ── 4. МОДАЛКИ PREMIUM / ПЕЙВОЛЛЫ ── */}
-          <AccordionSection id="premium_modals" icon="diamond-outline" title="Пейволлы Premium — все контексты" badge={PREMIUM_PREVIEW_CONTEXTS.length + 4}
-            open={openSection === 'premium_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            {/* Trial UI QA — приоритетный блок: проверка новой золотой ленты + Free 3 days
-                в карточках планов. _force_trial_ui=1 форсит UI даже без реального RC
-                (Expo Go / dev / магазин не отдаёт intro). В проде параметр недоступен. */}
-            <View style={{ marginHorizontal: 12, marginVertical: 10, borderRadius: 12, borderWidth: 1.5, borderColor: ACCENT, backgroundColor: ADMIN_SURFACE_ELEVATED, padding: 12 }}>
-              <Text style={{ color: ACCENT, fontSize: 13, fontWeight: '900', letterSpacing: 0.4, marginBottom: 6 }}>
-                🎁 ТРИАЛ-UI · ЧТО ПРОВЕРИТЬ
-              </Text>
-              <Text style={{ color: ADMIN_TEXT, fontSize: 11, lineHeight: 15, marginBottom: 10 }}>
-                {`✓ Сверху золотая лента «Попробуй Premium 3 дня бесплатно»\n✓ В обоих карточках справа: «Бесплатно» (зелёным) + «на 3 дня» + мелко «затем €X/період»\n✓ CTA: «🚀 3 дня бесплатно — затем €X/період»\n✗ Большие ценники справа НЕ доминируют (compliance ok)`}
-              </Text>
-              <TouchableOpacity
-                onPress={async () => {
-                  doHaptic();
-                  await resetTrialCooldownForTesting();
-                  setTrialCooldownStatusLine(await getTrialStatusLineForTesters(lang));
-                  router.push({ pathname: '/premium_modal', params: { context: 'generic', _force_trial_ui: '1' } } as any);
-                }}
-                activeOpacity={0.8}
-                style={{ backgroundColor: ACCENT_DARK, borderRadius: 10, paddingVertical: 11, paddingHorizontal: 12, alignItems: 'center', marginBottom: 8 }}
-              >
-                <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>
-                  ⚡ ФОРС: trial-UI + сброс кулдауна
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={async () => {
-                  doHaptic();
-                  await resetTrialCooldownForTesting();
-                  setTrialCooldownStatusLine(await getTrialStatusLineForTesters(lang));
-                  router.push({ pathname: '/premium_modal', params: { context: 'generic' } } as any);
-                }}
-                activeOpacity={0.8}
-                style={{ borderRadius: 10, paddingVertical: 9, paddingHorizontal: 12, alignItems: 'center', borderWidth: 1, borderColor: ACCENT_BORDER }}
-              >
-                <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '700' }}>
-                  «Натуральный» режим (как у юзера)
-                </Text>
-              </TouchableOpacity>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 10, marginTop: 8, fontStyle: 'italic', lineHeight: 14 }}>
-                ФОРС → trial-UI рендерится всегда (Expo Go/dev/RC без intro).{'\n'}
-                Натуральный → как у реального юзера: лента покажется ТОЛЬКО если магазин отдал intro phase.
-              </Text>
-            </View>
-
-            <ButtonRow
-              icon="timer-outline"
-              label="⏱ Сброс кулдауна триала (только флаг, без открытия)"
-              sub={trialCooldownStatusLine}
-              onPress={async () => {
-                doHaptic();
-                await resetTrialCooldownForTesting();
-                setTrialCooldownStatusLine(await getTrialStatusLineForTesters(lang));
-                emitAppEvent(
-                  'action_toast',
-                  actionToastTri('success', {
-                    ru: 'Кулдаун сброшен. Открой пейволл снизу.',
-                    uk: 'Кулдаун скинуто. Відкрий пейволл знизу.',
-                    es: 'Enfriamiento reiniciado. Abre el paywall abajo.',
-                    'pt-BR': 'Cooldown redefinido. Abra o paywall abaixo.',
-                    vi: 'Đã đặt lại cooldown. Mở paywall bên dưới.',
-                    id: 'Cooldown direset. Buka paywall di bawah.',
-                    tr: "Bekleme süresi sıfırlandı. Aşağıdaki paywall'u aç.",
-                    pl: 'Cooldown zresetowany. Otwórz paywall poniżej.',
-                  }),
-                );
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="testers-quiz-e2e-results"
-              icon="ribbon-outline"
-              label="🧪 Maestro: квиз — экран результата"
-              sub="Открыть quizzes_screen → «На главную» (без прохождения вопросов)"
-              onPress={async () => {
-                if (!quizContentAvailableForTarget(studyTarget)) {
-                  const ruCopy = frenchQuizGateCopy('ru');
-                  const ukCopy = frenchQuizGateCopy('uk');
-                  emitAppEvent('action_toast', actionToastTri('info', {
-                    ru: ruCopy.title,
-                    uk: ukCopy.title,
-                    es: 'French quiz preview is blocked until approved quiz sources exist.',
-                    'pt-BR': 'Preview de quiz French bloqueado até haver fontes aprovadas.',
-                    vi: 'Preview quiz French bị chặn cho đến khi có nguồn đã duyệt.',
-                    id: 'Preview kuis French diblokir sampai sumber yang disetujui tersedia.',
-                    tr: 'French quiz önizlemesi onaylı kaynaklar gelene kadar engellendi.',
-                    pl: 'Podgląd quizów French jest zablokowany do czasu zatwierdzenia źródeł.',
-                  }));
-                  router.push('/quizzes_screen' as any);
-                  return;
-                }
-                await AsyncStorage.setItem(QUIZ_E2E_OPEN_RESULTS_KEY, '1');
-                router.push('/quizzes_screen' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            {PREMIUM_PREVIEW_CONTEXTS.map(({ label, sub, params: p }) => (
-              <ButtonRow
-                key={p.context + JSON.stringify(p)}
-                icon="card-outline"
-                label={label}
-                sub={`${sub} · trial-UI форсится`}
-                onPress={() => router.push({ pathname: '/premium_modal', params: { ...p, _force_trial_ui: '1' } } as any)}
-                t={t} f={f} doHaptic={doHaptic}
-              />
-            ))}
-          </AccordionSection>
 
           {/* ── 4a1. SPEAKING MODE — все статусы ── */}
           <AccordionSection id="speaking_mode" icon="mic-outline" title="🎙 Устно (Speaking) — все статусы" badge={9}
@@ -3428,19 +3206,6 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 4a3. REFERRAL / VIP МОДАЛКИ ── */}
-          <AccordionSection id="referral_modals" icon="gift-outline" title="🎁 Referral / VIP — модалки" badge={2}
-            open={openSection === 'referral_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            <ButtonRow icon="albums-outline"
-              label="🎬 Открыть лабораторию VIP-модалок"
-              sub="Activated (VIP открылся, 7/14/30 дней) и Ended (доступ истёк)"
-              onPress={() => router.push('/admin_referral_lab' as any)}
-              t={t} f={f} doHaptic={doHaptic} testID="testers-open-referral-lab" />
-            <ButtonRow icon="diamond-outline"
-              label="🔒 Пейвол после истечения VIP"
-              sub="context='generic', source='referral_ended'"
-              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'referral_ended' } } as any)}
-              t={t} f={f} doHaptic={doHaptic} />
-          </AccordionSection>
 
           {/* ── 4a4. ОШИБКИ / EDGE-СОСТОЯНИЯ ── */}
           <AccordionSection id="error_states" icon="warning-outline" title="⚠️ Ошибки и edge-состояния" badge={3}
@@ -3463,111 +3228,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 4b. MONETIZATION SCENARIOS ── */}
-          <AccordionSection
-            id="soft_monetization"
-            icon="sparkles-outline"
-            title="Монетизация: активные сценарии"
-            badge={6}
-            open={openSection === 'soft_monetization'}
-            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
-          >
-            <ButtonRow
-              icon="trophy-outline"
-              label="👑 Premium celebration (5 сек анимация)"
-              sub="Particle-spiral, корона, 6 замочков unlock, golden CTA. Без реальной IAP."
-              onPress={() => setSoftMonetizationPreview('celebration')}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-preview-vip-celebration"
-              icon="sparkles-outline"
-              label="💚 VIP celebration (зелёная анимация)"
-              sub="Тот же unlock-экран, но VIP: зелёный стиль, без золотого Premium-статуса."
-              onPress={() => setSoftMonetizationPreview('vip_celebration')}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="flame-outline"
-              label="🔥 Streak revive (24ч окно)"
-              sub="Mock-оффер на цепочку 47 дней — посмотреть UI и формулу 35💎"
-              onPress={async () => {
-                doHaptic();
-                // Симулируем потерю цепочки в 47 дней — markStreakLost создаёт оффер
-                await markStreakLost(47);
-                const offer = await getReviveOffer();
-                setPreviewReviveOffer(offer);
-                setSoftMonetizationPreview('streak_revive');
-              }}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="bar-chart-outline"
-              label="📊 Stats blur (для !premium)"
-              sub="Открыть streak_stats — посмотреть как выглядит для free"
-              onPress={() => router.push('/streak_stats' as any)}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="key-outline"
-              label="🔓 ФОРС: pending celebration на следующий mount home"
-              sub="Имитация admin-grant — выйди из настроек и зайди на home"
-              onPress={async () => {
-                doHaptic();
-                await markCelebrationPending();
-                emitAppEvent('action_toast', actionToastTri('success', {
-                  ru: 'pending выставлен — открой главный экран',
-                  uk: 'pending виставлено — відкрий головний екран',
-                  es: 'pending activado — abre la pantalla principal',
-                  'pt-BR': 'pending definido — abra a tela inicial',
-                  vi: 'đã đặt pending — mở màn hình chính',
-                  id: 'pending disetel — buka layar utama',
-                  tr: 'pending ayarlandı — ana ekranı aç',
-                  pl: 'pending ustawione — otwórz ekran główny',
-                }));
-              }}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-          </AccordionSection>
 
-          <AccordionSection
-            id="activity_365_qa"
-            icon="pulse-outline"
-            title="Stats 365 QA"
-            badge={2}
-            open={openSection === 'activity_365_qa'}
-            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
-          >
-            <ButtonRow
-              testID="testers-365-random-open"
-              icon="pulse-outline"
-              label="Stats 365: random seeded year"
-              sub="Seed yearly activity data and open streak_stats at the 365-day card"
-              onPress={openStats365RandomQa}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="testers-stats-insights-seed"
-              icon="sparkles-outline"
-              label={statsInsightsSeedBusy ? 'Набиваю сид…' : 'ИИ-разбор: рандомный сид + открыть'}
-              sub="Набивает данные по всем блокам (год + неделя + lifetime), включает premium, сбрасывает кэш ИИ-заметок и открывает статистику — чтобы увидеть готовый ИИ-разбор под каждым блоком"
-              onPress={seedAndOpenStatsInsightsQa}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-          </AccordionSection>
 
           {/* ── 4c. ПЕРСОНАЛИЗАЦИЯ ПЕЙВОЛЛА ── */}
           <AccordionSection
@@ -3895,409 +3556,6 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 4e. ОШИБКИ И ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ ── */}
-          <AccordionSection
-            id="phrase_analytics_debug"
-            icon="analytics-outline"
-            title="Ошибки → персональные тренировки"
-            badge={35}
-            open={openSection === 'phrase_analytics_debug'}
-            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
-          >
-            <ButtonRow
-              icon="open-outline"
-              label="📊 Открыть экран аналитики"
-              sub="phrase_analytics_screen → /phrase_analytics_screen"
-              onPress={() => {
-                doHaptic();
-                router.push('/phrase_analytics_screen' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="bug-outline"
-              testID="testers-pos-audit-open"
-              label="POS token audit"
-              sub="Release coverage, exact events and unresolved token queue"
-              onPress={() => {
-                doHaptic();
-                router.push('/pos_analytics_audit' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            {/* Mock-данные для тестирования перцентилей */}
-            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                Mock-данные (без Firestore):
-              </Text>
-            </View>
-            <ButtonRow
-              icon="flask-outline"
-              label="💉 Инжектировать mock-перцентили"
-              sub="Устанавливает fake thresholds → все блоки перцентилей станут видны"
-              onPress={() => {
-                doHaptic();
-                injectMockLeaderboardStats();
-                emitAppEvent('action_toast', actionToastTri('success', {
-                  ru: 'Mock-данные установлены — открой streak_stats или home',
-                  uk: 'Mock-дані встановлено — відкрий streak_stats або home',
-                  es: 'Mock inyectado — abre streak_stats o home',
-                  'pt-BR': 'Mock definido — abra streak_stats ou home',
-                  vi: 'Đã đặt mock — mở streak_stats hoặc home',
-                  id: 'Mock disetel — buka streak_stats atau home',
-                  tr: 'Mock veriler ayarlandı — streak_stats veya home aç',
-                  pl: 'Mock ustawiony — otwórz streak_stats albo home',
-                }));
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="trash-outline"
-              label="🗑 Сбросить mock (вернуть реальные данные)"
-              sub="clearMockLeaderboardStats() → следующий запрос пойдёт в Firestore"
-              onPress={() => {
-                doHaptic();
-                clearMockLeaderboardStats();
-                emitAppEvent('action_toast', actionToastTri('success', {
-                  ru: 'Mock сброшен — перцентили снова из Firestore',
-                  uk: 'Mock скинуто',
-                  es: 'Mock borrado',
-                  'pt-BR': 'Mock limpo — percentis voltam do Firestore',
-                  vi: 'Đã xóa mock — percentile lại lấy từ Firestore',
-                  id: 'Mock dihapus — persentil kembali dari Firestore',
-                  tr: 'Mock sıfırlandı — yüzdelikler yeniden Firestore üzerinden',
-                  pl: 'Mock wyczyszczony — percentyle znów z Firestore',
-                }));
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-
-            {/* Навигация к местам отображения перцентилей */}
-            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                Где показываются перцентили:
-              </Text>
-            </View>
-            <ButtonRow
-              icon="stats-chart-outline"
-              label="1. streak_stats — цепочка + XP + время"
-              sub="5 блоков перцентилей (инжектирует mock автоматически)"
-              onPress={() => {
-                doHaptic();
-                injectMockLeaderboardStats();
-                router.push('/streak_stats' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="home-outline"
-              label="2. home.tsx — мини-бейдж XP"
-              sub="«Топ X% по опыту» под именем (только Premium; инжект mock)"
-              onPress={() => {
-                doHaptic();
-                injectMockLeaderboardStats();
-                router.push('/(tabs)/home' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="trophy-outline"
-              label="3. arena_leaderboard — рейтинг арены"
-              sub="«Топ X% в арене» под своей строкой (инжект mock)"
-              onPress={() => {
-                doHaptic();
-                injectMockLeaderboardStats();
-                router.push('/arena_leaderboard' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="people-outline"
-              label="4. LeagueResultModal — % группы"
-              sub="Сразу симулирует итог недели и открывает актуальный LeagueResultModal"
-              onPress={triggerEndOfWeek}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            {/* Diagnosis trainer экран */}
-            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                Diagnosis trainer — экран тренировки:
-              </Text>
-            </View>
-            {diagnosisDevBlocked ? (
-              <View
-                testID="admin-french-personal-practice-source-gate"
-                style={{ marginHorizontal: 16, marginBottom: 8, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: ACCENT_BORDER_SOFT, backgroundColor: ADMIN_SURFACE_DANGER }}
-              >
-                <Text style={{ color: DANGER_TEXT, fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
-                  {frenchPersonalPracticeGate.title}
-                </Text>
-                <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35) }}>
-                  {frenchPersonalPracticeGate.body}
-                </Text>
-              </View>
-            ) : null}
-            {([
-              { category: 'article', id: 'article_a_an' },
-              { category: 'article', id: 'article_the_specific' },
-              { category: 'article', id: 'article_zero' },
-              { category: 'preposition', id: 'preposition_time_in_on_at' },
-              { category: 'preposition', id: 'preposition_place_in_on_at' },
-              { category: 'preposition', id: 'preposition_duration_for_since' },
-              { category: 'preposition', id: 'preposition_direction_to_into_from' },
-              { category: 'preposition', id: 'preposition_common_verb_patterns' },
-              { category: 'syntax', id: 'object_order_give_me_it' },
-              { category: 'syntax', id: 'word_order_basic_statement' },
-              { category: 'syntax', id: 'word_order_basic_question' },
-              { category: 'verb', id: 'verb_present_simple_negative_question' },
-              { category: 'verb', id: 'verb_present_continuous_basic' },
-              { category: 'verb', id: 'verb_present_simple_vs_continuous' },
-              { category: 'verb', id: 'verb_past_simple_regular_irregular' },
-              { category: 'verb', id: 'verb_was_were' },
-              { category: 'verb', id: 'future_will_going_to' },
-              { category: 'verb', id: 'infinitive_vs_gerund_basic' },
-              { category: 'modifier', id: 'too_enough' },
-              { category: 'modifier', id: 'modifier_very_really_quite' },
-              { category: 'verb', id: 'verb_present_simple_statement' },
-              { category: 'verb', id: 'verb_third_person' },
-              { category: 'to-be', id: 'to_be_present_agreement' },
-              { category: 'modal', id: 'modal_base_form' },
-              { category: 'modal', id: 'modal_force' },
-              { category: 'pronoun', id: 'pronoun_case' },
-              { category: 'pronoun', id: 'pronoun_possessive' },
-              { category: 'adjective', id: 'adjective_comparison' },
-              { category: 'adverb', id: 'adjective_vs_adverb' },
-              { category: 'adverb', id: 'adverb_frequency_position' },
-              { category: 'conjunction', id: 'conjunction_logic' },
-              { category: 'phrasal_particle', id: 'phrasal_particle_pair' },
-              { category: 'determiner', id: 'quantifier_some_any' },
-              { category: 'determiner', id: 'determiner_this_that_these_those' },
-              { category: 'existential', id: 'there_is_are' },
-              { category: 'noun', id: 'noun_singular_plural_basic' },
-            ] as const).map(({ category, id: microDiagnosisId }) => (
-              <ButtonRow
-                key={microDiagnosisId}
-                icon="git-compare-outline"
-                label={`Open diagnosis: ${microDiagnosisId}`}
-                sub={diagnosisDevBlocked ? frenchPersonalPracticeGate.body : `/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`}
-                onPress={() => {
-                  openDiagnosisDevRoute(category, microDiagnosisId);
-                }}
-                t={t} f={f} doHaptic={doHaptic}
-              />
-            ))}
-            {/* CoachToast превью */}
-            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                Diagnosis Toast:
-              </Text>
-            </View>
-            <ButtonRow
-              icon="school-outline"
-              label="Тост: «Разобрать тему — Глаголы»"
-              sub="CoachToast → после сессии при 3+ точных ошибках одной категории"
-              onPress={() => {
-                doHaptic();
-                setCoachToastPreview({
-                  show: true,
-                  category: 'verb',
-                  labelRu: 'Глаголы',
-                  labelUk: 'Дієслова',
-                  labelEs: 'Verbos',
-                  labelPtBr: 'Verbos',
-                  labelVi: 'Động từ',
-                  labelId: 'Kata kerja',
-                  labelTr: 'Fiiller',
-                  labelPl: 'Czasowniki',
-                  mistakeCount: 3,
-                  weaknessScore: 72,
-                });
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="school-outline"
-              label="Тост: «Разобрать тему — Артикли»"
-              sub="Категорийный пример без microDiagnosisId"
-              onPress={() => {
-                doHaptic();
-                setCoachToastPreview({
-                  show: true,
-                  category: 'article',
-                  labelRu: 'Артикли',
-                  labelUk: 'Артиклі',
-                  labelEs: 'Artículos',
-                  labelPtBr: 'Artigos',
-                  labelVi: 'Mạo từ',
-                  labelId: 'Artikel',
-                  labelTr: 'Artikeller',
-                  labelPl: 'Przedimki',
-                  mistakeCount: 3,
-                  weaknessScore: 72,
-                });
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="git-compare-outline"
-              label="Тост: точная ошибка — a/an"
-              sub="microDiagnosisId=article_a_an → Diagnosis trainer → Smart Trainer"
-              onPress={() => {
-                doHaptic();
-                setCoachToastPreview({
-                  show: true,
-                  category: 'article',
-                  labelRu: 'Артикли',
-                  labelUk: 'Артиклі',
-                  labelEs: 'Artículos',
-                  labelPtBr: 'Artigos',
-                  labelVi: 'Mạo từ',
-                  labelId: 'Artikel',
-                  labelTr: 'Artikeller',
-                  labelPl: 'Przedimki',
-                  mistakeCount: 3,
-                  weaknessScore: 78,
-                  focusWords: ['a', 'an'],
-                  microDiagnosisId: 'article_a_an',
-                  microLabelRu: 'a/an перед звуком',
-                  microLabelUk: 'a/an перед звуком',
-                  microLabelEs: 'a/an antes del sonido',
-                  microLabelPtBr: 'a/an antes do som',
-                  microLabelVi: 'a/an trước âm',
-                  microLabelId: 'a/an sebelum bunyi',
-                  microLabelTr: 'sesten önce a/an',
-                  microLabelPl: 'a/an przed dźwiękiem',
-                  diagnosisEvidenceCount: 3,
-                });
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="git-compare-outline"
-              label="Тост: точная ошибка — in/on/at time"
-              sub="microDiagnosisId=preposition_time_in_on_at → отдельная тренировка"
-              onPress={() => {
-                doHaptic();
-                setCoachToastPreview({
-                  show: true,
-                  category: 'preposition',
-                  labelRu: 'Предлоги',
-                  labelUk: 'Прийменники',
-                  labelEs: 'Preposiciones',
-                  labelPtBr: 'Preposições',
-                  labelVi: 'Giới từ',
-                  labelId: 'Preposisi',
-                  labelTr: 'Edatlar',
-                  labelPl: 'Przyimki',
-                  mistakeCount: 3,
-                  weaknessScore: 80,
-                  focusWords: ['in', 'on', 'at'],
-                  microDiagnosisId: 'preposition_time_in_on_at',
-                  microLabelRu: 'in/on/at для времени',
-                  microLabelUk: 'in/on/at для часу',
-                  microLabelEs: 'in/on/at para tiempo',
-                  microLabelPtBr: 'in/on/at para tempo',
-                  microLabelVi: 'in/on/at cho thời gian',
-                  microLabelId: 'in/on/at untuk waktu',
-                  microLabelTr: 'zaman için in/on/at',
-                  microLabelPl: 'in/on/at dla czasu',
-                  diagnosisEvidenceCount: 3,
-                });
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="flask-outline"
-              label="Тест тоста из реальных ошибок лога"
-              sub="Берёт exact POS события из mistake_log и persistent analytics"
-              onPress={async () => {
-                doHaptic();
-                const snapshot = await getMistakeLogDebugSnapshot(60, studyTarget);
-                const exactMistakes = snapshot.events
-                  .filter(event => event.exactSignal && event.resolvedCategory)
-                  .map(event => ({
-                    phrase: event.phrase,
-                    tokenText: event.tokenText || event.expected || event.phrase,
-                    expected: event.expected,
-                    picked: event.picked,
-                    rawCategory: event.rawCategory,
-                    category: event.resolvedCategory!,
-                    grammarTag: event.grammarTag,
-                  }));
-                const decision = await checkCoachToastNeededWithAnalytics(exactMistakes, studyTarget, lang === 'uk' ? 'uk' : 'ru');
-                if (decision.show) {
-                  setCoachToastPreview(decision);
-                } else {
-                  AppInfoDialog.alert('CoachToast', 'Нет диагностируемого exact-паттерна: нужно ≥3 точных ошибки одной категории. Засей exact POS лог сначала.');
-                }
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="flask-outline"
-              label="🌱 Засеять exact POS ошибки (15 записей)"
-              sub="Артикли, предлоги и do/does с token/category метаданными"
-              onPress={async () => {
-                doHaptic();
-                if (!allowEnglishDevMistakeSeed()) return;
-                const testMistakes = [
-                  { phrase: 'I am an engineer', lessonId: 7, tokenText: 'an', picked: 'a', rawCategory: 'article_a_an', category: 'article' as const },
-                  { phrase: 'She is an artist', lessonId: 7, tokenText: 'an', picked: 'a', rawCategory: 'article_a_an', category: 'article' as const },
-                  { phrase: 'He bought a car', lessonId: 7, tokenText: 'a', picked: 'an', rawCategory: 'article_a_an', category: 'article' as const },
-                  { phrase: 'The book is on the table', lessonId: 19, tokenText: 'the', picked: 'a', rawCategory: 'article_specific', category: 'article' as const },
-                  { phrase: 'Open the door', lessonId: 19, tokenText: 'the', picked: 'a', rawCategory: 'article_specific', category: 'article' as const },
-                  { phrase: 'We meet on Monday', lessonId: 19, tokenText: 'on', picked: 'in', rawCategory: 'preposition_time', category: 'preposition' as const },
-                  { phrase: 'The lesson starts at seven', lessonId: 19, tokenText: 'at', picked: 'on', rawCategory: 'preposition_time', category: 'preposition' as const },
-                  { phrase: 'I was born in May', lessonId: 19, tokenText: 'in', picked: 'at', rawCategory: 'preposition_time', category: 'preposition' as const },
-                  { phrase: 'She is at school', lessonId: 20, tokenText: 'at', picked: 'in', rawCategory: 'preposition_place', category: 'preposition' as const },
-                  { phrase: 'The keys are on the table', lessonId: 20, tokenText: 'on', picked: 'in', rawCategory: 'preposition_place', category: 'preposition' as const },
-                  { phrase: 'They live in London', lessonId: 20, tokenText: 'in', picked: 'at', rawCategory: 'preposition_place', category: 'preposition' as const },
-                  { phrase: 'Does she work here?', lessonId: 4, tokenText: 'does', picked: 'works', rawCategory: 'verb_question', category: 'verb' as const },
-                  { phrase: 'He does not work here', lessonId: 4, tokenText: 'does', picked: 'works', rawCategory: 'verb_negative', category: 'verb' as const },
-                  { phrase: 'Do they play football?', lessonId: 4, tokenText: 'do', picked: 'plays', rawCategory: 'verb_question', category: 'verb' as const },
-                  { phrase: 'She can swim well', lessonId: 10, tokenText: 'swim', picked: 'swims', rawCategory: 'verb_after_modal', category: 'verb' as const },
-                ];
-                for (const { phrase, lessonId, ...meta } of testMistakes) {
-                  logMistake(phrase, lessonId, 'lesson', 'wrong_pick', {
-                    ...meta,
-                    expected: meta.tokenText,
-                  }, studyTarget);
-                  await new Promise((r) => setTimeout(r, 5));
-                }
-                emitAppEvent('action_toast', actionToastTri('success', {
-                  ru: '15 exact POS записей добавлено → проверь CoachToast и аналитику',
-                  uk: '15 exact POS записів додано → перевір CoachToast і аналітику',
-                  es: '15 eventos POS exactos añadidos → revisa CoachToast y analítica',
-                  'pt-BR': '15 registros exact POS adicionados → confira CoachToast e analytics',
-                  vi: 'Đã thêm 15 bản ghi exact POS → kiểm tra CoachToast và analytics',
-                  id: '15 catatan exact POS ditambahkan → periksa CoachToast dan analytics',
-                  tr: '15 exact POS kaydı eklendi → CoachToast ve analitiği kontrol et',
-                  pl: 'Dodano 15 wpisów exact POS → sprawdź CoachToast i analitykę',
-                }));
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="trash-outline"
-              label="🗑 Очистить лог (аналитика → пустая)"
-              sub="clearMistakeLog(studyTarget) + invalidatePhraseIndex()"
-              danger
-              onPress={async () => {
-                doHaptic();
-                await clearMistakeLog(studyTarget);
-                emitAppEvent('action_toast', actionToastTri('success', {
-                  ru: 'Лог очищен — аналитика пустая',
-                  uk: 'Лог очищено',
-                  es: 'Log limpiado',
-                  'pt-BR': 'Log limpo — analytics vazio',
-                  vi: 'Đã xóa log — analytics trống',
-                  id: 'Log dibersihkan — analytics kosong',
-                  tr: 'Günlük temizlendi — analiz boş',
-                  pl: 'Log wyczyszczony — analityka pusta',
-                }));
-              }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-          </AccordionSection>
 
           {/* ── 5. ТОСТЫ И НОТИФИКАЦИИ ── */}
           <AccordionSection id="toasts" icon="notifications-outline" title="Тосты и нотификации" badge={ALL_ACHIEVEMENTS.slice(0, 5).length + 1 + ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS.length}
@@ -4395,33 +3653,6 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 7. ОСКОЛКИ ── */}
-          <AccordionSection id="shards" icon="diamond-outline" title="Осколки" badge={5}
-            open={openSection === 'shards'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            <ButtonRow
-              testID="testers-profile-card-seed"
-              icon="id-card-outline"
-              label="QA: карточка профиля + 1200 осколков"
-              sub="Сбросить CARD 0, выдать осколки и открыть экран аватара"
-              onPress={() => { void seedProfileCardUpgradeQa(); }}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            {([
-              { source: 'lesson_first' as const, label: '+1 Первый урок', reason: 'Первое прохождение урока' },
-              { source: 'lesson_perfect' as const, label: '+2 Идеальный урок', reason: 'Идеальный урок (0 ошибок)' },
-              { source: 'arena_win' as const, label: '+1 Победа в арене', reason: 'Победа в Арене' },
-              { source: 'streak_7' as const, label: '+3 Цепочка 7 дней', reason: '7 дней цепочки подряд' },
-              { source: 'topic_completed' as const, label: '+3 Тема завершена', reason: 'Все уроки темы пройдены' },
-            ]).map(item => (
-              <ButtonRow key={item.source} icon="diamond-outline" label={item.label} sub={item.reason}
-                onPress={async () => {
-                  doHaptic();
-                  await addShards(item.source);
-                }}
-                t={t} f={f} doHaptic={doHaptic} />
-            ))}
-          </AccordionSection>
 
           {/* -- 8. NEW ONBOARDING -- */}
           <AccordionSection id="onboarding" icon="sparkles-outline" title="Новый онбординг" badge={2}
@@ -4717,65 +3948,6 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
-          <AccordionSection id="daily_tasks_qa" icon="checkbox-outline" title="Daily tasks QA" badge={DAILY_TASK_QA_PACKS.length + 5}
-            open={openSection === 'daily_tasks_qa'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            <ButtonRow
-              icon="calendar-outline"
-              label="Daily plan modal preview"
-              sub="Первый дневной вход · реальные иконки · заменить все задания"
-              onPress={() => { void openDailyPlanPreview(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="open-outline"
-              label="Open Daily Tasks"
-              sub="Use after any pack seed to test card taps and reward buttons"
-              onPress={() => router.push('/daily_tasks_screen' as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon={dailyTaskSeedMode === 'empty' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
-              label="Seed mode: empty"
-              sub="Cards are actionable: tap checks navigation targets"
-              onPress={() => setDailyTaskSeedMode('empty')}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon={dailyTaskSeedMode === 'ready' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
-              label="Seed mode: ready"
-              sub="Conditions are completed: test XP claim and all-3 shards"
-              onPress={() => setDailyTaskSeedMode('ready')}
-              testID="testers-daily-tasks-seed-ready"
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon={dailyTaskSeedMode === 'claimed' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
-              label="Seed mode: claimed"
-              sub="Rewards are already received: test claimed state"
-              onPress={() => setDailyTaskSeedMode('claimed')}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="trash-outline"
-              label="Clear daily task override"
-              sub="Return to the real day schedule"
-              onPress={clearDailyTaskQaOverride}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            {DAILY_TASK_QA_PACKS.map((pack) => (
-              <ButtonRow
-                key={pack.id}
-                icon="list-outline"
-                label={`Pack ${pack.label}`}
-                sub={pack.types.join(' / ')}
-                onPress={() => void seedDailyTaskPackForQa(pack)}
-                testID={`testers-daily-tasks-pack-${pack.id}`}
-                t={t}
-                f={f}
-                doHaptic={doHaptic}
-              />
-            ))}
-          </AccordionSection>
 
           <AccordionSection id="qa_checklist" icon="checkbox-outline" title="QA чеклист (dev)" badge={Object.values(qaChecks).filter(Boolean).length}
             open={openSection === 'qa_checklist'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
@@ -4938,16 +4110,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── Новые секции (редизайн 2026-06): сценарии, непокрытые модалки/тосты, лабы ── */}
-          <ScenariosSection
-            open={openSection === 'scenarios_conflicts'}
-            onToggle={toggleSection}
-            onSeedGlobalLevelUp={triggerGlobalLevelUp}
-            onGoHome={navigateHomeAfterVipSurveySeed}
-            onSeedVipSurvey={() => { void showVipSurveyNotificationPreview(); }}
-          />
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
-          <GiftsCatalogSection open={openSection === 'gifts_catalog'} onToggle={toggleSection} />
-          <CollectibleDropModalsSection open={openSection === 'collectible_drop_modals'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
           <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />
@@ -4957,7 +4120,6 @@ export default function SettingsTestersFunctions() {
             onOpenReviewBench={() => { void runAdminReviewTestBench(); }}
           />
           <CompassSection open={openSection === 'compass'} onToggle={toggleSection} />
-          <ConsentsSection open={openSection === 'user_consents'} onToggle={toggleSection} />
 
         </ScrollView>
         </AdminNavContext.Provider>

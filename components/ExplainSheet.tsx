@@ -46,6 +46,7 @@ import {
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
+import { useStudyTarget } from './StudyTargetContext';
 
 interface Props {
   visible: boolean;
@@ -69,12 +70,13 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResolved }: Props) {
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const effLang = lang || ctxLang;
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
   // Запрос стартует только когда шторка видима (cache-read бесплатен и быстр).
-  const state = useExplainRequest({ phraseEn, phraseMeaning, lang: effLang }, visible);
+  const state = useExplainRequest({ phraseEn, phraseMeaning, lang: effLang, studyTarget }, visible);
   const display = resolveExplainDisplay(state, effLang, phraseMeaning);
   const explainFreeLimitReached = !state.loading && state.status === 'exhausted';
 

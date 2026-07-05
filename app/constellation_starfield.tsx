@@ -21,6 +21,7 @@ import Animated, {
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
+import { useDevForceLowEnd } from '../hooks/dev_force_low_end';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 /** Авто-лайт (спека F9): доля звёзд, которая остаётся на слабом Android-тире. */
@@ -49,7 +50,10 @@ export function ConstellationStarfield({ count = 44 }: { count?: number }) {
   // Reduce-motion: мерцание не крутим (укачивание), звёзды остаются статичными.
   const animate = focused && !reduceMotion;
   // Авто-лайт (слабый Android-тир): меньше звёзд — меньше shared values/циклов разом.
-  const effectiveCount = DEVICE_IS_LOW_END ? Math.round(count * LOW_END_STAR_FRACTION) : count;
+  // dev-форс (null = реальный тир устройства) переопределяет для ручной проверки.
+  const devForce = useDevForceLowEnd();
+  const isLowEnd = devForce ?? DEVICE_IS_LOW_END;
+  const effectiveCount = isLowEnd ? Math.round(count * LOW_END_STAR_FRACTION) : count;
   const stars = useMemo(() => Array.from({ length: effectiveCount }, (_, i) => {
     const s = Math.sin(i * 127.3) * 10000;
     const frac = (n: number) => n - Math.floor(n);

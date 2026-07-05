@@ -169,39 +169,13 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, choices, l
     setFormOpen(false);
   };
 
-  const triggerLabel = sent
-    ? triLang(uiLang, {
-        ru: 'Спасибо, учтём',
-        uk: 'Дякуємо, врахуємо',
-        es: 'Gracias, lo revisaremos',
-        'pt-BR': 'Obrigado, vamos verificar',
-        vi: 'Cảm ơn, chúng tôi sẽ xem lại',
-        id: 'Terima kasih, akan kami periksa',
-        tr: 'Teşekkürler, inceleyeceğiz',
-        pl: 'Dzięki, sprawdzimy',
-      })
-    : triLang(uiLang, {
-        ru: 'Непонятно объяснили',
-        uk: 'Незрозуміло пояснили',
-        es: 'Explicación poco clara',
-        'pt-BR': 'Explicação confusa',
-        vi: 'Giải thích khó hiểu',
-        id: 'Penjelasan kurang jelas',
-        tr: 'Açıklama belirsiz',
-        pl: 'Niejasne wyjaśnienie',
-      });
-
   return (
     <>
       <TouchableOpacity
         onPress={openForm}
         disabled={sent}
-        style={[
-          styles.trigger,
-          { borderColor: sent ? t.border : `${t.wrong}55`, backgroundColor: t.bgSurface2 },
-          sent && styles.triggerMuted,
-        ]}
-        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        style={[styles.trigger, sent && styles.triggerMuted]}
+        hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
         accessibilityRole="button"
         accessibilityLabel={triLang(uiLang, {
           ru: 'Сообщить, что объяснение непонятное',
@@ -214,13 +188,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, choices, l
           pl: 'Zgłoś, że wyjaśnienie jest niejasne',
         })}
       >
-        <Ionicons name={sent ? 'checkmark-circle' : 'flag'} size={16} color={sent ? t.accent : t.wrong} />
-        <Text
-          style={[styles.label, { color: sent ? t.textMuted : t.textSecond, fontSize: f.sub }]}
-          numberOfLines={1}
-        >
-          {triggerLabel}
-        </Text>
+        <Ionicons name={sent ? 'checkmark-circle' : 'flag'} size={18} color={sent ? t.accent : t.wrong} />
       </TouchableOpacity>
 
       {/* Мини-форма жалобы: причина + необязательный комментарий */}
@@ -343,20 +311,14 @@ export default memo(ExplainReportButton);
 const styles = StyleSheet.create({
   trigger: {
     alignSelf: 'flex-start',
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: 7,
-    borderRadius: 10,
-    borderWidth: 1,
-    minHeight: 34,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    justifyContent: 'center',
+    minWidth: 32,
+    minHeight: 32,
+    padding: 4,
   },
   triggerMuted: {
     opacity: 0.7,
-  },
-  label: {
-    fontWeight: '600',
   },
   overlay: {
     flex: 1,

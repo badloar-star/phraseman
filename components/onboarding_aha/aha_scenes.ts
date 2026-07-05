@@ -326,6 +326,17 @@ export const AHA_STRINGS = {
     uk: 'Говорити',
     es: 'Hablar',
   },
+  // «Зажми и говори» (Android-надёжность: палец держит микрофон открытым).
+  speakHoldIdle: {
+    ru: 'Зажми и говори',
+    uk: 'Затисни й говори',
+    es: 'Mantén pulsado y habla',
+  },
+  speakHoldListening: {
+    ru: 'Говори… отпусти, когда закончишь',
+    uk: 'Говори… відпусти, коли закінчиш',
+    es: 'Habla… suelta al terminar',
+  },
   speakNotNow: {
     ru: 'Не сейчас',
     uk: 'Не зараз',

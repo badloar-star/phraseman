@@ -52,7 +52,7 @@ export default function FlashcardsHubScreen() {
   const flashcardsAccess = useFeatureAccess('flashcards');
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const systemCardsEnabled = flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards');
-  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const flashcardsHubGateOpen = systemCardsEnabled || officialPacksEnabled || communityPacksEnabled;
   const insets = useStableSafeAreaInsets();
@@ -62,7 +62,7 @@ export default function FlashcardsHubScreen() {
   const scrollBottomPadding = Math.max(bottomInset, 16) + 12;
 
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
-    () => peekWarmMarketplacePacks() ?? reserveBundledMarketPacks(),
+    () => peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang),
   );
   const [communityPacks, setCommunityPacks] = useState<FlashcardMarketPack[]>([]);
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
@@ -111,14 +111,27 @@ export default function FlashcardsHubScreen() {
       .join('|'), []);
 
   useEffect(() => {
+    if (studyTarget !== 'fr') return;
+    let cancelled = false;
+    loadMarketplacePacks(studyTarget, lang)
+      .then((packs) => {
+        if (!cancelled) setMarketPacks(packs);
+      })
+      .catch(() => {
+        if (!cancelled) setMarketPacks([]);
+      });
+    return () => { cancelled = true; };
+  }, [lang, studyTarget]);
+
+  useEffect(() => {
     if (!officialPacksEnabled) return;
-    const bundledReserve = reserveBundledMarketPacks();
+    const bundledReserve = reserveBundledMarketPacks(studyTarget, lang);
     if (bundledReserve.length <= marketPacks.length) return;
     const nextMarketFp = computeMarketFp(bundledReserve);
     if (nextMarketFp === computeMarketFp(marketPacks)) return;
     marketFpRef.current = nextMarketFp;
     setMarketPacks(bundledReserve);
-  }, [computeMarketFp, officialPacksEnabled, marketPacks]);
+  }, [computeMarketFp, officialPacksEnabled, marketPacks, lang, studyTarget]);
 
   const loadHubMarket = useCallback(async (opts?: { force?: boolean }) => {
     if (!officialPacksEnabled) {
@@ -158,13 +171,13 @@ export default function FlashcardsHubScreen() {
     lastHubLoadAtRef.current = now;
 
     const [packsRes, commPubRes] = await Promise.allSettled([
-      loadMarketplacePacks(),
+      loadMarketplacePacks(studyTarget, lang),
       cloudCommunityEnabled && communityPacksEnabled
         ? loadPublishedCommunityMarketPacks(studyTarget)
         : Promise.resolve([] as FlashcardMarketPack[]),
     ]);
-    const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : reserveBundledMarketPacks();
-    const packs = packsRaw.length > 0 ? packsRaw : reserveBundledMarketPacks();
+    const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : reserveBundledMarketPacks(studyTarget, lang);
+    const packs = packsRaw.length > 0 ? packsRaw : reserveBundledMarketPacks(studyTarget, lang);
 
     const nextMarketFp = computeMarketFp(packs);
     if (nextMarketFp !== marketFpRef.current) {

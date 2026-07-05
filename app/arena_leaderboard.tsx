@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import ContentWrap from '../components/ContentWrap';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -659,7 +660,7 @@ export default function ArenaLeaderboardScreen() {
                         paddingVertical: 12,
                         borderBottomWidth: 0.5,
                         borderBottomColor: t.border,
-                        backgroundColor: isMe ? t.accentBg : t.bgCard,
+                        backgroundColor: isMe ? t.accentBg : glassFill(t.bgCard, 0.32),
                         borderLeftWidth: 4,
                         borderLeftColor: isMe ? t.accent : 'transparent',
                         opacity: pressed ? 0.75 : 1,

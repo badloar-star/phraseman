@@ -10,6 +10,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
+import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
@@ -19,16 +20,19 @@ function explainPhraseRequestKey(req: ExplainPhraseRequest): string {
     phraseEn: req.phraseEn,
     phraseMeaning: req.phraseMeaning,
     lang: req.lang,
+    studyTarget: req.studyTarget ?? 'en',
   });
 }
 
 export interface ExplainPhraseRequest {
-  /** Английская фраза, как показана пользователю (сервер её нормализует и хэширует). */
+  /** Фраза на изучаемом языке, как показана пользователю (сервер её нормализует и хэширует). */
   phraseEn: string;
   /** Перевод/смысл на родном языке — сервер использует его для fallback-текста. */
   phraseMeaning: string;
   /** Язык пользователя (для генерации/fallback). */
   lang: string;
+  /** Изучаемый язык (StudyTarget 'en'|'fr'). Отсутствие ⇒ сервер по умолчанию 'en'. */
+  studyTarget?: string;
 }
 
 /**
@@ -49,6 +53,9 @@ export interface ExplainPhraseResponse {
 
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
 export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = explainPhraseRequestKey(req);
   const existing = explainPhraseInFlight.get(key);
   if (existing) return existing;

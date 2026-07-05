@@ -23,6 +23,7 @@ import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -509,10 +510,10 @@ function buildOfficialTrainingSourcesFromIds(
   lang: Lang,
   studyTarget?: RuntimeStudyTarget,
 ): TrainingSource[] {
-  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) return [];
-  return bundledPacksForOwned(ownedIds)
+  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)) return [];
+  return bundledPacksForOwned(ownedIds, studyTarget, lang)
     .map((pack) => {
-      const cards = buildMarketplaceOwnedCards([pack]);
+      const cards = buildMarketplaceOwnedCards([pack], lang, studyTarget);
       return {
         id: packKey(pack),
         kind: 'official' as const,
@@ -796,7 +797,7 @@ export default function FlashcardsSwipeScreen() {
   const { playCorrect } = useCorrectSound();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
-  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const requestedSourceId = useMemo(() => {
     const raw = Array.isArray(params.source) ? params.source[0] : params.source;
@@ -2101,7 +2102,7 @@ export default function FlashcardsSwipeScreen() {
 
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
 
-      <View style={[styles.heroCard, { backgroundColor: t.bgSurface, borderColor: t.border, shadowColor: t.cardShadow }]}>
+      <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), shadowColor: t.cardShadow }]}>
         <View style={styles.heroTop}>
           <View style={[styles.heroIcon, { backgroundColor: `${t.accent}22` }]}>
             <Ionicons name="sparkles-outline" size={22} color={t.accent} />
@@ -2117,7 +2118,7 @@ export default function FlashcardsSwipeScreen() {
             [text.weak, sessionInfo.weak],
             [text.fresh, sessionInfo.fresh],
           ].map(([label, value]) => (
-            <View key={String(label)} style={[styles.heroStat, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+            <View key={String(label)} style={[styles.heroStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
               <Text style={[styles.heroStatValue, { color: t.textPrimary, fontSize: f.body }]}>{value}</Text>
               <Text style={[styles.heroStatLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>{label}</Text>
             </View>
@@ -2152,7 +2153,7 @@ export default function FlashcardsSwipeScreen() {
           <Ionicons name="albums-outline" size={26} color={t.accent} />
         </View>
       ) : sources.length === 0 ? (
-        <View style={[styles.emptyBox, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+        <View style={[styles.emptyBox, { backgroundColor: glassFill(t.bgSurface, 0.32) }]}>
           <Ionicons name="albums-outline" size={26} color={t.textMuted} />
           <Text style={[styles.emptyTitle, { color: t.textPrimary, fontSize: f.body }]}>{text.noCardsTitle}</Text>
           <Text style={[styles.emptyText, { color: t.textMuted, fontSize: f.caption }]}>{text.noCardsSub || text.empty}</Text>
@@ -2169,10 +2170,9 @@ export default function FlashcardsSwipeScreen() {
                 activeOpacity={0.88}
                 style={[
                   styles.sourceRow,
-                  {
-                    borderColor: selected ? selectedAccent : t.border,
-                    backgroundColor: selected ? `${selectedAccent}18` : t.bgSurface,
-                  },
+                  selected
+                    ? { backgroundColor: `${selectedAccent}22`, borderWidth: 1.2, borderColor: selectedAccent }
+                    : { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
                 ]}
               >
                 <View style={[styles.sourceIcon, { backgroundColor: `${selected ? selectedAccent : source.accent}22` }]}>
@@ -2225,7 +2225,7 @@ export default function FlashcardsSwipeScreen() {
         >
           <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
         </TapScale>
-        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
           <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isPlanFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
           <Text style={[styles.doneTitle, isPlanFlashcardsTask && styles.planDoneTitle, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.bodyLg : f.h2 }]}>
             {cleanSession ? text.cleanDone : text.done}
@@ -2246,7 +2246,7 @@ export default function FlashcardsSwipeScreen() {
               [text.hints, stats.hints],
               [text.bestStreak, stats.bestStreak],
             ].map(([label, value]) => (
-              <View key={String(label)} style={[styles.doneStat, isPlanFlashcardsTask && styles.planDoneStat, { backgroundColor: t.bgCard }]}>
+              <View key={String(label)} style={[styles.doneStat, isPlanFlashcardsTask && styles.planDoneStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
                 <Text style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}>{value}</Text>
                 <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</Text>
               </View>
@@ -2423,7 +2423,13 @@ export default function FlashcardsSwipeScreen() {
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
               <Text
                 style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(22, f.h2 + 2) : Math.min(26, f.h1 + 3) }]}
-                numberOfLines={isPlanFlashcardsTask ? 3 : undefined}
+                // Shrink-to-fit (эталон FlashcardListItem): на Android жирный крупный
+                // центрированный текст без этого терял последнее слово при системном
+                // увеличении шрифта (напр. «to work» показывалось как «to»). numberOfLines
+                // обязателен — иначе Android игнорирует adjustsFontSizeToFit.
+                numberOfLines={isPlanFlashcardsTask ? 3 : 2}
+                adjustsFontSizeToFit
+                minimumFontScale={0.7}
               >
                 {currentPrompt.card.en}
               </Text>
@@ -2434,7 +2440,7 @@ export default function FlashcardsSwipeScreen() {
               ) : null}
             </View>
 
-            <View style={[styles.translationBox, isPlanFlashcardsTask && styles.planTranslationBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+            <View style={[styles.translationBox, isPlanFlashcardsTask && styles.planTranslationBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
               <Text style={[styles.translationLabel, { color: t.textMuted, fontSize: f.caption }]}>
                 {text.shownTranslation}
               </Text>
@@ -2575,7 +2581,7 @@ export default function FlashcardsSwipeScreen() {
       >
         <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
       </TapScale>
-      <View style={[styles.noCardsPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+      <View style={[styles.noCardsPanel, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
         <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22`, borderColor: t.border }]}>
           <Ionicons name="albums-outline" size={30} color={t.accent} />
         </View>
@@ -2692,7 +2698,6 @@ const styles = StyleSheet.create({
   heroCard: {
     marginTop: 18,
     borderRadius: 20,
-    borderWidth: 1,
     padding: 16,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.16,
@@ -2730,7 +2735,6 @@ const styles = StyleSheet.create({
   },
   heroStat: {
     flex: 1,
-    borderWidth: 1,
     borderRadius: 14,
     paddingVertical: 10,
     alignItems: 'center',
@@ -2796,7 +2800,6 @@ const styles = StyleSheet.create({
   },
   emptyBox: {
     minHeight: 150,
-    borderWidth: 1,
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
@@ -2817,7 +2820,6 @@ const styles = StyleSheet.create({
   sourceRow: {
     minHeight: 76,
     borderRadius: 18,
-    borderWidth: 1.2,
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -3030,7 +3032,6 @@ const styles = StyleSheet.create({
   translationBox: {
     minHeight: 86,
     borderRadius: 18,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 14,
@@ -3159,7 +3160,6 @@ const styles = StyleSheet.create({
   doneBox: {
     marginTop: 48,
     borderRadius: 24,
-    borderWidth: 1,
     padding: 18,
     alignItems: 'center',
   },
@@ -3276,7 +3276,6 @@ const styles = StyleSheet.create({
   noCardsPanel: {
     width: '100%',
     borderRadius: 24,
-    borderWidth: 1,
     padding: 22,
     alignItems: 'center',
   },

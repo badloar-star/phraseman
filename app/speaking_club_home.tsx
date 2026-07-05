@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -175,10 +176,10 @@ export default function SpeakingClubHome() {
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 28 }}>
           <View
             style={{
-              backgroundColor: t.bgCard,
+              backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 16,
-              borderWidth: 0.5,
-              borderColor: t.border,
+              borderTopWidth: 1,
+              borderTopColor: glassFill(t.accent, 0.14),
               padding: 14,
               marginBottom: 12,
             }}
@@ -260,10 +261,10 @@ export default function SpeakingClubHome() {
                   flexDirection: 'row',
                   alignItems: 'center',
                   gap: 12,
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: 12,
                   marginBottom: 8,
                   opacity: unlocked ? 1 : 0.45,
@@ -274,7 +275,7 @@ export default function SpeakingClubHome() {
                     width: 44,
                     height: 44,
                     borderRadius: 14,
-                    backgroundColor: t.bgSurface,
+                    backgroundColor: glassFill(t.bgCard, 0.32),
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
@@ -311,10 +312,10 @@ export default function SpeakingClubHome() {
 
           <View
             style={{
-              backgroundColor: t.bgCard,
+              backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 16,
-              borderWidth: 0.5,
-              borderColor: t.border,
+              borderTopWidth: 1,
+              borderTopColor: glassFill(t.accent, 0.14),
               padding: 14,
               marginTop: 4,
               opacity: 0.6,

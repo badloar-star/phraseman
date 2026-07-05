@@ -16,10 +16,12 @@ import Svg, { Circle, Line, RadialGradient, Stop, Defs } from 'react-native-svg'
 import Animated, {
   Easing,
   useAnimatedProps,
+  useAnimatedStyle,
   useSharedValue,
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { ConstellationStarfield } from './constellation_starfield';
 import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
@@ -112,12 +114,57 @@ function PopStar({ x, y, delay }: { x: number; y: number; delay: number }) {
   return <AnimatedCircle cx={x} cy={y} fill="url(#resStar)" animatedProps={props} />;
 }
 
+/**
+ * Анимированный чип награды (8.3): pop-in каскадом (scale-punch с задержкой) +
+ * count-up числа от 0 до target. Раньше награды были статичными цифрами.
+ * reduceMotion (8.4): при уменьшении движения — сразу финал, без анимации.
+ */
+function AnimatedRewardChip({
+  value, label, color, prefix, suffix, delay, reduceMotion,
+}: {
+  value: number; label: string; color: string; prefix?: string; suffix?: string;
+  delay: number; reduceMotion: boolean;
+}) {
+  const { theme: t, f } = useTheme();
+  const scale = useSharedValue(reduceMotion ? 1 : 0);
+  const [shown, setShown] = useState(reduceMotion ? value : 0);
+
+  useEffect(() => {
+    if (reduceMotion) { scale.value = 1; setShown(value); return; }
+    scale.value = withDelay(delay, withTiming(1, { duration: 360, easing: Easing.out(Easing.back(2)) }));
+    // Count-up от 0 к value за ~600мс после задержки pop-in.
+    const startAt = Date.now() + delay;
+    const dur = 600;
+    const target = value;
+    const id = setInterval(() => {
+      const now = Date.now();
+      if (now < startAt) return;
+      const p = Math.min(1, (now - startAt) / dur);
+      setShown(Math.round(target * p));
+      if (p >= 1) clearInterval(id);
+    }, 40);
+    return () => clearInterval(id);
+  }, [value, delay, reduceMotion, scale]);
+
+  const animStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
+  const sign = value > 0 && (prefix === '+' ) ? '+' : '';
+  return (
+    <Animated.View style={[styles.rewardChip, animStyle]}>
+      <Text style={[styles.rewardVal, { color, fontSize: f.h2 }]}>
+        {prefix && prefix !== '+' ? `${prefix} ` : ''}{sign}{shown}{suffix ?? ''}
+      </Text>
+      <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>{label}</Text>
+    </Animated.View>
+  );
+}
+
 export default function ConstellationResultsScreen() {
   const router = useRouter();
   const { matchId: rawMatchId } = useLocalSearchParams<{ matchId?: string }>();
   const matchId = typeof rawMatchId === 'string' ? rawMatchId : '';
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const reduceMotion = useReduceMotion();
 
   const [uid, setUid] = useState<string | null>(null);
   const [match, setMatch] = useState<ConstellationMatch | null>(null);
@@ -260,36 +307,44 @@ export default function ConstellationResultsScreen() {
           ))}
         </View>
 
-        {/* Мои награды: полёт XP/осколков/★ (F5, появляется после финализации) */}
+        {/* Мои награды: полёт XP/осколков/★ (F5/8.3) — pop-in каскадом + count-up,
+            больше не статичные цифры. reduce-motion → сразу финал. */}
         {myReward ? (
           <View style={styles.rewardRow}>
-            <View style={styles.rewardChip}>
-              <Text style={[styles.rewardVal, { fontSize: f.h2 }]}>+{myReward.xpGained}</Text>
-              <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>XP</Text>
-            </View>
+            <AnimatedRewardChip
+              value={myReward.xpGained}
+              label="XP"
+              color={t.textPrimary}
+              prefix="+"
+              delay={0}
+              reduceMotion={reduceMotion}
+            />
             {myReward.shardsGained > 0 ? (
-              <View style={styles.rewardChip}>
-                <Text style={[styles.rewardVal, { color: '#FFD166', fontSize: f.h2 }]}>◆ {myReward.shardsGained}</Text>
-                <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>
-                  {triLang(lang, {
-                    ru: 'осколки', uk: 'уламки', es: 'fragmentos', 'pt-BR': 'fragmentos',
-                    vi: 'mảnh', id: 'pecahan', tr: 'parça', pl: 'odłamki',
-                  })}
-                </Text>
-              </View>
+              <AnimatedRewardChip
+                value={myReward.shardsGained}
+                label={triLang(lang, {
+                  ru: 'осколки', uk: 'уламки', es: 'fragmentos', 'pt-BR': 'fragmentos',
+                  vi: 'mảnh', id: 'pecahan', tr: 'parça', pl: 'odłamki',
+                })}
+                color="#FFD166"
+                prefix="◆"
+                delay={160}
+                reduceMotion={reduceMotion}
+              />
             ) : null}
             {myReward.starDelta !== 0 ? (
-              <View style={styles.rewardChip}>
-                <Text style={[styles.rewardVal, { color: myReward.starDelta > 0 ? '#63E6A4' : '#FF7A9E', fontSize: f.h2 }]}>
-                  {myReward.starDelta > 0 ? '+' : ''}{myReward.starDelta}★
-                </Text>
-                <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>
-                  {triLang(lang, {
-                    ru: 'ранг', uk: 'ранг', es: 'rango', 'pt-BR': 'rank',
-                    vi: 'hạng', id: 'peringkat', tr: 'rütbe', pl: 'ranga',
-                  })}
-                </Text>
-              </View>
+              <AnimatedRewardChip
+                value={myReward.starDelta}
+                label={triLang(lang, {
+                  ru: 'ранг', uk: 'ранг', es: 'rango', 'pt-BR': 'rank',
+                  vi: 'hạng', id: 'peringkat', tr: 'rütbe', pl: 'ranga',
+                })}
+                color={myReward.starDelta > 0 ? '#63E6A4' : '#FF7A9E'}
+                prefix={myReward.starDelta > 0 ? '+' : ''}
+                suffix="★"
+                delay={320}
+                reduceMotion={reduceMotion}
+              />
             ) : null}
           </View>
         ) : null}

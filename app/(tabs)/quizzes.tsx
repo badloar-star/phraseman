@@ -45,6 +45,7 @@ import PremiumCard from '../../components/PremiumCard';
 import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ScreenGradient from '../../components/ScreenGradient';
+import { glassFill } from '../../components/GlassSurface';
 import { useTheme } from '../../components/ThemeContext';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i18n';
@@ -1236,18 +1237,17 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
         </View>
 
         {!DEV_CONTENT_UNLOCK && !isPremium && (
-          <View style={{
+          <View style={[{
             marginTop: 2,
             borderRadius: 16,
-            borderWidth: 1,
-            borderColor: freeQuizState.exhausted ? t.border : t.accent + '66',
-            backgroundColor: freeQuizState.exhausted ? t.bgCard : t.accentBg,
             paddingHorizontal: 14,
             paddingVertical: 12,
             flexDirection: 'row',
             alignItems: 'center',
             gap: 10,
-          }}>
+          }, freeQuizState.exhausted
+            ? { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
+            : { backgroundColor: t.accentBg, borderWidth: 1, borderColor: t.accent + '66' }]}>
             <Ionicons
               name={freeQuizState.exhausted ? 'lock-closed' : 'flash-outline'}
               size={18}
@@ -1280,7 +1280,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
 
       <Modal transparent animationType="fade" visible={showNoQuestions} onRequestClose={() => setShowNoQuestions(false)}>
         <Pressable onPress={() => setShowNoQuestions(false)} style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingHorizontal:32 }}>
-          <Pressable onPress={() => {}} style={{ width:'100%', maxWidth:360, backgroundColor:t.bgCard, borderRadius:24, borderWidth:0.5, borderColor:t.border, padding:24, alignItems:'center' }}>
+          <Pressable onPress={() => {}} style={{ width:'100%', maxWidth:360, backgroundColor:t.bgCard, borderRadius:24, padding:24, alignItems:'center' }}>
             <Text style={{ color:t.textPrimary, fontSize:f.body, lineHeight:f.body * 1.35, textAlign:'center', fontWeight:'700' }}>
               {triLang(lang, {
   ru: 'Вопросы временно недоступны',
@@ -1317,7 +1317,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
 
       <Modal transparent animationType="fade" visible={showSourceGate} onRequestClose={() => setShowSourceGate(false)}>
         <Pressable onPress={() => setShowSourceGate(false)} style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingHorizontal:32 }}>
-          <Pressable onPress={() => {}} style={{ width:'100%', maxWidth:380, backgroundColor:t.bgCard, borderRadius:24, borderWidth:0.5, borderColor:t.border, padding:24 }}>
+          <Pressable onPress={() => {}} style={{ width:'100%', maxWidth:380, backgroundColor:t.bgCard, borderRadius:24, padding:24 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <Ionicons name="lock-closed-outline" size={22} color={t.accent} />
               <Text style={{ color:t.textPrimary, fontSize:f.h2, lineHeight:f.h2 * 1.2, fontWeight:'900', flex: 1 }}>
@@ -2204,7 +2204,10 @@ function QuizGame({
           {(() => {
             const { level: lv, xpNeeded } = getXPProgress(totalXP + score);
             return (
-              <View style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 9 : 14, borderWidth:0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, padding:14, width:'100%', flexDirection:'row', alignItems:'center', gap:12, marginBottom:28, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}>
+              <View style={[isCompassTheme
+                ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderRadius: 9, borderWidth:0.5, borderColor: COMPASS_RICH.hairlineQuiet, overflow: 'hidden' }
+                : { backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
+                { padding:14, width:'100%', flexDirection:'row', alignItems:'center', gap:12, marginBottom:28 }, isCompassTheme && compassShadow(1)]}>
                 <LevelBadge level={lv} size={40} />
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>
@@ -2903,8 +2906,8 @@ function QuizGame({
           {showHardTip && settings.hardMode && !hardTipDismissed && (
             <View style={{
               marginTop: 8,
-              backgroundColor: t.bgCard, borderRadius: 14,
-              padding: 14, borderWidth: 0.5, borderColor: t.border,
+              backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14,
+              padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),
             }}>
               <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 19, marginBottom: 10 }}>
                 {triLang(lang, {
@@ -2920,7 +2923,7 @@ function QuizGame({
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity
-                  style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 10, padding: 10, alignItems: 'center', borderWidth: 0.5, borderColor: t.border }}
+                  style={{ flex: 1, backgroundColor: glassFill(t.bgCard, 0.32), borderRadius: 10, padding: 10, alignItems: 'center' }}
                   onPress={async () => {
                     hapticTap();
                                         const next = { ...settings, hardMode: false };
@@ -2981,7 +2984,7 @@ function QuizGame({
         onPress={() => { hapticTap(); setShowTimeoutAlert(false); onBackRef.current(); }}
       >
         <Pressable onPress={e => e.stopPropagation()}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 320, width: '90%' }}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', maxWidth: 320, width: '90%' }}>
             <Text style={{ fontSize: 52, marginBottom: 12 }} numberOfLines={1}>⏰</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
@@ -3049,7 +3052,7 @@ function QuizGame({
         onPress={() => { hapticTap(); setShowAgainConfirm(false); }}
       >
         <Pressable onPress={e => e.stopPropagation()}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 340, width: '90%' }}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', maxWidth: 340, width: '90%' }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
   ru: 'Ещё одна попытка?',
@@ -3138,9 +3141,9 @@ function FrenchQuizUnavailable() {
           <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
             <View style={{
               borderRadius: 18,
-              borderWidth: 1,
-              borderColor: t.border,
-              backgroundColor: t.bgCard,
+              borderTopWidth: 1,
+              borderTopColor: glassFill(t.accent, 0.14),
+              backgroundColor: glassFill(t.bgSurface, 0.46),
               padding: 18,
               gap: 12,
             }}>

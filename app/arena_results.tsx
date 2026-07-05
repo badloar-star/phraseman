@@ -14,6 +14,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import XpGainBadge from '../components/XpGainBadge';
 import { addBattlePassPoints } from './arena_battle_pass_store';
 import { bpForMatch } from './arena_battle_pass';
@@ -1807,7 +1808,7 @@ export default function DuelResultsScreen() {
         </Animated.View>
 
         {isRoomRun ? (
-          <View style={[styles.leaderboard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+          <View style={[styles.leaderboard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopColor: glassFill(t.accent, 0.14) }]}>
             <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
               {triLang(lang, {
                 ru: `Таблица комнаты ${cleanRoomCode}`,
@@ -1858,7 +1859,7 @@ export default function DuelResultsScreen() {
             })}
           </View>
         ) : (
-          <View style={[styles.leaderboard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+          <View style={[styles.leaderboard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopColor: glassFill(t.accent, 0.14) }]}>
             <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
               {triLang(lang, {
                 ru: 'Результаты матча',
@@ -1983,7 +1984,7 @@ export default function DuelResultsScreen() {
             }
           }
           return (
-            <View style={[styles.leaderboard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+            <View style={[styles.leaderboard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopColor: glassFill(t.accent, 0.14) }]}>
               <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Твои очки',
@@ -2104,7 +2105,7 @@ export default function DuelResultsScreen() {
           {/* Реванш — приоритет UI: входящий offer → баннер с принять/отказаться;
               исходящий pending → плашка ожидания; иначе — кнопка «Реванш». */}
           {!isMockSession && !isForfeited && !opponentSurrendered && rematchPending && isRematchTarget && (
-            <View style={[styles.rematchBanner, { backgroundColor: t.bgCard, borderColor: t.gold }]}>
+            <View style={[styles.rematchBanner, { backgroundColor: glassFill(t.bgCard, 0.5), borderColor: t.gold }]}>
               <Text style={[{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }]}>
                 🥊 {rematchOffer?.byName ?? triLang(lang, {
                   ru: 'Соперник',
@@ -2740,7 +2741,7 @@ const styles = StyleSheet.create({
     width: 46,
     height: 46,
   },
-  leaderboard: { borderRadius: 20, borderWidth: 1, overflow: 'hidden' },
+  leaderboard: { borderRadius: 20, borderTopWidth: 1, overflow: 'hidden' },
   leaderboardTitle: {
     paddingHorizontal: 16, paddingVertical: 10, fontWeight: '600', textTransform: 'uppercase',
   },

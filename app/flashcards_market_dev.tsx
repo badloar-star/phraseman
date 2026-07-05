@@ -6,6 +6,7 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -45,7 +46,7 @@ export default function FlashcardsMarketDevScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const ifaceLang = bundleLang(lang);
-  const frenchPacksBlocked = !flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const frenchPacksBlocked = !flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const frenchGateCopy = frenchFlashcardsGateCopy(lang);
   const [packs, setPacks] = useState<FlashcardMarketPack[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,14 +72,14 @@ export default function FlashcardsMarketDevScreen() {
     }
     const [balance, list, owned] = await Promise.all([
       getShardsBalance(),
-      loadMarketplacePacks(),
+      loadMarketplacePacks(studyTarget, lang),
       loadDevOwnedPackIds(studyTarget),
     ]);
     setShards(balance);
     setPacks(list);
     setOwnedPackIds(owned);
     setLoading(false);
-  }, [frenchPacksBlocked, studyTarget]);
+  }, [frenchPacksBlocked, lang, studyTarget]);
 
   useEffect(() => {
     loadData();
@@ -215,7 +216,7 @@ export default function FlashcardsMarketDevScreen() {
             </View>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
-            <View style={{ backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, borderRadius: 14, padding: 16 }}>
+            <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), borderRadius: 14, padding: 16 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>{frenchGateCopy.title}</Text>
               <Text style={{ marginTop: 8, color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }}>
                 {frenchGateCopy.body}
@@ -244,7 +245,7 @@ export default function FlashcardsMarketDevScreen() {
         </View>
 
         <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }}>
-          <View style={{ backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, borderRadius: 14, padding: 12 }}>
+          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), borderRadius: 14, padding: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>
               {triLang(lang, {
@@ -272,7 +273,7 @@ export default function FlashcardsMarketDevScreen() {
           </View>
 
           {!loading && ownedPackIds.length > 0 && (
-            <View style={{ backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, borderRadius: 14, padding: 12, gap: 8 }}>
+            <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), borderRadius: 14, padding: 12, gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, { ru: 'Мои наборы (DEV)', uk: 'Мої набори (DEV)', es: 'Mis packs (DEV)', 'pt-BR': 'Meus packs (DEV)', vi: 'Bộ của tôi (DEV)', id: 'Pack saya (DEV)', tr: 'Paketlerim (DEV)', pl: 'Moje pakiety (DEV)' })}
               </Text>
@@ -317,7 +318,7 @@ export default function FlashcardsMarketDevScreen() {
               const isOwned = ownedPackIds.includes(pack.id);
               const isBuying = buyingPackId === pack.id;
               return (
-                <View key={pack.id} style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 14 }}>
+                <View key={pack.id} style={{ backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 16, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), padding: 14 }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
                     <View style={{ flex: 1 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }}>{localizedTitle}</Text>

@@ -1006,14 +1006,10 @@ function LeagueChatPanel({
                       maxWidth: '88%',
                       paddingHorizontal: 12,
                       paddingVertical: 6,
-                      borderRadius: 999,
-                      backgroundColor: t.bgSurface,
-                      borderWidth: 0.5,
-                      borderColor: t.border,
-                      opacity: 0.92,
+                      opacity: 0.85,
                     }}
                   >
-                    <Ionicons name={systemMessageIcon(systemType)} size={13} color={t.textMuted} />
+                    <Ionicons name={systemMessageIcon(systemType)} size={13} color={t.textGhost} />
                     <Text
                       testID={`league-chat-system-text-${m.id}`}
                       style={{
@@ -1041,7 +1037,6 @@ function LeagueChatPanel({
               : (m.authorAvatar || String(getBestAvatarForLevel(1)));
             const avatarSize = 36;
             const avatarGap = 8;
-            const sideOffset = avatarSize + avatarGap + 4;
             // Тап по аватару/имени чужого автора открывает его карточку. Своё имя/аватар
             // и оптимистичные (ещё не отправленные) сообщения не кликабельны.
             const canOpenAuthor = !isMine && !localMessage && !!onAuthorPress && !!m.authorUid;
@@ -1078,129 +1073,85 @@ function LeagueChatPanel({
               plainAvatar
             );
             const highlighted = highlightedMessageId === m.id;
+            // Threads-стиль: ВСЕ сообщения слева (и свои тоже), плоско, без пузырей и
+            // рамок. Аватар слева, «имя · время» строкой, текст, действия снизу.
+            // Подсветка deep-link/реплая — мягкий акцентный фон вместо толстой рамки.
+            const timeLabelText = new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             return (
               <View
                 key={m.id}
                 testID={`league-chat-message-${m.id}`}
                 onLayout={(e) => { messageLayoutsRef.current[m.id] = e.nativeEvent.layout.y; }}
                 style={{
-                  alignItems: isMine ? 'flex-end' : 'flex-start',
+                  flexDirection: 'row',
+                  gap: avatarGap,
+                  paddingVertical: 10,
                   paddingHorizontal: 2,
+                  borderRadius: highlighted ? 12 : 0,
+                  backgroundColor: highlighted ? 'rgba(71,200,112,0.10)' : 'transparent',
                 }}
               >
-                {!isMine && m.authorName ? (
-                  canOpenAuthor ? (
-                    <TouchableOpacity
-                      testID={`league-chat-author-name-${m.id}`}
-                      accessibilityRole="button"
-                      accessibilityLabel={accountAccessibilityLabel}
-                      activeOpacity={0.7}
-                      onPress={openAuthor}
-                      style={{ marginLeft: sideOffset + 6, marginBottom: 3, maxWidth: '86%' }}
-                    >
-                      <Text
-                        numberOfLines={1}
-                        style={{
-                          color: t.textMuted,
-                          fontSize: Math.max(10, f.caption - 1),
-                          fontWeight: '800',
-                        }}
-                      >
-                        {m.authorName}
-                      </Text>
-                    </TouchableOpacity>
-                  ) : (
-                    <Text
-                      numberOfLines={1}
-                      style={{
-                        color: t.textMuted,
-                        fontSize: Math.max(10, f.caption - 1),
-                        fontWeight: '800',
-                        marginLeft: sideOffset + 6,
-                        marginBottom: 3,
-                        maxWidth: '86%',
-                      }}
-                    >
-                      {m.authorName}
-                    </Text>
-                  )
-                ) : null}
-
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: isMine ? 'flex-end' : 'flex-start',
-                    alignItems: 'flex-end',
-                    gap: avatarGap,
-                    alignSelf: isMine ? 'flex-end' : 'flex-start',
-                    maxWidth: '100%',
-                  }}
-                >
-                  {!isMine && avatarNode}
-                  <View
-                    style={{
-                      maxWidth: '86%',
-                      flexShrink: 1,
-                      borderRadius: 18,
-                      borderBottomLeftRadius: isMine ? 18 : 6,
-                      borderBottomRightRadius: isMine ? 6 : 18,
-                      backgroundColor: isMine ? t.accent : t.bgSurface,
-                      borderWidth: highlighted ? 1.5 : (isMine ? 0 : 0.5),
-                      borderColor: highlighted ? (isMine ? t.correctText : t.accent) : t.border,
-                      paddingHorizontal: 12,
-                      paddingVertical: 8,
-                    }}
-                  >
-                    {m.replyToMessageId ? (
+                <View style={{ paddingTop: 2 }}>{avatarNode}</View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  {/* Строка «имя · время» — как в Threads. Имя чужого автора кликабельно. */}
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+                    {canOpenAuthor ? (
                       <TouchableOpacity
-                        activeOpacity={0.8}
-                        onPress={() => scrollToMessage(m.replyToMessageId!)}
-                        style={{
-                          flexDirection: 'row',
-                          borderRadius: 10,
-                          backgroundColor: isMine ? 'rgba(0,0,0,0.18)' : t.bgCard,
-                          marginBottom: 6,
-                          overflow: 'hidden',
-                        }}
+                        testID={`league-chat-author-name-${m.id}`}
+                        accessibilityRole="button"
+                        accessibilityLabel={accountAccessibilityLabel}
+                        activeOpacity={0.7}
+                        onPress={openAuthor}
+                        style={{ maxWidth: '70%' }}
                       >
-                        <View style={{ width: 3, backgroundColor: isMine ? t.correctText : t.accent }} />
-                        <View style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 5, minWidth: 0 }}>
-                          <Text numberOfLines={1} style={{ color: isMine ? t.correctText : t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
-                            {m.replyToKind === 'system' ? 'Compass' : (m.replyToAuthorName || '')}
-                          </Text>
-                          <Text numberOfLines={1} style={{ color: isMine ? t.correctText : t.textMuted, opacity: isMine ? 0.82 : 1, fontSize: Math.max(10, f.caption - 1), fontWeight: '700' }}>
-                            {m.replyToText || ''}
-                          </Text>
-                        </View>
+                        <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
+                          {m.authorName}
+                        </Text>
                       </TouchableOpacity>
-                    ) : null}
-                    <Text testID={`league-chat-message-text-${m.id}`} style={{ color: isMine ? t.correctText : t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.38) }}>
-                      {m.text}
-                    </Text>
-                    <Text style={{ color: isMine ? t.correctText : t.textGhost, opacity: isMine ? 0.68 : 1, fontSize: Math.max(9, f.caption - 2), alignSelf: 'flex-end', marginTop: 3, fontWeight: '700' }}>
-                      {new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </Text>
+                    ) : (
+                      <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900', maxWidth: '70%' }}>
+                        {isMine ? (m.authorName || 'You') : m.authorName}
+                      </Text>
+                    )}
+                    <Text style={{ color: t.textGhost, fontSize: Math.max(10, f.caption - 1), fontWeight: '800' }}>· {timeLabelText}</Text>
                   </View>
-                  {isMine && avatarNode}
-                </View>
 
-                <View
+                  {m.replyToMessageId ? (
+                    <TouchableOpacity
+                      activeOpacity={0.8}
+                      onPress={() => scrollToMessage(m.replyToMessageId!)}
+                      style={{ flexDirection: 'row', borderRadius: 10, backgroundColor: t.bgCard, marginTop: 6, overflow: 'hidden' }}
+                    >
+                      <View style={{ width: 3, backgroundColor: t.accent }} />
+                      <View style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 5, minWidth: 0 }}>
+                        <Text numberOfLines={1} style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
+                          {m.replyToKind === 'system' ? 'Compass' : (m.replyToAuthorName || '')}
+                        </Text>
+                        <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700' }}>
+                          {m.replyToText || ''}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ) : null}
+
+                  <Text testID={`league-chat-message-text-${m.id}`} style={{ color: t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.38), marginTop: 3 }}>
+                    {m.text}
+                  </Text>
+
+                  <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    gap: 6,
-                    alignSelf: isMine ? 'flex-end' : 'flex-start',
-                    marginTop: 3,
-                    marginRight: isMine ? sideOffset : 0,
-                    marginLeft: isMine ? 0 : sideOffset,
-                    paddingHorizontal: 4,
-                    maxWidth: '86%',
+                    gap: 18,
+                    marginTop: 8,
+                    paddingHorizontal: 0,
+                    maxWidth: '100%',
                   }}
                   >
                     {!localMessage && (
                       <LeagueChatReactions
                         message={m as LeagueChatMessage}
-                        align={isMine ? 'flex-end' : 'flex-start'}
+                        align={'flex-start'}
                         t={t}
                         f={f}
                         compact
@@ -1302,6 +1253,7 @@ function LeagueChatPanel({
                       <Ionicons name={deletingMessageIds[m.id] ? 'time-outline' : 'trash-outline'} size={14} color={t.textMuted} />
                     </TouchableOpacity>
                   )}
+                  </View>
                 </View>
 
               </View>
@@ -1311,7 +1263,7 @@ function LeagueChatPanel({
 
         <View
           testID="league-chat-composer"
-          style={{ marginBottom: keyboardBottomInset, paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: t.bgCard }}
+          style={{ marginBottom: keyboardBottomInset, paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, backgroundColor: 'transparent' }}
         >
           {draftBlocked && (
             <Text style={{ color: monoIcon(themeMode, '#E05252'), fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>

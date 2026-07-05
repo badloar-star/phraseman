@@ -57,6 +57,7 @@ export type RemoteBoolKey =
   | 'lifetime_button_enabled'
   | 'explain_enabled'
   | 'ideas_enabled'
+  | 'ai_global_disable'
   | 'compass_enabled'
   | 'compass_ai_voice_enabled'
   | 'compass_deep_dive_enabled'
@@ -299,6 +300,14 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // раздел у всех живьём (onSnapshot), без релиза — уже поданные идеи в админ-очереди
   // остаются, и адмін может их закрыть.
   ideas_enabled: false,
+  // ai_global_disable — ГЛАВНЫЙ рубильник ВСЕГО ИИ (Компас, «объясни», разбор
+  // ошибок, диалоги, разговорный клуб, комментарий дня). Дефолт FALSE = ИИ
+  // работает как сейчас. Админ ставит TRUE в «Пульте» → у всех живьём (onSnapshot):
+  //  • ручные вызовы ИИ показывают забавную плашку/экран-заглушку (Компас «отдыхает»);
+  //  • фоновые/авто-вызовы просто не запускаются — юзер ничего не видит.
+  // Это НАД-флаг: перекрывает compass_enabled/explain_enabled и т.д. Сервер тоже
+  // уважает его (aiGloballyDisabled в functions) — клиентский гейт нельзя обойти.
+  ai_global_disable: false,
   // ── Компас (глобальный обучающий оркестратор) ──────────────────────────────
   // compass_enabled — ГЛАВНЫЙ выключатель всей фичи. Дефолт TRUE = kill-switch:
   // Компас включён из коробки; админ-тумблер в «Пульте» может мгновенно выключить
@@ -930,8 +939,13 @@ export function getConstellationsPlacement(): ConstellationsPlacement {
  * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже
  * имеют силу ТОЛЬКО когда главный включён (см. app/compass/compass_flags.ts).
  */
-export const isCompassEnabled = () => getRemoteBool('compass_enabled');
-export const isCompassAiVoiceEnabled = () => getRemoteBool('compass_ai_voice_enabled');
+/**
+ * Глобальный рубильник всего ИИ. TRUE = весь ИИ выключен (ручные вызовы → забавная
+ * заглушка, фоновые → тихо no-op). Это НАД-флаг: все ИИ-геттеры ниже уважают его.
+ */
+export const isAiGloballyDisabled = () => getRemoteBool('ai_global_disable');
+export const isCompassEnabled = () => getRemoteBool('compass_enabled') && !isAiGloballyDisabled();
+export const isCompassAiVoiceEnabled = () => getRemoteBool('compass_ai_voice_enabled') && !isAiGloballyDisabled();
 export const isCompassDeepDiveEnabled = () => getRemoteBool('compass_deep_dive_enabled');
 export const isCompassLessonInviteEnabled = () => getRemoteBool('compass_lesson_invite_enabled');
 export const isCompassEconomyEnabled = () => getRemoteBool('compass_economy_enabled');

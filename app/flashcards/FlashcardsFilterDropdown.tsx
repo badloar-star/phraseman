@@ -40,8 +40,6 @@ export default function FlashcardsFilterDropdown({
           zIndex: 9999,
           backgroundColor: t.bgSurface,
           borderRadius: 14,
-          borderWidth: 1,
-          borderColor: t.border,
           minWidth: 200,
           maxHeight: 420,
           shadowColor: '#000',

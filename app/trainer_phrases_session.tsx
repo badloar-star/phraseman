@@ -188,7 +188,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   return (
     <View style={{ flex: 1, gap: 16 }}>
       {/* Перевод — задание */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+      <View style={[styles.translationBox, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
         <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
           {triLang(lang, {
@@ -211,7 +211,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
       <Animated.View style={[
         styles.assemblyBox,
         isCompassTheme && compassShadow(2),
-        { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? (feedback === 'correct' ? COMPASS_RICH.hairlineStrong : feedback === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : borderColor, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
+        { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? (feedback === 'correct' ? COMPASS_RICH.hairlineStrong : feedback === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : borderColor, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (feedback === 'none' ? 0 : 1.5), borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
       ]}>
         {isCompassTheme ? <CompassDepthSurface radius={10} selected={feedback !== 'none'} quiet={feedback === 'none'} /> : null}
         {selected.length === 0
@@ -232,7 +232,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
                 <TouchableOpacity
                   key={tile.slot}
                   onPress={() => tapSelected(tile)}
-                  style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : borderColor + '22', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : borderColor, borderRadius: isCompassTheme ? 8 : 10, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                  style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : borderColor + '22', borderRadius: isCompassTheme ? 8 : 10, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                 >
                   {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
                   <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body }]}>{tile.text}</Text>
@@ -258,8 +258,8 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
                 isCompassTheme && compassShadow(1),
                 {
                   backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard),
-                  borderColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border),
-                  borderWidth: on ? 1.5 : 1,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                  borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
                   borderRadius: isCompassTheme ? 8 : 10,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                 },
@@ -385,7 +385,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   return (
     <View style={{ flex: 1, gap: 16 }}>
       {/* Перевод */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+      <View style={[styles.translationBox, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
         <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
           {triLang(lang, {
@@ -434,7 +434,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
                 {
                   backgroundColor: bg,
                   borderColor: bc,
-                  borderWidth: on ? 1.5 : 1.5,
+                  borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (feedback === 'none' && !on ? 0 : 1.5),
                   borderRadius: isCompassTheme ? 9 : 14,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                   opacity,
@@ -715,7 +715,7 @@ export default function TrainerPhrasesSession() {
                 variant="icon-flag"
                 accessibilityLabel="Сообщить об ошибке во фразе"
                 style={[
-                  { width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border, marginLeft: 8 },
+                  { width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, marginLeft: 8 },
                   isCompassTheme && { borderRadius: 9, backgroundColor: COMPASS_RICH.charcoalRaised, borderColor: COMPASS_RICH.hairline, ...compassShadow(1) },
                 ]}
               />
@@ -764,7 +764,6 @@ const styles = StyleSheet.create({
   progressBar: { marginHorizontal: 16 },
   translationBox: {
     borderRadius: 16,
-    borderWidth: StyleSheet.hairlineWidth,
     padding: 16,
     gap: 6,
   },
@@ -774,8 +773,6 @@ const styles = StyleSheet.create({
   assemblyBox: {
     minHeight: 72,
     borderRadius: 16,
-    borderWidth: 1.5,
-    borderStyle: 'dashed',
     padding: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -787,7 +784,6 @@ const styles = StyleSheet.create({
   },
   tile: {
     borderRadius: 10,
-    borderWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
@@ -801,7 +797,6 @@ const styles = StyleSheet.create({
   checkBtnText: { color: '#fff', fontWeight: '800' },
   optionBtn: {
     borderRadius: 14,
-    borderWidth: 1.5,
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',

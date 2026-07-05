@@ -144,12 +144,11 @@ export interface ConstellationQueueEntry {
   matchId?: string | null;
 }
 
-/** Ответ callable на 'answer' — микро-обучение после фиксации (F3/D10). */
+/** Ответ callable на 'answer' — верно/неверно после фиксации (без разбора). */
 export interface ConstellationAnswerResult {
   ok: boolean;
   correct?: boolean;
   correctIndex?: number;
-  rule?: string;
   done?: boolean;
   duplicate?: boolean;
 }

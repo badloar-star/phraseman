@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useMemo } from 'react';
+import { Platform } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -31,9 +32,15 @@ import Svg, {
   Stop,
   Text as SvgText,
 } from 'react-native-svg';
+import type { Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
+import { isLowEndDevice } from '../hooks/device_perf_tier';
+import { useDevForceLowEnd } from '../hooks/dev_force_low_end';
 import type { ConstellationMatchPlayer, ConstellationStar } from './types/constellations';
 import { allMapHexes, hexKey, parseHexKey, ringOf, type ConstellationRing, type Hex } from './constellations_hex';
 import { starName } from './constellation_star_names';
+
+const DEVICE_IS_LOW_END = isLowEndDevice(Platform);
 
 /** Цвета слотов игроков — единые для карты, HUD и легенды. */
 export const CONSTELLATION_SLOT_COLORS = ['#5AC8FA', '#FF7A9E', '#B08CFF', '#FFC65C'] as const;
@@ -96,6 +103,10 @@ interface CellRender {
 function SkyMapInner({
   stars, homes, players, highlightKeys, selectedKey, myTargetKey, mySlot, onStarPress, flashKey,
 }: SkyMapProps) {
+  const { lang } = useLang();
+  // Авто-лайт (слабый Android-тир); dev-форс (null = реальный тир) переопределяет для ручной проверки.
+  const devForce = useDevForceLowEnd();
+  const isLowEnd = devForce ?? DEVICE_IS_LOW_END;
   const cells = useMemo((): CellRender[] => {
     const list = allMapHexes().map((hex) => {
       const key = hexKey(hex);
@@ -314,16 +325,28 @@ function SkyMapInner({
                 8.5px «не видно»), с тёмной подложкой-обводкой чтобы читалось. */}
             {(isPolar || isHome) ? (() => {
               const ny = isPolar ? c.top[1] + 30 : c.top[1] - 17;
+              const label = starName(c.key, lang);
+              // Авто-лайт (F9): react-native-svg не поддерживает paintOrder,
+              // поэтому обводка+заливка требуют двух SvgText — на слабом тире
+              // рисуем ОДИН проход (только заливку) вместо двух.
+              if (isLowEnd) {
+                return (
+                  <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
+                    fill="#EAF2FF" fontWeight="700">
+                    {label}
+                  </SvgText>
+                );
+              }
               return (
                 <>
                   {/* тёмная обводка снизу — читаемость на любом фоне */}
                   <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
                     fill="none" stroke="#05060E" strokeWidth={3} fontWeight="700">
-                    {starName(c.key)}
+                    {label}
                   </SvgText>
                   <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
                     fill="#EAF2FF" fontWeight="700">
-                    {starName(c.key)}
+                    {label}
                   </SvgText>
                 </>
               );
@@ -338,12 +361,17 @@ function SkyMapInner({
           stroke="url(#beamG)" strokeWidth={3} strokeDasharray="7 5" />
       ) : null}
 
-      {/* синематик захвата (2.6): ударная волна + искры, анимировано reanimated */}
+      {/* синематик захвата (2.6): ударная волна + искры, анимировано reanimated.
+          8.9: цвет вспышки = цвет ЗАХВАТЧИКА (владельца звезды после резолва),
+          чтобы читалось «чей захват»; Полярная и нейтрал — fallback. */}
       {flashKey ? (() => {
         const h = parseHexKey(flashKey);
         if (!h) return null;
         const [x, y] = topPx(h);
-        const color = flashKey === '0,0' ? POLAR_GOLD : '#EAF2FF';
+        const capturerSlot = stars[flashKey]?.owner;
+        const color = typeof capturerSlot === 'number'
+          ? CONSTELLATION_SLOT_COLORS[capturerSlot]
+          : flashKey === '0,0' ? POLAR_GOLD : '#EAF2FF';
         return <CaptureBurst key={flashKey} x={x} y={y} color={color} />;
       })() : null}
 
@@ -371,10 +399,13 @@ const AnimatedLine = Animated.createAnimatedComponent(Line);
 /** Ударная волна захвата: 2 расходящихся кольца + 6 искр. Одноразово, гаснет ~900мс. */
 function CaptureBurst({ x, y, color }: { x: number; y: number; color: string }) {
   const p = useSharedValue(0);
+  const reduceMotion = useReduceMotion();
   React.useEffect(() => {
+    // reduce-motion (8.4): без расходящейся ударной волны — сразу «погасла».
+    if (reduceMotion) { p.value = 1; return; }
     p.value = 0;
     p.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
-  }, [x, y, p]);
+  }, [x, y, p, reduceMotion]);
 
   const ring1 = useAnimatedProps(() => ({
     r: 8 + p.value * 30,

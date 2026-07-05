@@ -26,6 +26,7 @@ import { useLang } from '../components/LangContext';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { hapticCelebrate } from '../hooks/use-haptics';
 import { canStartArenaMatch } from './arena_access_gate';
 import { safeRouterBack } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
@@ -186,6 +187,7 @@ export default function ConstellationSearchScreen() {
       setSlotsFilled(4);
       if (match.starfall?.golden) {
         setState({ kind: 'starfall', matchId });
+        hapticCelebrate(); // 8.2: Звездопад — сильная праздничная вибрация
         try {
           starfallPlayer.volume = STARFALL_SFX_VOLUME;
           starfallPlayer.seekTo(0);

@@ -184,7 +184,6 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
         isCompassTheme && compassShadow(3),
         {
           backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
           borderRadius: isCompassTheme ? 12 : 24,
           overflow: isCompassTheme ? 'hidden' : 'visible',
         },
@@ -504,7 +503,7 @@ export default function TrainerWordsSession() {
           <View style={styles.deckContainer}>
             {/* Показываем следующую карточку под текущей */}
             {deck[current + 1] && (
-              <View style={[styles.card, styles.cardBack, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 12 : 24, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+              <View style={[styles.card, styles.cardBack, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard, borderRadius: isCompassTheme ? 12 : 24, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
                 {isCompassTheme ? <CompassDepthSurface radius={12} quiet /> : null}
               </View>
             )}
@@ -529,8 +528,7 @@ export default function TrainerWordsSession() {
                 !isCompassTheme && styles.btnWrong,
                 isCompassTheme && compassShadow(1),
                 {
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : '#E05050' + '11',
-                  borderColor: isCompassTheme ? COMPASS_RICH.copper : '#E05050' + '66',
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : '#E05050' + '22',
                   borderRadius: isCompassTheme ? 9 : 18,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                 },
@@ -559,8 +557,7 @@ export default function TrainerWordsSession() {
                 !isCompassTheme && styles.btnCorrect,
                 isCompassTheme && compassShadow(1),
                 {
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : '#40C080' + '11',
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : '#40C080' + '66',
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : '#40C080' + '22',
                   borderRadius: isCompassTheme ? 9 : 18,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                 },
@@ -616,7 +613,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: SCREEN_W - 48,
     borderRadius: 24,
-    borderWidth: 1,
     padding: 32,
     alignItems: 'center',
     shadowColor: '#000',
@@ -658,11 +654,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 4,
     borderRadius: 18,
-    borderWidth: 1.5,
     paddingVertical: 14,
   },
-  btnWrong:   { backgroundColor: '#E05050' + '11' },
-  btnCorrect: { backgroundColor: '#40C080' + '11' },
+  btnWrong:   { backgroundColor: '#E05050' + '22' },
+  btnCorrect: { backgroundColor: '#40C080' + '22' },
   btnLabel: { fontWeight: '700' },
   doneContainer: {
     flex: 1,

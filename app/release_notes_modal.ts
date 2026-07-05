@@ -8,7 +8,7 @@ import { getAppReleaseBuildId } from './app_build_id';
 import { IS_EXPO_GO } from './config';
 
 /** false — окно «что нового» не показываем (текст устарел / не нужен). */
-export const RELEASE_NOTES_MODAL_ENABLED = true;
+export const RELEASE_NOTES_MODAL_ENABLED = false;
 export const RELEASE_NOTES_MIN_BUILD_ID = 73;
 
 /**

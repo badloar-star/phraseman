@@ -9,9 +9,15 @@ import {
   flashcardsMarketplaceBuiltCardsCacheKey,
   flashcardsMarketDevOwnedPacksKey,
   flashcardsOwnedPacksKey,
+  storageStudyTarget,
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
+import {
+  buildFrenchMarketplaceOwnedCards,
+  ensureFrenchRemoteMarketplacePacks,
+  getCachedFrenchRemoteMarketplacePacks,
+} from '../french_flashcard_remote_runtime';
 import bundledManifest from './bundles/bundled_marketplace_manifest.json';
 import { derivePackCodeName, victoriaMetaFromPackJson, type VictoriaPackFile } from './bundles/victoriaBundleShared';
 import {
@@ -102,15 +108,16 @@ export function marketOwnedIdsCacheKey(ownedIds: string[]): string {
   return [...ownedIds].sort().join('\0');
 }
 
-function marketplaceCardsAllowedForTarget(studyTarget?: RuntimeStudyTarget): boolean {
-  return flashcardsOfficialPacksAvailableForTarget(studyTarget);
+function marketplaceCardsAllowedForTarget(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
+  return flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale);
 }
 
 export async function loadBuiltMarketplaceCardsCache(
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: unknown,
 ): Promise<BuiltMarketplaceCardsCache | null> {
   const key = flashcardsMarketplaceBuiltCardsCacheKey(studyTarget);
-  if (!marketplaceCardsAllowedForTarget(studyTarget)) {
+  if (!marketplaceCardsAllowedForTarget(studyTarget, sourceLocale)) {
     await AsyncStorage.removeItem(key).catch(() => {});
     return null;
   }
@@ -130,9 +137,10 @@ export async function saveBuiltMarketplaceCardsCache(
   ownedIds: string[],
   cards: CardItem[],
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: unknown,
 ): Promise<void> {
   const key = flashcardsMarketplaceBuiltCardsCacheKey(studyTarget);
-  if (!marketplaceCardsAllowedForTarget(studyTarget)) {
+  if (!marketplaceCardsAllowedForTarget(studyTarget, sourceLocale)) {
     await AsyncStorage.removeItem(key).catch(() => {});
     return;
   }
@@ -666,7 +674,10 @@ export const BUNDLED_MARKETPLACE_PACKS: FlashcardMarketPack[] = Array.isArray(bu
   : [];
 
 /** Синхронный запасной список (если async-загрузка вернула пусто или упала). */
-export function reserveBundledMarketPacks(): FlashcardMarketPack[] {
+export function reserveBundledMarketPacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): FlashcardMarketPack[] {
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    return sortPacksByUpdatedAt(getCachedFrenchRemoteMarketplacePacks(sourceLocale));
+  }
   return sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]);
 }
 
@@ -742,11 +753,19 @@ const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
 let warmMarketplacePacks: FlashcardMarketPack[] | null = null;
 let loadMarketplaceInflight: Promise<FlashcardMarketPack[]> | null = null;
 
-export function peekWarmMarketplacePacks(): FlashcardMarketPack[] | null {
+export function peekWarmMarketplacePacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): FlashcardMarketPack[] | null {
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    const packs = getCachedFrenchRemoteMarketplacePacks(sourceLocale);
+    return packs.length > 0 ? sortPacksByUpdatedAt(packs) : null;
+  }
   return warmMarketplacePacks;
 }
 
-export async function loadMarketplacePacks(): Promise<FlashcardMarketPack[]> {
+export async function loadMarketplacePacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): Promise<FlashcardMarketPack[]> {
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    await ensureFrenchRemoteMarketplacePacks(sourceLocale).catch(() => {});
+    return sortPacksByUpdatedAt(getCachedFrenchRemoteMarketplacePacks(sourceLocale));
+  }
   if (loadMarketplaceInflight) return loadMarketplaceInflight;
   const p = (async (): Promise<FlashcardMarketPack[]> => {
     try {
@@ -873,7 +892,17 @@ export function buildDevOwnedPackCards(packs: FlashcardMarketPack[]): CardItem[]
 }
 
 /** Карточки для купленных наборов: реальный контент для известных id, иначе шаблоны. */
-export function buildMarketplaceOwnedCards(ownedPacks: FlashcardMarketPack[]): CardItem[] {
+export function buildMarketplaceOwnedCards(
+  ownedPacks: FlashcardMarketPack[],
+  sourceLocale?: unknown,
+  studyTarget?: RuntimeStudyTarget,
+): CardItem[] {
+  if (
+    storageStudyTarget(studyTarget) === 'fr' ||
+    ownedPacks.some((pack) => pack.studyTarget === 'fr')
+  ) {
+    return buildFrenchMarketplaceOwnedCards(ownedPacks, sourceLocale);
+  }
   return ownedPacks.flatMap((pack) => {
     if (pack.id === OFFICIAL_PREP_IN_EN_ID) {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -927,8 +956,15 @@ export function buildMarketplaceOwnedCards(ownedPacks: FlashcardMarketPack[]): C
   });
 }
 
-export function bundledPacksForOwned(ownedIds: string[]): FlashcardMarketPack[] {
+export function bundledPacksForOwned(
+  ownedIds: string[],
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: unknown,
+): FlashcardMarketPack[] {
   const s = new Set(ownedIds);
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    return getCachedFrenchRemoteMarketplacePacks(sourceLocale).filter((p) => s.has(p.id));
+  }
   return BUNDLED_MARKETPLACE_PACKS.filter((p) => s.has(p.id));
 }
 
@@ -941,8 +977,8 @@ export async function primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarge
     await saveBuiltMarketplaceCardsCache([], [], studyTarget);
     return;
   }
-  const ownedPacks = bundledPacksForOwned(owned);
-  const cards = buildMarketplaceOwnedCards(ownedPacks);
+  const ownedPacks = bundledPacksForOwned(owned, studyTarget);
+  const cards = buildMarketplaceOwnedCards(ownedPacks, undefined, studyTarget);
   await saveBuiltMarketplaceCardsCache(owned, cards, studyTarget);
 }
 
@@ -953,8 +989,8 @@ export async function primeMarketplaceBuiltCardsCacheFromAccessibleStorage(study
     await saveBuiltMarketplaceCardsCache([], [], studyTarget);
     return;
   }
-  const ownedPacks = bundledPacksForOwned(ids);
-  const cards = buildMarketplaceOwnedCards(ownedPacks);
+  const ownedPacks = bundledPacksForOwned(ids, studyTarget);
+  const cards = buildMarketplaceOwnedCards(ownedPacks, undefined, studyTarget);
   await saveBuiltMarketplaceCardsCache(ids, cards, studyTarget);
 }
 

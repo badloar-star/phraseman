@@ -28,7 +28,7 @@ export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props
         id="labs_hub"
         icon="flask-outline"
         title="Лаборатории (все)"
-        badge={11}
+        badge={7}
         open={open}
         onToggle={onToggle}
       >
@@ -81,13 +81,6 @@ export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props
           label="Anim Demo Lab"
           sub="Возможности стека: FLIP, SHINE, BURST, Duolingo-кнопка"
           onPress={() => router.push('/anim_demo_lab' as any)}
-        />
-        <ButtonRow
-          testID="admin-lab-review-bench"
-          icon="refresh-outline"
-          label="Повтор: 7 тестовых карточек"
-          sub="Сид урока 99 и экран «Повторение»"
-          onPress={onOpenReviewBench}
         />
       </AccordionSection>
       <CompassStackPreviewModal

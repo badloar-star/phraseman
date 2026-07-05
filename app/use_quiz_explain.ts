@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { callExplainQuiz, type ExplainQuizResponse } from './explain_quiz_client';
+import { aiOffline, isAiOfflineError } from './ai_kill_switch_copy';
+import { useStudyTarget } from '../components/StudyTargetContext';
 
 /**
  * Оркестрация ИИ-разбора для ТЕМАТИЧЕСКОГО квиза.
@@ -49,6 +51,7 @@ const MAX_TRANSIENT_RETRIES = 2;
 
 export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult {
   const { active, questionKey, correctEn, questionPrompt, wrongOptions, lang } = input;
+  const { studyTarget } = useStudyTarget();
 
   const [state, setState] = useState<QuizExplainState>('idle');
   const [batch, setBatch] = useState<ExplainQuizResponse | null>(null);
@@ -102,7 +105,7 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
     inFlightRef.current = true;
     setState('loading');
     try {
-      const res = await callExplainQuiz({ correctEn, questionPrompt, wrongOptions, lang });
+      const res = await callExplainQuiz({ correctEn, questionPrompt, wrongOptions, lang, studyTarget });
       if (questionKeyRef.current !== myKey || !activeRef.current) return; // пользователь ушёл на другой вопрос
       if (res.status === 'ok' && res.confirm) {
         pendingRetryCountRef.current = 0;
@@ -125,7 +128,13 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
       }
       // 'rejected' / 'exhausted' / пусто — разбор недоступен; UI оставляет блок с ручным повтором.
       setState('unavailable');
-    } catch {
+    } catch (error) {
+      // Глобальный рубильник ИИ: не ретраим — сразу «недоступно» (UI покажет
+      // ручной повтор / забавную плашку). Иначе ушли бы в бесконечные ретраи.
+      if (aiOffline() || isAiOfflineError(error)) {
+        if (questionKeyRef.current === myKey && activeRef.current) setState('unavailable');
+        return;
+      }
       if (questionKeyRef.current === myKey && activeRef.current) {
         if (transientRetryCountRef.current >= MAX_TRANSIENT_RETRIES) {
           setState('unavailable');
@@ -139,7 +148,7 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
     } finally {
       inFlightRef.current = false;
     }
-  }, [clearRetryTimer, correctEn, questionPrompt, wrongOptions, lang]);
+  }, [clearRetryTimer, correctEn, questionPrompt, wrongOptions, lang, studyTarget]);
 
   // Автозапуск, когда тематический квиз показал результат.
   useEffect(() => {

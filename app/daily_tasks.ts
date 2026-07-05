@@ -2740,12 +2740,28 @@ export const rerollTodayDailyTaskSet = async (
   }
 };
 
-export const areAllDailyTaskObjectivesDone = (tasks: DailyTask[], progress: TaskProgress[]): boolean => {
+/**
+ * Награда «за все задания дня» готова к выдаче.
+ *
+ * По умолчанию требует ВСЕ задания (N из N — историческое поведение для тройки).
+ * `requiredCount` позволяет ослабить порог до «любые K из N»: это нужно, когда
+ * в набор добавлено бонусное 4-е задание (опрос за осколки) — тогда достаточно
+ * выполнить любые 3 из 4, чтобы забрать награду (опрос можно, но не обязательно).
+ * Значение клампится в [1, tasks.length], поэтому старые вызовы без параметра
+ * ведут себя как раньше.
+ */
+export const areAllDailyTaskObjectivesDone = (
+  tasks: DailyTask[],
+  progress: TaskProgress[],
+  requiredCount?: number,
+): boolean => {
   if (tasks.length === 0) return false;
-  return tasks.every((task) => {
+  const doneCount = tasks.reduce((n, task) => {
     const row = progress.find((p) => p.taskId === task.id);
-    return row?.completed === true || row?.claimed === true;
-  });
+    return row?.completed === true || row?.claimed === true ? n + 1 : n;
+  }, 0);
+  const required = Math.max(1, Math.min(requiredCount ?? tasks.length, tasks.length));
+  return doneCount >= required;
 };
 
 /**

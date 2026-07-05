@@ -23,6 +23,7 @@ import {
 import { readCompletedPlanTasks } from './personal_plan_progress';
 import { recommendNextPlanAfter, getPlanDefaultMinutes } from './personal_plan_recommendation';
 import { markNextNavigationAsReplace } from './navigation_back';
+import { glassFill } from '../components/GlassSurface';
 
 type CompleteView = {
   summary: PersonalPlanCompletionSummary;
@@ -114,7 +115,7 @@ export default function PersonalPlanCompleteScreen() {
     <ScreenGradient>
       <View style={[styles.safe, { paddingTop: insets.top }]}>
         <BounceView style={styles.safe}>
-          <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+          <View style={[styles.card, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
             <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
               <Ionicons name="trophy" size={34} color={t.correctText} />
             </View>
@@ -145,13 +146,13 @@ export default function PersonalPlanCompleteScreen() {
             </Text>
 
             <View style={styles.statsRow}>
-              <View style={[styles.statBox, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
+              <View style={[styles.statBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
                 <Text style={[styles.statValue, { color: t.textPrimary }]}>{summary.totalDays}</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>
                   {triLang(lang, { ru: 'дней', uk: 'днів', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}
                 </Text>
               </View>
-              <View style={[styles.statBox, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
+              <View style={[styles.statBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
                 <Text style={[styles.statValue, { color: t.textPrimary }]}>{summary.completedTasks}</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>
                   {triLang(lang, { ru: 'вызовов', uk: 'викликів', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
@@ -159,7 +160,7 @@ export default function PersonalPlanCompleteScreen() {
               </View>
             </View>
 
-            <View style={[styles.nextBox, { backgroundColor: t.bgSurface2, borderColor: accent + '55' }]}>
+            <View style={[styles.nextBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
               <Text style={[styles.nextKicker, { color: t.textGhost }]}>
                 {triLang(lang, {
                   ru: 'ЧТО ДАЛЬШЕ',
@@ -232,7 +233,6 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
   },
   card: {
-    borderWidth: 1,
     borderRadius: 14,
     padding: 22,
     alignItems: 'center',
@@ -265,7 +265,6 @@ const styles = StyleSheet.create({
   },
   statBox: {
     flex: 1,
-    borderWidth: 1,
     borderRadius: 14,
     paddingVertical: 16,
     alignItems: 'center',
@@ -281,7 +280,6 @@ const styles = StyleSheet.create({
   },
   nextBox: {
     width: '100%',
-    borderWidth: 1,
     borderRadius: 14,
     padding: 16,
     marginBottom: 20,

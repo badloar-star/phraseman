@@ -23,6 +23,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import CollectibleArtFrame, { type CollectibleArtTier } from '../components/CollectibleArtFrame';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import GlassSurface from '../components/GlassSurface';
 import TapScale from '../components/TapScale';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
@@ -211,14 +212,14 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
   const cellW = Math.floor((innerW - GRID_GAP * 2) / 3);
 
   return (
-    <View
+    <GlassSurface
+      radius={18}
       style={{
-        borderRadius: 18,
-        backgroundColor: t.bgCard,
-        borderWidth: 1,
-        borderColor: complete ? `${SECRET_GOLD}55` : t.border,
         marginBottom: 8,
         overflow: 'hidden',
+        // Завершённый набор — золотой кант-хайлайт сверху (акцент статуса), без
+        // полной рамки: обычные наборы просто стеклянные плитки.
+        ...(complete ? { borderTopWidth: 1, borderTopColor: `${SECRET_GOLD}55` } : null),
       }}
     >
       <TouchableOpacity
@@ -295,7 +296,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
           )}
         </View>
       )}
-    </View>
+    </GlassSurface>
   );
 });
 

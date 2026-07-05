@@ -426,6 +426,7 @@ export async function createHelpBoardTopic(input: {
       uiLang: string;
       title: string;
       text: string;
+      allowCompass: boolean;
       policyVersion: number;
       platform: string;
       appVersion: string;
@@ -436,6 +437,9 @@ export async function createHelpBoardTopic(input: {
       uiLang: input.scope.uiLang,
       title: input.title,
       text: input.text,
+      // Компас сам решает, отвечать ли; тумблера у пользователя больше нет.
+      // Шлём true для обратной совместимости со старым (ещё не задеплоенным) сервером.
+      allowCompass: true,
       policyVersion: HELP_BOARD_POLICY_VERSION,
       platform: Platform.OS,
       appVersion: Constants.expoConfig?.version ?? 'unknown',

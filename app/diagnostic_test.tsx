@@ -46,6 +46,7 @@ import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from '.
 import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { loadFrenchRemoteDiagnosticQuestions } from './french_diagnostic_remote_runtime';
 import { getHomeMenuImages } from './home_menu_icons';
+import { glassFill } from '../components/GlassSurface';
 
 const TIMER_SEC = 30;
 
@@ -1416,7 +1417,7 @@ export default function DiagnosticTest() {
       </View>
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24 }}>
         {prevResult && (
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border, marginBottom: 20, width: '100%' }}>
+          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 16, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), marginBottom: 20, width: '100%' }}>
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
               {s.diagnostic.prevResult}
             </Text>
@@ -1434,11 +1435,11 @@ export default function DiagnosticTest() {
 
         <View
           style={{
-            backgroundColor: t.bgCard,
+            backgroundColor: glassFill(t.bgSurface, 0.46),
             borderRadius: 16,
             padding: 16,
-            borderWidth: 0.5,
-            borderColor: t.border,
+            borderTopWidth: 1,
+            borderTopColor: glassFill(t.accent, 0.14),
             marginBottom: 20,
             width: '100%',
           }}
@@ -1473,12 +1474,12 @@ export default function DiagnosticTest() {
 
         <TouchableOpacity
           style={{
-            backgroundColor: t.bgSurface,
+            backgroundColor: glassFill(t.bgSurface, 0.46),
             borderRadius: 16,
             paddingVertical: 14,
             paddingHorizontal: 16,
-            borderWidth: 0.5,
-            borderColor: t.border,
+            borderTopWidth: 1,
+            borderTopColor: glassFill(t.accent, 0.14),
             marginTop: 0,
             flexDirection: 'row',
             alignItems: 'center',
@@ -1536,11 +1537,11 @@ export default function DiagnosticTest() {
 
         <View
           style={{
-            backgroundColor: t.bgCard,
+            backgroundColor: glassFill(t.bgSurface, 0.46),
             borderRadius: 16,
             padding: 16,
-            borderWidth: 0.5,
-            borderColor: t.border,
+            borderTopWidth: 1,
+            borderTopColor: glassFill(t.accent, 0.14),
             marginTop: 20,
             width: '100%',
           }}
@@ -1587,7 +1588,7 @@ export default function DiagnosticTest() {
         <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center', marginTop: 16, lineHeight: 24, marginBottom: 28 }}>
           {diagnosticResultMessage(lang, result)}
         </Text>
-        <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 0.5, borderColor: t.border, width: '100%', alignItems: 'center', marginBottom: 16 }}>
+        <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 20, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), width: '100%', alignItems: 'center', marginBottom: 16 }}>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 6 }}>
             {s.diagnostic.correct}
           </Text>

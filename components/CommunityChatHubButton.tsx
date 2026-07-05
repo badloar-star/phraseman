@@ -8,6 +8,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { formatLeagueChatUnreadBadge } from '../app/league_chat_unread';
 import { useLeagueChatUnread } from '../app/use_league_chat_unread';
+import ScreenGradient from './ScreenGradient';
 import HelpBoardPanel from './HelpBoardPanel';
 import LeagueChatPanel from './LeagueChatPanel';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
@@ -116,7 +117,12 @@ function CommunityChatHubButton() {
       </TouchableOpacity>
 
       <Modal visible={visible} animationType="slide" presentationStyle="fullScreen" onRequestClose={close}>
-        <View testID="community-chat-hub-fullscreen" style={[styles.screen, { backgroundColor: t.bgCard, paddingTop: topInset }]}>
+        {/* Глубокий фирменный градиент вместо плоского bgCard: очень тёмный фон
+            с деликатными свечениями в оттенке активной темы (зелёные орбы для
+            зелёной темы и т.д.) — ScreenGradient сам подстраивается под themeMode.
+            forceFullBleed: это полноэкранная модалка, нужен собственный фон. */}
+        <ScreenGradient forceFullBleed>
+        <View testID="community-chat-hub-fullscreen" style={[styles.screen, { backgroundColor: 'transparent', paddingTop: topInset }]}>
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <View style={styles.headerTabs}>
@@ -162,6 +168,7 @@ function CommunityChatHubButton() {
             )}
           </View>
         </View>
+        </ScreenGradient>
       </Modal>
     </>
   );

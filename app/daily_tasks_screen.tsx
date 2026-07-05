@@ -25,7 +25,7 @@ import XpGainBadge from '../components/XpGainBadge';
 import PlusBadge from '../components/PlusBadge';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { areAllDailyTaskObjectivesDone, claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
@@ -47,6 +47,9 @@ import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type Voc
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { useScreen } from '../hooks/use-screen';
 import SurveyTaskCard from '../components/SurveyTaskCard';
+import { isSurveyCloudEnabled, fetchActiveSurvey } from './survey_client';
+import { isSurveyDailyTaskDoneToday } from './survey_daily_task';
+import { getCanonicalUserId } from './user_id_policy';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 
 const safeDailyTaskEventPart = (value: unknown): string =>
@@ -1699,6 +1702,10 @@ export default function DailyTasksScreen() {
     // карточки не совпадают с AsyncStorage и «Забрать» не срабатывает, пока не перезагрузишь экран.
     const [tasks, setTasks] = useState<DailyTask[]>([]);
     const [progress, setProgress] = useState<TaskProgress[]>([]);
+    /** Опрос за осколки как 4-е задание: активен ли сегодня и пройден ли он.
+        Когда активен — набор = 3 обычных + опрос, награда за любые 3 из 4. */
+    const [surveyPresent, setSurveyPresent] = useState(false);
+    const [surveyDone, setSurveyDone] = useState(false);
     /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
         показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
     const [loadingTasks, setLoadingTasks] = useState(true);
@@ -1960,6 +1967,28 @@ export default function DailyTasksScreen() {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
         return () => sub.remove();
     }, [refreshTasksAndProgress]);
+    // Опрос-как-4-е-задание: при входе/возврате проверяем, активен ли опрос
+    // сегодня и пройден ли он. «present» = есть активный ИЛИ уже пройден (тогда
+    // плашка остаётся выполненной до конца дня — сервер пройденный не отдаёт).
+    useFocusEffect(useCallback(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                const done = await isSurveyDailyTaskDoneToday();
+                if (cancelled) return;
+                setSurveyDone(done);
+                if (done) { setSurveyPresent(true); return; }
+                if (!isSurveyCloudEnabled()) { setSurveyPresent(false); return; }
+                const stableId = await getCanonicalUserId();
+                if (cancelled || !stableId) return;
+                const active = await fetchActiveSurvey({ stableId, platform: Platform.OS, lang });
+                if (!cancelled) setSurveyPresent(!!active && active.questions.length > 0);
+            } catch {
+                if (!cancelled) setSurveyPresent(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [lang]));
     const handleClaim = async (taskId: string, xpBase: number) => {
         if (claimBusyId)
             return;
@@ -2065,7 +2094,15 @@ export default function DailyTasksScreen() {
     const handleClaimTrioShards = useCallback(async () => {
         if (tasks.length === 0)
             return;
-        const done = areAllDailyTaskObjectivesDone(tasks, progress);
+        // Порог с учётом опроса-4-го-задания: активен опрос → достаточно любых 3
+        // из 4 (пройденный опрос считается за выполненное). Без опроса — все N.
+        const realDone = tasks.filter((task) => {
+            const row = progress.find((p) => p.taskId === task.id);
+            return row?.completed === true || row?.claimed === true;
+        }).length;
+        const doneWithSurvey = realDone + (surveyPresent && surveyDone ? 1 : 0);
+        const threshold = surveyPresent ? Math.min(3, tasks.length + 1) : tasks.length;
+        const done = doneWithSurvey >= threshold;
         if (!done || trioShardsClaimed || trioClaimBusy)
             return;
         setTrioClaimBusy(true);
@@ -2110,9 +2147,19 @@ export default function DailyTasksScreen() {
         finally {
             setTrioClaimBusy(false);
         }
-    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress]);
+    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, surveyPresent, surveyDone]);
     const claimedCount = countClaimedForTaskList(tasks, progress);
-    const allTasksObjectivesDone = areAllDailyTaskObjectivesDone(tasks, progress);
+    // Опрос-как-4-е-задание: когда активен, набор = 3 обычных + опрос (всего 4),
+    // а награду «за все» дают за ЛЮБЫЕ 3 из 4. Порог = 3, а «выполнено» считает и
+    // пройденный опрос. Когда опроса нет — поведение прежнее (все N из N).
+    const realObjectivesDone = tasks.filter((task) => {
+        const row = progress.find((p) => p.taskId === task.id);
+        return row?.completed === true || row?.claimed === true;
+    }).length;
+    const totalTaskCount = tasks.length + (surveyPresent ? 1 : 0);
+    const totalObjectivesDone = realObjectivesDone + (surveyPresent && surveyDone ? 1 : 0);
+    const dailyRewardThreshold = surveyPresent ? Math.min(3, totalTaskCount) : tasks.length;
+    const allTasksObjectivesDone = tasks.length > 0 && totalObjectivesDone >= dailyRewardThreshold;
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy;
     const bonusAccent = isGoldTheme
@@ -2132,7 +2179,10 @@ export default function DailyTasksScreen() {
         ? rewardActionText
         : (isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
     const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
-    const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length;
+    // Счётчик и знаменатель учитывают опрос как 4-е задание, когда он активен.
+    const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length
+        + (surveyPresent && surveyDone ? 1 : 0);
+    const objectivesTotalCount = totalTaskCount;
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
             router.replace('/(tabs)/lessons' as any);
@@ -2400,7 +2450,7 @@ export default function DailyTasksScreen() {
           </Text>
         </View>
         <View style={{ alignItems: 'center' }}>
-          <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '700' }}>{objectivesDoneCount}/{tasks.length}</Text>
+          <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '700' }}>{objectivesDoneCount}/{objectivesTotalCount}</Text>
           <Text style={{ color: sx.muted, fontSize: f.label }}>
             {triLang(lang, {
             ru: 'выполнено',
@@ -2428,8 +2478,8 @@ export default function DailyTasksScreen() {
       <BouncyWrap>
       <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
 
-        {/* Бонусная карточка опроса за осколки — сама решает, показываться ли
-            (spec shard-survey §1.1: отдельная карточка сверху, не входит в набор 3). */}
+        {/* Опрос за осколки — 4-я плашка-задание (когда активен). Сам решает,
+            показываться ли; засчитывается в «любые 3 из 4» (порог в этом экране). */}
         <SurveyTaskCard />
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
@@ -2567,7 +2617,7 @@ export default function DailyTasksScreen() {
             <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
               <View style={{
                     height: '100%',
-                    width: `${tasks.length ? Math.min((objectivesDoneCount / tasks.length) * 100, 100) : 0}%` as any,
+                    width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any,
                     backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent,
                     borderRadius: 999,
                 }}/>

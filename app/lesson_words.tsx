@@ -4,11 +4,12 @@ import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
   InteractionManager,
+  Pressable,
   ScrollView,
   SectionList,
   Text,
@@ -39,6 +40,7 @@ import VictoryBurst from '../components/feedback/VictoryBurst';
 import { wordsSessionDoneTitle, wordsSessionDoneSubtitle } from './feedback/feedback_i18n';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
+import { hapticTap } from '../hooks/use-haptics';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
 import { registerXP } from './xp_manager';
@@ -1535,7 +1537,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'finish', ru: 'Заканчивать', uk: 'Закінчувати', es: 'terminar', pos: 'verbs' },
     { en: 'stop', ru: 'Прекращать; переставать', uk: 'Припиняти; переставати', es: 'parar', pos: 'verbs' },
     { en: 'avoid', ru: 'Избегать', uk: 'Уникати', es: 'evitar', pos: 'verbs' },
-    { en: 'keep', ru: 'Продолжать (делать)', uk: 'Продовжувати (робити)', es: 'seguir', pos: 'verbs' },
+    { en: 'keep', ru: 'Держать, хранить; продолжать (делать)', uk: 'Тримати, зберігати; продовжувати (робити)', es: 'guardar; seguir (haciendo)', pos: 'verbs' },
     { en: 'suggest', ru: 'Предлагать', uk: 'Пропонувати', es: 'sugerir', pos: 'verbs' },
     { en: 'practice', ru: 'Практика', uk: 'Практика', es: 'pr?ctica', pos: 'nouns' },
     { en: 'useful', ru: 'Полезный', uk: 'Корисний', es: '?til', pos: 'adjectives' },
@@ -3326,6 +3328,32 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
   const { hPad } = useScreen();
   const sections = groupByPOS(words, lang);
 
+  // Какое слово СЕЙЧАС звучит — для подсветки на время озвучки. Тап по слову
+  // подсвечивает его мгновенно (Pressable pressed) и держит фон, пока идёт TTS.
+  //
+  // ВАЖНО про снятие подсветки: на onDone/onStopped полагаться НЕЛЬЗЯ — expo-speech
+  // часто не зовёт onDone на коротких словах, а при ПРЕРЫВАНИИ прошлой озвучки
+  // новым тапом (safeSpeechStop/stopPhraseAudio) колбэки не приходят вовсе → слово
+  // залипало подсвеченным навсегда. Поэтому снятие держим на СТРАХОВОЧНОМ ТАЙМЕРЕ,
+  // который перезапускается на каждом тапе; onDone лишь гасит раньше, если пришёл.
+  const [speakingWord, setSpeakingWord] = useState<string | null>(null);
+  const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current); }, []);
+  const speakWord = useCallback((word: string) => {
+    hapticTap();
+    // Новый тап — сбрасываем прошлый таймер (иначе он снимет подсветку у нового слова).
+    if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
+    setSpeakingWord(word);
+    const done = () => setSpeakingWord((cur) => (cur === word ? null : cur));
+    // Страховка: подсветка гаснет максимум через 2.5 с, даже если onDone не придёт.
+    highlightTimerRef.current = setTimeout(done, 2500);
+    speakAudio(word, undefined, {
+      language: 'en-US',
+      // onDone может прийти раньше таймера — гасим сразу и чистим таймер.
+      onDone: () => { if (highlightTimerRef.current) { clearTimeout(highlightTimerRef.current); highlightTimerRef.current = null; } done(); },
+    });
+  }, [speakAudio]);
+
   return (
     <View style={{ flex:1 }}>
       <SectionList
@@ -3395,18 +3423,31 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
                     : <Ionicons name="ellipse-outline" size={18} color={t.textMuted} />
                   }
                 </View>
-                <TouchableOpacity
-                  onPress={() => speakAudio(item.en, undefined, { language: 'en-US' })}
-                  activeOpacity={0.7}
-                  style={{ flexShrink: 0, marginRight: ds.spacing.sm }}
+                <Pressable
+                  onPress={() => speakWord(item.en)}
+                  accessibilityRole="button"
+                  accessibilityLabel={item.en}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  style={({ pressed }) => {
+                    const active = pressed || speakingWord === item.en;
+                    return {
+                      flexShrink: 0,
+                      marginRight: ds.spacing.sm,
+                      marginLeft: -6,
+                      paddingHorizontal: 6,
+                      paddingVertical: 2,
+                      borderRadius: 8,
+                      backgroundColor: active ? `${t.accent}22` : 'transparent',
+                    };
+                  }}
                 >
                   <Text
                     maxFontSizeMultiplier={1.35}
-                    style={{ color: sx.primary, fontSize: f.bodyLg, fontWeight: '600', flexShrink: 0 }}
+                    style={{ color: speakingWord === item.en ? t.accent : sx.primary, fontSize: f.bodyLg, fontWeight: '600', flexShrink: 0 }}
                   >
                     {item.en}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
                 <View style={{ flexShrink: 0, marginRight: ds.spacing.sm }}>
                   <Text maxFontSizeMultiplier={1.35} style={{ color: sx.muted, fontSize: f.body, flexShrink: 0 }}>
                     {tr}

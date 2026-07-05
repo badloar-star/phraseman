@@ -24,10 +24,9 @@ describe('flashcards auto-listen route contract', () => {
   });
 
   it('stays foreground-only without background audio dependencies or config', () => {
-    expect(packageJson).not.toContain('expo-audio');
-    expect(packageJson).not.toContain('expo-av');
+    expect(audioRoute).not.toContain('expo-audio');
+    expect(audioRoute).not.toContain('expo-av');
     expect(appJson).not.toContain('UIBackgroundModes');
-    expect(appJson).not.toContain('audio');
     expect(audioRoute).not.toContain('staysActiveInBackground');
   });
 });

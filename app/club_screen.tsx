@@ -25,6 +25,7 @@ import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { glassFill } from '../components/GlassSurface';
 import {
   LEAGUES,
   clubDescPlanned,
@@ -1791,7 +1792,7 @@ export default function ClubScreen() {
         </LinearGradient>
         )}
 
-        <View style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden', marginTop:8 }}>
+        <View style={{ backgroundColor:glassFill(t.bgSurface, 0.46), borderRadius:16, borderTopWidth:1, borderTopColor:glassFill(t.accent, 0.14), overflow:'hidden', marginTop:8 }}>
           {showEmptyParticipants ? (
             <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
               {triLang(lang, {

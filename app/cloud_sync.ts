@@ -628,6 +628,33 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
 }
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
+
+// Device-owned ключи: принадлежат ТЕКУЩЕМУ устройству, пишутся заново при каждом
+// запуске (_layout.tsx) и исключены из restore (см. app_version/device_platform выше).
+// Их облачные значения НЕ должны попадать в diff-снапшот при restore: иначе diff
+// решит, что версия уже синкнута, и свежая локальная версия НЕ уедет — в админке
+// залипает старая app_version. Исключая их из снапшота, мы гарантируем, что
+// свежее локальное значение уйдёт ближайшим ОБЫЧНЫМ синком (без лишних записей).
+const DEVICE_OWNED_SNAPSHOT_EXCLUDE_KEYS = ['app_version', 'device_platform'] as const;
+
+/**
+ * Снапшот diff-базы после restore: копия облачных данных БЕЗ device-owned ключей,
+ * чтобы их свежие локальные значения гарантированно попали в следующий diff-патч.
+ */
+function buildRestoreSnapshot(
+  cloudData: Record<string, string | null>,
+): Record<string, string | null> {
+  const snapshot: Record<string, string | null> = {};
+  for (const [key, value] of Object.entries(cloudData)) {
+    if ((DEVICE_OWNED_SNAPSHOT_EXCLUDE_KEYS as readonly string[]).includes(key)) continue;
+    // undefined в diff-снапшот класть нельзя: Firestore не хранит undefined, но
+    // cloudData по пути restore мутируется — защищаемся, чтобы undefined-значение
+    // не «залипло» в снапшоте и не сломало последующее сравнение previousSnapshot.
+    if (value === undefined) continue;
+    snapshot[key] = value;
+  }
+  return snapshot;
+}
 const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';
 const ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
 const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
@@ -2047,7 +2074,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
-      await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify({ ...cloudData })).catch(() => {});
+      await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
       return true;
     }
     return false;
@@ -2149,7 +2176,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   if (fullRestoreDailyTargets.length > 0) {
     await reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets);
   }
-  await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify({ ...cloudData })).catch(() => {});
+  await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
   return true;
 }
 
@@ -2198,6 +2225,7 @@ export const __cloudSyncTestHooks = {
   mergeOwnedFlagMap,
   mergeOwnedRestoreValue,
   isOwnedUnionRestoreKey,
+  buildRestoreSnapshot,
 };
 
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────

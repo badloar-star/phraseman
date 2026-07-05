@@ -52,6 +52,16 @@ export interface BuildSpeakingStartOptionsInput {
    * не копить wav-файлы, которые никто не прочитает.
    */
   persistRecording?: boolean;
+  /**
+   * Разговорный режим «зажми и говори» (ИИ-диалог): конец речи задаёт ПАЛЕЦ
+   * (onPressOut → stop()), а НЕ endpointer движка. На Android это критично —
+   * при continuous:false агрессивный OEM-endpointer обрывает распознавание на
+   * первой же паузе внутри фразы (мгновенный ERROR_NO_MATCH + teardown), ещё до
+   * того как юзер отпустит кнопку. holdToTalk включает continuous:true и снимает
+   * авто-стоп по тишине, чтобы движок слушал, пока зажата кнопка. НЕ включать в
+   * режиме оценки произношения — там нужен штатный endpointer (continuous:false).
+   */
+  holdToTalk?: boolean;
 }
 
 /** iOS task hint tuned to phrase length: short prompts confirm fast, sentences dictate. */
@@ -92,6 +102,7 @@ export function buildSpeakingStartOptions(
     volumeIntervalMillis = 250,
     onDevice = false,
     persistRecording = true,
+    holdToTalk = false,
   } = input;
 
   const contextualStrings = buildContextualStrings(targetText);
@@ -99,7 +110,10 @@ export function buildSpeakingStartOptions(
   const base: SpeakingRecognitionStartOptions = {
     lang,
     interimResults,
-    continuous: false,
+    // Разговорный режим: держим движок открытым, пока зажата кнопка (палец задаёт
+    // конец речи через onPressOut → stop()). Оценка произношения — штатный
+    // endpointer (continuous:false).
+    continuous: holdToTalk,
     // Phrase biasing — the biggest accuracy lever for a fixed-phrase app.
     contextualStrings,
     // Ask for several hypotheses; the scorer picks the best match to the target.
@@ -145,11 +159,21 @@ export function buildSpeakingStartOptions(
     // Stop the endpointer cutting slow speakers off on a mid-phrase pause.
     // NOTE: these are hints — some OEM recognizers ignore them, so the
     // "pick the most-complete hypothesis" guard in the UI stays as a backstop.
-    base.androidIntentOptions = {
-      EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 800,
-      EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1500,
-      EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 3000,
-    };
+    // Разговорный режим (holdToTalk): растягиваем таймеры тишины до предела —
+    // конец речи задаёт палец (onPressOut → stop()), поэтому движок НЕ должен
+    // сам закрываться на паузе внутри реплики. Вместе с continuous:true это
+    // лечит «микрофон Android закрывается сам» на агрессивных OEM-endpointer'ах.
+    base.androidIntentOptions = holdToTalk
+      ? {
+          EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 600,
+          EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 60000,
+          EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 60000,
+        }
+      : {
+          EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 800,
+          EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1500,
+          EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 3000,
+        };
   }
 
   return base;

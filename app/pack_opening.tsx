@@ -375,7 +375,7 @@ export default function PackOpeningScreen() {
 
   const packUiLang: Parameters<typeof packTitleForInterface>[1] = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
-  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
 
   // Честный «назад»: возвращаемся на реальный предыдущий экран из стека
@@ -407,11 +407,11 @@ export default function PackOpeningScreen() {
       }
       try {
         // 1) Спочатку перевіряємо bundled, але тільки коли official packs дозволені для target.
-        const warm = officialPacksEnabled ? peekWarmMarketplacePacks() ?? reserveBundledMarketPacks() : [];
+        const warm = officialPacksEnabled ? peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang) : [];
         let foundPack = warm.find((p) => p.id === packId) ?? null;
 
         if (!foundPack && officialPacksEnabled) {
-          const all = await loadMarketplacePacks();
+          const all = await loadMarketplacePacks(studyTarget, lang);
           foundPack = all.find((p) => p.id === packId) ?? null;
         }
 
@@ -443,9 +443,9 @@ export default function PackOpeningScreen() {
             setLoading(false);
             return;
           }
-          const owned = bundledPacksForOwned([packId]);
+          const owned = bundledPacksForOwned([packId], studyTarget, lang);
           packCards =
-            owned.length > 0 ? buildMarketplaceOwnedCards(owned) : buildMarketplaceOwnedCards([foundPack]);
+            owned.length > 0 ? buildMarketplaceOwnedCards(owned, lang, studyTarget) : buildMarketplaceOwnedCards([foundPack], lang, studyTarget);
         }
 
         if (cancelled) return;

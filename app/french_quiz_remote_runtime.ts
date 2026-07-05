@@ -10,14 +10,34 @@ import { sampleUniqueRandomIndices, shuffle } from './utils_shuffle';
 
 type FrenchQuizEntry = {
   entryId?: string;
+  questionId?: string;
   studyTarget?: string;
   sourceLocale?: string;
+  sourceLocales?: string[];
   surface?: string;
+  section?: string;
+  quizItemType?: string;
+  level?: QuizPhrase['level'];
+  difficulty?: QuizDifficulty;
   lessonId?: number;
   phraseId?: string;
   sourceText?: string;
+  sourcePrompt_ru?: string;
+  sourcePrompt_uk?: string;
+  ru?: string;
+  uk?: string;
   targetText?: string;
+  targetPrompt?: string;
   englishBase?: string;
+  choices?: string[];
+  correct?: number | number[];
+  answer?: string;
+  explanations?: string[];
+  explanationsUK?: string[];
+  explanations_ru?: string[];
+  explanations_uk?: string[];
+  skillTag?: string;
+  mistakeToken?: string;
   quiz?: {
     blank?: string;
     correct?: string;
@@ -96,7 +116,79 @@ function difficultyAllowsLesson(difficulty: QuizDifficulty, lessonId: number): b
   return lessonId > 24;
 }
 
-function entryToQuizPhrase(entry: FrenchQuizEntry): QuizPhrase | null {
+function difficultyStarsForLesson(lessonId: number): number {
+  return lessonId <= 10 ? 1 : lessonId <= 24 ? 2 : 3;
+}
+
+function isValidCorrectIndex(correct: unknown, choices: readonly string[]): correct is number {
+  return typeof correct === 'number' && Number.isInteger(correct) && correct >= 0 && correct < choices.length;
+}
+
+function validExplanations(value: unknown, choices: readonly string[]): string[] | null {
+  if (!Array.isArray(value)) return null;
+  const items = value.map((item) => typeof item === 'string' ? item.trim() : '').filter(Boolean);
+  return items.length === choices.length ? items : null;
+}
+
+function entryToFullSentenceQuizPhrase(entry: FrenchQuizEntry): QuizPhrase | null {
+  const sourceLocale = normalizeFrenchTargetSourceLocale(entry.sourceLocale);
+  const choices = Array.isArray(entry.choices)
+    ? entry.choices.map((item) => item.trim()).filter(Boolean)
+    : [];
+  if (
+    entry.studyTarget !== 'fr' ||
+    entry.surface !== 'quiz' ||
+    !sourceLocale ||
+    typeof entry.lessonId !== 'number' ||
+    choices.length !== 4 ||
+    !isValidCorrectIndex(entry.correct, choices)
+  ) {
+    return null;
+  }
+
+  const sourceText = (
+    sourceLocale === 'uk'
+      ? entry.sourcePrompt_uk || entry.uk || entry.sourceText
+      : entry.sourcePrompt_ru || entry.ru || entry.sourceText
+  )?.trim();
+  const sourceTextRu = (entry.sourcePrompt_ru || entry.ru || sourceText)?.trim();
+  const sourceTextUk = (entry.sourcePrompt_uk || entry.uk || sourceText)?.trim();
+  const answer = (entry.answer || choices[entry.correct]).trim();
+  const targetText = (entry.targetText || answer).trim();
+  const explanationsRu = validExplanations(entry.explanations_ru, choices)
+    || validExplanations(entry.explanations, choices);
+  const explanationsUk = validExplanations(entry.explanations_uk, choices)
+    || validExplanations(entry.explanationsUK, choices)
+    || explanationsRu;
+
+  if (!sourceText || !sourceTextRu || !sourceTextUk || !answer || !targetText || !explanationsRu || !explanationsUk) {
+    return null;
+  }
+
+  return {
+    ru: sourceTextRu,
+    uk: sourceTextUk,
+    es: sourceText,
+    choices,
+    correct: entry.correct,
+    answer,
+    explanations: explanationsRu,
+    explanationsUK: explanationsUk,
+    explanationsES: explanationsRu,
+    sourceLocale,
+    sourceText,
+    sourceExplanations: sourceLocale === 'uk' ? explanationsUk : explanationsRu,
+    lessonNum: entry.lessonId,
+    level: entry.level || levelForLesson(entry.lessonId),
+    questionId: entry.questionId || entry.entryId || entry.phraseId,
+    skillTag: entry.skillTag || entry.mistakeToken,
+    reviewerFlag: null,
+    difficultyStars: difficultyStarsForLesson(entry.lessonId),
+    quizItemType: entry.quizItemType || 'standard_mcq_full_sentence',
+  };
+}
+
+function entryToLegacyQuizPhrase(entry: FrenchQuizEntry): QuizPhrase | null {
   const sourceLocale = normalizeFrenchTargetSourceLocale(entry.sourceLocale);
   const correct = entry.quiz?.correct?.trim();
   const blank = entry.quiz?.blank?.trim();
@@ -148,9 +240,13 @@ function entryToQuizPhrase(entry: FrenchQuizEntry): QuizPhrase | null {
     questionId: entry.entryId,
     skillTag: entry.quiz?.category,
     reviewerFlag: null,
-    difficultyStars: entry.lessonId <= 10 ? 1 : entry.lessonId <= 24 ? 2 : 3,
+    difficultyStars: difficultyStarsForLesson(entry.lessonId),
     quizItemType: 'mcq',
   };
+}
+
+export function entryToQuizPhrase(entry: FrenchQuizEntry): QuizPhrase | null {
+  return entryToFullSentenceQuizPhrase(entry) || entryToLegacyQuizPhrase(entry);
 }
 
 async function loadFrenchQuizPayload(sourceLocale: FrenchTargetSourceLocale): Promise<readonly QuizPhrase[]> {

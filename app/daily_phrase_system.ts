@@ -11,6 +11,10 @@ import {
   ensureFrenchRemoteFlashcards,
   getCachedFrenchRemoteFlashcards,
 } from './french_flashcard_remote_runtime';
+import {
+  ensureFrenchRemoteDailyPhrases,
+  getCachedFrenchRemoteDailyPhraseForDay,
+} from './french_daily_phrase_remote_runtime';
 import { IDIOMS, Idiom, type IdiomSourceLocaleMap } from './idioms_data';
 import type { SourceLocale } from './source_locales';
 import {
@@ -151,6 +155,10 @@ function frenchFlashcardForDay(sourceLocale: RuntimeSourceLocale): DailyPhrase |
   return card ? phraseFromFrenchFlashcard(card) : null;
 }
 
+function frenchRemoteDailyPhraseForDay(sourceLocale: RuntimeSourceLocale): DailyPhrase | null {
+  return getCachedFrenchRemoteDailyPhraseForDay(sourceLocale, getDayIndex(), todayKey());
+}
+
 async function getTodayFrenchPhrase(sourceLocaleInput?: RuntimeSourceLocale): Promise<DailyPhrase | null> {
   const sourceLocale = storageSourceLocale(sourceLocaleInput);
   const today = todayKey();
@@ -167,6 +175,14 @@ async function getTodayFrenchPhrase(sourceLocaleInput?: RuntimeSourceLocale): Pr
         // ignore corrupt French daily cache and rebuild from the remote pack below
       }
     }
+  }
+
+  await ensureFrenchRemoteDailyPhrases(sourceLocale);
+  const remoteDailyPhrase = frenchRemoteDailyPhraseForDay(sourceLocale);
+  if (remoteDailyPhrase) {
+    await AsyncStorage.setItem(phraseKey, JSON.stringify(remoteDailyPhrase));
+    await AsyncStorage.setItem(lastDateKey, today);
+    return remoteDailyPhrase;
   }
 
   await ensureFrenchRemoteFlashcards(sourceLocale);
@@ -339,7 +355,8 @@ export function getTodayPhraseSyncForTarget(
 ): DailyPhrase | null {
   if (!dailyPhraseContentAvailableForTarget(studyTarget)) return null;
   if (storageStudyTarget(studyTarget) === 'fr') {
-    return frenchFlashcardForDay(storageSourceLocale(sourceLocaleInput));
+    const sourceLocale = storageSourceLocale(sourceLocaleInput);
+    return frenchRemoteDailyPhraseForDay(sourceLocale) || frenchFlashcardForDay(sourceLocale);
   }
   return getTodayPhraseSync();
 }

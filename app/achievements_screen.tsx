@@ -17,6 +17,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -1414,7 +1415,7 @@ const NearestAchievementsBlock = memo(function NearestAchievementsBlock({
                 alignItems: 'center',
                 minHeight: 74,
                 gap: 10,
-                backgroundColor: t.bgCard,
+                backgroundColor: glassFill(t.bgSurface, 0.46),
                 borderRadius: 8,
                 borderWidth: 1,
                 borderColor: color + '44',
@@ -1762,10 +1763,12 @@ const AccordionSection = memo(function AccordionSection({
           gap: 10,
           paddingHorizontal: 14,
           paddingVertical: 14,
-          backgroundColor: isOpen ? section.color + '18' : t.bgCard,
+          backgroundColor: isOpen ? section.color + '18' : glassFill(t.bgSurface, 0.46),
           borderRadius: 14,
-          borderWidth: 1,
-          borderColor: isOpen ? section.color + '44' : t.bgSurface2,
+          borderTopWidth: isOpen ? undefined : 1,
+          borderTopColor: isOpen ? undefined : glassFill(t.accent, 0.14),
+          borderWidth: isOpen ? 1 : undefined,
+          borderColor: isOpen ? section.color + '44' : undefined,
         }}
       >
         <View style={{

@@ -12,6 +12,7 @@ import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenGradient from '../components/ScreenGradient';
+import { glassFill } from '../components/GlassSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
@@ -663,7 +664,7 @@ export default function ArenaRoomScreen() {
 
         {/* Блок ввода кода + создание — только до открытия комнаты */}
         {!room && (
-          <View style={{ borderRadius: 18, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, padding: 16, gap: 12 }}>
+          <View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), padding: 16, gap: 12 }}>
             <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', textTransform: 'uppercase' }}>
               {triLang(lang, {
                 ru: 'Войти в комнату по коду',
@@ -849,7 +850,7 @@ export default function ArenaRoomScreen() {
 
               {/* Статистика */}
               <View style={{ flexDirection: 'row', gap: 8 }}>
-                <View style={{ flex: 1, borderRadius: 12, backgroundColor: t.bgSurface, padding: 10, alignItems: 'center' }}>
+                <View style={{ flex: 1, borderRadius: 12, backgroundColor: glassFill(t.bgCard, 0.32), padding: 10, alignItems: 'center' }}>
                   <Text style={{ color: t.accent, fontSize: f.h2, fontWeight: '900' }}>{members.length}</Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
                     {triLang(lang, {
@@ -864,7 +865,7 @@ export default function ArenaRoomScreen() {
                     })}
                   </Text>
                 </View>
-                <View style={{ flex: 1, borderRadius: 12, backgroundColor: t.bgSurface, padding: 10, alignItems: 'center' }}>
+                <View style={{ flex: 1, borderRadius: 12, backgroundColor: glassFill(t.bgCard, 0.32), padding: 10, alignItems: 'center' }}>
                   <Text style={{ color: arenaReadyAccent, fontSize: f.h2, fontWeight: '900' }}>
                     {members.filter(m => m.ready).length}/{members.length}
                   </Text>
@@ -882,7 +883,7 @@ export default function ArenaRoomScreen() {
                   </Text>
                 </View>
                 {myRank && (
-                  <View style={{ flex: 1, borderRadius: 12, backgroundColor: t.bgSurface, padding: 10, alignItems: 'center' }}>
+                  <View style={{ flex: 1, borderRadius: 12, backgroundColor: glassFill(t.bgCard, 0.32), padding: 10, alignItems: 'center' }}>
                     <Text style={{ color: myRank === 1 ? arenaRankAccent : t.accent, fontSize: f.h2, fontWeight: '900' }}>#{myRank}</Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
                       {triLang(lang, {
@@ -1017,7 +1018,7 @@ export default function ArenaRoomScreen() {
 
         {/* Список участников */}
         {room && members.length > 0 && (
-          <View style={{ borderRadius: 18, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, overflow: 'hidden' }}>
+          <View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, paddingBottom: 10 }}>
               <Ionicons name="people" size={16} color={t.textMuted} style={{ marginRight: 6 }} />
               <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '900', textTransform: 'uppercase' }}>
@@ -1053,7 +1054,7 @@ export default function ArenaRoomScreen() {
 
         {/* Таблица результатов */}
         {room && (
-          <View style={{ borderRadius: 18, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, overflow: 'hidden' }}>
+          <View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, paddingBottom: 10 }}>
               <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '900', textTransform: 'uppercase' }}>
                 {triLang(lang, {

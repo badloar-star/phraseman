@@ -481,7 +481,7 @@ export default function ShardsShopScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const lb = bundleLang(lang);
-  const officialCardPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
+  const officialCardPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
   const frenchCardPacksGateCopy = frenchFlashcardsGateCopy(lang);
   const effectiveOs = useEffectivePlatformOS();
   const shardsEsLc = BRAND_SHARDS_ES.toLowerCase();
@@ -619,7 +619,7 @@ export default function ShardsShopScreen() {
   );
   const [pricesFromDisk, setPricesFromDisk] = useState<ShardsPriceCache>(() => peekShardsPriceCacheSync());
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(() =>
-    officialCardPacksEnabled ? peekWarmMarketplacePacks() ?? reserveBundledMarketPacks() : [],
+    officialCardPacksEnabled ? peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang) : [],
   );
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   /** true только при первом запросе списка наборов (вкладка «Карточки»); вкладка «Осколки» не ждёт этот сетевой round-trip. */
@@ -693,14 +693,14 @@ export default function ShardsShopScreen() {
     if (!opts?.force && now - lastCardMarketFetchRef.current < 30_000 && cardMarketFetchedOnce.current) return;
     lastCardMarketFetchRef.current = now;
 
-    const hasBundledCatalog = reserveBundledMarketPacks().length > 0;
+    const hasBundledCatalog = reserveBundledMarketPacks(studyTarget, lang).length > 0;
     /** Якщо в бандлі вже є каталог — не ховаємо список за спінером під час Firestore. */
     const background = opts?.background === true || hasBundledCatalog;
     if (!background) setCardMarketLoading(true);
     try {
-      const [packsRes, ownedRes] = await Promise.allSettled([loadMarketplacePacks(), loadAccessiblePackIds(studyTarget)]);
-      const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : reserveBundledMarketPacks();
-      const packs = packsRaw.length > 0 ? packsRaw : reserveBundledMarketPacks();
+      const [packsRes, ownedRes] = await Promise.allSettled([loadMarketplacePacks(studyTarget, lang), loadAccessiblePackIds(studyTarget)]);
+      const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : reserveBundledMarketPacks(studyTarget, lang);
+      const packs = packsRaw.length > 0 ? packsRaw : reserveBundledMarketPacks(studyTarget, lang);
       const owned = ownedRes.status === 'fulfilled' ? ownedRes.value : [];
 
       const nextFp = computeMarketFingerprint(packs);
@@ -715,7 +715,7 @@ export default function ShardsShopScreen() {
       }
       cardMarketFetchedOnce.current = true;
     } catch {
-      const reserve = reserveBundledMarketPacks();
+      const reserve = reserveBundledMarketPacks(studyTarget, lang);
       const nextFp = computeMarketFingerprint(reserve);
       if (nextFp !== marketPacksFingerprintRef.current) {
         marketPacksFingerprintRef.current = nextFp;

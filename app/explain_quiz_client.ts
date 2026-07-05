@@ -13,6 +13,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
+import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainQuizInFlight = new Map<string, Promise<ExplainQuizResponse>>();
@@ -23,11 +24,12 @@ function explainQuizRequestKey(req: ExplainQuizRequest): string {
     questionPrompt: req.questionPrompt,
     wrongOptions: req.wrongOptions,
     lang: req.lang,
+    studyTarget: req.studyTarget ?? 'en',
   });
 }
 
 export interface ExplainQuizRequest {
-  /** Правильный английский вариант (как показан пользователю). */
+  /** Правильный вариант на изучаемом языке (как показан пользователю). */
   correctEn: string;
   /** Смысл вопроса на родном языке (для понимания моделью; не пересказывается в ответе). */
   questionPrompt: string;
@@ -35,6 +37,8 @@ export interface ExplainQuizRequest {
   wrongOptions: string[];
   /** Язык пользователя. */
   lang: string;
+  /** Изучаемый язык (StudyTarget 'en'|'fr'). Отсутствие ⇒ сервер по умолчанию 'en'. */
+  studyTarget?: string;
 }
 
 /**
@@ -60,6 +64,9 @@ export interface ExplainQuizResponse {
  * вопрос, видит готовый текст мгновенно ($0).
  */
 export async function callExplainQuiz(req: ExplainQuizRequest): Promise<ExplainQuizResponse> {
+  // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
+  // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
+  if (aiOffline()) throw new AiOfflineError();
   const key = explainQuizRequestKey(req);
   const existing = explainQuizInFlight.get(key);
   if (existing) return existing;

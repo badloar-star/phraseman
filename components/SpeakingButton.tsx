@@ -92,7 +92,8 @@ export function SpeakingButton({
           accessibilityRole="button"
           accessibilityLabel={a11y}
           onPress={onPress}
-          style={[{ alignItems: 'center' }, style]}
+          hitSlop={{ top: 12, bottom: 12, left: 16, right: 16 }}
+          style={[{ alignItems: 'center', justifyContent: 'center', minHeight: 44 }, style]}
         >
           <View style={{ position: 'relative' }}>
             <Ionicons name="mic-outline" size={26} color={t.textSecond} />
@@ -109,6 +110,7 @@ export function SpeakingButton({
           accessibilityRole="button"
           accessibilityLabel={a11y}
           onPress={onPress}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           style={[
             {
               flexDirection: 'row',

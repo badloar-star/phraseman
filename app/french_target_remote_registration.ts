@@ -24,6 +24,7 @@ export const FRENCH_TARGET_REMOTE_SURFACES = [
   'lesson',
   'lesson_intro',
   'quiz',
+  'daily_phrase',
   'audio_metadata',
   'flashcard',
   'personal_practice',

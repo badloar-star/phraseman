@@ -43,6 +43,14 @@ interface Props extends PassthroughPressableProps {
    * палец зажат (плитка успевает показать глубину даже при быстром тапе).
    */
   pressedExternally?: boolean;
+  /**
+   * Задержка перед показом press-фидбэка (хаптик + «клевок»), мс. Внутри скролла
+   * касание кнопки для старта прокрутки раньше мгновенно давало хаптик и анимацию
+   * нажатия («кнопки сами нажимаются при скролле»). С задержкой Pressable успевает
+   * отменить press, если палец за это время ушёл в скролл — на настоящем тапе
+   * задержка визуально незаметна. Default 90.
+   */
+  delayPressIn?: number;
 }
 
 /**
@@ -67,6 +75,7 @@ function DuoPressable({
   gradientEnd = { x: 1, y: 1 },
   withHaptic = true,
   pressedExternally = false,
+  delayPressIn = 90,
   ...rest
 }: Props) {
   const press = useSharedValue(0);
@@ -137,6 +146,7 @@ function DuoPressable({
       onLongPress={onLongPress}
       onPressIn={pressIn}
       onPressOut={pressOut}
+      unstable_pressDelay={delayPressIn}
       disabled={disabled}
       accessibilityState={mergeAccessibilityDisabled(rest.accessibilityState, disabled)}
       style={[styles.wrap, { paddingBottom: edgeHeight }, surfaceOpacityStyle, wrapStyle]}

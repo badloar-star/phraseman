@@ -90,46 +90,15 @@ function LeagueChatCompassPost({ message, lang, t, f, icon, themeMode }: LeagueC
   const showResults = Boolean(myVote);
   const avatarSize = 36;
   const avatarGap = 8;
-  const sideOffset = avatarSize + avatarGap + 4;
 
   return (
     <View
       testID={`league-chat-compass-${message.id}`}
-      style={{ alignItems: 'flex-start', paddingHorizontal: 2, marginVertical: 2 }}
+      style={{ flexDirection: 'row', gap: avatarGap, paddingVertical: 10, paddingHorizontal: 2 }}
     >
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 4,
-          marginLeft: sideOffset + 6,
-          marginBottom: 3,
-          maxWidth: '86%',
-        }}
-      >
-        <Ionicons name={icon} size={11} color={t.textMuted} />
-        <Text
-          numberOfLines={1}
-          style={{
-            color: t.textMuted,
-            fontSize: Math.max(10, f.caption - 1),
-            fontWeight: '800',
-          }}
-        >
-          Compass
-        </Text>
-      </View>
-
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-end',
-          gap: avatarGap,
-          alignSelf: 'flex-start',
-          maxWidth: '100%',
-        }}
-      >
+      {/* Threads-стиль: аватар Компаса слева (акцентный кружок, без рамки), справа
+          «Compass · AI» и плоский текст с лёгким зелёным фоном (как в Help Board). */}
+      <View style={{ paddingTop: 2 }}>
         <View
           style={{
             width: avatarSize,
@@ -137,9 +106,7 @@ function LeagueChatCompassPost({ message, lang, t, f, icon, themeMode }: LeagueC
             borderRadius: avatarSize / 2,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: t.bgSurface,
-            borderWidth: 0.5,
-            borderColor: t.border,
+            backgroundColor: 'rgba(71,200,112,0.14)',
             overflow: 'hidden',
           }}
         >
@@ -151,18 +118,27 @@ function LeagueChatCompassPost({ message, lang, t, f, icon, themeMode }: LeagueC
             accessibilityIgnoresInvertColors
           />
         </View>
+      </View>
+
+      <View style={{ flex: 1, minWidth: 0 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+          <Ionicons name={icon} size={12} color={t.accent} />
+          <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
+            Compass
+          </Text>
+          <View style={{ backgroundColor: 'rgba(71,200,112,0.16)', borderRadius: 6, paddingHorizontal: 6, paddingVertical: 1 }}>
+            <Text style={{ color: t.accent, fontSize: Math.max(9, f.caption - 3), fontWeight: '900' }}>AI</Text>
+          </View>
+        </View>
 
         <View
           style={{
-            maxWidth: '86%',
             flexShrink: 1,
-            borderRadius: 18,
-            borderBottomLeftRadius: 6,
-            backgroundColor: t.bgSurface,
-            borderWidth: 0.5,
-            borderColor: t.border,
+            borderRadius: 14,
+            backgroundColor: 'rgba(71,200,112,0.06)',
             paddingHorizontal: 12,
-            paddingVertical: 8,
+            paddingVertical: 10,
+            marginTop: 5,
             gap: 8,
           }}
         >

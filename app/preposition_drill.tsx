@@ -37,6 +37,7 @@ import {
 } from './vocabulary_target_gate';
 import { safeRouterBack } from './navigation_back';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
+import { glassFill } from '../components/GlassSurface';
 
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
@@ -526,7 +527,7 @@ export default function PrepositionDrillScreen() {
             <EnergyBar size={30} />
           </View>
 
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 14, padding: 14, borderWidth: 1, borderColor: t.border, marginBottom: 12 }}>
+          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), marginBottom: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
           </View>
 
@@ -557,10 +558,10 @@ export default function PrepositionDrillScreen() {
 
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: ds.radius.lg,
-                  borderWidth: 1,
-                  borderColor: t.border,
+                  borderTopWidth: 1,
+                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: ds.spacing.md,
                   marginBottom: ds.spacing.md,
                   ...(effectiveOs === 'android' ? { elevation: 2 } : {}),
@@ -591,7 +592,7 @@ export default function PrepositionDrillScreen() {
               })}
 
               {selected !== null && (
-                <View style={{ marginTop: 6, backgroundColor: t.bgCard, borderRadius: 12, borderWidth: 1, borderColor: t.border, padding: 12 }}>
+                <View style={{ marginTop: 6, backgroundColor: glassFill(t.bgCard, 0.32), borderRadius: 12, padding: 12 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>
                     {isCorrect
                       ? triLang(lang, {

@@ -46,6 +46,7 @@ export type AnalyticsEvent =
   | 'ai_dialog_abandoned'
   | 'ai_dialog_limit_hit'
   | 'ai_dialog_tts_used'
+  | 'ai_dialog_conversation_mode_toggled'
   | 'ai_dialog_phrase_tapped'
   | 'ai_dialog_translation_used'
   | 'ai_dialog_translate_requested'

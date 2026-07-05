@@ -48,7 +48,10 @@ function ConstellationZoomMapInner(props: SkyMapProps) {
     });
 
   const pan = Gesture.Pan()
-    .minDistance(6)
+    // 14px (было 6): короткий тап с лёгким дрожанием пальца НЕ должен
+    // перехватываться панорамированием — иначе звезда «не нажимается» (аудит).
+    // Палец должен явно уехать, чтобы это стало pan; тап доходит до onStarPress.
+    .minDistance(14)
     .onUpdate((e) => {
       tx.value = clamp(savedTx.value + e.translationX, -PAN_LIMIT, PAN_LIMIT);
       ty.value = clamp(savedTy.value + e.translationY, -PAN_LIMIT, PAN_LIMIT);
@@ -98,7 +101,7 @@ function ConstellationZoomMapInner(props: SkyMapProps) {
           onPress={() => applyScale(0.4)}
           hitSlop={8}
         >
-          <Ionicons name="add" size={20} color="#93A3CB" />
+          <Ionicons name="add" size={22} color="#93A3CB" />
         </TouchableOpacity>
         <TouchableOpacity
           testID="constellation-zoom-out"
@@ -106,7 +109,7 @@ function ConstellationZoomMapInner(props: SkyMapProps) {
           onPress={() => applyScale(-0.4)}
           hitSlop={8}
         >
-          <Ionicons name="remove" size={20} color="#93A3CB" />
+          <Ionicons name="remove" size={22} color="#93A3CB" />
         </TouchableOpacity>
         <TouchableOpacity
           testID="constellation-zoom-center"
@@ -114,7 +117,7 @@ function ConstellationZoomMapInner(props: SkyMapProps) {
           onPress={recenter}
           hitSlop={8}
         >
-          <Ionicons name="scan-outline" size={17} color="#93A3CB" />
+          <Ionicons name="scan-outline" size={19} color="#93A3CB" />
         </TouchableOpacity>
       </View>
     </View>
@@ -131,9 +134,9 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   zbtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 10,
+    width: 44, // 34→44: комфортная тач-цель (аудит; ≥44 по HIG/Material)
+    height: 44,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(12,18,44,0.86)',

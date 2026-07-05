@@ -33,6 +33,7 @@ import {
   hapticCelebrate, hapticError, hapticHeavyImpact, hapticLightImpact,
   hapticMediumImpact, hapticSuccess, hapticWarning,
 } from '../hooks/use-haptics';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import {
   submitAnswer,
   submitChooseTarget,
@@ -68,6 +69,12 @@ const EMOTES: ReadonlyArray<{ id: string; emoji: string; text: string; hint: str
   { id: 'gg', emoji: '🤝', text: 'GG!', hint: 'хорошая игра' },
 ];
 const EMOTE_SHOW_MS = 3000;
+// Длительности фаз (сек), fallback к дефолтам конфига. И баннер-кольцо, и
+// полоса квиза считают ОТ ОДНОГО значения по фазе — иначе они наполняются с
+// разной скоростью (аудит: рассинхрон таймеров дуэли). Дуэль идёт внутри
+// фазы answer и делит её общий дедлайн, отдельного per-question таймера нет.
+const CHOOSE_PHASE_SEC = 12;
+const ANSWER_PHASE_SEC = 38;
 
 export default function ConstellationMatchScreen() {
   const router = useRouter();
@@ -84,7 +91,7 @@ export default function ConstellationMatchScreen() {
   const [nowSec, setNowSec] = useState(() => Math.floor(Date.now() / 1000));
   const [sheetKey, setSheetKey] = useState<string | null>(null);
   const [shieldMode, setShieldMode] = useState(false);
-  const [lastRule, setLastRule] = useState<{ correct: boolean; rule: string } | null>(null);
+  const [lastResult, setLastResult] = useState<{ correct: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const [flashKey, setFlashKey] = useState<string | null>(null);
   const [toast, setToast] = useState('');
@@ -150,6 +157,20 @@ export default function ConstellationMatchScreen() {
     return () => clearInterval(id);
   }, [focused]);
 
+  // Звук тика на последних 3 секундах фазы (жалоба «всё мертво» без звука).
+  // Один тик на каждое значение секунд — не дублируется при лишних ре-рендерах.
+  const { playTimerTick } = useTimerTickCue();
+  const lastTickSecRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (!focused || !match || match.stage !== 'active') return;
+    const left = Math.max(0, Math.ceil(match.phaseDeadlineAt / 1000) - nowSec);
+    if (left > 0 && left <= 3 && lastTickSecRef.current !== left) {
+      lastTickSecRef.current = left;
+      playTimerTick();
+    }
+    if (left === 0) lastTickSecRef.current = null;
+  }, [focused, match, nowSec, playTimerTick]);
+
   // Анти-зависание: когда дедлайн фазы истёк, клиент сам просит сервер
   // форсировать переход раунда — не ждём минутный watchdog-cron (иначе фаза
   // «висит» до ~60с для одинокого игрока против ботов). Идемпотентно по
@@ -182,7 +203,7 @@ export default function ConstellationMatchScreen() {
       prevRoundRef.current = match.round;
       setSheetKey(null);
       setShieldMode(false);
-      setLastRule(null);
+      setLastResult(null);
       const capture = match.roundEvents.find(
         (e) => (e.type === 'capture' || e.type === 'duel_capture') && e.starKey,
       );
@@ -196,9 +217,14 @@ export default function ConstellationMatchScreen() {
       const myWin = mySlot !== null && match.roundEvents.some(
         (e) => (e.type === 'capture' || e.type === 'duel_capture' || e.type === 'eliminated') && e.slot === mySlot,
       );
+      // Мой щит возрождённого отразил удар по дому: это хороший исход, не «пробили».
+      const myHomeHeld = mySlot !== null && match.roundEvents.some(
+        (e) => e.type === 'home_shielded' && e.slot === mySlot,
+      );
       if (myPublic?.status === 'out') hapticHeavyImpact();
       else if (myPublic?.status === 'falling') hapticWarning();
       else if (myWin) hapticCelebrate();
+      else if (myHomeHeld) hapticSuccess();
       else if (match.roundEvents.length > 0) hapticMediumImpact();
     }
   }, [match, mySlot, myPublic]);
@@ -229,6 +255,16 @@ export default function ConstellationMatchScreen() {
     return [...out];
   }, [match, mySlot, myPublic]);
 
+  // Свои звёзды — легальные цели РЕЖИМА ЩИТА (жалоба «экран как будто пустой/
+  // прыгает»: раньше подсветка полностью гасла в shieldMode, будто пропали
+  // все свои звёзды). Теперь подсвечиваем именно то, что можно щитить.
+  const myStarKeys = useMemo(() => {
+    if (!match || mySlot === null) return [];
+    return Object.entries(match.stars)
+      .filter(([, star]) => star.owner === mySlot)
+      .map(([key]) => key);
+  }, [match, mySlot]);
+
   const secondsLeft = match ? Math.max(0, Math.ceil(match.phaseDeadlineAt / 1000) - nowSec) : 0;
 
   // onStarPress СТАБИЛЕН (пустые deps) — иначе каждый snapshot/тик менял бы
@@ -250,6 +286,10 @@ export default function ConstellationMatchScreen() {
           .then(() => hapticSuccess())
           .catch(() => hapticError())
           .finally(() => setBusy(false));
+      } else {
+        // Тап мимо своей звезды в режиме щита — явный отказ, а не тишина
+        // (жалоба «непонятно, почему ничего не произошло»).
+        hapticError();
       }
       return;
     }
@@ -280,9 +320,9 @@ export default function ConstellationMatchScreen() {
     // Идемпотентный ретрай: ОДИН actionId на обе попытки (оффлайн F7 — сабмит
     // не задвоится сервером). При провале обеих — явный тост «нет связи».
     const actionId = `ans_${matchId}_r${me.round}_q${qIndex}`;
-    const apply = (res: { correct?: boolean; rule?: string }) => {
+    const apply = (res: { correct?: boolean }) => {
       if (res.correct) hapticSuccess(); else hapticError();
-      setLastRule({ correct: !!res.correct, rule: res.rule ?? '' });
+      setLastResult({ correct: !!res.correct });
     };
     void submitAnswer(matchId, uid, qIndex, answerIndex, actionId)
       .then(apply)
@@ -349,6 +389,25 @@ export default function ConstellationMatchScreen() {
     && me.questions.length > 0 && me.answers.length >= me.questions.length;
   const myTargetThisRound = me && me.round === match.round ? me.target : null;
   const isDuel = me?.kind === 'duel' && me.round === match.round;
+  // Единая длительность текущей фазы для ОБОИХ таймеров (баннер-кольцо и полоса
+  // квиза): считают от одного значения → наполняются синхронно (аудит-фикс).
+  const phaseTotalSec = isChoose ? CHOOSE_PHASE_SEC : ANSWER_PHASE_SEC;
+  // Мини-контекст цели над квизом (аудит: «не теряется, за что бьюсь»): имя
+  // звезды + цвет её нынешнего владельца. Нейтральная звезда — акцент темы.
+  const targetOwnerSlot = myTargetThisRound ? match.stars[myTargetThisRound]?.owner ?? null : null;
+  const targetLabel = myTargetThisRound ? starName(myTargetThisRound, lang) : null;
+  const targetColor = targetOwnerSlot !== null ? CONSTELLATION_SLOT_COLORS[targetOwnerSlot] : t.accent;
+  // «N/M сходили» для экрана ожидания (аудит: мёртвое время не должно ощущаться
+  // зависанием). Считаем среди живых участников — выбывшие ходов не делают.
+  const liveInRound = match.players.filter((p) => p.status !== 'out');
+  const doneCount = liveInRound.filter((p) => p.roundDone).length;
+  const liveCount = liveInRound.length;
+  // Фаза уже answer, но мой player-док ещё не догнал раунд (два независимых
+  // Firestore-снапшота — match и player приходят не строго синхронно).
+  // Раньше это был пустой экран «вопрос не появляется, хотя таймер идёт»
+  // (жалоба); теперь — явный индикатор загрузки на пару кадров.
+  const loadingQuestion = !isChoose && !iAmOut && myPublic.status === 'alive'
+    && (!me || me.round !== match.round);
 
   return (
     <View style={styles.root}>
@@ -376,14 +435,8 @@ export default function ConstellationMatchScreen() {
             /{match.roundsTotal}
           </Text>
         </View>
-        <View style={[styles.timerPill, { borderColor: t.border }]}>
-          <Ionicons name="time" size={13} color={secondsLeft <= 5 ? '#FF8080' : t.accent} />
-          <Text style={[styles.timerText, {
-            color: secondsLeft <= 5 ? '#FF8080' : t.textPrimary, fontSize: f.caption,
-          }]}>
-            {secondsLeft}s
-          </Text>
-        </View>
+        {/* Таймер-пилюля убрана из HUD (аудит: три таймера разом): время
+            показывает кольцо в баннере фазы — единственный счётчик. */}
         {match.starfall.golden ? (
           <View style={styles.goldChip}>
             <Text style={styles.goldChipText}>◆ {myPublic.starfallEarned}</Text>
@@ -396,6 +449,8 @@ export default function ConstellationMatchScreen() {
       <View style={styles.playersRow}>
         {match.players.map((p) => {
           const isMe = p.uid === uid;
+          const isOut = p.status === 'out';
+          const isFalling = p.status === 'falling';
           return (
             <View
               key={p.slot}
@@ -403,13 +458,22 @@ export default function ConstellationMatchScreen() {
                 borderColor: isMe ? CONSTELLATION_SLOT_COLORS[p.slot] : t.border,
                 borderWidth: isMe ? 1.5 : 1,
                 backgroundColor: isMe ? `${CONSTELLATION_SLOT_COLORS[p.slot]}18` : 'rgba(12,18,44,0.7)',
+                // Выбитый — тускло (аудит: статус читается сразу): он больше не в игре.
+                opacity: isOut ? 0.42 : 1,
               }]}
             >
               <View style={[styles.playerAva, { backgroundColor: CONSTELLATION_SLOT_COLORS[p.slot] }]}>
                 <Text style={styles.playerAvaText}>{(p.name[0] ?? '?').toUpperCase()}</Text>
-                {/* Индикатор «сходил в раунде»: галочка в углу аватара (было
-                    непонятной точкой). */}
-                {p.roundDone ? (
+                {/* Выбит → череп-значок; падающая звезда → искра; иначе «сходил» → галочка. */}
+                {isOut ? (
+                  <View style={[styles.playerDone, { backgroundColor: '#FF8080' }]}>
+                    <Ionicons name="skull" size={8} color="#0A0F26" />
+                  </View>
+                ) : isFalling ? (
+                  <View style={[styles.playerDone, { backgroundColor: '#FF7A9E' }]}>
+                    <Ionicons name="sparkles" size={8} color="#0A0F26" />
+                  </View>
+                ) : p.roundDone ? (
                   <View style={styles.playerDone}>
                     <Ionicons name="checkmark" size={9} color="#0A0F26" />
                   </View>
@@ -435,7 +499,7 @@ export default function ConstellationMatchScreen() {
           isDuel={!!isDuel}
           isFalling={iAmFalling}
           secondsLeft={secondsLeft}
-          phaseTotalSec={isChoose ? 12 : 38}
+          phaseTotalSec={phaseTotalSec}
           deadlineMs={match.phaseDeadlineAt}
         />
       ) : null}
@@ -448,7 +512,7 @@ export default function ConstellationMatchScreen() {
             stars={match.stars}
             homes={match.homes}
             players={match.players}
-            highlightKeys={isChoose && !shieldMode ? legalTargets : undefined}
+            highlightKeys={isChoose ? (shieldMode ? myStarKeys : legalTargets) : undefined}
             selectedKey={sheetKey}
             myTargetKey={myTargetThisRound}
             mySlot={mySlot}
@@ -539,28 +603,59 @@ export default function ConstellationMatchScreen() {
           total={me?.questions.length ?? 0}
           question={currentQuestion.question}
           options={currentQuestion.options}
+          targetLabel={targetLabel}
+          targetColor={targetColor}
           busy={busy}
-          lastRule={lastRule}
+          lastResult={lastResult}
           secondsLeft={secondsLeft}
-          phaseTotalSec={isDuel ? 10 : 38}
+          phaseTotalSec={phaseTotalSec}
+          deadlineMs={match.phaseDeadlineAt}
           bottomInset={insets.bottom}
           onAnswer={onAnswer}
-          onRuleSeen={() => setLastRule(null)}
+          onResultSeen={() => setLastResult(null)}
         />
       ) : null}
 
-      {/* Ответил всё — ждём резолв (микро-обучение уже показано) */}
+      {/* Вопрос ещё грузится (player-док отстаёт от фазы матча на снапшот) */}
+      {loadingQuestion ? (
+        <View style={[styles.waitCard, { borderColor: t.border, backgroundColor: 'rgba(8,13,30,0.92)' }]}>
+          <Ionicons name="hourglass-outline" size={18} color={t.accent} />
+          <Text style={{ color: t.textSecond, fontSize: f.caption }}>
+            {triLang(lang, {
+              ru: 'Загружаем вопрос…', uk: 'Завантажуємо питання…',
+              es: 'Cargando pregunta…', 'pt-BR': 'Carregando pergunta…',
+              vi: 'Đang tải câu hỏi…', id: 'Memuat pertanyaan…',
+              tr: 'Soru yükleniyor…', pl: 'Wczytujemy pytanie…',
+            })}
+          </Text>
+        </View>
+      ) : null}
+
+      {/* Ответил всё — ждём резолв. Живой прогресс (аудит: «мёртвое время»):
+          сколько игроков уже сходили + сколько секунд осталось до резолва —
+          ожидание не выглядит зависанием. */}
       {answeredAll && !currentQuestion && !iAmOut ? (
         <View style={[styles.waitCard, { borderColor: t.border, backgroundColor: 'rgba(8,13,30,0.92)' }]}>
           <Ionicons name="checkmark-done" size={18} color={t.accent} />
-          <Text style={{ color: t.textSecond, fontSize: f.caption }}>
-            {triLang(lang, {
-              ru: 'Готово — ждём остальных…', uk: 'Готово — чекаємо інших…',
-              es: 'Listo — esperando al resto…', 'pt-BR': 'Pronto — esperando os outros…',
-              vi: 'Xong — chờ người khác…', id: 'Selesai — menunggu yang lain…',
-              tr: 'Tamam — diğerleri bekleniyor…', pl: 'Gotowe — czekamy na innych…',
-            })}
-          </Text>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: t.textSecond, fontSize: f.caption }}>
+              {triLang(lang, {
+                ru: 'Готово — ждём остальных', uk: 'Готово — чекаємо інших',
+                es: 'Listo — esperando al resto', 'pt-BR': 'Pronto — esperando os outros',
+                vi: 'Xong — chờ người khác', id: 'Selesai — menunggu yang lain',
+                tr: 'Tamam — diğerleri bekleniyor', pl: 'Gotowe — czekamy na innych',
+              })}
+            </Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700', fontVariant: ['tabular-nums'], marginTop: 2 }}>
+              {triLang(lang, {
+                ru: `Сходили ${doneCount}/${liveCount}`, uk: `Сходили ${doneCount}/${liveCount}`,
+                es: `Listos ${doneCount}/${liveCount}`, 'pt-BR': `Prontos ${doneCount}/${liveCount}`,
+                vi: `Đã đi ${doneCount}/${liveCount}`, id: `Selesai ${doneCount}/${liveCount}`,
+                tr: `Hazır ${doneCount}/${liveCount}`, pl: `Gotowi ${doneCount}/${liveCount}`,
+              })}
+              {secondsLeft > 0 ? ` · ${secondsLeft}${triLang(lang, { ru: 'с', uk: 'с', es: 's', 'pt-BR': 's', vi: 's', id: 'd', tr: 'sn', pl: 's' })}` : ''}
+            </Text>
+          </View>
         </View>
       ) : null}
 
@@ -762,7 +857,9 @@ const RoundCountdown = memo(function RoundCountdown({ value, lang }: { value: nu
     vi: 'BẮT ĐẦU!', id: 'AYO!', tr: 'HADI!', pl: 'RUSZAMY!',
   });
   return (
-    <View style={styles.cdOverlay} pointerEvents="none">
+    // На цифрах «3-2-1» блокируем тапы по карте (сервер держит фору таймера),
+    // на «ПОЕХАЛИ» пропускаем — старт мгновенный.
+    <View style={styles.cdOverlay} pointerEvents={isGo ? 'none' : 'auto'}>
       <Animated.Text style={[styles.cdText, animStyle, isGo ? styles.cdGo : null]}>
         {isGo ? goText : String(value)}
       </Animated.Text>
@@ -928,7 +1025,7 @@ const TargetSheet = memo(function TargetSheet({
   // Сложность звезды (пипсы 1–4): по кольцу + Сияние. outer=1 … polar=4, +Сияние.
   const baseDiff = { outer: 1, middle: 2, inner: 3, polar: 4 }[ring];
   const difficulty = Math.min(4, baseDiff + (star.radiance > 0 ? 1 : 0));
-  const name = starName(starKey);
+  const name = starName(starKey, lang);
 
   return (
     <View style={[sheetStyles.sheet, { backgroundColor: 'rgba(8,13,30,0.96)', borderColor: '#2A3A6A', bottom: 14 + bottomInset }]}>
@@ -1024,32 +1121,53 @@ interface QuizOverlayProps {
   total: number;
   question: string;
   options: string[];
+  /** Имя целевой звезды и цвет её владельца — мини-контекст «за что бьюсь». */
+  targetLabel: string | null;
+  targetColor: string;
   busy: boolean;
-  lastRule: { correct: boolean; rule: string } | null;
+  lastResult: { correct: boolean } | null;
   secondsLeft: number;
   phaseTotalSec: number;
+  deadlineMs: number;
   bottomInset: number;
   onAnswer: (index: number) => void;
-  onRuleSeen: () => void;
+  onResultSeen: () => void;
 }
 
 const QuizOverlay = memo(function QuizOverlay({
-  lang, isDuel, qIndex, total, question, options, busy, lastRule, secondsLeft, phaseTotalSec, bottomInset, onAnswer, onRuleSeen,
+  lang, isDuel, qIndex, total, question, options, targetLabel, targetColor, busy, lastResult, secondsLeft, phaseTotalSec, deadlineMs, bottomInset, onAnswer, onResultSeen,
 }: QuizOverlayProps) {
   const { theme: t, f } = useTheme();
-  const budgetFrac = Math.max(0, Math.min(1, secondsLeft / Math.max(1, phaseTotalSec)));
   const budgetLow = secondsLeft <= 5;
+  // Плавная полоса бюджета (жалоба «дёргается по секциям»): та же техника, что
+  // кольцо в PhaseBanner — течёт непрерывно к 0, а не скачет раз в секунду.
+  const budgetProg = useSharedValue(1);
+  useEffect(() => {
+    const remainMs = Math.max(0, deadlineMs - Date.now());
+    const total = Math.max(1, phaseTotalSec * 1000);
+    budgetProg.value = Math.max(0, Math.min(1, remainMs / total));
+    if (remainMs > 0) {
+      budgetProg.value = withTiming(0, { duration: remainMs, easing: Easing.linear });
+    }
+  }, [deadlineMs, phaseTotalSec, budgetProg]);
+  const budgetStyle = useAnimatedStyle(() => ({
+    width: `${budgetProg.value * 100}%`,
+  }));
   // Микрофидбек плиток (2.9): подсветка выбранной до прихода правила/след. вопроса.
   const [pickedIndex, setPickedIndex] = useState<number | null>(null);
   useEffect(() => { setPickedIndex(null); }, [qIndex]);
+  // Время фазы вышло — блокируем варианты (жалоба «нет ограничения после
+  // таймера»): раньше кнопки оставались активными до прихода нового снапшота,
+  // хотя сервер такой ответ всё равно отклонит («не та фаза»/просрочен).
+  const timeUp = secondsLeft <= 0;
   const handlePick = useCallback((i: number) => {
-    if (busy) return;
+    if (busy || timeUp) return;
     // Мгновенная вибрация выбора (жалоба «нет реакции при выборе») — до сетевого
     // ответа. На плитках только вибрация, без звука (правило проекта).
     hapticLightImpact();
     setPickedIndex(i);
     onAnswer(i);
-  }, [busy, onAnswer]);
+  }, [busy, timeUp, onAnswer]);
   // Вход: квиз «выезжает» снизу при появлении нового вопроса (привлекает внимание).
   const enter = useSharedValue(0);
   useEffect(() => {
@@ -1067,12 +1185,14 @@ const QuizOverlay = memo(function QuizOverlay({
       bottom: 14 + bottomInset, // над системной навигацией Android (жалоба)
     }]}>
       {/* Полоса бюджета фазы (2.3): игрок видит, сколько времени тает, прямо
-          над вопросом — не «внезапно время вышло». Краснеет на ≤5с. */}
+          над вопросом — не «внезапно время вышло». Краснеет на ≤5с. Течёт
+          плавно (withTiming), не скачет раз в секунду (жалоба «дёргается»). */}
       <View style={quizStyles.budgetTrack}>
-        <View
+        <Animated.View
           style={[
             quizStyles.budgetFill,
-            { width: `${budgetFrac * 100}%`, backgroundColor: budgetLow ? '#FF6B8A' : (isDuel ? '#FFD166' : '#8B7BFF') },
+            budgetStyle,
+            { backgroundColor: budgetLow ? '#FF6B8A' : (isDuel ? '#FFD166' : '#8B7BFF') },
           ]}
         />
       </View>
@@ -1087,9 +1207,24 @@ const QuizOverlay = memo(function QuizOverlay({
           })}
         </Text>
       ) : null}
-      {/* Заголовок вопроса скрыт, пока показано правило (lastRule) — иначе виден
-          НОВЫЙ вопрос над правилом СТАРОГО («вопросы смешивались»). */}
-      {!lastRule ? (
+      {/* Мини-контекст цели (аудит): игрок всегда видит, ЗА КАКУЮ звезду бьётся
+          и чья она — цветная точка владельца + имя. Скрыт при показе результата. */}
+      {!lastResult && targetLabel ? (
+        <View style={quizStyles.targetRow}>
+          <View style={[quizStyles.targetDot, { backgroundColor: targetColor }]} />
+          <Text numberOfLines={1} style={[quizStyles.targetText, { color: t.textSecond, fontSize: f.caption }]}>
+            {triLang(lang, {
+              ru: 'За звезду', uk: 'За зірку', es: 'Por la estrella', 'pt-BR': 'Pela estrela',
+              vi: 'Giành sao', id: 'Rebut bintang', tr: 'Yıldız için', pl: 'O gwiazdę',
+            })}{' '}
+            <Text style={{ color: targetColor, fontWeight: '800' }}>{targetLabel}</Text>
+          </Text>
+        </View>
+      ) : null}
+      {/* Заголовок вопроса скрыт, пока показан результат (lastResult) — иначе
+          виден НОВЫЙ вопрос над результатом СТАРОГО («вопросы смешивались»).
+          Разборов (rule) в режиме больше нет — только факт верно/неверно. */}
+      {!lastResult ? (
         <>
           <Text style={[quizStyles.meta, { color: t.textSecond, fontSize: f.caption - 1 }]}>
             {qIndex + 1}/{total}
@@ -1099,20 +1234,17 @@ const QuizOverlay = memo(function QuizOverlay({
           </Text>
         </>
       ) : null}
-      {lastRule ? (
+      {lastResult ? (
         <View style={[quizStyles.rule, {
-          borderLeftColor: lastRule.correct ? '#63E6A4' : '#FF8080',
-          backgroundColor: lastRule.correct ? 'rgba(99,230,164,0.08)' : 'rgba(255,128,128,0.08)',
+          borderLeftColor: lastResult.correct ? '#63E6A4' : '#FF8080',
+          backgroundColor: lastResult.correct ? 'rgba(99,230,164,0.08)' : 'rgba(255,128,128,0.08)',
         }]}>
-          <Text style={{ color: lastRule.correct ? '#63E6A4' : '#FF8080', fontWeight: '800', fontSize: f.caption }}>
-            {lastRule.correct
+          <Text style={{ color: lastResult.correct ? '#63E6A4' : '#FF8080', fontWeight: '800', fontSize: f.caption }}>
+            {lastResult.correct
               ? triLang(lang, { ru: 'Верно!', uk: 'Вірно!', es: '¡Correcto!', 'pt-BR': 'Certo!', vi: 'Đúng!', id: 'Benar!', tr: 'Doğru!', pl: 'Dobrze!' })
               : triLang(lang, { ru: 'Мимо', uk: 'Повз', es: 'Fallo', 'pt-BR': 'Errou', vi: 'Sai', id: 'Salah', tr: 'Yanlış', pl: 'Pudło' })}
           </Text>
-          {lastRule.rule ? (
-            <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>{lastRule.rule}</Text>
-          ) : null}
-          <TouchableOpacity onPress={onRuleSeen} style={quizStyles.ruleNext}>
+          <TouchableOpacity onPress={onResultSeen} style={quizStyles.ruleNext}>
             <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '700' }}>
               {triLang(lang, { ru: 'Дальше →', uk: 'Далі →', es: 'Sigue →', 'pt-BR': 'Próx →', vi: 'Tiếp →', id: 'Lanjut →', tr: 'Devam →', pl: 'Dalej →' })}
             </Text>
@@ -1134,9 +1266,9 @@ const QuizOverlay = memo(function QuizOverlay({
                   borderColor: bColor,
                   backgroundColor: bg,
                   borderWidth: picked ? 1.5 : 1,
-                  opacity: busy && !picked ? 0.5 : 1,
+                  opacity: (busy || timeUp) && !picked ? 0.5 : 1,
                 }]}
-                disabled={busy}
+                disabled={busy || timeUp}
                 onPress={() => handlePick(i)}
                 activeOpacity={0.85}
               >
@@ -1228,17 +1360,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(13,20,44,0.9)',
   },
   roundText: { fontVariant: ['tabular-nums'] },
-  timerPill: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    borderWidth: 1,
-    borderRadius: 999,
-    paddingHorizontal: 9,
-    paddingVertical: 5,
-    backgroundColor: 'rgba(13,20,44,0.9)',
-  },
-  timerText: { fontWeight: '800', fontVariant: ['tabular-nums'] },
   goldChip: {
     borderRadius: 999,
     paddingHorizontal: 9,
@@ -1284,17 +1405,17 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 4,
     borderWidth: 1,
     borderRadius: 12,
-    paddingHorizontal: 7,
+    paddingHorizontal: 5,
     paddingVertical: 6,
     backgroundColor: 'rgba(12,18,44,0.7)',
   },
   playerAva: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1482,6 +1603,9 @@ const quizStyles = StyleSheet.create({
     marginBottom: 12,
   },
   budgetFill: { height: '100%', borderRadius: 5 },
+  targetRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 8 },
+  targetDot: { width: 9, height: 9, borderRadius: 5 },
+  targetText: { flex: 1, fontWeight: '600' },
   duelBadge: {
     color: '#FFD166',
     fontSize: 10,

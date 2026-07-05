@@ -8,7 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { useEffect, useMemo } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import Animated, {
   Easing,
@@ -19,8 +19,13 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { isLowEndDevice } from '../hooks/device_perf_tier';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+/** Авто-лайт (спека F9): доля звёзд, которая остаётся на слабом Android-тире. */
+const LOW_END_STAR_FRACTION = 0.4;
+const DEVICE_IS_LOW_END = isLowEndDevice(Platform);
 
 function TwinkleStar(
   { x, y, r, delay, dur, focused }: { x: number; y: number; r: number; delay: number; dur: number; focused: boolean },
@@ -37,10 +42,15 @@ function TwinkleStar(
   return <AnimatedCircle cx={x} cy={y} r={r} fill="#EAF2FF" animatedProps={props} />;
 }
 
-/** Мерцающий звёздный фон. count — число звёзд (меньше на слабых экранах). */
+/** Мерцающий звёздный фон. count — число звёзд (авто-лайт сам урезает на слабых). */
 export function ConstellationStarfield({ count = 44 }: { count?: number }) {
   const focused = useIsScreenFocused();
-  const stars = useMemo(() => Array.from({ length: count }, (_, i) => {
+  const reduceMotion = useReduceMotion();
+  // Reduce-motion: мерцание не крутим (укачивание), звёзды остаются статичными.
+  const animate = focused && !reduceMotion;
+  // Авто-лайт (слабый Android-тир): меньше звёзд — меньше shared values/циклов разом.
+  const effectiveCount = DEVICE_IS_LOW_END ? Math.round(count * LOW_END_STAR_FRACTION) : count;
+  const stars = useMemo(() => Array.from({ length: effectiveCount }, (_, i) => {
     const s = Math.sin(i * 127.3) * 10000;
     const frac = (n: number) => n - Math.floor(n);
     return {
@@ -50,12 +60,12 @@ export function ConstellationStarfield({ count = 44 }: { count?: number }) {
       delay: frac(s * 3.1) * 2500,
       dur: 1400 + frac(s * 4.7) * 2200,
     };
-  }), [count]);
+  }), [effectiveCount]);
   return (
     <Svg style={StyleSheet.absoluteFill} width="100%" height="100%"
       viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none">
       {stars.map((st, i) => (
-        <TwinkleStar key={i} x={st.x} y={st.y} r={st.r} delay={st.delay} dur={st.dur} focused={focused} />
+        <TwinkleStar key={i} x={st.x} y={st.y} r={st.r} delay={st.delay} dur={st.dur} focused={animate} />
       ))}
     </Svg>
   );

@@ -30,6 +30,7 @@ import { hapticCelebrate, hapticSuccess } from '../hooks/use-haptics';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { CONSTELLATION_SLOT_COLORS } from './constellation_sky_map';
 import { buildMapLayout } from './constellations_hex';
+import { shareCardFromSvgRef } from '../components/share_cards/shareCardPng';
 
 /** Радиус гекса для раскладки контура на результатах (масштабируется под viewBox). */
 const RESULT_HEX_SIZE = 27;
@@ -121,7 +122,6 @@ export default function ConstellationResultsScreen() {
   const [uid, setUid] = useState<string | null>(null);
   const [match, setMatch] = useState<ConstellationMatch | null>(null);
   const [result, setResult] = useState<ConstellationResult | null>(null);
-  const [toast, setToast] = useState('');
 
   useEffect(() => { void ensureArenaAuthUid().then(setUid); }, []);
   useEffect(() => {
@@ -190,6 +190,25 @@ export default function ConstellationResultsScreen() {
   );
 
   const myColor = mySlot !== null ? CONSTELLATION_SLOT_COLORS[mySlot] : '#5AC8FA';
+
+  // Реальный шаринг именного созвездия картинкой (аудит: была заглушка «скоро»).
+  const constSvgRef = React.useRef<InstanceType<typeof Svg> | null>(null);
+  const shareConstellation = React.useCallback(() => {
+    hapticSuccess();
+    void shareCardFromSvgRef(constSvgRef, {
+      fileNamePrefix: 'constellation',
+      textFallback: triLang(lang, {
+        ru: `Собрал созвездие «${name}» в Phraseman ⭐`,
+        uk: `Зібрав сузір’я «${name}» у Phraseman ⭐`,
+        es: `Formé la constelación «${name}» en Phraseman ⭐`,
+        'pt-BR': `Montei a constelação «${name}» no Phraseman ⭐`,
+        vi: `Đã tạo chòm sao «${name}» trên Phraseman ⭐`,
+        id: `Membentuk rasi «${name}» di Phraseman ⭐`,
+        tr: `Phraseman’de «${name}» takımyıldızını kurdum ⭐`,
+        pl: `Ułożyłem gwiazdozbiór «${name}» w Phraseman ⭐`,
+      }),
+    });
+  }, [lang, name]);
 
   if (!match) {
     return <LinearGradient colors={skyColors} style={styles.root} />;
@@ -277,7 +296,7 @@ export default function ConstellationResultsScreen() {
 
         {/* Именное созвездие */}
         <View style={[styles.constCard, { borderColor: '#2A3A6A' }]}>
-          <Svg width="100%" height={190} viewBox="0 0 320 190">
+          <Svg ref={constSvgRef} width="100%" height={190} viewBox="0 0 320 190">
             <Defs>
               <RadialGradient id="resStar">
                 <Stop offset="0" stopColor="#FFFFFF" />
@@ -333,31 +352,21 @@ export default function ConstellationResultsScreen() {
             </Text>
           </DuoPressable>
           <TouchableOpacity
+            testID="constellation-results-share"
             style={[styles.ghost, { borderColor: t.border }]}
-            onPress={() => {
-              setToast(triLang(lang, {
-                ru: 'Шаринг картинкой — скоро ✨', uk: 'Шаринг — скоро ✨', es: 'Compartir — pronto ✨',
-                'pt-BR': 'Compartilhar — em breve ✨', vi: 'Chia sẻ — sắp có ✨', id: 'Bagikan — segera ✨',
-                tr: 'Paylaşım — yakında ✨', pl: 'Udostępnianie — wkrótce ✨',
-              }));
-              setTimeout(() => setToast(''), 2200);
-            }}
+            onPress={shareConstellation}
           >
             <Ionicons name="share-social" size={16} color={t.textSecond} />
           </TouchableOpacity>
           <TouchableOpacity
+            testID="constellation-results-home"
             style={[styles.ghost, { borderColor: t.border }]}
-            onPress={() => router.dismissTo('/(tabs)/home' as any)}
+            onPress={() => router.replace('/(tabs)/arena' as any)}
           >
             <Ionicons name="home" size={16} color={t.textSecond} />
           </TouchableOpacity>
         </View>
       </View>
-      {toast ? (
-        <View style={[styles.toast, { borderColor: t.accent }]}>
-          <Text style={{ color: t.textPrimary, fontSize: f.caption }}>{toast}</Text>
-        </View>
-      ) : null}
     </View>
   );
 }
@@ -422,15 +431,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
-  },
-  toast: {
-    position: 'absolute',
-    bottom: 30,
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: 999,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    backgroundColor: '#0B1330',
   },
 });

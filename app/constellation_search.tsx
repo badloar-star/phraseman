@@ -25,6 +25,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { canStartArenaMatch } from './arena_access_gate';
 import { safeRouterBack } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
@@ -100,6 +101,7 @@ export default function ConstellationSearchScreen() {
   const { isUnlimited, energy, bonusEnergy } = useEnergy();
   const myRank = useArenaRank();
   const focused = useIsScreenFocused();
+  const reduceMotion = useReduceMotion();
 
   const [state, setState] = useState<ScreenState>({ kind: 'searching' });
   const [elapsedSec, setElapsedSec] = useState(0);
@@ -123,6 +125,15 @@ export default function ConstellationSearchScreen() {
 
   useEffect(() => {
     if (!focused || state.kind !== 'searching') return;
+    // Reduce-motion: радар не вращаем и ядро не пульсируем (укачивание) —
+    // ставим статичный «средний» кадр, поиск всё равно идёт.
+    if (reduceMotion) {
+      corePulse.stopAnimation();
+      sweepSpin.stopAnimation();
+      corePulse.setValue(0.5);
+      sweepSpin.setValue(0);
+      return;
+    }
     const pulse = Animated.loop(Animated.sequence([
       Animated.timing(corePulse, { toValue: 1, duration: 1200, useNativeDriver: true }),
       Animated.timing(corePulse, { toValue: 0, duration: 1200, useNativeDriver: true }),
@@ -133,7 +144,7 @@ export default function ConstellationSearchScreen() {
     pulse.start();
     spin.start();
     return () => { pulse.stop(); spin.stop(); };
-  }, [focused, state.kind, corePulse, sweepSpin]);
+  }, [focused, reduceMotion, state.kind, corePulse, sweepSpin]);
 
   // Полоса сборки тянется к «числу собранных слотов» (плавно, JS-драйвер для width).
   useEffect(() => {

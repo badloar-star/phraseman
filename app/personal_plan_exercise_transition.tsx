@@ -283,7 +283,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
           <TouchableOpacity
             activeOpacity={0.72}
             onPress={() => safeRouterBack(router, '/personal_plan')}
-            style={[styles.closeBtn, { borderColor: t.border, backgroundColor: t.bgCard }]}
+            style={[styles.closeBtn, { backgroundColor: t.bgCard }]}
           >
             <Ionicons name="close" size={22} color={t.textMuted} />
           </TouchableOpacity>
@@ -301,7 +301,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
               ]}
             />
           </View>
-          <View style={[styles.countPill, { backgroundColor: t.accentBg, borderColor: t.border }]}>
+          <View style={[styles.countPill, { backgroundColor: t.accentBg }]}>
             <Text style={[styles.countText, { color: t.accent }]}>{completedCount}/{totalCount}</Text>
           </View>
         </View>
@@ -319,7 +319,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
             <Ionicons name={meta.icon as any} size={52} color={accentColor} />
           </View>
 
-          <View style={[styles.labelPill, { backgroundColor: accentColor + '14', borderColor: accentColor + '33' }]}>
+          <View style={[styles.labelPill, { backgroundColor: accentColor + '1F' }]}>
             <Text style={[styles.labelText, { color: accentColor }]}>{nextTaskLabel}</Text>
           </View>
 
@@ -327,7 +327,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
           <Text style={[styles.whyText, { color: t.textMuted }]}>{meta.why}</Text>
 
           {taskSubtitle ? (
-            <View style={[styles.focusPill, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+            <View style={[styles.focusPill, { backgroundColor: t.bgCard }]}>
               <Ionicons name="bookmark-outline" size={16} color={t.textMuted} />
               <Text style={[styles.focusText, { color: t.textMuted }]}>{taskSubtitle}</Text>
             </View>
@@ -379,7 +379,6 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 14,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
@@ -398,7 +397,6 @@ const styles = StyleSheet.create({
     height: 34,
     paddingHorizontal: 12,
     borderRadius: 17,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -426,7 +424,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 7,
     borderRadius: 20,
-    borderWidth: 1,
   },
   labelText: {
     fontSize: 12,
@@ -453,7 +450,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 10,
     borderRadius: 14,
-    borderWidth: 1,
     marginTop: 4,
   },
   focusText: {

@@ -2153,7 +2153,7 @@ export default function PersonalPlanExerciseScreen() {
             onPress={() => safeRouterBack(router, '/personal_plan')}
             accessibilityRole="button"
             accessibilityLabel="Назад"
-            style={[styles.back, { backgroundColor: t.bgCard, borderColor: t.border }]}
+            style={[styles.back, { backgroundColor: t.bgCard }]}
           >
             <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
             <Text numberOfLines={1} style={[styles.backText, { color: t.textPrimary, fontSize: f.bodyLg }]}>{chromeTitle}</Text>
@@ -2252,7 +2252,7 @@ export default function PersonalPlanExerciseScreen() {
                 />
                 <View
                   accessibilityLabel="Поле собранной фразы"
-                  style={[styles.listenBuildAnswerBox, { borderColor: t.border, backgroundColor: t.bgCard }]}
+                  style={[styles.listenBuildAnswerBox, { backgroundColor: t.bgCard }]}
                 >
                   {buildWords.length > 0 ? buildWords.map((word, wordIndex) => (
                     <TouchableOpacity
@@ -2265,7 +2265,7 @@ export default function PersonalPlanExerciseScreen() {
                         hapticTap();
                         setBuildWords((current) => current.filter((_, index) => index !== wordIndex));
                       }}
-                      style={[styles.listenBuildAnswerChip, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}
+                      style={[styles.listenBuildAnswerChip, { backgroundColor: t.bgSurface2 }]}
                     >
                       <Text style={[styles.listenBuildAnswerText, { color: t.textPrimary }]}>{word}</Text>
                     </TouchableOpacity>
@@ -2275,7 +2275,7 @@ export default function PersonalPlanExerciseScreen() {
                 </View>
               </View>
 
-              <View style={[styles.wordBank, { borderColor: t.border, backgroundColor: t.bgCard }]}>
+              <View style={[styles.wordBank, { backgroundColor: t.bgCard }]}>
                 {item.wordOptions.map((word: string, wordIndex: number) => {
                   const usedCount = buildWords.filter((value) => value === word).length;
                   const availableCount = item.wordOptions.filter((value) => value === word).length;
@@ -2294,8 +2294,8 @@ export default function PersonalPlanExerciseScreen() {
                         styles.wordTile,
                         {
                           backgroundColor: on ? accent : t.bgCard,
-                          borderColor: on ? accent : t.border,
-                          borderWidth: on ? 1.5 : 1.5,
+                          borderColor: on ? accent : 'transparent',
+                          borderWidth: on ? 1.5 : 0,
                           opacity: disabled ? 0.42 : 1,
                         },
                       ]}
@@ -2319,7 +2319,7 @@ export default function PersonalPlanExerciseScreen() {
                     accessibilityLabel="Убрать последнее слово"
                     disabled={buildWords.length === 0 || saving}
                     onPress={() => setBuildWords((current) => current.slice(0, -1))}
-                    style={[styles.secondaryButton, { borderColor: t.border, backgroundColor: t.bgCard }]}
+                    style={[styles.secondaryButton, { backgroundColor: t.bgCard }]}
                   >
                     <Text style={[styles.secondaryButtonText, { color: buildWords.length > 0 ? t.textPrimary : t.textMuted }]}>Назад</Text>
                   </TouchableOpacity>
@@ -2496,7 +2496,7 @@ export default function PersonalPlanExerciseScreen() {
                     ? t.correct
                     : on
                     ? accent
-                    : t.border;
+                    : 'transparent';
                   const bgColor = isRight
                     ? t.correctBg
                     : on
@@ -2521,7 +2521,7 @@ export default function PersonalPlanExerciseScreen() {
                       bgColor={bgColor}
                       borderColor={borderColor}
                       textColor={textColor}
-                      borderWidth={on ? 1.5 : (useGridOptions ? 0.5 : 1)}
+                      borderWidth={isRight || on ? 1.5 : 0}
                       useGridOptions={useGridOptions}
                       onCorrect={() => {
                         flash(option);
@@ -2692,7 +2692,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     minWidth: 0,
     maxWidth: '70%',
     borderRadius: 20,
-    borderWidth: 0.5,
     paddingHorizontal: 12,
     paddingVertical: 7,
   },
@@ -2792,7 +2791,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   listenBuildAnswerBox: {
     minHeight: 92,
     borderRadius: 22,
-    borderWidth: 1.5,
     padding: 12,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -2803,7 +2801,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   listenBuildAnswerChip: {
     minHeight: 42,
     borderRadius: 16,
-    borderWidth: 1,
     paddingHorizontal: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -2813,7 +2810,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   wordBank: {
     marginTop: 18,
     borderRadius: 24,
-    borderWidth: 1,
     padding: 12,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -2823,7 +2819,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   wordTile: {
     minHeight: 50,
     borderRadius: 17,
-    borderWidth: 1.5,
     paddingHorizontal: 14,
     alignItems: 'center',
     justifyContent: 'center',
@@ -2940,7 +2935,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     minHeight: 72,
     minWidth: 104,
     borderRadius: 22,
-    borderWidth: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,

@@ -918,7 +918,7 @@ function FrenchDiagnosticUnavailable({
             </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
-            <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+            <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <Ionicons name="shield-checkmark-outline" size={40} color={t.textSecond} />
             </View>
             <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
@@ -930,7 +930,7 @@ function FrenchDiagnosticUnavailable({
             <TouchableOpacity
               activeOpacity={0.86}
               onPress={onLessons}
-              style={{ backgroundColor: t.bgSurface, borderWidth: 0.5, borderColor: t.border, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
+              style={{ backgroundColor: t.bgSurface, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.cta}</Text>
             </TouchableOpacity>
@@ -1508,7 +1508,7 @@ export default function DiagnosticTest() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, marginTop: 12 }}
+          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center', marginTop: 12 }}
           onPress={() => { void tryStartDiagnosticQuiz(); }}
           activeOpacity={0.85}
         >
@@ -1575,7 +1575,7 @@ export default function DiagnosticTest() {
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
-        <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
+        <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
           <Ionicons name="school-outline" size={44} color={t.textSecond} />
         </View>
         <Text style={{ color: sx.second, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>
@@ -1604,7 +1604,7 @@ export default function DiagnosticTest() {
         </View>
 
         <TouchableOpacity
-          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%', marginBottom: 12, borderWidth: 0.5, borderColor: t.border }}
+          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%', marginBottom: 12 }}
           onPress={() => { void tryRestartDiagnosticQuiz(); }}
         >
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
@@ -1731,8 +1731,8 @@ export default function DiagnosticTest() {
                 minHeight: 52, flexDirection: 'row', flexWrap: 'wrap', gap: 6,
                 backgroundColor: buildSubmitted ? (chosen === 0 ? t.correctBg : t.wrongBg) : t.bgCard,
                 borderRadius: 12, padding: 10, marginBottom: 8,
-                borderWidth: 1.5,
-                borderColor: buildSubmitted ? (chosen === 0 ? t.correct : t.wrong) : (buildSelected.length > 0 ? t.textSecond : t.border),
+                borderWidth: buildSubmitted ? 1.5 : 0,
+                borderColor: buildSubmitted ? (chosen === 0 ? t.correct : t.wrong) : 'transparent',
               }}>
                 {buildSelected.length === 0 ? (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontStyle: 'italic', alignSelf: 'center' }}>
@@ -1747,7 +1747,7 @@ export default function DiagnosticTest() {
                         setBuildSelected(prev => prev.filter((_, i) => i !== wi));
                         setBuildBank(prev => [...prev, word]);
                       }}
-                      style={{ backgroundColor: t.bgSurface, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1, borderColor: t.border }}
+                      style={{ backgroundColor: t.bgSurface, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6 }}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.body }}>{word}</Text>
                     </TouchableOpacity>
@@ -1769,7 +1769,7 @@ export default function DiagnosticTest() {
                         setBuildBank(prev => prev.filter((_, i) => i !== wi));
                         setBuildSelected(prev => [...prev, word]);
                       }}
-                      style={{ backgroundColor: t.bgSurface, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 0.5, borderColor: t.border }}
+                      style={{ backgroundColor: t.bgSurface, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 8 }}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.body }}>{word}</Text>
                     </TouchableOpacity>
@@ -1782,7 +1782,6 @@ export default function DiagnosticTest() {
                   style={{
                     backgroundColor: buildSelected.length > 0 ? t.bgSurface : t.bgCard,
                     borderRadius: 12, padding: 14, alignItems: 'center',
-                    borderWidth: 1, borderColor: buildSelected.length > 0 ? t.textSecond : t.border,
                     opacity: buildSelected.length > 0 ? 1 : 0.45,
                   }}
                   onPress={handleBuildSubmit}
@@ -1801,8 +1800,8 @@ export default function DiagnosticTest() {
           {isTyping && (
             <View style={{ marginBottom: 16 }}>
               <View style={{
-                flexDirection: 'row', borderWidth: 1.5,
-                borderColor: typeSubmitted ? (chosen === q.correct ? t.correct : t.wrong) : t.border,
+                flexDirection: 'row', borderWidth: typeSubmitted ? 1.5 : 0,
+                borderColor: typeSubmitted ? (chosen === q.correct ? t.correct : t.wrong) : 'transparent',
                 borderRadius: 14, overflow: 'hidden', backgroundColor: t.bgCard,
               }}>
                 <TextInput
@@ -1820,7 +1819,7 @@ export default function DiagnosticTest() {
                 />
                 {!typeSubmitted && (
                   <TouchableOpacity
-                    style={{ backgroundColor: t.bgSurface, paddingHorizontal: 16, justifyContent: 'center', borderLeftWidth: 0.5, borderLeftColor: t.border }}
+                    style={{ backgroundColor: t.bgSurface, paddingHorizontal: 16, justifyContent: 'center' }}
                     onPress={handleTypeSubmit}
                   >
                     <Ionicons name="checkmark" size={22} color={t.textSecond} />
@@ -1839,15 +1838,15 @@ export default function DiagnosticTest() {
           {!isTyping && !isBuilding && (
             <View style={{ gap: 10 }}>
               {qOpts.map((opt, ci) => {
-                let bg = t.bgCard, border = t.border, tc = t.textPrimary;
+                let bg = t.bgCard, border = 'transparent', tc = t.textPrimary, signal = false;
                 if (chosen !== null) {
-                  if (ci === q.correct)                    { bg = t.correctBg; border = t.correct; tc = t.correct; }
-                  else if (ci === chosen && chosen !== -1) { bg = t.wrongBg;   border = t.wrong;   tc = t.wrong;   }
+                  if (ci === q.correct)                    { bg = t.correctBg; border = t.correct; tc = t.correct; signal = true; }
+                  else if (ci === chosen && chosen !== -1) { bg = t.wrongBg;   border = t.wrong;   tc = t.wrong;   signal = true; }
                 }
-                if (chosen === -1 && ci === q.correct)     { bg = t.correctBg; border = t.correct; tc = t.correct; }
+                if (chosen === -1 && ci === q.correct)     { bg = t.correctBg; border = t.correct; tc = t.correct; signal = true; }
                 return (
                   <TouchableOpacity key={ci}
-                    style={{ backgroundColor: bg, borderWidth: 1, borderColor: border, borderRadius: 14, padding: 18 }}
+                    style={{ backgroundColor: bg, borderWidth: signal ? 1 : 0, borderColor: border, borderRadius: 14, padding: 18 }}
                     onPress={() => { handleAnswer(ci); }}
                     activeOpacity={0.8}
                     disabled={chosen !== null}
@@ -1908,14 +1907,12 @@ export default function DiagnosticTest() {
             <TouchableOpacity
               style={{
                 minHeight: 52,
-                backgroundColor: `${t.accent}22`,
+                backgroundColor: `${t.accent}33`,
                 borderRadius: 14,
                 paddingVertical: 14,
                 paddingHorizontal: 20,
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderWidth: 1.5,
-                borderColor: t.accent,
               }}
               onPress={() => { hapticTap(); advance(score); }}
               activeOpacity={0.85}

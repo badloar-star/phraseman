@@ -57,7 +57,7 @@ function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBac
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}>
         <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
       </View>
       <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
@@ -336,7 +336,7 @@ export default function PrepositionDrillScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
               <TapScale
                 onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
-                style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+                style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
               >
                 <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
               </TapScale>
@@ -519,7 +519,7 @@ export default function PrepositionDrillScreen() {
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
             <TapScale
               onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
-              style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+              style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
             >
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
             </TapScale>
@@ -574,7 +574,8 @@ export default function PrepositionDrillScreen() {
                 const isSel = selected === opt;
                 const showCorrect = selected !== null && opt === item.correct;
                 const bg = showCorrect ? 'rgba(21,128,61,0.2)' : isSel ? 'rgba(185,28,28,0.2)' : t.bgCard;
-                const border = showCorrect ? '#15803D' : isSel ? '#B91C1C' : t.border;
+                const border = showCorrect ? '#15803D' : isSel ? '#B91C1C' : 'transparent';
+                const signal = showCorrect || isSel;
                 return (
                   <View
                     key={`${item.id}:${optIdx}:${opt}`}
@@ -583,7 +584,7 @@ export default function PrepositionDrillScreen() {
                     <TouchableOpacity
                       onPress={() => onAnswer(opt)}
                       disabled={selected !== null}
-                      style={{ backgroundColor: bg, borderColor: border, borderWidth: 1, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+                      style={{ backgroundColor: bg, borderColor: border, borderWidth: signal ? 1 : 0, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
                     >
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{opt}</Text>
                   </TouchableOpacity>
@@ -691,7 +692,7 @@ export default function PrepositionDrillScreen() {
             </View>
           ) : (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-              <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }}>
+              <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center' }}>
                 <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
               </View>
               <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700', textAlign: 'center' }}>
@@ -752,7 +753,7 @@ export default function PrepositionDrillScreen() {
               <TouchableOpacity
                 onPress={() => { fk.tap(); restartAll(); }}
                 activeOpacity={0.8}
-                style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+                style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
               >
                 <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
                 <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>
@@ -772,7 +773,7 @@ export default function PrepositionDrillScreen() {
               {wrongIds.length > 0 && !reviewMode && (
                 <TouchableOpacity
                   onPress={() => { fk.tap(); restartWrong(); }}
-                  style={{ backgroundColor: t.bgSurface, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 14, borderWidth: 1, borderColor: t.border }}
+                  style={{ backgroundColor: t.bgSurface, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 14 }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                     {triLang(lang, {

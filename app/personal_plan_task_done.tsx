@@ -79,7 +79,7 @@ export default function PersonalPlanTaskDoneScreen() {
           <TouchableOpacity
             activeOpacity={0.72}
             onPress={goBack}
-            style={[styles.closeBtn, { borderColor: t.border, backgroundColor: t.bgCard }]}
+            style={[styles.closeBtn, { backgroundColor: t.bgCard }]}
           >
             <Ionicons name="close" size={22} color={t.textMuted} />
           </TouchableOpacity>
@@ -90,7 +90,7 @@ export default function PersonalPlanTaskDoneScreen() {
               screen="personal_plan_task_done"
               dataId={`${planId}_day_${dayIndex}_done`}
               dataText={`День ${dayIndex} закрыт${taskTitle ? ` · ${taskTitle}` : ''}`}
-              style={[styles.closeBtn, { borderColor: t.border, backgroundColor: t.bgCard }]}
+              style={[styles.closeBtn, { backgroundColor: t.bgCard }]}
             />
           ) : null}
         </View>
@@ -121,7 +121,7 @@ export default function PersonalPlanTaskDoneScreen() {
             />
           </Animated.View>
 
-          <View style={[styles.labelPill, { backgroundColor: accent + '14', borderColor: accent + '33' }]}>
+          <View style={[styles.labelPill, { backgroundColor: accent + '1F' }]}>
             <Text style={[styles.labelText, { color: accent }]}>
               {allDone ? 'День завершён!' : 'Задание выполнено!'}
             </Text>
@@ -136,7 +136,7 @@ export default function PersonalPlanTaskDoneScreen() {
           </Text>
 
           {allDone && comparison ? (
-            <View style={[styles.compareCard, { backgroundColor: accent + '14', borderColor: accent + '33' }]}>
+            <View style={[styles.compareCard, { backgroundColor: accent + '1F' }]}>
               <Ionicons name="people-outline" size={20} color={accent} />
               <View style={styles.compareCopy}>
                 <Text style={[styles.compareTitle, { color: t.textPrimary }]}>{planDayComparisonLine(comparison)}</Text>
@@ -151,17 +151,17 @@ export default function PersonalPlanTaskDoneScreen() {
 
           {dayProgress > 0 ? (
             <View style={styles.statsRow}>
-              <View style={[styles.statBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+              <View style={[styles.statBox, { backgroundColor: t.bgCard }]}>
                 <Text style={[styles.statValue, { color: accent }]}>{dayProgress}%</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>день</Text>
               </View>
               {allDone ? (
-                <View style={[styles.statBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+                <View style={[styles.statBox, { backgroundColor: t.bgCard }]}>
                   <Text style={[styles.statValue, { color: monoIcon(themeMode, '#4ECDC4') }]}>✓</Text>
                   <Text style={[styles.statLabel, { color: t.textMuted }]}>все задачи</Text>
                 </View>
               ) : null}
-              <View style={[styles.statBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+              <View style={[styles.statBox, { backgroundColor: t.bgCard }]}>
                 <Text style={[styles.statValue, { color: t.textPrimary }]}>{dayIndex}</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>номер дня</Text>
               </View>
@@ -206,7 +206,6 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 14,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -230,7 +229,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 7,
     borderRadius: 20,
-    borderWidth: 1,
   },
   labelText: {
     fontSize: 12,
@@ -258,7 +256,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 14,
-    borderWidth: 1,
   },
   compareCopy: { flex: 1, minWidth: 0 },
   compareTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
@@ -272,7 +269,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 80,
     borderRadius: 14,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 4,

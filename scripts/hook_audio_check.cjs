@@ -1,4 +1,4 @@
-/**
+﻿/**
  * hook_audio_check.cjs
  * PostToolUse hook: auto-regenerates audio when lesson/quiz data files are edited.
  * Receives JSON on stdin from Claude Code hook system.
@@ -9,10 +9,25 @@ const path = require('path');
 const crypto = require('crypto');
 const https = require('https');
 
-const API_KEY = process.env.OPENAI_API_KEY;
 const ROOT = path.resolve(__dirname, '..');
 const INDEX_FILE = path.join(ROOT, 'assets/audio/en/index.json');
 const OUTPUT_DIR = path.join(ROOT, 'assets/audio/en');
+
+function readEnvValue(name) {
+  const direct = String(process.env[name] || '').trim();
+  if (direct) return direct;
+  const envPath = path.join(ROOT, '.env.local');
+  if (!fs.existsSync(envPath)) return '';
+  for (const raw of fs.readFileSync(envPath, 'utf8').split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#') || !line.includes('=')) continue;
+    const [key, ...rest] = line.split('=');
+    if (key.trim() === name) return rest.join('=').trim().replace(/^["']|["']$/g, '');
+  }
+  return '';
+}
+
+const API_KEY = readEnvValue('OPENAI_TTS_API_KEY');
 
 const WATCHED_PATTERNS = [
   /lesson_data_.*\.ts$/,
@@ -75,8 +90,13 @@ async function main() {
   const isWatched = WATCHED_PATTERNS.some(p => p.test(normalizedPath));
   if (!isWatched) process.exit(0);
 
+  if (process.env.PHRASEMAN_ALLOW_OPENAI_DEV_SPEND !== '1') {
+    console.error('[audio-hook] PHRASEMAN_ALLOW_OPENAI_DEV_SPEND != 1 - skipping audio regeneration');
+    process.exit(0);
+  }
+
   if (!API_KEY) {
-    console.error('[audio-hook] OPENAI_API_KEY not set — skipping audio regeneration');
+    console.error('[audio-hook] OPENAI_TTS_API_KEY not set â€” skipping audio regeneration');
     process.exit(0);
   }
 
@@ -87,32 +107,32 @@ async function main() {
   const missing = [...phrases].filter(p => !index[p]);
 
   if (missing.length === 0) {
-    console.log('[audio-hook] No new phrases detected — audio up to date.');
+    console.log('[audio-hook] No new phrases detected â€” audio up to date.');
     process.exit(0);
   }
 
   console.log(`\n[audio-hook] Detected ${missing.length} new/changed phrase(s) in ${path.basename(filePath)}`);
-  console.log('═══════════════════════════════════════════');
+  console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
 
   let success = 0, failed = 0;
   for (const phrase of missing) {
-    process.stdout.write(`  ▶ "${phrase}" ... `);
+    process.stdout.write(`  â–¶ "${phrase}" ... `);
     try {
       const audio = await fetchTTS(phrase);
       const filename = `${md5(phrase)}.mp3`;
       fs.writeFileSync(path.join(OUTPUT_DIR, filename), audio);
       index[phrase] = filename;
-      console.log(`✓ ${filename}`);
+      console.log(`âœ“ ${filename}`);
       success++;
     } catch (err) {
-      console.log(`✗ FAILED: ${err.message}`);
+      console.log(`âœ— FAILED: ${err.message}`);
       failed++;
     }
   }
 
   fs.writeFileSync(INDEX_FILE, JSON.stringify(index, null, 2));
 
-  console.log('═══════════════════════════════════════════');
+  console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
   console.log(`[audio-hook] Done: ${success} generated, ${failed} failed. index.json saved.\n`);
 }
 

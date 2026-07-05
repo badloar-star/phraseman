@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { readFileSync } from 'node:fs';
+import { requireCodexOpenAiTtsOnly } from './openai-dev-guard.mjs';
 
 const MARKER = '<!-- phraseman-ai-pr-review -->';
 const DEFAULT_MAX_CHARS = 120000;
@@ -271,6 +272,11 @@ function buildPrompt({ pr, files, diff, truncated, sensitiveFiles }) {
 }
 
 async function requestOpenAiReview(prompt) {
+  requireCodexOpenAiTtsOnly({
+    action: 'AI pull request review',
+    endpoint: 'responses',
+  });
+
   const apiKey = env('OPENAI_API_KEY');
   if (!apiKey) {
     throw new Error('OPENAI_API_KEY is required. Configure it as a repository secret before making AI review a required merge check.');

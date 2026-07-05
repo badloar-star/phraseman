@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * regen_plan_listen_audio_targeted.mjs — regenerate ONLY the plan-phrase mp3s whose
+ * regen_plan_listen_audio_targeted.mjs â€” regenerate ONLY the plan-phrase mp3s whose
  * text drifted (detected by check_plan_audio_freshness.mjs), instead of all 2730.
  *
  * For each stale asset it:
@@ -12,8 +12,8 @@
  *   node scripts/regen_plan_listen_audio_targeted.mjs --dry      # no spend, shows plan
  *   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_plan_listen_audio_targeted.mjs
  *
- * Reads OPENAI_API_KEY from env or .env.local. After running, re-run the freshness
- * checker — it must report 0 stale.
+ * Reads OPENAI_TTS_API_KEY from env or .env.local. After running, re-run the freshness
+ * checker â€” it must report 0 stale.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -34,16 +34,16 @@ if (!DRY && process.env.PHRASEMAN_ALLOW_OPENAI_DEV_SPEND !== '1') {
   process.exit(1);
 }
 
-let API_KEY = process.env.OPENAI_API_KEY;
+let API_KEY = process.env.OPENAI_TTS_API_KEY;
 if (!API_KEY) {
   const envPath = path.join(ROOT, '.env.local');
   if (fs.existsSync(envPath)) {
-    const line = fs.readFileSync(envPath, 'utf8').split(/\r?\n/).find((l) => l.trim().startsWith('OPENAI_API_KEY='));
+    const line = fs.readFileSync(envPath, 'utf8').split(/\r?\n/).find((l) => l.trim().startsWith('OPENAI_TTS_API_KEY='));
     if (line) API_KEY = line.slice(line.indexOf('=') + 1).trim();
   }
 }
 if (!DRY && !API_KEY) {
-  console.error('No OPENAI_API_KEY in env or .env.local');
+  console.error('No OPENAI_TTS_API_KEY in env or .env.local');
   process.exit(1);
 }
 

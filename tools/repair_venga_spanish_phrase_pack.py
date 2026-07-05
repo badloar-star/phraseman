@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 import generate_venga_spanish_phrase_pack as gen
+from openai_dev_guard import require_codex_openai_tts_only
 
 
 PACK = Path("exports/venga-phrase-packs/ru-es-a1-vsscp")
@@ -116,6 +117,7 @@ def sentence_case_ru(text: str) -> str:
 
 
 def main() -> int:
+    require_codex_openai_tts_only(action="Venga Spanish phrase pack repair", endpoint="chat/completions")
     env = gen.load_env_file(Path.cwd())
     api_key = env.get("OPENAI_API_KEY")
     if not api_key:

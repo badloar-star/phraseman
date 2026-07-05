@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Generate OpenAI TTS and timing manifests for Chains 800 unique v3."""
 
 from __future__ import annotations
@@ -39,8 +39,8 @@ ROLES: dict[str, dict[str, str]] = {
     "ru": {
         "voice": "marin",
         "instructions": (
-            "Говори по-русски естественно и тепло, как диктор хорошего учебного ролика. "
-            "Чёткое произношение, правильные ударения. Скажи только фразу и остановись чисто."
+            "Ð“Ð¾Ð²Ð¾Ñ€Ð¸ Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸ ÐµÑÑ‚ÐµÑÑ‚Ð²ÐµÐ½Ð½Ð¾ Ð¸ Ñ‚ÐµÐ¿Ð»Ð¾, ÐºÐ°Ðº Ð´Ð¸ÐºÑ‚Ð¾Ñ€ Ñ…Ð¾Ñ€Ð¾ÑˆÐµÐ³Ð¾ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ñ€Ð¾Ð»Ð¸ÐºÐ°. "
+            "Ð§Ñ‘Ñ‚ÐºÐ¾Ðµ Ð¿Ñ€Ð¾Ð¸Ð·Ð½Ð¾ÑˆÐµÐ½Ð¸Ðµ, Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ðµ ÑƒÐ´Ð°Ñ€ÐµÐ½Ð¸Ñ. Ð¡ÐºÐ°Ð¶Ð¸ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ„Ñ€Ð°Ð·Ñƒ Ð¸ Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸ÑÑŒ Ñ‡Ð¸ÑÑ‚Ð¾."
         ),
     },
     "en2": {
@@ -233,7 +233,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
+    api_key = load_env_file(Path.cwd()).get("OPENAI_TTS_API_KEY")
     rows = load_json(ROWS_PATH)
     validate_unique_rows(rows)
     selected = [row for row in rows if args.start <= int(row["index"]) <= args.end]
@@ -271,7 +271,7 @@ def main() -> int:
         return 0
     if tasks:
         if not api_key:
-            raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+            raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local")
         require_openai_dev_spend_guard(
             action="Chains unique v3 OpenAI TTS batch",
             estimated_cost_usd=estimated_cost,

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Repair the Chains 800 part-2 CapCut draft.
 
 Fixes:
@@ -38,9 +38,9 @@ ROLE_CONFIG = {
     "ru": {
         "voice": "marin",
         "instructions": (
-            "Говори по-русски теплым нейтральным голосом для учебного видео. "
-            "Чистое естественное произношение, правильные ударения. "
-            "Скажи только фразу и остановись чисто."
+            "Ð“Ð¾Ð²Ð¾Ñ€Ð¸ Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸ Ñ‚ÐµÐ¿Ð»Ñ‹Ð¼ Ð½ÐµÐ¹Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ñ‹Ð¼ Ð³Ð¾Ð»Ð¾ÑÐ¾Ð¼ Ð´Ð»Ñ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ð²Ð¸Ð´ÐµÐ¾. "
+            "Ð§Ð¸ÑÑ‚Ð¾Ðµ ÐµÑÑ‚ÐµÑÑ‚Ð²ÐµÐ½Ð½Ð¾Ðµ Ð¿Ñ€Ð¾Ð¸Ð·Ð½Ð¾ÑˆÐµÐ½Ð¸Ðµ, Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ðµ ÑƒÐ´Ð°Ñ€ÐµÐ½Ð¸Ñ. "
+            "Ð¡ÐºÐ°Ð¶Ð¸ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ„Ñ€Ð°Ð·Ñƒ Ð¸ Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸ÑÑŒ Ñ‡Ð¸ÑÑ‚Ð¾."
         ),
     },
     "en1": {
@@ -533,9 +533,9 @@ def main() -> int:
 
     tts_manifest: dict[tuple[str, int], dict[str, Any]] | None = None
     if not args.skip_tts:
-        api_key = env.get("OPENAI_API_KEY")
+        api_key = env.get("OPENAI_TTS_API_KEY")
         if not api_key:
-            raise RuntimeError("OPENAI_API_KEY is required in .env.local unless --skip-tts is used")
+            raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local unless --skip-tts is used")
         tts = generate_openai_audio(rows, api_key=api_key, limit=args.tts_limit)
         tts_manifest = tts["items"]  # type: ignore[assignment]
         report["tts_generated"] = tts["generated"]

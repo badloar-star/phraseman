@@ -19,6 +19,7 @@ from generate_chains_french_ru_conversation_pack import (  # noqa: E402
     validate_rows,
     write_outputs,
 )
+from openai_dev_guard import require_codex_openai_tts_only  # noqa: E402
 
 
 ROWS_PATH = OUT / "chains_800_french_ru_conversation.json"
@@ -190,6 +191,7 @@ def repair_batch(api_key: str, rows: list[dict[str, Any]], batch: list[dict[str,
 
 
 def main() -> int:
+    require_codex_openai_tts_only(action="Chains French/Russian conversation phrase pack repair", endpoint="chat/completions")
     api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
     if not api_key:
         raise SystemExit("OPENAI_API_KEY is missing in .env.local")

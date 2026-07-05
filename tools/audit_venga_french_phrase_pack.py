@@ -12,6 +12,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 
 MODEL = "gpt-4o"
 CHUNK_SIZE = 20
@@ -145,6 +147,7 @@ def main() -> int:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
+    require_codex_openai_tts_only(action="Venga French phrase pack audit", endpoint="chat/completions")
     api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY is required in .env.local")

@@ -15,8 +15,11 @@ import sys
 import time
 from pathlib import Path
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 sys.stdout.reconfigure(encoding="utf-8")
 
+require_codex_openai_tts_only(action="Track 13 OpenAI transcription generation", endpoint="chat/completions")
 API_KEY = os.environ["OPENAI_API_KEY"]  # Raises KeyError if missing — never hardcode secrets
 MODEL = "gpt-4o-mini"
 OUT_PATH = Path("exports/chains/phrase_packs/chains_800_unique_v3_20260604/transcriptions_track13.json")

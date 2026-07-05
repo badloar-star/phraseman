@@ -9,6 +9,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 
 OUT = Path("exports/chains/episode1")
 MODEL = "gpt-4o-mini"
@@ -224,6 +226,8 @@ def chat_ipa(api_key: str, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 def main() -> int:
     env = load_env_file(Path.cwd())
     api_key = env.get("OPENAI_API_KEY")
+    if api_key:
+        require_codex_openai_tts_only(action="Chains episode 1 phrase pack generation", endpoint="chat/completions")
     rows: list[dict[str, Any]] = []
     for chain_index, chain in enumerate(CHAINS, start=1):
         for step, (english, russian) in enumerate(chain, start=1):

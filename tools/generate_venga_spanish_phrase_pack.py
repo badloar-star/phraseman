@@ -12,6 +12,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 
 OUT_DIR = Path("exports/venga-phrase-packs/ru-es-a1-vsscp")
 OLD_ROWS = [
@@ -198,6 +200,7 @@ def main() -> int:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
+    require_codex_openai_tts_only(action="Venga Spanish phrase pack generation", endpoint="chat/completions")
     env = load_env_file(Path.cwd())
     api_key = env.get("OPENAI_API_KEY")
     if not api_key:

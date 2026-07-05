@@ -1418,8 +1418,8 @@ export default function LevelExam() {
                     end={isGoldTheme ? { x: 1, y: 1 } : undefined}
                     style={{
                       borderRadius: 12,
-                      borderWidth: 0.5,
-                      borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border,
+                      borderWidth: isGoldTheme ? 0.5 : 0,
+                      borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
                       padding: 14,
                       gap: 6,
                       overflow: 'hidden',
@@ -1460,8 +1460,8 @@ export default function LevelExam() {
               onPress={() => { hapticTap(); void startExam(); }}
               style={{
                 borderRadius: 14,
-                borderWidth: 0.5,
-                borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border,
+                borderWidth: isGoldTheme ? 0.5 : 0,
+                borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
                 overflow: 'hidden',
                 ...(isGoldTheme ? goldShadow(1) : {}),
               }}
@@ -1627,8 +1627,8 @@ export default function LevelExam() {
             end={isGoldTheme ? { x: 1, y: 1 } : undefined}
             style={{
               borderRadius: 16,
-              borderWidth: 0.5,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
+              borderWidth: isGoldTheme ? 0.5 : 0,
+              borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : 'transparent',
               padding: 20,
               overflow: 'hidden',
               ...(isGoldTheme ? goldShadow(2) : {}),
@@ -1646,16 +1646,17 @@ export default function LevelExam() {
               const isOptCorrect = ci === q.correct;
               let bg = on ? t.accent : t.bgCard;
               let border = on ? t.accent : t.border;
+              let signalBorder = on;
               let textColor = on ? (t.correctText ?? '#fff') : t.textPrimary;
-              if (!on && showAnswer && isOptCorrect)  { bg = t.correctBg ?? t.bgCard; border = t.correct; textColor = t.correct; }
-              if (!on && showAnswer && isChosen && !isOptCorrect) { bg = '#3A1A1A'; border = t.wrong; textColor = t.wrong; }
+              if (!on && showAnswer && isOptCorrect)  { bg = t.correctBg ?? t.bgCard; border = t.correct; textColor = t.correct; signalBorder = true; }
+              if (!on && showAnswer && isChosen && !isOptCorrect) { bg = '#3A1A1A'; border = t.wrong; textColor = t.wrong; signalBorder = true; }
               return (
                 <DuoPressable
                   key={ci}
                   edgeHeight={5}
                   withHaptic={false}
                   edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
-                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: on ? 1.5 : 1.5, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
+                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: signalBorder ? 1.5 : 0, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
                   onPress={() => { flash(`${ci}`); handlePick(ci); }}
                   disabled={chosen !== null}
                 >

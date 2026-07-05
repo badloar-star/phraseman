@@ -18,6 +18,8 @@ from typing import Any
 
 import requests
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 
 US = 1_000_000
 SOURCE_DRAFT = "\u0426\u0415\u041f\u0418 \u0426\u0415\u041f\u0418 \u0426\u0415\u041f\u0418 (1)"
@@ -556,6 +558,7 @@ def main() -> int:
     parser.add_argument("--end", type=int, default=100)
     args = parser.parse_args()
 
+    require_codex_openai_tts_only(action="Chains episode 1 background AI judging", endpoint="chat/completions")
     env = {**load_env(), **os.environ}
     openai_key = env.get("OPENAI_API_KEY")
     pexels_key = env.get("PEXELS_API_KEY")

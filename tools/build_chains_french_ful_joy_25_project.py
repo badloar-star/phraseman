@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Build the French version of the FUL JOY Chains CapCut project.
 
 This keeps the fixed July 2 CapCut timing/grid and replaces only the
@@ -53,8 +53,8 @@ ROLE_CONFIG: dict[str, dict[str, str]] = {
     "ru": {
         "voice": "marin",
         "instructions": (
-            "Говори по-русски естественно и тепло, как диктор хорошего учебного ролика. "
-            "Четкое произношение. Скажи только фразу и остановись чисто."
+            "Ð“Ð¾Ð²Ð¾Ñ€Ð¸ Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸ ÐµÑÑ‚ÐµÑÑ‚Ð²ÐµÐ½Ð½Ð¾ Ð¸ Ñ‚ÐµÐ¿Ð»Ð¾, ÐºÐ°Ðº Ð´Ð¸ÐºÑ‚Ð¾Ñ€ Ñ…Ð¾Ñ€Ð¾ÑˆÐµÐ³Ð¾ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ñ€Ð¾Ð»Ð¸ÐºÐ°. "
+            "Ð§ÐµÑ‚ÐºÐ¾Ðµ Ð¿Ñ€Ð¾Ð¸Ð·Ð½Ð¾ÑˆÐµÐ½Ð¸Ðµ. Ð¡ÐºÐ°Ð¶Ð¸ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ„Ñ€Ð°Ð·Ñƒ Ð¸ Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸ÑÑŒ Ñ‡Ð¸ÑÑ‚Ð¾."
         ),
     },
     "fr2": {
@@ -78,10 +78,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "home charger",
         "steps": [
-            ("J'ai besoin de mon chargeur", "Мне нужна моя зарядка"),
-            ("J'ai besoin de mon chargeur pres du lit", "Мне нужна моя зарядка возле кровати"),
-            ("J'ai besoin de mon chargeur pres du lit avant de dormir", "Мне нужна моя зарядка возле кровати перед сном"),
-            ("J'ai besoin de mon chargeur pres du lit avant de dormir parce que mon telephone est presque decharge", "Мне нужна моя зарядка возле кровати перед сном, потому что телефон разряжен"),
+            ("J'ai besoin de mon chargeur", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð¼Ð¾Ñ Ð·Ð°Ñ€ÑÐ´ÐºÐ°"),
+            ("J'ai besoin de mon chargeur pres du lit", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð¼Ð¾Ñ Ð·Ð°Ñ€ÑÐ´ÐºÐ° Ð²Ð¾Ð·Ð»Ðµ ÐºÑ€Ð¾Ð²Ð°Ñ‚Ð¸"),
+            ("J'ai besoin de mon chargeur pres du lit avant de dormir", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð¼Ð¾Ñ Ð·Ð°Ñ€ÑÐ´ÐºÐ° Ð²Ð¾Ð·Ð»Ðµ ÐºÑ€Ð¾Ð²Ð°Ñ‚Ð¸ Ð¿ÐµÑ€ÐµÐ´ ÑÐ½Ð¾Ð¼"),
+            ("J'ai besoin de mon chargeur pres du lit avant de dormir parce que mon telephone est presque decharge", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð¼Ð¾Ñ Ð·Ð°Ñ€ÑÐ´ÐºÐ° Ð²Ð¾Ð·Ð»Ðµ ÐºÑ€Ð¾Ð²Ð°Ñ‚Ð¸ Ð¿ÐµÑ€ÐµÐ´ ÑÐ½Ð¾Ð¼, Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½ Ñ€Ð°Ð·Ñ€ÑÐ¶ÐµÐ½"),
         ],
         "half_1": "J'ai besoin de mon chargeur pres du lit avant de dormir",
         "half_2": "parce que mon telephone est presque decharge",
@@ -89,10 +89,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "kitchen salt",
         "steps": [
-            ("Tu peux me passer le sel ?", "Можешь передать соль?"),
-            ("Tu peux me passer le sel sur la table ?", "Можешь передать соль со стола?"),
-            ("Tu peux me passer le sel sur la table pendant que je cuisine ?", "Можешь передать соль со стола, пока я готовлю?"),
-            ("Tu peux me passer le sel sur la table pendant que je cuisine le diner ?", "Можешь передать соль со стола, пока я готовлю ужин?"),
+            ("Tu peux me passer le sel ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‚ÑŒ ÑÐ¾Ð»ÑŒ?"),
+            ("Tu peux me passer le sel sur la table ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‚ÑŒ ÑÐ¾Ð»ÑŒ ÑÐ¾ ÑÑ‚Ð¾Ð»Ð°?"),
+            ("Tu peux me passer le sel sur la table pendant que je cuisine ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‚ÑŒ ÑÐ¾Ð»ÑŒ ÑÐ¾ ÑÑ‚Ð¾Ð»Ð°, Ð¿Ð¾ÐºÐ° Ñ Ð³Ð¾Ñ‚Ð¾Ð²Ð»ÑŽ?"),
+            ("Tu peux me passer le sel sur la table pendant que je cuisine le diner ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿ÐµÑ€ÐµÐ´Ð°Ñ‚ÑŒ ÑÐ¾Ð»ÑŒ ÑÐ¾ ÑÑ‚Ð¾Ð»Ð°, Ð¿Ð¾ÐºÐ° Ñ Ð³Ð¾Ñ‚Ð¾Ð²Ð»ÑŽ ÑƒÐ¶Ð¸Ð½?"),
         ],
         "half_1": "Tu peux me passer le sel sur la table pendant que je cuisine",
         "half_2": "le diner ?",
@@ -100,10 +100,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "late bus",
         "steps": [
-            ("Je suis en retard aujourd'hui", "Я сегодня опаздываю"),
-            ("Je suis en retard aujourd'hui pour le bus", "Я сегодня опаздываю на автобус"),
-            ("Je suis en retard aujourd'hui pour le bus parce que je me suis reveille trop tard", "Я сегодня опаздываю на автобус, потому что проспал"),
-            ("Je suis en retard aujourd'hui pour le bus parce que je me suis reveille trop tard ce matin", "Я сегодня опаздываю на автобус, потому что проспал утром"),
+            ("Je suis en retard aujourd'hui", "Ð¯ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð¾Ð¿Ð°Ð·Ð´Ñ‹Ð²Ð°ÑŽ"),
+            ("Je suis en retard aujourd'hui pour le bus", "Ð¯ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð¾Ð¿Ð°Ð·Ð´Ñ‹Ð²Ð°ÑŽ Ð½Ð° Ð°Ð²Ñ‚Ð¾Ð±ÑƒÑ"),
+            ("Je suis en retard aujourd'hui pour le bus parce que je me suis reveille trop tard", "Ð¯ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð¾Ð¿Ð°Ð·Ð´Ñ‹Ð²Ð°ÑŽ Ð½Ð° Ð°Ð²Ñ‚Ð¾Ð±ÑƒÑ, Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ Ð¿Ñ€Ð¾ÑÐ¿Ð°Ð»"),
+            ("Je suis en retard aujourd'hui pour le bus parce que je me suis reveille trop tard ce matin", "Ð¯ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð¾Ð¿Ð°Ð·Ð´Ñ‹Ð²Ð°ÑŽ Ð½Ð° Ð°Ð²Ñ‚Ð¾Ð±ÑƒÑ, Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ Ð¿Ñ€Ð¾ÑÐ¿Ð°Ð» ÑƒÑ‚Ñ€Ð¾Ð¼"),
         ],
         "half_1": "Je suis en retard aujourd'hui pour le bus",
         "half_2": "parce que je me suis reveille trop tard ce matin",
@@ -111,10 +111,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "shop size",
         "steps": [
-            ("Vous avez cette taille ?", "У вас есть этот размер?"),
-            ("Vous avez cette taille en bleu ?", "У вас есть этот размер в синем цвете?"),
-            ("Vous avez cette taille en bleu pour moi ?", "У вас есть этот размер в синем цвете для меня?"),
-            ("Vous avez cette taille en bleu pour moi, pour que je puisse l'essayer ?", "У вас есть этот размер в синем цвете, чтобы примерить?"),
+            ("Vous avez cette taille ?", "Ð£ Ð²Ð°Ñ ÐµÑÑ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€?"),
+            ("Vous avez cette taille en bleu ?", "Ð£ Ð²Ð°Ñ ÐµÑÑ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð² ÑÐ¸Ð½ÐµÐ¼ Ñ†Ð²ÐµÑ‚Ðµ?"),
+            ("Vous avez cette taille en bleu pour moi ?", "Ð£ Ð²Ð°Ñ ÐµÑÑ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð² ÑÐ¸Ð½ÐµÐ¼ Ñ†Ð²ÐµÑ‚Ðµ Ð´Ð»Ñ Ð¼ÐµÐ½Ñ?"),
+            ("Vous avez cette taille en bleu pour moi, pour que je puisse l'essayer ?", "Ð£ Ð²Ð°Ñ ÐµÑÑ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð² ÑÐ¸Ð½ÐµÐ¼ Ñ†Ð²ÐµÑ‚Ðµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¸Ð¼ÐµÑ€Ð¸Ñ‚ÑŒ?"),
         ],
         "half_1": "Vous avez cette taille en bleu pour moi",
         "half_2": "pour que je puisse l'essayer ?",
@@ -122,10 +122,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "work file",
         "steps": [
-            ("Envoie le fichier, s'il te plait", "Пожалуйста, отправь файл"),
-            ("Envoie le fichier avant le dejeuner, s'il te plait", "Пожалуйста, отправь файл до обеда"),
-            ("Envoie le fichier avant le dejeuner s'il est pret", "Пожалуйста, отправь файл до обеда, если он готов"),
-            ("Envoie le fichier avant le dejeuner s'il est pret aujourd'hui", "Пожалуйста, отправь файл до обеда, если он готов сегодня"),
+            ("Envoie le fichier, s'il te plait", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÑŒ Ñ„Ð°Ð¹Ð»"),
+            ("Envoie le fichier avant le dejeuner, s'il te plait", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÑŒ Ñ„Ð°Ð¹Ð» Ð´Ð¾ Ð¾Ð±ÐµÐ´Ð°"),
+            ("Envoie le fichier avant le dejeuner s'il est pret", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÑŒ Ñ„Ð°Ð¹Ð» Ð´Ð¾ Ð¾Ð±ÐµÐ´Ð°, ÐµÑÐ»Ð¸ Ð¾Ð½ Ð³Ð¾Ñ‚Ð¾Ð²"),
+            ("Envoie le fichier avant le dejeuner s'il est pret aujourd'hui", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÑŒ Ñ„Ð°Ð¹Ð» Ð´Ð¾ Ð¾Ð±ÐµÐ´Ð°, ÐµÑÐ»Ð¸ Ð¾Ð½ Ð³Ð¾Ñ‚Ð¾Ð² ÑÐµÐ³Ð¾Ð´Ð½Ñ"),
         ],
         "half_1": "Envoie le fichier avant le dejeuner",
         "half_2": "s'il est pret aujourd'hui",
@@ -133,10 +133,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "phone update",
         "steps": [
-            ("Mon telephone ne marche pas", "Мой телефон не работает"),
-            ("Mon telephone ne marche pas apres la mise a jour", "Мой телефон не работает после обновления"),
-            ("Mon telephone ne marche pas apres la mise a jour ce matin", "Мой телефон не работает после обновления сегодня утром"),
-            ("Mon telephone ne marche pas apres la mise a jour ce matin, donc j'ai besoin d'aide", "Мой телефон не работает после обновления сегодня утром, поэтому мне нужна помощь"),
+            ("Mon telephone ne marche pas", "ÐœÐ¾Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚"),
+            ("Mon telephone ne marche pas apres la mise a jour", "ÐœÐ¾Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ"),
+            ("Mon telephone ne marche pas apres la mise a jour ce matin", "ÐœÐ¾Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ ÑÐµÐ³Ð¾Ð´Ð½Ñ ÑƒÑ‚Ñ€Ð¾Ð¼"),
+            ("Mon telephone ne marche pas apres la mise a jour ce matin, donc j'ai besoin d'aide", "ÐœÐ¾Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ ÑÐµÐ³Ð¾Ð´Ð½Ñ ÑƒÑ‚Ñ€Ð¾Ð¼, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ð¼Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒ"),
         ],
         "half_1": "Mon telephone ne marche pas apres la mise a jour ce matin",
         "half_2": "donc j'ai besoin d'aide",
@@ -144,10 +144,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "coffee",
         "steps": [
-            ("Je peux prendre un cafe ?", "Можно мне кофе?"),
-            ("Je peux prendre un cafe sans sucre ?", "Можно мне кофе без сахара?"),
-            ("Je peux prendre un cafe sans sucre a emporter ?", "Можно мне кофе без сахара с собой?"),
-            ("Je peux prendre un cafe sans sucre a emporter, s'il vous plait ?", "Можно мне кофе без сахара с собой, пожалуйста?"),
+            ("Je peux prendre un cafe ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¼Ð½Ðµ ÐºÐ¾Ñ„Ðµ?"),
+            ("Je peux prendre un cafe sans sucre ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¼Ð½Ðµ ÐºÐ¾Ñ„Ðµ Ð±ÐµÐ· ÑÐ°Ñ…Ð°Ñ€Ð°?"),
+            ("Je peux prendre un cafe sans sucre a emporter ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¼Ð½Ðµ ÐºÐ¾Ñ„Ðµ Ð±ÐµÐ· ÑÐ°Ñ…Ð°Ñ€Ð° Ñ ÑÐ¾Ð±Ð¾Ð¹?"),
+            ("Je peux prendre un cafe sans sucre a emporter, s'il vous plait ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¼Ð½Ðµ ÐºÐ¾Ñ„Ðµ Ð±ÐµÐ· ÑÐ°Ñ…Ð°Ñ€Ð° Ñ ÑÐ¾Ð±Ð¾Ð¹, Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°?"),
         ],
         "half_1": "Je peux prendre un cafe sans sucre a emporter",
         "half_2": "s'il vous plait ?",
@@ -155,10 +155,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "train platform",
         "steps": [
-            ("Ou est le quai ?", "Где платформа?"),
-            ("Ou est le quai pour mon train ?", "Где платформа для моего поезда?"),
-            ("Ou est le quai pour mon train pour Londres ?", "Где платформа для моего поезда в Лондон?"),
-            ("Ou est le quai pour mon train pour Londres ce matin ?", "Где платформа для моего поезда в Лондон сегодня утром?"),
+            ("Ou est le quai ?", "Ð“Ð´Ðµ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ð°?"),
+            ("Ou est le quai pour mon train ?", "Ð“Ð´Ðµ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ð° Ð´Ð»Ñ Ð¼Ð¾ÐµÐ³Ð¾ Ð¿Ð¾ÐµÐ·Ð´Ð°?"),
+            ("Ou est le quai pour mon train pour Londres ?", "Ð“Ð´Ðµ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ð° Ð´Ð»Ñ Ð¼Ð¾ÐµÐ³Ð¾ Ð¿Ð¾ÐµÐ·Ð´Ð° Ð² Ð›Ð¾Ð½Ð´Ð¾Ð½?"),
+            ("Ou est le quai pour mon train pour Londres ce matin ?", "Ð“Ð´Ðµ Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ð° Ð´Ð»Ñ Ð¼Ð¾ÐµÐ³Ð¾ Ð¿Ð¾ÐµÐ·Ð´Ð° Ð² Ð›Ð¾Ð½Ð´Ð¾Ð½ ÑÐµÐ³Ð¾Ð´Ð½Ñ ÑƒÑ‚Ñ€Ð¾Ð¼?"),
         ],
         "half_1": "Ou est le quai pour mon train pour Londres",
         "half_2": "ce matin ?",
@@ -166,10 +166,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "hotel reservation",
         "steps": [
-            ("J'ai une reservation", "У меня есть бронь"),
-            ("J'ai une reservation pour ce soir", "У меня есть бронь на сегодня вечером"),
-            ("J'ai une reservation pour ce soir a mon nom", "У меня есть бронь на сегодня вечером на мое имя"),
-            ("J'ai une reservation pour ce soir a mon nom, mais je suis en avance", "У меня есть бронь на сегодня вечером на мое имя, но я приехал рано"),
+            ("J'ai une reservation", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð±Ñ€Ð¾Ð½ÑŒ"),
+            ("J'ai une reservation pour ce soir", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð±Ñ€Ð¾Ð½ÑŒ Ð½Ð° ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð²ÐµÑ‡ÐµÑ€Ð¾Ð¼"),
+            ("J'ai une reservation pour ce soir a mon nom", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð±Ñ€Ð¾Ð½ÑŒ Ð½Ð° ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð²ÐµÑ‡ÐµÑ€Ð¾Ð¼ Ð½Ð° Ð¼Ð¾Ðµ Ð¸Ð¼Ñ"),
+            ("J'ai une reservation pour ce soir a mon nom, mais je suis en avance", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð±Ñ€Ð¾Ð½ÑŒ Ð½Ð° ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð²ÐµÑ‡ÐµÑ€Ð¾Ð¼ Ð½Ð° Ð¼Ð¾Ðµ Ð¸Ð¼Ñ, Ð½Ð¾ Ñ Ð¿Ñ€Ð¸ÐµÑ…Ð°Ð» Ñ€Ð°Ð½Ð¾"),
         ],
         "half_1": "J'ai une reservation pour ce soir a mon nom",
         "half_2": "mais je suis en avance",
@@ -177,10 +177,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "health water",
         "steps": [
-            ("Je me sens un peu malade", "Мне немного нехорошо"),
-            ("Je me sens un peu malade apres le dejeuner", "Мне немного нехорошо после обеда"),
-            ("Je me sens un peu malade apres le dejeuner et j'ai besoin d'eau", "Мне немного нехорошо после обеда, и мне нужна вода"),
-            ("Je me sens un peu malade apres le dejeuner et j'ai besoin d'un peu d'eau maintenant", "Мне немного нехорошо после обеда, и мне сейчас нужна вода"),
+            ("Je me sens un peu malade", "ÐœÐ½Ðµ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ Ð½ÐµÑ…Ð¾Ñ€Ð¾ÑˆÐ¾"),
+            ("Je me sens un peu malade apres le dejeuner", "ÐœÐ½Ðµ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ Ð½ÐµÑ…Ð¾Ñ€Ð¾ÑˆÐ¾ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±ÐµÐ´Ð°"),
+            ("Je me sens un peu malade apres le dejeuner et j'ai besoin d'eau", "ÐœÐ½Ðµ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ Ð½ÐµÑ…Ð¾Ñ€Ð¾ÑˆÐ¾ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±ÐµÐ´Ð°, Ð¸ Ð¼Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð° Ð²Ð¾Ð´Ð°"),
+            ("Je me sens un peu malade apres le dejeuner et j'ai besoin d'un peu d'eau maintenant", "ÐœÐ½Ðµ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ Ð½ÐµÑ…Ð¾Ñ€Ð¾ÑˆÐ¾ Ð¿Ð¾ÑÐ»Ðµ Ð¾Ð±ÐµÐ´Ð°, Ð¸ Ð¼Ð½Ðµ ÑÐµÐ¹Ñ‡Ð°Ñ Ð½ÑƒÐ¶Ð½Ð° Ð²Ð¾Ð´Ð°"),
         ],
         "half_1": "Je me sens un peu malade apres le dejeuner",
         "half_2": "et j'ai besoin d'un peu d'eau maintenant",
@@ -188,10 +188,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "directions",
         "steps": [
-            ("Comment je vais la-bas ?", "Как мне туда добраться?"),
-            ("Comment je vais la-bas depuis cette rue ?", "Как мне туда добраться с этой улицы?"),
-            ("Comment je vais la-bas depuis cette rue a pied ?", "Как мне туда добраться с этой улицы пешком?"),
-            ("Comment je vais la-bas depuis cette rue a pied en dix minutes ?", "Как мне туда добраться с этой улицы пешком за десять минут?"),
+            ("Comment je vais la-bas ?", "ÐšÐ°Ðº Ð¼Ð½Ðµ Ñ‚ÑƒÐ´Ð° Ð´Ð¾Ð±Ñ€Ð°Ñ‚ÑŒÑÑ?"),
+            ("Comment je vais la-bas depuis cette rue ?", "ÐšÐ°Ðº Ð¼Ð½Ðµ Ñ‚ÑƒÐ´Ð° Ð´Ð¾Ð±Ñ€Ð°Ñ‚ÑŒÑÑ Ñ ÑÑ‚Ð¾Ð¹ ÑƒÐ»Ð¸Ñ†Ñ‹?"),
+            ("Comment je vais la-bas depuis cette rue a pied ?", "ÐšÐ°Ðº Ð¼Ð½Ðµ Ñ‚ÑƒÐ´Ð° Ð´Ð¾Ð±Ñ€Ð°Ñ‚ÑŒÑÑ Ñ ÑÑ‚Ð¾Ð¹ ÑƒÐ»Ð¸Ñ†Ñ‹ Ð¿ÐµÑˆÐºÐ¾Ð¼?"),
+            ("Comment je vais la-bas depuis cette rue a pied en dix minutes ?", "ÐšÐ°Ðº Ð¼Ð½Ðµ Ñ‚ÑƒÐ´Ð° Ð´Ð¾Ð±Ñ€Ð°Ñ‚ÑŒÑÑ Ñ ÑÑ‚Ð¾Ð¹ ÑƒÐ»Ð¸Ñ†Ñ‹ Ð¿ÐµÑˆÐºÐ¾Ð¼ Ð·Ð° Ð´ÐµÑÑÑ‚ÑŒ Ð¼Ð¸Ð½ÑƒÑ‚?"),
         ],
         "half_1": "Comment je vais la-bas depuis cette rue a pied",
         "half_2": "en dix minutes ?",
@@ -199,10 +199,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "meeting",
         "steps": [
-            ("La reunion commence bientot", "Встреча скоро начнется"),
-            ("La reunion commence bientot dans la petite salle", "Встреча скоро начнется в маленькой комнате"),
-            ("La reunion commence bientot dans la petite salle a l'etage", "Встреча скоро начнется в маленькой комнате наверху"),
-            ("La reunion commence bientot dans la petite salle a l'etage, alors apporte tes notes", "Встреча скоро начнется в маленькой комнате наверху, поэтому возьми свои записи"),
+            ("La reunion commence bientot", "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð° ÑÐºÐ¾Ñ€Ð¾ Ð½Ð°Ñ‡Ð½ÐµÑ‚ÑÑ"),
+            ("La reunion commence bientot dans la petite salle", "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð° ÑÐºÐ¾Ñ€Ð¾ Ð½Ð°Ñ‡Ð½ÐµÑ‚ÑÑ Ð² Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¾Ð¹ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ"),
+            ("La reunion commence bientot dans la petite salle a l'etage", "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð° ÑÐºÐ¾Ñ€Ð¾ Ð½Ð°Ñ‡Ð½ÐµÑ‚ÑÑ Ð² Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¾Ð¹ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ Ð½Ð°Ð²ÐµÑ€Ñ…Ñƒ"),
+            ("La reunion commence bientot dans la petite salle a l'etage, alors apporte tes notes", "Ð’ÑÑ‚Ñ€ÐµÑ‡Ð° ÑÐºÐ¾Ñ€Ð¾ Ð½Ð°Ñ‡Ð½ÐµÑ‚ÑÑ Ð² Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¾Ð¹ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ Ð½Ð°Ð²ÐµÑ€Ñ…Ñƒ, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ð²Ð¾Ð·ÑŒÐ¼Ð¸ ÑÐ²Ð¾Ð¸ Ð·Ð°Ð¿Ð¸ÑÐ¸"),
         ],
         "half_1": "La reunion commence bientot dans la petite salle a l'etage",
         "half_2": "alors apporte tes notes",
@@ -210,10 +210,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "waiting Anna",
         "steps": [
-            ("Nous attendons Anna", "Мы ждем Анну"),
-            ("Nous attendons Anna pres de l'entree", "Мы ждем Анну возле входа"),
-            ("Nous attendons Anna pres de l'entree apres le film", "Мы ждем Анну возле входа после фильма"),
-            ("Nous attendons Anna pres de l'entree apres le film parce qu'elle a oublie son sac", "Мы ждем Анну возле входа после фильма, потому что она забыла сумку"),
+            ("Nous attendons Anna", "ÐœÑ‹ Ð¶Ð´ÐµÐ¼ ÐÐ½Ð½Ñƒ"),
+            ("Nous attendons Anna pres de l'entree", "ÐœÑ‹ Ð¶Ð´ÐµÐ¼ ÐÐ½Ð½Ñƒ Ð²Ð¾Ð·Ð»Ðµ Ð²Ñ…Ð¾Ð´Ð°"),
+            ("Nous attendons Anna pres de l'entree apres le film", "ÐœÑ‹ Ð¶Ð´ÐµÐ¼ ÐÐ½Ð½Ñƒ Ð²Ð¾Ð·Ð»Ðµ Ð²Ñ…Ð¾Ð´Ð° Ð¿Ð¾ÑÐ»Ðµ Ñ„Ð¸Ð»ÑŒÐ¼Ð°"),
+            ("Nous attendons Anna pres de l'entree apres le film parce qu'elle a oublie son sac", "ÐœÑ‹ Ð¶Ð´ÐµÐ¼ ÐÐ½Ð½Ñƒ Ð²Ð¾Ð·Ð»Ðµ Ð²Ñ…Ð¾Ð´Ð° Ð¿Ð¾ÑÐ»Ðµ Ñ„Ð¸Ð»ÑŒÐ¼Ð°, Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ Ð¾Ð½Ð° Ð·Ð°Ð±Ñ‹Ð»Ð° ÑÑƒÐ¼ÐºÑƒ"),
         ],
         "half_1": "Nous attendons Anna pres de l'entree apres le film",
         "half_2": "parce qu'elle a oublie son sac",
@@ -221,10 +221,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "bathroom door",
         "steps": [
-            ("La porte ne ferme pas", "Дверь не закрывается"),
-            ("La porte ne ferme pas dans la salle de bain", "Дверь не закрывается в ванной"),
-            ("La porte ne ferme pas dans la salle de bain apres la reparation", "Дверь не закрывается в ванной после ремонта"),
-            ("La porte ne ferme pas dans la salle de bain apres la reparation, alors verifie-la s'il te plait", "Дверь не закрывается в ванной после ремонта, поэтому проверь ее, пожалуйста"),
+            ("La porte ne ferme pas", "Ð”Ð²ÐµÑ€ÑŒ Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ"),
+            ("La porte ne ferme pas dans la salle de bain", "Ð”Ð²ÐµÑ€ÑŒ Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð² Ð²Ð°Ð½Ð½Ð¾Ð¹"),
+            ("La porte ne ferme pas dans la salle de bain apres la reparation", "Ð”Ð²ÐµÑ€ÑŒ Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð² Ð²Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð¾ÑÐ»Ðµ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°"),
+            ("La porte ne ferme pas dans la salle de bain apres la reparation, alors verifie-la s'il te plait", "Ð”Ð²ÐµÑ€ÑŒ Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð² Ð²Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð¾ÑÐ»Ðµ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑŒ ÐµÐµ, Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°"),
         ],
         "half_1": "La porte ne ferme pas dans la salle de bain apres la reparation",
         "half_2": "alors verifie-la s'il te plait",
@@ -232,10 +232,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "visa form",
         "steps": [
-            ("J'ai besoin de ce formulaire", "Мне нужна эта форма"),
-            ("J'ai besoin de ce formulaire pour mon visa", "Мне нужна эта форма для моей визы"),
-            ("J'ai besoin de ce formulaire pour mon visa aujourd'hui", "Мне нужна эта форма для моей визы сегодня"),
-            ("J'ai besoin de ce formulaire pour mon visa aujourd'hui, mais je ne le trouve pas", "Мне нужна эта форма для моей визы сегодня, но я не могу ее найти"),
+            ("J'ai besoin de ce formulaire", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° ÑÑ‚Ð° Ñ„Ð¾Ñ€Ð¼Ð°"),
+            ("J'ai besoin de ce formulaire pour mon visa", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° ÑÑ‚Ð° Ñ„Ð¾Ñ€Ð¼Ð° Ð´Ð»Ñ Ð¼Ð¾ÐµÐ¹ Ð²Ð¸Ð·Ñ‹"),
+            ("J'ai besoin de ce formulaire pour mon visa aujourd'hui", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° ÑÑ‚Ð° Ñ„Ð¾Ñ€Ð¼Ð° Ð´Ð»Ñ Ð¼Ð¾ÐµÐ¹ Ð²Ð¸Ð·Ñ‹ ÑÐµÐ³Ð¾Ð´Ð½Ñ"),
+            ("J'ai besoin de ce formulaire pour mon visa aujourd'hui, mais je ne le trouve pas", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð° ÑÑ‚Ð° Ñ„Ð¾Ñ€Ð¼Ð° Ð´Ð»Ñ Ð¼Ð¾ÐµÐ¹ Ð²Ð¸Ð·Ñ‹ ÑÐµÐ³Ð¾Ð´Ð½Ñ, Ð½Ð¾ Ñ Ð½Ðµ Ð¼Ð¾Ð³Ñƒ ÐµÐµ Ð½Ð°Ð¹Ñ‚Ð¸"),
         ],
         "half_1": "J'ai besoin de ce formulaire pour mon visa aujourd'hui",
         "half_2": "mais je ne le trouve pas",
@@ -243,10 +243,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "repeat lesson",
         "steps": [
-            ("Tu peux repeter ca ?", "Можешь повторить это?"),
-            ("Tu peux repeter ca plus lentement ?", "Можешь повторить это медленнее?"),
-            ("Tu peux repeter ca plus lentement pour moi ?", "Можешь повторить это медленнее для меня?"),
-            ("Tu peux repeter ca plus lentement pour moi encore une fois ?", "Можешь повторить это медленнее для меня еще один раз?"),
+            ("Tu peux repeter ca ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ ÑÑ‚Ð¾?"),
+            ("Tu peux repeter ca plus lentement ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ ÑÑ‚Ð¾ Ð¼ÐµÐ´Ð»ÐµÐ½Ð½ÐµÐµ?"),
+            ("Tu peux repeter ca plus lentement pour moi ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ ÑÑ‚Ð¾ Ð¼ÐµÐ´Ð»ÐµÐ½Ð½ÐµÐµ Ð´Ð»Ñ Ð¼ÐµÐ½Ñ?"),
+            ("Tu peux repeter ca plus lentement pour moi encore une fois ?", "ÐœÐ¾Ð¶ÐµÑˆÑŒ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ ÑÑ‚Ð¾ Ð¼ÐµÐ´Ð»ÐµÐ½Ð½ÐµÐµ Ð´Ð»Ñ Ð¼ÐµÐ½Ñ ÐµÑ‰Ðµ Ð¾Ð´Ð¸Ð½ Ñ€Ð°Ð·?"),
         ],
         "half_1": "Tu peux repeter ca plus lentement pour moi",
         "half_2": "encore une fois ?",
@@ -254,10 +254,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "cold outside",
         "steps": [
-            ("Il fait froid dehors", "На улице холодно"),
-            ("Il fait froid dehors apres la pluie", "На улице холодно после дождя"),
-            ("Il fait froid dehors apres la pluie, alors prends une veste", "На улице холодно после дождя, поэтому возьми куртку"),
-            ("Il fait froid dehors apres la pluie, alors prends une veste avant de partir", "На улице холодно после дождя, поэтому возьми куртку перед выходом"),
+            ("Il fait froid dehors", "ÐÐ° ÑƒÐ»Ð¸Ñ†Ðµ Ñ…Ð¾Ð»Ð¾Ð´Ð½Ð¾"),
+            ("Il fait froid dehors apres la pluie", "ÐÐ° ÑƒÐ»Ð¸Ñ†Ðµ Ñ…Ð¾Ð»Ð¾Ð´Ð½Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð´Ð¾Ð¶Ð´Ñ"),
+            ("Il fait froid dehors apres la pluie, alors prends une veste", "ÐÐ° ÑƒÐ»Ð¸Ñ†Ðµ Ñ…Ð¾Ð»Ð¾Ð´Ð½Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð´Ð¾Ð¶Ð´Ñ, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ð²Ð¾Ð·ÑŒÐ¼Ð¸ ÐºÑƒÑ€Ñ‚ÐºÑƒ"),
+            ("Il fait froid dehors apres la pluie, alors prends une veste avant de partir", "ÐÐ° ÑƒÐ»Ð¸Ñ†Ðµ Ñ…Ð¾Ð»Ð¾Ð´Ð½Ð¾ Ð¿Ð¾ÑÐ»Ðµ Ð´Ð¾Ð¶Ð´Ñ, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ð²Ð¾Ð·ÑŒÐ¼Ð¸ ÐºÑƒÑ€Ñ‚ÐºÑƒ Ð¿ÐµÑ€ÐµÐ´ Ð²Ñ‹Ñ…Ð¾Ð´Ð¾Ð¼"),
         ],
         "half_1": "Il fait froid dehors apres la pluie",
         "half_2": "alors prends une veste avant de partir",
@@ -265,10 +265,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "pay by card",
         "steps": [
-            ("Je peux payer par carte ?", "Можно оплатить картой?"),
-            ("Je peux payer par carte au comptoir ?", "Можно оплатить картой у стойки?"),
-            ("Je peux payer par carte au comptoir apres avoir verifie le prix ?", "Можно оплатить картой у стойки после того, как я проверю цену?"),
-            ("Je peux payer par carte au comptoir apres avoir verifie le prix, s'il vous plait ?", "Можно оплатить картой у стойки после того, как я проверю цену, пожалуйста?"),
+            ("Je peux payer par carte ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¾Ð¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ ÐºÐ°Ñ€Ñ‚Ð¾Ð¹?"),
+            ("Je peux payer par carte au comptoir ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¾Ð¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ ÐºÐ°Ñ€Ñ‚Ð¾Ð¹ Ñƒ ÑÑ‚Ð¾Ð¹ÐºÐ¸?"),
+            ("Je peux payer par carte au comptoir apres avoir verifie le prix ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¾Ð¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ ÐºÐ°Ñ€Ñ‚Ð¾Ð¹ Ñƒ ÑÑ‚Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾ÑÐ»Ðµ Ñ‚Ð¾Ð³Ð¾, ÐºÐ°Ðº Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑŽ Ñ†ÐµÐ½Ñƒ?"),
+            ("Je peux payer par carte au comptoir apres avoir verifie le prix, s'il vous plait ?", "ÐœÐ¾Ð¶Ð½Ð¾ Ð¾Ð¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ ÐºÐ°Ñ€Ñ‚Ð¾Ð¹ Ñƒ ÑÑ‚Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾ÑÐ»Ðµ Ñ‚Ð¾Ð³Ð¾, ÐºÐ°Ðº Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑŽ Ñ†ÐµÐ½Ñƒ, Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°?"),
         ],
         "half_1": "Je peux payer par carte au comptoir apres avoir verifie le prix",
         "half_2": "s'il vous plait ?",
@@ -276,10 +276,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "lost wallet",
         "steps": [
-            ("J'ai perdu mon portefeuille", "Я потерял кошелек"),
-            ("J'ai perdu mon portefeuille pres de la gare", "Я потерял кошелек возле станции"),
-            ("J'ai perdu mon portefeuille pres de la gare cet apres-midi", "Я потерял кошелек возле станции сегодня днем"),
-            ("J'ai perdu mon portefeuille pres de la gare cet apres-midi et je dois le signaler", "Я потерял кошелек возле станции сегодня днем, и мне нужно сообщить об этом"),
+            ("J'ai perdu mon portefeuille", "Ð¯ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ» ÐºÐ¾ÑˆÐµÐ»ÐµÐº"),
+            ("J'ai perdu mon portefeuille pres de la gare", "Ð¯ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ» ÐºÐ¾ÑˆÐµÐ»ÐµÐº Ð²Ð¾Ð·Ð»Ðµ ÑÑ‚Ð°Ð½Ñ†Ð¸Ð¸"),
+            ("J'ai perdu mon portefeuille pres de la gare cet apres-midi", "Ð¯ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ» ÐºÐ¾ÑˆÐµÐ»ÐµÐº Ð²Ð¾Ð·Ð»Ðµ ÑÑ‚Ð°Ð½Ñ†Ð¸Ð¸ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð´Ð½ÐµÐ¼"),
+            ("J'ai perdu mon portefeuille pres de la gare cet apres-midi et je dois le signaler", "Ð¯ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ» ÐºÐ¾ÑˆÐµÐ»ÐµÐº Ð²Ð¾Ð·Ð»Ðµ ÑÑ‚Ð°Ð½Ñ†Ð¸Ð¸ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð´Ð½ÐµÐ¼, Ð¸ Ð¼Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð¾ ÑÐ¾Ð¾Ð±Ñ‰Ð¸Ñ‚ÑŒ Ð¾Ð± ÑÑ‚Ð¾Ð¼"),
         ],
         "half_1": "J'ai perdu mon portefeuille pres de la gare cet apres-midi",
         "half_2": "et je dois le signaler",
@@ -287,10 +287,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "appointment time",
         "steps": [
-            ("Je dois changer l'heure", "Мне нужно изменить время"),
-            ("Je dois changer l'heure de mon rendez-vous", "Мне нужно изменить время моей встречи"),
-            ("Je dois changer l'heure de mon rendez-vous demain", "Мне нужно изменить время моей встречи завтра"),
-            ("Je dois changer l'heure de mon rendez-vous demain parce que je travaille tard", "Мне нужно изменить время моей встречи завтра, потому что я работаю допоздна"),
+            ("Je dois changer l'heure", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð¾ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð²Ñ€ÐµÐ¼Ñ"),
+            ("Je dois changer l'heure de mon rendez-vous", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð¾ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð²Ñ€ÐµÐ¼Ñ Ð¼Ð¾ÐµÐ¹ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð¸"),
+            ("Je dois changer l'heure de mon rendez-vous demain", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð¾ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð²Ñ€ÐµÐ¼Ñ Ð¼Ð¾ÐµÐ¹ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ð·Ð°Ð²Ñ‚Ñ€Ð°"),
+            ("Je dois changer l'heure de mon rendez-vous demain parce que je travaille tard", "ÐœÐ½Ðµ Ð½ÑƒÐ¶Ð½Ð¾ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð²Ñ€ÐµÐ¼Ñ Ð¼Ð¾ÐµÐ¹ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð¸ Ð·Ð°Ð²Ñ‚Ñ€Ð°, Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÑŽ Ð´Ð¾Ð¿Ð¾Ð·Ð´Ð½Ð°"),
         ],
         "half_1": "Je dois changer l'heure de mon rendez-vous demain",
         "half_2": "parce que je travaille tard",
@@ -298,10 +298,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "slow wifi",
         "steps": [
-            ("Le Wi-Fi est lent", "Wi-Fi медленный"),
-            ("Le Wi-Fi est lent dans ma chambre", "Wi-Fi медленный в моей комнате"),
-            ("Le Wi-Fi est lent dans ma chambre quand j'appelle", "Wi-Fi медленный в моей комнате, когда я звоню"),
-            ("Le Wi-Fi est lent dans ma chambre quand j'appelle ma famille", "Wi-Fi медленный в моей комнате, когда я звоню семье"),
+            ("Le Wi-Fi est lent", "Wi-Fi Ð¼ÐµÐ´Ð»ÐµÐ½Ð½Ñ‹Ð¹"),
+            ("Le Wi-Fi est lent dans ma chambre", "Wi-Fi Ð¼ÐµÐ´Ð»ÐµÐ½Ð½Ñ‹Ð¹ Ð² Ð¼Ð¾ÐµÐ¹ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ"),
+            ("Le Wi-Fi est lent dans ma chambre quand j'appelle", "Wi-Fi Ð¼ÐµÐ´Ð»ÐµÐ½Ð½Ñ‹Ð¹ Ð² Ð¼Ð¾ÐµÐ¹ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ, ÐºÐ¾Ð³Ð´Ð° Ñ Ð·Ð²Ð¾Ð½ÑŽ"),
+            ("Le Wi-Fi est lent dans ma chambre quand j'appelle ma famille", "Wi-Fi Ð¼ÐµÐ´Ð»ÐµÐ½Ð½Ñ‹Ð¹ Ð² Ð¼Ð¾ÐµÐ¹ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ, ÐºÐ¾Ð³Ð´Ð° Ñ Ð·Ð²Ð¾Ð½ÑŽ ÑÐµÐ¼ÑŒÐµ"),
         ],
         "half_1": "Le Wi-Fi est lent dans ma chambre",
         "half_2": "quand j'appelle ma famille",
@@ -309,10 +309,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "hot soup",
         "steps": [
-            ("Cette soupe est trop chaude", "Этот суп слишком горячий"),
-            ("Cette soupe est trop chaude pour moi", "Этот суп для меня слишком горячий"),
-            ("Cette soupe est trop chaude pour moi maintenant", "Этот суп для меня сейчас слишком горячий"),
-            ("Cette soupe est trop chaude pour moi maintenant, alors je vais attendre", "Этот суп для меня сейчас слишком горячий, поэтому я подожду"),
+            ("Cette soupe est trop chaude", "Ð­Ñ‚Ð¾Ñ‚ ÑÑƒÐ¿ ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð³Ð¾Ñ€ÑÑ‡Ð¸Ð¹"),
+            ("Cette soupe est trop chaude pour moi", "Ð­Ñ‚Ð¾Ñ‚ ÑÑƒÐ¿ Ð´Ð»Ñ Ð¼ÐµÐ½Ñ ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð³Ð¾Ñ€ÑÑ‡Ð¸Ð¹"),
+            ("Cette soupe est trop chaude pour moi maintenant", "Ð­Ñ‚Ð¾Ñ‚ ÑÑƒÐ¿ Ð´Ð»Ñ Ð¼ÐµÐ½Ñ ÑÐµÐ¹Ñ‡Ð°Ñ ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð³Ð¾Ñ€ÑÑ‡Ð¸Ð¹"),
+            ("Cette soupe est trop chaude pour moi maintenant, alors je vais attendre", "Ð­Ñ‚Ð¾Ñ‚ ÑÑƒÐ¿ Ð´Ð»Ñ Ð¼ÐµÐ½Ñ ÑÐµÐ¹Ñ‡Ð°Ñ ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð³Ð¾Ñ€ÑÑ‡Ð¸Ð¹, Ð¿Ð¾ÑÑ‚Ð¾Ð¼Ñƒ Ñ Ð¿Ð¾Ð´Ð¾Ð¶Ð´Ñƒ"),
         ],
         "half_1": "Cette soupe est trop chaude pour moi maintenant",
         "half_2": "alors je vais attendre",
@@ -320,10 +320,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "move chair",
         "steps": [
-            ("Deplace la chaise, s'il te plait", "Пожалуйста, передвинь стул"),
-            ("Deplace la chaise pres de la fenetre, s'il te plait", "Пожалуйста, передвинь стул к окну"),
-            ("Deplace la chaise pres de la fenetre avant que je nettoie", "Пожалуйста, передвинь стул к окну перед тем, как я уберу"),
-            ("Deplace la chaise pres de la fenetre avant que je nettoie le sol", "Пожалуйста, передвинь стул к окну перед тем, как я вымою пол"),
+            ("Deplace la chaise, s'il te plait", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿ÐµÑ€ÐµÐ´Ð²Ð¸Ð½ÑŒ ÑÑ‚ÑƒÐ»"),
+            ("Deplace la chaise pres de la fenetre, s'il te plait", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿ÐµÑ€ÐµÐ´Ð²Ð¸Ð½ÑŒ ÑÑ‚ÑƒÐ» Ðº Ð¾ÐºÐ½Ñƒ"),
+            ("Deplace la chaise pres de la fenetre avant que je nettoie", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿ÐµÑ€ÐµÐ´Ð²Ð¸Ð½ÑŒ ÑÑ‚ÑƒÐ» Ðº Ð¾ÐºÐ½Ñƒ Ð¿ÐµÑ€ÐµÐ´ Ñ‚ÐµÐ¼, ÐºÐ°Ðº Ñ ÑƒÐ±ÐµÑ€Ñƒ"),
+            ("Deplace la chaise pres de la fenetre avant que je nettoie le sol", "ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð¿ÐµÑ€ÐµÐ´Ð²Ð¸Ð½ÑŒ ÑÑ‚ÑƒÐ» Ðº Ð¾ÐºÐ½Ñƒ Ð¿ÐµÑ€ÐµÐ´ Ñ‚ÐµÐ¼, ÐºÐ°Ðº Ñ Ð²Ñ‹Ð¼Ð¾ÑŽ Ð¿Ð¾Ð»"),
         ],
         "half_1": "Deplace la chaise pres de la fenetre",
         "half_2": "avant que je nettoie le sol",
@@ -331,10 +331,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "medicine question",
         "steps": [
-            ("J'ai une question", "У меня есть вопрос"),
-            ("J'ai une question sur ce medicament", "У меня есть вопрос об этом лекарстве"),
-            ("J'ai une question sur ce medicament pour ma mere", "У меня есть вопрос об этом лекарстве для моей мамы"),
-            ("J'ai une question sur ce medicament pour ma mere avant qu'elle le prenne", "У меня есть вопрос об этом лекарстве для моей мамы перед тем, как она его примет"),
+            ("J'ai une question", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð²Ð¾Ð¿Ñ€Ð¾Ñ"),
+            ("J'ai une question sur ce medicament", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð²Ð¾Ð¿Ñ€Ð¾Ñ Ð¾Ð± ÑÑ‚Ð¾Ð¼ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ðµ"),
+            ("J'ai une question sur ce medicament pour ma mere", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð²Ð¾Ð¿Ñ€Ð¾Ñ Ð¾Ð± ÑÑ‚Ð¾Ð¼ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ðµ Ð´Ð»Ñ Ð¼Ð¾ÐµÐ¹ Ð¼Ð°Ð¼Ñ‹"),
+            ("J'ai une question sur ce medicament pour ma mere avant qu'elle le prenne", "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ Ð²Ð¾Ð¿Ñ€Ð¾Ñ Ð¾Ð± ÑÑ‚Ð¾Ð¼ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ðµ Ð´Ð»Ñ Ð¼Ð¾ÐµÐ¹ Ð¼Ð°Ð¼Ñ‹ Ð¿ÐµÑ€ÐµÐ´ Ñ‚ÐµÐ¼, ÐºÐ°Ðº Ð¾Ð½Ð° ÐµÐ³Ð¾ Ð¿Ñ€Ð¸Ð¼ÐµÑ‚"),
         ],
         "half_1": "J'ai une question sur ce medicament pour ma mere",
         "half_2": "avant qu'elle le prenne",
@@ -342,10 +342,10 @@ CHAINS: list[dict[str, Any]] = [
     {
         "topic": "leave now",
         "steps": [
-            ("On devrait partir maintenant", "Нам стоит уходить сейчас"),
-            ("On devrait partir maintenant avant qu'il fasse nuit", "Нам стоит уходить сейчас, пока не стемнело"),
-            ("On devrait partir maintenant avant qu'il fasse nuit dehors", "Нам стоит уходить сейчас, пока на улице не стемнело"),
-            ("On devrait partir maintenant avant qu'il fasse nuit dehors et que les bus s'arretent", "Нам стоит уходить сейчас, пока на улице не стемнело и автобусы не перестали ходить"),
+            ("On devrait partir maintenant", "ÐÐ°Ð¼ ÑÑ‚Ð¾Ð¸Ñ‚ ÑƒÑ…Ð¾Ð´Ð¸Ñ‚ÑŒ ÑÐµÐ¹Ñ‡Ð°Ñ"),
+            ("On devrait partir maintenant avant qu'il fasse nuit", "ÐÐ°Ð¼ ÑÑ‚Ð¾Ð¸Ñ‚ ÑƒÑ…Ð¾Ð´Ð¸Ñ‚ÑŒ ÑÐµÐ¹Ñ‡Ð°Ñ, Ð¿Ð¾ÐºÐ° Ð½Ðµ ÑÑ‚ÐµÐ¼Ð½ÐµÐ»Ð¾"),
+            ("On devrait partir maintenant avant qu'il fasse nuit dehors", "ÐÐ°Ð¼ ÑÑ‚Ð¾Ð¸Ñ‚ ÑƒÑ…Ð¾Ð´Ð¸Ñ‚ÑŒ ÑÐµÐ¹Ñ‡Ð°Ñ, Ð¿Ð¾ÐºÐ° Ð½Ð° ÑƒÐ»Ð¸Ñ†Ðµ Ð½Ðµ ÑÑ‚ÐµÐ¼Ð½ÐµÐ»Ð¾"),
+            ("On devrait partir maintenant avant qu'il fasse nuit dehors et que les bus s'arretent", "ÐÐ°Ð¼ ÑÑ‚Ð¾Ð¸Ñ‚ ÑƒÑ…Ð¾Ð´Ð¸Ñ‚ÑŒ ÑÐµÐ¹Ñ‡Ð°Ñ, Ð¿Ð¾ÐºÐ° Ð½Ð° ÑƒÐ»Ð¸Ñ†Ðµ Ð½Ðµ ÑÑ‚ÐµÐ¼Ð½ÐµÐ»Ð¾ Ð¸ Ð°Ð²Ñ‚Ð¾Ð±ÑƒÑÑ‹ Ð½Ðµ Ð¿ÐµÑ€ÐµÑÑ‚Ð°Ð»Ð¸ Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ"),
         ],
         "half_1": "On devrait partir maintenant avant qu'il fasse nuit dehors",
         "half_2": "et que les bus s'arretent",
@@ -363,7 +363,7 @@ def load_env_file(start: Path) -> dict[str, str]:
                 continue
             key, value = stripped.split("=", 1)
             values[key.strip()] = value.strip().strip('"').strip("'")
-    values.update({key: value for key, value in os.environ.items() if key == "OPENAI_API_KEY"})
+    values.update({key: value for key, value in os.environ.items() if key == "OPENAI_TTS_API_KEY"})
     return values
 
 
@@ -376,40 +376,40 @@ def strip_final_punct(value: str) -> str:
 
 
 FRENCH_TEXT_FIXES: tuple[tuple[str, str], ...] = (
-    ("mise a jour", "mise à jour"),
-    ("s'il vous plait", "s'il vous plaît"),
-    ("s'il te plait", "s'il te plaît"),
-    ("a emporter", "à emporter"),
-    ("a l'etage", "à l'étage"),
-    ("a mon nom", "à mon nom"),
-    ("a pied", "à pied"),
-    ("Ou est", "Où est"),
-    ("la-bas", "là-bas"),
-    ("telephone", "téléphone"),
-    ("decharge", "déchargé"),
-    ("dejeuner", "déjeuner"),
-    ("diner", "dîner"),
-    ("reveille", "réveillé"),
-    ("apres", "après"),
-    ("pres", "près"),
-    ("prèsque", "presque"),
-    ("cafe", "café"),
-    ("pret", "prêt"),
-    ("reservation", "réservation"),
-    ("reunion", "réunion"),
-    ("bientot", "bientôt"),
-    ("entree", "entrée"),
-    ("oublie", "oublié"),
-    ("reparation", "réparation"),
-    ("verifie-la", "vérifie-la"),
-    ("verifie", "vérifié"),
-    ("repeter ca", "répéter ça"),
-    ("Deplace", "Déplace"),
-    ("deplace", "déplace"),
-    ("fenetre", "fenêtre"),
-    ("medicament", "médicament"),
-    ("mere", "mère"),
-    ("s'arretent", "s'arrêtent"),
+    ("mise a jour", "mise Ã  jour"),
+    ("s'il vous plait", "s'il vous plaÃ®t"),
+    ("s'il te plait", "s'il te plaÃ®t"),
+    ("a emporter", "Ã  emporter"),
+    ("a l'etage", "Ã  l'Ã©tage"),
+    ("a mon nom", "Ã  mon nom"),
+    ("a pied", "Ã  pied"),
+    ("Ou est", "OÃ¹ est"),
+    ("la-bas", "lÃ -bas"),
+    ("telephone", "tÃ©lÃ©phone"),
+    ("decharge", "dÃ©chargÃ©"),
+    ("dejeuner", "dÃ©jeuner"),
+    ("diner", "dÃ®ner"),
+    ("reveille", "rÃ©veillÃ©"),
+    ("apres", "aprÃ¨s"),
+    ("pres", "prÃ¨s"),
+    ("prÃ¨sque", "presque"),
+    ("cafe", "cafÃ©"),
+    ("pret", "prÃªt"),
+    ("reservation", "rÃ©servation"),
+    ("reunion", "rÃ©union"),
+    ("bientot", "bientÃ´t"),
+    ("entree", "entrÃ©e"),
+    ("oublie", "oubliÃ©"),
+    ("reparation", "rÃ©paration"),
+    ("verifie-la", "vÃ©rifie-la"),
+    ("verifie", "vÃ©rifiÃ©"),
+    ("repeter ca", "rÃ©pÃ©ter Ã§a"),
+    ("Deplace", "DÃ©place"),
+    ("deplace", "dÃ©place"),
+    ("fenetre", "fenÃªtre"),
+    ("medicament", "mÃ©dicament"),
+    ("mere", "mÃ¨re"),
+    ("s'arretent", "s'arrÃªtent"),
 )
 
 
@@ -468,17 +468,17 @@ def french_hint(text: str) -> str:
         ("gn", "ny"),
         ("ill", "iy"),
         ("qu", "k"),
-        ("ç", "s"),
-        ("é", "e"),
-        ("è", "e"),
-        ("ê", "e"),
-        ("à", "a"),
-        ("ù", "u"),
-        ("û", "u"),
-        ("ô", "o"),
-        ("â", "a"),
-        ("î", "i"),
-        ("ï", "i"),
+        ("Ã§", "s"),
+        ("Ã©", "e"),
+        ("Ã¨", "e"),
+        ("Ãª", "e"),
+        ("Ã ", "a"),
+        ("Ã¹", "u"),
+        ("Ã»", "u"),
+        ("Ã´", "o"),
+        ("Ã¢", "a"),
+        ("Ã®", "i"),
+        ("Ã¯", "i"),
         ("h", ""),
     ]
     for old, new in replacements:
@@ -702,9 +702,9 @@ def build_unique_tts_jobs(phrases: list[dict[str, Any]]) -> list[dict[str, Any]]
 
 
 def generate_raw_audio(pack: Path, phrases: list[dict[str, Any]], workers: int) -> dict[str, Any]:
-    api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
+    api_key = load_env_file(Path.cwd()).get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local")
     jobs = build_unique_tts_jobs(phrases)
     planned = []
     cached = 0
@@ -1058,7 +1058,7 @@ def qa_project(pack: Path, draft_dir: Path, phrases: list[dict[str, Any]]) -> di
         for segment in sorted_segments(content, track_idx):
             value = text_value(texts.get(segment.get("material_id")))
             all_relevant_text.append({"track": track_idx, "text": value})
-            if any(bad in value for bad in ["????", "Ð", "Ñ", "�"]):
+            if any(bad in value for bad in ["????", "Ã", "Ã‘", "ï¿½"]):
                 errors.append(f"bad encoded text on track {track_idx}: {value}")
             for line in value.splitlines() or [value]:
                 if len(line) > 64:

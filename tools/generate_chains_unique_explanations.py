@@ -12,6 +12,8 @@ from typing import Any
 
 import requests
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 
 DRAFT_NAME = "CHAINS_EP01_ENHANCED_CTA_EXPLAIN_REVERSE 20260602_085658"
 DRAFT_DIR = Path.home() / "AppData/Local/CapCut/User Data/Projects/com.lveditor.draft" / DRAFT_NAME
@@ -689,6 +691,8 @@ def build_timed_blocks_eleven(api_key: str, voice_id: str, items: list[dict[str,
 def main() -> None:
     env = load_env_file(Path.cwd())
     api_key = os.environ.get("OPENAI_API_KEY") or env.get("OPENAI_API_KEY")
+    if api_key:
+        require_codex_openai_tts_only(action="Chains unique explanation chat/transcription generation", endpoint="chat/completions")
     eleven_key = os.environ.get("ELEVENLABS_API_KEY") or env.get("ELEVENLABS_API_KEY")
     eleven_voice = os.environ.get("ELEVENLABS_VOICE_ID") or env.get("ELEVENLABS_VOICE_ID")
     if not api_key and not eleven_key:

@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Assets-only repair for the native CapCut draft "ЦЕПИ ЦЕПИ ЦЕПИ (1)".
+﻿#!/usr/bin/env python3
+"""Assets-only repair for the native CapCut draft "Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ (1)".
 
 Allowed changes:
 - text material content replacement only;
@@ -60,7 +60,7 @@ ROLE_CONFIG = {
     },
     "ru": {
         "voice": "shimmer",
-        "instructions": "Говори по-русски естественно, тепло и чётко, как диктор хорошего учебного видео. Скажи только фразу.",
+        "instructions": "Ð“Ð¾Ð²Ð¾Ñ€Ð¸ Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸ ÐµÑÑ‚ÐµÑÑ‚Ð²ÐµÐ½Ð½Ð¾, Ñ‚ÐµÐ¿Ð»Ð¾ Ð¸ Ñ‡Ñ‘Ñ‚ÐºÐ¾, ÐºÐ°Ðº Ð´Ð¸ÐºÑ‚Ð¾Ñ€ Ñ…Ð¾Ñ€Ð¾ÑˆÐµÐ³Ð¾ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ð²Ð¸Ð´ÐµÐ¾. Ð¡ÐºÐ°Ð¶Ð¸ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ„Ñ€Ð°Ð·Ñƒ.",
     },
     "en2": {
         "voice": "fable",
@@ -68,7 +68,7 @@ ROLE_CONFIG = {
     },
     "transition": {
         "voice": "shimmer",
-        "instructions": "Говори по-русски живо, человеческим темпом, как ведущий учебного видео. Без спешки, но компактно.",
+        "instructions": "Ð“Ð¾Ð²Ð¾Ñ€Ð¸ Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸ Ð¶Ð¸Ð²Ð¾, Ñ‡ÐµÐ»Ð¾Ð²ÐµÑ‡ÐµÑÐºÐ¸Ð¼ Ñ‚ÐµÐ¼Ð¿Ð¾Ð¼, ÐºÐ°Ðº Ð²ÐµÐ´ÑƒÑ‰Ð¸Ð¹ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ð²Ð¸Ð´ÐµÐ¾. Ð‘ÐµÐ· ÑÐ¿ÐµÑˆÐºÐ¸, Ð½Ð¾ ÐºÐ¾Ð¼Ð¿Ð°ÐºÑ‚Ð½Ð¾.",
     },
 }
 ROLE_CONFIG["ru"]["instructions"] = "Speak Russian beautifully and naturally, warm and clear, like a pleasant lesson host. Say only the phrase."
@@ -354,9 +354,9 @@ def fit_audio_to_slot(raw: Path, target: Path, slot_us: int) -> dict[str, Any]:
 
 def generate_all_audio(manifest: dict[str, Any]) -> dict[str, Any]:
     env = load_env()
-    api_key = env.get("OPENAI_API_KEY")
+    api_key = env.get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local")
     source_audio = {
         (int(item["index"]), str(item["role"])): item
         for item in json.loads(SOURCE_AUDIO_MANIFEST.read_text(encoding="utf-8"))
@@ -409,10 +409,10 @@ def generate_all_audio(manifest: dict[str, Any]) -> dict[str, Any]:
 
 def transition_voice_text(screen_text: str, duration_us: int) -> str:
     lower = screen_text.lower()
-    if "родном языке" in lower:
-        return "Теперь сначала услышишь смысл по-русски. Постарайся сам вспомнить английский вариант, а потом проверь себя."
-    if "перевод на русский отсутствует" in lower:
-        return "Теперь без русского перевода. Слушай английский и восстанавливай смысл самостоятельно."
+    if "Ñ€Ð¾Ð´Ð½Ð¾Ð¼ ÑÐ·Ñ‹ÐºÐµ" in lower:
+        return "Ð¢ÐµÐ¿ÐµÑ€ÑŒ ÑÐ½Ð°Ñ‡Ð°Ð»Ð° ÑƒÑÐ»Ñ‹ÑˆÐ¸ÑˆÑŒ ÑÐ¼Ñ‹ÑÐ» Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸. ÐŸÐ¾ÑÑ‚Ð°Ñ€Ð°Ð¹ÑÑ ÑÐ°Ð¼ Ð²ÑÐ¿Ð¾Ð¼Ð½Ð¸Ñ‚ÑŒ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚, Ð° Ð¿Ð¾Ñ‚Ð¾Ð¼ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑŒ ÑÐµÐ±Ñ."
+    if "Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´ Ð½Ð° Ñ€ÑƒÑÑÐºÐ¸Ð¹ Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚" in lower:
+        return "Ð¢ÐµÐ¿ÐµÑ€ÑŒ Ð±ÐµÐ· Ñ€ÑƒÑÑÐºÐ¾Ð³Ð¾ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´Ð°. Ð¡Ð»ÑƒÑˆÐ°Ð¹ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹ Ð¸ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°Ð¹ ÑÐ¼Ñ‹ÑÐ» ÑÐ°Ð¼Ð¾ÑÑ‚Ð¾ÑÑ‚ÐµÐ»ÑŒÐ½Ð¾."
     return screen_text
 
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Generate OpenAI TTS audio for CHAINS episode 1."""
 
 from __future__ import annotations
@@ -102,9 +102,9 @@ def openai_tts(api_key: str, role: str, text: str, path: Path) -> None:
 
 
 def main() -> int:
-    api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
+    api_key = load_env_file(Path.cwd()).get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required")
     rows = load_json(PACK / "phrase_rows.json")
     out = PACK / "openai-audio"
     manifest: list[dict[str, Any]] = []

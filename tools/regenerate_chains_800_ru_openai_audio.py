@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Regenerate only broken Russian WAV files for the Chains 800 repair."""
 
 from __future__ import annotations
@@ -19,9 +19,9 @@ MODEL_ID = "gpt-4o-mini-tts"
 VOICE = "marin"
 OUTPUT_FORMAT = "wav"
 INSTRUCTIONS = (
-    "Говори по-русски теплым нейтральным голосом для учебного видео. "
-    "Произношение чистое, ударения естественные и правильные. "
-    "Скажи только фразу и остановись чисто, без лишних слов."
+    "Ð“Ð¾Ð²Ð¾Ñ€Ð¸ Ð¿Ð¾-Ñ€ÑƒÑÑÐºÐ¸ Ñ‚ÐµÐ¿Ð»Ñ‹Ð¼ Ð½ÐµÐ¹Ñ‚Ñ€Ð°Ð»ÑŒÐ½Ñ‹Ð¼ Ð³Ð¾Ð»Ð¾ÑÐ¾Ð¼ Ð´Ð»Ñ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ð²Ð¸Ð´ÐµÐ¾. "
+    "ÐŸÑ€Ð¾Ð¸Ð·Ð½Ð¾ÑˆÐµÐ½Ð¸Ðµ Ñ‡Ð¸ÑÑ‚Ð¾Ðµ, ÑƒÐ´Ð°Ñ€ÐµÐ½Ð¸Ñ ÐµÑÑ‚ÐµÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ðµ Ð¸ Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ðµ. "
+    "Ð¡ÐºÐ°Ð¶Ð¸ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ„Ñ€Ð°Ð·Ñƒ Ð¸ Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸ÑÑŒ Ñ‡Ð¸ÑÑ‚Ð¾, Ð±ÐµÐ· Ð»Ð¸ÑˆÐ½Ð¸Ñ… ÑÐ»Ð¾Ð²."
 )
 
 
@@ -79,9 +79,9 @@ def openai_tts(api_key: str, text: str, path: Path) -> None:
 
 
 def main() -> int:
-    api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
+    api_key = load_env_file(Path.cwd()).get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local")
     rows = load_json(ROWS_JSON)
     OUT.mkdir(parents=True, exist_ok=True)
     generated = 0

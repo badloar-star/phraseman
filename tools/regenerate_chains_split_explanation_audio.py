@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Regenerate Chains explanation voiceovers with separate RU/EN voices.
 
 OpenAI TTS is the preferred provider, but the current project key can be out of
@@ -253,7 +253,7 @@ def classify_quoted_text(text: str) -> str:
 def split_voiceover(text: str) -> list[dict[str, str]]:
     chunks: list[dict[str, str]] = []
     pos = 0
-    for match in re.finditer(r"«([^»]+)»", text):
+    for match in re.finditer(r"Â«([^Â»]+)Â»", text):
         before = text[pos : match.start()].strip()
         if before:
             chunks.append({"lang": "ru", "text": before})
@@ -345,7 +345,7 @@ def generate_chunk(
         return raw
     if provider == "openai":
         try:
-            openai_tts(env["OPENAI_API_KEY"], lang, text, raw)
+            openai_tts(env["OPENAI_TTS_API_KEY"], lang, text, raw)
             return raw
         except urllib.error.HTTPError as error:
             body = error.read().decode("utf-8", errors="replace")
@@ -420,8 +420,8 @@ def main() -> None:
         raise SystemExit("CapCut is open. Close CapCut before regenerating split explanation audio.")
 
     env = load_env()
-    if not env.get("ELEVENLABS_API_KEY") and not env.get("OPENAI_API_KEY"):
-        raise RuntimeError("OPENAI_API_KEY or ELEVENLABS_API_KEY is required.")
+    if not env.get("ELEVENLABS_API_KEY") and not env.get("OPENAI_TTS_API_KEY"):
+        raise RuntimeError("OPENAI_TTS_API_KEY or ELEVENLABS_API_KEY is required.")
 
     backup_path = backup_project()
     draft = read_json(CONTENT_PATH)
@@ -430,7 +430,7 @@ def main() -> None:
     if len(slots) != len(timed):
         raise RuntimeError(f"slot count mismatch: {len(slots)} slots for {len(timed)} explanations")
 
-    provider = "openai" if env.get("OPENAI_API_KEY") else "elevenlabs"
+    provider = "openai" if env.get("OPENAI_TTS_API_KEY") else "elevenlabs"
     provider_fallback_reason = ""
     manifest: list[dict[str, Any]] = []
 

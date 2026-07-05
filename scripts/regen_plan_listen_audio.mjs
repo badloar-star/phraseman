@@ -1,7 +1,7 @@
-/**
+﻿/**
  * regen_plan_listen_audio.mjs
- * Re-generates the "На слух" (listen-choose) audio for plan days 1-2 to MATCH the
- * current authored content (the Ф4 rewrite left the audio voicing the OLD phrases,
+ * Re-generates the "ÐÐ° ÑÐ»ÑƒÑ…" (listen-choose) audio for plan days 1-2 to MATCH the
+ * current authored content (the Ð¤4 rewrite left the audio voicing the OLD phrases,
  * so the listening exercise had NO correct answer among the options).
  *
  * For each runtime audio asset:
@@ -10,7 +10,7 @@
  *   - rewrites targetText in personal_plan_runtime_audio_assets.generated.ts.
  *
  * Run: PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_plan_listen_audio.mjs
- * Reads OPENAI_API_KEY from env or .env.local.
+ * Reads OPENAI_TTS_API_KEY from env or .env.local.
  */
 import fs from 'fs';
 import path from 'path';
@@ -19,23 +19,23 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
-// ── dev-spend guard ─────────────────────────────────────────────────────────
+// â”€â”€ dev-spend guard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 if (process.env.PHRASEMAN_ALLOW_OPENAI_DEV_SPEND !== '1') {
   console.error('Refusing to spend on OpenAI TTS. Set PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 to proceed.');
   process.exit(2);
 }
 
-// ── load OPENAI_API_KEY from env or .env.local ──────────────────────────────
-let API_KEY = process.env.OPENAI_API_KEY;
+// â”€â”€ load OPENAI_TTS_API_KEY from env or .env.local â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+let API_KEY = process.env.OPENAI_TTS_API_KEY;
 if (!API_KEY) {
   try {
     const env = fs.readFileSync(path.join(ROOT, '.env.local'), 'utf8');
-    const line = env.split(/\r?\n/).find((l) => l.trim().startsWith('OPENAI_API_KEY='));
+    const line = env.split(/\r?\n/).find((l) => l.trim().startsWith('OPENAI_TTS_API_KEY='));
     if (line) API_KEY = line.split('=', 2)[1].trim().replace(/^["']|["']$/g, '');
   } catch {}
 }
 if (!API_KEY) {
-  console.error('No OPENAI_API_KEY in env or .env.local');
+  console.error('No OPENAI_TTS_API_KEY in env or .env.local');
   process.exit(1);
 }
 
@@ -43,7 +43,7 @@ const VOICE = 'alloy'; // matches existing asset voiceId openai:alloy
 const MODEL = 'gpt-4o-mini-tts';
 const DRY = process.argv.includes('--dry');
 
-// ── load current content (extracted JSON) ───────────────────────────────────
+// â”€â”€ load current content (extracted JSON) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const DATA_DIR = path.join(ROOT, '.codex-tmp', 'audit', 'data');
 const content = {}; // plan -> day -> [english...]
 for (const plan of ['mitap', 'gavan', 'impuls', 'echo', 'voyazh']) {
@@ -52,7 +52,7 @@ for (const plan of ['mitap', 'gavan', 'impuls', 'echo', 'voyazh']) {
   for (const d of days) content[plan][d.dayIndex] = d.phrases.map((p) => p.english);
 }
 
-// ── load asset list (dumped) ────────────────────────────────────────────────
+// â”€â”€ load asset list (dumped) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const assets = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '.codex-tmp', 'audit', 'audio_assets.json'), 'utf8'));
 
 function resolvePhrase(contentUnitId) {
@@ -95,7 +95,7 @@ for (const a of assets) {
   done++;
 }
 
-// ── rewrite targetText in the generated registry ────────────────────────────
+// â”€â”€ rewrite targetText in the generated registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const regPath = path.join(ROOT, 'app', 'personal_plan_runtime_audio_assets.generated.ts');
 let reg = fs.readFileSync(regPath, 'utf8');
 let rewrites = 0;

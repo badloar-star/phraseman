@@ -9,6 +9,7 @@ export const ADMIN_INTRO_PREVIEW_ROUTE_NAME = routeName('admin', 'intro', 'previ
 export const ADMIN_PREMIUM_DELIVERY_TEST_ROUTE_NAME = routeName('admin', 'premium', 'delivery', 'test');
 export const ADMIN_CELEBRATION_LAB_ROUTE_NAME = routeName('admin', 'celebration', 'lab');
 export const ADMIN_SPEAKING_LAB_ROUTE_NAME = routeName('admin', 'speaking', 'lab');
+export const ADMIN_TASKS_LAB_ROUTE_NAME = routeName('admin', 'tasks', 'lab');
 export const ADMIN_REFERRAL_LAB_ROUTE_NAME = routeName('admin', 'referral', 'lab');
 export const FLASHCARDS_MARKET_DEV_ROUTE_NAME = routeName('flashcards', 'market', 'dev');
 export const PERSONAL_PLAN_RUNTIME_DEV_ROUTE_NAME = routeName('personal', 'plan', 'runtime', 'dev');
@@ -27,6 +28,7 @@ export const DEV_UTILITY_ROUTE_NAMES = [
   ADMIN_PREMIUM_DELIVERY_TEST_ROUTE_NAME,
   ADMIN_CELEBRATION_LAB_ROUTE_NAME,
   ADMIN_SPEAKING_LAB_ROUTE_NAME,
+  ADMIN_TASKS_LAB_ROUTE_NAME,
   ADMIN_REFERRAL_LAB_ROUTE_NAME,
   SETTINGS_TESTERS_ROUTE_NAME,
   POS_ANALYTICS_AUDIT_ROUTE_NAME,

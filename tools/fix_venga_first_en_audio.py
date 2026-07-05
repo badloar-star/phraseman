@@ -176,9 +176,9 @@ def audio_material_for_track(draft: dict[str, Any], track_index: int) -> dict[st
 def main() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     env = load_env_file(repo_root)
-    api_key = env.get("OPENAI_API_KEY")
+    api_key = env.get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise SystemExit("OPENAI_API_KEY is required in .env.local")
+        raise SystemExit("OPENAI_TTS_API_KEY is required in .env.local")
 
     capcut_root = Path(os.environ["LOCALAPPDATA"]) / "CapCut" / "User Data" / "Projects" / "com.lveditor.draft"
     source_dir = capcut_root / SOURCE_DRAFT_NAME

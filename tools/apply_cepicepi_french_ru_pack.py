@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Apply the French-Russian Cepicepi pack to the CapCut template."""
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_chains_800_capcut_project import set_text, update_meta, write_json  # noqa: E402
 
 
-PROJECT_NAME = "ЦЕПИ ЦЕПИ ЦЕПИ (1)"
+PROJECT_NAME = "Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ (1)"
 PACK = Path("exports/chains/cepicepi_french_ru_a1_20260606")
 ROWS_PATH = PACK / "french_chains_100.json"
 BG_REPORT = PACK / "semantic_backgrounds" / "background_generation_report.json"
@@ -61,7 +61,7 @@ def load_env(path: Path = Path(".env.local")) -> dict[str, str]:
             if stripped and not stripped.startswith("#") and "=" in stripped:
                 key, value = stripped.split("=", 1)
                 values[key.strip()] = value.strip().strip('"').strip("'")
-    values.update({k: v for k, v in os.environ.items() if k == "OPENAI_API_KEY"})
+    values.update({k: v for k, v in os.environ.items() if k == "OPENAI_TTS_API_KEY"})
     return values
 
 
@@ -117,11 +117,11 @@ def french_hint(text: str) -> str:
         ("oi", "ua"),
         ("ai", "e"),
         ("ei", "e"),
-        ("é", "e"),
-        ("è", "e"),
-        ("ê", "e"),
-        ("à", "a"),
-        ("ç", "s"),
+        ("Ã©", "e"),
+        ("Ã¨", "e"),
+        ("Ãª", "e"),
+        ("Ã ", "a"),
+        ("Ã§", "s"),
         ("qu", "k"),
         ("gn", "ny"),
         ("ill", "iy"),
@@ -234,9 +234,9 @@ def build_rows() -> list[dict[str, Any]]:
 
 
 def generate_audio(content: dict[str, Any], rows: list[dict[str, Any]]) -> dict[str, Any]:
-    api_key = load_env().get("OPENAI_API_KEY")
+    api_key = load_env().get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required")
     jobs: list[dict[str, Any]] = []
     for idx, row in enumerate(rows):
         jobs.extend(
@@ -402,9 +402,9 @@ def qa() -> dict[str, Any]:
             continue
         for seg in tr.get("segments", []):
             value = text_value(texts.get(seg.get("material_id")))
-            if "????" in value or "Ð" in value or "Ñ" in value:
+            if "????" in value or "Ã" in value or "Ã‘" in value:
                 bad_text.append({"track": ti, "text": value})
-            limit = 52 if ti == 4 else (34 if any(("А" <= ch <= "я") or ch in "Ёё" for ch in value) else 40)
+            limit = 52 if ti == 4 else (34 if any(("Ð" <= ch <= "Ñ") or ch in "ÐÑ‘" for ch in value) else 40)
             for line in value.split("\n"):
                 if len(line) > limit:
                     line_bad.append({"track": ti, "limit": limit, "line": line, "text": value})

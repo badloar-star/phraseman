@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 import generate_venga_spanish_phrase_pack as gen
+from openai_dev_guard import require_codex_openai_tts_only
 
 
 PACK = Path("exports/venga-phrase-packs/ru-es-a1-vsscp")
@@ -76,6 +77,7 @@ def normalized_fix(item: dict[str, Any], original: dict[str, Any]) -> dict[str, 
 
 
 def main() -> int:
+    require_codex_openai_tts_only(action="Venga Spanish language audit/repair", endpoint="chat/completions")
     env = gen.load_env_file(Path.cwd())
     api_key = env.get("OPENAI_API_KEY")
     if not api_key:

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import {
@@ -39,6 +40,8 @@ import {
   loadTrainingSources,
 } from '../app/flashcards/trainingSources';
 import {
+  buildMarketplaceOwnedCards,
+  loadMarketplacePacks,
   consumeDevActivePack,
   loadDevOwnedPackIds,
   loadOwnedPackIds,
@@ -48,6 +51,10 @@ import {
   saveBuiltMarketplaceCardsCache,
   setDevActivePack,
 } from '../app/flashcards/marketplace';
+import {
+  __resetFrenchFlashcardMarketplaceRuntimeForTests,
+  primeFrenchFlashcardMarketplaceFromPayload,
+} from '../app/french_flashcard_remote_runtime';
 import {
   addCommunityOwnedPackId,
   loadCommunityOwnedPackIds,
@@ -80,10 +87,30 @@ jest.mock('../app/community_packs/functionsClient', () => ({
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn(() => Promise.resolve(true)) }));
 
 const ROOT = path.join(__dirname, '..');
+const FR_FLASHCARD_PAYLOAD_RU = path.join(
+  ROOT,
+  'docs',
+  'gustav',
+  'runs',
+  '2026-07-04_fr_flashcard_phrase_packs_v1',
+  'build',
+  'server_payloads',
+  'fr_flashcard_phrase_packs_ru.json',
+);
 const mockStorage: Record<string, string> = {};
+
+beforeAll(() => {
+  if (!fs.existsSync(FR_FLASHCARD_PAYLOAD_RU)) {
+    execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'gustav_build_fr_flashcard_phrase_packs_v1.mjs')], {
+      cwd: ROOT,
+      stdio: 'pipe',
+    });
+  }
+});
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  __resetFrenchFlashcardMarketplaceRuntimeForTests();
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
     Promise.resolve(mockStorage[key] ?? null),
@@ -141,6 +168,44 @@ describe('Gustav flashcards target isolation', () => {
     )).toEqual([]);
 
     expect(buildOfficialTrainingSourcesFromIds(officialIds, 'ru', 'en').length).toBeGreaterThan(0);
+  });
+
+  it('opens French official marketplace packs only from the French server payload cache', async () => {
+    const payload = fs.readFileSync(FR_FLASHCARD_PAYLOAD_RU, 'utf8');
+    const primed = primeFrenchFlashcardMarketplaceFromPayload(payload, 'ru');
+
+    expect(primed).toHaveLength(5);
+    expect(primed.every((pack) => pack.studyTarget === 'fr')).toBe(true);
+    expect(primed.map((pack) => pack.id)).not.toContain('official_peaky_blinders_en');
+    expect(flashcardsOfficialPacksAvailableForTarget('fr', 'ru')).toBe(true);
+    expect(flashcardsSourceGateForTarget('fr', 'official_marketplace_packs', 'ru')).toMatchObject({
+      enabled: true,
+      studyTarget: 'fr',
+      reason: 'french_flashcards_server_marketplace_packs_available',
+      blockedRoutes: [],
+    });
+
+    const loaded = await loadMarketplacePacks('fr', 'ru');
+    expect(loaded).toHaveLength(5);
+    expect(loaded.every((pack) => pack.isOfficial && pack.studyTarget === 'fr')).toBe(true);
+    expect(loaded.map((pack) => pack.id)).toEqual(expect.arrayContaining([
+      'fr_cafe_terrace_life',
+      'fr_pronouns_and_politeness',
+      'fr_apero_social_life',
+      'fr_pharmacy_healthcare',
+      'fr_texting_reactions',
+    ]));
+
+    const cards = buildMarketplaceOwnedCards([loaded[0]], 'ru', 'fr');
+    expect(cards).toHaveLength(20);
+    expect(cards[0]).toMatchObject({
+      en: expect.any(String),
+      ru: expect.any(String),
+      sourceId: `DEV:${loaded[0].id}`,
+      categoryId: 'situations',
+    });
+    expect(cards[0].en).toMatch(/[A-Za-zÀ-ÿ]/);
+    expect(cards[0].ru).not.toBe('');
   });
 
   it('hard-gates flashcard training helpers against French community packs even with stale caller flags', async () => {
@@ -422,10 +487,10 @@ describe('Gustav flashcards target isolation', () => {
     expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang)');
     expect(collectionSource).toContain('ensureFrenchRemoteFlashcards(lang)');
     expect(collectionSource).toContain('officialPacksEnabled ? marketCards : []');
-    expect(collectionSource).toContain('loadBuiltMarketplaceCardsCache(studyTarget)');
+    expect(collectionSource).toContain('loadBuiltMarketplaceCardsCache(studyTarget, lang)');
     expect(collectionSource).toContain('loadAccessiblePackIds(studyTarget)');
     expect(collectionSource).toContain('loadCommunityOwnedPackIds(studyTarget)');
-    expect(collectionSource).toContain('saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget)');
+    expect(collectionSource).toContain('saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget, lang)');
     expect(collectionSource).toContain('consumeDevActivePack(studyTarget)');
 
     expect(swipeSource).toContain('peekFlashcardsCache(studyTarget)');
@@ -436,7 +501,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(swipeSource).toContain('saveSwipeMemory(memoryRef.current, studyTarget)');
     expect(swipeSource).toContain('loadFlashcardsSwipeSessionDraft(sessionDraftScope, Date.now(), studyTarget)');
     expect(swipeSource).toContain('saveFlashcardsSwipeSessionDraft(draft, studyTarget)');
-    expect(swipeSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(swipeSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(swipeSource).toContain('officialPacksEnabled ? requestedOfficialOwnedIds : []');
     expect(swipeSource).toContain('officialPacksEnabled ? loadAccessiblePackIds(studyTarget)');
     expect(swipeSource).toContain('buildOfficialTrainingSourcesFromIds(officialOwnedIds, lang, studyTarget)');
@@ -447,12 +512,12 @@ describe('Gustav flashcards target isolation', () => {
     const trainingSourcesSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'trainingSources.ts'), 'utf8');
     expect(audioSource).toContain('buildCachedTrainingSources(');
     expect(audioSource).toContain('studyTarget,');
-    expect(trainingSourcesSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(trainingSourcesSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(trainingSourcesSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(hubSource).toContain('primeCustomFlashcardsCache(studyTarget)');
-    expect(hubSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(hubSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(hubSource).toContain('loadAccessiblePackIds(studyTarget)');
     expect(hubSource).toContain('loadCommunityOwnedPackIds(studyTarget)');
     expect(hubSource).toContain("const owned = officialPacksEnabled && ownedPackIds.length > 0 ? ownedPackIds.join('|') : ''");
@@ -460,7 +525,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(hubSource).toContain('studyTarget={studyTarget}');
 
     expect(marketDevSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(marketDevSource).toContain('const frenchPacksBlocked = !flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(marketDevSource).toContain('const frenchPacksBlocked = !flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(marketDevSource).toContain('const frenchGateCopy = frenchFlashcardsGateCopy(lang)');
     expect(marketDevSource).toContain('if (frenchPacksBlocked)');
     expect(marketDevSource).toContain('loadDevOwnedPackIds(studyTarget)');
@@ -469,7 +534,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(marketDevSource).toContain('setDevActivePack(packId, studyTarget)');
 
     expect(shardsShopSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(shardsShopSource).toContain('const officialCardPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(shardsShopSource).toContain('const officialCardPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(shardsShopSource).toContain('if (!officialCardPacksEnabled)');
     expect(shardsShopSource).toContain('studyTarget,');
     expect(shardsShopSource).toContain('getPackGiftTrial(studyTarget)');
@@ -500,14 +565,14 @@ describe('Gustav flashcards target isolation', () => {
     expect(communityCreateSource).toContain('const communityPacksTargetEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget)');
     expect(communityCreateSource).toContain('Community-наборы для French закрыты до отдельной проверки источников.');
 
-    expect(collectionSource).toContain('if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) return false;');
+    expect(collectionSource).toContain('if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)) return false;');
     expect(collectionSource).toContain('consumeStagedOwnedPackMarketCards(studyTarget)');
     expect(collectionSource).toContain('communityPacksEnabled && CLOUD_SYNC_ENABLED && !IS_EXPO_GO');
 
     expect(packOpeningSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(packOpeningSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(packOpeningSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(packOpeningSource).toContain('if (!officialPacksEnabled && !communityPacksEnabled)');
-    expect(packOpeningSource).toContain('officialPacksEnabled ? peekWarmMarketplacePacks() ?? reserveBundledMarketPacks() : []');
+    expect(packOpeningSource).toContain('officialPacksEnabled ? peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang) : []');
     expect(packOpeningSource).toContain('if (!foundPack && officialPacksEnabled)');
     expect(packOpeningSource).toContain('if (!foundPack && communityPacksEnabled)');
     expect(packOpeningSource).toContain('if (!communityPacksEnabled)');

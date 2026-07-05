@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Second repair for the Chains 800 part-2 CapCut draft.
 
 This repair starts from the clean pre-repair JSON backup, preserving generated
@@ -35,9 +35,9 @@ REPORT = Path("exports/chains/phrase_packs/chains_800_20260603/capcut_repair/par
 OPENAI_AUDIO_DIR = DRAFT_DIR / "Resources/chains_800_openai_tts"
 INTRO_DIR = DRAFT_DIR / "Resources/direct_bg_generated_voice"
 INTRO_TEXT = (
-    "В этом уроке тебя ждут четыре часа английского методом цепочек. "
-    "Мы учим не отдельные слова́, а готовые фразы. "
-    "Слушай, повторяй вслух, а во второй части сначала прозвучит русский перевод."
+    "Ð’ ÑÑ‚Ð¾Ð¼ ÑƒÑ€Ð¾ÐºÐµ Ñ‚ÐµÐ±Ñ Ð¶Ð´ÑƒÑ‚ Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ Ñ‡Ð°ÑÐ° Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¾Ð³Ð¾ Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð¼ Ñ†ÐµÐ¿Ð¾Ñ‡ÐµÐº. "
+    "ÐœÑ‹ ÑƒÑ‡Ð¸Ð¼ Ð½Ðµ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ñ‹Ðµ ÑÐ»Ð¾Ð²Ð°Ì, Ð° Ð³Ð¾Ñ‚Ð¾Ð²Ñ‹Ðµ Ñ„Ñ€Ð°Ð·Ñ‹. "
+    "Ð¡Ð»ÑƒÑˆÐ°Ð¹, Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹ Ð²ÑÐ»ÑƒÑ…, Ð° Ð²Ð¾ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ‡Ð°ÑÑ‚Ð¸ ÑÐ½Ð°Ñ‡Ð°Ð»Ð° Ð¿Ñ€Ð¾Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ Ñ€ÑƒÑÑÐºÐ¸Ð¹ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´."
 )
 INTRO_SLOT_US = 16_366_667
 
@@ -137,8 +137,8 @@ def openai_intro_tts(api_key: str, raw: Path) -> None:
             "response_format": "wav",
             "instructions": (
                 "Speak Russian with a warm native Moscow-neutral lesson voice. "
-                "Pronounce 'слова' as plural with stress on the final syllable. "
-                "Do not say 'видя'. Say only the supplied text, clearly and calmly."
+                "Pronounce 'ÑÐ»Ð¾Ð²Ð°' as plural with stress on the final syllable. "
+                "Do not say 'Ð²Ð¸Ð´Ñ'. Say only the supplied text, clearly and calmly."
             ),
         },
         ensure_ascii=False,
@@ -453,9 +453,9 @@ def main() -> int:
     if capcut_is_open() and not args.dry_run:
         raise RuntimeError("CapCut is open. Close CapCut before writing draft files.")
     env = load_env()
-    api_key = env.get("OPENAI_API_KEY")
+    api_key = env.get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local")
 
     content = load_json(CLEAN_BACKUP / "draft_content.json")
     report: dict[str, Any] = {"draft": str(DRAFT_DIR), "clean_backup": str(CLEAN_BACKUP), "dry_run": args.dry_run}

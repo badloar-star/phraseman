@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
- * regen_phrase_audio_storage.mjs — heal text↔audio drift in the SHIPPED pipeline.
+ * regen_phrase_audio_storage.mjs â€” heal textâ†”audio drift in the SHIPPED pipeline.
  *
  * The runtime plays mp3s from Firebase Storage via app/phrase_audio_url_map.generated.ts
  * (normalized text -> url), built from .codex-tmp/tts-voicing/audio_url_map.json
@@ -8,7 +8,7 @@
  * keeps speaking the old words. This script regenerates ONLY the phrases the
  * audit flags as AUDIO_SAYS_OLD, re-voicing them with the SAME voice/model the
  * corpus was built with, uploads under the SAME id (so Storage overwrites in
- * place — no orphan is created), rewrites the voiced text in audio_url_map.json,
+ * place â€” no orphan is created), rewrites the voiced text in audio_url_map.json,
  * and rebuilds the runtime map. The old key drops out of the map automatically
  * because the map is keyed by text and gets rebuilt from scratch.
  *
@@ -58,7 +58,7 @@ function objectName(id, source) {
   return `${PREFIX}/${source}/${safe}.mp3`;
 }
 
-// ── 1) get the drift list from the audit (single source of truth) ─────────────
+// â”€â”€ 1) get the drift list from the audit (single source of truth) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function runAudit() {
   const r = spawnSync('node', [path.join('scripts', 'audit_phrase_audio_sync.mjs'), '--json'], {
     cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32', maxBuffer: 32 * 1024 * 1024,
@@ -84,7 +84,7 @@ function buildIdIndex() {
 const audit = runAudit();
 const drift = (audit.findings && audit.findings.AUDIO_SAYS_OLD) || [];
 if (drift.length === 0) {
-  console.log('Nothing to do — audit reports no AUDIO_SAYS_OLD drift.');
+  console.log('Nothing to do â€” audit reports no AUDIO_SAYS_OLD drift.');
   process.exit(0);
 }
 
@@ -93,28 +93,28 @@ const plan = [];
 for (const d of drift) {
   const meta = byUrl.get(d.url);
   if (!meta) {
-    console.warn(`! ${d.id}: could not resolve mp3 id for url ${d.url} — skipping`);
+    console.warn(`! ${d.id}: could not resolve mp3 id for url ${d.url} â€” skipping`);
     continue;
   }
   plan.push({ phraseId: d.id, mp3Id: meta.id, source: meta.source, mapFile: meta.file, newText: d.shown, oldText: d.voiced });
 }
 
-console.log('─'.repeat(60));
-console.log(`REGEN PLAN — ${plan.length} clip(s) to re-voice ${APPLY ? '(APPLY)' : '(dry-run)'}`);
-console.log('─'.repeat(60));
+console.log('â”€'.repeat(60));
+console.log(`REGEN PLAN â€” ${plan.length} clip(s) to re-voice ${APPLY ? '(APPLY)' : '(dry-run)'}`);
+console.log('â”€'.repeat(60));
 for (const p of plan) {
   console.log(`  ${p.mp3Id} [${p.source}]`);
   console.log(`     old mp3 says: "${p.oldText}"`);
   console.log(`     new text:     "${p.newText}"`);
 }
-console.log('─'.repeat(60));
+console.log('â”€'.repeat(60));
 
 if (!APPLY) {
   console.log('Dry-run only. Re-run with --apply (and the spend/upload env flags) to perform it.');
   process.exit(0);
 }
 
-// ── 2) spend guard + credentials ──────────────────────────────────────────────
+// â”€â”€ 2) spend guard + credentials â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const estimatedChars = plan.reduce((s, p) => s + p.newText.length, 0);
 requireOpenAiDevSpendGuard({
   action: 'OpenAI TTS regeneration for drifted phrase audio',
@@ -123,15 +123,15 @@ requireOpenAiDevSpendGuard({
 });
 
 function loadKey() {
-  if (process.env.OPENAI_API_KEY) return process.env.OPENAI_API_KEY;
+  if (process.env.OPENAI_TTS_API_KEY) return process.env.OPENAI_TTS_API_KEY;
   const envFile = path.join(ROOT, '.env.local');
   if (fs.existsSync(envFile)) {
     for (const line of fs.readFileSync(envFile, 'utf8').split(/\r?\n/)) {
-      const m = line.match(/^\s*OPENAI_API_KEY\s*=\s*(.+?)\s*$/);
+      const m = line.match(/^\s*OPENAI_TTS_API_KEY\s*=\s*(.+?)\s*$/);
       if (m) return m[1].replace(/^['"]|['"]$/g, '');
     }
   }
-  throw new Error('OPENAI_API_KEY not found (env or .env.local)');
+  throw new Error('OPENAI_TTS_API_KEY not found (env or .env.local)');
 }
 const KEY = loadKey();
 
@@ -144,13 +144,13 @@ if (uploadEnabled && !token) {
   token = (r.stdout || '').trim();
 }
 if (!uploadEnabled) {
-  console.log('\nPHRASEMAN_ALLOW_UPLOAD != 1 — will generate + verify locally but NOT upload or patch the map.');
+  console.log('\nPHRASEMAN_ALLOW_UPLOAD != 1 â€” will generate + verify locally but NOT upload or patch the map.');
 } else if (!token) {
   console.error('Upload requested but no Firebase token (set FB_TOKEN or log in with firebase CLI).');
   process.exit(2);
 }
 
-// ── 3) TTS + loudness verify (reject silent clips), then upload in place ───────
+// â”€â”€ 3) TTS + loudness verify (reject silent clips), then upload in place â”€â”€â”€â”€â”€â”€â”€
 async function maxDb(file) {
   let stderr = '';
   try {
@@ -189,7 +189,7 @@ async function uploadOne(objName, buf) {
 }
 
 // Immutable JSON patch: read, produce a new object, write once at the end.
-const patchedByFile = new Map(); // file -> {…updated map object}
+const patchedByFile = new Map(); // file -> {â€¦updated map object}
 function loadMapObj(file) {
   if (patchedByFile.has(file)) return patchedByFile.get(file);
   const obj = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
@@ -202,7 +202,7 @@ for (const p of plan) {
   const dir = path.join(REGEN_DIR, p.source);
   fs.mkdirSync(dir, { recursive: true });
   const abs = path.join(dir, `${p.mp3Id}.mp3`);
-  console.log(`\n▶ ${p.mp3Id}: "${p.newText}"`);
+  console.log(`\nâ–¶ ${p.mp3Id}: "${p.newText}"`);
 
   let audible = false, buf = null;
   for (let attempt = 1; attempt <= 5; attempt++) {
@@ -213,26 +213,26 @@ for (const p of plan) {
     if (max != null && max > -30) { audible = true; break; }
     await new Promise((r) => setTimeout(r, 400 * attempt));
   }
-  if (!audible) { console.error('   ✗ still silent after retries — skipped'); failed++; continue; }
+  if (!audible) { console.error('   âœ— still silent after retries â€” skipped'); failed++; continue; }
 
-  if (!uploadEnabled) { console.log('   (local only — no upload)'); ok++; continue; }
+  if (!uploadEnabled) { console.log('   (local only â€” no upload)'); ok++; continue; }
 
   const objName = objectName(p.mp3Id, p.source);
   try {
     await uploadOne(objName, buf);
-    console.log(`   ✓ uploaded ${objName} (overwrote old in place)`);
+    console.log(`   âœ“ uploaded ${objName} (overwrote old in place)`);
     // patch the voiced text so future audits see the new wording
     const mapObj = loadMapObj(p.mapFile);
     const prev = mapObj[p.mp3Id] || {};
     mapObj[p.mp3Id] = { ...prev, url: publicUrl(objName), source: p.source, text: p.newText };
     ok++;
   } catch (e) {
-    console.error(`   ✗ upload failed: ${e.message}`);
+    console.error(`   âœ— upload failed: ${e.message}`);
     failed++;
   }
 }
 
-// ── 4) flush patched json + rebuild the runtime map ───────────────────────────
+// â”€â”€ 4) flush patched json + rebuild the runtime map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 if (uploadEnabled && ok > 0) {
   for (const [file, obj] of patchedByFile) {
     fs.writeFileSync(file, JSON.stringify(obj, null, 0));
@@ -245,7 +245,7 @@ if (uploadEnabled && ok > 0) {
   if (rebuild.status !== 0) console.error(rebuild.stderr || 'build_map_ts failed');
 }
 
-console.log('\n' + '─'.repeat(60));
+console.log('\n' + 'â”€'.repeat(60));
 console.log(`DONE: ${ok} regenerated, ${failed} failed.`);
 if (uploadEnabled && ok > 0) {
   console.log('Runtime map rebuilt. Re-run the audit to confirm 0 drift, then commit the generated map.');

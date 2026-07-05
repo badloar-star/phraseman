@@ -1,7 +1,7 @@
-/**
+﻿/**
  * generate_audio.mjs
  * Generates MP3 files for all English phrases in PhraseMan using OpenAI TTS.
- * Run: OPENAI_API_KEY=sk-... node scripts/generate_audio.mjs
+ * Run: OPENAI_TTS_API_KEY=sk-... node scripts/generate_audio.mjs
  *
  * Output: assets/audio/en/<hash>.mp3
  * Index:  assets/audio/en/index.json  { "text": "filename.mp3" }
@@ -12,15 +12,12 @@ import path from 'path';
 import crypto from 'crypto';
 import { createRequire } from 'module';
 import { requireOpenAiDevSpendGuard } from './openai-dev-guard.mjs';
+import { requireOpenAiTtsKey } from './openai-tts-key.mjs';
 
 // Requires PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 before any OpenAI batch spend.
 const require = createRequire(import.meta.url);
 
-const API_KEY = process.env.OPENAI_API_KEY;
-if (!API_KEY) {
-  console.error('ERROR: Set OPENAI_API_KEY env variable');
-  process.exit(1);
-}
+const API_KEY = requireOpenAiTtsKey(process.cwd());
 
 const VOICE = 'nova';
 const MODEL = 'tts-1-hd';
@@ -36,7 +33,7 @@ if (fs.existsSync(INDEX_FILE)) {
   index = JSON.parse(fs.readFileSync(INDEX_FILE, 'utf8'));
 }
 
-// ── Collect all English texts ──────────────────────────────────────────────
+// â”€â”€ Collect all English texts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function extractFromLessonFile(filePath) {
   const texts = new Set();
@@ -62,7 +59,7 @@ function extractFromQuizFile(filePath) {
   const texts = new Set();
   const content = fs.readFileSync(filePath, 'utf8');
 
-  // Match answer: 'text' — only correct answers
+  // Match answer: 'text' â€” only correct answers
   const answerMatches = content.matchAll(/answer:\s*['"`]([^'"`\n]+)['"`]/g);
   for (const m of answerMatches) {
     texts.add(m[1].trim());
@@ -139,7 +136,7 @@ requireOpenAiDevSpendGuard({
 console.log('Starting in 3 seconds... Ctrl+C to cancel\n');
 await new Promise(r => setTimeout(r, 3000));
 
-// ── Generate audio ─────────────────────────────────────────────────────────
+// â”€â”€ Generate audio â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function generateOne(text) {
   const hash = crypto.createHash('md5').update(text).digest('hex');

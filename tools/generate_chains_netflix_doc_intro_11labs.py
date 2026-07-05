@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Generate the fresh Russian ElevenLabs intro voice for Chains episode 1."""
 
 from __future__ import annotations
@@ -19,12 +19,12 @@ REPORT = OUT_DIR / "chains_ep01_intro_netflix_doc_ru_11labs_report.json"
 TARGET_DURATION_US = 44_000_000
 
 INTRO_TEXT = (
-    "Язык не учат отдельными словами. Его собирают смыслом. "
-    "Сначала появляется действие. Потом причина. Потом время. Потом место. "
-    "Так длинная фраза перестаёт быть стеной и превращается в понятную сцену. "
-    "Смотри на экран, слушай ритм и повторяй вслух. "
-    "Сейчас мы будем собирать английские фразы цепочками: спокойно, по смыслу, "
-    "без зубрёжки и без перегруза."
+    "Ð¯Ð·Ñ‹Ðº Ð½Ðµ ÑƒÑ‡Ð°Ñ‚ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ñ‹Ð¼Ð¸ ÑÐ»Ð¾Ð²Ð°Ð¼Ð¸. Ð•Ð³Ð¾ ÑÐ¾Ð±Ð¸Ñ€Ð°ÑŽÑ‚ ÑÐ¼Ñ‹ÑÐ»Ð¾Ð¼. "
+    "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð¿Ð¾ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ. ÐŸÐ¾Ñ‚Ð¾Ð¼ Ð¿Ñ€Ð¸Ñ‡Ð¸Ð½Ð°. ÐŸÐ¾Ñ‚Ð¾Ð¼ Ð²Ñ€ÐµÐ¼Ñ. ÐŸÐ¾Ñ‚Ð¾Ð¼ Ð¼ÐµÑÑ‚Ð¾. "
+    "Ð¢Ð°Ðº Ð´Ð»Ð¸Ð½Ð½Ð°Ñ Ñ„Ñ€Ð°Ð·Ð° Ð¿ÐµÑ€ÐµÑÑ‚Ð°Ñ‘Ñ‚ Ð±Ñ‹Ñ‚ÑŒ ÑÑ‚ÐµÐ½Ð¾Ð¹ Ð¸ Ð¿Ñ€ÐµÐ²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ÑÑ Ð² Ð¿Ð¾Ð½ÑÑ‚Ð½ÑƒÑŽ ÑÑ†ÐµÐ½Ñƒ. "
+    "Ð¡Ð¼Ð¾Ñ‚Ñ€Ð¸ Ð½Ð° ÑÐºÑ€Ð°Ð½, ÑÐ»ÑƒÑˆÐ°Ð¹ Ñ€Ð¸Ñ‚Ð¼ Ð¸ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹ Ð²ÑÐ»ÑƒÑ…. "
+    "Ð¡ÐµÐ¹Ñ‡Ð°Ñ Ð¼Ñ‹ Ð±ÑƒÐ´ÐµÐ¼ ÑÐ¾Ð±Ð¸Ñ€Ð°Ñ‚ÑŒ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ðµ Ñ„Ñ€Ð°Ð·Ñ‹ Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÐ°Ð¼Ð¸: ÑÐ¿Ð¾ÐºÐ¾Ð¹Ð½Ð¾, Ð¿Ð¾ ÑÐ¼Ñ‹ÑÐ»Ñƒ, "
+    "Ð±ÐµÐ· Ð·ÑƒÐ±Ñ€Ñ‘Ð¶ÐºÐ¸ Ð¸ Ð±ÐµÐ· Ð¿ÐµÑ€ÐµÐ³Ñ€ÑƒÐ·Ð°."
 )
 
 
@@ -94,9 +94,9 @@ def call_elevenlabs(env: dict[str, str]) -> str:
 
 
 def call_openai_fallback(env: dict[str, str]) -> str:
-    api_key = env.get("OPENAI_API_KEY", "")
+    api_key = env.get("OPENAI_TTS_API_KEY", "")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required for fallback intro TTS")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required for fallback intro TTS")
     payload = {
         "model": "gpt-4o-mini-tts",
         "voice": "ash",

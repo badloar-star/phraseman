@@ -14,8 +14,11 @@ import time
 import urllib.request
 from pathlib import Path
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 sys.stdout.reconfigure(encoding="utf-8")
 
+require_codex_openai_tts_only(action="YouTube thumbnail DALL-E generation", endpoint="images/generations")
 API_KEY = os.environ["OPENAI_API_KEY"]  # Raises KeyError if missing — never hardcode secrets
 OUT_DIR = Path("lingman-scenarist-pipeline/youtube_packages/chains_cepi_cepi_20260607_pack/READY_YOUTUBE_PACK/youtube_ready_1280x720")
 REJECTED_DIR = Path("lingman-scenarist-pipeline/youtube_packages/chains_cepi_cepi_20260607_pack/READY_YOUTUBE_PACK/rejected_or_drafts")

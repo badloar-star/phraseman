@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Build intro script, OpenAI voiceover, screen texts, and study b-roll assets."""
 
 from __future__ import annotations
@@ -23,50 +23,50 @@ INTRO_VOICE = VOICE_DIR / "chains_unique_v3_intro_openai_marin.mp3"
 MANIFEST = OUT / "intro_manifest.json"
 
 INTRO_TEXT = (
-    "За следующие четыре часа ты соберёшь восемьсот живых английских фраз. "
-    "Не список слов, а готовые куски речи для дома, работы, дороги, покупок, общения и срочных ситуаций. "
-    "В первой части слушай английский и повторяй вслух. "
-    "Во второй части сначала появится русский смысл, и ты сам вспоминаешь английскую фразу. "
-    "Так фразы перестают быть теорией и становятся готовыми ответами в голове. "
-    "Начинаем спокойно: слушай, повторяй, и собирай английский цепочками."
+    "Ð—Ð° ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ðµ Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ Ñ‡Ð°ÑÐ° Ñ‚Ñ‹ ÑÐ¾Ð±ÐµÑ€Ñ‘ÑˆÑŒ Ð²Ð¾ÑÐµÐ¼ÑŒÑÐ¾Ñ‚ Ð¶Ð¸Ð²Ñ‹Ñ… Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ñ… Ñ„Ñ€Ð°Ð·. "
+    "ÐÐµ ÑÐ¿Ð¸ÑÐ¾Ðº ÑÐ»Ð¾Ð², Ð° Ð³Ð¾Ñ‚Ð¾Ð²Ñ‹Ðµ ÐºÑƒÑÐºÐ¸ Ñ€ÐµÑ‡Ð¸ Ð´Ð»Ñ Ð´Ð¾Ð¼Ð°, Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹, Ð´Ð¾Ñ€Ð¾Ð³Ð¸, Ð¿Ð¾ÐºÑƒÐ¿Ð¾Ðº, Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ Ð¸ ÑÑ€Ð¾Ñ‡Ð½Ñ‹Ñ… ÑÐ¸Ñ‚ÑƒÐ°Ñ†Ð¸Ð¹. "
+    "Ð’ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ñ‡Ð°ÑÑ‚Ð¸ ÑÐ»ÑƒÑˆÐ°Ð¹ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹ Ð¸ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹ Ð²ÑÐ»ÑƒÑ…. "
+    "Ð’Ð¾ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ñ‡Ð°ÑÑ‚Ð¸ ÑÐ½Ð°Ñ‡Ð°Ð»Ð° Ð¿Ð¾ÑÐ²Ð¸Ñ‚ÑÑ Ñ€ÑƒÑÑÐºÐ¸Ð¹ ÑÐ¼Ñ‹ÑÐ», Ð¸ Ñ‚Ñ‹ ÑÐ°Ð¼ Ð²ÑÐ¿Ð¾Ð¼Ð¸Ð½Ð°ÐµÑˆÑŒ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÑƒÑŽ Ñ„Ñ€Ð°Ð·Ñƒ. "
+    "Ð¢Ð°Ðº Ñ„Ñ€Ð°Ð·Ñ‹ Ð¿ÐµÑ€ÐµÑÑ‚Ð°ÑŽÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ñ‚ÐµÐ¾Ñ€Ð¸ÐµÐ¹ Ð¸ ÑÑ‚Ð°Ð½Ð¾Ð²ÑÑ‚ÑÑ Ð³Ð¾Ñ‚Ð¾Ð²Ñ‹Ð¼Ð¸ Ð¾Ñ‚Ð²ÐµÑ‚Ð°Ð¼Ð¸ Ð² Ð³Ð¾Ð»Ð¾Ð²Ðµ. "
+    "ÐÐ°Ñ‡Ð¸Ð½Ð°ÐµÐ¼ ÑÐ¿Ð¾ÐºÐ¾Ð¹Ð½Ð¾: ÑÐ»ÑƒÑˆÐ°Ð¹, Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹, Ð¸ ÑÐ¾Ð±Ð¸Ñ€Ð°Ð¹ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹ Ñ†ÐµÐ¿Ð¾Ñ‡ÐºÐ°Ð¼Ð¸."
 )
 
 SCREEN_TEXTS = [
     {
         "start_sec": 0.0,
         "duration_sec": 4.2,
-        "main": "800 ЖИВЫХ ФРАЗ",
-        "sub": "не список слов, а готовая речь",
+        "main": "800 Ð–Ð˜Ð’Ð«Ð¥ Ð¤Ð ÐÐ—",
+        "sub": "Ð½Ðµ ÑÐ¿Ð¸ÑÐ¾Ðº ÑÐ»Ð¾Ð², Ð° Ð³Ð¾Ñ‚Ð¾Ð²Ð°Ñ Ñ€ÐµÑ‡ÑŒ",
     },
     {
         "start_sec": 4.2,
         "duration_sec": 5.3,
-        "main": "ДОМ • РАБОТА • ДОРОГА",
-        "sub": "реальные ситуации, не учебниковый шум",
+        "main": "Ð”ÐžÐœ â€¢ Ð ÐÐ‘ÐžÐ¢Ð â€¢ Ð”ÐžÐ ÐžÐ“Ð",
+        "sub": "Ñ€ÐµÐ°Ð»ÑŒÐ½Ñ‹Ðµ ÑÐ¸Ñ‚ÑƒÐ°Ñ†Ð¸Ð¸, Ð½Ðµ ÑƒÑ‡ÐµÐ±Ð½Ð¸ÐºÐ¾Ð²Ñ‹Ð¹ ÑˆÑƒÐ¼",
     },
     {
         "start_sec": 9.5,
         "duration_sec": 5.6,
-        "main": "СЛУШАЙ АНГЛИЙСКИЙ",
-        "sub": "и повторяй вслух сразу",
+        "main": "Ð¡Ð›Ð£Ð¨ÐÐ™ ÐÐÐ“Ð›Ð˜Ð™Ð¡ÐšÐ˜Ð™",
+        "sub": "Ð¸ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹ Ð²ÑÐ»ÑƒÑ… ÑÑ€Ð°Ð·Ñƒ",
     },
     {
         "start_sec": 15.1,
         "duration_sec": 6.0,
-        "main": "ПОТОМ РУССКИЙ СМЫСЛ",
-        "sub": "вспоминай английскую фразу сам",
+        "main": "ÐŸÐžÐ¢ÐžÐœ Ð Ð£Ð¡Ð¡ÐšÐ˜Ð™ Ð¡ÐœÐ«Ð¡Ð›",
+        "sub": "Ð²ÑÐ¿Ð¾Ð¼Ð¸Ð½Ð°Ð¹ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÑƒÑŽ Ñ„Ñ€Ð°Ð·Ñƒ ÑÐ°Ð¼",
     },
     {
         "start_sec": 21.1,
         "duration_sec": 6.2,
-        "main": "ФРАЗЫ В ГОЛОВЕ",
-        "sub": "готовые ответы вместо теории",
+        "main": "Ð¤Ð ÐÐ—Ð« Ð’ Ð“ÐžÐ›ÐžÐ’Ð•",
+        "sub": "Ð³Ð¾Ñ‚Ð¾Ð²Ñ‹Ðµ Ð¾Ñ‚Ð²ÐµÑ‚Ñ‹ Ð²Ð¼ÐµÑÑ‚Ð¾ Ñ‚ÐµÐ¾Ñ€Ð¸Ð¸",
     },
     {
         "start_sec": 27.3,
         "duration_sec": 12.2,
-        "main": "СОБИРАЙ АНГЛИЙСКИЙ ЦЕПОЧКАМИ",
-        "sub": "слушай • повторяй • вспоминай",
+        "main": "Ð¡ÐžÐ‘Ð˜Ð ÐÐ™ ÐÐÐ“Ð›Ð˜Ð™Ð¡ÐšÐ˜Ð™ Ð¦Ð•ÐŸÐžÐ§ÐšÐÐœÐ˜",
+        "sub": "ÑÐ»ÑƒÑˆÐ°Ð¹ â€¢ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹ â€¢ Ð²ÑÐ¿Ð¾Ð¼Ð¸Ð½Ð°Ð¹",
     },
 ]
 
@@ -409,14 +409,14 @@ def openai_tts(api_key: str) -> None:
 
 def main() -> int:
     env = load_env()
-    required = ["OPENAI_API_KEY", "PEXELS_API_KEY", "PIXABAY_API_KEY"]
+    required = ["OPENAI_TTS_API_KEY", "PEXELS_API_KEY", "PIXABAY_API_KEY"]
     missing = [key for key in required if not env.get(key)]
     if missing:
         raise SystemExit(f"Missing keys in .env.local: {missing}")
     for folder in [OUT, RAW_DIR, RENDER_DIR, VOICE_DIR]:
         folder.mkdir(parents=True, exist_ok=True)
 
-    openai_tts(env["OPENAI_API_KEY"])
+    openai_tts(env["OPENAI_TTS_API_KEY"])
     rendered: list[Path] = []
     used: set[tuple[str, str]] = set()
     manifest_shots: list[dict[str, Any]] = []
@@ -504,8 +504,8 @@ def main() -> int:
         "ass_screen_text_path": str(ass_path),
         "shots": manifest_shots,
         "qa": {
-            "no_word_video_in_intro": "видео" not in INTRO_TEXT.casefold(),
-            "mentions_specific_result": "восемьсот" in INTRO_TEXT.casefold() and "фраз" in INTRO_TEXT.casefold(),
+            "no_word_video_in_intro": "Ð²Ð¸Ð´ÐµÐ¾" not in INTRO_TEXT.casefold(),
+            "mentions_specific_result": "Ð²Ð¾ÑÐµÐ¼ÑŒÑÐ¾Ñ‚" in INTRO_TEXT.casefold() and "Ñ„Ñ€Ð°Ð·" in INTRO_TEXT.casefold(),
             "has_openai_voice": INTRO_VOICE.exists() and INTRO_VOICE.stat().st_size > 100_000,
             "has_broll_montage": FINAL_MONTAGE.exists() and FINAL_MONTAGE.stat().st_size > 1_000_000,
             "has_preview_voice_text": PREVIEW_VIDEO.exists() and PREVIEW_VIDEO.stat().st_size > 1_000_000,

@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
+import { requireCodexOpenAiTtsOnly } from './openai-dev-guard.mjs';
 
 const root = process.cwd();
 const outputDir = path.join(root, 'assets', 'images', 'flow_clean_202607');
@@ -131,6 +132,12 @@ async function main() {
   const allowFallback = process.argv.includes('--fallback');
   const limitArg = process.argv.find((arg) => arg.startsWith('--limit='));
   const limit = limitArg ? Number(limitArg.split('=')[1]) : assets.length;
+  if (apiKey && !allowFallback) {
+    requireCodexOpenAiTtsOnly({
+      action: 'Clean onboarding OpenAI image asset generation',
+      endpoint: 'images/generations',
+    });
+  }
   if (!apiKey && !allowFallback) throw new Error('OPENAI_API_KEY is missing');
 
   const manifest = [];

@@ -52,32 +52,43 @@ const TITLE_MAX = 120;
 const BODY_MAX = 1200;
 
 /**
- * Публичные поля профиля для проекции борда «Топ хелперов» из leaderboard/{uid}
- * (то же, что читает Зал славы). Приватные users/{uid} борд читать не может (rules),
- * поэтому имя/аватар/премиум денормализуем в top_helpers. Мягко: любой мусор → пропуск.
+ * Публичные поля профиля для проекции борда «Топ хелперов».
+ *
+ * ИСТОЧНИК ПРОФИЛЯ (как во всём проекте — arena/help_board/league_chat):
+ * leaderboard/{uid} — вторичная проекция, её НЕТ у юзеров, не попавших в топ лиги.
+ * Поэтому имя/аватар/уровень читаем с фолбэком на users/{uid}.progress.user_*
+ * (первичный источник). Без этого на борде «—» и уровень 1 у реальных юзеров.
+ * Зеркало functions/src/report_replies.ts.
  */
-function readLeaderboardProjection(data) {
+function readLeaderboardProjection(data, progress, report) {
   const d = data ?? {};
+  const p = progress ?? {};
+  const r = report ?? {};
   const str = (v, max = 64) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, max) : '');
   const int = (v) => {
     const n = Math.floor(Number(v));
     return Number.isFinite(n) && n > 0 ? n : 0;
   };
   const proj = {
-    isPremium: !!d.isPremium,
+    isPremium: !!d.isPremium || !!r.userPremium,
     isVip: !!d.isVip,
     isLifetime: !!d.isLifetime,
+    // profileCardLevel = ФЛАГ карточки (0..1), НЕ игровой уровень.
     profileCardLevel: int(d.profileCardLevel),
   };
-  const name = str(d.displayName, 60) || str(d.name, 60);
+  // Настоящий игровой уровень: progress.user_level → report.userLevel.
+  const gameLevel = int(p.user_level) || int(r.userLevel);
+  if (gameLevel > 0) proj.gameLevel = gameLevel;
+  // Профиль по приоритету: progress → leaderboard → САМ РЕПОРТ (userName/userAvatar…).
+  const name = str(p.user_name, 60) || str(d.displayName, 60) || str(d.name, 60) || str(r.userName, 60);
   if (name) proj.displayName = name;
-  const avatar = str(d.avatar);
+  const avatar = str(p.user_avatar) || str(d.avatar) || str(r.userAvatar);
   if (avatar) proj.avatar = avatar;
-  const aura = str(d.aura);
+  const aura = str(p.user_avatar_aura) || str(d.aura) || str(r.userAvatarAura);
   if (aura) proj.aura = aura;
-  const frame = str(d.frame);
+  const frame = str(p.user_avatar_frame) || str(d.frame) || str(r.userAvatarFrame);
   if (frame) proj.frame = frame;
-  const theme = str(d.profileCardTheme);
+  const theme = str(d.profileCardTheme) || str(p.profile_card_theme);
   if (theme) proj.profileCardTheme = theme;
   const crownCount = int(d.leagueCrownCount);
   if (crownCount > 0) proj.leagueCrownCount = crownCount;
@@ -156,14 +167,23 @@ async function sendOne(item) {
   const helperRef = db.collection(TOP_HELPERS_COLLECTION).doc(item.uid);
   // Публичный профиль для проекции борда (то же, что читает Зал славы). Читаем до
   // транзакции: leaderboard редко меняется, лишний tx.get на каждый ответ — трата.
-  const leaderboardSnap = item.shards > 0
-    ? await db.collection('leaderboard').doc(item.uid).get()
-    : null;
-  const helperProjection = leaderboardSnap ? readLeaderboardProjection(leaderboardSnap.data()) : null;
-  if (helperProjection) {
+  let helperProjection = null;
+  if (item.shards > 0) {
+    // 3 источника профиля читаем параллельно: users.progress → leaderboard → САМ РЕПОРТ
+    // (userName/userLevel/userXP). Репорт — самый надёжный источник имени/уровня хелпера.
+    const [leaderboardSnap, userSnap, reportProfileSnap] = await Promise.all([
+      db.collection('leaderboard').doc(item.uid).get(),
+      userRef.get().catch(() => null),
+      reportRef.get().catch(() => null),
+    ]);
+    const userData = userSnap?.data() ?? {};
+    helperProjection = readLeaderboardProjection(
+      leaderboardSnap.data(),
+      userData.progress,
+      reportProfileSnap?.data(),
+    );
     // Pro-план резолвим из users/{uid} (leaderboard премиум-поля не обновляет).
-    const userSnapForPlan = await userRef.get().catch(() => null);
-    helperProjection.isLifetime = isLifetimeFromUserData(userSnapForPlan?.data());
+    helperProjection.isLifetime = isLifetimeFromUserData(userData);
   }
 
   return db.runTransaction(async (tx) => {

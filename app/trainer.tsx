@@ -521,7 +521,8 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
         ? (isWeak ? GOLD_RICH.hairline : GOLD_RICH.hairlineQuiet)
         :
             isWeak ? t.accent + '55' : t.border;
-    const inner = (<View style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: rowBg, borderColor: rowBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+    const rowBorderWidth = (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (isWeak ? 1 : 0);
+    const inner = (<View style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: rowBg, borderColor: rowBorder, borderWidth: rowBorderWidth, borderRadius: isCompassTheme ? 8 : 12 }]}>
       {isCompassTheme ? <CompassTrainerSurface radius={8} quiet={!isWeak} selected={isWeak} physical /> : null}
       <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1}>{stat.pct}%</Text>
       <View style={{ flex: 1 }}>
@@ -610,7 +611,9 @@ function TrainerScreenInner() {
     const trainerPillRadius = isCompassTheme ? 8 : 999;
     const trainerCardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard;
     const trainerRowBg = isCompassTheme ? COMPASS_RICH.charcoalSoft : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface;
-    const trainerBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border;
+    const trainerBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent';
+    // Обычная тема — без обводок контейнеров (только тон фона); Compass/Gold сохраняют деликатную линию.
+    const trainerBorderWidth = (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : 0;
     const trainerAccent = isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : hasPremium ? '#FACC15' : nextOption.accent;
     const primaryAccent = trainerAccent;
     const primaryTextColor = isCompassTheme || isGoldTheme || (hasPremium) ? '#17130A' : '#fff';
@@ -742,7 +745,7 @@ function TrainerScreenInner() {
               variant="icon-flag"
               accessibilityLabel="Сообщить о баге на экране практики"
               style={[
-                { width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border },
+                { width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard },
                 isCompassTheme && { borderRadius: 9, backgroundColor: COMPASS_RICH.charcoalRaised, borderColor: COMPASS_RICH.hairline, ...compassShadow(1) },
               ]}
             />
@@ -754,7 +757,7 @@ function TrainerScreenInner() {
 
             {null}
 
-            {!trainerSessionEnabled && (<View style={[styles.card, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerCardBg, borderColor: trainerBorder, borderRadius: trainerRadius }]}>
+            {!trainerSessionEnabled && (<View style={[styles.card, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerCardBg, borderColor: trainerBorder, borderWidth: trainerBorderWidth, borderRadius: trainerRadius }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.cardIcon}>
                   <Ionicons name="lock-closed-outline" size={30} color={isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
@@ -796,7 +799,8 @@ function TrainerScreenInner() {
                             : isGoldTheme
                             ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
                             :
-                                isNext ? option.accent : t.border,
+                                isNext ? option.accent : 'transparent',
+                        borderWidth: (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (isNext ? 1 : 0),
                         borderRadius: trainerRadius,
                         opacity: empty ? 0.62 : 1,
                     },
@@ -841,7 +845,7 @@ function TrainerScreenInner() {
                     : optionSubtitle(option, lang)}
                     </Text>
                   </View>
-                  <View style={[styles.countBadge, { backgroundColor: empty ? trainerRowBg : isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.wash : option.accent + '22', borderColor: empty ? trainerBorder : optionAccentBorder, borderRadius: isCompassTheme ? 9 : 23 }]}>
+                  <View style={[styles.countBadge, { backgroundColor: empty ? trainerRowBg : isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.wash : option.accent + '22', borderColor: empty ? trainerBorder : optionAccentBorder, borderWidth: (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (empty ? 0 : 1), borderRadius: isCompassTheme ? 9 : 23 }]}>
                     <Text style={[styles.countNum, { color: empty ? t.textMuted : optionAccent, fontSize: f.numMd }]}>
                       {count}
                     </Text>
@@ -851,7 +855,7 @@ function TrainerScreenInner() {
 
             {/* ── Аналитика ошибок inline ── */}
             <StatsPremiumBlur isPremium={hasPremium} context="patterns">
-            <View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderRadius: trainerRadius }]}>
+            <View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderWidth: StyleSheet.hairlineWidth, borderRadius: trainerRadius }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.analyticsHeader}>
                   <View style={styles.cardIcon}>
@@ -934,7 +938,7 @@ function TrainerScreenInner() {
                     </TouchableOpacity>))}
                 </View>
 
-                {!hasAnalyticsMistakes && (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Open mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+                {!hasAnalyticsMistakes && (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Open mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderWidth: trainerBorderWidth, borderRadius: isCompassTheme ? 8 : 12 }]}>
                     {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
                     <Ionicons name="sparkles-outline" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
                     <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
@@ -957,7 +961,7 @@ function TrainerScreenInner() {
                     {shownAnalytics.categoryStats.slice(0, 4).map(stat => (<InlineCategoryRow key={stat.category} stat={stat} lang={lang} t={t} f={f} router={router} resolvedPersonalTrainings={resolvedPersonalTrainings} personalTrainingEnabled={personalPracticeCoachEnabled} isGoldTheme={isGoldTheme} isCompassTheme={isCompassTheme}/>))}
                   </View>)}
                 {hasAnalyticsMistakes && analyticsTab === 'lessons' && (<View style={{ gap: 6 }}>
-                    {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+                    {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderWidth: trainerBorderWidth, borderRadius: isCompassTheme ? 8 : 12 }]}>
                         {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
                         <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1}>{stat.pct}%</Text>
                         <View style={{ flex: 1 }}>
@@ -983,7 +987,7 @@ function TrainerScreenInner() {
                       </View>))}
                   </View>)}
                 {hasAnalyticsMistakes && analyticsTab === 'phrases' && (<View style={{ gap: 6 }}>
-                    {shownAnalytics.topMistakePhrases.slice(0, 5).map(({ phrase, lessonId, count }, i) => (<View key={i} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
+                    {shownAnalytics.topMistakePhrases.slice(0, 5).map(({ phrase, lessonId, count }, i) => (<View key={i} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderWidth: trainerBorderWidth, borderRadius: isCompassTheme ? 8 : 12 }]}>
                         {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
                         <View style={[styles.phraseMinibadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : isGoldTheme ? GOLD_RICH.wash : t.bgCard, borderRadius: isCompassTheme ? 7 : 8, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
                           <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>×{count}</Text>
@@ -1052,7 +1056,6 @@ const styles = StyleSheet.create({
     headerTitle: { fontWeight: '900' },
     hero: {
         borderRadius: 18,
-        borderWidth: StyleSheet.hairlineWidth,
         padding: 16,
     },
     heroIcon: {
@@ -1077,7 +1080,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 18,
-        borderWidth: 1,
         paddingVertical: 14,
         paddingHorizontal: 14,
         gap: 12,
@@ -1127,7 +1129,6 @@ const styles = StyleSheet.create({
         width: 46,
         height: 46,
         borderRadius: 23,
-        borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -1136,7 +1137,6 @@ const styles = StyleSheet.create({
     emptyHint: {
         alignItems: 'center',
         borderRadius: 18,
-        borderWidth: StyleSheet.hairlineWidth,
         padding: 22,
     },
     devPanel: {
@@ -1155,7 +1155,6 @@ const styles = StyleSheet.create({
     },
     analyticsBlock: {
         borderRadius: 18,
-        borderWidth: 1,
         padding: 14,
         gap: 12,
     },
@@ -1181,7 +1180,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 12,
-        borderWidth: 0.5,
         minHeight: 64,
         paddingVertical: 10,
         paddingHorizontal: 12,

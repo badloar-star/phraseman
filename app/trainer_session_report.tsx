@@ -70,9 +70,9 @@ export default function TrainerSessionReport({
       });
   return (
     <View style={styles.root}>
-      <View style={[styles.hero, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent + '55', borderRadius: isCompassTheme ? 10 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+      <View style={[styles.hero, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 10 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
-        <View style={[styles.iconWrap, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : accent + '22', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent + '66', borderRadius: isCompassTheme ? 12 : 20 }]}>
+        <View style={[styles.iconWrap, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : accent + '22', borderRadius: isCompassTheme ? 12 : 20 }]}>
           <Ionicons
             name={isEmpty ? 'checkmark-done' : perfect ? 'shield-checkmark' : 'analytics'}
             size={30}
@@ -131,7 +131,7 @@ export default function TrainerSessionReport({
 
       <View style={styles.actions}>
         {onPracticeMore && !isEmpty ? (
-          <TapScale scaleTo={0.96} onPress={onPracticeMore} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { borderColor: isCompassTheme ? COMPASS_RICH.hairline : accent + '66', backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '14', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+          <TapScale scaleTo={0.96} onPress={onPracticeMore} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '22', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
             {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
             <Text style={{ color: reportAccent, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
@@ -171,7 +171,7 @@ function Metric({ label, value, color }: { label: string; value: string; color: 
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   return (
-    <View style={[styles.metric, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 14, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+    <View style={[styles.metric, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 9 : 14, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
       {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
       <Text style={{ color, fontSize: f.numMd, fontWeight: '900' }}>{value}</Text>
       <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }} numberOfLines={1}>
@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
   },
   hero: {
     borderRadius: 20,
-    borderWidth: 1,
     padding: 18,
     alignItems: 'center',
     gap: 10,
@@ -199,7 +198,6 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 20,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -211,7 +209,6 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 76,
     borderRadius: 14,
-    borderWidth: StyleSheet.hairlineWidth,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 8,
@@ -233,7 +230,6 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 52,
     borderRadius: 16,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,

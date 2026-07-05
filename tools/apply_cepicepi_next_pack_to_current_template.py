@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Apply the next Cepicepi phrase pack to the current native CapCut template."""
 
 from __future__ import annotations
@@ -66,7 +66,7 @@ def load_env(path: Path = Path(".env.local")) -> dict[str, str]:
             if stripped and not stripped.startswith("#") and "=" in stripped:
                 key, value = stripped.split("=", 1)
                 values[key.strip()] = value.strip().strip('"').strip("'")
-    values.update({k: v for k, v in os.environ.items() if k == "OPENAI_API_KEY"})
+    values.update({k: v for k, v in os.environ.items() if k == "OPENAI_TTS_API_KEY"})
     return values
 
 
@@ -239,9 +239,9 @@ def build_rows() -> list[dict[str, Any]]:
 
 
 def generate_audio(content: dict[str, Any], rows: list[dict[str, Any]]) -> dict[str, Any]:
-    api_key = load_env().get("OPENAI_API_KEY")
+    api_key = load_env().get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required")
     jobs: list[dict[str, Any]] = []
     # Part 1: EN -> RU -> EN. Part 2: RU -> EN -> EN. Part 3: EN -> EN.
     for idx, row in enumerate(rows):
@@ -407,7 +407,7 @@ def qa() -> dict[str, Any]:
     if missing:
         errors.append(f"missing media: {len(missing)}")
     # No known mid-word splits and line lengths within caps.
-    bad_fragments = ["уста\nла", "tire\nd", "dinn\ner", "beca\nuse", "moth\ner"]
+    bad_fragments = ["ÑƒÑÑ‚Ð°\nÐ»Ð°", "tire\nd", "dinn\ner", "beca\nuse", "moth\ner"]
     split_bad = []
     line_bad = []
     for ti, tr in enumerate(content.get("tracks", [])):
@@ -418,7 +418,7 @@ def qa() -> dict[str, Any]:
             low = value.lower()
             if any(fragment.lower() in low for fragment in bad_fragments):
                 split_bad.append({"track": ti, "text": value})
-            limit = 52 if ti == 4 else (34 if any(("А" <= ch <= "я") or ch in "Ёё" for ch in value) else 40)
+            limit = 52 if ti == 4 else (34 if any(("Ð" <= ch <= "Ñ") or ch in "ÐÑ‘" for ch in value) else 40)
             for line in value.split("\n"):
                 if len(line) > limit:
                     line_bad.append({"track": ti, "limit": limit, "line": line, "text": value})

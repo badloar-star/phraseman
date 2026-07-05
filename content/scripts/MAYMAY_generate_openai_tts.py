@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
@@ -129,9 +129,9 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=None, help="Generate only first N items per language.")
     args = parser.parse_args()
 
-    api_key = load_env_value("OPENAI_API_KEY")
+    api_key = load_env_value("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is missing in environment and .env.local")
+        raise RuntimeError("OPENAI_TTS_API_KEY is missing in environment and .env.local")
 
     ru = read_phrases(RU_LIST)
     en = read_phrases(EN_LIST)

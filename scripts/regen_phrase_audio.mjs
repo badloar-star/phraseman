@@ -1,10 +1,10 @@
-/**
+﻿/**
  * regen_phrase_audio.mjs
  * Regenerates audio for specific English phrases (e.g. after text correction).
  *
  * Usage:
- *   OPENAI_API_KEY=sk-... node scripts/regen_phrase_audio.mjs "They watch the news in the evening"
- *   OPENAI_API_KEY=sk-... node scripts/regen_phrase_audio.mjs "phrase1" "phrase2" ...
+ *   OPENAI_TTS_API_KEY=sk-... node scripts/regen_phrase_audio.mjs "They watch the news in the evening"
+ *   OPENAI_TTS_API_KEY=sk-... node scripts/regen_phrase_audio.mjs "phrase1" "phrase2" ...
  *
  * What it does:
  *   1. Generates new MP3 via OpenAI TTS (voice: nova, model: tts-1-hd)
@@ -18,18 +18,15 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { requireOpenAiDevSpendGuard } from './openai-dev-guard.mjs';
+import { requireOpenAiTtsKey } from './openai-tts-key.mjs';
 
 // Requires PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 before any OpenAI batch spend.
-const API_KEY = process.env.OPENAI_API_KEY;
-if (!API_KEY) {
-  console.error('ERROR: Set OPENAI_API_KEY env variable');
-  process.exit(1);
-}
+const API_KEY = requireOpenAiTtsKey(process.cwd());
 
 const phrases = process.argv.slice(2);
 if (phrases.length === 0) {
   console.error('ERROR: Provide at least one phrase as argument');
-  console.error('Usage: OPENAI_API_KEY=sk-... node scripts/regen_phrase_audio.mjs "Your phrase here"');
+  console.error('Usage: OPENAI_TTS_API_KEY=sk-... PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio.mjs "Your phrase here"');
   process.exit(1);
 }
 
@@ -69,18 +66,18 @@ async function generateAudio(text) {
   return Buffer.from(await response.arrayBuffer());
 }
 
-console.log('\n═══════════════════════════════════════════════════');
+console.log('\nâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
 console.log('  AUDIO REGENERATION REPORT');
-console.log('═══════════════════════════════════════════════════\n');
+console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\n');
 
 for (const phrase of phrases) {
-  console.log(`▶ Phrase: "${phrase}"`);
+  console.log(`â–¶ Phrase: "${phrase}"`);
 
   const oldFile = index[phrase];
   if (oldFile) {
     console.log(`  Old file: ${oldFile} (will be replaced)`);
   } else {
-    console.log(`  No existing audio — generating new.`);
+    console.log(`  No existing audio â€” generating new.`);
   }
 
   try {
@@ -90,28 +87,28 @@ for (const phrase of phrases) {
     const filepath = path.join(OUTPUT_DIR, filename);
 
     fs.writeFileSync(filepath, audioBuffer);
-    console.log(`  ✓ New file: ${filename}`);
+    console.log(`  âœ“ New file: ${filename}`);
 
     // Delete old file if different
     if (oldFile && oldFile !== filename) {
       const oldPath = path.join(OUTPUT_DIR, oldFile);
       if (fs.existsSync(oldPath)) {
         fs.unlinkSync(oldPath);
-        console.log(`  ✓ Deleted old file: ${oldFile}`);
+        console.log(`  âœ“ Deleted old file: ${oldFile}`);
       }
     }
 
     index[phrase] = filename;
-    console.log(`  ✓ index.json updated`);
+    console.log(`  âœ“ index.json updated`);
     console.log(`  STATUS: SUCCESS\n`);
   } catch (err) {
-    console.error(`  ✗ FAILED: ${err.message}\n`);
+    console.error(`  âœ— FAILED: ${err.message}\n`);
   }
 }
 
 // Save updated index
 fs.writeFileSync(INDEX_FILE, JSON.stringify(index, null, 2));
 
-console.log('═══════════════════════════════════════════════════');
+console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
 console.log('  DONE. index.json saved.');
-console.log('═══════════════════════════════════════════════════\n');
+console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\n');

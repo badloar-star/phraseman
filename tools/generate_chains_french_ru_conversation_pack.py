@@ -16,6 +16,8 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from openai_dev_guard import require_codex_openai_tts_only
+
 
 MODEL = "gpt-4o-mini"
 OUT = Path("exports/chains/phrase_packs/chains_800_french_ru_conversation_v1_20260703")
@@ -327,6 +329,7 @@ def load_checkpoint() -> list[dict[str, Any]]:
 
 
 def main() -> int:
+    require_codex_openai_tts_only(action="Chains French/Russian conversation phrase pack generation", endpoint="chat/completions")
     env = load_env_file(Path.cwd())
     api_key = env.get("OPENAI_API_KEY")
     if not api_key:

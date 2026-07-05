@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "shard_survey_responses",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "surveyId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "submittedAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "arena_sessions",
       "queryScope": "COLLECTION",
       "fields": [

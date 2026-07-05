@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Repair current Chains draft intro VO/layers and empty timeline gaps."""
 
 from __future__ import annotations
@@ -25,13 +25,13 @@ ASSET_DIR = Path("exports/chains/episode1/unique_explanations_approved")
 INTRO_AUDIO_DIR = ASSET_DIR / "intro_netflix_doc_voice"
 REPORT_PATH = ASSET_DIR / "repair_intro_vo_cta_gaps_report.json"
 INTRO_VO_TEXT = (
-    "Сегодня мы собираем английские фразы методом цепочек. "
-    "Здесь не будет лишней теории и тяжелых таблиц. "
-    "Язык не учат отдельными словами. Его собирают смыслом. "
-    "Сначала ты слышишь действие. Потом добавляется причина. "
-    "Затем время. Затем место. "
-    "Каждый новый кусок отвечает на простой вопрос и делает фразу понятнее. "
-    "Слушай внимательно, повторяй вслух, и длинная строка начнет собираться сама, шаг за шагом."
+    "Ð¡ÐµÐ³Ð¾Ð´Ð½Ñ Ð¼Ñ‹ ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ðµ Ñ„Ñ€Ð°Ð·Ñ‹ Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð¼ Ñ†ÐµÐ¿Ð¾Ñ‡ÐµÐº. "
+    "Ð—Ð´ÐµÑÑŒ Ð½Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð»Ð¸ÑˆÐ½ÐµÐ¹ Ñ‚ÐµÐ¾Ñ€Ð¸Ð¸ Ð¸ Ñ‚ÑÐ¶ÐµÐ»Ñ‹Ñ… Ñ‚Ð°Ð±Ð»Ð¸Ñ†. "
+    "Ð¯Ð·Ñ‹Ðº Ð½Ðµ ÑƒÑ‡Ð°Ñ‚ Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ñ‹Ð¼Ð¸ ÑÐ»Ð¾Ð²Ð°Ð¼Ð¸. Ð•Ð³Ð¾ ÑÐ¾Ð±Ð¸Ñ€Ð°ÑŽÑ‚ ÑÐ¼Ñ‹ÑÐ»Ð¾Ð¼. "
+    "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ñ‚Ñ‹ ÑÐ»Ñ‹ÑˆÐ¸ÑˆÑŒ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ. ÐŸÐ¾Ñ‚Ð¾Ð¼ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÑ‚ÑÑ Ð¿Ñ€Ð¸Ñ‡Ð¸Ð½Ð°. "
+    "Ð—Ð°Ñ‚ÐµÐ¼ Ð²Ñ€ÐµÐ¼Ñ. Ð—Ð°Ñ‚ÐµÐ¼ Ð¼ÐµÑÑ‚Ð¾. "
+    "ÐšÐ°Ð¶Ð´Ñ‹Ð¹ Ð½Ð¾Ð²Ñ‹Ð¹ ÐºÑƒÑÐ¾Ðº Ð¾Ñ‚Ð²ÐµÑ‡Ð°ÐµÑ‚ Ð½Ð° Ð¿Ñ€Ð¾ÑÑ‚Ð¾Ð¹ Ð²Ð¾Ð¿Ñ€Ð¾Ñ Ð¸ Ð´ÐµÐ»Ð°ÐµÑ‚ Ñ„Ñ€Ð°Ð·Ñƒ Ð¿Ð¾Ð½ÑÑ‚Ð½ÐµÐµ. "
+    "Ð¡Ð»ÑƒÑˆÐ°Ð¹ Ð²Ð½Ð¸Ð¼Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾, Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐ¹ Ð²ÑÐ»ÑƒÑ…, Ð¸ Ð´Ð»Ð¸Ð½Ð½Ð°Ñ ÑÑ‚Ñ€Ð¾ÐºÐ° Ð½Ð°Ñ‡Ð½ÐµÑ‚ ÑÐ¾Ð±Ð¸Ñ€Ð°Ñ‚ÑŒÑÑ ÑÐ°Ð¼Ð°, ÑˆÐ°Ð³ Ð·Ð° ÑˆÐ°Ð³Ð¾Ð¼."
 )
 INTRO_TARGET_US = 44_000_000
 CTA_TRACK_NAME = "CODEx CTA VENGA SOURCE"
@@ -334,9 +334,9 @@ def main() -> int:
     if capcut_is_open():
         raise SystemExit("CapCut is open. Close CapCut before repairing intro VO and CTA gaps.")
     env = load_env()
-    api_key = env.get("OPENAI_API_KEY")
+    api_key = env.get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local for the new intro voiceover.")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local for the new intro voiceover.")
 
     INTRO_AUDIO_DIR.mkdir(parents=True, exist_ok=True)
     raw_audio = INTRO_AUDIO_DIR / "chains_intro_netflix_doc_vo_raw.mp3"

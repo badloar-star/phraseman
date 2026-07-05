@@ -1,4 +1,4 @@
-/**
+﻿/**
  * In-place patcher for the user's openable WEDNESDAY BG CapCut project.
  *
  * It does not clone from an older generated draft and does not rewrite sidecar stores.
@@ -21,12 +21,14 @@ const CAPCUT_ROOT = path.join(
   'Projects',
   'com.lveditor.draft',
 );
-const PHRASES_PATH = path.join(ROOT, 'content', 'lingman', 'quiz_attraction_two_word_phrases_20260703.psv');
+const DEFAULT_PHRASES_PATH = path.join(ROOT, 'content', 'lingman', 'quiz_attraction_two_word_phrases_20260703.psv');
 const ENV_PATH = path.join(ROOT, '.env.local');
 const MODEL = 'gpt-4o-mini-tts';
 const FORMAT = 'mp3';
 const RU_VOICE = 'marin';
 const EN_VOICE = 'coral';
+const RU_HERO_MAX_CHARS_PER_LINE = 12;
+const RU_HERO_MAX_LINES = 3;
 
 const rawArgs = process.argv.slice(2);
 function argValue(name, fallback = '') {
@@ -37,16 +39,19 @@ function argValue(name, fallback = '') {
 }
 
 const DRAFT_NAME = argValue('--draft-name', 'LINGMAN_WEDNESDAY_INTERESTING_11LABS_STRICT_BG_202 (2)');
+const PHRASES_PATH = path.resolve(argValue('--phrases', DEFAULT_PHRASES_PATH));
+const AUDIO_SUBDIR = argValue('--audio-subdir', 'lingman_two_word_60x5_audio');
 const DRAFT_DIR = path.join(CAPCUT_ROOT, DRAFT_NAME);
-const AUDIO_ROOT = path.join(DRAFT_DIR, 'Resources', 'lingman_two_word_60x5_audio');
+const AUDIO_ROOT = path.join(DRAFT_DIR, 'Resources', AUDIO_SUBDIR);
 const SKIP_TTS = rawArgs.includes('--skip-tts');
+const NO_BACKUP = rawArgs.includes('--no-backup');
 
 const TRACKS = {
-  enText: 3,
-  ipa: 4,
-  ruText: 5,
-  ruAudio: 11,
-  enAudio: 12,
+  enText: trackArg('--en-text-track', 7),
+  ipa: trackArg('--ipa-track', 8),
+  ruText: trackArg('--ru-text-track', 9),
+  ruAudio: trackArg('--ru-audio-track', 15),
+  enAudio: trackArg('--en-audio-track', 16),
 };
 
 const RU_INSTRUCTIONS =
@@ -57,6 +62,14 @@ const EN_INSTRUCTIONS =
 function die(message) {
   console.error(message);
   process.exit(1);
+}
+
+function trackArg(name, fallbackOneBased) {
+  const value = Number(argValue(name, String(fallbackOneBased)));
+  if (!Number.isInteger(value) || value < 1) {
+    throw new Error(`Invalid ${name}; pass a 1-based CapCut track number`);
+  }
+  return value - 1;
 }
 
 function posix(value) {
@@ -97,9 +110,16 @@ function parseRows() {
   const seen = new Set();
   for (const row of rows) {
     const words = row.phraseEn.trim().split(/\s+/);
-    if (words.length !== 2) errors.push(`line ${row.line}: not two words: ${row.phraseEn}`);
+    if (words.length < 2 || words.length > 3) {
+      errors.push(`line ${row.line}: expected 2-3 words: ${row.phraseEn}`);
+    }
     if (row.slot === 1 && row.role !== 'hook') errors.push(`line ${row.line}: slot 1 must be hook`);
     if (row.slot === 3 && row.role !== 'bait') errors.push(`line ${row.line}: slot 3 must be bait`);
+    try {
+      russianHeroLines(row.translationRu);
+    } catch (error) {
+      errors.push(`line ${row.line}: ${error.message}`);
+    }
     const key = row.phraseEn.toLocaleLowerCase('en-US').replace(/\s+/g, ' ');
     if (seen.has(key)) errors.push(`line ${row.line}: duplicate phrase: ${row.phraseEn}`);
     seen.add(key);
@@ -112,22 +132,35 @@ function displayEnglish(text) {
   return text.trim().replace(/\s+/g, ' ').toUpperCase();
 }
 
-function wrapRussian(text) {
+function russianHeroLines(text) {
   const clean = text.trim().replace(/\s+/g, ' ');
-  if (clean.length <= 22) return clean.toUpperCase();
-  const words = clean.split(' ');
+  if (!clean) return [''];
+  const words = clean.toUpperCase().split(' ');
+  const tooLong = words.find((word) => word.length > RU_HERO_MAX_CHARS_PER_LINE);
+  if (tooLong) {
+    throw new Error(
+      `Russian hero word is too long for the CapCut box (${tooLong.length}>${RU_HERO_MAX_CHARS_PER_LINE}): ${tooLong}`,
+    );
+  }
   const lines = [];
   let current = '';
   for (const word of words) {
     const next = current ? `${current} ${word}` : word;
-    if (next.length <= 18 || !current) current = next;
+    if (next.length <= RU_HERO_MAX_CHARS_PER_LINE) current = next;
     else {
       lines.push(current);
       current = word;
     }
   }
   if (current) lines.push(current);
-  return lines.slice(0, 3).join('\n').toUpperCase();
+  if (lines.length > RU_HERO_MAX_LINES) {
+    throw new Error(`Russian hero text needs ${lines.length} lines; shorten it before CapCut`);
+  }
+  return lines;
+}
+
+function wrapRussian(text) {
+  return russianHeroLines(text).join('\n');
 }
 
 async function openaiTts(apiKey, { text, voice, instructions, outPath }) {
@@ -159,8 +192,8 @@ async function ensureAudio(rows) {
   if (process.env.PHRASEMAN_ALLOW_OPENAI_DEV_SPEND !== '1') {
     die('Set PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 to generate OpenAI TTS.');
   }
-  const apiKey = readEnvValue('OPENAI_API_KEY');
-  if (!apiKey) die('OPENAI_API_KEY missing');
+  const apiKey = readEnvValue('OPENAI_TTS_API_KEY');
+  if (!apiKey) die('OPENAI_TTS_API_KEY missing');
   let generated = 0;
   let skipped = 0;
   for (const row of rows) {
@@ -303,6 +336,57 @@ function writeJson(filePath, payload) {
   fs.writeFileSync(filePath, `${JSON.stringify(payload)}\n`, 'utf8');
 }
 
+function stamp() {
+  const now = new Date();
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+}
+
+function capCutIsRunning() {
+  try {
+    const output = execFileSync(
+      'powershell',
+      [
+        '-NoProfile',
+        '-Command',
+        "Get-Process | Where-Object { $_.ProcessName -like '*CapCut*' -or $_.ProcessName -like '*lveditor*' } | Select-Object -ExpandProperty ProcessName",
+      ],
+      { encoding: 'utf8' },
+    );
+    return output.trim().split(/\r?\n/).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+function draftJsonFiles() {
+  const files = ['draft_content.json', 'template-2.tmp'];
+  const timelinesDir = path.join(DRAFT_DIR, 'Timelines');
+  if (fs.existsSync(timelinesDir)) {
+    for (const timelineName of fs.readdirSync(timelinesDir)) {
+      const timelineDir = path.join(timelinesDir, timelineName);
+      if (!fs.statSync(timelineDir).isDirectory()) continue;
+      for (const rel of ['draft_content.json', 'template-2.tmp']) {
+        const filePath = path.join(timelineDir, rel);
+        if (fs.existsSync(filePath)) files.push(path.join('Timelines', timelineName, rel));
+      }
+    }
+  }
+  return files;
+}
+
+function backupDraftJsonFiles() {
+  if (NO_BACKUP) return '';
+  const backupDir = path.join(ROOT, '.codex-tmp', 'capcut-backups', `${DRAFT_NAME}_BEFORE_TEXT_AUDIO_${stamp()}`);
+  for (const rel of draftJsonFiles()) {
+    const src = path.join(DRAFT_DIR, rel);
+    const dest = path.join(backupDir, rel);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(src, dest);
+  }
+  return backupDir;
+}
+
 function patchFile(filePath, rows, durations) {
   const payload = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   patchDraftPayload(payload, rows, durations);
@@ -337,6 +421,10 @@ async function main() {
   const tts = await ensureAudio(rows);
   console.log(`[tts] generated=${tts.generated} skipped=${tts.skipped}`);
   const durations = collectDurations(rows);
+  const running = capCutIsRunning();
+  if (running.length) die(`CapCut is running (${[...new Set(running)].join(', ')}). Close it before patching draft files.`);
+  const backupDir = backupDraftJsonFiles();
+  if (backupDir) console.log(`[backup] ${backupDir}`);
   for (const rel of ['draft_content.json', 'template-2.tmp']) {
     patchFile(path.join(DRAFT_DIR, rel), rows, durations);
   }
@@ -351,7 +439,7 @@ async function main() {
       }
     }
   }
-  console.log(JSON.stringify({ ...qa(rows), tts }, null, 2));
+  console.log(JSON.stringify({ ...qa(rows), tts, tracks: TRACKS, backupDir }, null, 2));
 }
 
 main().catch((error) => {

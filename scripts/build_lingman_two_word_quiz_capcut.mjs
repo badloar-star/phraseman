@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Builds a native editable CapCut draft for the WEDNESDAY quiz-attraction template.
  *
  * Input: 60 videos x 5 two-word phrase rows in content/lingman/*.psv.
@@ -34,6 +34,8 @@ const MODEL = 'gpt-4o-mini-tts';
 const FORMAT = 'mp3';
 const RU_VOICE = 'marin';
 const EN_VOICE = 'coral';
+const RU_HERO_MAX_CHARS_PER_LINE = 12;
+const RU_HERO_MAX_LINES = 3;
 const RU_TRACK_INDEX = 11; // 0-based: track 12
 const EN_TRACK_INDEX = 12; // 0-based: track 13
 const EN_TEXT_TRACK_INDEX = 4; // 0-based: track 5
@@ -127,8 +129,8 @@ function parsePsv(text) {
 
 function normalizeWords(value) {
   return value
-    .replace(/[“”]/g, '"')
-    .replace(/[‘’]/g, "'")
+    .replace(/[â€œâ€]/g, '"')
+    .replace(/[â€˜â€™]/g, "'")
     .trim()
     .split(/\s+/)
     .filter(Boolean);
@@ -142,6 +144,11 @@ function validateRows(rows) {
   for (const row of rows) {
     const words = normalizeWords(row.phrase_en);
     if (words.length !== 2) errors.push(`line ${row.line}: phrase_en is not two words: ${row.phrase_en}`);
+    try {
+      russianHeroLines(row.translation_ru);
+    } catch (error) {
+      errors.push(`line ${row.line}: ${error.message}`);
+    }
     if (!Number.isInteger(row.videoNumber) || row.videoNumber < 1 || row.videoNumber > 60) {
       errors.push(`line ${row.line}: invalid video number ${row.video}`);
     }
@@ -171,22 +178,35 @@ function displayEnglish(phrase) {
   return phrase.trim().replace(/\s+/g, ' ').toUpperCase();
 }
 
-function wrapRussian(text) {
+function russianHeroLines(text) {
   const clean = text.trim().replace(/\s+/g, ' ');
-  if (clean.length <= 22) return clean.toUpperCase();
-  const words = clean.split(' ');
+  if (!clean) return [''];
+  const words = clean.toUpperCase().split(' ');
+  const tooLong = words.find((word) => word.length > RU_HERO_MAX_CHARS_PER_LINE);
+  if (tooLong) {
+    throw new Error(
+      `Russian hero word is too long for the CapCut box (${tooLong.length}>${RU_HERO_MAX_CHARS_PER_LINE}): ${tooLong}`,
+    );
+  }
   const lines = [];
   let current = '';
   for (const word of words) {
     const candidate = current ? `${current} ${word}` : word;
-    if (candidate.length <= 18 || !current) current = candidate;
+    if (candidate.length <= RU_HERO_MAX_CHARS_PER_LINE) current = candidate;
     else {
       lines.push(current);
       current = word;
     }
   }
   if (current) lines.push(current);
-  return lines.slice(0, 3).join('\n').toUpperCase();
+  if (lines.length > RU_HERO_MAX_LINES) {
+    throw new Error(`Russian hero text needs ${lines.length} lines; shorten it before CapCut`);
+  }
+  return lines;
+}
+
+function wrapRussian(text) {
+  return russianHeroLines(text).join('\n');
 }
 
 function updateTextMaterial(material, text) {
@@ -264,8 +284,8 @@ async function generateAudio(rows) {
   if (process.env.PHRASEMAN_ALLOW_OPENAI_DEV_SPEND !== '1') {
     die('Refusing OpenAI TTS spend. Set PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 or pass --skip-tts.');
   }
-  const apiKey = readEnvValue('OPENAI_API_KEY');
-  if (!apiKey) die('OPENAI_API_KEY is missing in environment and .env.local');
+  const apiKey = readEnvValue('OPENAI_TTS_API_KEY');
+  if (!apiKey) die('OPENAI_TTS_API_KEY is missing in environment and .env.local');
   let generated = 0;
   let skipped = 0;
   for (const row of rows) {

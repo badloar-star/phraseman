@@ -1,17 +1,17 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Apply the English-Russian Cepicepi pack to the CapCut template.
 
-Target project: ЦЕПИ ЦЕПИ ЦЕПИ (1)  — same structure as the French pack.
-25 chains × 4 steps = 100 phrases, 3 parts × 100 slots = 300 background slots.
+Target project: Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ (1)  â€” same structure as the French pack.
+25 chains Ã— 4 steps = 100 phrases, 3 parts Ã— 100 slots = 300 background slots.
 
-Part 1: EN → RU → EN2
-Part 2: RU → EN → EN2
-Part 3: EN → EN2 (no Russian)
+Part 1: EN â†’ RU â†’ EN2
+Part 2: RU â†’ EN â†’ EN2
+Part 3: EN â†’ EN2 (no Russian)
 
 Voices:
-  en1  — alloy   (clear, warm, confident male — good teaching pace)
-  ru   — shimmer (natural warm Russian female)
-  en2  — nova    (friendly female — second English voice, distinct from alloy)
+  en1  â€” alloy   (clear, warm, confident male â€” good teaching pace)
+  ru   â€” shimmer (natural warm Russian female)
+  en2  â€” nova    (friendly female â€” second English voice, distinct from alloy)
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_chains_800_capcut_project import set_text, update_meta, write_json  # noqa: E402
 
 
-PROJECT_NAME = "ЦЕПИ ЦЕПИ ЦЕПИ (1)"
+PROJECT_NAME = "Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ Ð¦Ð•ÐŸÐ˜ (1)"
 PACK = Path("exports/chains/cepicepi_english_ru_a1a2_20260607")
 ROWS_PATH = PACK / "english_chains_100.json"
 BG_REPORT = PACK / "semantic_backgrounds" / "background_generation_report.json"
@@ -43,13 +43,13 @@ OPENAI_TTS_MODEL = "gpt-4o-mini-tts"
 US = 1_000_000
 
 # Voices: alloy (en1) + nova (en2) are distinct English voices, shimmer for Russian.
-# Speed: teaching pace — instructions explicitly say slow and clear.
+# Speed: teaching pace â€” instructions explicitly say slow and clear.
 ROLE_CONFIG = {
     "en1": {
         "voice": "alloy",
         "instructions": (
             "Speak clear, natural English for language learners. "
-            "Calm and warm teaching pace — not too fast, not robotic. "
+            "Calm and warm teaching pace â€” not too fast, not robotic. "
             "Pronounce every word clearly. Say only the phrase, nothing else."
         ),
     },
@@ -95,7 +95,7 @@ def load_env(path: Path = Path(".env.local")) -> dict[str, str]:
             if stripped and not stripped.startswith("#") and "=" in stripped:
                 key, value = stripped.split("=", 1)
                 values[key.strip()] = value.strip().strip('"').strip("'")
-    values.update({k: v for k, v in os.environ.items() if k == "OPENAI_API_KEY"})
+    values.update({k: v for k, v in os.environ.items() if k == "OPENAI_TTS_API_KEY"})
     return values
 
 
@@ -275,37 +275,37 @@ def localize(project: Path, source: Path, folder: str) -> Path:
 
 
 def generate_audio(content: dict[str, Any], rows: list[dict[str, Any]]) -> dict[str, Any]:
-    api_key = load_env().get("OPENAI_API_KEY")
+    api_key = load_env().get("OPENAI_TTS_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required — add to .env.local or set env var")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required â€” add to .env.local or set env var")
 
     # Build job list matching track/segment indices in the template:
     # Part 1 (slots 0..99):   track18=ru(first), track19=en1(second), track20=en2(third)
     # Part 2 (slots 100..199): track18=ru(first), track19=en1(second), track20=en2(third)
     # Part 3 (slots 200..299): track19=en1, track20=en2 (no Russian)
     #
-    # Wait — the FR template had:
-    #   Part1 slot: t18=fr1_first, t19=ru_second, t20=fr2_third  → EN1 EN RU EN2 EN
-    #   Part2 slot: t18=ru_first,  t19=fr1_second, t20=fr2_third → RU EN EN2
+    # Wait â€” the FR template had:
+    #   Part1 slot: t18=fr1_first, t19=ru_second, t20=fr2_third  â†’ EN1 EN RU EN2 EN
+    #   Part2 slot: t18=ru_first,  t19=fr1_second, t20=fr2_third â†’ RU EN EN2
     # For EN-RU we adapt:
-    #   Part1: EN1 first → RU second → EN2 third
-    #   Part2: RU first → EN1 second → EN2 third
-    #   Part3: EN1 first → EN2 second
+    #   Part1: EN1 first â†’ RU second â†’ EN2 third
+    #   Part2: RU first â†’ EN1 second â†’ EN2 third
+    #   Part3: EN1 first â†’ EN2 second
     #
     # Track mapping from the French apply script:
-    #   part1: role ru  → track 18, seg idx
-    #          role fr1 → track 19, seg idx
-    #          role fr2 → track 20, seg idx
-    #   part2: role ru  → track 18, seg 100+idx
-    #          role fr1 → track 19, seg 100+idx
-    #          role fr2 → track 20, seg 100+idx
-    #   part3: role fr1 → track 19, seg 200+idx
-    #          role fr2 → track 20, seg 200+idx
+    #   part1: role ru  â†’ track 18, seg idx
+    #          role fr1 â†’ track 19, seg idx
+    #          role fr2 â†’ track 20, seg idx
+    #   part2: role ru  â†’ track 18, seg 100+idx
+    #          role fr1 â†’ track 19, seg 100+idx
+    #          role fr2 â†’ track 20, seg 100+idx
+    #   part3: role fr1 â†’ track 19, seg 200+idx
+    #          role fr2 â†’ track 20, seg 200+idx
     #
-    # We keep the same track → position mapping, only swap the TEXT of the role.
+    # We keep the same track â†’ position mapping, only swap the TEXT of the role.
     # In the EN-RU version:
     #   track18 = "first voice in slot"
-    #     Part1: EN1 (english)  Part2: RU (russian)  Part3: –
+    #     Part1: EN1 (english)  Part2: RU (russian)  Part3: â€“
     #   track19 = "second voice in slot"
     #     Part1: RU (russian)   Part2: EN1 (english)  Part3: EN1 (english)
     #   track20 = "third voice in slot"
@@ -317,15 +317,15 @@ def generate_audio(content: dict[str, Any], rows: list[dict[str, Any]]) -> dict[
         en = row["english"]
         ru = row["russian"]
         jobs.extend([
-            # Part 1: EN1 → RU → EN2
+            # Part 1: EN1 â†’ RU â†’ EN2
             {"part": 1, "role": "en1", "text": en,  "track": 18, "seg": idx},
             {"part": 1, "role": "ru",  "text": ru,  "track": 19, "seg": idx},
             {"part": 1, "role": "en2", "text": en,  "track": 20, "seg": idx},
-            # Part 2: RU → EN1 → EN2
+            # Part 2: RU â†’ EN1 â†’ EN2
             {"part": 2, "role": "ru",  "text": ru,  "track": 18, "seg": 100 + idx},
             {"part": 2, "role": "en1", "text": en,  "track": 19, "seg": 100 + idx},
             {"part": 2, "role": "en2", "text": en,  "track": 20, "seg": 100 + idx},
-            # Part 3: EN1 → EN2 (no Russian)
+            # Part 3: EN1 â†’ EN2 (no Russian)
             {"part": 3, "role": "en1", "text": en,  "track": 19, "seg": 200 + idx},
             {"part": 3, "role": "en2", "text": en,  "track": 20, "seg": 200 + idx},
         ])
@@ -366,7 +366,7 @@ def generate_audio(content: dict[str, Any], rows: list[dict[str, Any]]) -> dict[
 
 def apply() -> dict[str, Any]:
     if capcut_is_open():
-        raise SystemExit("CapCut is open — close it before editing native draft files.")
+        raise SystemExit("CapCut is open â€” close it before editing native draft files.")
 
     project = project_path()
     content = load_json(project / "draft_content.json")
@@ -380,13 +380,13 @@ def apply() -> dict[str, Any]:
     audios = media_map(content, "audios")
     videos = media_map(content, "videos")
 
-    # ── Text replacement ──────────────────────────────────────────────────────
-    # Track layout (inherited from FR template — same positions):
+    # â”€â”€ Text replacement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # Track layout (inherited from FR template â€” same positions):
     #   track[3] = secondary text (Part1: RU delayed, Part2: EN delayed, Part3: absent)
-    #   track[4] = IPA/pronunciation hint — for EN we put a light phonetic hint
+    #   track[4] = IPA/pronunciation hint â€” for EN we put a light phonetic hint
     #   track[5] = primary text   (Part1: EN, Part2: RU, Part3: EN)
     #
-    # Pronunciation hint: just the lowercase English phrase (no IPA library needed —
+    # Pronunciation hint: just the lowercase English phrase (no IPA library needed â€”
     # native English speakers don't need IPA, but we keep the track populated so
     # nothing breaks in CapCut).
     text_changes = 0
@@ -412,7 +412,7 @@ def apply() -> dict[str, Any]:
 
         text_changes += 8
 
-    # ── Audio replacement ─────────────────────────────────────────────────────
+    # â”€â”€ Audio replacement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     audio_items = {
         (int(item["track"]), int(item["seg"]), str(item["role"])): item
         for item in audio_report["items"]
@@ -435,7 +435,7 @@ def apply() -> dict[str, Any]:
             mat["material_name"] = local.name
             audio_changes += 1
 
-    # ── Background replacement ────────────────────────────────────────────────
+    # â”€â”€ Background replacement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     bg_changes = 0
     for part in range(3):
         for idx, row in enumerate(rows):
@@ -468,7 +468,7 @@ def apply() -> dict[str, Any]:
     except Exception:
         pass
 
-    # ── Write all mirrors ─────────────────────────────────────────────────────
+    # â”€â”€ Write all mirrors â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     write_json(project / "draft_content.json", content)
     if (project / "template-2.tmp").exists():
         write_json(project / "template-2.tmp", content)
@@ -545,9 +545,9 @@ def qa() -> dict[str, Any]:
             continue
         for seg in tr.get("segments", []):
             value = text_value(texts.get(seg.get("material_id")))
-            if "????" in value or "Ð" in value or "Ñ" in value:
+            if "????" in value or "Ã" in value or "Ã‘" in value:
                 bad_text.append({"track": ti, "text": value})
-            is_ru = any(("А" <= ch <= "я") or ch in "Ёё" for ch in value)
+            is_ru = any(("Ð" <= ch <= "Ñ") or ch in "ÐÑ‘" for ch in value)
             limit = 52 if ti == 4 else (34 if is_ru else 40)
             for line in value.split("\n"):
                 if len(line) > limit:

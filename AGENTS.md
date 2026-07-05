@@ -54,6 +54,14 @@
 - When extracting images already generated inside Codex, use `node scripts/export-codex-dalli-results.mjs --rollout <path> --summary`; the full record report must stay in `.codex-tmp/collectibles-dalli/reports/`, not in stdout.
 - Before continuing a session that already generated many images, export the existing `image_generation_end` results, confirm the exported files/checkpoints, then continue in a fresh or compacted session. Preserve the original rollout file until the export has been verified.
 
+## Codex OpenAI API Firewall
+
+- Codex sessions must not use the project OpenAI API key for local chat, responses, reviews, research, judging, phrase/content generation, image generation, transcription, embeddings, experiments, or batch analysis.
+- The only OpenAI API use allowed from Codex is TTS/voiceover generation through `/v1/audio/speech`, and only after an explicit user request for audio plus the existing spend guard (`PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1`) and a narrow batch plan.
+- Local Codex TTS scripts must read `OPENAI_TTS_API_KEY`, not the generic `OPENAI_API_KEY`. Do not add `OPENAI_API_KEY` back to `.env.local` for Codex convenience.
+- Production/user Phraseman sessions may continue to use Firebase/Cloud Functions secrets such as `OPENAI_API_KEY`; this firewall is for local Codex/dev sessions and scripts.
+- If a task seems to need OpenAI chat/responses/images/transcription from Codex, stop and report that the project firewall forbids it. Use local code, existing files, Firestore billing logs, official docs, or ask the user for an exported report instead.
+
 ## New Theme / Per-Theme Asset Hygiene
 
 - When adding a new theme (e.g. `business`) or generating per-theme art, an asset is allowed to exist in `assets/images/**` only if it is wired into a static `require()` in app source (theme→asset maps such as `app/home_menu_icons.ts`, `app/quizzes/medal_assets.ts`, per-feature visual maps, etc.). Generating a `*-<theme>.webp` (or a `assets/images/<feature>/<theme>/*` file) that no `require()` references is wasted bundle weight — do not do it.

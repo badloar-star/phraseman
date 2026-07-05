@@ -11,9 +11,15 @@
  *   OPENAI_API_KEY=... node scripts/eval_explain_prompt.mjs
  */
 import { createRequire } from 'node:module';
+import { requireCodexOpenAiTtsOnly } from '../../scripts/openai-dev-guard.mjs';
 
 const require = createRequire(import.meta.url);
 const { buildExplainPrompt } = require('../lib/explain/explain_prompts.js');
+
+requireCodexOpenAiTtsOnly({
+  action: 'Explain prompt local eval',
+  endpoint: 'chat/completions',
+});
 
 const API_KEY = process.env.OPENAI_API_KEY;
 if (!API_KEY) {

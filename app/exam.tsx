@@ -413,7 +413,7 @@ function FrenchLingmanExamUnavailable({
           <TouchableOpacity
             activeOpacity={0.86}
             onPress={onLessons}
-            style={{ backgroundColor: t.bgSurface, borderWidth: 0.5, borderColor: t.border, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
+            style={{ backgroundColor: t.bgSurface, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
           >
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.cta}</Text>
           </TouchableOpacity>
@@ -891,7 +891,7 @@ export default function ExamScreen() {
             'Ukończ wszystkie 32 lekcje z oceną 5,0 i zdaj 4 testy poziomujące, aby odblokować egzamin końcowy Phraseman.',
           )}
         </Text>
-        <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:16,borderWidth:0.5,borderColor:t.border,width:'100%',marginTop:28}}>
+        <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:16,width:'100%',marginTop:28}}>
           <View style={{height:8,backgroundColor:t.border,borderRadius:4,overflow:'hidden'}}>
             <View style={{height:'100%',width:`${lessonsCompleted/32*100}%` as any,backgroundColor:t.textSecond,borderRadius:4}}/>
           </View>
@@ -990,7 +990,7 @@ export default function ExamScreen() {
             sub: true as const,
           },
         ].map((item,i)=>(
-          <View key={i} style={{flexDirection:'row',alignItems:'flex-start',gap:12,marginBottom:12,backgroundColor:t.bgCard,padding:14,borderRadius:14,borderWidth:0.5,borderColor:t.border}}>
+          <View key={i} style={{flexDirection:'row',alignItems:'flex-start',gap:12,marginBottom:12,backgroundColor:t.bgCard,padding:14,borderRadius:14}}>
             <Ionicons name={item.icon as any} size={22} color={t.textSecond} style={{marginTop:1}}/>
             <View style={{flex:1}}>
               <Text style={{color:t.textPrimary,fontSize:f.body,flex:1}}>{t3(item.ru, item.uk, item.es, item.ptBr, item.vi, item.id, item.tr, item.pl)}</Text>
@@ -1012,7 +1012,7 @@ export default function ExamScreen() {
           </View>
         ))}
         <TouchableOpacity
-          style={{backgroundColor:t.bgSurface,borderRadius:16,padding:18,alignItems:'center',marginTop:12,borderWidth:0.5,borderColor:t.border,opacity: examStarting ? 0.6 : 1}}
+          style={{backgroundColor:t.bgSurface,borderRadius:16,padding:18,alignItems:'center',marginTop:12,opacity: examStarting ? 0.6 : 1}}
           onPress={() => { void startExam(); }}
           disabled={examStarting}
           activeOpacity={0.85}
@@ -1161,7 +1161,7 @@ export default function ExamScreen() {
           </Text>
         )}
         <TouchableOpacity
-          style={{backgroundColor:t.bgSurface,borderRadius:14,padding:16,alignItems:'center',borderWidth:0.5,borderColor:t.border}}
+          style={{backgroundColor:t.bgSurface,borderRadius:14,padding:16,alignItems:'center'}}
           onPress={submitExam}
           activeOpacity={0.85}
         >
@@ -1276,7 +1276,7 @@ export default function ExamScreen() {
           <XpGainBadge amount={examXp} visible={true} />
         </View>
 
-        <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:20,borderWidth:0.5,borderColor:t.border,width:'100%',marginBottom:16}}>
+        <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:20,width:'100%',marginBottom:16}}>
           <Text style={{color:t.textMuted,fontSize:f.caption,marginBottom:12,textAlign:'center'}}>
             {t3('Результаты по темам', 'Результати по темах', 'Resultados por temas', 'Resultados por tema', 'Kết quả theo chủ đề', 'Hasil per topik', 'Konu bazında sonuçlar', 'Wyniki według tematów')}
           </Text>
@@ -1368,7 +1368,7 @@ export default function ExamScreen() {
           </TouchableOpacity>
         ) : null}
         <TouchableOpacity
-          style={{backgroundColor:t.bgCard,borderRadius:14,padding:16,width:'100%',alignItems:'center',borderWidth:0.5,borderColor:t.border,marginBottom:12}}
+          style={{backgroundColor:t.bgCard,borderRadius:14,padding:16,width:'100%',alignItems:'center',marginBottom:12}}
           onPress={() => { void startExam(); }}
         >
           <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}}>
@@ -1608,7 +1608,7 @@ export default function ExamScreen() {
       {/* Header */}
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:15,paddingBottom:10}}>
         <Text style={{color:sx.second,fontSize:f.sub,fontWeight:'500'}}>{idx+1} / {questions.length}</Text>
-        <View style={{backgroundColor:t.bgCard,borderRadius:10,paddingHorizontal:10,paddingVertical:4,borderWidth:0.5,borderColor:t.border,flex:1,marginHorizontal:8}}>
+        <View style={{backgroundColor:t.bgCard,borderRadius:10,paddingHorizontal:10,paddingVertical:4,flex:1,marginHorizontal:8}}>
           <Text style={{color:t.textSecond,fontSize:f.caption,fontWeight:'600'}} numberOfLines={1}>
             {t3('Урок', 'Урок', 'Lección', 'Lição', 'Bài học', 'Pelajaran', 'Ders', 'Lekcja')} {q.lessonNum} · {examTopicForLang(q, lang)}
           </Text>
@@ -1655,9 +1655,8 @@ export default function ExamScreen() {
         {(q.opts ?? []).map((opt,ci)=>{
           const on = flashKey === `${ci}`;
           let bg = on ? t.accent : t.bgCard;
-          let border = on ? t.accent : t.border;
           let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
-          if(chosen===ci && !on){ bg=t.bgSurface; border=t.textSecond; }
+          if(chosen===ci && !on){ bg=t.bgSurface; }
           return(
             <DuoPressable
               key={ci}
@@ -1665,7 +1664,7 @@ export default function ExamScreen() {
               withHaptic={false}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               wrapStyle={{ marginBottom: 10 }}
-              style={{backgroundColor:bg,borderWidth:on?1.5:(chosen===ci?2:1),borderColor:border,borderRadius:14,padding:16}}
+              style={{backgroundColor:bg,borderRadius:14,padding:16}}
               onPress={()=>{ flash(`${ci}`); handleAnswer(ci); }}
             >
               <Text style={{color:tc,fontSize:f.body,fontWeight: on ? '700' : '500'}}>{opt}</Text>
@@ -1709,8 +1708,7 @@ export default function ExamScreen() {
           ) : null}
           <TouchableOpacity
             style={{
-              flex:1, height:52, borderRadius:14, borderWidth:1,
-              borderColor: chosen!==null ? t.textSecond : t.border,
+              flex:1, height:52, borderRadius:14,
               backgroundColor: chosen!==null ? t.bgSurface : t.bgCard,
               justifyContent:'center', alignItems:'center',
             }}
@@ -1731,7 +1729,7 @@ export default function ExamScreen() {
         <View style={{ flexDirection:'row', gap:8 }}>
           <TapScale
             style={{
-              flex:1, height:44, borderRadius:12, borderWidth:1, borderColor:t.border,
+              flex:1, height:44, borderRadius:12,
               backgroundColor:t.bgCard, justifyContent:'center', alignItems:'center',
               opacity: idx===0 ? 0.35 : 1,
             }}
@@ -1742,9 +1740,8 @@ export default function ExamScreen() {
           </TapScale>
           <TouchableOpacity
             style={{
-              flex:1, height:44, borderRadius:12, borderWidth:1,
-              borderColor: isFlagged ? '#D4A017' : t.border,
-              backgroundColor: isFlagged ? 'rgba(212,160,23,0.12)' : t.bgCard,
+              flex:1, height:44, borderRadius:12,
+              backgroundColor: isFlagged ? 'rgba(212,160,23,0.18)' : t.bgCard,
               justifyContent:'center', alignItems:'center',
             }}
             onPress={toggleFlag}
@@ -1753,7 +1750,7 @@ export default function ExamScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              flex:1, height:44, borderRadius:12, borderWidth:1, borderColor:t.border,
+              flex:1, height:44, borderRadius:12,
               backgroundColor:t.bgCard, justifyContent:'center', alignItems:'center',
             }}
             onPress={()=>setPhase('review')}

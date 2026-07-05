@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from generate_chains_unique_phrase_pack_openai_v3 import OUT, load_env_file, validate_rows, write_outputs
+from openai_dev_guard import require_codex_openai_tts_only
 
 
 MODEL = "gpt-4o-mini"
@@ -117,6 +118,7 @@ def prompt_for_block(block_rows: list[dict[str, Any]], banned_outside: list[dict
 
 
 def main() -> int:
+    require_codex_openai_tts_only(action="Chains unique phrase pack polish", endpoint="chat/completions")
     env = load_env_file(Path.cwd())
     api_key = env.get("OPENAI_API_KEY")
     if not api_key:

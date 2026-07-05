@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Generate OpenAI TTS audio for the VSSCP RU->FR phrase pack."""
 
 from __future__ import annotations
@@ -151,9 +151,9 @@ def main() -> int:
     args = parser.parse_args()
 
     env = load_env_file(Path.cwd())
-    api_key = env.get("OPENAI_API_KEY")
+    api_key = env.get("OPENAI_TTS_API_KEY")
     if not api_key and not args.dry_run:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+        raise RuntimeError("OPENAI_TTS_API_KEY is required in .env.local")
 
     rows = load_json(args.phrases)
     if args.limit:

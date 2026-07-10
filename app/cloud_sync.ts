@@ -10,6 +10,12 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  beginInitialAccountGeneration,
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withRestoreApplicationLock,
+} from './account_generation';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
 import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
@@ -1808,13 +1814,21 @@ async function doSyncToCloud(): Promise<void> {
   if (!db) return;
   const uid = await ensureAnonUser();
   if (!uid) return;
+  beginInitialAccountGeneration(uid);
+  const syncGeneration = captureAccountGeneration();
+  const isSyncGenerationCurrent = (): boolean => isCurrentAccountGeneration(syncGeneration, uid);
   try {
     await resumePendingDailyTasksAllShardsClaims().catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     await resumePendingReportReplyShardClaims().catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
     await resumePendingShardDeltas().catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     await repairDevSeededStreakInStorage();
+    if (!isSyncGenerationCurrent()) return;
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
+    if (!isSyncGenerationCurrent()) return;
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) {
       data[key] = value;
@@ -1825,18 +1839,21 @@ async function doSyncToCloud(): Promise<void> {
     removeCloudOnlyDailyTaskSnapshots(data);
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
+    if (!isSyncGenerationCurrent()) return;
     if (achievementsV1) data['achievements_state'] = achievementsV1;
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
 
     // Дополнительно синхронизируем сегодняшние задания под фиксированными cloud keys.
     await addTodayDailyTaskSnapshots(data);
+    if (!isSyncGenerationCurrent()) return;
 
     // Сравниваем с последним синкнутым снапшотом и отправляем только изменённые поля.
     // Это снижает сетевой шум и частоту "пустых" write-операций.
     let previousSnapshot: Record<string, string | null> = {};
     try {
       const snapRaw = await AsyncStorage.getItem(LAST_SYNC_SNAPSHOT_KEY);
+      if (!isSyncGenerationCurrent()) return;
       if (snapRaw) previousSnapshot = JSON.parse(snapRaw);
     } catch {}
     const progressPatch: Record<string, string | null> = {};
@@ -1862,6 +1879,7 @@ async function doSyncToCloud(): Promise<void> {
     if (!needHeartbeat && !needActivityStamp && !hasProgressPatch) return;
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
+    if (!isSyncGenerationCurrent()) return;
     const shouldSendCreatedAt = !createdAtSynced;
     if (!hasProgressPatch && !shouldSendCreatedAt) {
       lastSuccessfulSyncAt = now;
@@ -1871,6 +1889,7 @@ async function doSyncToCloud(): Promise<void> {
     // Дружба / friend_requests rules: ключ в пути users/{stableId}/… но senderUid должен доказать
     // связь с текущей Firebase-сессией — см. firestore.rules canonicalUserMatchesAuth + firebaseAuthUid.
     const firebaseAuthUidRow = getAuthUserId();
+    if (!isSyncGenerationCurrent()) return;
     await docRef.set(
       {
         ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
@@ -1882,10 +1901,12 @@ async function doSyncToCloud(): Promise<void> {
       },
       { merge: true }
     );
+    if (!isSyncGenerationCurrent()) return;
     // Снимок уровня/аватара на arena_profiles — топ арены читает всем одну коллекцию.
     if (firebaseAuthUidRow) {
       try {
         const arenaUid = await ensureArenaAuthUid();
+        if (!isSyncGenerationCurrent()) return;
         if (arenaUid === firebaseAuthUidRow) {
           const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
           const avatar = (data['user_avatar'] ?? '').trim();
@@ -1895,6 +1916,7 @@ async function doSyncToCloud(): Promise<void> {
           const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
           const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
           const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
+          if (!isSyncGenerationCurrent()) return;
           await db
             .collection('arena_profiles')
             .doc(arenaUid)
@@ -1913,6 +1935,7 @@ async function doSyncToCloud(): Promise<void> {
               },
               { merge: true },
             );
+          if (!isSyncGenerationCurrent()) return;
         }
       } catch {
         /* ignore */
@@ -1927,8 +1950,10 @@ async function doSyncToCloud(): Promise<void> {
       if (isServerOwnedProgressKey(key)) continue;
       if (shouldSyncPremiumProgressField(key, value, data)) snapshotData[key] = value;
     }
+    if (!isSyncGenerationCurrent()) return;
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(() => {});
     if (shouldSendCreatedAt) {
+      if (!isSyncGenerationCurrent()) return;
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
     }
 
@@ -1941,11 +1966,18 @@ async function doSyncToCloud(): Promise<void> {
 }
 
 // ── Восстановить прогресс из документа users/{uid} (без повторного get) ─────
-async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Record<string, unknown> | undefined }): Promise<boolean> {
+async function applyRestoreFromUserDoc(
+  doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
+  isCurrent?: () => boolean,
+): Promise<boolean> {
   if (!doc.exists) return false;
+  const assertCurrent = (): void => {
+    if (isCurrent && !isCurrent()) throw new Error('stale_account_generation');
+  };
   const root = doc.data() ?? {};
   const progressServerAuthoritative = root.progressServerAuthoritative === true;
   if (root.created_at) {
+    assertCurrent();
     AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
   }
   const cloudData: Record<string, string | null> = (root.progress ?? {}) as Record<string, string | null>;
@@ -2228,9 +2260,12 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       if (cloudVipState?.grantAt) stickyPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
     }
     if (stickyPairs.length > 0) {
+      assertCurrent();
       await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
+      assertCurrent();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
+      assertCurrent();
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
       return true;
     }
@@ -2333,6 +2368,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     }
   }
   if (pairs.length > 0) {
+    assertCurrent();
     await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
@@ -2345,12 +2381,15 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
     ];
     if (cloudVipState?.grantAt) vipPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
+    assertCurrent();
     await AsyncStorage.multiSet(sanitizeStoragePairs(vipPairs));
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   if (fullRestoreDailyTargets.length > 0) {
+    assertCurrent();
     await reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets);
   }
+  assertCurrent();
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
   return true;
 }
@@ -2376,6 +2415,8 @@ async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): P
   if (!db) return { status: 'failed', applied: false };
   const uid = await ensureAnonUser();
   if (!uid) return { status: 'failed', applied: false };
+  beginInitialAccountGeneration(uid);
+  const accountGeneration = captureAccountGeneration();
   try {
     await ensureStableAuthLinkForStableId(uid).catch(() => false);
     const doc = await withTimeout<any>(
@@ -2385,16 +2426,30 @@ async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): P
     );
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
     if (!doc.exists) {
+      if (!isCurrentAccountGeneration(accountGeneration, uid)) {
+        return { status: 'failed', applied: false };
+      }
       if (!migrated && syncMissingDocument) {
         await syncToCloud();
+        if (!isCurrentAccountGeneration(accountGeneration, uid)) {
+          return { status: 'failed', applied: false };
+        }
         await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
       }
       return { status: 'not_found', applied: false };
     }
     if (!migrated) {
+      if (!isCurrentAccountGeneration(accountGeneration, uid)) {
+        return { status: 'failed', applied: false };
+      }
       await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
     }
-    const applied = await applyRestoreFromUserDoc(doc);
+    if (!isCurrentAccountGeneration(accountGeneration, uid)) {
+      return { status: 'failed', applied: false };
+    }
+    const applied = await withRestoreApplicationLock(() => (
+      applyRestoreFromUserDoc(doc, () => isCurrentAccountGeneration(accountGeneration, uid))
+    ));
     return completedCloudRestoreAttempt(applied);
   } catch {
     return { status: 'failed', applied: false };
@@ -2647,6 +2702,42 @@ export async function deleteCloudData(): Promise<void> {
   >('accountDeleteMine', { timeout: ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS });
   const res = await withTimeout(fn({ stableId: canonicalUid }), ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS, 'account_delete_callable');
   if (!res.data?.ok) throw new Error('account_delete_failed');
+}
+
+/**
+ * Account deletion/switch must not overtake an already-started write. Unlike the
+ * bounded UI-oriented swap helper, this is a correctness barrier: callers first
+ * invalidate the account generation, then drain the old sync before wiping or
+ * enqueueing deletion so an old users/{uid} write cannot land afterwards.
+ */
+export async function quiesceCloudSyncForAccountTransition(
+  timeoutMs: number,
+): Promise<boolean> {
+  pendingSync = false;
+  if (syncTimer) {
+    clearTimeout(syncTimer);
+    syncTimer = null;
+  }
+  let drained = true;
+  if (syncInFlight) {
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    try {
+      drained = await Promise.race([
+        syncInFlight.then(() => true),
+        new Promise<boolean>((resolve) => {
+          timer = setTimeout(() => resolve(false), Math.max(0, timeoutMs));
+        }),
+      ]);
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+  pendingSync = false;
+  if (syncTimer) {
+    clearTimeout(syncTimer);
+    syncTimer = null;
+  }
+  return drained;
 }
 
 export type AccountDeleteEnqueueAck = {

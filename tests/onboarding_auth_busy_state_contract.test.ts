@@ -33,6 +33,11 @@ describe('clean onboarding auth placement contract', () => {
     expect(welcomeBlock).toContain('AppleSignInButton');
     expect(src).toContain('const handleAuth = useCallback(async (provider: AuthProviderId)');
     expect(src).toContain('signInWithProvider(provider)');
+    expect(src).toContain("result.error.includes('google_signin_timeout')");
+    expect(src).toContain('Google не ответил вовремя');
+    expect(src).toContain('const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;');
+    expect(src).toContain("new Error('signin_deadline-exceeded')");
+    expect(src).toContain('Вход занимает слишком много времени');
   });
 
   it('keeps account linking in the existing Compass registration prompt', () => {

@@ -175,15 +175,15 @@ describe('auth provider stable-id linking', () => {
   });
 
   test('local account-data guard uses the authoritative sync inventory, not only XP and lesson unlocks', () => {
-    expect(source).toContain('SYNC_KEYS,');
-    expect(source).toContain('AsyncStorage.multiGet([...SYNC_KEYS])');
+    expect(source).toContain('hasMeaningfulLocalAccountData');
+    expect(source).toContain("from './local_account_data'");
     expect(cloudSyncSource).toContain("'custom_flashcards_v2'");
   });
 
   test('background auth restore distinguishes transport failure from a missing cloud document', () => {
     expect(source).toContain('restoreFromCloudDetailed,');
     expect(source).toContain("let restoreResult: 'restored' | 'not_found' | 'failed' = 'failed'");
-    expect(source).toContain("restoreResult !== 'failed' && await hasLocalLearningProgress()");
+    expect(source).toContain("restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()");
     expect(source).toContain("restoreResult === 'restored'");
     expect(cloudSyncSource).toContain("export type CloudRestoreResult = 'restored' | 'not_found' | 'failed'");
     expect(cloudSyncSource).toContain("type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean }");

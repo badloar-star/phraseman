@@ -8,61 +8,62 @@ import {
 type StoredDoc = Record<string, unknown>;
 
 function makeDbStub(initial?: StoredDoc) {
-  let stored: StoredDoc | undefined = initial ? { ...initial } : undefined;
+  const docs = new Map<string, StoredDoc>();
+  if (initial) docs.set(`account_deletion_jobs/${String(initial.jobId ?? 'job-1')}`, { ...initial });
 
-  const snapshot = () => ({
-    exists: stored !== undefined,
-    data: () => stored,
-  });
+  const applySet = (key: string, value: StoredDoc, options?: { merge?: boolean }) => {
+    const next = options?.merge ? { ...(docs.get(key) ?? {}) } : {};
+    Object.entries(value).forEach(([field, entry]) => {
+      if ((entry as { constructor?: { name?: string } } | null)?.constructor?.name === 'DeleteTransform') {
+        delete next[field];
+      } else {
+        next[field] = entry;
+      }
+    });
+    docs.set(key, next);
+  };
 
-  const ref = {
-    get: async () => snapshot(),
-    create: async (value: StoredDoc) => {
-      if (stored) throw new Error('already-exists');
-      stored = { ...value };
-    },
-    set: async (value: StoredDoc, options?: { merge?: boolean }) => {
-      const next = options?.merge ? { ...(stored ?? {}) } : {};
-      Object.entries(value).forEach(([key, entry]) => {
-        if ((entry as { constructor?: { name?: string } } | null)?.constructor?.name === 'DeleteTransform') {
-          delete next[key];
-        } else {
-          next[key] = entry;
-        }
-      });
-      stored = next;
-    },
+  const makeRef = (collection: string, id: string) => {
+    const key = `${collection}/${id}`;
+    return {
+      key,
+      get: async () => ({ exists: docs.has(key), data: () => docs.get(key) }),
+      create: async (value: StoredDoc) => {
+        if (docs.has(key)) throw new Error('already-exists');
+        docs.set(key, { ...value });
+      },
+      set: async (value: StoredDoc, options?: { merge?: boolean }) => applySet(key, value, options),
+    };
   };
 
   const db = {
-    collection: (_name: string) => ({ doc: (_id: string) => ref }),
+    collection: (name: string) => ({ doc: (id: string) => makeRef(name, id) }),
+    batch: () => {
+      const writes: Array<() => void> = [];
+      return {
+        set: (ref: { key: string }, value: StoredDoc, options?: { merge?: boolean }) => {
+          writes.push(() => applySet(ref.key, value, options));
+        },
+        commit: async () => { writes.forEach((write) => write()); },
+      };
+    },
     runTransaction: async <T>(fn: (tx: {
-      get: (_ref: unknown) => Promise<ReturnType<typeof snapshot>>;
-      create: (_ref: unknown, value: StoredDoc) => void;
-      set: (_ref: unknown, value: StoredDoc, options?: { merge?: boolean }) => void;
-      update: (_ref: unknown, value: StoredDoc) => void;
+      get: (ref: { key: string }) => Promise<{ exists: boolean; data: () => StoredDoc | undefined }>;
+      create: (ref: { key: string }, value: StoredDoc) => void;
+      set: (ref: { key: string }, value: StoredDoc, options?: { merge?: boolean }) => void;
+      update: (ref: { key: string }, value: StoredDoc) => void;
     }) => Promise<T>) => {
       const writes: Array<() => void> = [];
       const result = await fn({
-        get: async () => snapshot(),
-        create: (_ignored, value) => writes.push(() => {
-          if (stored) throw new Error('already-exists');
-          stored = { ...value };
+        get: async (ref) => ({ exists: docs.has(ref.key), data: () => docs.get(ref.key) }),
+        create: (ref, value) => writes.push(() => {
+          if (docs.has(ref.key)) throw new Error('already-exists');
+          docs.set(ref.key, { ...value });
         }),
-        set: (_ignored, value, options) => writes.push(() => {
-          const next = options?.merge ? { ...(stored ?? {}) } : {};
-          Object.entries(value).forEach(([key, entry]) => {
-            if ((entry as { constructor?: { name?: string } } | null)?.constructor?.name === 'DeleteTransform') {
-              delete next[key];
-            } else {
-              next[key] = entry;
-            }
-          });
-          stored = next;
-        }),
-        update: (_ignored, value) => writes.push(() => {
-          if (!stored) throw new Error('not-found');
-          stored = { ...stored, ...value };
+        set: (ref, value, options) => writes.push(() => applySet(ref.key, value, options)),
+        update: (ref, value) => writes.push(() => {
+          if (!docs.has(ref.key)) throw new Error('not-found');
+          applySet(ref.key, value, { merge: true });
         }),
       });
       writes.forEach((write) => write());
@@ -72,7 +73,7 @@ function makeDbStub(initial?: StoredDoc) {
 
   return {
     db: db as unknown as FirebaseFirestore.Firestore,
-    read: () => stored as AccountDeleteJobDocument | undefined,
+    read: () => Array.from(docs.entries()).find(([key]) => key.startsWith('account_deletion_jobs/'))?.[1] as AccountDeleteJobDocument | undefined,
   };
 }
 

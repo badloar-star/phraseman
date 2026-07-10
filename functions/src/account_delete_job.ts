@@ -3,6 +3,7 @@ import { createHash } from 'crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
 
 export const ACCOUNT_DELETE_JOBS = 'account_deletion_jobs';
+export const ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
 
 export type AccountDeleteJobStatus = 'queued' | 'running' | 'completed' | 'failed';
 
@@ -68,9 +69,19 @@ export async function enqueueAccountDeletionJob(
 ): Promise<AccountDeleteEnqueueResult> {
   const jobId = accountDeleteJobId(authUid);
   const ref = db.collection(ACCOUNT_DELETE_JOBS).doc(jobId);
+  const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableUid);
 
   return db.runTransaction(async (tx) => {
     const snapshot = await tx.get(ref);
+    tx.set(tombstoneRef, {
+      jobId,
+      status: 'pending',
+      authUidHash: sha256(authUid),
+      stableUidHash: sha256(stableUid),
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
     if (snapshot.exists) {
       const existing = snapshot.data() ?? {};
       const status = jobStatus(existing.status);
@@ -183,7 +194,8 @@ export async function processAccountDeletionJob(
 
   try {
     const stats = await execute(db, claimed.stableUid, claimed.authUid);
-    await ref.set({
+    const batch = db.batch();
+    batch.set(ref, {
       status: 'completed',
       leaseUntilMs: admin.firestore.FieldValue.delete(),
       nextAttemptAtMs: admin.firestore.FieldValue.delete(),
@@ -195,6 +207,14 @@ export async function processAccountDeletionJob(
       stableUid: admin.firestore.FieldValue.delete(),
       ...stats,
     }, { merge: true });
+    batch.set(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(claimed.stableUid), {
+      status: 'completed',
+      completedAtMs: nowMs,
+      retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    await batch.commit();
   } catch (error) {
     const backoffMs = Math.min(
       ACCOUNT_DELETE_JOB_INITIAL_BACKOFF_MS * (2 ** Math.max(0, claimed.attempts - 1)),

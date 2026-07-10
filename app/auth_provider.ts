@@ -38,16 +38,24 @@ import {
   restoreFromCloudDetailed,
   forceSyncToCloud,
   quiesceSyncBeforeStableIdSwap,
+  quiesceCloudSyncForAccountTransition,
   wipeLocalAccountData,
   enqueueCloudDeletion,
   resetAnonAuthCacheForSignOut,
   ensureStableAuthLinkForStableIdDetailed,
   mergeStableAccountsViaServer,
   saveAccountSwitchEmergencyBackup,
-  SYNC_KEYS,
   type StableAuthLinkMetadata,
   type StableAuthLinkEnsureResult,
 } from './cloud_sync';
+import { hasMeaningfulLocalAccountData } from './local_account_data';
+import {
+  beginAccountGeneration,
+  captureAccountGeneration,
+  invalidateAccountGeneration,
+  isCurrentAccountGeneration,
+  waitForRestoreApplicationIdleWithDeadline,
+} from './account_generation';
 import { invalidatePremiumCache } from './premium_guard';
 import { loadShardsFromCloud, forceSyncShardsToCloud } from './shards_system';
 import { restoreAccountSwitchEmergencyBackupIfSafe } from './account_switch_backup_restore';
@@ -70,10 +78,10 @@ function scheduleReferralApplyAfterLink(): void {
   // Referral rewards are retired; keep auth/linking flows from touching the old cloud callables.
 }
 
-async function syncRevenueCatAfterAuthLink(): Promise<void> {
+async function syncRevenueCatAfterAuthLink(isCurrent: () => boolean = () => true): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
   await import('./revenuecat_init')
-    .then((m) => m.initRevenueCat())
+    .then((m) => m.syncRevenueCatIdentity(isCurrent))
     .catch(() => {});
 }
 
@@ -323,15 +331,19 @@ const AUTH_LINK_HINT_TIMEOUT_MS = 1_500;
  * await restoreFromCloud/syncToCloud не разрешался → onboarding блокировал даже «Позже».
  */
 const SIGNIN_CLOUD_SYNC_TIMEOUT_MS = 20_000;
+const ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS = 1_500;
 
 /**
  * Best-effort долив аварийной копии «Сменить аккаунт» после restoreFromCloud.
  * Внутри проверяется совпадение stableId и доливаются только отсутствующие
  * ключи, поэтому вызов безопасен на любом пути входа. Вход не валим никогда.
  */
-async function tryRestoreAccountSwitchBackup(stage: string): Promise<void> {
+async function tryRestoreAccountSwitchBackup(
+  stage: string,
+  isCurrent: () => boolean = () => true,
+): Promise<void> {
   try {
-    const res = await restoreAccountSwitchEmergencyBackupIfSafe();
+    const res = await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent);
     if (res.status === 'restored') {
       logAuthEvent('auth_switch_backup_restored', { stage, keys: res.restoredKeys });
     }
@@ -505,6 +517,7 @@ interface NativeAuthCredential {
  * не получается, ничего не происходит»). Лучше явная ошибка с инструкцией.
  */
 const GOOGLE_SIGNIN_TIMEOUT_MS = 30_000;
+let googleNativeSignInInFlight: Promise<any> | null = null;
 
 function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   return new Promise<T>((resolve, reject) => {
@@ -540,7 +553,17 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
   let res: any;
   try {
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn()');
-    res = await withTimeout(mod.GoogleSignin.signIn(), GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
+    if (!googleNativeSignInInFlight) {
+      const nativeTask = mod.GoogleSignin.signIn();
+      googleNativeSignInInFlight = nativeTask;
+      nativeTask.then(
+        () => { if (googleNativeSignInInFlight === nativeTask) googleNativeSignInInFlight = null; },
+        () => { if (googleNativeSignInInFlight === nativeTask) googleNativeSignInInFlight = null; },
+      );
+    }
+    const nativeTask = googleNativeSignInInFlight;
+    if (!nativeTask) throw new Error('google_signin_native_task_missing');
+    res = await withTimeout(nativeTask, GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn returned', JSON.stringify({
       type: res?.type,
       hasData: !!(res?.data ?? res),
@@ -552,9 +575,11 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
     }
     if (e?.message?.startsWith('timeout_native_signin')) {
       // Native sign-in cannot be cancelled. Retrying here can overlap the still
-      // running picker and produce duplicate callbacks or "operation in progress".
-      if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: timed out; not starting an overlapping retry');
-      return { cancelled: true };
+      // running picker. Keep that promise so a retry can await it instead of
+      // opening a second picker, and surface a real error instead of pretending
+      // the user cancelled.
+      if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: timed out; native call remains reusable');
+      throw new Error('google_signin_timeout');
     }
     if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: signIn threw', e);
     throw e;
@@ -889,7 +914,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         const preSignInStableId = await getStableId();
         // A fresh device has nothing worth merging. Avoid a server ownership stamp
         // and the expensive merge path just because onboarding created a local name.
-        if (await hasLocalLearningProgress()) {
+        if (await hasMeaningfulLocalAccountData()) {
           await stampAnonOwnershipBeforeSignIn(preSignInStableId);
         }
         userCredential = await auth.signInWithCredential(credential);
@@ -1025,7 +1050,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
   // 4. Post-link: handle stable_id swap if needed
   if (outcome.kind === 'merged_swap_to_remote') {
     try {
-      const preserveLocalProgress = await hasLocalLearningProgress();
+      const preserveLocalProgress = await hasMeaningfulLocalAccountData();
       // Сразу синкаем текущий локальный прогресс в облако
       // (на случай если local чуть-чуть свежее — после swap данные не пропадут).
       // syncToCloud у нас пишет в users/{currentLocalStableId} — это корректно ДО swap.
@@ -1061,6 +1086,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
       // This prevents account A AsyncStorage from being observed under account B.
       await wipeLocalAccountData();
       await setStableId(canonicalStableId);
+      beginAccountGeneration(canonicalStableId);
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
       // Без сброса до 5 минут после свапа в UI виден чужой премиум-статус.
@@ -1131,6 +1157,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         await quiesceSyncBeforeStableIdSwap();
         await wipeLocalAccountData();
         await setStableId(canonicalStableId);
+        beginAccountGeneration(canonicalStableId);
         invalidatePremiumCache();
         await ensureAnonUser();
         await syncRevenueCatAfterAuthLink();
@@ -1190,78 +1217,49 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
 
 function scheduleSameStablePostAuthRefresh(stage: 'linked_restore' | 'created_restore'): void {
   void (async () => {
+    const stableId = await getStableId().catch(() => null);
+    beginAccountGeneration(stableId);
+    const generation = captureAccountGeneration();
+    const isCurrent = () => isCurrentAccountGeneration(generation, stableId);
     let restoreResult: 'restored' | 'not_found' | 'failed' = 'failed';
     try {
       restoreResult = await withTimeout(restoreFromCloudDetailed(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage);
     } catch (e) {
       if (__DEV__) console.warn(`[auth_provider] ${stage} restoreFromCloud failed`, e);
     }
-    await loadShardsFromCloud().catch(() => {});
-    await tryRestoreAccountSwitchBackup(stage);
-    await markOnboardedAfterSignIn();
-    await syncRevenueCatAfterAuthLink();
-    if (restoreResult !== 'failed' && await hasLocalLearningProgress()) {
-      syncToCloud().catch(() => {});
+    if (!isCurrent()) return;
+    await loadShardsFromCloud(isCurrent).catch(() => {});
+    if (!isCurrent()) return;
+    await tryRestoreAccountSwitchBackup(stage, isCurrent);
+    if (!isCurrent()) return;
+    await markOnboardedAfterSignIn(isCurrent);
+    if (!isCurrent()) return;
+    await syncRevenueCatAfterAuthLink(isCurrent);
+    if (!isCurrent()) return;
+    if (restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()) {
+      if (!isCurrent()) return;
+      await syncToCloud({ forceNow: true }).catch(() => {});
     } else if (__DEV__) {
       console.warn(`[auth_provider] ${stage}: skipping syncToCloud — local AsyncStorage empty`);
     }
+    if (!isCurrent()) return;
     if (restoreResult === 'restored') emitAppEvent('cloud_profile_hydrated');
   })().catch((e) => {
     if (__DEV__) console.warn(`[auth_provider] ${stage} background refresh failed`, e);
   });
 }
 
-async function markOnboardedAfterSignIn(): Promise<void> {
+async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): Promise<void> {
   try {
     const userName = (await AsyncStorage.getItem('user_name'))?.trim();
     if (!userName) return;
     const cur = await AsyncStorage.getItem('onboarding_done');
     if (cur !== '1') {
+      if (!isCurrent()) return;
       await AsyncStorage.setItem('onboarding_done', '1');
     }
   } catch {
     /* ignore */
-  }
-}
-
-const FRESH_DEVICE_ONLY_SYNC_KEYS = new Set([
-  'user_name',
-  'onboarding_done',
-  'lang',
-  'app_lang',
-  'device_platform',
-  'app_version',
-  'last_active_date',
-  'streak_last_date',
-  'study_languages_started_v1',
-  'language_profile_v1::en',
-  'language_profile_v1::fr',
-]);
-
-function isMeaningfulStoredAccountValue(raw: string | null): boolean {
-  const value = raw?.trim() ?? '';
-  if (!value || value === '0' || value === 'false' || value === 'null' || value === '[]' || value === '{}') {
-    return false;
-  }
-  try {
-    const parsed = JSON.parse(value);
-    if (Array.isArray(parsed)) return parsed.length > 0;
-    if (parsed && typeof parsed === 'object') return Object.keys(parsed).length > 0;
-  } catch {
-    // Plain non-empty strings (for example a selected avatar) are account data.
-  }
-  return true;
-}
-
-async function hasLocalLearningProgress(): Promise<boolean> {
-  try {
-    const rows = await AsyncStorage.multiGet([...SYNC_KEYS]);
-    return rows.some(([key, value]) => (
-      !FRESH_DEVICE_ONLY_SYNC_KEYS.has(key) && isMeaningfulStoredAccountValue(value)
-    ));
-  } catch {
-    // If local state cannot be inspected, preserve it via the safe sync/merge path.
-    return true;
   }
 }
 
@@ -1309,8 +1307,14 @@ export async function signOutAndWipeForAccountSwitch(
   if (!CLOUD_SYNC_ENABLED) {
     // В Expo Go / без облака просто чистим локально — ничего терять не можем.
     try {
+      invalidateAccountGeneration();
+      await Promise.all([
+        waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+        quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+      ]);
       await wipeLocalAccountData();
       await clearStableId();
+      beginAccountGeneration(await getStableId().catch(() => null));
       logAuthEvent('auth_signout_wipe', { mode: 'no_cloud' });
       return { ok: true, synced: true };
     } catch (e: any) {
@@ -1333,6 +1337,11 @@ export async function signOutAndWipeForAccountSwitch(
       }
       logAuthEvent('auth_signout_wipe_sync_failed_continue', { stage: 'sync' });
     }
+    invalidateAccountGeneration();
+    await Promise.all([
+      waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+      quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+    ]);
     // 2. Выходим из Google и Firebase Auth.
     await signOutCurrentProvider();
     // 3. Сносим локальный прогресс.
@@ -1341,10 +1350,12 @@ export async function signOutAndWipeForAccountSwitch(
     await clearStableId();
     // 5. Поднимаем чистую анонимную Firebase сессию + новый stable_id.
     await ensureAnonUser();
+    beginAccountGeneration(await getStableId().catch(() => null));
     logAuthEvent('auth_signout_wipe', { mode: 'switch' });
     return { ok: true, synced };
   } catch (e: any) {
     if (__DEV__) console.warn('[auth_provider] signOutAndWipeForAccountSwitch failed', e);
+    beginAccountGeneration(await getStableId().catch(() => null));
     logAuthEvent('auth_signout_wipe_failed', { stage: 'unknown', error: String(e?.message ?? e).slice(0, 80) });
     return { ok: false, reason: 'unknown', detail: String(e?.message ?? e).slice(0, 80) };
   }
@@ -1393,6 +1404,11 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
     if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue failed; pending guard retained', e);
     logAuthEvent('auth_account_delete_enqueue_failed');
   }
+  invalidateAccountGeneration();
+  await Promise.all([
+    waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+    quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+  ]);
 
   // The server-side callable deletes Firestore data, linked auth records and the
   // Firebase Auth user. It runs in the background; local state is removed
@@ -1439,6 +1455,8 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
       if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: ensureAnonUser failed', e);
     }
   }
+
+  beginAccountGeneration(await getStableId().catch(() => null));
 
   logAuthEvent('auth_account_deleted', { cloudDeleted: 0 });
   return { ok: true, cloudDeleted: false };

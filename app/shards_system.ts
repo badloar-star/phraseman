@@ -1258,13 +1258,15 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
 };
 
 // ── Загрузить осколки из облака (при первом входе / смене устройства) ─────
-export const loadShardsFromCloud = async (): Promise<void> => {
+export const loadShardsFromCloud = async (isCurrent: () => boolean = () => true): Promise<void> => {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
     const uid = await getCanonicalUserId();
+    if (!isCurrent()) return;
     if (!uid) return;
     const db = firestore();
     const snap = await db.collection('users').doc(uid).get();
+    if (!isCurrent()) return;
     const data = snap.data?.() ?? {};
     const cloudRaw = data.shards;
     const cloudShards = parseShardBalance(cloudRaw);
@@ -1272,18 +1274,23 @@ export const loadShardsFromCloud = async (): Promise<void> => {
     const cloudUpdatedAt = parseUpdatedAtMs(data.shards_updated_at_ms);
     const cloudOverrideAt: string | null = data.shards_admin_override_at ?? null;
     const local = await getShardsBalance();
+    if (!isCurrent()) return;
     const localMeta = await readBalanceMeta();
+    if (!isCurrent()) return;
     const appliedOverrideAt = await AsyncStorage.getItem(ADMIN_OVERRIDE_APPLIED_KEY);
+    if (!isCurrent()) return;
     let changed = false;
     let appliedMeta: ShardBalanceMeta | null = null;
     // Admin override has priority: force local balance to cloud value once per override marker.
     if (cloudOverrideAt && cloudOverrideAt !== appliedOverrideAt) {
       const meta = localWriteStamp('admin', 'admin_override');
+      if (!isCurrent()) return;
       await AsyncStorage.multiSet([
         [STORAGE_KEY, String(cloudShards)],
         [BALANCE_META_KEY, JSON.stringify(meta)],
         [ADMIN_OVERRIDE_APPLIED_KEY, cloudOverrideAt],
       ]);
+      if (!isCurrent()) return;
       setShardsBalanceMemory(cloudShards);
       changed = true;
       appliedMeta = meta;
@@ -1296,12 +1303,15 @@ export const loadShardsFromCloud = async (): Promise<void> => {
         op: data.shards_updated_op === 'earn' || data.shards_updated_op === 'spend' ? data.shards_updated_op : 'replace',
         reason: typeof data.shards_updated_reason === 'string' ? data.shards_updated_reason : 'cloud_restore',
       };
+      if (!isCurrent()) return;
       await AsyncStorage.multiSet([
         [STORAGE_KEY, String(cloudShards)],
         [BALANCE_META_KEY, JSON.stringify(meta)],
       ]);
+      if (!isCurrent()) return;
       setShardsBalanceMemory(cloudShards);
       if (isStorePurchaseReason(meta.reason) && cloudShards > local) {
+        if (!isCurrent()) return;
         await bumpStorePurchasedShardsTotal(cloudShards - local);
       }
       changed = true;
@@ -1325,12 +1335,15 @@ export const loadShardsFromCloud = async (): Promise<void> => {
         op: data.shards_updated_op === 'earn' || data.shards_updated_op === 'spend' ? data.shards_updated_op : 'replace',
         reason: typeof data.shards_updated_reason === 'string' ? data.shards_updated_reason : 'cloud_restore',
       };
+      if (!isCurrent()) return;
       await AsyncStorage.multiSet([
         [STORAGE_KEY, String(cloudShards)],
         [BALANCE_META_KEY, JSON.stringify(meta)],
       ]);
+      if (!isCurrent()) return;
       setShardsBalanceMemory(cloudShards);
       if (isStorePurchaseReason(meta.reason) && cloudShards > local) {
+        if (!isCurrent()) return;
         await bumpStorePurchasedShardsTotal(cloudShards - local);
       }
       changed = true;
@@ -1344,12 +1357,15 @@ export const loadShardsFromCloud = async (): Promise<void> => {
         op: data.shards_updated_op === 'earn' || data.shards_updated_op === 'spend' ? data.shards_updated_op : 'replace',
         reason: typeof data.shards_updated_reason === 'string' ? data.shards_updated_reason : 'cloud_restore',
       };
+      if (!isCurrent()) return;
       await AsyncStorage.multiSet([
         [STORAGE_KEY, String(cloudShards)],
         [BALANCE_META_KEY, JSON.stringify(meta)],
       ]);
+      if (!isCurrent()) return;
       setShardsBalanceMemory(cloudShards);
       if (isStorePurchaseReason(meta.reason) && cloudShards > local) {
+        if (!isCurrent()) return;
         await bumpStorePurchasedShardsTotal(cloudShards - local);
       }
       changed = true;
@@ -1364,10 +1380,13 @@ export const loadShardsFromCloud = async (): Promise<void> => {
       // Настоящую трату (op:'spend', local < cloud из-за отставшего облака) — пушим как прежде.
       && !(isLocalRestoreArtifact(localMeta) && local < cloudShards)
     ) {
+      if (!isCurrent()) return;
       await syncShardsToCloud(local, localMeta);
     }
     if (changed) {
+      if (!isCurrent()) return;
       const b = await getShardsBalance();
+      if (!isCurrent()) return;
       await emitShardsBalanceUpdated(b, appliedMeta);
     }
   } catch (e) {

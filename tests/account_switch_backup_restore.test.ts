@@ -100,4 +100,15 @@ describe('restoreAccountSwitchEmergencyBackupIfSafe', () => {
     expect(res).toEqual({ status: 'restored', restoredKeys: 1, skippedExisting: 0 });
     expect(await AsyncStorage.getItem('ok_key')).toBe('v');
   });
+
+  it('does not commit backup data after its account generation becomes stale', async () => {
+    await AsyncStorage.setItem(BACKUP_KEY, makeBackup());
+    const isCurrent = jest.fn(() => false);
+
+    const res = await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent);
+
+    expect(res).toEqual({ status: 'stale_generation' });
+    expect(await AsyncStorage.getItem('streak_count')).toBeNull();
+    expect(await AsyncStorage.getItem(BACKUP_KEY)).not.toBeNull();
+  });
 });

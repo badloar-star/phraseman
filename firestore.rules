@@ -51,6 +51,11 @@ service cloud.firestore {
         && !exists(/databases/$(database)/documents/users/$(userId));
     }
 
+    function accountDeletionNotPending(userId) {
+      return isAdmin()
+        || !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId));
+    }
+
     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
     // при первом серверном событии. Пока флага нет — старый клиент может писать
     // XP/streak/progress напрямую (плавный переход без force-update).
@@ -1011,6 +1016,10 @@ service cloud.firestore {
     //  - userId == request.auth.uid
     //  - stableId-Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ñ Ð¿Ð¾Ð»ÐµÐ¼ firebaseAuthUid == request.auth.uid
     // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
+    match /account_deletion_tombstones/{userId} {
+      allow read, write: if false;
+    }
+
     match /users/{userId} {
       // read: владелец/админ ИЛИ документа ещё нет (пустое чтение безопасно и
       // не валит клиентскую транзакцию входа на новом localStableId — см.
@@ -1019,8 +1028,8 @@ service cloud.firestore {
       allow delete: if userDocOwnerMatchesAuth(userId);
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
-      allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
-      allow create: if newUserDocOwnerMatchesAuth(userId) && newDocHasNoPremiumWrites() && newDocHasNoShardWrites();
+      allow update: if userDocOwnerMatchesAuth(userId) && accountDeletionNotPending(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
+      allow create: if newUserDocOwnerMatchesAuth(userId) && accountDeletionNotPending(userId) && newDocHasNoPremiumWrites() && newDocHasNoShardWrites();
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;

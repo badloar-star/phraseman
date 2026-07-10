@@ -2,7 +2,7 @@ import * as admin from 'firebase-admin';
 import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { executeAccountDeletion } from './account_delete';
-import { ACCOUNT_DELETE_JOBS, processAccountDeletionJob } from './account_delete_job';
+import { ACCOUNT_DELETE_JOBS, ACCOUNT_DELETE_TOMBSTONES, processAccountDeletionJob } from './account_delete_job';
 
 export const ACCOUNT_DELETE_WORKER_OPTIONS = {
   document: `${ACCOUNT_DELETE_JOBS}/{jobId}`,
@@ -37,10 +37,11 @@ export async function sweepAccountDeletionJobs(
   process: typeof processAccountDeletionJob = processAccountDeletionJob,
 ): Promise<void> {
   const jobs = db.collection(ACCOUNT_DELETE_JOBS);
-  const [due, stranded, expired] = await Promise.all([
+  const [due, stranded, expired, expiredTombstones] = await Promise.all([
     jobs.where('nextAttemptAtMs', '<=', nowMs).limit(20).get(),
     jobs.where('leaseUntilMs', '<=', nowMs).limit(20).get(),
     jobs.where('retentionUntilMs', '<=', nowMs).limit(50).get(),
+    db.collection(ACCOUNT_DELETE_TOMBSTONES).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
   ]);
 
   const recoverableIds = new Set([
@@ -50,7 +51,10 @@ export async function sweepAccountDeletionJobs(
   await Promise.allSettled(
     Array.from(recoverableIds, (jobId) => process(db, jobId, executeAccountDeletion, nowMs)),
   );
-  await Promise.allSettled(expired.docs.map((doc) => doc.ref.delete()));
+  await Promise.allSettled([
+    ...expired.docs.map((doc) => doc.ref.delete()),
+    ...expiredTombstones.docs.map((doc) => doc.ref.delete()),
+  ]);
 }
 
 export const accountDeleteRetryCron = onSchedule(

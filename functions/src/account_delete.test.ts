@@ -1,10 +1,11 @@
-import { __accountDeleteTestHooks } from './account_delete';
+import { __accountDeleteTestHooks, executeAccountDeletion } from './account_delete';
 
 const {
   accountDeleteQueryPlan,
   accountDeleteCollectionGroupPlan,
   accountDeleteCollectionGroupDocumentIdPlan,
   resolveStableUidForDelete,
+  enqueueForAuthenticatedAccount,
 } = __accountDeleteTestHooks;
 
 function makeDbStub(opts: {
@@ -47,6 +48,34 @@ function makeDbStub(opts: {
 }
 
 describe('accountDelete query plan', () => {
+  it('exposes the idempotent deletion executor for the durable worker', () => {
+    expect(typeof executeAccountDeletion).toBe('function');
+  });
+
+  it('resolves stable identity on the server before enqueueing', async () => {
+    const db = makeDbStub({
+      users: { 'stable-123': { linkedAuth: { providerUid: 'auth-456' } } },
+      authLinks: { 'auth-456': { stable_id: 'stable-123' } },
+    });
+    const enqueue = jest.fn(async () => ({
+      jobId: 'adel_hash',
+      status: 'queued' as const,
+      created: true,
+    }));
+
+    const result = await enqueueForAuthenticatedAccount(
+      db as unknown as FirebaseFirestore.Firestore,
+      'auth-456',
+      'stable-123',
+      enqueue,
+    );
+
+    expect(enqueue).toHaveBeenCalledWith(db, 'auth-456', 'stable-123');
+    expect(result).toEqual({ ok: true, jobId: 'adel_hash', status: 'queued', created: true });
+    expect(result).not.toHaveProperty('authUid');
+    expect(result).not.toHaveProperty('stableUid');
+  });
+
   it('covers the privacy-critical user data collections', () => {
     const plan = accountDeleteQueryPlan('stable-123', 'auth-456');
     const keys = new Set(plan.map((x) => `${x.collection}.${x.field}.${x.op}.${x.value}`));
@@ -152,10 +181,31 @@ describe('accountDelete stable id resolver', () => {
     await expect(resolveStableUidForDelete(db as any, 'auth456', 'localStableOnly')).resolves.toBe('auth456');
   });
 
+  it('does not authorize an existing unowned legacy user document', async () => {
+    const db = makeDbStub({ users: { victimStable: { user_name: 'victim' } } });
+
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'victimStable')).resolves.toBe('auth456');
+  });
+
   it('falls back to the known server-side stable id when the local stable id is stale', async () => {
     const db = makeDbStub({ users: { serverStable: { firebaseAuthUid: 'auth456' } } });
 
     await expect(resolveStableUidForDelete(db as any, 'auth456', 'staleLocalStable')).resolves.toBe('serverStable');
+  });
+
+  it('prefers the authoritative auth-link anchor over stale direct and firebaseAuthUid user docs', async () => {
+    const db = makeDbStub({
+      users: {
+        auth456: { user_name: 'stale direct' },
+        staleByAuth: { firebaseAuthUid: 'auth456' },
+        serverStable: { user_name: 'anchored' },
+      },
+      authLinks: { auth456: { stable_id: 'serverStable' } },
+    });
+
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'missingLocal')).resolves.toBe('serverStable');
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'staleByAuth')).resolves.toBe('serverStable');
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'auth456')).resolves.toBe('serverStable');
   });
 
   it('rejects a requested stable id that belongs to a different auth uid', async () => {

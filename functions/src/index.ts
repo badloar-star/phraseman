@@ -136,7 +136,6 @@ const {
   helpBoardVote,
   helpBoardReport,
   helpBoardDeleteMyTopic,
-  helpBoardDeleteCompassAnswer,
   helpBoardAdminModerate,
   helpBoardGenerateCompassForTopic,
   helpBoardCompassRetryCron,
@@ -267,7 +266,6 @@ exports.helpBoardAddComment = helpBoardAddComment;
 exports.helpBoardVote = helpBoardVote;
 exports.helpBoardReport = helpBoardReport;
 exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
-exports.helpBoardDeleteCompassAnswer = helpBoardDeleteCompassAnswer;
 exports.helpBoardAdminModerate = helpBoardAdminModerate;
 exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
 exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;

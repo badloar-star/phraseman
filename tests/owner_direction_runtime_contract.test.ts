@@ -168,7 +168,7 @@ describe('owner runtime direction contract', () => {
       'app/streak_stats.tsx': 2,
       'components/ActiveBoostBar.tsx': 1,
       'components/ArenaDuelEmojiReact.tsx': 1,
-      'components/EnergyContext.tsx': 1,
+      'components/energy_countdown_clock.ts': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/LeagueChatPanel.tsx': 1,
       'components/PromoBanner.tsx': 1,
@@ -338,6 +338,18 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('}, [appActive, energy, maxEnergy, isUnlimited, load, recoveryIntervalMs, timeUntilNextMs]);');
     expect(source).not.toContain('const intervalId = setInterval(load, 30_000);');
     expect(source).not.toContain('startInterval();');
+  });
+
+  it('shares energy countdown ticking and gates consumers by visibility', () => {
+    const context = read('components/EnergyContext.tsx');
+    const bar = read('components/EnergyBar.tsx');
+    const lightning = read('components/LessonEnergyLightning.tsx');
+    const modal = read('components/NoEnergyModal.tsx');
+    expect(context).toContain('energyCountdownClock.subscribe(setNow)');
+    expect(context).not.toContain('const id = setInterval(() => setNow(Date.now()), 1000)');
+    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused })');
+    expect(lightning).toContain('useEnergyCountdown({ visible: screenFocused })');
+    expect(modal).toContain('useEnergyCountdown({ visible: modalVisible })');
   });
 
   it('keeps online presence heartbeat active-only and cost-capped', () => {

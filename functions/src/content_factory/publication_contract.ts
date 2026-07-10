@@ -23,6 +23,7 @@ export interface PackRevision {
 
 export interface ActivePackPointer {
   readonly studyTarget: string;
+  readonly sourceLocale: string;
   readonly packId: string;
   readonly revision: number;
   readonly contentHash: string;
@@ -94,6 +95,7 @@ export function createActivePackPointer(input: {
   }
   return Object.freeze({
     studyTarget: input.manifest.studyTarget,
+    sourceLocale: input.manifest.sourceLocale,
     packId: input.manifest.packId,
     revision: input.revision,
     contentHash: input.manifest.contentHash,

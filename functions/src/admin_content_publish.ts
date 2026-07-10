@@ -69,6 +69,7 @@ export const adminPublishContentPack = onCall(
       const [draftSnap, catalogSnap, operationSnap] = await Promise.all([tx.get(draftRef), tx.get(catalogRef), tx.get(operationRef)]);
       if (operationSnap.exists) {
         const previous = operationSnap.data() ?? {};
+        if (previous.packId !== input.packId || previous.expectedCatalogRevision !== input.expectedCatalogRevision) throw new HttpsError('already-exists', 'idempotencyKey was already used for another publish request');
         return { ok: true, packId: input.packId, revision: Number(previous.revision ?? 0), auditId: String(previous.auditId ?? ''), replayed: true };
       }
       if (!draftSnap.exists) throw new HttpsError('not-found', 'pack draft not found');
@@ -86,12 +87,14 @@ export const adminPublishContentPack = onCall(
       if (currentRevision !== input.expectedCatalogRevision) throw new HttpsError('failed-precondition', 'catalog changed; reload before publishing');
       const publishedManifest = { ...manifest, activationStatus: 'published' as const };
       const pointer = createActivePackPointer({ manifest: publishedManifest, revision: currentRevision + 1, activatedBy: actorUid, activatedAt: new Date().toISOString() });
+      const previousSurfaces = isRecord(catalog.activeSurfaces) ? catalog.activeSurfaces : {};
+      const activeSurfaces = { ...previousSurfaces, [manifest.surface]: pointer };
       const audit = { action: 'content_factory.publish', actorUid, role, entity: { collection: draftRef.parent.id, id: input.packId }, reason: input.reason, requestId: input.requestId, before: { manifest, catalogRevision: currentRevision }, after: pointer, rollbackReference: historyRef.id, timestamp: new Date().toISOString(), operationId: input.idempotencyKey };
-      tx.set(catalogRef, { revision: pointer.revision, active: pointer, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
+      tx.set(catalogRef, { revision: pointer.revision, active: pointer, activeSurfaces, previousSurfaces, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
       tx.set(draftRef, { manifest: publishedManifest, activationStatus: 'published', publishedAt: admin.firestore.FieldValue.serverTimestamp(), publishedBy: actorUid }, { merge: true });
-      tx.create(historyRef, { ...audit, previousActive: catalog.active ?? null });
+      tx.create(historyRef, { ...audit, previousActive: catalog.active ?? null, previousSurfaces });
       tx.create(auditRef, audit);
-      tx.create(operationRef, { operationId: input.idempotencyKey, auditId: auditRef.id, revision: pointer.revision, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      tx.create(operationRef, { operationId: input.idempotencyKey, packId: input.packId, expectedCatalogRevision: input.expectedCatalogRevision, auditId: auditRef.id, revision: pointer.revision, createdAt: admin.firestore.FieldValue.serverTimestamp() });
       return { ok: true, packId: input.packId, revision: pointer.revision, auditId: auditRef.id, replayed: false };
     });
   },

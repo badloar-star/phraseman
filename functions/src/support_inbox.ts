@@ -46,6 +46,8 @@ export interface RawEmail {
   subject: string;
   bodyText: string;
   receivedAtMs: number;
+  mailCategory?: 'human' | 'automated' | 'unknown';
+  mailCategoryReason?: string;
 }
 
 export interface SupportInboxDoc {
@@ -61,6 +63,8 @@ export interface SupportInboxDoc {
   draftLang?: string;
   sentReply?: string;
   repliedAt?: string;
+  mailCategory?: 'human' | 'automated' | 'unknown';
+  mailCategoryReason?: string;
 }
 
 // ── Чистые утилиты ─────────────────────────────────────────────────────────────
@@ -90,11 +94,44 @@ export function hasUsableBody(doc: { bodyText?: string; subject?: string }): boo
 }
 
 /** Служебные/рассыльные локальные части адреса — заведомо не человек. */
-const NON_HUMAN_LOCALPARTS = [
+const STRONGLY_AUTOMATED_LOCALPARTS = [
   'noreply', 'no-reply', 'donotreply', 'do-not-reply', 'no_reply',
   'mailer-daemon', 'postmaster', 'bounce', 'bounces', 'notification', 'notifications',
-  'mailer', 'auto', 'automated', 'newsletter', 'news', 'info', 'support-noreply',
+  'support-noreply',
 ];
+
+export interface EmailClassification {
+  category: 'human' | 'automated' | 'unknown';
+  reason?: string;
+}
+
+export function classifyEmail(input: {
+  fromEmail?: string;
+  headers?: { listUnsubscribe?: string; precedence?: string; autoSubmitted?: string };
+}): EmailClassification {
+  const email = String(input.fromEmail ?? '').toLowerCase().trim();
+  if (!email || !email.includes('@')) return { category: 'unknown', reason: 'missing_sender' };
+
+  const h = input.headers ?? {};
+  if (String(h.listUnsubscribe ?? '').trim()) return { category: 'automated', reason: 'list_unsubscribe' };
+  const prec = String(h.precedence ?? '').toLowerCase();
+  if (prec === 'bulk' || prec === 'list' || prec === 'junk') {
+    return { category: 'automated', reason: `precedence_${prec}` };
+  }
+  const auto = String(h.autoSubmitted ?? '').toLowerCase();
+  if (auto && auto !== 'no') return { category: 'automated', reason: 'auto_submitted' };
+
+  const [localPart, domain] = email.split('@');
+  if (domain === 'google.com' || domain === 'accounts.google.com' || domain.endsWith('.google.com')) {
+    return { category: 'automated', reason: 'google_service_sender' };
+  }
+  for (const bad of STRONGLY_AUTOMATED_LOCALPARTS) {
+    if (localPart === bad || localPart.startsWith(bad + '-') || localPart.startsWith(bad + '.') || localPart.startsWith(bad + '+')) {
+      return { category: 'automated', reason: `automated_sender_${bad}` };
+    }
+  }
+  return { category: 'human' };
+}
 
 /**
  * Решает, письмо ли это от ЖИВОГО человека (а не рассылка/промо/служебное Google).
@@ -110,27 +147,7 @@ export function isHumanEmail(input: {
   fromEmail?: string;
   headers?: { listUnsubscribe?: string; precedence?: string; autoSubmitted?: string };
 }): boolean {
-  const email = String(input.fromEmail ?? '').toLowerCase().trim();
-  if (!email || !email.includes('@')) return false;
-
-  const h = input.headers ?? {};
-  if (String(h.listUnsubscribe ?? '').trim()) return false;
-  const prec = String(h.precedence ?? '').toLowerCase();
-  if (prec === 'bulk' || prec === 'list' || prec === 'junk') return false;
-  const auto = String(h.autoSubmitted ?? '').toLowerCase();
-  if (auto && auto !== 'no') return false;
-
-  const [localPart, domain] = email.split('@');
-  // Служебные адреса Google (безопасность, уведомления и т.п.).
-  if (domain === 'google.com' || domain === 'accounts.google.com' || domain.endsWith('.google.com')) {
-    return false;
-  }
-  for (const bad of NON_HUMAN_LOCALPARTS) {
-    if (localPart === bad || localPart.startsWith(bad + '-') || localPart.startsWith(bad + '.') || localPart.startsWith(bad + '+')) {
-      return false;
-    }
-  }
-  return true;
+  return classifyEmail(input).category === 'human';
 }
 
 /**
@@ -147,6 +164,8 @@ export function rawEmailToDoc(raw: RawEmail): SupportInboxDoc {
     receivedAt: new Date(raw.receivedAtMs || Date.now()).toISOString(),
     receivedAtMs: raw.receivedAtMs || Date.now(),
     status: 'new',
+    ...(raw.mailCategory ? { mailCategory: raw.mailCategory } : {}),
+    ...(raw.mailCategoryReason ? { mailCategoryReason: raw.mailCategoryReason } : {}),
   };
 }
 
@@ -290,12 +309,11 @@ async function fetchEmailsViaImap(appPassword: string, firstRun: boolean): Promi
       // дальнейшие fetch/messageFlagsAdd с { uid: true } работали по тем же
       // сообщениям. Без этого seq-номера трактуются как UID → не те письма.
       let uids: number[] = [];
-      if (firstRun) {
-        const all = await client.search({ all: true }, { uid: true });
-        uids = (all || []).slice(-FIRST_PULL_LIMIT);
-      } else {
-        uids = (await client.search({ seen: false }, { uid: true })) || [];
-      }
+      // Do not make Gmail's \Seen flag the delivery contract. The owner or a
+      // mail client may read a message before the admin sync runs. Fetch a
+      // bounded recent tail every time and let Firestore deduplicate it.
+      const all = await client.search({ all: true }, { uid: true });
+      uids = (all || []).slice(-FIRST_PULL_LIMIT);
       if (uids.length === 0) return out;
 
       for await (const msg of client.fetch(uids, { source: true, uid: true })) {
@@ -303,21 +321,18 @@ async function fetchEmailsViaImap(appPassword: string, firstRun: boolean): Promi
           const parsed = await simpleParser(msg.source as Buffer);
           const fromAddr = parsed.from?.value?.[0];
           const fromEmail = String(fromAddr?.address || '');
-          // Отсекаем рассылки/промо/служебные Google — только письма от людей.
           const hdr = (name: string): string => {
             const v = parsed.headers?.get(name);
             return typeof v === 'string' ? v : (v ? String(v) : '');
           };
-          if (!isHumanEmail({
+          const classification = classifyEmail({
             fromEmail,
             headers: {
               listUnsubscribe: hdr('list-unsubscribe'),
               precedence: hdr('precedence'),
               autoSubmitted: hdr('auto-submitted'),
             },
-          })) {
-            continue; // не человек — пропускаем, в базу не сохраняем
-          }
+          });
           const messageId = String(parsed.messageId || `uid_${msg.uid}@${SUPPORT_MAILBOX}`);
           out.push({
             messageId,
@@ -326,6 +341,8 @@ async function fetchEmailsViaImap(appPassword: string, firstRun: boolean): Promi
             subject: String(parsed.subject || '(без темы)'),
             bodyText: String(parsed.text || parsed.html || '').trim(),
             receivedAtMs: parsed.date ? parsed.date.getTime() : Date.now(),
+            mailCategory: classification.category,
+            mailCategoryReason: classification.reason,
           });
         } catch (e) {
           console.warn('support_inbox: parse failed for uid', msg.uid, e);

@@ -2,6 +2,7 @@ import {
   truncateBody,
   docIdForMessageId,
   hasUsableBody,
+  classifyEmail,
   isHumanEmail,
   rawEmailToDoc,
   composeReplyWithSignature,
@@ -93,9 +94,20 @@ describe('isHumanEmail — только письма от живых людей'
     expect(isHumanEmail({})).toBe(false);
   });
 
-  test('«info@» отсекается (обычно не человек), но «infoservice@» — нет (не точное совпадение)', () => {
-    expect(isHumanEmail({ fromEmail: 'info@company.com' })).toBe(false);
+  test('role-адреса пользователей не теряются', () => {
+    expect(isHumanEmail({ fromEmail: 'info@company.com' })).toBe(true);
     expect(isHumanEmail({ fromEmail: 'infoservice@company.com' })).toBe(true);
+    expect(isHumanEmail({ fromEmail: 'support@phraseman.app' })).toBe(true);
+    expect(isHumanEmail({ fromEmail: 'user@phraseman.app' })).toBe(true);
+  });
+
+  test('классификация объясняет авто-письмо, но не запрещает его сохранять', () => {
+    expect(classifyEmail({ fromEmail: 'info@company.com' })).toEqual({ category: 'human' });
+    expect(classifyEmail({ fromEmail: 'noreply@service.com' }).category).toBe('automated');
+    expect(classifyEmail({ fromEmail: 'a@b.com', headers: { precedence: 'bulk' } })).toEqual({
+      category: 'automated',
+      reason: 'precedence_bulk',
+    });
   });
 });
 

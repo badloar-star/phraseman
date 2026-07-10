@@ -8,8 +8,8 @@ describe('cloud sync account-transition race contract', () => {
   test('outbound sync is generation-bound at the user write and local marker boundaries', () => {
     expect(cloudSyncSource).toContain('const syncGeneration = captureAccountGeneration()');
     expect(cloudSyncSource).toContain('isCurrentAccountGeneration(syncGeneration, uid)');
-    expect(cloudSyncSource).toContain('if (!isSyncGenerationCurrent()) return;\n    await docRef.set(');
-    expect(cloudSyncSource).toContain('if (!isSyncGenerationCurrent()) return;\n    await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY');
+    expect(cloudSyncSource).toMatch(/if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+await docRef\.set\(/);
+    expect(cloudSyncSource).toMatch(/if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+await AsyncStorage\.setItem\(LAST_SYNC_SNAPSHOT_KEY/);
   });
 
   test('account deletion enqueues first, then invalidates old work and only performs bounded drains', () => {

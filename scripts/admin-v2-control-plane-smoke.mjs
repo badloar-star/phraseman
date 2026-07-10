@@ -13,6 +13,8 @@ assert(['overview', 'app', 'users', 'money', 'content', 'community', 'diagnostic
 assert(html.includes('data-factory="language"') && html.includes('data-factory="publish"'), 'language factory workflow is incomplete');
 assert(html.includes('Создать draft job') && html.includes('QA и источники'), 'language factory draft/QA controls are missing');
 assert(html.includes('server command') && html.includes('rollback'), 'server-side and rollback safety copy is missing');
+assert(html.includes('onAuthStateChanged') && html.includes('adminRole'), 'authenticated admin claim gate is missing');
+assert(html.includes("adminCreateContentGenerationJob") && html.includes('create-factory-job'), 'Language Factory job action is not wired to a callable');
 assert(!/[😀-🙏🌀-🫿]/u.test(html), 'emoji are used as interface icons');
 assert(buttons.every((button) => button.includes('title=') || button.includes('aria-label=')), 'a button lacks tooltip or aria-label');
 assert(!/animation\s*:/.test(html), 'prototype shell must not introduce unguarded animations');

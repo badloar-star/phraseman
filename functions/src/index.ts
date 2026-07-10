@@ -1535,6 +1535,7 @@ export { adminPublishRemoteConfig } from './admin_remote_config';
 export { adminCreateContentGenerationJob } from './admin_content_factory';
 export { adminPublishContentPack, adminRollbackContentPack } from './admin_content_publish';
 export { getActiveLanguageCatalog } from './language_catalog';
+export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 export { emailUnsubscribe } from './email_unsubscribe';

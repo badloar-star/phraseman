@@ -40,6 +40,9 @@
     function render(route){const page=pages[route]||pages.overview;document.querySelectorAll('[data-route]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.route===route)));document.getElementById('app').innerHTML=`<div class="head"><div><div class="eyebrow">Phraseman Admin · ${route}</div><h1>${page.title}</h1><p>${page.desc}</p></div><button class="primary" title="${page.cta}">${page.cta}</button></div>${page.body}`;document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>{location.hash=b.dataset.route});document.querySelectorAll('[data-factory]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-factory]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('factory-panel').querySelector('h2').textContent=b.textContent.trim()});}
     window.addEventListener('hashchange',()=>render(location.hash.slice(1)));render(location.hash.slice(1)||'overview');
   </script>
+  <script>
+    Object.assign(pages, { analytics: { title:'Аналитика', desc:'Реальные источники RevenueCat, app activity и paywall funnel. Клиентские purchase-сигналы не выдаются за деньги.', cta:'Загрузить аналитику', body:`<div class="notice">Все источники имеют отдельное состояние ready, empty, partial или error. При partial результат не помечается как полный.</div><div class="actions section"><label for="analytics-range">Период</label><select id="analytics-range"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><button id="load-analytics" class="primary" title="Загрузить серверный analytics snapshot">Загрузить аналитику</button><span id="analytics-feedback" class="hint" role="status"></span></div><div class="grid section"><div class="card stat"><label>Paying now</label><strong id="metric-paying">—</strong><span>users source</span></div><div class="card stat"><label>Loaded users</label><strong id="metric-users">—</strong><span>bounded read</span></div><div class="card stat"><label>Store events</label><strong id="metric-store">—</strong><span>RevenueCat webhook</span></div><div class="card stat"><label>Purchase signals</label><strong id="metric-purchases">—</strong><span>behaviour only</span></div></div><div class="card section"><h2>Источники</h2><div id="analytics-sources" class="list"><p class="hint">Нажмите «Загрузить аналитику» после авторизации.</p></div></div>` } });
+  </script>
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
     import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
@@ -76,8 +79,25 @@
     });
     document.addEventListener('click', async (event) => {
       const target = event.target;
-      if (!(target instanceof HTMLElement) || target.id !== 'create-factory-job') return;
+      if (!(target instanceof HTMLElement)) return;
       if (!authorized) return;
+      if (target.id === 'load-analytics') {
+        const feedbackEl = document.getElementById('analytics-feedback');
+        if (feedbackEl) feedbackEl.textContent = 'Загружаем server analytics snapshot…';
+        try {
+          const call = httpsCallable(functions, 'adminGetAnalyticsSnapshot');
+          const result = await call({ rangeDays: Number(document.getElementById('analytics-range')?.value ?? 28) });
+          const data = result.data;
+          document.getElementById('metric-paying').textContent = String(data.metrics?.payingNow ?? '—');
+          document.getElementById('metric-users').textContent = String(data.metrics?.loadedUsers ?? '—');
+          document.getElementById('metric-store').textContent = String(Object.values(data.metrics?.revenuecat ?? {}).reduce((sum, value) => sum + Number(value), 0));
+          document.getElementById('metric-purchases').textContent = String(data.metrics?.funnel?.purchase_completed ?? 0);
+          document.getElementById('analytics-sources').innerHTML = Object.entries(data.sources ?? {}).map(([name, source]) => `<div class="row"><div><b>${name}</b><small>${source.state} · ${source.count} rows${source.truncated ? ' · truncated' : ''}</small></div><span class="badge">${source.state}</span></div>`).join('');
+          if (feedbackEl) feedbackEl.textContent = `${data.state} · freshness ${data.freshness}`;
+        } catch (error) { if (feedbackEl) feedbackEl.textContent = error instanceof Error ? `Не удалось загрузить аналитику: ${error.message}` : 'Не удалось загрузить аналитику'; }
+        return;
+      }
+      if (target.id !== 'create-factory-job') return;
       const lessonCount = Math.max(1, Math.min(100, Number(document.getElementById('lesson-count')?.value ?? 1)));
       const targetLanguage = document.getElementById('target-language')?.value ?? '';
       const surfaces = String(document.getElementById('surfaces')?.value ?? '').split(',').filter(Boolean);
@@ -92,6 +112,7 @@
       }
     });
     updateButtons();
+    window.addEventListener('hashchange', updateButtons);
   </script>
 </body>
 </html>

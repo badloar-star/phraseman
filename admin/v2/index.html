@@ -87,6 +87,22 @@
         list.innerHTML = `<p class="hint">Не удалось загрузить почту: ${escapeHtml(error instanceof Error ? error.message : error)}</p>`;
       }
     }
+    async function loadFactoryJobs() {
+      const panel = document.getElementById('factory-panel');
+      const feedbackEl = document.getElementById('factory-feedback');
+      if (!panel) return;
+      let list = document.getElementById('factory-jobs');
+      if (!list) { list = document.createElement('div'); list.id = 'factory-jobs'; list.className = 'list section'; panel.appendChild(list); }
+      list.innerHTML = '<p class="hint">Загружаем jobs…</p>';
+      try {
+        const result = await httpsCallable(functions, 'adminListContentFactoryJobs')({ limit: 50 });
+        const jobs = Array.isArray(result.data?.jobs) ? result.data.jobs : [];
+        list.innerHTML = jobs.length ? jobs.map((job) => `<div class="row"><div><b>${escapeHtml(job.studyTarget || 'unknown')} · ${escapeHtml(job.id)}</b><small>${escapeHtml(job.state || 'queued')} · ${escapeHtml(job.blueprintVersion || 'blueprint')}</small></div><span class="badge">${Number(job.progress?.completed ?? 0)}/${Number(job.progress?.total ?? 0)}</span></div>`).join('') : '<p class="hint">Jobs пока не создавались.</p>';
+        if (feedbackEl) feedbackEl.textContent = `Jobs: ${jobs.length}`;
+      } catch (error) {
+        list.innerHTML = `<p class="hint">Не удалось загрузить jobs: ${escapeHtml(error instanceof Error ? error.message : error)}</p>`;
+      }
+    }
     onAuthStateChanged(auth, async (user) => {
       authorized = false;
       if (!user) {
@@ -105,6 +121,10 @@
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
       if (!authorized) return;
+      if (target.textContent?.trim() === 'Мои черновики') {
+        await loadFactoryJobs();
+        return;
+      }
       if (target.id === 'load-support') {
         await loadSupportInbox();
         return;

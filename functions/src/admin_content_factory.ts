@@ -89,3 +89,22 @@ export const adminCreateContentGenerationJob = onCall(
     });
   },
 );
+
+export const adminListContentFactoryJobs = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+    const role = roleFromToken(request.auth.token as Record<string, unknown>);
+    if (!role || !hasPermission(role, 'content.read')) throw new HttpsError('permission-denied', 'Role cannot read content jobs');
+    const requestedLimit = Number(request.data?.limit ?? 50);
+    const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(100, Math.floor(requestedLimit))) : 50;
+    const studyTarget = String(request.data?.studyTarget ?? '').trim();
+    const snapshot = await admin.firestore().collection('content_factory_jobs').limit(100).get();
+    const jobs = snapshot.docs
+      .map((doc): Record<string, unknown> & { id: string } => ({ id: doc.id, ...(doc.data() as Record<string, unknown>) }))
+      .filter((job) => !studyTarget || job.studyTarget === studyTarget)
+      .sort((a, b) => String(b.createdAt ?? '').localeCompare(String(a.createdAt ?? '')))
+      .slice(0, limit);
+    return { ok: true, jobs };
+  },
+);

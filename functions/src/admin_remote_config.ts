@@ -21,6 +21,22 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function validateConfigPatch(config: Readonly<Record<string, unknown>>): void {
+  for (const branch of ['bools', 'numbers', 'texts'] as const) {
+    if (!(branch in config)) continue;
+    const value = config[branch];
+    if (!isRecord(value)) throw new HttpsError('invalid-argument', `${branch} must be an object`);
+    for (const [key, item] of Object.entries(value)) {
+      if (!key.trim() || (branch === 'bools' && typeof item !== 'boolean') || (branch === 'numbers' && (typeof item !== 'number' || !Number.isFinite(item))) || (branch === 'texts' && typeof item !== 'string')) {
+        throw new HttpsError('invalid-argument', `invalid ${branch}.${key}`);
+      }
+    }
+  }
+  if ('version' in config && (typeof config.version !== 'number' || !Number.isInteger(config.version) || config.version < 1)) {
+    throw new HttpsError('invalid-argument', 'version must be a positive integer');
+  }
+}
+
 export function parseRemoteConfigRequest(data: unknown): RemoteConfigRequest {
   if (!isRecord(data) || !isRecord(data.nextConfig)) {
     throw new HttpsError('invalid-argument', 'nextConfig object required');
@@ -40,12 +56,13 @@ export function parseRemoteConfigRequest(data: unknown): RemoteConfigRequest {
   if (unknownKeys.length > 0 || Object.keys(nextConfig).length === 0) {
     throw new HttpsError('invalid-argument', 'nextConfig contains unsupported or empty fields');
   }
+  validateConfigPatch(nextConfig);
   return Object.freeze({ nextConfig: Object.freeze({ ...nextConfig }), expectedRevision, idempotencyKey, reason, requestId });
 }
 
-function resolveRole(token: Record<string, unknown>): AdminRole {
+function resolveRole(token: Record<string, unknown>): AdminRole | null {
   const claimed = token.adminRole;
-  return hasAdminRole(claimed) ? claimed : 'admin';
+  return hasAdminRole(claimed) ? claimed : null;
 }
 
 export const adminPublishRemoteConfig = onCall(
@@ -55,6 +72,7 @@ export const adminPublishRemoteConfig = onCall(
     const input = parseRemoteConfigRequest(request.data);
     const actorUid = request.auth.uid;
     const role = resolveRole(request.auth.token as Record<string, unknown>);
+    if (!role) throw new HttpsError('permission-denied', 'adminRole claim required');
     if (!hasPermission(role, 'application.config.write')) {
       throw new HttpsError('permission-denied', 'Role cannot publish remote config');
     }
@@ -85,7 +103,7 @@ export const adminPublishRemoteConfig = onCall(
       if (!Number.isInteger(currentRevision) || currentRevision !== input.expectedRevision) {
         throw new HttpsError('failed-precondition', 'remote config changed; reload before publishing');
       }
-      const after = { ...input.nextConfig, revision: currentRevision + 1, updatedBy: actorUid };
+      const after = { ...before, ...input.nextConfig, revision: currentRevision + 1, updatedBy: actorUid };
       const audit = createAuditRecord({
         action: 'remote_config.publish',
         actorUid,

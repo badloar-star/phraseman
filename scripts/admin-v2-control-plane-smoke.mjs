@@ -15,7 +15,7 @@ assert(html.includes('Создать draft job') && html.includes('QA и ист�
 assert(html.includes('server command') && html.includes('rollback'), 'server-side and rollback safety copy is missing');
 assert(!/[😀-🙏🌀-🫿]/u.test(html), 'emoji are used as interface icons');
 assert(buttons.every((button) => button.includes('title=') || button.includes('aria-label=')), 'a button lacks tooltip or aria-label');
-assert(html.includes('prefers-reduced-motion') === false || html.includes('prefers-reduced-motion'), 'motion policy must be explicit when animation is added');
+assert(!/animation\s*:/.test(html), 'prototype shell must not introduce unguarded animations');
 
 const result = { verdict: failures.length ? 'FAIL' : 'PASS', failures, routes };
 console.log(JSON.stringify(result, null, 2));

@@ -30,6 +30,14 @@ export interface ActivePackPointer {
   readonly activatedBy: string;
 }
 
+export interface PublicationReceipts {
+  readonly qaResultId: string;
+  readonly evidenceCount: number;
+  readonly reviewerId: string;
+  readonly blueprintHash: string;
+  readonly contentHash: string;
+}
+
 export type PublicationAction = 'submit_review' | 'approve' | 'reject' | 'activate' | 'rollback';
 
 const transitions: Readonly<Record<PublicationAction, Readonly<{ from: readonly ReviewStatus[]; to: ReviewStatus; activation: ActivationStatus }>>> = {
@@ -46,12 +54,24 @@ export function applyPublicationAction(input: {
   activationStatus: ActivationStatus;
   hasQa: boolean;
   hasEvidence: boolean;
+  receipts?: Partial<PublicationReceipts>;
 }): { reviewStatus: ReviewStatus; activationStatus: ActivationStatus } {
   const transition = transitions[input.action];
   if (!transition.from.includes(input.reviewStatus)) {
     throw new Error('invalid_transition');
   }
-  if ((input.action === 'submit_review' || input.action === 'activate') && (!input.hasQa || !input.hasEvidence)) {
+  if (input.action === 'activate' && input.activationStatus !== 'staged') {
+    throw new Error('pack_must_be_staged');
+  }
+  if (input.action === 'rollback' && input.activationStatus !== 'published') {
+    throw new Error('pack_not_published');
+  }
+  const receipts = input.receipts;
+  const receiptsComplete = Boolean(input.hasQa && input.hasEvidence && receipts?.qaResultId && receipts.evidenceCount && receipts.reviewerId && receipts.blueprintHash && receipts.contentHash);
+  if (input.action === 'approve' || input.action === 'activate') {
+    if (!receiptsComplete) throw new Error('evidence_required');
+  }
+  if (input.action === 'submit_review' && (!input.hasQa || !input.hasEvidence)) {
     throw new Error('evidence_required');
   }
   return { reviewStatus: transition.to, activationStatus: transition.activation };

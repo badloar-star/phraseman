@@ -6,6 +6,8 @@ export interface RuntimeLanguageCatalogEntry {
   readonly sourceLocale: string;
   readonly active: boolean;
   readonly activePackIds: Readonly<Record<string, string>>;
+  readonly activePackRevisions: Readonly<Record<string, number>>;
+  readonly activePackHashes: Readonly<Record<string, string>>;
 }
 
 export interface RuntimePackResolution {
@@ -28,5 +30,6 @@ export function resolveRuntimePack(input: {
   if (!packId) return null;
   const pointer = input.pointers.find((candidate) => candidate.studyTarget === input.requestedTarget && candidate.packId === packId);
   if (!pointer) return null;
+  if (pointer.revision !== language.activePackRevisions[input.requestedSurface] || pointer.contentHash !== language.activePackHashes[input.requestedSurface] || pointer.studyTarget !== input.requestedTarget || pointer.contentHash.trim() === '') return null;
   return Object.freeze({ studyTarget: pointer.studyTarget, packId: pointer.packId, revision: pointer.revision, sourceLocale: language.sourceLocale });
 }

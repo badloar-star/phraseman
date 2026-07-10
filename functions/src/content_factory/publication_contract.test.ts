@@ -3,7 +3,10 @@ import { applyPublicationAction, createActivePackPointer } from './publication_c
 describe('content publication contract', () => {
   it('requires QA and source evidence before review/activation', () => {
     expect(() => applyPublicationAction({ action: 'submit_review', reviewStatus: 'rejected', activationStatus: 'draft', hasQa: false, hasEvidence: true })).toThrow('evidence_required');
-    expect(applyPublicationAction({ action: 'approve', reviewStatus: 'needs_review', activationStatus: 'draft', hasQa: true, hasEvidence: true })).toEqual({ reviewStatus: 'approved', activationStatus: 'staged' });
+    const receipts = { qaResultId: 'qa-1', evidenceCount: 2, reviewerId: 'reviewer-1', blueprintHash: 'blueprint-hash', contentHash: 'content-hash' };
+    expect(applyPublicationAction({ action: 'approve', reviewStatus: 'needs_review', activationStatus: 'draft', hasQa: true, hasEvidence: true, receipts })).toEqual({ reviewStatus: 'approved', activationStatus: 'staged' });
+    expect(() => applyPublicationAction({ action: 'approve', reviewStatus: 'needs_review', activationStatus: 'draft', hasQa: true, hasEvidence: true })).toThrow('evidence_required');
+    expect(() => applyPublicationAction({ action: 'activate', reviewStatus: 'approved', activationStatus: 'draft', hasQa: true, hasEvidence: true, receipts })).toThrow('pack_must_be_staged');
   });
 
   it('prevents activation of an unapproved pack and creates an isolated pointer', () => {

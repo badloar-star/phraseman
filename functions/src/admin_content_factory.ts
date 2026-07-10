@@ -49,8 +49,8 @@ export function parseContentFactoryJobRequest(data: unknown): ContentFactoryJobR
   return Object.freeze({ ...result, lessonIds: Object.freeze([...lessonIds]), surfaces: Object.freeze([...surfaces]) });
 }
 
-function roleFromToken(token: Record<string, unknown>): AdminRole {
-  return hasAdminRole(token.adminRole) ? token.adminRole : 'admin';
+function roleFromToken(token: Record<string, unknown>): AdminRole | null {
+  return hasAdminRole(token.adminRole) ? token.adminRole : null;
 }
 
 export const adminCreateContentGenerationJob = onCall(
@@ -58,6 +58,7 @@ export const adminCreateContentGenerationJob = onCall(
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
     const role = roleFromToken(request.auth.token as Record<string, unknown>);
+    if (!role) throw new HttpsError('permission-denied', 'adminRole claim required');
     if (!hasPermission(role, 'content.draft.write')) throw new HttpsError('permission-denied', 'Role cannot create content drafts');
     const actorUid = request.auth.uid;
     const input = parseContentFactoryJobRequest(request.data);

@@ -18,4 +18,16 @@ describe('admin server-only boundaries', () => {
     expect(rules.slice(start, end)).toMatch(/allow create, update, delete:\s*if false/);
   });
 
+  it.each([
+    'match /banned_users/{docId}',
+    'match /admin_config/{docId}',
+    'match /remote_config_history/{docId}',
+    'match /admin_log/{docId}',
+  ])('keeps %s client writes disabled', (matchBlock) => {
+    const start = rules.indexOf(matchBlock);
+    const end = rules.indexOf('\n    }', start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(rules.slice(start, end)).toMatch(/allow (?:write|create):\s*if false/);
+  });
+
 });

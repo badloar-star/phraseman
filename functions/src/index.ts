@@ -1533,7 +1533,7 @@ export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialo
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminPublishRemoteConfig } from './admin_remote_config';
 export { adminCreateContentGenerationJob } from './admin_content_factory';
-export { adminPublishContentPack } from './admin_content_publish';
+export { adminPublishContentPack, adminRollbackContentPack } from './admin_content_publish';
 export { getActiveLanguageCatalog } from './language_catalog';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';

@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 
 const { Linter } = require('eslint');
 const corePath = path.join(__dirname, '..', 'scripts', 'text-integrity', 'inventory-core.cjs');
@@ -19,6 +21,14 @@ type InventoryCore = {
     node: Record<string, unknown>,
     options: { filename: string; sourceCode: Record<string, unknown> },
   ) => Array<Record<string, unknown>>;
+  loadAndValidateBaseline: (rootOrPath: string) => { schemaVersion: number; groups: Array<Record<string, any>> };
+  auditAgainstBaseline: (baseline: Record<string, any>, currentGroups: Array<Record<string, any>>) => {
+    ok: boolean; added: string[]; removed: string[]; countIncreased: string[]; countDecreased: string[];
+  };
+  bootstrapBaseline: (targetPath: string, currentGroups: Array<Record<string, any>>) => void;
+  updateBaselineShrinkOnly: (targetPath: string, currentGroups: Array<Record<string, any>>) => void;
+  publishNoClobber: (temporaryPath: string, targetPath: string) => void;
+  writeBootstrapAtomic: (targetPath: string, baseline: Record<string, any>, filesystem?: typeof fs) => void;
 };
 
 function loadCore(): InventoryCore {
@@ -138,7 +148,7 @@ describe('text-integrity AST inventory', () => {
       }
     `);
     expect(result.groups[0]).toMatchObject({
-      owner: 'Inner',
+      ownerName: 'Inner',
       ancestorPath: ['Panel', 'Row', 'Text'],
       tag: 'Text',
     });
@@ -186,7 +196,7 @@ describe('text-integrity AST inventory', () => {
     );
     expect(eslintGroups[0]).toMatchObject({
       file: 'components/nested/Fixture.tsx',
-      owner: 'Inner',
+      ownerName: 'Inner',
       ancestorPath: ['Panel', 'Text'],
     });
   });
@@ -240,7 +250,7 @@ describe('text-integrity AST inventory', () => {
     })).toEqual([]);
 
     expect(tsResult).toMatchObject({ unsafeSites: 2, unsafeGroups: 2 });
-    expect(tsResult.groups.map((group) => group.owner)).toEqual(['renderItem', 'renderItem']);
+    expect(tsResult.groups.map((group) => group.ownerName)).toEqual(['renderItem', 'renderItem']);
     expect(tsResult.groups.map((group) => group.ownerPath).sort()).toEqual(['A>renderItem', 'B>renderItem']);
     expect(new Set(tsResult.groups.map((group) => group.fingerprint))).toHaveProperty('size', 2);
     expect(eslintIdentities.map((identity) => identity.ownerPath).sort()).toEqual(['A>renderItem', 'B>renderItem']);
@@ -293,5 +303,231 @@ describe('text-integrity AST inventory', () => {
         'modules/nested/keep.tsx',
       ]);
     });
+  });
+});
+
+const classification = {
+  intendedMode: 'temporary-exception',
+  owner: 'text-integrity-migration',
+  reason: 'Legacy raw truncation frozen pending semantic migration',
+  expiryMilestone: 'text-integrity-residual-closeout',
+  exception: { approvedBy: 'text-integrity-design-2026-07-10', scope: 'legacy-baseline-only' },
+};
+
+function fixtureGroup(source = '<Text numberOfLines={1}>PRIVATE USER TEXT</Text>') {
+  return { ...scanSource(`function Card(){return ${source}}`).groups[0] };
+}
+
+function validBaseline(groups = [fixtureGroup()]) {
+  return { schemaVersion: 1, groups: groups.map((group) => ({ ...group, ...classification })) };
+}
+
+function changedGroup(group: Record<string, any>, changes: Record<string, any>) {
+  const changed = { ...group, ...changes };
+  return { ...changed, fingerprint: loadCore().fingerprintGroup(changed) };
+}
+
+describe('text-integrity classified baseline', () => {
+  test('roundtrip preserves distinct structural ownerName and migration owner with real TS/ESLint parity', () => withTempProject((root) => {
+    const source = `function Card(){const renderItem=()=> <Text numberOfLines={1}>private</Text>; return <List renderItem={renderItem}/>}`;
+    const tsGroup = scanSource(source).groups[0];
+    const eslintIdentities: Array<Record<string, any>> = [];
+    const linter = new Linter({ configType: 'eslintrc' });
+    linter.defineRule('capture-owner-schema', {
+      create(context: Record<string, any>) {
+        return { JSXOpeningElement(node: Record<string, unknown>) {
+          eslintIdentities.push(...loadCore().structuralIdentityFromEslint(node, {
+            filename: 'components/Fixture.tsx', sourceCode: context.getSourceCode(),
+          }));
+        } };
+      },
+    });
+    expect(linter.verify(source, {
+      parserOptions: { ecmaVersion: 2022, sourceType: 'module', ecmaFeatures: { jsx: true } },
+      rules: { 'capture-owner-schema': 'error' },
+    })).toEqual([]);
+    expect(eslintIdentities).toHaveLength(1);
+    expect(eslintIdentities[0]).toMatchObject({ ownerName: 'renderItem', ownerPath: 'Card>renderItem' });
+    expect(loadCore().fingerprintGroup(eslintIdentities[0])).toBe(tsGroup.fingerprint);
+
+    const target = path.join(root, 'baseline.json');
+    loadCore().bootstrapBaseline(target, [tsGroup]);
+    expect(loadCore().loadAndValidateBaseline(target).groups[0]).toMatchObject({
+      ownerName: 'renderItem', ownerPath: 'Card>renderItem', owner: 'text-integrity-migration',
+    });
+  }));
+
+  test('exports baseline enforcement API', () => {
+    const core = loadCore();
+    for (const name of ['loadAndValidateBaseline', 'auditAgainstBaseline', 'bootstrapBaseline', 'updateBaselineShrinkOnly', 'publishNoClobber'] as const) {
+      expect(typeof core[name]).toBe('function');
+    }
+  });
+
+  test('exact equality passes and line hint drift is diagnostic-only', () => {
+    const core = loadCore();
+    const group = fixtureGroup();
+    expect(core.auditAgainstBaseline(validBaseline([group]), [{ ...group, lineHints: [999] }])).toEqual({
+      ok: true, added: [], removed: [], countIncreased: [], countDecreased: [],
+    });
+  });
+
+  test.each([
+    ['added', (group: any) => [group, changedGroup(group, { prop: 'ellipsizeMode' })], 'added'],
+    ['removed', () => [], 'removed'],
+    ['count increase', (group: any) => [{ ...group, count: group.count + 1, lineHints: [...group.lineHints, 3] }], 'countIncreased'],
+    ['count decrease', (group: any) => [{ ...group, count: group.count - 1, lineHints: group.lineHints.slice(0, -1) }], 'countDecreased'],
+  ])('%s drift fails closed', (_label, mutate, bucket) => {
+    const core = loadCore();
+    const group = { ...fixtureGroup(), count: 2, lineHints: [1, 2] };
+    const audit = core.auditAgainstBaseline(validBaseline([group]), mutate(group));
+    expect(audit.ok).toBe(false);
+    expect((audit as any)[bucket]).toHaveLength(1);
+  });
+
+  test('bootstrap refuses an existing target', () => withTempProject((root) => {
+    const target = path.join(root, 'baseline.json');
+    fs.writeFileSync(target, 'sentinel', 'utf8');
+    expect(() => loadCore().bootstrapBaseline(target, [fixtureGroup()])).toThrow(/exists/i);
+    expect(fs.readFileSync(target, 'utf8')).toBe('sentinel');
+  }));
+
+  test('no-clobber publication loses a race safely and preserves winner bytes', () => withTempProject((root) => {
+    const temporary = path.join(root, 'candidate.tmp');
+    const target = path.join(root, 'baseline.json');
+    fs.writeFileSync(temporary, 'candidate', 'utf8');
+    fs.writeFileSync(target, 'race-winner', 'utf8');
+    expect(() => loadCore().publishNoClobber(temporary, target)).toThrow();
+    expect(fs.readFileSync(target, 'utf8')).toBe('race-winner');
+    expect(fs.existsSync(temporary)).toBe(false);
+  }));
+
+  test('bootstrap temp write failure leaves no target or temp sibling', () => withTempProject((root) => {
+    const target = path.join(root, 'baseline.json');
+    const failingFs = Object.create(fs) as typeof fs;
+    failingFs.writeFileSync = ((file: fs.PathOrFileDescriptor, data: any) => {
+      fs.writeFileSync(file, String(data).slice(0, 12), 'utf8');
+      throw new Error('simulated write failure');
+    }) as typeof fs.writeFileSync;
+    expect(() => loadCore().writeBootstrapAtomic(target, validBaseline(), failingFs)).toThrow(/simulated write failure/);
+    expect(fs.existsSync(target)).toBe(false);
+    expect(fs.readdirSync(root).filter((name) => name.startsWith('baseline.json.tmp-'))).toEqual([]);
+  }));
+
+  test.each([
+    ['new group', (group: any) => [group, changedGroup(group, { prop: 'ellipsizeMode' })]],
+    ['count increase', (group: any) => [{ ...group, count: group.count + 1, lineHints: [...group.lineHints, 2] }]],
+  ])('shrink update refuses %s without changing bytes', (_label, mutate) => withTempProject((root) => {
+    const target = path.join(root, 'baseline.json');
+    const group = fixtureGroup();
+    fs.writeFileSync(target, `${JSON.stringify(validBaseline([group]), null, 2)}\n`, 'utf8');
+    const before = fs.readFileSync(target);
+    expect(() => loadCore().updateBaselineShrinkOnly(target, mutate(group))).toThrow();
+    expect(fs.readFileSync(target).equals(before)).toBe(true);
+  }));
+
+  test('shrink update removes groups, decreases counts, refreshes hints, and preserves metadata', () => withTempProject((root) => {
+    const target = path.join(root, 'baseline.json');
+    const keep = { ...fixtureGroup(), count: 3, lineHints: [1, 2, 3] };
+    const remove = changedGroup(keep, { file: 'components/Removed.tsx' });
+    fs.writeFileSync(target, `${JSON.stringify(validBaseline([keep, remove]), null, 2)}\n`, 'utf8');
+    loadCore().updateBaselineShrinkOnly(target, [{ ...keep, count: 2, lineHints: [20, 30] }]);
+    const updated = loadCore().loadAndValidateBaseline(target);
+    expect(updated.groups).toHaveLength(1);
+    expect(updated.groups[0]).toMatchObject({ count: 2, lineHints: [20, 30], ...classification });
+  }));
+
+  test.each([
+    ['schema version', (b: any) => { b.schemaVersion = 2; }],
+    ['unknown root field', (b: any) => { b.extra = true; }],
+    ['missing field', (b: any) => { delete b.groups[0].owner; }],
+    ['unknown group field', (b: any) => { b.groups[0].secret = 'PRIVATE'; }],
+    ['duplicate fingerprint', (b: any) => { b.groups.push({ ...b.groups[0] }); }],
+    ['invalid count', (b: any) => { b.groups[0].count = 0; }],
+    ['malformed line hints', (b: any) => { b.groups[0].lineHints = [0, 'x']; }],
+    ['empty metadata', (b: any) => { b.groups[0].reason = ''; }],
+    ['invalid intended mode', (b: any) => { b.groups[0].intendedMode = 'reviewed'; }],
+    ['temporary exception missing approval', (b: any) => { delete b.groups[0].exception; }],
+    ['exception on non-temporary mode', (b: any) => { b.groups[0].intendedMode = 'flow'; }],
+  ])('schema rejects %s without leaking raw values', (_label, mutate) => withTempProject((root) => {
+    const target = path.join(root, 'baseline.json');
+    const baseline = validBaseline();
+    mutate(baseline);
+    fs.writeFileSync(target, JSON.stringify(baseline), 'utf8');
+    let message = '';
+    try { loadCore().loadAndValidateBaseline(target); } catch (error) { message = String(error); }
+    expect(message).toMatch(/baseline/i);
+    expect(message).not.toContain('PRIVATE');
+  }));
+
+  test.each([
+    ['file', 'components/PRIVATE.tsx'], ['ownerName', 'PRIVATE'], ['ownerPath', 'PRIVATE>owner'],
+    ['ancestorPath', ['PRIVATE']], ['tag', 'PRIVATE'], ['kind', 'PRIVATE'], ['prop', 'PRIVATE'],
+    ['value', 'PRIVATE'], ['testID', 'PRIVATE'],
+  ])('schema rejects stale fingerprint after %s tampering without leaking values', (field, value) => withTempProject((root) => {
+    const target = path.join(root, 'baseline.json');
+    const baseline = validBaseline();
+    (baseline.groups[0] as Record<string, any>)[field] = value;
+    fs.writeFileSync(target, JSON.stringify(baseline), 'utf8');
+    expect(() => loadCore().loadAndValidateBaseline(target)).toThrow(/fingerprint/i);
+    try { loadCore().loadAndValidateBaseline(target); } catch (error) { expect(String(error)).not.toContain('PRIVATE'); }
+  }));
+
+  test.each([
+    ['stale fingerprint', (g: any) => [{ ...g, ownerName: 'PRIVATE' }]],
+    ['duplicate fingerprint', (g: any) => [g, { ...g }]],
+    ['invalid count', (g: any) => [{ ...g, count: 0 }]],
+    ['invalid lineHints', (g: any) => [{ ...g, lineHints: [0] }]],
+  ])('audit and update reject malformed currentGroups: %s', (_label, mutate) => withTempProject((root) => {
+    const group = fixtureGroup();
+    const malformed = mutate(group);
+    const target = path.join(root, 'baseline.json');
+    fs.writeFileSync(target, `${JSON.stringify(validBaseline([group]), null, 2)}\n`, 'utf8');
+    const before = fs.readFileSync(target);
+    expect(() => loadCore().auditAgainstBaseline(validBaseline([group]), malformed)).toThrow();
+    expect(() => loadCore().updateBaselineShrinkOnly(target, malformed)).toThrow();
+    expect(fs.readFileSync(target).equals(before)).toBe(true);
+  }));
+
+  test('default CLI fails on a new group and writes nothing', () => withTempProject((root) => {
+    const group = fixtureGroup();
+    writeFixture(root, 'config/text-integrity-baseline.json', `${JSON.stringify(validBaseline([group]), null, 2)}\n`);
+    writeFixture(root, 'components/Fixture.tsx', 'function Different(){return <Text numberOfLines={2}>NEW PRIVATE TEXT</Text>}');
+    const before = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'config/text-integrity-baseline.json'))).digest('hex');
+    const cli = path.join(__dirname, '..', 'scripts', 'text-integrity', 'inventory.mjs');
+    const result = spawnSync(process.execPath, [cli], { cwd: root, encoding: 'utf8' });
+    const after = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'config/text-integrity-baseline.json'))).digest('hex');
+    expect(result.status).not.toBe(0);
+    expect(JSON.parse(result.stdout)).toMatchObject({ added: 1, removed: 1 });
+    expect(result.stdout).not.toContain('NEW PRIVATE TEXT');
+    expect(after).toBe(before);
+  }));
+
+  test('default CLI emits a privacy-safe JSON summary for an invalid baseline', () => withTempProject((root) => {
+    writeFixture(root, 'config/text-integrity-baseline.json', '{"PRIVATE USER TEXT":');
+    writeFixture(root, 'components/Fixture.tsx', 'function Card(){return <Text numberOfLines={1}>PRIVATE USER TEXT</Text>}');
+    const cli = path.join(__dirname, '..', 'scripts', 'text-integrity', 'inventory.mjs');
+    const result = spawnSync(process.execPath, [cli], { cwd: root, encoding: 'utf8' });
+    expect(result.status).not.toBe(0);
+    expect(JSON.parse(result.stdout)).toMatchObject({ files: 1, unsafeSites: 1, unsafeGroups: 1, baselineValid: false, errorCategory: 'schema-invalid' });
+    expect(`${result.stdout}${result.stderr}`).not.toContain('PRIVATE USER TEXT');
+  }));
+
+  test('update policy refusal reports a valid baseline distinctly', () => withTempProject((root) => {
+    const group = fixtureGroup();
+    writeFixture(root, 'config/text-integrity-baseline.json', `${JSON.stringify(validBaseline([group]), null, 2)}\n`);
+    writeFixture(root, 'components/Fixture.tsx', 'function Different(){return <Text numberOfLines={2}>PRIVATE</Text>}');
+    const cli = path.join(__dirname, '..', 'scripts', 'text-integrity', 'inventory.mjs');
+    const result = spawnSync(process.execPath, [cli, '--update-baseline'], { cwd: root, encoding: 'utf8' });
+    expect(result.status).not.toBe(0);
+    expect(JSON.parse(result.stdout)).toMatchObject({ baselineValid: true, updateRefused: true, errorCategory: 'update-refused' });
+    expect(`${result.stdout}${result.stderr}`).not.toContain('PRIVATE');
+  }));
+
+  test('package exposes exact audit/update scripts and no bootstrap script', () => {
+    const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
+    expect(pkg.scripts['text-integrity:audit']).toBe('node scripts/text-integrity/inventory.mjs');
+    expect(pkg.scripts['text-integrity:update-baseline']).toBe('node scripts/text-integrity/inventory.mjs --update-baseline');
+    expect(Object.keys(pkg.scripts).some((name) => name.includes('bootstrap-baseline'))).toBe(false);
   });
 });

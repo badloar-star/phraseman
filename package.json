@@ -4,6 +4,8 @@
   "version": "1.5.43",
   "scripts": {
     "start": "expo start",
+    "text-integrity:audit": "node scripts/text-integrity/inventory.mjs",
+    "text-integrity:update-baseline": "node scripts/text-integrity/inventory.mjs --update-baseline",
     "start:emu": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1",
     "metro:dev": "cross-env CI=false expo start --dev-client --lan --port 8081",
     "metro:tunnel": "cross-env CI=false expo start --dev-client --tunnel --port 8081",

@@ -11,6 +11,209 @@ const SKIPPED_DIRECTORIES = new Set([
   'coverage', 'dist', 'exports', 'maestro-results', 'node_modules', 'output', 'qa-artifacts',
   'report', 'reports', 'subscription-recovery', 'temp', 'tmp',
 ]);
+const BASELINE_SCHEMA_VERSION = 1;
+const BASELINE_FILENAME = path.join('config', 'text-integrity-baseline.json');
+const GROUP_FIELDS = [
+  'file', 'ownerName', 'ownerPath', 'ancestorPath', 'tag', 'kind', 'prop', 'value', 'testID',
+  'fingerprint', 'count', 'lineHints', 'intendedMode', 'owner', 'reason', 'expiryMilestone',
+];
+const INTENDED_MODES = new Set(['flow', 'adaptive', 'scroll', 'expand', 'non-text', 'temporary-exception']);
+const LEGACY_CLASSIFICATION = Object.freeze({
+  intendedMode: 'temporary-exception',
+  owner: 'text-integrity-migration',
+  reason: 'Legacy raw truncation frozen pending semantic migration',
+  expiryMilestone: 'text-integrity-residual-closeout',
+  exception: Object.freeze({
+    approvedBy: 'text-integrity-design-2026-07-10',
+    scope: 'legacy-baseline-only',
+  }),
+});
+
+function baselineError(detail) {
+  const error = new Error(`Text integrity baseline invalid: ${detail}`);
+  error.code = 'TEXT_INTEGRITY_SCHEMA_INVALID';
+  return error;
+}
+
+function currentGroupsError(detail) {
+  const error = new Error(`Text integrity current inventory invalid: ${detail}`);
+  error.code = 'TEXT_INTEGRITY_CURRENT_INVALID';
+  return error;
+}
+
+function nonemptyString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+function validateExactFields(object, allowed, location) {
+  if (!object || typeof object !== 'object' || Array.isArray(object)) throw baselineError(`${location} must be an object`);
+  const unknown = Object.keys(object).filter((field) => !allowed.has(field));
+  if (unknown.length) throw baselineError(`${location} has unknown field`);
+}
+
+function validateBaseline(baseline) {
+  validateExactFields(baseline, new Set(['schemaVersion', 'groups']), 'root');
+  if (baseline.schemaVersion !== BASELINE_SCHEMA_VERSION) throw baselineError('unsupported schemaVersion');
+  if (!Array.isArray(baseline.groups)) throw baselineError('groups must be an array');
+  const seen = new Set();
+  const allowedGroupFields = new Set([...new Set(GROUP_FIELDS), 'exception']);
+  for (const group of baseline.groups) {
+    validateExactFields(group, allowedGroupFields, 'group');
+    for (const field of ['file', 'ownerName', 'ownerPath', 'tag', 'kind', 'prop', 'value', 'fingerprint']) {
+      if (!nonemptyString(group[field])) throw baselineError(`group ${field} is required`);
+    }
+    if (!Array.isArray(group.ancestorPath) || group.ancestorPath.some((item) => !nonemptyString(item))) {
+      throw baselineError('group ancestorPath is malformed');
+    }
+    if (!(group.testID === null || nonemptyString(group.testID))) throw baselineError('group testID is malformed');
+    if (!/^[0-9a-f]{64}$/.test(group.fingerprint)) throw baselineError('group fingerprint is malformed');
+    if (fingerprintGroup(group) !== group.fingerprint) throw baselineError('group fingerprint does not match structure');
+    if (seen.has(group.fingerprint)) throw baselineError('duplicate fingerprint');
+    seen.add(group.fingerprint);
+    if (!Number.isSafeInteger(group.count) || group.count < 1) throw baselineError('group count is invalid');
+    if (!Array.isArray(group.lineHints) || group.lineHints.length !== group.count
+      || group.lineHints.some((hint) => !Number.isSafeInteger(hint) || hint < 1)) {
+      throw baselineError('group lineHints are malformed');
+    }
+    if (!INTENDED_MODES.has(group.intendedMode)) throw baselineError('group intendedMode is invalid');
+    for (const field of ['owner', 'reason', 'expiryMilestone']) {
+      if (!nonemptyString(group[field])) throw baselineError(`group metadata ${field} is required`);
+    }
+    if (group.intendedMode === 'temporary-exception') {
+      validateExactFields(group.exception, new Set(['approvedBy', 'scope']), 'exception');
+      if (!nonemptyString(group.exception.approvedBy) || !nonemptyString(group.exception.scope)) {
+        throw baselineError('temporary exception metadata is required');
+      }
+    } else if (Object.hasOwn(group, 'exception')) {
+      throw baselineError('exception is forbidden for this intendedMode');
+    }
+  }
+  return baseline;
+}
+
+function validateCurrentGroups(groups) {
+  if (!Array.isArray(groups)) throw currentGroupsError('groups must be an array');
+  const allowed = new Set(['file', 'ownerName', 'ownerPath', 'ancestorPath', 'tag', 'kind', 'prop', 'value', 'testID', 'fingerprint', 'count', 'lineHints']);
+  const seen = new Set();
+  for (const group of groups) {
+    if (!group || typeof group !== 'object' || Array.isArray(group)) throw currentGroupsError('group must be an object');
+    if (Object.keys(group).some((field) => !allowed.has(field))) throw currentGroupsError('group has unknown field');
+    const canonical = canonicalGroup(group);
+    for (const field of ['file', 'ownerName', 'ownerPath', 'tag', 'kind', 'prop', 'value']) {
+      if (!nonemptyString(group[field]) || group[field] !== canonical[field]) throw currentGroupsError(`group ${field} is malformed`);
+    }
+    if (JSON.stringify(group.ancestorPath) !== JSON.stringify(canonical.ancestorPath)) throw currentGroupsError('group ancestorPath is malformed');
+    if (group.testID !== canonical.testID) throw currentGroupsError('group testID is malformed');
+    if (!/^[0-9a-f]{64}$/.test(group.fingerprint) || fingerprintGroup(group) !== group.fingerprint) {
+      throw currentGroupsError('group fingerprint does not match structure');
+    }
+    if (seen.has(group.fingerprint)) throw currentGroupsError('duplicate fingerprint');
+    seen.add(group.fingerprint);
+    if (!Number.isSafeInteger(group.count) || group.count < 1) throw currentGroupsError('group count is invalid');
+    if (!Array.isArray(group.lineHints) || group.lineHints.length !== group.count
+      || group.lineHints.some((hint) => !Number.isSafeInteger(hint) || hint < 1)) {
+      throw currentGroupsError('group lineHints are malformed');
+    }
+  }
+  return groups;
+}
+
+function resolveBaselinePath(rootOrPath) {
+  if (path.extname(rootOrPath).toLowerCase() === '.json') return path.resolve(rootOrPath);
+  return path.resolve(rootOrPath, BASELINE_FILENAME);
+}
+
+function loadAndValidateBaseline(rootOrPath) {
+  const target = resolveBaselinePath(rootOrPath);
+  let parsed;
+  try { parsed = JSON.parse(fs.readFileSync(target, 'utf8')); } catch (error) {
+    throw baselineError(error && error.code === 'ENOENT' ? 'file is missing' : 'file is not valid JSON');
+  }
+  return validateBaseline(parsed);
+}
+
+function auditAgainstBaseline(baseline, currentGroups) {
+  validateBaseline(baseline);
+  validateCurrentGroups(currentGroups);
+  const expected = new Map(baseline.groups.map((group) => [group.fingerprint, group]));
+  const current = new Map(currentGroups.map((group) => [group.fingerprint, group]));
+  const added = [...current.keys()].filter((fingerprint) => !expected.has(fingerprint)).sort();
+  const removed = [...expected.keys()].filter((fingerprint) => !current.has(fingerprint)).sort();
+  const countIncreased = [...current.keys()].filter((fingerprint) => expected.has(fingerprint)
+    && current.get(fingerprint).count > expected.get(fingerprint).count).sort();
+  const countDecreased = [...current.keys()].filter((fingerprint) => expected.has(fingerprint)
+    && current.get(fingerprint).count < expected.get(fingerprint).count).sort();
+  return {
+    ok: added.length + removed.length + countIncreased.length + countDecreased.length === 0,
+    added, removed, countIncreased, countDecreased,
+  };
+}
+
+function publishNoClobber(temporaryPath, targetPath, filesystem = fs) {
+  try {
+    filesystem.linkSync(temporaryPath, targetPath);
+  } finally {
+    try { filesystem.unlinkSync(temporaryPath); } catch {}
+  }
+}
+
+function writeBootstrapAtomic(targetPath, baseline, filesystem = fs) {
+  filesystem.mkdirSync(path.dirname(targetPath), { recursive: true });
+  const temporary = `${targetPath}.tmp-${process.pid}-${crypto.randomBytes(8).toString('hex')}`;
+  try {
+    filesystem.writeFileSync(temporary, `${JSON.stringify(baseline, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+    publishNoClobber(temporary, targetPath, filesystem);
+  } catch (error) {
+    if (error && error.code === 'EEXIST') throw new Error('Text integrity baseline target already exists');
+    throw error;
+  } finally {
+    try { filesystem.rmSync(temporary, { force: true }); } catch {}
+  }
+}
+
+function writeBaselineAtomic(targetPath, baseline) {
+  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+  const temporary = `${targetPath}.tmp-${process.pid}`;
+  try {
+    fs.writeFileSync(temporary, `${JSON.stringify(baseline, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+    fs.renameSync(temporary, targetPath);
+  } catch (error) {
+    try { fs.rmSync(temporary, { force: true }); } catch {}
+    throw error;
+  }
+}
+
+function classifiedGroup(group) {
+  return { ...group, ...LEGACY_CLASSIFICATION, exception: { ...LEGACY_CLASSIFICATION.exception } };
+}
+
+function bootstrapBaseline(targetPath, currentGroups) {
+  const target = path.resolve(targetPath);
+  validateCurrentGroups(currentGroups);
+  const baseline = validateBaseline({
+    schemaVersion: BASELINE_SCHEMA_VERSION,
+    groups: currentGroups.map(classifiedGroup).sort((left, right) => left.fingerprint.localeCompare(right.fingerprint)),
+  });
+  writeBootstrapAtomic(target, baseline);
+}
+
+function updateBaselineShrinkOnly(targetPath, currentGroups) {
+  const target = path.resolve(targetPath);
+  const baseline = loadAndValidateBaseline(target);
+  const audit = auditAgainstBaseline(baseline, currentGroups);
+  if (audit.added.length || audit.countIncreased.length) {
+    const error = new Error('Text integrity baseline update refuses additions or count increases');
+    error.code = 'TEXT_INTEGRITY_UPDATE_REFUSED';
+    throw error;
+  }
+  const current = new Map(currentGroups.map((group) => [group.fingerprint, group]));
+  const groups = baseline.groups.filter((group) => current.has(group.fingerprint)).map((group) => ({
+    ...group,
+    count: current.get(group.fingerprint).count,
+    lineHints: [...current.get(group.fingerprint).lineHints],
+  }));
+  writeBaselineAtomic(target, validateBaseline({ schemaVersion: BASELINE_SCHEMA_VERSION, groups }));
+}
 
 function shouldSkipDirectory(name) {
   const normalized = name.toLowerCase();
@@ -27,8 +230,8 @@ function normalizeRelativePath(file) {
 function canonicalGroup(input) {
   return {
     file: normalizeRelativePath(input.file || input.filename || ''),
-    owner: String(input.owner || '<module>'),
-    ownerPath: String(input.ownerPath || input.owner || '<module>'),
+    ownerName: String(input.ownerName || '<module>'),
+    ownerPath: String(input.ownerPath || input.ownerName || '<module>'),
     ancestorPath: Array.isArray(input.ancestorPath) ? input.ancestorPath.map(String) : [],
     tag: String(input.tag || ''),
     kind: String(input.kind || ''),
@@ -174,7 +377,7 @@ function structuralIdentitiesFromTypescript(opening, file) {
   const owners = tsOwnerAncestry(opening);
   const base = {
     file,
-    owner: owners.at(-1) || '<module>',
+    ownerName: owners.at(-1) || '<module>',
     ownerPath: owners.join('>') || '<module>',
     ancestorPath: tsAncestorPath(opening),
     tag: typescriptJsxName(opening.tagName),
@@ -225,7 +428,7 @@ function structuralIdentityFromEslint(node, options) {
   const owners = eslintOwnerAncestry(ancestors);
   const base = {
     file: options.filename,
-    owner: owners.at(-1) || '<module>',
+    ownerName: owners.at(-1) || '<module>',
     ownerPath: owners.join('>') || '<module>',
     ancestorPath,
     tag,
@@ -292,9 +495,15 @@ function scanTextIntegrity(root, relativeFiles) {
 }
 
 module.exports = {
+  auditAgainstBaseline,
+  bootstrapBaseline,
   canonicalGroup,
   collectProductionFiles,
   fingerprintGroup,
+  loadAndValidateBaseline,
+  publishNoClobber,
   scanTextIntegrity,
   structuralIdentityFromEslint,
+  updateBaselineShrinkOnly,
+  writeBootstrapAtomic,
 };

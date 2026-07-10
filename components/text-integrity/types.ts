@@ -21,7 +21,7 @@ export type TextIntegrityMeasurement = {
   fontScale: number;
   semanticMode: TextSemanticMode;
   provenance: TextProvenance;
-  rawText: string;
+  rawText?: string;
   intrinsicText: IntrinsicTextMetrics;
   hostBounds?: Rect;
   viewport: Rect;

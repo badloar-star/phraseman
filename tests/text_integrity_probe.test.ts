@@ -136,6 +136,26 @@ describe('text integrity probe', () => {
     expect(session.read()).toEqual([]);
   });
 
+  test('geometry-only measurements skip completeness comparison and hashing', async () => {
+    const hasher = jest.fn(async () => 'must-not-run');
+    const session = createTextIntegrityProbeSession({ salt: 'safe', hasher });
+    const result = await session.inspect(measurement({
+      rawText: undefined,
+      hostBounds: { x: 0, y: 0, width: 20, height: 10 },
+      intrinsicText: {
+        height: 20,
+        maxLineWidth: 40,
+        lineCount: 1,
+        visibleLineCount: 1,
+        hasNativeTruncation: false,
+      },
+    }));
+    expect(result.map((item) => item.kind)).toContain('local-clipping');
+    expect(result[0]).toEqual(expect.objectContaining({ contentLength: 0 }));
+    expect(result[0]).not.toHaveProperty('contentHash');
+    expect(hasher).not.toHaveBeenCalled();
+  });
+
   test('cancellation while hashing prevents a late store mutation', async () => {
     let finishHash: ((hash: string) => void) | undefined;
     const hasher = () => new Promise<string>((resolve) => { finishHash = resolve; });
@@ -303,6 +323,7 @@ describe('text integrity probe', () => {
         jest.doMock('expo-crypto', () => {
           throw new Error('crypto initialized');
         });
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         expect(() => require('../components/text-integrity/use_text_integrity_probe')).not.toThrow();
       });
     } finally {

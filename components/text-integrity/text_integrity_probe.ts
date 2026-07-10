@@ -60,8 +60,11 @@ function normalizeTextForLayoutComparison(value: string): string {
 
 export function convertTextLayoutLinesToIntrinsicMetrics(
   lines: readonly NativeTextLayoutLine[],
-  expectedText: string,
+  expectedText?: string,
 ): IntrinsicTextMetrics {
+  if (expectedText === undefined) {
+    return convertNativeLinesToIntrinsicMetrics(lines, lines.length, false);
+  }
   const expected = normalizeTextForLayoutComparison(expectedText);
   const renderedLines = lines.map((line) => normalizeTextForLayoutComparison(line.text));
   const renderedCandidates = new Set([
@@ -207,10 +210,12 @@ export function createTextIntegrityProbeSession(
       if (kinds.length === 0) return [];
       if (!shouldCommit()) return [];
       let contentHash: string | undefined;
-      try {
-        contentHash = await hasher(`${salt}\u0000${measurement.rawText}`);
-      } catch {
-        contentHash = undefined;
+      if (measurement.rawText !== undefined) {
+        try {
+          contentHash = await hasher(`${salt}\u0000${measurement.rawText}`);
+        } catch {
+          contentHash = undefined;
+        }
       }
       if (!shouldCommit()) return [];
       const fresh: TextIntegrityViolation[] = [];
@@ -227,7 +232,7 @@ export function createTextIntegrityProbeSession(
           fontScale: sanitizedNumber(measurement.fontScale),
           semanticMode: measurement.semanticMode,
           provenance: measurement.provenance,
-          contentLength: measurement.rawText.length,
+          contentLength: measurement.rawText?.length ?? 0,
           ...(contentHash ? { contentHash } : {}),
           intrinsicText: {
             ...measurement.intrinsicText,

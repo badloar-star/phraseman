@@ -25,7 +25,7 @@ export type UseTextIntegrityProbeInput = {
   locale: Lang;
   semanticMode: TextSemanticMode;
   provenance: TextProvenance;
-  text: string;
+  text?: string;
   hostRef?: MeasurableRef;
   actionRef?: MeasurableRef;
 };

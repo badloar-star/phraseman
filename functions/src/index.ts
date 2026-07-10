@@ -30,8 +30,9 @@ const { runPremiumExpiryReminder } = require('./premium_expiry_reminder') as {
   runPremiumExpiryReminder: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failed: number }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox') as {
+const { runSupportInboxPullCron, runSupportReplyDispatchSweeper, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox') as {
   runSupportInboxPullCron: () => Promise<unknown>;
+  runSupportReplyDispatchSweeper: () => Promise<{ scanned: number; markedUnknown: number }>;
   GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -680,6 +681,17 @@ export const gmailSupportPullCron = functions.scheduler.onSchedule(
   { schedule: '0 8 * * *', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
   async () => {
     await runSupportInboxPullCron();
+  }
+);
+
+// A crashed SMTP worker leaves an intentionally non-retryable `dispatching`
+// operation. Promote stale attempts to `delivery_unknown` so the owner can
+// reconcile them against Gmail Sent without any automatic resend.
+export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
+  { schedule: 'every 15 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120 },
+  async () => {
+    const summary = await runSupportReplyDispatchSweeper();
+    if (summary.markedUnknown > 0) console.warn('supportReplyDispatchSweeperCron', JSON.stringify(summary));
   }
 );
 
@@ -1555,7 +1567,14 @@ export {
   adminSupportPull,
   adminSupportList,
   adminSupportGenerateReply,
+  adminSupportPrepareReply,
+  adminSupportDispatchReply,
   adminSupportSendReply,
+  adminSupportCancelReply,
+  adminSupportPrepareReplyBatch,
+  adminSupportDispatchReplyBatch,
+  adminSupportCancelReplyBatch,
+  adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
 } from './support_inbox';

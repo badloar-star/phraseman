@@ -209,6 +209,23 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .legacy-workspace-bar strong { font-size: 14px; }
 .legacy-workspace-bar small { margin-top: 4px; color: var(--muted); font-size: 12px; }
 .legacy-workspace iframe { display: block; width: 100%; min-height: calc(100vh - 220px); height: 960px; border: 0; background: #0d1117; }
+.support-list { display: grid; gap: 12px; }
+.support-message { padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); }
+.support-message > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.support-message > header strong, .support-message > header small { display: block; }
+.support-message > header strong { font-size: 14px; }
+.support-message > header small { margin-top: 5px; color: var(--muted); font-size: 12px; }
+.support-body { overflow: auto; max-height: 210px; margin-top: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: #455165; font-size: 13px; line-height: 1.55; white-space: pre-wrap; }
+.support-reply { min-height: 126px !important; }
+.confirmation-panel dl { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 8px 12px; margin: 0; font-size: 13px; }
+.confirmation-panel dt { color: var(--muted); font-weight: 700; }
+.confirmation-panel dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
+.confirmation-text { max-height: 360px; color: var(--text); }
+.batch-preview { display: grid; max-height: 520px; gap: 8px; overflow: auto; }
+.batch-preview details { border: 1px solid var(--line); border-radius: 8px; background: var(--surface-soft); }
+.batch-preview summary { padding: 10px 12px; cursor: pointer; color: var(--text); font-size: 12px; font-weight: 700; }
+.batch-preview .support-body { margin: 0 10px 10px; }
+.notice.danger { border-color: #f1b7b7; background: #fff4f4; color: #7b2020; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; }

@@ -74,7 +74,7 @@ const state = {
   preview: null,
   workspace: null,
   generation: null,
-  support: { loaded: false, items: [] },
+  support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
   analytics: null,
   budget: null,
   selectedCapabilityId: '',
@@ -379,10 +379,28 @@ function renderDiagnostics() {
 
 function renderSupport() {
   const items = state.support.items;
-  return `${pageHeader(PAGES.support, 'Пользователи / Почта', '<a class="button" href="../../admin/index.html#gmail-support" title="Открыть полный рабочий процесс ответов">Полный процесс ответов</a>')}
-    <section class="card"><div class="card-header"><div><h2>Входящие</h2><p>Письма людей не скрываются системным фильтром; категория показывается отдельно.</p></div><div class="actions"><button class="button" data-action="load-support" type="button"${disabledWhenUnauthorized()}>Обновить список</button><button class="button primary" data-action="pull-support" type="button"${disabledWhenUnauthorized()}>Проверить Gmail</button></div></div>
-      <div class="card-body">${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !items.length ? emptyState('Новых писем нет.') : `<div class="data-list">${items.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.subject || '(без темы)')}</strong><small>${escapeHtml(item.fromEmail || 'Неизвестный отправитель')} · ${escapeHtml(item.receivedAtIso || '')}</small></div><div class="actions"><span class="badge">${escapeHtml(item.mailCategory || 'не определено')}</span><span class="badge ${badgeClass(item.status)}">${escapeHtml(item.status || 'новое')}</span></div></div>`).join('')}</div>`}</div>
-    </section>`;
+  const pending = state.support.pendingReply;
+  const pendingIsBatch = Boolean(pending?.batchId);
+  const filter = state.support.filter || 'new';
+  const filtered = items.filter((item) => filter === 'all' || String(item.status || 'new') === filter).slice(0, 50);
+  const count = (status) => items.filter((item) => String(item.status || 'new') === status).length;
+  const humanCount = items.filter((item) => item.mailCategory === 'human' || item.mailCategory === 'user').length;
+  const readyDrafts = items.filter((item) => String(item.status || 'new') === 'new' && String(item.draftReply || '').trim()).length;
+  const statusName = (status) => ({ new: 'Новое', answered: 'Отвечено', archived: 'Архив' })[status] ?? status;
+  const headerAction = `<div class="actions"><button class="button" data-action="load-support" type="button"${disabledWhenUnauthorized()}>Обновить</button><button class="button primary" data-action="pull-support" type="button"${disabledWhenUnauthorized()}>Проверить Gmail</button></div>`;
+  return `${pageHeader(PAGES.support, 'Пользователи / Почта', headerAction)}
+    <div class="notice">Письма людей не удаляются и не скрываются системным фильтром. Категория показывается отдельно, а в список возвращаются все статусы.</div>
+    <section class="metrics section"><article class="card metric"><label>Всего загружено</label><strong>${state.support.loaded ? items.length : '—'}</strong><span class="badge">до 500</span></article><article class="card metric"><label>Новые</label><strong>${state.support.loaded ? count('new') : '—'}</strong><span class="badge warning">нужен ответ</span></article><article class="card metric"><label>Письма людей</label><strong>${state.support.loaded ? humanCount : '—'}</strong><span class="badge">не скрываются</span></article><article class="card metric"><label>Отвечено</label><strong>${state.support.loaded ? count('answered') : '—'}</strong><span class="badge success">готово</span></article></section>
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Черновики можно редактировать перед отправкой.</p></div><div class="actions"><button class="button small" data-support-filter="new" type="button">Новые ${count('new')}</button><button class="button small" data-support-filter="answered" type="button">Отвечено ${count('answered')}</button><button class="button small" data-support-filter="archived" type="button">Архив ${count('archived')}</button><button class="button small" data-support-filter="all" type="button">Все</button></div></div>
+      <div class="card-body"><div class="actions"><button class="button" data-action="generate-support-reply" data-message-id="" type="button"${state.support.loaded && count('new') && state.authorized && !state.busy && !pending ? '' : ' disabled'} title="Сгенерировать черновики для новых писем без ответа">Сгенерировать черновики</button><button class="button" data-action="prepare-support-reply-batch" type="button"${state.authorized && !state.busy && !pending && readyDrafts ? '' : ' disabled'} title="Сначала будет создан точный запечатанный список до 200 писем">Подготовить пакет (${readyDrafts})</button><span class="hint">Показано: ${filtered.length} из ${items.length}</span></div>
+      ${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !filtered.length ? emptyState('В этом фильтре писем нет.') : `<div class="support-list section">${filtered.map((item) => {
+        const messageId = escapeHtml(item.id);
+        const status = String(item.status || 'new');
+        const when = item.receivedAtMs ? new Date(Number(item.receivedAtMs)).toLocaleString('ru-RU') : String(item.receivedAtIso || item.receivedAt || '');
+        const gateState = String(item.replyGate?.state || '');
+        return `<article class="support-message"><header><div><strong>${escapeHtml(item.subject || '(без темы)')}</strong><small>${escapeHtml(item.fromName || '')} &lt;${escapeHtml(item.fromEmail || 'неизвестный отправитель')}&gt; · ${escapeHtml(when)}</small></div><div class="actions"><span class="badge">${escapeHtml(item.mailCategory || 'не определено')}</span><span class="badge ${badgeClass(status)}">${escapeHtml(statusName(status))}</span>${gateState ? `<span class="badge ${gateState === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(gateState)}</span>` : ''}</div></header><div class="support-body">${escapeHtml(String(item.bodyText || '').slice(0, 8000)) || '<span class="muted">Пустое тело письма</span>'}</div>${status !== 'archived' ? `<div class="field section"><label for="support-reply-${messageId}">Ответ</label><textarea id="support-reply-${messageId}" class="support-reply" placeholder="Введите ответ или сгенерируйте черновик">${escapeHtml(item.draftReply || '')}</textarea></div><div class="actions section"><button class="button small" data-action="generate-support-reply" data-message-id="${messageId}" type="button"${state.authorized && !state.busy && !pending ? '' : ' disabled'}>Сгенерировать</button><button class="button small primary" data-action="prepare-support-reply" data-message-id="${messageId}" type="button"${state.authorized && !state.busy && !pending && status === 'new' && gateState !== 'delivery_unknown' && gateState !== 'dispatching' ? '' : ' disabled'} title="Сначала будет показан точный текст с подписью">Подготовить отправку</button></div>` : ''}${gateState === 'delivery_unknown' ? `<div class="notice danger section">Gmail мог принять письмо, но подтверждение потеряно. Автоматический повтор заблокирован; владелец должен проверить папку «Отправленные».</div><div class="actions section"><button class="button small" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="accepted" type="button"${['owner', 'admin'].includes(state.adminRole) && !state.busy ? '' : ' disabled'}>В отправленных: да</button><button class="button small" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="verified_not_sent" type="button"${['owner', 'admin'].includes(state.adminRole) && !state.busy ? '' : ' disabled'}>В отправленных: нет</button></div>` : ''}<div class="actions section"><button class="button ghost small" data-action="set-support-status" data-message-id="${messageId}" data-status="${status === 'archived' ? 'new' : 'archived'}" type="button"${state.authorized && !state.busy && !pending ? '' : ' disabled'}>${status === 'archived' ? 'Вернуть в новые' : 'В архив'}</button></div></article>`;
+      }).join('')}</div>`}</div></section>
+      <section class="card"><div class="card-header"><div><h2>${pending ? (pendingIsBatch ? 'Подтверждение пакета' : 'Подтверждение отправки') : 'Подпись'}</h2><p>${pending ? (pendingIsBatch ? 'Проверьте состав запечатанного пакета.' : 'Проверьте точного получателя и итоговый текст.') : 'Добавляется сервером после текста ответа.'}</p></div></div><div class="card-body">${pending ? (pendingIsBatch ? `<div class="confirmation-panel"><dl><dt>Писем</dt><dd>${Number(pending.count || 0)}</dd><dt>Пакет</dt><dd><code>${escapeHtml(pending.batchId || '')}</code></dd><dt>Манифест</dt><dd><code>${escapeHtml(pending.manifestHash || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'attention_required' ? 'danger' : ''}">${escapeHtml(pending.state || 'prepared')}</span></dd></dl><div class="batch-preview section">${(Array.isArray(pending.items) ? pending.items : []).map((item, index) => `<details${index < 2 ? ' open' : ''}><summary>${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div class="support-body confirmation-text">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}</div><div class="notice section">Каждое письмо имеет отдельную защищённую операцию. При частичном сбое пакет продолжит только ещё не начатые операции и никогда автоматически не повторит неопределённую доставку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply-batch" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Отменить пакет</button><button class="button primary" data-action="dispatch-support-reply-batch" type="button"${state.busy || !['prepared', 'dispatching', 'attention_required'].includes(pending.state) ? ' disabled' : ''}>Подтвердить пакет</button></div></div>` : `<div class="confirmation-panel"><dl><dt>Кому</dt><dd>${escapeHtml(pending.payload?.to || '')}</dd><dt>Тема</dt><dd>${escapeHtml(pending.payload?.subject || '')}</dd><dt>Операция</dt><dd><code>${escapeHtml(pending.operationId || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(pending.state || 'prepared')}</span></dd></dl><div class="support-body confirmation-text">${escapeHtml(pending.payload?.finalText || '')}</div><div class="notice section">После подтверждения этот запечатанный текст уже не изменяется. Повторный клик не создаст вторую SMTP-отправку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply" type="button"${state.busy ? ' disabled' : ''}>Отменить</button><button class="button primary" data-action="dispatch-support-reply" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Подтвердить и отправить</button></div></div>`) : `<div class="field"><label for="support-signature">Подпись поддержки</label><textarea id="support-signature" maxlength="2000" placeholder="С уважением, команда Phraseman">${escapeHtml(state.support.signature || '')}</textarea></div><div class="hint">Ревизия подписи: ${Number(state.support.signatureRevision || 0)}</div><div class="actions end section"><button class="button primary" data-action="save-support-signature" type="button"${state.authorized && !state.busy ? '' : ' disabled'}>Сохранить подпись</button></div><div class="notice section">Одиночная и пакетная отправка защищены неизменяемыми операциями, явным предпросмотром и блокировкой автоматического повтора при неопределённом ответе Gmail.</div><a class="button section" href="../../admin/index.html#gmail-support" target="_blank" rel="noopener">Открыть прежний модуль</a>`}</div></section></div>`;
 }
 
 function renderAnalytics() {
@@ -439,6 +457,25 @@ async function loadJobDetail(jobId) {
   state.preview = null;
   const job = result?.job ?? {};
   state.workspace = await actions.getFactoryWorkspace({ studyTarget: job.studyTarget, learnerSourceLocale: job.learnerSourceLocale ?? job.sourceLocale, limit: 100 });
+}
+
+function applySupportListResult(result) {
+  const serverPending = [
+    ...(Array.isArray(result?.pendingBatches) ? result.pendingBatches : []),
+    ...(Array.isArray(result?.pendingReplies) ? result.pendingReplies : []),
+  ];
+  const currentPending = state.support.pendingReply;
+  const restoredPending = serverPending.find((candidate) => (
+    currentPending?.batchId ? candidate.batchId === currentPending.batchId : candidate.operationId === currentPending?.operationId
+  )) ?? serverPending[0] ?? null;
+  state.support = {
+    ...state.support,
+    loaded: true,
+    items: Array.isArray(result?.items) ? result.items : [],
+    signature: String(result?.signature ?? ''),
+    signatureRevision: Number(result?.signatureRevision ?? 0),
+    pendingReply: restoredPending,
+  };
 }
 
 function readCreateForm() {
@@ -573,8 +610,87 @@ async function handleAction(action, target) {
     const catalog = state.detail?.catalog ?? {};
     return runBusy(async () => { await actions.rollbackFactoryRelease({ targetReleaseId, expectedCurrentReleaseId: String(catalog.activeRelease?.releaseId ?? ''), expectedRevision: Number(catalog.revision ?? 0), idempotencyKey: id('rollback'), reason, requestId: id('request-rollback') }); await loadJobDetail(state.selectedJobId); }, 'Откат выполнен.');
   }
-  if (action === 'load-support') return runBusy(async () => { const result = await actions.loadSupport({ limit: 500 }); state.support = { loaded: true, items: Array.isArray(result?.items) ? result.items : [] }; }, 'Входящие загружены.');
-  if (action === 'pull-support') return runBusy(async () => { const result = await actions.pullSupport({}); const list = await actions.loadSupport({ limit: 500 }); state.support = { loaded: true, items: Array.isArray(list?.items) ? list.items : [] }; setMessage(`Почта проверена: найдено ${Number(result?.fetched ?? 0)}, сохранено ${Number(result?.saved ?? 0)}.`, 'success'); });
+  if (action === 'load-support') return runBusy(async () => { applySupportListResult(await actions.loadSupport({ limit: 500 })); }, 'Входящие загружены.');
+  if (action === 'pull-support') return runBusy(async () => { const result = await actions.pullSupport({ requestId: id('support-pull') }); applySupportListResult(await actions.loadSupport({ limit: 500 })); setMessage(result?.parseFailed ? `Почта проверена: сохранено ${Number(result?.saved ?? 0)}, но одно или несколько писем не удалось разобрать. Они останутся в окне повторного чтения.` : `Почта проверена: найдено ${Number(result?.fetched ?? 0)}, сохранено ${Number(result?.saved ?? 0)}.`, result?.parseFailed ? 'warning' : 'success'); });
+  if (action === 'generate-support-reply') {
+    const messageDocId = String(target.getAttribute('data-message-id') ?? '').trim();
+    return runBusy(async () => { const generated = await actions.generateSupportReply({ ...(messageDocId ? { messageDocId } : {}), requestId: id('support-draft') }); applySupportListResult(await actions.loadSupport({ limit: 500 })); setMessage(`Черновиков создано: ${Number(generated?.generated ?? 0)}${generated?.remaining ? `, осталось: ${Number(generated.remaining)}` : ''}.`, 'success'); });
+  }
+  if (action === 'prepare-support-reply-batch') {
+    return runBusy(async () => {
+      state.support.pendingReply = await actions.prepareSupportReplyBatch({ limit: 200, idempotencyKey: id('support-batch'), requestId: id('support-batch-request') });
+    }, 'Пакет запечатан. Проверьте получателей и точные тексты.');
+  }
+  if (action === 'prepare-support-reply') {
+    const messageDocId = String(target.getAttribute('data-message-id') ?? '').trim();
+    const item = state.support.items.find((candidate) => String(candidate.id) === messageDocId);
+    const replyText = String(document.getElementById(`support-reply-${messageDocId}`)?.value ?? '').trim();
+    if (!replyText) return setMessage('Введите или сгенерируйте ответ.', 'warning');
+    return runBusy(async () => {
+      state.support.pendingReply = await actions.prepareSupportReply({
+        messageDocId,
+        replyText,
+        expectedDraftRevision: Number(item?.draftRevision ?? 0),
+        idempotencyKey: id('support-prepare'),
+        requestId: id('support-prepare-request'),
+      });
+    }, 'Ответ запечатан. Проверьте предпросмотр и подтвердите отправку.');
+  }
+  if (action === 'dispatch-support-reply') {
+    const pendingReply = state.support.pendingReply;
+    if (!pendingReply) return setMessage('Нет подготовленного ответа.', 'warning');
+    return runBusy(async () => {
+      const result = await actions.dispatchSupportReply({ operationId: pendingReply.operationId, confirmationNonce: pendingReply.confirmationNonce, payloadHash: pendingReply.payloadHash });
+      state.support.pendingReply = { ...pendingReply, ...result };
+      const list = await actions.loadSupport({ limit: 500 });
+      state.support = { ...state.support, loaded: true, items: Array.isArray(list?.items) ? list.items : [], signature: String(list?.signature ?? ''), signatureRevision: Number(list?.signatureRevision ?? 0), pendingReply: result?.state === 'accepted' ? null : state.support.pendingReply };
+      if (result?.state === 'delivery_unknown') setMessage('Результат Gmail неизвестен. Повтор заблокирован; проверьте «Отправленные».', 'warning');
+      else if (result?.state === 'accepted') setMessage('Ответ принят Gmail и отмечен как отправленный.', 'success');
+      else setMessage(`Операция не отправлена: ${String(result?.state || 'неизвестное состояние')}.`, 'warning');
+    });
+  }
+  if (action === 'cancel-support-reply') {
+    const pendingReply = state.support.pendingReply;
+    if (!pendingReply) return;
+    return runBusy(async () => { await actions.cancelSupportReply({ operationId: pendingReply.operationId, confirmationNonce: pendingReply.confirmationNonce, requestId: id('support-cancel') }); state.support.pendingReply = null; }, 'Подготовленная отправка отменена.');
+  }
+  if (action === 'dispatch-support-reply-batch') {
+    const pendingReply = state.support.pendingReply;
+    if (!pendingReply?.batchId) return setMessage('Нет подготовленного пакета.', 'warning');
+    return runBusy(async () => {
+      const result = await actions.dispatchSupportReplyBatch({ batchId: pendingReply.batchId, confirmationNonce: pendingReply.confirmationNonce, manifestHash: pendingReply.manifestHash });
+      state.support.pendingReply = { ...pendingReply, ...result };
+      const list = await actions.loadSupport({ limit: 500 });
+      state.support = { ...state.support, loaded: true, items: Array.isArray(list?.items) ? list.items : [], signature: String(list?.signature ?? ''), signatureRevision: Number(list?.signatureRevision ?? 0), pendingReply: result?.state === 'accepted' ? null : state.support.pendingReply };
+      if (result?.state === 'accepted') setMessage(`Пакет отправлен: ${Number(result.accepted || 0)} писем принято Gmail.`, 'success');
+      else if (result?.state === 'attention_required') setMessage(`Пакет требует проверки: принято ${Number(result.accepted || 0)}, неопределённо ${Number(result.attention || 0)}, ещё не начато ${Number(result.pending || 0)}.`, 'warning');
+      else setMessage(`Пакет завершён частично: принято ${Number(result?.accepted || 0)}, не отправлено ${Number(result?.failed || 0)}.`, 'warning');
+    });
+  }
+  if (action === 'cancel-support-reply-batch') {
+    const pendingReply = state.support.pendingReply;
+    if (!pendingReply?.batchId) return;
+    return runBusy(async () => { await actions.cancelSupportReplyBatch({ batchId: pendingReply.batchId, confirmationNonce: pendingReply.confirmationNonce, requestId: id('support-batch-cancel') }); state.support.pendingReply = null; }, 'Пакет отменён; ни одна не начатая операция не будет отправлена.');
+  }
+  if (action === 'save-support-signature') {
+    const signature = String(document.getElementById('support-signature')?.value ?? '').slice(0, 2000);
+    return runBusy(async () => { const result = await actions.saveSupportSignature({ signature, requestId: id('support-signature') }); state.support.signature = String(result?.signature ?? signature); state.support.signatureRevision = Number(result?.signatureRevision ?? state.support.signatureRevision); }, 'Подпись сохранена.');
+  }
+  if (action === 'set-support-status') {
+    const messageDocId = String(target.getAttribute('data-message-id') ?? '').trim();
+    const status = String(target.getAttribute('data-status') ?? '').trim();
+    return runBusy(async () => { await actions.setSupportStatus({ messageDocId, status, requestId: id('support-status') }); applySupportListResult(await actions.loadSupport({ limit: 500 })); }, status === 'archived' ? 'Письмо перемещено в архив.' : 'Письмо возвращено в новые.');
+  }
+  if (action === 'resolve-support-reply') {
+    const operationId = String(target.getAttribute('data-operation-id') ?? '').trim();
+    const resolution = String(target.getAttribute('data-resolution') ?? '').trim();
+    const sent = resolution === 'accepted';
+    if (!globalThis.confirm(sent ? 'Вы проверили папку «Отправленные» и нашли это письмо?' : 'Вы проверили папку «Отправленные» и уверены, что этого письма там нет?')) return;
+    return runBusy(async () => {
+      await actions.resolveSupportReplyDelivery({ operationId, resolution, reason: sent ? 'Verified in Gmail Sent folder' : 'Verified absent from Gmail Sent folder', requestId: id('support-reconcile') });
+      applySupportListResult(await actions.loadSupport({ limit: 500 }));
+    }, sent ? 'Доставка подтверждена вручную.' : 'Подтверждено: письмо не отправлено, можно подготовить новую операцию.');
+  }
   if (action === 'load-analytics') {
     const rangeDays = Number(document.getElementById('analytics-range')?.value ?? 28);
     return runBusy(async () => { state.analytics = await actions.loadAnalytics({ rangeDays }); }, 'Аналитика загружена.');
@@ -608,6 +724,12 @@ async function handleClick(event) {
   if (capabilityId) {
     const capability = capabilityById(capabilityId);
     if (capability) globalThis.location.hash = `${capability.route}:${capability.id}`;
+    return;
+  }
+  const supportFilter = target.getAttribute('data-support-filter');
+  if (supportFilter) {
+    state.support.filter = supportFilter;
+    renderCurrentPage();
     return;
   }
   const action = target.getAttribute('data-action');

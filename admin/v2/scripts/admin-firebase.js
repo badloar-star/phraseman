@@ -39,6 +39,16 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const rollbackFactoryReleaseCallable = httpsCallable(functionsUs, 'adminRollbackCourseRelease');
   const supportListCallable = httpsCallable(functionsUs, 'adminSupportList');
   const supportPullCallable = httpsCallable(functionsUs, 'adminSupportPull');
+  const supportGenerateReplyCallable = httpsCallable(functionsUs, 'adminSupportGenerateReply');
+  const supportPrepareReplyCallable = httpsCallable(functionsUs, 'adminSupportPrepareReply');
+  const supportDispatchReplyCallable = httpsCallable(functionsUs, 'adminSupportDispatchReply');
+  const supportCancelReplyCallable = httpsCallable(functionsUs, 'adminSupportCancelReply');
+  const supportPrepareReplyBatchCallable = httpsCallable(functionsUs, 'adminSupportPrepareReplyBatch');
+  const supportDispatchReplyBatchCallable = httpsCallable(functionsUs, 'adminSupportDispatchReplyBatch');
+  const supportCancelReplyBatchCallable = httpsCallable(functionsUs, 'adminSupportCancelReplyBatch');
+  const supportResolveReplyDeliveryCallable = httpsCallable(functionsUs, 'adminSupportResolveReplyDelivery');
+  const supportSaveSignatureCallable = httpsCallable(functionsUs, 'adminSupportSaveSignature');
+  const supportSetStatusCallable = httpsCallable(functionsUs, 'adminSupportSetStatus');
   const analyticsCallable = httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot');
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
@@ -78,6 +88,16 @@ export async function createFirebaseAdminActions({ onAuth }) {
     rollbackFactoryRelease: async (input) => unwrap(await rollbackFactoryReleaseCallable(input)),
     loadSupport: async (input) => unwrap(await supportListCallable(input)),
     pullSupport: async (input) => unwrap(await supportPullCallable(input)),
+    generateSupportReply: async (input) => unwrap(await supportGenerateReplyCallable(input)),
+    prepareSupportReply: async (input) => unwrap(await supportPrepareReplyCallable(input)),
+    dispatchSupportReply: async (input) => unwrap(await supportDispatchReplyCallable(input)),
+    cancelSupportReply: async (input) => unwrap(await supportCancelReplyCallable(input)),
+    prepareSupportReplyBatch: async (input) => unwrap(await supportPrepareReplyBatchCallable(input)),
+    dispatchSupportReplyBatch: async (input) => unwrap(await supportDispatchReplyBatchCallable(input)),
+    cancelSupportReplyBatch: async (input) => unwrap(await supportCancelReplyBatchCallable(input)),
+    resolveSupportReplyDelivery: async (input) => unwrap(await supportResolveReplyDeliveryCallable(input)),
+    saveSupportSignature: async (input) => unwrap(await supportSaveSignatureCallable(input)),
+    setSupportStatus: async (input) => unwrap(await supportSetStatusCallable(input)),
     loadAnalytics: async (input) => unwrap(await analyticsCallable(input)),
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),

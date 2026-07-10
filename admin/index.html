@@ -27451,6 +27451,8 @@
 
   // ═══ GMAIL SUPPORT INBOX — входящая почта поддержки + ИИ-ответы ═════════════
   let _supportInboxAll = [];
+  let _supportPendingReplies = [];
+  let _supportPendingBatches = [];
   window.loadSupportInbox = async function(force) {
     const list = document.getElementById('gsi-list');
     if (!list) return;
@@ -27458,13 +27460,12 @@
     list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
       await auth.currentUser?.getIdToken(true).catch(() => null);
-      const [inboxResult, cfgSnap] = await Promise.all([
-        supportCallable('adminSupportList')({ limit: 500 }),
-        getDoc(doc(db, 'admin_config', 'support_inbox')),
-      ]);
+      const inboxResult = await supportCallable('adminSupportList')({ limit: 500 });
       _supportInboxAll = Array.isArray(inboxResult?.data?.items) ? inboxResult.data.items : [];
+      _supportPendingReplies = Array.isArray(inboxResult?.data?.pendingReplies) ? inboxResult.data.pendingReplies : [];
+      _supportPendingBatches = Array.isArray(inboxResult?.data?.pendingBatches) ? inboxResult.data.pendingBatches : [];
       const sigInput = document.getElementById('gsi-signature');
-      if (sigInput && cfgSnap.exists()) sigInput.value = String(cfgSnap.data().signature || '');
+      if (sigInput) sigInput.value = String(inboxResult?.data?.signature || '');
       window._supportInboxLoaded = true;
       renderSupportInbox();
     } catch (e) {
@@ -27497,11 +27498,12 @@
       const when = r.receivedAtMs ? new Date(r.receivedAtMs).toLocaleString('ru-RU') : (r.receivedAt || '—');
       const from = `${esc(r.fromName || '')} <${esc(r.fromEmail || '—')}>`.trim();
       const draft = r.draftReply || '';
+      const gateState = String(r.replyGate?.state || '');
       const draftBox = (status !== 'archived') ? `
         <textarea id="gsi-draft-${id}" placeholder="Черновик ответа появится здесь после «Сгенерировать ответ», либо впиши сам…" style="width:100%;min-height:${draft ? '90px' : '54px'};margin-top:10px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:8px;padding:9px 11px;font-size:13px;line-height:1.5;resize:vertical">${esc(draft)}</textarea>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
           <button onclick="supportGenerateOne('${id}')" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600">✨ Сгенерировать ответ</button>
-          ${status === 'new' ? `<button onclick="supportSendOne('${id}')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">📤 Отправить</button>` : ''}
+          ${status === 'new' && gateState !== 'delivery_unknown' && gateState !== 'dispatching' ? `<button onclick="supportSendOne('${id}')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">📤 Отправить</button>` : ''}
         </div>` : '';
       return `<div style="background:#12151d;border:1px solid #1e2230;border-radius:11px;padding:14px 16px;margin-bottom:11px">
         <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline">
@@ -27511,6 +27513,7 @@
         <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from}</div>
         <div style="font-size:13px;color:#cbd5e1;margin-top:9px;white-space:pre-wrap;max-height:160px;overflow:auto;background:#0e1116;border:1px solid #1a1d27;border-radius:7px;padding:9px 11px">${esc((r.bodyText || '').slice(0, 4000)) || '<span style="opacity:.5">(пустое тело)</span>'}</div>
         ${draftBox}
+        ${gateState === 'delivery_unknown' ? `<div style="margin-top:10px;padding:10px;border:1px solid #7f1d1d;background:#2a1114;border-radius:8px;color:#fca5a5">Gmail мог принять письмо. Автоповтор заблокирован — проверь папку «Отправленные».<div style="display:flex;gap:8px;margin-top:8px"><button onclick="supportResolveUnknown('${esc(r.replyGate?.operationId || '')}','accepted')">В отправленных: да</button><button onclick="supportResolveUnknown('${esc(r.replyGate?.operationId || '')}','verified_not_sent')">В отправленных: нет</button></div></div>` : ''}
         <div style="margin-top:8px">
           ${status !== 'archived'
             ? `<button onclick="supportSetStatus('${id}','archived')" style="background:none;border:none;color:#6b7280;cursor:pointer;font-size:11.5px;padding:0">🗄 В архив</button>`
@@ -27530,7 +27533,10 @@
     try {
       const res = await supportCallable('adminSupportPull')({});
       const d = res?.data || {};
-      showToast(`✅ Забрано новых: ${d.saved || 0}${d.skippedDuplicates ? `, уже были: ${d.skippedDuplicates}` : ''}`, 'ok');
+      showToast(d.parseFailed
+        ? `⚠️ Сохранено: ${d.saved || 0}, но часть писем не разобрана и будет прочитана повторно`
+        : `✅ Забрано новых: ${d.saved || 0}${d.skippedDuplicates ? `, уже были: ${d.skippedDuplicates}` : ''}`,
+      d.parseFailed ? 'warn' : 'ok');
     } catch (e) {
       showToast('Не удалось забрать почту: ' + (e.message || e.code || e), 'err');
     } finally {
@@ -27565,28 +27571,103 @@
   };
 
   window.supportSendOne = async function(id) {
-    const ta = document.getElementById('gsi-draft-' + id);
-    const replyText = ta ? ta.value.trim() : '';
-    if (!replyText) { showToast('Черновик пуст — сначала сгенерируй или впиши ответ', 'warn'); return; }
-    if (!confirm('Отправить ответ этому пользователю?')) return;
-    try {
-      await supportCallable('adminSupportSendReply')({ messageDocId: id, replyText });
-      showToast('✅ Ответ отправлен', 'ok');
-    } catch (e) {
-      showToast('Не удалось отправить: ' + (e.message || e.code || e), 'err');
-    } finally {
+      const ta = document.getElementById('gsi-draft-' + id);
+      const replyText = ta ? ta.value.trim() : '';
+      if (!replyText) { showToast('Черновик пуст — сначала сгенерируй или впиши ответ', 'warn'); return; }
+      const row = _supportInboxAll.find((item) => String(item.id) === String(id));
+      if (row?.replyGate?.state === 'delivery_unknown' || row?.replyGate?.state === 'dispatching') {
+        showToast('Автоповтор заблокирован — сначала проверь папку «Отправленные» и разреши неопределённую доставку.', 'warn');
+        return;
+      }
+      let prepared = null;
+      try {
+        prepared = _supportPendingReplies.find((item) => String(item.messageDocId) === String(id) && item.state === 'prepared') || null;
+        if (!prepared) {
+          const preparedResult = await supportCallable('adminSupportPrepareReply')({
+            messageDocId: id,
+            replyText,
+            expectedDraftRevision: Number(row?.draftRevision || 0),
+            idempotencyKey: 'support-prepare-' + (globalThis.crypto?.randomUUID?.() || Date.now()),
+            requestId: 'support-prepare-request-' + (globalThis.crypto?.randomUUID?.() || Date.now()),
+          });
+          prepared = preparedResult?.data || {};
+        }
+        const preview = prepared.payload || {};
+        const approved = confirm(`ПРОВЕРЬ ПЕРЕД ОТПРАВКОЙ\n\nКому: ${preview.to || ''}\nТема: ${preview.subject || ''}\n\n${preview.finalText || ''}\n\nОтправить этот точный текст?`);
+        if (!approved) {
+          await supportCallable('adminSupportCancelReply')({ operationId: prepared.operationId, confirmationNonce: prepared.confirmationNonce, requestId: 'support-cancel-' + Date.now() });
+          showToast('Отправка отменена', 'warn');
+          return;
+        }
+        const dispatchResult = await supportCallable('adminSupportDispatchReply')({
+          operationId: prepared.operationId,
+          confirmationNonce: prepared.confirmationNonce,
+          payloadHash: prepared.payloadHash,
+        });
+        const state = dispatchResult?.data?.state;
+        if (state === 'accepted') showToast('✅ Ответ принят Gmail', 'ok');
+        else if (state === 'delivery_unknown') showToast('⚠️ Результат неизвестен. Не повторяй отправку — проверь папку «Отправленные».', 'warn');
+        else showToast('Отправка не выполнена: ' + String(state || 'неизвестное состояние'), 'warn');
+      } catch (e) {
+        showToast('Не удалось отправить: ' + (e.message || e.code || e), 'err');
+      } finally {
       await window.loadSupportInbox(true);
     }
   };
 
   window.supportSendAllDrafts = async function() {
-    if (!confirm('Отправить все готовые черновики по новым письмам?')) return;
+      let prepared = null;
+      try {
+        prepared = _supportPendingBatches.find((item) => ['prepared', 'dispatching', 'attention_required', 'partial'].includes(item.state)) || null;
+        if (!prepared) {
+          const preparedResult = await supportCallable('adminSupportPrepareReplyBatch')({
+            limit: 200,
+            idempotencyKey: 'support-batch-' + (globalThis.crypto?.randomUUID?.() || Date.now()),
+            requestId: 'support-batch-request-' + (globalThis.crypto?.randomUUID?.() || Date.now()),
+          });
+          prepared = preparedResult?.data || {};
+        }
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:24px';
+        overlay.innerHTML = `<div style="width:min(900px,96vw);max-height:90vh;overflow:auto;background:#12151d;border:1px solid #374151;border-radius:14px;padding:18px;color:#e5e7eb"><h2 style="margin:0 0 8px">Проверь пакет: ${Number(prepared.count || 0)} писем</h2><div style="font-size:12px;color:#9ca3af;margin-bottom:12px">Манифест: ${escapeHtml(prepared.manifestHash || '')}</div>${(prepared.items || []).map((item, index) => `<details${index < 2 ? ' open' : ''} style="border:1px solid #2a2f40;border-radius:8px;margin:8px 0;padding:10px"><summary style="cursor:pointer;font-weight:700">${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div style="white-space:pre-wrap;margin-top:10px;padding:10px;background:#0e1116;border-radius:6px">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}<div style="position:sticky;bottom:0;background:#12151d;padding-top:12px;display:flex;justify-content:flex-end;gap:8px"><button id="gsi-batch-cancel" style="padding:9px 14px"${prepared.state === 'prepared' ? '' : ' disabled title="Начатый пакет нельзя отменить"'}>Отменить</button><button id="gsi-batch-confirm" style="padding:9px 14px;background:#84cc16;color:#07110a;font-weight:800">${prepared.state === 'prepared' ? 'Подтвердить и отправить пакет' : 'Продолжить только не начатые'}</button></div></div>`;
+        document.body.appendChild(overlay);
+        const approved = await new Promise((resolve) => {
+          overlay.querySelector('#gsi-batch-cancel').onclick = () => resolve(false);
+          overlay.querySelector('#gsi-batch-confirm').onclick = () => resolve(true);
+        });
+        overlay.remove();
+        if (!approved) {
+          await supportCallable('adminSupportCancelReplyBatch')({ batchId: prepared.batchId, confirmationNonce: prepared.confirmationNonce, requestId: 'support-batch-cancel-' + Date.now() });
+          showToast('Пакет отменён', 'warn');
+          return;
+        }
+        const res = await supportCallable('adminSupportDispatchReplyBatch')({ batchId: prepared.batchId, confirmationNonce: prepared.confirmationNonce, manifestHash: prepared.manifestHash });
+        const d = res?.data || {};
+        if (d.state === 'accepted') showToast(`✅ Отправлено: ${d.accepted || 0}`, 'ok');
+        else showToast(`⚠️ Пакет требует проверки: принято ${d.accepted || 0}, неопределённо ${d.attention || 0}, осталось ${d.pending || 0}`, 'warn');
+      } catch (e) {
+        showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+      } finally {
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportResolveUnknown = async function(operationId, resolution) {
+    // Audit is server-owned: adminSupportResolveReplyDelivery appends admin_log.
+    const sent = resolution === 'accepted';
+    if (!confirm(sent
+      ? 'Вы проверили Gmail → «Отправленные» и нашли это письмо?'
+      : 'Вы проверили Gmail → «Отправленные» и уверены, что письма там нет?')) return;
     try {
-      const res = await supportCallable('adminSupportSendReply')({});
-      const d = res?.data || {};
-      showToast(`✅ Отправлено: ${d.sent || 0}${d.failed ? `, с ошибкой: ${d.failed}` : ''}`, d.failed ? 'warn' : 'ok');
+      await supportCallable('adminSupportResolveReplyDelivery')({
+        operationId,
+        resolution,
+        reason: sent ? 'Verified in Gmail Sent folder' : 'Verified absent from Gmail Sent folder',
+        requestId: 'support-reconcile-' + (globalThis.crypto?.randomUUID?.() || Date.now()),
+      });
+      showToast(sent ? '✅ Доставка подтверждена' : '✅ Подтверждено: не отправлено, можно подготовить новый ответ', 'ok');
     } catch (e) {
-      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+      showToast('Не удалось сверить доставку: ' + (e.message || e.code || e), 'err');
     } finally {
       await window.loadSupportInbox(true);
     }

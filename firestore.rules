@@ -1173,8 +1173,27 @@ service cloud.firestore {
     // Read/write only by admin from the panel. The alert Cloud Functions use the
     // Admin SDK (bypasses rules) to read config and write bookkeeping fields.
     match /admin_config/{docId} {
-      allow read: if isAdmin();
+      allow read: if isAdmin() && docId != 'support_inbox';
       allow write: if false;
+    }
+
+    // Support correspondence and delivery state are exposed only through
+    // permission-checked Cloud Functions. Even admins cannot bypass immutable
+    // reply operations by mutating these collections from a browser console.
+    match /support_inbox/{docId} {
+      allow read, write: if false;
+    }
+
+    match /support_reply_operations/{docId} {
+      allow read, write: if false;
+    }
+
+    match /support_reply_batches/{docId} {
+      allow read, write: if false;
+    }
+
+    match /admin_command_operations/{docId} {
+      allow read, write: if false;
     }
 
     // Remote Config changelog — admin-only audit trail of config saves.

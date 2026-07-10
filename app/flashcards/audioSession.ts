@@ -1,4 +1,4 @@
-import { STUDY_TARGET_META } from '../study_target';
+import { ttsLocaleForProductionStudyTarget } from '../study_target';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 import type { TrainingCard } from './trainingSources';
@@ -73,7 +73,7 @@ export function speechLanguageForSide(
   studyTarget?: RuntimeStudyTarget,
 ): string {
   if (side === 'front') {
-    return STUDY_TARGET_META[storageStudyTarget(studyTarget)].ttsLocale;
+    return ttsLocaleForProductionStudyTarget(storageStudyTarget(studyTarget));
   }
   const text = audioTextForSide(card, 'back', contentLang);
   if (UK_MARKERS.test(text)) return 'uk-UA';

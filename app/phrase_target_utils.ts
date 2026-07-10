@@ -150,16 +150,11 @@ export function phraseAnswerDisplayLine(
   return clean;
 }
 
-export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' | 'es-ES' | 'fr-FR' {
-  const devTargetLocales: Partial<Record<StudyTargetLang, 'es-ES'>> = {
-    es: 'es-ES',
-  };
-  if (ENABLE_DEV_STUDY_TARGET_LANG) {
-    const locale = devTargetLocales[studyTarget];
-    if (locale) return locale;
-  }
-  if (frenchStudyActive(studyTarget)) return 'fr-FR';
-  return 'en-US';
+export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): string {
+  if (studyTarget === 'en') return 'en-US';
+  if (studyTarget === 'es') return 'es-ES';
+  if (studyTarget === 'fr') return 'fr-FR';
+  return studyTarget;
 }
 
 export default function __PhraseTargetUtilsRouteShim() {

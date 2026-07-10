@@ -285,12 +285,14 @@ export function getLessonIntroScreens(
   lessonId: number,
   studyTarget: StudyTargetLang = 'en',
 ): LessonIntroScreen[] {
-  if (storageStudyTarget(studyTarget) === 'fr') {
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'fr') {
     if (!frenchStudyActive(studyTarget)) return [];
     const frL2 = getFrenchLessonIntroScreens(lessonId);
     if (frL2?.length) return withSpanishIntroFallback(frL2);
     return [];
   }
+  if (target !== 'en' && !spanishStudyActive(studyTarget)) return [];
   const extra = EXTRA_INTRO_SCREENS[lessonId];
   if (extra && extra.length > 0) return withSpanishIntroFallback(extra);
   if (lessonId >= 1 && lessonId <= 8 && spanishStudyActive(studyTarget)) {

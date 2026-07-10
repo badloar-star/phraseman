@@ -119,10 +119,10 @@ function normalizePackParam(pack: string | string[] | undefined): string | null 
 }
 
 // Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
-let _savedCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
-let _customCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
+let _savedCardsCacheByTarget: Partial<Record<string, CardItem[]>> = {};
+let _customCardsCacheByTarget: Partial<Record<string, CardItem[]>> = {};
 
-function flashcardsCacheTarget(studyTarget?: RuntimeStudyTarget): 'en' | 'fr' {
+function flashcardsCacheTarget(studyTarget?: RuntimeStudyTarget): string {
   return storageStudyTarget(studyTarget);
 }
 
@@ -257,7 +257,7 @@ export function primeCustomFlashcardsCache(studyTarget?: RuntimeStudyTarget) {
  * тоді перший кадр уже містить картки з бандла (без порожнього «створити картку»).
  */
 let stagedOwnedPackMarketCards: CardItem[] | null = null;
-let stagedOwnedPackMarketCardsTarget: 'en' | 'fr' | null = null;
+let stagedOwnedPackMarketCardsTarget: string | null = null;
 
 export function stageOwnedPackCardsForNavigation(packId: string, studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
   stagedOwnedPackMarketCards = null;

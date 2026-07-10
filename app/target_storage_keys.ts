@@ -118,7 +118,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^resolved_personal_trainings_v1$/,
   /^pos_mastery_v1$/,
 ];
-const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|daily_tasks|cloud_sync|daily_phrase|flashcards|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
+const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|daily_tasks|cloud_sync|daily_phrase|flashcards|quiz_achievements|target_stats|achievements)_v2::[a-z]{2,12}(?:-[A-Z]{2})?(?:::|$)|personal_practice_v2::[a-z]{2,12}(?:-[A-Z]{2})?::(?:ru|uk)(?:::|$))/;
 
 function assertMember<T extends string>(value: string, allowed: readonly T[], label: string): T {
   if ((allowed as readonly string[]).includes(value)) return value as T;
@@ -139,7 +139,7 @@ export function targetKey(domain: TargetKeyDomain, studyTarget: StudyTarget, id?
 }
 
 export function storageStudyTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
-  return studyTarget === 'fr' ? 'fr' : defaultStudyTarget();
+  return isStudyTarget(studyTarget) ? assertStudyTarget(studyTarget) : defaultStudyTarget();
 }
 
 export function storageSourceLocale(sourceLocale?: RuntimeSourceLocale): SourceLocale {
@@ -168,7 +168,7 @@ function scopedOrLegacyKey(
   id: string | number = rawEnglishKey,
 ): string {
   const target = storageStudyTarget(studyTarget);
-  return target === 'fr' ? targetKey(domain, target, id) : rawEnglishKey;
+  return target !== defaultStudyTarget() ? targetKey(domain, target, id) : rawEnglishKey;
 }
 
 function scopedSourceTargetOrLegacyKey(
@@ -178,7 +178,7 @@ function scopedSourceTargetOrLegacyKey(
   id: string | number = rawEnglishKey,
 ): string {
   const target = storageStudyTarget(studyTarget);
-  return target === 'fr'
+  return target !== defaultStudyTarget()
     ? sourceTargetKey('personal_practice', target, storageSourceLocale(sourceLocale), id)
     : rawEnglishKey;
 }

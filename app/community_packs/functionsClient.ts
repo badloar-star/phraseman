@@ -36,13 +36,13 @@ export type CommunityPurchaseResponse = {
   authorNetShards?: number;
   buyerBalanceAfter?: number;
   shardsUpdatedAtMs?: number;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: string;
 };
 
 export async function callCommunityPurchasePack(data: {
   buyerStableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: string;
   buyerDisplayName: string;
 }): Promise<CommunityPurchaseResponse> {
   const key = communityPurchaseRequestKey(data);
@@ -60,7 +60,7 @@ export async function callCommunityPurchasePack(data: {
 function communityPurchaseRequestKey(data: {
   buyerStableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: string;
   buyerDisplayName: string;
 }): string {
   return JSON.stringify({
@@ -79,7 +79,7 @@ export type CommunitySellerInboxEvent = {
   result?: string;
   message?: string | null;
   submissionId?: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: string;
   /** UGC-набір (подія з адмінки) — у листі мають бути titleRu/titleUk; `packId` — для дозавантаження в клієнті. */
   packId?: string | null;
   titleRu?: string | null;
@@ -105,7 +105,7 @@ export async function callCommunityMarkSellerInboxSeen(data: {
 export async function callCommunityFetchPackCardsIfAccessible(data: {
   stableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: string;
 }): Promise<{ ok: boolean; cards: unknown[] }> {
   return callFunction<typeof data, { ok: boolean; cards: unknown[] }>('communityFetchPackCardsIfAccessible', data);
 }

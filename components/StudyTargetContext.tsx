@@ -15,6 +15,7 @@ import {
 } from '../app/study_target';
 import { peekStudyTargetRaw, writePeekStudyTargetRaw } from '../app/app_snapshot_bootstrap';
 import { useLang, type Lang } from './LangContext';
+import { refreshRuntimeStudyTargetCatalog } from '../app/language_runtime/runtime_catalog_bootstrap';
 
 type Ctx = {
   studyTarget: StudyTargetLang;
@@ -62,6 +63,7 @@ export function StudyTargetProvider({ children }: { children: React.ReactNode })
   }, [lang]);
 
   useEffect(() => {
+    void refreshRuntimeStudyTargetCatalog().catch(() => {});
     void refresh();
   }, [refresh]);
 

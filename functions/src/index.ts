@@ -1537,6 +1537,7 @@ export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease, getPublishedCourseRelease } from './language_release';
+export { getPublishedCourseSurfaceEntry } from './language_release_content';
 export { adminPublishContentPack, adminRollbackContentPack } from './admin_content_publish';
 export { getActiveLanguageCatalog } from './language_catalog';
 export { getPublishedLessonArtifact } from './language_content';

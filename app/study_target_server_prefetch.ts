@@ -8,10 +8,10 @@ import {
 } from './french_target_remote_registration';
 
 export type StudyTargetServerPrefetchResult =
-  | { state: 'not_required'; studyTarget: 'en' }
-  | { state: 'blocked'; studyTarget: 'fr'; sourceLocale: FrenchTargetSourceLocale | null; reason: 'french_server_pack_activation_required' | 'unsupported_source_locale' }
-  | { state: 'ready'; studyTarget: 'fr'; sourceLocale: FrenchTargetSourceLocale; cacheDirUris: string[] }
-  | { state: 'error'; studyTarget: 'fr'; sourceLocale: FrenchTargetSourceLocale; reason: 'remote_loader_failed' };
+  | { state: 'not_required'; studyTarget: StudyTarget }
+  | { state: 'blocked'; studyTarget: StudyTarget; sourceLocale: FrenchTargetSourceLocale | null; reason: 'french_server_pack_activation_required' | 'unsupported_source_locale' }
+  | { state: 'ready'; studyTarget: StudyTarget; sourceLocale: FrenchTargetSourceLocale; cacheDirUris: string[] }
+  | { state: 'error'; studyTarget: StudyTarget; sourceLocale: FrenchTargetSourceLocale; reason: 'remote_loader_failed' };
 
 export type StudyTargetServerPrefetchOptions = {
   activationApproved?: () => boolean;
@@ -39,7 +39,7 @@ function prefetchRecordFromResult(
 ): OnboardingStudyTargetServerPrefetchRecord {
   return {
     studyTarget: result.studyTarget,
-    sourceLocale: result.studyTarget === 'fr' ? result.sourceLocale : null,
+    sourceLocale: 'sourceLocale' in result ? result.sourceLocale : null,
     state: result.state,
     reason: 'reason' in result ? result.reason : undefined,
     cacheDirUris: result.state === 'ready' ? result.cacheDirUris : undefined,
@@ -52,7 +52,7 @@ export async function prefetchStudyTargetServerPack(
   sourceLocale: unknown,
   options: StudyTargetServerPrefetchOptions = {},
 ): Promise<StudyTargetServerPrefetchResult> {
-  if (studyTarget === 'en') {
+  if (studyTarget !== 'fr') {
     return { state: 'not_required', studyTarget };
   }
 

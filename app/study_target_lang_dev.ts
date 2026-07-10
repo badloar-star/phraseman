@@ -49,7 +49,7 @@ export function studyTargetLabelForSourceUiLang(
   target: StudyTargetLang,
   uiLang: StudyTargetSourceUiLang,
 ): string {
-  return SOURCE_UI_STUDY_TARGET_LABELS[uiLang][target];
+  return SOURCE_UI_STUDY_TARGET_LABELS[uiLang][target] ?? target.toLocaleUpperCase();
 }
 
 function isAllowedForUiLang(value: unknown, uiLang: Lang): value is StudyTargetLang {

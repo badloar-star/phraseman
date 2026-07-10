@@ -30,4 +30,10 @@ describe('admin server-only boundaries', () => {
     expect(rules.slice(start, end)).toMatch(/allow (?:write|create):\s*if false/);
   });
 
+  it('keeps promo code writes behind server callables', () => {
+    const start = rules.indexOf('match /promo_codes/{code}');
+    const end = rules.indexOf('\n    }', start);
+    expect(rules.slice(start, end)).toMatch(/allow write:\s*if false/);
+  });
+
 });

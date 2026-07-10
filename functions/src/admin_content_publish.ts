@@ -116,7 +116,7 @@ export const adminPublishContentPack = onCall(
       const previousSurfaces = isRecord(catalog.activeSurfaces) ? catalog.activeSurfaces : {};
       const activeSurfaces = { ...previousSurfaces, [manifest.surface]: pointer };
       const audit = { action: 'content_factory.publish', actorUid, role, entity: { collection: draftRef.parent.id, id: input.packId }, reason: input.reason, requestId: input.requestId, before: { manifest, catalogRevision: currentRevision }, after: pointer, rollbackReference: historyRef.id, timestamp: new Date().toISOString(), operationId: input.idempotencyKey };
-      tx.set(catalogRef, { revision: pointer.revision, active: pointer, activeSurfaces, previousSurfaces, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
+      tx.set(catalogRef, { revision: pointer.revision, active: pointer, activeSurfaces, previousActive: catalog.active ?? null, previousSurfaces, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
       tx.set(draftRef, { manifest: publishedManifest, activationStatus: 'published', publishedAt: admin.firestore.FieldValue.serverTimestamp(), publishedBy: actorUid }, { merge: true });
       tx.create(historyRef, { ...audit, previousActive: catalog.active ?? null, previousSurfaces });
       tx.create(auditRef, audit);

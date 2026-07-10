@@ -49,6 +49,6 @@ export async function fetchActiveLanguageCatalog(): Promise<ActiveLanguageCatalo
   return parseActiveLanguageCatalog(result.data);
 }
 
-export function resolveActiveLanguagePack(catalog: ActiveLanguageCatalog, studyTarget: string): ActiveLanguageCatalogEntry | null {
-  return catalog.entries.find((entry) => entry.studyTarget === studyTarget) ?? null;
+export function resolveActiveLanguagePack(catalog: ActiveLanguageCatalog, studyTarget: string, sourceLocale: string, surface: string): ActiveLanguageCatalogEntry | null {
+  return catalog.entries.find((entry) => entry.studyTarget === studyTarget && entry.sourceLocale === sourceLocale && entry.surface === surface) ?? null;
 }

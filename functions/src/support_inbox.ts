@@ -481,6 +481,29 @@ export const adminSupportPull = onCall(
  *   не задан → пачка до GENERATE_BATCH_LIMIT писем 'new' без черновика.
  * Возвращает { ok, generated, remaining }.
  */
+/**
+ * Server-side read for the admin inbox. support_inbox intentionally has no
+ * client Firestore read rule: messages contain private correspondence and
+ * must be returned only after the callable has checked the admin claim.
+ */
+export const adminSupportList = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requireAdmin(request);
+    const requestedLimit = Number(request.data?.limit ?? 500);
+    const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(500, Math.floor(requestedLimit))) : 500;
+    const snap = await admin.firestore()
+      .collection(INBOX_COLLECTION)
+      .orderBy('receivedAtMs', 'desc')
+      .limit(limit)
+      .get();
+    return {
+      ok: true,
+      items: snap.docs.map((doc) => ({ id: doc.id, ...(doc.data() as SupportInboxDoc) })),
+    };
+  },
+);
+
 export const adminSupportGenerateReply = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] },
   async (request) => {

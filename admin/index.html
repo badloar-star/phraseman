@@ -27458,11 +27458,11 @@
     list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
       await auth.currentUser?.getIdToken(true).catch(() => null);
-      const [inboxSnap, cfgSnap] = await Promise.all([
-        getDocs(query(collection(db, 'support_inbox'), orderBy('receivedAtMs', 'desc'), limit(500))),
+      const [inboxResult, cfgSnap] = await Promise.all([
+        supportCallable('adminSupportList')({ limit: 500 }),
         getDoc(doc(db, 'admin_config', 'support_inbox')),
       ]);
-      _supportInboxAll = inboxSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      _supportInboxAll = Array.isArray(inboxResult?.data?.items) ? inboxResult.data.items : [];
       const sigInput = document.getElementById('gsi-signature');
       if (sigInput && cfgSnap.exists()) sigInput.value = String(cfgSnap.data().signature || '');
       window._supportInboxLoaded = true;

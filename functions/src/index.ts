@@ -1514,6 +1514,7 @@ export { adminGenerateDailyDigest } from './admin_daily_digest';
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
   adminSupportPull,
+  adminSupportList,
   adminSupportGenerateReply,
   adminSupportSendReply,
   adminSupportSaveSignature,

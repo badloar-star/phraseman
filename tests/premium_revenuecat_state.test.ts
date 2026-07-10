@@ -96,4 +96,22 @@ describe('premium RevenueCat state sync', () => {
     expect(invalidatePremiumCache).toHaveBeenCalledTimes(1);
     expect(syncToCloud).toHaveBeenCalledWith({ forceNow: true });
   });
+
+  it('stops premium side effects when generation changes during local persistence', async () => {
+    let release!: () => void;
+    let current = true;
+    (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(() => (
+      new Promise<void>((resolve) => { release = resolve; })
+    ));
+
+    const pending = persistStorePremiumLocally('yearly', {}, () => current);
+    await Promise.resolve();
+    current = false;
+    release();
+    await pending;
+
+    expect(markPremiumStoreSeenNow).not.toHaveBeenCalled();
+    expect(invalidatePremiumCache).not.toHaveBeenCalled();
+    expect(syncToCloud).not.toHaveBeenCalled();
+  });
 });

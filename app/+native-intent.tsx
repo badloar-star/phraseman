@@ -16,11 +16,15 @@ export function redirectSystemPath({
   if (/^[a-z][a-z0-9+.-]*:\/\//i.test(raw)) {
     try {
       const url = new URL(raw);
-      const routePath = url.pathname && url.pathname !== '/'
+      const customSchemeAuthorityPath = url.protocol.toLowerCase() === 'phraseman:' && url.host
+        ? `/${url.host}${url.pathname === '/' ? '' : url.pathname}`
+        : null;
+      const routePath = customSchemeAuthorityPath
+        ?? (url.pathname && url.pathname !== '/'
         ? url.pathname
         : url.host
           ? `/${url.host}`
-          : '';
+          : '');
       raw = `${routePath}${url.search || ''}${url.hash || ''}`.trim();
     } catch {
       raw = raw.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').trim();

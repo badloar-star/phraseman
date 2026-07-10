@@ -23,6 +23,10 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('auth_links/$(request.auth.uid)');
     expect(rules).toContain('data.stable_id == userId');
     expect(rules).toContain('stableUserMatchesAuth(userId) || authLinkMapsToUser(userId)');
+    expect(rules).toContain('function accountDeletionNotPending(userId) {');
+    expect(rules).toContain('account_deletion_tombstones/$(userId)');
+    expect(rules).toMatch(/allow update:[^;]*accountDeletionNotPending\(userId\)/);
+    expect(rules).toMatch(/allow create:[^;]*accountDeletionNotPending\(userId\)/);
     // Read is owner/admin OR the doc does not exist yet (empty read is safe and must
     // not break the 1.5.41 sign-in transaction's tx.get on a brand-new localStableId —
     // see userDocMissing). delete stays strictly owner/admin. update is owner/admin AND

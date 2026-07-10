@@ -65,14 +65,18 @@ const ensureStableAuthLinkForStableIdDetailed = jest.fn(async (stableId: string)
   stableUid: stableId, // same → linked_existing / created_new branch
   source: 'server',
 }));
+const mockWipeLocalAccountData = jest.fn(async () => {});
+const mockRestoreFromCloudDetailed = jest.fn(async () => 'restored' as const);
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: jest.fn(async () => {}),
   waitForAnonAuth: jest.fn(async () => true),
   syncToCloud: jest.fn(async () => {}),
   restoreFromCloud: jest.fn(async () => {}),
+  restoreFromCloudDetailed: () => mockRestoreFromCloudDetailed(),
   forceSyncToCloud: jest.fn(async () => {}),
   quiesceSyncBeforeStableIdSwap: jest.fn(async () => {}),
-  wipeLocalAccountData: jest.fn(async () => {}),
+  quiesceCloudSyncForAccountTransition: jest.fn(async () => {}),
+  wipeLocalAccountData: () => mockWipeLocalAccountData(),
   deleteCloudData: jest.fn(async () => {}),
   resetAnonAuthCacheForSignOut: jest.fn(() => {}),
   ensureStableAuthLinkForStableIdDetailed: (...a: unknown[]) => (ensureStableAuthLinkForStableIdDetailed as any)(...a),
@@ -91,7 +95,11 @@ jest.mock('../app/stable_id', () => {
 });
 
 jest.mock('../app/premium_guard', () => ({ invalidatePremiumCache: jest.fn() }));
-jest.mock('../app/shards_system', () => ({ loadShardsFromCloud: jest.fn(async () => {}) }));
+const mockLoadShardsFromCloud = jest.fn(async () => {});
+jest.mock('../app/shards_system', () => ({
+  loadShardsFromCloud: () => mockLoadShardsFromCloud(),
+  forceSyncShardsToCloud: jest.fn(async () => {}),
+}));
 const logEvent = jest.fn();
 const recordError = jest.fn();
 jest.mock('../app/firebase', () => ({
@@ -130,6 +138,11 @@ beforeEach(() => {
   (globalThis as any).__DEV__ = false;
   authFactory.__resetTestState();
   ensureStableAuthLinkForStableIdDetailed.mockClear();
+  mockWipeLocalAccountData.mockClear();
+  mockRestoreFromCloudDetailed.mockReset();
+  mockRestoreFromCloudDetailed.mockResolvedValue('restored');
+  mockLoadShardsFromCloud.mockReset();
+  mockLoadShardsFromCloud.mockResolvedValue(undefined);
   googleSignInImpl.mockClear();
   googleSignInImpl.mockResolvedValue({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com' } } });
 });
@@ -179,6 +192,63 @@ test('a user-cancelled native sign-in returns { result: "cancelled" } and never 
   expect(res).toEqual({ result: 'cancelled' });
   // No link/signin attempted for a cancelled flow.
   expect(authState.calls).toHaveLength(0);
+});
+
+test('a timed-out native Google picker returns an actionable error instead of silent cancellation', async () => {
+  jest.useFakeTimers();
+  googleSignInImpl.mockImplementationOnce(() => new Promise(() => {}));
+  const { signInWithProvider } = loadAuthProvider();
+
+  const pending = signInWithProvider('google');
+  await jest.advanceTimersByTimeAsync(30_000);
+
+  await expect(pending).resolves.toMatchObject({
+    result: 'error',
+    error: expect.stringContaining('google_signin_timeout'),
+  });
+  expect(authState.calls).toHaveLength(0);
+  jest.useRealTimers();
+});
+
+test('retry after Google picker timeout reuses the unresolved native call instead of opening another picker', async () => {
+  jest.useFakeTimers();
+  let resolveNative!: (value: any) => void;
+  googleSignInImpl.mockImplementationOnce(() => new Promise((resolve) => { resolveNative = resolve; }));
+  const { signInWithProvider } = loadAuthProvider();
+
+  const first = signInWithProvider('google');
+  await jest.advanceTimersByTimeAsync(30_000);
+  await first;
+
+  const retry = signInWithProvider('google');
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  resolveNative({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com' } } });
+  await expect(retry).resolves.toMatchObject({ result: expect.stringMatching(/created_new|linked_existing/) });
+  jest.useRealTimers();
+});
+
+test('account switch is not blocked by a never-settling post-auth network tail', async () => {
+  let releaseShards!: () => void;
+  mockLoadShardsFromCloud.mockImplementationOnce(() => new Promise<void>((resolve) => { releaseShards = resolve; }));
+  const { signInWithProvider, signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await signInWithProvider('google');
+  for (let i = 0; i < 10 && mockLoadShardsFromCloud.mock.calls.length === 0; i += 1) {
+    await Promise.resolve();
+  }
+  expect(mockLoadShardsFromCloud).toHaveBeenCalledTimes(1);
+
+  const switching = signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true });
+  const stateBeforeShardRelease = await Promise.race([
+    switching.then(() => 'switched' as const),
+    new Promise<'blocked'>((resolve) => setTimeout(() => resolve('blocked'), 100)),
+  ]);
+  expect(stateBeforeShardRelease).toBe('switched');
+  expect(mockWipeLocalAccountData).toHaveBeenCalledTimes(1);
+
+  releaseShards();
+  await Promise.resolve();
+  expect(mockWipeLocalAccountData).toHaveBeenCalledTimes(1);
 });
 
 test('an unexpected link error still degrades to signInWithCredential (does not abort sign-in)', async () => {

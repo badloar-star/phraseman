@@ -12,6 +12,7 @@ import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
+import { redirectSystemPath } from './+native-intent';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, AppState, Easing, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
@@ -49,7 +50,7 @@ import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications } from './achievements';
-import { ensureAnonUser, ensureStableAuthLink, restoreFromCloud, syncToCloud } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink, restoreFromCloudDetailed, syncToCloud } from './cloud_sync';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
@@ -107,6 +108,8 @@ import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
+import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
+import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
@@ -277,23 +280,8 @@ const safeProgressEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 function normalizeWarmDeepLink(url: string): string | null {
-  const rawInput = String(url || '').trim();
-  if (!rawInput) return null;
-
-  try {
-    const parsed = new URL(rawInput);
-    const routePath = parsed.pathname && parsed.pathname !== '/'
-      ? parsed.pathname
-      : parsed.host
-        ? `/${parsed.host}`
-        : '';
-    const normalized = `${routePath}${parsed.search || ''}${parsed.hash || ''}`.trim();
-    return normalized && normalized !== '/' ? normalized : null;
-  } catch {
-    const stripped = rawInput.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').trim();
-    if (!stripped || stripped === '/') return null;
-    return stripped.startsWith('/') ? stripped : `/${stripped}`;
-  }
+  const normalized = redirectSystemPath({ path: url, initial: false });
+  return normalized && normalized !== '/' ? normalized : null;
 }
 
 function isDevUtilityRoutePath(path: string | null | undefined): boolean {
@@ -1626,11 +1614,6 @@ function AppContent() {
     };
   }, []);
 
-  // Обработчик тапа по уведомлению — deep link в нужный экран
-  useEffect(() => {
-    migrateXPFormulaV2();
-  }, []);
-
   // Лёгкий ранний прогрев состояния таба «Уроки» (один AsyncStorage.multiGet):
   // без него первый тап на «Уроки» показывал нули прогресса, а через долю секунды —
   // реальные значения («прыжок»). Отдельно от тяжёлого ENABLE_STARTUP_CONTENT_PREWARM
@@ -1751,9 +1734,9 @@ function AppContent() {
 
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
-    let cloudHydratePromise: Promise<void> | null = null;
+    let cloudHydratePromise: Promise<BootCloudRestoreOutcome> | null = null;
     let contentDeliveryMigrationPromise: Promise<void> | null = null;
-    const runContentDeliveryMigration = (after?: Promise<void> | null): Promise<void> => {
+    const runContentDeliveryMigration = (after?: Promise<unknown> | null): Promise<void> => {
       if (!contentDeliveryMigrationPromise) {
         contentDeliveryMigrationPromise = (async () => {
           if (after) await after.catch(() => {});
@@ -1832,20 +1815,21 @@ function AppContent() {
       // AsyncStorage пуст) при упавшем restore пустой локальный прогресс затирал облако.
       // Отслеживаем успех restore; boot-sync пускаем только если restore удался ЛИБО
       // локально реально есть прогресс (как в login-ветках auth_provider).
-      let bootRestoreSucceeded = (cloudHydratePromise as { __restoreOk?: boolean } | null)?.__restoreOk ?? false;
-      const hydrate = cloudHydratePromise ?? (async () => {
-        try {
+      const bootCoordinator = createBootCloudRestoreCoordinator({
+        restore: async () => {
           await ensureAnonUser();
-          await restoreFromCloud();
-          bootRestoreSucceeded = true;
-        } catch (e) {
-          if (__DEV__) console.warn('[_layout]', e);
-        }
-      })();
+          return restoreFromCloudDetailed();
+        },
+        hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
+        onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
+      });
+      const hydrate = cloudHydratePromise ?? bootCoordinator.run();
 
-      void hydrate.then(async () => {
+      void hydrate.then(async (bootRestoreOutcome) => {
+        // XP restore is intentionally sequenced after cloud hydration. Running it
+        // in an independent mount effect can reinterpret pre-restore local XP.
+        await migrateXPFormulaV2();
         await runContentDeliveryMigration().catch(() => {});
-        try { emitAppEvent('cloud_profile_hydrated'); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
         const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
         if (onboardingDoneAfterHydrate === '1') {
           await ensureLocalNickname().catch(() => null);
@@ -1886,24 +1870,9 @@ function AppContent() {
           .catch(() => {});
         // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного
         // прогресса — иначе пустые дефолты затрут реальный облачный аккаунт (переустановка).
-        const bootHasLocalProgress = await (async () => {
-          try {
-            const [[, xp], [, streak], [, name]] = await AsyncStorage.multiGet([
-              'user_total_xp',
-              'streak_count',
-              'user_name',
-            ]);
-            if (xp && parseInt(xp, 10) > 0) return true;
-            if (streak && parseInt(streak, 10) > 0) return true;
-            if (name && name.trim().length > 0) return true;
-            return false;
-          } catch {
-            return false;
-          }
-        })();
-        if (bootRestoreSucceeded || bootHasLocalProgress) {
+        if (bootRestoreOutcome.shouldSync) {
           await syncToCloud().catch(() => {});
-        } else {
+        } else if (bootRestoreOutcome.status === 'failed') {
           if (__DEV__) {
             console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
           }
@@ -1992,15 +1961,16 @@ function AppContent() {
           initFirebaseAppCheckIfAvailable(),
           new Promise<void>((resolve) => setTimeout(resolve, 1200)),
         ]).catch(() => {});
-        cloudHydratePromise = (async () => {
-          await appCheckWarmup;
-          try {
+        const bootCoordinator = createBootCloudRestoreCoordinator({
+          restore: async () => {
+            await appCheckWarmup;
             await ensureAnonUser();
-            await restoreFromCloud();
-          } catch (e) {
-            if (__DEV__) console.warn('[_layout]', e);
-          }
-        })();
+            return restoreFromCloudDetailed();
+          },
+          hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
+          onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
+        });
+        cloudHydratePromise = bootCoordinator.run();
         void runContentDeliveryMigration(cloudHydratePromise);
       }
 

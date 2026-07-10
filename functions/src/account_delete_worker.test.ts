@@ -27,7 +27,7 @@ describe('account deletion worker binding', () => {
     expect(accountDeleteRetryCron).toBeDefined();
   });
 
-  it('processes due queued jobs and purges expired scrubbed audit jobs', async () => {
+  it('processes due jobs and purges expired audit jobs and deletion tombstones', async () => {
     const expiredDelete = jest.fn(async () => undefined);
     const process = jest.fn(async () => undefined);
     const queryFor = (field: string) => ({
@@ -53,6 +53,6 @@ describe('account deletion worker binding', () => {
 
     expect(process).toHaveBeenCalledWith(db, 'queued-job', expect.any(Function), 10_000);
     expect(process).toHaveBeenCalledWith(db, 'stranded-running-job', expect.any(Function), 10_000);
-    expect(expiredDelete).toHaveBeenCalledTimes(1);
+    expect(expiredDelete).toHaveBeenCalledTimes(2);
   });
 });

@@ -37,6 +37,7 @@ export type BackupRestoreResult =
   | { status: 'different_account' }
   | { status: 'expired' }
   | { status: 'invalid' }
+  | { status: 'stale_generation' }
   | { status: 'restored'; restoredKeys: number; skippedExisting: number };
 
 function parseBackup(raw: string): BackupPayload | null {
@@ -51,7 +52,9 @@ function parseBackup(raw: string): BackupPayload | null {
   return null;
 }
 
-export async function restoreAccountSwitchEmergencyBackupIfSafe(): Promise<BackupRestoreResult> {
+export async function restoreAccountSwitchEmergencyBackupIfSafe(
+  isCurrent: () => boolean = () => true,
+): Promise<BackupRestoreResult> {
   let raw: string | null = null;
   try {
     raw = await AsyncStorage.getItem(BACKUP_KEY);
@@ -91,8 +94,10 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(): Promise<Backu
   const missing = candidates.filter(([key]) => !existing.has(key));
 
   if (missing.length > 0) {
+    if (!isCurrent()) return { status: 'stale_generation' };
     await AsyncStorage.multiSet(missing);
   }
+  if (!isCurrent()) return { status: 'stale_generation' };
   await AsyncStorage.removeItem(BACKUP_KEY).catch(() => {});
   return { status: 'restored', restoredKeys: missing.length, skippedExisting: existing.size };
 }

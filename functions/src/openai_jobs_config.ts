@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'constellations';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'constellations' | 'content_factory';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations', 'content_factory'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -66,6 +66,7 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Квизы «Созвездий»: генерация вопросов с судьёй-валидатором дистракторов.
   // Дешёвая модель, щедрый кап (кэш досыпается фоном), kill-switch → только кэш+банк.
   constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
+  content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
 };
 
 export interface JobConfig {

@@ -25,6 +25,15 @@ export function sourceRegistryDocId(blueprintId: string, version: string): strin
   return `${blueprintId}:${version}`;
 }
 
+export function parseSourceRegistryReference(reference: string): { blueprintId: string; version: string } {
+  const separator = reference.indexOf(':');
+  if (separator <= 0 || separator === reference.length - 1) throw new Error('source_registry_reference_invalid');
+  const blueprintId = reference.slice(0, separator);
+  const version = reference.slice(separator + 1);
+  sourceRegistryDocId(blueprintId, version);
+  return Object.freeze({ blueprintId, version });
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }

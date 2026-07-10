@@ -166,7 +166,7 @@
       feedback('Создаём job…');
       try {
         const call = httpsCallable(functions, 'adminCreateContentGenerationJob');
-        const result = await call({ projectId: `${targetLanguage}-factory`, studyTarget: targetLanguage, sourceLocale: 'en', lessonIds: Array.from({ length: lessonCount }, (_, index) => index + 1), surfaces, idempotencyKey: jobId, blueprintVersion: document.getElementById('source-blueprint')?.value ?? 'en-v1', requestId: jobId });
+        const result = await call({ projectId: `${targetLanguage}-factory`, studyTarget: targetLanguage, sourceLocale: 'en', lessonIds: Array.from({ length: lessonCount }, (_, index) => index + 1), surfaces, idempotencyKey: jobId, blueprintVersion: document.getElementById('source-blueprint')?.value ?? 'english-core-32:v1', requestId: jobId });
         feedback(`Draft job создан: ${result.data.jobId ?? jobId}. Публикация не выполнялась.`);
       } catch (error) {
         feedback(error instanceof Error ? `Не удалось создать job: ${error.message}` : 'Не удалось создать job');

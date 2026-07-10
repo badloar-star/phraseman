@@ -5,8 +5,9 @@ import { hasAdminRole, type AdminRole } from './admin/roles';
 import { hasPermission } from './admin/permissions';
 import { buildCourseRelease } from './content_factory/release_sealing';
 import { writeImmutableObject, type ArtifactBucketLike } from './content_factory/artifact_storage';
-import { parseSourceRegistryReference } from './content_factory/source_registry';
+import { parseSourceRegistryReference, sourceRegistryDocId, validateSourceRegistry, type SourceRegistry } from './content_factory/source_registry';
 import { CANONICAL_RELEASE_SURFACES, type CanonicalReleaseSurface, type CourseReleaseArtifact } from './content_factory/course_release_contract';
+import { validateReleaseReviewCandidate } from './content_factory/release_review';
 
 const REGION = 'us-central1';
 
@@ -40,22 +41,30 @@ export const adminReviewCourseGeneration = onCall(
     const db = admin.firestore();
     const jobRef = db.collection('content_factory_jobs').doc(input.jobId);
     const reviewRef = db.collection('content_factory_job_reviews').doc(input.jobId);
-    const unitsSnap = await db.collection('content_factory_job_units').where('jobId', '==', input.jobId).get();
-    if (input.status === 'approved') {
-      const complete = CANONICAL_RELEASE_SURFACES.every((surface) => {
-        const surfaceUnits = unitsSnap.docs.filter((doc) => doc.data().surface === surface);
-        return surfaceUnits.length > 0 && surfaceUnits.every((doc) => doc.data().state === 'succeeded');
-      });
-      if (!complete) throw new HttpsError('failed-precondition', 'all_release_surfaces_must_succeed');
-    }
     const jobSnap = await jobRef.get();
     if (!jobSnap.exists) throw new HttpsError('not-found', 'generation_job_not_found');
     const job = jobSnap.data() ?? {};
-    const blueprintHash = String(job.blueprintHash ?? unitsSnap.docs.map((doc) => {
-      const qa = doc.data().qaReceipt;
-      return isRecord(qa) ? qa.blueprintHash : '';
-    }).find((value) => typeof value === 'string' && value.trim()) ?? '').trim();
-    await reviewRef.set({ jobId: input.jobId, status: input.status, reason: input.reason, reviewerId: request.auth.uid, blueprintHash, reviewedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: false });
+    const studyTarget = String(job.studyTarget ?? '').trim();
+    const learnerSourceLocale = String(job.learnerSourceLocale ?? job.sourceLocale ?? '').trim();
+    const releaseId = `draft-${studyTarget}-${learnerSourceLocale}-${input.jobId}`;
+    const lessonIds = Array.isArray(job.lessonIds) ? job.lessonIds.map(Number) : [];
+    const unitsSnap = await db.collection('content_factory_job_units').where('jobId', '==', input.jobId).get();
+    let blueprintHash = '';
+    let sourceEvidenceIds: string[] = [];
+    if (input.status === 'approved') {
+      let reference: { blueprintId: string; version: string };
+      try { reference = parseSourceRegistryReference(String(job.blueprintVersion ?? '')); } catch { throw new HttpsError('failed-precondition', 'blueprint_reference_invalid'); }
+      const registrySnap = await db.collection('content_factory_source_registry').doc(sourceRegistryDocId(reference.blueprintId, reference.version)).get();
+      if (!registrySnap.exists) throw new HttpsError('failed-precondition', 'source_registry_not_found');
+      const registry = registrySnap.data() as SourceRegistry;
+      const registryCheck = validateSourceRegistry(registry);
+      if (!registryCheck.ok) throw new HttpsError('failed-precondition', `source_registry_invalid:${registryCheck.errors.join(',')}`);
+      blueprintHash = registry.blueprintHash;
+      sourceEvidenceIds = registry.evidence.map((item) => item.evidenceId);
+      const validation = validateReleaseReviewCandidate({ jobId: input.jobId, studyTarget, learnerSourceLocale, releaseId, expectedLessonIds: lessonIds, expectedBlueprintHash: blueprintHash, expectedEvidenceIds: sourceEvidenceIds, units: unitsSnap.docs.map((doc) => doc.data()) });
+      if (!validation.ok) throw new HttpsError('failed-precondition', `release_review_failed:${validation.errors.join(',')}`);
+    }
+    await reviewRef.set({ jobId: input.jobId, status: input.status, reason: input.reason, reviewerId: request.auth.uid, blueprintHash, sourceEvidenceIds, reviewedUnitCount: unitsSnap.size, reviewedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: false });
     await jobRef.set({ state: input.status === 'approved' ? 'approved' : 'needs_review', updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
     return { ok: true, jobId: input.jobId, status: input.status };
   },
@@ -86,6 +95,17 @@ export const adminSealCourseRelease = onCall(
     const unitsSnap = await db.collection('content_factory_job_units').where('jobId', '==', input.jobId).get();
     const units = unitsSnap.docs.map((doc) => doc.data());
     const releaseId = `draft-${studyTarget}-${learnerSourceLocale}-${input.jobId}`;
+    const registrySnap = await db.collection('content_factory_source_registry').doc(sourceRegistryDocId(sourceReference.blueprintId, sourceReference.version)).get();
+    if (!registrySnap.exists) throw new HttpsError('failed-precondition', 'source_registry_not_found');
+    const registry = registrySnap.data() as SourceRegistry;
+    const registryCheck = validateSourceRegistry(registry);
+    if (!registryCheck.ok) throw new HttpsError('failed-precondition', `source_registry_invalid:${registryCheck.errors.join(',')}`);
+    const reviewValidation = validateReleaseReviewCandidate({ jobId: input.jobId, studyTarget, learnerSourceLocale, releaseId, expectedLessonIds: Array.isArray(job.lessonIds) ? job.lessonIds.map(Number) : [], expectedBlueprintHash: registry.blueprintHash, expectedEvidenceIds: registry.evidence.map((item) => item.evidenceId), units });
+    const reviewedEvidenceIds = Array.isArray(review.sourceEvidenceIds) ? [...new Set(review.sourceEvidenceIds.map(String))].sort() : [];
+    const expectedEvidenceIds = [...new Set(registry.evidence.map((item) => item.evidenceId))].sort();
+    if (!reviewValidation.ok || review.status !== 'approved' || review.blueprintHash !== registry.blueprintHash || reviewedEvidenceIds.join('|') !== expectedEvidenceIds.join('|') || Number(review.reviewedUnitCount) !== units.length) {
+      throw new HttpsError('failed-precondition', `release_review_stale_or_invalid:${reviewValidation.errors.join(',')}`);
+    }
     const artifacts = {} as Record<CanonicalReleaseSurface, CourseReleaseArtifact>;
     const bucket = admin.storage().bucket() as unknown as ArtifactBucketLike;
     for (const surface of CANONICAL_RELEASE_SURFACES) {
@@ -96,7 +116,7 @@ export const adminSealCourseRelease = onCall(
       const receipt = await writeImmutableObject(bucket, indexPath, index);
       artifacts[surface] = { releaseId, studyTarget, learnerSourceLocale, surface, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, entryIndex: receipt.objectPath };
     }
-    const release = buildCourseRelease({ releaseId, studyTarget, learnerSourceLocale, blueprintId: sourceReference.blueprintId, blueprintHash: String(review.blueprintHash ?? ''), contentVersion: input.jobId, minAppVersion: String(review.minAppVersion ?? '1.0.0'), reviewStatus: String(review.status ?? ''), reviewerId: String(review.reviewerId ?? ''), unitStates: Object.fromEntries(CANONICAL_RELEASE_SURFACES.map((surface) => [surface, 'succeeded'])) as Record<CanonicalReleaseSurface, 'succeeded'>, artifacts });
+    const release = buildCourseRelease({ releaseId, studyTarget, learnerSourceLocale, blueprintId: sourceReference.blueprintId, blueprintHash: registry.blueprintHash, contentVersion: input.jobId, minAppVersion: String(review.minAppVersion ?? '1.0.0'), reviewStatus: String(review.status ?? ''), reviewerId: String(review.reviewerId ?? ''), unitStates: Object.fromEntries(CANONICAL_RELEASE_SURFACES.map((surface) => [surface, 'succeeded'])) as Record<CanonicalReleaseSurface, 'succeeded'>, artifacts });
     const releaseRef = db.collection('content_factory_releases').doc(releaseId);
     return db.runTransaction(async (tx) => {
       const [existing, operation] = await Promise.all([tx.get(releaseRef), tx.get(operationRef)]);

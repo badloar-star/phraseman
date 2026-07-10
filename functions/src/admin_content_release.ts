@@ -14,21 +14,30 @@ const REGION = 'us-central1';
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
 function roleFromToken(token: Record<string, unknown>): AdminRole | null { return hasAdminRole(token.adminRole) ? token.adminRole : null; }
 
-export function parseSealCourseReleaseRequest(data: unknown): { jobId: string; idempotencyKey: string } {
+export function parseSealCourseReleaseRequest(data: unknown): { jobId: string; idempotencyKey: string; requestId: string } {
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'seal request required');
   const jobId = String(data.jobId ?? '').trim();
   const idempotencyKey = String(data.idempotencyKey ?? '').trim();
-  if (!/^[A-Za-z0-9._-]{1,160}$/.test(jobId) || !/^[A-Za-z0-9._-]{1,160}$/.test(idempotencyKey)) throw new HttpsError('invalid-argument', 'invalid seal request');
-  return Object.freeze({ jobId, idempotencyKey });
+  const requestId = String(data.requestId ?? '').trim();
+  if (!/^[A-Za-z0-9._-]{1,160}$/.test(jobId) || !/^[A-Za-z0-9._-]{1,160}$/.test(idempotencyKey) || !/^[A-Za-z0-9._-]{1,160}$/.test(requestId)) throw new HttpsError('invalid-argument', 'invalid seal request');
+  return Object.freeze({ jobId, idempotencyKey, requestId });
 }
 
-export function parseCourseGenerationReviewRequest(data: unknown): { jobId: string; status: 'approved' | 'rejected'; reason: string } {
+export function parseCourseGenerationReviewRequest(data: unknown): { jobId: string; status: 'approved' | 'rejected'; reason: string; requestId: string } {
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'review request required');
   const jobId = String(data.jobId ?? '').trim();
   const status = String(data.status ?? '') as 'approved' | 'rejected';
   const reason = String(data.reason ?? '').trim().slice(0, 500);
-  if (!/^[A-Za-z0-9._-]{1,160}$/.test(jobId) || (status !== 'approved' && status !== 'rejected') || !reason) throw new HttpsError('invalid-argument', 'invalid review request');
-  return Object.freeze({ jobId, status, reason });
+  const requestId = String(data.requestId ?? '').trim();
+  if (!/^[A-Za-z0-9._-]{1,160}$/.test(jobId) || (status !== 'approved' && status !== 'rejected') || !reason || !/^[A-Za-z0-9._-]{1,160}$/.test(requestId)) throw new HttpsError('invalid-argument', 'invalid review request');
+  return Object.freeze({ jobId, status, reason, requestId });
+}
+
+export function assertSealOperationReplay(value: unknown, expectedJobId: string): string {
+  if (!isRecord(value) || value.action !== 'content_factory.course_release.seal' || value.jobId !== expectedJobId || typeof value.releaseId !== 'string' || !/^[A-Za-z0-9._-]{1,160}$/.test(value.releaseId)) {
+    throw new HttpsError('already-exists', 'idempotency_key_reused');
+  }
+  return value.releaseId;
 }
 
 export const adminReviewCourseGeneration = onCall(
@@ -64,9 +73,29 @@ export const adminReviewCourseGeneration = onCall(
       const validation = validateReleaseReviewCandidate({ jobId: input.jobId, studyTarget, learnerSourceLocale, releaseId, expectedLessonIds: lessonIds, expectedBlueprintHash: blueprintHash, expectedEvidenceIds: sourceEvidenceIds, units: unitsSnap.docs.map((doc) => doc.data()) });
       if (!validation.ok) throw new HttpsError('failed-precondition', `release_review_failed:${validation.errors.join(',')}`);
     }
-    await reviewRef.set({ jobId: input.jobId, status: input.status, reason: input.reason, reviewerId: request.auth.uid, blueprintHash, sourceEvidenceIds, reviewedUnitCount: unitsSnap.size, reviewedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: false });
-    await jobRef.set({ state: input.status === 'approved' ? 'approved' : 'needs_review', updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
-    return { ok: true, jobId: input.jobId, status: input.status };
+    const auditRef = db.collection('admin_log').doc();
+    return db.runTransaction(async (tx) => {
+      const [currentJobSnap, currentReviewSnap] = await Promise.all([tx.get(jobRef), tx.get(reviewRef)]);
+      if (!currentJobSnap.exists) throw new HttpsError('not-found', 'generation_job_not_found');
+      const currentJob = currentJobSnap.data() ?? {};
+      const nextState = input.status === 'approved' ? 'approved' : 'needs_review';
+      const review = { jobId: input.jobId, status: input.status, reason: input.reason, reviewerId: request.auth?.uid, blueprintHash, sourceEvidenceIds, reviewedUnitCount: unitsSnap.size, reviewedAt: admin.firestore.FieldValue.serverTimestamp() };
+      const audit = {
+        action: 'content_factory.course_generation.review',
+        actorUid: request.auth?.uid,
+        role,
+        entity: { collection: 'content_factory_jobs', id: input.jobId },
+        reason: input.reason,
+        requestId: input.requestId,
+        before: { state: currentJob.state ?? null, review: currentReviewSnap.exists ? currentReviewSnap.data() : null },
+        after: { state: nextState, status: input.status, blueprintHash, sourceEvidenceIds, reviewedUnitCount: unitsSnap.size },
+        timestamp: new Date().toISOString(),
+      };
+      tx.set(reviewRef, review, { merge: false });
+      tx.set(jobRef, { state: nextState, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+      tx.create(auditRef, audit);
+      return { ok: true, jobId: input.jobId, status: input.status, auditId: auditRef.id };
+    });
   },
 );
 
@@ -91,7 +120,7 @@ export const adminSealCourseRelease = onCall(
     const review = reviewSnap.data() ?? {};
     const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
     const existingOperation = await operationRef.get();
-    if (existingOperation.exists) return { ok: true, releaseId: String(existingOperation.data()?.releaseId ?? ''), replayed: true };
+    if (existingOperation.exists) return { ok: true, releaseId: assertSealOperationReplay(existingOperation.data(), input.jobId), replayed: true };
     const unitsSnap = await db.collection('content_factory_job_units').where('jobId', '==', input.jobId).get();
     const units = unitsSnap.docs.map((doc) => doc.data());
     const releaseId = `draft-${studyTarget}-${learnerSourceLocale}-${input.jobId}`;
@@ -118,13 +147,26 @@ export const adminSealCourseRelease = onCall(
     }
     const release = buildCourseRelease({ releaseId, studyTarget, learnerSourceLocale, blueprintId: sourceReference.blueprintId, blueprintHash: registry.blueprintHash, contentVersion: input.jobId, minAppVersion: String(review.minAppVersion ?? '1.0.0'), reviewStatus: String(review.status ?? ''), reviewerId: String(review.reviewerId ?? ''), unitStates: Object.fromEntries(CANONICAL_RELEASE_SURFACES.map((surface) => [surface, 'succeeded'])) as Record<CanonicalReleaseSurface, 'succeeded'>, artifacts });
     const releaseRef = db.collection('content_factory_releases').doc(releaseId);
+    const auditRef = db.collection('admin_log').doc();
     return db.runTransaction(async (tx) => {
       const [existing, operation] = await Promise.all([tx.get(releaseRef), tx.get(operationRef)]);
-      if (operation.exists) return { ok: true, releaseId, replayed: true };
+      if (operation.exists) return { ok: true, releaseId: assertSealOperationReplay(operation.data(), input.jobId), replayed: true };
       if (existing.exists) throw new HttpsError('already-exists', 'course release already sealed');
       tx.create(releaseRef, { ...release, reviewStatus: review.status, reviewerId: review.reviewerId, sealedBy: request.auth?.uid, sealedAt: admin.firestore.FieldValue.serverTimestamp() });
-      tx.create(operationRef, { operationId: input.idempotencyKey, releaseId, createdAt: admin.firestore.FieldValue.serverTimestamp() });
-      return { ok: true, releaseId, replayed: false };
+      tx.create(operationRef, { operationId: input.idempotencyKey, action: 'content_factory.course_release.seal', jobId: input.jobId, releaseId, actorUid: request.auth?.uid, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      tx.create(auditRef, {
+        action: 'content_factory.course_release.seal',
+        actorUid: request.auth?.uid,
+        role,
+        entity: { collection: 'content_factory_releases', id: releaseId },
+        reason: 'Approved Language Factory release sealed',
+        requestId: input.requestId,
+        before: { jobId: input.jobId, reviewStatus: review.status, release: null },
+        after: { jobId: input.jobId, releaseId, reviewStatus: review.status, artifactSurfaces: CANONICAL_RELEASE_SURFACES },
+        operationId: input.idempotencyKey,
+        timestamp: new Date().toISOString(),
+      });
+      return { ok: true, releaseId, auditId: auditRef.id, replayed: false };
     });
   },
 );

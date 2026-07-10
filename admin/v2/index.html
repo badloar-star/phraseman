@@ -3,177 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
   <title>Phraseman Admin</title>
-  <style>
-    :root{font-family:"Fira Sans",Inter,system-ui,sans-serif;color:#172033;background:#f6f8fb;--ink:#172033;--muted:#657086;--line:#dfe5ee;--panel:#fff;--brand:#b7e35b;--brand-ink:#07110a;--brand-soft:#eff8d7;--nav-accent:#536f00;--ok:#19734a;--warn:#986514;--danger:#a53b45;--shadow:0 8px 24px rgba(23,32,51,.07)}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer;min-height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);padding:0 14px;transition:.2s ease}button:hover{border-color:#9aa8c2;box-shadow:0 3px 10px rgba(23,32,51,.08)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #92a0ff;outline-offset:2px}.primary{background:var(--brand);border-color:var(--brand);color:#fff}.danger{color:var(--danger);border-color:#eab8bd}.layout{display:grid;grid-template-columns:248px 1fr;min-height:100vh}.side{background:#fff;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh}.brand{font-weight:700;font-size:19px;padding:0 12px 26px}.brand small{display:block;color:var(--muted);font-weight:400;font-size:12px;margin-top:5px}.nav{display:grid;gap:5px}.nav button{text-align:left;border:0;background:transparent;color:#536078;display:flex;gap:11px;align-items:center}.nav button[aria-current=true]{background:var(--brand-soft);color:var(--brand);font-weight:600}.nav svg{width:19px;height:19px;flex:none}.main{min-width:0}.top{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:18px}.env{font-size:12px;color:var(--warn);background:#fff5df;border:1px solid #f0d49e;border-radius:999px;padding:7px 11px}.admin{color:var(--muted);font-size:13px}.content{padding:32px;max-width:1500px;margin:auto}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px}.eyebrow{color:var(--brand);font-size:13px;font-weight:600;margin-bottom:7px}.head h1{font-size:30px;line-height:1.2;margin:0 0 8px}.head p{color:var(--muted);margin:0;max-width:700px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}.stat label{color:var(--muted);font-size:13px}.stat strong{display:block;font-size:28px;margin:12px 0 5px}.stat span{font-size:13px;color:var(--ok)}.section{margin-top:22px}.section h2{font-size:17px;margin:0 0 12px}.split{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}.list{display:grid;gap:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #edf0f5}.row:last-child{border-bottom:0}.row b{font-size:14px}.row small{display:block;color:var(--muted);margin-top:4px}.badge{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:600;background:#eef3f8;color:#536078}.badge.ok{background:#e7f6ee;color:var(--ok)}.badge.warn{background:#fff5df;color:var(--warn)}.badge.danger{background:#fff0f1;color:var(--danger)}.factory{display:grid;grid-template-columns:280px 1fr;gap:18px}.steps{display:grid;gap:8px}.step{padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left}.step.active{border-color:#9aa8ff;background:var(--brand-soft)}.form{display:grid;gap:16px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:grid;gap:7px}.field label{font-size:13px;font-weight:600}.field input,.field select{height:44px;border:1px solid var(--line);border-radius:9px;padding:0 11px;background:#fff}.hint{color:var(--muted);font-size:13px;line-height:1.5}.notice{padding:14px 16px;border-radius:10px;background:#f8f9fc;border:1px solid var(--line);color:#536078;font-size:13px}.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidden{display:none!important}.mobile{display:none}@media(max-width:1024px){.layout{grid-template-columns:76px 1fr}.side{padding:18px 10px}.brand{font-size:0;text-align:center;padding:0 0 24px}.brand:before{content:"P";font-size:23px;color:var(--brand);font-weight:800}.brand small,.nav span{display:none}.nav button{justify-content:center}.content{padding:24px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:700px){.layout{display:block}.side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px}.brand{display:none}.nav{display:flex;overflow:auto}.nav button{flex:0 0 auto}.nav span{display:inline}.top{height:62px;padding:0 16px}.content{padding:20px 16px}.head{display:block}.head .primary{margin-top:16px}.grid,.split,.factory,.fields{grid-template-columns:1fr}.stat strong{font-size:24px}}
-    /* Maket palette: lime CTA with dark text for WCAG contrast. */
-    :root{--brand:#b7e35b;--brand-ink:#07110a;--brand-soft:#eff8d7;--nav-accent:#536f00}
-    .primary{background:var(--brand);border-color:#8eaf2f;color:var(--brand-ink);font-weight:700}
-    .nav button[aria-current=true]{color:var(--nav-accent)}
-    .eyebrow{color:var(--nav-accent)}
-  </style>
+  <link rel="stylesheet" href="/admin/v2/styles/admin.css">
 </head>
 <body>
-  <div class="layout">
-    <aside class="side" aria-label="Основная навигация"><div class="brand">Phraseman<small>операционная панель</small></div><nav class="nav" id="nav">
-      <button data-route="overview" aria-current="true" title="Ежедневный обзор"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>Обзор</span></button>
-      <button data-route="app" title="Настройки приложения"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-3.4-6.6-2.1 2.1m-7 7-2.1 2.1m0-11.2 2.1 2.1m7 7 2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg><span>Приложение</span></button>
-      <button data-route="users" title="Поиск и история пользователей"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-3.3 2.4-5 6-5s5.5 1.7 6 5m3-8v6m-3-3h6"/></svg><span>Пользователи</span></button>
-      <button data-route="money" title="Оплаты и подписки"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg><span>Деньги</span></button>
-      <button data-route="content" title="Уроки и языковые паки"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/><path d="M4 5.5V21m4-14h8m-8 4h8"/></svg><span>Контент</span></button>
-      <button data-route="community" title="Комьюнити и модерация"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 11.5a7.5 7.5 0 0 1-11.7 6.2L4 19l1.3-3.5A7.5 7.5 0 1 1 20 11.5Z"/></svg><span>Комьюнити</span></button>
-      <button data-route="diagnostics" title="Состояние, аудит и ошибки"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v5c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg><span>Диагностика</span></button>
-    </nav></aside>
-    <main class="main"><header class="top"><span class="env">Production · осторожный режим</span><span class="admin"><a href="#analytics">Аналитика</a> · <span id="auth-status">Проверка авторизации…</span> · <a href="#diagnostics">Открыть диагностику</a></span></header><div id="app" class="content" aria-live="polite"></div></main>
-  </div>
-  <script>
-    const pages={
-      overview:{title:'Обзор',desc:'После авторизации здесь появятся реальные health-сигналы, алерты и последние изменения.',cta:'Открыть диагностику',body:`<div class="notice">Данные ещё не загружены. Зеленый статус не показывается без подтверждённого источника и freshness.</div><div class="grid section"><div class="card stat"><label>Активные кампании</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card stat"><label>Контент на проверке</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card stat"><label>Ошибки публикации</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card stat"><label>Последняя публикация</label><strong>—</strong><span class="badge">Не загружено</span></div></div><div class="split section"><section class="card"><h2>Требует внимания</h2><p class="hint">Список появится после успешной загрузки источников. Empty, stale и error будут отображаться отдельно.</p></section><section class="card"><h2>Последние действия</h2><p class="hint">Audit log доступен только авторизованным администраторам.</p></section></div>`},
-      app:{title:'Приложение',desc:'Обновления, баннеры, технические работы и remote config в одном рабочем разделе.',cta:'Создать изменение',body:`<div class="notice">Текущие значения не читаются в prototype shell. После подключения auth они будут приходить из server read-моделей с состояниями loading, stale и error.</div><div class="grid section"><div class="card"><h2>Обновление приложения</h2><p class="hint">Черновик → preview → approval → публикация.</p><button class="primary" title="Создать черновик update modal">Создать черновик</button></div><div class="card"><h2>Технические работы</h2><p class="hint">Состояние не загружено.</p><span class="badge">Не загружено</span></div><div class="card"><h2>Feature flags</h2><p class="hint">Список не загружен.</p><button title="Открыть список feature flags">Открыть flags</button></div></div><div class="card section"><h2>Remote Config</h2><p class="hint">Запись доступна только через server command. Изменение получит revision, audit и rollback reference.</p><div class="actions"><button class="primary" title="Создать серверную команду изменения remote config">Создать изменение</button><button title="Открыть историю remote config">История</button><span class="badge">Revision не загружен</span></div></div>`},
-      users:{title:'Пользователи',desc:'Поиск, профиль, доступ, покупки и история действий без разрозненных страниц.',cta:'Найти пользователя',body:`<div class="card"><div class="fields"><div class="field"><label for="user-search">Почта, имя или user ID</label><input id="user-search" placeholder="Например, user ID или email"></div><div class="field"><label for="user-status">Фильтр статуса</label><select id="user-status"><option>Все пользователи</option><option>Premium</option><option>Есть платежная проблема</option><option>Есть жалоба</option></select></div></div><div class="actions" style="margin-top:16px"><button class="primary" title="Найти пользователя по введенным данным">Найти пользователя</button><span class="hint">Поиск не изменяет данные.</span></div></div><div class="card section"><h2>Недавние обращения</h2><div class="list"><div class="row"><div><b>Пользователь с платежной проблемой</b><small>Последняя активность · 12 минут назад</small></div><button title="Открыть профиль пользователя">Открыть профиль</button></div><div class="row"><div><b>Жалоба ожидает ответа</b><small>Нужна модерация</small></div><span class="badge warn">Открыто</span></div></div></div>`},
-      money:{title:'Деньги',desc:'Подписки, paywall, промокоды и revenue-метрики с отдельными подтверждениями.',cta:'Открыть промокоды',body:`<div class="notice">Revenue и подписки не подменяются клиентскими funnel-событиями. Источник данных ещё не подключён.</div><div class="grid section"><div class="card stat"><label>Активные подписки</label><strong>—</strong><span>Не загружено</span></div><div class="card stat"><label>Платежные проблемы</label><strong>—</strong><span>Не загружено</span></div><div class="card"><h2>Промокоды</h2><p class="hint">Массовые операции только через preview и audit.</p><button title="Открыть управление промокодами">Открыть</button></div><div class="card"><h2>Возвраты</h2><p class="hint">Опасная операция · approval обязателен.</p><button class="danger" title="Открыть заявки на возврат">Открыть заявки</button></div></div>`},
-      content:{title:'Контент',desc:'Уроки, переводы, языковые паки и единый путь генерации с проверкой качества.',cta:'Открыть Language Factory',body:`<div class="factory"><div class="steps"><button class="step active" data-factory="language" title="Создание языкового пака"><b>1. Язык и объём</b><small>Выбрать target language и уроки</small></button><button class="step" data-factory="preview" title="Предпросмотр контента"><b>2. Предпросмотр</b><small>50 фраз, vocabulary и drills</small></button><button class="step" data-factory="qa" title="Проверки качества"><b>3. QA и источники</b><small>Валидация и evidence</small></button><button class="step" data-factory="publish" title="Публикация языкового пака"><b>4. Публикация</b><small>Approval и active pointer</small></button></div><section class="card" id="factory-panel"><h2>Создать языковой пак</h2><p class="hint">Генерация создаёт только draft. Теория не генерируется автоматически и проходит отдельный редакторский путь.</p><div class="fields"><div class="field"><label for="target-language">Новый язык</label><select id="target-language"><option value="fr">French · fr</option><option value="es">Spanish · es</option><option value="de">German · de</option><option value="it">Italian · it</option></select></div><div class="field"><label for="lesson-count">Количество уроков</label><input id="lesson-count" type="number" min="1" max="100" value="10"></div><div class="field"><label for="source-blueprint">Blueprint</label><select id="source-blueprint"><option value="en-v1">English · v1</option></select></div><div class="field"><label for="surfaces">Поверхности</label><select id="surfaces"><option value="lessons,vocabulary,drills">Lessons + vocabulary + drills</option><option value="quizzes,cards,arena_questions">Quizzes + cards + arena</option></select></div></div><div class="notice" style="margin-top:16px">Сначала создаётся job и draft revision. Публикация появится только после QA, evidence и человеческого review.</div><div class="actions" style="margin-top:16px"><button id="create-factory-job" class="primary" title="Создать draft job без публикации">Создать draft job</button><button title="Открыть список черновиков">Мои черновики</button></div><p id="factory-feedback" class="hint" role="status"></p></section></div>`},
-      community:{title:'Комьюнити',desc:'UGC, арена, чат и жалобы — с понятным статусом модерации.',cta:'Открыть очередь',body:`<div class="notice">Очереди moderation и arena загружаются только после авторизации; пустые данные не считаются зелёным состоянием.</div><div class="grid section"><div class="card stat"><label>UGC на проверке</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card stat"><label>Жалобы без ответа</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card"><h2>Арена</h2><p class="hint">Паки вопросов и live-инциденты.</p><button title="Открыть состояние арены">Открыть</button></div><div class="card"><h2>Чат</h2><p class="hint">Модерация сообщений и блокировки.</p><button title="Открыть модерацию чата">Открыть</button></div></div>`},
-      diagnostics:{title:'Диагностика',desc:'Health, audit log, ошибки и безопасные действия по восстановлению.',cta:'Открыть audit log',body:`<div class="notice">Нет подтверждённого telemetry snapshot. Поэтому health отображается как «Не загружено», а не как OK.</div><div class="grid section"><div class="card stat"><label>Состояние API</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card stat"><label>Ошибки за период</label><strong>—</strong><span>Не загружено</span></div><div class="card stat"><label>Ожидают rollback</label><strong>—</strong><span class="badge">Не загружено</span></div><div class="card stat"><label>Legacy fallback</label><strong>—</strong><span>migration board</span></div></div><div class="card section"><h2>Полный реестр возможностей</h2><p class="hint">Ни одна legacy-функция не теряется: native-перенос отмечается в coverage board, а временный fallback остаётся рабочей ссылкой.</p><div class="actions"><a class="primary" style="display:inline-flex;align-items:center;text-decoration:none;min-height:44px;padding:0 14px;border-radius:10px" href="./migration.html" title="Открыть полный реестр кнопок и функций">Открыть все функции и coverage</a></div></div><div class="card section"><h2>Audit log</h2><p class="hint">Записи появятся после авторизации и успешного запроса. История не подделывается в клиенте.</p></div>`}
-    };
-    function render(route){const page=pages[route]||pages.overview;document.querySelectorAll('[data-route]').forEach(b=>b.setAttribute('aria-current',String(b.dataset.route===route)));document.getElementById('app').innerHTML=`<div class="head"><div><div class="eyebrow">Phraseman Admin · ${route}</div><h1>${page.title}</h1><p>${page.desc}</p></div><button class="primary" title="${page.cta}">${page.cta}</button></div>${page.body}`;document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>{location.hash=b.dataset.route});document.querySelectorAll('[data-factory]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-factory]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('factory-panel').querySelector('h2').textContent=b.textContent.trim()});}
-    window.addEventListener('hashchange',()=>render(location.hash.slice(1)));render(location.hash.slice(1)||'overview');
-  </script>
-  <script>
-    Object.assign(pages, { analytics: { title:'Аналитика', desc:'Реальные источники RevenueCat, app activity и paywall funnel. Клиентские purchase-сигналы не выдаются за деньги.', cta:'Загрузить аналитику', body:`<div class="notice">Все источники имеют отдельное состояние ready, empty, partial или error. При partial результат не помечается как полный.</div><div class="actions section"><label for="analytics-range">Период</label><select id="analytics-range"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><button id="load-analytics" class="primary" title="Загрузить серверный analytics snapshot">Загрузить аналитику</button><span id="analytics-feedback" class="hint" role="status"></span></div><div class="grid section"><div class="card stat"><label>Paying now</label><strong id="metric-paying">—</strong><span>users source</span></div><div class="card stat"><label>Loaded users</label><strong id="metric-users">—</strong><span>bounded read</span></div><div class="card stat"><label>Store events</label><strong id="metric-store">—</strong><span>RevenueCat webhook</span></div><div class="card stat"><label>Purchase signals</label><strong id="metric-purchases">—</strong><span>behaviour only</span></div></div><div class="card section"><h2>Источники</h2><div id="analytics-sources" class="list"><p class="hint">Нажмите «Загрузить аналитику» после авторизации.</p></div></div>` } });
-  </script>
-  <script>
-    Object.assign(pages, { support: { title:'Почта поддержки', desc:'Входящие письма загружаются с сервера после проверки прав администратора. Системные письма не теряются, а только помечаются.', cta:'Проверить почту', body:`<div class="card"><div class="actions"><button id="load-support" class="primary" title="Загрузить входящие письма через защищённый серверный запрос">Загрузить входящие</button><button id="pull-support" title="Проверить Gmail и сохранить новые письма">Проверить Gmail</button><a href="../../admin/index.html#gmail-support" title="Открыть полный workflow черновиков и ответов">Полный workflow ответов</a><span id="support-feedback" class="hint" role="status"></span></div></div><div class="card section"><h2>Входящие</h2><div id="support-list" class="list"><p class="hint">Нажмите «Загрузить входящие» после авторизации.</p></div></div>` } });
-    const adminQuickLinks = document.querySelector('.admin');
-    if (adminQuickLinks && !adminQuickLinks.querySelector('a[href="#support"]')) adminQuickLinks.insertAdjacentHTML('afterbegin', '<a href="#support">Почта поддержки</a> · ');
-  </script>
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-    import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-    import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
+  <div class="admin-shell">
+    <aside class="sidebar" aria-label="Основная навигация">
+      <a class="brand" href="#overview" aria-label="Phraseman Admin, обзор">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span><strong>Phraseman</strong><small>операционная панель</small></span>
+      </a>
+      <nav id="primary-nav" class="primary-nav"></nav>
+      <div class="sidebar-footer">
+        <span class="environment-dot" aria-hidden="true"></span>
+        <span><strong>Production</strong><small>осторожный режим</small></span>
+      </div>
+    </aside>
 
-    const firebaseConfig = window.PHR_MAN_FIREBASE_CONFIG;
-    if (!firebaseConfig) { document.getElementById('auth-status').textContent = 'Firebase config не подключён'; throw new Error('firebase_config_missing'); }
-    const firebaseApp = initializeApp(firebaseConfig);
-    const auth = getAuth(firebaseApp);
-    const functions = getFunctions(firebaseApp, 'us-central1');
-    const provider = new GoogleAuthProvider();
-    let authorized = false;
-    const status = document.getElementById('auth-status');
-    function updateButtons() {
-      document.querySelectorAll('#app button:not([data-route])').forEach((button) => { button.disabled = !authorized; });
-    }
-    function feedback(message) {
-      const target = document.getElementById('factory-feedback');
-      if (target) target.textContent = message;
-    }
-    function escapeHtml(value) {
-      return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[char]));
-    }
-    async function loadSupportInbox() {
-      const list = document.getElementById('support-list');
-      const feedbackEl = document.getElementById('support-feedback');
-      if (!list) return;
-      list.innerHTML = '<p class="hint">Загружаем входящие…</p>';
-      if (feedbackEl) feedbackEl.textContent = '';
-      try {
-        const call = httpsCallable(functions, 'adminSupportList');
-        const result = await call({ limit: 500 });
-        const items = Array.isArray(result.data?.items) ? result.data.items : [];
-        list.innerHTML = items.length ? items.map((item) => `<div class="row"><div><b>${escapeHtml(item.subject || '(без темы)')}</b><small>${escapeHtml(item.fromEmail || 'неизвестный отправитель')} · ${escapeHtml(item.status || 'new')}</small></div><span class="badge">${escapeHtml(item.mailCategory || 'unknown')}</span></div>`).join('') : '<p class="hint">Входящих писем пока нет.</p>';
-        if (feedbackEl) feedbackEl.textContent = `Загружено: ${items.length}`;
-      } catch (error) {
-        list.innerHTML = `<p class="hint">Не удалось загрузить почту: ${escapeHtml(error instanceof Error ? error.message : error)}</p>`;
-      }
-    }
-    async function loadFactoryJobs() {
-      const panel = document.getElementById('factory-panel');
-      const feedbackEl = document.getElementById('factory-feedback');
-      if (!panel) return;
-      let list = document.getElementById('factory-jobs');
-      if (!list) { list = document.createElement('div'); list.id = 'factory-jobs'; list.className = 'list section'; panel.appendChild(list); }
-      list.innerHTML = '<p class="hint">Загружаем jobs…</p>';
-      try {
-        const result = await httpsCallable(functions, 'adminListContentFactoryJobs')({ limit: 50 });
-        const jobs = Array.isArray(result.data?.jobs) ? result.data.jobs : [];
-        list.innerHTML = jobs.length ? jobs.map((job) => `<div class="row"><div><b>${escapeHtml(job.studyTarget || 'unknown')} · ${escapeHtml(job.id)}</b><small>${escapeHtml(job.state || 'queued')} · ${escapeHtml(job.blueprintVersion || 'blueprint')}</small></div><span class="badge">${Number(job.progress?.completed ?? 0)}/${Number(job.progress?.total ?? 0)}</span></div>`).join('') : '<p class="hint">Jobs пока не создавались.</p>';
-        if (feedbackEl) feedbackEl.textContent = `Jobs: ${jobs.length}`;
-      } catch (error) {
-        list.innerHTML = `<p class="hint">Не удалось загрузить jobs: ${escapeHtml(error instanceof Error ? error.message : error)}</p>`;
-      }
-    }
-    onAuthStateChanged(auth, async (user) => {
-      authorized = false;
-      if (!user) {
-        status.innerHTML = '<button id="sign-in" title="Войти через Google">Войти</button>';
-        document.getElementById('sign-in').onclick = () => signInWithPopup(auth, provider).catch(() => { status.textContent = 'Вход не выполнен'; });
-        updateButtons();
-        return;
-      }
-      const token = await user.getIdTokenResult(true);
-      authorized = token.claims.admin === true && typeof token.claims.adminRole === 'string';
-      status.innerHTML = authorized ? `${user.email ?? 'Администратор'} · <button id="sign-out" title="Выйти из админки">Выйти</button>` : 'Нет adminRole · доступ запрещён';
-      document.getElementById('sign-out')?.addEventListener('click', () => signOut(auth));
-      updateButtons();
-    });
-    document.addEventListener('click', async (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) return;
-      if (!authorized) return;
-      if (target.textContent?.trim() === 'Мои черновики') {
-        await loadFactoryJobs();
-        return;
-      }
-      if (target.id === 'load-support') {
-        await loadSupportInbox();
-        return;
-      }
-      if (target.id === 'pull-support') {
-        const feedbackEl = document.getElementById('support-feedback');
-        if (feedbackEl) feedbackEl.textContent = 'Проверяем Gmail…';
-        try {
-          const call = httpsCallable(functions, 'adminSupportPull');
-          const result = await call({});
-          if (feedbackEl) feedbackEl.textContent = `Сохранено: ${Number(result.data?.saved ?? 0)} · найдено: ${Number(result.data?.fetched ?? 0)}`;
-          await loadSupportInbox();
-        } catch (error) {
-          if (feedbackEl) feedbackEl.textContent = `Ошибка синхронизации: ${escapeHtml(error instanceof Error ? error.message : error)}`;
-        }
-        return;
-      }
-      if (target.id === 'load-analytics') {
-        const feedbackEl = document.getElementById('analytics-feedback');
-        if (feedbackEl) feedbackEl.textContent = 'Загружаем server analytics snapshot…';
-        try {
-          const call = httpsCallable(functions, 'adminGetAnalyticsSnapshot');
-          const result = await call({ rangeDays: Number(document.getElementById('analytics-range')?.value ?? 28) });
-          const data = result.data;
-          document.getElementById('metric-paying').textContent = String(data.metrics?.payingNow ?? '—');
-          document.getElementById('metric-users').textContent = String(data.metrics?.loadedUsers ?? '—');
-          document.getElementById('metric-store').textContent = String(Object.values(data.metrics?.revenuecat ?? {}).reduce((sum, value) => sum + Number(value), 0));
-          document.getElementById('metric-purchases').textContent = String(data.metrics?.funnel?.purchase_completed ?? 0);
-          document.getElementById('analytics-sources').innerHTML = Object.entries(data.sources ?? {}).map(([name, source]) => `<div class="row"><div><b>${name}</b><small>${source.state} · ${source.count} rows${source.truncated ? ' · truncated' : ''}</small></div><span class="badge">${source.state}</span></div>`).join('');
-          if (feedbackEl) feedbackEl.textContent = `${data.state} · freshness ${data.freshness}`;
-        } catch (error) { if (feedbackEl) feedbackEl.textContent = error instanceof Error ? `Не удалось загрузить аналитику: ${error.message}` : 'Не удалось загрузить аналитику'; }
-        return;
-      }
-      if (target.id !== 'create-factory-job') return;
-      const lessonCount = Math.max(1, Math.min(100, Number(document.getElementById('lesson-count')?.value ?? 1)));
-      const targetLanguage = document.getElementById('target-language')?.value ?? '';
-      const surfaces = String(document.getElementById('surfaces')?.value ?? '').split(',').filter(Boolean);
-      const jobId = `admin-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-      feedback('Создаём job…');
-      try {
-        const call = httpsCallable(functions, 'adminCreateContentGenerationJob');
-        const result = await call({ projectId: `${targetLanguage}-factory`, studyTarget: targetLanguage, sourceLocale: 'en', lessonIds: Array.from({ length: lessonCount }, (_, index) => index + 1), surfaces, idempotencyKey: jobId, blueprintVersion: document.getElementById('source-blueprint')?.value ?? 'english-core-32:v1', requestId: jobId });
-        feedback(`Draft job создан: ${result.data.jobId ?? jobId}. Публикация не выполнялась.`);
-      } catch (error) {
-        feedback(error instanceof Error ? `Не удалось создать job: ${error.message}` : 'Не удалось создать job');
-      }
-    });
-    updateButtons();
-    window.addEventListener('hashchange', updateButtons);
-  </script>
+    <main class="workspace">
+      <header class="topbar">
+        <button id="mobile-nav-toggle" class="icon-button mobile-only" type="button" aria-label="Открыть меню" title="Открыть меню">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div id="breadcrumbs" class="breadcrumbs" aria-label="Путь раздела"></div>
+        <div class="topbar-actions">
+          <a href="#support" title="Открыть почту поддержки">Почта</a>
+          <a href="#analytics" title="Открыть аналитику">Аналитика</a>
+          <span id="auth-status" class="auth-status" role="status">Проверка доступа…</span>
+        </div>
+      </header>
+      <div id="global-message" class="global-message" role="status" aria-live="polite" hidden></div>
+      <div id="app" class="page" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <div id="dialog-root"></div>
+  <script type="module" src="/admin/v2/scripts/admin-router.js"></script>
 </body>
 </html>

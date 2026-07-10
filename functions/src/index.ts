@@ -1573,6 +1573,7 @@ export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialo
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminPublishRemoteConfig } from './admin_remote_config';
 export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
+export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease, getPublishedCourseRelease } from './language_release';

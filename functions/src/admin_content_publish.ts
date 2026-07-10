@@ -78,7 +78,9 @@ export const adminPublishContentPack = onCall(
       const qaResultId = String(draft.qaResultId ?? '');
       const reviewerId = String(draft.reviewerId ?? '');
       const blueprintHash = String(draft.blueprintHash ?? '');
-      if (!qaResultId || !reviewerId || !blueprintHash || evidence.length === 0) throw new HttpsError('failed-precondition', 'QA, reviewer, blueprint and source evidence receipts are required');
+      if (manifest.packId !== input.packId || !qaResultId || !reviewerId || !blueprintHash || evidence.length === 0 || evidence.some((item) => !item.evidenceId?.trim() || !item.authority?.trim() || !item.url?.startsWith('https://') || !item.claim?.trim())) {
+        throw new HttpsError('failed-precondition', 'QA, reviewer, blueprint and validated source evidence receipts are required');
+      }
       const catalog = catalogSnap.data() ?? {};
       const currentRevision = Number(catalog.revision ?? 0);
       if (currentRevision !== input.expectedCatalogRevision) throw new HttpsError('failed-precondition', 'catalog changed; reload before publishing');

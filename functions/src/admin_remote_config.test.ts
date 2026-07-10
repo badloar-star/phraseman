@@ -19,5 +19,8 @@ describe('parseRemoteConfigRequest', () => {
     expect(() => parseRemoteConfigRequest({
       nextConfig: { bools: {} }, expectedRevision: 1.5, idempotencyKey: 'op', reason: 'x', requestId: 'r',
     })).toThrow(HttpsError);
+    expect(() => parseRemoteConfigRequest({
+      nextConfig: { bools: 'not-an-object' }, expectedRevision: 0, idempotencyKey: 'op', reason: 'x', requestId: 'r',
+    })).toThrow(HttpsError);
   });
 });

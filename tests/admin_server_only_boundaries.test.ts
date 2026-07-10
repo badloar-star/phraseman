@@ -11,4 +11,11 @@ describe('admin server-only boundaries', () => {
     expect(catchAll).not.toMatch(/allow\s+(read,\s*)?write:\s*if\s+isAdmin\(\)/);
   });
 
+  it('keeps remote config writes server-only', () => {
+    const start = rules.indexOf('match /remote_config/{docId}');
+    const end = rules.indexOf('\n    }', start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(rules.slice(start, end)).toMatch(/allow create, update, delete:\s*if false/);
+  });
+
 });

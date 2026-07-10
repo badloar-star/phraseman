@@ -2390,7 +2390,7 @@ export default function LessonScreen() {
    * визуально «то же окно» и лишний шаг в стеке.
    * НЕ используем router.dismiss(1): это нативный imperative dismiss, который на
    * Android/Fabric ломает teardown стекового (не модального) экрана и даёт чёрный
-   * неотзывчивый экран (см. предупреждение про router.back() в navigation_back.ts).
+   * неотзывчивый экран (см. предупреждение про native back в navigation_back.ts).
    * safeRouterBack — тот же безопасный путь (replace вместо native back/dismiss),
    * которым пользуется весь остальной код.
    */

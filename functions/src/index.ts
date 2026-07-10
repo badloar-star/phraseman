@@ -1535,6 +1535,7 @@ export { openAiJobsConfig } from './openai_jobs_config';
 export { adminPublishRemoteConfig } from './admin_remote_config';
 export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
+export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminPublishContentPack, adminRollbackContentPack } from './admin_content_publish';
 export { getActiveLanguageCatalog } from './language_catalog';
 export { getPublishedLessonArtifact } from './language_content';

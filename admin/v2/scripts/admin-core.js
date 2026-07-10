@@ -34,13 +34,13 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
-  admin: new Set(['content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
+  owner: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
+  admin: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
   content_editor: new Set(['content.read', 'content.draft.write']),
-  analyst: new Set(['content.read']),
+  analyst: new Set(['users.read', 'content.read']),
   developer: new Set(['content.read']),
-  support: new Set(),
-  moderator: new Set(),
+  support: new Set(['users.read']),
+  moderator: new Set(['users.read']),
 });
 
 const FACTORY_STEPS = Object.freeze([
@@ -63,6 +63,7 @@ const state = {
   authReady: false,
   adminEmail: '',
   adminRole: '',
+  authGeneration: 0,
   busy: false,
   message: '',
   messageKind: 'info',
@@ -80,6 +81,7 @@ const state = {
   selectedCapabilityId: '',
   remoteConfig: null,
   remoteConfigPreview: null,
+  users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
 };
 
 let actions = null;
@@ -228,10 +230,80 @@ function renderApplication() {
     `}`;
 }
 
+function dateTime(value) {
+  const ms = Number(value || 0);
+  return Number.isFinite(ms) && ms > 0 ? new Date(ms).toLocaleString('ru-RU') : '—';
+}
+
+function sourceBadge(source) {
+  const stateValue = String(source?.state || 'empty');
+  const labels = { ready: 'Данные получены', empty: 'Данных нет', partial: 'Частично', error: 'Источник не прочитан' };
+  return `<span class="badge ${stateValue === 'error' ? 'danger' : stateValue === 'partial' ? 'warning' : stateValue === 'ready' ? 'success' : ''}">${escapeHtml(labels[stateValue] || stateValue)}</span>`;
+}
+
+function sourceNotice(source) {
+  if (!source) return '<div class="notice warning">Источник ещё не загружен.</div>';
+  if (source.state === 'error') return `<div class="notice danger"><strong>Источник не прочитан</strong><br>${escapeHtml(source.error || 'Неизвестная ошибка источника')}</div>`;
+  if (source.state === 'partial') return `<div class="notice warning">Показана ограниченная выборка${source.degradedReason ? `: ${escapeHtml(source.degradedReason)}` : '.'}</div>`;
+  if (source.state === 'empty') return '<div class="profile-empty">Записей нет.</div>';
+  return '';
+}
+
+function compactEvent(row) {
+  const title = row.eventType || row.type || row.category || row.screen || row.packTitle || row.packId || row.status || row.id || 'Событие';
+  const detail = row.comment || row.reason || row.text || row.messageText || row.productId || row.reportedName || row.reporterName || '';
+  const when = dateTime(row.createdAt?.seconds ? row.createdAt.seconds * 1000 : row.createdAt || row.eventTimestampMs || row.updatedAt);
+  return `<li><div><strong>${escapeHtml(title)}</strong>${detail ? `<small>${escapeHtml(String(detail).slice(0, 240))}</small>` : ''}</div><time>${escapeHtml(when)}</time></li>`;
+}
+
+function renderSourceBlock(title, source) {
+  const rows = Array.isArray(source?.data) ? source.data : [];
+  return `<div class="profile-source"><header><strong>${escapeHtml(title)}</strong>${sourceBadge(source)}</header>${sourceNotice(source)}${rows.length ? `<ul class="profile-events">${rows.slice(0, 8).map(compactEvent).join('')}</ul>` : ''}</div>`;
+}
+
+function renderUserSearchResults() {
+  const items = state.users.items;
+  if (state.users.searchState === 'loading') return `<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Ищу по защищённым серверным источникам…</span></div>`;
+  if (state.users.searchState === 'error') return `<div class="notice danger section"><strong>Поиск не выполнен</strong><br>${escapeHtml(state.users.searchErrors.join(' · ') || 'Серверные источники поиска недоступны.')}</div>`;
+  if (!state.users.searched) return emptyState('Введите UID, точное имя или почту. Общий список пользователей не сканируется.');
+  if (!items.length) return emptyState('Совпадений не найдено. Проверьте точное имя, UID или почту.');
+  return `${state.users.searchState === 'partial' ? `<div class="notice warning section">Результаты частичные: ${escapeHtml(state.users.searchErrors.join(' · ') || 'один из источников поиска недоступен')}</div>` : ''}<div class="user-search-results">${items.map((user) => `<button type="button" class="user-result${state.users.profile?.canonicalUid === user.uid ? ' selected' : ''}" data-user-profile-uid="${escapeHtml(user.uid)}" title="Открыть единый профиль"><span class="user-avatar">${escapeHtml(String(user.name || '?').slice(0, 1).toUpperCase())}</span><span><strong>${escapeHtml(user.name || user.uid)}</strong><small>${escapeHtml(user.email || user.uid)} · ${Number(user.xp || 0).toLocaleString('ru-RU')} XP</small></span><span class="badge ${user.banned ? 'danger' : user.banState === 'unknown' ? 'warning' : user.premiumPlan ? 'success' : ''}">${user.banned ? 'Заблокирован' : user.banState === 'unknown' ? 'Статус неизвестен' : user.premiumPlan ? 'Plus' : 'Free'}</span></button>`).join('')}</div>`;
+}
+
+function renderProfile() {
+  const profile = state.users.profile;
+  if (!profile) return `<section class="card profile-placeholder"><div class="card-header"><div><h2>Единый профиль</h2><p>Идентичность, обучение, деньги, обращения и события.</p></div></div>${state.users.profileLoading ? `<div class="profile-loading profile-loading-panel" role="status" aria-live="polite"><span class="loading-bar"></span><span>Собираю согласованный снимок профиля…</span><div class="loading-blocks"><i></i><i></i><i></i></div></div>` : emptyState('Выберите пользователя в результатах поиска.')}</section>`;
+  const summary = profile.summary || {};
+  const sections = profile.sections || {};
+  const competition = sections.competition || {};
+  const money = sections.money || {};
+  const community = sections.community || {};
+  const moderation = sections.moderation || {};
+  const sourceStates = sections.diagnostics?.sourceStates || {};
+  const failed = Object.values(sourceStates).filter((source) => source?.state === 'error').length;
+  const partial = Object.values(sourceStates).filter((source) => source?.state === 'partial').length;
+  const legacyUrl = `../../admin/index.html?openUser=${encodeURIComponent(profile.canonicalUid)}#users`;
+  return `<div class="profile-workspace">
+    ${state.users.profileLoading ? '<div class="notice" role="status" aria-live="polite">Обновляю источники; текущий снимок остаётся на экране.</div>' : ''}
+    <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(profile.identity?.reason || 'requested')}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(legacyUrl)}" target="_blank" rel="noopener" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
+    <div class="notice warning">Изменяющие действия пока открываются в действующем модуле: имя, XP, streak, Plus, осколки, награды, merge, сбросы, предупреждение, бан и удаление. Для каждого будет отдельный защищённый протокол с причиной, подтверждением и аудитом.</div>
+    <div class="profile-section-grid">
+      <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
+      <section class="card profile-section"><div class="card-header"><div><h3>2. Обучение</h3><p>Прогресс без выдачи сырого документа.</p></div></div><div class="profile-metrics"><div><strong>${Number(summary.xp || 0).toLocaleString('ru-RU')}</strong><small>XP</small></div><div><strong>${Number(summary.streak || 0)}</strong><small>дней streak</small></div><div><strong>${Number(summary.lessonsCompleted || 0)}</strong><small>уроков</small></div><div><strong>${escapeHtml(summary.placementLevel || '—')}</strong><small>уровень</small></div></div></section>
+      <section class="card profile-section"><div class="card-header"><div><h3>3. Рейтинг и Арена</h3><p>Отдельные серверные источники.</p></div></div>${renderSourceBlock('Leaderboard', competition.leaderboard)}${renderSourceBlock('Арена', competition.arena)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>4. Деньги и доступ</h3><p>Plus, осколки, покупки и рефералы.</p></div><span class="badge ${summary.premiumPlan ? 'success' : ''}">${escapeHtml(summary.premiumPlan || 'Free')}</span></div><div class="profile-metrics compact"><div><strong>${Number(summary.shards || 0)}</strong><small>осколков</small></div><div><strong>${Number(money.premiumEvents?.count || 0)}</strong><small>Plus-событий</small></div><div><strong>${Number(money.referrals?.count || 0)}</strong><small>приглашено</small></div></div>${renderSourceBlock('Платёжные события', money.premiumEvents)}${renderSourceBlock('Осколки', money.shardTransactions)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>5. Комьюнити</h3><p>Чат и пользовательские покупки.</p></div></div>${renderSourceBlock('Сообщения', community.chatMessages)}${renderSourceBlock('Покупки наборов', community.ugcBuys)}${renderSourceBlock('Продажи наборов', community.ugcSells)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>6. Модерация и репорты</h3><p>Жалобы от пользователя и на него не смешиваются.</p></div></div>${renderSourceBlock('Репорты приложения', moderation.errorReports)}${renderSourceBlock('Жалобы на пользователя', moderation.reportsAgainst)}${renderSourceBlock('Жалобы пользователя', moderation.reportsBy)}</section>
+      <section class="card profile-section diagnostics-section"><div class="card-header"><div><h3>7. Диагностика источников</h3><p>Пустой источник не равен ошибке чтения.</p></div><div class="actions"><span class="badge ${failed ? 'danger' : 'success'}">Ошибок: ${failed}</span><span class="badge ${partial ? 'warning' : ''}">Частично: ${partial}</span></div></div><div class="source-health-grid">${Object.entries(sourceStates).map(([name, source]) => `<div><span>${escapeHtml(name)}</span>${sourceBadge(source)}<small>${Number(source?.count || 0)} записей · ${escapeHtml(dateTime(source?.fetchedAtMs))}</small></div>`).join('')}</div></section>
+    </div>
+  </div>`;
+}
+
 function renderUsers() {
-  return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button primary" href="../../admin/index.html#users" title="Открыть рабочий поиск пользователей">Найти пользователя</a>')}
-    <section class="card"><div class="card-body"><div class="fields"><div class="field"><label for="user-search">Почта, имя или идентификатор</label><input id="user-search" type="search" placeholder="Введите данные пользователя" disabled></div><div class="field"><label for="user-state">Состояние</label><select id="user-state" disabled><option>Все пользователи</option></select></div></div><p class="hint">Нативный объединённый профиль переносится следующим этапом. Текущий поиск не удалён и открывается кнопкой сверху.</p></div></section>
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Обращения</h2><p>Письма людей, ответы и история.</p></div><a class="button" href="#support">Открыть почту</a></div>${emptyState('Загрузите почту поддержки.')}</section><section class="card"><div class="card-header"><div><h2>Профиль пользователя</h2><p>Доступ, покупки и события на одной временной шкале.</p></div></div>${emptyState('Выберите пользователя.')}</section></div>`;
+  if (!can('users.read')) return `${pageHeader(PAGES.users, 'Пользователи')}<div class="notice warning">Для просмотра профилей нужна роль с разрешением users.read. Сохранённые результаты скрыты.</div>`;
+  return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a>')}
+    <section class="card user-search-card"><div class="card-header"><div><h2>Найти пользователя</h2><p>Точный серверный поиск без загрузки всей базы в браузер.</p></div><span class="badge">users.read</span></div><div class="card-body"><div class="user-search-form"><div class="field"><label for="user-search">Почта, точное имя или UID</label><input id="user-search" type="search" value="${escapeHtml(state.users.query)}" placeholder="alice@example.com или stable UID" autocomplete="off"></div><button class="button primary" data-action="search-admin-users" type="button" title="Найти пользователя без загрузки всей базы" data-tooltip="Найти пользователя без загрузки всей базы"${disabledWhenUnauthorized('users.read')}>Найти</button></div>${renderUserSearchResults()}</div></section>
+    <div class="section">${renderProfile()}</div>`;
 }
 
 function renderMoney() {
@@ -551,11 +623,54 @@ async function runGeneration() {
   await loadJobDetail(state.selectedJobId);
 }
 
+async function loadAdminUserProfile(uid) {
+  const authGeneration = state.authGeneration;
+  try {
+    const profile = await actions.getUserProfile({ uid });
+    if (authGeneration !== state.authGeneration || !can('users.read')) return;
+    state.users.profile = profile;
+  } finally {
+    if (authGeneration === state.authGeneration) state.users.profileLoading = false;
+  }
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'search-admin-users') {
+    const query = String(document.getElementById('user-search')?.value ?? '').trim();
+    if (query.length < 2) return setMessage('Введите не менее двух символов.', 'warning');
+    state.users.query = query;
+    state.users.searchState = 'loading';
+    state.users.searchErrors = [];
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      try {
+        const result = await actions.searchUsers({ query, limit: 20 });
+        if (authGeneration !== state.authGeneration || !can('users.read')) return;
+        state.users.searched = true;
+        state.users.items = Array.isArray(result?.items) ? result.items : [];
+        state.users.profile = null;
+        state.users.searchState = String(result?.state || 'ready');
+        state.users.searchErrors = Array.isArray(result?.errors) ? result.errors.map(String).slice(0, 12) : [];
+      } catch (error) {
+        if (authGeneration === state.authGeneration && can('users.read')) {
+          state.users.searched = true;
+          state.users.searchState = 'error';
+          state.users.searchErrors = [errorMessage(error)];
+        }
+        throw error;
+      }
+    }, 'Поиск завершён.');
+  }
+  if (action === 'reload-user-profile') {
+    const uid = String(state.users.profile?.canonicalUid || '').trim();
+    if (!uid) return;
+    state.users.profileLoading = true;
+    return runBusy(() => loadAdminUserProfile(uid), 'Профиль обновлён.');
+  }
   if (action === 'load-remote-config') return runBusy(async () => { state.remoteConfig = await actions.getRemoteConfigWorkspace(); state.remoteConfigPreview = null; }, 'Конфигурация и история загружены.');
   if (action === 'preview-remote-config') {
     try { state.remoteConfigPreview = buildRemoteConfigPreview(); setMessage('Предпросмотр готов. Проверьте изменения перед публикацией.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
@@ -720,6 +835,11 @@ async function handleClick(event) {
   if (jobId) return runBusy(async () => { await loadJobDetail(jobId); state.factoryStep = 2; }, 'Черновик открыт.');
   const unitId = target.getAttribute('data-preview-unit');
   if (unitId) return runBusy(async () => { state.preview = await actions.previewFactoryUnit({ unitId }); state.factoryStep = 3; }, 'Предпросмотр проверен и загружен.');
+  const profileUid = target.getAttribute('data-user-profile-uid');
+  if (profileUid) {
+    state.users.profileLoading = true;
+    return runBusy(() => loadAdminUserProfile(profileUid), 'Единый профиль загружен.');
+  }
   const capabilityId = target.getAttribute('data-capability-id');
   if (capabilityId) {
     const capability = capabilityById(capabilityId);
@@ -745,6 +865,7 @@ export function setAdminActions(nextActions) {
 }
 
 export function setAuthState(auth) {
+  state.authGeneration += 1;
   state.authReady = true;
   state.authorized = auth.authorized === true;
   state.adminEmail = String(auth.email ?? '');
@@ -752,6 +873,9 @@ export function setAuthState(auth) {
   if (!state.authorized) {
     state.detail = null;
     state.preview = null;
+  }
+  if (!state.authorized || !can('users.read')) {
+    state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
   renderCurrentPage();
 }
@@ -767,6 +891,12 @@ export function initAdminUi() {
   if (initialized) return;
   initialized = true;
   document.addEventListener('click', handleClick);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && event.target instanceof HTMLInputElement && event.target.id === 'user-search') {
+      event.preventDefault();
+      document.querySelector('[data-action="search-admin-users"]')?.click();
+    }
+  });
   document.addEventListener('load', (event) => {
     const frame = event.target;
     if (!(frame instanceof HTMLIFrameElement) || frame.id !== 'legacy-module-frame') return;

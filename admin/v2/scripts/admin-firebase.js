@@ -50,6 +50,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const supportSaveSignatureCallable = httpsCallable(functionsUs, 'adminSupportSaveSignature');
   const supportSetStatusCallable = httpsCallable(functionsUs, 'adminSupportSetStatus');
   const analyticsCallable = httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot');
+  const searchUsersCallable = httpsCallable(functionsUs, 'adminSearchUsers');
+  const getUserProfileCallable = httpsCallable(functionsUs, 'adminGetUserProfile');
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
@@ -99,6 +101,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
     saveSupportSignature: async (input) => unwrap(await supportSaveSignatureCallable(input)),
     setSupportStatus: async (input) => unwrap(await supportSetStatusCallable(input)),
     loadAnalytics: async (input) => unwrap(await analyticsCallable(input)),
+    searchUsers: async (input) => unwrap(await searchUsersCallable(input)),
+    getUserProfile: async (input) => unwrap(await getUserProfileCallable(input)),
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),

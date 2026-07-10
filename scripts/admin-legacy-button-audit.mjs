@@ -9,7 +9,8 @@ const html = fs.readFileSync(sourcePath, 'utf8');
 const sections = collectSections(html);
 const buttons = collectButtons(html, sections);
 const functions = collectFunctions(html);
-const links = linkButtonsToFunctions(buttons, functions);
+const callableNames = collectCallableNames(readLinkedRuntimeSources(html, sourcePath));
+const links = linkButtonsToFunctions(buttons, functions, callableNames);
 const summary = summarize(buttons, sections);
 const functionSummary = summarizeFunctions(functions, links);
 
@@ -115,7 +116,43 @@ function collectFunctions(source) {
   return rows;
 }
 
-function linkButtonsToFunctions(buttonRows, functionRows) {
+function readLinkedRuntimeSources(source, entryPath) {
+  const adminDir = path.dirname(entryPath);
+  const sources = [source];
+  for (const match of source.matchAll(/<script\b[^>]*\bsrc="([^"]+)"[^>]*>/gi)) {
+    const value = match[1].split(/[?#]/, 1)[0];
+    if (!value || /^(?:https?:)?\/\//i.test(value)) continue;
+    const resolved = path.resolve(adminDir, value);
+    if (!resolved.startsWith(`${adminDir}${path.sep}`) || !fs.existsSync(resolved) || !fs.statSync(resolved).isFile()) continue;
+    sources.push(fs.readFileSync(resolved, 'utf8'));
+  }
+  return sources.join('\n');
+}
+
+function collectCallableNames(source) {
+  const names = new Set(['getElementById', 'stopPropagation', 'stringify', 'remove']);
+  const declarationRe = /(?:async\s+)?function\s+([A-Za-z_$][\w$]*)\s*\(/g;
+  const assignedRe = /(?:(?:const|let|var)\s+|(?:[A-Za-z_$][\w$]*\.)?)([A-Za-z_$][\w$]*)\s*=\s*(?:async\s*)?(?:function\b|\([^)]*\)\s*=>|[A-Za-z_$][\w$]*\s*=>)/g;
+  const aliases = [];
+  const aliasRe = /(?:(?:const|let|var)\s+|(?:[A-Za-z_$][\w$]*\.)?)([A-Za-z_$][\w$]*)\s*=\s*([A-Za-z_$][\w$]*)\s*;/g;
+  let match;
+  while ((match = declarationRe.exec(source))) names.add(match[1]);
+  while ((match = assignedRe.exec(source))) names.add(match[1]);
+  while ((match = aliasRe.exec(source))) aliases.push([match[1], match[2]]);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const [alias, target] of aliases) {
+      if (!names.has(alias) && names.has(target)) {
+        names.add(alias);
+        changed = true;
+      }
+    }
+  }
+  return names;
+}
+
+function linkButtonsToFunctions(buttonRows, functionRows, callableNames) {
   const links = [];
   for (const button of buttonRows) {
     const names = [...button.onclick.matchAll(/([A-Za-z_$][\w$]*)\s*\(/g)]
@@ -123,13 +160,14 @@ function linkButtonsToFunctions(buttonRows, functionRows) {
       .filter((name) => !['if', 'typeof', 'event', 'document', 'window'].includes(name));
     for (const name of names) {
       const fn = functionRows.find((row) => row.name === name);
+      const found = Boolean(fn) || callableNames.has(name);
       links.push({
         tab: button.tab,
         line: button.line,
         text: button.text,
         onclick: button.onclick,
         function: name,
-        found: Boolean(fn),
+        found,
         writes: Boolean(fn?.writes),
         confirm: Boolean(fn?.confirm),
         audit: Boolean(fn?.audit),

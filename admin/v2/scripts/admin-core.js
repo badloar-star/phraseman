@@ -1,3 +1,5 @@
+import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
+
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
   application: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-3.4-6.6-2.1 2.1m-7 7-2.1 2.1m0-11.2 2.1 2.1m7 7 2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg>',
@@ -75,6 +77,7 @@ const state = {
   support: { loaded: false, items: [] },
   analytics: null,
   budget: null,
+  selectedCapabilityId: '',
 };
 
 let actions = null;
@@ -124,6 +127,19 @@ function pageHeader(page, eyebrow, actionHtml = '') {
 
 function emptyState(message) {
   return `<div class="empty-state">${ICONS.empty}<div>${escapeHtml(message)}</div></div>`;
+}
+
+function renderCapabilityHub(route) {
+  const capabilities = capabilitiesForRoute(route);
+  if (!capabilities.length) return '';
+  return `<section class="card section capability-hub"><div class="card-header"><div><h2>Все рабочие инструменты раздела</h2><p>${capabilities.length} ${capabilities.length === 1 ? 'модуль' : capabilities.length < 5 ? 'модуля' : 'модулей'} из действующей админки, сгруппированные без потери функций.</p></div><span class="badge">Полный реестр</span></div><div class="capability-grid">${capabilities.map((capability) => `<button class="capability-item" type="button" data-capability-id="${escapeHtml(capability.id)}" title="Открыть ${escapeHtml(capability.label)}"><span><strong>${escapeHtml(capability.label)}</strong><small>${escapeHtml(capability.description)}</small></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>`).join('')}</div></section>`;
+}
+
+function renderCapabilityWorkspace(capability) {
+  const url = capabilityUrl(capability);
+  return `${pageHeader(PAGES[capability.route] ?? PAGES.overview, capability.label, `<button class="button" data-action="close-capability" type="button" title="Вернуться к разделу">К списку инструментов</button><a class="button primary" href="${escapeHtml(url)}" target="_blank" rel="noopener" title="Открыть модуль в отдельной вкладке">Открыть отдельно</a>`)}
+    <div class="notice">Это действующий рабочий модуль текущей админки внутри нового семираздельного пульта. Все его кнопки и обработчики сохранены; опасные операции продолжают использовать собственные подтверждения и серверные проверки.</div>
+    <section class="legacy-workspace section"><div class="legacy-workspace-bar"><div><strong>${escapeHtml(capability.label)}</strong><small>${escapeHtml(capability.description)}</small></div><span class="badge">Рабочий модуль</span></div><iframe id="legacy-module-frame" title="${escapeHtml(capability.label)}" src="${escapeHtml(url)}" loading="eager" referrerpolicy="same-origin"></iframe></section>`;
 }
 
 function can(permission) {
@@ -348,7 +364,13 @@ function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
   const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics };
-  target.innerHTML = (renderers[state.route] ?? renderOverview)();
+  const capability = capabilityById(state.selectedCapabilityId);
+  if (capability && capability.route === state.route) {
+    target.innerHTML = renderCapabilityWorkspace(capability);
+  } else {
+    const page = (renderers[state.route] ?? renderOverview)();
+    target.innerHTML = `${page}${ADMIN_SECTIONS.some((section) => section.route === state.route) ? renderCapabilityHub(state.route) : ''}`;
+  }
   renderNavigation();
   renderAuthStatus();
   setMessage(state.message, state.messageKind);
@@ -496,7 +518,17 @@ async function handleClick(event) {
   if (jobId) return runBusy(async () => { await loadJobDetail(jobId); state.factoryStep = 2; }, 'Черновик открыт.');
   const unitId = target.getAttribute('data-preview-unit');
   if (unitId) return runBusy(async () => { state.preview = await actions.previewFactoryUnit({ unitId }); state.factoryStep = 3; }, 'Предпросмотр проверен и загружен.');
+  const capabilityId = target.getAttribute('data-capability-id');
+  if (capabilityId) {
+    const capability = capabilityById(capabilityId);
+    if (capability) globalThis.location.hash = `${capability.route}:${capability.id}`;
+    return;
+  }
   const action = target.getAttribute('data-action');
+  if (action === 'close-capability') {
+    globalThis.location.hash = state.route;
+    return;
+  }
   if (action) await handleAction(action, target);
 }
 
@@ -516,8 +548,10 @@ export function setAuthState(auth) {
   renderCurrentPage();
 }
 
-export function renderRoute(route) {
+export function renderRoute(route, capabilityId = '') {
   state.route = PAGES[route] ? route : 'overview';
+  const capability = capabilityById(capabilityId);
+  state.selectedCapabilityId = capability?.route === state.route ? capability.id : '';
   renderCurrentPage();
 }
 
@@ -525,6 +559,18 @@ export function initAdminUi() {
   if (initialized) return;
   initialized = true;
   document.addEventListener('click', handleClick);
+  document.addEventListener('load', (event) => {
+    const frame = event.target;
+    if (!(frame instanceof HTMLIFrameElement) || frame.id !== 'legacy-module-frame') return;
+    try {
+      const doc = frame.contentDocument;
+      if (!doc?.head) return;
+      const style = doc.createElement('style');
+      style.dataset.adminV2Bridge = 'true';
+      style.textContent = '.tabs{display:none!important}body{margin-top:0!important}#admin-app{max-width:none!important}.admin-tab-search-wrap{display:none!important}';
+      doc.head.appendChild(style);
+    } catch { /* Same-origin on Firebase Hosting; a standalone deployment may keep its original chrome. */ }
+  }, true);
   document.getElementById('mobile-nav-toggle')?.addEventListener('click', () => document.body.classList.toggle('nav-open'));
   renderCurrentPage();
 }

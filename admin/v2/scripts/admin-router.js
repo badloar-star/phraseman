@@ -1,5 +1,6 @@
 import { ADMIN_SECTIONS, initAdminUi, renderRoute, reportInitializationError, setAdminActions, setAuthState } from './admin-core.js';
 import { createFirebaseAdminActions } from './admin-firebase.js';
+import { capabilityById } from './admin-capabilities.js';
 
 export const LEGACY_ROUTE_MAP = Object.freeze({
   '': 'overview',
@@ -33,12 +34,20 @@ const SUB_ROUTES = new Set(['support', 'analytics']);
 
 function routeFromLocation() {
   const requested = globalThis.location.hash.replace(/^#/, '').trim();
-  const route = LEGACY_ROUTE_MAP[requested] ?? requested;
-  return TOP_LEVEL_ROUTES.has(route) || SUB_ROUTES.has(route) ? route : 'overview';
+  const [requestedRoute, requestedCapability = ''] = requested.split(':');
+  const directCapability = capabilityById(requestedRoute);
+  if (directCapability && !requestedCapability) return { route: directCapability.route, capabilityId: directCapability.id };
+  const route = LEGACY_ROUTE_MAP[requestedRoute] ?? requestedRoute;
+  const capability = capabilityById(requestedCapability);
+  return {
+    route: TOP_LEVEL_ROUTES.has(route) || SUB_ROUTES.has(route) ? route : 'overview',
+    capabilityId: capability?.route === route ? capability.id : '',
+  };
 }
 
 function syncRoute() {
-  renderRoute(routeFromLocation());
+  const location = routeFromLocation();
+  renderRoute(location.route, location.capabilityId);
 }
 
 try {

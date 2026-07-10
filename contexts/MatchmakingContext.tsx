@@ -20,6 +20,10 @@ import {
 import { emitAppEvent } from '../app/events';
 import { isArenaBotsEnabled } from '../app/remote_flags';
 import { arenaToasts } from '../constants/arena_i18n';
+import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { storageStudyTarget } from '../app/target_storage_keys';
+import { resolveArenaCourseIdentity } from '../app/language_runtime/arena_course_identity';
 
 export type MatchmakingStatus = 'idle' | 'searching' | 'found' | 'timeout' | 'error';
 
@@ -166,6 +170,8 @@ async function clearMatchmakingResume(): Promise<void> {
 }
 
 export function MatchmakingProvider({ children }: { children: React.ReactNode }) {
+  const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const [status, setStatus]       = useState<MatchmakingStatus>('idle');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [elapsedMs, setElapsedMs] = useState(0);
@@ -289,12 +295,25 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     rangeExpandedRef.current = elapsedAlready >= RANGE_EXPAND_MS;
     const initialSearchRange = rangeExpandedRef.current ? EXPANDED_RANGE : INITIAL_RANGE;
 
+    let courseIdentity;
+    try {
+      courseIdentity = await resolveArenaCourseIdentity(storageStudyTarget(studyTarget), lang);
+    } catch {
+      forceBotAfterMsRef.current = null;
+      setHumanSearchWindowMs(null);
+      startTimeRef.current = 0;
+      setSearchStartedAt(0);
+      emitAppEvent('action_toast', { type: 'error', ...arenaToasts.queueJoinFailRetry });
+      return false;
+    }
+
     const rankIndex = rankToIndex(rankTier, rankLevel as (typeof RANK_LEVELS)[number]);
     const entry: MatchmakingEntry = {
       userId: uid, rankTier, size,
       joinedAt: usePreserved ? now : t0,
       rankIndex,
       searchRange: initialSearchRange,
+      ...courseIdentity,
       ...(expoPushToken ? { expoPushToken } : {}),
       ...(displayName ? { displayName } : {}),
     };
@@ -415,7 +434,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     // «Ещё раз»: ровно humanSearchWindowMs на живого; иначе __DEV__ 3с или случайная задержка prod.
     // Админ-тумблер «Пульт» (arena_bots_enabled=false) полностью отключает бот-фолбэк
     // у всех живьём — тогда матчатся только реальные игроки, бот не подставляется.
-    const botDelay = !isArenaBotsEnabled()
+    const botDelay = !courseIdentity.courseReleaseId.startsWith('legacy-') || !isArenaBotsEnabled()
       ? null
       : hasHumanPriorityWindow
       ? winMs
@@ -434,7 +453,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       leaveMatchmakingQueue(uid).catch(() => {});
     }
     return true;
-  }, [cleanup, clearDevBotMatchTimeout, endQueueSubscription, stopSearchTimer]);
+  }, [cleanup, clearDevBotMatchTimeout, endQueueSubscription, lang, stopSearchTimer, studyTarget]);
 
   const forgetSearchResumeSnapshot = useCallback(() => {
     searchResumeSnapshotRef.current = null;
@@ -523,6 +542,9 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           joinedAt: typeof d.joinedAt === 'number' ? d.joinedAt : t0,
           rankIndex: typeof d.rankIndex === 'number' ? d.rankIndex : rankToIndex(rankTier, rankLevel as (typeof RANK_LEVELS)[number]),
           searchRange: rangeExpandedRef.current ? EXPANDED_RANGE : INITIAL_RANGE,
+          studyTarget: d.studyTarget ?? 'en',
+          learnerSourceLocale: d.learnerSourceLocale ?? 'ru',
+          courseReleaseId: d.courseReleaseId ?? 'legacy-en-v1',
           ...(d.expoPushToken ? { expoPushToken: d.expoPushToken } : {}),
           ...(d.displayName || displayName ? { displayName: (d.displayName ?? displayName) as string } : {}),
         };
@@ -611,7 +633,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
         };
 
         // Тот же админ-гейт, что и в основном пути (arena_bots_enabled=false → без ботов).
-        const baseBotDelay = !isArenaBotsEnabled()
+        const baseBotDelay = !entryRef.current?.courseReleaseId?.startsWith('legacy-') || !isArenaBotsEnabled()
           ? null
           : __DEV__
           ? DEV_QUICK_MATCH_MS

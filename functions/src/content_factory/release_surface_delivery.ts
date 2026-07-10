@@ -13,6 +13,8 @@ export interface CourseSurfaceEntryRequest {
   readonly lessonId: number;
 }
 
+export type CourseSurfaceBundleRequest = Omit<CourseSurfaceEntryRequest, 'lessonId'>;
+
 export interface IndexedCourseUnit {
   readonly lessonId: number;
   readonly objectPath: string;
@@ -35,11 +37,21 @@ export function parseCourseSurfaceEntryRequest(value: unknown): CourseSurfaceEnt
   return Object.freeze({ studyTarget, learnerSourceLocale, releaseId, surface, lessonId });
 }
 
-export function resolveIndexedCourseUnit(index: unknown, request: CourseSurfaceEntryRequest): IndexedCourseUnit {
+export function parseCourseSurfaceBundleRequest(value: unknown): CourseSurfaceBundleRequest {
+  if (!isRecord(value)) throw new Error('course_surface_request_invalid');
+  const studyTarget = String(value.studyTarget ?? '').trim();
+  const learnerSourceLocale = String(value.learnerSourceLocale ?? '').trim();
+  const releaseId = String(value.releaseId ?? '').trim();
+  const surface = String(value.surface ?? '') as CanonicalReleaseSurface;
+  if (!LOCALE_RE.test(studyTarget) || !LOCALE_RE.test(learnerSourceLocale) || !TOKEN_RE.test(releaseId) || !(CANONICAL_RELEASE_SURFACES as readonly string[]).includes(surface)) throw new Error('course_surface_request_invalid');
+  return Object.freeze({ studyTarget, learnerSourceLocale, releaseId, surface });
+}
+
+export function resolveIndexedCourseUnits(index: unknown, request: CourseSurfaceBundleRequest): readonly IndexedCourseUnit[] {
   if (!isRecord(index) || index.releaseId !== request.releaseId || index.studyTarget !== request.studyTarget || index.learnerSourceLocale !== request.learnerSourceLocale || index.surface !== request.surface) throw new Error('course_surface_index_identity_mismatch');
-  if (!Array.isArray(index.units)) throw new Error('course_surface_index_invalid');
+  if (!Array.isArray(index.units) || index.units.length < 1 || index.units.length > 100) throw new Error('course_surface_index_invalid');
   const seen = new Set<number>();
-  let matched: IndexedCourseUnit | null = null;
+  const units: IndexedCourseUnit[] = [];
   for (const value of index.units) {
     if (!isRecord(value)) throw new Error('course_surface_index_invalid');
     const lessonId = Number(value.lessonId);
@@ -47,9 +59,13 @@ export function resolveIndexedCourseUnit(index: unknown, request: CourseSurfaceE
     if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > 100 || typeof value.objectPath !== 'string' || value.objectPath !== expectedPath || typeof value.contentHash !== 'string' || !HASH_RE.test(value.contentHash) || typeof value.objectGeneration !== 'string' || !value.objectGeneration.trim()) throw new Error('course_surface_index_invalid');
     if (seen.has(lessonId)) throw new Error('course_surface_index_duplicate_lesson');
     seen.add(lessonId);
-    const unit = Object.freeze({ lessonId, objectPath: value.objectPath, contentHash: value.contentHash, objectGeneration: value.objectGeneration });
-    if (lessonId === request.lessonId) matched = unit;
+    units.push(Object.freeze({ lessonId, objectPath: value.objectPath, contentHash: value.contentHash, objectGeneration: value.objectGeneration }));
   }
+  return Object.freeze(units.sort((a, b) => a.lessonId - b.lessonId));
+}
+
+export function resolveIndexedCourseUnit(index: unknown, request: CourseSurfaceEntryRequest): IndexedCourseUnit {
+  const matched = resolveIndexedCourseUnits(index, request).find((unit) => unit.lessonId === request.lessonId) ?? null;
   if (!matched) throw new Error('course_surface_entry_not_found');
   return matched;
 }

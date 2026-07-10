@@ -27,6 +27,7 @@ import { joinArenaFriendRoomAsGuest } from '../app/arena_friend_room_guest';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { useOverlayVisible } from './OverlayArbiter';
+import { useStudyTarget } from './StudyTargetContext';
 
 const INVITE_TIMEOUT_MS = 60_000;
 
@@ -40,6 +41,7 @@ function ArenaFriendInviteHost() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { spendOne, isUnlimited } = useEnergy();
   const bottomOffset = useGlobalBottomOverlayOffset();
 
@@ -237,6 +239,8 @@ function ArenaFriendInviteHost() {
         defaultPlayerName: defaultName(),
         spendOne,
         isUnlimited,
+        studyTarget,
+        learnerSourceLocale: lang,
       });
       if (res.ok) {
         await setArenaInviteStatus(invite.id, 'accepted');

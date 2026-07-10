@@ -1,4 +1,10 @@
-import { parseCourseSurfaceEntryRequest, parseHashedJsonBytes, resolveIndexedCourseUnit } from './release_surface_delivery';
+import {
+  parseCourseSurfaceBundleRequest,
+  parseCourseSurfaceEntryRequest,
+  parseHashedJsonBytes,
+  resolveIndexedCourseUnit,
+  resolveIndexedCourseUnits,
+} from './release_surface_delivery';
 import { createHash } from 'node:crypto';
 
 const hash = 'a'.repeat(64);
@@ -12,6 +18,18 @@ describe('course release surface delivery', () => {
   it('resolves only a byte-addressed unit from the exact release index', () => {
     const unit = resolveIndexedCourseUnit({ releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', units: [{ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2' }] }, { releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', lessonId: 2 });
     expect(unit).toEqual({ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2' });
+  });
+
+  it('resolves a complete surface bundle in lesson order without losing identity', () => {
+    const request = parseCourseSurfaceBundleRequest({ studyTarget: 'de', learnerSourceLocale: 'ru', releaseId: 'de-ru-r1', surface: 'quiz' });
+    const units = resolveIndexedCourseUnits({
+      ...request,
+      units: [
+        { lessonId: 2, objectPath: 'course-releases/de-ru-r1/quiz/2.json', contentHash: hash, objectGeneration: 'g2' },
+        { lessonId: 1, objectPath: 'course-releases/de-ru-r1/quiz/1.json', contentHash: hash, objectGeneration: 'g1' },
+      ],
+    }, request);
+    expect(units.map((unit) => unit.lessonId)).toEqual([1, 2]);
   });
 
   it('rejects mixed identity, duplicate lesson entries and unsafe paths', () => {

@@ -29,6 +29,7 @@ import { logEvent } from './firebase';
 import { useTabNav } from './TabContext';
 import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
 import { ConstellationLobbyCard } from './constellation_lobby_card';
 import { getConstellationsPlacement, isConstellationsEnabled } from './remote_flags';
@@ -64,6 +65,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
 import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import SeasonResultModal from '../components/SeasonResultModal';
+import { resolveArenaCourseIdentity, type ArenaCourseIdentity } from './language_runtime/arena_course_identity';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import ArenaRankProgressBar from '../components/ArenaRankProgressBar';
 import { buildBattlePassLadder, computeClaimables, countClaimable } from './arena_battle_pass';
@@ -151,11 +153,11 @@ function genRoomId() {
 function isBotSession(sid: string | null | undefined): boolean {
     return !!sid && String(sid).startsWith('bot_');
 }
-async function createRoom(hostId: string, hostName: string, roomId: string) {
+async function createRoom(hostId: string, hostName: string, roomId: string, identity: ArenaCourseIdentity) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const db = require('@react-native-firebase/firestore').default();
     await db.collection('arena_rooms').doc(roomId).set({
-        hostId, hostName, roomId,
+        hostId, hostName, roomId, ...identity,
         status: 'waiting',
         createdAt: Date.now(),
         expiresAt: Date.now() + 10 * 60 * 1000,
@@ -210,6 +212,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const screenTitleColor = t.textPrimary;
     const screenMuted = t.textMuted;
     const { lang } = useLang();
+    const { studyTarget } = useStudyTarget();
     const constellationCardEl = constellationsOn ? (
       <ConstellationLobbyCard
         lang={lang}
@@ -1024,7 +1027,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 }
                 if (!mountedRef.current)
                     return;
-                await createRoom(uid, name, id);
+                const identity = await resolveArenaCourseIdentity(studyTarget, lang);
+                await createRoom(uid, name, id, identity);
                 if (!mountedRef.current)
                     return;
                 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -1311,6 +1315,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 defaultPlayerName,
                 spendOne,
                 isUnlimited,
+                studyTarget,
+                learnerSourceLocale: lang,
             });
             if (!res.ok) {
                 emitAppEvent('action_toast', actionToastTri('error', {
@@ -1333,7 +1339,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         finally {
             setIncomingArenaInviteBusyId(null);
         }
-    }, [bonusEnergy, defaultPlayerName, energy, incomingArenaInviteBusyId, isUnlimited, router, spendOne]);
+    }, [bonusEnergy, defaultPlayerName, energy, incomingArenaInviteBusyId, isUnlimited, lang, router, spendOne, studyTarget]);
     const handleIncomingArenaInviteDecline = useCallback(async (invite: ArenaInviteRow) => {
         hapticTap();
         if (!invite?.id || incomingArenaInviteBusyId)

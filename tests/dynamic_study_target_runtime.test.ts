@@ -3,6 +3,7 @@ import { getStoredStudyTarget, isStudyTarget, setRuntimeStudyTargetCatalog, setS
 import { lessonProgressKey, storageStudyTarget, targetKey } from '../app/target_storage_keys';
 import { ttsLocaleForStudyTarget } from '../app/phrase_target_utils';
 import { getLessonIntroScreens } from '../app/lesson_data_all';
+import { getQuizPhrases } from '../app/quiz_data';
 
 describe('dynamic production study targets', () => {
   beforeEach(() => (AsyncStorage as any).__reset?.());
@@ -19,6 +20,8 @@ describe('dynamic production study targets', () => {
     expect(lessonProgressKey(1, 'de')).not.toBe(lessonProgressKey(1, 'en'));
     expect(ttsLocaleForStudyTarget('de')).toBe('de');
     expect(getLessonIntroScreens(1, 'de')).toEqual([]);
+    expect(getQuizPhrases('easy', 10, 'ru', 'de')).toEqual([]);
+    expect(getQuizPhrases('easy', 10, 'ru', 'es')).toHaveLength(10);
   });
 
   it('updates selectable targets from exact target/source catalog entries', () => {

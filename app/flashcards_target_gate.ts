@@ -6,6 +6,7 @@ import {
   getCachedFrenchRemoteFlashcards,
   getCachedFrenchRemoteMarketplacePacks,
 } from './french_flashcard_remote_runtime';
+import { getCachedCourseReleaseFlashcards } from './language_runtime/course_release_flashcard_loader';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type FlashcardsSourceGatedSurface =
@@ -15,12 +16,13 @@ export type FlashcardsSourceGatedSurface =
 
 export type FlashcardsSourceGate = {
   enabled: boolean;
-  studyTarget: 'en' | 'fr';
+  studyTarget: string;
   surface: FlashcardsSourceGatedSurface;
   reason?:
     | 'french_flashcards_source_gate'
     | 'french_flashcards_server_system_cards_available'
-    | 'french_flashcards_server_marketplace_packs_available';
+    | 'french_flashcards_server_marketplace_packs_available'
+    | 'course_release_flashcards_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -38,7 +40,7 @@ export function flashcardsSourceGateForTarget(
   sourceLocale?: unknown,
 ): FlashcardsSourceGate {
   const target = storageStudyTarget(studyTarget);
-  if (target !== 'fr') {
+  if (target === 'en') {
     return {
       enabled: true,
       studyTarget: 'en',
@@ -48,17 +50,22 @@ export function flashcardsSourceGateForTarget(
     };
   }
 
-  const systemCardsEnabled = surface === 'system_cards';
+  const canonicalCardsAvailable = getCachedCourseReleaseFlashcards(target, String(sourceLocale ?? 'ru')).length > 0;
+  const legacyFrenchCardsAvailable = target === 'fr' && getCachedFrenchRemoteFlashcards(sourceLocale).length > 0;
+  const systemCardsEnabled = surface === 'system_cards' && (canonicalCardsAvailable || legacyFrenchCardsAvailable);
   const marketplacePacksEnabled =
+    target === 'fr' &&
     surface === 'official_marketplace_packs' &&
     getCachedFrenchRemoteMarketplacePacks(sourceLocale).length > 0;
   const enabled = systemCardsEnabled || marketplacePacksEnabled;
   return {
     enabled,
-    studyTarget: 'fr',
+    studyTarget: target,
     surface,
-    reason: systemCardsEnabled
-      ? 'french_flashcards_server_system_cards_available'
+    reason: canonicalCardsAvailable && surface === 'system_cards'
+      ? 'course_release_flashcards_available'
+      : systemCardsEnabled
+        ? 'french_flashcards_server_system_cards_available'
       : marketplacePacksEnabled
         ? 'french_flashcards_server_marketplace_packs_available'
         : 'french_flashcards_source_gate',
@@ -88,9 +95,12 @@ export function flashcardsSystemCardsForTarget(
   studyTarget: RuntimeStudyTarget,
   sourceLocale?: unknown,
 ): CardItem[] {
-  if (storageStudyTarget(studyTarget) === 'fr') return getCachedFrenchRemoteFlashcards(sourceLocale);
-  if (!flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')) return [];
-  return [...cards];
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'en') return [...cards];
+  const canonical = getCachedCourseReleaseFlashcards(target, String(sourceLocale ?? 'ru'));
+  if (canonical.length > 0) return canonical;
+  if (target === 'fr') return getCachedFrenchRemoteFlashcards(sourceLocale);
+  return [];
 }
 
 export function frenchFlashcardsGateCopy(lang: Lang): { title: string; body: string } {

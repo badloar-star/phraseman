@@ -14,6 +14,10 @@ admin.initializeApp();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { runMatchmaking, tryMatchForUser } = require('./matchmaking');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { isLegacyArenaCourseIdentity, normalizeArenaCourseIdentity, sameArenaCourseIdentity } = require('./arena_course_identity');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { pickCanonicalArenaQuestions } = require('./content_factory/arena_release_runtime');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resetWeeklyXp } = require('./reset_weekly_xp');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
@@ -745,7 +749,26 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
     const sessionRef = db.collection('arena_sessions').doc(roomId);
     const hostPlayerRef = db.collection('session_players').doc(`${roomId}_${after.hostId}`);
     const guestPlayerRef = db.collection('session_players').doc(`${roomId}_${after.guestId}`);
-    const questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
+    const courseIdentity = normalizeArenaCourseIdentity(after);
+    const guestIdentity = {
+      studyTarget: after.guestStudyTarget,
+      learnerSourceLocale: after.guestLearnerSourceLocale,
+      courseReleaseId: after.guestCourseReleaseId,
+    };
+    if (!sameArenaCourseIdentity(courseIdentity, guestIdentity)) {
+      await roomRef.update({
+        status: 'waiting',
+        guestId: admin.firestore.FieldValue.delete(),
+        guestName: admin.firestore.FieldValue.delete(),
+        guestStudyTarget: admin.firestore.FieldValue.delete(),
+        guestLearnerSourceLocale: admin.firestore.FieldValue.delete(),
+        guestCourseReleaseId: admin.firestore.FieldValue.delete(),
+      });
+      return;
+    }
+    const questions = isLegacyArenaCourseIdentity(courseIdentity)
+      ? await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT)
+      : await pickCanonicalArenaQuestions(courseIdentity, null, PRIVATE_DUEL_QUESTION_COUNT);
     const tPrivate = Date.now();
 
     // Read XP + selected avatar for both players to record the displayed avatar in session_players.
@@ -777,10 +800,21 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         guestName?: string;
         status?: string;
         sessionId?: string | null;
+        studyTarget?: string;
+        learnerSourceLocale?: string;
+        courseReleaseId?: string;
+        guestStudyTarget?: string;
+        guestLearnerSourceLocale?: string;
+        guestCourseReleaseId?: string;
       };
 
       if (room.status !== 'matched' || !room.guestId || !room.hostId) return;
       if (room.sessionId || sessionSnap.exists) return;
+      if (!sameArenaCourseIdentity(room, {
+        studyTarget: room.guestStudyTarget,
+        learnerSourceLocale: room.guestLearnerSourceLocale,
+        courseReleaseId: room.guestCourseReleaseId,
+      })) return;
 
       tx.set(sessionRef, {
         id: roomId,
@@ -794,6 +828,7 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         questionStartedAt: null,
         questionTimeoutMs: 40_000,
         createdAt: tPrivate,
+        ...courseIdentity,
       });
 
       tx.set(hostPlayerRef, {
@@ -1377,10 +1412,13 @@ export const onArenaRematchAccepted = functions.firestore.onDocumentUpdated(
     const newSid = `rematch_${oldSid}_${Date.now()}`;
     const db = admin.firestore();
     const oldSessionRef = event.data!.after.ref;
+    const courseIdentity = normalizeArenaCourseIdentity(after);
 
     let questions: string[];
     try {
-      questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
+      questions = isLegacyArenaCourseIdentity(courseIdentity)
+        ? await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT)
+        : await pickCanonicalArenaQuestions(courseIdentity, null, PRIVATE_DUEL_QUESTION_COUNT);
     } catch (e) {
       console.error('rematch: pickArenaQuestions failed', e);
       await oldSessionRef.update({ 'rematchOffer.status': 'expired' });
@@ -1430,6 +1468,7 @@ export const onArenaRematchAccepted = functions.firestore.onDocumentUpdated(
         questionStartedAt: null,
         questionTimeoutMs: 40_000,
         createdAt: tCreated,
+        ...courseIdentity,
       });
       for (const uid of after.playerIds!) {
         tx.set(db.collection('session_players').doc(`${newSid}_${uid}`), {
@@ -1537,7 +1576,7 @@ export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease, getPublishedCourseRelease } from './language_release';
-export { getPublishedCourseSurfaceEntry } from './language_release_content';
+export { getPublishedCourseSurfaceBundle, getPublishedCourseSurfaceEntry } from './language_release_content';
 export { adminPublishContentPack, adminRollbackContentPack } from './admin_content_publish';
 export { getActiveLanguageCatalog } from './language_catalog';
 export { getPublishedLessonArtifact } from './language_content';

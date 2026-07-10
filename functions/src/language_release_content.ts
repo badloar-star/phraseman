@@ -2,7 +2,13 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { assertCourseRelease } from './content_factory/course_release_contract';
-import { parseCourseSurfaceEntryRequest, parseHashedJsonBytes, resolveIndexedCourseUnit } from './content_factory/release_surface_delivery';
+import {
+  parseCourseSurfaceBundleRequest,
+  parseCourseSurfaceEntryRequest,
+  parseHashedJsonBytes,
+  resolveIndexedCourseUnit,
+  resolveIndexedCourseUnits,
+} from './content_factory/release_surface_delivery';
 import { courseCatalogId } from './language_release';
 
 const REGION = 'us-central1';
@@ -44,5 +50,40 @@ export const getPublishedCourseSurfaceEntry = onCall(
     }
     const payload = await readImmutableJson(unit.objectPath, unit.contentHash, unit.objectGeneration);
     return { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, surface: input.surface, lessonId: input.lessonId, contentHash: unit.contentHash, payload };
+  },
+);
+
+export const getPublishedCourseSurfaceBundle = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 120, memory: '1GiB' },
+  async (request) => {
+    if (!request.auth) throw new HttpsError('unauthenticated', 'Sign-in required');
+    let input;
+    try { input = parseCourseSurfaceBundleRequest(request.data); } catch { throw new HttpsError('invalid-argument', 'course_surface_request_invalid'); }
+    const db = admin.firestore();
+    const catalogId = courseCatalogId(input.studyTarget, input.learnerSourceLocale);
+    const catalogSnap = await db.collection('content_factory_catalog').doc(catalogId).get();
+    const active = catalogSnap.data()?.activeRelease;
+    if (!isRecord(active) || active.releaseId !== input.releaseId || active.studyTarget !== input.studyTarget || active.learnerSourceLocale !== input.learnerSourceLocale) throw new HttpsError('failed-precondition', 'course_release_is_not_active');
+    const releaseSnap = await db.collection('content_factory_releases').doc(input.releaseId).get();
+    if (!releaseSnap.exists) throw new HttpsError('data-loss', 'active_course_release_missing');
+    let release;
+    try { release = assertCourseRelease(releaseSnap.data()); } catch { throw new HttpsError('data-loss', 'active_course_release_invalid'); }
+    if (release.studyTarget !== input.studyTarget || release.learnerSourceLocale !== input.learnerSourceLocale || release.releaseId !== input.releaseId) throw new HttpsError('data-loss', 'active_course_release_identity_mismatch');
+    const artifact = release.artifacts[input.surface];
+    const index = await readImmutableJson(artifact.entryIndex, artifact.contentHash, artifact.objectGeneration);
+    let units;
+    try { units = resolveIndexedCourseUnits(index, input); } catch (error) {
+      throw new HttpsError('data-loss', error instanceof Error ? error.message : 'course_surface_index_invalid');
+    }
+    const entries: Array<{ lessonId: number; contentHash: string; payload: unknown }> = [];
+    for (let offset = 0; offset < units.length; offset += 8) {
+      const chunk = units.slice(offset, offset + 8);
+      entries.push(...await Promise.all(chunk.map(async (unit) => ({
+        lessonId: unit.lessonId,
+        contentHash: unit.contentHash,
+        payload: await readImmutableJson(unit.objectPath, unit.contentHash, unit.objectGeneration),
+      }))));
+    }
+    return { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, surface: input.surface, entries };
   },
 );

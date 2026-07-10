@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
-import { pickOneQuestionExcluding } from './matchmaking';
+import { pickOneQuestionForCourseExcluding } from './matchmaking';
+import { normalizeArenaCourseIdentity, type ArenaCourseIdentity } from './arena_course_identity';
 import { DuelSession, RANK_TO_QUESTION_LEVEL, SessionPlayer } from './types';
 
 const db = admin.firestore();
@@ -88,6 +89,7 @@ type TiebreakMeta = {
   qLen: number;
   rankTier: keyof typeof RANK_TO_QUESTION_LEVEL;
   exclude: string[];
+  courseIdentity: ArenaCourseIdentity;
 };
 
 export async function advanceSession(sessionId: string): Promise<void> {
@@ -145,13 +147,14 @@ export async function advanceSession(sessionId: string): Promise<void> {
       qLen: session.questions.length,
       rankTier: session.rankTier,
       exclude: [...session.questions],
+      courseIdentity: normalizeArenaCourseIdentity(session),
     } satisfies TiebreakMeta;
   });
 
   if (!tiebreak) return;
 
   const level = RANK_TO_QUESTION_LEVEL[tiebreak.rankTier] ?? 'A1';
-  const newId = await pickOneQuestionExcluding(level, new Set(tiebreak.exclude));
+  const newId = await pickOneQuestionForCourseExcluding(tiebreak.courseIdentity, level, new Set(tiebreak.exclude));
   if (!newId) {
     await sessionRef.update({ state: 'finished' });
     return;

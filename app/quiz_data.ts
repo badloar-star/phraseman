@@ -25498,7 +25498,8 @@ export const getQuizPhrases = (
   _lang: QuizSourceLocale = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] => {
-  if (storageStudyTarget(studyTarget) !== 'en') {
+  const target = storageStudyTarget(studyTarget);
+  if (target !== 'en' && target !== 'es') {
     return [];
   }
 

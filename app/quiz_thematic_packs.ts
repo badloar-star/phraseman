@@ -152,7 +152,8 @@ export function thematicQuizPackAvailableForTarget(
   pack: Pick<SkylerThematicPack, 'target'>,
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
-  return pack.target === 'en' && storageStudyTarget(studyTarget) === 'en';
+  const target = storageStudyTarget(studyTarget);
+  return pack.target === 'en' && (target === 'en' || target === 'es');
 }
 
 export function thematicQuizPackSurfaceVisibleForTarget(
@@ -160,7 +161,7 @@ export function thematicQuizPackSurfaceVisibleForTarget(
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
   const target = storageStudyTarget(studyTarget);
-  return pack.target === 'en' && (target === 'en' || target === 'fr');
+  return pack.target === 'en' && (target === 'en' || target === 'es' || target === 'fr');
 }
 
 export function validateSkylerThematicPackForRuntime(pack: SkylerThematicPack): {

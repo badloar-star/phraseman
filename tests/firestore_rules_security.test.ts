@@ -324,7 +324,8 @@ describe('firestore.rules security baseline', () => {
 
   test('arena_rooms updates are field-restricted', () => {
     expect(rules).toContain('match /arena_rooms/{roomId} {');
-    expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'status', 'sessionId']);");
+    expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'guestStudyTarget', 'guestLearnerSourceLocale', 'guestCourseReleaseId', 'status', 'sessionId']);");
+    expect(rules).toContain("request.resource.data.courseReleaseId.matches('^[A-Za-z0-9._-]{1,160}$')");
   });
 
   test('arena_invites allows only status updates from participants', () => {

@@ -33,7 +33,10 @@ function findCandidates(
     e =>
       !e.sessionId &&
       (e as { id: string }).id !== (userEntry as { id: string }).id &&
-      Number(e.size) === Number(userEntry.size),
+      Number(e.size) === Number(userEntry.size) &&
+      (e.studyTarget ?? 'en') === (userEntry.studyTarget ?? 'en') &&
+      (e.learnerSourceLocale ?? 'ru') === (userEntry.learnerSourceLocale ?? 'ru') &&
+      (e.courseReleaseId ?? 'legacy-en-v1') === (userEntry.courseReleaseId ?? 'legacy-en-v1'),
   );
   const myIdx = userEntry.rankIndex ?? 0;
   const myRange = userEntry.searchRange ?? 2;
@@ -112,6 +115,13 @@ describe('matchmaking: edge cases', () => {
     const B = makeEntry({ id: 'uid_B', size: 4 });
     const candidates = findCandidates(A, [B]);
     expect(candidates).toHaveLength(0);
+  });
+
+  test('different target, source or release never match', () => {
+    const A = makeEntry({ id: 'uid_A', studyTarget: 'de', learnerSourceLocale: 'ru', courseReleaseId: 'de-ru-r1' });
+    expect(findCandidates(A, [makeEntry({ id: 'uid_B', studyTarget: 'fr', learnerSourceLocale: 'ru', courseReleaseId: 'fr-ru-r1' })])).toEqual([]);
+    expect(findCandidates(A, [makeEntry({ id: 'uid_C', studyTarget: 'de', learnerSourceLocale: 'uk', courseReleaseId: 'de-uk-r1' })])).toEqual([]);
+    expect(findCandidates(A, [makeEntry({ id: 'uid_D', studyTarget: 'de', learnerSourceLocale: 'ru', courseReleaseId: 'de-ru-r2' })])).toEqual([]);
   });
 
   test('far rank tiers do not match when out of search range', () => {

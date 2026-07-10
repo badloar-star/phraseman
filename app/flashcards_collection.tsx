@@ -97,6 +97,7 @@ import {
   flashcardsSystemCardsForTarget,
 } from './flashcards_target_gate';
 import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
+import { ensureCourseReleaseFlashcards, prefetchCourseReleaseFlashcards } from './language_runtime/course_release_flashcard_loader';
 import { safeRouterBack } from './navigation_back';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
@@ -300,16 +301,14 @@ export default function FlashcardsScreen() {
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const [flashcardPackTick, setFlashcardPackTick] = useState(0);
   useEffect(() => {
-    if (storageStudyTarget(studyTarget) !== 'fr') return;
-    prefetchFrenchRemoteFlashcards(lang);
+    const target = storageStudyTarget(studyTarget);
+    if (target === 'en') return;
+    prefetchCourseReleaseFlashcards(target, lang);
+    if (target === 'fr') prefetchFrenchRemoteFlashcards(lang);
     let cancelled = false;
-    ensureFrenchRemoteFlashcards(lang)
-      .then(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      })
-      .catch(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      });
+    ensureCourseReleaseFlashcards(target, lang)
+      .catch(() => target === 'fr' ? ensureFrenchRemoteFlashcards(lang) : undefined)
+      .finally(() => { if (!cancelled) setFlashcardPackTick((value) => value + 1); });
     return () => { cancelled = true; };
   }, [lang, studyTarget]);
   useEffect(() => {

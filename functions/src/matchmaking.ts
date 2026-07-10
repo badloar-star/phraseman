@@ -6,6 +6,13 @@ import {
 import { expireStaleAcceptanceSessions } from './arena_pregame';
 import { cleanupStaleArenaSessions, advanceStuckQuestionSessions, cleanupExpiredArenaRooms } from './arena_cleanup';
 import { getLevelFromXP } from './xp_levels';
+import {
+  isLegacyArenaCourseIdentity,
+  normalizeArenaCourseIdentity,
+  sameArenaCourseIdentity,
+  type ArenaCourseIdentity,
+} from './arena_course_identity';
+import { pickCanonicalArenaQuestions } from './content_factory/arena_release_runtime';
 
 const db = admin.firestore();
 
@@ -181,7 +188,8 @@ export async function tryMatchForUser(userId: string): Promise<void> {
       e =>
         !e.sessionId &&
         e.id !== userId &&
-        sameSessionSize(e.size, userEntry.size),
+        sameSessionSize(e.size, userEntry.size) &&
+        sameArenaCourseIdentity(e, userEntry),
     );
 
   const rankMap = await fetchProfileRankMap([queueUserId(userEntry), ...all.map(e => queueUserId(e))]);
@@ -264,14 +272,15 @@ function pickMatchCandidatesRelaxed(
   need: number,
 ): (MatchmakingEntry & { id: string })[] {
   if (need <= 0) return [];
-  const strict = rankFilteredCandidates(entry, pool);
+  const compatiblePool = pool.filter((candidate) => sameArenaCourseIdentity(entry, candidate));
+  const strict = rankFilteredCandidates(entry, compatiblePool);
   if (strict.length >= need) {
     return sortByRankDistance(entry, strict).slice(0, need);
   }
-  if (pool.length < need) {
+  if (compatiblePool.length < need) {
     return sortByRankDistance(entry, strict).slice(0, need);
   }
-  return sortByRankDistance(entry, pool).slice(0, need);
+  return sortByRankDistance(entry, compatiblePool).slice(0, need);
 }
 
 // ─── Session creation ─────────────────────────────────────────────────────────
@@ -283,10 +292,14 @@ async function createSession(
   const playersNorm: (MatchmakingEntry & { id: string; userId: string })[] = players.map(
     p => ({ ...p, userId: queueUserId(p as QueueEntry) }),
   );
+  const courseIdentity = normalizeArenaCourseIdentity(playersNorm[0] ?? {});
+  if (!playersNorm.every((player) => sameArenaCourseIdentity(player, courseIdentity))) throw new Error('arena_course_identity_mismatch');
 
   const rankTier = highestRankTierFromPlayers(playersNorm);
   const questionLevel = RANK_TO_QUESTION_LEVEL[rankTier];
-  const questions = await pickQuestions(questionLevel, RANKED_QUESTIONS_PER_MATCH);
+  const questions = isLegacyArenaCourseIdentity(courseIdentity)
+    ? await pickQuestions(questionLevel, RANKED_QUESTIONS_PER_MATCH)
+    : await pickCanonicalArenaQuestions(courseIdentity, questionLevel, RANKED_QUESTIONS_PER_MATCH);
 
   const sessionRef = db.collection('arena_sessions').doc();
   const sessionId = sessionRef.id;
@@ -304,6 +317,7 @@ async function createSession(
     questionStartedAt: null,
     questionTimeoutMs: QUESTION_TIMEOUT_MS,
     createdAt: now,
+    ...courseIdentity,
     acceptDeadlineAt: now + 15_000,
   };
 
@@ -337,6 +351,7 @@ async function createSession(
       if (!doc.exists || doc.data()?.sessionId) {
         throw new Error(`Player ${player.userId} already matched — abort`);
       }
+      if (!sameArenaCourseIdentity(doc.data() ?? {}, courseIdentity)) throw new Error('arena_course_identity_changed');
     }
 
     tx.set(sessionRef, session);
@@ -518,6 +533,20 @@ export async function pickOneQuestionExcluding(level: string, exclude: Set<strin
     if (!exclude.has(cand.id)) return cand.id;
   }
   return null;
+}
+
+export async function pickOneQuestionForCourseExcluding(
+  rawIdentity: ArenaCourseIdentity,
+  level: string,
+  exclude: Set<string>,
+): Promise<string | null> {
+  const identity = normalizeArenaCourseIdentity(rawIdentity);
+  if (isLegacyArenaCourseIdentity(identity)) return pickOneQuestionExcluding(level, exclude);
+  try {
+    return (await pickCanonicalArenaQuestions(identity, level, 1, exclude))[0] ?? null;
+  } catch {
+    return null;
+  }
 }
 
 // ─── Trusted rank from arena_profiles (client queue fields are not authoritative) ─

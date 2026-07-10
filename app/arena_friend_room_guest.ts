@@ -2,10 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { chargeArenaEntry, reserveArenaGameEntry } from './arena_access_gate';
 import { ensureArenaAuthUid } from './user_id_policy';
+import { resolveArenaCourseIdentity } from './language_runtime/arena_course_identity';
 
 export type JoinArenaGuestResult =
   | { ok: true; sessionId: string; uid: string }
-  | { ok: false; code: 'no_uid' | 'room_missing' | 'room_expired' | 'no_energy' | 'session_timeout' | 'error' };
+  | { ok: false; code: 'no_uid' | 'room_missing' | 'room_expired' | 'content_mismatch' | 'no_energy' | 'session_timeout' | 'error' };
 
 /**
  * Гость подключается к arena_rooms/{roomId} и ждёт sessionId (как экран arena_join).
@@ -16,9 +17,11 @@ export async function joinArenaFriendRoomAsGuest(
     defaultPlayerName: string;
     spendOne: () => Promise<boolean>;
     isUnlimited: boolean;
+    studyTarget: string;
+    learnerSourceLocale: string;
   },
 ): Promise<JoinArenaGuestResult> {
-  const { defaultPlayerName, spendOne, isUnlimited } = options;
+  const { defaultPlayerName, spendOne, isUnlimited, studyTarget, learnerSourceLocale } = options;
   try {
     const uid = await ensureArenaAuthUid();
     if (!uid) return { ok: false, code: 'no_uid' };
@@ -28,12 +31,23 @@ export async function joinArenaFriendRoomAsGuest(
 
     const roomDoc = await db.collection('arena_rooms').doc(roomId).get();
     if (!roomDoc.exists) return { ok: false, code: 'room_missing' };
-    const exp = roomDoc.data()?.expiresAt as number | undefined;
+    const roomData = roomDoc.data() as Record<string, unknown>;
+    const exp = roomData?.expiresAt as number | undefined;
     if (typeof exp === 'number' && exp < Date.now()) return { ok: false, code: 'room_expired' };
+    const guestIdentity = await resolveArenaCourseIdentity(studyTarget, learnerSourceLocale);
+    const hostIdentity = {
+      studyTarget: String(roomData.studyTarget ?? 'en'),
+      learnerSourceLocale: String(roomData.learnerSourceLocale ?? 'ru'),
+      courseReleaseId: String(roomData.courseReleaseId ?? 'legacy-en-v1'),
+    };
+    if (guestIdentity.studyTarget !== hostIdentity.studyTarget || guestIdentity.learnerSourceLocale !== hostIdentity.learnerSourceLocale || guestIdentity.courseReleaseId !== hostIdentity.courseReleaseId) return { ok: false, code: 'content_mismatch' };
 
     await db.collection('arena_rooms').doc(roomId).update({
       guestId: uid,
       guestName: name,
+      guestStudyTarget: guestIdentity.studyTarget,
+      guestLearnerSourceLocale: guestIdentity.learnerSourceLocale,
+      guestCourseReleaseId: guestIdentity.courseReleaseId,
       status: 'matched',
     });
 

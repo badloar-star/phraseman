@@ -1531,6 +1531,7 @@ export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert } from './promo_
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
+export { adminPublishRemoteConfig } from './admin_remote_config';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 export { emailUnsubscribe } from './email_unsubscribe';

@@ -102,7 +102,10 @@ export const adminPublishContentPack = onCall(
       const qaResultId = String(draft.qaResultId ?? '');
       const reviewerId = String(draft.reviewerId ?? '');
       const blueprintHash = String(draft.blueprintHash ?? '');
-      if (manifest.packId !== input.packId || !qaResultId || !reviewerId || !blueprintHash || evidence.length === 0 || evidence.some((item) => !item.evidenceId?.trim() || !item.authority?.trim() || !item.url?.startsWith('https://') || !item.claim?.trim())) {
+      const qaReceipt = isRecord(draft.qaReceipt) ? draft.qaReceipt : null;
+      const evidenceIds = evidence.map((item) => item.evidenceId).sort().join('|');
+      const receiptEvidenceIds = qaReceipt && Array.isArray(qaReceipt.sourceEvidenceIds) ? qaReceipt.sourceEvidenceIds.map(String).sort().join('|') : '';
+      if (manifest.packId !== input.packId || !qaResultId || !reviewerId || !blueprintHash || evidence.length === 0 || evidence.some((item) => !item.evidenceId?.trim() || !item.authority?.trim() || !item.url?.startsWith('https://') || !item.claim?.trim()) || !qaReceipt || qaReceipt.qaResultId !== qaResultId || qaReceipt.status !== 'passed' || qaReceipt.blueprintHash !== blueprintHash || receiptEvidenceIds !== evidenceIds) {
         throw new HttpsError('failed-precondition', 'QA, reviewer, blueprint and validated source evidence receipts are required');
       }
       const catalog = catalogSnap.data() ?? {};

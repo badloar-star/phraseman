@@ -40,6 +40,64 @@ export interface GenerationJob {
   readonly createdAt: string;
 }
 
+export interface LessonPhraseArtifact {
+  readonly id: string;
+  readonly sourceText: string;
+  readonly targetText: string;
+}
+
+export interface LessonVocabularyArtifact {
+  readonly lemma: string;
+  readonly partOfSpeech: string;
+  readonly targetText: string;
+}
+
+export interface LessonDrillArtifact {
+  readonly kind: 'irregular_verbs' | 'prepositions' | 'part_of_speech';
+  readonly applicable: boolean;
+  readonly itemCount: number;
+}
+
+export interface LessonArtifact {
+  readonly lessonId: number;
+  readonly phrases: readonly LessonPhraseArtifact[];
+  readonly vocabulary: readonly LessonVocabularyArtifact[];
+  readonly drills: readonly LessonDrillArtifact[];
+}
+
+export interface LessonQaResult {
+  readonly ok: boolean;
+  readonly errors: readonly string[];
+}
+
+export function validateLessonArtifact(lesson: LessonArtifact): LessonQaResult {
+  const errors: string[] = [];
+  if (!Number.isInteger(lesson.lessonId) || lesson.lessonId < 1) errors.push('lessonId_invalid');
+  if (lesson.phrases.length !== 50) errors.push('phrase_count_expected_50');
+
+  const seenTargets = new Set<string>();
+  for (const phrase of lesson.phrases) {
+    if (!phrase.sourceText.trim() || !phrase.targetText.trim()) errors.push('phrase_text_required');
+    const normalized = phrase.targetText.trim().toLocaleLowerCase();
+    if (seenTargets.has(normalized)) errors.push('phrase_duplicate');
+    seenTargets.add(normalized);
+  }
+
+  if (lesson.vocabulary.length === 0) errors.push('vocabulary_required');
+  lesson.vocabulary.forEach(item => {
+    if (!item.lemma.trim() || !item.partOfSpeech.trim() || !item.targetText.trim()) {
+      errors.push('vocabulary_field_required');
+    }
+  });
+
+  lesson.drills.forEach(drill => {
+    if (!drill.applicable && drill.itemCount > 0) errors.push('non_applicable_drill_has_items');
+    if (drill.applicable && drill.itemCount < 1) errors.push('applicable_drill_empty');
+  });
+
+  return { ok: errors.length === 0, errors: [...new Set(errors)] };
+}
+
 export function validatePackManifest(manifest: PackManifest): { ok: boolean; errors: string[] } {
   const errors: string[] = [];
   if (!manifest.packId.trim()) errors.push('packId_required');

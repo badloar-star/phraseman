@@ -43,6 +43,11 @@
   <script>
     Object.assign(pages, { analytics: { title:'Аналитика', desc:'Реальные источники RevenueCat, app activity и paywall funnel. Клиентские purchase-сигналы не выдаются за деньги.', cta:'Загрузить аналитику', body:`<div class="notice">Все источники имеют отдельное состояние ready, empty, partial или error. При partial результат не помечается как полный.</div><div class="actions section"><label for="analytics-range">Период</label><select id="analytics-range"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><button id="load-analytics" class="primary" title="Загрузить серверный analytics snapshot">Загрузить аналитику</button><span id="analytics-feedback" class="hint" role="status"></span></div><div class="grid section"><div class="card stat"><label>Paying now</label><strong id="metric-paying">—</strong><span>users source</span></div><div class="card stat"><label>Loaded users</label><strong id="metric-users">—</strong><span>bounded read</span></div><div class="card stat"><label>Store events</label><strong id="metric-store">—</strong><span>RevenueCat webhook</span></div><div class="card stat"><label>Purchase signals</label><strong id="metric-purchases">—</strong><span>behaviour only</span></div></div><div class="card section"><h2>Источники</h2><div id="analytics-sources" class="list"><p class="hint">Нажмите «Загрузить аналитику» после авторизации.</p></div></div>` } });
   </script>
+  <script>
+    Object.assign(pages, { support: { title:'Почта поддержки', desc:'Входящие письма загружаются с сервера после проверки прав администратора. Системные письма не теряются, а только помечаются.', cta:'Проверить почту', body:`<div class="card"><div class="actions"><button id="load-support" class="primary" title="Загрузить входящие письма через защищённый серверный запрос">Загрузить входящие</button><button id="pull-support" title="Проверить Gmail и сохранить новые письма">Проверить Gmail</button><a href="../../admin/index.html#gmail-support" title="Открыть полный workflow черновиков и ответов">Полный workflow ответов</a><span id="support-feedback" class="hint" role="status"></span></div></div><div class="card section"><h2>Входящие</h2><div id="support-list" class="list"><p class="hint">Нажмите «Загрузить входящие» после авторизации.</p></div></div>` } });
+    const adminQuickLinks = document.querySelector('.admin');
+    if (adminQuickLinks && !adminQuickLinks.querySelector('a[href="#support"]')) adminQuickLinks.insertAdjacentHTML('afterbegin', '<a href="#support">Почта поддержки</a> · ');
+  </script>
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
     import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
@@ -63,6 +68,25 @@
       const target = document.getElementById('factory-feedback');
       if (target) target.textContent = message;
     }
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[char]));
+    }
+    async function loadSupportInbox() {
+      const list = document.getElementById('support-list');
+      const feedbackEl = document.getElementById('support-feedback');
+      if (!list) return;
+      list.innerHTML = '<p class="hint">Загружаем входящие…</p>';
+      if (feedbackEl) feedbackEl.textContent = '';
+      try {
+        const call = httpsCallable(functions, 'adminSupportList');
+        const result = await call({ limit: 500 });
+        const items = Array.isArray(result.data?.items) ? result.data.items : [];
+        list.innerHTML = items.length ? items.map((item) => `<div class="row"><div><b>${escapeHtml(item.subject || '(без темы)')}</b><small>${escapeHtml(item.fromEmail || 'неизвестный отправитель')} · ${escapeHtml(item.status || 'new')}</small></div><span class="badge">${escapeHtml(item.mailCategory || 'unknown')}</span></div>`).join('') : '<p class="hint">Входящих писем пока нет.</p>';
+        if (feedbackEl) feedbackEl.textContent = `Загружено: ${items.length}`;
+      } catch (error) {
+        list.innerHTML = `<p class="hint">Не удалось загрузить почту: ${escapeHtml(error instanceof Error ? error.message : error)}</p>`;
+      }
+    }
     onAuthStateChanged(auth, async (user) => {
       authorized = false;
       if (!user) {
@@ -81,6 +105,23 @@
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
       if (!authorized) return;
+      if (target.id === 'load-support') {
+        await loadSupportInbox();
+        return;
+      }
+      if (target.id === 'pull-support') {
+        const feedbackEl = document.getElementById('support-feedback');
+        if (feedbackEl) feedbackEl.textContent = 'Проверяем Gmail…';
+        try {
+          const call = httpsCallable(functions, 'adminSupportPull');
+          const result = await call({});
+          if (feedbackEl) feedbackEl.textContent = `Сохранено: ${Number(result.data?.saved ?? 0)} · найдено: ${Number(result.data?.fetched ?? 0)}`;
+          await loadSupportInbox();
+        } catch (error) {
+          if (feedbackEl) feedbackEl.textContent = `Ошибка синхронизации: ${escapeHtml(error instanceof Error ? error.message : error)}`;
+        }
+        return;
+      }
       if (target.id === 'load-analytics') {
         const feedbackEl = document.getElementById('analytics-feedback');
         if (feedbackEl) feedbackEl.textContent = 'Загружаем server analytics snapshot…';

@@ -34,8 +34,8 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['content.read', 'content.draft.write', 'content.publish']),
-  admin: new Set(['content.read', 'content.draft.write', 'content.publish']),
+  owner: new Set(['content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
+  admin: new Set(['content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
   content_editor: new Set(['content.read', 'content.draft.write']),
   analyst: new Set(['content.read']),
   developer: new Set(['content.read']),
@@ -78,6 +78,8 @@ const state = {
   analytics: null,
   budget: null,
   selectedCapabilityId: '',
+  remoteConfig: null,
+  remoteConfigPreview: null,
 };
 
 let actions = null;
@@ -184,16 +186,46 @@ function renderOverview() {
     <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#support">Почта</a><a class="button" href="#content">Фабрика языков</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
 }
 
+function remoteConfigBranch(branch) {
+  const previewBranch = state.remoteConfigPreview?.nextConfig?.[branch];
+  const configBranch = state.remoteConfig?.config?.[branch];
+  const value = previewBranch && typeof previewBranch === 'object' ? previewBranch : configBranch && typeof configBranch === 'object' ? configBranch : {};
+  return JSON.stringify(value, null, 2);
+}
+
+function renderRemoteConfigHistory() {
+  const history = Array.isArray(state.remoteConfig?.history) ? state.remoteConfig.history.slice(0, 12) : [];
+  if (!history.length) return emptyState('История изменений пока пуста.');
+  return `<div class="data-list">${history.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.action || 'Изменение конфигурации')}</strong><small>${escapeHtml(item.timestamp || item.at || '')} · ${escapeHtml(item.reason || item.by || 'Причина не указана')}</small></div><span class="badge">ревизия ${Number(item.revision ?? 0)}</span></div>`).join('')}</div>`;
+}
+
 function renderApplication() {
-  return `${pageHeader(PAGES.application, 'Приложение')}
-    <div class="notice">Опасные изменения проходят путь: предпросмотр → подтверждение → запись в журнал → возможность отката.</div>
+  const workspace = state.remoteConfig;
+  const config = workspace?.config ?? {};
+  const preview = state.remoteConfigPreview;
+  const keyCount = (branch) => Object.keys(config[branch] && typeof config[branch] === 'object' ? config[branch] : {}).length;
+  const loadButton = `<button class="button" data-action="load-remote-config" type="button" title="Загрузить текущую конфигурацию и историю"${disabledWhenUnauthorized('application.config.write')}>${workspace ? 'Обновить данные' : 'Загрузить конфигурацию'}</button>`;
+  return `${pageHeader(PAGES.application, 'Приложение', loadButton)}
+    <div class="notice">Изменения проходят путь: загрузка текущей ревизии → предпросмотр → подтверждение причины → серверная публикация → журнал и возможность отката.</div>
     <section class="metrics section">
-      <article class="card metric"><label>Версия конфигурации</label><strong>—</strong><span class="badge">Не загружено</span></article>
-      <article class="card metric"><label>Активное обновление</label><strong>—</strong><span class="badge">Не загружено</span></article>
-      <article class="card metric"><label>Технические работы</label><strong>—</strong><span class="badge">Не загружено</span></article>
-      <article class="card metric"><label>Баннеры</label><strong>—</strong><span class="badge">Не загружено</span></article>
+      <article class="card metric"><label>Ревизия</label><strong>${workspace ? Number(config.revision ?? 0) : '—'}</strong><span class="badge ${workspace ? 'success' : ''}">${workspace ? 'Серверное значение' : 'Не загружено'}</span></article>
+      <article class="card metric"><label>Переключатели</label><strong>${workspace ? keyCount('bools') : '—'}</strong><span class="badge">ключей</span></article>
+      <article class="card metric"><label>Числа</label><strong>${workspace ? keyCount('numbers') : '—'}</strong><span class="badge">ключей</span></article>
+      <article class="card metric"><label>Тексты</label><strong>${workspace ? keyCount('texts') : '—'}</strong><span class="badge">ключей</span></article>
     </section>
-    <section class="card section"><div class="card-header"><div><h2>Центр изменений приложения</h2><p>Пока перенос продолжается, полный набор действий остаётся доступен в текущей админке.</p></div><a class="button primary" href="../../admin/index.html#updates" title="Открыть рабочие настройки приложения">Открыть текущие настройки</a></div></section>`;
+    ${!workspace ? `<section class="card section">${emptyState(state.authorized ? 'Загрузите конфигурацию, чтобы редактировать её без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</section>` : `
+      <section class="card section"><div class="card-header"><div><h2>Редактор конфигурации</h2><p>Формат JSON позволяет сохранить все существующие и новые ключи. Тип каждого значения проверяется до публикации и повторно на сервере.</p></div><span class="badge">ревизия ${Number(config.revision ?? 0)}</span></div><div class="card-body">
+        <div class="fields">
+          <div class="field"><label for="remote-config-bools">Переключатели · только true/false</label><textarea id="remote-config-bools" class="mono config-editor" spellcheck="false">${escapeHtml(remoteConfigBranch('bools'))}</textarea></div>
+          <div class="field"><label for="remote-config-numbers">Числа · только конечные числа</label><textarea id="remote-config-numbers" class="mono config-editor" spellcheck="false">${escapeHtml(remoteConfigBranch('numbers'))}</textarea></div>
+          <div class="field full"><label for="remote-config-texts">Тексты · только строки</label><textarea id="remote-config-texts" class="mono config-editor" spellcheck="false">${escapeHtml(remoteConfigBranch('texts'))}</textarea></div>
+          <div class="field full"><label for="remote-config-reason">Причина изменения</label><textarea id="remote-config-reason" maxlength="500" placeholder="Что меняется, зачем и кто проверил">${escapeHtml(preview?.reason ?? '')}</textarea></div>
+        </div>
+        ${preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>Предпросмотр изменений</strong><br>${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Значения не отличаются от текущей ревизии.'}</div>` : ''}
+        <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button ${preview ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Опубликовать</button>` : ''}</div>
+      </div></section>
+      <section class="card section"><div class="card-header"><div><h2>Последние изменения</h2><p>Серверный журнал с причиной и ревизией.</p></div></div><div class="card-body">${renderRemoteConfigHistory()}</div></section>
+    `}`;
 }
 
 function renderUsers() {
@@ -423,6 +455,42 @@ function readCreateForm() {
   return { projectId: `${studyTarget}-${sourceLocale}-course`, studyTarget, sourceLocale, lessonIds: Array.from({ length: count }, (_, index) => start + index), surfaces, idempotencyKey: jobId, blueprintVersion, requestId: jobId };
 }
 
+function parseRemoteConfigEditor(id, branch) {
+  const raw = String(document.getElementById(id)?.value ?? '').trim();
+  let value;
+  try { value = JSON.parse(raw || '{}'); } catch { throw new Error(`Ветка «${branch}» содержит неверный JSON.`); }
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`Ветка «${branch}» должна быть объектом.`);
+  for (const [key, item] of Object.entries(value)) {
+    if (!key.trim()) throw new Error(`Ветка «${branch}» содержит пустой ключ.`);
+    if (branch === 'bools' && typeof item !== 'boolean') throw new Error(`Значение bools.${key} должно быть true или false.`);
+    if (branch === 'numbers' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(`Значение numbers.${key} должно быть конечным числом.`);
+    if (branch === 'texts' && typeof item !== 'string') throw new Error(`Значение texts.${key} должно быть строкой.`);
+  }
+  return value;
+}
+
+function buildRemoteConfigPreview() {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const nextConfig = {
+    bools: parseRemoteConfigEditor('remote-config-bools', 'bools'),
+    numbers: parseRemoteConfigEditor('remote-config-numbers', 'numbers'),
+    texts: parseRemoteConfigEditor('remote-config-texts', 'texts'),
+  };
+  const version = Number(state.remoteConfig.config.version);
+  if (Number.isInteger(version) && version > 0) nextConfig.version = version;
+  const reason = String(document.getElementById('remote-config-reason')?.value ?? '').trim();
+  if (!reason) throw new Error('Укажите причину изменения.');
+  const changes = [];
+  for (const branch of ['bools', 'numbers', 'texts']) {
+    const before = state.remoteConfig.config[branch] && typeof state.remoteConfig.config[branch] === 'object' ? state.remoteConfig.config[branch] : {};
+    const after = nextConfig[branch];
+    for (const key of [...new Set([...Object.keys(before), ...Object.keys(after)])].sort()) {
+      if (JSON.stringify(before[key]) !== JSON.stringify(after[key])) changes.push(`${branch}.${key}: ${JSON.stringify(before[key]) ?? '∅'} → ${JSON.stringify(after[key]) ?? '∅'}`);
+    }
+  }
+  return { nextConfig, reason, changes };
+}
+
 async function runGeneration() {
   const units = [...(state.detail?.units ?? [])].filter((unit) => unit.state !== 'succeeded');
   if (!units.length) return;
@@ -451,6 +519,24 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-remote-config') return runBusy(async () => { state.remoteConfig = await actions.getRemoteConfigWorkspace(); state.remoteConfigPreview = null; }, 'Конфигурация и история загружены.');
+  if (action === 'preview-remote-config') {
+    try { state.remoteConfigPreview = buildRemoteConfigPreview(); setMessage('Предпросмотр готов. Проверьте изменения перед публикацией.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'discard-remote-config-preview') { state.remoteConfigPreview = null; renderCurrentPage(); return; }
+  if (action === 'publish-remote-config') {
+    const preview = state.remoteConfigPreview;
+    if (!preview?.changes.length) return setMessage('Нет изменений для публикации.', 'warning');
+    if (!globalThis.confirm(`Опубликовать ${preview.changes.length} изменений конфигурации?`)) return;
+    const expectedRevision = Number(state.remoteConfig?.config?.revision ?? 0);
+    return runBusy(async () => {
+      await actions.publishRemoteConfig({ nextConfig: preview.nextConfig, expectedRevision, idempotencyKey: id('remote-config'), reason: preview.reason, requestId: id('request-remote-config') });
+      state.remoteConfig = await actions.getRemoteConfigWorkspace();
+      state.remoteConfigPreview = null;
+    }, 'Конфигурация опубликована и записана в журнал.');
+  }
   if (action === 'load-factory-jobs') return runBusy(async () => { await loadJobs(); state.factoryStep = 2; }, 'Черновики загружены.');
   if (action === 'back-to-factory-jobs') { state.detail = null; state.preview = null; renderCurrentPage(); return; }
   if (action === 'create-factory-job') {

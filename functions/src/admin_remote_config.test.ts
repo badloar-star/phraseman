@@ -1,5 +1,5 @@
 import { HttpsError } from 'firebase-functions/v2/https';
-import { parseRemoteConfigRequest } from './admin_remote_config';
+import { mergeRemoteConfigBranches, parseRemoteConfigRequest } from './admin_remote_config';
 
 describe('parseRemoteConfigRequest', () => {
   it('accepts the compatible remote-config shape', () => {
@@ -22,5 +22,18 @@ describe('parseRemoteConfigRequest', () => {
     expect(() => parseRemoteConfigRequest({
       nextConfig: { bools: 'not-an-object' }, expectedRevision: 0, idempotencyKey: 'op', reason: 'x', requestId: 'r',
     })).toThrow(HttpsError);
+  });
+
+  it('merges typed branches without deleting keys outside the submitted patch', () => {
+    expect(mergeRemoteConfigBranches(
+      { revision: 4, bools: { maintenance: false, referrals: true }, numbers: { freeLessons: 3 }, texts: { banner: 'old' }, untouched: 'keep' },
+      { bools: { maintenance: true }, texts: { banner: 'new' } },
+    )).toEqual({
+      revision: 4,
+      bools: { maintenance: true, referrals: true },
+      numbers: { freeLessons: 3 },
+      texts: { banner: 'new' },
+      untouched: 'keep',
+    });
   });
 });

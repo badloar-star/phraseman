@@ -60,6 +60,21 @@ export function parseRemoteConfigRequest(data: unknown): RemoteConfigRequest {
   return Object.freeze({ nextConfig: Object.freeze({ ...nextConfig }), expectedRevision, idempotencyKey, reason, requestId });
 }
 
+export function mergeRemoteConfigBranches(
+  before: Readonly<Record<string, unknown>>,
+  patch: Readonly<Record<string, unknown>>,
+): Record<string, unknown> {
+  const merged: Record<string, unknown> = { ...before };
+  for (const branch of ['bools', 'numbers', 'texts'] as const) {
+    if (!(branch in patch)) continue;
+    const current = isRecord(before[branch]) ? before[branch] : {};
+    const next = isRecord(patch[branch]) ? patch[branch] : {};
+    merged[branch] = { ...current, ...next };
+  }
+  if ('version' in patch) merged.version = patch.version;
+  return merged;
+}
+
 function resolveRole(token: Record<string, unknown>): AdminRole | null {
   const claimed = token.adminRole;
   return hasAdminRole(claimed) ? claimed : null;
@@ -103,7 +118,7 @@ export const adminPublishRemoteConfig = onCall(
       if (!Number.isInteger(currentRevision) || currentRevision !== input.expectedRevision) {
         throw new HttpsError('failed-precondition', 'remote config changed; reload before publishing');
       }
-      const after = { ...before, ...input.nextConfig, revision: currentRevision + 1, updatedBy: actorUid };
+      const after = { ...mergeRemoteConfigBranches(before, input.nextConfig), revision: currentRevision + 1, updatedBy: actorUid };
       const audit = createAuditRecord({
         action: 'remote_config.publish',
         actorUid,
@@ -129,5 +144,26 @@ export const adminPublishRemoteConfig = onCall(
       });
       return { ok: true, auditId: auditRef.id, revision: currentRevision + 1, replayed: false };
     });
+  },
+);
+
+export const adminGetRemoteConfigWorkspace = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+    const role = resolveRole(request.auth.token as Record<string, unknown>);
+    if (!role || !hasPermission(role, 'application.config.write')) throw new HttpsError('permission-denied', 'Role cannot read remote config');
+    const db = admin.firestore();
+    const [configSnap, historySnap] = await Promise.all([
+      db.collection('remote_config').doc(REMOTE_CONFIG_ID).get(),
+      db.collection('remote_config_history').limit(100).get(),
+    ]);
+    const config = (configSnap.data() ?? {}) as Record<string, unknown>;
+    const revision = Number(config.revision ?? 0);
+    if (!Number.isInteger(revision) || revision < 0) throw new HttpsError('data-loss', 'remote_config_revision_invalid');
+    const history = historySnap.docs
+      .map((doc): Record<string, unknown> & { id: string } => ({ id: doc.id, ...(doc.data() as Record<string, unknown>) }))
+      .sort((left, right) => String(right.timestamp ?? right.at ?? '').localeCompare(String(left.timestamp ?? left.at ?? '')));
+    return { ok: true, config: { ...config, revision }, history };
   },
 );

@@ -41,6 +41,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const supportPullCallable = httpsCallable(functionsUs, 'adminSupportPull');
   const analyticsCallable = httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot');
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
+  const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
+  const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
 
   async function loadOpenAiBudgetDashboard() {
     const result = await openAiBudgetCallable({ rangeDays: 30 });
@@ -78,5 +80,7 @@ export async function createFirebaseAdminActions({ onAuth }) {
     pullSupport: async (input) => unwrap(await supportPullCallable(input)),
     loadAnalytics: async (input) => unwrap(await analyticsCallable(input)),
     loadOpenAiBudgetDashboard,
+    getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
+    publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),
   });
 }

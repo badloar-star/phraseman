@@ -12,6 +12,7 @@ const FIRESTORE_READER_PATH = path.join(
   "firestore_reader.ts",
 );
 const REPORT_PATH = path.join(AUDIT_SOURCE_ROOT, "report.ts");
+const TSX_CLI_PATH = require.resolve("tsx/cli");
 
 const FILESYSTEM_WRITE_NAMES = new Set([
   "appendFile",
@@ -49,15 +50,7 @@ function expectCliImplementation(): void {
 }
 
 function runCli(args: readonly string[]) {
-  if (process.platform === "win32") {
-    return spawnSync(
-      "cmd.exe",
-      ["/d", "/s", "/c", ["npx", "tsx", CLI_RELATIVE, ...args].join(" ")],
-      { cwd: ROOT, encoding: "utf8" },
-    );
-  }
-
-  return spawnSync("npx", ["tsx", CLI_RELATIVE, ...args], {
+  return spawnSync(process.execPath, [TSX_CLI_PATH, CLI_RELATIVE, ...args], {
     cwd: ROOT,
     encoding: "utf8",
   });
@@ -286,9 +279,6 @@ function assertHelperViolations(source: ts.SourceFile): string[] {
     return ["invalid_assertAuditOutputPath_parameters"];
   }
 
-  const variables = new Map<string, ts.Expression>();
-  let hasRuntimeBoundaryRejection = false;
-  let returnsResolvedCandidate = false;
   const isTraversalCheck = (expression: ts.Expression): boolean =>
     ts.isCallExpression(expression) &&
     ts.isPropertyAccessExpression(expression.expression) &&
@@ -296,78 +286,76 @@ function assertHelperViolations(source: ts.SourceFile): string[] {
     expression.expression.expression.text === "relative" &&
     expression.expression.name.text === "startsWith" &&
     stringValue(expression.arguments[0]) === "..";
-  const containsThrow = (node: ts.Node): boolean => {
-    let found = false;
-    const find = (child: ts.Node): void => {
-      if (ts.isThrowStatement(child)) found = true;
-      ts.forEachChild(child, find);
-    };
-    find(node);
-    return found;
+  const exactConstDeclaration = (
+    statement: ts.Statement | undefined,
+    name: string,
+    initializer: (expression: ts.Expression | undefined) => boolean,
+  ): boolean => {
+    if (
+      !statement ||
+      !ts.isVariableStatement(statement) ||
+      (statement.declarationList.flags & ts.NodeFlags.Const) === 0 ||
+      statement.declarationList.declarations.length !== 1
+    ) {
+      return false;
+    }
+    const [declaration] = statement.declarationList.declarations;
+    return (
+      ts.isIdentifier(declaration.name) &&
+      declaration.name.text === name &&
+      initializer(declaration.initializer)
+    );
   };
-  const visit = (node: ts.Node): void => {
-    if (
-      ts.isVariableDeclaration(node) &&
-      ts.isIdentifier(node.name) &&
-      node.initializer
-    ) {
-      variables.set(node.name.text, node.initializer);
-    }
-    if (
-      ts.isIfStatement(node) &&
-      ts.isBinaryExpression(node.expression) &&
-      node.expression.operatorToken.kind === ts.SyntaxKind.BarBarToken &&
-      ((isTraversalCheck(node.expression.left) &&
-        isPathMethodCall(node.expression.right, "isAbsolute", ["relative"])) ||
-        (isPathMethodCall(node.expression.left, "isAbsolute", ["relative"]) &&
-          isTraversalCheck(node.expression.right))) &&
-      containsThrow(node.thenStatement)
-    ) {
-      hasRuntimeBoundaryRejection = true;
-    }
-    if (
-      ts.isReturnStatement(node) &&
-      node.expression !== undefined &&
-      ts.isIdentifier(node.expression) &&
-      node.expression.text === "resolvedCandidate"
-    ) {
-      returnsResolvedCandidate = true;
-    }
-    ts.forEachChild(node, visit);
-  };
-  visit(helper.body);
-
-  const violations: string[] = [];
-  if (
-    !isPathMethodCall(variables.get("approvedRoot"), "resolve", [
-      "root",
-      '".codex-tmp"',
-      '"xp-integrity-audit"',
-    ])
-  ) {
-    violations.push("approved_root_not_resolved");
-  }
-  if (
-    !isPathMethodCall(variables.get("resolvedCandidate"), "resolve", [
-      "candidate",
-    ])
-  ) {
-    violations.push("candidate_not_resolved");
-  }
-  if (
-    !isPathMethodCall(variables.get("relative"), "relative", [
-      "approvedRoot",
+  const directThrow = (statement: ts.Statement): boolean =>
+    ts.isThrowStatement(statement) ||
+    (ts.isBlock(statement) &&
+      statement.statements.length === 1 &&
+      ts.isThrowStatement(statement.statements[0]));
+  const [approvedRoot, resolvedCandidate, relative, boundary, finalReturn] =
+    helper.body.statements;
+  const hasExactBoundary =
+    boundary !== undefined &&
+    ts.isIfStatement(boundary) &&
+    boundary.elseStatement === undefined &&
+    ts.isBinaryExpression(boundary.expression) &&
+    boundary.expression.operatorToken.kind === ts.SyntaxKind.BarBarToken &&
+    ((isTraversalCheck(boundary.expression.left) &&
+      isPathMethodCall(boundary.expression.right, "isAbsolute", [
+        "relative",
+      ])) ||
+      (isPathMethodCall(boundary.expression.left, "isAbsolute", ["relative"]) &&
+        isTraversalCheck(boundary.expression.right))) &&
+    directThrow(boundary.thenStatement);
+  const hasExactFinalReturn =
+    finalReturn !== undefined &&
+    ts.isReturnStatement(finalReturn) &&
+    finalReturn.expression !== undefined &&
+    ts.isIdentifier(finalReturn.expression) &&
+    finalReturn.expression.text === "resolvedCandidate";
+  const exactControlFlow =
+    helper.body.statements.length === 5 &&
+    exactConstDeclaration(approvedRoot, "approvedRoot", (initializer) =>
+      isPathMethodCall(initializer, "resolve", [
+        "root",
+        '".codex-tmp"',
+        '"xp-integrity-audit"',
+      ]),
+    ) &&
+    exactConstDeclaration(
+      resolvedCandidate,
       "resolvedCandidate",
-    ])
-  ) {
-    violations.push("relative_path_not_computed");
-  }
-  if (!hasRuntimeBoundaryRejection) {
-    violations.push("missing_runtime_boundary_rejection");
-  }
-  if (!returnsResolvedCandidate)
-    violations.push("resolved_candidate_not_returned");
-  return violations;
+      (initializer) => isPathMethodCall(initializer, "resolve", ["candidate"]),
+    ) &&
+    exactConstDeclaration(relative, "relative", (initializer) =>
+      isPathMethodCall(initializer, "relative", [
+        "approvedRoot",
+        "resolvedCandidate",
+      ]),
+    ) &&
+    hasExactBoundary &&
+    hasExactFinalReturn;
+
+  return exactControlFlow ? [] : ["invalid_assertAuditOutputPath_control_flow"];
 }
 
 function reportCapabilityViolations(source: ts.SourceFile): string[] {
@@ -508,6 +496,64 @@ describe("production XP integrity audit read-only contract", () => {
     );
 
     expect(reportCapabilityViolations(source)).toEqual([]);
+  });
+
+  it("rejects deceptive nested or unreachable boundary control flow", () => {
+    const source = parseFixture(
+      "report.ts",
+      [
+        "function assertAuditOutputPath(root: string, candidate: string) {",
+        '  const approvedRoot = path.resolve(root, ".codex-tmp", "xp-integrity-audit");',
+        "  const resolvedCandidate = path.resolve(candidate);",
+        "  const relative = path.relative(approvedRoot, resolvedCandidate);",
+        "  function neverCalled() {",
+        '    if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error("outside");',
+        "  }",
+        "  return candidate;",
+        "  return resolvedCandidate;",
+        "}",
+      ].join("\n"),
+    );
+
+    expect(assertHelperViolations(source)).toEqual([
+      "invalid_assertAuditOutputPath_control_flow",
+    ]);
+  });
+
+  it("documents the planned runtime output boundary behavior", () => {
+    const assertPlannedAuditOutputPath = (
+      root: string,
+      candidate: string,
+    ): string => {
+      const approvedRoot = path.resolve(
+        root,
+        ".codex-tmp",
+        "xp-integrity-audit",
+      );
+      const resolvedCandidate = path.resolve(candidate);
+      const relative = path.relative(approvedRoot, resolvedCandidate);
+      if (relative.startsWith("..") || path.isAbsolute(relative)) {
+        throw new Error("xp_audit_output_path_outside_approved_root");
+      }
+      return resolvedCandidate;
+    };
+    const approvedCandidate = path.join(
+      ROOT,
+      ".codex-tmp",
+      "xp-integrity-audit",
+      "fixture-run",
+      "report.json",
+    );
+
+    expect(assertPlannedAuditOutputPath(ROOT, approvedCandidate)).toBe(
+      path.resolve(approvedCandidate),
+    );
+    expect(() =>
+      assertPlannedAuditOutputPath(
+        ROOT,
+        path.join(ROOT, "docs", "escaped-report.json"),
+      ),
+    ).toThrow("xp_audit_output_path_outside_approved_root");
   });
 
   it("detects every supported Firebase module-loading form", () => {

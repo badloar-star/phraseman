@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 
 const readSource = (relativePath: string): string =>
-  fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('level gift claim success contract', () => {
   it('claims single gifts locally before applying reward effects', () => {
@@ -46,8 +46,10 @@ describe('level gift claim success contract', () => {
     );
 
     expect(outcomeBlock).toContain('await markDualGiftClaimed(level);');
-    expect(outcomeBlock).toContain('await saveUnclaimedGift(level, prem);');
-    expect(outcomeBlock).toContain('await saveUnclaimedGift(level, f2p);');
+    expect(outcomeBlock).toContain('await saveRemainingGiftAfterPartialDualClaim(level, prem);');
+    expect(outcomeBlock).toContain('await saveRemainingGiftAfterPartialDualClaim(level, f2p);');
+    expect(outcomeBlock).not.toContain('await saveUnclaimedGift(level, prem);');
+    expect(outcomeBlock).not.toContain('await saveUnclaimedGift(level, f2p);');
     expect(outcomeBlock).toContain('await saveUnclaimedDualGift(level, { f2p, prem });');
 
     expect(handleDoneBlock).toContain('onClose(true);');

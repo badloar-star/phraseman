@@ -47,8 +47,8 @@ import {
   markDualGiftClaimed,
   markGiftClaimed,
   saveClaimedGiftRarity,
+  saveRemainingGiftAfterPartialDualClaim,
   saveUnclaimedDualGift,
-  saveUnclaimedGift,
   setLevelHadDualClaim,
   type PremPair,
 } from '../app/level_gift_inventory';
@@ -409,12 +409,12 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       return;
     }
     if (f2pOk) {
-      await saveUnclaimedGift(level, prem);
+      await saveRemainingGiftAfterPartialDualClaim(level, prem);
       await saveClaimedGiftRarity(level, f2p.rarity);
       return;
     }
     if (premOk) {
-      await saveUnclaimedGift(level, f2p);
+      await saveRemainingGiftAfterPartialDualClaim(level, f2p);
       await saveClaimedGiftRarity(level, prem.rarity);
       return;
     }

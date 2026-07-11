@@ -1,4 +1,5 @@
 import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
+import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -187,14 +188,58 @@ function renderAuthStatus() {
   }
 }
 
+function operationalMetric(label, value, badge, badgeKind = '') {
+  return `<article class="card metric"><label>${escapeHtml(label)}</label><strong>${escapeHtml(value)}</strong><span class="badge ${badgeKind}">${escapeHtml(badge)}</span></article>`;
+}
+
+function metricValue(value) {
+  if (value == null || value === '') return '—';
+  return Number.isFinite(Number(value)) ? Number(value).toLocaleString('ru-RU') : '—';
+}
+
+function renderOverviewOperationalState(view) {
+  const noDataMetrics = [
+    operationalMetric('Критические сигналы', '—', view.stateLabel),
+    operationalMetric('Новые подачи паков · 24 ч', '—', view.stateLabel),
+    operationalMetric('Открытые репорты и события очередей · 24 ч', '—', view.stateLabel),
+    operationalMetric('Снимок обновлён', '—', view.stateLabel),
+  ];
+  const metrics = view.hasData ? [
+    operationalMetric('Критические сигналы', metricValue(view.metrics.criticalSignals), 'ошибки + безопасность', view.metrics.criticalSignals ? 'danger' : ''),
+    operationalMetric('Новые подачи паков · 24 ч', metricValue(view.metrics.packSubmissions24h), 'community_pack_submissions', view.metrics.packSubmissions24h ? 'warning' : ''),
+    operationalMetric('Открытые репорты и события очередей · 24 ч', metricValue(view.metrics.queueSignals24h), 'репорты + рабочие очереди', view.metrics.queueSignals24h ? 'warning' : ''),
+    operationalMetric('Снимок обновлён', dateTime(view.generatedAtMs), view.stateLabel, badgeClass(view.state)),
+  ] : noDataMetrics;
+  let notice = '';
+  if (view.state === 'loading') notice = '<div class="notice" role="status" aria-live="polite">Загружаю последний сохранённый оперативный снимок…</div>';
+  if (view.state === 'empty' || view.state === 'idle') notice = '<div class="notice warning">Сохранённый снимок ещё не загружен. Нули не показываются, пока источники не подтверждены.</div>';
+  if (view.state === 'error') notice = `<div class="notice danger" role="alert"><strong>Оперативный снимок не прочитан.</strong><br>${escapeHtml(view.error || 'Сервер не вернул данные.')}<div class="actions section"><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Повторно прочитать последний сохранённый снимок">Повторить чтение</button></div></div>`;
+  if (view.state === 'stale') notice += '<div class="notice warning"><strong>Снимок старше 36 часов.</strong> Значения показаны для контекста, но не подходят для свежего управленческого решения.</div>';
+  if (view.state === 'legacy') notice += '<div class="notice warning"><strong>Старый формат снимка.</strong> Часть современных проверок полноты могла не выполняться; неизвестные показатели показаны как —.</div>';
+  if (view.isPartial) notice += '<div class="notice warning"><strong>Данные частичные.</strong> Один или несколько источников достигли лимита; это не считается подтверждением спокойного состояния.</div>';
+  return `${notice}<section class="metrics section">${metrics.join('')}</section>`;
+}
+
+function renderOverviewDecisions(view) {
+  if (!view.hasData) return emptyState(view.state === 'loading' ? 'Ожидаю сохранённый снимок.' : 'Нет подтверждённых данных для списка решений.');
+  const rows = [];
+  if (view.metrics.criticalSignals > 0) rows.push(['Критические сигналы', `${view.metrics.criticalSignals} сигналов ошибок и безопасности за окно снимка`, '#diagnostics', 'Открыть диагностику', 'danger']);
+  if (view.metrics.queueSignals24h > 0) rows.push(['Репорты и очереди за 24 часа', `${view.metrics.queueSignals24h} новых открытых репортов и событий очередей за окно снимка`, '#report-center', 'Открыть центр репортов', 'warning']);
+  if (view.metrics.packSubmissions24h > 0) rows.push(['Новые подачи паков', `${view.metrics.packSubmissions24h} подач за последние 24 часа; статус каждой проверьте в комьюнити`, '#community', 'Открыть комьюнити', 'warning']);
+  if (view.metrics.sourceErrors > 0) rows.push(['Источники данных', `${view.metrics.sourceErrors} источников не прочитано`, '#diagnostics', 'Проверить источники', 'danger']);
+  if (view.metrics.sourceTruncated > 0) rows.push(['Ограниченные выборки', `${view.metrics.sourceTruncated} источников вернули неполную выборку`, '#diagnostics', 'Проверить полноту', 'warning']);
+  if (view.hasUnknownMetrics) rows.push(['Неизвестные показатели', 'Часть полей отсутствует в сохранённом снимке, поэтому админка не подставляет нули.', '#diagnostics', 'Проверить источники', 'warning']);
+  if (!rows.length) return emptyState(view.state === 'ready' ? 'По подтверждённому снимку отслеживаемых приоритетов нет.' : 'Подтверждённых приоритетов нет, но снимок неполный или устарел.');
+  return `<div class="data-list">${rows.map(([title, detail, href, action, kind]) => `<div class="list-row"><div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div><a class="button small ${kind === 'danger' ? '' : 'ghost'}" href="${href}" title="${escapeHtml(action)}">${escapeHtml(action)}</a></div>`).join('')}</div>`;
+}
+
 function renderOverview() {
-  return `${pageHeader(PAGES.overview, 'Управление сегодня', '<a class="button" href="#daily-briefing" title="Открыть ежедневный брифинг">Ежедневный брифинг</a><button class="button primary" data-route="diagnostics" type="button" title="Открыть диагностику">Проверить состояние</button>')}
-    <div class="notice warning">Сводка не показывает «всё хорошо», пока серверные источники не загружены. Пустое, устаревшее и ошибочное состояния отображаются отдельно.</div>
-    <section class="metrics section">
-      ${['Критические сигналы', 'Контент на проверке', 'Открытые обращения', 'Последнее изменение'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}
-    </section>
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Сюда попадут только действия с понятным владельцем и причиной.</p></div></div>${emptyState('После подключения источников здесь появятся приоритеты.')}</section>
-    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Фабрика языков</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
+  const view = buildOperationalSnapshot(state.briefing);
+  const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить снимок</button><a class="button" href="#daily-briefing" title="Открыть подробный ежедневный брифинг">Подробный брифинг</a><a class="button" href="#diagnostics" title="Открыть диагностику источников">Диагностика</a>`;
+  return `${pageHeader(PAGES.overview, 'Управление сегодня', headerActions)}
+    ${renderOverviewOperationalState(view)}
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>
+    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
 }
 
 function remoteConfigBranch(branch) {
@@ -449,11 +494,46 @@ function renderCommunity() {
     <section class="metrics section">${['Жалобы без ответа', 'Контент на модерации', 'Инциденты Арены', 'Сообщения чата'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>`;
 }
 
+const SOURCE_LABELS = Object.freeze({
+  app_errors: 'Ошибки приложения',
+  support_inbox: 'Почта поддержки',
+  community_pack_submissions: 'Паки сообщества',
+  reports: 'Репорты пользователей',
+  user_reports: 'Репорты пользователей',
+  safety_reports: 'Безопасность и жалобы',
+  analytics_events: 'События аналитики',
+  admin_audit: 'Журнал администратора',
+});
+
+function sourceHealthBadge(source) {
+  const labels = { ready: 'Получен', empty: 'Нет записей', error: 'Ошибка', truncated: 'Достигнут лимит', partial: 'Частично' };
+  const kind = source.state === 'error' ? 'danger' : ['truncated', 'partial'].includes(source.state) ? 'warning' : source.state === 'ready' ? 'success' : '';
+  return `<span class="badge ${kind}">${escapeHtml(labels[source.state] || source.state)}</span>`;
+}
+
+function renderDiagnosticsSourceHealth(view) {
+  if (view.state === 'loading') return '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Читаю состояние источников…</span></div>';
+  if (view.state === 'error') return `<div class="notice danger" role="alert"><strong>Источники не загружены.</strong><br>${escapeHtml(view.error || 'Сервер не вернул снимок.')}<div class="actions section"><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Повторно прочитать состояние источников">Повторить чтение</button></div></div>`;
+  if (!view.hasData) return emptyState('Сохранённый снимок источников ещё не загружен.');
+  if (!view.sources.length) return emptyState('В сохранённом снимке нет сведений об источниках.');
+  return `<div class="source-health-grid">${view.sources.map((source) => `<div><span>${escapeHtml(SOURCE_LABELS[source.source] || source.source.replaceAll('_', ' '))}</span><small class="mono">${escapeHtml(source.source)}</small>${sourceHealthBadge(source)}<small>Записей: ${source.count.toLocaleString('ru-RU')}${source.limit ? ` · лимит ${source.limit.toLocaleString('ru-RU')}` : ''}</small><small>Проверен: ${escapeHtml(dateTime(source.checkedAtMs))}</small><small>Последнее событие: ${escapeHtml(dateTime(source.latestEventAtMs))}</small>${source.error ? `<small class="source-error">${escapeHtml(source.error)}</small>` : ''}</div>`).join('')}</div>`;
+}
+
 function renderDiagnostics() {
   const budget = state.budget;
-  return `${pageHeader(PAGES.diagnostics, 'Диагностика', '<a class="button" href="./migration.html" title="Открыть полный реестр переноса функций">Реестр переноса</a>')}
-    <div class="notice warning">Состояние системы не помечается как исправное без свежего ответа каждого источника.</div>
-    <section class="metrics section">${['API', 'Ошибки', 'Неудачные задания', 'Операции отката'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>
+  const view = buildOperationalSnapshot(state.briefing);
+  const metrics = view.hasData ? [
+    operationalMetric('Источники в снимке', metricValue(view.metrics.sourceTotal), view.stateLabel, badgeClass(view.state)),
+    operationalMetric('Ошибки источников', metricValue(view.metrics.sourceErrors), 'не прочитано', view.metrics.sourceErrors ? 'danger' : ''),
+    operationalMetric('Ограниченные выборки', metricValue(view.metrics.sourceTruncated), 'лимит или частичные данные', view.metrics.sourceTruncated ? 'warning' : ''),
+    operationalMetric('Ошибки приложения', metricValue(view.metrics.appErrors), 'за окно снимка', view.metrics.appErrors ? 'warning' : ''),
+  ] : ['Источники в снимке', 'Ошибки источников', 'Ограниченные выборки', 'Ошибки приложения'].map((label) => operationalMetric(label, '—', view.stateLabel));
+  const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить диагностику</button><a class="button" href="./migration.html" title="Открыть полный реестр переноса функций">Реестр переноса</a>`;
+  return `${pageHeader(PAGES.diagnostics, 'Диагностика', headerActions)}
+    ${view.isPartial ? '<div class="notice warning"><strong>Диагностика частичная.</strong> Минимум один источник достиг лимита или вернул неполную выборку.</div>' : ''}
+    ${view.state === 'stale' ? '<div class="notice warning"><strong>Диагностика устарела.</strong> Снимок старше 36 часов.</div>' : ''}
+    <section class="metrics section">${metrics.join('')}</section>
+    <section class="card section"><div class="card-header"><div><h2>Состояние источников</h2><p>Для каждого источника отдельно показаны полнота, время проверки и последнее событие.</p></div><span class="badge ${badgeClass(view.state)}">${escapeHtml(view.stateLabel)}</span></div><div class="card-body">${renderDiagnosticsSourceHealth(view)}</div></section>
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section>
     <section class="card"><div class="card-header"><div><h2>Журнал действий</h2><p>Причина, исполнитель, состояние до и после.</p></div><a class="button" href="../../admin/index.html#audit-log">Открыть текущий журнал</a></div>${emptyState('Нативная временная шкала переносится следующим этапом.')}</section></div>`;
 }
@@ -629,6 +709,17 @@ async function loadJobDetail(jobId) {
   state.preview = null;
   const job = result?.job ?? {};
   state.workspace = await actions.getFactoryWorkspace({ studyTarget: job.studyTarget, learnerSourceLocale: job.learnerSourceLocale ?? job.sourceLocale, limit: 100 });
+}
+
+function maybeLoadOperationalBriefing() {
+  if (!actions || !can('briefing.read')) return;
+  if (!['overview', 'diagnostics'].includes(state.route)) return;
+  if (state.briefing.state !== 'idle') return;
+  void loadDailyBriefing(false)
+    .then((result) => {
+      if (result !== STALE_AUTH_RESULT) renderCurrentPage();
+    })
+    .catch(() => renderCurrentPage());
 }
 
 function applySupportListResult(result) {
@@ -1124,6 +1215,7 @@ async function handleClick(event) {
 
 export function setAdminActions(nextActions) {
   actions = nextActions;
+  maybeLoadOperationalBriefing();
 }
 
 export function setAuthState(auth) {
@@ -1145,6 +1237,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   renderCurrentPage();
+  maybeLoadOperationalBriefing();
 }
 
 export function renderRoute(route, capabilityId = '') {
@@ -1152,6 +1245,7 @@ export function renderRoute(route, capabilityId = '') {
   const capability = capabilityById(capabilityId);
   state.selectedCapabilityId = capability?.route === state.route && !capability.nativeRoute ? capability.id : '';
   renderCurrentPage();
+  maybeLoadOperationalBriefing();
 }
 
 export function initAdminUi() {

@@ -59,4 +59,9 @@ describe('Admin v2 native capability routing', () => {
     expect(resolveCapabilityHash('#application%3Apaywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
     expect(resolveCapabilityHash('#application:paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
   });
+
+  test('keeps a top-level route native when a legacy capability has the same id', () => {
+    expect(resolveCapabilityHash('#overview')).toEqual({ resolved: false, route: 'overview', capabilityId: '' });
+    expect(resolveCapabilityHash('#overview:overview')).toEqual({ resolved: true, route: 'overview', capabilityId: 'overview' });
+  });
 });

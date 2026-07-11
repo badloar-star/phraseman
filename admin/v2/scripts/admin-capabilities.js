@@ -75,6 +75,11 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'openai-budget': 'diagnostics',
 });
 
+const NATIVE_PAGE_HASHES = new Set([
+  'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
+  'support', 'analytics', 'daily-briefing', 'report-center',
+]);
+
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {
   const nativeRoute = NATIVE_CAPABILITY_ROUTES[capability.id] ?? '';
   return Object.freeze({
@@ -97,6 +102,9 @@ export function resolveCapabilityHash(rawHash) {
   let requested = encoded;
   try { requested = decodeURIComponent(encoded); } catch { /* Keep malformed input fail-closed. */ }
   const [requestedRoute, requestedCapabilityId = ''] = requested.split(':');
+  if (!requestedCapabilityId && NATIVE_PAGE_HASHES.has(requestedRoute)) {
+    return { resolved: false, route: requestedRoute, capabilityId: '' };
+  }
   const directCapability = capabilityById(requestedRoute);
   if (directCapability && !requestedCapabilityId) {
     return directCapability.nativeRoute

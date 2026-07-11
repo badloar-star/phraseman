@@ -256,6 +256,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .source-health-grid > div { display: grid; gap: 6px; padding: 12px; background: var(--surface); }
 .source-health-grid span:first-child { font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
 .source-health-grid small { color: var(--muted); }
+.source-health-grid .source-error { color: var(--danger); overflow-wrap: anywhere; }
 [data-tooltip] { position: relative; }
 [data-tooltip]::after { position: absolute; z-index: 20; left: 50%; bottom: calc(100% + 8px); width: max-content; max-width: 260px; padding: 7px 9px; border-radius: 7px; background: #172033; color: #fff; content: attr(data-tooltip); font-size: 12px; line-height: 1.35; opacity: 0; pointer-events: none; transform: translate(-50%, 4px); transition: opacity .15s ease, transform .15s ease; }
 [data-tooltip]:hover::after, [data-tooltip]:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
@@ -334,7 +335,8 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .user-search-form, .profile-section-grid, .profile-hero { grid-template-columns: 1fr; }
   .profile-hero { display: grid; }
   .profile-hero-actions { justify-content: flex-start; }
-  .profile-metrics, .profile-metrics.compact, .source-health-grid { grid-template-columns: 1fr 1fr; }
+  .profile-metrics, .profile-metrics.compact { grid-template-columns: 1fr 1fr; }
+  .source-health-grid { grid-template-columns: 1fr; }
   .capability-grid { grid-template-columns: 1fr; }
 }
 

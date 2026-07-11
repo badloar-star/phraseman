@@ -25,6 +25,23 @@ describe("production XP audit reader factory", () => {
     jest.clearAllMocks();
   });
 
+  test.each([
+    { maximumReads: 0 },
+    { maximumReads: 10, aliasPageSize: 0 },
+    { maximumReads: 10, eventPageSize: 0 },
+    { maximumReads: 10, aliasMaxDepth: 0 },
+    { maximumReads: 10, aliasMaxDocuments: 0 },
+  ])(
+    "rejects invalid local options before credentials or IAM: %j",
+    async (invalid) => {
+      await expect(
+        createXpAuditReader({ projectId: "demo", ...invalid }),
+      ).rejects.toThrow(/invalid|budget/i);
+      expect(mockApplicationDefault).not.toHaveBeenCalled();
+      expect(mockInitializeApp).not.toHaveBeenCalled();
+    },
+  );
+
   test("binds IAM proof and readers to one credential on a fresh dedicated app", async () => {
     const sequence: string[] = [];
     const checkedCredential = {

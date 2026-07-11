@@ -285,7 +285,7 @@
     "preset": "ts-jest",
     "testEnvironment": "node",
     "testMatch": [
-      "<rootDir>/tests/**/*.test.ts"
+      "**/tests/**/*.test.ts"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"

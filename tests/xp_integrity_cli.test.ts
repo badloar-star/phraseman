@@ -14,6 +14,7 @@ jest.mock("../scripts/xp_integrity/catalog_history", () => {
 
 import {
   parseCliArgs,
+  buildPrerequisiteEvidence,
   runProductionAudit,
 } from "../scripts/audit_production_xp_integrity";
 import type { XpAuditReader } from "../scripts/xp_integrity/firestore_reader";
@@ -224,6 +225,73 @@ describe("production XP integrity CLI", () => {
     expect(reader.close).toHaveBeenCalledTimes(1);
   });
 
+  test("failed and alias documents do not consume the successful sample target", async () => {
+    const failed = user("failed-secret");
+    const hidden = user("hidden-secret", true);
+    const goodA = user("good-a-secret");
+    const goodB = user("good-b-secret");
+    const pages = [
+      { users: [failed, hidden], done: false, nextAfterUid: hidden.uid },
+      { users: [goodA], done: false, nextAfterUid: goodA.uid },
+      { users: [goodB], done: true, nextAfterUid: goodB.uid },
+    ];
+    const reader = readerFor(pages);
+    reader.pageProgressEvents.mockImplementation(async (uid) => {
+      if (uid === failed.uid) throw new Error("partial");
+      return {
+        events: [{ ...event, ownerUid: uid }],
+        nextAfterEventId: "event-secret",
+        done: true,
+      };
+    });
+    createReader.mockResolvedValue(reader);
+    const outcome = await runProductionAudit(
+      parseCliArgs(["--sample=2", "--concurrency=2"], {
+        GOOGLE_CLOUD_PROJECT: "safe-project-1",
+      }),
+      { GOOGLE_CLOUD_PROJECT: "safe-project-1" },
+    );
+    expect(outcome.report.coverage).toMatchObject({
+      canonicalAccountsScanned: 2,
+      skippedAccounts: 1,
+      failedAccounts: 1,
+    });
+    expect(reader.pageUsers).toHaveBeenCalledTimes(3);
+  });
+
+  test("bounds concurrent account audits and never exceeds the successful sample target", async () => {
+    let active = 0;
+    let maximumActive = 0;
+    const users = [
+      user("one-secret"),
+      user("two-secret"),
+      user("three-secret"),
+    ];
+    const reader = readerFor([
+      { users, done: true, nextAfterUid: users.at(-1)?.uid ?? null },
+    ]);
+    reader.pageProgressEvents.mockImplementation(async (uid) => {
+      active += 1;
+      maximumActive = Math.max(maximumActive, active);
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      active -= 1;
+      return {
+        events: [{ ...event, ownerUid: uid }],
+        nextAfterEventId: "event-secret",
+        done: true,
+      };
+    });
+    createReader.mockResolvedValue(reader);
+    const outcome = await runProductionAudit(
+      parseCliArgs(["--sample=3", "--concurrency=2"], {
+        GOOGLE_CLOUD_PROJECT: "safe-project-1",
+      }),
+      { GOOGLE_CLOUD_PROJECT: "safe-project-1" },
+    );
+    expect(maximumActive).toBe(2);
+    expect(outcome.report.coverage.canonicalAccountsScanned).toBe(3);
+  });
+
   test("does not mark the principal verified when reader IAM construction fails", async () => {
     createReader.mockRejectedValue(new Error("iam-proof-failed"));
     const outcome = await runProductionAudit(
@@ -309,7 +377,9 @@ describe("production XP integrity CLI", () => {
       canonicalAccountsScanned: 1,
       aliasDocumentsCovered: 1,
     });
-    expect(reader.pageProgressEvents).toHaveBeenCalledTimes(1);
+    expect(
+      Object.values(outcome.report.classes).reduce((a, b) => a + b, 0),
+    ).toBe(1);
   });
 
   test("calibration emits booleans only and never the private identity", async () => {
@@ -339,5 +409,80 @@ describe("production XP integrity CLI", () => {
     expect(JSON.stringify(outcome.report)).not.toMatch(
       /control-private-uid|private@example\.com/,
     );
+  });
+
+  test("builds only authoritative lifetime and weekly prerequisite evidence", () => {
+    const rewards = new Map([
+      [
+        "xp_10",
+        {
+          achievementId: "xp_10",
+          xp: 1,
+          prerequisite: { kind: "lifetime_xp", minimum: 10 } as const,
+        },
+      ],
+      [
+        "weekly_xp_10",
+        {
+          achievementId: "weekly_xp_10",
+          xp: 1,
+          prerequisite: { kind: "weekly_xp", minimum: 10 } as const,
+        },
+      ],
+      [
+        "streak_5",
+        {
+          achievementId: "streak_5",
+          xp: 1,
+          prerequisite: {
+            kind: "counter",
+            counterKey: "streak_count",
+            minimum: 5,
+          } as const,
+        },
+      ],
+    ]);
+    const catalog = { ...completeCatalog, rewards };
+    const evidence = buildPrerequisiteEvidence(
+      [
+        {
+          ...event,
+          eventId: "lifetime",
+          type: "achievement_reward",
+          totalXpBefore: 12,
+          payload: { achievementId: "xp_10", valueBefore: 999 },
+        },
+        {
+          ...event,
+          eventId: "weekly",
+          type: "achievement_reward",
+          xpDelta: 2,
+          weekXpAfter: 12,
+          payload: { achievementId: "weekly_xp_10", weekXp: 999 },
+        },
+        {
+          ...event,
+          eventId: "counter",
+          type: "achievement_reward",
+          payload: { achievementId: "streak_5", streak_count: 999 },
+        },
+      ],
+      [catalog],
+    );
+    expect(evidence).toEqual([
+      expect.objectContaining({
+        eventId: "lifetime",
+        state: "exact",
+        valueBefore: 12,
+        source: "server_result",
+      }),
+      expect.objectContaining({
+        eventId: "weekly",
+        state: "exact",
+        valueBefore: 10,
+        source: "server_result",
+      }),
+      expect.objectContaining({ eventId: "counter", state: "missing" }),
+    ]);
   });
 });

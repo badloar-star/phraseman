@@ -327,6 +327,11 @@ export async function createXpAuditReader(
   if (!text(options.projectId)) {
     throw new Error("xp_audit_cannot_prove_scoped_entity_and_user_permissions");
   }
+  const budget = new ReadBudget(options.maximumReads);
+  const aliasPageSize = checkedPageSize(options.aliasPageSize ?? 100);
+  const eventPageSize = checkedPageSize(options.eventPageSize ?? 100);
+  const aliasMaxDepth = checkedPageSize(options.aliasMaxDepth ?? 8);
+  const aliasMaxDocuments = checkedPageSize(options.aliasMaxDocuments ?? 500);
   const credential = applicationDefault();
   await assertScopedEntityAndUserPermissions(options.projectId, {
     documentIdField: FieldPath.documentId(),
@@ -354,11 +359,6 @@ export async function createXpAuditReader(
     }
     throw error;
   }
-  const budget = new ReadBudget(options.maximumReads);
-  const aliasPageSize = checkedPageSize(options.aliasPageSize ?? 100);
-  const eventPageSize = checkedPageSize(options.eventPageSize ?? 100);
-  const aliasMaxDepth = checkedPageSize(options.aliasMaxDepth ?? 8);
-  const aliasMaxDocuments = checkedPageSize(options.aliasMaxDocuments ?? 500);
   const signal = options.signal;
   let closePromise: Promise<void> | null = null;
 

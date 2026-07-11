@@ -13,9 +13,11 @@ import type {
   AccountAuditInput,
   AccountAuditResult,
   EvidenceCompleteness,
+  CatalogSnapshot,
   LedgerBaselineEvidence,
   MigrationEvidence,
   NormalizedAuditEvent,
+  PrerequisiteEvidence,
   RawUser,
 } from "./xp_integrity/types";
 
@@ -170,6 +172,87 @@ const migrationFor = (user: RawUser): MigrationEvidence => {
   return { kind: "none" };
 };
 
+const achievementIdOf = (event: NormalizedAuditEvent): string | null => {
+  const value = event.payload.achievementId;
+  return typeof value === "string" && value.length > 0 ? value : null;
+};
+
+export function buildPrerequisiteEvidence(
+  events: readonly NormalizedAuditEvent[],
+  catalogs: readonly CatalogSnapshot[],
+): PrerequisiteEvidence[] {
+  const evidence: PrerequisiteEvidence[] = [];
+  for (const event of events) {
+    if (
+      event.type !== "achievement_reward" &&
+      event.type !== "achievement_claimed"
+    ) {
+      continue;
+    }
+    const achievementId = achievementIdOf(event);
+    if (achievementId === null) continue;
+    const match = matchCatalogForEvent(catalogs, event, achievementId);
+    const rewards =
+      match.kind === "exact"
+        ? [match.snapshot.rewards.get(achievementId)]
+        : match.kind === "consensus"
+          ? match.candidates.map((candidate) =>
+              candidate.rewards.get(achievementId),
+            )
+          : [];
+    const first = rewards[0];
+    if (
+      !first ||
+      rewards.some(
+        (reward) =>
+          !reward ||
+          JSON.stringify(reward.prerequisite) !==
+            JSON.stringify(first.prerequisite),
+      )
+    ) {
+      continue;
+    }
+    const prerequisite = first.prerequisite;
+    if (
+      prerequisite.kind === "lifetime_xp" &&
+      event.normalizationValid &&
+      event.totalXpBefore !== null &&
+      Number.isFinite(event.totalXpBefore)
+    ) {
+      evidence.push({
+        eventId: event.eventId,
+        prerequisite,
+        state: "exact",
+        valueBefore: event.totalXpBefore,
+        source: "server_result",
+      });
+    } else if (
+      prerequisite.kind === "weekly_xp" &&
+      event.normalizationValid &&
+      event.weekXpAfter !== null &&
+      Number.isFinite(event.weekXpAfter) &&
+      Number.isFinite(event.xpDelta) &&
+      event.xpDelta >= 0 &&
+      event.weekXpAfter >= event.xpDelta
+    ) {
+      evidence.push({
+        eventId: event.eventId,
+        prerequisite,
+        state: "exact",
+        valueBefore: event.weekXpAfter - event.xpDelta,
+        source: "server_result",
+      });
+    } else {
+      evidence.push({
+        eventId: event.eventId,
+        prerequisite,
+        state: "missing",
+      });
+    }
+  }
+  return evidence;
+}
+
 const allEvidenceComplete = (result: AccountAuditResult): boolean =>
   result.exactReductionIsComplete &&
   Object.values(result.completeness).every((state) => state !== "incomplete");
@@ -179,6 +262,27 @@ const runIdFor = (date: Date): string =>
     .toISOString()
     .replace(/[-:]/g, "")
     .replace(/\.\d{3}Z$/, "Z");
+
+async function mapWithConcurrency<T, R>(
+  items: readonly T[],
+  concurrency: number,
+  operation: (item: T) => Promise<R>,
+): Promise<R[]> {
+  const output = new Array<R>(items.length);
+  let next = 0;
+  const worker = async (): Promise<void> => {
+    for (;;) {
+      const index = next;
+      next += 1;
+      if (index >= items.length) return;
+      output[index] = await operation(items[index]);
+    }
+  };
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, () => worker()),
+  );
+  return output;
+}
 
 export type AuditRunResult = {
   exitCode: 0 | 1 | 2;
@@ -227,18 +331,75 @@ export async function runProductionAudit(
     catalogEvidenceComplete =
       catalogs.length > 0 && catalogs.every((catalog) => catalog.complete);
     let afterUid: string | null = null;
-    let canonicalAttempts = 0;
     let collectionDone = false;
+
+    const auditUser = async (user: RawUser) => {
+      const currentXp = currentXpOf(user);
+      if (currentXp === null) return { kind: "failed" as const, user };
+      try {
+        const events: NormalizedAuditEvent[] = [];
+        let afterEventId: string | null = null;
+        for (;;) {
+          const eventPage = await reader!.pageProgressEvents(
+            user.uid,
+            afterEventId,
+            100,
+          );
+          events.push(...eventPage.events);
+          if (eventPage.done) break;
+          if (eventPage.nextAfterEventId === null) {
+            throw new Error("xp_audit_incomplete_event_page");
+          }
+          afterEventId = eventPage.nextAfterEventId;
+        }
+        const aliasRead = await reader!.readAliases(user);
+        const mirrors = await reader!.readMirrors(user);
+        const completeness: EvidenceCompleteness = {
+          ledger: "complete",
+          catalog: catalogEvidenceComplete ? "complete" : "incomplete",
+          alias: aliasRead.complete ? "complete" : "incomplete",
+          migration: "complete",
+          prerequisites: "complete",
+        };
+        const prerequisites = buildPrerequisiteEvidence(events, catalogs);
+        if (prerequisites.some((item) => item.state !== "exact")) {
+          completeness.prerequisites = "incomplete";
+        }
+        const input: AccountAuditInput = {
+          uid: user.uid,
+          currentXp,
+          canonicalEvents: events,
+          aliases: aliasRead.aliases,
+          baseline: baselineFor(events),
+          migration: migrationFor(user),
+          prerequisites,
+          mirrors,
+          completeness,
+        };
+        return {
+          kind: "success" as const,
+          user,
+          currentXp,
+          aliasRead,
+          events,
+          analyzed: analyzeAccount(input, (event, achievementId) =>
+            matchCatalogForEvent(catalogs, event, achievementId),
+          ),
+        };
+      } catch {
+        return { kind: "failed" as const, user };
+      }
+    };
 
     while (
       !collectionDone &&
-      (options.mode === "full" || canonicalAttempts < options.sampleSize)
+      (options.mode === "full" || results.length < options.sampleSize)
     ) {
       let page;
       try {
         const pageSize =
           options.mode === "sample"
-            ? Math.min(100, options.sampleSize - canonicalAttempts)
+            ? Math.min(100, options.sampleSize - results.length)
             : 100;
         page = await reader.pageUsers(afterUid, pageSize);
       } catch {
@@ -247,13 +408,9 @@ export async function runProductionAudit(
       }
       collectionDone = page.done;
       afterUid = page.nextAfterUid;
+      const candidates: RawUser[] = [];
+      const pageAuthUids = new Set<string>();
       for (const user of page.users) {
-        if (
-          options.mode === "sample" &&
-          canonicalAttempts >= options.sampleSize
-        ) {
-          break;
-        }
         if (documentCategories.get(user.uid) === "alias") continue;
         if (!isCanonical(user)) {
           if (!documentCategories.has(user.uid)) {
@@ -261,87 +418,60 @@ export async function runProductionAudit(
           }
           continue;
         }
-        canonicalAttempts += 1;
-        const currentXp = currentXpOf(user);
-        if (currentXp === null) {
-          documentCategories.set(user.uid, "failed");
+        if (
+          user.firebaseAuthUid !== null &&
+          pageAuthUids.has(user.firebaseAuthUid)
+        ) {
+          documentCategories.set(user.uid, "alias");
+          continue;
+        }
+        if (user.firebaseAuthUid !== null) {
+          pageAuthUids.add(user.firebaseAuthUid);
+        }
+        candidates.push(user);
+      }
+      const outcomes = await mapWithConcurrency(
+        candidates,
+        options.concurrency,
+        auditUser,
+      );
+      for (const outcome of outcomes) {
+        if (outcome.kind === "failed") {
+          documentCategories.set(outcome.user.uid, "failed");
           infrastructureComplete = false;
           continue;
         }
-        try {
-          const events: NormalizedAuditEvent[] = [];
-          let afterEventId: string | null = null;
-          for (;;) {
-            const eventPage = await reader.pageProgressEvents(
-              user.uid,
-              afterEventId,
-              100,
-            );
-            events.push(...eventPage.events);
-            if (eventPage.done) break;
-            if (eventPage.nextAfterEventId === null) {
-              throw new Error("xp_audit_incomplete_event_page");
-            }
-            afterEventId = eventPage.nextAfterEventId;
+        if (documentCategories.get(outcome.user.uid) === "alias") continue;
+        for (const alias of outcome.aliasRead.aliases) {
+          if (documentCategories.get(alias.uid) !== "canonical") {
+            documentCategories.set(alias.uid, "alias");
           }
-          const aliasRead = await reader.readAliases(user);
-          for (const alias of aliasRead.aliases) {
-            if (documentCategories.get(alias.uid) !== "canonical") {
-              documentCategories.set(alias.uid, "alias");
-            }
-          }
-          const mirrors = await reader.readMirrors(user);
-          for (const event of [
-            ...events,
-            ...aliasRead.aliases.flatMap((alias) => alias.events),
-          ]) {
-            const time = eventTime(event);
-            if (time !== null) {
-              earliestEventAtMs =
-                earliestEventAtMs === null
-                  ? time
-                  : Math.min(earliestEventAtMs, time);
-              latestEventAtMs =
-                latestEventAtMs === null
-                  ? time
-                  : Math.max(latestEventAtMs, time);
-            }
-          }
-          const completeness: EvidenceCompleteness = {
-            ledger: "complete",
-            catalog: catalogEvidenceComplete ? "complete" : "incomplete",
-            alias: aliasRead.complete ? "complete" : "incomplete",
-            migration: "complete",
-            prerequisites: "complete",
-          };
-          const input: AccountAuditInput = {
-            uid: user.uid,
-            currentXp,
-            canonicalEvents: events,
-            aliases: aliasRead.aliases,
-            baseline: baselineFor(events),
-            migration: migrationFor(user),
-            prerequisites: [],
-            mirrors,
-            completeness,
-          };
-          const analyzed = analyzeAccount(input, (event, achievementId) =>
-            matchCatalogForEvent(catalogs, event, achievementId),
-          );
-          results.push(analyzed);
-          documentCategories.set(user.uid, "canonical");
-          if (
-            controlUid !== null &&
-            (user.uid === controlUid || user.firebaseAuthUid === controlUid)
-          ) {
-            controlResult = analyzed;
-            controlXp = currentXp;
-          }
-          if (!aliasRead.complete) infrastructureComplete = false;
-        } catch {
-          documentCategories.set(user.uid, "failed");
-          infrastructureComplete = false;
         }
+        for (const coveredEvent of [
+          ...outcome.events,
+          ...outcome.aliasRead.aliases.flatMap((alias) => alias.events),
+        ]) {
+          const time = eventTime(coveredEvent);
+          if (time !== null) {
+            earliestEventAtMs =
+              earliestEventAtMs === null
+                ? time
+                : Math.min(earliestEventAtMs, time);
+            latestEventAtMs =
+              latestEventAtMs === null ? time : Math.max(latestEventAtMs, time);
+          }
+        }
+        results.push(outcome.analyzed);
+        documentCategories.set(outcome.user.uid, "canonical");
+        if (
+          controlUid !== null &&
+          (outcome.user.uid === controlUid ||
+            outcome.user.firebaseAuthUid === controlUid)
+        ) {
+          controlResult = outcome.analyzed;
+          controlXp = outcome.currentXp;
+        }
+        if (!outcome.aliasRead.complete) infrastructureComplete = false;
       }
       if (!page.done && page.nextAfterUid === null) {
         infrastructureComplete = false;

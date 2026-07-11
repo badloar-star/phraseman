@@ -155,8 +155,21 @@ export function buildAggregateReport(
 }
 
 const EMAIL = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
-const IDENTITY_KEY =
-  /^(?:uid|userId|authUid|firebaseAuthUid|eventId|email|nickname|displayName|payload)$/i;
+const IDENTITY_KEYS = new Set([
+  "uid",
+  "userid",
+  "owneruid",
+  "canonicaluid",
+  "stableuid",
+  "firebaseauthuid",
+  "authuid",
+  "provideruid",
+  "eventid",
+  "email",
+  "nickname",
+  "displayname",
+  "payload",
+]);
 const RAW_ID_VALUE = /^(?:event|user|auth|uid)[_:-][A-Za-z0-9_-]{3,}$/i;
 
 export function validateAggregateReportPrivacy(
@@ -181,7 +194,12 @@ export function validateAggregateReportPrivacy(
     }
     if (current !== null && typeof current === "object") {
       for (const [key, nested] of Object.entries(current)) {
-        if (IDENTITY_KEY.test(key)) {
+        const normalizedKey = key.toLowerCase().replace(/[^a-z0-9]/g, "");
+        if (
+          IDENTITY_KEYS.has(normalizedKey) ||
+          EMAIL.test(key) ||
+          denied.some((secret) => key.includes(secret))
+        ) {
           throw new Error("xp_audit_report_privacy_violation");
         }
         visit(nested);
@@ -203,8 +221,26 @@ export function renderAggregateReportMarkdown(report: AggregateReport): string {
     `Доказательства полные: ${report.coverage.evidenceComplete ? "да" : "нет"}.`,
     `Проверено канонических аккаунтов: ${report.coverage.canonicalAccountsScanned}.`,
     `Покрыто документов-псевдонимов: ${report.coverage.aliasDocumentsCovered}.`,
+    `Пропущено аккаунтов: ${report.coverage.skippedAccounts}.`,
+    `Ошибок аккаунтов: ${report.coverage.failedAccounts}.`,
+    `Ранняя дата покрытия: ${report.coverage.earliestEventAt ?? "нет"}.`,
+    `Поздняя дата покрытия: ${report.coverage.latestEventAt ?? "нет"}.`,
     `Точно подтверждённый лишний XP${lowerBound ? " (нижняя граница)" : ""}: ${report.exactInvalidXpTotal}.`,
+    `exactInvalidXpBuckets: ${JSON.stringify(report.exactInvalidXpBuckets)}.`,
+    `Расхождение проекций, пользователей: ${report.projectionDriftUsers}.`,
     `Чтений: ${report.readCount}.`,
+    "",
+    "Классы:",
+    ...Object.entries(report.classes).map(
+      ([name, count]) => `- ${name}: ${count}`,
+    ),
+    "",
+    "Причины:",
+    ...(Object.keys(report.reasons).length === 0
+      ? ["- нет"]
+      : Object.entries(report.reasons).map(
+          ([name, count]) => `- ${name}: ${count}`,
+        )),
     "",
     "В ходе аудита выполнено ноль записей в Firestore и ноль исправлений.",
     "Любая коррекция требует отдельного разрешения.",
@@ -236,8 +272,8 @@ export function writeAggregateReport(
   if (!/^\d{8}T\d{6}Z$/.test(runId)) throw new Error("xp_audit_invalid_run_id");
   validateAggregateReportPrivacy(report, privateDenylist);
   const outputDir = path.join(root, ".codex-tmp", "xp-integrity-audit", runId);
-  const jsonPath = path.join(outputDir, "report.json");
-  const markdownPath = path.join(outputDir, "report.ru.md");
+  const jsonPath = path.join(outputDir, "aggregate.json");
+  const markdownPath = path.join(outputDir, "decision.ru.md");
   mkdirSync(assertAuditOutputPath(root, outputDir), { recursive: true });
   writeFileSync(
     assertAuditOutputPath(root, jsonPath),

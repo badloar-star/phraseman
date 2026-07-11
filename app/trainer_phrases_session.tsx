@@ -143,6 +143,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const { flashKey, flash } = useWordFlash();
 
   const correctTokens = tokenizeRecallPhrase(item.key);
+  const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
 
   const tapBank = (tile: WordBankTile) => {
     if (feedback !== 'none') return;

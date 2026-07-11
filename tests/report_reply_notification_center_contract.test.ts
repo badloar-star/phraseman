@@ -39,6 +39,8 @@ describe('report replies in home notification center', () => {
     expect(button).toContain("import { AppState, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
     expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000');
     expect(button).toContain('minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
+    expect(button).not.toContain('subscribeUserNotifications((list)');
+    expect(button).toContain('force: true');
     expect(button).toContain("AppState.addEventListener('change'");
     expect(button).toContain("row.type === 'report_reply' && row.reportReply");
     expect(button).toContain('notification-report-reply-claim-cta');

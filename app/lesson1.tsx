@@ -108,6 +108,7 @@ import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
 import AiMistakeCard from '../components/AiMistakeCard';
+import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
@@ -118,6 +119,7 @@ import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
+import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 
 const GRAMMAR_HINTS = [
   {
@@ -927,6 +929,19 @@ const LessonContent = React.memo(function LessonContent({
       ? acceptedUserAnswerLine
       : phraseAnswerDisplayLine(phrase, studyTarget, lang))
     : '';
+  const interactiveAnswerText = settings.hardMode
+    ? typedText
+    : selectedWords.map((word) => stripMarkers(word)).filter(Boolean).join(' ');
+  const interactiveAnswerFont = resolveLessonAnswerFontSize(
+    linkedSliceAnswerFont,
+    screenW,
+    interactiveAnswerText,
+  );
+  const resultAnswerFont = resolveLessonAnswerFontSize(
+    linkedSliceAnswerFont,
+    screenW,
+    resultCorrectLine,
+  );
   const sourcePromptLine = useMemo(() => {
     if (!phrase) return '';
     return lessonPhraseMeaningForLang(phrase, lang, studyTarget);
@@ -950,6 +965,10 @@ const LessonContent = React.memo(function LessonContent({
   const aiMistakeText = mistakeExplain.aiMistakeText;
   const aiMistakeRemaining = mistakeExplain.aiMistakeRemaining;
   const explainCurrentMistake = mistakeExplain.explain;
+  const openEli5Modal = mistakeExplain.eli5.onOpen;
+  const eli5ModalOpen = mistakeExplain.eli5.open;
+  const eli5State = mistakeExplain.eli5.state;
+  const eli5Text = mistakeExplain.eli5.text;
 
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
@@ -1077,6 +1096,21 @@ const LessonContent = React.memo(function LessonContent({
         showsVerticalScrollIndicator={false}
       >
         <Animated.View style={[questionEnterStyle, { width: '100%' }]}>
+        <Text
+          testID="lesson1-task-instruction"
+          style={{ color: sx.muted, fontSize: f.caption, fontWeight: '700', textAlign: 'center', marginBottom: 8 }}
+        >
+          {triLang(lang, {
+            ru: settings.hardMode ? 'Напечатай фразу:' : 'Собери фразу:',
+            uk: settings.hardMode ? 'Надрукуй фразу:' : 'Склади фразу:',
+            es: settings.hardMode ? 'Escribe la frase:' : 'Forma la frase:',
+            'pt-BR': settings.hardMode ? 'Digite a frase:' : 'Monte a frase:',
+            vi: settings.hardMode ? 'Hãy gõ câu:' : 'Hãy ghép câu:',
+            id: settings.hardMode ? 'Ketik frasa:' : 'Susun frasa:',
+            tr: settings.hardMode ? 'Cümleyi yaz:' : 'Cümleyi kur:',
+            pl: settings.hardMode ? 'Wpisz zdanie:' : 'Ułóż zdanie:',
+          })}
+        </Text>
         <Pressable onPress={status === 'result' ? undefined : handleBgTap} style={{ width: '100%' }}>
           <Text
             testID="lesson1-source-prompt"
@@ -1088,7 +1122,6 @@ const LessonContent = React.memo(function LessonContent({
               textAlign: 'center',
               flexShrink: 1,
             }}
-            numberOfLines={linkedSliceCompact ? 2 : undefined}
             maxFontSizeMultiplier={1.2}
           >{(() => {
             if (!phrase) return '';
@@ -1101,7 +1134,7 @@ const LessonContent = React.memo(function LessonContent({
               <TextInput
                 testID="lesson1-typed-input"
                 ref={textInputRef}
-                style={{ color: sx.second, fontSize: linkedSliceAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
+                style={{ color: sx.second, fontSize: interactiveAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
                 value={typedText}
                 onChangeText={setTypedText}
                 onSubmitEditing={handleTypedSubmit}
@@ -1117,7 +1150,7 @@ const LessonContent = React.memo(function LessonContent({
               />
             ) : (
               <Text
-                style={{ color: sx.second, fontSize: linkedSliceAnswerFont, width: '100%', textAlign: 'center' }}
+                style={{ color: sx.second, fontSize: interactiveAnswerFont, width: '100%', textAlign: 'center' }}
                 numberOfLines={linkedSliceCompact ? 2 : undefined}
               >
                 {selectedWords.length > 0
@@ -1168,7 +1201,7 @@ const LessonContent = React.memo(function LessonContent({
                           <Text key={i} style={{
                             color: isWrong ? t.wrong : t.textPrimary,
                             fontWeight: isWrong ? '700' : '500',
-                            fontSize: linkedSliceAnswerFont,
+                            fontSize: interactiveAnswerFont,
                           }}>
                             {word}
                           </Text>
@@ -1180,7 +1213,7 @@ const LessonContent = React.memo(function LessonContent({
               )}
               <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Text
-                  style={{ color: t.correct, fontSize: linkedSliceAnswerFont, flex: 1, textAlign: 'left' }}
+                  style={{ color: t.correct, fontSize: resultAnswerFont, flex: 1, textAlign: 'left' }}
                   numberOfLines={linkedSliceCompact ? 2 : undefined}
                 >
                   {resultCorrectLine}
@@ -1203,6 +1236,7 @@ const LessonContent = React.memo(function LessonContent({
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
                     onExplain={explainCurrentMistake}
+                    onOpenSimple={openEli5Modal}
                     targetAnswer={aiMistakeTargetLine}
                     userAnswer={aiMistakeAnswerLine}
                   />
@@ -1805,12 +1839,27 @@ const LessonContent = React.memo(function LessonContent({
           </Pressable>
         </Modal>
 
+        <MistakeEli5Modal
+          visible={eli5ModalOpen}
+          onClose={mistakeExplain.eli5.onClose}
+          lang={lang}
+          state={eli5State}
+          text={eli5Text}
+          onRetry={mistakeExplain.eli5.onRetry}
+        />
 
     </KeyboardAvoidingView>
 
     </>
   );
 });
+
+function pronunciationOverrideForLessonPhrase(line: string): string | undefined {
+  if (!/^we heard that strict teacher read that long list of rules\.?$/i.test(line.trim())) return undefined;
+  // The reported lesson expects the present pronunciation /ri:d/ while the
+  // visible spelling remains `read`; `reed` gives the system TTS that sound.
+  return line.replace(/\bread\b/i, 'reed');
+}
 
 export default function LessonScreen() {
   const router = useRouter();
@@ -2259,7 +2308,7 @@ export default function LessonScreen() {
     const key = `${String(phrase.id ?? cellIndex)}:${line}`;
     if (!line || spokenResultKeyRef.current === key) return;
     spokenResultKeyRef.current = key;
-    speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+    speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
   }, [cellIndex, lang, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
 
   const replayResultPhraseAudio = useCallback(() => {
@@ -2270,7 +2319,7 @@ export default function LessonScreen() {
     if (replayAudioTimerRef.current) clearTimeout(replayAudioTimerRef.current);
     replayAudioTimerRef.current = setTimeout(() => {
       replayAudioTimerRef.current = null;
-      speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+      speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
     }, Platform.OS === 'android' ? 90 : 30);
   }, [lang, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
@@ -2310,7 +2359,7 @@ export default function LessonScreen() {
     if (replayAudioTimerRef.current) clearTimeout(replayAudioTimerRef.current);
     replayAudioTimerRef.current = setTimeout(() => {
       replayAudioTimerRef.current = null;
-      speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+      speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
     }, Platform.OS === 'android' ? 90 : 30);
   }, [settings.speechRate, speakAudio, stopAudio, studyTarget]);
 
@@ -3044,7 +3093,7 @@ export default function LessonScreen() {
     if (isRight) {
       // correctStreakRef уже инкрементирован в блоке XP выше.
       fk.correct();
-      fk.combo(correctStreakRef.current);
+      fk.combo(correctStreakRef.current, { surface: 'lesson' });
       // Молния через экран на порогах 5 (одиночная) и 10 (двойной удар).
       if (correctStreakRef.current === 5) lightningRef.current?.strike(false);
       else if (correctStreakRef.current === 10) lightningRef.current?.strike(true);

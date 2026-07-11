@@ -8,6 +8,7 @@ import {
 
 const args = new Set(process.argv.slice(2));
 const apply = args.has('--apply');
+const cohortConfirmed = args.has('--confirm-old-250-cohort');
 const limitArg = [...args].find((arg) => arg.startsWith('--limit='));
 const limit = limitArg ? Math.max(1, Number(limitArg.slice('--limit='.length)) || 0) : 0;
 const projectArg = [...args].find((arg) => arg.startsWith('--project='));
@@ -56,6 +57,9 @@ function chunk(items, size) {
 
 async function main() {
   console.log(`[xp-restore] mode=${apply ? 'APPLY' : 'DRY-RUN'} credential=${credentialLabel} project=${projectId || 'auto'}`);
+  if (apply && !cohortConfirmed) {
+    throw new Error('Refusing XP restore without --confirm-old-250-cohort');
+  }
 
   const affected = new Map();
   let scannedUsers = 0;
@@ -73,6 +77,10 @@ async function main() {
       const data = doc.data() || {};
       const progress = data.progress || {};
       const currentXP = parseProgressXP(progress);
+      const oldFormulaCohort = progress.xp_formula_version === '250'
+        || progress.xp_formula_v1 === '250'
+        || data.xpFormulaVersion === '250';
+      if (!oldFormulaCohort) continue;
       const alreadyRestored = Boolean(progress[XP_LEVEL_RESTORE_250_TO_400_KEY]);
       const restored = restoredXPForOld250VisibleLevel(currentXP);
       if (!alreadyRestored && restored.targetXP <= currentXP) continue;

@@ -137,6 +137,24 @@ export type CleanOnboardingStep =
   | 'name';
 
 export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_midnight_aha_flow_2026_07_02b';
+const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;
+
+async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    return await Promise.race([
+      task,
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(
+          () => reject(new Error('signin_deadline-exceeded')),
+          ONBOARDING_AUTH_UI_TIMEOUT_MS,
+        );
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
 const SHOW_ONBOARDING_LANGUAGE_STEP = false;
 // Порядок: короткая анкета → АХ-сцена (ценность) → уведомления ПОСЛЕ победы →
 // обещание 3 месяцев (всем) → выбор старта → пейвол → имя/согласия.
@@ -166,7 +184,6 @@ const PLAN_MINUTES_KEY = 'onboarding_plan_minutes';
 const PLAN_BILLING_KEY = 'onboarding_plan_billing';
 const LEGAL_ACCEPTED_KEY = 'onboarding_terms_privacy_accepted_v1';
 const ANALYTICS_HELP_KEY = 'onboarding_analytics_help_v1';
-
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type DiscoverySource = 'tiktok' | 'store' | 'social' | 'youtube' | 'google' | 'friends' | 'other';
 type LevelChoice = 'a0' | 'a1' | 'a2' | 'b1' | 'b2';
@@ -1082,12 +1099,14 @@ function CleanOnboarding({
     setAuthLoading(provider);
     setAuthError(null);
     try {
-      const result = await signInWithProvider(provider);
+      const result = await withOnboardingAuthUiDeadline(signInWithProvider(provider));
       if (result.result === 'cancelled') return;
       if (result.result === 'error') {
         setAuthError(result.error === 'account_delete_pending'
           ? 'Этот аккаунт ещё удаляется. Попробуй позже.'
-          : 'Не получилось войти. Попробуй ещё раз.');
+          : result.error.includes('google_signin_timeout')
+            ? 'Google не ответил вовремя. Закрой окно входа, вернись в приложение и попробуй ещё раз.'
+            : 'Не получилось войти. Попробуй ещё раз.');
         return;
       }
       await AsyncStorage.multiSet([
@@ -1096,6 +1115,11 @@ function CleanOnboarding({
       ]).catch(() => {});
       await AsyncStorage.removeItem(STEP_KEY).catch(() => {});
       onDone();
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : String(error);
+      setAuthError(detail.includes('signin_deadline-exceeded')
+        ? 'Вход занимает слишком много времени. Вернись в приложение и попробуй ещё раз.'
+        : 'Не получилось войти. Попробуй ещё раз.');
     } finally {
       setAuthLoading(null);
     }

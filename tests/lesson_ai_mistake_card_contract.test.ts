@@ -39,4 +39,5 @@ describe('lesson AI mistake card integration', () => {
     expect(source).toContain('const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday)');
     expect(source).not.toContain('lesson1-explain-result');
   });
+
 });

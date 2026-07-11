@@ -22,8 +22,8 @@ describe('examTopicForLang', () => {
     expect(examTopicForLang(q, 'es')).toBe('ES topic');
   });
 
-  it('marks es topic for review when topicES is missing', () => {
-    expect(examTopicForLang({ topic: 'Only RU', topicUK: 'UK' }, 'es')).toBe('needs-review:es:exam.topic');
+  it('shows a localized unavailable topic when topicES is missing', () => {
+    expect(examTopicForLang({ topic: 'Only RU', topicUK: 'UK' }, 'es')).toBe('Tema no disponible');
   });
 
   it('returns topic for ru', () => {
@@ -44,8 +44,14 @@ describe('examTopicForLang', () => {
     expect(examTopicForLang(q, lang)).toBe(expected);
   });
 
-  it.each(['pt-BR', 'vi', 'id', 'tr', 'pl'] as const)('does not expose RU topic to planned locale %s when missing', (lang) => {
-    expect(examTopicForLang({ topic: 'Only RU', topicUK: 'UK' }, lang)).toBe(`needs-review:${lang}:exam.topic`);
+  it.each([
+    ['pt-BR', 'Tópico indisponível'],
+    ['vi', 'Chưa có chủ đề'],
+    ['id', 'Topik belum tersedia'],
+    ['tr', 'Konu kullanılamıyor'],
+    ['pl', 'Temat jest niedostępny'],
+  ] as const)('does not expose RU topic to planned locale %s when missing', (lang, unavailable) => {
+    expect(examTopicForLang({ topic: 'Only RU', topicUK: 'UK' }, lang)).toBe(unavailable);
   });
 
   it('keeps exam locale source free of legacy runtime branch patterns', () => {

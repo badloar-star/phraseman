@@ -30,10 +30,9 @@ describe('personal plan task visuals', () => {
       'choice',
       'listening',
       'sentence_build',
-      'quiz',
     ]);
-    expect(new Set(visuals.map((visual) => visual.icon)).size).toBe(8);
-    expect(new Set(visuals.map((visual) => visual.assetKey)).size).toBe(8);
+    expect(new Set(visuals.map((visual) => visual.icon)).size).toBe(day1Tasks.length);
+    expect(new Set(visuals.map((visual) => visual.assetKey)).size).toBe(day1Tasks.length);
   });
 
   it('keeps task visual copy short, user-facing, and non-technical', () => {

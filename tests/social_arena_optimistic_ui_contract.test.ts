@@ -68,6 +68,6 @@ describe('social and arena optimistic UI contracts', () => {
 
     const communityCreate = read('app/community_pack_create.tsx');
     expect(communityCreate).toContain('Отправляем набор на проверку...');
-    expect(communityCreate).toContain("if (updatePackId) {\n          safeRouterBack(router, '/flashcards' as any);");
+    expect(communityCreate).toMatch(/if \(updatePackId\) \{\s+safeRouterBack\(router, '\/flashcards' as any\);/);
   });
 });

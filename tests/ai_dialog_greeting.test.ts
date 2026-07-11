@@ -66,4 +66,17 @@ describe('buildScenarioGreeting', () => {
     expect(greeting).not.toContain("learner's flat");
     expect(greeting).not.toContain('doorway where');
   });
+
+  it('does not introduce health scenarios as real medical professionals', () => {
+    for (const id of ['pharmacy', 'doctor_visit']) {
+      const scenario = DIALOG_SCENARIOS.find((s) => s.id === id);
+      expect(scenario).toBeTruthy();
+      if (!scenario) continue;
+
+      const greeting = buildScenarioGreeting(scenario);
+      expect(greeting).not.toMatch(/\bpharmacist\b/i);
+      expect(greeting).not.toMatch(/\bDr\./i);
+      expect(greeting).not.toMatch(/\bdoctor\b/i);
+    }
+  });
 });

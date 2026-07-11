@@ -83,6 +83,7 @@ export type RemoteBoolKey =
   // стоит в app/paywall_purchase.ts (urgency форсится в неактивное пустое
   // состояние), сам PaywallPriceUrgency тогда возвращает null во всех режимах.
   | 'paywall_timers_enabled'
+  | 'paywall_reviews_enabled'
   // Принудительное обновление (force-update). Дефолт FALSE = выключено (страховка
   // от случайной блокировки всех). Когда true И версия приложения < min_app_version
   // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
@@ -333,6 +334,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Таймеры срочности на пейволах: дефолт TRUE = kill-switch (показываются как
   // сейчас). Админ ставит false в «Пульте» → блок urgency прячется у всех живьём.
   paywall_timers_enabled: true,
+  paywall_reviews_enabled: true,
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
@@ -658,6 +660,7 @@ export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
  * Гейт применяется в app/paywall_purchase.ts.
  */
 export const isPaywallTimersEnabled = () => getRemoteBool('paywall_timers_enabled');
+export const isPaywallReviewsEnabled = () => getRemoteBool('paywall_reviews_enabled');
 
 // ── Force-update (минимальная версия) ───────────────────────────────────────
 /** Включён ли force-update. Дефолт false. */

@@ -41,6 +41,7 @@ import {
 import { IDIOMS } from '../app/idioms_data';
 import { trainerThemeIconSource } from '../constants/trainerThemeIcons';
 import AddToFlashcard from './AddToFlashcard';
+import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -709,6 +710,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
                     {phraseCopy.text}
                   </Text>
+                  <ExplainButton
+                    phraseEn={phrase.english}
+                    phraseMeaning={phraseCopy.meaning || phrase.meaning}
+                    lang={lang}
+                    style={styles.explainButton}
+                  />
                 </Animated.View>
               )}
             </ScrollView>
@@ -985,6 +992,9 @@ const styles = StyleSheet.create({
   storyText: {
     fontWeight: '500',
     lineHeight: 23,
+  },
+  explainButton: {
+    marginTop: 2,
   },
   questBlock: {
     borderRadius: 16,

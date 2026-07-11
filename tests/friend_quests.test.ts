@@ -63,7 +63,7 @@ test('getActiveFriendQuest prepares stable auth and calls the status function', 
 
   expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);
   expect(mockEnsureStableAuthLinkForStableId).toHaveBeenCalledWith('stable-from-auth');
-  expect(mockCallableInvoker).toHaveBeenCalledWith({ stableId: 'stable-from-auth' });
+  expect(mockCallableInvoker).toHaveBeenCalledWith({ stableId: 'stable-from-auth', force: false });
   expect(result.quest.targetXp).toBe(3000);
 });
 

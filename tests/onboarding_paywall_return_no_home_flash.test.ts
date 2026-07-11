@@ -13,7 +13,7 @@ const onboarding = read('components/CleanOnboarding.tsx');
 const stripLineComments = (src: string): string =>
   src
     .split('\n')
-    .map((line) => line.replace(/\/\/.*$/, ''))
+    .map((line) => line.slice(0, line.indexOf('//') === -1 ? line.length : line.indexOf('//')))
     .join('\n');
 
 // ─────────────────────────────────────────────────────────────────────────────

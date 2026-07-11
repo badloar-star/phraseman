@@ -38,17 +38,23 @@ describe('useAudio TTS resiliency', () => {
 
   it('restores the loud phrase audio mode on every generated clip playback', () => {
     expect(phraseAudioSource).toContain('LOUD_PLAYBACK_AUDIO_MODE');
-    expect(phraseAudioSource).toContain('await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE);');
+    expect(phraseAudioSource).toContain('await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);');
     expect(phraseAudioSource).not.toContain('audioModeReady');
     expect(phraseAudioSource).toContain('player.volume = 1');
   });
 
   it('restores the loud playback mode before system TTS fallback too', () => {
-    expect(audioSource).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
-    expect(audioSource).toContain('if (lastTextRef.current !== normalized) return;');
-    expect(audioSource.indexOf('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)')).toBeLessThan(
-      audioSource.indexOf('Speech.speak(normalized, speechOptions)'),
+    expect(audioSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(audioSource).toContain('if (lastTextRef.current !== dedupeKey) return;');
+    expect(audioSource.indexOf('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)')).toBeLessThan(
+      audioSource.indexOf('Speech.speak(spokenText, speechOptions)'),
     );
+  });
+
+  it('uses visible exact text for generated clips and pronunciation text only for system TTS', () => {
+    expect(audioSource).toContain('hasPhraseAudio(normalized)');
+    expect(audioSource).toMatch(/playPhraseByText\(\s*normalized,/);
+    expect(audioSource).toContain('Speech.speak(spokenText, speechOptions)');
   });
 
   // Regression: phrase clips died after ~half a lesson because createAudioPlayer

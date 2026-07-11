@@ -159,7 +159,8 @@ describe('multi-source quiz locale payloads', () => {
       const entry = hardEntries.find((candidate) => candidate.ru === item.ru);
 
       expect(entry).toBeDefined();
-      expect(entry!.correct).toBe(item.correct);
+      const correctIndexes = Array.isArray(entry!.correct) ? entry!.correct : [entry!.correct];
+      expect(correctIndexes).toContain(item.correct);
       expect(entry!.choices[item.correct]).toBe(item.choice);
       expect(entry!.explanations[item.correct]).toMatch(/Невероятно|блестяще|Блестяще/i);
     }

@@ -146,7 +146,7 @@ const vocabularyStepBaseXP = (prevCount: number): number => {
  * После верного: почти сразу (озвучка не блокирует таймер — вынесена в конец callback).
  * Неверно: дольше, чтобы увидеть ошибку.
  */
-const ANSWER_FEEDBACK_MS = { correct: 500, wrong: 1000 } as const;
+const ANSWER_FEEDBACK_MS = { correct: 500, wrong: 1500 } as const;
 
 type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns'|'prepositions'|'conjunctions'|'articles'|'phrases';
 interface Word {
@@ -735,7 +735,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'insurance', ru: 'Страховка', uk: 'Страховка', es: 'seguro',
     'pt-BR': 'Seguro', pos: 'nouns' },
     { en: 'driver', ru: 'Водитель', uk: 'Водій', es: 'conductor', pos: 'nouns' },
-    { en: 'license', ru: 'Водительские права', uk: 'Посвідчення водія', es: 'permiso de conducir', pos: 'nouns' },
+    { en: 'license', ru: 'Лицензия / разрешение', uk: 'Ліцензія / дозвіл', es: 'licencia / permiso', pos: 'nouns' },
     { en: 'free', ru: 'Свободный (о времени)', uk: 'Вільний (про час)', es: 'libre', pos: 'adjectives' },
     { en: 'time', ru: 'Время', uk: 'Час', es: 'tiempo', pos: 'nouns' },
     { en: 'allergy', ru: 'Аллергия', uk: 'Алергія', es: 'alergia', pos: 'nouns' },
@@ -1661,7 +1661,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'writing', ru: 'Писал', uk: 'Писав', es: 'escribiendo', pos: 'verbs' },
     { en: 'waiting', ru: 'Ждал', uk: 'Чекав', es: 'esperando', pos: 'verbs' },
     { en: 'watching', ru: 'Смотрел', uk: 'Дивився', es: 'viendo', pos: 'verbs' },
-    { en: 'looking for', ru: 'Искал', uk: 'Шукав', es: 'buscando', pos: 'verbs' },
+    { en: 'looking for', ru: 'Искать', uk: 'Шукати', es: 'buscando', pos: 'verbs' },
     { en: 'talking', ru: 'Разговаривал', uk: 'Розмовляв', es: 'hablando', pos: 'verbs' },
     { en: 'driving', ru: 'Ехал / вёл машину', uk: 'Їхав / вів машину', es: 'conduciendo', pos: 'verbs' },
     { en: 'cleaning', ru: 'Убирал', uk: 'Прибирав', es: 'limpiando', pos: 'verbs' },

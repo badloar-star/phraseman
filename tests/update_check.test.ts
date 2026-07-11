@@ -1,6 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
+
+jest.mock('../app/config', () => ({
+  UPDATE_CHECK_URL: 'https://updates.example.test/version.json',
+  STORE_URL_IOS: 'https://apps.apple.com/app/id6764800879',
+  STORE_URL_ANDROID: 'https://play.google.com/store/apps/details?id=app.phraseman',
+}));
+
 import { checkForUpdate } from '../app/update_check';
 
 const IOS_STORE_URL = 'https://apps.apple.com/app/id6764800879';

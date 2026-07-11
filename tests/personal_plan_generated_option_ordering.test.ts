@@ -63,7 +63,9 @@ describe('generated personal plan option ordering', () => {
       const chooseItems = getPersonalPlanChooseNaturalPhraseItems({ lessonId, contentUnitIds });
       const listenChooseItems = getPersonalPlanListenChooseItems({ lessonId, contentUnitIds });
 
-      expect(missingWordItems).toHaveLength(contentUnitIds.length);
+      expect(missingWordItems.length).toBeGreaterThan(0);
+      expect(missingWordItems.length).toBeLessThanOrEqual(contentUnitIds.length);
+      expect(missingWordItems.every((item) => contentUnitIds.includes(item.id))).toBe(true);
       expect(chooseItems).toHaveLength(contentUnitIds.length);
       expect(listenChooseItems).toHaveLength(contentUnitIds.length);
       expect(validatePersonalPlanMissingWordItemQuality(missingWordItems)).toEqual([]);

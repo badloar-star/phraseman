@@ -10,11 +10,12 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import { File } from 'expo-file-system';
 import * as Speech from 'expo-speech';
 
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
+import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
+import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
@@ -80,13 +81,17 @@ import { starsForScore } from '../app/speaking_score_stars';
 import { WordDrillCard } from './WordDrillCard';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
-import { isSpeechRecognitionAvailable } from '../app/personal_plan_speech_module';
+import {
+  isSpeechRecognitionAvailable,
+  requestSpeechPermissionForHold,
+  type HoldPermissionResult,
+} from '../app/personal_plan_speech_module';
 
 // Вернуть аудио-сессию в «громкое воспроизведение». Распознавание переводит её
 // в запись (playAndRecord) — без сброса всё, что играет после (эталон, «Моя
 // запись», mp3 в уроках), выходит тихим/через разговорный динамик или молчит.
 function restoreLoudPlaybackMode(): void {
-  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
 }
 
 // Запись попытки живёт до следующей попытки/закрытия панели — дальше это мусор,
@@ -278,6 +283,8 @@ export function SpeakingPanel({
   const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
   const { playRecordStart } = useRecordStartCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
+  const statusRef = useRef<SpeakingPanelStatus>(previewStatus ?? 'idle');
+  statusRef.current = status;
   const [transcript, setTranscript] = useState('');
   // Пословная карта попытки (чисто/нечётко/пропущено) — показывается после
   // КАЖДОЙ оценённой попытки, и на passed, и на failed.
@@ -291,14 +298,17 @@ export function SpeakingPanel({
   // трогая исходный отчёт попытки.
   const [drillCleaned, setDrillCleaned] = useState<ReadonlySet<number>>(() => new Set<number>());
   // Состояние карточки открытого слова: готов / пишу / проверяю / вердикт.
-  type WordCardPhase = 'idle' | 'listening' | 'scoring' | 'clean' | 'fuzzy' | 'no_speech';
+  type WordCardPhase = 'idle' | 'requesting' | 'listening' | 'scoring' | 'clean' | 'fuzzy' | 'no_speech';
   const [wordPhase, setWordPhase] = useState<WordCardPhase>('idle');
+  const wordPhaseRef = useRef<WordCardPhase>('idle');
+  wordPhaseRef.current = wordPhase;
   const [wordVerdict, setWordVerdict] = useState<WordDrillVerdict | null>(null);
   // «Фраза идеальна»: показать раз, когда ВСЕ проблемные слова стали зелёными.
   const [phrasePerfect, setPhrasePerfect] = useState(false);
   // Одиночная запись слова живёт в своём наборе слушателей / hold-рекордере,
   // чтобы не пересекаться с фразовой сессией.
   const wordListenersRef = useRef<Array<{ remove?: () => void }>>([]);
+  const wordSystemPressActiveRef = useRef(false);
   const wordHoldRecRef = useRef<HoldRecording | null>(null);
   const wordFinishingRef = useRef(false);
   // Авто-переход: после «чисто» карточка сама открывает СЛЕДУЮЩЕЕ проблемное
@@ -345,7 +355,9 @@ export function SpeakingPanel({
       : null,
   );
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
+  const audioEndSubRef = useRef<{ remove?: () => void } | null>(null);
   const mountedRef = useRef(true);
+  const systemHoldPressActiveRef = useRef(false);
   // Watchdog: на Android нативный распознаватель может принять start(), но так и
   // не прислать НИ start, НИ result, НИ error (занятый/холодный сервис, нет
   // языковой модели). Без таймера экран навис бы навсегда на «Готовимся
@@ -372,6 +384,10 @@ export function SpeakingPanel({
   const cleanupListeners = useCallback(() => {
     listenersRef.current.forEach((sub) => sub?.remove?.());
     listenersRef.current = [];
+  }, []);
+  const cleanupAudioEndListener = useCallback(() => {
+    audioEndSubRef.current?.remove?.();
+    audioEndSubRef.current = null;
   }, []);
 
   // Ждём uri записи: audioend может прийти на долю секунды позже end. Ожидание
@@ -583,7 +599,7 @@ export function SpeakingPanel({
       } catch {
         /* no-op */
       }
-      void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+      void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
         .catch(() => undefined)
         .finally(() => {
           if (playbackTokenRef.current !== token) return;
@@ -681,6 +697,9 @@ export function SpeakingPanel({
       };
       const resultSub = speech.addListener('result', (event: any) => {
         clearWordWatchdog(); // признак жизни движка — таймер больше не нужен
+        if (wordSystemPressActiveRef.current) {
+          setWordPhase((current) => (current === 'requesting' ? 'listening' : current));
+        }
         playCueOnce();
         const alts: Array<{ transcript?: string }> = Array.isArray(event?.results)
           ? event.results
@@ -688,6 +707,16 @@ export function SpeakingPanel({
         for (const alt of alts) consider(String(alt?.transcript ?? ''));
       });
       const startSub = speech.addListener('start', () => {
+        clearWordWatchdog();
+        if (!wordSystemPressActiveRef.current) {
+          try {
+            speech.stop();
+          } catch {
+            /* no-op */
+          }
+          return;
+        }
+        setWordPhase('listening');
         playCueOnce();
       });
       const endSub = speech.addListener('end', () => settle());
@@ -697,6 +726,7 @@ export function SpeakingPanel({
           settled = true;
           clearWordWatchdog();
           cleanupWordListeners();
+          restoreLoudPlaybackMode();
           setWordPhase('no_speech');
           setWordVerdict(null);
           hapticError();
@@ -705,17 +735,22 @@ export function SpeakingPanel({
       wordListenersRef.current = [resultSub, startSub, endSub, errorSub, noMatchSub].filter(
         Boolean,
       ) as Array<{ remove?: () => void }>;
-      try {
-        const permission = await speech.requestPermissionsAsync();
-        if (!mountedRef.current) return;
-        if (!permission?.granted) {
-          cleanupWordListeners();
-          setWordPhase('no_speech');
-          return;
-        }
-      } catch {
+      const permission = await requestSpeechPermissionForHold(speech);
+      if (!mountedRef.current) return;
+      if (permission === 'denied') {
         cleanupWordListeners();
-        if (mountedRef.current) setWordPhase('no_speech');
+        setWordPhase('no_speech');
+        return;
+      }
+      if (permission === 'granted_after_prompt') {
+        wordSystemPressActiveRef.current = false;
+        cleanupWordListeners();
+        setWordPhase('idle');
+        return;
+      }
+      if (!wordSystemPressActiveRef.current) {
+        cleanupWordListeners();
+        if (mountedRef.current) setWordPhase('idle');
         return;
       }
       let onDevice = false;
@@ -726,6 +761,13 @@ export function SpeakingPanel({
       }
       if (!mountedRef.current) return;
       try {
+        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE).catch(() => undefined);
+        if (!wordSystemPressActiveRef.current) {
+          cleanupWordListeners();
+          setWordPhase('idle');
+          restoreLoudPlaybackMode();
+          return;
+        }
         wordWatchdog = setTimeout(() => {
           wordWatchdog = null;
           if (!mountedRef.current) return;
@@ -743,6 +785,7 @@ export function SpeakingPanel({
             interimResults: true,
             volumeMeter: false,
             onDevice,
+            holdToTalk: true,
             persistRecording: false,
           }),
         );
@@ -792,16 +835,30 @@ export function SpeakingPanel({
   );
 
   const stopListening = useCallback(() => {
+    systemHoldPressActiveRef.current = false;
     clearWatchdog();
+    if (statusRef.current === 'requesting') {
+      cleanupListeners();
+      try {
+        speech?.abort();
+      } catch {
+        /* no-op */
+      }
+      restoreLoudPlaybackMode();
+      setStatus('idle');
+      return;
+    }
+    if (statusRef.current === 'listening') setStatus('scoring');
     try {
       speech?.stop();
     } catch {
       /* no-op */
     }
-  }, [speech, clearWatchdog]);
+  }, [speech, clearWatchdog, cleanupListeners]);
 
   const startListening = useCallback(async () => {
     if (isPreview) return; // mic is inert while previewing a fixed status
+    if (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring') return;
     if (!speech) {
       setStatus('unavailable');
       return;
@@ -837,19 +894,24 @@ export function SpeakingPanel({
     finishingRef.current = false;
     attemptStartRef.current = Date.now();
     setStatus('requesting');
-    try {
-      const permission = await speech.requestPermissionsAsync();
-      if (!mountedRef.current) return;
-      if (!permission?.granted) {
-        setStatus('denied');
-        return;
-      }
-    } catch {
-      if (mountedRef.current) setStatus('denied');
+    const permission = await requestSpeechPermissionForHold(speech);
+    if (!mountedRef.current) return;
+    if (permission === 'denied') {
+      setStatus('denied');
+      return;
+    }
+    if (permission === 'granted_after_prompt') {
+      systemHoldPressActiveRef.current = false;
+      setStatus('idle');
+      return;
+    }
+    if (!systemHoldPressActiveRef.current) {
+      if (mountedRef.current) setStatus('idle');
       return;
     }
 
     cleanupListeners();
+    cleanupAudioEndListener();
     let latest = '';
     // Лучший вариант за попытку = тот, что даёт МАКСИМАЛЬНЫЙ score против цели
     // среди ВСЕХ альтернатив (maxAlternatives) ВСЕХ result-событий. Движок часто
@@ -891,6 +953,9 @@ export function SpeakingPanel({
       // Первый результат = движок точно жив (на редких OEM 'start' не эмитится,
       // а сразу приходит result) — на всякий случай тоже снимаем watchdog.
       clearWatchdog();
+      if (systemHoldPressActiveRef.current) {
+        setStatus((current) => (current === 'requesting' ? 'listening' : current));
+      }
       playCueOnce();
       const alternatives: Array<{ transcript?: string; segments?: ReadonlyArray<{ segment?: string; confidence?: number }> }> = Array.isArray(event?.results)
         ? event.results
@@ -920,6 +985,15 @@ export function SpeakingPanel({
     // нескольких секунд и означало вечное «Готовимся слушать…».)
     const startSub = speech.addListener('start', () => {
       clearWatchdog();
+      if (!systemHoldPressActiveRef.current) {
+        try {
+          speech.stop();
+        } catch {
+          /* no-op */
+        }
+        return;
+      }
+      setStatus('listening');
       playCueOnce();
     });
     const endSub = speech.addListener('end', () => {
@@ -931,19 +1005,24 @@ export function SpeakingPanel({
       if (mountedRef.current) {
         const final = best || latest;
         if (final) void finishAttempt(final, bestSegments);
-        else setStatus('no_speech');
+        else {
+          restoreLoudPlaybackMode();
+          setStatus('no_speech');
+        }
       }
     });
     const noMatchSub = speech.addListener('nomatch', () => {
       clearWatchdog();
+      restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('no_speech');
     });
     // uri сохранённой записи попытки: питает «Мою запись» и контрольный прогон.
-    const audioEndSub = speech.addListener('audioend', (event: any) => {
+    audioEndSubRef.current = speech.addListener('audioend', (event: any) => {
       const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
+      if (!uri) return;
       recordingUriRef.current = uri;
       if (mountedRef.current) setRecordingUri(uri);
-    });
+    }) ?? null;
     // Live volume -> equalizer, pushed IMPERATIVELY (no setState → no re-render
     // of the modal on every sample). The equalizer derives loudness + tone tilt.
     const volumeSub = speech.addListener('volumechange', (event: any) => {
@@ -962,7 +1041,6 @@ export function SpeakingPanel({
       endSub,
       errorSub,
       noMatchSub,
-      audioEndSub,
       volumeSub,
     ].filter(Boolean) as Array<{ remove?: () => void }>;
 
@@ -978,7 +1056,19 @@ export function SpeakingPanel({
     if (!mountedRef.current) return;
 
     try {
-      setStatus('listening');
+      try {
+        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE);
+      } catch {
+        // Recognition can still work on runtimes that manage the native session
+        // themselves; do not turn a mode-sync hiccup into a dead microphone.
+      }
+      if (!mountedRef.current) return;
+      if (!systemHoldPressActiveRef.current) {
+        cleanupListeners();
+        restoreLoudPlaybackMode();
+        setStatus('idle');
+        return;
+      }
       // Watchdog: если за 7с движок не пришлёт НИ start, НИ первого result —
       // считаем его зависшим (типичная Android-беда: сервис принял start(), но
       // молчит). Прерываем и показываем «stalled» с кнопкой «Повторить», а не
@@ -1004,6 +1094,7 @@ export function SpeakingPanel({
           interimResults: true,
           volumeMeter: true,
           onDevice,
+          holdToTalk: !pcmHoldModeRef.current,
           // Файл записи нужен ИМЕННО здесь: «Моя запись» + контрольный прогон.
           persistRecording: true,
         }),
@@ -1012,9 +1103,11 @@ export function SpeakingPanel({
       // а не сразу после speech.start() (иначе терялось начало фразы).
     } catch {
       clearWatchdog();
+      cleanupListeners();
+      restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, finishAttempt, playRecordStart, clearWatchdog]);
+  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playRecordStart, clearWatchdog]);
 
   // ===== Android: «зажми и говори» → запись → whisper (в обход системного
   // распознавателя). На iOS системный движок надёжен и whisper выключен, поэтому
@@ -1037,22 +1130,21 @@ export function SpeakingPanel({
   const holdPressActiveRef = useRef(false);
   const wordHoldPressActiveRef = useRef(false);
 
-  const ensureHoldMicPermission = useCallback(async (): Promise<boolean> => {
-    if (holdMicGrantedRef.current) return true;
-    if (!speech) return false;
-    try {
-      const perm = await speech.requestPermissionsAsync();
-      const granted = perm?.granted === true;
-      holdMicGrantedRef.current = granted;
-      return granted;
-    } catch {
-      return false;
-    }
+  const ensureHoldMicPermission = useCallback(async (): Promise<HoldPermissionResult> => {
+    if (holdMicGrantedRef.current) return 'granted';
+    if (!speech) return 'denied';
+    const result = await requestSpeechPermissionForHold(speech);
+    if (result !== 'denied') holdMicGrantedRef.current = true;
+    return result;
   }, [speech]);
-  // true = мы в hold-режиме И модель готова: кнопка работает как push-to-talk.
+  // Единый speaking-контракт: на iOS push-to-talk использует системный
+  // recognizer, на Android — PCM/whisper, когда модель готова.
   // ПОВЕДЕНЧЕСКИЙ флаг: реальная запись/распознавание. В превью всегда false
   // (holdSupported требует !isPreview) — микрофон не трогается.
-  const holdMode = holdSupported && holdModelReady;
+  const pcmHoldMode = holdSupported && holdModelReady;
+  const pcmHoldModeRef = useRef(false);
+  pcmHoldModeRef.current = pcmHoldMode;
+  const holdMode = !isPreview && !!speech;
   // ДИСПЛЕЙНЫЙ флаг: как ВЫГЛЯДИТ панель. В превью отражает previewHoldMode (dev-
   // проп админ-лаборатории), чтобы android-вид «Зажми и говори» был виден с iPhone
   // БЕЗ реального микрофона. Вне превью совпадает с holdMode.
@@ -1094,10 +1186,15 @@ export function SpeakingPanel({
     }
     // Первого гранта ещё нет: показываем системный диалог вместо записи в тишину.
     void (async () => {
-      const granted = await ensureHoldMicPermission();
+      const permission = await ensureHoldMicPermission();
       if (!mountedRef.current) return;
-      if (!granted) {
+      if (permission === 'denied') {
         setStatus('denied'); // штатный blocked-UI с кнопкой «Открыть настройки»
+        return;
+      }
+      if (permission === 'granted_after_prompt') {
+        holdPressActiveRef.current = false;
+        setStatus('idle');
         return;
       }
       // Диалог перехватил касание — палец уже отпущен: юзер зажмёт снова.
@@ -1171,7 +1268,7 @@ export function SpeakingPanel({
   // системного распознавателя — тот же путь, что и для фразы =====
   const startWordHold = useCallback(
     (index: number) => {
-      if (!holdMode) return;
+      if (!pcmHoldMode) return;
       if (wordHoldRecRef.current) return;
       clearAutoAdvance(); // юзер начал повторять — висящий авто-переход отменяем
       wordFinishingRef.current = false;
@@ -1201,11 +1298,16 @@ export function SpeakingPanel({
       }
       // Тот же гейт, что и у фразы: без гранта PCM-рекордер пишет тишину.
       void (async () => {
-        const granted = await ensureHoldMicPermission();
+        const permission = await ensureHoldMicPermission();
         if (!mountedRef.current) return;
-        if (!granted) {
+        if (permission === 'denied') {
           setWordPhase('no_speech'); // как системный word-путь при отказе
           setWordVerdict(null);
+          return;
+        }
+        if (permission === 'granted_after_prompt') {
+          wordHoldPressActiveRef.current = false;
+          setWordPhase('idle');
           return;
         }
         if (!wordHoldPressActiveRef.current) {
@@ -1215,7 +1317,7 @@ export function SpeakingPanel({
         wordHoldRecRef.current = startHoldRecording({ onFirstAudio: onWordFirstAudio });
       })();
     },
-    [holdMode, ensureHoldMicPermission, playRecordStart, clearAutoAdvance],
+    [pcmHoldMode, ensureHoldMicPermission, playRecordStart, clearAutoAdvance],
   );
 
   const endWordHold = useCallback(
@@ -1260,19 +1362,41 @@ export function SpeakingPanel({
     [tokens, recognitionLocale, applyWordResult],
   );
 
-  // Единая точка «повторить слово» для UI: на системном пути — tap-to-record,
-  // на Android-whisper — начало press-and-hold задаёт startWordHold/endWordHold
-  // напрямую (см. обработчики кнопки в разметке карточки).
+  // Единая точка начала системного push-to-talk для слова.
   const startWordAttempt = useCallback(
     (index: number) => {
       if (status === 'listening') return; // фразовый микрофон занят — взаимная блокировка
       clearAutoAdvance(); // юзер начал повторять — висящий авто-переход отменяем
+      wordSystemPressActiveRef.current = true;
       setWordVerdict(null);
-      setWordPhase('listening');
+      setWordPhase('requesting');
       void recordWordSystem(index);
     },
     [status, recordWordSystem, clearAutoAdvance],
   );
+
+  const endWordSystemAttempt = useCallback(() => {
+    wordSystemPressActiveRef.current = false;
+    if (wordPhaseRef.current === 'requesting') {
+      cleanupWordListeners();
+      try {
+        speech?.abort();
+      } catch {
+        /* no-op */
+      }
+      restoreLoudPlaybackMode();
+      setWordPhase('idle');
+      return;
+    }
+    if (wordPhaseRef.current === 'listening') {
+      setWordPhase('scoring');
+      try {
+        speech?.stop();
+      } catch {
+        /* no-op */
+      }
+    }
+  }, [cleanupWordListeners, speech]);
 
   // Тап по слову карты: открыть карточку И СРАЗУ проиграть эталон слова. Каждый
   // тап (в т.ч. повторный по уже открытому слову) переигрывает звук — отдельная
@@ -1318,6 +1442,7 @@ export function SpeakingPanel({
 
   const closeWordCard = useCallback(() => {
     clearAutoAdvance();
+    wordSystemPressActiveRef.current = false;
     try {
       wordHoldRecRef.current?.cancel();
     } catch {
@@ -1325,10 +1450,16 @@ export function SpeakingPanel({
     }
     wordHoldRecRef.current = null;
     cleanupWordListeners();
+    try {
+      speech?.abort();
+    } catch {
+      /* no-op */
+    }
+    restoreLoudPlaybackMode();
     setWordPhase('idle');
     setWordVerdict(null);
     setDrill((prev) => closeWord(prev));
-  }, [cleanupWordListeners]);
+  }, [cleanupWordListeners, clearAutoAdvance, speech]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -1337,6 +1468,7 @@ export function SpeakingPanel({
       clearWatchdog();
       clearAutoAdvance();
       cleanupListeners();
+      cleanupAudioEndListener();
       try {
         speech?.abort();
       } catch {
@@ -1372,11 +1504,10 @@ export function SpeakingPanel({
       deleteRecordingFile(recordingUriRef.current);
       restoreLoudPlaybackMode();
     };
-  }, [speech, cleanupListeners, clearWatchdog, clearAutoAdvance]);
+  }, [speech, cleanupListeners, cleanupAudioEndListener, clearWatchdog, clearAutoAdvance]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».
-  const [holdModelFailed, setHoldModelFailed] = useState(false);
 
   // Предварительная проверка гранта микрофона для hold-режима — БЕЗ диалога.
   // Если разрешение уже выдано (онбординг/прошлый запуск), первое зажатие
@@ -1411,26 +1542,11 @@ export function SpeakingPanel({
     void ensureNeuralModel(recognitionLocale).then((ok) => {
       if (!alive) return;
       if (ok) setHoldModelReady(true);
-      else setHoldModelFailed(true);
     });
     return () => {
       alive = false;
     };
   }, [isPreview, recognitionLocale]);
-
-  // Автостарт СИСТЕМНОГО пути: панель монтируется по нажатию «Устно». В hold-
-  // режиме (Android + whisper) НЕ автостартуем — юзер сам зажимает кнопку. В
-  // preview микрофон инертен. Пока модель качается — ждём (статус «подготовка»);
-  // если подготовка ПРОВАЛИЛАСЬ — откатываемся на системный автостарт.
-  const autoStartedRef = useRef(false);
-  useEffect(() => {
-    if (isPreview) return;
-    if (autoStartedRef.current) return;
-    // На Android с рабочим hold-режимом системный путь не нужен вовсе.
-    if (holdSupported && !holdModelFailed) return;
-    autoStartedRef.current = true;
-    void startListening();
-  }, [isPreview, holdSupported, holdModelFailed, startListening]);
 
   const handleClose = useCallback(() => {
     stopListening();
@@ -1483,7 +1599,7 @@ export function SpeakingPanel({
     replayPlayerRef.current = null;
     // Сначала «громкое воспроизведение»: после распознавания сессия всё ещё в
     // записи, и без сброса запись играла бы тихо через разговорный динамик.
-    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+    void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => undefined)
       .finally(() => {
         if (playbackTokenRef.current !== token) return;
@@ -1521,7 +1637,7 @@ export function SpeakingPanel({
     }
     // Та же гигиена, что и у «Моей записи»: сначала громкий режим, потом TTS —
     // иначе эталон после попытки звучит еле слышно и обрывается.
-    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+    void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => undefined)
       .finally(() => {
         // Пока переключался режим, мог прилететь новый тап — тогда молчим.
@@ -1563,14 +1679,9 @@ export function SpeakingPanel({
   const passed = effectivePassed;
   const band = effectiveScore != null ? speakingBand(effectiveScore, passThreshold) : null;
   const hintLine = hint && !effectivePassed ? speakingHintText(hint, lang) : null;
-  // Android hold-режим поддержан, но модель whisper ещё качается (и не провалилась)
-  // — кнопка ждёт, статус честно объясняет паузу вместо тихого зависания.
-  const preparingModel = holdSupported && !holdModelReady && !holdModelFailed;
-  // ДИСПЛЕЙНЫЙ флаг «идёт подготовка». В превью — по previewHoldMode === 'preparing'
-  // (взаимоисключимо с holdModeView === true, поэтому оба вида — готовую кнопку и
-  // состояние подготовки — можно посмотреть в лаборатории отдельно). Вне превью =
-  // поведенческий preparingModel.
-  const preparingModelView = isPreview ? previewHoldMode === 'preparing' : preparingModel;
+  // Подготовка Android PCM/whisper идёт в фоне и никогда не блокирует микрофон:
+  // до готовности работает системный recognizer с тем же hold-жестом.
+  const preparingModelView = isPreview && previewHoldMode === 'preparing';
 
   const statusLine = (() => {
     if (preparingModelView && (status === 'idle' || status === 'requesting')) {
@@ -1599,14 +1710,14 @@ export function SpeakingPanel({
               pl: 'Przytrzymaj i mów, puść — sprawdzę',
             })
           : L(lang, {
-          ru: 'Нажми на микрофон и произнеси фразу',
-          uk: 'Натисни на мікрофон і вимов фразу',
-          es: 'Toca el micrófono y di la frase',
-          'pt-BR': 'Toque no microfone e diga a frase',
-          vi: 'Nhấn vào micrô và nói cụm từ',
-          id: 'Ketuk mikrofon dan ucapkan frasa',
-          tr: 'Mikrofona dokun ve ifadeyi söyle',
-          pl: 'Dotknij mikrofonu i wypowiedz frazę',
+          ru: 'Зажми кнопку и говори, отпусти — проверю',
+          uk: 'Затисни кнопку й говори, відпусти — перевірю',
+          es: 'Mantén pulsado y habla, suelta y reviso',
+          'pt-BR': 'Segure e fale, solte que eu verifico',
+          vi: 'Nhấn giữ và nói, thả ra để kiểm tra',
+          id: 'Tekan tahan dan bicara, lepas untuk diperiksa',
+          tr: 'Basılı tut ve konuş, bırak kontrol edeyim',
+          pl: 'Przytrzymaj i mów, puść — sprawdzę',
         });
       case 'requesting':
         return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…', 'pt-BR': 'Preparando…', vi: 'Đang chuẩn bị nghe…', id: 'Menyiapkan…', tr: 'Dinlemeye hazırlanıyor…', pl: 'Przygotowuję słuchanie…' });
@@ -1622,7 +1733,7 @@ export function SpeakingPanel({
               tr: 'Konuş… bitince bırak',
               pl: 'Mów… puść, gdy skończysz',
             })
-          : L(lang, { ru: 'Слушаю… говори', uk: 'Слухаю… говори', es: 'Escuchando… habla', 'pt-BR': 'Escutando… fale', vi: 'Đang nghe… hãy nói', id: 'Mendengarkan… bicara', tr: 'Dinliyorum… konuş', pl: 'Słucham… mów' });
+          : L(lang, { ru: 'Говори… отпусти, когда закончишь', uk: 'Говори… відпусти, коли закінчиш', es: 'Habla… suelta al terminar', 'pt-BR': 'Fale… solte ao terminar', vi: 'Hãy nói… thả ra khi xong', id: 'Bicara… lepas saat selesai', tr: 'Konuş… bitince bırak', pl: 'Mów… puść, gdy skończysz' });
       case 'scoring':
         return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
       case 'passed':
@@ -1678,8 +1789,7 @@ export function SpeakingPanel({
     }
   })();
 
-  const micDisabled =
-    status === 'requesting' || status === 'scoring' || status === 'unavailable' || preparingModelView;
+  const micDisabled = status === 'scoring' || status === 'unavailable' || preparingModelView;
 
   // Открытое для тренировки слово (индекс + текст) — считаем один раз, чтобы
   // карточка и её обработчики работали с чистыми number/string.
@@ -1819,13 +1929,17 @@ export function SpeakingPanel({
               warnColor={warnColor}
               phase={wordPhase}
               verdict={wordVerdict}
-              holdMode={holdModeView}
               // При showResult фразовый микрофон уже не слушает — блокировки не нужно.
               micBusy={false}
-              onRepeatTap={() => startWordAttempt(openWordIndex)}
-              onHoldStart={() => startWordHold(openWordIndex)}
+              onHoldStart={() => {
+                if (isPreview) return;
+                if (pcmHoldMode) startWordHold(openWordIndex);
+                else startWordAttempt(openWordIndex);
+              }}
               onHoldEnd={() => {
-                void endWordHold(openWordIndex);
+                if (isPreview) return;
+                if (pcmHoldMode) void endWordHold(openWordIndex);
+                else endWordSystemAttempt();
               }}
               onPlayMine={recordingUri != null ? playMyRecording : undefined}
               onClose={closeWordCard}
@@ -1982,11 +2096,8 @@ export function SpeakingPanel({
               passed: there the mic can't help / isn't needed, so a clear action
               button takes its place.
 
-              Two interaction models:
-              • holdMode (Android + whisper): PUSH-TO-TALK. Hold to record, release
-                to score. No system endpointer → no instant "closed by itself".
-              • otherwise (iOS / fallback): tap-to-start / tap-to-stop, engine
-                auto-endpoints (unchanged behaviour). */}
+              Real speaking mode uses one interaction model on both platforms:
+              press-in starts, press-out finishes. */}
           {!isBlocked && !passed && (
             <Pressable
               // Дисплейный флаг: КАК выглядит кнопка (push-to-talk vs tap). В превью
@@ -1995,9 +2106,25 @@ export function SpeakingPanel({
               // startListening выходит по isPreview. Микрофон в превью не трогается.
               {...(holdModeView
                 ? {
-                    onPressIn: startHold,
+                    onPressIn: () => {
+                      if (Platform.OS === 'ios') {
+                        systemHoldPressActiveRef.current = true;
+                        void startListening();
+                      } else if (pcmHoldMode) {
+                        startHold();
+                      } else {
+                        systemHoldPressActiveRef.current = true;
+                        void startListening();
+                      }
+                    },
                     onPressOut: () => {
-                      void endHold();
+                      if (Platform.OS === 'ios') {
+                        stopListening();
+                      } else if (pcmHoldMode) {
+                        void endHold();
+                      } else {
+                        stopListening();
+                      }
                     },
                   }
                 : { onPress: listening ? stopListening : startListening })}
@@ -2006,9 +2133,7 @@ export function SpeakingPanel({
               accessibilityLabel={
                 holdModeView
                   ? L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
-                  : listening
-                  ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener', 'pt-BR': 'Parar gravação', vi: 'Dừng ghi âm', id: 'Hentikan rekaman', tr: 'Kaydı durdur', pl: 'Zatrzymaj nagrywanie' })
-                  : L(lang, { ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar', 'pt-BR': 'Começar a falar', vi: 'Bắt đầu nói', id: 'Mulai bicara', tr: 'Konuşmaya başla', pl: 'Zacznij mówić' })
+                  : L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
               }
               accessibilityState={{ disabled: micDisabled, busy: status === 'requesting' || status === 'scoring' }}
               style={[

@@ -138,6 +138,11 @@ describe('league weekly rollover', () => {
     });
   });
 
+  it('uses the Monday UTC boundary even when local time has already crossed Monday', () => {
+    expect(getWeekId(new Date('2026-07-05T23:30:00.000Z'))).toBe('2026-W27');
+    expect(getWeekId(new Date('2026-07-06T00:00:00.000Z'))).toBe('2026-W28');
+  });
+
   it('keeps fifth place in a sixteen-person group because top zone is three', () => {
     const { group, myPoints } = makeGroupWithMyRank(16, 5);
     const result = calculateResult({

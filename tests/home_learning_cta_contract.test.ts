@@ -5,10 +5,10 @@ describe('home learning CTA contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'home.tsx'), 'utf8');
 
   it('keeps a dedicated premium-without-plan CTA before the free continue-lesson CTA', () => {
-    const planSnapshotIndex = source.indexOf('personalPlanSnapshot ? (');
-    const activePlanIndex = source.indexOf(': hasActivePersonalPlan ?');
-    const choosePlanIndex = source.indexOf(': hasPremiumAccess ?');
-    const continueLessonIndex = source.indexOf(': lastLesson != null ?');
+    const planSnapshotIndex = source.indexOf('<PersonalPlanHomeRouteCard');
+    const activePlanIndex = source.indexOf('testID="home-personal-plan-card"');
+    const choosePlanIndex = source.indexOf('testID="home-choose-personal-plan"');
+    const continueLessonIndex = source.indexOf('testID="home-continue-lesson"');
 
     expect(planSnapshotIndex).toBeGreaterThan(0);
     expect(activePlanIndex).toBeGreaterThan(planSnapshotIndex);
@@ -25,7 +25,7 @@ describe('home learning CTA contract', () => {
 
   it('keeps the free-tier current lesson CTA intact', () => {
     expect(source).toContain('testID="home-continue-lesson"');
-    expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } })");
+    expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any)");
   });
 
   it('keeps the current personal plan visible while the home snapshot reloads', () => {

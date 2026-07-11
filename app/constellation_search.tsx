@@ -402,7 +402,9 @@ export default function ConstellationSearchScreen() {
               <Text style={[styles.hintTitle, { color: '#8B7BFF', fontSize: f.caption - 1 }]}>
                 {SEARCH_HINTS[hintIdx].title(lang)}
               </Text>
-              <Text style={[styles.hintBody, { color: t.textSecond, fontSize: f.caption }]}>
+              {/* Тело подсказки — основной текст (аудит: контраст): вторичный цвет
+                  на тёмном фоне читался плохо, переведён на textPrimary. */}
+              <Text style={[styles.hintBody, { color: t.textPrimary, fontSize: f.caption }]}>
                 {SEARCH_HINTS[hintIdx].body(lang)}
               </Text>
             </View>

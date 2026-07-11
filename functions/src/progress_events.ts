@@ -27,6 +27,7 @@ export const PROGRESS_EVENT_TYPES = [
   'diagnostic_test',
   'plan_task_complete',
   'wager_win',
+  'club_mission_complete',
 ] as const;
 
 export type ProgressEventType = typeof PROGRESS_EVENT_TYPES[number];
@@ -60,9 +61,35 @@ type ApplyResult = Omit<ProgressEventResult, 'stableUid' | 'duplicate'> & {
   progressPatch: ProgressMap;
 };
 
+export type ProgressServerState = {
+  totalXp: number;
+  level: number;
+  weekKey: string;
+  weekStart: string;
+  weekXp: number;
+  weekPoints: number;
+  streakCount: number;
+  lastActiveDate: string;
+};
+
+export type MigrationProvenance = {
+  source: 'client_snapshot_v1';
+  quarantinedSensitiveKeys: string[];
+  beforeXp: number;
+  acceptedXp: number;
+  appVersion: string | null;
+};
+
 const EVENT_TYPE_SET = new Set<string>(PROGRESS_EVENT_TYPES);
 const EVENT_ID_RE = /^[a-z][a-z0-9_]{1,32}:[A-Za-z0-9_.:-]{1,140}$/;
 const DAY_MS = 24 * 60 * 60 * 1000;
+const FINGERPRINT_EXCLUDED_PAYLOAD_KEYS = new Set<string>([
+  'localTotalBeforeServer',
+  'multiplier',
+  'baseAmount',
+  'clientStreakCount',
+  'clientLastActiveDate',
+]);
 
 const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'user_total_xp',
@@ -98,6 +125,7 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   diagnostic_test: 2500,
   plan_task_complete: 1500,
   wager_win: 20000,
+  club_mission_complete: 1000,
 };
 
 /**
@@ -108,14 +136,29 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
  * по сумме. Источники, не входящие сюда (lesson_complete, exam_complete, награды), ограничены своими
  * разовыми/механическими лимитами и сюда не попадают.
  */
-const EVENT_DAILY_XP_CAP: Partial<Record<ProgressEventType, number>> = {
+export const GLOBAL_DAILY_XP_CAP = 25_000;
+
+const EVENT_DAILY_XP_CAP: Record<ProgressEventType, number> = {
   lesson_answer: 8000,
-  quiz_answer: 8000,
-  preposition_drill_answer: 2000,
-  review_answer: 4000,
-  // Batched lesson-answer XP is submitted as one lesson_complete event per pass.
-  // The daily cap keeps replay farming bounded without forcing per-answer writes.
   lesson_complete: 8000,
+  quiz_answer: 8000,
+  dialog_complete: 3000,
+  exam_complete: 12_000,
+  daily_task_reward: 2000,
+  achievement_reward: 5000,
+  level_up_bonus: 2000,
+  daily_login_bonus: 500,
+  daily_phrase_quest: 1000,
+  bonus_chest: 5000,
+  vocabulary_learned: 3000,
+  verb_learned: 3000,
+  preposition_drill_answer: 2000,
+  preposition_drill_perfect: 3000,
+  review_answer: 4000,
+  diagnostic_test: 2500,
+  plan_task_complete: 4000,
+  wager_win: 20_000,
+  club_mission_complete: 2000,
 };
 
 /**
@@ -140,15 +183,6 @@ function serverExamXp(pct: number, passed: boolean): number {
   if (passed) return 50 + Math.round(pct / 2);
   return Math.round(pct / 4);
 }
-
-const MIGRATABLE_NUMERIC_KEYS = [
-  'user_total_xp',
-  'user_prev_xp',
-  'user_level',
-  'weekly_xp',
-  'week_points',
-  'streak_count',
-] as const;
 
 function cleanString(value: unknown, max = 160): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
@@ -235,6 +269,152 @@ export function getWeekStartIso(dateKey: string): string {
   return isoDateUtc(monday);
 }
 
+function readWeekPoints(progress: ProgressMap, weekKey: string): number {
+  try {
+    const parsed = JSON.parse(String(progress.week_points_v2 ?? '{}')) as { weekKey?: unknown; points?: unknown };
+    return parsed.weekKey === weekKey ? Math.max(0, Number(parsed.points ?? 0) || 0) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+export function buildProgressBaseline(
+  progress: ProgressMap,
+  rawShadow: unknown,
+  now: Date = new Date(),
+): ProgressMap {
+  const shadow = rawShadow && typeof rawShadow === 'object' && !Array.isArray(rawShadow)
+    ? rawShadow as Partial<ProgressServerState>
+    : {};
+  const serverDate = isoDateUtc(now);
+  const weekKey = getWeekKey(serverDate);
+  const weekStart = getWeekStartIso(serverDate);
+  const totalXp = Math.max(0, readInt(progress.user_total_xp, 0), readInt(shadow.totalXp, 0));
+  const progressWeekXp = cleanString(progress.weekly_xp_period_start, 10) === weekStart
+    ? Math.max(0, readInt(progress.weekly_xp, 0))
+    : 0;
+  const shadowWeekXp = shadow.weekStart === weekStart ? Math.max(0, readInt(shadow.weekXp, 0)) : 0;
+  const weekXp = Math.max(progressWeekXp, shadowWeekXp);
+  const shadowWeekPoints = shadow.weekKey === weekKey ? Math.max(0, Number(shadow.weekPoints) || 0) : 0;
+  const weekPoints = Math.max(readWeekPoints(progress, weekKey), shadowWeekPoints, weekXp);
+
+  const progressLast = cleanString(progress.last_active_date ?? progress.streak_last_date, 10);
+  const shadowLast = cleanString(shadow.lastActiveDate, 10);
+  const progressStreak = Math.max(0, readInt(progress.streak_count, 0));
+  const shadowStreak = Math.max(0, readInt(shadow.streakCount, 0));
+  let lastActiveDate = progressLast;
+  let streakCount = progressStreak;
+  if (shadowLast && (!progressLast || shadowLast > progressLast)) {
+    lastActiveDate = shadowLast;
+    streakCount = shadowStreak;
+  } else if (shadowLast && shadowLast === progressLast) {
+    streakCount = Math.max(progressStreak, shadowStreak);
+  }
+
+  const baseline: ProgressMap = {
+    ...progress,
+    user_total_xp: String(totalXp),
+    user_level: String(getLevelFromXP(totalXp)),
+    weekly_xp: String(weekXp),
+    weekly_xp_period_start: weekStart,
+    week_points: String(Math.round(weekPoints)),
+    week_points_v2: JSON.stringify({ weekKey, points: weekPoints }),
+    streak_count: String(streakCount),
+  };
+  if (lastActiveDate) {
+    baseline.last_active_date = lastActiveDate;
+    baseline.streak_last_date = lastActiveDate;
+  }
+  return baseline;
+}
+
+function progressServerStateFromProgress(progress: ProgressMap, now: Date): ProgressServerState {
+  const serverDate = isoDateUtc(now);
+  const weekKey = getWeekKey(serverDate);
+  const weekStart = getWeekStartIso(serverDate);
+  const totalXp = Math.max(0, readInt(progress.user_total_xp, 0));
+  const weekXp = cleanString(progress.weekly_xp_period_start, 10) === weekStart
+    ? Math.max(0, readInt(progress.weekly_xp, 0))
+    : 0;
+  return {
+    totalXp,
+    level: getLevelFromXP(totalXp),
+    weekKey,
+    weekStart,
+    weekXp,
+    weekPoints: Math.max(weekXp, readWeekPoints(progress, weekKey)),
+    streakCount: Math.max(0, readInt(progress.streak_count, 0)),
+    lastActiveDate: cleanString(progress.last_active_date ?? progress.streak_last_date, 10),
+  };
+}
+
+function authoritativeProgressPatch(state: ProgressServerState): ProgressMap {
+  const patch: ProgressMap = {
+    user_total_xp: String(state.totalXp),
+    user_level: String(state.level),
+    weekly_xp: String(state.weekXp),
+    weekly_xp_period_start: state.weekStart,
+    week_points: String(Math.round(state.weekPoints)),
+    week_points_v2: JSON.stringify({ weekKey: state.weekKey, points: state.weekPoints }),
+    streak_count: String(state.streakCount),
+  };
+  if (state.lastActiveDate) {
+    patch.last_active_date = state.lastActiveDate;
+    patch.streak_last_date = state.lastActiveDate;
+  }
+  return patch;
+}
+
+async function projectProgressToCurrentLeague(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  result: ProgressEventResult,
+): Promise<void> {
+  const leaderboardRef = db.collection('leaderboard').doc(stableUid);
+  const leaderboardSnap = await leaderboardRef.get();
+  const leaderboard = leaderboardSnap.data() ?? {};
+  const groupId = cleanString(leaderboard.groupId, 180);
+  if (!groupId || cleanString(leaderboard.groupWeekId, 16) !== result.weekKey) return;
+
+  const groupRef = db.collection('league_groups').doc(groupId);
+  await db.runTransaction(async (tx) => {
+    const [freshLeaderboardSnap, groupSnap] = await Promise.all([
+      tx.get(leaderboardRef),
+      tx.get(groupRef),
+    ]);
+    const freshLeaderboard = freshLeaderboardSnap.data() ?? {};
+    const group = groupSnap.data() ?? {};
+    if (
+      !groupSnap.exists
+      || cleanString(group.weekId, 16) !== result.weekKey
+      || cleanString(freshLeaderboard.groupId, 180) !== groupId
+      || cleanString(freshLeaderboard.groupWeekId, 16) !== result.weekKey
+    ) return;
+
+    const members = { ...(group.members ?? {}) } as Record<string, Record<string, unknown>>;
+    const existingMember = members[stableUid] ?? {};
+    const existingPoints = Math.max(0, readInt(existingMember.points, 0));
+    const existingLeaderboardPoints = freshLeaderboard.weekKey === result.weekKey
+      ? Math.max(0, readInt(freshLeaderboard.weekPoints, 0))
+      : 0;
+    const weekPoints = Math.max(existingPoints, existingLeaderboardPoints, result.weekXp);
+    members[stableUid] = {
+      ...existingMember,
+      uid: stableUid,
+      points: weekPoints,
+      streak: result.streakCount,
+      totalXp: result.totalXp,
+    };
+    tx.set(groupRef, { members, updatedAt: Date.now() }, { merge: true });
+    tx.set(leaderboardRef, {
+      weekKey: result.weekKey,
+      weekPoints,
+      streak: result.streakCount,
+      points: result.totalXp,
+    }, { merge: true });
+  });
+}
+
 export function resolveClientDateKey(raw: unknown, now: Date): string {
   const serverToday = isoDateUtc(now);
   const candidate = cleanString(raw, 10);
@@ -269,6 +449,52 @@ export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
     platform: cleanString(data.platform, 32) || undefined,
     payload: normalizePayload(data.payload),
   };
+}
+
+function canonicalizeForFingerprint(value: unknown): unknown {
+  if (value === null || value === undefined) return value;
+  if (Array.isArray(value)) {
+    return value.map((item) => canonicalizeForFingerprint(item));
+  }
+  if (typeof value === 'object') {
+    const input = value as Record<string, unknown>;
+    const entries = Object.keys(input).sort().map((key) => [key, canonicalizeForFingerprint(input[key])]);
+    return Object.fromEntries(entries);
+  }
+  return value;
+}
+
+function sanitizeProgressEventPayloadForFingerprint(rawPayload: unknown): Record<string, unknown> {
+  if (!rawPayload || typeof rawPayload !== 'object' || Array.isArray(rawPayload)) {
+    return {};
+  }
+  const payload = rawPayload as Record<string, unknown>;
+  const sanitized: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(payload)) {
+    if (FINGERPRINT_EXCLUDED_PAYLOAD_KEYS.has(key)) continue;
+    sanitized[key] = value;
+  }
+  return sanitized;
+}
+
+function fingerprintableProgressEventPayload(event: ProgressEventInput): Record<string, unknown> {
+  return canonicalizeForFingerprint({
+    type: event.type,
+    clientLocalDate: event.clientLocalDate ?? '',
+    payload: sanitizeProgressEventPayloadForFingerprint(event.payload),
+  }) as Record<string, unknown>;
+}
+
+export function fingerprintProgressEvent(event: ProgressEventInput): string {
+  const payload = fingerprintableProgressEventPayload(event);
+  const serialized = JSON.stringify(payload);
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < serialized.length; i += 1) {
+    hash ^= serialized.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+    hash >>>= 0;
+  }
+  return hash.toString(16).padStart(8, '0');
 }
 
 function safeDocId(value: string): string {
@@ -362,52 +588,42 @@ export type ProgressDailyContext = {
   sourceXpToday?: Partial<Record<ProgressEventType, number>>;
   /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). */
   examAttemptsToday?: number;
+  totalXpToday?: number;
 };
 
 function xpFromPayload(event: ProgressEventInput, daily?: ProgressDailyContext): number {
   const payload = event.payload;
+  let requested = 0;
 
-  // ECON-3/11: XP за экзамен ограничивает сервер.
   if (event.type === 'exam_complete') {
     const level = cleanString(payload.level ?? payload.examLevel, 12).toLowerCase();
-    const isFinalExam = level === 'final';
     const attemptsSoFar = Math.max(0, daily?.examAttemptsToday ?? 0);
-
-    // Финальный экзамен даёт золотую награду (10000 XP) и гейтится «первым сертификатом» на клиенте —
-    // его НЕ пересчитываем и не режем суточным лимитом попыток (это разовое событие). ECON-3/11
-    // касаются только уровневых зачётов (a1..c2), которые можно бесконечно пересдавать ради XP.
-    if (isFinalExam) {
-      const requestedFinal = clampInt(
+    if (level === 'final') {
+      requested = clampInt(
         payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
         0,
         EVENT_XP_CAP.exam_complete,
       );
-      return requestedFinal;
+    } else {
+      if (attemptsSoFar >= EXAM_DAILY_ATTEMPT_LIMIT) return 0;
+      const pct = clampInt(payload.pct ?? payload.percent ?? payload.scorePct, 0, 100);
+      const passed = boolish(payload.passed) || pct >= 70;
+      requested = Math.max(0, Math.min(EVENT_XP_CAP.exam_complete, serverExamXp(pct, passed)));
     }
-
-    if (attemptsSoFar >= EXAM_DAILY_ATTEMPT_LIMIT) return 0;
-    const pct = clampInt(payload.pct ?? payload.percent ?? payload.scorePct, 0, 100);
-    const passed = boolish(payload.passed) || pct >= 70;
-    const computed = serverExamXp(pct, passed);
-    return Math.max(0, Math.min(EVENT_XP_CAP.exam_complete, computed));
+  } else {
+    requested = clampInt(
+      payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
+      0,
+      EVENT_XP_CAP[event.type],
+    );
   }
 
-  const requested = clampInt(
-    payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
-    0,
-    EVENT_XP_CAP[event.type],
-  );
   if (requested <= 0) return 0;
-
-  // ECON-2: суточный потолок по гриндабельным источникам — обрезаем по остатку дневного лимита.
-  const dailyCap = EVENT_DAILY_XP_CAP[event.type];
-  if (dailyCap != null) {
-    const usedToday = Math.max(0, daily?.sourceXpToday?.[event.type] ?? 0);
-    const remaining = Math.max(0, dailyCap - usedToday);
-    return Math.min(requested, remaining);
-  }
-
-  return requested;
+  const usedByType = Math.max(0, daily?.sourceXpToday?.[event.type] ?? 0);
+  const remainingByType = Math.max(0, EVENT_DAILY_XP_CAP[event.type] - usedByType);
+  const usedOverall = Math.max(0, daily?.totalXpToday ?? 0);
+  const remainingOverall = Math.max(0, GLOBAL_DAILY_XP_CAP - usedOverall);
+  return Math.min(requested, remainingByType, remainingOverall);
 }
 
 function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate: string): number {
@@ -534,8 +750,9 @@ export function applyProgressEvent(
   daily?: ProgressDailyContext,
 ): ApplyResult {
   const activeDate = resolveClientDateKey(event.clientLocalDate, now);
-  const weekKey = getWeekKey(activeDate);
-  const weekStart = getWeekStartIso(activeDate);
+  const serverDate = isoDateUtc(now);
+  const weekKey = getWeekKey(serverDate);
+  const weekStart = getWeekStartIso(serverDate);
   const patch: ProgressMap = {};
 
   const previousTotal = Math.max(0, readInt(progress.user_total_xp, 0));
@@ -574,7 +791,7 @@ export function applyProgressEvent(
   if (event.type === 'lesson_complete') {
     applyLessonFields(progress, patch, event);
   } else if (event.type === 'exam_complete') {
-    applyExamFields(progress, patch, event, activeDate);
+    applyExamFields(progress, patch, event, serverDate);
   }
 
   return {
@@ -593,98 +810,56 @@ export function applyProgressEvent(
 }
 
 export function buildMigrationPatch(snapshot: ProgressMap, existing: ProgressMap, now: Date = new Date()): ProgressMap {
-  const patch: ProgressMap = {};
-  for (const key of MIGRATABLE_NUMERIC_KEYS) {
-    const incoming = Math.max(0, readInt(snapshot[key], 0));
-    const current = Math.max(0, readInt(existing[key], 0));
-    if (incoming > current) patch[key] = String(incoming);
-  }
-
-  const incomingWeekStart = cleanString(snapshot.weekly_xp_period_start, 10);
-  if (dateKeyToUtcMs(incomingWeekStart) != null) {
-    patch.weekly_xp_period_start = incomingWeekStart;
-  }
-  const incomingWeekPointsV2 = cleanString(snapshot.week_points_v2, 120);
-  try {
-    const parsed = incomingWeekPointsV2 ? JSON.parse(incomingWeekPointsV2) as { weekKey?: unknown; points?: unknown } : null;
-    if (
-      parsed &&
-      typeof parsed.weekKey === 'string' &&
-      /^\d{4}-W\d{2}$/.test(parsed.weekKey) &&
-      Number.isFinite(Number(parsed.points))
-    ) {
-      patch.week_points_v2 = JSON.stringify({ weekKey: parsed.weekKey, points: Math.max(0, Number(parsed.points)) });
-    }
-  } catch {
-    // Ignore malformed legacy week_points_v2 during one-time migration.
-  }
-
-  const snapshotLast = cleanString(snapshot.last_active_date ?? snapshot.streak_last_date, 10);
-  const existingLast = cleanString(existing.last_active_date ?? existing.streak_last_date, 10);
-  const serverToday = isoDateUtc(now);
-  const acceptedLast = resolveClientDateKey(snapshotLast, now);
-  if (snapshotLast && acceptedLast === snapshotLast) {
-    const shouldUseSnapshot = !existingLast || (dayDiff(snapshotLast, existingLast) ?? -1) > 0;
-    if (shouldUseSnapshot) {
-      patch.last_active_date = snapshotLast;
-      patch.streak_last_date = snapshotLast;
-    }
-  } else if (!existingLast && serverToday) {
-    patch.last_active_date = serverToday;
-    patch.streak_last_date = serverToday;
-  }
-
-  const unlocked = new Set<number>([
-    ...parseUnlocked(existing.unlocked_lessons),
-    ...parseUnlocked(snapshot.unlocked_lessons),
-  ]);
-  if (unlocked.size > 0) {
-    patch.unlocked_lessons = JSON.stringify(Array.from(unlocked).sort((a, b) => a - b));
-  }
-  for (const target of ['fr'] as const) {
-    const key = unlockedLessonsKey(target);
-    const scopedUnlocked = new Set<number>([
-      ...parseUnlocked(existing[key]),
-      ...parseUnlocked(snapshot[key]),
-    ]);
-    if (scopedUnlocked.size > 0) {
-      patch[key] = JSON.stringify(Array.from(scopedUnlocked).sort((a, b) => a - b));
-    }
-  }
-
+  const patch: ProgressMap = {
+    user_level: String(getLevelFromXP(Math.max(0, readInt(existing.user_total_xp, 0)))),
+  };
   Object.keys(snapshot).forEach((key) => {
-    if (!isServerOwnedProgressKey(key)) return;
-    if (/^(?:lesson_progress_v2::fr::)?lesson\d+_(?:best_score|cellIndex)$/.test(key)) {
-      const incoming = Number(snapshot[key]);
-      const current = Number(existing[key] ?? 0);
-      if (Number.isFinite(incoming) && incoming > (Number.isFinite(current) ? current : 0)) {
-        patch[key] = String(incoming);
-      }
-    } else if (/^(?:lesson_progress_v2::fr::)?lesson\d+_pass_count$/.test(key)) {
-      const incoming = Math.max(0, readInt(snapshot[key], 0));
+    if (/^(?:lesson_progress_v2::fr::)?lesson\d+_cellIndex$/.test(key)) {
+      const incoming = clampInt(snapshot[key], 0, 100_000);
       const current = Math.max(0, readInt(existing[key], 0));
       if (incoming > current) patch[key] = String(incoming);
     } else if (/^lesson\d+_progress$/.test(key) || /^lesson_progress_v2::fr::\d+$/.test(key)) {
       const incomingScore = progressArrayScore(snapshot[key]);
       const currentScore = progressArrayScore(existing[key]);
-      if (incomingScore > currentScore && typeof snapshot[key] === 'string') {
-        patch[key] = snapshot[key];
-      }
-    } else if (/^(?:level_exams_v2::fr::)?level_exam_/.test(key)) {
-      if (key.endsWith('_passed')) {
-        patch[key] = asProgressString(boolish(existing[key]) || boolish(snapshot[key]));
-      } else if (key.endsWith('_completed_at')) {
-        const incoming = cleanString(snapshot[key], 32);
-        if (incoming) patch[key] = incoming;
-      } else {
-        const incoming = Math.max(0, readInt(snapshot[key], 0));
-        const current = Math.max(0, readInt(existing[key], 0));
-        if (incoming > current) patch[key] = String(incoming);
+      if (incomingScore > currentScore && typeof snapshot[key] === 'string' && snapshot[key].length <= 20_000) {
+        try {
+          const parsed = JSON.parse(snapshot[key] as string);
+          if (Array.isArray(parsed) && parsed.length <= 300) patch[key] = JSON.stringify(parsed);
+        } catch {
+          // Ignore malformed structural progress.
+        }
       }
     }
   });
-
+  void now;
   return patch;
+}
+
+function isSafeMigratableStructuralKey(key: string): boolean {
+  return /^(?:lesson_progress_v2::fr::)?lesson\d+_cellIndex$/.test(key)
+    || /^lesson\d+_progress$/.test(key)
+    || /^lesson_progress_v2::fr::\d+$/.test(key);
+}
+
+export function getMigrationQuarantinedSensitiveKeys(snapshot: ProgressMap): string[] {
+  return Object.keys(snapshot)
+    .filter((key) => isServerOwnedProgressKey(key) && !isSafeMigratableStructuralKey(key))
+    .sort();
+}
+
+export function buildMigrationProvenance(
+  snapshot: ProgressMap,
+  beforeXp: number,
+  acceptedXp: number,
+  appVersion: unknown,
+): MigrationProvenance {
+  return {
+    source: 'client_snapshot_v1',
+    quarantinedSensitiveKeys: getMigrationQuarantinedSensitiveKeys(snapshot),
+    beforeXp: Math.max(0, Math.trunc(beforeXp)),
+    acceptedXp: Math.max(0, Math.trunc(acceptedXp)),
+    appVersion: cleanString(appVersion, 32) || null,
+  };
 }
 
 const DAILY_EVENT_LIMIT = 500;
@@ -702,6 +877,10 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
 
   const userRef = db.collection('users').doc(stableUid);
   const ledgerRef = userRef.collection('progress_events').doc(safeDocId(event.eventId));
+  const eventFingerprint = fingerprintProgressEvent(event);
+  const existingFingerprintRef = userRef.collection('progress_events')
+    .where('fingerprint', '==', eventFingerprint)
+    .limit(1);
   const now = new Date();
   const todayKey = isoDateUtc(now);
   const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
@@ -717,6 +896,12 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       if (result) return { ...result, duplicate: true };
       throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
     }
+    const fingerprintSnap = await tx.get(existingFingerprintRef);
+    if (!fingerprintSnap.empty) {
+      const result = fingerprintSnap.docs[0].data()?.result as ProgressEventResult | undefined;
+      if (result) return { ...result, duplicate: true };
+      throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
+    }
     const counterData = counterSnap.data() ?? {};
     const dailyCount = (counterData.count as number | undefined) ?? 0;
     if (dailyCount >= DAILY_EVENT_LIMIT) {
@@ -727,17 +912,23 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     // их учётом, затем записываем обновлённые счётчики в той же транзакции (идемпотентно с ledger).
     const sourceXpToday = (counterData.sourceXp as Partial<Record<ProgressEventType, number>> | undefined) ?? {};
     const examAttemptsToday = (counterData.examAttempts as number | undefined) ?? 0;
+    const totalXpToday = Math.max(0, Number(counterData.totalXp ?? 0) || 0);
 
-    const progress = getProgress(userSnap.data());
-    const applied = applyProgressEvent(progress, event, now, { sourceXpToday, examAttemptsToday });
+    const rawProgress = getProgress(userSnap.data());
+    const progress = buildProgressBaseline(rawProgress, userSnap.data()?.progressServerState, now);
+    const applied = applyProgressEvent(progress, event, now, { sourceXpToday, examAttemptsToday, totalXpToday });
+    const mergedProgress = { ...progress, ...applied.progressPatch };
+    const progressServerState = progressServerStateFromProgress(mergedProgress, now);
+    const progressPatch = { ...applied.progressPatch, ...authoritativeProgressPatch(progressServerState) };
 
     const counterPatch: Record<string, unknown> = {
       count: dailyCount + 1,
+      totalXp: totalXpToday + applied.xpDelta,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     };
     // Вложенный sourceXp нельзя дописывать через {merge:true} с точечным ключом (создаст литеральное
     // поле "sourceXp.x"), поэтому собираем объект sourceXp целиком с FieldValue.increment.
-    if (EVENT_DAILY_XP_CAP[event.type] != null && applied.xpDelta > 0) {
+    if (applied.xpDelta > 0) {
       counterPatch.sourceXp = { [event.type]: admin.firestore.FieldValue.increment(applied.xpDelta) };
     }
     // Считаем только попытки уровневых зачётов (a1..c2) — финальный экзамен разовый и под лимит не идёт.
@@ -764,7 +955,11 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     };
 
     tx.set(userRef, {
-      progress: applied.progressPatch,
+      progress: progressPatch,
+      progressServerState: {
+        ...progressServerState,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      },
       firebaseAuthUid: authUid,
       progressServerAuthoritative: true,
       progressServerCutoverAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -774,6 +969,7 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       eventId: event.eventId,
       type: event.type,
       payload: event.payload,
+      fingerprint: eventFingerprint,
       clientLocalDate: event.clientLocalDate ?? null,
       clientCreatedAt: event.clientCreatedAt ?? null,
       appVersion: event.appVersion ?? null,
@@ -789,6 +985,10 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       console.warn('[progress_events] referral qualification failed', e);
     });
   }
+
+  await projectProgressToCurrentLeague(db, stableUid, result).catch((e) => {
+    console.warn('[progress_events] league projection failed', e);
+  });
 
   return result;
 });

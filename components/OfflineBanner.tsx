@@ -12,7 +12,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, PanResponder, StyleSheet, Text } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { subscribeNetStatus } from '../app/net_status';
 
 const AUTO_HIDE_MS = 10_000;
@@ -23,7 +23,7 @@ const L = (lang: string, map: Record<string, string>): string =>
 // lang приходит пропом (не из LangContext): баннер монтируется в _layout,
 // где язык уже есть, — так он не зависит от места в дереве провайдеров.
 export default function OfflineBanner({ lang }: { lang: string }) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const [offline, setOffline] = useState(false);
   // Локально скрыт (смахнули или прошло 10с). Сбрасывается при возврате сети.
   const [dismissed, setDismissed] = useState(false);

@@ -335,6 +335,8 @@ IF THE LEARNER WRITES IN THEIR OWN LANGUAGE: that is fine — never refuse or sc
 
 NOISY INPUT: the learner's message may come from imperfect on-device speech recognition. Infer their intent, never nitpick recognition artifacts, and NEVER say you "didn't understand" because of small garbled words. If truly unintelligible, warmly ask them to say it again.
 
+REGULATED ADVICE HARD STOP: this app is language practice, not professional advice. Never diagnose, prescribe, recommend medicines, name a medicine for a symptom, suggest dosage, choose a treatment, give legal/financial/immigration/tax instructions, or claim professional authority. In health/legal/financial roleplay, practice safe wording only: ask clarifying everyday questions, help the learner say they need professional advice, and direct real-world decisions to a qualified professional or emergency services when relevant. If the learner asks for regulated advice, decline briefly in {TARGET_LANG} and continue with a safe practice phrase.
+
 KEEP THEM TALKING: end most replies with exactly ONE simple, concrete question or invitation. Ask one thing at a time — never a list of questions.
 
 KEY PHRASES: in each reply, wrap 1-3 of the MOST useful {TARGET_LANG} phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets. The [[...]] markers may ONLY wrap words that are already part of your own sentences — like this: "We are [[running late]], so let's hurry." NEVER append an extra phrase, suggested answer, or example at the end of your reply just to highlight it, and NEVER copy phrases from these instructions into your reply. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
@@ -477,6 +479,27 @@ function assertDialogReplyMatchesTarget(reply, studyTarget = 'en') {
         });
         throw new https_1.HttpsError('unavailable', 'dialog_provider_failed');
     }
+}
+const MEDICAL_DOSAGE_RE = /\b(?:dose|dosage|mg|milligrams?|milliliters?|ml|how many tablets?|how often to take)\b/i;
+const MEDICAL_PRODUCT_RE = /\b(?:paracetamol|acetaminophen|ibuprofen|aspirin|antibiotics?|amoxicillin|insulin|painkillers?|tablets?|pills?|medicines?|medications?)\b/i;
+const MEDICAL_RECOMMEND_RE = /\b(?:i\s+(?:recommend|suggest|advise)|you\s+(?:should|can|need to|must)|try|take|use|prescribe)\b/i;
+const MEDICAL_DIAGNOSIS_RE = /\b(?:you have|it sounds like|this is|diagnos(?:e|is)|treatment|prescription)\b.{0,80}\b(?:infection|migraine|flu|covid|allergy|sprain|depression|anxiety|disease|condition)\b/i;
+function containsUnsafeRegulatedAdvice(reply) {
+    const clean = reply.replace(/\[\[|\]\]/g, ' ');
+    if (MEDICAL_DOSAGE_RE.test(clean))
+        return true;
+    if (MEDICAL_DIAGNOSIS_RE.test(clean))
+        return true;
+    return MEDICAL_PRODUCT_RE.test(clean) && MEDICAL_RECOMMEND_RE.test(clean);
+}
+function regulatedAdviceFallback(studyTarget) {
+    if (studyTarget === 'fr') {
+        return "Je ne peux pas choisir un vrai traitement ici. Demandez a un professionnel qualifie. Vous pouvez dire : [[J'ai besoin d'un conseil professionnel]].";
+    }
+    return "I can't choose a real treatment here. Please ask a qualified professional. You can say: [[I need professional advice]].";
+}
+function sanitizeRegulatedAdviceReply(reply, studyTarget = 'en') {
+    return containsUnsafeRegulatedAdvice(reply) ? regulatedAdviceFallback(studyTarget) : reply;
 }
 /** Кламп mood в 0..100 на границе сервера (аудит L1: модель может вернуть вне диапазона). */
 function clampServerMood(value) {
@@ -623,6 +646,7 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         throw new https_1.HttpsError('invalid-argument', 'unsupported_mode');
     }
     const cefr = asCefr(data.cefr);
+    const studyTarget = (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget);
     const userText = text(data.userText, MAX_USER_TEXT);
     if (!userText) {
         console.warn('premium_dialog rejected', { reason: 'user_text_required', mode });
@@ -804,12 +828,22 @@ exports.premiumDialogSend = (0, https_1.onCall)({
             });
             throw new https_1.HttpsError('unavailable', 'dialog_empty_reply');
         }
+        const safeAssistantMessage = sanitizeRegulatedAdviceReply(assistantMessage, studyTarget);
+        if (safeAssistantMessage !== assistantMessage) {
+            console.warn('premium_dialog regulated advice reply sanitized', {
+                mode,
+                scenarioId: text(data.scenarioId, 80) || null,
+                studyTarget,
+            });
+            assistantMessage = safeAssistantMessage;
+            turnState = null;
+        }
         // ЯЗЫК-ЗАМОК: реплика собеседника ОБЯЗАНА быть на ИЗУЧАЕМОМ языке (studyTarget).
         // Если модель сорвалась на язык ученика (русский/украинский/…), отклоняем как сбой
         // провайдера — клиент покажет «не получилось, повтори», а НЕ реплику не на том
         // языке. Снимаем [[...]]-маркеры перед проверкой, чтобы они не мешали детектору;
         // порог скрипта (40%) не ловит отдельное эхо-слово ученика.
-        assertDialogReplyMatchesTarget(assistantMessage, (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget));
+        assertDialogReplyMatchesTarget(assistantMessage, studyTarget);
     }
     catch (error) {
         // Откатываем то, что списали ДО провайдера, чтобы его сбой не съел попытку:
@@ -1032,6 +1066,8 @@ exports.__premiumDialogTestHooks = {
     assertDialogReplyMatchesTarget,
     assertDialogTranslationLanguage,
     asTargetLang,
+    containsUnsafeRegulatedAdvice,
+    sanitizeRegulatedAdviceReply,
     translationCacheId,
 };
 //# sourceMappingURL=premium_dialog.js.map

@@ -550,7 +550,7 @@ export async function getOrCreateLeagueGroup(
   const uid = await ensureAnonUser();
   if (!uid) return null;
   await ensureStableAuthLink().catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
 
   // Читаем аватар и рамку чтобы сохранить их в данных участника
   const [
@@ -623,7 +623,7 @@ export async function getOrCreateLeagueGroup(
     if (cachedMembers.length > 0) return cachedMembers;
   }
 
-  try {
+  if (appCheckReady) try {
     const fn = callable<
       { weekId: string; leagueId: number; stableId?: string; member: Record<string, unknown> },
       { ok: boolean; groupId: string; weekId: string; leagueId: number }
@@ -978,7 +978,8 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
     if (!options.force && shouldSkipLeaguePointsCallable(cachedBeforeAuth, weekId, leagueId, weekPoints)) return;
 
     await ensureStableAuthLink().catch(() => false);
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+    if (!appCheckReady) return;
 
     const [
       [, avatarRaw],
@@ -1138,9 +1139,12 @@ function mapLeagueMembersToGroupList(
       const mult = m.leagueBoostMultiplier;
       const until = typeof m.leagueBoostExpiresAt === 'number' ? m.leagueBoostExpiresAt : 0;
       const boostLive = typeof mult === 'number' && mult > 1 && until > Date.now();
+      const serverPoints = Number(m.points);
+      const memberPoints = Number.isFinite(serverPoints) ? Math.max(0, serverPoints) : 0;
+      const localPoints = Number.isFinite(Number(myWeekPoints)) ? Math.max(0, Number(myWeekPoints)) : 0;
       return {
         name: m.name,
-        points: key === myUid ? myWeekPoints : (m.points ?? 0),
+        points: key === myUid ? Math.max(memberPoints, localPoints) : memberPoints,
         isMe: key === myUid,
         uid: key,
         isPremium: m.isPremium ?? false,
@@ -1303,7 +1307,8 @@ export async function syncMyLeagueMemberBoostToCloud(): Promise<void> {
   const uid = await ensureAnonUser();
   if (!uid) return;
   await ensureStableAuthLink().catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+  if (!appCheckReady) return;
   const boost = await loadActiveLeagueBoost();
   try {
     const fn = callable<{ stableId?: string; multiplier?: number; expiresAt?: number }, { ok: boolean }>('leagueSyncMyBoost');

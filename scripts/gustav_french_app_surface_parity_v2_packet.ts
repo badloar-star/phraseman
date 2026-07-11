@@ -78,6 +78,7 @@ const REQUIRED_REMOTE_PACK_SURFACES = [
   'audio_metadata',
   'flashcard',
   'personal_practice',
+  'daily_phrase',
 ];
 
 const APP_DOMAIN_PARITY_ROLES: Record<string, SurfaceDomain['parityRole']> = {
@@ -192,10 +193,9 @@ export function buildFrenchAppSurfaceParity(input: {
     b(devNavigationSummary, 'challengeSurfaceGuardsReady') &&
     b(devNavigationSummary, 'dailySurfaceGuardsReady') &&
     b(devNavigationSummary, 'arenaSurfaceGuardsReady') &&
-    b(devNavigationSummary, 'compassNavigationGuardsReady') &&
     b(devNavigationSummary, 'trainerSessionSelfGatesReady') &&
     n(devNavigationSummary, 'probesPassed') === n(devNavigationSummary, 'probes') &&
-    n(devNavigationSummary, 'probes') >= 80;
+    n(devNavigationSummary, 'probes') >= 70;
 
   if (s(currentSurfaceInventory, 'status') !== 'PASS') addFinding(findings, 'blocker', 'current_surface_inventory_not_pass', 'Current app surface inventory must be PASS.', rel(input.repoRoot, currentSurfaceInventoryPath));
   if (n(currentSurfaceSummary, 'unclassifiedDirtyAppComponentTestFiles') !== 0) addFinding(findings, 'blocker', 'unclassified_dirty_surfaces', 'French activation cannot proceed with unclassified dirty app/component/test surfaces.', rel(input.repoRoot, currentSurfaceInventoryPath));

@@ -94,9 +94,14 @@ jest.mock('firebase-functions/v2/https', () => ({
     HttpsError: FakeHttpsError,
     onCall: (_opts, handler) => handler,
 }));
-jest.mock('firebase-admin', () => ({
-    firestore: jest.fn(() => buildDb()),
-}));
+jest.mock('firebase-admin', () => {
+    const firestore = Object.assign(jest.fn(() => buildDb()), {
+        FieldValue: {
+            serverTimestamp: jest.fn(() => new Date('2026-06-12T10:00:00.000Z')),
+        },
+    });
+    return { firestore };
+});
 function seedGiftUsers() {
     docs.set('users/sender', {
         firebaseAuthUid: 'auth-sender',
@@ -181,6 +186,7 @@ test('friendSendGift repairs stale anonymous auth ownership before spending shar
     docs.set('users/sender', {
         ...docs.get('users/sender'),
         firebaseAuthUid: 'old-anon-auth',
+        anon_merge_claim: { authUid: 'old-anon-auth', at: Date.now() },
     });
     const result = await sendGift();
     expect(result).toMatchObject({ ok: true, senderBalanceAfter: 92 });

@@ -6,6 +6,8 @@ jest.mock('expo-router', () => ({
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: ({ children }: any) => children }));
 jest.mock('../components/AddToFlashcard', () => () => null);
 jest.mock('../components/ContentWrap', () => ({ children }: any) => children);
+jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
+jest.mock('../components/feedback/VictoryBurst', () => () => null);
 jest.mock('../components/LangContext', () => ({
   useLang: () => ({ lang: 'ru', s: { words: {} } }),
 }));
@@ -35,6 +37,16 @@ jest.mock('../app/mistake_log', () => ({ logMistake: jest.fn() }));
 jest.mock('../app/trainer_store', () => ({ activateWordForTrainer: jest.fn(), recordWordMistake: jest.fn() }));
 jest.mock('../app/coach_toast_trigger', () => ({ checkCoachToastNeededWithAnalytics: jest.fn() }));
 jest.mock('../app/stats_daily_breakdown', () => ({ bumpStatsDaily: jest.fn() }));
+jest.mock('../app/feedback/feedback_kit', () => ({
+  __esModule: true,
+  default: {
+    tap: jest.fn(),
+    correct: jest.fn(),
+    wrong: jest.fn(),
+    combo: jest.fn(),
+    comboBreak: jest.fn(),
+  },
+}));
 jest.mock('../app/lesson_premium_gate', () => ({ openLessonAccessGate: jest.fn(), openLessonGateByRuntime: jest.fn(), shouldBlockLessonAccess: jest.fn() }));
 jest.mock('../app/vocabulary_target_gate', () => ({
   frenchVocabularyGateCopy: jest.fn(),

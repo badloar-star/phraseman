@@ -7,7 +7,7 @@ const ROOT = path.resolve(__dirname, '..');
 // word `fallback` was dropped (it matches legit feature UI like the Compass
 // «голос дня (fallback)»), and the lookbehind keeps RU/UK/ES from matching
 // inside identifiers like CLUB_DEFS_RU.
-const RUNTIME_FALLBACK_RE = /(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?<![A-Za-z0-9_])(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?<![A-Za-z0-9_])(?:RU|UK|ES)\b)/g;
+const RUNTIME_FALLBACK_RE = /(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?<![A-Za-z0-9_'-])(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?<![A-Za-z0-9_'-])(?:RU|UK|ES)\b)/g;
 
 describe('web and admin runtime locale fallback audit', () => {
   it('keeps public web/admin bridge files free of legacy runtime fallback markers', () => {
@@ -69,11 +69,12 @@ describe('web and admin runtime locale fallback audit', () => {
   it('keeps the public referral invite page install-first for new users', () => {
     const source = fs.readFileSync(path.join(ROOT, 'knowly-www/phraseman/invite/index.html'), 'utf8');
 
-    expect(source).not.toContain('phraseman://invite');
     expect(source).not.toContain('window.location.href = appUrl');
     expect(source).not.toContain('id="openApp"');
     expect(source).toContain('referrer=');
     expect(source).toContain('installGooglePlay');
+    expect(source).toContain("openApp.className = 'secondary'");
+    expect(source).toContain('actions.insertBefore(openApp, store.nextSibling)');
   });
 
   it('does not label Firebase-authenticated users as anonymous when provider metadata is missing', () => {

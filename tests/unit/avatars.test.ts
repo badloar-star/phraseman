@@ -40,9 +40,10 @@ describe('avatars', () => {
       expect(getBestAvatarForLevel(-5)).toBe('1');
     });
 
-    it('clamps to "50" for levels above 50', () => {
-      expect(getBestAvatarForLevel(51)).toBe('50');
-      expect(getBestAvatarForLevel(100)).toBe('50');
+    it('supports level avatars through 60 and clamps above that', () => {
+      expect(getBestAvatarForLevel(51)).toBe('51');
+      expect(getBestAvatarForLevel(60)).toBe('60');
+      expect(getBestAvatarForLevel(100)).toBe('60');
     });
 
     it('returns string (not number)', () => {

@@ -19,7 +19,7 @@ describe('SpeakingPanel hold-mode wiring', () => {
   });
 
   it('uses push-to-talk (press in / press out) rather than a tap toggle in hold mode', () => {
-    expect(source).toContain('onPressIn: startHold');
+    expect(source).toContain('onPressIn: () =>');
     expect(source).toContain('onPressOut');
     expect(source).toContain('startHoldRecording(');
   });
@@ -31,11 +31,11 @@ describe('SpeakingPanel hold-mode wiring', () => {
     expect(source).toContain('locale: recognitionLocale');
   });
 
-  it('warms the whisper model for the target locale and can fall back on failure', () => {
+  it('warms whisper in the background while system hold remains immediately available', () => {
     expect(source).toContain('ensureNeuralModel(recognitionLocale)');
-    expect(source).toContain('holdModelFailed');
-    // System path only auto-starts when hold is unavailable OR model prep failed.
-    expect(source).toContain('if (holdSupported && !holdModelFailed) return;');
+    expect(source).toContain('const holdMode = !isPreview && !!speech');
+    expect(source).not.toContain('autoStartedRef');
+    expect(source).not.toContain('holdModelFailed');
   });
 
   it('cleans up an in-flight hold recording when the panel unmounts', () => {

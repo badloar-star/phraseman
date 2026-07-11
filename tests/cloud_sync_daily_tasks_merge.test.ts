@@ -904,7 +904,9 @@ describe('streak cloud restore safety', () => {
       league_result_pending: pendingResult,
     }));
 
-    expect(restored).toBe(false);
+    // Other safe cloud fields (for example the current league state) may still
+    // be restored; the consumed-result tombstone must only block the modal.
+    expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('league_result_pending')).resolves.toBeNull();
   });
 

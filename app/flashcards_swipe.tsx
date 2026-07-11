@@ -23,6 +23,7 @@ import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -2040,6 +2041,7 @@ export default function FlashcardsSwipeScreen() {
   const cardHeight = isPlanFlashcardsTask
     ? Math.min(292, Math.max(218, height * 0.34))
     : Math.min(360, Math.max(250, height * 0.42));
+  const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));
   const rotate = position.x.interpolate({
     inputRange: [-width / 2, 0, width / 2],
     outputRange: ['-7deg', '0deg', '7deg'],
@@ -2453,15 +2455,20 @@ export default function FlashcardsSwipeScreen() {
             </View>
 
             {feedback ? (
-              <View
+              <ScrollView
                 style={[
                   styles.feedbackBox,
                   isPlanFlashcardsTask && styles.planFeedbackBox,
+                  styles.feedbackScroll,
+                  { maxHeight: feedbackMaxHeight },
                   {
                     backgroundColor: feedback.kind === 'wrong' ? t.wrongBg : t.goldBg,
                     borderColor: 'transparent',
                   },
                 ]}
+                contentContainerStyle={styles.feedbackScrollContent}
+                showsVerticalScrollIndicator
+                nestedScrollEnabled
               >
                 <Text
                   style={[
@@ -2474,18 +2481,18 @@ export default function FlashcardsSwipeScreen() {
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctChoice}
                 </Text>
-                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 1 : undefined}>
+                <FlowText testID="flashcards-feedback-answer" provenance="authored" style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
                   {feedback.prompt.isMatch ? `${text.match}: ${text.matchHint}` : `${text.mismatch}: ${text.mismatchHint}`}
-                </Text>
+                </FlowText>
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctTranslation}
                 </Text>
-                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
+                <FlowText testID="flashcards-feedback-translation" provenance="authored" style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
                   {currentPrompt.trueTranslation}
-                </Text>
+                </FlowText>
                 {!isPlanFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}
                 {note && !isPlanFlashcardsTask ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
-              </View>
+              </ScrollView>
             ) : null}
           </Animated.View>
         </View>
@@ -3053,12 +3060,16 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 0,
     borderRadius: 16,
-    padding: 12,
   },
   planFeedbackBox: {
     marginTop: 8,
     borderRadius: 12,
-    padding: 8,
+  },
+  feedbackScroll: {
+    flexGrow: 0,
+  },
+  feedbackScrollContent: {
+    padding: 12,
   },
   feedbackTitle: {
     fontWeight: '900',

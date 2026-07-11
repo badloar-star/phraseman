@@ -1,5 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  Animated,
+  Easing,
   KeyboardAvoidingView,
   Modal,
   Platform,
@@ -26,6 +28,7 @@ import {
 import {
   addHelpBoardComment,
   createHelpBoardTopic,
+  deleteHelpBoardCompassAnswer,
   deleteHelpBoardTopicForEveryone,
   getHelpBoardScope,
   getHiddenHelpBoardComments,
@@ -50,6 +53,10 @@ import {
 import { getStableId } from '../app/stable_id';
 
 type ToastKind = 'success' | 'error' | 'info';
+
+// Окно отмены скрытия: тап «скрыть» запускает 10-сек отсчёт (кольцо-таймер),
+// повторный тап отменяет. Спасает от случайного скрытия.
+const HIDE_UNDO_WINDOW_MS = 10_000;
 
 function boardCopy(lang: string) {
   return {
@@ -90,6 +97,9 @@ function boardCopy(lang: string) {
     reply: triLang(lang as any, { ru: 'Ответить', uk: 'Відповісти', es: 'Responder', 'pt-BR': 'Responder', vi: 'Tra loi', id: 'Balas', tr: 'Yanitla', pl: 'Odpowiedz' }),
     helpful: triLang(lang as any, { ru: 'Оценить', uk: 'Оцінити', es: 'Valorar', 'pt-BR': 'Avaliar', vi: 'Danh gia', id: 'Nilai', tr: 'Oyla', pl: 'Ocen' }),
     hide: triLang(lang as any, { ru: 'Скрыть', uk: 'Сховати', es: 'Ocultar', 'pt-BR': 'Ocultar', vi: 'An', id: 'Sembunyikan', tr: 'Gizle', pl: 'Ukryj' }),
+    hideCancel: triLang(lang as any, { ru: 'Отменить скрытие', uk: 'Скасувати приховування', es: 'Cancelar ocultar', 'pt-BR': 'Cancelar ocultar', vi: 'Huy an', id: 'Batalkan sembunyikan', tr: 'Gizlemeyi iptal et', pl: 'Anuluj ukrycie' }),
+    deleteCompass: triLang(lang as any, { ru: 'Удалить ответ Компаса', uk: 'Видалити відповідь Компаса', es: 'Eliminar respuesta de Compass', 'pt-BR': 'Excluir resposta do Compass', vi: 'Xoa cau tra loi Compass', id: 'Hapus jawaban Compass', tr: 'Compass yanitini sil', pl: 'Usun odpowiedz Compass' }),
+    deleteCompassCancel: triLang(lang as any, { ru: 'Отменить удаление', uk: 'Скасувати видалення', es: 'Cancelar eliminacion', 'pt-BR': 'Cancelar exclusao', vi: 'Huy xoa', id: 'Batalkan hapus', tr: 'Silmeyi iptal et', pl: 'Anuluj usuniecie' }),
     report: triLang(lang as any, { ru: 'Пожаловаться', uk: 'Поскаржитись', es: 'Reportar', 'pt-BR': 'Denunciar', vi: 'Bao cao', id: 'Laporkan', tr: 'Sikayet', pl: 'Zglos' }),
     reportSubtitle: triLang(lang as any, {
       ru: 'Что не так с этим сообщением?',
@@ -278,6 +288,87 @@ interface HelpBoardPanelProps {
   onDeepLinkConsumed?: () => void;
 }
 
+// ── Кольцо-таймер окна отмены скрытия ────────────────────────────────────────
+// За `durationMs` дуга плавно убывает (полное кольцо → пусто), в центре — крест
+// (тап = отмена). Приём «два полукруга» как в CircularProgress, но анимированный
+// одним Animated.Value (0→1) на нативном драйвере — плавно на всех устройствах.
+interface HideCountdownRingProps {
+  startedAt: number;
+  durationMs: number;
+  size: number;
+  color: string;
+  trackColor: string;
+  holeColor: string;
+}
+
+const HideCountdownRingBase = ({ startedAt, durationMs, size, color, trackColor, holeColor }: HideCountdownRingProps) => {
+  const sw = 2.5;
+  const h = size / 2;
+  // progress: 0 в момент старта → 1 к концу окна. Заполнение «стирается» = (1 - progress).
+  const progress = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const elapsed = Math.max(0, Date.now() - startedAt);
+    const remaining = Math.max(0, durationMs - elapsed);
+    progress.setValue(Math.min(1, elapsed / durationMs));
+    const anim = Animated.timing(progress, {
+      toValue: 1,
+      duration: remaining,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
+    anim.start();
+    return () => anim.stop();
+  }, [durationMs, progress, startedAt]);
+
+  // Оставшаяся доля кольца = 1 - progress. Правый полукруг активен всегда (до 50%),
+  // левый — пока осталось > 50%.
+  const rightRot = progress.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: ['0deg', '0deg', '-180deg'],
+  });
+  const leftRot = progress.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: ['180deg', '0deg', '0deg'],
+  });
+  // Левая половина исчезает во второй половине отсчёта.
+  const leftOpacity = progress.interpolate({
+    inputRange: [0, 0.499, 0.5, 1],
+    outputRange: [1, 1, 0, 0],
+  });
+
+  return (
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ position: 'absolute', width: size, height: size, borderRadius: h, overflow: 'hidden' }}>
+        {/* Трек */}
+        <View style={{ position: 'absolute', width: size, height: size, backgroundColor: trackColor }} />
+        {/* Левый полукруг (верх-лево, активен пока осталось > 50%) */}
+        <Animated.View style={{ position: 'absolute', left: 0, top: 0, width: h, height: size, overflow: 'hidden', opacity: leftOpacity }}>
+          <Animated.View style={{
+            position: 'absolute', left: 0, top: 0, width: h, height: size, backgroundColor: color,
+            transform: [{ translateX: h / 2 }, { rotate: leftRot }, { translateX: -(h / 2) }],
+          }} />
+        </Animated.View>
+        {/* Правый полукруг */}
+        <View style={{ position: 'absolute', left: h, top: 0, width: h, height: size, overflow: 'hidden' }}>
+          <Animated.View style={{
+            position: 'absolute', left: 0, top: 0, width: h, height: size, backgroundColor: color,
+            transform: [{ translateX: -(h / 2) }, { rotate: rightRot }, { translateX: h / 2 }],
+          }} />
+        </View>
+        {/* Внутренняя дырка → кольцо */}
+        <View style={{
+          position: 'absolute', left: sw, top: sw,
+          width: size - sw * 2, height: size - sw * 2,
+          borderRadius: (size - sw * 2) / 2, backgroundColor: holeColor,
+        }} />
+      </View>
+      {/* Крест по центру — «отменить» */}
+      <Ionicons name="close" size={size * 0.5} color={color} />
+    </View>
+  );
+};
+const HideCountdownRing = memo(HideCountdownRingBase);
+
 function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPanelProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -296,6 +387,9 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<HelpBoardTopic | null>(null);
   const [comments, setComments] = useState<HelpBoardComment[]>([]);
+  // Оптимистичные комментарии: показываем СВОЙ коммент мгновенно (как топики выше),
+  // юзер не ждёт ответа сервера. Убираем, когда live-снапшот принесёт настоящий.
+  const [optimisticComments, setOptimisticComments] = useState<HelpBoardComment[]>([]);
   const [composerOpen, setComposerOpen] = useState(false);
   const [titleDraft, setTitleDraft] = useState('');
   const [questionDraft, setQuestionDraft] = useState('');
@@ -307,14 +401,17 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
   const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Комментарий, к которому надо доскроллить, как только он появится в снапшоте.
   const pendingScrollCommentIdRef = useRef<string | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [topicSubmitting, setTopicSubmitting] = useState(false);
   const [myStableUid, setMyStableUid] = useState('');
   const [deleteArmedTopicId, setDeleteArmedTopicId] = useState<string | null>(null);
-  const [deletingTopicId, setDeletingTopicId] = useState<string | null>(null);
   // Мои голоса (targetKey → 1): мгновенная подсветка «уже лайкнуто» + защита от даблтапа.
   const [myVotes, setMyVotes] = useState<Record<string, number>>({});
+  const [voteDeltas, setVoteDeltas] = useState<Record<string, number>>({});
   const [votePending, setVotePending] = useState<Record<string, boolean>>({});
+  // Отложенное скрытие с окном отмены: тап «скрыть» не прячет сразу, а запускает
+  // 10-сек отсчёт (кольцо-таймер на кнопке). Повторный тап в это окно — отмена.
+  // targetKey ('topic_<id>' / 'comment_<id>') → метка старта (ms).
+  const [pendingHides, setPendingHides] = useState<Record<string, number>>({});
+  const pendingHideTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   // Диалог жалобы: цель + отправка.
   const [reportTarget, setReportTarget] = useState<{ type: HelpBoardTargetType; id: string } | null>(null);
   const [reportSending, setReportSending] = useState(false);
@@ -327,6 +424,10 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
   // асинхронно, поэтому два быстрых тапа в одном тике проходили оба. Ref
   // блокирует второй вход мгновенно.
   const topicSubmitInFlightRef = useRef(false);
+  const commentSubmitInFlightRef = useRef(false);
+  const voteWriteChainRef = useRef<Record<string, Promise<void>>>({});
+  const latestVoteIntentRef = useRef<Record<string, number>>({});
+  const latestLocalVotesRef = useRef<Record<string, number>>({});
 
   const canWrite = true;
   const commentComposerBottomPadding = getKeyboardAwareComposerBottomPadding(
@@ -339,7 +440,10 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     let alive = true;
     void getHiddenHelpBoardTopics().then((map) => { if (alive) setHiddenTopics(map); });
     void getHiddenHelpBoardComments().then((map) => { if (alive) setHiddenComments(map); });
-    void getMyHelpBoardVotes().then((map) => { if (alive) setMyVotes(map); }).catch(() => {});
+    void getMyHelpBoardVotes().then((map) => {
+      latestLocalVotesRef.current = map;
+      if (alive) setMyVotes(map);
+    }).catch(() => {});
     void getStableId().then((uid) => { if (alive) setMyStableUid(uid); }).catch(() => {});
     return () => {
       alive = false;
@@ -363,6 +467,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
 
   useEffect(() => {
     setReplyTarget(null);
+    setOptimisticComments([]);
     commentLayoutsRef.current = {};
     if (!selectedId) {
       setSelectedTopic(null);
@@ -403,13 +508,27 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     return () => clearTimeout(id);
   }, [keyboardAvoidance.visible, keyboardBottomInset, selectedId]);
 
+  // Матч оптимистичного и настоящего — по НОРМАЛИЗОВАННОМУ тексту (сервер мог
+  // подрезать пробелы). Раньше матч шёл по authorUid, но у оптимистичного он
+  // 'local', а у настоящего — реальный stableUid, поэтому они НИКОГДА не
+  // совпадали → свой пост/коммент показывался дважды («как два скопированных»).
+  const normText = (s: string) => (s || '').trim();
   const visibleTopics = [
     ...optimisticTopics.filter((optimistic) => (
-      !topics.some((topic) => topic.title === optimistic.title && topic.text === optimistic.text)
+      !topics.some((topic) => (
+        normText(topic.title) === normText(optimistic.title) &&
+        normText(topic.text) === normText(optimistic.text)
+      ))
     )),
     ...topics,
   ].filter((topic) => !hiddenTopics[topic.id]);
-  const visibleComments = comments.filter((comment) => !hiddenComments[comment.id]);
+  const visibleComments = [
+    ...comments,
+    ...optimisticComments.filter((optimistic) => (
+      // Настоящий коммент уже прилетел в снапшот (совпал текст) — прячем оптимистичный.
+      !comments.some((comment) => normText(comment.text) === normText(optimistic.text))
+    )),
+  ].filter((comment) => !hiddenComments[comment.id]);
 
   const showToast = useCallback((message: string, type: ToastKind = 'info') => {
     // Показываем внутри панели — не зависим от того, как родитель обрабатывает onToast.
@@ -420,14 +539,14 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     if (type === 'error' && onToast) onToast(message, type);
   }, [onToast]);
 
-  const submitTopic = useCallback(async () => {
+  const submitTopic = useCallback(() => {
     if (!canWrite) {
       showToast(copy.restricted, 'error');
       return;
     }
     const title = titleDraft.trim();
     const text = questionDraft.trim();
-    if (title.length < 4 || text.length < 8 || topicSubmitting || topicSubmitInFlightRef.current) return;
+    if (title.length < 4 || text.length < 8 || topicSubmitInFlightRef.current) return;
     topicSubmitInFlightRef.current = true;
     hapticTap();
     const now = Date.now();
@@ -462,74 +581,135 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     setTitleDraft('');
     setQuestionDraft('');
     setComposerOpen(false);
-    setTopicSubmitting(true);
-    try {
-      const status = await createHelpBoardTopic({ scope, title, text });
+    setTimeout(() => { topicSubmitInFlightRef.current = false; }, 0);
+    void createHelpBoardTopic({ scope, title, text }).then((status) => {
       if (status === 'created') {
         setTimeout(() => {
           setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
         }, 15_000);
-      } else if (status === 'review') {
-        setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-        showToast('Sent to review', 'info');
-      } else if (status === 'restricted') {
-        setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-        showToast(copy.restricted, 'error');
-      } else {
-        setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-        showToast(topicSubmitErrorMessage(status, lang), 'error');
       }
-    } finally {
-      setTopicSubmitting(false);
-      topicSubmitInFlightRef.current = false;
-    }
-  }, [canWrite, copy.restricted, questionDraft, scope, showToast, titleDraft, topicSubmitting]);
+    }).catch(() => {});
+  }, [canWrite, copy.restricted, questionDraft, scope, showToast, titleDraft]);
 
-  const submitComment = useCallback(async () => {
-    if (!selectedId || commentDraft.trim().length < 2 || busy) return;
+  const submitComment = useCallback(() => {
+    if (!selectedId || commentDraft.trim().length < 2 || commentSubmitInFlightRef.current) return;
     if (!canWrite) {
       showToast(copy.restricted, 'error');
       return;
     }
+    commentSubmitInFlightRef.current = true;
     hapticTap();
-    setBusy(true);
-    const status = await addHelpBoardComment({
+    // Оптимистичный UI: показываем коммент сразу, поле очищаем мгновенно —
+    // юзер не сидит и не ждёт, когда сервер ответит (как с топиками выше).
+    const now = Date.now();
+    const optimisticId = `optimistic-comment-${now}`;
+    const text = commentDraft;
+    const activeReply = replyTarget;
+    const optimisticComment: HelpBoardComment = {
+      id: optimisticId,
       topicId: selectedId,
-      text: commentDraft,
-      ...(replyTarget ? { replyToCommentId: replyTarget.id } : {}),
-    });
-    setBusy(false);
+      boardKey: scope.boardKey,
+      targetLang: scope.targetLang,
+      uiLang: scope.uiLang,
+      text,
+      authorUid: 'local',
+      authorName: 'You',
+      authorAvatar: '',
+      authorAura: '',
+      status: 'visible',
+      ...(activeReply
+        ? {
+            replyToCommentId: activeReply.id,
+            replyToAuthorUid: activeReply.authorUid,
+            replyToAuthorName: activeReply.authorName,
+            replyToText: activeReply.text,
+            replyToIsCompass: activeReply.isCompass,
+          }
+        : {}),
+      helpfulScore: 0,
+      reportCount: 0,
+      createdAt: now,
+      updatedAt: now,
+    };
+    setOptimisticComments((cur) => [...cur, optimisticComment].slice(-8));
+    setCommentDraft('');
+    setReplyTarget(null);
+    setTimeout(() => { commentSubmitInFlightRef.current = false; }, 0);
+    const status = 'sent' as Awaited<ReturnType<typeof addHelpBoardComment>>;
+    void addHelpBoardComment({
+      topicId: selectedId,
+      text,
+      ...(activeReply ? { replyToCommentId: activeReply.id } : {}),
+    }).catch(() => {});
+    const dropOptimistic = () =>
+      setOptimisticComments((cur) => cur.filter((comment) => comment.id !== optimisticId));
     if (status === 'sent') {
-      setCommentDraft('');
-      setReplyTarget(null);
+      // Живой снапшот подтянет настоящий коммент; на всякий случай снимаем оптимистичный чуть позже.
+      return;
     } else if (status === 'review') {
-      setCommentDraft('');
-      setReplyTarget(null);
+      dropOptimistic();
       showToast('Sent to review', 'info');
     } else if (status === 'restricted') {
+      dropOptimistic();
+      setCommentDraft(text);
+      setReplyTarget(activeReply);
       showToast(copy.restricted, 'error');
     } else {
+      // Ошибка отправки — откатываем: убираем оптимистичный коммент, возвращаем черновик.
+      dropOptimistic();
+      setCommentDraft(text);
+      setReplyTarget(activeReply);
       showToast(commentSubmitErrorMessage(status, lang), 'error');
     }
-  }, [busy, canWrite, commentDraft, copy.restricted, replyTarget, selectedId, showToast]);
+  }, [canWrite, commentDraft, copy.restricted, lang, replyTarget, scope.boardKey, scope.targetLang, scope.uiLang, selectedId, showToast]);
 
   // Лайк-тоггл: иконка меняется МГНОВЕННО (оптимистично), счётчик подтягивает
   // live-подписка после серверной транзакции. Ошибка → откат + тост (раньше
   // ошибки глотались молча, и лайк выглядел «не работает»).
   const toggleVote = useCallback(async (targetType: HelpBoardTargetType, targetId: string) => {
     const key = helpBoardVoteKey(targetType, targetId);
+    hapticTap();
+    const prevLocal = Number(latestLocalVotesRef.current[key] ?? myVotes[key] ?? 0);
+    const nextLocal = prevLocal === 1 ? 0 : 1;
+    latestLocalVotesRef.current = { ...latestLocalVotesRef.current, [key]: nextLocal };
+    setMyVotes((cur) => ({ ...cur, [key]: nextLocal }));
+    setVoteDeltas((cur) => ({ ...cur, [key]: Number(cur[key] || 0) + (nextLocal - prevLocal) }));
+    const sequence = (latestVoteIntentRef.current[key] || 0) + 1;
+    latestVoteIntentRef.current[key] = sequence;
+    voteWriteChainRef.current[key] = (voteWriteChainRef.current[key] || Promise.resolve())
+      .catch(() => {})
+      .then(async () => {
+        if (latestVoteIntentRef.current[key] !== sequence) return;
+        await voteHelpBoardItem(targetType, targetId, nextLocal === 0 ? 0 : 1).catch(() => {});
+        if (latestVoteIntentRef.current[key] !== sequence) return;
+        setTimeout(() => {
+          if (latestVoteIntentRef.current[key] !== sequence) return;
+          setVoteDeltas((cur) => {
+            const next = { ...cur };
+            delete next[key];
+            return next;
+          });
+        }, 1500);
+      });
+    return;
     if (votePending[key]) return;
     hapticTap();
     const prev = Number(myVotes[key] || 0);
     const next = prev === 1 ? 0 : 1;
     setMyVotes((cur) => ({ ...cur, [key]: next }));
     setVotePending((cur) => ({ ...cur, [key]: true }));
-    const res = await voteHelpBoardItem(targetType, targetId, next === 0 ? 0 : 1);
+    const res = await voteHelpBoardItem(targetType, targetId, next === 0 ? 0 : 1) ?? { ok: false, value: next, throttled: false };
     setVotePending((cur) => {
       const copyMap = { ...cur };
       delete copyMap[key];
       return copyMap;
     });
+    if (res && res.throttled) {
+      // Слишком частый тап (транзиентный троттлинг). Голос НЕ записан — тихо
+      // откатываем оптимистичное состояние, но НЕ пугаем юзера тостом ошибки.
+      setMyVotes((cur) => ({ ...cur, [key]: prev }));
+      return;
+    }
     if (!res || !res.ok) {
       setMyVotes((cur) => ({ ...cur, [key]: prev }));
       showToast(copy.voteFailed, 'error');
@@ -557,42 +737,109 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     }
   }, [copy.reportAlready, copy.reportFailed, copy.reportSent, reportSending, reportTarget, showToast]);
 
-  const hideTopic = useCallback(async (topicId: string) => {
-    hapticTap();
-    await hideHelpBoardTopic(topicId);
+  // Реальное скрытие (после истечения окна отмены).
+  const commitHideTopic = useCallback((topicId: string) => {
     setHiddenTopics((cur) => ({ ...cur, [topicId]: true }));
     if (selectedId === topicId) setSelectedId(null);
+    void hideHelpBoardTopic(topicId).catch(() => {});
   }, [selectedId]);
 
-  const hideComment = useCallback(async (commentId: string) => {
-    hapticTap();
-    await hideHelpBoardComment(commentId);
+  const commitHideComment = useCallback((commentId: string) => {
     setHiddenComments((cur) => ({ ...cur, [commentId]: true }));
+    void hideHelpBoardComment(commentId).catch(() => {});
+  }, []);
+
+  // Реальное удаление ответа Компаса (автор поста, у всех) — после окна отмены.
+  const commitDeleteCompass = useCallback((topicId: string) => {
+    setComments((cur) => cur.filter((comment) => !(comment.topicId === topicId && comment.isCompass)));
+    void deleteHelpBoardCompassAnswer(topicId).catch(() => {});
+    // Успех подтянет live-подписка (Компас-коммент станет deleted / уйдёт из снапшота).
+  }, []);
+
+  // Универсальное окно отмены с кольцом-таймером: повторный тап по тому же
+  // ключу отменяет; по истечении срабатывает action. Использует hide-scключи и
+  // Компас-удаление (ключ 'compass_<topicId>').
+  const toggleUndoCountdown = useCallback((key: string, action: () => void) => {
+    hapticTap();
+    const existing = pendingHideTimersRef.current[key];
+    if (existing) {
+      // Отмена: гасим таймер и убираем отсчёт.
+      clearTimeout(existing);
+      delete pendingHideTimersRef.current[key];
+      setPendingHides((cur) => {
+        const next = { ...cur };
+        delete next[key];
+        return next;
+      });
+      return;
+    }
+    const startedAt = Date.now();
+    setPendingHides((cur) => ({ ...cur, [key]: startedAt }));
+    pendingHideTimersRef.current[key] = setTimeout(() => {
+      delete pendingHideTimersRef.current[key];
+      setPendingHides((cur) => {
+        const next = { ...cur };
+        delete next[key];
+        return next;
+      });
+      action();
+    }, HIDE_UNDO_WINDOW_MS);
+  }, []);
+
+  // Тап «скрыть»: окно отмены → скрыть тему/коммент.
+  const toggleHideCountdown = useCallback((targetType: 'topic' | 'comment', targetId: string) => {
+    const key = helpBoardVoteKey(targetType, targetId);
+    toggleUndoCountdown(key, () => {
+      if (targetType === 'topic') void commitHideTopic(targetId);
+      else void commitHideComment(targetId);
+    });
+  }, [commitHideComment, commitHideTopic, toggleUndoCountdown]);
+
+  // Тап «корзинка» на ответе Компаса (только автору поста): окно отмены → удалить.
+  const toggleDeleteCompassCountdown = useCallback((topicId: string) => {
+    toggleUndoCountdown(`compass_${topicId}`, () => void commitDeleteCompass(topicId));
+  }, [commitDeleteCompass, toggleUndoCountdown]);
+
+  // Чистим висящие таймеры отсчёта при размонтировании.
+  useEffect(() => () => {
+    Object.values(pendingHideTimersRef.current).forEach((timer) => clearTimeout(timer));
+    pendingHideTimersRef.current = {};
   }, []);
 
   const isMyTopic = useCallback((topic: HelpBoardTopic) => (
     topic.authorUid === myStableUid || topic.authorUid === 'local'
   ), [myStableUid]);
 
-  const deleteTopicEverywhere = useCallback(async (topicId: string) => {
-    if (!topicId || topicId.startsWith('optimistic-') || deletingTopicId) return;
+  const deleteTopicEverywhere = useCallback((topicId: string) => {
+    if (!topicId || topicId.startsWith('optimistic-')) return;
     hapticTap();
-    setDeletingTopicId(topicId);
     setDeleteArmedTopicId(null);
     setTopics((cur) => cur.filter((topic) => topic.id !== topicId));
-    const status = await deleteHelpBoardTopicForEveryone(topicId);
-    setDeletingTopicId(null);
-    if (status !== 'deleted') {
-      showToast(status === 'restricted' ? copy.restricted : topicSubmitErrorMessage(status as HelpBoardTopicSubmitStatus, lang), 'error');
-    }
-  }, [copy.restricted, deletingTopicId, showToast]);
+    setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== topicId));
+    setSelectedId((cur) => (cur === topicId ? null : cur));
+    void deleteHelpBoardTopicForEveryone(topicId).catch(() => {});
+  }, []);
 
   // Плоский ряд действий в стиле Threads: голые иконки без фона и рамок, число
   // рядом с иконкой. Тап-зона остаётся крупной через hitSlop (доступность 44px).
   const HIT = { top: 10, bottom: 10, left: 8, right: 8 };
-  const actionRow = (targetType: 'topic' | 'comment', targetId: string, score: number, onHide: () => void, onReply?: () => void) => {
+  const actionRow = (
+    targetType: 'topic' | 'comment',
+    targetId: string,
+    score: number,
+    onReply?: () => void,
+    // Задан только для ответа Компаса, когда пост принадлежит текущему юзеру —
+    // тогда показываем кнопку-корзинку «удалить ответ Компаса» с окном отмены.
+    compassDeleteTopicId?: string,
+  ) => {
     const voteKey = helpBoardVoteKey(targetType, targetId);
     const liked = Number(myVotes[voteKey] || 0) === 1;
+    const displayScore = Math.max(0, Number(score || 0) + Number(voteDeltas[voteKey] || 0));
+    const hideKey = voteKey; // тот же ключ 'topic_<id>' / 'comment_<id>'
+    const hideStartedAt = pendingHides[hideKey];
+    const isHiding = hideStartedAt != null;
+    const compassDeleteStartedAt = compassDeleteTopicId ? pendingHides[`compass_${compassDeleteTopicId}`] : undefined;
+    const isDeletingCompass = compassDeleteStartedAt != null;
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 22, marginTop: 11 }}>
         <TouchableOpacity
@@ -605,9 +852,9 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
           style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}
         >
           <Ionicons name={liked ? 'heart' : 'heart-outline'} size={19} color={liked ? t.accent : t.textMuted} />
-          {score > 0 ? (
+          {displayScore > 0 ? (
             <Text style={{ color: liked ? t.accent : t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
-              {Math.max(0, score)}
+              {displayScore}
             </Text>
           ) : null}
         </TouchableOpacity>
@@ -627,11 +874,23 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
           activeOpacity={0.7}
           hitSlop={HIT}
           accessibilityRole="button"
-          accessibilityLabel={copy.hide}
-          onPress={onHide}
+          accessibilityLabel={isHiding ? copy.hideCancel : copy.hide}
+          accessibilityState={{ busy: isHiding }}
+          onPress={() => toggleHideCountdown(targetType, targetId)}
           style={{ flexDirection: 'row', alignItems: 'center' }}
         >
-          <Ionicons name="eye-off-outline" size={18} color={t.textMuted} />
+          {isHiding ? (
+            <HideCountdownRing
+              startedAt={hideStartedAt}
+              durationMs={HIDE_UNDO_WINDOW_MS}
+              size={20}
+              color={t.accent}
+              trackColor={t.border}
+              holeColor={t.bgCard}
+            />
+          ) : (
+            <Ionicons name="eye-off-outline" size={18} color={t.textMuted} />
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
@@ -646,6 +905,30 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
         >
           <Ionicons name="flag-outline" size={18} color={t.textMuted} />
         </TouchableOpacity>
+        {compassDeleteTopicId ? (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            hitSlop={HIT}
+            accessibilityRole="button"
+            accessibilityLabel={isDeletingCompass ? copy.deleteCompassCancel : copy.deleteCompass}
+            accessibilityState={{ busy: isDeletingCompass }}
+            onPress={() => toggleDeleteCompassCountdown(compassDeleteTopicId)}
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+          >
+            {isDeletingCompass ? (
+              <HideCountdownRing
+                startedAt={compassDeleteStartedAt}
+                durationMs={HIDE_UNDO_WINDOW_MS}
+                size={20}
+                color={t.accent}
+                trackColor={t.border}
+                holeColor={t.bgCard}
+              />
+            ) : (
+              <Ionicons name="trash-outline" size={18} color={t.textMuted} />
+            )}
+          </TouchableOpacity>
+        ) : null}
       </View>
     );
   };
@@ -764,7 +1047,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
                 <Text style={{ color: t.textGhost, fontSize: Math.max(10, f.caption - 1), fontWeight: '800' }}>· {timeLabel(selectedTopic.createdAt)}</Text>
               </View>
               <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35), fontWeight: '700', marginTop: 4 }}>{selectedTopic.text}</Text>
-              {actionRow('topic', selectedTopic.id, selectedTopic.helpfulScore, () => hideTopic(selectedTopic.id))}
+              {actionRow('topic', selectedTopic.id, selectedTopic.helpfulScore)}
             </View>
           </View>
           {/* Компас ещё думает: раньше в этот момент не было НИЧЕГО — юзер не знал,
@@ -822,10 +1105,14 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
                   </TouchableOpacity>
                 ) : null}
                 <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35), fontWeight: '700' }}>{comment.text}</Text>
-                {actionRow('comment', comment.id, comment.helpfulScore, () => hideComment(comment.id), () => {
+                {actionRow('comment', comment.id, comment.helpfulScore, () => {
                   hapticTap();
                   setReplyTarget(comment);
-                })}
+                // Корзинка «удалить ответ Компаса» — только на Компас-ответе и
+                // только автору поста (и когда пост уже реальный, не оптимистичный).
+                }, (comment.isCompass && selectedTopic && isMyTopic(selectedTopic) && !selectedTopic.id.startsWith('optimistic-'))
+                  ? selectedTopic.id
+                  : undefined)}
               </View>
             );
           })}
@@ -861,14 +1148,14 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
             placeholderTextColor={t.textGhost}
             multiline
             maxLength={900}
-            editable={!busy && canWrite}
+            editable={canWrite}
             style={{ flex: 1, minHeight: 40, maxHeight: 110, borderRadius: 14, backgroundColor: 'rgba(0,0,0,0.22)', color: t.textPrimary, paddingHorizontal: 12, paddingVertical: 9, fontSize: f.body, textAlignVertical: 'top' }}
           />
           <TouchableOpacity
             activeOpacity={0.84}
-            disabled={busy || !commentDraft.trim()}
+            disabled={!commentDraft.trim()}
             onPress={submitComment}
-            style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.accent, opacity: busy || !commentDraft.trim() ? 0.45 : 1, alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.accent, opacity: !commentDraft.trim() ? 0.45 : 1, alignItems: 'center', justifyContent: 'center' }}
           >
             <Ionicons name="send" size={18} color={t.correctText} />
           </TouchableOpacity>
@@ -928,6 +1215,8 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
         ) : visibleTopics.map((topic, index) => {
           const optimistic = topic.id.startsWith('optimistic-');
           const armed = deleteArmedTopicId === topic.id;
+          const topicVoteKey = helpBoardVoteKey('topic', topic.id);
+          const topicDisplayScore = Math.max(0, Number(topic.helpfulScore || 0) + Number(voteDeltas[topicVoteKey] || 0));
           return (
           <TouchableOpacity
             key={topic.id}
@@ -969,7 +1258,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 22, marginTop: 11 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
                   <Ionicons name="heart-outline" size={18} color={t.textMuted} />
-                  {topic.helpfulScore > 0 ? <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{topic.helpfulScore}</Text> : null}
+                  {topicDisplayScore > 0 ? <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{topicDisplayScore}</Text> : null}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
                   <Ionicons name="chatbubble-outline" size={17} color={t.textMuted} />
@@ -979,11 +1268,10 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               {armed ? (
                 <TouchableOpacity
                   activeOpacity={0.84}
-                  disabled={deletingTopicId === topic.id}
                   accessibilityRole="button"
                   accessibilityLabel={copy.delete}
                   onPress={() => void deleteTopicEverywhere(topic.id)}
-                  style={{ minHeight: 40, borderRadius: 12, backgroundColor: '#E05252', opacity: deletingTopicId === topic.id ? 0.55 : 1, alignItems: 'center', justifyContent: 'center', marginTop: 10, paddingHorizontal: 12, alignSelf: 'flex-start' }}
+                  style={{ minHeight: 40, borderRadius: 12, backgroundColor: '#E05252', opacity: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10, paddingHorizontal: 12, alignSelf: 'flex-start' }}
                 >
                   <Text style={{ color: '#FFFFFF', fontSize: f.caption, fontWeight: '900' }}>{copy.delete}</Text>
                 </TouchableOpacity>
@@ -996,11 +1284,13 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
 
       <Modal visible={composerOpen} transparent animationType="fade" onRequestClose={() => setComposerOpen(false)}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, justifyContent: 'center', padding: 18, backgroundColor: 'rgba(0,0,0,0.55)' }}>
-          {/* keyboardShouldPersistTaps='handled': при поднятой клавиатуре ПЕРВЫЙ
-              тап по «Отправить»/«Отмена» сразу срабатывает, а не гасится
-              dismiss-ом клавиатуры (иначе нужен второй тап — прод-жалоба). */}
+          {/* keyboardShouldPersistTaps='always': при поднятой клавиатуре ПЕРВЫЙ
+              тап по «Отправить»/«Отмена» обязан сработать сразу. С 'handled'
+              первый тап всё равно уходил на dismiss клавиатуры (Android) — юзеру
+              приходилось жать дважды. 'always' гарантирует, что тап всегда
+              доходит до кнопки с первого раза (клавиатура не перехватывает). */}
           <ScrollView
-            keyboardShouldPersistTaps="handled"
+            keyboardShouldPersistTaps="always"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
           >
@@ -1033,7 +1323,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               <TouchableOpacity onPress={() => { setComposerOpen(false); }} style={{ minHeight: 42, borderRadius: 12, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{copy.cancel}</Text>
               </TouchableOpacity>
-              <TouchableOpacity disabled={topicSubmitting || titleDraft.trim().length < 4 || questionDraft.trim().length < 8} onPress={submitTopic} style={{ minHeight: 42, borderRadius: 12, backgroundColor: t.accent, opacity: topicSubmitting || titleDraft.trim().length < 4 || questionDraft.trim().length < 8 ? 0.45 : 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}>
+              <TouchableOpacity disabled={titleDraft.trim().length < 4 || questionDraft.trim().length < 8} onPress={submitTopic} style={{ minHeight: 42, borderRadius: 12, backgroundColor: t.accent, opacity: titleDraft.trim().length < 4 || questionDraft.trim().length < 8 ? 0.45 : 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}>
                 <Text style={{ color: t.correctText, fontSize: f.caption, fontWeight: '900' }}>{copy.send}</Text>
               </TouchableOpacity>
             </View>

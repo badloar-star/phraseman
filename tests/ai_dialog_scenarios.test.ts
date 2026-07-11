@@ -86,6 +86,28 @@ describe('ai_dialog_scenarios', () => {
     expect(support?.persona).toMatch(/HELPER-BOT/i);
   });
 
+  it('keeps health-adjacent scenarios as language practice, not medical advice prompts', () => {
+    const blockedInGoals = /\b(pharmacist|family doctor|dosage|dose|paracetamol|ibuprofen|aspirin|prescribe|how to take|take the medicine)\b/i;
+
+    for (const id of ['pharmacy', 'doctor_visit']) {
+      const scenario = getScenarioById(id);
+      expect(scenario).toBeTruthy();
+      if (!scenario) continue;
+
+      const goalText = [
+        scenario.role,
+        scenario.setting,
+        scenario.goalEn,
+        scenario.nextStepHintRu,
+        ...((scenario.objectives ?? []).map((o) => `${o.en} ${o.labelRu}`)),
+      ].join('\n');
+
+      expect(goalText).not.toMatch(blockedInGoals);
+      expect(goalText).toMatch(/professional|специалист|qualified/i);
+      expect(scenario.persona ?? '').toMatch(/never (?:recommend|diagnose)/i);
+    }
+  });
+
   it('keeps category navigation populated in declared order', () => {
     expect(DIALOG_SCENARIO_GROUPS.map((group) => group.category)).toEqual([
       'everyday',

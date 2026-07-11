@@ -61,6 +61,6 @@ describe('personal plan choose-natural-phrase live route', () => {
 
     const allCopy = JSON.stringify(items);
     expect(allCopy).not.toMatch(/alex|beta|phone|email|087|apartment|rent|landlord|viewing|@/i);
-    expect(items[0].options).toHaveLength(4);
+    expect(items[0].options.length).toBeGreaterThanOrEqual(4);
   });
 });

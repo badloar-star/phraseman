@@ -241,17 +241,17 @@ describe('progress_events engine', () => {
             'level_exams_v2::fr::level_exam_A1_passed': 'false',
         }, now);
         expect(patch.user_total_xp).toBeUndefined();
-        expect(patch.weekly_xp).toBe('55');
+        expect(patch.weekly_xp).toBeUndefined();
         expect(patch.streak_count).toBeUndefined();
-        expect(patch.last_active_date).toBe('2026-06-13');
-        expect(patch.unlocked_lessons).toBe('[1,2,3,4]');
-        expect(patch['lesson_progress_v2::fr::unlocked_lessons']).toBe('[1,2,3]');
+        expect(patch.last_active_date).toBeUndefined();
+        expect(patch.unlocked_lessons).toBeUndefined();
+        expect(patch['lesson_progress_v2::fr::unlocked_lessons']).toBeUndefined();
         expect(patch.lesson4_best_score).toBeUndefined();
         expect(patch.lesson4_progress).toBe(JSON.stringify(['correct', 'correct', 'empty']));
         expect(patch['lesson_progress_v2::fr::lesson4_best_score']).toBeUndefined();
         expect(patch['lesson_progress_v2::fr::4']).toBe(JSON.stringify(['correct', 'correct']));
-        expect(patch.level_exam_A1_passed).toBe('true');
-        expect(patch['level_exams_v2::fr::level_exam_A1_passed']).toBe('true');
+        expect(patch.level_exam_A1_passed).toBeUndefined();
+        expect(patch['level_exams_v2::fr::level_exam_A1_passed']).toBeUndefined();
     });
     it('migrates lesson counters and exam fields with monotonic conflict resolution', () => {
         const patch = (0, progress_events_1.buildMigrationPatch)({
@@ -281,18 +281,18 @@ describe('progress_events engine', () => {
             'level_exams_v2::fr::level_exam_B1_pass_count': '5',
             'level_exams_v2::fr::level_exam_B1_completed_at': '2026-06-01',
         }, now);
-        expect(patch.lesson8_pass_count).toBe('3');
+        expect(patch.lesson8_pass_count).toBeUndefined();
         expect(patch.lesson8_cellIndex).toBeUndefined();
         expect(patch['lesson_progress_v2::fr::lesson8_pass_count']).toBeUndefined();
         expect(patch['lesson_progress_v2::fr::lesson8_cellIndex']).toBe('40');
         expect(patch.level_exam_B2_pct).toBeUndefined();
-        expect(patch.level_exam_B2_best_pct).toBe('92');
-        expect(patch.level_exam_B2_pass_count).toBe('4');
-        expect(patch.level_exam_B2_completed_at).toBe('2026-06-12');
-        expect(patch['level_exams_v2::fr::level_exam_B1_pct']).toBe('81');
+        expect(patch.level_exam_B2_best_pct).toBeUndefined();
+        expect(patch.level_exam_B2_pass_count).toBeUndefined();
+        expect(patch.level_exam_B2_completed_at).toBeUndefined();
+        expect(patch['level_exams_v2::fr::level_exam_B1_pct']).toBeUndefined();
         expect(patch['level_exams_v2::fr::level_exam_B1_best_pct']).toBeUndefined();
         expect(patch['level_exams_v2::fr::level_exam_B1_pass_count']).toBeUndefined();
-        expect(patch['level_exams_v2::fr::level_exam_B1_completed_at']).toBe('2026-06-13');
+        expect(patch['level_exams_v2::fr::level_exam_B1_completed_at']).toBeUndefined();
     });
     it('НЕ мигрирует live-маркер lesson1_pass_live из клиентского снапшота (антифрод рефералки)', () => {
         const patch = (0, progress_events_1.buildMigrationPatch)({
@@ -302,8 +302,8 @@ describe('progress_events engine', () => {
         }, {}, now);
         expect(patch.lesson1_pass_live).toBeUndefined();
         expect(patch['lesson_progress_v2::fr::lesson1_pass_live']).toBeUndefined();
-        // pass_count мигрирует как раньше — но квалификацию по нему apply больше не даёт.
-        expect(patch.lesson1_pass_count).toBe('1');
+        // pass_count тоже серверный: не доверяем клиентскому снимку.
+        expect(patch.lesson1_pass_count).toBeUndefined();
     });
     it('recognizes server-owned progress keys for rules and sync filtering', () => {
         expect((0, progress_events_1.isServerOwnedProgressKey)('user_total_xp')).toBe(true);
@@ -319,7 +319,7 @@ describe('progress_events engine', () => {
     });
     it('writes Firestore progress as a nested merge map, not dotted root fields', () => {
         const source = (0, fs_1.readFileSync)((0, path_1.join)(__dirname, 'progress_events.ts'), 'utf8');
-        expect(source).toContain('progress: applied.progressPatch');
+        expect(source).toContain('progress: progressPatch');
         expect(source).toContain('progress: patch');
         expect(source).not.toContain('`progress.${key}`');
     });

@@ -420,7 +420,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
     setFeedbackCorrect(isCorrect);
     setPhase('feedback');
 
-    if (voiceOut) speakAudio(correct, speechRate, { language: 'en-US' });
+    if (voiceOut) speakAudio(word, speechRate, { language: 'en-US' });
 
     if (isCorrect) {
       // [FeedbackKit] Ранее: hapticSuccess + correct-звук. fk.correct даёт тот же

@@ -21,6 +21,7 @@ import {
   LeagueResult, LEAGUES, CLUBS, clearPendingResult, GroupMember,
   clubDescPlanned, clubNamePlanned, getLeagueResultZoneSize,
 } from './league_engine';
+import { isLeagueXpPromotionEnabled, getLeagueXpPromotionThreshold } from './remote_flags';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import { memberNameStatusStyle } from '../components/premiumMemberStyles';
@@ -452,6 +453,11 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const relegationStartRank = result.totalInGroup >= 2 && zoneSize > 0
     ? result.totalInGroup - zoneSize + 1
     : result.totalInGroup + 1;
+  // XP-режим: повышение по набранным очкам, а не по месту. Тогда подпись зоны
+  // не должна обещать «повышение с топ-N» (это правило про место) —
+  // показываем XP-правило. Иначе текст противоречит исходу «Остаёшься».
+  const xpPromotionMode = isLeagueXpPromotionEnabled();
+  const xpPromotionThreshold = getLeagueXpPromotionThreshold();
   const modalPadTop = Math.max(12, insets.top + 8);
   const modalPadBottom = Math.max(12, bottomInset + 8);
   const modalMaxHeight = Math.min(H - 24, Math.max(280, H - modalPadTop - modalPadBottom));
@@ -792,7 +798,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   </View>
 
                   {/* Зона результата */}
-                  {zoneSize > 0 && (
+                  {(zoneSize > 0 || xpPromotionMode) && (
                     <View style={{
                       marginTop: 8,
                       paddingHorizontal: 10, paddingVertical: 5,
@@ -806,8 +812,22 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         color={isDemo ? monoIcon(themeMode, '#FF6B6B') : isPromo ? monoIcon(themeMode, '#34C759') : t.gold}
                       />
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
-                        {isPromo
-                          ? triLang(lang, {
+                        {(() => {
+                          const xpLabel = xpPromotionThreshold.toLocaleString();
+                          if (isPromo) {
+                            // В XP-режиме повышение объясняем набранными очками, а не местом.
+                            return xpPromotionMode
+                              ? triLang(lang, {
+  ru: `Повышение: ${xpLabel} XP`,
+  uk: `Підвищення: ${xpLabel} XP`,
+  es: `Ascenso: ${xpLabel} XP`,
+  "pt-BR": `Promoção: ${xpLabel} XP`,
+  vi: `Thăng hạng: ${xpLabel} XP`,
+  id: `Naik: ${xpLabel} XP`,
+  tr: `Yükselme: ${xpLabel} XP`,
+  pl: `Awans: ${xpLabel} XP`,
+})
+                              : triLang(lang, {
   ru: `Повышение: топ-${zoneSize}`,
   uk: `Підвищення: топ-${zoneSize}`,
   es: `Ascenso: top ${zoneSize}`,
@@ -816,9 +836,10 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   id: `Naik: top ${zoneSize}`,
   tr: `Yükselme: ilk ${zoneSize}`,
   pl: `Awans: top ${zoneSize}`,
-})
-                          : isDemo
-                            ? triLang(lang, {
+});
+                          }
+                          if (isDemo) {
+                            return triLang(lang, {
   ru: `Зона понижения: ${relegationStartRank}-${result.totalInGroup}`,
   uk: `Зона пониження: ${relegationStartRank}-${result.totalInGroup}`,
   es: `Descenso: ${relegationStartRank}-${result.totalInGroup}`,
@@ -827,17 +848,32 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   id: `Turun: ${relegationStartRank}-${result.totalInGroup}`,
   tr: `Düşme: ${relegationStartRank}-${result.totalInGroup}`,
   pl: `Spadek: ${relegationStartRank}-${result.totalInGroup}`,
+});
+                          }
+                          // isStay: описываем УСЛОВИЕ повышения, а не утверждаем, что юзер повышен.
+                          // XP-режим → нужно набрать N XP; rank-режим → войти в топ-N.
+                          return xpPromotionMode
+                            ? triLang(lang, {
+  ru: `Для повышения: ${xpLabel} XP`,
+  uk: `Для підвищення: ${xpLabel} XP`,
+  es: `Para ascender: ${xpLabel} XP`,
+  "pt-BR": `Para subir: ${xpLabel} XP`,
+  vi: `Để thăng hạng: ${xpLabel} XP`,
+  id: `Untuk naik: ${xpLabel} XP`,
+  tr: `Yükselmek için: ${xpLabel} XP`,
+  pl: `Aby awansować: ${xpLabel} XP`,
 })
                             : triLang(lang, {
-  ru: `Повышение с топ-${zoneSize}`,
-  uk: `Підвищення з топ-${zoneSize}`,
-  es: `Ascenso desde top ${zoneSize}`,
-  "pt-BR": `Promoção no top ${zoneSize}`,
-  vi: `Thăng hạng từ top ${zoneSize}`,
-  id: `Naik dari top ${zoneSize}`,
-  tr: `İlk ${zoneSize} yükselir`,
-  pl: `Awans od top ${zoneSize}`,
-})}
+  ru: `Зона повышения: топ-${zoneSize}`,
+  uk: `Зона підвищення: топ-${zoneSize}`,
+  es: `Zona de ascenso: top ${zoneSize}`,
+  "pt-BR": `Zona de promoção: top ${zoneSize}`,
+  vi: `Vùng thăng hạng: top ${zoneSize}`,
+  id: `Zona naik: top ${zoneSize}`,
+  tr: `Yükselme bölgesi: ilk ${zoneSize}`,
+  pl: `Strefa awansu: top ${zoneSize}`,
+});
+                        })()}
                       </Text>
                     </View>
                   )}

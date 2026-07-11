@@ -5,6 +5,13 @@
 - Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
 - Admin UI must stay simple, categorized, icon-supported, tooltip-rich, accessible, and free of visual clutter. Do not add admin buttons, colors, overlays, menus, or text patterns that violate the Bible.
 
+## Error Report Reply Preview Publishing
+
+- After Codex prepares and dry-runs a valid `replies.json`, it must immediately and idempotently add those drafts to `PREPARED_REPORT_REPLIES` in `admin/index.html`, run the focused preview contracts, and deploy only Firebase Hosting target `admin` via `npm run hosting:admin`. Do not ask for another confirmation before publishing this preview.
+- Preview publishing is static hosting only: it must not write Firestore, send user notifications, change report status, or award shards.
+- Live delivery remains exclusively manual: only the administrator presses `Отправить готовые ответы` in the admin UI. Codex must never run `reply_to_reports.mjs --send` as part of this workflow.
+- Preserve existing prepared drafts and unrelated user changes. Re-running the workflow must replace or skip the same `reportId`, never create duplicate preview entries.
+
 ## MAYMAY — CapCut phrase/TTS pipeline
 
 - If the user mentions **"MAYMAY"**, "меймей", "найди пайплайн меймей", or asks for a new MAYMAY video/package,
@@ -146,3 +153,13 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - NEVER statically import multi-hundred-KB generated data (plan days, quiz packs, generated registries) into screens or top-level module scope. Access content ONLY through its registry/loader (`app/plan_content_registry.ts`, `app/quiz_thematic_registry.ts`, `app/quiz_phrases_loader.ts`): they lazy-`require()` per plan/pack today and are the single seam where bundled content will be swapped for server-delivered content (French is already remote; English is planned). New content types must ship behind the same kind of accessor, not as a direct import.
 - Long lists (>~30 items, user-growable feeds/collections) use `FlashList`/`FlatList` with fixed-size rows — not `.map()` inside a `ScrollView`. Reference: `app/flashcards_collection.tsx`.
 - Keep screens under ~800 lines where practical; extract sections into memoized subcomponents and defer below-the-fold mounting via `InteractionManager.runAfterInteractions`.
+
+## Session Communication And Impact-Analysis Protocol
+
+- Every session report and progress update must be written in the user's language and in plain, highly understandable language. Explain what changed, why it changed, what it affects, and what was checked. Avoid unexplained technical jargon; if a technical term is necessary, explain it immediately in ordinary words.
+- Before changing any file, first understand its purpose, the user-visible behavior it supports, the callers and dependencies around it, the relevant tests and configuration, and the reason the current design exists. Do not treat the requested file as an isolated island.
+- For changes involving data, identity, synchronization, purchases, permissions, or backend behavior, inspect the connected Firestore paths, security rules, indexes/configuration, Cloud Functions/callables, serializers, migrations, and relevant tests before editing. Inspect only the related surface, but do not skip it when the change could affect it.
+- Trace the full affected flow where practical: input or user action -> state/storage -> Firestore or callable -> returned data -> UI or other consumers. Check loading, empty, error, offline, retry, sign-out/account-switch, and backwards-compatibility behavior when applicable.
+- When the investigation reveals a directly related broken text, contract, test, validation, accessibility issue, or integration issue, fix it in the same change if doing so is safe and within scope. Do not silently expand into unrelated cleanup or remove existing functionality.
+- Before claiming completion, verify the actual final state with focused tests, checks, or inspection appropriate to the change. Reports must distinguish clearly between what was verified, what was inferred, and what could not be checked.
+- End every completed work report with a section titled `Находки и предложения` containing concise, actionable observations about improvements, risks, cleanup, or features that may be worth adding or removing. Do not present suggestions as completed work, and do not remove anything unless the user explicitly requests it.

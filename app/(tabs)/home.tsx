@@ -70,6 +70,7 @@ import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -2929,6 +2930,44 @@ export default function HomeScreen() {
               </View>
             </TouchableOpacity>)}
 
+          {personalPlanSnapshot ? (
+            <PersonalPlanHomeRouteCard
+              snapshot={personalPlanSnapshot}
+              compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT}
+              onPress={openPersonalPlan}
+            />
+          ) : hasActivePersonalPlanState ? (
+            <TouchableOpacity
+              testID="home-personal-plan-card"
+              activeOpacity={0.88}
+              onPress={openPersonalPlan}
+              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Личный план</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>Открыть задания на сегодня</Text>
+            </TouchableOpacity>
+          ) : hasPremiumAccess || lastLesson == null ? (
+            <TouchableOpacity
+              testID="home-choose-personal-plan"
+              activeOpacity={0.88}
+              onPress={() => { hapticTap(); router.push('/personal_plan_setup' as any); }}
+              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Выбрать свой план обучения</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>3 вопроса — и план готов</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              testID="home-continue-lesson"
+              activeOpacity={0.88}
+              onPress={() => { hapticTap(); router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any); }}
+              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>{s.home.continueBtn}</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{lastLesson.name}</Text>
+            </TouchableOpacity>
+          )}
+
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
           {showHomeFeatureTipCard && currentHomeFeatureTip ? (
             <TouchableOpacity
@@ -3943,8 +3982,6 @@ export default function HomeScreen() {
                 // Очистку AsyncStorage делаем фоном — её результат на UI не влияет.
                 void clearPendingResult();
             }}/>)}
-      {/* Компас: брифинг дня при входе (заменяет модалку заданий дня). Сам null-safe —
-          выключенный Компас (флаг compass_enabled) и не-премиум ничего не рендерят. */}
       <CompassBriefingHost onStartDay={openPersonalPlan} />
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
     </View>);

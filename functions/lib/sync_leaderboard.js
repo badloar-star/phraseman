@@ -44,8 +44,15 @@ function getWeekKey(date = new Date()) {
     const week = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
     return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
+function getWeekStartIso(date = new Date()) {
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const day = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() - day + 1);
+    return d.toISOString().slice(0, 10);
+}
 async function syncLeaderboardFromUsers() {
     const currentWeekKey = getWeekKey();
+    const currentWeekStart = getWeekStartIso();
     const BATCH_SIZE = 400;
     let batch = db.batch();
     let count = 0;
@@ -103,6 +110,10 @@ async function syncLeaderboardFromUsers() {
                 }
             }
             catch { /* ignore */ }
+            if (progress['weekly_xp_period_start'] === currentWeekStart) {
+                weekPoints = Math.max(weekPoints, Number(progress['weekly_xp'] ?? 0) || 0);
+            }
+            weekPoints = Math.max(0, Math.floor(weekPoints));
             // Лига
             let leagueId = 0;
             try {
@@ -114,11 +125,19 @@ async function syncLeaderboardFromUsers() {
             }
             catch { /* ignore */ }
             const lbRef = db.collection('leaderboard').doc(uid);
+            // This legacy backfill must never turn a live current-week score into a
+            // lower value just because users.progress is stale or incomplete.
+            const existingLb = (await lbRef.get()).data() ?? {};
+            const existingWeekKey = existingLb.weekKey ?? existingLb.groupWeekId;
+            const existingWeekPoints = existingWeekKey === currentWeekKey
+                ? Math.max(0, Math.floor(Number(existingLb.weekPoints) || 0))
+                : 0;
+            const safeWeekPoints = Math.max(existingWeekPoints, weekPoints);
             batch.set(lbRef, {
                 name,
                 nameLower: name.toLowerCase(),
                 points: xp,
-                weekPoints,
+                weekPoints: safeWeekPoints,
                 weekKey: currentWeekKey,
                 lang,
                 avatar,

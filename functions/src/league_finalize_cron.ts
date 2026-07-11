@@ -26,6 +26,39 @@ const LEAGUE_RESULT_ZONE_RATIO = 0.15;
 const PAGE_SIZE = 200;
 const BATCH_LIMIT = 400;
 
+// XP-режим повышения (remote_config/app). Должен совпадать с клиентом
+// (app/league_engine.ts computeLeagueResult, app/remote_flags.ts defaults),
+// иначе сервер понизит юзера, которому клиент уже показал бейдж «Переход».
+const DEFAULT_XP_PROMOTION_ENABLED = false;
+const DEFAULT_XP_PROMOTION_THRESHOLD = 1000;
+const XP_PROMOTION_THRESHOLD_MIN = 1;
+const XP_PROMOTION_THRESHOLD_MAX = 1000000;
+
+type XpPromotionConfig = { enabled: boolean; threshold: number };
+
+// Читаем флаги XP-режима один раз за запуск крона. Отсутствие/битый док → дефолты
+// (rank-режим), т.е. поведение как раньше.
+async function loadXpPromotionConfig(
+  db: FirebaseFirestore.Firestore,
+): Promise<XpPromotionConfig> {
+  try {
+    const snap = await db.collection('remote_config').doc('app').get();
+    const raw = snap.exists ? snap.data() : null;
+    const bools = raw && typeof raw.bools === 'object' && raw.bools ? raw.bools : {};
+    const numbers = raw && typeof raw.numbers === 'object' && raw.numbers ? raw.numbers : {};
+    const enabledRaw = (bools as Record<string, unknown>).league_xp_promotion_enabled;
+    const thresholdRaw = Number((numbers as Record<string, unknown>).league_xp_promotion_threshold);
+    const enabled = typeof enabledRaw === 'boolean' ? enabledRaw : DEFAULT_XP_PROMOTION_ENABLED;
+    const threshold = Number.isFinite(thresholdRaw)
+      ? Math.max(XP_PROMOTION_THRESHOLD_MIN, Math.min(XP_PROMOTION_THRESHOLD_MAX, Math.trunc(thresholdRaw)))
+      : DEFAULT_XP_PROMOTION_THRESHOLD;
+    return { enabled, threshold };
+  } catch (err) {
+    console.error('leagueFinalizeCron: failed to load remote_config/app, using defaults', err);
+    return { enabled: DEFAULT_XP_PROMOTION_ENABLED, threshold: DEFAULT_XP_PROMOTION_THRESHOLD };
+  }
+}
+
 function getLeagueResultZoneSize(total: number): number {
   return total >= 2 ? Math.max(1, Math.round(total * LEAGUE_RESULT_ZONE_RATIO)) : 0;
 }
@@ -61,6 +94,7 @@ type MemberResult = {
 function computeGroupResults(
   members: Record<string, { points?: unknown; uid?: unknown }>,
   leagueId: number,
+  xpPromotion: XpPromotionConfig,
 ): Record<string, MemberResult> {
   const entries = Object.entries(members)
     .filter(([, m]) => (m as Record<string, unknown>)?.identityHidden !== true)
@@ -76,8 +110,15 @@ function computeGroupResults(
 
   entries.forEach((e, idx) => {
     const rank = idx + 1;
-    const promoted = total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
-    const demoted = total >= 2 && rank >= total - zoneSize + 1 && leagueId > 0 && !promoted;
+    // XP-режим (зеркало app/league_engine.ts:710-717): повышение по набранным
+    // очкам, БЕЗ понижения — чтобы сервер совпал с клиентским бейджем «Переход».
+    // Иначе — обычный rank-режим (топ-15% ↑, низ-15% ↓).
+    const promoted = xpPromotion.enabled
+      ? e.points >= xpPromotion.threshold && leagueId < CLUBS_MAX_ID
+      : total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
+    const demoted = xpPromotion.enabled
+      ? false
+      : total >= 2 && rank >= total - zoneSize + 1 && leagueId > 0 && !promoted;
     results[e.uid] = {
       rank,
       total,
@@ -103,7 +144,10 @@ export const leagueFinalizeCron = onSchedule(
   async () => {
     const db = admin.firestore();
     const weekId = getPreviousWeekId();
-    console.log(`leagueFinalizeCron: weekId=${weekId}`);
+    const xpPromotion = await loadXpPromotionConfig(db);
+    console.log(
+      `leagueFinalizeCron: weekId=${weekId} xpPromotion=${xpPromotion.enabled} threshold=${xpPromotion.threshold}`,
+    );
 
     let processed = 0;
     let written = 0;
@@ -139,7 +183,7 @@ export const leagueFinalizeCron = onSchedule(
           ? data.members as Record<string, { points?: unknown; uid?: unknown }>
           : {};
 
-        const results = computeGroupResults(members, leagueId);
+        const results = computeGroupResults(members, leagueId, xpPromotion);
 
         for (const [uid, result] of Object.entries(results)) {
           const resultRef = db

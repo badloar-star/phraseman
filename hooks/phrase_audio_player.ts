@@ -7,7 +7,8 @@
 //
 // Kept separate from use-audio.ts so the speak() hook stays small.
 
-import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { Directory, File, Paths } from 'expo-file-system';
 import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
 import { getPhraseAudioUrl, normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
@@ -192,7 +193,7 @@ async function ensureAudioMode(): Promise<void> {
   try {
     // Other screens can change the shared native audio session after phrase
     // audio has played once, so restore the phrase mode on every clip.
-    await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE);
+    await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);
   } catch {
     // Non-fatal; playback may still work with default mode.
   }

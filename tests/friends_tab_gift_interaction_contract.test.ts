@@ -20,7 +20,7 @@ describe('friends tab gift interaction contract', () => {
     const source = read('app/(tabs)/friends.tsx');
     const friendRow = extract(source, 'function FriendRow', 'function RequestRow');
 
-    expect(friendRow).toContain('<View\n      testID={`friend-row-${profile.uid}`');
+    expect(friendRow).toMatch(/<View\s+testID=\{`friend-row-\$\{profile\.uid\}`\}/);
     expect(friendRow).toContain('testID={`friend-row-profile-${profile.uid}`}');
     expect(friendRow).toContain('testID={`friend-gift-${profile.uid}`}');
     expect(friendRow).toContain('testID={`friend-delete-${profile.uid}`}');

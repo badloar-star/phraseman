@@ -63,8 +63,9 @@ describe('clean midnight onboarding contract', () => {
 
     expect(source).toContain('Phraseman Plus');
     expect(source).not.toContain('testID="onboarding-exit-app"');
-    expect(source).toContain("label={ageAnswer === 'no' ? 'Выйти' : 'Сохранить и начать'}");
-    expect(source).toContain('BackHandler.exitApp');
+    expect(source).toContain('label="Сохранить и начать"');
+    expect(source).toContain("if (ageAnswer !== 'yes')");
+    expect(source).not.toContain('BackHandler.exitApp');
     expect(source).toContain('trackOnboardingPlanPaywallView');
     expect(source).toContain("trackEvent('onboarding_plan_paywall_view'");
     expect(source).toContain("trackEvent('onboarding_plan_trial_cta'");

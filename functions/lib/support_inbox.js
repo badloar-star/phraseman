@@ -135,7 +135,6 @@ function isHumanEmail(input) {
     if (auto && auto !== 'no')
         return false;
     const [localPart, domain] = email.split('@');
-    // Служебные адреса Google (безопасность, уведомления и т.п.).
     if (domain === 'google.com' || domain === 'accounts.google.com' || domain.endsWith('.google.com')) {
         return false;
     }
@@ -298,7 +297,6 @@ async function fetchEmailsViaImap(appPassword, firstRun) {
                     const parsed = await simpleParser(msg.source);
                     const fromAddr = parsed.from?.value?.[0];
                     const fromEmail = String(fromAddr?.address || '');
-                    // Отсекаем рассылки/промо/служебные Google — только письма от людей.
                     const hdr = (name) => {
                         const v = parsed.headers?.get(name);
                         return typeof v === 'string' ? v : (v ? String(v) : '');
@@ -311,7 +309,7 @@ async function fetchEmailsViaImap(appPassword, firstRun) {
                             autoSubmitted: hdr('auto-submitted'),
                         },
                     })) {
-                        continue; // не человек — пропускаем, в базу не сохраняем
+                        continue;
                     }
                     const messageId = String(parsed.messageId || `uid_${msg.uid}@${exports.SUPPORT_MAILBOX}`);
                     out.push({

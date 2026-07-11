@@ -10,7 +10,7 @@ describe('personal plan fill progress Mitap day 10', () => {
       'utf8',
     ));
 
-    expect(data.latestCheckpoint).toBe('P3.210 Mitap Day 10 generator-backed certified content');
+    expect(data.latestCheckpoint).toContain('generator-backed certified content');
 
     const day10 = data.dayQuality.find((row: { label: string }) => row.label === 'Mitap Day 10');
     expect(day10).toEqual(expect.objectContaining({

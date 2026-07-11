@@ -27,9 +27,16 @@ describe('onboarding speech beat — press-and-hold', () => {
     expect(source).toContain('onPressOut={stopListening}');
   });
 
-  it('stopListening flushes the session only while actually listening', () => {
-    expect(source).toContain("if (status !== 'listening') return;");
+  it('cancels requesting safely and flushes only a live session', () => {
+    expect(source).toContain("if (statusRef.current === 'requesting')");
+    expect(source).toContain("if (statusRef.current !== 'listening') return;");
     expect(source).toContain('speechRef.current?.stop()');
+  });
+
+  it('does not show listening/red before a native start or result event', () => {
+    expect(source).toContain("setStatus('requesting')");
+    expect(source).toContain("speech.addListener('start'");
+    expect(source).toContain("active={status === 'listening'}");
   });
 
   it('keeps ONE hold button mounted across preprompt→listening so press-out is never lost', () => {

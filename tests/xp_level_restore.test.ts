@@ -4,6 +4,8 @@ import {
   restoredXPForOld250VisibleLevel,
 } from '../app/xp_level_restore';
 import { getLevelFromXP, TOTAL_XP_FOR_LEVEL } from '../constants/theme';
+import { readFileSync } from 'fs';
+import path from 'path';
 
 describe('XP level restore after 250-to-400 formula change', () => {
   it('restores the reported 152549 XP case back to visible level 34', () => {
@@ -55,5 +57,19 @@ describe('XP level restore after 250-to-400 formula change', () => {
       currentLevel: 1,
       needsRestore: false,
     });
+  });
+
+  it('reads the one-shot marker first and sequences migration after cloud hydrate', () => {
+    const managerSource = readFileSync(path.join(process.cwd(), 'app', 'xp_manager.ts'), 'utf8');
+    const layoutSource = readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
+    const migrationStart = managerSource.indexOf('export const migrateXPFormulaV2');
+    const migrationSource = managerSource.slice(migrationStart, managerSource.indexOf('export const getCurrentMultiplier', migrationStart));
+    expect(migrationSource.indexOf('storageGetString(XP_LEVEL_RESTORE_250_TO_400_KEY)')).toBeLessThan(
+      migrationSource.indexOf("storageGetNumber('user_total_xp'"),
+    );
+    const hydrateThen = layoutSource.indexOf('void hydrate.then(async (');
+    expect(hydrateThen).toBeGreaterThan(0);
+    expect(layoutSource.indexOf('await migrateXPFormulaV2();', hydrateThen)).toBeGreaterThan(hydrateThen);
+    expect(layoutSource).not.toContain('useEffect(() => {\n    migrateXPFormulaV2();');
   });
 });

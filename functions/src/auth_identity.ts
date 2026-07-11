@@ -30,6 +30,14 @@ type ResolveStableUidForAuthOptions = {
   repairLinks?: boolean;
 };
 
+type StableIdentityCandidate = {
+  id: string;
+  hidden: boolean;
+  hasProviderLink: boolean;
+  xp: number;
+  updatedAt: number;
+};
+
 type AuthLinkMetadata = {
   email?: string | null;
   displayName?: string | null;
@@ -140,36 +148,108 @@ function readProgressXp(data: FirebaseFirestore.DocumentData | undefined): numbe
   return Number.isFinite(n) ? n : 0;
 }
 
+function readUpdatedAt(data: FirebaseFirestore.DocumentData | undefined): number {
+  const n = Number((data ?? {}).updatedAt);
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+function mergeStableIdentityCandidate(
+  byId: Map<string, StableIdentityCandidate>,
+  candidate: StableIdentityCandidate,
+): void {
+  const current = byId.get(candidate.id);
+  if (!current) {
+    byId.set(candidate.id, { ...candidate });
+    return;
+  }
+
+  current.hasProviderLink = current.hasProviderLink || candidate.hasProviderLink;
+  current.xp = Math.max(current.xp, candidate.xp);
+  current.updatedAt = Math.max(current.updatedAt, candidate.updatedAt);
+  current.hidden = current.hidden && candidate.hidden;
+}
+
+function pickBestStableIdentityCandidate(
+  candidates: Iterable<StableIdentityCandidate>,
+): string | null {
+  const list = Array.from(candidates);
+  if (list.length === 0) return null;
+
+  list.sort((a, b) => {
+    if (a.hidden !== b.hidden) return a.hidden ? 1 : -1;
+    if (a.hasProviderLink !== b.hasProviderLink) return a.hasProviderLink ? -1 : 1;
+    if (a.xp !== b.xp) return b.xp - a.xp;
+    if (a.updatedAt !== b.updatedAt) return b.updatedAt - a.updatedAt;
+    return a.id.localeCompare(b.id);
+  });
+
+  return list[0]?.id ?? null;
+}
+
+function collectStableIdentityCandidates(
+  docs: Array<{ id: string; data: () => FirebaseFirestore.DocumentData | undefined }>,
+  authUid: string,
+): Map<string, StableIdentityCandidate> {
+  const out = new Map<string, StableIdentityCandidate>();
+  for (const doc of docs) {
+    const data = doc.data() ?? {};
+    const canonicalStableId = normalizeStableId(data.canonicalStableId);
+    const hidden = data.identityHidden === true;
+    const linkedAuth = data.linkedAuth as { providerUid?: unknown } | undefined;
+    const candidate: StableIdentityCandidate = {
+      id: hidden && canonicalStableId ? canonicalStableId : doc.id,
+      hidden,
+      hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
+      xp: readProgressXp(data),
+      updatedAt: readUpdatedAt(data),
+    };
+    mergeStableIdentityCandidate(out, candidate);
+  }
+  return out;
+}
+
 async function findStableUidForProviderAuth(
   db: admin.firestore.Firestore,
   authUid: string,
 ): Promise<string | null> {
-  const snap = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20).get().catch(() => null);
-  const docs = snap?.docs ?? [];
+  const [byFirebaseAuthUidSnap, byLinkedAuthUidSnap] = await Promise.all([
+    db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20).get().catch(() => null),
+    db.collection(USERS).where('linkedAuth.providerUid', '==', authUid).limit(20).get().catch(() => null),
+  ]);
+
+  const docs: Array<{ id: string; data: () => FirebaseFirestore.DocumentData | undefined }> = [];
+  const seen = new Set<string>();
+
+  for (const snap of [byFirebaseAuthUidSnap, byLinkedAuthUidSnap]) {
+    for (const doc of snap?.docs ?? []) {
+      if (seen.has(doc.id)) continue;
+      seen.add(doc.id);
+      docs.push(doc);
+    }
+  }
+
   if (docs.length === 0) return null;
 
-  const ranked = docs
-    .map((doc) => {
-      const data = doc.data() ?? {};
-      const canonicalStableId = normalizeStableId(data.canonicalStableId);
-      const hidden = data.identityHidden === true;
-      const linkedAuth = data.linkedAuth as { providerUid?: unknown } | undefined;
-      return {
-        id: hidden && canonicalStableId ? canonicalStableId : doc.id,
-        hidden,
-        hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
-        xp: readProgressXp(data),
-      };
-    })
-    .filter((candidate) => candidate.id);
+  const candidatesById = collectStableIdentityCandidates(docs, authUid);
+  return pickBestStableIdentityCandidate(candidatesById.values());
+}
 
-  ranked.sort((a, b) => {
-    if (a.hidden !== b.hidden) return a.hidden ? 1 : -1;
-    if (a.hasProviderLink !== b.hasProviderLink) return a.hasProviderLink ? -1 : 1;
-    return b.xp - a.xp;
-  });
-
-  return ranked[0]?.id ?? null;
+async function findLiveAuthLinkAnchor(
+  db: admin.firestore.Firestore,
+  authUid: string,
+): Promise<string | null> {
+  const linkSnap = await db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null);
+  const anchoredStableId = normalizeStableId(linkSnap?.data()?.stable_id);
+  if (!anchoredStableId) return null;
+  const anchoredUserSnap = await db.collection(USERS).doc(anchoredStableId).get().catch(() => null);
+  if (!anchoredUserSnap?.exists) return null;
+  const anchoredUserData = anchoredUserSnap.data() ?? {};
+  const canonicalStableId = normalizeStableId(anchoredUserData.canonicalStableId);
+  if (anchoredUserData.identityHidden === true && canonicalStableId && canonicalStableId !== anchoredStableId) {
+    const canonicalSnap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
+    if (canonicalSnap?.exists) return canonicalStableId;
+  }
+  return anchoredStableId;
 }
 
 async function assertStableOwner(
@@ -189,10 +269,9 @@ async function assertStableOwner(
   ]);
   const userData = userSnap?.data() ?? {};
   const userAuthUid = String(userData.firebaseAuthUid ?? '').trim();
-  if (!userAuthUid || userAuthUid === authUid) return;
-
   const linkedStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
   if (linkedStableId === stableId) return;
+  const canonicalLinkConflicts = Boolean(linkedStableId && linkedStableId !== stableId);
 
   const linkedAuth = userData.linkedAuth;
   const hasProviderLink =
@@ -203,13 +282,22 @@ async function assertStableOwner(
   const linkedAuthUid = hasProviderLink
     ? String((linkedAuth as { providerUid?: unknown }).providerUid ?? '').trim()
     : '';
-  if (linkedAuthUid === authUid) return;
+  if (!canonicalLinkConflicts && userAuthUid === authUid) return;
+  if (!canonicalLinkConflicts && linkedAuthUid === authUid) return;
+
+  const anonClaim = readAnonMergeClaim(userData, Date.now());
+  const hasFreshPreviousOwnerProof = Boolean(userAuthUid && anonClaim?.authUid === userAuthUid);
 
   // Переустановка приложения пересоздаёт анонимный Firebase uid, но stable_id
   // остаётся в Keychain/AsyncStorage. Разрешаем перепривязать анонимный uid к тому
   // же stable_id, если: (а) аккаунт не имеет provider-привязки (чисто анонимный),
   // (б) новый uid ещё не занят другим stable_id, (в) явно запрошен allowAnonRelink.
-  if ((options?.allowAnonRelink === true || options?.allowProviderRelink === true) && !linkedStableId && !linkedAuthUid) {
+  if (
+    !canonicalLinkConflicts &&
+    (options?.allowAnonRelink === true || options?.allowProviderRelink === true) &&
+    hasFreshPreviousOwnerProof &&
+    !linkedAuthUid
+  ) {
     const existingByAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
     const existingStableId = String(existingByAuth?.docs?.[0]?.id ?? '').trim();
     if (!existingStableId || existingStableId === stableId) return;
@@ -749,6 +837,13 @@ export async function resolveStableUidForAuth(
   options?: ResolveStableUidForAuthOptions,
 ): Promise<string> {
   const stableId = normalizeStableId(requestedStableId);
+  const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid);
+  if (authLinkAnchor) {
+    if (shouldRepairIdentityLinks(options)) {
+      await linkStableAuthUid(db, authLinkAnchor, authUid);
+    }
+    return authLinkAnchor;
+  }
   if (stableId) {
     const requestedUserSnap = await db.collection(USERS).doc(stableId).get().catch(() => null);
     const requestedUserData = requestedUserSnap?.data() || {};
@@ -768,9 +863,17 @@ export async function resolveStableUidForAuth(
   }
 
   const direct = await db.collection(USERS).doc(authUid).get().catch(() => null);
-  if (direct?.exists) return authUid;
-  const byAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get();
-  if (!byAuth.empty) return byAuth.docs[0].id;
+  if (direct?.exists) {
+    const requestedUserData = direct.data() || {};
+    const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
+    if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== authUid) {
+      return canonicalStableId;
+    }
+  }
+
+  const byAuth = await findStableUidForProviderAuth(db, authUid);
+  if (byAuth) return byAuth;
+
   if (options?.requireKnownIdentity) {
     throw new HttpsError('failed-precondition', 'stable_id_required');
   }
@@ -884,11 +987,30 @@ export function readAnonMergeClaim(
   return { authUid };
 }
 
+export async function stampAnonOwnershipForAuth(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  requestedStableId: unknown,
+  now: number = Date.now(),
+): Promise<{ ok: true; stableUid: string }> {
+  const stableId = normalizeStableId(requestedStableId);
+  if (!stableId || stableId.length > 160) {
+    throw new HttpsError('invalid-argument', 'stable_id_required');
+  }
+  const stableUid = await resolveStableUidForAuth(db, authUid, stableId, {
+    requireKnownIdentity: true,
+    repairLinks: false,
+  });
+  await db.collection(USERS).doc(stableUid).set(
+    { anon_merge_claim: { authUid, at: now }, updatedAt: now },
+    { merge: true },
+  );
+  return { ok: true, stableUid };
+}
+
 export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   if (!request.app) {
-    // App Check warm-up (H9): see whether clients attach a valid attestation token
-    // BEFORE enforcing. Не энфорсим здесь — только наблюдаем форму заголовка.
     console.warn(JSON.stringify({
       event: 'app_check_header_shape',
       function: 'authStampAnonOwnership',
@@ -897,31 +1019,16 @@ export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (reques
   }
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableId = normalizeStableId(request.data?.stableId);
-  if (!stableId || stableId.length > 160) {
-    throw new HttpsError('invalid-argument', 'stable_id_required');
+  try {
+    return await stampAnonOwnershipForAuth(db, authUid, request.data?.stableId);
+  } catch (error) {
+    if ((error as { code?: unknown })?.code === 'permission-denied') {
+      console.warn(JSON.stringify({
+        event: 'stamp_anon_ownership_not_owner',
+        authUid,
+        stableId: normalizeStableId(request.data?.stableId) || null,
+      }));
+    }
+    throw error;
   }
-  // Метку можно ставить ТОЛЬКО на собственный анонимный аккаунт: либо
-  // stableId == authUid (legacy), либо users/{stableId}.firebaseAuthUid == authUid.
-  // Иначе кто угодно мог бы «застолбить» чужой stableId под слияние.
-  const userRef = db.collection(USERS).doc(stableId);
-  const userSnap = await userRef.get().catch(() => null);
-  const ownerAuthUid = String(userSnap?.data()?.firebaseAuthUid ?? '').trim();
-  if (stableId !== authUid && ownerAuthUid && ownerAuthUid !== authUid) {
-    // Диагностика отказа (см. комментарий в assertStableOwner): без лога этот
-    // permission-denied виден только на клиенте, не в functions:log.
-    console.warn(JSON.stringify({
-      event: 'stamp_anon_ownership_not_owner',
-      authUid,
-      stableId,
-      ownerAuthUid: ownerAuthUid || null,
-    }));
-    throw new HttpsError('permission-denied', 'not_owner');
-  }
-  const now = Date.now();
-  await userRef.set(
-    { anon_merge_claim: { authUid, at: now }, updatedAt: now },
-    { merge: true },
-  );
-  return { ok: true };
 });

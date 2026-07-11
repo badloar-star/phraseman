@@ -1264,18 +1264,6 @@ export default function SettingsMain() {
             label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
             onPress={() => router.push('/settings_edu')}
           />
-          {/* Настройки Компаса — только для Plus: у фри Компас живёт в витринном
-              режиме, персональные тумблеры — перк полного доступа. */}
-          {hasPremiumAccess ? (
-            <SettingsRow
-              testID="settings-compass"
-              icon="compass-outline"
-              color="blue"
-              label={L('Компас', 'Компас', 'Brújula', 'Bússola', 'La bàn', 'Kompas', 'Pusula', 'Kompas')}
-              sub={L('Утренний брифинг и итог дня', 'Ранковий брифінг і підсумок дня', 'Briefing matutino y cierre del día', 'Briefing da manhã e resumo do dia', 'Điểm tin sáng và tổng kết ngày', 'Arahan pagi dan ringkasan hari', 'Sabah brifingi ve gün özeti', 'Poranna odprawa i podsumowanie dnia')}
-              onPress={() => router.push('/compass_settings' as never)}
-            />
-          ) : null}
           <SettingsRow
             icon="notifications"
             color="red"

@@ -103,6 +103,9 @@ const ALLOWLIST_FILES = new Set([
   'google-services.json',
   '.codex-tmp-admin-live.html', // codex scratch copy of the admin panel
   'tools/telegram-premium-bot/README.md', // setup docs: placeholder secrets only
+  // Uses firebase-tools' public OAuth desktop client credentials with the
+  // developer's local firebase login; it is not a production app secret.
+  'scripts/_mint_fb_token.mjs',
   // Test fixture: a FAKE service-account private key ('secret-private-key' placeholder)
   // used to exercise the credential-preflight guard. Not a real key.
   'tests/gustav_french_server_remote_credential_preflight_v2_packet.test.ts',
@@ -128,9 +131,10 @@ const FIREBASE_CLIENT_KEY_CONTEXT = /\b(?:apiKey|api_key|current_key)\s*[:=]/;
 // the assignment detector ONLY in these generated files AND only on a line that is
 // a firebasestorage download URL with such a token (so a real key on another line
 // is still caught).
-const PUBLIC_AUDIO_URL_MAP_FILES = new Set([
+const PUBLIC_STORAGE_URL_MAP_FILES = new Set([
   'app/plan_audio_url_map.generated.ts',
   'app/phrase_audio_url_map.generated.ts',
+  'app/collectibles/collectible_image_url_map.generated.ts',
 ]);
 const FIREBASE_STORAGE_DOWNLOAD_URL = /firebasestorage\.googleapis\.com\/.*[?&]alt=media&token=/;
 function isExemptFinding(ruleId, line, relPath) {
@@ -144,10 +148,10 @@ function isExemptFinding(ruleId, line, relPath) {
   ) {
     return true;
   }
-  // Public Firebase Storage download tokens in generated audio URL maps.
+  // Public Firebase Storage download tokens in generated client media URL maps.
   if (
     ruleId === 'named-secret-assign' &&
-    PUBLIC_AUDIO_URL_MAP_FILES.has(relPath) &&
+    PUBLIC_STORAGE_URL_MAP_FILES.has(relPath) &&
     FIREBASE_STORAGE_DOWNLOAD_URL.test(line)
   ) {
     return true;

@@ -24,6 +24,15 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { fetchSeasonTop, type SeasonTopEntry, type SeasonTopResult } from './services/arena_season_client';
 import { CLOUD_SYNC_ENABLED } from './config';
+import { seasonIdForDate } from './arena_season_math';
+import { captureAccountGeneration } from './account_generation';
+import {
+  beginSeasonTopRequest,
+  commitSeasonTop,
+  isSeasonTopRequestCurrent,
+  readSeasonTop,
+  seasonTopCacheKey,
+} from './arena_season_top_cache';
 
 const ROW_H = 72;
 
@@ -113,15 +122,40 @@ export default function ArenaSeasonLeaderboardScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
-  const [data, setData] = useState<SeasonTopResult | null>(null);
-  const [loading, setLoading] = useState(true);
+  const renderToken = captureAccountGeneration();
+  const seasonId = seasonIdForDate(new Date());
+  const renderKey = seasonTopCacheKey(renderToken, seasonId);
+  const initialWarm = readSeasonTop(renderToken, seasonId);
+  const [loadedKey, setLoadedKey] = useState<string | null>(() => renderKey);
+  const [cachedData, setCachedData] = useState<SeasonTopResult | null>(() => initialWarm?.value ?? null);
+  const [loading, setLoading] = useState(() => initialWarm === null);
+  const data = loadedKey === renderKey ? cachedData : null;
+  const visibleLoading = loading || loadedKey !== renderKey;
 
   const load = useCallback(async () => {
-    setLoading(true);
-    const res = await fetchSeasonTop();
-    setData(res);
-    setLoading(false);
-  }, []);
+    const token = captureAccountGeneration();
+    const expectedSeasonId = seasonId;
+    const requestKey = seasonTopCacheKey(token, expectedSeasonId);
+    const warm = readSeasonTop(token, expectedSeasonId);
+    const request = beginSeasonTopRequest(token, expectedSeasonId);
+    if (warm && loadedKey !== requestKey) {
+      setLoadedKey(requestKey);
+      setCachedData(warm.value);
+    }
+    if (warm?.isFresh) { setLoading(false); return; }
+    if (!warm) setLoading(true);
+    try {
+      const res = await fetchSeasonTop();
+      if (res && commitSeasonTop(request, res)) {
+        setLoadedKey(requestKey);
+        setCachedData(res);
+      }
+    } catch {
+      // Quiet revalidation keeps the last successful rows visible.
+    } finally {
+      if (isSeasonTopRequestCurrent(request)) setLoading(false);
+    }
+  }, [loadedKey, renderKey, seasonId]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -213,7 +247,7 @@ export default function ArenaSeasonLeaderboardScreen() {
             )}
 
             {/* loading: скелетон строк рейтинга (форма SeasonRow), а не спиннер */}
-            {loading && (
+            {visibleLoading && (
               <View style={{ paddingTop: 4 }}>
                 {Array.from({ length: 8 }).map((_, i) => (
                   <View
@@ -232,7 +266,7 @@ export default function ArenaSeasonLeaderboardScreen() {
             )}
 
             {/* list */}
-            {!loading && rows.length > 0 && (
+            {!visibleLoading && rows.length > 0 && (
               <FlashList
                 data={rows}
                 keyExtractor={(item) => item.uid}
@@ -240,7 +274,7 @@ export default function ArenaSeasonLeaderboardScreen() {
               />
             )}
 
-            {!loading && rows.length === 0 && CLOUD_SYNC_ENABLED && (
+            {!visibleLoading && rows.length === 0 && CLOUD_SYNC_ENABLED && (
               <View style={{ padding: 32, alignItems: 'center' }}>
                 <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
                   {triLang(lang, { ru: 'Пока никого нет. Стань первым.', uk: 'Поки нікого немає. Будь першим.', es: 'Aún no hay nadie. Sé el primero.', 'pt-BR': 'Ninguém ainda. Seja o primeiro.', vi: 'Chưa có ai. Hãy là người đầu tiên.', id: 'Belum ada siapa-siapa. Jadilah yang pertama.', tr: 'Henüz kimse yok. İlk ol.', pl: 'Na razie nikogo. Bądź pierwszy.' })}

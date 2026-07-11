@@ -15,7 +15,9 @@ describe('core runtime audit markers', () => {
     ];
 
     for (const file of files) {
-      const source = fs.readFileSync(path.join(ROOT, file), 'utf8');
+      const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/\/\/.*$/gm, '');
       expect(source).not.toContain('fallback');
       expect(source).not.toContain('Fallback');
       expect(source).not.toMatch(/return [^;\n]*(?:RU|UK|ES)\b/);

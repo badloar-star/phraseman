@@ -13,8 +13,8 @@
  *      с кнопкой «Забрать осколки» (клейм через CF claimReportReward).
  *
  * Запуск:
- *   node scripts/reply_to_reports.mjs replies.json            — разослать
- *   node scripts/reply_to_reports.mjs replies.json --dry-run  — показать без записи
+ *   node scripts/reply_to_reports.mjs replies.json --dry-run   - preview only; no writes
+ *   node scripts/reply_to_reports.mjs replies.json --send      - live send only after manual confirmation
  *
  * Формат replies.json — массив объектов:
  *   {
@@ -35,7 +35,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
-const admin = require('firebase-admin');
+let admin;
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -120,7 +120,8 @@ function fail(msg) {
 
 const fileArg = process.argv[2];
 const dryRun = process.argv.includes('--dry-run');
-if (!fileArg) fail('Usage: node scripts/reply_to_reports.mjs <replies.json> [--dry-run]');
+const send = process.argv.includes('--send');
+if (!fileArg) fail('Usage: node scripts/reply_to_reports.mjs <replies_batch.json> --dry-run|--send');
 
 let rows;
 try {
@@ -146,6 +147,19 @@ const clean = rows.map((row, i) => {
   if (!REPORT_COLLECTIONS.has(reportCollection)) fail(`${at}: неизвестная reportCollection "${reportCollection}"`);
   return { reportId, uid, title, body, shards, reportCollection };
 });
+
+if (dryRun) {
+  console.log(`🔍 DRY-RUN: ${clean.length} ответ(ов)\n`);
+  for (const item of clean) {
+    console.log(`  · ${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (+${item.shards}💎)`);
+    console.log(`    «${item.title}» — ${item.body.slice(0, 120)}${item.body.length > 120 ? '…' : ''}`);
+  }
+  console.log('\n🔍 DRY-RUN завершён — ничего не записано и Firebase Admin не инициализирован.');
+  process.exit(0);
+}
+if (!send) fail('Live-режим требует явного флага --send. Без него используйте --dry-run.');
+
+admin = require('firebase-admin');
 
 let serviceAccount;
 try {
@@ -270,10 +284,6 @@ async function sendOne(item) {
   let sent = 0, skipped = 0, missing = 0, errors = 0;
   for (const item of clean) {
     const label = `${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (+${item.shards}💎)`;
-    if (dryRun) {
-      console.log(`  · ${label}\n    «${item.title}» — ${item.body.slice(0, 90)}${item.body.length > 90 ? '…' : ''}`);
-      continue;
-    }
     try {
       const res = await sendOne(item);
       if (res.status === 'sent') { sent++; console.log(`  ✅ ${label}`); }

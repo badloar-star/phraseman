@@ -45,7 +45,9 @@ const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identit
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authMergeStableAccounts } = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { accountDeleteMine } = require('./account_delete');
+const { accountDeleteMine, accountDeleteEnqueue } = require('./account_delete');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { accountDeleteWorker, accountDeleteRetryCron } = require('./account_delete_worker');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   leaderboardUpdateDailyAnalytics,
@@ -134,6 +136,7 @@ const {
   helpBoardVote,
   helpBoardReport,
   helpBoardDeleteMyTopic,
+  helpBoardDeleteCompassAnswer,
   helpBoardAdminModerate,
   helpBoardGenerateCompassForTopic,
   helpBoardCompassRetryCron,
@@ -159,9 +162,8 @@ const { constellationSubmitAction } = require('./constellations/submit');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { constellationAdmin } = require('./constellations/admin');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, constellationQueueCron, fillConstellationAfterDelay } = require('./constellations/queue') as {
+const { tryMatchConstellationUser, fillConstellationAfterDelay } = require('./constellations/queue') as {
   tryMatchConstellationUser: (userId: string) => Promise<void>;
-  constellationQueueCron: () => Promise<void>;
   fillConstellationAfterDelay: (userId: string) => Promise<void>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -201,6 +203,9 @@ exports.authEnsureStableLink = authEnsureStableLink;
 exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
+exports.accountDeleteEnqueue = accountDeleteEnqueue;
+exports.accountDeleteWorker = accountDeleteWorker;
+exports.accountDeleteRetryCron = accountDeleteRetryCron;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
 exports.nameReserve = nameReserve;
@@ -261,6 +266,7 @@ exports.helpBoardAddComment = helpBoardAddComment;
 exports.helpBoardVote = helpBoardVote;
 exports.helpBoardReport = helpBoardReport;
 exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
+exports.helpBoardDeleteCompassAnswer = helpBoardDeleteCompassAnswer;
 exports.helpBoardAdminModerate = helpBoardAdminModerate;
 exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
 exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
@@ -347,11 +353,6 @@ export const onConstellationQueueWrite = functions.firestore.onDocumentWritten(
       console.warn('onConstellationQueueWrite botFill', e);
     }
   },
-);
-
-export const constellationCron = functions.scheduler.onSchedule(
-  { schedule: 'every 1 minutes', timeZone: 'UTC' },
-  async () => { await constellationQueueCron(); },
 );
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;

@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 import { checkAchievements } from './achievements';
 import { emitAppEvent } from './events';
 import { logStreakExtended, logStreakLost } from './firebase';
@@ -20,6 +22,7 @@ import {
 import type { Lang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
+import { getCurrentWeekStartIso } from './weekly_xp';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -73,13 +76,13 @@ export const loadLeaderboard = async (): Promise<LeaderEntry[]> => {
     }
     return Array.from(seen.values()).sort((a, b) => b.points - a.points);
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     return [];
   }
 };
 
 export const saveLeaderboard = async (entries: LeaderEntry[]) => {
-  try { await AsyncStorage.setItem(LEADERBOARD_KEY, JSON.stringify(entries)); } catch (e) { if (__DEV__) console.warn('[hall_of_fame_utils]', e); }
+  try { await AsyncStorage.setItem(LEADERBOARD_KEY, JSON.stringify(entries)); } catch (e) { if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e); }
 };
 
 // ── Week leaderboard (только за текущую неделю) ──────────────────────────────
@@ -93,7 +96,7 @@ export const loadWeekLeaderboard = async (): Promise<WeekEntry[]> => {
     const parsed = JSON.parse(s);
     return Array.isArray(parsed) ? parsed : [];
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     return [];
   }
 };
@@ -106,7 +109,7 @@ export function parseWeekPointsForWeek(raw: string | null | undefined, weekKey: 
     const points = Number(data.points ?? 0);
     return Number.isFinite(points) ? points : 0;
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     return 0;
   }
 }
@@ -124,17 +127,17 @@ export const resetWeekPointsIfStale = async (): Promise<void> => {
       ]);
     }
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
   }
 };
 
 const saveWeekLeaderboard = async (entries: WeekEntry[]) => {
-  try { await AsyncStorage.setItem(WEEK_BOARD_KEY, JSON.stringify(entries)); } catch (e) { if (__DEV__) console.warn('[hall_of_fame_utils]', e); }
+  try { await AsyncStorage.setItem(WEEK_BOARD_KEY, JSON.stringify(entries)); } catch (e) { if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e); }
 };
 
 // ── ISO номер недели ──────────────────────────────────────────────────────────
 export const getWeekKey = (d: Date): string => {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
   const day = date.getUTCDay() || 7;
   date.setUTCDate(date.getUTCDate() + 4 - day);
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -147,9 +150,28 @@ export const getMyWeekPoints = async (): Promise<number> => {
   try {
     const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
-    return parseWeekPointsForWeek(raw, currentWeekKey);
+    const parsed = parseWeekPointsForWeek(raw, currentWeekKey);
+    try {
+      const rawData = raw ? JSON.parse(raw) as { weekKey?: unknown } : null;
+      if (rawData?.weekKey === currentWeekKey) return parsed;
+    } catch {
+      // Fall through to the server-mirrored weekly counter.
+    }
+    const [[, weeklyXpRaw], [, periodRaw], [, legacyWeekPointsRaw]] = await AsyncStorage.multiGet([
+      'weekly_xp',
+      'weekly_xp_period_start',
+      'week_points',
+    ]);
+    if (periodRaw === getCurrentWeekStartIso()) {
+      return Math.max(
+        0,
+        parseInt(weeklyXpRaw ?? '0', 10) || 0,
+        parseInt(legacyWeekPointsRaw ?? '0', 10) || 0,
+      );
+    }
+    return parsed;
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     return 0;
   }
 };
@@ -160,20 +182,23 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
     await resetWeekPointsIfStale();
     const migrated = await AsyncStorage.getItem('week_points_migrated_v1');
     if (migrated) return;
+    const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
     if (raw) {
-      const data: { weekKey: string; points: number } = JSON.parse(raw);
-      const totalXpRaw = await AsyncStorage.getItem('user_total_xp');
-      const totalXp = totalXpRaw ? parseInt(totalXpRaw) || 0 : 0;
-      // Если недельные очки равны total XP — это ошибочная миграция
-      if (totalXp > 0 && data.points >= totalXp * 0.9) {
-        const currentWeekKey = getWeekKey(new Date());
+      const data = JSON.parse(raw);
+      const weekKey = typeof data?.weekKey === 'string' ? data.weekKey : '';
+      const points = Number(data?.points);
+      const isWellFormedWeekPoints = weekKey === currentWeekKey
+        && Number.isFinite(points)
+        && points >= 0
+        && points <= 1_000_000_000;
+      if (!isWellFormedWeekPoints) {
         await AsyncStorage.setItem('week_points_v2', JSON.stringify({ weekKey: currentWeekKey, points: 0 }));
       }
     }
     await AsyncStorage.setItem('week_points_migrated_v1', '1');
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
   }
 };
 
@@ -322,7 +347,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
 
     return streak;
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     return 0;
   }
 };
@@ -351,14 +376,14 @@ export const addOrUpdateScore = async (
   const isJestRuntime = typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
   const debugXpTraceEnabled =
     typeof process !== 'undefined' && process.env.EXPO_PUBLIC_DEBUG_XP_TRACE === '1';
-  if (__DEV__ && !isJestRuntime && debugXpTraceEnabled) {
+  if (IS_DEV_RUNTIME && !isJestRuntime && debugXpTraceEnabled) {
     try {
       const stack = (new Error().stack || '').split('\n').slice(2, 7).join('\n');
       console.log(
         `[addOrUpdateScore] +${delta} XP for "${name}" (lang=${lang}, weekKey=${getWeekKey(new Date())})\n${stack}`,
       );
     } catch (e) {
-      if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     }
   }
 
@@ -372,7 +397,7 @@ export const addOrUpdateScore = async (
       resolvedAvatar = storedAvatar;
     }
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
   }
   if (!resolvedAvatar || /^\d+$/.test(resolvedAvatar)) resolvedAvatar = computedLevelAvatar;
 
@@ -428,7 +453,7 @@ export const addOrUpdateScore = async (
       }
     }
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
   }
 
   // ── 3. week_leaderboard ──────────────────────────────────────────────────
@@ -453,7 +478,7 @@ export const addOrUpdateScore = async (
     weekBoard.sort((a, b) => b.points - a.points);
     await saveWeekLeaderboard(weekBoard);
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
   }
 
   // ── 4. daily_stats ────────────────────────────────────────────────────────
@@ -471,7 +496,7 @@ export const addOrUpdateScore = async (
     stats[today] = { points: currentPts + delta, streak: streakVal };
     await AsyncStorage.setItem('daily_stats', JSON.stringify(stats));
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
   }
 
   // ── 5. Цепочка и week_days_done — только при положительном начислении ────────
@@ -523,7 +548,7 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
 
     return { willLose: true, streakBefore: streak };
   } catch (e) {
-    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
     return { willLose: false, streakBefore: 0 };
   }
 };
@@ -538,7 +563,7 @@ export const resetAllStats = async () => {
     'week_days_done', 'week_days_week_key', STREAK_WEEK_MARKERS_KEY,
   ];
   for (const key of keys) {
-    try { await AsyncStorage.removeItem(key); } catch (e) { if (__DEV__) console.warn('[hall_of_fame_utils]', e); }
+    try { await AsyncStorage.removeItem(key); } catch (e) { if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e); }
   }
 };
 

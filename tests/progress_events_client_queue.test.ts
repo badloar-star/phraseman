@@ -1,6 +1,10 @@
 const QUEUE_KEY = 'progress_server_event_queue_v1';
 const MIGRATED_KEY = 'progress_server_snapshot_migrated_v1';
 const BASELINE_KEY = 'progress_server_snapshot_baseline_v1';
+const DEAD_LETTER_KEY = 'progress_server_event_dead_letter_v1';
+let activeStableId = 'stable-1';
+const ownedKey = (base: string, stableId = activeStableId) =>
+  `${base}:${encodeURIComponent(stableId)}`;
 
 type CallableHandlers = Record<string, jest.Mock<Promise<unknown>, [unknown]>>;
 
@@ -26,21 +30,26 @@ function progressResult(overrides: Record<string, unknown> = {}) {
   };
 }
 
-async function loadClient(handlers: CallableHandlers) {
+async function loadClient(
+  handlers: CallableHandlers,
+  stableId = 'stable-1',
+  appCheckReadiness: { value: boolean } = { value: true },
+) {
   jest.resetModules();
+  activeStableId = stableId;
 
   jest.doMock('../app/config', () => ({
     CLOUD_SYNC_ENABLED: true,
     IS_EXPO_GO: false,
   }));
   jest.doMock('../app/cloud_sync', () => ({
-    ensureAnonUser: jest.fn(async () => 'stable-1'),
+    ensureAnonUser: jest.fn(async () => activeStableId),
   }));
   jest.doMock('../app/user_id_policy', () => ({
-    getCanonicalUserId: jest.fn(async () => 'stable-1'),
+    getCanonicalUserId: jest.fn(async () => activeStableId),
   }));
   jest.doMock('../app/app_check_init', () => ({
-    initFirebaseAppCheckIfAvailable: jest.fn(async () => false),
+    initFirebaseAppCheckIfAvailable: jest.fn(async () => appCheckReadiness.value),
   }));
   jest.doMock('@react-native-firebase/app', () => ({
     getApp: jest.fn(() => ({})),
@@ -71,6 +80,33 @@ async function loadClient(handlers: CallableHandlers) {
 }
 
 describe('progress events client durable queue', () => {
+  it('keeps queued progress offline until App Check recovers', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => ({
+        data: progressResult({ eventId: (event as { eventId: string }).eventId }),
+      })),
+    };
+    const readiness = { value: false };
+    const { AsyncStorage, client } = await loadClient(handlers, 'stable-1', readiness);
+
+    await expect(client.submitProgressEvent({
+      eventId: 'lesson:answer:app-check-pending',
+      type: 'lesson_answer',
+      payload: { xpDelta: 10 },
+    })).rejects.toThrow('progress_event_pending');
+
+    expect(handlers.progressMigrateSnapshot).not.toHaveBeenCalled();
+    expect(handlers.progressSubmitEvent).not.toHaveBeenCalled();
+    expect(await AsyncStorage.getItem(ownedKey(MIGRATED_KEY))).toBeNull();
+    expect(JSON.parse(String(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))))).toHaveLength(1);
+
+    readiness.value = true;
+    await expect(client.flushPendingProgressEvents()).resolves.toBe(1);
+    expect(handlers.progressSubmitEvent).toHaveBeenCalledTimes(1);
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
+  });
+
   it('marks migration only after the server accepts the local snapshot', async () => {
     const handlers: CallableHandlers = {
       progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
@@ -86,7 +122,7 @@ describe('progress events client durable queue', () => {
       stableId: 'stable-1',
       progress: { user_total_xp: '42' },
     });
-    expect(await AsyncStorage.getItem(MIGRATED_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem(ownedKey(MIGRATED_KEY))).toBe('1');
 
     await client.ensureProgressSnapshotMigrated();
     expect(handlers.progressMigrateSnapshot).toHaveBeenCalledTimes(1);
@@ -103,7 +139,7 @@ describe('progress events client durable queue', () => {
 
     await expect(client.ensureProgressSnapshotMigrated()).rejects.toThrow('offline');
 
-    expect(await AsyncStorage.getItem(MIGRATED_KEY)).toBeNull();
+    expect(await AsyncStorage.getItem(ownedKey(MIGRATED_KEY))).toBeNull();
   });
 
   it('uses a frozen migration baseline for optimistic local XP updates', async () => {
@@ -128,7 +164,7 @@ describe('progress events client durable queue', () => {
       stableId: 'stable-1',
       progress: { user_total_xp: '42' },
     });
-    expect(await AsyncStorage.getItem(BASELINE_KEY)).toBeNull();
+    expect(await AsyncStorage.getItem(ownedKey(BASELINE_KEY))).toBeNull();
   });
 
   it('queues the current event when migration is temporarily unavailable', async () => {
@@ -149,7 +185,7 @@ describe('progress events client durable queue', () => {
       payload: { xpDelta: 100 },
     }, { migrationSnapshot: baseline })).rejects.toThrow('offline');
 
-    const queued = JSON.parse(String(await AsyncStorage.getItem(QUEUE_KEY)));
+    const queued = JSON.parse(String(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))));
     expect(queued).toHaveLength(1);
     expect(queued[0]).toMatchObject({
       eventId: 'lesson:answer:migration-offline',
@@ -158,8 +194,11 @@ describe('progress events client durable queue', () => {
       payload: { xpDelta: 100 },
     });
     expect(handlers.progressSubmitEvent).not.toHaveBeenCalled();
-    expect(await AsyncStorage.getItem(MIGRATED_KEY)).toBeNull();
-    expect(JSON.parse(String(await AsyncStorage.getItem(BASELINE_KEY)))).toMatchObject({ user_total_xp: '42' });
+    expect(await AsyncStorage.getItem(ownedKey(MIGRATED_KEY))).toBeNull();
+    expect(JSON.parse(String(await AsyncStorage.getItem(ownedKey(BASELINE_KEY))))).toMatchObject({
+      ownerStableUid: 'stable-1',
+      progress: { user_total_xp: '42' },
+    });
   });
 
   it('persists a failed event once and retries it later through flush', async () => {
@@ -176,10 +215,10 @@ describe('progress events client durable queue', () => {
       payload: { xp: 10, lessonId: 1 },
     };
 
-    await expect(client.submitProgressEvent(request)).rejects.toThrow('offline');
-    await expect(client.submitProgressEvent(request)).rejects.toThrow('offline');
+    await expect(client.submitProgressEvent(request)).rejects.toThrow('progress_event_pending');
+    await expect(client.submitProgressEvent(request)).rejects.toThrow('progress_event_pending');
 
-    const queuedRaw = await AsyncStorage.getItem(QUEUE_KEY);
+    const queuedRaw = await AsyncStorage.getItem(ownedKey(QUEUE_KEY));
     const queued = JSON.parse(String(queuedRaw));
     expect(queued).toHaveLength(1);
     expect(queued[0]).toMatchObject({
@@ -200,7 +239,7 @@ describe('progress events client durable queue', () => {
     }));
 
     await expect(client.flushPendingProgressEvents()).resolves.toBe(1);
-    expect(await AsyncStorage.getItem(QUEUE_KEY)).toBe('[]');
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('120');
     expect(await AsyncStorage.getItem('weekly_xp')).toBe('50');
   });
@@ -213,7 +252,7 @@ describe('progress events client durable queue', () => {
       }),
     };
     const { AsyncStorage, client } = await loadClient(handlers);
-    await AsyncStorage.setItem(QUEUE_KEY, JSON.stringify([{
+    await AsyncStorage.setItem(ownedKey(QUEUE_KEY), JSON.stringify([{
       eventId: 'old-event',
       type: 'lesson_answer',
       clientLocalDate: '2026-06-13',
@@ -228,9 +267,9 @@ describe('progress events client durable queue', () => {
       eventId: 'new-event',
       type: 'quiz_answer',
       payload: { xp: 2 },
-    })).rejects.toThrow('still_offline');
+    })).rejects.toThrow('progress_event_pending');
 
-    const queued = JSON.parse(String(await AsyncStorage.getItem(QUEUE_KEY)));
+    const queued = JSON.parse(String(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))));
     expect(queued.map((event: { eventId: string }) => event.eventId)).toEqual(['old-event', 'new-event']);
   });
 
@@ -325,5 +364,121 @@ describe('progress events client durable queue', () => {
         clientLastActiveDate: '2026-06-13',
       },
     });
+  });
+
+  it('keeps the 101st queued event instead of silently slicing it away', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => {
+        throw new Error('offline');
+      }),
+    };
+    const { AsyncStorage, client } = await loadClient(handlers);
+    const existing = Array.from({ length: 100 }, (_, index) => ({
+      eventId: `event-${index}`,
+      type: 'lesson_answer',
+      clientLocalDate: '2026-07-10',
+      clientCreatedAt: index,
+      appVersion: 'test',
+      platform: 'ios',
+      stableId: 'stable-1',
+      payload: { xpDelta: 1 },
+    }));
+    await AsyncStorage.multiSet([
+      [ownedKey(MIGRATED_KEY), '1'],
+      [ownedKey(QUEUE_KEY), JSON.stringify(existing)],
+    ]);
+
+    await expect(client.submitProgressEvent({
+      eventId: 'event-100',
+      type: 'lesson_answer',
+      payload: { xpDelta: 1 },
+    })).rejects.toThrow('progress_event_pending');
+
+    expect(JSON.parse(String(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))))).toHaveLength(101);
+  });
+
+  it('moves permanent poison events to bounded dead-letter and continues the queue', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => {
+        const eventId = (event as { eventId: string }).eventId;
+        if (eventId === 'poison') {
+          throw Object.assign(new Error('bad payload'), { code: 'functions/invalid-argument' });
+        }
+        return { data: progressResult({ eventId }) };
+      }),
+    };
+    const { AsyncStorage, client } = await loadClient(handlers);
+    const makeQueued = (eventId: string) => ({
+      eventId,
+      type: 'lesson_answer',
+      clientLocalDate: '2026-07-10',
+      clientCreatedAt: 1,
+      appVersion: 'test',
+      platform: 'ios',
+      stableId: 'stable-1',
+      payload: { xpDelta: 1 },
+    });
+    await AsyncStorage.multiSet([
+      [ownedKey(MIGRATED_KEY), '1'],
+      [ownedKey(QUEUE_KEY), JSON.stringify([makeQueued('poison'), makeQueued('valid')])],
+    ]);
+
+    await expect(client.flushPendingProgressEvents()).resolves.toBe(1);
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
+    const deadLetters = JSON.parse(String(await AsyncStorage.getItem(ownedKey(DEAD_LETTER_KEY))));
+    expect(deadLetters).toHaveLength(1);
+    expect(deadLetters[0]).toMatchObject({
+      event: { eventId: 'poison', stableId: 'stable-1' },
+      diagnostic: 'functions/invalid-argument',
+    });
+  });
+
+  it('does not let account A queue or baseline block account B', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => {
+        const row = event as { eventId: string; stableId: string };
+        if (row.stableId === 'account-A') throw new Error('offline-A');
+        return { data: progressResult({ stableUid: row.stableId, eventId: row.eventId }) };
+      }),
+    };
+    const { AsyncStorage, client } = await loadClient(handlers, 'account-A');
+    await AsyncStorage.setItem('user_total_xp', '111');
+    await client.prepareProgressMigrationSnapshot();
+    await expect(client.submitProgressEvent({
+      eventId: 'A-event',
+      type: 'lesson_answer',
+      payload: { xpDelta: 1 },
+    })).rejects.toThrow('progress_event_pending');
+
+    activeStableId = 'account-B';
+    await AsyncStorage.setItem('user_total_xp', '222');
+    await client.prepareProgressMigrationSnapshot();
+    await expect(client.submitProgressEvent({
+      eventId: 'B-event',
+      type: 'lesson_answer',
+      payload: { xpDelta: 1 },
+    })).resolves.toMatchObject({ eventId: 'B-event' });
+    expect(await client.hasPendingProgressServerEvents()).toBe(false);
+
+    expect(await AsyncStorage.getItem(ownedKey(BASELINE_KEY, 'account-A'))).toBeNull();
+    expect(await AsyncStorage.getItem(ownedKey(BASELINE_KEY, 'account-B'))).toBeNull();
+    expect(JSON.parse(String(await AsyncStorage.getItem(ownedKey(QUEUE_KEY, 'account-A'))))).toHaveLength(1);
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY, 'account-B'))).toBe('[]');
+  });
+
+  it('makes club mission ids deterministic', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { client } = await loadClient(handlers);
+    const payload = { missionId: 'speak-1', completedAt: 123 };
+    expect(client.makeDeterministicProgressEventId('club_mission_complete', payload)).toBe(
+      client.makeDeterministicProgressEventId('club_mission_complete', payload),
+    );
+    expect(client.makeDeterministicProgressEventId('club_mission_complete', payload)).toMatch(/^club:/);
   });
 });

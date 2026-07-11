@@ -63,6 +63,33 @@ export async function fetchActiveSurvey(data: {
   return res.survey ?? null;
 }
 
+/**
+ * Auth linking and Firebase App Check can finish just after a focused screen
+ * starts its first request. Retry the read briefly so a newly enabled survey
+ * does not disappear until the user leaves and re-enters the screen.
+ */
+export async function fetchActiveSurveyWithRetry(
+  data: { stableId: string; platform: string; lang: string },
+  options: { attempts?: number; delayMs?: number } = {},
+): Promise<ActiveSurvey | null> {
+  const attempts = Math.max(1, Math.floor(Number(options.attempts ?? 3)) || 3);
+  const delayMs = Math.max(0, Math.floor(Number(options.delayMs ?? 350)) || 0);
+  let lastError: unknown;
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      const survey = await fetchActiveSurvey(data);
+      if (survey) return survey;
+    } catch (error) {
+      lastError = error;
+    }
+    if (attempt < attempts - 1 && delayMs > 0) {
+      await new Promise<void>((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+  if (lastError) throw lastError;
+  return null;
+}
+
 export async function submitSurvey(data: {
   stableId: string;
   surveyId: string;

@@ -72,7 +72,6 @@
 - `comebackDay`
 - `perfectWeekReward`
 - `boonActivated`
-- `compassBriefing`
 - `lessonCompleteNotif`
 - `arenaRoomConfirm`
 - `shardsEarned`
@@ -94,7 +93,6 @@ Observed `useOverlayVisible(...)` owners:
 - `broadcast`: `app/_layout.tsx`
 - `coachToast`: `components/CoachToast.tsx`
 - `comebackDay`: `components/ComebackBoonHost.tsx`
-- `compassBriefing`: `app/compass/compass_briefing_host.tsx`
 - `dailyPlan`: `app/_layout.tsx`
 - `dailyTaskRewardToast`: `components/DailyTaskRewardToast.tsx`
 - `entitlementExpired`: `components/EntitlementExpiredHost.tsx`

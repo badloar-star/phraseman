@@ -142,7 +142,18 @@ describe('speaking recognition start options', () => {
     (Platform as any).OS = 'ios';
     const hold = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', holdToTalk: true });
     expect(hold.androidIntentOptions).toBeUndefined();
-    // continuous still reflects the flag (iOS session handling reads it too).
+    // Hold-to-talk must stay open until the finger releases on iOS too.
     expect(hold.continuous).toBe(true);
+  });
+
+  it('uses dictation for free speech so a short scenario title cannot end the mic early', () => {
+    (Platform as any).OS = 'ios';
+    const opts = buildSpeakingStartOptions({
+      lang: 'en-US',
+      targetText: 'hi',
+      holdToTalk: true,
+      freeSpeech: true,
+    });
+    expect(opts.iosTaskHint).toBe('dictation');
   });
 });

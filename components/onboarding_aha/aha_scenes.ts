@@ -347,6 +347,11 @@ export const AHA_STRINGS = {
     uk: 'Слухаю…',
     es: 'Te escucho…',
   },
+  speakPreparing: {
+    ru: 'Готовлю микрофон…',
+    uk: 'Готую мікрофон…',
+    es: 'Preparando el micrófono…',
+  },
   speakSuccess: {
     ru: 'Уже похоже на речь!',
     uk: 'Уже схоже на мовлення!',

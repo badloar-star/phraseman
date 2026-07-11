@@ -542,9 +542,8 @@ const isLeagueResultAlreadyConsumed = async (result: LeagueResult | null): Promi
 };
 
 // ISO week number — граница в понедельник (как в hall_of_fame_utils)
-export const getWeekId = (): string => {
-  const d = new Date();
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+export const getWeekId = (d: Date = new Date()): string => {
+  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
   const day = date.getUTCDay() || 7;
   date.setUTCDate(date.getUTCDate() + 4 - day);
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));

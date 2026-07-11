@@ -6,6 +6,7 @@ import {
   ScrollView,
   TextInput,
   Animated,
+  ActivityIndicator,
   Easing,
   KeyboardAvoidingView,
   Linking,
@@ -22,10 +23,10 @@ import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { setAudioModeAsync } from 'expo-audio';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
-import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
+import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from './audio_playback_mode';
+import { setManagedAudioMode } from './audio_session_coordinator';
 import {
   dialogScenarioNextStepHint,
   dialogScenarioTitle,
@@ -79,7 +80,11 @@ import { MAX_DIALOG_XP } from './config';
 import { outcomeXpMultiplier } from './dialog_outcome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
-import { isSpeechRecognitionAvailable, loadPlanSpeechModule } from './personal_plan_speech_module';
+import {
+  isSpeechRecognitionAvailable,
+  loadPlanSpeechModule,
+  requestSpeechPermissionForHold,
+} from './personal_plan_speech_module';
 import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
@@ -93,6 +98,7 @@ type VoiceInputStatus =
   | 'idle'
   | 'requesting'
   | 'listening'
+  | 'finishing'
   | 'unavailable'
   | 'denied'
   | 'stalled'
@@ -101,13 +107,15 @@ type VoiceInputStatus =
 // Разговорный режим: после отпускания пальца ждём финальный результат
 // распознавателя перед авто-отправкой (последний `result` часто прилетает уже
 // после stop()). Достаточно, чтобы досдать хвост, но незаметно для юзера.
-const CONVERSATION_SEND_GRACE_MS = 450;
+// Normal completion is event-driven (`end`/`error`). This is only a bounded
+// fallback for OEM recognizers that stop the engine without a terminal event.
+const CONVERSATION_SEND_GRACE_MS = 1200;
 
 // Вернуть аудио-сессию в «громкое воспроизведение» после голосового ввода:
 // без сброса озвучка ответов Компаса и любые mp3 после микрофона играют тихо
 // через разговорный динамик или не играют вовсе.
 function restoreLoudPlaybackMode(): void {
-  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
 }
 
 /**
@@ -227,6 +235,8 @@ export default function AiDialogSession() {
   const lastSentTextRef = useRef('');
   const scrollRef = useRef<ScrollView>(null);
   const [voiceInputStatus, setVoiceInputStatus] = useState<VoiceInputStatus>('idle');
+  const voiceInputStatusRef = useRef<VoiceInputStatus>('idle');
+  voiceInputStatusRef.current = voiceInputStatus;
   const voiceInputListenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const voiceInputMountedRef = useRef(true);
   // ── Разговорный режим «зажми и говори» (hands-free болталка) ────────────────
@@ -239,12 +249,20 @@ export default function AiDialogSession() {
   // Свежее значение флага для колбэков send/распознавания без stale-closure и
   // без пересоздания send при каждом переключении тумблера.
   const conversationModeRef = useRef(false);
+  // Invalidates an in-flight permission/model/start sequence when the finger is
+  // released or the conversation mode is turned off.
+  const voiceInputGenerationRef = useRef(0);
+  const holdPressActiveRef = useRef(false);
   useEffect(() => {
     conversationModeRef.current = conversationMode;
   }, [conversationMode]);
   // Последний распознанный текст: onPressOut читает его, чтобы отправить реплику
   // (локальная `latest` внутри startVoiceInput недоступна снаружи).
   const latestTranscriptRef = useRef('');
+  const sendVoiceTextRef = useRef<(text: string) => void>(() => undefined);
+  const conversationReleasePendingRef = useRef(false);
+  const conversationSendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const finalizeConversationSendRef = useRef<() => void>(() => undefined);
   // Идёт озвучка ответа ИИ (для подсказки «Отвечает…» под полем ввода).
   const [aiSpeaking, setAiSpeaking] = useState(false);
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
@@ -367,21 +385,9 @@ export default function AiDialogSession() {
     voiceInputListenersRef.current = [];
   }, []);
 
-  const stopVoiceInput = useCallback(() => {
-    hapticTap();
-    clearRecognizerWatchdog();
-    cleanupVoiceInputListeners();
-    try {
-      speechModule?.stop();
-    } catch {
-      /* no-op */
-    }
-    restoreLoudPlaybackMode();
-    setVoiceInputStatus('idle');
-  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
-
   const startVoiceInput = useCallback(async () => {
     if (sending || ended || voiceInputStatus === 'requesting') return;
+    const generation = ++voiceInputGenerationRef.current;
     hapticTap();
     // Глушим играющий ответ-TTS перед стартом микрофона: иначе он течёт в
     // распознаватель и портит транскрипт (образец: SpeakingPanel stopListening).
@@ -404,14 +410,15 @@ export default function AiDialogSession() {
     }
 
     setVoiceInputStatus('requesting');
-    try {
-      const permission = await speechModule.requestPermissionsAsync();
-      if (!permission?.granted) {
-        setVoiceInputStatus('denied');
-        return;
-      }
-    } catch {
+    const permission = await requestSpeechPermissionForHold(speechModule);
+    if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+    if (permission === 'denied') {
       setVoiceInputStatus('denied');
+      return;
+    }
+    if (permission === 'granted_after_prompt') {
+      holdPressActiveRef.current = false;
+      setVoiceInputStatus('idle');
       return;
     }
 
@@ -445,11 +452,23 @@ export default function AiDialogSession() {
     // эмитится, а сразу приходит result — снимаем и там, и там.
     const startSub = speechModule.addListener('start', () => {
       clearRecognizerWatchdog();
+      if (!holdPressActiveRef.current) {
+        try {
+          speechModule.stop();
+        } catch {
+          /* no-op */
+        }
+        return;
+      }
+      setVoiceInputStatus('listening');
       playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: any) => {
       clearRecognizerWatchdog();
-      playCueOnce();
+      if (holdPressActiveRef.current) {
+        setVoiceInputStatus('listening');
+        playCueOnce();
+      }
       const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
         ? event.results
         : [];
@@ -469,12 +488,20 @@ export default function AiDialogSession() {
     });
     const endSub = speechModule.addListener('end', () => {
       clearRecognizerWatchdog();
+      if (conversationReleasePendingRef.current) {
+        finalizeConversationSendRef.current();
+        return;
+      }
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
       if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
     });
     const errorSub = speechModule.addListener('error', () => {
       clearRecognizerWatchdog();
+      if (conversationReleasePendingRef.current && latestTranscriptRef.current.trim()) {
+        finalizeConversationSendRef.current();
+        return;
+      }
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
       // Есть текст — молча оставляем его; иначе транзиентный сбой → 'error' с «Повторить».
@@ -496,10 +523,21 @@ export default function AiDialogSession() {
     } catch {
       onDevice = false;
     }
-    if (!voiceInputMountedRef.current) return;
+    if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
 
     try {
-      setVoiceInputStatus('listening');
+      try {
+        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE);
+      } catch {
+        // expo-speech-recognition may own the native session on some devices.
+      }
+      if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+      if (!holdPressActiveRef.current) {
+        cleanupVoiceInputListeners();
+        restoreLoudPlaybackMode();
+        setVoiceInputStatus('idle');
+        return;
+      }
       // Watchdog: если за 7с движок не подал признаков жизни — гасим попытку и
       // показываем «Не удалось запустить микрофон» с повтором по тапу на микрофон.
       clearRecognizerWatchdog();
@@ -528,13 +566,17 @@ export default function AiDialogSession() {
           persistRecording: false,
           // Разговорный режим = зажми-и-говори: держим движок открытым, пока
           // зажата кнопка (иначе Android-endpointer рвёт речь на паузе).
-          holdToTalk: conversationModeRef.current,
+          holdToTalk: true,
+          // Свободная реплика диалога, не заранее известная фраза — targetText
+          // тут только для biasing (заголовок сценария), НЕ для iOS task hint.
+          freeSpeech: true,
         }),
       );
       // cue теперь в playCueOnce (слушатели 'start'/'result').
     } catch {
       clearRecognizerWatchdog();
       cleanupVoiceInputListeners();
+      restoreLoudPlaybackMode();
       // start() кинул — почти всегда транзиентно (сервис занят/умер); даём «Повторить».
       if (voiceInputMountedRef.current) setVoiceInputStatus('error');
     }
@@ -559,6 +601,11 @@ export default function AiDialogSession() {
     voiceInputMountedRef.current = true;
     return () => {
       voiceInputMountedRef.current = false;
+      conversationReleasePendingRef.current = false;
+      if (conversationSendTimerRef.current != null) {
+        clearTimeout(conversationSendTimerRef.current);
+        conversationSendTimerRef.current = null;
+      }
       clearRecognizerWatchdog();
       cleanupVoiceInputListeners();
       try {
@@ -749,10 +796,25 @@ export default function AiDialogSession() {
     },
     [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router, lang, gameRequestFields, applyTurnState, speakAiReply],
   );
+  sendVoiceTextRef.current = (text: string) => {
+    void send(text);
+  };
+  finalizeConversationSendRef.current = () => {
+    if (!conversationReleasePendingRef.current) return;
+    conversationReleasePendingRef.current = false;
+    if (conversationSendTimerRef.current != null) {
+      clearTimeout(conversationSendTimerRef.current);
+      conversationSendTimerRef.current = null;
+    }
+    const text = latestTranscriptRef.current.trim();
+    cleanupVoiceInputListeners();
+    restoreLoudPlaybackMode();
+    if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+    if (text) sendVoiceTextRef.current(text);
+  };
 
   // ── Press-and-hold для разговорного режима ─────────────────────────────────
   // Grace-таймер отложенной авто-отправки после отпускания пальца.
-  const conversationSendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const clearConversationSendTimer = useCallback(() => {
     if (conversationSendTimerRef.current != null) {
       clearTimeout(conversationSendTimerRef.current);
@@ -760,41 +822,55 @@ export default function AiDialogSession() {
     }
   }, []);
 
-  // Зажал микрофон (разговорный режим): начинаем слушать с чистого листа.
+  // Любой голосовой ввод использует один жест: держим кнопку, пока говорим.
+  // Разговорный режим отличается только авто-отправкой и озвучкой ответа.
   const handleMicPressIn = useCallback(() => {
-    if (!conversationModeRef.current) return;
     if (sending || ended || aiSpeaking) return;
+    if (conversationReleasePendingRef.current) return;
+    holdPressActiveRef.current = true;
     clearConversationSendTimer();
     latestTranscriptRef.current = '';
     void startVoiceInput();
   }, [sending, ended, aiSpeaking, clearConversationSendTimer, startVoiceInput]);
 
-  // Отпустил микрофон (разговорный режим): останавливаем движок и после короткого
-  // grace-периода (досдать финальный result) авто-отправляем распознанное.
+  // Отпустил микрофон: сразу гасим красное active-состояние и останавливаем
+  // recognizer. В разговорном режиме после финального result ещё авто-отправляем.
   const handleMicPressOut = useCallback(() => {
-    if (!conversationModeRef.current) return;
+    holdPressActiveRef.current = false;
+    voiceInputGenerationRef.current += 1;
     clearRecognizerWatchdog();
+    if (voiceInputStatusRef.current === 'requesting') {
+      conversationReleasePendingRef.current = false;
+      cleanupVoiceInputListeners();
+      try {
+        speechModule?.abort();
+      } catch {
+        /* no-op */
+      }
+      restoreLoudPlaybackMode();
+      setVoiceInputStatus('idle');
+      return;
+    }
+    if (voiceInputStatusRef.current !== 'listening') return;
+    conversationReleasePendingRef.current = conversationModeRef.current;
+    setVoiceInputStatus('finishing');
     try {
       speechModule?.stop();
     } catch {
       /* сервис мог умереть — не мешаем */
     }
-    clearConversationSendTimer();
-    conversationSendTimerRef.current = setTimeout(() => {
-      conversationSendTimerRef.current = null;
-      if (!voiceInputMountedRef.current) return;
-      const text = latestTranscriptRef.current.trim();
-      cleanupVoiceInputListeners();
-      restoreLoudPlaybackMode();
-      setVoiceInputStatus('idle');
-      if (text) void send(text);
-    }, CONVERSATION_SEND_GRACE_MS);
+    if (conversationModeRef.current) {
+      clearConversationSendTimer();
+      conversationSendTimerRef.current = setTimeout(() => {
+        conversationSendTimerRef.current = null;
+        finalizeConversationSendRef.current();
+      }, CONVERSATION_SEND_GRACE_MS);
+    }
   }, [
     clearRecognizerWatchdog,
     speechModule,
     clearConversationSendTimer,
     cleanupVoiceInputListeners,
-    send,
   ]);
 
   useEffect(() => {
@@ -1071,6 +1147,28 @@ export default function AiDialogSession() {
           tr: 'Yanıtlıyor…',
           pl: 'Odpowiada…',
         })
+      : voiceInputStatus === 'requesting'
+        ? triLang(lang, {
+            ru: 'Готовлю микрофон… удерживай кнопку',
+            uk: 'Готую мікрофон… тримай кнопку',
+            es: 'Preparando el micrófono… mantén pulsado',
+            'pt-BR': 'Preparando o microfone… continue segurando',
+            vi: 'Đang chuẩn bị micrô… hãy tiếp tục giữ',
+            id: 'Menyiapkan mikrofon… tetap tahan',
+            tr: 'Mikrofon hazırlanıyor… basılı tut',
+            pl: 'Przygotowuję mikrofon… trzymaj przycisk',
+          })
+      : voiceInputStatus === 'finishing'
+        ? triLang(lang, {
+            ru: 'Обрабатываю сказанное…',
+            uk: 'Обробляю сказане…',
+            es: 'Procesando lo dicho…',
+            'pt-BR': 'Processando o que você disse…',
+            vi: 'Đang xử lý lời nói…',
+            id: 'Memproses ucapan…',
+            tr: 'Söylediklerin işleniyor…',
+            pl: 'Przetwarzam wypowiedź…',
+          })
       : conversationMode && voiceInputStatus === 'listening'
         ? triLang(lang, {
             ru: 'Говори… (отпусти, когда закончишь)',
@@ -1082,7 +1180,7 @@ export default function AiDialogSession() {
             tr: 'Konuş… (bitince bırak)',
             pl: 'Mów… (puść, gdy skończysz)',
           })
-        : conversationMode && (voiceInputStatus === 'idle' || voiceInputStatus === 'requesting') && !sending
+        : conversationMode && voiceInputStatus === 'idle' && !sending
           ? triLang(lang, {
               ru: 'Зажми микрофон и говори',
               uk: 'Затисни мікрофон і говори',
@@ -1095,15 +1193,26 @@ export default function AiDialogSession() {
             })
           : voiceInputStatus === 'listening'
       ? triLang(lang, {
-          ru: 'Слушаю…',
-          uk: 'Слухаю…',
-          es: 'Escuchando…',
-          'pt-BR': 'Ouvindo…',
-          vi: 'Đang nghe…',
-          id: 'Mendengarkan…',
-          tr: 'Dinliyorum…',
-          pl: 'Słucham…',
+          ru: 'Говори… отпусти, когда закончишь',
+          uk: 'Говори… відпусти, коли закінчиш',
+          es: 'Habla… suelta al terminar',
+          'pt-BR': 'Fale… solte ao terminar',
+          vi: 'Nói… thả ra khi xong',
+          id: 'Bicara… lepas setelah selesai',
+          tr: 'Konuş… bitince bırak',
+          pl: 'Mów… puść, gdy skończysz',
         })
+      : !conversationMode && voiceInputStatus === 'idle' && !sending
+        ? triLang(lang, {
+            ru: 'Зажми микрофон и продиктуй ответ',
+            uk: 'Затисни мікрофон і продиктуй відповідь',
+            es: 'Mantén pulsado el micro y dicta tu respuesta',
+            'pt-BR': 'Segure o microfone e dite sua resposta',
+            vi: 'Giữ micrô và đọc câu trả lời',
+            id: 'Tahan mikrofon dan diktekan jawaban',
+            tr: 'Mikrofona basılı tutup yanıtını söyle',
+            pl: 'Przytrzymaj mikrofon i podyktuj odpowiedź',
+          })
       : voiceInputStatus === 'denied'
         ? triLang(lang, {
             ru: 'Нужен доступ к микрофону',
@@ -1575,6 +1684,7 @@ export default function AiDialogSession() {
                                   <Text
                                     key={si}
                                     onPress={() => {
+                                      if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
                                       hapticTap();
                                       void trackEvent('ai_dialog_phrase_tapped', {
                                         scenarioId: scenario.id,
@@ -1595,6 +1705,7 @@ export default function AiDialogSession() {
                                   <Text
                                     key={si}
                                     onPress={() => {
+                                      if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
                                       hapticTap();
                                       void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
                                       speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
@@ -1607,11 +1718,13 @@ export default function AiDialogSession() {
                             </Text>
                             <TouchableOpacity
                               onPress={() => {
+                                if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
                                 hapticTap();
                                 void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
                                 speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
                               }}
                               activeOpacity={0.6}
+                              disabled={voiceInputStatus === 'requesting' || voiceInputStatus === 'listening'}
                               accessibilityRole="button"
                               accessibilityLabel={triLang(lang, {
                                 ru: 'Озвучить реплику',
@@ -2383,6 +2496,9 @@ export default function AiDialogSession() {
                         on: next,
                       });
                       if (!next) {
+                        voiceInputGenerationRef.current += 1;
+                        holdPressActiveRef.current = false;
+                        conversationReleasePendingRef.current = false;
                         // Выключаем — гасим всё голосовое, чтобы не «зависло».
                         clearConversationSendTimer();
                         clearRecognizerWatchdog();
@@ -2503,23 +2619,19 @@ export default function AiDialogSession() {
                 maxFontSizeMultiplier={1.2}
               />
               <TouchableOpacity
-                // Разговорный режим — удержание (говоришь, пока держишь). Обычный
-                // режим — прежний тап-toggle (старт/стоп по нажатию).
-                onPress={
-                  conversationMode
-                    ? undefined
-                    : voiceInputStatus === 'listening'
-                      ? stopVoiceInput
-                      : () => void startVoiceInput()
-                }
-                onPressIn={conversationMode ? handleMicPressIn : undefined}
-                onPressOut={conversationMode ? handleMicPressOut : undefined}
-                disabled={sending || aiSpeaking || voiceInputStatus === 'requesting'}
+                // Единый контракт во всех голосовых режимах: press-in старт,
+                // press-out стоп. Разговорный режим дополнительно авто-отправляет.
+                onPressIn={handleMicPressIn}
+                onPressOut={handleMicPressOut}
+                disabled={sending || aiSpeaking || voiceInputStatus === 'finishing'}
                 activeOpacity={0.82}
                 accessibilityRole="button"
+                accessibilityState={{
+                  disabled: sending || aiSpeaking || voiceInputStatus === 'finishing',
+                  busy: voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing',
+                }}
                 accessibilityLabel={
-                  conversationMode
-                    ? triLang(lang, {
+                  triLang(lang, {
                         ru: 'Зажми и говори',
                         uk: 'Затисни і говори',
                         es: 'Mantén pulsado y habla',
@@ -2528,16 +2640,6 @@ export default function AiDialogSession() {
                         id: 'Tahan dan bicara',
                         tr: 'Basılı tut ve konuş',
                         pl: 'Przytrzymaj i mów',
-                      })
-                    : triLang(lang, {
-                        ru: 'Голосовой ввод Plus',
-                        uk: 'Голосове введення Plus',
-                        es: 'Entrada por voz Plus',
-                        'pt-BR': 'Entrada por voz Plus',
-                        vi: 'Nhập bằng giọng nói Plus',
-                        id: 'Input suara Plus',
-                        tr: 'Plus sesle giriş',
-                        pl: 'Wpisywanie głosem Plus',
                       })
                 }
                 style={{
@@ -2549,21 +2651,19 @@ export default function AiDialogSession() {
                   backgroundColor: voiceInputStatus === 'listening' ? t.accent : t.bgSurface,
                   borderWidth: 0,
                   borderColor: 'transparent',
-                  opacity: sending || voiceInputStatus === 'requesting' ? 0.55 : 1,
+                  opacity: sending || voiceInputStatus === 'finishing' ? 0.55 : 1,
                   position: 'relative',
                 }}
               >
-                <Ionicons
-                  name={
-                    voiceInputStatus === 'listening'
-                      ? conversationMode
-                        ? 'mic'
-                        : 'stop'
-                      : 'mic-outline'
-                  }
-                  size={21}
-                  color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
-                />
+                {voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing' ? (
+                  <ActivityIndicator size="small" color={t.textSecond} />
+                ) : (
+                  <Ionicons
+                    name={voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
+                    size={21}
+                    color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
+                  />
+                )}
                 {!hasPremiumAccess && (
                   <View
                     style={{

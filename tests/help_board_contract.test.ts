@@ -21,7 +21,7 @@ describe('help board product contract', () => {
 
     expect(chatHub).toContain("type CommunityHubTab = 'help' | 'league'");
     expect(chatHub).toContain("const [tab, setTab] = useState<CommunityHubTab>('help')");
-    expect(chatHub).toContain("setTab('help');\n    setVisible(true);");
+    expect(chatHub).toMatch(/setTab\('help'\);\s+setVisible\(true\);/);
     expect(chatHub).toContain('testID="home-league-chat-button"');
     expect(chatHub).toContain('testID="community-chat-hub-fullscreen"');
     expect(chatHub).toContain('HelpBoardPanel');
@@ -243,7 +243,7 @@ describe('help board product contract', () => {
     for (const doc of [terms, privacy, appTerms, termsHtml]) {
       expect(doc).toContain('Help Board');
       expect(doc).toContain('Compass');
-      expect(doc).toContain('July 1, 2026');
+      expect(doc).toMatch(/July \d{1,2}, 2026/);
     }
   });
 });

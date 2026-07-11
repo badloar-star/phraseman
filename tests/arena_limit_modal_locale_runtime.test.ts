@@ -18,11 +18,11 @@ describe('ArenaLimitModal planned locale runtime copy', () => {
     for (const marker of ['messagePtBr', 'messageVi', 'messageId', 'messageTr', 'messagePl']) {
       expect(source).toContain(marker);
     }
-    expect(source).toContain('Com Premium, duelos ilimitados todos os dias');
-    expect(source).toContain('Với Premium, bạn có lượt đấu không giới hạn mỗi ngày');
-    expect(source).toContain('Dengan Premium, duel tak terbatas setiap hari');
-    expect(source).toContain('Premium ile her gün sınırsız düello');
-    expect(source).toContain('Z Premium masz nielimitowane pojedynki każdego dnia');
+    expect(source).toContain('Com Plus, duelos ilimitados todos os dias');
+    expect(source).toContain('Với Plus, bạn có lượt đấu không giới hạn mỗi ngày');
+    expect(source).toContain('Dengan Plus, duel tak terbatas setiap hari');
+    expect(source).toContain('Plus ile her gün sınırsız düello');
+    expect(source).toContain('Z Plus masz nielimitowane pojedynki każdego dnia');
   });
 
   it('keeps limit modals on opaque surfaces instead of paywall glass', () => {

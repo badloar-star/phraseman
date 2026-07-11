@@ -61,6 +61,11 @@ function ConstellationLobbyCardInner({ lang, onPress, prominent = false }: Const
     ru: 'НОВЫЙ РЕЖИМ', uk: 'НОВИЙ РЕЖИМ', es: 'NUEVO MODO', 'pt-BR': 'NOVO MODO',
     vi: 'CHẾ ĐỘ MỚI', id: 'MODE BARU', tr: 'YENİ MOD', pl: 'NOWY TRYB',
   });
+  // Созвездия — dev-фича, доступна только тестерам. Явно помечаем «БЕТА».
+  const betaBadge = triLang(lang, {
+    ru: 'БЕТА', uk: 'БЕТА', es: 'BETA', 'pt-BR': 'BETA',
+    vi: 'BETA', id: 'BETA', tr: 'BETA', pl: 'BETA',
+  });
 
   // Тёмное небо поверх темы: полупрозрачный чёрный градиент — выглядит нативно
   // во всех 8 темах (базовый тон темы просвечивает по краям).
@@ -129,8 +134,14 @@ function ConstellationLobbyCardInner({ lang, onPress, prominent = false }: Const
 
       <View style={styles.row}>
         <View style={styles.textWrap}>
-          <View style={[styles.badge, { backgroundColor: `${t.accent}26`, borderColor: `${t.accent}55` }]}>
-            <Text style={[styles.badgeText, { color: t.accent, fontSize: f.caption - 2 }]}>{badge}</Text>
+          <View style={styles.badgeRow}>
+            <View style={[styles.badge, { backgroundColor: `${t.accent}26`, borderColor: `${t.accent}55` }]}>
+              <Text style={[styles.badgeText, { color: t.accent, fontSize: f.caption - 2 }]}>{badge}</Text>
+            </View>
+            {/* Бета: жёлто-янтарная плашка — визуально «экспериментально». */}
+            <View style={[styles.badge, { backgroundColor: 'rgba(255,196,0,0.18)', borderColor: 'rgba(255,196,0,0.6)' }]}>
+              <Text style={[styles.badgeText, { color: '#FFD24A', fontSize: f.caption - 2 }]}>{betaBadge}</Text>
+            </View>
           </View>
           <Text style={[styles.title, { color: '#F4F7FF', fontSize: prominent ? f.h2 + 3 : f.h2 }]}>
             {title}
@@ -174,13 +185,18 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 4,
   },
+  badgeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 2,
+  },
   badge: {
     alignSelf: 'flex-start',
     borderRadius: 999,
     borderWidth: 0,
     paddingHorizontal: 8,
     paddingVertical: 2,
-    marginBottom: 2,
   },
   badgeText: {
     fontWeight: '900',

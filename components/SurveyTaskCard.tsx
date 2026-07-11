@@ -19,7 +19,7 @@ import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { getCanonicalUserId } from '../app/user_id_policy';
-import { fetchActiveSurvey, isSurveyCloudEnabled, type ActiveSurvey } from '../app/survey_client';
+import { fetchActiveSurveyWithRetry, isSurveyCloudEnabled, type ActiveSurvey } from '../app/survey_client';
 import { primeSurvey } from '../app/survey_handoff';
 import { isSurveyDailyTaskDoneToday } from '../app/survey_daily_task';
 import { DebugLogger } from '../app/debug-logger';
@@ -56,7 +56,7 @@ export default function SurveyTaskCard() {
         if (!isSurveyCloudEnabled()) return;
         const stableId = await getCanonicalUserId();
         if (cancelled || !stableId) return;
-        const active = await fetchActiveSurvey({ stableId, platform: Platform.OS, lang });
+        const active = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
         if (!cancelled && active && active.questions.length > 0) setSurvey(active);
       } catch (e: unknown) {
         // Опрос — задание, ошибка не должна ломать экран заданий, но и не глушим

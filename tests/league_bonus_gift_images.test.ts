@@ -49,7 +49,7 @@ describe('league bonus themed gift images', () => {
   });
 
   it('keeps the league screen bonus icon visible while chest art is loading', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'club_screen.tsx'), 'utf8');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'club_screen.tsx'), 'utf8').replace(/\r\n/g, '\n');
     const component = source.match(/function LeagueBonusGiftImageWithFallback\([\s\S]*?\n}\n\nfunction LeagueIcon/)?.[0] ?? '';
 
     expect(component).toContain('!loaded || !source');

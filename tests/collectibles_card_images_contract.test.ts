@@ -59,12 +59,15 @@ describe('collectibles card images wiring (remote URL map)', () => {
 
   it('локальные webp-источники на месте: ровно столько, сколько карточек', () => {
     const artRoot = path.join(REPO_ROOT, 'assets', 'images', 'collectibles', 'dalli');
-    let onDisk = 0;
+    const sourceFiles: string[] = [];
     for (const setDir of fs.readdirSync(artRoot)) {
       const dirPath = path.join(artRoot, setDir);
       if (!fs.statSync(dirPath).isDirectory()) continue;
-      onDisk += fs.readdirSync(dirPath).filter((f) => f.endsWith('.webp')).length;
+      sourceFiles.push(...fs.readdirSync(dirPath).filter((file) => file.endsWith('.webp')));
     }
-    expect(onDisk).toBe(allCatalogIds().length);
+    expect(new Set(sourceFiles).size).toBe(sourceFiles.length);
+    for (const id of allCatalogIds()) {
+      expect(sourceFiles).toContain(`${id}.webp`);
+    }
   });
 });

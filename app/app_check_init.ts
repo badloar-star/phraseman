@@ -6,8 +6,11 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 
 let appCheckInitPromise: Promise<boolean> | null = null;
+let appCheckReady = false;
+let appCheckLastFailureAtMs = 0;
 
 const APP_CHECK_TOKEN_TIMEOUT_MS = 3500;
+const APP_CHECK_FAILURE_COOLDOWN_MS = 5 * 60 * 1000;
 
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -50,7 +53,10 @@ async function verifyAppCheckCanMintJwt(appCheck: any): Promise<boolean> {
   }
 }
 
-export async function initFirebaseAppCheckIfAvailable(): Promise<boolean> {
+export async function initFirebaseAppCheckIfAvailable(
+  options: { forceRetry?: boolean } = {},
+): Promise<boolean> {
+  if (appCheckReady) return true;
   if (appCheckInitPromise) return appCheckInitPromise;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
     setAppCheckAutoRefreshEnabled(false);
@@ -67,6 +73,13 @@ export async function initFirebaseAppCheckIfAvailable(): Promise<boolean> {
   // builds use Play Integrity / App Attest.
   if (!IS_STORE_RELEASE && !useDebugProvider) {
     setAppCheckAutoRefreshEnabled(false);
+    return false;
+  }
+  if (
+    !options.forceRetry &&
+    appCheckLastFailureAtMs > 0 &&
+    Date.now() - appCheckLastFailureAtMs < APP_CHECK_FAILURE_COOLDOWN_MS
+  ) {
     return false;
   }
 
@@ -92,13 +105,17 @@ export async function initFirebaseAppCheckIfAvailable(): Promise<boolean> {
       });
       const hasJwt = await verifyAppCheckCanMintJwt(appCheck);
       if (!hasJwt) {
+        appCheckLastFailureAtMs = Date.now();
         appCheckInitPromise = null;
         setAppCheckAutoRefreshEnabled(false);
         return false;
       }
+      appCheckReady = true;
+      appCheckLastFailureAtMs = 0;
       setAppCheckAutoRefreshEnabled(true);
       return true;
     } catch {
+      appCheckLastFailureAtMs = Date.now();
       appCheckInitPromise = null;
       setAppCheckAutoRefreshEnabled(false);
       // Native module may be unavailable before prebuild / pod install.

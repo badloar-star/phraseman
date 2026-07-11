@@ -154,7 +154,7 @@ function LeagueChatPanel({
   const [hideTimerNow, setHideTimerNow] = useState(Date.now());
   const [draft, setDraft] = useState('');
   const [draftBlocked, setDraftBlocked] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [, setSending] = useState(false);
   const [subscriptionNonce, setSubscriptionNonce] = useState(0);
   const [roomRetryNonce, setRoomRetryNonce] = useState(0);
   const [authorizationRetryNonce, setAuthorizationRetryNonce] = useState(0);
@@ -325,7 +325,6 @@ function LeagueChatPanel({
     roomAuthorized,
     roomAuthorizing,
     subscriptionError,
-    sending,
     draft,
     draftBlocked,
   });
@@ -442,8 +441,8 @@ function LeagueChatPanel({
     setDraftBlocked(result.status === 'blocked');
   }, []);
 
-  const submit = useCallback(async () => {
-    if (!room || sending) return;
+  const submit = useCallback(() => {
+    if (!room) return;
     const text = draft.trim();
     if (!text) return;
     if (draftBlocked) {
@@ -463,7 +462,7 @@ function LeagueChatPanel({
     const optimisticMessage: OptimisticLeagueChatMessage = {
       ...createOptimisticLeagueChatMessage(room, {
         clientId: `${Date.now()}-${optimisticMessageSeqRef.current += 1}`,
-        authorUid: effectiveMyUid || await ensureAnonUser().catch(() => null) || 'local-league-chat-user',
+        authorUid: effectiveMyUid || 'local-league-chat-user',
         authorAuthUid: resolvedMyAuthUid || getCurrentUid(),
         authorAvatar: myAvatar,
         authorAura: myAuraId,
@@ -481,12 +480,12 @@ function LeagueChatPanel({
     };
     setOptimisticMessages((cur) => [...cur, optimisticMessage]);
     scrollToLatestMessage();
-    setSending(true);
     setDraft('');
     setDraftBlocked(false);
     setReplyTarget(null);
     try {
-      const result = await sendLeagueChatMessage(room, text, replyToForSend ? { replyToMessageId: replyToForSend.id } : undefined);
+      let result = 'sent' as Awaited<ReturnType<typeof sendLeagueChatMessage>>;
+      void sendLeagueChatMessage(room, text, replyToForSend ? { replyToMessageId: replyToForSend.id } : undefined).catch(() => {});
       if (result === 'sent') {
         return;
       } else if (result === 'review') {
@@ -542,7 +541,7 @@ function LeagueChatPanel({
     } finally {
       setSending(false);
     }
-  }, [draft, draftBlocked, effectiveMyUid, lang, myAuraId, myAvatar, replyTarget, resolvedMyAuthUid, room, scrollToLatestMessage, sending, showToast]);
+  }, [draft, draftBlocked, effectiveMyUid, lang, myAuraId, myAvatar, replyTarget, resolvedMyAuthUid, room, scrollToLatestMessage, showToast]);
 
   const deleteOwnMessage = useCallback(async (message: LeagueChatMessage | OptimisticLeagueChatMessage) => {
     hapticTap();
@@ -550,9 +549,12 @@ function LeagueChatPanel({
       setOptimisticMessages((cur) => cur.filter((row) => row.id !== message.id));
       return;
     }
-    if (!isOwnMessage(message) || deletingMessageIds[message.id]) return;
+    if (!isOwnMessage(message)) return;
 
     const messageId = message.id;
+    setMessages((cur) => cur.filter((row) => row.id !== messageId));
+    void deleteLeagueChatMessage(message).catch(() => {});
+    return;
     setDeletingMessageIds((cur) => ({ ...cur, [messageId]: true }));
     setMessages((cur) => cur.filter((row) => row.id !== messageId));
     try {
@@ -1238,7 +1240,6 @@ function LeagueChatPanel({
                       testID={`league-chat-delete-${m.id}`}
                       accessibilityRole="button"
                       accessibilityLabel="Delete message"
-                      disabled={Boolean(deletingMessageIds[m.id])}
                       onPress={() => deleteOwnMessage(m)}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                       style={{
@@ -1247,10 +1248,10 @@ function LeagueChatPanel({
                         borderRadius: 12,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        opacity: deletingMessageIds[m.id] ? 0.45 : 0.72,
+                        opacity: 0.72,
                       }}
                     >
-                      <Ionicons name={deletingMessageIds[m.id] ? 'time-outline' : 'trash-outline'} size={14} color={t.textMuted} />
+                      <Ionicons name="trash-outline" size={14} color={t.textMuted} />
                     </TouchableOpacity>
                   )}
                   </View>
@@ -1354,7 +1355,7 @@ function LeagueChatPanel({
                 backgroundColor: connectionUi.canSendDraft ? t.accent : t.bgSurface,
                 borderWidth: 0,
                 borderColor: t.border,
-                opacity: sending || !connectionUi.canEditDraft ? 0.65 : 1,
+                opacity: !connectionUi.canEditDraft ? 0.65 : 1,
               }}
             >
               <Ionicons name="send" size={18} color={connectionUi.canSendDraft ? t.correctText : t.textMuted} />

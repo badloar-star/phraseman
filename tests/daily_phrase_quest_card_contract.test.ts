@@ -52,8 +52,11 @@ describe('DailyPhraseCard quest contract', () => {
     );
   });
 
-  it('does not show the AI explain button inside the daily phrase quest flow', () => {
-    expect(source).not.toContain('<ExplainButton');
+  it('shows AI explain only after the daily phrase quest explanation is revealed', () => {
+    const explanationIdx = source.indexOf('{showQuestExplanation && (');
+    const explainButtonIdx = source.indexOf('<ExplainButton');
+    expect(explanationIdx).toBeGreaterThan(-1);
+    expect(explainButtonIdx).toBeGreaterThan(explanationIdx);
   });
 
   it('hides the meaning on the home plaque until the quest is answered', () => {

@@ -1,11 +1,52 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { __resetAccountGenerationForTests, ensureAccountGeneration } from '../app/account_generation';
+import {
+  beginReferralInvitesRequest,
+  commitReferralInvites,
+  parsePersistedReferralInvites,
+  readReferralInvites,
+  referralInvitesCacheSizeForTests,
+  resetReferralInvitesCacheForTests,
+  serializeReferralInvites,
+} from '../app/referrals_cache';
 
 function read(rel: string): string {
   return readFileSync(join(__dirname, '..', rel), 'utf8');
 }
 
 describe('referral 7 plus 7 screen contract', () => {
+  beforeEach(() => {
+    __resetAccountGenerationForTests();
+    resetReferralInvitesCacheForTests();
+  });
+
+  it('keeps referral cache stale-visible and account isolated across restart', () => {
+    const alice = ensureAccountGeneration('alice');
+    const rows = [{ refereeStableId: 'friend', status: 'qualified', createdAtMs: 1 }] as any;
+    const request = beginReferralInvitesRequest(alice);
+    expect(commitReferralInvites(request, rows, 1_000)).toBe(true);
+    expect(readReferralInvites(alice, 20_000)).toEqual({ value: rows, isFresh: true });
+    expect(readReferralInvites(alice, 70_000)).toEqual({ value: rows, isFresh: false });
+    const persisted = serializeReferralInvites(alice, rows, 1_000);
+    expect(parsePersistedReferralInvites(persisted, { ...alice, generation: alice.generation + 10 })?.value).toEqual(rows);
+    expect(parsePersistedReferralInvites(persisted, { ...alice, stableId: 'bob' })).toBeNull();
+    for (const uid of ['bob', 'carol']) {
+      const token = ensureAccountGeneration(uid);
+      expect(commitReferralInvites(beginReferralInvitesRequest(token), rows)).toBe(true);
+    }
+    expect(referralInvitesCacheSizeForTests()).toBe(2);
+  });
+
+  it('uses one aggregate pending state instead of a spinner in every row', () => {
+    const source = read('app/referrals.tsx');
+    expect(source).toContain('testID="referrals-claim-pending"');
+    expect(source).not.toContain('claiming && claimable ? <ActivityIndicator');
+    expect(source).toContain('readReferralInvites(renderToken)');
+    expect(source).toContain('const claimToken = captureAccountGeneration()');
+    expect(source).toContain('if (!isCurrentAccountGeneration(claimToken))');
+    expect(source).toContain('invalidateReferralInvites(claimToken)');
+  });
   it('keeps referral code entry as a separate explanatory screen', () => {
     const source = read('app/referral_code_entry.tsx');
 

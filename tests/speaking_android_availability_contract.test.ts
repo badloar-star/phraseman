@@ -22,9 +22,9 @@ describe('speaking Android recognizer availability contract', () => {
   it('checks recognizer availability before starting lesson/trainer SpeakingPanel', () => {
     const source = read('components', 'SpeakingPanel.tsx');
 
-    expect(source).toContain("import { isSpeechRecognitionAvailable } from '../app/personal_plan_speech_module'");
+    expect(source).toContain('isSpeechRecognitionAvailable,');
     expect(source).toContain("setStatus('unavailable')");
-    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speech))', 'const permission = await speech.requestPermissionsAsync()');
+    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speech))', 'requestSpeechPermissionForHold(speech)');
     expectBefore(source, 'if (!isSpeechRecognitionAvailable(speech))', 'speech.start(');
   });
 
@@ -72,18 +72,20 @@ describe('speaking Android recognizer availability contract', () => {
   it('checks recognizer availability before starting personal-plan pronunciation', () => {
     const source = read('app', 'personal_plan_exercise.tsx');
 
-    expect(source).toContain('isSpeechRecognitionAvailable, loadPlanSpeechModule');
+    expect(source).toContain('isSpeechRecognitionAvailable,');
+    expect(source).toContain('loadPlanSpeechModule,');
     expect(source).toContain("setBlocked('unavailable')");
-    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'const permission = await speechModule.requestPermissionsAsync()');
+    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'requestSpeechPermissionForHold(speechModule)');
     expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'speechModule.start(');
   });
 
   it('checks recognizer availability before starting AI dialog voice input', () => {
     const source = read('app', 'ai_dialog_session.tsx');
 
-    expect(source).toContain('isSpeechRecognitionAvailable, loadPlanSpeechModule');
+    expect(source).toContain('isSpeechRecognitionAvailable,');
+    expect(source).toContain('loadPlanSpeechModule,');
     expect(source).toContain("setVoiceInputStatus('unavailable')");
-    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'const permission = await speechModule.requestPermissionsAsync()');
+    expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'requestSpeechPermissionForHold(speechModule)');
     expectBefore(source, 'if (!isSpeechRecognitionAvailable(speechModule))', 'speechModule.start(');
   });
 });

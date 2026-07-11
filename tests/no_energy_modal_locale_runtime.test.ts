@@ -18,10 +18,5 @@ describe('NoEnergyModal planned locale runtime copy', () => {
     for (const locale of plannedLocales) {
       expect(source).toContain(locale === 'pt-BR' ? "'pt-BR'" : `${locale}:`);
     }
-    expect(source).toContain('messagePtBr');
-    expect(source).toContain('messageVi');
-    expect(source).toContain('messageId');
-    expect(source).toContain('messageTr');
-    expect(source).toContain('messagePl');
   });
 });

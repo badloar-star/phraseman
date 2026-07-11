@@ -29,6 +29,7 @@ import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type Perso
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
+import { isPaywallReviewsEnabled } from './remote_flags';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
@@ -102,9 +103,10 @@ export default function PaywallA() {
       } catch { /* некритично */ }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
+    // Плюс живой рубильник из «Пульта»: выкл → отзывы просто пропадают (пустой массив).
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
-      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 3, false));
+      setTestimonials(isPaywallReviewsEnabled() ? pickTestimonials(lang as Lang, ctx, dayHash, 3, false) : []);
     } catch { /* некритично */ }
     return () => { dead = true; };
   }, [source, ctx, lang]);

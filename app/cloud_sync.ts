@@ -20,7 +20,7 @@ import { mergeStreakByActivityDate, normalizeDevSeededStreakValue, repairDevSeed
 import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
-} from './intro_full_access';
+} from './intro_full_access_keys';
 import {
   LOYALTY_GIFT_STARTED_AT_KEY,
   LOYALTY_GIFT_ENDS_AT_KEY,
@@ -30,7 +30,17 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { resumePendingDailyTasksAllShardsClaims, resumePendingShardDeltas } from './shards_system';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
-import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
+import {
+  ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
+  ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
+} from './account_delete_timeout';
+import { runAccountDeleteEnqueueWithDeadline } from './account_delete_enqueue';
+import {
+  beginInitialAccountGeneration,
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withRestoreApplicationLock,
+} from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
@@ -678,7 +688,7 @@ export type StableAuthLinkEnsureResult = {
   requestedStableId: string;
   stableUid: string | null;
   authUid: string | null;
-  source: 'disabled' | 'cache' | 'callable' | 'firestore_fallback' | 'unavailable';
+  source: 'disabled' | 'cache' | 'callable' | 'unavailable';
 };
 
 export type StableAuthLinkMetadata = {
@@ -741,6 +751,126 @@ const parseProgressInt = (value: unknown): number => {
 const parseProgressFloat = (value: unknown): number => {
   const n = parseFloat(String(value ?? '0'));
   return Number.isFinite(n) ? n : 0;
+};
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const msFromDateKey = (value: unknown): number | null => {
+  if (typeof value !== 'string') return null;
+  if (!isDateKey(value)) return null;
+  const ms = Date.UTC(
+    Number(value.slice(0, 4)),
+    Number(value.slice(5, 7)) - 1,
+    Number(value.slice(8, 10)),
+  );
+  return Number.isFinite(ms) ? ms : null;
+};
+
+const dayDiffFromNow = (value: unknown): number | null => {
+  const dateMs = msFromDateKey(value);
+  if (dateMs == null) return null;
+  const todayMs = msFromDateKey(new Date().toISOString().slice(0, 10));
+  if (todayMs == null) return null;
+  return Math.round((todayMs - dateMs) / DAY_MS);
+};
+
+const isSuspiciousLocalXpGap = (
+  localXP: number,
+  cloudXP: number,
+  localLastActive: string | null,
+  progressServerAuthoritative = false,
+): boolean => {
+  if (cloudXP <= 0 || localXP <= cloudXP) return false;
+  const xpGap = localXP - cloudXP;
+  const gapMult = localXP >= Math.floor(cloudXP * 3);
+  const gapAbsolute = xpGap >= 15_000;
+  const localAgeDays = dayDiffFromNow(localLastActive);
+  const staleLocal = localAgeDays == null || localAgeDays > 4;
+  return gapMult && gapAbsolute && (progressServerAuthoritative || staleLocal);
+};
+
+const getUtcWeekStartIso = (date = new Date()): string => {
+  const dayStart = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const daysSinceMonday = (dayStart.getUTCDay() + 6) % 7;
+  dayStart.setUTCDate(dayStart.getUTCDate() - daysSinceMonday);
+  return dayStart.toISOString().slice(0, 10);
+};
+
+const getUtcIsoWeekId = (date = new Date()): string => {
+  const normalized = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const day = normalized.getUTCDay() || 7;
+  normalized.setUTCDate(normalized.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(normalized.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil((((normalized.getTime() - yearStart.getTime()) / DAY_MS) + 1) / 7);
+  return `${normalized.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+};
+
+const buildStickyServerProgressPairs = (
+  cloudData: Record<string, string | null>,
+  now = new Date(),
+  hasPendingProgressEvents = false,
+  localWeeklyData: Record<string, string | null> = {},
+): [string, string][] => {
+  if (hasPendingProgressEvents) return [];
+  const pairs: [string, string][] = [];
+  const currentWeekStart = getUtcWeekStartIso(now);
+  const currentWeekId = getUtcIsoWeekId(now);
+  const localPeriod = localWeeklyData['weekly_xp_period_start'];
+  const localWeeklyXp = Math.max(0, Math.floor(Number(localWeeklyData['weekly_xp'] ?? 0) || 0));
+  const localWeekPointsCurrent = (() => {
+    if (localPeriod !== currentWeekStart) return null;
+    try {
+      const parsed = JSON.parse(String(localWeeklyData['week_points_v2'] ?? '')) as { weekKey?: unknown; points?: unknown };
+      if (parsed.weekKey !== currentWeekId && parsed.weekKey !== currentWeekStart) return null;
+      return Math.max(0, Math.floor(Number(parsed.points ?? 0) || 0));
+    } catch {
+      return null;
+    }
+  })();
+  const cloudPeriod = cloudData['weekly_xp_period_start'];
+  let cloudWeekPointsCurrent = false;
+  const cloudWeekPointsV2 = cloudData['week_points_v2'];
+  let cloudWeekKey = currentWeekId;
+  let cloudWeekPoints = 0;
+  if (cloudWeekPointsV2) {
+    try {
+      const parsed = JSON.parse(cloudWeekPointsV2) as { weekKey?: unknown; points?: unknown };
+      cloudWeekKey = typeof parsed.weekKey === 'string' ? parsed.weekKey : currentWeekId;
+      cloudWeekPoints = Math.max(0, Math.floor(Number(parsed.points ?? 0) || 0));
+      cloudWeekPointsCurrent = parsed?.weekKey === currentWeekId || parsed?.weekKey === currentWeekStart;
+    } catch {
+      cloudWeekPointsCurrent = false;
+    }
+  }
+  if (cloudPeriod === currentWeekStart || cloudWeekPointsCurrent) {
+    if (cloudData['weekly_xp'] != null) {
+      const cloudWeeklyXp = Math.max(0, Math.floor(Number(cloudData['weekly_xp']) || 0));
+      const weeklyXp = localPeriod === currentWeekStart
+        ? Math.max(localWeeklyXp, cloudWeeklyXp)
+        : cloudWeeklyXp;
+      pairs.push(['weekly_xp', String(weeklyXp)]);
+    }
+    pairs.push(['weekly_xp_period_start', currentWeekStart]);
+    if (cloudWeekPointsCurrent && cloudWeekPointsV2 != null) {
+      const weekPoints = localWeekPointsCurrent == null
+        ? cloudWeekPoints
+        : Math.max(localWeekPointsCurrent, cloudWeekPoints);
+      pairs.push(['week_points_v2', JSON.stringify({ weekKey: cloudWeekKey, points: weekPoints })]);
+    }
+    if (cloudData['week_points'] != null) {
+      const cloudWeekPointsLegacy = Math.max(0, Math.floor(Number(cloudData['week_points']) || 0));
+      const weekPoints = localWeekPointsCurrent == null
+        ? Math.max(cloudWeekPointsLegacy, cloudWeekPoints)
+        : Math.max(localWeekPointsCurrent, cloudWeekPoints, cloudWeekPointsLegacy);
+      pairs.push(['week_points', String(weekPoints)]);
+    }
+  }
+  if (cloudData['streak_count'] != null) pairs.push(['streak_count', String(cloudData['streak_count'])]);
+  const serverLastActive = cloudData['last_active_date'];
+  const serverStreakLast = cloudData['streak_last_date'] ?? serverLastActive;
+  if (serverLastActive != null) pairs.push(['last_active_date', String(serverLastActive)]);
+  if (serverStreakLast != null) pairs.push(['streak_last_date', String(serverStreakLast)]);
+  return pairs;
 };
 
 // ВАЖНО: этот набор должен быть ЗЕРКАЛОМ чёрного списка premium-ключей в
@@ -1136,6 +1266,59 @@ function mergeLessonRestoreValue(
   return cloudValue;
 }
 
+function mergeCurrentWeekProgressRestoreValue(
+  key: string,
+  cloudValue: string,
+  localValue: string | null | undefined,
+  cloudPeriod: string | null | undefined,
+  localPeriod: string | null | undefined,
+  currentWeekStart: string,
+  currentWeekId: string,
+): string {
+  if (key !== 'weekly_xp' && key !== 'week_points' && key !== 'week_points_v2') {
+    return mergeLessonRestoreValue(key, cloudValue, localValue);
+  }
+
+  const isCurrentWeekToken = (value: unknown) => value === currentWeekStart || value === currentWeekId;
+  if (key === 'week_points_v2') {
+    let cloud: { weekKey?: unknown; points?: unknown } | null = null;
+    let local: { weekKey?: unknown; points?: unknown } | null = null;
+    try {
+      cloud = JSON.parse(cloudValue) as { weekKey?: unknown; points?: unknown };
+    } catch {
+      // Keep the original cloud representation unless a valid current local
+      // representation below can safely preserve this week's progress.
+    }
+    try {
+      local = localValue ? JSON.parse(localValue) as { weekKey?: unknown; points?: unknown } : null;
+    } catch {
+      local = null;
+    }
+    const cloudIsCurrent = isCurrentWeekToken(cloud?.weekKey);
+    const localIsCurrent = isCurrentWeekToken(local?.weekKey);
+    if (cloudIsCurrent && localIsCurrent) {
+      return JSON.stringify({
+        weekKey: typeof cloud?.weekKey === 'string' ? cloud.weekKey : currentWeekId,
+        points: Math.max(0, Math.floor(Number(cloud?.points ?? 0) || 0), Math.floor(Number(local?.points ?? 0) || 0)),
+      });
+    }
+    if (localIsCurrent) {
+      return JSON.stringify({
+        weekKey: typeof local?.weekKey === 'string' ? local.weekKey : currentWeekId,
+        points: Math.max(0, Math.floor(Number(local?.points ?? 0) || 0)),
+      });
+    }
+    return cloudValue;
+  }
+  const cloudIsCurrent = isCurrentWeekToken(cloudPeriod);
+  const localIsCurrent = isCurrentWeekToken(localPeriod);
+  if (cloudIsCurrent && localIsCurrent) {
+    return String(Math.max(0, Math.floor(Number(cloudValue) || 0), Math.floor(Number(localValue ?? 0) || 0)));
+  }
+  if (localIsCurrent) return String(Math.max(0, Math.floor(Number(localValue ?? 0) || 0)));
+  return cloudValue;
+}
+
 async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unknown>): Promise<[string, string][]> {
   const restorableKeys = FRENCH_TARGET_SYNC_KEYS.filter((key) => (
     key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY &&
@@ -1357,7 +1540,10 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   stableAuthLinkKey = promiseKey;
   stableAuthLinkPromise = (async () => {
     try {
-      await initFirebaseAppCheckIfAvailable().catch(() => {});
+      const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+      if (!appCheckReady) {
+        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+      }
       const fn = callable<
         { stableId: string; linkMetadata?: StableAuthLinkMetadata },
         { ok: boolean; stableUid: string; authUid: string }
@@ -1369,56 +1555,18 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       );
       const actualStableUid = String(res?.data?.stableUid ?? '').trim();
       const actualAuthUid = String(res?.data?.authUid ?? authUid).trim() || authUid;
-      const cacheStableUid = actualStableUid || stableId;
-      writeStableAuthLinkCache(`${cacheStableUid}:${actualAuthUid}`).catch(() => {});
+      const ok = res?.data?.ok === true && actualStableUid.length > 0;
+      if (ok) writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(() => {});
       return {
-        ok: res?.data?.ok === true,
+        ok,
         requestedStableId: stableId,
-        stableUid: actualStableUid || stableId,
+        stableUid: ok ? actualStableUid : null,
         authUid: actualAuthUid,
         source: 'callable',
       };
-    } catch {
-      const db = getFirestore();
-      if (!db) return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
-      try {
-        const nowMs = Date.now();
-        await withTimeout(
-          db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: nowMs }, { merge: true }),
-          STABLE_AUTH_LINK_TIMEOUT_MS,
-          'auth_link_firestore',
-        );
-        // Хвост B: при недоступности серверного callable раньше писали ТОЛЬКО
-        // users/{stableId}.firebaseAuthUid, но НЕ auth_links/{authUid}. auth_links —
-        // единственный мост provider→stableId для восстановления на другом устройстве.
-        // Без него следующий вход (особенно с нового устройства) не находил аккаунт и
-        // создавал новый. Пишем auth_links сами: правило allow create требует
-        // users/{stableId}.firebaseAuthUid == request.auth.uid — мы это поле только что
-        // записали выше, поэтому запись проходит. Провайдер берём из метаданных входа.
-        const linkProvider = metadata?.provider;
-        if (linkProvider === 'google' || linkProvider === 'apple') {
-          await withTimeout(
-            db.collection('auth_links').doc(authUid).set({
-              providerUid: authUid,
-              provider: linkProvider,
-              stable_id: stableId,
-              lastSignInAt: metadata?.lastSignInAt ?? nowMs,
-              updatedAt: nowMs,
-              ...(metadata?.devicePlatform ? { devicePlatform: metadata.devicePlatform } : {}),
-              ...(metadata && Object.prototype.hasOwnProperty.call(metadata, 'email') ? { email: metadata.email ?? null } : {}),
-            }, { merge: true }),
-            STABLE_AUTH_LINK_TIMEOUT_MS,
-            'auth_link_doc_firestore',
-          ).catch((e) => {
-            // Не валим fallback, если auth_links write отклонился/таймнул — users-якорь уже стоит.
-            if (__DEV__) console.warn('[cloud_sync] fallback auth_links write failed', e);
-          });
-        }
-        writeStableAuthLinkCache(key).catch(() => {});
-        return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'firestore_fallback' };
-      } catch {
-        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
-      }
+    } catch (error) {
+      if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
+      return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
     } finally {
       stableAuthLinkPromise = null;
     }
@@ -1691,13 +1839,22 @@ async function doSyncToCloud(): Promise<void> {
   if (!db) return;
   const uid = await ensureAnonUser();
   if (!uid) return;
+  beginInitialAccountGeneration(uid);
+  const syncGeneration = captureAccountGeneration();
+  const isSyncGenerationCurrent = () => isCurrentAccountGeneration(syncGeneration, uid);
+  if (!isSyncGenerationCurrent()) return;
   try {
     await resumePendingDailyTasksAllShardsClaims().catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     await resumePendingReportReplyShardClaims().catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
     await resumePendingShardDeltas().catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     await repairDevSeededStreakInStorage();
+    if (!isSyncGenerationCurrent()) return;
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
+    if (!isSyncGenerationCurrent()) return;
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) {
       data[key] = value;
@@ -1708,18 +1865,21 @@ async function doSyncToCloud(): Promise<void> {
     removeCloudOnlyDailyTaskSnapshots(data);
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
+    if (!isSyncGenerationCurrent()) return;
     if (achievementsV1) data['achievements_state'] = achievementsV1;
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
 
     // Дополнительно синхронизируем сегодняшние задания под фиксированными cloud keys.
     await addTodayDailyTaskSnapshots(data);
+    if (!isSyncGenerationCurrent()) return;
 
     // Сравниваем с последним синкнутым снапшотом и отправляем только изменённые поля.
     // Это снижает сетевой шум и частоту "пустых" write-операций.
     let previousSnapshot: Record<string, string | null> = {};
     try {
       const snapRaw = await AsyncStorage.getItem(LAST_SYNC_SNAPSHOT_KEY);
+      if (!isSyncGenerationCurrent()) return;
       if (snapRaw) previousSnapshot = JSON.parse(snapRaw);
     } catch {}
     const progressPatch: Record<string, string | null> = {};
@@ -1745,6 +1905,7 @@ async function doSyncToCloud(): Promise<void> {
     if (!needHeartbeat && !needActivityStamp && !hasProgressPatch) return;
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
+    if (!isSyncGenerationCurrent()) return;
     const shouldSendCreatedAt = !createdAtSynced;
     if (!hasProgressPatch && !shouldSendCreatedAt) {
       lastSuccessfulSyncAt = now;
@@ -1754,6 +1915,7 @@ async function doSyncToCloud(): Promise<void> {
     // Дружба / friend_requests rules: ключ в пути users/{stableId}/… но senderUid должен доказать
     // связь с текущей Firebase-сессией — см. firestore.rules canonicalUserMatchesAuth + firebaseAuthUid.
     const firebaseAuthUidRow = getAuthUserId();
+    if (!isSyncGenerationCurrent()) return;
     await docRef.set(
       {
         ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
@@ -1765,11 +1927,13 @@ async function doSyncToCloud(): Promise<void> {
       },
       { merge: true }
     );
+    if (!isSyncGenerationCurrent()) return;
     // Снимок уровня/аватара на arena_profiles — топ арены читает всем одну коллекцию.
     if (firebaseAuthUidRow) {
       try {
         const arenaUid = await ensureArenaAuthUid();
         if (arenaUid === firebaseAuthUidRow) {
+          if (!isSyncGenerationCurrent()) return;
           const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
           const avatar = (data['user_avatar'] ?? '').trim();
           const frame = (data['user_frame'] ?? '').trim();
@@ -1796,6 +1960,7 @@ async function doSyncToCloud(): Promise<void> {
               },
               { merge: true },
             );
+          if (!isSyncGenerationCurrent()) return;
         }
       } catch {
         /* ignore */
@@ -1805,12 +1970,15 @@ async function doSyncToCloud(): Promise<void> {
     if (needActivityStamp || needHeartbeat || shouldSendCreatedAt) {
       lastActivityStampAt = now;
     }
+    if (!isSyncGenerationCurrent()) return;
     const snapshotData: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
       if (isServerOwnedProgressKey(key)) continue;
       if (shouldSyncPremiumProgressField(key, value, data)) snapshotData[key] = value;
     }
+    if (!isSyncGenerationCurrent()) return;
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(() => {});
+    if (!isSyncGenerationCurrent()) return;
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
     }
@@ -1824,10 +1992,19 @@ async function doSyncToCloud(): Promise<void> {
 }
 
 // ── Восстановить прогресс из документа users/{uid} (без повторного get) ─────
-async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Record<string, unknown> | undefined }): Promise<boolean> {
+async function applyRestoreFromUserDoc(
+  doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
+  isCurrent: () => boolean = () => true,
+): Promise<boolean> {
+  const assertCurrent = () => {
+    if (!isCurrent()) throw new Error('stale_account_generation');
+  };
+  assertCurrent();
   if (!doc.exists) return false;
   const root = doc.data() ?? {};
+  const progressServerAuthoritative = root.progressServerAuthoritative === true;
   if (root.created_at) {
+    assertCurrent();
     AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
   }
   const cloudData: Record<string, string | null> = (root.progress ?? {}) as Record<string, string | null>;
@@ -1842,15 +2019,18 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
 
   try {
     const { reconcileStatsDailyBreakdownWithCloud } = await import('./stats_daily_breakdown');
+    assertCurrent();
     cloudData['stats_daily_breakdown_v1'] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData['stats_daily_breakdown_v1'],
       'en',
     );
+    assertCurrent();
     const frenchStatsKey = statsDailyBreakdownKey('fr');
     cloudData[frenchStatsKey] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData[frenchStatsKey],
       'fr',
     );
+    assertCurrent();
   } catch {
     /* ignore */
   }
@@ -1897,16 +2077,44 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     AsyncStorage.getItem('last_active_date'),
     AsyncStorage.getItem('streak_last_date'),
   ]);
+  assertCurrent();
   const localXP = parseProgressInt(localXPRaw);
   const cloudXP = parseProgressInt(cloudData['user_total_xp']);
   const localStreak = parseProgressInt(localStreakRaw);
   const cloudStreak = parseProgressInt(cloudData['streak_count']);
+  const hasPendingProgressEvents = await (async () => {
+    try {
+      const progressEventsClient = await import('./progress_events_client');
+      if (typeof progressEventsClient.hasPendingProgressServerEvents !== 'function') return false;
+      return await progressEventsClient.hasPendingProgressServerEvents();
+    } catch (error) {
+      if (__DEV__) console.warn('[cloud_sync] pending-progress-events check failed', error);
+      return false;
+    }
+  })();
+  assertCurrent();
   const mergedStreak = mergeStreakByActivityDate(
     { streak: localStreakRaw, lastActive: localLastActiveRaw, streakLast: localStreakLastRaw },
     { streak: cloudData['streak_count'], lastActive: cloudData['last_active_date'], streakLast: cloudData['streak_last_date'] },
   );
+  const shouldPreferCloudOnSuspiciousGap = isSuspiciousLocalXpGap(
+    localXP,
+    cloudXP,
+    localLastActiveRaw,
+    progressServerAuthoritative,
+  );
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && shouldPreferCloudOnSuspiciousGap && hasPendingProgressEvents) {
+    console.warn('[cloud_sync] skipping suspicious-cloud restore due pending progress queue', {
+      localXP,
+      cloudXP,
+      localLastActiveRaw: localLastActiveRaw ?? null,
+    });
+  }
   const shouldRestoreCloudProgress =
-    cloudXP > localXP || (cloudXP === localXP && cloudStreak > localStreak);
+    (progressServerAuthoritative && !hasPendingProgressEvents)
+    || (shouldPreferCloudOnSuspiciousGap && !hasPendingProgressEvents)
+    || cloudXP > localXP
+    || (cloudXP === localXP && cloudStreak > localStreak);
   if (!shouldRestoreCloudProgress) {
     const stickyKeys = [
       'premium_plan',
@@ -1946,24 +2154,40 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     // counter may be higher in cloud (the other device bumped it). Pull the max so
     // the counter never regresses on this device.
     const localCounterMap = Object.fromEntries(
-      await AsyncStorage.multiGet([...MONOTONIC_COUNTER_RESTORE_KEYS]),
+      await AsyncStorage.multiGet([
+        ...MONOTONIC_COUNTER_RESTORE_KEYS,
+        'weekly_xp',
+        'weekly_xp_period_start',
+        'week_points',
+        'week_points_v2',
+      ]),
     ) as Record<string, string | null>;
+    assertCurrent();
     for (const key of MONOTONIC_COUNTER_RESTORE_KEYS) {
       const cloudVal = cloudData[key];
       if (cloudVal === null || cloudVal === undefined) continue;
       const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localCounterMap[key]);
       if (merged !== localCounterMap[key]) stickyPairs.push([key, merged]);
     }
-    const localStreakNormalized = localStreakRaw == null ? null : String(parseProgressInt(localStreakRaw));
-    if (String(mergedStreak.streak) !== localStreakNormalized && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {
-      stickyPairs.push(['streak_count', String(mergedStreak.streak)]);
-    }
-    if (mergedStreak.lastActive && mergedStreak.lastActive !== localLastActiveRaw) {
-      stickyPairs.push(['last_active_date', mergedStreak.lastActive]);
-      stickyPairs.push(['streak_last_date', mergedStreak.lastActive]);
+    if (hasPendingProgressEvents) {
+      const localStreakNormalized = localStreakRaw == null ? null : String(parseProgressInt(localStreakRaw));
+      if (String(mergedStreak.streak) !== localStreakNormalized && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {
+        stickyPairs.push(['streak_count', String(mergedStreak.streak)]);
+      }
+      if (mergedStreak.lastActive && mergedStreak.lastActive !== localLastActiveRaw) {
+        stickyPairs.push(['last_active_date', mergedStreak.lastActive]);
+        stickyPairs.push(['streak_last_date', mergedStreak.lastActive]);
+      }
+    } else {
+      const localWeeklyData = Object.fromEntries(
+        await AsyncStorage.multiGet(['weekly_xp', 'weekly_xp_period_start', 'week_points', 'week_points_v2']),
+      ) as Record<string, string | null>;
+      assertCurrent();
+      stickyPairs.push(...buildStickyServerProgressPairs(cloudData, new Date(), false, localWeeklyData));
     }
     const cloudLoginBonus = cloudData['login_bonus_v1'];
     const localLoginBonus = await AsyncStorage.getItem('login_bonus_v1');
+    assertCurrent();
     const mergedLoginBonus = loginBonusMergeValue(localLoginBonus, cloudLoginBonus);
     if (mergedLoginBonus !== null) {
       stickyPairs.push(['login_bonus_v1', mergedLoginBonus]);
@@ -1990,6 +2214,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       const localOwnedMap = Object.fromEntries(
         await AsyncStorage.multiGet(stickyOwnedKeys),
       ) as Record<string, string | null>;
+      assertCurrent();
       for (const key of stickyOwnedKeys) {
         const cloudVal = cloudData[key];
         if (cloudVal === null || cloudVal === undefined || String(cloudVal).trim() === '') continue;
@@ -2071,10 +2296,14 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       if (cloudVipState?.grantAt) stickyPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
     }
     if (stickyPairs.length > 0) {
+      assertCurrent();
       await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
+      assertCurrent();
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
+      assertCurrent();
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
+      assertCurrent();
       return true;
     }
     return false;
@@ -2085,10 +2314,22 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   // undefined и «union» выродится в слепую перезапись облаком.
   const ownedUnionRuntimeKeys = getRuntimeSyncKeys().filter(isOwnedUnionRestoreKey);
   const localLessonRestoreMap = Object.fromEntries(
-    await AsyncStorage.multiGet([...RESTORE_MERGE_KEY_SET, ...MONOTONIC_COUNTER_RESTORE_KEYS, ...ownedUnionRuntimeKeys]),
+    await AsyncStorage.multiGet([
+      ...RESTORE_MERGE_KEY_SET,
+      ...MONOTONIC_COUNTER_RESTORE_KEYS,
+      ...ownedUnionRuntimeKeys,
+      'weekly_xp',
+      'weekly_xp_period_start',
+      'week_points',
+      'week_points_v2',
+    ]),
   ) as Record<string, string | null>;
+  assertCurrent();
   const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
+  assertCurrent();
   const cloudConsumedSig = cloudData['league_result_consumed_sig'];
+  const currentRestoreWeekStart = getUtcWeekStartIso(new Date());
+  const currentRestoreWeekId = getUtcIsoWeekId(new Date());
   for (const key of getRuntimeSyncKeys()) {
     if (
       key === CLOUD_DAILY_TASKS_PROGRESS_KEY ||
@@ -2118,7 +2359,15 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
         }
       }
       const storageValue = cloudProgressStorageValue(key, val);
-      pairs.push([key, mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key])]);
+      pairs.push([key, mergeCurrentWeekProgressRestoreValue(
+        key,
+        storageValue,
+        localLessonRestoreMap[key],
+        cloudData['weekly_xp_period_start'],
+        localLessonRestoreMap['weekly_xp_period_start'],
+        currentRestoreWeekStart,
+        currentRestoreWeekId,
+      )]);
     }
   }
   if (mergedStreak.streak > 0 || cloudData['streak_count'] != null) {
@@ -2158,7 +2407,9 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     }
   }
   if (pairs.length > 0) {
+    assertCurrent();
     await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
+    assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   if (cloudVipActive !== null) {
@@ -2170,13 +2421,18 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
     ];
     if (cloudVipState?.grantAt) vipPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
+    assertCurrent();
     await AsyncStorage.multiSet(sanitizeStoragePairs(vipPairs));
+    assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   if (fullRestoreDailyTargets.length > 0) {
     await reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets);
+    assertCurrent();
   }
+  assertCurrent();
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
+  assertCurrent();
   return true;
 }
 
@@ -2184,31 +2440,58 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
  * Один get users/{uid}: миграция «пустое облако» + мерж прогресса.
  * Снижает чтения Firestore по сравнению с restoreFromCloud + migrateLocalProgressToCloud.
  */
+export type CloudRestoreResult = 'restored' | 'not_found' | 'failed';
+type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean };
+
+function completedCloudRestoreAttempt(applied: boolean): CloudRestoreAttempt {
+  return { status: 'restored', applied };
+}
+
 export async function restoreAndMigrateFromCloud(): Promise<boolean> {
-  if (!CLOUD_SYNC_ENABLED) return false;
+  return (await restoreAndMigrateFromCloudResult(true)).applied;
+}
+
+async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): Promise<CloudRestoreAttempt> {
+  if (!CLOUD_SYNC_ENABLED) return { status: 'failed', applied: false };
   const db = getFirestore();
-  if (!db) return false;
+  if (!db) return { status: 'failed', applied: false };
   const uid = await ensureAnonUser();
-  if (!uid) return false;
+  if (!uid) return { status: 'failed', applied: false };
+  beginInitialAccountGeneration(uid);
+  const accountGeneration = captureAccountGeneration();
+  const isCurrent = () => isCurrentAccountGeneration(accountGeneration, uid);
+  if (!isCurrent()) return { status: 'failed', applied: false };
   try {
     await ensureStableAuthLinkForStableId(uid).catch(() => false);
+    if (!isCurrent()) return { status: 'failed', applied: false };
     const doc = await withTimeout<any>(
       db.collection('users').doc(uid).get(),
       RESTORE_FIRESTORE_READ_MS,
       'restore_user_doc',
     );
+    if (!isCurrent()) return { status: 'failed', applied: false };
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
-    if (!migrated) {
-      if (!doc.exists) {
+    if (!isCurrent()) return { status: 'failed', applied: false };
+    if (!doc.exists) {
+      if (!migrated && syncMissingDocument) {
         await syncToCloud();
+        if (!isCurrent()) return { status: 'failed', applied: false };
         await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
-        return false;
       }
-      await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
+      return { status: 'not_found', applied: false };
     }
-    return await applyRestoreFromUserDoc(doc);
+    if (!migrated) {
+      await AsyncStorage.setItem('cloud_migration_v1', '1').catch(() => {});
+      if (!isCurrent()) return { status: 'failed', applied: false };
+    }
+    if (!isCurrent()) return { status: 'failed', applied: false };
+    const applied = await withRestoreApplicationLock(() => (
+      applyRestoreFromUserDoc(doc, isCurrent)
+    ));
+    if (!isCurrent()) return { status: 'failed', applied: false };
+    return completedCloudRestoreAttempt(applied);
   } catch {
-    return false;
+    return { status: 'failed', applied: false };
   }
 }
 
@@ -2219,13 +2502,24 @@ export async function restoreFromCloud(): Promise<boolean> {
   return restoreAndMigrateFromCloud();
 }
 
+/** Auth-safe restore result: distinguishes an empty account from a transport failure. */
+export async function restoreFromCloudDetailed(): Promise<CloudRestoreResult> {
+  return (await restoreAndMigrateFromCloudResult(false)).status;
+}
+
 export const __cloudSyncTestHooks = {
+  completedCloudRestoreAttempt,
   applyRestoreFromUserDoc,
   mergeLessonRestoreValue,
   mergeOwnedFlagMap,
   mergeOwnedRestoreValue,
   isOwnedUnionRestoreKey,
   buildRestoreSnapshot,
+  isSuspiciousLocalXpGap,
+  getUtcWeekStartIso,
+  getUtcIsoWeekId,
+  buildStickyServerProgressPairs,
+  mergeCurrentWeekProgressRestoreValue,
 };
 
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────
@@ -2262,6 +2556,36 @@ export async function quiesceSyncBeforeStableIdSwap(): Promise<void> {
       if (__DEV__) console.warn('[cloud_sync] quiesceSyncBeforeStableIdSwap: inflight timeout');
     }
   }
+}
+
+export async function quiesceCloudSyncForAccountTransition(
+  timeoutMs: number,
+): Promise<boolean> {
+  pendingSync = false;
+  if (syncTimer) {
+    clearTimeout(syncTimer);
+    syncTimer = null;
+  }
+  let drained = true;
+  if (syncInFlight) {
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    try {
+      drained = await Promise.race([
+        syncInFlight.then(() => true),
+        new Promise<boolean>((resolve) => {
+          timer = setTimeout(() => resolve(false), Math.max(0, timeoutMs));
+        }),
+      ]);
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+  pendingSync = false;
+  if (syncTimer) {
+    clearTimeout(syncTimer);
+    syncTimer = null;
+  }
+  return drained;
 }
 
 export async function forceSyncToCloud(): Promise<boolean> {
@@ -2448,6 +2772,32 @@ export async function deleteCloudData(): Promise<void> {
   >('accountDeleteMine', { timeout: ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS });
   const res = await withTimeout(fn({ stableId: canonicalUid }), ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS, 'account_delete_callable');
   if (!res.data?.ok) throw new Error('account_delete_failed');
+}
+
+export type AccountDeleteEnqueueAck = {
+  ok: true;
+  jobId: string;
+  status: 'queued' | 'running' | 'completed';
+  created: boolean;
+};
+
+export async function enqueueCloudDeletion(stableId: string | null): Promise<AccountDeleteEnqueueAck> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+    throw new Error('account_delete_enqueue_unavailable');
+  }
+  return runAccountDeleteEnqueueWithDeadline(
+    () => initFirebaseAppCheckIfAvailable().catch(() => {}),
+    async () => {
+      const fn = callable<{ stableId?: string | null }, AccountDeleteEnqueueAck>(
+        'accountDeleteEnqueue',
+        { timeout: ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS },
+      );
+      const res = await fn({ stableId });
+      if (!res.data?.ok || !res.data.jobId) throw new Error('account_delete_enqueue_failed');
+      return res.data;
+    },
+    ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
+  );
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

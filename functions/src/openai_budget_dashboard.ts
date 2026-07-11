@@ -218,7 +218,7 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     { collection: 'explain_billing', feature: 'Explain phrase' },
     { collection: 'weekly_review_billing', feature: 'Weekly review legacy' },
     { collection: 'stats_insights_billing', feature: 'Stats insights legacy' },
-    { collection: 'compass_billing', feature: 'Компас (daily)' },
+    { collection: 'compass_billing', feature: 'Компас (daily, legacy)' },
     { collection: 'league_compass_daily_billing', feature: 'Компас лиги (cron)' },
     { collection: 'help_board_compass_billing', feature: 'Доска помощи' },
     { collection: 'choice_explain_billing', feature: 'Объяснение выбора' },

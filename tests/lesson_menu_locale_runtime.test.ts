@@ -7,7 +7,10 @@ const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s
 
 describe('lesson menu planned locale runtime copy', () => {
   it('does not route planned lesson menu labels through RU/UK/ES branches', () => {
-    expect(SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
+    const runtimeSource = SOURCE
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\/\/.*$/gm, '');
+    expect(runtimeSource).not.toMatch(LEGACY_RUNTIME_RE);
   });
 
   it('keeps auxiliary lesson card subtitles explicit for planned locales', () => {

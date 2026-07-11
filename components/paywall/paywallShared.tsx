@@ -214,7 +214,6 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   language_add: 'globe',
   ai_explain: 'bulb',
   weekly_review: 'calendar',
-  compass_day_closing: 'moon',
   avatar_aura: 'color-wand',
   generic: 'diamond',
 };

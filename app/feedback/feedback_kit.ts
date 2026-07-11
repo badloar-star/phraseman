@@ -34,6 +34,11 @@ function sfx(name: SoundName, volume?: number): void {
 }
 
 export type MilestoneKind = 'star1' | 'star2' | 'star3' | 'medal' | 'chord';
+export type FeedbackSurface = 'lesson' | 'practice';
+
+export interface ComboOptions {
+  surface?: FeedbackSurface;
+}
 
 export const fk = {
   /**
@@ -72,18 +77,21 @@ export const fk = {
    * fk НЕ хранит счётчик: он лишь маппит n→звук. Пороговый стингер срабатывает,
    * когда n РАВНО порогу входа в уровень (3/5/10) — ровно один раз на серию.
    */
-  combo(n: number): void {
+  combo(n: number, options: ComboOptions = {}): void {
     if (n <= 0) return;
+
     const level = comboLevelFor(n);
 
-    // Звуки серии оставлены ТОЛЬКО на двух молниях (по решению пользователя):
+    // Звуки серии оставлены ТОЛЬКО на двух молниях в основном уроке:
     //  - crack на n===5 (1-я молния), thunder на n===10 (2-я молния).
     // Лесенка нот (ladder), spark (n===3) и fizzle убраны из звука; вибрация
     // на каждый верный ответ остаётся.
-    if (n === 5) {
-      sfx('crack');
-    } else if (n === 10) {
-      sfx('thunder');
+    if (options.surface === 'lesson') {
+      if (n === 5) {
+        sfx('crack');
+      } else if (n === 10) {
+        sfx('thunder');
+      }
     }
 
     // Хаптика по уровню серии.

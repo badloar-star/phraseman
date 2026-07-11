@@ -6,7 +6,7 @@ import type { SpeakingPanelTheme } from './SpeakingPanel';
 import type { WordDrillVerdict } from '../app/speaking_word_drill';
 
 /** Card phase, mirrored from SpeakingPanel so the two stay in lockstep. */
-export type WordCardPhase = 'idle' | 'listening' | 'scoring' | 'clean' | 'fuzzy' | 'no_speech';
+export type WordCardPhase = 'idle' | 'requesting' | 'listening' | 'scoring' | 'clean' | 'fuzzy' | 'no_speech';
 
 export interface WordDrillCardProps {
   /** The single target word being drilled (display form). */
@@ -16,11 +16,8 @@ export interface WordDrillCardProps {
   warnColor: string;
   phase: WordCardPhase;
   verdict: WordDrillVerdict | null;
-  /** Android+whisper → press-and-hold; otherwise tap-to-record. */
-  holdMode: boolean;
   /** The phrase mic is live — the word mic is locked out (mutual exclusion). */
   micBusy: boolean;
-  onRepeatTap: () => void;
   onHoldStart: () => void;
   onHoldEnd: () => void;
   /** «Моя запись» of the whole phrase, when one exists — extra ear reference. */
@@ -44,9 +41,7 @@ export function WordDrillCard({
   warnColor,
   phase,
   verdict,
-  holdMode,
   micBusy,
-  onRepeatTap,
   onHoldStart,
   onHoldEnd,
   onPlayMine,
@@ -54,14 +49,25 @@ export function WordDrillCard({
 }: WordDrillCardProps) {
   const listening = phase === 'listening';
   const busy = phase === 'scoring';
+  const requesting = phase === 'requesting';
   const clean = phase === 'clean';
   const accent = clean ? theme.correct : warnColor;
 
   const statusText = (() => {
     switch (phase) {
+      case 'requesting':
+        return L(lang, {
+          ru: 'Готовлю микрофон…',
+          uk: 'Готую мікрофон…',
+          es: 'Preparando el micrófono…',
+          'pt-BR': 'Preparando o microfone…',
+          vi: 'Đang chuẩn bị micrô…',
+          id: 'Menyiapkan mikrofon…',
+          tr: 'Mikrofon hazırlanıyor…',
+          pl: 'Przygotowuję mikrofon…',
+        });
       case 'listening':
-        return holdMode
-          ? L(lang, {
+        return L(lang, {
               ru: 'Говори… отпусти, когда скажешь',
               uk: 'Говори… відпусти, коли скажеш',
               es: 'Habla… suelta al terminar',
@@ -70,16 +76,6 @@ export function WordDrillCard({
               id: 'Bicara… lepas saat selesai',
               tr: 'Söyle… bitince bırak',
               pl: 'Mów… puść, gdy powiesz',
-            })
-          : L(lang, {
-              ru: 'Слушаю слово…',
-              uk: 'Слухаю слово…',
-              es: 'Escuchando la palabra…',
-              'pt-BR': 'Escutando a palavra…',
-              vi: 'Đang nghe từ…',
-              id: 'Mendengarkan kata…',
-              tr: 'Kelimeyi dinliyorum…',
-              pl: 'Słucham słowa…',
             });
       case 'scoring':
         return L(lang, {
@@ -126,8 +122,7 @@ export function WordDrillCard({
           pl: 'Nie dosłyszałem. Powiedz głośniej',
         });
       default:
-        return holdMode
-          ? L(lang, {
+        return L(lang, {
               ru: 'Зажми «Повторить» и скажи слово',
               uk: 'Затисни «Повторити» і скажи слово',
               es: 'Mantén «Repetir» y di la palabra',
@@ -136,16 +131,6 @@ export function WordDrillCard({
               id: 'Tahan «Ulangi» dan ucapkan kata',
               tr: '«Tekrarla»ya basılı tut ve söyle',
               pl: 'Przytrzymaj «Powtórz» i powiedz słowo',
-            })
-          : L(lang, {
-              ru: 'Послушай, затем повтори слово',
-              uk: 'Послухай, потім повтори слово',
-              es: 'Escucha y luego repite la palabra',
-              'pt-BR': 'Ouça e depois repita a palavra',
-              vi: 'Nghe rồi lặp lại từ',
-              id: 'Dengar lalu ulangi kata',
-              tr: 'Dinle, sonra kelimeyi tekrarla',
-              pl: 'Posłuchaj, potem powtórz słowo',
             });
     }
   })();
@@ -165,9 +150,7 @@ export function WordDrillCard({
     pl: 'Powtórz',
   });
 
-  const repeatHandlers = holdMode
-    ? { onPressIn: onHoldStart, onPressOut: onHoldEnd }
-    : { onPress: onRepeatTap };
+  const repeatHandlers = { onPressIn: onHoldStart, onPressOut: onHoldEnd };
 
   return (
     <View style={[styles.card, { borderColor: accent, backgroundColor: theme.card }]}>
@@ -224,7 +207,7 @@ export function WordDrillCard({
           disabled={busy || micBusy}
           accessibilityRole="button"
           accessibilityLabel={repeatLabel}
-          accessibilityState={{ disabled: busy || micBusy, busy: listening || busy }}
+          accessibilityState={{ disabled: busy || micBusy, busy: requesting || listening || busy }}
           style={[
             styles.pill,
             {
@@ -234,7 +217,7 @@ export function WordDrillCard({
             },
           ]}
         >
-          {busy ? (
+          {busy || requesting ? (
             <ActivityIndicator color={theme.onAccent} size="small" />
           ) : (
             <Ionicons

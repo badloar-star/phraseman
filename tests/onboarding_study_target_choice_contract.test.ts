@@ -7,7 +7,7 @@ const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.ts
 
 describe('clean onboarding study-target and order contract', () => {
   it('keeps the active onboarding wrapper free of legacy implementation code', () => {
-    expect(wrapperSource.trim()).toBe("export { default } from './CleanOnboarding';\nexport type { OnboardingProps as Props } from './CleanOnboarding';");
+    expect(wrapperSource.replace(/\r\n/g, '\n').trim()).toBe("export { default } from './CleanOnboarding';\nexport type { OnboardingProps as Props } from './CleanOnboarding';");
     expect(wrapperSource).not.toContain('studyTargetRoot');
     expect(wrapperSource).not.toContain('planPaywall');
     expect(wrapperSource).not.toContain("require('../assets/images/onboarding");

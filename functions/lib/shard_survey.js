@@ -122,6 +122,7 @@ exports.getActiveShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
         platform,
     };
     const lastSurveyAtMs = Math.trunc(Number(progress.shard_survey_last_at_ms ?? 0)) || 0;
+    const completion = lastSurveyAtMs > 0 ? { completedAtMs: lastSurveyAtMs } : null;
     // Собираем валидные активные конфиги, сортируем по updatedAtMs (свежие раньше).
     // Сначала отсеиваем в памяти (аудитория + cooldown) — без I/O, затем берём топ-N
     // кандидатов и ОДНИМ батч-чтением (getAll) проверяем «уже пройден?», а не N
@@ -142,6 +143,7 @@ exports.getActiveShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
         if (config) {
             const lang = text(request.data?.lang, 10) || 'ru';
             return {
+                completion,
                 survey: {
                     surveyId: config.surveyId,
                     title: (0, shard_survey_core_1.resolveLocalized)(config.title, lang),
@@ -160,7 +162,7 @@ exports.getActiveShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
             };
         }
     }
-    return { survey: null };
+    return { survey: null, completion };
 });
 // ────────────────────────────────────────────────────────────────────────────
 // submitShardSurvey — принять ответы, начислить осколки один раз.

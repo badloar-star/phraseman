@@ -174,7 +174,7 @@ function tryGit(repoRoot: string, args: readonly string[]): string | null {
 function releaseTags(repoRoot: string): ReleaseCandidate[] {
   const output = tryGit(repoRoot, [
     "for-each-ref",
-    "--format=%(refname:short)%09%(creatordate:iso-strict)",
+    "--format=%(refname:short)%09%(taggerdate:iso-strict)",
     "refs/tags",
   ]);
   if (!output) return [];
@@ -184,7 +184,9 @@ function releaseTags(repoRoot: string): ReleaseCandidate[] {
     const [tag, date] = line.split("\t");
     const match = /^(?:release\/)?v(\d+\.\d+\.\d+)$/.exec(tag);
     if (!match) continue;
-    const commit = tryGit(repoRoot, ["rev-parse", `${tag}^{commit}`]);
+    const tagRef = `refs/tags/${tag}`;
+    if (tryGit(repoRoot, ["cat-file", "-t", tagRef]) !== "tag") continue;
+    const commit = tryGit(repoRoot, ["rev-parse", `${tagRef}^{commit}`]);
     const activatedAtMs = Date.parse(date);
     if (!commit || !Number.isFinite(activatedAtMs)) continue;
     candidates.push({
@@ -489,6 +491,109 @@ function evaluateExpression(
   return null;
 }
 
+function expressionSyntaxSupported(expression: ts.Expression): boolean {
+  if (
+    ts.isNumericLiteral(expression) ||
+    expression.kind === ts.SyntaxKind.TrueKeyword ||
+    expression.kind === ts.SyntaxKind.FalseKeyword ||
+    ts.isIdentifier(expression)
+  ) {
+    return true;
+  }
+  if (ts.isParenthesizedExpression(expression)) {
+    return expressionSyntaxSupported(expression.expression);
+  }
+  if (ts.isPrefixUnaryExpression(expression)) {
+    return (
+      (expression.operator === ts.SyntaxKind.MinusToken ||
+        expression.operator === ts.SyntaxKind.PlusToken) &&
+      expressionSyntaxSupported(expression.operand)
+    );
+  }
+  if (ts.isConditionalExpression(expression)) {
+    return (
+      expressionSyntaxSupported(expression.condition) &&
+      expressionSyntaxSupported(expression.whenTrue) &&
+      expressionSyntaxSupported(expression.whenFalse)
+    );
+  }
+  if (ts.isBinaryExpression(expression)) {
+    const supportedOperators: readonly ts.SyntaxKind[] = [
+      ts.SyntaxKind.PlusToken,
+      ts.SyntaxKind.MinusToken,
+      ts.SyntaxKind.AsteriskToken,
+      ts.SyntaxKind.SlashToken,
+      ts.SyntaxKind.AsteriskAsteriskToken,
+      ts.SyntaxKind.LessThanToken,
+      ts.SyntaxKind.LessThanEqualsToken,
+      ts.SyntaxKind.GreaterThanToken,
+      ts.SyntaxKind.GreaterThanEqualsToken,
+      ts.SyntaxKind.EqualsEqualsEqualsToken,
+      ts.SyntaxKind.EqualsEqualsToken,
+    ];
+    return (
+      supportedOperators.includes(expression.operatorToken.kind) &&
+      expressionSyntaxSupported(expression.left) &&
+      expressionSyntaxSupported(expression.right)
+    );
+  }
+  if (ts.isCallExpression(expression)) {
+    const supportedMathCalls = new Set([
+      "round",
+      "floor",
+      "ceil",
+      "max",
+      "min",
+      "pow",
+      "sqrt",
+      "abs",
+    ]);
+    const supportedCallee =
+      ts.isIdentifier(expression.expression) ||
+      (ts.isPropertyAccessExpression(expression.expression) &&
+        ts.isIdentifier(expression.expression.expression) &&
+        expression.expression.expression.text === "Math" &&
+        supportedMathCalls.has(expression.expression.name.text));
+    return (
+      supportedCallee &&
+      expression.arguments.every((argument) =>
+        expressionSyntaxSupported(argument),
+      )
+    );
+  }
+  return false;
+}
+
+function statementSyntaxSupported(statement: ts.Statement): boolean {
+  if (ts.isVariableStatement(statement)) {
+    return statement.declarationList.declarations.every(
+      (declaration) =>
+        ts.isIdentifier(declaration.name) &&
+        declaration.initializer !== undefined &&
+        expressionSyntaxSupported(declaration.initializer),
+    );
+  }
+  if (ts.isIfStatement(statement)) {
+    return (
+      expressionSyntaxSupported(statement.expression) &&
+      statementOrBlockSyntaxSupported(statement.thenStatement) &&
+      (statement.elseStatement === undefined ||
+        statementOrBlockSyntaxSupported(statement.elseStatement))
+    );
+  }
+  return (
+    ts.isReturnStatement(statement) &&
+    statement.expression !== undefined &&
+    expressionSyntaxSupported(statement.expression)
+  );
+}
+
+function statementOrBlockSyntaxSupported(statement: ts.Statement): boolean {
+  return ts.isBlock(statement)
+    ? statement.statements.every(statementSyntaxSupported)
+    : statementSyntaxSupported(statement);
+}
+
 function evaluateStatements(
   statements: readonly ts.Statement[],
   context: StaticContext,
@@ -558,7 +663,10 @@ function evaluateFunction(
   if (
     !definition ||
     definition.parameters.length !== args.length ||
-    resolving.has(`fn:${name}`)
+    resolving.has(`fn:${name}`) ||
+    (ts.isBlock(definition.body)
+      ? !definition.body.statements.every(statementSyntaxSupported)
+      : !expressionSyntaxSupported(definition.body))
   ) {
     return null;
   }

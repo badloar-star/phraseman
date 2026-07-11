@@ -286,9 +286,10 @@ describe("matchCatalogForEvent", () => {
 });
 
 describe("loadVerifiedCatalogHistory", () => {
-  it("does not treat app.json, commit time, or checkpoint tags as release provenance", () => {
+  it("does not treat app.json, commit time, checkpoint tags, or lightweight semver tags as release provenance", () => {
     const { repo } = makeRepo();
     git(repo, "tag", "checkpoint/stable-build-2026-01-01");
+    git(repo, "tag", "v9.9.9");
 
     expect(loadVerifiedCatalogHistory(repo)).toEqual([]);
   });
@@ -371,5 +372,35 @@ describe("loadVerifiedCatalogHistory", () => {
     git(repo, "commit", "-qm", "invalid manifest refs");
 
     expect(loadVerifiedCatalogHistory(repo)).toEqual([]);
+  });
+
+  it("fails closed when a level formula contains an unsupported mutation", () => {
+    const { repo } = makeRepo();
+    const mutatingFormula = `
+      export const MAX_LEVEL = 3;
+      export const TOTAL_XP_FOR_LEVEL = (level: number): number => {
+        let x = level * 100;
+        x += 7;
+        return x;
+      };
+    `;
+    writeFileSync(join(repo, "constants", "theme.ts"), mutatingFormula);
+    writeFileSync(
+      join(repo, "functions", "src", "xp_levels.ts"),
+      mutatingFormula,
+    );
+    git(repo, "add", ".");
+    git(repo, "commit", "-qm", "unsupported formula mutation");
+    git(repo, "tag", "-a", "v4.0.0", "-m", "release");
+
+    const [catalog] = loadVerifiedCatalogHistory(repo);
+    expect(catalog.complete).toBe(false);
+    expect(
+      matchCatalogForEvent(
+        [catalog],
+        event(catalog.effective.fromMsInclusive, "4.0.0"),
+        "xp_5000",
+      ),
+    ).toEqual({ kind: "unmapped", reason: "provenance_conflict" });
   });
 });

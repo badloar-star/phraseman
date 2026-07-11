@@ -24,7 +24,7 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { useArenaRank } from '../hooks/use-arena-rank';
-import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { hapticCelebrate } from '../hooks/use-haptics';
 import { canStartArenaMatch } from './arena_access_gate';
@@ -101,7 +101,7 @@ export default function ConstellationSearchScreen() {
   const { lang } = useLang();
   const { isUnlimited, energy, bonusEnergy } = useEnergy();
   const myRank = useArenaRank();
-  const focused = useIsScreenFocused();
+  const focused = useRuntimeActive();
   const reduceMotion = useReduceMotion();
 
   const [state, setState] = useState<ScreenState>({ kind: 'searching' });

@@ -17,6 +17,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { clearTrainerStore, devSeedTrainer, type TrainerDashboard, type TrainerQueue, } from './trainer_store';
 import { ENABLE_DEV_TOOLS } from './config';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -559,6 +560,7 @@ function jsonEqualQuiet<T>(a: T, b: T): boolean {
     }
 }
 function TrainerScreenInner() {
+    const trainerRuntimeActive = useRuntimeActive();
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
@@ -892,7 +894,7 @@ function TrainerScreenInner() {
                   </TouchableOpacity>
                 </View>
 
-                <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} stableLayout embedded />
+                <WeeklyReviewCard active={trainerRuntimeActive} isPremium={hasPremium} studyTarget={studyTarget} stableLayout embedded />
 
                 {/* Вкладки */}
                 <View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>

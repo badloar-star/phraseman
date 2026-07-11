@@ -475,6 +475,7 @@ function NoEnergyModal({
             {showBody}
           </Text>
           <PremiumGoldButton
+            active={modalVisible}
             f={f}
             paywallContext={paywallContext}
             onPress={openPremiumAfterClose}

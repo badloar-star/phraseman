@@ -1,141 +1,194 @@
-// ════════════════════════════════════════════════════════════════════════════
-// net_status.ts — лёгкая офлайн-детекция без нативных зависимостей.
-//
-// В проекте нет NetInfo/expo-network (нативная зависимость = пересборка +
-// правка занятого package-lock), поэтому статус сети определяем сами:
-//   • активный probe: GET generate_204 с таймаутом — стандартная проверка
-//     связности (любой HTTP-ответ = сеть есть; ошибка/таймаут = сети нет);
-//   • пассивные сигналы: любой модуль может сообщить reportNetworkSuccess /
-//     reportNetworkFailure по итогам своих запросов — статус обновляется
-//     без лишних probe.
-// Probe крутится ТОЛЬКО пока есть подписчики (баннер смонтирован) и app active.
-// ════════════════════════════════════════════════════════════════════════════
-
-import { AppState, type AppStateStatus } from 'react-native';
+import { runtimeAppStateStore } from './runtime_app_state_store';
 
 const PROBE_URL = 'https://clients3.google.com/generate_204';
-const PROBE_TIMEOUT_MS = 5000;
-// Онлайн подтверждать часто незачем; из офлайна выходить хочется быстро.
-const PROBE_INTERVAL_ONLINE_MS = 60_000;
-const PROBE_INTERVAL_OFFLINE_MS = 10_000;
+const PROBE_TIMEOUT_MS = 5_000;
+export const OFFLINE_BACKOFF_MS = [10_000, 30_000, 60_000, 120_000, 300_000] as const;
+export const ONLINE_SAFETY_MS = 300_000;
 
 export type NetStatus = 'online' | 'offline' | 'unknown';
 
-let status: NetStatus = 'unknown';
-const listeners = new Set<(online: boolean) => void>();
-let probeTimer: ReturnType<typeof setTimeout> | null = null;
-let probeInFlight = false;
-let appStateSub: { remove: () => void } | null = null;
-let appActive = true;
+type TimerId = unknown;
+export type NetStatusCoordinatorDeps = {
+  fetch(input: string, init: RequestInit): Promise<unknown>;
+  now(): number;
+  setTimeout(listener: () => void, delayMs: number): TimerId;
+  clearTimeout(id: TimerId): void;
+  isAppActive(): boolean;
+  subscribeAppActive(listener: (active: boolean) => void): () => void;
+};
 
-function setStatus(next: Exclude<NetStatus, 'unknown'>): void {
-  if (status === next) return;
-  status = next;
-  const online = next === 'online';
-  listeners.forEach((cb) => {
+export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
+  let status: NetStatus = 'unknown';
+  const listeners = new Set<(online: boolean) => void>();
+  let probeTimer: TimerId | null = null;
+  let timeoutTimer: TimerId | null = null;
+  let abortController: AbortController | null = null;
+  let probePromise: Promise<boolean> | null = null;
+  let offlineAttempt = 0;
+  let nextProbeAt = 0;
+  let foregroundProbePending = false;
+  let disposed = false;
+
+  const clearProbeTimer = () => {
+    if (probeTimer !== null) deps.clearTimeout(probeTimer);
+    probeTimer = null;
+  };
+  const clearTimeoutTimer = () => {
+    if (timeoutTimer !== null) deps.clearTimeout(timeoutTimer);
+    timeoutTimer = null;
+  };
+  const setStatus = (next: Exclude<NetStatus, 'unknown'>) => {
+    if (status === next) return;
+    status = next;
+    const online = next === 'online';
+    listeners.forEach((listener) => {
+      try { listener(online); } catch { /* listeners cannot break delivery */ }
+    });
+  };
+  const delayForNextProbe = () => status === 'offline'
+    ? OFFLINE_BACKOFF_MS[Math.min(offlineAttempt, OFFLINE_BACKOFF_MS.length - 1)]!
+    : ONLINE_SAFETY_MS;
+
+  const scheduleAt = (at: number) => {
+    clearProbeTimer();
+    nextProbeAt = at;
+    if (disposed || listeners.size === 0 || !deps.isAppActive()) return;
+    const delay = Math.max(0, at - deps.now());
+    probeTimer = deps.setTimeout(() => {
+      probeTimer = null;
+      void runProbe('scheduled');
+    }, delay);
+  };
+  const scheduleNext = () => scheduleAt(deps.now() + delayForNextProbe());
+
+  const probeOnce = async (): Promise<boolean> => {
+    const controller = new AbortController();
+    abortController = controller;
+    timeoutTimer = deps.setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
     try {
-      cb(online);
+      await deps.fetch(PROBE_URL, { method: 'GET', cache: 'no-store', signal: controller.signal });
+      if (disposed || !deps.isAppActive()) return status === 'online';
+      offlineAttempt = 0;
+      setStatus('online');
+      return true;
     } catch {
-      // подписчик не должен ронять рассылку
+      if (disposed || !deps.isAppActive()) return status === 'online';
+      setStatus('offline');
+      return false;
+    } finally {
+      clearTimeoutTimer();
+      if (abortController === controller) abortController = null;
+    }
+  };
+
+  const runProbe = (origin: 'manual' | 'scheduled' | 'foreground' | 'subscriber'): Promise<boolean> => {
+    if (probePromise) return probePromise;
+    if (disposed || !deps.isAppActive()) return Promise.resolve(status === 'online');
+    clearProbeTimer();
+    probePromise = probeOnce().then((online) => {
+      if (origin === 'scheduled' && !online) {
+        offlineAttempt = Math.min(offlineAttempt + 1, OFFLINE_BACKOFF_MS.length - 1);
+      }
+      return online;
+    }).finally(() => {
+      probePromise = null;
+      if (foregroundProbePending && !disposed && deps.isAppActive() && listeners.size > 0) {
+        foregroundProbePending = false;
+        void runProbe('foreground');
+      } else if (!disposed && deps.isAppActive() && listeners.size > 0) {
+        scheduleNext();
+      }
+    });
+    return probePromise;
+  };
+
+  const appStateOff = deps.subscribeAppActive((active) => {
+    if (!active) {
+      clearProbeTimer();
+      clearTimeoutTimer();
+      abortController?.abort();
+      abortController = null;
+      return;
+    }
+    if (listeners.size > 0) {
+      if (probePromise) foregroundProbePending = true;
+      else void runProbe('foreground');
     }
   });
-}
 
-async function probeOnce(): Promise<boolean> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
-  try {
-    // cache: 'no-store' — статус связности, а не контент; любой ответ = онлайн.
-    await fetch(PROBE_URL, { method: 'GET', cache: 'no-store', signal: controller.signal });
-    setStatus('online');
-    return true;
-  } catch {
-    setStatus('offline');
-    return false;
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-function scheduleNextProbe(): void {
-  if (probeTimer) clearTimeout(probeTimer);
-  probeTimer = null;
-  if (listeners.size === 0 || !appActive) return;
-  const delay = status === 'offline' ? PROBE_INTERVAL_OFFLINE_MS : PROBE_INTERVAL_ONLINE_MS;
-  probeTimer = setTimeout(() => {
-    void runProbe();
-  }, delay);
-}
-
-async function runProbe(): Promise<void> {
-  if (probeInFlight) return;
-  probeInFlight = true;
-  try {
-    await probeOnce();
-  } finally {
-    probeInFlight = false;
-    scheduleNextProbe();
-  }
-}
-
-function ensureAppStateSub(): void {
-  if (appStateSub) return;
-  appStateSub = AppState.addEventListener('change', (next: AppStateStatus) => {
-    appActive = next === 'active';
-    if (appActive && listeners.size > 0) {
-      // Возврат в приложение — сразу перепроверяем (сеть могла смениться в фоне).
-      void runProbe();
-    } else if (probeTimer) {
-      clearTimeout(probeTimer);
-      probeTimer = null;
-    }
-  });
-}
-
-/** Текущий известный статус (unknown до первого probe/сигнала). */
-export function getNetStatus(): NetStatus {
-  return status;
-}
-
-/**
- * Подписка на смену онлайн/офлайн. Пока есть хотя бы один подписчик,
- * работает фоновый probe. Возвращает отписку.
- */
-export function subscribeNetStatus(cb: (online: boolean) => void): () => void {
-  listeners.add(cb);
-  ensureAppStateSub();
-  if (listeners.size === 1) void runProbe();
-  return () => {
-    listeners.delete(cb);
-    if (listeners.size === 0 && probeTimer) {
-      clearTimeout(probeTimer);
-      probeTimer = null;
-    }
+  return {
+    getStatus: () => status,
+    subscribe(listener: (online: boolean) => void) {
+      if (disposed) return () => {};
+      const wasEmpty = listeners.size === 0;
+      listeners.add(listener);
+      if (wasEmpty && deps.isAppActive()) {
+        if (nextProbeAt > deps.now()) scheduleAt(nextProbeAt);
+        else void runProbe('subscriber');
+      }
+      return () => {
+        listeners.delete(listener);
+        if (listeners.size === 0) clearProbeTimer();
+      };
+    },
+    checkOnlineNow: () => runProbe('manual'),
+    reportSuccess() {
+      offlineAttempt = 0;
+      setStatus('online');
+      if (listeners.size > 0 && deps.isAppActive()) scheduleNext();
+      else clearProbeTimer();
+    },
+    reportFailure() {
+      setStatus('offline');
+      if (listeners.size > 0 && deps.isAppActive() && !probePromise && probeTimer === null) scheduleNext();
+    },
+    reset() {
+      clearProbeTimer();
+      clearTimeoutTimer();
+      abortController?.abort();
+      abortController = null;
+      status = 'unknown';
+      offlineAttempt = 0;
+      nextProbeAt = 0;
+      foregroundProbePending = false;
+    },
+    dispose() {
+      disposed = true;
+      clearProbeTimer();
+      clearTimeoutTimer();
+      abortController?.abort();
+      abortController = null;
+      listeners.clear();
+      appStateOff();
+    },
+    debug: () => ({
+      status,
+      subscriberCount: listeners.size,
+      offlineAttempt,
+      nextDelayMs: delayForNextProbe(),
+      nextProbeAt,
+      hasProbeTimer: probeTimer !== null,
+      hasTimeoutTimer: timeoutTimer !== null,
+      hasInFlightProbe: probePromise !== null,
+      hasAbortController: abortController !== null,
+      foregroundProbePending,
+    }),
   };
 }
 
-/** Принудительная проверка «есть ли сеть прямо сейчас» (для retry-кнопок). */
-export function checkOnlineNow(): Promise<boolean> {
-  return probeOnce();
-}
+const coordinator = createNetStatusCoordinator({
+  fetch: (input, init) => fetch(input, init),
+  now: Date.now,
+  setTimeout: (listener, delayMs) => setTimeout(listener, delayMs),
+  clearTimeout: (id) => clearTimeout(id as ReturnType<typeof setTimeout>),
+  isAppActive: runtimeAppStateStore.getSnapshot,
+  subscribeAppActive: (listener) => runtimeAppStateStore.subscribe(() => listener(runtimeAppStateStore.getSnapshot())),
+});
 
-/** Пассивный сигнал: чей-то сетевой запрос прошёл — мы точно онлайн. */
-export function reportNetworkSuccess(): void {
-  setStatus('online');
-}
+export function getNetStatus(): NetStatus { return coordinator.getStatus(); }
+export function subscribeNetStatus(listener: (online: boolean) => void): () => void { return coordinator.subscribe(listener); }
+export function checkOnlineNow(): Promise<boolean> { return coordinator.checkOnlineNow(); }
+export function reportNetworkSuccess(): void { coordinator.reportSuccess(); }
+export function reportNetworkFailure(): void { coordinator.reportFailure(); }
 
-/**
- * Пассивный сигнал: чей-то запрос упал ПОХОЖЕ на офлайн (timeout/abort/
- * network request failed). Серверные ошибки (HTTP 4xx/5xx) сюда слать нельзя.
- */
-export function reportNetworkFailure(): void {
-  if (listeners.size > 0) {
-    // Не верим одиночному сбою слепо — перепроверяем probe'ом.
-    void runProbe();
-  } else {
-    setStatus('offline');
-  }
-}
-
-// Required by Expo Router — not a screen
 export default {};

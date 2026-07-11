@@ -17,8 +17,11 @@ import {
   getPromoBannerUntil,
   getPromoBannerUrl,
   isPromoBannerEnabled,
+  parsePromoUntilMs,
   shouldShowPromoBanner,
 } from '../app/remote_flags';
+import { createCampaignExpiryScheduler } from '../app/campaign_expiry_scheduler';
+import { runtimeAppStateStore } from '../app/runtime_app_state_store';
 import {
   campaignDismissalKey,
   isCampaignDismissed,
@@ -30,6 +33,7 @@ interface PromoState {
   text: string;
   url: string;
   dismissalKey: string;
+  untilMs: number | null;
 }
 
 function defaultText(lang: string): string {
@@ -67,6 +71,7 @@ async function readState(lang: string, nowMs: number, isPremium: boolean): Promi
     text,
     url,
     dismissalKey,
+    untilMs: parsePromoUntilMs(untilRaw),
   };
 }
 
@@ -81,18 +86,42 @@ export default function PromoBanner() {
     text: '',
     url: '',
     dismissalKey: '',
+    untilMs: null,
   });
+  const refreshGeneration = useRef(0);
+  const refreshRef = useRef<() => void>(() => {});
+  const expiryScheduler = useRef(createCampaignExpiryScheduler({
+    now: Date.now,
+    setTimeout: (listener, delayMs) => setTimeout(listener, delayMs),
+    clearTimeout: (id) => clearTimeout(id as ReturnType<typeof setTimeout>),
+  })).current;
 
   const refresh = useCallback(() => {
-    void readState(lang, Date.now(), hasPremiumAccess).then(setState);
-  }, [lang, hasPremiumAccess]);
+    const generation = ++refreshGeneration.current;
+    void readState(lang, Date.now(), hasPremiumAccess).then((next) => {
+      if (generation !== refreshGeneration.current) return;
+      setState(next);
+      expiryScheduler.setUntil(next.visible ? next.untilMs : null, () => refreshRef.current());
+    });
+  }, [expiryScheduler, hasPremiumAccess, lang]);
+  refreshRef.current = refresh;
 
   useEffect(() => {
     refresh();
     const sub = onAppEvent('remote_config_changed', refresh);
-    const iv = setInterval(refresh, 60_000);
-    return () => { sub.remove(); clearInterval(iv); };
-  }, [refresh]);
+    const appStateOff = runtimeAppStateStore.subscribe(() => {
+      const active = runtimeAppStateStore.getSnapshot();
+      expiryScheduler.setActive(active);
+      if (active) refresh();
+    });
+    expiryScheduler.setActive(runtimeAppStateStore.getSnapshot());
+    return () => {
+      refreshGeneration.current += 1;
+      sub.remove();
+      appStateOff();
+      expiryScheduler.dispose();
+    };
+  }, [expiryScheduler, refresh]);
 
   const dismiss = useCallback(() => {
     if (state.dismissalKey) void markCampaignDismissed(state.dismissalKey);

@@ -87,13 +87,14 @@ const ShardPiece = memo(function ShardPiece({
 
 // ─── Лёгкая искра-звёздочка для не-промо состояний ─────────────────────────
 const Sparkle = memo(function Sparkle({
-  color, delay, startX, startY,
-}: { color: string; delay: number; startX: number; startY: number }) {
+  active, color, delay, startX, startY,
+}: { active: boolean; color: string; delay: number; startX: number; startY: number }) {
   const op    = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0)).current;
   const rise  = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (!active) return;
     const loop = Animated.loop(
       Animated.sequence([
         Animated.delay(delay),
@@ -109,7 +110,7 @@ const Sparkle = memo(function Sparkle({
     );
     loop.start();
     return () => loop.stop();
-  }, [delay, op, scale, rise]);
+  }, [active, delay, op, scale, rise]);
 
   return (
     <Animated.Text
@@ -125,11 +126,12 @@ const Sparkle = memo(function Sparkle({
 });
 
 // ─── Хало вокруг иконки клуба (вращающийся conic-like glow) ────────────────
-function ClubHalo({ color, size, intensity = 1 }: { color: string; size: number; intensity?: number }) {
+function ClubHalo({ active, color, size, intensity = 1 }: { active: boolean; color: string; size: number; intensity?: number }) {
   const rot = useRef(new Animated.Value(0)).current;
   const pulse = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (!active) return;
     const r = Animated.loop(
       Animated.timing(rot, { toValue: 1, duration: 7000, easing: Easing.linear, useNativeDriver: true }),
     );
@@ -141,7 +143,7 @@ function ClubHalo({ color, size, intensity = 1 }: { color: string; size: number;
     );
     r.start(); p.start();
     return () => { r.stop(); p.stop(); };
-  }, [rot, pulse]);
+  }, [active, rot, pulse]);
 
   const ringSize  = size * 1.7;
   const ringSize2 = size * 1.35;
@@ -554,6 +556,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
             {Array.from({ length: 14 }).map((_, i) => (
               <Sparkle
+                active={visible}
                 key={`s-${i}`}
                 color={club.color}
                 delay={i * 200}
@@ -644,7 +647,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 
                   {/* Иконка клуба + хало */}
                   <View style={{ width: 140, height: 140, alignItems: 'center', justifyContent: 'center' }}>
-                    <ClubHalo color={palette.glow} size={84} intensity={isStay ? 0.7 : 1} />
+                    <ClubHalo active={visible} color={palette.glow} size={84} intensity={isStay ? 0.7 : 1} />
                     <Animated.View
                       style={{
                         transform: [

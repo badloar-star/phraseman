@@ -94,7 +94,9 @@ describe('perf freeze contract', () => {
       const source = fs.readFileSync(file, 'utf8');
       if (!/withRepeat\(([\s\S]{0,200}?),\s*-1/.test(source)) continue;
       if (legacyAllowlist.has(rel)) continue;
-      const guarded = source.includes('useIsScreenFocused') || source.includes('AppState');
+      // Detailed per-call ownership is enforced by runtime_lifecycle_ratchet;
+      // this broad smoke gate recognizes the shared focus+foreground hook too.
+      const guarded = source.includes('useRuntimeActive') || source.includes('useIsScreenFocused') || source.includes('AppState');
       if (!guarded) offenders.push(rel);
     }
     expect(offenders).toEqual([]);

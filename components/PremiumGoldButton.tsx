@@ -7,9 +7,12 @@ import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 type Props = {
   f: { body: number };
+  /** Explicit owner visibility; hidden React Native modals remain mounted. */
+  active: boolean;
   /** Контекст для premium_modal (аналитика / персонализация). */
   paywallContext?: string;
   onPress?: () => void;
@@ -22,7 +25,9 @@ type Props = {
 };
 
 /** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal. */
-function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
+function PremiumGoldButton({ active, f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
+  const premiumButtonRuntimeActive = useRuntimeActive();
+  const buttonAnimationActive = active && premiumButtonRuntimeActive;
   const router = useRouter();
   const { lang } = useLang();
   const { themeMode } = useTheme();
@@ -41,6 +46,11 @@ function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLab
     });
 
   useEffect(() => {
+    if (!buttonAnimationActive) {
+      shineX.stopAnimation();
+      shineX.setValue(0);
+      return;
+    }
     const sweepMs = 5600;
     const anim = Animated.loop(
       Animated.sequence([
@@ -61,7 +71,7 @@ function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLab
     return () => {
       anim.stop();
     };
-  }, [shineX]);
+  }, [buttonAnimationActive, shineX]);
 
   const shineTranslate = shineX.interpolate({
     inputRange: [0, 1],

@@ -20,6 +20,7 @@ import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { checkAchievements } from './achievements';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { STORE_URL } from './config';
@@ -473,6 +474,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
 }
 
 export default function LessonComplete() {
+  const lessonCompleteRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -764,7 +766,11 @@ export default function LessonComplete() {
   // крутить Animated.loop под полноэкранным оверлеем незачем (перф-бюджет §2.1).
   // Награды/оценка при этом идут с монтирования как раньше — см. эффект ниже.
   useEffect(() => {
-    if (!seqDone) return;
+    if (!lessonCompleteRuntimeActive || !seqDone) {
+      bounceAnim.stopAnimation();
+      bounceAnim.setValue(0);
+      return;
+    }
     // Появление иконки
     Animated.spring(scaleAnim, { toValue: 1, friction: 4, useNativeDriver: true }).start();
     // Текст чуть позже
@@ -784,7 +790,7 @@ export default function LessonComplete() {
       clearTimeout(bounceStartTimer);
       bounce.stop();
     };
-  }, [seqDone, bounceAnim, fadeAnim, scaleAnim]);
+  }, [seqDone, bounceAnim, fadeAnim, lessonCompleteRuntimeActive, scaleAnim]);
 
   useEffect(() => {
     let cancelled = false;

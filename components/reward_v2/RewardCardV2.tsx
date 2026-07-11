@@ -4,6 +4,7 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import PrimaryButton from '../ui/PrimaryButton';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY } from '../../constants/motion';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import {
   rewardModalAccentColor,
   rewardModalGlowLayers,
@@ -93,17 +94,25 @@ export function RewardCardBody({
   accentColor,
   children,
 }: RewardCardBodyProps) {
+  const rewardRuntimeActive = useRuntimeActive();
   const { theme: t, f, ds, themeMode } = useTheme();
   const scale = useRef(new Animated.Value(0.94)).current;
   const translateY = useRef(new Animated.Value(16)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const halo = useRef(new Animated.Value(0.4)).current;
   const rafRef = useRef<number | null>(null);
+  const entrancePlayedRef = useRef(false);
 
   useEffect(() => {
+    if (!rewardRuntimeActive) {
+      halo.stopAnimation();
+      halo.setValue(0.4);
+      return;
+    }
     /** Старт на следующем кадре — Fabric должен закоммитить Animated.View (см. ActionToast). */
-    rafRef.current = requestAnimationFrame(() => {
+    if (!entrancePlayedRef.current) rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
+      entrancePlayedRef.current = true;
       Animated.parallel([
         Animated.spring(scale, {
           toValue: 1,
@@ -131,7 +140,7 @@ export function RewardCardBody({
       haloLoop.stop();
       if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
     };
-  }, [halo, opacity, scale, translateY]);
+  }, [halo, opacity, rewardRuntimeActive, scale, translateY]);
 
   const accent = accentColor ?? rewardSemanticAccent(semantic, t, themeMode);
   const panelColors = rewardModalPanelColors(themeMode, t);

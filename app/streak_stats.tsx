@@ -35,6 +35,8 @@ import { StreakChainIcon } from '../components/StreakChainIcon';
 import StreakReviveModal from '../components/StreakReviveModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { getShardsBalance, spendShards } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
@@ -2529,6 +2531,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
     </StatsCardArtSurface>);
 }
 export default function StreakStats() {
+    const statsRuntimeActive = useRuntimeActive();
     const router = useRouter();
     const { theme: t, f, isDark, themeMode } = useTheme();
     const isLightTheme = false;
@@ -2957,7 +2960,21 @@ export default function StreakStats() {
         });
         return () => sub.remove();
     }, [loadAll]);
-    // One shared countdown loop for all active boost rows on this screen.
+    const countdownExpiries = [
+        clubBoostMultiplier > 1 ? clubBoostExpiresAt : 0,
+        leagueBoostMultiplier > 1 ? leagueBoostExpiresAt : 0,
+        leagueGroupBoostMultiplier > 1 ? leagueGroupBoostExpiresAt : 0,
+        giftMultiplier > 1 ? giftExpiresAt : 0,
+    ].filter((expiresAt): expiresAt is number => typeof expiresAt === 'number' && expiresAt > 0);
+    const soonestCountdownMs = countdownExpiries.length > 0
+        ? Math.min(...countdownExpiries) - Date.now()
+        : Number.POSITIVE_INFINITY;
+    const boostCountdownActive = statsRuntimeActive && soonestCountdownMs > 0;
+    const boostNow = useVisibleWallClock(
+        boostCountdownActive,
+        soonestCountdownMs < 3_600_000 ? 1_000 : 30_000,
+    );
+    // One shared visible wall clock for all active boost rows on this screen.
     useEffect(() => {
         const updateBoostCountdowns = () => {
             let hasActiveCountdown = false;
@@ -2966,7 +2983,7 @@ export default function StreakStats() {
                 setClubBoostTimeLeft('');
             }
             else {
-                const ms = clubBoostExpiresAt - Date.now();
+                const ms = clubBoostExpiresAt - boostNow;
                 if (ms <= 0) {
                     setClubBoostTimeLeft('');
                     setClubBoostMultiplier(1);
@@ -2981,7 +2998,7 @@ export default function StreakStats() {
                 setLeagueBoostTimeLeft('');
             }
             else {
-                const ms = leagueBoostExpiresAt - Date.now();
+                const ms = leagueBoostExpiresAt - boostNow;
                 if (ms <= 0) {
                     setLeagueBoostTimeLeft('');
                     setLeagueBoostMultiplier(1);
@@ -2996,7 +3013,7 @@ export default function StreakStats() {
                 setLeagueGroupBoostTimeLeft('');
             }
             else {
-                const ms = leagueGroupBoostExpiresAt - Date.now();
+                const ms = leagueGroupBoostExpiresAt - boostNow;
                 if (ms <= 0) {
                     setLeagueGroupBoostTimeLeft('');
                     setLeagueGroupBoostMultiplier(1);
@@ -3011,7 +3028,7 @@ export default function StreakStats() {
                 setGiftTimeLeft('');
             }
             else {
-                const ms = giftExpiresAt - Date.now();
+                const ms = giftExpiresAt - boostNow;
                 if (ms <= 0) {
                     setGiftTimeLeft('');
                     setGiftMultiplier(1);
@@ -3025,16 +3042,9 @@ export default function StreakStats() {
             return hasActiveCountdown;
         };
 
-        const hasActiveCountdown = updateBoostCountdowns();
-        if (!hasActiveCountdown) return;
+        updateBoostCountdowns();
         // Секундный тик ререндерит весь экран — держим его только когда в строке
         // реально видны секунды (< 1 часа до конца буста), иначе хватает раз в 30с.
-        const soonestMs = Math.min(...[clubBoostExpiresAt, leagueBoostExpiresAt, leagueGroupBoostExpiresAt, giftExpiresAt]
-            .filter((v): v is number => typeof v === 'number' && v > Date.now())
-            .map((v) => v - Date.now()));
-        const tickMs = Number.isFinite(soonestMs) && soonestMs < 3600000 ? 1000 : 30000;
-        const timer = setInterval(updateBoostCountdowns, tickMs);
-        return () => clearInterval(timer);
     }, [
         lang,
         clubBoostExpiresAt,
@@ -3045,6 +3055,7 @@ export default function StreakStats() {
         leagueGroupBoostMultiplier,
         giftExpiresAt,
         giftMultiplier,
+        boostNow,
     ]);
     const handleFreezeStreak = () => {
         hapticTap();

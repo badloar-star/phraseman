@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import {
   AccessibilityInfo,
   Animated,
-  AppState,
   Easing,
   StyleSheet,
   View,
 } from 'react-native';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 interface AiTypingBubbleProps {
   bubbleColor: string;
@@ -21,6 +21,7 @@ export default function AiTypingBubble({
   dotColor,
   glowColor,
 }: AiTypingBubbleProps) {
+  const typingRuntimeActive = useRuntimeActive();
   const dotAnimations = useRef([new Animated.Value(0), new Animated.Value(0), new Animated.Value(0)]).current;
   const glowPulse = useRef(new Animated.Value(0)).current;
   const loopRefs = useRef<Animated.CompositeAnimation[]>([]);
@@ -94,7 +95,7 @@ export default function AiTypingBubble({
     // экран может пережить сворачивание приложения — гасим лупы в фоне и
     // перезапускаем при возврате в active (с учётом reduce motion).
     const apply = () => {
-      start(AppState.currentState === 'active' && !reduceMotion);
+      start(typingRuntimeActive && !reduceMotion);
     };
 
     void AccessibilityInfo.isReduceMotionEnabled().then((reduceMotionEnabled) => {
@@ -109,17 +110,12 @@ export default function AiTypingBubble({
       apply();
     });
 
-    const appSub = AppState.addEventListener('change', () => {
-      apply();
-    });
-
     return () => {
       mounted = false;
       stop();
       subscription.remove();
-      appSub.remove();
     };
-  }, [dotAnimations, glowPulse]);
+  }, [dotAnimations, glowPulse, typingRuntimeActive]);
 
   const glowScale = glowPulse.interpolate({
     inputRange: [0, 1],

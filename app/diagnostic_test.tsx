@@ -26,6 +26,8 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { safeRouterBack } from './navigation_back';
@@ -942,6 +944,7 @@ function FrenchDiagnosticUnavailable({
 }
 
 export default function DiagnosticTest() {
+  const diagnosticRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const params = useLocalSearchParams();
@@ -988,9 +991,10 @@ export default function DiagnosticTest() {
   const handleSkipRef = useRef<() => void>(() => {});
   const handleTimeUpRef = useRef<() => void>(() => {});
   const timerAnim   = useRef(new Animated.Value(1)).current;
-  const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null);
+  const questionDeadlineAtRef = useRef(0);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const timeUpFired = useRef(false);
+  const diagnosticNow = useVisibleWallClock(diagnosticRuntimeActive && phase === 'quiz');
   const answersRef  = useRef<boolean[]>([]);
   const userNameRef = useRef<string>('');
   const diagnosticAttemptIdRef = useRef<string>(makeDiagnosticAttemptId());
@@ -1169,8 +1173,8 @@ export default function DiagnosticTest() {
 
   useEffect(() => {
     if (phase !== 'quiz') return;
-    if (timerRef.current) clearInterval(timerRef.current);
     timeUpFired.current = false;
+    questionDeadlineAtRef.current = Date.now() + TIMER_SEC * 1000;
     setTimeLeft(TIMER_SEC);
     setTypedAnswer('');
     setTypeSubmitted(false);
@@ -1179,23 +1183,39 @@ export default function DiagnosticTest() {
     const curQ = questions[idx];
     setBuildBank(curQ?.type === 'build' && curQ.words ? shuffle([...curQ.words]) : []);
     timerAnim.setValue(1);
-    Animated.timing(timerAnim, { toValue: 0, duration: TIMER_SEC * 1000, useNativeDriver: false }).start();
-    timerRef.current = setInterval(() => {
-      setTimeLeft(p => {
-        if (p <= 1) {
-          clearInterval(timerRef.current!);
-          timerRef.current = null;
-          if (!timeUpFired.current) {
-            timeUpFired.current = true;
-            handleTimeUpRef.current();
-          }
-          return 0;
-        }
-        return p - 1;
-      });
-    }, 1000);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); timerRef.current = null; };
   }, [idx, phase, questions]);
+
+  useEffect(() => {
+    timerAnim.stopAnimation();
+    if (!diagnosticRuntimeActive || phase !== 'quiz' || questionDeadlineAtRef.current <= 0) return;
+    const remainingMs = Math.max(0, Math.min(TIMER_SEC * 1000, questionDeadlineAtRef.current - Date.now()));
+    if (remainingMs <= 0) {
+      timerAnim.setValue(0);
+      if (!timeUpFired.current) {
+        timeUpFired.current = true;
+        handleTimeUpRef.current();
+      }
+      return;
+    }
+    timerAnim.setValue(remainingMs / (TIMER_SEC * 1000));
+    const progress = Animated.timing(timerAnim, {
+      toValue: 0,
+      duration: remainingMs,
+      useNativeDriver: false,
+    });
+    progress.start();
+    return () => progress.stop();
+  }, [diagnosticRuntimeActive, idx, phase, questions, timerAnim]);
+
+  useEffect(() => {
+    if (!diagnosticRuntimeActive || phase !== 'quiz' || questionDeadlineAtRef.current <= 0) return;
+    const remainingMs = Math.max(0, Math.min(TIMER_SEC * 1000, questionDeadlineAtRef.current - diagnosticNow));
+    setTimeLeft(Math.ceil(remainingMs / 1000));
+    if (remainingMs <= 0 && !timeUpFired.current) {
+      timeUpFired.current = true;
+      handleTimeUpRef.current();
+    }
+  }, [diagnosticNow, diagnosticRuntimeActive, phase]);
 
   const advance = (newScore: number) => {
     clearAutoAdvanceTimer();
@@ -1238,10 +1258,7 @@ export default function DiagnosticTest() {
   };
 
   const stopQuestionTimer = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
+    questionDeadlineAtRef.current = 0;
     timerAnim.stopAnimation();
   };
 

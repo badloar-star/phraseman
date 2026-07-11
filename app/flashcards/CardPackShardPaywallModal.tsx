@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
+      cancelAnimation,
   Easing,
   FadeInDown,
   FadeInUp,
@@ -299,11 +300,14 @@ export default function CardPackShardPaywallModal({
         true,
       );
     } else {
+      cancelAnimation(ctaPulse);
+      ctaPulse.value = 0;
       dragTranslateY.value = 0;
       backdropO.value = withTiming(0, { duration: 200 });
       sheetY.value = withTiming(40, { duration: 200 });
       sheetOpacity.value = withTiming(0, { duration: 180 });
     }
+    return () => cancelAnimation(ctaPulse);
   }, [visible, backdropO, sheetY, sheetOpacity, ctaPulse, dragTranslateY]);
 
   const backdropStyle = useAnimatedStyle(() => ({

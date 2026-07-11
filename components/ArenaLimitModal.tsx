@@ -345,6 +345,7 @@ function ArenaLimitModal({
         </Text>
 
         <PremiumGoldButton
+          active={visible}
           f={f}
           paywallContext="arena"
           onPress={() => {

@@ -26,6 +26,7 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { MOTION_SCALE } from '../constants/motion';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
@@ -384,6 +385,7 @@ export default function LessonIntroScreens({
   onComplete,
   onBack,
 }: LessonIntroScreensProps) {
+  const lessonIntroRuntimeActive = useRuntimeActive();
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -459,7 +461,9 @@ export default function LessonIntroScreens({
   // Подсказка «Коснитесь, чтобы увидеть дальше» — плавно появляется ПОСЛЕ того,
   // как блок успел осесть, и держит лёгкий «бобинг» иконки, чтобы привлечь внимание.
   useEffect(() => {
-    if (allRevealed) {
+    if (!lessonIntroRuntimeActive || allRevealed) {
+      hintBob.stopAnimation();
+      hintBob.setValue(0);
       Animated.timing(hintFade, {
         toValue: 0,
         duration: 280,
@@ -500,11 +504,12 @@ export default function LessonIntroScreens({
       bob.stop();
       appear.stop();
     };
-  }, [revealedCount, allRevealed, hintFade, hintBob]);
+  }, [revealedCount, allRevealed, hintFade, hintBob, lessonIntroRuntimeActive]);
 
   // CTA «Начать тренировку» — длинный плавный fade-in + долгий expo-out scale + breathing pulse
   useEffect(() => {
-    if (!ctaReady) {
+    if (!lessonIntroRuntimeActive || !ctaReady) {
+      btnPulse.stopAnimation();
       fadeBtn.setValue(0);
       btnScale.setValue(0.85);
       btnPulse.setValue(1);
@@ -543,7 +548,7 @@ export default function LessonIntroScreens({
     );
     pulse.start();
     return () => pulse.stop();
-  }, [ctaReady, fadeBtn, btnScale, btnPulse]);
+  }, [ctaReady, fadeBtn, btnScale, btnPulse, lessonIntroRuntimeActive]);
 
   const handleTapAnywhere = () => {
     if (revealedCount < totalBlocks) {

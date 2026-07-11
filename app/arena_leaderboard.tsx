@@ -36,6 +36,8 @@ import { getLevelFromXP } from '../constants/theme';
 import { getRankImage, getRankImageDisplayScale, useArenaRank } from '../hooks/use-arena-rank';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { logFeatureOpened } from './firebase';
 import { trackFeatureOpened } from './user_stats';
 import { ensureAnonUser } from './cloud_sync';
@@ -186,7 +188,8 @@ export default function ArenaLeaderboardScreen() {
   const [loadError, setLoadError] = useState(false);
   const [manualRefreshBusy, setManualRefreshBusy] = useState(false);
   const [manualRefreshCooldownUntil, setManualRefreshCooldownUntil] = useState(0);
-  const [nowTs, setNowTs] = useState(() => Date.now());
+  const leaderboardRuntimeActive = useRuntimeActive();
+  const nowTs = useVisibleWallClock(leaderboardRuntimeActive, 60_000);
   const [myUid, setMyUid] = useState<string | null>(null);
   const [myStableUid, setMyStableUid] = useState<string | null>(null);
   const [myName, setMyName] = useState('');
@@ -320,11 +323,6 @@ export default function ArenaLeaderboardScreen() {
         .catch(() => {});
     });
     return () => task.cancel();
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => setNowTs(Date.now()), 60_000);
-    return () => clearInterval(id);
   }, []);
 
   const formatCooldown = useCallback(

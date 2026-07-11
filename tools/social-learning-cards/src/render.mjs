@@ -144,10 +144,10 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
       width: 628,
       height: 938,
       fontSize: 58,
-      eyebrow: 'ОДНОГО СЛОВА МАЛО',
-      title: `Знаешь «${card.items[0].english}»? А фразу скажешь?`,
-      titleLines: [`Знаешь «${card.items[0].english}»?`, 'А фразу скажешь?'],
-      subtitle: 'Phraseman учит готовым фразам, которые сразу можно сказать.',
+      eyebrow: 'МИНИ-ТЕСТ НА 3 СЕКУНДЫ',
+      title: 'Как сказать: «Для меня слишком сладко»?',
+      titleLines: ['Как сказать:', '«Для меня слишком', 'сладко»?'],
+      subtitle: `Если вспомнил только ${card.items[0].english} — Phraseman как раз для тебя.`,
       benefitPrimary: '10 000+ живых фраз',
       benefitSecondary: 'Тренировка произношения',
       exampleWord: card.items[0].english,
@@ -164,10 +164,11 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
     <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
     <rect x="48" y="70" width="304" height="48" rx="24" fill="#B7FF3C"/>
     <text x="200" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(layout.cta.eyebrow)}</text>
-    <text x="48" y="188" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
-    <text x="48" y="254" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
-    <text x="48" y="330" font-family="Arial, sans-serif" font-size="31" fill="#384252">Phraseman учит готовым фразам,</text>
-    <text x="48" y="370" font-family="Arial, sans-serif" font-size="31" fill="#384252">которые сразу можно сказать.</text>
+    <text x="48" y="174" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
+    <text x="48" y="230" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
+    <text x="48" y="286" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[2])}</text>
+    <text x="48" y="350" font-family="Arial, sans-serif" font-size="29" fill="#384252">Если вспомнил только ${escapeXml(layout.cta.exampleWord)} —</text>
+    <text x="48" y="388" font-family="Arial, sans-serif" font-size="29" fill="#384252">Phraseman как раз для тебя.</text>
     <circle cx="64" cy="447" r="9" fill="#77D61D"/><text x="88" y="458" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitPrimary)}</text>
     <circle cx="64" cy="505" r="9" fill="#77D61D"/><text x="88" y="516" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitSecondary)}</text>
     <rect x="48" y="586" width="584" height="100" rx="28" fill="#B7FF3C"/>

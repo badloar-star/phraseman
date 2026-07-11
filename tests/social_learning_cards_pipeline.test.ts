@@ -356,16 +356,17 @@ describe('two-slide renderer', () => {
 
     expect(layout.hero).toMatchObject({ path: cellPaths.item_01, used: true });
     expect(layout.cta).toMatchObject({
-      title: 'Знаешь «sweet»? А фразу скажешь?',
-      titleLines: ['Знаешь «sweet»?', 'А фразу скажешь?'],
+      title: 'Как сказать: «Для меня слишком сладко»?',
+      titleLines: ['Как сказать:', '«Для меня слишком', 'сладко»?'],
       button: 'Начать бесплатно',
       footer: 'Без регистрации • первый урок через 30 секунд',
       url: 'knowlyapps.com',
     });
     expect(layout.cta.fontSize).toBeGreaterThanOrEqual(34);
     expect(layout.cta.x).toBeGreaterThanOrEqual(48);
-    expect(svg).toContain('Знаешь «sweet»?</text>');
-    expect(svg).toContain('А фразу скажешь?</text>');
+    expect(svg).toContain('МИНИ-ТЕСТ НА 3 СЕКУНДЫ');
+    expect(svg).toContain('«Для меня слишком</text>');
+    expect(svg).toContain('сладко»?</text>');
     expect(svg).toContain('10 000+ живых фраз');
     expect(svg).toContain('Начать бесплатно');
     expect(svg).toContain('It&apos;s too sweet');

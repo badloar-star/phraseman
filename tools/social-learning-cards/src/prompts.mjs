@@ -17,7 +17,8 @@ function commonDirection(card) {
     'Use one perfectly uniform pure white #FFFFFF background in every cell; no inner card, panel, tile, frame, border, shadow, gradient, or tinted rectangle.',
     'NO TEXT, NO LETTERS, NO NUMBERS, NO LABELS, NO LOGOS, NO WATERMARKS.',
     'Keep every subject fully inside its cell with generous breathing room.',
-    'ANATOMY GATE: exactly one person per cell, exactly two arms and two hands total; every visible hand has five natural fingers; no extra, duplicated, fused, floating, hidden-source, or disconnected hands, fingers, arms, utensils, bowls, cups, or food objects.',
+    'ANATOMY GATE: exactly one person per cell, never more than two arms or two hands; every visible hand has five natural fingers; no extra, duplicated, fused, floating, hidden-source, or disconnected hands, fingers, arms, utensils, bowls, cups, or food objects.',
+    'BRAND SIGNATURE: every illustrated person wears the same unmistakable round lime-green eyeglasses with clear lenses and identical frames; eyes and expressions remain visible.',
   ].join('\n');
 }
 

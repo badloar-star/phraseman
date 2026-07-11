@@ -4,17 +4,17 @@
   "cards": [
     {
       "schemaVersion": 1, "contentId": "slc_pilot_01_taste", "revision": 1, "status": "waiting_dalle", "campaign": "slc_pilot_01", "grid": "3x3",
-      "titleEn": "TASTE VOCABULARY", "titleRu": "Вкусы на английском", "visualStyle": "adult editorial character study", "languageMode": "english_only",
+      "titleEn": "TASTE VOCABULARY", "titleRu": "Вкусы на английском", "visualStyle": "adult editorial with signature round lime glasses", "languageMode": "bilingual",
       "items": [
-        { "id": "item_01", "english": "sweet", "visualBrief": "Same stylish adult woman happily tasting a colorful lollipop" },
-        { "id": "item_02", "english": "sour", "visualBrief": "Same stylish adult woman reacting to a sour green apple" },
-        { "id": "item_03", "english": "salty", "visualBrief": "Same stylish adult woman tasting a salty pretzel" },
-        { "id": "item_04", "english": "bitter", "visualBrief": "Same stylish adult woman tasting dark chocolate and black coffee" },
-        { "id": "item_05", "english": "spicy", "visualBrief": "Same stylish adult woman reacting to a spoonful of spicy red soup" },
-        { "id": "item_06", "english": "savory", "visualBrief": "Same stylish adult woman enjoying a savory noodle bowl" },
-        { "id": "item_07", "english": "bland", "visualBrief": "Same stylish adult woman unimpressed by plain oatmeal" },
-        { "id": "item_08", "english": "tangy", "visualBrief": "Same stylish adult woman tasting kiwi and lime cheesecake" },
-        { "id": "item_09", "english": "crunchy", "visualBrief": "Same stylish adult woman delighted by crunchy potato chips" }
+        { "id": "item_01", "english": "sweet", "russian": "сладкий", "visualBrief": "Same stylish adult woman in signature round lime glasses happily tasting a colorful lollipop" },
+        { "id": "item_02", "english": "sour", "russian": "кислый", "visualBrief": "Same stylish adult woman in signature round lime glasses reacting to a sour green apple" },
+        { "id": "item_03", "english": "salty", "russian": "солёный", "visualBrief": "Same stylish adult woman in signature round lime glasses tasting a salty pretzel" },
+        { "id": "item_04", "english": "bitter", "russian": "горький", "visualBrief": "Same stylish adult woman in signature round lime glasses tasting dark chocolate" },
+        { "id": "item_05", "english": "spicy", "russian": "острый", "visualBrief": "Same stylish adult woman in signature round lime glasses reacting to a spoonful of spicy red soup" },
+        { "id": "item_06", "english": "savory", "russian": "несладкий", "visualBrief": "Same stylish adult woman in signature round lime glasses enjoying a savory noodle bowl" },
+        { "id": "item_07", "english": "bland", "russian": "пресный", "visualBrief": "Same stylish adult woman in signature round lime glasses unimpressed by plain oatmeal" },
+        { "id": "item_08", "english": "tangy", "russian": "с кислинкой", "visualBrief": "Same stylish adult woman in signature round lime glasses tasting kiwi and lime cheesecake" },
+        { "id": "item_09", "english": "crunchy", "russian": "хрустящий", "visualBrief": "Same stylish adult woman in signature round lime glasses delighted by crunchy potato chips" }
       ],
       "surfaces": {
         "instagram": { "enabled": true, "format": "carousel", "slideOrder": ["learning", "install"] },

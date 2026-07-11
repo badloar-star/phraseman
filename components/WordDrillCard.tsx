@@ -270,7 +270,7 @@ export function WordDrillCard({
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 16,
     padding: 14,
     marginBottom: 16,
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 999,
     paddingHorizontal: 14,
     paddingVertical: 9,

@@ -996,7 +996,7 @@ const LessonContent = React.memo(function LessonContent({
             borderRadius: 20,
             paddingHorizontal: linkedSliceCompact ? 8 : (isSmallScreen ? 8 : 12),
             paddingVertical: linkedSliceCompact ? 5 : 7,
-            borderWidth: 0.5,
+            borderWidth: 0,
             borderColor: t.border,
           }}
         >
@@ -1315,7 +1315,7 @@ const LessonContent = React.memo(function LessonContent({
                         backgroundColor: isFlashing ? t.accent : t.bgCard,
                         paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14),
                         borderRadius: 12,
-                        borderWidth: isFlashing ? 1.5 : (false ? 1 : 0.5),
+                        borderWidth: 0,
                         borderColor: isFlashing ? t.accent : t.border,
                       }}
                       onPress={() => {
@@ -1727,7 +1727,7 @@ const LessonContent = React.memo(function LessonContent({
                 backgroundColor: t.bgCard,
                 borderTopLeftRadius: 22,
                 borderTopRightRadius: 22,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: t.border,
                 paddingHorizontal: 14,
                 paddingTop: 16,
@@ -2390,7 +2390,7 @@ export default function LessonScreen() {
    * визуально «то же окно» и лишний шаг в стеке.
    * НЕ используем router.dismiss(1): это нативный imperative dismiss, который на
    * Android/Fabric ломает teardown стекового (не модального) экрана и даёт чёрный
-   * неотзывчивый экран (см. предупреждение про router.back() в navigation_back.ts).
+   * неотзывчивый экран (см. предупреждение про native back в navigation_back.ts).
    * safeRouterBack — тот же безопасный путь (replace вместо native back/dismiss),
    * которым пользуется весь остальной код.
    */
@@ -3757,7 +3757,7 @@ export default function LessonScreen() {
       <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.68)', paddingHorizontal: 18, paddingVertical: 28 }}>
         <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={() => setPlanLessonDoneVisible(false)} />
         <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center' }}>
-          <View style={{ borderRadius: 30, borderWidth: 1.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, elevation: 12 }}>
+          <View style={{ borderRadius: 30, borderWidth: 0, borderColor: t.border, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, elevation: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, lineHeight: f.h2 + 5, fontWeight: '900' }}>
               {isLinkedLessonSliceTask
                 ? triLang(lang, { ru: 'Часть урока готова', uk: 'Частина уроку готова', es: 'Parte de la lección lista', 'pt-BR': 'Parte da lição pronta', vi: 'Phần bài học đã xong', id: 'Bagian pelajaran selesai', tr: 'Dersin bölümü hazır', pl: 'Część lekcji gotowa' })
@@ -3786,7 +3786,7 @@ export default function LessonScreen() {
                 accessibilityLabel={triLang(lang, { ru: 'Продолжить урок', uk: 'Продовжити урок', es: 'Continuar la lección', 'pt-BR': 'Continuar a lição', vi: 'Tiếp tục bài học', id: 'Lanjut pelajaran', tr: 'Derse devam et', pl: 'Kontynuuj lekcję' })}
                 onPress={() => setPlanLessonDoneVisible(false)}
                 scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, borderWidth: 1, borderColor: t.border, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 6 }}
+                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, borderWidth: 0, borderColor: t.border, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 6 }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam et', pl: 'Kontynuuj' })}</Text>
               </TapScale>

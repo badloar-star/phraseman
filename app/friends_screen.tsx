@@ -720,7 +720,7 @@ export default function FriendsScreen() {
       borderRadius: 8,
       paddingHorizontal: 12,
       paddingVertical: 6,
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: t.textSecond,
     },
     declineBtnText: {
@@ -733,7 +733,7 @@ export default function FriendsScreen() {
       borderRadius: 8,
       paddingHorizontal: 10,
       paddingVertical: 6,
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: '#e55',
     },
     giftBtn: {

@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     maxWidth: 440,
     alignSelf: 'center',
     borderRadius: 28,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
   },
   content: {
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     width: 58,
     height: 58,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },

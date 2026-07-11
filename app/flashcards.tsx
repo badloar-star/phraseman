@@ -318,8 +318,8 @@ export default function FlashcardsHubScreen() {
                 paddingHorizontal: 8,
                 paddingVertical: 5,
                 borderRadius: 10,
-                borderWidth: 1,
-                borderColor: onColoredGradient ? 'rgba(255,255,255,0.45)' : `${t.accent}66`,
+                borderWidth: 0,
+                borderColor: 'transparent',
                 backgroundColor: onColoredGradient ? 'rgba(255,255,255,0.18)' : `${t.accent}1A`,
               }}
             >

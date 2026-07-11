@@ -307,8 +307,8 @@ function QuizCardLogoImageWithFallback({
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: `${accent}24`,
-          borderWidth: 1,
-          borderColor: `${accent}55`,
+          borderWidth: 0,
+          borderColor: 'transparent',
         }}>
           <Ionicons name={fallbackName} size={fallbackIconSize} color={accent} />
         </View>
@@ -473,9 +473,9 @@ function BaseQuizLevelCard({
             borderTopRightRadius: isCompassTheme ? compassRadius : 18,
             borderBottomLeftRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
             borderBottomRightRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
-            borderWidth: visualSelected ? 2 : 1,
-            borderColor: isCompassTheme ? (visualSelected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : visualSelected ? accent : (locked ? t.border : `${accent}40`),
-            borderBottomColor: visualSelected ? 'transparent' : undefined,
+            borderWidth: 0,
+            borderColor: 'transparent',
+            borderBottomColor: 'transparent',
             flexDirection: 'row',
             alignItems: 'center',
             minHeight: 108,
@@ -504,8 +504,8 @@ function BaseQuizLevelCard({
                 borderRadius: 6,
                 paddingHorizontal: 7,
                 paddingVertical: 2,
-                borderWidth: 1,
-                borderColor: `${accent}50`,
+                borderWidth: 0,
+                borderColor: 'transparent',
               }}>
                 <Text style={{ color: accent, fontSize: f.label, fontWeight:'800', letterSpacing:0.8 }}>
                   {c.sub}
@@ -567,9 +567,9 @@ function BaseQuizLevelCard({
             minHeight: 46,
             paddingVertical: 8,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
-            borderWidth: 2,
+            borderWidth: 0,
             borderTopWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent,
+            borderColor: 'transparent',
             borderBottomLeftRadius: isCompassTheme ? compassRadius : 18,
             borderBottomRightRadius: isCompassTheme ? compassRadius : 18,
             overflow: 'hidden',
@@ -679,9 +679,9 @@ function ThematicQuizLevelCard({
             borderTopRightRadius: isCompassTheme ? compassRadius : 18,
             borderBottomLeftRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
             borderBottomRightRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
-            borderWidth: visualSelected ? 2 : 1,
-            borderColor: isCompassTheme ? (visualSelected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : visualSelected ? accent : (locked ? t.border : `${accent}40`),
-            borderBottomColor: visualSelected ? 'transparent' : undefined,
+            borderWidth: 0,
+            borderColor: 'transparent',
+            borderBottomColor: 'transparent',
             flexDirection: 'row',
             alignItems: 'center',
             minHeight: 108,
@@ -709,8 +709,8 @@ function ThematicQuizLevelCard({
                 borderRadius: 6,
                 paddingHorizontal: 7,
                 paddingVertical: 2,
-                borderWidth: 1,
-                borderColor: `${accent}50`,
+                borderWidth: 0,
+                borderColor: 'transparent',
               }}>
                 <Text style={{ color: accent, fontSize: f.label, fontWeight:'800', letterSpacing:0.8 }}>
                   {category.badge}
@@ -770,9 +770,9 @@ function ThematicQuizLevelCard({
             minHeight: 46,
             paddingVertical: 8,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
-            borderWidth: 2,
+            borderWidth: 0,
             borderTopWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent,
+            borderColor: 'transparent',
             borderBottomLeftRadius: isCompassTheme ? compassRadius : 18,
             borderBottomRightRadius: isCompassTheme ? compassRadius : 18,
             overflow: 'hidden',
@@ -1133,7 +1133,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
               safeRouterBack(router, '/(tabs)/home' as any);
             }}
             withHaptic={false}
-            style={{ width:42, height:42, borderRadius:21, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, justifyContent:'center', alignItems:'center' }}
+            style={{ width:42, height:42, borderRadius:21, backgroundColor: glassFill(t.bgCard, 0.42), borderWidth:0, borderColor:'transparent', justifyContent:'center', alignItems:'center' }}
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
           </TapScale>
@@ -1155,7 +1155,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
             dataText={s.quizzes.selectLevel}
             variant="icon-flag"
             accessibilityLabel="Сообщить о баге на экране квизов"
-            style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+            style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: glassFill(t.bgCard, 0.42), borderWidth: 0, borderColor: 'transparent' }}
           />
         </View>
       </View>
@@ -1247,7 +1247,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
             gap: 10,
           }, freeQuizState.exhausted
             ? { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
-            : { backgroundColor: t.accentBg, borderWidth: 1, borderColor: t.accent + '66' }]}>
+            : { backgroundColor: glassFill(t.accent, 0.12), borderWidth: 0, borderColor: 'transparent' }]}>
             <Ionicons
               name={freeQuizState.exhausted ? 'lock-closed' : 'flash-outline'}
               size={18}
@@ -1882,7 +1882,7 @@ function QuizGame({
             <TapScale
               onPress={() => { hapticTap(); onBack(); }}
               withHaptic={false}
-              style={{ marginTop:24, flexDirection:'row', alignItems:'center', gap:8, paddingHorizontal:22, paddingVertical:12, borderRadius:24, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border }}
+              style={{ marginTop:24, flexDirection:'row', alignItems:'center', gap:8, paddingHorizontal:22, paddingVertical:12, borderRadius:24, backgroundColor:glassFill(t.bgCard, 0.42), borderWidth:0, borderColor:'transparent' }}
             >
               <Ionicons name="chevron-back" size={20} color={onGradPrimary}/>
               <Text style={{ color:onGradPrimary, fontSize: f.body, fontWeight:'700' }}>
@@ -1925,7 +1925,7 @@ function QuizGame({
         <TapScale
           onPress={() => { hapticTap(); onBack(); }}
           withHaptic={false}
-          style={{ marginTop:24, flexDirection:'row', alignItems:'center', gap:8, paddingHorizontal:22, paddingVertical:12, borderRadius:24, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border }}
+          style={{ marginTop:24, flexDirection:'row', alignItems:'center', gap:8, paddingHorizontal:22, paddingVertical:12, borderRadius:24, backgroundColor:glassFill(t.bgCard, 0.42), borderWidth:0, borderColor:'transparent' }}
         >
           <Ionicons name="chevron-back" size={20} color={onGradPrimary}/>
           <Text style={{ color:onGradPrimary, fontSize: f.body, fontWeight:'700' }}>
@@ -2178,7 +2178,7 @@ function QuizGame({
             accessibilityIgnoresInvertColors
             style={{ width: 118, height: 118, marginBottom: 10 }}
           />
-          <View style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${rankInfo.color}22`, borderRadius: isCompassTheme ? 9 : 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${rankInfo.color}55`, marginBottom:16, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}>
+          <View style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${rankInfo.color}22`, borderRadius: isCompassTheme ? 9 : 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 0, borderColor: 'transparent', marginBottom:16, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}>
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
           </View>
           <Text style={{ color:t.textPrimary, fontSize: f.numLg, fontWeight:'700', marginBottom:10 }} numberOfLines={1}>{s.quizzes.done}</Text>
@@ -2205,7 +2205,7 @@ function QuizGame({
             const { level: lv, xpNeeded } = getXPProgress(totalXP + score);
             return (
               <View style={[isCompassTheme
-                ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderRadius: 9, borderWidth:0.5, borderColor: COMPASS_RICH.hairlineQuiet, overflow: 'hidden' }
+                ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderRadius: 9, borderWidth:0, borderColor: 'transparent', overflow: 'hidden' }
                 : { backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
                 { padding:14, width:'100%', flexDirection:'row', alignItems:'center', gap:12, marginBottom:28 }, isCompassTheme && compassShadow(1)]}>
                 <LevelBadge level={lv} size={40} />
@@ -2235,7 +2235,7 @@ function QuizGame({
             if (wrongPhrases.length === 0) return null;
             return (
               <TouchableOpacity
-                style={[{ width:'100%', borderWidth:1.5, borderColor: isCompassTheme ? COMPASS_RICH.copper : '#F87171', padding:18, borderRadius: isCompassTheme ? 9 : 14, alignItems:'center', marginBottom:12, backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : t.bgCard, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
+                style={[{ width:'100%', borderWidth:0, borderColor: 'transparent', padding:18, borderRadius: isCompassTheme ? 9 : 14, alignItems:'center', marginBottom:12, backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : glassFill(monoIcon(themeMode as ThemeMode, '#F87171'), 0.16), overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
                 onPress={() => {
                   hapticTap();
                   if (autoAdvanceTimerRef.current) { clearTimeout(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
@@ -2264,7 +2264,7 @@ function QuizGame({
             );
           })()}
           <TouchableOpacity
-            style={[{ width:'100%', borderWidth:1.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : levelAccent, padding:18, borderRadius: isCompassTheme ? 9 : 14, alignItems:'center', marginBottom:12, backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : t.bgCard, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
+            style={[{ width:'100%', borderWidth:0, borderColor: 'transparent', padding:18, borderRadius: isCompassTheme ? 9 : 14, alignItems:'center', marginBottom:12, backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : glassFill(levelAccent, 0.16), overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
             onPress={() => {
               hapticTap();
               // Free-юзер тратит ещё одну попытку из дневного лимита — спрашиваем подтверждение.
@@ -2503,8 +2503,8 @@ function QuizGame({
             <View
               testID="personal-plan-quiz-instruction"
               style={{
-                borderWidth: 1,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : `${levelAccent}55`,
+                borderWidth: 0,
+                borderColor: 'transparent',
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : `${levelAccent}14`,
                 borderRadius: isCompassTheme ? 9 : 14,
                 padding: planQuizId ? 10 : 14,
@@ -2552,8 +2552,8 @@ function QuizGame({
               marginBottom: planQuizId ? 10 : 16,
               borderLeftWidth: 3,
               borderLeftColor: isCompassTheme ? (isRight===true||typedOk===true ? COMPASS_RICH.champagne : COMPASS_RICH.peach) : isRight===true||typedOk===true ? t.correct : t.wrong,
-              borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+              borderWidth: 0,
+              borderColor: 'transparent',
               overflow: isCompassTheme ? 'hidden' : 'visible',
             }, isCompassTheme && compassShadow(1)]}>
               {(isRight === false || typedOk === false) && (
@@ -2682,9 +2682,10 @@ function QuizGame({
                         style={{
                           alignItems: 'center',
                           alignSelf: 'flex-start',
-                          borderColor: isBusinessTheme ? 'rgba(255,255,255,0.18)' : `${headerColor}55`,
+                          borderColor: 'transparent',
                           borderRadius: 8,
-                          borderWidth: 1,
+                          borderWidth: 0,
+                          backgroundColor: glassFill(headerColor, 0.14),
                           flexDirection: 'row',
                           gap: 6,
                           minHeight: 34,
@@ -2762,8 +2763,8 @@ function QuizGame({
                 marginBottom: planQuizId ? 10 : 16,
                 borderLeftWidth: 4,
                 borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : (themeMode === 'business' || themeMode === 'businessLight') ? (correct ? t.accent : t.textMuted) : correct ? '#1565C0' : '#F59E0B',
-                borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                borderWidth: 0,
+                borderColor: 'transparent',
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}>
                 <Text style={{ color: (themeMode === 'business' || themeMode === 'businessLight') ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
@@ -2799,8 +2800,8 @@ function QuizGame({
                 borderRadius: isCompassTheme ? 9 : 14,
                 padding: 16,
                 alignItems: 'center',
-                borderWidth: 1,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                borderWidth: 0,
+                borderColor: 'transparent',
                 flexDirection: 'row',
                 justifyContent: 'center',
                 gap: 8,
@@ -2846,7 +2847,7 @@ function QuizGame({
               </View>
               {typedOk === null && (
                 <TouchableOpacity
-                  style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : t.bgSurface, borderRadius: isCompassTheme ? 9 : 14, padding:18, alignItems:'center', borderWidth:0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
+                  style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : glassFill(t.bgSurface, 0.46), borderRadius: isCompassTheme ? 9 : 14, padding:18, alignItems:'center', borderWidth:0, borderColor: 'transparent', overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
                   onPress={() => { handleTyped(); }} activeOpacity={0.8}
                 >
                   <Text style={{ color:t.textPrimary, fontSize: f.bodyLg, fontWeight:'600' }}>

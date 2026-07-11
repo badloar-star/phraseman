@@ -55,7 +55,7 @@ function ThemedChoiceModal({
               padding: 22,
               width: '100%',
               maxWidth: 360,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairline : t.border,
               overflow: 'hidden',
               ...(isGoldTheme ? goldShadow(3) : isCompassTheme ? compassShadow(3) : {}),
@@ -99,7 +99,7 @@ function ThemedChoiceModal({
                     }}
                     style={{
                       borderRadius: buttonRadius,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: isGoldTheme
                         ? primary ? GOLD_RICH.edgeLight : GOLD_RICH.hairline
                         : isCompassTheme

@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
   card: {
     minHeight: 74,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 9,
     paddingLeft: 82,
     paddingRight: 10,
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
   signal: {
     minHeight: 18,
     borderRadius: 999,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 6,
     flexDirection: 'row',
     alignItems: 'center',
@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,

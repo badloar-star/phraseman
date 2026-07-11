@@ -156,7 +156,7 @@ export default function StudyLanguagePicker({
               paddingVertical: 7,
               paddingHorizontal: 6,
               borderRadius: 16,
-              borderWidth: active ? 2 : 0.5,
+              borderWidth: 0,
               borderColor: active ? palette.borderOn : palette.borderOff,
               backgroundColor: active ? palette.surfaceOn : palette.surfaceOff,
             }}

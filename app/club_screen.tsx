@@ -1269,7 +1269,7 @@ export default function ClubScreen() {
               paddingHorizontal: 14,
               paddingVertical: 11,
               backgroundColor: 'rgba(52, 199, 89, 0.12)',
-              borderWidth: 0.5,
+              borderWidth: 0,
               borderColor: 'rgba(52, 199, 89, 0.34)',
               flexDirection: 'row',
               alignItems: 'center',
@@ -1293,7 +1293,7 @@ export default function ClubScreen() {
             aspectRatio:CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO,
             alignSelf:'center',
             borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS,
-            borderWidth:0.5,
+            borderWidth:0,
             borderColor:leagueBonusPalette.border,
             overflow:'hidden',
             backgroundColor:leagueBonusPalette.modal.card[1],
@@ -1379,7 +1379,7 @@ export default function ClubScreen() {
           >
             <Ionicons name="chatbubbles-outline" size={22} color={leagueBonusPalette.accent} />
             {leagueChatUnreadCount > 0 && (
-              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:1.5, borderColor:previewLeagueCardImage ? '#0B0F14' : t.bgCard }}>
+              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:0, borderColor:previewLeagueCardImage ? '#0B0F14' : t.bgCard }}>
                 <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
                   {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
                 </Text>
@@ -1455,7 +1455,7 @@ export default function ClubScreen() {
             style={{ borderRadius:14, borderWidth:0.5, borderColor:activeGroupBoost ? 'rgba(255,212,59,0.34)' : leagueBonusPalette.innerBorder, padding:10, gap:10 }}
           >
             <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-              <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0.5, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
+              <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
                 <Ionicons name={activeGroupBoost ? 'flash' : 'flash-outline'} size={19} color={monoIcon(themeMode, activeGroupBoost ? '#FFD43B' : leagueBonusPalette.accent)} />
               </View>
               <View style={{ flex:1, minWidth:0 }}>
@@ -1522,7 +1522,7 @@ export default function ClubScreen() {
                 flexDirection: 'row',
                 gap: 7,
                 backgroundColor: activeGroupBoost ? 'rgba(255,255,255,0.08)' : t.accent,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: activeGroupBoost ? 'rgba(255,255,255,0.16)' : t.accent,
                 opacity: groupBoostBuying ? 0.7 : 1,
               }}
@@ -1648,7 +1648,7 @@ export default function ClubScreen() {
                     alignItems:'center',
                     gap:6,
                     backgroundColor: groupBoostLikedToday ? 'rgba(255,45,85,0.11)' : 'rgba(255,45,85,0.18)',
-                    borderWidth: 0.5,
+                    borderWidth: 0,
                     borderColor: groupBoostLikedToday ? 'rgba(255,45,85,0.20)' : 'rgba(255,45,85,0.38)',
                     opacity: activeGroupBoost.buyerUid === arenaClubStableUid ? 0.55 : 1,
                   }}
@@ -1728,7 +1728,7 @@ export default function ClubScreen() {
                 paddingHorizontal: 14,
                 paddingVertical: 12,
                 backgroundColor: leagueChestClaimed ? t.bgSurface : t.accent,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: leagueChestClaimed ? t.border : t.accent,
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -1926,7 +1926,7 @@ export default function ClubScreen() {
                   </View>
                 </View>
                 {isMyRow && (
-                  <View style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>
+                  <View style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0, borderColor: t.accent + '55' }}>
                     <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
                       {triLang(lang, {
                         ru: 'Вы',
@@ -1944,7 +1944,7 @@ export default function ClubScreen() {
                 {hasXpPromotion && (
                   <View
                     testID={`league-xp-promotion-badge-${p.uid || i}`}
-                    style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(52, 199, 89, 0.16)', borderWidth: 0.5, borderColor: 'rgba(52, 199, 89, 0.45)' }}
+                    style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(52, 199, 89, 0.16)', borderWidth: 0, borderColor: 'rgba(52, 199, 89, 0.45)' }}
                   >
                     <Text style={{ color: monoIcon(themeMode, '#34C759'), fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }} numberOfLines={1}>
                       {triLang(lang, {
@@ -2028,7 +2028,7 @@ export default function ClubScreen() {
                 hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
                 onPress={closeChatModal}
                 testID="league-chat-close"
-                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
+                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0, borderColor:t.border }}
               >
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
               </TapScale>

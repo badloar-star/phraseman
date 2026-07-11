@@ -120,7 +120,7 @@ export function SpeakingButton({
               paddingVertical: 10,
               paddingHorizontal: 18,
               borderRadius: 999,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: t.border,
               backgroundColor: t.bgCard,
             },

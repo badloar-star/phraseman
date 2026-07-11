@@ -376,7 +376,7 @@ function PlayerProfileModalBody({
   const prestigeSurfaceStyle = prestigeActive
     ? { backgroundColor: cardVisual.surface, borderWidth: 0, borderColor: 'transparent' }
     : compassProfileSurface
-      ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderWidth: 1, borderColor: COMPASS_RICH.hairlineQuiet, overflow: 'hidden' as const }
+      ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' as const }
       : { backgroundColor: t.bgSurface, borderWidth: 0, borderColor: 'transparent' };
   const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
 
@@ -968,8 +968,8 @@ function PlayerProfileModalBody({
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: prestigeActive ? 'rgba(0,0,0,0.34)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
-            borderWidth: compassProfileSurface ? 1 : 0,
-            borderColor: compassProfileSurface ? COMPASS_RICH.hairline : 'transparent',
+            borderWidth: 0,
+            borderColor: 'transparent',
             overflow: compassProfileSurface ? 'hidden' : 'visible',
             ...(compassProfileSurface ? compassShadow(1) : null),
           }}
@@ -995,8 +995,8 @@ function PlayerProfileModalBody({
                 : (prestigeActive ? 'rgba(0,0,0,0.34)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)'),
               alignItems: 'center',
               justifyContent: 'center',
-              borderWidth: compassProfileSurface ? 1 : 0,
-              borderColor: compassProfileSurface ? COMPASS_RICH.hairline : 'transparent',
+              borderWidth: 0,
+              borderColor: 'transparent',
               overflow: compassProfileSurface ? 'hidden' : 'visible',
               ...(compassProfileSurface ? compassShadow(1) : null),
               opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,

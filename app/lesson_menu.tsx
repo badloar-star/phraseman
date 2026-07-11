@@ -1372,8 +1372,8 @@ export default function LessonMenu() {
                 style={{
                 width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
                 backgroundColor: isCompassTheme ? ((item.disabled || item.unavailable) ? COMPASS_RICH.charcoal : COMPASS_RICH.charcoalRaised) : (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
-                borderTopWidth:0.5, borderLeftWidth:0.5,
-                borderRightWidth:0.5, borderBottomWidth:0.5,
+                borderTopWidth:0, borderLeftWidth:0,
+                borderRightWidth:0, borderBottomWidth:0,
                 borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.edgeLight : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
                 borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : isCompassTheme ? COMPASS_RICH.edgeShade : t.border,
                 justifyContent:'center', alignItems:'center',
@@ -1402,7 +1402,7 @@ export default function LessonMenu() {
             end={{ x: 1, y: 1 }}
             style={{
               borderRadius: isCompassTheme ? 10 : 18,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
               paddingHorizontal: 16,
               paddingVertical: 14,
@@ -1422,7 +1422,7 @@ export default function LessonMenu() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
               }}
             >
@@ -1475,7 +1475,7 @@ export default function LessonMenu() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 16,
-                    borderWidth: StyleSheet.hairlineWidth,
+                    borderWidth: 0,
                     borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
                     overflow: 'hidden',
                     ...(isCompassTheme ? compassShadow(1) : {}),
@@ -1505,7 +1505,7 @@ export default function LessonMenu() {
                     backgroundColor:isCompassTheme ? COMPASS_RICH.champagne : t.accent,
                     borderRadius:isCompassTheme ? 9 : 14, padding:16, width:'100%', alignItems:'center',
                     overflow:'hidden',
-                    borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                    borderWidth: 0,
                     borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
                     ...(isCompassTheme ? compassShadow(1) : {}),
                   }}

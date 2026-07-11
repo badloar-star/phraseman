@@ -352,7 +352,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     borderRadius: 18,
-    borderWidth: 1.5,
+    borderWidth: 0,
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
   edge: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 18,
-    borderWidth: 1.5,
+    borderWidth: 0,
     shadowOpacity: 0.9,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 0 },

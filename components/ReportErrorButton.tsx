@@ -520,7 +520,7 @@ const styles = StyleSheet.create({
   sheet: {
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 24,
     gap: 12,
   },

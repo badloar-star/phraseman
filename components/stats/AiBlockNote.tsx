@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 10,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 11,
     paddingHorizontal: 12,
     marginTop: 10,

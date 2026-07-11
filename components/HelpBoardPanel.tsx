@@ -735,7 +735,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               hapticTap();
               setSelectedId(null);
             }}
-            style={{ width: 36, height: 36, borderRadius: 18, borderWidth: 0.5, borderColor: t.border, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}
+            style={{ width: 36, height: 36, borderRadius: 18, borderWidth: 0, borderColor: 'transparent', alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}
           >
             <Ionicons name="chevron-back" size={21} color={t.textPrimary} />
           </TouchableOpacity>

@@ -1245,7 +1245,7 @@ export default function AiDialogSession() {
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: 10,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: t.accent + '40',
             }}
           >
@@ -1260,7 +1260,7 @@ export default function AiDialogSession() {
                 height: 12,
                 borderRadius: 6,
                 backgroundColor: t.correct,
-                borderWidth: 2,
+                borderWidth: 0,
                 borderColor: t.bgPrimary,
               }}
             />
@@ -2574,7 +2574,7 @@ export default function AiDialogSession() {
                       paddingHorizontal: 5,
                       paddingVertical: 2,
                       backgroundColor: t.accent,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: t.bgPrimary,
                     }}
                   >

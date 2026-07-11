@@ -562,7 +562,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   if (allDone) return (
     <>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-        <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }}>
           <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
         </View>
         <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700' }}>
@@ -593,7 +593,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 0, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
           onPress={() => { fk.tap(); onReset(); }}
           activeOpacity={0.8}
         >
@@ -678,7 +678,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         {/* Card */}
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
           {/* Form badge */}
-          <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 1, borderColor: meta.color + '60' }}>
+          <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 0, borderColor: meta.color + '60' }}>
             <Text style={{ color: meta.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.4 }}>{meta.label}</Text>
           </View>
 
@@ -812,7 +812,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
                   style={{
                     flex: 1, paddingVertical: 16, borderRadius: 16,
                     alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: bg, borderWidth: 1.5, borderColor: border,
+                    backgroundColor: bg, borderWidth: 0, borderColor: border,
                   }}
                 >
                   <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }} numberOfLines={2} maxFontSizeMultiplier={1.2}>
@@ -1018,7 +1018,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
     <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
       <TouchableOpacity
         onPress={onStartLearn}
-        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 1, borderColor: t.border, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
+        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 0, borderColor: t.border, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
       >
         <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
         <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
@@ -1038,7 +1038,7 @@ function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack:
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
         <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
       </View>
       <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>

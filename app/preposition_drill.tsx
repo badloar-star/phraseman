@@ -584,7 +584,7 @@ export default function PrepositionDrillScreen() {
                     <TouchableOpacity
                       onPress={() => onAnswer(opt)}
                       disabled={selected !== null}
-                      style={{ backgroundColor: bg, borderColor: border, borderWidth: signal ? 1 : 0, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+                      style={{ backgroundColor: bg, borderColor: border, borderWidth: 0, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
                     >
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{opt}</Text>
                   </TouchableOpacity>

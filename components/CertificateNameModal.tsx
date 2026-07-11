@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 20,
     padding: 22,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'stretch',
   },
   ribbon: {
@@ -192,7 +192,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 4,
     borderRadius: 999,
-    borderWidth: 1,
+    borderWidth: 0,
+    backgroundColor: 'rgba(212,160,23,0.12)',
   },
   input: {
     marginTop: 16,
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     paddingVertical: 14,
     alignItems: 'center',
-    borderWidth: 1.5,
+    borderWidth: 0,
   },
   skipBtn: {
     marginTop: 10,

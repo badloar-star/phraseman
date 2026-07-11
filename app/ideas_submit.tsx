@@ -144,7 +144,7 @@ export default function IdeasSubmitScreen() {
   const inputStyle = {
     backgroundColor: t.bgCard,
     borderColor: t.border,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
@@ -210,7 +210,7 @@ export default function IdeasSubmitScreen() {
                 backgroundColor: t.correctBg,
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderWidth: 1.5,
+                borderWidth: 0,
                 borderColor: t.correct,
                 marginBottom: 14,
               }}
@@ -267,7 +267,7 @@ export default function IdeasSubmitScreen() {
                 style={{
                   flex: 1,
                   backgroundColor: step.reward ? t.correctBg : t.bgCard,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: step.reward ? t.correct : t.border,
                   borderRadius: 13,
                   paddingVertical: 11,
@@ -364,7 +364,7 @@ export default function IdeasSubmitScreen() {
                     paddingHorizontal: 12,
                     paddingVertical: 9,
                     borderRadius: 999,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: active ? t.correct : t.border,
                     backgroundColor: active ? t.correctBg : t.bgCard,
                   }}
@@ -405,7 +405,7 @@ export default function IdeasSubmitScreen() {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: canSend ? t.accent : t.bgCard,
-              borderWidth: canSend ? 0 : 1,
+              borderWidth: 0,
               borderColor: t.border,
               opacity: canSend ? 1 : 0.7,
             }}

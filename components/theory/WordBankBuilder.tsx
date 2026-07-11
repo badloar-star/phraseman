@@ -242,7 +242,7 @@ export default function WordBankBuilder({
                   backgroundColor: 'rgba(255,255,255,0.06)',
                   opacity: used ? 0.25 : 1,
                   borderColor: glow ? theme.correct : 'transparent',
-                  borderWidth: glow ? 2 : 0,
+                  borderWidth: 0,
                 },
               ]}
             >
@@ -295,7 +295,7 @@ export default function WordBankBuilder({
 }
 
 const styles = StyleSheet.create({
-  wrap: { padding: 14, borderRadius: 14, borderWidth: 1, marginTop: 10 },
+  wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
   hint: { fontSize: 11, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '600', marginBottom: 4 },
   prompt: { fontSize: 17, fontWeight: '600', marginBottom: 12 },
   slots: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, minHeight: 48, padding: 8, borderRadius: 10, marginBottom: 12 },
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 9,
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: 0,
     borderStyle: 'dashed',
     minWidth: 64,
     alignItems: 'center',

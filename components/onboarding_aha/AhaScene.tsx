@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
   glassCard: {
     borderRadius: AHA_THEME.radiusCard,
     backgroundColor: AHA_THEME.cardBg,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: AHA_THEME.cardBorder,
     padding: 16,
     gap: 10,

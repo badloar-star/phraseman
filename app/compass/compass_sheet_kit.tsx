@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
   markImage: { width: 30, height: 30, borderRadius: 9 },
   eyebrowText: { flexShrink: 1, fontSize: 12.5, fontWeight: '700', letterSpacing: 0.6, textTransform: 'uppercase' },
   eyebrowRight: { marginLeft: 'auto' },
-  streakPill: { flexDirection: 'row', alignItems: 'center', gap: 4, borderWidth: 1, borderRadius: 999, paddingHorizontal: 9, paddingVertical: 4, maxWidth: 165 },
+  streakPill: { flexDirection: 'row', alignItems: 'center', gap: 4, borderWidth: 0, borderRadius: 999, paddingHorizontal: 9, paddingVertical: 4, maxWidth: 165 },
   streakPillText: { flexShrink: 1, fontSize: 11.5, fontWeight: '800' },
   voice: { fontSize: 25, lineHeight: 31, fontWeight: '800', letterSpacing: -0.2, marginTop: 15 },
   lede: { fontSize: 15, lineHeight: 22, fontWeight: '600', marginTop: 11 },

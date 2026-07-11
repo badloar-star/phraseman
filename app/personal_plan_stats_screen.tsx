@@ -583,7 +583,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: 12,
   },
   back: {
-    width: 46, height: 46, borderRadius: 14, borderWidth: 1,
+    width: 46, height: 46, borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   headerCopy: { flex: 1, minWidth: 0 },
@@ -591,7 +591,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, lineHeight: 29, fontWeight: '900', marginTop: 1 },
   scroll: { paddingHorizontal: 12, paddingTop: 4, paddingBottom: 40, gap: 12 },
 
-  heroCard: { borderRadius: 14, borderWidth: 1, padding: 20, overflow: 'hidden' },
+  heroCard: { borderRadius: 14, borderWidth: 0, padding: 20, overflow: 'hidden' },
   heroTop: { flexDirection: 'row', alignItems: 'center', gap: 16, marginBottom: 16 },
   heroPct: { fontSize: 48, lineHeight: 52, fontWeight: '900' },
   heroCopy: { flex: 1, minWidth: 0 },
@@ -602,22 +602,22 @@ const styles = StyleSheet.create({
 
   grid: { flexDirection: 'row', gap: 12 },
   statCard: {
-    flex: 1, borderRadius: 14, borderWidth: 1, padding: 16, gap: 6,
+    flex: 1, borderRadius: 14, borderWidth: 0, padding: 16, gap: 6,
   },
   statIconWrap: {
-    width: 40, height: 40, borderRadius: 12, borderWidth: 1,
+    width: 40, height: 40, borderRadius: 12, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', marginBottom: 4,
   },
   statValue: { fontSize: 28, lineHeight: 32, fontWeight: '900' },
   statLabel: { fontSize: 12, lineHeight: 16, fontWeight: '800' },
 
-  sectionCard: { borderRadius: 14, borderWidth: 1, padding: 16, overflow: 'hidden' },
+  sectionCard: { borderRadius: 14, borderWidth: 0, padding: 16, overflow: 'hidden' },
   sectionHeader: { marginBottom: 14 },
   sectionKicker: { fontSize: 11, lineHeight: 14, fontWeight: '900', textTransform: 'uppercase' },
   sectionTitle: { fontSize: 20, lineHeight: 25, fontWeight: '900', marginTop: 2 },
   weeks: { gap: 10 },
   weakRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8 },
-  weakIcon: { width: 34, height: 34, borderRadius: 11, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  weakIcon: { width: 34, height: 34, borderRadius: 11, borderWidth: 0, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   weakLabel: { flex: 1, fontSize: 15, lineHeight: 20, fontWeight: '800', minWidth: 0 },
   weakCount: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
   weekRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -628,7 +628,7 @@ const styles = StyleSheet.create({
 
   dayRail: { paddingVertical: 4, gap: DAY_CARD_GAP },
   dayCard: {
-    width: DAY_CARD_WIDTH, height: 96, borderRadius: 14, borderWidth: 1,
+    width: DAY_CARD_WIDTH, height: 96, borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', gap: 2, paddingHorizontal: 8,
   },
   dayCardNum: { fontSize: 24, lineHeight: 28, fontWeight: '900' },
@@ -640,7 +640,7 @@ const styles = StyleSheet.create({
   sheetBackdrop: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.55)' },
   sheetBackdropTap: { ...StyleSheet.absoluteFillObject },
   sheet: {
-    borderTopLeftRadius: 22, borderTopRightRadius: 22, borderWidth: 1, borderBottomWidth: 0,
+    borderTopLeftRadius: 22, borderTopRightRadius: 22, borderWidth: 0, borderBottomWidth: 0,
     paddingTop: 16, paddingHorizontal: 18, paddingBottom: 24, maxHeight: '82%',
   },
   sheetHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginBottom: 10 },
@@ -650,11 +650,11 @@ const styles = StyleSheet.create({
   sheetClose: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   sheetScroll: { flexGrow: 0 },
   sheetScrollBody: { paddingBottom: 4, gap: 8 },
-  sheetGoal: { fontSize: 14, lineHeight: 20, fontWeight: '700', borderWidth: 1, borderRadius: 12, padding: 12, marginBottom: 4 },
+  sheetGoal: { fontSize: 14, lineHeight: 20, fontWeight: '700', borderWidth: 0, borderRadius: 12, padding: 12, marginBottom: 4 },
   sheetSectionLabel: { fontSize: 12, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6, marginBottom: 2 },
   phraseRow: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderWidth: 1, borderRadius: 12, paddingVertical: 11, paddingHorizontal: 13,
+    borderWidth: 0, borderRadius: 12, paddingVertical: 11, paddingHorizontal: 13,
   },
   phraseEn: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
   phraseTranslation: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 2 },

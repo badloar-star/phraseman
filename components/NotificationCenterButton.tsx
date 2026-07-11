@@ -347,7 +347,7 @@ function NotificationCenterButton() {
                     alignItems: 'center',
                     gap: 10,
                     borderRadius: 14,
-                    borderWidth: 0.5,
+                    borderWidth: 0,
                     borderColor: t.border,
                     backgroundColor: t.bgSurface,
                     paddingHorizontal: 12,
@@ -357,7 +357,7 @@ function NotificationCenterButton() {
                   {hasAvatar ? (
                     <AvatarView avatar={row.fromAvatar!} size={38} animateAura={false} />
                   ) : (
-                    <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
                       <Ionicons name={notificationIcon(row.type)} size={18} color={notificationIconColor(row.type, t.textMuted)} />
                     </View>
                   )}
@@ -441,7 +441,7 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    borderWidth: 0.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },

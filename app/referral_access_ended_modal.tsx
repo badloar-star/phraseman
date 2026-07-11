@@ -282,7 +282,7 @@ function makeStyles(t: ReferralAccessEndedModalProps['t']) {
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 14,
-      borderWidth: 1.5,
+      borderWidth: 0,
       paddingVertical: 13,
       paddingHorizontal: 28,
       width: '100%',

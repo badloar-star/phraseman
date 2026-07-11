@@ -28,7 +28,7 @@ function StatCard({
 }) {
   const { theme: t, f } = useTheme();
   return (
-    <View style={{ flex: 1, minWidth: 126, borderWidth: 1, borderColor: t.border, borderRadius: 10, backgroundColor: t.bgCard, padding: 12 }}>
+    <View style={{ flex: 1, minWidth: 126, borderWidth: 0, borderColor: t.border, borderRadius: 10, backgroundColor: t.bgCard, padding: 12 }}>
       <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase' }} numberOfLines={1}>
         {label}
       </Text>
@@ -50,7 +50,7 @@ function Section({
 }) {
   const { theme: t, f } = useTheme();
   return (
-    <View testID={testID} style={{ borderWidth: 1, borderColor: t.border, borderRadius: 10, backgroundColor: t.bgCard, padding: 14, gap: 12 }}>
+    <View testID={testID} style={{ borderWidth: 0, borderColor: t.border, borderRadius: 10, backgroundColor: t.bgCard, padding: 14, gap: 12 }}>
       <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{title}</Text>
       {children}
     </View>
@@ -146,7 +146,7 @@ export default function PosAnalyticsAuditScreen() {
           </View>
           <View
             testID={audit.releaseReady ? 'pos-audit-release-ready' : 'pos-audit-release-blocked'}
-            style={{ borderRadius: 999, borderWidth: 1, borderColor: readyColor, paddingHorizontal: 10, paddingVertical: 5 }}
+            style={{ borderRadius: 999, borderWidth: 0, borderColor: readyColor, paddingHorizontal: 10, paddingVertical: 5 }}
           >
             <Text style={{ color: readyColor, fontSize: f.label, fontWeight: '900' }}>
               {audit.releaseReady ? 'READY' : 'CHECK'}

@@ -240,7 +240,7 @@ export default function ForceUpdateGate() {
           maxWidth: 420,
           borderRadius: 22,
           backgroundColor: '#121826',
-          borderWidth: 1,
+          borderWidth: 0,
           borderColor: '#26324a',
           padding: 22,
           shadowColor: '#000',

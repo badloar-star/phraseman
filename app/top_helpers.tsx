@@ -286,7 +286,7 @@ export default function TopHelpersScreen() {
                 paddingVertical: 3,
                 borderRadius: 999,
                 backgroundColor: t.accent + '22',
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: t.accent + '55',
               }}
             >
@@ -374,7 +374,7 @@ export default function TopHelpersScreen() {
                       padding: 14,
                       borderRadius: 16,
                       backgroundColor: t.bgCard,
-                      borderWidth: 0.5,
+                      borderWidth: 0,
                       borderColor: t.border,
                     }}
                   >

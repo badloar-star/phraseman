@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     minHeight: 64,
     backgroundColor: AHA_THEME.cardBg,
     borderColor: AHA_THEME.cardBorder,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     borderRadius: AHA_THEME.radiusCard,
     paddingHorizontal: 14,
     paddingVertical: 10,
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   chip: {
     backgroundColor: AHA_THEME.chipBg,
     borderColor: AHA_THEME.chipBorder,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     borderRadius: AHA_THEME.radiusChip,
     paddingHorizontal: 14,
     paddingVertical: 10,
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   },
   chipHinted: {
     borderColor: AHA_THEME.chipHintBorder,
-    borderWidth: 1.5,
+    borderWidth: 0,
   },
   chipPressed: {
     opacity: 0.85,

@@ -19,8 +19,8 @@ function CompassBevel({ radius, intensity = 'normal' }: CompassBevelProps) {
     <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius: radius, overflow: 'hidden' }]}>
       <View style={[styles.topEdge, { backgroundColor: `rgba(255,255,255,${v.top})` }]} />
       <View style={[styles.bottomEdge, { backgroundColor: `rgba(0,0,0,${v.bottom})` }]} />
-      <View style={[StyleSheet.absoluteFillObject, { borderRadius: radius, borderWidth: StyleSheet.hairlineWidth, borderColor: `rgba(255,255,255,${v.border})` }]} />
-      <View style={[StyleSheet.absoluteFillObject, { borderRadius: radius, borderWidth: 1, borderColor: COMPASS_RICH.hairlineQuiet }]} />
+      <View style={[StyleSheet.absoluteFillObject, { borderRadius: radius, borderWidth: 0, borderColor: `rgba(255,255,255,${v.border})` }]} />
+      <View style={[StyleSheet.absoluteFillObject, { borderRadius: radius, borderWidth: 0, borderColor: COMPASS_RICH.hairlineQuiet }]} />
     </View>
   );
 }

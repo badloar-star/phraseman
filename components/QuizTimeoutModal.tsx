@@ -44,7 +44,7 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
                 borderRadius: modalRadius,
                 padding: 28,
                 alignItems: 'center',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.borderHighlight,
                 maxWidth: 320,
                 width: '100%',
@@ -57,7 +57,7 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
             {/* Верхняя линия-свечение акцента */}
             <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 28, right: 28, height: 1.5, backgroundColor: TIMEOUT_ACCENT, opacity: 0.5 }} />
             {/* Медальон-иконка вместо эмодзи ⏰ */}
-            <View style={{ width: 70, height: 70, borderRadius: 20, borderWidth: 1, borderColor: `${TIMEOUT_ACCENT}55`, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', marginBottom: 12 }}>
+            <View style={{ width: 70, height: 70, borderRadius: 20, borderWidth: 0, borderColor: `${TIMEOUT_ACCENT}55`, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', marginBottom: 12 }}>
               <LinearGradient
                 pointerEvents="none"
                 colors={[`${TIMEOUT_ACCENT}30`, 'transparent']}
@@ -118,7 +118,7 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   overflow: 'hidden',
-                  borderWidth: isCompassTheme ? 1 : 0,
+                  borderWidth: 0,
                   borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
                 },
                 isCompassTheme && compassShadow(1),

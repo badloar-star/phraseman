@@ -598,7 +598,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     backgroundColor: PALETTE.card,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: PALETTE.cardBorder,
   },
   metricIcon: { fontSize: 22 },

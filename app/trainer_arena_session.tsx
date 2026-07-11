@@ -333,7 +333,7 @@ export default function TrainerArenaSession() {
               {
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
-                borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                borderWidth: 0,
                 borderRadius: isCompassTheme ? 10 : 18,
                 opacity: flashAnim,
                 overflow: isCompassTheme ? 'hidden' : 'visible',
@@ -359,7 +359,7 @@ export default function TrainerArenaSession() {
                     key={i}
                     onPress={() => void pick(i)}
                     disabled={locked}
-                    style={[styles.optionBtn, isCompassTheme && compassShadow(state === 'idle' ? 1 : 2), { backgroundColor: bg, borderColor: bc, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (state === 'idle' ? 0 : 1.5), borderRadius: isCompassTheme ? 9 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                    style={[styles.optionBtn, isCompassTheme && compassShadow(state === 'idle' ? 1 : 2), { backgroundColor: bg, borderColor: bc, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                   >
                     {isCompassTheme ? <CompassDepthSurface radius={9} selected={state !== 'idle'} quiet={state === 'idle'} /> : null}
                     <Text style={[styles.optionText, { color: tc, fontSize: f.body }]}>{opt}</Text>
@@ -409,7 +409,7 @@ const styles = StyleSheet.create({
   doneStats: {
     flexDirection: 'row',
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     overflow: 'hidden',
     marginBottom: 32,
     width: '100%',

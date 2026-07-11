@@ -49,7 +49,7 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
           alignSelf: 'flex-start',
           borderRadius: 999,
           backgroundColor: colors.accentSoft,
-          borderWidth: 1,
+          borderWidth: 0,
           borderColor: colors.accentStrong,
           paddingHorizontal: compact ? 6 : 8,
           paddingVertical: compact ? 2 : 3,

@@ -2614,7 +2614,7 @@ export default function DailyTasksScreen() {
           </View>
 
           <View style={dailyTaskStyles.taskProgressBlock}>
-            <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
+            <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
               <View style={{
                     height: '100%',
                     width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any,
@@ -2806,7 +2806,7 @@ export default function DailyTasksScreen() {
                   </Text>
                 </Animated.View>)}
                 {false && (<View style={dailyTaskStyles.taskProgressBlock}>
-                  <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
+                  <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
                     <View style={{
                         height: '100%',
                         width: `${pct}%` as any,
@@ -2843,7 +2843,7 @@ export default function DailyTasksScreen() {
                             alignItems: 'center',
                             justifyContent: 'center',
                             backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.08)',
-                            borderWidth: 1,
+                            borderWidth: 0,
                             borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.15)',
                         }}>
                         <Ionicons name="refresh" size={17} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
@@ -3032,7 +3032,7 @@ const dailyTaskStyles = StyleSheet.create({
         minHeight: 72,
         paddingHorizontal: 12,
         paddingVertical: 9,
-        borderWidth: 1,
+        borderWidth: 0,
         overflow: 'hidden',
         position: 'relative',
         backgroundColor: 'rgba(13,32,36,0.82)',
@@ -3129,7 +3129,7 @@ const dailyTaskStyles = StyleSheet.create({
         width: 56,
         height: 56,
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
@@ -3152,7 +3152,7 @@ const dailyTaskStyles = StyleSheet.create({
         minWidth: 66,
         minHeight: 44,
         borderRadius: 16,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3194,7 +3194,7 @@ const dailyTaskStyles = StyleSheet.create({
         width: 54,
         height: 30,
         borderRadius: 11,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 4,
         paddingVertical: 2,
         alignItems: 'center',
@@ -3235,7 +3235,7 @@ const dailyTaskStyles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 15,
-        borderWidth: 1,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -3287,7 +3287,7 @@ const dailyTaskStyles = StyleSheet.create({
     claimedPill: {
         minHeight: 30,
         borderRadius: 15,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3336,7 +3336,7 @@ const rerollStyles = StyleSheet.create({
     btnGhost: {
         alignSelf: 'stretch',
         borderRadius: 14,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingVertical: 13,
         alignItems: 'center',
     },

@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
   formSheet: {
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 20,
     gap: 10,
   },
@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 12,
     paddingHorizontal: 14,
   },
@@ -352,7 +352,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 12,
     minHeight: 84,
     textAlignVertical: 'top',

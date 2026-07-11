@@ -151,7 +151,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             padding: 24,
             width: '100%',
             maxWidth: 320,
-            borderWidth: 1,
+            borderWidth: 0,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
             alignItems: 'center',
             overflow: 'hidden',
@@ -193,7 +193,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                     style={{
                       flex: 1, paddingVertical: 11, borderRadius: 10,
                       backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgPrimary,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                       overflow: 'hidden',
                       ...(isCompassTheme ? compassShadow(1) : null),
@@ -207,7 +207,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                   <TouchableOpacity
                     onPress={handleSend}
                     disabled={loading}
-                    style={{ flex: 1, paddingVertical: 11, borderRadius: isCompassTheme ? 9 : 10, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}
+                    style={{ flex: 1, paddingVertical: 11, borderRadius: isCompassTheme ? 9 : 10, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}
                   >
                     {isCompassTheme && <CompassDepthSurface radius={9} cream />}
                     {false && loading ? <View />

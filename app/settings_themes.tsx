@@ -178,7 +178,7 @@ export default function SettingsThemes() {
                 height: 38,
                 borderRadius: 19,
                 backgroundColor: t.bgCard,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: t.border,
 
               }}
@@ -230,7 +230,7 @@ export default function SettingsThemes() {
                       height: themeRowHeight,
                       backgroundColor: '#282B31',
                       borderRadius: themeRowRadius,
-                      borderWidth: active ? 2 : StyleSheet.hairlineWidth,
+                      borderWidth: 0,
                       borderColor: row.borderColor,
                       overflow: 'hidden',
                     }}
@@ -267,7 +267,7 @@ export default function SettingsThemes() {
                             height: 22,
                             borderRadius: 6,
                             backgroundColor: color,
-                            borderWidth: StyleSheet.hairlineWidth,
+                            borderWidth: 0,
                             borderColor: active ? row.textColor : rgba(item.text, 0.24),
                             shadowColor: '#000',
                             shadowOffset: { width: 0, height: 1 },

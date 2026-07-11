@@ -150,7 +150,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
               isCompassTheme && compassShadow(1),
               isCompassTheme && {
                 borderRadius: 10,
-                borderWidth: StyleSheet.hairlineWidth,
+                borderWidth: 0,
                 borderColor: COMPASS_RICH.hairlineQuiet,
                 backgroundColor: COMPASS_RICH.charcoal,
                 overflow: 'hidden',
@@ -184,7 +184,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
               styles.reviewNote,
               isCompassTheme && {
                 borderRadius: 9,
-                borderWidth: StyleSheet.hairlineWidth,
+                borderWidth: 0,
                 borderColor: COMPASS_RICH.hairlineQuiet,
                 backgroundColor: COMPASS_RICH.mist,
                 paddingVertical: 8,
@@ -214,7 +214,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
               {
                 backgroundColor: isCompassTheme ? 'transparent' : t.accent,
                 borderRadius: isCompassTheme ? 10 : 14,
-                borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                borderWidth: 0,
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
                 overflow: isCompassTheme ? 'hidden' : 'visible',
                 opacity: pressed || busy ? 0.85 : 1,
@@ -259,7 +259,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
                 isCompassTheme && compassShadow(1),
                 isCompassTheme && {
                   borderRadius: 9,
-                  borderWidth: StyleSheet.hairlineWidth,
+                  borderWidth: 0,
                   borderColor: COMPASS_RICH.hairlineQuiet,
                   backgroundColor: COMPASS_RICH.charcoal,
                   overflow: 'hidden',
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 420,
     borderRadius: 20,
-    borderWidth: 1.5,
+    borderWidth: 0,
     paddingHorizontal: 24,
     paddingTop: 24,
     paddingBottom: 22,

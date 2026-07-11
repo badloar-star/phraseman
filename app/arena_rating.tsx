@@ -585,7 +585,7 @@ const styles = StyleSheet.create({
 
   myCard: {
     marginHorizontal: 16, marginBottom: 12,
-    borderRadius: 20, borderWidth: 1, padding: 16,
+    borderRadius: 20, borderWidth: 0, padding: 16,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
   },
   myCardLeft: { flex: 1, flexDirection: 'row', alignItems: 'center', minWidth: 0 },
@@ -599,7 +599,7 @@ const styles = StyleSheet.create({
     left: 16,
     right: 16,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 12,
     paddingTop: 12,
     paddingBottom: 10,
@@ -622,7 +622,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     marginBottom: 8,
   },
   rankPickerRowText: { flex: 1 },
@@ -635,12 +635,12 @@ const styles = StyleSheet.create({
 
   matchRow: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderRadius: 14, borderWidth: 1,
+    borderRadius: 14, borderWidth: 0,
     paddingVertical: 12, paddingHorizontal: 12,
     marginBottom: 8,
   },
   resultBadge: {
-    borderRadius: 8, borderWidth: 1,
+    borderRadius: 8, borderWidth: 0,
     paddingHorizontal: 8, paddingVertical: 4,
     minWidth: 76, alignItems: 'center',
   },

@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     backgroundColor: 'rgba(30, 30, 36, 0.92)',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     borderColor: 'rgba(255,255,255,0.18)',
     alignItems: 'center',
   },

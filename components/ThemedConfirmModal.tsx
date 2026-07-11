@@ -156,7 +156,7 @@ function ThemedConfirmModal({
             borderRadius: modalRadius,
             padding: 22,
             width: '100%',
-            borderWidth: 1,
+            borderWidth: 0,
             borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairline : t.border,
             overflow: 'hidden',
             ...(isGoldTheme ? goldShadow(3) : isCompassTheme ? compassShadow(3) : {}),
@@ -194,7 +194,7 @@ function ThemedConfirmModal({
               style={{
                 width: '100%',
                 borderRadius: buttonRadius,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                 overflow: 'hidden',
                 ...(isCompassTheme ? compassShadow(1) : {}),
@@ -223,7 +223,7 @@ function ThemedConfirmModal({
               style={{
                 width: '100%',
                 borderRadius: buttonRadius,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: isGoldTheme
                   ? confirmVariant === 'accent' ? GOLD_RICH.edgeLight : GOLD_RICH.hairline
                   : isCompassTheme

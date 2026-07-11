@@ -250,4 +250,40 @@ describe('borderless surface audit', () => {
     expect(second.entries).toHaveLength(2);
     expect(second.entries.every((entry) => entry.scanState === 'present')).toBe(true);
   });
+
+  it('does not transfer an earlier duplicate ID to a later border after removal', () => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'phraseman-border-duplicate-removal-'));
+    const appDir = path.join(tmp, 'app');
+    fs.mkdirSync(appDir, { recursive: true });
+    const sourcePath = path.join(appDir, 'settings.tsx');
+    const scanOutput = path.join(tmp, 'latest-scan.json');
+    const ledgerPath = path.join(tmp, 'ledger.json');
+    fs.writeFileSync(
+      sourcePath,
+      `function SettingsScreen() {
+        const first = <View style={{ backgroundColor: red, borderWidth: 1, padding: 10 }} />;
+        const second = <View style={{ backgroundColor: blue, borderWidth: 1, padding: 20 }} />;
+        return <>{first}{second}</>;
+      }`,
+    );
+    runAudit(tmp, scanOutput, ledgerPath);
+    const firstLedger = JSON.parse(fs.readFileSync(ledgerPath, 'utf8')) as { entries: LedgerEntry[] };
+    const secondEntry = firstLedger.entries.find((entry) => entry.id.endsWith(':2'));
+    expect(secondEntry).toBeDefined();
+
+    fs.writeFileSync(
+      sourcePath,
+      `function SettingsScreen() {
+        const first = <View style={{ backgroundColor: red, borderWidth: 0, padding: 10 }} />;
+        const second = <View style={{ backgroundColor: blue, borderWidth: 1, padding: 20 }} />;
+        return <>{first}{second}</>;
+      }`,
+    );
+    runAudit(tmp, scanOutput, ledgerPath);
+    const nextLedger = JSON.parse(fs.readFileSync(ledgerPath, 'utf8')) as { entries: LedgerEntry[] };
+
+    expect(nextLedger.entries.find((entry) => entry.id === secondEntry?.id)?.scanState).toBe('present');
+    expect(nextLedger.entries.filter((entry) => entry.scanState === 'missing')).toHaveLength(1);
+    expect(nextLedger.entries).toHaveLength(2);
+  });
 });

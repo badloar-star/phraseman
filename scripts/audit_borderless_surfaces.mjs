@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const BORDER_PROPERTY_RE = /\b(borderWidth|borderTopWidth|borderBottomWidth|borderLeftWidth|borderRightWidth)\s*:\s*([^,;}]+)/g;
 const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx']);
@@ -87,13 +88,38 @@ function nearestAnchor(lines, lineIndex) {
   }
 
   const filePrefix = lines.slice(0, lineIndex + 1).join('\n');
-  const components = [...filePrefix.matchAll(/(?:function|const)\s+([A-Z][A-Za-z0-9_$]*)/g)];
-  if (components.length > 0) return { kind: 'component', value: components.at(-1)[1] };
+  const components = [
+    ...filePrefix.matchAll(
+      /function\s+([A-Z][A-Za-z0-9_$]*)|const\s+([A-Z][A-Za-z0-9_$]*)\s*=\s*(?:\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/g,
+    ),
+  ];
+  if (components.length > 0) {
+    const match = components.at(-1);
+    return { kind: 'component', value: match[1] ?? match[2] };
+  }
   return { kind: 'line-context', value: `line-${lineIndex + 1}` };
 }
 
 function normalized(value) {
   return value.replace(/\s+/g, ' ').trim();
+}
+
+function contextFingerprint(lines, lineIndex) {
+  let start = lineIndex;
+  for (let index = lineIndex; index >= Math.max(0, lineIndex - 10); index -= 1) {
+    const line = lines[index];
+    if (
+      /style\s*=\s*\{\{|style\s*=\s*\[|^\s*\{\s*$|^\s*[A-Za-z_$][\w$]*\s*:\s*\{/.test(line)
+    ) {
+      start = index;
+      break;
+    }
+  }
+  const context = normalized(lines.slice(start, lineIndex + 1).join(' ')).replace(
+    /border(?:Top|Bottom|Left|Right)?Width\s*:\s*[^,;}]+/g,
+    'borderWidth:*',
+  );
+  return crypto.createHash('sha1').update(context).digest('hex').slice(0, 12);
 }
 
 function suggestedCategory(property, excerpt) {
@@ -114,12 +140,13 @@ function scanFile(root, absolutePath) {
       const anchor = nearestAnchor(lines, lineIndex);
       if (/(^|[-_])(?:admin|dev|lab|tester)(?:[-_]|$)/i.test(anchor.value)) continue;
       const excerpt = normalized(line);
+      const contextHash = contextFingerprint(lines, lineIndex);
       entries.push({
         file,
         line: lineIndex + 1,
         property,
         anchor,
-        fingerprint: `${file}|${anchor.kind}:${anchor.value}|${property}:${value}`,
+        fingerprint: `${file}|${anchor.kind}:${anchor.value}|${property}:${value}|context:${contextHash}`,
         excerpt,
         suggestedCategory: suggestedCategory(property, excerpt),
       });

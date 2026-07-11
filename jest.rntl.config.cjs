@@ -7,6 +7,7 @@ module.exports = {
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/daily_tasks_text_integrity_render.test.tsx',
     '<rootDir>/tests/survey_daily_challenge_render.test.tsx',
+    '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [

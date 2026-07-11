@@ -10,6 +10,7 @@ describe('survey screen submission contract', () => {
     expect(source.indexOf("type: 'submit_started'")).toBeLessThan(source.indexOf('await submitSurvey('));
     expect(source).toContain('<SurveyRewardPanel');
     expect(source).not.toContain("emitAppEvent('action_toast'");
+    expect(source).not.toContain('Alert.alert');
     expect(source).not.toContain('<Text style={{ fontSize: 44 }}>');
   });
 
@@ -37,5 +38,7 @@ describe('survey screen submission contract', () => {
     expect(source).toContain('requestActiveRef.current');
     expect(source).toContain('clearAutoReturnTimer');
     expect(source).toMatch(/setTimeout\([\s\S]*?,\s*1400\)/);
+    expect(source).toContain("dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: res.reward })");
+    expect(source).toContain("dispatchSubmission({ type: 'submit_failed', attemptId, messageKey })");
   });
 });

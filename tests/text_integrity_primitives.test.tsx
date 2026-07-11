@@ -274,6 +274,7 @@ test('dedicated RNTL config discovers TSX without replacing React Native', () =>
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/daily_tasks_text_integrity_render.test.tsx',
     '<rootDir>/tests/survey_daily_challenge_render.test.tsx',
+    '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
   ]);
   expect(config.roots).toEqual(['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app']);
   expect(config.moduleNameMapper).not.toHaveProperty('^react-native$');

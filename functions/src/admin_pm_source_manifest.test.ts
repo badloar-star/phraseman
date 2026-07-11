@@ -27,3 +27,23 @@ test('keeps curated product goals in a human-owned overlay', () => {
   expect(overlay.goals).toHaveLength(4);
   expect(overlay.metricGlossary.every((metric: { formula?: string; sourceIds?: string[] }) => metric.formula && metric.sourceIds?.length)).toBe(true);
 });
+
+test('keeps curated journeys tied to real Codex screen entities', () => {
+  const overlay = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs', 'product-codex', 'business-overlay.json'), 'utf8'));
+  const appCodex = JSON.parse(fs.readFileSync(path.join(ROOT, 'admin', 'generated', 'app-codex.json'), 'utf8'));
+  const entityIds = new Set((appCodex.entities || []).map((entity: { id: string }) => entity.id));
+  for (const journey of overlay.journeys || []) {
+    for (const screenId of journey.screenIds || []) {
+      expect(entityIds.has(screenId)).toBe(true);
+    }
+  }
+});
+
+test('generates a server-side PM Codex projection from the curated overlay', () => {
+  const generatedPath = path.join(ROOT, 'functions', 'src', 'generated', 'admin_pm_codex.ts');
+  expect(fs.existsSync(generatedPath)).toBe(true);
+  const generated = fs.readFileSync(generatedPath, 'utf8');
+  expect(generated).toContain('ADMIN_PM_CODEX');
+  expect(generated).toContain('growth_activation');
+  expect(generated).toContain('metricGlossary');
+});

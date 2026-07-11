@@ -7,8 +7,8 @@
     { "id": "quality_support", "label": "Качество и поддержка", "guardrailMetricIds": ["quality_support.critical_errors"] }
   ],
   "journeys": [
-    { "id": "journey:onboarding-to-learning", "screenIds": ["screen:/", "screen:/home", "screen:/lessons"] },
-    { "id": "journey:paywall-to-premium", "screenIds": ["screen:/premium"] }
+    { "id": "journey:onboarding-to-learning", "screenIds": ["screen:/home", "screen:/lessons"] },
+    { "id": "journey:paywall-to-premium", "screenIds": ["screen:/paywall_a", "screen:/premium_modal"] }
   ],
   "metricGlossary": [
     { "id": "growth_activation.new_users", "formula": "Count distinct new user records in the exact window", "sourceIds": ["users"] },

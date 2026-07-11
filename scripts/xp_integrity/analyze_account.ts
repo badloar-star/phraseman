@@ -414,15 +414,24 @@ export function analyzeAccount(
   catalogMatches: CatalogMatchSource,
 ): AccountAuditResult {
   const reasons = new Set<ReasonCode>();
-  const nonExactCauseIds = new Set<string>();
-  const causesByFamily = new Map<string, Set<string>>();
+  const evidenceGapCauseIds = new Set<string>();
+  const evidenceGapCausesByFamily = new Map<string, Set<string>>();
+  const positiveCauseIds = new Set<string>();
+  const positiveCausesByFamily = new Map<string, Set<string>>();
   const invalidByEvent = new Map<string, number>();
   let runtimeEvidenceComplete = true;
-  const addNonExactCause = (family: string, causeId: string): void => {
-    nonExactCauseIds.add(causeId);
-    const causes = causesByFamily.get(family) ?? new Set<string>();
+  const addEvidenceGap = (family: string, causeId: string): void => {
+    evidenceGapCauseIds.add(causeId);
+    const causes =
+      evidenceGapCausesByFamily.get(family) ?? new Set<string>();
     causes.add(causeId);
-    causesByFamily.set(family, causes);
+    evidenceGapCausesByFamily.set(family, causes);
+  };
+  const addPositiveCause = (family: string, causeId: string): void => {
+    positiveCauseIds.add(causeId);
+    const causes = positiveCausesByFamily.get(family) ?? new Set<string>();
+    causes.add(causeId);
+    positiveCausesByFamily.set(family, causes);
   };
 
   const ledger = analyzeLedgerContinuity(
@@ -437,7 +446,7 @@ export function analyzeAccount(
   if (!ledger.complete) {
     reasons.add("ledger_history_incomplete");
     ledger.incompleteCauseIds.forEach((causeId) =>
-      addNonExactCause("ledger", causeId),
+      addEvidenceGap("ledger", causeId),
     );
     runtimeEvidenceComplete = false;
   }
@@ -447,8 +456,8 @@ export function analyzeAccount(
     if (achievementId === null) {
       reasons.add("catalog_unmapped");
       reasons.add("prerequisite_unmapped");
-      addNonExactCause("catalog", `event:${claimed.eventId}`);
-      addNonExactCause("prerequisites", `event:${claimed.eventId}`);
+      addEvidenceGap("catalog", `event:${claimed.eventId}`);
+      addEvidenceGap("prerequisites", `event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -456,7 +465,7 @@ export function analyzeAccount(
     const historicalReward = rewardFromMatch(match, achievementId);
     if (!historicalReward) {
       reasons.add("catalog_unmapped");
-      addNonExactCause("catalog", `event:${claimed.eventId}`);
+      addEvidenceGap("catalog", `event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -474,7 +483,7 @@ export function analyzeAccount(
     );
     if (valueBefore === null) {
       reasons.add("prerequisite_unmapped");
-      addNonExactCause("prerequisites", `event:${claimed.eventId}`);
+      addEvidenceGap("prerequisites", `event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
     } else if (
       historicalReward.prerequisite.kind !== "unsupported" &&
@@ -493,7 +502,7 @@ export function analyzeAccount(
       !Number.isFinite(alias.identityMergedAtMs)
     ) {
       reasons.add("alias_history_incomplete");
-      addNonExactCause("alias", `alias:${alias.uid}:linkage`);
+      addEvidenceGap("alias", `alias:${alias.uid}:linkage`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -509,7 +518,7 @@ export function analyzeAccount(
         aliasClaim.serverCreatedAtMs >= mergeTime
       ) {
         reasons.add("alias_history_incomplete");
-        addNonExactCause("alias", `event:${aliasClaim.eventId}`);
+        addEvidenceGap("alias", `event:${aliasClaim.eventId}`);
         runtimeEvidenceComplete = false;
         continue;
       }
@@ -519,7 +528,7 @@ export function analyzeAccount(
       );
       if (!aliasReward) {
         reasons.add("alias_history_incomplete");
-        addNonExactCause("alias", `event:${aliasClaim.eventId}`);
+        addEvidenceGap("alias", `event:${aliasClaim.eventId}`);
         runtimeEvidenceComplete = false;
         continue;
       }
@@ -560,7 +569,7 @@ export function analyzeAccount(
           addInvalid(invalidByEvent, candidate.eventId, candidate.xpDelta);
         } else {
           reasons.add("alias_history_incomplete");
-          addNonExactCause("alias", `event:${candidate.eventId}`);
+          addEvidenceGap("alias", `event:${candidate.eventId}`);
           runtimeEvidenceComplete = false;
         }
       }
@@ -589,17 +598,17 @@ export function analyzeAccount(
     }
   } else if (input.migration.kind === "pattern_only") {
     reasons.add("migration_pattern_only");
-    addNonExactCause("migration", "migration:pattern");
+    addPositiveCause("migration", "migration:pattern");
     runtimeEvidenceComplete = false;
   } else if (input.migration.kind === "incomplete") {
-    addNonExactCause("migration", "migration:incomplete");
+    addEvidenceGap("migration", "migration:incomplete");
     runtimeEvidenceComplete = false;
   }
 
   for (const [family, state] of Object.entries(input.completeness)) {
     if (state !== "incomplete") continue;
-    if (!causesByFamily.has(family)) {
-      addNonExactCause(family, `evidence:${family}`);
+    if (!evidenceGapCausesByFamily.has(family)) {
+      addEvidenceGap(family, `evidence:${family}`);
     }
     if (family === "ledger") reasons.add("ledger_history_incomplete");
     if (family === "catalog") reasons.add("catalog_unmapped");
@@ -618,15 +627,15 @@ export function analyzeAccount(
   if (projectionDrift) reasons.add("projection_drift");
 
   const exactInvalidXp = invalidTotal(invalidByEvent);
-  const anomalyFamilyCount = [...causesByFamily.values()].filter(
+  const positiveFamilyCount = [...positiveCausesByFamily.values()].filter(
     (causeIds) => causeIds.size > 0,
   ).length;
   const classification =
     exactInvalidXp > 0
       ? "confirmed_damaged"
-      : nonExactCauseIds.size >= 2 && anomalyFamilyCount >= 2
+      : positiveCauseIds.size >= 2 && positiveFamilyCount >= 2
         ? "probable_damaged"
-        : nonExactCauseIds.size > 0
+        : positiveCauseIds.size > 0 || evidenceGapCauseIds.size > 0
           ? "indeterminate"
           : "consistent";
   const exactReductionIsComplete =

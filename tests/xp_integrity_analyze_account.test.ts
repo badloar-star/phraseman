@@ -234,7 +234,7 @@ describe("analyzeAccount", () => {
     expect(result.reasons).toEqual(
       expect.arrayContaining(["catalog_unmapped", "prerequisite_unmapped"]),
     );
-    expect(result.classification).toBe("probable_damaged");
+    expect(result.classification).toBe("indeterminate");
   });
 
   test("keeps two independent catalog defects in one family indeterminate", () => {
@@ -369,7 +369,7 @@ describe("analyzeAccount", () => {
       new Map(),
     );
     expect(pattern.classification).toBe("indeterminate");
-    expect(probable.classification).toBe("probable_damaged");
+    expect(probable.classification).toBe("indeterminate");
     expect(exact).toMatchObject({
       classification: "confirmed_damaged",
       exactInvalidXp: 200,
@@ -901,7 +901,7 @@ describe("analyzeAccount", () => {
     expect(result.classification).toBe("indeterminate");
   });
 
-  test("keeps unrelated catalog and alias completeness as independent causes", () => {
+  test("does not turn unrelated evidence gaps into probable damage", () => {
     const result = analyzeAccount(
       input([], {
         baseline: {
@@ -918,7 +918,7 @@ describe("analyzeAccount", () => {
       }),
       new Map(),
     );
-    expect(result.classification).toBe("probable_damaged");
+    expect(result.classification).toBe("indeterminate");
   });
 
   test("correlates migration pattern and migration completeness as one cause", () => {

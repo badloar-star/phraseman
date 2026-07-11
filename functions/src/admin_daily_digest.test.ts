@@ -261,6 +261,8 @@ describe('buildDigestPrompt / utcDayKey', () => {
       sourceCoverage: [
         { sourceId: 'app_errors', status: 'failed', errorCode: 'failed-precondition' },
       ],
+      revenueReconciliation: { dashboard: 60, webhook: 58, funnel: 31, webhookDelta: -2, funnelCoverageRatio: 31 / 60, status: 'mismatch' },
+      revenueCatCoverage: { status: 'ok' },
       codex: { product: 'Phraseman', routeCount: 42 },
     });
     const parsed = JSON.parse(prompt);
@@ -273,6 +275,7 @@ describe('buildDigestPrompt / utcDayKey', () => {
     ]));
     expect(parsed.metricDefinitions.some((metric: { id: string }) => metric.id === 'trial_starts')).toBe(true);
     expect(parsed.sourceCoverage[0]).toMatchObject({ sourceId: 'app_errors', status: 'failed' });
+    expect(parsed.revenueReconciliation).toMatchObject({ dashboard: 60, webhook: 58, funnel: 31, status: 'mismatch' });
     expect(parsed.codex).toEqual({ product: 'Phraseman', routeCount: 42 });
   });
 

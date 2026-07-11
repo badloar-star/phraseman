@@ -25,7 +25,7 @@
 
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { defineSecret } from 'firebase-functions/params';
+import { defineSecret, defineString } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { openAiChat } from './explain/explain_provider';
 import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
@@ -38,9 +38,12 @@ import {
   type DigestWindow,
 } from './admin_digest_contracts';
 import { DIGEST_SOURCE_REGISTRY } from './admin_digest_sources';
+import { fetchRevenueCatChart, reconcileRevenue, type RevenueReconciliation } from './admin_digest_revenuecat';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+const REVENUECAT_ANALYTICS_API_KEY = defineSecret('REVENUECAT_ANALYTICS_API_KEY');
+const REVENUECAT_PROJECT_ID = defineString('REVENUECAT_PROJECT_ID', { default: '' });
 const DIGESTS_COLLECTION = 'admin_digests';
 
 // ── Типы сырых строк из источников ────────────────────────────────────────────
@@ -358,6 +361,8 @@ export interface DigestPromptContext {
   currentWindow: DigestWindow;
   previousWindow: DigestWindow;
   sourceCoverage: Array<{ sourceId: string; status: string; errorCode?: string }>;
+  revenueReconciliation?: RevenueReconciliation;
+  revenueCatCoverage?: { status: string; errorCode?: string };
   codex: Record<string, unknown>;
 }
 
@@ -381,6 +386,8 @@ export function buildDigestPrompt(facts: DigestFacts, context?: DigestPromptCont
     instructions: DIGEST_REASONING_INSTRUCTIONS,
     metricDefinitions: REVENUE_METRIC_REGISTRY,
     sourceCoverage: context.sourceCoverage,
+    revenueReconciliation: context.revenueReconciliation,
+    revenueCatCoverage: context.revenueCatCoverage,
     codex: context.codex,
     facts,
   }, null, 2);
@@ -591,6 +598,8 @@ export interface DigestResult {
   previousFacts: DigestFacts;
   windows: ReturnType<typeof resolveDigestWindows>;
   comparisons: Record<string, ReturnType<typeof compareMetric>>;
+  revenueReconciliation: RevenueReconciliation;
+  revenueCatCoverage: { status: 'ok' | 'failed' | 'not_configured'; errorCode?: string };
   model: string;
 }
 
@@ -603,6 +612,8 @@ export async function runAdminDailyDigest(
   apiKey: string,
   actorEmail: string,
   now: number = Date.now(),
+  revenueCatApiKey = '',
+  revenueCatProjectId = '',
 ): Promise<DigestResult> {
   const db = admin.firestore();
   const cfg = await resolveJobConfig(db, 'digest');
@@ -622,6 +633,33 @@ export async function runAdminDailyDigest(
   ]);
   const facts = aggregateDigestFacts(rows, windowHours);
   const previousFacts = aggregateDigestFacts(previousRows, windowHours);
+  let revenueCatDashboardValue: number | null = null;
+  let revenueCatCoverage: DigestResult['revenueCatCoverage'] = { status: 'not_configured' };
+  if (revenueCatApiKey && revenueCatProjectId) {
+    try {
+      const chart = await fetchRevenueCatChart({
+        apiKey: revenueCatApiKey,
+        projectId: revenueCatProjectId,
+        chartName: 'new_customers',
+        startDate: new Date(windows.current.startMs).toISOString().slice(0, 10),
+        endDate: new Date(Math.max(windows.current.startMs, windows.current.endMs - 1)).toISOString().slice(0, 10),
+      });
+      revenueCatDashboardValue = chart.summaryValue;
+      revenueCatCoverage = { status: 'ok' };
+    } catch (error) {
+      revenueCatCoverage = {
+        status: 'failed',
+        errorCode: error instanceof Error && 'code' in error
+          ? String((error as { code: unknown }).code)
+          : 'request_failed',
+      };
+    }
+  }
+  const revenueReconciliation = reconcileRevenue({
+    dashboard: revenueCatDashboardValue,
+    webhook: facts.revenue.newPaying,
+    funnel: facts.revenue.paywallPurchases,
+  });
   const comparisons = {
     newUsers: compareMetric(facts.growth.newUsers, previousFacts.growth.newUsers),
     initialPaidEvents: compareMetric(facts.revenue.newPaying, previousFacts.revenue.newPaying),
@@ -662,6 +700,8 @@ export async function runAdminDailyDigest(
           currentWindow: windows.current,
           previousWindow: windows.previous,
           sourceCoverage,
+          revenueReconciliation,
+          revenueCatCoverage,
           codex: { product: 'Phraseman', schemaVersion: 'digest_projection_v1' },
         }) },
       ],
@@ -681,6 +721,8 @@ export async function runAdminDailyDigest(
     previousFacts,
     windows,
     comparisons,
+    revenueReconciliation,
+    revenueCatCoverage,
     sourceCoverage,
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
@@ -695,6 +737,8 @@ export async function runAdminDailyDigest(
     previousFacts,
     windows,
     comparisons,
+    revenueReconciliation,
+    revenueCatCoverage,
     sourceCoverage,
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
@@ -734,6 +778,8 @@ export async function runAdminDailyDigest(
     previousFacts,
     windows,
     comparisons,
+    revenueReconciliation,
+    revenueCatCoverage,
     model: empty ? 'none' : cfg.model,
   };
   } catch (error) {
@@ -752,7 +798,7 @@ export async function runAdminDailyDigest(
  * data: {} (ничего не нужно). Возвращает { ok, empty, dayKey, summary, facts }.
  */
 export const adminGenerateDailyDigest = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] },
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY, REVENUECAT_ANALYTICS_API_KEY] },
   async (request) => {
     if (request.auth?.token?.admin !== true) {
       throw new HttpsError('permission-denied', 'Admin only');
@@ -762,8 +808,10 @@ export const adminGenerateDailyDigest = onCall(
     if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
 
     const actorEmail = String(request.auth?.token?.email ?? '');
+    const revenueCatApiKey = String(REVENUECAT_ANALYTICS_API_KEY.value() || '').trim();
+    const revenueCatProjectId = String(REVENUECAT_PROJECT_ID.value() || '').trim();
     try {
-      return await runAdminDailyDigest(apiKey, actorEmail);
+      return await runAdminDailyDigest(apiKey, actorEmail, Date.now(), revenueCatApiKey, revenueCatProjectId);
     } catch (e) {
       if (e instanceof HttpsError) throw e;
       console.error('adminGenerateDailyDigest failed', e);

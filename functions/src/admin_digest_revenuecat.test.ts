@@ -3,6 +3,8 @@ import {
   reconcileRevenue,
   RevenueCatApiError,
 } from './admin_digest_revenuecat';
+import fs from 'node:fs';
+import path from 'node:path';
 
 describe('reconcileRevenue', () => {
   test('keeps dashboard, webhook and consented funnel values separate', () => {
@@ -66,5 +68,15 @@ describe('fetchRevenueCatChart', () => {
     });
     await expect(promise).rejects.toBeInstanceOf(RevenueCatApiError);
     await expect(promise).rejects.toMatchObject({ code: 'rate_limited', retryable: true });
+  });
+});
+
+describe('admin digest RevenueCat server binding', () => {
+  test('binds the secret only to the Cloud Function and keeps project id server-side', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_daily_digest.ts'), 'utf8');
+    expect(source).toContain("defineSecret('REVENUECAT_ANALYTICS_API_KEY')");
+    expect(source).toContain("defineString('REVENUECAT_PROJECT_ID'");
+    expect(source).toContain('secrets: [OPENAI_API_KEY, REVENUECAT_ANALYTICS_API_KEY]');
+    expect(source).toContain('fetchRevenueCatChart({');
   });
 });

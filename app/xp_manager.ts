@@ -37,7 +37,7 @@ import {
   XP_LEVEL_RESTORE_250_TO_400_KEY,
 } from './xp_level_restore';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
-import { ensureUnclaimedGiftForLevel } from './level_gift_inventory';
+import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -472,26 +472,12 @@ export const registerXP = async (
         const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
         const newFr = getBestFrameForLevel(newLvl);
         scoreAvatar = newAv;
-        // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни текущего начисления
-        const queueRaw = await storageGetString('pending_level_up_queue');
-        let queue: number[] = [];
-        try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
-        for (let lvl = prevLvl + 1; lvl <= newLvl; lvl++) {
-          if (!queue.includes(lvl)) queue.push(lvl);
-          // ГАРАНТИЯ подарка за уровень: катаем и кладём подарок в инвентарь
-          // ПРЯМО СЕЙЧАС, не дожидаясь показа модала. Даже если модал уровня
-          // не появится (краш/закрытие/гонка), подарок не потеряется — юзер
-          // найдёт его в разделе «Подарки». Идемпотентно, фоном (не блокируем
-          // горячий путь начисления XP).
-          void ensureUnclaimedGiftForLevel(lvl).catch(() => {});
-        }
         await AsyncStorage.multiSet([
           ['user_avatar', newAv],
           ['user_frame', newFr.id],
-          ['pending_level_up_queue', JSON.stringify(queue)],
           ['user_prev_xp', String(newTotal)],
         ]);
-        emitAppEvent('level_up_pending');
+        await reconcileLevelUpRewards(currentTotal, newTotal);
         emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
         emitAppEvent('xp_changed');    // обновляем UI в home.tsx
         // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}

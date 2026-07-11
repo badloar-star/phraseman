@@ -461,7 +461,7 @@ describe("IAM-gated XP audit reader", () => {
     const reader = await createXpAuditReader(
       readerOptions(firebase, 50, { aliasPageSize: 1, eventPageSize: 1 }),
     );
-    const aliases = await reader.readAliases({
+    const result = await reader.readAliases({
       uid: "canonical",
       firebaseAuthUid: "auth-one",
       canonicalStableId: null,
@@ -483,6 +483,8 @@ describe("IAM-gated XP audit reader", () => {
         },
       },
     });
+    const aliases = result.aliases;
+    expect(result.complete).toBe(true);
     expect(aliases.map((alias) => alias.uid)).toEqual([
       "alias-a",
       "alias-b",
@@ -517,7 +519,7 @@ describe("IAM-gated XP audit reader", () => {
         aliasMaxDocuments: 1,
       }),
     );
-    const aliases = await reader.readAliases({
+    const result = await reader.readAliases({
       uid: "canonical",
       firebaseAuthUid: null,
       canonicalStableId: null,
@@ -539,6 +541,8 @@ describe("IAM-gated XP audit reader", () => {
         },
       },
     });
+    const aliases = result.aliases;
+    expect(result.complete).toBe(false);
     expect(aliases.map((alias) => alias.uid)).toEqual(["direct"]);
     expect(aliases[0].complete).toBe(false);
   });
@@ -564,7 +568,7 @@ describe("IAM-gated XP audit reader", () => {
     const reader = await createXpAuditReader(
       readerOptions(firebase, 30, { aliasPageSize: 2, eventPageSize: 2 }),
     );
-    const aliases = await reader.readAliases({
+    const result = await reader.readAliases({
       uid: "canonical",
       firebaseAuthUid: null,
       canonicalStableId: null,
@@ -586,8 +590,83 @@ describe("IAM-gated XP audit reader", () => {
         },
       },
     });
+    const aliases = result.aliases;
+    expect(result.complete).toBe(false);
     expect(aliases.map((alias) => alias.uid)).toEqual(["direct"]);
     expect(aliases[0].complete).toBe(false);
+  });
+
+  test("returns explicit incomplete closure when the first alias query fails", async () => {
+    const firebase = makeFirebase({});
+    const originalCollection = firebase.firestore.collection;
+    firebase.firestore.collection = ((path: string) => {
+      const query = originalCollection(path);
+      if (path === "users") {
+        query.get = async () => {
+          throw new Error("first_alias_query_failed");
+        };
+      }
+      return query;
+    }) as typeof firebase.firestore.collection;
+    const reader = await createXpAuditReader(
+      readerOptions(firebase, 20, { aliasPageSize: 2 }),
+    );
+    const result = await reader.readAliases({
+      uid: "canonical",
+      firebaseAuthUid: null,
+      canonicalStableId: null,
+      duplicateOfStableId: null,
+      identityHidden: false,
+      identityMergedAtMs: null,
+      progress: {},
+      cutover: {
+        progressServerAuthoritative: false,
+        progressServerCutoverAtMs: null,
+        progressMigratedAtMs: null,
+        xpLevelRestoreAtMs: null,
+        progressServerStateXp: null,
+        migrationDocument: {
+          exists: false,
+          migrated: null,
+          createdAtMs: null,
+          keys: [],
+        },
+      },
+    });
+    expect(result).toEqual({ aliases: [], complete: false });
+  });
+
+  test("propagates cancellation before alias discovery", async () => {
+    const controller = new AbortController();
+    controller.abort();
+    const firebase = makeFirebase({});
+    const reader = await createXpAuditReader(
+      readerOptions(firebase, 20, { signal: controller.signal }),
+    );
+    await expect(
+      reader.readAliases({
+        uid: "canonical",
+        firebaseAuthUid: null,
+        canonicalStableId: null,
+        duplicateOfStableId: null,
+        identityHidden: false,
+        identityMergedAtMs: null,
+        progress: {},
+        cutover: {
+          progressServerAuthoritative: false,
+          progressServerCutoverAtMs: null,
+          progressMigratedAtMs: null,
+          xpLevelRestoreAtMs: null,
+          progressServerStateXp: null,
+          migrationDocument: {
+            exists: false,
+            migrated: null,
+            createdAtMs: null,
+            keys: [],
+          },
+        },
+      }),
+    ).rejects.toThrow("xp_audit_aborted");
   });
 
   test("reads mirrors by the supplied noncanonical identity", async () => {

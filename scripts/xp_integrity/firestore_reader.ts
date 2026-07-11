@@ -1,5 +1,6 @@
 import {
   applicationDefault,
+  deleteApp,
   getApps,
   initializeApp,
   type Credential,
@@ -85,6 +86,7 @@ type XpAuditReaderDependencies = {
   ): Promise<IamPermissionResponse>;
   getFirestore(): FirestoreLike;
   getAuth(): AuthLike;
+  close(): Promise<void>;
 };
 
 export type UserPage = {
@@ -99,6 +101,12 @@ export type EventPage = {
   done: boolean;
 };
 
+export type AliasReadResult = {
+  aliases: readonly AliasEvidence[];
+  /** True only when the transitive identity closure and every returned ledger are complete. */
+  complete: boolean;
+};
+
 export type XpAuditReader = {
   countUserDocuments(pageSize: number): Promise<number>;
   pageUsers(afterUid: string | null, limit: number): Promise<UserPage>;
@@ -107,10 +115,12 @@ export type XpAuditReader = {
     afterEventId: string | null,
     limit: number,
   ): Promise<EventPage>;
-  readAliases(user: RawUser): Promise<readonly AliasEvidence[]>;
+  readAliases(user: RawUser): Promise<AliasReadResult>;
   readMirrors(user: RawUser): Promise<MirrorValues>;
   resolveControlEmail(email: string): Promise<string | null>;
   getReadCount(): number;
+  /** Releases the dedicated Firebase Admin app; safe to call more than once. */
+  close(): Promise<void>;
 };
 
 export type CreateXpAuditReaderOptions = {
@@ -280,6 +290,7 @@ function firebaseDependencies(
     testIamPermissions: iamPermissionTester(credential),
     getFirestore: () => getFirestore(app) as unknown as FirestoreLike,
     getAuth: () => getAuth(app) as unknown as AuthLike,
+    close: () => deleteApp(app),
   };
 }
 
@@ -326,17 +337,30 @@ export async function createXpAuditReader(
     getAuth: () => {
       throw new Error("xp_audit_auth_before_iam");
     },
+    close: async () => undefined,
   });
   const dependencies = firebaseDependencies(options.projectId, credential);
 
-  const firestore = dependencies.getFirestore();
-  const auth = dependencies.getAuth();
+  let firestore: FirestoreLike;
+  let auth: AuthLike;
+  try {
+    firestore = dependencies.getFirestore();
+    auth = dependencies.getAuth();
+  } catch (error) {
+    try {
+      await dependencies.close();
+    } catch {
+      // Preserve the construction failure after best-effort dedicated-app cleanup.
+    }
+    throw error;
+  }
   const budget = new ReadBudget(options.maximumReads);
   const aliasPageSize = checkedPageSize(options.aliasPageSize ?? 100);
   const eventPageSize = checkedPageSize(options.eventPageSize ?? 100);
   const aliasMaxDepth = checkedPageSize(options.aliasMaxDepth ?? 8);
   const aliasMaxDocuments = checkedPageSize(options.aliasMaxDocuments ?? 500);
   const signal = options.signal;
+  let closePromise: Promise<void> | null = null;
 
   const runQuery = async (
     makeQuery: () => QueryLike,
@@ -536,6 +560,7 @@ export async function createXpAuditReader(
     pageUsers,
     pageProgressEvents,
     async readAliases(user) {
+      throwIfAborted(signal);
       const candidates = new Map<string, DocumentSnapshotLike>();
       const queue: Array<{
         uid: string;
@@ -575,7 +600,13 @@ export async function createXpAuditReader(
           let documents: readonly DocumentSnapshotLike[];
           try {
             documents = await discoverAliases(field, value);
-          } catch {
+          } catch (error) {
+            if (
+              error instanceof Error &&
+              error.message === "xp_audit_aborted"
+            ) {
+              throw error;
+            }
             closureComplete = false;
             continue;
           }
@@ -610,7 +641,13 @@ export async function createXpAuditReader(
           let page: EventPage;
           try {
             page = await pageProgressEvents(document.id, after, eventPageSize);
-          } catch {
+          } catch (error) {
+            if (
+              error instanceof Error &&
+              error.message === "xp_audit_aborted"
+            ) {
+              throw error;
+            }
             eventHistoryComplete = false;
             break;
           }
@@ -634,9 +671,14 @@ export async function createXpAuditReader(
           eventHistoryComplete,
         });
       }
-      return aliases.map(
+      const normalizedAliases = aliases.map(
         ({ eventHistoryComplete: _ignored, ...alias }) => alias,
       );
+      return {
+        aliases: normalizedAliases,
+        complete:
+          closureComplete && normalizedAliases.every((alias) => alias.complete),
+      };
     },
     async readMirrors(user) {
       const leaderboard = await readDocument(
@@ -683,5 +725,9 @@ export async function createXpAuditReader(
       }
     },
     getReadCount: () => budget.count,
+    async close() {
+      closePromise ??= Promise.resolve().then(() => dependencies.close());
+      await closePromise;
+    },
   };
 }

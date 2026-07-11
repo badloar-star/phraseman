@@ -575,6 +575,14 @@ function firebaseMutationCalls(source: ts.SourceFile): string[] {
       firestoreBindings.add(node.name.text);
     }
     if (
+      ts.isBinaryExpression(node) &&
+      node.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isIdentifier(node.left) &&
+      isFirestoreReceiver(node.right)
+    ) {
+      firestoreBindings.add(node.left.text);
+    }
+    if (
       ts.isCallExpression(node) &&
       calledProperty(node.expression) === "runTransaction" &&
       isFirestoreReceiver(node)
@@ -875,6 +883,12 @@ describe("production XP integrity audit read-only contract", () => {
         "batch.set(ref, { xp: 3 });",
         "batch.commit();",
         'db.runTransaction(async (tx) => { tx.update(ref, { xp: 4 }); tx["delete"](ref); });',
+        "let lateRef;",
+        'lateRef = db.collection("users").doc("late");',
+        "lateRef.set({ xp: 5 });",
+        "let lateBatch;",
+        "lateBatch = db.batch();",
+        "lateBatch.commit();",
       ].join("\n"),
     );
     expect(firebaseMutationCalls(source)).toEqual([
@@ -888,6 +902,8 @@ describe("production XP integrity audit read-only contract", () => {
       "commit:11",
       "update:12",
       "delete:12",
+      "set:15",
+      "commit:18",
     ]);
   });
 

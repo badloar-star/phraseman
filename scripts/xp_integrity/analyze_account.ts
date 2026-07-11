@@ -54,6 +54,7 @@ const invalidTotal = (invalidByEvent: ReadonlyMap<string, number>): number =>
   [...invalidByEvent.values()].reduce((sum, amount) => sum + amount, 0);
 
 const exactEvent = (event: NormalizedAuditEvent): boolean =>
+  event.normalizationValid === true &&
   event.totalXpBefore !== null &&
   Number.isFinite(event.totalXpBefore) &&
   Number.isFinite(event.totalXpAfter) &&

@@ -29,7 +29,25 @@ const event = (
   weekKey: "2026-W28",
   weekXpAfter: 100,
   payload: { achievementId: "xp_500" },
+  normalizationValid: true,
   ...overrides,
+});
+
+test("malformed normalized events cannot become exact ledger evidence", () => {
+  const malformed = event("malformed-zero", {
+    normalizationValid: false,
+    xpDelta: 0,
+    totalXpBefore: 0,
+    totalXpAfter: 0,
+  });
+  const result = analyzeLedgerContinuity([malformed], 0, {
+    kind: "exact",
+    xp: 0,
+    derivedFrom: "first_ledger_result",
+    atMs: 1_000,
+  });
+  expect(result.complete).toBe(false);
+  expect(result.exactInvalidXp).toBe(0);
 });
 
 const reward = (

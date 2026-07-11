@@ -73,11 +73,11 @@ type AuthLike = {
   getUserByEmail(email: string): Promise<{ readonly uid: string }>;
 };
 
-export type IamPermissionResponse = {
+type IamPermissionResponse = {
   readonly permissions?: readonly string[];
 };
 
-export type XpAuditReaderDependencies = {
+type XpAuditReaderDependencies = {
   readonly documentIdField: unknown;
   testIamPermissions(
     projectId: string,
@@ -119,7 +119,8 @@ export type CreateXpAuditReaderOptions = {
   readonly signal?: AbortSignal;
   readonly aliasPageSize?: number;
   readonly eventPageSize?: number;
-  readonly dependencies?: XpAuditReaderDependencies;
+  readonly aliasMaxDepth?: number;
+  readonly aliasMaxDocuments?: number;
 };
 
 function record(value: unknown): Record<string, unknown> {
@@ -183,14 +184,36 @@ function throwIfAborted(signal: AbortSignal | undefined): void {
   if (signal?.aborted) throw new Error("xp_audit_aborted");
 }
 
+function currentUtcWeekId(now = new Date()): string {
+  const date = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
+  );
+  const day = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const week = Math.ceil(
+    ((date.getTime() - yearStart.getTime()) / 86_400_000 + 1) / 7,
+  );
+  return `${date.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+}
+
 function normalizeEvent(
   ownerUid: string,
   snapshot: DocumentSnapshotLike,
 ): NormalizedAuditEvent {
   const data = record(snapshot.data());
-  const result = record(data.result);
+  const rawResult = data.result;
+  const result = record(rawResult);
   const xpDelta = integer(result.xpDelta);
   const totalXpAfter = integer(result.totalXp);
+  const normalizationValid =
+    rawResult !== null &&
+    typeof rawResult === "object" &&
+    !Array.isArray(rawResult) &&
+    xpDelta !== null &&
+    xpDelta >= 0 &&
+    totalXpAfter !== null &&
+    totalXpAfter >= 0;
   const safeBefore =
     xpDelta !== null &&
     xpDelta >= 0 &&
@@ -213,39 +236,54 @@ function normalizeEvent(
     weekKey: text(result.weekKey),
     weekXpAfter: number(result.weekXp),
     payload: record(data.payload),
+    normalizationValid,
   };
 }
 
-function defaultDependencies(projectId: string): XpAuditReaderDependencies {
-  const credential: Credential = applicationDefault();
-  const app =
-    getApps().find((candidate) => candidate.options.projectId === projectId) ??
-    initializeApp({ credential, projectId }, `xp-integrity-audit-${projectId}`);
+function iamPermissionTester(credential: Credential) {
+  return async (
+    id: string,
+    permissions: readonly string[],
+  ): Promise<IamPermissionResponse> => {
+    const token = await credential.getAccessToken();
+    const response = await fetch(
+      `https://cloudresourcemanager.googleapis.com/v1/projects/${encodeURIComponent(id)}:testIamPermissions`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ permissions }),
+      },
+    );
+    if (!response.ok) throw new Error("iam_test_failed");
+    return (await response.json()) as IamPermissionResponse;
+  };
+}
 
+let auditAppSequence = 0;
+
+function firebaseDependencies(
+  projectId: string,
+  credential: Credential,
+): XpAuditReaderDependencies {
+  const existingNames = new Set(getApps().map((app) => app.name));
+  let name: string;
+  do {
+    auditAppSequence += 1;
+    name = `xp-integrity-audit-${Date.now()}-${auditAppSequence}`;
+  } while (existingNames.has(name));
+  const app = initializeApp({ credential, projectId }, name);
   return {
     documentIdField: FieldPath.documentId(),
-    async testIamPermissions(id, permissions) {
-      const token = await credential.getAccessToken();
-      const response = await fetch(
-        `https://cloudresourcemanager.googleapis.com/v1/projects/${encodeURIComponent(id)}:testIamPermissions`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token.access_token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ permissions }),
-        },
-      );
-      if (!response.ok) throw new Error("iam_test_failed");
-      return (await response.json()) as IamPermissionResponse;
-    },
+    testIamPermissions: iamPermissionTester(credential),
     getFirestore: () => getFirestore(app) as unknown as FirestoreLike,
     getAuth: () => getAuth(app) as unknown as AuthLike,
   };
 }
 
-async function assertReadOnlyIam(
+async function assertScopedEntityAndUserPermissions(
   projectId: string,
   dependencies: XpAuditReaderDependencies,
 ): Promise<void> {
@@ -256,19 +294,19 @@ async function assertReadOnlyIam(
       REQUESTED_PERMISSIONS,
     );
   } catch {
-    throw new Error("xp_audit_cannot_prove_read_only_principal");
+    throw new Error("xp_audit_cannot_prove_scoped_entity_and_user_permissions");
   }
   if (!Array.isArray(response?.permissions)) {
-    throw new Error("xp_audit_cannot_prove_read_only_principal");
+    throw new Error("xp_audit_cannot_prove_scoped_entity_and_user_permissions");
   }
   const granted = new Set(response.permissions);
   if (WRITE_PERMISSIONS.some((permission) => granted.has(permission))) {
-    throw new Error("xp_audit_principal_has_write_permissions");
+    throw new Error("xp_audit_scoped_entity_or_user_write_permission_detected");
   }
   if (
     !REQUIRED_READ_PERMISSIONS.every((permission) => granted.has(permission))
   ) {
-    throw new Error("xp_audit_cannot_prove_read_only_principal");
+    throw new Error("xp_audit_cannot_prove_scoped_entity_and_user_permissions");
   }
 }
 
@@ -276,17 +314,28 @@ export async function createXpAuditReader(
   options: CreateXpAuditReaderOptions,
 ): Promise<XpAuditReader> {
   if (!text(options.projectId)) {
-    throw new Error("xp_audit_cannot_prove_read_only_principal");
+    throw new Error("xp_audit_cannot_prove_scoped_entity_and_user_permissions");
   }
-  const dependencies =
-    options.dependencies ?? defaultDependencies(options.projectId);
-  await assertReadOnlyIam(options.projectId, dependencies);
+  const credential = applicationDefault();
+  await assertScopedEntityAndUserPermissions(options.projectId, {
+    documentIdField: FieldPath.documentId(),
+    testIamPermissions: iamPermissionTester(credential),
+    getFirestore: () => {
+      throw new Error("xp_audit_firestore_before_iam");
+    },
+    getAuth: () => {
+      throw new Error("xp_audit_auth_before_iam");
+    },
+  });
+  const dependencies = firebaseDependencies(options.projectId, credential);
 
   const firestore = dependencies.getFirestore();
   const auth = dependencies.getAuth();
   const budget = new ReadBudget(options.maximumReads);
   const aliasPageSize = checkedPageSize(options.aliasPageSize ?? 100);
   const eventPageSize = checkedPageSize(options.eventPageSize ?? 100);
+  const aliasMaxDepth = checkedPageSize(options.aliasMaxDepth ?? 8);
+  const aliasMaxDocuments = checkedPageSize(options.aliasMaxDocuments ?? 500);
   const signal = options.signal;
 
   const runQuery = async (
@@ -359,15 +408,27 @@ export async function createXpAuditReader(
         .doc("client_snapshot_v1"),
     );
     const data = record(snapshot.data());
-    const migrated = data.migrated === true;
+    const migrated =
+      data.migrated === true ? true : data.migrated === false ? false : null;
     return {
-      exists: snapshot.exists && migrated,
-      createdAtMs: migrated ? timestampMs(data.createdAt) : null,
-      keys:
-        migrated && Array.isArray(data.keys)
-          ? data.keys.filter((key): key is string => typeof key === "string")
-          : [],
+      exists: snapshot.exists,
+      migrated,
+      createdAtMs: timestampMs(data.createdAt),
+      keys: Array.isArray(data.keys)
+        ? data.keys.filter((key): key is string => typeof key === "string")
+        : [],
     };
+  };
+
+  const leagueGroupCache = new Map<string, DocumentSnapshotLike>();
+  const readLeagueGroup = async (groupId: string) => {
+    const cached = leagueGroupCache.get(groupId);
+    if (cached) return cached;
+    const snapshot = await readDocument(
+      firestore.collection("league_groups").doc(groupId),
+    );
+    if (leagueGroupCache.size < 128) leagueGroupCache.set(groupId, snapshot);
+    return snapshot;
   };
 
   const normalizeUser = async (
@@ -476,43 +537,91 @@ export async function createXpAuditReader(
     pageProgressEvents,
     async readAliases(user) {
       const candidates = new Map<string, DocumentSnapshotLike>();
-      const groups: readonly [
-        "canonicalStableId" | "duplicateOfStableId" | "firebaseAuthUid",
-        string | null,
-      ][] = [
-        ["canonicalStableId", user.uid],
-        ["duplicateOfStableId", user.uid],
-        ["firebaseAuthUid", user.firebaseAuthUid],
-      ];
-      for (const [field, value] of groups) {
-        if (value === null) continue;
-        const documents = await discoverAliases(field, value);
-        for (const document of documents) {
-          if (document.id !== user.uid) candidates.set(document.id, document);
+      const queue: Array<{
+        uid: string;
+        authUid: string | null;
+        depth: number;
+      }> = [{ uid: user.uid, authUid: user.firebaseAuthUid, depth: 0 }];
+      const visitedUids = new Set<string>();
+      const visitedAuthUids = new Set<string>();
+      let closureComplete = true;
+
+      while (queue.length > 0) {
+        const current = queue.shift() as {
+          uid: string;
+          authUid: string | null;
+          depth: number;
+        };
+        if (visitedUids.has(current.uid)) continue;
+        visitedUids.add(current.uid);
+        if (current.depth >= aliasMaxDepth) {
+          closureComplete = false;
+          continue;
+        }
+        const groups: Array<
+          [
+            "canonicalStableId" | "duplicateOfStableId" | "firebaseAuthUid",
+            string,
+          ]
+        > = [
+          ["canonicalStableId", current.uid],
+          ["duplicateOfStableId", current.uid],
+        ];
+        if (current.authUid !== null && !visitedAuthUids.has(current.authUid)) {
+          visitedAuthUids.add(current.authUid);
+          groups.push(["firebaseAuthUid", current.authUid]);
+        }
+        for (const [field, value] of groups) {
+          let documents: readonly DocumentSnapshotLike[];
+          try {
+            documents = await discoverAliases(field, value);
+          } catch {
+            closureComplete = false;
+            continue;
+          }
+          for (const document of documents) {
+            if (document.id === user.uid || candidates.has(document.id))
+              continue;
+            if (candidates.size >= aliasMaxDocuments) {
+              closureComplete = false;
+              continue;
+            }
+            candidates.set(document.id, document);
+            const data = record(document.data());
+            queue.push({
+              uid: document.id,
+              authUid: text(data.firebaseAuthUid),
+              depth: current.depth + 1,
+            });
+          }
         }
       }
 
-      const aliases: AliasEvidence[] = [];
+      const aliases: Array<AliasEvidence & { eventHistoryComplete: boolean }> =
+        [];
       for (const document of [...candidates.values()].sort((left, right) =>
         left.id.localeCompare(right.id),
       )) {
         const data = record(document.data());
         const events: NormalizedAuditEvent[] = [];
         let after: string | null = null;
+        let eventHistoryComplete = true;
         for (;;) {
-          const page = await pageProgressEvents(
-            document.id,
-            after,
-            eventPageSize,
-          );
+          let page: EventPage;
+          try {
+            page = await pageProgressEvents(document.id, after, eventPageSize);
+          } catch {
+            eventHistoryComplete = false;
+            break;
+          }
           events.push(...page.events);
           if (page.done) break;
           after = page.nextAfterEventId;
         }
         const linkage =
-          text(data.canonicalStableId) === user.uid
+          text(data.canonicalStableId) !== null
             ? "canonical_pointer"
-            : text(data.duplicateOfStableId) === user.uid
+            : text(data.duplicateOfStableId) !== null
               ? "duplicate_pointer"
               : "shared_auth_uid";
         aliases.push({
@@ -521,10 +630,13 @@ export async function createXpAuditReader(
           linkage,
           identityMergedAtMs: timestampMs(data.identityMergedAt),
           events,
-          complete: true,
+          complete: closureComplete && eventHistoryComplete,
+          eventHistoryComplete,
         });
       }
-      return aliases;
+      return aliases.map(
+        ({ eventHistoryComplete: _ignored, ...alias }) => alias,
+      );
     },
     async readMirrors(user) {
       const leaderboard = await readDocument(
@@ -538,13 +650,18 @@ export async function createXpAuditReader(
       );
       const arenaData = record(arena.data());
       const groupId = text(leaderboardData.groupId);
+      const currentWeekId = currentUtcWeekId();
       let leagueXp: number | null = null;
-      if (groupId !== null) {
-        const group = await readDocument(
-          firestore.collection("league_groups").doc(groupId),
-        );
-        const member = record(record(group.data()).members)[user.uid];
-        leagueXp = number(record(member).totalXp);
+      if (
+        groupId !== null &&
+        text(leaderboardData.groupWeekId) === currentWeekId
+      ) {
+        const group = await readLeagueGroup(groupId);
+        const groupData = record(group.data());
+        if (text(groupData.weekId) === currentWeekId) {
+          const member = record(groupData.members)[user.uid];
+          leagueXp = number(record(member).totalXp);
+        }
       }
       return {
         leaderboardXp: number(leaderboardData.points),
@@ -559,6 +676,7 @@ export async function createXpAuditReader(
         throwIfAborted(signal);
         return text(resolved.uid);
       } catch (error) {
+        throwIfAborted(signal);
         const code = record(error).code;
         if (code === "auth/user-not-found") return null;
         throw error;

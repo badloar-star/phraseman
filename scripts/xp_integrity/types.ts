@@ -41,6 +41,7 @@ export type NormalizedAuditEvent = {
   weekKey: string | null;
   weekXpAfter: number | null;
   payload: Readonly<Record<string, unknown>>;
+  normalizationValid: boolean;
 };
 
 export type LedgerBaselineEvidence =
@@ -149,6 +150,7 @@ export type UserCutoverEvidence = {
   progressServerStateXp: number | null;
   migrationDocument: {
     exists: boolean;
+    migrated: boolean | null;
     createdAtMs: number | null;
     keys: readonly string[];
   };

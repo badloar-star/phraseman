@@ -530,6 +530,7 @@ function firebaseModuleReferences(source: ts.SourceFile): string[] {
 
 const FIRESTORE_MUTATIONS = new Set([
   "add",
+  "commit",
   "create",
   "delete",
   "set",
@@ -547,7 +548,9 @@ const AUTH_MUTATIONS = new Set([
 
 function firebaseMutationCalls(source: ts.SourceFile): string[] {
   const violations: string[] = [];
+  const firestoreBindings = new Set<string>();
   const isFirestoreReceiver = (node: ts.Expression): boolean => {
+    if (ts.isIdentifier(node)) return firestoreBindings.has(node.text);
     if (ts.isCallExpression(node)) {
       const method = calledProperty(node.expression);
       if (
@@ -562,6 +565,34 @@ function firebaseMutationCalls(source: ts.SourceFile): string[] {
       return isFirestoreReceiver(node.expression);
     return false;
   };
+  const collectBindings = (node: ts.Node): void => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.initializer &&
+      isFirestoreReceiver(node.initializer)
+    ) {
+      firestoreBindings.add(node.name.text);
+    }
+    if (
+      ts.isCallExpression(node) &&
+      calledProperty(node.expression) === "runTransaction" &&
+      isFirestoreReceiver(node)
+    ) {
+      const callback = node.arguments[0];
+      if (
+        callback &&
+        (ts.isArrowFunction(callback) || ts.isFunctionExpression(callback))
+      ) {
+        const parameter = callback.parameters[0];
+        if (parameter && ts.isIdentifier(parameter.name)) {
+          firestoreBindings.add(parameter.name.text);
+        }
+      }
+    }
+    ts.forEachChild(node, collectBindings);
+  };
+  collectBindings(source);
   const visit = (node: ts.Node): void => {
     if (ts.isCallExpression(node)) {
       const name = calledProperty(node.expression);
@@ -838,6 +869,12 @@ describe("production XP integrity audit read-only contract", () => {
         'auth["setCustomUserClaims"]("u", {});',
         'auth.revokeRefreshTokens("u");',
         'new Set<string>().add("safe");',
+        'const ref = db.collection("users").doc("ref");',
+        "ref.set({ xp: 2 });",
+        "const batch = db.batch();",
+        "batch.set(ref, { xp: 3 });",
+        "batch.commit();",
+        'db.runTransaction(async (tx) => { tx.update(ref, { xp: 4 }); tx["delete"](ref); });',
       ].join("\n"),
     );
     expect(firebaseMutationCalls(source)).toEqual([
@@ -846,6 +883,11 @@ describe("production XP integrity audit read-only contract", () => {
       "add:3",
       "setCustomUserClaims:4",
       "revokeRefreshTokens:5",
+      "set:8",
+      "set:10",
+      "commit:11",
+      "update:12",
+      "delete:12",
     ]);
   });
 
@@ -857,5 +899,11 @@ describe("production XP integrity audit read-only contract", () => {
     for (const sourcePath of auditSources) {
       expect(firebaseMutationCalls(parseSource(sourcePath))).toEqual([]);
     }
+  });
+
+  it("exposes only the production reader factory without dependency overrides", () => {
+    const source = readFileSync(FIRESTORE_READER_PATH, "utf8");
+    expect(source).not.toMatch(/export\s+type\s+XpAuditReaderDependencies/);
+    expect(source).not.toMatch(/readonly\s+dependencies\??:/);
   });
 });

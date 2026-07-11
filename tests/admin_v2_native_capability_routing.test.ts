@@ -1,0 +1,62 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { spawnSync } from 'node:child_process';
+
+const root = path.resolve(__dirname, '..');
+const read = (relativePath: string): string => fs.readFileSync(path.join(root, relativePath), 'utf8');
+
+function loadRegistry(): { id: string; route: string; migrationStatus: string; nativeRoute: string }[] {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-capabilities.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then((m) => process.stdout.write(JSON.stringify(m.ADMIN_CAPABILITY_REGISTRY)))`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout);
+}
+
+function resolveCapabilityHash(hash: string): { resolved: boolean; route: string; capabilityId: string } {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-capabilities.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then((m) => process.stdout.write(JSON.stringify(m.resolveCapabilityHash(${JSON.stringify(hash)}))))`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout);
+}
+
+describe('Admin v2 native capability routing', () => {
+  test('marks exactly seven proven native capabilities as guarded', () => {
+    const registry = loadRegistry();
+    const native = registry.filter((capability) => capability.nativeRoute);
+    expect(registry).toHaveLength(58);
+    expect(native.map(({ id, nativeRoute }) => [id, nativeRoute]).sort()).toEqual([
+      ['analytics', 'analytics'],
+      ['daily-digest', 'daily-briefing'],
+      ['gmail-support', 'support'],
+      ['openai-budget', 'diagnostics'],
+      ['remote-config', 'application'],
+      ['reports', 'report-center'],
+      ['users', 'users'],
+    ]);
+    expect(native.every((capability) => capability.migrationStatus === 'guarded')).toBe(true);
+    expect(registry.filter((capability) => !capability.nativeRoute).every((capability) => capability.migrationStatus === 'fallback')).toBe(true);
+  });
+
+  test('routes native capabilities directly and preserves iframe fallback for the rest', () => {
+    const router = read('admin/v2/scripts/admin-router.js');
+    const core = read('admin/v2/scripts/admin-core.js');
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
+    expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
+    expect(capabilities).toContain('directCapability.nativeRoute');
+    expect(capabilities).toContain('requestedCapability?.nativeRoute');
+    expect(core).toContain('!capability.nativeRoute');
+    expect(core).toContain('renderCapabilityWorkspace');
+    expect(core).toContain('<iframe');
+
+    const registry = loadRegistry();
+    expect(registry.find((capability) => capability.id === 'paywall-ab')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
+  });
+
+  test('decodes an encoded fallback hash into its exact route and capability', () => {
+    expect(resolveCapabilityHash('#application%3Apaywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
+    expect(resolveCapabilityHash('#application:paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
+  });
+});

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = process.cwd();
 const sourcePath = path.join(root, 'admin', 'index.html');
@@ -7,7 +8,8 @@ const outDir = path.join(root, '.codex-tmp', 'admin-audit');
 
 const html = fs.readFileSync(sourcePath, 'utf8');
 const sections = collectSections(html);
-const buttons = collectButtons(html, sections);
+const scriptRanges = collectScriptRanges(html);
+const buttons = collectButtons(html, sections, scriptRanges);
 const functions = collectFunctions(html);
 const callableNames = collectCallableNames(readLinkedRuntimeSources(html, sourcePath));
 const links = linkButtonsToFunctions(buttons, functions, callableNames);
@@ -33,16 +35,26 @@ function collectSections(source) {
   return rows.sort((a, b) => a.index - b.index);
 }
 
-function collectButtons(source, sectionRows) {
+function collectScriptRanges(source) {
+  const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script>/gi;
+  const ranges = [];
+  let match;
+  while ((match = scriptRe.exec(source))) ranges.push({ start: match.index, end: scriptRe.lastIndex });
+  return ranges;
+}
+
+function collectButtons(source, sectionRows, scriptRows) {
   const buttonRe = /<button\b[\s\S]*?<\/button>/gi;
   const dangerRe = /delete|remove|purge|ban|disable|deactivate|cleanup|reset|force|grant|save|send|publish|seed|repair|migrat|wipe|bulk|mark|set|update/i;
   const writeRe = /save|set|update|delete|remove|purge|ban|grant|send|seed|repair|cleanup|deactivate|disable|migrat|publish|create|bulk|mark|reset/i;
   const rows = [];
+  const fingerprintCounts = new Map();
   let match;
 
   while ((match = buttonRe.exec(source))) {
     const raw = match[0];
-    const section = sectionRows.filter((item) => item.index < match.index).at(-1);
+    const provenance = scriptRows.some((range) => range.start <= match.index && match.index < range.end) ? 'script-template' : 'static-html';
+    const section = provenance === 'static-html' ? sectionRows.filter((item) => item.index < match.index).at(-1) : null;
     const text = raw.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
     const onclick = attr(raw, 'onclick');
     const title = attr(raw, 'title');
@@ -51,9 +63,14 @@ function collectButtons(source, sectionRows) {
     const hasEmoji = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(text);
     const write = writeRe.test(onclick);
     const hasConfirmSignal = /showConfirmModal|confirm\(|showInputModal/i.test(raw + ' ' + onclick);
+    const fingerprint = createHash('sha256').update(raw.replace(/\s+/g, ' ').trim()).digest('hex').slice(0, 16);
+    const occurrence = (fingerprintCounts.get(fingerprint) ?? 0) + 1;
+    fingerprintCounts.set(fingerprint, occurrence);
 
     rows.push({
-      tab: section?.id || 'pre-sections',
+      buttonKey: `button-${fingerprint}-${occurrence}`,
+      provenance,
+      tab: provenance === 'static-html' ? section?.id || 'pre-sections' : null,
       line: source.slice(0, match.index).split(/\r?\n/).length,
       id,
       className,
@@ -74,13 +91,14 @@ function collectButtons(source, sectionRows) {
 function summarize(rows, sectionRows) {
   const byTab = {};
   for (const row of rows) {
-    byTab[row.tab] ||= { total: 0, danger: 0, write: 0, noTitle: 0, emoji: 0, directWriteCandidate: 0 };
-    byTab[row.tab].total += 1;
-    if (row.danger) byTab[row.tab].danger += 1;
-    if (row.write) byTab[row.tab].write += 1;
-    if (!row.hasTitle) byTab[row.tab].noTitle += 1;
-    if (row.hasEmoji) byTab[row.tab].emoji += 1;
-    if (row.directWriteCandidate) byTab[row.tab].directWriteCandidate += 1;
+    const tab = row.tab ?? 'unresolved-script-template';
+    byTab[tab] ||= { total: 0, danger: 0, write: 0, noTitle: 0, emoji: 0, directWriteCandidate: 0 };
+    byTab[tab].total += 1;
+    if (row.danger) byTab[tab].danger += 1;
+    if (row.write) byTab[tab].write += 1;
+    if (!row.hasTitle) byTab[tab].noTitle += 1;
+    if (row.hasEmoji) byTab[tab].emoji += 1;
+    if (row.directWriteCandidate) byTab[tab].directWriteCandidate += 1;
   }
 
   return {
@@ -162,6 +180,8 @@ function linkButtonsToFunctions(buttonRows, functionRows, callableNames) {
       const fn = functionRows.find((row) => row.name === name);
       const found = Boolean(fn) || callableNames.has(name);
       links.push({
+        buttonKey: button.buttonKey,
+        provenance: button.provenance,
         tab: button.tab,
         line: button.line,
         text: button.text,

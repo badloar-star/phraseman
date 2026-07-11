@@ -1,4 +1,4 @@
-export const ADMIN_CAPABILITY_REGISTRY = Object.freeze([
+const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'control-panel', route: 'overview', label: 'Пульт управления', description: 'Главные переключатели, лимиты, промокоды и параметры ИИ.', legacyTab: 'control-panel' },
   { id: 'overview', route: 'overview', label: 'Операционная сводка', description: 'Сводные показатели текущей админки.', legacyTab: 'overview' },
   { id: 'daily-digest', route: 'overview', label: 'Ежедневный дайджест', description: 'События, ошибки, обращения и приоритеты за сутки.', legacyTab: 'daily-digest' },
@@ -63,7 +63,26 @@ export const ADMIN_CAPABILITY_REGISTRY = Object.freeze([
   { id: 'ops-log', route: 'diagnostics', label: 'Операционный журнал', description: 'Серверные операции и технические события.', legacyTab: 'ops-log' },
   { id: 'archive', route: 'diagnostics', label: 'Архив', description: 'Архивные записи административных процессов.', legacyTab: 'archive' },
   { id: 'changelog-0608', route: 'diagnostics', label: 'Архив аудита 8 июня', description: 'Сохранённый контрольный список аудита.', legacyTab: 'changelog-0608' },
-]);
+];
+
+export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
+  'daily-digest': 'daily-briefing',
+  'remote-config': 'application',
+  users: 'users',
+  reports: 'report-center',
+  'gmail-support': 'support',
+  analytics: 'analytics',
+  'openai-budget': 'diagnostics',
+});
+
+export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {
+  const nativeRoute = NATIVE_CAPABILITY_ROUTES[capability.id] ?? '';
+  return Object.freeze({
+    ...capability,
+    migrationStatus: nativeRoute ? 'guarded' : 'fallback',
+    nativeRoute,
+  });
+}));
 
 export function capabilitiesForRoute(route) {
   return ADMIN_CAPABILITY_REGISTRY.filter((capability) => capability.route === route);
@@ -71,6 +90,23 @@ export function capabilitiesForRoute(route) {
 
 export function capabilityById(id) {
   return ADMIN_CAPABILITY_REGISTRY.find((capability) => capability.id === id) ?? null;
+}
+
+export function resolveCapabilityHash(rawHash) {
+  const encoded = String(rawHash ?? '').replace(/^#/, '').trim();
+  let requested = encoded;
+  try { requested = decodeURIComponent(encoded); } catch { /* Keep malformed input fail-closed. */ }
+  const [requestedRoute, requestedCapabilityId = ''] = requested.split(':');
+  const directCapability = capabilityById(requestedRoute);
+  if (directCapability && !requestedCapabilityId) {
+    return directCapability.nativeRoute
+      ? { resolved: true, route: directCapability.nativeRoute, capabilityId: '' }
+      : { resolved: true, route: directCapability.route, capabilityId: directCapability.id };
+  }
+  const requestedCapability = capabilityById(requestedCapabilityId);
+  if (requestedCapability?.nativeRoute) return { resolved: true, route: requestedCapability.nativeRoute, capabilityId: '' };
+  if (requestedCapability?.route === requestedRoute) return { resolved: true, route: requestedRoute, capabilityId: requestedCapability.id };
+  return { resolved: false, route: requestedRoute, capabilityId: '' };
 }
 
 export function capabilityUrl(capability) {

@@ -586,7 +586,7 @@ function renderCurrentPage() {
   if (!target) return;
   const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue };
   const capability = capabilityById(state.selectedCapabilityId);
-  if (capability && capability.route === state.route) {
+  if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
   } else {
     const page = (renderers[state.route] ?? renderOverview)();
@@ -1105,7 +1105,7 @@ async function handleClick(event) {
   const capabilityId = target.getAttribute('data-capability-id');
   if (capabilityId) {
     const capability = capabilityById(capabilityId);
-    if (capability) globalThis.location.hash = `${capability.route}:${capability.id}`;
+    if (capability) globalThis.location.hash = capability.nativeRoute || `${capability.route}:${capability.id}`;
     return;
   }
   const supportFilter = target.getAttribute('data-support-filter');
@@ -1150,7 +1150,7 @@ export function setAuthState(auth) {
 export function renderRoute(route, capabilityId = '') {
   state.route = PAGES[route] ? route : 'overview';
   const capability = capabilityById(capabilityId);
-  state.selectedCapabilityId = capability?.route === state.route ? capability.id : '';
+  state.selectedCapabilityId = capability?.route === state.route && !capability.nativeRoute ? capability.id : '';
   renderCurrentPage();
 }
 

@@ -29,9 +29,12 @@ describe('Admin v2 complete capability registry', () => {
   test('opens grouped modules inside the new shell and supports stable deep links', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const router = read('admin/v2/scripts/admin-router.js');
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     expect(core).toContain('renderCapabilityWorkspace');
     expect(core).toContain('<iframe');
     expect(core).toContain('data-capability-id');
-    expect(router).toContain("split(':')");
+    expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
+    expect(capabilities).toContain("split(':')");
+    expect(capabilities).toContain('decodeURIComponent(encoded)');
   });
 });

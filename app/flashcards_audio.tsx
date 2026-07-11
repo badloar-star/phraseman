@@ -805,8 +805,8 @@ export default function FlashcardsAudioScreen() {
               style={[
                 styles.shuffleButton,
                 {
-                  borderColor: shuffle ? t.accent : 'transparent',
-                  borderWidth: shuffle ? 1 : 0,
+                  borderColor: 'transparent',
+                  borderWidth: 0,
                   backgroundColor: shuffle ? `${t.accent}22` : t.bgSurface,
                 },
               ]}
@@ -875,7 +875,7 @@ export default function FlashcardsAudioScreen() {
               style={[
                 styles.sourceRow,
                 selected
-                  ? { backgroundColor: `${source.accent}22`, borderWidth: 1, borderColor: source.accent }
+                  ? { backgroundColor: `${source.accent}22`, borderWidth: 0, borderColor: 'transparent' }
                   : { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
               ]}
             >

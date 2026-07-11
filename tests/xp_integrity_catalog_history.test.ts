@@ -403,4 +403,36 @@ describe("loadVerifiedCatalogHistory", () => {
       ),
     ).toEqual({ kind: "unmapped", reason: "provenance_conflict" });
   });
+
+  it("fails closed instead of leaking a nested shadow declaration", () => {
+    const { repo } = makeRepo();
+    const shadowingFormula = `
+      export const MAX_LEVEL = 2;
+      export const TOTAL_XP_FOR_LEVEL = (level: number): number => {
+        let x = level * 100;
+        if (level > 1) {
+          let x = 999;
+        }
+        return x;
+      };
+    `;
+    writeFileSync(join(repo, "constants", "theme.ts"), shadowingFormula);
+    writeFileSync(
+      join(repo, "functions", "src", "xp_levels.ts"),
+      shadowingFormula,
+    );
+    git(repo, "add", ".");
+    git(repo, "commit", "-qm", "nested formula shadow");
+    git(repo, "tag", "-a", "v4.1.0", "-m", "release");
+
+    const [catalog] = loadVerifiedCatalogHistory(repo);
+    expect(catalog.complete).toBe(false);
+    expect(
+      matchCatalogForEvent(
+        [catalog],
+        event(catalog.effective.fromMsInclusive, "4.1.0"),
+        "xp_5000",
+      ),
+    ).toEqual({ kind: "unmapped", reason: "provenance_conflict" });
+  });
 });

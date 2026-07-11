@@ -564,21 +564,27 @@ function expressionSyntaxSupported(expression: ts.Expression): boolean {
   return false;
 }
 
-function statementSyntaxSupported(statement: ts.Statement): boolean {
+function statementSyntaxSupported(
+  statement: ts.Statement,
+  allowVariableDeclarations = true,
+): boolean {
   if (ts.isVariableStatement(statement)) {
-    return statement.declarationList.declarations.every(
-      (declaration) =>
-        ts.isIdentifier(declaration.name) &&
-        declaration.initializer !== undefined &&
-        expressionSyntaxSupported(declaration.initializer),
+    return (
+      allowVariableDeclarations &&
+      statement.declarationList.declarations.every(
+        (declaration) =>
+          ts.isIdentifier(declaration.name) &&
+          declaration.initializer !== undefined &&
+          expressionSyntaxSupported(declaration.initializer),
+      )
     );
   }
   if (ts.isIfStatement(statement)) {
     return (
       expressionSyntaxSupported(statement.expression) &&
-      statementOrBlockSyntaxSupported(statement.thenStatement) &&
+      statementOrBlockSyntaxSupported(statement.thenStatement, false) &&
       (statement.elseStatement === undefined ||
-        statementOrBlockSyntaxSupported(statement.elseStatement))
+        statementOrBlockSyntaxSupported(statement.elseStatement, false))
     );
   }
   return (
@@ -588,10 +594,15 @@ function statementSyntaxSupported(statement: ts.Statement): boolean {
   );
 }
 
-function statementOrBlockSyntaxSupported(statement: ts.Statement): boolean {
+function statementOrBlockSyntaxSupported(
+  statement: ts.Statement,
+  allowVariableDeclarations: boolean,
+): boolean {
   return ts.isBlock(statement)
-    ? statement.statements.every(statementSyntaxSupported)
-    : statementSyntaxSupported(statement);
+    ? statement.statements.every((nested) =>
+        statementSyntaxSupported(nested, allowVariableDeclarations),
+      )
+    : statementSyntaxSupported(statement, allowVariableDeclarations);
 }
 
 function evaluateStatements(
@@ -665,7 +676,9 @@ function evaluateFunction(
     definition.parameters.length !== args.length ||
     resolving.has(`fn:${name}`) ||
     (ts.isBlock(definition.body)
-      ? !definition.body.statements.every(statementSyntaxSupported)
+      ? !definition.body.statements.every((statement) =>
+          statementSyntaxSupported(statement),
+        )
       : !expressionSyntaxSupported(definition.body))
   ) {
     return null;

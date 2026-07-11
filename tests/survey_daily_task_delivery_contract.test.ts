@@ -40,11 +40,14 @@ describe('daily survey delivery', () => {
     expect(dailyTasks).toContain('migrateLegacySurveyCompletion');
     expect(dailyTasks).toContain('beginSurveyDailyTaskRequest');
     expect(dailyTasks).toContain('commitSurveyDailyTaskRequest');
-    expect(dailyTasks).toContain('useState<SurveyDailyChallengeSnapshot | null>');
+    expect(dailyTasks).toContain('useState<SurveyDailyTaskOwnerState>');
     expect(dailyTasks).toContain('peekSurveyDailyTask');
     expect(dailyTasks).toMatch(/const cached = peekSurveyDailyTask\(scope\);[\s\S]*?await isSurveyDailyTaskDone\([\s\S]*?if \(cached\) return;/);
     expect(dailyTasks).toContain('<SurveyTaskCard challenge={surveySnapshot} onOpen={openSurveyChallenge} />');
     expect(dailyTasks).toContain('primeSurvey({ survey, stableId, dayKey, lang: scopeLang })');
+    expect(dailyTasks).not.toContain('surveyOpenScopeRef.current = surveyScope');
+    expect(dailyTasks).toContain('if (dayKey !== getTodayKey() || scopeLang !== lang) return;');
+    expect(dailyTasks).toContain('if (committedSurveyScopeKey !== scopeKey) return;');
     expect(dailyTasks).toMatch(/catch \{[\s\S]*?\/\* retain last-known survey state \*\//);
     expect(dailyTasks).not.toContain('isSurveyDailyTaskDoneToday()');
     expect(card).toContain('challenge: SurveyDailyChallengeSnapshot');

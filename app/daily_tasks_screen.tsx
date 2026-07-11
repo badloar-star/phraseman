@@ -69,6 +69,10 @@ import {
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 const EMPTY_DAILY_TASKS: DailyTask[] = [];
 const EMPTY_DAILY_PROGRESS: TaskProgress[] = [];
+type SurveyDailyTaskOwnerState = {
+    scope: SurveyDailyTaskScope | null;
+    snapshot: SurveyDailyChallengeSnapshot | null;
+};
 
 const safeDailyTaskEventPart = (value: unknown): string =>
     String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
@@ -1734,24 +1738,25 @@ export default function DailyTasksScreen() {
         ? { stableId: renderToken.stableId, dayKey: activeDayKey, lang }
         : null;
     const surveyScopeKey = surveyScope ? JSON.stringify([surveyScope.stableId, surveyScope.dayKey, surveyScope.lang]) : null;
-    const [surveySnapshotState, setSurveySnapshot] = useState<SurveyDailyChallengeSnapshot | null>(() => (
-        surveyScope ? peekSurveyDailyTask(surveyScope) : null
-    ));
-    const [surveySnapshotScopeKey, setSurveySnapshotScopeKey] = useState<string | null>(() => surveyScopeKey);
-    const surveyOpenScopeRef = useRef<SurveyDailyTaskScope | null>(surveyScope);
-    const surveySnapshot = surveySnapshotScopeKey === surveyScopeKey
-        ? surveySnapshotState
-        : surveyScope ? peekSurveyDailyTask(surveyScope) : null;
-    if (surveySnapshotScopeKey !== surveyScopeKey && surveySnapshot && surveyScope) {
-        surveyOpenScopeRef.current = surveyScope;
-    }
+    const [surveyState, setSurveyState] = useState<SurveyDailyTaskOwnerState>(() => ({
+        scope: surveyScope,
+        snapshot: surveyScope ? peekSurveyDailyTask(surveyScope) : null,
+    }));
+    const committedSurveyScopeKey = surveyState.scope
+        ? JSON.stringify([surveyState.scope.stableId, surveyState.scope.dayKey, surveyState.scope.lang])
+        : null;
+    const surveySnapshot = committedSurveyScopeKey === surveyScopeKey ? surveyState.snapshot : null;
     const surveyPresent = surveySnapshot != null;
     const surveyDone = surveySnapshot?.phase === 'completed';
     const publishSurveySnapshot = useCallback((scope: SurveyDailyTaskScope, snapshot: SurveyDailyChallengeSnapshot | null) => {
-        const scopeKey = JSON.stringify([scope.stableId, scope.dayKey, scope.lang]);
-        surveyOpenScopeRef.current = scope;
-        setSurveySnapshotScopeKey((current) => current === scopeKey ? current : scopeKey);
-        setSurveySnapshot((current) => JSON.stringify(current) === JSON.stringify(snapshot) ? current : snapshot);
+        setSurveyState((current) => {
+            const sameScope = current.scope?.stableId === scope.stableId
+                && current.scope.dayKey === scope.dayKey
+                && current.scope.lang === scope.lang;
+            return sameScope && JSON.stringify(current.snapshot) === JSON.stringify(snapshot)
+                ? current
+                : { scope, snapshot };
+        });
     }, []);
     /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
         показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
@@ -2090,10 +2095,13 @@ export default function DailyTasksScreen() {
         return () => { cancelled = true; };
     }, [lang, publishSurveySnapshot]));
     const openSurveyChallenge = useCallback((challenge: SurveyDailyChallengeSnapshot) => {
-        const scope = surveyOpenScopeRef.current;
+        const scope = surveyState.scope;
         const survey = challenge.survey;
         if (!scope || !survey || challenge.phase !== 'active') return;
         const { stableId, dayKey, lang: scopeLang } = scope;
+        const scopeKey = JSON.stringify([stableId, dayKey, scopeLang]);
+        if (committedSurveyScopeKey !== scopeKey) return;
+        if (dayKey !== getTodayKey() || scopeLang !== lang) return;
         if (!isCurrentAccountGeneration(captureAccountGeneration(), stableId)) return;
         hapticTap();
         primeSurvey({ survey, stableId, dayKey, lang: scopeLang });
@@ -2101,7 +2109,7 @@ export default function DailyTasksScreen() {
             pathname: '/survey_screen',
             params: { surveyId: survey.surveyId, stableId, dayKey, lang: scopeLang },
         });
-    }, [router]);
+    }, [committedSurveyScopeKey, lang, router, surveyState.scope]);
     const handleClaim = async (taskId: string, xpBase: number) => {
         if (claimBusyId)
             return;

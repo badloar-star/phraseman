@@ -2,43 +2,46 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build and run a privacy-safe, production-wide, strictly read-only audit that separates confirmed XP inflation from probable, indeterminate, consistent, and mirror-drift cases.
+**Goal:** Build and run a privacy-safe, production-wide, strictly read-only audit that distinguishes proven XP inflation from probable, indeterminate, consistent, and projection-only cases.
 
-**Architecture:** Keep all classification in pure TypeScript modules, reconstruct historical achievement catalogs from Git snapshots, and isolate Firebase access behind a read-only repository whose public API exposes no mutation methods. The CLI runs sample calibration before a full scan, emits aggregate-only reports under `.codex-tmp/`, and fails closed whenever historical evidence is incomplete.
+**Architecture:** Normalize the actual Firestore ledger shape into pure evidence types, reconstruct historical catalogs only when a verified release window exists, and classify accounts with independent completeness dimensions. Firebase access is isolated behind a paginated read-only repository and a mandatory IAM preflight that aborts unless the runtime principal is proven to lack write permissions.
 
-**Tech Stack:** TypeScript 5.9, `tsx`, Jest 29, Firebase Admin 13, Node `crypto`/`fs`, Git history.
+**Tech Stack:** TypeScript 5.9, `tsx`, Jest 29, Firebase Admin 13, Google IAM `testIamPermissions`, Node `crypto`/`fs`, Git history.
 
 ---
 
 ## Worktree and file map
 
-Implementation work happens in `C:\appsprojects\phraseman\.worktrees\xp-integrity-audit` on branch `codex/xp-integrity-audit`.
+Implementation runs in `C:\appsprojects\phraseman\.worktrees\xp-integrity-audit` on branch `codex/xp-integrity-audit`.
 
 Create:
 
-- `scripts/xp_integrity/types.ts` — stable input/output contracts and confidence/reason enums.
-- `scripts/xp_integrity/catalog_history.ts` — Git-backed versioned achievement catalog reconstruction and event-to-catalog matching.
-- `scripts/xp_integrity/analyze_account.ts` — pure ledger, achievement, alias, migration, and mirror analysis.
-- `scripts/xp_integrity/firestore_reader.ts` — bounded read-only Firebase pagination and control-account lookup.
-- `scripts/xp_integrity/report.ts` — aggregate-only JSON and Russian Markdown report construction.
-- `scripts/audit_production_xp_integrity.ts` — guarded CLI orchestration; no Firestore writes.
-- `tests/xp_integrity_catalog_history.test.ts` — historical catalog matching and fail-closed tests.
-- `tests/xp_integrity_analyze_account.test.ts` — classification and exact-subtraction tests.
-- `tests/xp_integrity_read_only_contract.test.ts` — mutation/API/privacy/output-path guards.
-- `tests/xp_integrity_report.test.ts` — aggregate report privacy and coverage tests.
+- `scripts/xp_integrity/types.ts` — normalized stored-data and evidence contracts.
+- `scripts/xp_integrity/catalog_history.ts` — literal catalog extraction plus verified effective-window matching.
+- `scripts/xp_integrity/analyze_account.ts` — pure account analysis and classification.
+- `scripts/xp_integrity/read_budget.ts` — atomic query-budget reservation.
+- `scripts/xp_integrity/firestore_reader.ts` — IAM-gated, paginated reads only.
+- `scripts/xp_integrity/report.ts` — aggregate-only report and privacy validation.
+- `scripts/audit_production_xp_integrity.ts` — guarded sample/full CLI.
+- `tests/xp_integrity_catalog_history.test.ts`
+- `tests/xp_integrity_analyze_account.test.ts`
+- `tests/xp_integrity_reader.test.ts`
+- `tests/xp_integrity_read_only_contract.test.ts`
+- `tests/xp_integrity_report.test.ts`
+- `tests/xp_integrity_cli.test.ts`
 
 Modify:
 
-- `package.json` — add one explicit audit command.
+- `package.json` — add `audit:production-xp-integrity`.
 
-Runtime-only ignored output:
+Runtime output remains ignored:
 
-- `.codex-tmp/xp-integrity-audit/<run-id>/aggregate.json`
-- `.codex-tmp/xp-integrity-audit/<run-id>/decision.ru.md`
+- `.codex-tmp/xp-integrity-audit/YYYYMMDDTHHMMSSZ/aggregate.json`
+- `.codex-tmp/xp-integrity-audit/YYYYMMDDTHHMMSSZ/decision.ru.md`
 
-Do not modify `users`, `progress_events`, `leaderboard`, `arena_profiles`, `league_groups`, authentication links, notifications, or existing ledger documents.
+No task may write Firebase, edit existing ledger documents, notify users, award currency, repair XP, or deploy.
 
-### Task 1: Bootstrap the isolated worktree and lock read-only contracts
+### Task 1: Bootstrap dependencies and define evidence types matching Firestore
 
 **Files:**
 
@@ -47,492 +50,364 @@ Do not modify `users`, `progress_events`, `leaderboard`, `arena_profiles`, `leag
 
 - [ ] **Step 1: Install the locked dependency tree without lifecycle scripts**
 
-Run:
-
 ```powershell
 npm ci --ignore-scripts
 ```
 
-Expected: exit `0`; `package-lock.json` remains unchanged.
+Expected: exit `0`; `package-lock.json` unchanged.
 
-- [ ] **Step 2: Run a narrow unchanged baseline**
-
-Run:
+- [ ] **Step 2: Run an unchanged narrow baseline**
 
 ```powershell
 npx jest --runTestsByPath tests/xp_levels.test.ts tests/xp_level_restore.test.ts --runInBand --no-cache
 ```
 
-Expected: both suites pass. If either fails before audit code exists, stop and report the baseline failure.
+Expected: both suites pass. Stop if the isolated baseline is not green.
 
-- [ ] **Step 3: Write the failing read-only contract test**
-
-Create `tests/xp_integrity_read_only_contract.test.ts`:
-
-```ts
-import fs from 'fs';
-import path from 'path';
-
-const root = path.join(__dirname, '..');
-const read = (relative: string) => fs.readFileSync(path.join(root, relative), 'utf8');
-
-describe('production XP audit read-only contract', () => {
-  it('contains no Firestore mutation API and rejects apply mode', () => {
-    const files = [
-      'scripts/xp_integrity/firestore_reader.ts',
-      'scripts/audit_production_xp_integrity.ts',
-    ];
-    const source = files.filter((file) => fs.existsSync(path.join(root, file))).map(read).join('\n');
-    expect(source).not.toMatch(/\.(set|update|delete|create|add|batch|bulkWriter|runTransaction)\s*\(/);
-    expect(source).toContain("forbiddenFlags = new Set(['--apply', '--write', '--repair', '--send'])");
-    expect(source).toContain("throw new Error('xp_audit_read_only_flag_rejected')");
-  });
-
-  it('writes reports only below the ignored audit directory', () => {
-    const source = read('scripts/audit_production_xp_integrity.ts');
-    expect(source).toContain("path.join(root, '.codex-tmp', 'xp-integrity-audit', runId)");
-    expect(source).not.toMatch(/docs[\\/]reports|assets[\\/]|admin[\\/]/);
-  });
-});
-```
-
-- [ ] **Step 4: Run the contract test and verify RED**
-
-Run:
-
-```powershell
-npx jest --runTestsByPath tests/xp_integrity_read_only_contract.test.ts --runInBand --no-cache
-```
-
-Expected: FAIL because the audit files do not exist.
-
-- [ ] **Step 5: Add stable audit types**
+- [ ] **Step 3: Create exact normalized evidence contracts**
 
 Create `scripts/xp_integrity/types.ts`:
 
 ```ts
 export type IntegrityClass = 'confirmed_damaged' | 'probable_damaged' | 'indeterminate' | 'consistent';
-
+export type EvidenceState = 'complete' | 'incomplete' | 'not_applicable';
+export type EvidenceCompleteness = {
+  ledger: EvidenceState;
+  catalog: EvidenceState;
+  alias: EvidenceState;
+  migration: EvidenceState;
+  prerequisites: EvidenceState;
+};
 export type ReasonCode =
-  | 'ledger_gap_exact'
-  | 'achievement_wrong_reward_exact'
-  | 'achievement_impossible_threshold_exact'
-  | 'achievement_alias_duplicate_exact'
+  | 'ledger_discontinuity_exact'
+  | 'achievement_overpayment_exact'
+  | 'achievement_impossible_prerequisite_exact'
+  | 'achievement_alias_replay_exact'
   | 'migration_exact'
   | 'migration_pattern_only'
   | 'catalog_unmapped'
-  | 'threshold_state_missing'
-  | 'history_incomplete'
+  | 'prerequisite_unmapped'
+  | 'alias_history_incomplete'
+  | 'ledger_history_incomplete'
   | 'projection_drift';
-
-export type AuditEvent = {
+export type NormalizedAuditEvent = {
   ownerUid: string;
   eventId: string;
   type: string;
   xpDelta: number;
+  totalXpAfter: number;
   totalXpBefore: number | null;
-  totalXpAfter: number | null;
-  clientCreatedAt: number | null;
-  serverCreatedAt: number | null;
+  serverCreatedAtMs: number | null;
+  clientCreatedAtMs: number | null;
   appVersion: string | null;
-  payload: Record<string, unknown>;
+  activeDate: string | null;
+  weekKey: string | null;
+  weekXpAfter: number | null;
+  payload: Readonly<Record<string, unknown>>;
 };
-
-export type CatalogReward = {
-  achievementId: string;
-  xp: number;
-  thresholdKind: 'lifetime_xp' | 'weekly_xp' | 'other';
-  thresholdValue: number | null;
-};
-
-export type CatalogSnapshot = {
-  commit: string;
-  committedAtMs: number;
-  appVersion: string | null;
-  rewards: ReadonlyMap<string, CatalogReward>;
-};
-
-export type MigrationEvidence = {
-  beforeXp: number | null;
-  afterXp: number | null;
-  formulaVersion: string | null;
-  markerPresent: boolean;
-  exactTransformDelta: number | null;
-  patternMatches: boolean;
-};
-
-export type MirrorValues = {
-  leaderboardXp: number | null;
-  arenaXp: number | null;
-  leagueXp: number | null;
-};
-
-export type RawUser = {
-  uid: string;
-  firebaseAuthUid: string | null;
-  canonicalStableId: string | null;
-  mergedInto: string | null;
-  identityHidden: boolean;
-  progress: Record<string, unknown>;
-};
-
-export type RawAlias = {
-  uid: string;
-  linkage: 'canonical_pointer' | 'merged_into' | 'provider_identity';
-};
-
-export type AccountAuditInput = {
-  uid: string;
-  currentXp: number;
-  canonicalEvents: readonly AuditEvent[];
-  aliasEvents: readonly AuditEvent[];
-  migration: MigrationEvidence;
-  mirrors: MirrorValues;
-  historyComplete: boolean;
-};
-
-export type AccountAuditResult = {
-  classification: IntegrityClass;
-  reasons: ReasonCode[];
-  exactInvalidXp: number;
-  proposedXp: number | null;
-  projectionDrift: boolean;
-};
+export type LedgerBaselineEvidence =
+  | { kind: 'exact'; xp: number; derivedFrom: 'first_ledger_result' | 'retained_cutover'; atMs: number }
+  | { kind: 'unknown'; reason: 'pre_cutover_unretained' | 'ambiguous_chain' | 'missing_timestamp' };
+export type MigrationEvidence =
+  | { kind: 'exact'; source: 'retained_provenance' | 'deterministic_ledger_discontinuity'; beforeXp: number; afterXp: number; formulaVersion: string; exactInvalidDelta: number; occurredAtMs: number }
+  | { kind: 'pattern_only'; pattern: '250_to_400' | 'repeated_startup_migration'; markerPresent: boolean }
+  | { kind: 'none' | 'incomplete' };
+export type EffectiveWindow = { fromMsInclusive: number; toMsExclusive: number | null; provenance: 'release_tag' | 'build_manifest' | 'verified_release_commit' };
+export type LevelFormulaSnapshot = { sourceCommit: string; formulaId: string; effective: EffectiveWindow };
+export type AchievementPrerequisite =
+  | { kind: 'lifetime_xp'; minimum: number }
+  | { kind: 'weekly_xp'; minimum: number }
+  | { kind: 'counter'; counterKey: string; minimum: number }
+  | { kind: 'unsupported'; ruleId: string };
+export type CatalogReward = { achievementId: string; xp: number; prerequisite: AchievementPrerequisite };
+export type CatalogSnapshot = { commit: string; appVersion: string | null; effective: EffectiveWindow; rewards: ReadonlyMap<string, CatalogReward>; levelFormula: LevelFormulaSnapshot; complete: boolean };
+export type AliasEvidence = { uid: string; canonicalUid: string; linkage: 'canonical_pointer' | 'duplicate_pointer' | 'shared_auth_uid'; identityMergedAtMs: number | null; events: readonly NormalizedAuditEvent[]; complete: boolean };
+export type RawUser = { uid: string; firebaseAuthUid: string | null; canonicalStableId: string | null; duplicateOfStableId: string | null; identityHidden: boolean; identityMergedAtMs: number | null; progress: Readonly<Record<string, unknown>> };
+export type MirrorValues = { leaderboardXp: number | null; arenaXp: number | null; leagueXp: number | null };
+export type AccountAuditInput = { uid: string; currentXp: number; canonicalEvents: readonly NormalizedAuditEvent[]; aliases: readonly AliasEvidence[]; baseline: LedgerBaselineEvidence; migration: MigrationEvidence; mirrors: MirrorValues; completeness: EvidenceCompleteness };
+export type AccountAuditResult = { classification: IntegrityClass; reasons: readonly ReasonCode[]; completeness: EvidenceCompleteness; exactInvalidXp: number; proposedXp: number | null; exactReductionIsComplete: boolean; projectionDrift: boolean };
 ```
 
-- [ ] **Step 6: Commit the contract and types**
+The normalizer must use stored ledger fields `data.result.xpDelta`, `data.result.totalXp`, and `data.createdAt`. Derive `totalXpBefore = totalXpAfter - xpDelta` only when both are finite, non-negative, and `xpDelta <= totalXpAfter`; otherwise use `null`. Never assume top-level XP fields.
+
+`progress_migrations/client_snapshot_v1` contains only `migrated`, `keys`, and `createdAt`; it cannot create exact migration evidence by itself.
+
+- [ ] **Step 4: Write the first read-only contract RED**
+
+Create `tests/xp_integrity_read_only_contract.test.ts` to assert that the future CLI rejects `--apply`, `--write`, `--repair`, and `--send`, output remains below `.codex-tmp/xp-integrity-audit`, and every new audit source imports Firebase only through `firestore_reader.ts`.
+
+- [ ] **Step 5: Run RED and commit types/contracts**
 
 ```powershell
+npx jest --runTestsByPath tests/xp_integrity_read_only_contract.test.ts --runInBand --no-cache
 git add scripts/xp_integrity/types.ts tests/xp_integrity_read_only_contract.test.ts
-git commit -m "test: lock XP audit read-only contracts"
+git commit -m "test: define XP audit evidence contracts"
 ```
 
-### Task 2: Reconstruct versioned achievement catalogs from Git
+Expected: test fails because reader/CLI do not exist; the commit intentionally records RED.
+
+### Task 2: Reconstruct only verified historical catalogs and formulas
 
 **Files:**
 
 - Create: `scripts/xp_integrity/catalog_history.ts`
 - Create: `tests/xp_integrity_catalog_history.test.ts`
 
-- [ ] **Step 1: Write failing catalog tests**
+- [ ] **Step 1: Write catalog tests RED**
 
-Create `tests/xp_integrity_catalog_history.test.ts` with fixtures that prove exact app-version matching and fail-closed behavior:
+Test literal `id`/`xp` extraction, lifetime/weekly prerequisites, an explicit non-XP counter rule, unsupported rules, unknown IDs, duplicate app versions, gaps, overlaps, formula changes, and missing release provenance.
 
 ```ts
-import { matchCatalogForEvent, parseAchievementCatalog } from '../scripts/xp_integrity/catalog_history';
-import type { CatalogSnapshot } from '../scripts/xp_integrity/types';
-
-const snapshot = (commit: string, appVersion: string | null, committedAtMs: number, xp: number): CatalogSnapshot => ({
-  commit,
-  appVersion,
-  committedAtMs,
-  rewards: new Map([['xp_5000', { achievementId: 'xp_5000', xp, thresholdKind: 'lifetime_xp', thresholdValue: 5000 }]]),
-});
-
-describe('historical XP achievement catalogs', () => {
-  it('extracts literal id/xp pairs and threshold semantics', () => {
-    const source = "const defs = [{ id:'xp_5000', category:'xp', xp:150 }, { id:'weekly_xp_10000', xp:900 }];";
-    const rewards = parseAchievementCatalog(source, 'fixture.ts');
-    expect(rewards.get('xp_5000')).toEqual({ achievementId: 'xp_5000', xp: 150, thresholdKind: 'lifetime_xp', thresholdValue: 5000 });
-    expect(rewards.get('weekly_xp_10000')?.thresholdValue).toBe(10000);
-  });
-
-  it('uses exact app version before timestamp inference', () => {
-    const catalogs = [snapshot('old', '1.5.40', 1000, 100), snapshot('new', '1.5.41', 2000, 150)];
-    expect(matchCatalogForEvent(catalogs, { appVersion: '1.5.40', createdAtMs: 9999 })?.commit).toBe('old');
-  });
-
-  it('returns null when timestamp windows overlap or history is unmapped', () => {
-    const catalogs = [snapshot('a', null, 1000, 100), snapshot('b', null, 1000, 150)];
-    expect(matchCatalogForEvent(catalogs, { appVersion: null, createdAtMs: 1000 })).toBeNull();
-    expect(matchCatalogForEvent([], { appVersion: 'unknown', createdAtMs: 1000 })).toBeNull();
-  });
-});
+expect(matchCatalogForEvent(catalogs, event)).toBeNull();
+expect(explainCatalogMiss(catalogs, event)).toBe('missing_release_provenance');
 ```
 
-- [ ] **Step 2: Run the catalog tests and verify RED**
-
-Run:
+- [ ] **Step 2: Run RED**
 
 ```powershell
 npx jest --runTestsByPath tests/xp_integrity_catalog_history.test.ts --runInBand --no-cache
 ```
 
-Expected: FAIL because `catalog_history.ts` is missing.
+- [ ] **Step 3: Implement literal AST parsing and release provenance**
 
-- [ ] **Step 3: Implement AST-based catalog parsing and deterministic matching**
-
-Create `scripts/xp_integrity/catalog_history.ts`. Use the TypeScript compiler API to accept only literal object properties; skip computed rewards rather than evaluating application code. Export:
+Export:
 
 ```ts
 export function parseAchievementCatalog(source: string, fileName: string): Map<string, CatalogReward>;
-export function matchCatalogForEvent(
-  catalogs: readonly CatalogSnapshot[],
-  event: { appVersion: string | null; createdAtMs: number | null },
-): CatalogSnapshot | null;
-export function loadCatalogHistory(repoRoot: string): CatalogSnapshot[];
+export function loadVerifiedCatalogHistory(repoRoot: string): CatalogSnapshot[];
+export function matchCatalogForEvent(catalogs: readonly CatalogSnapshot[], event: Pick<NormalizedAuditEvent, 'appVersion' | 'serverCreatedAtMs' | 'clientCreatedAtMs'>): CatalogSnapshot | null;
+export function explainCatalogMiss(catalogs: readonly CatalogSnapshot[], event: Pick<NormalizedAuditEvent, 'appVersion' | 'serverCreatedAtMs' | 'clientCreatedAtMs'>): 'gap' | 'overlap' | 'missing_release_provenance' | 'unknown_version';
 ```
 
-`loadCatalogHistory` must:
+Use the TypeScript compiler API and never execute historical app code. Accept provenance only from release tags `vX.Y.Z`/`release/vX.Y.Z`, tracked build manifests with version+SHA+activation time, or commits explicitly listed in a tracked verified-release manifest. Checkpoint tags, commit time, and `app.json` version alone are insufficient.
 
-```ts
-const commits = git(repoRoot, ['log', '--format=%H|%cI', '--', 'app/achievements.ts'])
-  .split(/\r?\n/)
-  .filter(Boolean);
-for (const row of commits) {
-  const [commit, committedAt] = row.split('|');
-  const achievementsSource = git(repoRoot, ['show', `${commit}:app/achievements.ts`]);
-  const appConfig = gitOptional(repoRoot, ['show', `${commit}:app.json`]);
-  snapshots.push({
-    commit,
-    committedAtMs: Date.parse(committedAt),
-    appVersion: readExpoVersion(appConfig),
-    rewards: parseAchievementCatalog(achievementsSource, `${commit}:app/achievements.ts`),
-  });
-}
-```
+Load client and server level formulas from the same verified commit and mark the snapshot incomplete if they disagree. Missing provenance leaves events unmapped; the audit may complete infrastructurally but must exit `2` for incomplete evidence and make no correction claim.
 
-Matching rules:
-
-1. A unique exact `appVersion` match wins.
-2. Timestamp matching is allowed only between non-overlapping snapshots with explicit release provenance.
-3. Multiple candidates or no candidate returns `null` and later produces `catalog_unmapped`.
-
-- [ ] **Step 4: Run catalog tests GREEN**
-
-Run the same Jest command. Expected: PASS.
-
-- [ ] **Step 5: Generate a local catalog summary without user data**
-
-Run:
+- [ ] **Step 4: Run GREEN and print metadata only**
 
 ```powershell
-npx tsx -e "import {loadCatalogHistory} from './scripts/xp_integrity/catalog_history'; const x=loadCatalogHistory(process.cwd()); console.log(JSON.stringify(x.map(v=>({commit:v.commit.slice(0,12),appVersion:v.appVersion,rewards:v.rewards.size})),null,2))"
+npx jest --runTestsByPath tests/xp_integrity_catalog_history.test.ts --runInBand --no-cache
+npx tsx -e "import {loadVerifiedCatalogHistory} from './scripts/xp_integrity/catalog_history'; const x=loadVerifiedCatalogHistory(process.cwd()); console.log(JSON.stringify(x.map(v=>({commit:v.commit.slice(0,12),appVersion:v.appVersion,complete:v.complete,rewards:v.rewards.size})),null,2))"
 ```
 
-Expected: JSON with commit prefixes, versions, and reward counts only. If any relevant snapshot has zero parsed rewards, stop and fix parsing before production reads.
+Zero verified windows is allowed and must be reported rather than inferred.
 
-- [ ] **Step 6: Commit catalog reconstruction**
+- [ ] **Step 5: Commit**
 
 ```powershell
 git add scripts/xp_integrity/catalog_history.ts tests/xp_integrity_catalog_history.test.ts
-git commit -m "feat: reconstruct historical XP reward catalogs"
+git commit -m "feat: map verified historical XP catalogs"
 ```
 
-### Task 3: Implement fail-closed account analysis
+### Task 3: Implement exact, non-overlapping account analysis
 
 **Files:**
 
 - Create: `scripts/xp_integrity/analyze_account.ts`
 - Create: `tests/xp_integrity_analyze_account.test.ts`
 
-- [ ] **Step 1: Write RED fixtures for every classification**
+- [ ] **Step 1: Write classification tests RED**
 
-Tests must cover:
+Cover reconstructible lifetime and weekly XP, counter state present/missing, unknown rules/IDs, wrong reward overpayment, impossible and alias-replayed rewards, one event with multiple reasons, multiple distinct invalid events, migration pattern alone, two independent probable signals, exact migration, exact damage plus incomplete evidence, and mirror-only drift.
 
-- wrong canonical reward with a mapped historical catalog;
-- impossible `xp_N` using exact `totalXpBefore`;
-- non-XP threshold with missing chronological state → indeterminate;
-- same semantic achievement on a proven alias → exact duplicate only when catalog and identity linkage are mapped;
-- exact migration transform with retained before/version/delta;
-- migration formula pattern without retained before/version → probable only;
-- mirror mismatch only → `consistent` plus `projectionDrift`;
-- incomplete history → never propose XP.
-
-Use this exact assertion shape:
-
-```ts
-expect(analyzeAccount(input, catalogs)).toEqual({
-  classification: 'confirmed_damaged',
-  reasons: ['achievement_impossible_threshold_exact'],
-  exactInvalidXp: 3000,
-  proposedXp: 12034,
-  projectionDrift: false,
-});
-```
-
-- [ ] **Step 2: Run the analyzer tests RED**
+- [ ] **Step 2: Run RED**
 
 ```powershell
 npx jest --runTestsByPath tests/xp_integrity_analyze_account.test.ts --runInBand --no-cache
 ```
 
-Expected: FAIL because `analyzeAccount` is missing.
+- [ ] **Step 3: Implement fail-closed classification**
 
-- [ ] **Step 3: Implement the analyzer**
-
-Create `scripts/xp_integrity/analyze_account.ts` with these fail-closed helpers:
+Wrong reward subtracts only:
 
 ```ts
-function exactLifetimeThresholdViolation(event: AuditEvent, reward: CatalogReward): boolean {
-  return reward.thresholdKind === 'lifetime_xp'
-    && event.totalXpBefore !== null
-    && reward.thresholdValue !== null
-    && event.totalXpBefore < reward.thresholdValue;
-}
-
-function exactMigrationDelta(evidence: MigrationEvidence): number {
-  if (!evidence.markerPresent) return 0;
-  if (evidence.beforeXp === null || evidence.afterXp === null) return 0;
-  if (!evidence.formulaVersion || evidence.exactTransformDelta === null) return 0;
-  return evidence.afterXp - evidence.beforeXp === evidence.exactTransformDelta
-    ? Math.max(0, evidence.exactTransformDelta)
-    : 0;
-}
+const overpayment = Math.max(0, event.xpDelta - historicalReward.xp);
 ```
 
-`analyzeAccount(input, catalogs)` must sort all events chronologically, map each event to exactly one historical catalog, deduplicate exact invalid semantic claims, sum only proven invalid XP, and return `proposedXp = currentXp - exactInvalidXp` only when `historyComplete === true` and every subtraction has exact evidence. Probable or indeterminate signals must force `proposedXp: null` unless they coexist with a separately proven exact subset; in that case report the exact subset but keep the overall classification indeterminate and still emit `proposedXp: null`.
+Alias replay is exact only with a proven merge edge/time, alias claim before merge, canonical claim after merge, exact canonical before/after totals, and identical mapped semantic achievement. The higher-XP merge winner does not add loser XP, so alias presence alone is never subtracted.
 
-- [ ] **Step 4: Run analyzer tests GREEN**
+Track invalid amounts once per canonical event:
 
-Run the same Jest command. Expected: PASS.
+```ts
+const invalidByEvent = new Map<string, number>();
+invalidByEvent.set(event.eventId, Math.max(invalidByEvent.get(event.eventId) ?? 0, provenInvalidAmount));
+```
 
-- [ ] **Step 5: Commit pure analysis**
+Any exact invalid amount yields `confirmed_damaged`. At least two independent non-exact anomaly families yield `probable_damaged`. One non-exact anomaly or relevant incomplete evidence yields `indeterminate`. No anomaly yields `consistent`.
+
+Emit `proposedXp` only when the exact reduction is complete and relevant evidence is complete. Otherwise expose `exactInvalidXp` as a proven lower bound with `proposedXp: null`.
+
+- [ ] **Step 4: Run GREEN and commit**
 
 ```powershell
+npx jest --runTestsByPath tests/xp_integrity_analyze_account.test.ts --runInBand --no-cache
 git add scripts/xp_integrity/analyze_account.ts tests/xp_integrity_analyze_account.test.ts
-git commit -m "feat: classify historical XP integrity evidence"
+git commit -m "feat: classify XP integrity evidence safely"
 ```
 
-### Task 4: Add the bounded read-only Firebase repository
+### Task 4: Implement atomic read budgets, pagination, and IAM read-only proof
 
 **Files:**
 
+- Create: `scripts/xp_integrity/read_budget.ts`
 - Create: `scripts/xp_integrity/firestore_reader.ts`
+- Create: `tests/xp_integrity_reader.test.ts`
 - Update: `tests/xp_integrity_read_only_contract.test.ts`
 
-- [ ] **Step 1: Extend RED contract checks**
+- [ ] **Step 1: Write reader tests RED with mocked Firebase**
 
-Add assertions that `firestore_reader.ts` exports only:
+Test users and event pagination across three pages, reservation before query, unused reservation return, conservative failed-query accounting, concurrent budget safety, count billing, canonical/hidden-alias reconciliation, mirror paths, interruption/partial pages, write-capable IAM rejection, unavailable IAM rejection, and verified read-only IAM success.
+
+- [ ] **Step 2: Run RED**
+
+```powershell
+npx jest --runTestsByPath tests/xp_integrity_reader.test.ts tests/xp_integrity_read_only_contract.test.ts --runInBand --no-cache
+```
+
+- [ ] **Step 3: Implement atomic budget and page types**
+
+```ts
+export type UserPage = { users: readonly RawUser[]; nextAfterUid: string | null; done: boolean };
+export type EventPage = { events: readonly NormalizedAuditEvent[]; nextAfterEventId: string | null; done: boolean };
+
+export class ReadBudget {
+  private reserved = 0;
+  private consumed = 0;
+  constructor(readonly maximum: number) {}
+  reserve(count: number): (actual?: number) => void {
+    if (!Number.isInteger(count) || count < 1 || this.consumed + this.reserved + count > this.maximum) {
+      throw new Error('xp_audit_read_budget_exceeded');
+    }
+    this.reserved += count;
+    let settled = false;
+    return (actual = count) => {
+      if (settled) throw new Error('xp_audit_budget_reservation_reused');
+      settled = true;
+      this.reserved -= count;
+      this.consumed += Math.max(0, Math.min(count, actual));
+    };
+  }
+  get count(): number { return this.consumed; }
+}
+```
+
+On query failure settle the full reservation. Check abort signals before reservation and after every page.
+
+- [ ] **Step 4: Implement IAM preflight and the reader**
+
+Public API:
 
 ```ts
 export type XpAuditReader = {
-  pageUsers(afterUid: string | null, limit: number): Promise<ReadonlyArray<RawUser>>;
-  readProgressEvents(uid: string): Promise<ReadonlyArray<AuditEvent>>;
-  readAliases(user: RawUser): Promise<ReadonlyArray<RawAlias>>;
+  countUserDocuments(): Promise<number>;
+  pageUsers(afterUid: string | null, limit: number): Promise<UserPage>;
+  pageProgressEvents(uid: string, afterEventId: string | null, limit: number): Promise<EventPage>;
+  readAliases(user: RawUser): Promise<readonly AliasEvidence[]>;
   readMirrors(user: RawUser): Promise<MirrorValues>;
   resolveControlEmail(email: string): Promise<string | null>;
   getReadCount(): number;
 };
 ```
 
-Also assert that the source contains no methods named `set`, `update`, `delete`, `create`, `add`, `batch`, `bulkWriter`, or `runTransaction`.
+Before constructing it, call project `testIamPermissions` for:
 
-- [ ] **Step 2: Run the contract RED**
-
-Expected: FAIL until the reader exists.
-
-- [ ] **Step 3: Implement paginated reads with a budget**
-
-The repository must:
-
-- initialize Firebase Admin from `GOOGLE_APPLICATION_CREDENTIALS` or application default credentials without printing values;
-- resolve the project from `--project`, `GOOGLE_CLOUD_PROJECT`, `GCLOUD_PROJECT`, or `.firebaserc`;
-- page `users` ordered by document ID in batches of at most 250;
-- read per-user `progress_events` in pages and sort by server/client creation time;
-- follow only explicit canonical/merge pointers and authenticated identity links for aliases;
-- read leaderboard/arena/current-league mirrors without treating them as canonical;
-- increment and enforce `maxReads`, throwing `xp_audit_read_budget_exceeded` before the next query;
-- expose no database object to callers.
-
-Use bounded concurrency in the caller with a default of `4`; do not call `Promise.all` across the entire user population.
-
-- [ ] **Step 4: Run contract GREEN and TypeScript check for the new files only**
-
-```powershell
-npx jest --runTestsByPath tests/xp_integrity_read_only_contract.test.ts --runInBand --no-cache
-npx tsc --noEmit --pretty false --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --target es2022 scripts/xp_integrity/types.ts scripts/xp_integrity/firestore_reader.ts
+```ts
+const WRITE_PERMISSIONS = [
+  'datastore.entities.create',
+  'datastore.entities.update',
+  'datastore.entities.delete',
+];
 ```
 
-Expected: both exit `0`.
+Abort with `xp_audit_principal_has_write_permissions` if any are returned. Abort with `xp_audit_cannot_prove_read_only_principal` when the check is unavailable, ambiguous, or required read permissions are absent. There is no override flag.
 
-- [ ] **Step 5: Commit the reader**
+Only `firestore_reader.ts` imports Firebase Admin. It exposes no database object and contains no mutations. Concurrency defaults to 4 and never fans out over the full population.
+
+- [ ] **Step 5: Strengthen static defense-in-depth**
+
+Use the TypeScript AST in the contract test to allow Firebase imports only in the reader, detect dot/bracket Firestore mutation calls without flagging `Set.add()`, verify IAM preflight precedes the first query, and require later CLI unknown-flag rejection. IAM proof remains the primary runtime gate.
+
+- [ ] **Step 6: Run GREEN and commit**
 
 ```powershell
-git add scripts/xp_integrity/firestore_reader.ts tests/xp_integrity_read_only_contract.test.ts
-git commit -m "feat: add bounded read-only XP audit reader"
+npx jest --runTestsByPath tests/xp_integrity_reader.test.ts tests/xp_integrity_read_only_contract.test.ts --runInBand --no-cache
+git add scripts/xp_integrity/read_budget.ts scripts/xp_integrity/firestore_reader.ts tests/xp_integrity_reader.test.ts tests/xp_integrity_read_only_contract.test.ts
+git commit -m "feat: add IAM-gated XP audit reads"
 ```
 
-### Task 5: Build aggregate-only reports and guarded CLI
+### Task 5: Build aggregate reports and strict CLI
 
 **Files:**
 
 - Create: `scripts/xp_integrity/report.ts`
 - Create: `scripts/audit_production_xp_integrity.ts`
 - Create: `tests/xp_integrity_report.test.ts`
+- Create: `tests/xp_integrity_cli.test.ts`
 - Modify: `package.json`
 
-- [ ] **Step 1: Write RED privacy/report tests**
+- [ ] **Step 1: Write report and CLI tests RED**
 
-Create fixtures containing obvious email, nickname, UID, auth UID, event ID, and free-form payload strings. Assert that serialized JSON and Markdown contain none of them and expose only:
+Test privacy against obvious email/nickname/UID/auth UID/event ID fixtures; infrastructure/evidence separation; class and user-document reconciliation; exact-XP bucket totals; coverage dates; unknown/conflicting flags; full mode without budget; partial exit `1`; evidence-incomplete exit `2`; complete exit `0`; and identifier-free calibration booleans.
+
+Use:
 
 ```ts
-type AggregateReport = {
+export type AggregateReport = {
   mode: 'sample' | 'full';
   startedAt: string;
   finishedAt: string;
-  coverageComplete: boolean;
-  scannedUsers: number;
-  skippedUsers: number;
-  failedUsers: number;
+  coverage: {
+    infrastructureComplete: boolean;
+    evidenceComplete: boolean;
+    userDocumentsSeen: number;
+    canonicalAccountsScanned: number;
+    aliasDocumentsCovered: number;
+    skippedAccounts: number;
+    failedAccounts: number;
+    earliestEventAt: string | null;
+    latestEventAt: string | null;
+  };
   readCount: number;
   classes: Record<IntegrityClass, number>;
   reasons: Partial<Record<ReasonCode, number>>;
   exactInvalidXpTotal: number;
+  exactInvalidXpBuckets: Record<string, number>;
   projectionDriftUsers: number;
-  calibration: { ran: boolean; matchedExpectedLevelNeighborhood: boolean | null };
+  calibration: {
+    ran: boolean;
+    resolved: boolean;
+    matchedExpectedLevelNeighborhood: boolean | null;
+    migrationIndicatorDetected: boolean | null;
+    achievementIndicatorDetected: boolean | null;
+  };
 };
 ```
 
-- [ ] **Step 2: Run report and contract tests RED**
+- [ ] **Step 2: Run RED**
 
 ```powershell
-npx jest --runTestsByPath tests/xp_integrity_report.test.ts tests/xp_integrity_read_only_contract.test.ts --runInBand --no-cache
+npx jest --runTestsByPath tests/xp_integrity_report.test.ts tests/xp_integrity_cli.test.ts --runInBand --no-cache
 ```
 
-Expected: FAIL because report/CLI files do not exist.
+- [ ] **Step 3: Implement aggregate-only reporting**
 
-- [ ] **Step 3: Implement aggregation and privacy validation**
+`report.ts` accepts only `AccountAuditResult[]` plus numeric/date coverage metadata, never raw users/events. Recursively reject email syntax, identity-key names, event IDs, and a private runtime denylist.
 
-`report.ts` must accept only `AccountAuditResult[]` plus numeric coverage metadata. It must not accept raw user or event objects. Before writing, recursively reject strings matching email syntax, raw UID/auth-ID keys, or known control values supplied through a private denylist.
+The Russian Markdown contains the literal heading `Находки и предложения` and says no Firestore writes or corrections occurred, shows separate coverage flags and cohort counts, labels exact invalid XP as a lower bound where needed, and requires separate authorization for correction.
 
-The Markdown must clearly state:
+- [ ] **Step 4: Implement strict CLI and accounting**
 
-- no Firestore writes occurred;
-- whether coverage is complete;
-- counts for confirmed/probable/indeterminate/consistent;
-- exact invalid XP only for evidence-backed cases;
-- no correction was applied;
-- any correction needs separate authorization and review.
+Allow only `--sample=1..250` (default 25), `--full`, `--max-reads=positive integer`, `--concurrency=1..8`, and `--project=project-id`. Reject unknown and forbidden flags, reject sample/full conflict, and require explicit budget for full mode.
 
-- [ ] **Step 4: Implement CLI safety and modes**
+Read control email only from `XP_AUDIT_CONTROL_EMAIL`; never print it. Count each user document exactly once as canonical, alias-covered, skipped, or failed. Hidden aliases are not class entries. Paginate to `done`; interruption/partial page makes infrastructure incomplete.
 
-At the top of `scripts/audit_production_xp_integrity.ts`:
-
-```ts
-const forbiddenFlags = new Set(['--apply', '--write', '--repair', '--send']);
-if (process.argv.slice(2).some((arg) => forbiddenFlags.has(arg.split('=')[0]))) {
-  throw new Error('xp_audit_read_only_flag_rejected');
-}
-```
-
-Supported modes:
-
-- default `--sample=25`;
-- `--full` for every reachable user;
-- `--max-reads=<positive integer>`;
-- `--concurrency=1..8`;
-- `--project=<firebase project id>`.
-
-Control-account email comes only from `XP_AUDIT_CONTROL_EMAIL`; never accept or print it as a command-line flag. Output directory is exactly:
+Write only to:
 
 ```ts
 const outputDir = path.join(root, '.codex-tmp', 'xp-integrity-audit', runId);
 ```
 
-Set `coverageComplete` to `false` for any failed/skipped user, exhausted read budget, interrupted page, missing catalog window, or incomplete alias history. Exit non-zero after writing the partial report when infrastructure coverage is incomplete.
-
-- [ ] **Step 5: Add the package command**
+- [ ] **Step 5: Add package command and run all gates**
 
 Add:
 
@@ -540,124 +415,89 @@ Add:
 "audit:production-xp-integrity": "tsx scripts/audit_production_xp_integrity.ts"
 ```
 
-- [ ] **Step 6: Run all new unit/contract tests GREEN**
+Run:
 
 ```powershell
-npx jest --runTestsByPath tests/xp_integrity_catalog_history.test.ts tests/xp_integrity_analyze_account.test.ts tests/xp_integrity_read_only_contract.test.ts tests/xp_integrity_report.test.ts --runInBand --no-cache
+npx jest --runTestsByPath tests/xp_integrity_catalog_history.test.ts tests/xp_integrity_analyze_account.test.ts tests/xp_integrity_reader.test.ts tests/xp_integrity_read_only_contract.test.ts tests/xp_integrity_report.test.ts tests/xp_integrity_cli.test.ts --runInBand --no-cache
+npx tsc --noEmit --pretty false --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --target es2022 scripts/xp_integrity/types.ts scripts/xp_integrity/catalog_history.ts scripts/xp_integrity/analyze_account.ts scripts/xp_integrity/read_budget.ts scripts/xp_integrity/firestore_reader.ts scripts/xp_integrity/report.ts scripts/audit_production_xp_integrity.ts
 ```
 
-Expected: 4 suites pass, 0 failures, and no write-guard violation.
+Expected: 6 suites pass and all audit sources type-check.
 
-- [ ] **Step 7: Commit CLI and reports**
+- [ ] **Step 6: Commit**
 
 ```powershell
-git add package.json scripts/audit_production_xp_integrity.ts scripts/xp_integrity/report.ts tests/xp_integrity_report.test.ts
-git commit -m "feat: add privacy-safe production XP audit CLI"
+git add package.json scripts/audit_production_xp_integrity.ts scripts/xp_integrity/report.ts tests/xp_integrity_report.test.ts tests/xp_integrity_cli.test.ts
+git commit -m "feat: add privacy-safe XP audit reports"
 ```
 
-### Task 6: Private calibration and bounded sample audit
+### Task 6: Run IAM preflight, private calibration, and bounded sample
 
-**Files:**
+**Files:** runtime output only under `.codex-tmp/xp-integrity-audit/`.
 
-- Runtime output only: `.codex-tmp/xp-integrity-audit/<run-id>/...`
+- [ ] **Step 1: Verify a read-only principal**
 
-- [ ] **Step 1: Verify credentials and project without printing secrets**
+Run the CLI with `--sample=1 --max-reads=100`. It may print only project ID, mode, and `principal=read-only-verified`. If credentials have any write permission or proof cannot complete, stop; provisioning a read-only credential is external setup and cannot be bypassed.
 
-Run a read-only Firebase initialization probe that prints only project ID and `credential=available`. Do not print service-account paths, JSON, tokens, email, UID, or document payloads.
+- [ ] **Step 2: Run private control plus 25-account sample**
 
-- [ ] **Step 2: Run the known-account calibration plus 25-user sample**
-
-Set `XP_AUDIT_CONTROL_EMAIL` only in the process environment and run:
+Set `XP_AUDIT_CONTROL_EMAIL` only in the process environment:
 
 ```powershell
 npm run audit:production-xp-integrity -- --sample=25 --max-reads=5000 --concurrency=2
 ```
 
-Expected:
+Expected: control resolves with current level near 8; calibration contains booleans only; actual stored events normalize without invented fields; no identifier reaches output; budget holds; no mutation call occurs.
 
-- mode reports `DRY-RUN READ-ONLY`;
-- calibration runs privately and resolves current level near 8;
-- known historical migration/achievement indicators are detected without identity output;
-- aggregate files contain no email, nickname, UID, auth UID, or event ID;
-- `readCount <= 5000`;
-- no Firestore writes.
+- [ ] **Step 3: Enforce sample stop conditions**
 
-- [ ] **Step 3: Inspect the aggregate report and stop on ambiguity**
+Do not run full mode if IAM proof fails, control does not resolve, normalization is ambiguous, privacy fails, a known anomaly is called consistent, alias accounting does not reconcile, or projected reads exceed the approved budget.
 
-Stop before a full scan if:
+- [ ] **Step 4: Re-run all 6 suites and type-check**
 
-- calibration does not resolve;
-- calibration current XP/level is materially different from the established case;
-- a known invalid event is classified consistent;
-- any personal identifier appears;
-- catalog mapping for the vulnerable period is incomplete;
-- any mutation method is invoked or attempted;
-- estimated full-scan reads exceed the agreed budget by more than 20%.
+Use Task 5 commands. Expected: PASS.
 
-- [ ] **Step 4: Re-run focused tests after calibration**
+### Task 7: Count documents, run full audit, and obtain final review
 
-Run the four-suite command from Task 5. Expected: PASS.
+**Files:** runtime output only plus any code corrections required by sample evidence.
 
-- [ ] **Step 5: Commit only code changes, never runtime reports**
+- [ ] **Step 1: Obtain bounded user-document count**
 
-Confirm `.codex-tmp/xp-integrity-audit/` remains ignored and `git status --short` contains no report files.
+Call `countUserDocuments()` through the IAM-gated reader. Include aggregation billing in `readCount`; retain only the number.
 
-### Task 7: Full production read-only scan and decision report
-
-**Files:**
-
-- Runtime output only: `.codex-tmp/xp-integrity-audit/<run-id>/aggregate.json`
-- Runtime output only: `.codex-tmp/xp-integrity-audit/<run-id>/decision.ru.md`
-
-- [ ] **Step 1: Estimate and set a bounded full-scan read budget**
-
-Calculate `sampleReadCount / sampleScannedUsers * totalUserCount * 1.2`, round up, and pass it as `--max-reads`. If the estimate is unexpectedly high, stop and report cost before running.
-
-- [ ] **Step 2: Run the full audit**
+- [ ] **Step 2: Calculate and review full budget**
 
 ```powershell
-$budget = [Math]::Ceiling(($sampleReadCount / $sampleScannedUsers) * $totalUserCount * 1.2)
+$budget = [Math]::Ceiling(($sampleReadCount / $sampleCanonicalAccounts) * $totalUserDocuments * 1.2)
+```
+
+Stop and report cost if unexpectedly high. Pass the numeric budget explicitly.
+
+- [ ] **Step 3: Run full read-only audit**
+
+```powershell
 npm run audit:production-xp-integrity -- --full --max-reads=$budget --concurrency=4
 ```
 
-Expected: exit `0` only when all reachable user pages completed and infrastructure coverage is complete. Indeterminate evidence is a valid audit result and does not itself make infrastructure coverage incomplete.
+Exit `0` means both coverages complete; `1` means infrastructure partial; `2` means infrastructure complete but evidence incomplete and no exact mass-correction claim is allowed.
 
-- [ ] **Step 3: Validate output privacy and invariants**
+- [ ] **Step 4: Validate final invariants and privacy**
 
-Run a local validator that confirms:
+Confirm no email/identity/event fields, class totals equal canonical accounts, all user documents reconcile, exact buckets sum to total, event coverage dates are present, calibration contains booleans only, IAM was verified before reads, and no write attempt occurred.
 
-- no email-like strings;
-- no raw identity fields or event IDs;
-- class counts sum to `scannedUsers`;
-- `confirmed + probable + indeterminate + consistent === scannedUsers`;
-- exact proposed XP totals come only from confirmed cases;
-- failed/skipped counts are zero for a complete claim;
-- no production write log exists.
-
-- [ ] **Step 4: Run final focused verification**
+- [ ] **Step 5: Run final verification**
 
 ```powershell
-npx jest --runTestsByPath tests/xp_integrity_catalog_history.test.ts tests/xp_integrity_analyze_account.test.ts tests/xp_integrity_read_only_contract.test.ts tests/xp_integrity_report.test.ts --runInBand --no-cache
+npx jest --runTestsByPath tests/xp_integrity_catalog_history.test.ts tests/xp_integrity_analyze_account.test.ts tests/xp_integrity_reader.test.ts tests/xp_integrity_read_only_contract.test.ts tests/xp_integrity_report.test.ts tests/xp_integrity_cli.test.ts --runInBand --no-cache
+npx tsc --noEmit --pretty false --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --target es2022 scripts/xp_integrity/types.ts scripts/xp_integrity/catalog_history.ts scripts/xp_integrity/analyze_account.ts scripts/xp_integrity/read_budget.ts scripts/xp_integrity/firestore_reader.ts scripts/xp_integrity/report.ts scripts/audit_production_xp_integrity.ts
 git diff --check
 git status --short
 ```
 
-Expected: all suites pass; diff check clean; only intended source/test/package changes are tracked.
+- [ ] **Step 6: Request final Advisor review**
 
-- [ ] **Step 5: Request final Advisor review**
+Provide approved spec, actual diff, tests/type-check, IAM proof, aggregate report, read count, both coverage flags, and uncertainty. Completion requires `DECISION: APPROVED`; fix and resubmit after `CHANGES_REQUIRED`.
 
-Send the objective, approved spec, actual final diff, focused test evidence, aggregate report, read count, coverage, privacy validation, and unresolved indeterminate categories. Completion requires `DECISION: APPROVED`; apply changes and resubmit after `CHANGES_REQUIRED`.
+- [ ] **Step 7: Deliver Russian decision report**
 
-- [ ] **Step 6: Deliver the Russian decision report**
-
-Report:
-
-- whether exact mass correction is possible;
-- counts of confirmed, probable, indeterminate, consistent, and mirror-drift accounts;
-- total proven excess XP without user identifiers;
-- complete/partial coverage and read count;
-- that zero Firestore writes occurred;
-- that no account was corrected;
-- the separate approval required for any future correction run.
-
-End with `Находки и предложения` and keep possible future corrections explicitly separate from completed audit work.
+Report whether exact mass correction is possible, privacy-safe cohort counts, proven excess XP, coverage dates/read count, and explicitly state that zero Firestore writes and zero corrections occurred. End with `Находки и предложения`.

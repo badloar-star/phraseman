@@ -6,7 +6,7 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { ActivityIndicator, Animated, AppState, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
+import { ActivityIndicator, Animated, AppState, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -23,6 +23,7 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import PlusBadge from '../components/PlusBadge';
+import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
 import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
@@ -1690,7 +1691,6 @@ export default function DailyTasksScreen() {
     const goldAccent = GOLD_RICH.metalGold;
     const goldHairline = GOLD_RICH.hairline;
     const goldSoftBg = GOLD_RICH.wash;
-    const goldDivider = GOLD_RICH.hairlineQuiet;
     const rewardActionBg = isGoldTheme ? GOLD_RICH.paleGold : t.correct;
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
@@ -2416,6 +2416,25 @@ export default function DailyTasksScreen() {
         const bScore = pb?.claimed ? 2 : pb?.completed ? 0 : 1;
         return aScore - bScore;
     });
+    const bonusTitle = triLang(lang, { ru: 'Бонус за день', uk: 'Бонус за день', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Thưởng trong ngày', id: 'Bonus harian', tr: 'Günlük bonus', pl: 'Bonus dnia' });
+    const bonusDescription = triLang(lang, {
+        ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
+        uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
+        es: `Completa todas las tareas y reclama ${trioRewardCount} fragmentos.`, 'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} fragmentos.`,
+        vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} mảnh.`, id: `Selesaikan semua tugas dan klaim ${trioRewardCount} fragmen.`,
+        tr: `Tüm görevleri tamamla ve ${trioRewardCount} parça al.`, pl: `Ukończ wszystkie zadania i odbierz ${trioRewardCount} odłamków.`,
+    });
+    const bonusClaimLabel = triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' });
+    const bonusClaimAccessibilityLabel = triLang(lang, {
+        ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}`,
+        uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}`,
+        es: `Reclamar bono del día: ${trioRewardCount} fragmentos`,
+        'pt-BR': `Coletar bônus do dia: ${trioRewardCount} fragmentos`,
+        vi: `Nhận thưởng trong ngày: ${trioRewardCount} mảnh`,
+        id: `Klaim bonus harian: ${trioRewardCount} fragmen`,
+        tr: `Günlük bonusu al: ${trioRewardCount} parça`,
+        pl: `Odbierz bonus dnia: ${trioRewardCount} odłamków`,
+    });
     if (false) {
         return (<ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -2518,137 +2537,24 @@ export default function DailyTasksScreen() {
             тремя состояниями (в процессе / готово забрать / забрано). Раньше плашка
             висела только при trioClaimButtonEnabled||trioShardsClaimed, из-за чего в
             обычном «в процессе» состоянии она вообще пропадала. */}
-        {tasks.length > 0 && (<View style={[
-            dailyTaskStyles.taskCard,
-            dailyTaskStyles.bonusCard,
-            {
-                borderColor: trioShardsClaimed
-                    ? (t.border)
-                    : trioClaimButtonEnabled
-                        ? (isGoldTheme ? goldHairline : bonusAccent + '80')
-                        : (isGoldTheme ? goldHairline : bonusAccent + '44'),
-                borderRadius: isGoldTheme ? 16 : 18,
-            },
-            isGoldTheme ? goldShadow(trioClaimButtonEnabled ? 2 : 1) : null,
-            null,
-        ]}>
-          <View style={dailyTaskStyles.taskMainRow}>
-            <View style={[dailyTaskStyles.taskIconFrame, { backgroundColor: isGoldTheme ? goldSoftBg : bonusAccent + '22' }]}>
-              <Image source={oskolokImageForPackShards(trioRewardCount)} style={[{
-                width: 24,
-                height: 24,
-                opacity: trioShardsClaimed ? 0.55 : trioClaimButtonEnabled ? 1 : 0.72,
-            }]} contentFit="contain"/>
-            </View>
+        {tasks.length > 0 && (<DailyBonusCard
+          testID="daily-bonus"
+          title={bonusTitle}
+          description={bonusDescription}
+          titleColor={isGoldTheme ? t.textPrimary : '#FFFFFF'}
+          descriptionColor={isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)'}
+          surfaceColor={isGoldTheme ? GOLD_RICH.wash : 'rgba(15,14,18,0.90)'}
+          borderColor={trioShardsClaimed ? t.border : trioClaimButtonEnabled ? (isGoldTheme ? goldHairline : bonusAccent + '80') : (isGoldTheme ? goldHairline : bonusAccent + '44')}
+          outerStyle={[dailyTaskStyles.bonusCard, isGoldTheme ? { borderRadius: 16 } : null, isGoldTheme ? goldShadow(trioClaimButtonEnabled ? 2 : 1) : null]}
+          titleTextProps={{ style: { fontSize: f.body, fontWeight: '800' } }}
+          descriptionTextProps={{ style: { fontSize: f.caption, lineHeight: f.caption * 1.35, fontWeight: '400' } }}
+          icon={<Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 24, height: 24, opacity: trioShardsClaimed ? 0.55 : trioClaimButtonEnabled ? 1 : 0.72 }} contentFit="contain" />}
+          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
+          action={!trioShardsClaimed ? { label: `${bonusClaimLabel} ${trioRewardCount}`, accessibilityLabel: bonusClaimAccessibilityLabel, labelProps: { style: { fontSize: Math.min(f.sub, 13), fontWeight: '900' } }, onPress: handleClaimTrioShards, foregroundColor: trioActionText, backgroundColor: trioActionBg, disabled: !trioClaimButtonEnabled, loading: trioClaimBusy, icon: <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain" /> } : undefined}
+          claimed={trioShardsClaimed}
+          claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
+        />)}
 
-            <View style={dailyTaskStyles.taskTextBlock}>
-              <Text numberOfLines={1} style={{ color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.body, fontWeight: '800', marginBottom: 1 }}>
-                {triLang(lang, {
-            ru: 'Бонус за день',
-            uk: 'Бонус за день',
-            es: 'Bono del día',
-            'pt-BR': "Bônus do dia",
-            vi: "Thưởng trong ngày",
-            id: "Bonus harian",
-            tr: "Günlük bonus",
-            pl: "Bonus dnia",
-        })}
-              </Text>
-              <Text numberOfLines={2} style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)', fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
-                {triLang(lang, {
-            ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
-            uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
-            es: `Completa todas las tareas y reclama ${trioRewardCount} fragmentos.`,
-            'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} fragmentos.`,
-            vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} mảnh.`,
-            id: `Selesaikan semua tugas dan klaim ${trioRewardCount} fragmen.`,
-            tr: `Tüm görevleri tamamla ve ${trioRewardCount} parça al.`,
-            pl: `Ukończ wszystkie zadania i odbierz ${trioRewardCount} odłamków.`,
-        })}
-              </Text>
-            </View>
-
-            <View style={dailyTaskStyles.taskRightColumn}>
-              {trioShardsClaimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
-                <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
-              </View>) : (<TouchableOpacity
-                onPress={handleClaimTrioShards}
-                disabled={!trioClaimButtonEnabled}
-                activeOpacity={0.85}
-                accessibilityRole="button"
-                accessibilityState={{ disabled: !trioClaimButtonEnabled }}
-                accessibilityLabel={triLang(lang, {
-                    ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}`,
-                    uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}`,
-                    es: `Reclamar bono del día: ${trioRewardCount} fragmentos`,
-                    'pt-BR': `Coletar bônus do dia: ${trioRewardCount} fragmentos`,
-                    vi: `Nhận thưởng trong ngày: ${trioRewardCount} mảnh`,
-                    id: `Klaim bonus harian: ${trioRewardCount} fragmen`,
-                    tr: `Günlük bonusu al: ${trioRewardCount} parça`,
-                    pl: `Odbierz bonus dnia: ${trioRewardCount} odłamków`,
-                })}
-                style={[dailyTaskStyles.bonusClaimButton, { backgroundColor: trioActionBg }]}
-              >
-                <Text
-                  numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.78}
-                  style={{ color: trioActionText, fontSize: Math.min(f.sub, 13), fontWeight: '900', maxWidth: 82 }}
-                >
-                  {triLang(lang, {
-                    ru: 'Забрать',
-                    uk: 'Забрати',
-                    es: 'Reclamar',
-                    'pt-BR': "Coletar",
-                    vi: "Nhận",
-                    id: "Klaim",
-                    tr: "Al",
-                    pl: "Odbierz",
-                  })}
-                  {' '}
-                  {trioRewardCount}
-                </Text>
-                <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain"/>
-              </TouchableOpacity>)}
-            </View>
-          </View>
-
-          <View style={dailyTaskStyles.taskProgressBlock}>
-            <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
-              <View style={{
-                    height: '100%',
-                    width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any,
-                    backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent,
-                    borderRadius: 999,
-                }}/>
-            </View>
-          </View>
-
-          {false && (<>
-              <View style={[dailyTaskStyles.taskDivider, isGoldTheme ? { backgroundColor: goldDivider } : null]}/>
-              <View style={dailyTaskStyles.taskFooter}>
-                <View />
-                <View style={dailyTaskStyles.taskActions}>
-                  {trioShardsClaimed ? (<View style={[dailyTaskStyles.claimedPill, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
-                      <Ionicons name="checkmark-circle" size={16} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.4)'}/>
-                    </View>) : (<TouchableOpacity onPress={handleClaimTrioShards} activeOpacity={0.85} style={[dailyTaskStyles.taskClaimButton, { backgroundColor: rewardActionBg, shadowColor: rewardActionBg }]}>
-                      <Text style={{ color: rewardActionText, fontSize: f.body, fontWeight: '700' }}>
-                        {triLang(lang, {
-                    ru: 'Забрать',
-                    uk: 'Забрати',
-                    es: 'Reclamar',
-                    'pt-BR': "Coletar",
-                    vi: "Nhận",
-                    id: "Klaim",
-                    tr: "Al",
-                    pl: "Odbierz",
-                })}
-                      </Text>
-                    </TouchableOpacity>)}
-                </View>
-              </View>
-            </>)}
-        </View>)}
 
         {sortedTasks.map((task) => {
             const p = progress.find(pr => pr.taskId === task.id);
@@ -2686,191 +2592,50 @@ export default function DailyTasksScreen() {
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
             const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
             const taskIconPlateBorder = isGoldTheme ? goldHairline : `${taskAccent}55`;
-            const isExpanded = expandedTaskId === task.id && !completed && !claimed;
-            const expandedDescriptionLineHeight = f.body * 1.28;
-            const expandedDescriptionLines = Math.min(3, Math.max(1, Math.ceil(taskDesc.length / 32)));
-            const expandedDescriptionBlockHeight = Math.ceil(expandedDescriptionLineHeight * expandedDescriptionLines + 14);
-            const expandedCardTargetHeight = 92 + expandedDescriptionBlockHeight;
-            const expandedCardHeight = isExpanded
-                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [92, expandedCardTargetHeight] })
-                : 92;
-            const expandedPanelHeight = isExpanded
-                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [0, expandedDescriptionBlockHeight] })
-                : 0;
-            const expandedPanelTranslateY = isExpanded
-                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] })
-                : 0;
-            return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null, null]}>
-            <TouchableOpacity activeOpacity={completed && !claimed ? 1 : (claimed ? 1 : 0.88)} onPress={completed && !claimed ? undefined : (claimed ? undefined : () => handleTaskCardPress(task))}>
-            <Animated.View style={[
-                    dailyTaskStyles.taskCard,
-                    dailyTaskStyles.taskCapsuleCard,
-                    {
-                        height: expandedCardHeight as any,
-                        borderColor: taskHairline,
-                        backgroundColor: taskTrackColor,
-                    }]}
-                >
-                <View pointerEvents="none" style={[
-                    dailyTaskStyles.taskCapsuleFill,
-                    {
-                        ...taskFillSizeStyle,
-                        backgroundColor: taskFillColor,
-                        opacity: 1,
-                    },
-                ]}/>
-                <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]}/>
-                <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]}/>
-                <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
+            const claimLabel = triLang(lang, {
+                ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar',
+                vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
+            });
+            const rerollLabel = triLang(lang, {
+                ru: 'Заменить вызов за осколки', uk: 'Замінити завдання за уламки', es: 'Reemplazar tarea por fragmentos',
+                'pt-BR': 'Substituir tarefa por fragmentos', vi: 'Đổi nhiệm vụ bằng mảnh', id: 'Ganti tugas dengan fragmen',
+                tr: 'Görevi parçalarla değiştir', pl: 'Zamień zadanie za odłamki',
+            });
+            return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null]}>
+              <DailyTaskCard
+                testID={`daily-task-${task.id}`}
+                title={taskTitle}
+                description={taskDesc}
+                titleColor={isGoldTheme ? t.textPrimary : '#FFFFFF'}
+                descriptionColor={isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)'}
+                surfaceColor={taskTrackColor}
+                borderColor={taskHairline}
+                accentColor={taskAccent}
+                outerStyle={dailyTaskStyles.taskCapsuleCard}
+                titleTextProps={{ style: [dailyTaskStyles.taskCapsuleTitle, { fontSize: f.body + 2 }] }}
+                descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
+                iconStyle={{ backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }}
+                emphasized={expandedTaskId === task.id}
+                onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
+                icon={<Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" />}
+                background={<>
+                  <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
+                  <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
+                  <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
+                </>}
+                progress={<View style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
                   <View style={[dailyTaskStyles.taskCapsuleBottomFill, taskFillSizeStyle]}>
-                    <LinearGradient
-                      colors={claimed
-                        ? (isGoldTheme ? [GOLD_RICH.agedGold, GOLD_RICH.champagne] : ['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.46)'])
-                        : [taskAccent, lightenHex(taskAccent, 0.28)]}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 0 }}
-                      style={dailyTaskStyles.taskCapsuleBottomFillGradient}
-                    />
+                    <LinearGradient colors={claimed ? (isGoldTheme ? [GOLD_RICH.agedGold, GOLD_RICH.champagne] : ['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.46)']) : [taskAccent, lightenHex(taskAccent, 0.28)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskCapsuleBottomFillGradient} />
                   </View>
-                </View>
-                {/* Плашка Premium */}
-                {isPremiumTask && (<Animated.View pointerEvents="box-none" style={{
-                        position: 'absolute', bottom: -1, right: -1, zIndex: 10,
-                        transform: [{ scale: premiumPulse }],
-                        opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }),
-                        borderBottomRightRadius: 18, borderTopLeftRadius: 10,
-                        overflow: 'hidden',
-                    }}>
-                    <PlusBadge themeMode={themeMode} size="sm" />
-                  </Animated.View>)}
-
-                {/* Верхняя строка: иконка + текст + XP */}
-                <View style={[dailyTaskStyles.taskMainRow, dailyTaskStyles.taskCapsuleRow]}>
-                  <View style={[dailyTaskStyles.taskCapsuleIconPlate, { backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }]}>
-                    <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain"/>
-                  </View>
-                  <View style={dailyTaskStyles.taskCapsuleTextBlock}>
-                    <Text numberOfLines={2} style={[dailyTaskStyles.taskCapsuleTitle, { color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.body + 2 }]}>
-                      {taskTitle}
-                    </Text>
-                  </View>
-
-                  <View style={dailyTaskStyles.taskCapsuleRight}>
-                    {completed && !claimed ? (<TouchableOpacity onPress={() => { void handleClaim(task.id, task.xp); }} disabled={claimBusyId === task.id} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
-                      <Text numberOfLines={1} style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800', flexShrink: 0 }}>
-                        {triLang(lang, {
-                          ru: 'Забрать',
-                          uk: 'Забрати',
-                          es: 'Reclamar',
-                          'pt-BR': "Coletar",
-                          vi: "Nhận",
-                          id: "Klaim",
-                          tr: "Al",
-                          pl: "Odbierz",
-                        })}
-                      </Text>
-                    </TouchableOpacity>) : claimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
-                      <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
-                    </View>) : null}
-                    {!completed && !claimed && rerollsLeft > 0 && (<TouchableOpacity onPress={(e) => {
-                        e.stopPropagation();
-                        hapticTap();
-                        setRerollConfirm({ task });
-                    }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                        ru: 'Заменить вызов за осколки',
-                        uk: 'Замінити завдання за уламки',
-                        es: 'Reemplazar tarea por fragmentos',
-                        'pt-BR': "Substituir tarefa por fragmentos",
-                        vi: "Đổi nhiệm vụ bằng mảnh",
-                        id: "Ganti tugas dengan fragmen",
-                        tr: "Görevi parçalarla değiştir",
-                        pl: "Zamień zadanie za odłamki",
-                    })} style={[dailyTaskStyles.compactIconButton, dailyTaskStyles.taskCapsuleRefreshButton, { backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.07)', borderColor: isGoldTheme ? goldHairline : `${taskAccent}32` }]}>
-                      <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'}/>
-                    </TouchableOpacity>)}
-                  </View>
-                </View>
-
-                {/* Раскрытое описание задания: настоящий текст «что делать» (taskDesc),
-                    появляется анимированно по первому тапу. */}
-                {isExpanded && (<Animated.View style={[
-                    dailyTaskStyles.taskExpandedPanel,
-                    {
-                        height: expandedPanelHeight as any,
-                        opacity: expandedTaskAnim,
-                        transform: [{ translateY: expandedPanelTranslateY as any }],
-                    },
-                ]}>
-                  <Text numberOfLines={expandedDescriptionLines} style={[dailyTaskStyles.taskExpandedDescription, { color: isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)', fontSize: f.body, lineHeight: expandedDescriptionLineHeight }]}>
-                    {taskDesc}
-                  </Text>
-                </Animated.View>)}
-                {false && (<View style={dailyTaskStyles.taskProgressBlock}>
-                  <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
-                    <View style={{
-                        height: '100%',
-                        width: `${pct}%` as any,
-                        borderRadius: 999,
-                        backgroundColor: claimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : taskAccent,
-                    }}>
-                    </View>
-                  </View>
-                </View>)}
-
-                {/* Footer — только если есть действие */}
-                {false && (<>
-                <View style={[dailyTaskStyles.taskDivider, isGoldTheme ? { backgroundColor: goldDivider } : null]}/>
-                <View style={dailyTaskStyles.taskFooter}>
-                  <View />
-                  <View style={dailyTaskStyles.taskActions}>
-                    {!completed && !claimed && rerollsLeft > 0 && (<TouchableOpacity onPress={(e) => {
-                            e.stopPropagation();
-                            hapticTap();
-                            setRerollConfirm({ task });
-                        }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                            ru: 'Заменить вызов за осколки',
-                            uk: 'Замінити завдання за уламки',
-                            es: 'Reemplazar tarea por fragmentos',
-                            'pt-BR': "Substituir tarefa por fragmentos",
-                            vi: "Đổi nhiệm vụ bằng mảnh",
-                            id: "Ganti tugas dengan fragmen",
-                            tr: "Görevi parçalarla değiştir",
-                            pl: "Zamień zadanie za odłamki",
-                        })} style={{
-                            width: 36,
-                            height: 36,
-                            borderRadius: 18,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.08)',
-                            borderWidth: 1,
-                            borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.15)',
-                        }}>
-                        <Ionicons name="refresh" size={17} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
-                      </TouchableOpacity>)}
-                    {completed && !claimed && (<TouchableOpacity onPress={() => { void handleClaim(task.id, task.xp); }} disabled={claimBusyId === task.id} activeOpacity={0.85} style={[dailyTaskStyles.taskClaimButton, { backgroundColor: rewardActionBg, shadowColor: rewardActionBg }]}>
-                        <Text style={{ color: rewardActionText, fontSize: f.body, fontWeight: '700' }}>
-                          {triLang(lang, {
-                            ru: 'Забрать',
-                            uk: 'Забрати',
-                            es: 'Reclamar',
-                            'pt-BR': "Coletar",
-                            vi: "Nhận",
-                            id: "Klaim",
-                            tr: "Al",
-                            pl: "Odbierz",
-                        })}
-                        </Text>
-                      </TouchableOpacity>)}
-                    {claimed && (<View style={[dailyTaskStyles.claimedPill, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
-                        <Ionicons name="checkmark-circle" size={16} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.4)'}/>
-                      </View>)}
-                  </View>
-                </View>
-                </>)}
-            </Animated.View>
-            </TouchableOpacity>
+                </View>}
+                action={completed && !claimed ? { label: claimLabel, onPress: () => { void handleClaim(task.id, task.xp); }, foregroundColor: rewardActionText, backgroundColor: rewardActionBg, disabled: claimBusyId === task.id, loading: claimBusyId === task.id } : undefined}
+                claimed={claimed}
+                claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
+                reroll={!completed && !claimed && rerollsLeft > 0 ? { accessibilityLabel: rerollLabel, onPress: () => { hapticTap(); setRerollConfirm({ task }); }, icon: <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'} /> } : undefined}
+                premium={isPremiumTask ? <Animated.View pointerEvents="box-none" style={{ position: 'absolute', bottom: -1, right: -1, zIndex: 10, transform: [{ scale: premiumPulse }], opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }), borderBottomRightRadius: 18, borderTopLeftRadius: 10, overflow: 'hidden' }}><PlusBadge themeMode={themeMode} size="sm" /></Animated.View> : undefined}
+              />
             </Animated.View>);
+
         })}
 
         {claimedCount === tasks.length && tasks.length > 0 && (<View style={{ alignItems: 'center', padding: 24, gap: 8 }}>

@@ -98,6 +98,14 @@ const parseJsonRecord = <T>(raw: string | null): Record<number, T> => {
 const isAccountTokenCurrent = (accountToken?: AccountGenerationToken): boolean =>
   !accountToken || isCurrentAccountGeneration(accountToken);
 
+const withInventoryMutationGuard = async (
+  accountToken: AccountGenerationToken | undefined,
+  mutation: () => Promise<void>,
+): Promise<void> => {
+  if (!isAccountTokenCurrent(accountToken)) return;
+  await mutation();
+};
+
 const writePendingGiftCountCache = async (
   count: number,
   accountToken?: AccountGenerationToken,
@@ -135,12 +143,19 @@ export const getPendingLevelGiftInventoryCache = (studyTarget?: RuntimeStudyTarg
 };
 
 /** Save claimed gift rarity for display purposes. */
-export const saveClaimedGiftRarity = async (level: number, rarity: string): Promise<void> => {
+export const saveClaimedGiftRarity = async (
+  level: number,
+  rarity: string,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(CLAIMED_GIFTS_KEY);
-    const map = parseJsonRecord<string>(raw);
-    map[level] = rarity;
-    await AsyncStorage.setItem(CLAIMED_GIFTS_KEY, JSON.stringify(map));
+    await withInventoryMutationGuard(accountToken, async () => {
+      const raw = await AsyncStorage.getItem(CLAIMED_GIFTS_KEY);
+      if (!isAccountTokenCurrent(accountToken)) return;
+      const map = parseJsonRecord<string>(raw);
+      map[level] = rarity;
+      await AsyncStorage.setItem(CLAIMED_GIFTS_KEY, JSON.stringify(map));
+    });
   } catch {
     // Non-critical UI history.
   }
@@ -163,32 +178,38 @@ export const saveUnclaimedGift = async (
   accountToken?: AccountGenerationToken,
 ): Promise<void> => {
   try {
-    const [singleRaw, dualRaw] = await AsyncStorage.multiGet([UNCLAIMED_GIFTS_KEY, UNCLAIMED_DUAL_GIFTS_KEY]);
-    const map = parseJsonRecord<GiftDef>(singleRaw[1]);
-    map[level] = gift;
-    const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
-    delete dualMap[level];
-    if (!isAccountTokenCurrent(accountToken)) return;
-    // Атомарно обновляем оба хранилища
-    await AsyncStorage.multiSet([
-      [UNCLAIMED_GIFTS_KEY, JSON.stringify(map)],
-      [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
-    ]);
-    await refreshPendingGiftCountCache(accountToken);
+    await withInventoryMutationGuard(accountToken, async () => {
+      const [singleRaw, dualRaw] = await AsyncStorage.multiGet([UNCLAIMED_GIFTS_KEY, UNCLAIMED_DUAL_GIFTS_KEY]);
+      if (!isAccountTokenCurrent(accountToken)) return;
+      const map = parseJsonRecord<GiftDef>(singleRaw[1]);
+      map[level] = gift;
+      const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
+      delete dualMap[level];
+      await AsyncStorage.multiSet([
+        [UNCLAIMED_GIFTS_KEY, JSON.stringify(map)],
+        [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
+      ]);
+      await refreshPendingGiftCountCache(accountToken);
+    });
   } catch {
     // A missed cache write should not block the level-up flow.
   }
 };
 
 /** Mark a single gift as claimed. */
-export const markGiftClaimed = async (level: number): Promise<void> => {
+export const markGiftClaimed = async (
+  level: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_GIFTS_KEY);
-    if (!raw) return;
-    const map = parseJsonRecord<GiftDef>(raw);
-    delete map[level];
-    await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(map));
-    await refreshPendingGiftCountCache();
+    await withInventoryMutationGuard(accountToken, async () => {
+      const raw = await AsyncStorage.getItem(UNCLAIMED_GIFTS_KEY);
+      if (!raw || !isAccountTokenCurrent(accountToken)) return;
+      const map = parseJsonRecord<GiftDef>(raw);
+      delete map[level];
+      await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(map));
+      await refreshPendingGiftCountCache(accountToken);
+    });
   } catch {
     // Best effort cleanup.
   }
@@ -210,18 +231,19 @@ export const saveUnclaimedDualGift = async (
   accountToken?: AccountGenerationToken,
 ): Promise<void> => {
   try {
-    const [dualRaw, singleRaw] = await AsyncStorage.multiGet([UNCLAIMED_DUAL_GIFTS_KEY, UNCLAIMED_GIFTS_KEY]);
-    const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
-    dualMap[level] = pair;
-    const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
-    delete singleMap[level];
-    if (!isAccountTokenCurrent(accountToken)) return;
-    // Атомарно обновляем оба хранилища, чтобы исключить рассинхрон при сбое
-    await AsyncStorage.multiSet([
-      [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
-      [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
-    ]);
-    await refreshPendingGiftCountCache(accountToken);
+    await withInventoryMutationGuard(accountToken, async () => {
+      const [dualRaw, singleRaw] = await AsyncStorage.multiGet([UNCLAIMED_DUAL_GIFTS_KEY, UNCLAIMED_GIFTS_KEY]);
+      if (!isAccountTokenCurrent(accountToken)) return;
+      const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
+      dualMap[level] = pair;
+      const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
+      delete singleMap[level];
+      await AsyncStorage.multiSet([
+        [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
+        [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
+      ]);
+      await refreshPendingGiftCountCache(accountToken);
+    });
   } catch {
     // Best effort cache write.
   }
@@ -236,71 +258,100 @@ export const loadUnclaimedDualGifts = async (): Promise<Record<number, PremPair>
   }
 };
 
-export const markDualGiftClaimed = async (level: number): Promise<void> => {
+export const markDualGiftClaimed = async (
+  level: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    if (!raw) return;
-    const map = parseJsonRecord<PremPair>(raw);
-    delete map[level];
-    await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
-    await refreshPendingGiftCountCache();
+    await withInventoryMutationGuard(accountToken, async () => {
+      const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
+      if (!raw || !isAccountTokenCurrent(accountToken)) return;
+      const map = parseJsonRecord<PremPair>(raw);
+      delete map[level];
+      await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
+      await refreshPendingGiftCountCache(accountToken);
+    });
   } catch {
     // Best effort cleanup.
   }
+};
+
+const saveRemainingGiftAfterPartialDualClaimUnsafe = async (
+  level: number,
+  remainingGift: GiftDef,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const [dualRaw, singleRaw, partialRaw] = await AsyncStorage.multiGet([
+    UNCLAIMED_DUAL_GIFTS_KEY,
+    UNCLAIMED_GIFTS_KEY,
+    PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
+  ]);
+  if (!isAccountTokenCurrent(accountToken)) return;
+  const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
+  delete dualMap[level];
+  const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
+  singleMap[level] = remainingGift;
+  const partialLevels = parseJsonLevelArray(partialRaw[1]);
+  if (!partialLevels.includes(level)) partialLevels.push(level);
+
+  await AsyncStorage.multiSet([
+    [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
+    [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
+    [PARTIAL_DUAL_CLAIMED_LEVELS_KEY, JSON.stringify(partialLevels)],
+  ]);
+  await refreshPendingGiftCountCache(accountToken);
 };
 
 export const saveRemainingGiftAfterPartialDualClaim = async (
   level: number,
   remainingGift: GiftDef,
+  accountToken?: AccountGenerationToken,
 ): Promise<void> => {
   try {
-    const [dualRaw, singleRaw, partialRaw] = await AsyncStorage.multiGet([
-      UNCLAIMED_DUAL_GIFTS_KEY,
-      UNCLAIMED_GIFTS_KEY,
-      PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
-    ]);
-    const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
-    delete dualMap[level];
-    const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
-    singleMap[level] = remainingGift;
-    const partialLevels = parseJsonLevelArray(partialRaw[1]);
-    if (!partialLevels.includes(level)) partialLevels.push(level);
-
-    await AsyncStorage.multiSet([
-      [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
-      [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
-      [PARTIAL_DUAL_CLAIMED_LEVELS_KEY, JSON.stringify(partialLevels)],
-    ]);
-    await refreshPendingGiftCountCache();
+    await withInventoryMutationGuard(accountToken, () =>
+      saveRemainingGiftAfterPartialDualClaimUnsafe(level, remainingGift, accountToken));
   } catch {
     // Best effort persistence; entitlement read-back will reject conflicting state.
   }
 };
 
-export const markDualGiftPartClaimed = async (level: number, part: DualGiftPart): Promise<void> => {
+export const markDualGiftPartClaimed = async (
+  level: number,
+  part: DualGiftPart,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   try {
-    const dualRaw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    const map = parseJsonRecord<PremPair>(dualRaw);
-    const pair = map[level];
-    if (!pair) return;
+    await withInventoryMutationGuard(accountToken, async () => {
+      const dualRaw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
+      if (!isAccountTokenCurrent(accountToken)) return;
+      const map = parseJsonRecord<PremPair>(dualRaw);
+      const pair = map[level];
+      if (!pair) return;
 
-    const remainingGift = part === 'f2p' ? pair.prem : pair.f2p;
-    if (remainingGift) {
-      await saveRemainingGiftAfterPartialDualClaim(level, remainingGift);
-    }
+      const remainingGift = part === 'f2p' ? pair.prem : pair.f2p;
+      if (remainingGift) {
+        await saveRemainingGiftAfterPartialDualClaimUnsafe(level, remainingGift, accountToken);
+      }
+    });
   } catch {
     // Best effort cleanup.
   }
 };
 
-export const setLevelHadDualClaim = async (level: number): Promise<void> => {
+export const setLevelHadDualClaim = async (
+  level: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(CLAIMED_DUAL_LEVELS_KEY);
-    const set: number[] = raw ? JSON.parse(raw) : [];
-    if (!set.includes(level)) {
-      set.push(level);
-      await AsyncStorage.setItem(CLAIMED_DUAL_LEVELS_KEY, JSON.stringify(set));
-    }
+    await withInventoryMutationGuard(accountToken, async () => {
+      const raw = await AsyncStorage.getItem(CLAIMED_DUAL_LEVELS_KEY);
+      if (!isAccountTokenCurrent(accountToken)) return;
+      const set: number[] = raw ? JSON.parse(raw) : [];
+      if (!set.includes(level)) {
+        set.push(level);
+        await AsyncStorage.setItem(CLAIMED_DUAL_LEVELS_KEY, JSON.stringify(set));
+      }
+    });
   } catch {
     // Cosmetic progress state only.
   }

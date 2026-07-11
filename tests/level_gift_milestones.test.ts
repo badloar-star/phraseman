@@ -13,6 +13,13 @@ import {
   isCustomAvatarGiftOnly,
   isCustomAvatarShardShop,
 } from '../constants/custom_avatars';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  captureAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
@@ -37,6 +44,7 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
+  __resetAccountGenerationForTests();
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach(k => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
@@ -53,6 +61,46 @@ beforeEach(() => {
 });
 
 describe('level gift milestone rewards', () => {
+  it('serializes a delayed account-A gift effect so the queued wipe leaves account B untouched', async () => {
+    beginAccountGeneration('account-a');
+    const accountToken = captureAccountGeneration();
+    let releaseWrite!: () => void;
+    let signalWriteStarted!: () => void;
+    const writeGate = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    const writeStarted = new Promise<void>((resolve) => { signalWriteStarted = resolve; });
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+      if (key === 'wager_discount') {
+        signalWriteStarted();
+        await writeGate;
+      }
+      mockStorage[key] = value;
+    });
+
+    const applying = applyGift({
+      id: 'wager_discount_25',
+      rarity: 'epic',
+      icon: 'gift',
+      weight: 1,
+      titleRU: 'A',
+      titleUK: 'A',
+      descRU: 'A',
+      descUK: 'A',
+    }, 'Account A', 3, 5, jest.fn(), { isPremium: false, accountToken });
+    await writeStarted;
+    invalidateAccountGeneration();
+    const switchToB = withAccountTransitionLock(async () => {
+      delete mockStorage.wager_discount;
+      beginAccountGeneration('account-b');
+      mockStorage.account_marker = 'account-b';
+    });
+
+    releaseWrite();
+    await expect(applying).resolves.toEqual({ success: true });
+    await expect(switchToB).resolves.toBeUndefined();
+    expect(mockStorage.wager_discount).toBeUndefined();
+    expect(mockStorage.account_marker).toBe('account-b');
+  });
+
   it('returns guaranteed milestone gifts for key levels', async () => {
     await expect(rollF2pLevelGiftForUser(5)).resolves.toMatchObject({ id: 'xp_bank_150' });
     await expect(rollF2pLevelGiftForUser(10)).resolves.toMatchObject({ id: 'xp_bank_300' });

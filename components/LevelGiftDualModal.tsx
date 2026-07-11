@@ -53,6 +53,12 @@ import {
   type PremPair,
 } from '../app/level_gift_inventory';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../app/account_generation';
+import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 
 export {
   loadDualClaimedLevels,
@@ -226,6 +232,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const doneClosingRef = useRef(false);
   /** Только false→true по `visible` — иначе лишний сброс `opened` (Strict Mode / смена deps) убирает уже открытые сундуки. */
   const wasVisibleRef = useRef(false);
+  const openingAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const isCurrentOpening = (accountToken: AccountGenerationToken): boolean =>
+    isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken);
 
   const resetAnims = useCallback(() => {
     fFloat.setValue(0); fRock.setValue(0); fScale.setValue(1); fShake.setValue(0); fLid.setValue(0);
@@ -252,6 +261,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const justOpened = !wasVisibleRef.current;
     wasVisibleRef.current = true;
     if (justOpened) {
+      openingAccountTokenRef.current = captureAccountGeneration();
       setOpened(new Set());
       setPhase('pair');
       setOpening(null);
@@ -283,11 +293,13 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         setF2pGift(preRolledPair.f2p);
         setPremGift(preRolledPair.prem);
       } else {
+        const accountToken = openingAccountTokenRef.current;
         void (async () => {
           const [a, b] = await Promise.all([
             rollF2pLevelGiftForUser(level, { premiumSafe: true, studyTarget }),
             rollPremiumLevelGiftForUser(level, { studyTarget }),
           ]);
+          if (!accountToken || !isCurrentOpening(accountToken)) return;
           setF2pGift(a);
           setPremGift(b);
         })();
@@ -341,7 +353,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
 
   useEffect(() => {
     if (!visible || !storesOnly || !f2pGift || !premGift) return;
-    void saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift });
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken) return;
+    void saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift }, accountToken);
   }, [visible, storesOnly, level, f2pGift, premGift]);
 
   // Idle: оба сундука (или один оставшийся) качаются с разной фазой
@@ -396,32 +410,39 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     prem: GiftDef,
     f2pResult: ApplyGiftResult,
     premResult: ApplyGiftResult,
+    accountToken: AccountGenerationToken,
   ) => {
     const f2pOk = f2pResult.success === true;
     const premOk = premResult.success === true;
+    if (!isCurrentAccountGeneration(accountToken)) return;
     if (f2pOk && premOk) {
-      await markDualGiftClaimed(level);
-      await markGiftClaimed(level);
-      await setLevelHadDualClaim(level);
+      await markDualGiftClaimed(level, accountToken);
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      await markGiftClaimed(level, accountToken);
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      await setLevelHadDualClaim(level, accountToken);
+      if (!isCurrentAccountGeneration(accountToken)) return;
       const best = f2p.rarity === 'epic' || prem.rarity === 'epic'
         ? 'epic' : f2p.rarity === 'rare' || prem.rarity === 'rare' ? 'rare' : 'common';
-      await saveClaimedGiftRarity(level, best);
+      await saveClaimedGiftRarity(level, best, accountToken);
       return;
     }
     if (f2pOk) {
-      await saveRemainingGiftAfterPartialDualClaim(level, prem);
-      await saveClaimedGiftRarity(level, f2p.rarity);
+      await saveRemainingGiftAfterPartialDualClaim(level, prem, accountToken);
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      await saveClaimedGiftRarity(level, f2p.rarity, accountToken);
       return;
     }
     if (premOk) {
-      await saveRemainingGiftAfterPartialDualClaim(level, f2p);
-      await saveClaimedGiftRarity(level, prem.rarity);
+      await saveRemainingGiftAfterPartialDualClaim(level, f2p, accountToken);
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      await saveClaimedGiftRarity(level, prem.rarity, accountToken);
       return;
     }
-    await saveUnclaimedDualGift(level, { f2p, prem });
+    await saveUnclaimedDualGift(level, { f2p, prem }, accountToken);
   };
 
-  const runOpenAnim = (which: BoxKey, g: GiftDef) => {
+  const runOpenAnim = (which: BoxKey, g: GiftDef, accountToken: AccountGenerationToken) => {
     const shakeA = which === 'f2p' ? fShake : pShake;
     const scaleA = which === 'f2p' ? fScale : pScale;
     const floatA = which === 'f2p' ? fFloat : pFloat;
@@ -446,6 +467,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         Animated.spring(scaleA, { toValue: 1.06, tension: 200, friction: 8, useNativeDriver: true }),
         Animated.timing(lidA, { toValue: 1, duration: 340, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
       ]).start(() => {
+        if (!isCurrentOpening(accountToken)) return;
         floatA.setValue(0);
         rockA.setValue(0);
         scaleA.setValue(1);
@@ -459,12 +481,16 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         if (which === 'prem' || g.rarity === 'epic' || g.rarity === 'rare') void hapticSuccess();
         else void hapticTap();
         if (storesOnly) return;
-        const applyResultP = applyGift(g, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget })
+        const applyResultP = applyGift(g, userName, energy, maxEnergy, setEnergyFn, {
+          isPremium: true,
+          studyTarget,
+          accountToken,
+        })
           .catch(() => ({ success: false }));
         if (which === 'f2p') f2pApplyPromiseRef.current = applyResultP;
         else premApplyPromiseRef.current = applyResultP;
         void applyResultP.then((result) => {
-          if (!wasVisibleRef.current) return;
+          if (!isCurrentOpening(accountToken)) return;
           if (which === 'f2p') setF2pAppliedMeta(result);
           else setPremAppliedMeta(result);
         });
@@ -474,32 +500,42 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
 
   const onTapF2p = () => {
     if (phase !== 'pair' || opening || !f2pGift || opened.has('f2p')) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     hapticTap();
     setOpening('f2p');
-    runOpenAnim('f2p', f2pGift);
+    runOpenAnim('f2p', f2pGift, accountToken);
   };
 
   const onTapPrem = () => {
     if (phase !== 'pair' || opening || !premGift || opened.has('prem')) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     hapticTap();
     setOpening('prem');
-    runOpenAnim('prem', premGift);
+    runOpenAnim('prem', premGift, accountToken);
   };
 
   const handleSkip = async () => {
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     if (f2pGift && premGift && opened.size === 0) {
-      await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift });
+      await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift }, accountToken);
+      if (!isCurrentOpening(accountToken)) return;
       onClose(false);
     }
   };
 
   const handleDone = async (openAvatar = false) => {
     if (!f2pGift || !premGift || doneClosingRef.current) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     doneClosingRef.current = true;
     setClaimNowBusy(true);
     void hapticSuccess();
     if (storesOnly) {
-      await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift });
+      await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift }, accountToken);
+      if (!isCurrentOpening(accountToken)) return;
       onClose(false);
       return;
     }
@@ -507,7 +543,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const prem = premGift;
     onClose(true);
     if (openAvatar) {
-      setTimeout(() => router.push('/avatar_select' as any), 80);
+      setTimeout(() => {
+        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
     }
     void (async () => {
       try {
@@ -515,21 +553,24 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           f2pApplyPromiseRef.current ?? Promise.resolve(f2pAppliedMeta),
           premApplyPromiseRef.current ?? Promise.resolve(premAppliedMeta),
         ]);
-        if (wasVisibleRef.current) {
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        if (isCurrentOpening(accountToken)) {
           setF2pAppliedMeta(f2pResult);
           setPremAppliedMeta(premResult);
         }
-        await persistDualGiftOutcome(f2p, prem, f2pResult, premResult);
+        await persistDualGiftOutcome(f2p, prem, f2pResult, premResult, accountToken);
       } catch {
         // The modal already closed optimistically; failed parts stay retryable through persist fallback.
       } finally {
-        if (wasVisibleRef.current) setClaimNowBusy(false);
+        if (isCurrentOpening(accountToken)) setClaimNowBusy(false);
       }
     })();
   };
 
   const handleUseNow = async (openAvatar = false) => {
     if (!f2pGift || !premGift || doneClosingRef.current || claimNowBusy) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     setClaimNowBusy(true);
     doneClosingRef.current = true;
     void hapticSuccess();
@@ -537,23 +578,26 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const prem = premGift;
     onClose(true);
     if (openAvatar) {
-        setTimeout(() => router.push('/avatar_select' as any), 80);
+        setTimeout(() => {
+          if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+        }, 80);
       }
     void (async () => {
       try {
         const [f2pResult, premResult] = await Promise.all([
-          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget }).catch(() => ({ success: false })),
-          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget }).catch(() => ({ success: false })),
+          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken }).catch(() => ({ success: false })),
+          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget, accountToken }).catch(() => ({ success: false })),
         ]);
-        if (wasVisibleRef.current) {
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        if (isCurrentOpening(accountToken)) {
           setF2pAppliedMeta(f2pResult);
           setPremAppliedMeta(premResult);
         }
-        await persistDualGiftOutcome(f2p, prem, f2pResult, premResult);
+        await persistDualGiftOutcome(f2p, prem, f2pResult, premResult, accountToken);
       } catch {
         // The modal has already closed optimistically; do not surface background storage noise.
       } finally {
-        if (wasVisibleRef.current) setClaimNowBusy(false);
+        if (isCurrentOpening(accountToken)) setClaimNowBusy(false);
       }
     })();
   };

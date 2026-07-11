@@ -11,6 +11,12 @@ import {
   giftRarityUiLabel,
 } from '../app/level_gift_system';
 import { getShardsBalance } from '../app/shards_system';
+import * as shardsSystem from '../app/shards_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  captureAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
@@ -35,6 +41,7 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
+  __resetAccountGenerationForTests();
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach(k => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
@@ -75,6 +82,26 @@ describe('level_gift_system — shards_3', () => {
     await applyGift(gift, 'TestUser', 3, 5, jest.fn());
     const balance = await getShardsBalance();
     expect(balance).toBe(8);
+  });
+
+  it('completes the token-bound shard fallback without re-entering the transition lock', async () => {
+    beginAccountGeneration('account-a');
+    const accountToken = captureAccountGeneration();
+    const addSpy = jest.spyOn(shardsSystem, 'addShardsRaw').mockResolvedValue(0);
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    try {
+      const gift = GIFT_POOL.find((g: GiftDef) => g.id === 'shards_3')!;
+      const result = await Promise.race([
+        applyGift(gift, 'TestUser', 3, 5, jest.fn(), { isPremium: false, accountToken }),
+        new Promise<'timeout'>((resolve) => { timeout = setTimeout(() => resolve('timeout'), 1000); }),
+      ]);
+
+      expect(result).toEqual({ success: true });
+      await expect(getShardsBalance()).resolves.toBe(3);
+    } finally {
+      if (timeout) clearTimeout(timeout);
+      addSpy.mockRestore();
+    }
   });
 
   it('keeps bonus lesson hints isolated between English legacy and French', async () => {

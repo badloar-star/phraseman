@@ -415,7 +415,9 @@ export default function LevelGiftsInventoryScreen() {
             onClose={closeGiftModal}
             preRolledGift={selected.gift}
             deliveryMode="claim"
-            onGiftClaimed={selected.dualPart ? () => markDualGiftPartClaimed(selected.level, selected.dualPart!) : undefined}
+            onGiftClaimed={selected.dualPart
+              ? (_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)
+              : undefined}
             saveOnDismiss={false}
             applyAsPremium={selected.dualPart ? true : undefined}
             studyTarget={studyTarget}

@@ -243,12 +243,17 @@ export const getShardsBalance = async (): Promise<number> => {
 };
 
 /** Локальный баланс = значение с сервера (после Cloud Function, без client-side spend). */
-export const replaceShardsBalanceLocal = async (
+/**
+ * Lock-free balance replacement for callers that already own the account-transition lock.
+ * Never call this directly from an unscoped flow; use one of the exported wrappers below.
+ */
+const replaceShardsBalanceLocalUnlocked = async (
   next: number,
   options?: ReplaceShardBalanceOptions,
-): Promise<void> => withAccountTransitionLock(async () => {
+  accountToken?: AccountGenerationToken,
+): Promise<boolean> => {
   const n = Math.max(0, Math.floor(Number(next)));
-  if (!Number.isFinite(n)) return;
+  if (!Number.isFinite(n) || (accountToken && !isCurrentAccountGeneration(accountToken))) return false;
   const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs);
   const meta: ShardBalanceMeta = {
     updatedAtMs: serverUpdatedAtMs ?? Date.now(),
@@ -262,18 +267,37 @@ export const replaceShardsBalanceLocal = async (
     await withStorageLock(async () => {
       if (serverUpdatedAtMs !== null) {
         const currentMeta = await readBalanceMeta();
+        if (accountToken && !isCurrentAccountGeneration(accountToken)) return;
         if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;
       }
+      if (accountToken && !isCurrentAccountGeneration(accountToken)) return;
       await persistLocalBalance(n, meta);
       wrote = true;
     });
   } catch {
-    return;
+    return false;
   }
-  if (!wrote) return;
+  if (!wrote || (accountToken && !isCurrentAccountGeneration(accountToken))) return false;
   setShardsBalanceMemory(n);
   await emitShardsBalanceUpdated(n, meta);
-});
+  return !accountToken || isCurrentAccountGeneration(accountToken);
+};
+
+export const replaceShardsBalanceLocal = async (
+  next: number,
+  options?: ReplaceShardBalanceOptions,
+): Promise<void> => {
+  await withAccountTransitionLock(async () => {
+    await replaceShardsBalanceLocalUnlocked(next, options);
+  });
+};
+
+/** Token-checked variant for code that already owns `withAccountTransitionLock`. */
+export const replaceShardsBalanceLocalWhileAccountTransitionLocked = async (
+  next: number,
+  accountToken: AccountGenerationToken,
+  options?: ReplaceShardBalanceOptions,
+): Promise<boolean> => replaceShardsBalanceLocalUnlocked(next, options, accountToken);
 
 /** Account-scoped server reconciliation that cannot leave a stale generation in the shared wallet. */
 export type AccountGenerationShardBalanceOutcome = 'applied' | 'already-newer' | 'stale-generation' | 'failed';

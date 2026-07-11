@@ -11,8 +11,19 @@ import {
   withRestoreApplicationLock,
   withAccountTransitionLock,
 } from '../app/account_generation';
+import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 
 describe('account generation', () => {
+  it('rejects callbacks from opening N after opening N+1 in the same account generation', () => {
+    beginAccountGeneration('stable-a');
+    const openingN = captureAccountGeneration();
+    const openingNPlusOne = captureAccountGeneration();
+
+    expect(isCurrentLevelGiftOpening(openingN, openingN)).toBe(true);
+    expect(isCurrentLevelGiftOpening(openingNPlusOne, openingN)).toBe(false);
+    expect(isCurrentLevelGiftOpening(openingNPlusOne, openingNPlusOne)).toBe(true);
+  });
+
   beforeEach(() => __resetAccountGenerationForTests());
 
   it('adopts the initial anonymous boot generation exactly once', () => {

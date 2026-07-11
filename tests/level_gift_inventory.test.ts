@@ -24,6 +24,12 @@ import {
   rollPremiumLevelGiftForUser,
   type GiftDef,
 } from '../app/level_gift_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  captureAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/level_gift_system', () => {
@@ -54,6 +60,7 @@ const pendingGiftIds = (items: Awaited<ReturnType<typeof loadPendingLevelGiftInv
   items.flatMap((item) => item.kind === 'single' ? [item.gift.id] : [item.pair.f2p.id, item.pair.prem.id]);
 
 beforeEach(() => {
+  __resetAccountGenerationForTests();
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
@@ -84,6 +91,76 @@ beforeEach(() => {
 });
 
 describe('level gift inventory', () => {
+  it('does not let a delayed modal save from account A overwrite account B inventory', async () => {
+    beginAccountGeneration('account-a');
+    const accountAToken = captureAccountGeneration();
+    let releaseRead!: () => void;
+    const readGate = new Promise<void>((resolve) => { releaseRead = resolve; });
+    (AsyncStorage.multiGet as jest.Mock).mockImplementationOnce(async (keys: string[]) => {
+      await readGate;
+      return keys.map((key) => [key, mockStorage[key] ?? null]);
+    });
+
+    const delayedSave = saveUnclaimedGift(7, makeGift('account-a-gift'), accountAToken);
+    beginAccountGeneration('account-b');
+    mockStorage[UNCLAIMED_GIFTS_KEY] = JSON.stringify({ 7: makeGift('account-b-gift') });
+    releaseRead();
+    await delayedSave;
+
+    expect(JSON.parse(mockStorage[UNCLAIMED_GIFTS_KEY])[7].id).toBe('account-b-gift');
+  });
+
+  it('ignores stale modal claim cleanup after the account generation changes', async () => {
+    beginAccountGeneration('account-a');
+    const accountAToken = captureAccountGeneration();
+    beginAccountGeneration('account-b');
+    mockStorage[UNCLAIMED_GIFTS_KEY] = JSON.stringify({ 9: makeGift('account-b-gift') });
+
+    await markGiftClaimed(9, accountAToken);
+
+    expect(JSON.parse(mockStorage[UNCLAIMED_GIFTS_KEY])[9].id).toBe('account-b-gift');
+  });
+
+  it('does not deadlock entitlement persistence when the caller already owns the account transition lock', async () => {
+    beginAccountGeneration('account-a');
+    const accountToken = captureAccountGeneration();
+
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    const result = await Promise.race([
+      withAccountTransitionLock(() => ensureLevelGiftEntitlement(11, { accountToken })),
+      new Promise<'timeout'>((resolve) => { timeout = setTimeout(() => resolve('timeout'), 1000); }),
+    ]).finally(() => {
+      if (timeout) clearTimeout(timeout);
+    });
+
+    expect(result).toMatchObject({ status: 'persisted', level: 11 });
+  });
+
+  it('lets opening N persist single, partial-dual, and failed-dual outcomes after N+1 opens on the same account', async () => {
+    beginAccountGeneration('account-a');
+    const openingN = captureAccountGeneration();
+    const openingNPlusOne = captureAccountGeneration();
+    expect(openingNPlusOne).not.toBe(openingN);
+
+    await saveUnclaimedGift(31, makeGift('single-from-opening-n'), openingN);
+    await saveUnclaimedDualGift(32, {
+      f2p: makeGift('claimed-half'),
+      prem: makeGift('remaining-half'),
+    }, openingN);
+    await saveRemainingGiftAfterPartialDualClaim(32, makeGift('remaining-half'), openingN);
+    await saveUnclaimedDualGift(33, {
+      f2p: makeGift('failed-f2p'),
+      prem: makeGift('failed-premium'),
+    }, openingN);
+
+    expect(JSON.parse(mockStorage[UNCLAIMED_GIFTS_KEY])[31].id).toBe('single-from-opening-n');
+    expect(JSON.parse(mockStorage[UNCLAIMED_GIFTS_KEY])[32].id).toBe('remaining-half');
+    expect(JSON.parse(mockStorage[UNCLAIMED_DUAL_GIFTS_KEY])[33]).toMatchObject({
+      f2p: { id: 'failed-f2p' },
+      prem: { id: 'failed-premium' },
+    });
+  });
+
   it.each([Number.NaN, 0, -1, 1.5])('rejects invalid entitlement level %p', async (level) => {
     await expect(ensureLevelGiftEntitlement(level)).resolves.toEqual({ status: 'failed', level });
     expect(rollF2pLevelGiftForUser).not.toHaveBeenCalled();

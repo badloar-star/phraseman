@@ -46,6 +46,7 @@ export default function SurveyRewardPanel({
   const reduceMotion = useReduceMotion();
   const progress = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
   const isError = phase === 'retryable-error';
+  const hasValidReward = Number.isSafeInteger(reward) && reward > 0;
   const labels = ACTION_LABELS[lang as keyof typeof ACTION_LABELS] ?? ACTION_LABELS.ru;
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function SurveyRewardPanel({
     });
     animation.start();
     return () => animation.stop();
-  }, [phase, progress, reduceMotion]);
+  }, [progress, reduceMotion]);
 
   const motionStyle = reduceMotion
     ? styles.motionRest
@@ -80,7 +81,7 @@ export default function SurveyRewardPanel({
         <View style={[styles.iconHalo, { backgroundColor: isError ? t.wrongBg : '#493466' }]}>
           {isError ? (
             <Ionicons name="alert-circle" size={56} color={t.wrong} accessibilityElementsHidden />
-          ) : (
+          ) : hasValidReward ? (
             <>
               <Ionicons name="checkmark-circle" size={32} color="#B98CFF" accessibilityElementsHidden />
               <Image
@@ -88,9 +89,12 @@ export default function SurveyRewardPanel({
                 source={oskolokImageForPackShards(Math.max(1, reward), themeMode)}
                 style={styles.shardImage}
                 contentFit="contain"
-                accessibilityLabel={subtitle}
+                accessible={false}
+                importantForAccessibility="no"
               />
             </>
+          ) : (
+            <Ionicons name="checkmark-circle" size={56} color="#B98CFF" accessibilityElementsHidden />
           )}
         </View>
 

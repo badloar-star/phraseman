@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { fireEvent, render } from '@testing-library/react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 
 jest.unmock('react-native');
 jest.mock('@expo/vector-icons', () => ({
@@ -32,7 +32,12 @@ jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'pl' }) 
 jest.mock('../components/text-integrity/use_text_integrity_probe', () => ({
   useTextIntegrityProbe: () => ({ ref: { current: null }, onTextLayout: jest.fn() }),
 }));
-jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
+let mockReduceMotionEnabled = true;
+jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => mockReduceMotionEnabled }));
+const mockOskolokImageForPackShards = jest.fn(() => ({ uri: 'survey-shard' }));
+jest.mock('../app/oskolok', () => ({
+  oskolokImageForPackShards: (...args: unknown[]) => mockOskolokImageForPackShards(...args),
+}));
 
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
@@ -129,6 +134,11 @@ test.each(['optimistic-reward', 'reconciled'] as const)(
     );
 
     expect(view.getByTestId('survey-reward-shard-asset').props.source).toBeTruthy();
+    expect(view.getByTestId('survey-reward-shard-asset', { includeHiddenElements: true }).props).toMatchObject({
+      accessible: false,
+      importantForAccessibility: 'no',
+    });
+    expect(mockOskolokImageForPackShards).toHaveBeenCalledWith(3, 'dark');
     expect(view.getByTestId('survey-reward-title').props.children).toBe('Dziękujemy za odpowiedzi');
     expect(view.getByText('Twoje pełne odpowiedzi zostały zapisane i pomagają rozwijać Phraseman.')).toBeTruthy();
     expect(view.getByTestId('survey-reward-subtitle').props.numberOfLines).toBeUndefined();
@@ -142,6 +152,51 @@ test.each(['optimistic-reward', 'reconciled'] as const)(
 
     fireEvent.press(view.getByRole('button', { name: 'Gotowe' }));
     expect(onDone).toHaveBeenCalledTimes(1);
+  },
+);
+
+test('optimistic to reconciled rerender does not replay the entrance animation', async () => {
+  mockReduceMotionEnabled = false;
+  const animation = { start: jest.fn(), stop: jest.fn() };
+  const timing = jest.spyOn(Animated, 'timing').mockReturnValue(animation as ReturnType<typeof Animated.timing>);
+  const props = {
+    reward: 3,
+    title: 'Dziękujemy',
+    subtitle: 'Odpowiedzi zostały zapisane.',
+    error: 'Błąd',
+    onDone: jest.fn(),
+    onRetry: jest.fn(),
+  };
+
+  const view = await render(<SurveyRewardPanel phase="optimistic-reward" {...props} />);
+  expect(timing).toHaveBeenCalledTimes(1);
+  await act(async () => {
+    view.rerender(<SurveyRewardPanel phase="reconciled" {...props} />);
+  });
+  expect(timing).toHaveBeenCalledTimes(1);
+
+  timing.mockRestore();
+  mockReduceMotionEnabled = true;
+});
+
+test.each([0, -2, Number.NaN, Number.POSITIVE_INFINITY])(
+  'invalid reward %p omits shard art and never resolves an asset',
+  async (reward) => {
+    mockOskolokImageForPackShards.mockClear();
+    const view = await render(
+      <SurveyRewardPanel
+        phase="reconciled"
+        reward={reward}
+        title="Dziękujemy"
+        subtitle="Odpowiedzi zostały zapisane."
+        error="Błąd"
+        onDone={jest.fn()}
+        onRetry={jest.fn()}
+      />,
+    );
+
+    expect(view.queryByTestId('survey-reward-shard-asset')).toBeNull();
+    expect(mockOskolokImageForPackShards).not.toHaveBeenCalled();
   },
 );
 

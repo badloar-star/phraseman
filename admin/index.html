@@ -11907,14 +11907,20 @@
   <div id="cr-content"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
-<!-- DAILY DIGEST TAB (ИИ-сводка «что случилось за сутки» для владельца) -->
+<!-- DAILY DIGEST TAB — точный период с последнего успешного запуска -->
 <div id="tab-daily-digest" class="reports-tab">
   <div class="reports-toolbar">
-    <button id="dd-generate" onclick="generateDailyDigest()" style="background:rgba(139,124,255,0.18);border:1px solid rgba(139,124,255,0.45);color:#c4b5fd;font-weight:700">✨ Сгенерировать за сутки</button>
-    <button onclick="loadDailyDigest(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <button id="dd-generate" onclick="generateDailyDigest()" title="Собрать события с окончания последнего успешного дайджеста">Сформировать дайджест</button>
+    <button onclick="loadDailyDigest(true)" title="Обновить последний сохранённый результат">Обновить</button>
+    <label for="dd-history" class="sr-only">История запусков</label>
+    <select id="dd-history" aria-label="История запусков"><option value="">Последний успешный запуск</option></select>
     <span class="reports-count" id="dd-count"></span>
   </div>
-  <div id="dd-content"><div class="reports-empty">⏳ Загрузка...</div></div>
+  <section id="dd-period" aria-label="Период дайджеста"></section>
+  <section id="dd-kpis" aria-label="Сравнительные показатели"></section>
+  <section id="dd-charts" aria-label="Графики дайджеста"></section>
+  <section id="dd-content" aria-live="polite"><div class="reports-empty">Загрузка…</div></section>
+  <section id="dd-coverage" aria-label="Покрытие источников"></section>
 </div>
 
 <!-- GMAIL SUPPORT INBOX TAB (входящая почта support.phraseman@gmail.com + ИИ-ответы) -->
@@ -27385,6 +27391,7 @@
 
   // ═══ DAILY DIGEST — ИИ-сводка «что случилось за сутки» ══════════════════════
   function renderDigestDoc(box, data) {
+    if (typeof window.renderDigestV2 === 'function' && window.renderDigestV2(data)) return;
     if (!data) {
       box.innerHTML = '<div class="reports-empty" style="padding:22px">За сегодня дайджеста ещё нет. Нажми «✨ Сгенерировать за сутки» — ИИ прочитает репорты, отмены, ошибки и safety за последние 24 часа и напишет короткую сводку.</div>';
       return;
@@ -27414,11 +27421,15 @@
     box.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
       await auth.currentUser?.getIdToken(true).catch(() => null);
+      const latest = await getDoc(doc(db, 'admin_digest_state', 'latest'));
+      const runId = latest.exists() ? String(latest.data().runId || '') : '';
       const dayKey = new Date().toISOString().slice(0, 10);
-      const snap = await getDoc(doc(db, 'admin_digests', dayKey));
+      const snap = runId
+        ? await getDoc(doc(db, 'admin_digest_runs', runId))
+        : await getDoc(doc(db, 'admin_digests', dayKey));
       renderDigestDoc(box, snap.exists() ? snap.data() : null);
       const countEl = document.getElementById('dd-count');
-      if (countEl) countEl.textContent = snap.exists() ? 'дайджест за сегодня' : 'ещё не создан';
+      if (countEl) countEl.textContent = snap.exists() ? 'последний успешный дайджест' : 'ещё не создан';
       window._dailyDigestLoaded = true;
     } catch (e) {
       window._dailyDigestLoaded = false;
@@ -27431,21 +27442,21 @@
     const btn = document.getElementById('dd-generate');
     if (!box) return;
     if (btn) { btn.disabled = true; btn.textContent = '⏳ ИИ думает…'; }
-    box.innerHTML = '<div class="reports-empty">✨ ИИ читает события за сутки и пишет сводку… (10–20 сек)</div>';
+    box.innerHTML = '<div class="reports-empty">Собираем события с окончания последнего успешного дайджеста…</div>';
     try {
       const call = getAdminGenerateDailyDigestCallable();
       const res = await call({});
       const data = res?.data || null;
       renderDigestDoc(box, data);
       const countEl = document.getElementById('dd-count');
-      if (countEl) countEl.textContent = data?.empty ? 'сутки тихие' : 'обновлено только что';
-      showToast(data?.empty ? 'За сутки заметных событий нет' : '✅ Дайджест готов', 'ok');
+      if (countEl) countEl.textContent = data?.empty ? 'за период нет подтверждённых событий' : 'обновлено только что';
+      showToast(data?.empty ? 'За период подтверждённых событий нет' : 'Дайджест готов', 'ok');
     } catch (e) {
       const msg = (e && (e.message || e.code)) || String(e);
       box.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(msg)}</div>`;
       showToast('Не удалось: ' + msg, 'err');
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = '✨ Сгенерировать за сутки'; }
+      if (btn) { btn.disabled = false; btn.textContent = 'Сформировать дайджест'; }
     }
   };
 
@@ -39946,5 +39957,6 @@
   setTimeout(init, 1200);
 })();
 </script>
+<script src="admin-digest.js"></script>
 </body>
 </html>

@@ -88,12 +88,6 @@ function stringLiteralValue(node: ts.Node | undefined): string | null {
     : null;
 }
 
-function calledName(expression: ts.LeftHandSideExpression): string | null {
-  if (ts.isIdentifier(expression)) return expression.text;
-  if (ts.isPropertyAccessExpression(expression)) return expression.name.text;
-  return null;
-}
-
 function isPathCall(
   expression: ts.Expression,
   methods: readonly string[],
@@ -105,6 +99,185 @@ function isPathCall(
     expression.expression.expression.text === "path" &&
     methods.includes(expression.expression.name.text)
   );
+}
+
+function isFsModuleName(node: ts.Node | undefined): boolean {
+  const moduleName = stringLiteralValue(node);
+  return (
+    moduleName !== null && /^(?:node:)?fs(?:\/promises)?$/.test(moduleName)
+  );
+}
+
+function isRequireOfFs(
+  expression: ts.Expression | undefined,
+): expression is ts.CallExpression {
+  return (
+    expression !== undefined &&
+    ts.isCallExpression(expression) &&
+    ts.isIdentifier(expression.expression) &&
+    expression.expression.text === "require" &&
+    isFsModuleName(expression.arguments[0])
+  );
+}
+
+type FsBindings = {
+  functions: ReadonlyMap<string, string>;
+  namespaces: ReadonlySet<string>;
+};
+
+function accessedPropertyName(expression: ts.Expression): string | null {
+  if (ts.isPropertyAccessExpression(expression)) return expression.name.text;
+  if (ts.isElementAccessExpression(expression)) {
+    return stringLiteralValue(expression.argumentExpression);
+  }
+  return null;
+}
+
+function collectFsBindings(sourceFile: ts.SourceFile): FsBindings {
+  const functions = new Map<string, string>();
+  const namespaces = new Set<string>();
+  const declarations: ts.VariableDeclaration[] = [];
+
+  for (const statement of sourceFile.statements) {
+    if (
+      ts.isImportDeclaration(statement) &&
+      isFsModuleName(statement.moduleSpecifier)
+    ) {
+      const clause = statement.importClause;
+      if (clause?.name) namespaces.add(clause.name.text);
+      if (clause?.namedBindings && ts.isNamespaceImport(clause.namedBindings)) {
+        namespaces.add(clause.namedBindings.name.text);
+      } else if (
+        clause?.namedBindings &&
+        ts.isNamedImports(clause.namedBindings)
+      ) {
+        for (const element of clause.namedBindings.elements) {
+          const importedName = element.propertyName?.text ?? element.name.text;
+          if (WRITE_PATH_ARGUMENTS[importedName]) {
+            functions.set(element.name.text, importedName);
+          }
+        }
+      }
+    } else if (
+      ts.isImportEqualsDeclaration(statement) &&
+      ts.isExternalModuleReference(statement.moduleReference) &&
+      isFsModuleName(statement.moduleReference.expression)
+    ) {
+      namespaces.add(statement.name.text);
+    }
+  }
+
+  const collectDeclarations = (node: ts.Node): void => {
+    if (ts.isVariableDeclaration(node)) declarations.push(node);
+    ts.forEachChild(node, collectDeclarations);
+  };
+  collectDeclarations(sourceFile);
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const declaration of declarations) {
+      const initializer = declaration.initializer;
+      if (ts.isIdentifier(declaration.name)) {
+        const localName = declaration.name.text;
+        if (isRequireOfFs(initializer) && !namespaces.has(localName)) {
+          namespaces.add(localName);
+          changed = true;
+          continue;
+        }
+        if (
+          initializer &&
+          ts.isIdentifier(initializer) &&
+          functions.has(initializer.text)
+        ) {
+          const canonicalName = functions.get(initializer.text)!;
+          if (functions.get(localName) !== canonicalName) {
+            functions.set(localName, canonicalName);
+            changed = true;
+          }
+          continue;
+        }
+        if (
+          initializer &&
+          (ts.isPropertyAccessExpression(initializer) ||
+            ts.isElementAccessExpression(initializer)) &&
+          isFsNamespaceExpression(initializer.expression, namespaces)
+        ) {
+          const canonicalName = accessedPropertyName(initializer);
+          if (
+            canonicalName &&
+            WRITE_PATH_ARGUMENTS[canonicalName] &&
+            functions.get(localName) !== canonicalName
+          ) {
+            functions.set(localName, canonicalName);
+            changed = true;
+          }
+        }
+      } else if (
+        ts.isObjectBindingPattern(declaration.name) &&
+        (isRequireOfFs(initializer) ||
+          (initializer &&
+            ts.isIdentifier(initializer) &&
+            namespaces.has(initializer.text)))
+      ) {
+        for (const element of declaration.name.elements) {
+          if (!ts.isIdentifier(element.name)) continue;
+          const importedName = element.propertyName
+            ? (stringLiteralValue(element.propertyName) ??
+              (ts.isIdentifier(element.propertyName)
+                ? element.propertyName.text
+                : null))
+            : element.name.text;
+          if (
+            importedName &&
+            WRITE_PATH_ARGUMENTS[importedName] &&
+            functions.get(element.name.text) !== importedName
+          ) {
+            functions.set(element.name.text, importedName);
+            changed = true;
+          }
+        }
+      }
+    }
+  }
+
+  return { functions, namespaces };
+}
+
+function isFsNamespaceExpression(
+  expression: ts.Expression,
+  namespaces: ReadonlySet<string>,
+): boolean {
+  if (ts.isIdentifier(expression)) return namespaces.has(expression.text);
+  if (isRequireOfFs(expression)) return true;
+  if (
+    ts.isPropertyAccessExpression(expression) ||
+    ts.isElementAccessExpression(expression)
+  ) {
+    return (
+      accessedPropertyName(expression) === "promises" &&
+      isFsNamespaceExpression(expression.expression, namespaces)
+    );
+  }
+  return false;
+}
+
+function calledFsName(
+  expression: ts.LeftHandSideExpression,
+  bindings: FsBindings,
+): string | null {
+  if (ts.isIdentifier(expression))
+    return bindings.functions.get(expression.text) ?? null;
+  if (
+    ts.isPropertyAccessExpression(expression) ||
+    ts.isElementAccessExpression(expression)
+  ) {
+    if (!isFsNamespaceExpression(expression.expression, bindings.namespaces))
+      return null;
+    const name = accessedPropertyName(expression);
+    return name && WRITE_PATH_ARGUMENTS[name] ? name : null;
+  }
+  return null;
 }
 
 function isApprovedOutputRoot(expression: ts.Expression): boolean {
@@ -180,10 +353,11 @@ function collectSafeOutputNames(sourceFile: ts.SourceFile): Set<string> {
 
 function unsafeWritePaths(sourceFile: ts.SourceFile): string[] {
   const safeNames = collectSafeOutputNames(sourceFile);
+  const fsBindings = collectFsBindings(sourceFile);
   const violations: string[] = [];
   const visit = (node: ts.Node): void => {
     if (ts.isCallExpression(node)) {
-      const name = calledName(node.expression);
+      const name = calledFsName(node.expression, fsBindings);
       const pathArguments = name ? WRITE_PATH_ARGUMENTS[name] : undefined;
       for (const index of pathArguments ?? []) {
         const argument = node.arguments[index];
@@ -238,10 +412,16 @@ describe("production XP integrity audit read-only contract", () => {
     const fixture = ts.createSourceFile(
       "unsafe-output-fixture.ts",
       [
+        'import { writeFileSync, writeFileSync as save } from "node:fs";',
+        'import * as filesystem from "node:fs";',
+        'const { appendFileSync: append } = require("node:fs");',
+        'const directSave = require("node:fs")["writeFileSync"];',
         'const outputDir = path.join(root, ".codex-tmp", "xp-integrity-audit", runId);',
         'writeFileSync(path.join(outputDir, "report.json"), "safe");',
-        'writeFileSync(path.join(root, "docs", "leak.json"), "unsafe");',
-        'writeFileSync(path.join(outputDir, "..", "leak.json"), "traversal");',
+        'save(path.join(root, "docs", "alias-leak.json"), "unsafe");',
+        'filesystem["writeFileSync"](path.join(outputDir, "..", "computed-leak.json"), "unsafe");',
+        'append(path.join(root, "docs", "require-leak.json"), "unsafe");',
+        'directSave(path.join(root, "docs", "direct-require-leak.json"), "unsafe");',
       ].join("\n"),
       ts.ScriptTarget.Latest,
       true,
@@ -249,8 +429,10 @@ describe("production XP integrity audit read-only contract", () => {
     );
 
     expect(unsafeWritePaths(fixture)).toEqual([
-      "unsafe-output-fixture.ts:3:writeFileSync[0]",
-      "unsafe-output-fixture.ts:4:writeFileSync[0]",
+      "unsafe-output-fixture.ts:7:writeFileSync[0]",
+      "unsafe-output-fixture.ts:8:writeFileSync[0]",
+      "unsafe-output-fixture.ts:9:appendFileSync[0]",
+      "unsafe-output-fixture.ts:10:writeFileSync[0]",
     ]);
   });
 

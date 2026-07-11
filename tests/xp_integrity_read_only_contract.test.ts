@@ -528,6 +528,64 @@ function firebaseModuleReferences(source: ts.SourceFile): string[] {
   return moduleReferences(source, /^(?:firebase|firebase-admin)(?:\/|$)/);
 }
 
+const FIRESTORE_MUTATIONS = new Set([
+  "add",
+  "create",
+  "delete",
+  "set",
+  "update",
+]);
+const AUTH_MUTATIONS = new Set([
+  "createUser",
+  "updateUser",
+  "deleteUser",
+  "deleteUsers",
+  "importUsers",
+  "setCustomUserClaims",
+  "revokeRefreshTokens",
+]);
+
+function firebaseMutationCalls(source: ts.SourceFile): string[] {
+  const violations: string[] = [];
+  const isFirestoreReceiver = (node: ts.Expression): boolean => {
+    if (ts.isCallExpression(node)) {
+      const method = calledProperty(node.expression);
+      if (
+        ["collection", "doc", "batch", "runTransaction"].includes(method ?? "")
+      )
+        return true;
+      return isFirestoreReceiver(node.expression);
+    }
+    if (ts.isPropertyAccessExpression(node))
+      return isFirestoreReceiver(node.expression);
+    if (ts.isElementAccessExpression(node))
+      return isFirestoreReceiver(node.expression);
+    return false;
+  };
+  const visit = (node: ts.Node): void => {
+    if (ts.isCallExpression(node)) {
+      const name = calledProperty(node.expression);
+      const receiver = ts.isPropertyAccessExpression(node.expression)
+        ? node.expression.expression
+        : ts.isElementAccessExpression(node.expression)
+          ? node.expression.expression
+          : null;
+      if (
+        name &&
+        (AUTH_MUTATIONS.has(name) ||
+          (FIRESTORE_MUTATIONS.has(name) &&
+            receiver &&
+            isFirestoreReceiver(receiver)))
+      ) {
+        violations.push(`${name}:${lineOf(source, node)}`);
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return violations;
+}
+
 describe("production XP integrity audit read-only contract", () => {
   it("forbids filesystem capabilities outside report.ts without trusting names", () => {
     const source = parseFixture(
@@ -767,6 +825,37 @@ describe("production XP integrity audit read-only contract", () => {
     for (const sourcePath of auditSources) {
       if (sourcePath === FIRESTORE_READER_PATH) continue;
       expect(firebaseModuleReferences(parseSource(sourcePath))).toEqual([]);
+    }
+  });
+
+  it("detects Firestore dot/bracket and Auth mutations without flagging Set.add", () => {
+    const source = parseFixture(
+      "mutations.ts",
+      [
+        'db.collection("users").doc("u").set({ xp: 1 });',
+        'db.collection("users").doc("u")["delete"]();',
+        'db.collection("users").add({ xp: 1 });',
+        'auth["setCustomUserClaims"]("u", {});',
+        'auth.revokeRefreshTokens("u");',
+        'new Set<string>().add("safe");',
+      ].join("\n"),
+    );
+    expect(firebaseMutationCalls(source)).toEqual([
+      "set:1",
+      "delete:2",
+      "add:3",
+      "setCustomUserClaims:4",
+      "revokeRefreshTokens:5",
+    ]);
+  });
+
+  it("keeps every XP audit source free of Firebase mutations", () => {
+    const auditSources = [
+      ...listTypeScriptFiles(AUDIT_SOURCE_ROOT),
+      ...(existsSync(CLI_PATH) ? [CLI_PATH] : []),
+    ];
+    for (const sourcePath of auditSources) {
+      expect(firebaseMutationCalls(parseSource(sourcePath))).toEqual([]);
     }
   });
 });

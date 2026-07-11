@@ -2416,8 +2416,8 @@ export default function HomeScreen() {
                     paddingHorizontal: 10,
                     paddingVertical: 4,
                     backgroundColor: isPaperHomeTheme ? 'rgba(64,102,190,0.12)' : 'rgba(125,174,255,0.16)',
-                    borderWidth: 1,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : (isPaperHomeTheme ? 'rgba(64,102,190,0.22)' : 'rgba(125,174,255,0.26)'),
+                    borderWidth: 0,
+                    borderColor: 'transparent',
                 }}>
                       <Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
                         {experimentalStatusLevelLabel} {level}
@@ -2596,8 +2596,8 @@ export default function HomeScreen() {
                     paddingVertical: 3,
                     marginBottom: 4,
                     backgroundColor: isGoldTheme ? 'rgba(246, 201, 92, 0.16)' : (isLightTheme ? 'rgba(64, 102, 190, 0.10)' : 'rgba(125, 174, 255, 0.14)'),
-                    borderWidth: 1,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(64, 102, 190, 0.22)' : 'rgba(125, 174, 255, 0.24)'),
+                    borderWidth: 0,
+                    borderColor: 'transparent',
                 }}>
                           <Text allowFontScaling={false} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : t.textPrimary, fontSize: eliteLevelBadgeFontSize, fontWeight: '900', lineHeight: eliteLevelBadgeFontSize + 4, letterSpacing: 0 }} numberOfLines={1}>
                             {triLang(lang, {
@@ -2958,8 +2958,8 @@ export default function HomeScreen() {
                 style={{
                   minHeight: 124,
                   borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
-                  borderWidth: 1,
-                  borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
+                  borderWidth: 0,
+                  borderColor: 'transparent',
                   paddingHorizontal: 18,
                   paddingVertical: 16,
                   overflow: 'hidden',
@@ -3058,8 +3058,8 @@ export default function HomeScreen() {
                     }} style={{
                         flex: 1,
                         borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
-                        borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
-                        borderColor: USE_ELITE_HOME_STATUS ? tileBorderColor : t.border,
+                        borderWidth: 0,
+                        borderColor: 'transparent',
                         overflow: 'hidden',
                         backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
                         ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
@@ -3298,10 +3298,8 @@ export default function HomeScreen() {
           <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
             <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); }} style={{
                 borderRadius: isGoldTheme ? 14 : 16,
-                borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
-                borderColor: USE_ELITE_HOME_STATUS
-                    ? (isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)')
-                    : t.border,
+                borderWidth: 0,
+                borderColor: 'transparent',
                 overflow: 'hidden',
                 backgroundColor: USE_ELITE_HOME_STATUS
                     ? (isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
@@ -3410,8 +3408,8 @@ export default function HomeScreen() {
                   <TouchableOpacity testID={`home-activity-${item.key}`} activeOpacity={0.78} onPress={() => { go(item.path); }} style={{
                         flex: 1,
                         borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
-                        borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
-                        borderColor: USE_ELITE_HOME_STATUS ? tileBorderColor : t.border,
+                        borderWidth: 0,
+                        borderColor: 'transparent',
                         overflow: 'hidden',
                         backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
                         ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
@@ -3691,7 +3689,7 @@ export default function HomeScreen() {
       {/* Баннер сбоя — только когда грузить было нечего (первый запуск + оффлайн). */}
       {loadFailedNoData ? (
         <View pointerEvents="box-none" style={{ position: 'absolute', left: 16, right: 16, bottom: 24 + bottomInset, alignItems: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: t.accent + '40' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 0, borderColor: 'transparent' }}>
             <Ionicons name="cloud-offline-outline" size={22} color={t.textMuted} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: 13, fontWeight: '600' }}>
               {triLang(lang, {
@@ -3738,8 +3736,8 @@ export default function HomeScreen() {
             borderRadius: 16,
             paddingVertical: 12,
             paddingHorizontal: 16,
-            borderWidth: 1,
-            borderColor: t.gold + '66',
+            borderWidth: 0,
+            borderColor: 'transparent',
             width: ENERGY_TOOLTIP_W,
             shadowColor: '#000',
             shadowOpacity: 0.6,

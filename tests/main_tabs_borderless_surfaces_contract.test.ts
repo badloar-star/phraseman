@@ -40,6 +40,17 @@ const LESSONS_TARGET_IDS = [
   'surface:app-tabs-lessons:lessonstab:1',
 ] as const;
 
+const HOME_TARGET_IDS = [
+  'surface:app-tabs-home:homescreen:6',
+  'surface:app-tabs-home:homescreen:9',
+  'surface:app-tabs-home:homescreen:15',
+  'surface:app-tabs-home:homescreen:16',
+  'surface:app-tabs-home:home-open-trainer:2',
+  'surface:app-tabs-home:homescreen:19',
+  'surface:app-tabs-home:screen-home:1',
+  'surface:app-tabs-home:homescreen:23',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -63,5 +74,9 @@ describe('main tabs borderless production surfaces', () => {
 
   it('migrates the reviewed Lessons containers', () => {
     expectMigrated(LESSONS_TARGET_IDS);
+  });
+
+  it('migrates the reviewed Home containers', () => {
+    expectMigrated(HOME_TARGET_IDS);
   });
 });

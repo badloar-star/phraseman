@@ -142,7 +142,11 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
       title: 'Установи Phraseman бесплатно',
       titleLines: ['Установи Phraseman', 'бесплатно'],
       subtitle: 'Первый урок — через 30 секунд',
+      button: 'Установить бесплатно',
+      buttonBackground: '#B7FF3C',
+      buttonTextColor: '#07110A',
       footer: 'Ссылка в профиле',
+      url: 'knowlyapps.com/download',
     },
   };
   const [screenshotUri, heroUri] = await Promise.all([

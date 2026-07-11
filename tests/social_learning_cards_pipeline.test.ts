@@ -377,3 +377,56 @@ describe('two-slide renderer', () => {
     expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg', space: 'srgb', channels: 3 });
   });
 });
+
+describe('social card quality gates', () => {
+  const tempRoot = path.join(root, '.codex-tmp', 'social-learning-cards-tests', 'quality');
+
+  beforeEach(() => {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    fs.mkdirSync(tempRoot, { recursive: true });
+  });
+
+  it('blocks a machine report when required outputs are missing', async () => {
+    const quality = await importEsm(pathToFileURL(path.join(root, 'tools/social-learning-cards/src/validate.mjs')).href) as any;
+    const report = await quality.validateMachinePackage({ card: readFixture(), revisionDir: tempRoot });
+    expect(report.passed).toBe(false);
+    expect(report.checks).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: 'learning_output', passed: false }),
+      expect.objectContaining({ id: 'install_output', passed: false }),
+      expect.objectContaining({ id: 'app_screenshot', passed: false }),
+      expect.objectContaining({ id: 'cta_copy', passed: false }),
+    ]));
+  });
+
+  it('rejects incomplete manual approval and accepts an auditable approval', async () => {
+    const quality = await importEsm(pathToFileURL(path.join(root, 'tools/social-learning-cards/src/validate.mjs')).href) as any;
+    const incomplete = quality.validateManualQa({ semanticMatch: true });
+    expect(incomplete.passed).toBe(false);
+    expect(incomplete.errors).toContain('missing_or_false:noRandomText');
+
+    const complete = quality.validateManualQa({
+      schemaVersion: 1,
+      semanticMatch: true,
+      noRandomText: true,
+      noAnatomyOrObjectDefects: true,
+      noCrop: true,
+      correctCopy: true,
+      currentRealPhrasemanScreen: true,
+      ctaReadable: true,
+      slideOrderCorrect: true,
+      reviewedBy: 'owner',
+      reviewedAt: '2026-07-11T12:00:00.000Z',
+    });
+    expect(complete).toMatchObject({ passed: true, errors: [] });
+  });
+
+  it('blocks export for immutable statuses or reversed platform order', async () => {
+    const quality = await importEsm(pathToFileURL(path.join(root, 'tools/social-learning-cards/src/validate.mjs')).href) as any;
+    const published = { ...readFixture(), status: 'published' };
+    expect(quality.validateExportState(published).errors).toContain('immutable_status:published');
+
+    const reversed = readFixture() as any;
+    reversed.surfaces.instagram.slideOrder = ['install', 'learning'];
+    expect(quality.validateExportState(reversed).errors).toContain('invalid_slide_order:instagram');
+  });
+});

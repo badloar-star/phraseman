@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   panel: {
     alignSelf: 'stretch',
     borderRadius: 24,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 24,
   },
   motion: { alignItems: 'center', gap: 12 },
@@ -216,6 +216,6 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: 'hidden',
   },
-  retry: { borderWidth: 1.5 },
+  retry: { borderWidth: 0 },
   actionLabel: { fontWeight: '900', textAlign: 'center' },
 });

@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,255,255,0.28)',
   },
   primarySole: {
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: AHA_THEME.radiusBubble,
     backgroundColor: AHA_THEME.bubbleBg,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: AHA_THEME.bubbleBorder,
     paddingHorizontal: 16,
     paddingVertical: 14,

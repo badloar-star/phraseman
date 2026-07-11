@@ -793,7 +793,7 @@ export default function SpeakingClubSession() {
                 style={{
                   backgroundColor: t.bgCard,
                   borderRadius: 14,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.wrong,
                   padding: 12,
                 }}
@@ -975,7 +975,7 @@ export default function SpeakingClubSession() {
                         height: 76,
                         borderRadius: 38,
                         backgroundColor: voiceStatus === 'listening' ? t.accent : t.bgCard,
-                        borderWidth: 2,
+                        borderWidth: 0,
                         borderColor: t.accent,
                         alignItems: 'center',
                         justifyContent: 'center',

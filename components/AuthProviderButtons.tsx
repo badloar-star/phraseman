@@ -44,7 +44,7 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, variant 
       activeOpacity={0.85}
       style={[
         styles.button,
-        { backgroundColor: bg, borderColor: border, borderWidth: 1 },
+        { backgroundColor: bg, borderColor: border, borderWidth: 0},
         (loading || disabled) && styles.disabled,
       ]}
       testID="auth-google-button"
@@ -77,7 +77,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label }: Provide
       activeOpacity={0.85}
       style={[
         styles.button,
-        { backgroundColor: '#000000', borderColor: '#000000', borderWidth: 1 },
+        { backgroundColor: '#000000', borderColor: '#000000', borderWidth: 0},
         (loading || disabled) && styles.disabled,
       ]}
       testID="auth-apple-button"

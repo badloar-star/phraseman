@@ -654,8 +654,8 @@ export default function FlashcardsCategoryHub({
           paddingVertical: 8,
           paddingHorizontal: 8,
           borderRadius: 12,
-          borderWidth: 1,
-          borderColor: active ? t.accent : tabOffBorder,
+          borderWidth: 0,
+          borderColor: 'transparent',
           backgroundColor: active ? tabOnBg : tabOffBg,
         }}
       >
@@ -1101,8 +1101,8 @@ export default function FlashcardsCategoryHub({
                   paddingVertical: 12,
                   paddingHorizontal: 14,
                   borderRadius: 14,
-                  borderWidth: 1.5,
-                  borderColor: t.accent,
+                  borderWidth: 0,
+                  borderColor: 'transparent',
                   backgroundColor: isGradientSurface ? t.bgCard : `${t.accent}1A`,
                   flexDirection: 'row',
                   alignItems: 'center',

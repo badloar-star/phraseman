@@ -324,7 +324,7 @@ export default function ReferralsScreen() {
           padding: 14,
           gap: 12,
           ...(claimable
-            ? { backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: t.accent }
+            ? { backgroundColor: `${t.accent}22`, borderWidth: 0, borderColor: t.accent }
             : { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }),
         }}
       >
@@ -387,7 +387,7 @@ export default function ReferralsScreen() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: t.bgSurface,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: t.border,
                 marginRight: 12,
               }}
@@ -450,7 +450,7 @@ export default function ReferralsScreen() {
           {referralEnabled && referralCode ? (
             <View
               testID="referrals-my-code-card"
-              style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.accent + '40', gap: 12 }}
+              style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.accent + '40', gap: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <Ionicons name="gift-outline" size={18} color={t.accent} />
@@ -463,7 +463,7 @@ export default function ReferralsScreen() {
                 onPress={copyReferralCode}
                 accessibilityRole="button"
                 accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
-                style={{ backgroundColor: t.bgSurface, borderRadius: 12, borderWidth: 1, borderColor: t.border, paddingVertical: 14, paddingHorizontal: 16, alignItems: 'center' }}
+                style={{ backgroundColor: t.bgSurface, borderRadius: 12, borderWidth: 0, borderColor: t.border, paddingVertical: 14, paddingHorizontal: 16, alignItems: 'center' }}
               >
                 <Text testID="referrals-my-code-value" style={{ color: t.accent, fontSize: f.h2 ?? 22, fontWeight: '900', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>
                   {referralCode}
@@ -473,7 +473,7 @@ export default function ReferralsScreen() {
                 activeOpacity={0.84}
                 onPress={copyReferralCode}
                 accessibilityRole="button"
-                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 11, borderRadius: 12, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgSurface }}
+                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 11, borderRadius: 12, borderWidth: 0, borderColor: t.border, backgroundColor: t.bgSurface }}
               >
                 <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={16} color={codeCopied ? t.accent : t.textSecond} />
                 <Text style={{ color: codeCopied ? t.accent : t.textPrimary, fontSize: f.sub ?? 13, fontWeight: '800' }}>
@@ -486,7 +486,7 @@ export default function ReferralsScreen() {
           ) : null}
 
           {message && (
-            <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }}>
+            <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border }}>
               <Text testID="referrals-feedback" style={{ color: t.textPrimary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '800' }}>{message}</Text>
             </View>
           )}

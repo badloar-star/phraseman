@@ -367,7 +367,7 @@ export default function ConstellationSearchScreen() {
                     styles.mini,
                     filled
                       ? { backgroundColor: SLOT_COLORS[i] }
-                      : { backgroundColor: 'transparent', borderColor: t.border, borderWidth: 1.5, borderStyle: 'dashed' },
+                      : { backgroundColor: 'transparent', borderColor: t.border, borderWidth: 0, borderStyle: 'dashed' },
                   ]}
                 >
                   {filled
@@ -753,7 +753,7 @@ const styles = StyleSheet.create({
   },
   hintCard: {
     backgroundColor: 'rgba(12,18,44,0.86)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(140,160,220,0.15)',
     borderRadius: 18,
     paddingHorizontal: 18,
@@ -763,7 +763,7 @@ const styles = StyleSheet.create({
   hintTitle: { fontSize: 12, fontWeight: '800', letterSpacing: 0.3 },
   hintBody: { fontSize: 13.5, lineHeight: 19, marginTop: 5 },
   cancelBtn: {
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 999,
     paddingHorizontal: 26,
     paddingVertical: 11,

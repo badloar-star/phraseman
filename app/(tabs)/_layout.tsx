@@ -793,7 +793,7 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     // Объёмная тень, чтобы капсула «парила» над контентом.
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.28,
@@ -808,7 +808,7 @@ const s = StyleSheet.create({
     width: TAB_ACTIVE_PILL_WIDTH,
     height: TAB_ACTIVE_PILL_HEIGHT,
     borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
   },
 
 });

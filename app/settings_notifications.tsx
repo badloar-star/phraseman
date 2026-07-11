@@ -121,7 +121,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
               backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderRadius:isCompassTheme ? 10 : 18,
               overflow:'hidden',
-              borderWidth:0.5,
+              borderWidth:0,
               borderColor:isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
             },
             isCompassTheme && compassShadow(3),
@@ -253,7 +253,7 @@ export default function SettingsNotifications() {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
-            borderWidth: isCompassTheme ? 0.5 : 0,
+            borderWidth: 0,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
             overflow: 'hidden',
             ...(isCompassTheme ? compassShadow(1) : {}),
@@ -282,7 +282,7 @@ export default function SettingsNotifications() {
             height: 38,
             borderRadius: isCompassTheme ? 8 : 19,
             backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderWidth: 0.5,
+            borderWidth: 0,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
             ...(isCompassTheme ? compassShadow(1) : {}),
           }}
@@ -309,7 +309,7 @@ export default function SettingsNotifications() {
                   marginHorizontal: 16,
                   marginVertical: 4,
                   borderRadius: 8,
-                  borderWidth: 0.5,
+                  borderWidth: 0,
                   borderColor: day.enabled ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet,
                   backgroundColor: COMPASS_RICH.charcoalRaised,
                   overflow: 'hidden',
@@ -318,7 +318,7 @@ export default function SettingsNotifications() {
               ]}
             >
               {isCompassTheme ? <CompassDepthSurface radius={8} selected={day.enabled} quiet={!day.enabled} /> : null}
-              <View style={{ width:40, height:40, borderRadius:isCompassTheme ? 8 : 20, backgroundColor:day.enabled ? (isCompassTheme ? COMPASS_RICH.washStrong : t.bgSurface) : (isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard), borderWidth:0.5, borderColor:day.enabled ? (isCompassTheme ? COMPASS_RICH.hairlineStrong : t.textSecond) : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border), justifyContent:'center', alignItems:'center', marginRight:14 }}>
+              <View style={{ width:40, height:40, borderRadius:isCompassTheme ? 8 : 20, backgroundColor:day.enabled ? (isCompassTheme ? COMPASS_RICH.washStrong : t.bgSurface) : (isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard), borderWidth:0, borderColor:day.enabled ? (isCompassTheme ? COMPASS_RICH.hairlineStrong : t.textSecond) : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border), justifyContent:'center', alignItems:'center', marginRight:14 }}>
                 <Ionicons name="alarm-outline" size={20} color={day.enabled ? t.textSecond : t.textGhost}/>
               </View>
               <View style={{ flex:1 }}>
@@ -352,7 +352,7 @@ export default function SettingsNotifications() {
               padding:14,
               backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderRadius:isCompassTheme ? 8 : 12,
-              borderWidth:0.5,
+              borderWidth:0,
               borderColor:isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
               overflow: 'hidden',
             },

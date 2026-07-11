@@ -333,7 +333,7 @@ export function RichIntroLineView({
         isFramed && {
           backgroundColor: semanticLineBg,
           borderColor: `${semanticColor}40`,
-          borderWidth: 1,
+          borderWidth: 0,
           paddingLeft: 16,
           paddingRight: 12,
           paddingVertical: line.type === 'formula' ? 12 : 10,

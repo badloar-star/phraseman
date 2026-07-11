@@ -2191,7 +2191,7 @@ export default function FlashcardsSwipeScreen() {
                   style={[
                     styles.checkCircle,
                     {
-                      borderColor: selected ? selectedAccent : t.border,
+                      borderColor: 'transparent',
                       backgroundColor: selected ? selectedAccent : 'transparent',
                     },
                   ]}
@@ -2320,7 +2320,7 @@ export default function FlashcardsSwipeScreen() {
               </Text>
             )}
             {stats.streak >= 3 ? (
-              <View style={[styles.headerStreakPill, { backgroundColor: `${t.gold}22`, borderColor: `${t.gold}66` }]}>
+              <View style={[styles.headerStreakPill, { backgroundColor: `${t.gold}22`, borderColor: 'transparent' }]}>
                 <Ionicons name="flame-outline" size={12} color={t.gold} />
                 <Text style={[styles.headerStreakText, { color: t.gold, fontSize: f.caption }]}>
                   {text.streakLabel} {stats.streak}
@@ -2373,10 +2373,10 @@ export default function FlashcardsSwipeScreen() {
               },
             ]}
           >
-            <Animated.View style={[styles.swipeBadge, styles.noBadge, { opacity: noOpacity, borderColor: t.wrong }]}>
+            <Animated.View style={[styles.swipeBadge, styles.noBadge, { opacity: noOpacity, borderColor: 'transparent', backgroundColor: glassFill(t.wrong, 0.14) }]}>
               <Text style={[styles.swipeBadgeText, { color: t.wrong }]}>{text.mismatch}</Text>
             </Animated.View>
-            <Animated.View style={[styles.swipeBadge, styles.yesBadge, { opacity: yesOpacity, borderColor: t.correct }]}>
+            <Animated.View style={[styles.swipeBadge, styles.yesBadge, { opacity: yesOpacity, borderColor: 'transparent', backgroundColor: glassFill(t.correct, 0.14) }]}>
               <Text style={[styles.swipeBadgeText, { color: t.correct }]}>{text.match}</Text>
             </Animated.View>
 
@@ -2462,7 +2462,7 @@ export default function FlashcardsSwipeScreen() {
                   { maxHeight: feedbackMaxHeight },
                   {
                     backgroundColor: feedback.kind === 'wrong' ? t.wrongBg : t.goldBg,
-                    borderColor: feedback.kind === 'wrong' ? t.wrong : t.gold,
+                    borderColor: 'transparent',
                   },
                 ]}
                 contentContainerStyle={styles.feedbackScrollContent}
@@ -2522,7 +2522,7 @@ export default function FlashcardsSwipeScreen() {
                   isPlanFlashcardsTask && styles.planAnswerButton,
                   {
                     backgroundColor: t.wrongBg,
-                    borderColor: t.wrong,
+                    borderColor: 'transparent',
                     opacity: settling ? 0.65 : 1,
                   },
                 ]}
@@ -2541,7 +2541,7 @@ export default function FlashcardsSwipeScreen() {
                   isPlanFlashcardsTask && styles.planAnswerButton,
                   {
                     backgroundColor: t.correctBg,
-                    borderColor: t.correct,
+                    borderColor: 'transparent',
                     opacity: settling ? 0.65 : 1,
                   },
                 ]}
@@ -2765,7 +2765,7 @@ const styles = StyleSheet.create({
   segment: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 16,
     padding: 6,
     gap: 8,
@@ -2781,7 +2781,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     minHeight: 58,
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 8,
@@ -2851,7 +2851,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    borderWidth: 1.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2886,7 +2886,7 @@ const styles = StyleSheet.create({
   },
   headerStreakPill: {
     marginTop: 2,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 999,
     paddingHorizontal: 7,
     paddingVertical: 2,
@@ -2946,7 +2946,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 18,
     zIndex: 5,
-    borderWidth: 2,
+    borderWidth: 0,
     borderRadius: 12,
     paddingVertical: 7,
     paddingHorizontal: 11,
@@ -3057,7 +3057,7 @@ const styles = StyleSheet.create({
   },
   feedbackBox: {
     marginTop: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 16,
   },
   planFeedbackBox: {
@@ -3122,7 +3122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 70,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',

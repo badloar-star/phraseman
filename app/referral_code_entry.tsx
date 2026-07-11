@@ -213,7 +213,7 @@ export default function ReferralCodeEntryScreen() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: t.bgSurface,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.border,
                   marginRight: 12,
                 }}
@@ -230,7 +230,7 @@ export default function ReferralCodeEntryScreen() {
                 borderRadius: 20,
                 padding: 18,
                 backgroundColor: t.bgCard,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: t.border,
                 gap: 14,
               }}
@@ -279,7 +279,7 @@ export default function ReferralCodeEntryScreen() {
                   paddingHorizontal: 16,
                   backgroundColor: t.bgSurface,
                   color: t.textPrimary,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.border,
                   fontSize: f.body ?? 16,
                   fontWeight: '900',

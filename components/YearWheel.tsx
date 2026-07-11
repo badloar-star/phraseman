@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   wheelWrap: {
     height: WHEEL_HEIGHT,
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
     justifyContent: 'center',
   },

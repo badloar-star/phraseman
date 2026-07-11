@@ -1083,7 +1083,7 @@ const styles = StyleSheet.create({
     backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: '#FFF',
   },
   badgeText: {
@@ -1110,7 +1110,7 @@ const styles = StyleSheet.create({
     maxHeight: '86%',
     minHeight: 360,
     borderRadius: 24,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
     padding: 16,
   },
@@ -1134,7 +1134,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    borderWidth: 0.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1200,7 +1200,8 @@ const styles = StyleSheet.create({
   pollBadge: {
     height: 22,
     borderRadius: 11,
-    borderWidth: 0.5,
+    borderWidth: 0,
+    backgroundColor: 'rgba(127,127,127,0.10)',
     paddingHorizontal: 7,
     flexDirection: 'row',
     alignItems: 'center',
@@ -1345,7 +1346,7 @@ const styles = StyleSheet.create({
   pollCard: {
     marginTop: 18,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 14,
   },
   pollHeader: {

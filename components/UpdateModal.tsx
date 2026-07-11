@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
   innerStroke: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 29,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
   },
   topSheen: {
     position: 'absolute',
@@ -496,7 +496,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 18,
   },
   closeBtnText: {

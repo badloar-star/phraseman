@@ -248,7 +248,7 @@ function Table({ label, headers, rows, t, f, firstBold }: {
           {label}
         </Text>
       )}
-      <View style={{ borderWidth: 0.5, borderColor: t.border, borderRadius: 12, overflow: 'hidden' }}>
+      <View style={{ borderWidth: 0, borderColor: t.border, borderRadius: 12, overflow: 'hidden' }}>
         <TableHeader cols={headers} t={t} f={f} />
         {rows.map((row, i) => (
           <TableRow key={i} cells={row} isEven={i % 2 === 0} t={t} f={f} firstBold={firstBold} />
@@ -1545,8 +1545,8 @@ export default function HintScreen() {
       </View>
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {frenchHintCopy ? (
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 18, gap: 12 }}>
-            <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 0, borderColor: t.border, padding: 18, gap: 12 }}>
+            <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="shield-checkmark-outline" size={30} color={t.textSecond} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>

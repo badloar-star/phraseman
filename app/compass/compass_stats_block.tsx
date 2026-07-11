@@ -103,7 +103,7 @@ function Stat({ value, label, color, t }: { value: string; label: string; color:
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: 16, borderWidth: 1, padding: 16, gap: 12 },
+  card: { borderRadius: 16, borderWidth: 0, padding: 16, gap: 12 },
   title: { fontSize: 16, fontWeight: '800' },
   statsRow: { flexDirection: 'row', gap: 10 },
   stat: { flex: 1, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12 },

@@ -507,7 +507,7 @@ function FrenchLevelExamUnavailable({
             </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 0, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <Ionicons name="shield-checkmark-outline" size={38} color={monoIcon(themeMode, LX.gold)} />
             </View>
             <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
@@ -915,7 +915,7 @@ export default function LevelExam() {
             </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 0, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
               <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={monoIcon(themeMode, LX.gold)} />
             </View>
             <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
@@ -1101,7 +1101,7 @@ export default function LevelExam() {
               style={{
                 backgroundColor: LX.card,
                 borderRadius: 22,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: LX.cardLine,
                 padding: 20,
                 gap: 18,
@@ -1113,7 +1113,7 @@ export default function LevelExam() {
                     width: 48,
                     height: 48,
                     borderRadius: 14,
-                    borderWidth: 1.5,
+                    borderWidth: 0,
                     borderColor: LX.gold,
                     backgroundColor: LX.goldSoft,
                     justifyContent: 'center',
@@ -1141,7 +1141,7 @@ export default function LevelExam() {
                       paddingHorizontal: 6,
                       borderRadius: 16,
                       backgroundColor: 'rgba(0,0,0,0.35)',
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: LX.cardLine,
                     }}
                   >
@@ -1174,7 +1174,7 @@ export default function LevelExam() {
                     padding: 14,
                     borderRadius: 14,
                     backgroundColor: LX.goldSoft,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: LX.cardLine,
                   }}
                 >
@@ -1656,7 +1656,7 @@ export default function LevelExam() {
                   edgeHeight={5}
                   withHaptic={false}
                   edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
-                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: signalBorder ? 1.5 : 0, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
+                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: 0, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
                   onPress={() => { flash(`${ci}`); handlePick(ci); }}
                   disabled={chosen !== null}
                 >

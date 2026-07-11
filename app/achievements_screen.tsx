@@ -1147,7 +1147,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
               backgroundColor: t.correct,
               alignItems: 'center',
               justifyContent: 'center',
-              borderWidth: 1.5,
+              borderWidth: 0,
               borderColor: t.bgCard,
               paddingHorizontal: 3,
             }}
@@ -1417,7 +1417,7 @@ const NearestAchievementsBlock = memo(function NearestAchievementsBlock({
                 gap: 10,
                 backgroundColor: glassFill(t.bgSurface, 0.46),
                 borderRadius: 8,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: color + '44',
                 paddingHorizontal: 10,
                 paddingVertical: 9,
@@ -1573,7 +1573,7 @@ function AchievementModal({
                 borderRadius: 14,
                 padding: 14,
                 gap: 10,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: (isDark ? '#A78BFA' : '#7C3AED') + '44',
               }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>

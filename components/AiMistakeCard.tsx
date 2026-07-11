@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-start',
     borderRadius: 8,
-    borderWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     gap: 6,
     minHeight: 34,

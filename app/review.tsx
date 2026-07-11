@@ -1612,7 +1612,7 @@ export default function ReviewScreen() {
                       minHeight: isPlanPracticeTask ? 88 : 110,
                       justifyContent: 'center',
                       alignItems: 'center',
-                      borderWidth: 0.5,
+                      borderWidth: 0,
                       borderColor: t.border,
                       overflow: 'hidden',
                       ...(i === index ? { transform: [{ scale: burnCardScale }] } : {}),
@@ -1673,7 +1673,7 @@ export default function ReviewScreen() {
                     borderRadius: 14,
                     paddingVertical: isPlanPracticeTask ? 8 : 12,
                     paddingHorizontal: isPlanPracticeTask ? 12 : 16,
-                    borderWidth: 1.5,
+                    borderWidth: 0,
                     borderColor: on ? t.accent : t.border,
                     opacity: status === 'playing' ? 1 : 0.4,
                   }}
@@ -1705,7 +1705,7 @@ export default function ReviewScreen() {
                       borderRadius: 14,
                       paddingVertical: isPlanPracticeTask ? 8 : 12,
                       paddingHorizontal: 14,
-                      borderWidth: 1.5,
+                      borderWidth: 0,
                       borderColor: on ? t.accent : st.border,
                       opacity: st.opacity,
                     }}
@@ -1745,7 +1745,7 @@ export default function ReviewScreen() {
                 returnKeyType="done"
                 onSubmitEditing={onSubmitTyped}
                 style={{
-                  borderWidth: 1.5,
+                  borderWidth: 0,
                   borderColor: typeBorderColor,
                   backgroundColor: typeBg,
                   borderRadius: 14,
@@ -1878,7 +1878,7 @@ export default function ReviewScreen() {
                   flexDirection: 'row',
                   justifyContent: 'center',
                   gap: 8,
-                  borderWidth: 1.5,
+                  borderWidth: 0,
                   borderColor: '#FF4500',
                 }}
               >

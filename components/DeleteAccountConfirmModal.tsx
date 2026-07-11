@@ -230,7 +230,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
         style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 16, overflow: 'hidden', borderWidth: isCompassTheme ? 1 : 0, borderColor: isCompassTheme ? COMPASS_RICH.copper : 'transparent', ...(isCompassTheme ? compassShadow(3) : null) }}>
+        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 16, overflow: 'hidden', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.copper : 'transparent', ...(isCompassTheme ? compassShadow(3) : null) }}>
           {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <ScrollView
             keyboardShouldPersistTaps="handled"
@@ -381,7 +381,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               fontSize: f.body,
               padding: 12,
               borderRadius: isCompassTheme ? 9 : 10,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
               marginBottom: 20,
               outlineStyle: 'none' as any,
@@ -430,7 +430,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
                 flex: 1,
                 padding: 12,
                 borderRadius: isCompassTheme ? 9 : 10,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                 alignItems: 'center',
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
@@ -479,7 +479,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
                     ? COMPASS_RICH.copper
                     : COMPASS_RICH.charcoalSoft
                   : deleteConfirmMatches ? t.wrong : t.bgSurface,
-                borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                borderWidth: 0,
                 borderColor: isCompassTheme ? (deleteConfirmMatches ? COMPASS_RICH.copper : COMPASS_RICH.hairlineQuiet) : 'transparent',
                 overflow: 'hidden',
                 ...(isCompassTheme ? compassShadow(deleteConfirmMatches ? 2 : 1) : null),

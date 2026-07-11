@@ -24,7 +24,7 @@ import PlusBadge from '../components/PlusBadge';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
@@ -2278,7 +2278,6 @@ export default function DailyTasksScreen() {
             setTrioClaimBusy(false);
         }
     }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveySnapshot]);
-    const claimedCount = countClaimedForTaskList(tasks, progress);
     // Опрос-как-4-е-задание: когда активен, набор = 3 обычных + опрос (всего 4),
     // а награду «за все» дают за ЛЮБЫЕ 3 из 4. Порог = 3, а «выполнено» считает и
     // пройденный опрос. Когда опроса нет — поведение прежнее (все N из N).
@@ -2286,16 +2285,12 @@ export default function DailyTasksScreen() {
         const row = progress.find((p) => p.taskId === task.id);
         return row?.completed === true || row?.claimed === true;
     }).length;
-    const {
-        total: totalTaskCount,
-        done: totalObjectivesDone,
-        rewardThreshold: dailyRewardThreshold,
-    } = computeSurveyDailyCounts({
+    const dailyCounts = computeSurveyDailyCounts({
         baseTotal: tasks.length,
         baseDone: realObjectivesDone,
         survey: surveySnapshot,
     });
-    const allTasksObjectivesDone = tasks.length > 0 && totalObjectivesDone >= dailyRewardThreshold;
+    const allTasksObjectivesDone = tasks.length > 0 && dailyCounts.done >= dailyCounts.rewardThreshold;
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy;
     const bonusAccent = isGoldTheme
@@ -2315,8 +2310,6 @@ export default function DailyTasksScreen() {
         ? rewardActionText
         : (isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
     // Счётчик и знаменатель учитывают опрос как 4-е задание, когда он активен.
-    const objectivesDoneCount = totalObjectivesDone;
-    const objectivesTotalCount = totalTaskCount;
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
             router.replace('/(tabs)/lessons' as any);
@@ -2603,7 +2596,7 @@ export default function DailyTasksScreen() {
           </Text>
         </View>
         <View style={{ alignItems: 'center' }}>
-          <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '700' }}>{objectivesDoneCount}/{objectivesTotalCount}</Text>
+          <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '700' }}>{dailyCounts.done}/{dailyCounts.total}</Text>
           <Text style={{ color: sx.muted, fontSize: f.label }}>
             {triLang(lang, {
             ru: 'выполнено',
@@ -2679,7 +2672,7 @@ export default function DailyTasksScreen() {
           titleTextProps={{ style: { fontSize: f.body, fontWeight: '800' } }}
           descriptionTextProps={{ style: { fontSize: f.caption, lineHeight: f.caption * 1.35, fontWeight: '400' } }}
           icon={<Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 24, height: 24, opacity: trioShardsClaimed ? 0.55 : trioClaimButtonEnabled ? 1 : 0.72 }} contentFit="contain" />}
-          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
+          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${dailyCounts.total ? Math.min((dailyCounts.done / dailyCounts.total) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
           action={!trioShardsClaimed ? { label: `${bonusClaimLabel} ${trioRewardCount}`, accessibilityLabel: bonusClaimAccessibilityLabel, labelProps: { style: { fontSize: Math.min(f.sub, 13), fontWeight: '900' } }, onPress: handleClaimTrioShards, foregroundColor: trioActionText, backgroundColor: trioActionBg, disabled: !trioClaimButtonEnabled, loading: trioClaimBusy, icon: <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain" /> } : undefined}
           claimed={trioShardsClaimed}
           claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
@@ -2767,7 +2760,7 @@ export default function DailyTasksScreen() {
           <SurveyTaskCard challenge={surveySnapshot} onOpen={openSurveyChallenge} />
         )}
 
-        {claimedCount === tasks.length && tasks.length > 0 && (<View style={{ alignItems: 'center', padding: 24, gap: 8 }}>
+        {dailyCounts.done >= dailyCounts.total && dailyCounts.total > 0 && (<View style={{ alignItems: 'center', padding: 24, gap: 8 }}>
             <Text style={{ fontSize: f.numLg + 12 }}>🎉</Text>
             <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>
               {triLang(lang, {

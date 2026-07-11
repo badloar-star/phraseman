@@ -29,6 +29,7 @@ jest.mock('../components/text-integrity/use_text_integrity_probe', () => ({
 
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
+import { computeSurveyDailyCounts } from '../app/survey_daily_challenge_model';
 
 const ROOT = path.resolve(__dirname, '..');
 const base = {
@@ -113,9 +114,28 @@ test('daily screen appends survey after normal sorted tasks and derives all coun
   expect(source.match(/computeSurveyDailyCounts\(\{/g)).toHaveLength(2);
   expect(source).not.toContain('doneWithSurvey');
   expect(source).not.toMatch(/const threshold = surveyPresent/);
-  expect(source).toContain('rewardThreshold: dailyRewardThreshold');
+  expect(source).toContain('dailyCounts.done >= dailyCounts.rewardThreshold');
   expect(source).not.toContain('taskCapsuleBottomTrack');
   expect(source).not.toContain('taskCapsuleBottomFill');
+});
+
+test('all-complete banner stays hidden at 3/4 until the survey is completed', () => {
+  const activeCounts = computeSurveyDailyCounts({
+    baseTotal: 3,
+    baseDone: 3,
+    survey: { phase: 'active', survey: activeChallenge.survey },
+  });
+  const completedCounts = computeSurveyDailyCounts({
+    baseTotal: 3,
+    baseDone: 3,
+    survey: { phase: 'completed', survey: null },
+  });
+  expect(activeCounts.done >= activeCounts.total).toBe(false);
+  expect(completedCounts.done >= completedCounts.total).toBe(true);
+
+  const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
+  expect(source).toContain('dailyCounts.done >= dailyCounts.total && dailyCounts.total > 0');
+  expect(source).not.toContain('claimedCount === tasks.length');
 });
 
 test('RNTL config discovers exactly this new survey card suite', () => {

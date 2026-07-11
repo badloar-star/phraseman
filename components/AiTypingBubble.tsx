@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   bubble: {
     alignItems: 'center',
     borderRadius: 24,
-    borderWidth: 0.5,
+    borderWidth: 0,
     elevation: 5,
     flexDirection: 'row',
     gap: 10,

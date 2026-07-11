@@ -926,7 +926,7 @@ export default function ExamScreen() {
       </View>
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
         {certificate && (
-          <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:1,borderColor:'#d4a017',marginBottom:16}}>
+          <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:0,borderColor:'#d4a017',marginBottom:16}}>
             <Ionicons name="information-circle" size={18} color={monoIcon(themeMode, '#FFD700')}/>
             <Text style={{color:monoIcon(themeMode, '#FDE68A'),fontSize:f.sub,flex:1}}>
               {t3(
@@ -1293,14 +1293,14 @@ export default function ExamScreen() {
 
         {certificate && certificate.name?.trim() ? (
           // Имя указано — показываем сам диплом + кнопку шеринга.
-          <View style={{backgroundColor:'#0a1620',borderRadius:18,padding:18,borderWidth:1.2,borderColor:'#d4a017',width:'100%',alignItems:'center',marginBottom:16}}>
+          <View style={{backgroundColor:'#0a1620',borderRadius:18,padding:18,borderWidth:0,borderColor:'#d4a017',width:'100%',alignItems:'center',marginBottom:16}}>
             <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:12}}>
               <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
               <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.2}}>
                 PHRASEMAN B2
               </Text>
             </View>
-            <View style={{borderRadius:12,overflow:'hidden',borderWidth:1,borderColor:'#d4a017',marginBottom:12}}>
+            <View style={{borderRadius:12,overflow:'hidden',borderWidth:0,borderColor:'#d4a017',marginBottom:12}}>
               <LingmanCertificateSvg
                 name={certificate.name}
                 score={certificate.score}
@@ -1313,7 +1313,7 @@ export default function ExamScreen() {
               />
             </View>
             <TouchableOpacity
-              style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:12,paddingVertical:12,paddingHorizontal:18,borderWidth:1,borderColor:'#FFD700',width:'100%',marginBottom:8}}
+              style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:12,paddingVertical:12,paddingHorizontal:18,borderWidth:0,borderColor:'#FFD700',width:'100%',marginBottom:8}}
               onPress={() => { void shareCertificate(); }}
               activeOpacity={0.85}
             >
@@ -1339,7 +1339,7 @@ export default function ExamScreen() {
           <TouchableOpacity
             activeOpacity={0.88}
             onPress={() => setNameModalVisible(true)}
-            style={{backgroundColor:'#0a1620',borderRadius:18,padding:20,borderWidth:1.2,borderColor:'#d4a017',width:'100%',alignItems:'center',marginBottom:16,gap:10}}
+            style={{backgroundColor:'#0a1620',borderRadius:18,padding:20,borderWidth:0,borderColor:'#d4a017',width:'100%',alignItems:'center',marginBottom:16,gap:10}}
           >
             <View style={{flexDirection:'row',alignItems:'center',gap:8}}>
               <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
@@ -1359,7 +1359,7 @@ export default function ExamScreen() {
                 'Podaj imię, a certyfikat pojawi się tutaj. Bez imienia dyplom nie będzie pokazany.',
               )}
             </Text>
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:12,paddingVertical:12,paddingHorizontal:18,borderWidth:1,borderColor:'#FFD700',width:'100%',marginTop:6}}>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:12,paddingVertical:12,paddingHorizontal:18,borderWidth:0,borderColor:'#FFD700',width:'100%',marginTop:6}}>
               <Ionicons name="create-outline" size={18} color={monoIcon(themeMode, '#FFD700')}/>
               <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'700'}}>
                 {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma', 'Informar nome no diploma', 'Nhập tên trên phần thưởng', 'Masukkan nama di diploma', 'Diplomaya isim ekle', 'Podaj imię na dyplomie')}
@@ -1450,7 +1450,7 @@ export default function ExamScreen() {
         </Text>
         {certificate.name?.trim() ? (
           <>
-            <View style={{borderRadius:14,overflow:'hidden',borderWidth:1.2,borderColor:'#d4a017'}}>
+            <View style={{borderRadius:14,overflow:'hidden',borderWidth:0,borderColor:'#d4a017'}}>
               <LingmanCertificateSvg
                 name={certificate.name}
                 score={certificate.score}
@@ -1480,7 +1480,7 @@ export default function ExamScreen() {
             </Text>
 
             <TouchableOpacity
-              style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:10,backgroundColor:'#B8860B',borderRadius:14,paddingVertical:16,paddingHorizontal:22,borderWidth:1.2,borderColor:'#FFD700',width:'100%',marginTop:22}}
+              style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:10,backgroundColor:'#B8860B',borderRadius:14,paddingVertical:16,paddingHorizontal:22,borderWidth:0,borderColor:'#FFD700',width:'100%',marginTop:22}}
               onPress={() => { void shareCertificate(); }}
               activeOpacity={0.85}
             >
@@ -1520,7 +1520,7 @@ export default function ExamScreen() {
           <TouchableOpacity
             activeOpacity={0.88}
             onPress={() => setNameModalVisible(true)}
-            style={{borderRadius:14,padding:24,borderWidth:1.2,borderColor:'#d4a017',backgroundColor:'#0a1620',width:'100%',alignItems:'center',gap:14}}
+            style={{borderRadius:14,padding:24,borderWidth:0,borderColor:'#d4a017',backgroundColor:'#0a1620',width:'100%',alignItems:'center',gap:14}}
           >
             <Ionicons name="ribbon" size={48} color={monoIcon(themeMode, '#FFD700')}/>
             <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.h2,fontWeight:'800',textAlign:'center',letterSpacing:0.6}}>
@@ -1547,7 +1547,7 @@ export default function ExamScreen() {
                 `Twój wynik: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nPodaj imię, a certyfikat pojawi się niżej.`,
               )}
             </Text>
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:14,paddingVertical:14,paddingHorizontal:22,borderWidth:1.2,borderColor:'#FFD700',marginTop:6}}>
+            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:14,paddingVertical:14,paddingHorizontal:22,borderWidth:0,borderColor:'#FFD700',marginTop:6}}>
               <Ionicons name="create-outline" size={18} color={monoIcon(themeMode, '#FFD700')}/>
               <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800'}}>
                 {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma', 'Informar nome no diploma', 'Nhập tên trên phần thưởng', 'Masukkan nama di diploma', 'Diplomaya isim ekle', 'Podaj imię na dyplomie')}

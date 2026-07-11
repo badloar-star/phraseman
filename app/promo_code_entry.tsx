@@ -238,7 +238,7 @@ export default function PromoCodeEntryScreen() {
                 style={{
                   width: 44, height: 44, borderRadius: 22,
                   alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, marginRight: 12,
+                  backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, marginRight: 12,
                 }}
               >
                 <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
@@ -248,7 +248,7 @@ export default function PromoCodeEntryScreen() {
               </Text>
             </View>
 
-            <View style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, gap: 14 }}>
+            <View style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, gap: 14 }}>
               <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
                 <Ionicons name="gift-outline" size={24} color={t.accent} />
               </View>
@@ -278,7 +278,7 @@ export default function PromoCodeEntryScreen() {
                 style={{
                   minHeight: 56, borderRadius: 16, paddingHorizontal: 16,
                   backgroundColor: t.bgSurface, color: t.textPrimary,
-                  borderWidth: 1, borderColor: t.border,
+                  borderWidth: 0, borderColor: t.border,
                   fontSize: f.body ?? 16, fontWeight: '900', letterSpacing: 1,
                 }}
               />

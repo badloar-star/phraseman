@@ -711,11 +711,11 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   topBarBtn: {
-    width: 44, height: 44, borderRadius: 14, borderWidth: 1,
+    width: 44, height: 44, borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   topBarStepPill: {
-    height: 34, paddingHorizontal: 12, borderRadius: 17, borderWidth: 1,
+    height: 34, paddingHorizontal: 12, borderRadius: 17, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   topBarStepText: { fontSize: 13, fontWeight: '900' },
@@ -727,12 +727,12 @@ const styles = StyleSheet.create({
   stack: { marginTop: 22, gap: 10 },
 
   choice: {
-    minHeight: 80, borderRadius: 18, borderWidth: 1,
+    minHeight: 80, borderRadius: 18, borderWidth: 0,
     paddingHorizontal: 14, paddingVertical: 12,
     flexDirection: 'row', alignItems: 'center', gap: 13,
   },
   choiceIcon: {
-    width: 50, height: 50, borderRadius: 15, borderWidth: 1,
+    width: 50, height: 50, borderRadius: 15, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   choiceCopy: { flex: 1, minWidth: 0 },
@@ -744,11 +744,11 @@ const styles = StyleSheet.create({
   },
 
   planCard: {
-    minHeight: 100, borderRadius: 18, borderWidth: 1,
+    minHeight: 100, borderRadius: 18, borderWidth: 0,
     padding: 14, flexDirection: 'row', alignItems: 'center', gap: 13,
   },
   planCardIcon: {
-    width: 50, height: 50, borderRadius: 15, borderWidth: 1,
+    width: 50, height: 50, borderRadius: 15, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   planCardCopy: { flex: 1, minWidth: 0 },
@@ -763,22 +763,22 @@ const styles = StyleSheet.create({
   recommendedText: { fontSize: 14, fontWeight: '900' },
 
   resultCard: {
-    marginTop: 20, borderRadius: 24, borderWidth: 1,
+    marginTop: 20, borderRadius: 24, borderWidth: 0,
     padding: 22, alignItems: 'center', overflow: 'hidden',
   },
   resultIconWrap: {
-    width: 100, height: 100, borderRadius: 50, borderWidth: 1,
+    width: 100, height: 100, borderRadius: 50, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', marginBottom: 14,
   },
   resultTagPill: {
-    paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, borderWidth: 1, marginBottom: 12,
+    paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, borderWidth: 0, marginBottom: 12,
   },
   resultTagText: { fontSize: 13, fontWeight: '900' },
   resultName: { fontSize: 34, lineHeight: 40, fontWeight: '900', textAlign: 'center' },
   resultReason: { marginTop: 12, fontSize: 15, lineHeight: 23, fontWeight: '700', textAlign: 'center' },
   resultFacts: { flexDirection: 'row', gap: 10, marginTop: 20, width: '100%' },
   resultFact: {
-    flex: 1, height: 72, borderRadius: 18, borderWidth: 1,
+    flex: 1, height: 72, borderRadius: 18, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', gap: 3,
   },
   resultFactValue: { fontSize: 20, lineHeight: 24, fontWeight: '900' },
@@ -791,7 +791,7 @@ const styles = StyleSheet.create({
   },
   primaryBtnText: { fontSize: 18, fontWeight: '900' },
   secondaryBtn: {
-    minHeight: 56, marginTop: 12, borderRadius: 18, borderWidth: 1,
+    minHeight: 56, marginTop: 12, borderRadius: 18, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   secondaryBtnText: { fontSize: 16, fontWeight: '900' },

@@ -636,7 +636,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 6,
     borderRadius: 10,
-    borderWidth: 2,
+    borderWidth: 0,
   },
   correctLabel: { right: 20, borderColor: '#40C080', transform: [{ rotate: '15deg' }] },
   wrongLabel:   { left: 20,  borderColor: '#E05050', transform: [{ rotate: '-15deg' }] },
@@ -669,7 +669,7 @@ const styles = StyleSheet.create({
   doneStats: {
     flexDirection: 'row',
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     overflow: 'hidden',
     marginBottom: 32,
     width: '100%',

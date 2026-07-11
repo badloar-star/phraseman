@@ -767,7 +767,7 @@ export default function TheoryLessonView({
               style={[
                 styles.ctaBtn,
                 { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : allTheoryStepsDone ? t.gold : t.bgSurface },
-                (!claimed && !allTheoryStepsDone) && { borderWidth: 1, borderColor: t.border },
+                (!claimed && !allTheoryStepsDone) && { borderWidth: 0, borderColor: t.border },
                 getVolumetricShadow(themeMode, t, 2),
               ]}
             >

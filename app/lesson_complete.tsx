@@ -163,7 +163,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                     paddingHorizontal: 12,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 0.5,
+                    borderWidth: 0,
                     borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                     overflow: 'hidden',
                     ...(isCompassTheme ? compassShadow(1) : null),
@@ -183,7 +183,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                     paddingHorizontal: 36,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                    borderWidth: 0,
                     borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
                     overflow: 'hidden',
                     position: 'relative',
@@ -379,7 +379,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
         backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
         borderRadius: isCompassTheme ? 14 : 28, padding: 28, marginHorizontal: 24,
         alignItems: 'center', width: '100%', maxWidth: 360,
-        borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.textSecond + '44',
+        borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.textSecond + '44',
         overflow: 'hidden',
         ...(isCompassTheme ? compassShadow(3) : { shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20 }),
       }}>
@@ -389,19 +389,19 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
           <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} contentFit="contain" />
         )}
         {notif.kind === 'lesson_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
+          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
             {isCompassTheme && <CompassDepthSurface radius={12} selected />}
             <Text style={{ fontSize: 40 }}>🔓</Text>
           </View>
         )}
         {notif.kind === 'level_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
+          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
             {isCompassTheme && <CompassDepthSurface radius={12} selected />}
             <Text style={{ fontSize: 40 }}>📋</Text>
           </View>
         )}
         {notif.kind === 'lingman_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
+          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
             {isCompassTheme && <CompassDepthSurface radius={12} selected />}
             <Text style={{ fontSize: 40 }}>🎓</Text>
           </View>
@@ -430,7 +430,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
             borderRadius: isCompassTheme ? 9 : 14,
             paddingHorizontal: 18,
             paddingVertical: 10,
-            borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+            borderWidth: 0,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
             overflow: 'hidden',
             ...(isCompassTheme ? compassShadow(1) : null),
@@ -456,7 +456,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
             borderRadius: isCompassTheme ? 9 : 16,
             paddingHorizontal: 40,
             paddingVertical: 12,
-            borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+            borderWidth: 0,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
             overflow: 'hidden',
             ...(isCompassTheme ? compassShadow(1) : null),
@@ -1045,7 +1045,7 @@ export default function LessonComplete() {
           height: 36,
           borderRadius: isCompassTheme ? 9 : 18,
           backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-          borderWidth: 0.5,
+          borderWidth: 0,
           borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
           justifyContent: 'center',
           alignItems: 'center',
@@ -1114,7 +1114,7 @@ export default function LessonComplete() {
           {/* Совет отдохнуть */}
           <View style={{
             backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 10 : 14,
-            padding: 16, borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+            padding: 16, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
             width: '100%', marginBottom: 36,
             flexDirection: 'row', alignItems: 'center', gap: 12,
             overflow: 'hidden',
@@ -1136,7 +1136,7 @@ export default function LessonComplete() {
               style={{
                 width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.bgSurface,
                 borderRadius: isCompassTheme ? 9 : 16, padding: 18,
-                borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
                 overflow: 'hidden',
               }}
               onPress={goNext}
@@ -1166,7 +1166,7 @@ export default function LessonComplete() {
                   padding: 18,
                   alignItems: 'center',
                   backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.textSecond,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.gold + '55',
                   overflow: 'hidden',
                   ...(isCompassTheme ? compassShadow(2) : null),
@@ -1222,7 +1222,7 @@ export default function LessonComplete() {
             style={{
               width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderRadius: isCompassTheme ? 9 : 16, padding: 16,
-              borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent,
+              borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent,
               flexDirection: 'row', justifyContent: 'center', gap: 8,
               overflow: 'hidden',
             }}
@@ -1244,7 +1244,7 @@ export default function LessonComplete() {
               marginTop: 4,
               borderRadius: isCompassTheme ? 9 : 0,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent',
-              borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+              borderWidth: 0,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
               overflow: 'hidden',
             }}
@@ -1272,7 +1272,7 @@ export default function LessonComplete() {
               padding: 14,
               borderRadius: isCompassTheme ? 9 : 0,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
-              borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+              borderWidth: 0,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
               overflow: 'hidden',
             }}

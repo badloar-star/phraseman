@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 16,
     paddingHorizontal: 16,
     overflow: 'hidden',
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   badge: {
     alignSelf: 'flex-start',
     borderRadius: 999,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 8,
     paddingVertical: 2,
   },

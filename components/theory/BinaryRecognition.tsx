@@ -106,7 +106,7 @@ export default function BinaryRecognition({ data, lang, theme, onSolved, initial
 }
 
 const styles = StyleSheet.create({
-  wrap: { padding: 14, borderRadius: 14, borderWidth: 1, marginTop: 10 },
+  wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
   q: { fontSize: 13.5, textAlign: 'center', marginBottom: 12 },
   btn: { paddingVertical: 14, borderRadius: 11, alignItems: 'center', marginBottom: 8, minHeight: 52, justifyContent: 'center' },
   btnText: { fontSize: 15, fontWeight: '600' },

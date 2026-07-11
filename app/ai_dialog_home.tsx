@@ -41,7 +41,7 @@ export default function AiDialogHome() {
           height: 44,
           borderRadius: 22,
           backgroundColor: t.bgCard,
-          borderWidth: 0.5,
+          borderWidth: 0,
           borderColor: t.border,
           justifyContent: 'center',
           alignItems: 'center',

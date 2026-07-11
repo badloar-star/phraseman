@@ -439,7 +439,7 @@ const styles = StyleSheet.create({
   podium: { flexDirection: 'row', gap: 8 },
   pod: {
     flex: 1,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 14,
     paddingVertical: 10,
     paddingHorizontal: 6,
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
   rewardLab: { fontSize: 10, marginTop: 1, textTransform: 'uppercase', letterSpacing: 0.4 },
   constCard: {
     flex: 1,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 18,
     overflow: 'hidden',
     backgroundColor: 'rgba(8,13,31,0.75)',
@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   ghost: {
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',

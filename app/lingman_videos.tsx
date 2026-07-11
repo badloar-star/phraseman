@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
   channelStrip: {
     minHeight: 72,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   notice: {
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 14,
     paddingHorizontal: 12,
     paddingVertical: 10,
@@ -458,7 +458,7 @@ const styles = StyleSheet.create({
   },
   videoRow: {
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
   },
   thumbWrap: {
@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
   },
   latestBadge: {
     position: 'absolute',
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
   },
   latestBadgeText: {
     fontSize: 10,
@@ -534,7 +534,7 @@ const styles = StyleSheet.create({
     minHeight: 42,
     paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -547,7 +547,7 @@ const styles = StyleSheet.create({
   empty: {
     minHeight: 180,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,

@@ -143,7 +143,7 @@ export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIcon
         pointerEvents="none"
         style={[
           StyleSheet.absoluteFillObject,
-          { borderRadius: radius, borderWidth: StyleSheet.hairlineWidth, borderColor: 'rgba(255,255,255,0.22)' },
+          { borderRadius: radius, borderWidth: 0, borderColor: 'rgba(255,255,255,0.22)' },
         ]}
       />
       <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color="#FFFFFF" />
@@ -221,7 +221,7 @@ export function SettingsGroup({
           marginBottom: marginBottom ?? 0,
           borderRadius: 12,
           backgroundColor: groupSurface,
-          borderWidth: StyleSheet.hairlineWidth,
+          borderWidth: 0,
           borderColor: groupBorder,
           overflow: 'hidden',
         },

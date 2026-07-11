@@ -209,7 +209,7 @@ export default function ArenaSeasonLeaderboardScreen() {
                 onPress={() => safeRouterBack(router, '/(tabs)/arena' as any)}
                 style={{
                   width: 44, height: 44, borderRadius: 22,
-                  backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border,
+                  backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border,
                   justifyContent: 'center', alignItems: 'center', marginRight: 8,
                 }}
               >
@@ -222,7 +222,7 @@ export default function ArenaSeasonLeaderboardScreen() {
                 ) : null}
               </View>
               <TapScale onPress={() => { hapticTap(); void load(); }}>
-                <View style={{ backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 7 }}>
+                <View style={{ backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 7 }}>
                   <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
                     {triLang(lang, { ru: 'Обновить', uk: 'Оновити', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Làm mới', id: 'Perbarui', tr: 'Yenile', pl: 'Odśwież' })}
                   </Text>

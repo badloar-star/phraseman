@@ -1731,7 +1731,7 @@ export default function DiagnosticTest() {
                 minHeight: 52, flexDirection: 'row', flexWrap: 'wrap', gap: 6,
                 backgroundColor: buildSubmitted ? (chosen === 0 ? t.correctBg : t.wrongBg) : t.bgCard,
                 borderRadius: 12, padding: 10, marginBottom: 8,
-                borderWidth: buildSubmitted ? 1.5 : 0,
+                borderWidth: 0,
                 borderColor: buildSubmitted ? (chosen === 0 ? t.correct : t.wrong) : 'transparent',
               }}>
                 {buildSelected.length === 0 ? (
@@ -1800,7 +1800,7 @@ export default function DiagnosticTest() {
           {isTyping && (
             <View style={{ marginBottom: 16 }}>
               <View style={{
-                flexDirection: 'row', borderWidth: typeSubmitted ? 1.5 : 0,
+                flexDirection: 'row', borderWidth: 0,
                 borderColor: typeSubmitted ? (chosen === q.correct ? t.correct : t.wrong) : 'transparent',
                 borderRadius: 14, overflow: 'hidden', backgroundColor: t.bgCard,
               }}>
@@ -1846,7 +1846,7 @@ export default function DiagnosticTest() {
                 if (chosen === -1 && ci === q.correct)     { bg = t.correctBg; border = t.correct; tc = t.correct; signal = true; }
                 return (
                   <TouchableOpacity key={ci}
-                    style={{ backgroundColor: bg, borderWidth: signal ? 1 : 0, borderColor: border, borderRadius: 14, padding: 18 }}
+                    style={{ backgroundColor: bg, borderWidth: 0, borderColor: border, borderRadius: 14, padding: 18 }}
                     onPress={() => { handleAnswer(ci); }}
                     activeOpacity={0.8}
                     disabled={chosen !== null}

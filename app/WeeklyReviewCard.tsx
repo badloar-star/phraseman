@@ -414,7 +414,7 @@ function Header({
 }
 
 const styles = StyleSheet.create({
-  card: { padding: 18, borderWidth: 1, marginBottom: 20, gap: 12 },
+  card: { padding: 18, borderWidth: 0, marginBottom: 20, gap: 12 },
   stableCardSlot: { minHeight: 150 },
   stableEmbeddedSlot: { minHeight: 88 },
   embeddedSection: { gap: 10, paddingTop: 2, paddingBottom: 2 },
@@ -443,11 +443,11 @@ const styles = StyleSheet.create({
   greeting: { fontWeight: '800', letterSpacing: -0.3, lineHeight: 26 },
   paragraph: { lineHeight: 23, letterSpacing: 0.1 },
   loadingText: { flex: 1, lineHeight: 22 },
-  teaser: { flexDirection: 'row', alignItems: 'center', gap: 8, borderWidth: 1, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 12 },
+  teaser: { flexDirection: 'row', alignItems: 'center', gap: 8, borderWidth: 0, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 12 },
   teaserText: { flex: 1, fontWeight: '600' },
   recommendations: { gap: 8, marginTop: 4 },
   recLabel: { fontWeight: '700', letterSpacing: 1.1 },
-  recRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 0.5, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12, minHeight: 58 },
+  recRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 0, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12, minHeight: 58 },
   recText: { flex: 1, flexShrink: 1, fontWeight: '600', lineHeight: 22 },
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingTop: 10, borderTopWidth: 0.5 },
   footerText: { flex: 1, lineHeight: 18 },

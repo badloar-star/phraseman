@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 13,
     paddingHorizontal: 14,
     gap: 9,
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   },
   focusPill: {
     maxWidth: '100%',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 999,
     paddingHorizontal: 8,
     paddingVertical: 4,

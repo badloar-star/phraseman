@@ -206,7 +206,7 @@ function SaveProgressBanner() {
                 borderRadius: 25,
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: t.correct + '55',
               }}
             >
@@ -258,7 +258,7 @@ function SaveProgressBanner() {
                 paddingHorizontal: 14,
                 paddingVertical: 10,
                 borderRadius: 15,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: t.correctText + '33',
               }}
             >

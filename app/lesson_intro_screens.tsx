@@ -642,7 +642,7 @@ export default function LessonIntroScreens({
             styles.ctaBtn,
             {
               borderRadius: isCompassTheme ? 9 : 18,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.borderHighlight,
             },
           ]}
@@ -815,7 +815,7 @@ export default function LessonIntroScreens({
                       alignSelf: 'center',
                       backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : undefined,
                       borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : undefined,
-                      borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                      borderWidth: 0,
                       borderRadius: isCompassTheme ? 9 : 0,
                       overflow: isCompassTheme ? 'hidden' : 'visible',
                       ...(isCompassTheme ? compassShadow(1) : null),
@@ -885,7 +885,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 7,
     borderRadius: 20,
-    borderWidth: 0.5,
+    borderWidth: 0,
   },
   reportFlag: {
     width: 36,
@@ -893,7 +893,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 0,
   },
   headerText: {
     fontWeight: '800',
@@ -912,7 +912,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 0,
   },
   scrollContent: {
     paddingHorizontal: 18,
@@ -926,7 +926,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 18,
     overflow: 'hidden',
-    borderWidth: 0.5,
+    borderWidth: 0,
     flexDirection: 'row',
   },
   stripe: {
@@ -950,7 +950,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.35,
@@ -977,7 +977,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginTop: 14,
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     padding: 12,
     overflow: 'hidden',
   },
@@ -1024,7 +1024,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 22,
     borderRadius: 18,
-    borderWidth: 0.5,
+    borderWidth: 0,
     overflow: 'hidden',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.45,

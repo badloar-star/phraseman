@@ -673,7 +673,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       paddingVertical: 8,
                       borderRadius: 999,
                       backgroundColor: palette.primary + '22',
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: palette.primary + '55',
                       marginTop: 8,
                     }}
@@ -971,7 +971,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       style={{
                         flexDirection: 'row', alignItems: 'center', gap: 10,
                         paddingHorizontal: 12, paddingVertical: 10,
-                        borderWidth: 1, borderColor: palette.primary + '33', borderRadius: 14,
+                        borderWidth: 0, borderColor: palette.primary + '33', borderRadius: 14,
                       }}
                     >
                       <View style={{
@@ -1030,7 +1030,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       borderRadius: 14,
                       paddingHorizontal: 14, paddingVertical: 10,
                       backgroundColor: 'rgba(255,255,255,0.04)',
-                      borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)',
+                      borderWidth: 0, borderColor: 'rgba(255,255,255,0.08)',
                       opacity: rewardOp,
                       transform: [{ scale: rewardScale }],
                     }}

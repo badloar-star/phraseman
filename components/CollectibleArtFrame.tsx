@@ -221,7 +221,7 @@ function CollectibleArtFrame({
           width,
           height,
           borderRadius,
-          borderWidth: p.borderWidth,
+          borderWidth: 0,
           borderColor: tier === 'common' ? `${color}66` : `${color}E6`,
           backgroundColor: `${color}14`,
           // elevation для теней на Android (свечение).

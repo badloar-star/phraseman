@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
   },
   texture: {

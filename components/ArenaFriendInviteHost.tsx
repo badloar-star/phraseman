@@ -283,7 +283,7 @@ function ArenaFriendInviteHost() {
         style={{
           backgroundColor: t.bgCard,
           borderColor: t.accent,
-          borderWidth: 1.5,
+          borderWidth: 0,
           borderRadius: 20,
           overflow: 'hidden',
           shadowColor: '#000',
@@ -348,7 +348,7 @@ function ArenaFriendInviteHost() {
                 flex: 1,
                 height: 46,
                 borderRadius: 14,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: t.border,
                 alignItems: 'center',
                 justifyContent: 'center',

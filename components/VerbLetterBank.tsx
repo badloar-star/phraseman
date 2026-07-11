@@ -113,7 +113,7 @@ export default function VerbLetterBank({
                 minWidth: 44, paddingHorizontal: 12, paddingVertical: 12, borderRadius: 12,
                 alignItems: 'center', justifyContent: 'center',
                 backgroundColor: isUsed ? 'transparent' : t.bgCard,
-                borderWidth: 1.5, borderColor: isUsed ? t.border + '40' : t.border,
+                borderWidth: 0, borderColor: isUsed ? t.border + '40' : t.border,
                 opacity: isUsed ? 0.35 : 1,
               }}
             >
@@ -132,7 +132,7 @@ export default function VerbLetterBank({
           style={{
             paddingHorizontal: 14, paddingVertical: 12, borderRadius: 12,
             flexDirection: 'row', alignItems: 'center', gap: 6,
-            borderWidth: 1, borderColor: t.border,
+            borderWidth: 0, borderColor: t.border,
             opacity: picked.length === 0 ? 0.4 : 1,
           }}
         >

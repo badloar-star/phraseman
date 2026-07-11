@@ -2581,7 +2581,7 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: 12, width: '100%' }}>
                 <TouchableOpacity
-                  style={{ flex: 1, minHeight: 52, backgroundColor: t.bgSurface, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 12, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5 }}
+                  style={{ flex: 1, minHeight: 52, backgroundColor: t.bgSurface, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 12, justifyContent: 'center', alignItems: 'center', borderWidth: 0}}
                   onPress={handleNo}
                   activeOpacity={0.85}
                 >
@@ -2645,7 +2645,7 @@ const styles = StyleSheet.create({
   },
 
   resultCard: {
-    borderRadius: 24, borderWidth: 1.5,
+    borderRadius: 24, borderWidth: 0,
     padding: 28, alignItems: 'center', gap: 4,
     overflow: 'hidden',
   },
@@ -2665,7 +2665,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     borderRadius: 18,
     backgroundColor: 'rgba(22,22,22,0.94)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,214,102,0.45)',
     alignItems: 'center',
     justifyContent: 'center',
@@ -2684,7 +2684,7 @@ const styles = StyleSheet.create({
   hillResultBadge: {
     marginTop: 10,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 12,
     paddingVertical: 9,
     flexDirection: 'row',
@@ -2728,7 +2728,7 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 28,
     backgroundColor: 'rgba(14,14,14,0.35)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,255,255,0.2)',
     alignItems: 'center',
     justifyContent: 'center',
@@ -2751,7 +2751,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
     gap: 8, minWidth: 0,
   },
-  reviewCard: { borderRadius: 16, borderWidth: 1.5, padding: 14 },
+  reviewCard: { borderRadius: 16, borderWidth: 0, padding: 14 },
   medal: { fontSize: 18, width: 28, textAlign: 'center' },
   playerName: { fontWeight: '600', flex: 1, flexShrink: 1, minWidth: 0 },
   playerFinalScore: { fontWeight: '800' },
@@ -2765,7 +2765,7 @@ const styles = StyleSheet.create({
   rematchText: { fontWeight: '800' },
   rematchBanner: {
     borderRadius: 18,
-    borderWidth: 1.5,
+    borderWidth: 0,
     padding: 14,
     marginBottom: 6,
   },

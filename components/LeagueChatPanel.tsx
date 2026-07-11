@@ -796,7 +796,7 @@ function LeagueChatPanel({
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
         >
-        <View style={{ borderRadius: 18, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 16, gap: 12 }}>
+        <View style={{ borderRadius: 18, borderWidth: 0, borderColor: t.border, backgroundColor: t.bgCard, padding: 16, gap: 12 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <Ionicons name="flag-outline" size={20} color={t.accent} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}>
@@ -834,7 +834,7 @@ function LeagueChatPanel({
                   onPress={() => setReportReason(reason.id)}
                   style={{
                     borderRadius: 999,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: active ? t.accent : t.border,
                     backgroundColor: active ? t.accent : 'transparent',
                     paddingHorizontal: 10,
@@ -878,7 +878,7 @@ function LeagueChatPanel({
               minHeight: 96,
               maxHeight: 150,
               borderRadius: 12,
-              borderWidth: 0.5,
+              borderWidth: 0,
               borderColor: reportDetails.trim() ? t.border : '#E05252',
               color: t.textPrimary,
               backgroundColor: t.bgSurface,
@@ -893,7 +893,7 @@ function LeagueChatPanel({
               testID="league-chat-report-cancel"
               disabled={reportSubmitting}
               onPress={closeReportModal}
-              style={{ paddingHorizontal: 14, paddingVertical: 10, borderRadius: 12, borderWidth: 0.5, borderColor: t.border }}
+              style={{ paddingHorizontal: 14, paddingVertical: 10, borderRadius: 12, borderWidth: 0, borderColor: t.border }}
             >
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '900' }}>
                 {triLang(lang, {
@@ -1330,7 +1330,7 @@ function LeagueChatPanel({
                 minHeight: 44,
                 maxHeight: 120,
                 borderRadius: 20,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: draftBlocked ? '#E05252' : t.border,
                 color: t.textPrimary,
                 backgroundColor: t.bgSurface,
@@ -1353,7 +1353,7 @@ function LeagueChatPanel({
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: connectionUi.canSendDraft ? t.accent : t.bgSurface,
-                borderWidth: connectionUi.canSendDraft ? 0 : 0.5,
+                borderWidth: 0,
                 borderColor: t.border,
                 opacity: !connectionUi.canEditDraft ? 0.65 : 1,
               }}

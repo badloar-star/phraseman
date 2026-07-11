@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
   container: { position: 'absolute', left: 16, right: 16, zIndex: 9990, elevation: 10 },
   toast: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
-    borderRadius: 18, borderWidth: 1.5,
+    borderRadius: 18, borderWidth: 0,
     paddingVertical: 14, paddingHorizontal: 16,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.4, shadowRadius: 14, elevation: 10,

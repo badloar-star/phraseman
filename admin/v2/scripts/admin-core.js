@@ -87,6 +87,7 @@ const state = {
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
   reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
+  audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
 };
 
 let actions = null;
@@ -505,6 +506,47 @@ const SOURCE_LABELS = Object.freeze({
   admin_audit: 'Журнал администратора',
 });
 
+const AUDIT_ACTION_LABELS = Object.freeze({
+  'remote_config.publish': 'Публикация настроек приложения',
+  'support.reply.send': 'Ответ пользователю',
+  'support.reply.prepare': 'Подготовка ответа',
+  'support.reply.delivery_unknown': 'Неизвестный статус доставки',
+  'support.inbox.pull': 'Синхронизация почты',
+  reply_to_report: 'Ответ на репорт',
+  'content_factory.job.create': 'Создание задания контента',
+  'content_factory.publish': 'Публикация контента',
+  'content_factory.rollback': 'Откат контента',
+  'content_factory.course_release.activate': 'Активация релиза курса',
+  'content_factory.course_release.rollback': 'Откат релиза курса',
+  'report.status.update': 'Изменение статуса репорта',
+  grant_reward: 'Выдача награды',
+  email_contacts_backfill: 'Обновление контактов почты',
+  email_campaign_send: 'Отправка email-кампании',
+  ai_daily_digest: 'Ежедневный дайджест',
+  ai_daily_digest_blocked: 'Дайджест заблокирован',
+  promo_code_upsert: 'Изменение промокода',
+  promo_codes_batch_upsert: 'Пакетное изменение промокодов',
+});
+
+const AUDIT_STATE_LABELS = Object.freeze({
+  idle: 'Не загружено',
+  loading: 'Загрузка',
+  ready: 'Готово',
+  empty: 'Пусто',
+  truncated: 'Ограниченная выборка',
+  error: 'Ошибка',
+});
+
+function auditActionLabel(action) {
+  const value = String(action || 'unknown');
+  if (AUDIT_ACTION_LABELS[value]) return AUDIT_ACTION_LABELS[value];
+  return value === 'unknown' ? 'Неизвестное действие' : 'Действие администратора';
+}
+
+function auditStateLabel(state) {
+  return AUDIT_STATE_LABELS[state] || 'Неизвестное состояние';
+}
+
 function sourceHealthBadge(source) {
   const labels = { ready: 'Получен', empty: 'Нет записей', error: 'Ошибка', truncated: 'Достигнут лимит', partial: 'Частично' };
   const kind = source.state === 'error' ? 'danger' : ['truncated', 'partial'].includes(source.state) ? 'warning' : source.state === 'ready' ? 'success' : '';
@@ -517,6 +559,39 @@ function renderDiagnosticsSourceHealth(view) {
   if (!view.hasData) return emptyState('Сохранённый снимок источников ещё не загружен.');
   if (!view.sources.length) return emptyState('В сохранённом снимке нет сведений об источниках.');
   return `<div class="source-health-grid">${view.sources.map((source) => `<div><span>${escapeHtml(SOURCE_LABELS[source.source] || source.source.replaceAll('_', ' '))}</span><small class="mono">${escapeHtml(source.source)}</small>${sourceHealthBadge(source)}<small>Записей: ${source.count.toLocaleString('ru-RU')}${source.limit ? ` · лимит ${source.limit.toLocaleString('ru-RU')}` : ''}</small><small>Проверен: ${escapeHtml(dateTime(source.checkedAtMs))}</small><small>Последнее событие: ${escapeHtml(dateTime(source.latestEventAtMs))}</small>${source.error ? `<small class="source-error">${escapeHtml(source.error)}</small>` : ''}</div>`).join('')}</div>`;
+}
+
+function auditSummary(value) {
+  if (!value || typeof value !== 'object') return '—';
+  const pairs = Object.entries(value).filter(([, item]) => item !== null && item !== undefined && item !== '').slice(0, 4);
+  return pairs.length ? pairs.map(([key, item]) => `${key}: ${typeof item === 'object' ? JSON.stringify(item) : String(item)}`).join(' · ') : '—';
+}
+
+function auditActor(row) {
+  return row.adminEmail || row.actorUid || 'неизвестный администратор';
+}
+
+function renderAuditLogPanel() {
+  const audit = state.audit;
+  const items = Array.isArray(audit.items) ? audit.items : [];
+  const actionOptions = [''].concat([...new Set(items.map((item) => String(item.action || '')).filter(Boolean))].sort())
+    .map((value) => `<option value="${escapeHtml(value)}"${audit.action === value ? ' selected' : ''}>${escapeHtml(value ? auditActionLabel(value) : 'Все действия')}</option>`).join('');
+  const filterBar = `<div class="toolbar-grid">
+    <div class="field"><label for="audit-action-filter">Действие</label><select id="audit-action-filter">${actionOptions}</select></div>
+    <div class="field"><label for="audit-search-filter">Поиск</label><input id="audit-search-filter" value="${escapeHtml(audit.query)}" maxlength="160" placeholder="email, UID, requestId, причина"></div>
+    <div class="field"><label for="audit-days-filter">Период</label><select id="audit-days-filter"><option value="1"${audit.sinceDays === 1 ? ' selected' : ''}>24 часа</option><option value="7"${audit.sinceDays === 7 ? ' selected' : ''}>7 дней</option><option value="30"${audit.sinceDays === 30 ? ' selected' : ''}>30 дней</option><option value="90"${audit.sinceDays === 90 ? ' selected' : ''}>90 дней</option></select></div>
+    <div class="actions end"><button class="button primary" data-action="load-audit-log" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Загрузить журнал действий через серверную проверку прав">Обновить журнал</button></div>
+  </div>`;
+  let body = '';
+  if (audit.state === 'loading') body = '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю журнал действий…</span></div>';
+  else if (audit.state === 'error') body = `<div class="notice danger" role="alert"><strong>Журнал не загружен.</strong><br>${escapeHtml(audit.error || 'Сервер не вернул данные.')}<div class="actions section"><button class="button" data-action="load-audit-log" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Повторно загрузить журнал действий">Повторить чтение</button></div></div>`;
+  else if (!items.length) body = emptyState(audit.state === 'idle' ? 'Загрузите журнал после входа с правом диагностики.' : 'За выбранный период действий не найдено.');
+  else body = `<div class="data-list audit-list">${items.map((row) => {
+    const entity = row.entity && typeof row.entity === 'object' ? row.entity : {};
+    const profileUid = entity.uid || entity.targetUid || entity.userUid || entity.reporterUid || (entity.collection === 'users' ? entity.id : '');
+    return `<article class="list-row audit-row"><div><strong>${escapeHtml(auditActionLabel(row.action))}</strong><small><code>${escapeHtml(row.action || 'unknown')}</code> · ${escapeHtml(dateTime(row.timestampMs))} · ${escapeHtml(auditActor(row))} · ${escapeHtml(row.role || 'роль не указана')}</small><small>${escapeHtml(entity.collection || 'entity')}${entity.id ? ` / ${escapeHtml(entity.id)}` : ''}${row.requestId ? ` · request ${escapeHtml(row.requestId)}` : ''}</small><small>Причина и откат: ${escapeHtml(row.reason || 'причина не указана')}${row.rollbackReference ? ` · rollback ${escapeHtml(row.rollbackReference)}` : ''}</small><small>До: ${escapeHtml(auditSummary(row.before))}</small><small>После: ${escapeHtml(auditSummary(row.after))}</small></div><div class="actions">${profileUid ? `<button class="button small ghost" data-audit-user-uid="${escapeHtml(profileUid)}" type="button" title="Открыть профиль связанного пользователя">Профиль</button>` : ''}<a class="button small ghost" href="../../admin/index.html#audit" target="_blank" rel="noopener" title="Открыть старый модуль аудита для расширенной сверки">Старый журнал</a></div></article>`;
+  }).join('')}</div>${audit.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-audit-next" type="button" title="Загрузить более старые записи журнала">Показать ещё</button></div>' : ''}`;
+  return `<section class="card section"><div class="card-header"><div><h2>Журнал действий</h2><p>Изменения здесь только читаются: кто, что поменял, причина, before/after и ссылка на откат.</p></div><div class="actions"><span class="badge ${badgeClass(audit.state)}">${escapeHtml(auditStateLabel(audit.state))}</span><a class="button small ghost" href="../../admin/index.html#audit" target="_blank" rel="noopener" title="Открыть старый модуль аудита для сверки">Старый журнал</a></div></div><div class="card-body">${filterBar}<div class="hint section">Показано ${items.length}${audit.fetchedAtMs ? ` · обновлено ${escapeHtml(dateTime(audit.fetchedAtMs))}` : ''}</div>${body}</div></section>`;
 }
 
 function renderDiagnostics() {
@@ -534,8 +609,9 @@ function renderDiagnostics() {
     ${view.state === 'stale' ? '<div class="notice warning"><strong>Диагностика устарела.</strong> Снимок старше 36 часов.</div>' : ''}
     <section class="metrics section">${metrics.join('')}</section>
     <section class="card section"><div class="card-header"><div><h2>Состояние источников</h2><p>Для каждого источника отдельно показаны полнота, время проверки и последнее событие.</p></div><span class="badge ${badgeClass(view.state)}">${escapeHtml(view.stateLabel)}</span></div><div class="card-body">${renderDiagnosticsSourceHealth(view)}</div></section>
+    ${renderAuditLogPanel()}
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section>
-    <section class="card"><div class="card-header"><div><h2>Журнал действий</h2><p>Причина, исполнитель, состояние до и после.</p></div><a class="button" href="../../admin/index.html#audit-log">Открыть текущий журнал</a></div>${emptyState('Нативная временная шкала переносится следующим этапом.')}</section></div>`;
+    <section class="card"><div class="card-header"><div><h2>Операционный журнал</h2><p>Серверные операции и технические события.</p></div><a class="button" href="../../admin/index.html#ops-log" title="Открыть старый операционный журнал">Открыть legacy ops</a></div>${emptyState('Нативный ops-log переносится отдельным этапом.')}</section></div>`;
 }
 
 function renderSupport() {
@@ -887,6 +963,34 @@ async function loadReportQueue(append = false) {
   }
 }
 
+async function loadAuditLog(append = false) {
+  const authGeneration = state.authGeneration;
+  if (!append) state.audit = { ...state.audit, state: 'loading', error: '', nextCursor: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listAuditLog({
+      action: state.audit.action,
+      query: state.audit.query,
+      sinceDays: Number(state.audit.sinceDays || 7),
+      limit: 100,
+      ...(append && state.audit.nextCursor ? { cursor: state.audit.nextCursor } : {}),
+    });
+    if (!authStillValid(authGeneration, 'diagnostics.read')) return STALE_AUTH_RESULT;
+    state.audit = {
+      ...state.audit,
+      state: String(result?.state || 'ready'),
+      items: append ? [...state.audit.items, ...(Array.isArray(result?.items) ? result.items : [])] : Array.isArray(result?.items) ? result.items : [],
+      nextCursor: String(result?.nextCursor || ''),
+      fetchedAtMs: Number(result?.fetchedAtMs || Date.now()),
+      error: '',
+    };
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'diagnostics.read')) return STALE_AUTH_RESULT;
+    if (authStillValid(authGeneration, 'diagnostics.read')) state.audit = { ...state.audit, state: 'error', error: errorMessage(error) };
+    throw error;
+  }
+}
+
 async function updateReportStatus(target) {
   const source = String(target.getAttribute('data-report-source') || '');
   const reportId = String(target.getAttribute('data-report-id') || '');
@@ -941,6 +1045,19 @@ async function handleAction(action, target) {
   if (action === 'load-report-next') {
     if (!state.reports.nextCursor) return;
     return runBusy(() => loadReportQueue(true), 'Следующая страница репортов загружена.');
+  }
+  if (action === 'load-audit-log') {
+    state.audit = {
+      ...state.audit,
+      action: String(document.getElementById('audit-action-filter')?.value || ''),
+      query: String(document.getElementById('audit-search-filter')?.value || '').trim(),
+      sinceDays: Number(document.getElementById('audit-days-filter')?.value || 7),
+    };
+    return runBusy(loadAuditLog, 'Журнал действий загружен.');
+  }
+  if (action === 'load-audit-next') {
+    if (!state.audit.nextCursor) return;
+    return runBusy(() => loadAuditLog(true), 'Следующая страница журнала загружена.');
   }
   if (action === 'draft-report-reply') {
     const source = String(target.getAttribute('data-report-source') || '');
@@ -1192,6 +1309,13 @@ async function handleClick(event) {
     globalThis.location.hash = 'users';
     return runBusy(() => loadAdminUserProfile(reportUserUid), 'Единый профиль загружен из репорта.');
   }
+  const auditUserUid = target.getAttribute('data-audit-user-uid');
+  if (auditUserUid) {
+    state.users.profileLoading = true;
+    state.users.query = auditUserUid;
+    globalThis.location.hash = 'users';
+    return runBusy(() => loadAdminUserProfile(auditUserUid), 'Единый профиль загружен из журнала.');
+  }
   if (target.hasAttribute('data-report-next-status')) return updateReportStatus(target);
   const capabilityId = target.getAttribute('data-capability-id');
   if (capabilityId) {
@@ -1230,12 +1354,14 @@ export function setAuthState(auth) {
     state.message = '';
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
     state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+    state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+  if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
 }

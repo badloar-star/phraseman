@@ -73,6 +73,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'gmail-support': 'support',
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
+  audit: 'diagnostics',
 });
 
 const NATIVE_PAGE_HASHES = new Set([

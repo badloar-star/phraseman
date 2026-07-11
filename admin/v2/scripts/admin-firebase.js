@@ -61,6 +61,7 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const updateReportStatusCallable = httpsCallable(functionsUs, 'adminUpdateReportStatus');
   const draftReportReplyCallable = httpsCallable(functionsUs, 'adminDraftReportReply');
   const sendReportReplyCallable = httpsCallable(functionsUs, 'adminReplyToReport');
+  const listAuditLogCallable = httpsCallable(functionsUs, 'adminListAuditLog');
 
   async function loadOpenAiBudgetDashboard() {
     const result = await openAiBudgetCallable({ rangeDays: 30 });
@@ -118,5 +119,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
     updateReportStatus: async (input) => unwrap(await updateReportStatusCallable(input)),
     draftReportReply: async (input) => unwrap(await draftReportReplyCallable(input)),
     sendReportReply: async (input) => unwrap(await sendReportReplyCallable(input)),
+    listAuditLog: async (input) => unwrap(await listAuditLogCallable(input)),
   });
 }

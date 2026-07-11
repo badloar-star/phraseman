@@ -1603,6 +1603,7 @@ export { getPublishedLessonArtifact } from './language_content';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
 export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminListAuditLog } from './admin_audit_log';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 export { emailUnsubscribe } from './email_unsubscribe';

@@ -19,6 +19,19 @@ type PathsModule = {
   revisionKey(contentId: string, revision: number): string;
 };
 
+type PromptsModule = {
+  buildAtlasPrompt(card: Record<string, unknown>): string;
+  buildReplacementPrompt(card: Record<string, unknown>, itemId: string): string;
+};
+
+type CliModule = {
+  NETWORK_POLICY: 'offline_only';
+  prepareCardBrief(options: {
+    card: Record<string, unknown>;
+    outputRoot: string;
+  }): Promise<{ revisionDir: string; checkpointPath: string }>;
+};
+
 const root = process.cwd();
 const importEsm = new Function('specifier', 'return import(specifier)') as (specifier: string) => Promise<unknown>;
 
@@ -30,6 +43,16 @@ async function loadModules(): Promise<{ schema: SchemaModule; paths: PathsModule
     importEsm(pathToFileURL(pathsPath).href),
   ]);
   return { schema: schema as SchemaModule, paths: paths as PathsModule };
+}
+
+async function loadPrompts(): Promise<PromptsModule> {
+  const promptsPath = path.join(root, 'tools', 'social-learning-cards', 'src', 'prompts.mjs');
+  return (await importEsm(pathToFileURL(promptsPath).href)) as PromptsModule;
+}
+
+async function loadCli(): Promise<CliModule> {
+  const cliPath = path.join(root, 'tools', 'social-learning-cards', 'src', 'cli.mjs');
+  return (await importEsm(pathToFileURL(cliPath).href)) as CliModule;
 }
 
 function readFixture(): Record<string, unknown> {
@@ -116,5 +139,71 @@ describe('social learning card paths', () => {
     const outputRoot = path.join(root, 'output', 'social-learning-cards');
 
     expect(() => paths.resolveInside(outputRoot, unsafePath)).toThrow(/path_(traversal|absolute)/);
+  });
+});
+
+describe('DALL-E file brief generation', () => {
+  it('builds one text-free atlas prompt containing every cell contract', async () => {
+    const prompts = await loadPrompts();
+    const fixture = readFixture();
+
+    const prompt = prompts.buildAtlasPrompt(fixture);
+
+    expect(prompt).toContain('EXACT 3x3 GRID');
+    expect(prompt).toContain('NO TEXT');
+    expect(prompt).toContain('adult audience aged 20-50');
+    expect(prompt).toContain('same woman');
+    for (const item of fixture.items as Array<Record<string, string>>) {
+      expect(prompt).toContain(`[${item.id}]`);
+      expect(prompt).toContain(item.visualBrief);
+    }
+  });
+
+  it('builds a replacement prompt for exactly one requested cell', async () => {
+    const prompts = await loadPrompts();
+    const fixture = readFixture();
+
+    const prompt = prompts.buildReplacementPrompt(fixture, 'item_05');
+
+    expect(prompt).toContain('[item_05]');
+    expect(prompt).toContain('Same woman reacting to a spicy red soup');
+    expect(prompt).not.toContain('[item_04]');
+    expect(prompt).not.toContain('[item_06]');
+    expect(() => prompts.buildReplacementPrompt(fixture, 'item_99')).toThrow('unknown_item');
+  });
+
+  it('writes prompts and a prompt-ready checkpoint without network output', async () => {
+    const cli = await loadCli();
+    const fixture = readFixture();
+    const outputRoot = path.join(root, '.codex-tmp', 'social-learning-cards-tests', 'prepare');
+    fs.rmSync(outputRoot, { recursive: true, force: true });
+
+    const result = await cli.prepareCardBrief({ card: fixture, outputRoot });
+    const checkpoint = JSON.parse(fs.readFileSync(result.checkpointPath, 'utf8'));
+
+    expect(fs.readFileSync(path.join(result.revisionDir, 'dalle', 'atlas-prompt.txt'), 'utf8')).toContain(
+      'EXACT 3x3 GRID',
+    );
+    expect(JSON.parse(fs.readFileSync(path.join(result.revisionDir, 'dalle', 'replacement-prompts.json'), 'utf8'))).toHaveLength(9);
+    expect(checkpoint).toMatchObject({
+      schemaVersion: 1,
+      contentId: 'slc_pilot_01_taste',
+      revision: 1,
+      stage: 'prompt_ready',
+      atlasPath: null,
+      verifiedAt: null,
+    });
+    expect(cli.NETWORK_POLICY).toBe('offline_only');
+
+    const sourceDir = path.join(root, 'tools', 'social-learning-cards', 'src');
+    const source = fs
+      .readdirSync(sourceDir)
+      .filter((name) => name.endsWith('.mjs'))
+      .map((name) => fs.readFileSync(path.join(sourceDir, name), 'utf8'))
+      .join('\n');
+    expect(source).not.toMatch(/from ['"]openai|require\(['"]openai|\/v1\/images/);
+    expect(source).not.toContain('process.env.OPENAI_API_KEY');
+    expect(source).not.toContain('process.env.OPENAI_TTS_API_KEY');
+    expect(source).not.toMatch(/\bfetch\s*\(|node:https|node:http/);
   });
 });

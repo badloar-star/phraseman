@@ -289,6 +289,7 @@ describe('firestore.rules security baseline', () => {
 
   test('admin Product Manager memory is admin-readable but never client-writable', () => {
     for (const collection of [
+      'admin_pm_state',
       'admin_pm_runs',
       'admin_pm_briefs',
       'admin_pm_evidence_manifests',
@@ -302,6 +303,13 @@ describe('firestore.rules security baseline', () => {
       expect(block![0]).toContain('allow read: if isAdmin();');
       expect(block![0]).toContain('allow create, update, delete: if false;');
     }
+  });
+
+  test('admin Product Manager paths are excluded from broad admin write fallback', () => {
+    expect(rules).toContain('function isServerOwnedAdminPmPath(document)');
+    const catchAllBlock = rules.match(/match \/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+    expect(catchAllBlock).not.toBeNull();
+    expect(catchAllBlock![0]).toContain('allow write: if isAdmin() && !isServerOwnedAdminPmPath(document);');
   });
 
   test('app diagnostics collections are server/admin-write only with admin read', () => {

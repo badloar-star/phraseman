@@ -13,6 +13,17 @@ service cloud.firestore {
         && request.auth.token.admin == true;
     }
 
+    function isServerOwnedAdminPmPath(document) {
+      return string(document).matches('admin_pm_state/[^/]+')
+        || string(document).matches('admin_pm_runs/[^/]+')
+        || string(document).matches('admin_pm_briefs/[^/]+')
+        || string(document).matches('admin_pm_evidence_manifests/[^/]+')
+        || string(document).matches('admin_pm_recommendation_bundles/[^/]+')
+        || string(document).matches('admin_pm_idea_bundles/[^/]+')
+        || string(document).matches('admin_pm_experiment_bundles/[^/]+')
+        || string(document).matches('admin_pm_decisions/[^/]+');
+    }
+
     function stableUserMatchesAuth(stableUid) {
       return request.auth != null
         && exists(/databases/$(database)/documents/users/$(stableUid))
@@ -2082,6 +2093,10 @@ service cloud.firestore {
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    match /admin_pm_state/{docId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+    }
     match /admin_pm_runs/{docId} {
       allow read: if isAdmin();
       allow create, update, delete: if false;
@@ -2112,7 +2127,8 @@ service cloud.firestore {
     }
 
     match /{document=**} {
-      allow read, write: if isAdmin();
+      allow read: if isAdmin();
+      allow write: if isAdmin() && !isServerOwnedAdminPmPath(document);
       allow read, write: if false;
     }
   }

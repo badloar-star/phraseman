@@ -1,6 +1,6 @@
 {
   "schemaVersion": "phraseman-app-codex-v1",
-  "sourceHash": "0eb8ae3ba265e261103acd261df9103823bab2e245ead100ff30c4b41ec90e33",
+  "sourceHash": "bd5a5677c5fb4fa8826b31c233fa5f8ba469bef7483bc538e634822da8bb7c08",
   "generator": "scripts/generate_project_atlas.mjs",
   "inputFiles": [
     "admin/index.html",
@@ -1263,6 +1263,7 @@
     "functions/src/admin_pm_prompt_security.test.ts",
     "functions/src/admin_pm_publication_gate.test.ts",
     "functions/src/admin_pm_publication_gate.ts",
+    "functions/src/admin_pm_rules_contract.test.ts",
     "functions/src/admin_pm_service.test.ts",
     "functions/src/admin_pm_service.ts",
     "functions/src/admin_pm_source_manifest.test.ts",

@@ -10205,6 +10205,7 @@
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="ИИ-сводка «что случилось за сутки»: репорты, отмены, ошибки, safety — одним взглядом" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
+  <div class="tab" onclick="switchTab('product-manager')" title="Product Manager Workspace: период с прошлого PM-дайджеста, покрытие данных, выводы, решения и эксперименты" style="background:rgba(59,130,246,0.12);border:1px solid rgba(96,165,250,0.35);color:#bfdbfe;font-weight:700">PM Workspace</div>
   <div class="tab" onclick="switchTab('app-codex')" title="Атлас экранов, маршрутов, данных, событий и метрик Phraseman">Кодекс приложения</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
@@ -11922,6 +11923,20 @@
   <section id="dd-charts" aria-label="Графики дайджеста"></section>
   <section id="dd-content" aria-live="polite"><div class="reports-empty">Загрузка…</div></section>
   <section id="dd-coverage" aria-label="Покрытие источников"></section>
+</div>
+
+<div id="tab-product-manager" class="reports-tab">
+  <div class="reports-toolbar">
+    <button id="pm-generate" onclick="generateProductManagerBrief()" title="Собрать данные с момента прошлого PM-дайджеста и выпустить новый Product Manager brief">Сформировать PM brief</button>
+    <button onclick="loadProductManagerWorkspace(true)" title="Перечитать последний сохранённый Product Manager brief">Обновить</button>
+    <span class="reports-count" id="pm-count"></span>
+  </div>
+  <section id="pm-overview" aria-label="Product Manager обзор"></section>
+  <section id="pm-metrics" aria-label="Product Manager сравнительные метрики"></section>
+  <section id="pm-opportunities" aria-label="Product Manager рекомендации и идеи"></section>
+  <section id="pm-experiments" aria-label="Product Manager эксперименты"></section>
+  <section id="pm-decisions" aria-label="Product Manager журнал решений"></section>
+  <section id="pm-coverage" aria-label="Product Manager покрытие данных"></section>
 </div>
 
 <div id="tab-app-codex" class="reports-tab">
@@ -14351,6 +14366,23 @@
     }
     return _fnAdminGenerateDailyDigest;
   }
+  let _fnAdminGenerateProductBrief = null;
+  function getAdminGenerateProductBriefCallable() {
+    if (!_fnAdminGenerateProductBrief) {
+      _fnAdminGenerateProductBrief = httpsCallable(functionsUs, 'adminGenerateProductBrief');
+    }
+    return _fnAdminGenerateProductBrief;
+  }
+  let _fnAdminMutateProductItem = null;
+  function getAdminMutateProductItemCallable() {
+    if (!_fnAdminMutateProductItem) {
+      _fnAdminMutateProductItem = httpsCallable(functionsUs, 'adminMutateProductItem');
+    }
+    return _fnAdminMutateProductItem;
+  }
+  window.getAdminGenerateProductBriefCallable = getAdminGenerateProductBriefCallable;
+  window.getAdminMutateProductItemCallable = getAdminMutateProductItemCallable;
+  window.pmAdminFirestore = { db, doc, getDoc, collection, getDocs, query, where, orderBy, limit };
   const _supportCallables = {};
   function supportCallable(name) {
     if (!_supportCallables[name]) _supportCallables[name] = httpsCallable(functionsUs, name);
@@ -14419,7 +14451,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','app-codex','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','product-manager','app-codex','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -19327,6 +19359,7 @@
     if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
     if(tab==='compliance-radar' && !window._complianceRadarLoaded && typeof loadComplianceRadar === 'function') loadComplianceRadar(false);
     if(tab==='daily-digest' && !window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    if(tab==='product-manager' && typeof window.loadProductManagerWorkspace === 'function') window.loadProductManagerWorkspace(false);
     if(tab==='app-codex' && typeof window.loadAppCodex === 'function') window.loadAppCodex(false);
     if(tab==='gmail-support' && !window._supportInboxLoaded && typeof loadSupportInbox === 'function') loadSupportInbox(false);
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
@@ -20773,6 +20806,7 @@
     site: 'Site',
     analytics: 'Analytics',
     'openai-budget': 'OpenAI budget',
+    'product-manager': 'PM Workspace',
     reports: 'Reports',
     emails: 'Emails',
     'website-inbox': 'Site support',
@@ -39991,6 +40025,7 @@
 })();
 </script>
 <script src="admin-digest.js"></script>
+<script src="admin-product-manager.js"></script>
 <script src="app-codex.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ export interface PmAdminSectionManifestEntry {
 
 const INCLUDED_ADMIN_SECTIONS: Record<string, { domain: string; sourceIds: string[] }> = {
   'daily-digest': { domain: 'operations', sourceIds: ['admin_digest_runs'] },
+  'product-manager': { domain: 'operations', sourceIds: ['admin_pm_briefs', 'admin_pm_decisions'] },
   'app-codex': { domain: 'operations', sourceIds: ['product_codex'] },
   overview: { domain: 'growth_activation', sourceIds: ['users'] },
   analytics: { domain: 'learning_engagement', sourceIds: ['progress_events'] },

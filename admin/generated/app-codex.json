@@ -1,6 +1,6 @@
 {
   "schemaVersion": "phraseman-app-codex-v1",
-  "sourceHash": "0c823ce8394035f2a005435e76cc6f0764c2312527924a1e6a196b2dbecb0125",
+  "sourceHash": "0eb8ae3ba265e261103acd261df9103823bab2e245ead100ff30c4b41ec90e33",
   "generator": "scripts/generate_project_atlas.mjs",
   "inputFiles": [
     "admin/index.html",
@@ -1248,8 +1248,23 @@
     "functions/src/admin_digest_ui_contract.test.ts",
     "functions/src/admin_email.ts",
     "functions/src/admin_grant.ts",
+    "functions/src/admin_pm_callables.test.ts",
+    "functions/src/admin_pm_callables.ts",
     "functions/src/admin_pm_contracts.test.ts",
     "functions/src/admin_pm_contracts.ts",
+    "functions/src/admin_pm_evidence.test.ts",
+    "functions/src/admin_pm_evidence.ts",
+    "functions/src/admin_pm_generation.test.ts",
+    "functions/src/admin_pm_generation.ts",
+    "functions/src/admin_pm_insights.test.ts",
+    "functions/src/admin_pm_insights.ts",
+    "functions/src/admin_pm_memory.test.ts",
+    "functions/src/admin_pm_memory.ts",
+    "functions/src/admin_pm_prompt_security.test.ts",
+    "functions/src/admin_pm_publication_gate.test.ts",
+    "functions/src/admin_pm_publication_gate.ts",
+    "functions/src/admin_pm_service.test.ts",
+    "functions/src/admin_pm_service.ts",
     "functions/src/admin_pm_source_manifest.test.ts",
     "functions/src/admin_pm_source_manifest.ts",
     "functions/src/admin_push_jobs.test.ts",
@@ -1486,11 +1501,11 @@
     "scripts/generate_project_atlas.mjs"
   ],
   "stats": {
-    "entities": 933,
+    "entities": 956,
     "screens": 161,
-    "adminTabs": 56,
-    "firestorePaths": 141,
-    "callables": 550,
+    "adminTabs": 57,
+    "firestorePaths": 145,
+    "callables": 568,
     "events": 13,
     "metrics": 12
   },
@@ -1502,6 +1517,7 @@
       "age-consent",
       "compliance-radar",
       "daily-digest",
+      "product-manager",
       "app-codex",
       "gmail-support",
       "overview",
@@ -3579,6 +3595,14 @@
       "description": "Раздел админки daily-digest."
     },
     {
+      "id": "admin_tab:product-manager",
+      "kind": "admin_tab",
+      "name": "product-manager",
+      "route": "#product-manager",
+      "sourceFile": "admin/index.html",
+      "description": "Раздел админки product-manager."
+    },
+    {
       "id": "admin_tab:app-codex",
       "kind": "admin_tab",
       "name": "app-codex",
@@ -4049,6 +4073,30 @@
       "kind": "firestore_path",
       "name": "admin_log",
       "description": "Firestore collection/path referenced statically by application source: admin_log."
+    },
+    {
+      "id": "firestore_path:admin_pm_briefs/${...}",
+      "kind": "firestore_path",
+      "name": "admin_pm_briefs/${...}",
+      "description": "Firestore collection/path referenced statically by application source: admin_pm_briefs/${...}."
+    },
+    {
+      "id": "firestore_path:admin_pm_evidence_manifests/${...}",
+      "kind": "firestore_path",
+      "name": "admin_pm_evidence_manifests/${...}",
+      "description": "Firestore collection/path referenced statically by application source: admin_pm_evidence_manifests/${...}."
+    },
+    {
+      "id": "firestore_path:admin_pm_runs/${...}",
+      "kind": "firestore_path",
+      "name": "admin_pm_runs/${...}",
+      "description": "Firestore collection/path referenced statically by application source: admin_pm_runs/${...}."
+    },
+    {
+      "id": "firestore_path:admin_pm_state/latest",
+      "kind": "firestore_path",
+      "name": "admin_pm_state/latest",
+      "description": "Firestore collection/path referenced statically by application source: admin_pm_state/latest."
     },
     {
       "id": "firestore_path:admin_push_jobs",
@@ -5028,6 +5076,13 @@
       "description": "Server export readPaginatedSource; inspect the source file for auth and data contracts."
     },
     {
+      "id": "callable:readTargetForDigestSource",
+      "kind": "callable",
+      "name": "readTargetForDigestSource",
+      "sourceFile": "functions/src/admin_digest_sources.ts",
+      "description": "Server export readTargetForDigestSource; inspect the source file for auth and data contracts."
+    },
+    {
       "id": "callable:adminEmailBroadcast",
       "kind": "callable",
       "name": "adminEmailBroadcast",
@@ -5063,6 +5118,20 @@
       "description": "Server export adminGrantReward; inspect the source file for auth and data contracts."
     },
     {
+      "id": "callable:adminGenerateProductBrief",
+      "kind": "callable",
+      "name": "adminGenerateProductBrief",
+      "sourceFile": "functions/src/admin_pm_callables.ts",
+      "description": "Server export adminGenerateProductBrief; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:adminMutateProductItem",
+      "kind": "callable",
+      "name": "adminMutateProductItem",
+      "sourceFile": "functions/src/admin_pm_callables.ts",
+      "description": "Server export adminMutateProductItem; inspect the source file for auth and data contracts."
+    },
+    {
       "id": "callable:serializedBytes",
       "kind": "callable",
       "name": "serializedBytes",
@@ -5075,6 +5144,111 @@
       "name": "validatePmBrief",
       "sourceFile": "functions/src/admin_pm_contracts.ts",
       "description": "Server export validatePmBrief; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:buildPmEvidenceWindows",
+      "kind": "callable",
+      "name": "buildPmEvidenceWindows",
+      "sourceFile": "functions/src/admin_pm_evidence.ts",
+      "description": "Server export buildPmEvidenceWindows; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:collectProductManagerEvidence",
+      "kind": "callable",
+      "name": "collectProductManagerEvidence",
+      "sourceFile": "functions/src/admin_pm_evidence.ts",
+      "description": "Server export collectProductManagerEvidence; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:createFirestorePmSourceReaders",
+      "kind": "callable",
+      "name": "createFirestorePmSourceReaders",
+      "sourceFile": "functions/src/admin_pm_evidence.ts",
+      "description": "Server export createFirestorePmSourceReaders; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:buildPmGenerationRequest",
+      "kind": "callable",
+      "name": "buildPmGenerationRequest",
+      "sourceFile": "functions/src/admin_pm_generation.ts",
+      "description": "Server export buildPmGenerationRequest; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:parseAndValidatePmBriefJson",
+      "kind": "callable",
+      "name": "parseAndValidatePmBriefJson",
+      "sourceFile": "functions/src/admin_pm_generation.ts",
+      "description": "Server export parseAndValidatePmBriefJson; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:sanitizePmMarkdown",
+      "kind": "callable",
+      "name": "sanitizePmMarkdown",
+      "sourceFile": "functions/src/admin_pm_generation.ts",
+      "description": "Server export sanitizePmMarkdown; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:computeProductInsights",
+      "kind": "callable",
+      "name": "computeProductInsights",
+      "sourceFile": "functions/src/admin_pm_insights.ts",
+      "description": "Server export computeProductInsights; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:filterRejectedProductIntents",
+      "kind": "callable",
+      "name": "filterRejectedProductIntents",
+      "sourceFile": "functions/src/admin_pm_insights.ts",
+      "description": "Server export filterRejectedProductIntents; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:fingerprintProductIntent",
+      "kind": "callable",
+      "name": "fingerprintProductIntent",
+      "sourceFile": "functions/src/admin_pm_insights.ts",
+      "description": "Server export fingerprintProductIntent; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:buildPmDecisionAudit",
+      "kind": "callable",
+      "name": "buildPmDecisionAudit",
+      "sourceFile": "functions/src/admin_pm_memory.ts",
+      "description": "Server export buildPmDecisionAudit; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:buildPmPublicationWrites",
+      "kind": "callable",
+      "name": "buildPmPublicationWrites",
+      "sourceFile": "functions/src/admin_pm_memory.ts",
+      "description": "Server export buildPmPublicationWrites; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:validatePmItemMutation",
+      "kind": "callable",
+      "name": "validatePmItemMutation",
+      "sourceFile": "functions/src/admin_pm_memory.ts",
+      "description": "Server export validatePmItemMutation; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:evaluatePmPublicationGate",
+      "kind": "callable",
+      "name": "evaluatePmPublicationGate",
+      "sourceFile": "functions/src/admin_pm_publication_gate.ts",
+      "description": "Server export evaluatePmPublicationGate; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:derivePmRunIds",
+      "kind": "callable",
+      "name": "derivePmRunIds",
+      "sourceFile": "functions/src/admin_pm_service.ts",
+      "description": "Server export derivePmRunIds; inspect the source file for auth and data contracts."
+    },
+    {
+      "id": "callable:validatePmIdempotencyKey",
+      "kind": "callable",
+      "name": "validatePmIdempotencyKey",
+      "sourceFile": "functions/src/admin_pm_service.ts",
+      "description": "Server export validatePmIdempotencyKey; inspect the source file for auth and data contracts."
     },
     {
       "id": "callable:PM_BACKEND_SOURCES",

@@ -4,6 +4,7 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..', '..');
 const adminHtml = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
 const digestModulePath = path.join(ROOT, 'admin', 'admin-digest.js');
+const pmModulePath = path.join(ROOT, 'admin', 'admin-product-manager.js');
 
 describe('admin digest v2 surface', () => {
   test('loads a focused digest module and exposes accessible v2 regions', () => {
@@ -42,5 +43,23 @@ describe('admin digest v2 surface', () => {
     const digestSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'admin_daily_digest.ts'), 'utf8');
     const returnBlock = digestSource.slice(digestSource.lastIndexOf('return {'), digestSource.lastIndexOf('} catch (error)'));
     expect(returnBlock).toContain('sourceCoverage');
+  });
+});
+
+describe('admin Product Manager Workspace surface', () => {
+  test('loads a focused Product Manager module and exposes six workspace regions', () => {
+    expect(fs.existsSync(pmModulePath)).toBe(true);
+    expect(adminHtml).toContain('admin-product-manager.js');
+    for (const id of ['pm-overview', 'pm-metrics', 'pm-opportunities', 'pm-experiments', 'pm-decisions', 'pm-coverage']) {
+      expect(adminHtml).toContain(`id="${id}"`);
+    }
+  });
+
+  test('keeps one primary PM generation action and accessible chart tables', () => {
+    expect((adminHtml.match(/id="pm-generate"/g) || [])).toHaveLength(1);
+    const pmModule = fs.readFileSync(pmModulePath, 'utf8');
+    expect(pmModule).toContain('pm-data-table');
+    expect(pmModule).toContain('adminGenerateProductBrief');
+    expect(pmModule).toContain('adminMutateProductItem');
   });
 });

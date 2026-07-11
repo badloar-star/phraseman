@@ -221,6 +221,32 @@ function hasBindingOrAssignment(source: ts.SourceFile, name: string): boolean {
   return found;
 }
 
+function escapedWriteCapabilityReferences(
+  source: ts.SourceFile,
+  importedWriteCapabilities: ReadonlySet<string>,
+): string[] {
+  const violations: string[] = [];
+  const visit = (node: ts.Node): void => {
+    if (ts.isIdentifier(node) && importedWriteCapabilities.has(node.text)) {
+      const parent = node.parent;
+      const isExactImportSpecifier =
+        ts.isImportSpecifier(parent) &&
+        parent.name === node &&
+        parent.propertyName === undefined;
+      const isDirectCallCallee =
+        ts.isCallExpression(parent) && parent.expression === node;
+      if (!isExactImportSpecifier && !isDirectCallCallee) {
+        violations.push(
+          `escaped_write_capability:${node.text}:${lineOf(source, node)}`,
+        );
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return violations;
+}
+
 function isPathMethodCall(
   expression: ts.Expression | undefined,
   method: "resolve" | "relative" | "isAbsolute",
@@ -387,6 +413,9 @@ function reportCapabilityViolations(source: ts.SourceFile): string[] {
       violations.push(`shadowed_or_reassigned:${approvedName}`);
     }
   }
+  violations.push(
+    ...escapedWriteCapabilityReferences(source, importedWriteCapabilities),
+  );
   for (const call of filesystemWriteCalls(source)) {
     const name = calledProperty(call.expression);
     if (
@@ -439,6 +468,10 @@ describe("production XP integrity audit read-only contract", () => {
         "function assertAuditOutputPath(root: string, candidate: string) { return candidate; }",
         "let writeFileSync = () => undefined;",
         "writeFileSync = () => undefined;",
+        "const save = writeFileSync;",
+        'save("docs/aliased.json", "unsafe");',
+        'writeFileSync.call(null, "docs/call.json", "unsafe");',
+        "consume(writeFileSync);",
         'writeFileSync("docs/unwrapped.json", "unsafe");',
         'filesystem["writeFileSync"](assertAuditOutputPath(root, candidate), "unsafe");',
       ].join("\n"),
@@ -448,8 +481,11 @@ describe("production XP integrity audit read-only contract", () => {
       expect.arrayContaining([
         "invalid_fs_import:1",
         "shadowed_or_reassigned:writeFileSync",
-        "unasserted_write_destination:writeFileSync:5",
-        "unapproved_write_call:writeFileSync:6",
+        "escaped_write_capability:writeFileSync:5",
+        "escaped_write_capability:writeFileSync:7",
+        "escaped_write_capability:writeFileSync:8",
+        "unasserted_write_destination:writeFileSync:9",
+        "unapproved_write_call:writeFileSync:10",
       ]),
     );
   });

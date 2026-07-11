@@ -53,8 +53,8 @@
       "fingerprint": "00b04bfa3e1c3ab3626a7186c07c62b0060aaf26102b8dcdd807635ddb29dec9",
       "count": 2,
       "lineHints": [
-        1861,
-        2102
+        1974,
+        2215
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -82,7 +82,7 @@
       "fingerprint": "00b174499a0bffbbb5c4c5495b1f35c7df402cebf4c810a1e4df80ec22992b32",
       "count": 1,
       "lineHints": [
-        688
+        705
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -258,7 +258,7 @@
       "fingerprint": "03c00d22df0b37c4744067529bb165aed772dd5c75d72a8d6924afaee653df33",
       "count": 1,
       "lineHints": [
-        2123
+        2124
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -287,7 +287,7 @@
       "fingerprint": "0416370c40f95c61582aed44461f0dc5f8d7df9e1b6bcc262048aa4afb1f0129",
       "count": 1,
       "lineHints": [
-        2465
+        2464
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -378,8 +378,8 @@
       "fingerprint": "06e7f8f72f0d184712c69d07bea6e43d81f43942d7a3818ab055645724288e0c",
       "count": 2,
       "lineHints": [
-        3104,
-        3581
+        3103,
+        3580
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -438,7 +438,7 @@
       "fingerprint": "082ad49a9623a2c9aace65fda77ee65ff8afe787bd78d37c9ecfcee6c74f06b8",
       "count": 1,
       "lineHints": [
-        2978
+        2977
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -598,8 +598,8 @@
       "fingerprint": "08f045b42e54e59c5a7de8b08f4fbbff03be8da932cc8275573416ee12606cec",
       "count": 2,
       "lineHints": [
-        1127,
-        1130
+        1129,
+        1132
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -630,7 +630,7 @@
       "fingerprint": "08fbf8fe3bd867ee225c029a9091a0b23c64a7ecd3884faf9be3d110351dc8fb",
       "count": 1,
       "lineHints": [
-        964
+        1253
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -690,8 +690,8 @@
       "fingerprint": "09663a8021dc01d057fa1a4ce6fb19c952d0896521656809359daa9deab556d1",
       "count": 2,
       "lineHints": [
-        2527,
-        2545
+        2533,
+        2551
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -725,8 +725,8 @@
       "fingerprint": "09849a6450f5f32265802f9c10c2268f94c853e6cd42b7c75ac4485b9681a57c",
       "count": 2,
       "lineHints": [
-        1192,
-        1195
+        1213,
+        1216
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1201,7 +1201,7 @@
       "fingerprint": "15431446258a59b9a13805ded606015e9532fdc94fca4d08cee17a3d28042ba6",
       "count": 1,
       "lineHints": [
-        308
+        310
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1353,7 +1353,7 @@
       "fingerprint": "19edc19468424d95b27e49aa43ba32e55c36c6d19e45104c9b6f39b5b036a452",
       "count": 1,
       "lineHints": [
-        1107
+        1109
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1419,7 +1419,7 @@
       "fingerprint": "1a35b07d763b1c1e3405644b4a2517ff03a9d58d163a2b63661c453ee8d5d27d",
       "count": 1,
       "lineHints": [
-        2070
+        2183
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1547,7 +1547,7 @@
       "fingerprint": "1c239907f9f4e4b7e04cd4a77697cb254ce454623e45d89bdaa77f539632d280",
       "count": 1,
       "lineHints": [
-        2602
+        2601
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1576,7 +1576,7 @@
       "fingerprint": "1c7e3dc5d11fb28ef3d2497190d78665bed2ae7be36b77e9606e551f32b40a7f",
       "count": 1,
       "lineHints": [
-        1004
+        1016
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1606,8 +1606,8 @@
       "fingerprint": "1ca969e39c1126f599963a70cbe1a90c4b1db8a6f26f20938661d9bdd8af3f4f",
       "count": 2,
       "lineHints": [
-        2182,
-        2185
+        2183,
+        2186
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1666,8 +1666,8 @@
       "fingerprint": "1d94862ebd011159f4b5c25dc27de92917310353ba0f43cbeb49ed9ea02a1aaa",
       "count": 2,
       "lineHints": [
-        763,
-        798
+        1046,
+        1081
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1755,7 +1755,7 @@
       "fingerprint": "1f121d9e63eac082b53b56a777ae376d61edb31cb746f1c57c7041759ed71a3f",
       "count": 1,
       "lineHints": [
-        2981
+        2980
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1814,7 +1814,7 @@
       "fingerprint": "2037476136a90e0b687c5f6b75eb09f06c159d57f32b2058d59691ad77bdd6d4",
       "count": 1,
       "lineHints": [
-        900
+        1187
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1874,7 +1874,7 @@
       "fingerprint": "2078bf90d161ae1fb701fe02bf530a035a2a6de53eb8e04bf34f03d3c29d03fa",
       "count": 1,
       "lineHints": [
-        160
+        162
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1968,7 +1968,7 @@
       "fingerprint": "216ef362d45d51c198797bdc72cfc8c761f0069a7954f18475f5d3129c98a7bb",
       "count": 1,
       "lineHints": [
-        2624
+        2724
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2028,7 +2028,7 @@
       "fingerprint": "21d262653743c977de9db863e53e740d3716882f12dcb466e532e7916953350b",
       "count": 1,
       "lineHints": [
-        2266
+        2267
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2149,7 +2149,7 @@
       "fingerprint": "235b2be6bbde4da31e805555f5389d28a6261794beac58c6ab091bcc251667b3",
       "count": 1,
       "lineHints": [
-        2422
+        2421
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2509,7 +2509,7 @@
       "fingerprint": "29a58d28baf6f21a4f81100c17190697c6d47a13b7f21756622b5913afee3692",
       "count": 1,
       "lineHints": [
-        2743
+        2742
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2683,7 +2683,7 @@
       "fingerprint": "2ded6079ca6ed00eebe0d0f4ad8f0230d66c1d60243aa8d390c0775c76ebbc14",
       "count": 1,
       "lineHints": [
-        423
+        422
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2834,7 +2834,7 @@
       "fingerprint": "311ce19ea536efc36240bb1dc0c7306e317ba1cd457fd5479be13df0599f72a8",
       "count": 1,
       "lineHints": [
-        292
+        336
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2952,7 +2952,7 @@
       "fingerprint": "31908b7e4772636c184dde62fa925016992b679c1bc4b31b13ced71e716ca7a2",
       "count": 1,
       "lineHints": [
-        516
+        543
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2985,8 +2985,8 @@
       "fingerprint": "31f8fdbd15d850b5388ea3d6803e3096d9b9388a85a63114c4b9a27b81ffc209",
       "count": 2,
       "lineHints": [
-        3091,
-        3492
+        3090,
+        3491
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3015,9 +3015,9 @@
       "fingerprint": "32893df80bf616d73b0116b77e68ff3d1a41369664853c5eca6813046c962b76",
       "count": 3,
       "lineHints": [
-        743,
-        837,
-        840
+        1026,
+        1124,
+        1127
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3120,7 +3120,7 @@
       "fingerprint": "3464fc45f2affca9355afb5be0d715dd0b7c7c1e4319dbd64d11c4af4ce38dd8",
       "count": 1,
       "lineHints": [
-        1735
+        1723
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3176,7 +3176,7 @@
       "fingerprint": "35aa2fd52597972a588932233dd9a7dc9b82067394528be23d3021f462338332",
       "count": 1,
       "lineHints": [
-        842
+        884
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3205,7 +3205,7 @@
       "fingerprint": "36999e5cbfd7312688c3a1f9e737ff522cdb41aa2186ae399bb508fd53c26633",
       "count": 1,
       "lineHints": [
-        573
+        576
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3269,7 +3269,7 @@
       "fingerprint": "3754194ff3311d8fad264e0456b78697c4cc0f65e93b84b395597f94dc07b1a4",
       "count": 1,
       "lineHints": [
-        3866
+        3865
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3298,7 +3298,7 @@
       "fingerprint": "382a5f4c63361e7d35eb9871a0b66c465a2a75053f9d6eed1434cc9734fc6872",
       "count": 1,
       "lineHints": [
-        2462
+        2461
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3549,7 +3549,7 @@
       "fingerprint": "3c8cd995da3cc6bcee0da46e8539e93b18548253bc1d18db79908087d7a20b6f",
       "count": 1,
       "lineHints": [
-        3853
+        3852
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3777,36 +3777,6 @@
       }
     },
     {
-      "file": "app/compass/compass_day_closing_panel.tsx",
-      "ownerName": "DayClosingPanel",
-      "ownerPath": "DayClosingPanel",
-      "ancestorPath": [
-        "View",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "4361abebe88133f8fd5a5e2d50cb23cd7f2f937952c9a5069c3e1f45ce86b88c",
-      "count": 2,
-      "lineHints": [
-        406,
-        409
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/DialogsTabContent.tsx",
       "ownerName": "DialogsTabContent",
       "ownerPath": "DialogsTabContent",
@@ -3859,8 +3829,8 @@
       "fingerprint": "4601beb3ca45cc889727a503011fc42ae9d8bbb5c4e30087969bfde12caed554",
       "count": 2,
       "lineHints": [
-        3866,
-        3869
+        3865,
+        3868
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3891,7 +3861,7 @@
       "fingerprint": "466ebaf268d62d741e7cc18bc0c955a06f3254aa16e187231ab9fca26d0eaa4c",
       "count": 1,
       "lineHints": [
-        365
+        367
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3995,8 +3965,8 @@
       "fingerprint": "478d9690c6b11e59899e09a1b415af938af7600f31b65ebcad45bbae1085f6cd",
       "count": 2,
       "lineHints": [
-        815,
-        818
+        1098,
+        1101
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4026,8 +3996,8 @@
       "fingerprint": "479c877e100494b0b6d141dd3d8b0280e2f2aa26aace468929a434470ac33387",
       "count": 2,
       "lineHints": [
-        708,
-        713
+        711,
+        716
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4087,7 +4057,7 @@
       "fingerprint": "487566f60ee7dff07b5bdade7542de106fec277fc096ed6e81ec5a6de87e4277",
       "count": 1,
       "lineHints": [
-        1081
+        1108
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4397,7 +4367,7 @@
       "fingerprint": "4d78d7ad3e538abab17a7818d327eade6b44f73e41de6b7ff1fd9b4f3314f39c",
       "count": 1,
       "lineHints": [
-        110
+        148
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4633,7 +4603,7 @@
       "fingerprint": "55ee3c6be943936e154c93eaf5850f9d22a2a1c70eb6f31124083b73814079c4",
       "count": 1,
       "lineHints": [
-        235
+        243
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4726,7 +4696,7 @@
       "fingerprint": "57936014a5262ef0fe232600635f797bea3ee172d35b089a9f25aede80cbbe93",
       "count": 1,
       "lineHints": [
-        990
+        993
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4785,9 +4755,9 @@
       "fingerprint": "5a4dec590aad4cbd7674746ab7c3189e7017e148973a41606d414b83ad0e890e",
       "count": 3,
       "lineHints": [
-        3126,
-        3138,
-        3176
+        3125,
+        3137,
+        3175
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4973,36 +4943,6 @@
       }
     },
     {
-      "file": "app/constellation_results.tsx",
-      "ownerName": "ConstellationResultsScreen",
-      "ownerPath": "ConstellationResultsScreen",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "5ed38e5464e4a68e24eb55d985cf40a05f6051df6e0be536339882b8c9a27521",
-      "count": 1,
-      "lineHints": [
-        292
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/arena_room.tsx",
       "ownerName": "MemberRow",
       "ownerPath": "MemberRow",
@@ -5151,8 +5091,8 @@
       "fingerprint": "61e771a9ab069df3791fc9fd31fc897c9ea92ad828e2c3c8c2a8d30feb5362cb",
       "count": 2,
       "lineHints": [
-        636,
-        639
+        635,
+        638
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5185,8 +5125,8 @@
       "fingerprint": "6274c9827c136bb388508d2f99b54f6f7a332430652ebb98160caf7e5bb2084d",
       "count": 2,
       "lineHints": [
-        2527,
-        2531
+        2526,
+        2530
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5213,7 +5153,7 @@
       "fingerprint": "629a3fb9f50babef9e5468eb615ee3fd57d31fccb3efa59f8d1abb5de1e76b2a",
       "count": 1,
       "lineHints": [
-        1150
+        1186
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5279,8 +5219,8 @@
       "fingerprint": "63c8743b85bad49dda5bd2f3a363b80b9fe139ced96ff51215ab22c134b3f020",
       "count": 2,
       "lineHints": [
-        3083,
-        3454
+        3082,
+        3453
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5566,7 +5506,7 @@
       "fingerprint": "66459de07408a784b102dabbf42829989395d53d3a745dd1d7de3d7fffc3fea3",
       "count": 1,
       "lineHints": [
-        286
+        322
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5597,8 +5537,8 @@
       "fingerprint": "665709449ff599a8f73fc9e822e67114014851b9245efcdb7458af14a24b486a",
       "count": 2,
       "lineHints": [
-        1286,
-        1289
+        1287,
+        1290
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5690,8 +5630,8 @@
       "fingerprint": "699aea9f7d016d6183ffded497c0abac26a17c62efab7e8a276ca6d35dc008f2",
       "count": 2,
       "lineHints": [
-        3342,
-        3365
+        3341,
+        3364
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5756,7 +5696,7 @@
       "fingerprint": "6abfed53cb87f0b35cacda6bac49d89dfeecc65d7029772746b4f1e8e9b4d146",
       "count": 1,
       "lineHints": [
-        2462
+        2461
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5853,36 +5793,6 @@
       }
     },
     {
-      "file": "app/flashcards_swipe.tsx",
-      "ownerName": "renderPlay",
-      "ownerPath": "FlashcardsSwipeScreen>renderPlay",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Animated.View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "isPlanFlashcardsTask?2:undefined",
-      "testID": null,
-      "fingerprint": "6b9b3382ce51a497aff1bf10dc995a825a0ebbcf805139bd06ba08e0fc376655",
-      "count": 1,
-      "lineHints": [
-        2483
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/(tabs)/home.tsx",
       "ownerName": "renderExperimentalHomeStatus",
       "ownerPath": "HomeScreen>renderNewHome>renderExperimentalHomeStatus",
@@ -5902,7 +5812,7 @@
       "fingerprint": "6be8633a5d4a130d996177781724c4bcf27ed1db33f00462bb41da8e8ff19e40",
       "count": 1,
       "lineHints": [
-        2422
+        2421
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5934,71 +5844,6 @@
       "count": 1,
       "lineHints": [
         1130
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/compass/compass_briefing_modal.tsx",
-      "ownerName": "CompassBriefingModal",
-      "ownerPath": "CompassBriefingModal",
-      "ancestorPath": [
-        "Modal",
-        "GestureHandlerRootView",
-        "Reanimated.View",
-        "GestureDetector",
-        "Reanimated.View",
-        "GestureDetector",
-        "ScrollView",
-        "Animated.View",
-        "CompassSoftSection",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "6bfc18d581dd4cdcca12f0b23adba7e577f7c657f7a4570f75045a6f545ce363",
-      "count": 1,
-      "lineHints": [
-        457
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/compass/compass_sheet_kit.tsx",
-      "ownerName": "CompassPickRow",
-      "ownerPath": "CompassPickRow",
-      "ancestorPath": [
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "6c4ca12d7b8f7c9fcd1f1c63e14006a216905570db4bd05d86a3f83e057abd88",
-      "count": 2,
-      "lineHints": [
-        160,
-        164
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6182,7 +6027,7 @@
       "fingerprint": "70e9a124ea84bb872e9e3236436e7d2d253b0308b7ca5d389e3258e4eb32d148",
       "count": 1,
       "lineHints": [
-        958
+        979
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6241,7 +6086,7 @@
       "fingerprint": "7116d1d0e043e84c429617aa8edf8dcac04583e72f5c45af61311f84b98b1a42",
       "count": 1,
       "lineHints": [
-        422
+        421
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6302,8 +6147,8 @@
       "fingerprint": "71ca6ba8179521bbb138f694bb26914496ac6d5cc3066637bf6247eac6630152",
       "count": 2,
       "lineHints": [
-        649,
-        652
+        652,
+        655
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6396,9 +6241,9 @@
       "fingerprint": "732e3373c62cd5d1f021f5a5daf894b02c4bef77a27894c50d1505f16d99e80f",
       "count": 3,
       "lineHints": [
-        98,
-        101,
-        104
+        107,
+        110,
+        113
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6580,7 +6425,7 @@
       "fingerprint": "76fa4088f41e0c1c6cb0e070abd0c6ad62cbcd9ed01d4c1627ffc81119774600",
       "count": 1,
       "lineHints": [
-        213
+        249
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6642,7 +6487,7 @@
       "fingerprint": "7805d1520e4781adb41e43b3cfc12014f6c8d8dcec4ee49ab5e53357b6eee5d5",
       "count": 1,
       "lineHints": [
-        150
+        152
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6673,7 +6518,7 @@
       "fingerprint": "7833fa12f28a86fc1892bed709510df52773ab129e92d8488c9aac2141f32fe2",
       "count": 1,
       "lineHints": [
-        1119
+        1146
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6700,8 +6545,8 @@
       "fingerprint": "7884f0349274d43dae1ecad95245969b41a3e35c2a009a3fcc40a2e2626764b6",
       "count": 2,
       "lineHints": [
-        551,
-        554
+        550,
+        553
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6758,7 +6603,7 @@
       "fingerprint": "798eccc83e836fbfb28624e1cd699b0be142a53603bd07bee38c5ac92a1abcb8",
       "count": 1,
       "lineHints": [
-        216
+        252
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7015,7 +6860,7 @@
       "fingerprint": "7d6dfb6ddbf26dbd68679dc39b396abf6024cd2b7206cf86f14839a4ef1c4b31",
       "count": 1,
       "lineHints": [
-        1367
+        1391
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7050,7 +6895,7 @@
       "fingerprint": "7ddc326b84b6e810e2c179c605056ac921ae79c1a098817f05b2a353a077959d",
       "count": 1,
       "lineHints": [
-        3869
+        3868
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7138,7 +6983,7 @@
       "fingerprint": "7f80b7cf4371751f1d14b7a2fd488d1598da9594bbd8f7047bb766bfd9f7ad65",
       "count": 1,
       "lineHints": [
-        369
+        371
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7374,8 +7219,8 @@
       "fingerprint": "846ab4f1484a66673cf69058a3b579bf73fdc5bcc91cca4a10cd53f2d950df8c",
       "count": 2,
       "lineHints": [
-        3269,
-        3281
+        3268,
+        3280
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7505,7 +7350,7 @@
       "fingerprint": "887703e227bd5d216924f665ad5d99f6ee2c7efe3c5c340382bd4555492a8893",
       "count": 1,
       "lineHints": [
-        1346
+        1373
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7532,7 +7377,7 @@
       "fingerprint": "88d9e85a2ffcbd3bb8e6703f098db832ce95cdd74d4b96b2689ac036cff55c1c",
       "count": 1,
       "lineHints": [
-        1282
+        1318
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7589,7 +7434,7 @@
       "fingerprint": "891acc92baf0de29892ccde2154700d91332230771dda14c29a412178c81c76d",
       "count": 1,
       "lineHints": [
-        346
+        348
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7619,7 +7464,7 @@
       "fingerprint": "8c6c6c4539dc433ff01ab43cf679279460d8fa9a33f4778fc6c75fdda10c401e",
       "count": 1,
       "lineHints": [
-        2273
+        2274
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7648,9 +7493,9 @@
       "fingerprint": "8c94e1e2d4aad6a346c5bf819e9d3b880a243cfb9ea9926e69ea912d8e8d05f8",
       "count": 3,
       "lineHints": [
-        1004,
-        1532,
-        1571
+        1016,
+        1559,
+        1598
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7782,7 +7627,7 @@
       "fingerprint": "8f204ebfb365f4aca6d7444101fd99fb44819bbb2b815dae1753a3ab5f13d507",
       "count": 1,
       "lineHints": [
-        234
+        288
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7906,8 +7751,8 @@
       "fingerprint": "91121c6ea92530841037ecd68e580d4d35a6dc4170a47bd03d44b510ebd79baf",
       "count": 2,
       "lineHints": [
-        3547,
-        3559
+        3546,
+        3558
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8064,7 +7909,7 @@
       "fingerprint": "96789207b92c9147e0fb66bf6c85b4a9dea2e2302d5cad80f8e1488f405cbfbc",
       "count": 1,
       "lineHints": [
-        2429
+        2428
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8250,35 +8095,6 @@
       }
     },
     {
-      "file": "components/SurveyTaskCard.tsx",
-      "ownerName": "SurveyTaskCard",
-      "ownerPath": "SurveyTaskCard",
-      "ancestorPath": [
-        "TapScale",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "9aca53130bb1455e7c01a941d6b3d145f9696dd293439723f142876bfbbcf4c2",
-      "count": 2,
-      "lineHints": [
-        124,
-        131
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/(tabs)/friends.tsx",
       "ownerName": "FriendsTabScreen",
       "ownerPath": "FriendsTabScreen",
@@ -8384,7 +8200,7 @@
       "fingerprint": "9de539c431bde5fa5ddd3cb1c9013b3297400dd5a1e1db2e9f621139a84df203",
       "count": 1,
       "lineHints": [
-        1293
+        1401
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8443,7 +8259,7 @@
       "fingerprint": "a04d5c417d013aba880b20aaf1318ca29aee165bc49a13c105dc4ab890c34acd",
       "count": 1,
       "lineHints": [
-        308
+        310
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8594,7 +8410,7 @@
       "fingerprint": "a261dc6ca3038600a9379c3ac7d88d9182e646fba3558b31aede224b8e901ea1",
       "count": 1,
       "lineHints": [
-        266
+        302
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8624,8 +8440,8 @@
       "fingerprint": "a2c0b01780b65c28e6fdd5f348d97552c757e0bcb1af4526c381df334a14dd2e",
       "count": 2,
       "lineHints": [
-        1182,
-        1227
+        1209,
+        1254
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8756,36 +8572,6 @@
       }
     },
     {
-      "file": "app/flashcards_swipe.tsx",
-      "ownerName": "renderPlay",
-      "ownerPath": "FlashcardsSwipeScreen>renderPlay",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Animated.View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "isPlanFlashcardsTask?1:undefined",
-      "testID": null,
-      "fingerprint": "a5cb69c4408b891f31ad1fc2f19e7c7c80cb3f71340ed1d9793d8441b60fb4e8",
-      "count": 1,
-      "lineHints": [
-        2477
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/streak_stats.tsx",
       "ownerName": "StreakStats",
       "ownerPath": "StreakStats",
@@ -8839,38 +8625,6 @@
       "count": 1,
       "lineHints": [
         1258
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/arena_game.tsx",
-      "ownerName": "DuelGameScreen",
-      "ownerPath": "DuelGameScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "SafeAreaView",
-        "BounceView",
-        "View",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "a6e193a69083ad0f28fd8a05804188a17bb89dcc949b320386283533d60aa2df",
-      "count": 1,
-      "lineHints": [
-        1140
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9066,7 +8820,7 @@
       "fingerprint": "aa1dfdab5a073c9045f260078bce0d58daefbda9e92c63573194aa0d5e531d0a",
       "count": 1,
       "lineHints": [
-        2770
+        2769
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9186,7 +8940,7 @@
       "fingerprint": "ab2707437903fe3da612554db03245d1829718b47b77f50a1ca90365889546e4",
       "count": 1,
       "lineHints": [
-        413
+        457
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9466,7 +9220,7 @@
       "fingerprint": "b1a43c96ce5c685e9698208a25a15062e8edf1e7710448c0a65b3810ff9fa02e",
       "count": 1,
       "lineHints": [
-        165
+        203
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9689,7 +9443,7 @@
       "count": 2,
       "lineHints": [
         53,
-        65
+        68
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9746,35 +9500,6 @@
       "count": 1,
       "lineHints": [
         529
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/compass/compass_day_closing_panel.tsx",
-      "ownerName": "DayClosingPanel",
-      "ownerPath": "DayClosingPanel",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "b7354f5edc576ab8b65e9bd4ced9cbc2ff519521bd97a8be4618eb3ec7df573b",
-      "count": 1,
-      "lineHints": [
-        384
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9924,7 +9649,7 @@
       "fingerprint": "ba7484875c80d47c888db64408fb00971c47ca755ec23e794b4963c2ad82cc13",
       "count": 1,
       "lineHints": [
-        516
+        543
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10101,7 +9826,7 @@
       "fingerprint": "bcd5070aef8967e635813f8f60ee6fc3703b6978416c9cd6d5a8bd0477aedc0e",
       "count": 1,
       "lineHints": [
-        2437
+        2438
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10171,8 +9896,8 @@
       "fingerprint": "bdc800f316fe42e53c9641fe8a0a12884e70311305a78196cba993b5fdfb2895",
       "count": 2,
       "lineHints": [
-        3840,
-        3843
+        3839,
+        3842
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10290,33 +10015,6 @@
       "count": 1,
       "lineHints": [
         1431
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/compass/compass_sheet_kit.tsx",
-      "ownerName": "CompassStreakPill",
-      "ownerPath": "CompassStreakPill",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "c0c293edf00a9e347eb44627606377cad5a561b0ef314d557492734a2d600c8b",
-      "count": 1,
-      "lineHints": [
-        89
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10472,7 +10170,7 @@
       "fingerprint": "c3c9d8c1c96d4fe9a57cfac37c08ac3b90d8173fb1e8e771de2d9ba1986f09ae",
       "count": 1,
       "lineHints": [
-        2447
+        2448
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10603,7 +10301,7 @@
       "fingerprint": "c51130af1219cb94df836b5fdb0b241478b3cc5ee3db3c9dd0e6f4d738cf23c4",
       "count": 1,
       "lineHints": [
-        2019
+        2132
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10723,8 +10421,8 @@
       "fingerprint": "c750b8076f147a7dc966d01ce28d4b4da5b73864004dfa5aa3191ea50c214af9",
       "count": 2,
       "lineHints": [
-        967,
-        968
+        1256,
+        1257
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10756,7 +10454,7 @@
       "fingerprint": "c87c40b3b941ca66c816f3e1ae44ee60140d00e7925b8eefd09adb0e39336fbd",
       "count": 1,
       "lineHints": [
-        2987
+        2986
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10841,7 +10539,7 @@
       "fingerprint": "cc0680af6a8a20875a63c938790d7847ffe9a12f4f4dc0c93faa7e16bdd799ea",
       "count": 1,
       "lineHints": [
-        2233
+        2234
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10995,8 +10693,8 @@
       "fingerprint": "d07ceb50047d3007a2ca8ce385076c047086c789f025e90213d0839dc0d1adfd",
       "count": 2,
       "lineHints": [
-        2090,
-        2109
+        2089,
+        2108
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11151,7 +10849,7 @@
       "fingerprint": "d5cffaf75f51b96b741d011a383ef1110c38fe25f69683132825dad18258e8b0",
       "count": 1,
       "lineHints": [
-        2620
+        2619
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11308,7 +11006,7 @@
       "fingerprint": "d98d6b0890b8a91a24afe9f1221333f19bb7fccade39d22dbd3e3f3ad2e139ff",
       "count": 1,
       "lineHints": [
-        269
+        305
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11409,35 +11107,6 @@
       }
     },
     {
-      "file": "components/SurveyTaskCard.tsx",
-      "ownerName": "SurveyTaskCard",
-      "ownerPath": "SurveyTaskCard",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "db32a776c524b5aa8066ea18b80a0dcf893603cc86df720a7fabe31de98edfae",
-      "count": 2,
-      "lineHints": [
-        78,
-        85
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards_audio.tsx",
       "ownerName": "renderHeader",
       "ownerPath": "FlashcardsAudioScreen>renderHeader",
@@ -11483,7 +11152,7 @@
       "fingerprint": "dcb355ea3dfff238bb72b5f217c548ceb424e6321cad3b0fbfa276e629411f82",
       "count": 1,
       "lineHints": [
-        197
+        199
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11573,7 +11242,7 @@
       "fingerprint": "df28ee77557cbf0ced878fc98bbfdf6f28fc0109796bb725da94afb2c15c1d5f",
       "count": 1,
       "lineHints": [
-        2159
+        2306
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11606,7 +11275,7 @@
       "fingerprint": "df5ad985234f983f89f7053a894e2320658c2002b4e18c60ef68fa714da18836",
       "count": 1,
       "lineHints": [
-        2632
+        2631
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11856,8 +11525,8 @@
       "fingerprint": "e2b3c6202d2bb3bed9868fe46900b1df9d27bfe544aa1927bba3eddc99fed6b8",
       "count": 2,
       "lineHints": [
-        3866,
-        3874
+        3865,
+        3873
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11887,7 +11556,7 @@
       "fingerprint": "e33870c6d2bc552e0fb25b931dab6714bcac96a51af75dea0b106c2e8243b68e",
       "count": 1,
       "lineHints": [
-        835
+        838
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11918,7 +11587,7 @@
       "fingerprint": "e33ec814e5d36979b7963aada4b728f642b05e4f7f3123d2c340e6fe869c8762",
       "count": 1,
       "lineHints": [
-        1293
+        1402
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11978,7 +11647,7 @@
       "fingerprint": "e3c24544a1c439b61b16dadff4e784674bddcf9aab54a6f33bd10365db9f898b",
       "count": 1,
       "lineHints": [
-        1112
+        1114
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12007,7 +11676,7 @@
       "fingerprint": "e42803aa716acccacc707142ccd66d0a17263aaf61de685e8ef30c0699ca93a0",
       "count": 1,
       "lineHints": [
-        2493
+        2492
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12157,7 +11826,7 @@
       "fingerprint": "e5d6f158a72d1b0d0c44ae7e3be3d1aaae9e1225eeac2489d7c77363e0da737a",
       "count": 1,
       "lineHints": [
-        1528
+        1670
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12248,7 +11917,7 @@
       "fingerprint": "ead3e2c6c3513d6001a2b228e3eddb9eaff654a51e711eb371e601e33ffede0c",
       "count": 1,
       "lineHints": [
-        484
+        483
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12288,62 +11957,6 @@
       }
     },
     {
-      "file": "app/compass/compass_sheet_kit.tsx",
-      "ownerName": "CompassEyebrow",
-      "ownerPath": "CompassEyebrow",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "ecbae911ce884f71b1bb9b2b5e9e30c482e40d7471f4bc700104a0e5f5a5426a",
-      "count": 1,
-      "lineHints": [
-        76
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/compass/compass_day_closing_panel.tsx",
-      "ownerName": "DayClosingPanel",
-      "ownerPath": "DayClosingPanel",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "ed3af1a79894a6c0f7efe10844c7dba820ea16d8cc99b42234271542e619d2bb",
-      "count": 1,
-      "lineHints": [
-        380
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards_swipe.tsx",
       "ownerName": "renderPlay",
       "ownerPath": "FlashcardsSwipeScreen>renderPlay",
@@ -12362,7 +11975,7 @@
       "fingerprint": "ed55199f27783a6b5337489fa8063015c3f37560593be57c33fa1107c68d6faa",
       "count": 1,
       "lineHints": [
-        2424
+        2425
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12519,7 +12132,7 @@
       "fingerprint": "f01ddb881d7efaf32dd2927325aca2744b5548ae91920bd4cd149734b4310545",
       "count": 1,
       "lineHints": [
-        2632
+        2631
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12553,7 +12166,7 @@
       "fingerprint": "f174019ad7f6d34f210e63fb0055f70b68e4a2b91a183ef9809cc2933d8c411c",
       "count": 1,
       "lineHints": [
-        1763
+        1751
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12582,7 +12195,7 @@
       "fingerprint": "f3c483797f772431b6e0b6857c40dc9404f40172a771a7ef71e60f6b6e6e282a",
       "count": 1,
       "lineHints": [
-        2465
+        2464
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12644,7 +12257,7 @@
       "fingerprint": "f5c1b1420e612ded3b538d44318fe6d408922a5bb1166f579934b8a8065a8ae9",
       "count": 1,
       "lineHints": [
-        2620
+        2619
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12827,7 +12440,7 @@
       "fingerprint": "f8cb60f275059fc3f078861cb1704705f4197fd78079574e183b22cad6c0f3a3",
       "count": 1,
       "lineHints": [
-        2602
+        2601
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12928,7 +12541,7 @@
       "fingerprint": "fb24b7d357b7c08982d6575ce1e9b59db82014ab772bba8494256f35d77d66b5",
       "count": 1,
       "lineHints": [
-        3031
+        3030
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -12983,7 +12596,7 @@
       "fingerprint": "fc1fba1aa8a426cf68627bdec772fcbf839d71fd372c2b33381da00791650205",
       "count": 1,
       "lineHints": [
-        358
+        366
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -13109,35 +12722,6 @@
       "count": 1,
       "lineHints": [
         719
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/admin_panel/CompassStackPreviewModal.tsx",
-      "ownerName": "PreviewCard",
-      "ownerPath": "PreviewCard",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "ffd3af6b0b630e58734d029edcee8fa517e785511183e0e168e09f6179bf4a0e",
-      "count": 1,
-      "lineHints": [
-        390
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

@@ -2480,13 +2480,13 @@ export default function FlashcardsSwipeScreen() {
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctChoice}
                 </Text>
-                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 1 : undefined}>
+                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
                   {feedback.prompt.isMatch ? `${text.match}: ${text.matchHint}` : `${text.mismatch}: ${text.mismatchHint}`}
                 </Text>
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctTranslation}
                 </Text>
-                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
+                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
                   {currentPrompt.trueTranslation}
                 </Text>
                 {!isPlanFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}

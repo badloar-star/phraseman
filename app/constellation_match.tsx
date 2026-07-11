@@ -922,12 +922,12 @@ const DuelIntro = memo(function DuelIntro({
       <View style={styles.duelIntroRow}>
         <Animated.View style={[styles.duelSide, leftStyle]}>
           {avatar(meName, meColor)}
-          <Text numberOfLines={1} style={[styles.duelName, { color: meColor }]}>{meName}</Text>
+          <Text style={[styles.duelName, { color: meColor }]}>{meName}</Text>
         </Animated.View>
         <Animated.Text style={[styles.duelVs, vsStyle, { fontSize: f.h1 }]}>VS</Animated.Text>
         <Animated.View style={[styles.duelSide, rightStyle]}>
           {avatar(oppName, oppColor)}
-          <Text numberOfLines={1} style={[styles.duelName, { color: oppColor }]}>{oppName}</Text>
+          <Text style={[styles.duelName, { color: oppColor }]}>{oppName}</Text>
         </Animated.View>
       </View>
       <Animated.Text style={[styles.duelIntroLabel, vsStyle]}>

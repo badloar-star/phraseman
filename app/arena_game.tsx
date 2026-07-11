@@ -1146,7 +1146,6 @@ export default function DuelGameScreen() {
                 // варианты («Заходи!») до нечитаемого огрызка, пока соседние
                 // остаются нормальными (регрессия, класс бага флешкарт). Кнопка
                 // растёт по высоте (minHeight + перенос), текст не мельчает.
-                numberOfLines={3}
               >
                 {arenaBilingualFirst(option, lang)}
               </Text>

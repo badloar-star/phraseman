@@ -76,6 +76,11 @@ const QUIZZES_TARGET_IDS = [
   'surface:app-tabs-quizzes:thematicquizlevelcard:3',
 ] as const;
 
+const TAB_LAYOUT_TARGET_IDS = [
+  'surface:app-tabs-layout:tabactivepill:1',
+  'surface:app-tabs-layout:tabpill:1',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -107,5 +112,9 @@ describe('main tabs borderless production surfaces', () => {
 
   it('migrates the reviewed Quizzes containers', () => {
     expectMigrated(QUIZZES_TARGET_IDS);
+  });
+
+  it('migrates the reviewed tab shell containers', () => {
+    expectMigrated(TAB_LAYOUT_TARGET_IDS);
   });
 });

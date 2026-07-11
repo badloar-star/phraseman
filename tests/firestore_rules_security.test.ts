@@ -215,6 +215,7 @@ describe('firestore.rules security baseline', () => {
       'lesson_progress_v2::fr::lesson1_best_score',
       'level_exam_A1_pct',
       'level_exams_v2::fr::level_exam_A1_pct',
+      'shard_survey_last_at_ms',
     ];
 
     for (const key of representativeKeys) {
@@ -226,6 +227,9 @@ describe('firestore.rules security baseline', () => {
     expect(cloudSync).toMatch(
       /level_exams_v2::fr::level_exam_\[A-Za-z0-9_-\]\+_\(\?:pct\|best_pct\|passed\|pass_count\|completed_at\)/,
     );
+    expect(cloudSync).toMatch(/SERVER_OWNED_PROGRESS_KEYS[\s\S]*?'shard_survey_last_at_ms'/);
+    expect(cloudSync.slice(0, cloudSync.indexOf('SERVER_OWNED_PROGRESS_KEYS')))
+      .toContain("'shard_survey_last_at_ms'");
   });
 
   test('progressHasNoPremiumWrites() preserves the deliberate admin escape hatch', () => {

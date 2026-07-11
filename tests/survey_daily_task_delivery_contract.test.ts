@@ -40,9 +40,12 @@ describe('daily survey delivery', () => {
     expect(dailyTasks).toContain('migrateLegacySurveyCompletion');
     expect(dailyTasks).toContain('beginSurveyDailyTaskRequest');
     expect(dailyTasks).toContain('commitSurveyDailyTaskRequest');
+    expect(dailyTasks).toMatch(/if \(cached\) \{[\s\S]*?return;/);
     expect(dailyTasks).not.toContain('isSurveyDailyTaskDoneToday()');
     expect(card).not.toContain('isSurveyDailyTaskDoneToday');
-    expect(card).toContain('setCardState({ scope: nextScope, snapshot: null, done: false })');
+    expect(card).toContain('const cached = peekSurveyDailyTask(nextScope)');
+    expect(card).toContain('snapshot: cached');
+    expect(card).toContain('if (cached) return;');
     expect(card).not.toContain('const [scope, setScope]');
     expect(card).toContain('primeSurvey({ survey, stableId, dayKey, lang })');
     expect(screen).toContain('takePrimedSurvey(surveyId, scope)');

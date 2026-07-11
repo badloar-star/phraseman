@@ -25,3 +25,11 @@ it('migrates only a server timestamp matching the captured client day and delete
   expect(await isSurveyDailyTaskDone({ stableId: 'a', dayKey: '2026-07-11' })).toBe(true);
   await expect(AsyncStorage.getItem(LEGACY_SURVEY_DONE_KEY)).resolves.toBeNull();
 });
+
+it('matches completion days by UTC across midnight boundaries and rejects invalid timestamps', async () => {
+  await AsyncStorage.setItem(LEGACY_SURVEY_DONE_KEY, '2026-01-01');
+  expect(await migrateLegacySurveyCompletion({ stableId: 'a', dayKey: '2026-01-01', completion: { completedAtMs: Date.UTC(2026, 0, 1, 0, 5) }, lang: 'ru' })).toBe(true);
+  expect(await migrateLegacySurveyCompletion({ stableId: 'b', dayKey: '2025-12-31', completion: { completedAtMs: Date.UTC(2026, 0, 1, 0, 5) }, lang: 'ru' })).toBe(false);
+  expect(await migrateLegacySurveyCompletion({ stableId: 'b', dayKey: '2026-01-01', completion: { completedAtMs: Number.NaN }, lang: 'ru' })).toBe(false);
+  expect(await migrateLegacySurveyCompletion({ stableId: 'c', dayKey: '2026-07-11', completion: { completedAtMs: Date.UTC(2026, 6, 11, 23, 30) }, lang: 'ru' })).toBe(true);
+});

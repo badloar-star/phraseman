@@ -36,13 +36,13 @@ export async function isSurveyDailyTaskDoneToday(): Promise<boolean> {
   try { return (await AsyncStorage.getItem(LEGACY_SURVEY_DONE_KEY)) === getTodayKey(); } catch { return false; }
 }
 
-function localDayKey(atMs: number): string {
+function utcDayKey(atMs: number): string | null {
   const d = new Date(atMs);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  return Number.isFinite(d.getTime()) ? d.toISOString().slice(0, 10) : null;
 }
 
 export async function migrateLegacySurveyCompletion(input: { stableId: string; dayKey: string; completion: ActiveSurveyLookupResult['completion']; lang: Lang }): Promise<boolean> {
-  if (!input.completion || localDayKey(input.completion.completedAtMs) !== input.dayKey) return false;
+  if (!input.completion || utcDayKey(input.completion.completedAtMs) !== input.dayKey) return false;
   const summary = buildServerConfirmedLegacyCompletion(input.lang);
   await markSurveyDailyTaskDone({ stableId: input.stableId, dayKey: input.dayKey, summary });
   await AsyncStorage.removeItem(LEGACY_SURVEY_DONE_KEY);

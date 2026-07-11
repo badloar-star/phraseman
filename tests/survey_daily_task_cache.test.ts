@@ -39,3 +39,9 @@ it('rejects stale requests and completed-to-null regression', () => {
   expect(commitSurveyDailyTaskRequest(scope, next, null, 3)).toBe(false);
   expect(peekSurveyDailyTask(scope, 3)).toEqual(completed);
 });
+
+it('retains a warm snapshot during a pending or failed quiet revalidation', () => {
+  commitSurveyDailyTaskRequest(scope, beginSurveyDailyTaskRequest(scope, 0), active, 0);
+  beginSurveyDailyTaskRequest(scope, 1);
+  expect(peekSurveyDailyTask(scope, 59_999)).toEqual(active);
+});

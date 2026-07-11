@@ -24,6 +24,7 @@ import { primeSurvey } from '../app/survey_handoff';
 import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../app/survey_daily_task';
 import { getTodayKey } from '../app/daily_tasks';
 import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, type SurveyDailyChallengeSnapshot } from '../app/survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../app/survey_daily_task_cache';
 import { DebugLogger } from '../app/debug-logger';
 
 /** Светлый ли HEX-цвет (относительная яркость > 0.6) — для выбора цвета текста. */
@@ -61,7 +62,15 @@ export default function SurveyTaskCard() {
         const stableId = await getCanonicalUserId();
         if (cancelled || !stableId) return;
         const nextScope = { stableId, dayKey, lang };
-        setCardState({ scope: nextScope, snapshot: null, done: false });
+        const cached = peekSurveyDailyTask(nextScope);
+        setCardState((current) => (
+          current.scope?.stableId === stableId
+            && current.scope.dayKey === dayKey
+            && current.scope.lang === lang
+            ? current
+            : { scope: nextScope, snapshot: cached, done: cached?.phase === 'completed' }
+        ));
+        if (cached) return;
         const isDone = await isSurveyDailyTaskDone({ stableId, dayKey });
         if (cancelled) return;
         if (isDone) {
@@ -69,19 +78,26 @@ export default function SurveyTaskCard() {
           return;
         }
         if (!isSurveyCloudEnabled()) return;
+        const requestId = beginSurveyDailyTaskRequest(nextScope);
         const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
         const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
         if (cancelled) return;
         if (migrated) {
-          setCardState({ scope: nextScope, snapshot: buildServerConfirmedLegacyCompletion(lang), done: true });
+          const completed = buildServerConfirmedLegacyCompletion(lang);
+          commitSurveyDailyTaskRequest(nextScope, requestId, completed);
+          setCardState({ scope: nextScope, snapshot: completed, done: true });
           return;
         }
         if (lookup.survey && lookup.survey.questions.length > 0) {
+          const active = buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang });
+          commitSurveyDailyTaskRequest(nextScope, requestId, active);
           setCardState({
             scope: nextScope,
-            snapshot: buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang }),
+            snapshot: active,
             done: false,
           });
+        } else {
+          commitSurveyDailyTaskRequest(nextScope, requestId, null);
         }
       } catch (e: unknown) {
         // Опрос — задание, ошибка не должна ломать экран заданий, но и не глушим

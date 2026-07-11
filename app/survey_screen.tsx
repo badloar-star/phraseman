@@ -27,6 +27,8 @@ import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
 import { markSurveyDailyTaskDone } from './survey_daily_task';
 import { getTodayKey } from './daily_tasks';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest } from './survey_daily_task_cache';
+import { buildServerConfirmedLegacyCompletion } from './survey_daily_challenge_model';
 
 type AnswersState = Record<string, { optionId?: string; comment?: string }>;
 
@@ -127,6 +129,12 @@ export default function SurveyScreen() {
       hapticSuccess();
       // Отметить опрос выполненным как 4-е задание дня (для зачёта «любые 3 из 4»).
       await markSurveyDailyTaskDone({ stableId, dayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
+      const completedScope = { stableId, dayKey, lang };
+      commitSurveyDailyTaskRequest(
+        completedScope,
+        beginSurveyDailyTaskRequest(completedScope),
+        buildServerConfirmedLegacyCompletion(lang),
+      );
       if (res.reward > 0) {
         emitAppEvent('shards_earned', { amount: res.reward, reasonKey: 'survey_completed' });
         // Награда есть → показываем ФИНАЛЬНЫЙ экран (анимация осколков + свой текст).
@@ -156,7 +164,7 @@ export default function SurveyScreen() {
     } finally {
       setSubmitting(false);
     }
-  }, [survey, submitting, allAnswered, answers, router, scope, directOpenDayKey]);
+  }, [survey, submitting, allAnswered, answers, router, scope, directOpenDayKey, lang]);
 
   if (!survey) {
     return (

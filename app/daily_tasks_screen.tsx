@@ -2035,6 +2035,7 @@ export default function DailyTasksScreen() {
                 if (cached) {
                     setSurveyDone(cached.phase === 'completed');
                     setSurveyPresent(true);
+                    return;
                 }
                 const done = await isSurveyDailyTaskDone({ stableId, dayKey });
                 if (cancelled) return;

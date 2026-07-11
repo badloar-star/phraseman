@@ -317,6 +317,8 @@ export const SYNC_KEYS = [
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
+  // Server-confirmed survey completion timestamp; restored locally, never uploaded by clients.
+  'shard_survey_last_at_ms',
   // XP-01: Weekly XP tracking — synced so users/{uid}.progress.weekly_xp matches device.
   'weekly_xp',
   'weekly_xp_period_start',
@@ -929,6 +931,7 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   // ломается синк XP/streak/прогресса. profile_card_theme/motion/public_focus НЕ сюда —
   // они клиент-выбираемые и синкаются штатно.
   'profile_card_level',
+  'shard_survey_last_at_ms',
 ]);
 
 export const isServerOwnedProgressKey = (key: string): boolean => {

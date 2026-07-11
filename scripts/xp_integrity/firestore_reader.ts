@@ -387,7 +387,7 @@ export async function createXpAuditReader(
         progressServerAuthoritative: data.progressServerAuthoritative === true,
         progressServerCutoverAtMs: timestampMs(data.progressServerCutoverAt),
         progressMigratedAtMs: timestampMs(data.progressMigratedAt),
-        xpLevelRestoreAtMs: timestampMs(data.xpLevelRestoreAt),
+        xpLevelRestoreAtMs: timestampMs(data.xpLevelRestore250To400At),
         progressServerStateXp: number(progressServerState.totalXp),
         migrationDocument: await readMigration(snapshot.id),
       },

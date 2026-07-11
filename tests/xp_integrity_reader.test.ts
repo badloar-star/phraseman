@@ -230,7 +230,8 @@ describe("IAM-gated XP audit reader", () => {
         progressServerAuthoritative: true,
         progressServerCutoverAt: timestamp(100),
         progressMigratedAt: timestamp(90),
-        xpLevelRestoreAt: timestamp(80),
+        xpLevelRestore250To400At: timestamp(80),
+        xpLevelRestoreAt: timestamp(999),
         progressServerState: { totalXp: 10 },
       }),
       "users/a/progress_migrations/client_snapshot_v1": {

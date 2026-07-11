@@ -1,10 +1,29 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+const mockCallable = jest.fn();
+
+jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
+jest.mock('../app/app_check_init', () => ({
+  initFirebaseAppCheckIfAvailable: jest.fn(async () => true),
+}));
+jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: jest.fn(() => ({})),
+  httpsCallable: jest.fn(() => mockCallable),
+}));
+
+import { fetchActiveSurveyWithRetry } from '../app/survey_client';
+
 const ROOT = path.resolve(__dirname, '..');
+const lookup = { stableId: 'stable-1', platform: 'ios', lang: 'en' };
 
 describe('daily survey delivery', () => {
-  it('retries the active survey lookup when auth/cloud state is still settling', () => {
+  beforeEach(() => {
+    mockCallable.mockReset();
+  });
+
+  it('keeps the source-level Daily Tasks callsite contract', () => {
     const client = fs.readFileSync(path.join(ROOT, 'app', 'survey_client.ts'), 'utf8');
     const dailyTasks = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
 
@@ -14,5 +33,69 @@ describe('daily survey delivery', () => {
     expect(client).toMatch(/Math\.min\(\d+, Math\.max\(0, [^\n]*options\.delayMs/);
     expect(client).toContain('await wait(delayMs)');
     expect(dailyTasks).toContain('fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang })');
+  });
+
+  it('defaults to three attempts and does not wait after the final attempt', async () => {
+    mockCallable.mockResolvedValue({ data: { survey: null } });
+    const wait = jest.fn(async () => {});
+
+    await expect(fetchActiveSurveyWithRetry(lookup, { wait })).resolves.toBeNull();
+
+    expect(mockCallable).toHaveBeenCalledTimes(3);
+    expect(wait).toHaveBeenCalledTimes(2);
+    expect(wait).toHaveBeenNthCalledWith(1, 350);
+    expect(wait).toHaveBeenNthCalledWith(2, 350);
+  });
+
+  it('defaults non-finite attempts and caps delay', async () => {
+    mockCallable.mockResolvedValue({ data: { survey: null } });
+    const wait = jest.fn(async () => {});
+
+    await expect(fetchActiveSurveyWithRetry(lookup, { attempts: Infinity, delayMs: Infinity, wait }))
+      .resolves.toBeNull();
+
+    expect(mockCallable).toHaveBeenCalledTimes(3);
+    expect(wait).toHaveBeenCalledTimes(2);
+    expect(wait).toHaveBeenCalledWith(2000);
+  });
+
+  it('caps a large finite attempt count at five', async () => {
+    mockCallable
+      .mockResolvedValueOnce({ data: { survey: null } })
+      .mockResolvedValueOnce({ data: { survey: null } })
+      .mockResolvedValueOnce({ data: { survey: null } })
+      .mockResolvedValueOnce({ data: { survey: null } })
+      .mockResolvedValueOnce({ data: { survey: null } })
+      .mockResolvedValueOnce({ data: { survey: { surveyId: 'too-late' } } });
+    const wait = jest.fn(async () => {});
+
+    await expect(fetchActiveSurveyWithRetry(lookup, { attempts: 1000, wait }))
+      .resolves.toBeNull();
+
+    expect(mockCallable).toHaveBeenCalledTimes(5);
+    expect(wait).toHaveBeenCalledTimes(4);
+    expect(wait).toHaveBeenCalledWith(350);
+  });
+
+  it('keeps the minimum attempt count at one', async () => {
+    mockCallable.mockResolvedValue({ data: { survey: null } });
+    const wait = jest.fn(async () => {});
+
+    await expect(fetchActiveSurveyWithRetry(lookup, { attempts: 0, wait })).resolves.toBeNull();
+
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+    expect(wait).not.toHaveBeenCalled();
+  });
+
+  it('propagates the last callable error after exhausting attempts', async () => {
+    const first = new Error('first');
+    const last = new Error('last');
+    mockCallable.mockRejectedValueOnce(first).mockRejectedValueOnce(last);
+    const wait = jest.fn(async () => {});
+
+    await expect(fetchActiveSurveyWithRetry(lookup, { attempts: 2, wait })).rejects.toBe(last);
+
+    expect(mockCallable).toHaveBeenCalledTimes(2);
+    expect(wait).toHaveBeenCalledTimes(1);
   });
 });

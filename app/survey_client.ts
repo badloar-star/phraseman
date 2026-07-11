@@ -72,7 +72,10 @@ export async function fetchActiveSurveyWithRetry(
   data: { stableId: string; platform: string; lang: string },
   options: { attempts?: number; delayMs?: number; wait?: (ms: number) => Promise<void> } = {},
 ): Promise<ActiveSurvey | null> {
-  const attempts = Math.max(1, Math.floor(Number(options.attempts ?? 3)) || 3);
+  const requestedAttempts = Number(options.attempts ?? 3);
+  const attempts = Math.min(5, Math.max(1, Number.isFinite(requestedAttempts)
+    ? Math.floor(requestedAttempts)
+    : 3));
   const delayMs = Math.min(2000, Math.max(0, Math.floor(Number(options.delayMs ?? 350)) || 0));
   const wait = options.wait ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
   let lastError: unknown;

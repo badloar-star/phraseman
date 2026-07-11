@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://knowlyapps.com/contracts/social-learning-card-manifest-v1.json",
+  "title": "Phraseman social learning card manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "contentId",
+    "revision",
+    "status",
+    "campaign",
+    "grid",
+    "titleEn",
+    "titleRu",
+    "visualStyle",
+    "languageMode",
+    "items",
+    "surfaces",
+    "images"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentId": { "type": "string", "pattern": "^slc_[a-z0-9_]+$", "maxLength": 64 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "status": {
+      "enum": [
+        "idea",
+        "copy_ready",
+        "waiting_dalle",
+        "images_ready",
+        "review",
+        "ready",
+        "published",
+        "collecting",
+        "scored"
+      ]
+    },
+    "campaign": { "type": "string", "pattern": "^slc_[a-z0-9_]+$", "maxLength": 64 },
+    "grid": { "enum": ["2x3", "3x3"] },
+    "titleEn": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "titleRu": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "visualStyle": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "languageMode": { "enum": ["english_only", "bilingual"] },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/item" },
+      "anyOf": [
+        { "minItems": 6, "maxItems": 6 },
+        { "minItems": 9, "maxItems": 9 }
+      ]
+    },
+    "surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instagram", "tiktok", "facebook", "youtube"],
+      "properties": {
+        "instagram": { "$ref": "#/definitions/surface" },
+        "tiktok": { "$ref": "#/definitions/surface" },
+        "facebook": { "$ref": "#/definitions/surface" },
+        "youtube": { "$ref": "#/definitions/surface" }
+      }
+    },
+    "images": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["learning", "install"],
+      "properties": {
+        "learning": { "$ref": "#/definitions/image" },
+        "install": { "$ref": "#/definitions/image" }
+      }
+    },
+    "quality": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reportSha256", "machinePassed", "manualPassed"],
+          "properties": {
+            "reportSha256": { "$ref": "#/definitions/sha256" },
+            "machinePassed": { "type": "boolean" },
+            "manualPassed": { "type": "boolean" }
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "english", "visualBrief"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^item_[0-9]{2}$" },
+        "english": { "type": "string", "minLength": 1, "maxLength": 48 },
+        "russian": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "visualBrief": { "type": "string", "minLength": 8, "maxLength": 280 }
+      }
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "format", "slideOrder"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "format": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "slideOrder": {
+          "type": "array",
+          "items": { "enum": ["learning", "install"] },
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": { "enum": ["slide_01_learning.jpg", "slide_02_install.jpg"] },
+        "sha256": { "$ref": "#/definitions/sha256" }
+      }
+    }
+  }
+}

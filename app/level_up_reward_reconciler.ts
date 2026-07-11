@@ -8,16 +8,29 @@ import {
 } from './level_gift_inventory';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { getCanonicalUserId } from './user_id_policy';
+import {
+  LEVEL_UP_REWARD_CONTEXT_KEY,
+  LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY,
+  LEVEL_UP_REWARD_FALLBACK_KEY,
+  LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY,
+  LEVEL_UP_REWARD_OWNER_KEY,
+  LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
+  LEVEL_UP_REWARD_RETRY_KEY,
+  LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY,
+  PENDING_LEVEL_UP_QUEUE_KEY,
+} from './level_up_storage_keys';
 
-export const PENDING_LEVEL_UP_QUEUE_KEY = 'pending_level_up_queue';
-export const LEVEL_UP_REWARD_RETRY_KEY = 'pending_level_up_reward_retry_v1';
-export const LEVEL_UP_REWARD_CONTEXT_KEY = 'pending_level_up_reward_context_v1';
-export const LEVEL_UP_REWARD_FALLBACK_KEY = 'pending_level_up_reward_fallback_v1';
-export const LEVEL_UP_REWARD_OWNER_KEY = 'pending_level_up_reward_owner_v1';
-export const LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY = 'pending_level_up_queue_quarantine_v1';
-export const LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY = 'pending_level_up_reward_retry_quarantine_v1';
-export const LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY = 'pending_level_up_reward_context_quarantine_v1';
-export const LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY = 'pending_level_up_reward_fallback_quarantine_v1';
+export {
+  LEVEL_UP_REWARD_CONTEXT_KEY,
+  LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY,
+  LEVEL_UP_REWARD_FALLBACK_KEY,
+  LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY,
+  LEVEL_UP_REWARD_OWNER_KEY,
+  LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
+  LEVEL_UP_REWARD_RETRY_KEY,
+  LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY,
+  PENDING_LEVEL_UP_QUEUE_KEY,
+} from './level_up_storage_keys';
 
 type RetryEntry = {
   level: number;
@@ -155,6 +168,9 @@ const clearForOwnerSwitch = async (owner: string): Promise<boolean> => {
 const prepareOwnerUnlocked = async (): Promise<OwnerState> => {
   const owner = normalizeOwner(await getCanonicalUserId().catch(() => null));
   if (!owner) return { owner: null, changed: false };
+  inMemoryRetryEntries.forEach((entry, level) => {
+    if (entry.owner !== owner) inMemoryRetryEntries.delete(level);
+  });
   let storedOwner: string | null;
   try {
     storedOwner = normalizeOwner(await AsyncStorage.getItem(LEVEL_UP_REWARD_OWNER_KEY));
@@ -207,17 +223,25 @@ const resolveKnownEntries = (
   owner: string,
   legacyOptions: EnsureLevelGiftEntitlementOptions,
 ): { entries: Map<number, RetryEntry>; unresolvedLevels: number[] } => {
-  const contexts = new Map(state.context.values.map((entry) => [entry.level, entry]));
+  const currentOwnerContexts = state.context.values.filter((entry) => entry.owner === owner);
+  const contexts = new Map(currentOwnerContexts.map((entry) => [entry.level, entry]));
+  const foreignOwnerLevels = new Set([
+    ...state.context.values,
+    ...state.fallback.values,
+    ...inMemoryRetryEntries.values(),
+  ].filter((entry) => entry.owner !== owner).map((entry) => entry.level));
   const entries = mergeEntries(
-    state.context.values,
-    state.fallback.values,
-    [...inMemoryRetryEntries.values()],
+    currentOwnerContexts,
+    state.fallback.values.filter((entry) => entry.owner === owner),
+    [...inMemoryRetryEntries.values()].filter((entry) => entry.owner === owner),
   );
   const unresolvedLevels: number[] = [];
   state.retry.values.forEach((level) => {
     const saved = contexts.get(level);
     if (saved) {
       entries.set(level, saved);
+    } else if (foreignOwnerLevels.has(level)) {
+      unresolvedLevels.push(level);
     } else if (
       state.context.state === 'available'
       && (!state.context.wasCorrupt || hasExplicitRetryOptions(legacyOptions))

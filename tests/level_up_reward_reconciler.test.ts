@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { wipeLocalAccountData } from '../app/cloud_sync';
 import { emitAppEvent } from '../app/events';
 import { ensureLevelGiftEntitlement, type LevelGiftEntitlementResult } from '../app/level_gift_inventory';
 import type { GiftDef } from '../app/level_gift_system';
@@ -73,6 +74,9 @@ beforeEach(() => {
   (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
     pairs.forEach(([key, value]) => { storage[key] = value; });
   });
+  (AsyncStorage.multiRemove as jest.Mock).mockImplementation(async (keys: string[]) => {
+    keys.forEach((key) => delete storage[key]);
+  });
 });
 
 test('reconciles every crossed level sequentially and remains idempotent', async () => {
@@ -144,6 +148,33 @@ test('keeps a retry in memory when its marker write fails and retries in the sam
   await expect(retryPendingLevelUpRewards()).resolves.toEqual([2]);
   expect(readLevels(PENDING_LEVEL_UP_QUEUE_KEY)).toEqual([2]);
   expect(readLevels(LEVEL_UP_REWARD_RETRY_KEY)).toEqual([]);
+});
+
+test('does not restage account A memory-only retry after normal wipe when account B reconciles', async () => {
+  entitlement.mockResolvedValue(result('failed', 2));
+  (AsyncStorage.multiSet as jest.Mock).mockRejectedValue(new Error('disk full'));
+  (AsyncStorage.setItem as jest.Mock).mockRejectedValue(new Error('disk full'));
+
+  await reconcileLevelUpRewards(50, 150);
+
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    storage[key] = value;
+  });
+  await wipeLocalAccountData();
+  canonicalUserId.mockResolvedValue('stable-B');
+  entitlement.mockResolvedValue(result('failed', 3));
+
+  await reconcileLevelUpRewards(150, 250);
+
+  const contexts = JSON.parse(storage[LEVEL_UP_REWARD_CONTEXT_KEY] ?? '[]') as {
+    level: number;
+    owner: string | null;
+  }[];
+  expect(contexts).toEqual([{ level: 3, owner: 'stable-B', premium: false }]);
+  expect(contexts.some((entry) => entry.owner === 'stable-A')).toBe(false);
 });
 
 test('repairs a legacy queue, removes claimed levels, and retries failures', async () => {

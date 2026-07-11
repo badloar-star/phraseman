@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { captureAccountGeneration, type AccountGenerationToken } from './account_generation';
 import {
   rollF2pLevelGiftForUser,
   rollPremiumLevelGiftForUser,
@@ -6,13 +7,23 @@ import {
   type GiftDef,
 } from './level_gift_system';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  CLAIMED_DUAL_LEVELS_KEY,
+  CLAIMED_GIFTS_KEY,
+  PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
+  PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
+  UNCLAIMED_DUAL_GIFTS_KEY,
+  UNCLAIMED_GIFTS_KEY,
+} from './level_up_storage_keys';
 
-export const UNCLAIMED_GIFTS_KEY = 'unclaimed_level_gifts';
-export const CLAIMED_GIFTS_KEY = 'claimed_level_gifts';
-export const UNCLAIMED_DUAL_GIFTS_KEY = 'unclaimed_level_gifts_dual_v1';
-export const CLAIMED_DUAL_LEVELS_KEY = 'claimed_level_gift_dual_flag_v1';
-export const PARTIAL_DUAL_CLAIMED_LEVELS_KEY = 'partial_dual_claimed_levels_v1';
-export const PENDING_LEVEL_GIFT_COUNT_CACHE_KEY = 'pending_level_gift_count_cache_v1';
+export {
+  CLAIMED_DUAL_LEVELS_KEY,
+  CLAIMED_GIFTS_KEY,
+  PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
+  PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
+  UNCLAIMED_DUAL_GIFTS_KEY,
+  UNCLAIMED_GIFTS_KEY,
+} from './level_up_storage_keys';
 
 export interface PremPair {
   f2p: GiftDef;
@@ -49,7 +60,16 @@ export type PendingLevelGiftInventoryItem =
       giftCount: 2;
     };
 
-let pendingInventoryCache: { target: ReturnType<typeof storageStudyTarget>; items: PendingLevelGiftInventoryItem[] } | null = null;
+let pendingInventoryCache: {
+  target: ReturnType<typeof storageStudyTarget>;
+  account: AccountGenerationToken;
+  items: PendingLevelGiftInventoryItem[];
+} | null = null;
+
+const isSameAccountGeneration = (left: AccountGenerationToken, right: AccountGenerationToken): boolean =>
+  left.generation === right.generation
+  && left.stableId === right.stableId
+  && left.phase === right.phase;
 
 const parseJsonRecord = <T>(raw: string | null): Record<number, T> => {
   if (!raw) return {};
@@ -95,7 +115,11 @@ const refreshPendingGiftCountCache = async (): Promise<number> => {
 
 export const getPendingLevelGiftInventoryCache = (studyTarget?: RuntimeStudyTarget): PendingLevelGiftInventoryItem[] => {
   const target = storageStudyTarget(studyTarget);
-  return pendingInventoryCache?.target === target ? [...pendingInventoryCache.items] : [];
+  const account = captureAccountGeneration();
+  return pendingInventoryCache?.target === target
+    && isSameAccountGeneration(pendingInventoryCache.account, account)
+    ? [...pendingInventoryCache.items]
+    : [];
 };
 
 /** Save claimed gift rarity for display purposes. */
@@ -273,10 +297,12 @@ export const loadDualClaimedLevels = async (): Promise<Set<number>> => {
 export const loadPendingLevelGiftInventory = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<PendingLevelGiftInventoryItem[]> => {
+  const account = captureAccountGeneration();
   const [single, dual] = await Promise.all([
     loadUnclaimedGifts(),
     loadUnclaimedDualGifts(),
   ]);
+  if (!isSameAccountGeneration(account, captureAccountGeneration())) return [];
   const target = storageStudyTarget(studyTarget);
   const sanitizeGift = (gift: GiftDef): GiftDef => sanitizeLevelGiftForStudyTarget(gift, target);
 
@@ -321,7 +347,7 @@ export const loadPendingLevelGiftInventory = async (
         item.kind === 'single' && item.dualPart === 'prem' ? 1 : 0;
       return partOrder(a) - partOrder(b);
     });
-  pendingInventoryCache = { target, items };
+  pendingInventoryCache = { target, account, items };
   return items;
 };
 

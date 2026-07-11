@@ -400,6 +400,80 @@ describe("analyzeAccount", () => {
     expect(result.exactInvalidXp).toBe(90);
   });
 
+  test("deduplicates a deterministic migration against an exact current-state gap", () => {
+    const result = analyzeAccount(
+      input([], {
+        currentXp: 150,
+        baseline: {
+          kind: "exact",
+          xp: 100,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
+        migration: {
+          kind: "exact",
+          source: "deterministic_ledger_discontinuity",
+          beforeXp: 100,
+          afterXp: 150,
+          formulaVersion: "v1",
+          exactInvalidDelta: 50,
+          occurredAtMs: 999,
+        },
+      }),
+      new Map(),
+    );
+    expect(result.exactInvalidXp).toBe(50);
+  });
+
+  test("keeps a distinct deterministic migration separate from current-state drift", () => {
+    const result = analyzeAccount(
+      input([], {
+        currentXp: 150,
+        baseline: {
+          kind: "exact",
+          xp: 100,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
+        migration: {
+          kind: "exact",
+          source: "deterministic_ledger_discontinuity",
+          beforeXp: 50,
+          afterXp: 100,
+          formulaVersion: "v1",
+          exactInvalidDelta: 50,
+          occurredAtMs: 999,
+        },
+      }),
+      new Map(),
+    );
+    expect(result.exactInvalidXp).toBe(100);
+  });
+
+  test("keeps a boundary gap independent from first-event invalid reward", () => {
+    const first = event("first", {
+      xpDelta: 100,
+      totalXpBefore: 150,
+      totalXpAfter: 250,
+      payload: { achievementId: "xp_500" },
+    });
+    const result = analyzeAccount(
+      input([first], {
+        baseline: {
+          kind: "exact",
+          xp: 100,
+          derivedFrom: "retained_cutover",
+          atMs: 900,
+        },
+      }),
+      byEvent([
+        "first",
+        match(reward("xp_500", 100, { kind: "lifetime_xp", minimum: 500 })),
+      ]),
+    );
+    expect(result.exactInvalidXp).toBe(150);
+  });
+
   test("keeps exact damage as a lower bound when unrelated evidence is incomplete", () => {
     const result = analyzeAccount(
       input([], {
@@ -736,6 +810,47 @@ describe("analyzeAccount", () => {
     );
     expect(result.classification).toBe("indeterminate");
   });
+
+  test("keeps unrelated catalog and alias completeness as independent causes", () => {
+    const result = analyzeAccount(
+      input([], {
+        baseline: {
+          kind: "exact",
+          xp: 0,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
+        completeness: {
+          ...complete,
+          catalog: "incomplete",
+          alias: "incomplete",
+        },
+      }),
+      new Map(),
+    );
+    expect(result.classification).toBe("probable_damaged");
+  });
+
+  test("correlates migration pattern and migration completeness as one cause", () => {
+    const result = analyzeAccount(
+      input([], {
+        baseline: {
+          kind: "exact",
+          xp: 0,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
+        migration: {
+          kind: "pattern_only",
+          pattern: "250_to_400",
+          markerPresent: true,
+        },
+        completeness: { ...complete, migration: "incomplete" },
+      }),
+      new Map(),
+    );
+    expect(result.classification).toBe("indeterminate");
+  });
 });
 
 describe("analyzeLedgerContinuity", () => {
@@ -842,6 +957,29 @@ describe("analyzeLedgerContinuity", () => {
         atMs: 900,
       }).complete,
     ).toBe(false);
+  });
+
+  test("finds the globally unique tied path beyond a locally ambiguous step", () => {
+    const selfLoop = event("self-loop", {
+      type: "xp",
+      xpDelta: 0,
+      totalXpBefore: 100,
+      totalXpAfter: 100,
+    });
+    const advance = event("advance", {
+      type: "xp",
+      xpDelta: 50,
+      totalXpBefore: 100,
+      totalXpAfter: 150,
+    });
+    expect(
+      analyzeLedgerContinuity([advance, selfLoop], 150, {
+        kind: "exact",
+        xp: 100,
+        derivedFrom: "retained_cutover",
+        atMs: 900,
+      }).complete,
+    ).toBe(true);
   });
 
   test("reconstructs 5000 uniquely chained tied events iteratively", () => {

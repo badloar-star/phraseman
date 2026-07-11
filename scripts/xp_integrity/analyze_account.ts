@@ -24,6 +24,7 @@ export type LedgerContinuityResult = {
 };
 
 export type ExactLedgerGap = {
+  kind: "retained_boundary" | "current_state";
   eventId: string;
   beforeXp: number;
   afterXp: number;
@@ -62,34 +63,100 @@ function uniqueExactOrder(
   events: readonly NormalizedAuditEvent[],
   initialXp: number,
 ): NormalizedAuditEvent[] | null {
-  const groups = new Map<number, NormalizedAuditEvent[]>();
-  for (const event of events) {
-    const time = event.serverCreatedAtMs as number;
-    const group = groups.get(time) ?? [];
-    group.push(event);
-    groups.set(time, group);
-  }
-  const ordered: NormalizedAuditEvent[] = [];
-  let expectedXp = initialXp;
-  for (const time of [...groups.keys()].sort((left, right) => left - right)) {
-    const group = groups.get(time) as NormalizedAuditEvent[];
-    const byBefore = new Map<number, NormalizedAuditEvent[]>();
-    for (const event of group) {
-      const before = event.totalXpBefore as number;
-      const candidates = byBefore.get(before) ?? [];
-      candidates.push(event);
-      byBefore.set(before, candidates);
+  const indexedEvents = [...events];
+  const times = [
+    ...new Set(indexedEvents.map((event) => event.serverCreatedAtMs as number)),
+  ].sort((left, right) => left - right);
+  const groupForTime = new Map(times.map((time, index) => [time, index]));
+  const groupRemaining = times.map(() => 0);
+  const byBefore = times.map(() => new Map<number, number[]>());
+  indexedEvents.forEach((event, eventIndex) => {
+    const groupIndex = groupForTime.get(
+      event.serverCreatedAtMs as number,
+    ) as number;
+    groupRemaining[groupIndex] += 1;
+    const before = event.totalXpBefore as number;
+    const candidates = byBefore[groupIndex].get(before) ?? [];
+    candidates.push(eventIndex);
+    byBefore[groupIndex].set(before, candidates);
+  });
+
+  type SearchFrame = {
+    groupIndex: number;
+    candidates: readonly number[];
+    nextCandidate: number;
+  };
+  const used = new Uint8Array(indexedEvents.length);
+  const path: number[] = [];
+  const solutions: number[][] = [];
+  const searchBudget = Math.min(
+    250_000,
+    Math.max(20_000, indexedEvents.length * 4),
+  );
+  let explored = 0;
+
+  const frameFor = (expectedXp: number, fromGroup: number): SearchFrame => {
+    let groupIndex = fromGroup;
+    while (
+      groupIndex < groupRemaining.length &&
+      groupRemaining[groupIndex] === 0
+    ) {
+      groupIndex += 1;
     }
-    for (let consumed = 0; consumed < group.length; consumed += 1) {
-      const candidates = byBefore.get(expectedXp);
-      if (!candidates || candidates.length !== 1) return null;
-      const [next] = candidates;
-      byBefore.delete(expectedXp);
-      ordered.push(next);
-      expectedXp = next.totalXpAfter;
+    const candidates =
+      groupIndex < byBefore.length
+        ? (byBefore[groupIndex].get(expectedXp) ?? []).filter(
+            (eventIndex) => used[eventIndex] === 0,
+          )
+        : [];
+    return { groupIndex, candidates, nextCandidate: 0 };
+  };
+
+  const frames: SearchFrame[] = [frameFor(initialXp, 0)];
+  while (frames.length > 0) {
+    if (path.length === indexedEvents.length) {
+      solutions.push([...path]);
+      if (solutions.length > 1) return null;
+      frames.pop();
+      const chosen = path.pop();
+      if (chosen !== undefined) {
+        used[chosen] = 0;
+        const groupIndex = groupForTime.get(
+          indexedEvents[chosen].serverCreatedAtMs as number,
+        ) as number;
+        groupRemaining[groupIndex] += 1;
+      }
+      continue;
     }
+
+    const frame = frames[frames.length - 1];
+    if (frame.nextCandidate >= frame.candidates.length) {
+      frames.pop();
+      const chosen = path.pop();
+      if (chosen !== undefined) {
+        used[chosen] = 0;
+        const groupIndex = groupForTime.get(
+          indexedEvents[chosen].serverCreatedAtMs as number,
+        ) as number;
+        groupRemaining[groupIndex] += 1;
+      }
+      continue;
+    }
+
+    const chosen = frame.candidates[frame.nextCandidate];
+    frame.nextCandidate += 1;
+    if (used[chosen] !== 0) continue;
+    explored += 1;
+    if (explored > searchBudget) return null;
+    used[chosen] = 1;
+    groupRemaining[frame.groupIndex] -= 1;
+    path.push(chosen);
+    frames.push(frameFor(indexedEvents[chosen].totalXpAfter, frame.groupIndex));
   }
-  return ordered;
+
+  return solutions.length === 1
+    ? solutions[0].map((eventIndex) => indexedEvents[eventIndex])
+    : null;
 }
 
 const incompleteLedger = (
@@ -132,6 +199,7 @@ export function analyzeLedgerContinuity(
         authoritative && amount > 0
           ? [
               {
+                kind: "current_state",
                 eventId: "__current_xp__",
                 beforeXp: suppliedBaseline.xp,
                 afterXp: currentXp,
@@ -231,10 +299,12 @@ export function analyzeLedgerContinuity(
         return incompleteLedger(baseline, [`event:${ledgerEvent.eventId}`]);
       }
       const amount = before - expected;
-      addInvalid(invalidByEvent, ledgerEvent.eventId, amount);
+      const boundaryEventId = `__ledger_boundary__:${ledgerEvent.eventId}`;
+      addInvalid(invalidByEvent, boundaryEventId, amount);
       if (amount > 0) {
         exactGaps.push({
-          eventId: ledgerEvent.eventId,
+          kind: "retained_boundary",
+          eventId: boundaryEventId,
           beforeXp: expected,
           afterXp: before,
           amount,
@@ -248,6 +318,7 @@ export function analyzeLedgerContinuity(
   addInvalid(invalidByEvent, "__current_xp__", currentXp - expected);
   if (currentXp > expected) {
     exactGaps.push({
+      kind: "current_state",
       eventId: "__current_xp__",
       beforeXp: expected,
       afterXp: currentXp,
@@ -339,8 +410,15 @@ export function analyzeAccount(
 ): AccountAuditResult {
   const reasons = new Set<ReasonCode>();
   const nonExactCauseIds = new Set<string>();
+  const causesByFamily = new Map<string, Set<string>>();
   const invalidByEvent = new Map<string, number>();
   let runtimeEvidenceComplete = true;
+  const addNonExactCause = (family: string, causeId: string): void => {
+    nonExactCauseIds.add(causeId);
+    const causes = causesByFamily.get(family) ?? new Set<string>();
+    causes.add(causeId);
+    causesByFamily.set(family, causes);
+  };
 
   const ledger = analyzeLedgerContinuity(
     input.canonicalEvents,
@@ -354,7 +432,7 @@ export function analyzeAccount(
   if (!ledger.complete) {
     reasons.add("ledger_history_incomplete");
     ledger.incompleteCauseIds.forEach((causeId) =>
-      nonExactCauseIds.add(causeId),
+      addNonExactCause("ledger", causeId),
     );
     runtimeEvidenceComplete = false;
   }
@@ -364,7 +442,8 @@ export function analyzeAccount(
     if (achievementId === null) {
       reasons.add("catalog_unmapped");
       reasons.add("prerequisite_unmapped");
-      nonExactCauseIds.add(`event:${claimed.eventId}`);
+      addNonExactCause("catalog", `event:${claimed.eventId}`);
+      addNonExactCause("prerequisites", `event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -372,7 +451,7 @@ export function analyzeAccount(
     const historicalReward = rewardFromMatch(match, achievementId);
     if (!historicalReward) {
       reasons.add("catalog_unmapped");
-      nonExactCauseIds.add(`event:${claimed.eventId}`);
+      addNonExactCause("catalog", `event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -390,7 +469,7 @@ export function analyzeAccount(
     );
     if (valueBefore === null) {
       reasons.add("prerequisite_unmapped");
-      nonExactCauseIds.add(`event:${claimed.eventId}`);
+      addNonExactCause("prerequisites", `event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
     } else if (
       historicalReward.prerequisite.kind !== "unsupported" &&
@@ -409,7 +488,7 @@ export function analyzeAccount(
       !Number.isFinite(alias.identityMergedAtMs)
     ) {
       reasons.add("alias_history_incomplete");
-      nonExactCauseIds.add(`alias:${alias.uid}:linkage`);
+      addNonExactCause("alias", `alias:${alias.uid}:linkage`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -425,7 +504,7 @@ export function analyzeAccount(
         aliasClaim.serverCreatedAtMs >= mergeTime
       ) {
         reasons.add("alias_history_incomplete");
-        nonExactCauseIds.add(`event:${aliasClaim.eventId}`);
+        addNonExactCause("alias", `event:${aliasClaim.eventId}`);
         runtimeEvidenceComplete = false;
         continue;
       }
@@ -435,7 +514,7 @@ export function analyzeAccount(
       );
       if (!aliasReward) {
         reasons.add("alias_history_incomplete");
-        nonExactCauseIds.add(`event:${aliasClaim.eventId}`);
+        addNonExactCause("alias", `event:${aliasClaim.eventId}`);
         runtimeEvidenceComplete = false;
         continue;
       }
@@ -476,7 +555,7 @@ export function analyzeAccount(
           addInvalid(invalidByEvent, candidate.eventId, candidate.xpDelta);
         } else {
           reasons.add("alias_history_incomplete");
-          nonExactCauseIds.add(`event:${candidate.eventId}`);
+          addNonExactCause("alias", `event:${candidate.eventId}`);
           runtimeEvidenceComplete = false;
         }
       }
@@ -490,7 +569,8 @@ export function analyzeAccount(
       migration.source === "deterministic_ledger_discontinuity" &&
       ledger.exactGaps.some(
         (gap) =>
-          gap.atMs === migration.occurredAtMs &&
+          (gap.kind === "current_state" ||
+            gap.atMs === migration.occurredAtMs) &&
           gap.beforeXp === migration.beforeXp &&
           gap.afterXp === migration.afterXp &&
           gap.amount === migration.exactInvalidDelta,
@@ -500,24 +580,18 @@ export function analyzeAccount(
     }
   } else if (input.migration.kind === "pattern_only") {
     reasons.add("migration_pattern_only");
-    nonExactCauseIds.add("migration:pattern");
+    addNonExactCause("migration", "migration:pattern");
     runtimeEvidenceComplete = false;
   } else if (input.migration.kind === "incomplete") {
-    nonExactCauseIds.add("migration:incomplete");
+    addNonExactCause("migration", "migration:incomplete");
     runtimeEvidenceComplete = false;
   }
 
-  const hasAggregateIncompleteEvidence = Object.values(input.completeness).some(
-    (state) => state === "incomplete",
-  );
-  const aggregateEvidenceIsIndependent =
-    nonExactCauseIds.size === 0 ||
-    [...nonExactCauseIds].every((causeId) => causeId.startsWith("migration:"));
-  if (hasAggregateIncompleteEvidence && aggregateEvidenceIsIndependent) {
-    nonExactCauseIds.add("evidence:incomplete");
-  }
   for (const [family, state] of Object.entries(input.completeness)) {
     if (state !== "incomplete") continue;
+    if (!causesByFamily.has(family)) {
+      addNonExactCause(family, `evidence:${family}`);
+    }
     if (family === "ledger") reasons.add("ledger_history_incomplete");
     if (family === "catalog") reasons.add("catalog_unmapped");
     if (family === "alias") reasons.add("alias_history_incomplete");

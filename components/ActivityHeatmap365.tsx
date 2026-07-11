@@ -1215,7 +1215,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 18,
     padding: 14,
-    borderWidth: 0.5,
+    borderWidth: 0,
     overflow: 'hidden',
   },
   title: {
@@ -1262,7 +1262,7 @@ const styles = StyleSheet.create({
     minWidth: 44,
     height: 28,
     borderRadius: 999,
-    borderWidth: 0.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 9,
@@ -1292,7 +1292,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     overflow: 'hidden',
     borderRadius: 13,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingVertical: 12,
     paddingHorizontal: 8,
     alignItems: 'center',
@@ -1314,7 +1314,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1327,7 +1327,7 @@ const styles = StyleSheet.create({
   nextStepBar: {
     marginTop: 10,
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingHorizontal: 11,
     paddingVertical: 9,
     flexDirection: 'row',
@@ -1342,13 +1342,13 @@ const styles = StyleSheet.create({
   statPill: {
     flex: 1,
     borderRadius: 10,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
   insightCard: {
     marginTop: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     borderRadius: 12,
     padding: 12,
     flexDirection: 'row',
@@ -1361,7 +1361,7 @@ const styles = StyleSheet.create({
   },
   periodCard: {
     flex: 1,
-    borderWidth: 0.5,
+    borderWidth: 0,
     borderRadius: 12,
     padding: 12,
     minHeight: 104,
@@ -1369,7 +1369,7 @@ const styles = StyleSheet.create({
   goalCard: {
     marginTop: 12,
     borderRadius: 14,
-    borderWidth: 0.5,
+    borderWidth: 0,
     padding: 12,
   },
   goalTrack: {
@@ -1390,14 +1390,14 @@ const styles = StyleSheet.create({
   goalBtn: {
     flex: 1,
     borderRadius: 10,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingVertical: 9,
     alignItems: 'center',
   },
   reportBtn: {
     marginLeft: 'auto',
     borderRadius: 999,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingHorizontal: 9,
     paddingVertical: 6,
     flexDirection: 'row',
@@ -1419,7 +1419,7 @@ const styles = StyleSheet.create({
   },
   modalCard: {
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.24,
@@ -1431,7 +1431,7 @@ const styles = StyleSheet.create({
   },
   reportSummary: {
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     padding: 12,
     marginTop: 12,
   },
@@ -1451,7 +1451,7 @@ const styles = StyleSheet.create({
     width: '31.5%',
     minWidth: 86,
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     padding: 10,
   },
 });

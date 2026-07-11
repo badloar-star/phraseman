@@ -22752,14 +22752,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22778,14 +22783,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22804,14 +22814,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22830,14 +22845,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22856,14 +22876,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22882,14 +22907,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22908,14 +22938,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -22934,14 +22969,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23012,14 +23052,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23038,14 +23083,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23064,14 +23114,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23090,14 +23145,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23116,14 +23176,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "raised",
       "reason": "Ordinary raised container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary raised container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23142,14 +23207,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23190,18 +23260,18 @@
       "fingerprint": "components/AiMistakeCard.tsx|style:card|borderWidth:1|occurrence:1",
       "lastSeenLine": 224,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "card",
-      "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border color communicates AI explanation readiness",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary card container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border color communicates AI explanation readiness"
         }
       ]
     },
@@ -23220,14 +23290,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23272,14 +23347,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23294,18 +23374,18 @@
       "fingerprint": "components/AppMessagesInbox.tsx|style:envelope|borderWidth:2|occurrence:1",
       "lastSeenLine": 1042,
       "excerpt": "borderWidth: 2,",
-      "category": "MIGRATE",
+      "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
-      "tone": "card",
-      "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border is part of the envelope illustration",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary card container uses a decorative closed border"
+          "category": "KEEP_ART",
+          "reason": "Border is part of the envelope illustration"
         }
       ]
     },
@@ -23398,18 +23478,18 @@
       "fingerprint": "components/AppMessagesInbox.tsx|style:messageRow|borderWidth:0.5|occurrence:1",
       "lastSeenLine": 1148,
       "excerpt": "borderWidth: 0.5,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border participates in read and unread message state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border participates in read and unread message state"
         }
       ]
     },
@@ -23428,14 +23508,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23454,14 +23539,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23480,14 +23570,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23500,20 +23595,20 @@
         "value": "pollOption"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:pollOption|borderWidth:1|occurrence:1",
-      "lastSeenLine": 1385,
+      "lastSeenLine": 1386,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates the selected poll option",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates the selected poll option"
         }
       ]
     },
@@ -23526,20 +23621,20 @@
         "value": "reactionButton"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:reactionButton|borderWidth:1|occurrence:1",
-      "lastSeenLine": 1431,
+      "lastSeenLine": 1432,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "card",
-      "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates the selected reaction",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary card container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates the selected reaction"
         }
       ]
     },
@@ -23558,14 +23653,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -23578,7 +23678,7 @@
         "value": "vipSurveyBadge"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:vipSurveyBadge|borderWidth:0.5|occurrence:1",
-      "lastSeenLine": 1216,
+      "lastSeenLine": 1217,
       "excerpt": "borderWidth: 0.5,",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
@@ -23604,7 +23704,7 @@
         "value": "vipSurveyCard"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:vipSurveyCard|borderWidth:1|occurrence:1",
-      "lastSeenLine": 1298,
+      "lastSeenLine": 1299,
       "excerpt": "borderWidth: 1,",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
@@ -24416,14 +24516,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -24436,20 +24541,20 @@
         "value": "input"
       },
       "fingerprint": "components/CertificateNameModal.tsx|style:input|borderWidth:1.5|occurrence:1",
-      "lastSeenLine": 199,
+      "lastSeenLine": 200,
       "excerpt": "borderWidth: 1.5,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "card",
-      "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Input border communicates focus and save readiness",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary card container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Input border communicates focus and save readiness"
         }
       ]
     },
@@ -24468,14 +24573,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "raised",
       "reason": "Ordinary raised container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary raised container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -24494,14 +24604,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -27766,18 +27881,18 @@
       "fingerprint": "components/HelpBoardPanel.tsx|component:HIT|borderWidth:1|occurrence:1",
       "lastSeenLine": 1002,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "card",
-      "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Toast border communicates error or success state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary card container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Toast border communicates error or success state"
         }
       ]
     },
@@ -27796,14 +27911,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -30916,14 +31036,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -30968,14 +31093,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -30994,14 +31124,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -31592,14 +31727,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -31618,14 +31758,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -31670,14 +31815,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -31696,14 +31846,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -33828,14 +33983,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "card",
       "reason": "Ordinary card container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary card container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -33854,14 +34014,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/shared_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },

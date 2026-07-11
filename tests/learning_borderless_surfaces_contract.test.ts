@@ -22,6 +22,16 @@ const FLASHCARDS_FIRST_WAVE_TARGET_IDS = [
   'surface:app-flashcards-flashcardscategoryhub:flashcardscategoryhub:2',
 ] as const;
 
+const FLASHCARDS_SWIPE_TARGET_IDS = [
+  'surface:app-flashcards-swipe:answerbutton:1',
+  'surface:app-flashcards-swipe:checkcircle:1',
+  'surface:app-flashcards-swipe:feedbackbox:1',
+  'surface:app-flashcards-swipe:headerstreakpill:1',
+  'surface:app-flashcards-swipe:segment:1',
+  'surface:app-flashcards-swipe:segmentbutton:1',
+  'surface:app-flashcards-swipe:swipebadge:1',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -37,5 +47,9 @@ function expectMigrated(ids: readonly string[]): void {
 describe('learning and flashcards borderless production surfaces', () => {
   it('migrates the reviewed first flashcards wave containers', () => {
     expectMigrated(FLASHCARDS_FIRST_WAVE_TARGET_IDS);
+  });
+
+  it('migrates the reviewed flashcards swipe containers', () => {
+    expectMigrated(FLASHCARDS_SWIPE_TARGET_IDS);
   });
 });

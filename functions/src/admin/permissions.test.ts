@@ -11,6 +11,16 @@ describe('admin permission matrix', () => {
     expect(hasPermission('support', 'money.manual_access.write')).toBe(false);
   });
 
+  it('separates briefing and report read/write roles', () => {
+    expect(hasPermission('analyst', 'briefing.read')).toBe(true);
+    expect(hasPermission('analyst', 'briefing.generate')).toBe(false);
+    expect(hasPermission('support', 'reports.read')).toBe(true);
+    expect(hasPermission('support', 'reports.status.write')).toBe(true);
+    expect(hasPermission('moderator', 'reports.status.write')).toBe(true);
+    expect(hasPermission('developer', 'diagnostics.status.write')).toBe(true);
+    expect(hasPermission('content_editor', 'reports.read')).toBe(false);
+  });
+
   it('allows support operators to work the inbox but not resolve ambiguous delivery', () => {
     expect(hasPermission('support', 'support.inbox.read')).toBe(true);
     expect(hasPermission('support', 'support.inbox.pull')).toBe(true);
@@ -31,6 +41,8 @@ describe('admin permission matrix', () => {
       'support.inbox.read', 'support.inbox.pull', 'support.draft.write',
       'support.reply.send', 'support.archive', 'support.settings.write',
       'support.reply.resolve_ambiguous',
+      'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write',
+      'reports.reply.draft', 'reports.reply.send', 'diagnostics.status.write',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

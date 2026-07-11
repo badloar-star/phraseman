@@ -29,6 +29,8 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { openAiChat } from './explain/explain_provider';
 import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
+import { hasAdminRole, type AdminRole } from './admin/roles';
+import { hasPermission, type AdminPermission } from './admin/permissions';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -78,6 +80,58 @@ export interface DigestSourceRows {
     /** arena_rooms_live: созданные кастомные комнаты арены (эфемерны, TTL 24ч). */
     arenaRooms: Array<{ title?: string }>;
   };
+}
+
+export interface DigestSourceHealth {
+  source: string;
+  queryField: string;
+  state: 'ready' | 'empty' | 'error' | 'truncated';
+  count: number;
+  checkedAtMs: number;
+  latestEventAtMs: number;
+  limit: number;
+  error?: string;
+}
+
+export interface DigestSourcesResult {
+  rows: DigestSourceRows;
+  health: DigestSourceHealth[];
+}
+
+export interface DigestCompleteness {
+  state: 'complete' | 'partial' | 'blocked';
+  errorSources: string[];
+  truncatedSources: string[];
+  quietAllowed: boolean;
+}
+
+export function assessDigestCompleteness(health: readonly DigestSourceHealth[]): DigestCompleteness {
+  const errorSources = health.filter((item) => item.state === 'error').map((item) => item.source);
+  const truncatedSources = health.filter((item) => item.state === 'truncated').map((item) => item.source);
+  const state = errorSources.length ? 'blocked' : truncatedSources.length ? 'partial' : 'complete';
+  return Object.freeze({ state, errorSources, truncatedSources, quietAllowed: state === 'complete' });
+}
+
+export function classifyStoredDigest(digest: Record<string, unknown>, nowMs = Date.now()): 'ready' | 'partial' | 'stale' | 'legacy' {
+  if (Number(digest.schemaVersion ?? 0) < 2) return 'legacy';
+  if (digest.generationState === 'partial') return 'partial';
+  const generatedAtMs = Number(digest.generatedAtMs ?? 0);
+  return !Number.isFinite(generatedAtMs) || generatedAtMs <= 0 || nowMs - generatedAtMs > 36 * 60 * 60 * 1000 ? 'stale' : 'ready';
+}
+
+export function shouldPreserveCompleteDigest(digest: Record<string, unknown>, incomingState: 'complete' | 'partial'): boolean {
+  return incomingState === 'partial' && Number(digest.schemaVersion ?? 0) === 2 && digest.generationState === 'complete';
+}
+
+function requireDigestPermission(
+  request: { auth?: { uid?: string; token?: Record<string, unknown> } | null },
+  permission: AdminPermission,
+): { actorUid: string; role: AdminRole } {
+  if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) throw new HttpsError('permission-denied', 'Admin only');
+  const claimedRole = request.auth.token.adminRole;
+  const role: AdminRole = hasAdminRole(claimedRole) ? claimedRole : 'admin';
+  if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
+  return { actorUid: String(request.auth.uid), role };
 }
 
 // ── Тип фактов, уходящих в ИИ ──────────────────────────────────────────────────
@@ -343,11 +397,24 @@ export function buildDigestPrompt(facts: DigestFacts): string {
  * (сбой одного, напр. нет индекса, не роняет весь дайджест) и по СВОЕМУ полю
  * времени (у коллекций оно разное — см. шапку файла).
  */
-export async function loadDigestSources(
+export async function loadDigestSourcesWithHealth(
   db: FirebaseFirestore.Firestore,
   since: number,
   limitPer = 1000,
-): Promise<DigestSourceRows> {
+): Promise<DigestSourcesResult> {
+  const health: DigestSourceHealth[] = [];
+  const record = (source: string, queryField: string, count: number, latestEventAtMs = 0, error?: unknown): void => {
+    health.push({
+      source,
+      queryField,
+      state: error ? 'error' : count >= limitPer ? 'truncated' : count ? 'ready' : 'empty',
+      count,
+      checkedAtMs: Date.now(),
+      latestEventAtMs,
+      limit: limitPer,
+      ...(error ? { error: (error instanceof Error ? error.message : String(error)).slice(0, 300) } : {}),
+    });
+  };
   // Универсальный безопасный запрос по числовому ms-полю времени.
   const byMs = async <T>(
     collection: string,
@@ -356,9 +423,12 @@ export async function loadDigestSources(
   ): Promise<T[]> => {
     try {
       const snap = await db.collection(collection).where(field, '>=', since).limit(limitPer).get();
+      const latestEventAtMs = snap.docs.reduce((latest, doc) => Math.max(latest, Number(doc.data()[field] ?? 0) || 0), 0);
+      record(collection, field, snap.size, latestEventAtMs);
       return snap.docs.map(map);
     } catch (e) {
       console.warn(`admin_daily_digest: read ${collection} by ${field} failed`, e);
+      record(collection, field, 0, 0, e);
       return [];
     }
   };
@@ -368,7 +438,7 @@ export async function loadDigestSources(
   const loadNewUsers = async (): Promise<Array<{ platform?: string }>> => {
     try {
       const snap = await db.collection('users').where('created_at', '>=', since).limit(limitPer).get();
-      return snap.docs
+      const matched = snap.docs
         .filter((d) => {
           const v = d.data().created_at;
           const ms = typeof v === 'number' ? v
@@ -376,9 +446,15 @@ export async function loadDigestSources(
               : (v && typeof v.toMillis === 'function') ? v.toMillis() : 0;
           return ms >= since;
         })
-        .map((d) => ({ platform: d.data().platform as string }));
+      record('users', 'created_at', snap.size, matched.reduce((latest, doc) => {
+        const value = doc.data().created_at;
+        const ms = typeof value === 'number' ? value : typeof value === 'string' ? Date.parse(value) : value && typeof value.toMillis === 'function' ? value.toMillis() : 0;
+        return Math.max(latest, Number.isFinite(ms) ? ms : 0);
+      }, 0));
+      return matched.map((d) => ({ platform: d.data().platform as string }));
     } catch (e) {
       console.warn('admin_daily_digest: read users(created_at) failed', e);
+      record('users', 'created_at', 0, 0, e);
       return [];
     }
   };
@@ -394,12 +470,15 @@ export async function loadDigestSources(
         .where('day', '<=', toDay)
         .limit(limitPer)
         .get();
-      return snap.docs
+      const rows = snap.docs
         .map((d) => d.data())
         .filter((x) => x.dev !== true && x.step === 'purchase_completed')
         .map((x) => ({ day: x.day as string }));
+      record('paywall_funnel', 'day', snap.size, rows.reduce((latest, row) => Math.max(latest, Date.parse(`${row.day}T00:00:00.000Z`) || 0), 0));
+      return rows;
     } catch (e) {
       console.warn('admin_daily_digest: read paywall_funnel failed', e);
+      record('paywall_funnel', 'day', 0, 0, e);
       return [];
     }
   };
@@ -413,9 +492,11 @@ export async function loadDigestSources(
         .where('createdAt', '>=', sinceTs)
         .limit(limitPer)
         .get();
+      record('website_contact_inbox', 'createdAt', snap.size, snap.docs.reduce((latest, doc) => Math.max(latest, doc.data().createdAt?.toMillis?.() ?? 0), 0));
       return snap.docs.map((d) => ({ topic: d.data().topic as string, message: d.data().message as string }));
     } catch (e) {
       console.warn('admin_daily_digest: read website_contact_inbox failed', e);
+      record('website_contact_inbox', 'createdAt', 0, 0, e);
       return [];
     }
   };
@@ -429,9 +510,11 @@ export async function loadDigestSources(
         .where('createdAt', '>=', sinceTs)
         .limit(limitPer)
         .get();
+      record('referral_attributions', 'createdAt', snap.size, snap.docs.reduce((latest, doc) => Math.max(latest, doc.data().createdAt?.toMillis?.() ?? 0), 0));
       return snap.docs.map((d) => ({ status: d.data().status as string }));
     } catch (e) {
       console.warn('admin_daily_digest: read referral_attributions failed', e);
+      record('referral_attributions', 'createdAt', 0, 0, e);
       return [];
     }
   };
@@ -444,9 +527,11 @@ export async function loadDigestSources(
         .where('redeemedAtMs', '>=', since)
         .limit(limitPer)
         .get();
+      record('promo_redemptions', 'redeemedAtMs', snap.size, snap.docs.reduce((latest, doc) => Math.max(latest, Number(doc.data().redeemedAtMs ?? 0) || 0), 0));
       return snap.docs.map((d) => ({ code: (d.data().code as string) || d.id }));
     } catch (e) {
       console.warn('admin_daily_digest: read promo_redemptions (collectionGroup) failed', e);
+      record('promo_redemptions', 'redeemedAtMs', 0, 0, e);
       return [];
     }
   };
@@ -506,11 +591,22 @@ export async function loadDigestSources(
   ]);
 
   return {
-    reports, cancels, appErrors, safety,
-    newUsers, purchases, paywallPurchases, ideas,
-    queues: { userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration },
-    community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
+    rows: {
+      reports, cancels, appErrors, safety,
+      newUsers, purchases, paywallPurchases, ideas,
+      queues: { userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration },
+      community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
+    },
+    health,
   };
+}
+
+export async function loadDigestSources(
+  db: FirebaseFirestore.Firestore,
+  since: number,
+  limitPer = 1000,
+): Promise<DigestSourceRows> {
+  return (await loadDigestSourcesWithHealth(db, since, limitPer)).rows;
 }
 
 /** UTC день-ключ (YYYY-MM-DD) — один документ дайджеста на сутки. */
@@ -525,6 +621,9 @@ export interface DigestResult {
   summary: string;
   facts: DigestFacts;
   model: string;
+  generationState: 'complete' | 'partial';
+  sourceHealth: DigestSourceHealth[];
+  preservedExisting?: boolean;
 }
 
 /**
@@ -542,12 +641,43 @@ export async function runAdminDailyDigest(
   assertJobEnabled(cfg, 'digest');
 
   const since = now - DAY_MS;
-  const rows = await loadDigestSources(db, since);
-  const facts = aggregateDigestFacts(rows, 24);
+  const loaded = await loadDigestSourcesWithHealth(db, since);
+  const facts = aggregateDigestFacts(loaded.rows, 24);
   const dayKey = utcDayKey(now);
+  const completeness = assessDigestCompleteness(loaded.health);
+  const nowIso = new Date(now).toISOString();
+
+  if (completeness.state === 'blocked') {
+    await db.collection('admin_log').add({
+      ts: nowIso,
+      adminEmail: actorEmail || 'admin',
+      action: 'ai_daily_digest_blocked',
+      details: { dayKey, errorSources: completeness.errorSources },
+    });
+    throw new HttpsError('unavailable', `digest_sources_incomplete:${completeness.errorSources.join(',')}`);
+  }
+
+  const digestRef = db.collection(DIGESTS_COLLECTION).doc(dayKey);
+  if (completeness.state === 'partial') {
+    const existing = await digestRef.get();
+    const prior = existing.data() ?? {};
+    if (existing.exists && shouldPreserveCompleteDigest(prior, 'partial')) {
+      return {
+        ok: true,
+        empty: prior.empty === true,
+        dayKey,
+        summary: String(prior.summary ?? ''),
+        facts: prior.facts as DigestFacts,
+        model: String(prior.model ?? 'none'),
+        generationState: 'complete',
+        sourceHealth: Array.isArray(prior.sourceHealth) ? prior.sourceHealth as DigestSourceHealth[] : [],
+        preservedExisting: true,
+      };
+    }
+  }
 
   let summary: string;
-  const empty = isDigestEmpty(facts);
+  const empty = isDigestEmpty(facts) && completeness.quietAllowed;
   if (empty) {
     summary = 'За последние сутки заметных событий нет — новых пользователей, продаж, репортов, критических ошибок и safety-флагов не поступало. Спокойные сутки.';
   } else {
@@ -556,24 +686,62 @@ export async function runAdminDailyDigest(
       model: cfg.model,
       messages: [
         { role: 'system', content: DIGEST_SYSTEM_PROMPT },
-        { role: 'user', content: buildDigestPrompt(facts) },
+        { role: 'user', content: JSON.stringify({ facts, sourceHealth: loaded.health, completeness }, null, 2) },
       ],
       maxTokens: 1100,
       temperature: 0.5,
     });
     summary = result.text.trim();
   }
+  if (completeness.state === 'partial') {
+    summary = `⚠️ Неполная сводка: источники достигли лимита (${completeness.truncatedSources.join(', ')}).\n\n${summary}`;
+  }
 
-  const nowIso = new Date(now).toISOString();
-  await db.collection(DIGESTS_COLLECTION).doc(dayKey).set({
+  const digestDocument = {
+    schemaVersion: 2,
     dayKey,
     summary,
     facts,
+    empty,
+    window: { fromMs: since, toMs: now, hours: 24 },
+    generationState: completeness.state,
+    sourceHealth: loaded.health,
+    completeness: { errors: 0, truncated: completeness.truncatedSources.length, total: loaded.health.length },
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
     generatedAtMs: now,
     generatedBy: actorEmail || 'admin',
-  });
+  };
+
+  let preservedAfterGeneration: Record<string, unknown> | null = null;
+  if (completeness.state === 'partial') {
+    await db.runTransaction(async (tx) => {
+      const current = await tx.get(digestRef);
+      const prior = current.data() ?? {};
+      if (current.exists && shouldPreserveCompleteDigest(prior, 'partial')) {
+        preservedAfterGeneration = prior;
+        return;
+      }
+      tx.set(digestRef, digestDocument);
+    });
+  } else {
+    await digestRef.set(digestDocument);
+  }
+
+  if (preservedAfterGeneration) {
+    const prior = preservedAfterGeneration as Record<string, unknown>;
+    return {
+      ok: true,
+      empty: prior.empty === true,
+      dayKey,
+      summary: String(prior.summary ?? ''),
+      facts: prior.facts as DigestFacts,
+      model: String(prior.model ?? 'none'),
+      generationState: 'complete',
+      sourceHealth: Array.isArray(prior.sourceHealth) ? prior.sourceHealth as DigestSourceHealth[] : [],
+      preservedExisting: true,
+    };
+  }
 
   // Короткая запись в общий admin_log (виден в Audit-log без нового UI).
   await db.collection('admin_log').add({
@@ -593,7 +761,7 @@ export async function runAdminDailyDigest(
     },
   });
 
-  return { ok: true, empty, dayKey, summary, facts, model: empty ? 'none' : cfg.model };
+  return { ok: true, empty, dayKey, summary, facts, model: empty ? 'none' : cfg.model, generationState: completeness.state, sourceHealth: loaded.health };
 }
 
 // ── Admin CF: сгенерировать дайджест по кнопке ────────────────────────────────
@@ -604,9 +772,7 @@ export async function runAdminDailyDigest(
 export const adminGenerateDailyDigest = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] },
   async (request) => {
-    if (request.auth?.token?.admin !== true) {
-      throw new HttpsError('permission-denied', 'Admin only');
-    }
+    requireDigestPermission(request, 'briefing.generate');
     // Do NOT clamp the secret — project-scoped keys can be long; truncation breaks auth.
     const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
     if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
@@ -619,5 +785,36 @@ export const adminGenerateDailyDigest = onCall(
       console.error('adminGenerateDailyDigest failed', e);
       throw new HttpsError('internal', e instanceof Error ? e.message : 'digest_failed');
     }
+  },
+);
+
+export const adminGetDailyBriefing = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requireDigestPermission(request, 'briefing.read');
+    const snapshot = await admin.firestore().collection(DIGESTS_COLLECTION).orderBy('generatedAtMs', 'desc').limit(1).get();
+    if (snapshot.empty) return { ok: true, state: 'empty', digest: null, fetchedAtMs: Date.now() };
+    const doc = snapshot.docs[0];
+    const data = doc.data() as Record<string, unknown>;
+    return {
+      ok: true,
+      state: classifyStoredDigest(data),
+      digest: {
+        id: doc.id,
+        schemaVersion: Number(data.schemaVersion ?? 1),
+        dayKey: String(data.dayKey ?? doc.id),
+        summary: String(data.summary ?? '').slice(0, 12000),
+        facts: data.facts ?? null,
+        model: String(data.model ?? 'unknown'),
+        generatedAt: String(data.generatedAt ?? ''),
+        generatedAtMs: Number(data.generatedAtMs ?? 0),
+        generatedBy: String(data.generatedBy ?? ''),
+        generationState: String(data.generationState ?? 'unknown'),
+        window: data.window ?? null,
+        sourceHealth: Array.isArray(data.sourceHealth) ? data.sourceHealth.slice(0, 40) : [],
+        completeness: data.completeness ?? null,
+      },
+      fetchedAtMs: Date.now(),
+    };
   },
 );

@@ -1560,7 +1560,7 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
-export { adminGenerateDailyDigest } from './admin_daily_digest';
+export { adminGenerateDailyDigest, adminGetDailyBriefing } from './admin_daily_digest';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
@@ -1602,6 +1602,7 @@ export { getActiveLanguageCatalog } from './language_catalog';
 export { getPublishedLessonArtifact } from './language_content';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
+export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 export { emailUnsubscribe } from './email_unsubscribe';

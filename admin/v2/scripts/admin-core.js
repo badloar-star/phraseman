@@ -31,16 +31,18 @@ const PAGES = Object.freeze({
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
+  'daily-briefing': { title: 'Ежедневный брифинг', description: 'Операционная сводка за 24 часа с прозрачной полнотой каждого серверного источника.' },
+  'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
-  admin: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write']),
+  owner: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  admin: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
   content_editor: new Set(['content.read', 'content.draft.write']),
-  analyst: new Set(['users.read', 'content.read']),
-  developer: new Set(['content.read']),
-  support: new Set(['users.read']),
-  moderator: new Set(['users.read']),
+  analyst: new Set(['users.read', 'content.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
+  support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
+  moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
 });
 
 const FACTORY_STEPS = Object.freeze([
@@ -82,10 +84,13 @@ const state = {
   remoteConfig: null,
   remoteConfigPreview: null,
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
+  briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
+  reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
 };
 
 let actions = null;
 let initialized = false;
+const STALE_AUTH_RESULT = Symbol('stale-auth-result');
 
 export function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
@@ -154,6 +159,10 @@ function disabledWhenUnauthorized(permission = '') {
   return state.authorized && !state.busy && (!permission || can(permission)) ? '' : ' disabled';
 }
 
+function authStillValid(authGeneration, permission) {
+  return authGeneration === state.authGeneration && can(permission);
+}
+
 function renderNavigation() {
   const nav = document.getElementById('primary-nav');
   if (!nav) return;
@@ -179,13 +188,13 @@ function renderAuthStatus() {
 }
 
 function renderOverview() {
-  return `${pageHeader(PAGES.overview, 'Управление сегодня', '<button class="button primary" data-route="diagnostics" type="button" title="Открыть диагностику">Проверить состояние</button>')}
+  return `${pageHeader(PAGES.overview, 'Управление сегодня', '<a class="button" href="#daily-briefing" title="Открыть ежедневный брифинг">Ежедневный брифинг</a><button class="button primary" data-route="diagnostics" type="button" title="Открыть диагностику">Проверить состояние</button>')}
     <div class="notice warning">Сводка не показывает «всё хорошо», пока серверные источники не загружены. Пустое, устаревшее и ошибочное состояния отображаются отдельно.</div>
     <section class="metrics section">
       ${['Критические сигналы', 'Контент на проверке', 'Открытые обращения', 'Последнее изменение'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}
     </section>
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Сюда попадут только действия с понятным владельцем и причиной.</p></div></div>${emptyState('После подключения источников здесь появятся приоритеты.')}</section>
-    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#support">Почта</a><a class="button" href="#content">Фабрика языков</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
+    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Фабрика языков</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
 }
 
 function remoteConfigBranch(branch) {
@@ -301,7 +310,7 @@ function renderProfile() {
 
 function renderUsers() {
   if (!can('users.read')) return `${pageHeader(PAGES.users, 'Пользователи')}<div class="notice warning">Для просмотра профилей нужна роль с разрешением users.read. Сохранённые результаты скрыты.</div>`;
-  return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a>')}
+  return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a><a class="button primary" href="#report-center" title="Открыть единый центр репортов">Центр репортов</a>')}
     <section class="card user-search-card"><div class="card-header"><div><h2>Найти пользователя</h2><p>Точный серверный поиск без загрузки всей базы в браузер.</p></div><span class="badge">users.read</span></div><div class="card-body"><div class="user-search-form"><div class="field"><label for="user-search">Почта, точное имя или UID</label><input id="user-search" type="search" value="${escapeHtml(state.users.query)}" placeholder="alice@example.com или stable UID" autocomplete="off"></div><button class="button primary" data-action="search-admin-users" type="button" title="Найти пользователя без загрузки всей базы" data-tooltip="Найти пользователя без загрузки всей базы"${disabledWhenUnauthorized('users.read')}>Найти</button></div>${renderUserSearchResults()}</div></section>
     <div class="section">${renderProfile()}</div>`;
 }
@@ -482,10 +491,100 @@ function renderAnalytics() {
       <div class="card-body">${snapshot ? `<pre class="code-preview">${escapeHtml(JSON.stringify(snapshot, null, 2))}</pre>` : emptyState('Выберите период и загрузите серверный снимок.')}</div></section>`;
 }
 
+function renderDailyBriefing() {
+  if (!can('briefing.read')) return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг')}<div class="notice warning">У вашей роли нет разрешения briefing.read.</div>`;
+  const digest = state.briefing.digest;
+  const facts = digest?.facts || {};
+  const health = Array.isArray(digest?.sourceHealth) ? digest.sourceHealth : [];
+  const stateLabel = ({ ready: 'Полная', partial: 'Неполная', stale: 'Устарела', legacy: 'Старый формат', empty: 'Нет данных', loading: 'Загрузка' })[state.briefing.state] || state.briefing.state;
+  const headerAction = `<div class="actions"><a class="button" href="#overview" title="Вернуться в обзор">К обзору</a><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Загрузить последнюю сохранённую сводку">Обновить</button><button class="button primary" data-action="generate-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.generate')} title="Собрать новую сводку за последние 24 часа">Сформировать</button></div>`;
+  return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг', headerAction)}
+    ${state.briefing.state === 'partial' || digest?.generationState === 'partial' ? '<div class="notice warning"><strong>Неполная сводка.</strong> Один или несколько источников достигли лимита. Это не считается «спокойными сутками».</div>' : ''}
+    ${state.briefing.generationOutcome === 'preserved' ? '<div class="notice success"><strong>Полная сводка сохранена.</strong> Новый неполный прогон не заменил уже готовую сводку за этот день.</div>' : ''}
+    ${state.briefing.state === 'stale' ? '<div class="notice warning">Сводка старше 36 часов. Сформируйте новую перед управленческими решениями.</div>' : ''}
+    ${state.briefing.error ? `<div class="notice danger"><strong>Брифинг не загружен</strong><br>${escapeHtml(state.briefing.error)}</div>` : ''}
+    <section class="metrics section">
+      <article class="card metric"><label>Состояние</label><strong>${digest ? escapeHtml(stateLabel) : '—'}</strong><span class="badge ${badgeClass(state.briefing.state)}">${digest ? escapeHtml(digest.dayKey || '') : 'Не загружено'}</span></article>
+      <article class="card metric"><label>Репорты</label><strong>${digest ? Number(facts.reports?.total || 0) : '—'}</strong><span class="badge">24 часа</span></article>
+      <article class="card metric"><label>Критические ошибки</label><strong>${digest ? Number(facts.appErrors?.critical || 0) : '—'}</strong><span class="badge ${Number(facts.appErrors?.critical || 0) ? 'danger' : ''}">app_errors</span></article>
+      <article class="card metric"><label>Новые пользователи</label><strong>${digest ? Number(facts.growth?.newUsers || 0) : '—'}</strong><span class="badge">сервер</span></article>
+    </section>
+    ${!digest ? `<section class="card section">${state.briefing.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю сохранённую сводку…</span></div>' : emptyState('Загрузите последнюю сводку или сформируйте новую.')}</section>` : `
+      <div class="columns section"><section class="card"><div class="card-header"><div><h2>Что требует внимания</h2><p>${escapeHtml(dateTime(digest.generatedAtMs))} · ${escapeHtml(digest.model || 'без модели')} · ${escapeHtml(digest.generatedBy || 'система')}</p></div><span class="badge ${badgeClass(state.briefing.state)}">${escapeHtml(stateLabel)}</span></div><div class="card-body"><div class="briefing-summary">${escapeHtml(digest.summary || 'Сводка пуста.')}</div></div></section>
+      <section class="card"><div class="card-header"><div><h2>Полнота источников</h2><p>Пустой источник, ошибка и обрезанная выборка различаются.</p></div><span class="badge">${health.length} источников</span></div><div class="card-body"><div class="briefing-health">${health.length ? health.map((source) => `<div><strong>${escapeHtml(source.source || source.collection || 'источник')}</strong><span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}">${escapeHtml(source.state || 'unknown')}</span><small>${Number(source.count || 0)} записей${source.error ? ` · ${escapeHtml(source.error)}` : ''}</small></div>`).join('') : emptyState('Старый документ не содержит диагностику источников.')}</div></div></section></div>
+      <section class="card section"><div class="card-header"><div><h2>Факты сервера</h2><p>Проверяемые числа, использованные для сводки.</p></div></div><div class="card-body"><pre class="code-preview">${escapeHtml(JSON.stringify(facts, null, 2))}</pre></div></section>`}`;
+}
+
+const REPORT_SOURCE_LABELS = Object.freeze({
+  all: 'Все источники', error_reports: 'Ошибки от пользователей', user_reports: 'Жалобы на пользователей', community_pack_reports: 'Жалобы на наборы', explain_report_entries: 'Репорты объяснений', app_errors: 'Ошибки приложения',
+});
+const REPORT_LANE_LABELS = Object.freeze({ open: 'Открыто', reviewed: 'Проверено', known: 'Известно', resolved: 'Решено', answered: 'Отвечено', escalated: 'Эскалация', archived: 'Архив' });
+const REPORT_TRANSITIONS = Object.freeze({
+  error_reports: { new: ['fixed', 'archived'], open: ['fixed', 'archived'], fixed: ['open', 'archived'], archived: ['open'] },
+  user_reports: { new: ['reviewed', 'archived'], reviewed: ['new', 'archived'], archived: ['new'] },
+  community_pack_reports: { new: ['reviewed'], reviewed: ['new'] },
+  explain_report_entries: { new: ['done'], done: ['new'] },
+  app_errors: { new: ['reviewed', 'known', 'fixed'], open: ['reviewed', 'known', 'fixed'], reviewed: ['open', 'known', 'fixed'], known: ['open', 'fixed'], fixed: ['open'] },
+});
+
+function reportStatusLabel(status) {
+  return ({ new: 'Новое', open: 'Открыто', reviewed: 'Проверено', known: 'Известно', fixed: 'Исправлено', done: 'Готово', answered: 'Отвечено', archived: 'Архив' })[status] || status;
+}
+
+function renderReportQueue() {
+  const reports = state.reports;
+  const items = Array.isArray(reports.items) ? reports.items : [];
+  const canChange = (item) => item.source === 'app_errors' ? can('diagnostics.status.write') : can('reports.status.write');
+  const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => `<option value="${value}"${reports.source === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
+  const laneOptions = `<option value="">Все состояния</option>${Object.entries(REPORT_LANE_LABELS).map(([value, label]) => `<option value="${value}"${reports.lane === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}`;
+  const health = Array.isArray(reports.sourceHealth) ? reports.sourceHealth : [];
+  return `${pageHeader(PAGES['report-center'], 'Пользователи / Репорты', '<a class="button" href="#users" title="Вернуться к пользователям">К пользователям</a>')}
+    <div class="notice">Каждая запись сохраняет исходную коллекцию и исходный статус. Массовые, блокирующие и удаляющие действия остаются в защищённых рабочих модулях.</div>
+    ${reports.error ? `<div class="notice danger section"><strong>Очередь не загружена</strong><br>${escapeHtml(reports.error)}</div>` : ''}
+    <section class="card section"><div class="card-header"><div><h2>Фильтры очереди</h2><p>Сервер возвращает не более 100 записей за запрос.</p></div><span class="badge">reports.read</span></div><div class="card-body"><div class="report-filters">
+      <div class="field"><label for="report-source-filter">Источник</label><select id="report-source-filter">${sourceOptions}</select></div>
+      <div class="field"><label for="report-lane-filter">Рабочее состояние</label><select id="report-lane-filter">${laneOptions}</select></div>
+      <div class="field"><label for="report-raw-status-filter">Исходный статус</label><input id="report-raw-status-filter" value="${escapeHtml(reports.rawStatus)}" placeholder="например, new"></div>
+      <div class="field"><label for="report-uid-filter">UID пользователя</label><input id="report-uid-filter" value="${escapeHtml(reports.uid)}" placeholder="необязательно"></div>
+      <div class="field"><label for="report-category-filter">Категория / серьёзность</label><input id="report-category-filter" value="${escapeHtml(reports.category)}" placeholder="например, critical"></div>
+      <div class="field"><label for="report-days-filter">Период</label><select id="report-days-filter">${[1, 7, 30, 90].map((days) => `<option value="${days}"${Number(reports.sinceDays) === days ? ' selected' : ''}>${days} дн.</option>`).join('')}</select></div>
+      <button class="button primary" data-action="load-report-queue" type="button"${disabledWhenUnauthorized('reports.read')} title="Загрузить ограниченную очередь с сервера">Загрузить</button>
+    </div></div></section>
+    ${health.length ? `<section class="report-health section" aria-label="Состояние источников">${health.map((source) => `<span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}" title="${escapeHtml(source.error || '')}">${escapeHtml(REPORT_SOURCE_LABELS[source.source] || source.source)} · ${escapeHtml(source.state)} · ${Number(source.count || 0)}</span>`).join('')}</section>` : ''}
+    <section class="card section"><div class="card-header"><div><h2>Рабочая очередь</h2><p>${reports.state === 'idle' ? 'Выберите фильтры и загрузите данные.' : `Показано ${items.length} записей.`}</p></div><span class="badge ${badgeClass(reports.state)}">${escapeHtml(reports.state)}</span></div><div class="card-body">
+      ${reports.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю репорты из выбранных источников…</span></div>' : !items.length ? emptyState(reports.state === 'idle' ? 'Очередь ещё не загружена.' : ['partial', 'truncated'].includes(reports.state) ? 'В просмотренной части совпадений нет; источник ограничен, поэтому это не означает, что репортов нет вообще.' : 'По выбранным фильтрам репортов нет.') : `<div class="report-list">${items.map((item) => {
+        const users = item.users || {};
+        const context = item.context || {};
+        const transitions = REPORT_TRANSITIONS[item.source]?.[item.rawStatus] || [];
+        const reasonId = `report-reason-${String(item.source).replace(/[^A-Za-z0-9_-]/g, '-')}-${String(item.id).replace(/[^A-Za-z0-9_-]/g, '-')}`;
+        const replyKey = `${item.source}:${item.id}`;
+        const replyId = `report-reply-${String(item.source).replace(/[^A-Za-z0-9_-]/g, '-')}-${String(item.id).replace(/[^A-Za-z0-9_-]/g, '-')}`;
+        const replyDraft = reports.replyDrafts?.[replyKey] || {};
+        const replySupported = item.source !== 'app_errors' && item.rawStatus !== 'answered';
+        const userButtons = [...new Set([users.primaryUid, users.reporterUid, users.reportedUid, users.authorUid].filter(Boolean))].map((uid) => `<button class="button ghost small" data-report-user-uid="${escapeHtml(uid)}" type="button" title="Открыть единый профиль ${escapeHtml(uid)}">Профиль · ${escapeHtml(String(uid).slice(0, 14))}</button>`).join('');
+        return `<article class="report-card"><header><div><div class="report-source">${escapeHtml(REPORT_SOURCE_LABELS[item.source] || item.source)} · <code>${escapeHtml(item.id)}</code></div><h3>${escapeHtml(item.summary || '(без описания)')}</h3><small>${escapeHtml(item.category || context.feature || context.screen || 'без категории')} · ${escapeHtml(dateTime(item.createdAtMs))}</small></div><div class="actions"><span class="badge">${escapeHtml(item.source)}</span><span class="badge">raw: ${escapeHtml(item.rawStatus)}</span><span class="badge ${item.lane === 'resolved' || item.lane === 'answered' ? 'success' : item.lane === 'escalated' ? 'danger' : 'warning'}">${escapeHtml(REPORT_LANE_LABELS[item.lane] || item.lane)}</span></div></header>
+          ${userButtons ? `<div class="actions report-users">${userButtons}</div>` : ''}
+          <div class="report-context">${Object.entries(context).filter(([, value]) => value).map(([key, value]) => `<span><b>${escapeHtml(key)}:</b> ${escapeHtml(value)}</span>`).join('')}</div>
+          ${canChange(item) && transitions.length ? `<div class="report-status-controls"><div class="field"><label for="${escapeHtml(reasonId)}">Причина изменения статуса</label><input id="${escapeHtml(reasonId)}" maxlength="500" placeholder="Что проверено и почему меняется статус"></div><div class="actions">${transitions.map((next) => `<button class="button small" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-current-status="${escapeHtml(item.rawStatus)}" data-report-next-status="${escapeHtml(next)}" data-report-reason-id="${escapeHtml(reasonId)}" type="button" title="Изменить статус с обязательным аудитом">${escapeHtml(reportStatusLabel(next))}</button>`).join('')}</div></div>` : ''}
+          ${replySupported && (can('reports.reply.draft') || can('reports.reply.send')) ? `<details class="report-reply"><summary>Ответить пользователю</summary><div class="report-reply-grid">
+            <div class="field"><label for="${replyId}-verdict">Результат проверки</label><select id="${replyId}-verdict"><option value="confirmed">Подтверждено</option><option value="rejected">Не подтвердилось</option></select></div>
+            <div class="field"><label for="${replyId}-lang">Язык ответа</label><input id="${replyId}-lang" value="ru" maxlength="8"></div>
+            <div class="field full"><label for="${replyId}-note">Что исправлено или почему отклонено</label><input id="${replyId}-note" maxlength="600" placeholder="Короткая фактическая заметка для черновика"></div>
+            <div class="actions full"><button class="button small" data-action="draft-report-reply" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-reply-id="${escapeHtml(replyId)}" type="button"${disabledWhenUnauthorized('reports.reply.draft')} title="Создать редактируемый черновик ответа">Создать черновик</button></div>
+            <div class="field full"><label for="${replyId}-title">Заголовок</label><input id="${replyId}-title" maxlength="120" value="${escapeHtml(replyDraft.title || '')}" placeholder="Спасибо за сообщение"></div>
+            <div class="field full"><label for="${replyId}-body">Ответ</label><textarea id="${replyId}-body" maxlength="1200" placeholder="Проверьте и отредактируйте текст перед отправкой">${escapeHtml(replyDraft.body || '')}</textarea></div>
+            <div class="field"><label for="${replyId}-shards">Награда осколками</label><input id="${replyId}-shards" type="number" min="0" max="100" value="0"></div>
+            <div class="actions end"><button class="button primary" data-action="send-report-reply" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-reply-id="${escapeHtml(replyId)}" type="button"${disabledWhenUnauthorized('reports.reply.send')} title="Отправить только владельцу исходного репорта">Проверить и отправить</button></div>
+          </div></details>` : ''}
+          <footer><a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.source === 'app_errors' ? 'app-health' : 'reports')}" target="_blank" rel="noopener" title="Открыть расширенный рабочий модуль">Расширенные действия</a></footer></article>`;
+      }).join('')}</div>${reports.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-report-next" type="button" title="Загрузить следующую страницу этого источника">Показать ещё</button></div>' : ''}`}
+    </div></section>`;
+}
+
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics };
+  const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -500,14 +599,15 @@ function renderCurrentPage() {
 
 async function runBusy(operation, successMessage = '') {
   if (state.busy) return null;
+  const busyAuthGeneration = state.authGeneration;
   state.busy = true;
   renderCurrentPage();
   try {
     const result = await operation();
-    if (successMessage) setMessage(successMessage, 'success');
+    if (successMessage && result !== STALE_AUTH_RESULT && busyAuthGeneration === state.authGeneration) setMessage(successMessage, 'success');
     return result;
   } catch (error) {
-    setMessage(`Ошибка: ${errorMessage(error)}`, 'danger');
+    if (busyAuthGeneration === state.authGeneration) setMessage(`Ошибка: ${errorMessage(error)}`, 'danger');
     return null;
   } finally {
     state.busy = false;
@@ -634,11 +734,165 @@ async function loadAdminUserProfile(uid) {
   }
 }
 
+async function loadDailyBriefing(generate = false) {
+  const authGeneration = state.authGeneration;
+  state.briefing = { ...state.briefing, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    let generationResult = null;
+    if (generate) {
+      generationResult = await actions.generateDailyBriefing();
+      if (!authStillValid(authGeneration, 'briefing.generate')) return STALE_AUTH_RESULT;
+    }
+    const result = await actions.getDailyBriefing();
+    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    state.briefing = {
+      state: String(result?.state || (result?.digest ? 'ready' : 'empty')),
+      digest: result?.digest || null,
+      fetchedAtMs: Number(result?.fetchedAtMs || Date.now()),
+      error: '',
+      generationOutcome: generate ? (generationResult?.preservedExisting ? 'preserved' : 'generated') : '',
+    };
+    return generationResult || result;
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    if (authStillValid(authGeneration, 'briefing.read')) {
+      state.briefing = { ...state.briefing, state: 'error', error: errorMessage(error) };
+    }
+    throw error;
+  }
+}
+
+async function loadReportQueue(append = false) {
+  const authGeneration = state.authGeneration;
+  if (!append) state.reports = { ...state.reports, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listReportQueue({
+      source: state.reports.source,
+      lane: state.reports.lane,
+      rawStatus: state.reports.rawStatus,
+      uid: state.reports.uid,
+      category: state.reports.category,
+      sinceDays: Number(state.reports.sinceDays || 7),
+      limit: 100,
+      ...(append && state.reports.nextCursor ? { cursor: state.reports.nextCursor } : {}),
+    });
+    if (!authStillValid(authGeneration, 'reports.read')) return STALE_AUTH_RESULT;
+    state.reports = {
+      ...state.reports,
+      state: String(result?.state || 'ready'),
+      items: append ? [...new Map([...state.reports.items, ...(Array.isArray(result?.items) ? result.items : [])].map((item) => [`${item.source}:${item.id}`, item])).values()] : Array.isArray(result?.items) ? result.items : [],
+      sourceHealth: Array.isArray(result?.sourceHealth) ? result.sourceHealth : [],
+      nextCursor: String(result?.nextCursor || ''),
+      error: '',
+    };
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'reports.read')) return STALE_AUTH_RESULT;
+    if (authStillValid(authGeneration, 'reports.read')) {
+      state.reports = { ...state.reports, state: 'error', error: errorMessage(error) };
+    }
+    throw error;
+  }
+}
+
+async function updateReportStatus(target) {
+  const source = String(target.getAttribute('data-report-source') || '');
+  const reportId = String(target.getAttribute('data-report-id') || '');
+  const expectedStatus = String(target.getAttribute('data-report-current-status') || '');
+  const nextStatus = String(target.getAttribute('data-report-next-status') || '');
+  const reasonId = String(target.getAttribute('data-report-reason-id') || '');
+  const reason = String(document.getElementById(reasonId)?.value || '').trim();
+  if (!reason) return setMessage('Укажите причину изменения статуса.', 'warning');
+  if (!globalThis.confirm(`Изменить статус «${reportStatusLabel(expectedStatus)}» на «${reportStatusLabel(nextStatus)}»?`)) return;
+  const authGeneration = state.authGeneration;
+  const requiredPermission = source === 'app_errors' ? 'diagnostics.status.write' : 'reports.status.write';
+  return runBusy(async () => {
+    await actions.updateReportStatus({
+      source,
+      reportId,
+      expectedStatus,
+      nextStatus,
+      reason,
+      idempotencyKey: id('report-status'),
+      requestId: id('report-status-request'),
+    });
+    if (!authStillValid(authGeneration, requiredPermission)) return STALE_AUTH_RESULT;
+    const loaded = await loadReportQueue();
+    return loaded === STALE_AUTH_RESULT ? STALE_AUTH_RESULT : true;
+  }, 'Статус репорта изменён и записан в журнал.');
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-daily-briefing') return runBusy(() => loadDailyBriefing(false), 'Последняя сводка загружена.');
+  if (action === 'generate-daily-briefing') return runBusy(async () => {
+    const result = await loadDailyBriefing(true);
+    if (result === STALE_AUTH_RESULT) return STALE_AUTH_RESULT;
+    setMessage(result?.preservedExisting ? 'Полная сводка уже существовала; неполный прогон не был сохранён.' : 'Новая сводка сформирована и сохранена.', result?.preservedExisting ? 'warning' : 'success');
+    return result;
+  });
+  if (action === 'load-report-queue') {
+    state.reports = {
+      ...state.reports,
+      source: String(document.getElementById('report-source-filter')?.value || 'all'),
+      lane: String(document.getElementById('report-lane-filter')?.value || ''),
+      rawStatus: String(document.getElementById('report-raw-status-filter')?.value || '').trim().toLowerCase(),
+      uid: String(document.getElementById('report-uid-filter')?.value || '').trim(),
+      category: String(document.getElementById('report-category-filter')?.value || '').trim().toLowerCase(),
+      sinceDays: Number(document.getElementById('report-days-filter')?.value || 7),
+    };
+    return runBusy(loadReportQueue, 'Очередь репортов загружена.');
+  }
+  if (action === 'load-report-next') {
+    if (!state.reports.nextCursor) return;
+    return runBusy(() => loadReportQueue(true), 'Следующая страница репортов загружена.');
+  }
+  if (action === 'draft-report-reply') {
+    const source = String(target.getAttribute('data-report-source') || '');
+    const reportId = String(target.getAttribute('data-report-id') || '');
+    const replyId = String(target.getAttribute('data-report-reply-id') || '');
+    const item = state.reports.items.find((candidate) => candidate.source === source && String(candidate.id) === reportId);
+    if (!item) return setMessage('Репорт устарел. Обновите очередь.', 'warning');
+    const verdict = String(document.getElementById(`${replyId}-verdict`)?.value || 'confirmed');
+    const fixNote = String(document.getElementById(`${replyId}-note`)?.value || '').trim();
+    const lang = String(document.getElementById(`${replyId}-lang`)?.value || 'ru').trim();
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const draft = await actions.draftReportReply({
+        reportText: JSON.stringify({ summary: item.summary, category: item.category, context: item.context }),
+        verdict,
+        fixNote,
+        lang,
+      });
+      if (!authStillValid(authGeneration, 'reports.reply.draft')) return STALE_AUTH_RESULT;
+      state.reports.replyDrafts = { ...state.reports.replyDrafts, [`${source}:${reportId}`]: { title: String(draft?.title || ''), body: String(draft?.body || '') } };
+    }, 'Черновик создан. Проверьте и отредактируйте его перед отправкой.');
+  }
+  if (action === 'send-report-reply') {
+    const source = String(target.getAttribute('data-report-source') || '');
+    const reportId = String(target.getAttribute('data-report-id') || '');
+    const replyId = String(target.getAttribute('data-report-reply-id') || '');
+    const title = String(document.getElementById(`${replyId}-title`)?.value || '').trim();
+    const body = String(document.getElementById(`${replyId}-body`)?.value || '').trim();
+    const shards = Number(document.getElementById(`${replyId}-shards`)?.value || 0);
+    if (!title || !body) return setMessage('Заполните заголовок и текст ответа.', 'warning');
+    if (!Number.isInteger(shards) || shards < 0 || shards > 100) return setMessage('Награда должна быть целым числом от 0 до 100.', 'warning');
+    if (!globalThis.confirm(`Отправить владельцу репорта?\n\n${title}\n\n${body}${shards ? `\n\nНаграда: ${shards}` : ''}`)) return;
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      await actions.sendReportReply({ reportCollection: source, reportId, title, body, shards });
+      if (!authStillValid(authGeneration, 'reports.reply.send')) return STALE_AUTH_RESULT;
+      const nextDrafts = { ...state.reports.replyDrafts };
+      delete nextDrafts[`${source}:${reportId}`];
+      state.reports.replyDrafts = nextDrafts;
+      const loaded = await loadReportQueue();
+      return loaded === STALE_AUTH_RESULT ? STALE_AUTH_RESULT : true;
+    }, 'Ответ отправлен владельцу репорта; повторная отправка заблокирована сервером.');
+  }
   if (action === 'search-admin-users') {
     const query = String(document.getElementById('user-search')?.value ?? '').trim();
     if (query.length < 2) return setMessage('Введите не менее двух символов.', 'warning');
@@ -840,6 +1094,14 @@ async function handleClick(event) {
     state.users.profileLoading = true;
     return runBusy(() => loadAdminUserProfile(profileUid), 'Единый профиль загружен.');
   }
+  const reportUserUid = target.getAttribute('data-report-user-uid');
+  if (reportUserUid) {
+    state.users.profileLoading = true;
+    state.users.query = reportUserUid;
+    globalThis.location.hash = 'users';
+    return runBusy(() => loadAdminUserProfile(reportUserUid), 'Единый профиль загружен из репорта.');
+  }
+  if (target.hasAttribute('data-report-next-status')) return updateReportStatus(target);
   const capabilityId = target.getAttribute('data-capability-id');
   if (capabilityId) {
     const capability = capabilityById(capabilityId);
@@ -873,10 +1135,15 @@ export function setAuthState(auth) {
   if (!state.authorized) {
     state.detail = null;
     state.preview = null;
+    state.message = '';
+    state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
+    state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
+  if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
+  if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   renderCurrentPage();
 }
 

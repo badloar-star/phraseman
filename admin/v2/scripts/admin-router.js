@@ -11,6 +11,8 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
   banners: 'application',
   'remote-config': 'application',
   users: 'users',
+  'daily-briefing': 'daily-briefing',
+  'report-center': 'report-center',
   support: 'support',
   'gmail-support': 'support',
   money: 'money',
@@ -30,7 +32,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
 });
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'analytics']);
+const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center']);
 
 function routeFromLocation() {
   const requested = globalThis.location.hash.replace(/^#/, '').trim();

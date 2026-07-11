@@ -24,6 +24,8 @@ import { resolveIsLifetimePlan } from './premium_status';
 import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { getLevelFromXP } from './xp_levels';
+import { hasPermission, type AdminPermission } from './admin/permissions';
+import { hasAdminRole, type AdminRole } from './admin/roles';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -139,10 +141,45 @@ const REPORT_COLLECTIONS: ReadonlySet<string> = new Set([
   'community_pack_reports',
 ]);
 
-function requireAdmin(request: { auth?: { token?: Record<string, unknown> } | null }): void {
-  if (request.auth?.token?.admin !== true) {
+const REPORT_RECIPIENT_FIELDS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  error_reports: ['uid'],
+  explain_report_entries: ['stableUid', 'uid'],
+  user_reports: ['reporterUid'],
+  community_pack_reports: ['reporterUid'],
+});
+const REPORT_RECIPIENT_RE = /^[A-Za-z0-9._-]{2,160}$/;
+
+export function resolveReportRecipient(
+  reportCollection: unknown,
+  report: unknown,
+  requestedUid?: unknown,
+): string {
+  const collection = cleanString(reportCollection, 64);
+  const fields = REPORT_RECIPIENT_FIELDS[collection];
+  if (!fields || !REPORT_COLLECTIONS.has(collection)) {
+    throw new HttpsError('invalid-argument', 'unsupported report collection');
+  }
+  const row = report && typeof report === 'object' ? report as Record<string, unknown> : {};
+  const uid = fields.map((field) => cleanString(row[field], 160)).find((value) => value !== 'unknown' && REPORT_RECIPIENT_RE.test(value)) ?? '';
+  if (!uid) throw new HttpsError('failed-precondition', 'report recipient is missing or invalid');
+  const legacyUid = cleanString(requestedUid, 160);
+  if (legacyUid && legacyUid !== uid) {
+    throw new HttpsError('failed-precondition', 'requested uid does not match report recipient');
+  }
+  return uid;
+}
+
+function requireReportReplyPermission(
+  request: { auth?: { uid?: string; token?: Record<string, unknown> } | null },
+  permission: AdminPermission,
+): { actorUid: string; role: AdminRole } {
+  if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
+  const claimedRole = request.auth.token.adminRole;
+  const role: AdminRole = hasAdminRole(claimedRole) ? claimedRole : 'admin';
+  if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
+  return { actorUid: String(request.auth.uid), role };
 }
 
 function cleanString(value: unknown, maxLen: number): string {
@@ -170,9 +207,9 @@ function cleanString(value: unknown, maxLen: number): string {
 export const adminReplyToReport = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
-    requireAdmin(request);
+    const actor = requireReportReplyPermission(request, 'reports.reply.send');
 
-    const uid = cleanString(request.data?.uid, 128);
+    const requestedUid = cleanString(request.data?.uid, 160);
     const reportCollection = cleanString(request.data?.reportCollection, 64);
     const reportId = cleanString(request.data?.reportId, 128);
     const title = cleanString(request.data?.title, REPLY_TITLE_MAX);
@@ -180,7 +217,6 @@ export const adminReplyToReport = onCall(
     const shardsRaw = Number(request.data?.shards ?? 0);
     const shards = Number.isFinite(shardsRaw) ? Math.floor(shardsRaw) : NaN;
 
-    if (!uid || uid === 'unknown') throw new HttpsError('invalid-argument', 'uid required');
     if (!REPORT_COLLECTIONS.has(reportCollection)) {
       throw new HttpsError('invalid-argument', `reportCollection must be one of: ${Array.from(REPORT_COLLECTIONS).join(', ')}`);
     }
@@ -196,6 +232,9 @@ export const adminReplyToReport = onCall(
     const nowIso = new Date(nowMs).toISOString();
 
     const reportRef = db.collection(reportCollection).doc(reportId);
+    const initialReportSnap = await reportRef.get();
+    if (!initialReportSnap.exists) throw new HttpsError('not-found', `report ${reportCollection}/${reportId} not found`);
+    const uid = resolveReportRecipient(reportCollection, initialReportSnap.data(), requestedUid);
     const userRef = db.collection('users').doc(uid);
     const messageRef = userRef.collection(USER_MESSAGES_COLLECTION).doc();
     const notificationRef = userNotificationRef(db, uid, `report_reply_${messageRef.id}`);
@@ -204,16 +243,15 @@ export const adminReplyToReport = onCall(
     // Публичный профиль для проекции борда из 3 источников (см. readLeaderboardProjection):
     // users.progress → leaderboard → САМ РЕПОРТ (userName/userLevel/userXP). Репорт —
     // самый надёжный источник имени/уровня для хелпера. Читаем ДО транзакции параллельно.
-    const [leaderboardSnap, userProfileSnap, reportProfileSnap] = await Promise.all([
+    const [leaderboardSnap, userProfileSnap] = await Promise.all([
       db.collection('leaderboard').doc(uid).get(),
       userRef.get(),
-      reportRef.get(),
     ]);
     const userProgress = (userProfileSnap.data()?.progress ?? {}) as FirebaseFirestore.DocumentData;
     const helperProjection = readLeaderboardProjection(
       leaderboardSnap.data(),
       userProgress,
-      reportProfileSnap.data(),
+      initialReportSnap.data(),
     );
     // Pro-план (разовая «Навсегда») резолвим СЕРВЕРНО из users/{uid} — leaderboard-документ
     // премиум-поля не обновляет, поэтому опираться на него для Pro нельзя.
@@ -223,6 +261,8 @@ export const adminReplyToReport = onCall(
       const reportSnap = await tx.get(reportRef);
       if (!reportSnap.exists) throw new HttpsError('not-found', `report ${reportCollection}/${reportId} not found`);
       const report = reportSnap.data() ?? {};
+      const transactionUid = resolveReportRecipient(reportCollection, report, requestedUid);
+      if (transactionUid !== uid) throw new HttpsError('failed-precondition', 'report recipient changed; reload and retry');
       // Идемпотентность: повторный «Ответить» на уже отвеченный репорт — ошибка,
       // а не второе сообщение юзеру (админ жмёт кнопку дважды / две вкладки).
       if (typeof report.replyMessageId === 'string' && report.replyMessageId) {
@@ -292,6 +332,8 @@ export const adminReplyToReport = onCall(
       tx.set(auditRef, {
         ts: nowIso,
         adminEmail,
+        actorUid: actor.actorUid,
+        role: actor.role,
         action: 'reply_to_report',
         uid,
         details: { reportCollection, reportId, shards, title },
@@ -403,7 +445,7 @@ const DRAFT_SYSTEM_PROMPT = [
 export const adminDraftReportReply = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] },
   async (request) => {
-    requireAdmin(request);
+    requireReportReplyPermission(request, 'reports.reply.draft');
 
     const reportText = cleanString(request.data?.reportText, 4000);
     const verdict = cleanString(request.data?.verdict, 16);

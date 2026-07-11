@@ -19,6 +19,16 @@ export type LedgerContinuityResult = {
   baseline: LedgerBaselineEvidence;
   exactInvalidXp: number;
   invalidByEvent: ReadonlyMap<string, number>;
+  exactGaps: readonly ExactLedgerGap[];
+  incompleteCauseIds: readonly string[];
+};
+
+export type ExactLedgerGap = {
+  eventId: string;
+  beforeXp: number;
+  afterXp: number;
+  amount: number;
+  atMs: number | null;
 };
 
 const achievementIdOf = (event: NormalizedAuditEvent): string | null => {
@@ -52,40 +62,47 @@ function uniqueExactOrder(
   events: readonly NormalizedAuditEvent[],
   initialXp: number,
 ): NormalizedAuditEvent[] | null {
-  const solutions: NormalizedAuditEvent[][] = [];
-  const visit = (
-    remaining: readonly NormalizedAuditEvent[],
-    expectedXp: number,
-    ordered: readonly NormalizedAuditEvent[],
-  ): void => {
-    if (solutions.length > 1) return;
-    if (remaining.length === 0) {
-      solutions.push([...ordered]);
-      return;
+  const groups = new Map<number, NormalizedAuditEvent[]>();
+  for (const event of events) {
+    const time = event.serverCreatedAtMs as number;
+    const group = groups.get(time) ?? [];
+    group.push(event);
+    groups.set(time, group);
+  }
+  const ordered: NormalizedAuditEvent[] = [];
+  let expectedXp = initialXp;
+  for (const time of [...groups.keys()].sort((left, right) => left - right)) {
+    const group = groups.get(time) as NormalizedAuditEvent[];
+    const byBefore = new Map<number, NormalizedAuditEvent[]>();
+    for (const event of group) {
+      const before = event.totalXpBefore as number;
+      const candidates = byBefore.get(before) ?? [];
+      candidates.push(event);
+      byBefore.set(before, candidates);
     }
-    const earliestTime = remaining.reduce(
-      (earliest, event) =>
-        Math.min(earliest, event.serverCreatedAtMs as number),
-      Number.POSITIVE_INFINITY,
-    );
-    for (const [candidateIndex, candidate] of remaining.entries()) {
-      if (
-        candidate.serverCreatedAtMs !== earliestTime ||
-        candidate.totalXpBefore !== expectedXp
-      ) {
-        continue;
-      }
-      visit(
-        remaining.filter((_, index) => index !== candidateIndex),
-        candidate.totalXpAfter,
-        [...ordered, candidate],
-      );
-      if (solutions.length > 1) return;
+    for (let consumed = 0; consumed < group.length; consumed += 1) {
+      const candidates = byBefore.get(expectedXp);
+      if (!candidates || candidates.length !== 1) return null;
+      const [next] = candidates;
+      byBefore.delete(expectedXp);
+      ordered.push(next);
+      expectedXp = next.totalXpAfter;
     }
-  };
-  visit(events, initialXp, []);
-  return solutions.length === 1 ? solutions[0] : null;
+  }
+  return ordered;
 }
+
+const incompleteLedger = (
+  baseline: LedgerBaselineEvidence,
+  causeIds: readonly string[],
+): LedgerContinuityResult => ({
+  complete: false,
+  baseline,
+  exactInvalidXp: 0,
+  invalidByEvent: new Map(),
+  exactGaps: [],
+  incompleteCauseIds: causeIds,
+});
 
 export function analyzeLedgerContinuity(
   events: readonly NormalizedAuditEvent[],
@@ -105,29 +122,43 @@ export function analyzeLedgerContinuity(
         currentXp - suppliedBaseline.xp,
       );
     }
+    const amount = invalidTotal(invalidByEvent);
     return {
       complete: authoritative && currentXp >= suppliedBaseline.xp,
       baseline: suppliedBaseline,
-      exactInvalidXp: invalidTotal(invalidByEvent),
+      exactInvalidXp: amount,
       invalidByEvent,
+      exactGaps:
+        authoritative && amount > 0
+          ? [
+              {
+                eventId: "__current_xp__",
+                beforeXp: suppliedBaseline.xp,
+                afterXp: currentXp,
+                amount,
+                atMs: null,
+              },
+            ]
+          : [],
+      incompleteCauseIds: authoritative
+        ? currentXp < suppliedBaseline.xp
+          ? ["ledger:current_decrease"]
+          : []
+        : ["ledger:empty_baseline"],
     };
   }
 
-  if (
-    events.some(
-      (event) =>
-        event.serverCreatedAtMs === null ||
-        !Number.isFinite(event.serverCreatedAtMs) ||
-        !exactEvent(event),
-    )
-  ) {
-    return {
-      complete: false,
-      baseline: suppliedBaseline,
-      exactInvalidXp: 0,
-      invalidByEvent: new Map(),
-    };
-  }
+  const malformedEvents = events.filter(
+    (event) =>
+      event.serverCreatedAtMs === null ||
+      !Number.isFinite(event.serverCreatedAtMs) ||
+      !exactEvent(event),
+  );
+  if (malformedEvents.length > 0)
+    return incompleteLedger(
+      suppliedBaseline,
+      malformedEvents.map((event) => `event:${event.eventId}`),
+    );
 
   const byTime = [...events].sort(
     (left, right) =>
@@ -147,28 +178,18 @@ export function analyzeLedgerContinuity(
       suppliedBaseline.derivedFrom === "retained_cutover" &&
       Number.isFinite(suppliedBaseline.atMs) &&
       suppliedBaseline.atMs < (first.serverCreatedAtMs as number);
-    const validFirstResult =
-      suppliedBaseline.kind === "exact" &&
-      suppliedBaseline.derivedFrom === "first_ledger_result" &&
-      suppliedBaseline.atMs === first.serverCreatedAtMs;
-    if (validRetained || validFirstResult) {
+    if (validRetained) {
       const reconstructed = uniqueExactOrder(events, suppliedBaseline.xp);
       if (reconstructed) byTime.splice(0, byTime.length, ...reconstructed);
-      else {
-        return {
-          complete: false,
-          baseline: suppliedBaseline,
-          exactInvalidXp: 0,
-          invalidByEvent: new Map(),
-        };
-      }
+      else
+        return incompleteLedger(suppliedBaseline, [
+          `ledger:order:${events
+            .map((event) => event.eventId)
+            .sort()
+            .join(",")}`,
+        ]);
     } else {
-      return {
-        complete: false,
-        baseline: suppliedBaseline,
-        exactInvalidXp: 0,
-        invalidByEvent: new Map(),
-      };
+      return incompleteLedger(suppliedBaseline, ["ledger:tied_baseline"]);
     }
   }
 
@@ -183,12 +204,7 @@ export function analyzeLedgerContinuity(
         (suppliedBaseline.xp !== orderedFirst.totalXpBefore ||
           suppliedBaseline.atMs !== orderedFirst.serverCreatedAtMs)))
   ) {
-    return {
-      complete: false,
-      baseline: suppliedBaseline,
-      exactInvalidXp: 0,
-      invalidByEvent: new Map(),
-    };
+    return incompleteLedger(suppliedBaseline, ["ledger:baseline"]);
   }
   const baseline: LedgerBaselineEvidence =
     suppliedBaseline.kind === "exact" &&
@@ -201,6 +217,7 @@ export function analyzeLedgerContinuity(
           atMs: orderedFirst.serverCreatedAtMs as number,
         };
   const invalidByEvent = new Map<string, number>();
+  const exactGaps: ExactLedgerGap[] = [];
   let expected = baseline.xp;
   let unexplainedDecrease = false;
   for (const [index, ledgerEvent] of ordered.entries()) {
@@ -211,19 +228,33 @@ export function analyzeLedgerContinuity(
         baseline.kind === "exact" &&
         baseline.derivedFrom === "retained_cutover";
       if (!retainedFirstBoundary) {
-        return {
-          complete: false,
-          baseline,
-          exactInvalidXp: 0,
-          invalidByEvent: new Map(),
-        };
+        return incompleteLedger(baseline, [`event:${ledgerEvent.eventId}`]);
       }
-      addInvalid(invalidByEvent, ledgerEvent.eventId, before - expected);
+      const amount = before - expected;
+      addInvalid(invalidByEvent, ledgerEvent.eventId, amount);
+      if (amount > 0) {
+        exactGaps.push({
+          eventId: ledgerEvent.eventId,
+          beforeXp: expected,
+          afterXp: before,
+          amount,
+          atMs: ledgerEvent.serverCreatedAtMs,
+        });
+      }
       if (before < expected) unexplainedDecrease = true;
     }
     expected = ledgerEvent.totalXpAfter;
   }
   addInvalid(invalidByEvent, "__current_xp__", currentXp - expected);
+  if (currentXp > expected) {
+    exactGaps.push({
+      eventId: "__current_xp__",
+      beforeXp: expected,
+      afterXp: currentXp,
+      amount: currentXp - expected,
+      atMs: null,
+    });
+  }
   if (currentXp < expected) unexplainedDecrease = true;
 
   return {
@@ -231,6 +262,8 @@ export function analyzeLedgerContinuity(
     baseline,
     exactInvalidXp: invalidTotal(invalidByEvent),
     invalidByEvent,
+    exactGaps,
+    incompleteCauseIds: unexplainedDecrease ? ["ledger:current_decrease"] : [],
   };
 }
 
@@ -305,7 +338,7 @@ export function analyzeAccount(
   catalogMatches: CatalogMatchSource,
 ): AccountAuditResult {
   const reasons = new Set<ReasonCode>();
-  const nonExactFamilies = new Set<string>();
+  const nonExactCauseIds = new Set<string>();
   const invalidByEvent = new Map<string, number>();
   let runtimeEvidenceComplete = true;
 
@@ -320,7 +353,9 @@ export function analyzeAccount(
   if (ledger.exactInvalidXp > 0) reasons.add("ledger_discontinuity_exact");
   if (!ledger.complete) {
     reasons.add("ledger_history_incomplete");
-    nonExactFamilies.add("ledger");
+    ledger.incompleteCauseIds.forEach((causeId) =>
+      nonExactCauseIds.add(causeId),
+    );
     runtimeEvidenceComplete = false;
   }
 
@@ -329,7 +364,7 @@ export function analyzeAccount(
     if (achievementId === null) {
       reasons.add("catalog_unmapped");
       reasons.add("prerequisite_unmapped");
-      nonExactFamilies.add("achievement_event");
+      nonExactCauseIds.add(`event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -337,7 +372,7 @@ export function analyzeAccount(
     const historicalReward = rewardFromMatch(match, achievementId);
     if (!historicalReward) {
       reasons.add("catalog_unmapped");
-      nonExactFamilies.add("catalog");
+      nonExactCauseIds.add(`event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -355,7 +390,7 @@ export function analyzeAccount(
     );
     if (valueBefore === null) {
       reasons.add("prerequisite_unmapped");
-      nonExactFamilies.add("prerequisites");
+      nonExactCauseIds.add(`event:${claimed.eventId}`);
       runtimeEvidenceComplete = false;
     } else if (
       historicalReward.prerequisite.kind !== "unsupported" &&
@@ -374,7 +409,7 @@ export function analyzeAccount(
       !Number.isFinite(alias.identityMergedAtMs)
     ) {
       reasons.add("alias_history_incomplete");
-      nonExactFamilies.add("alias");
+      nonExactCauseIds.add(`alias:${alias.uid}:linkage`);
       runtimeEvidenceComplete = false;
       continue;
     }
@@ -390,7 +425,7 @@ export function analyzeAccount(
         aliasClaim.serverCreatedAtMs >= mergeTime
       ) {
         reasons.add("alias_history_incomplete");
-        nonExactFamilies.add("alias");
+        nonExactCauseIds.add(`event:${aliasClaim.eventId}`);
         runtimeEvidenceComplete = false;
         continue;
       }
@@ -400,7 +435,7 @@ export function analyzeAccount(
       );
       if (!aliasReward) {
         reasons.add("alias_history_incomplete");
-        nonExactFamilies.add("alias");
+        nonExactCauseIds.add(`event:${aliasClaim.eventId}`);
         runtimeEvidenceComplete = false;
         continue;
       }
@@ -408,67 +443,81 @@ export function analyzeAccount(
         (candidate) =>
           isClaim(candidate) && achievementIdOf(candidate) === aliasId,
       );
-      const semanticCandidates = rawCandidates.filter((candidate) => {
+      for (const candidate of rawCandidates) {
+        if (
+          candidate.serverCreatedAtMs !== null &&
+          Number.isFinite(candidate.serverCreatedAtMs) &&
+          candidate.serverCreatedAtMs < mergeTime
+        ) {
+          continue;
+        }
         const canonicalId = achievementIdOf(candidate) as string;
         const canonicalReward = rewardFromMatch(
           resolveMatch(catalogMatches, candidate, canonicalId),
           canonicalId,
         );
-        return (
+        const sameSemantic =
           canonicalReward !== null &&
           canonicalReward.achievementId === aliasReward.achievementId &&
           canonicalReward.xp === aliasReward.xp &&
           samePrerequisite(
             canonicalReward.prerequisite,
             aliasReward.prerequisite,
-          )
-        );
-      });
-      const replay = semanticCandidates.find(
-        (candidate) =>
+          );
+        const provenReplay =
+          sameSemantic &&
           candidate.ownerUid === input.uid &&
           exactEvent(candidate) &&
           candidate.serverCreatedAtMs !== null &&
           Number.isFinite(candidate.serverCreatedAtMs) &&
-          candidate.serverCreatedAtMs > mergeTime,
-      );
-      if (replay) {
-        reasons.add("achievement_alias_replay_exact");
-        addInvalid(invalidByEvent, replay.eventId, replay.xpDelta);
-      } else if (
-        rawCandidates.some(
-          (candidate) =>
-            candidate.serverCreatedAtMs === null ||
-            !Number.isFinite(candidate.serverCreatedAtMs) ||
-            candidate.serverCreatedAtMs >= mergeTime,
-        )
-      ) {
-        reasons.add("alias_history_incomplete");
-        nonExactFamilies.add("alias");
-        runtimeEvidenceComplete = false;
+          candidate.serverCreatedAtMs > mergeTime;
+        if (provenReplay) {
+          reasons.add("achievement_alias_replay_exact");
+          addInvalid(invalidByEvent, candidate.eventId, candidate.xpDelta);
+        } else {
+          reasons.add("alias_history_incomplete");
+          nonExactCauseIds.add(`event:${candidate.eventId}`);
+          runtimeEvidenceComplete = false;
+        }
       }
     }
   }
 
   if (input.migration.kind === "exact") {
+    const migration = input.migration;
     reasons.add("migration_exact");
-    addInvalid(
-      invalidByEvent,
-      "__migration__",
-      input.migration.exactInvalidDelta,
-    );
+    const duplicatesLedgerGap =
+      migration.source === "deterministic_ledger_discontinuity" &&
+      ledger.exactGaps.some(
+        (gap) =>
+          gap.atMs === migration.occurredAtMs &&
+          gap.beforeXp === migration.beforeXp &&
+          gap.afterXp === migration.afterXp &&
+          gap.amount === migration.exactInvalidDelta,
+      );
+    if (!duplicatesLedgerGap) {
+      addInvalid(invalidByEvent, "__migration__", migration.exactInvalidDelta);
+    }
   } else if (input.migration.kind === "pattern_only") {
     reasons.add("migration_pattern_only");
-    nonExactFamilies.add("migration");
+    nonExactCauseIds.add("migration:pattern");
     runtimeEvidenceComplete = false;
   } else if (input.migration.kind === "incomplete") {
-    nonExactFamilies.add("migration");
+    nonExactCauseIds.add("migration:incomplete");
     runtimeEvidenceComplete = false;
   }
 
+  const hasAggregateIncompleteEvidence = Object.values(input.completeness).some(
+    (state) => state === "incomplete",
+  );
+  const aggregateEvidenceIsIndependent =
+    nonExactCauseIds.size === 0 ||
+    [...nonExactCauseIds].every((causeId) => causeId.startsWith("migration:"));
+  if (hasAggregateIncompleteEvidence && aggregateEvidenceIsIndependent) {
+    nonExactCauseIds.add("evidence:incomplete");
+  }
   for (const [family, state] of Object.entries(input.completeness)) {
     if (state !== "incomplete") continue;
-    nonExactFamilies.add(family);
     if (family === "ledger") reasons.add("ledger_history_incomplete");
     if (family === "catalog") reasons.add("catalog_unmapped");
     if (family === "alias") reasons.add("alias_history_incomplete");
@@ -489,9 +538,9 @@ export function analyzeAccount(
   const classification =
     exactInvalidXp > 0
       ? "confirmed_damaged"
-      : nonExactFamilies.size >= 2
+      : nonExactCauseIds.size >= 2
         ? "probable_damaged"
-        : nonExactFamilies.size === 1
+        : nonExactCauseIds.size === 1
           ? "indeterminate"
           : "consistent";
   const exactReductionIsComplete =

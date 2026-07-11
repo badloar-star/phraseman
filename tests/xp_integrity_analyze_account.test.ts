@@ -340,6 +340,66 @@ describe("analyzeAccount", () => {
     });
   });
 
+  test("deduplicates migration evidence for the same deterministic ledger gap", () => {
+    const first = event("first", {
+      type: "xp",
+      xpDelta: 100,
+      totalXpBefore: 150,
+      totalXpAfter: 250,
+    });
+    const result = analyzeAccount(
+      input([first], {
+        baseline: {
+          kind: "exact",
+          xp: 100,
+          derivedFrom: "retained_cutover",
+          atMs: 900,
+        },
+        migration: {
+          kind: "exact",
+          source: "deterministic_ledger_discontinuity",
+          beforeXp: 100,
+          afterXp: 150,
+          formulaVersion: "v1",
+          exactInvalidDelta: 50,
+          occurredAtMs: 1_000,
+        },
+      }),
+      new Map(),
+    );
+    expect(result.exactInvalidXp).toBe(50);
+  });
+
+  test("adds independent retained migration evidence to a ledger gap", () => {
+    const first = event("first", {
+      type: "xp",
+      xpDelta: 100,
+      totalXpBefore: 150,
+      totalXpAfter: 250,
+    });
+    const result = analyzeAccount(
+      input([first], {
+        baseline: {
+          kind: "exact",
+          xp: 100,
+          derivedFrom: "retained_cutover",
+          atMs: 900,
+        },
+        migration: {
+          kind: "exact",
+          source: "retained_provenance",
+          beforeXp: 40,
+          afterXp: 80,
+          formulaVersion: "v1",
+          exactInvalidDelta: 40,
+          occurredAtMs: 500,
+        },
+      }),
+      new Map(),
+    );
+    expect(result.exactInvalidXp).toBe(90);
+  });
+
   test("keeps exact damage as a lower bound when unrelated evidence is incomplete", () => {
     const result = analyzeAccount(
       input([], {
@@ -430,6 +490,88 @@ describe("analyzeAccount", () => {
     expect(proven.reasons).toContain("achievement_alias_replay_exact");
     expect(existenceOnly.exactInvalidXp).toBe(0);
     expect(existenceOnly.reasons).toContain("alias_history_incomplete");
+  });
+
+  test("subtracts every distinct exact post-merge alias replay", () => {
+    const aliasClaim = event("alias-claim", {
+      ownerUid: "alias",
+      serverCreatedAtMs: 1_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const firstReplay = event("replay-1", {
+      serverCreatedAtMs: 3_000,
+      clientCreatedAtMs: 3_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const secondReplay = event("replay-2", {
+      totalXpBefore: 200,
+      totalXpAfter: 300,
+      serverCreatedAtMs: 4_000,
+      clientCreatedAtMs: 4_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const alias: AliasEvidence = {
+      uid: "alias",
+      canonicalUid: "canonical",
+      linkage: "canonical_pointer",
+      identityMergedAtMs: 2_000,
+      events: [aliasClaim],
+      complete: true,
+    };
+    const catalog = match(
+      reward("xp_50", 100, { kind: "lifetime_xp", minimum: 50 }),
+    );
+    const result = analyzeAccount(
+      input([firstReplay, secondReplay], { aliases: [alias] }),
+      byEvent(
+        ["alias-claim", catalog],
+        ["replay-1", catalog],
+        ["replay-2", catalog],
+      ),
+    );
+    expect(result.exactInvalidXp).toBe(200);
+  });
+
+  test("keeps a valid replay but marks another malformed candidate incomplete", () => {
+    const aliasClaim = event("alias-claim", {
+      ownerUid: "alias",
+      serverCreatedAtMs: 1_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const valid = event("valid", {
+      serverCreatedAtMs: 3_000,
+      clientCreatedAtMs: 3_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const malformed = event("malformed", {
+      totalXpBefore: 200,
+      totalXpAfter: 350,
+      serverCreatedAtMs: 4_000,
+      clientCreatedAtMs: 4_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const alias: AliasEvidence = {
+      uid: "alias",
+      canonicalUid: "canonical",
+      linkage: "canonical_pointer",
+      identityMergedAtMs: 2_000,
+      events: [aliasClaim],
+      complete: true,
+    };
+    const catalog = match(
+      reward("xp_50", 100, { kind: "lifetime_xp", minimum: 50 }),
+    );
+    const result = analyzeAccount(
+      input([valid, malformed], { aliases: [alias] }),
+      byEvent(
+        ["alias-claim", catalog],
+        ["valid", catalog],
+        ["malformed", catalog],
+      ),
+    );
+    expect(result.exactInvalidXp).toBe(100);
+    expect(result.reasons).toContain("alias_history_incomplete");
+    expect(result.exactReductionIsComplete).toBe(false);
   });
 
   test("requires alias ownership and canonical linkage to match the audited account", () => {
@@ -560,17 +702,37 @@ describe("analyzeAccount", () => {
 
   test("counts malformed achievement IDs as one non-exact anomaly family", () => {
     const missing = event("missing", { payload: {} });
-    const malformed = event("malformed", {
-      totalXpBefore: 200,
-      totalXpAfter: 300,
-      serverCreatedAtMs: 2_000,
-      clientCreatedAtMs: 2_000,
-      payload: { achievementId: 123 },
-    });
-    const result = analyzeAccount(input([missing, malformed]), new Map());
+    const result = analyzeAccount(input([missing]), new Map());
     expect(result.exactInvalidXp).toBe(0);
     expect(result.reasons).toEqual(
       expect.arrayContaining(["catalog_unmapped", "prerequisite_unmapped"]),
+    );
+    expect(result.classification).toBe("indeterminate");
+  });
+
+  test("counts ledger and catalog symptoms from one event defect as one cause", () => {
+    const broken = event("broken", { serverCreatedAtMs: null });
+    const result = analyzeAccount(
+      input([broken]),
+      byEvent(["broken", { kind: "unmapped", reason: "missing_server_time" }]),
+    );
+    expect(result.reasons).toEqual(
+      expect.arrayContaining(["ledger_history_incomplete", "catalog_unmapped"]),
+    );
+    expect(result.classification).toBe("indeterminate");
+  });
+
+  test("does not count aggregate completeness for the same event as a new cause", () => {
+    const broken = event("broken", { serverCreatedAtMs: null });
+    const result = analyzeAccount(
+      input([broken], {
+        completeness: {
+          ...complete,
+          ledger: "incomplete",
+          catalog: "incomplete",
+        },
+      }),
+      byEvent(["broken", { kind: "unmapped", reason: "missing_server_time" }]),
     );
     expect(result.classification).toBe("indeterminate");
   });
@@ -678,6 +840,50 @@ describe("analyzeLedgerContinuity", () => {
         xp: 100,
         derivedFrom: "retained_cutover",
         atMs: 900,
+      }).complete,
+    ).toBe(false);
+  });
+
+  test("reconstructs 5000 uniquely chained tied events iteratively", () => {
+    const events = Array.from({ length: 5_000 }, (_, index) =>
+      event(`bulk-${index}`, {
+        type: "xp",
+        xpDelta: 1,
+        totalXpBefore: index,
+        totalXpAfter: index + 1,
+        serverCreatedAtMs: 1_000,
+        clientCreatedAtMs: 1_000,
+      }),
+    ).reverse();
+    expect(
+      analyzeLedgerContinuity(events, 5_000, {
+        kind: "exact",
+        xp: 0,
+        derivedFrom: "retained_cutover",
+        atMs: 900,
+      }).complete,
+    ).toBe(true);
+  });
+
+  test("does not use first-result baseline to resolve tied first-event identity", () => {
+    const first = event("a", {
+      type: "xp",
+      xpDelta: 50,
+      totalXpBefore: 100,
+      totalXpAfter: 150,
+    });
+    const second = event("b", {
+      type: "xp",
+      xpDelta: 50,
+      totalXpBefore: 150,
+      totalXpAfter: 200,
+    });
+    expect(
+      analyzeLedgerContinuity([first, second], 200, {
+        kind: "exact",
+        xp: 100,
+        derivedFrom: "first_ledger_result",
+        atMs: 1_000,
       }).complete,
     ).toBe(false);
   });

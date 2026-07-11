@@ -47,9 +47,19 @@ function deCapitalizeSentenceStart(word: string): string {
 
 export function shuffleWordBankTiles(phrase: string): WordBankTile[] {
   const words = tokenizeRecallPhrase(phrase);
-  return words
+  const tiles = words
     .map((text, slot) => ({ slot, text: slot === 0 ? deCapitalizeSentenceStart(text) : text }))
-    .sort(() => Math.random() - 0.5);
+  for (let i = tiles.length - 1; i > 0; i -= 1) {
+    const random = Math.max(0, Math.min(0.999999, Number(Math.random()) || 0));
+    const j = Math.floor(random * (i + 1));
+    [tiles[i], tiles[j]] = [tiles[j]!, tiles[i]!];
+  }
+  // A word bank is a challenge, not a prefilled answer. Avoid the identity
+  // permutation even when the random sequence happens to produce it.
+  if (tiles.length > 1 && tiles.every((tile, index) => tile.slot === index)) {
+    [tiles[0], tiles[1]] = [tiles[1]!, tiles[0]!];
+  }
+  return tiles;
 }
 
 /**

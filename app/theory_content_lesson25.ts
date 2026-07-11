@@ -35,7 +35,7 @@ export const LESSON25_THEORY: { titleRu: string; titleUk: string; titleEs: strin
           examples: [
             { en: 'She was working at 8pm.', ru: 'Она работала в 8 вечера.', uk: 'Вона працювала о 8 вечора.', es: 'Ella estaba trabajando a las 8 de la tarde.', hi: 'was working' },
             { en: 'At 9pm I was reading.', ru: 'В 9 вечера я читал.', uk: 'О 9 вечора я читав.', es: 'A las 9 de la tarde yo estaba leyendo.', hi: 'was reading' },
-            { en: 'Were they watching TV?', ru: 'Они смотрели телевизор?', uk: 'Вони дивилися телевізор?', es: '¿Estaban ellos viendo la tele?', hi: 'Were watching' },
+            { en: 'Were they watching TV?', ru: 'Они смотрели телевизор?', uk: 'Вони дивилися телевізор?', es: '¿Estaban ellos viendo la tele?', hi: 'Were' },
           ],
         },
         {
@@ -108,7 +108,7 @@ export const LESSON25_THEORY: { titleRu: string; titleUk: string; titleEs: strin
           examples: [
             { en: 'She was working at 8pm.', ru: 'Она работала в 8 вечера.', uk: 'Вона працювала о 8 вечора.', es: 'Ella estaba trabajando a las 8 de la tarde.', hi: 'was working' },
             { en: "He wasn't sleeping.", ru: 'Он не спал.', uk: 'Він не спав.', es: 'Él no estaba durmiendo.', hi: "wasn't sleeping" },
-            { en: 'Were they watching TV?', ru: 'Они смотрели телевизор?', uk: 'Вони дивилися телевізор?', es: '¿Estaban ellos viendo la tele?', hi: 'Were watching' },
+            { en: 'Were they watching TV?', ru: 'Они смотрели телевизор?', uk: 'Вони дивилися телевізор?', es: '¿Estaban ellos viendo la tele?', hi: 'Were' },
           ],
         },
         {

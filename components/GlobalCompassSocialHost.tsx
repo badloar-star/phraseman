@@ -1,20 +1,6 @@
 /**
- * GlobalCompassSocialHost — тост-фолбэк соц-сводки «Кстати…».
- *
- * Основной канал соц-уведомлений (заявка в друзья / приняли твою заявку / лайк) —
- * блок «Кстати…» внутри брифинга Компаса. Но брифинг показывается не всегда:
- * Компас выключен, юзер не премиум в обычный день, или брифинг сегодня уже закрыт.
- * В этих случаях юзер всё равно должен узнать о событии — этот хост показывает
- * лёгкий тост (как GlobalFriendGiftHost для подарков).
- *
- * БЕЗ ЗАДВОЕНИЯ: и брифинг, и этот хост зовут общий collectCompassSocialNews +
- * markSocialNewsSeen (общие seen-сигнатуры). Плюс:
- *  • если брифинг СЕЙЧАС на экране (isCompassBriefingOnScreen) — тост пропускаем;
- *  • перед показом ждём короткую паузу (GRACE_MS), давая брифингу шанс открыться
- *    и забрать события первым; после паузы перечитываем — если брифинг их уже
- *    забрал, collect вернёт пусто.
- *
- * Анти-спам: поллинг не чаще POLL_INTERVAL_MS (как у подарков).
+ * Ненавязчивый глобальный тост для социальных событий Компаса.
+ * Проверяет новости при входе/возврате в приложение не чаще одного раза в 5 минут.
  */
 import { useEffect, useRef } from 'react';
 import { AppState } from 'react-native';
@@ -23,20 +9,12 @@ import { emitAppEvent } from '../app/events';
 import {
   collectCompassSocialNews,
   markSocialNewsSeen,
-  isCompassBriefingOnScreen,
 } from '../app/compass';
 import { useLang } from './LangContext';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 const LAST_POLL_KEY = 'global_compass_social_last_poll';
-/** Пауза, дающая брифингу открыться и забрать события раньше тоста. */
-const GRACE_MS = 4000;
-
-function delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export default function GlobalCompassSocialHost() {
   const { lang } = useLang();
   const langRef = useRef(lang);
@@ -54,30 +32,11 @@ export default function GlobalCompassSocialHost() {
       if (last > 0 && now - last < POLL_INTERVAL_MS) return;
       await AsyncStorage.setItem(LAST_POLL_KEY, String(now)).catch(() => {});
 
-      // Брифинг сейчас открыт — он сам покажет блок «Кстати…», тост не нужен.
-      if (isCompassBriefingOnScreen()) return;
-
-      // Первый сбор — есть ли вообще что показывать.
-      const first = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], allLines: [], events: [] }));
-      if (!first.events.length) return;
-
-      // Даём брифингу шанс открыться и забрать события первым.
-      await delay(GRACE_MS);
-      if (isCompassBriefingOnScreen()) return;
-
-      // Перечитываем: если брифинг уже забрал события (markSeen), здесь будет пусто.
       const news = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], allLines: [], events: [] }));
       if (!news.events.length) return;
-      // Финальная проверка перед показом — последний await позади, брифинг не открыт.
-      if (isCompassBriefingOnScreen()) return;
 
-      // MARK-THEN-EMIT (анти-задвоение с модалкой): сначала помечаем seen, ПОТОМ
-      // показываем тост. Если в тот же тик брифинг всё же откроется, его loader
-      // перечитает уже-помеченные события и покажет пустой блок (не дубль), а не
-      // ту же сводку. Обратный порядок (emit→mark) оставлял окно на двойной показ.
+      // Помечаем события до показа, чтобы повторный foreground не задвоил тост.
       await markSocialNewsSeen(news.events).catch(() => {});
-      // Между mark и emit нет await и нет шанса для брифинга «забрать» события —
-      // они уже помечены. Тост показываем безусловно (мы их «застолбили»).
 
       // Строки уже собраны на ТЕКУЩЕМ языке (collectCompassSocialNews(lang)).
       // ActionToast выбирает поле по языку и падает на messageRu, если поля нет —
@@ -117,7 +76,6 @@ export default function GlobalCompassSocialHost() {
       scheduledRef.current?.cancel();
       scheduledRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return null;

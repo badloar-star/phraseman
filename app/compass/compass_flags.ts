@@ -17,7 +17,6 @@
  */
 import {
   isCompassEnabled,
-  isCompassAiVoiceEnabled,
   isCompassDeepDiveEnabled,
   isCompassLessonInviteEnabled,
   isCompassEconomyEnabled,
@@ -53,9 +52,4 @@ export function compassRetentionOn(): boolean {
 /** Крыло «Память»: карта тем (зеркало прогресса). */
 export function compassTopicMapOn(): boolean {
   return compassOn() && isCompassTopicMapEnabled();
-}
-
-/** ИИ-голос дня (тёплый комментарий). Выкл → детерминированный fallback по Библии. */
-export function compassAiVoiceOn(): boolean {
-  return compassOn() && isCompassAiVoiceEnabled();
 }

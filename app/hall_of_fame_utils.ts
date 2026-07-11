@@ -20,6 +20,7 @@ import {
 import type { Lang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
+import { getCurrentWeekStartIso } from './weekly_xp';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -134,7 +135,7 @@ const saveWeekLeaderboard = async (entries: WeekEntry[]) => {
 
 // ── ISO номер недели ──────────────────────────────────────────────────────────
 export const getWeekKey = (d: Date): string => {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
   const day = date.getUTCDay() || 7;
   date.setUTCDate(date.getUTCDate() + 4 - day);
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -147,7 +148,26 @@ export const getMyWeekPoints = async (): Promise<number> => {
   try {
     const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
-    return parseWeekPointsForWeek(raw, currentWeekKey);
+    const parsed = parseWeekPointsForWeek(raw, currentWeekKey);
+    try {
+      const rawData = raw ? JSON.parse(raw) as { weekKey?: unknown } : null;
+      if (rawData?.weekKey === currentWeekKey) return parsed;
+    } catch {
+      // Fall through to the server-mirrored weekly counter.
+    }
+    const [[, weeklyXpRaw], [, periodRaw], [, legacyWeekPointsRaw]] = await AsyncStorage.multiGet([
+      'weekly_xp',
+      'weekly_xp_period_start',
+      'week_points',
+    ]);
+    if (periodRaw === getCurrentWeekStartIso()) {
+      return Math.max(
+        0,
+        parseInt(weeklyXpRaw ?? '0', 10) || 0,
+        parseInt(legacyWeekPointsRaw ?? '0', 10) || 0,
+      );
+    }
+    return parsed;
   } catch (e) {
     if (__DEV__) console.warn('[hall_of_fame_utils]', e);
     return 0;
@@ -160,14 +180,17 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
     await resetWeekPointsIfStale();
     const migrated = await AsyncStorage.getItem('week_points_migrated_v1');
     if (migrated) return;
+    const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
     if (raw) {
-      const data: { weekKey: string; points: number } = JSON.parse(raw);
-      const totalXpRaw = await AsyncStorage.getItem('user_total_xp');
-      const totalXp = totalXpRaw ? parseInt(totalXpRaw) || 0 : 0;
-      // Если недельные очки равны total XP — это ошибочная миграция
-      if (totalXp > 0 && data.points >= totalXp * 0.9) {
-        const currentWeekKey = getWeekKey(new Date());
+      const data = JSON.parse(raw);
+      const weekKey = typeof data?.weekKey === 'string' ? data.weekKey : '';
+      const points = Number(data?.points);
+      const isWellFormedWeekPoints = weekKey === currentWeekKey
+        && Number.isFinite(points)
+        && points >= 0
+        && points <= 1_000_000_000;
+      if (!isWellFormedWeekPoints) {
         await AsyncStorage.setItem('week_points_v2', JSON.stringify({ weekKey: currentWeekKey, points: 0 }));
       }
     }

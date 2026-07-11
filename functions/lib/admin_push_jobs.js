@@ -482,7 +482,7 @@ exports.adminPushJobCreated = (0, firestore_1.onDocumentCreated)({ region: REGIO
     const result = await processAdminPushJob(jobId);
     console.log('adminPushJobCreated', JSON.stringify({ jobId, ...result }));
 });
-exports.adminPushJobsCron = (0, scheduler_1.onSchedule)({ region: REGION, schedule: '*/30 * * * *', timeZone: 'UTC', timeoutSeconds: 540, memory: '512MiB' }, async () => {
+exports.adminPushJobsCron = (0, scheduler_1.onSchedule)({ region: REGION, schedule: 'every 6 hours', timeZone: 'UTC', timeoutSeconds: 540, memory: '512MiB' }, async () => {
     const db = admin.firestore();
     const activeSnap = await db
         .collection('admin_push_jobs')

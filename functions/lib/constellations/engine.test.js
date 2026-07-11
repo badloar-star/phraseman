@@ -139,6 +139,17 @@ describe('constellations/engine — щит и дуэли', () => {
         expect(state.stars[HOMES[0]].radiance).toBe(2);
         expect(state.players[0].shieldUsed).toBe(true);
     });
+    test('shieldPerMatch=0 полностью выключает щиты (аудит: ручка была мёртвой)', () => {
+        const s = makeState();
+        s.stars[HOMES[0]] = { owner: 0, radiance: 1 };
+        const { state, events } = (0, engine_1.resolveRound)(s, {
+            ...noInput(),
+            shields: [{ slot: 0, starKey: HOMES[0] }],
+        }, { ...CFG, shieldPerMatch: 0 });
+        expect(state.stars[HOMES[0]].radiance).toBe(1); // Сияние не поднялось
+        expect(state.players[0].shieldUsed).toBe(false); // щит не потрачен
+        expect(events.some((e) => e.type === 'shield')).toBe(false);
+    });
     test('дуэль: победитель забирает звезду, оба-мимо — звезда прежнему владельцу', () => {
         const s = makeState();
         const { state } = (0, engine_1.resolveRound)(s, {

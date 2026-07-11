@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const applyResult = jest.fn();
 const callable = jest.fn((p: unknown) => Promise.resolve({ data: applyResult(p) }));
 const httpsCallable = jest.fn(() => callable);
+let appCheckReady = true;
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/functions', () => ({
@@ -23,6 +24,9 @@ jest.mock('@react-native-firebase/firestore', () => ({
   default: Object.assign(jest.fn(() => ({})), { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } }),
 }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
+jest.mock('../app/app_check_init', () => ({
+  initFirebaseAppCheckIfAvailable: jest.fn(async () => appCheckReady),
+}));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'u1') }));
@@ -54,6 +58,7 @@ const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
   jest.clearAllMocks();
+  appCheckReady = true;
   queueStore.items = [];
   Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) => Promise.resolve(mockStorage[k] ?? null));
@@ -65,6 +70,18 @@ beforeEach(() => {
 });
 
 describe('resumePendingShardDeltas — authoritative server balance wins (K3 findings A+B)', () => {
+  it('keeps the ordered replay queue untouched while App Check is unavailable', async () => {
+    appCheckReady = false;
+    queueStore.items = [
+      { opId: 'op-earn', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
+      { opId: 'op-spend', delta: 3, type: 'spend', reason: 'r', createdAtMs: 2 },
+    ];
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 2 });
+    expect(httpsCallable).not.toHaveBeenCalled();
+    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-earn', 'op-spend']);
+  });
+
   it('lowers an inflated local balance to the server value despite a newer local stamp / older server ts', () => {
     // Локаль завышена: 500 со СВЕЖЕЙ меткой реальной операции (op:'earn').
     mockStorage[STORAGE_KEY] = '500';

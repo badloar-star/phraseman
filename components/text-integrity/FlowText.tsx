@@ -37,7 +37,8 @@ function extractPlainText(value: React.ReactNode): string | undefined {
   }
   if (value === null || value === undefined || typeof value === 'boolean') return '';
   if (React.isValidElement(value) && value.type === React.Fragment) {
-    return extractPlainText(value.props.children as React.ReactNode);
+    const fragment = value as React.ReactElement<{ children?: React.ReactNode }>;
+    return extractPlainText(fragment.props.children);
   }
   return undefined;
 }

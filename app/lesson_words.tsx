@@ -3075,7 +3075,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   if (allDone || (validQueue.length === 0 && learnedCnt >= words.length)) return (
     <View style={{ flex: 1 }}>
       <View testID="lesson-words-complete" style={{ flex:1, justifyContent:'center', alignItems:'center', gap:16, padding:20 }}>
-        <View style={{ width:80,height:80,borderRadius:40,backgroundColor:t.bgCard,borderWidth:1,borderColor:t.border,justifyContent:'center',alignItems:'center' }}>
+        <View style={{ width:80,height:80,borderRadius:40,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center' }}>
           <Ionicons name="checkmark-done-outline" size={36} color={t.correct}/>
         </View>
         <Text style={{ color:sx.primary, fontSize:f.h1, fontWeight:'700' }}>{ws.allLearned}</Text>
@@ -3095,7 +3095,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         </TouchableOpacity>
         <TouchableOpacity
           testID="lesson-words-repeat"
-          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
           onPress={() => {
             fk.tap();
             setPracticeRepeatConfirm(true);
@@ -3382,7 +3382,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
         ListHeaderComponent={onStartTraining ? (
           <TouchableOpacity
             onPress={onStartTraining}
-            style={{ marginHorizontal: hPad, marginTop: ds.spacing.md, marginBottom: ds.spacing.xs, backgroundColor:t.bgCard, borderRadius: ds.radius.lg, paddingVertical: ds.spacing.sm, alignItems:'center', borderWidth:1, borderColor:t.border, flexDirection:'row', justifyContent:'center', gap:8 }}
+            style={{ marginHorizontal: hPad, marginTop: ds.spacing.md, marginBottom: ds.spacing.xs, backgroundColor:t.bgCard, borderRadius: ds.radius.lg, paddingVertical: ds.spacing.sm, alignItems:'center', flexDirection:'row', justifyContent:'center', gap:8 }}
           >
             <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
             <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>
@@ -3473,7 +3473,7 @@ function FrenchVocabularyUnavailable({ lang, onBack }: { lang: Lang; onBack: () 
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: ds.spacing.md }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}>
         <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
       </View>
       <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>

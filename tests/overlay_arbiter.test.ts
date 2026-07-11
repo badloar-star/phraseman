@@ -43,14 +43,12 @@ describe('OverlayArbiter queue resolution', () => {
 
   it('onboardingWelcome выигрывает у наградных/update-модалок сразу после онбординга', () => {
     // Регрессия (iOS): welcome рендерился МИМО арбитра → презентовался одновременно с
-    // perfectWeekReward/compassBriefing/update → первый схлопывался, стек виснул (фриз).
+    // perfectWeekReward/update → первый схлопывался, стек виснул (фриз).
     // Теперь welcome — высший приоритет: при одновременном запросе берут именно его.
     expect(resolveNextOverlay(null, wants('onboardingWelcome', 'perfectWeekReward', 'update')))
       .toBe('onboardingWelcome');
-    expect(resolveNextOverlay(null, wants('onboardingWelcome', 'compassBriefing')))
-      .toBe('onboardingWelcome');
     // …а когда welcome закрылся (освободил слот) — слот уходит следующему по приоритету.
-    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'update', 'compassBriefing')))
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'update')))
       .toBe('update');
     // welcome — непреемптивный владелец: пока держит слот, другие ждут.
     expect(resolveNextOverlay('onboardingWelcome', wants('onboardingWelcome', 'update')))
@@ -63,7 +61,6 @@ describe('OverlayArbiter queue resolution', () => {
     // Проверяем, что при конкуренции с любым другим ключом слот уходит НЕ ему.
     expect(resolveNextOverlay(null, wants('perfectWeekReward', 'actionToast'))).toBe('actionToast');
     expect(resolveNextOverlay(null, wants('perfectWeekReward', 'coachToast'))).toBe('coachToast');
-    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'compassBriefing'))).toBe('compassBriefing');
     expect(resolveNextOverlay(null, wants('perfectWeekReward', 'onboardingWelcome'))).toBe('onboardingWelcome');
     // perfectWeekReward = последний элемент приоритета → берётся, только когда он один.
     expect(OVERLAY_PRIORITY[OVERLAY_PRIORITY.length - 1]).toBe('perfectWeekReward');
@@ -157,7 +154,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-      'perfectWeekReward', 'compassBriefing', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
+      'perfectWeekReward', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
       'collectibleDrop', 'arenaInvite',
     ];
     for (const k of protectedKeys) {
@@ -255,7 +252,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
     'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-    'perfectWeekReward', 'compassBriefing',
+    'perfectWeekReward',
     // lessonResultsSequence — секвенция наград lesson_complete: закрывается ТОЛЬКО
     // тапом юзера по CTA (доступна ≤3с, спек FeedbackKit §2.1) — выселять нельзя,
     // иначе празднование обрывается на середине, пока юзер его смотрит.
@@ -304,7 +301,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }
@@ -319,7 +316,6 @@ describe('OverlayArbiter native-modal handoff gap', () => {
     expect(needsHandoffGap('onboardingWelcome', 'introFullAccess')).toBe(true);
     expect(needsHandoffGap('update', 'releaseNotes')).toBe(true);
     expect(needsHandoffGap('leagueResult', 'perfectWeekReward')).toBe(true);
-    expect(needsHandoffGap('entitlementExpired', 'compassBriefing')).toBe(true);
     expect(needsHandoffGap('update', 'notifNudge')).toBe(true);
     expect(needsHandoffGap('entitlementExpired', 'referralWelcome')).toBe(true);
   });

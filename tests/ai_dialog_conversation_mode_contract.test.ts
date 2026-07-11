@@ -45,4 +45,28 @@ describe('ai dialog conversation mode contract', () => {
     expect(source).toContain('CONVERSATION_SEND_GRACE_MS');
     expect(source).toContain('speechModule?.stop()');
   });
+
+  it('cancels a late async microphone start after the finger is released', () => {
+    expect(source).toContain('voiceInputGenerationRef');
+    expect(source).toContain('generation !== voiceInputGenerationRef.current');
+    expect(source).toContain('holdPressActiveRef.current = false');
+  });
+
+  it('keeps final-result delivery event-driven with a bounded OEM fallback', () => {
+    expect(source).toContain('conversationReleasePendingRef.current');
+    expect(source).toContain("speechModule.addListener('end'");
+    expect(source).toContain('sendVoiceTextRef.current(text)');
+    expect(source).toContain('CONVERSATION_SEND_GRACE_MS');
+  });
+
+  it('does not allow TTS taps to steal the active microphone session', () => {
+    expect(source).toContain("voiceInputStatus === 'requesting' || voiceInputStatus === 'listening'");
+    expect(source).toContain("disabled={voiceInputStatus === 'requesting' || voiceInputStatus === 'listening'}");
+  });
+
+  it('clears pending release when conversation mode is cancelled', () => {
+    expect(source).toContain('conversationReleasePendingRef.current = false;');
+    const toggleOff = source.slice(source.indexOf('if (!next) {'));
+    expect(toggleOff).toContain('conversationReleasePendingRef.current = false;');
+  });
 });

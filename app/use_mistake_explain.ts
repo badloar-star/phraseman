@@ -157,10 +157,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         setAiMistakeState('ready');
       } catch (error) {
         if (phraseKeyRef.current !== requestKey) return;
-        // Глобальный рубильник ИИ: inline-разбор грузится АВТОМАТИЧЕСКИ после
-        // ошибки — по ТЗ авто-вызовы тихие. Прячем карточку, без плашки.
+        // Offline failures stay quiet, but the card remains visible with its
+        // deterministic local comparison and retry action.
         if (aiOffline() || isAiOfflineError(error)) {
-          setAiMistakeState('hidden');
+          setAiMistakeState('error');
           setAiMistakeText(null);
           return;
         }
@@ -172,12 +172,9 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
           setAiMistakeState('limit');
           return;
         }
-        // Любая другая ошибка ИИ (включая исчерпание ГЛОБАЛЬНОГО бюджета ИИ).
-        // Inline-разбор грузится АВТОМАТИЧЕСКИ (withHaptic === false) — по ТЗ
-        // авто-вызовы тихие: прячем карточку без плашки. При РУЧНОМ повторе
-        // (кнопка) показываем забавную плашку.
+        // Automatic failures also stay quiet, but never hide the local fallback.
         if (!withHaptic) {
-          setAiMistakeState('hidden');
+          setAiMistakeState('error');
           setAiMistakeText(null);
           return;
         }

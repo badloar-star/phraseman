@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.__helpBoardTestHooks = exports.helpBoardAdminModerate = exports.helpBoardDeleteMyTopic = exports.helpBoardReport = exports.helpBoardVote = exports.helpBoardAddComment = exports.helpBoardCompassRetryCron = exports.helpBoardGenerateCompassForTopic = exports.helpBoardCreateTopic = exports.HELP_BOARD_BILLING = exports.HELP_BOARD_RESTRICTIONS = exports.HELP_BOARD_RATE_LIMITS = exports.HELP_BOARD_VOTES = exports.HELP_BOARD_REPORTS = exports.HELP_BOARD_COMMENTS = exports.HELP_BOARD_TOPICS = exports.HELP_BOARD_SCHEMA_VERSION = exports.HELP_BOARD_POLICY_VERSION = void 0;
+exports.__helpBoardTestHooks = exports.helpBoardAdminModerate = exports.helpBoardDeleteCompassAnswer = exports.helpBoardDeleteMyTopic = exports.helpBoardReport = exports.helpBoardVote = exports.helpBoardAddComment = exports.helpBoardCompassRetryCron = exports.helpBoardGenerateCompassForTopic = exports.helpBoardCreateTopic = exports.HELP_BOARD_BILLING = exports.HELP_BOARD_RESTRICTIONS = exports.HELP_BOARD_RATE_LIMITS = exports.HELP_BOARD_VOTES = exports.HELP_BOARD_REPORTS = exports.HELP_BOARD_COMMENTS = exports.HELP_BOARD_TOPICS = exports.HELP_BOARD_SCHEMA_VERSION = exports.HELP_BOARD_POLICY_VERSION = void 0;
 exports.helpBoardBoardKey = helpBoardBoardKey;
 exports.normalizeHelpBoardScope = normalizeHelpBoardScope;
 exports.helpBoardHotScore = helpBoardHotScore;
@@ -73,7 +73,12 @@ exports.HELP_BOARD_BILLING = 'help_board_compass_billing';
 const TOPIC_CREATE_THROTTLE_MS = 8000;
 const COMMENT_CREATE_THROTTLE_MS = 12000;
 const REPORT_THROTTLE_MS = 60000;
-const VOTE_THROTTLE_MS = 1500;
+// Голос — идемпотентный toggle (voteRef дедуплицирует), поэтому агрессивный
+// общий троттлинг только ломал UX: тестер быстро лайкал разные посты и ловил
+// resource-exhausted. Держим короткое окно И привязываем его к КОНКРЕТНОЙ цели
+// (а не ко всему юзеру), чтобы гасить только дребезг двойного тапа по одному
+// сердечку, но не мешать лайкать разные элементы подряд.
+const VOTE_THROTTLE_MS = 600;
 const MAX_TITLE_LENGTH = 120;
 const MAX_TOPIC_TEXT_LENGTH = 2200;
 const MAX_COMMENT_LENGTH = 900;
@@ -1083,7 +1088,9 @@ exports.helpBoardVote = (0, https_1.onCall)({ region: REGION, enforceAppCheck: c
     if (!targetId)
         throw new https_1.HttpsError('invalid-argument', 'target_required');
     const now = Date.now();
-    await enforceThrottle(db, `vote_${stableUid}`, 'lastVoteAt', VOTE_THROTTLE_MS, now);
+    // Троттлинг привязан к паре (юзер, конкретная цель) — гасит дребезг двойного
+    // тапа по одному сердечку, но не мешает лайкать разные посты подряд.
+    await enforceThrottle(db, `vote_${stableUid}_${targetType}_${targetId}`, 'lastVoteAt', VOTE_THROTTLE_MS, now);
     const ref = targetRef(db, targetType, targetId);
     const voteRef = db.collection(exports.HELP_BOARD_VOTES).doc(`${targetType}_${targetId}_${stableUid}`);
     let nextValue = 0;
@@ -1251,6 +1258,56 @@ exports.helpBoardDeleteMyTopic = (0, https_1.onCall)({ region: REGION, enforceAp
     }
     await batch.commit();
     return { ok: true, status: 'deleted' };
+});
+// Автор поста удаляет ОТВЕТ КОМПАСА в своём посте, если он ему не нравится.
+// Помечает Компас-комментарий(ы) этой темы как deleted (у всех) и гасит
+// compassStatus темы, чтобы «думает…» и ответ больше не показывались.
+exports.helpBoardDeleteCompassAnswer = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI }, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const db = admin.firestore();
+    const authUid = request.auth.uid;
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId);
+    const topicId = asText(request.data?.topicId, 160);
+    if (!topicId)
+        throw new https_1.HttpsError('invalid-argument', 'topic_required');
+    const topicRef = db.collection(exports.HELP_BOARD_TOPICS).doc(topicId);
+    const topicSnap = await topicRef.get();
+    if (!topicSnap.exists)
+        throw new https_1.HttpsError('not-found', 'topic_not_found');
+    const topic = topicSnap.data() || {};
+    // Только автор поста может убрать ответ Компаса в своём посте.
+    if (asText(topic.authorUid, 160) !== stableUid) {
+        throw new https_1.HttpsError('permission-denied', 'not_topic_author');
+    }
+    const now = Date.now();
+    // Фильтруем только по topicId (индекс уже есть, как в helpBoardDeleteMyTopic),
+    // а Компас-комменты отбираем в коде — чтобы не заводить составной индекс.
+    const topicCommentsSnap = await db.collection(exports.HELP_BOARD_COMMENTS)
+        .where('topicId', '==', topicId)
+        .limit(450)
+        .get();
+    const batch = db.batch();
+    let removed = 0;
+    for (const doc of topicCommentsSnap.docs) {
+        if (doc.data()?.isCompass !== true)
+            continue;
+        batch.set(doc.ref, {
+            status: 'deleted',
+            deletedAt: now,
+            deletedByTopicAuthor: stableUid,
+            updatedAt: now,
+        }, { merge: true });
+        removed++;
+    }
+    // Гасим Компас на самой теме: и «думает…», и уже сгенерированный ответ.
+    batch.set(topicRef, {
+        compassStatus: 'hidden',
+        compassAnswer: '',
+        updatedAt: now,
+    }, { merge: true });
+    await batch.commit();
+    return { ok: true, status: 'deleted', removed };
 });
 exports.helpBoardAdminModerate = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin)

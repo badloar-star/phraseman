@@ -29,11 +29,11 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
   prepareProgressMigrationSnapshot,
   submitProgressEvent,
+  makeDeterministicProgressEventId,
   type ProgressEventRequest,
   type ProgressEventType,
 } from './progress_events_client';
 import {
-  restoredXPForOld250VisibleLevel,
   XP_LEVEL_RESTORE_250_TO_400_KEY,
 } from './xp_level_restore';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
@@ -139,6 +139,7 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'achievement_reward':
     case 'level_up_bonus':
     case 'plan_task_complete':
+    case 'club_mission_complete':
     case 'wager_win':
       return source;
     case 'wager_bet':
@@ -153,7 +154,23 @@ function progressServerRequired(): boolean {
 }
 
 const LOCAL_PROGRESS_EVENT_LEDGER_KEY = 'progress_local_event_applied_v1';
-const LOCAL_PROGRESS_EVENT_LEDGER_MAX = 240;
+const LOCAL_PROGRESS_EVENT_LEDGER_MAX = 1_000;
+const MAX_LOCAL_XP_MULTIPLIER = 20;
+const MAX_LOCAL_XP_DELTA = 25_000;
+
+function localProgressEventLedgerKey(stableUid: string): string {
+  return `${LOCAL_PROGRESS_EVENT_LEDGER_KEY}:${encodeURIComponent(stableUid)}`;
+}
+
+function sanitizeLocalXpAmount(amount: number): number {
+  if (!Number.isFinite(amount)) return 0;
+  return Math.max(-MAX_LOCAL_XP_DELTA, Math.min(MAX_LOCAL_XP_DELTA, amount));
+}
+
+function sanitizeLocalXpMultiplier(multiplier: number): number {
+  if (!Number.isFinite(multiplier)) return 1;
+  return Math.max(1, Math.min(MAX_LOCAL_XP_MULTIPLIER, multiplier));
+}
 
 function patchProfileXpSnapshot(totalXp: number): void {
   const safeTotalXp = Math.max(0, Math.floor(Number(totalXp) || 0));
@@ -176,7 +193,10 @@ async function reserveLocalProgressEvent(eventId?: string): Promise<boolean> {
   const safeId = typeof eventId === 'string' ? eventId.trim() : '';
   if (!safeId) return true;
   try {
-    const raw = await AsyncStorage.getItem(LOCAL_PROGRESS_EVENT_LEDGER_KEY);
+    const stableUid = String(await getCanonicalUserId() ?? '').trim();
+    if (!stableUid) return true;
+    const ledgerKey = localProgressEventLedgerKey(stableUid);
+    const raw = await AsyncStorage.getItem(ledgerKey);
     const parsed = raw ? JSON.parse(raw) : [];
     const ids = Array.isArray(parsed)
       ? parsed.filter((item): item is string => typeof item === 'string' && item.length > 0)
@@ -184,7 +204,7 @@ async function reserveLocalProgressEvent(eventId?: string): Promise<boolean> {
     if (ids.includes(safeId)) return false;
     ids.push(safeId);
     await AsyncStorage.setItem(
-      LOCAL_PROGRESS_EVENT_LEDGER_KEY,
+      ledgerKey,
       JSON.stringify(ids.slice(-LOCAL_PROGRESS_EVENT_LEDGER_MAX)),
     );
   } catch {
@@ -264,6 +284,7 @@ export const registerXP = async (
   lessonNumber?: number,
   options?: RegisterXPOptions,
 ): Promise<XPResult> => {
+  amount = sanitizeLocalXpAmount(amount);
   if (amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };
   const result = waitForPreviousXpLock(_xpLock).then(async () => {
   let resolvedName = userName;
@@ -324,8 +345,10 @@ export const registerXP = async (
       // Аддитивный вклад в ту же формулу, что и остальные множители.
       const boonXpContribution = boonXpMultiplierContribution();
 
-      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
-      finalDelta = Math.round(amount * totalMultiplier);
+      totalMultiplier = sanitizeLocalXpMultiplier(
+        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution,
+      );
+      finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
       // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
       try {
@@ -342,21 +365,22 @@ export const registerXP = async (
 
       const eventType = progressEventTypeForSource(source);
       if (progressServerRequired() && eventType && finalDelta > 0) {
-        const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
         progressEventMigrationSnapshot = prepareProgressMigrationSnapshot().catch(() => null);
+        const basePayload = {
+          xpDelta: finalDelta,
+          baseAmount: amount,
+          source,
+          lessonId: lessonNumber ?? null,
+          lessonNumber: lessonNumber ?? null,
+          multiplier: totalMultiplier,
+          ...(options?.payload ?? {}),
+        };
         progressEventRequest = {
-          eventId: options?.eventId,
+          eventId: options?.eventId || makeDeterministicProgressEventId(eventType, {
+            ...basePayload,
+          }),
           type: eventType,
-          payload: {
-            xpDelta: finalDelta,
-            baseAmount: amount,
-            source,
-            lessonId: lessonNumber ?? null,
-            lessonNumber: lessonNumber ?? null,
-            localTotalBeforeServer,
-            multiplier: totalMultiplier,
-            ...(options?.payload ?? {}),
-          },
+          payload: basePayload,
         };
       }
       if (giftState.consumeBank && finalDelta > 0) {
@@ -367,29 +391,30 @@ export const registerXP = async (
     // 2. Обновляем основные структуры данных через hall_of_fame_utils
     // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
     const fallbackEventType = progressEventTypeForSource(source);
-    if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !progressEventRequest) {
-      const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
-      progressEventMigrationSnapshot = prepareProgressMigrationSnapshot().catch(() => null);
-      progressEventLogLabel = 'xp_manager.ts:registerXP:server_queued_fallback';
-      progressEventRequest = {
-        eventId: options?.eventId,
-        type: fallbackEventType,
-        payload: {
+      if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !progressEventRequest) {
+        progressEventMigrationSnapshot = prepareProgressMigrationSnapshot().catch(() => null);
+        const baseFallbackPayload = {
           xpDelta: finalDelta,
           baseAmount: amount,
           source,
           lessonId: lessonNumber ?? null,
           lessonNumber: lessonNumber ?? null,
-          localTotalBeforeServer,
           multiplier: totalMultiplier,
           ...(options?.payload ?? {}),
-        },
-      };
-    }
-    if (finalDelta > 0 && !(await reserveLocalProgressEvent(options?.eventId))) {
-      if (progressEventRequest) {
-        submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel);
+        };
+        progressEventLogLabel = 'xp_manager.ts:registerXP:server_queued_fallback';
+        progressEventRequest = {
+          eventId: options?.eventId || makeDeterministicProgressEventId(fallbackEventType, {
+            ...baseFallbackPayload,
+          }),
+          type: fallbackEventType,
+          payload: baseFallbackPayload,
+        };
       }
+      if (finalDelta > 0 && !(await reserveLocalProgressEvent(progressEventRequest?.eventId))) {
+        if (progressEventRequest) {
+          submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel);
+        }
       return { finalDelta: 0, multiplier: totalMultiplier, isBonus: false };
     }
 
@@ -585,53 +610,38 @@ const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
  */
 export const migrateXPFormulaV2 = async (): Promise<void> => {
   try {
+    // This marker must be the first storage read. A restored intermediate value
+    // (for example 10,000 -> 14,192) must never be interpreted a second time.
+    const restoreMarker = await storageGetString(XP_LEVEL_RESTORE_250_TO_400_KEY);
+    if (restoreMarker === '1') return;
+
     // Legacy-маркер «xp_migration_v2»: раньше ставился one-shot эффектом при маунте
     // home.tsx (D4 — миграциям не место в экране). Сам XP он не меняет — маркер
     // читают handleOnboardingDone (_layout.tsx) и cloud_sync.
-    const legacyMigrationMarker = await AsyncStorage.getItem('xp_migration_v2');
-    if (!legacyMigrationMarker) {
-      await AsyncStorage.setItem('xp_migration_v2', '1');
-    }
-    // Если пользователь уже прошёл миграцию xp_migration_v2 (home.tsx) — он уже на новой формуле.
-    // Просто помечаем как мигрированного, не трогаем XP.
-    // Do not trust legacy markers here; they may have been set before the
-    // 250-to-400 restore actually lifted XP on every account.
     const currentXP = await storageGetNumber('user_total_xp', 0);
-    if (currentXP <= 0) {
-      await storageSetString(XP_LEVEL_RESTORE_250_TO_400_KEY, '1');
-      await storageSetString(XP_MIGRATION_KEY, '1');
-      return;
-    }
-
-    const restored = restoredXPForOld250VisibleLevel(currentXP);
-    const newXP = restored.targetXP;
-
-    // Никогда не уменьшаем XP — только увеличиваем или оставляем как есть
-    if (newXP <= currentXP) {
-      await storageSetString(XP_LEVEL_RESTORE_250_TO_400_KEY, '1');
-      await storageSetString(XP_MIGRATION_KEY, '1');
-      return;
-    }
-
-    const currentAvatar = await storageGetString('user_avatar');
-    const nextLevel = getLevelFromXP(newXP);
-    const nextAvatar = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(nextLevel);
-    const nextFrame = getBestFrameForLevel(nextLevel);
+    // Level-formula repair is a server/admin migration, not a boot-time client
+    // mutation. A local device must never infer a new XP balance from an old
+    // curve and silently jump the user through multiple levels.
     await AsyncStorage.multiSet([
-      ['user_total_xp', String(newXP)],
-      ['user_prev_xp', String(newXP)],
-      ['user_avatar', nextAvatar],
-      ['user_frame', nextFrame.id],
+      ['user_total_xp', String(currentXP)],
+      ['user_prev_xp', String(currentXP)],
+      ['xp_migration_v2', '1'],
       [XP_LEVEL_RESTORE_250_TO_400_KEY, '1'],
       [XP_MIGRATION_KEY, '1'],
     ]);
-
-    emitAppEvent('xp_changed');
-    emitAppEvent('xp_updated', { total: newXP, delta: 0 });
-    markCloudSyncPending();
   } catch (e) {
     if (__DEV__) console.warn('[xp_manager]', e);
   }
+};
+
+export const __xpManagerTestHooks = {
+  sanitizeLocalXpAmount,
+  sanitizeLocalXpMultiplier,
+  localProgressEventLedgerKey,
+  progressEventTypeForSource,
+  LOCAL_PROGRESS_EVENT_LEDGER_MAX,
+  MAX_LOCAL_XP_MULTIPLIER,
+  MAX_LOCAL_XP_DELTA,
 };
 
 /**

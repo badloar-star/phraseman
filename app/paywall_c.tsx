@@ -25,6 +25,7 @@ import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './pay
 import { pickPercentileLine } from './paywall_percentile_line';
 import { loadPercentileData } from './daily_analytics_sync';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
+import { isPaywallReviewsEnabled } from './remote_flags';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSectionDivider,
   PaywallCloseButton,
@@ -129,9 +130,10 @@ export default function PaywallC() {
       } catch { /* некритично */ }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
+    // Плюс живой рубильник из «Пульта»: выкл → отзывы просто пропадают (пустой массив).
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
-      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 4, false));
+      setTestimonials(isPaywallReviewsEnabled() ? pickTestimonials(lang as Lang, ctx, dayHash, 4, false) : []);
     } catch { /* некритично */ }
     return () => { dead = true; };
   }, [ctx, lang, source]);

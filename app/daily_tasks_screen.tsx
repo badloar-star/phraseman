@@ -48,7 +48,7 @@ import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type Voc
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { useScreen } from '../hooks/use-screen';
 import SurveyTaskCard from '../components/SurveyTaskCard';
-import { isSurveyCloudEnabled, fetchActiveSurvey } from './survey_client';
+import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from './survey_client';
 import { isSurveyDailyTaskDoneToday } from './survey_daily_task';
 import { getCanonicalUserId } from './user_id_policy';
 import { captureAccountGeneration } from './account_generation';
@@ -2032,7 +2032,7 @@ export default function DailyTasksScreen() {
                 if (!isSurveyCloudEnabled()) { setSurveyPresent(false); return; }
                 const stableId = await getCanonicalUserId();
                 if (cancelled || !stableId) return;
-                const active = await fetchActiveSurvey({ stableId, platform: Platform.OS, lang });
+                const active = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
                 if (!cancelled) setSurveyPresent(!!active && active.questions.length > 0);
             } catch {
                 if (!cancelled) setSurveyPresent(false);

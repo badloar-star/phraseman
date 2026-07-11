@@ -20,8 +20,8 @@ describe('Gustav French app surface parity V2 packet', () => {
     });
 
     expect(report.status).toBe('PASS');
-    expect(report.summary.remotePackSurfaces).toBe(6);
-    expect(report.summary.requiredRemotePackSurfaces).toBe(6);
+    expect(report.summary.remotePackSurfaces).toBe(7);
+    expect(report.summary.requiredRemotePackSurfaces).toBe(7);
     expect(report.summary.missingRemotePackSurfaces).toEqual([]);
     expect(report.summary.extraRemotePackSurfaces).toEqual([]);
     expect(report.summary.currentAppDomains).toBeGreaterThanOrEqual(7);
@@ -38,6 +38,7 @@ describe('Gustav French app surface parity V2 packet', () => {
       'lesson',
       'lesson_intro',
       'quiz',
+      'daily_phrase',
       'audio_metadata',
       'flashcard',
       'personal_practice',

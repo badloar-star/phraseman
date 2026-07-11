@@ -3,7 +3,6 @@ type LeagueChatConnectionInput = {
   roomAuthorized: boolean;
   roomAuthorizing: boolean;
   subscriptionError: boolean;
-  sending: boolean;
   draft: string;
   draftBlocked: boolean;
 };
@@ -63,7 +62,7 @@ export function getLeagueChatConnectionUi(input: LeagueChatConnectionInput) {
   return {
     showBlockingConnectionState: false,
     canEditDraft,
-    canSendDraft: connectionReady && hasText && !input.sending && !input.draftBlocked,
+    canSendDraft: connectionReady && hasText && !input.draftBlocked,
     shouldSubscribe: connectionReady,
   };
 }

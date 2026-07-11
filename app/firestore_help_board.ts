@@ -504,6 +504,25 @@ export async function deleteHelpBoardTopicForEveryone(topicId: string): Promise<
   }
 }
 
+/**
+ * Автор поста удаляет ответ Компаса в своём посте. Сервер помечает Компас-
+ * комментарий(ы) как deleted и гасит compassStatus темы. 'deleted' | статус ошибки.
+ */
+export async function deleteHelpBoardCompassAnswer(topicId: string): Promise<HelpBoardTopicDeleteStatus> {
+  try {
+    const stableId = await prepareCallableIdentity();
+    if (!stableId) return 'offline';
+    const fn = callable<{ stableId?: string | null; topicId: string }, { ok: boolean; status: string }>('helpBoardDeleteCompassAnswer');
+    const res = await fn({ stableId, topicId });
+    return res.data.status === 'deleted' ? 'deleted' : 'failed';
+  } catch (e: any) {
+    const status = classifyTopicDeleteError(e);
+    await rememberSubmitFailure('delete_topic', status, e);
+    if (__DEV__) console.warn('[help_board] delete compass answer failed', normalizeCallableError(e), e);
+    return status;
+  }
+}
+
 /** Ключ «моего голоса» — тот же формат, что doc id на сервере (без uid). */
 export function helpBoardVoteKey(targetType: HelpBoardTargetType, targetId: string): string {
   return `${targetType}_${targetId}`;
@@ -538,7 +557,7 @@ export async function voteHelpBoardItem(
   targetType: HelpBoardTargetType,
   targetId: string,
   value: 1 | -1 | 0,
-): Promise<{ ok: boolean; value: number } | null> {
+): Promise<{ ok: boolean; value: number; throttled?: boolean } | null> {
   const stableId = await prepareCallableIdentity();
   if (!stableId) return null;
   const fn = callable<{ stableId?: string | null; targetType: HelpBoardTargetType; targetId: string; value: number }, { ok: boolean; value: number }>('helpBoardVote');
@@ -549,6 +568,13 @@ export async function voteHelpBoardItem(
     return { ok: res.data?.ok === true, value: nextValue };
   } catch (e) {
     void rememberSubmitFailure('vote', 'ignored', e);
+    // Троттлинг голосов (1.5с, общий на юзера) — транзиентная защита, а НЕ сбой:
+    // лайк это идемпотентный toggle. Сообщаем вызывающему отдельно, чтобы он не
+    // откатывал оптимистичный лайк и не пугал юзера тостом ошибки.
+    const { haystack } = normalizeCallableError(e);
+    if (haystack.includes('resource-exhausted') || haystack.includes('throttled')) {
+      return { ok: false, value: 0, throttled: true };
+    }
     return null;
   }
 }

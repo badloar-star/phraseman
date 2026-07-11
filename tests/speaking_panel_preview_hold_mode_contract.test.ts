@@ -22,13 +22,13 @@ describe('SpeakingPanel previewHoldMode — display flags', () => {
   it('derives preparingModelView from the EXCLUSIVE "preparing" value', () => {
     // Distinct from holdModeView so the ready-hold and preparing previews never shadow each other.
     expect(panel).toContain(
-      "const preparingModelView = isPreview ? previewHoldMode === 'preparing' : preparingModel",
+      "const preparingModelView = isPreview && previewHoldMode === 'preparing'",
     );
   });
 
   it('routes hold-mode STATUS text and mic-disabled through the display flags', () => {
     expect(panel).toContain('if (preparingModelView && (status');
-    expect(panel).toContain('|| preparingModelView;');
+    expect(panel).toContain("status === 'unavailable' || preparingModelView");
     expect(panel).toContain('return holdModeView');
   });
 

@@ -120,11 +120,6 @@ export function ExpandableText({
   testID,
   provenance,
   previewCharacterBudget = 160,
-  numberOfLines: _numberOfLines,
-  ellipsizeMode: _ellipsizeMode,
-  allowFontScaling: _allowFontScaling,
-  adjustsFontSizeToFit: _adjustsFontSizeToFit,
-  minimumFontScale: _minimumFontScale,
   ...textProps
 }: ExpandableTextProps) {
   if (provenance !== 'user' && provenance !== 'external') {

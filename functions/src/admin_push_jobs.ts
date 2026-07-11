@@ -547,7 +547,7 @@ export const adminPushJobCreated = onDocumentCreated(
 );
 
 export const adminPushJobsCron = onSchedule(
-  { region: REGION, schedule: '*/30 * * * *', timeZone: 'UTC', timeoutSeconds: 540, memory: '512MiB' },
+  { region: REGION, schedule: 'every 6 hours', timeZone: 'UTC', timeoutSeconds: 540, memory: '512MiB' },
   async () => {
     const db = admin.firestore();
     const activeSnap = await db

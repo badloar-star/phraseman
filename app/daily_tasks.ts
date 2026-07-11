@@ -11,11 +11,13 @@ import { spendShards } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
 import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
 import { countDueItemsToday } from './active_recall';
+import { getTrainerCounts, type TrainerQueue } from './trainer_store';
 import {
   dailyTasksAdminOverrideKey,
   dailyTasksProgressKey,
   dailyTasksRerollKey,
   irregularVerbsGlobalKey,
+  lessonWordsKey,
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
@@ -2073,6 +2075,13 @@ const VERB_FALLBACKS: Record<string, string> = {
   vl4: 'ta9',  vl5: 'ta8',  vl6: 'ta3',  vl7: 'ta3',
 };
 
+// A fully completed vocabulary has no possible progress for words_learned.
+// Resolve it to an answer task instead of showing an impossible card.
+const WORDS_FALLBACKS: Record<string, string> = {
+  wl1: 'ta1', wl2: 'ta2', wl3: 'ta3',
+  wl4: 'ta3', wl5: 'ta2', wl6: 'ta1', wl7: 'ta2',
+};
+
 export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
   'quiz_hard',
   'quiz_score',
@@ -2138,6 +2147,21 @@ const RECALL_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
   'recall_answers',
   'recall_perfect',
 ]);
+
+const TRAINER_QUEUE_BY_TASK_TYPE: Readonly<Partial<Record<TaskType, TrainerQueue>>> = {
+  trainer_words: 'words',
+  trainer_phrases: 'phrases',
+  trainer_arena: 'arena',
+};
+
+const TRAINER_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
+  tw1: ['ta1', 'ot1', 'cs1', 'ta8'],
+  tw2: ['ta2', 'ot1', 'cs1', 'ta1'],
+  tp1: ['ta1', 'ot1', 'cs1', 'ta8'],
+  tp2: ['ta2', 'ot1', 'cs1', 'ta1'],
+  tar1: ['ta1', 'ot1', 'cs1', 'ta8'],
+  tar2: ['ta2', 'ot1', 'cs1', 'ta1'],
+};
 
 const RECALL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
   rs1: ['ta1', 'ta8', 'ot1', 'cs1'],
@@ -2398,6 +2422,78 @@ export const getDailyRerollsLeftToday = async (studyTarget?: RuntimeStudyTarget)
   return Math.max(0, DAILY_TASK_REROLL_MAX_PER_DAY - Object.keys(s.replacements).length);
 };
 
+const replaceTrainerTasksWhenQueueIsInsufficient = async (
+  tasks: DailyTask[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<DailyTask[]> => {
+  if (!tasks.some((task) => TRAINER_QUEUE_BY_TASK_TYPE[task.type])) return tasks;
+
+  const counts = await getTrainerCounts(studyTarget);
+  const progressKey = dailyTasksProgressKey(getTodayKey(), studyTarget);
+  let savedProgress: TaskProgress[] = [];
+  try {
+    const raw = await AsyncStorage.getItem(progressKey);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    if (Array.isArray(parsed)) savedProgress = parsed as TaskProgress[];
+  } catch {
+    savedProgress = [];
+  }
+  const progressByTaskId = new Map(savedProgress.map((row) => [row.taskId, row]));
+  const usedIds = new Set(tasks.filter((task) => !TRAINER_QUEUE_BY_TASK_TYPE[task.type]).map((task) => task.id));
+
+  return tasks.map((task) => {
+    const queue = TRAINER_QUEUE_BY_TASK_TYPE[task.type];
+    if (!queue) return task;
+    const row = progressByTaskId.get(task.id);
+    if (row?.completed || row?.claimed || (row?.current ?? 0) + counts[queue] >= task.target) {
+      usedIds.add(task.id);
+      return task;
+    }
+
+    const fallbackIds = TRAINER_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'ot1', 'cs1', 'ta8'];
+    for (const id of fallbackIds) {
+      if (usedIds.has(id)) continue;
+      const fallback = ALL_TASKS.find((candidate) => candidate.id === id);
+      if (!fallback || !dailyTaskAvailableForStudyTarget(fallback, studyTarget)) continue;
+      usedIds.add(fallback.id);
+      return fallback;
+    }
+    usedIds.add(task.id);
+    return task;
+  });
+};
+
+/** Count vocabulary items that have not reached the completed training threshold. */
+export const countAvailableVocabularyWords = async (studyTarget?: RuntimeStudyTarget): Promise<number> => {
+  try {
+    const { LESSONS_WITH_WORDS, WORD_KEYS_BY_LESSON } = await import('./lesson_words');
+    const lessonIds = Array.from(LESSONS_WITH_WORDS);
+    const entries = await AsyncStorage.multiGet(lessonIds.map((id) => lessonWordsKey(id, studyTarget)));
+    let available = 0;
+    entries.forEach(([_, raw], index) => {
+      const lessonId = lessonIds[index];
+      const wordKeys = WORD_KEYS_BY_LESSON[lessonId ?? 0] ?? new Set<string>();
+      const learned = new Set<string>();
+      try {
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (Array.isArray(parsed)) {
+          parsed.forEach((word) => { if (typeof word === 'string') learned.add(word); });
+        } else if (parsed && typeof parsed === 'object') {
+          Object.entries(parsed).forEach(([word, count]) => {
+            if (Number(count) >= 3) learned.add(word);
+          });
+        }
+      } catch {
+        // Unknown progress is treated as unavailable, so a reroll is never charged blindly.
+      }
+      wordKeys.forEach((word) => { if (!learned.has(word)) available += 1; });
+    });
+    return available;
+  } catch {
+    return 0;
+  }
+};
+
 /** Категории заданий — реролл подбирает кандидата из той же категории, чтобы сохранить баланс. */
 type DailyTaskCategory = 'engage' | 'perfect' | 'quiz' | 'words' | 'flashcard' | 'recall' | 'trainer' | 'arena' | 'social';
 
@@ -2505,7 +2601,10 @@ const pickRerollCandidate = async (
 
   // Доступны ли ещё неправильные глаголы (для возможной замены на verb_learned).
   let verbsAvailable = Number.POSITIVE_INFINITY;
+  let wordsAvailable = Number.POSITIVE_INFINITY;
+  const trainerCounts = cat === 'trainer' ? await getTrainerCounts(studyTarget) : null;
   if (cat === 'words') {
+    wordsAvailable = await countAvailableVocabularyWords(studyTarget);
     try {
       const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
       const learned: Record<string, number> = raw ? JSON.parse(raw) : {};
@@ -2523,7 +2622,10 @@ const pickRerollCandidate = async (
     if (TASK_TYPE_CATEGORY[t.type] !== cat) return false;
     if ((t.minPlayerLevel ?? 1) > playerLevel) return false;
     if (isPremium && t.freeOnly) return false;
+    if (t.type === 'words_learned' && t.target > wordsAvailable) return false;
     if (t.type === 'verb_learned' && t.target > verbsAvailable) return false;
+    const trainerQueue = TRAINER_QUEUE_BY_TASK_TYPE[t.type];
+    if (trainerQueue && (!trainerCounts || t.target > trainerCounts[trainerQueue])) return false;
     if (!dailyTaskAvailableForStudyTarget(t, studyTarget)) return false;
     return true;
   });
@@ -2641,8 +2743,23 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   }
 
   result = await replaceRecallTasksWhenNoDueItems(result, studyTarget);
+  result = await replaceTrainerTasksWhenQueueIsInsufficient(result, studyTarget);
 
-  // 2. Замена verb_learned если глаголов недостаточно
+  // 2. Replace words_learned when no unfinished vocabulary remains.
+  if (result.some((task) => task.type === 'words_learned')) {
+    const remainingWords = await countAvailableVocabularyWords(studyTarget);
+    const usedIds = new Set(result.map((task) => task.id));
+    result = result.map((task) => {
+      if (task.type !== 'words_learned' || remainingWords >= task.target) return task;
+      const fallbackId = WORDS_FALLBACKS[task.id];
+      const fallback = fallbackId ? ALL_TASKS.find((candidate) => candidate.id === fallbackId) : undefined;
+      if (!fallback || usedIds.has(fallback.id)) return task;
+      usedIds.add(fallback.id);
+      return fallback;
+    });
+  }
+
+  // 3. Replace verb_learned when too few verbs remain.
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
   if (!hasVerbTask) return filterDailyTasksForStudyTarget(result, studyTarget);
 

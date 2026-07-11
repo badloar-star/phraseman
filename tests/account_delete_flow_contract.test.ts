@@ -9,43 +9,62 @@ describe('account deletion rebuilt flow contract', () => {
   const modalSource = fs.readFileSync(path.join(root, 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8');
   const functionSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete.ts'), 'utf8');
 
-  it('starts cloud deletion in the background before wiping local state', () => {
+  it('durably enqueues deletion before provider sign-out and still exits locally', () => {
     const start = authProvider.indexOf('export async function deleteAccountAndWipe');
+    const enqueue = authProvider.indexOf('await enqueueCloudDeletion(pendingDeleteStableId)', start);
+    const signOut = authProvider.indexOf('await signOutCurrentProvider()', start);
     const wipe = authProvider.indexOf('await wipeLocalAccountData()', start);
-    const beforeLocalWipe = authProvider.slice(start, wipe);
 
-    expect(beforeLocalWipe).toContain('const cloudDeletePromise = deleteCloudData();');
-    expect(beforeLocalWipe).toContain("logAuthEvent('auth_account_delete_cloud_late_failed'");
-    expect(beforeLocalWipe).toContain('await signOutCurrentProvider()');
-    expect(beforeLocalWipe).not.toContain("return { ok: false, reason: 'cloud_delete_failed' }");
+    expect(enqueue).toBeGreaterThan(start);
+    expect(enqueue).toBeLessThan(signOut);
+    expect(signOut).toBeLessThan(wipe);
+    expect(authProvider.slice(start, wipe)).toContain("logAuthEvent('auth_account_delete_enqueue_failed'");
+    expect(authProvider.slice(start, wipe)).not.toContain("return { ok: false, reason: 'cloud_delete_failed' }");
   });
 
   it('blocks immediate same-provider re-login until background deletion is settled', () => {
     const start = authProvider.indexOf('export async function deleteAccountAndWipe');
     const captureProvider = authProvider.indexOf('const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;', start);
     const captureStable = authProvider.indexOf('const pendingDeleteStableId = await getStableId().catch(() => null);', start);
-    const cloudDelete = authProvider.indexOf('const cloudDeletePromise = deleteCloudData();', start);
+    const enqueue = authProvider.indexOf('await enqueueCloudDeletion(pendingDeleteStableId)', start);
     const asyncStorageClear = authProvider.indexOf('await AsyncStorage.clear()', start);
     const stableIdClear = authProvider.indexOf('await clearStableId()', start);
     const markLock = authProvider.indexOf('await markAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId);', start);
-    const clearLock = authProvider.indexOf('.then(() => clearAccountDeletePendingAuth(pendingDeleteProviderUid))', markLock);
     const ensureAnon = authProvider.indexOf('await ensureAnonUser()', markLock);
 
-    expect(authProvider).toContain("import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout'");
     expect(authProvider).toContain("const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';");
-    expect(authProvider).toContain('const ACCOUNT_DELETE_PENDING_AUTH_TTL_MS = ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS + 60_000;');
+    expect(authProvider).toContain('const ACCOUNT_DELETE_PENDING_AUTH_TTL_MS = 7 * 24 * 60 * 60_000;');
     expect(captureProvider).toBeGreaterThan(start);
     expect(captureStable).toBeGreaterThan(captureProvider);
-    expect(captureStable).toBeLessThan(cloudDelete);
+    expect(captureStable).toBeLessThan(enqueue);
     expect(asyncStorageClear).toBeLessThan(markLock);
     expect(stableIdClear).toBeLessThan(markLock);
     expect(markLock).toBeLessThan(ensureAnon);
-    expect(clearLock).toBeGreaterThan(markLock);
+    expect(authProvider.slice(markLock, ensureAnon)).not.toContain('clearAccountDeletePendingAuth');
+  });
+
+  it('retries a pending deletion while provider auth is current and before identity lookup', () => {
+    const pending = authProvider.indexOf('if (pendingDelete) {');
+    const retry = authProvider.indexOf('await enqueueCloudDeletion(pendingDelete.stableId)', pending);
+    const signOut = authProvider.indexOf('await signOutCurrentProvider()', pending);
+    const linkLookup = authProvider.indexOf("db.collection('auth_links')", pending);
+
+    expect(retry).toBeGreaterThan(pending);
+    expect(retry).toBeLessThan(signOut);
+    expect(signOut).toBeLessThan(linkLookup);
   });
 
   it('keeps callable timeout longer than the backend function timeout', () => {
+    expect(timeoutSource).toContain('ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS = 8_000');
     expect(timeoutSource).toContain('ACCOUNT_DELETE_FUNCTION_TIMEOUT_MS + ACCOUNT_DELETE_TIMEOUT_SAFETY_MARGIN_MS');
     expect(timeoutSource).not.toContain('ACCOUNT_DELETE_FUNCTION_TIMEOUT_MS - ACCOUNT_DELETE_TIMEOUT_SAFETY_MARGIN_MS');
+  });
+
+  it('keeps the legacy callable while exporting durable enqueue and worker endpoints', () => {
+    const indexSource = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
+    expect(indexSource).toContain('exports.accountDeleteMine = accountDeleteMine;');
+    expect(indexSource).toContain('exports.accountDeleteEnqueue = accountDeleteEnqueue;');
+    expect(indexSource).toContain('exports.accountDeleteWorker = accountDeleteWorker;');
   });
 
   it('shows immediate-account-exit copy while server deletion continues in the background', () => {

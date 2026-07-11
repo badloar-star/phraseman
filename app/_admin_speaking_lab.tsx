@@ -51,7 +51,7 @@ interface PreviewRow {
 const PREVIEW_ROWS: readonly PreviewRow[] = [
   {
     status: 'idle',
-    title: 'idle — «Нажми на микрофон и произнеси фразу»',
+    title: 'idle — «Зажми кнопку и говори»',
     desc: 'Начальное состояние. Кнопка активна, фраза серая.',
     icon: 'ellipse-outline',
     tint: '#8A93A6',
@@ -65,8 +65,8 @@ const PREVIEW_ROWS: readonly PreviewRow[] = [
   },
   {
     status: 'listening',
-    title: 'listening — «Слушаю… говори»',
-    desc: 'Микрофон красный, эквалайзер активен, кнопка = «Остановить запись».',
+    title: 'listening — «Говори… отпусти, когда закончишь»',
+    desc: 'Микрофон красный только при реальной записи; отпускание запускает проверку.',
     icon: 'mic',
     tint: '#E5484D',
   },

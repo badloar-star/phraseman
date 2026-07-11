@@ -39,7 +39,6 @@ describe('OpenAI runtime cost controls', () => {
       { source: read('app/explain_phrase_client.ts'), map: 'explainPhraseInFlight', key: 'explainPhraseRequestKey' },
       { source: read('app/explain_choice_client.ts'), map: 'explainChoiceInFlight', key: 'explainChoiceRequestKey' },
       { source: read('app/explain_quiz_client.ts'), map: 'explainQuizInFlight', key: 'explainQuizRequestKey' },
-      { source: read('app/compass/compass_voice_client.ts'), map: 'compassVoiceInFlight', key: 'compassVoiceRequestKey' },
     ];
 
     for (const { source, map, key } of clients) {

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
+import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
 
 const ROOT = path.join(__dirname, '..');
 
@@ -22,8 +22,8 @@ describe('loud playback audio mode', () => {
     const phraseAudioSource = fs.readFileSync(path.join(ROOT, 'hooks', 'phrase_audio_player.ts'), 'utf8');
 
     expect(layoutSource).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
-    expect(planExerciseSource).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
-    expect(phraseAudioSource).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(planExerciseSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(phraseAudioSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
   });
 
   it('restores loud playback after every speech-recognition surface settles', () => {
@@ -34,10 +34,25 @@ describe('loud playback audio mode', () => {
     // Распознавание переводит аудио-сессию в запись (playAndRecord). Каждый
     // экран с микрофоном обязан вернуть «громкое воспроизведение», иначе весь
     // звук после — тихий/через разговорный динамик или не играет вовсе.
-    for (const source of [speakingPanel, planExercise, aiDialog]) {
+    for (const source of [speakingPanel, aiDialog]) {
       expect(source).toContain('restoreLoudPlaybackMode');
-      expect(source).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
+      expect(source).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
     }
+    expect(planExercise).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
+  });
+
+  it('switches speaking surfaces into a record-capable session before start()', () => {
+    const speakingPanel = fs.readFileSync(path.join(ROOT, 'components', 'SpeakingPanel.tsx'), 'utf8');
+    const aiDialog = fs.readFileSync(path.join(ROOT, 'app', 'ai_dialog_session.tsx'), 'utf8');
+    expect(speakingPanel).toContain('setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE)');
+    expect(aiDialog).toContain('setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE)');
+  });
+
+  it('rolls capture mode back when native start throws', () => {
+    const speakingPanel = fs.readFileSync(path.join(ROOT, 'components', 'SpeakingPanel.tsx'), 'utf8');
+    const aiDialog = fs.readFileSync(path.join(ROOT, 'app', 'ai_dialog_session.tsx'), 'utf8');
+    expect(speakingPanel).toContain('cleanupListeners();');
+    expect(aiDialog).toContain('restoreLoudPlaybackMode();');
   });
 
   it('speaking panel plays replay and reference loud and stops them on done/retry', () => {
@@ -76,5 +91,29 @@ describe('loud playback audio mode', () => {
     expect(planExercise).toContain('deleteTransientSpeechRecordingFile(uri)');
     // AI dialog has no replay and can still opt out completely.
     expect(aiDialog).toContain('persistRecording: false');
+  });
+});
+
+describe('shared speaking recording audio mode', () => {
+  it('enables capture without routing speech through the earpiece', () => {
+    expect(SPEAKING_RECORDING_AUDIO_MODE.allowsRecording).toBe(true);
+    expect(SPEAKING_RECORDING_AUDIO_MODE.shouldRouteThroughEarpiece).toBe(false);
+    expect(SPEAKING_RECORDING_AUDIO_MODE.interruptionMode).toBe('doNotMix');
+  });
+
+  it('keeps runtime audio-mode writes behind the coordinator', () => {
+    const runtimeFiles = [
+      path.join(ROOT, 'app', 'ai_dialog_session.tsx'),
+      path.join(ROOT, 'app', 'personal_plan_exercise.tsx'),
+      path.join(ROOT, 'app', 'speaking_club_session.tsx'),
+      path.join(ROOT, 'components', 'SpeakingPanel.tsx'),
+      path.join(ROOT, 'components', 'onboarding_aha', 'aha_audio.ts'),
+      path.join(ROOT, 'components', 'onboarding_aha', 'SpeechBeat.tsx'),
+      path.join(ROOT, 'hooks', 'use-audio.ts'),
+      path.join(ROOT, 'hooks', 'phrase_audio_player.ts'),
+    ];
+    for (const file of runtimeFiles) {
+      expect(fs.readFileSync(file, 'utf8')).not.toContain('setAudioModeAsync(');
+    }
   });
 });

@@ -51,6 +51,11 @@ service cloud.firestore {
         && !exists(/databases/$(database)/documents/users/$(userId));
     }
 
+    function accountDeletionNotPending(userId) {
+      return isAdmin()
+        || !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId));
+    }
+
     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
     // при первом серверном событии. Пока флага нет — старый клиент может писать
     // XP/streak/progress напрямую (плавный переход без force-update).
@@ -93,6 +98,45 @@ service cloud.firestore {
           'shards_updated_op',
           'shards_updated_reason',
           'shards_admin_override_at',
+        ]);
+    }
+
+    // Server progress shadow/cutover markers are never client-owned. Allowing an
+    // owner to write them would let a modified client manufacture an authoritative
+    // baseline and permanently inflate XP on the next progress event.
+    function hasNoProgressAuthorityMarkerWrites() {
+      return isAdmin()
+        || !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'progressServerState',
+          'progressServerAuthoritative',
+          'progressServerCutoverAt',
+          'progressMigratedAt',
+        ]);
+    }
+
+    function newDocHasNoProgressAuthorityMarkerWrites() {
+      return isAdmin()
+        || !request.resource.data.keys().hasAny([
+          'progressServerState',
+          'progressServerAuthoritative',
+          'progressServerCutoverAt',
+          'progressMigratedAt',
+        ]);
+    }
+
+    function newDocHasNoServerScoreWrites() {
+      return isAdmin()
+        || !request.resource.data.get('progress', {}).keys().hasAny([
+          'user_total_xp',
+          'user_prev_xp',
+          'user_level',
+          'weekly_xp',
+          'weekly_xp_period_start',
+          'week_points',
+          'week_points_v2',
+          'streak_count',
+          'last_active_date',
+          'streak_last_date',
         ]);
     }
 
@@ -156,8 +200,7 @@ service cloud.firestore {
         || !request.resource.data.get('progress', {})
               .diff(resource.data.get('progress', {}))
               .affectedKeys().hasAny(blockedPremiumProgressKeys())
-           && (!isProgressServerAuthoritative()
-                || !request.resource.data.get('progress', {})
+           && !request.resource.data.get('progress', {})
                       .diff(resource.data.get('progress', {}))
                       .affectedKeys().hasAny([
                 'user_total_xp',
@@ -964,7 +1007,7 @@ service cloud.firestore {
                 'level_exams_v2::fr::level_exam_final_pass_count',
                 'level_exam_final_completed_at',
                 'level_exams_v2::fr::level_exam_final_completed_at',
-              ]));
+              ]);
     }
 
     function newUserDocOwnerMatchesAuth(userId) {
@@ -1011,6 +1054,10 @@ service cloud.firestore {
     //  - userId == request.auth.uid
     //  - stableId-Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ñ Ð¿Ð¾Ð»ÐµÐ¼ firebaseAuthUid == request.auth.uid
     // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
+    match /account_deletion_tombstones/{userId} {
+      allow read, write: if false;
+    }
+
     match /users/{userId} {
       // read: владелец/админ ИЛИ документа ещё нет (пустое чтение безопасно и
       // не валит клиентскую транзакцию входа на новом localStableId — см.
@@ -1019,8 +1066,17 @@ service cloud.firestore {
       allow delete: if userDocOwnerMatchesAuth(userId);
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
-      allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
-      allow create: if newUserDocOwnerMatchesAuth(userId) && newDocHasNoPremiumWrites() && newDocHasNoShardWrites();
+      allow update: if userDocOwnerMatchesAuth(userId)
+        && accountDeletionNotPending(userId)
+        && progressHasNoPremiumWrites()
+        && hasNoShardWrites()
+        && hasNoProgressAuthorityMarkerWrites();
+      allow create: if newUserDocOwnerMatchesAuth(userId)
+        && accountDeletionNotPending(userId)
+        && newDocHasNoPremiumWrites()
+        && newDocHasNoShardWrites()
+        && newDocHasNoServerScoreWrites()
+        && newDocHasNoProgressAuthorityMarkerWrites();
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;
@@ -2014,14 +2070,7 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Компас: кэш тёплого комментария дня. Та же модель — публичное чтение
-    // прогретого кэша ($0), запись только сервер (Admin SDK), удаление — админ
-    // (удаление дока ⇒ комментарий сгенерится заново). Биллинг — только сервер.
-    match /compass_briefings/{hash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
-    }
+    // Исторический биллинг удалённой голосовой части Компаса остаётся закрытым.
     match /compass_billing/{docId} {
       allow read: if false;
       allow write: if false;

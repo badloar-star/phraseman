@@ -27,8 +27,8 @@ describe('Gustav French AI prompt parity gate', () => {
     expect(gate.blockers).toEqual([]);
 
     expect(gate.summary).toMatchObject({
-      surfacesChecked: 9,
-      surfacesPassing: 9,
+      surfacesChecked: 8,
+      surfacesPassing: 8,
       failedSurfaces: 0,
       placeholderHitFiles: 0,
       mojibakeHitFiles: 0,
@@ -81,4 +81,3 @@ describe('Gustav French AI prompt parity gate', () => {
     expect(premiumDialog).toContain('sourceStudyTarget,');
   });
 });
-

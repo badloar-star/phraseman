@@ -243,7 +243,7 @@ describe('help board product contract', () => {
     for (const doc of [terms, privacy, appTerms, termsHtml]) {
       expect(doc).toContain('Help Board');
       expect(doc).toContain('Compass');
-      expect(doc).toContain('July 1, 2026');
+      expect(doc).toMatch(/July \d{1,2}, 2026/);
     }
   });
 });

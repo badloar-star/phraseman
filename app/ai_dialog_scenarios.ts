@@ -102,8 +102,8 @@ const DIALOG_SCENARIO_COPY_UK: Record<string, ScenarioUiCopy> = {
   },
   pharmacy: {
     title: 'В аптеці',
-    goal: 'Поясни просту проблему і запитай, як приймати ліки',
-    nextStepHint: 'Опиши просту проблему і запитай, як часто приймати ліки.',
+    goal: 'Поясни просту проблему і попроси безпечну професійну пораду',
+    nextStepHint: 'Опиши просту проблему і попроси порадити, до кого звернутися.',
   },
   restaurant: {
     title: 'У ресторані',
@@ -112,8 +112,8 @@ const DIALOG_SCENARIO_COPY_UK: Record<string, ScenarioUiCopy> = {
   },
   doctor_visit: {
     title: 'У лікаря',
-    goal: 'Розкажи про симптоми, відповідай на питання і уточни наступний крок',
-    nextStepHint: 'Розкажи, що болить і як давно, потім запитай, що робити далі.',
+    goal: 'Розкажи про симптоми, відповідай на питання і попроси направити до спеціаліста',
+    nextStepHint: 'Розкажи, що болить і як давно, потім запитай, до якого спеціаліста звернутися.',
   },
   phone_delivery: {
     title: 'Доставка',
@@ -244,8 +244,8 @@ const DIALOG_SCENARIO_COPY_ES: Record<string, ScenarioUiCopyEs> = {
   },
   pharmacy: {
     titleEs: 'En la farmacia',
-    goalEs: 'Explica un problema sencillo y pregunta cómo tomar el medicamento',
-    nextStepHintEs: 'Describe un problema sencillo y pregunta con qué frecuencia tomar el medicamento.',
+    goalEs: 'Explica un problema sencillo y pide orientación profesional segura',
+    nextStepHintEs: 'Describe un problema sencillo y pregunta a quién deberías consultar.',
   },
   restaurant: {
     titleEs: 'En el restaurante',
@@ -254,8 +254,8 @@ const DIALOG_SCENARIO_COPY_ES: Record<string, ScenarioUiCopyEs> = {
   },
   doctor_visit: {
     titleEs: 'En el médico',
-    goalEs: 'Cuenta tus síntomas, responde preguntas y aclara el siguiente paso',
-    nextStepHintEs: 'Cuenta qué te duele y desde cuándo; luego pregunta qué hacer después.',
+    goalEs: 'Cuenta tus síntomas, responde preguntas y pregunta qué profesional debes consultar',
+    nextStepHintEs: 'Cuenta qué te duele y desde cuándo; luego pregunta qué profesional deberías consultar.',
   },
   phone_delivery: {
     titleEs: 'Entrega',
@@ -457,11 +457,11 @@ const DIALOG_SCENARIO_COPY_BATCH: Record<string, ScenarioBatchCopies> = {
     scenarioCopy('Sklep odzieżowy', 'Poproś o inny rozmiar, przymierzalnię i zapytaj o cenę', 'Poproś o inny rozmiar albo zapytaj, czy możesz przymierzyć rzecz.'),
   ),
   pharmacy: scenarioBatchCopies(
-    scenarioCopy('Na farmácia', 'Explique um problema simples e pergunte como tomar o remédio', 'Descreva um problema simples e pergunte com que frequência tomar o remédio.'),
-    scenarioCopy('Ở hiệu thuốc', 'Giải thích một vấn đề đơn giản và hỏi cách dùng thuốc', 'Mô tả vấn đề đơn giản và hỏi nên uống thuốc bao lâu một lần.'),
-    scenarioCopy('Di apotek', 'Jelaskan masalah sederhana dan tanyakan cara minum obat', 'Jelaskan masalah sederhana dan tanyakan seberapa sering obat diminum.'),
-    scenarioCopy('Eczanede', 'Basit bir sorunu açıkla ve ilacı nasıl kullanacağını sor', 'Basit bir sorunu anlat ve ilacı ne sıklıkla alacağını sor.'),
-    scenarioCopy('W aptece', 'Wyjaśnij prosty problem i zapytaj, jak brać lek', 'Opisz prosty problem i zapytaj, jak często brać lek.'),
+    scenarioCopy('Na farmácia', 'Explique um problema simples e peça orientação profissional segura', 'Descreva um problema simples e pergunte com quem deve falar.'),
+    scenarioCopy('Ở hiệu thuốc', 'Giải thích một vấn đề đơn giản và xin lời khuyên chuyên môn an toàn', 'Mô tả vấn đề đơn giản và hỏi nên nói chuyện với ai.'),
+    scenarioCopy('Di apotek', 'Jelaskan masalah sederhana dan minta arahan profesional yang aman', 'Jelaskan masalah sederhana dan tanyakan harus berbicara dengan siapa.'),
+    scenarioCopy('Eczanede', 'Basit bir sorunu açıkla ve güvenli profesyonel yönlendirme iste', 'Basit bir sorunu anlat ve kiminle konuşman gerektiğini sor.'),
+    scenarioCopy('W aptece', 'Wyjaśnij prosty problem i poproś o bezpieczną profesjonalną wskazówkę', 'Opisz prosty problem i zapytaj, z kim warto porozmawiać.'),
   ),
   restaurant: scenarioBatchCopies(
     scenarioCopy('No restaurante', 'Peça uma mesa, faça o pedido e pergunte pela conta', 'Peça uma mesa, peça um prato ou peça a conta.'),
@@ -471,11 +471,11 @@ const DIALOG_SCENARIO_COPY_BATCH: Record<string, ScenarioBatchCopies> = {
     scenarioCopy('W restauracji', 'Poproś o stolik, zamów danie i zapytaj o rachunek', 'Poproś o stolik, zamów danie albo poproś o rachunek.'),
   ),
   doctor_visit: scenarioBatchCopies(
-    scenarioCopy('No médico', 'Conte seus sintomas, responda perguntas e confirme o próximo passo', 'Conte o que dói e há quanto tempo, depois pergunte o que fazer em seguida.'),
-    scenarioCopy('Đi khám bác sĩ', 'Kể triệu chứng, trả lời câu hỏi và hỏi bước tiếp theo', 'Nói chỗ nào đau và đau bao lâu, rồi hỏi tiếp theo nên làm gì.'),
-    scenarioCopy('Ke dokter', 'Ceritakan gejala, jawab pertanyaan, dan pastikan langkah berikutnya', 'Ceritakan apa yang sakit dan sejak kapan, lalu tanyakan apa yang harus dilakukan berikutnya.'),
-    scenarioCopy('Doktorda', 'Belirtileri anlat, soruları cevapla ve sonraki adımı netleştir', 'Nerenin ne zamandır ağrıdığını söyle, sonra ne yapman gerektiğini sor.'),
-    scenarioCopy('U lekarza', 'Opowiedz o objawach, odpowiedz na pytania i ustal następny krok', 'Powiedz, co boli i od kiedy, potem zapytaj, co robić dalej.'),
+    scenarioCopy('No médico', 'Conte seus sintomas, responda perguntas e pergunte qual profissional deve consultar', 'Conte o que dói e há quanto tempo, depois pergunte qual profissional deve consultar.'),
+    scenarioCopy('Đi khám bác sĩ', 'Kể triệu chứng, trả lời câu hỏi và hỏi nên gặp chuyên gia nào', 'Nói chỗ nào đau và đau bao lâu, rồi hỏi nên gặp chuyên gia nào.'),
+    scenarioCopy('Ke dokter', 'Ceritakan gejala, jawab pertanyaan, dan tanyakan profesional mana yang harus ditemui', 'Ceritakan apa yang sakit dan sejak kapan, lalu tanyakan profesional mana yang harus ditemui.'),
+    scenarioCopy('Doktorda', 'Belirtileri anlat, soruları cevapla ve hangi uzmana danışman gerektiğini sor', 'Nerenin ne zamandır ağrıdığını söyle, sonra hangi uzmana danışman gerektiğini sor.'),
+    scenarioCopy('U lekarza', 'Opowiedz o objawach, odpowiedz na pytania i zapytaj, z jakim specjalistą porozmawiać', 'Powiedz, co boli i od kiedy, potem zapytaj, z jakim specjalistą porozmawiać.'),
   ),
   phone_delivery: scenarioBatchCopies(
     scenarioCopy('Entrega', 'Ligue para o entregador, confirme o endereço e o horário de entrega', 'Diga o endereço e confirme quando o entregador chegará.'),
@@ -964,21 +964,21 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     id: 'pharmacy',
     category: 'everyday',
     titleRu: 'В аптеке',
-    goalRu: 'Объясни простую проблему и спроси, как принимать лекарство',
-    role: 'a careful pharmacist',
+    goalRu: 'Объясни простую проблему и попроси безопасно направить к специалисту',
+    role: 'a careful pharmacy counter assistant',
     setting: 'a pharmacy counter',
-    goalEn: 'describe a simple health problem and ask how to take the medicine',
+    goalEn: 'describe a simple health problem and ask who to speak to for professional advice',
     objectives: [
       { id: 'describe_problem', labelRu: 'Описать, что беспокоит', en: 'describe a simple health problem' },
-      { id: 'ask_how_to_take', labelRu: 'Спросить, как принимать лекарство', en: 'ask how to take the medicine' },
+      { id: 'ask_professional_help', labelRu: 'Попросить направить к специалисту', en: 'ask who to speak to for professional advice' },
     ],
     persona:
-      'Your name is Mr. Patel. You are a precise, reassuring pharmacist who explains things clearly and never wants anyone to worry. ' +
-      'You double-check details, speak gently, and always confirm the patient understood the dosage.',
+      'Your name is Mr. Patel. You are a precise, reassuring pharmacy counter assistant who helps people explain what they need in clear words. ' +
+      'You never recommend medicine, treatment, or dosage; you gently direct real health questions to a qualified professional.',
     cefr: 'A2',
     icon: 'medical-outline',
     active: true,
-    nextStepHintRu: 'Опиши простую проблему и спроси, как часто принимать лекарство.',
+    nextStepHintRu: 'Опиши простую проблему и спроси, с кем лучше поговорить.',
   },
   {
     id: 'restaurant',
@@ -1000,17 +1000,17 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     id: 'doctor_visit',
     category: 'everyday',
     titleRu: 'У врача',
-    goalRu: 'Расскажи о симптомах, ответь на вопросы и уточни следующий шаг',
-    role: 'a calm family doctor',
-    setting: 'a doctor appointment',
-    goalEn: 'describe symptoms, answer follow-up questions, and ask what to do next',
+    goalRu: 'Расскажи о симптомах, ответь на вопросы и попроси направить к специалисту',
+    role: 'a calm clinic intake assistant',
+    setting: 'a clinic reception desk',
+    goalEn: 'describe symptoms, answer intake questions, and ask which professional you should speak to next',
     persona:
-      'Your name is Dr. Hale. You are a warm, unhurried family doctor who has seen everything and never panics. ' +
-      'You ask gentle follow-up questions, reassure the patient, and explain the next step in plain, calm words.',
+      'Your name is Hale. You are a warm, unhurried clinic intake assistant who helps visitors explain symptoms clearly before they see a qualified professional. ' +
+      'You ask gentle intake questions, never diagnose, and never recommend treatment.',
     cefr: 'B1',
     icon: 'fitness-outline',
     active: true,
-    nextStepHintRu: 'Расскажи, что болит и как давно, затем спроси, что делать дальше.',
+    nextStepHintRu: 'Расскажи, что болит и как давно, затем спроси, к какому специалисту обратиться.',
   },
   {
     id: 'phone_delivery',

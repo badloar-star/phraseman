@@ -106,6 +106,9 @@ export default function ConstellationMatchScreen() {
   const [exitAsk, setExitAsk] = useState(false);
   const [countdown, setCountdown] = useState<number | null>(null);
   const countdownDoneRef = useRef(false);
+  // Заставка дуэли (2.7): показывается один раз на каждый вход в дуэль-раунд.
+  const [duelIntro, setDuelIntro] = useState(false);
+  const duelIntroRoundRef = useRef(0);
   const [emoteMenuOpen, setEmoteMenuOpen] = useState(false);
   const navigatedRef = useRef(false);
   const prevRoundRef = useRef(0);
@@ -160,6 +163,20 @@ export default function ConstellationMatchScreen() {
     }, 850);
     return () => clearInterval(id);
   }, [match]);
+
+  // Заставка дуэли (2.7): при входе в дуэль-раунд — короткая «аватар vs аватар»
+  // с хаптикой. Один раз на раунд (duelIntroRoundRef). Гейт focused (не в фоне).
+  useEffect(() => {
+    if (!focused || !match || match.stage !== 'active') return;
+    const inDuel = me?.kind === 'duel' && me.round === match.round && match.phase === 'answer';
+    if (!inDuel) return;
+    if (duelIntroRoundRef.current === match.round) return;
+    duelIntroRoundRef.current = match.round;
+    setDuelIntro(true);
+    hapticHeavyImpact();
+    const id = setTimeout(() => setDuelIntro(false), 1800);
+    return () => clearTimeout(id);
+  }, [focused, match, me]);
 
   // Секундный тик дедлайна фазы (гейт фокусом, очистка — owner-контракт).
   useEffect(() => {
@@ -424,6 +441,16 @@ export default function ConstellationMatchScreen() {
   const loadingQuestion = !isChoose && !iAmOut && myPublic.status === 'alive'
     && (!me || me.round !== match.round);
 
+  // Данные соперника по дуэли (2.7): аватар/имя/цвет из публичного матч-дока.
+  const duelOpp = isDuel && me?.duelOppSlot != null
+    ? match.players.find((p) => p.slot === me.duelOppSlot) ?? null
+    : null;
+  // Мой счёт дуэли = число верных ответов (соперника НЕ раскрываем — анти-чит).
+  const myDuelScore = isDuel && me ? me.answers.filter((a) => a.correct).length : 0;
+  const duelTotal = me?.questions.length ?? 0;
+  // Внезапная смерть = дошли до последнего вопроса дуэли (красная драма).
+  const duelSuddenDeath = isDuel && duelTotal > 0 && (me?.answers.length ?? 0) >= duelTotal - 1;
+
   return (
     <View style={styles.root}>
       <LinearGradient colors={skyColors} style={StyleSheet.absoluteFill} />
@@ -643,6 +670,10 @@ export default function ConstellationMatchScreen() {
           secondsLeft={secondsLeft}
           phaseTotalSec={phaseTotalSec}
           deadlineMs={match.phaseDeadlineAt}
+          duelMyScore={myDuelScore}
+          duelTotal={duelTotal}
+          duelOppName={duelOpp?.name ?? null}
+          duelSuddenDeath={duelSuddenDeath}
           bottomInset={insets.bottom}
           onAnswer={onAnswer}
         />
@@ -746,6 +777,17 @@ export default function ConstellationMatchScreen() {
       {/* Отсчёт 3-2-1 перед игрой — пульсирующий, привлекает внимание */}
       {countdown !== null ? <RoundCountdown value={countdown} lang={lang} /> : null}
 
+      {/* Заставка дуэли (2.7): аватар vs аватар при входе в столкновение. */}
+      {duelIntro && duelOpp && mySlot !== null ? (
+        <DuelIntro
+          lang={lang}
+          meName={myPublic.name}
+          meColor={CONSTELLATION_SLOT_COLORS[mySlot]}
+          oppName={duelOpp.name}
+          oppColor={CONSTELLATION_SLOT_COLORS[duelOpp.slot]}
+        />
+      ) : null}
+
       {/* Тост ошибки сети (0.5) */}
       {toast ? (
         <View style={[styles.toast, { bottom: insets.bottom + 90 }]} pointerEvents="none">
@@ -846,6 +888,55 @@ const EmoteMenu = memo(function EmoteMenu({ lang, bottomInset, onPick, onClose }
         </View>
       </Animated.View>
     </>
+  );
+});
+
+// ── Заставка дуэли (2.7): аватар vs аватар ──────────────────────────────────
+
+const DuelIntro = memo(function DuelIntro({
+  lang, meName, meColor, oppName, oppColor,
+}: { lang: Lang; meName: string; meColor: string; oppName: string; oppColor: string }) {
+  const { f } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const left = useSharedValue(reduceMotion ? 0 : -1);
+  const right = useSharedValue(reduceMotion ? 0 : 1);
+  const op = useSharedValue(reduceMotion ? 1 : 0);
+  useEffect(() => {
+    if (reduceMotion) return;
+    op.value = withTiming(1, { duration: 200 });
+    left.value = withTiming(0, { duration: 420, easing: Easing.out(Easing.back(1.6)) });
+    right.value = withTiming(0, { duration: 420, easing: Easing.out(Easing.back(1.6)) });
+  }, [left, right, op, reduceMotion]);
+  const leftStyle = useAnimatedStyle(() => ({ transform: [{ translateX: left.value * 140 }], opacity: op.value }));
+  const rightStyle = useAnimatedStyle(() => ({ transform: [{ translateX: right.value * 140 }], opacity: op.value }));
+  const vsStyle = useAnimatedStyle(() => ({ opacity: op.value }));
+
+  const avatar = (name: string, color: string) => (
+    <View style={[styles.duelAva, { backgroundColor: color }]}>
+      <Text style={styles.duelAvaText}>{(name[0] ?? '?').toUpperCase()}</Text>
+    </View>
+  );
+
+  return (
+    <View style={styles.duelIntroOverlay} pointerEvents="none">
+      <View style={styles.duelIntroRow}>
+        <Animated.View style={[styles.duelSide, leftStyle]}>
+          {avatar(meName, meColor)}
+          <Text numberOfLines={1} style={[styles.duelName, { color: meColor }]}>{meName}</Text>
+        </Animated.View>
+        <Animated.Text style={[styles.duelVs, vsStyle, { fontSize: f.h1 }]}>VS</Animated.Text>
+        <Animated.View style={[styles.duelSide, rightStyle]}>
+          {avatar(oppName, oppColor)}
+          <Text numberOfLines={1} style={[styles.duelName, { color: oppColor }]}>{oppName}</Text>
+        </Animated.View>
+      </View>
+      <Animated.Text style={[styles.duelIntroLabel, vsStyle]}>
+        ⚡ {triLang(lang, {
+          ru: 'СТОЛКНОВЕНИЕ', uk: 'ЗІТКНЕННЯ', es: 'COLISIÓN', 'pt-BR': 'COLISÃO',
+          vi: 'VA CHẠM', id: 'TABRAKAN', tr: 'ÇARPIŞMA', pl: 'ZDERZENIE',
+        })}
+      </Animated.Text>
+    </View>
   );
 });
 
@@ -1203,12 +1294,17 @@ interface QuizOverlayProps {
   secondsLeft: number;
   phaseTotalSec: number;
   deadlineMs: number;
+  /** Дуэль (2.7): мой счёт верных, всего вопросов, имя соперника, внезапная смерть. */
+  duelMyScore?: number;
+  duelTotal?: number;
+  duelOppName?: string | null;
+  duelSuddenDeath?: boolean;
   bottomInset: number;
   onAnswer: (index: number) => void;
 }
 
 const QuizOverlay = memo(function QuizOverlay({
-  lang, isDuel, qIndex, total, question, options, targetLabel, targetColor, busy, answerFeedback, secondsLeft, phaseTotalSec, deadlineMs, bottomInset, onAnswer,
+  lang, isDuel, qIndex, total, question, options, targetLabel, targetColor, busy, answerFeedback, secondsLeft, phaseTotalSec, deadlineMs, duelMyScore = 0, duelTotal = 0, duelOppName, duelSuddenDeath = false, bottomInset, onAnswer,
 }: QuizOverlayProps) {
   const { theme: t, f } = useTheme();
   const budgetLow = secondsLeft <= 5;
@@ -1259,7 +1355,9 @@ const QuizOverlay = memo(function QuizOverlay({
   return (
     <Animated.View style={[quizStyles.box, enterStyle, {
       backgroundColor: 'rgba(8,13,30,0.97)',
-      borderColor: isDuel ? '#FFD166' : '#2A3A6A',
+      // Внезапная смерть дуэли — красная рамка (2.7 драма решающего вопроса).
+      borderColor: isDuel ? (duelSuddenDeath ? '#FF5C7A' : '#FFD166') : '#2A3A6A',
+      borderWidth: isDuel && duelSuddenDeath ? 2 : 1,
       bottom: 14 + bottomInset, // над системной навигацией Android (жалоба)
     }]}>
       {/* Полоса бюджета фазы (2.3): игрок видит, сколько времени тает, прямо
@@ -1275,15 +1373,25 @@ const QuizOverlay = memo(function QuizOverlay({
         />
       </View>
       {isDuel ? (
-        <Text style={quizStyles.duelBadge}>
-          ⚡ {triLang(lang, {
-            ru: 'СТОЛКНОВЕНИЕ — одинаковые вопросы, решают точность и скорость',
-            uk: 'ЗІТКНЕННЯ — однакові питання',
-            es: 'CHOQUE — mismas preguntas',
-            'pt-BR': 'CHOQUE — mesmas perguntas',
-            vi: 'VA CHẠM', id: 'BENTROKAN', tr: 'ÇARPIŞMA', pl: 'STARCIE',
-          })}
-        </Text>
+        <View style={quizStyles.duelScoreRow}>
+          {/* Мой прогресс дуэли: ⚡ за верный ответ, ○ за оставшиеся. Счёт
+              соперника НЕ раскрываем (анти-чит) — он «?» до резолва. */}
+          <View style={quizStyles.duelPips}>
+            {Array.from({ length: Math.max(1, duelTotal) }).map((_, i) => (
+              <Text key={i} style={{ fontSize: 13, color: i < duelMyScore ? '#FFD166' : 'rgba(150,170,230,0.35)' }}>
+                {i < duelMyScore ? '⚡' : '○'}
+              </Text>
+            ))}
+          </View>
+          <Text style={quizStyles.duelBadge}>
+            {duelSuddenDeath
+              ? triLang(lang, {
+                ru: '⚡ РЕШАЮЩИЙ', uk: '⚡ ВИРІШАЛЬНИЙ', es: '⚡ DECISIVO', 'pt-BR': '⚡ DECISIVO',
+                vi: '⚡ QUYẾT ĐỊNH', id: '⚡ PENENTU', tr: '⚡ BELİRLEYİCİ', pl: '⚡ DECYDUJĄCY',
+              })
+              : `⚡ vs ${duelOppName ?? '?'}`}
+          </Text>
+        </View>
       ) : null}
       {/* Мини-контекст цели (аудит): игрок всегда видит, ЗА КАКУЮ звезду бьётся
           и чья она — цветная точка владельца + имя. */}
@@ -1367,6 +1475,27 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 0 },
   },
   cdGo: { fontSize: 58, color: '#FFD166', letterSpacing: 2 },
+  duelIntroOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(4,7,18,0.72)',
+    zIndex: 100,
+    gap: 16,
+  },
+  duelIntroRow: { flexDirection: 'row', alignItems: 'center', gap: 18 },
+  duelSide: { alignItems: 'center', gap: 6, width: 96 },
+  duelAva: {
+    width: 64, height: 64, borderRadius: 32,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  duelAvaText: { color: '#06122B', fontWeight: '900', fontSize: 28 },
+  duelName: { fontWeight: '800', fontSize: 13, maxWidth: 96, textAlign: 'center' },
+  duelVs: {
+    color: '#FFD166', fontWeight: '900', letterSpacing: 1,
+    textShadowColor: 'rgba(255,209,102,0.7)', textShadowRadius: 18, textShadowOffset: { width: 0, height: 0 },
+  },
+  duelIntroLabel: { color: '#FFD166', fontWeight: '800', fontSize: 14, letterSpacing: 1.5 },
   hud: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1709,12 +1838,18 @@ const quizStyles = StyleSheet.create({
   targetRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 8 },
   targetDot: { width: 9, height: 9, borderRadius: 5 },
   targetText: { flex: 1, fontWeight: '600' },
+  duelScoreRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 6,
+  },
+  duelPips: { flexDirection: 'row', gap: 3 },
   duelBadge: {
     color: '#FFD166',
     fontSize: 10,
     fontWeight: '800',
     letterSpacing: 0.6,
-    marginBottom: 6,
   },
   meta: { marginBottom: 6, fontVariant: ['tabular-nums'] },
   question: { fontWeight: '800', lineHeight: 24, marginBottom: 12 },

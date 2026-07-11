@@ -118,7 +118,9 @@ describe('handleConstellationSubmit — анти-чит и идемпотент�
     test('верный ответ (по серверному correctByQid) записывается с correct:true', async () => {
         seedActiveMatch({ dealtAt: 0 }); // now=10:00, dealtAt=0 → sinceMs огромный > 800
         const res = await callSubmit({ actionId: 'a1', type: 'answer', qIndex: 0, answerIndex: 1 });
-        expect(res).toMatchObject({ ok: true, correct: true, correctIndex: 1 });
+        // correctIndex клиенту НЕ отдаём (аудит: анти-чит на повторы вопросов из банка).
+        expect(res).toMatchObject({ ok: true, correct: true });
+        expect(res).not.toHaveProperty('correctIndex');
         const player = docs.get(`constellation_players/${MATCH_ID}_${UID}`);
         expect(player.answers.length).toBe(1);
     });

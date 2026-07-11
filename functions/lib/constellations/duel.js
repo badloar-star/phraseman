@@ -29,15 +29,33 @@ function answerAt(answers, i) {
 function pointDeltas(a, b) {
     return [a.correct ? 1 : 0, b.correct ? 1 : 0];
 }
-/** Внезапная смерть: первый ВЕРНЫЙ забирает; оба верно → быстрейший; оба мимо → никто. */
-function suddenDeathWinner(a, b) {
+/** Время ПЕРВОГО верного ответа среди основных вопросов; нет верного → +∞. */
+function firstCorrectTime(answers, mainQuestions) {
+    for (let i = 0; i < mainQuestions; i += 1) {
+        const a = answers[i];
+        if (a && a.correct)
+            return a.timeMs;
+    }
+    return Number.MAX_SAFE_INTEGER;
+}
+/**
+ * Внезапная смерть: первый ВЕРНЫЙ забирает; оба верно → быстрейший.
+ * Оба мимо → тай-брейк по СКОРОСТИ первого верного ответа в основных вопросах
+ * (аудит: полная ничья «звезда никому» — потраченный впустую ход и минус к
+ * рейтингу ни за что). Если оба вообще не дали ни одного верного — только тогда
+ * null (звезда прежнему владельцу): претендовать было нечем.
+ */
+function suddenDeathWinner(a, b, tieBreakA, tieBreakB) {
     if (a.correct && b.correct)
         return a.timeMs <= b.timeMs ? 0 : 1;
     if (a.correct)
         return 0;
     if (b.correct)
         return 1;
-    return null;
+    // Оба мимо на доп. вопросе → кто раньше был верен в основных.
+    if (tieBreakA === Number.MAX_SAFE_INTEGER && tieBreakB === Number.MAX_SAFE_INTEGER)
+        return null;
+    return tieBreakA <= tieBreakB ? 0 : 1;
 }
 function scoreDuel(answersA, answersB, mainQuestions = exports.DEFAULT_MAIN_QUESTIONS) {
     // Защита от нулей/дробей из runtime-конфига: минимум 1 основной вопрос.
@@ -63,7 +81,7 @@ function scoreDuel(answersA, answersB, mainQuestions = exports.DEFAULT_MAIN_QUES
         };
     }
     // Ничья по знанию → внезапная смерть (доп. вопрос): здесь скорость решает.
-    const winner = suddenDeathWinner(answerAt(answersA, total), answerAt(answersB, total));
+    const winner = suddenDeathWinner(answerAt(answersA, total), answerAt(answersB, total), firstCorrectTime(answersA, total), firstCorrectTime(answersB, total));
     return {
         winner,
         points,

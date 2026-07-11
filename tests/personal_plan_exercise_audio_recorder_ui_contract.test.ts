@@ -6,6 +6,15 @@ const SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_exercise.ts
 const MOJIBAKE_RE = /[\u00d0\u00d1\u00c2]/u;
 
 describe('personal plan exercise audio and recorder UI contract', () => {
+  it('focuses the standalone recall input so the keyboard opens on entry', () => {
+    const recallStart = SOURCE.indexOf("isRecallMode && 'targetText' in item");
+    const recallEnd = SOURCE.indexOf('isListenBuildMode', recallStart);
+    const recallRenderer = SOURCE.slice(recallStart, recallEnd);
+
+    expect(recallRenderer).toContain('<TextInput');
+    expect(recallRenderer).toContain('autoFocus');
+  });
+
   it('keeps listening audio control readable, accessible and stateful', () => {
     const listeningButtonSource = SOURCE.slice(
       SOURCE.indexOf('function PlanListenChooseAudioButton'),
@@ -40,13 +49,17 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     expect(SOURCE).toContain('speechModule.start(');
     expect(SOURCE).toContain("speechModule.addListener('result', applyResult)");
     expect(SOURCE).toContain('scheduleFinishAttempt');
+    expect(SOURCE).toContain('schedulePlanSpeechStopSettlement(');
+    expect(SOURCE).toContain('finishAttemptRef.current');
     expect(SOURCE).toContain('Android segmented sessions can emit a final result for only part of the');
-    expect(SOURCE).toContain("if (Platform.OS !== 'android') playRecordStart();");
+    expect(SOURCE).toContain('onFirstAudio');
+    expect(SOURCE).toContain('const playCueOnce = () =>');
+    expect(SOURCE).toContain('playRecordStart();');
     expect(SOURCE).toContain('scorePlanPronunciationTranscript({');
     expect(SOURCE).toContain('listenPronunciationTarget');
     expect(SOURCE).toContain('speakFallbackAudio(targetText, 0.86');
     expect(SOURCE).toContain("if (Platform.OS === 'android') playFallbackAudio();");
-    expect(SOURCE).toContain('await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(SOURCE).toContain('await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
     expect(SOURCE).toContain('targetPlaybackFallbackTimerRef.current = setTimeout');
     expect(SOURCE).toContain('const currentTime = Math.max');
     expect(SOURCE).toContain('currentTime > 0.05');
@@ -60,9 +73,10 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     // device, or the user declined mic access) the learner may advance without a
     // score so a free in-plan exercise never traps them — gated on `blocked`.
     // Прослушивание фразы НЕ обязательно — юзер может произнести сразу (если сам хочет).
-    // Кнопка «Сказать» заблокирована ТОЛЬКО пока звучит target-аудио (иначе микрофон
-    // поймал бы озвучку), но НЕ требует предварительного прослушивания.
-    expect(SOURCE).toContain('enabled={!pronunciationSpeakingTarget}');
+    // Во время hold кнопка остаётся активной на requesting/listening, иначе RN
+    // может потерять onPressOut. Блокируем её только при настоящем scoring.
+    expect(SOURCE).toContain('enabled={!pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}');
+    expect(SOURCE).toContain('preparing={pronunciationPreparing}');
     expect(SOURCE).toContain('(pronunciationBlocked != null || pronunciationScore?.passed === true)');
     expect(SOURCE).toContain('disabled={saving || pronunciationScoring}');
     expect(SOURCE).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');

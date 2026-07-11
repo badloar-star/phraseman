@@ -14,6 +14,7 @@
 
 export type PlanSpeechModule = {
   requestPermissionsAsync: () => Promise<{ granted: boolean }>;
+  getPermissionsAsync?: () => Promise<{ granted: boolean }>;
   start: (opts: Record<string, unknown>) => void;
   stop: () => void;
   abort: () => void;
@@ -27,6 +28,57 @@ export type PlanSpeechModule = {
   /** Present on expo-speech-recognition; resolves whether any recognizer can run. */
   isRecognitionAvailable?: () => boolean;
 };
+
+export type HoldPermissionResult = 'granted' | 'granted_after_prompt' | 'denied';
+
+export const PLAN_SPEECH_STOP_SETTLEMENT_MS = 1500;
+
+export type PlanSpeechStopTimerRef = {
+  current: ReturnType<typeof setTimeout> | null;
+};
+
+/**
+ * Native recognizers do not always emit result/end/error after stop(). Reuse the
+ * caller's attempt timer so the UI cannot remain in "scoring" forever when the
+ * native session goes silent after a completed push-to-talk gesture.
+ */
+export function schedulePlanSpeechStopSettlement(
+  timerRef: PlanSpeechStopTimerRef,
+  finishAttempt: () => void,
+  delayMs = PLAN_SPEECH_STOP_SETTLEMENT_MS,
+): void {
+  if (timerRef.current != null) clearTimeout(timerRef.current);
+  timerRef.current = setTimeout(() => {
+    timerRef.current = null;
+    finishAttempt();
+  }, delayMs);
+}
+
+/**
+ * Permission handshake for push-to-talk. If a system prompt was shown, the
+ * original touch is no longer trustworthy (iOS/Android may swallow press-out),
+ * so callers must return to idle and require one fresh hold.
+ */
+export async function requestSpeechPermissionForHold(
+  speechModule: PlanSpeechModule,
+): Promise<HoldPermissionResult> {
+  let before: { granted: boolean } | null = null;
+  if (typeof speechModule.getPermissionsAsync === 'function') {
+    try {
+      before = await speechModule.getPermissionsAsync();
+    } catch {
+      before = null;
+    }
+  }
+  if (before?.granted === true) return 'granted';
+  try {
+    const result = await speechModule.requestPermissionsAsync();
+    if (result?.granted !== true) return 'denied';
+    return before == null ? 'granted' : 'granted_after_prompt';
+  } catch {
+    return 'denied';
+  }
+}
 
 export function isSpeechRecognitionAvailable(speechModule: PlanSpeechModule | null): boolean {
   if (!speechModule) return false;

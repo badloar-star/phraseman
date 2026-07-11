@@ -1,6 +1,6 @@
 import { __cloudSyncTestHooks, MONOTONIC_COUNTER_RESTORE_KEYS } from '../app/cloud_sync';
 
-const { mergeLessonRestoreValue } = __cloudSyncTestHooks;
+const { mergeLessonRestoreValue, mergeCurrentWeekProgressRestoreValue } = __cloudSyncTestHooks;
 
 // #10: multi-device. Lifetime counters (achievement_*_count, shards_*_total, …)
 // are strictly additive (bumpStoredCounter never decreases them). When two devices
@@ -37,5 +37,58 @@ describe('cloud_sync monotonic counter merge (#10 multi-device)', () => {
     // streak_count is not in the allowlist → falls through to default (cloud wins),
     // because a streak can legitimately drop and must not be maxed.
     expect(mergeLessonRestoreValue('streak_count', '3', '40')).toBe('3');
+  });
+});
+
+describe('cloud_sync current-week restore merge', () => {
+  const currentWeekStart = '2026-06-08';
+  const currentWeekId = '2026-W24';
+
+  it('uses the embedded week key for week_points_v2 even when period metadata is missing', () => {
+    expect(mergeCurrentWeekProgressRestoreValue(
+      'week_points_v2',
+      JSON.stringify({ weekKey: currentWeekId, points: 300 }),
+      JSON.stringify({ weekKey: currentWeekId, points: 350 }),
+      null,
+      null,
+      currentWeekStart,
+      currentWeekId,
+    )).toBe(JSON.stringify({ weekKey: currentWeekId, points: 350 }));
+  });
+
+  it('keeps current local week_points_v2 when the cloud value belongs to an old week', () => {
+    expect(mergeCurrentWeekProgressRestoreValue(
+      'week_points_v2',
+      JSON.stringify({ weekKey: '2026-W23', points: 900 }),
+      JSON.stringify({ weekKey: currentWeekId, points: 350 }),
+      '2026-06-01',
+      currentWeekStart,
+      currentWeekStart,
+      currentWeekId,
+    )).toBe(JSON.stringify({ weekKey: currentWeekId, points: 350 }));
+  });
+
+  it('keeps a current local scalar when cloud period metadata is stale', () => {
+    expect(mergeCurrentWeekProgressRestoreValue(
+      'weekly_xp',
+      '900',
+      '350',
+      '2026-06-01',
+      currentWeekStart,
+      currentWeekStart,
+      currentWeekId,
+    )).toBe('350');
+  });
+
+  it('allows the current cloud week to replace a stale local scalar', () => {
+    expect(mergeCurrentWeekProgressRestoreValue(
+      'weekly_xp',
+      '10',
+      '900',
+      currentWeekStart,
+      '2026-06-01',
+      currentWeekStart,
+      currentWeekId,
+    )).toBe('10');
   });
 });

@@ -27,6 +27,41 @@ type AiMistakeCardProps = {
   userAnswer?: string;
 };
 
+function buildLocalMistakeFallback(lang: Lang, targetAnswer?: string, userAnswer?: string): string {
+  const intro = triLang(lang, {
+    ru: 'Сравни ответы:',
+    uk: 'Порівняй відповіді:',
+    es: 'Compara las respuestas:',
+    'pt-BR': 'Compare as respostas:',
+    vi: 'So sánh các câu trả lời:',
+    id: 'Bandingkan jawabannya:',
+    tr: 'Yanıtları karşılaştır:',
+    pl: 'Porównaj odpowiedzi:',
+  });
+  const yourAnswerLabel = triLang(lang, {
+    ru: 'Твой ответ',
+    uk: 'Твоя відповідь',
+    es: 'Tu respuesta',
+    'pt-BR': 'Sua resposta',
+    vi: 'Câu trả lời của bạn',
+    id: 'Jawabanmu',
+    tr: 'Yanıtın',
+    pl: 'Twoja odpowiedź',
+  });
+  const correctAnswerLabel = triLang(lang, {
+    ru: 'Правильно',
+    uk: 'Правильно',
+    es: 'Correcto',
+    'pt-BR': 'Correto',
+    vi: 'Đáp án đúng',
+    id: 'Jawaban benar',
+    tr: 'Doğru cevap',
+    pl: 'Poprawnie',
+  });
+
+  return `${intro}\n${yourAnswerLabel}: ${userAnswer?.trim() || '-'}\n${correctAnswerLabel}: ${targetAnswer?.trim() || '-'}`;
+}
+
 export default function AiMistakeCard({
   lang,
   state,
@@ -83,6 +118,9 @@ export default function AiMistakeCard({
       // Готовый текст от хука (напр. глобальный бюджет ИИ иссяк) имеет приоритет;
       // иначе — забавная плашка обычной ошибки.
       if (explanation) return explanation;
+      if (targetAnswer?.trim() || userAnswer?.trim()) {
+        return buildLocalMistakeFallback(lang, targetAnswer, userAnswer);
+      }
       if (errorCopy) return `${errorCopy.title}\n${errorCopy.message}`;
     }
     return triLang(lang, {

@@ -59,7 +59,6 @@ export type RemoteBoolKey =
   | 'ideas_enabled'
   | 'ai_global_disable'
   | 'compass_enabled'
-  | 'compass_ai_voice_enabled'
   | 'compass_deep_dive_enabled'
   | 'compass_lesson_invite_enabled'
   | 'compass_economy_enabled'
@@ -83,6 +82,10 @@ export type RemoteBoolKey =
   // стоит в app/paywall_purchase.ts (urgency форсится в неактивное пустое
   // состояние), сам PaywallPriceUrgency тогда возвращает null во всех режимах.
   | 'paywall_timers_enabled'
+  // Отзывы на пейволах («что говорят ученики»). Дефолт TRUE. Рубильник в Пульте:
+  // выкл → секция отзывов просто пропадает (передаём пустой массив), ничего не
+  // ломается; вкл → возвращается. Без обновления приложения.
+  | 'paywall_reviews_enabled'
   // Принудительное обновление (force-update). Дефолт FALSE = выключено (страховка
   // от случайной блокировки всех). Когда true И версия приложения < min_app_version
   // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
@@ -152,11 +155,6 @@ export type RemoteTextKey =
   | 'maintenance_ru'
   | 'maintenance_uk'
   | 'maintenance_es'
-  // Компас: переопределяемый из «Пульта» fallback-комментарий дня (когда ИИ-голос
-  // выключен или бюджет исчёрпан). Пусто = берётся встроенный текст по Библии.
-  | 'compass_voice_fallback_ru'
-  | 'compass_voice_fallback_uk'
-  | 'compass_voice_fallback_es'
   // Поурочные исключения поверх порога free_lesson_limit (управляются из «Пульта»).
   // JSON-массивы id уроков (1..32). free_lessons_extra — уроки, открытые БЕСПЛАТНО
   // сверх порога; premium_lessons_extra — уроки, ЗАКРЫТЫЕ под премиум, даже если они
@@ -203,7 +201,6 @@ export type RemoteTextKey =
   | 'promo_banner_audience'
   | 'promo_banner_platform'
   | 'maintenance_campaign_id'
-  | 'compass_copy_overrides'
   // ── YouTube-канал для экрана «Видео» и кнопки на главной ────────────────────
   // Управляется из «Пульта» → можно подключить ЛЮБОЙ канал без релиза. Пусто =
   // встроенный дефлот PHRASEMAN (LINGMAN_CHANNEL_* в app/lingman_youtube.ts).
@@ -315,7 +312,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // — весь код Компаса изолирован в app/compass/ и за этим флагом. Под-флаги ниже
   // — точечные рычаги отдельных крыльев (работают только при главном compass_enabled).
   compass_enabled: true,
-  compass_ai_voice_enabled: true,
   compass_deep_dive_enabled: true,
   compass_lesson_invite_enabled: true,
   compass_economy_enabled: true,
@@ -333,6 +329,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Таймеры срочности на пейволах: дефолт TRUE = kill-switch (показываются как
   // сейчас). Админ ставит false в «Пульте» → блок urgency прячется у всех живьём.
   paywall_timers_enabled: true,
+  // Отзывы на пейволах: дефолт TRUE. Админ ставит false в «Пульте» → секция
+  // отзывов пропадает у всех живьём (пустой массив), true → возвращается.
+  paywall_reviews_enabled: true,
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
@@ -385,9 +384,6 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   maintenance_ru: '',
   maintenance_uk: '',
   maintenance_es: '',
-  compass_voice_fallback_ru: '',
-  compass_voice_fallback_uk: '',
-  compass_voice_fallback_es: '',
   free_lessons_extra: '',
   premium_lessons_extra: '',
   weekly_boons_config: '',
@@ -416,7 +412,6 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   promo_banner_audience: '',
   promo_banner_platform: '',
   maintenance_campaign_id: '',
-  compass_copy_overrides: '',
   youtube_channel_id: '',
   youtube_channel_handle: '',
   youtube_channel_name: '',
@@ -658,6 +653,7 @@ export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
  * Гейт применяется в app/paywall_purchase.ts.
  */
 export const isPaywallTimersEnabled = () => getRemoteBool('paywall_timers_enabled');
+export const isPaywallReviewsEnabled = () => getRemoteBool('paywall_reviews_enabled');
 
 // ── Force-update (минимальная версия) ───────────────────────────────────────
 /** Включён ли force-update. Дефолт false. */
@@ -945,7 +941,6 @@ export function getConstellationsPlacement(): ConstellationsPlacement {
  */
 export const isAiGloballyDisabled = () => getRemoteBool('ai_global_disable');
 export const isCompassEnabled = () => getRemoteBool('compass_enabled') && !isAiGloballyDisabled();
-export const isCompassAiVoiceEnabled = () => getRemoteBool('compass_ai_voice_enabled') && !isAiGloballyDisabled();
 export const isCompassDeepDiveEnabled = () => getRemoteBool('compass_deep_dive_enabled');
 export const isCompassLessonInviteEnabled = () => getRemoteBool('compass_lesson_invite_enabled');
 export const isCompassEconomyEnabled = () => getRemoteBool('compass_economy_enabled');

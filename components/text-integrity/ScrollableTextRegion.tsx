@@ -57,9 +57,9 @@ export function ScrollableTextRegion({
 }: ScrollableTextRegionProps) {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [footerHeight, setFooterHeight] = useState(0);
-  const lastBoundary = useRef<ScrollBoundaryState>();
-  const deliveredBoundaryCallback = useRef<typeof onBodyScrollBoundaryChange>();
-  const deliveredInsufficientCallback = useRef<typeof onInsufficientViewport>();
+  const lastBoundary = useRef<ScrollBoundaryState | undefined>(undefined);
+  const deliveredBoundaryCallback = useRef<typeof onBodyScrollBoundaryChange>(undefined);
+  const deliveredInsufficientCallback = useRef<typeof onInsufficientViewport>(undefined);
   const scrollMetrics = useRef<{ offset: number; viewport?: number; content?: number }>({ offset: 0 });
   const scrollHostMode = useRef<'normal' | 'fallback'>('normal');
   const viewportHeight = Number.isFinite(availableViewport.height) && availableViewport.height > 0

@@ -189,7 +189,11 @@ describe('resolveStableUidForAuth', () => {
     it('allows provider sign-in to repair a stable id still linked to the old anonymous auth uid', async () => {
         const { db, store } = makeDbStub({
             users: {
-                'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+                'stable-1': {
+                    firebaseAuthUid: 'old-anon-auth',
+                    anon_merge_claim: { authUid: 'old-anon-auth', at: 1777000000000 },
+                    updatedAt: 111,
+                },
             },
         });
         const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-1', 'stable-1', {
@@ -215,7 +219,11 @@ describe('resolveStableUidForAuth', () => {
     it('does not let a provider auth uid already linked to another user take over this stable id', async () => {
         const { db } = makeDbStub({
             users: {
-                'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+                'stable-1': {
+                    firebaseAuthUid: 'old-anon-auth',
+                    anon_merge_claim: { authUid: 'old-anon-auth', at: 1777000000000 },
+                    updatedAt: 111,
+                },
                 'stable-2': { firebaseAuthUid: 'google-auth-1', updatedAt: 222 },
             },
         });
@@ -223,6 +231,66 @@ describe('resolveStableUidForAuth', () => {
             code: 'permission-denied',
             message: 'stable_id_mismatch',
         });
+    });
+    it('chooses a stable id by deterministic identity ranking across multiple linked user docs', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-old': {
+                    firebaseAuthUid: 'google-auth-1',
+                    progress: { user_total_xp: '1200' },
+                    updatedAt: 111,
+                    identityHidden: true,
+                    canonicalStableId: 'stable-main',
+                },
+                'stable-main': {
+                    firebaseAuthUid: 'google-auth-1',
+                    progress: { user_total_xp: '3400' },
+                    updatedAt: 222,
+                },
+                'stable-noise': {
+                    firebaseAuthUid: 'google-auth-1',
+                    progress: { user_total_xp: '9999' },
+                    updatedAt: 333,
+                },
+            },
+        });
+        const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-1');
+        expect(stableUid).toBe('stable-noise');
+    });
+    it('returns canonical stable id when the direct document is hidden', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-hidden': {
+                    firebaseAuthUid: 'google-auth-2',
+                    identityHidden: true,
+                    canonicalStableId: 'stable-visible',
+                    updatedAt: 111,
+                },
+                'stable-visible': {
+                    firebaseAuthUid: 'google-auth-2',
+                    progress: { user_total_xp: '50' },
+                    updatedAt: 222,
+                },
+            },
+        });
+        const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-2');
+        expect(stableUid).toBe('stable-visible');
+    });
+    it('falls back to direct auth uid when no owner is resolvable', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'google-auth-3': { progress: { user_total_xp: '7' }, updatedAt: 111 },
+            },
+        });
+        const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-3');
+        expect(stableUid).toBe('google-auth-3');
+    });
+    it('falls back to direct auth uid when requireKnownIdentity is false', async () => {
+        const { db } = makeDbStub({
+            users: {},
+        });
+        const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-4');
+        expect(stableUid).toBe('google-auth-4');
     });
 });
 describe('ensureStableLinkForAuth', () => {
@@ -284,7 +352,11 @@ describe('ensureStableLinkForAuth', () => {
     it('writes provider linkedAuth and auth_link metadata on the server', async () => {
         const { db, store } = makeDbStub({
             users: {
-                'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+                'stable-1': {
+                    firebaseAuthUid: 'old-anon-auth',
+                    anon_merge_claim: { authUid: 'old-anon-auth', at: 1777000000000 },
+                    updatedAt: 111,
+                },
             },
         });
         const result = await (0, auth_identity_1.ensureStableLinkForAuth)(db, 'google-auth-1', 'stable-1', 'google.com', {

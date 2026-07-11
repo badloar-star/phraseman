@@ -1,8 +1,8 @@
 /**
  * Компас — тексты соц-сводки «Кстати…».
  *
- * Маленький блок-контейнер в брифинге Компаса: «Кстати, username принял твою
- * заявку в друзья» / «…кинул заявку» / «…поставил лайк». Все тексты — по Библии
+ * Короткие строки для ненавязчивого тоста: «username принял твою заявку в друзья» /
+ * «…кинул заявку» / «…поставил лайк». Все тексты — по Библии
  * Phraseman: тёплый человеческий тон, «ты», коротко, без пафоса и слоганов.
  *
  * Чистый модуль текстов: никакого Firestore/состояния — только сборка строк по
@@ -18,41 +18,6 @@ import { triLang, type Lang } from '../../constants/i18n';
  *  • like             — тебе поставили лайк.
  */
 export type CompassSocialKind = 'friend_request' | 'friend_accepted' | 'friend_added' | 'like';
-
-/** Заголовок блока: «Кстати…» (тёплая преамбула). */
-export const COMPASS_SOCIAL_HEADER = {
-  ru: 'Кстати',
-  uk: 'До речі',
-  es: 'Por cierto',
-  'pt-BR': 'A propósito',
-  vi: 'Nhân tiện',
-  id: 'Ngomong-ngomong',
-  tr: 'Bu arada',
-  pl: 'Przy okazji',
-} as const;
-
-/** Действие раскрытия: в блоке уже есть короткая строка «и ещё N», кнопка открывает полный список. */
-export const COMPASS_SOCIAL_SHOW_ALL = {
-  ru: 'Показать все {count}',
-  uk: 'Показати всі {count}',
-  es: 'Ver los {count}',
-  'pt-BR': 'Ver todos ({count})',
-  vi: 'Xem tất cả {count}',
-  id: 'Lihat semua {count}',
-  tr: '{count} öğeyi göster',
-  pl: 'Pokaż wszystkie {count}',
-} as const;
-
-export const COMPASS_SOCIAL_COLLAPSE = {
-  ru: 'Свернуть',
-  uk: 'Згорнути',
-  es: 'Ocultar',
-  'pt-BR': 'Recolher',
-  vi: 'Thu gọn',
-  id: 'Tutup',
-  tr: 'Daralt',
-  pl: 'Zwiń',
-} as const;
 
 /** Безопасное имя отправителя: триммим, обрезаем длину, fallback «друг». */
 export function safeSocialName(name: string | undefined, lang: Lang): string {

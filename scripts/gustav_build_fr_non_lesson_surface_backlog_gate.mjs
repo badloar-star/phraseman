@@ -169,7 +169,6 @@ const BACKLOG = [
       'functions/src/explain/explain_prompts.ts',
       'functions/src/explain/choice_explain_prompts.ts',
       'functions/src/explain/quiz_explain_prompts.ts',
-      'functions/src/compass/compass_prompts.ts',
       'functions/src/mistake_explain.ts',
       'functions/src/weekly_review.ts',
       'functions/src/stats_insights.ts',

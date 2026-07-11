@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.leagueActivateGroupBoost = exports.leagueSyncMyBoost = exports.leagueUpdateMyMember = exports.leagueJoinOrUpdateGroup = void 0;
+exports.getLeagueWeekPoints = getLeagueWeekPoints;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
@@ -55,6 +56,48 @@ function normalizeName(value) {
 function readInt(value, fallback = 0) {
     const n = Math.trunc(Number(value));
     return Number.isFinite(n) ? n : fallback;
+}
+function readIntOrNull(value) {
+    const raw = typeof value === 'string' ? value.trim() : value;
+    const n = Math.trunc(Number(raw));
+    return Number.isFinite(n) ? n : null;
+}
+function getCurrentWeekPointsFromV2(progress, currentWeekId) {
+    const raw = progress.week_points_v2;
+    if (typeof raw !== 'string')
+        return 0;
+    try {
+        const parsed = JSON.parse(raw);
+        if (typeof parsed.weekKey !== 'string')
+            return 0;
+        if (parsed.weekKey !== currentWeekId)
+            return 0;
+        const points = Number(parsed.points);
+        if (!Number.isFinite(points) || points < 0 || points > 1000000000)
+            return 0;
+        return points;
+    }
+    catch {
+        return 0;
+    }
+}
+function getCurrentMondayUtcIso(nowMs) {
+    const date = new Date(nowMs);
+    date.setUTCHours(0, 0, 0, 0);
+    const day = date.getUTCDay() || 7;
+    date.setUTCDate(date.getUTCDate() - day + 1);
+    return date.toISOString().slice(0, 10);
+}
+function getLeagueWeekPoints(progress, nowMs = Date.now()) {
+    const currentWeekId = getWeekId(new Date(nowMs));
+    const weeklyXp = sanitizeString(progress.weekly_xp_period_start, 10) === getCurrentMondayUtcIso(nowMs)
+        ? readIntOrNull(progress.weekly_xp)
+        : null;
+    const currentWeeklyXp = weeklyXp == null
+        ? 0
+        : Math.max(0, Math.min(1000000000, weeklyXp));
+    const currentV2Points = getCurrentWeekPointsFromV2(progress, currentWeekId);
+    return Math.max(currentWeeklyXp, currentV2Points);
 }
 function readNestedString(data, path) {
     let cur = data;
@@ -102,8 +145,23 @@ async function legacyLeagueNameHasOtherLiveOwner(db, stableUid, name, nameLower)
     return false;
 }
 async function resolveAuthoritativeLeagueMemberName(db, stableUid, userData, leaderboardData, requestedName) {
+    // Имя из СОБСТВЕННОГО документа юзера (users/{stableUid}.progress.user_name) —
+    // аутентично по определению: это его uid, его имя. Раньше резолвер отвергал
+    // его, если name_index не подтверждал владельца (или индекса не было / он
+    // указывал на СТАРЫЙ uid после auth-merge), и подставлял «Player XXXX». Индекс
+    // предназначен ловить кражу ЧУЖОГО имени (через requestedName/leaderboard), а
+    // не отвергать собственное имя из собственного дока. Поэтому доверяем ему сразу,
+    // если сам юзер не скрыт. Это чинит массовый «Player XXXX» у людей с именами.
+    if (userData && userData.identityHidden !== true) {
+        const ownName = normalizeName(readNestedString(userData, ['progress', 'user_name']));
+        if (ownName.nameLower)
+            return ownName.name;
+    }
+    // Остальные источники (leaderboard-снапшот, имя из тела запроса) НЕ являются
+    // собственным документом — тут защита от присвоения чужого имени остаётся:
+    // разрешаем только если name_index принадлежит этому uid либо имя реально
+    // свободно (нет другого живого владельца).
     const candidates = [
-        readNestedString(userData, ['progress', 'user_name']),
         sanitizeString(leaderboardData?.name, 48),
         requestedName,
     ];
@@ -125,9 +183,8 @@ async function resolveAuthoritativeLeagueMemberName(db, stableUid, userData, lea
     }
     return leagueFallbackName(stableUid);
 }
-function getWeekId() {
-    const d = new Date();
-    const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+function getWeekId(at = new Date()) {
+    const date = new Date(Date.UTC(at.getUTCFullYear(), at.getUTCMonth(), at.getUTCDate()));
     const day = date.getUTCDay() || 7;
     date.setUTCDate(date.getUTCDate() + 4 - day);
     const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -174,6 +231,44 @@ function sanitizeMember(raw, stableUid) {
         member.leagueBoostExpiresAt = boostExpiresAt;
     }
     return member;
+}
+async function resolveAuthoritativeLeagueFields(db, stableUid, userData, authUid) {
+    const progress = userData?.progress && typeof userData.progress === 'object'
+        ? userData.progress
+        : {};
+    const [isPremium, isLifetime] = await Promise.all([
+        (0, premium_status_1.resolvePremiumAccess)(db, stableUid, Date.now(), authUid).catch(() => undefined),
+        (0, premium_status_1.resolveIsLifetimePlan)(db, stableUid, Date.now(), authUid).catch(() => undefined),
+    ]);
+    const result = {
+        points: getLeagueWeekPoints(progress),
+        streak: Math.max(0, Math.min(100000, readInt(progress.streak_count, 0))),
+        totalXp: Math.max(0, Math.min(1000000000, readInt(progress.user_total_xp, 0))),
+        isVip: (0, premium_status_1.isVipActive)(progress),
+    };
+    if (typeof isPremium === 'boolean')
+        result.isPremium = isPremium;
+    if (typeof isLifetime === 'boolean')
+        result.isLifetime = isLifetime;
+    return result;
+}
+function leaderboardProjectionForMember(weekId, fields, existing) {
+    const previousCurrentWeekPoints = existing?.weekKey === weekId
+        ? Math.max(0, readInt(existing.weekPoints, 0))
+        : 0;
+    return {
+        weekKey: weekId,
+        weekPoints: Math.max(previousCurrentWeekPoints, fields.points),
+        streak: fields.streak,
+        points: fields.totalXp,
+    };
+}
+function mergeCurrentWeekMember(existing, incoming) {
+    return {
+        ...(existing || {}),
+        ...incoming,
+        points: Math.max(0, readInt(existing?.points, 0), readInt(incoming.points, 0)),
+    };
 }
 async function assertCanUseLeague(db, stableUid) {
     const [userSnap, bannedSnap] = await Promise.all([
@@ -323,10 +418,14 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
         lbRef.get().catch(() => null),
     ]);
     const member = sanitizeMember(rawMember, stableUid);
+    // Premium/lifetime are server-owned. If their resolver is temporarily unavailable,
+    // omit them so an existing true value is not downgraded to false.
+    delete member.isPremium;
+    delete member.isLifetime;
     member.name = await resolveAuthoritativeLeagueMemberName(db, stableUid, userSnap?.data(), lbSnap?.data(), rawMember.name);
-    // Pro-план (разовая «Навсегда») резолвим СЕРВЕРНО из users/{stableUid} — как isPremium.
-    // Тело запроса подделать нельзя; false при ошибке/недоступности.
-    member.isLifetime = await (0, premium_status_1.resolveIsLifetimePlan)(db, stableUid, Date.now(), authUid).catch(() => false);
+    const authoritativeFields = await resolveAuthoritativeLeagueFields(db, stableUid, userSnap?.data(), authUid);
+    Object.assign(member, authoritativeFields);
+    const leaderboardProjection = leaderboardProjectionForMember(weekId, authoritativeFields, lbSnap?.data());
     let groupId = null;
     let shouldCleanupDuplicates = false;
     const savedGroupId = lbSnap?.data()?.groupId;
@@ -349,9 +448,9 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
             if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId)
                 throw new https_1.HttpsError('permission-denied', 'room_mismatch');
             const members = { ...(data.members || {}) };
-            members[stableUid] = { ...(members[stableUid] || {}), ...member };
+            members[stableUid] = mergeCurrentWeekMember(members[stableUid], member);
             tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
-            tx.set(lbRef, { groupId, groupWeekId: weekId, leagueId }, { merge: true });
+            tx.set(lbRef, { groupId, groupWeekId: weekId, leagueId, ...leaderboardProjection }, { merge: true });
         });
         if (shouldCleanupDuplicates) {
             await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, groupId);
@@ -374,9 +473,9 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
             const members = { ...(data.members || {}) };
             if (!members[stableUid] && countMembers({ members }) >= GROUP_SIZE)
                 return;
-            members[stableUid] = { ...(members[stableUid] || {}), ...member };
+            members[stableUid] = mergeCurrentWeekMember(members[stableUid], member);
             tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
-            tx.set(lbRef, { groupId: candidate, groupWeekId: weekId, leagueId }, { merge: true });
+            tx.set(lbRef, { groupId: candidate, groupWeekId: weekId, leagueId, ...leaderboardProjection }, { merge: true });
             joined = true;
         });
         if (joined) {
@@ -395,7 +494,7 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
             updatedAt: Date.now(),
             members: { [stableUid]: member },
         });
-        tx.set(lbRef, { groupId: newGroupId, groupWeekId: weekId, leagueId }, { merge: true });
+        tx.set(lbRef, { groupId: newGroupId, groupWeekId: weekId, leagueId, ...leaderboardProjection }, { merge: true });
     });
     await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, newGroupId);
     return { ok: true, groupId: newGroupId, weekId, leagueId };
@@ -407,7 +506,8 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true, repairLinks: false });
     await assertCanUseLeague(db, stableUid);
-    const lbSnap = await db.collection('leaderboard').doc(stableUid).get();
+    const lbRef = db.collection('leaderboard').doc(stableUid);
+    const lbSnap = await lbRef.get();
     const groupId = String(lbSnap.data()?.groupId || '');
     const groupWeekId = String(lbSnap.data()?.groupWeekId || '');
     if (!groupId || groupWeekId !== getWeekId())
@@ -440,35 +540,34 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
         updates[`members.${stableUid}.profileCardMotion`] = sanitizeString(raw.profileCardMotion, 32) || 'none';
     if (Object.prototype.hasOwnProperty.call(raw, 'profileCardPublicFocus'))
         updates[`members.${stableUid}.profileCardPublicFocus`] = sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced';
-    // Серверная резолюция чувствительных полей: читаем users/{stableUid}.progress и
-    // RC-status через resolvePremiumAccess. Один read, всё в одном месте.
-    const progress = (userData?.progress ?? {});
-    const weekPointsServer = Math.max(0, Math.min(1000000000, readInt(progress.weekly_xp ?? progress.week_points_v2 ?? progress.week_points, 0)));
-    const streakServer = Math.max(0, Math.min(100000, readInt(progress.streak_count, 0)));
-    const totalXpServer = Math.max(0, Math.min(1000000000, readInt(progress.user_total_xp, 0)));
-    updates[`members.${stableUid}.points`] = weekPointsServer;
-    updates[`members.${stableUid}.streak`] = streakServer;
-    updates[`members.${stableUid}.totalXp`] = totalXpServer;
-    // Premium / VIP — авторитативный серверный путь. Дешевле один await чем повторять
-    // эту проверку на каждом read клиентом, и нельзя подделать через тело запроса.
-    try {
-        const isPremiumServer = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid, Date.now(), authUid);
-        updates[`members.${stableUid}.isPremium`] = isPremiumServer;
+    const authoritativeFields = await resolveAuthoritativeLeagueFields(db, stableUid, userData, authUid);
+    const weekPointsServer = authoritativeFields.points;
+    updates[`members.${stableUid}.streak`] = authoritativeFields.streak;
+    updates[`members.${stableUid}.totalXp`] = authoritativeFields.totalXp;
+    updates[`members.${stableUid}.isVip`] = authoritativeFields.isVip;
+    if (typeof authoritativeFields.isPremium === 'boolean') {
+        updates[`members.${stableUid}.isPremium`] = authoritativeFields.isPremium;
     }
-    catch {
-        // resolvePremiumAccess недоступна — не пишем поле (член группы сохранит старое значение).
+    if (typeof authoritativeFields.isLifetime === 'boolean') {
+        updates[`members.${stableUid}.isLifetime`] = authoritativeFields.isLifetime;
     }
-    try {
-        const isLifetimeServer = await (0, premium_status_1.resolveIsLifetimePlan)(db, stableUid, Date.now(), authUid);
-        updates[`members.${stableUid}.isLifetime`] = isLifetimeServer;
-    }
-    catch {
-        // resolveIsLifetimePlan недоступна — не пишем поле (сохранится старое значение).
-    }
-    const vipFromProgress = (0, premium_status_1.isVipActive)(progress);
-    updates[`members.${stableUid}.isVip`] = vipFromProgress;
-    await db.collection('league_groups').doc(groupId).set(updates, { merge: true });
-    return { ok: true, groupId, weekPoints: weekPointsServer };
+    const groupRef = db.collection('league_groups').doc(groupId);
+    let appliedWeekPoints = weekPointsServer;
+    await db.runTransaction(async (tx) => {
+        const groupSnap = await tx.get(groupRef);
+        if (!groupSnap.exists || groupSnap.data()?.weekId !== groupWeekId) {
+            throw new https_1.HttpsError('failed-precondition', 'league_group_not_current');
+        }
+        const existingPoints = readInt(groupSnap.data()?.members?.[stableUid]?.points, 0);
+        appliedWeekPoints = Math.max(existingPoints, weekPointsServer);
+        updates[`members.${stableUid}.points`] = appliedWeekPoints;
+        tx.set(groupRef, updates, { merge: true });
+        tx.set(lbRef, leaderboardProjectionForMember(groupWeekId, {
+            ...authoritativeFields,
+            points: appliedWeekPoints,
+        }, lbSnap.data()), { merge: true });
+    });
+    return { ok: true, groupId, weekPoints: appliedWeekPoints };
 });
 exports.leagueSyncMyBoost = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     if (!request.auth?.uid)

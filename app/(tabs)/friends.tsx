@@ -2343,7 +2343,7 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
-    if (uids.length === 0) return;
+    if (!friendsTabVisible || uids.length === 0) return;
     let cancelled = false;
     void (async () => {
       // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
@@ -2356,7 +2356,7 @@ export default function FriendsTabScreen() {
       });
     })();
     return () => { cancelled = true; };
-  }, [friends, requests]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [friends, requests, friendsTabVisible, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Cleanup ────────────────────────────────────────────────────────────────
 

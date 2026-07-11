@@ -158,11 +158,13 @@ function customerInfoHasActivePremium(info: unknown): boolean {
   );
 }
 
-export async function syncRevenueCatIdentity(): Promise<boolean> {
+export async function syncRevenueCatIdentity(isCurrent: () => boolean = () => true): Promise<boolean> {
   if (IS_EXPO_GO) return false;
   if (!(await Purchases.isConfigured().catch(() => false))) return false;
+  if (!isCurrent()) return false;
 
   const canonicalUserId = await getCanonicalUserId().catch(() => null);
+  if (!isCurrent()) return false;
   if (!canonicalUserId) return false;
 
   const now = Date.now();
@@ -171,9 +173,15 @@ export async function syncRevenueCatIdentity(): Promise<boolean> {
   }
 
   const currentAppUserId = await Purchases.getAppUserID().catch(() => '');
+  if (!isCurrent()) return false;
   let loginCustomerInfo: unknown = null;
   if (currentAppUserId && currentAppUserId !== canonicalUserId) {
+    if (!isCurrent()) return false;
     const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
+    if (!isCurrent()) {
+      void syncRevenueCatIdentity().catch(() => false);
+      return false;
+    }
     loginCustomerInfo = (loginResult as { customerInfo?: unknown } | null)?.customerInfo ?? null;
   }
 
@@ -181,7 +189,9 @@ export async function syncRevenueCatIdentity(): Promise<boolean> {
   if (currentAppUserId && currentAppUserId !== canonicalUserId && isRevenueCatAnonymousId(currentAppUserId)) {
     attributes.phraseman_previous_rc_app_user_id = currentAppUserId;
   }
+  if (!isCurrent()) return false;
   await Purchases.setAttributes(attributes).catch(() => {});
+  if (!isCurrent()) return false;
 
   if (customerInfoHasActivePremium(loginCustomerInfo)) {
     const metadata = revenueCatPremiumMetadata(loginCustomerInfo as any);
@@ -189,10 +199,16 @@ export async function syncRevenueCatIdentity(): Promise<boolean> {
       metadata.productId ?? (loginCustomerInfo as { activeSubscriptions?: string[] } | null)?.activeSubscriptions?.[0],
       'monthly',
     );
-    await persistStorePremiumLocally(plan, metadata);
+    if (!isCurrent()) return false;
+    const persisted = await persistStorePremiumLocally(plan, metadata, isCurrent);
+    if (!persisted || !isCurrent()) {
+      void syncRevenueCatIdentity().catch(() => false);
+      return false;
+    }
   }
 
   const syncedAppUserId = await Purchases.getAppUserID().catch(() => '');
+  if (!isCurrent()) return false;
   const identityReady = syncedAppUserId === canonicalUserId || currentAppUserId === canonicalUserId;
 
   if (identityReady) {

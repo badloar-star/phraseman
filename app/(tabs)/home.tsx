@@ -33,7 +33,6 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { CompassBriefingHost } from '../compass';
 import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
@@ -3945,9 +3944,6 @@ export default function HomeScreen() {
                 // Очистку AsyncStorage делаем фоном — её результат на UI не влияет.
                 void clearPendingResult();
             }}/>)}
-      {/* Компас: брифинг дня при входе (заменяет модалку заданий дня). Сам null-safe —
-          выключенный Компас (флаг compass_enabled) и не-премиум ничего не рендерят. */}
-      <CompassBriefingHost onStartDay={openPersonalPlan} />
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
     </View>);
 }

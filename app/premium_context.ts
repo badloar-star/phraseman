@@ -66,8 +66,6 @@ export type PremiumContext =
   | 'ai_explain'
   /** Недельный обзор: free видит тизер, полный разбор и план — в Plus. */
   | 'weekly_review'
-  /** Компас: запертый вечерний ритуал закрытия дня (витрина для free). */
-  | 'compass_day_closing'
   /** Премиум-аура вокруг аватара (лиги/Арена/друзья). */
   | 'avatar_aura'
   | 'generic';
@@ -111,7 +109,6 @@ export const PREMIUM_CONTEXT_VALUES = [
   'language_add',
   'ai_explain',
   'weekly_review',
-  'compass_day_closing',
   'avatar_aura',
   'generic',
 ] as const satisfies readonly PremiumContext[];

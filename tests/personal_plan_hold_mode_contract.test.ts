@@ -16,8 +16,7 @@ describe('plan pronunciation hold-mode wiring', () => {
   });
 
   it('uses push-to-talk on the speak button when in hold mode', () => {
-    expect(source).toContain('holdMode={holdMode}');
-    expect(source).toContain('onPressIn={startHold}');
+    expect(source).toContain('onPressIn={startUnifiedHold}');
     expect(source).toContain('startHoldRecording(');
   });
 
@@ -34,9 +33,10 @@ describe('plan pronunciation hold-mode wiring', () => {
   });
 
   it('keeps the system recognizer path for iOS / fallback', () => {
-    // The hold path is ADDITIVE — the system path must still exist.
+    // System fallback keeps the same hold gesture while whisper warms in background.
     expect(source).toContain('speechModule.start(');
-    expect(source).toContain('holdModelFailed');
+    expect(source).toContain('const holdMode = Boolean(speechModule)');
+    expect(source).not.toContain('holdModelFailed');
   });
 
   it('cleans up an in-flight hold recording on unmount', () => {

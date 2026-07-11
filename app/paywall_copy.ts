@@ -69,7 +69,6 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   language_add: { accent: '#66A8FF', accent2: '#5EEAD4', shardAmount: 180 },
   ai_explain: { accent: '#FDE68A', accent2: '#A78BFA', shardAmount: 180 },
   weekly_review: { accent: '#72E6A9', accent2: '#FDE68A', shardAmount: 180 },
-  compass_day_closing: { accent: '#FFB86B', accent2: '#7DA2FF', shardAmount: 180 },
   avatar_aura: { accent: '#E879F9', accent2: '#38BDF8', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
@@ -446,15 +445,6 @@ PAYWALL_COPY.weekly_review = {
   subtitleRu: 'Каждую неделю — личный разбор: что укрепилось, где проседает и точный план на следующую. С Plus обзор открывается целиком — с подсказками и рекомендациями уроков.',
   subtitleUk: 'Щотижня — особистий розбір: що зміцнилося, де просідає і точний план на наступний. З Plus огляд відкривається повністю — з підказками та рекомендаціями уроків.',
   subtitleEs: 'Cada semana, un análisis personal: qué mejoró, qué flojea y un plan claro para la próxima. Con Plus el repaso se abre entero, con consejos y lecciones recomendadas.',
-};
-
-PAYWALL_COPY.compass_day_closing = {
-  titleRu: 'Закрывай день вместе с Компасом',
-  titleUk: 'Закривай день разом із Компасом',
-  titleEs: 'Cierra tu día con un ritual',
-  subtitleRu: 'Вечерний ритуал: итог дня, награда за закрытие и серия ритуалов. С Plus каждый вечер заканчивается ощущением результата, а не просто закрытым приложением.',
-  subtitleUk: 'Вечірній ритуал: підсумок дня, нагорода за закриття і серія ритуалів. З Plus кожен вечір завершується відчуттям результату, а не просто закритим застосунком.',
-  subtitleEs: 'Un ritual de cierre: resumen del día, recompensa por cerrarlo y racha de rituales. Con Plus cada tarde termina con sensación de logro, no solo cerrando la app.',
 };
 
 PAYWALL_COPY.avatar_aura = {
@@ -940,23 +930,6 @@ PAYWALL_PLANNED_COPY.weekly_review = {
   },
 };
 
-PAYWALL_PLANNED_COPY.compass_day_closing = {
-  title: {
-    'pt-BR': 'Feche o dia com um ritual',
-    vi: 'Khép lại ngày bằng một nghi thức',
-    id: 'Tutup harimu dengan ritual',
-    tr: 'Günü bir ritüelle kapat',
-    pl: 'Zamknij dzień rytuałem',
-  },
-  subtitle: {
-    'pt-BR': 'Um ritual de fim de dia: resumo, recompensa por fechar e sequência de rituais. Com Plus cada noite termina com sensação de resultado, não só fechando o app.',
-    vi: 'Nghi thức cuối ngày: tổng kết, phần thưởng khi khép lại và chuỗi nghi thức. Với Plus, mỗi tối kết thúc bằng cảm giác có kết quả, không chỉ là tắt ứng dụng.',
-    id: 'Ritual penutup hari: rangkuman, hadiah karena menutup hari, dan runtutan ritual. Dengan Plus tiap malam berakhir dengan rasa pencapaian, bukan sekadar menutup aplikasi.',
-    tr: 'Gün sonu ritüeli: günün özeti, kapatma ödülü ve ritüel serisi. Plus ile her akşam yalnızca uygulamayı kapatarak değil, sonuç duygusuyla biter.',
-    pl: 'Wieczorny rytuał: podsumowanie dnia, nagroda za zamknięcie i seria rytuałów. Z Plus każdy wieczór kończy się poczuciem wyniku, a nie tylko zamknięciem aplikacji.',
-  },
-};
-
 PAYWALL_PLANNED_COPY.avatar_aura = {
   title: {
     'pt-BR': 'Destaque-se com uma aura no avatar',
@@ -1221,12 +1194,6 @@ CONTEXT_BENEFITS.weekly_review = [
   { ru: 'Рекомендации уроков под твои ошибки', uk: 'Рекомендації уроків під твої помилки', es: 'Lecciones recomendadas según tus errores', 'pt-BR': 'Lições recomendadas conforme seus erros', vi: 'Bài học đề xuất theo lỗi của bạn', id: 'Pelajaran rekomendasi sesuai kesalahanmu', tr: 'Hatalarına göre önerilen dersler', pl: 'Lekcje polecane pod twoje błędy' },
 ];
 
-CONTEXT_BENEFITS.compass_day_closing = [
-  { ru: 'Вечерний итог: что получилось и что дальше', uk: 'Вечірній підсумок: що вдалося і що далі', es: 'Cierre del día: qué lograste y qué sigue', 'pt-BR': 'Resumo da noite: o que deu certo e o que vem', vi: 'Tổng kết buổi tối: đã làm được gì và tiếp theo là gì', id: 'Rangkuman malam: apa yang berhasil dan berikutnya', tr: 'Akşam özeti: ne başardın, sırada ne var', pl: 'Wieczorne podsumowanie: co się udało i co dalej' },
-  { ru: 'Награда за закрытый день: XP и серия ритуалов', uk: 'Нагорода за закритий день: XP і серія ритуалів', es: 'Recompensa por cerrar el día: XP y racha', 'pt-BR': 'Recompensa por fechar o dia: XP e sequência', vi: 'Phần thưởng khi khép lại ngày: XP và chuỗi', id: 'Hadiah menutup hari: XP dan runtutan', tr: 'Günü kapatma ödülü: XP ve seri', pl: 'Nagroda za zamknięty dzień: XP i seria' },
-  { ru: 'Спокойная точка в конце занятий каждый вечер', uk: 'Спокійна крапка наприкінці занять щовечора', es: 'Un cierre tranquilo cada tarde', 'pt-BR': 'Um fechamento tranquilo toda noite', vi: 'Một dấu chấm nhẹ nhàng mỗi tối', id: 'Penutup yang tenang tiap malam', tr: 'Her akşam sakin bir kapanış', pl: 'Spokojne zakończenie każdego wieczoru' },
-];
-
 CONTEXT_BENEFITS.avatar_aura = [
   { ru: 'Аура вокруг аватара — виден в лигах и дуэлях', uk: 'Аура навколо аватара — тебе видно в лігах і дуелях', es: 'Aura en tu avatar: visible en ligas y duelos', 'pt-BR': 'Aura no avatar: visível em ligas e duelos', vi: 'Hào quang quanh avatar — nổi bật trong giải và trận đấu', id: 'Aura di avatar: terlihat di liga dan duel', tr: 'Avatarında aura — liglerde ve düellolarda görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i pojedynkach' },
   { ru: 'Уникальный стиль профиля, который замечают', uk: 'Унікальний стиль профілю, який помічають', es: 'Un estilo de perfil que se nota', 'pt-BR': 'Um estilo de perfil que chama atenção', vi: 'Phong cách hồ sơ độc đáo, ai cũng chú ý', id: 'Gaya profil unik yang diperhatikan', tr: 'Fark edilen benzersiz profil stili', pl: 'Wyjątkowy styl profilu, który się zauważa' },
@@ -1447,12 +1414,6 @@ CONTEXT_BENEFITS_PLANNED.weekly_review = [
   { 'pt-BR': 'Resumo pessoal: pontos fortes e lacunas', vi: 'Tổng kết tuần cá nhân: điểm mạnh và lỗ hổng', id: 'Rangkuman pribadi: kekuatan dan celah', tr: 'Kişisel hafta özeti: güçlü yanlar ve eksikler', pl: 'Osobiste podsumowanie tygodnia: mocne strony i luki' },
   { 'pt-BR': 'Um plano claro para a próxima semana', vi: 'Kế hoạch rõ ràng cho tuần tới', id: 'Rencana jelas untuk minggu depan', tr: 'Gelecek hafta için net plan', pl: 'Jasny plan na kolejny tydzień' },
   { 'pt-BR': 'Lições recomendadas conforme seus erros', vi: 'Bài học đề xuất theo lỗi của bạn', id: 'Pelajaran rekomendasi sesuai kesalahanmu', tr: 'Hatalarına göre önerilen dersler', pl: 'Lekcje polecane pod twoje błędy' },
-];
-
-CONTEXT_BENEFITS_PLANNED.compass_day_closing = [
-  { 'pt-BR': 'Resumo da noite: o que deu certo e o que vem', vi: 'Tổng kết buổi tối: đã làm được gì và tiếp theo là gì', id: 'Rangkuman malam: apa yang berhasil dan berikutnya', tr: 'Akşam özeti: ne başardın, sırada ne var', pl: 'Wieczorne podsumowanie: co się udało i co dalej' },
-  { 'pt-BR': 'Recompensa por fechar o dia: XP e sequência', vi: 'Phần thưởng khi khép lại ngày: XP và chuỗi', id: 'Hadiah menutup hari: XP dan runtutan', tr: 'Günü kapatma ödülü: XP ve seri', pl: 'Nagroda za zamknięty dzień: XP i seria' },
-  { 'pt-BR': 'Um fechamento tranquilo toda noite', vi: 'Một dấu chấm nhẹ nhàng mỗi tối', id: 'Penutup yang tenang tiap malam', tr: 'Her akşam sakin bir kapanış', pl: 'Spokojne zakończenie każdego wieczoru' },
 ];
 
 CONTEXT_BENEFITS_PLANNED.avatar_aura = [

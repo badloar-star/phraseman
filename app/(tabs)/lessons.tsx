@@ -21,7 +21,7 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, go
 import { getLessonExamIcon } from '../../constants/generatedThemeIconAssets';
 import type { ThemeMode } from '../../constants/theme';
 import GoldBevel from '../../components/GoldBevel';
-import { DEV_CONTENT_UNLOCK } from '../config';
+import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { getExamMedalTier, getEarnedDots } from '../medal_utils';
@@ -46,6 +46,7 @@ import {
 } from '../lessons_tab_state';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import LessonsV2TabContent from '../../components/LessonsV2TabContent';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 /**
@@ -289,6 +290,7 @@ const LESSON_CARD_ACCENT_TEXT_SHADOW = {
     textShadowRadius: 3,
 };
 const LESSON_CARD_FILLED_META_TEXT = '#07110A';
+const LESSON_CARD_OPEN_META_TEXT = LESSON_CARD_FILLED_META_TEXT;
 const LESSON_CARD_ACCENT_EDGE_SHADOW = {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -422,6 +424,7 @@ const LessonCard = React.memo(function LessonCard({
 }: LessonCardProps) {
     const lockedCardHasLightFill = false;
     const useFilledMetaText = isComplete && showLessonProgressFill;
+    const useDarkMetaText = useFilledMetaText || (!isGoldTheme && !isCoralTheme && isUnlocked);
     return (<Animated.View style={{
             marginTop: 5,
             marginHorizontal: 14,
@@ -529,11 +532,11 @@ const LessonCard = React.memo(function LessonCard({
           <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
               <Text style={{
-                  color: useFilledMetaText ? LESSON_CARD_FILLED_META_TEXT : lessonMetaColor,
+                  color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor,
                   fontSize: f.label,
                   fontWeight: '700',
                   letterSpacing: 0.8,
-                  ...(useFilledMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
+                  ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
               }} maxFontSizeMultiplier={1}>
                 {triLang(lang, {
                     ru: `УРОК ${num}`,
@@ -630,7 +633,7 @@ export default function LessonsTab() {
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
     const freeDialogsLifetime = getFreeDialogsLifetime();
-    const [page, setPage] = useState<'lessons' | 'dialogs'>('lessons');
+    const [page, setPage] = useState<'lessons' | 'dialogs' | 'v2'>('lessons');
     const openLearningRoute = useCallback(() => {
         hapticTap();
         void readPersonalPlanState()
@@ -881,6 +884,18 @@ export default function LessonsTab() {
               onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
             />
             ) : null}
+            {ENABLE_DEV_TOOLS ? (
+            <TabUnderlineButton
+              label="V2"
+              active={page === 'v2'}
+              color={t.textPrimary}
+              mutedColor={t.textMuted}
+              accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              fontSize={f.body}
+              themeMode={themeMode}
+              onPress={() => { if (page !== 'v2') { hapticTap(); setPage('v2'); } }}
+            />
+            ) : null}
           </View>
       </View>
 
@@ -894,8 +909,14 @@ export default function LessonsTab() {
         </View>
       ) : null}
 
+      {ENABLE_DEV_TOOLS && page === 'v2' ? (
+        <View style={{ flex: 1 }}>
+          <LessonsV2TabContent bottomPadding={tabContentBottomPad} />
+        </View>
+      ) : null}
+
       {/* Страница «Уроки» (держим смонтированной, прячем при показе диалогов) */}
-      <View style={{ flex: 1, display: dialogsEnabled && page === 'dialogs' ? 'none' : 'flex' }}>
+        <View style={{ flex: 1, display: (dialogsEnabled && page === 'dialogs') || page === 'v2' ? 'none' : 'flex' }}>
       <BouncyWrap style={bouncyStyle}>
       <Animated.FlatList ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad }}
@@ -1257,7 +1278,7 @@ export default function LessonsTab() {
                             : 'rgba(255,255,255,0.30)'
                         : isCoralTheme
                             ? 'rgba(255,214,204,0.72)'
-                            : rgbaHexCached(lessonAccent, 0.82);
+                            : LESSON_CARD_OPEN_META_TEXT;
             return (<LessonCard key={`l-${num}`}
                 num={num} name={name} isUnlocked={isUnlocked} bg={bg} darkBg={darkBg}
                 progPct={progPct} isComplete={isComplete} isCurrent={isCurrent}

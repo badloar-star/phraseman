@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
+import { getCanonicalUserId } from './user_id_policy';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -86,6 +87,13 @@ const getFirestore = () => {
   }
 };
 
+async function getNotificationOwnerUid(): Promise<string | null> {
+  await ensureAnonUser();
+  await ensureStableAuthLink().catch(() => false);
+  const stableUid = await getCanonicalUserId().catch(() => null);
+  return String(stableUid || '').trim() || null;
+}
+
 function cleanText(value: unknown, maxLen: number): string {
   return String(value ?? '').trim().slice(0, maxLen);
 }
@@ -147,12 +155,11 @@ export async function readCachedUserNotifications(): Promise<UserNotification[]>
 async function getNotificationsQuery(): Promise<any | null> {
   const db = getFirestore();
   if (!db) return null;
-  const uid = await ensureAnonUser();
-  if (!uid) return null;
-  await ensureStableAuthLink().catch(() => false);
+  const stableUid = await getNotificationOwnerUid();
+  if (!stableUid) return null;
   return db
     .collection('users')
-    .doc(uid)
+    .doc(stableUid)
     .collection('notifications')
     .orderBy('createdAt', 'desc')
     .limit(MAX_NOTIFICATIONS);
@@ -242,13 +249,13 @@ export function subscribeUserNotifications(
 export async function markUserNotificationsRead(ids: string[]): Promise<void> {
   const db = getFirestore();
   if (!db || ids.length === 0) return;
-  const uid = await ensureAnonUser();
-  if (!uid) return;
+  const stableUid = await getNotificationOwnerUid();
+  if (!stableUid) return;
   const now = Date.now();
   try {
     const batch = db.batch();
     ids.slice(0, MAX_NOTIFICATIONS).forEach((id) => {
-      const ref = db.collection('users').doc(uid).collection('notifications').doc(id);
+      const ref = db.collection('users').doc(stableUid).collection('notifications').doc(id);
       batch.update(ref, { read: true, readAt: now, updatedAt: now });
     });
     await batch.commit();
@@ -260,9 +267,9 @@ export async function markUserNotificationsRead(ids: string[]): Promise<void> {
 export async function deleteUserNotification(id: string): Promise<void> {
   const db = getFirestore();
   if (!db || !id) return;
-  const uid = await ensureAnonUser();
-  if (!uid) return;
+  const stableUid = await getNotificationOwnerUid();
+  if (!stableUid) return;
   try {
-    await db.collection('users').doc(uid).collection('notifications').doc(id).delete();
+    await db.collection('users').doc(stableUid).collection('notifications').doc(id).delete();
   } catch {}
 }

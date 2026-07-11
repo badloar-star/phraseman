@@ -21,7 +21,6 @@ export type OverlayKey =
   | 'comebackDay'
   | 'perfectWeekReward'
   | 'boonActivated'
-  | 'compassBriefing'
   | 'lessonResultsSequence'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
@@ -65,7 +64,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'mysteryMondayChest',
   'comebackDay',
   'boonActivated',
-  'compassBriefing',
   // lessonResultsSequence — полноэкранная секвенция наград на lesson_complete (FeedbackKit
   // §2.1). Стоит ВЫШЕ всего каскада этого экрана (lessonCompleteNotif → collectibleDrop →
   // coachToast): празднование играет ПЕРВЫМ, модалки наград ждут его завершения в очереди.
@@ -163,7 +161,6 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'comebackDay',
   'perfectWeekReward',
   'boonActivated',
-  'compassBriefing',
   'collectibleDrop',
   'achievementToast',
   // arenaRoomConfirm = ThemedChoiceModal = НАТИВНЫЙ <Modal> (как themedAlert). Без него
@@ -220,7 +217,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   comebackDay: false,
   perfectWeekReward: false,
   boonActivated: false,
-  compassBriefing: false,
   lessonResultsSequence: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,

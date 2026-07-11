@@ -14,7 +14,11 @@
  */
 import { __cloudSyncTestHooks } from '../app/cloud_sync';
 
-const { buildRestoreSnapshot } = __cloudSyncTestHooks;
+const {
+  buildRestoreSnapshot,
+  isSuspiciousLocalXpGap,
+  buildStickyServerProgressPairs,
+} = __cloudSyncTestHooks;
 
 describe('buildRestoreSnapshot — device-owned keys excluded from diff snapshot', () => {
   it('drops app_version so a fresh local version is not treated as already-synced', () => {
@@ -67,5 +71,41 @@ describe('buildRestoreSnapshot — device-owned keys excluded from diff snapshot
     });
     expect('bad' in snapshot).toBe(false);
     expect(snapshot.good).toBe('v');
+  });
+
+  it('prefers an authoritative server ledger across a fresh 3x and 15k local gap', () => {
+    const today = new Date().toISOString().slice(0, 10);
+    expect(isSuspiciousLocalXpGap(600_000, 15_000, today, true)).toBe(true);
+    expect(isSuspiciousLocalXpGap(45_000, 15_000, today, true)).toBe(true);
+    expect(isSuspiciousLocalXpGap(44_999, 15_000, today, true)).toBe(false);
+    expect(isSuspiciousLocalXpGap(600_000, 15_000, today, false)).toBe(false);
+  });
+
+  it('restores current UTC-week and server streak fields in the sticky branch', () => {
+    const pairs = Object.fromEntries(buildStickyServerProgressPairs({
+      weekly_xp: '13000',
+      weekly_xp_period_start: '2026-07-06',
+      week_points: '13000',
+      week_points_v2: JSON.stringify({ weekKey: '2026-W28', points: 13000 }),
+      streak_count: '42',
+      last_active_date: '2026-07-10',
+      streak_last_date: '2026-07-10',
+    }, new Date('2026-07-10T12:00:00.000Z')));
+
+    expect(pairs).toMatchObject({
+      weekly_xp: '13000',
+      weekly_xp_period_start: '2026-07-06',
+      week_points_v2: JSON.stringify({ weekKey: '2026-W28', points: 13000 }),
+      streak_count: '42',
+      last_active_date: '2026-07-10',
+    });
+  });
+
+  it('does not lower server-owned sticky progress while this account has pending events', () => {
+    expect(buildStickyServerProgressPairs({
+      weekly_xp: '10',
+      weekly_xp_period_start: '2026-07-06',
+      streak_count: '1',
+    }, new Date('2026-07-10T12:00:00.000Z'), true)).toEqual([]);
   });
 });

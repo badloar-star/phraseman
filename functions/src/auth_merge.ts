@@ -363,14 +363,19 @@ async function callerGenuinelyOwns(
 ): Promise<boolean> {
   const userData =
     data ?? ((await db.collection(USERS).doc(stableId).get().catch(() => null))?.data() as Record<string, unknown> | undefined) ?? {};
-  if (cleanStr((userData as { firebaseAuthUid?: unknown }).firebaseAuthUid) === authUid) return true;
-  const linkedAuth = (userData as { linkedAuth?: unknown }).linkedAuth;
+  if (userDataOwnedByAuth(userData, authUid)) return true;
+  const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
+  if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId) return true;
+  return false;
+}
+
+function userDataOwnedByAuth(data: Record<string, unknown>, authUid: string): boolean {
+  if (cleanStr((data as { firebaseAuthUid?: unknown }).firebaseAuthUid) === authUid) return true;
+  const linkedAuth = (data as { linkedAuth?: unknown }).linkedAuth;
   if (linkedAuth && typeof linkedAuth === 'object') {
     const providerUid = cleanStr((linkedAuth as { providerUid?: unknown }).providerUid);
     if (providerUid && providerUid === authUid) return true;
   }
-  const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
-  if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId) return true;
   return false;
 }
 

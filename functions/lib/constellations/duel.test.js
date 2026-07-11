@@ -38,10 +38,17 @@ describe('constellations/duel — блиц до 3 очков (A4a)', () => {
         expect(res.suddenDeath).toBe(true);
         expect(res.winner).toBe(0);
     });
-    test('внезапная смерть: оба мимо → победителя нет (звезда прежнему владельцу)', () => {
+    test('внезапная смерть: оба мимо на доп. → тай-брейк по скорости первого верного (аудит)', () => {
+        // A верен на вопросе 0 за 1000мс, B верен на вопросе 1 за 2000мс, доп. оба мимо.
+        // Раньше было null (звезда никому); теперь звезду берёт тот, кто раньше был верен.
         const res = (0, duel_1.scoreDuel)([ans(true, 1000), ans(false, 1000), ans(false, 1000), ans(false, 1000)], [ans(false, 2000), ans(true, 2000), ans(false, 2000), ans(false, 2000)]);
         expect(res.suddenDeath).toBe(true);
-        expect(res.winner).toBeNull();
+        expect(res.winner).toBe(0); // A был верен раньше (1000 < 2000)
+    });
+    test('внезапная смерть: НИ ОДНОГО верного у обоих → победителя нет (звезда владельцу)', () => {
+        const res = (0, duel_1.scoreDuel)([ans(false, 1000), ans(false, 1000), ans(false, 1000), ans(false, 1000)], [ans(false, 2000), ans(false, 2000), ans(false, 2000), ans(false, 2000)]);
+        expect(res.suddenDeath).toBe(true);
+        expect(res.winner).toBeNull(); // претендовать было нечем
     });
     test('0:0 после трёх → тоже внезапная смерть', () => {
         const res = (0, duel_1.scoreDuel)([ans(false, 1000), ans(false, 1000), ans(false, 1000), ans(true, 5000)], [ans(false, 2000), ans(false, 2000), ans(false, 2000), ans(false, 2000)]);

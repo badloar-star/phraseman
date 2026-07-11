@@ -18,13 +18,14 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
     expect(source).toContain('allowAnonRelink?: boolean');
   });
 
-  test('assertStableOwner allowAnonRelink guard requires no existing provider link', () => {
-    // Security: accounts with a Google/Apple provider (linkedAuthUid set) are never
-    // relinkable by an anonymous uid — only pure anonymous accounts can be relinked.
-    const guardLine = source
-      .split('\n')
-      .find((l) => l.includes('allowAnonRelink') && l.includes('!linkedStableId') && l.includes('!linkedAuthUid'));
-    expect(guardLine).toBeDefined();
+  test('assertStableOwner relink requires a fresh claim from the previous anonymous owner', () => {
+    // Security: possession of a stable id alone cannot replace its Firebase owner.
+    // The old anonymous session must stamp a fresh proof before provider fallback.
+    expect(source).toContain('const hasFreshPreviousOwnerProof');
+    expect(source).toContain('anonClaim?.authUid === userAuthUid');
+    expect(source).toMatch(
+      /allowAnonRelink[\s\S]{0,220}hasFreshPreviousOwnerProof[\s\S]{0,120}!linkedAuthUid/,
+    );
   });
 
   // ── Хвост E: осиротевшая auth_links после удаления аккаунта ───────────────

@@ -62,6 +62,16 @@ export interface BuildSpeakingStartOptionsInput {
    * режиме оценки произношения — там нужен штатный endpointer (continuous:false).
    */
   holdToTalk?: boolean;
+  /**
+   * Свободная реплика без заранее известного текста (ИИ-диалог, «болталка»):
+   * juser может сказать что угодно, а не одну ожидаемую короткую фразу.
+   * Форсирует iosTaskHint:'dictation' независимо от длины targetText — hint
+   * 'confirmation' (для targetText ≤2 слов, напр. короткий заголовок сценария)
+   * настраивает SFSpeechRecognizer на короткое да/нет-подтверждение и обрывает
+   * запись почти мгновенно, как только услышан хоть один законченный кусок —
+   * непригодно для развёрнутой разговорной реплики.
+   */
+  freeSpeech?: boolean;
 }
 
 /** iOS task hint tuned to phrase length: short prompts confirm fast, sentences dictate. */
@@ -103,6 +113,7 @@ export function buildSpeakingStartOptions(
     onDevice = false,
     persistRecording = true,
     holdToTalk = false,
+    freeSpeech = false,
   } = input;
 
   const contextualStrings = buildContextualStrings(targetText);
@@ -110,9 +121,9 @@ export function buildSpeakingStartOptions(
   const base: SpeakingRecognitionStartOptions = {
     lang,
     interimResults,
-    // Разговорный режим: держим движок открытым, пока зажата кнопка (палец задаёт
-    // конец речи через onPressOut → stop()). Оценка произношения — штатный
-    // endpointer (continuous:false).
+    // Hold-to-talk owns the end of the session on both platforms. Without this
+    // iOS can finish after a short completed fragment while the UI still says
+    // that the user should keep holding the button.
     continuous: holdToTalk,
     // Phrase biasing — the biggest accuracy lever for a fixed-phrase app.
     contextualStrings,
@@ -120,8 +131,10 @@ export function buildSpeakingStartOptions(
     maxAlternatives: 5,
     // Cleaner formatted hypothesis (scorer strips punctuation anyway).
     addsPunctuation: true,
-    // iOS: tune the engine to the expected utterance length.
-    iosTaskHint: iosTaskHintForTarget(targetText),
+    // iOS: tune the engine to the expected utterance length. Свободная реплика
+    // (freeSpeech) всегда 'dictation' — 'confirmation' обрывает запись почти
+    // мгновенно, рассчитан на короткое да/нет-подтверждение известной фразы.
+    iosTaskHint: freeSpeech ? 'dictation' : iosTaskHintForTarget(targetText),
   };
 
   // Android reliability first: `supportsOnDeviceRecognition()` can return true on

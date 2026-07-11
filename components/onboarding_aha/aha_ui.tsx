@@ -115,10 +115,19 @@ export function useBeatTransition(beat: AhaBeat): {
       Animated.timing(opacity, { toValue: 0, duration: 140, useNativeDriver: true }),
       Animated.timing(translateX, { toValue: -24, duration: 140, useNativeDriver: true }),
     ]);
-    anim.start(({ finished }) => {
-      if (finished) setDisplayBeat(beat);
-    });
-    return () => anim.stop();
+    // НЕ гейтим на `finished`: нативный колбэк анимации иногда не долетает
+    // (JS-поток занят, напр. холодной инициализацией трёх аудио-плееров
+    // useAhaSceneAudio), и `finished` тогда никогда не станет true — сцена
+    // визуально зависала на предыдущем бите на десятки секунд, хотя `beat`
+    // (и звук/логика) уже давно переключились. Таймер — надёжный бэкстоп:
+    // смена бита гарантированно происходит через 140мс, анимация это лишь
+    // косметика перехода, а не источник истины о состоянии сцены.
+    anim.start();
+    const id = setTimeout(() => setDisplayBeat(beat), 140);
+    return () => {
+      anim.stop();
+      clearTimeout(id);
+    };
   }, [beat, displayBeat, opacity, translateX]);
 
   useEffect(() => {

@@ -33,14 +33,17 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.__accountDeleteTestHooks = exports.accountDeleteMine = void 0;
+exports.__accountDeleteTestHooks = exports.accountDeleteMine = exports.accountDeleteEnqueue = void 0;
 exports.accountDeleteQueryPlan = accountDeleteQueryPlan;
 exports.accountDeleteCollectionGroupPlan = accountDeleteCollectionGroupPlan;
 exports.accountDeleteCollectionGroupDocumentIdPlan = accountDeleteCollectionGroupDocumentIdPlan;
+exports.executeAccountDeletion = executeAccountDeletion;
+exports.enqueueForAuthenticatedAccount = enqueueForAuthenticatedAccount;
 const admin = __importStar(require("firebase-admin"));
 const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
+const account_delete_job_1 = require("./account_delete_job");
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
 const ACCOUNT_DELETE_TIMEOUT_SECONDS = 540;
@@ -292,33 +295,33 @@ async function getEmailsForDeletion(db, authUid, stableUid) {
 }
 async function resolveStableUidForDelete(db, authUid, requestedStableId) {
     const resolveKnownStableUid = async () => {
+        const authLinkSnap = await db.collection('auth_links').doc(authUid).get().catch(() => null);
+        const linkedStableId = cleanId(authLinkSnap?.data()?.stable_id);
+        if (linkedStableId)
+            return linkedStableId;
         const direct = await db.collection('users').doc(authUid).get().catch(() => null);
         if (direct?.exists)
             return authUid;
         const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
         if (!byAuth.empty)
             return byAuth.docs[0].id;
-        const authLinkSnap = await db.collection('auth_links').doc(authUid).get().catch(() => null);
-        const linkedStableId = cleanId(authLinkSnap?.data()?.stable_id);
-        if (linkedStableId)
-            return linkedStableId;
         return authUid;
     };
     const requested = cleanId(requestedStableId);
     if (requested) {
-        if (requested === authUid)
-            return requested;
         const [userSnap, authLinkSnap] = await Promise.all([
             db.collection('users').doc(requested).get().catch(() => null),
             db.collection('auth_links').doc(authUid).get().catch(() => null),
         ]);
         const linkedAuthUid = cleanId(userSnap?.data()?.firebaseAuthUid);
         const linkedStableId = cleanId(authLinkSnap?.data()?.stable_id);
-        if (linkedAuthUid && linkedAuthUid !== authUid && linkedStableId !== requested) {
+        if (linkedStableId)
+            return linkedStableId;
+        if (linkedAuthUid === authUid)
+            return requested;
+        if (linkedAuthUid && linkedAuthUid !== authUid) {
             throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
         }
-        if (userSnap?.exists || linkedStableId === requested)
-            return requested;
         return resolveKnownStableUid();
     }
     return resolveKnownStableUid();
@@ -531,12 +534,7 @@ async function markAccountDeletionTombstone(db, stableUid, authUid, stats) {
     });
     stats.docsUpdated += 1;
 }
-exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (request) => {
-    if (!request.auth?.uid)
-        throw new https_1.HttpsError('unauthenticated', 'auth_required');
-    const db = admin.firestore();
-    const authUid = request.auth.uid;
-    const stableUid = await resolveStableUidForDelete(db, authUid, request.data?.stableId);
+async function executeAccountDeletion(db, stableUid, authUid) {
     const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
     const ctx = createDeleteContext(db, stableUid, authUid, stats);
     const emails = await getEmailsForDeletion(db, authUid, stableUid);
@@ -563,7 +561,7 @@ exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (r
             }
         }
         accountDeleteLog(ctx, 'done', stats);
-        return { ok: true, stableUid, authUid, ...stats };
+        return stats;
     }
     catch (e) {
         accountDeleteLog(ctx, 'failed', stats, {
@@ -585,6 +583,31 @@ exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (r
             });
         }
     }
+}
+async function enqueueForAuthenticatedAccount(db, authUid, requestedStableId, enqueue = account_delete_job_1.enqueueAccountDeletionJob) {
+    const stableUid = await resolveStableUidForDelete(db, authUid, requestedStableId);
+    const result = await enqueue(db, authUid, stableUid);
+    return { ok: true, ...result };
+}
+exports.accountDeleteEnqueue = (0, https_1.onCall)({
+    region: REGION,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_SENSITIVE,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 80,
+}, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    return enqueueForAuthenticatedAccount(admin.firestore(), request.auth.uid, request.data?.stableId);
+});
+exports.accountDeleteMine = (0, https_1.onCall)(ACCOUNT_DELETE_OPTIONS, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const db = admin.firestore();
+    const authUid = request.auth.uid;
+    const stableUid = await resolveStableUidForDelete(db, authUid, request.data?.stableId);
+    const stats = await executeAccountDeletion(db, stableUid, authUid);
+    return { ok: true, stableUid, authUid, ...stats };
 });
 exports.__accountDeleteTestHooks = {
     accountDeleteQueryPlan,
@@ -594,6 +617,7 @@ exports.__accountDeleteTestHooks = {
     COLLECTION_GROUP_QUERY_SPECS,
     COLLECTION_GROUP_DOCUMENT_ID_SPECS,
     resolveStableUidForDelete,
+    enqueueForAuthenticatedAccount,
     deleteQuery,
     ACCOUNT_DELETE_OPTIONS,
 };

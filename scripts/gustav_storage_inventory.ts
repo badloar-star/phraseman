@@ -433,7 +433,6 @@ const REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE = new Set([
   // Free-usage limit counters (monetization gates, not learning progress).
   'dialogs_free_lifetime_count_v3',
   'dialogs_free_lifetime_used_v2',
-  'compass_day_closing_free_used_v1',
   // Daily free-quota counter {date,count} for AI mistake-explain (paywall gate,
   // not learning content) — reclassified out of the generic 'mistake' learning
   // heuristic because it stores only a usage tally.
@@ -512,7 +511,6 @@ const REVIEWED_GLOBAL_KEY_PATTERNS_POST_BASELINE = [
   /^home_feature_tips_/,
   /^help_board_hidden_/,
   /^referral_clipboard_/,
-  /^compass_briefing_seen_/,
 ] as const;
 
 // Reviewed GLOBAL dynamic-expression sources for post-baseline families whose

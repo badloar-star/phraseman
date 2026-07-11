@@ -126,6 +126,9 @@ async function handleConstellationSubmit(uid, data) {
         if (type === 'use_shield') {
             if (match.phase !== 'choose')
                 throw new https_1.HttpsError('failed-precondition', 'not choose phase');
+            // shieldPerMatch — живая ручка (аудит): ≤0 → щиты выключены (kill-switch).
+            if (cfg.shieldPerMatch <= 0)
+                throw new https_1.HttpsError('failed-precondition', 'shields disabled');
             const starKey = asId(data.starKey, 'starKey');
             const p = server.state.players[slot];
             if (p.status !== 'alive')
@@ -172,10 +175,12 @@ async function handleConstellationSubmit(uid, data) {
             });
             if (done)
                 markRoundDone();
+            // correctIndex клиенту НЕ отдаём (аудит): по спеку D6 разборов в режиме
+            // нет, клиенту достаточно факта correct. Иначе клиент мог бы копить пары
+            // «вопрос → правильный ответ» для будущих повторов вопросов из банка.
             return {
                 ok: true,
                 correct,
-                correctIndex: key?.correctIndex ?? -1,
                 done,
                 phaseCheck: 'answer',
             };

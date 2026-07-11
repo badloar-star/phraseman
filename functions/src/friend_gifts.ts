@@ -938,7 +938,10 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       if (nextClaimed[uid] === true) continue;
       const data = userDataByUid[uid] ?? {};
       const beforeShards = parseShards(data.shards);
-      const beforeXp = getTotalXp(data);
+      const existingServerState = data.progressServerState && typeof data.progressServerState === 'object'
+        ? data.progressServerState as Record<string, unknown>
+        : {};
+      const beforeXp = Math.max(getTotalXp(data), parseProgressInt(existingServerState.totalXp));
       const afterShards = beforeShards + rewardShards;
       const afterXp = beforeXp + rewardXp;
       tx.set(userRefs[uid], {
@@ -947,6 +950,12 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         shards_updated_op: 'earn',
         shards_updated_reason: 'friend_quest_reward',
         progress: { user_total_xp: String(afterXp) },
+        progressServerState: {
+          ...existingServerState,
+          totalXp: afterXp,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        },
+        progressServerAuthoritative: true,
         updatedAt: now,
       }, { merge: true });
       tx.set(userRefs[uid].collection('shard_log').doc(), {

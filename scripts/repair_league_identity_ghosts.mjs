@@ -40,6 +40,11 @@ if (targetNames.size === 0 && targetUids.size === 0) {
   process.exit(1);
 }
 
+if (apply && targetUids.size === 0) {
+  console.error('Refusing to write from a display-name match. --apply requires --uid.');
+  process.exit(2);
+}
+
 const credential = existsSync('./service-account.json')
   ? cert(JSON.parse(readFileSync('./service-account.json', 'utf8')))
   : applicationDefault();
@@ -49,7 +54,7 @@ const db = getFirestore();
 function memberMatches(key, member) {
   const uid = String(member?.uid ?? key ?? '').trim();
   const name = String(member?.name ?? '').trim().toLowerCase();
-  return targetUids.has(key) || targetUids.has(uid) || targetNames.has(name);
+  return targetUids.has(key) || targetUids.has(uid) || (!apply && targetNames.has(name));
 }
 
 async function maybeCommit(batch, count) {
@@ -58,6 +63,7 @@ async function maybeCommit(batch, count) {
 
 async function loadMatchedLeaderboardIds() {
   const ids = new Set(targetUids);
+  if (apply) return ids;
   for (const nameLower of targetNames) {
     const snap = await db.collection('leaderboard').where('nameLower', '==', nameLower).limit(50).get();
     snap.docs.forEach((doc) => ids.add(doc.id));

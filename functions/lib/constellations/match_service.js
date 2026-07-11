@@ -238,7 +238,13 @@ async function createConstellationMatch(humans) {
         humanUids: humans.map((h) => h.userId),
         updatedAt: now,
     };
+    // Ставку (C3) списываем АТОМАРНО при создании матча из users.shards с записью
+    // в shard_log (аудит: раньше ставка не списывалась — победитель ×3 чистыми,
+    // проигравший ничего не терял → бесконечный доход). Выплата wager при финале
+    // (wagerPayout) остаётся: 1 место ×3, 2 — возврат, 3-4 — сгорела.
+    const wagerHumans = humans.filter((h) => (h.wager ?? 0) > 0);
     await db.runTransaction(async (tx) => {
+        // Все чтения ДО записей (требование транзакций Firestore).
         for (const human of humans) {
             const qRef = db.collection('constellation_queue').doc(human.userId);
             const qSnap = await tx.get(qRef);
@@ -246,8 +252,41 @@ async function createConstellationMatch(humans) {
                 throw new Error(`Player ${human.userId} already matched — abort`);
             }
         }
+        const wagerBalances = new Map();
+        for (const human of wagerHumans) {
+            const uRef = db.collection('users').doc(human.userId);
+            const uSnap = await tx.get(uRef);
+            const balance = Number(uSnap.data()?.shards ?? 0);
+            if (balance < (human.wager ?? 0)) {
+                throw new Error(`Player ${human.userId} insufficient shards for wager ${human.wager} (has ${balance})`);
+            }
+            wagerBalances.set(human.userId, balance);
+        }
         tx.set(matchRef, matchDoc);
         tx.set(db.collection(SERVER).doc(matchId), serverDoc);
+        // Списание ставок + журнал (тот же леджер, что и начисление в finalize).
+        for (const human of wagerHumans) {
+            const wager = human.wager ?? 0;
+            const before = wagerBalances.get(human.userId) ?? 0;
+            const after = before - wager;
+            const uRef = db.collection('users').doc(human.userId);
+            tx.set(uRef, {
+                shards: after,
+                shards_updated_at_ms: now,
+                shards_updated_op: 'spend',
+                shards_updated_reason: 'constellation_wager',
+                updatedAt: now,
+            }, { merge: true });
+            tx.set(uRef.collection('shard_log').doc(), {
+                ts: new Date(now).toISOString(),
+                type: 'spend',
+                amount: -wager,
+                reason: 'constellation_wager',
+                balanceBefore: before,
+                balanceAfter: after,
+                matchId,
+            });
+        }
         participants.forEach((p, slot) => {
             if (!p.human)
                 return;
@@ -716,12 +755,23 @@ async function finalizeConstellationMatch(matchId) {
         // Читаем профили и статистику режима игроков-людей ВНУТРИ транзакции.
         const profileRefs = new Map(humanUids.map((u) => [u, db.collection('arena_profiles').doc(u)]));
         const userRefs = new Map(humanUids.map((u) => [u, db.collection('users').doc(u)]));
+        const pityRefs = new Map(humanUids.map((u) => [u, db.collection(PITY).doc(u)]));
         const profileSnaps = new Map();
         const userSnaps = new Map();
+        const pitySnaps = new Map();
         for (const u of humanUids) {
             profileSnaps.set(u, await tx.get(profileRefs.get(u)));
             userSnaps.set(u, await tx.get(userRefs.get(u)));
+            pitySnaps.set(u, await tx.get(pityRefs.get(u)));
         }
+        // Дневной кап пыли/звездопада (аудит): сколько уже начислено сегодня.
+        const todayKey = dayKeyUtc(now);
+        const dailyUsage = (uid) => {
+            const d = pitySnaps.get(uid)?.data();
+            if (!d || d.dayKey !== todayKey)
+                return { dust: 0, starfall: 0 };
+            return { dust: Number(d.dustToday ?? 0), starfall: Number(d.starfallToday ?? 0) };
+        };
         const rewardByUid = new Map();
         for (const player of state.players) {
             if (botUids.has(player.uid))
@@ -729,6 +779,7 @@ async function finalizeConstellationMatch(matchId) {
             const uSnap = userSnaps.get(player.uid);
             const matchesBefore = Number(uSnap?.data()
                 ?.constellation_stats?.matchesPlayed ?? 0);
+            const usage = dailyUsage(player.uid);
             const reward = (0, rewards_1.computeMatchRewards)({
                 place: placeByUid.get(player.uid) ?? 4,
                 isBot: false,
@@ -739,8 +790,20 @@ async function finalizeConstellationMatch(matchId) {
                 matchesPlayedBefore: matchesBefore,
                 perfectCaptures: player.perfectCaptures,
                 livingHumans,
+                dustToday: usage.dust,
+                starfallToday: usage.starfall,
                 cfg,
             });
+            // Обновляем дневные счётчики pity (аудит: дневной кап теперь считается).
+            if (reward.dustGranted > 0 || reward.starfallGranted > 0) {
+                const pRef = pityRefs.get(player.uid);
+                tx.set(pRef, {
+                    dayKey: todayKey,
+                    dustToday: usage.dust + reward.dustGranted,
+                    starfallToday: usage.starfall + reward.starfallGranted,
+                    updatedAt: now,
+                }, { merge: true });
+            }
             rewardByUid.set(player.uid, reward);
             // ── Ранг/★/SR/XP в arena_profiles (общий с ареной ранг, E1/E2).
             const pRef = profileRefs.get(player.uid);

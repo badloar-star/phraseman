@@ -718,14 +718,13 @@ export default function ClubScreen() {
       // Показываем кешированные данные лиги сразу, без ожидания сети
       if (cachedLeague) {
         applyLeagueOpen(cachedLeague, null, false);
+        setLocalLeagueHydrated(true);
       } else {
-        applyLeagueOpen(
-          { leagueId: 0, weekId: getWeekId(), group: [{ name: n, points: 0, isMe: true }] },
-          null,
-          false,
-        );
+        // Do not manufacture a zero-score league while the authoritative
+        // weekly state is still loading. A fake zero is indistinguishable from
+        // a real reset and was the source of several user-visible reports.
+        setLocalLeagueHydrated(false);
       }
-      setLocalLeagueHydrated(true);
 
       // ── Фаза 2: сетевой апдейт не чаще 6 часов (или по force) ───────────────
       // ВАЖНО: 6h-троттл должен бить только Firestore-refetch группы, а не проверку
@@ -886,6 +885,7 @@ export default function ClubScreen() {
     () => (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points),
     [group],
   );
+  const currentUserStreak = sortedGroup.find((p) => p.isMe)?.streak ?? null;
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
@@ -2122,6 +2122,7 @@ export default function ClubScreen() {
             aura: myAuraId,
             totalXP: playerXP,
             leagueId: myLeagueId,
+            streak: currentUserStreak,
           }}
           onClose={() => setChatProfile(null)}
         />
@@ -2136,6 +2137,7 @@ export default function ClubScreen() {
           aura: myAuraId,
           totalXP: playerXP,
           leagueId: myLeagueId,
+          streak: currentUserStreak,
         }}
         onClose={() => setProfile(null)}
       />

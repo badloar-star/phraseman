@@ -4,8 +4,9 @@
 // play (после записи микрофона сессия могла остаться в playAndRecord).
 
 import { useCallback, useEffect, useRef } from 'react';
-import { useAudioPlayer, setAudioModeAsync, type AudioPlayer, type AudioStatus } from 'expo-audio';
+import { useAudioPlayer, type AudioPlayer, type AudioStatus } from 'expo-audio';
 import { LOUD_PLAYBACK_AUDIO_MODE } from '../../app/audio_playback_mode';
+import { setManagedAudioMode } from '../../app/audio_session_coordinator';
 import { AHA_VOICE_HEAR, AHA_VOICE_SAY, AHA_AMBIENT } from './aha_assets';
 import type { AhaScenarioId } from './aha_types';
 
@@ -31,7 +32,7 @@ function safe(fn: () => void): void {
 
 /** Проиграть плеер сначала: восстановить громкий режим → перемотать → play. */
 function playFromStart(player: AudioPlayer): void {
-  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
     .catch(() => undefined)
     .finally(() => safe(() => {
       void player.seekTo(0);

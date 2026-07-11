@@ -25,7 +25,7 @@ The audit reads only the data required to evaluate XP integrity:
 - identity metadata needed to locate canonical and historical alias documents;
 - historical alias progress ledgers when an authenticated merge is proven;
 - XP mirrors in `leaderboard`, `arena_profiles`, and current `league_groups`;
-- current server achievement reward catalog and level formula from repository source.
+- versioned achievement reward catalogs and level formulas reconstructed from repository history for each relevant effective-date or app-version window.
 
 The audit does not write Firestore, repair XP, delete or rewrite ledger events, notify users, award currency, deploy code, or modify report status.
 
@@ -34,9 +34,9 @@ The audit does not write Firestore, repair XP, delete or rewrite ledger events, 
 Each scanned account receives evidence checks in five independent dimensions:
 
 1. **Ledger continuity:** compare current canonical lifetime XP with the sum of accepted canonical progress events, accounting for documented cutover/migration baselines.
-2. **Achievement validity:** validate official achievement IDs, canonical reward amounts, threshold conditions at pre-event authoritative totals, and first-earned semantics.
+2. **Achievement validity:** validate official achievement IDs, canonical reward amounts, reconstructible threshold conditions at pre-event authoritative state, and first-earned semantics against the catalog version effective when the event was created. If an event cannot be mapped to a historically valid catalog version, it is indeterminate rather than invalid.
 3. **Alias duplication:** detect the same semantic achievement reward across a canonical account and proven historical merge aliases.
-4. **Migration inflation:** inspect migration markers and discontinuities consistent with the historical 250-to-400 formula restore or repeated startup migration.
+4. **Migration inflation:** inspect migration markers and discontinuities consistent with the historical 250-to-400 formula restore or repeated startup migration. Exact migration inflation is proven only when the retained evidence independently supplies or exactly reconstructs the pre-migration XP, applied transform/version, and resulting delta. A total that merely matches the numerical formula pattern is probable or indeterminate evidence, never confirmed damage.
 5. **Projection drift:** compare canonical XP with leaderboard, arena, and league mirrors. Mirror drift is reported separately and is never treated as proof of inflated canonical XP.
 
 ## Classification
@@ -52,14 +52,16 @@ An account may also carry a separate `projection_drift` flag.
 
 ## Proposed correction calculation
 
-The audit may calculate a proposed XP value only for `confirmed damaged` accounts. It must preserve every legitimate accepted event and subtract only amounts whose invalidity is proven by the historical rules and event ordering. It must not infer a replacement value from current level, playtime, streak, lesson count, or population averages.
+The audit may calculate a proposed XP value only for `confirmed damaged` accounts. It must preserve every legitimate accepted event and subtract only amounts whose invalidity is proven by the historically effective rules and event ordering. It must not infer a replacement value from current level, playtime, streak, lesson count, or population averages.
+
+Threshold validation is achievement-specific. The analysis must declare which prerequisite state is reconstructible from authoritative chronological records. XP milestones may use the authoritative pre-event lifetime XP when it is retained or exactly derivable. Streak, saved-card, combo, shard, lesson-repetition, and similar milestones require their own authoritative chronological evidence. If the required pre-event state is absent, the event cannot be classified as confirmed invalid and cannot contribute to a proposed subtraction.
 
 Probable and indeterminate accounts receive no proposed automatic correction.
 
 ## Data flow and operational safety
 
 1. Resolve the configured Firebase project and credentials without printing credential material.
-2. Load the repository-owned achievement catalog and XP level formula.
+2. Reconstruct versioned achievement catalogs and XP level formulas from repository history, with explicit effective windows. Never validate a historical event against the current catalog by default.
 3. Page through `users` in stable document order with bounded concurrency.
 4. Read only relevant ledgers and proven aliases for each account.
 5. Compute per-account evidence in memory; do not persist raw identifiers or raw event payloads.
@@ -76,7 +78,7 @@ The shareable reports must contain no email, display name, nickname, raw stable 
 
 Before the full scan:
 
-- verify pure classification logic with synthetic fixtures for valid rewards, impossible threshold rewards, alias duplicates, migration inflation, incomplete history, and mirror-only drift;
+- verify pure classification logic with synthetic fixtures for valid rewards, historical catalog changes, unmapped catalog versions, reconstructible and non-reconstructible thresholds, alias duplicates, exactly proven and pattern-only migration inflation, incomplete history, and mirror-only drift;
 - run a private calibration check against the known control account;
 - confirm that the control account resolves to the expected current XP/level neighborhood and that its known historical indicators are detected;
 - verify through source inspection and a runtime guard that the audit path performs zero writes.
@@ -105,4 +107,3 @@ After the scan:
 - Reports contain no direct identifiers or personal content.
 - Tooling and logs demonstrate zero Firestore writes.
 - Any later correction remains a separate, reviewed, explicitly authorized operation.
-

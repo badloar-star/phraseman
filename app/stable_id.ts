@@ -19,7 +19,7 @@
 import * as Crypto from 'expo-crypto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO } from './config';
-import { ensureAccountGeneration, invalidateAccountGeneration } from './account_generation';
+import { beginInitialAccountGeneration, invalidateAccountGeneration } from './account_generation';
 
 const SECURE_KEY = 'phraseman_stable_uid';
 const ASYNC_KEY = 'phraseman_stable_uid_cache';
@@ -90,7 +90,7 @@ export function peekStableId(): string | null {
 
 async function readOrCreateStableId(epoch: number): Promise<string> {
   if (cachedId) {
-    ensureAccountGeneration(cachedId);
+    beginInitialAccountGeneration(cachedId);
     return cachedId;
   }
 
@@ -120,7 +120,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
         cachedId = stored;
         await AsyncStorage.setItem(ASYNC_KEY, stored);
         assertCurrentStableIdRead(epoch);
-        ensureAccountGeneration(stored);
+        beginInitialAccountGeneration(stored);
         return stored;
       }
     } catch {
@@ -138,7 +138,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
       if (SecureStore && opts) {
         await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(() => {});
       }
-      ensureAccountGeneration(cached);
+      beginInitialAccountGeneration(cached);
       return cached;
     }
   } catch {}
@@ -159,7 +159,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
   assertCurrentStableIdRead(epoch);
 
   cachedId = newId;
-  ensureAccountGeneration(newId);
+  beginInitialAccountGeneration(newId);
 
   return newId;
 }
@@ -173,7 +173,7 @@ export function getStableId(): Promise<string> {
     return barrier.then(() => getStableId());
   }
   if (cachedId) {
-    ensureAccountGeneration(cachedId);
+    beginInitialAccountGeneration(cachedId);
     return Promise.resolve(cachedId);
   }
   if (stableIdLoadInFlight) return stableIdLoadInFlight;
@@ -215,7 +215,6 @@ async function persistStableId(newId: string, epoch: number): Promise<void> {
   if (epoch !== stableIdOperationEpoch) return;
   if (persisted) {
     cachedId = newId;
-    ensureAccountGeneration(newId);
   } else {
     cachedId = null;
     invalidateAccountGeneration();

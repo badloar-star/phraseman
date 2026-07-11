@@ -86,6 +86,15 @@ test('repeated stable id reads keep one active generation', async () => {
   expect(generation.isCurrentAccountGeneration(first, id)).toBe(true);
 });
 
+test('cached stable id read cannot implicitly finish an account transition', async () => {
+  const stable = require('../app/stable_id');
+  const generation = require('../app/account_generation');
+  const id = await stable.getStableId();
+  generation.invalidateAccountGeneration();
+  await expect(stable.getStableId()).resolves.toBe(id);
+  expect(generation.captureAccountGeneration()).toMatchObject({ stableId: null, phase: 'transitioning' });
+});
+
 test('setStableId changes generation only when the identity changes', async () => {
   const { getStableId, setStableId } = require('../app/stable_id');
   const generation = require('../app/account_generation');
@@ -95,6 +104,8 @@ test('setStableId changes generation only when the identity changes', async () =
   expect(generation.captureAccountGeneration()).toEqual(first);
   await setStableId('remote-account');
   expect(generation.isCurrentAccountGeneration(first)).toBe(false);
+  expect(generation.captureAccountGeneration().phase).toBe('transitioning');
+  generation.beginAccountGeneration('remote-account');
   expect(generation.captureAccountGeneration().stableId).toBe('remote-account');
 });
 
@@ -207,6 +218,8 @@ test('getStableId waits behind a pending identity set and resolves the new accou
   release();
   await setting;
   await expect(reading).resolves.toBe('new-account');
+  expect(generation.captureAccountGeneration().phase).toBe('transitioning');
+  generation.beginAccountGeneration('new-account');
   expect(generation.captureAccountGeneration()).toMatchObject({ stableId: 'new-account', phase: 'active' });
 });
 

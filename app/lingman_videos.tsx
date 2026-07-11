@@ -32,6 +32,12 @@ import {
   markLingmanYoutubeCatalogSeen,
 } from './lingman_youtube';
 import { getLingmanYoutubeChrome } from './lingman_youtube_chrome';
+import { captureAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import {
+  beginLingmanSnapshotRequest, commitLingmanSnapshot, isLingmanSnapshotRequestCurrent,
+  lingmanSnapshotCacheKey, patchLingmanUnread, readLingmanSnapshot,
+} from './lingman_youtube_cache';
 
 function formatViews(count?: number): string {
   if (!Number.isFinite(count)) return '';
@@ -45,12 +51,21 @@ export default function LingmanVideosScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
-  const [snapshot, setSnapshot] = useState<LingmanYoutubeSnapshot | null>(null);
-  const [loading, setLoading] = useState(true);
+  const renderToken = captureAccountGeneration();
+  const renderAccountScope = accountScopeKey(renderToken);
+  const initialChannel = getActiveYoutubeChannel();
+  const renderKey = lingmanSnapshotCacheKey(renderToken, initialChannel.channelId);
+  const initialWarm = readLingmanSnapshot(renderToken, initialChannel.channelId);
+  const [loadedKey, setLoadedKey] = useState<string | null>(() => renderKey);
+  const [cachedSnapshot, setCachedSnapshot] = useState<LingmanYoutubeSnapshot | null>(() => initialWarm?.value ?? null);
+  const [loading, setLoading] = useState(() => initialWarm === null);
   const [refreshing, setRefreshing] = useState(false);
   // Активный канал (дефолт PHRASEMAN или override из «Пульта»). Обновляется при
   // каждой загрузке снапшота — тогда же, когда могла прийти новая конфигурация.
-  const [channel, setChannel] = useState(() => getActiveYoutubeChannel());
+  const [channel, setChannel] = useState(() => initialChannel);
+  const currentRenderKey = lingmanSnapshotCacheKey(renderToken, channel.channelId);
+  const snapshot = loadedKey === currentRenderKey ? cachedSnapshot : null;
+  const visibleLoading = loading || loadedKey !== currentRenderKey;
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const copy = useMemo(() => ({
@@ -137,17 +152,36 @@ export default function LingmanVideosScreen() {
   }), [lang]);
 
   const load = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
+    const token = captureAccountGeneration();
+    if (accountScopeKey(token) !== renderAccountScope) return;
+    const activeChannel = getActiveYoutubeChannel();
+    const requestKey = lingmanSnapshotCacheKey(token, activeChannel.channelId);
+    const warm = readLingmanSnapshot(token, activeChannel.channelId);
+    const request = beginLingmanSnapshotRequest(token, activeChannel.channelId);
     if (mode === 'refresh') setRefreshing(true);
-    else setLoading(true);
+    else if (!warm) setLoading(true);
+    setChannel(activeChannel);
+    if (warm) {
+      setLoadedKey(requestKey);
+      setCachedSnapshot(warm.value);
+    }
+    if (warm?.isFresh && mode !== 'refresh') { setLoading(false); return; }
     try {
       const next = await getLingmanYoutubeSnapshot();
-      setSnapshot(next);
-      setChannel(getActiveYoutubeChannel());
+      if (commitLingmanSnapshot(request, next)) {
+        const committed = readLingmanSnapshot(token, activeChannel.channelId);
+        setLoadedKey(requestKey);
+        setCachedSnapshot(committed?.value ?? next);
+      }
+    } catch {
+      // Keep the last successful catalog visible.
     } finally {
-      setLoading(false);
-      setRefreshing(false);
+      if (isLingmanSnapshotRequestCurrent(request)) {
+        setLoading(false);
+        setRefreshing(false);
+      }
     }
-  }, []);
+  }, [renderAccountScope]);
 
   useEffect(() => {
     void load('initial');
@@ -173,7 +207,9 @@ export default function LingmanVideosScreen() {
     const unreadCount = snapshot?.unreadCount ?? 0;
     if (videoIndex >= 0 && videoIndex < Math.max(1, unreadCount)) {
       void markLingmanYoutubeCatalogSeen(video.id);
-      setSnapshot((current) => current ? { ...current, unreadCount: Math.min(current.unreadCount, videoIndex) } : current);
+      const nextUnread = Math.min(unreadCount, videoIndex);
+      patchLingmanUnread(captureAccountGeneration(), channel.channelId, nextUnread);
+      setCachedSnapshot((current) => current ? { ...current, unreadCount: nextUnread } : current);
     }
     router.push({
       pathname: '/lingman_video_player',
@@ -304,7 +340,7 @@ export default function LingmanVideosScreen() {
           </View>
         ) : null}
 
-        {loading ? (
+        {visibleLoading ? (
           <View style={{ gap: 14, paddingHorizontal: 2 }}>
             {Array.from({ length: 5 }).map((_, i) => (
               <SkeletonBlock key={`lingman-video-skeleton-${i}`} width="100%" height={96} borderRadius={18} />

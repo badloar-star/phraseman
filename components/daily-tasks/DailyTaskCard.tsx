@@ -29,7 +29,7 @@ export type DailyTaskCardProps = {
   title: string;
   description: string;
   icon: ReactNode;
-  progress: ReactNode;
+  progress?: ReactNode;
   titleColor: string;
   descriptionColor: string;
   surfaceColor: string;
@@ -91,7 +91,7 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
   return (
     <View testID={props.testID} style={[styles.card, props.variant === 'bonus' && styles.bonusCard, { backgroundColor: props.surfaceColor, borderColor: props.emphasized ? props.accentColor : props.borderColor }, props.outerStyle]}>
       {props.background}
-      <Pressable testID={`${props.testID}-pressable`} disabled={!props.onPress} onPress={props.onPress} style={styles.pressable}>
+      <Pressable testID={`${props.testID}-pressable`} accessibilityRole={props.onPress ? 'button' : undefined} disabled={!props.onPress} onPress={props.onPress} style={styles.pressable}>
         <View testID={`${props.testID}-content`} style={[styles.content, props.variant === 'bonus' && styles.bonusContent, stacked && styles.contentStacked]}>
           <View testID={`${props.testID}-icon`} style={[styles.icon, props.variant === 'bonus' && styles.bonusIcon, { borderColor: props.accentColor }, props.iconStyle]}>{props.icon}</View>
           <View style={styles.copy}>
@@ -104,7 +104,7 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
             {props.reroll ? <Pressable accessibilityRole="button" accessibilityLabel={props.reroll.accessibilityLabel} onPress={(event) => { event.stopPropagation(); props.reroll?.onPress(); }} style={styles.iconAction}>{props.reroll.icon}</Pressable> : null}
           </View>
         </View>
-        {props.variant !== 'bonus' ? <View pointerEvents="none" style={styles.progressLayer} accessibilityRole="progressbar">{props.progress}</View> : null}
+        {props.variant !== 'bonus' && props.progress ? <View testID={`${props.testID}-progress`} pointerEvents="none" style={styles.progressLayer} accessibilityRole="progressbar">{props.progress}</View> : null}
       </Pressable>
       {props.variant === 'bonus' ? <View testID={`${props.testID}-progress`} pointerEvents="none" style={styles.bonusProgress} accessibilityRole="progressbar">{props.progress}</View> : null}
       {props.premium}
@@ -112,7 +112,9 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
   );
 }
 
-export type DailyBonusCardProps = Omit<DailyTaskCardProps, 'accentColor' | 'onPress' | 'reroll' | 'premium'>;
+export type DailyBonusCardProps = Omit<DailyTaskCardProps, 'accentColor' | 'onPress' | 'reroll' | 'premium' | 'progress'> & {
+  progress: ReactNode;
+};
 
 export function DailyBonusCard(props: DailyBonusCardProps) {
   return <DailyTaskCard {...props} variant="bonus" accentColor={props.borderColor} />;

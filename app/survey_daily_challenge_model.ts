@@ -18,7 +18,7 @@ function count(value: number): number {
   return Number.isFinite(n) ? Math.max(0, n) : 0;
 }
 
-export function computeSurveyDailyChallengeCounts(input: {
+export function computeSurveyDailyCounts(input: {
   baseTotal: number;
   baseDone: number;
   survey: Pick<SurveyDailyChallengeSnapshot, 'phase' | 'survey'> | null;
@@ -29,6 +29,8 @@ export function computeSurveyDailyChallengeCounts(input: {
   const done = Math.min(total, baseDone + (input.survey?.phase === 'completed' ? 1 : 0));
   return { total, done, rewardThreshold: input.survey ? Math.min(3, total) : baseTotal };
 }
+
+export const computeSurveyDailyChallengeCounts = computeSurveyDailyCounts;
 
 const COMPLETED_COPY: Record<Lang, { title: string; description: string }> = {
   ru: { title: 'Опрос завершён', description: 'Завершённый опрос учтён в заданиях дня.' },

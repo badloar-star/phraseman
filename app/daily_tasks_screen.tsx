@@ -17,8 +17,6 @@ import { GOLD_RICH, goldTaskAccent, goldShadow } from '../constants/goldTheme';
 import { localizedDailyTaskStrings } from './daily_tasks_es_locale';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
-import { LinearGradient } from '../components/SafeLinearGradient';
-import { lightenHex } from '../components/GradientProgressBar';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
@@ -50,7 +48,7 @@ import { useScreen } from '../hooks/use-screen';
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from './survey_client';
 import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from './survey_daily_task';
-import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, type SurveyDailyChallengeSnapshot } from './survey_daily_challenge_model';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts, type SurveyDailyChallengeSnapshot } from './survey_daily_challenge_model';
 import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask, type SurveyDailyTaskScope } from './survey_daily_task_cache';
 import { primeSurvey } from './survey_handoff';
 import { getCanonicalUserId } from './user_id_policy';
@@ -2285,9 +2283,15 @@ export default function DailyTasksScreen() {
         const row = progress.find((p) => p.taskId === task.id);
         return row?.completed === true || row?.claimed === true;
     }).length;
-    const totalTaskCount = tasks.length + (surveyPresent ? 1 : 0);
-    const totalObjectivesDone = realObjectivesDone + (surveyPresent && surveyDone ? 1 : 0);
-    const dailyRewardThreshold = surveyPresent ? Math.min(3, totalTaskCount) : tasks.length;
+    const {
+        total: totalTaskCount,
+        done: totalObjectivesDone,
+        rewardThreshold: dailyRewardThreshold,
+    } = computeSurveyDailyCounts({
+        baseTotal: tasks.length,
+        baseDone: realObjectivesDone,
+        survey: surveySnapshot,
+    });
     const allTasksObjectivesDone = tasks.length > 0 && totalObjectivesDone >= dailyRewardThreshold;
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy;
@@ -2307,10 +2311,8 @@ export default function DailyTasksScreen() {
     const trioActionText = trioClaimButtonEnabled
         ? rewardActionText
         : (isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
-    const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
     // Счётчик и знаменатель учитывают опрос как 4-е задание, когда он активен.
-    const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length
-        + (surveyPresent && surveyDone ? 1 : 0);
+    const objectivesDoneCount = totalObjectivesDone;
     const objectivesTotalCount = totalTaskCount;
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
@@ -2626,12 +2628,6 @@ export default function DailyTasksScreen() {
       <BouncyWrap>
       <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
 
-        {/* Опрос за осколки — 4-я плашка-задание (когда активен). Сам решает,
-            показываться ли; засчитывается в «любые 3 из 4» (порог в этом экране). */}
-        {surveySnapshot && (
-          <SurveyTaskCard challenge={surveySnapshot} onOpen={openSurveyChallenge} />
-        )}
-
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
             в Instagram), а не пустой экран. Как только setTasks отработал —
@@ -2754,11 +2750,6 @@ export default function DailyTasksScreen() {
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
                 </>}
-                progress={<View style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
-                  <View style={[dailyTaskStyles.taskCapsuleBottomFill, taskFillSizeStyle]}>
-                    <LinearGradient colors={claimed ? (isGoldTheme ? [GOLD_RICH.agedGold, GOLD_RICH.champagne] : ['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.46)']) : [taskAccent, lightenHex(taskAccent, 0.28)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskCapsuleBottomFillGradient} />
-                  </View>
-                </View>}
                 action={completed && !claimed ? { label: claimLabel, onPress: () => { void handleClaim(task.id, task.xp); }, foregroundColor: rewardActionText, backgroundColor: rewardActionBg, disabled: claimBusyId === task.id, loading: claimBusyId === task.id } : undefined}
                 claimed={claimed}
                 claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
@@ -2768,6 +2759,10 @@ export default function DailyTasksScreen() {
             </Animated.View>);
 
         })}
+
+        {surveySnapshot && (
+          <SurveyTaskCard challenge={surveySnapshot} onOpen={openSurveyChallenge} />
+        )}
 
         {claimedCount === tasks.length && tasks.length > 0 && (<View style={{ alignItems: 'center', padding: 24, gap: 8 }}>
             <Text style={{ fontSize: f.numLg + 12 }}>🎉</Text>
@@ -2967,27 +2962,6 @@ const dailyTaskStyles = StyleSheet.create({
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
         opacity: 0.88,
-    },
-    taskCapsuleBottomTrack: {
-        position: 'absolute',
-        left: 18,
-        right: 18,
-        bottom: 9,
-        height: 3,
-        borderRadius: 999,
-        overflow: 'hidden',
-    },
-    taskCapsuleBottomFill: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        borderRadius: 999,
-        overflow: 'hidden',
-    },
-    taskCapsuleBottomFillGradient: {
-        flex: 1,
-        borderRadius: 999,
     },
     taskMainRow: {
         flexDirection: 'row',

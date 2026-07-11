@@ -360,7 +360,7 @@ describe('two-slide renderer', () => {
       titleLines: ['Как сказать:', '«Для меня слишком', 'сладко»?'],
       button: 'Начать бесплатно',
       footer: 'Без регистрации • первый урок через 30 секунд',
-      url: 'knowlyapps.com',
+      url: 'https://knowlyapps.com/',
     });
     expect(layout.cta.fontSize).toBeGreaterThanOrEqual(34);
     expect(layout.cta.x).toBeGreaterThanOrEqual(48);
@@ -414,7 +414,7 @@ describe('social card quality gates', () => {
       reviewedBy: 'owner',
       reviewedAt: '2026-07-11T12:00:00.000Z',
       cellReviews: (readFixture() as any).items.map((item: any) => ({
-        itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, noCrop: true, approved: true,
+        itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, backgroundClean: true, noCrop: true, approved: true,
       })),
     }, readFixture());
     expect(complete).toMatchObject({ passed: true, errors: [] });
@@ -454,7 +454,7 @@ describe('platform packaging', () => {
       noCrop: true, correctCopy: true, secondSlideVisualApproved: true, ctaReadable: true,
       slideOrderCorrect: true, reviewedBy: 'owner', reviewedAt: '2026-07-11T12:00:00.000Z',
       cellReviews: card.items.map((item: any) => ({
-        itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, noCrop: true, approved: true,
+        itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, backgroundClean: true, noCrop: true, approved: true,
       })),
     };
     const result = await packager.packageRevision({
@@ -474,5 +474,21 @@ describe('platform packaging', () => {
     expect(manifest.assets.learning.sha256).toMatch(/^[a-f0-9]{64}$/);
     expect(manifest.quality.reportSha256).toMatch(/^[a-f0-9]{64}$/);
     expect(manifest.assets.learning.storagePath).not.toMatch(/^[A-Za-z]:/);
+  });
+});
+
+describe('twenty-card editorial catalog', () => {
+  it('expands exactly twenty valid bilingual cards with unique hooks and items', async () => {
+    const catalog = await importEsm(pathToFileURL(path.join(root, 'tools/social-learning-cards/src/catalog.mjs')).href) as any;
+    const schema = (await loadModules()).schema;
+    const source = JSON.parse(fs.readFileSync(path.join(root, 'content/marketing/social-learning-cards/series-20.json'), 'utf8'));
+    const cards = catalog.expandCatalog(source);
+    expect(cards).toHaveLength(20);
+    expect(catalog.validateCatalogUniqueness(cards)).toEqual({ ok: true, errors: [] });
+    for (const card of cards) {
+      expect(card.languageMode).toBe('bilingual');
+      expect(card.items.every((item: any) => item.russian)).toBe(true);
+      expect(schema.validateCardManifest(card).ok).toBe(true);
+    }
   });
 });

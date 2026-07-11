@@ -16,6 +16,17 @@
         { "id": "item_08", "english": "tangy", "russian": "с кислинкой", "visualBrief": "Same stylish adult woman in signature round lime glasses tasting kiwi and lime cheesecake" },
         { "id": "item_09", "english": "crunchy", "russian": "хрустящий", "visualBrief": "Same stylish adult woman in signature round lime glasses delighted by crunchy potato chips" }
       ],
+      "conversion": {
+        "hookLabel": "МИНИ-ТЕСТ НА 3 СЕКУНДЫ",
+        "titleLines": ["Как сказать:", "«Для меня слишком", "сладко»?"],
+        "explanationLines": ["Если вспомнил только sweet —", "Phraseman как раз для тебя."],
+        "answerEn": "It's too sweet for me.",
+        "answerRu": "Для меня это слишком сладко.",
+        "benefits": ["10 000+ живых фраз", "Тренировка произношения"],
+        "cta": "Начать бесплатно",
+        "url": "https://knowlyapps.com/",
+        "heroItemId": "item_01"
+      },
       "surfaces": {
         "instagram": { "enabled": true, "format": "carousel", "slideOrder": ["learning", "install"] },
         "tiktok": { "enabled": true, "format": "photo_mode", "slideOrder": ["learning", "install"] },

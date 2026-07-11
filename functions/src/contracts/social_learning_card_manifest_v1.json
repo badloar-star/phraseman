@@ -16,6 +16,7 @@
     "visualStyle",
     "languageMode",
     "items",
+    "conversion",
     "surfaces",
     "images"
   ],
@@ -50,6 +51,7 @@
         { "minItems": 9, "maxItems": 9 }
       ]
     },
+    "conversion": { "$ref": "#/definitions/conversion" },
     "surfaces": {
       "type": "object",
       "additionalProperties": false,
@@ -87,6 +89,22 @@
     }
   },
   "definitions": {
+    "conversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hookLabel", "titleLines", "explanationLines", "answerEn", "answerRu", "benefits", "cta", "url", "heroItemId"],
+      "properties": {
+        "hookLabel": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "titleLines": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "string", "minLength": 1, "maxLength": 36 } },
+        "explanationLines": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+        "answerEn": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "answerRu": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "benefits": { "type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 50 } },
+        "cta": { "type": "string", "minLength": 1, "maxLength": 32 },
+        "url": { "const": "https://knowlyapps.com/" },
+        "heroItemId": { "type": "string", "pattern": "^item_[0-9]{2}$" }
+      }
+    },
     "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "item": {
       "type": "object",

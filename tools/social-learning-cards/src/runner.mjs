@@ -5,9 +5,10 @@ import { prepareCardBrief, runQualityGates, packageCard } from './cli.mjs';
 import { importAtlas } from './import-atlas.mjs';
 import { renderInstallSlide, renderLearningSlide } from './render.mjs';
 import { revisionKey } from './paths.mjs';
+import { readCatalog } from './catalog.mjs';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const cardsPath = path.join(projectRoot, 'content/marketing/social-learning-cards/pilot-01/cards.json');
+const cardsPath = path.join(projectRoot, 'content/marketing/social-learning-cards/series-20.json');
 const manualQaPath = path.join(projectRoot, 'content/marketing/social-learning-cards/pilot-01/manual-qa.json');
 const outputRoot = path.join(projectRoot, 'output/social-learning-cards');
 
@@ -20,8 +21,7 @@ function argsMap(argv) {
 }
 
 async function loadCard(contentId) {
-  const source = JSON.parse(await fs.readFile(cardsPath, 'utf8'));
-  const card = source.cards.find((candidate) => candidate.contentId === contentId);
+  const card = (await readCatalog(cardsPath)).find((candidate) => candidate.contentId === contentId);
   if (!card) throw new Error(`unknown_card:${contentId}`);
   return card;
 }
@@ -41,7 +41,7 @@ if (command === 'prepare') {
   const checkpoint = JSON.parse(await fs.readFile(path.join(revisionDir, 'checkpoint.json'), 'utf8'));
   const cellPaths = Object.fromEntries(checkpoint.cells.map((cell) => [cell.itemId, cell.path]));
   const learning = await renderLearningSlide({ card, cellPaths, outputPath: path.join(revisionDir, card.images.learning.fileName) });
-  const install = await renderInstallSlide({ card, heroCellPath: cellPaths.item_01, outputPath: path.join(revisionDir, card.images.install.fileName) });
+  const install = await renderInstallSlide({ card, heroCellPath: cellPaths[card.conversion.heroItemId], outputPath: path.join(revisionDir, card.images.install.fileName) });
   console.log(JSON.stringify({ learning, install }));
 } else if (command === 'validate') {
   console.log(JSON.stringify(await runQualityGates({ card, revisionDir, manualQaPath })));

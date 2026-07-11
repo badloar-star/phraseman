@@ -17,6 +17,16 @@ function escapeXml(value) {
     .replaceAll("'", '&apos;');
 }
 
+function wrapWords(value, maxCharacters) {
+  const lines = [];
+  for (const word of String(value).split(/\s+/)) {
+    const current = lines.at(-1);
+    if (!current || `${current} ${word}`.length > maxCharacters) lines.push(word);
+    else lines[lines.length - 1] = `${current} ${word}`;
+  }
+  return lines;
+}
+
 function mimeFor(filePath) {
   const extension = path.extname(filePath).toLowerCase();
   return extension === '.jpg' || extension === '.jpeg'
@@ -132,6 +142,7 @@ export async function renderLearningSlide({ card, cellPaths, outputPath }) {
 export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
   assertCard(card);
   await fs.access(heroCellPath);
+  const conversion = card.conversion;
   const layout = {
     kind: 'install',
     width: WIDTH,
@@ -144,19 +155,20 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
       width: 628,
       height: 938,
       fontSize: 58,
-      eyebrow: 'МИНИ-ТЕСТ НА 3 СЕКУНДЫ',
-      title: 'Как сказать: «Для меня слишком сладко»?',
-      titleLines: ['Как сказать:', '«Для меня слишком', 'сладко»?'],
-      subtitle: `Если вспомнил только ${card.items[0].english} — Phraseman как раз для тебя.`,
-      benefitPrimary: '10 000+ живых фраз',
-      benefitSecondary: 'Тренировка произношения',
-      exampleWord: card.items[0].english,
-      examplePhrase: `It's too ${card.items[0].english} for me.`,
-      button: 'Начать бесплатно',
+      eyebrow: conversion.hookLabel,
+      title: conversion.titleLines.join(' '),
+      titleLines: conversion.titleLines,
+      explanationLines: conversion.explanationLines,
+      benefitPrimary: conversion.benefits[0],
+      benefitSecondary: conversion.benefits[1],
+      answerEn: conversion.answerEn,
+      answerRu: conversion.answerRu,
+      answerLines: wrapWords(conversion.answerEn, 18),
+      button: conversion.cta,
       buttonBackground: '#B7FF3C',
       buttonTextColor: '#07110A',
       footer: 'Без регистрации • первый урок через 30 секунд',
-      url: 'knowlyapps.com',
+      url: conversion.url,
     },
   };
   const heroUri = await imageDataUri(heroCellPath);
@@ -164,24 +176,20 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
     <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
     <rect x="48" y="70" width="304" height="48" rx="24" fill="#B7FF3C"/>
     <text x="200" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(layout.cta.eyebrow)}</text>
-    <text x="48" y="174" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
-    <text x="48" y="230" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
-    <text x="48" y="286" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[2])}</text>
-    <text x="48" y="350" font-family="Arial, sans-serif" font-size="29" fill="#384252">Если вспомнил только ${escapeXml(layout.cta.exampleWord)} —</text>
-    <text x="48" y="388" font-family="Arial, sans-serif" font-size="29" fill="#384252">Phraseman как раз для тебя.</text>
+    ${layout.cta.titleLines.map((line, index) => `<text x="48" y="${174 + index * 56}" font-family="Arial, sans-serif" font-size="48" font-weight="900" fill="#0b1016">${escapeXml(line)}</text>`).join('')}
+    ${layout.cta.explanationLines.map((line, index) => `<text x="48" y="${350 + index * 38}" font-family="Arial, sans-serif" font-size="29" fill="#384252">${escapeXml(line)}</text>`).join('')}
     <circle cx="64" cy="447" r="9" fill="#77D61D"/><text x="88" y="458" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitPrimary)}</text>
     <circle cx="64" cy="505" r="9" fill="#77D61D"/><text x="88" y="516" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitSecondary)}</text>
     <rect x="48" y="586" width="584" height="100" rx="28" fill="#B7FF3C"/>
     <text x="340" y="651" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="900" fill="#07110A">${escapeXml(layout.cta.button)}</text>
     <text x="48" y="750" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0b1016">Без регистрации • первый урок</text>
     <text x="48" y="786" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0b1016">через 30 секунд</text>
-    <text x="48" y="858" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">knowlyapps.com</text>
+    <text x="48" y="858" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.url.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</text>
     <image href="${heroUri}" x="690" y="105" width="330" height="390" preserveAspectRatio="xMidYMid meet"/>
     <path d="M704 552 H1018" stroke="#B7FF3C" stroke-width="12" stroke-linecap="round"/>
-    <text x="704" y="620" font-family="Arial, sans-serif" font-size="34" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.exampleWord)}</text>
-    <text x="704" y="672" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#384252">↓ готовая фраза</text>
-    <text x="704" y="730" font-family="Arial, sans-serif" font-size="31" font-weight="900" fill="#0b1016">It&apos;s too ${escapeXml(layout.cta.exampleWord)}</text>
-    <text x="704" y="770" font-family="Arial, sans-serif" font-size="31" font-weight="900" fill="#0b1016">for me.</text>
+    <text x="704" y="620" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#384252">↓ готовая фраза</text>
+    ${layout.cta.answerLines.map((line, index) => `<text x="704" y="${680 + index * 40}" font-family="Arial, sans-serif" font-size="31" font-weight="900" fill="#0b1016">${escapeXml(line)}</text>`).join('')}
+    <text x="704" y="${700 + layout.cta.answerLines.length * 40}" font-family="Arial, sans-serif" font-size="22" fill="#596273">${escapeXml(layout.cta.answerRu)}</text>
   </svg>`;
   return writeArtifacts({ outputPath, layout, svg });
 }

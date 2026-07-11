@@ -46,7 +46,7 @@ export async function validateMachinePackage({ card, revisionDir }) {
       id: 'cta_copy',
       passed: installLayout?.cta?.button === 'Начать бесплатно'
         && installLayout?.cta?.footer === 'Без регистрации • первый урок через 30 секунд'
-        && installLayout?.cta?.url === 'knowlyapps.com',
+        && installLayout?.cta?.url === 'https://knowlyapps.com/',
     },
     {
       id: 'cta_contrast',
@@ -73,7 +73,7 @@ export function validateManualQa(value, card = null) {
         errors.push(`missing_cell_review:${item.id}`);
         continue;
       }
-      for (const gate of ['semanticMatch', 'anatomyClean', 'objectsClean', 'noCrop', 'approved']) {
+      for (const gate of ['semanticMatch', 'anatomyClean', 'objectsClean', 'backgroundClean', 'noCrop', 'approved']) {
         if (review[gate] !== true) errors.push(`cell_review_failed:${item.id}:${gate}`);
       }
     }

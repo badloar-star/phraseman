@@ -2,11 +2,13 @@ import {
   aggregateDigestFacts,
   isDigestEmpty,
   buildDigestPrompt,
+  buildDigestSystemPrompt,
   utcDayKey,
   type DigestSourceRows,
 } from './admin_daily_digest';
 import {
   compareMetric,
+  readLastSuccessfulEndMs,
   resolveDigestWindows,
 } from './admin_digest_contracts';
 
@@ -250,6 +252,36 @@ describe('buildDigestPrompt / utcDayKey', () => {
     expect(utcDayKey(Date.UTC(2026, 6, 3, 23, 59, 0))).toBe('2026-07-03');
     expect(utcDayKey(Date.UTC(2026, 0, 1, 0, 0, 0))).toBe('2026-01-01');
   });
+
+  test('v2 prompt names exact windows, metric semantics and unavailable sources', () => {
+    const facts = aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{ platform: 'ios' }] });
+    const prompt = buildDigestPrompt(facts, {
+      currentWindow: { startMs: 100, endMs: 200 },
+      previousWindow: { startMs: 0, endMs: 100 },
+      sourceCoverage: [
+        { sourceId: 'app_errors', status: 'failed', errorCode: 'failed-precondition' },
+      ],
+      codex: { product: 'Phraseman', routeCount: 42 },
+    });
+    const parsed = JSON.parse(prompt);
+    expect(parsed.reporting.currentWindow).toEqual({ startMs: 100, endMs: 200 });
+    expect(parsed.reporting.previousWindow).toEqual({ startMs: 0, endMs: 100 });
+    expect(parsed.instructions).toEqual(expect.arrayContaining([
+      expect.stringContaining('факт'),
+      expect.stringContaining('гипотез'),
+      expect.stringContaining('не называй данные полными'),
+    ]));
+    expect(parsed.metricDefinitions.some((metric: { id: string }) => metric.id === 'trial_starts')).toBe(true);
+    expect(parsed.sourceCoverage[0]).toMatchObject({ sourceId: 'app_errors', status: 'failed' });
+    expect(parsed.codex).toEqual({ product: 'Phraseman', routeCount: 42 });
+  });
+
+  test('system prompt no longer claims complete 24-hour coverage', () => {
+    const prompt = buildDigestSystemPrompt();
+    expect(prompt).toContain('НЕ считай вход полным');
+    expect(prompt).toContain('с момента последнего успешного дайджеста');
+    expect(prompt).toContain('RevenueCat API');
+  });
 });
 
 describe('digest v2 windows and comparisons', () => {
@@ -276,5 +308,11 @@ describe('digest v2 windows and comparisons', () => {
       absoluteDelta: 5,
       percentDelta: null,
     });
+  });
+
+  test('accepts only a successful finite cursor from digest state', () => {
+    expect(readLastSuccessfulEndMs({ status: 'succeeded', windowEndMs: 700_000 })).toBe(700_000);
+    expect(readLastSuccessfulEndMs({ status: 'failed', windowEndMs: 800_000 })).toBeUndefined();
+    expect(readLastSuccessfulEndMs({ status: 'succeeded', windowEndMs: 'bad' })).toBeUndefined();
   });
 });

@@ -154,3 +154,12 @@ export function compareMetric(current: number, previous: number): MetricComparis
     percentDelta: previous === 0 ? null : (absoluteDelta / previous) * 100,
   };
 }
+
+export function readLastSuccessfulEndMs(value: unknown): number | undefined {
+  if (typeof value !== 'object' || value === null) return undefined;
+  const state = value as { status?: unknown; windowEndMs?: unknown };
+  if (state.status !== 'succeeded' || typeof state.windowEndMs !== 'number' || !Number.isFinite(state.windowEndMs)) {
+    return undefined;
+  }
+  return state.windowEndMs;
+}

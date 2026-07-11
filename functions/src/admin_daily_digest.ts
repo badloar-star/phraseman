@@ -29,10 +29,18 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { openAiChat } from './explain/explain_provider';
 import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
+import {
+  compareMetric,
+  DIGEST_SCHEMA_VERSION,
+  readLastSuccessfulEndMs,
+  REVENUE_METRIC_REGISTRY,
+  resolveDigestWindows,
+  type DigestWindow,
+} from './admin_digest_contracts';
+import { DIGEST_SOURCE_REGISTRY } from './admin_digest_sources';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
-const DAY_MS = 24 * 60 * 60 * 1000;
 const DIGESTS_COLLECTION = 'admin_digests';
 
 // ── Типы сырых строк из источников ────────────────────────────────────────────
@@ -332,9 +340,50 @@ const DIGEST_SYSTEM_PROMPT = [
   'Тон: спокойный, по делу, как толковый коллега. Без воды и канцелярита. Безопасность — всегда наверх, если есть. Не выдумывай того, чего нет в данных; если сутки реально тихие — честно так и скажи коротко.',
 ].join('\n');
 
+const DIGEST_V2_GUARDRAILS = [
+  'ВАЖНО: НЕ считай вход полным, если sourceCoverage содержит partial, failed или not_configured.',
+  'Отчёт охватывает точный интервал с момента последнего успешного дайджеста, а не автоматически последние 24 часа.',
+  'Сравни текущий интервал только с предыдущим интервалом равной длины.',
+  'RevenueCat API, RevenueCat webhook ledger и paywall_funnel — разные источники с разной семантикой; показывай их раздельно.',
+  'Не выдавай гипотезу о причине за доказанный факт. Для гипотезы укажи способ проверки.',
+  'Не называй недоступный источник нулём и явно перечисляй пробелы покрытия.',
+].join('\n');
+
+export function buildDigestSystemPrompt(): string {
+  return `${DIGEST_V2_GUARDRAILS}\n\n${DIGEST_SYSTEM_PROMPT}`;
+}
+
 /** Собирает user-payload для ИИ из фактов (чистая функция). */
-export function buildDigestPrompt(facts: DigestFacts): string {
-  return JSON.stringify(facts, null, 2);
+export interface DigestPromptContext {
+  currentWindow: DigestWindow;
+  previousWindow: DigestWindow;
+  sourceCoverage: Array<{ sourceId: string; status: string; errorCode?: string }>;
+  codex: Record<string, unknown>;
+}
+
+const DIGEST_REASONING_INSTRUCTIONS = [
+  'Всегда указывай точный текущий период и сравнивай его с предыдущим периодом равной длины.',
+  'Отделяй проверенный факт, корреляцию и гипотезу; для каждой гипотезы укажи проверяемый сигнал.',
+  'При partial/failed coverage не называй данные полными и не превращай недоступный источник в ноль.',
+  'Не смешивай initial paid purchase, trial start, trial conversion, renewal и active subscription.',
+  'Для процентов объясняй знаменатель; при нулевом знаменателе не выдумывай процентное изменение.',
+  'Перечисляй расхождения RevenueCat API, webhook ledger и paywall funnel отдельными числами.',
+];
+
+export function buildDigestPrompt(facts: DigestFacts, context?: DigestPromptContext): string {
+  if (!context) return JSON.stringify(facts, null, 2);
+  return JSON.stringify({
+    schemaVersion: 2,
+    reporting: {
+      currentWindow: context.currentWindow,
+      previousWindow: context.previousWindow,
+    },
+    instructions: DIGEST_REASONING_INSTRUCTIONS,
+    metricDefinitions: REVENUE_METRIC_REGISTRY,
+    sourceCoverage: context.sourceCoverage,
+    codex: context.codex,
+    facts,
+  }, null, 2);
 }
 
 // ── I/O: чтение источников за 24ч ──────────────────────────────────────────────
@@ -346,6 +395,7 @@ export function buildDigestPrompt(facts: DigestFacts): string {
 export async function loadDigestSources(
   db: FirebaseFirestore.Firestore,
   since: number,
+  until: number = Date.now(),
   limitPer = 1000,
 ): Promise<DigestSourceRows> {
   // Универсальный безопасный запрос по числовому ms-полю времени.
@@ -355,7 +405,11 @@ export async function loadDigestSources(
     map: (d: FirebaseFirestore.QueryDocumentSnapshot) => T,
   ): Promise<T[]> => {
     try {
-      const snap = await db.collection(collection).where(field, '>=', since).limit(limitPer).get();
+      const snap = await db.collection(collection)
+        .where(field, '>=', since)
+        .where(field, '<', until)
+        .limit(limitPer)
+        .get();
       return snap.docs.map(map);
     } catch (e) {
       console.warn(`admin_daily_digest: read ${collection} by ${field} failed`, e);
@@ -367,14 +421,18 @@ export async function loadDigestSources(
   // после чтения по индексируемому запросу, чтобы не упасть на смешанных типах.
   const loadNewUsers = async (): Promise<Array<{ platform?: string }>> => {
     try {
-      const snap = await db.collection('users').where('created_at', '>=', since).limit(limitPer).get();
+      const snap = await db.collection('users')
+        .where('created_at', '>=', since)
+        .where('created_at', '<', until)
+        .limit(limitPer)
+        .get();
       return snap.docs
         .filter((d) => {
           const v = d.data().created_at;
           const ms = typeof v === 'number' ? v
             : typeof v === 'string' ? Date.parse(v)
               : (v && typeof v.toMillis === 'function') ? v.toMillis() : 0;
-          return ms >= since;
+          return ms >= since && ms < until;
         })
         .map((d) => ({ platform: d.data().platform as string }));
     } catch (e) {
@@ -387,7 +445,7 @@ export async function loadDigestSources(
   const loadPaywallPurchases = async (): Promise<Array<{ day?: string }>> => {
     try {
       const fromDay = new Date(since).toISOString().slice(0, 10);
-      const toDay = new Date(since + DAY_MS).toISOString().slice(0, 10);
+      const toDay = new Date(Math.max(since, until - 1)).toISOString().slice(0, 10);
       const snap = await db
         .collection('paywall_funnel')
         .where('day', '>=', fromDay)
@@ -408,9 +466,11 @@ export async function loadDigestSources(
   const loadWebsiteInbox = async (): Promise<Array<{ topic?: string; message?: string }>> => {
     try {
       const sinceTs = admin.firestore.Timestamp.fromMillis(since);
+      const untilTs = admin.firestore.Timestamp.fromMillis(until);
       const snap = await db
         .collection('website_contact_inbox')
         .where('createdAt', '>=', sinceTs)
+        .where('createdAt', '<', untilTs)
         .limit(limitPer)
         .get();
       return snap.docs.map((d) => ({ topic: d.data().topic as string, message: d.data().message as string }));
@@ -424,9 +484,11 @@ export async function loadDigestSources(
   const loadReferrals = async (): Promise<Array<{ status?: string }>> => {
     try {
       const sinceTs = admin.firestore.Timestamp.fromMillis(since);
+      const untilTs = admin.firestore.Timestamp.fromMillis(until);
       const snap = await db
         .collection('referral_attributions')
         .where('createdAt', '>=', sinceTs)
+        .where('createdAt', '<', untilTs)
         .limit(limitPer)
         .get();
       return snap.docs.map((d) => ({ status: d.data().status as string }));
@@ -442,6 +504,7 @@ export async function loadDigestSources(
       const snap = await db
         .collectionGroup('promo_redemptions')
         .where('redeemedAtMs', '>=', since)
+        .where('redeemedAtMs', '<', until)
         .limit(limitPer)
         .get();
       return snap.docs.map((d) => ({ code: (d.data().code as string) || d.id }));
@@ -522,8 +585,12 @@ export interface DigestResult {
   ok: boolean;
   empty: boolean;
   dayKey: string;
+  runId: string;
   summary: string;
   facts: DigestFacts;
+  previousFacts: DigestFacts;
+  windows: ReturnType<typeof resolveDigestWindows>;
+  comparisons: Record<string, ReturnType<typeof compareMetric>>;
   model: string;
 }
 
@@ -541,11 +608,46 @@ export async function runAdminDailyDigest(
   const cfg = await resolveJobConfig(db, 'digest');
   assertJobEnabled(cfg, 'digest');
 
-  const since = now - DAY_MS;
-  const rows = await loadDigestSources(db, since);
-  const facts = aggregateDigestFacts(rows, 24);
   const dayKey = utcDayKey(now);
+  const latestRef = db.collection('admin_digest_state').doc('latest');
+  const latestSnapshot = await latestRef.get();
+  const lastSuccessfulEndMs = readLastSuccessfulEndMs(latestSnapshot.exists ? latestSnapshot.data() : undefined);
+  const windows = resolveDigestWindows(now, lastSuccessfulEndMs);
+  const runRef = db.collection('admin_digest_runs').doc();
+  const runId = runRef.id;
+  const windowHours = (windows.current.endMs - windows.current.startMs) / (60 * 60 * 1000);
+  const [rows, previousRows] = await Promise.all([
+    loadDigestSources(db, windows.current.startMs, windows.current.endMs),
+    loadDigestSources(db, windows.previous.startMs, windows.previous.endMs),
+  ]);
+  const facts = aggregateDigestFacts(rows, windowHours);
+  const previousFacts = aggregateDigestFacts(previousRows, windowHours);
+  const comparisons = {
+    newUsers: compareMetric(facts.growth.newUsers, previousFacts.growth.newUsers),
+    initialPaidEvents: compareMetric(facts.revenue.newPaying, previousFacts.revenue.newPaying),
+    trialStarts: compareMetric(facts.revenue.trials, previousFacts.revenue.trials),
+    renewals: compareMetric(facts.revenue.renewals, previousFacts.revenue.renewals),
+    refunds: compareMetric(facts.revenue.refunds, previousFacts.revenue.refunds),
+    reports: compareMetric(facts.reports.total, previousFacts.reports.total),
+    criticalErrors: compareMetric(facts.appErrors.critical, previousFacts.appErrors.critical),
+  };
+  const sourceCoverage = DIGEST_SOURCE_REGISTRY.map((source) => ({
+    sourceId: source.id,
+    status: source.included ? 'partial' : 'not_configured',
+    errorCode: source.included ? 'legacy_loader_no_per_source_diagnostics' : source.exclusionReason,
+  }));
 
+  await runRef.set({
+    runId,
+    status: 'running',
+    schemaVersion: DIGEST_SCHEMA_VERSION,
+    dayKey,
+    windows,
+    generatedAtMs: now,
+    generatedBy: actorEmail || 'admin',
+  });
+
+  try {
   let summary: string;
   const empty = isDigestEmpty(facts);
   if (empty) {
@@ -555,8 +657,13 @@ export async function runAdminDailyDigest(
       apiKey,
       model: cfg.model,
       messages: [
-        { role: 'system', content: DIGEST_SYSTEM_PROMPT },
-        { role: 'user', content: buildDigestPrompt(facts) },
+          { role: 'system', content: buildDigestSystemPrompt() },
+        { role: 'user', content: buildDigestPrompt(facts, {
+          currentWindow: windows.current,
+          previousWindow: windows.previous,
+          sourceCoverage,
+          codex: { product: 'Phraseman', schemaVersion: 'digest_projection_v1' },
+        }) },
       ],
       maxTokens: 1100,
       temperature: 0.5,
@@ -566,13 +673,37 @@ export async function runAdminDailyDigest(
 
   const nowIso = new Date(now).toISOString();
   await db.collection(DIGESTS_COLLECTION).doc(dayKey).set({
+    schemaVersion: DIGEST_SCHEMA_VERSION,
+    runId,
     dayKey,
     summary,
     facts,
+    previousFacts,
+    windows,
+    comparisons,
+    sourceCoverage,
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
     generatedAtMs: now,
     generatedBy: actorEmail || 'admin',
+  });
+
+  await runRef.set({
+    status: 'succeeded',
+    summary,
+    facts,
+    previousFacts,
+    windows,
+    comparisons,
+    sourceCoverage,
+    model: empty ? 'none' : cfg.model,
+    generatedAt: nowIso,
+  }, { merge: true });
+  await latestRef.set({
+    status: 'succeeded',
+    runId,
+    windowEndMs: windows.current.endMs,
+    updatedAtMs: now,
   });
 
   // Короткая запись в общий admin_log (виден в Audit-log без нового UI).
@@ -593,7 +724,26 @@ export async function runAdminDailyDigest(
     },
   });
 
-  return { ok: true, empty, dayKey, summary, facts, model: empty ? 'none' : cfg.model };
+  return {
+    ok: true,
+    empty,
+    dayKey,
+    runId,
+    summary,
+    facts,
+    previousFacts,
+    windows,
+    comparisons,
+    model: empty ? 'none' : cfg.model,
+  };
+  } catch (error) {
+    await runRef.set({
+      status: 'failed',
+      failedAtMs: Date.now(),
+      errorCode: error instanceof Error ? error.name : 'unknown',
+    }, { merge: true });
+    throw error;
+  }
 }
 
 // ── Admin CF: сгенерировать дайджест по кнопке ────────────────────────────────

@@ -1,5 +1,6 @@
 import {
   DIGEST_SOURCE_REGISTRY,
+  readTargetForDigestSource,
   readPaginatedSource,
   type DigestPage,
   type DigestPageReader,
@@ -120,5 +121,15 @@ describe('DIGEST_SOURCE_REGISTRY', () => {
     expect(DIGEST_SOURCE_REGISTRY.some((source) => source.mode === 'event')).toBe(true);
     expect(DIGEST_SOURCE_REGISTRY.some((source) => source.mode === 'snapshot')).toBe(true);
     expect(DIGEST_SOURCE_REGISTRY.some((source) => source.mode === 'configuration')).toBe(true);
+  });
+
+  test('documents non-obvious Firestore read targets and timestamp fields', () => {
+    const byId = new Map(DIGEST_SOURCE_REGISTRY.map((source) => [source.id, source]));
+    expect(readTargetForDigestSource(byId.get('explain_reports')!)).toEqual({ kind: 'collection', path: 'explain_report_entries' });
+    expect(readTargetForDigestSource(byId.get('league_chat_messages')!)).toEqual({ kind: 'collection', path: 'league_chat_moderation_queue' });
+    expect(readTargetForDigestSource(byId.get('promo_redemptions')!)).toEqual({ kind: 'collectionGroup', path: 'promo_redemptions' });
+    expect(byId.get('community_pack_purchases')?.timestampField).toBe('createdAt');
+    expect(byId.get('community_pack_submissions')?.timestampField).toBe('submittedAt');
+    expect(byId.get('vip_survey_responses')?.timestampField).toBe('updatedAtMs');
   });
 });

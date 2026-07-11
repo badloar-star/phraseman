@@ -4,6 +4,7 @@ export interface DigestSourceDefinition {
   id: string;
   domain: 'growth' | 'revenue' | 'quality' | 'safety' | 'support' | 'community' | 'learning' | 'operations';
   mode: 'event' | 'snapshot' | 'configuration';
+  readTarget?: { kind: 'collection' | 'collectionGroup'; path: string };
   timestampField: string | null;
   timestampType: 'number_ms' | 'firestore_timestamp' | 'day_string' | 'snapshot' | 'none';
   included: boolean;
@@ -22,21 +23,25 @@ export const DIGEST_SOURCE_REGISTRY: readonly DigestSourceDefinition[] = [
   { id: 'user_ideas', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
   { id: 'user_reports', domain: 'safety', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
   { id: 'community_pack_reports', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'explain_reports', domain: 'quality', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'explain_reports', domain: 'quality', mode: 'event', readTarget: { kind: 'collection', path: 'explain_report_entries' }, timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
   { id: 'website_contact_inbox', domain: 'support', mode: 'event', timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
   { id: 'support_inbox', domain: 'support', mode: 'event', timestampField: 'receivedAtMs', timestampType: 'number_ms', included: true },
   { id: 'help_board_topics', domain: 'support', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
-  { id: 'league_chat_messages', domain: 'community', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
+  { id: 'league_chat_messages', domain: 'community', mode: 'event', readTarget: { kind: 'collection', path: 'league_chat_moderation_queue' }, timestampField: 'createdAt', timestampType: 'number_ms', included: true },
   { id: 'referral_attributions', domain: 'growth', mode: 'event', timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
-  { id: 'community_pack_purchases', domain: 'community', mode: 'event', timestampField: 'purchasedAtMs', timestampType: 'number_ms', included: true },
-  { id: 'promo_redemptions', domain: 'growth', mode: 'event', timestampField: 'redeemedAtMs', timestampType: 'number_ms', included: true },
-  { id: 'vip_survey_responses', domain: 'revenue', mode: 'event', timestampField: 'submittedAtMs', timestampType: 'number_ms', included: true },
-  { id: 'community_pack_submissions', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'community_pack_purchases', domain: 'community', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
+  { id: 'promo_redemptions', domain: 'growth', mode: 'event', readTarget: { kind: 'collectionGroup', path: 'promo_redemptions' }, timestampField: 'redeemedAtMs', timestampType: 'number_ms', included: true },
+  { id: 'vip_survey_responses', domain: 'revenue', mode: 'event', timestampField: 'updatedAtMs', timestampType: 'number_ms', included: true },
+  { id: 'community_pack_submissions', domain: 'community', mode: 'event', timestampField: 'submittedAt', timestampType: 'number_ms', included: true },
   { id: 'arena_rooms_live', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
   { id: 'users_active_subscription_snapshot', domain: 'revenue', mode: 'snapshot', timestampField: null, timestampType: 'snapshot', included: true },
   { id: 'moderation_backlog_snapshot', domain: 'operations', mode: 'snapshot', timestampField: null, timestampType: 'snapshot', included: true },
   { id: 'remote_config', domain: 'operations', mode: 'configuration', timestampField: null, timestampType: 'none', included: false, exclusionReason: 'Configuration is represented by change events, not counted as period activity.' },
 ] as const;
+
+export function readTargetForDigestSource(source: DigestSourceDefinition): { kind: 'collection' | 'collectionGroup'; path: string } {
+  return source.readTarget || { kind: 'collection', path: source.id };
+}
 
 export type SourceCoverageStatus = 'ok' | 'partial' | 'failed' | 'not_configured';
 

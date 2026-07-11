@@ -731,3 +731,5 @@ export async function createXpAuditReader(
     },
   };
 }
+
+export { createXpAuditReader as createProductionXpAuditReader };

@@ -146,6 +146,7 @@
     "lesson:qa:summary": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs tools/lesson_qa/run.ts --summary",
     "lesson:qa:ame": "node ./scripts/qa-ame-only.mjs",
     "audit:content": "node ./scripts/audit_vocab_and_distractors.mjs",
+    "audit:production-xp-integrity": "tsx scripts/audit_production_xp_integrity.ts",
     "audit:bug-report-patterns": "node ./scripts/audit_bug_report_patterns.mjs",
     "audit:lesson-deep-content": "npx tsx -r ./tools/lesson_qa/node_stubs.cjs ./scripts/audit_lesson_deep_content.ts",
     "audit:lessons": "npm run audit:lesson-sections && npm run audit:lesson-words && npm run audit:lesson-prepositions && npm run audit:lesson-drill-quality && npm run audit:lesson-intros && npm run audit:correct-presence && npm run audit:pos",

@@ -32,7 +32,8 @@ describe('survey screen submission contract', () => {
     expect(marker).toBeGreaterThan(balance);
     expect(mountedPresentation).toBeGreaterThan(marker);
     expect(source).not.toContain('replaceShardsBalanceLocal(res.balanceAfter');
-    expect(source).toContain('if (!balanceReconciled)');
+    expect(source).toContain("if (balanceReconciled === 'stale-generation') return;");
+    expect(source).toContain("if (balanceReconciled === 'failed')");
     expect(source.match(/isCurrentAccountGeneration\(accountToken, stableId\)/g)?.length).toBeGreaterThanOrEqual(5);
   });
 

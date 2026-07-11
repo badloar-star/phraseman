@@ -110,7 +110,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   __resetAccountGenerationForTests();
   beginAccountGeneration('account-a');
-  mockReplaceBalance.mockResolvedValue(true);
+  mockReplaceBalance.mockResolvedValue('applied');
   mockMarkDone.mockResolvedValue(true);
   mockCommitCache.mockReturnValue(true);
 });
@@ -185,14 +185,14 @@ test('account switch before account A resolves suppresses every local effect', a
 });
 
 test('account switch while guarded balance reconciliation is pending stops marker, cache, and presentation', async () => {
-  const balance = deferred<boolean>();
+  const balance = deferred<'stale-generation'>();
   mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
   mockReplaceBalance.mockReturnValue(balance.promise);
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); });
   expect(mockReplaceBalance).toHaveBeenCalled();
   beginAccountGeneration('account-b');
-  await act(async () => balance.resolve(false));
+  await act(async () => balance.resolve('stale-generation'));
 
   expect(mockMarkDone).not.toHaveBeenCalled();
   expect(mockCommitCache).not.toHaveBeenCalled();
@@ -215,7 +215,7 @@ test('reward zero reconciles completion without a shards event or positive rewar
 
 test('balance or marker failure stays retryable and never records false completion', async () => {
   mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
-  mockReplaceBalance.mockResolvedValueOnce(false);
+  mockReplaceBalance.mockResolvedValueOnce('failed');
   const balanceFailure = await submitMounted();
   await act(async () => { await Promise.resolve(); });
   expect(mockMarkDone).not.toHaveBeenCalled();
@@ -223,7 +223,7 @@ test('balance or marker failure stays retryable and never records false completi
   expect(balanceFailure.getByTestId('reward-phase').props.children).toBe('retryable-error');
   await balanceFailure.unmount();
 
-  mockReplaceBalance.mockResolvedValue(true);
+  mockReplaceBalance.mockResolvedValue('applied');
   mockMarkDone.mockRejectedValueOnce(new Error('storage failed'));
   const markerFailure = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
@@ -240,6 +240,16 @@ test('cache commit failure never presents success or emits a reward event', asyn
   expect(mockMarkDone).toHaveBeenCalled();
   expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
   expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
+});
+
+test('already-newer wallet outcome still completes marker and cache without retry loop', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockReplaceBalance.mockResolvedValue('already-newer');
+  const view = await submitMounted();
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(mockMarkDone).toHaveBeenCalled();
+  expect(mockCommitCache).toHaveBeenCalled();
+  expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
 });
 
 test('repeated final presses create only one active request', async () => {

@@ -158,7 +158,8 @@ export default function SurveyScreen() {
         reason: 'survey_completed',
       });
       if (!isCurrentAccountGeneration(accountToken, stableId)) return;
-      if (!balanceReconciled) throw new Error('balance_reconcile_failed');
+      if (balanceReconciled === 'stale-generation') return;
+      if (balanceReconciled === 'failed') throw new Error('balance_reconcile_failed');
       const markerWritten = await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
       if (!isCurrentAccountGeneration(accountToken, stableId)) return;
       if (!markerWritten) throw new Error('marker_reconcile_failed');

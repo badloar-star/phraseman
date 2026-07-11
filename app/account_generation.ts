@@ -8,6 +8,7 @@ let currentGeneration = 0;
 let currentStableId: string | null = null;
 let currentPhase: AccountGenerationToken['phase'] = 'uninitialized';
 let restoreLockTail: Promise<void> = Promise.resolve();
+let accountTransitionLockTail: Promise<void> = Promise.resolve();
 
 const normalizedStableId = (value: string | null): string | null => value?.trim() || null;
 
@@ -64,6 +65,19 @@ export async function withRestoreApplicationLock<T>(work: () => Promise<T>): Pro
   }
 }
 
+/** Serializes account-level storage commits with wipe/hydration boundaries. */
+export async function withAccountTransitionLock<T>(work: () => Promise<T>): Promise<T> {
+  const previous = accountTransitionLockTail;
+  let release!: () => void;
+  accountTransitionLockTail = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
+  try {
+    return await work();
+  } finally {
+    release();
+  }
+}
+
 export async function waitForRestoreApplicationIdle(): Promise<void> {
   await restoreLockTail;
 }
@@ -87,4 +101,5 @@ export function __resetAccountGenerationForTests(): void {
   currentStableId = null;
   currentPhase = 'uninitialized';
   restoreLockTail = Promise.resolve();
+  accountTransitionLockTail = Promise.resolve();
 }

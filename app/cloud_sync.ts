@@ -39,6 +39,7 @@ import {
   beginInitialAccountGeneration,
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
@@ -2733,7 +2734,7 @@ export async function saveAccountSwitchEmergencyBackup(reason: string): Promise<
   }
 }
 
-export async function wipeLocalAccountData(): Promise<void> {
+async function wipeLocalAccountDataUnsafe(): Promise<void> {
   const accountKeys = new Set<string>(accountLocalDataKeysForToday());
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
@@ -2752,6 +2753,10 @@ export async function wipeLocalAccountData(): Promise<void> {
     clearTimeout(syncTimer);
     syncTimer = null;
   }
+}
+
+export async function wipeLocalAccountData(): Promise<void> {
+  await withAccountTransitionLock(wipeLocalAccountDataUnsafe);
 }
 
 // ── Удалить все данные пользователя из облака ────────────────────────────────

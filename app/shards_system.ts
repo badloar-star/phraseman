@@ -17,7 +17,7 @@ import {
   readShardDeltaQueue,
   removeShardDeltas,
 } from './shards_delta_queue';
-import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from './account_generation';
 
 export type ShardSpendReason =
   | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–10)
@@ -164,13 +164,17 @@ export const getShardAchievementEligibleBalance = async (balance?: number): Prom
   return Math.max(0, total - purchased);
 };
 
-const emitShardsBalanceUpdated = async (balance: number, meta?: ShardBalanceMeta | null): Promise<void> => {
+const prepareShardsBalanceUpdatedPayload = async (balance: number, meta?: ShardBalanceMeta | null) => {
   const safeBalance = Math.max(0, Math.floor(Number(balance) || 0));
-  emitAppEvent('shards_balance_updated', {
+  return {
     balance: safeBalance,
     ...(meta ? { op: meta.op, reason: meta.reason } : {}),
     eligibleAchievementBalance: await getShardAchievementEligibleBalance(safeBalance),
-  });
+  };
+};
+
+const emitShardsBalanceUpdated = async (balance: number, meta?: ShardBalanceMeta | null): Promise<void> => {
+  emitAppEvent('shards_balance_updated', await prepareShardsBalanceUpdatedPayload(balance, meta));
 };
 
 const readBalanceMeta = async (): Promise<ShardBalanceMeta | null> => {
@@ -242,7 +246,7 @@ export const getShardsBalance = async (): Promise<number> => {
 export const replaceShardsBalanceLocal = async (
   next: number,
   options?: ReplaceShardBalanceOptions,
-): Promise<void> => {
+): Promise<void> => withAccountTransitionLock(async () => {
   const n = Math.max(0, Math.floor(Number(next)));
   if (!Number.isFinite(n)) return;
   const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs);
@@ -269,17 +273,20 @@ export const replaceShardsBalanceLocal = async (
   if (!wrote) return;
   setShardsBalanceMemory(n);
   await emitShardsBalanceUpdated(n, meta);
-};
+});
 
 /** Account-scoped server reconciliation that cannot leave a stale generation in the shared wallet. */
+export type AccountGenerationShardBalanceOutcome = 'applied' | 'already-newer' | 'stale-generation' | 'failed';
+
 export const replaceShardsBalanceForAccountGeneration = async (
   next: number,
   token: AccountGenerationToken,
   stableId: string,
   options?: ReplaceShardBalanceOptions,
-): Promise<boolean> => {
+): Promise<AccountGenerationShardBalanceOutcome> => withAccountTransitionLock(async () => {
   const n = Math.max(0, Math.floor(Number(next)));
-  if (!Number.isFinite(n) || !isCurrentAccountGeneration(token, stableId)) return false;
+  if (!Number.isFinite(n)) return 'failed';
+  if (!isCurrentAccountGeneration(token, stableId)) return 'stale-generation';
   const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs);
   const meta: ShardBalanceMeta = {
     updatedAtMs: serverUpdatedAtMs ?? Date.now(),
@@ -288,40 +295,30 @@ export const replaceShardsBalanceForAccountGeneration = async (
       ? options.reason.trim()
       : 'server_replace',
   };
-  let wrote = false;
   try {
-    await withStorageLock(async () => {
-      if (!isCurrentAccountGeneration(token, stableId)) return;
-      const [previousBalance, previousMeta] = await Promise.all([
-        AsyncStorage.getItem(STORAGE_KEY),
-        AsyncStorage.getItem(BALANCE_META_KEY),
-      ]);
-      if (!isCurrentAccountGeneration(token, stableId)) return;
+    const preparedEvent = await prepareShardsBalanceUpdatedPayload(n, meta);
+    if (!isCurrentAccountGeneration(token, stableId)) return 'stale-generation';
+    const storageOutcome = await withStorageLock(async (): Promise<AccountGenerationShardBalanceOutcome> => {
+      if (!isCurrentAccountGeneration(token, stableId)) return 'stale-generation';
       if (serverUpdatedAtMs !== null) {
         const currentMeta = await readBalanceMeta();
-        if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;
+        if (!isCurrentAccountGeneration(token, stableId)) return 'stale-generation';
+        if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return 'already-newer';
       }
-      if (!isCurrentAccountGeneration(token, stableId)) return;
+      if (!isCurrentAccountGeneration(token, stableId)) return 'stale-generation';
       await persistLocalBalance(n, meta);
-      if (!isCurrentAccountGeneration(token, stableId)) {
-        const restorePairs: [string, string][] = [];
-        if (previousBalance !== null) restorePairs.push([STORAGE_KEY, previousBalance]);
-        if (previousMeta !== null) restorePairs.push([BALANCE_META_KEY, previousMeta]);
-        if (restorePairs.length) await AsyncStorage.multiSet(restorePairs);
-        if (previousBalance === null) await AsyncStorage.removeItem(STORAGE_KEY);
-        if (previousMeta === null) await AsyncStorage.removeItem(BALANCE_META_KEY);
-        return;
-      }
-      wrote = true;
+      return isCurrentAccountGeneration(token, stableId) ? 'applied' : 'stale-generation';
     });
+    if (storageOutcome !== 'applied') return storageOutcome;
+    if (!isCurrentAccountGeneration(token, stableId)) return 'stale-generation';
+    // No await between the final generation check, shared memory commit, and event dispatch.
+    setShardsBalanceMemory(n);
+    emitAppEvent('shards_balance_updated', preparedEvent);
+    return 'applied';
   } catch {
-    return false;
+    return 'failed';
   }
-  if (!wrote || !isCurrentAccountGeneration(token, stableId)) return false;
-  setShardsBalanceMemory(n);
-  await emitShardsBalanceUpdated(n, meta);
-  return isCurrentAccountGeneration(token, stableId);
-};
+});
 
 const mirrorServerShardBalanceLocal = async (
   next: number,

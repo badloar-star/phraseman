@@ -362,17 +362,18 @@ describe('two-slide renderer', () => {
 
     expect(layout.screenshot.path).toBe(screenshotPath);
     expect(layout.cta).toMatchObject({
-      title: 'Установи Phraseman бесплатно',
-      titleLines: ['Установи Phraseman', 'бесплатно'],
-      subtitle: 'Первый урок — через 30 секунд',
-      footer: 'Ссылка в профиле',
+      title: 'Знаешь «sweet». А фразу скажешь?',
+      titleLines: ['Знаешь «sweet».', 'А фразу скажешь?'],
+      button: 'Начать бесплатно',
+      footer: 'Без регистрации • первый урок через 30 секунд',
+      url: 'knowlyapps.com',
     });
     expect(layout.cta.fontSize).toBeGreaterThanOrEqual(34);
     expect(layout.cta.x).toBeGreaterThanOrEqual(48);
-    expect(svg).toContain('Установи Phraseman</text>');
-    expect(svg).toContain('бесплатно</text>');
-    expect(svg).toContain('Первый урок — через 30 секунд');
-    expect(svg).toContain('Ссылка в профиле');
+    expect(svg).toContain('Знаешь «sweet».</text>');
+    expect(svg).toContain('А фразу скажешь?</text>');
+    expect(svg).toContain('10 000+ живых фраз');
+    expect(svg).toContain('Начать бесплатно');
     const metadata = await sharp(result.jpegPath).metadata();
     expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg', space: 'srgb', channels: 3 });
   });
@@ -416,7 +417,10 @@ describe('social card quality gates', () => {
       slideOrderCorrect: true,
       reviewedBy: 'owner',
       reviewedAt: '2026-07-11T12:00:00.000Z',
-    });
+      cellReviews: (readFixture() as any).items.map((item: any) => ({
+        itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, noCrop: true, approved: true,
+      })),
+    }, readFixture());
     expect(complete).toMatchObject({ passed: true, errors: [] });
   });
 
@@ -453,6 +457,9 @@ describe('platform packaging', () => {
       schemaVersion: 1, semanticMatch: true, noRandomText: true, noAnatomyOrObjectDefects: true,
       noCrop: true, correctCopy: true, currentRealPhrasemanScreen: true, ctaReadable: true,
       slideOrderCorrect: true, reviewedBy: 'owner', reviewedAt: '2026-07-11T12:00:00.000Z',
+      cellReviews: card.items.map((item: any) => ({
+        itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, noCrop: true, approved: true,
+      })),
     };
     const result = await packager.packageRevision({
       card, revisionDir, exportRoot: path.join(tempRoot, 'exports'), machineReport, manualQa,
@@ -466,7 +473,7 @@ describe('platform packaging', () => {
     expect(captions.platforms.facebook.format).toBe('multi_photo');
     expect(captions.platforms.youtube.fallback).toContain('description');
     expect(captions.platforms.instagram.url).toBe(
-      'https://knowlyapps.com/download/?utm_source=instagram&utm_medium=carousel&utm_campaign=slc_pilot_01&utm_content=slc_pilot_01_taste',
+      'https://knowlyapps.com/?utm_source=instagram&utm_medium=carousel&utm_campaign=slc_pilot_01&utm_content=slc_pilot_01_taste',
     );
     expect(manifest.assets.learning.sha256).toMatch(/^[a-f0-9]{64}$/);
     expect(manifest.quality.reportSha256).toMatch(/^[a-f0-9]{64}$/);

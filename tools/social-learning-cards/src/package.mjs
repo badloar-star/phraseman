@@ -15,13 +15,13 @@ function trackingUrl(card, source, medium) {
     utm_campaign: card.campaign,
     utm_content: card.contentId,
   });
-  return `https://knowlyapps.com/download/?${query}`;
+  return `https://knowlyapps.com/?${query}`;
 }
 
 export async function packageRevision({ card, revisionDir, exportRoot, machineReport, manualQa }) {
   const state = validateExportState(card);
   if (!state.passed) throw new Error(`export_state_failed:${state.errors.join(',')}`);
-  const { manualReport } = assertExportable({ machineReport, manualQa });
+  const { manualReport } = assertExportable({ machineReport, manualQa, card });
   const packageDir = resolveInside(exportRoot, revisionKey(card.contentId, card.revision));
   await fs.mkdir(path.dirname(packageDir), { recursive: true });
   await fs.mkdir(packageDir, { recursive: false }).catch((error) => {

@@ -110,7 +110,6 @@ async function learningSvg(layout) {
     const englishY = cell.y + imageHeight + 36;
     const russianY = englishY + 28;
     return `<g>
-      <rect x="${cell.x}" y="${cell.y}" width="${cell.width}" height="${cell.height}" rx="20" fill="#f7f7f5"/>
       <image href="${await imageDataUri(cell.imagePath)}" x="${cell.x + 18}" y="${cell.y + 10}" width="${cell.width - 36}" height="${imageHeight - 14}" preserveAspectRatio="xMidYMid meet"/>
       <text x="${cell.x + cell.width / 2}" y="${englishY}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${cell.englishFontSize}" font-weight="800" fill="#10151c">${escapeXml(cell.english)}</text>
       ${cell.russian ? `<text x="${cell.x + cell.width / 2}" y="${russianY}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${cell.russianFontSize}" fill="#4b5563">${escapeXml(cell.russian)}</text>` : ''}
@@ -138,41 +137,45 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
     width: WIDTH,
     height: HEIGHT,
     safeArea: SAFE_AREA,
-    screenshot: { path: appScreenshotPath, x: 92, y: 444, width: 260, height: 520 },
-    hero: { path: heroCellPath, x: 100, y: 58, width: 880, height: 320 },
+    screenshot: { path: appScreenshotPath, x: 722, y: 165, width: 306, height: 680 },
+    hero: { path: heroCellPath, used: false },
     cta: {
-      x: 400,
-      y: 500,
-      width: 632,
-      height: 464,
-      fontSize: 42,
-      title: 'Установи Phraseman бесплатно',
-      titleLines: ['Установи Phraseman', 'бесплатно'],
-      subtitle: 'Первый урок — через 30 секунд',
-      button: 'Установить бесплатно',
+      x: 48,
+      y: 70,
+      width: 628,
+      height: 938,
+      fontSize: 58,
+      eyebrow: 'ОДНОГО СЛОВА МАЛО',
+      title: `Знаешь «${card.items[0].english}». А фразу скажешь?`,
+      titleLines: [`Знаешь «${card.items[0].english}».`, 'А фразу скажешь?'],
+      subtitle: 'Phraseman учит готовым фразам, которые сразу можно сказать.',
+      benefitPrimary: '10 000+ живых фраз',
+      benefitSecondary: 'Тренировка произношения',
+      button: 'Начать бесплатно',
       buttonBackground: '#B7FF3C',
       buttonTextColor: '#07110A',
-      footer: 'Ссылка в профиле',
-      url: 'knowlyapps.com/download',
+      footer: 'Без регистрации • первый урок через 30 секунд',
+      url: 'knowlyapps.com',
     },
   };
-  const [screenshotUri, heroUri] = await Promise.all([
-    imageDataUri(appScreenshotPath),
-    imageDataUri(heroCellPath),
-  ]);
+  const screenshotUri = await imageDataUri(appScreenshotPath);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
     <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
-    <rect x="48" y="48" width="984" height="350" rx="30" fill="#f5f1e9"/>
-    <image href="${heroUri}" x="100" y="58" width="880" height="320" preserveAspectRatio="xMidYMid meet"/>
-    <rect x="76" y="426" width="292" height="556" rx="42" fill="#111820"/>
-    <image href="${screenshotUri}" x="92" y="444" width="260" height="520" preserveAspectRatio="xMidYMid slice"/>
-    <text x="400" y="548" font-family="Arial, sans-serif" font-size="42" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
-    <text x="400" y="600" font-family="Arial, sans-serif" font-size="42" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
-    <text x="400" y="668" font-family="Arial, sans-serif" font-size="34" fill="#384252">${escapeXml(layout.cta.subtitle)}</text>
-    <rect x="400" y="720" width="520" height="92" rx="24" fill="#b8f34b"/>
-    <text x="660" y="780" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="900" fill="#07110a">Установить бесплатно</text>
-    <text x="400" y="880" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0b1016">${escapeXml(layout.cta.footer)}</text>
-    <text x="400" y="940" font-family="Arial, sans-serif" font-size="26" fill="#596273">knowlyapps.com/download</text>
+    <rect x="48" y="70" width="304" height="48" rx="24" fill="#B7FF3C"/>
+    <text x="200" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(layout.cta.eyebrow)}</text>
+    <text x="48" y="188" font-family="Arial, sans-serif" font-size="58" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
+    <text x="48" y="256" font-family="Arial, sans-serif" font-size="58" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
+    <text x="48" y="330" font-family="Arial, sans-serif" font-size="31" fill="#384252">Phraseman учит готовым фразам,</text>
+    <text x="48" y="370" font-family="Arial, sans-serif" font-size="31" fill="#384252">которые сразу можно сказать.</text>
+    <circle cx="64" cy="447" r="9" fill="#77D61D"/><text x="88" y="458" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitPrimary)}</text>
+    <circle cx="64" cy="505" r="9" fill="#77D61D"/><text x="88" y="516" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitSecondary)}</text>
+    <rect x="48" y="586" width="584" height="100" rx="28" fill="#B7FF3C"/>
+    <text x="340" y="651" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="900" fill="#07110A">${escapeXml(layout.cta.button)}</text>
+    <text x="48" y="750" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0b1016">Без регистрации • первый урок</text>
+    <text x="48" y="786" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0b1016">через 30 секунд</text>
+    <text x="48" y="858" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">knowlyapps.com</text>
+    <rect x="702" y="140" width="346" height="730" rx="46" fill="#111820"/>
+    <image href="${screenshotUri}" x="722" y="165" width="306" height="680" preserveAspectRatio="xMidYMid meet"/>
   </svg>`;
   return writeArtifacts({ outputPath, layout, svg });
 }

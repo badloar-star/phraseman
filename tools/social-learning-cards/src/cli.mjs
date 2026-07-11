@@ -41,7 +41,7 @@ export async function prepareCardBrief({ card, outputRoot }) {
 export async function runQualityGates({ card, revisionDir, manualQaPath }) {
   const machineReport = await validateMachinePackage({ card, revisionDir });
   const manualQa = JSON.parse(await fs.readFile(manualQaPath, 'utf8'));
-  const manualReport = validateManualQa(manualQa);
+  const manualReport = validateManualQa(manualQa, card);
   const report = {
     schemaVersion: 1,
     passed: machineReport.passed && manualReport.passed,

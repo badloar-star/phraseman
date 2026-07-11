@@ -1,6 +1,6 @@
 # Social learning cards
 
-This offline-first tool prepares two-slide, 1080×1080 English-learning posts. Slide 1 teaches; slide 2 connects the lesson to a real Phraseman screen and `knowlyapps.com/download/`.
+This offline-first tool prepares two-slide, 1080×1080 English-learning posts. Slide 1 teaches; slide 2 connects the lesson to a real Phraseman screen and the official root site `knowlyapps.com`.
 
 The tool never calls an image API. `prepare` writes a text brief; a Codex operator generates one atlas with the built-in image tool, saves it to the ignored revision folder, then runs import, render, validate and package.
 

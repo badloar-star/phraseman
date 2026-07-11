@@ -43,9 +43,9 @@ export async function validateMachinePackage({ card, revisionDir }) {
     },
     {
       id: 'cta_copy',
-      passed: installLayout?.cta?.button === 'Установить бесплатно'
-        && installLayout?.cta?.footer === 'Ссылка в профиле'
-        && installLayout?.cta?.url === 'knowlyapps.com/download',
+      passed: installLayout?.cta?.button === 'Начать бесплатно'
+        && installLayout?.cta?.footer === 'Без регистрации • первый урок через 30 секунд'
+        && installLayout?.cta?.url === 'knowlyapps.com',
     },
     {
       id: 'cta_contrast',
@@ -58,12 +58,25 @@ export async function validateMachinePackage({ card, revisionDir }) {
   return { schemaVersion: 1, passed: checks.every((check) => check.passed), checks };
 }
 
-export function validateManualQa(value) {
+export function validateManualQa(value, card = null) {
   const errors = [];
   if (value?.schemaVersion !== 1) errors.push('invalid_schema_version');
   for (const flag of MANUAL_FLAGS) if (value?.[flag] !== true) errors.push(`missing_or_false:${flag}`);
   if (!value?.reviewedBy?.trim()) errors.push('missing_reviewer');
   if (!value?.reviewedAt || Number.isNaN(Date.parse(value.reviewedAt))) errors.push('invalid_reviewed_at');
+  if (card) {
+    const reviews = Array.isArray(value?.cellReviews) ? value.cellReviews : [];
+    for (const item of card.items) {
+      const review = reviews.find((candidate) => candidate.itemId === item.id);
+      if (!review) {
+        errors.push(`missing_cell_review:${item.id}`);
+        continue;
+      }
+      for (const gate of ['semanticMatch', 'anatomyClean', 'objectsClean', 'noCrop', 'approved']) {
+        if (review[gate] !== true) errors.push(`cell_review_failed:${item.id}:${gate}`);
+      }
+    }
+  }
   return { passed: errors.length === 0, errors };
 }
 
@@ -83,8 +96,8 @@ export function validateExportState(card) {
   return { passed: errors.length === 0, errors };
 }
 
-export function assertExportable({ machineReport, manualQa }) {
-  const manualReport = validateManualQa(manualQa);
+export function assertExportable({ machineReport, manualQa, card = null }) {
+  const manualReport = validateManualQa(manualQa, card);
   if (!machineReport?.passed) throw new Error('machine_qa_failed');
   if (!manualReport.passed) throw new Error(`manual_qa_failed:${manualReport.errors.join(',')}`);
   return { machineReport, manualReport };

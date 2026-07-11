@@ -36,13 +36,20 @@ export async function importAtlas({ card, atlasPath, revisionDir }) {
   const cellsDir = path.join(revisionDir, 'dalle', 'cells');
   await fs.mkdir(cellsDir, { recursive: true });
   const cells = [];
+  const edgeInset = Math.max(2, Math.floor(Math.min(cellWidth, cellHeight) * 0.012));
   for (let index = 0; index < card.items.length; index += 1) {
     const item = card.items[index];
     const left = (index % columns) * cellWidth;
     const top = Math.floor(index / columns) * cellHeight;
     const outputPath = path.join(cellsDir, `${item.id}.png`);
     await sharp(atlasPath)
-      .extract({ left, top, width: cellWidth, height: cellHeight })
+      .extract({
+        left: left + edgeInset,
+        top: top + edgeInset,
+        width: cellWidth - edgeInset * 2,
+        height: cellHeight - edgeInset * 2,
+      })
+      .resize(cellWidth, cellHeight, { fit: 'fill' })
       .flatten({ background: '#ffffff' })
       .toColourspace('srgb')
       .png()

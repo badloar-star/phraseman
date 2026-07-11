@@ -260,7 +260,7 @@ git commit -m "feat: gate social card exports"
 Assert four platform records, ordered slides, Instagram carousel, TikTok Photo Mode, Facebook multi-photo, YouTube Community plus documented fallback, and URLs of the form:
 
 ```text
-https://knowlyapps.com/download/?utm_source=instagram&utm_medium=carousel&utm_campaign=slc_pilot_01&utm_content=slc_pilot_01_taste
+https://knowlyapps.com/?utm_source=instagram&utm_medium=carousel&utm_campaign=slc_pilot_01&utm_content=slc_pilot_01_taste
 ```
 
 - [ ] **Step 2: Verify RED**

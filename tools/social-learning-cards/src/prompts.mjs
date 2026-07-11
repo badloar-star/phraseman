@@ -14,9 +14,10 @@ function commonDirection(card) {
   return [
     `Visual style: ${card.visualStyle}.`,
     'Audience: adult audience aged 20-50; clear and approachable, never childish.',
-    'Use a clean white or very light background and consistent lighting, scale, palette, and character design.',
+    'Use one perfectly uniform pure white #FFFFFF background in every cell; no inner card, panel, tile, frame, border, shadow, gradient, or tinted rectangle.',
     'NO TEXT, NO LETTERS, NO NUMBERS, NO LABELS, NO LOGOS, NO WATERMARKS.',
     'Keep every subject fully inside its cell with generous breathing room.',
+    'ANATOMY GATE: exactly one person per cell, exactly two arms and two hands total; every visible hand has five natural fingers; no extra, duplicated, fused, floating, hidden-source, or disconnected hands, fingers, arms, utensils, bowls, cups, or food objects.',
   ].join('\n');
 }
 

@@ -30,6 +30,7 @@ export type ExactLedgerGap = {
   afterXp: number;
   amount: number;
   atMs: number | null;
+  intervalStartMs: number | null;
 };
 
 const achievementIdOf = (event: NormalizedAuditEvent): string | null => {
@@ -205,6 +206,7 @@ export function analyzeLedgerContinuity(
                 afterXp: currentXp,
                 amount,
                 atMs: null,
+                intervalStartMs: suppliedBaseline.atMs,
               },
             ]
           : [],
@@ -309,6 +311,7 @@ export function analyzeLedgerContinuity(
           afterXp: before,
           amount,
           atMs: ledgerEvent.serverCreatedAtMs,
+          intervalStartMs: null,
         });
       }
       if (before < expected) unexplainedDecrease = true;
@@ -324,6 +327,7 @@ export function analyzeLedgerContinuity(
       afterXp: currentXp,
       amount: currentXp - expected,
       atMs: null,
+      intervalStartMs: ordered[ordered.length - 1].serverCreatedAtMs,
     });
   }
   if (currentXp < expected) unexplainedDecrease = true;
@@ -569,8 +573,12 @@ export function analyzeAccount(
       migration.source === "deterministic_ledger_discontinuity" &&
       ledger.exactGaps.some(
         (gap) =>
-          (gap.kind === "current_state" ||
-            gap.atMs === migration.occurredAtMs) &&
+          (gap.kind === "retained_boundary"
+            ? gap.atMs === migration.occurredAtMs
+            : gap.intervalStartMs !== null &&
+              Number.isFinite(gap.intervalStartMs) &&
+              Number.isFinite(migration.occurredAtMs) &&
+              migration.occurredAtMs >= gap.intervalStartMs) &&
           gap.beforeXp === migration.beforeXp &&
           gap.afterXp === migration.afterXp &&
           gap.amount === migration.exactInvalidDelta,
@@ -609,12 +617,15 @@ export function analyzeAccount(
   if (projectionDrift) reasons.add("projection_drift");
 
   const exactInvalidXp = invalidTotal(invalidByEvent);
+  const anomalyFamilyCount = [...causesByFamily.values()].filter(
+    (causeIds) => causeIds.size > 0,
+  ).length;
   const classification =
     exactInvalidXp > 0
       ? "confirmed_damaged"
-      : nonExactCauseIds.size >= 2
+      : nonExactCauseIds.size >= 2 && anomalyFamilyCount >= 2
         ? "probable_damaged"
-        : nonExactCauseIds.size === 1
+        : nonExactCauseIds.size > 0
           ? "indeterminate"
           : "consistent";
   const exactReductionIsComplete =

@@ -219,6 +219,25 @@ describe("analyzeAccount", () => {
     expect(result.classification).toBe("probable_damaged");
   });
 
+  test("keeps two independent catalog defects in one family indeterminate", () => {
+    const first = event("first", { payload: { achievementId: "unknown-a" } });
+    const second = event("second", {
+      totalXpBefore: 200,
+      totalXpAfter: 300,
+      serverCreatedAtMs: 2_000,
+      clientCreatedAtMs: 2_000,
+      payload: { achievementId: "unknown-b" },
+    });
+    const result = analyzeAccount(
+      input([first, second]),
+      byEvent(
+        ["first", { kind: "unmapped", reason: "unknown_version" }],
+        ["second", { kind: "unmapped", reason: "unknown_version" }],
+      ),
+    );
+    expect(result.classification).toBe("indeterminate");
+  });
+
   test("subtracts only overpayment and counts each event once at its maximum proven amount", () => {
     const overpaid = event("overpaid", {
       xpDelta: 150,
@@ -423,6 +442,59 @@ describe("analyzeAccount", () => {
       new Map(),
     );
     expect(result.exactInvalidXp).toBe(50);
+  });
+
+  test("keeps a matching migration before an empty-ledger interval independent", () => {
+    const result = analyzeAccount(
+      input([], {
+        currentXp: 150,
+        baseline: {
+          kind: "exact",
+          xp: 100,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
+        migration: {
+          kind: "exact",
+          source: "deterministic_ledger_discontinuity",
+          beforeXp: 100,
+          afterXp: 150,
+          formulaVersion: "v1",
+          exactInvalidDelta: 50,
+          occurredAtMs: 5,
+        },
+      }),
+      new Map(),
+    );
+    expect(result.exactInvalidXp).toBe(100);
+  });
+
+  test("uses the final retained event timestamp as current-gap interval start", () => {
+    const final = event("final", {
+      type: "xp",
+      xpDelta: 100,
+      totalXpBefore: 100,
+      totalXpAfter: 200,
+      serverCreatedAtMs: 1_000,
+    });
+    const audit = (occurredAtMs: number) =>
+      analyzeAccount(
+        input([final], {
+          currentXp: 250,
+          migration: {
+            kind: "exact",
+            source: "deterministic_ledger_discontinuity",
+            beforeXp: 200,
+            afterXp: 250,
+            formulaVersion: "v1",
+            exactInvalidDelta: 50,
+            occurredAtMs,
+          },
+        }),
+        new Map(),
+      );
+    expect(audit(999).exactInvalidXp).toBe(100);
+    expect(audit(1_000).exactInvalidXp).toBe(50);
   });
 
   test("keeps a distinct deterministic migration separate from current-state drift", () => {

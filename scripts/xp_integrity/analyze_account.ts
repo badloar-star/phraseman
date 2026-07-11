@@ -48,37 +48,29 @@ const exactEvent = (event: NormalizedAuditEvent): boolean =>
   Number.isFinite(event.xpDelta) &&
   event.totalXpAfter - event.totalXpBefore === event.xpDelta;
 
-function chainFromRetainedBaseline(
-  events: readonly NormalizedAuditEvent[],
-  initialXp: number,
-): NormalizedAuditEvent[] | null {
-  const remaining = [...events];
-  const ordered: NormalizedAuditEvent[] = [];
-  let expected = initialXp;
-  while (remaining.length > 0) {
-    const candidates = remaining.filter(
-      (candidate) => candidate.totalXpBefore === expected,
-    );
-    if (candidates.length !== 1) return null;
-    const [next] = candidates;
-    ordered.push(next);
-    remaining.splice(remaining.indexOf(next), 1);
-    expected = next.totalXpAfter;
-  }
-  return ordered;
-}
-
 export function analyzeLedgerContinuity(
   events: readonly NormalizedAuditEvent[],
   currentXp: number,
   suppliedBaseline: LedgerBaselineEvidence,
 ): LedgerContinuityResult {
   if (events.length === 0) {
+    const invalidByEvent = new Map<string, number>();
+    const authoritative =
+      suppliedBaseline.kind === "exact" &&
+      suppliedBaseline.derivedFrom === "retained_cutover" &&
+      Number.isFinite(suppliedBaseline.atMs);
+    if (authoritative) {
+      addInvalid(
+        invalidByEvent,
+        "__current_xp__",
+        currentXp - suppliedBaseline.xp,
+      );
+    }
     return {
-      complete: true,
+      complete: authoritative && currentXp >= suppliedBaseline.xp,
       baseline: suppliedBaseline,
-      exactInvalidXp: 0,
-      invalidByEvent: new Map(),
+      exactInvalidXp: invalidTotal(invalidByEvent),
+      invalidByEvent,
     };
   }
 
@@ -109,32 +101,33 @@ export function analyzeLedgerContinuity(
       index > 0 &&
       event.serverCreatedAtMs === byTime[index - 1].serverCreatedAtMs,
   );
-  let ordered = byTime;
   if (tied) {
-    if (
-      suppliedBaseline.kind !== "exact" ||
-      suppliedBaseline.derivedFrom !== "retained_cutover"
-    ) {
-      return {
-        complete: false,
-        baseline: suppliedBaseline,
-        exactInvalidXp: 0,
-        invalidByEvent: new Map(),
-      };
-    }
-    const resolved = chainFromRetainedBaseline(events, suppliedBaseline.xp);
-    if (!resolved) {
-      return {
-        complete: false,
-        baseline: suppliedBaseline,
-        exactInvalidXp: 0,
-        invalidByEvent: new Map(),
-      };
-    }
-    ordered = resolved;
+    return {
+      complete: false,
+      baseline: suppliedBaseline,
+      exactInvalidXp: 0,
+      invalidByEvent: new Map(),
+    };
   }
 
+  const ordered = byTime;
   const first = ordered[0];
+  if (
+    suppliedBaseline.kind === "exact" &&
+    ((suppliedBaseline.derivedFrom === "retained_cutover" &&
+      (!Number.isFinite(suppliedBaseline.atMs) ||
+        suppliedBaseline.atMs >= (first.serverCreatedAtMs as number))) ||
+      (suppliedBaseline.derivedFrom === "first_ledger_result" &&
+        (suppliedBaseline.xp !== first.totalXpBefore ||
+          suppliedBaseline.atMs !== first.serverCreatedAtMs)))
+  ) {
+    return {
+      complete: false,
+      baseline: suppliedBaseline,
+      exactInvalidXp: 0,
+      invalidByEvent: new Map(),
+    };
+  }
   const baseline: LedgerBaselineEvidence =
     suppliedBaseline.kind === "exact" &&
     suppliedBaseline.derivedFrom === "retained_cutover"
@@ -148,10 +141,24 @@ export function analyzeLedgerContinuity(
   const invalidByEvent = new Map<string, number>();
   let expected = baseline.xp;
   let unexplainedDecrease = false;
-  for (const ledgerEvent of ordered) {
+  for (const [index, ledgerEvent] of ordered.entries()) {
     const before = ledgerEvent.totalXpBefore as number;
-    addInvalid(invalidByEvent, ledgerEvent.eventId, before - expected);
-    if (before < expected) unexplainedDecrease = true;
+    if (before !== expected) {
+      const retainedFirstBoundary =
+        index === 0 &&
+        baseline.kind === "exact" &&
+        baseline.derivedFrom === "retained_cutover";
+      if (!retainedFirstBoundary) {
+        return {
+          complete: false,
+          baseline,
+          exactInvalidXp: 0,
+          invalidByEvent: new Map(),
+        };
+      }
+      addInvalid(invalidByEvent, ledgerEvent.eventId, before - expected);
+      if (before < expected) unexplainedDecrease = true;
+    }
     expected = ledgerEvent.totalXpAfter;
   }
   addInvalid(invalidByEvent, "__current_xp__", currentXp - expected);
@@ -225,8 +232,11 @@ function prerequisiteValue(
 const evidenceComplete = (completeness: EvidenceCompleteness): boolean =>
   Object.values(completeness).every((state) => state !== "incomplete");
 
+const isAchievementEvent = (event: NormalizedAuditEvent): boolean =>
+  event.type === "achievement_reward" || event.type === "achievement_claimed";
+
 const isClaim = (event: NormalizedAuditEvent): boolean =>
-  event.type === "achievement_claimed" && achievementIdOf(event) !== null;
+  isAchievementEvent(event) && achievementIdOf(event) !== null;
 
 export function analyzeAccount(
   input: AccountAuditInput,
@@ -252,8 +262,16 @@ export function analyzeAccount(
     runtimeEvidenceComplete = false;
   }
 
-  for (const claimed of input.canonicalEvents.filter(isClaim)) {
-    const achievementId = achievementIdOf(claimed) as string;
+  for (const claimed of input.canonicalEvents.filter(isAchievementEvent)) {
+    const achievementId = achievementIdOf(claimed);
+    if (achievementId === null) {
+      reasons.add("catalog_unmapped");
+      reasons.add("prerequisite_unmapped");
+      nonExactFamilies.add("catalog");
+      nonExactFamilies.add("prerequisites");
+      runtimeEvidenceComplete = false;
+      continue;
+    }
     const match = resolveMatch(catalogMatches, claimed, achievementId);
     const historicalReward = rewardFromMatch(match, achievementId);
     if (!historicalReward) {
@@ -288,19 +306,31 @@ export function analyzeAccount(
   }
 
   for (const alias of input.aliases) {
-    if (!alias.complete || alias.identityMergedAtMs === null) {
+    if (
+      !alias.complete ||
+      alias.canonicalUid !== input.uid ||
+      alias.identityMergedAtMs === null ||
+      !Number.isFinite(alias.identityMergedAtMs)
+    ) {
       reasons.add("alias_history_incomplete");
       nonExactFamilies.add("alias");
       runtimeEvidenceComplete = false;
       continue;
     }
-    for (const aliasClaim of alias.events.filter(isClaim)) {
-      const aliasId = achievementIdOf(aliasClaim) as string;
+    for (const aliasClaim of alias.events.filter(isAchievementEvent)) {
+      const aliasId = achievementIdOf(aliasClaim);
       const mergeTime = alias.identityMergedAtMs;
       if (
+        aliasId === null ||
+        aliasClaim.ownerUid !== alias.uid ||
+        !exactEvent(aliasClaim) ||
         aliasClaim.serverCreatedAtMs === null ||
+        !Number.isFinite(aliasClaim.serverCreatedAtMs) ||
         aliasClaim.serverCreatedAtMs >= mergeTime
       ) {
+        reasons.add("alias_history_incomplete");
+        nonExactFamilies.add("alias");
+        runtimeEvidenceComplete = false;
         continue;
       }
       const aliasReward = rewardFromMatch(
@@ -313,14 +343,11 @@ export function analyzeAccount(
         runtimeEvidenceComplete = false;
         continue;
       }
-      const replay = input.canonicalEvents.find((candidate) => {
-        if (!isClaim(candidate) || !exactEvent(candidate)) return false;
-        if (
-          candidate.serverCreatedAtMs === null ||
-          candidate.serverCreatedAtMs <= mergeTime
-        ) {
-          return false;
-        }
+      const rawCandidates = input.canonicalEvents.filter(
+        (candidate) =>
+          isClaim(candidate) && achievementIdOf(candidate) === aliasId,
+      );
+      const semanticCandidates = rawCandidates.filter((candidate) => {
         const canonicalId = achievementIdOf(candidate) as string;
         const canonicalReward = rewardFromMatch(
           resolveMatch(catalogMatches, candidate, canonicalId),
@@ -336,9 +363,28 @@ export function analyzeAccount(
           )
         );
       });
+      const replay = semanticCandidates.find(
+        (candidate) =>
+          candidate.ownerUid === input.uid &&
+          exactEvent(candidate) &&
+          candidate.serverCreatedAtMs !== null &&
+          Number.isFinite(candidate.serverCreatedAtMs) &&
+          candidate.serverCreatedAtMs > mergeTime,
+      );
       if (replay) {
         reasons.add("achievement_alias_replay_exact");
         addInvalid(invalidByEvent, replay.eventId, replay.xpDelta);
+      } else if (
+        rawCandidates.some(
+          (candidate) =>
+            candidate.serverCreatedAtMs === null ||
+            !Number.isFinite(candidate.serverCreatedAtMs) ||
+            candidate.serverCreatedAtMs >= mergeTime,
+        )
+      ) {
+        reasons.add("alias_history_incomplete");
+        nonExactFamilies.add("alias");
+        runtimeEvidenceComplete = false;
       }
     }
   }
@@ -395,9 +441,10 @@ export function analyzeAccount(
     reasons: [...reasons],
     completeness: input.completeness,
     exactInvalidXp,
-    proposedXp: exactReductionIsComplete
-      ? Math.max(0, input.currentXp - exactInvalidXp)
-      : null,
+    proposedXp:
+      classification === "confirmed_damaged" && exactReductionIsComplete
+        ? Math.max(0, input.currentXp - exactInvalidXp)
+        : null,
     exactReductionIsComplete,
     projectionDrift,
   };

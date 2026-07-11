@@ -18,7 +18,7 @@ const event = (
 ): NormalizedAuditEvent => ({
   ownerUid: "canonical",
   eventId: id,
-  type: "achievement_claimed",
+  type: "achievement_reward",
   xpDelta: 100,
   totalXpBefore: 100,
   totalXpAfter: 200,
@@ -279,6 +279,12 @@ describe("analyzeAccount", () => {
   test("classifies migration evidence conservatively", () => {
     const pattern = analyzeAccount(
       input([], {
+        baseline: {
+          kind: "exact",
+          xp: 0,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
         migration: {
           kind: "pattern_only",
           pattern: "250_to_400",
@@ -289,6 +295,12 @@ describe("analyzeAccount", () => {
     );
     const probable = analyzeAccount(
       input([], {
+        baseline: {
+          kind: "exact",
+          xp: 0,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
         migration: {
           kind: "pattern_only",
           pattern: "250_to_400",
@@ -301,6 +313,12 @@ describe("analyzeAccount", () => {
     const exact = analyzeAccount(
       input([], {
         currentXp: 700,
+        baseline: {
+          kind: "exact",
+          xp: 700,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
         migration: {
           kind: "exact",
           source: "retained_provenance",
@@ -326,6 +344,12 @@ describe("analyzeAccount", () => {
     const result = analyzeAccount(
       input([], {
         currentXp: 700,
+        baseline: {
+          kind: "exact",
+          xp: 700,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
         migration: {
           kind: "exact",
           source: "retained_provenance",
@@ -351,6 +375,12 @@ describe("analyzeAccount", () => {
     const result = analyzeAccount(
       input([], {
         currentXp: 500,
+        baseline: {
+          kind: "exact",
+          xp: 500,
+          derivedFrom: "retained_cutover",
+          atMs: 10,
+        },
         mirrors: { leaderboardXp: 500, arenaXp: 490, leagueXp: 500 },
       }),
       new Map(),
@@ -358,6 +388,7 @@ describe("analyzeAccount", () => {
     expect(result).toMatchObject({
       classification: "consistent",
       projectionDrift: true,
+      proposedXp: null,
     });
     expect(result.reasons).toContain("projection_drift");
   });
@@ -399,6 +430,149 @@ describe("analyzeAccount", () => {
     expect(proven.reasons).toContain("achievement_alias_replay_exact");
     expect(existenceOnly.exactInvalidXp).toBe(0);
     expect(existenceOnly.reasons).toContain("alias_history_incomplete");
+  });
+
+  test("requires alias ownership and canonical linkage to match the audited account", () => {
+    const aliasClaim = event("alias-claim", {
+      ownerUid: "wrong-alias-owner",
+      serverCreatedAtMs: 1_000,
+      clientCreatedAtMs: 1_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const canonicalClaim = event("canonical-claim", {
+      ownerUid: "wrong-canonical-owner",
+      serverCreatedAtMs: 3_000,
+      clientCreatedAtMs: 3_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const alias: AliasEvidence = {
+      uid: "alias",
+      canonicalUid: "another-account",
+      linkage: "canonical_pointer",
+      identityMergedAtMs: 2_000,
+      events: [aliasClaim],
+      complete: true,
+    };
+    const catalog = match(
+      reward("xp_50", 100, { kind: "lifetime_xp", minimum: 50 }),
+    );
+    const result = analyzeAccount(
+      input([canonicalClaim], { aliases: [alias] }),
+      byEvent(["alias-claim", catalog], ["canonical-claim", catalog]),
+    );
+    expect(result.exactInvalidXp).toBe(0);
+    expect(result.reasons).toContain("alias_history_incomplete");
+    expect(result.classification).toBe("indeterminate");
+  });
+
+  test("requires finite, exact and strictly ordered alias replay timestamps", () => {
+    const aliasClaim = event("alias-claim", {
+      ownerUid: "alias",
+      serverCreatedAtMs: Number.NaN,
+      payload: { achievementId: "xp_50" },
+    });
+    const canonicalClaim = event("canonical-claim", {
+      serverCreatedAtMs: 2_000,
+      totalXpAfter: 250,
+      payload: { achievementId: "xp_50" },
+    });
+    const alias: AliasEvidence = {
+      uid: "alias",
+      canonicalUid: "canonical",
+      linkage: "canonical_pointer",
+      identityMergedAtMs: 2_000,
+      events: [aliasClaim],
+      complete: true,
+    };
+    const catalog = match(
+      reward("xp_50", 100, { kind: "lifetime_xp", minimum: 50 }),
+    );
+    const result = analyzeAccount(
+      input([canonicalClaim], { aliases: [alias] }),
+      byEvent(["alias-claim", catalog], ["canonical-claim", catalog]),
+    );
+    expect(result.exactInvalidXp).toBe(0);
+    expect(result.reasons).toContain("alias_history_incomplete");
+  });
+
+  test("marks a malformed canonical replay candidate as alias-incomplete", () => {
+    const aliasClaim = event("alias-claim", {
+      ownerUid: "alias",
+      serverCreatedAtMs: 1_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const canonicalClaim = event("canonical-claim", {
+      serverCreatedAtMs: 3_000,
+      totalXpBefore: 100,
+      totalXpAfter: 250,
+      payload: { achievementId: "xp_50" },
+    });
+    const alias: AliasEvidence = {
+      uid: "alias",
+      canonicalUid: "canonical",
+      linkage: "canonical_pointer",
+      identityMergedAtMs: 2_000,
+      events: [aliasClaim],
+      complete: true,
+    };
+    const catalog = match(
+      reward("xp_50", 100, { kind: "lifetime_xp", minimum: 50 }),
+    );
+    const result = analyzeAccount(
+      input([canonicalClaim], { aliases: [alias] }),
+      byEvent(["alias-claim", catalog], ["canonical-claim", catalog]),
+    );
+    expect(result.exactInvalidXp).toBe(0);
+    expect(result.reasons).toContain("alias_history_incomplete");
+  });
+
+  test("marks an unmapped canonical replay catalog as alias-incomplete", () => {
+    const aliasClaim = event("alias-claim", {
+      ownerUid: "alias",
+      serverCreatedAtMs: 1_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const canonicalClaim = event("canonical-claim", {
+      serverCreatedAtMs: 3_000,
+      payload: { achievementId: "xp_50" },
+    });
+    const alias: AliasEvidence = {
+      uid: "alias",
+      canonicalUid: "canonical",
+      linkage: "canonical_pointer",
+      identityMergedAtMs: 2_000,
+      events: [aliasClaim],
+      complete: true,
+    };
+    const catalog = match(
+      reward("xp_50", 100, { kind: "lifetime_xp", minimum: 50 }),
+    );
+    const result = analyzeAccount(
+      input([canonicalClaim], { aliases: [alias] }),
+      byEvent(
+        ["alias-claim", catalog],
+        ["canonical-claim", { kind: "unmapped", reason: "gap" }],
+      ),
+    );
+    expect(result.exactInvalidXp).toBe(0);
+    expect(result.reasons).toContain("alias_history_incomplete");
+  });
+
+  test("treats achievement claims with missing or malformed IDs as incomplete", () => {
+    const missing = event("missing", { payload: {} });
+    const malformed = event("malformed", {
+      totalXpBefore: 200,
+      totalXpAfter: 300,
+      serverCreatedAtMs: 2_000,
+      clientCreatedAtMs: 2_000,
+      payload: { achievementId: 123 },
+    });
+    const result = analyzeAccount(input([missing, malformed]), new Map());
+    expect(result.exactInvalidXp).toBe(0);
+    expect(result.reasons).toEqual(
+      expect.arrayContaining(["catalog_unmapped", "prerequisite_unmapped"]),
+    );
+    expect(result.classification).toBe("probable_damaged");
   });
 });
 
@@ -456,7 +630,7 @@ describe("analyzeLedgerContinuity", () => {
     expect(result).toMatchObject({ complete: true, exactInvalidXp: 50 });
   });
 
-  test("tied timestamps are ambiguous unless a retained cutover fixes the chain", () => {
+  test("tied timestamps remain ambiguous even with a retained cutover", () => {
     const first = event("a", {
       type: "xp",
       xpDelta: 50,
@@ -482,7 +656,7 @@ describe("analyzeLedgerContinuity", () => {
         derivedFrom: "retained_cutover",
         atMs: 900,
       }).complete,
-    ).toBe(true);
+    ).toBe(false);
   });
 
   test("compares current XP with the final exact ledger total", () => {
@@ -498,5 +672,70 @@ describe("analyzeLedgerContinuity", () => {
         reason: "pre_cutover_unretained",
       }),
     ).toMatchObject({ complete: true, exactInvalidXp: 50 });
+  });
+
+  test("does not convert an unexplained inter-event gap into exact damage", () => {
+    const first = event("first", {
+      type: "xp",
+      xpDelta: 50,
+      totalXpBefore: 100,
+      totalXpAfter: 150,
+    });
+    const second = event("second", {
+      type: "xp",
+      xpDelta: 50,
+      totalXpBefore: 200,
+      totalXpAfter: 250,
+      serverCreatedAtMs: 2_000,
+      clientCreatedAtMs: 2_000,
+    });
+    expect(
+      analyzeLedgerContinuity([first, second], 250, {
+        kind: "unknown",
+        reason: "pre_cutover_unretained",
+      }),
+    ).toMatchObject({ complete: false, exactInvalidXp: 0 });
+  });
+
+  test("evaluates an empty ledger against an authoritative retained baseline", () => {
+    expect(
+      analyzeLedgerContinuity([], 100, {
+        kind: "unknown",
+        reason: "pre_cutover_unretained",
+      }),
+    ).toMatchObject({ complete: false, exactInvalidXp: 0 });
+    expect(
+      analyzeLedgerContinuity([], 100, {
+        kind: "exact",
+        xp: 100,
+        derivedFrom: "retained_cutover",
+        atMs: 10,
+      }),
+    ).toMatchObject({ complete: true, exactInvalidXp: 0 });
+    expect(
+      analyzeLedgerContinuity([], 150, {
+        kind: "exact",
+        xp: 100,
+        derivedFrom: "retained_cutover",
+        atMs: 10,
+      }),
+    ).toMatchObject({ complete: true, exactInvalidXp: 50 });
+  });
+
+  test("rejects retained baselines that do not precede the first event", () => {
+    const first = event("first", {
+      type: "xp",
+      serverCreatedAtMs: 1_000,
+      totalXpBefore: 100,
+      totalXpAfter: 200,
+    });
+    expect(
+      analyzeLedgerContinuity([first], 200, {
+        kind: "exact",
+        xp: 100,
+        derivedFrom: "retained_cutover",
+        atMs: 1_000,
+      }),
+    ).toMatchObject({ complete: false, exactInvalidXp: 0 });
   });
 });

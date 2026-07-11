@@ -23,8 +23,9 @@ import Svg, { Circle } from 'react-native-svg';
 import Animated, {
   Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import DuoPressable from '../components/DuoPressable';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -86,7 +87,7 @@ export default function ConstellationMatchScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const focused = useIsScreenFocused();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   // dev-only тумблер авто-лайта (F9) — см. кнопку «лайт» в HUD ниже.
   const devForceLowEnd = useDevForceLowEnd();
 
@@ -922,12 +923,12 @@ const DuelIntro = memo(function DuelIntro({
       <View style={styles.duelIntroRow}>
         <Animated.View style={[styles.duelSide, leftStyle]}>
           {avatar(meName, meColor)}
-          <Text numberOfLines={1} style={[styles.duelName, { color: meColor }]}>{meName}</Text>
+          <FlowText testID="constellation-duel-me-name" provenance="user" style={[styles.duelName, { color: meColor }]}>{meName}</FlowText>
         </Animated.View>
         <Animated.Text style={[styles.duelVs, vsStyle, { fontSize: f.h1 }]}>VS</Animated.Text>
         <Animated.View style={[styles.duelSide, rightStyle]}>
           {avatar(oppName, oppColor)}
-          <Text numberOfLines={1} style={[styles.duelName, { color: oppColor }]}>{oppName}</Text>
+          <FlowText testID="constellation-duel-opponent-name" provenance="user" style={[styles.duelName, { color: oppColor }]}>{oppName}</FlowText>
         </Animated.View>
       </View>
       <Animated.Text style={[styles.duelIntroLabel, vsStyle]}>

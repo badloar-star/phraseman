@@ -2103,7 +2103,7 @@ async function applyRestoreFromUserDoc(
     localLastActiveRaw,
     progressServerAuthoritative,
   );
-  if (__DEV__ && shouldPreferCloudOnSuspiciousGap && hasPendingProgressEvents) {
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && shouldPreferCloudOnSuspiciousGap && hasPendingProgressEvents) {
     console.warn('[cloud_sync] skipping suspicious-cloud restore due pending progress queue', {
       localXP,
       cloudXP,

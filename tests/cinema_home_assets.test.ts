@@ -60,8 +60,10 @@ describe('cinema home foreground assets', () => {
   });
 
   it('uses themed artwork for the dialogs entry instead of a line icon', () => {
-    const dialogsSource = fs.readFileSync(path.join(ROOT, 'components/DialogsTabContent.tsx'), 'utf8');
-    expect(dialogsSource).toContain('compassIconSource(themeMode)');
-    expect(dialogsSource).not.toContain('<Ionicons name="chatbubbles-outline"');
+    const homeMenuSource = fs.readFileSync(path.join(ROOT, 'app/home_menu_icons.ts'), 'utf8');
+    expect(homeMenuSource).toContain('dialogs: ImageSourcePropType');
+    for (const theme of CINEMA_THEMES) {
+      expect(homeMenuSource).toContain(`dialogs: require('../assets/images/home_menu/${theme}/home-${theme}-dialogs.webp')`);
+    }
   });
 });

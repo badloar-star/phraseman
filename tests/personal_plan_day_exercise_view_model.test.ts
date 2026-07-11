@@ -56,12 +56,12 @@ describe('personal plan day exercise view model adapter', () => {
     expect(viewModel.passport.issues).toEqual([]);
   });
 
-  it('keeps generated scaffold days blocked by passport readiness', () => {
-    const scaffoldDay = gavan.days[1];
-    const viewModel = buildPersonalPlanDayExerciseViewModel(gavan, scaffoldDay, []);
+  it('keeps the next certified Gavan day ready for runtime view models', () => {
+    const certifiedDay = gavan.days[1];
+    const viewModel = buildPersonalPlanDayExerciseViewModel(gavan, certifiedDay, []);
 
-    expect(scaffoldDay.status).toBe('scaffold');
-    expect(viewModel.passportReady).toBe(false);
-    expect(viewModel.passport.issues.map((issue) => issue.code)).toContain('scaffold_day');
+    expect(certifiedDay.status).toBe('certified');
+    expect(viewModel.passportReady).toBe(true);
+    expect(viewModel.passport.issues).toEqual([]);
   });
 });

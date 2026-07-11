@@ -15,7 +15,6 @@ describe('personal plan generation standards', () => {
   const standards = fs.readFileSync(standardsPath, 'utf8');
   const gavan = PERSONAL_PLAN_CATALOG.find((plan) => plan.id === 'gavan')!;
   const day1 = gavan.days[0];
-  const day2 = gavan.days[1];
 
   it('documents the standards that every future generated plan day must follow', () => {
     const normalizedStandards = standards.toLowerCase();
@@ -34,7 +33,16 @@ describe('personal plan generation standards', () => {
 
   it('treats live Gavan day 1 as ready, but still blocks untouched scaffold days', () => {
     const passport = buildPersonalPlanDayPassport(gavan, day1);
-    const scaffoldPassport = buildPersonalPlanDayPassport(gavan, day2);
+    const scaffoldEntry = PERSONAL_PLAN_CATALOG
+      .flatMap((plan) => plan.days.map((day) => ({ plan, day })))
+      .find(({ plan, day }) => buildPersonalPlanDayPassport(plan, day).issues
+        .some((issue) => issue.code === 'scaffold_day'));
+
+    expect(scaffoldEntry).toBeDefined();
+    const scaffoldPassport = buildPersonalPlanDayPassport(
+      scaffoldEntry!.plan,
+      scaffoldEntry!.day,
+    );
 
     expect(passport.ready).toBe(true);
     expect(passport.issues).toEqual([]);

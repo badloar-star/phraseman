@@ -7,10 +7,10 @@ describe('avatar_select bouncy layout contract', () => {
   it('keeps fixed page chrome outside normal scroll but inside the bouncy transform layer', () => {
     const bouncyLayerStart = source.indexOf('<Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>');
     const wrapStart = source.indexOf('<BouncyWrap>', bouncyLayerStart);
-    const scrollStart = source.indexOf('<ScrollView', wrapStart);
-    const scrollEnd = source.indexOf('</ScrollView>', scrollStart);
+    const scrollStart = source.indexOf('<Reanimated.ScrollView', wrapStart);
+    const scrollEnd = source.indexOf('</Reanimated.ScrollView>', scrollStart);
     const bouncyLayerEnd = source.indexOf('</Reanimated.View>', scrollEnd);
-    const title = source.indexOf('>Аватар</Text>', bouncyLayerStart);
+    const title = source.indexOf('>Кастомизация</Text>', bouncyLayerStart);
     const currentAvatar = source.indexOf('>Текущий аватар</Text>', bouncyLayerStart);
     const resetButton = source.indexOf('>Вернуть аватар уровня</Text>', bouncyLayerStart);
 

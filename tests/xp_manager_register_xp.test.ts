@@ -221,18 +221,17 @@ describe('registerXP', () => {
     expect(__xpManagerTestHooks.progressEventTypeForSource('club_mission_complete')).toBe('club_mission_complete');
   });
 
-  it('runs the 10k restore exactly once and commits its marker with XP', async () => {
+  it('leaves the XP balance unchanged and commits the server-migration marker once', async () => {
     const { migrateXPFormulaV2 } = await import('../app/xp_manager');
-    const { XP_LEVEL_RESTORE_250_TO_400_KEY, restoredXPForOld250VisibleLevel } = await import('../app/xp_level_restore');
+    const { XP_LEVEL_RESTORE_250_TO_400_KEY } = await import('../app/xp_level_restore');
     await AsyncStorage.setItem('user_total_xp', '10000');
-    const restoredXp = String(restoredXPForOld250VisibleLevel(10000).targetXP);
 
     await migrateXPFormulaV2();
-    expect(await AsyncStorage.getItem('user_total_xp')).toBe(restoredXp);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('10000');
     expect(await AsyncStorage.getItem(XP_LEVEL_RESTORE_250_TO_400_KEY)).toBe('1');
 
     await migrateXPFormulaV2();
-    expect(await AsyncStorage.getItem('user_total_xp')).toBe(restoredXp);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('10000');
   });
 });
 

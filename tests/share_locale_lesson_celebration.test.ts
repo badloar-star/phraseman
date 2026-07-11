@@ -61,7 +61,7 @@ describe('buildLessonShareMessage', () => {
     expect(source).not.toMatch(legacyRuntimeRe);
     expect(source).toContain('const pools: Record<LangCode, readonly string[]>');
     expect(completeSource).not.toContain("lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru'");
-    expect(completeSource).toContain('buildLessonShareMessage(\n                lang,');
+    expect(completeSource).toMatch(/buildLessonShareMessage\(\s*lang,/);
   });
 });
 

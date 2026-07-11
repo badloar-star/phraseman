@@ -21,7 +21,7 @@ describe('help board product contract', () => {
 
     expect(chatHub).toContain("type CommunityHubTab = 'help' | 'league'");
     expect(chatHub).toContain("const [tab, setTab] = useState<CommunityHubTab>('help')");
-    expect(chatHub).toContain("setTab('help');\n    setVisible(true);");
+    expect(chatHub).toMatch(/setTab\('help'\);\s+setVisible\(true\);/);
     expect(chatHub).toContain('testID="home-league-chat-button"');
     expect(chatHub).toContain('testID="community-chat-hub-fullscreen"');
     expect(chatHub).toContain('HelpBoardPanel');

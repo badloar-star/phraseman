@@ -31,8 +31,8 @@ export type ProgressEventType =
   | 'review_answer'
   | 'diagnostic_test'
   | 'plan_task_complete'
-  | 'club_mission_complete'
-  | 'wager_win';
+  | 'wager_win'
+  | 'club_mission_complete';
 
 export type ProgressEventRequest = {
   eventId?: string;

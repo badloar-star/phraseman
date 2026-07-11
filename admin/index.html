@@ -14448,7 +14448,7 @@
   }
 
   const _googleProvider = new GoogleAuthProvider();
-  setAdminSignInBusy(false);
+  setAdminSignInBusy(true, 'ПРОВЕРЯЕМ СЕССИЮ...');
 
   const _adminAuthPersistenceReady = setPersistence(auth, browserLocalPersistence)
     .catch((e) => {
@@ -14694,7 +14694,7 @@
     }
     let tr;
     try {
-      tr = await user.getIdTokenResult(true);
+      tr = await user.getIdTokenResult(false);
     } catch (e) {
       setAdminSignInBusy(false);
       setLoginError('Сессия сохранена, но сейчас не удалось проверить токен: ' + (e?.message || e) + '. Обновите страницу или проверьте сеть.');
@@ -20857,6 +20857,11 @@
     'paywall-ab': 'flask',
     alerts: 'bell',
     'changelog-0608': 'archive',
+    'compliance-radar': 'shield',
+    'daily-digest': 'clipboard',
+    'gmail-support': 'mail',
+    surveys: 'clipboard',
+    'helpers-board': 'users',
   };
 
   function adminTabIconHtml(key) {

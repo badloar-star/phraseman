@@ -61,7 +61,6 @@ describe('collectible drop overlay contract', () => {
       .sort();
 
     expect(renderers).toEqual([
-      'app/_admin_settings_testers.tsx',
       'app/arena_results.tsx',
       'app/lesson_complete.tsx',
       'components/admin_panel/sections/CollectibleDropModalsSection.tsx',

@@ -27,7 +27,7 @@ describe('authored plan content runtime integration', () => {
     const lesson = getPersonalPlanPhraseLesson(MITAP_DAY1_LESSON);
     expect(lesson).not.toBeNull();
     // authored content actually present
-    expect(lesson!.phrases.map((p) => p.english)).toContain('Hi, I am Anna.');
+    expect(lesson!.phrases.map((p) => p.english)).toContain('The next steps are clear.');
   });
 
   it('re-keys authored phrase ids to the positional content-unit scheme', () => {

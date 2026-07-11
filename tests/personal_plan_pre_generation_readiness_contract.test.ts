@@ -26,25 +26,19 @@ describe('personal plan pre-generation readiness contract', () => {
     expect(readiness).not.toContain('ready to import all days now');
   });
 
-  it('shows the browser report as source-import preparation instead of claiming content is live', () => {
+  it('shows the browser report as an honest current readiness snapshot', () => {
     const report = fs.readFileSync(
       path.join(ROOT, 'docs', 'reports', 'personal-plans-progress-browser-report.html'),
       'utf8',
     ).toLowerCase();
 
-    expect(report).toContain('generation status');
-    expect(report).toContain('28-day chat-draft cycle exists');
-    expect(report).toContain('finish before source import');
-    expect(report).toContain('selected daily time chooses the initial visible workload');
-    expect(report).toContain('add-more task behavior');
-    expect(report).toContain('mode contract');
-    expect(report).toContain('review rubric');
-    expect(report).toContain('bulk generation review queue');
-    expect(report).toContain('140 chat-draft candidate days');
-    expect(report).toContain('internal quality gate');
-    expect(report).toContain('140 accepted');
-    expect(report).toContain('0 rework');
-    expect(report).not.toContain('human content review, but it is still non-live');
-    expect(report).not.toContain('day 2-28 content packets are not fully generated yet');
+    expect(report).toContain('production ready: false');
+    expect(report).toContain('546 days, 0 material gaps');
+    expect(report).toContain('140 bound days checked');
+    expect(report).toContain('4,368 tasks checked');
+    expect(report).toContain('48/48 runtime mp3 assets');
+    expect(report).toContain('current blockers');
+    expect(report).toContain('0/4 real scored attempts provided');
+    expect(report).toContain('pending final user/human acceptance');
   });
 });

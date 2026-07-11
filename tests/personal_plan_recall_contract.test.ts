@@ -51,7 +51,7 @@ describe('personal plan phrase recall contract', () => {
     expect(lessonSource).toContain('plan_phrase_recall_');
     expect(lessonSource).toContain('buildPlanPhraseRecallOrder');
     expect(lessonSource).toContain('if (isPlanLessonTask || isPlanPhraseLessonTask || isPlanPhraseRecallTask) return;');
-    expect(lessonSource).toContain('{!settings.hardMode && !isPlanPhraseRecallTask && (');
+    expect(lessonSource).toContain("{!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && shuffled.length > 0 && (");
   });
 
   it('keeps recall strict: no correct-answer teaching help, but wrong answers still get explanations', () => {
@@ -65,7 +65,7 @@ describe('personal plan phrase recall contract', () => {
 
   it('returns missed recall phrases through the lesson error replay queue', () => {
     expect(lessonSource).toContain('errorQueueRef.current.push(progressCell)');
-    expect(lessonSource).toContain('questionsSinceErrorRef.current >= 2');
+    expect(lessonSource).toContain('questionsSinceErrorRef.current >= ERROR_REPLAY_DELAY_ANSWERS');
     expect(lessonSource).toContain('replayCell = errorQueueRef.current[0]');
     expect(lessonSource).toContain('setOverridePhraseCell(replayCell)');
   });

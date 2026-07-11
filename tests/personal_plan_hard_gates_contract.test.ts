@@ -28,7 +28,7 @@ describe('personal plan hard gates contract', () => {
     expect(tasksForMinutes(day1, 20).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 6));
   });
 
-  it('does not open normal lesson routes from personal plan tasks', () => {
+  it('opens linked lesson slices with exact plan scope instead of a generic lesson', () => {
     const router = { push: jest.fn() } as any;
     const task = {
       ...day1.tasks[0],
@@ -42,7 +42,19 @@ describe('personal plan hard gates contract', () => {
 
     openPersonalPlanTask(router, gavan, day1, task, 'plan-instance-1');
 
-    expect(router.push).not.toHaveBeenCalled();
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/lesson_menu',
+      params: expect.objectContaining({
+        id: '1',
+        lessonShellMode: 'linked_lesson_slice',
+        planPracticeMode: 'linked_lesson',
+        planTask: '1',
+        planTaskId: task.id,
+        planInstanceId: 'plan-instance-1',
+        requiredPhrases: '2',
+        requiredPhraseIds: 'lesson1_phrase_1,lesson1_phrase_7',
+      }),
+    });
   });
 
   it('opens plan quizzes through the dedicated quiz route with plan context', () => {

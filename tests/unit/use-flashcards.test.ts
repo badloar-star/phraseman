@@ -4,6 +4,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { invalidatePremiumCache } from '../../app/premium_guard';
 import {
   loadFlashcards,
   saveFlashcards,
@@ -40,13 +41,14 @@ const makeFullCard = (en: string): Flashcard => ({
 
 describe('use-flashcards', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    // clearAllMocks restores the manual AsyncStorage mock's default impl (reads a shared
-    // singleton store); drain that store so a prior case's writes don't leak into this one.
+    jest.resetAllMocks();
+    // Drain the manual mock's backing store as well as resetting queued mock responses,
+    // so a prior premium scenario cannot feed stale values into the next CRUD case.
     (mockStorage as unknown as { __reset?: () => void }).__reset?.();
     // The module keeps in-memory caches for the app lifetime; reset them so each case
     // reads its own AsyncStorage fixture instead of a value cached by a previous case.
     __resetFlashcardCacheForTests();
+    invalidatePremiumCache();
   });
 
   // ── loadFlashcards ─────────────────────────────────────────────────────────
@@ -160,11 +162,13 @@ describe('use-flashcards', () => {
       const cards: Flashcard[] = Array.from({ length: FREE_FLASHCARD_LIMIT }, (_, i) =>
         makeFullCard(`phrase ${i}`)
       );
-      mockStorage.getItem
-        .mockResolvedValueOnce(JSON.stringify(cards))  // FLASHCARDS_KEY
-        .mockResolvedValueOnce('true')                 // premium_active
-        .mockResolvedValueOnce(null)                   // tester_no_premium
-        .mockResolvedValueOnce(null);                  // tester_no_limits
+      mockStorage.getItem.mockImplementation(async key => (
+        key === FLASHCARDS_KEY ? JSON.stringify(cards) : null
+      ));
+      mockStorage.multiGet.mockImplementation(async keys => keys.map(key => [
+        key,
+        key === 'premium_active' ? 'true' : key === 'premium_plan' ? 'monthly' : null,
+      ]));
       mockStorage.setItem.mockResolvedValue(undefined);
 
       const result = await addFlashcard(makeCard('phrase beyond limit'));

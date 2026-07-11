@@ -4,6 +4,7 @@ import path from 'path';
 describe('admin VIP survey preview', () => {
   const root = process.cwd();
   const screen = fs.readFileSync(path.join(root, 'app', '_admin_settings_testers.tsx'), 'utf8');
+  const surveySection = fs.readFileSync(path.join(root, 'components', 'admin_panel', 'sections', 'VipSurveyExtraSection.tsx'), 'utf8');
   const inbox = fs.readFileSync(path.join(root, 'components', 'AppMessagesInbox.tsx'), 'utf8');
   const modal = fs.readFileSync(path.join(root, 'components', 'VipSurveyModal.tsx'), 'utf8');
   const reviewPrompt = fs.readFileSync(path.join(root, 'components', 'VipSurveyReviewPromptModal.tsx'), 'utf8');
@@ -17,7 +18,9 @@ describe('admin VIP survey preview', () => {
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
   it('seeds a local-only inbox notification and returns the admin to Home', () => {
-    expect(screen).toContain('admin-preview-vip-survey-notification');
+    expect(surveySection).toContain('admin-preview-vip-survey-notification');
+    expect(surveySection).toContain('onSeedInboxPreview');
+    expect(screen).toContain('onSeedInboxPreview={() => { void showVipSurveyNotificationPreview(); }}');
     expect(screen).toContain('seedLocalVipSurveyTestMessage');
     expect(screen).toContain('vipSurveyPreviewBusyRef');
     expect(screen).toContain('navigateHomeAfterVipSurveySeed');
@@ -25,7 +28,7 @@ describe('admin VIP survey preview', () => {
     expect(screen).toContain('nav.dismissAll');
     expect(screen).toContain("router.replace('/(tabs)/home'");
     expect(screen).not.toContain("nav.navigate('/(tabs)/home'");
-    expect(screen).toContain('Завершение опроса отправляет реальные ответы в админку');
+    expect(surveySection).toContain('Завершение опроса отправит реальные ответы и активирует Plus через callable');
     expect(appMessages).toContain('AsyncStorage.setItem(LOCAL_APP_MESSAGES_KEY');
     expect(appMessages).toContain('admin_test_vip_survey_');
     expect(appMessages).toContain("if (message.kind === 'vip_survey') return !hasPremiumAccess");

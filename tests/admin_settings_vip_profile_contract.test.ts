@@ -11,7 +11,7 @@ describe('admin settings VIP profile control', () => {
     expect(screen).toContain('screen-settings-testers');
     expect(screen).toContain('admin-activate-vip-profile');
     expect(screen).toContain('activateVipOnCurrentProfile');
-    expect(screen).toContain('💚 Активировать Plus на моём профиле');
+    expect(screen).toContain('💚 Активировать VIP на моём профиле');
     expect(screen).toContain('admin-preview-vip-celebration-top');
     expect(screen).toContain('admin-preview-vip-celebration');
     expect(screen).toContain('<VipCelebrationModal');

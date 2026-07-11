@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('BouncyScrollView onScroll contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '../components/BouncyScrollView.tsx'), 'utf8');
-  const sourceWithoutComments = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+  const sourceWithoutComments = source.replace(/\r\n/g, '\n').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
 
   it('documents the locked v9 architecture so native-only regressions are obvious', () => {
     expect(source).toContain('АРХИТЕКТУРА v9');

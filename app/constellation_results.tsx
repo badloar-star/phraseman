@@ -24,6 +24,7 @@ import Animated, {
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { ConstellationStarfield } from './constellation_starfield';
 import DuoPressable from '../components/DuoPressable';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
@@ -289,14 +290,14 @@ export default function ConstellationResultsScreen() {
               <View style={[styles.podAva, { backgroundColor: CONSTELLATION_SLOT_COLORS[p.slot] }]}>
                 <Text style={styles.podAvaText}>{(p.name[0] ?? '?').toUpperCase()}</Text>
               </View>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.podName, { color: t.textPrimary, fontSize: f.caption - 2 }]}>
+              <FlowText testID={`constellation-result-player-${p.slot}`} provenance="user" style={[styles.podName, { color: t.textPrimary, fontSize: f.caption - 2 }]}>
                 {p.uid === uid
                   ? triLang(lang, {
                     ru: 'Ты', uk: 'Ти', es: 'Tú', 'pt-BR': 'Você',
                     vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty',
                   })
                   : p.name}
-              </Text>
+              </FlowText>
               <Text style={[styles.podPts, { fontSize: f.caption }]}>
                 {result?.players.find((r) => r.uid === p.uid)?.points ?? p.liveScore ?? p.bonusPoints}
               </Text>

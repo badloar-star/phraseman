@@ -7,8 +7,8 @@ describe('premium dialog companion prompt contract', () => {
   it('keeps open conversation broad but inside the learning product frame', () => {
     expect(source).toContain('They may ask for explanations, examples, progress, weak spots, or the next useful step');
     expect(source).toContain('Stay inside language learning, communication practice, learner progress, and safe everyday topics');
-    expect(source).toContain('If the learner asks in Russian about an explanation or their progress');
-    expect(source).toContain('If the learner uses any language other than English');
+    expect(source).toContain('If the learner asks you something in {LEARNER_LANG_NAME}');
+    expect(source).toContain('still ANSWER IN {TARGET_LANG_UPPER}');
     expect(source).not.toContain('If the learner writes in Russian, gently nudge back to English');
   });
 });

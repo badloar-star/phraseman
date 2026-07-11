@@ -4,16 +4,17 @@ import path from 'path';
 describe('premium modal dispatcher contract', () => {
   const root = process.cwd();
   const dispatcher = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
+  const navigation = fs.readFileSync(path.join(root, 'app', 'paywall_navigation.ts'), 'utf8');
   const manageSubscription = fs.readFileSync(path.join(root, 'app', 'manage_subscription.tsx'), 'utf8');
   const purchase = fs.readFileSync(path.join(root, 'app', 'paywall_purchase.ts'), 'utf8');
 
   it('keeps /premium_modal as a dispatcher only, with no retired paywall UI', () => {
     expect(dispatcher).toContain('PremiumModalDispatcher');
-    expect(dispatcher).toContain('PAYWALL_ROUTES');
-    expect(dispatcher).toContain('/paywall_a');
-    expect(dispatcher).toContain('/paywall_b');
-    expect(dispatcher).toContain('/paywall_c');
-    expect(dispatcher).toContain('router.replace({');
+    expect(navigation).toContain('PAYWALL_ROUTES');
+    expect(navigation).toContain('/paywall_a');
+    expect(navigation).toContain('/paywall_b');
+    expect(navigation).toContain('/paywall_c');
+    expect(dispatcher).toContain("openPremiumPaywall(router, params, 'replace')");
 
     expect(dispatcher).not.toContain('const handlePurchase = async');
     expect(dispatcher).not.toContain('paywall: \'v1\'');
@@ -23,8 +24,8 @@ describe('premium modal dispatcher contract', () => {
   });
 
   it('does not block routing on a fresh Firestore config read', () => {
-    expect(dispatcher).toContain('refreshPaywallAbConfigInBackground');
-    expect(dispatcher).toContain('resolvePaywallAbVariant');
+    expect(navigation).toContain('refreshPaywallAbConfigInBackground');
+    expect(navigation).toContain('resolvePaywallAbVariantSync');
     expect(purchase).toContain('usePaywallPurchase');
   });
 
@@ -51,7 +52,7 @@ describe('premium modal dispatcher contract', () => {
   });
 
   it('keeps manage mode as a store subscription link, not as the retired paywall', () => {
-    expect(dispatcher).toContain("router.replace('/manage_subscription' as any)");
+    expect(navigation).toContain("router[mode]('/manage_subscription' as any)");
     expect(manageSubscription).toContain('getStoreManageUrl');
     expect(manageSubscription).toContain('apps.apple.com/account/subscriptions');
     expect(manageSubscription).toContain('play.google.com/store/account/subscriptions');

@@ -23,6 +23,7 @@ import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -2480,15 +2481,15 @@ export default function FlashcardsSwipeScreen() {
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctChoice}
                 </Text>
-                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 1 : undefined}>
+                <FlowText testID="flashcards-feedback-answer" provenance="authored" style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
                   {feedback.prompt.isMatch ? `${text.match}: ${text.matchHint}` : `${text.mismatch}: ${text.mismatchHint}`}
-                </Text>
+                </FlowText>
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctTranslation}
                 </Text>
-                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
+                <FlowText testID="flashcards-feedback-translation" provenance="authored" style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
                   {currentPrompt.trueTranslation}
-                </Text>
+                </FlowText>
                 {!isPlanFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}
                 {note && !isPlanFlashcardsTask ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
               </ScrollView>

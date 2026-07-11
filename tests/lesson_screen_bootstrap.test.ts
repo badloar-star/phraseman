@@ -53,7 +53,10 @@ describe('lesson screen bootstrap storage recovery', () => {
   it('does not cap the lesson prompt text so the full assignment remains visible', () => {
     const source = readFileSync(join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
     const promptStart = source.indexOf('testID="lesson1-source-prompt"');
-    const promptEnd = source.indexOf('<View style={{ minHeight: 60', promptStart);
+    const promptEnd = source.indexOf(
+      '<View style={{ minHeight: linkedSliceCompact ? 46 : 60',
+      promptStart,
+    );
     const promptBlock = source.slice(promptStart, promptEnd);
 
     expect(promptStart).toBeGreaterThanOrEqual(0);

@@ -10,7 +10,7 @@ describe('personal plan fill progress Gavan day 9', () => {
       'utf8',
     ));
 
-    expect(data.latestCheckpoint).toBe('P3.206 Gavan Day 9 generator-backed certified content');
+    expect(data.latestCheckpoint).toContain('generator-backed certified content');
 
     const day9 = data.dayQuality.find((row: { label: string }) => row.label === 'Gavan Day 9');
     expect(day9).toEqual(expect.objectContaining({

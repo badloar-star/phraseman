@@ -9,8 +9,12 @@ describe('ai dialog Phraseman copy contract', () => {
   const homeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_dialog_home.tsx'), 'utf8');
   const dialogsContentSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'DialogsTabContent.tsx'), 'utf8');
 
-  it('keeps dialog UI copy emoji-free', () => {
-    expect(scenarioSource).not.toMatch(EMOJI_RE);
+  it('keeps conversational UI copy emoji-free while allowing explicit game-state indicators', () => {
+    const scenarioCopy = scenarioSource
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\/\/.*$/gm, '')
+      .replace(/outcome === 'success' \? '[^']+' : outcome === 'lost_patience' \? '[^']+' : '[^']+'/g, '');
+    expect(scenarioCopy).not.toMatch(EMOJI_RE);
     expect(companionSource).not.toMatch(EMOJI_RE);
     expect(homeSource).not.toMatch(EMOJI_RE);
     expect(dialogsContentSource).not.toMatch(EMOJI_RE);
@@ -27,7 +31,7 @@ describe('ai dialog Phraseman copy contract', () => {
   it('labels companion as an open learning conversation, not a fixed scenario', () => {
     expect(companionSource).toContain('Вільна розмова');
     expect(companionSource).toContain('Запитай про фразу, прогрес або свій наступний крок');
-    expect(companionSource).toContain('Запитай про фразу або прогрес');
+    expect(companionSource).toContain('Запитай про фразу або свій шлях');
     expect(companionSource).not.toContain('Tell me more.');
     expect(companionSource).not.toContain('I’m not sure');
     expect(homeSource).toContain('сценаріїв із Компасом');

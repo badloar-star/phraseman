@@ -108,6 +108,7 @@ import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
 import AiMistakeCard from '../components/AiMistakeCard';
+import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
@@ -964,6 +965,10 @@ const LessonContent = React.memo(function LessonContent({
   const aiMistakeText = mistakeExplain.aiMistakeText;
   const aiMistakeRemaining = mistakeExplain.aiMistakeRemaining;
   const explainCurrentMistake = mistakeExplain.explain;
+  const openEli5Modal = mistakeExplain.eli5.onOpen;
+  const eli5ModalOpen = mistakeExplain.eli5.open;
+  const eli5State = mistakeExplain.eli5.state;
+  const eli5Text = mistakeExplain.eli5.text;
 
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
@@ -1115,7 +1120,6 @@ const LessonContent = React.memo(function LessonContent({
               textAlign: 'center',
               flexShrink: 1,
             }}
-            numberOfLines={linkedSliceCompact ? 2 : undefined}
             maxFontSizeMultiplier={1.2}
           >{(() => {
             if (!phrase) return '';
@@ -1230,6 +1234,7 @@ const LessonContent = React.memo(function LessonContent({
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
                     onExplain={explainCurrentMistake}
+                    onOpenSimple={openEli5Modal}
                     targetAnswer={aiMistakeTargetLine}
                     userAnswer={aiMistakeAnswerLine}
                   />
@@ -1830,6 +1835,14 @@ const LessonContent = React.memo(function LessonContent({
           </Pressable>
         </Modal>
 
+        <MistakeEli5Modal
+          visible={eli5ModalOpen}
+          onClose={mistakeExplain.eli5.onClose}
+          lang={lang}
+          state={eli5State}
+          text={eli5Text}
+          onRetry={mistakeExplain.eli5.onRetry}
+        />
 
     </KeyboardAvoidingView>
 

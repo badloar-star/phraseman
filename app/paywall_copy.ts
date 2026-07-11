@@ -1506,6 +1506,34 @@ CONTEXT_BENEFITS_PLANNED.flashcard_autoplay = [
   { 'pt-BR': 'Ótimo para trajetos e pausas curtas', vi: 'Tiện khi di chuyển và nghỉ ngắn', id: 'Nyaman untuk perjalanan dan jeda singkat', tr: 'Yol ve kısa molalar için rahat', pl: 'Wygodne w drodze i krótkich przerwach' },
 ];
 
+PAYWALL_COPY.constellations = {
+  titleRu: 'Открой Созвездия с Plus',
+  titleUk: 'Відкрий Сузір’я з Plus',
+  titleEs: 'Abre Constelaciones con Plus',
+  subtitleRu: 'Plus открывает тактический режим Созвездий: собирай звёзды, удерживай сектора и развивай карту вместе с командой.',
+  subtitleUk: 'Plus відкриває тактичний режим Сузір’їв: збирай зірки, утримуй сектори й розвивай карту разом із командою.',
+  subtitleEs: 'Plus abre el modo táctico Constelaciones: reúne estrellas, controla sectores y desarrolla el mapa con tu equipo.',
+};
+
+PAYWALL_PLANNED_COPY.constellations = {
+  title: { 'pt-BR': 'Abra Constelações com Plus', vi: 'Mở Chòm sao với Plus', id: 'Buka Konstelasi dengan Plus', tr: 'Plus ile Takımyıldızları aç', pl: 'Otwórz Konstelacje z Plus' },
+  subtitle: {
+    'pt-BR': 'Plus abre o modo tático Constelações: reúna estrelas, controle setores e desenvolva o mapa com a equipe.',
+    vi: 'Plus mở chế độ chiến thuật Chòm sao: thu thập sao, giữ khu vực và phát triển bản đồ cùng đội.',
+    id: 'Plus membuka mode taktis Konstelasi: kumpulkan bintang, kuasai sektor, dan kembangkan peta bersama tim.',
+    tr: 'Plus Takımyıldızlar taktik modunu açar: yıldızları topla, bölgeleri koru ve haritayı ekibinle geliştir.',
+    pl: 'Plus otwiera taktyczny tryb Konstelacji: zbieraj gwiazdy, utrzymuj sektory i rozwijaj mapę z drużyną.',
+  },
+};
+
+CONTEXT_BENEFITS.constellations = [
+  { ru: 'Тактические матчи на карте звёзд', uk: 'Тактичні матчі на карті зірок', es: 'Partidas tácticas en el mapa estelar', 'pt-BR': 'Partidas táticas no mapa estelar', vi: 'Trận chiến thuật trên bản đồ sao', id: 'Pertandingan taktis di peta bintang', tr: 'Yıldız haritasında taktik maçlar', pl: 'Taktyczne mecze na mapie gwiazd' },
+  { ru: 'Командный захват и защита секторов', uk: 'Командне захоплення й захист секторів', es: 'Captura y defensa de sectores en equipo', 'pt-BR': 'Captura e defesa de setores em equipe', vi: 'Cùng đội chiếm và giữ khu vực', id: 'Rebut dan pertahankan sektor bersama tim', tr: 'Takımla bölgeleri ele geçir ve savun', pl: 'Drużynowe przejmowanie i obrona sektorów' },
+  { ru: 'Отдельный прогресс Созвездий', uk: 'Окремий прогрес Сузір’їв', es: 'Progreso propio de Constelaciones', 'pt-BR': 'Progresso próprio de Constelações', vi: 'Tiến trình Chòm sao riêng', id: 'Progres Konstelasi tersendiri', tr: 'Ayrı Takımyıldız ilerlemesi', pl: 'Osobny postęp Konstelacji' },
+];
+
+CONTEXT_BENEFITS_PLANNED.constellations = CONTEXT_BENEFITS.constellations.map(({ ru: _ru, uk: _uk, es: _es, ...planned }) => planned);
+
 export function getContextBenefitPlanned(ctx: PremiumContext, index: number): PremiumPlannedCopy {
   const rows = CONTEXT_BENEFITS_PLANNED[ctx] ?? CONTEXT_BENEFITS_PLANNED.generic;
   return rows[index] ?? CONTEXT_BENEFITS_PLANNED.generic[Math.min(index, CONTEXT_BENEFITS_PLANNED.generic.length - 1)];

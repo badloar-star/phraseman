@@ -79,7 +79,7 @@ describe('lesson_locale_utils', () => {
 
     it('keeps lesson 1 prompt from reading RU / UK / ES as planned-language copy', () => {
       const source = fs.readFileSync(path.join(__dirname, '../app/lesson1.tsx'), 'utf8');
-      expect(source).toContain('phrasePromptForInterface(phrase, lang)');
+      expect(source).toContain('lessonPhraseMeaningForLang(phrase, lang, studyTarget)');
       expect(source).not.toMatch(/if\s*\(\s*lang\s*={2,3}\s*['"](?:uk|es)['"]\s*\)\s*return\s*\(phrase\.(?:ukrainian|spanish|russian)/);
     });
   });

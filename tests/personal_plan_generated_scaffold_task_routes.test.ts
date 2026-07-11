@@ -68,23 +68,27 @@ describe('generated personal plan scaffold task routes', () => {
     }
   });
 
-  it('opens generated route phrase cards in a dedicated plan exercise mode, not a lesson shell', () => {
+  it('opens generated route phrase cards in the shared lesson shell with plan context', () => {
     const router = { push: jest.fn() };
     const task = visibleTasks.find((item) => item.kind === 'plan_phrase_lesson')!;
 
     openPersonalPlanTask(router as any, plan, day, task, 'mitap-instance-1');
 
     expect(router.push).toHaveBeenCalledWith({
-      pathname: '/personal_plan_exercise',
+      pathname: '/lesson1',
       params: expect.objectContaining({
-        rendererType: 'plan_phrase_build',
+        id: '1',
+        lessonShellMode: 'plan_phrase_build',
+        planPracticeMode: 'build',
+        allowCorrectWordHighlighting: '0',
         planId: 'mitap',
         planDayIndex: '1',
         planTaskId: task.id,
         planInstanceId: 'mitap-instance-1',
-        lessonId: 'mitap_d001_content_unit',
-        contentUnitIds: expect.stringMatching(/^mitap_d001_content_unit_phrase_1,/),
-        requiredCorrect: '5',
+        planPhraseLessonId: 'mitap_d001_content_unit',
+        planPhraseMode: 'build',
+        requiredPhraseIds: expect.stringMatching(/^mitap_d001_content_unit_phrase_1,/),
+        requiredPhrases: '5',
       }),
     });
   });

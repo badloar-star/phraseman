@@ -32,8 +32,9 @@ describe('ai dialog conversation mode contract', () => {
   it('stitch #1: press-and-hold auto-sends the transcript on release', () => {
     expect(source).toContain('handleMicPressIn');
     expect(source).toContain('handleMicPressOut');
-    expect(source).toContain('onPressIn={conversationMode ? handleMicPressIn : undefined}');
-    expect(source).toContain('onPressOut={conversationMode ? handleMicPressOut : undefined}');
+    expect(source).toContain('onPressIn={handleMicPressIn}');
+    expect(source).toContain('onPressOut={handleMicPressOut}');
+    expect(source).toContain('conversationReleasePendingRef.current = conversationModeRef.current');
     // Транскрипт для авто-отправки берётся из ref (локальная latest недоступна снаружи).
     expect(source).toContain('latestTranscriptRef');
     expect(source).toContain('void send(text)');

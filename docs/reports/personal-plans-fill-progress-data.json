@@ -5,7 +5,7 @@
   "sourceRuntimeWriteAllowed": false,
   "liveRegistrationAllowed": false,
   "generatedContentCreationAllowed": false,
-  "latestCheckpoint": "P3.218 Echo Day 11 generator-backed certified content",
+  "latestCheckpoint": "P3.219 Voyazh Day 12 generator-backed certified content",
   "plans": [
     {
       "id": "voyazh",
@@ -118,10 +118,10 @@
     },
     {
       "label": "Voyazh Day 12",
-      "status": "chat draft",
-      "quality": 92,
-      "whatExists": "Voyazh mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
-      "notes": "Voyazh light pressure is bounded and reviewable; non-live chat draft only."
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 12 generator-backed certified mixed-recall pressure content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d012_generator_packet passed valid_non_live_dry_run; Voyazh mixed-recall pressure stays bounded while non-live audio/pronunciation evidence remains blocked."
     },
     {
       "label": "Voyazh Day 13",

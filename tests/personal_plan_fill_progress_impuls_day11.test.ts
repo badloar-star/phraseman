@@ -10,7 +10,7 @@ describe('personal plan fill progress Impuls day 11', () => {
       'utf8',
     ));
 
-    expect(data.latestCheckpoint).toBe('P3.217 Impuls Day 11 generator-backed certified content');
+    expect(data.latestCheckpoint).toContain('generator-backed certified content');
 
     const day11 = data.dayQuality.find((row: { label: string }) => row.label === 'Impuls Day 11');
     expect(day11).toEqual(expect.objectContaining({

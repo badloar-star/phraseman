@@ -16,9 +16,9 @@ describe('lesson words option layout contract', () => {
     expect(start).toBeGreaterThanOrEqual(0);
     expect(block).toContain('const optionFontSize = Math.min(f.h2, 22)');
     expect(block).toContain("wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}");
-    expect(block).toContain('style={{ height:68');
+    expect(block).toContain('style={{ minHeight:68');
     expect(block).toContain("overflow:'hidden'");
-    expect(block).toContain('numberOfLines={1}');
+    expect(block).toContain('numberOfLines={2}');
     expect(block).toContain('ellipsizeMode="tail"');
   });
 
@@ -28,7 +28,7 @@ describe('lesson words option layout contract', () => {
     const block = source.slice(start, source.indexOf('{current && (', start));
 
     expect(block).toContain('withHaptic={false}');
-    expect(block).toContain('void hapticTap()');
-    expect(source).not.toMatch(/haptic(Error|Heavy|Impact|Notification)/);
+    expect(source).toContain('hapticTap()');
+    expect(block).not.toMatch(/haptic(Error|Heavy|Impact|Notification)/);
   });
 });

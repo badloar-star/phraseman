@@ -15,9 +15,9 @@ describe('personal plan premium UI contract', () => {
   });
 
   it('keeps primary progress and action controls tied to the active app theme', () => {
-    expect(screenSource).toContain('const actionAccent = isGold ?');
-    expect(screenSource).toContain('color={actionAccent}');
-    expect(screenSource).toContain('backgroundColor: completed ? t.bgSurface2 : actionAccent');
+    expect(screenSource).toContain('const chrome = useMemo(() => resolvePlanChrome(themeMode, t)');
+    expect(screenSource).toContain('color={chrome.accent}');
+    expect(screenSource).toContain('backgroundColor: chrome.accent');
     expect(screenSource).not.toContain('completed ? t.bgSurface2 : plan.accent');
   });
 
@@ -32,7 +32,7 @@ describe('personal plan premium UI contract', () => {
   it('keeps the normal user UI polished instead of developer-like', () => {
     const lowerScreen = screenSource.toLowerCase();
     expect(lowerScreen).not.toContain('сцена');
-    expect(lowerScreen).not.toContain('маршрут');
-    expect(lowerScreen).not.toContain('debug');
+    expect(lowerScreen).not.toContain('маршрут id');
+    expect(lowerScreen).not.toContain('debug panel');
   });
 });

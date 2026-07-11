@@ -21,7 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { ConstellationStarfield } from './constellation_starfield';
 import { hapticLightImpact } from '../hooks/use-haptics';
 
@@ -59,7 +59,7 @@ export default function ConstellationIntroScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const [idx, setIdx] = useState(0);
   const slide = SLIDES[idx];
   const last = idx === SLIDES.length - 1;

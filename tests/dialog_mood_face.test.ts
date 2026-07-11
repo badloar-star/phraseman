@@ -2,26 +2,33 @@ import { moodToFace, clampMood, DEFAULT_MOOD } from '../app/dialog_mood_face';
 
 describe('dialog_mood_face — смайл настроения собеседника', () => {
   describe('moodToFace границы', () => {
-    it('mood >= 66 → довольное лицо', () => {
-      expect(moodToFace(66)).toBe('😊');
-      expect(moodToFace(85)).toBe('😊');
-      expect(moodToFace(100)).toBe('😊');
+    it('mood >= 80 → очень довольное лицо', () => {
+      expect(moodToFace(80)).toBe('😄');
+      expect(moodToFace(100)).toBe('😄');
     });
 
-    it('33..65 → нейтральное лицо', () => {
-      expect(moodToFace(33)).toBe('😐');
-      expect(moodToFace(50)).toBe('😐');
-      expect(moodToFace(65)).toBe('😐');
+    it('60..79 → довольное лицо', () => {
+      expect(moodToFace(60)).toBe('🙂');
+      expect(moodToFace(79)).toBe('🙂');
     });
 
-    it('< 33 → раздражённое лицо', () => {
-      expect(moodToFace(32)).toBe('😠');
-      expect(moodToFace(10)).toBe('😠');
+    it('40..59 → нейтральное лицо', () => {
+      expect(moodToFace(40)).toBe('😐');
+      expect(moodToFace(59)).toBe('😐');
+    });
+
+    it('20..39 → настороженное лицо', () => {
+      expect(moodToFace(20)).toBe('😟');
+      expect(moodToFace(39)).toBe('😟');
+    });
+
+    it('< 20 → раздражённое лицо', () => {
+      expect(moodToFace(19)).toBe('😠');
       expect(moodToFace(0)).toBe('😠');
     });
 
     it('клампит выход за диапазон', () => {
-      expect(moodToFace(150)).toBe('😊');
+      expect(moodToFace(150)).toBe('😄');
       expect(moodToFace(-50)).toBe('😠');
     });
 

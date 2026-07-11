@@ -18,6 +18,7 @@ type AiMistakeCardProps = {
   /** Kept for back-compat; no longer rendered (no daily cap). */
   remaining?: number | null;
   onExplain: () => void;
+  onOpenSimple?: () => void;
   /**
    * Правильный (целевой) ответ и неправильный ответ юзера. Нужны кнопке «Непонятно объяснили»,
    * чтобы жалоба попала в ТУ ЖЕ кэш-запись разбора (mistake_explanations per-(target,userAnswer,lang)).
@@ -67,6 +68,7 @@ export default function AiMistakeCard({
   state,
   explanation,
   onExplain,
+  onOpenSimple,
   targetAnswer,
   userAnswer,
 }: AiMistakeCardProps) {
@@ -192,6 +194,29 @@ export default function AiMistakeCard({
         </View>
       ) : null}
 
+      {isReadyExplanation && onOpenSimple ? (
+        <Pressable
+          testID="ai-mistake-simple-button"
+          accessibilityRole="button"
+          onPress={onOpenSimple}
+          style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
+        >
+          <Ionicons name="sparkles-outline" size={16} color={t.accent} />
+          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
+            {triLang(lang, {
+              ru: 'Объяснить проще',
+              uk: 'Пояснити простіше',
+              es: 'Explicarlo más fácil',
+              'pt-BR': 'Explicar de forma mais simples',
+              vi: 'Giải thích đơn giản hơn',
+              id: 'Jelaskan lebih sederhana',
+              tr: 'Daha basit açıkla',
+              pl: 'Wyjaśnij prościej',
+            })}
+          </Text>
+        </Pressable>
+      ) : null}
+
       {state === 'error' ? (
         <Pressable
           testID="ai-mistake-explain-button"
@@ -200,7 +225,7 @@ export default function AiMistakeCard({
           style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
         >
           <Ionicons name="refresh" size={16} color={t.accent} />
-          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
             {triLang(lang, {
               ru: 'Попробовать снова',
               uk: 'Спробувати знову',

@@ -26,11 +26,11 @@ describe('review planned locale runtime copy', () => {
 
   it('uses explicit localized completion titles and French recall instructions', () => {
     expect(SOURCE).toContain('const REVIEW_COMPLETION_TITLES');
-    expect(SOURCE).toContain("'pt-BR': {\n    strong: ['Excelente!'");
-    expect(SOURCE).toContain("vi: {\n    strong: ['Tuyệt vời!'");
-    expect(SOURCE).toContain("id: {\n    strong: ['Hebat!'");
-    expect(SOURCE).toContain("tr: {\n    strong: ['Harika!'");
-    expect(SOURCE).toContain("pl: {\n    strong: ['Świetnie!'");
+    expect(SOURCE).toMatch(/'pt-BR':\s*\{\s*strong:\s*\['Excelente!'/);
+    expect(SOURCE).toMatch(/vi:\s*\{\s*strong:\s*\['Tuyệt vời!'/);
+    expect(SOURCE).toMatch(/id:\s*\{\s*strong:\s*\['Hebat!'/);
+    expect(SOURCE).toMatch(/tr:\s*\{\s*strong:\s*\['Harika!'/);
+    expect(SOURCE).toMatch(/pl:\s*\{\s*strong:\s*\['Świetnie!'/);
     expect(SOURCE).toContain("'pt-BR': 'Lembre e escreva em francês'");
     expect(SOURCE).toContain("vi: 'Nhớ lại và viết bằng tiếng Pháp'");
   });

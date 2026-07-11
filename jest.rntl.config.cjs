@@ -14,7 +14,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    '\\.(png|jpg|jpeg|gif|svg|webp|avif|mp3|wav|m4a|ogg|aac)$': '<rootDir>/tests/__mocks__/fileMock.js',
+    '\\.(png|jpg|jpeg|gif|svg|webp|avif|mp3|wav|m4a|ogg|aac|ttf|otf)$': '<rootDir>/tests/__mocks__/fileMock.js',
     '^expo-constants$': '<rootDir>/tests/__mocks__/expo-constants.js',
     '^expo-secure-store$': '<rootDir>/tests/__mocks__/expo-secure-store.js',
     '^expo-crypto$': '<rootDir>/tests/__mocks__/expo-crypto.js',

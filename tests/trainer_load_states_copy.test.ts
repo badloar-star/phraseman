@@ -25,8 +25,8 @@ describe('TrainerLoadStates — копирайт состояний загруз
   it('triLang выбирает корректную ветку для ru/uk', () => {
     expect(triLang('ru', TRAINER_LOAD_COPY.errorTitle)).toBe('Не удалось загрузить');
     expect(triLang('uk', TRAINER_LOAD_COPY.errorTitle)).toBe('Не вдалося завантажити');
-    expect(triLang('ru', TRAINER_LOAD_COPY.retry)).toBe('Повторить');
-    expect(triLang('uk', TRAINER_LOAD_COPY.retry)).toBe('Повторити');
+    expect(triLang('ru', TRAINER_LOAD_COPY.retry)).toBe('Попробовать снова');
+    expect(triLang('uk', TRAINER_LOAD_COPY.retry)).toBe('Спробувати знову');
     expect(triLang('pt-BR', TRAINER_LOAD_COPY.retry)).toBe('Tentar de novo');
     expect(triLang('pl', TRAINER_LOAD_COPY.errorTitle)).toBe('Nie udało się załadować');
   });

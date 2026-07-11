@@ -21,13 +21,13 @@ describe('level gift claim success contract', () => {
     expect(tapApplyBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(g) : markGiftClaimed(level))');
     expect(tapApplyBlock.indexOf('await claimP;')).toBeLessThan(tapApplyBlock.indexOf('const result = await applyGift('));
     expect(tapApplyBlock).toContain('if (result.success) {');
-    expect(tapApplyBlock).toContain('} else if (!onGiftClaimed) {\n            await saveUnclaimedGift(level, g);');
+    expect(tapApplyBlock).toMatch(/}\s*else if \(!onGiftClaimed\) \{\s*await saveUnclaimedGift\(level, g\);/);
 
     expect(choiceBlock).toContain('const claimP = (onGiftClaimed ? onGiftClaimed(chosen) : markGiftClaimed(level))');
     expect(choiceBlock.indexOf('await claimP;')).toBeLessThan(choiceBlock.indexOf('const setEnergyFn = async'));
     expect(choiceBlock.indexOf('const setEnergyFn = async')).toBeLessThan(choiceBlock.indexOf('const result = await applyGift('));
     expect(choiceBlock).toContain('if (result.success) {');
-    expect(choiceBlock).toContain('} else if (!onGiftClaimed) {\n          await saveUnclaimedGift(level, chosen);');
+    expect(choiceBlock).toMatch(/}\s*else if \(!onGiftClaimed\) \{\s*await saveUnclaimedGift\(level, chosen\);/);
   });
 
   it('closes dual gifts immediately and persists reward effects in the background', () => {

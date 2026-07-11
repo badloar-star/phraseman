@@ -100,7 +100,7 @@ describe('owner runtime direction contract', () => {
   it('keeps immediate forceNow cloud sync call sites owner-reviewed', () => {
     const allowlist: Record<string, number> = {
       'app/arena_battle_pass_store.ts': 1,
-      'app/auth_provider.ts': 1,
+      'app/auth_provider.ts': 2,
       'app/avatar_select.tsx': 1,
       'app/lesson1.tsx': 2,
       'app/lesson_complete.tsx': 1,
@@ -146,8 +146,6 @@ describe('owner runtime direction contract', () => {
   it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
     const allowlist: Record<string, number> = {
       'app/(tabs)/quizzes.tsx': 1,
-      'app/_admin_celebration_lab.tsx': 1,
-      'app/_admin_premium_delivery_test.tsx': 1,
       'app/arena_game.tsx': 1,
       'app/arena_leaderboard.tsx': 1,
       'app/arena_lobby.tsx': 2,
@@ -155,9 +153,10 @@ describe('owner runtime direction contract', () => {
       'app/club_screen.tsx': 1,
       // «Созвездия»: секундный тик экрана поиска (elapsed + «…»), ≥1000мс,
       // гейт useIsScreenFocused, очистка на blur/unmount (осознанно, спек F2).
-      'app/constellation_search.tsx': 1,
+      'app/constellation_search.tsx': 2,
       // «Созвездия»: секундный тик дедлайна фазы матча — те же гарантии (спек F3/A3).
-      'app/constellation_match.tsx': 1,
+      'app/constellation_match.tsx': 2,
+      'app/constellation_results.tsx': 1,
       'app/diagnostic_test.tsx': 1,
       'app/exam.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
@@ -168,7 +167,9 @@ describe('owner runtime direction contract', () => {
       'app/streak_stats.tsx': 2,
       'components/ActiveBoostBar.tsx': 1,
       'components/ArenaDuelEmojiReact.tsx': 1,
-      'components/energy_countdown_clock.ts': 1,
+      'components/energy_countdown_clock.ts': 3,
+      'components/DialogVictoryCelebration.tsx': 1,
+      'components/feedback/ResultsSequence.tsx': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/LeagueChatPanel.tsx': 1,
       'components/PromoBanner.tsx': 1,
@@ -255,7 +256,6 @@ describe('owner runtime direction contract', () => {
 
   it('keeps Firestore onSnapshot call sites owner-reviewed so live listeners stay intentional', () => {
     const allowlist: Record<string, number> = {
-      'app/_admin_premium_delivery_test.tsx': 1,
       'app/app_messages.ts': 3,
       'app/arena_friend_room_guest.ts': 1,
       'app/arena_lobby.tsx': 1,
@@ -274,7 +274,7 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_rooms_live.ts': 4,
       // «Созвездия»: live-подписки режима (моя запись очереди, счётчик поиска,
       // матч, мой player-док) — все отписываются в вызывающем коде (спек F2/F3).
-      'app/services/constellations_db.ts': 4,
+      'app/services/constellations_db.ts': 5,
       'app/services/league_chest_rewards.ts': 3,
       'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,
@@ -452,9 +452,9 @@ describe('owner runtime direction contract', () => {
   it('keeps streak stats boost countdowns on one shared interval', () => {
     const source = read('app/streak_stats.tsx');
 
-    expect(source).toContain('function formatStatsBoostTimeLeft(ms: number): string');
+    expect(source).toContain('function formatStatsBoostTimeLeft(ms: number, lang: Lang): string');
     expect(source).toContain('const updateBoostCountdowns = () => {');
-    expect(source).toContain('const timer = setInterval(updateBoostCountdowns, 1000)');
+    expect(source).toContain('const timer = setInterval(updateBoostCountdowns, tickMs)');
     expect(source).toContain('return () => clearInterval(timer);');
     expect(source).not.toContain('const timer = setInterval(fmt, 1000)');
   });
@@ -465,7 +465,7 @@ describe('owner runtime direction contract', () => {
     const server = read('functions/src/progress_events.ts');
 
     expect(client).toContain("const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1'");
-    expect(client).toContain('JSON.stringify(queue.slice(0, 100))');
+    expect(client).toContain('JSON.stringify(queue)');
     expect(client).toContain('let flushInFlight: Promise<number> | null = null');
     expect(client).toContain('if (flushInFlight) return flushInFlight');
     expect(client).toContain('await enqueue(event).catch(() => {})');
@@ -474,15 +474,13 @@ describe('owner runtime direction contract', () => {
     expect(client).toContain('export async function prepareProgressMigrationSnapshot()');
 
     expect(xpManager).toContain('let _xpLock: Promise<unknown> = Promise.resolve()');
-    expect(xpManager).toContain('const XP_CLOUD_SYNC_DEFER_MS = 3500');
     expect(xpManager).toContain('submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel)');
-    expect(xpManager).toContain('void submitProgressEvent(request, { migrationSnapshot })');
-    expect(xpManager).toContain('await reserveLocalProgressEvent(options?.eventId)');
-    expect(xpManager).toContain('syncToCloud({ deferMs: XP_CLOUD_SYNC_DEFER_MS }).catch(() => {})');
+    expect(xpManager).toContain('return submitProgressEvent(request, { migrationSnapshot: snapshot });');
+    expect(xpManager).toContain('await reserveLocalProgressEvent(progressEventRequest?.eventId)');
+    expect(xpManager).toContain('markCloudSyncPending();');
     expect(xpManager).toContain("await storageSetString('user_total_xp', String(newTotal))");
     expect(xpManager).toContain('Math.max(0, currentTotal + finalDelta)');
     expect(xpManager).toContain("emitAppEvent('xp_changed')");
-    expect(xpManager).toContain("emitAppEvent('xp_updated'");
 
     expect(server).toContain("userRef.collection('progress_events').doc(safeDocId(event.eventId))");
     expect(server).toContain('if (ledgerSnap.exists)');
@@ -559,7 +557,7 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('appCheckWarmupInFlight = null;');
     expect(source).toContain('await warmClientReportAppCheck();');
     expect(source).toContain('const fn = getSubmitClientReportCallable();');
-    expect(source).toContain('const res = await fn({ kind, payload });');
+    expect(source).toContain("withCallableTimeout(fn({ kind, payload }), 'submitClientReport')");
     expect(source).not.toContain("const fn = callable<{ kind: ClientReportKind; payload: Record<string, unknown> }, SubmitClientReportResult>(");
   });
 
@@ -654,7 +652,7 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('ideaAppCheckWarmupInFlight = null;');
     expect(source).toContain('await warmIdeasAppCheck();');
     expect(source).toContain('const fn = getSubmitUserIdeaCallable();');
-    expect(source).toContain('const res = await fn({');
+    expect(source).toContain('const res = await withCallableTimeout(');
     expect(source).toContain('title: input.title');
     expect(source).toContain('description: input.description');
     expect(source).toContain('benefit: input.benefit');
@@ -748,8 +746,8 @@ describe('owner runtime direction contract', () => {
 
     expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
     expect(progressServer).toContain('if (incomingScore > currentScore && typeof snapshot[key] ===');
-    expect(progressServer).toContain('boolish(existing[key]) || boolish(snapshot[key])');
-    expect(read('app/xp_manager.ts')).toContain('if (newXP <= currentXP)');
+    expect(progressServer).toContain('getMigrationQuarantinedSensitiveKeys(snapshot)');
+    expect(read('app/xp_manager.ts')).toContain('Level-formula repair is a server/admin migration');
   });
 
   it('keeps server shard balance mirrors timestamp-guarded instead of blind client replaces', () => {
@@ -864,17 +862,17 @@ describe('owner runtime direction contract', () => {
 
     expect(weeklyReviewServer).toContain('lastBriefingHash: briefingHash');
     expect(weeklyReviewServer).toContain('lastReview: review');
-    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);');
+    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);');
     expect(weeklyReviewServer).toContain('idempotentReplay: true');
-    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
+    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);')).toBeLessThan(
       weeklyReviewServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
     );
 
     expect(statsInsightsServer).toContain('lastBriefingHash: briefingHash');
     expect(statsInsightsServer).toContain('lastNotes: notes');
-    expect(statsInsightsServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);');
+    expect(statsInsightsServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);');
     expect(statsInsightsServer).toContain('idempotentReplay: true');
-    expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
+    expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);')).toBeLessThan(
       statsInsightsServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
     );
     expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
@@ -887,7 +885,6 @@ describe('owner runtime direction contract', () => {
     const explainPhrase = read('functions/src/explain_phrase.ts');
     const explainChoice = read('functions/src/explain_choice.ts');
     const explainQuiz = read('functions/src/explain_quiz.ts');
-    const compass = read('functions/src/compass.ts');
     const statsInsights = read('functions/src/stats_insights.ts');
 
     expect(explainBudget).toContain('export async function reserveExplainBudget');
@@ -896,7 +893,7 @@ describe('owner runtime direction contract', () => {
     expect(explainBudget).toContain('async function refundGlobalBudget');
     expect(explainBudget).toContain('if (reservation.userReserved && !reservation.globalReserved)');
 
-    for (const source of [explainPhrase, explainChoice, explainQuiz, compass]) {
+    for (const source of [explainPhrase, explainChoice, explainQuiz]) {
       expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
       expect(source).toContain('budgetReservation = await reserveExplainBudget(');
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");

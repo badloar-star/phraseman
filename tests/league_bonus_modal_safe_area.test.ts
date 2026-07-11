@@ -6,7 +6,7 @@ import path from 'path';
  * areas (notch / Dynamic Island, home-indicator, rounded corners). They center
  * a card over a full-screen overlay, so without safe-area padding the card can
  * slide under system zones on tall devices. Both modals must read
- * useSafeAreaInsets() and feed insets into the centering container's padding.
+ * useStableSafeAreaInsets() and feed insets into the centering container's padding.
  */
 const MODAL_FILES = [
   'LeagueBonusAvailableModal.tsx',
@@ -22,13 +22,14 @@ describe('league bonus crown modals respect safe-area insets', () => {
     describe(file, () => {
       const source = readModalSource(file);
 
-      it('imports useSafeAreaInsets from react-native-safe-area-context', () => {
-        expect(source).toContain("from 'react-native-safe-area-context'");
-        expect(source).toContain('useSafeAreaInsets');
+      it('imports the stable safe-area hook', () => {
+        expect(source).toContain("from '../app/stable_safe_area_metrics'");
+        expect(source).toContain('useStableSafeAreaInsets');
       });
 
       it('reads the insets inside the component', () => {
-        expect(source).toContain('const insets = useSafeAreaInsets();');
+        expect(source).toContain('const insets = useStableSafeAreaInsets();');
+        expect(source).toContain('const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);');
       });
 
       it('feeds insets into the centering container padding (all four edges)', () => {
@@ -39,7 +40,7 @@ describe('league bonus crown modals respect safe-area insets', () => {
         // Must clamp so the card never gets LESS breathing room than the
         // original static padding, only more when a safe area exists.
         expect(source).toMatch(/Math\.max\(18, insets\.top/);
-        expect(source).toMatch(/Math\.max\(18, insets\.bottom/);
+        expect(source).toMatch(/Math\.max\(18, bottomInset/);
       });
     });
   }

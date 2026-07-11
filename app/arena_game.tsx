@@ -38,6 +38,7 @@ import { hapticError, hapticMediumImpact, hapticSuccess, hapticTap } from '../ho
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import DuoPressable from '../components/DuoPressable';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { logArenaDirectGateBlocked, logEvent } from './firebase';
@@ -1137,7 +1138,9 @@ export default function DuelGameScreen() {
                   {['A', 'B', 'C', 'D'][i]}
                 </Text>
               </View>
-              <Text
+              <FlowText
+                testID={`arena-answer-option-${i}`}
+                provenance="authored"
                 style={[styles.optionText, { color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.4) }]}
                 // Длинный двуязычный вариант ПЕРЕНОСИТСЯ на несколько строк, а не
                 // обрезается: игрок под таймером обязан видеть ответ целиком.
@@ -1146,10 +1149,9 @@ export default function DuelGameScreen() {
                 // варианты («Заходи!») до нечитаемого огрызка, пока соседние
                 // остаются нормальными (регрессия, класс бага флешкарт). Кнопка
                 // растёт по высоте (minHeight + перенос), текст не мельчает.
-                numberOfLines={3}
               >
                 {arenaBilingualFirst(option, lang)}
-              </Text>
+              </FlowText>
               {isCorrect && <Text style={{ color: t.correct, fontSize: 20 }}>✓</Text>}
               {isWrong && <Text style={{ color: t.wrong, fontSize: 20 }}>✗</Text>}
             </TouchableOpacity>

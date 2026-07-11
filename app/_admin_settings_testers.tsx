@@ -2548,6 +2548,17 @@ export default function SettingsTestersFunctions() {
               </Text>
             </View>
             <ButtonRow
+              testID="admin-activate-vip-profile"
+              icon="diamond-outline"
+              label="💚 Активировать VIP на моём профиле"
+              sub="Выдать этому профилю 30 дней VIP для QA, не меняя реальную Premium-подписку."
+              onPress={() => { void activateVipOnCurrentProfile(); }}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+              confirm="Активировать VIP на этом профиле на 30 дней?"
+            />
+            <ButtonRow
               testID="admin-preview-vip-celebration-top"
               icon="sparkles-outline"
               label="💚 Показать VIP-анимацию"
@@ -2887,7 +2898,24 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
 
-          {/* ── 1.5 AUTH (Google / Apple) ── */}
+            <AccordionSection id="friends_admin" icon="people-outline" title="Друзья — QA и подарки" badge={7}
+              open={openSection === 'friends_admin'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+              <View style={{ paddingHorizontal: 18, paddingVertical: 12, borderBottomWidth: 0.5, borderBottomColor: ACCENT_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
+                <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg, fontWeight: '900' }}>Social QA hub</Text>
+                <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 4, lineHeight: 17 }}>
+                  Подготовка friend list, gifts, входящей модалки, activity feed и кешей для Maestro/dev-проверок.
+                </Text>
+              </View>
+              <ButtonRow testID="admin-friends-open" icon="people-circle-outline" label="Открыть экран друзей" sub="Переход на production-вкладку Friends без seed" onPress={() => router.push('/(tabs)/friends' as any)} t={t} f={f} doHaptic={doHaptic} />
+              <ButtonRow testID="admin-friends-seed-buddy" icon="person-add-outline" label="Seed QA-друга" sub="Добавляет QA Friend Buddy в friends, leaderboard и SWR-профиль" onPress={() => { void seedAdminFriendsBuddy({ openFriends: true }); }} t={t} f={f} doHaptic={doHaptic} />
+              <ButtonRow testID="admin-friends-seed-shards" icon="diamond-outline" label="Дать 120 осколков для подарков" sub="Синхронизирует локальный баланс и users/{uid}.shards" onPress={() => { void seedAdminFriendShards(); }} t={t} f={f} doHaptic={doHaptic} />
+              <ButtonRow testID="admin-friends-seed-incoming-gift" icon="gift-outline" label="Seed входящего подарка" sub="Создаёт unseen friend_gift и открывает Friends для модалки «Подарок получен»" onPress={() => { void seedAdminIncomingFriendGift(); }} t={t} f={f} doHaptic={doHaptic} />
+              <ButtonRow testID="admin-friends-seed-activity" icon="pulse-outline" label="Seed активности друга" sub="Level-up, gift_sent и achievement в ленту активности" onPress={() => { void seedAdminFriendActivity(); }} t={t} f={f} doHaptic={doHaptic} />
+              <ButtonRow testID="admin-friends-open-arena" icon="flash-outline" label="Открыть Arena после seed-друга" sub="Проверка friend card в вызове друга на арене" onPress={() => { void seedAdminFriendsBuddy().then(() => router.push('/(tabs)/arena' as any)); }} t={t} f={f} doHaptic={doHaptic} />
+              <ButtonRow testID="admin-friends-clear-cache" icon="refresh-circle-outline" label="Сбросить friends/activity кеши" sub="Чистит SWR и activity cache, не удаляя реальные Firestore-документы" onPress={() => { void clearAdminFriendsQaState(); }} t={t} f={f} doHaptic={doHaptic} />
+            </AccordionSection>
+
+            {/* ── 1.5 AUTH (Google / Apple) ── */}
           <AccordionSection id="auth_dev" icon="key-outline" title="🔐 Auth (Google/Apple)" badge={6}
             open={openSection === 'auth_dev'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow
@@ -4112,7 +4140,11 @@ export default function SettingsTestersFunctions() {
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
-          <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />
+          <VipSurveyExtraSection
+            open={openSection === 'vip_survey_extra'}
+            onToggle={toggleSection}
+            onSeedInboxPreview={() => { void showVipSurveyNotificationPreview(); }}
+          />
           <LabsSection
             open={openSection === 'labs_hub'}
             onToggle={toggleSection}

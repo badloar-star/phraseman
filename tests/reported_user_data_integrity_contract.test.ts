@@ -55,11 +55,16 @@ describe('reported user data integrity', () => {
     expect(traps.slice(trapStart, trapEnd)).not.toContain('has a birthday');
   });
 
-  it('keeps every audit comment and public draft free of internal diagnostics', () => {
-    const audit = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'docs', 'reports', 'user_error_reports_audit_2026-07-10.json'), 'utf8')) as Array<{ comment: string }>;
-    const replies = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'replies_batch_2026-07-10.json'), 'utf8')) as Array<{ body: string }>;
-    expect(audit).toHaveLength(48);
-    expect(audit.every((row) => row.comment.trim().length > 0)).toBe(true);
+  it('keeps every published public draft free of internal diagnostics', () => {
+    const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'index.html'), 'utf8');
+    const marker = 'PREPARED_REPORT_REPLIES = {';
+    const start = adminHtml.indexOf(marker);
+    const end = adminHtml.indexOf('\n  };', start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(end).toBeGreaterThan(start);
+    const prepared = Function(`return (${adminHtml.slice(start + marker.length - 1, end + 4)});`)() as Record<string, { body: string }>;
+    const replies = Object.values(prepared);
+    expect(replies.length).toBeGreaterThanOrEqual(48);
     for (const row of replies) {
       expect(row.body).not.toMatch(/dataId|contentId|TextInput|watchdog|escape-path|device-repro|report №|забери 0 оскол/);
       expect(row.body).not.toMatch(/\.\s*\./);

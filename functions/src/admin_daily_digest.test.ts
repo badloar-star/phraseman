@@ -5,6 +5,10 @@ import {
   utcDayKey,
   type DigestSourceRows,
 } from './admin_daily_digest';
+import {
+  compareMetric,
+  resolveDigestWindows,
+} from './admin_digest_contracts';
 
 // Полный пустой набор источников (все ключи обязательны в новом DigestSourceRows).
 const EMPTY_ROWS: DigestSourceRows = {
@@ -245,5 +249,32 @@ describe('buildDigestPrompt / utcDayKey', () => {
   test('utcDayKey — YYYY-MM-DD по UTC', () => {
     expect(utcDayKey(Date.UTC(2026, 6, 3, 23, 59, 0))).toBe('2026-07-03');
     expect(utcDayKey(Date.UTC(2026, 0, 1, 0, 0, 0))).toBe('2026-01-01');
+  });
+});
+
+describe('digest v2 windows and comparisons', () => {
+  test('starts after the last successful run and compares an equal previous interval', () => {
+    expect(resolveDigestWindows(1_000_000, 700_000)).toEqual({
+      current: { startMs: 700_000, endMs: 1_000_000 },
+      previous: { startMs: 400_000, endMs: 700_000 },
+      reason: 'last_successful_digest',
+    });
+  });
+
+  test('uses a 24-hour fallback for the first digest', () => {
+    const nowMs = Date.UTC(2026, 6, 11, 12);
+    const windows = resolveDigestWindows(nowMs);
+    expect(windows.current).toEqual({ startMs: nowMs - 86_400_000, endMs: nowMs });
+    expect(windows.previous).toEqual({ startMs: nowMs - 172_800_000, endMs: nowMs - 86_400_000 });
+    expect(windows.reason).toBe('first_run_fallback');
+  });
+
+  test('does not manufacture a percent change from a zero baseline', () => {
+    expect(compareMetric(5, 0)).toEqual({
+      current: 5,
+      previous: 0,
+      absoluteDelta: 5,
+      percentDelta: null,
+    });
   });
 });

@@ -57,6 +57,7 @@ import { BRAND_SHARDS_ES } from '../../constants/terms_es';
 import PlusBadge from '../../components/PlusBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
@@ -533,6 +534,7 @@ export default function HomeScreen() {
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
     const { goToTab, activeIdx, focusTick } = useTabNav();
+    const homeRuntimeActive = useRuntimeActive(activeIdx === 0);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -927,7 +929,7 @@ export default function HomeScreen() {
         Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
     }, [lang, studyTarget]);
     useEffect(() => {
-        if (!USE_ELITE_HOME_STATUS || activeIdx !== 0)
+        if (!USE_ELITE_HOME_STATUS || !homeRuntimeActive)
             return;
         eliteStatusEntrance.setValue(1);
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
@@ -962,7 +964,7 @@ export default function HomeScreen() {
             appSub.remove();
             stopShimmer();
         };
-    }, [activeIdx, eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, lang]);
+    }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, homeRuntimeActive, lang]);
     // Миграция xp_migration_v2 переехала из экрана в xp_manager.migrateXPFormulaV2()
     // (вызывается на старте из _layout.tsx) — one-shot миграциям не место в маунте таба (D4).
     // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
@@ -1232,7 +1234,7 @@ export default function HomeScreen() {
     }, []);
     useEffect(() => {
         const shouldPulse = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTipIndex === 0;
-        if (!shouldPulse) {
+        if (!homeRuntimeActive || !shouldPulse) {
             homeFeatureTipHintPulse.stopAnimation();
             homeFeatureTipHintPulse.setValue(0);
             return;
@@ -1245,7 +1247,7 @@ export default function HomeScreen() {
         return () => {
             loop.stop();
         };
-    }, [homeFeatureTipHintPulse, homeFeatureTipIndex, homeFeatureTipsDone, homeFeatureTipsHydrated, homeOnboardingDone]);
+    }, [homeFeatureTipHintPulse, homeFeatureTipIndex, homeFeatureTipsDone, homeFeatureTipsHydrated, homeOnboardingDone, homeRuntimeActive]);
     // Кросс-фейд содержимого при листании подсказок: контент плавно уходит и возвращается,
     // а не «прыгает». useNativeDriver — не грузит JS-поток (Performance Bible).
     const homeFeatureTipCardVisible = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
@@ -1360,7 +1362,7 @@ export default function HomeScreen() {
     }, [focusTick]);
     /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
     useEffect(() => {
-        if (!homeStatsReady || activeIdx !== 0)
+        if (!homeStatsReady || !homeRuntimeActive)
             return;
         let cancelled = false;
         let recheckTimer: ReturnType<typeof setTimeout> | null = null;
@@ -1426,7 +1428,7 @@ export default function HomeScreen() {
             statsPulseSessionRef.current = false;
             setShowStatsPulseHint(false);
         };
-    }, [homeStatsReady, activeIdx, focusTick, statsHintPulseAnim]);
+    }, [homeStatsReady, focusTick, homeRuntimeActive, statsHintPulseAnim]);
     useEffect(() => {
         if (homeStatsReady && activeIdx === 0) {
             emitAppEvent('app_first_content_ready');

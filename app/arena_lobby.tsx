@@ -3,7 +3,7 @@ import { FlashList } from '@shopify/flash-list';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, AppState, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
@@ -37,6 +37,8 @@ import { arenaActionIconSource } from './arena_action_icons';
 import { ARENA_LOBBY_ACCEPT_MS, ARENA_PLAY_AGAIN_BOT_MAX_MS, ARENA_PLAY_AGAIN_BOT_MIN_MS, CLOUD_SYNC_ENABLED, ENABLE_ARENA_RANKED_WAGER, IS_EXPO_GO, } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import type { ArenaSession, LobbyChoice } from './types/arena';
 import { saveExpoPushTokenToUser, setSessionLobbyChoice, subscribeMatchmakingSearchingTotal, subscribeSession, subscribeSessionPlayers, } from './services/arena_db';
 import { ARENA_RANKED_WAGER_STAKES, clearPendingArenaRankedWager, getPendingArenaRankedWager, setPendingArenaRankedWager, winPayoutForStake, type ArenaRankedPendingWager, type ArenaRankedWagerStake, } from './arena_match_wager';
@@ -197,16 +199,12 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }>();
     const { theme: t, f, themeMode } = useTheme();
     const arenaTabVisible = !isTab || activeIdx === 2;
+    const lobbyRuntimeActive = useRuntimeActive(arenaTabVisible);
     // «Созвездия» (I1): вход управляется флагами живьём; only = дуэльная кнопка скрыта.
     const constellationsOn = isConstellationsEnabled();
     const constellationsPlacement = getConstellationsPlacement();
     // Пауза вечных лупов лобби при сворачивании приложения (таб-гарда мало: при
     // свёрнутом приложении с активным табом «Арена» они продолжали крутиться в фоне).
-    const [appActive, setAppActive] = useState(AppState.currentState === 'active');
-    useEffect(() => {
-        const sub = AppState.addEventListener('change', (s) => setAppActive(s === 'active'));
-        return () => sub.remove();
-    }, []);
     const screenTitleColor = t.textPrimary;
     const screenMuted = t.textMuted;
     const { lang } = useLang();
@@ -239,7 +237,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [userId, setUserId] = useState<string>('');
     const [stableUserId, setStableUserId] = useState<string>('');
     const [phase, setPhase] = useState<LobbyPhase>('idle');
-    const myRank = useArenaRank({ enabled: arenaTabVisible });
+    const myRank = useArenaRank({ enabled: lobbyRuntimeActive });
     const { status, sessionId, elapsedMs, searchStartedAt, startSearching, cancelSearching, stopSearchTimer, updateQueueWithPushToken, setLobbyActive, markMatchHandled, clearFoundMatch, resumeSearchAfterLobbyAbort, forgetSearchResumeSnapshot, } = useMatchmakingContext();
     const [arenaLimitModal, setArenaLimitModal] = useState<ArenaLimitMode | null>(null);
     const [noEnergyModal, setNoEnergyModal] = useState(false);
@@ -423,22 +421,22 @@ export default function DuelLobbyScreen({ isTab = false }: {
         }
     }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.isHydrated, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
     useEffect(() => {
-        if (!arenaTabVisible) return undefined;
+        if (!lobbyRuntimeActive) return undefined;
         return subscribeTodayArenaHillThrone(setHillThrone);
-    }, [arenaTabVisible]);
+    }, [lobbyRuntimeActive]);
     useEffect(() => {
-        if (!arenaTabVisible) return undefined;
+        if (!lobbyRuntimeActive) return undefined;
         return subscribeArenaFeatureFlags(setArenaFeatureFlags);
-    }, [arenaTabVisible]);
+    }, [lobbyRuntimeActive]);
     // Предзагрузка «Трона дня» в фоне при входе в лобби — кладёт ответ в кэш,
     // чтобы ПЕРВОЕ открытие модала тоже было мгновенным (best-effort, тихо).
     useEffect(() => {
-        if (!arenaTabVisible) return;
+        if (!lobbyRuntimeActive) return;
         void getTodayArenaHillTop().catch(() => {});
-    }, [arenaTabVisible]);
+    }, [lobbyRuntimeActive]);
     // Сколько наград боевого пропуска готово к получению — для бейджа на строке пропуска.
     useFocusEffect(useCallback(() => {
-        if (!arenaTabVisible)
+        if (!lobbyRuntimeActive)
             return undefined;
         let cancelled = false;
         (async () => {
@@ -456,10 +454,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
             } catch { /* best-effort */ }
         })();
         return () => { cancelled = true; };
-    }, [arenaTabVisible, hasPremiumArena]));
+    }, [lobbyRuntimeActive, hasPremiumArena]));
 
     useFocusEffect(useCallback(() => {
-        if (!arenaTabVisible)
+        if (!lobbyRuntimeActive)
             return undefined;
         let cancelled = false;
         (async () => {
@@ -477,7 +475,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             } catch { /* silent */ }
         })();
         return () => { cancelled = true; };
-    }, [arenaTabVisible]));
+    }, [lobbyRuntimeActive]));
     useEffect(() => {
         let cancelled = false;
         (async () => {
@@ -612,7 +610,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return () => task.cancel();
     }, [autoSearch, playAgainTs, handleFindMatch]);
     useEffect(() => {
-        if (!arenaTabVisible) {
+        if (!lobbyRuntimeActive) {
             return;
         }
         if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || !stableUserId) {
@@ -624,14 +622,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
             setIncomingArenaInvites,
             () => setIncomingArenaInvites([]),
         );
-    }, [arenaTabVisible, stableUserId]);
+    }, [lobbyRuntimeActive, stableUserId]);
     useEffect(() => {
-        if (!arenaTabVisible)
+        if (!lobbyRuntimeActive)
             return;
         void refreshRankedWagerUi();
-    }, [arenaTabVisible, refreshRankedWagerUi]);
+    }, [lobbyRuntimeActive, refreshRankedWagerUi]);
     useFocusEffect(useCallback(() => {
-        if (!arenaTabVisible)
+        if (!lobbyRuntimeActive)
             return undefined;
         // Тихая ревалидация: не сетить, если значения не изменились с прошлого фокуса.
         const nextIdleHintCount = getOrRefreshIdleQueueHintCount();
@@ -643,26 +641,26 @@ export default function DuelLobbyScreen({ isTab = false }: {
             const nextDailyMax = await getDailyArenaMaxToday();
             setDailyMax((prev) => (prev === nextDailyMax ? prev : nextDailyMax));
         })();
-    }, [arenaTabVisible, refreshRankedWagerUi]));
+    }, [lobbyRuntimeActive, refreshRankedWagerUi]));
     useEffect(() => {
-        if (!arenaTabVisible || !arenaRankedWagerEnabled)
+        if (!lobbyRuntimeActive || !arenaRankedWagerEnabled)
             return undefined;
         const sub = onAppEvent('shards_balance_updated', () => {
             void refreshRankedWagerUi();
         });
         return () => sub.remove();
-    }, [arenaTabVisible, arenaRankedWagerEnabled, refreshRankedWagerUi]);
+    }, [lobbyRuntimeActive, arenaRankedWagerEnabled, refreshRankedWagerUi]);
     useEffect(() => {
-        if (!arenaTabVisible || phase !== 'idle')
+        if (!lobbyRuntimeActive || phase !== 'idle')
             return;
         const id = setInterval(() => {
             setIdleQueueHintDisplayCount(getOrRefreshIdleQueueHintCount());
         }, IDLE_QUEUE_HINT_TTL_MS);
         return () => clearInterval(id);
-    }, [arenaTabVisible, phase]);
+    }, [lobbyRuntimeActive, phase]);
     useEffect(() => {
         const inQueue = phase === 'searching' || phase === 'match_found' || status === 'searching' || status === 'found';
-        if (!arenaTabVisible || !appActive || !USE_ELITE_ARENA_LOBBY || inQueue) {
+        if (!lobbyRuntimeActive || !USE_ELITE_ARENA_LOBBY || inQueue) {
             eliteCtaPulse.setValue(0);
             return;
         }
@@ -672,10 +670,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
         ]));
         ctaLoop.start();
         return () => ctaLoop.stop();
-    }, [arenaTabVisible, appActive, eliteCtaPulse, phase, status]);
+    }, [lobbyRuntimeActive, eliteCtaPulse, phase, status]);
     useEffect(() => {
-        const visible = !isTab || activeIdx === 2;
-        if (!visible || phase !== 'idle') {
+        if (!lobbyRuntimeActive || phase !== 'idle') {
             return;
         }
         arenaHeroEntrance.stopAnimation();
@@ -688,10 +685,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
         });
         intro.start();
         return () => intro.stop();
-    }, [activeIdx, arenaHeroEntrance, isTab, phase]);
+    }, [arenaHeroEntrance, lobbyRuntimeActive, phase]);
     useEffect(() => {
         const queueVisible = phase === 'searching' || phase === 'match_found' || status === 'searching' || status === 'found';
-        if (!arenaTabVisible || !appActive || !USE_ELITE_ARENA_LOBBY || !queueVisible) {
+        if (!lobbyRuntimeActive || !USE_ELITE_ARENA_LOBBY || !queueVisible) {
             eliteRadarPulse.setValue(0);
             eliteRadarSweep.setValue(0);
             return;
@@ -711,17 +708,13 @@ export default function DuelLobbyScreen({ isTab = false }: {
             radarLoop.stop();
             sweepLoop.stop();
         };
-    }, [arenaTabVisible, appActive, eliteRadarPulse, eliteRadarSweep, phase, status]);
+    }, [lobbyRuntimeActive, eliteRadarPulse, eliteRadarSweep, phase, status]);
     // Лобби в табе смонтировано постоянно (TabSlider). Тост «матч найден» душился на всіх екранах,
     // бо isLobbyActive лишався true після перходу на інші вкладки — тримаємо active лише коли видно таб «Арена» (2).
     useEffect(() => {
-        if (!isTab) {
-            setLobbyActive(true);
-            return () => setLobbyActive(false);
-        }
-        setLobbyActive(activeIdx === 2);
+        setLobbyActive(lobbyRuntimeActive);
         return () => setLobbyActive(false);
-    }, [isTab, activeIdx, setLobbyActive]);
+    }, [lobbyRuntimeActive, setLobbyActive]);
     useEffect(() => {
         matchLobbyAbortHandledRef.current = null;
     }, [sessionId]);
@@ -748,15 +741,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
         }
     }, [status, phase, sessionId, arenaRankedWagerEnabled, refreshRankedWagerUi]);
     // Тикер UI: `Date.now()-t0` не даёт ререндер сам; пока ищем — крутим, даже если searchStartedAt ещё 0
-    const [, setSearchUiTick] = useState(0);
-    useEffect(() => {
-        if (!arenaTabVisible || (phase !== 'searching' && status !== 'searching'))
-            return;
+    const searchVisible = phase === 'searching' || status === 'searching';
+    const visibleNow = useVisibleWallClock(lobbyRuntimeActive && searchVisible);
         // 1000ms достаточно — таймер показывает целые секунды, 200ms = лишние 4 ререндера/сек
-        const id = setInterval(() => { setSearchUiTick((n) => n + 1); }, 1000);
-        return () => { clearInterval(id); };
-    }, [arenaTabVisible, phase, status]);
-    const displayElapsed = searchStartedAt > 0 ? (Date.now() - searchStartedAt) : elapsedMs;
+    const displayElapsed = searchStartedAt > 0 ? (visibleNow - searchStartedAt) : elapsedMs;
     const remainSearchMs = Math.max(0, ARENA_MATCHMAKING_SEARCH_MS - displayElapsed);
     // refs to avoid stale closures in animation callbacks
     const sessionIdRef = useRef<string | null>(null);
@@ -1532,18 +1520,18 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return total;
     }, [rawSearchingTotal, countsAsInQueue, userId]);
     useEffect(() => {
-        if (!arenaTabVisible || !userId || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+        if (!lobbyRuntimeActive || !userId || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
             setRawSearchingTotal(0);
             return;
         }
         return subscribeMatchmakingSearchingTotal(setRawSearchingTotal);
-    }, [arenaTabVisible, userId]);
+    }, [lobbyRuntimeActive, userId]);
     useEffect(() => {
-        if (!arenaTabVisible)
+        if (!lobbyRuntimeActive)
             return;
         const unsub = subscribeToFriends(setArenaFriends, () => setArenaFriends([]));
         return () => unsub();
-    }, [arenaTabVisible]);
+    }, [lobbyRuntimeActive]);
     useEffect(() => {
         if (arenaSnapshot.progress?.shards != null) {
             setShardsBalanceUi(prev => prev == null ? arenaSnapshot.progress!.shards : prev);

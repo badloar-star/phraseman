@@ -98,6 +98,11 @@ export const ENABLE_DEV_TOOLS =
 export const ENABLE_ARENA_RANKED_WAGER = true;
 
 /**
+ * One-shot Arena matchmaking control deadlines with foreground reconciliation.
+ */
+export const ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK = true;
+
+/**
  * Карточка профиля — лестница из 5 уровней за осколки (публичный статус: бейдж уровня
  * у имени в списках, прокачанная карточка в профиле, новые блоки статистики по уровням).
  *

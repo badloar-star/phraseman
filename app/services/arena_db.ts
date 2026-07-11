@@ -5,6 +5,7 @@ import {
 } from '../types/arena';
 import { isArenaDuelReactionEmoji } from '../../constants/arena_duel_reaction_emojis';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
+import type { AuthoritativeSearchState } from '../arena_matchmaking_control_clock';
 
 const MATCHMAKING_META_POLL_MS = 30 * 1000;
 
@@ -292,14 +293,32 @@ export async function leaveMatchmakingQueue(userId: string): Promise<void> {
   await col.queue().doc(userId).delete();
 }
 
+type MatchmakingQueueSnapshotLike = {
+  exists: boolean;
+  data(): unknown;
+};
+
+export function parseMatchmakingQueueState(
+  userId: string,
+  snap: MatchmakingQueueSnapshotLike,
+): AuthoritativeSearchState {
+  if (!snap.exists) return { kind: 'absent' };
+  const data = (snap.data() ?? {}) as MatchmakingEntry & { sessionId?: unknown };
+  const sessionId = typeof data.sessionId === 'string' ? data.sessionId.trim() : '';
+  if (sessionId) return { kind: 'matched', sessionId };
+  return { kind: 'queued', queueId: userId };
+}
+
+export async function readMatchmakingQueueState(userId: string): Promise<AuthoritativeSearchState> {
+  const snap = await col.queue().doc(userId).get();
+  return parseMatchmakingQueueState(userId, snap);
+}
+
 /** Одноразовий get після join — якщо CF встиг записати sessionId до onSnapshot, не губимо матч. */
 export async function readMatchmakingQueueSessionId(userId: string): Promise<string | null> {
   try {
-    const snap = await col.queue().doc(userId).get();
-    if (!snap.exists) return null;
-    const d = snap.data() as MatchmakingEntry & { sessionId?: string };
-    const sid = d.sessionId;
-    return typeof sid === 'string' && sid.length > 0 ? sid : null;
+    const state = await readMatchmakingQueueState(userId);
+    return state.kind === 'matched' ? state.sessionId : null;
   } catch {
     return null;
   }

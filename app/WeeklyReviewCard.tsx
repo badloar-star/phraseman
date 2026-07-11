@@ -34,6 +34,7 @@ import type { RuntimeStudyTarget } from './target_storage_keys';
 
 interface WeeklyReviewCardProps {
   isPremium: boolean;
+  active: boolean;
   studyTarget?: RuntimeStudyTarget;
   stableLayout?: boolean;
   embedded?: boolean;
@@ -41,7 +42,7 @@ interface WeeklyReviewCardProps {
 
 const GOLD_SOFT = '#E8D5A3';
 
-export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout = false, embedded = false }: WeeklyReviewCardProps) {
+export default function WeeklyReviewCard({ active, isPremium, studyTarget, stableLayout = false, embedded = false }: WeeklyReviewCardProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
@@ -102,6 +103,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
     return (
       <CardShell isCompassTheme={isCompassTheme} t={t} style={stableCardStyle} embedded={embedded}>
         <Header
+          active={active}
           lang={lang}
           t={t}
           f={f}
@@ -137,6 +139,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
     return (
       <CardShell isCompassTheme={isCompassTheme} t={t} style={stableCardStyle} embedded={embedded}>
         <Header
+          active={active}
           lang={lang}
           t={t}
           f={f}
@@ -173,6 +176,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
   return (
     <CardShell isCompassTheme={isCompassTheme} t={t} style={stableCardStyle} embedded={embedded}>
       <Header
+        active={active}
         lang={lang}
         t={t}
         f={f}
@@ -308,9 +312,11 @@ function CardShell({
 }
 
 function WeeklyCompassIcon({
+  active,
   themeMode,
   accent,
 }: {
+  active: boolean;
   themeMode: ThemeMode;
   accent: string;
 }) {
@@ -331,7 +337,7 @@ function WeeklyCompassIcon({
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) {
+    if (!active || reduceMotion) {
       float.stopAnimation();
       float.setValue(0);
       return;
@@ -344,7 +350,7 @@ function WeeklyCompassIcon({
     );
     loop.start();
     return () => loop.stop();
-  }, [float, reduceMotion]);
+  }, [active, float, reduceMotion]);
 
   const translateY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -3] });
   const rotate = float.interpolate({ inputRange: [0, 1], outputRange: ['-2deg', '2deg'] });
@@ -365,6 +371,7 @@ function WeeklyCompassIcon({
 }
 
 function Header({
+  active,
   lang,
   t,
   f,
@@ -374,6 +381,7 @@ function Header({
   busy,
   onPress,
 }: {
+  active: boolean;
   lang: ReturnType<typeof useLang>['lang'];
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
@@ -385,7 +393,7 @@ function Header({
 }) {
   return (
     <TouchableOpacity activeOpacity={0.86} onPress={onPress} style={styles.titleRow}>
-      <WeeklyCompassIcon themeMode={themeMode} accent={iconAccent} />
+      <WeeklyCompassIcon active={active} themeMode={themeMode} accent={iconAccent} />
       <View style={{ flex: 1 }}>
         <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: Math.max(16, f.h2 * 0.82) }]}>
           {triLang(lang, {

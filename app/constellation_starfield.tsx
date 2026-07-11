@@ -11,6 +11,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedProps,
   useSharedValue,
@@ -18,7 +19,7 @@ import Animated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { useDevForceLowEnd } from '../hooks/dev_force_low_end';
@@ -33,11 +34,12 @@ function TwinkleStar(
 ) {
   const o = useSharedValue(0.3);
   useEffect(() => {
-    if (!focused) { o.value = 0.4; return; }
+    if (!focused) { cancelAnimation(o); o.value = 0.4; return; }
     o.value = withDelay(delay, withRepeat(
       withTiming(0.9, { duration: dur, easing: Easing.inOut(Easing.ease) }),
       -1, true,
     ));
+    return () => cancelAnimation(o);
   }, [o, delay, dur, focused]);
   const props = useAnimatedProps(() => ({ opacity: o.value }));
   return <AnimatedCircle cx={x} cy={y} r={r} fill="#EAF2FF" animatedProps={props} />;
@@ -45,7 +47,7 @@ function TwinkleStar(
 
 /** Мерцающий звёздный фон. count — число звёзд (авто-лайт сам урезает на слабых). */
 export function ConstellationStarfield({ count = 44 }: { count?: number }) {
-  const focused = useIsScreenFocused();
+  const focused = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   // Reduce-motion: мерцание не крутим (укачивание), звёзды остаются статичными.
   const animate = focused && !reduceMotion;

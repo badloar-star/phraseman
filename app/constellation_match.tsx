@@ -21,7 +21,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import { BackHandler, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import Animated, {
-  Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withTiming,
+  cancelAnimation, Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withRepeat, withTiming,
 } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import DuoPressable from '../components/DuoPressable';
@@ -29,7 +29,7 @@ import { FlowText } from '../components/text-integrity/FlowText';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   hapticCelebrate, hapticError, hapticHeavyImpact, hapticLightImpact,
@@ -86,7 +86,7 @@ export default function ConstellationMatchScreen() {
   const matchId = typeof rawMatchId === 'string' ? rawMatchId : '';
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const focused = useIsScreenFocused();
+  const focused = useRuntimeActive();
   const insets = useStableSafeAreaInsets();
   // dev-only тумблер авто-лайта (F9) — см. кнопку «лайт» в HUD ниже.
   const devForceLowEnd = useDevForceLowEnd();
@@ -948,17 +948,18 @@ const FallingStarBanner = memo(function FallingStarBanner({
 }: { lang: Lang; light: number; needed: number }) {
   const { theme: t, f } = useTheme();
   const reduceMotion = useReduceMotion();
-  const focused = useIsScreenFocused();
+  const focused = useRuntimeActive();
   // Мягкий дрейф звезды по горизонтали + лёгкое покачивание вверх-вниз.
   // Бесконечный loop гейтится focused+reduceMotion (Performance Bible).
   const drift = useSharedValue(0);
   useEffect(() => {
-    if (reduceMotion || !focused) { drift.value = 0.5; return; }
+    if (reduceMotion || !focused) { cancelAnimation(drift); drift.value = 0.5; return; }
     drift.value = 0;
     drift.value = withRepeat(
       withTiming(1, { duration: 2600, easing: Easing.inOut(Easing.sin) }),
       -1, true,
     );
+    return () => cancelAnimation(drift);
   }, [drift, reduceMotion, focused]);
   const starStyle = useAnimatedStyle(() => ({
     transform: [

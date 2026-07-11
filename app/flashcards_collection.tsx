@@ -34,6 +34,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import PlusBadge from '../components/PlusBadge';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
@@ -284,6 +285,7 @@ function consumeStagedOwnedPackMarketCards(studyTarget?: RuntimeStudyTarget): Ca
 
 // ─── Main screen ──────────────────────────────────────────────────────────────
 export default function FlashcardsScreen() {
+  const flashcardsRuntimeActive = useRuntimeActive();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -1092,7 +1094,11 @@ export default function FlashcardsScreen() {
   }, [deleteHintAnim, deleteHintPulseLoop, studyTarget]);
 
   useEffect(() => {
-    if (!showDeleteHint) return;
+    if (!flashcardsRuntimeActive || !showDeleteHint) {
+      deleteHintPulseLoop.current?.stop();
+      deleteHintPulse.setValue(1);
+      return;
+    }
     // Fade in
     Animated.timing(deleteHintAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start(() => {
       // Start pulse loop after fade-in
@@ -1110,7 +1116,7 @@ export default function FlashcardsScreen() {
       if (deleteHintTimer.current) clearTimeout(deleteHintTimer.current);
       if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
     };
-  }, [showDeleteHint, deleteHintAnim, deleteHintPulse, dismissDeleteHint]);
+  }, [deleteHintAnim, deleteHintPulse, dismissDeleteHint, flashcardsRuntimeActive, showDeleteHint]);
 
   // ── Overlay animation ─────────────────────────────────────────────────────
   const prevLongPressedId = useRef<string | null>(null);

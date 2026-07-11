@@ -147,8 +147,8 @@ describe('owner runtime direction contract', () => {
     const allowlist: Record<string, number> = {
       'app/(tabs)/quizzes.tsx': 1,
       'app/arena_game.tsx': 1,
-      'app/arena_leaderboard.tsx': 1,
-      'app/arena_lobby.tsx': 2,
+      // One idle-hint tick remains; elapsed search UI uses the shared visible wall clock.
+      'app/arena_lobby.tsx': 1,
       'app/arena_results.tsx': 1,
       'app/club_screen.tsx': 1,
       // «Созвездия»: два секундных тика поиска (elapsed/UI state), оба ≥1000мс,
@@ -159,14 +159,14 @@ describe('owner runtime direction contract', () => {
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/constellation_results.tsx': 1,
-      'app/diagnostic_test.tsx': 1,
       'app/exam.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
       'app/services/arena_db.ts': 2,
       'app/services/arena_feature_flags.ts': 1,
       'app/services/arena_hill.ts': 1,
       'app/shards_shop.tsx': 1,
-      'app/streak_stats.tsx': 2,
+      // Dev-only bounded QA scroll locator; production boost countdowns use visible wall time.
+      'app/streak_stats.tsx': 1,
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
       'app/visible_wall_clock.ts': 3,
@@ -181,7 +181,6 @@ describe('owner runtime direction contract', () => {
       'components/feedback/ResultsSequence.tsx': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/LeagueChatPanel.tsx': 1,
-      'components/PromoBanner.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
       'components/paywall/PaywallPriceUrgency.tsx': 1,
       'contexts/MatchmakingContext.tsx': 2,
@@ -458,13 +457,14 @@ describe('owner runtime direction contract', () => {
     expect(mockArena).not.toContain('}, 100);');
   });
 
-  it('keeps streak stats boost countdowns on one shared interval', () => {
+  it('keeps streak stats boost countdowns on one shared visible wall clock', () => {
     const source = read('app/streak_stats.tsx');
 
     expect(source).toContain('function formatStatsBoostTimeLeft(ms: number, lang: Lang): string');
-    expect(source).toContain('const updateBoostCountdowns = () => {');
-    expect(source).toContain('const timer = setInterval(updateBoostCountdowns, tickMs)');
-    expect(source).toContain('return () => clearInterval(timer);');
+    expect(source).toContain('const boostCountdownActive = statsRuntimeActive && soonestCountdownMs > 0');
+    expect(source).toContain('const boostNow = useVisibleWallClock(');
+    expect(source).toContain('soonestCountdownMs < 3_600_000 ? 1_000 : 30_000');
+    expect(source).toContain('// One shared visible wall clock for all active boost rows on this screen.');
     expect(source).not.toContain('const timer = setInterval(fmt, 1000)');
   });
 
@@ -748,9 +748,12 @@ describe('owner runtime direction contract', () => {
     expect(cloudSync).toContain("if (/^level_exam_[A-Za-z0-9_-]+_/.test(restoreId)) {");
 
     const friendQuests = read('app/friend_quests.ts');
-    expect(friendQuests).toContain('async function mirrorCallerXpWithoutRollback(callerXp: number): Promise<void>');
+    expect(friendQuests).toContain('async function mirrorCallerXpWithoutRollback(');
+    expect(friendQuests).toContain('callerXp: number,');
     expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
-    expect(friendQuests).toContain('String(Math.max(localXp, serverXp))');
+    expect(friendQuests).toContain('const nextXp = Math.max(localXp, serverXp)');
+    expect(friendQuests).toContain("AsyncStorage.setItem('user_total_xp', String(nextXp))");
+    expect(friendQuests).toContain('await withAccountTransitionLock(async () => {');
     expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
 
     expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
@@ -978,7 +981,9 @@ describe('owner runtime direction contract', () => {
   it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {
     const source = read('app/level_gift_system.ts');
 
-    expect(source).toContain("replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' })");
+    expect(source).toContain("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }");
+    expect(source).toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options)');
+    expect(source).toContain('replaceShardsBalanceLocal(before + safe, options)');
     expect(source).not.toContain("AsyncStorage.setItem('shards_balance'");
     expect(source).not.toContain('AsyncStorage.setItem("shards_balance"');
   });

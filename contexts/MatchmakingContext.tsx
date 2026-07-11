@@ -6,6 +6,7 @@ import React, {
 import {
   joinMatchmakingQueue,
   leaveMatchmakingQueue,
+  readMatchmakingQueueState,
   readMatchmakingQueueSessionId,
   subscribeMatchmakingQueue,
   subscribeMatchmakingQueueOthersCount,
@@ -15,13 +16,21 @@ import {
   rankToIndex, RANK_LEVELS, RANK_TIERS,
 } from '../app/types/arena';
 import {
-  BOT_FALLBACK_ENABLED, BOT_FALLBACK_MAX_MS, BOT_FALLBACK_MIN_MS, IS_EXPO_GO,
+  BOT_FALLBACK_ENABLED, BOT_FALLBACK_MAX_MS, BOT_FALLBACK_MIN_MS,
+  ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK, IS_EXPO_GO,
 } from '../app/config';
 import { emitAppEvent } from '../app/events';
 import { isArenaBotsEnabled } from '../app/remote_flags';
 import { arenaToasts } from '../constants/arena_i18n';
+import { useArenaMatchmakingControlClock } from '../hooks/use_arena_matchmaking_control_clock';
 
 export type MatchmakingStatus = 'idle' | 'searching' | 'found' | 'timeout' | 'error';
+
+type StartSearchOptions = {
+  humanSearchWindowMs?: number;
+  preserveQueueStartedAtMs?: number;
+  preserveBotFallbackDeadlineAt?: number | null;
+};
 
 interface MatchmakingContextValue {
   status: MatchmakingStatus;
@@ -37,7 +46,7 @@ interface MatchmakingContextValue {
     size: SessionSize,
     expoPushToken?: string,
     displayName?: string,
-    options?: { humanSearchWindowMs?: number; preserveQueueStartedAtMs?: number },
+    options?: StartSearchOptions,
   ) => Promise<boolean>;
   /** Если задан — столько ждём живого соперника до бота («Ещё раз»); экран лобби тот же, что при обычном поиске. */
   humanSearchWindowMs: number | null;
@@ -121,6 +130,8 @@ type ResumePayload = {
   rankLevel: string;
   size: SessionSize;
   displayName?: string;
+  humanSearchWindowMs?: number;
+  botFallbackDeadlineAt?: number | null;
 };
 
 type SearchResumeSnapshot = {
@@ -178,6 +189,9 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
 
   const userIdRef        = useRef<string>('');
   const timerRef         = useRef<ReturnType<typeof setInterval> | null>(null);
+  const searchActiveRef  = useRef(false);
+  const searchGenerationRef = useRef(0);
+  const controlClockHandleRef = useRef<ReturnType<typeof useArenaMatchmakingControlClock> | null>(null);
   const unsubRef         = useRef<(() => void) | null>(null);
   const unsubOthersRef   = useRef<(() => void) | null>(null);
   const queueOthersCountRef = useRef(0);
@@ -211,6 +225,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
   }, []);
 
   const cleanup = useCallback(() => {
+    searchActiveRef.current = false;
+    controlClockHandleRef.current?.cancel();
     clearDevBotMatchTimeout();
     forceBotAfterMsRef.current = null;
     setHumanSearchWindowMs(null);
@@ -221,6 +237,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
   }, [clearDevBotMatchTimeout, endQueueSubscription]);
 
   const stopSearchTimer = useCallback(() => {
+    searchActiveRef.current = false;
+    controlClockHandleRef.current?.cancel();
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
@@ -234,7 +252,91 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     setElapsedMs(0);
     setSearchStartedAt(0);
     startTimeRef.current = 0;
+    searchActiveRef.current = false;
+    controlClockHandleRef.current?.cancel();
   }, []);
+
+  const completeMatchFound = useCallback((foundSessionId: string) => {
+    clearDevBotMatchTimeout();
+    forceBotAfterMsRef.current = null;
+    setHumanSearchWindowMs(null);
+    void clearMatchmakingResume();
+    stopSearchTimer();
+    endQueueSubscription();
+    setSessionId(foundSessionId);
+    setStatus('found');
+  }, [clearDevBotMatchTimeout, endQueueSubscription, stopSearchTimer]);
+
+  const controlExpandRange = useCallback(async (generation: number) => {
+    if (generation !== searchGenerationRef.current || statusRef.current !== 'searching') return;
+    rangeExpandedRef.current = true;
+    const entry = entryRef.current;
+    if (!entry) return;
+    const next: MatchmakingEntry = {
+      ...entry,
+      searchRange: EXPANDED_RANGE,
+      joinedAt: Date.now(),
+    };
+    entryRef.current = next;
+    await joinMatchmakingQueue(next);
+  }, []);
+
+  const controlBotFallback = useCallback(async (generation: number): Promise<number | null> => {
+    if (generation !== searchGenerationRef.current || statusRef.current !== 'searching') return null;
+    const deferForLivePlayers =
+      forceBotAfterMsRef.current == null &&
+      !__DEV__ && BOT_FALLBACK_ENABLED && queueOthersCountRef.current > 0;
+    if (deferForLivePlayers) {
+      const span = BOT_OTHERS_RECHECK_MAX_MS - BOT_OTHERS_RECHECK_MIN_MS;
+      return Date.now() + BOT_OTHERS_RECHECK_MIN_MS + Math.floor(Math.random() * span);
+    }
+    const uid = userIdRef.current;
+    void clearMatchmakingResume();
+    endQueueSubscription();
+    if (uid) void leaveMatchmakingQueue(uid);
+    forceBotAfterMsRef.current = null;
+    setHumanSearchWindowMs(null);
+    searchActiveRef.current = false;
+    setSearchStartedAt(0);
+    setSessionId(`bot_${uid}_${Date.now()}`);
+    setStatus('found');
+    return null;
+  }, [endQueueSubscription]);
+
+  const controlTimeout = useCallback(async (generation: number) => {
+    if (generation !== searchGenerationRef.current || statusRef.current !== 'searching') return;
+    const uid = userIdRef.current;
+    endQueueSubscription();
+    if (uid) void leaveMatchmakingQueue(uid);
+    void clearMatchmakingResume();
+    searchActiveRef.current = false;
+    setSearchStartedAt(0);
+    emitAppEvent('action_toast', { type: 'error', ...arenaToasts.searchTimeout });
+    setStatus('idle');
+  }, [endQueueSubscription]);
+
+  const controlStop = useCallback(async (generation: number) => {
+    if (generation !== searchGenerationRef.current) return;
+    endQueueSubscription();
+    void clearMatchmakingResume();
+    searchActiveRef.current = false;
+    setSearchStartedAt(0);
+    setElapsedMs(0);
+    setStatus('idle');
+  }, [endQueueSubscription]);
+
+  const controlClock = useArenaMatchmakingControlClock({
+    enabled: ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK,
+    readAuthoritativeState: readMatchmakingQueueState,
+    onMatch: (foundSessionId, generation) => {
+      if (generation === searchGenerationRef.current) completeMatchFound(foundSessionId);
+    },
+    onExpand: controlExpandRange,
+    onBotFallback: controlBotFallback,
+    onTimeout: controlTimeout,
+    onStop: controlStop,
+  });
+  controlClockHandleRef.current = controlClock;
 
   const updateQueueWithPushToken = useCallback(async (expoPushToken: string) => {
     const ent = entryRef.current;
@@ -254,10 +356,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     size: SessionSize,
     expoPushToken?: string,
     displayName?: string,
-    options?: { humanSearchWindowMs?: number; preserveQueueStartedAtMs?: number },
+    options?: StartSearchOptions,
   ) => {
     // already searching — ignore duplicate calls
-    if (timerRef.current !== null) return true;
+    if (searchActiveRef.current || timerRef.current !== null) return true;
 
     const uid = typeof userId === 'string' ? userId.trim() : '';
     if (!uid) {
@@ -267,6 +369,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       });
       return false;
     }
+
+    searchActiveRef.current = true;
+    const searchGeneration = searchGenerationRef.current + 1;
+    searchGenerationRef.current = searchGeneration;
 
     const winMs = options?.humanSearchWindowMs;
     const hasHumanPriorityWindow = typeof winMs === 'number' && winMs > 0;
@@ -288,6 +394,21 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     const elapsedAlready = now - t0;
     rangeExpandedRef.current = elapsedAlready >= RANGE_EXPAND_MS;
     const initialSearchRange = rangeExpandedRef.current ? EXPANDED_RANGE : INITIAL_RANGE;
+    const selectedBotDelay = !isArenaBotsEnabled()
+      ? null
+      : hasHumanPriorityWindow
+        ? winMs
+        : __DEV__
+          ? DEV_QUICK_MATCH_MS
+          : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
+    const preservedBotDeadline = options?.preserveBotFallbackDeadlineAt;
+    const botFallbackDeadlineAt = preservedBotDeadline === null
+      ? null
+      : typeof preservedBotDeadline === 'number' && preservedBotDeadline > 0
+        ? preservedBotDeadline
+        : selectedBotDelay === null
+          ? null
+          : t0 + selectedBotDelay;
 
     const rankIndex = rankToIndex(rankTier, rankLevel as (typeof RANK_LEVELS)[number]);
     const entry: MatchmakingEntry = {
@@ -306,7 +427,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
 
     // Interval: elapsed + range expand + 10m timeout. При переході в `found` обов'язково гасимо інтервал
     // (інакше `timerRef !== null` і наступний `startSearching()` тихо no-op із return true — кнопка «Не реагує»).
-    timerRef.current = setInterval(() => {
+    if (!ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK) {
+      timerRef.current = setInterval(() => {
       const elapsed = Date.now() - startTimeRef.current;
       setElapsedMs(elapsed);
 
@@ -339,7 +461,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
         });
         setStatus('idle');
       }
-    }, ELAPSE_TICK_MS);
+      }, ELAPSE_TICK_MS);
+    }
 
     try {
       await joinMatchmakingQueue(entry);
@@ -349,6 +472,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
         rankTier,
         rankLevel,
         size,
+        ...(hasHumanPriorityWindow ? { humanSearchWindowMs: winMs } : {}),
+        botFallbackDeadlineAt,
         ...(displayName ? { displayName } : {}),
       };
       await AsyncStorage.setItem(MATCHMAKING_RESUME_KEY, JSON.stringify(resume));
@@ -372,14 +497,11 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     }
 
     const onMatchFound = (foundSessionId: string) => {
-      clearDevBotMatchTimeout();
-      forceBotAfterMsRef.current = null;
-      setHumanSearchWindowMs(null);
-      void clearMatchmakingResume();
-      stopSearchTimer();
-      endQueueSubscription();
-      setSessionId(foundSessionId);
-      setStatus('found');
+      if (ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK) {
+        void controlClock.notifyMatch(foundSessionId);
+      } else {
+        completeMatchFound(foundSessionId);
+      }
     };
 
     unsubRef.current = subscribeMatchmakingQueue(uid, onMatchFound);
@@ -389,6 +511,20 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       () => ({ userId: uid, inSearchFlow: statusRef.current === 'searching' }),
       (n) => { queueOthersCountRef.current = n; },
     );
+
+    if (ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK) {
+      controlClock.start({
+        generation: searchGeneration,
+        userId: uid,
+        originalStartedAt: t0,
+        rangeDeadlineAt: t0 + RANGE_EXPAND_MS,
+        botFallbackDeadlineAt,
+        timeoutDeadlineAt: t0 + SEARCH_TIMEOUT_MS,
+        rangeExpanded: rangeExpandedRef.current,
+      });
+      await controlClock.requestReconcile('post_join');
+      return true;
+    }
 
     const tryFireBotMatch = (): void => {
       devBotMatchTimeoutRef.current = null;
@@ -415,13 +551,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     // «Ещё раз»: ровно humanSearchWindowMs на живого; иначе __DEV__ 3с или случайная задержка prod.
     // Админ-тумблер «Пульт» (arena_bots_enabled=false) полностью отключает бот-фолбэк
     // у всех живьём — тогда матчатся только реальные игроки, бот не подставляется.
-    const botDelay = !isArenaBotsEnabled()
-      ? null
-      : hasHumanPriorityWindow
-      ? winMs
-      : __DEV__
-        ? DEV_QUICK_MATCH_MS
-        : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
+    const botDelay = selectedBotDelay;
     if (botDelay !== null) {
       clearDevBotMatchTimeout();
       devBotMatchTimeoutRef.current = setTimeout(tryFireBotMatch, botDelay);
@@ -434,7 +564,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       leaveMatchmakingQueue(uid).catch(() => {});
     }
     return true;
-  }, [cleanup, clearDevBotMatchTimeout, endQueueSubscription, stopSearchTimer]);
+  }, [cleanup, clearDevBotMatchTimeout, completeMatchFound, controlClock, endQueueSubscription, stopSearchTimer]);
 
   const forgetSearchResumeSnapshot = useCallback(() => {
     searchResumeSnapshotRef.current = null;
@@ -474,7 +604,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     let cancelled = false;
     (async () => {
       try {
-        if (timerRef.current !== null) return;
+        if (searchActiveRef.current || timerRef.current !== null) return;
         const raw = await AsyncStorage.getItem(MATCHMAKING_RESUME_KEY);
         if (!raw || cancelled) return;
         let parsed: ResumePayload;
@@ -484,7 +614,11 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           await clearMatchmakingResume();
           return;
         }
-        const { userId, startedAt, rankTier, rankLevel, size, displayName } = parsed;
+        const {
+          userId, startedAt, rankTier, rankLevel, size, displayName,
+          humanSearchWindowMs: resumedHumanWindowMs,
+          botFallbackDeadlineAt: resumedBotFallbackDeadlineAt,
+        } = parsed;
         if (!userId || typeof startedAt !== 'number') {
           await clearMatchmakingResume();
           return;
@@ -505,13 +639,21 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
         }
         const d = qSnap.data() as MatchmakingEntry & { sessionId?: string };
         if (d.sessionId) {
-          await clearMatchmakingResume();
+          if (ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK) {
+            userIdRef.current = userId;
+            searchGenerationRef.current += 1;
+            completeMatchFound(d.sessionId);
+          } else {
+            await clearMatchmakingResume();
+          }
           return;
         }
-        if (timerRef.current !== null) return;
+        if (searchActiveRef.current || timerRef.current !== null) return;
 
         userIdRef.current = userId;
-        const t0 = typeof d.joinedAt === 'number' ? d.joinedAt : startedAt;
+        const t0 = ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK
+          ? startedAt
+          : (typeof d.joinedAt === 'number' ? d.joinedAt : startedAt);
         startTimeRef.current = t0;
         setSearchStartedAt(t0);
         const elapsedSinceJoin = Date.now() - t0;
@@ -537,6 +679,52 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           size: (d.size ?? size) as SessionSize,
           ...((d.displayName ?? displayName) ? { displayName: (d.displayName ?? displayName) as string } : {}),
         };
+
+        if (ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK) {
+          searchActiveRef.current = true;
+          const generation = searchGenerationRef.current + 1;
+          searchGenerationRef.current = generation;
+          const hasResumedHumanWindow =
+            typeof resumedHumanWindowMs === 'number' && resumedHumanWindowMs > 0;
+          forceBotAfterMsRef.current = hasResumedHumanWindow ? resumedHumanWindowMs : null;
+          setHumanSearchWindowMs(hasResumedHumanWindow ? resumedHumanWindowMs : null);
+          const resumeBotDelay = !isArenaBotsEnabled()
+            ? null
+            : hasResumedHumanWindow
+              ? resumedHumanWindowMs
+              : __DEV__
+                ? DEV_QUICK_MATCH_MS
+                : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
+          const resumeBotDeadline = resumedBotFallbackDeadlineAt === null
+            ? null
+            : typeof resumedBotFallbackDeadlineAt === 'number' && resumedBotFallbackDeadlineAt > 0
+              ? resumedBotFallbackDeadlineAt
+              : resumeBotDelay === null
+                ? null
+                : t0 + resumeBotDelay;
+
+          const onControlMatchFound = (foundSessionId: string) => {
+            void controlClock.notifyMatch(foundSessionId);
+          };
+          unsubRef.current = subscribeMatchmakingQueue(userId, onControlMatchFound);
+          unsubOthersRef.current?.();
+          queueOthersCountRef.current = 0;
+          unsubOthersRef.current = subscribeMatchmakingQueueOthersCount(
+            () => ({ userId, inSearchFlow: statusRef.current === 'searching' }),
+            (n) => { queueOthersCountRef.current = n; },
+          );
+          controlClock.start({
+            generation,
+            userId,
+            originalStartedAt: t0,
+            rangeDeadlineAt: t0 + RANGE_EXPAND_MS,
+            botFallbackDeadlineAt: resumeBotDeadline,
+            timeoutDeadlineAt: t0 + SEARCH_TIMEOUT_MS,
+            rangeExpanded: rangeExpandedRef.current,
+          });
+          await controlClock.requestReconcile('resume');
+          return;
+        }
 
         timerRef.current = setInterval(() => {
           const el = Date.now() - startTimeRef.current;
@@ -632,9 +820,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       }
     })();
     return () => { cancelled = true; };
-    // Восстановление один раз при монтировании провайдера
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- намеренно без deps: не дублировать подписку при смене ссылок callback
-  }, []);
+    // Restore on mount; dependencies are stable callbacks/controller handles.
+  }, [cleanup, clearDevBotMatchTimeout, completeMatchFound, controlClock, endQueueSubscription, stopSearchTimer]);
 
   const cancelSearching = useCallback(async () => {
     cleanup();

@@ -52,6 +52,7 @@ import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
@@ -1862,6 +1863,7 @@ function pronunciationOverrideForLessonPhrase(line: string): string | undefined 
 }
 
 export default function LessonScreen() {
+  const lessonRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { height: windowH, width: windowW } = useWindowDimensions();
@@ -2200,7 +2202,8 @@ export default function LessonScreen() {
 
   // CHANGE v5: cursor blinks only when no words are selected yet; stays solid while composing
   useEffect(() => {
-    if (selectedWords.length > 0) {
+    if (!lessonRuntimeActive || selectedWords.length > 0) {
+      cursorAnim.stopAnimation();
       cursorAnim.setValue(1);
       return;
     }
@@ -2210,7 +2213,7 @@ export default function LessonScreen() {
     ]));
     blink.start();
     return () => blink.stop();
-  }, [selectedWords.length]);
+  }, [cursorAnim, lessonRuntimeActive, selectedWords.length]);
 
 
   useEffect(() => {
@@ -2365,7 +2368,7 @@ export default function LessonScreen() {
 
   // Pulsing animation for to-be hint (only on first phrase of lesson 1)
   useEffect(() => {
-    if (showToBeHint && cellIndex < 2) {
+    if (lessonRuntimeActive && showToBeHint && cellIndex < 2) {
       hintLoopRef.current = Animated.loop(
         Animated.sequence([
           Animated.timing(hintPulseAnim, {
@@ -2387,7 +2390,7 @@ export default function LessonScreen() {
     return () => {
       hintLoopRef.current?.stop();
     };
-  }, [showToBeHint, cellIndex]);
+  }, [cellIndex, hintPulseAnim, lessonRuntimeActive, showToBeHint]);
 
   // Reset failed tap counter when energy recovers or phrase changes
   useEffect(() => {

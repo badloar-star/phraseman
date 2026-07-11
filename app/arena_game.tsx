@@ -36,6 +36,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
 import { hapticError, hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import DuoPressable from '../components/DuoPressable';
 import { FlowText } from '../components/text-integrity/FlowText';
@@ -79,6 +80,7 @@ function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): st
 const FINAL_OVERLAY_MS = 1200;
 
 export default function DuelGameScreen() {
+  const arenaGameRuntimeActive = useRuntimeActive();
   // H9: sessionId/userId были объявлены как `string`, но Expo Router отдаёт `undefined`
   // на deep link без params → скрытые TypeError при .startsWith/.slice ниже. Делаем optional.
   const { sessionId, userId: paramUserId, fromLobby, ghostChallengeId: routeGhostChallengeId, hillMode, roomCode } = useLocalSearchParams<{
@@ -231,7 +233,7 @@ export default function DuelGameScreen() {
   }, []);
 
   useEffect(() => {
-    if (phase !== 'premeet') {
+    if (!arenaGameRuntimeActive || phase !== 'premeet') {
       cancelAnimation(premeetScale);
       premeetScale.value = 1;
       return;
@@ -247,7 +249,7 @@ export default function DuelGameScreen() {
     return () => {
       cancelAnimation(premeetScale);
     };
-  }, [phase, premeetScale]);
+  }, [arenaGameRuntimeActive, phase, premeetScale]);
 
   useEffect(() => {
     if (phase !== 'aborted') return;

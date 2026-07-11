@@ -21,6 +21,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   buildMarketplaceOwnedCards,
@@ -123,6 +124,7 @@ function ConfettiBurst({ count = 28 }: { count?: number }) {
 // ────────────────────────────────────────────────────────────────────────────
 
 interface FlippableCardProps {
+  active: boolean;
   card: CardItem;
   index: number;
   cardWidth: number;
@@ -136,6 +138,7 @@ interface FlippableCardProps {
 }
 
 function FlippableCard({
+  active,
   card,
   index,
   cardWidth,
@@ -155,7 +158,11 @@ function FlippableCard({
 
   // Idle pulse на «рубашці» — м’яке дихання
   useEffect(() => {
-    if (flipped) return;
+    if (!active || flipped) {
+      pulse.stopAnimation();
+      pulse.setValue(0);
+      return;
+    }
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(pulse, { toValue: 1, duration: 1400, useNativeDriver: true }),
@@ -164,7 +171,7 @@ function FlippableCard({
     );
     loop.start();
     return () => loop.stop();
-  }, [flipped, pulse]);
+  }, [active, flipped, pulse]);
 
   useEffect(() => {
     const wasFlipped = previousFlipped.current;
@@ -356,6 +363,7 @@ const H_PADDING = 16;
 const GRID_GAP = 12;
 
 export default function PackOpeningScreen() {
+  const packOpeningRuntimeActive = useRuntimeActive();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -662,6 +670,7 @@ export default function PackOpeningScreen() {
         <View style={styles.grid}>
           {cards.map((card, idx) => (
             <FlippableCard
+              active={packOpeningRuntimeActive}
               key={`${packId}:${card.id || 'card'}:${idx}`}
               card={card}
               index={idx}

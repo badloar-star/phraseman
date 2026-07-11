@@ -36,6 +36,10 @@ const FRIENDS_TARGET_IDS = [
   'surface:app-tabs-friends:friendstabscreen:4',
 ] as const;
 
+const LESSONS_TARGET_IDS = [
+  'surface:app-tabs-lessons:lessonstab:1',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -55,5 +59,9 @@ describe('main tabs borderless production surfaces', () => {
 
   it('migrates the reviewed Friends containers', () => {
     expectMigrated(FRIENDS_TARGET_IDS);
+  });
+
+  it('migrates the reviewed Lessons containers', () => {
+    expectMigrated(LESSONS_TARGET_IDS);
   });
 });

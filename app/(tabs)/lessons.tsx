@@ -830,7 +830,7 @@ export default function LessonsTab() {
           <TapScale
             onPress={() => goHome()}
             withHaptic={true}
-            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12, flexShrink: 0 }}
+            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0, borderColor: 'transparent', justifyContent: 'center', alignItems: 'center', marginRight: 12, flexShrink: 0 }}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
           </TapScale>

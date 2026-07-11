@@ -11,7 +11,7 @@ describe('PremiumGoldButton runtime ownership', () => {
 
     expect(button).toContain('active: boolean');
     expect(button).toContain('active && premiumButtonRuntimeActive');
-    expect(noEnergy).toContain('<PremiumGoldButton\n            active={modalVisible}');
-    expect(arenaLimit).toContain('<PremiumGoldButton\n          active={visible}');
+    expect(noEnergy).toMatch(/<PremiumGoldButton\s+active=\{modalVisible\}/);
+    expect(arenaLimit).toMatch(/<PremiumGoldButton\s+active=\{visible\}/);
   });
 });

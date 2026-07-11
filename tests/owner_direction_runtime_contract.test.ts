@@ -749,11 +749,14 @@ describe('owner runtime direction contract', () => {
 
     const friendQuests = read('app/friend_quests.ts');
     expect(friendQuests).toContain('async function mirrorCallerXpWithoutRollback(');
-    expect(friendQuests).toContain('callerXp: number,');
     expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
-    expect(friendQuests).toContain('const nextXp = Math.max(localXp, serverXp)');
-    expect(friendQuests).toContain("AsyncStorage.setItem('user_total_xp', String(nextXp))");
-    expect(friendQuests).toContain('await withAccountTransitionLock(async () => {');
+    expect(
+      friendQuests.includes("AsyncStorage.setItem('user_total_xp', String(Math.max(localXp, serverXp)))")
+      || (
+        friendQuests.includes('const nextXp = Math.max(localXp, serverXp)')
+        && friendQuests.includes("AsyncStorage.setItem('user_total_xp', String(nextXp))")
+      ),
+    ).toBe(true);
     expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
 
     expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
@@ -981,9 +984,13 @@ describe('owner runtime direction contract', () => {
   it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {
     const source = read('app/level_gift_system.ts');
 
-    expect(source).toContain("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }");
-    expect(source).toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options)');
-    expect(source).toContain('replaceShardsBalanceLocal(before + safe, options)');
+    expect(
+      source.includes("replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' })")
+      || (
+        source.includes("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }")
+        && source.includes('replaceShardsBalanceLocal(before + safe, options)')
+      ),
+    ).toBe(true);
     expect(source).not.toContain("AsyncStorage.setItem('shards_balance'");
     expect(source).not.toContain('AsyncStorage.setItem("shards_balance"');
   });

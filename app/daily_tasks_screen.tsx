@@ -49,7 +49,9 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { useScreen } from '../hooks/use-screen';
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from './survey_client';
-import { isSurveyDailyTaskDoneToday } from './survey_daily_task';
+import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from './survey_daily_task';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion } from './survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from './survey_daily_task_cache';
 import { getCanonicalUserId } from './user_id_policy';
 import { captureAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
@@ -2025,15 +2027,37 @@ export default function DailyTasksScreen() {
         let cancelled = false;
         (async () => {
             try {
-                const done = await isSurveyDailyTaskDoneToday();
-                if (cancelled) return;
-                setSurveyDone(done);
-                if (done) { setSurveyPresent(true); return; }
-                if (!isSurveyCloudEnabled()) { setSurveyPresent(false); return; }
+                const dayKey = getTodayKey();
                 const stableId = await getCanonicalUserId();
                 if (cancelled || !stableId) return;
-                const active = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-                if (!cancelled) setSurveyPresent(!!active && active.questions.length > 0);
+                const scope = { stableId, dayKey, lang };
+                const cached = peekSurveyDailyTask(scope);
+                if (cached) {
+                    setSurveyDone(cached.phase === 'completed');
+                    setSurveyPresent(true);
+                }
+                const done = await isSurveyDailyTaskDone({ stableId, dayKey });
+                if (cancelled) return;
+                if (done) {
+                    const completed = buildServerConfirmedLegacyCompletion(lang);
+                    commitSurveyDailyTaskRequest(scope, beginSurveyDailyTaskRequest(scope), completed);
+                    setSurveyDone(true);
+                    setSurveyPresent(true);
+                    return;
+                }
+                if (!isSurveyCloudEnabled()) { setSurveyDone(false); setSurveyPresent(false); return; }
+                const requestId = beginSurveyDailyTaskRequest(scope);
+                const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
+                if (cancelled) return;
+                const snapshot = migrated
+                    ? buildServerConfirmedLegacyCompletion(lang)
+                    : lookup.survey && lookup.survey.questions.length > 0
+                    ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
+                    : null;
+                if (!commitSurveyDailyTaskRequest(scope, requestId, snapshot)) return;
+                setSurveyDone(snapshot?.phase === 'completed');
+                setSurveyPresent(snapshot != null);
             } catch {
                 if (!cancelled) setSurveyPresent(false);
             }

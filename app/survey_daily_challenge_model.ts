@@ -54,4 +54,27 @@ export function buildServerConfirmedLegacyCompletion(lang: Lang): SurveyDailyCha
   };
 }
 
+const ACTIVE_DESCRIPTION: Record<Lang, string> = {
+  ru: 'Ответь на вопросы и помоги улучшить приложение.',
+  uk: 'Відповідай на запитання та допоможи покращити застосунок.',
+  es: 'Responde las preguntas y ayuda a mejorar la aplicación.',
+  'pt-BR': 'Responda às perguntas e ajude a melhorar o aplicativo.',
+  vi: 'Trả lời câu hỏi và giúp cải thiện ứng dụng.',
+  id: 'Jawab pertanyaan dan bantu tingkatkan aplikasi.',
+  tr: 'Soruları yanıtla ve uygulamayı geliştirmemize yardım et.',
+  pl: 'Odpowiedz na pytania i pomóż ulepszyć aplikację.',
+};
+
+export function buildActiveSurveyDailyChallenge(input: { survey: ActiveSurvey; lang: Lang }): SurveyDailyChallengeSnapshot {
+  return {
+    surveyId: input.survey.surveyId,
+    title: input.survey.title,
+    description: input.survey.subtitle || ACTIVE_DESCRIPTION[input.lang] || ACTIVE_DESCRIPTION.ru,
+    questionCount: input.survey.questions.length,
+    rewardShards: input.survey.rewardShards,
+    phase: 'active',
+    survey: input.survey,
+  };
+}
+
 export default function __RouteShim() { return null; }

@@ -30,8 +30,6 @@ export type ActiveSurvey = {
 export type ActiveSurveyLookupResult = {
   survey: ActiveSurvey | null;
   completion: { completedAtMs: number } | null;
-  /** Temporary compatibility for the current Daily Tasks caller. */
-  questions: SurveyQuestionClient[];
 };
 
 export type SubmitSurveyResult = {
@@ -62,13 +60,12 @@ export async function fetchActiveSurvey(data: {
   platform: string;
   lang: string;
 }): Promise<ActiveSurveyLookupResult> {
-  if (!isSurveyCloudEnabled()) return { survey: null, completion: null, questions: [] };
-  const res = await callFunction<typeof data, Omit<ActiveSurveyLookupResult, 'questions'>>(
+  if (!isSurveyCloudEnabled()) return { survey: null, completion: null };
+  const res = await callFunction<typeof data, ActiveSurveyLookupResult>(
     'getActiveShardSurvey',
     data,
   );
-  const survey = res.survey ?? null;
-  return { survey, completion: res.completion ?? null, questions: survey?.questions ?? [] };
+  return { survey: res.survey ?? null, completion: res.completion ?? null };
 }
 
 /**
@@ -87,7 +84,7 @@ export async function fetchActiveSurveyWithRetry(
   const delayMs = Math.min(2000, Math.max(0, Math.floor(Number(options.delayMs ?? 350)) || 0));
   const wait = options.wait ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
   let lastError: unknown;
-  let lastResult: ActiveSurveyLookupResult = { survey: null, completion: null, questions: [] };
+  let lastResult: ActiveSurveyLookupResult = { survey: null, completion: null };
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     try {
       lastResult = await fetchActiveSurvey(data);

@@ -26,6 +26,7 @@ import { emitAppEvent, actionToastTri } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
 import { markSurveyDailyTaskDone } from './survey_daily_task';
+import { getTodayKey } from './daily_tasks';
 
 type AnswersState = Record<string, { optionId?: string; comment?: string }>;
 
@@ -34,9 +35,15 @@ export default function SurveyScreen() {
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const params = useLocalSearchParams<{ surveyId?: string }>();
+  const directOpenDayKey = useRef(getTodayKey()).current;
+  const params = useLocalSearchParams<{ surveyId?: string; stableId?: string; dayKey?: string; lang?: string }>();
   const surveyId = String(params.surveyId ?? '');
-  const survey = useMemo(() => takePrimedSurvey(surveyId), [surveyId]);
+  const scope = useMemo(() => {
+    const stableId = String(params.stableId ?? '');
+    const dayKey = String(params.dayKey ?? '');
+    return stableId && dayKey && params.lang === lang ? { stableId, dayKey, lang } : undefined;
+  }, [lang, params.dayKey, params.lang, params.stableId]);
+  const survey = useMemo(() => takePrimedSurvey(surveyId, scope), [scope, surveyId]);
 
   const [answers, setAnswers] = useState<AnswersState>({});
   const [submitting, setSubmitting] = useState(false);
@@ -92,8 +99,9 @@ export default function SurveyScreen() {
     hapticTap();
     setSubmitting(true);
     try {
-      const stableId = await getCanonicalUserId();
+      const stableId = scope?.stableId ?? await getCanonicalUserId();
       if (!stableId) throw new Error('no_profile');
+      const dayKey = scope?.dayKey ?? directOpenDayKey;
       const appVersion = Constants.expoConfig?.version ?? 'unknown';
       const res = await submitSurvey({
         stableId,
@@ -118,7 +126,7 @@ export default function SurveyScreen() {
       }
       hapticSuccess();
       // Отметить опрос выполненным как 4-е задание дня (для зачёта «любые 3 из 4»).
-      await markSurveyDailyTaskDone();
+      await markSurveyDailyTaskDone({ stableId, dayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
       if (res.reward > 0) {
         emitAppEvent('shards_earned', { amount: res.reward, reasonKey: 'survey_completed' });
         // Награда есть → показываем ФИНАЛЬНЫЙ экран (анимация осколков + свой текст).
@@ -148,7 +156,7 @@ export default function SurveyScreen() {
     } finally {
       setSubmitting(false);
     }
-  }, [survey, submitting, allAnswered, answers, router]);
+  }, [survey, submitting, allAnswered, answers, router, scope, directOpenDayKey]);
 
   if (!survey) {
     return (

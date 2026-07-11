@@ -1,6 +1,7 @@
 import { INTERFACE_LANGS } from '../constants/i18n';
 import {
   buildServerConfirmedLegacyCompletion,
+  buildActiveSurveyDailyChallenge,
   computeSurveyDailyChallengeCounts,
 } from '../app/survey_daily_challenge_model';
 
@@ -31,5 +32,15 @@ describe('survey daily challenge model', () => {
     expect(result.title).toBeTruthy();
     expect(result.description).toBeTruthy();
     expect(`${result.title} ${result.description}`).not.toMatch(/[\u{1F300}-\u{1FAFF}]/u);
+  });
+
+  test.each(INTERFACE_LANGS)('builds a complete active snapshot for %s', (lang) => {
+    const active = buildActiveSurveyDailyChallenge({
+      survey: { surveyId: 's', title: 'Title', subtitle: '', rewardShards: 4, questions: [{ id: 'q', type: 'text', text: 'Q', options: [] }] },
+      lang,
+    });
+    expect(active).toMatchObject({ surveyId: 's', title: 'Title', questionCount: 1, rewardShards: 4, phase: 'active' });
+    expect(active.description).toBeTruthy();
+    expect(active.survey?.surveyId).toBe('s');
   });
 });

@@ -19,9 +19,11 @@ import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { getCanonicalUserId } from '../app/user_id_policy';
-import { fetchActiveSurveyWithRetry, isSurveyCloudEnabled, type ActiveSurvey } from '../app/survey_client';
+import { fetchActiveSurveyWithRetry, isSurveyCloudEnabled } from '../app/survey_client';
 import { primeSurvey } from '../app/survey_handoff';
-import { isSurveyDailyTaskDoneToday } from '../app/survey_daily_task';
+import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../app/survey_daily_task';
+import { getTodayKey } from '../app/daily_tasks';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, type SurveyDailyChallengeSnapshot } from '../app/survey_daily_challenge_model';
 import { DebugLogger } from '../app/debug-logger';
 
 /** Светлый ли HEX-цвет (относительная яркость > 0.6) — для выбора цвета текста. */
@@ -40,7 +42,9 @@ export default function SurveyTaskCard() {
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const [survey, setSurvey] = useState<ActiveSurvey | null>(null);
+  const [snapshot, setSnapshot] = useState<SurveyDailyChallengeSnapshot | null>(null);
+  const [scope, setScope] = useState<{ stableId: string; dayKey: string; lang: typeof lang } | null>(null);
+  const survey = snapshot?.survey ?? null;
   const [done, setDone] = useState(false);
 
   // useFocusEffect: пере-проверяем при возврате с экрана опроса, чтобы плашка
@@ -49,15 +53,23 @@ export default function SurveyTaskCard() {
     let cancelled = false;
     (async () => {
       try {
-        const isDone = await isSurveyDailyTaskDoneToday();
-        if (cancelled) return;
-        setDone(isDone);
-        if (isDone) return; // пройден — активный опрос тянуть не нужно
-        if (!isSurveyCloudEnabled()) return;
+        const dayKey = getTodayKey();
         const stableId = await getCanonicalUserId();
         if (cancelled || !stableId) return;
-        const active = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-        if (!cancelled && active && active.questions.length > 0) setSurvey(active);
+        const nextScope = { stableId, dayKey, lang };
+        setScope(nextScope);
+        const isDone = await isSurveyDailyTaskDone({ stableId, dayKey });
+        if (cancelled) return;
+        if (isDone) { setDone(true); setSnapshot(buildServerConfirmedLegacyCompletion(lang)); return; }
+        if (!isSurveyCloudEnabled()) return;
+        const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+        const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
+        if (cancelled) return;
+        if (migrated) { setDone(true); setSnapshot(buildServerConfirmedLegacyCompletion(lang)); return; }
+        if (lookup.survey && lookup.survey.questions.length > 0) {
+          setDone(false);
+          setSnapshot(buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang }));
+        }
       } catch (e: unknown) {
         // Опрос — задание, ошибка не должна ломать экран заданий, но и не глушим
         // молча: пишем в debug-лог, чтобы реальные сбои (сеть/auth) были видны.
@@ -98,8 +110,10 @@ export default function SurveyTaskCard() {
 
   const open = () => {
     hapticTap();
-    primeSurvey(survey);
-    router.push({ pathname: '/survey_screen', params: { surveyId: survey.surveyId } });
+    if (!scope) return;
+    const { stableId, dayKey } = scope;
+    primeSurvey({ survey, stableId, dayKey, lang });
+    router.push({ pathname: '/survey_screen', params: { surveyId: survey.surveyId, stableId, dayKey, lang } });
   };
 
   // Цвет плашки из конфига (accentColor) — «не как все задания». Есть цвет →

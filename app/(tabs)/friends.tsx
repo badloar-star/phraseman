@@ -860,8 +860,8 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
             paddingHorizontal: 12,
             minWidth: 96,
             alignItems: 'center',
-            borderWidth: 0.5,
-            borderColor: chrome.border,
+            borderWidth: 0,
+            borderColor: 'transparent',
           }}
         >
           <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }}>
@@ -899,7 +899,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
   return (
     <View testID="friends-found-user-card" style={{
       backgroundColor: chrome.card, borderRadius: 20, padding: 20, marginTop: 12,
-      borderWidth: 1, borderColor: t.accent + '55', gap: 16,
+      borderWidth: 0, borderColor: 'transparent', gap: 16,
       shadowColor: t.accent, shadowOpacity: 0.15, shadowRadius: 12, shadowOffset: { width: 0, height: 4 },
     }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
@@ -1746,7 +1746,7 @@ function AddFriendModal({
                 width: 44, height: 44, borderRadius: 22,
                 alignItems: 'center', justifyContent: 'center',
                 backgroundColor: chrome.button,
-                borderWidth: 0.5, borderColor: chrome.border,
+                borderWidth: 0, borderColor: 'transparent',
               }}
             >
               <Ionicons name="close" size={24} color={t.textMuted} />
@@ -3014,7 +3014,7 @@ export default function FriendsTabScreen() {
             accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chủ', 'Beranda', 'Ana sayfa', 'Strona główna')}
             style={{
               width: 36, height: 36, borderRadius: 18,
-              backgroundColor: chrome.button, borderWidth: 0.5, borderColor: chrome.border,
+              backgroundColor: chrome.button, borderWidth: 0, borderColor: 'transparent',
               justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0,
             }}
             onPress={() => goHome()}
@@ -3077,7 +3077,7 @@ export default function FriendsTabScreen() {
               activeOpacity={0.8}
               style={{
                 width: 40, height: 40, borderRadius: 20,
-                backgroundColor: chrome.button, borderWidth: 0.5, borderColor: chrome.border,
+                backgroundColor: chrome.button, borderWidth: 0, borderColor: 'transparent',
                 justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 10,
               }}
             >
@@ -3266,7 +3266,7 @@ export default function FriendsTabScreen() {
                       <TapScale
                         testID="friends-empty-enter-code"
                         onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
-                        style={{ flex: 1, minHeight: 58, backgroundColor: 'transparent', borderRadius: 14, borderWidth: 1, borderColor: t.border }}
+                        style={{ flex: 1, minHeight: 58, backgroundColor: chrome.button, borderRadius: 14, borderWidth: 0, borderColor: 'transparent' }}
                       >
                         <View style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
                           <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
@@ -3408,8 +3408,8 @@ export default function FriendsTabScreen() {
             padding: 18,
             paddingBottom: 28,
             gap: 12,
-            borderWidth: 0.5,
-            borderColor: chrome.border,
+            borderWidth: 0,
+            borderColor: 'transparent',
           }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
               {giftTarget ? (() => {
@@ -3507,8 +3507,8 @@ export default function FriendsTabScreen() {
                     borderRadius: 14,
                     backgroundColor: chrome.surface,
                     opacity: sendingThisGift ? 0.82 : disabled ? 0.45 : cannotAfford ? 0.72 : 1,
-                    borderWidth: 0.5,
-                    borderColor: chrome.border,
+                    borderWidth: 0,
+                    borderColor: 'transparent',
                   }}
                 >
                   <View style={{

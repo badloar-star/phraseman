@@ -267,12 +267,14 @@ test('dedicated RNTL config discovers TSX without replacing React Native', () =>
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const config = require('../jest.rntl.config.cjs') as {
     testMatch: string[];
+    roots?: string[];
     moduleNameMapper?: Record<string, string>;
   };
   expect(config.testMatch).toEqual([
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/daily_tasks_text_integrity_render.test.tsx',
   ]);
+  expect(config.roots).toEqual(['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app']);
   expect(config.moduleNameMapper).not.toHaveProperty('^react-native$');
 });
 

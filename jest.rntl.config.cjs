@@ -2,6 +2,7 @@
 
 module.exports = {
   preset: 'react-native',
+  roots: ['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app'],
   testMatch: [
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/daily_tasks_text_integrity_render.test.tsx',

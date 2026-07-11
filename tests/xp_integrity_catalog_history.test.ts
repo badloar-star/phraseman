@@ -147,6 +147,30 @@ describe("parseAchievementCatalog", () => {
       ruleId: "mystery_rule",
     });
   });
+
+  it("parses only the exported ALL_ACHIEVEMENTS array", () => {
+    const source = `${SOURCE}
+      const unrelated = { id: "xp_999999", xp: 999999 };
+      export const OTHER_CATALOG = [{ id: "weekly_xp_777", xp: 777 }];
+    `;
+
+    expect([
+      ...parseAchievementCatalog(source, "achievements.ts").keys(),
+    ]).toEqual(["xp_5000", "weekly_xp_10000", "streak_7", "mystery_rule"]);
+  });
+
+  it("fails closed when ALL_ACHIEVEMENTS contains duplicate literal ids", () => {
+    const source = `
+      export const ALL_ACHIEVEMENTS = [
+        { id: "xp_5000", xp: 150 },
+        { id: "xp_5000", xp: 999 },
+      ];
+    `;
+
+    expect(parseAchievementCatalog(source, "achievements.ts")).toEqual(
+      new Map(),
+    );
+  });
 });
 
 describe("matchCatalogForEvent", () => {
@@ -286,7 +310,7 @@ describe("loadVerifiedCatalogHistory", () => {
     );
   });
 
-  it("loads a tracked build manifest only with version, SHA, and activation time", () => {
+  it("reads a tracked build manifest from committed HEAD, never working-tree bytes", () => {
     const { repo, commit } = makeRepo();
     mkdirSync(join(repo, "docs", "xp-integrity"), { recursive: true });
     writeFileSync(
@@ -308,8 +332,44 @@ describe("loadVerifiedCatalogHistory", () => {
 
     writeFileSync(
       join(repo, "docs", "xp-integrity", "build-manifest.json"),
-      JSON.stringify({ releases: [{ version: "3.0.0", sha: commit }] }),
+      JSON.stringify({
+        releases: [
+          {
+            version: "forged-working-tree",
+            sha: "HEAD",
+            activatedAt: "2030-01-01T00:00:00Z",
+          },
+        ],
+      }),
     );
+    const [fromCommittedHead] = loadVerifiedCatalogHistory(repo);
+    expect(fromCommittedHead.appVersion).toBe("3.0.0");
+    expect(fromCommittedHead.commit).toBe(commit);
+  });
+
+  it("rejects symbolic and abbreviated manifest SHAs", () => {
+    const { repo, commit } = makeRepo();
+    mkdirSync(join(repo, "docs", "xp-integrity"), { recursive: true });
+    writeFileSync(
+      join(repo, "docs", "xp-integrity", "build-manifest.json"),
+      JSON.stringify({
+        releases: [
+          {
+            version: "symbolic",
+            sha: "HEAD",
+            activatedAt: "2026-01-02T00:00:00Z",
+          },
+          {
+            version: "abbreviated",
+            sha: commit.slice(0, 12),
+            activatedAt: "2026-01-03T00:00:00Z",
+          },
+        ],
+      }),
+    );
+    git(repo, "add", ".");
+    git(repo, "commit", "-qm", "invalid manifest refs");
+
     expect(loadVerifiedCatalogHistory(repo)).toEqual([]);
   });
 });

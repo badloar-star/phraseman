@@ -1,7 +1,5 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
 import ts from "typescript";
 
 import type {
@@ -110,34 +108,50 @@ export function parseAchievementCatalog(
   );
   const rewards = new Map<string, CatalogReward>();
 
-  const visit = (node: ts.Node): void => {
-    if (ts.isObjectLiteralExpression(node)) {
-      let achievementId: string | null = null;
-      let xp: number | null = null;
+  const catalogDeclarations = sourceFile.statements.flatMap((statement) => {
+    if (
+      !ts.isVariableStatement(statement) ||
+      !statement.modifiers?.some(
+        (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+      )
+    ) {
+      return [];
+    }
+    return statement.declarationList.declarations.filter(
+      (declaration) =>
+        ts.isIdentifier(declaration.name) &&
+        declaration.name.text === "ALL_ACHIEVEMENTS",
+    );
+  });
+  if (catalogDeclarations.length !== 1) return rewards;
+  const initializer = catalogDeclarations[0].initializer;
+  if (!initializer || !ts.isArrayLiteralExpression(initializer)) return rewards;
 
-      for (const property of node.properties) {
-        if (!ts.isPropertyAssignment(property)) continue;
-        const name = propertyName(property.name);
-        if (name === "id" && ts.isStringLiteralLike(property.initializer)) {
-          achievementId = property.initializer.text;
-        }
-        if (name === "xp" && ts.isNumericLiteral(property.initializer)) {
-          xp = Number(property.initializer.text);
-        }
+  for (const element of initializer.elements) {
+    if (!ts.isObjectLiteralExpression(element)) continue;
+    let achievementId: string | null = null;
+    let xp: number | null = null;
+
+    for (const property of element.properties) {
+      if (!ts.isPropertyAssignment(property)) continue;
+      const name = propertyName(property.name);
+      if (name === "id" && ts.isStringLiteralLike(property.initializer)) {
+        achievementId = property.initializer.text;
       }
-
-      if (achievementId !== null && xp !== null && Number.isFinite(xp)) {
-        rewards.set(achievementId, {
-          achievementId,
-          xp,
-          prerequisite: prerequisiteForId(achievementId),
-        });
+      if (name === "xp" && ts.isNumericLiteral(property.initializer)) {
+        xp = Number(property.initializer.text);
       }
     }
-    ts.forEachChild(node, visit);
-  };
 
-  visit(sourceFile);
+    if (achievementId !== null && xp !== null && Number.isFinite(xp)) {
+      if (rewards.has(achievementId)) return new Map();
+      rewards.set(achievementId, {
+        achievementId,
+        xp,
+        prerequisite: prerequisiteForId(achievementId),
+      });
+    }
+  }
   return rewards;
 }
 
@@ -192,17 +206,12 @@ function manifestEntries(
   relativePath: string,
   provenance: EffectiveWindow["provenance"],
 ): ReleaseCandidate[] {
-  const path = join(repoRoot, ...relativePath.split("/"));
-  if (!existsSync(path)) return [];
-  if (
-    tryGit(repoRoot, ["ls-files", "--error-unmatch", "--", relativePath]) ===
-    null
-  )
-    return [];
+  const committedManifest = tryGit(repoRoot, ["show", `HEAD:${relativePath}`]);
+  if (committedManifest === null) return [];
 
   let parsed: unknown;
   try {
-    parsed = JSON.parse(readFileSync(path, "utf8"));
+    parsed = JSON.parse(committedManifest);
   } catch {
     return [];
   }
@@ -211,6 +220,11 @@ function manifestEntries(
     : isRecord(parsed) && Array.isArray(parsed.releases)
       ? parsed.releases
       : [];
+  const repositoryHead = tryGit(repoRoot, ["rev-parse", "--verify", "HEAD"]);
+  if (!repositoryHead) return [];
+  const fullCommitPattern = new RegExp(
+    `^[0-9a-fA-F]{${repositoryHead.length}}$`,
+  );
 
   const candidates: ReleaseCandidate[] = [];
   for (const raw of rawEntries) {
@@ -225,9 +239,20 @@ function manifestEntries(
         : typeof activation === "string"
           ? Date.parse(activation)
           : Number.NaN;
-    if (!version || !sha || !Number.isFinite(activatedAtMs)) continue;
-    const commit = tryGit(repoRoot, ["rev-parse", `${sha}^{commit}`]);
-    if (!commit) continue;
+    if (
+      !version ||
+      !sha ||
+      !fullCommitPattern.test(sha) ||
+      !Number.isFinite(activatedAtMs)
+    ) {
+      continue;
+    }
+    const commit = tryGit(repoRoot, [
+      "rev-parse",
+      "--verify",
+      `${sha}^{commit}`,
+    ]);
+    if (!commit || commit.toLowerCase() !== sha.toLowerCase()) continue;
     candidates.push({ commit, appVersion: version, activatedAtMs, provenance });
   }
   return candidates;

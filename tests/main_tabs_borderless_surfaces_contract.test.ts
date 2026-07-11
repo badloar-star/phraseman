@@ -51,6 +51,31 @@ const HOME_TARGET_IDS = [
   'surface:app-tabs-home:homescreen:23',
 ] as const;
 
+const QUIZZES_TARGET_IDS = [
+  'surface:app-tabs-quizzes:basequizlevelcard:1',
+  'surface:app-tabs-quizzes:basequizlevelcard:2',
+  'surface:app-tabs-quizzes:basequizlevelcard:3',
+  'surface:app-tabs-quizzes:levelselect:2',
+  'surface:app-tabs-quizzes:personal-plan-quiz-instruction:1',
+  'surface:app-tabs-quizzes:quiz-explain-retry-button:1',
+  'surface:app-tabs-quizzes:quiz-game-screen:2',
+  'surface:app-tabs-quizzes:quiz-level-select-settings:1',
+  'surface:app-tabs-quizzes:quizcardlogoimagewithfallback:1',
+  'surface:app-tabs-quizzes:quizgame:1',
+  'surface:app-tabs-quizzes:quizgame:10',
+  'surface:app-tabs-quizzes:quizgame:13',
+  'surface:app-tabs-quizzes:quizgame:14',
+  'surface:app-tabs-quizzes:quizgame:16',
+  'surface:app-tabs-quizzes:quizgame:2',
+  'surface:app-tabs-quizzes:quizgame:3',
+  'surface:app-tabs-quizzes:quizgame:4',
+  'surface:app-tabs-quizzes:quizgame:6',
+  'surface:app-tabs-quizzes:quizgame:7',
+  'surface:app-tabs-quizzes:thematicquizlevelcard:1',
+  'surface:app-tabs-quizzes:thematicquizlevelcard:2',
+  'surface:app-tabs-quizzes:thematicquizlevelcard:3',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -78,5 +103,9 @@ describe('main tabs borderless production surfaces', () => {
 
   it('migrates the reviewed Home containers', () => {
     expectMigrated(HOME_TARGET_IDS);
+  });
+
+  it('migrates the reviewed Quizzes containers', () => {
+    expectMigrated(QUIZZES_TARGET_IDS);
   });
 });

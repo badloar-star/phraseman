@@ -1,7 +1,7 @@
 const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'control-panel', route: 'overview', label: 'Пульт управления', description: 'Главные переключатели, лимиты, промокоды и параметры ИИ.', legacyTab: 'control-panel' },
   { id: 'overview', route: 'overview', label: 'Операционная сводка', description: 'Сводные показатели текущей админки.', legacyTab: 'overview' },
-  { id: 'daily-digest', route: 'overview', label: 'Ежедневный дайджест', description: 'События, ошибки, обращения и приоритеты за сутки.', legacyTab: 'daily-digest' },
+  { id: 'daily-digest', route: 'overview', label: 'Product Manager Digest', description: 'Рост, деньги, риски, очереди и действия на сегодня.', legacyTab: 'daily-digest' },
 
   { id: 'remote-config', route: 'application', label: 'Конфигурация приложения', description: 'Лимиты, экономика, энергия и функциональные переключатели.', legacyTab: 'remote-config' },
   { id: 'paywall-ab', route: 'application', label: 'A/B экрана оплаты', description: 'Варианты экрана оплаты и распределение трафика.', legacyTab: 'paywall-ab' },

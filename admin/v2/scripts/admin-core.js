@@ -32,7 +32,7 @@ const PAGES = Object.freeze({
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
-  'daily-briefing': { title: 'Ежедневный брифинг', description: 'Операционная сводка за 24 часа с прозрачной полнотой каждого серверного источника.' },
+  'daily-briefing': { title: 'Product Manager Digest', description: 'Утренний управленческий отчёт: рост, деньги, риски, очереди и действия на сегодня.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
   'asset-studio': { title: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через безопасный серверный workflow Generate → Review → Publish.' },
 });
@@ -755,14 +755,88 @@ function renderAssetStudio() {
     <section class="card section"><div class="card-header"><div><h2>Очередь генераций</h2><p>Последние server-side jobs с audit log и Storage output.</p></div></div><div class="card-body">${state.assetStudio.error ? `<div class="notice danger">${escapeHtml(state.assetStudio.error)}</div>` : ''}<div class="data-list">${rows}</div></div></section>`;
 }
 
+function numberValue(value) {
+  const num = Number(value || 0);
+  return Number.isFinite(num) ? num : 0;
+}
+
+function compactCount(label, value, tone = '') {
+  return `<span class="briefing-count ${tone}"><strong>${numberValue(value)}</strong>${escapeHtml(label)}</span>`;
+}
+
+function buildPmDigestActions(facts, stateName) {
+  const actions = [];
+  const safetyOpen = numberValue(facts.safety?.open);
+  const refunds = numberValue(facts.revenue?.refunds);
+  const criticalErrors = numberValue(facts.appErrors?.critical);
+  const openReports = numberValue(facts.reports?.open);
+  const cancels = numberValue(facts.cancels?.total);
+  const queueItems = Array.isArray(facts.queues) ? facts.queues : [];
+  const ideas = numberValue(facts.ideas?.total);
+  if (stateName === 'partial') actions.push({ tone: 'warning', title: 'Не принимать решение по пустым зонам', text: 'Сводка неполная: часть источников достигла лимита. Сначала проверьте полноту источников ниже.' });
+  if (stateName === 'stale') actions.push({ tone: 'warning', title: 'Сформировать свежий digest', text: 'Сводка старше 36 часов. Перед решениями нажмите «Сформировать».' });
+  if (safetyOpen) actions.push({ tone: 'danger', title: 'Разобрать safety-флаги', text: `${safetyOpen} открытых safety-событий. Это первый приоритет.` });
+  if (refunds) actions.push({ tone: 'danger', title: 'Проверить возвраты', text: `${refunds} возвратов за окно отчёта. Найдите причину в Деньгах и репортах.` });
+  if (criticalErrors) actions.push({ tone: 'danger', title: 'Исправить критические ошибки', text: `${criticalErrors} критических ошибок. Смотрите группы ошибок и affected feature.` });
+  if (openReports) actions.push({ tone: 'warning', title: 'Разобрать открытые репорты', text: `${openReports} открытых репортов. Начните с тревожных комментариев и повторяющихся экранов.` });
+  if (cancels) actions.push({ tone: 'warning', title: 'Посмотреть отмены Plus', text: `${cancels} отмен за окно отчёта. Особенно важны свободные причины пользователей.` });
+  if (queueItems.length) actions.push({ tone: 'warning', title: 'Очистить рабочие очереди', text: `${queueItems.length} очередей требуют ручного разбора: репорты, письма, модерация или контент.` });
+  if (ideas) actions.push({ tone: '', title: 'Просмотреть новые идеи', text: `${ideas} идей от пользователей. Заберите 1–3 хорошие в продуктовый backlog.` });
+  if (!actions.length) actions.push({ tone: 'success', title: 'Спокойные сутки', text: 'Критичных действий по данным digest нет. Можно перейти к плановым продуктовым задачам.' });
+  return actions.slice(0, 6);
+}
+
+function renderPmDigestActions(facts, stateName) {
+  return `<div class="briefing-action-list">${buildPmDigestActions(facts, stateName).map((item, index) => `<article class="briefing-action ${item.tone || ''}"><span class="briefing-action-rank">${index + 1}</span><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.text)}</p></div></article>`).join('')}</div>`;
+}
+
+function renderPmDigestGrowthRevenue(facts) {
+  return `<div class="briefing-count-grid">
+    ${compactCount('новых пользователей', facts.growth?.newUsers, 'success')}
+    ${compactCount('новых оплат', facts.revenue?.newPaying, numberValue(facts.revenue?.newPaying) ? 'success' : '')}
+    ${compactCount('продлений', facts.revenue?.renewals)}
+    ${compactCount('trial-событий', facts.revenue?.trials)}
+    ${compactCount('возвратов', facts.revenue?.refunds, numberValue(facts.revenue?.refunds) ? 'danger' : '')}
+    ${compactCount('paywall purchases', facts.revenue?.paywallPurchases)}
+  </div>`;
+}
+
+function renderPmDigestRiskBoard(facts) {
+  const errors = Array.isArray(facts.appErrors?.topGroups) ? facts.appErrors.topGroups : [];
+  const samples = Array.isArray(facts.reports?.samples) ? facts.reports.samples : [];
+  const rows = [
+    { label: 'Safety', value: facts.safety?.open, note: 'открытые флаги', tone: numberValue(facts.safety?.open) ? 'danger' : 'success' },
+    { label: 'Критические ошибки', value: facts.appErrors?.critical, note: errors[0] ? `${errors[0].context || 'ошибка'} · ${errors[0].message || ''}` : 'нет топ-группы', tone: numberValue(facts.appErrors?.critical) ? 'danger' : 'success' },
+    { label: 'Открытые репорты', value: facts.reports?.open, note: samples[0] ? `${samples[0].screen || 'screen'} · ${samples[0].comment || ''}` : 'нет примеров', tone: numberValue(facts.reports?.open) ? 'warning' : 'success' },
+    { label: 'Отмены Plus', value: facts.cancels?.total, note: Array.isArray(facts.cancels?.sampleTexts) && facts.cancels.sampleTexts[0] ? facts.cancels.sampleTexts[0] : 'нет свободного текста', tone: numberValue(facts.cancels?.total) ? 'warning' : 'success' },
+  ];
+  return `<div class="briefing-risk-board">${rows.map((row) => `<article><span class="badge ${row.tone}">${numberValue(row.value)}</span><div><strong>${escapeHtml(row.label)}</strong><p>${escapeHtml(row.note || '—')}</p></div></article>`).join('')}</div>`;
+}
+
+function renderPmDigestQueues(facts) {
+  const queues = Array.isArray(facts.queues) ? facts.queues : [];
+  if (!queues.length) return emptyState('Очередей для ручного разбора нет.');
+  return `<div class="briefing-queue-list">${queues.slice(0, 8).map((q) => `<article><strong>${escapeHtml(q.name || 'Очередь')}</strong><span class="badge warning">${numberValue(q.total)}</span><small>${escapeHtml(q.note || 'Разобрать по приоритету.')}</small></article>`).join('')}</div>`;
+}
+
+function renderPmDigestIdeas(facts) {
+  const items = Array.isArray(facts.ideas?.items) ? facts.ideas.items : [];
+  if (!items.length) return emptyState('Новых пользовательских идей в digest нет.');
+  return `<div class="briefing-idea-list">${items.slice(0, 3).map((idea) => `<article><strong>${escapeHtml(idea.title || '(без заголовка)')}</strong><p>${escapeHtml(idea.description || idea.benefit || 'Без описания.')}</p><small>${escapeHtml(idea.category || 'other')}${idea.userName ? ` · ${escapeHtml(idea.userName)}` : ''}</small></article>`).join('')}</div>`;
+}
+
+function renderBriefingHealth(health) {
+  return `<div class="briefing-health">${health.length ? health.map((source) => `<div><strong>${escapeHtml(source.source || source.collection || 'источник')}</strong><span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}">${escapeHtml(source.state || 'unknown')}</span><small>${Number(source.count || 0)} записей${source.error ? ` · ${escapeHtml(source.error)}` : ''}</small></div>`).join('') : emptyState('Старый документ не содержит диагностику источников.')}</div>`;
+}
+
 function renderDailyBriefing() {
   if (!can('briefing.read')) return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг')}<div class="notice warning">У вашей роли нет разрешения briefing.read.</div>`;
   const digest = state.briefing.digest;
   const facts = digest?.facts || {};
   const health = Array.isArray(digest?.sourceHealth) ? digest.sourceHealth : [];
   const stateLabel = ({ ready: 'Полная', partial: 'Неполная', stale: 'Устарела', legacy: 'Старый формат', empty: 'Нет данных', loading: 'Загрузка' })[state.briefing.state] || state.briefing.state;
-  const headerAction = `<div class="actions"><a class="button" href="#overview" title="Вернуться в обзор">К обзору</a><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Загрузить последнюю сохранённую сводку">Обновить</button><button class="button primary" data-action="generate-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.generate')} title="Собрать новую сводку за последние 24 часа">Сформировать</button></div>`;
-  return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг', headerAction)}
+  const headerAction = `<div class="actions"><a class="button" href="#overview" title="Вернуться в обзор">К обзору</a><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Загрузить последнюю сохранённую сводку без запуска генерации">Обновить</button><button class="button primary" data-action="generate-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.generate')} title="Собрать свежий Product Manager Digest за последние 24 часа">Сформировать digest</button></div>`;
+  return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Product Manager Digest', headerAction)}
     ${state.briefing.state === 'partial' || digest?.generationState === 'partial' ? '<div class="notice warning"><strong>Неполная сводка.</strong> Один или несколько источников достигли лимита. Это не считается «спокойными сутками».</div>' : ''}
     ${state.briefing.generationOutcome === 'preserved' ? '<div class="notice success"><strong>Полная сводка сохранена.</strong> Новый неполный прогон не заменил уже готовую сводку за этот день.</div>' : ''}
     ${state.briefing.state === 'stale' ? '<div class="notice warning">Сводка старше 36 часов. Сформируйте новую перед управленческими решениями.</div>' : ''}
@@ -773,10 +847,17 @@ function renderDailyBriefing() {
       <article class="card metric"><label>Критические ошибки</label><strong>${digest ? Number(facts.appErrors?.critical || 0) : '—'}</strong><span class="badge ${Number(facts.appErrors?.critical || 0) ? 'danger' : ''}">app_errors</span></article>
       <article class="card metric"><label>Новые пользователи</label><strong>${digest ? Number(facts.growth?.newUsers || 0) : '—'}</strong><span class="badge">сервер</span></article>
     </section>
-    ${!digest ? `<section class="card section">${state.briefing.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю сохранённую сводку…</span></div>' : emptyState('Загрузите последнюю сводку или сформируйте новую.')}</section>` : `
-      <div class="columns section"><section class="card"><div class="card-header"><div><h2>Что требует внимания</h2><p>${escapeHtml(dateTime(digest.generatedAtMs))} · ${escapeHtml(digest.model || 'без модели')} · ${escapeHtml(digest.generatedBy || 'система')}</p></div><span class="badge ${badgeClass(state.briefing.state)}">${escapeHtml(stateLabel)}</span></div><div class="card-body"><div class="briefing-summary">${escapeHtml(digest.summary || 'Сводка пуста.')}</div></div></section>
-      <section class="card"><div class="card-header"><div><h2>Полнота источников</h2><p>Пустой источник, ошибка и обрезанная выборка различаются.</p></div><span class="badge">${health.length} источников</span></div><div class="card-body"><div class="briefing-health">${health.length ? health.map((source) => `<div><strong>${escapeHtml(source.source || source.collection || 'источник')}</strong><span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}">${escapeHtml(source.state || 'unknown')}</span><small>${Number(source.count || 0)} записей${source.error ? ` · ${escapeHtml(source.error)}` : ''}</small></div>`).join('') : emptyState('Старый документ не содержит диагностику источников.')}</div></div></section></div>
-      <section class="card section"><div class="card-header"><div><h2>Факты сервера</h2><p>Проверяемые числа, использованные для сводки.</p></div></div><div class="card-body"><pre class="code-preview">${escapeHtml(JSON.stringify(facts, null, 2))}</pre></div></section>`}`;
+    ${!digest ? `<section class="card section">${state.briefing.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю сохранённый Product Manager Digest…</span></div>' : emptyState('Загрузите последний digest или сформируйте новый.')}</section>` : `
+      <div class="briefing-board section">
+        <section class="card briefing-main"><div class="card-header"><div><h2>Сделать сегодня</h2><p>${escapeHtml(dateTime(digest.generatedAtMs))} · ${escapeHtml(digest.model || 'без модели')} · ${escapeHtml(digest.generatedBy || 'система')}</p></div><span class="badge ${badgeClass(state.briefing.state)}">${escapeHtml(stateLabel)}</span></div><div class="card-body">${renderPmDigestActions(facts, state.briefing.state)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Рост и деньги</h2><p>События RevenueCat и paywall без выдумывания выручки.</p></div></div><div class="card-body">${renderPmDigestGrowthRevenue(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Риски продукта</h2><p>Safety, ошибки, репорты и отмены в одном месте.</p></div></div><div class="card-body">${renderPmDigestRiskBoard(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Короткая сводка</h2><p>Текстовый вывод генератора без markdown-шума.</p></div></div><div class="card-body"><div class="briefing-summary">${escapeHtml(digest.summary || 'Сводка пуста.')}</div></div></section>
+        <section class="card"><div class="card-header"><div><h2>Очереди</h2><p>Где накопилась ручная работа.</p></div></div><div class="card-body">${renderPmDigestQueues(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Идеи пользователей</h2><p>Кандидаты для продуктового backlog.</p></div></div><div class="card-body">${renderPmDigestIdeas(facts)}</div></section>
+      </div>
+      <div class="columns section"><section class="card"><div class="card-header"><div><h2>Полнота источников</h2><p>Пустой источник, ошибка и обрезанная выборка различаются.</p></div><span class="badge">${health.length} источников</span></div><div class="card-body">${renderBriefingHealth(health)}</div></section>
+      <section class="card"><div class="card-header"><div><h2>Проверяемые факты</h2><p>Сырой JSON оставлен для аудита и отладки, но не мешает работе.</p></div></div><div class="card-body"><details class="briefing-raw"><summary>Показать server facts JSON</summary><pre class="code-preview">${escapeHtml(JSON.stringify(facts, null, 2))}</pre></details></div></section></div>`}`;
 }
 
 const REPORT_SOURCE_LABELS = Object.freeze({

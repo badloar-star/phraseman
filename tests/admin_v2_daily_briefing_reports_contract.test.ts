@@ -23,6 +23,14 @@ describe('admin v2 daily briefing and report center', () => {
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGenerateDailyDigest')");
     expect(core).toContain("data-action=\"load-daily-briefing\"");
     expect(core).toContain("data-action=\"generate-daily-briefing\"");
+    expect(core).toContain('Product Manager Digest');
+    expect(core).toContain('Сформировать digest');
+    expect(core).toContain('Сделать сегодня');
+    expect(core).toContain('Рост и деньги');
+    expect(core).toContain('Риски продукта');
+    expect(core).toContain('Очереди');
+    expect(core).toContain('Идеи пользователей');
+    expect(core).toContain('Показать server facts JSON');
     expect(core).toContain('sourceHealth');
     expect(core).toContain('Неполная сводка');
   });

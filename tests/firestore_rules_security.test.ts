@@ -287,6 +287,23 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('allow read, write: if false;');
   });
 
+  test('admin Product Manager memory is admin-readable but never client-writable', () => {
+    for (const collection of [
+      'admin_pm_runs',
+      'admin_pm_briefs',
+      'admin_pm_evidence_manifests',
+      'admin_pm_recommendation_bundles',
+      'admin_pm_idea_bundles',
+      'admin_pm_experiment_bundles',
+      'admin_pm_decisions',
+    ]) {
+      const block = rules.match(new RegExp(`match /${collection}/\\\\{docId\\\\} \\\\{[\\\\s\\\\S]*?\\\\n    \\\\}`));
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow read: if isAdmin();');
+      expect(block![0]).toContain('allow create, update, delete: if false;');
+    }
+  });
+
   test('app diagnostics collections are server/admin-write only with admin read', () => {
     // Hardened: client create is now denied (was `request.auth != null`).
     // Diagnostics docs are written by Cloud Functions (Admin SDK), read by admin.

@@ -385,6 +385,7 @@ describe("aggregate XP integrity report", () => {
     rmSync(target, { recursive: true, force: true });
     mkdirSync(fixtureRoot, { recursive: true });
     mkdirSync(target, { recursive: true });
+    const targetBefore = readdirSync(target);
     try {
       symlinkSync(target, path.join(fixtureRoot, ".codex-tmp"), "junction");
     } catch (error) {
@@ -426,6 +427,8 @@ describe("aggregate XP integrity report", () => {
       expect(() =>
         writeAggregateReport(fixtureRoot, "20990101T000002Z", report),
       ).toThrow(/not_real_directory/i);
+      expect(readdirSync(target)).toEqual(targetBefore);
+      expect(existsSync(path.join(target, "xp-integrity-audit"))).toBe(false);
     } finally {
       rmSync(fixtureRoot, { recursive: true, force: true });
       rmSync(target, { recursive: true, force: true });

@@ -167,12 +167,25 @@ function nonReportCapabilityViolations(source: ts.SourceFile): string[] {
 
 function isDirectAssertedDestination(
   expression: ts.Expression | undefined,
+  capability?: string,
 ): boolean {
+  if (
+    expression === undefined ||
+    !ts.isCallExpression(expression) ||
+    !ts.isIdentifier(expression.expression)
+  ) {
+    return false;
+  }
+  if (expression.expression.text === "assertAuditAncestorPath") {
+    return capability === "mkdirSync";
+  }
   return (
-    expression !== undefined &&
-    ts.isCallExpression(expression) &&
-    ts.isIdentifier(expression.expression) &&
-    expression.expression.text === "assertAuditOutputPath"
+    expression.expression.text === "assertAuditOutputPath" &&
+    !(
+      expression.arguments[1] !== undefined &&
+      ts.isIdentifier(expression.arguments[1]) &&
+      expression.arguments[1].text === "root"
+    )
   );
 }
 
@@ -340,6 +353,73 @@ function assertHelperReferenceViolations(
   return violations;
 }
 
+function ancestorHelperViolations(
+  source: ts.SourceFile,
+  importedWriteCapabilities: ReadonlySet<string>,
+): string[] {
+  const violations: string[] = [];
+  const helpers = source.statements.filter(
+    (statement): statement is ts.FunctionDeclaration =>
+      ts.isFunctionDeclaration(statement) &&
+      statement.name?.text === "assertAuditAncestorPath",
+  );
+  if (helpers.length === 0) return [];
+  if (helpers.length !== 1)
+    return ["invalid_assertAuditAncestorPath_declaration"];
+  const [helper] = helpers;
+  const exactBody =
+    '{constresolvedRoot=path.resolve(root);constapprovedParent=path.resolve(root,".codex-tmp");constresolvedCandidate=path.resolve(candidate);if(resolvedCandidate!==resolvedRoot&&resolvedCandidate!==approvedParent)thrownewError("xp_audit_ancestor_path_outside_allowlist");returnresolvedCandidate;}';
+  if (
+    !helper.body ||
+    helper.parameters.length !== 2 ||
+    !ts.isIdentifier(helper.parameters[0].name) ||
+    helper.parameters[0].name.text !== "root" ||
+    !ts.isIdentifier(helper.parameters[1].name) ||
+    helper.parameters[1].name.text !== "candidate" ||
+    helper.body.getText(source).replace(/\s+/g, "") !== exactBody
+  ) {
+    violations.push("invalid_assertAuditAncestorPath_control_flow");
+  }
+  if (hasBindingOrAssignment(source, "assertAuditAncestorPath")) {
+    violations.push("shadowed_or_reassigned:assertAuditAncestorPath");
+  }
+  const allowedCapabilities = new Set([
+    "lstatSync",
+    "mkdirSync",
+    "realpathSync",
+  ]);
+  const visit = (node: ts.Node): void => {
+    if (ts.isIdentifier(node) && node.text === "assertAuditAncestorPath") {
+      const parent = node.parent;
+      const isDeclaration =
+        parent === helper &&
+        ts.isFunctionDeclaration(parent) &&
+        parent.name === node;
+      const wrapperCall =
+        ts.isCallExpression(parent) && parent.expression === node
+          ? parent
+          : null;
+      const capabilityCall = wrapperCall?.parent;
+      const isDirectAllowedCall =
+        wrapperCall !== null &&
+        capabilityCall !== undefined &&
+        ts.isCallExpression(capabilityCall) &&
+        capabilityCall.arguments[0] === wrapperCall &&
+        ts.isIdentifier(capabilityCall.expression) &&
+        importedWriteCapabilities.has(capabilityCall.expression.text) &&
+        allowedCapabilities.has(capabilityCall.expression.text);
+      if (!isDeclaration && !isDirectAllowedCall) {
+        violations.push(
+          `escaped_assertAuditAncestorPath:${lineOf(source, node)}`,
+        );
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return violations;
+}
+
 function isPathMethodCall(
   expression: ts.Expression | undefined,
   method: "resolve" | "relative" | "isAbsolute",
@@ -435,12 +515,12 @@ function assertHelperViolations(source: ts.SourceFile): string[] {
       (isPathMethodCall(boundary.expression.left, "isAbsolute", ["relative"]) &&
         isTraversalCheck(boundary.expression.right))) &&
     directThrow(boundary.thenStatement);
-  const hasExactFinalReturn =
-    finalReturn !== undefined &&
-    ts.isReturnStatement(finalReturn) &&
-    finalReturn.expression !== undefined &&
-    ts.isIdentifier(finalReturn.expression) &&
-    finalReturn.expression.text === "resolvedCandidate";
+  const isExactFinalReturn = (statement: ts.Statement | undefined): boolean =>
+    statement !== undefined &&
+    ts.isReturnStatement(statement) &&
+    statement.expression !== undefined &&
+    ts.isIdentifier(statement.expression) &&
+    statement.expression.text === "resolvedCandidate";
   const exactControlFlow =
     helper.body.statements.length === 5 &&
     exactConstDeclaration(approvedRoot, "approvedRoot", (initializer) =>
@@ -462,9 +542,122 @@ function assertHelperViolations(source: ts.SourceFile): string[] {
       ]),
     ) &&
     hasExactBoundary &&
-    hasExactFinalReturn;
+    isExactFinalReturn(finalReturn);
 
-  return exactControlFlow ? [] : ["invalid_assertAuditOutputPath_control_flow"];
+  const unwrap = (expression: ts.Expression): ts.Expression =>
+    ts.isParenthesizedExpression(expression)
+      ? unwrap(expression.expression)
+      : expression;
+  const identifierEquality = (
+    expression: ts.Expression,
+    leftName: string,
+    rightName: string,
+  ): boolean => {
+    const candidate = unwrap(expression);
+    return (
+      ts.isBinaryExpression(candidate) &&
+      candidate.operatorToken.kind === ts.SyntaxKind.EqualsEqualsEqualsToken &&
+      ts.isIdentifier(candidate.left) &&
+      candidate.left.text === leftName &&
+      ts.isIdentifier(candidate.right) &&
+      candidate.right.text === rightName
+    );
+  };
+  const ancestorStatements = helper.body.statements;
+  const ancestorBoundary = ancestorStatements[6];
+  const ancestorBoundaryExpression =
+    ancestorBoundary && ts.isIfStatement(ancestorBoundary)
+      ? unwrap(ancestorBoundary.expression)
+      : null;
+  const ancestorBoundaryRight =
+    ancestorBoundaryExpression &&
+    ts.isBinaryExpression(ancestorBoundaryExpression)
+      ? unwrap(ancestorBoundaryExpression.right)
+      : null;
+  const ancestorBoundaryLeft =
+    ancestorBoundaryExpression &&
+    ts.isBinaryExpression(ancestorBoundaryExpression)
+      ? unwrap(ancestorBoundaryExpression.left)
+      : null;
+  const exactAncestorControlFlow =
+    ancestorStatements.length === 8 &&
+    exactConstDeclaration(
+      ancestorStatements[0],
+      "resolvedRoot",
+      (initializer) => isPathMethodCall(initializer, "resolve", ["root"]),
+    ) &&
+    exactConstDeclaration(
+      ancestorStatements[1],
+      "approvedParent",
+      (initializer) =>
+        isPathMethodCall(initializer, "resolve", ["root", '".codex-tmp"']),
+    ) &&
+    exactConstDeclaration(
+      ancestorStatements[2],
+      "approvedRoot",
+      (initializer) =>
+        isPathMethodCall(initializer, "resolve", [
+          "root",
+          '".codex-tmp"',
+          '"xp-integrity-audit"',
+        ]),
+    ) &&
+    exactConstDeclaration(
+      ancestorStatements[3],
+      "resolvedCandidate",
+      (initializer) => isPathMethodCall(initializer, "resolve", ["candidate"]),
+    ) &&
+    exactConstDeclaration(ancestorStatements[4], "relative", (initializer) =>
+      isPathMethodCall(initializer, "relative", [
+        "approvedRoot",
+        "resolvedCandidate",
+      ]),
+    ) &&
+    exactConstDeclaration(
+      ancestorStatements[5],
+      "approvedAncestor",
+      (initializer) => {
+        if (!initializer) return false;
+        const candidate = unwrap(initializer);
+        return (
+          ts.isBinaryExpression(candidate) &&
+          candidate.operatorToken.kind === ts.SyntaxKind.BarBarToken &&
+          identifierEquality(
+            candidate.left,
+            "resolvedCandidate",
+            "resolvedRoot",
+          ) &&
+          identifierEquality(
+            candidate.right,
+            "resolvedCandidate",
+            "approvedParent",
+          )
+        );
+      },
+    ) &&
+    ancestorBoundary !== undefined &&
+    ts.isIfStatement(ancestorBoundary) &&
+    ancestorBoundary.elseStatement === undefined &&
+    ancestorBoundaryExpression !== null &&
+    ts.isBinaryExpression(ancestorBoundaryExpression) &&
+    ancestorBoundaryExpression.operatorToken.kind ===
+      ts.SyntaxKind.AmpersandAmpersandToken &&
+    ancestorBoundaryLeft !== null &&
+    ts.isPrefixUnaryExpression(ancestorBoundaryLeft) &&
+    ancestorBoundaryLeft.operator === ts.SyntaxKind.ExclamationToken &&
+    ts.isIdentifier(ancestorBoundaryLeft.operand) &&
+    ancestorBoundaryLeft.operand.text === "approvedAncestor" &&
+    ancestorBoundaryRight !== null &&
+    ts.isBinaryExpression(ancestorBoundaryRight) &&
+    ancestorBoundaryRight.operatorToken.kind === ts.SyntaxKind.BarBarToken &&
+    isTraversalCheck(ancestorBoundaryRight.left) &&
+    isPathMethodCall(ancestorBoundaryRight.right, "isAbsolute", ["relative"]) &&
+    directThrow(ancestorBoundary.thenStatement) &&
+    isExactFinalReturn(ancestorStatements[7]);
+
+  return exactControlFlow || exactAncestorControlFlow
+    ? []
+    : ["invalid_assertAuditOutputPath_control_flow"];
 }
 
 function reportCapabilityViolations(source: ts.SourceFile): string[] {
@@ -513,6 +706,7 @@ function reportCapabilityViolations(source: ts.SourceFile): string[] {
   violations.push(
     ...escapedWriteCapabilityReferences(source, importedWriteCapabilities),
     ...assertHelperReferenceViolations(source, importedWriteCapabilities),
+    ...ancestorHelperViolations(source, importedWriteCapabilities),
   );
   for (const call of filesystemWriteCalls(source)) {
     const name = calledProperty(call.expression);
@@ -524,8 +718,9 @@ function reportCapabilityViolations(source: ts.SourceFile): string[] {
     ) {
       violations.push(`unapproved_write_call:${name}:${lineOf(source, call)}`);
     } else if (
-      !isDirectAssertedDestination(call.arguments[0]) ||
-      (name === "renameSync" && !isDirectAssertedDestination(call.arguments[1]))
+      !isDirectAssertedDestination(call.arguments[0], name) ||
+      (name === "renameSync" &&
+        !isDirectAssertedDestination(call.arguments[1], name))
     ) {
       violations.push(
         `unasserted_write_destination:${name}:${lineOf(source, call)}`,
@@ -761,6 +956,28 @@ describe("production XP integrity audit read-only contract", () => {
         "shadowed_or_reassigned:assertAuditOutputPath",
         "escaped_assertAuditOutputPath:10",
       ]),
+    );
+  });
+
+  it("rejects destructive output capabilities aimed at workspace ancestors", () => {
+    const source = parseFixture(
+      "report.ts",
+      [
+        'import path from "node:path";',
+        'import { rmSync } from "node:fs";',
+        "function assertAuditOutputPath(root: string, candidate: string) {",
+        '  const approvedRoot = path.resolve(root, ".codex-tmp", "xp-integrity-audit");',
+        "  const resolvedCandidate = path.resolve(candidate);",
+        "  const relative = path.relative(approvedRoot, resolvedCandidate);",
+        '  if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error("outside");',
+        "  return resolvedCandidate;",
+        "}",
+        "rmSync(assertAuditOutputPath(root, root), { recursive: true });",
+      ].join("\n"),
+    );
+
+    expect(reportCapabilityViolations(source)).toEqual(
+      expect.arrayContaining(["unasserted_write_destination:rmSync:10"]),
     );
   });
 

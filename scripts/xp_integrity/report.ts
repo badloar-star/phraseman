@@ -409,6 +409,18 @@ function assertAuditOutputPath(root: string, candidate: string) {
   return resolvedCandidate;
 }
 
+function assertAuditAncestorPath(root: string, candidate: string) {
+  const resolvedRoot = path.resolve(root);
+  const approvedParent = path.resolve(root, ".codex-tmp");
+  const resolvedCandidate = path.resolve(candidate);
+  if (
+    resolvedCandidate !== resolvedRoot &&
+    resolvedCandidate !== approvedParent
+  )
+    throw new Error("xp_audit_ancestor_path_outside_allowlist");
+  return resolvedCandidate;
+}
+
 export function writeAggregateReport(
   root: string,
   runId: string,
@@ -417,14 +429,60 @@ export function writeAggregateReport(
 ): { jsonPath: string; markdownPath: string } {
   if (!/^\d{8}T\d{6}Z$/.test(runId)) throw new Error("xp_audit_invalid_run_id");
   validateAggregateReportPrivacy(report, privateDenylist);
-  const auditRoot = path.join(root, ".codex-tmp", "xp-integrity-audit");
-  mkdirSync(assertAuditOutputPath(root, auditRoot), { recursive: true });
-  const rootStat = lstatSync(assertAuditOutputPath(root, auditRoot));
+  const workspaceRoot = path.resolve(root);
+  const workspaceStat = lstatSync(assertAuditAncestorPath(root, workspaceRoot));
   if (
-    !rootStat.isDirectory() ||
-    rootStat.isSymbolicLink() ||
-    realpathSync(assertAuditOutputPath(root, auditRoot)) !==
-      path.resolve(auditRoot)
+    !workspaceStat.isDirectory() ||
+    workspaceStat.isSymbolicLink() ||
+    realpathSync(assertAuditAncestorPath(root, workspaceRoot)) !== workspaceRoot
+  ) {
+    throw new Error("xp_audit_workspace_root_not_real_directory");
+  }
+  const temporaryRoot = path.join(workspaceRoot, ".codex-tmp");
+  let temporaryRootExists = true;
+  try {
+    lstatSync(assertAuditAncestorPath(root, temporaryRoot));
+  } catch (error) {
+    const code =
+      error !== null && typeof error === "object" && "code" in error
+        ? error.code
+        : null;
+    if (code === "ENOENT") temporaryRootExists = false;
+    else throw error;
+  }
+  if (!temporaryRootExists) {
+    mkdirSync(assertAuditAncestorPath(root, temporaryRoot));
+  }
+  const temporaryRootStat = lstatSync(
+    assertAuditAncestorPath(root, temporaryRoot),
+  );
+  if (
+    !temporaryRootStat.isDirectory() ||
+    temporaryRootStat.isSymbolicLink() ||
+    realpathSync(assertAuditAncestorPath(root, temporaryRoot)) !== temporaryRoot
+  ) {
+    throw new Error("xp_audit_temporary_root_not_real_directory");
+  }
+  const auditRoot = path.join(temporaryRoot, "xp-integrity-audit");
+  let auditRootExists = true;
+  try {
+    lstatSync(assertAuditOutputPath(root, auditRoot));
+  } catch (error) {
+    const code =
+      error !== null && typeof error === "object" && "code" in error
+        ? error.code
+        : null;
+    if (code === "ENOENT") auditRootExists = false;
+    else throw error;
+  }
+  if (!auditRootExists) {
+    mkdirSync(assertAuditOutputPath(root, auditRoot));
+  }
+  const auditRootStat = lstatSync(assertAuditOutputPath(root, auditRoot));
+  if (
+    !auditRootStat.isDirectory() ||
+    auditRootStat.isSymbolicLink() ||
+    realpathSync(assertAuditOutputPath(root, auditRoot)) !== auditRoot
   ) {
     throw new Error("xp_audit_output_root_not_real_directory");
   }

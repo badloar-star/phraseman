@@ -32,6 +32,16 @@ const FLASHCARDS_SWIPE_TARGET_IDS = [
   'surface:app-flashcards-swipe:swipebadge:1',
 ] as const;
 
+const FLASHCARD_LIST_ITEM_TARGET_IDS = [
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:10',
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:11',
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:4',
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:6',
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:7',
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:8',
+  'surface:app-flashcards-flashcardlistitem:flashcardlistitemimpl:9',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -51,5 +61,9 @@ describe('learning and flashcards borderless production surfaces', () => {
 
   it('migrates the reviewed flashcards swipe containers', () => {
     expectMigrated(FLASHCARDS_SWIPE_TARGET_IDS);
+  });
+
+  it('migrates the reviewed flashcard list item containers', () => {
+    expectMigrated(FLASHCARD_LIST_ITEM_TARGET_IDS);
   });
 });

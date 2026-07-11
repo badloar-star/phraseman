@@ -1,0 +1,443 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLevelFromXP } from '../constants/theme';
+import { emitAppEvent } from './events';
+import {
+  ensureLevelGiftEntitlement,
+  type EnsureLevelGiftEntitlementOptions,
+  type LevelGiftEntitlementResult,
+} from './level_gift_inventory';
+import type { RuntimeStudyTarget } from './target_storage_keys';
+import { getCanonicalUserId } from './user_id_policy';
+
+export const PENDING_LEVEL_UP_QUEUE_KEY = 'pending_level_up_queue';
+export const LEVEL_UP_REWARD_RETRY_KEY = 'pending_level_up_reward_retry_v1';
+export const LEVEL_UP_REWARD_CONTEXT_KEY = 'pending_level_up_reward_context_v1';
+export const LEVEL_UP_REWARD_FALLBACK_KEY = 'pending_level_up_reward_fallback_v1';
+export const LEVEL_UP_REWARD_OWNER_KEY = 'pending_level_up_reward_owner_v1';
+export const LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY = 'pending_level_up_queue_quarantine_v1';
+export const LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY = 'pending_level_up_reward_retry_quarantine_v1';
+export const LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY = 'pending_level_up_reward_context_quarantine_v1';
+export const LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY = 'pending_level_up_reward_fallback_quarantine_v1';
+
+type RetryEntry = {
+  level: number;
+  owner: string | null;
+  premium: boolean;
+  studyTarget?: RuntimeStudyTarget;
+};
+
+type StoredArray<T> = {
+  state: 'available' | 'unavailable';
+  values: T[];
+  wasCorrupt: boolean;
+  wasMissing: boolean;
+};
+
+type LoadedState = {
+  queue: StoredArray<number>;
+  retry: StoredArray<number>;
+  context: StoredArray<RetryEntry>;
+  fallback: StoredArray<RetryEntry>;
+};
+
+type OwnerState = { owner: string; changed: boolean } | { owner: null; changed: false };
+type DurabilitySource = 'primary' | 'fallback' | 'memory';
+
+let operationLock: Promise<void> = Promise.resolve();
+const inMemoryRetryEntries = new Map<number, RetryEntry>();
+// If every durable write fails, crash recovery is impossible. This process-local map still preserves
+// retryability for the lifetime of the current process.
+
+const normalizeLevels = (values: unknown[]): number[] => [...new Set(values.filter(
+  (value): value is number => typeof value === 'number' && Number.isInteger(value) && value > 0,
+))].sort((a, b) => a - b);
+
+const normalizeOwner = (value: unknown): string | null =>
+  typeof value === 'string' && value.trim() ? value.trim() : null;
+
+const isStudyTarget = (value: unknown): value is RuntimeStudyTarget =>
+  typeof value === 'string' && value.trim().length > 0;
+
+const normalizeRetryEntries = (values: unknown[]): RetryEntry[] => {
+  const entries = new Map<number, RetryEntry>();
+  values.forEach((candidate) => {
+    if (!candidate || typeof candidate !== 'object') return;
+    const raw = candidate as Partial<RetryEntry>;
+    if (!Number.isInteger(raw.level) || Number(raw.level) <= 0) return;
+    const entry: RetryEntry = {
+      level: Number(raw.level),
+      owner: normalizeOwner(raw.owner),
+      premium: raw.premium === true,
+    };
+    if (isStudyTarget(raw.studyTarget)) entry.studyTarget = raw.studyTarget;
+    entries.set(entry.level, entry);
+  });
+  return [...entries.values()].sort((a, b) => a.level - b.level);
+};
+
+const readStoredArray = async <T>(
+  key: string,
+  quarantineKey: string,
+  normalize: (values: unknown[]) => T[],
+): Promise<StoredArray<T>> => {
+  let raw: string | null;
+  try {
+    raw = await AsyncStorage.getItem(key);
+  } catch {
+    return { state: 'unavailable', values: [], wasCorrupt: false, wasMissing: false };
+  }
+  if (raw === null) return { state: 'available', values: [], wasCorrupt: false, wasMissing: true };
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) throw new Error('not an array');
+    return { state: 'available', values: normalize(parsed), wasCorrupt: false, wasMissing: false };
+  } catch {
+    try {
+      await AsyncStorage.multiSet([[quarantineKey, raw], [key, '[]']]);
+      return { state: 'available', values: [], wasCorrupt: true, wasMissing: false };
+    } catch {
+      return { state: 'unavailable', values: [], wasCorrupt: true, wasMissing: false };
+    }
+  }
+};
+
+const loadState = async (): Promise<LoadedState> => {
+  const [queue, retry, context, fallback] = await Promise.all([
+    readStoredArray(PENDING_LEVEL_UP_QUEUE_KEY, LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY, normalizeLevels),
+    readStoredArray(LEVEL_UP_REWARD_RETRY_KEY, LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY, normalizeLevels),
+    readStoredArray(LEVEL_UP_REWARD_CONTEXT_KEY, LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY, normalizeRetryEntries),
+    readStoredArray(LEVEL_UP_REWARD_FALLBACK_KEY, LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY, normalizeRetryEntries),
+  ]);
+  if (retry.values.length > 0 && context.values.length === 0 && !context.wasCorrupt) {
+    try {
+      context.wasCorrupt = (await AsyncStorage.getItem(LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY)) !== null;
+    } catch {
+      context.state = 'unavailable';
+    }
+  }
+  return { queue, retry, context, fallback };
+};
+
+const serializeEntries = (entries: Iterable<RetryEntry>): string =>
+  JSON.stringify([...entries].sort((a, b) => a.level - b.level));
+
+const writeLevels = async (key: string, levels: Iterable<number>): Promise<boolean> => {
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify([...new Set(levels)].sort((a, b) => a - b)));
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const withOperationLock = <T>(operation: () => Promise<T>): Promise<T> => {
+  const result = operationLock.then(operation, operation);
+  operationLock = result.then(() => undefined, () => undefined);
+  return result;
+};
+
+const clearForOwnerSwitch = async (owner: string): Promise<boolean> => {
+  try {
+    await AsyncStorage.multiSet([
+      [PENDING_LEVEL_UP_QUEUE_KEY, '[]'],
+      [LEVEL_UP_REWARD_RETRY_KEY, '[]'],
+      [LEVEL_UP_REWARD_CONTEXT_KEY, '[]'],
+      [LEVEL_UP_REWARD_FALLBACK_KEY, '[]'],
+      [LEVEL_UP_REWARD_OWNER_KEY, owner],
+    ]);
+    inMemoryRetryEntries.clear();
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const prepareOwnerUnlocked = async (): Promise<OwnerState> => {
+  const owner = normalizeOwner(await getCanonicalUserId().catch(() => null));
+  if (!owner) return { owner: null, changed: false };
+  let storedOwner: string | null;
+  try {
+    storedOwner = normalizeOwner(await AsyncStorage.getItem(LEVEL_UP_REWARD_OWNER_KEY));
+  } catch {
+    return { owner: null, changed: false };
+  }
+  if (storedOwner && storedOwner !== owner) {
+    return await clearForOwnerSwitch(owner)
+      ? { owner, changed: true }
+      : { owner: null, changed: false };
+  }
+  if (!storedOwner) {
+    try {
+      await AsyncStorage.setItem(LEVEL_UP_REWARD_OWNER_KEY, owner);
+    } catch {
+      // Every journal entry also carries its owner, so marker failure does not mix saved contexts.
+    }
+  }
+  return { owner, changed: false };
+};
+
+const makeEntry = (
+  level: number,
+  owner: string,
+  options: EnsureLevelGiftEntitlementOptions,
+): RetryEntry => ({
+  level,
+  owner,
+  premium: options.premium === true,
+  ...(options.studyTarget ? { studyTarget: options.studyTarget } : {}),
+});
+
+const entryOptions = (entry: RetryEntry): EnsureLevelGiftEntitlementOptions => ({
+  premium: entry.premium,
+  ...(entry.studyTarget ? { studyTarget: entry.studyTarget } : {}),
+});
+
+const mergeEntries = (...groups: RetryEntry[][]): Map<number, RetryEntry> => {
+  const merged = new Map<number, RetryEntry>();
+  groups.flat().forEach((entry) => merged.set(entry.level, entry));
+  return merged;
+};
+
+const hasExplicitRetryOptions = (options: EnsureLevelGiftEntitlementOptions): boolean =>
+  Object.prototype.hasOwnProperty.call(options, 'premium')
+  || Object.prototype.hasOwnProperty.call(options, 'studyTarget');
+
+const resolveKnownEntries = (
+  state: LoadedState,
+  owner: string,
+  legacyOptions: EnsureLevelGiftEntitlementOptions,
+): { entries: Map<number, RetryEntry>; unresolvedLevels: number[] } => {
+  const contexts = new Map(state.context.values.map((entry) => [entry.level, entry]));
+  const entries = mergeEntries(
+    state.context.values,
+    state.fallback.values,
+    [...inMemoryRetryEntries.values()],
+  );
+  const unresolvedLevels: number[] = [];
+  state.retry.values.forEach((level) => {
+    const saved = contexts.get(level);
+    if (saved) {
+      entries.set(level, saved);
+    } else if (
+      state.context.state === 'available'
+      && (!state.context.wasCorrupt || hasExplicitRetryOptions(legacyOptions))
+    ) {
+      entries.set(level, makeEntry(level, owner, legacyOptions));
+    } else {
+      unresolvedLevels.push(level);
+    }
+  });
+  return { entries, unresolvedLevels };
+};
+
+const persistFallback = async (entries: Map<number, RetryEntry>): Promise<boolean> => {
+  try {
+    await AsyncStorage.setItem(LEVEL_UP_REWARD_FALLBACK_KEY, serializeEntries(entries.values()));
+    entries.forEach((entry) => inMemoryRetryEntries.delete(entry.level));
+    return true;
+  } catch {
+    entries.forEach((entry) => inMemoryRetryEntries.set(entry.level, entry));
+    return false;
+  }
+};
+
+const stageBeforeEntitlement = async (
+  entries: Map<number, RetryEntry>,
+  canUsePrimary: boolean,
+  fallbackAvailable: boolean,
+): Promise<DurabilitySource> => {
+  if (canUsePrimary) {
+    try {
+      await AsyncStorage.multiSet([
+        [LEVEL_UP_REWARD_RETRY_KEY, JSON.stringify([...entries.keys()].sort((a, b) => a - b))],
+        [LEVEL_UP_REWARD_CONTEXT_KEY, serializeEntries(entries.values())],
+      ]);
+      entries.forEach((entry) => inMemoryRetryEntries.delete(entry.level));
+      return 'primary';
+    } catch {
+      // Use the independent journal below.
+    }
+  }
+  if (fallbackAvailable && await persistFallback(entries)) return 'fallback';
+  entries.forEach((entry) => inMemoryRetryEntries.set(entry.level, entry));
+  return 'memory';
+};
+
+const finalizeRetries = async (
+  remaining: Map<number, RetryEntry>,
+  canUsePrimary: boolean,
+  fallbackAvailable: boolean,
+  stagedWith: DurabilitySource,
+): Promise<void> => {
+  if (canUsePrimary) {
+    try {
+      await AsyncStorage.multiSet([
+        [LEVEL_UP_REWARD_RETRY_KEY, JSON.stringify([...remaining.keys()].sort((a, b) => a - b))],
+        [LEVEL_UP_REWARD_CONTEXT_KEY, serializeEntries(remaining.values())],
+      ]);
+      remaining.forEach((entry) => inMemoryRetryEntries.delete(entry.level));
+      if (fallbackAvailable) {
+        try {
+          await AsyncStorage.setItem(LEVEL_UP_REWARD_FALLBACK_KEY, '[]');
+        } catch {
+          // A stale duplicate is safe: entitlement is idempotent, while deleting it without confirmation is not.
+        }
+      }
+      return;
+    } catch {
+      // Preserve all remaining work in fallback rather than clearing the staging journal.
+    }
+  }
+  if (fallbackAvailable && await persistFallback(remaining)) return;
+  if (stagedWith !== 'memory') {
+    remaining.forEach((entry) => inMemoryRetryEntries.set(entry.level, entry));
+  }
+};
+
+const safelyEnsure = async (entry: RetryEntry): Promise<LevelGiftEntitlementResult> => {
+  try {
+    return await ensureLevelGiftEntitlement(entry.level, entryOptions(entry));
+  } catch {
+    return { status: 'failed', level: entry.level };
+  }
+};
+
+type ProcessResult = { results: LevelGiftEntitlementResult[]; showableLevels: number[] };
+
+const processEntriesUnlocked = async (
+  candidates: RetryEntry[],
+  owner: string,
+  legacyOptions: EnsureLevelGiftEntitlementOptions,
+  suppliedState?: LoadedState,
+): Promise<ProcessResult> => {
+  const state = suppliedState ?? await loadState();
+  const resolved = resolveKnownEntries(state, owner, legacyOptions);
+  candidates.forEach((entry) => resolved.entries.set(entry.level, entry));
+  const canUsePrimary = state.retry.state === 'available'
+    && state.context.state === 'available'
+    && resolved.unresolvedLevels.length === 0;
+  const fallbackAvailable = state.fallback.state === 'available';
+  const stagedWith = await stageBeforeEntitlement(resolved.entries, canUsePrimary, fallbackAvailable);
+
+  const queue = new Set(state.queue.values);
+  const results: LevelGiftEntitlementResult[] = [];
+  const successful = new Set<number>();
+  const claimed = new Set<number>();
+  for (const entry of [...candidates].sort((a, b) => a.level - b.level)) {
+    const result = await safelyEnsure(entry);
+    results.push(result);
+    if (result.status === 'persisted' || result.status === 'already_pending') {
+      queue.add(entry.level);
+      successful.add(entry.level);
+    } else if (result.status === 'already_claimed') {
+      queue.delete(entry.level);
+      claimed.add(entry.level);
+    } else {
+      queue.delete(entry.level);
+    }
+  }
+
+  const queuePersisted = state.queue.state === 'available'
+    ? await writeLevels(PENDING_LEVEL_UP_QUEUE_KEY, queue)
+    : false;
+  claimed.forEach((level) => {
+    resolved.entries.delete(level);
+    inMemoryRetryEntries.delete(level);
+  });
+  if (queuePersisted) {
+    successful.forEach((level) => {
+      resolved.entries.delete(level);
+      inMemoryRetryEntries.delete(level);
+    });
+  }
+  await finalizeRetries(resolved.entries, canUsePrimary, fallbackAvailable, stagedWith);
+
+  const showableLevels = queuePersisted
+    ? [...successful].filter((level) => queue.has(level)).sort((a, b) => a - b)
+    : [];
+  if (showableLevels.length > 0) emitAppEvent('level_up_pending');
+  return { results, showableLevels };
+};
+
+const reconcileUnlocked = async (
+  previousXp: number,
+  nextXp: number,
+  options: EnsureLevelGiftEntitlementOptions,
+): Promise<LevelGiftEntitlementResult[]> => {
+  if (!Number.isFinite(previousXp) || !Number.isFinite(nextXp) || nextXp <= previousXp) return [];
+  const previousLevel = getLevelFromXP(Math.max(0, Math.floor(previousXp)));
+  const nextLevel = getLevelFromXP(Math.max(0, Math.floor(nextXp)));
+  if (nextLevel <= previousLevel) return [];
+  const ownerState = await prepareOwnerUnlocked();
+  if (!ownerState.owner) return [];
+  const candidates: RetryEntry[] = [];
+  for (let level = previousLevel + 1; level <= nextLevel; level += 1) {
+    candidates.push(makeEntry(level, ownerState.owner, options));
+  }
+  return (await processEntriesUnlocked(candidates, ownerState.owner, options)).results;
+};
+
+export const reconcileLevelUpRewards = (
+  previousXp: number,
+  nextXp: number,
+  options: EnsureLevelGiftEntitlementOptions = {},
+): Promise<LevelGiftEntitlementResult[]> => withOperationLock(() => reconcileUnlocked(previousXp, nextXp, options));
+
+const repairUnlocked = async (options: EnsureLevelGiftEntitlementOptions): Promise<number[]> => {
+  const ownerState = await prepareOwnerUnlocked();
+  if (!ownerState.owner || ownerState.changed) return [];
+  const state = await loadState();
+  if (state.queue.state === 'unavailable') return [];
+  if (state.queue.values.length === 0) {
+    await writeLevels(PENDING_LEVEL_UP_QUEUE_KEY, []);
+    return [];
+  }
+  const candidates = state.queue.values.map((level) => makeEntry(level, ownerState.owner, options));
+  return (await processEntriesUnlocked(candidates, ownerState.owner, options, state)).showableLevels;
+};
+
+export const repairPendingLevelUpRewards = (
+  options: EnsureLevelGiftEntitlementOptions = {},
+): Promise<number[]> => withOperationLock(() => repairUnlocked(options));
+
+const retryUnlocked = async (options: EnsureLevelGiftEntitlementOptions): Promise<number[]> => {
+  const ownerState = await prepareOwnerUnlocked();
+  if (!ownerState.owner || ownerState.changed) return [];
+  const state = await loadState();
+  const resolved = resolveKnownEntries(state, ownerState.owner, options);
+  const candidates = [...resolved.entries.values()].filter((entry) => entry.owner === ownerState.owner);
+  if (candidates.length === 0) {
+    if (resolved.unresolvedLevels.length === 0 && state.retry.state === 'available') {
+      await writeLevels(LEVEL_UP_REWARD_RETRY_KEY, []);
+    }
+    return [];
+  }
+  return (await processEntriesUnlocked(candidates, ownerState.owner, options, state)).showableLevels;
+};
+
+export const retryPendingLevelUpRewards = (
+  options: EnsureLevelGiftEntitlementOptions = {},
+): Promise<number[]> => withOperationLock(() => retryUnlocked(options));
+
+const acknowledgeUnlocked = async (level: number): Promise<void> => {
+  if (!Number.isInteger(level) || level <= 0) return;
+  const ownerState = await prepareOwnerUnlocked();
+  if (!ownerState.owner || ownerState.changed) return;
+  const queue = await readStoredArray(
+    PENDING_LEVEL_UP_QUEUE_KEY,
+    LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY,
+    normalizeLevels,
+  );
+  if (queue.state === 'unavailable') return;
+  await writeLevels(PENDING_LEVEL_UP_QUEUE_KEY, queue.values.filter((item) => item !== level));
+};
+
+export const acknowledgePendingLevelUpShown = (level: number): Promise<void> =>
+  withOperationLock(() => acknowledgeUnlocked(level));
+
+export const __levelUpRewardReconcilerTestHooks = {
+  reset: (): void => {
+    operationLock = Promise.resolve();
+    inMemoryRetryEntries.clear();
+  },
+};

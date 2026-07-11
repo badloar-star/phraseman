@@ -25,6 +25,17 @@ describe('Phraseman application Codex', () => {
     expect(codex.inputFiles).toContain('functions/src/admin_digest_contracts.ts');
   });
 
+  test('generates a server-side digest projection used by the prompt', () => {
+    const projectionPath = path.join(ROOT, 'functions', 'src', 'generated', 'admin_digest_codex.ts');
+    const digestSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'admin_daily_digest.ts'), 'utf8');
+    const projection = fs.readFileSync(projectionPath, 'utf8');
+    expect(projection).toContain('"schemaVersion": "phraseman-digest-codex-v1"');
+    expect(projection).toContain('metricSources');
+    expect(projection).toContain('revenuecat_premium_events');
+    expect(digestSource).toContain("import { ADMIN_DIGEST_CODEX } from './generated/admin_digest_codex'");
+    expect(digestSource).toContain('codex: ADMIN_DIGEST_CODEX');
+  });
+
   test('is exposed as a searchable accessible admin section', () => {
     const adminHtml = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
     const modulePath = path.join(ROOT, 'admin', 'app-codex.js');

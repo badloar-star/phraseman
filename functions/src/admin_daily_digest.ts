@@ -39,6 +39,7 @@ import {
 } from './admin_digest_contracts';
 import { DIGEST_SOURCE_REGISTRY, readPaginatedSource, type SourceCoverage } from './admin_digest_sources';
 import { fetchRevenueCatChart, reconcileRevenue, type RevenueReconciliation } from './admin_digest_revenuecat';
+import { ADMIN_DIGEST_CODEX } from './generated/admin_digest_codex';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -733,7 +734,7 @@ export async function runAdminDailyDigest(
           sourceCoverage,
           revenueReconciliation,
           revenueCatCoverage,
-          codex: { product: 'Phraseman', schemaVersion: 'digest_projection_v1' },
+          codex: ADMIN_DIGEST_CODEX,
         }) },
       ],
       maxTokens: 1100,
@@ -778,13 +779,15 @@ export async function runAdminDailyDigest(
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
   }, { merge: true });
-  await latestRef.set({
-    status: 'succeeded',
-    runId,
-    windowEndMs: windows.current.endMs,
-    updatedAtMs: now,
-    leaseRunId: admin.firestore.FieldValue.delete(),
-    leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
+  await db.runTransaction(async (transaction) => {
+    const latest = await transaction.get(latestRef);
+    if (latest.data()?.leaseRunId !== runId) {
+      throw new HttpsError('aborted', 'Digest lease was lost before finalization; cursor was not advanced.');
+    }
+    transaction.set(latestRef, {
+      status: 'succeeded', runId, windowEndMs: windows.current.endMs, updatedAtMs: now,
+      leaseRunId: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
+    }, { merge: true });
   });
 
   // Короткая запись в общий admin_log (виден в Audit-log без нового UI).
@@ -826,7 +829,12 @@ export async function runAdminDailyDigest(
       failedAtMs: Date.now(),
       errorCode: error instanceof Error ? error.name : 'unknown',
     }, { merge: true });
-    await latestRef.set({ leaseRunId: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete() }, { merge: true });
+    await db.runTransaction(async (transaction) => {
+      const latest = await transaction.get(latestRef);
+      if (latest.data()?.leaseRunId === runId) {
+        transaction.set(latestRef, { leaseRunId: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete() }, { merge: true });
+      }
+    });
     throw error;
   }
 }

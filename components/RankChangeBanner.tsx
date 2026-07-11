@@ -160,7 +160,7 @@ function RankChangeBanner({
         style={{
           backgroundColor: bg,
           borderColor: border,
-          borderWidth: 1,
+          borderWidth: 0,
           borderRadius: 14,
           paddingHorizontal: 14,
           paddingVertical: 12,

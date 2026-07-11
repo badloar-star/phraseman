@@ -190,7 +190,7 @@ const styles = StyleSheet.create<{
   card: {
     minHeight: 132,
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 18,
     paddingVertical: 14,
     overflow: 'hidden',
@@ -238,7 +238,7 @@ const styles = StyleSheet.create<{
     alignSelf: 'flex-start',
     minHeight: 23,
     borderRadius: 999,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 8,
     marginTop: 6,
     flexDirection: 'row',

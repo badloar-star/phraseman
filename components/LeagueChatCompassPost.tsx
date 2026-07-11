@@ -170,7 +170,7 @@ function LeagueChatCompassPost({ message, lang, t, f, icon, themeMode }: LeagueC
                     activeOpacity={0.8}
                     style={{
                       borderRadius: 12,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: chosen ? t.accent : t.border,
                       backgroundColor: chosen ? t.accent : 'transparent',
                       paddingHorizontal: 12,

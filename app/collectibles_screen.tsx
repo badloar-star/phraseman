@@ -366,7 +366,7 @@ function CardDetailModal({
                 paddingVertical: 4,
                 borderRadius: 999,
                 backgroundColor: `${rarityColor}26`,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: `${rarityColor}66`,
               }}
             >
@@ -382,7 +382,7 @@ function CardDetailModal({
                   height: 34,
                   borderRadius: 17,
                   backgroundColor: t.bgCard,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.border,
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -670,7 +670,7 @@ export default function CollectiblesScreen() {
                 paddingVertical: 5,
                 borderRadius: 999,
                 backgroundColor: t.bgCard,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: t.border,
               }}
             >

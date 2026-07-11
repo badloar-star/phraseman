@@ -1393,7 +1393,7 @@ export default function FlashcardsScreen() {
               <TextInput
                 style={{
                   backgroundColor: t.bgSurface,
-                  borderWidth: 1.5,
+                  borderWidth: 0,
                   borderColor: createStep === 'front' ? t.accent : t.border,
                   borderRadius: 14,
                   paddingHorizontal: 18, paddingVertical: 16,
@@ -1421,7 +1421,7 @@ export default function FlashcardsScreen() {
                 ref={backInputRef}
                 style={{
                   backgroundColor: t.bgSurface,
-                  borderWidth: 1.5,
+                  borderWidth: 0,
                   borderColor: createStep === 'back' ? t.accent : t.border,
                   borderRadius: 14,
                   paddingHorizontal: 18, paddingVertical: 16,
@@ -1448,7 +1448,7 @@ export default function FlashcardsScreen() {
                 ref={descriptionInputRef}
                 style={{
                   backgroundColor: t.bgSurface,
-                  borderWidth: 1.5,
+                  borderWidth: 0,
                   borderColor: createStep === 'description' ? t.accent : t.border,
                   borderRadius: 14,
                   paddingHorizontal: 18, paddingVertical: 16,
@@ -1472,7 +1472,7 @@ export default function FlashcardsScreen() {
               style={{
                 flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: canSave ? t.accent : t.bgSurface,
-                borderWidth: canSave ? 0 : 1, borderColor: t.border,
+                borderWidth: 0, borderColor: t.border,
                 borderRadius: 14, paddingVertical: 16, marginTop: 8,
               }}
               onPress={handleSave}
@@ -1517,7 +1517,7 @@ export default function FlashcardsScreen() {
           {loadError && (
             <TouchableOpacity
               onPress={loadAll}
-              style={{ marginTop: 16, backgroundColor: t.bgSurface, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 12, borderWidth: 1, borderColor: t.border }}
+              style={{ marginTop: 16, backgroundColor: t.bgSurface, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 12, borderWidth: 0, borderColor: t.border }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
@@ -1555,7 +1555,7 @@ export default function FlashcardsScreen() {
           {activeCat === 'custom' && communityPacksEnabled && CLOUD_SYNC_ENABLED && !IS_EXPO_GO && (
             <TouchableOpacity
               onPress={() => router.push('/community_pack_create' as any)}
-              style={{ marginTop: 14, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 12, borderWidth: 1, borderColor: t.accent }}
+              style={{ marginTop: 14, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 12, borderWidth: 0, borderColor: t.accent }}
             >
               <Text style={{ color: t.accent, fontWeight: '700', fontSize: f.body }}>
                 {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack', 'pt-BR': '+ Criar pacote', vi: '+ Tạo bộ thẻ', id: '+ Buat paket', tr: '+ Paket oluştur', pl: '+ Utwórz zestaw' })}
@@ -1573,7 +1573,7 @@ export default function FlashcardsScreen() {
             bottom: Math.max(bottomInset, 8) + 20,
             zIndex: 60,
             borderRadius: 12,
-            borderWidth: 1,
+            borderWidth: 0,
             borderColor: `${t.accent}66`,
             backgroundColor: `${t.accent}1F`,
             paddingHorizontal: 10,
@@ -1620,7 +1620,7 @@ export default function FlashcardsScreen() {
                   paddingHorizontal: 8,
                   paddingVertical: 5,
                   borderRadius: 10,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: `${t.accent}66`,
                   backgroundColor: `${t.accent}1A`,
                 }}
@@ -1638,7 +1638,7 @@ export default function FlashcardsScreen() {
                     style={{
                       flexDirection: 'row', alignItems: 'center', gap: 3,
                       paddingHorizontal: 10, paddingVertical: 5,
-                      borderRadius: 12, borderWidth: 1,
+                      borderRadius: 12, borderWidth: 0,
                       borderColor: activeFilter !== 'all' ? t.accent : t.border,
                       backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
                     }}
@@ -1697,7 +1697,7 @@ export default function FlashcardsScreen() {
               paddingVertical: 10,
               paddingHorizontal: 12,
               borderRadius: 15,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: t.accent,
               backgroundColor: t.bgCard,
               flexDirection: 'row',
@@ -1834,7 +1834,7 @@ export default function FlashcardsScreen() {
                 paddingVertical: 10,
                 paddingHorizontal: 14,
                 borderRadius: 12,
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: allFlipped ? packPremiumVisual.borderAccent : `${packPremiumVisual.borderAccent}55`,
                 backgroundColor: t.bgCard,
                 flexDirection: 'row',
@@ -1854,7 +1854,7 @@ export default function FlashcardsScreen() {
               style={{
                 marginHorizontal: 16, marginTop: 8, marginBottom: 4,
                 paddingVertical: 8, paddingHorizontal: 16,
-                borderRadius: 20, borderWidth: 1,
+                borderRadius: 20, borderWidth: 0,
                 borderColor: allFlipped ? t.accent : t.border,
                 backgroundColor: allFlipped ? t.accent + '18' : 'transparent',
                 flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
@@ -1875,7 +1875,7 @@ export default function FlashcardsScreen() {
               deleteHintAnim.setValue(0);
               setShowDeleteHint(true);
             }}
-            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' }}
+            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 0, borderColor: '#FF6B00' }}
           >
             <Text style={{ fontSize: 9, color: '#FF6B00', fontWeight: '800' }}>
               {triLang(lang, { ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', es: 'DEV: mostrar ayuda', 'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż wskazówkę' })}
@@ -1894,7 +1894,7 @@ export default function FlashcardsScreen() {
             marginHorizontal: 16, marginTop: 8, marginBottom: 4,
             flexDirection: 'row', alignItems: 'center', gap: 10,
             backgroundColor: t.bgSurface,
-            borderRadius: 12, borderWidth: 1, borderColor: t.border,
+            borderRadius: 12, borderWidth: 0, borderColor: t.border,
             paddingHorizontal: 14, paddingVertical: 10,
           }}>
             <Ionicons name="hand-left-outline" size={18} color={t.textSecond} />
@@ -2033,7 +2033,7 @@ export default function FlashcardsScreen() {
             bottom: Math.max(bottomInset, 8) + 20,
             zIndex: 60,
             borderRadius: 12,
-            borderWidth: 1,
+            borderWidth: 0,
             borderColor: `${t.accent}66`,
             backgroundColor: `${t.accent}1F`,
             paddingHorizontal: 10,
@@ -2076,8 +2076,8 @@ const st = StyleSheet.create({
   progressTrack:{ flex:1, height:6, borderRadius:3, overflow:'hidden' },
   progressFill: { height:'100%', borderRadius:3 },
   cardArea:     { paddingHorizontal:0, justifyContent:'center', alignItems:'center' },
-  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:22, alignItems:'center', justifyContent:'center' },
-  sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
+  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:0, padding:22, alignItems:'center', justifyContent:'center' },
+  sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:0},
   sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
   swipeHint:    { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:32, paddingTop:8, paddingBottom:32 },
   navBtnPrimary:{ flex:1, height:56, borderRadius:28, alignItems:'center', justifyContent:'center' },

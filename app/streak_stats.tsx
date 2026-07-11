@@ -951,7 +951,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             borderRadius: 18,
             padding: 16,
             marginBottom: 12,
-            borderWidth: 0.5,
+            borderWidth: 0,
             borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap'),
         }}>
       <Text style={{
@@ -1969,7 +1969,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
         justifyContent: 'center' as const,
         flexShrink: 0,
         backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.16)' : streakFreezeIconVariant.backgroundColor,
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: streakFreezeIconVariant.borderColor,
         shadowColor: streakFreezeIconVariant.accentColor,
         shadowOpacity: 0.28,
@@ -2175,7 +2175,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
               <View style={[
                     { width: 22, height: 22, borderRadius: 11, backgroundColor: streakDotSoftBg },
                     done && { backgroundColor: isGoldTheme ? (isToday ? GOLD_RICH.champagne : GOLD_RICH.metalGold) : streakAccent },
-                    isToday && !done && { backgroundColor: streakDotSoftBg, borderWidth: 2, borderColor: streakAccent },
+                    isToday && !done && { backgroundColor: streakDotSoftBg, borderWidth: 0, borderColor: streakAccent },
                 ]}/>
               <Text style={{ color: isToday ? t.textPrimary : (done ? t.textPrimary : t.textGhost), fontSize: 12, fontWeight: isToday ? '700' : '600' }}>{d}</Text>
             </View>);
@@ -2267,7 +2267,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 pl: "Seria zamrożona na dziś",
             })}
             </Text>
-          </View>) : (<TouchableOpacity activeOpacity={0.75} onPress={onFreezePress} disabled={chainShieldDays > 0} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: streakAccent, paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}>
+          </View>) : (<TouchableOpacity activeOpacity={0.75} onPress={onFreezePress} disabled={chainShieldDays > 0} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 0, borderColor: streakAccent, paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}>
             <View style={freezeChainIconFrameStyle}>
               <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={freezeActionIconSize}/>
             </View>
@@ -3129,7 +3129,7 @@ export default function StreakStats() {
       {/* Подтверждение траты осколков на заморозку */}
       <Modal transparent visible={freezeConfirmVisible} animationType="fade" onRequestClose={() => setFreezeConfirmVisible(false)}>
         <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center' }} onPress={() => setFreezeConfirmVisible(false)}>
-          <Pressable onPress={e => e.stopPropagation()} style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, width: '82%', alignItems: 'center', borderWidth: 1, borderColor: t.border }}>
+          <Pressable onPress={e => e.stopPropagation()} style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, width: '82%', alignItems: 'center', borderWidth: 0, borderColor: t.border }}>
             <Text style={{ fontSize: 40, marginBottom: 10 }}>❄️</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 6, textAlign: 'center' }}>
               {triLang(lang, {

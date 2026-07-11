@@ -259,7 +259,7 @@ function TaskRow({
           <View
             style={[
               styles.taskIcon,
-              { borderWidth: 1, borderColor: chrome.accent2 + '88', backgroundColor: chrome.accent2 + '18' },
+              { borderWidth: 0, borderColor: chrome.accent2 + '88', backgroundColor: chrome.accent2 + '18' },
             ]}
           >
             <Ionicons name="checkmark" size={22} color={chrome.accent2} />
@@ -945,8 +945,8 @@ const styles = StyleSheet.create({
   safe: { flex: 1 },
   fill: { flex: 1 },
   changePlanBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', alignItems: 'center', justifyContent: 'center', padding: 24 },
-  changePlanCard: { width: '100%', maxWidth: 420, borderRadius: 22, borderWidth: 1, padding: 22, alignItems: 'center' },
-  changePlanIconWrap: { width: 52, height: 52, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 14 },
+  changePlanCard: { width: '100%', maxWidth: 420, borderRadius: 22, borderWidth: 0, padding: 22, alignItems: 'center' },
+  changePlanIconWrap: { width: 52, height: 52, borderRadius: 16, borderWidth: 0, alignItems: 'center', justifyContent: 'center', marginBottom: 14 },
   changePlanTitle: { fontSize: 19, fontWeight: '800', textAlign: 'center', marginBottom: 8 },
   changePlanBody: { fontSize: 14, lineHeight: 20, textAlign: 'center', marginBottom: 20 },
   changePlanPrimary: { width: '100%', borderRadius: 14, paddingVertical: 14, alignItems: 'center' },
@@ -956,7 +956,7 @@ const styles = StyleSheet.create({
   loadingCenter: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   loadingRing: {
     width: 80, height: 80, borderRadius: 40,
-    borderWidth: 1.5, alignItems: 'center', justifyContent: 'center',
+    borderWidth: 0, alignItems: 'center', justifyContent: 'center',
   },
   header: {
     // Горизонтальный отступ даёт контейнер скролла (styles.scroll), здесь 0,
@@ -970,12 +970,12 @@ const styles = StyleSheet.create({
   },
   back: {
     width: 46, height: 46,
-    borderRadius: 14, borderWidth: 1,
+    borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   statsButton: {
     width: 44, height: 44,
-    borderRadius: 14, borderWidth: 1,
+    borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   headerCopy: { flex: 1, minWidth: 0 },
@@ -987,14 +987,14 @@ const styles = StyleSheet.create({
   streakBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
     paddingHorizontal: 11, paddingVertical: 7,
-    borderRadius: 16, borderWidth: 1,
+    borderRadius: 16, borderWidth: 0,
   },
   streakText: { fontSize: 12, lineHeight: 15, fontWeight: '900' },
   scroll: { paddingHorizontal: 12, paddingTop: 4, paddingBottom: 40, gap: 12 },
 
   // Hero
   heroCard: {
-    borderRadius: 14, borderWidth: 1,
+    borderRadius: 14, borderWidth: 0,
     padding: 18, gap: 0,
     elevation: 8, shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.18, shadowRadius: 20,
@@ -1013,7 +1013,7 @@ const styles = StyleSheet.create({
   heroCopy: { flex: 1, minWidth: 0, paddingTop: 2 },
   timePill: {
     alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: 5,
-    paddingHorizontal: 10, paddingVertical: 5, borderRadius: 14, borderWidth: 1,
+    paddingHorizontal: 10, paddingVertical: 5, borderRadius: 14, borderWidth: 0,
   },
   timePillText: { fontSize: 12, lineHeight: 15, fontWeight: '900' },
   heroFocus: { marginTop: 8, fontSize: 11, lineHeight: 14, fontWeight: '800', textTransform: 'uppercase' },
@@ -1033,11 +1033,11 @@ const styles = StyleSheet.create({
 
   // Done banner
   doneBanner: {
-    borderRadius: 14, borderWidth: 1,
+    borderRadius: 14, borderWidth: 0,
     padding: 14, flexDirection: 'row', gap: 12, alignItems: 'flex-start',
   },
   doneIconWrap: {
-    width: 46, height: 46, borderRadius: 14, borderWidth: 1,
+    width: 46, height: 46, borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   doneCopy: { flex: 1, minWidth: 0 },
@@ -1045,12 +1045,12 @@ const styles = StyleSheet.create({
   doneSub: { marginTop: 3, fontSize: 13, lineHeight: 18, fontWeight: '700' },
 
   recommendBanner: {
-    borderRadius: 14, borderWidth: 1,
+    borderRadius: 14, borderWidth: 0,
     padding: 14, flexDirection: 'row', gap: 12, alignItems: 'flex-start',
     marginTop: 12,
   },
   recommendIconWrap: {
-    width: 46, height: 46, borderRadius: 14, borderWidth: 1,
+    width: 46, height: 46, borderRadius: 14, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   recommendCopy: { flex: 1, minWidth: 0 },
@@ -1058,7 +1058,7 @@ const styles = StyleSheet.create({
   recommendText: { marginTop: 3, fontSize: 13, lineHeight: 18, fontWeight: '700' },
 
   // Section cards
-  sectionCard: { borderRadius: 14, borderWidth: 1, padding: 16, overflow: 'hidden' },
+  sectionCard: { borderRadius: 14, borderWidth: 0, padding: 16, overflow: 'hidden' },
   sectionHeader: {
     flexDirection: 'row', alignItems: 'center',
     justifyContent: 'space-between', gap: 12, marginBottom: 14,
@@ -1067,7 +1067,7 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: 20, lineHeight: 25, fontWeight: '900', marginTop: 2 },
   sectionHeaderRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   countBadge: {
-    minWidth: 36, height: 36, borderRadius: 18, borderWidth: 1,
+    minWidth: 36, height: 36, borderRadius: 18, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8,
   },
   countBadgeText: { fontSize: 15, lineHeight: 19, fontWeight: '900' },
@@ -1075,7 +1075,7 @@ const styles = StyleSheet.create({
   // Tasks
   taskList: { gap: 8 },
   taskRow: {
-    minHeight: 70, borderRadius: 14, borderWidth: 1,
+    minHeight: 70, borderRadius: 14, borderWidth: 0,
     flexDirection: 'row', alignItems: 'center',
     paddingHorizontal: 12, paddingVertical: 10, gap: 12,
   },
@@ -1100,7 +1100,7 @@ const styles = StyleSheet.create({
   },
   nextBadgeText: { fontSize: 16, fontWeight: '900' },
   addMoreRow: {
-    height: 48, borderRadius: 14, borderWidth: 1, borderStyle: 'dashed',
+    height: 48, borderRadius: 14, borderWidth: 0, borderStyle: 'dashed',
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
     marginTop: 4,
   },
@@ -1110,7 +1110,7 @@ const styles = StyleSheet.create({
 
   // Dev
   devLink: {
-    height: 38, borderRadius: 12, borderWidth: 1,
+    height: 38, borderRadius: 12, borderWidth: 0,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
   },
   devLinkText: { fontSize: 11, fontWeight: '900' },

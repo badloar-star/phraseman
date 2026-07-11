@@ -1986,7 +1986,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     styles.eliteRadarRingStatic,
                     {
                         borderColor: t.accent,
-                        borderWidth: 1.5,
+                        borderWidth: 0,
                         opacity: eliteRadarPulse.interpolate({
                             inputRange: [0, 0.3, 0.7, 1],
                             outputRange: [0.55, 0.25, 0, 0],
@@ -2264,7 +2264,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   wrapStyle={[styles.arenaLaunchTouch, !myRank.isHydrated && styles.eliteDisabled]}
                   style={[
                     styles.arenaLaunchGradient,
-                    { borderColor: arenaGlass.ctaBorder, borderWidth: arenaGlass.ctaBorderWidth },
+                    { borderColor: arenaGlass.ctaBorder, borderWidth: 0},
                   ]}
                 >
                   {themeMode === 'gold' && <GoldBevel radius={20} intensity="strong"/>}
@@ -2903,7 +2903,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        borderWidth: 1,
+        borderWidth: 0,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -2925,7 +2925,7 @@ const styles = StyleSheet.create({
         minWidth: 66,
         height: 38,
         borderRadius: 19,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 11,
         flexDirection: 'row',
         alignItems: 'center',
@@ -2940,7 +2940,7 @@ const styles = StyleSheet.create({
     arenaTicketText: { fontWeight: '900', fontVariant: ['tabular-nums'] },
     rankBadge: {
         flexDirection: 'row', alignItems: 'center', gap: 4,
-        borderRadius: 10, borderWidth: 1, paddingHorizontal: 10, paddingVertical: 5,
+        borderRadius: 10, borderWidth: 0, paddingHorizontal: 10, paddingVertical: 5,
     },
     rankEmoji: { fontSize: 16 },
     rankText: { fontWeight: '600' },
@@ -2957,11 +2957,11 @@ const styles = StyleSheet.create({
     infoZone: {
         minHeight: 0,
     },
-    card: { borderRadius: 20, borderWidth: 1, padding: 20, gap: 14 },
+    card: { borderRadius: 20, borderWidth: 0, padding: 20, gap: 14 },
     cardLabel: { fontWeight: '500' },
     sizeButtons: { flexDirection: 'row', gap: 10 },
     sizeBtn: {
-        flex: 1, height: 52, borderRadius: 14, borderWidth: 1.5,
+        flex: 1, height: 52, borderRadius: 14, borderWidth: 0,
         alignItems: 'center', justifyContent: 'center',
     },
     sizeBtnText: { fontWeight: '700' },
@@ -2970,7 +2970,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignSelf: 'center',
         borderRadius: 28,
-        borderWidth: 1,
+        borderWidth: 0,
         padding: 20,
         overflow: 'hidden',
         gap: 16,
@@ -2993,9 +2993,9 @@ const styles = StyleSheet.create({
         right: 1,
         top: 1,
         height: '46%',
-        borderTopWidth: 1,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
         borderTopLeftRadius: 27,
         borderTopRightRadius: 27,
         opacity: 0.85,
@@ -3027,7 +3027,7 @@ const styles = StyleSheet.create({
     arenaStatusPill: {
         minHeight: 34,
         borderRadius: 17,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 11,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3103,7 +3103,7 @@ const styles = StyleSheet.create({
     arenaCostChip: {
         minHeight: 30,
         borderRadius: 15,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3122,7 +3122,7 @@ const styles = StyleSheet.create({
     arenaCommandButton: {
         minHeight: 76,
         borderRadius: 20,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 16,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3153,7 +3153,7 @@ const styles = StyleSheet.create({
     arenaInfoRow: {
         minHeight: 82,
         borderRadius: 20,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 16,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3167,7 +3167,7 @@ const styles = StyleSheet.create({
     arenaCommandActionText: { fontWeight: '900', flexShrink: 0 },
     arenaFriendsPanel: {
         borderRadius: 20,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingVertical: 12,
         gap: 12,
     },
@@ -3178,7 +3178,7 @@ const styles = StyleSheet.create({
         width: 86,
         minHeight: 96,
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingVertical: 10,
         paddingHorizontal: 8,
         alignItems: 'center',
@@ -3229,7 +3229,7 @@ const styles = StyleSheet.create({
     arenaIncomingInviteCard: {
         minHeight: 92,
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
         padding: 12,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3268,7 +3268,7 @@ const styles = StyleSheet.create({
         flexShrink: 1,
     },
     arenaIncomingInviteDecline: {
-        borderWidth: 1,
+        borderWidth: 0,
         backgroundColor: 'rgba(255,255,255,0.03)',
     },
     arenaIncomingInviteButtonText: {
@@ -3278,7 +3278,7 @@ const styles = StyleSheet.create({
     arenaEventStrip: {
         minHeight: 88,
         borderRadius: 22,
-        borderWidth: 1,
+        borderWidth: 0,
         padding: 14,
         flexDirection: 'row',
         alignItems: 'center',
@@ -3309,7 +3309,7 @@ const styles = StyleSheet.create({
     arenaEventAction: {
         minHeight: 34,
         borderRadius: 17,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 12,
         alignItems: 'center',
         justifyContent: 'center',
@@ -3319,7 +3319,7 @@ const styles = StyleSheet.create({
     /* ─── ELITE CARD ─── */
     eliteCard: {
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: 'rgba(255,255,255,0.13)',
         backgroundColor: 'rgba(255,255,255,0.055)',
         padding: 14,
@@ -3420,7 +3420,7 @@ const styles = StyleSheet.create({
         gap: 8,
         height: 50,
         borderRadius: 14,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 14,
     },
     eliteSecondaryBtnIcon: {
@@ -3447,7 +3447,7 @@ const styles = StyleSheet.create({
     /* ─── THRONE CARD ─── */
     throneCard: {
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
         overflow: 'hidden',
         minHeight: 82,
     },
@@ -3478,7 +3478,7 @@ const styles = StyleSheet.create({
     throneTitle: { fontWeight: '900', letterSpacing: 0 },
     throneSub: { fontWeight: '500', lineHeight: 17 },
     secondaryBtn: {
-        borderRadius: 18, height: 56, borderWidth: 1,
+        borderRadius: 18, height: 56, borderWidth: 0,
         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
     },
     secondaryBtnText: { fontWeight: '600' },
@@ -3495,7 +3495,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 14,
         borderRadius: 14,
-        borderWidth: 1,
+        borderWidth: 0,
         marginBottom: 8,
     },
     queueActivityBadgeText: {
@@ -3554,7 +3554,7 @@ const styles = StyleSheet.create({
     },
     searchingLabel: { fontWeight: '500' },
     cancelBtn: {
-        borderWidth: 1,
+        borderWidth: 0,
         borderRadius: 12,
         minHeight: 48,
         paddingHorizontal: 20,
@@ -3569,7 +3569,7 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 14,
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
     },
     eliteQueuePanel: {
         minHeight: 194,
@@ -3584,7 +3584,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 8,
         overflow: 'hidden',
-        borderWidth: 1.5,
+        borderWidth: 0,
         borderColor: 'rgba(255,255,255,0.18)',
         backgroundColor: 'rgba(0,0,0,0.32)',
     },
@@ -3634,7 +3634,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 6,
         borderRadius: 12,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 14,
         paddingVertical: 7,
         marginTop: 4,
@@ -3655,7 +3655,7 @@ const styles = StyleSheet.create({
         gap: 12,
         backgroundColor: 'rgba(255,255,255,0.06)',
         borderRadius: 14,
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: 'rgba(255,255,255,0.1)',
         paddingVertical: 11,
         paddingHorizontal: 14,
@@ -3697,7 +3697,7 @@ const styles = StyleSheet.create({
     queueAcceptBtn: {
         minHeight: 48,
         borderRadius: 12,
-        borderWidth: 1.5,
+        borderWidth: 0,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -3715,7 +3715,7 @@ const styles = StyleSheet.create({
         width: '100%',
         maxWidth: 430,
         borderRadius: 22,
-        borderWidth: 1,
+        borderWidth: 0,
         padding: 16,
         shadowOpacity: 0.34,
         shadowRadius: 22,
@@ -3731,7 +3731,7 @@ const styles = StyleSheet.create({
         width: 58,
         height: 58,
         borderRadius: 16,
-        borderWidth: 1,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
@@ -3784,7 +3784,7 @@ const styles = StyleSheet.create({
     throneTopRow: {
         minHeight: 72,
         borderRadius: 16,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 12,
         paddingVertical: 10,
         flexDirection: 'row',
@@ -3795,7 +3795,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 15,
-        borderWidth: 1,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
@@ -3835,7 +3835,7 @@ const styles = StyleSheet.create({
     throneTopEmpty: {
         minHeight: 86,
         borderRadius: 16,
-        borderWidth: 1,
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 14,

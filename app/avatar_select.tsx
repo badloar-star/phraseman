@@ -764,7 +764,7 @@ export default function AvatarSelect() {
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
         <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
           <TapScale
-            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
+            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
             onPress={() => { hapticTap(); safeRouterBack(router); }}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
@@ -786,7 +786,7 @@ export default function AvatarSelect() {
             <TouchableOpacity
               activeOpacity={0.82}
               onPress={resetToLevelAvatar}
-              style={{ borderRadius: 16, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, paddingVertical: 12, alignItems: 'center' }}
+              style={{ borderRadius: 16, borderWidth: 0, borderColor: t.border, backgroundColor: t.bgCard, paddingVertical: 12, alignItems: 'center' }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>Вернуть аватар уровня</Text>
             </TouchableOpacity>
@@ -808,14 +808,14 @@ export default function AvatarSelect() {
               alignItems: 'center',
               gap: 12,
               borderRadius: 16,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: profileCardVisual.accentStrong,
               backgroundColor: t.bgCard,
               paddingHorizontal: 14,
               paddingVertical: 13,
             }}
           >
-            <View style={{ width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: profileCardVisual.accentSoft, borderWidth: 1, borderColor: profileCardVisual.accentStrong }}>
+            <View style={{ width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: profileCardVisual.accentSoft, borderWidth: 0, borderColor: profileCardVisual.accentStrong }}>
               <Ionicons name="card" size={22} color={profileCardVisual.accent} />
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
@@ -910,7 +910,7 @@ export default function AvatarSelect() {
                 padding: 8,
               }}
             >
-              <View style={{ width: 54, height: 54, borderRadius: 27, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ width: 54, height: 54, borderRadius: 27, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name="close" size={22} color={t.textMuted} />
               </View>
               <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800', marginTop: 7 }}>Без ауры</Text>

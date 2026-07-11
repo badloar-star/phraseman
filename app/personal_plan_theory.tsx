@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 13,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     opacity: 0.85,

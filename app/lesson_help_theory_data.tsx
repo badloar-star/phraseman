@@ -49,14 +49,14 @@ function Formula({ slots, example, t, f }: { slots: FormulaSlot[]; example?: str
     <View
       accessible
       accessibilityLabel={a11y}
-      style={{ backgroundColor: c.cardBg, borderRadius: 14, borderWidth: 1, borderColor: c.border, padding: 14, marginVertical: 10 }}
+      style={{ backgroundColor: c.cardBg, borderRadius: 14, borderWidth: 0, borderColor: c.border, padding: 14, marginVertical: 10 }}
     >
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 7 }}>
         {slots.map((s, i) => {
           const rs = roleStyle(s.role);
           // На светлых темах добавляем тонкий бордер цвета роли, чтобы «кубик» читался при бледной заливке.
           const chipBorder = isLight && s.role !== 'neutral'
-            ? { borderWidth: 1, borderColor: `${rs.fg}55` }
+            ? { borderWidth: 0, borderColor: `${rs.fg}55` }
             : {};
           return (
             <React.Fragment key={`${s.text}-${i}`}>
@@ -86,7 +86,7 @@ function Transform({ from, to, t, label }: { from: React.ReactNode; to: React.Re
     <View
       accessible={!!label}
       accessibilityLabel={label}
-      style={{ backgroundColor: c.cardBg, borderRadius: 14, borderWidth: 1, borderColor: c.border, padding: 13, marginVertical: 10, alignItems: 'center' }}
+      style={{ backgroundColor: c.cardBg, borderRadius: 14, borderWidth: 0, borderColor: c.border, padding: 13, marginVertical: 10, alignItems: 'center' }}
     >
       <View style={{ alignItems: 'center' }}>{from}</View>
       <Ionicons name="arrow-down" size={18} color={c.muted} style={{ marginVertical: 5 }} />
@@ -119,7 +119,7 @@ function ExampleCard({
     <View
       accessible
       accessibilityLabel={`${eng}. ${rus}`}
-      style={{ backgroundColor: c.cardBg, borderRadius: 10, borderWidth: 0.5, borderColor: c.border, borderLeftWidth: 3, borderLeftColor: `${c.roleVerb}99`, paddingVertical: 9, paddingHorizontal: 11, marginBottom: 7 }}
+      style={{ backgroundColor: c.cardBg, borderRadius: 10, borderWidth: 0, borderColor: c.border, borderLeftWidth: 3, borderLeftColor: `${c.roleVerb}99`, paddingVertical: 9, paddingHorizontal: 11, marginBottom: 7 }}
     >
       <ColoredPhrase text={eng} t={t} f={f} subject={subject} link={link} verb={verb} />
       <Text style={{ color: c.muted, fontSize: f.sub - 1, marginTop: 2 }} maxFontSizeMultiplier={1.2}>{rus}</Text>
@@ -141,7 +141,7 @@ function DuoCards({ left, right, t, f }: { left: DuoColumn; right: DuoColumn; t:
     const tc = tagColors(col.tagRole);
     const hi = col.highlight?.toLowerCase();
     return (
-      <View style={{ flex: 1, backgroundColor: c.cardBg, borderRadius: 12, borderWidth: 0.5, borderColor: c.border, padding: 11 }}>
+      <View style={{ flex: 1, backgroundColor: c.cardBg, borderRadius: 12, borderWidth: 0, borderColor: c.border, padding: 11 }}>
         <View style={{ alignSelf: 'flex-start', backgroundColor: tc.bg, borderRadius: 6, paddingHorizontal: 8, paddingVertical: 2, marginBottom: 6 }}>
           <Text style={{ color: tc.fg, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.15}>{col.tag}</Text>
         </View>
@@ -199,7 +199,7 @@ function Accordion({
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <View style={{ backgroundColor: c.cardBg, borderRadius: 12, borderWidth: 0.5, borderColor: c.border, marginVertical: 8, overflow: 'hidden' }}>
+    <View style={{ backgroundColor: c.cardBg, borderRadius: 12, borderWidth: 0, borderColor: c.border, marginVertical: 8, overflow: 'hidden' }}>
       <TouchableOpacity
         onPress={() => setOpen((v) => !v)}
         activeOpacity={0.7}

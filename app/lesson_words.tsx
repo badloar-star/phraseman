@@ -3215,7 +3215,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             <Text style={{ color:sx.muted, fontSize:f.sub, letterSpacing:0.5 }}>
               {pickTriLang(lang, { ru: 'Вставь слово в предложение:', uk: 'Встав слово у речення:', es: 'Coloca la palabra en la frase:', 'pt-BR': 'Coloque a palavra na frase:', vi: 'Điền từ vào câu:', id: 'Masukkan kata ke dalam kalimat:', tr: 'Kelimeyi cümleye yerleştir:', pl: 'Wstaw słowo do zdania:' })}
             </Text>
-            <View style={{ backgroundColor: round.bg, borderRadius:16, paddingHorizontal:20, paddingVertical:16, borderWidth:1, borderColor: round.color + '40' }}>
+            <View style={{ backgroundColor: round.bg, borderRadius:16, paddingHorizontal:20, paddingVertical:16, borderWidth:0, borderColor: round.color + '40' }}>
               {(() => {
                 const parts = current.question.split('...');
                 return (
@@ -3273,7 +3273,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               withHaptic={false}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}
-              style={{ minHeight:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
+              style={{ minHeight:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: 0, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
               onPress={() => { if (chosen !== null) return; flash(`${i}`); handleChoice(opt); }}
               disabled={chosen !== null}
             >

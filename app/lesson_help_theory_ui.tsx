@@ -198,7 +198,7 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
       style={{ marginVertical: 10 }}
       onLayout={e => setContainerW(e.nativeEvent.layout.width)}
     >
-      <View style={{ borderRadius: 10, borderWidth: 1, borderColor: c.border, overflow: 'hidden' }}>
+      <View style={{ borderRadius: 10, borderWidth: 0, borderColor: c.border, overflow: 'hidden' }}>
         <Animated.ScrollView
           horizontal
           decelerationRate="normal"

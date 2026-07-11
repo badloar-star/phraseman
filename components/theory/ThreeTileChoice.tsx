@@ -103,7 +103,7 @@ export default function ThreeTileChoice({
               ? { color: onBrightText('#0F1115'), backgroundColor: theme.correct }
               : picked
                 ? { color: theme.wrong, borderColor: theme.wrong, borderWidth: 1 }
-                : { color: theme.textMuted, borderColor: accent, borderWidth: 1 },
+                : { color: theme.textMuted, borderColor: accent, borderWidth: 0},
           ]}
         >
           {' '}{picked ?? '___'}{' '}
@@ -160,7 +160,7 @@ export default function ThreeTileChoice({
 }
 
 const styles = StyleSheet.create({
-  wrap: { padding: 14, borderRadius: 14, borderWidth: 1, marginTop: 10 },
+  wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
   hint: { fontSize: 11, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '600', marginBottom: 10, textAlign: 'center' },
   q: { fontSize: 17, lineHeight: 28, textAlign: 'center', marginBottom: 12 },
   gap: { borderRadius: 8, overflow: 'hidden', fontWeight: '600' },

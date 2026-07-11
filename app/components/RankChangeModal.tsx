@@ -636,7 +636,7 @@ const s = StyleSheet.create({
   },
   rankBadge: {
     flexDirection: 'row', gap: 8, alignItems: 'center',
-    borderWidth: 1.5, borderRadius: 22,
+    borderWidth: 0, borderRadius: 22,
     paddingHorizontal: 22, paddingVertical: 9,
   },
   rankTier:  { fontSize: 19, fontWeight: '900' },

@@ -1276,7 +1276,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 380,
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingVertical: 22,
     paddingHorizontal: 20,
     alignItems: 'center',
@@ -1287,7 +1287,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 16,
     borderRadius: 16,
-    borderWidth: 1.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1327,7 +1327,7 @@ const styles = StyleSheet.create({
   dramaBanner: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
     alignSelf: 'center', paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999,
-    borderWidth: 1, marginTop: 10,
+    borderWidth: 0, marginTop: 10,
   },
   dramaBannerText: { fontWeight: '800', letterSpacing: 0.3 },
 
@@ -1342,7 +1342,7 @@ const styles = StyleSheet.create({
   options: { paddingHorizontal: 16, gap: 9 },
   optionBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
-    borderRadius: 16, borderWidth: 1.5,
+    borderRadius: 16, borderWidth: 0,
     paddingVertical: 14, paddingHorizontal: 14, minHeight: 54,
   },
   optionLetter: {
@@ -1353,7 +1353,7 @@ const styles = StyleSheet.create({
 
   ruleBox: {
     marginHorizontal: 16, marginTop: 10,
-    borderRadius: 14, borderWidth: 1, padding: 12,
+    borderRadius: 14, borderWidth: 0, padding: 12,
   },
   ruleText: { lineHeight: 18 },
 
@@ -1367,7 +1367,7 @@ const styles = StyleSheet.create({
   confirmCard: {
     width: '100%',
     borderRadius: 24,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 24,
     gap: 12,
     alignItems: 'center',

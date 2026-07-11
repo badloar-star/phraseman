@@ -188,7 +188,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   return (
     <View style={{ flex: 1, gap: 16 }}>
       {/* Перевод — задание */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+      <View style={[styles.translationBox, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', borderWidth: 0, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
         <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
           {triLang(lang, {
@@ -259,7 +259,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
                 {
                   backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard),
                   borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
-                  borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                  borderWidth: 0,
                   borderRadius: isCompassTheme ? 8 : 10,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                 },
@@ -277,20 +277,20 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         })}
       </View>
 
-      {/* Кнопка проверки */}
+      {/* ???????????? ???????????????? */}
       <TouchableOpacity
         onPress={check}
-        disabled={selected.length === 0 || feedback !== 'none'}
+        disabled={!canCheck || feedback !== 'none'}
         style={[styles.checkBtn, {
-          backgroundColor: isCompassTheme ? (selected.length > 0 ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : selected.length > 0 ? '#4A9EFF' : t.bgSurface,
-          borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+          backgroundColor: isCompassTheme ? (canCheck ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : canCheck ? '#4A9EFF' : t.bgSurface,
+          borderWidth: 0,
           borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent',
           borderRadius: isCompassTheme ? 9 : 16,
           overflow: isCompassTheme ? 'hidden' : 'visible',
-          opacity: selected.length > 0 ? 1 : 0.4,
+          opacity: canCheck ? 1 : 0.4,
         }]}
       >
-        {isCompassTheme ? <CompassDepthSurface radius={9} cream={selected.length > 0} quiet={selected.length === 0} /> : null}
+        {isCompassTheme ? <CompassDepthSurface radius={9} cream={canCheck} quiet={!canCheck} /> : null}
         <Text style={[styles.checkBtnText, { fontSize: f.body }]}>
           {triLang(lang, {
             ru: 'Проверить',
@@ -385,7 +385,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   return (
     <View style={{ flex: 1, gap: 16 }}>
       {/* Перевод */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+      <View style={[styles.translationBox, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', borderWidth: 0, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
         <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
           {triLang(lang, {
@@ -812,7 +812,7 @@ const styles = StyleSheet.create({
   doneStats: {
     flexDirection: 'row',
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     overflow: 'hidden',
     marginBottom: 32,
     width: '100%',

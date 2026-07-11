@@ -73,10 +73,10 @@ function NotificationPermissionModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-        <View style={{ width: '100%', maxWidth: 390, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 18, borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, padding: 20, overflow: 'hidden', ...(isCompassTheme ? compassShadow(3) : null) }}>
+        <View style={{ width: '100%', maxWidth: 390, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 18, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, padding: 20, overflow: 'hidden', ...(isCompassTheme ? compassShadow(3) : null) }}>
           {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <View style={{ alignItems: 'center', marginBottom: 10 }}>
-            <View style={{ width: 54, height: 54, borderRadius: isCompassTheme ? 10 : 27, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.accent}55`, overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
+            <View style={{ width: 54, height: 54, borderRadius: isCompassTheme ? 10 : 27, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.accent}55`, overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
               {isCompassTheme && <CompassDepthSurface radius={10} selected />}
               <Ionicons name="notifications-outline" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
             </View>
@@ -99,7 +99,7 @@ function NotificationPermissionModal({
           </View>
 
           <View style={{ flexDirection: 'row', gap: 10, marginTop: 20 }}>
-            <TouchableOpacity onPress={onCancel} activeOpacity={0.8} style={{ flex: 1, borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
+            <TouchableOpacity onPress={onCancel} activeOpacity={0.8} style={{ flex: 1, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
               {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
                 {cancelLabel ??
@@ -115,7 +115,7 @@ function NotificationPermissionModal({
                   })}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ flex: 1, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
+            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ flex: 1, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
               {isCompassTheme && <CompassDepthSurface radius={9} cream />}
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.body }}>
                 {confirmLabel ??

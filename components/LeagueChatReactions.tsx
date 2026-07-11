@@ -105,7 +105,7 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
                 paddingVertical: 3,
                 borderRadius: 999,
                 backgroundColor: mine ? t.accent : t.bgSurface,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: mine ? t.accent : t.border,
               }}
             >
@@ -135,7 +135,7 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
             paddingHorizontal: compact ? 6 : 7,
             paddingVertical: 3,
             borderRadius: 999,
-            borderWidth: 0.5,
+            borderWidth: 0,
             borderColor: t.border,
             opacity: 0.7,
           }}
@@ -154,7 +154,7 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
             padding: 5,
             borderRadius: 999,
             backgroundColor: t.bgSurface,
-            borderWidth: 0.5,
+            borderWidth: 0,
             borderColor: t.border,
           }}
         >

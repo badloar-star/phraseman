@@ -185,7 +185,7 @@ function RankChangeTestModal({ visible, mode, delta, onClose, lang }: Props) {
           style={{
             backgroundColor: t.bgCard,
             borderRadius: 20,
-            borderWidth: 1, borderColor: t.border,
+            borderWidth: 0, borderColor: t.border,
             maxHeight: '92%',
             overflow: 'hidden',
           }}
@@ -218,7 +218,7 @@ function RankChangeTestModal({ visible, mode, delta, onClose, lang }: Props) {
 
             <View style={{
                 backgroundColor: t.bgSurface, borderRadius: 16, padding: 14,
-                borderWidth: 0.5, borderColor: t.border,
+                borderWidth: 0, borderColor: t.border,
                 flexDirection: 'row', alignItems: 'center', gap: 12,
               }}>
                 {sampleLeague.imageUri && (
@@ -259,7 +259,7 @@ function RankChangeTestModal({ visible, mode, delta, onClose, lang }: Props) {
             <View style={{
               borderRadius: 16,
               overflow: 'hidden',
-              borderWidth: 0.5,
+              borderWidth: 0,
               borderColor: t.border,
             }}>
               {rows.map((row, i) => renderClubRow(row, i))}

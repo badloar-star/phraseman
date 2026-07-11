@@ -471,7 +471,7 @@ const styles = StyleSheet.create({
   subtitle: { textAlign: 'center', lineHeight: 22, marginBottom: 4 },
   dots: { flexDirection: 'row', gap: 8 },
   dot: {
-    width: 14, height: 14, borderRadius: 7, borderWidth: 1.5,
+    width: 14, height: 14, borderRadius: 7, borderWidth: 0,
   },
   hintPremium: { textAlign: 'center', marginTop: 4 },
   shardBtn: {

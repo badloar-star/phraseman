@@ -442,7 +442,7 @@ export default function ArenaLeaderboardScreen() {
                   height: 44,
                   borderRadius: 22,
                   backgroundColor: t.bgCard,
-                  borderWidth: 0.5,
+                  borderWidth: 0,
                   borderColor: t.border,
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -473,7 +473,7 @@ export default function ArenaLeaderboardScreen() {
                   marginRight: 4,
                   backgroundColor:
                     disabledCloud || manualRefreshBusy || refreshOnCooldown ? '#4A4A4A' : t.bgCard,
-                  borderWidth: 0.5,
+                  borderWidth: 0,
                   borderColor:
                     disabledCloud || manualRefreshBusy || refreshOnCooldown ? '#6A6A6A' : t.border,
                   borderRadius: 10,
@@ -721,7 +721,7 @@ export default function ArenaLeaderboardScreen() {
                         </Text>
                       </View>
                       {isMe && (
-                        <View style={{ marginHorizontal: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>
+                        <View style={{ marginHorizontal: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0, borderColor: t.accent + '55' }}>
                           <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
                             {triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                           </Text>
@@ -782,7 +782,7 @@ export default function ArenaLeaderboardScreen() {
                     paddingVertical: 12,
                     backgroundColor: t.accentBg,
                     borderRadius: 12,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: t.accent + '44',
                   }}
                 >

@@ -181,7 +181,7 @@ export default function AiLimitUpsellCard({
 const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: 0,
     elevation: 6,
     gap: 12,
     overflow: 'hidden',

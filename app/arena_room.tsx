@@ -701,7 +701,7 @@ export default function ArenaRoomScreen() {
               <TapScale
                 onPress={handleJoin}
                 disabled={loadingRoom || !codeInput}
-                style={{ paddingHorizontal: 16, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: codeInput ? t.accent + '22' : t.bgSurface, borderWidth: codeInput ? 1 : 0, borderColor: codeInput ? t.accent : 'transparent', flexDirection: 'row', gap: 6 }}
+                style={{ paddingHorizontal: 16, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: codeInput ? t.accent + '22' : t.bgSurface, borderWidth: 0, borderColor: codeInput ? t.accent : 'transparent', flexDirection: 'row', gap: 6 }}
               >
                 <Ionicons name="enter-outline" size={20} color={codeInput ? t.accent : t.textMuted} />
                 <Text style={{ color: codeInput ? t.accent : t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
@@ -809,7 +809,7 @@ export default function ArenaRoomScreen() {
                 <View style={{ gap: 6 }}>
                   <TapScale
                     onPress={() => shareArenaLiveRoom(room, lang)}
-                    style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 1, borderColor: t.accent + '88', backgroundColor: t.accent + '15' }}
+                    style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 0, borderColor: t.accent + '88', backgroundColor: t.accent + '15' }}
                   >
                     <Ionicons name="share-social" size={15} color={t.accent} />
                     <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '800' }}>
@@ -828,7 +828,7 @@ export default function ArenaRoomScreen() {
                   {meIsHost && (
                     <TapScale
                       onPress={handleClose}
-                      style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 1, borderColor: '#EF444488', backgroundColor: '#EF444415' }}
+                      style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 0, borderColor: '#EF444488', backgroundColor: '#EF444415' }}
                     >
                       <Ionicons name="close-circle-outline" size={15} color={monoIcon(themeMode, '#EF4444')} />
                       <Text style={{ color: monoIcon(themeMode, '#EF4444'), fontSize: f.caption, fontWeight: '800' }}>

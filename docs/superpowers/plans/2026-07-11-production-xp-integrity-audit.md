@@ -113,7 +113,7 @@ export type MigrationEvidence =
   | { kind: 'pattern_only'; pattern: '250_to_400' | 'repeated_startup_migration'; markerPresent: boolean }
   | { kind: 'none' | 'incomplete' };
 export type EffectiveWindow = { fromMsInclusive: number; toMsExclusive: number | null; provenance: 'release_tag' | 'build_manifest' | 'verified_release_commit' };
-export type LevelFormulaSnapshot = { sourceCommit: string; formulaId: string; effective: EffectiveWindow };
+export type LevelFormulaSnapshot = { sourceCommit: string; formulaId: string; effective: EffectiveWindow; totalXpThresholds: readonly number[]; maxLevel: number };
 export type AchievementPrerequisite =
   | { kind: 'lifetime_xp'; minimum: number }
   | { kind: 'weekly_xp'; minimum: number }
@@ -121,10 +121,21 @@ export type AchievementPrerequisite =
   | { kind: 'unsupported'; ruleId: string };
 export type CatalogReward = { achievementId: string; xp: number; prerequisite: AchievementPrerequisite };
 export type CatalogSnapshot = { commit: string; appVersion: string | null; effective: EffectiveWindow; rewards: ReadonlyMap<string, CatalogReward>; levelFormula: LevelFormulaSnapshot; complete: boolean };
+export type PrerequisiteEvidence =
+  | { eventId: string; prerequisite: AchievementPrerequisite; state: 'exact'; valueBefore: number; source: 'server_result' | 'immutable_event_chain' }
+  | { eventId: string; prerequisite: AchievementPrerequisite; state: 'missing' | 'ambiguous' };
+export type UserCutoverEvidence = {
+  progressServerAuthoritative: boolean;
+  progressServerCutoverAtMs: number | null;
+  progressMigratedAtMs: number | null;
+  xpLevelRestoreAtMs: number | null;
+  progressServerStateXp: number | null;
+  migrationDocument: { exists: boolean; createdAtMs: number | null; keys: readonly string[] };
+};
 export type AliasEvidence = { uid: string; canonicalUid: string; linkage: 'canonical_pointer' | 'duplicate_pointer' | 'shared_auth_uid'; identityMergedAtMs: number | null; events: readonly NormalizedAuditEvent[]; complete: boolean };
-export type RawUser = { uid: string; firebaseAuthUid: string | null; canonicalStableId: string | null; duplicateOfStableId: string | null; identityHidden: boolean; identityMergedAtMs: number | null; progress: Readonly<Record<string, unknown>> };
+export type RawUser = { uid: string; firebaseAuthUid: string | null; canonicalStableId: string | null; duplicateOfStableId: string | null; identityHidden: boolean; identityMergedAtMs: number | null; progress: Readonly<Record<string, unknown>>; cutover: UserCutoverEvidence };
 export type MirrorValues = { leaderboardXp: number | null; arenaXp: number | null; leagueXp: number | null };
-export type AccountAuditInput = { uid: string; currentXp: number; canonicalEvents: readonly NormalizedAuditEvent[]; aliases: readonly AliasEvidence[]; baseline: LedgerBaselineEvidence; migration: MigrationEvidence; mirrors: MirrorValues; completeness: EvidenceCompleteness };
+export type AccountAuditInput = { uid: string; currentXp: number; canonicalEvents: readonly NormalizedAuditEvent[]; aliases: readonly AliasEvidence[]; baseline: LedgerBaselineEvidence; migration: MigrationEvidence; prerequisites: readonly PrerequisiteEvidence[]; mirrors: MirrorValues; completeness: EvidenceCompleteness };
 export type AccountAuditResult = { classification: IntegrityClass; reasons: readonly ReasonCode[]; completeness: EvidenceCompleteness; exactInvalidXp: number; proposedXp: number | null; exactReductionIsComplete: boolean; projectionDrift: boolean };
 ```
 
@@ -181,7 +192,7 @@ export function explainCatalogMiss(catalogs: readonly CatalogSnapshot[], event: 
 
 Use the TypeScript compiler API and never execute historical app code. Accept provenance only from release tags `vX.Y.Z`/`release/vX.Y.Z`, tracked build manifests with version+SHA+activation time, or commits explicitly listed in a tracked verified-release manifest. Checkpoint tags, commit time, and `app.json` version alone are insufficient.
 
-Load client and server level formulas from the same verified commit and mark the snapshot incomplete if they disagree. Missing provenance leaves events unmapped; the audit may complete infrastructurally but must exit `2` for incomplete evidence and make no correction claim.
+Load client and server level formulas from the same verified commit, calculate every threshold from level 1 through `maxLevel`, and store the threshold array. Mark the snapshot incomplete if client/server arrays or maximum levels differ. Compare formulas by thresholds, not labels. Missing provenance leaves events unmapped; the audit may complete infrastructurally but must exit `2` for incomplete evidence and make no correction claim.
 
 - [ ] **Step 4: Run GREEN and print metadata only**
 
@@ -208,7 +219,7 @@ git commit -m "feat: map verified historical XP catalogs"
 
 - [ ] **Step 1: Write classification tests RED**
 
-Cover reconstructible lifetime and weekly XP, counter state present/missing, unknown rules/IDs, wrong reward overpayment, impossible and alias-replayed rewards, one event with multiple reasons, multiple distinct invalid events, migration pattern alone, two independent probable signals, exact migration, exact damage plus incomplete evidence, and mirror-only drift.
+Cover reconstructible lifetime and weekly XP, authoritative counter evidence present/missing, unknown rules/IDs, wrong reward overpayment, impossible and alias-replayed rewards, one event with multiple reasons, multiple distinct invalid events, migration pattern alone, two independent probable signals, exact migration, exact damage plus incomplete evidence, and mirror-only drift. Also test exact first-event baseline derivation, unknown pre-cutover baseline, a continuous before/after chain, discontinuity with an exact retained cutover baseline, tied/ambiguous timestamps, current XP versus final ledger state, and restore/migration markers that remain non-exact.
 
 - [ ] **Step 2: Run RED**
 
@@ -225,6 +236,10 @@ const overpayment = Math.max(0, event.xpDelta - historicalReward.xp);
 ```
 
 Alias replay is exact only with a proven merge edge/time, alias claim before merge, canonical claim after merge, exact canonical before/after totals, and identical mapped semantic achievement. The higher-XP merge winner does not add loser XP, so alias presence alone is never subtracted.
+
+Build ledger continuity only from exact event before/after values plus `UserCutoverEvidence`. Tied timestamps or a broken chain make ledger evidence incomplete unless an independently retained cutover baseline resolves the ordering. A migration document or restore timestamp without retained before/after values is never exact migration evidence.
+
+Use `PrerequisiteEvidence` for non-XP counters. Never promote a client payload counter to exact evidence. Lifetime/weekly evidence may be derived from exact server result fields; unsupported or missing prerequisite evidence remains unmapped.
 
 Track invalid amounts once per canonical event:
 
@@ -256,7 +271,7 @@ git commit -m "feat: classify XP integrity evidence safely"
 
 - [ ] **Step 1: Write reader tests RED with mocked Firebase**
 
-Test users and event pagination across three pages, reservation before query, unused reservation return, conservative failed-query accounting, concurrent budget safety, count billing, canonical/hidden-alias reconciliation, mirror paths, interruption/partial pages, write-capable IAM rejection, unavailable IAM rejection, and verified read-only IAM success.
+Test users and event pagination across three pages, reservation before query, invalid/over-reservation settlement rejection, unused reservation return, conservative failed-query accounting, empty-page minimum billing, concurrent budget safety, paginated count billing, canonical/hidden-alias reconciliation, mirror paths, interruption/partial pages, Firestore/Auth write-capable IAM rejection, unavailable IAM rejection, and verified read-only IAM success.
 
 - [ ] **Step 2: Run RED**
 
@@ -282,16 +297,19 @@ export class ReadBudget {
     let settled = false;
     return (actual = count) => {
       if (settled) throw new Error('xp_audit_budget_reservation_reused');
+      if (!Number.isInteger(actual) || actual < 0 || actual > count) {
+        throw new Error('xp_audit_invalid_billed_read_settlement');
+      }
       settled = true;
       this.reserved -= count;
-      this.consumed += Math.max(0, Math.min(count, actual));
+      this.consumed += actual;
     };
   }
   get count(): number { return this.consumed; }
 }
 ```
 
-On query failure settle the full reservation. Check abort signals before reservation and after every page.
+On query failure settle the full reservation. For a successful Firestore page, settle `Math.max(1, returnedDocuments)` because an empty query still has a minimum charge. Check abort signals before reservation and after every page.
 
 - [ ] **Step 4: Implement IAM preflight and the reader**
 
@@ -299,7 +317,7 @@ Public API:
 
 ```ts
 export type XpAuditReader = {
-  countUserDocuments(): Promise<number>;
+  countUserDocuments(pageSize: number): Promise<number>;
   pageUsers(afterUid: string | null, limit: number): Promise<UserPage>;
   pageProgressEvents(uid: string, afterEventId: string | null, limit: number): Promise<EventPage>;
   readAliases(user: RawUser): Promise<readonly AliasEvidence[]>;
@@ -316,16 +334,24 @@ const WRITE_PERMISSIONS = [
   'datastore.entities.create',
   'datastore.entities.update',
   'datastore.entities.delete',
+  'firebaseauth.users.create',
+  'firebaseauth.users.update',
+  'firebaseauth.users.delete',
+];
+const REQUIRED_READ_PERMISSIONS = [
+  'datastore.entities.get',
+  'datastore.entities.list',
+  'firebaseauth.users.get',
 ];
 ```
 
 Abort with `xp_audit_principal_has_write_permissions` if any are returned. Abort with `xp_audit_cannot_prove_read_only_principal` when the check is unavailable, ambiguous, or required read permissions are absent. There is no override flag.
 
-Only `firestore_reader.ts` imports Firebase Admin. It exposes no database object and contains no mutations. Concurrency defaults to 4 and never fans out over the full population.
+Only `firestore_reader.ts` imports Firebase Admin. It exposes no database object and contains no mutations. `countUserDocuments()` must use budgeted document-ID pagination rather than an unbounded aggregation query, so maximum cost is reserved before every page. Concurrency defaults to 4 and never fans out over the full population.
 
 - [ ] **Step 5: Strengthen static defense-in-depth**
 
-Use the TypeScript AST in the contract test to allow Firebase imports only in the reader, detect dot/bracket Firestore mutation calls without flagging `Set.add()`, verify IAM preflight precedes the first query, and require later CLI unknown-flag rejection. IAM proof remains the primary runtime gate.
+Use the TypeScript AST in the contract test to allow Firebase imports only in the reader, detect dot/bracket Firestore mutation calls without flagging `Set.add()`, and forbid Firebase Auth mutations `createUser`, `updateUser`, `deleteUser`, `deleteUsers`, `importUsers`, `setCustomUserClaims`, and `revokeRefreshTokens`. Verify IAM preflight precedes the first Firestore/Auth read and require later CLI unknown-flag rejection. IAM proof remains the primary runtime gate.
 
 - [ ] **Step 6: Run GREEN and commit**
 
@@ -399,7 +425,7 @@ The Russian Markdown contains the literal heading `Находки и предл�
 
 Allow only `--sample=1..250` (default 25), `--full`, `--max-reads=positive integer`, `--concurrency=1..8`, and `--project=project-id`. Reject unknown and forbidden flags, reject sample/full conflict, and require explicit budget for full mode.
 
-Read control email only from `XP_AUDIT_CONTROL_EMAIL`; never print it. Count each user document exactly once as canonical, alias-covered, skipped, or failed. Hidden aliases are not class entries. Paginate to `done`; interruption/partial page makes infrastructure incomplete.
+Read control email only from `XP_AUDIT_CONTROL_EMAIL`; never print it. Count each user document exactly once as canonical, alias-covered, skipped, or failed. Hidden aliases are not class entries. Define `--sample=N` as N canonical accounts: continue paging past hidden alias documents until N canonical accounts are analyzed or the users collection ends. Paginate to `done`; interruption/partial page makes infrastructure incomplete.
 
 Write only to:
 
@@ -463,7 +489,7 @@ Use Task 5 commands. Expected: PASS.
 
 - [ ] **Step 1: Obtain bounded user-document count**
 
-Call `countUserDocuments()` through the IAM-gated reader. Include aggregation billing in `readCount`; retain only the number.
+Call `countUserDocuments(250)` through the IAM-gated reader. It must count through budgeted document-ID pages, bill every page at `Math.max(1, returnedDocuments)`, and retain only the number.
 
 - [ ] **Step 2: Calculate and review full budget**
 

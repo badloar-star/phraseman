@@ -20218,14 +20218,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20318,18 +20323,18 @@
       "fingerprint": "app/(tabs)/lessons.tsx|component:LessonsTab|borderWidth:1|context:7edead5f1630|occurrence:1",
       "lastSeenLine": 1207,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border is part of the attestation emblem artwork",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_ART",
+          "reason": "Border is part of the attestation emblem artwork"
         }
       ]
     },
@@ -20370,18 +20375,18 @@
       "fingerprint": "app/(tabs)/lessons.tsx|style:shadowOffset|borderWidth:1|context:7337fd3ad4ac|occurrence:1",
       "lastSeenLine": 1189,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
+      "tone": null,
+      "reason": "Attestation hero border belongs to a themed gold composition",
       "status": "pending",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "REVIEW_SPECIAL",
+          "reason": "Attestation hero border belongs to a themed gold composition"
         }
       ]
     },

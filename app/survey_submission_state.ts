@@ -20,12 +20,23 @@ export const initialSurveySubmissionState: SurveySubmissionState = {
   messageKey: null,
 };
 
+function isReward(value: number): boolean {
+  return Number.isSafeInteger(value) && value >= 0;
+}
+
+function assertNever(_value: never): void {}
+
 export function reduceSurveySubmission(
   state: SurveySubmissionState,
   action: SurveySubmissionAction,
 ): SurveySubmissionState {
   switch (action.type) {
-    case 'submit_started':
+    case 'submit_started': {
+      if (
+        !Number.isSafeInteger(action.attemptId)
+        || action.attemptId <= state.attemptId
+        || !isReward(action.expectedReward)
+      ) return state;
       return {
         phase: 'optimistic-reward',
         attemptId: action.attemptId,
@@ -33,7 +44,13 @@ export function reduceSurveySubmission(
         confirmedReward: 0,
         messageKey: null,
       };
-    case 'retry':
+    }
+    case 'retry': {
+      if (
+        state.phase !== 'retryable-error'
+        || state.attemptId >= Number.MAX_SAFE_INTEGER
+        || !isReward(action.expectedReward)
+      ) return state;
       return {
         phase: 'optimistic-reward',
         attemptId: state.attemptId + 1,
@@ -41,8 +58,13 @@ export function reduceSurveySubmission(
         confirmedReward: 0,
         messageKey: null,
       };
+    }
     case 'submit_succeeded':
-      if (action.attemptId !== state.attemptId) return state;
+      if (
+        state.phase !== 'optimistic-reward'
+        || action.attemptId !== state.attemptId
+        || !isReward(action.reward)
+      ) return state;
       return {
         phase: 'reconciled',
         attemptId: state.attemptId,
@@ -51,7 +73,7 @@ export function reduceSurveySubmission(
         messageKey: null,
       };
     case 'submit_failed':
-      if (action.attemptId !== state.attemptId) return state;
+      if (state.phase !== 'optimistic-reward' || action.attemptId !== state.attemptId) return state;
       return {
         phase: 'retryable-error',
         attemptId: state.attemptId,
@@ -59,6 +81,9 @@ export function reduceSurveySubmission(
         confirmedReward: 0,
         messageKey: action.messageKey,
       };
+    default:
+      assertNever(action);
+      return state;
   }
 }
 

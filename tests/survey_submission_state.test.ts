@@ -103,4 +103,82 @@ describe('survey submission state', () => {
     expect(surveyRewardForDisplay(optimistic)).toBe(3);
     expect(surveyRewardForDisplay(reconciled)).toBe(0);
   });
+
+  test('ignores success unless a matching attempt is optimistic', () => {
+    const editing = initialSurveySubmissionState;
+    const optimistic = reduceSurveySubmission(editing, {
+      type: 'submit_started', attemptId: 1, expectedReward: 3,
+    });
+    const reconciled = reduceSurveySubmission(optimistic, {
+      type: 'submit_succeeded', attemptId: 1, reward: 3,
+    });
+
+    expect(reduceSurveySubmission(editing, {
+      type: 'submit_succeeded', attemptId: 0, reward: 3,
+    })).toBe(editing);
+    expect(reduceSurveySubmission(reconciled, {
+      type: 'submit_succeeded', attemptId: 1, reward: 3,
+    })).toBe(reconciled);
+    expect(reduceSurveySubmission(reconciled, {
+      type: 'submit_failed', attemptId: 1, messageKey: 'network',
+    })).toBe(reconciled);
+  });
+
+  test.each([0, -1, Number.NaN, Number.POSITIVE_INFINITY, 1.5])(
+    'ignores a non-increasing or unsafe submit attempt id %s',
+    (attemptId) => {
+      expect(reduceSurveySubmission(initialSurveySubmissionState, {
+        type: 'submit_started', attemptId, expectedReward: 3,
+      })).toBe(initialSurveySubmissionState);
+    },
+  );
+
+  test('ignores submit attempts that do not increase the current attempt id', () => {
+    const optimistic = reduceSurveySubmission(initialSurveySubmissionState, {
+      type: 'submit_started', attemptId: 2, expectedReward: 3,
+    });
+
+    expect(reduceSurveySubmission(optimistic, {
+      type: 'submit_started', attemptId: 2, expectedReward: 3,
+    })).toBe(optimistic);
+    expect(reduceSurveySubmission(optimistic, {
+      type: 'submit_started', attemptId: 1, expectedReward: 3,
+    })).toBe(optimistic);
+  });
+
+  test.each([-1, Number.NaN, Number.POSITIVE_INFINITY, 1.5])(
+    'ignores invalid expected reward %s',
+    (expectedReward) => {
+      expect(reduceSurveySubmission(initialSurveySubmissionState, {
+        type: 'submit_started', attemptId: 1, expectedReward,
+      })).toBe(initialSurveySubmissionState);
+    },
+  );
+
+  test.each([-1, Number.NaN, Number.POSITIVE_INFINITY, 1.5])(
+    'ignores invalid confirmed reward %s',
+    (reward) => {
+      const optimistic = reduceSurveySubmission(initialSurveySubmissionState, {
+        type: 'submit_started', attemptId: 1, expectedReward: 3,
+      });
+
+      expect(reduceSurveySubmission(optimistic, {
+        type: 'submit_succeeded', attemptId: 1, reward,
+      })).toBe(optimistic);
+    },
+  );
+
+  test('keeps the retryable error when no safe next attempt id exists', () => {
+    const exhausted = {
+      phase: 'retryable-error' as const,
+      attemptId: Number.MAX_SAFE_INTEGER,
+      expectedReward: 0 as const,
+      confirmedReward: 0 as const,
+      messageKey: 'network' as const,
+    };
+
+    expect(reduceSurveySubmission(exhausted, {
+      type: 'retry', expectedReward: 3,
+    })).toBe(exhausted);
+  });
 });

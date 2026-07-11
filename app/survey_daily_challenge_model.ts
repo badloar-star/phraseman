@@ -65,11 +65,15 @@ const ACTIVE_DESCRIPTION: Record<Lang, string> = {
   pl: 'Odpowiedz na pytania i pomóż ulepszyć aplikację.',
 };
 
+export function buildSurveyDailyDescription(lang: Lang): string {
+  return ACTIVE_DESCRIPTION[lang] || ACTIVE_DESCRIPTION.ru;
+}
+
 export function buildActiveSurveyDailyChallenge(input: { survey: ActiveSurvey; lang: Lang }): SurveyDailyChallengeSnapshot {
   return {
     surveyId: input.survey.surveyId,
     title: input.survey.title,
-    description: input.survey.subtitle || ACTIVE_DESCRIPTION[input.lang] || ACTIVE_DESCRIPTION.ru,
+    description: buildSurveyDailyDescription(input.lang),
     questionCount: input.survey.questions.length,
     rewardShards: input.survey.rewardShards,
     phase: 'active',

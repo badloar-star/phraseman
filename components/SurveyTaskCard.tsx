@@ -42,10 +42,14 @@ export default function SurveyTaskCard() {
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const [snapshot, setSnapshot] = useState<SurveyDailyChallengeSnapshot | null>(null);
-  const [scope, setScope] = useState<{ stableId: string; dayKey: string; lang: typeof lang } | null>(null);
+  type CardState = {
+    scope: { stableId: string; dayKey: string; lang: typeof lang } | null;
+    snapshot: SurveyDailyChallengeSnapshot | null;
+    done: boolean;
+  };
+  const [cardState, setCardState] = useState<CardState>({ scope: null, snapshot: null, done: false });
+  const { scope, snapshot, done } = cardState;
   const survey = snapshot?.survey ?? null;
-  const [done, setDone] = useState(false);
 
   // useFocusEffect: пере-проверяем при возврате с экрана опроса, чтобы плашка
   // сразу переключилась в «выполнено».
@@ -57,18 +61,27 @@ export default function SurveyTaskCard() {
         const stableId = await getCanonicalUserId();
         if (cancelled || !stableId) return;
         const nextScope = { stableId, dayKey, lang };
-        setScope(nextScope);
+        setCardState({ scope: nextScope, snapshot: null, done: false });
         const isDone = await isSurveyDailyTaskDone({ stableId, dayKey });
         if (cancelled) return;
-        if (isDone) { setDone(true); setSnapshot(buildServerConfirmedLegacyCompletion(lang)); return; }
+        if (isDone) {
+          setCardState({ scope: nextScope, snapshot: buildServerConfirmedLegacyCompletion(lang), done: true });
+          return;
+        }
         if (!isSurveyCloudEnabled()) return;
         const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
         const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
         if (cancelled) return;
-        if (migrated) { setDone(true); setSnapshot(buildServerConfirmedLegacyCompletion(lang)); return; }
+        if (migrated) {
+          setCardState({ scope: nextScope, snapshot: buildServerConfirmedLegacyCompletion(lang), done: true });
+          return;
+        }
         if (lookup.survey && lookup.survey.questions.length > 0) {
-          setDone(false);
-          setSnapshot(buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang }));
+          setCardState({
+            scope: nextScope,
+            snapshot: buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang }),
+            done: false,
+          });
         }
       } catch (e: unknown) {
         // Опрос — задание, ошибка не должна ломать экран заданий, но и не глушим

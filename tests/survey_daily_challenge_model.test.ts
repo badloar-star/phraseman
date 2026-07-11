@@ -43,4 +43,13 @@ describe('survey daily challenge model', () => {
     expect(active.description).toBeTruthy();
     expect(active.survey?.surveyId).toBe('s');
   });
+
+  it('never copies an emoji-bearing server subtitle into the active description', () => {
+    const active = buildActiveSurveyDailyChallenge({
+      survey: { surveyId: 's', title: 'Title', subtitle: 'Server promo 🚀', rewardShards: 1, questions: [] },
+      lang: 'ru',
+    });
+    expect(active.description).not.toContain('Server promo');
+    expect(active.description).not.toMatch(/[\u{1F300}-\u{1FAFF}]/u);
+  });
 });

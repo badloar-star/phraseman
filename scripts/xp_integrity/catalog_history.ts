@@ -28,6 +28,11 @@ type StaticContext = {
   functions: Map<string, StaticFunction>;
 };
 
+type StatementEvaluation =
+  | { kind: "returned"; value: number }
+  | { kind: "no_return" }
+  | { kind: "error" };
+
 const MANIFESTS: ReadonlyArray<{
   path: string;
   provenance: EffectiveWindow["provenance"];
@@ -610,19 +615,19 @@ function evaluateStatements(
   context: StaticContext,
   locals: Map<string, number>,
   resolving: Set<string>,
-): number | null {
+): StatementEvaluation {
   for (const statement of statements) {
     if (ts.isVariableStatement(statement)) {
       for (const declaration of statement.declarationList.declarations) {
         if (!ts.isIdentifier(declaration.name) || !declaration.initializer)
-          return null;
+          return { kind: "error" };
         const value = evaluateExpression(
           declaration.initializer,
           context,
           locals,
           resolving,
         );
-        if (typeof value !== "number") return null;
+        if (typeof value !== "number") return { kind: "error" };
         locals.set(declaration.name.text, value);
       }
       continue;
@@ -634,7 +639,7 @@ function evaluateStatements(
         locals,
         resolving,
       );
-      if (typeof condition !== "boolean") return null;
+      if (typeof condition !== "boolean") return { kind: "error" };
       const selected = condition
         ? statement.thenStatement
         : statement.elseStatement;
@@ -648,7 +653,7 @@ function evaluateStatements(
         locals,
         resolving,
       );
-      if (result !== null) return result;
+      if (result.kind === "error" || result.kind === "returned") return result;
       continue;
     }
     if (ts.isReturnStatement(statement) && statement.expression) {
@@ -658,10 +663,13 @@ function evaluateStatements(
         locals,
         resolving,
       );
-      return typeof value === "number" ? value : null;
+      return typeof value === "number"
+        ? { kind: "returned", value }
+        : { kind: "error" };
     }
+    return { kind: "error" };
   }
-  return null;
+  return { kind: "no_return" };
 }
 
 function evaluateFunction(
@@ -687,8 +695,13 @@ function evaluateFunction(
   const locals = new Map(
     definition.parameters.map((parameter, index) => [parameter, args[index]]),
   );
-  const value = ts.isBlock(definition.body)
+  const bodyResult = ts.isBlock(definition.body)
     ? evaluateStatements(definition.body.statements, context, locals, resolving)
+    : null;
+  const value = ts.isBlock(definition.body)
+    ? bodyResult?.kind === "returned"
+      ? bodyResult.value
+      : null
     : evaluateExpression(definition.body, context, locals, resolving);
   resolving.delete(`fn:${name}`);
   return typeof value === "number" && Number.isFinite(value) ? value : null;

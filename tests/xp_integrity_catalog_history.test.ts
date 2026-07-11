@@ -435,4 +435,38 @@ describe("loadVerifiedCatalogHistory", () => {
       ),
     ).toEqual({ kind: "unmapped", reason: "provenance_conflict" });
   });
+
+  it("propagates a selected helper error instead of falling through to a later return", () => {
+    const { repo } = makeRepo();
+    const helperErrorFormula = `
+      export const MAX_LEVEL = 2;
+      const unsupportedHelper = (level: number): number => {
+        let x = level * 100;
+        x += 7;
+        return x;
+      };
+      export const TOTAL_XP_FOR_LEVEL = (level: number): number => {
+        if (level > 1) return unsupportedHelper(level);
+        return level * 100;
+      };
+    `;
+    writeFileSync(join(repo, "constants", "theme.ts"), helperErrorFormula);
+    writeFileSync(
+      join(repo, "functions", "src", "xp_levels.ts"),
+      helperErrorFormula,
+    );
+    git(repo, "add", ".");
+    git(repo, "commit", "-qm", "selected helper error");
+    git(repo, "tag", "-a", "v4.2.0", "-m", "release");
+
+    const [catalog] = loadVerifiedCatalogHistory(repo);
+    expect(catalog.complete).toBe(false);
+    expect(
+      matchCatalogForEvent(
+        [catalog],
+        event(catalog.effective.fromMsInclusive, "4.2.0"),
+        "xp_5000",
+      ),
+    ).toEqual({ kind: "unmapped", reason: "provenance_conflict" });
+  });
 });

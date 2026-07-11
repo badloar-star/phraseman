@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { pathToFileURL } from 'url';
+import sharp from 'sharp';
 
 type ValidationResult = {
   ok: boolean;
@@ -32,6 +33,17 @@ type CliModule = {
   }): Promise<{ revisionDir: string; checkpointPath: string }>;
 };
 
+type ImportAtlasModule = {
+  importAtlas(options: {
+    card: Record<string, unknown>;
+    atlasPath: string;
+    revisionDir: string;
+  }): Promise<{
+    cells: Array<{ itemId: string; path: string; sha256: string; width: number; height: number }>;
+    checkpointPath: string;
+  }>;
+};
+
 const root = process.cwd();
 const importEsm = new Function('specifier', 'return import(specifier)') as (specifier: string) => Promise<unknown>;
 
@@ -53,6 +65,11 @@ async function loadPrompts(): Promise<PromptsModule> {
 async function loadCli(): Promise<CliModule> {
   const cliPath = path.join(root, 'tools', 'social-learning-cards', 'src', 'cli.mjs');
   return (await importEsm(pathToFileURL(cliPath).href)) as CliModule;
+}
+
+async function loadImportAtlas(): Promise<ImportAtlasModule> {
+  const modulePath = path.join(root, 'tools', 'social-learning-cards', 'src', 'import-atlas.mjs');
+  return (await importEsm(pathToFileURL(modulePath).href)) as ImportAtlasModule;
 }
 
 function readFixture(): Record<string, unknown> {
@@ -205,5 +222,51 @@ describe('DALL-E file brief generation', () => {
     expect(source).not.toContain('process.env.OPENAI_API_KEY');
     expect(source).not.toContain('process.env.OPENAI_TTS_API_KEY');
     expect(source).not.toMatch(/\bfetch\s*\(|node:https|node:http/);
+  });
+});
+
+describe('DALL-E atlas import', () => {
+  const tempRoot = path.join(root, '.codex-tmp', 'social-learning-cards-tests', 'atlas');
+
+  beforeEach(() => {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    fs.mkdirSync(tempRoot, { recursive: true });
+  });
+
+  it('cuts a verified 3x3 RGB atlas into nine hashed cells', async () => {
+    const importer = await loadImportAtlas();
+    const fixture = readFixture();
+    const atlasPath = path.join(tempRoot, 'atlas.png');
+    const revisionDir = path.join(tempRoot, 'revision_001');
+    await sharp({ create: { width: 900, height: 900, channels: 3, background: '#f4f1ea' } })
+      .png()
+      .toFile(atlasPath);
+
+    const result = await importer.importAtlas({ card: fixture, atlasPath, revisionDir });
+
+    expect(result.cells).toHaveLength(9);
+    for (const cell of result.cells) {
+      expect(cell).toMatchObject({ width: 300, height: 300 });
+      expect(cell.sha256).toMatch(/^[a-f0-9]{64}$/);
+      expect(fs.existsSync(cell.path)).toBe(true);
+      const metadata = await sharp(cell.path).metadata();
+      expect(metadata).toMatchObject({ width: 300, height: 300, channels: 3 });
+    }
+    const checkpoint = JSON.parse(fs.readFileSync(result.checkpointPath, 'utf8'));
+    expect(checkpoint).toMatchObject({ stage: 'atlas_imported', atlasPath });
+    expect(checkpoint.cells).toHaveLength(9);
+  });
+
+  it('rejects an atlas whose dimensions cannot be divided into the declared grid', async () => {
+    const importer = await loadImportAtlas();
+    const fixture = readFixture();
+    const atlasPath = path.join(tempRoot, 'bad-atlas.png');
+    await sharp({ create: { width: 901, height: 900, channels: 3, background: '#ffffff' } })
+      .png()
+      .toFile(atlasPath);
+
+    await expect(
+      importer.importAtlas({ card: fixture, atlasPath, revisionDir: path.join(tempRoot, 'revision_001') }),
+    ).rejects.toThrow('atlas_dimensions_not_divisible');
   });
 });

@@ -7,25 +7,17 @@ export interface RevenueReconciliationInput {
 export interface RevenueReconciliation extends RevenueReconciliationInput {
   webhookDelta: number | null;
   funnelCoverageRatio: number | null;
-  status: 'matched' | 'mismatch' | 'unavailable';
+  status: 'not_comparable' | 'unavailable';
+  explanation: string;
 }
 
 export function reconcileRevenue(input: RevenueReconciliationInput): RevenueReconciliation {
-  const canCompareWebhook = input.dashboard !== null && input.webhook !== null;
-  const webhookDelta = canCompareWebhook ? input.webhook! - input.dashboard! : null;
-  const funnelCoverageRatio = input.dashboard !== null && input.dashboard > 0 && input.funnel !== null
-    ? input.funnel / input.dashboard
-    : null;
-
   return {
     ...input,
-    webhookDelta,
-    funnelCoverageRatio,
-    status: !canCompareWebhook
-      ? 'unavailable'
-      : webhookDelta === 0
-        ? 'matched'
-        : 'mismatch',
+    webhookDelta: null,
+    funnelCoverageRatio: null,
+    status: input.dashboard === null && input.webhook === null && input.funnel === null ? 'unavailable' : 'not_comparable',
+    explanation: 'RevenueCat new_customers, webhook purchase events and in-app purchase signals have different semantics; values are shown side by side and are not reconciled.',
   };
 }
 

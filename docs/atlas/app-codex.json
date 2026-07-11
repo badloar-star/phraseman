@@ -1,6 +1,6 @@
 {
   "schemaVersion": "phraseman-app-codex-v1",
-  "sourceHash": "63e4b272a8295e1b0b07856e393044e91601c9cc19b4df189f2b3910006bae0e",
+  "sourceHash": "ea4c5068e34e07f20e14bc378889994e7529d7c3820acf63fc2b444237cf8246",
   "generator": "scripts/generate_project_atlas.mjs",
   "inputFiles": [
     "admin/index.html",

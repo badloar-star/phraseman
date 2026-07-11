@@ -12,9 +12,10 @@ describe('reconcileRevenue', () => {
       dashboard: 60,
       webhook: 58,
       funnel: 31,
-      webhookDelta: -2,
-      funnelCoverageRatio: 31 / 60,
-      status: 'mismatch',
+      webhookDelta: null,
+      funnelCoverageRatio: null,
+      status: 'not_comparable',
+      explanation: expect.stringContaining('different semantics'),
     });
   });
 

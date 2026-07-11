@@ -37,7 +37,7 @@ import {
   resolveDigestWindows,
   type DigestWindow,
 } from './admin_digest_contracts';
-import { DIGEST_SOURCE_REGISTRY } from './admin_digest_sources';
+import { DIGEST_SOURCE_REGISTRY, readPaginatedSource, type SourceCoverage } from './admin_digest_sources';
 import { fetchRevenueCatChart, reconcileRevenue, type RevenueReconciliation } from './admin_digest_revenuecat';
 
 const REGION = 'us-central1';
@@ -404,24 +404,36 @@ export async function loadDigestSources(
   since: number,
   until: number = Date.now(),
   limitPer = 1000,
+  coverageSink: SourceCoverage[] = [],
 ): Promise<DigestSourceRows> {
+  const readAll = async <T extends object>(sourceId: string, field: string, queryFactory: () => FirebaseFirestore.Query, map: (d: FirebaseFirestore.QueryDocumentSnapshot) => T): Promise<T[]> => {
+    let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | undefined;
+    const result = await readPaginatedSource<T & { __digestId: string }>({
+      sourceId,
+      timestampField: field,
+      window: { startMs: since, endMs: until },
+      pageSize: Math.min(Math.max(limitPer, 1), 1000),
+      uniqueKey: (row) => String((row as T & { __digestId?: string }).__digestId || ''),
+      readPage: async ({ pageSize }) => {
+        let query = queryFactory().orderBy(field).limit(pageSize);
+        if (lastDoc) query = query.startAfter(lastDoc);
+        const snap = await query.get();
+        lastDoc = snap.docs[snap.docs.length - 1];
+        return { rows: snap.docs.map((doc) => Object.assign(map(doc), { __digestId: doc.ref.path })), nextCursor: snap.size === pageSize ? 'next' : undefined };
+      },
+    });
+    coverageSink.push(result.coverage);
+    return result.rows as T[];
+  };
   // Универсальный безопасный запрос по числовому ms-полю времени.
-  const byMs = async <T>(
+  const byMs = async <T extends object>(
     collection: string,
     field: string,
     map: (d: FirebaseFirestore.QueryDocumentSnapshot) => T,
   ): Promise<T[]> => {
-    try {
-      const snap = await db.collection(collection)
-        .where(field, '>=', since)
-        .where(field, '<', until)
-        .limit(limitPer)
-        .get();
-      return snap.docs.map(map);
-    } catch (e) {
-      console.warn(`admin_daily_digest: read ${collection} by ${field} failed`, e);
-      return [];
-    }
+    return readAll(collection, field, () => db.collection(collection)
+      .where(field, '>=', since)
+      .where(field, '<', until), map);
   };
 
   // users.created_at может быть числом / строкой / Timestamp — фильтруем в памяти
@@ -600,6 +612,7 @@ export interface DigestResult {
   comparisons: Record<string, ReturnType<typeof compareMetric>>;
   revenueReconciliation: RevenueReconciliation;
   revenueCatCoverage: { status: 'ok' | 'failed' | 'not_configured'; errorCode?: string };
+  coverageStatus: 'verified' | 'insufficient_coverage';
   model: string;
 }
 
@@ -621,31 +634,41 @@ export async function runAdminDailyDigest(
 
   const dayKey = utcDayKey(now);
   const latestRef = db.collection('admin_digest_state').doc('latest');
-  const latestSnapshot = await latestRef.get();
-  const lastSuccessfulEndMs = readLastSuccessfulEndMs(latestSnapshot.exists ? latestSnapshot.data() : undefined);
-  const windows = resolveDigestWindows(now, lastSuccessfulEndMs);
   const runRef = db.collection('admin_digest_runs').doc();
   const runId = runRef.id;
+  const windows = await db.runTransaction(async (transaction) => {
+    const latestSnapshot = await transaction.get(latestRef);
+    const state = latestSnapshot.exists ? latestSnapshot.data() : undefined;
+    const leaseExpiresAtMs = typeof state?.leaseExpiresAtMs === 'number' ? state.leaseExpiresAtMs : 0;
+    if (leaseExpiresAtMs > now && state?.leaseRunId !== runId) {
+      throw new HttpsError('aborted', 'Digest generation is already running.');
+    }
+    const resolved = resolveDigestWindows(now, readLastSuccessfulEndMs(state));
+    transaction.set(latestRef, { leaseRunId: runId, leaseExpiresAtMs: now + 15 * 60 * 1000 }, { merge: true });
+    return resolved;
+  });
   const windowHours = (windows.current.endMs - windows.current.startMs) / (60 * 60 * 1000);
+  const currentCoverage: SourceCoverage[] = [];
+  const previousCoverage: SourceCoverage[] = [];
   const [rows, previousRows] = await Promise.all([
-    loadDigestSources(db, windows.current.startMs, windows.current.endMs),
-    loadDigestSources(db, windows.previous.startMs, windows.previous.endMs),
+    loadDigestSources(db, windows.current.startMs, windows.current.endMs, 1000, currentCoverage),
+    loadDigestSources(db, windows.previous.startMs, windows.previous.endMs, 1000, previousCoverage),
   ]);
   const facts = aggregateDigestFacts(rows, windowHours);
   const previousFacts = aggregateDigestFacts(previousRows, windowHours);
   let revenueCatDashboardValue: number | null = null;
+  let revenueCatPreviousValue: number | null = null;
   let revenueCatCoverage: DigestResult['revenueCatCoverage'] = { status: 'not_configured' };
   if (revenueCatApiKey && revenueCatProjectId) {
     try {
-      const chart = await fetchRevenueCatChart({
-        apiKey: revenueCatApiKey,
-        projectId: revenueCatProjectId,
-        chartName: 'new_customers',
-        startDate: new Date(windows.current.startMs).toISOString().slice(0, 10),
-        endDate: new Date(Math.max(windows.current.startMs, windows.current.endMs - 1)).toISOString().slice(0, 10),
-      });
-      revenueCatDashboardValue = chart.summaryValue;
-      revenueCatCoverage = { status: 'ok' };
+      const charts = await Promise.all([windows.current, windows.previous].map((window) => fetchRevenueCatChart({
+        apiKey: revenueCatApiKey, projectId: revenueCatProjectId, chartName: 'new_customers',
+        startDate: new Date(window.startMs).toISOString().slice(0, 10),
+        endDate: new Date(Math.max(window.startMs, window.endMs - 1)).toISOString().slice(0, 10),
+      })));
+      revenueCatDashboardValue = charts[0].summaryValue;
+      revenueCatPreviousValue = charts[1].summaryValue;
+      revenueCatCoverage = { status: 'failed', errorCode: 'calendar_day_granularity_not_exact' };
     } catch (error) {
       revenueCatCoverage = {
         status: 'failed',
@@ -660,7 +683,7 @@ export async function runAdminDailyDigest(
     webhook: facts.revenue.newPaying,
     funnel: facts.revenue.paywallPurchases,
   });
-  const comparisons = {
+  const rawComparisons = {
     newUsers: compareMetric(facts.growth.newUsers, previousFacts.growth.newUsers),
     initialPaidEvents: compareMetric(facts.revenue.newPaying, previousFacts.revenue.newPaying),
     trialStarts: compareMetric(facts.revenue.trials, previousFacts.revenue.trials),
@@ -669,11 +692,19 @@ export async function runAdminDailyDigest(
     reports: compareMetric(facts.reports.total, previousFacts.reports.total),
     criticalErrors: compareMetric(facts.appErrors.critical, previousFacts.appErrors.critical),
   };
-  const sourceCoverage = DIGEST_SOURCE_REGISTRY.map((source) => ({
-    sourceId: source.id,
-    status: source.included ? 'partial' : 'not_configured',
-    errorCode: source.included ? 'legacy_loader_no_per_source_diagnostics' : source.exclusionReason,
-  }));
+  const coverageById = new Map(currentCoverage.map((item) => [item.sourceId, item]));
+  const previousById = new Map(previousCoverage.map((item) => [item.sourceId, item]));
+  const sourceCoverage = DIGEST_SOURCE_REGISTRY.map((source) => {
+    const current = coverageById.get(source.id);
+    const previous = previousById.get(source.id);
+    if (!source.included) return { sourceId: source.id, status: 'not_configured', errorCode: source.exclusionReason };
+    if (!current || !previous) return { sourceId: source.id, status: 'partial', errorCode: 'source_adapter_not_exact' };
+    if (current.status !== 'ok' || previous.status !== 'ok') return { sourceId: source.id, status: current.status === 'failed' || previous.status === 'failed' ? 'failed' : 'partial', errorCode: current.errorCode || previous.errorCode };
+    return { sourceId: source.id, status: 'ok' };
+  });
+  const metricSources: Record<string, string[]> = { newUsers: ['users'], initialPaidEvents: ['revenuecat_premium_events'], trialStarts: ['revenuecat_premium_events'], renewals: ['revenuecat_premium_events'], refunds: ['revenuecat_premium_events'], reports: ['error_reports'], criticalErrors: ['app_errors'] };
+  const comparisons = Object.fromEntries(Object.entries(rawComparisons).filter(([metric]) => metricSources[metric].every((id) => sourceCoverage.find((s) => s.sourceId === id)?.status === 'ok')));
+  const coverageStatus: DigestResult['coverageStatus'] = sourceCoverage.some((source) => source.status === 'failed' || source.status === 'partial') ? 'insufficient_coverage' : 'verified';
 
   await runRef.set({
     runId,
@@ -687,7 +718,7 @@ export async function runAdminDailyDigest(
 
   try {
   let summary: string;
-  const empty = isDigestEmpty(facts);
+  const empty = coverageStatus === 'verified' && isDigestEmpty(facts);
   if (empty) {
     summary = 'За последние сутки заметных событий нет — новых пользователей, продаж, репортов, критических ошибок и safety-флагов не поступало. Спокойные сутки.';
   } else {
@@ -723,7 +754,9 @@ export async function runAdminDailyDigest(
     comparisons,
     revenueReconciliation,
     revenueCatCoverage,
+    revenueCatComparison: { current: revenueCatDashboardValue, previous: revenueCatPreviousValue, comparableToExactWindow: false },
     sourceCoverage,
+    coverageStatus,
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
     generatedAtMs: now,
@@ -739,7 +772,9 @@ export async function runAdminDailyDigest(
     comparisons,
     revenueReconciliation,
     revenueCatCoverage,
+    revenueCatComparison: { current: revenueCatDashboardValue, previous: revenueCatPreviousValue, comparableToExactWindow: false },
     sourceCoverage,
+    coverageStatus,
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
   }, { merge: true });
@@ -748,6 +783,8 @@ export async function runAdminDailyDigest(
     runId,
     windowEndMs: windows.current.endMs,
     updatedAtMs: now,
+    leaseRunId: admin.firestore.FieldValue.delete(),
+    leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
   });
 
   // Короткая запись в общий admin_log (виден в Audit-log без нового UI).
@@ -780,6 +817,7 @@ export async function runAdminDailyDigest(
     comparisons,
     revenueReconciliation,
     revenueCatCoverage,
+    coverageStatus,
     model: empty ? 'none' : cfg.model,
   };
   } catch (error) {
@@ -788,6 +826,7 @@ export async function runAdminDailyDigest(
       failedAtMs: Date.now(),
       errorCode: error instanceof Error ? error.name : 'unknown',
     }, { merge: true });
+    await latestRef.set({ leaseRunId: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete() }, { merge: true });
     throw error;
   }
 }

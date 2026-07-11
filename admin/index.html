@@ -27445,6 +27445,22 @@
         ? await getDoc(doc(db, 'admin_digest_runs', runId))
         : await getDoc(doc(db, 'admin_digests', dayKey));
       renderDigestDoc(box, snap.exists() ? snap.data() : null);
+      const history = document.getElementById('dd-history');
+      if (history) {
+        const historySnap = await getDocs(query(collection(db, 'admin_digest_runs'), orderBy('generatedAtMs', 'desc'), limit(60)));
+        const successfulRuns = historySnap.docs.filter((runDoc) => runDoc.data()?.status === 'succeeded').slice(0, 30);
+        history.innerHTML = successfulRuns.map((runDoc, index) => {
+          const run = runDoc.data() || {};
+          const label = run.generatedAtMs ? new Date(run.generatedAtMs).toLocaleString('ru-RU') : runDoc.id;
+          return `<option value="${escapeHtml(runDoc.id)}"${index === 0 ? ' selected' : ''}>${escapeHtml(label)}</option>`;
+        }).join('') || '<option value="">История пока пуста</option>';
+        history.onchange = async () => {
+          if (!history.value) return;
+          box.innerHTML = '<div class="reports-empty">⏳ Загрузка запуска...</div>';
+          const selected = await getDoc(doc(db, 'admin_digest_runs', history.value));
+          renderDigestDoc(box, selected.exists() ? selected.data() : null);
+        };
+      }
       const countEl = document.getElementById('dd-count');
       if (countEl) countEl.textContent = snap.exists() ? 'последний успешный дайджест' : 'ещё не создан';
       window._dailyDigestLoaded = true;

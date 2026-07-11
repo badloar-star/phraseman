@@ -139,8 +139,11 @@
 
     period.innerHTML = `<div class="dd-period-main">Текущий период: ${escapeText(formatPeriod(data.windows && data.windows.current))}</div>
       <div class="dd-period-compare">Сравнение: ${escapeText(formatPeriod(data.windows && data.windows.previous))}</div>`;
-    kpis.innerHTML = renderKpis(data.comparisons);
-    charts.innerHTML = renderComparisonChart(data.comparisons);
+    const verifiedComparisons = data.comparisons || {};
+    kpis.innerHTML = renderKpis(verifiedComparisons);
+    charts.innerHTML = Object.keys(verifiedComparisons).length
+      ? renderComparisonChart(verifiedComparisons)
+      : '<div class="reports-empty">Графики скрыты: для этих метрик нет полного покрытия обоих периодов.</div>';
     content.innerHTML = `<div class="dd-summary">${escapeText(data.summary || 'Сводка отсутствует').replace(/\n/g, '<br>')}</div>`;
     const sources = Array.isArray(data.sourceCoverage) ? data.sourceCoverage : [];
     coverage.innerHTML = `<h3 style="margin:4px 0 8px;font-size:14px">Покрытие источников</h3><div style="overflow-x:auto"><table class="dd-coverage-table"><thead><tr><th>Источник</th><th>Статус</th><th>Примечание</th></tr></thead><tbody>

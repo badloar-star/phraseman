@@ -4,12 +4,11 @@
 // Дизайн: без обводок контейнеров (правило проекта), тон/градиент; клик-звук
 // только на управляющих кнопках, варианты ответа — только вибрация.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
-import { Platform } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
 import ScreenGradient from '../components/ScreenGradient';
@@ -21,14 +20,17 @@ import { screenTextOnGradient } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { getCanonicalUserId } from './user_id_policy';
-import { replaceShardsBalanceLocal, getShardsBalance } from './shards_system';
-import { emitAppEvent, actionToastTri } from './events';
+import { replaceShardsBalanceLocal } from './shards_system';
+import { emitAppEvent } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
 import { markSurveyDailyTaskDone } from './survey_daily_task';
 import { getTodayKey } from './daily_tasks';
 import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest } from './survey_daily_task_cache';
 import { buildServerConfirmedLegacyCompletion } from './survey_daily_challenge_model';
+import SurveyRewardPanel from '../components/survey/SurveyRewardPanel';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { initialSurveySubmissionState, reduceSurveySubmission, surveyRewardForDisplay, type SurveySubmitErrorKey } from './survey_submission_state';
 
 type AnswersState = Record<string, { optionId?: string; comment?: string }>;
 
@@ -48,10 +50,40 @@ export default function SurveyScreen() {
   const survey = useMemo(() => takePrimedSurvey(surveyId, scope), [scope, surveyId]);
 
   const [answers, setAnswers] = useState<AnswersState>({});
-  const [submitting, setSubmitting] = useState(false);
+  const [submission, dispatchSubmission] = useReducer(reduceSurveySubmission, initialSurveySubmissionState);
   const [stepIndex, setStepIndex] = useState(0);
-  const [finalReward, setFinalReward] = useState<number | null>(null); // не-null → показать финальный экран
   const stepAnim = useRef(new Animated.Value(1)).current; // 1 = виден, 0 = уходит
+  const openedDayKey = useRef(scope?.dayKey ?? directOpenDayKey).current;
+  const mountedRef = useRef(true);
+  const attemptIdRef = useRef(0);
+  const requestActiveRef = useRef(false);
+  const closeStartedRef = useRef(false);
+  const autoReturnTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const submitting = submission.phase === 'optimistic-reward';
+
+  const clearAutoReturnTimer = useCallback(() => {
+    if (autoReturnTimerRef.current) clearTimeout(autoReturnTimerRef.current);
+    autoReturnTimerRef.current = null;
+  }, []);
+  const closeScreen = useCallback(() => {
+    if (closeStartedRef.current) return;
+    closeStartedRef.current = true;
+    clearAutoReturnTimer();
+    clearPrimedSurvey();
+    if (mountedRef.current) safeRouterBack(router);
+  }, [clearAutoReturnTimer, router]);
+
+  useEffect(() => () => {
+    mountedRef.current = false;
+    clearAutoReturnTimer();
+  }, [clearAutoReturnTimer]);
+
+  useEffect(() => {
+    clearAutoReturnTimer();
+    if (submission.phase !== 'reconciled') return;
+    autoReturnTimerRef.current = setTimeout(closeScreen, 1400);
+    return clearAutoReturnTimer;
+  }, [clearAutoReturnTimer, closeScreen, submission.phase]);
 
   const currentQuestion = survey?.questions[stepIndex];
   const isLastStep = !!survey && stepIndex >= survey.questions.length - 1;
@@ -97,74 +129,54 @@ export default function SurveyScreen() {
   }, []);
 
   const onSubmit = useCallback(async () => {
-    if (!survey || submitting || !allAnswered) return;
+    if (!survey || requestActiveRef.current || !allAnswered) return;
     hapticTap();
-    setSubmitting(true);
+    clearAutoReturnTimer();
+    requestActiveRef.current = true;
+    attemptIdRef.current += 1;
+    const attemptId = attemptIdRef.current;
+    dispatchSubmission({ type: 'submit_started', attemptId, expectedReward: survey.rewardShards });
     try {
       const stableId = scope?.stableId ?? await getCanonicalUserId();
       if (!stableId) throw new Error('no_profile');
-      const dayKey = scope?.dayKey ?? directOpenDayKey;
-      const appVersion = Constants.expoConfig?.version ?? 'unknown';
+      const accountToken = captureAccountGeneration();
+      if (accountToken.phase !== 'active' || !isCurrentAccountGeneration(accountToken, stableId)) return;
       const res = await submitSurvey({
         stableId,
         surveyId: survey.surveyId,
         answers,
         platform: Platform.OS,
-        appVersion,
+        appVersion: Constants.expoConfig?.version ?? 'unknown',
       });
-      if (typeof res.balanceAfter === 'number') {
-        await replaceShardsBalanceLocal(res.balanceAfter, {
-          updatedAtMs: res.shardsUpdatedAtMs ?? undefined,
-          op: 'earn',
-          reason: 'survey_completed',
-        });
-      } else if (res.reward > 0) {
-        // Подстраховка: сервер не прислал баланс — перечитаем актуальный с диска,
-        // чтобы UI не остался с устаревшим числом осколков после награды.
-        await replaceShardsBalanceLocal(await getShardsBalance(), {
-          op: 'earn',
-          reason: 'survey_completed',
-        });
-      }
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      await replaceShardsBalanceLocal(res.balanceAfter, {
+        updatedAtMs: res.shardsUpdatedAtMs ?? undefined,
+        op: 'earn',
+        reason: 'survey_completed',
+      });
+      await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
+      const completedScope = { stableId, dayKey: openedDayKey, lang };
+      commitSurveyDailyTaskRequest(completedScope, beginSurveyDailyTaskRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
+      if (!mountedRef.current || attemptIdRef.current !== attemptId) return;
+      dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: res.reward });
       hapticSuccess();
-      // Отметить опрос выполненным как 4-е задание дня (для зачёта «любые 3 из 4»).
-      await markSurveyDailyTaskDone({ stableId, dayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
-      const completedScope = { stableId, dayKey, lang };
-      commitSurveyDailyTaskRequest(
-        completedScope,
-        beginSurveyDailyTaskRequest(completedScope),
-        buildServerConfirmedLegacyCompletion(lang),
-      );
-      if (res.reward > 0) {
-        emitAppEvent('shards_earned', { amount: res.reward, reasonKey: 'survey_completed' });
-        // Награда есть → показываем ФИНАЛЬНЫЙ экран (анимация осколков + свой текст).
-        // Уход с экрана — по кнопке «Готово».
-        setFinalReward(res.reward);
-      } else {
-        // reward===0 → опрос уже был пройден (идемпотентность сервера). Финал без
-        // награды не показываем — тихо закрываем с коротким тостом.
-        emitAppEvent('action_toast', actionToastTri('success', {
-          ru: 'Опрос уже пройден.', uk: 'Опитування вже пройдено.', es: 'Encuesta ya completada.',
-          'pt-BR': 'Pesquisa já respondida.', vi: 'Đã hoàn thành khảo sát.', id: 'Survei sudah diisi.',
-          tr: 'Anket zaten tamamlandı.', pl: 'Ankieta już wypełniona.',
-        }));
-        clearPrimedSurvey();
-        safeRouterBack(router);
-      }
+      if (res.reward > 0) emitAppEvent('shards_earned', { amount: res.reward, reasonKey: 'survey_completed' });
     } catch (e: unknown) {
       const raw = String((e as { message?: string })?.message ?? e ?? '').toLowerCase();
-      const msg = raw.includes('rate_limited') || raw.includes('resource-exhausted')
-        ? { ru: 'Слишком много опросов подряд. Попробуй позже.', uk: 'Забагато опитувань поспіль. Спробуй пізніше.', es: 'Demasiadas encuestas seguidas. Inténtalo más tarde.', 'pt-BR': 'Muitas pesquisas seguidas. Tente mais tarde.', vi: 'Quá nhiều khảo sát liên tiếp. Thử lại sau.', id: 'Terlalu banyak survei berturut-turut. Coba nanti.', tr: 'Arka arkaya çok fazla anket. Sonra dene.', pl: 'Zbyt wiele ankiet z rzędu. Spróbuj później.' }
-        : raw.includes('unknown_survey')
-        ? { ru: 'Опрос уже недоступен.', uk: 'Опитування вже недоступне.', es: 'La encuesta ya no está disponible.', 'pt-BR': 'A pesquisa não está mais disponível.', vi: 'Khảo sát không còn khả dụng.', id: 'Survei sudah tidak tersedia.', tr: 'Anket artık kullanılamıyor.', pl: 'Ankieta jest już niedostępna.' }
-        : raw.includes('unauthenticated') || raw.includes('no_profile')
-        ? { ru: 'Нужен вход в облако. Попробуй снова.', uk: 'Потрібен вхід у хмару. Спробуй ще раз.', es: 'Hace falta sesión en la nube. Inténtalo de nuevo.', 'pt-BR': 'É preciso entrar na nuvem. Tente de novo.', vi: 'Cần đăng nhập đám mây. Thử lại.', id: 'Perlu masuk ke cloud. Coba lagi.', tr: 'Bulut oturumu gerekiyor. Tekrar dene.', pl: 'Wymagane logowanie do chmury. Spróbuj ponownie.' }
-        : { ru: 'Не удалось отправить. Попробуй снова.', uk: 'Не вдалося надіслати. Спробуй ще раз.', es: 'No se pudo enviar. Inténtalo de nuevo.', 'pt-BR': 'Falha ao enviar. Tente de novo.', vi: 'Gửi không thành công. Thử lại.', id: 'Gagal mengirim. Coba lagi.', tr: 'Gönderilemedi. Tekrar dene.', pl: 'Nie udało się wysłać. Spróbuj ponownie.' };
-      emitAppEvent('action_toast', actionToastTri('error', msg));
+      const messageKey: SurveySubmitErrorKey = raw.includes('unauthenticated') || raw.includes('no_profile')
+        ? 'auth'
+        : raw.includes('network') || raw.includes('unavailable')
+          ? 'network'
+          : raw.includes('rate_limited') || raw.includes('resource-exhausted') || raw.includes('unknown_survey')
+            ? 'server'
+            : 'unknown';
+      if (mountedRef.current && attemptIdRef.current === attemptId) {
+        dispatchSubmission({ type: 'submit_failed', attemptId, messageKey });
+      }
     } finally {
-      setSubmitting(false);
+      if (attemptIdRef.current === attemptId) requestActiveRef.current = false;
     }
-  }, [survey, submitting, allAnswered, answers, router, scope, directOpenDayKey, lang]);
+  }, [survey, allAnswered, clearAutoReturnTimer, scope?.stableId, answers, openedDayKey, lang]);
 
   if (!survey) {
     return (
@@ -189,35 +201,36 @@ export default function SurveyScreen() {
     );
   }
 
-  // ── ФИНАЛЬНЫЙ ЭКРАН (после последнего вопроса) ────────────────────────────
-  if (finalReward !== null) {
+  if (submission.phase !== 'editing') {
+    const confirmedZero = submission.phase === 'reconciled' && submission.confirmedReward === 0;
+    const errorText = triLang(lang, {
+      ru: submission.messageKey === 'auth' ? 'Нужен вход в облако. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
+      uk: submission.messageKey === 'auth' ? 'Потрібен вхід у хмару. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
+      es: 'No se pudo enviar. Inténtalo de nuevo.', 'pt-BR': 'Falha ao enviar. Tente de novo.',
+      vi: 'Gửi không thành công. Thử lại.', id: 'Gagal mengirim. Coba lagi.',
+      tr: 'Gönderilemedi. Tekrar dene.', pl: 'Nie udało się wysłać. Spróbuj ponownie.',
+    });
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={styles.finalBox}>
-              <View style={[styles.finalBadge, { backgroundColor: survey.accentColor || t.bgCard }]}>
-                <Text style={{ fontSize: 44 }}>💎</Text>
-              </View>
-              {finalReward > 0 && (
-                <Text style={{ color: sx.second, fontSize: f.h1, fontWeight: '900', marginTop: 8 }}>+{finalReward}</Text>
-              )}
-              <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 12 }}>
-                {survey.finalTitle?.trim() || triLang(lang, {
+              <SurveyRewardPanel
+                phase={submission.phase}
+                reward={surveyRewardForDisplay(submission)}
+                title={confirmedZero ? triLang(lang, {
+                  ru: 'Опрос уже пройден', uk: 'Опитування вже пройдено', es: 'Encuesta ya completada',
+                  'pt-BR': 'Pesquisa já respondida', vi: 'Đã hoàn thành khảo sát', id: 'Survei sudah diisi',
+                  tr: 'Anket zaten tamamlandı', pl: 'Ankieta już wypełniona',
+                }) : (survey.finalTitle?.trim() || triLang(lang, {
                   ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!',
                   vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!',
-                })}
-              </Text>
-              {!!survey.finalSubtitle?.trim() && (
-                <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
-                  {survey.finalSubtitle}
-                </Text>
-              )}
-              <TapScale onPress={() => { hapticTap(); clearPrimedSurvey(); safeRouterBack(router); }} style={[styles.primaryBtn, { backgroundColor: sx.primary, marginTop: 28, alignSelf: 'stretch' }]}>
-                <Text style={{ color: t.bgPrimary, fontWeight: '800', fontSize: f.body }}>
-                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Bitti', pl: 'Gotowe' })}
-                </Text>
-              </TapScale>
+                }))}
+                subtitle={survey.finalSubtitle?.trim() || ''}
+                error={errorText}
+                onDone={closeScreen}
+                onRetry={() => { void onSubmit(); }}
+              />
             </View>
           </ContentWrap>
         </SafeAreaView>

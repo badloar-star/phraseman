@@ -306,3 +306,5 @@ _frames/
 
 # Local isolated Codex worktrees
 /.worktrees/
+/output/social-learning-cards/
+/.codex-tmp/social-learning-cards*/

@@ -3,6 +3,11 @@
   "main": "index.js",
   "version": "1.5.53",
   "scripts": {
+    "social-cards:prepare": "node tools/social-learning-cards/src/runner.mjs prepare",
+    "social-cards:import": "node tools/social-learning-cards/src/runner.mjs import",
+    "social-cards:render": "node tools/social-learning-cards/src/runner.mjs render",
+    "social-cards:validate": "node tools/social-learning-cards/src/runner.mjs validate",
+    "social-cards:package": "node tools/social-learning-cards/src/runner.mjs package",
     "start": "expo start",
     "text-integrity:audit": "node scripts/text-integrity/inventory.mjs",
     "text-integrity:update-baseline": "node scripts/text-integrity/inventory.mjs --update-baseline",

@@ -18,14 +18,21 @@ function escapeXml(value) {
 }
 
 function mimeFor(filePath) {
-  return path.extname(filePath).toLowerCase() === '.jpg' || path.extname(filePath).toLowerCase() === '.jpeg'
+  const extension = path.extname(filePath).toLowerCase();
+  return extension === '.jpg' || extension === '.jpeg'
     ? 'image/jpeg'
-    : 'image/png';
+    : extension === '.webp'
+      ? 'image/webp'
+      : 'image/png';
 }
 
 async function imageDataUri(filePath) {
-  const bytes = await fs.readFile(filePath);
-  return `data:${mimeFor(filePath)};base64,${bytes.toString('base64')}`;
+  const extension = path.extname(filePath).toLowerCase();
+  const bytes = extension === '.webp'
+    ? await sharp(filePath).png().toBuffer()
+    : await fs.readFile(filePath);
+  const mime = extension === '.webp' ? 'image/png' : mimeFor(filePath);
+  return `data:${mime};base64,${bytes.toString('base64')}`;
 }
 
 function artifactPaths(outputPath) {
@@ -99,12 +106,12 @@ function learningLayout(card, cellPaths) {
 
 async function learningSvg(layout) {
   const cells = await Promise.all(layout.cells.map(async (cell) => {
-    const imageHeight = cell.russian ? cell.height - 84 : cell.height - 56;
+    const imageHeight = cell.russian ? cell.height - 112 : cell.height - 72;
     const englishY = cell.y + imageHeight + 36;
     const russianY = englishY + 28;
     return `<g>
       <rect x="${cell.x}" y="${cell.y}" width="${cell.width}" height="${cell.height}" rx="20" fill="#f7f7f5"/>
-      <image href="${await imageDataUri(cell.imagePath)}" x="${cell.x + 6}" y="${cell.y + 6}" width="${cell.width - 12}" height="${imageHeight - 8}" preserveAspectRatio="xMidYMid meet"/>
+      <image href="${await imageDataUri(cell.imagePath)}" x="${cell.x + 18}" y="${cell.y + 10}" width="${cell.width - 36}" height="${imageHeight - 14}" preserveAspectRatio="xMidYMid meet"/>
       <text x="${cell.x + cell.width / 2}" y="${englishY}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${cell.englishFontSize}" font-weight="800" fill="#10151c">${escapeXml(cell.english)}</text>
       ${cell.russian ? `<text x="${cell.x + cell.width / 2}" y="${russianY}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${cell.russianFontSize}" fill="#4b5563">${escapeXml(cell.russian)}</text>` : ''}
     </g>`;
@@ -132,7 +139,7 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
     height: HEIGHT,
     safeArea: SAFE_AREA,
     screenshot: { path: appScreenshotPath, x: 92, y: 444, width: 260, height: 520 },
-    hero: { path: heroCellPath, x: SAFE_AREA, y: SAFE_AREA, width: 984, height: 350 },
+    hero: { path: heroCellPath, x: 100, y: 58, width: 880, height: 320 },
     cta: {
       x: 400,
       y: 500,
@@ -156,7 +163,7 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
     <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
     <rect x="48" y="48" width="984" height="350" rx="30" fill="#f5f1e9"/>
-    <image href="${heroUri}" x="48" y="48" width="984" height="350" preserveAspectRatio="xMidYMid slice"/>
+    <image href="${heroUri}" x="100" y="58" width="880" height="320" preserveAspectRatio="xMidYMid meet"/>
     <rect x="76" y="426" width="292" height="556" rx="42" fill="#111820"/>
     <image href="${screenshotUri}" x="92" y="444" width="260" height="520" preserveAspectRatio="xMidYMid slice"/>
     <text x="400" y="548" font-family="Arial, sans-serif" font-size="42" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>

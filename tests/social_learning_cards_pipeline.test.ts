@@ -314,9 +314,9 @@ describe('two-slide renderer', () => {
       }).png().toFile(cellPath);
       cellPaths[item.id] = cellPath;
     }
-    const screenshotPath = path.join(tempRoot, 'app-screen.png');
+    const screenshotPath = path.join(tempRoot, 'app-screen.webp');
     await sharp({ create: { width: 600, height: 1200, channels: 3, background: '#151b24' } })
-      .png()
+      .webp()
       .toFile(screenshotPath);
     return { fixture, cellPaths, screenshotPath };
   }

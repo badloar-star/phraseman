@@ -20,7 +20,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { getCanonicalUserId } from './user_id_policy';
-import { replaceShardsBalanceLocal } from './shards_system';
+import { replaceShardsBalanceForAccountGeneration } from './shards_system';
 import { emitAppEvent } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
@@ -73,9 +73,12 @@ export default function SurveyScreen() {
     if (mountedRef.current) safeRouterBack(router);
   }, [clearAutoReturnTimer, router]);
 
-  useEffect(() => () => {
-    mountedRef.current = false;
-    clearAutoReturnTimer();
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      clearAutoReturnTimer();
+    };
   }, [clearAutoReturnTimer]);
 
   useEffect(() => {
@@ -149,25 +152,37 @@ export default function SurveyScreen() {
         appVersion: Constants.expoConfig?.version ?? 'unknown',
       });
       if (!isCurrentAccountGeneration(accountToken, stableId)) return;
-      await replaceShardsBalanceLocal(res.balanceAfter, {
+      const balanceReconciled = await replaceShardsBalanceForAccountGeneration(res.balanceAfter, accountToken, stableId, {
         updatedAtMs: res.shardsUpdatedAtMs ?? undefined,
         op: 'earn',
         reason: 'survey_completed',
       });
-      await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      if (!balanceReconciled) throw new Error('balance_reconcile_failed');
+      const markerWritten = await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      if (!markerWritten) throw new Error('marker_reconcile_failed');
       const completedScope = { stableId, dayKey: openedDayKey, lang };
-      commitSurveyDailyTaskRequest(completedScope, beginSurveyDailyTaskRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      const cacheCommitted = commitSurveyDailyTaskRequest(completedScope, beginSurveyDailyTaskRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
+      if (!cacheCommitted) throw new Error('cache_reconcile_failed');
       if (!mountedRef.current || attemptIdRef.current !== attemptId) return;
       dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: res.reward });
       hapticSuccess();
       if (res.reward > 0) emitAppEvent('shards_earned', { amount: res.reward, reasonKey: 'survey_completed' });
     } catch (e: unknown) {
       const raw = String((e as { message?: string })?.message ?? e ?? '').toLowerCase();
-      const messageKey: SurveySubmitErrorKey = raw.includes('unauthenticated') || raw.includes('no_profile')
+      const messageKey: SurveySubmitErrorKey = raw.includes('rate_limited') || raw.includes('resource-exhausted')
+        ? 'rate_limited'
+        : raw.includes('unknown_survey')
+          ? 'unknown_survey'
+          : raw.includes('unauthenticated') || raw.includes('no_profile')
         ? 'auth'
-        : raw.includes('network') || raw.includes('unavailable')
+        : raw.includes('network')
           ? 'network'
-          : raw.includes('rate_limited') || raw.includes('resource-exhausted') || raw.includes('unknown_survey')
+          : raw.includes('unavailable')
+            ? 'unavailable'
+          : raw.includes('server') || raw.includes('internal')
             ? 'server'
             : 'unknown';
       if (mountedRef.current && attemptIdRef.current === attemptId) {
@@ -203,7 +218,16 @@ export default function SurveyScreen() {
 
   if (submission.phase !== 'editing') {
     const confirmedZero = submission.phase === 'reconciled' && submission.confirmedReward === 0;
-    const errorText = triLang(lang, {
+    const errorText = submission.messageKey === 'rate_limited' ? triLang(lang, {
+      ru: 'Слишком много опросов подряд. Попробуй позже.', uk: 'Забагато опитувань поспіль. Спробуй пізніше.',
+      es: 'Demasiadas encuestas seguidas. Inténtalo más tarde.', 'pt-BR': 'Muitas pesquisas seguidas. Tente mais tarde.',
+      vi: 'Quá nhiều khảo sát liên tiếp. Thử lại sau.', id: 'Terlalu banyak survei berturut-turut. Coba nanti.',
+      tr: 'Arka arkaya çok fazla anket. Sonra dene.', pl: 'Zbyt wiele ankiet z rzędu. Spróbuj później.',
+    }) : submission.messageKey === 'unknown_survey' ? triLang(lang, {
+      ru: 'Опрос уже недоступен.', uk: 'Опитування вже недоступне.', es: 'La encuesta ya no está disponible.',
+      'pt-BR': 'A pesquisa não está mais disponível.', vi: 'Khảo sát không còn khả dụng.', id: 'Survei sudah tidak tersedia.',
+      tr: 'Anket artık kullanılamıyor.', pl: 'Ankieta jest już niedostępna.',
+    }) : triLang(lang, {
       ru: submission.messageKey === 'auth' ? 'Нужен вход в облако. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
       uk: submission.messageKey === 'auth' ? 'Потрібен вхід у хмару. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
       es: 'No se pudo enviar. Inténtalo de nuevo.', 'pt-BR': 'Falha ao enviar. Tente de novo.',

@@ -17,6 +17,7 @@ import {
   readShardDeltaQueue,
   removeShardDeltas,
 } from './shards_delta_queue';
+import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 
 export type ShardSpendReason =
   | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–10)
@@ -268,6 +269,58 @@ export const replaceShardsBalanceLocal = async (
   if (!wrote) return;
   setShardsBalanceMemory(n);
   await emitShardsBalanceUpdated(n, meta);
+};
+
+/** Account-scoped server reconciliation that cannot leave a stale generation in the shared wallet. */
+export const replaceShardsBalanceForAccountGeneration = async (
+  next: number,
+  token: AccountGenerationToken,
+  stableId: string,
+  options?: ReplaceShardBalanceOptions,
+): Promise<boolean> => {
+  const n = Math.max(0, Math.floor(Number(next)));
+  if (!Number.isFinite(n) || !isCurrentAccountGeneration(token, stableId)) return false;
+  const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs);
+  const meta: ShardBalanceMeta = {
+    updatedAtMs: serverUpdatedAtMs ?? Date.now(),
+    op: normalizeShardBalanceOp(options?.op),
+    reason: typeof options?.reason === 'string' && options.reason.trim()
+      ? options.reason.trim()
+      : 'server_replace',
+  };
+  let wrote = false;
+  try {
+    await withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(token, stableId)) return;
+      const [previousBalance, previousMeta] = await Promise.all([
+        AsyncStorage.getItem(STORAGE_KEY),
+        AsyncStorage.getItem(BALANCE_META_KEY),
+      ]);
+      if (!isCurrentAccountGeneration(token, stableId)) return;
+      if (serverUpdatedAtMs !== null) {
+        const currentMeta = await readBalanceMeta();
+        if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;
+      }
+      if (!isCurrentAccountGeneration(token, stableId)) return;
+      await persistLocalBalance(n, meta);
+      if (!isCurrentAccountGeneration(token, stableId)) {
+        const restorePairs: [string, string][] = [];
+        if (previousBalance !== null) restorePairs.push([STORAGE_KEY, previousBalance]);
+        if (previousMeta !== null) restorePairs.push([BALANCE_META_KEY, previousMeta]);
+        if (restorePairs.length) await AsyncStorage.multiSet(restorePairs);
+        if (previousBalance === null) await AsyncStorage.removeItem(STORAGE_KEY);
+        if (previousMeta === null) await AsyncStorage.removeItem(BALANCE_META_KEY);
+        return;
+      }
+      wrote = true;
+    });
+  } catch {
+    return false;
+  }
+  if (!wrote || !isCurrentAccountGeneration(token, stableId)) return false;
+  setShardsBalanceMemory(n);
+  await emitShardsBalanceUpdated(n, meta);
+  return isCurrentAccountGeneration(token, stableId);
 };
 
 const mirrorServerShardBalanceLocal = async (

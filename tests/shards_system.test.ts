@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
+import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -18,13 +19,41 @@ beforeEach(() => {
     mockStorage[k] = v;
     return Promise.resolve();
   });
-  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: Array<[string, string]>) => {
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: [string, string][]) => {
     for (const [k, v] of pairs) mockStorage[k] = v;
     return Promise.resolve();
   });
+  (AsyncStorage.removeItem as jest.Mock).mockImplementation((key: string) => {
+    delete mockStorage[key];
+    return Promise.resolve();
+  });
+  __resetAccountGenerationForTests();
 });
 
 describe('shards_system guards and one-time awards', () => {
+  it('rolls back a deferred balance commit when the account generation switches mid-write', async () => {
+    mockStorage.shards_balance = '7';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({ updatedAtMs: 1, op: 'earn', reason: 'old' });
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    let release!: () => void;
+    const pendingWrite = new Promise<void>((resolve) => { release = resolve; });
+    (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(async (pairs: [string, string][]) => {
+      await pendingWrite;
+      for (const [key, value] of pairs) mockStorage[key] = value;
+    });
+
+    const reconcile = replaceShardsBalanceForAccountGeneration(13, token, 'account-a', {
+      updatedAtMs: 42, op: 'earn', reason: 'survey_completed',
+    });
+    await Promise.resolve();
+    beginAccountGeneration('account-b');
+    release();
+
+    await expect(reconcile).resolves.toBe(false);
+    expect(mockStorage.shards_balance).toBe('7');
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({ updatedAtMs: 1, reason: 'old' });
+  });
   it('rejects non-positive spend values', async () => {
     mockStorage.shards_balance = '10';
     await expect(spendShards(0)).resolves.toBe(false);

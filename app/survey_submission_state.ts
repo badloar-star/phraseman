@@ -1,4 +1,4 @@
-export type SurveySubmitErrorKey = 'network' | 'auth' | 'server' | 'unknown';
+export type SurveySubmitErrorKey = 'rate_limited' | 'unknown_survey' | 'unavailable' | 'network' | 'auth' | 'server' | 'unknown';
 
 export type SurveySubmissionState =
   | { phase: 'editing'; attemptId: number; expectedReward: 0; confirmedReward: 0; messageKey: null }

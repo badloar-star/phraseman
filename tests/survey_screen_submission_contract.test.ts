@@ -24,13 +24,16 @@ describe('survey screen submission contract', () => {
 
   test('reconciles authoritative state before mounted presentation and gates stale accounts', () => {
     const generationGate = source.indexOf('if (!isCurrentAccountGeneration(accountToken, stableId)) return;');
-    const balance = source.indexOf('await replaceShardsBalanceLocal(res.balanceAfter');
+    const balance = source.indexOf('await replaceShardsBalanceForAccountGeneration(res.balanceAfter');
     const marker = source.indexOf('await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey');
     const mountedPresentation = source.indexOf('if (!mountedRef.current || attemptIdRef.current !== attemptId) return;');
     expect(generationGate).toBeGreaterThan(-1);
     expect(balance).toBeGreaterThan(generationGate);
     expect(marker).toBeGreaterThan(balance);
     expect(mountedPresentation).toBeGreaterThan(marker);
+    expect(source).not.toContain('replaceShardsBalanceLocal(res.balanceAfter');
+    expect(source).toContain('if (!balanceReconciled)');
+    expect(source.match(/isCurrentAccountGeneration\(accountToken, stableId\)/g)?.length).toBeGreaterThanOrEqual(5);
   });
 
   test('uses a monotonic active request guard and clears the auto-return timer', () => {

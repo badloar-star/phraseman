@@ -14,14 +14,15 @@ async function scopedKey(stableId: string): Promise<string> {
   return `shard_survey_done_v2:${digest.slice(0, 24)}`;
 }
 
-export async function markSurveyDailyTaskDone(input?: { stableId: string; dayKey: string; summary: MarkerSummary }): Promise<void> {
+export async function markSurveyDailyTaskDone(input?: { stableId: string; dayKey: string; summary: MarkerSummary }): Promise<boolean> {
   try {
     if (!input) {
       await AsyncStorage.setItem(LEGACY_SURVEY_DONE_KEY, getTodayKey());
-      return;
+      return true;
     }
     await AsyncStorage.setItem(await scopedKey(input.stableId), JSON.stringify({ version: 2, dayKey: input.dayKey, summary: input.summary }));
-  } catch { /* best effort */ }
+    return true;
+  } catch { return false; }
 }
 
 export async function isSurveyDailyTaskDone(input: { stableId: string; dayKey: string }): Promise<boolean> {
@@ -44,7 +45,8 @@ function utcDayKey(atMs: number): string | null {
 export async function migrateLegacySurveyCompletion(input: { stableId: string; dayKey: string; completion: ActiveSurveyLookupResult['completion']; lang: Lang }): Promise<boolean> {
   if (!input.completion || utcDayKey(input.completion.completedAtMs) !== input.dayKey) return false;
   const summary = buildServerConfirmedLegacyCompletion(input.lang);
-  await markSurveyDailyTaskDone({ stableId: input.stableId, dayKey: input.dayKey, summary });
+  const marked = await markSurveyDailyTaskDone({ stableId: input.stableId, dayKey: input.dayKey, summary });
+  if (!marked) return false;
   await AsyncStorage.removeItem(LEGACY_SURVEY_DONE_KEY);
   return true;
 }

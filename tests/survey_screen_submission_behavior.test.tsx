@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports, react/display-name, import/first */
-import React from 'react';
-import { act, cleanup, fireEvent, render } from '@testing-library/react-native';
+import React, { StrictMode } from 'react';
+import { act, fireEvent, render } from '@testing-library/react-native';
 
 jest.unmock('react-native');
 
@@ -19,7 +19,9 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('../app/navigation_back', () => ({ safeRouterBack: () => mockBack() }));
 jest.mock('../app/survey_client', () => ({ submitSurvey: (...args: unknown[]) => mockSubmitSurvey(...args) }));
-jest.mock('../app/shards_system', () => ({ replaceShardsBalanceLocal: (...args: unknown[]) => mockReplaceBalance(...args) }));
+jest.mock('../app/shards_system', () => ({
+  replaceShardsBalanceForAccountGeneration: (...args: unknown[]) => mockReplaceBalance(...args),
+}));
 jest.mock('../app/survey_daily_task', () => ({ markSurveyDailyTaskDone: (...args: unknown[]) => mockMarkDone(...args) }));
 jest.mock('../app/survey_daily_task_cache', () => ({
   beginSurveyDailyTaskRequest: (...args: unknown[]) => mockBeginCache(...args),
@@ -76,6 +78,7 @@ jest.mock('../components/survey/SurveyRewardPanel', () => {
   return (props: any) => (
     <MockView testID="reward-panel">
       <MockText testID="reward-phase">{props.phase}</MockText>
+      <MockText testID="reward-value">{props.reward}</MockText>
       <MockText>{props.title}</MockText><MockText>{props.subtitle}</MockText><MockText>{props.error}</MockText>
       {props.phase === 'retryable-error'
         ? <MockPressable testID="retry" onPress={props.onRetry}><MockText>Retry</MockText></MockPressable>
@@ -97,9 +100,8 @@ function deferred<T>(): Deferred<T> {
 
 async function submitMounted() {
   const view = await render(<SurveyScreen />);
-  await act(async () => { fireEvent.changeText(view.getByPlaceholderText('Напиши ответ…'), 'kept answer'); });
-  await act(async () => { fireEvent.press(view.getByText('Отправить')); });
-  expect(view.getByTestId('reward-phase').props.children).toBe('optimistic-reward');
+  await fireEvent.changeText(view.getByPlaceholderText('Напиши ответ…'), 'kept answer');
+  await fireEvent.press(view.getByText('Отправить'));
   return view;
 }
 
@@ -108,10 +110,12 @@ beforeEach(() => {
   jest.clearAllMocks();
   __resetAccountGenerationForTests();
   beginAccountGeneration('account-a');
+  mockReplaceBalance.mockResolvedValue(true);
+  mockMarkDone.mockResolvedValue(true);
+  mockCommitCache.mockReturnValue(true);
 });
 
-afterEach(async () => {
-  await cleanup();
+afterEach(() => {
   jest.runOnlyPendingTimers();
   jest.useRealTimers();
 });
@@ -123,10 +127,14 @@ test('ordinary unmount still reconciles same-generation durable state without pr
   const view = await submitMounted();
   await view.unmount();
 
-  await act(async () => request.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 }));
+  await act(async () => {
+    request.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+    await request.promise;
+    await Promise.resolve(); await Promise.resolve();
+  });
   jest.runOnlyPendingTimers();
 
-  expect(mockReplaceBalance).toHaveBeenCalledWith(13, expect.any(Object));
+  expect(mockReplaceBalance).toHaveBeenCalledWith(13, expect.any(Object), 'account-a', expect.any(Object));
   expect(mockMarkDone).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'account-a', dayKey: '2026-07-11' }));
   expect(mockCommitCache).toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
@@ -143,7 +151,11 @@ test('rejection after ordinary unmount has no dispatch, timer, or navigation', a
   const view = await submitMounted();
   await view.unmount();
 
-  await act(async () => request.reject(new Error('network unavailable')));
+  await act(async () => {
+    request.reject(new Error('network unavailable'));
+    await request.promise.catch(() => undefined);
+    await Promise.resolve();
+  });
 
   expect(mockBack).not.toHaveBeenCalled();
   expect(timeoutSpy).not.toHaveBeenCalledWith(expect.any(Function), 1400);
@@ -157,7 +169,11 @@ test('account switch before account A resolves suppresses every local effect', a
   const view = await submitMounted();
   beginAccountGeneration('account-b');
 
-  await act(async () => request.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 }));
+  await act(async () => {
+    request.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+    await request.promise;
+    await Promise.resolve();
+  });
 
   expect(mockReplaceBalance).not.toHaveBeenCalled();
   expect(mockMarkDone).not.toHaveBeenCalled();
@@ -166,6 +182,98 @@ test('account switch before account A resolves suppresses every local effect', a
   expect(mockBack).not.toHaveBeenCalled();
   expect(view.getByTestId('reward-phase').props.children).toBe('optimistic-reward');
   await view.unmount();
+});
+
+test('account switch while guarded balance reconciliation is pending stops marker, cache, and presentation', async () => {
+  const balance = deferred<boolean>();
+  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockReplaceBalance.mockReturnValue(balance.promise);
+  const view = await submitMounted();
+  await act(async () => { await Promise.resolve(); });
+  expect(mockReplaceBalance).toHaveBeenCalled();
+  beginAccountGeneration('account-b');
+  await act(async () => balance.resolve(false));
+
+  expect(mockMarkDone).not.toHaveBeenCalled();
+  expect(mockCommitCache).not.toHaveBeenCalled();
+  expect(mockEmit).not.toHaveBeenCalled();
+  expect(mockBack).not.toHaveBeenCalled();
+  expect(view.getByTestId('reward-phase').props.children).toBe('optimistic-reward');
+  await view.unmount();
+});
+
+test('reward zero reconciles completion without a shards event or positive reward display', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 0, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  const view = await submitMounted();
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
+  expect(view.getByTestId('reward-value').props.children).toBe(0);
+  expect(mockMarkDone).toHaveBeenCalled();
+  expect(mockCommitCache).toHaveBeenCalled();
+  expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
+});
+
+test('balance or marker failure stays retryable and never records false completion', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockReplaceBalance.mockResolvedValueOnce(false);
+  const balanceFailure = await submitMounted();
+  await act(async () => { await Promise.resolve(); });
+  expect(mockMarkDone).not.toHaveBeenCalled();
+  expect(mockCommitCache).not.toHaveBeenCalled();
+  expect(balanceFailure.getByTestId('reward-phase').props.children).toBe('retryable-error');
+  await balanceFailure.unmount();
+
+  mockReplaceBalance.mockResolvedValue(true);
+  mockMarkDone.mockRejectedValueOnce(new Error('storage failed'));
+  const markerFailure = await submitMounted();
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(mockCommitCache).not.toHaveBeenCalled();
+  expect(markerFailure.getByTestId('reward-phase').props.children).toBe('retryable-error');
+});
+
+test('cache commit failure never presents success or emits a reward event', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockCommitCache.mockReturnValue(false);
+  const view = await submitMounted();
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(mockReplaceBalance).toHaveBeenCalled();
+  expect(mockMarkDone).toHaveBeenCalled();
+  expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
+  expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
+});
+
+test('repeated final presses create only one active request', async () => {
+  const request = deferred<any>();
+  mockSubmitSurvey.mockReturnValue(request.promise);
+  const view = await render(<SurveyScreen />);
+  await fireEvent.changeText(view.getByPlaceholderText('Напиши ответ…'), 'one answer');
+  const submit = view.getByText('Отправить');
+  await fireEvent.press(submit);
+  await fireEvent.press(submit);
+  expect(mockSubmitSurvey).toHaveBeenCalledTimes(1);
+  await view.unmount();
+});
+
+test.each([
+  ['resource-exhausted rate_limited', 'Слишком много опросов подряд. Попробуй позже.'],
+  ['unknown_survey', 'Опрос уже недоступен.'],
+] as const)('shows distinct in-panel guidance for %s', async (failure, copy) => {
+  mockSubmitSurvey.mockRejectedValue(new Error(failure));
+  const view = await submitMounted();
+  await act(async () => { await Promise.resolve(); });
+  expect(view.getByText(copy)).toBeTruthy();
+});
+
+test('StrictMode effect replay leaves the mounted instance active and unmount clears reconciled return', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  const view = await render(<StrictMode><SurveyScreen /></StrictMode>);
+  await fireEvent.changeText(view.getByPlaceholderText('Напиши ответ…'), 'strict answer');
+  await fireEvent.press(view.getByText('Отправить'));
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
+  await view.unmount();
+  jest.advanceTimersByTime(1400);
+  expect(mockBack).not.toHaveBeenCalled();
 });
 
 test('failure preserves the answer, retry is monotonic, and only reconciliation schedules return', async () => {
@@ -177,7 +285,7 @@ test('failure preserves the answer, retry is monotonic, and only reconciliation 
 
   await act(async () => first.reject(new Error('network unavailable')));
   expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
-  await act(async () => { fireEvent.press(view.getByTestId('retry')); });
+  await fireEvent.press(view.getByTestId('retry'));
   expect(mockSubmitSurvey).toHaveBeenCalledTimes(2);
   expect(mockSubmitSurvey.mock.calls[1][0].answers).toEqual({ q1: { comment: 'kept answer' } });
   expect(timeoutSpy).not.toHaveBeenCalledWith(expect.any(Function), 1400);
@@ -190,7 +298,7 @@ test('failure preserves the answer, retry is monotonic, and only reconciliation 
   });
   expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
   expect(timeoutSpy).toHaveBeenCalledWith(expect.any(Function), 1400);
-  await act(async () => { fireEvent.press(view.getByTestId('done')); });
+  await fireEvent.press(view.getByTestId('done'));
   await act(async () => { jest.advanceTimersByTime(1400); });
   expect(mockBack).toHaveBeenCalledTimes(1);
   timeoutSpy.mockRestore();

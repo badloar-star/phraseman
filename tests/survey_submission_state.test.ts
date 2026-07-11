@@ -5,6 +5,17 @@ import {
 } from '../app/survey_submission_state';
 
 describe('survey submission state', () => {
+  test.each(['rate_limited', 'unknown_survey', 'unavailable', 'auth', 'network', 'server', 'unknown'] as const)(
+    'preserves the distinct %s error family for localized retry guidance',
+    (messageKey) => {
+      const started = reduceSurveySubmission(initialSurveySubmissionState, {
+        type: 'submit_started', attemptId: 1, expectedReward: 3,
+      });
+      expect(reduceSurveySubmission(started, {
+        type: 'submit_failed', attemptId: 1, messageKey,
+      })).toMatchObject({ phase: 'retryable-error', messageKey });
+    },
+  );
   test('moves from editing to optimistic reward', () => {
     expect(
       reduceSurveySubmission(initialSurveySubmissionState, {

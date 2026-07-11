@@ -34,6 +34,7 @@ const PAGES = Object.freeze({
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
   'daily-briefing': { title: 'Ежедневный брифинг', description: 'Операционная сводка за 24 часа с прозрачной полнотой каждого серверного источника.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
+  'asset-studio': { title: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через безопасный серверный workflow Generate → Review → Publish.' },
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
@@ -89,6 +90,7 @@ const state = {
   reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
+  assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
 };
 
 let actions = null;
@@ -725,6 +727,34 @@ function renderAnalytics() {
       <div class="card-body">${snapshot ? `<pre class="code-preview">${escapeHtml(JSON.stringify(snapshot, null, 2))}</pre>` : emptyState('Выберите период и загрузите серверный снимок.')}</div></section>`;
 }
 
+function renderAssetStudio() {
+  if (!can('content.read')) return `${pageHeader(PAGES['asset-studio'], 'Контент / Asset Studio')}<div class="notice warning">У вашей роли нет разрешения content.read.</div>`;
+  const items = state.assetStudio.items || [];
+  const selected = items.find((item) => String(item.id) === String(state.assetStudio.selectedJobId)) || items[0] || null;
+  const headerAction = `<div class="actions"><button class="button" data-action="load-asset-jobs" type="button"${disabledWhenUnauthorized('content.read')} title="Загрузить последние задания генерации ассетов">Обновить очередь</button><a class="button" href="../../admin/index.html#openai-budget" target="_blank" rel="noopener" title="Архивная сверка бюджета и старых OpenAI настроек">Старый бюджет</a></div>`;
+  const rows = items.length ? items.map((job) => `<article class="list-row asset-job-row"><div><strong>${escapeHtml(job.title || 'Asset job')}</strong><small><code>${escapeHtml(job.id)}</code> · ${escapeHtml(job.kind || 'generic')} · ${escapeHtml(dateTime(job.updatedAtMs || job.createdAtMs))}</small><small>${escapeHtml(job.targetPath || 'без target path')} ${job.slotKey ? `· slot ${escapeHtml(job.slotKey)}` : ''}</small>${job.error ? `<small class="source-error">${escapeHtml(job.error)}</small>` : ''}</div><div class="actions"><span class="badge ${badgeClass(job.status)}">${escapeHtml(statusLabel(job.status))}</span><button class="button small" data-select-asset-job="${escapeHtml(job.id)}" type="button" title="Открыть предпросмотр задания">Открыть</button>${['draft', 'failed'].includes(String(job.status)) ? `<button class="button small primary" data-action="run-asset-job" data-asset-job-id="${escapeHtml(job.id)}" type="button"${disabledWhenUnauthorized('content.draft.write')} title="Запустить server-side генерацию изображений по этому черновику">Сгенерировать</button>` : ''}</div></article>`).join('') : emptyState('Создайте первый DALL-E job или обновите очередь.');
+  const previews = selected?.results?.length ? `<div class="asset-preview-grid">${selected.results.map((result, index) => `<a class="asset-preview" href="${escapeHtml(result.previewUrl || '#')}" target="_blank" rel="noopener"><span>Вариант ${index + 1}</span>${result.previewUrl ? `<img src="${escapeHtml(result.previewUrl)}" alt="Generated asset preview ${index + 1}" loading="lazy">` : `<code>${escapeHtml(result.gsPath || '')}</code>`}</a>`).join('')}</div>` : emptyState('После генерации здесь появятся signed preview links из Storage.');
+  return `${pageHeader(PAGES['asset-studio'], 'Контент / Asset Studio', headerAction)}
+    <div class="notice">Generate → Review → Publish. OpenAI key stays on the server; в браузере создаётся только безопасный job. Публикация в bundled assets остаётся отдельным review шагом, чтобы не сломать asset hygiene.</div>
+    <div class="columns section">
+      <section class="card"><div class="card-header"><div><h2>Новый asset job</h2><p>Сформируйте черновик генерации: тип, слот, target path и промпт.</p></div></div><div class="card-body">
+        <div class="fields">
+          <div class="field"><label for="asset-kind">Тип ассета</label><select id="asset-kind"><option value="generic">Обычный ассет</option><option value="onboarding_icon">Onboarding icon</option><option value="quiz_level_card">Quiz level card</option><option value="background">Background</option></select></div>
+          <div class="field"><label for="asset-count">Количество вариантов</label><input id="asset-count" type="number" min="1" max="4" value="1"></div>
+          <div class="field"><label for="asset-title">Название</label><input id="asset-title" maxlength="120" placeholder="Например: Cinema easy card"></div>
+          <div class="field"><label for="asset-slot">Slot key</label><input id="asset-slot" maxlength="120" placeholder="quiz-card-easy-cinema"></div>
+          <div class="field full"><label for="asset-target">Target path</label><input id="asset-target" maxlength="240" placeholder="assets/images/quizzes/level_cards/quiz-card-easy-cinema.webp"></div>
+          <div class="field"><label for="asset-quality">Качество</label><select id="asset-quality"><option value="low">low — быстрый черновик</option><option value="medium">medium — рабочий вариант</option><option value="high">high — дорогой финал</option></select></div>
+          <div class="field"><label for="asset-size">Размер</label><select id="asset-size"><option value="1024x1024">1024×1024</option></select></div>
+          <div class="field full"><label for="asset-prompt">Промпт</label><textarea id="asset-prompt" maxlength="4000" placeholder="Опишите ассет. Укажите: no text, no letters, app icon quality, transparent background если нужно."></textarea></div>
+        </div>
+        <div class="actions end section"><button class="button primary" data-action="create-asset-job" type="button"${disabledWhenUnauthorized('content.draft.write')} title="Создать черновик job без вызова OpenAI">Создать черновик</button></div>
+      </div></section>
+      <section class="card"><div class="card-header"><div><h2>Предпросмотр и результаты</h2><p>Сначала проверьте варианты, потом отдельно публикуйте в app assets.</p></div></div><div class="card-body">${selected ? `<div class="notice"><strong>${escapeHtml(selected.title)}</strong><br><code>${escapeHtml(selected.targetPath || 'без target path')}</code></div>${previews}` : previews}</div></section>
+    </div>
+    <section class="card section"><div class="card-header"><div><h2>Очередь генераций</h2><p>Последние server-side jobs с audit log и Storage output.</p></div></div><div class="card-body">${state.assetStudio.error ? `<div class="notice danger">${escapeHtml(state.assetStudio.error)}</div>` : ''}<div class="data-list">${rows}</div></div></section>`;
+}
+
 function renderDailyBriefing() {
   if (!can('briefing.read')) return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг')}<div class="notice warning">У вашей роли нет разрешения briefing.read.</div>`;
   const digest = state.briefing.digest;
@@ -818,7 +848,7 @@ function renderReportQueue() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue };
+  const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1094,6 +1124,29 @@ async function loadOpsLog() {
   } catch (error) {
     if (!authStillValid(authGeneration, 'diagnostics.read')) return STALE_AUTH_RESULT;
     state.ops = { ...state.ops, state: 'error', error: errorMessage(error) };
+    throw error;
+  }
+}
+
+async function loadAssetJobs() {
+  const authGeneration = state.authGeneration;
+  state.assetStudio = { ...state.assetStudio, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listAssetJobs({ limit: 25 });
+    if (!authStillValid(authGeneration, 'content.read')) return STALE_AUTH_RESULT;
+    const items = Array.isArray(result?.items) ? result.items : [];
+    state.assetStudio = {
+      ...state.assetStudio,
+      state: items.length ? 'ready' : 'empty',
+      items,
+      selectedJobId: state.assetStudio.selectedJobId || String(items[0]?.id || ''),
+      error: '',
+    };
+    return result;
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'content.read')) return STALE_AUTH_RESULT;
+    state.assetStudio = { ...state.assetStudio, state: 'error', error: errorMessage(error) };
     throw error;
   }
 }
@@ -1402,6 +1455,36 @@ async function handleAction(action, target) {
     const rangeDays = Number(document.getElementById('analytics-range')?.value ?? 28);
     return runBusy(async () => { state.analytics = await actions.loadAnalytics({ rangeDays }); }, 'Аналитика загружена.');
   }
+  if (action === 'load-asset-jobs') return runBusy(loadAssetJobs, 'Очередь ассетов загружена.');
+  if (action === 'create-asset-job') {
+    const input = {
+      kind: document.getElementById('asset-kind')?.value || 'generic',
+      count: Number(document.getElementById('asset-count')?.value || 1),
+      title: String(document.getElementById('asset-title')?.value || '').trim(),
+      slotKey: String(document.getElementById('asset-slot')?.value || '').trim(),
+      targetPath: String(document.getElementById('asset-target')?.value || '').trim(),
+      quality: document.getElementById('asset-quality')?.value || 'low',
+      size: document.getElementById('asset-size')?.value || '1024x1024',
+      prompt: String(document.getElementById('asset-prompt')?.value || '').trim(),
+    };
+    if (!input.prompt) return setMessage('Введите промпт для DALL-E asset job.', 'warning');
+    return runBusy(async () => {
+      const result = await actions.createAssetJob(input);
+      const job = result?.job || null;
+      if (job?.id) state.assetStudio.selectedJobId = String(job.id);
+      await loadAssetJobs();
+    }, 'Черновик asset job создан.');
+  }
+  if (action === 'run-asset-job') {
+    const jobId = String(target.getAttribute('data-asset-job-id') || state.assetStudio.selectedJobId || '').trim();
+    if (!jobId) return setMessage('Выберите asset job для генерации.', 'warning');
+    if (!globalThis.confirm('Запустить DALL-E генерацию на сервере? Это потратит OpenAI бюджет.')) return;
+    return runBusy(async () => {
+      const result = await actions.runAssetJob({ jobId });
+      if (result?.job?.id) state.assetStudio.selectedJobId = String(result.job.id);
+      await loadAssetJobs();
+    }, 'DALL-E asset job сгенерирован и сохранён в Storage.');
+  }
   if (action === 'load-openai-budget') return runBusy(async () => { state.budget = await actions.loadOpenAiBudgetDashboard(); }, 'Данные бюджета загружены.');
   void target;
 }
@@ -1425,6 +1508,12 @@ async function handleClick(event) {
   }
   const jobId = target.getAttribute('data-select-job');
   if (jobId) return runBusy(async () => { await loadJobDetail(jobId); state.factoryStep = 2; }, 'Черновик открыт.');
+  const assetJobId = target.getAttribute('data-select-asset-job');
+  if (assetJobId) {
+    state.assetStudio.selectedJobId = assetJobId;
+    renderCurrentPage();
+    return;
+  }
   const unitId = target.getAttribute('data-preview-unit');
   if (unitId) return runBusy(async () => { state.preview = await actions.previewFactoryUnit({ unitId }); state.factoryStep = 3; }, 'Предпросмотр проверен и загружен.');
   const profileUid = target.getAttribute('data-user-profile-uid');
@@ -1486,6 +1575,7 @@ export function setAuthState(auth) {
     state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
     state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
     state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+    state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
@@ -1494,6 +1584,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+  if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
 }

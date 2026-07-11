@@ -28,8 +28,8 @@ describe('Admin v2 migration coverage', () => {
 
   it('reports capability migration truth without overstating action-level completion', () => {
     expect(board.source).toMatchObject({ buttons: 445, functions: 937 });
-    expect(board.capabilityCoverage).toHaveLength(58);
-    expect(board.summary.capabilities).toEqual({ total: 58, inventory: 0, guarded: 9, fallback: 49, ported: 0, blocked: 0 });
+    expect(board.capabilityCoverage).toHaveLength(59);
+    expect(board.summary.capabilities).toEqual({ total: 59, inventory: 0, guarded: 10, fallback: 49, ported: 0, blocked: 0 });
     expect(board.buttonCoverage.every((row) => row.status === 'inventory' || row.status === 'fallback')).toBe(true);
     expect(board.functionCoverage.every((row) => row.status === 'inventory' || row.status === 'fallback')).toBe(true);
   });

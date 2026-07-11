@@ -22,6 +22,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
   content: 'content',
   lessons: 'content',
   'language-factory': 'content',
+  'asset-studio': 'asset-studio',
   community: 'community',
   reports: 'community',
   arena: 'community',
@@ -32,7 +33,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
 });
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center']);
+const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio']);
 
 function routeFromLocation() {
   const capabilityRoute = resolveCapabilityHash(globalThis.location.hash);

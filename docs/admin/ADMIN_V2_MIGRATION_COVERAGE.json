@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-11T13:39:47.304Z",
+  "generatedAt": "2026-07-11T14:37:53.126Z",
   "source": {
     "buttons": 445,
     "functions": 937,
@@ -413,6 +413,16 @@
       "status": "fallback",
       "nativeRoute": null,
       "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+    },
+    {
+      "capabilityId": "asset-studio",
+      "label": "DALL-E Asset Studio",
+      "route": "content",
+      "legacyTab": null,
+      "legacyPage": null,
+      "status": "guarded",
+      "nativeRoute": "asset-studio",
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "explain-reports",
@@ -25612,11 +25622,11 @@
   ],
   "summary": {
     "capabilities": {
-      "total": 58,
+      "total": 59,
       "inventory": 0,
       "ported": 0,
       "fallback": 49,
-      "guarded": 9,
+      "guarded": 10,
       "blocked": 0
     },
     "buttons": {

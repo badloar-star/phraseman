@@ -42,6 +42,7 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'card-packs', route: 'content', label: 'Наборы карточек', description: 'Содержимое и управление наборами карточек.', legacyTab: 'card-packs' },
   { id: 'daily-phrases', route: 'content', label: 'Фразы дня', description: 'Фразы, расписание и публикация.', legacyTab: 'daily-phrases' },
   { id: 'french-quizzes', route: 'content', label: 'Французские квизы', description: 'Предпросмотр, черновик, публикация и откат.', legacyTab: 'french-quizzes' },
+  { id: 'asset-studio', route: 'content', label: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через серверный job workflow.' },
   { id: 'explain-reports', route: 'content', label: 'Репорты объяснений', description: 'Ошибки и отзывы по объяснениям.', legacyTab: 'explain-reports' },
   { id: 'explain-cache', route: 'content', label: 'Кэш объяснений', description: 'Проверка и обслуживание готовых объяснений.', legacyTab: 'explain-cache' },
   { id: 'compass', route: 'content', label: 'Компас', description: 'Контент и параметры учебного Компаса.', legacyTab: 'compass' },
@@ -70,6 +71,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'remote-config': 'application',
   users: 'users',
   reports: 'report-center',
+  'asset-studio': 'asset-studio',
   'gmail-support': 'support',
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
@@ -79,7 +81,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
-  'support', 'analytics', 'daily-briefing', 'report-center',
+  'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio',
 ]);
 
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {

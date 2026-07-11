@@ -1561,6 +1561,7 @@ export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
 export { adminGenerateDailyDigest, adminGetDailyBriefing } from './admin_daily_digest';
+export { adminListAssetJobs, adminCreateAssetJob, adminRunAssetJob } from './admin_asset_studio';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {

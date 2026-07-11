@@ -49,6 +49,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const supportResolveReplyDeliveryCallable = httpsCallable(functionsUs, 'adminSupportResolveReplyDelivery');
   const supportSaveSignatureCallable = httpsCallable(functionsUs, 'adminSupportSaveSignature');
   const supportSetStatusCallable = httpsCallable(functionsUs, 'adminSupportSetStatus');
+  const listAssetJobsCallable = httpsCallable(functionsUs, 'adminListAssetJobs');
+  const createAssetJobCallable = httpsCallable(functionsUs, 'adminCreateAssetJob');
+  const runAssetJobCallable = httpsCallable(functionsUs, 'adminRunAssetJob');
   const analyticsCallable = httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot');
   const searchUsersCallable = httpsCallable(functionsUs, 'adminSearchUsers');
   const getUserProfileCallable = httpsCallable(functionsUs, 'adminGetUserProfile');
@@ -108,6 +111,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     resolveSupportReplyDelivery: async (input) => unwrap(await supportResolveReplyDeliveryCallable(input)),
     saveSupportSignature: async (input) => unwrap(await supportSaveSignatureCallable(input)),
     setSupportStatus: async (input) => unwrap(await supportSetStatusCallable(input)),
+    listAssetJobs: async (input) => unwrap(await listAssetJobsCallable(input)),
+    createAssetJob: async (input) => unwrap(await createAssetJobCallable(input)),
+    runAssetJob: async (input) => unwrap(await runAssetJobCallable(input)),
     loadAnalytics: async (input) => unwrap(await analyticsCallable(input)),
     searchUsers: async (input) => unwrap(await searchUsersCallable(input)),
     getUserProfile: async (input) => unwrap(await getUserProfileCallable(input)),

@@ -55,6 +55,15 @@ describe('openai_jobs_config — resolveJobConfig', () => {
     const db = fakeDb({ stats: { globalDailyCap: -50 } });
     expect((await resolveJobConfig(db, 'stats')).globalDailyCap).toBe(0);
   });
+
+  it('keeps image model scoped to image_assets and rejects it for text jobs', async () => {
+    const db = fakeDb({
+      image_assets: { model: 'gpt-image-1', globalDailyCap: 7 },
+      digest: { model: 'gpt-image-1' },
+    });
+    expect(await resolveJobConfig(db, 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 7, enabled: true });
+    expect((await resolveJobConfig(db, 'digest')).model).toBe('gpt-4.1-mini');
+  });
 });
 
 describe('openai_jobs_config — assertJobEnabled', () => {

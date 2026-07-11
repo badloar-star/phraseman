@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import ts from "typescript";
 
 const ROOT = process.cwd();
@@ -52,7 +53,9 @@ function uniqBy(items, keyFn) {
 
 function routeFromAppFile(relPath) {
   if (!relPath.startsWith("app/")) return null;
-  if (!/\.(tsx?|jsx?)$/.test(relPath)) return null;
+  // Expo Router screens are JSX-bearing modules. Plain .ts helpers under app/
+  // are implementation files, not navigable routes.
+  if (!/\.(tsx|jsx)$/.test(relPath)) return null;
   let route = relPath.replace(/^app\//, "").replace(/\.(tsx?|jsx?)$/, "");
   if (route.endsWith("/index")) route = route.slice(0, -6);
   route = route.replace(/\/_layout$/, "");
@@ -636,6 +639,121 @@ ${p.edges
 `;
 }
 
+function extractQuotedList(source, variableName) {
+  const match = source.match(new RegExp(`(?:const|let|var)\\s+${variableName}\\s*=\\s*\\[([\\s\\S]*?)\\]`));
+  if (!match) return [];
+  return Array.from(match[1].matchAll(/['"]([^'"]+)['"]/g), (item) => item[1]);
+}
+
+function extractObjectIds(source) {
+  return Array.from(source.matchAll(/\bid:\s*['"]([^'"]+)['"]/g), (item) => item[1]);
+}
+
+function buildAppCodex(model) {
+  const adminIndexPath = path.join(ROOT, "admin", "index.html");
+  const metricPath = path.join(ROOT, "functions", "src", "admin_digest_contracts.ts");
+  const sourceRegistryPath = path.join(ROOT, "functions", "src", "admin_digest_sources.ts");
+  const adminSource = safeRead(adminIndexPath);
+  const metricSource = safeRead(metricPath);
+  const registrySource = safeRead(sourceRegistryPath);
+  const adminTabs = extractQuotedList(adminSource, "ADMIN_TAB_KEYS");
+  const metricIds = extractObjectIds(metricSource);
+  const digestSourceIds = extractObjectIds(registrySource);
+
+  const screenEntities = model.files
+    .filter((file) => file.route)
+    .map((file) => ({
+      id: `screen:${file.route}`,
+      kind: "screen",
+      name: file.route,
+      route: file.route,
+      sourceFile: file.file,
+      description: `Экран маршрута ${file.route}. Основные связи извлечены из исходного файла.`,
+      firestorePaths: file.firestorePaths,
+      storageKeys: file.storageKeys,
+      events: file.events.map((event) => event.name),
+    }));
+  const firestoreEntities = model.firestorePaths.map((firestorePath) => ({
+    id: `firestore_path:${firestorePath}`,
+    kind: "firestore_path",
+    name: firestorePath,
+    description: `Firestore collection/path referenced statically by application source: ${firestorePath}.`,
+  }));
+  const callableEntities = model.files
+    .filter((file) => file.file.startsWith("functions/src/"))
+    .flatMap((file) => file.exports.map((exportName) => ({
+      id: `callable:${exportName}`,
+      kind: "callable",
+      name: exportName,
+      sourceFile: file.file,
+      description: `Server export ${exportName}; inspect the source file for auth and data contracts.`,
+    })));
+  const eventEntities = model.events.map((eventName) => ({
+    id: `event:${eventName}`,
+    kind: "event",
+    name: eventName,
+    description: `Application event detected in source: ${eventName}.`,
+  }));
+  const metricEntities = metricIds.map((metricId) => ({
+    id: `metric:${metricId}`,
+    kind: "metric",
+    name: metricId,
+    sourceIds: digestSourceIds,
+    description: `Digest metric ${metricId}; definition and caveats live in admin_digest_contracts.ts.`,
+  }));
+  const adminTabEntities = adminTabs.map((tab) => ({
+    id: `admin_tab:${tab}`,
+    kind: "admin_tab",
+    name: tab,
+    route: `#${tab}`,
+    sourceFile: "admin/index.html",
+    description: `Раздел админки ${tab}.`,
+  }));
+
+  const inputFiles = uniqBy([
+    ...model.files.map((file) => file.file),
+    "admin/index.html",
+    "functions/src/admin_digest_contracts.ts",
+    "functions/src/admin_digest_sources.ts",
+    "scripts/generate_project_atlas.mjs",
+  ], (value) => value).sort();
+  const sourceHash = crypto.createHash("sha256");
+  for (const relativePath of inputFiles) {
+    sourceHash.update(relativePath);
+    sourceHash.update("\0");
+    sourceHash.update(safeRead(path.join(ROOT, relativePath)));
+    sourceHash.update("\0");
+  }
+
+  return {
+    schemaVersion: "phraseman-app-codex-v1",
+    sourceHash: sourceHash.digest("hex"),
+    generator: "scripts/generate_project_atlas.mjs",
+    inputFiles,
+    stats: {
+      entities: screenEntities.length + firestoreEntities.length + callableEntities.length + eventEntities.length + metricEntities.length + adminTabEntities.length,
+      screens: screenEntities.length,
+      adminTabs: adminTabs.length,
+      firestorePaths: firestoreEntities.length,
+      callables: callableEntities.length,
+      events: eventEntities.length,
+      metrics: metricEntities.length,
+    },
+    coverage: {
+      adminTabs,
+      digestSources: digestSourceIds,
+    },
+    entities: [
+      ...screenEntities,
+      ...adminTabEntities,
+      ...firestoreEntities,
+      ...callableEntities,
+      ...eventEntities,
+      ...metricEntities,
+    ],
+  };
+}
+
 function run() {
   const files = uniqBy(
     SOURCE_ROOTS.flatMap((root) => walk(path.join(ROOT, root))),
@@ -681,13 +799,39 @@ function run() {
     files,
   };
   model.criticalPaths = buildCriticalPaths(model);
+  const appCodex = buildAppCodex(model);
+  const appCodexJson = JSON.stringify(appCodex, null, 2);
+
+  if (process.argv.includes("--check")) {
+    const generatedPath = path.join(ROOT, "admin", "generated", "app-codex.json");
+    const existing = safeRead(generatedPath);
+    if (existing !== appCodexJson) {
+      console.error("Application Codex is stale. Run: npm run codex:generate");
+      process.exitCode = 1;
+      return;
+    }
+    console.log(`Application Codex is fresh (${appCodex.sourceHash.slice(0, 12)}).`);
+    return;
+  }
+
+  if (process.argv.includes("--codex-only")) {
+    fs.mkdirSync(OUT_DIR, { recursive: true });
+    fs.mkdirSync(path.join(ROOT, "admin", "generated"), { recursive: true });
+    fs.writeFileSync(path.join(OUT_DIR, "app-codex.json"), appCodexJson);
+    fs.writeFileSync(path.join(ROOT, "admin", "generated", "app-codex.json"), appCodexJson);
+    console.log(`Generated application Codex (${appCodex.stats.entities} entities, ${appCodex.sourceHash.slice(0, 12)}).`);
+    return;
+  }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  fs.mkdirSync(path.join(ROOT, "admin", "generated"), { recursive: true });
   fs.writeFileSync(path.join(OUT_DIR, "atlas.full.json"), JSON.stringify(model, null, 2));
   fs.writeFileSync(path.join(OUT_DIR, "atlas.claude.md"), makeClaudeMarkdown(model));
   fs.writeFileSync(path.join(OUT_DIR, "atlas.critical.md"), makeCriticalMarkdown(model));
   fs.writeFileSync(path.join(OUT_DIR, "atlas.critical.json"), JSON.stringify(model.criticalPaths, null, 2));
   fs.writeFileSync(path.join(OUT_DIR, "atlas.viewer.html"), makeHtml(model));
+  fs.writeFileSync(path.join(OUT_DIR, "app-codex.json"), appCodexJson);
+  fs.writeFileSync(path.join(ROOT, "admin", "generated", "app-codex.json"), appCodexJson);
 
   const summary = [
     "Generated atlas:",
@@ -696,6 +840,8 @@ function run() {
     `- docs/atlas/atlas.critical.md`,
     `- docs/atlas/atlas.critical.json`,
     `- docs/atlas/atlas.full.json`,
+    `- docs/atlas/app-codex.json`,
+    `- admin/generated/app-codex.json`,
     "",
     `Stats: ${JSON.stringify(model.stats)}`,
   ].join("\n");

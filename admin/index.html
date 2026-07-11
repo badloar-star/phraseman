@@ -10205,6 +10205,7 @@
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="ИИ-сводка «что случилось за сутки»: репорты, отмены, ошибки, safety — одним взглядом" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
+  <div class="tab" onclick="switchTab('app-codex')" title="Атлас экранов, маршрутов, данных, событий и метрик Phraseman">Кодекс приложения</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
   <div class="tab" onclick="switchTab('ideas-decided')" title="Архив решённых идей: принятые (выдан год Плюс) и отклонённые — с текстом, отправленным пользователю" style="background:rgba(74,222,128,0.10);border:1px solid rgba(74,222,128,0.30);color:#86efac;font-weight:700">✅ Идеи: решённые</div>
@@ -11921,6 +11922,21 @@
   <section id="dd-charts" aria-label="Графики дайджеста"></section>
   <section id="dd-content" aria-live="polite"><div class="reports-empty">Загрузка…</div></section>
   <section id="dd-coverage" aria-label="Покрытие источников"></section>
+</div>
+
+<div id="tab-app-codex" class="reports-tab">
+  <div class="reports-toolbar">
+    <label for="app-codex-search" class="sr-only">Поиск по Кодексу приложения</label>
+    <input id="app-codex-search" type="text" aria-label="Поиск по Кодексу приложения" placeholder="Экран, маршрут, коллекция, событие или метрика">
+    <label for="app-codex-kind" class="sr-only">Тип сущности Кодекса</label>
+    <select id="app-codex-kind" aria-label="Тип сущности Кодекса">
+      <option value="">Все типы</option><option value="screen">Экраны</option><option value="admin_tab">Разделы админки</option><option value="firestore_path">Данные</option><option value="callable">Серверные функции</option><option value="event">События</option><option value="metric">Метрики</option>
+    </select>
+    <button type="button" onclick="loadAppCodex(true)" title="Перечитать сгенерированный Кодекс">Обновить</button>
+    <span class="reports-count" id="app-codex-count"></span>
+  </div>
+  <div id="app-codex-freshness" aria-live="polite"></div>
+  <div id="app-codex-results"><div class="reports-empty">Загрузка…</div></div>
 </div>
 
 <!-- GMAIL SUPPORT INBOX TAB (входящая почта support.phraseman@gmail.com + ИИ-ответы) -->
@@ -14403,7 +14419,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','app-codex','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -19311,6 +19327,7 @@
     if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
     if(tab==='compliance-radar' && !window._complianceRadarLoaded && typeof loadComplianceRadar === 'function') loadComplianceRadar(false);
     if(tab==='daily-digest' && !window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    if(tab==='app-codex' && typeof window.loadAppCodex === 'function') window.loadAppCodex(false);
     if(tab==='gmail-support' && !window._supportInboxLoaded && typeof loadSupportInbox === 'function') loadSupportInbox(false);
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
@@ -39958,5 +39975,6 @@
 })();
 </script>
 <script src="admin-digest.js"></script>
+<script src="app-codex.js"></script>
 </body>
 </html>

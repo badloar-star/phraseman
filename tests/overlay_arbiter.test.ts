@@ -301,7 +301,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }
@@ -318,6 +318,8 @@ describe('OverlayArbiter native-modal handoff gap', () => {
     expect(needsHandoffGap('leagueResult', 'perfectWeekReward')).toBe(true);
     expect(needsHandoffGap('update', 'notifNudge')).toBe(true);
     expect(needsHandoffGap('entitlementExpired', 'referralWelcome')).toBe(true);
+    expect(needsHandoffGap('update', 'levelUp')).toBe(true);
+    expect(needsHandoffGap('levelUp', 'releaseNotes')).toBe(true);
   });
 
   it('needsHandoffGap: НЕТ для первого показа, закрытия в никуда, тех же и не-нативных', () => {

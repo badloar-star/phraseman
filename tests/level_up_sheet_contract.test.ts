@@ -28,6 +28,40 @@ describe('global level-up sheet contract', () => {
     expect(source).toContain('.then(flushQueue)');
   });
 
+  it('acknowledges a pending level only after the native modal is actually shown', () => {
+    expect(source).toContain('onShow={acknowledgeNativeLevelUpShown}');
+    expect(source).toContain('canAcknowledgeLevelUpForAccount');
+    expect(source).toContain('await acknowledgePendingLevelUpShown(shownLevel)');
+    expect(source).not.toContain('removeShownLevelFromPersistentQueue');
+  });
+
+  it('drops stale account work and resets the visible chain on every generation change', () => {
+    expect(source).toContain('subscribeAccountGeneration');
+    expect(source).toContain('resetLevelUpChainForAccountChange');
+    expect(source).toContain('withAccountTransitionLock');
+    expect(source).toContain('isLevelUpAccountTokenCurrent(flushToken)');
+    expect(source).toContain('queuedAccountTokenRef.current = flushToken');
+    expect(source).toContain('modalAccountTokenRef.current = accountToken');
+    expect(source).toContain('if (!finished || !canAcknowledgeLevelUpForAccount');
+  });
+
+  it('repairs rewards before reading the queue and retries when the app returns active', () => {
+    expect(source).toContain('retryPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget })');
+    expect(source).toContain('repairPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget })');
+    expect(source).toMatch(/AppState\.addEventListener\('change', \(state\) => \{\s*if \(state === 'active'\) void flushQueue\(\);/);
+  });
+
+  it('uses the exact durable gift shape, including a legacy single remainder', () => {
+    expect(source).toContain('loadUnclaimedDualGifts()');
+    expect(source).toContain('const savedPair = dualMap[lvl]');
+    expect(source).toContain('const savedGift = singleMap[lvl]');
+    expect(source).toContain('setGiftPreRolledPair(savedPair ?? undefined)');
+    expect(source).toContain('setGiftPreRolled(savedPair ? undefined : savedGift ?? undefined)');
+    expect(source).toContain('setLevelGiftDualMode(!!savedPair)');
+    expect(source).toContain('preRolledPair={giftPreRolledPair}');
+    expect(source).not.toContain('setLevelGiftDualMode(!!hasPremiumAccess)');
+  });
+
   it('labels catch-up level rewards without exposing account reconciliation details', () => {
     expect(source).toContain("AsyncStorage.multiGet(['user_name', 'user_total_xp'])");
     expect(source).toContain('const [currentAccountLevel, setCurrentAccountLevel] = useState(0)');

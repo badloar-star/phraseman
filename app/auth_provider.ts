@@ -1049,6 +1049,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
 
   // 4. Post-link: handle stable_id swap if needed
   if (outcome.kind === 'merged_swap_to_remote') {
+    let swapGenerationInvalidated = false;
     try {
       const preserveLocalProgress = await hasMeaningfulLocalAccountData();
       // Сразу синкаем текущий локальный прогресс в облако
@@ -1084,9 +1085,12 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
 
       // Clear account A while its id is still active, then install server-canonical B.
       // This prevents account A AsyncStorage from being observed under account B.
+      invalidateAccountGeneration();
+      swapGenerationInvalidated = true;
       await wipeLocalAccountData();
       await setStableId(canonicalStableId);
       beginAccountGeneration(canonicalStableId);
+      swapGenerationInvalidated = false;
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
       // Без сброса до 5 минут после свапа в UI виден чужой премиум-статус.
@@ -1129,6 +1133,9 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         mergedFromStableId: outcome.mergedFromStableId,
       };
     } catch (e: any) {
+      if (swapGenerationInvalidated) {
+        beginAccountGeneration(await getStableId().catch(() => null));
+      }
       if (__DEV__) console.warn('[auth_provider] post-merge swap failed', e);
       logAuthEvent('auth_signin_error', { provider, stage: 'swap', error: String(e?.message ?? e).slice(0, 80) });
       const errStr = `swap_${e?.message ?? 'unknown'}`.slice(0, 80);
@@ -1146,6 +1153,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
     // и перенесёт премиум/VIP-блок от «сильной» стороны в canonical. Если remote чужой
     // (нет свежего anon_merge_claim) — сервер вернёт null, деградируем к прежнему
     // поведению (просто local), вход не рвём.
+    let keepLocalGenerationInvalidated = false;
     try {
       const localStableId = await getStableId();
       const merge = await mergeStableAccountsViaServer(outcome.mergedFromStableId, localStableId);
@@ -1155,9 +1163,12 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         // подменяем stable_id и тянем слитый прогресс, как в swap-ветке.
         // Хвост D: гасим фоновый sync перед сменой stable_id (см. swap-ветку выше).
         await quiesceSyncBeforeStableIdSwap();
+        invalidateAccountGeneration();
+        keepLocalGenerationInvalidated = true;
         await wipeLocalAccountData();
         await setStableId(canonicalStableId);
         beginAccountGeneration(canonicalStableId);
+        keepLocalGenerationInvalidated = false;
         invalidatePremiumCache();
         await ensureAnonUser();
         await syncRevenueCatAfterAuthLink();
@@ -1171,6 +1182,9 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'keeplocal_restore_same').catch(() => {});
       }
     } catch (e) {
+      if (keepLocalGenerationInvalidated) {
+        beginAccountGeneration(await getStableId().catch(() => null));
+      }
       if (__DEV__) console.warn('[auth_provider] merged_keep_local server-merge failed', e);
       // Не валим вход — деградируем к прежнему поведению ниже.
     }

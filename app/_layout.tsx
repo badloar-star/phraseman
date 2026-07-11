@@ -28,7 +28,22 @@ import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetCo
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
-import { loadUnclaimedGifts } from './level_gift_inventory';
+import { loadUnclaimedDualGifts, loadUnclaimedGifts, type PremPair } from './level_gift_inventory';
+import {
+  acknowledgePendingLevelUpShown,
+  repairPendingLevelUpRewards,
+  retryPendingLevelUpRewards,
+} from './level_up_reward_reconciler';
+import {
+  captureAccountGeneration,
+  subscribeAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import {
+  canAcknowledgeLevelUpForAccount,
+  isLevelUpAccountTokenCurrent,
+} from './level_up_account_guard';
 import type { GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
@@ -672,18 +687,21 @@ function GlobalLevelUpHandler() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
   const [userName, setUserName] = useState('');
-  // Подарок за уровень уже сохранён в инвентарь в момент level-up (xp_manager →
-  // ensureUnclaimedGiftForLevel). Забираем его сюда, чтобы модал ПОКАЗАЛ ровно
-  // тот же подарок, что лежит в разделе «Подарки» (без повторного ролла).
+  // Reconciler сохраняет подарок до постановки уровня в очередь. Здесь держим
+  // точный single/dual entitlement, чтобы модал не выполнял повторный розыгрыш.
   const [giftPreRolled, setGiftPreRolled] = useState<GiftDef | undefined>(undefined);
+  const [giftPreRolledPair, setGiftPreRolledPair] = useState<PremPair | undefined>(undefined);
 
   const levelUpOpacity    = useRef(new Animated.Value(0)).current;
   const levelUpTranslateY = useRef(new Animated.Value(40)).current;
   const levelUpGlow       = useRef(new Animated.Value(0)).current;
   const queueRef    = useRef<number[]>([]);
+  const singleGiftsRef = useRef<Record<number, GiftDef>>({});
+  const dualGiftsRef = useRef<Record<number, PremPair>>({});
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
   const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const giftOpenInteractionRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
   // Страховка слота: если переход level-up → подарок «завис» (подарок не открылся/не
   // закрылся штатно — напр. Android-back в обход onGiftClose или сбой в цепочке выше),
   // levelUpTransitioning остался бы true НАВСЕГДА → слот арбитра занят, и всё ниже по
@@ -696,12 +714,61 @@ function GlobalLevelUpHandler() {
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
   const flushQueueBusyRef = useRef(false);
   const flushQueueRetryRef = useRef(false);
+  const queuedAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const modalAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const modalLevelRef = useRef(0);
+
+  const resetLevelUpChainForAccountChange = useCallback(() => {
+    if (giftOpenTimerRef.current) {
+      clearTimeout(giftOpenTimerRef.current);
+      giftOpenTimerRef.current = null;
+    }
+    giftOpenInteractionRef.current?.cancel();
+    giftOpenInteractionRef.current = null;
+    if (levelUpTransitionGuardRef.current) {
+      clearTimeout(levelUpTransitionGuardRef.current);
+      levelUpTransitionGuardRef.current = null;
+    }
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    levelUpOpacity.stopAnimation();
+    levelUpTranslateY.stopAnimation();
+    levelUpGlow.stopAnimation();
+    queueRef.current = [];
+    singleGiftsRef.current = {};
+    dualGiftsRef.current = {};
+    queuedAccountTokenRef.current = null;
+    modalAccountTokenRef.current = null;
+    modalLevelRef.current = 0;
+    isShowingRef.current = false;
+    dismissingLevelUpRef.current = false;
+    setShowLevelUp(false);
+    setShowGiftModal(false);
+    setLevelUpTransitioning(false);
+    setLevelGiftDualMode(false);
+    setGiftPreRolled(undefined);
+    setGiftPreRolledPair(undefined);
+    setCurrentLevel(0);
+    setCurrentAccountLevel(0);
+    setUserName('');
+  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
 
   const showNext = useCallback(() => {
+    const accountToken = queuedAccountTokenRef.current;
+    if (!isLevelUpAccountTokenCurrent(accountToken)) {
+      resetLevelUpChainForAccountChange();
+      return;
+    }
     if (queueRef.current.length === 0) { isShowingRef.current = false; return; }
     dismissingLevelUpRef.current = false;
     setLevelUpTransitioning(false);
     const lvl = queueRef.current[0];
+    const savedPair = dualGiftsRef.current[lvl];
+    const savedGift = singleGiftsRef.current[lvl];
+    setGiftPreRolledPair(savedPair ?? undefined);
+    setGiftPreRolled(savedPair ? undefined : savedGift ?? undefined);
+    setLevelGiftDualMode(!!savedPair);
+    modalAccountTokenRef.current = accountToken;
+    modalLevelRef.current = lvl;
     setCurrentLevel(lvl);
     setShowLevelUp(true);
     levelUpOpacity.setValue(0);
@@ -712,26 +779,7 @@ function GlobalLevelUpHandler() {
       Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
       Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
     ]).start();
-  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
-
-  const removeShownLevelFromPersistentQueue = useCallback((level: number) => {
-    if (!Number.isFinite(level) || level <= 0) return;
-    void (async () => {
-      try {
-        const raw = await AsyncStorage.getItem('pending_level_up_queue');
-        if (!raw) return;
-        let arr: number[] = [];
-        try { arr = JSON.parse(raw); } catch { arr = []; }
-        if (!Array.isArray(arr) || arr.length === 0) return;
-        const next = arr.filter((item) => item !== level);
-        if (next.length === arr.length) return;
-        if (next.length === 0) await AsyncStorage.removeItem('pending_level_up_queue');
-        else await AsyncStorage.setItem('pending_level_up_queue', JSON.stringify(next));
-      } catch {
-        /* keep the pending level; showing it twice is safer than losing it */
-      }
-    })();
-  }, []);
+  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY, resetLevelUpChainForAccountChange]);
 
   const flushQueue = useCallback(async () => {
     if (flushQueueBusyRef.current) {
@@ -739,27 +787,48 @@ function GlobalLevelUpHandler() {
       return;
     }
     flushQueueBusyRef.current = true;
+    const flushToken = captureAccountGeneration();
     try {
-      const raw = await AsyncStorage.getItem('pending_level_up_queue');
-      if (!raw) return;
-      let arr: number[] = [];
-      try { arr = JSON.parse(raw); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
-      if (arr.length === 0) return;
-      const [[, name], [, xpRaw]] = await AsyncStorage.multiGet(['user_name', 'user_total_xp']);
-      if (name) setUserName(name);
-      const accountLevel = getLevelFromXP(parseInt(xpRaw || '0', 10) || 0);
-      setCurrentAccountLevel(accountLevel);
-      const have = new Set(queueRef.current);
-      for (const lvl of arr) {
-        if (!have.has(lvl)) {
-          have.add(lvl);
-          queueRef.current.push(lvl);
+      await withAccountTransitionLock(async () => {
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        await retryPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget });
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        await repairPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget });
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        const raw = await AsyncStorage.getItem('pending_level_up_queue');
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+        let arr: number[] = [];
+        try { arr = raw ? JSON.parse(raw) : []; } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
+        if (!Array.isArray(arr)) arr = [];
+        const [singleMap, dualMap, [[, name], [, xpRaw]]] = await Promise.all([
+          loadUnclaimedGifts(),
+          loadUnclaimedDualGifts(),
+          AsyncStorage.multiGet(['user_name', 'user_total_xp']),
+        ]);
+        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
+
+        const durableLevels = arr
+          .filter((level) => Number.isInteger(level) && level > 0)
+          .filter((lvl) => {
+            const savedPair = dualMap[lvl];
+            const savedGift = singleMap[lvl];
+            return (!!savedPair || !!savedGift) && !(savedPair && savedGift);
+          });
+        const activeLevel = isShowingRef.current ? queueRef.current[0] : undefined;
+        queueRef.current = activeLevel
+          ? [activeLevel, ...durableLevels.filter((level) => level !== activeLevel)]
+          : durableLevels;
+        queuedAccountTokenRef.current = flushToken;
+        singleGiftsRef.current = singleMap;
+        dualGiftsRef.current = dualMap;
+        if (name) setUserName(name);
+        setCurrentAccountLevel(getLevelFromXP(parseInt(xpRaw || '0', 10) || 0));
+
+        if (!isShowingRef.current && queueRef.current.length > 0) {
+          isShowingRef.current = true;
+          queueMicrotask(showNext);
         }
-      }
-      if (!isShowingRef.current) {
-        isShowingRef.current = true;
-        queueMicrotask(showNext);
-      }
+      });
     } catch (e) {
       if (__DEV__) console.warn('[_layout]', e);
     } finally {
@@ -769,7 +838,15 @@ function GlobalLevelUpHandler() {
         queueMicrotask(() => { void flushQueue(); });
       }
     }
-  }, [showNext]);
+  }, [hasPremiumAccess, showNext, studyTarget]);
+
+  useEffect(() => {
+    const sub = subscribeAccountGeneration((token) => {
+      resetLevelUpChainForAccountChange();
+      if (token.phase === 'active') queueMicrotask(() => { void flushQueue(); });
+    });
+    return () => sub.remove();
+  }, [flushQueue, resetLevelUpChainForAccountChange]);
 
   useEffect(() => {
     // Проверяем очередь при старте (с задержкой, чтобы onboarding не перекрывал)
@@ -779,7 +856,15 @@ function GlobalLevelUpHandler() {
       clearTimeout(t);
       sub.remove();
       if (giftOpenTimerRef.current) clearTimeout(giftOpenTimerRef.current);
+      giftOpenInteractionRef.current?.cancel();
     };
+  }, [flushQueue]);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') void flushQueue();
+    });
+    return () => sub.remove();
   }, [flushQueue]);
 
   useEffect(() => {
@@ -822,25 +907,32 @@ function GlobalLevelUpHandler() {
   }, [studyTarget, lang, themeMode]);
 
   const dismissLevelUp = () => {
+    const accountToken = modalAccountTokenRef.current;
+    if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
     if (dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
     // Держим слот арбитра на весь переход level-up → подарок (см. levelUpTransitioning).
     setLevelUpTransitioning(true);
-    Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
+    Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(({ finished }) => {
+      if (!finished || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
         setShowLevelUp(false);
-        setLevelGiftDualMode(!!hasPremiumAccess);
-        InteractionManager.runAfterInteractions(() => {
+        giftOpenInteractionRef.current = InteractionManager.runAfterInteractions(() => {
+          giftOpenInteractionRef.current = null;
+          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
           // Android can keep the closing Modal's native window alive for a beat.
           // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
           giftOpenTimerRef.current = setTimeout(() => {
             giftOpenTimerRef.current = null;
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             setShowGiftModal(true);
           }, Platform.OS === 'android' ? 260 : 180);
         });
-        void (async () => {
+        void withAccountTransitionLock(async () => {
+          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
           try {
             const name = (await AsyncStorage.getItem('user_name')) || userName;
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
             await registerXP(100, 'level_up_bonus', name, l, undefined, {
               eventId: [
@@ -852,68 +944,56 @@ function GlobalLevelUpHandler() {
                 level: currentLevel,
               },
             });
+            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             await tryGrantPremiumMonthlyWagerFromLevelUp();
           } catch {
             /* background level-up extras must never delay the gift */
           }
-        })();
+        });
       });
     });
   };
 
   const onGiftClose = (_claimed: boolean) => {
+    const accountToken = modalAccountTokenRef.current;
+    if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
     setShowGiftModal(false);
     dismissingLevelUpRef.current = false;
     // Переход завершён — отпускаем слот арбитра.
     setLevelUpTransitioning(false);
     queueRef.current = queueRef.current.slice(1);
+    modalAccountTokenRef.current = null;
+    modalLevelRef.current = 0;
     if (queueRef.current.length > 0) {
       queueMicrotask(showNext);
     } else {
       isShowingRef.current = false;
       // План #3: after-win апсейл после ПОЛНОГО завершения празднования level-up.
       // Гард не даёт спамить (кулдаун + не дублировать сегодняшний пейвол).
-      void (async () => {
+      void withAccountTransitionLock(async () => {
+        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
         try {
           const prem = await getVerifiedPremiumStatus().catch(() => false);
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           // Не показываем поверх модалки конца интро — она важнее (главный момент конверсии).
           const introState = await getIntroFullAccessState().catch(() => null);
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           if (introState?.expiredUnseen === true) return;
           const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
             import('./after_win_upsell_gate'),
             import('./analytics'),
           ]);
           if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           // Сначала навигация: если push упадёт — гейт не «сгорит» впустую.
           globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
           await markAfterWinUpsellShown(Date.now());
           await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
           void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
         } catch { /* no-op */ }
-      })();
+      });
     }
   };
-
-  // При открытии модала подарка — берём УЖЕ сохранённый в инвентарь подарок
-  // этого уровня (его положил xp_manager в момент level-up). Модал покажет ровно
-  // его (preRolledGift), без повторного ролла → показанное = лежащее в «Подарках».
-  useEffect(() => {
-    if (!showGiftModal || currentLevel <= 0) {
-      setGiftPreRolled(undefined);
-      return;
-    }
-    let cancelled = false;
-    void (async () => {
-      try {
-        const map = await loadUnclaimedGifts();
-        const saved = map[currentLevel];
-        if (!cancelled) setGiftPreRolled(saved ?? undefined);
-      } catch {
-        if (!cancelled) setGiftPreRolled(undefined);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [showGiftModal, currentLevel]);
 
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
@@ -940,10 +1020,15 @@ function GlobalLevelUpHandler() {
       return pool[currentLevel % pool.length];
     })();
 
-  useEffect(() => {
-    if (!showLevelUp || !levelUpOverlayVisible) return;
-    removeShownLevelFromPersistentQueue(currentLevel);
-  }, [currentLevel, levelUpOverlayVisible, removeShownLevelFromPersistentQueue, showLevelUp]);
+  const acknowledgeNativeLevelUpShown = useCallback(() => {
+    const accountToken = modalAccountTokenRef.current;
+    const shownLevel = modalLevelRef.current;
+    void withAccountTransitionLock(async () => {
+      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+      if (!Number.isInteger(shownLevel) || shownLevel <= 0) return;
+      await acknowledgePendingLevelUpShown(shownLevel);
+    });
+  }, []);
 
   // СТОРОЖ перехода level-up → подарок (анти-залипание слота арбитра).
   // Опасное состояние: levelUpTransitioning=true, но НИ одна модалка не видна
@@ -986,6 +1071,7 @@ function GlobalLevelUpHandler() {
         visible={levelUpOverlayVisible && showLevelUp}
         animationType="none"
         statusBarTranslucent
+        onShow={acknowledgeNativeLevelUpShown}
         onRequestClose={() => {}}
       >
         <View style={{ flex: 1, backgroundColor: levelUpScreenDim, justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
@@ -1157,6 +1243,7 @@ function GlobalLevelUpHandler() {
           lang={lang}
           onClose={onGiftClose}
           deliveryMode="inventory"
+          preRolledPair={giftPreRolledPair}
           studyTarget={studyTarget}
         />
       ) : (

@@ -4,7 +4,13 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { replaceShardsBalanceLocal } from './shards_system';
+import { replaceShardsBalanceForAccountGeneration } from './shards_system';
+import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 const FUNCTIONS_REGION = 'us-central1';
 const FRIEND_QUEST_STATUS_CACHE_TTL_MS = 60 * 1000;
@@ -46,6 +52,8 @@ export type FriendQuestClaimResponse = {
   reached?: boolean;
   callerShards?: number;
   shardsUpdatedAtMs?: number;
+  callerXpBeforeReward?: number;
+  rewardXpApplied?: number;
   callerXp?: number;
 };
 
@@ -57,12 +65,36 @@ function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name);
 }
 
-async function mirrorCallerXpWithoutRollback(callerXp: number): Promise<void> {
+async function mirrorCallerXpWithoutRollback(
+  callerXp: number,
+  rewardApplied: boolean,
+  callerXpBeforeReward?: number,
+  rewardXpApplied?: number,
+): Promise<void> {
   if (!Number.isFinite(callerXp)) return;
   const serverXp = Math.max(0, Math.floor(callerXp));
   const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
   const localXp = Math.max(0, parseInt(localRaw ?? '0', 10) || 0);
-  await AsyncStorage.setItem('user_total_xp', String(Math.max(localXp, serverXp)));
+  const nextXp = Math.max(localXp, serverXp);
+  await AsyncStorage.setItem('user_total_xp', String(nextXp));
+  const validRewardInterval = (
+    rewardApplied === true
+    && typeof callerXpBeforeReward === 'number'
+    && Number.isSafeInteger(callerXpBeforeReward)
+    && callerXpBeforeReward >= 0
+    && typeof rewardXpApplied === 'number'
+    && Number.isSafeInteger(rewardXpApplied)
+    && rewardXpApplied > 0
+    && Number.isSafeInteger(callerXp)
+    && callerXp >= 0
+    && callerXpBeforeReward + rewardXpApplied === callerXp
+  );
+  if (validRewardInterval) {
+    const freshBefore = Math.max(localXp, callerXpBeforeReward);
+    if (serverXp > freshBefore) {
+      await reconcileLevelUpRewards(freshBefore, serverXp);
+    }
+  }
 }
 
 async function getStableIdForQuest(): Promise<string> {
@@ -116,6 +148,7 @@ export async function getActiveFriendQuest(options: { force?: boolean } = {}): P
 
 export async function claimFriendQuestReward(questId: string): Promise<FriendQuestClaimResponse> {
   const stableId = await getStableIdForQuest();
+  const accountGeneration = captureAccountGeneration();
   const key = friendQuestClaimRequestKey(stableId, questId);
   const existing = friendQuestClaimInFlight.get(key);
   if (existing) return existing;
@@ -123,17 +156,32 @@ export async function claimFriendQuestReward(questId: string): Promise<FriendQue
   const request = (async () => {
     const fn = callable<{ stableId: string; questId: string }, FriendQuestClaimResponse>('friendClaimQuestReward');
     const res = await fn({ stableId, questId });
+    if (!isCurrentAccountGeneration(accountGeneration, stableId)) return res.data;
     if (Number.isFinite(res.data.callerShards)) {
-      await replaceShardsBalanceLocal(res.data.callerShards as number, {
-        updatedAtMs: res.data.shardsUpdatedAtMs,
-        op: 'earn',
-        reason: 'friend_quest_reward',
-      });
+      const shardOutcome = await replaceShardsBalanceForAccountGeneration(
+        res.data.callerShards as number,
+        accountGeneration,
+        stableId,
+        {
+          updatedAtMs: res.data.shardsUpdatedAtMs,
+          op: 'earn',
+          reason: 'friend_quest_reward',
+        },
+      );
+      if (shardOutcome === 'stale-generation') return res.data;
     }
-    if (Number.isFinite(res.data.callerXp)) {
-      await mirrorCallerXpWithoutRollback(res.data.callerXp as number);
-    }
-    invalidateActiveFriendQuestCache(stableId);
+    await withAccountTransitionLock(async () => {
+      if (!isCurrentAccountGeneration(accountGeneration, stableId)) return;
+      if (Number.isFinite(res.data.callerXp)) {
+        await mirrorCallerXpWithoutRollback(
+          res.data.callerXp as number,
+          res.data.rewardApplied === true,
+          res.data.callerXpBeforeReward,
+          res.data.rewardXpApplied,
+        );
+      }
+      invalidateActiveFriendQuestCache(stableId);
+    });
     return res.data;
   })().finally(() => {
     friendQuestClaimInFlight.delete(key);

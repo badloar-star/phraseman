@@ -29,7 +29,12 @@ import {
 import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
-import { addShardsRaw, getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
+import {
+  addShardsRaw,
+  getShardsBalance,
+  replaceShardsBalanceLocal,
+  replaceShardsBalanceLocalWhileAccountTransitionLocked,
+} from './shards_system';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import {
@@ -47,6 +52,11 @@ import {
   USER_AVATAR_AURA_KEY,
 } from '../constants/avatar_auras';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -1070,7 +1080,10 @@ const setTimedGiftMultiplier = async (multiplier: number, durationMs: number): P
 
 const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
 
-const grantLevelGiftShards = async (amount: number): Promise<void> => {
+const grantLevelGiftShards = async (
+  amount: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   const safe = Math.max(0, Math.floor(amount));
   if (safe <= 0) return;
   const before = await getShardsBalance();
@@ -1079,7 +1092,12 @@ const grantLevelGiftShards = async (amount: number): Promise<void> => {
   // Some isolated Jest mocks keep addShardsRaw storage on a separate mock object.
   // In production this branch is a no-op because addShardsRaw already persisted.
   if (after < before + safe) {
-    await replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' });
+    const options = { op: 'earn' as const, reason: 'level_gift_fallback' };
+    if (accountToken) {
+      await replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options);
+    } else {
+      await replaceShardsBalanceLocal(before + safe, options);
+    }
   }
 };
 
@@ -1093,7 +1111,9 @@ export type GiftCosmeticUnlock = {
   labelEs: string;
 };
 
-export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock | null> => {
+export const unlockRandomCustomAvatarGift = async (
+  accountToken?: AccountGenerationToken,
+): Promise<GiftCosmeticUnlock | null> => {
   try {
     const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
     const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
@@ -1208,13 +1228,19 @@ const applyEnergyBonusN = async (
 const safeLevelGiftEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
-export const applyGift = async (
+export interface ApplyGiftOptions {
+  isPremium?: boolean;
+  studyTarget?: RuntimeStudyTarget;
+  accountToken?: AccountGenerationToken;
+}
+
+const applyGiftUnlocked = async (
   gift: GiftDef,
   userName: string,
   currentEnergy: number,
   maxEnergy: number,
   setEnergy: (n: number) => void,
-  opts?: { isPremium?: boolean; studyTarget?: RuntimeStudyTarget },
+  opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult> => {
   try {
     const isPremium = opts?.isPremium ?? await getVerifiedPremiumStatus();
@@ -1306,11 +1332,11 @@ export const applyGift = async (
       }
       case 'cosmetic_avatar_common':
       case 'premium_cosmetic_avatar': {
-        const cosmeticUnlocked = await unlockRandomCustomAvatarGift();
+        const cosmeticUnlocked = await unlockRandomCustomAvatarGift(opts?.accountToken);
         if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
         const fallbackAura = await unlockRandomAvatarAuraGift();
         if (fallbackAura) return { success: true, cosmeticUnlocked: fallbackAura };
-        await grantLevelGiftShards(6);
+        await grantLevelGiftShards(6, opts?.accountToken);
         return { success: true };
       }
       case 'cosmetic_avatar_aura':
@@ -1319,15 +1345,15 @@ export const applyGift = async (
         return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
       }
       case 'shards_3': {
-        await grantLevelGiftShards(3);
+        await grantLevelGiftShards(3, opts?.accountToken);
         break;
       }
       case 'shards_6': {
-        await grantLevelGiftShards(6);
+        await grantLevelGiftShards(6, opts?.accountToken);
         break;
       }
       case 'shards_10': {
-        await grantLevelGiftShards(10);
+        await grantLevelGiftShards(10, opts?.accountToken);
         break;
       }
       case 'arena_extra_5': {
@@ -1383,6 +1409,24 @@ export const applyGift = async (
     }
     return { success: true };
   } catch { return { success: false }; }
+};
+
+export const applyGift = async (
+  gift: GiftDef,
+  userName: string,
+  currentEnergy: number,
+  maxEnergy: number,
+  setEnergy: (n: number) => void,
+  opts?: ApplyGiftOptions,
+): Promise<ApplyGiftResult> => {
+  const accountToken = opts?.accountToken;
+  if (!accountToken) {
+    return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+  }
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+    return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+  });
 };
 
 export function isEnergyBonusGiftId(gid: string | undefined): boolean {

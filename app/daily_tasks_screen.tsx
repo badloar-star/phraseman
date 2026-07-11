@@ -1729,8 +1729,19 @@ export default function DailyTasksScreen() {
     const progress = snapshotVisible ? progressState : EMPTY_DAILY_PROGRESS;
     /** Опрос за осколки как 4-е задание: активен ли сегодня и пройден ли он.
         Когда активен — набор = 3 обычных + опрос, награда за любые 3 из 4. */
-    const [surveyPresent, setSurveyPresent] = useState(false);
-    const [surveyDone, setSurveyDone] = useState(false);
+    const surveyScope = renderToken.phase === 'active' && renderToken.stableId
+        ? { stableId: renderToken.stableId, dayKey: activeDayKey, lang }
+        : null;
+    const surveyScopeKey = surveyScope ? JSON.stringify([surveyScope.stableId, surveyScope.dayKey, surveyScope.lang]) : null;
+    const [surveyState, setSurveyState] = useState(() => ({
+        scopeKey: surveyScopeKey,
+        snapshot: surveyScope ? peekSurveyDailyTask(surveyScope) : null,
+    }));
+    const surveySnapshot = surveyState.scopeKey === surveyScopeKey
+        ? surveyState.snapshot
+        : surveyScope ? peekSurveyDailyTask(surveyScope) : null;
+    const surveyPresent = surveySnapshot != null;
+    const surveyDone = surveySnapshot?.phase === 'completed';
     /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
         показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
     const [loadingTasks, setLoadingTasks] = useState(() => initialSnapshot === null);
@@ -2033,8 +2044,7 @@ export default function DailyTasksScreen() {
                 const scope = { stableId, dayKey, lang };
                 const cached = peekSurveyDailyTask(scope);
                 if (cached) {
-                    setSurveyDone(cached.phase === 'completed');
-                    setSurveyPresent(true);
+                    setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot: cached });
                     return;
                 }
                 const done = await isSurveyDailyTaskDone({ stableId, dayKey });
@@ -2042,11 +2052,13 @@ export default function DailyTasksScreen() {
                 if (done) {
                     const completed = buildServerConfirmedLegacyCompletion(lang);
                     commitSurveyDailyTaskRequest(scope, beginSurveyDailyTaskRequest(scope), completed);
-                    setSurveyDone(true);
-                    setSurveyPresent(true);
+                    setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot: completed });
                     return;
                 }
-                if (!isSurveyCloudEnabled()) { setSurveyDone(false); setSurveyPresent(false); return; }
+                if (!isSurveyCloudEnabled()) {
+                    setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot: null });
+                    return;
+                }
                 const requestId = beginSurveyDailyTaskRequest(scope);
                 const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
                 const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
@@ -2057,10 +2069,9 @@ export default function DailyTasksScreen() {
                     ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
                     : null;
                 if (!commitSurveyDailyTaskRequest(scope, requestId, snapshot)) return;
-                setSurveyDone(snapshot?.phase === 'completed');
-                setSurveyPresent(snapshot != null);
+                setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot });
             } catch {
-                if (!cancelled) setSurveyPresent(false);
+                /* retain last-known survey state */
             }
         })();
         return () => { cancelled = true; };
@@ -2583,7 +2594,7 @@ export default function DailyTasksScreen() {
 
         {/* Опрос за осколки — 4-я плашка-задание (когда активен). Сам решает,
             показываться ли; засчитывается в «любые 3 из 4» (порог в этом экране). */}
-        <SurveyTaskCard />
+        <SurveyTaskCard owner={{ scope: surveyScope, snapshot: surveySnapshot, done: surveyDone }} />
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента

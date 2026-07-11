@@ -15,7 +15,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import TapScale from './TapScale';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { getCanonicalUserId } from '../app/user_id_policy';
@@ -38,23 +38,26 @@ function isLightHex(hex: string): boolean {
   return 0.299 * r + 0.587 * g + 0.114 * b > 0.6;
 }
 
-export default function SurveyTaskCard() {
+type SurveyTaskCardState = {
+  scope: { stableId: string; dayKey: string; lang: Lang } | null;
+  snapshot: SurveyDailyChallengeSnapshot | null;
+  done: boolean;
+};
+
+export default function SurveyTaskCard({ owner }: { owner?: SurveyTaskCardState }) {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  type CardState = {
-    scope: { stableId: string; dayKey: string; lang: typeof lang } | null;
-    snapshot: SurveyDailyChallengeSnapshot | null;
-    done: boolean;
-  };
-  const [cardState, setCardState] = useState<CardState>({ scope: null, snapshot: null, done: false });
-  const { scope, snapshot, done } = cardState;
+  const [cardState, setCardState] = useState<SurveyTaskCardState>({ scope: null, snapshot: null, done: false });
+  const visibleState = owner ?? cardState;
+  const { scope, snapshot, done } = visibleState;
   const survey = snapshot?.survey ?? null;
 
   // useFocusEffect: пере-проверяем при возврате с экрана опроса, чтобы плашка
   // сразу переключилась в «выполнено».
   useFocusEffect(useCallback(() => {
+    if (owner) return () => {};
     let cancelled = false;
     (async () => {
       try {
@@ -106,7 +109,7 @@ export default function SurveyTaskCard() {
       }
     })();
     return () => { cancelled = true; };
-  }, [lang]));
+  }, [lang, owner]));
 
   // Пройденный опрос — плашка «выполнено» (галочка) до конца дня.
   if (done) {

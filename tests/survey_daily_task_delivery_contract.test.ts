@@ -41,11 +41,15 @@ describe('daily survey delivery', () => {
     expect(dailyTasks).toContain('beginSurveyDailyTaskRequest');
     expect(dailyTasks).toContain('commitSurveyDailyTaskRequest');
     expect(dailyTasks).toMatch(/if \(cached\) \{[\s\S]*?return;/);
+    expect(dailyTasks).toContain('<SurveyTaskCard owner={{ scope: surveyScope, snapshot: surveySnapshot, done: surveyDone }} />');
+    expect(dailyTasks).toMatch(/catch \{[\s\S]*?\/\* retain last-known survey state \*\//);
     expect(dailyTasks).not.toContain('isSurveyDailyTaskDoneToday()');
     expect(card).not.toContain('isSurveyDailyTaskDoneToday');
     expect(card).toContain('const cached = peekSurveyDailyTask(nextScope)');
     expect(card).toContain('snapshot: cached');
     expect(card).toContain('if (cached) return;');
+    expect(card).toContain('if (owner) return');
+    expect(card).toContain('const visibleState = owner ?? cardState');
     expect(card).not.toContain('const [scope, setScope]');
     expect(card).toContain('primeSurvey({ survey, stableId, dayKey, lang })');
     expect(screen).toContain('takePrimedSurvey(surveyId, scope)');

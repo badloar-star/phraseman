@@ -20441,18 +20441,29 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:BaseQuizLevelCard|borderWidth:visualSelected ? 2 : 1|context:04aacfdf5191|occurrence:1",
       "lastSeenLine": 476,
       "excerpt": "borderWidth: visualSelected ? 2 : 1,",
-      "category": "KEEP_STATE",
-      "suggestedCategory": "KEEP_STATE",
-      "tone": null,
-      "reason": "Border communicates an interaction or validation state",
-      "status": "kept",
-      "scanState": "present",
+      "category": "MIGRATE",
+      "suggestedCategory": "MIGRATE",
+      "tone": "subtle",
+      "reason": "Selected-card closed border replaced by tonal surface while preserving selection through layout and action reveal",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STATE",
           "reason": "Border communicates an interaction or validation state"
+        },
+        {
+          "action": "reclassified",
+          "method": "quizzes-wave-review-v1",
+          "category": "MIGRATE",
+          "reason": "Selected-card closed border replaced by tonal surface while preserving selection through layout and action reveal"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20471,14 +20482,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20497,14 +20513,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20517,7 +20538,7 @@
         "value": "FrenchQuizUnavailable"
       },
       "fingerprint": "app/(tabs)/quizzes.tsx|component:FrenchQuizUnavailable|borderTopWidth:1|context:bd7a882a9836|occurrence:1",
-      "lastSeenLine": 3144,
+      "lastSeenLine": 3145,
       "excerpt": "borderTopWidth: 1,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20575,14 +20596,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20601,14 +20627,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20627,14 +20658,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20679,14 +20715,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20705,14 +20746,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20731,14 +20777,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20757,14 +20808,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20783,14 +20839,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20829,7 +20890,7 @@
         "value": "QuizGame"
       },
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderLeftWidth:4|context:bd090e407a6b|occurrence:2",
-      "lastSeenLine": 2763,
+      "lastSeenLine": 2764,
       "excerpt": "borderLeftWidth: 4,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20861,14 +20922,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20887,14 +20953,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20907,7 +20978,7 @@
         "value": "QuizGame"
       },
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderBottomWidth:1.5|context:5ebc45d49eeb|occurrence:1",
-      "lastSeenLine": 2830,
+      "lastSeenLine": 2831,
       "excerpt": "borderBottomWidth: 1.5,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20939,14 +21010,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -20959,13 +21035,13 @@
         "value": "QuizGame"
       },
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderWidth:on ? 1.5 : 1|context:bd090e407a6b|occurrence:1",
-      "lastSeenLine": 2880,
+      "lastSeenLine": 2881,
       "excerpt": "borderWidth: on ? 1.5 : 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Answer choice border communicates pressed/selected option state; preserving state affordance",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
@@ -20973,6 +21049,12 @@
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "reclassified",
+          "method": "quizzes-wave-review-v1",
+          "category": "KEEP_STATE",
+          "reason": "Answer choice border communicates pressed/selected option state; preserving state affordance"
         }
       ]
     },
@@ -20985,7 +21067,7 @@
         "value": "QuizGame"
       },
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderTopWidth:1|context:bbbcc9207b38|occurrence:1",
-      "lastSeenLine": 2910,
+      "lastSeenLine": 2911,
       "excerpt": "padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -21003,6 +21085,25 @@
       ]
     },
     {
+      "id": "surface:app-tabs-quizzes:quizgame:19",
+      "file": "app/(tabs)/quizzes.tsx",
+      "property": "borderTopWidth",
+      "anchor": {
+        "kind": "component",
+        "value": "QuizGame"
+      },
+      "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderTopWidth:1|context:e975fed95382|occurrence:1",
+      "lastSeenLine": 2209,
+      "excerpt": ": { backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },",
+      "category": "UNREVIEWED",
+      "suggestedCategory": "KEEP_STRUCTURE",
+      "tone": null,
+      "reason": "",
+      "status": "pending",
+      "scanState": "present",
+      "history": []
+    },
+    {
       "id": "surface:app-tabs-quizzes:quizgame:2",
       "file": "app/(tabs)/quizzes.tsx",
       "property": "borderWidth",
@@ -21017,14 +21118,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21043,14 +21149,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21069,14 +21180,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21094,15 +21210,21 @@
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
+      "reason": "One-sided top highlight for tonal progress panel; not a closed container border",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "ambiguous",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "reviewed",
+          "method": "quizzes-wave-review-v1",
+          "category": "KEEP_STRUCTURE",
+          "reason": "One-sided top highlight for tonal progress panel; not a closed container border"
         }
       ]
     },
@@ -21121,14 +21243,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21147,14 +21274,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21169,11 +21301,11 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderWidth:2|context:e12ff4b8d5c9|occurrence:1",
       "lastSeenLine": 2455,
       "excerpt": "borderWidth: 2,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Timer ring border communicates countdown urgency and warning state; not a decorative container frame",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
@@ -21181,6 +21313,12 @@
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "reclassified",
+          "method": "quizzes-wave-review-v1",
+          "category": "KEEP_STATE",
+          "reason": "Timer ring border communicates countdown urgency and warning state; not a decorative container frame"
         }
       ]
     },
@@ -21221,18 +21359,29 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:ThematicQuizLevelCard|borderWidth:visualSelected ? 2 : 1|context:04aacfdf5191|occurrence:1",
       "lastSeenLine": 682,
       "excerpt": "borderWidth: visualSelected ? 2 : 1,",
-      "category": "KEEP_STATE",
-      "suggestedCategory": "KEEP_STATE",
-      "tone": null,
-      "reason": "Border communicates an interaction or validation state",
-      "status": "kept",
-      "scanState": "present",
+      "category": "MIGRATE",
+      "suggestedCategory": "MIGRATE",
+      "tone": "subtle",
+      "reason": "Selected-card closed border replaced by tonal surface while preserving selection through layout and action reveal",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STATE",
           "reason": "Border communicates an interaction or validation state"
+        },
+        {
+          "action": "reclassified",
+          "method": "quizzes-wave-review-v1",
+          "category": "MIGRATE",
+          "reason": "Selected-card closed border replaced by tonal surface while preserving selection through layout and action reveal"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21251,14 +21400,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -21277,14 +21431,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },

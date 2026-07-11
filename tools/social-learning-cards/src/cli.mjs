@@ -4,6 +4,7 @@ import { buildAtlasPrompt, buildReplacementPrompt } from './prompts.mjs';
 import { resolveInside, revisionKey } from './paths.mjs';
 import { validateCardManifest } from './schema.mjs';
 import { validateMachinePackage, validateManualQa } from './validate.mjs';
+import { packageRevision } from './package.mjs';
 
 export const NETWORK_POLICY = 'offline_only';
 
@@ -49,4 +50,15 @@ export async function runQualityGates({ card, revisionDir, manualQaPath }) {
   };
   await writeJson(path.join(revisionDir, 'quality-report.json'), report);
   return report;
+}
+
+export async function packageCard({ card, revisionDir, exportRoot, manualQaPath }) {
+  const report = await runQualityGates({ card, revisionDir, manualQaPath });
+  return packageRevision({
+    card,
+    revisionDir,
+    exportRoot,
+    machineReport: report.machine,
+    manualQa: JSON.parse(await fs.readFile(manualQaPath, 'utf8')),
+  });
 }

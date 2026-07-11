@@ -430,3 +430,46 @@ describe('social card quality gates', () => {
     expect(quality.validateExportState(reversed).errors).toContain('invalid_slide_order:instagram');
   });
 });
+
+describe('platform packaging', () => {
+  const tempRoot = path.join(root, '.codex-tmp', 'social-learning-cards-tests', 'package');
+
+  beforeEach(() => {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    fs.mkdirSync(tempRoot, { recursive: true });
+  });
+
+  it('writes four attributed platform records and an immutable revision manifest', async () => {
+    const packager = await importEsm(pathToFileURL(path.join(root, 'tools/social-learning-cards/src/package.mjs')).href) as any;
+    const card = readFixture() as any;
+    const revisionDir = path.join(tempRoot, 'revision-source');
+    fs.mkdirSync(revisionDir, { recursive: true });
+    for (const fileName of ['slide_01_learning.jpg', 'slide_02_install.jpg']) {
+      await sharp({ create: { width: 1080, height: 1080, channels: 3, background: '#ffffff' } })
+        .jpeg().toFile(path.join(revisionDir, fileName));
+    }
+    const machineReport = { schemaVersion: 1, passed: true, checks: [{ id: 'all', passed: true }] };
+    const manualQa = {
+      schemaVersion: 1, semanticMatch: true, noRandomText: true, noAnatomyOrObjectDefects: true,
+      noCrop: true, correctCopy: true, currentRealPhrasemanScreen: true, ctaReadable: true,
+      slideOrderCorrect: true, reviewedBy: 'owner', reviewedAt: '2026-07-11T12:00:00.000Z',
+    };
+    const result = await packager.packageRevision({
+      card, revisionDir, exportRoot: path.join(tempRoot, 'exports'), machineReport, manualQa,
+    });
+    const manifest = JSON.parse(fs.readFileSync(result.manifestPath, 'utf8'));
+    const captions = JSON.parse(fs.readFileSync(path.join(result.packageDir, 'captions.json'), 'utf8'));
+
+    expect(Object.keys(captions.platforms)).toEqual(['instagram', 'tiktok', 'facebook', 'youtube']);
+    expect(captions.platforms.instagram).toMatchObject({ format: 'carousel', slideOrder: ['learning', 'install'] });
+    expect(captions.platforms.tiktok.format).toBe('photo_mode');
+    expect(captions.platforms.facebook.format).toBe('multi_photo');
+    expect(captions.platforms.youtube.fallback).toContain('description');
+    expect(captions.platforms.instagram.url).toBe(
+      'https://knowlyapps.com/download/?utm_source=instagram&utm_medium=carousel&utm_campaign=slc_pilot_01&utm_content=slc_pilot_01_taste',
+    );
+    expect(manifest.assets.learning.sha256).toMatch(/^[a-f0-9]{64}$/);
+    expect(manifest.quality.reportSha256).toMatch(/^[a-f0-9]{64}$/);
+    expect(manifest.assets.learning.storagePath).not.toMatch(/^[A-Za-z]:/);
+  });
+});

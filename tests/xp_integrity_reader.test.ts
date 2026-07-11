@@ -853,6 +853,36 @@ describe("IAM-gated XP audit reader", () => {
     expect("firestore" in reader).toBe(false);
   });
 
+  test("reads the control account through the auth_links stable identity anchor", async () => {
+    const firebase = makeFirebase({
+      "auth_links/auth-control": { stable_id: "stable-control" },
+      "users/stable-control": {
+        progress: { user_total_xp: "999999" },
+        firebaseAuthUid: "auth-control",
+        progressServerAuthoritative: true,
+        progressServerState: { totalXp: 1234 },
+      },
+    });
+    const reader = await createXpAuditReader(readerOptions(firebase, 10));
+
+    await expect(
+      reader.readControlAccount("control@example.com"),
+    ).resolves.toMatchObject({
+      uid: "stable-control",
+      firebaseAuthUid: "auth-control",
+      cutover: {
+        progressServerAuthoritative: true,
+        progressServerStateXp: 1234,
+      },
+    });
+    expect(firebase.calls).toEqual(
+      expect.arrayContaining([
+        "doc:auth_links/auth-control",
+        "doc:users/stable-control",
+      ]),
+    );
+  });
+
   test("rechecks abort after an Auth user-not-found response", async () => {
     const controller = new AbortController();
     const firebase = makeFirebase({});

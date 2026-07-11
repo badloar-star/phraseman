@@ -116,12 +116,29 @@ const record = (value: unknown): Readonly<Record<string, unknown>> =>
 const finiteNumber = (value: unknown): number | null =>
   typeof value === "number" && Number.isFinite(value) ? value : null;
 
+const persistedXp = (value: unknown): number | null => {
+  const numeric =
+    typeof value === "number"
+      ? value
+      : typeof value === "string" && /^\d+$/.test(value)
+        ? Number(value)
+        : Number.NaN;
+  return Number.isSafeInteger(numeric) && numeric >= 0 ? numeric : null;
+};
+
 const currentXpOf = (user: RawUser): number | null => {
+  if (
+    user.cutover.progressServerAuthoritative &&
+    user.cutover.progressServerStateXp !== null
+  ) {
+    return user.cutover.progressServerStateXp;
+  }
   const progress = record(user.progress);
   return (
-    finiteNumber(progress.totalXp) ??
-    finiteNumber(progress.totalXP) ??
-    finiteNumber(progress.xp)
+    persistedXp(progress.user_total_xp) ??
+    persistedXp(progress.totalXp) ??
+    persistedXp(progress.totalXP) ??
+    persistedXp(progress.xp)
   );
 };
 
@@ -338,6 +355,7 @@ export async function runProductionAudit(
   let latestEventAtMs: number | null = null;
   const controlEmail = environment.XP_AUDIT_CONTROL_EMAIL?.trim() || null;
   let controlUid: string | null = null;
+  let controlUser: RawUser | null = null;
   let controlResult: AccountAuditResult | null = null;
   let controlXp: number | null = null;
 
@@ -350,6 +368,8 @@ export async function runProductionAudit(
     principalReadOnlyVerified = true;
     if (controlEmail !== null) {
       controlUid = await reader.resolveControlEmail(controlEmail);
+      controlUser = await reader.readControlAccount(controlEmail);
+      controlXp = controlUser === null ? null : currentXpOf(controlUser);
     }
     const catalogs = loadVerifiedCatalogHistory(root);
     catalogEvidenceComplete =
@@ -359,7 +379,8 @@ export async function runProductionAudit(
 
     const auditUser = async (user: RawUser) => {
       const currentXp = currentXpOf(user);
-      if (currentXp === null) return { kind: "failed" as const, user };
+      if (currentXp === null) return { kind: "skipped" as const, user };
+      let stage = "events";
       try {
         const events: NormalizedAuditEvent[] = [];
         let afterEventId: string | null = null;
@@ -376,7 +397,9 @@ export async function runProductionAudit(
           }
           afterEventId = eventPage.nextAfterEventId;
         }
+        stage = "aliases";
         const aliasRead = await reader!.readAliases(user);
+        stage = "mirrors";
         const mirrors = await reader!.readMirrors(user);
         const completeness: EvidenceCompleteness = {
           ledger: "complete",
@@ -400,6 +423,7 @@ export async function runProductionAudit(
           mirrors,
           completeness,
         };
+        stage = "analysis";
         return {
           kind: "success" as const,
           user,
@@ -410,7 +434,15 @@ export async function runProductionAudit(
             matchCatalogForEvent(catalogs, event, achievementId),
           ),
         };
-      } catch {
+      } catch (error) {
+        if (environment.XP_AUDIT_DEBUG_AGGREGATE === "1") {
+          const rawCode = record(error).code;
+          const code =
+            typeof rawCode === "string"
+              ? rawCode.replace(/[^a-zA-Z0-9_.-]/g, "_").slice(0, 80)
+              : "unknown";
+          console.error(`xp_audit_account_failure=${stage}:${code}`);
+        }
         return { kind: "failed" as const, user };
       }
     };
@@ -460,6 +492,10 @@ export async function runProductionAudit(
         auditUser,
       );
       for (const outcome of outcomes) {
+        if (outcome.kind === "skipped") {
+          documentCategories.set(outcome.user.uid, "skipped");
+          continue;
+        }
         if (outcome.kind === "failed") {
           documentCategories.set(outcome.user.uid, "failed");
           infrastructureComplete = false;
@@ -542,9 +578,7 @@ export async function runProductionAudit(
       ran: controlEmail !== null,
       resolved: controlUid !== null,
       matchedExpectedLevelNeighborhood:
-        controlResult === null || controlXp === null
-          ? null
-          : isExpectedControlLevel(controlXp),
+        controlXp === null ? null : isExpectedControlLevel(controlXp),
       migrationIndicatorDetected:
         controlResult === null
           ? null

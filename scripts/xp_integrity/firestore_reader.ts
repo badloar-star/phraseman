@@ -118,6 +118,7 @@ export type XpAuditReader = {
   readAliases(user: RawUser): Promise<AliasReadResult>;
   readMirrors(user: RawUser): Promise<MirrorValues>;
   resolveControlEmail(email: string): Promise<string | null>;
+  readControlAccount(email: string): Promise<RawUser | null>;
   getReadCount(): number;
   /** Releases the dedicated Firebase Admin app; safe to call more than once. */
   close(): Promise<void>;
@@ -526,15 +527,27 @@ export async function createXpAuditReader(
     const found: DocumentSnapshotLike[] = [];
     let after: string | null = null;
     for (;;) {
-      const snapshot = await runQuery(() => {
-        let query = firestore
-          .collection("users")
-          .where(field, "==", value)
-          .orderBy(dependencies.documentIdField)
-          .limit(aliasPageSize);
-        if (after !== null) query = query.startAfter(after);
-        return query;
-      }, aliasPageSize);
+      let snapshot: QuerySnapshotLike | null = null;
+      for (let attempt = 0; attempt < 4 && snapshot === null; attempt += 1) {
+        try {
+          snapshot = await runQuery(() => {
+            let query = firestore
+              .collection("users")
+              .where(field, "==", value)
+              .orderBy(dependencies.documentIdField)
+              .limit(aliasPageSize);
+            if (after !== null) query = query.startAfter(after);
+            return query;
+          }, aliasPageSize);
+        } catch (error) {
+          const code = record(error).code;
+          const transientPermissionFailure =
+            code === 7 || code === "7" || code === "permission-denied";
+          if (!transientPermissionFailure || attempt === 3) throw error;
+          await new Promise((resolveDelay) => setTimeout(resolveDelay, 2_000));
+        }
+      }
+      if (snapshot === null) throw new Error("xp_audit_alias_query_failed");
       found.push(...snapshot.docs);
       if (snapshot.docs.length < aliasPageSize) return found;
       after = snapshot.docs.at(-1)?.id ?? null;
@@ -606,6 +619,16 @@ export async function createXpAuditReader(
               error.message === "xp_audit_aborted"
             ) {
               throw error;
+            }
+            if (process.env.XP_AUDIT_DEBUG_AGGREGATE === "1") {
+              const rawCode = record(error).code;
+              const code =
+                typeof rawCode === "string" || typeof rawCode === "number"
+                  ? String(rawCode)
+                      .replace(/[^a-zA-Z0-9_.-]/g, "_")
+                      .slice(0, 80)
+                  : "unknown";
+              console.error(`xp_audit_alias_discovery_failure=${field}:${code}`);
             }
             closureComplete = false;
             continue;
@@ -723,6 +746,27 @@ export async function createXpAuditReader(
         if (code === "auth/user-not-found") return null;
         throw error;
       }
+    },
+    async readControlAccount(email) {
+      throwIfAborted(signal);
+      let authUid: string;
+      try {
+        authUid = (await auth.getUserByEmail(email)).uid;
+      } catch (error) {
+        throwIfAborted(signal);
+        if (record(error).code === "auth/user-not-found") return null;
+        throw error;
+      }
+      const link = await readDocument(
+        firestore.collection("auth_links").doc(authUid),
+      );
+      const linkData = record(link.data());
+      const stableUid = text(linkData.stable_id) ?? text(linkData.stableUid);
+      if (stableUid === null) return null;
+      const user = await readDocument(
+        firestore.collection("users").doc(stableUid),
+      );
+      return user.exists ? normalizeUser(user) : null;
     },
     getReadCount: () => budget.count,
     async close() {

@@ -114,6 +114,7 @@ const readerFor = (
     leagueXp: null,
   })),
   resolveControlEmail: jest.fn(async (_email: string) => null),
+  readControlAccount: jest.fn(async (_email: string) => null),
   getReadCount: jest.fn(() => 7),
   close: jest.fn(async () => undefined),
 });
@@ -259,6 +260,34 @@ describe("production XP integrity CLI", () => {
       failedAccounts: 1,
     });
     expect(reader.pageUsers).toHaveBeenCalledTimes(3);
+  });
+
+  test("documents without persisted XP are skipped without degrading infrastructure", async () => {
+    const withoutXp: RawUser = {
+      ...user("no-xp-secret"),
+      progress: {},
+      cutover: {
+        ...user("ignored").cutover,
+        progressServerStateXp: null,
+      },
+    };
+    const good = user("good-secret");
+    const reader = readerFor([
+      { users: [withoutXp], done: false, nextAfterUid: withoutXp.uid },
+      { users: [good], done: true, nextAfterUid: good.uid },
+    ]);
+    createReader.mockResolvedValue(reader);
+
+    const outcome = await runProductionAudit(
+      parseCliArgs(["--sample=1"], { GOOGLE_CLOUD_PROJECT: "safe-project-1" }),
+    );
+
+    expect(outcome.report.coverage).toMatchObject({
+      infrastructureComplete: true,
+      canonicalAccountsScanned: 1,
+      skippedAccounts: 1,
+      failedAccounts: 0,
+    });
   });
 
   test("bounds concurrent account audits and never exceeds the successful sample target", async () => {
@@ -411,6 +440,97 @@ describe("production XP integrity CLI", () => {
     expect(JSON.stringify(outcome.report)).not.toMatch(
       /control-private-uid|private@example\.com/,
     );
+  });
+
+  test("uses authoritative server XP after cutover instead of stale client progress", async () => {
+    const controlUser: RawUser = {
+      ...user("canonical-secret"),
+      firebaseAuthUid: "control-private-uid",
+      progress: { totalXp: totalXPForLevel(50) },
+      cutover: {
+        ...user("ignored").cutover,
+        progressServerAuthoritative: true,
+        progressServerStateXp: totalXPForLevel(8),
+      },
+    };
+    const reader = readerFor([
+      { users: [controlUser], done: true, nextAfterUid: "canonical-secret" },
+    ]);
+    reader.resolveControlEmail.mockResolvedValue("control-private-uid");
+    createReader.mockResolvedValue(reader);
+
+    const outcome = await runProductionAudit(
+      parseCliArgs(["--sample=1"], { GOOGLE_CLOUD_PROJECT: "safe-project-1" }),
+      {
+        GOOGLE_CLOUD_PROJECT: "safe-project-1",
+        XP_AUDIT_CONTROL_EMAIL: "private@example.com",
+      },
+    );
+
+    expect(outcome.report.calibration.matchedExpectedLevelNeighborhood).toBe(
+      true,
+    );
+  });
+
+  test("calibrates the control account directly even when it is outside the sample", async () => {
+    const controlUser: RawUser = {
+      ...user("control-stable-secret"),
+      firebaseAuthUid: "control-auth-secret",
+      cutover: {
+        ...user("ignored").cutover,
+        progressServerAuthoritative: true,
+        progressServerStateXp: totalXPForLevel(8),
+      },
+    };
+    const reader = readerFor([
+      {
+        users: [user("different-sample-secret")],
+        done: true,
+        nextAfterUid: "different-sample-secret",
+      },
+    ]);
+    reader.resolveControlEmail.mockResolvedValue("control-auth-secret");
+    reader.readControlAccount.mockResolvedValue(controlUser);
+    createReader.mockResolvedValue(reader);
+
+    const outcome = await runProductionAudit(
+      parseCliArgs(["--sample=1"], { GOOGLE_CLOUD_PROJECT: "safe-project-1" }),
+      {
+        GOOGLE_CLOUD_PROJECT: "safe-project-1",
+        XP_AUDIT_CONTROL_EMAIL: "private@example.com",
+      },
+    );
+
+    expect(outcome.report.calibration).toMatchObject({
+      ran: true,
+      resolved: true,
+      matchedExpectedLevelNeighborhood: true,
+    });
+    expect(JSON.stringify(outcome.report)).not.toMatch(
+      /control-stable-secret|control-auth-secret|private@example\.com/,
+    );
+  });
+
+  test("accepts the persisted user_total_xp string used by cloud sync", async () => {
+    const persistedUser: RawUser = {
+      ...user("canonical-secret"),
+      progress: { user_total_xp: "1234" },
+      cutover: {
+        ...user("ignored").cutover,
+        progressServerAuthoritative: false,
+      },
+    };
+    const reader = readerFor([
+      { users: [persistedUser], done: true, nextAfterUid: "canonical-secret" },
+    ]);
+    createReader.mockResolvedValue(reader);
+
+    const outcome = await runProductionAudit(
+      parseCliArgs(["--sample=1"], { GOOGLE_CLOUD_PROJECT: "safe-project-1" }),
+    );
+
+    expect(outcome.report.coverage.canonicalAccountsScanned).toBe(1);
+    expect(outcome.report.coverage.failedAccounts).toBe(0);
   });
 
   test("calibration uses the trusted level formula for the accepted 7..9 neighborhood", () => {

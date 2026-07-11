@@ -5,6 +5,7 @@ import { resolveCapabilityHash } from './admin-capabilities.js';
 export const LEGACY_ROUTE_MAP = Object.freeze({
   '': 'overview',
   overview: 'overview',
+  'control-panel': 'control-panel',
   app: 'application',
   application: 'application',
   updates: 'application',
@@ -33,7 +34,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
 });
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio']);
+const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'control-panel']);
 
 function routeFromLocation() {
   const capabilityRoute = resolveCapabilityHash(globalThis.location.hash);

@@ -24,6 +24,7 @@ export const ADMIN_SECTIONS = Object.freeze([
 
 const PAGES = Object.freeze({
   overview: { title: 'Обзор', description: 'Сигналы, требующие решения сегодня, и последние управленческие действия.' },
+  'control-panel': { title: 'Пульт управления', description: 'Главные рычаги старой админки, сгруппированные по безопасным рабочим процессам.' },
   application: { title: 'Приложение', description: 'Обновления, баннеры, технические работы и конфигурация приложения.' },
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
   money: { title: 'Деньги', description: 'Подписки, платежи, промокоды и подтверждённые показатели выручки.' },
@@ -235,6 +236,25 @@ function renderOverviewDecisions(view) {
   if (view.hasUnknownMetrics) rows.push(['Неизвестные показатели', 'Часть полей отсутствует в сохранённом снимке, поэтому админка не подставляет нули.', '#diagnostics', 'Проверить источники', 'warning']);
   if (!rows.length) return emptyState(view.state === 'ready' ? 'По подтверждённому снимку отслеживаемых приоритетов нет.' : 'Подтверждённых приоритетов нет, но снимок неполный или устарел.');
   return `<div class="data-list">${rows.map(([title, detail, href, action, kind]) => `<div class="list-row"><div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div><a class="button small ${kind === 'danger' ? '' : 'ghost'}" href="${href}" title="${escapeHtml(action)}">${escapeHtml(action)}</a></div>`).join('')}</div>`;
+}
+
+const CONTROL_PANEL_WORKFLOWS = Object.freeze([
+  { title: 'Обновления и обслуживание', description: 'Manual update modal, force update, store links, rollout и maintenance text.', primary: '#application', primaryLabel: 'Открыть v2 приложение', fallback: 'control-panel', risk: 'Высокий риск', coverage: '5 старых кнопок', guarded: true },
+  { title: 'Remote Config и живые флаги', description: 'Промокоды, лига по XP, lifetime, идеи, arena bots, onboarding, paywall timers, video button и intro gift.', primary: '#application', primaryLabel: 'Открыть v2 конфигурацию', fallback: 'remote-config', risk: 'Guarded publish', coverage: '8 переключателей', guarded: true },
+  { title: 'Промокоды и промо-баннер', description: 'Создание кода, список кодов, quick-link в большой раздел и баннер кампании.', primary: '#promo-codes', primaryLabel: 'Старый модуль промокодов', fallback: 'promo-codes', risk: 'Legacy write module', coverage: '5 старых кнопок', guarded: false },
+  { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#premium', primaryLabel: 'Старый модуль Plus', fallback: 'control-panel', risk: 'Legacy write module', coverage: '5 старых кнопок', guarded: false },
+  { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
+  { title: 'ИИ и бюджеты', description: 'Theo model, daily caps, фоновые AI jobs, OpenAI budget и Asset Studio.', primary: '#asset-studio', primaryLabel: 'Открыть v2 Asset Studio', fallback: 'openai-budget', risk: 'AI budget', coverage: '5 старых кнопок', guarded: true },
+  { title: 'Кампании и коммуникации', description: 'Paywall A/B, app messages, Telegram alerts и push-notify.', primary: '#app-messages', primaryLabel: 'Старый модуль сообщений', fallback: 'app-messages', risk: 'Legacy campaign module', coverage: '5 переходов', guarded: false },
+]);
+
+function renderControlPanel() {
+  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><a class="button primary" href="#application" title="Открыть основной v2 workflow для конфигурации приложения">Открыть v2 конфигурацию</a><a class="button ghost" href="../../admin/index.html#control-panel" target="_blank" rel="noopener" title="Открыть старый пульт только для аварийной сверки">Старый пульт</a>`;
+  return `${pageHeader(PAGES['control-panel'], 'Обзор / Пульт', headerActions)}
+    <div class="notice"><strong>Native v2 слой.</strong> Здесь собраны все группы старого control-panel. Опасные write-действия не копируются прямым onclick: они ведут в guarded workflow или в старый рабочий модуль до полноценного переноса конкретной формы.</div>
+    <section class="card section"><div class="card-header"><div><h2>Карта старого пульта</h2><p>29 старых кнопок разложены по рабочим процессам, чтобы ничего не потерять и не смешивать рискованные действия.</p></div><span class="badge">control-panel</span></div>
+      <div class="card-body"><div class="control-panel-workflows">${CONTROL_PANEL_WORKFLOWS.map((item) => `<article class="control-panel-workflow"><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description)}</p><div class="control-panel-tags"><span class="badge">${escapeHtml(item.coverage)}</span><span class="badge ${item.guarded ? 'success' : 'warning'}">${escapeHtml(item.risk)}</span></div></div><div class="actions"><a class="button ${item.guarded ? '' : 'ghost'} small" href="${escapeHtml(item.primary)}" title="${item.guarded ? 'Открыть основной v2 workflow' : 'Открыть legacy working module'}: ${escapeHtml(item.title)}">${escapeHtml(item.primaryLabel)}</a><a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.fallback)}" target="_blank" rel="noopener" title="Открыть старый рабочий модуль отдельно. Его действия могут менять production.">Старый модуль отдельно</a></div></article>`).join('')}</div></div></section>
+    <section class="card section"><div class="card-header"><div><h2>Правило переноса write-кнопок</h2><p>Каждая опасная кнопка переезжает отдельно: preview, reason, expected revision, audit log и rollback.</p></div></div><div class="card-body"><div class="control-panel-transfer-list"><span>Manual update / force update — следующий кандидат на native wizard.</span><span>Premium lesson locks — переносить после проверки клиентских ключей и paywall gates.</span><span>AI jobs — уже частично covered через budget diagnostics и Asset Studio; нужен отдельный config editor.</span></div></div></section>`;
 }
 
 function renderOverview() {
@@ -929,7 +949,7 @@ function renderReportQueue() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);

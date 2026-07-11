@@ -88,7 +88,7 @@ function checkRoutes() {
   assert(routes.length === 9, `expected 9 primary routes, got ${routes.length}`);
   routes.forEach((route) => assert(pages.has(route), `route ${route} has no data-page`));
   targets.forEach((route) => assert(pages.has(route), `route target ${route} has no data-page`));
-  assert(router.includes("'control-panel': 'application'"), 'legacy #control-panel route is not mapped to application');
+  assert(router.includes("'control-panel': 'control-panel'"), 'legacy #control-panel route is not mapped to the native control-panel hub');
 }
 
 function checkActions() {

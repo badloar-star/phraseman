@@ -48,6 +48,7 @@ describe('Admin v2 native capability routing', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
+    expect(router).toContain("'control-panel': 'control-panel'");
     expect(capabilities).toContain('directCapability.nativeRoute');
     expect(capabilities).toContain('requestedCapability?.nativeRoute');
     expect(core).toContain('!capability.nativeRoute');
@@ -55,6 +56,7 @@ describe('Admin v2 native capability routing', () => {
     expect(core).toContain('<iframe');
 
     const registry = loadRegistry();
+    expect(registry.find((capability) => capability.id === 'control-panel')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
     expect(registry.find((capability) => capability.id === 'paywall-ab')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
   });
 
@@ -65,6 +67,24 @@ describe('Admin v2 native capability routing', () => {
 
   test('keeps a top-level route native when a legacy capability has the same id', () => {
     expect(resolveCapabilityHash('#overview')).toEqual({ resolved: false, route: 'overview', capabilityId: '' });
+    expect(resolveCapabilityHash('#control-panel')).toEqual({ resolved: false, route: 'control-panel', capabilityId: '' });
     expect(resolveCapabilityHash('#overview:overview')).toEqual({ resolved: true, route: 'overview', capabilityId: 'overview' });
+  });
+
+  test('renders a native Control Panel hub for the old pult groups', () => {
+    const router = read('admin/v2/scripts/admin-router.js');
+    const core = read('admin/v2/scripts/admin-core.js');
+    expect(router).toContain("'control-panel': 'control-panel'");
+    expect(core).toContain('function renderControlPanel');
+    expect(core).toContain('29 старых кнопок');
+    expect(core).toContain('Manual update modal');
+    expect(core).toContain('Remote Config и живые флаги');
+    expect(core).toContain('Plus-доступ и уроки');
+    expect(core).toContain('Недельные бонусы');
+    expect(core).toContain('ИИ и бюджеты');
+    expect(core).toContain('Кампании и коммуникации');
+    expect(core).toContain('Старый модуль отдельно');
+    expect(core).toContain('Его действия могут менять production');
+    expect(core).not.toContain('Архивная сверка старой функции');
   });
 });

@@ -53,7 +53,6 @@ type RenderModule = {
   }): Promise<RenderResult>;
   renderInstallSlide(options: {
     card: Record<string, unknown>;
-    appScreenshotPath: string;
     heroCellPath: string;
     outputPath: string;
   }): Promise<RenderResult>;
@@ -314,11 +313,7 @@ describe('two-slide renderer', () => {
       }).png().toFile(cellPath);
       cellPaths[item.id] = cellPath;
     }
-    const screenshotPath = path.join(tempRoot, 'app-screen.webp');
-    await sharp({ create: { width: 600, height: 1200, channels: 3, background: '#151b24' } })
-      .webp()
-      .toFile(screenshotPath);
-    return { fixture, cellPaths, screenshotPath };
+    return { fixture, cellPaths };
   }
 
   it('renders a learning slide from a measurable safe layout model', async () => {
@@ -346,34 +341,34 @@ describe('two-slide renderer', () => {
     expect(result.sha256).toMatch(/^[a-f0-9]{64}$/);
   });
 
-  it('renders an install slide with exact CTA and screenshot reference before rasterization', async () => {
+  it('renders an install slide with a contextual visual and exact conversion hook', async () => {
     const renderer = await loadRender();
-    const { fixture, cellPaths, screenshotPath } = await createRenderInputs();
+    const { fixture, cellPaths } = await createRenderInputs();
     const outputPath = path.join(tempRoot, 'slide_02_install.jpg');
 
     const result = await renderer.renderInstallSlide({
       card: fixture,
-      appScreenshotPath: screenshotPath,
       heroCellPath: cellPaths.item_01,
       outputPath,
     });
     const layout = JSON.parse(fs.readFileSync(result.layoutPath, 'utf8'));
     const svg = fs.readFileSync(result.svgPath, 'utf8');
 
-    expect(layout.screenshot.path).toBe(screenshotPath);
+    expect(layout.hero).toMatchObject({ path: cellPaths.item_01, used: true });
     expect(layout.cta).toMatchObject({
-      title: 'Знаешь «sweet». А фразу скажешь?',
-      titleLines: ['Знаешь «sweet».', 'А фразу скажешь?'],
+      title: 'Знаешь «sweet»? А фразу скажешь?',
+      titleLines: ['Знаешь «sweet»?', 'А фразу скажешь?'],
       button: 'Начать бесплатно',
       footer: 'Без регистрации • первый урок через 30 секунд',
       url: 'knowlyapps.com',
     });
     expect(layout.cta.fontSize).toBeGreaterThanOrEqual(34);
     expect(layout.cta.x).toBeGreaterThanOrEqual(48);
-    expect(svg).toContain('Знаешь «sweet».</text>');
+    expect(svg).toContain('Знаешь «sweet»?</text>');
     expect(svg).toContain('А фразу скажешь?</text>');
     expect(svg).toContain('10 000+ живых фраз');
     expect(svg).toContain('Начать бесплатно');
+    expect(svg).toContain('It&apos;s too sweet');
     const metadata = await sharp(result.jpegPath).metadata();
     expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg', space: 'srgb', channels: 3 });
   });
@@ -394,7 +389,7 @@ describe('social card quality gates', () => {
     expect(report.checks).toEqual(expect.arrayContaining([
       expect.objectContaining({ id: 'learning_output', passed: false }),
       expect.objectContaining({ id: 'install_output', passed: false }),
-      expect.objectContaining({ id: 'app_screenshot', passed: false }),
+      expect.objectContaining({ id: 'second_slide_visual', passed: false }),
       expect.objectContaining({ id: 'cta_copy', passed: false }),
     ]));
   });
@@ -412,7 +407,7 @@ describe('social card quality gates', () => {
       noAnatomyOrObjectDefects: true,
       noCrop: true,
       correctCopy: true,
-      currentRealPhrasemanScreen: true,
+      secondSlideVisualApproved: true,
       ctaReadable: true,
       slideOrderCorrect: true,
       reviewedBy: 'owner',
@@ -455,7 +450,7 @@ describe('platform packaging', () => {
     const machineReport = { schemaVersion: 1, passed: true, checks: [{ id: 'all', passed: true }] };
     const manualQa = {
       schemaVersion: 1, semanticMatch: true, noRandomText: true, noAnatomyOrObjectDefects: true,
-      noCrop: true, correctCopy: true, currentRealPhrasemanScreen: true, ctaReadable: true,
+      noCrop: true, correctCopy: true, secondSlideVisualApproved: true, ctaReadable: true,
       slideOrderCorrect: true, reviewedBy: 'owner', reviewedAt: '2026-07-11T12:00:00.000Z',
       cellReviews: card.items.map((item: any) => ({
         itemId: item.id, semanticMatch: true, anatomyClean: true, objectsClean: true, noCrop: true, approved: true,

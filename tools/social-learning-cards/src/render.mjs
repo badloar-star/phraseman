@@ -28,10 +28,10 @@ function mimeFor(filePath) {
 
 async function imageDataUri(filePath) {
   const extension = path.extname(filePath).toLowerCase();
-  const bytes = extension === '.webp'
-    ? await sharp(filePath).png().toBuffer()
+  const bytes = extension === '.webp' || extension === '.png'
+    ? await sharp(filePath).flatten({ background: '#ffffff' }).jpeg({ quality: 92 }).toBuffer()
     : await fs.readFile(filePath);
-  const mime = extension === '.webp' ? 'image/png' : mimeFor(filePath);
+  const mime = extension === '.webp' || extension === '.png' ? 'image/jpeg' : mimeFor(filePath);
   return `data:${mime};base64,${bytes.toString('base64')}`;
 }
 
@@ -129,16 +129,15 @@ export async function renderLearningSlide({ card, cellPaths, outputPath }) {
   return writeArtifacts({ outputPath, layout, svg: await learningSvg(layout) });
 }
 
-export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath, outputPath }) {
+export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
   assertCard(card);
-  await Promise.all([fs.access(appScreenshotPath), fs.access(heroCellPath)]);
+  await fs.access(heroCellPath);
   const layout = {
     kind: 'install',
     width: WIDTH,
     height: HEIGHT,
     safeArea: SAFE_AREA,
-    screenshot: { path: appScreenshotPath, x: 722, y: 165, width: 306, height: 680 },
-    hero: { path: heroCellPath, used: false },
+    hero: { path: heroCellPath, x: 690, y: 105, width: 330, height: 390, used: true },
     cta: {
       x: 48,
       y: 70,
@@ -146,11 +145,13 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
       height: 938,
       fontSize: 58,
       eyebrow: 'ОДНОГО СЛОВА МАЛО',
-      title: `Знаешь «${card.items[0].english}». А фразу скажешь?`,
-      titleLines: [`Знаешь «${card.items[0].english}».`, 'А фразу скажешь?'],
+      title: `Знаешь «${card.items[0].english}»? А фразу скажешь?`,
+      titleLines: [`Знаешь «${card.items[0].english}»?`, 'А фразу скажешь?'],
       subtitle: 'Phraseman учит готовым фразам, которые сразу можно сказать.',
       benefitPrimary: '10 000+ живых фраз',
       benefitSecondary: 'Тренировка произношения',
+      exampleWord: card.items[0].english,
+      examplePhrase: `It's too ${card.items[0].english} for me.`,
       button: 'Начать бесплатно',
       buttonBackground: '#B7FF3C',
       buttonTextColor: '#07110A',
@@ -158,13 +159,13 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
       url: 'knowlyapps.com',
     },
   };
-  const screenshotUri = await imageDataUri(appScreenshotPath);
+  const heroUri = await imageDataUri(heroCellPath);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
     <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
     <rect x="48" y="70" width="304" height="48" rx="24" fill="#B7FF3C"/>
     <text x="200" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(layout.cta.eyebrow)}</text>
-    <text x="48" y="188" font-family="Arial, sans-serif" font-size="58" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
-    <text x="48" y="256" font-family="Arial, sans-serif" font-size="58" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
+    <text x="48" y="188" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[0])}</text>
+    <text x="48" y="254" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.titleLines[1])}</text>
     <text x="48" y="330" font-family="Arial, sans-serif" font-size="31" fill="#384252">Phraseman учит готовым фразам,</text>
     <text x="48" y="370" font-family="Arial, sans-serif" font-size="31" fill="#384252">которые сразу можно сказать.</text>
     <circle cx="64" cy="447" r="9" fill="#77D61D"/><text x="88" y="458" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#0b1016">${escapeXml(layout.cta.benefitPrimary)}</text>
@@ -174,8 +175,12 @@ export async function renderInstallSlide({ card, appScreenshotPath, heroCellPath
     <text x="48" y="750" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0b1016">Без регистрации • первый урок</text>
     <text x="48" y="786" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0b1016">через 30 секунд</text>
     <text x="48" y="858" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">knowlyapps.com</text>
-    <rect x="702" y="140" width="346" height="730" rx="46" fill="#111820"/>
-    <image href="${screenshotUri}" x="722" y="165" width="306" height="680" preserveAspectRatio="xMidYMid meet"/>
+    <image href="${heroUri}" x="690" y="105" width="330" height="390" preserveAspectRatio="xMidYMid meet"/>
+    <path d="M704 552 H1018" stroke="#B7FF3C" stroke-width="12" stroke-linecap="round"/>
+    <text x="704" y="620" font-family="Arial, sans-serif" font-size="34" font-weight="900" fill="#0b1016">${escapeXml(layout.cta.exampleWord)}</text>
+    <text x="704" y="672" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#384252">↓ готовая фраза</text>
+    <text x="704" y="730" font-family="Arial, sans-serif" font-size="31" font-weight="900" fill="#0b1016">It&apos;s too ${escapeXml(layout.cta.exampleWord)}</text>
+    <text x="704" y="770" font-family="Arial, sans-serif" font-size="31" font-weight="900" fill="#0b1016">for me.</text>
   </svg>`;
   return writeArtifacts({ outputPath, layout, svg });
 }

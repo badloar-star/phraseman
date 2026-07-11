@@ -8,7 +8,7 @@ const MANUAL_FLAGS = [
   'noAnatomyOrObjectDefects',
   'noCrop',
   'correctCopy',
-  'currentRealPhrasemanScreen',
+  'secondSlideVisualApproved',
   'ctaReadable',
   'slideOrderCorrect',
 ];
@@ -38,8 +38,9 @@ export async function validateMachinePackage({ card, revisionDir }) {
     await imageCheck('learning_output', learningPath),
     await imageCheck('install_output', installPath),
     {
-      id: 'app_screenshot',
-      passed: Boolean(installLayout?.screenshot?.path && await fs.access(installLayout.screenshot.path).then(() => true, () => false)),
+      id: 'second_slide_visual',
+      passed: Boolean(installLayout?.hero?.used && installLayout?.hero?.path
+        && await fs.access(installLayout.hero.path).then(() => true, () => false)),
     },
     {
       id: 'cta_copy',

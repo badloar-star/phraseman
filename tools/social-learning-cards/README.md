@@ -1,13 +1,13 @@
 # Social learning cards
 
-This offline-first tool prepares two-slide, 1080×1080 English-learning posts. Slide 1 teaches; slide 2 connects the lesson to a real Phraseman screen and the official root site `knowlyapps.com`.
+This offline-first tool prepares two-slide, 1080×1080 English-learning posts. Slide 1 teaches; slide 2 turns one learned word into a useful phrase, explains the Phraseman benefit and points to the official root site `knowlyapps.com`.
 
 The tool never calls an image API. `prepare` writes a text brief; a Codex operator generates one atlas with the built-in image tool, saves it to the ignored revision folder, then runs import, render, validate and package.
 
 ```powershell
 npm run social-cards:prepare -- --card slc_pilot_01_taste
 npm run social-cards:import -- --card slc_pilot_01_taste --atlas <atlas.png>
-npm run social-cards:render -- --card slc_pilot_01_taste --screenshot <real-app-screen.png>
+npm run social-cards:render -- --card slc_pilot_01_taste
 npm run social-cards:validate -- --card slc_pilot_01_taste
 npm run social-cards:package -- --card slc_pilot_01_taste
 ```

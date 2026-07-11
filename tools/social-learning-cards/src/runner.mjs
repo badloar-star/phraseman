@@ -38,11 +38,10 @@ if (command === 'prepare') {
   if (!args.atlas) throw new Error('missing_argument:atlas');
   console.log(JSON.stringify(await importAtlas({ card, atlasPath: path.resolve(args.atlas), revisionDir })));
 } else if (command === 'render') {
-  if (!args.screenshot) throw new Error('missing_argument:screenshot');
   const checkpoint = JSON.parse(await fs.readFile(path.join(revisionDir, 'checkpoint.json'), 'utf8'));
   const cellPaths = Object.fromEntries(checkpoint.cells.map((cell) => [cell.itemId, cell.path]));
   const learning = await renderLearningSlide({ card, cellPaths, outputPath: path.join(revisionDir, card.images.learning.fileName) });
-  const install = await renderInstallSlide({ card, appScreenshotPath: path.resolve(args.screenshot), heroCellPath: cellPaths.item_01, outputPath: path.join(revisionDir, card.images.install.fileName) });
+  const install = await renderInstallSlide({ card, heroCellPath: cellPaths.item_01, outputPath: path.join(revisionDir, card.images.install.fileName) });
   console.log(JSON.stringify({ learning, install }));
 } else if (command === 'validate') {
   console.log(JSON.stringify(await runQualityGates({ card, revisionDir, manualQaPath })));

@@ -558,7 +558,7 @@ describe("analyzeAccount", () => {
     expect(result.reasons).toContain("alias_history_incomplete");
   });
 
-  test("treats achievement claims with missing or malformed IDs as incomplete", () => {
+  test("counts malformed achievement IDs as one non-exact anomaly family", () => {
     const missing = event("missing", { payload: {} });
     const malformed = event("malformed", {
       totalXpBefore: 200,
@@ -572,7 +572,7 @@ describe("analyzeAccount", () => {
     expect(result.reasons).toEqual(
       expect.arrayContaining(["catalog_unmapped", "prerequisite_unmapped"]),
     );
-    expect(result.classification).toBe("probable_damaged");
+    expect(result.classification).toBe("indeterminate");
   });
 });
 
@@ -630,7 +630,7 @@ describe("analyzeLedgerContinuity", () => {
     expect(result).toMatchObject({ complete: true, exactInvalidXp: 50 });
   });
 
-  test("tied timestamps remain ambiguous even with a retained cutover", () => {
+  test("reconstructs a unique tied order from an exact retained baseline", () => {
     const first = event("a", {
       type: "xp",
       xpDelta: 50,
@@ -651,6 +651,29 @@ describe("analyzeLedgerContinuity", () => {
     ).toBe(false);
     expect(
       analyzeLedgerContinuity([first, second], 200, {
+        kind: "exact",
+        xp: 100,
+        derivedFrom: "retained_cutover",
+        atMs: 900,
+      }).complete,
+    ).toBe(true);
+  });
+
+  test("keeps tied timestamps incomplete when multiple exact orders exist", () => {
+    const first = event("a", {
+      type: "xp",
+      xpDelta: 0,
+      totalXpBefore: 100,
+      totalXpAfter: 100,
+    });
+    const second = event("b", {
+      type: "xp",
+      xpDelta: 0,
+      totalXpBefore: 100,
+      totalXpAfter: 100,
+    });
+    expect(
+      analyzeLedgerContinuity([first, second], 100, {
         kind: "exact",
         xp: 100,
         derivedFrom: "retained_cutover",

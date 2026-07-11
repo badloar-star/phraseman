@@ -48,6 +48,45 @@ const exactEvent = (event: NormalizedAuditEvent): boolean =>
   Number.isFinite(event.xpDelta) &&
   event.totalXpAfter - event.totalXpBefore === event.xpDelta;
 
+function uniqueExactOrder(
+  events: readonly NormalizedAuditEvent[],
+  initialXp: number,
+): NormalizedAuditEvent[] | null {
+  const solutions: NormalizedAuditEvent[][] = [];
+  const visit = (
+    remaining: readonly NormalizedAuditEvent[],
+    expectedXp: number,
+    ordered: readonly NormalizedAuditEvent[],
+  ): void => {
+    if (solutions.length > 1) return;
+    if (remaining.length === 0) {
+      solutions.push([...ordered]);
+      return;
+    }
+    const earliestTime = remaining.reduce(
+      (earliest, event) =>
+        Math.min(earliest, event.serverCreatedAtMs as number),
+      Number.POSITIVE_INFINITY,
+    );
+    for (const [candidateIndex, candidate] of remaining.entries()) {
+      if (
+        candidate.serverCreatedAtMs !== earliestTime ||
+        candidate.totalXpBefore !== expectedXp
+      ) {
+        continue;
+      }
+      visit(
+        remaining.filter((_, index) => index !== candidateIndex),
+        candidate.totalXpAfter,
+        [...ordered, candidate],
+      );
+      if (solutions.length > 1) return;
+    }
+  };
+  visit(events, initialXp, []);
+  return solutions.length === 1 ? solutions[0] : null;
+}
+
 export function analyzeLedgerContinuity(
   events: readonly NormalizedAuditEvent[],
   currentXp: number,
@@ -101,25 +140,48 @@ export function analyzeLedgerContinuity(
       index > 0 &&
       event.serverCreatedAtMs === byTime[index - 1].serverCreatedAtMs,
   );
+  const first = byTime[0];
   if (tied) {
-    return {
-      complete: false,
-      baseline: suppliedBaseline,
-      exactInvalidXp: 0,
-      invalidByEvent: new Map(),
-    };
+    const validRetained =
+      suppliedBaseline.kind === "exact" &&
+      suppliedBaseline.derivedFrom === "retained_cutover" &&
+      Number.isFinite(suppliedBaseline.atMs) &&
+      suppliedBaseline.atMs < (first.serverCreatedAtMs as number);
+    const validFirstResult =
+      suppliedBaseline.kind === "exact" &&
+      suppliedBaseline.derivedFrom === "first_ledger_result" &&
+      suppliedBaseline.atMs === first.serverCreatedAtMs;
+    if (validRetained || validFirstResult) {
+      const reconstructed = uniqueExactOrder(events, suppliedBaseline.xp);
+      if (reconstructed) byTime.splice(0, byTime.length, ...reconstructed);
+      else {
+        return {
+          complete: false,
+          baseline: suppliedBaseline,
+          exactInvalidXp: 0,
+          invalidByEvent: new Map(),
+        };
+      }
+    } else {
+      return {
+        complete: false,
+        baseline: suppliedBaseline,
+        exactInvalidXp: 0,
+        invalidByEvent: new Map(),
+      };
+    }
   }
 
   const ordered = byTime;
-  const first = ordered[0];
+  const orderedFirst = ordered[0];
   if (
     suppliedBaseline.kind === "exact" &&
     ((suppliedBaseline.derivedFrom === "retained_cutover" &&
       (!Number.isFinite(suppliedBaseline.atMs) ||
-        suppliedBaseline.atMs >= (first.serverCreatedAtMs as number))) ||
+        suppliedBaseline.atMs >= (orderedFirst.serverCreatedAtMs as number))) ||
       (suppliedBaseline.derivedFrom === "first_ledger_result" &&
-        (suppliedBaseline.xp !== first.totalXpBefore ||
-          suppliedBaseline.atMs !== first.serverCreatedAtMs)))
+        (suppliedBaseline.xp !== orderedFirst.totalXpBefore ||
+          suppliedBaseline.atMs !== orderedFirst.serverCreatedAtMs)))
   ) {
     return {
       complete: false,
@@ -134,9 +196,9 @@ export function analyzeLedgerContinuity(
       ? suppliedBaseline
       : {
           kind: "exact",
-          xp: first.totalXpBefore as number,
+          xp: orderedFirst.totalXpBefore as number,
           derivedFrom: "first_ledger_result",
-          atMs: first.serverCreatedAtMs as number,
+          atMs: orderedFirst.serverCreatedAtMs as number,
         };
   const invalidByEvent = new Map<string, number>();
   let expected = baseline.xp;
@@ -267,8 +329,7 @@ export function analyzeAccount(
     if (achievementId === null) {
       reasons.add("catalog_unmapped");
       reasons.add("prerequisite_unmapped");
-      nonExactFamilies.add("catalog");
-      nonExactFamilies.add("prerequisites");
+      nonExactFamilies.add("achievement_event");
       runtimeEvidenceComplete = false;
       continue;
     }

@@ -744,7 +744,7 @@ export async function runAdminDailyDigest(
   }
 
   const nowIso = new Date(now).toISOString();
-  await db.collection(DIGESTS_COLLECTION).doc(dayKey).set({
+  const digestDocument = {
     schemaVersion: DIGEST_SCHEMA_VERSION,
     runId,
     dayKey,
@@ -762,9 +762,9 @@ export async function runAdminDailyDigest(
     generatedAt: nowIso,
     generatedAtMs: now,
     generatedBy: actorEmail || 'admin',
-  });
+  };
 
-  await runRef.set({
+  const successfulRun = {
     status: 'succeeded',
     summary,
     facts,
@@ -778,12 +778,14 @@ export async function runAdminDailyDigest(
     coverageStatus,
     model: empty ? 'none' : cfg.model,
     generatedAt: nowIso,
-  }, { merge: true });
+  };
   await db.runTransaction(async (transaction) => {
     const latest = await transaction.get(latestRef);
     if (latest.data()?.leaseRunId !== runId) {
       throw new HttpsError('aborted', 'Digest lease was lost before finalization; cursor was not advanced.');
     }
+    transaction.set(db.collection(DIGESTS_COLLECTION).doc(dayKey), digestDocument);
+    transaction.set(runRef, successfulRun, { merge: true });
     transaction.set(latestRef, {
       status: 'succeeded', runId, windowEndMs: windows.current.endMs, updatedAtMs: now,
       leaseRunId: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
@@ -806,7 +808,7 @@ export async function runAdminDailyDigest(
       safetyOpen: facts.safety.open,
       ideas: facts.ideas.total,
     },
-  });
+  }).catch((error) => console.warn('admin_daily_digest: best-effort admin_log write failed', error));
 
   return {
     ok: true,

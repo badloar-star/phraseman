@@ -1744,8 +1744,6 @@ export default function DailyTasksScreen() {
         ? JSON.stringify([surveyState.scope.stableId, surveyState.scope.dayKey, surveyState.scope.lang])
         : null;
     const surveySnapshot = committedSurveyScopeKey === surveyScopeKey ? surveyState.snapshot : null;
-    const surveyPresent = surveySnapshot != null;
-    const surveyDone = surveySnapshot?.phase === 'completed';
     const publishSurveySnapshot = useCallback((scope: SurveyDailyTaskScope, snapshot: SurveyDailyChallengeSnapshot | null) => {
         setSurveyState((current) => {
             const sameScope = current.scope?.stableId === scope.stableId

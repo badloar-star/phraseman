@@ -1342,7 +1342,7 @@ const LessonContent = React.memo(function LessonContent({
                         backgroundColor: isFlashing ? t.accent : t.bgCard,
                         paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14),
                         borderRadius: 12,
-                        borderWidth: isFlashing ? 1.5 : (false ? 1 : 0.5),
+                        borderWidth: 0,
                         borderColor: isFlashing ? t.accent : t.border,
                       }}
                       onPress={() => {

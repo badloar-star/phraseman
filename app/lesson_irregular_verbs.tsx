@@ -678,7 +678,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         {/* Card */}
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
           {/* Form badge */}
-          <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 1, borderColor: meta.color + '60' }}>
+          <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 0, borderColor: meta.color + '60' }}>
             <Text style={{ color: meta.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.4 }}>{meta.label}</Text>
           </View>
 
@@ -812,7 +812,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
                   style={{
                     flex: 1, paddingVertical: 16, borderRadius: 16,
                     alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: bg, borderWidth: 1.5, borderColor: border,
+                    backgroundColor: bg, borderWidth: 0, borderColor: border,
                   }}
                 >
                   <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }} numberOfLines={2} maxFontSizeMultiplier={1.2}>

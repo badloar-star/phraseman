@@ -31028,6 +31028,32 @@
       ]
     },
     {
+      "id": "surface:components-feedback-lightningoverlay:edge:1",
+      "file": "components/feedback/LightningOverlay.tsx",
+      "property": "borderWidth",
+      "anchor": {
+        "kind": "style",
+        "value": "edge"
+      },
+      "fingerprint": "components/feedback/LightningOverlay.tsx|style:edge|borderWidth:3|context:b9e02a7f269b|occurrence:1",
+      "lastSeenLine": 445,
+      "excerpt": "borderWidth: 3,",
+      "category": "KEEP_ART",
+      "suggestedCategory": "MIGRATE",
+      "tone": null,
+      "reason": "Lightning overlay edge is an artistic effect stroke, not a container border",
+      "status": "kept",
+      "scanState": "present",
+      "history": [
+        {
+          "at": "2026-07-11",
+          "action": "lan-metro-keep-art",
+          "to": "KEEP_ART/kept",
+          "reason": "Lightning overlay edge is an artistic effect stroke, not a container border"
+        }
+      ]
+    },
+    {
       "id": "surface:components-feedback-transitionbridge:card:1",
       "file": "components/feedback/TransitionBridge.tsx",
       "property": "borderWidth",

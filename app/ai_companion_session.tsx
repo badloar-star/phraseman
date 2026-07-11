@@ -247,7 +247,7 @@ export default function AiCompanionSession() {
                   gap: 4,
                   minHeight: 28,
                   backgroundColor: t.bgCard,
-                  borderWidth: 0.5,
+                  borderWidth: 0,
                   borderColor: t.border,
                   borderRadius: 11,
                   paddingHorizontal: 9,
@@ -298,7 +298,7 @@ export default function AiCompanionSession() {
                 height: 38,
                 borderRadius: 19,
                 backgroundColor: t.bgCard,
-                borderWidth: StyleSheet.hairlineWidth,
+                borderWidth: 0,
                 borderColor: t.border,
               }}
             />
@@ -518,7 +518,7 @@ export default function AiCompanionSession() {
                 flex: 1,
                 backgroundColor: t.bgCard,
                 borderRadius: 16,
-                borderWidth: 0.5,
+                borderWidth: 0,
                 borderColor: t.border,
                 paddingHorizontal: 16,
                 paddingVertical: 12,

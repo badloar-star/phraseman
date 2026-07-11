@@ -813,7 +813,7 @@ const styles = StyleSheet.create({
   doneStats: {
     flexDirection: 'row',
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     overflow: 'hidden',
     marginBottom: 32,
     width: '100%',

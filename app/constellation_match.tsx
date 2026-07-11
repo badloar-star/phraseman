@@ -1357,7 +1357,7 @@ const QuizOverlay = memo(function QuizOverlay({
       backgroundColor: 'rgba(8,13,30,0.97)',
       // Внезапная смерть дуэли — красная рамка (2.7 драма решающего вопроса).
       borderColor: isDuel ? (duelSuddenDeath ? '#FF5C7A' : '#FFD166') : '#2A3A6A',
-      borderWidth: isDuel && duelSuddenDeath ? 2 : 1,
+      borderWidth: 0,
       bottom: 14 + bottomInset, // над системной навигацией Android (жалоба)
     }]}>
       {/* Полоса бюджета фазы (2.3): игрок видит, сколько времени тает, прямо

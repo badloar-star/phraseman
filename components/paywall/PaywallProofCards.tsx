@@ -418,12 +418,12 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
 }
 
 const S = StyleSheet.create({
-  card: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
+  card: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
   cardTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 12 },
 
   mirrorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 9 },
   mirrorStat: {
-    flexGrow: 1, flexBasis: '47%', minWidth: '47%', minHeight: 74, borderRadius: 13, borderWidth: 1,
+    flexGrow: 1, flexBasis: '47%', minWidth: '47%', minHeight: 74, borderRadius: 13, borderWidth: 0,
     paddingVertical: 11, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center',
   },
   mirrorValue: {
@@ -464,7 +464,7 @@ const S = StyleSheet.create({
   valPoint: { flexDirection: 'row', gap: 12, paddingVertical: 14 },
   valPointMark: { width: 40, alignItems: 'center' },
   valPointIconShell: {
-    width: 35, height: 35, borderRadius: 12, borderWidth: 1,
+    width: 35, height: 35, borderRadius: 12, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   valPointText: { flex: 1, minWidth: 0 },

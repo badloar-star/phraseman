@@ -610,7 +610,7 @@ function FlashcardListItemImpl({
                   end={{ x: 1, y: 1 }}
                   style={[
                     StyleSheet.absoluteFillObject,
-                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent },
+                    { borderRadius: 20, borderWidth: 0, borderColor: packCardTheme.borderAccent },
                   ]}
                 />
               )}
@@ -780,7 +780,7 @@ function FlashcardListItemImpl({
                   end={{ x: 1, y: 0 }}
                   style={[
                     StyleSheet.absoluteFillObject,
-                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent },
+                    { borderRadius: 20, borderWidth: 0, borderColor: packCardTheme.borderAccent },
                   ]}
                 />
               )}

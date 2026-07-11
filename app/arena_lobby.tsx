@@ -3505,7 +3505,7 @@ const styles = StyleSheet.create({
     premiumUnlimitedCard: {
         minHeight: 48,
         borderRadius: 18,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 14,
         paddingVertical: 9,
         flexDirection: 'row',
@@ -3528,7 +3528,7 @@ const styles = StyleSheet.create({
     },
     rankedWagerCard: {
         borderRadius: 16,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 14,
         paddingVertical: 12,
         gap: 8,
@@ -3547,7 +3547,7 @@ const styles = StyleSheet.create({
         flexBasis: '20%',
         minWidth: 64,
         borderRadius: 12,
-        borderWidth: 1.5,
+        borderWidth: 0,
         paddingVertical: 8,
         alignItems: 'center',
         justifyContent: 'center',
@@ -3765,7 +3765,7 @@ const styles = StyleSheet.create({
     throneRewardInfo: {
         marginTop: 14,
         borderRadius: 14,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 12,
         paddingVertical: 10,
         flexDirection: 'row',

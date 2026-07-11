@@ -1559,7 +1559,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 9,
     paddingVertical: 5,
     backgroundColor: 'rgba(255,209,102,0.14)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,209,102,0.4)',
   },
   goldChipText: { color: '#FFD166', fontWeight: '800', fontSize: 11 },

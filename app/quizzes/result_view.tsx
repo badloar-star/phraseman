@@ -108,7 +108,7 @@ export default function QuizResultView({
               locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : `${rankInfo.color}55`, marginBottom: 16, overflow: 'hidden' }}
+              style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : `${rankInfo.color}55`, marginBottom: 16, overflow: 'hidden' }}
             >
               {isGoldTheme && <GoldBevel radius={12} intensity="normal" />}
               <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
@@ -151,7 +151,7 @@ export default function QuizResultView({
               locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={[{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0.5, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border, padding: 14, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 28, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
+              style={[{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border, padding: 14, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 28, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
             >
               {isGoldTheme && <GoldBevel radius={14} intensity="normal" />}
               <LevelBadge level={lv} size={40} />

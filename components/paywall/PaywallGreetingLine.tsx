@@ -123,7 +123,7 @@ const S = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 10,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 15,
     paddingVertical: 13,
     marginTop: 14,

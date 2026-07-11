@@ -178,7 +178,7 @@ export default function LevelGiftsInventoryScreen() {
                     paddingVertical: 11,
                     paddingHorizontal: 12,
                     backgroundColor: t.bgCard,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: `${gift.accent}70`,
                   };
                   const chipInner = (
@@ -244,7 +244,7 @@ export default function LevelGiftsInventoryScreen() {
                 colors={[t.bgCard, t.bgSurface, t.bgPrimary]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
-                style={{ borderRadius: 22, padding: 22, borderWidth: 1, borderColor: `${t.accent}55`, alignItems: 'center' }}
+                style={{ borderRadius: 22, padding: 22, borderWidth: 0, borderColor: `${t.accent}55`, alignItems: 'center' }}
               >
                 <View style={{ width: 58, height: 58, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.accent}24`, marginBottom: 12 }}>
                   <Ionicons name="gift-outline" size={28} color={t.accent} />
@@ -300,7 +300,7 @@ export default function LevelGiftsInventoryScreen() {
                     colors={[t.bgCard, t.bgSurface, t.bgPrimary]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={{ borderRadius: 22, padding: 14, borderWidth: 1, borderColor: `${accent}88`, overflow: 'hidden' }}
+                    style={{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: `${accent}88`, overflow: 'hidden' }}
                   >
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                       <View style={{ width: 78, minHeight: 96, alignItems: 'center', justifyContent: 'center', padding: 2, flexShrink: 0 }}>

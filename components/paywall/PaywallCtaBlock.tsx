@@ -198,7 +198,7 @@ const S = StyleSheet.create({
   ghostText: { fontSize: 13.5, textDecorationLine: 'underline', opacity: 0.6 },
   trust: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-    gap: 8, borderRadius: 12, borderWidth: 1, paddingVertical: 9, paddingHorizontal: 13, marginTop: 11,
+    gap: 8, borderRadius: 12, borderWidth: 0, paddingVertical: 9, paddingHorizontal: 13, marginTop: 11,
   },
   trustIcon: { flexShrink: 0 },
   trustText: { flex: 1, fontSize: 13, lineHeight: 17.5, fontWeight: '700' },

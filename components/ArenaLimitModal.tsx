@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
   shardBtn: {
     width: '100%',
     borderRadius: 14,
-    borderWidth: 1.5,
+    borderWidth: 0,
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',

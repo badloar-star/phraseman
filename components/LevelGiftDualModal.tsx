@@ -665,7 +665,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border,
               }}
             >
@@ -852,7 +852,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                           paddingVertical: 12,
                           marginTop: 14,
                           alignItems: 'center',
-                          borderWidth: 1,
+                          borderWidth: 0,
                           borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.12)' : t.border,
                         }}
                       >
@@ -917,7 +917,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                         paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 11 : 10,
                         paddingHorizontal: 18,
                         borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : t.border,
                         backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface,
                         alignItems: 'center',
@@ -942,7 +942,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                     paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 11 : 10,
                     paddingHorizontal: 18,
                     borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : t.border,
                     backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface,
                     alignItems: 'center',
@@ -1103,7 +1103,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
         <EnergyNote f={f} g={g} lang={lang} themeMode={themeMode} energyBoostAlreadyActive={!!meta.energyBoostAlreadyActive} />
       )}
       {!!cosmeticLabel && (
-        <View testID="level-gift-dual-cosmetic-preview" style={{ marginTop: 8, padding: 8, backgroundColor: 'rgba(124,58,237,0.12)', borderRadius: 8, borderWidth: 1, borderColor: '#A78BFA55', alignItems: 'center', gap: 7 }}>
+        <View testID="level-gift-dual-cosmetic-preview" style={{ marginTop: 8, padding: 8, backgroundColor: 'rgba(124,58,237,0.12)', borderRadius: 8, borderWidth: 0, borderColor: '#A78BFA55', alignItems: 'center', gap: 7 }}>
           <CosmeticGiftPreview result={meta} level={level} />
           <Text style={{ color: t.textPrimary, fontSize: f.caption, textAlign: 'center', fontWeight: '700' }}>
             {triLang(lang, {
@@ -1120,7 +1120,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
         </View>
       )}
       {(g.id === 'xp_2x_24h' || g.id === 'xp_2x_48h') && meta.xpBoostAlreadyActive && (
-        <View style={{ marginTop: 8, padding: 8, backgroundColor: '#FEF3C7', borderRadius: 8, borderWidth: 1, borderColor: '#D97706' }}>
+        <View style={{ marginTop: 8, padding: 8, backgroundColor: '#FEF3C7', borderRadius: 8, borderWidth: 0, borderColor: '#D97706' }}>
           <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
             {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', es: 'Bono de XP ×2 actualizado', 'pt-BR': 'Bônus de XP ×2 atualizado', vi: 'Boost XP ×2 đã cập nhật', id: 'Boost XP ×2 diperbarui', tr: 'XP ×2 boost güncellendi', pl: 'Boost XP ×2 zaktualizowany' })}
           </Text>
@@ -1145,7 +1145,7 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
       paddingHorizontal: 10,
       backgroundColor: '#FEF3C7',
       borderRadius: 8,
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: '#D97706',
     }}>
       {energyBoostAlreadyActive

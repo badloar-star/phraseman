@@ -91,8 +91,8 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
       <View style={[styles.leftEdge, { backgroundColor: `rgba(246,227,161,${v.side})` }]} />
       <View style={[styles.rightEdge, { backgroundColor: `rgba(0,0,0,${v.shade})` }]} />
       <View style={[styles.bottomEdge, { backgroundColor: `rgba(0,0,0,${v.bottom})` }]} />
-      <View style={[StyleSheet.absoluteFillObject, { borderRadius: radius, borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.edgeSoft }]} />
-      <View style={[StyleSheet.absoluteFillObject, { margin: 1.5, borderRadius: innerRadius, borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.mist }]} />
+      <View style={[StyleSheet.absoluteFillObject, { borderRadius: radius, borderWidth: 0, borderColor: GOLD_RICH.edgeSoft }]} />
+      <View style={[StyleSheet.absoluteFillObject, { margin: 1.5, borderRadius: innerRadius, borderWidth: 0, borderColor: GOLD_RICH.mist }]} />
     </View>
   );
 }

@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   iconFrame: {
     width: 42,

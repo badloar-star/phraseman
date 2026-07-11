@@ -419,7 +419,7 @@ function LevelGiftModal({
           width: 326,
           alignItems: 'center',
           overflow: 'hidden',
-          borderWidth: 1,
+          borderWidth: 0,
           borderColor: rewardModalPanelBorder(themeMode, t, `${accent}55`),
           shadowColor: accent,
           shadowOpacity: 0.42,
@@ -477,7 +477,7 @@ function LevelGiftModal({
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: 'rgba(3,5,10,0.42)',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: 'rgba(255,255,255,0.18)',
               }}
             >
@@ -538,7 +538,7 @@ function LevelGiftModal({
                     paddingVertical: 11,
                     paddingHorizontal: 22,
                     borderRadius: 16,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: rewardModalPanelBorder(themeMode, t),
                     backgroundColor: rewardModalSoftSurface(themeMode, t),
                     alignItems: 'center',
@@ -574,7 +574,7 @@ function LevelGiftModal({
                         onPress={() => { void handleChoice(choice); }}
                         style={{
                           borderRadius: 14,
-                          borderWidth: 1.2,
+                          borderWidth: 0,
                           borderColor: choice.rarity === 'epic' ? '#FFD70088' : choice.rarity === 'rare' ? '#60A5FA88' : t.border,
                           backgroundColor: choice.rarity === 'epic' ? 'rgba(245,158,11,0.12)' : choice.rarity === 'rare' ? 'rgba(37,99,235,0.10)' : t.bgSurface2,
                           paddingVertical: 10,
@@ -613,7 +613,7 @@ function LevelGiftModal({
                         borderRadius: 14,
                         paddingVertical: 12,
                         paddingHorizontal: 22,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: t.border,
                         backgroundColor: t.bgSurface2,
                         alignItems: 'center',
@@ -645,7 +645,7 @@ function LevelGiftModal({
               <View style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                borderWidth: 1,
+                borderWidth: 0,
                 borderColor: `${accent}55`,
                 borderRadius: 999,
                 paddingVertical: 5,
@@ -694,7 +694,7 @@ function LevelGiftModal({
                   paddingVertical: 8,
                   paddingHorizontal: 12,
                   marginBottom: 14,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.border,
                   alignItems: 'center',
                   gap: 8,
@@ -725,7 +725,7 @@ function LevelGiftModal({
                   paddingVertical: 8,
                   paddingHorizontal: 14,
                   marginBottom: 16,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: '#D97706',
                   alignItems: 'center',
                 }}>
@@ -778,7 +778,7 @@ function LevelGiftModal({
                   paddingVertical: 8,
                   paddingHorizontal: 14,
                   marginBottom: 16,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: '#D97706',
                   alignItems: 'center',
                 }}>
@@ -814,7 +814,7 @@ function LevelGiftModal({
                     borderRadius: 14,
                     paddingVertical: 12,
                     paddingHorizontal: 24,
-                    borderWidth: 1,
+                    borderWidth: 0,
                     borderColor: t.border,
                     marginBottom: 10,
                   }}
@@ -837,7 +837,7 @@ function LevelGiftModal({
                   borderRadius: 18,
                   paddingVertical: 15,
                   alignItems: 'center',
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: `${accent}66`,
                   shadowColor: accent,
                   shadowOpacity: 0.28,

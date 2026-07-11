@@ -1186,7 +1186,7 @@ export default function LessonsTab() {
                     }} style={{
                         minHeight: 126,
                         borderRadius: 18,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: attestationBorder,
                         overflow: 'hidden',
                         backgroundColor: isGoldTheme ? goldSurface : t.bgCard,
@@ -1217,7 +1217,7 @@ export default function LessonsTab() {
                         {s.home.attestTile}
                       </Text>
                     </View>
-                    <View style={{ width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.12)' : t.accentBg, borderWidth: 1, borderColor: attestationBorder }}>
+                    <View style={{ width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.12)' : t.accentBg, borderWidth: 0, borderColor: attestationBorder }}>
                       <Ionicons name="chevron-forward" size={26} color={attestationAccent}/>
                     </View>
                   </View>

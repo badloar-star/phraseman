@@ -1188,7 +1188,7 @@ export default function ShardsShopScreen() {
               width: cardW,
               minHeight: rowHeight,
               borderRadius: rowRadius,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor,
               overflow: 'hidden',
               backgroundColor: rowBg,
@@ -1274,7 +1274,7 @@ export default function ShardsShopScreen() {
                           : isCompassTheme
                             ? `${t.accent}22`
                             : `${t.accent}1f`,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: isGoldTheme ? `${t.gold}66` : `${t.accent}55`,
                       }}
                     >
@@ -1340,7 +1340,7 @@ export default function ShardsShopScreen() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: shopSurfaceBg,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                   ...(isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)),
                 }}
@@ -1378,7 +1378,7 @@ export default function ShardsShopScreen() {
                   paddingVertical: 8,
                   borderRadius: isCompassTheme ? 9 : 17,
                   backgroundColor: isGoldTheme || isCompassTheme ? 'transparent' : t.bgCard,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineQuiet : `${t.accent}30`,
                   minWidth: 96,
                   justifyContent: 'center',
@@ -1455,7 +1455,7 @@ export default function ShardsShopScreen() {
                         backgroundColor: isCompassTheme
                           ? active ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised
                           : active ? `${t.accent}1C` : t.bgSurface,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : active ? `${t.accent}55` : t.border,
                         ...(active ? (isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)) : {}),
                       }}
@@ -1558,7 +1558,7 @@ export default function ShardsShopScreen() {
                           alignSelf: 'center',
                           marginBottom: 12,
                           borderRadius: shopRadius,
-                          borderWidth: 1,
+                          borderWidth: 0,
                           borderColor: owned ? `${t.correct}55` : isCompassTheme ? COMPASS_RICH.hairlineQuiet : isPaywallAtmosphereMode(themeMode) ? `${t.accent}1F` : t.border,
                           backgroundColor: shopCardBg,
                           padding: 14,
@@ -1573,7 +1573,7 @@ export default function ShardsShopScreen() {
                               width: 60,
                               height: 60,
                               borderRadius: isCompassTheme ? 9 : 16,
-                              borderWidth: 1,
+                              borderWidth: 0,
                               borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
                               backgroundColor: shopSurfaceBg,
                               alignItems: 'center',
@@ -1603,7 +1603,7 @@ export default function ShardsShopScreen() {
                                   paddingHorizontal: 10,
                                   paddingVertical: 5,
                                   backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : voucherEligible ? `${t.gold}22` : `${t.accent}22`,
-                                  borderWidth: 1,
+                                  borderWidth: 0,
                                   borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : voucherEligible ? `${t.gold}66` : `${t.accent}44`,
                                 }}
                               >
@@ -1768,7 +1768,7 @@ export default function ShardsShopScreen() {
                           height: 72,
                           borderRadius: isCompassTheme ? 10 : 22,
                           backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}15` : `${t.bgSurface}cc`,
-                          borderWidth: 1,
+                          borderWidth: 0,
                           borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}45` : `${t.accent}40`,
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -1805,7 +1805,7 @@ export default function ShardsShopScreen() {
               <View
                 style={{
                   backgroundColor: t.wrongBg,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: `${t.wrong}55`,
                   borderRadius: 18,
                   padding: 16,

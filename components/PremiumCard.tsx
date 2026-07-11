@@ -81,10 +81,10 @@ function PremiumCard({
   const gradientStyle: ViewStyle = {
     borderRadius: effectiveBorderRadius,
     // Асимметричные рамки: сверху-слева = блик, снизу-справа = тень
-    borderTopWidth:    (isGoldTheme || isCompassTheme) ? StyleSheet.hairlineWidth : 0.5,
-    borderLeftWidth:   (isGoldTheme || isCompassTheme) ? StyleSheet.hairlineWidth : 0.5,
-    borderRightWidth:  (isGoldTheme || isCompassTheme) ? StyleSheet.hairlineWidth : 0.5,
-    borderBottomWidth: (isGoldTheme || isCompassTheme) ? StyleSheet.hairlineWidth : 0.5,
+    borderTopWidth:    0,
+    borderLeftWidth:   0,
+    borderRightWidth:  0,
+    borderBottomWidth: 0,
     borderTopColor:    isGoldTheme ? (active ? GOLD_RICH.champagne : GOLD_RICH.hairlineStrong) : isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.edgeLight) : active ? t.correct : t.borderHighlight,
     borderLeftColor:   isGoldTheme ? (active ? GOLD_RICH.paleGold : GOLD_RICH.hairline) : isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairline) : active ? t.correct : t.borderHighlight,
     borderRightColor:  isGoldTheme ? (active ? GOLD_RICH.antiqueGold : GOLD_RICH.hairlineQuiet) : isCompassTheme ? (active ? COMPASS_RICH.edgeSoft : COMPASS_RICH.hairlineQuiet) : active ? t.correct : t.border,

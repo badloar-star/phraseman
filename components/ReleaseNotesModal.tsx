@@ -566,7 +566,7 @@ const styles = StyleSheet.create({
   },
   premiumBlock: {
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(249, 215, 122, 0.38)',
     backgroundColor: 'rgba(249, 215, 122, 0.1)',
     paddingHorizontal: 13,

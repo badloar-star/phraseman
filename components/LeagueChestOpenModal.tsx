@@ -562,7 +562,7 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 22,
-    borderWidth: 0.5,
+    borderWidth: 0,
     overflow: 'hidden',
     maxHeight: '100%',
   },
@@ -649,7 +649,7 @@ const styles = StyleSheet.create({
     width: '31%',
     minHeight: 118,
     borderRadius: 12,
-    borderWidth: 0.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 7,

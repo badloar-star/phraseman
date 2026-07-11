@@ -51,7 +51,6 @@ type DailyTaskRewardToastThemeStyle = {
   accentRailColor: string;
   auraColor: string;
   borderColor: string;
-  borderWidth: number;
   radius: number;
   shadowColor: string;
   iconName: IoniconName;
@@ -74,7 +73,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#47C870',
     auraColor: 'rgba(71,200,112,0.22)',
     borderColor: 'rgba(118,255,158,0.42)',
-    borderWidth: 1,
     radius: 18,
     shadowColor: 'rgba(4,30,14,0.86)',
     iconName: 'leaf-outline',
@@ -95,7 +93,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#D8B45F',
     auraColor: 'rgba(214,179,90,0.30)',
     borderColor: 'rgba(255,218,137,0.58)',
-    borderWidth: 1,
     radius: 20,
     shadowColor: 'rgba(0,0,0,0.90)',
     iconName: 'trophy-outline',
@@ -116,7 +113,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#FF6464',
     auraColor: 'rgba(255,100,100,0.26)',
     borderColor: 'rgba(255,124,116,0.52)',
-    borderWidth: 1,
     radius: 18,
     shadowColor: 'rgba(60,8,14,0.82)',
     iconName: 'flame-outline',
@@ -137,7 +133,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#6EA8FF',
     auraColor: 'rgba(110,168,255,0.18)',
     borderColor: 'rgba(110,168,255,0.30)',
-    borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0.72)',
     iconName: 'sparkles-outline',
@@ -158,7 +153,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#0095F6',
     auraColor: 'rgba(0,149,246,0.10)',
     borderColor: 'rgba(255,255,255,0.12)',
-    borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0.72)',
     iconName: 'sparkles-outline',
@@ -179,7 +173,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#0095F6',
     auraColor: 'rgba(0,149,246,0.10)',
     borderColor: 'rgba(0,0,0,0.10)',
-    borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0)',
     iconName: 'sparkles-outline',
@@ -200,7 +193,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#8FA0FF',
     auraColor: 'rgba(91,124,255,0.18)',
     borderColor: 'rgba(143,160,255,0.3)',
-    borderWidth: 1,
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
@@ -221,7 +213,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#FFA245',
     auraColor: 'rgba(255,138,42,0.18)',
     borderColor: 'rgba(255,162,69,0.3)',
-    borderWidth: 1,
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
@@ -242,7 +233,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#3DE8A6',
     auraColor: 'rgba(46,230,160,0.18)',
     borderColor: 'rgba(61,232,166,0.3)',
-    borderWidth: 1,
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
@@ -263,7 +253,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     accentRailColor: '#D6FF3D',
     auraColor: 'rgba(184,242,34,0.18)',
     borderColor: 'rgba(214,255,61,0.3)',
-    borderWidth: 1,
     radius: 12,
     shadowColor: 'rgba(0,0,0,0.74)',
     iconName: 'sparkles-outline',
@@ -701,7 +690,7 @@ function DailyTaskRewardToast() {
           {
             borderColor: themeStyle.borderColor,
             borderRadius: themeStyle.radius,
-            borderWidth: themeStyle.borderWidth,
+            borderWidth: 0,
             shadowColor: themeStyle.shadowColor,
           },
         ]}
@@ -712,7 +701,7 @@ function DailyTaskRewardToast() {
             styles.accentRail,
             {
               backgroundColor: themeStyle.accentRailColor,
-              width: Math.max(5, themeStyle.borderWidth + 4),
+              width: 5,
             },
           ]}
         />
@@ -806,7 +795,7 @@ const styles = StyleSheet.create({
     minHeight: 92,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
@@ -833,7 +822,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -858,7 +847,7 @@ const styles = StyleSheet.create({
   claimButton: {
     width: 104,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'center',

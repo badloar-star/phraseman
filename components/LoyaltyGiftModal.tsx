@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
     maxHeight: '92%',
     alignSelf: 'center',
     borderRadius: 28,
-    borderWidth: 1,
+    borderWidth: 0,
     overflow: 'hidden',
   },
   scroll: {
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
     width: 58,
     height: 58,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -528,7 +528,7 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -552,7 +552,7 @@ const styles = StyleSheet.create({
     marginTop: 14,
     padding: 16,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     gap: 8,
   },
   noteHeader: {
@@ -576,7 +576,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     padding: 16,
     borderRadius: 18,
-    borderWidth: 1.5,
+    borderWidth: 0,
     gap: 8,
   },
   ideasHeader: {
@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     padding: 18,
     borderRadius: 20,
-    borderWidth: 1.5,
+    borderWidth: 0,
     gap: 10,
   },
   giftEyebrow: {
@@ -641,7 +641,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 7,
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   chipText: {
     fontSize: 13,

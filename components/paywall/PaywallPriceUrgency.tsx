@@ -254,12 +254,12 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
 }
 
 const S = StyleSheet.create({
-  wrap: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 13, marginTop: 16, flexDirection: 'row', alignItems: 'center' },
+  wrap: { borderRadius: 16, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 13, marginTop: 16, flexDirection: 'row', alignItems: 'center' },
   wrapActive: { flexDirection: 'column', alignItems: 'stretch' },
   headerRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 9 },
   headline: { flex: 1, fontSize: 14, fontWeight: '900', lineHeight: 19 },
   // компактный режим — мини-блок
-  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 16, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 11, marginTop: 16 },
+  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 16, borderWidth: 0, paddingHorizontal: 14, paddingVertical: 11, marginTop: 16 },
   compactActiveWrap: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 15, marginTop: 16 },
   compactUrgencyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   compactUrgencyIcon: { marginRight: 8, flexShrink: 0 },

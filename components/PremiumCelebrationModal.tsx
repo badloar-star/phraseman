@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
   ringConic: { position: 'absolute', width: 136, height: 136, borderRadius: 68, opacity: 0.8, overflow: 'hidden' },
   ringGlow: { position: 'absolute', width: 120, height: 120, borderRadius: 60, opacity: 0.5 },
   emblemDisc: {
-    width: 96, height: 96, borderRadius: 48, borderWidth: 1.5,
+    width: 96, height: 96, borderRadius: 48, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
   emblemEmoji: { fontSize: 52 },
@@ -469,13 +469,13 @@ const styles = StyleSheet.create({
   reelContent: { paddingHorizontal: 22, paddingTop: 14, paddingBottom: 30, gap: 11 },
   row: {
     flexDirection: 'row', alignItems: 'center', gap: 13,
-    paddingVertical: 13, paddingHorizontal: 15, borderRadius: 17, borderWidth: 1,
+    paddingVertical: 13, paddingHorizontal: 15, borderRadius: 17, borderWidth: 0,
     overflow: 'hidden',
   },
   rowBase: { borderRadius: 17, backgroundColor: 'rgba(8,10,9,0.82)' },
   rowTint: { borderRadius: 17 },
   rowFlash: { borderRadius: 17 },
-  rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 0, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   rowEmoji: { fontSize: 21 },
   rowText: { flex: 1, minWidth: 0 },
   rowTitle: { fontWeight: '800', letterSpacing: 0.1 },
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
   checkBadge: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   checkMark: { fontSize: 13, fontWeight: '900' },
 
-  finale: { marginTop: 8, padding: 20, borderRadius: 20, borderWidth: 1.5, alignItems: 'center' },
+  finale: { marginTop: 8, padding: 20, borderRadius: 20, borderWidth: 0, alignItems: 'center' },
   finaleBig: { fontSize: 19, fontWeight: '900', textAlign: 'center' },
   finaleSmall: { fontSize: 13, marginTop: 4, opacity: 0.8, textAlign: 'center', fontWeight: '600' },
 

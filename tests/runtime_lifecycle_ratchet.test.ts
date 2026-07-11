@@ -47,31 +47,33 @@ function discoverRepeatingMotionFiles(): string[] {
 const guarded = (reason: string): MotionReview => ({
   owner: 'explicit_focus_appstate',
   reason,
-  requiredTokens: ['AppState', 'start'],
+  requiredTokens: ['AppState.currentState', 'AppState.addEventListener'],
 });
 const debt = (reason: string): MotionReview => ({ owner: 'migration_debt', reason });
-const modal = (reason: string): MotionReview => ({ owner: 'unmounting_modal', reason });
-const ownerProp = (reason: string): MotionReview => ({ owner: 'owner_prop', reason });
 
 const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/(tabs)/home.tsx': debt('Home tab motion must migrate with activeIdx ownership.'),
   'app/(tabs)/quizzes.tsx': guarded('Quiz card pulse already uses screen focus and AppState.'),
-  'app/LeagueResultModal.tsx': modal('League result motion exists only while the result modal is mounted.'),
+  'app/LeagueResultModal.tsx': debt('League result modal still needs a testable visible/unmount owner contract.'),
   'app/WeeklyReviewCard.tsx': debt('Card needs an explicit visibility prop from each owner.'),
   'app/_admin_celebration_lab.tsx': { owner: 'dev_only', reason: 'Administrator animation laboratory.' },
   'app/_anim_demo_lab.tsx': { owner: 'dev_only', reason: 'Development-only animation laboratory.' },
   'app/_layout.tsx': debt('Root-owned repeating motion requires an explicit global owner contract.'),
   'app/arena_game.tsx': debt('Arena game motion needs focused live-game ownership review.'),
   'app/arena_lobby.tsx': debt('Lobby motion migrates with the Arena visibility slice.'),
-  'app/club_screen.tsx': { owner: 'disabled', reason: 'Reviewed motion flag is disabled in production.' },
-  'app/components/RankChangeModal.tsx': modal('Rank change animation unmounts with its modal.'),
+  'app/club_screen.tsx': {
+    owner: 'owner_prop',
+    reason: 'League icon pulse requires its pulse prop and the production motion flag.',
+    requiredTokens: ['if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED)', 'return () => anim.stop()'],
+  },
+  'app/components/RankChangeModal.tsx': debt('Rank modal still needs a testable visible/unmount owner contract.'),
   'app/constellation_match.tsx': debt('Match motion needs focus and foreground ownership.'),
   'app/constellation_search.tsx': debt('Search motion has focus gating but still needs shared foreground ownership.'),
-  'app/constellation_starfield.tsx': ownerProp('Starfield lifetime is controlled by its screen owner.'),
+  'app/constellation_starfield.tsx': debt('Starfield has focus ownership but still needs foreground ownership.'),
   'app/daily_tasks_screen.tsx': guarded('Daily Tasks loops use screen focus and AppState.'),
-  'app/flashcards/CardPackShardPaywallModal.tsx': modal('Paywall animation unmounts with its modal.'),
+  'app/flashcards/CardPackShardPaywallModal.tsx': debt('Paywall modal still needs a testable visible/unmount owner contract.'),
   'app/flashcards/FlashcardListItem.tsx': guarded('Flashcard nudge uses screen focus and AppState.'),
-  'app/flashcards/FlashcardsCategoryHub.tsx': ownerProp('Category hub motion is owned by the mounted hub surface.'),
+  'app/flashcards/FlashcardsCategoryHub.tsx': guarded('Category hub CTA uses screen focus and AppState.'),
   'app/flashcards_collection.tsx': debt('Collection hint loop needs explicit screen visibility ownership.'),
   'app/language_welcome.tsx': debt('Welcome screen loop needs foreground/focus ownership.'),
   'app/lesson1.tsx': debt('Lesson repeating effects migrate without changing one-shot feedback.'),
@@ -80,38 +82,46 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/pack_opening.tsx': debt('Pack opening repeating decoration needs screen ownership.'),
   'app/review.tsx': debt('Review screen repeating motion needs screen ownership.'),
   'app/shards_shop.tsx': debt('Shop repeating motion needs focused-screen ownership.'),
-  'app/voice_equalizer.tsx': ownerProp('Equalizer is controlled by its active playback owner.'),
-  'components/AiTypingBubble.tsx': guarded('Typing bubble stops on AppState and unmount cleanup.'),
+  'app/voice_equalizer.tsx': {
+    owner: 'owner_prop',
+    reason: 'Equalizer loop is controlled by its active recording prop.',
+    requiredTokens: ['active: boolean', 'if (levelDriven || !active) return', 'return () => loops.forEach((loop) => loop.stop())'],
+  },
+  'components/AiTypingBubble.tsx': debt('Typing bubble has AppState cleanup but no navigation/owner visibility contract.'),
   'components/AppMessagesInbox.tsx': guarded('Inbox motion uses navigation focus and AppState.'),
-  'components/ArenaLimitModal.tsx': modal('Limit animation unmounts with its modal.'),
+  'components/ArenaLimitModal.tsx': debt('Limit modal still needs a testable visible/unmount owner contract.'),
   'components/AvatarAura.tsx': guarded('Reference implementation uses screen focus and AppState.'),
-  'components/BoonActivatedModal.tsx': modal('Boon activation animation unmounts with its modal.'),
-  'components/BoonChestModal.tsx': modal('Boon chest animation unmounts with its modal.'),
+  'components/BoonActivatedModal.tsx': debt('Boon modal still needs a testable visible/unmount owner contract.'),
+  'components/BoonChestModal.tsx': debt('Boon chest modal still needs a testable visible/unmount owner contract.'),
   'components/CleanOnboarding.tsx': guarded('Onboarding breathing loop uses screen focus and AppState.'),
   'components/CollectibleArtFrame.tsx': guarded('Collectible effects use screen focus and AppState.'),
   'components/HoloFoilCard.tsx': guarded('Holo idle motion uses screen focus and AppState.'),
   'components/HomeTheoAdvisorCard.tsx': guarded('Theo card float uses screen focus and AppState.'),
-  'components/LeagueBonusAvailableModal.tsx': modal('League bonus animation unmounts with its modal.'),
-  'components/LeagueChestOpenModal.tsx': modal('League chest animation unmounts with its modal.'),
-  'components/LevelGiftDualModal.tsx': modal('Dual gift animation unmounts with its modal.'),
-  'components/LevelGiftModal.tsx': modal('Gift animation unmounts with its modal.'),
+  'components/LeagueBonusAvailableModal.tsx': debt('League bonus modal needs a testable visibility owner contract.'),
+  'components/LeagueChestOpenModal.tsx': debt('League chest modal needs a testable visibility owner contract.'),
+  'components/LevelGiftDualModal.tsx': debt('Dual gift modal needs a testable visibility owner contract.'),
+  'components/LevelGiftModal.tsx': debt('Gift modal needs a testable visibility owner contract.'),
   'components/LingmanVideosButton.tsx': guarded('Unread pulse uses navigation focus and AppState.'),
-  'components/MatchFoundToast.tsx': modal('Match-found toast owns and unmounts its brief motion.'),
-  'components/NoEnergyModal.tsx': modal('No-energy animation unmounts with its modal.'),
-  'components/PlayerProfileModal.tsx': modal('Profile animation unmounts with its modal.'),
-  'components/PremiumCelebrationModal.tsx': modal('Celebration animation unmounts with its modal.'),
-  'components/PremiumGoldButton.tsx': ownerProp('Gold button animation is owned by its mounted premium surface.'),
-  'components/ProfileCardMotionFx.tsx': ownerProp('Profile motion receives lifecycle from the card owner.'),
-  'components/ReleaseNotesModal.tsx': modal('Release notes animation unmounts with its modal.'),
-  'components/ScreenGradient.tsx': { owner: 'disabled', reason: 'Continuous gradient motion is disabled by its production flag.' },
-  'components/ShineOverlay.tsx': ownerProp('Overlay lifetime is controlled by its visible owner.'),
-  'components/SkeletonShimmer.tsx': ownerProp('Shimmer unmounts when its loading owner resolves.'),
-  'components/WeeklyBoonDetailModal.tsx': modal('Boon detail animation unmounts with its modal.'),
+  'components/MatchFoundToast.tsx': debt('Match-found toast needs a testable mounted/visible owner contract.'),
+  'components/NoEnergyModal.tsx': debt('No-energy modal needs a testable visibility owner contract.'),
+  'components/PlayerProfileModal.tsx': debt('Profile modal needs a testable visibility owner contract.'),
+  'components/PremiumCelebrationModal.tsx': debt('Celebration modal needs a testable visibility owner contract.'),
+  'components/PremiumGoldButton.tsx': debt('Gold button starts an unconditional loop and has no visibility prop.'),
+  'components/ProfileCardMotionFx.tsx': guarded('Profile card loops use screen focus and AppState.'),
+  'components/ReleaseNotesModal.tsx': debt('Release notes modal needs a testable visibility owner contract.'),
+  'components/ScreenGradient.tsx': {
+    owner: 'disabled',
+    reason: 'Continuous gradient motion is disabled by its production flag.',
+    requiredTokens: ['const SCREEN_GRADIENT_MOTION_ENABLED = false', 'if (!SCREEN_GRADIENT_MOTION_ENABLED)'],
+  },
+  'components/ShineOverlay.tsx': guarded('Shine overlay uses screen focus and AppState.'),
+  'components/SkeletonShimmer.tsx': guarded('Skeleton shimmer uses screen focus and AppState.'),
+  'components/WeeklyBoonDetailModal.tsx': debt('Boon detail modal needs a testable visibility owner contract.'),
   'components/onboarding_aha/SpeechBeat.tsx': guarded('Microphone pulse uses screen focus and AppState.'),
   'components/onboarding_aha/TypewriterText.tsx': guarded('Cursor loop uses screen focus and AppState.'),
-  'components/premium_celebration/AuroraBackground.tsx': modal('Aurora exists only under the celebration modal.'),
-  'components/reward_v2/RewardCardV2.tsx': modal('Reward card loop exists only during its reward presentation.'),
-  'components/stats/AiBlockNote.tsx': ownerProp('AI note shimmer is owned by the visible stats block.'),
+  'components/premium_celebration/AuroraBackground.tsx': debt('Aurora needs a testable parent visibility/unmount contract.'),
+  'components/reward_v2/RewardCardV2.tsx': debt('Reward card needs a testable presentation visibility contract.'),
+  'components/stats/AiBlockNote.tsx': guarded('AI note motion uses screen focus and AppState.'),
 };
 
 describe('runtime lifecycle ratchet', () => {
@@ -122,8 +132,25 @@ describe('runtime lifecycle ratchet', () => {
   it('keeps reviewed ownership reasons and existing explicit guards intact', () => {
     for (const [file, review] of Object.entries(REVIEWED_MOTION_OWNERS)) {
       expect(review.reason.trim()).not.toHaveLength(0);
+      const source = read(file);
       for (const token of review.requiredTokens ?? []) {
-        expect(read(file)).toContain(token);
+        expect(source).toContain(token);
+      }
+      if (review.owner === 'explicit_focus_appstate') {
+        expect(source).toMatch(/useIs(?:Screen)?Focused\s*\(/);
+        const motionPattern = /Animated\.loop\s*\(|withRepeat\([\s\S]{0,220}?,\s*-1/g;
+        const motionCalls = [...source.matchAll(motionPattern)];
+        expect(motionCalls.length).toBeGreaterThan(0);
+        for (const motionCall of motionCalls) {
+          const callIndex = motionCall.index ?? 0;
+          const effectWindow = source.slice(Math.max(0, callIndex - 1200), callIndex + 2500);
+          if (!/AppState\.currentState/.test(effectWindow)) {
+            throw new Error(`${file}:${callIndex}: repeating call is not locally gated by AppState`);
+          }
+          if (!/(?:\.stop\s*\(\s*\)|cancelAnimation\s*\()/.test(effectWindow)) {
+            throw new Error(`${file}:${callIndex}: repeating call has no local cleanup`);
+          }
+        }
       }
     }
   });

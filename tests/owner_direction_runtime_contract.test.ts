@@ -151,11 +151,13 @@ describe('owner runtime direction contract', () => {
       'app/arena_lobby.tsx': 2,
       'app/arena_results.tsx': 1,
       'app/club_screen.tsx': 1,
-      // «Созвездия»: секундный тик экрана поиска (elapsed + «…»), ≥1000мс,
-      // гейт useIsScreenFocused, очистка на blur/unmount (осознанно, спек F2).
+      // «Созвездия»: два секундных тика поиска (elapsed/UI state), оба ≥1000мс,
+      // гейтятся focus и очищаются на blur/unmount (осознанно, спек F2).
       'app/constellation_search.tsx': 2,
-      // «Созвездия»: секундный тик дедлайна фазы матча — те же гарантии (спек F3/A3).
+      // «Созвездия»: два секундных тика дедлайна/отображения матча с cleanup (спек F3/A3).
       'app/constellation_match.tsx': 2,
+      // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
+      // и дополнительно очищается при unmount.
       'app/constellation_results.tsx': 1,
       'app/diagnostic_test.tsx': 1,
       'app/exam.tsx': 1,
@@ -165,10 +167,17 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_hill.ts': 1,
       'app/shards_shop.tsx': 1,
       'app/streak_stats.tsx': 2,
+      // Shared visible wall-clock factory/type/wiring contain three textual call
+      // sites but create at most one live interval for all current subscribers.
+      'app/visible_wall_clock.ts': 3,
       'components/ActiveBoostBar.tsx': 1,
       'components/ArenaDuelEmojiReact.tsx': 1,
-      'components/energy_countdown_clock.ts': 3,
+      // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
       'components/DialogVictoryCelebration.tsx': 1,
+      // Три внутренних scheduler-тика одного shared countdown store; подписчики
+      // не создают свои интервалы, а последний unsubscribe останавливает clock.
+      'components/energy_countdown_clock.ts': 3,
+      // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/feedback/ResultsSequence.tsx': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/LeagueChatPanel.tsx': 1,

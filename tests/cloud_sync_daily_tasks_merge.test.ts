@@ -10,6 +10,8 @@ import {
   wipeLocalAccountData,
 } from '../app/cloud_sync';
 import * as DailyTasks from '../app/daily_tasks';
+
+(globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
 import { normalizeDevSeededStreakValue } from '../app/streak_safety';
 import { DIAGNOSIS_TRAINING_IDS } from '../app/personal_practice_training_ids';
 import {
@@ -421,9 +423,12 @@ describe('streak cloud restore safety', () => {
         [quizNavLevelKey('fr'), 'medium'],
         [diagnosticOpenFlagKey('en'), '1'],
         [diagnosticOpenFlagKey('fr'), '1'],
+        ['shard_survey_done_daykey_v1', '2026-05-20'],
       ]);
 
       await wipeLocalAccountData();
+
+      await expect(AsyncStorage.getItem('shard_survey_done_daykey_v1')).resolves.toBeNull();
 
       await expect(AsyncStorage.getItem(englishVisitedKey)).resolves.toBeNull();
       await expect(AsyncStorage.getItem(frenchVisitedKey)).resolves.toBeNull();

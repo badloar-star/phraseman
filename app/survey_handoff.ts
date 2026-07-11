@@ -4,19 +4,27 @@
 // на время навигации внутри сессии).
 // ════════════════════════════════════════════════════════════════════════════
 import type { ActiveSurvey } from './survey_client';
+import type { Lang } from '../constants/i18n';
+import { peekSurveyDailyTask } from './survey_daily_task_cache';
 
-let pendingSurvey: ActiveSurvey | null = null;
+type SurveyHandoff = { survey: ActiveSurvey; stableId: string; dayKey: string; lang: Lang };
+let pendingSurvey: SurveyHandoff | null = null;
 
-export function primeSurvey(survey: ActiveSurvey): void {
-  pendingSurvey = survey;
+export function primeSurvey(input: SurveyHandoff): void {
+  pendingSurvey = input;
 }
 
-export function takePrimedSurvey(surveyId: string): ActiveSurvey | null {
-  if (pendingSurvey && pendingSurvey.surveyId === surveyId) {
-    const s = pendingSurvey;
-    return s;
+export function takePrimedSurvey(surveyId: string, scope?: Omit<SurveyHandoff, 'survey'>): ActiveSurvey | null {
+  if (!scope) return null;
+  if (pendingSurvey
+    && pendingSurvey.survey.surveyId === surveyId
+    && pendingSurvey.stableId === scope.stableId
+    && pendingSurvey.dayKey === scope.dayKey
+    && pendingSurvey.lang === scope.lang) {
+    return pendingSurvey.survey;
   }
-  return null;
+  const cached = peekSurveyDailyTask(scope);
+  return cached?.survey?.surveyId === surveyId ? cached.survey : null;
 }
 
 export function clearPrimedSurvey(): void {

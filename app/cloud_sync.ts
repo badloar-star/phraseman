@@ -601,6 +601,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
     'daily_tasks_progress',
+    'shard_survey_done_daykey_v1',
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
     'shards_balance',

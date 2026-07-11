@@ -27,6 +27,13 @@ export type ActiveSurvey = {
   questions: SurveyQuestionClient[];
 };
 
+export type ActiveSurveyLookupResult = {
+  survey: ActiveSurvey | null;
+  completion: { completedAtMs: number } | null;
+  /** Temporary compatibility for the current Daily Tasks caller. */
+  questions: SurveyQuestionClient[];
+};
+
 export type SubmitSurveyResult = {
   ok: boolean;
   alreadyGranted: boolean;
@@ -54,13 +61,14 @@ export async function fetchActiveSurvey(data: {
   stableId: string;
   platform: string;
   lang: string;
-}): Promise<ActiveSurvey | null> {
-  if (!isSurveyCloudEnabled()) return null;
-  const res = await callFunction<typeof data, { survey: ActiveSurvey | null }>(
+}): Promise<ActiveSurveyLookupResult> {
+  if (!isSurveyCloudEnabled()) return { survey: null, completion: null, questions: [] };
+  const res = await callFunction<typeof data, Omit<ActiveSurveyLookupResult, 'questions'>>(
     'getActiveShardSurvey',
     data,
   );
-  return res.survey ?? null;
+  const survey = res.survey ?? null;
+  return { survey, completion: res.completion ?? null, questions: survey?.questions ?? [] };
 }
 
 /**
@@ -71,7 +79,7 @@ export async function fetchActiveSurvey(data: {
 export async function fetchActiveSurveyWithRetry(
   data: { stableId: string; platform: string; lang: string },
   options: { attempts?: number; delayMs?: number; wait?: (ms: number) => Promise<void> } = {},
-): Promise<ActiveSurvey | null> {
+): Promise<ActiveSurveyLookupResult> {
   const requestedAttempts = Number(options.attempts ?? 3);
   const attempts = Math.min(5, Math.max(1, Number.isFinite(requestedAttempts)
     ? Math.floor(requestedAttempts)
@@ -79,10 +87,11 @@ export async function fetchActiveSurveyWithRetry(
   const delayMs = Math.min(2000, Math.max(0, Math.floor(Number(options.delayMs ?? 350)) || 0));
   const wait = options.wait ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
   let lastError: unknown;
+  let lastResult: ActiveSurveyLookupResult = { survey: null, completion: null, questions: [] };
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     try {
-      const survey = await fetchActiveSurvey(data);
-      if (survey) return survey;
+      lastResult = await fetchActiveSurvey(data);
+      if (lastResult.survey || lastResult.completion) return lastResult;
     } catch (error) {
       lastError = error;
     }
@@ -91,7 +100,7 @@ export async function fetchActiveSurveyWithRetry(
     }
   }
   if (lastError) throw lastError;
-  return null;
+  return lastResult;
 }
 
 export async function submitSurvey(data: {

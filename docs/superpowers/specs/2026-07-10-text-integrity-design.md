@@ -293,3 +293,13 @@ The program is complete only when:
 - Migrating the web admin UI in this program.
 - Treating legitimate authored ellipsis punctuation as a layout defect.
 - Performing a one-commit search-and-replace across the application.
+
+## Implementation
+
+The foundation and the Daily Challenges pilot are implemented on `codex/text-integrity-foundation` according to the [implementation plan](../plans/2026-07-10-text-integrity-foundation.md).
+
+- Semantic text components live in [`components/text-integrity`](../../../components/text-integrity), with the Daily Challenges presentation in [`components/daily-tasks`](../../../components/daily-tasks).
+- The production AST inventory and shrink-only ratchet are implemented in [`scripts/text-integrity`](../../../scripts/text-integrity), backed by the committed [`config/text-integrity-baseline.json`](../../../config/text-integrity-baseline.json).
+- The pilot removes six legacy unsafe groups from the baseline and preserves full task/bonus copy, actions, progress, Premium state, themes, and accessibility behavior.
+- Automated foundation, rendering, lint, inventory, navigation, and focused performance checks pass. The full device screenshot matrix remains a release-validation step because no Android emulator or `adb` runtime was available in this implementation environment.
+- The remaining baseline is intentionally non-zero (428 groups / 551 sites). This records the verified foundation and pilot only; it does not claim completion of the all-app migration.

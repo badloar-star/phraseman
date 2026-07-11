@@ -25,6 +25,17 @@ const SETTINGS_TARGET_IDS = [
   'surface:app-tabs-settings:settings-language-row:1',
 ] as const;
 
+const FRIENDS_TARGET_IDS = [
+  'surface:app-tabs-friends:requestrow:2',
+  'surface:app-tabs-friends:friends-found-user-card:1',
+  'surface:app-tabs-friends:l:4',
+  'surface:app-tabs-friends:contentcontainerstyle:1',
+  'surface:app-tabs-friends:friends-open-referrals:1',
+  'surface:app-tabs-friends:friends-empty-enter-code:1',
+  'surface:app-tabs-friends:friendstabscreen:3',
+  'surface:app-tabs-friends:friendstabscreen:4',
+] as const;
+
 function expectMigrated(ids: readonly string[]): void {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) {
@@ -40,5 +51,9 @@ function expectMigrated(ids: readonly string[]): void {
 describe('main tabs borderless production surfaces', () => {
   it('migrates the reviewed Settings containers', () => {
     expectMigrated(SETTINGS_TARGET_IDS);
+  });
+
+  it('migrates the reviewed Friends containers', () => {
+    expectMigrated(FRIENDS_TARGET_IDS);
   });
 });

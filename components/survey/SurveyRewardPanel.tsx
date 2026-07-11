@@ -19,17 +19,19 @@ export interface SurveyRewardPanelProps {
   error: string;
   onDone: () => void;
   onRetry: () => void;
+  retryDisabled?: boolean;
+  onBack?: () => void;
 }
 
 const ACTION_LABELS = {
-  ru: { done: 'Готово', retry: 'Повторить' },
-  uk: { done: 'Готово', retry: 'Спробувати ще раз' },
-  es: { done: 'Listo', retry: 'Intentar de nuevo' },
-  'pt-BR': { done: 'Concluído', retry: 'Tentar novamente' },
-  vi: { done: 'Xong', retry: 'Thử lại' },
-  id: { done: 'Selesai', retry: 'Coba lagi' },
-  tr: { done: 'Bitti', retry: 'Tekrar dene' },
-  pl: { done: 'Gotowe', retry: 'Spróbuj ponownie' },
+  ru: { done: 'Готово', retry: 'Повторить', back: 'Назад' },
+  uk: { done: 'Готово', retry: 'Спробувати ще раз', back: 'Назад' },
+  es: { done: 'Listo', retry: 'Intentar de nuevo', back: 'Atrás' },
+  'pt-BR': { done: 'Concluído', retry: 'Tentar novamente', back: 'Voltar' },
+  vi: { done: 'Xong', retry: 'Thử lại', back: 'Quay lại' },
+  id: { done: 'Selesai', retry: 'Coba lagi', back: 'Kembali' },
+  tr: { done: 'Bitti', retry: 'Tekrar dene', back: 'Geri' },
+  pl: { done: 'Gotowe', retry: 'Spróbuj ponownie', back: 'Wstecz' },
 } as const;
 
 export default function SurveyRewardPanel({
@@ -40,6 +42,8 @@ export default function SurveyRewardPanel({
   error,
   onDone,
   onRetry,
+  retryDisabled = false,
+  onBack,
 }: SurveyRewardPanelProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -129,14 +133,30 @@ export default function SurveyRewardPanel({
               accessibilityRole="button"
               accessibilityLabel={labels.retry}
               onPress={onRetry}
+              disabled={retryDisabled}
+              accessibilityState={{ disabled: retryDisabled }}
               android_ripple={{ color: 'rgba(255,255,255,0.12)' }}
-              style={({ pressed }) => [styles.action, styles.retry, { borderColor: t.wrong, opacity: pressed ? 0.78 : 1 }]}
+              style={({ pressed }) => [styles.action, styles.retry, { borderColor: t.wrong, opacity: retryDisabled ? 0.45 : pressed ? 0.78 : 1 }]}
             >
               <Ionicons name="refresh" size={20} color={t.textPrimary} accessibilityElementsHidden />
               <FlowText provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
                 {labels.retry}
               </FlowText>
             </Pressable>
+            {!!onBack && (
+              <Pressable
+                testID="survey-back"
+                accessibilityRole="button"
+                accessibilityLabel={labels.back}
+                onPress={onBack}
+                style={({ pressed }) => [styles.action, { opacity: pressed ? 0.78 : 1 }]}
+              >
+                <Ionicons name="arrow-back" size={20} color={t.textPrimary} accessibilityElementsHidden />
+                <FlowText provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
+                  {labels.back}
+                </FlowText>
+              </Pressable>
+            )}
           </>
         ) : (
           <Pressable

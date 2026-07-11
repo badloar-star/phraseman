@@ -7608,37 +7608,6 @@
       }
     },
     {
-      "file": "app/survey_screen.tsx",
-      "ownerName": "SurveyScreen",
-      "ownerPath": "SurveyScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "8f204ebfb365f4aca6d7444101fd99fb44819bbb2b815dae1753a3ab5f13d507",
-      "count": 1,
-      "lineHints": [
-        288
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards/FlashcardListItem.tsx",
       "ownerName": "FlashcardListItemImpl",
       "ownerPath": "FlashcardListItemImpl",

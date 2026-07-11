@@ -5,7 +5,7 @@ import {
 } from '../app/survey_submission_state';
 
 describe('survey submission state', () => {
-  test.each(['rate_limited', 'unknown_survey', 'unavailable', 'auth', 'network', 'server', 'unknown'] as const)(
+  test.each(['account_changed', 'rate_limited', 'unknown_survey', 'unavailable', 'auth', 'network', 'server', 'unknown'] as const)(
     'preserves the distinct %s error family for localized retry guidance',
     (messageKey) => {
       const started = reduceSurveySubmission(initialSurveySubmissionState, {

@@ -11,6 +11,7 @@ describe('survey screen submission contract', () => {
     expect(source).toContain('<SurveyRewardPanel');
     expect(source).not.toContain("emitAppEvent('action_toast'");
     expect(source).not.toContain('Alert.alert');
+    expect(source).not.toMatch(/<Text[^>]*numberOfLines=\{1\}[^>]*>\{survey\.title\}/);
     expect(source).not.toContain('<Text style={{ fontSize: 44 }}>');
   });
 
@@ -23,7 +24,10 @@ describe('survey screen submission contract', () => {
   });
 
   test('reconciles authoritative state before mounted presentation and gates stale accounts', () => {
-    const generationGate = source.indexOf('if (!isCurrentAccountGeneration(accountToken, stableId)) return;');
+    const generationGate = source.indexOf(
+      'if (!isCurrentAccountGeneration(accountToken, stableId)) {',
+      source.indexOf('await submitSurvey('),
+    );
     const balance = source.indexOf('await replaceShardsBalanceForAccountGeneration(res.balanceAfter');
     const marker = source.indexOf('await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey');
     const mountedPresentation = source.indexOf('if (!mountedRef.current || attemptIdRef.current !== attemptId) return;');
@@ -32,7 +36,8 @@ describe('survey screen submission contract', () => {
     expect(marker).toBeGreaterThan(balance);
     expect(mountedPresentation).toBeGreaterThan(marker);
     expect(source).not.toContain('replaceShardsBalanceLocal(res.balanceAfter');
-    expect(source).toContain("if (balanceReconciled === 'stale-generation') return;");
+    expect(source).toContain("balanceReconciled === 'stale-generation'");
+    expect(source).toContain('presentAccountChanged(attemptId)');
     expect(source).toContain("if (balanceReconciled === 'failed')");
     expect(source.match(/isCurrentAccountGeneration\(accountToken, stableId\)/g)?.length).toBeGreaterThanOrEqual(5);
   });

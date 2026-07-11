@@ -224,6 +224,20 @@ test('retryable survey error stays in-screen, preserves accessible copy, and exp
   expect(onRetry).toHaveBeenCalledTimes(1);
 });
 
+test('account-changed recovery disables retry but keeps an accessible back action', async () => {
+  const onBack = jest.fn();
+  const view = await render(
+    <SurveyRewardPanel
+      phase="retryable-error" reward={0} title="Account changed" subtitle="Open the survey again."
+      error="This survey belongs to the previous account." onDone={jest.fn()} onRetry={jest.fn()}
+      retryDisabled onBack={onBack}
+    />,
+  );
+  expect(view.getByTestId('survey-retry').props.accessibilityState).toEqual(expect.objectContaining({ disabled: true }));
+  await fireEvent.press(view.getByTestId('survey-back'));
+  expect(onBack).toHaveBeenCalledTimes(1);
+});
+
 test('daily screen appends survey after normal sorted tasks and derives all counts from one helper', () => {
   const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
   const normalTasks = source.indexOf('{sortedTasks.map((task) => {');

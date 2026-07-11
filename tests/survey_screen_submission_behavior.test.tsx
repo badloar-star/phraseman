@@ -81,7 +81,10 @@ jest.mock('../components/survey/SurveyRewardPanel', () => {
       <MockText testID="reward-value">{props.reward}</MockText>
       <MockText>{props.title}</MockText><MockText>{props.subtitle}</MockText><MockText>{props.error}</MockText>
       {props.phase === 'retryable-error'
-        ? <MockPressable testID="retry" onPress={props.onRetry}><MockText>Retry</MockText></MockPressable>
+        ? <>
+          <MockPressable testID="retry" disabled={props.retryDisabled} accessibilityState={{ disabled: !!props.retryDisabled }} onPress={props.onRetry}><MockText>Retry</MockText></MockPressable>
+          <MockPressable testID="back" onPress={props.onBack}><MockText>Back</MockText></MockPressable>
+        </>
         : <MockPressable testID="done" onPress={props.onDone}><MockText>Done</MockText></MockPressable>}
     </MockView>
   );
@@ -100,6 +103,7 @@ function deferred<T>(): Deferred<T> {
 
 async function submitMounted() {
   const view = await render(<SurveyScreen />);
+  expect(view.getByText('Survey A').props.numberOfLines).toBeUndefined();
   await fireEvent.changeText(view.getByPlaceholderText('Напиши ответ…'), 'kept answer');
   await fireEvent.press(view.getByText('Отправить'));
   return view;
@@ -180,7 +184,10 @@ test('account switch before account A resolves suppresses every local effect', a
   expect(mockCommitCache).not.toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
   expect(mockBack).not.toHaveBeenCalled();
-  expect(view.getByTestId('reward-phase').props.children).toBe('optimistic-reward');
+  expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
+  expect(view.getByText('Аккаунт изменился. Вернись и открой опрос снова.')).toBeTruthy();
+  expect(view.getByTestId('retry').props.accessibilityState).toEqual({ disabled: true });
+  expect(view.getByTestId('back')).toBeTruthy();
   await view.unmount();
 });
 
@@ -198,7 +205,8 @@ test('account switch while guarded balance reconciliation is pending stops marke
   expect(mockCommitCache).not.toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
   expect(mockBack).not.toHaveBeenCalled();
-  expect(view.getByTestId('reward-phase').props.children).toBe('optimistic-reward');
+  expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
+  expect(view.getByTestId('retry').props.accessibilityState).toEqual({ disabled: true });
   await view.unmount();
 });
 

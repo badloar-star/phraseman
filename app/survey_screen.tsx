@@ -131,6 +131,12 @@ export default function SurveyScreen() {
     setAnswers((prev) => ({ ...prev, [qId]: { ...prev[qId], comment } }));
   }, []);
 
+  const presentAccountChanged = useCallback((attemptId: number) => {
+    if (mountedRef.current && attemptIdRef.current === attemptId) {
+      dispatchSubmission({ type: 'submit_failed', attemptId, messageKey: 'account_changed' });
+    }
+  }, []);
+
   const onSubmit = useCallback(async () => {
     if (!survey || requestActiveRef.current || !allAnswered) return;
     hapticTap();
@@ -143,7 +149,10 @@ export default function SurveyScreen() {
       const stableId = scope?.stableId ?? await getCanonicalUserId();
       if (!stableId) throw new Error('no_profile');
       const accountToken = captureAccountGeneration();
-      if (accountToken.phase !== 'active' || !isCurrentAccountGeneration(accountToken, stableId)) return;
+      if (accountToken.phase !== 'active' || !isCurrentAccountGeneration(accountToken, stableId)) {
+        presentAccountChanged(attemptId);
+        return;
+      }
       const res = await submitSurvey({
         stableId,
         surveyId: survey.surveyId,
@@ -151,20 +160,31 @@ export default function SurveyScreen() {
         platform: Platform.OS,
         appVersion: Constants.expoConfig?.version ?? 'unknown',
       });
-      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      if (!isCurrentAccountGeneration(accountToken, stableId)) {
+        presentAccountChanged(attemptId);
+        return;
+      }
       const balanceReconciled = await replaceShardsBalanceForAccountGeneration(res.balanceAfter, accountToken, stableId, {
         updatedAtMs: res.shardsUpdatedAtMs ?? undefined,
         op: 'earn',
         reason: 'survey_completed',
       });
-      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
-      if (balanceReconciled === 'stale-generation') return;
+      if (!isCurrentAccountGeneration(accountToken, stableId) || balanceReconciled === 'stale-generation') {
+        presentAccountChanged(attemptId);
+        return;
+      }
       if (balanceReconciled === 'failed') throw new Error('balance_reconcile_failed');
       const markerWritten = await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
-      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      if (!isCurrentAccountGeneration(accountToken, stableId)) {
+        presentAccountChanged(attemptId);
+        return;
+      }
       if (!markerWritten) throw new Error('marker_reconcile_failed');
       const completedScope = { stableId, dayKey: openedDayKey, lang };
-      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      if (!isCurrentAccountGeneration(accountToken, stableId)) {
+        presentAccountChanged(attemptId);
+        return;
+      }
       const cacheCommitted = commitSurveyDailyTaskRequest(completedScope, beginSurveyDailyTaskRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
       if (!cacheCommitted) throw new Error('cache_reconcile_failed');
       if (!mountedRef.current || attemptIdRef.current !== attemptId) return;
@@ -192,7 +212,7 @@ export default function SurveyScreen() {
     } finally {
       if (attemptIdRef.current === attemptId) requestActiveRef.current = false;
     }
-  }, [survey, allAnswered, clearAutoReturnTimer, scope?.stableId, answers, openedDayKey, lang]);
+  }, [survey, allAnswered, clearAutoReturnTimer, scope?.stableId, answers, openedDayKey, lang, presentAccountChanged]);
 
   if (!survey) {
     return (
@@ -219,7 +239,12 @@ export default function SurveyScreen() {
 
   if (submission.phase !== 'editing') {
     const confirmedZero = submission.phase === 'reconciled' && submission.confirmedReward === 0;
-    const errorText = submission.messageKey === 'rate_limited' ? triLang(lang, {
+    const errorText = submission.messageKey === 'account_changed' ? triLang(lang, {
+      ru: 'Аккаунт изменился. Вернись и открой опрос снова.', uk: 'Акаунт змінився. Повернися й відкрий опитування знову.',
+      es: 'La cuenta cambió. Vuelve y abre la encuesta de nuevo.', 'pt-BR': 'A conta mudou. Volte e abra a pesquisa novamente.',
+      vi: 'Tài khoản đã thay đổi. Hãy quay lại và mở lại khảo sát.', id: 'Akun berubah. Kembali dan buka survei lagi.',
+      tr: 'Hesap değişti. Geri dönüp anketi yeniden aç.', pl: 'Konto zostało zmienione. Wróć i otwórz ankietę ponownie.',
+    }) : submission.messageKey === 'rate_limited' ? triLang(lang, {
       ru: 'Слишком много опросов подряд. Попробуй позже.', uk: 'Забагато опитувань поспіль. Спробуй пізніше.',
       es: 'Demasiadas encuestas seguidas. Inténtalo más tarde.', 'pt-BR': 'Muitas pesquisas seguidas. Tente mais tarde.',
       vi: 'Quá nhiều khảo sát liên tiếp. Thử lại sau.', id: 'Terlalu banyak survei berturut-turut. Coba nanti.',
@@ -255,6 +280,8 @@ export default function SurveyScreen() {
                 error={errorText}
                 onDone={closeScreen}
                 onRetry={() => { void onSubmit(); }}
+                retryDisabled={submission.messageKey === 'account_changed'}
+                onBack={closeScreen}
               />
             </View>
           </ContentWrap>
@@ -285,7 +312,7 @@ export default function SurveyScreen() {
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <View style={{ flex: 1 }}>
-              <Text numberOfLines={1} style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>{survey.title}</Text>
+              <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>{survey.title}</Text>
             </View>
             <Text style={{ color: sx.second, fontSize: f.numMd, fontWeight: '700' }}>{stepIndex + 1}/{total}</Text>
           </View>

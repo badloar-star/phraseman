@@ -46,6 +46,14 @@ import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_
 import { safeRouterBack } from './navigation_back';
 import { monoIcon } from '../constants/monoIcon';
 import { storageStudyTarget } from './target_storage_keys';
+import { captureAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import {
+  beginPhraseAnalyticsRequest,
+  commitPhraseAnalyticsWarm,
+  isPhraseAnalyticsRequestCurrent,
+  readPhraseAnalyticsWarm,
+} from './phrase_analytics_warm_cache';
 
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
@@ -368,12 +376,6 @@ function LessonRow({ stat, studyTarget }: { stat: LessonMistakeStat; studyTarget
 
 /** B7: тёплая память последнего результата на процесс — повторные заходы рисуют
  * данные первым кадром; без неё каждый заход начинался с ложного «Пока нет данных». */
-let phraseAnalyticsWarm: {
-  key: string;
-  data: PhraseAnalyticsResult | null;
-  resolved: ResolvedPersonalTrainingsState | null;
-} | null = null;
-
 export default function PhraseAnalyticsScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
@@ -384,13 +386,21 @@ export default function PhraseAnalyticsScreen() {
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const { hasPremiumAccess: isPremium } = usePremium();
   const warmKey = `${storageStudyTarget(studyTarget)}:${sourceLocale}`;
-  const [data, setData] = useState<PhraseAnalyticsResult | null>(
-    () => (phraseAnalyticsWarm?.key === warmKey ? phraseAnalyticsWarm.data : null),
+  const renderToken = captureAccountGeneration();
+  const renderScope = accountScopeKey(renderToken);
+  const renderCacheKey = renderScope ? `${renderScope}:phrase-analytics:${warmKey}` : null;
+  const initialWarm = readPhraseAnalyticsWarm(renderToken, warmKey);
+  const [loadedCacheKey, setLoadedCacheKey] = useState<string | null>(() => renderCacheKey);
+  const [cachedData, setCachedData] = useState<PhraseAnalyticsResult | null>(
+    () => initialWarm?.value.data ?? null,
   );
-  const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(
-    () => (phraseAnalyticsWarm?.key === warmKey ? phraseAnalyticsWarm.resolved : null),
+  const [cachedResolvedPersonalTrainings, setCachedResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(
+    () => initialWarm?.value.resolved ?? null,
   );
-  const [loading, setLoading] = useState(true);
+  const data = loadedCacheKey === renderCacheKey ? cachedData : null;
+  const resolvedPersonalTrainings = loadedCacheKey === renderCacheKey ? cachedResolvedPersonalTrainings : null;
+  const [loading, setLoading] = useState(() => initialWarm === null);
+  const visibleLoading = loading || loadedCacheKey !== renderCacheKey;
   const [tab, setTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
   const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
   const analyticsSourceGateOpen = personalPracticeCoachEnabled;
@@ -398,7 +408,21 @@ export default function PhraseAnalyticsScreen() {
   const showDevAudit = ENABLE_DEV_TOOLS && personalPracticeCoachEnabled;
 
   const load = useCallback(async () => {
-    setLoading(true);
+    const token = captureAccountGeneration();
+    const requestScope = accountScopeKey(token);
+    const requestCacheKey = requestScope ? `${requestScope}:phrase-analytics:${warmKey}` : null;
+    const warm = readPhraseAnalyticsWarm(token, warmKey);
+    const request = beginPhraseAnalyticsRequest(token, warmKey);
+    if (warm && loadedCacheKey !== requestCacheKey) {
+      setLoadedCacheKey(requestCacheKey);
+      setCachedData(warm.value.data);
+      setCachedResolvedPersonalTrainings(warm.value.resolved);
+    }
+    if (warm?.isFresh) {
+      setLoading(false);
+      return;
+    }
+    if (!warm) setLoading(true);
     try {
       const [result, resolved] = await Promise.all([
         analyticsSourceGateOpen
@@ -408,13 +432,17 @@ export default function PhraseAnalyticsScreen() {
           : Promise.resolve(null),
         personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
       ]);
-      phraseAnalyticsWarm = { key: warmKey, data: result, resolved };
-      setData(result);
-      setResolvedPersonalTrainings(resolved);
+      if (commitPhraseAnalyticsWarm(request, { data: result, resolved })) {
+        setLoadedCacheKey(requestCacheKey);
+        setCachedData(result);
+        setCachedResolvedPersonalTrainings(resolved);
+      }
+    } catch {
+      // Quiet revalidation keeps the last known real data visible.
     } finally {
-      setLoading(false);
+      if (isPhraseAnalyticsRequestCurrent(request)) setLoading(false);
     }
-  }, [analyticsSourceGateOpen, personalPracticeCoachEnabled, sourceLocale, studyTarget, warmKey]);
+  }, [analyticsSourceGateOpen, loadedCacheKey, personalPracticeCoachEnabled, renderCacheKey, sourceLocale, studyTarget, warmKey]);
 
   useFocusEffect(useCallback(() => { void load(); }, [load]));
 
@@ -572,7 +600,7 @@ export default function PhraseAnalyticsScreen() {
             </Text>
           </View>
 
-        ) : loading && !data ? (
+        ) : visibleLoading && !data ? (
           /* B7: скелетон первой загрузки — раньше первый кадр рисовал ложное «Пока нет данных» */
           <View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
             <SkeletonBlock width="100%" height={72} borderRadius={16} />

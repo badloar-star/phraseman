@@ -5,6 +5,7 @@ import EnergyIcon from './EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
 import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { usePremium } from './PremiumContext';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
 const ENERGY_ICON_SIZE = 30;
 
@@ -22,7 +23,8 @@ interface Props {
 function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
   const { theme: t, themeMode } = useTheme();
   const { isUnlimited } = useEnergy();
-  const { formattedTime: timeUntilNextEnergy } = useEnergyCountdown();
+  const screenFocused = useIsScreenFocused();
+  const { formattedTime: timeUntilNextEnergy } = useEnergyCountdown({ visible: screenFocused });
   const { hasPremiumAccess } = usePremium();
   const { width: windowWidth } = useWindowDimensions();
 

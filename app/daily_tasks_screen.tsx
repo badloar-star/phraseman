@@ -51,7 +51,21 @@ import SurveyTaskCard from '../components/SurveyTaskCard';
 import { isSurveyCloudEnabled, fetchActiveSurvey } from './survey_client';
 import { isSurveyDailyTaskDoneToday } from './survey_daily_task';
 import { getCanonicalUserId } from './user_id_policy';
+import { captureAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import {
+    beginDailyTasksScreenRequest,
+    commitDailyTasksScreenSnapshot,
+    dailyTasksScreenCacheKey,
+    invalidateDailyTasksScreenSnapshot,
+    isDailyTasksScreenRequestCurrent,
+    isDailyTasksScreenSnapshotVisible,
+    patchDailyTasksScreenProgress,
+    peekDailyTasksScreenSnapshot,
+} from './daily_tasks_screen_cache';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
+const EMPTY_DAILY_TASKS: DailyTask[] = [];
+const EMPTY_DAILY_PROGRESS: TaskProgress[] = [];
 
 const safeDailyTaskEventPart = (value: unknown): string =>
     String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
@@ -1695,26 +1709,38 @@ export default function DailyTasksScreen() {
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
+    const renderToken = captureAccountGeneration();
+    const renderAccountScope = accountScopeKey(renderToken);
+    const [activeDayKey, setActiveDayKey] = useState(() => getTodayKey());
+    const renderCacheKey = dailyTasksScreenCacheKey(renderToken, activeDayKey, studyTarget);
+    const initialSnapshot = peekDailyTasksScreenSnapshot(renderToken, activeDayKey, studyTarget);
     const { bottomInset } = useScreen();
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     // Не подставляем getTodayTasks() (всегда тир уровня 1) — иначе после обновления/холодного старта
     // карточки не совпадают с AsyncStorage и «Забрать» не срабатывает, пока не перезагрузишь экран.
-    const [tasks, setTasks] = useState<DailyTask[]>([]);
-    const [progress, setProgress] = useState<TaskProgress[]>([]);
+    const [loadedCacheKey, setLoadedCacheKey] = useState<string | null>(() => renderCacheKey);
+    const [taskState, setTasks] = useState<DailyTask[]>(() => initialSnapshot?.value.tasks ?? []);
+    const [progressState, setProgress] = useState<TaskProgress[]>(() => initialSnapshot?.value.progress ?? []);
+    const snapshotVisible = isDailyTasksScreenSnapshotVisible(loadedCacheKey, renderCacheKey);
+    const tasks = snapshotVisible ? taskState : EMPTY_DAILY_TASKS;
+    const progress = snapshotVisible ? progressState : EMPTY_DAILY_PROGRESS;
     /** Опрос за осколки как 4-е задание: активен ли сегодня и пройден ли он.
         Когда активен — набор = 3 обычных + опрос, награда за любые 3 из 4. */
     const [surveyPresent, setSurveyPresent] = useState(false);
     const [surveyDone, setSurveyDone] = useState(false);
     /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
         показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
-    const [loadingTasks, setLoadingTasks] = useState(true);
+    const [loadingTasks, setLoadingTasks] = useState(() => initialSnapshot === null);
+    const visibleLoadingTasks = loadingTasks || !snapshotVisible;
     const [userName, setUserName] = useState('');
     const [claimedXP, setClaimedXP] = useState<number | null>(null);
     /** Награда «3 осколка за тройку дня» уже забрана сегодня (AsyncStorage / облако). */
-    const [trioShardsClaimed, setTrioShardsClaimed] = useState(false);
+    const [trioShardsClaimedState, setTrioShardsClaimed] = useState(() => initialSnapshot?.value.trioShardsClaimed ?? false);
+    const trioShardsClaimed = snapshotVisible ? trioShardsClaimedState : false;
     /** Сколько замен ещё доступно сегодня (max DAILY_TASK_REROLL_MAX_PER_DAY). */
-    const [rerollsLeft, setRerollsLeft] = useState(0);
+    const [rerollsLeftState, setRerollsLeft] = useState(() => initialSnapshot?.value.rerollsLeft ?? 0);
+    const rerollsLeft = snapshotVisible ? rerollsLeftState : 0;
     /** Подтверждение замены: если null — модалка скрыта. */
     const [rerollConfirm, setRerollConfirm] = useState<{
         task: DailyTask;
@@ -1815,34 +1841,58 @@ export default function DailyTasksScreen() {
     }, [xpAnim]);
     // Список заданий и прогресс с экрана должны ссылаться на один и тот же набор task id
     // (после смены уровня/премиума/подмен заданий), и прогресс в storage — быть с ним согласован.
-    const refreshGen = useRef(0);
-    const refreshTasksAndProgress = useCallback(() => {
-        const gen = ++refreshGen.current;
+    const refreshTasksAndProgress = useCallback((force = false) => {
         (async () => {
+            const token = captureAccountGeneration();
+            if (accountScopeKey(token) !== renderAccountScope) return;
+            const dayKey = getTodayKey();
+            setActiveDayKey((previous) => previous === dayKey ? previous : dayKey);
+            const requestKey = dailyTasksScreenCacheKey(token, dayKey, studyTarget);
+            const warm = peekDailyTasksScreenSnapshot(token, dayKey, studyTarget);
+            const request = beginDailyTasksScreenRequest(token, dayKey, studyTarget);
+            if (warm) {
+                setLoadedCacheKey(requestKey);
+                setTasks(warm.value.tasks);
+                setProgress(mergePendingClaimProgress(warm.value.progress));
+                setTrioShardsClaimed(warm.value.trioShardsClaimed);
+                setRerollsLeft(warm.value.rerollsLeft);
+                setLoadingTasks(false);
+            } else {
+                setLoadingTasks(true);
+            }
+            if (!force && warm?.isFresh) return;
             try {
                 const list = await getTodayTasksSafe(studyTarget);
-                if (gen !== refreshGen.current)
+                if (!isDailyTasksScreenRequestCurrent(request))
                     return;
                 setTasks((prev) => (jsonEqualQuiet(prev, list) ? prev : list));
                 // Список есть — скелетоны больше не нужны (прогресс/осколки/реролл
                 // догружаются ниже и не должны держать shimmer).
                 setLoadingTasks(false);
                 const p = await loadTodayProgress(list, studyTarget);
-                if (gen !== refreshGen.current)
+                if (!isDailyTasksScreenRequestCurrent(request))
                     return;
                 const mergedProgress = mergePendingClaimProgress(p);
-                setProgress((prev) => (jsonEqualQuiet(prev, mergedProgress) ? prev : mergedProgress));
-                const trio = await isDailyTasksAllShardsRewardClaimedForDay(getTodayKey());
-                if (gen !== refreshGen.current)
+                const [trio, left] = await Promise.all([
+                    isDailyTasksAllShardsRewardClaimedForDay(dayKey),
+                    getDailyRerollsLeftToday(studyTarget),
+                ]);
+                if (!isDailyTasksScreenRequestCurrent(request))
                     return;
+                commitDailyTasksScreenSnapshot(request, {
+                    tasks: list, progress: mergedProgress, trioShardsClaimed: trio, rerollsLeft: left,
+                });
+                const committed = peekDailyTasksScreenSnapshot(token, dayKey, studyTarget)?.value;
+                setLoadedCacheKey(requestKey);
+                setProgress((prev) => {
+                    const next = committed?.progress ?? mergedProgress;
+                    return jsonEqualQuiet(prev, next) ? prev : next;
+                });
                 setTrioShardsClaimed((prev) => (prev === trio ? prev : trio));
-                const left = await getDailyRerollsLeftToday(studyTarget);
-                if (gen !== refreshGen.current)
-                    return;
                 setRerollsLeft((prev) => (prev === left ? prev : left));
             }
             catch {
-                if (gen !== refreshGen.current)
+                if (!isDailyTasksScreenRequestCurrent(request) || warm)
                     return;
                 const backupTaskList = filterDailyTasksForStudyTarget(getTodayTasks(), studyTarget);
                 setTasks(backupTaskList);
@@ -1851,7 +1901,7 @@ export default function DailyTasksScreen() {
                 setLoadingTasks(false);
             }
         })();
-    }, [mergePendingClaimProgress, studyTarget]);
+    }, [mergePendingClaimProgress, renderAccountScope, studyTarget]);
     const handleRerollConfirm = useCallback(async () => {
         const target = rerollConfirm?.task;
         if (!target || rerollBusyId)
@@ -1870,6 +1920,7 @@ export default function DailyTasksScreen() {
             }
             const r = await rerollDailyTask(target.id, studyTarget);
             if (r.ok) {
+                invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
                 emitAppEvent('action_toast', {
                     type: 'success',
                     messageRu: `🔄 Задание заменено · −${r.cost} 💎`,
@@ -1877,7 +1928,7 @@ export default function DailyTasksScreen() {
                     messageEs: `🔄 Tarea reemplazada · −${r.cost} 💎`,
                 });
                 setRerollConfirm(null);
-                refreshTasksAndProgress();
+                refreshTasksAndProgress(true);
                 return;
             }
             if (r.reason === 'insufficient_shards') {
@@ -1964,7 +2015,7 @@ export default function DailyTasksScreen() {
         refreshTasksAndProgress();
     }, [expandedTaskAnim, refreshTasksAndProgress, tasks.length]));
     useEffect(() => {
-        const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
+        const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); });
         return () => sub.remove();
     }, [refreshTasksAndProgress]);
     // Опрос-как-4-е-задание: при входе/возврате проверяем, активен ли опрос
@@ -1995,6 +2046,10 @@ export default function DailyTasksScreen() {
         setClaimBusyId(taskId);
         pendingClaimIdsRef.current.add(taskId);
         setProgress((prev) => markTaskClaimedForUi(prev, taskId));
+        patchDailyTasksScreenProgress(
+            captureAccountGeneration(), getTodayKey(), studyTarget, taskId,
+            { completed: true, claimed: true },
+        );
         void hapticSuccess();
         showClaimedXpBadge(xpBase);
         const anim = claimAnims.current[taskId];
@@ -2050,7 +2105,8 @@ export default function DailyTasksScreen() {
             // Снимаем спиннер сразу после клейма: дальше могут быть медленные getTodayTasksSafe/loadTodayProgress.
             setClaimBusyId(null);
             if (!claimed) {
-                refreshTasksAndProgress();
+                invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
+                refreshTasksAndProgress(true);
                 emitAppEvent('action_toast', {
                     type: 'info',
                     messageRu: 'Похоже, награду ты уже забрал. Обнови список задач.',
@@ -2079,7 +2135,8 @@ export default function DailyTasksScreen() {
         }
         catch {
             pendingClaimIdsRef.current.delete(taskId);
-            refreshTasksAndProgress();
+            invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
+            refreshTasksAndProgress(true);
             emitAppEvent('action_toast', {
                 type: 'error',
                 messageRu: 'Награду забрать не получилось. Попробуй ещё раз.',
@@ -2111,7 +2168,8 @@ export default function DailyTasksScreen() {
         try {
             const outcome = await claimDailyTasksAllShardsRewardDetailed(getTodayKey());
             if (outcome === 'granted') {
-                refreshTasksAndProgress();
+                invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
+                refreshTasksAndProgress(true);
                 return;
             }
             if (outcome === 'already') {
@@ -2119,7 +2177,8 @@ export default function DailyTasksScreen() {
                 // Это НЕ ошибка — гасим кнопку молча, без тоста «не загрузились»,
                 // который раньше всплывал бесконечно (баг-репорты daily_tasks).
                 setTrioShardsClaimed(true);
-                refreshTasksAndProgress();
+                invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
+                refreshTasksAndProgress(true);
                 return;
             }
             // outcome === 'failed' — реальный сбой. Перепроверяем локальный маркер на
@@ -2147,7 +2206,7 @@ export default function DailyTasksScreen() {
         finally {
             setTrioClaimBusy(false);
         }
-    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, surveyPresent, surveyDone]);
+    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveyPresent, surveyDone]);
     const claimedCount = countClaimedForTaskList(tasks, progress);
     // Опрос-как-4-е-задание: когда активен, набор = 3 обычных + опрос (всего 4),
     // а награду «за все» дают за ЛЮБЫЕ 3 из 4. Порог = 3, а «выполнено» считает и
@@ -2505,7 +2564,7 @@ export default function DailyTasksScreen() {
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
             в Instagram), а не пустой экран. Как только setTasks отработал —
             loadingTasks=false и ниже рендерятся настоящие карточки. */}
-        {loadingTasks && tasks.length === 0 && (
+        {visibleLoadingTasks && tasks.length === 0 && (
           <>
             {[0, 1, 2, 3].map((i) => (
               <View

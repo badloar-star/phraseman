@@ -19,6 +19,7 @@
 import * as Crypto from 'expo-crypto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO } from './config';
+import { ensureAccountGeneration, invalidateAccountGeneration } from './account_generation';
 
 const SECURE_KEY = 'phraseman_stable_uid';
 const ASYNC_KEY = 'phraseman_stable_uid_cache';
@@ -36,6 +37,15 @@ const KEYCHAIN_SERVICE = 'phraseman.identity.stable_id';
 type SecureStoreModule = typeof import('expo-secure-store');
 let secureStoreCache: SecureStoreModule | null | false = false;
 let cachedId: string | null = null;
+let stableIdOperationEpoch = 0;
+
+class StableIdReadSupersededError extends Error {
+  constructor() { super('stable_id_read_superseded'); }
+}
+
+function assertCurrentStableIdRead(epoch: number): void {
+  if (epoch !== stableIdOperationEpoch) throw new StableIdReadSupersededError();
+}
 
 function getSecureStore(): SecureStoreModule | null {
   if (IS_EXPO_GO) return null;
@@ -78,8 +88,11 @@ export function peekStableId(): string | null {
   return cachedId;
 }
 
-export async function getStableId(): Promise<string> {
-  if (cachedId) return cachedId;
+async function readOrCreateStableId(epoch: number): Promise<string> {
+  if (cachedId) {
+    ensureAccountGeneration(cachedId);
+    return cachedId;
+  }
 
   const SecureStore = getSecureStore();
   const opts = SecureStore ? getSecureStoreOpts(SecureStore) : undefined;
@@ -88,11 +101,13 @@ export async function getStableId(): Promise<string> {
     try {
       // Сначала пробуем с фиксированным keychainService.
       let stored = await SecureStore.getItemAsync(SECURE_KEY, opts);
+      assertCurrentStableIdRead(epoch);
       // Миграция со старого Keychain item (без keychainService): если новый ключ
       // пуст — попробуем старый, скопируем в новый и удалим старый.
       if (!stored) {
         try {
           const legacy = await SecureStore.getItemAsync(SECURE_KEY);
+          assertCurrentStableIdRead(epoch);
           if (legacy) {
             await SecureStore.setItemAsync(SECURE_KEY, legacy, opts).catch(() => {});
             await SecureStore.deleteItemAsync(SECURE_KEY).catch(() => {});
@@ -101,8 +116,11 @@ export async function getStableId(): Promise<string> {
         } catch { /* ignore legacy migration errors */ }
       }
       if (stored) {
+        assertCurrentStableIdRead(epoch);
         cachedId = stored;
         await AsyncStorage.setItem(ASYNC_KEY, stored);
+        assertCurrentStableIdRead(epoch);
+        ensureAccountGeneration(stored);
         return stored;
       }
     } catch {
@@ -114,29 +132,57 @@ export async function getStableId(): Promise<string> {
   // на Android также критично — RKStorage переживает Auto Backup, а EncryptedSharedPreferences нет).
   try {
     const cached = await AsyncStorage.getItem(ASYNC_KEY);
+    assertCurrentStableIdRead(epoch);
     if (cached) {
       cachedId = cached;
       if (SecureStore && opts) {
         await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(() => {});
       }
+      ensureAccountGeneration(cached);
       return cached;
     }
   } catch {}
 
   // Создаём новый ID
   const newId = Crypto.randomUUID();
-  cachedId = newId;
+  assertCurrentStableIdRead(epoch);
 
   if (SecureStore && opts) {
     try {
       await SecureStore.setItemAsync(SECURE_KEY, newId, opts);
+      assertCurrentStableIdRead(epoch);
     } catch {
       /* only AsyncStorage below */
     }
   }
   await AsyncStorage.setItem(ASYNC_KEY, newId).catch(() => {});
+  assertCurrentStableIdRead(epoch);
+
+  cachedId = newId;
+  ensureAccountGeneration(newId);
 
   return newId;
+}
+
+let stableIdLoadInFlight: Promise<string> | null = null;
+let stableIdMutationInFlight: Promise<void> | null = null;
+
+export function getStableId(): Promise<string> {
+  if (stableIdMutationInFlight) {
+    const barrier = stableIdMutationInFlight;
+    return barrier.then(() => getStableId());
+  }
+  if (cachedId) {
+    ensureAccountGeneration(cachedId);
+    return Promise.resolve(cachedId);
+  }
+  if (stableIdLoadInFlight) return stableIdLoadInFlight;
+  const pending = readOrCreateStableId(stableIdOperationEpoch);
+  stableIdLoadInFlight = pending;
+  void pending.finally(() => {
+    if (stableIdLoadInFlight === pending) stableIdLoadInFlight = null;
+  }).catch(() => {});
+  return pending;
 }
 
 /**
@@ -148,20 +194,49 @@ export async function getStableId(): Promise<string> {
  * После вызова обязательно очистить локальный AsyncStorage с прогрессом и сделать restoreFromCloud,
  * иначе данные старого аккаунта останутся в кеше.
  */
-export async function setStableId(newId: string): Promise<void> {
-  if (!newId || typeof newId !== 'string') {
-    throw new Error('setStableId: newId must be non-empty string');
-  }
-  cachedId = newId;
+async function persistStableId(newId: string, epoch: number): Promise<void> {
+  if (epoch !== stableIdOperationEpoch) return;
+  let persisted = false;
   const SecureStore = getSecureStore();
   if (SecureStore) {
     try {
       await SecureStore.setItemAsync(SECURE_KEY, newId, getSecureStoreOpts(SecureStore));
+      persisted = true;
     } catch {
       /* SecureStore unavailable — продолжаем через AsyncStorage */
     }
   }
-  await AsyncStorage.setItem(ASYNC_KEY, newId).catch(() => {});
+  try {
+    await AsyncStorage.setItem(ASYNC_KEY, newId);
+    persisted = true;
+  } catch {
+    // SecureStore may still have persisted the identity.
+  }
+  if (epoch !== stableIdOperationEpoch) return;
+  if (persisted) {
+    cachedId = newId;
+    ensureAccountGeneration(newId);
+  } else {
+    cachedId = null;
+    invalidateAccountGeneration();
+  }
+}
+
+export function setStableId(newId: string): Promise<void> {
+  if (!newId || typeof newId !== 'string') {
+    return Promise.reject(new Error('setStableId: newId must be non-empty string'));
+  }
+  stableIdOperationEpoch += 1;
+  const epoch = stableIdOperationEpoch;
+  stableIdLoadInFlight = null;
+  if (cachedId !== newId) invalidateAccountGeneration();
+  const previous = stableIdMutationInFlight ?? Promise.resolve();
+  const mutation = previous.catch(() => {}).then(() => persistStableId(newId, epoch));
+  stableIdMutationInFlight = mutation;
+  void mutation.finally(() => {
+    if (stableIdMutationInFlight === mutation) stableIdMutationInFlight = null;
+  }).catch(() => {});
+  return mutation;
 }
 
 /**
@@ -169,7 +244,10 @@ export async function setStableId(newId: string): Promise<void> {
  * Нужно после внешней правки SecureStore (например, тестов или recovery flow).
  */
 export function _resetStableIdCache(): void {
+  stableIdOperationEpoch += 1;
+  invalidateAccountGeneration();
   cachedId = null;
+  stableIdLoadInFlight = null;
 }
 
 /**
@@ -184,7 +262,8 @@ export function _resetStableIdCache(): void {
  * Не путать с _resetStableIdCache: тот лишь чистит in-memory кеш,
  * а stored value в SecureStore/AsyncStorage остаётся прежним.
  */
-export async function clearStableId(): Promise<void> {
+async function clearStableIdStorage(epoch: number): Promise<void> {
+  if (epoch !== stableIdOperationEpoch) return;
   cachedId = null;
   const SecureStore = getSecureStore();
   if (SecureStore) {
@@ -206,6 +285,21 @@ export async function clearStableId(): Promise<void> {
   } catch {
     /* ignore */
   }
+  if (epoch !== stableIdOperationEpoch) return;
+}
+
+export function clearStableId(): Promise<void> {
+  stableIdOperationEpoch += 1;
+  const epoch = stableIdOperationEpoch;
+  stableIdLoadInFlight = null;
+  invalidateAccountGeneration();
+  const previous = stableIdMutationInFlight ?? Promise.resolve();
+  const mutation = previous.catch(() => {}).then(() => clearStableIdStorage(epoch));
+  stableIdMutationInFlight = mutation;
+  void mutation.finally(() => {
+    if (stableIdMutationInFlight === mutation) stableIdMutationInFlight = null;
+  }).catch(() => {});
+  return mutation;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

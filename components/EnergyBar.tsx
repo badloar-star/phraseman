@@ -7,6 +7,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
 interface Props {
   size?: number; // icon size, default 30
@@ -21,7 +22,8 @@ const BONUS_COLOR = '#FFD700'; // gold for bonus slots
 
 function EnergyBar({ size = 30, maxWidth }: Props) {
   const { energy, bonusEnergy, maxEnergy, isUnlimited } = useEnergy();
-  const { formattedTime } = useEnergyCountdown();
+  const screenFocused = useIsScreenFocused();
+  const { formattedTime } = useEnergyCountdown({ visible: screenFocused });
   const { hasPremiumAccess } = usePremium();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();

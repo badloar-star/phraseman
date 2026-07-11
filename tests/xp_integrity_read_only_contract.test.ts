@@ -240,6 +240,97 @@ function escapedWriteCapabilityReferences(
   return violations;
 }
 
+function pathBindingViolations(source: ts.SourceFile): string[] {
+  const violations: string[] = [];
+  const pathReferences = moduleReferences(source, /^(?:node:)?path$/);
+  const pathImports = source.statements.filter(
+    (statement): statement is ts.ImportDeclaration =>
+      ts.isImportDeclaration(statement) &&
+      /^(?:node:)?path$/.test(stringValue(statement.moduleSpecifier) ?? ""),
+  );
+  const hasExactImport =
+    pathReferences.length === 1 &&
+    pathImports.length === 1 &&
+    stringValue(pathImports[0].moduleSpecifier) === "node:path" &&
+    pathImports[0].importClause?.isTypeOnly !== true &&
+    pathImports[0].importClause?.name?.text === "path" &&
+    pathImports[0].importClause?.namedBindings === undefined;
+  if (!hasExactImport) violations.push("invalid_node_path_binding");
+  if (hasBindingOrAssignment(source, "path")) {
+    violations.push("shadowed_or_reassigned:path");
+  }
+
+  const allowedMethods = new Set(["isAbsolute", "join", "relative", "resolve"]);
+  const visit = (node: ts.Node): void => {
+    if (ts.isIdentifier(node) && node.text === "path") {
+      const parent = node.parent;
+      const isExactDefaultImport =
+        ts.isImportClause(parent) &&
+        parent.name === node &&
+        parent.namedBindings === undefined &&
+        ts.isImportDeclaration(parent.parent) &&
+        stringValue(parent.parent.moduleSpecifier) === "node:path";
+      const isDirectApprovedMethodCall =
+        ts.isPropertyAccessExpression(parent) &&
+        parent.expression === node &&
+        allowedMethods.has(parent.name.text) &&
+        ts.isCallExpression(parent.parent) &&
+        parent.parent.expression === parent;
+      if (!isExactDefaultImport && !isDirectApprovedMethodCall) {
+        violations.push(`escaped_path_binding:${lineOf(source, node)}`);
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return violations;
+}
+
+function assertHelperReferenceViolations(
+  source: ts.SourceFile,
+  importedWriteCapabilities: ReadonlySet<string>,
+): string[] {
+  const violations: string[] = [];
+  const declarations = source.statements.filter(
+    (statement): statement is ts.FunctionDeclaration =>
+      ts.isFunctionDeclaration(statement) &&
+      statement.name?.text === "assertAuditOutputPath",
+  );
+  const exactDeclaration = declarations.length === 1 ? declarations[0] : null;
+  if (hasBindingOrAssignment(source, "assertAuditOutputPath")) {
+    violations.push("shadowed_or_reassigned:assertAuditOutputPath");
+  }
+  const visit = (node: ts.Node): void => {
+    if (ts.isIdentifier(node) && node.text === "assertAuditOutputPath") {
+      const parent = node.parent;
+      const isExactDeclaration =
+        parent === exactDeclaration &&
+        ts.isFunctionDeclaration(parent) &&
+        parent.name === node;
+      const wrapperCall =
+        ts.isCallExpression(parent) && parent.expression === node
+          ? parent
+          : null;
+      const writeCall = wrapperCall?.parent;
+      const isDirectWriteDestination =
+        wrapperCall !== null &&
+        writeCall !== undefined &&
+        ts.isCallExpression(writeCall) &&
+        writeCall.arguments[0] === wrapperCall &&
+        ts.isIdentifier(writeCall.expression) &&
+        importedWriteCapabilities.has(writeCall.expression.text);
+      if (!isExactDeclaration && !isDirectWriteDestination) {
+        violations.push(
+          `escaped_assertAuditOutputPath:${lineOf(source, node)}`,
+        );
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return violations;
+}
+
 function isPathMethodCall(
   expression: ts.Expression | undefined,
   method: "resolve" | "relative" | "isAbsolute",
@@ -263,12 +354,21 @@ function isPathMethodCall(
 }
 
 function assertHelperViolations(source: ts.SourceFile): string[] {
-  const helper = source.statements.find(
+  const helpers = source.statements.filter(
     (statement): statement is ts.FunctionDeclaration =>
       ts.isFunctionDeclaration(statement) &&
       statement.name?.text === "assertAuditOutputPath",
   );
-  if (!helper?.body) return ["missing_assertAuditOutputPath"];
+  if (helpers.length !== 1)
+    return ["invalid_assertAuditOutputPath_declaration"];
+  const [helper] = helpers;
+  if (
+    !helper.body ||
+    helper.asteriskToken !== undefined ||
+    (helper.modifiers?.length ?? 0) !== 0
+  ) {
+    return ["invalid_assertAuditOutputPath_declaration"];
+  }
   if (
     helper.parameters.length !== 2 ||
     !ts.isIdentifier(helper.parameters[0].name) ||
@@ -359,7 +459,7 @@ function assertHelperViolations(source: ts.SourceFile): string[] {
 }
 
 function reportCapabilityViolations(source: ts.SourceFile): string[] {
-  const violations: string[] = [];
+  const violations: string[] = [...pathBindingViolations(source)];
   const importedWriteCapabilities = new Set<string>();
   for (const statement of source.statements) {
     if (
@@ -403,6 +503,7 @@ function reportCapabilityViolations(source: ts.SourceFile): string[] {
   }
   violations.push(
     ...escapedWriteCapabilityReferences(source, importedWriteCapabilities),
+    ...assertHelperReferenceViolations(source, importedWriteCapabilities),
   );
   for (const call of filesystemWriteCalls(source)) {
     const name = calledProperty(call.expression);
@@ -482,6 +583,7 @@ describe("production XP integrity audit read-only contract", () => {
     const source = parseFixture(
       "report.ts",
       [
+        'import path from "node:path";',
         'import { mkdirSync, writeFileSync } from "node:fs";',
         "function assertAuditOutputPath(root: string, candidate: string) {",
         '  const approvedRoot = path.resolve(root, ".codex-tmp", "xp-integrity-audit");',
@@ -496,6 +598,61 @@ describe("production XP integrity audit read-only contract", () => {
     );
 
     expect(reportCapabilityViolations(source)).toEqual([]);
+  });
+
+  it("rejects a fake local path implementation", () => {
+    const source = parseFixture(
+      "report.ts",
+      [
+        'import { writeFileSync } from "node:fs";',
+        "const path = {",
+        "  resolve: (...parts: string[]) => parts.at(-1)!,",
+        "  relative: () => '',",
+        "  isAbsolute: () => false,",
+        "};",
+        "function assertAuditOutputPath(root: string, candidate: string) {",
+        '  const approvedRoot = path.resolve(root, ".codex-tmp", "xp-integrity-audit");',
+        "  const resolvedCandidate = path.resolve(candidate);",
+        "  const relative = path.relative(approvedRoot, resolvedCandidate);",
+        '  if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error("outside");',
+        "  return resolvedCandidate;",
+        "}",
+        'writeFileSync(assertAuditOutputPath(root, candidate), "unsafe");',
+      ].join("\n"),
+    );
+
+    expect(reportCapabilityViolations(source)).toEqual(
+      expect.arrayContaining([
+        "invalid_node_path_binding",
+        "shadowed_or_reassigned:path",
+      ]),
+    );
+  });
+
+  it("rejects post-definition assertAuditOutputPath reassignment", () => {
+    const source = parseFixture(
+      "report.ts",
+      [
+        'import path from "node:path";',
+        'import { writeFileSync } from "node:fs";',
+        "function assertAuditOutputPath(root: string, candidate: string) {",
+        '  const approvedRoot = path.resolve(root, ".codex-tmp", "xp-integrity-audit");',
+        "  const resolvedCandidate = path.resolve(candidate);",
+        "  const relative = path.relative(approvedRoot, resolvedCandidate);",
+        '  if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error("outside");',
+        "  return resolvedCandidate;",
+        "}",
+        "assertAuditOutputPath = (_root, candidate) => candidate;",
+        'writeFileSync(assertAuditOutputPath(root, candidate), "unsafe");',
+      ].join("\n"),
+    );
+
+    expect(reportCapabilityViolations(source)).toEqual(
+      expect.arrayContaining([
+        "shadowed_or_reassigned:assertAuditOutputPath",
+        "escaped_assertAuditOutputPath:10",
+      ]),
+    );
   });
 
   it("rejects deceptive nested or unreachable boundary control flow", () => {

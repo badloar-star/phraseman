@@ -11,6 +11,12 @@ jest.mock('@expo/vector-icons', () => ({
     return <MockText {...props} testID={`ionicon-${name}`}>{name}</MockText>;
   },
 }));
+jest.mock('expo-image', () => ({
+  Image: (props: any) => {
+    const { Image: MockImage } = require('react-native');
+    return <MockImage {...props} />;
+  },
+}));
 jest.mock('expo-router', () => ({ usePathname: () => '/daily-tasks' }));
 jest.mock('../components/TapScale', () => {
   const { Pressable: MockPressable } = require('react-native');
@@ -26,9 +32,11 @@ jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'pl' }) 
 jest.mock('../components/text-integrity/use_text_integrity_probe', () => ({
   useTextIntegrityProbe: () => ({ ref: { current: null }, onTextLayout: jest.fn() }),
 }));
+jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
 
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
+import SurveyRewardPanel from '../components/survey/SurveyRewardPanel';
 import { computeSurveyDailyCounts } from '../app/survey_daily_challenge_model';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -102,6 +110,63 @@ test('completed survey shows a claimed check and cannot be pressed', async () =>
   expect(view.getByTestId('daily-survey-task-pressable').props.accessibilityState).toEqual({ disabled: true });
   fireEvent.press(view.getByTestId('daily-survey-task-pressable'));
   expect(onOpen).not.toHaveBeenCalled();
+});
+
+test.each(['optimistic-reward', 'reconciled'] as const)(
+  '%s survey reward uses the branded shard asset and complete accessible copy',
+  async (phase) => {
+    const onDone = jest.fn();
+    const view = await render(
+      <SurveyRewardPanel
+        phase={phase}
+        reward={3}
+        title="Dziękujemy za odpowiedzi"
+        subtitle="Twoje pełne odpowiedzi zostały zapisane i pomagają rozwijać Phraseman."
+        error="Nie udało się wysłać odpowiedzi."
+        onDone={onDone}
+        onRetry={jest.fn()}
+      />,
+    );
+
+    expect(view.getByTestId('survey-reward-shard-asset').props.source).toBeTruthy();
+    expect(view.getByTestId('survey-reward-title').props.children).toBe('Dziękujemy za odpowiedzi');
+    expect(view.getByText('Twoje pełne odpowiedzi zostały zapisane i pomagają rozwijać Phraseman.')).toBeTruthy();
+    expect(view.getByTestId('survey-reward-subtitle').props.numberOfLines).toBeUndefined();
+    expect(StyleSheet.flatten(view.getByTestId('survey-reward-motion').props.style)).toMatchObject({
+      opacity: 1,
+      transform: [{ scale: 1 }],
+    });
+    expect(view.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true })).toBeTruthy();
+    expect(view.queryByText('💎')).toBeNull();
+    expect(view.queryByTestId('survey-retry')).toBeNull();
+
+    fireEvent.press(view.getByRole('button', { name: 'Gotowe' }));
+    expect(onDone).toHaveBeenCalledTimes(1);
+  },
+);
+
+test('retryable survey error stays in-screen, preserves accessible copy, and exposes a 44px retry action', async () => {
+  const onRetry = jest.fn();
+  const view = await render(
+    <SurveyRewardPanel
+      phase="retryable-error"
+      reward={0}
+      title="Odpowiedzi są nadal bezpieczne"
+      subtitle="Nie musisz wypełniać ankiety ponownie."
+      error="Nie udało się wysłać odpowiedzi. Sprawdź połączenie i spróbuj ponownie."
+      onDone={jest.fn()}
+      onRetry={onRetry}
+    />,
+  );
+
+  expect(view.getByTestId('ionicon-alert-circle', { includeHiddenElements: true })).toBeTruthy();
+  expect(view.getByRole('alert').props.children).toBe('Nie udało się wysłać odpowiedzi. Sprawdź połączenie i spróbuj ponownie.');
+  expect(view.getByText('Nie musisz wypełniać ankiety ponownie.')).toBeTruthy();
+  expect(view.queryByTestId('survey-reward-shard-asset')).toBeNull();
+  expect(StyleSheet.flatten(view.getByTestId('survey-retry').props.style).minHeight).toBeGreaterThanOrEqual(44);
+
+  fireEvent.press(view.getByRole('button', { name: 'Spróbuj ponownie' }));
+  expect(onRetry).toHaveBeenCalledTimes(1);
 });
 
 test('daily screen appends survey after normal sorted tasks and derives all counts from one helper', () => {

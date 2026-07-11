@@ -47,6 +47,7 @@ describe('phrase analytics warm cache', () => {
     expect(source).toContain('if (isPhraseAnalyticsRequestCurrent(request)) setLoading(false)');
     expect(source).toContain('if (warm && loadedCacheKey !== requestCacheKey)');
     expect(source).toContain('const visibleLoading = loading || loadedCacheKey !== renderCacheKey');
+    expect(source).toContain('personalPracticeCoachEnabled, renderCacheKey, sourceLocale');
   });
 
   it('fresh-key navigation supersedes a pending request for another key', () => {

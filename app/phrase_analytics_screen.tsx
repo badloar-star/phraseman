@@ -442,7 +442,7 @@ export default function PhraseAnalyticsScreen() {
     } finally {
       if (isPhraseAnalyticsRequestCurrent(request)) setLoading(false);
     }
-  }, [analyticsSourceGateOpen, loadedCacheKey, personalPracticeCoachEnabled, sourceLocale, studyTarget, warmKey]);
+  }, [analyticsSourceGateOpen, loadedCacheKey, personalPracticeCoachEnabled, renderCacheKey, sourceLocale, studyTarget, warmKey]);
 
   useFocusEffect(useCallback(() => { void load(); }, [load]));
 

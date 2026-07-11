@@ -527,7 +527,7 @@ export default function CompassBriefingModal({
 const styles = StyleSheet.create({
   root: { flex: 1 },
   backdrop: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: 12, backgroundColor: 'rgba(0,0,0,0.55)' },
-  sheet: { width: '100%', maxWidth: 520, maxHeight: '88%', alignSelf: 'center', borderRadius: 26, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 22, paddingBottom: 18 },
+  sheet: { width: '100%', maxWidth: 520, maxHeight: '88%', alignSelf: 'center', borderRadius: 26, borderWidth: 0, paddingHorizontal: 22, paddingBottom: 18 },
   // Зона хвата сверху листа — широкая мишень для пальца (тянуть вниз). Внутри —
   // видимый grabber (брифинг) или тонкая невидимая полоса (день-закрытие).
   grabZone: { paddingTop: 12, paddingBottom: 2, alignItems: 'center' },

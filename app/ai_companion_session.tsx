@@ -322,7 +322,7 @@ export default function AiCompanionSession() {
                     borderRadius: 16,
                     padding: 16,
                     ...(isUser
-                      ? { borderWidth: 0.5, borderColor: t.border }
+                      ? { borderWidth: 0, borderColor: t.border }
                       : { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }),
                     marginBottom: 10,
                     alignSelf: isUser ? 'flex-end' : 'stretch',

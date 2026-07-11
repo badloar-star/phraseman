@@ -2614,7 +2614,7 @@ export default function DailyTasksScreen() {
           </View>
 
           <View style={dailyTaskStyles.taskProgressBlock}>
-            <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
+            <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
               <View style={{
                     height: '100%',
                     width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any,
@@ -2806,7 +2806,7 @@ export default function DailyTasksScreen() {
                   </Text>
                 </Animated.View>)}
                 {false && (<View style={dailyTaskStyles.taskProgressBlock}>
-                  <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
+                  <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
                     <View style={{
                         height: '100%',
                         width: `${pct}%` as any,
@@ -2843,7 +2843,7 @@ export default function DailyTasksScreen() {
                             alignItems: 'center',
                             justifyContent: 'center',
                             backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.08)',
-                            borderWidth: 1,
+                            borderWidth: 0,
                             borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.15)',
                         }}>
                         <Ionicons name="refresh" size={17} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
@@ -3287,7 +3287,7 @@ const dailyTaskStyles = StyleSheet.create({
     claimedPill: {
         minHeight: 30,
         borderRadius: 15,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',

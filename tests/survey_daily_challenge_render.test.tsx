@@ -8,7 +8,7 @@ jest.unmock('react-native');
 jest.mock('@expo/vector-icons', () => ({
   Ionicons: ({ name, ...props }: { name: string }) => {
     const { Text: MockText } = require('react-native');
-    return <MockText {...props}>{name}</MockText>;
+    return <MockText {...props} testID={`ionicon-${name}`}>{name}</MockText>;
   },
 }));
 jest.mock('expo-router', () => ({ usePathname: () => '/daily-tasks' }));
@@ -81,8 +81,12 @@ test('active survey reuses task geometry, violet palette, complete Polish copy, 
   expect(view.getByTestId('daily-survey-task-description').props.children).toBe(activeChallenge.description);
   expect(view.getByTestId('daily-survey-task-title').props.numberOfLines).toBeUndefined();
   expect(view.getByTestId('daily-survey-task-description').props.ellipsizeMode).toBeUndefined();
+  expect(view.getByTestId('ionicon-chatbubble-ellipses-outline').props.children).toBe('chatbubble-ellipses-outline');
+  expect(`${view.getByTestId('daily-survey-task-title').props.children}${view.getByTestId('daily-survey-task-description').props.children}`)
+    .not.toMatch(/[\p{Extended_Pictographic}\uFE0F]/u);
   expect(view.queryByRole('progressbar')).toBeNull();
-  expect(view.getByRole('button')).toBe(view.getByTestId('daily-survey-task-pressable'));
+  expect(view.getByRole('button', { name: `${activeChallenge.title}. ${activeChallenge.description}` }))
+    .toBe(view.getByTestId('daily-survey-task-pressable'));
 
   fireEvent.press(view.getByTestId('daily-survey-task-pressable'));
   expect(onOpen).toHaveBeenCalledWith(activeChallenge);
@@ -92,6 +96,9 @@ test('completed survey shows a claimed check and cannot be pressed', async () =>
   const onOpen = jest.fn();
   const view = await render(<SurveyTaskCard challenge={{ ...activeChallenge, phase: 'completed', survey: null }} onOpen={onOpen} />);
   expect(view.getByTestId('daily-survey-task-claimed')).toBeTruthy();
+  expect(view.getByTestId('ionicon-checkmark-circle')).toBeTruthy();
+  expect(view.queryByRole('button')).toBeNull();
+  expect(view.getByTestId('daily-survey-task-pressable').props.accessibilityState).toEqual({ disabled: true });
   fireEvent.press(view.getByTestId('daily-survey-task-pressable'));
   expect(onOpen).not.toHaveBeenCalled();
 });
@@ -103,7 +110,9 @@ test('daily screen appends survey after normal sorted tasks and derives all coun
   expect(normalTasks).toBeGreaterThan(-1);
   expect(survey).toBeGreaterThan(normalTasks);
   expect(source.match(/<SurveyTaskCard challenge=\{surveySnapshot\} onOpen=\{openSurveyChallenge\} \/>/g)).toHaveLength(1);
-  expect(source).toContain('computeSurveyDailyCounts({');
+  expect(source.match(/computeSurveyDailyCounts\(\{/g)).toHaveLength(2);
+  expect(source).not.toContain('doneWithSurvey');
+  expect(source).not.toMatch(/const threshold = surveyPresent/);
   expect(source).toContain('rewardThreshold: dailyRewardThreshold');
   expect(source).not.toContain('taskCapsuleBottomTrack');
   expect(source).not.toContain('taskCapsuleBottomFill');
@@ -111,5 +120,6 @@ test('daily screen appends survey after normal sorted tasks and derives all coun
 
 test('RNTL config discovers exactly this new survey card suite', () => {
   const config = fs.readFileSync(path.join(ROOT, 'jest.rntl.config.cjs'), 'utf8');
-  expect(config.match(/survey_daily_task_card_render\.test\.tsx/g)).toHaveLength(1);
+  expect(config.match(/survey_daily_challenge_render\.test\.tsx/g)).toHaveLength(1);
+  expect(config).not.toContain('survey_daily_task_card_render.test.tsx');
 });

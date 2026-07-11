@@ -91,7 +91,14 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
   return (
     <View testID={props.testID} style={[styles.card, props.variant === 'bonus' && styles.bonusCard, { backgroundColor: props.surfaceColor, borderColor: props.emphasized ? props.accentColor : props.borderColor }, props.outerStyle]}>
       {props.background}
-      <Pressable testID={`${props.testID}-pressable`} accessibilityRole={props.onPress ? 'button' : undefined} disabled={!props.onPress} onPress={props.onPress} style={styles.pressable}>
+      <Pressable
+        testID={`${props.testID}-pressable`}
+        accessibilityRole={props.onPress ? 'button' : undefined}
+        accessibilityLabel={props.onPress ? `${props.title}. ${props.description}` : undefined}
+        disabled={!props.onPress}
+        onPress={props.onPress}
+        style={styles.pressable}
+      >
         <View testID={`${props.testID}-content`} style={[styles.content, props.variant === 'bonus' && styles.bonusContent, stacked && styles.contentStacked]}>
           <View testID={`${props.testID}-icon`} style={[styles.icon, props.variant === 'bonus' && styles.bonusIcon, { borderColor: props.accentColor }, props.iconStyle]}>{props.icon}</View>
           <View style={styles.copy}>

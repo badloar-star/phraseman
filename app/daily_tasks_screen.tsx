@@ -2225,9 +2225,12 @@ export default function DailyTasksScreen() {
             const row = progress.find((p) => p.taskId === task.id);
             return row?.completed === true || row?.claimed === true;
         }).length;
-        const doneWithSurvey = realDone + (surveyPresent && surveyDone ? 1 : 0);
-        const threshold = surveyPresent ? Math.min(3, tasks.length + 1) : tasks.length;
-        const done = doneWithSurvey >= threshold;
+        const { done: completedCount, rewardThreshold } = computeSurveyDailyCounts({
+            baseTotal: tasks.length,
+            baseDone: realDone,
+            survey: surveySnapshot,
+        });
+        const done = completedCount >= rewardThreshold;
         if (!done || trioShardsClaimed || trioClaimBusy)
             return;
         setTrioClaimBusy(true);
@@ -2274,7 +2277,7 @@ export default function DailyTasksScreen() {
         finally {
             setTrioClaimBusy(false);
         }
-    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveyPresent, surveyDone]);
+    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveySnapshot]);
     const claimedCount = countClaimedForTaskList(tasks, progress);
     // Опрос-как-4-е-задание: когда активен, набор = 3 обычных + опрос (всего 4),
     // а награду «за все» дают за ЛЮБЫЕ 3 из 4. Порог = 3, а «выполнено» считает и

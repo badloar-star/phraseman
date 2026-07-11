@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-11T13:03:19.935Z",
+  "generatedAt": "2026-07-11T13:39:47.304Z",
   "source": {
     "buttons": 445,
     "functions": 937,
@@ -580,9 +580,9 @@
       "route": "diagnostics",
       "legacyTab": "ops-log",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "status": "guarded",
+      "nativeRoute": "diagnostics",
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "archive",
@@ -25615,8 +25615,8 @@
       "total": 58,
       "inventory": 0,
       "ported": 0,
-      "fallback": 50,
-      "guarded": 8,
+      "fallback": 49,
+      "guarded": 9,
       "blocked": 0
     },
     "buttons": {

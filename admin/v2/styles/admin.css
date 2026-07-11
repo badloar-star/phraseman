@@ -277,6 +277,10 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .briefing-health { display: grid; gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--line); }
 .briefing-health > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; align-items: center; padding: 11px 12px; background: var(--surface); }
 .briefing-health small { grid-column: 1 / -1; color: var(--muted); overflow-wrap: anywhere; }
+.toolbar-grid { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 12px; align-items: end; }
+.ops-list { gap: 0; }
+.ops-row { grid-template-columns: minmax(0, 1fr) auto; }
+.ops-row code { overflow-wrap: anywhere; white-space: normal; }
 .report-filters { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 12px; align-items: end; }
 .report-health { display: flex; flex-wrap: wrap; gap: 8px; }
 .report-list { display: grid; gap: 12px; }
@@ -308,6 +312,7 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .sidebar-footer { justify-content: center; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toolbar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
@@ -325,7 +330,7 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .page { padding: 22px 15px; }
   .page-header { display: block; }
   .page-header > .actions { margin-top: 15px; }
-  .factory-layout, .columns, .preview-layout, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid { grid-template-columns: 1fr; }
+  .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid { grid-template-columns: 1fr; }
   .report-reply-grid .full { grid-column: auto; }
   .factory-steps { position: static; grid-template-columns: repeat(4, minmax(68px, 1fr)); overflow: auto; }
   .factory-step { display: flex; min-height: 48px; padding: 9px; }
@@ -338,6 +343,8 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .profile-metrics, .profile-metrics.compact { grid-template-columns: 1fr 1fr; }
   .source-health-grid { grid-template-columns: 1fr; }
   .capability-grid { grid-template-columns: 1fr; }
+  .ops-row { grid-template-columns: 1fr; align-items: start; }
+  .ops-row .actions { justify-content: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,4 @@
-import { collectAuditRawRows, mergeAuditRowsForList, parseAuditListRequest, projectAuditRow } from './admin_audit_log';
+import { collectAuditRawRows, mergeAuditRowsForList, parseAuditListRequest, projectAuditRow, summarizeAuditSourceHealth } from './admin_audit_log';
 
 function cursorFor(id: string, timestampMs: number): string {
   return Buffer.from(JSON.stringify({ id, timestampMs }), 'utf8').toString('base64url');
@@ -166,5 +166,25 @@ describe('admin audit log list contract', () => {
     const rows = mergeAuditRowsForList(raw.rows, input, 0, { id: 'ts-a', timestampMs: Date.parse(sameTimestamp) });
 
     expect(rows.map((row) => row.id)).toEqual(['zz-timestamp']);
+  });
+
+  test('audit source health reports partial timestamp-index failures instead of always ready', () => {
+    expect(summarizeAuditSourceHealth({
+      rows: [{ id: 'a1' }],
+      scanned: 2,
+      saturated: false,
+      health: [
+        { field: 'timestamp', state: 'ready', count: 1, error: '' },
+        { field: 'ts', state: 'error', count: 0, error: 'missing index for ts' },
+        { field: 'createdAt', state: 'empty', count: 0, error: '' },
+      ],
+    }, 1)).toEqual({
+      source: 'admin_log',
+      state: 'error',
+      count: 1,
+      scanned: 2,
+      truncated: false,
+      error: 'ts: missing index for ts',
+    });
   });
 });

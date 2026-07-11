@@ -74,6 +74,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
   audit: 'diagnostics',
+  'ops-log': 'diagnostics',
 });
 
 const NATIVE_PAGE_HASHES = new Set([

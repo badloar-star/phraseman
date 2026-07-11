@@ -88,6 +88,7 @@ const state = {
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
   reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
+  ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
 };
 
 let actions = null;
@@ -547,6 +548,52 @@ function auditStateLabel(state) {
   return AUDIT_STATE_LABELS[state] || 'Неизвестное состояние';
 }
 
+const OPS_SOURCE_LABELS = Object.freeze({
+  '': 'Все источники',
+  admin: 'Админ-действия',
+  error_report: 'Баг-репорты',
+  user_report: 'Жалобы пользователей',
+});
+
+const OPS_TYPE_LABELS = Object.freeze({
+  '': 'Все типы',
+  mark_fixed: 'Репорт отмечен исправленным',
+  grant_reward: 'Выдача награды',
+  refund_pack_purchase: 'Возврат за пакет',
+  global_broadcast_send: 'Глобальная рассылка',
+  global_broadcast_deactivate: 'Отключение рассылки',
+  premium_change: 'Изменение Plus',
+  ban: 'Блокировка или разблокировка',
+  delete_user_dupe: 'Удаление дубля',
+  report_created: 'Создан баг-репорт',
+  user_report_created: 'Создана жалоба',
+});
+
+const OPS_STATE_LABELS = Object.freeze({
+  idle: 'Не загружено',
+  loading: 'Загрузка',
+  ready: 'Готово',
+  empty: 'Пусто',
+  partial: 'Частично',
+  truncated: 'Ограниченная выборка',
+  error: 'Ошибка',
+});
+
+function opsTypeLabel(type) {
+  const value = String(type || '');
+  return OPS_TYPE_LABELS[value] || 'Операционное событие';
+}
+
+function opsStateLabel(state) {
+  return OPS_STATE_LABELS[state] || 'Неизвестное состояние';
+}
+
+function opsDetailsSummary(value) {
+  if (!value || typeof value !== 'object') return '—';
+  const pairs = Object.entries(value).filter(([, item]) => item !== null && item !== undefined && item !== '').slice(0, 5);
+  return pairs.length ? pairs.map(([key, item]) => `${key}: ${typeof item === 'object' ? JSON.stringify(item) : String(item)}`).join(' · ') : '—';
+}
+
 function sourceHealthBadge(source) {
   const labels = { ready: 'Получен', empty: 'Нет записей', error: 'Ошибка', truncated: 'Достигнут лимит', partial: 'Частично' };
   const kind = source.state === 'error' ? 'danger' : ['truncated', 'partial'].includes(source.state) ? 'warning' : source.state === 'ready' ? 'success' : '';
@@ -594,6 +641,37 @@ function renderAuditLogPanel() {
   return `<section class="card section"><div class="card-header"><div><h2>Журнал действий</h2><p>Изменения здесь только читаются: кто, что поменял, причина, before/after и ссылка на откат.</p></div><div class="actions"><span class="badge ${badgeClass(audit.state)}">${escapeHtml(auditStateLabel(audit.state))}</span><a class="button small ghost" href="../../admin/index.html#audit" target="_blank" rel="noopener" title="Открыть старый модуль аудита для сверки">Старый журнал</a></div></div><div class="card-body">${filterBar}<div class="hint section">Показано ${items.length}${audit.fetchedAtMs ? ` · обновлено ${escapeHtml(dateTime(audit.fetchedAtMs))}` : ''}</div>${body}</div></section>`;
 }
 
+function renderOpsLogPanel() {
+  const ops = state.ops;
+  const items = Array.isArray(ops.items) ? ops.items : [];
+  const sourceOptions = Object.entries(OPS_SOURCE_LABELS)
+    .map(([value, label]) => `<option value="${escapeHtml(value)}"${ops.source === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
+  const presentTypes = [...new Set(items.map((item) => String(item.type || '')).filter(Boolean))].sort();
+  const typeOptions = [''].concat(presentTypes)
+    .map((value) => `<option value="${escapeHtml(value)}"${ops.type === value ? ' selected' : ''}>${escapeHtml(opsTypeLabel(value))}</option>`).join('');
+  const kpis = ops.kpis && typeof ops.kpis === 'object' ? ops.kpis : {};
+  const metric = (label, value, hint) => `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(metricValue(value))}</strong><small>${escapeHtml(hint || 'в загруженной выборке')}</small></div>`;
+  const health = Array.isArray(ops.sourceHealth) ? ops.sourceHealth : [];
+  const filterBar = `<div class="toolbar-grid">
+    <div class="field"><label for="ops-source-filter">Источник</label><select id="ops-source-filter">${sourceOptions}</select></div>
+    <div class="field"><label for="ops-type-filter">Тип события</label><select id="ops-type-filter">${typeOptions}</select></div>
+    <div class="field"><label for="ops-search-filter">Поиск</label><input id="ops-search-filter" value="${escapeHtml(ops.query)}" maxlength="160" placeholder="UID, статус, тип или деталь"></div>
+    <div class="actions end"><button class="button primary" data-action="load-ops-log" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Загрузить операционный журнал через серверную проверку прав">Обновить журнал</button><button class="button" data-action="copy-ops-snapshot" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Скопировать безопасный снимок загруженной выборки">Копировать снимок</button></div>
+  </div>`;
+  let body = '';
+  if (ops.state === 'loading') body = '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю операционный журнал…</span></div>';
+  else if (ops.state === 'error') body = `<div class="notice danger" role="alert"><strong>Операционный журнал не загружен.</strong><br>${escapeHtml(ops.error || 'Сервер не вернул данные.')}<div class="actions section"><button class="button" data-action="load-ops-log" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Повторно загрузить операционный журнал">Повторить чтение</button></div></div>`;
+  else if (!items.length) body = emptyState(ops.state === 'idle' ? 'Загрузите журнал после входа с правом диагностики.' : 'В выбранной серверной выборке событий не найдено.');
+  else body = `<div class="data-list ops-list">${items.map((row) => `<article class="list-row ops-row"><div><strong>${escapeHtml(opsTypeLabel(row.type))}</strong><small><code>${escapeHtml(row.type || 'event')}</code> · ${escapeHtml(row.sourceLabel || OPS_SOURCE_LABELS[row.source] || 'Источник')} · ${escapeHtml(dateTime(row.timestampMs))}</small><small>UID: <code>${escapeHtml(row.uid || '—')}</code>${row.name ? ` · ${escapeHtml(row.name)}` : ''}${row.status ? ` · статус ${escapeHtml(row.status)}` : ''}</small><small>Детали: ${escapeHtml(opsDetailsSummary(row.details))}</small></div><div class="actions"><span class="badge ${row.source === 'admin' ? 'success' : row.source === 'error_report' ? 'warning' : 'danger'}">${escapeHtml(OPS_SOURCE_LABELS[row.source] || row.source || 'Источник')}</span></div></article>`).join('')}</div>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Операционный журнал</h2><p>Серверные действия, баг-репорты и жалобы в одном безопасном снимке только для чтения.</p></div><div class="actions"><span class="badge ${badgeClass(ops.state)}">${escapeHtml(opsStateLabel(ops.state))}</span><a class="button small ghost" href="../../admin/index.html#ops-log" target="_blank" rel="noopener" title="Открыть старый операционный журнал для сверки">Старый ops-log</a></div></div><div class="card-body">${filterBar}${['partial', 'truncated'].includes(ops.state) ? '<div class="notice warning section"><strong>Выборка неполная.</strong> Один из источников вернул ошибку или достиг серверного лимита. Числа ниже относятся только к загруженной части.</div>' : ''}<section class="metrics section">${[
+    metric('Событий', kpis.events ?? items.length),
+    metric('Баг-репорты', kpis.reportCreated ?? 0),
+    metric('Исправлено', kpis.fixed ?? 0),
+    metric('Plus', kpis.premiumChanges ?? 0),
+    metric('Блокировки', kpis.banActions ?? 0),
+  ].join('')}</section>${health.length ? `<section class="report-health section" aria-label="Состояние источников">${health.map((source) => `<span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}" title="${escapeHtml(source.error || '')}">${escapeHtml(source.source === 'admin_log' ? 'Админ-действия' : source.source === 'error_reports' ? 'Баг-репорты' : 'Жалобы')} · ${escapeHtml(opsStateLabel(source.state))} · ${Number(source.count || 0)}</span>`).join('')}</section>` : ''}<div class="hint section">Показано ${items.length}${ops.fetchedAtMs ? ` · обновлено ${escapeHtml(dateTime(ops.fetchedAtMs))}` : ''}</div>${body}</div></section>`;
+}
+
 function renderDiagnostics() {
   const budget = state.budget;
   const view = buildOperationalSnapshot(state.briefing);
@@ -610,8 +688,8 @@ function renderDiagnostics() {
     <section class="metrics section">${metrics.join('')}</section>
     <section class="card section"><div class="card-header"><div><h2>Состояние источников</h2><p>Для каждого источника отдельно показаны полнота, время проверки и последнее событие.</p></div><span class="badge ${badgeClass(view.state)}">${escapeHtml(view.stateLabel)}</span></div><div class="card-body">${renderDiagnosticsSourceHealth(view)}</div></section>
     ${renderAuditLogPanel()}
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section>
-    <section class="card"><div class="card-header"><div><h2>Операционный журнал</h2><p>Серверные операции и технические события.</p></div><a class="button" href="../../admin/index.html#ops-log" title="Открыть старый операционный журнал">Открыть legacy ops</a></div>${emptyState('Нативный ops-log переносится отдельным этапом.')}</section></div>`;
+    ${renderOpsLogPanel()}
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section></div>`;
 }
 
 function renderSupport() {
@@ -991,6 +1069,48 @@ async function loadAuditLog(append = false) {
   }
 }
 
+async function loadOpsLog() {
+  const authGeneration = state.authGeneration;
+  state.ops = { ...state.ops, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listOpsLog({
+      source: state.ops.source,
+      type: state.ops.type,
+      query: state.ops.query,
+      limit: 250,
+    });
+    if (!authStillValid(authGeneration, 'diagnostics.read')) return STALE_AUTH_RESULT;
+    state.ops = {
+      ...state.ops,
+      state: String(result?.state || 'ready'),
+      items: Array.isArray(result?.items) ? result.items : [],
+      sourceHealth: Array.isArray(result?.sourceHealth) ? result.sourceHealth : [],
+      kpis: result?.kpis && typeof result.kpis === 'object' ? result.kpis : null,
+      copyText: String(result?.copyText || ''),
+      fetchedAtMs: Number(result?.fetchedAtMs || Date.now()),
+      error: '',
+    };
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'diagnostics.read')) return STALE_AUTH_RESULT;
+    state.ops = { ...state.ops, state: 'error', error: errorMessage(error) };
+    throw error;
+  }
+}
+
+async function copyOpsSnapshot() {
+  if (!state.ops.copyText) {
+    setMessage('Сначала загрузите операционный журнал, потом скопируйте снимок.', 'warning');
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(state.ops.copyText);
+    setMessage('Снимок операционного журнала скопирован.', 'success');
+  } catch (error) {
+    setMessage(`Не удалось скопировать снимок: ${errorMessage(error)}`, 'danger');
+  }
+}
+
 async function updateReportStatus(target) {
   const source = String(target.getAttribute('data-report-source') || '');
   const reportId = String(target.getAttribute('data-report-id') || '');
@@ -1059,6 +1179,16 @@ async function handleAction(action, target) {
     if (!state.audit.nextCursor) return;
     return runBusy(() => loadAuditLog(true), 'Следующая страница журнала загружена.');
   }
+  if (action === 'load-ops-log') {
+    state.ops = {
+      ...state.ops,
+      source: String(document.getElementById('ops-source-filter')?.value || ''),
+      type: String(document.getElementById('ops-type-filter')?.value || ''),
+      query: String(document.getElementById('ops-search-filter')?.value || '').trim(),
+    };
+    return runBusy(loadOpsLog, 'Операционный журнал загружен.');
+  }
+  if (action === 'copy-ops-snapshot') return copyOpsSnapshot();
   if (action === 'draft-report-reply') {
     const source = String(target.getAttribute('data-report-source') || '');
     const reportId = String(target.getAttribute('data-report-id') || '');
@@ -1355,6 +1485,7 @@ export function setAuthState(auth) {
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
     state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
     state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
+    state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
@@ -1362,6 +1493,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
+  if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
 }

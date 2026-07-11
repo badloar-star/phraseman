@@ -44,20 +44,23 @@ describe('Admin v2 audit log native contract', () => {
 
 describe('adminListAuditLog callable contract', () => {
   const serverSource = read('functions/src/admin_audit_log.ts');
+  const sharedSource = read('functions/src/admin_log_projection.ts');
 
   test('is diagnostics.read-gated, bounded and never exposes raw message bodies', () => {
     expect(serverSource).toContain("requireAuditPermission(request as { auth?: { uid?: string; token?: Row } }, 'diagnostics.read')");
     expect(serverSource).toContain('MAX_AUDIT_LIMIT');
     expect(serverSource).toContain('MAX_AUDIT_SCAN_LIMIT');
     expect(serverSource).toContain("db.collection('admin_log')");
-    expect(serverSource).toContain("const TIMESTAMP_FIELDS = ['timestamp', 'ts', 'createdAt'] as const");
-    expect(serverSource).toContain("orderBy(field, 'desc')");
+    expect(serverSource).toContain('DEFAULT_TIMESTAMP_FIELDS');
+    expect(serverSource).toContain('collectTimestampRows');
+    expect(sharedSource).toContain("DEFAULT_TIMESTAMP_FIELDS = ['timestamp', 'ts', 'createdAt'] as const");
+    expect(sharedSource).toContain("orderBy(field, 'desc')");
     expect(serverSource).toContain('projectAuditRow');
     expect(serverSource).toContain('mergeAuditRowsForList');
     expect(serverSource).toContain('nextCursor');
-    expect(serverSource).toContain('SENSITIVE_KEY_RE');
-    expect(serverSource).toContain('MAX_PUBLIC_OBJECT_DEPTH');
-    expect(serverSource).toContain('MAX_PUBLIC_STRING_LENGTH');
+    expect(sharedSource).toContain('SENSITIVE_KEY_RE');
+    expect(sharedSource).toContain('MAX_PUBLIC_OBJECT_DEPTH');
+    expect(sharedSource).toContain('MAX_PUBLIC_STRING_LENGTH');
   });
 
   test('has focused function tests for parser and projection edge cases', () => {

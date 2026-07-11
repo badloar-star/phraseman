@@ -1,4 +1,5 @@
 import { analyzeAccount } from "./xp_integrity/analyze_account";
+import { getLevelFromXP } from "../functions/src/xp_levels";
 import {
   loadVerifiedCatalogHistory,
   matchCatalogForEvent,
@@ -190,7 +191,17 @@ export function buildPrerequisiteEvidence(
       continue;
     }
     const achievementId = achievementIdOf(event);
-    if (achievementId === null) continue;
+    if (achievementId === null) {
+      evidence.push({
+        eventId: event.eventId,
+        prerequisite: {
+          kind: "unsupported",
+          ruleId: "missing_achievement_id",
+        },
+        state: "missing",
+      });
+      continue;
+    }
     const match = matchCatalogForEvent(catalogs, event, achievementId);
     const rewards =
       match.kind === "exact"
@@ -210,6 +221,14 @@ export function buildPrerequisiteEvidence(
             JSON.stringify(first.prerequisite),
       )
     ) {
+      evidence.push({
+        eventId: event.eventId,
+        prerequisite: {
+          kind: "unsupported",
+          ruleId: `unmapped_achievement:${achievementId}`,
+        },
+        state: "missing",
+      });
       continue;
     }
     const prerequisite = first.prerequisite;
@@ -256,6 +275,11 @@ export function buildPrerequisiteEvidence(
 const allEvidenceComplete = (result: AccountAuditResult): boolean =>
   result.exactReductionIsComplete &&
   Object.values(result.completeness).every((state) => state !== "incomplete");
+
+export const isExpectedControlLevel = (totalXp: number): boolean => {
+  const level = getLevelFromXP(totalXp);
+  return level >= 7 && level <= 9;
+};
 
 const runIdFor = (date: Date): string =>
   date
@@ -520,7 +544,7 @@ export async function runProductionAudit(
       matchedExpectedLevelNeighborhood:
         controlResult === null || controlXp === null
           ? null
-          : controlXp >= 250 && controlXp < 800,
+          : isExpectedControlLevel(controlXp),
       migrationIndicatorDetected:
         controlResult === null
           ? null

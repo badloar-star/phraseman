@@ -61,6 +61,7 @@
     "test": "jest --testPathPattern=tests/ --no-cache",
     "test:borderless-surfaces": "jest --runTestsByPath tests/borderless_surface_audit.test.ts tests/glass_surface_contract.test.ts tests/borderless_surface_guard.test.ts --no-cache --runInBand",
     "test:rntl": "jest --config jest.rntl.config.cjs --no-cache",
+    "test:xp-integrity": "jest --config jest.xp-integrity.config.cjs --runInBand --no-cache",
     "test:watch": "jest --testPathPattern=tests/ --watch --no-cache",
     "test:coverage": "jest --testPathPattern=tests/ --coverage",
     "test:functions": "cd functions && npx jest",
@@ -285,7 +286,7 @@
     "preset": "ts-jest",
     "testEnvironment": "node",
     "testMatch": [
-      "**/tests/**/*.test.ts"
+      "<rootDir>/tests/**/*.test.ts"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"

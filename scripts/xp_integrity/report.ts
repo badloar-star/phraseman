@@ -1,4 +1,12 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { randomBytes } from "node:crypto";
+import {
+  lstatSync,
+  mkdirSync,
+  realpathSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 
 import type { AccountAuditResult, IntegrityClass, ReasonCode } from "./types";
@@ -164,25 +172,161 @@ const IDENTITY_KEYS = new Set([
   "firebaseauthuid",
   "authuid",
   "provideruid",
+  "accountid",
   "eventid",
   "email",
   "nickname",
   "displayname",
   "payload",
 ]);
-const RAW_ID_VALUE = /^(?:event|user|auth|uid)[_:-][A-Za-z0-9_-]{3,}$/i;
+const OPAQUE_ID_VALUE =
+  /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[A-Za-z0-9]{20,128})$/i;
+
+const exactKeys = (
+  value: Record<string, unknown>,
+  expected: readonly string[],
+): boolean => {
+  const actual = Object.keys(value).sort();
+  return (
+    actual.length === expected.length &&
+    [...expected].sort().every((key, index) => actual[index] === key)
+  );
+};
+
+const REASON_KEYS = new Set([
+  "ledger_discontinuity_exact",
+  "achievement_overpayment_exact",
+  "achievement_impossible_prerequisite_exact",
+  "achievement_alias_replay_exact",
+  "migration_exact",
+  "migration_pattern_only",
+  "catalog_unmapped",
+  "prerequisite_unmapped",
+  "alias_history_incomplete",
+  "ledger_history_incomplete",
+  "projection_drift",
+]);
+
+const aggregateSchemaValid = (value: unknown): value is AggregateReport => {
+  if (value === null || typeof value !== "object" || Array.isArray(value))
+    return false;
+  const root = value as Record<string, unknown>;
+  if (
+    !exactKeys(root, [
+      "mode",
+      "startedAt",
+      "finishedAt",
+      "coverage",
+      "readCount",
+      "classes",
+      "reasons",
+      "exactInvalidXpTotal",
+      "exactInvalidXpBuckets",
+      "projectionDriftUsers",
+      "calibration",
+    ]) ||
+    (root.mode !== "sample" && root.mode !== "full") ||
+    typeof root.startedAt !== "string" ||
+    !Number.isFinite(Date.parse(root.startedAt)) ||
+    typeof root.finishedAt !== "string" ||
+    !Number.isFinite(Date.parse(root.finishedAt))
+  ) {
+    return false;
+  }
+  const coverage = root.coverage as Record<string, unknown> | null;
+  const classes = root.classes as Record<string, unknown> | null;
+  const reasons = root.reasons as Record<string, unknown> | null;
+  const buckets = root.exactInvalidXpBuckets as Record<string, unknown> | null;
+  const calibration = root.calibration as Record<string, unknown> | null;
+  const classKeys = [...CLASSES];
+  const count = (candidate: unknown): boolean =>
+    Number.isSafeInteger(candidate) && (candidate as number) >= 0;
+  return Boolean(
+    coverage &&
+    exactKeys(coverage, [
+      "infrastructureComplete",
+      "evidenceComplete",
+      "userDocumentsSeen",
+      "canonicalAccountsScanned",
+      "aliasDocumentsCovered",
+      "skippedAccounts",
+      "failedAccounts",
+      "earliestEventAt",
+      "latestEventAt",
+    ]) &&
+    typeof coverage.infrastructureComplete === "boolean" &&
+    typeof coverage.evidenceComplete === "boolean" &&
+    [
+      coverage.userDocumentsSeen,
+      coverage.canonicalAccountsScanned,
+      coverage.aliasDocumentsCovered,
+      coverage.skippedAccounts,
+      coverage.failedAccounts,
+    ].every(count) &&
+    [coverage.earliestEventAt, coverage.latestEventAt].every(
+      (date) =>
+        date === null ||
+        (typeof date === "string" && Number.isFinite(Date.parse(date))),
+    ) &&
+    classes &&
+    exactKeys(classes, classKeys) &&
+    Object.values(classes).every(count) &&
+    reasons &&
+    !Array.isArray(reasons) &&
+    Object.keys(reasons).every((key) => REASON_KEYS.has(key)) &&
+    Object.values(reasons).every(count) &&
+    buckets &&
+    exactKeys(buckets, classKeys) &&
+    Object.values(buckets).every(
+      (candidate) => typeof candidate === "number" && candidate >= 0,
+    ) &&
+    count(root.readCount) &&
+    typeof root.exactInvalidXpTotal === "number" &&
+    Number.isFinite(root.exactInvalidXpTotal) &&
+    root.exactInvalidXpTotal >= 0 &&
+    count(root.projectionDriftUsers) &&
+    calibration &&
+    exactKeys(calibration, [
+      "ran",
+      "resolved",
+      "matchedExpectedLevelNeighborhood",
+      "migrationIndicatorDetected",
+      "achievementIndicatorDetected",
+    ]) &&
+    typeof calibration.ran === "boolean" &&
+    typeof calibration.resolved === "boolean" &&
+    [
+      calibration.matchedExpectedLevelNeighborhood,
+      calibration.migrationIndicatorDetected,
+      calibration.achievementIndicatorDetected,
+    ].every(
+      (candidate) => candidate === null || typeof candidate === "boolean",
+    ),
+  );
+};
 
 export function validateAggregateReportPrivacy(
   value: unknown,
   privateDenylist: readonly string[] = [],
 ): void {
   const denied = privateDenylist.filter((item) => item.length > 0);
+  if (
+    value !== null &&
+    typeof value === "object" &&
+    !Array.isArray(value) &&
+    "mode" in value &&
+    !aggregateSchemaValid(value)
+  ) {
+    throw new Error("xp_audit_report_privacy_violation");
+  }
   const visit = (current: unknown): void => {
     if (typeof current === "string") {
       if (
         EMAIL.test(current) ||
-        RAW_ID_VALUE.test(current) ||
-        denied.some((secret) => current.includes(secret))
+        OPAQUE_ID_VALUE.test(current) ||
+        denied.some((secret) =>
+          current.toLowerCase().includes(secret.toLowerCase()),
+        )
       ) {
         throw new Error("xp_audit_report_privacy_violation");
       }
@@ -198,7 +342,9 @@ export function validateAggregateReportPrivacy(
         if (
           IDENTITY_KEYS.has(normalizedKey) ||
           EMAIL.test(key) ||
-          denied.some((secret) => key.includes(secret))
+          denied.some((secret) =>
+            key.toLowerCase().includes(secret.toLowerCase()),
+          )
         ) {
           throw new Error("xp_audit_report_privacy_violation");
         }
@@ -271,19 +417,76 @@ export function writeAggregateReport(
 ): { jsonPath: string; markdownPath: string } {
   if (!/^\d{8}T\d{6}Z$/.test(runId)) throw new Error("xp_audit_invalid_run_id");
   validateAggregateReportPrivacy(report, privateDenylist);
-  const outputDir = path.join(root, ".codex-tmp", "xp-integrity-audit", runId);
+  const auditRoot = path.join(root, ".codex-tmp", "xp-integrity-audit");
+  mkdirSync(assertAuditOutputPath(root, auditRoot), { recursive: true });
+  const rootStat = lstatSync(assertAuditOutputPath(root, auditRoot));
+  if (
+    !rootStat.isDirectory() ||
+    rootStat.isSymbolicLink() ||
+    realpathSync(assertAuditOutputPath(root, auditRoot)) !==
+      path.resolve(auditRoot)
+  ) {
+    throw new Error("xp_audit_output_root_not_real_directory");
+  }
+  const suffix = randomBytes(12).toString("hex");
+  const outputDir = path.join(auditRoot, `${runId}-${suffix}`);
+  const tempDir = path.join(auditRoot, `.${runId}-${suffix}.tmp`);
   const jsonPath = path.join(outputDir, "aggregate.json");
   const markdownPath = path.join(outputDir, "decision.ru.md");
-  mkdirSync(assertAuditOutputPath(root, outputDir), { recursive: true });
-  writeFileSync(
-    assertAuditOutputPath(root, jsonPath),
-    `${JSON.stringify(report, null, 2)}\n`,
-    "utf8",
-  );
-  writeFileSync(
-    assertAuditOutputPath(root, markdownPath),
-    renderAggregateReportMarkdown(report),
-    "utf8",
-  );
+  const tempJsonPath = path.join(tempDir, "aggregate.json");
+  const tempMarkdownPath = path.join(tempDir, "decision.ru.md");
+  let tempCreated = false;
+  try {
+    mkdirSync(assertAuditOutputPath(root, tempDir));
+    tempCreated = true;
+    const tempStat = lstatSync(assertAuditOutputPath(root, tempDir));
+    if (
+      !tempStat.isDirectory() ||
+      tempStat.isSymbolicLink() ||
+      realpathSync(assertAuditOutputPath(root, tempDir)) !==
+        path.resolve(tempDir)
+    ) {
+      throw new Error("xp_audit_temp_not_real_directory");
+    }
+    writeFileSync(
+      assertAuditOutputPath(root, tempJsonPath),
+      `${JSON.stringify(report, null, 2)}\n`,
+      { encoding: "utf8", flag: "wx", flush: true },
+    );
+    writeFileSync(
+      assertAuditOutputPath(root, tempMarkdownPath),
+      renderAggregateReportMarkdown(report),
+      { encoding: "utf8", flag: "wx", flush: true },
+    );
+    let finalExists = true;
+    try {
+      lstatSync(assertAuditOutputPath(root, outputDir));
+    } catch (error) {
+      const code =
+        error !== null && typeof error === "object" && "code" in error
+          ? error.code
+          : null;
+      if (code === "ENOENT") finalExists = false;
+      else throw error;
+    }
+    if (finalExists) throw new Error("xp_audit_output_collision");
+    renameSync(
+      assertAuditOutputPath(root, tempDir),
+      assertAuditOutputPath(root, outputDir),
+    );
+    tempCreated = false;
+  } catch (error) {
+    if (tempCreated) {
+      try {
+        rmSync(assertAuditOutputPath(root, tempDir), {
+          recursive: true,
+          force: true,
+        });
+      } catch {
+        // Preserve the publishing failure after best-effort temp cleanup.
+      }
+    }
+    throw error;
+  }
   return { jsonPath, markdownPath };
 }

@@ -43,7 +43,14 @@ const FILESYSTEM_WRITE_NAMES = new Set([
   "writeFile",
   "writeFileSync",
 ]);
-const APPROVED_REPORT_WRITES = new Set(["mkdirSync", "writeFileSync"]);
+const APPROVED_REPORT_WRITES = new Set([
+  "lstatSync",
+  "mkdirSync",
+  "realpathSync",
+  "renameSync",
+  "rmSync",
+  "writeFileSync",
+]);
 
 function expectCliImplementation(): void {
   expect(existsSync(CLI_PATH)).toBe(true);
@@ -316,9 +323,11 @@ function assertHelperReferenceViolations(
         wrapperCall !== null &&
         writeCall !== undefined &&
         ts.isCallExpression(writeCall) &&
-        writeCall.arguments[0] === wrapperCall &&
         ts.isIdentifier(writeCall.expression) &&
-        importedWriteCapabilities.has(writeCall.expression.text);
+        importedWriteCapabilities.has(writeCall.expression.text) &&
+        (writeCall.arguments[0] === wrapperCall ||
+          (writeCall.expression.text === "renameSync" &&
+            writeCall.arguments[1] === wrapperCall));
       if (!isExactDeclaration && !isDirectWriteDestination) {
         violations.push(
           `escaped_assertAuditOutputPath:${lineOf(source, node)}`,
@@ -514,7 +523,10 @@ function reportCapabilityViolations(source: ts.SourceFile): string[] {
       !importedWriteCapabilities.has(name)
     ) {
       violations.push(`unapproved_write_call:${name}:${lineOf(source, call)}`);
-    } else if (!isDirectAssertedDestination(call.arguments[0])) {
+    } else if (
+      !isDirectAssertedDestination(call.arguments[0]) ||
+      (name === "renameSync" && !isDirectAssertedDestination(call.arguments[1]))
+    ) {
       violations.push(
         `unasserted_write_destination:${name}:${lineOf(source, call)}`,
       );

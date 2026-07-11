@@ -15,10 +15,12 @@ jest.mock("../scripts/xp_integrity/catalog_history", () => {
 import {
   parseCliArgs,
   buildPrerequisiteEvidence,
+  isExpectedControlLevel,
   runProductionAudit,
 } from "../scripts/audit_production_xp_integrity";
 import type { XpAuditReader } from "../scripts/xp_integrity/firestore_reader";
 import type { RawUser } from "../scripts/xp_integrity/types";
+import { totalXPForLevel } from "../functions/src/xp_levels";
 
 const user = (uid: string, hidden = false): RawUser => ({
   uid,
@@ -411,6 +413,11 @@ describe("production XP integrity CLI", () => {
     );
   });
 
+  test("calibration uses the trusted level formula for the accepted 7..9 neighborhood", () => {
+    expect(isExpectedControlLevel(totalXPForLevel(2))).toBe(false);
+    expect(isExpectedControlLevel(totalXPForLevel(8))).toBe(true);
+  });
+
   test("builds only authoritative lifetime and weekly prerequisite evidence", () => {
     const rewards = new Map([
       [
@@ -484,5 +491,43 @@ describe("production XP integrity CLI", () => {
       }),
       expect.objectContaining({ eventId: "counter", state: "missing" }),
     ]);
+  });
+
+  test("marks malformed and unmapped achievement events as missing prerequisite evidence", () => {
+    const evidence = buildPrerequisiteEvidence(
+      [
+        {
+          ...event,
+          eventId: "missing-id",
+          type: "achievement_reward",
+          payload: {},
+        },
+        {
+          ...event,
+          eventId: "unmapped",
+          type: "achievement_reward",
+          payload: { achievementId: "not_in_catalog" },
+        },
+      ],
+      [completeCatalog],
+    );
+    expect(evidence).toHaveLength(2);
+    expect(evidence.map((item) => item.state)).toEqual(["missing", "missing"]);
+  });
+
+  test("keeps the global Jest contract and exposes a dedicated worktree-safe audit command", () => {
+    const packageJson = jest.requireActual("../package.json") as {
+      scripts: Record<string, string>;
+      jest: { testMatch: string[] };
+    };
+    expect(packageJson.jest.testMatch).toEqual([
+      "<rootDir>/tests/**/*.test.ts",
+    ]);
+    expect(packageJson.scripts["test:xp-integrity"]).toContain(
+      "jest.xp-integrity.config.cjs",
+    );
+    expect(() =>
+      require.resolve("../jest.xp-integrity.config.cjs"),
+    ).not.toThrow();
   });
 });

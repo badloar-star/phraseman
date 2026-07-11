@@ -19068,20 +19068,20 @@
         "value": "home-league-chat-unread-badge"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-league-chat-unread-badge|borderWidth:1.5|context:bd090e407a6b|occurrence:1",
-      "lastSeenLine": 3445,
+      "lastSeenLine": 3443,
       "excerpt": "borderWidth: 1.5,",
-      "category": "MIGRATE",
+      "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border separates unread badge from its host control",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_ART",
+          "reason": "Border separates unread badge from its host control"
         }
       ]
     },
@@ -19094,20 +19094,20 @@
         "value": "home-league-chat-unread-badge"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-league-chat-unread-badge|borderWidth:1.5|context:bd090e407a6b|occurrence:2",
-      "lastSeenLine": 3483,
+      "lastSeenLine": 3481,
       "excerpt": "borderWidth: 1.5,",
-      "category": "MIGRATE",
+      "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border separates unread badge from its host control",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_ART",
+          "reason": "Border separates unread badge from its host control"
         }
       ]
     },
@@ -19146,7 +19146,7 @@
         "value": "home-league-open"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-league-open|borderWidth:isGoldTheme ? 1 : 0.5|context:0ba6b4fab5d1|occurrence:1",
-      "lastSeenLine": 3524,
+      "lastSeenLine": 3522,
       "excerpt": "<LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, padding: 14, overflow: 'hidden', ...({}) }}>",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
@@ -19204,14 +19204,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19252,18 +19257,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:0c4e6091f6e5|occurrence:1",
       "lastSeenLine": 790,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "raised",
-      "reason": "Ordinary raised container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates active streak freeze state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary raised container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates active streak freeze state"
         }
       ]
     },
@@ -19330,18 +19335,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0))|context:cb1e92a7c942|occurrence:1",
       "lastSeenLine": 2816,
       "excerpt": "borderWidth: marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates weekly marker state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates weekly marker state"
         }
       ]
     },
@@ -19356,18 +19361,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:482404b21348|occurrence:1",
       "lastSeenLine": 2849,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates streak risk state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates streak risk state"
         }
       ]
     },
@@ -19412,14 +19417,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19438,14 +19448,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19460,18 +19475,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:a25d8eb4f6c2|occurrence:1",
       "lastSeenLine": 3220,
       "excerpt": "borderWidth: 1,",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates progress completion state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates progress completion state"
         }
       ]
     },
@@ -19516,14 +19531,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19562,7 +19582,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:0.5|context:0a8b1aff95b0|occurrence:1",
-      "lastSeenLine": 3542,
+      "lastSeenLine": 3540,
       "excerpt": "<View style={{ width: homeTodayIconSize, height: homeTodayIconSize, borderRadius: isCompassTheme ? compassHomeRadius : Math.round(homeTodayIconSize / 2), backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
@@ -19588,7 +19608,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:0.5|context:db1736833775|occurrence:1",
-      "lastSeenLine": 3567,
+      "lastSeenLine": 3565,
       "excerpt": "<View style={{ height: 10, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0.5, borderColor: leagueBonusPalette.trackBorder }}>",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
@@ -19614,7 +19634,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderTopWidth:HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5|context:54984468b6b1|occurrence:1",
-      "lastSeenLine": 3597,
+      "lastSeenLine": 3595,
       "excerpt": "<View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -19646,14 +19666,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19666,7 +19691,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:e4f024ad975a|occurrence:1",
-      "lastSeenLine": 3846,
+      "lastSeenLine": 3844,
       "excerpt": "<TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole=\"button\" accessibilityLabel=\"Close\" style={{ width: 44, height: 44, borderRadius: isCompassTheme ? compassHomeRadius : 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : isCompassTheme ? COMPASS_RICH.wash : t.bgSurface2, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? compassHairline : t.border }}>",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "KEEP_STATE",
@@ -19692,7 +19717,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:ff3a1889832d|occurrence:1",
-      "lastSeenLine": 3851,
+      "lastSeenLine": 3849,
       "excerpt": "<View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>",
       "category": "REVIEW_SPECIAL",
       "suggestedCategory": "MIGRATE",
@@ -19718,7 +19743,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:b2364036e693|occurrence:1",
-      "lastSeenLine": 3860,
+      "lastSeenLine": 3858,
       "excerpt": "return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole=\"button\" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STATE",
@@ -19744,20 +19769,20 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:3d90bfb8382b|occurrence:1",
-      "lastSeenLine": 3861,
+      "lastSeenLine": 3859,
       "excerpt": "<View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20', borderWidth: 1, borderColor: titleColor + '55' }}>",
-      "category": "MIGRATE",
+      "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border belongs to the title emblem artwork",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_ART",
+          "reason": "Border belongs to the title emblem artwork"
         }
       ]
     },
@@ -19772,18 +19797,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:8eb76755ca06|occurrence:1",
       "lastSeenLine": 2085,
       "excerpt": "<View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusAccentSoft, borderWidth: 1, borderColor: loginBonusBorder }}>",
-      "category": "MIGRATE",
+      "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
-      "tone": "raised",
-      "reason": "Ordinary raised container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border belongs to the login bonus icon composition",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary raised container uses a decorative closed border"
+          "category": "KEEP_ART",
+          "reason": "Border belongs to the login bonus icon composition"
         }
       ]
     },
@@ -19798,18 +19823,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:a586e65e3476|occurrence:1",
       "lastSeenLine": 2122,
       "excerpt": "{showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "raised",
-      "reason": "Ordinary raised container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Orange border communicates comeback bonus state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary raised container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Orange border communicates comeback bonus state"
         }
       ]
     },
@@ -19824,18 +19849,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:87265c565e63|occurrence:1",
       "lastSeenLine": 2148,
       "excerpt": "{showRepairCard && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, borderWidth: 1, borderColor: '#FF9500' + '99' }}>",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Orange border communicates streak repair state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Orange border communicates streak repair state"
         }
       ]
     },
@@ -19854,14 +19879,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19902,18 +19932,18 @@
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:marker === 'freeze' ? 1 : todayRingWidth(i|context:07429ca5c135|occurrence:1",
       "lastSeenLine": 2485,
       "excerpt": "borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),",
-      "category": "MIGRATE",
+      "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
-      "tone": "subtle",
-      "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
+      "tone": null,
+      "reason": "Border communicates weekly marker state",
+      "status": "kept",
       "scanState": "present",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
-          "category": "MIGRATE",
-          "reason": "Ordinary subtle container uses a decorative closed border"
+          "category": "KEEP_STATE",
+          "reason": "Border communicates weekly marker state"
         }
       ]
     },
@@ -19932,14 +19962,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19958,14 +19993,19 @@
       "suggestedCategory": "MIGRATE",
       "tone": "subtle",
       "reason": "Ordinary subtle container uses a decorative closed border",
-      "status": "pending",
-      "scanState": "present",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "MIGRATE",
           "reason": "Ordinary subtle container uses a decorative closed border"
+        },
+        {
+          "action": "migrated",
+          "source": "tests/main_tabs_borderless_surfaces_contract.test.ts",
+          "reason": "Closed decorative border replaced by tonal surface"
         }
       ]
     },
@@ -19978,7 +20018,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderLeftWidth:7|context:2f8a37e2e627|occurrence:1",
-      "lastSeenLine": 3749,
+      "lastSeenLine": 3747,
       "excerpt": "<View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20004,7 +20044,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderRightWidth:7|context:2f8a37e2e627|occurrence:1",
-      "lastSeenLine": 3749,
+      "lastSeenLine": 3747,
       "excerpt": "<View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20030,7 +20070,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderBottomWidth:7|context:2f8a37e2e627|occurrence:1",
-      "lastSeenLine": 3749,
+      "lastSeenLine": 3747,
       "excerpt": "<View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20056,7 +20096,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderLeftWidth:6|context:a1582bd829e2|occurrence:1",
-      "lastSeenLine": 3750,
+      "lastSeenLine": 3748,
       "excerpt": "<View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20082,7 +20122,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderRightWidth:6|context:a1582bd829e2|occurrence:1",
-      "lastSeenLine": 3750,
+      "lastSeenLine": 3748,
       "excerpt": "<View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -20108,7 +20148,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderBottomWidth:6|context:a1582bd829e2|occurrence:1",
-      "lastSeenLine": 3750,
+      "lastSeenLine": 3748,
       "excerpt": "<View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",

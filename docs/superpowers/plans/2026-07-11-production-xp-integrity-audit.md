@@ -121,6 +121,10 @@ export type AchievementPrerequisite =
   | { kind: 'unsupported'; ruleId: string };
 export type CatalogReward = { achievementId: string; xp: number; prerequisite: AchievementPrerequisite };
 export type CatalogSnapshot = { commit: string; appVersion: string | null; effective: EffectiveWindow; rewards: ReadonlyMap<string, CatalogReward>; levelFormula: LevelFormulaSnapshot; complete: boolean };
+export type CatalogMatch =
+  | { kind: 'exact'; snapshot: CatalogSnapshot; basis: 'verified_server_window' }
+  | { kind: 'consensus'; candidates: readonly CatalogSnapshot[] }
+  | { kind: 'unmapped'; reason: 'gap' | 'overlap' | 'provenance_conflict' | 'missing_server_time' | 'unknown_version' };
 export type PrerequisiteEvidence =
   | { eventId: string; prerequisite: AchievementPrerequisite; state: 'exact'; valueBefore: number; source: 'server_result' | 'immutable_event_chain' }
   | { eventId: string; prerequisite: AchievementPrerequisite; state: 'missing' | 'ambiguous' };
@@ -166,11 +170,13 @@ Expected: test fails because reader/CLI do not exist; the commit intentionally r
 
 - [ ] **Step 1: Write catalog tests RED**
 
-Test literal `id`/`xp` extraction, lifetime/weekly prerequisites, an explicit non-XP counter rule, unsupported rules, unknown IDs, duplicate app versions, gaps, overlaps, formula changes, and missing release provenance.
+Test literal `id`/`xp` extraction, lifetime/weekly prerequisites, an explicit non-XP counter rule, unsupported rules, unknown IDs, duplicate app versions, gaps, overlaps, formula changes, and missing release provenance. Add forged client time, forged app version, offline-delayed submission, client/server window disagreement, missing server time, and identical-rule consensus across multiple candidates.
 
 ```ts
-expect(matchCatalogForEvent(catalogs, event)).toBeNull();
-expect(explainCatalogMiss(catalogs, event)).toBe('missing_release_provenance');
+expect(matchCatalogForEvent(catalogs, event, 'xp_5000')).toEqual({
+  kind: 'unmapped',
+  reason: 'provenance_conflict',
+});
 ```
 
 - [ ] **Step 2: Run RED**
@@ -186,11 +192,22 @@ Export:
 ```ts
 export function parseAchievementCatalog(source: string, fileName: string): Map<string, CatalogReward>;
 export function loadVerifiedCatalogHistory(repoRoot: string): CatalogSnapshot[];
-export function matchCatalogForEvent(catalogs: readonly CatalogSnapshot[], event: Pick<NormalizedAuditEvent, 'appVersion' | 'serverCreatedAtMs' | 'clientCreatedAtMs'>): CatalogSnapshot | null;
-export function explainCatalogMiss(catalogs: readonly CatalogSnapshot[], event: Pick<NormalizedAuditEvent, 'appVersion' | 'serverCreatedAtMs' | 'clientCreatedAtMs'>): 'gap' | 'overlap' | 'missing_release_provenance' | 'unknown_version';
+export function matchCatalogForEvent(
+  catalogs: readonly CatalogSnapshot[],
+  event: Pick<NormalizedAuditEvent, 'appVersion' | 'serverCreatedAtMs' | 'clientCreatedAtMs'>,
+  achievementId: string,
+): CatalogMatch;
 ```
 
 Use the TypeScript compiler API and never execute historical app code. Accept provenance only from release tags `vX.Y.Z`/`release/vX.Y.Z`, tracked build manifests with version+SHA+activation time, or commits explicitly listed in a tracked verified-release manifest. Checkpoint tags, commit time, and `app.json` version alone are insufficient.
+
+Catalog matching is fail-closed:
+
+1. `serverCreatedAtMs` is the authoritative time boundary.
+2. Client-authored `appVersion` and `clientCreatedAtMs` may only narrow candidates already consistent with the verified server-time window; they cannot override it.
+3. Missing server time, forged/stale disagreement, duplicated version ambiguity, offline-delay ambiguity, gaps, and overlaps return `unmapped`.
+4. Multiple plausible snapshots may return `consensus` only when the claimed achievement has identical reward, prerequisite semantics, and all relevant level thresholds in every candidate. Never select an arbitrary snapshot.
+5. Exact subtraction may use `exact` or rule-identical `consensus`; any `unmapped` result makes catalog evidence incomplete.
 
 Load client and server level formulas from the same verified commit, calculate every threshold from level 1 through `maxLevel`, and store the threshold array. Mark the snapshot incomplete if client/server arrays or maximum levels differ. Compare formulas by thresholds, not labels. Missing provenance leaves events unmapped; the audit may complete infrastructurally but must exit `2` for incomplete evidence and make no correction claim.
 

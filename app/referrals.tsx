@@ -31,6 +31,13 @@ import { isReferralCloudEnabled } from './referral_cloud';
 import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
 import { safeRouterBack } from './navigation_back';
 import { glassFill } from '../components/GlassSurface';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import {
+  beginReferralInvitesRequest, commitReferralInvites, hydrateReferralInvitesIfEmpty,
+  invalidateReferralInvites, isReferralInvitesRequestCurrent, parsePersistedReferralInvites,
+  readReferralInvites, serializeReferralInvites,
+} from './referrals_cache';
 
 function makeL(lang: Lang) {
   return (
@@ -58,7 +65,7 @@ function inviteDisplayName(invite: ReferralInvite, fallbackPrefix: string): stri
 }
 
 /** Кэш последнего успешного списка приглашений — экран рисуется мгновенно, без скелетонов. */
-const REFERRALS_INVITES_CACHE_KEY = 'referrals_invites_cache_v1';
+const REFERRALS_INVITES_CACHE_KEY = 'referrals_invites_cache_v2';
 
 const UNTIL_LOCALE: Record<Lang, string> = {
   ru: 'ru-RU', uk: 'uk-UA', es: 'es-ES', 'pt-BR': 'pt-BR',
@@ -86,8 +93,14 @@ export default function ReferralsScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
-  const [invites, setInvites] = useState<ReferralInvite[]>([]);
-  const [loading, setLoading] = useState(true);
+  const renderToken = captureAccountGeneration();
+  const renderAccountScope = accountScopeKey(renderToken);
+  const initialWarm = readReferralInvites(renderToken);
+  const [loadedAccountScope, setLoadedAccountScope] = useState<string | null>(() => renderAccountScope);
+  const [inviteState, setInvites] = useState<ReferralInvite[]>(() => initialWarm?.value ?? []);
+  const invites = loadedAccountScope === renderAccountScope ? inviteState : [];
+  const [loading, setLoading] = useState(() => initialWarm === null);
+  const visibleLoading = loading || loadedAccountScope !== renderAccountScope;
   const [refreshing, setRefreshing] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -100,23 +113,48 @@ export default function ReferralsScreen() {
   const [activated, setActivated] = useState<{ grantedDays: number; friendsCount: number; untilLabel?: string } | null>(null);
 
   const load = useCallback(async (options: { force?: boolean } = {}) => {
-    const state = await getClaimableReferralState({ force: options.force });
+    const token = captureAccountGeneration();
+    const requestScope = accountScopeKey(token);
+    if (requestScope !== renderAccountScope) return;
+    const warm = readReferralInvites(token);
+    const request = beginReferralInvitesRequest(token);
+    if (warm) {
+      setLoadedAccountScope(requestScope);
+      setInvites(warm.value);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+    if (!options.force && warm?.isFresh) return;
+    try {
+      const state = await getClaimableReferralState({ force: options.force });
     // ok:false = сеть/сервер не ответили — не затираем показанный кэш пустотой.
-    if (!state.ok) return;
-    setInvites(state.invites);
-    void AsyncStorage.setItem(REFERRALS_INVITES_CACHE_KEY, JSON.stringify(state.invites)).catch(() => {});
-  }, []);
+      if (!state.ok || !commitReferralInvites(request, state.invites)) return;
+      setLoadedAccountScope(requestScope);
+      setInvites(state.invites);
+      const persisted = serializeReferralInvites(token, state.invites);
+      if (persisted) void AsyncStorage.setItem(REFERRALS_INVITES_CACHE_KEY, persisted).catch(() => {});
+    } finally {
+      if (isReferralInvitesRequestCurrent(request)) setLoading(false);
+    }
+  }, [renderAccountScope]);
 
   useEffect(() => {
     let alive = true;
+    const persistenceToken = captureAccountGeneration();
     // Мгновенная гидрация из кэша: экран не «грузится каждый раз», сервер обновляет фоном.
     void AsyncStorage.getItem(REFERRALS_INVITES_CACHE_KEY)
       .then(raw => {
         if (!alive || !raw) return;
         try {
-          const cached = JSON.parse(raw) as ReferralInvite[];
-          if (Array.isArray(cached)) {
-            setInvites(prev => (prev.length > 0 ? prev : cached));
+          const token = persistenceToken;
+          const cached = parsePersistedReferralInvites(raw, token);
+          if (cached && isCurrentAccountGeneration(token)) {
+            hydrateReferralInvitesIfEmpty(token, cached.value, cached.updatedAt);
+            const current = readReferralInvites(token);
+            if (!current) return;
+            setLoadedAccountScope(accountScopeKey(token));
+            setInvites(current.value);
             setLoading(false);
           }
         } catch { /* битый кэш — просто ждём сеть */ }
@@ -128,7 +166,7 @@ export default function ReferralsScreen() {
         if (alive) setLoading(false);
       });
     return () => { alive = false; };
-  }, [load]);
+  }, [load, renderAccountScope]);
 
   const refresh = useCallback(async () => {
     setRefreshing(true);
@@ -224,10 +262,15 @@ export default function ReferralsScreen() {
 
   const claim = useCallback(async () => {
     if (claiming) return;
+    const claimToken = captureAccountGeneration();
     hapticTap();
     setClaiming(true);
     setMessage(null);
     const result = await claimReferralVipDays();
+    if (!isCurrentAccountGeneration(claimToken)) {
+      setClaiming(false);
+      return;
+    }
     if (result.ok) {
       // Праздничный модал вместо сухой строки (раньше показывался только в QA-лабе).
       setActivated({
@@ -235,6 +278,7 @@ export default function ReferralsScreen() {
         friendsCount: result.friends,
         untilLabel: formatUntilLabel(result.vipUntilMs, lang as Lang),
       });
+      invalidateReferralInvites(claimToken);
       await load({ force: true }).catch(() => {});
     } else if (result.reason === 'nothing') {
       showNotReady();
@@ -314,7 +358,7 @@ export default function ReferralsScreen() {
             opacity: rewarded ? 0.62 : 1,
           }}
         >
-          {claiming && claimable ? <ActivityIndicator color={t.correctText} /> : <Ionicons name="diamond-outline" size={18} color={claimable && !rewarded ? t.correctText : t.textMuted} />}
+          <Ionicons name="diamond-outline" size={18} color={claimable && !rewarded ? t.correctText : t.textMuted} />
           <Text style={{ color: claimable && !rewarded ? t.correctText : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '900' }}>
             {buttonText}
           </Text>
@@ -447,7 +491,13 @@ export default function ReferralsScreen() {
             </View>
           )}
 
-          {loading ? (
+          {claiming ? (
+            <View testID="referrals-claim-pending" style={{ minHeight: 48, alignItems: 'center', justifyContent: 'center' }}>
+              <ActivityIndicator color={t.accent} />
+            </View>
+          ) : null}
+
+          {visibleLoading ? (
             <View style={{ gap: 12 }}>
               {Array.from({ length: 3 }).map((_, i) => (
                 <SkeletonBlock key={`referral-skeleton-${i}`} width="100%" height={76} borderRadius={18} />

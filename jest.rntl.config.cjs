@@ -2,7 +2,10 @@
 
 module.exports = {
   preset: 'react-native',
-  testMatch: ['<rootDir>/tests/text_integrity_primitives.test.tsx'],
+  testMatch: [
+    '<rootDir>/tests/text_integrity_primitives.test.tsx',
+    '<rootDir>/tests/daily_tasks_text_integrity_render.test.tsx',
+  ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [
     '<rootDir>/tests/setup_jest_write_guard.js',

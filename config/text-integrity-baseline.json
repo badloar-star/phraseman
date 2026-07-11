@@ -2040,41 +2040,6 @@
       }
     },
     {
-      "file": "app/daily_tasks_screen.tsx",
-      "ownerName": "DailyTasksScreen",
-      "ownerPath": "DailyTasksScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "21e3ba63291af1129b845493801e2f919a13cc88eb3e554f6657ebd5ce230552",
-      "count": 1,
-      "lineHints": [
-        2545
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/paywall/PaywallPriceUrgency.tsx",
       "ownerName": "PaywallPriceUrgency",
       "ownerPath": "PaywallPriceUrgency",
@@ -3376,42 +3341,6 @@
       }
     },
     {
-      "file": "app/daily_tasks_screen.tsx",
-      "ownerName": "DailyTasksScreen",
-      "ownerPath": "DailyTasksScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "View",
-        "View",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "39302353fec967ba7c2fbd28546c13f5e42e6a38cb6c35a24cbb0bd0565e4016",
-      "count": 1,
-      "lineHints": [
-        2592
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/HomeTheoAdvisorCard.tsx",
       "ownerName": "HomeTheoAdvisorCard",
       "ownerPath": "HomeTheoAdvisorCard",
@@ -4678,42 +4607,6 @@
       "count": 1,
       "lineHints": [
         90
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/daily_tasks_screen.tsx",
-      "ownerName": "DailyTasksScreen",
-      "ownerPath": "DailyTasksScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "Animated.View",
-        "TouchableOpacity",
-        "Animated.View",
-        "Animated.View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "expandedDescriptionLines",
-      "testID": null,
-      "fingerprint": "54d9c1480ccbcc7fd057d0073b3a53e726beb63b5aea753b7cc99803c4a40dc7",
-      "count": 1,
-      "lineHints": [
-        2804
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6626,43 +6519,6 @@
       "count": 1,
       "lineHints": [
         1212
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/daily_tasks_screen.tsx",
-      "ownerName": "DailyTasksScreen",
-      "ownerPath": "DailyTasksScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "Animated.View",
-        "TouchableOpacity",
-        "Animated.View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "764b2e8f39b92f4a8d5864428702c6de7473f338cf6824b988a2adab55e6f1a5",
-      "count": 1,
-      "lineHints": [
-        2753
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10539,44 +10395,6 @@
       }
     },
     {
-      "file": "app/daily_tasks_screen.tsx",
-      "ownerName": "DailyTasksScreen",
-      "ownerPath": "DailyTasksScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "Animated.View",
-        "TouchableOpacity",
-        "Animated.View",
-        "View",
-        "View",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "c20ff60c506be9b5ffe1ebc1ca9671ec0efef17b3abd7b3da92f9c98e150c702",
-      "count": 1,
-      "lineHints": [
-        2760
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/personal_plan_dev.tsx",
       "ownerName": "PersonalPlanDevScreen",
       "ownerPath": "PersonalPlanDevScreen",
@@ -13202,41 +13020,6 @@
       "count": 1,
       "lineHints": [
         2663
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/daily_tasks_screen.tsx",
-      "ownerName": "DailyTasksScreen",
-      "ownerPath": "DailyTasksScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "fd167b1e0566a9865cad4ed11718f8ae9f7139e03d4128feb26dd6bcab6451f6",
-      "count": 1,
-      "lineHints": [
-        2557
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

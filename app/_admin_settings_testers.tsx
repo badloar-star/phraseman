@@ -196,7 +196,6 @@ import SystemModalsExtraSection from '../components/admin_panel/sections/SystemM
 import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
-import CompassSection from '../components/admin_panel/sections/CompassSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -4119,8 +4118,6 @@ export default function SettingsTestersFunctions() {
             onToggle={toggleSection}
             onOpenReviewBench={() => { void runAdminReviewTestBench(); }}
           />
-          <CompassSection open={openSection === 'compass'} onToggle={toggleSection} />
-
         </ScrollView>
         </AdminNavContext.Provider>
       </SafeAreaView>

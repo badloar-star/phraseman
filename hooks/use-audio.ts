@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
-import { setAudioModeAsync } from 'expo-audio';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
 import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
+import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { hasPhraseAudio, playPhraseByText, stopPhraseAudio } from './phrase_audio_player';
 
 export function preloadAudio() {}
@@ -13,6 +13,8 @@ export type SpeakOpts = {
   pitch?: number;
   language?: string;
   voice?: string;
+  /** Optional pronunciation-only text; the visible lesson text stays unchanged. */
+  speechText?: string;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -102,20 +104,23 @@ export function useAudio() {
     const normalized = text?.trim();
     if (!normalized) return;
 
+    const spokenText = opts?.speechText?.trim() || normalized;
+
     const now = Date.now();
-    if (normalized === lastTextRef.current && now - lastSpeakAtRef.current < 220) return;
+    const dedupeKey = `${normalized}\u0000${spokenText}`;
+    if (dedupeKey === lastTextRef.current && now - lastSpeakAtRef.current < 220) return;
 
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
     safeSpeechStop();
     stopPhraseAudio();
 
-    lastTextRef.current = normalized;
+    lastTextRef.current = dedupeKey;
     lastSpeakAtRef.current = now;
 
     const settings = getUserSettingsSnapshot();
     const safeRate = normalizeSpeechRate(rate ?? settings.speechRate);
-    const language = opts?.language?.trim() || inferExpoSpeechLanguage(normalized);
+    const language = opts?.language?.trim() || inferExpoSpeechLanguage(spokenText);
     const hasVoiceOverride = !!opts && Object.prototype.hasOwnProperty.call(opts, 'voice');
     const requestedVoice = hasVoiceOverride
       ? (opts.voice ?? '').trim()
@@ -170,8 +175,8 @@ export function useAudio() {
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = setTimeout(() => {
         pendingTimerRef.current = null;
-        void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined).finally(() => {
-          if (lastTextRef.current !== normalized) return;
+        void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined).finally(() => {
+          if (lastTextRef.current !== dedupeKey) return;
           const speechOptions: SpeechOptions = {
             language,
             ...(requestedVoice ? { voice: requestedVoice } : {}),
@@ -182,15 +187,15 @@ export function useAudio() {
             onDone: opts?.onDone,
             onStopped: opts?.onStopped,
             onError: requestedVoice
-              ? (e: Error) => retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError)
+              ? (e: Error) => retrySpeechWithoutVoice(spokenText, speechOptions, opts?.onError)
               : opts?.onError,
             ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
           };
           try {
-            Speech.speak(normalized, speechOptions);
+            Speech.speak(spokenText, speechOptions);
           } catch (e) {
             if (requestedVoice) {
-              retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError);
+              retrySpeechWithoutVoice(spokenText, speechOptions, opts?.onError);
             } else {
               opts?.onError?.(e instanceof Error ? e : new Error(String(e)));
             }

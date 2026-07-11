@@ -6,7 +6,6 @@ import {
   compassEconomyOn,
   compassRetentionOn,
   compassTopicMapOn,
-  compassAiVoiceOn,
 } from '../app/compass/compass_flags';
 
 const ALL_GATES = [
@@ -16,7 +15,6 @@ const ALL_GATES = [
   compassEconomyOn,
   compassRetentionOn,
   compassTopicMapOn,
-  compassAiVoiceOn,
 ];
 
 describe('compass_flags — isolation / kill-switch', () => {
@@ -34,7 +32,6 @@ describe('compass_flags — isolation / kill-switch', () => {
     applyRemoteConfigSnapshot({
       bools: {
         compass_enabled: false,
-        compass_ai_voice_enabled: true,
         compass_deep_dive_enabled: true,
         compass_lesson_invite_enabled: true,
         compass_economy_enabled: true,
@@ -54,17 +51,6 @@ describe('compass_flags — isolation / kill-switch', () => {
     expect(compassDeepDiveOn()).toBe(true);
     expect(compassEconomyOn()).toBe(true);
     expect(compassRetentionOn()).toBe(true);
-    expect(compassTopicMapOn()).toBe(true);
-    expect(compassAiVoiceOn()).toBe(true);
-  });
-
-  it('точечный рычаг гасит ОДНО крыло, остальные живут', () => {
-    applyRemoteConfigSnapshot({
-      bools: { compass_enabled: true, compass_ai_voice_enabled: false },
-    });
-    expect(compassOn()).toBe(true);
-    expect(compassAiVoiceOn()).toBe(false); // голос выключен
-    expect(compassEconomyOn()).toBe(true); // остальные крылья работают
     expect(compassTopicMapOn()).toBe(true);
   });
 });

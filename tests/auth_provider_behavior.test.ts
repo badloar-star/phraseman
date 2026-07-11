@@ -43,7 +43,7 @@ jest.mock('expo-web-browser', () => ({
 }), { virtual: true });
 
 // ── Native Google sign-in: return a fake credential with an idToken. ──
-const googleSignInImpl = jest.fn<Promise<any>, any[]>(async () => ({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com' } } }));
+const googleSignInImpl = jest.fn<Promise<any>, any[]>(async () => ({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } }));
 jest.mock(
   '@react-native-google-signin/google-signin',
   () => ({
@@ -65,33 +65,49 @@ const ensureStableAuthLinkForStableIdDetailed = jest.fn(async (stableId: string)
   stableUid: stableId, // same → linked_existing / created_new branch
   source: 'server',
 }));
+const restoreFromCloud = jest.fn(async () => {});
+const restoreFromCloudDetailed = jest.fn<Promise<'restored' | 'not_found' | 'failed'>, any[]>(async () => 'restored');
+const syncToCloud = jest.fn(async () => {});
+const mergeStableAccountsViaServer = jest.fn(async () => null);
+const quiesceSyncBeforeStableIdSwap = jest.fn(async () => {});
+const quiesceCloudSyncForAccountTransition = jest.fn(async () => true);
+const enqueueCloudDeletion = jest.fn(async () => ({ ok: true as const, jobId: 'job-1', status: 'queued' as const, created: true }));
+const wipeLocalAccountData = jest.fn(async () => {});
 jest.mock('../app/cloud_sync', () => ({
+  SYNC_KEYS: ['user_total_xp', 'streak_count', 'unlocked_lessons', 'unlocked_lessons::fr', 'user_name', 'custom_flashcards_v2'],
   ensureAnonUser: jest.fn(async () => {}),
   waitForAnonAuth: jest.fn(async () => true),
-  syncToCloud: jest.fn(async () => {}),
-  restoreFromCloud: jest.fn(async () => {}),
+  syncToCloud: (...a: unknown[]) => (syncToCloud as any)(...a),
+  restoreFromCloud: (...a: unknown[]) => (restoreFromCloud as any)(...a),
+  restoreFromCloudDetailed: (...a: unknown[]) => (restoreFromCloudDetailed as any)(...a),
   forceSyncToCloud: jest.fn(async () => {}),
-  quiesceSyncBeforeStableIdSwap: jest.fn(async () => {}),
-  wipeLocalAccountData: jest.fn(async () => {}),
+  quiesceSyncBeforeStableIdSwap: (...a: unknown[]) => (quiesceSyncBeforeStableIdSwap as any)(...a),
+  quiesceCloudSyncForAccountTransition: (...a: unknown[]) => (quiesceCloudSyncForAccountTransition as any)(...a),
+  enqueueCloudDeletion: (...a: unknown[]) => (enqueueCloudDeletion as any)(...a),
+  wipeLocalAccountData: (...a: unknown[]) => (wipeLocalAccountData as any)(...a),
   deleteCloudData: jest.fn(async () => {}),
   resetAnonAuthCacheForSignOut: jest.fn(() => {}),
   ensureStableAuthLinkForStableIdDetailed: (...a: unknown[]) => (ensureStableAuthLinkForStableIdDetailed as any)(...a),
-  mergeStableAccountsViaServer: jest.fn(async () => null),
+  mergeStableAccountsViaServer: (...a: unknown[]) => (mergeStableAccountsViaServer as any)(...a),
   saveAccountSwitchEmergencyBackup: jest.fn(async () => {}),
 }));
 
+let mockStableId = 'local-stable-id';
 jest.mock('../app/stable_id', () => {
-  let id = 'local-stable-id';
   return {
-    getStableId: jest.fn(async () => id),
-    setStableId: jest.fn(async (v: string) => { id = v; }),
+    getStableId: jest.fn(async () => mockStableId),
+    setStableId: jest.fn(async (v: string) => { mockStableId = v; }),
     clearStableId: jest.fn(async () => {}),
-    peekStableId: jest.fn(() => id),
+    peekStableId: jest.fn(() => mockStableId),
   };
 });
 
 jest.mock('../app/premium_guard', () => ({ invalidatePremiumCache: jest.fn() }));
-jest.mock('../app/shards_system', () => ({ loadShardsFromCloud: jest.fn(async () => {}) }));
+const mockLoadShardsFromCloud = jest.fn(async () => {});
+jest.mock('../app/shards_system', () => ({
+  loadShardsFromCloud: () => mockLoadShardsFromCloud(),
+  forceSyncShardsToCloud: jest.fn(async () => {}),
+}));
 const logEvent = jest.fn();
 const recordError = jest.fn();
 jest.mock('../app/firebase', () => ({
@@ -99,14 +115,31 @@ jest.mock('../app/firebase', () => ({
   recordError: (...a: unknown[]) => recordError(...a),
 }));
 jest.mock('../app/app_health', () => ({ logAppError: jest.fn() }));
-jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+const emitAppEvent = jest.fn();
+jest.mock('../app/events', () => ({ emitAppEvent: (...a: unknown[]) => emitAppEvent(...a) }));
 jest.mock('../app/target_storage_keys', () => ({ unlockedLessonsKey: (t: string) => `unlocked_lessons_${t}` }));
-jest.mock('../app/account_delete_timeout', () => ({ ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS: 15000 }));
+jest.mock('../app/account_delete_timeout', () => ({
+  ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS: 15000,
+  ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS: 8000,
+  runAccountDeleteEnqueueWithDeadline: async (_warm: unknown, call: () => Promise<unknown>) => call(),
+}));
+jest.mock('../app/account_generation', () => ({
+  beginAccountGeneration: jest.fn(),
+  captureAccountGeneration: jest.fn(() => 1),
+  invalidateAccountGeneration: jest.fn(),
+  isCurrentAccountGeneration: jest.fn(() => true),
+  waitForRestoreApplicationIdleWithDeadline: jest.fn(async () => true),
+}));
 
 // @react-native-firebase/functions is required lazily (stampAnonOwnershipBeforeSignIn).
+const authStampAnonOwnership = jest.fn(async () => ({}));
 jest.mock(
   '@react-native-firebase/functions',
-  () => ({ getFunctions: jest.fn(() => ({})), httpsCallable: jest.fn(() => async () => ({})) }),
+  () => ({
+    getFunctions: jest.fn(() => ({})),
+    httpsCallable: jest.fn((_functions: unknown, name: string) =>
+      name === 'authStampAnonOwnership' ? authStampAnonOwnership : async () => ({})),
+  }),
   { virtual: true },
 );
 
@@ -129,14 +162,34 @@ const authState = authFactory.__testState as {
 beforeEach(() => {
   (globalThis as any).__DEV__ = false;
   authFactory.__resetTestState();
+  mockStableId = 'local-stable-id';
   ensureStableAuthLinkForStableIdDetailed.mockClear();
+  restoreFromCloud.mockReset();
+  restoreFromCloud.mockResolvedValue(undefined);
+  restoreFromCloudDetailed.mockReset();
+  restoreFromCloudDetailed.mockResolvedValue('restored');
+  authStampAnonOwnership.mockClear();
+  emitAppEvent.mockClear();
+  syncToCloud.mockClear();
+  mergeStableAccountsViaServer.mockClear();
+  quiesceSyncBeforeStableIdSwap.mockClear();
+  quiesceCloudSyncForAccountTransition.mockClear();
+  enqueueCloudDeletion.mockClear();
+  wipeLocalAccountData.mockClear();
+  mockLoadShardsFromCloud.mockReset();
+  mockLoadShardsFromCloud.mockResolvedValue(undefined);
+  require('@react-native-async-storage/async-storage').__reset();
   googleSignInImpl.mockClear();
-  googleSignInImpl.mockResolvedValue({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com' } } });
+  googleSignInImpl.mockResolvedValue({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } });
 });
 
-function loadAuthProvider(): typeof import('../app/auth_provider') {
+function loadAuthProvider(initialStorage?: Record<string, string>): typeof import('../app/auth_provider') {
   let mod!: typeof import('../app/auth_provider');
   jest.isolateModules(() => {
+    const storage = require('@react-native-async-storage/async-storage');
+    for (const [key, value] of Object.entries(initialStorage ?? {})) {
+      void storage.setItem(key, value);
+    }
     mod = require('../app/auth_provider');
   });
   return mod;
@@ -152,6 +205,7 @@ test('sign-in over an anonymous user tries linkWithCredential FIRST (does not de
   expect(authState.calls[0]).toBe('link');
   // Flow completed as a real sign-in result (created_new or linked_existing), not an error.
   expect(['created_new', 'linked_existing']).toContain((res as any).result);
+  expect(authStampAnonOwnership).not.toHaveBeenCalled();
 });
 
 test('falls back to signInWithCredential ONLY on a link-conflict error, and in that order', async () => {
@@ -162,7 +216,7 @@ test('falls back to signInWithCredential ONLY on a link-conflict error, and in t
     throw err;
   };
 
-  const { signInWithProvider } = loadAuthProvider();
+  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '10' });
   const res = await signInWithProvider('google');
 
   // Both were called, and link came strictly before signin.
@@ -170,6 +224,162 @@ test('falls back to signInWithCredential ONLY on a link-conflict error, and in t
   expect(authState.calls).toContain('signin');
   expect(authState.calls.indexOf('link')).toBeLessThan(authState.calls.indexOf('signin'));
   expect(['created_new', 'linked_existing']).toContain((res as any).result);
+  expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
+});
+
+test('same-stable-id sign-in resolves before non-critical cloud hydration finishes', async () => {
+  let releaseRestore!: () => void;
+  restoreFromCloudDetailed.mockImplementationOnce(() => new Promise<'restored'>((resolve) => {
+    releaseRestore = () => resolve('restored');
+  }));
+
+  const { signInWithProvider } = loadAuthProvider();
+  const signInPromise = signInWithProvider('google');
+  const observed = await Promise.race([
+    signInPromise,
+    new Promise<'blocked'>((resolve) => setTimeout(() => resolve('blocked'), 50)),
+  ]);
+
+  expect(observed).not.toBe('blocked');
+  expect(['created_new', 'linked_existing']).toContain((observed as any).result);
+  releaseRestore();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  expect(emitAppEvent).toHaveBeenCalledWith('cloud_profile_hydrated');
+});
+
+test('failed background restore never pushes local state over an existing cloud profile', async () => {
+  restoreFromCloudDetailed.mockResolvedValueOnce('failed');
+
+  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '10' });
+  const result = await signInWithProvider('google');
+  await new Promise<void>((resolve) => setImmediate(resolve));
+
+  expect(['created_new', 'linked_existing']).toContain(result.result);
+  expect(syncToCloud).not.toHaveBeenCalled();
+  expect(emitAppEvent).not.toHaveBeenCalledWith('cloud_profile_hydrated');
+});
+
+test('missing cloud document is distinct from restore failure and may safely upload local account data', async () => {
+  restoreFromCloudDetailed.mockResolvedValueOnce('not_found');
+
+  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '10' });
+  const result = await signInWithProvider('google');
+  await new Promise<void>((resolve) => setImmediate(resolve));
+
+  expect(['created_new', 'linked_existing']).toContain(result.result);
+  expect(syncToCloud).toHaveBeenCalledTimes(1);
+  expect(emitAppEvent).not.toHaveBeenCalledWith('cloud_profile_hydrated');
+});
+
+test('processed cloud document still permits upload when newer local progress needed no restore writes', async () => {
+  restoreFromCloudDetailed.mockResolvedValueOnce('restored');
+
+  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '25' });
+  const result = await signInWithProvider('google');
+  await new Promise<void>((resolve) => setImmediate(resolve));
+
+  expect(['created_new', 'linked_existing']).toContain(result.result);
+  expect(syncToCloud).toHaveBeenCalledTimes(1);
+  expect(emitAppEvent).toHaveBeenCalledWith('cloud_profile_hydrated');
+});
+
+test('concurrent taps share one provider sign-in instead of starting overlapping identity mutations', async () => {
+  let releaseGoogle!: (value: any) => void;
+  googleSignInImpl.mockImplementationOnce(() => new Promise((resolve) => { releaseGoogle = resolve; }));
+
+  const { signInWithProvider } = loadAuthProvider();
+  const first = signInWithProvider('google');
+  const second = signInWithProvider('google');
+  await Promise.resolve();
+
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  releaseGoogle({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } });
+  const [firstResult, secondResult] = await Promise.all([first, second]);
+  expect(secondResult).toEqual(firstResult);
+});
+
+test('a different provider cannot attach to an in-flight provider result', async () => {
+  let releaseGoogle!: (value: any) => void;
+  googleSignInImpl.mockImplementationOnce(() => new Promise((resolve) => { releaseGoogle = resolve; }));
+
+  const { signInWithProvider } = loadAuthProvider();
+  const google = signInWithProvider('google');
+  await Promise.resolve();
+  const apple = await signInWithProvider('apple');
+
+  expect(apple).toEqual({ result: 'error', error: 'auth_signin_in_progress_google' });
+  releaseGoogle({ type: 'cancelled' });
+  await google;
+});
+
+test('an over-deadline provider operation reports still-running instead of wedging every retry', async () => {
+  let releaseGoogle!: (value: any) => void;
+  googleSignInImpl.mockImplementationOnce(() => new Promise((resolve) => { releaseGoogle = resolve; }));
+  const now = jest.spyOn(Date, 'now').mockReturnValueOnce(1_000).mockReturnValue(46_001);
+
+  const { signInWithProvider } = loadAuthProvider();
+  const first = signInWithProvider('google');
+  await Promise.resolve();
+  const retry = await signInWithProvider('google');
+
+  expect(retry).toEqual({ result: 'error', error: 'auth_signin_still_running_google' });
+  releaseGoogle({ type: 'cancelled' });
+  await first;
+  now.mockRestore();
+});
+
+test('provider display name is forwarded to the stable-link server metadata', async () => {
+  const { signInWithProvider } = loadAuthProvider();
+  await signInWithProvider('google');
+
+  expect(ensureStableAuthLinkForStableIdDetailed).toHaveBeenCalledWith(
+    'local-stable-id',
+    expect.objectContaining({ email: 'u@example.com', displayName: 'Test User' }),
+  );
+});
+
+test('returning account on an empty device skips pointless local upload and account merge', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    stableUid: 'remote-stable-id',
+    source: 'server',
+  });
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result.result).toBe('merged_devices');
+  expect(syncToCloud).not.toHaveBeenCalled();
+  expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
+  expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+});
+
+test('account data without XP is still preserved before a remote account swap', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    stableUid: 'remote-stable-id',
+    source: 'server',
+  });
+
+  const { signInWithProvider } = loadAuthProvider({
+    custom_flashcards_v2: JSON.stringify([{ front: 'hello', back: 'привет' }]),
+  });
+  const result = await signInWithProvider('google');
+
+  expect(result.result).toBe('merged_devices');
+  expect(syncToCloud).toHaveBeenCalledWith({ forceNow: true });
+  expect(mergeStableAccountsViaServer).toHaveBeenCalledTimes(1);
 });
 
 test('a user-cancelled native sign-in returns { result: "cancelled" } and never touches Firebase auth', async () => {

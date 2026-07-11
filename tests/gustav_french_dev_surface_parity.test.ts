@@ -134,18 +134,6 @@ describe('Gustav French dev surface parity', () => {
     expect(dailyTaskNavigation).not.toContain("case 'recall_session':\n    case 'recall_answers':\n    case 'recall_perfect':\n      router.push('/trainer')");
   });
 
-  it('source-gates Compass deep links before French can reach unfinished practice surfaces', () => {
-    const compassHost = read('app/compass/compass_briefing_host.tsx');
-
-    expect(compassHost).toContain('const { studyTarget } = useStudyTarget()');
-    expect(compassHost).toContain('resolveSourceGatedRoute');
-    expect(compassHost).toContain("flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')");
-    expect(compassHost).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
-    expect(compassHost).toContain('diagnosticContentAvailableForTarget(studyTarget)');
-    expect(compassHost).toContain('route = resolveSourceGatedRoute(route);');
-    expect(compassHost).toContain('resolveSourceGatedRoute(compassInductionRoute(feature))');
-  });
-
   it('source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions', () => {
     const trainerPlanSession = read('app/trainer_plan_session.tsx');
 
@@ -192,7 +180,6 @@ describe('Gustav French dev surface parity', () => {
     const session = read('app/ai_dialog_session.tsx');
     const companion = read('app/ai_companion_session.tsx');
     const dialogsTab = read('components/DialogsTabContent.tsx');
-    const compassHost = read('app/compass/compass_briefing_host.tsx');
     const adminSettings = read('app/_admin_settings_testers.tsx');
 
     expect(targetGate).toContain("blockedRoutes: ['/ai_dialog_home', '/ai_dialog_session', '/ai_companion_session']");
@@ -221,9 +208,6 @@ describe('Gustav French dev surface parity', () => {
       expect(gateReturnIndex).toBeGreaterThanOrEqual(0);
       expect(gateReturnIndex).toBeLessThan(startTelemetryIndex);
     }
-
-    expect(compassHost).toContain("route.pathname === '/ai_dialog_home'");
-    expect(compassHost).toContain('aiDialogContentAvailableForTarget(studyTarget)');
 
     expect(adminSettings).toContain('const openAiDialogQaRoute =');
     expect(adminSettings).toContain('aiDialogContentAvailableForTarget(studyTarget)');

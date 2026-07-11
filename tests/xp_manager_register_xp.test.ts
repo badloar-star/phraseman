@@ -186,6 +186,54 @@ describe('registerXP', () => {
     expect(addOrUpdateScore).toHaveBeenCalledWith('Learner', 5, 'ru');
     expect(addWeeklyXp).toHaveBeenCalledWith(5);
   });
+
+  it('rejects non-finite XP amounts without changing local progress', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    await AsyncStorage.setItem('user_total_xp', '100');
+
+    await expect(registerXP(Number.POSITIVE_INFINITY, 'lesson_complete', 'Learner')).resolves.toEqual({
+      finalDelta: 0,
+      multiplier: 1,
+      isBonus: false,
+    });
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('100');
+  });
+
+  it('caps a corrupted multiplier and the resulting local delta', async () => {
+    const { registerXP, __xpManagerTestHooks } = await import('../app/xp_manager');
+    const { getXPMultiplier } = await import('../app/club_boosts');
+    (getXPMultiplier as jest.Mock).mockResolvedValueOnce(999_999);
+    await AsyncStorage.setItem('user_total_xp', '100');
+
+    const result = await registerXP(2_000, 'lesson_complete', 'Learner');
+
+    expect(result.finalDelta).toBe(__xpManagerTestHooks.MAX_LOCAL_XP_DELTA);
+    expect(result.multiplier).toBe(__xpManagerTestHooks.MAX_LOCAL_XP_MULTIPLIER);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('25100');
+  });
+
+  it('keeps local ledgers account-owned and maps club missions to server events', async () => {
+    const { __xpManagerTestHooks } = await import('../app/xp_manager');
+    expect(__xpManagerTestHooks.LOCAL_PROGRESS_EVENT_LEDGER_MAX).toBeGreaterThanOrEqual(500);
+    expect(__xpManagerTestHooks.localProgressEventLedgerKey('account-A')).not.toBe(
+      __xpManagerTestHooks.localProgressEventLedgerKey('account-B'),
+    );
+    expect(__xpManagerTestHooks.progressEventTypeForSource('club_mission_complete')).toBe('club_mission_complete');
+  });
+
+  it('runs the 10k restore exactly once and commits its marker with XP', async () => {
+    const { migrateXPFormulaV2 } = await import('../app/xp_manager');
+    const { XP_LEVEL_RESTORE_250_TO_400_KEY, restoredXPForOld250VisibleLevel } = await import('../app/xp_level_restore');
+    await AsyncStorage.setItem('user_total_xp', '10000');
+    const restoredXp = String(restoredXPForOld250VisibleLevel(10000).targetXP);
+
+    await migrateXPFormulaV2();
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe(restoredXp);
+    expect(await AsyncStorage.getItem(XP_LEVEL_RESTORE_250_TO_400_KEY)).toBe('1');
+
+    await migrateXPFormulaV2();
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe(restoredXp);
+  });
 });
 
 describe('registerXP: offline streak_count fallback respects local-day transition', () => {

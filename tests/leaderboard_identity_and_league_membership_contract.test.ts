@@ -5,6 +5,18 @@ const root = process.cwd();
 const read = (file: string) => readFileSync(path.join(root, file), 'utf8');
 
 describe('leaderboard identity and weekly league membership contract', () => {
+  test('guards background league callables without guarding boost purchase', () => {
+    const source = read('app/firestore_leagues.ts');
+    for (const callableName of ['leagueJoinOrUpdateGroup', 'leagueUpdateMyMember', 'leagueSyncMyBoost']) {
+      const callableAt = source.indexOf(`>('${callableName}')`);
+      expect(callableAt).toBeGreaterThan(0);
+      expect(source.slice(Math.max(0, callableAt - 5_000), callableAt)).toContain('appCheckReady');
+    }
+    const purchaseStart = source.indexOf('export async function buyLeagueGroupBoost');
+    const purchaseEnd = source.indexOf('\nexport ', purchaseStart + 20);
+    expect(source.slice(purchaseStart, purchaseEnd)).not.toContain('appCheckReady');
+  });
+
   test('client nickname writes link auth to stable id and send stableId to callables', () => {
     const source = read('app/firestore_leaderboard.ts');
 

@@ -1,9 +1,8 @@
 // Секция QA-панели: единый список всех dev-лабораторий. До редизайна 2026-06
 // celebration-лаба и anim-demo вообще не были доступны из панели.
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'expo-router';
 import { AccordionSection, AdminHint, ButtonRow } from '../ui';
-import CompassStackPreviewModal, { makeCompassStackPreviewSeed } from '../CompassStackPreviewModal';
 
 interface Props {
   open: boolean;
@@ -14,39 +13,17 @@ interface Props {
 
 export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props) {
   const router = useRouter();
-  const [compassStackPreviewSeed, setCompassStackPreviewSeed] = useState(() => makeCompassStackPreviewSeed());
-  const [compassStackPreviewVisible, setCompassStackPreviewVisible] = useState(false);
-
-  const openCompassStackPreview = () => {
-    setCompassStackPreviewSeed(makeCompassStackPreviewSeed());
-    setCompassStackPreviewVisible(true);
-  };
 
   return (
-    <>
-      <AccordionSection
+    <AccordionSection
         id="labs_hub"
         icon="flask-outline"
         title="Лаборатории (все)"
-        badge={7}
+        badge={5}
         open={open}
         onToggle={onToggle}
       >
         <AdminHint>Отдельные dev-экраны с изолированными превью.</AdminHint>
-        <ButtonRow
-          testID="admin-lab-day-closing-ritual"
-          icon="moon-outline"
-          label="Компас: итог дня"
-          sub="Вечерний ритуал, free/premium-состояния и custom seed"
-          onPress={() => router.push({ pathname: '/admin_compass_lab', params: { panel: 'day_closing' } } as any)}
-        />
-        <ButtonRow
-          testID="admin-lab-compass-stack-open"
-          icon="albums-outline"
-          label="Компас: очередь событий"
-          sub="Рандомный seed, пачка soft-модалок и свайп-стек с видимым краем следующей карточки"
-          onPress={openCompassStackPreview}
-        />
         <ButtonRow
           testID="admin-lab-speaking"
           icon="mic-outline"
@@ -82,13 +59,6 @@ export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props
           sub="Возможности стека: FLIP, SHINE, BURST, Duolingo-кнопка"
           onPress={() => router.push('/anim_demo_lab' as any)}
         />
-      </AccordionSection>
-      <CompassStackPreviewModal
-        visible={compassStackPreviewVisible}
-        seed={compassStackPreviewSeed}
-        onClose={() => setCompassStackPreviewVisible(false)}
-        onReroll={() => setCompassStackPreviewSeed(makeCompassStackPreviewSeed())}
-      />
-    </>
+    </AccordionSection>
   );
 }

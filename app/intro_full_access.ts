@@ -7,21 +7,24 @@ import {
 } from './notifications';
 import type { Lang } from '../constants/i18n';
 import { persistGiftAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
+import {
+  INTRO_FULL_ACCESS_DURATION_MS,
+  INTRO_FULL_ACCESS_ENDED_SEEN_KEY,
+  INTRO_FULL_ACCESS_ENDS_AT_KEY,
+  INTRO_FULL_ACCESS_STARTED_AT_KEY,
+  INTRO_FULL_ACCESS_STORAGE_KEYS,
+  INTRO_FULL_ACCESS_WELCOME_SEEN_KEY,
+} from './intro_full_access_keys';
 import { isIntroFullAccessEnabled } from './remote_flags';
 
-export const INTRO_FULL_ACCESS_DURATION_MS = 72 * 60 * 60 * 1000;
-
-export const INTRO_FULL_ACCESS_STARTED_AT_KEY = 'intro_full_access_started_at_v1';
-export const INTRO_FULL_ACCESS_ENDS_AT_KEY = 'intro_full_access_ends_at_v1';
-export const INTRO_FULL_ACCESS_WELCOME_SEEN_KEY = 'intro_full_access_welcome_seen_v1';
-export const INTRO_FULL_ACCESS_ENDED_SEEN_KEY = 'intro_full_access_ended_seen_v1';
-
-export const INTRO_FULL_ACCESS_STORAGE_KEYS = [
-  INTRO_FULL_ACCESS_STARTED_AT_KEY,
-  INTRO_FULL_ACCESS_ENDS_AT_KEY,
-  INTRO_FULL_ACCESS_WELCOME_SEEN_KEY,
+export {
+  INTRO_FULL_ACCESS_DURATION_MS,
   INTRO_FULL_ACCESS_ENDED_SEEN_KEY,
-] as const;
+  INTRO_FULL_ACCESS_ENDS_AT_KEY,
+  INTRO_FULL_ACCESS_STARTED_AT_KEY,
+  INTRO_FULL_ACCESS_STORAGE_KEYS,
+  INTRO_FULL_ACCESS_WELCOME_SEEN_KEY,
+} from './intro_full_access_keys';
 
 export type IntroFullAccessState = {
   active: boolean;

@@ -86,12 +86,14 @@ function costUsd(model, inputTokens, outputTokens) {
 function usageFromDoc(collectionName, feature, snap) {
     const data = snap.data() || {};
     const model = text(data.model, 80) || 'gpt-4o-mini';
-    let inputTokens = num(data.promptTokens);
-    let outputTokens = num(data.completionTokens);
-    if (collectionName === 'explain_billing') {
-        inputTokens = num(data.genPromptTokens) + num(data.judgePromptTokens);
-        outputTokens = num(data.genCompletionTokens) + num(data.judgeCompletionTokens);
-    }
+    // Разные фичи пишут токены в РАЗНЫХ полях. Три схемы:
+    //  A) promptTokens/completionTokens        — dialog, weekly, stats, mistake, speaking, league-cron
+    //  B) genPromptTokens/genCompletionTokens + judgePromptTokens/judgeCompletionTokens — explain, choice, quiz, compass
+    //  C) гибрид (help_board): promptTokens/completionTokens + judge*
+    // Суммируем все варианты — отсутствующие поля дают 0, поэтому одна формула
+    // корректно покрывает все 11 billing-коллекций без спец-веток на коллекцию.
+    const inputTokens = num(data.promptTokens) + num(data.genPromptTokens) + num(data.judgePromptTokens);
+    const outputTokens = num(data.completionTokens) + num(data.genCompletionTokens) + num(data.judgeCompletionTokens);
     const totalTokens = num(data.totalTokens) || inputTokens + outputTokens;
     return {
         id: snap.id,
@@ -172,6 +174,26 @@ function aggregate(rows, rangeDays) {
         }))
             .sort((a, b) => b.costUsd - a.costUsd);
     };
+    // Ряд по дням (для графика расходов по периодам). Ключ дня — YYYY-MM-DD в UTC,
+    // чтобы бакеты были детерминированными и не зависели от таймзоны сервера.
+    const dayKey = (ms) => new Date(ms).toISOString().slice(0, 10);
+    const seriesMap = new Map();
+    for (const row of rows) {
+        const key = dayKey(row.createdAtMs);
+        const cur = seriesMap.get(key) || { costUsd: 0, calls: 0, totalTokens: 0 };
+        cur.costUsd += row.costUsd;
+        cur.calls += 1;
+        cur.totalTokens += row.totalTokens;
+        seriesMap.set(key, cur);
+    }
+    // Заполняем весь диапазон днями (включая нулевые), чтобы график не «рвался».
+    const series = [];
+    const startMs = Date.now() - (rangeDays - 1) * DAY_MS;
+    for (let i = 0; i < rangeDays; i += 1) {
+        const key = dayKey(startMs + i * DAY_MS);
+        const v = seriesMap.get(key) || { costUsd: 0, calls: 0, totalTokens: 0 };
+        series.push({ date: key, costUsd: v.costUsd, calls: v.calls, totalTokens: v.totalTokens });
+    }
     return {
         totals: {
             calls: total.calls,
@@ -184,6 +206,7 @@ function aggregate(rows, rangeDays) {
         },
         features: group('feature'),
         models: group('model'),
+        series,
     };
 }
 exports.openAiBudgetDashboard = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
@@ -193,18 +216,24 @@ exports.openAiBudgetDashboard = (0, https_1.onCall)({ region: REGION, enforceApp
     const rangeDays = clampDays(request.data?.rangeDays);
     const now = Date.now();
     const fromMs = now - rangeDays * DAY_MS;
-    const [dialogDocs, explainDocs, weeklyDocs, statsDocs] = await Promise.all([
-        openAiBudgetSafeGetDocs('premium_dialog_billing', fromMs),
-        openAiBudgetSafeGetDocs('explain_billing', fromMs),
-        openAiBudgetSafeGetDocs('weekly_review_billing', fromMs),
-        openAiBudgetSafeGetDocs('stats_insights_billing', fromMs),
-    ]);
-    const fetched = [
-        { collection: 'premium_dialog_billing', feature: 'Компас chat', ...dialogDocs },
-        { collection: 'explain_billing', feature: 'Explain phrase', ...explainDocs },
-        { collection: 'weekly_review_billing', feature: 'Weekly review legacy', ...weeklyDocs },
-        { collection: 'stats_insights_billing', feature: 'Stats insights legacy', ...statsDocs },
+    // ВСЕ billing-коллекции проекта. Раньше читались только первые 4 — из-за чего
+    // дашборд недосчитывал >60% реальных трат (7 фич были не видны). Теперь честно
+    // суммируем все 11 источников.
+    const SOURCES = [
+        { collection: 'premium_dialog_billing', feature: 'Компас chat' },
+        { collection: 'explain_billing', feature: 'Explain phrase' },
+        { collection: 'weekly_review_billing', feature: 'Weekly review legacy' },
+        { collection: 'stats_insights_billing', feature: 'Stats insights legacy' },
+        { collection: 'compass_billing', feature: 'Компас (daily, legacy)' },
+        { collection: 'league_compass_daily_billing', feature: 'Компас лиги (cron)' },
+        { collection: 'help_board_compass_billing', feature: 'Доска помощи' },
+        { collection: 'choice_explain_billing', feature: 'Объяснение выбора' },
+        { collection: 'quiz_explain_billing', feature: 'Объяснение квиза' },
+        { collection: 'mistake_explain_billing', feature: 'Объяснение ошибки' },
+        { collection: 'speaking_club_billing', feature: 'Разговорный клуб' },
     ];
+    const fetchedDocs = await Promise.all(SOURCES.map((s) => openAiBudgetSafeGetDocs(s.collection, fromMs)));
+    const fetched = SOURCES.map((s, i) => ({ ...s, ...fetchedDocs[i] }));
     const rows = fetched.flatMap((item) => item.docs.map((snap) => usageFromDoc(item.collection, item.feature, snap)))
         .filter((row) => row.createdAtMs >= fromMs)
         .sort((a, b) => b.createdAtMs - a.createdAtMs);

@@ -341,7 +341,7 @@ const QUESTION_POOL: LevelQ[] = [
   {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',topicES:'Present Simple: preguntas',q:'___ they play football?',opts:['Do','Does','Did','Are'],correct:0},
   // L6
   {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ do you live?',opts:['What','Where','Who','When'],correct:1},
-  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ are you?',opts:['Where','How','What','Who'],correct:1},
+  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ is your name?',opts:['Where','How','What','Who'],correct:2},
   {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ time is it?',opts:['Where','Who','What','When'],correct:2},
   // L7
   {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',topicES:'El verbo to have',q:'I ___ a car.',opts:['has','have','had','having'],correct:1},

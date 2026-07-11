@@ -103,8 +103,8 @@ describe('Firebase cost controls', () => {
     const startSource = read('knowly-www/assets/start.js');
     const thanksSource = read('knowly-www/start/thanks/index.html');
 
-    expect(adminPushSource).toContain("schedule: '*/30 * * * *'");
-    expect(adminPushSource).not.toContain("schedule: '*/5 * * * *'");
+    expect(adminPushSource).toContain("schedule: 'every 6 hours'");
+    expect(adminPushSource).not.toContain("schedule: '*/30 * * * *'");
     expect(helpBoardSource).toContain("schedule: '0 * * * *'");
     expect(siteStatsSource).toContain('const rawEvents = Array.isArray(body.events)');
     expect(webStatsSource).toContain('{ events: initialEvents }');
@@ -112,6 +112,16 @@ describe('Firebase cost controls', () => {
     expect(startSource).toContain('PRICE_CACHE_TTL_MS = 60 * 60 * 1000');
     expect(thanksSource).toContain('var MAX_ATTEMPTS = 12');
     expect(thanksSource).toContain('function nextPollDelayMs()');
+  });
+
+  it('does not deploy the dormant Constellations minute cron', () => {
+    const indexSource = read('functions/src/index.ts');
+    const packageJson = read('functions/package.json');
+
+    expect(indexSource).not.toContain('export const constellationCron');
+    expect(packageJson).not.toContain('functions:constellationCron');
+    expect(indexSource).toContain('onConstellationQueueWrite');
+    expect(indexSource).toContain('constellationSubmitAction');
   });
 
   it('keeps duplicate identity cleanup callable-driven but not scheduled', () => {
@@ -252,7 +262,6 @@ describe('Firebase cost controls', () => {
 
   it('keeps second-layer cost guards for low-value reads and callables', () => {
     const dailyPhraseSource = read('app/daily_phrase_system.ts');
-    const compassModalSource = read('app/compass/compass_briefing_modal.tsx');
     const arenaHillSource = read('app/services/arena_hill.ts');
     const indexes = read('firestore.indexes.json');
 
@@ -262,8 +271,6 @@ describe('Firebase cost controls', () => {
     expect(dailyPhraseSource).not.toContain('.limit(500)');
     expect(indexes).toContain('"collectionGroup": "daily_phrases"');
     expect(indexes).toContain('"fieldPath": "scheduledDate"');
-
-    expect(compassModalSource).toContain('useCompassVoice(visible && !isDayClosing ? day : null)');
 
     expect(arenaHillSource).toContain("ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1'");
     expect(arenaHillSource).toContain('ARENA_HILL_TOP_CACHE_TTL_MS = 30 * 60 * 1000');

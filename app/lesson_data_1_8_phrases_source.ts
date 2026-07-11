@@ -5172,7 +5172,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson8_phrase_35',
-    english: 'He has a birthday in October',
+    english: 'His birthday is in October',
     russian: 'У него день рождения в октябре',
     ukrainian: 'У нього день народження в жовтні',
     spanish: 'Él cumple años en octubre.',

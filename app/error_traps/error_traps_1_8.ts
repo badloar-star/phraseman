@@ -1271,14 +1271,14 @@ const L8_TRAPS: readonly PhraseErrorTraps[] = [
     generalRule_UA: 'Спочатку ми називаємо групу людей (They), потім їхню дію (meet) і завершуємо вказівкою на регулярні вихідні через on weekends.',
     traps: []
   },
-  // 34: "He has a birthday in October"
+  // 34: "His birthday is in October"
   {
     phraseIndex: 34,
     wordTraps: [
       { wordIndex: 4, hint: 'Месяцы — in: in October, in December, in June.' },
     ],
-    generalRule: 'Мы строим фразу так: главный герой (He), факт наличия события (has a birthday) и месяц через предлог «в» (in).',
-    generalRule_UA: 'Ми будуємо фразу так: головний герой (He), факт наявності події (has a birthday) і місяць через прийменник «в» (in).',
+    generalRule: 'For a natural sentence, say "His birthday is in October": His shows whose birthday it is, and in introduces the month.',
+    generalRule_UA: '??? ????????? ????? ?????? ?His birthday is in October?: His ???????, ??? ?? ???? ??????????, ? in ??????? ??????.',
     traps: []
   },
   // 35: "I book a table in the evening"

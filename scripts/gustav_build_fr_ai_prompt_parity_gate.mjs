@@ -14,7 +14,6 @@ const FILES = {
   explainPrompt: 'functions/src/explain/explain_prompts.ts',
   choicePrompt: 'functions/src/explain/choice_explain_prompts.ts',
   quizPrompt: 'functions/src/explain/quiz_explain_prompts.ts',
-  compassPrompt: 'functions/src/compass/compass_prompts.ts',
   explainPhrase: 'functions/src/explain_phrase.ts',
   explainChoice: 'functions/src/explain_choice.ts',
   explainQuiz: 'functions/src/explain_quiz.ts',
@@ -157,13 +156,9 @@ function main() {
     assertChecks('premium_dialog_prompt_reply_translate_guard', [
       { id: 'prompts_resolve_study_target', pass: has(src.premiumDialog, 'resolveStudyTarget(data.studyTarget)') && has(src.premiumDialog, 'resolveStudyTarget(rawStudyTarget)') },
       { id: 'scenario_and_companion_prompts_use_target_name', pass: has(src.premiumDialog, 'studyTargetName(studyTarget)') && has(src.premiumDialog, 'renderGlobalRules(cefr, interfaceLang, studyTarget)') },
-      { id: 'reply_guard_uses_study_language', pass: has(src.premiumDialog, 'assertDialogReplyMatchesTarget(assistantMessage, resolveStudyTarget(data.studyTarget))') && has(src.premiumDialog, 'assertAiStudyLanguage') },
+      { id: 'reply_guard_uses_study_language', pass: (has(src.premiumDialog, 'assertDialogReplyMatchesTarget(assistantMessage, resolveStudyTarget(data.studyTarget))') || has(src.premiumDialog, 'assertDialogReplyMatchesTarget(assistantMessage, studyTarget)')) && has(src.premiumDialog, 'assertAiStudyLanguage') },
       { id: 'translation_guard_uses_output_language', pass: has(src.premiumDialog, 'assertDialogTranslationLanguage(translation, targetLang)') },
       { id: 'translation_cache_key_includes_source_study_target', pass: has(src.premiumDialog, 'translationCacheId(sourceText: string, targetLang: string, sourceStudyTarget') && has(src.premiumDialog, 'translationCacheId(sourceText, targetLang, sourceStudyTarget)') && has(src.premiumDialog, 'sourceStudyTarget,') },
-    ]),
-    assertChecks('compass_prompt_language_axis', [
-      { id: 'compass_uses_prompt_language_key', pass: has(src.compassPrompt, 'resolvePromptLangKey') && has(src.compassPrompt, 'PROMPT_LANGUAGES') },
-      { id: 'compass_has_judge_prompt', pass: has(src.compassPrompt, 'COMPASS_JUDGE_SYSTEM_PROMPT') || has(src.compassPrompt, 'Strict-JSON binary classifier') },
     ]),
   ];
 

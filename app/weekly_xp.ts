@@ -35,20 +35,26 @@ export function getCurrentWeekStartIso(now: Date = new Date()): string {
  *   the device was offline and local cache is stale).
  * - Cloud sync via SYNC_KEYS picks up these keys → users/{uid}.progress.weekly_xp.
  */
-export async function addWeeklyXp(delta: number): Promise<void> {
-  if (!delta || delta <= 0) return;
-  const currentPeriod = getCurrentWeekStartIso();
-  const [storedXpRaw, storedPeriodRaw] = await Promise.all([
-    AsyncStorage.getItem(WEEKLY_XP_KEY),
-    AsyncStorage.getItem(WEEKLY_XP_PERIOD_START_KEY),
-  ]);
-  const storedPeriod = storedPeriodRaw ?? '';
-  const storedXp = parseInt(storedXpRaw ?? '0', 10) || 0;
-  const newXp = (storedPeriod === currentPeriod) ? storedXp + delta : delta;
-  await AsyncStorage.multiSet([
-    [WEEKLY_XP_KEY, String(newXp)],
-    [WEEKLY_XP_PERIOD_START_KEY, currentPeriod],
-  ]);
+let weeklyXpWriteInFlight: Promise<void> = Promise.resolve();
+
+export function addWeeklyXp(delta: number): Promise<void> {
+  if (!delta || delta <= 0) return Promise.resolve();
+  const operation = weeklyXpWriteInFlight.then(async () => {
+    const currentPeriod = getCurrentWeekStartIso();
+    const [storedXpRaw, storedPeriodRaw] = await Promise.all([
+      AsyncStorage.getItem(WEEKLY_XP_KEY),
+      AsyncStorage.getItem(WEEKLY_XP_PERIOD_START_KEY),
+    ]);
+    const storedPeriod = storedPeriodRaw ?? '';
+    const storedXp = parseInt(storedXpRaw ?? '0', 10) || 0;
+    const newXp = (storedPeriod === currentPeriod) ? storedXp + delta : delta;
+    await AsyncStorage.multiSet([
+      [WEEKLY_XP_KEY, String(newXp)],
+      [WEEKLY_XP_PERIOD_START_KEY, currentPeriod],
+    ]);
+  });
+  weeklyXpWriteInFlight = operation.catch(() => {});
+  return operation;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

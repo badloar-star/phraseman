@@ -11,8 +11,16 @@ function getWeekKey(date = new Date()): string {
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
+function getWeekStartIso(date = new Date()): string {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const day = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() - day + 1);
+  return d.toISOString().slice(0, 10);
+}
+
 export async function syncLeaderboardFromUsers(): Promise<void> {
   const currentWeekKey = getWeekKey();
+  const currentWeekStart = getWeekStartIso();
   const BATCH_SIZE = 400;
   let batch = db.batch();
   let count = 0;
@@ -72,6 +80,10 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
           weekPoints = wpData.weekKey === currentWeekKey ? (wpData.points ?? 0) : 0;
         }
       } catch { /* ignore */ }
+      if (progress['weekly_xp_period_start'] === currentWeekStart) {
+        weekPoints = Math.max(weekPoints, Number(progress['weekly_xp'] ?? 0) || 0);
+      }
+      weekPoints = Math.max(0, Math.floor(weekPoints));
 
       // Лига
       let leagueId = 0;
@@ -84,11 +96,19 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
       } catch { /* ignore */ }
 
       const lbRef = db.collection('leaderboard').doc(uid);
+      // This legacy backfill must never turn a live current-week score into a
+      // lower value just because users.progress is stale or incomplete.
+      const existingLb = (await lbRef.get()).data() ?? {};
+      const existingWeekKey = existingLb.weekKey ?? existingLb.groupWeekId;
+      const existingWeekPoints = existingWeekKey === currentWeekKey
+        ? Math.max(0, Math.floor(Number(existingLb.weekPoints) || 0))
+        : 0;
+      const safeWeekPoints = Math.max(existingWeekPoints, weekPoints);
       batch.set(lbRef, {
         name,
         nameLower: name.toLowerCase(),
         points: xp,
-        weekPoints,
+        weekPoints: safeWeekPoints,
         weekKey: currentWeekKey,
         lang,
         avatar,

@@ -21,6 +21,7 @@ describe('RevenueCat identity bootstrap', () => {
   };
 
   beforeEach(() => {
+    (globalThis as { __DEV__?: boolean }).__DEV__ = false;
     jest.clearAllMocks();
   });
 
@@ -66,5 +67,20 @@ describe('RevenueCat identity bootstrap', () => {
     await expect(revenueCat.syncRevenueCatIdentity()).resolves.toBe(false);
 
     expect(purchases.logIn).toHaveBeenCalledWith('stable-123');
+  });
+
+  it('does not log into a stale account when generation changes during identity lookup', async () => {
+    const { revenueCat, purchases } = await loadSubject();
+    let current = true;
+    purchases.isConfigured.mockResolvedValue(true);
+    purchases.getAppUserID.mockImplementationOnce(async () => {
+      current = false;
+      return '$RCAnonymousID:old-user';
+    });
+
+    await expect(revenueCat.syncRevenueCatIdentity(() => current)).resolves.toBe(false);
+
+    expect(purchases.logIn).not.toHaveBeenCalled();
+    expect(purchases.setAttributes).not.toHaveBeenCalled();
   });
 });

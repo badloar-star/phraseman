@@ -35,6 +35,8 @@ const {
   assertDialogReplyMatchesTarget,
   assertDialogTranslationLanguage,
   asTargetLang,
+  containsUnsafeRegulatedAdvice,
+  sanitizeRegulatedAdviceReply,
   translationCacheId,
 } = __premiumDialogTestHooks;
 
@@ -97,6 +99,36 @@ describe('premium dialog prompt language isolation', () => {
     expect(prompt).toContain('NEVER describe the scenario from outside');
     expect(prompt).toContain('NEVER say "the learner"');
     expect(prompt).toContain('NEVER repeat the setting as narration');
+  });
+
+  it('keeps regulated professional advice out of every live dialog prompt', () => {
+    const prompt = buildScenarioSystemPrompt('A2', {
+      interfaceLang: 'ru',
+      role: 'a pharmacy counter assistant',
+      setting: 'a pharmacy counter',
+      goalEn: 'ask who to speak to for professional advice',
+    });
+
+    expect(prompt).toContain('REGULATED ADVICE HARD STOP');
+    expect(prompt).toContain('Never diagnose, prescribe, recommend medicines');
+    expect(prompt).toContain('practice safe wording only');
+    expect(prompt).toContain('qualified professional');
+  });
+
+  it('sanitizes unsafe medical recommendations before they can reach the client', () => {
+    const unsafe =
+      'I understand you have a headache. I can suggest some tablets for you. For headaches, I recommend paracetamol. Do you need help with the dosage?';
+
+    expect(containsUnsafeRegulatedAdvice(unsafe)).toBe(true);
+    expect(sanitizeRegulatedAdviceReply(unsafe, 'en')).toBe(
+      "I can't choose a real treatment here. Please ask a qualified professional. You can say: [[I need professional advice]].",
+    );
+  });
+
+  it('does not sanitize ordinary non-medical roleplay recommendations', () => {
+    const normal = "I recommend the chef's special today. Would you like a table?";
+    expect(containsUnsafeRegulatedAdvice(normal)).toBe(false);
+    expect(sanitizeRegulatedAdviceReply(normal, 'en')).toBe(normal);
   });
 
   it('companion answers in English even when asked in the native language (no L1 meta-help leak)', () => {

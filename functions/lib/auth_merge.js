@@ -370,17 +370,22 @@ const AUTH_LINKS_COL = 'auth_links';
  */
 async function callerGenuinelyOwns(db, authUid, stableId, data) {
     const userData = data ?? (await db.collection(USERS).doc(stableId).get().catch(() => null))?.data() ?? {};
-    if (cleanStr(userData.firebaseAuthUid) === authUid)
+    if (userDataOwnedByAuth(userData, authUid))
         return true;
-    const linkedAuth = userData.linkedAuth;
+    const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
+    if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId)
+        return true;
+    return false;
+}
+function userDataOwnedByAuth(data, authUid) {
+    if (cleanStr(data.firebaseAuthUid) === authUid)
+        return true;
+    const linkedAuth = data.linkedAuth;
     if (linkedAuth && typeof linkedAuth === 'object') {
         const providerUid = cleanStr(linkedAuth.providerUid);
         if (providerUid && providerUid === authUid)
             return true;
     }
-    const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
-    if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId)
-        return true;
     return false;
 }
 /** Throw permission-denied unless the caller GENUINELY owns the account it is

@@ -135,8 +135,8 @@ function withTrainerCategory(item: TrainerItem): TrainerItem {
  */
 const MOJIBAKE_PATTERN = /[ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß][€™°ˆ]/;
 
-function isMojibake(text: string | undefined): boolean {
-  return !!text && MOJIBAKE_PATTERN.test(text);
+export function isMojibake(text: string | undefined): boolean {
+  return !!text && (MOJIBAKE_PATTERN.test(text) || /[\u00c2\u00c3\u00d0\u00d1][\u0080-\u00ff]|\u00e2[\u0080-\u00bf]{2}|\ufffd/.test(text));
 }
 
 function withSanitizedTranslations(item: TrainerItem): TrainerItem {
@@ -475,7 +475,7 @@ export async function getTrainerCounts(studyTarget?: RuntimeStudyTarget): Promis
   if (!trainerSessionContentAvailableForTarget(studyTarget)) {
     return { words: 0, phrases: 0, arena: 0 };
   }
-  const items = await load(studyTarget);
+  const items = await loadTrainerItemsForSessions(studyTarget);
   const end = todayEnd();
   const active = items.filter(i => !i.archived && i.nextDue > 0 && i.nextDue <= end);
   return {

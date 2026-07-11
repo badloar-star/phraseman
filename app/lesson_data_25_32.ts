@@ -7532,8 +7532,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_31',
     english: 'I saw that stray dog cross that busy street.',
-    russian: 'Я видел, как тот бродячий пёс перебежал оживлённую улицу.',
-    ukrainian: 'Я бачив, як той вуличний пес перебіг жваву вулицю.',
+    russian: 'Я видел, как тот бродячий пёс перебежал ту оживлённую улицу.',
+    ukrainian: 'Я бачив, як той вуличний пес перебіг ту жваву вулицю.',
     spanish: 'Vi cruzar esa calle concurrida a ese perro callejero.',
     words: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'mine', 'we', 'you'] },
@@ -7550,8 +7550,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_32',
     english: 'They heard that quiet student ask that difficult question.',
-    russian: 'Они слышали, как тот тихий ученик задал тот сложный вопрос.',
-    ukrainian: 'Вони чули, як той тихий учень поставив те складне запитання.',
+    russian: 'Они слышали, как тот тихий ученик задал тот трудный вопрос.',
+    ukrainian: 'Вони чули, як той тихий учень поставив те важке запитання.',
     spanish: 'Oyeron hacer a ese estudiante tranquilo esa pregunta difícil.',
     words: [
       { text: 'They', correct: 'They', distractors: ['their', 'them', 'theirs', 'we', 'you'] },
@@ -7604,8 +7604,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_35',
     english: 'That brave firefighter made that panicked family follow that emergency exit.',
-    russian: 'Тот храбрый пожарный заставил паникующую семью пройти к аварийному выходу.',
-    ukrainian: 'Той хоробрий пожежник змусив запаніковану родину пройти до аварійного виходу.',
+    russian: 'Тот храбрый пожарный заставил ту паникующую семью пройти к тому аварийному выходу.',
+    ukrainian: 'Той хоробрий пожежник змусив ту запаніковану родину пройти до того аварійного виходу.',
     spanish: 'Ese bombero valiente hizo seguir esa salida de emergencia a esa familia en pánico.',
     words: [
       { text: 'That', correct: 'That', distractors: ['this', 'these', 'those', 'than', 'then'] },
@@ -7736,8 +7736,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_42',
     english: 'She noticed that old man drop that metal key into that storm drain.',
-    russian: 'Она заметила, как тот пожилой мужчина уронил металлический ключ в тот дождевой лоток.',
-    ukrainian: 'Вона помітила, як той літній чоловік уронив металевий ключ у зливову решітку.',
+    russian: 'Она заметила, как тот пожилой мужчина уронил тот металлический ключ в тот дождевой лоток.',
+    ukrainian: 'Вона помітила, як той літній чоловік уронив той металевий ключ у ту зливову решітку.',
     spanish: 'Notó al hombre viejo dejar caer esa llave metálica en esa alcantarilla.',
     words: [
       { text: 'She', correct: 'She', distractors: ['her', 'hers', 'he', 'they', 'it'] },

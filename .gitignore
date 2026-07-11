@@ -303,3 +303,6 @@ _frames/
 
 # debug screenshots (transient)
 .shots/
+
+# Local isolated Codex worktrees
+/.worktrees/

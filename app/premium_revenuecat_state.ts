@@ -99,7 +99,8 @@ export function revenueCatBillingIssueAtMs(info: CustomerInfo | null | undefined
 export async function persistStorePremiumLocally(
   plan: PremiumStorePlan,
   metadata: RevenueCatPremiumMetadata = {},
-): Promise<void> {
+  isCurrent: () => boolean = () => true,
+): Promise<boolean> {
   const now = Date.now();
   const pairs: [string, string][] = [
     ['premium_plan', plan],
@@ -119,10 +120,15 @@ export async function persistStorePremiumLocally(
     pairs.push(['premium_rc_purchased_at_ms', String(Math.max(0, Math.floor(metadata.purchasedMs)))]);
   }
 
+  if (!isCurrent()) return false;
   await AsyncStorage.multiSet(pairs);
+  if (!isCurrent()) return false;
   await markPremiumStoreSeenNow();
+  if (!isCurrent()) return false;
   invalidatePremiumCache();
+  if (!isCurrent()) return false;
   await syncToCloud({ forceNow: true }).catch(() => {});
+  return isCurrent();
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

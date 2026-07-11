@@ -289,7 +289,7 @@ export default function ConstellationResultsScreen() {
               <View style={[styles.podAva, { backgroundColor: CONSTELLATION_SLOT_COLORS[p.slot] }]}>
                 <Text style={styles.podAvaText}>{(p.name[0] ?? '?').toUpperCase()}</Text>
               </View>
-              <Text numberOfLines={1} style={[styles.podName, { color: t.textPrimary, fontSize: f.caption - 2 }]}>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.podName, { color: t.textPrimary, fontSize: f.caption - 2 }]}>
                 {p.uid === uid
                   ? triLang(lang, {
                     ru: 'Ты', uk: 'Ти', es: 'Tú', 'pt-BR': 'Você',

@@ -60,7 +60,11 @@ async function commitBatch(batch, count) {
 
 async function main() {
   const weekId = getWeekKey();
-  const dryRun = process.argv.includes('--dry-run');
+  const apply = process.argv.includes('--apply');
+  const dryRun = !apply;
+  if (apply && !process.argv.includes('--confirm-current-week-rebuild')) {
+    throw new Error('Refusing current-week league rebuild without --confirm-current-week-rebuild');
+  }
   console.log(`Repairing weekly league rollover for ${weekId}${dryRun ? ' (dry run)' : ''}`);
 
   const usersSnap = await db.collection('users').get();
@@ -82,7 +86,10 @@ async function main() {
   for (const doc of lbSnap.docs) {
     const lb = doc.data();
     const uid = doc.id;
-    const points = pointsByUid.get(uid) ?? 0;
+    const incomingPoints = pointsByUid.get(uid) ?? 0;
+    const points = lb.weekKey === weekId
+      ? Math.max(0, Math.floor(Number(lb.weekPoints) || 0), incomingPoints)
+      : incomingPoints;
     const leagueId = leagueByUid.get(uid) ?? (typeof lb.leagueId === 'number' ? lb.leagueId : 0);
     const nextLb = { ...lb, weekPoints: points, weekKey: weekId, leagueId };
     if (!byLeague.has(leagueId)) byLeague.set(leagueId, []);

@@ -211,12 +211,12 @@ function NoEnergyModal({
   const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;
   const { energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
-  const { formattedTime } = useEnergyCountdown();
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const totalAvailable = energy + bonusEnergy;
   const isGate = minRequired != null && minRequired > 0;
   const modalVisible = shouldRenderNoEnergyModal(visible, hasPremiumAccess, qaIgnorePremiumAccess);
+  const { formattedTime } = useEnergyCountdown({ visible: modalVisible });
   const [lineText, setLineText] = useState('');
   /** «Енергія» → закрыть RN Modal → тут же открыть stack modal премиум: нужно не наслаивать окна, иначе на части прошивок «залипают» тачи под экраном. */
   const pendingPremiumContextRef = useRef<string | null>(null);

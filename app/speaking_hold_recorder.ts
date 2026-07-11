@@ -43,6 +43,8 @@ export const MAX_HOLD_MS = 20000;
 /** Below this we treat the capture as "nothing said" (button fat-fingered). */
 export const MIN_CAPTURE_SEC = 0.25;
 
+let holdAttemptSequence = 0;
+
 type LiveAudioStreamModule = {
   init: (options: {
     sampleRate: number;
@@ -186,15 +188,12 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
       const wav = pcmChunksToWav(chunks, HOLD_PCM_CONFIG);
       const dir = new fs.Directory(fs.Paths.cache, 'speaking_hold');
       if (!dir.exists) dir.create({ intermediates: true });
-      // One transient file, overwritten each attempt; the caller deletes it after scoring.
-      const file = new fs.File(dir, 'attempt.wav');
-      if (file.exists) {
-        try {
-          file.delete();
-        } catch {
-          /* stale file may be locked — write() below overwrites anyway */
-        }
-      }
+      // Unique per attempt: a late scorer or replay must never read a newer
+      // attempt through the old shared `attempt.wav` path.
+      const file = new fs.File(
+        dir,
+        `attempt-${Date.now()}-${++holdAttemptSequence}.wav`,
+      );
       file.write(wav);
       return typeof file.uri === 'string' && file.uri.length > 0 ? file.uri : null;
     } catch {

@@ -9,6 +9,15 @@ describe('auth provider stable-id linking', () => {
   const source = readFileSync(authProviderPath, 'utf8');
   const cloudSyncSource = readFileSync(cloudSyncPath, 'utf8');
   const registrationPromptSource = readFileSync(registrationPromptPath, 'utf8');
+  it('does not call stable-link repair while App Check is unavailable', () => {
+    const start = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableIdDetailed');
+    const end = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableId(', start);
+    const body = cloudSyncSource.slice(start, end);
+
+    expect(body).toContain('const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false)');
+    expect(body).toContain('if (!appCheckReady)');
+    expect(body.indexOf('if (!appCheckReady)')).toBeLessThan(body.indexOf("'authEnsureStableLink'"));
+  });
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
   const signInStart = source.indexOf('export async function signInWithProvider');
@@ -18,6 +27,12 @@ describe('auth provider stable-id linking', () => {
   const mergeSwapEnd = source.indexOf("if (outcome.kind === 'merged_keep_local')", mergeSwapStart);
   const prePostLinkSource = source.slice(signInStart, mergeSwapStart);
   const mergeSwapSource = source.slice(mergeSwapStart, mergeSwapEnd);
+  const googleSignInStart = source.indexOf('async function runGoogleNativeSignIn');
+  const googleSignInEnd = source.indexOf('async function runAppleNativeSignIn', googleSignInStart);
+  const googleSignInSource = source.slice(googleSignInStart, googleSignInEnd);
+  const appleAndroidStart = source.indexOf('async function runAppleAndroidOAuthSignIn');
+  const appleAndroidEnd = source.indexOf('async function runNativeProviderSignIn', appleAndroidStart);
+  const appleAndroidSource = source.slice(appleAndroidStart, appleAndroidEnd);
 
   test('signInWithProvider checks an existing provider link before relinking the local stable id', () => {
     expect(source).toContain('ensureStableAuthLinkForStableIdDetailed');
@@ -31,6 +46,11 @@ describe('auth provider stable-id linking', () => {
     expect(prePostLinkSource.indexOf('const linkedStableId = linkSnap.exists')).toBeLessThan(
       prePostLinkSource.indexOf('ensureStableAuthLinkWithRetry(localStableId)'),
     );
+  });
+
+  test('client auth-link lookup is only a short hint because the server callable is authoritative', () => {
+    expect(source).toContain('const AUTH_LINK_HINT_TIMEOUT_MS = 1_500');
+    expect(prePostLinkSource).toContain("withTimeout<any>(linkRef.get(), AUTH_LINK_HINT_TIMEOUT_MS, 'link_lookup')");
   });
 
   test('cross-device sign-in swaps to the provider-linked stable id before client transactions', () => {
@@ -49,23 +69,18 @@ describe('auth provider stable-id linking', () => {
     expect(source).toContain('if (linkedLocal.stableUid !== localStableId)');
     expect(source).toContain('remoteStableId: linkedLocal.stableUid');
     expect(cloudSyncSource).toContain('export async function ensureStableAuthLinkForStableIdDetailed');
-    expect(cloudSyncSource).toContain('stableUid: actualStableUid || stableId');
+    expect(cloudSyncSource).toContain('stableUid: ok ? actualStableUid : null');
   });
 
-  // ── Смягчение firestore_fallback (2026-07-02) ────────────────────────────
-  // РАНЬШЕ fallback (серверный callable недоступен, но клиент сам записал
-  // users-якорь + auth_links) РВАЛ вход: 'auth_link_unverified' + Critical-алерт,
-  // хотя привязка фактически сделана. Пользователь видел «Не получилось войти».
-  // Теперь fallback НЕ рвёт вход — идём обычным путём created_new/linked_existing.
-  test('provider sign-in does not error out on a firestore fallback (link was actually written)', () => {
-    expect(source).toContain("linkedLocal.source === 'firestore_fallback'");
-    // Больше НЕ возвращаем ошибку и НЕ шлём Critical-алерт для fallback.
-    expect(source).not.toContain("return { result: 'error', error: 'auth_link_unverified' }");
-    expect(source).not.toContain("captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_unverified')");
-    // Вместо этого — warning-событие и продолжение обычного потока.
-    expect(source).toContain("logAuthEvent('auth_signin_link_direct_write'");
-    expect(source).toContain("kind: linkLookupCompleted && !linkLookupFound ? 'created_new' : 'linked_existing'");
-    expect(cloudSyncSource).toContain("source: 'firestore_fallback'");
+  test('callable timeout cannot create anchors or count as a successful stable link', () => {
+    const ensureStart = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableIdDetailed');
+    const ensureEnd = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableId(', ensureStart);
+    const ensureSource = cloudSyncSource.slice(ensureStart, ensureEnd);
+    expect(ensureSource).not.toContain("collection('users').doc(stableId).set");
+    expect(ensureSource).not.toContain("collection('auth_links').doc(authUid).set");
+    expect(ensureSource).not.toContain('firestore_fallback');
+    expect(ensureSource).toContain("source: 'unavailable'");
+    expect(source).not.toContain('auth_signin_link_direct_write');
   });
 
   test('provider sign-in metadata is sent to the server stable-link callable', () => {
@@ -73,6 +88,11 @@ describe('auth provider stable-id linking', () => {
     expect(source).toContain('ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata)');
     expect(cloudSyncSource).toContain('linkMetadata?: StableAuthLinkMetadata');
     expect(cloudSyncSource).toContain("fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}) })");
+  });
+
+  test('provider sign-in does not stack three serial stable-link deadlines after auth is ready', () => {
+    expect(prePostLinkSource).not.toContain('for (let attempt = 0; attempt < 3; attempt += 1)');
+    expect(prePostLinkSource).not.toContain('800 * (attempt + 1)');
   });
 
   // ── КОРЕНЬ №1: linkWithCredential поверх анонима (2026-06-29) ─────────────
@@ -92,13 +112,31 @@ describe('auth provider stable-id linking', () => {
   });
 
   // ── Хвост A: дождаться anon-сессии перед линковкой ───────────────────────
-  test('provider sign-in waits for the anonymous session before linking (cold-start race)', () => {
-    expect(signInSource).toContain('waitForAnonAuth(20_000)');
-    // Ожидание идёт ДО РЕАЛЬНОГО вызова линковки (anonUser.linkWithCredential(...)),
-    // а не до упоминания слова в комментарии — поэтому матчим вызов с открытой скобкой.
-    expect(signInSource.indexOf('waitForAnonAuth(20_000)')).toBeLessThan(
-      signInSource.indexOf('anonUser.linkWithCredential('),
+  test('provider sign-in warms anonymous auth while the native picker is open', () => {
+    expect(signInSource).toContain('const anonPreparation = ensureAnonUser()');
+    expect(signInSource.indexOf('const anonPreparation = ensureAnonUser()')).toBeLessThan(
+      signInSource.indexOf('runGoogleNativeSignIn()'),
     );
+    expect(signInSource).not.toContain('waitForAnonAuth(20_000)');
+    expect(signInSource).not.toContain('waitForAnonAuth(5_000)');
+  });
+
+  test('credential fallback cannot overlap a timed-out linkWithCredential mutation', () => {
+    expect(signInSource).toContain('await anonUser.linkWithCredential(credential)');
+    expect(signInSource).not.toMatch(/withTimeout<any>\(\s*anonUser\.linkWithCredential/);
+  });
+
+  test('a timed-out native Google picker is not retried while the first non-cancellable call may still finish', () => {
+    expect(googleSignInSource).not.toContain('for (let attempt = 0; attempt <= 1; attempt++)');
+    expect(googleSignInSource).not.toContain('signOut + retry');
+  });
+
+  test('Apple Android OAuth uses an Apple-supported fragment flow', () => {
+    expect(appleAndroidSource).toContain("response_type: 'code id_token'");
+    expect(appleAndroidSource).toContain("response_mode: 'fragment'");
+    expect(appleAndroidSource).not.toContain("scope: 'name email'");
+    expect(appleAndroidSource).toContain('if (parsed.state !== oauthState)');
+    expect(appleAndroidSource).not.toContain('if (parsed.state && parsed.state !== oauthState)');
   });
 
   // ── Хвост D: погасить фоновый sync перед сменой stable_id ─────────────────
@@ -110,19 +148,6 @@ describe('auth provider stable-id linking', () => {
     const quiesceBefore = source.lastIndexOf('quiesceSyncBeforeStableIdSwap', swapIdx);
     expect(quiesceBefore).toBeGreaterThan(0);
     expect(quiesceBefore).toBeLessThan(swapIdx);
-  });
-
-  // ── Хвост B: клиентский fallback пишет auth_links (мост provider→stableId) ─
-  test('stable-link firestore fallback also writes auth_links so the provider anchor survives', () => {
-    // Раньше fallback писал только users/{stableId}.firebaseAuthUid, но не auth_links —
-    // без него вход с другого устройства не находил аккаунт и создавал новый.
-    const fallbackStart = cloudSyncSource.indexOf("source: 'firestore_fallback'");
-    expect(fallbackStart).toBeGreaterThan(0);
-    // В fallback-ветке есть запись в auth_links с providerUid/stable_id.
-    const region = cloudSyncSource.slice(Math.max(0, fallbackStart - 1400), fallbackStart);
-    expect(region).toContain("db.collection('auth_links').doc(authUid).set");
-    expect(region).toContain('stable_id: stableId');
-    expect(region).toContain('providerUid: authUid');
   });
 
   test('provider sign-in has no client Firestore transaction that can be denied by user owner rules', () => {
@@ -144,6 +169,10 @@ describe('auth provider stable-id linking', () => {
     expect(pendingDeleteStart).toBeGreaterThan(0);
     expect(authLinksStart).toBeGreaterThan(pendingDeleteStart);
     expect(pendingDeleteSource).toContain("logAuthEvent('auth_signin_blocked_account_delete_pending'");
+    expect(pendingDeleteSource).toContain('await enqueueCloudDeletion(pendingDelete.stableId)');
+    expect(pendingDeleteSource.indexOf('await enqueueCloudDeletion(pendingDelete.stableId)')).toBeLessThan(
+      pendingDeleteSource.indexOf('await signOutCurrentProvider()'),
+    );
     expect(pendingDeleteSource).toContain('await signOutCurrentProvider()');
     expect(pendingDeleteSource).toContain('await ensureAnonUser()');
     expect(pendingDeleteSource).toContain("return { result: 'error', error: 'account_delete_pending' }");
@@ -154,15 +183,29 @@ describe('auth provider stable-id linking', () => {
     expect(source).toMatch(/errStr\.includes\(APPLE_ANDROID_MISSING_SERVICE_ID\)[\s\S]{0,80}return \{ result: 'error', error: errStr \}/);
   });
 
-  test('meaningful local progress guard checks French lesson progress as well as English legacy progress', () => {
-    expect(source).toContain("import { unlockedLessonsKey } from './target_storage_keys'");
-    expect(source).toContain("unlockedLessonsKey('en')");
-    expect(source).toContain("unlockedLessonsKey('fr')");
-    expect(source).not.toContain("'unlocked_lessons',\n      'user_name'");
+  test('local account-data guard uses the authoritative sync inventory, not only XP and lesson unlocks', () => {
+    expect(source).toContain('hasMeaningfulLocalAccountData');
+    expect(source).toContain("from './local_account_data'");
+    expect(cloudSyncSource).toContain("'custom_flashcards_v2'");
+  });
+
+  test('background auth restore distinguishes transport failure from a missing cloud document', () => {
+    expect(source).toContain('restoreFromCloudDetailed,');
+    expect(source).toContain("let restoreResult: 'restored' | 'not_found' | 'failed' = 'failed'");
+    expect(source).toContain("restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()");
+    expect(source).toContain("restoreResult === 'restored'");
+    expect(cloudSyncSource).toContain("export type CloudRestoreResult = 'restored' | 'not_found' | 'failed'");
+    expect(cloudSyncSource).toContain("type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean }");
+    expect(cloudSyncSource).toContain('return completedCloudRestoreAttempt(applied)');
+    expect(cloudSyncSource).toContain('return (await restoreAndMigrateFromCloudResult(true)).applied');
+    expect(cloudSyncSource).toContain('return (await restoreAndMigrateFromCloudResult(false)).status');
   });
 
   test('remote stable-id swap uses the full cloud sync account wipe before restore', () => {
     expect(mergeSwapSource).toContain('await wipeLocalAccountData();');
+    expect(mergeSwapSource.indexOf('await wipeLocalAccountData();')).toBeLessThan(
+      mergeSwapSource.indexOf('await setStableId(canonicalStableId)'),
+    );
     expect(mergeSwapSource).not.toContain('AsyncStorage.multiRemove(progressKeys)');
     expect(mergeSwapSource).not.toContain('const introKeys');
     expect(source).not.toContain('`lesson${i + 1}_intro_shown`');
@@ -208,11 +251,12 @@ describe('auth provider stable-id linking', () => {
     // The claim must be stamped while still anonymous — signInWithCredential
     // destroys the anonymous session, so the server can only verify ownership of
     // the local anonymous account if the claim was written beforehand.
-    const stampIdx = source.indexOf('stampAnonOwnershipBeforeSignIn(preSignInStableId)');
-    const credentialIdx = source.indexOf('auth.signInWithCredential(credential)');
+    const stampIdx = signInSource.indexOf('await stampAnonOwnershipBeforeSignIn(preSignInStableId)');
+    const credentialIdx = signInSource.indexOf('await auth.signInWithCredential(credential)');
     expect(stampIdx).toBeGreaterThan(0);
     expect(credentialIdx).toBeGreaterThan(0);
     expect(stampIdx).toBeLessThan(credentialIdx); // stamp happens first
+    expect(signInSource.indexOf('await anonUser.linkWithCredential(credential)')).toBeLessThan(stampIdx);
     expect(source).toContain("httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership')");
   });
 
@@ -241,8 +285,8 @@ describe('auth provider stable-id linking', () => {
     expect(ensureSource.indexOf('readStableAuthLinkCache(key)')).toBeLessThan(ensureSource.indexOf('const fn = callable<'));
     expect(ensureSource).toContain('hasFreshMetadata');
     expect(ensureSource).toContain('linkMetadata?: StableAuthLinkMetadata');
-    expect(ensureSource).toContain('writeStableAuthLinkCache(`${cacheStableUid}:${actualAuthUid}`).catch(() => {})');
-    expect(ensureSource).toContain('writeStableAuthLinkCache(key).catch(() => {})');
+    expect(ensureSource).toContain('writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(() => {})');
+    expect(ensureSource).not.toContain('writeStableAuthLinkCache(key).catch(() => {})');
     expect(resetSource).toContain('AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY)');
   });
 

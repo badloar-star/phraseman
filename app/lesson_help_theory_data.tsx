@@ -3412,7 +3412,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['have dinner', isUK ? 'вечеряти' : 'ужинать', 'They have dinner at eight'],
         ['have class', isUK ? 'мати заняття / у нас заняття' : 'иметь занятие / у нас занятия', 'We have class on Tuesdays'],
         ['have time', isUK ? 'мати час / є час' : 'иметь время / есть время', 'He has time on Saturday / Does she have time on Friday?'],
-        ['have a birthday', isUK ? 'мати день народження / день народження в...' : 'иметь день рождения / день рождения в...', 'He has a birthday in October'],
+        ['have a birthday', isUK ? 'мати день народження / день народження в...' : 'иметь день рождения / день рождения в...', 'His birthday is in October'],
       ]}
     />,
 
@@ -3496,7 +3496,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Англійська' : 'Английский', isUK ? 'Природний переклад' : 'Естественный перевод'],
         ['He has lunch at noon', isUK ? 'Він обідає опівдні' : 'Он обедает в полдень'],
         ['They have dinner at eight', isUK ? 'Вони вечеряють о восьмій' : 'Они ужинают в восемь'],
-        ['He has a birthday in October', isUK ? 'У нього день народження в жовтні' : 'У него день рождения в октябре'],
+        ['His birthday is in October', isUK ? 'У нього день народження в жовтні' : 'У него день рождения в октябре'],
         ['I feel tired on Mondays', isUK ? 'Я відчуваю втому по понеділках' : 'Я чувствую усталость по понедельникам'],
         ['We have class on Tuesdays', isUK ? 'У нас заняття по вівторках' : 'У нас занятия по вторникам'],
       ]}

@@ -14,6 +14,8 @@ function baseInput(over) {
         matchesPlayedBefore: 10,
         perfectCaptures: 0,
         livingHumans: 2,
+        dustToday: 0,
+        starfallToday: 0,
         cfg: CFG,
         ...over,
     };
@@ -71,7 +73,10 @@ describe('constellations/rewards — защита новичка', () => {
 describe('constellations/rewards — античит-фарм и боты', () => {
     test('боту награды не начисляются (все нули)', () => {
         const r = (0, rewards_1.computeMatchRewards)(baseInput({ isBot: true, place: 1, dustEarned: 2 }));
-        expect(r).toEqual({ xp: 0, shards: 0, starDelta: 0, srDelta: 0, collectibleEligible: false });
+        expect(r).toEqual({
+            xp: 0, shards: 0, starDelta: 0, srDelta: 0, collectibleEligible: false,
+            dustGranted: 0, starfallGranted: 0,
+        });
     });
     test('< 2 живых людей: пыль и звездопад режутся вдвое (анти-бот-фарм 1.6)', () => {
         const r = (0, rewards_1.computeMatchRewards)(baseInput({
@@ -79,6 +84,24 @@ describe('constellations/rewards — античит-фарм и боты', () =>
         }));
         // пыль 2→1, звездопад 4→2, + место 3
         expect(r.shards).toBe(3 + 1 + 2);
+    });
+    test('дневной кап пыли/звездопада обрезает начисление (аудит: dailyCap теперь работает)', () => {
+        // polarDust.dailyCap=4, starfall.dailyCap=20. Сегодня уже 3 пыли и 19 звездопада.
+        const r = (0, rewards_1.computeMatchRewards)(baseInput({
+            place: 1, dustEarned: 5, starfallEarned: 5, dustToday: 3, starfallToday: 19,
+        }));
+        // пыли осталось 4-3=1 (из 5), звездопада 20-19=1 (из 5).
+        expect(r.dustGranted).toBe(1);
+        expect(r.starfallGranted).toBe(1);
+        expect(r.shards).toBe(3 + 1 + 1); // место 1 + обрезанные пыль/звездопад
+    });
+    test('дневной кап исчерпан → пыль/звездопад не начисляются', () => {
+        const r = (0, rewards_1.computeMatchRewards)(baseInput({
+            place: 2, dustEarned: 3, starfallEarned: 3, dustToday: 4, starfallToday: 20,
+        }));
+        expect(r.dustGranted).toBe(0);
+        expect(r.starfallGranted).toBe(0);
+        expect(r.shards).toBe(1); // только осколки за место 2
     });
     test('коллекционный дроп положен только не-ботам не-туториалу', () => {
         expect((0, rewards_1.computeMatchRewards)(baseInput({ place: 3 })).collectibleEligible).toBe(true);

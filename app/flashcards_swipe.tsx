@@ -2040,6 +2040,7 @@ export default function FlashcardsSwipeScreen() {
   const cardHeight = isPlanFlashcardsTask
     ? Math.min(292, Math.max(218, height * 0.34))
     : Math.min(360, Math.max(250, height * 0.42));
+  const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));
   const rotate = position.x.interpolate({
     inputRange: [-width / 2, 0, width / 2],
     outputRange: ['-7deg', '0deg', '7deg'],
@@ -2453,15 +2454,20 @@ export default function FlashcardsSwipeScreen() {
             </View>
 
             {feedback ? (
-              <View
+              <ScrollView
                 style={[
                   styles.feedbackBox,
                   isPlanFlashcardsTask && styles.planFeedbackBox,
+                  styles.feedbackScroll,
+                  { maxHeight: feedbackMaxHeight },
                   {
                     backgroundColor: feedback.kind === 'wrong' ? t.wrongBg : t.goldBg,
                     borderColor: feedback.kind === 'wrong' ? t.wrong : t.gold,
                   },
                 ]}
+                contentContainerStyle={styles.feedbackScrollContent}
+                showsVerticalScrollIndicator
+                nestedScrollEnabled
               >
                 <Text
                   style={[
@@ -2485,7 +2491,7 @@ export default function FlashcardsSwipeScreen() {
                 </Text>
                 {!isPlanFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}
                 {note && !isPlanFlashcardsTask ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
-              </View>
+              </ScrollView>
             ) : null}
           </Animated.View>
         </View>
@@ -3053,12 +3059,16 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     borderRadius: 16,
-    padding: 12,
   },
   planFeedbackBox: {
     marginTop: 8,
     borderRadius: 12,
-    padding: 8,
+  },
+  feedbackScroll: {
+    flexGrow: 0,
+  },
+  feedbackScrollContent: {
+    padding: 12,
   },
   feedbackTitle: {
     fontWeight: '900',

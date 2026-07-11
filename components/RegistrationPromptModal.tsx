@@ -56,7 +56,7 @@ interface Props {
   visible: boolean;
   /** Контекст показа — для аналитики. 'home_banner' — открыт из persistent
    *  баннера на Home для незалогиненных юзеров с XP ≥ 1000. */
-  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner' | 'compass';
+  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner';
   /** Кастомный заголовок (опц., иначе используется дефолт под контекст). */
   title?: string;
   /** Кастомный подзаголовок (опц.). */

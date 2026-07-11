@@ -19,7 +19,6 @@ import {
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { setAudioModeAsync } from 'expo-audio';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
@@ -32,6 +31,7 @@ import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
+import { setManagedAudioMode } from './audio_session_coordinator';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import { aiOffline, aiOfflineDialogScreen } from './ai_kill_switch_copy';
@@ -81,7 +81,7 @@ const MIN_TURNS_TO_FINISH = 2;
 const CLUB_MISSION_XP = 30;
 
 function restoreLoudPlaybackMode(): void {
-  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
 }
 
 export default function SpeakingClubSession() {
@@ -477,6 +477,9 @@ export default function SpeakingClubSession() {
           persistRecording: false,
           // Конец речи задаёт палец (onPressOut → stop()), не endpointer движка.
           holdToTalk: true,
+          // Свободный ответ ученика, не заранее известная фраза — targetPhrases
+          // тут только biasing, НЕ должен управлять iOS task hint.
+          freeSpeech: true,
         }),
       );
       // cue теперь в playCueOnce (слушатели 'start'/'result').

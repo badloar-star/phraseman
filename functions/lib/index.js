@@ -33,8 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportSendReply = exports.adminSupportGenerateReply = exports.adminSupportPull = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = exports.constellationCron = exports.onConstellationQueueWrite = void 0;
-exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = void 0;
+exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportSendReply = exports.adminSupportGenerateReply = exports.adminSupportPull = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = exports.onConstellationQueueWrite = void 0;
+exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -69,7 +69,9 @@ const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identit
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authMergeStableAccounts } = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { accountDeleteMine } = require('./account_delete');
+const { accountDeleteMine, accountDeleteEnqueue } = require('./account_delete');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { accountDeleteWorker, accountDeleteRetryCron } = require('./account_delete_worker');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameReserve, nameReleaseMine, } = require('./leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -125,9 +127,8 @@ const { explainPhrase } = require('./explain_phrase');
 const { explainChoice } = require('./explain_choice');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainQuiz } = require('./explain_quiz');
-const { compassGenerate } = require('./compass');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { helpBoardCreateTopic, helpBoardAddComment, helpBoardVote, helpBoardReport, helpBoardDeleteMyTopic, helpBoardAdminModerate, helpBoardGenerateCompassForTopic, helpBoardCompassRetryCron, } = require('./help_board');
+const { helpBoardCreateTopic, helpBoardAddComment, helpBoardVote, helpBoardReport, helpBoardDeleteMyTopic, helpBoardDeleteCompassAnswer, helpBoardAdminModerate, helpBoardGenerateCompassForTopic, helpBoardCompassRetryCron, } = require('./help_board');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -149,7 +150,7 @@ const { constellationSubmitAction } = require('./constellations/submit');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { constellationAdmin } = require('./constellations/admin');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, constellationQueueCron, fillConstellationAfterDelay } = require('./constellations/queue');
+const { tryMatchConstellationUser, fillConstellationAfterDelay } = require('./constellations/queue');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -174,6 +175,9 @@ exports.authEnsureStableLink = authEnsureStableLink;
 exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
+exports.accountDeleteEnqueue = accountDeleteEnqueue;
+exports.accountDeleteWorker = accountDeleteWorker;
+exports.accountDeleteRetryCron = accountDeleteRetryCron;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
 exports.nameReserve = nameReserve;
@@ -228,12 +232,12 @@ exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.explainQuiz = explainQuiz;
-exports.compassGenerate = compassGenerate;
 exports.helpBoardCreateTopic = helpBoardCreateTopic;
 exports.helpBoardAddComment = helpBoardAddComment;
 exports.helpBoardVote = helpBoardVote;
 exports.helpBoardReport = helpBoardReport;
 exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
+exports.helpBoardDeleteCompassAnswer = helpBoardDeleteCompassAnswer;
 exports.helpBoardAdminModerate = helpBoardAdminModerate;
 exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
 exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
@@ -318,7 +322,6 @@ exports.onConstellationQueueWrite = functions.firestore.onDocumentWritten(
         console.warn('onConstellationQueueWrite botFill', e);
     }
 });
-exports.constellationCron = functions.scheduler.onSchedule({ schedule: 'every 1 minutes', timeZone: 'UTC' }, async () => { await constellationQueueCron(); });
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;

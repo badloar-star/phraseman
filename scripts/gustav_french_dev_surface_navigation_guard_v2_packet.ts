@@ -36,7 +36,6 @@ type Report = {
     mode: 'dev_surface_visible_content_fail_closed';
     visibleSurfaceParityReady: boolean;
     dailyTaskNavigationGuardsReady: boolean;
-    compassNavigationGuardsReady: boolean;
     personalPlanNavigationGuardsReady: boolean;
     trainerSessionSelfGatesReady: boolean;
     adminShortcutGuardsReady: boolean;
@@ -167,7 +166,6 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- Mode: ${report.summary.mode}`,
     `- Visible surface parity ready: ${report.summary.visibleSurfaceParityReady}`,
     `- Daily task navigation guards ready: ${report.summary.dailyTaskNavigationGuardsReady}`,
-    `- Compass navigation guards ready: ${report.summary.compassNavigationGuardsReady}`,
     `- Personal Plan navigation guards ready: ${report.summary.personalPlanNavigationGuardsReady}`,
     `- Trainer session self gates ready: ${report.summary.trainerSessionSelfGatesReady}`,
     `- Admin shortcut guards ready: ${report.summary.adminShortcutGuardsReady}`,
@@ -216,9 +214,6 @@ function main(): void {
     diagnostic: path.join(repoRoot, 'app/diagnostic_test.tsx'),
     flashcards: path.join(repoRoot, 'app/flashcards.tsx'),
     trainer: path.join(repoRoot, 'app/trainer.tsx'),
-    compassBriefingHost: path.join(repoRoot, 'app/compass/compass_briefing_host.tsx'),
-    compassTaskRoute: path.join(repoRoot, 'app/compass/compass_task_route.ts'),
-    compassInductionRoute: path.join(repoRoot, 'app/compass/compass_induction_route.ts'),
     trainerPlanSession: path.join(repoRoot, 'app/trainer_plan_session.tsx'),
     trainerWordsSession: path.join(repoRoot, 'app/trainer_words_session.tsx'),
     trainerPhrasesSession: path.join(repoRoot, 'app/trainer_phrases_session.tsx'),
@@ -267,13 +262,6 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.diagnostic, id: 'diagnostic_self_gate', expected: 'Diagnostic screen has a French unavailable source gate.', pattern: 'FrenchDiagnosticUnavailable' });
   probeContains({ probes, findings, repoRoot, filePath: files.flashcards, id: 'flashcards_self_gate', expected: 'Flashcards hub has a French flashcard source gate.', pattern: 'flashcardsSourceGatedContentAvailableForTarget' });
   probeContains({ probes, findings, repoRoot, filePath: files.trainer, id: 'trainer_self_gate', expected: 'Trainer hub has a French trainer source gate.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_uses_study_target', expected: 'Compass host must read active studyTarget before resolving route pushes.', pattern: 'const { studyTarget } = useStudyTarget()' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_route_resolver', expected: 'Compass host must resolve source-gated routes before router.push.', pattern: 'resolveSourceGatedRoute' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_flashcards_gate', expected: 'Compass flashcard deep links must pass through flashcards source gate.', pattern: "flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')" });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_trainer_gate', expected: 'Compass trainer deep links must pass through trainer source gate.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_diagnostic_gate', expected: 'Compass diagnostic deep links must pass through diagnostic source gate.', pattern: 'diagnosticContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_task_route_wrapped', expected: 'Compass task press must wrap computed routes before push.', pattern: 'route = resolveSourceGatedRoute(route);' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_induction_route_wrapped', expected: 'Compass induction press must wrap computed routes before push.', pattern: 'resolveSourceGatedRoute(compassInductionRoute(feature))' });
   probeContains({ probes, findings, repoRoot, filePath: files.trainerPlanSession, id: 'personal_plan_trainer_redirect_gate', expected: 'Personal Plan trainer redirect must check trainer source gate before reading plan trainer context.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
   probeContains({ probes, findings, repoRoot, filePath: files.trainerPlanSession, id: 'personal_plan_trainer_redirect_fallback', expected: 'Personal Plan trainer redirect must fail closed to lessons when French trainer is unavailable.', pattern: "router.replace('/(tabs)/lessons' as any)" });
   for (const [fileKey, filePath] of [
@@ -311,28 +299,21 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.dialogsTabContent, id: 'dialogs_tab_content_challenges_visible', expected: 'DialogsTabContent must still build challenge scenario cards while French AI content is source-gated.', pattern: 'getChallengeDialogScenarios().map' });
   probeContains({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_thematic_challenges_visible_while_source_gated', expected: 'French dev quiz themes/challenge categories must remain visible while their starts are blocked by the source gate.', pattern: '() => getAvailableThematicQuizCategories(studyTarget)' });
   probeAbsent({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_no_source_gate_category_hide', expected: 'French source gate must not hide thematic quiz/challenge categories.', pattern: 'sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.compassBriefingHost, id: 'compass_ai_dialog_gate', expected: 'Compass dialogs induction route must pass through AI dialog source gate.', pattern: "route.pathname === '/ai_dialog_home'" });
   probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_ai_dialog_shortcut_helper', expected: 'Admin AI dialog shortcut must use a guarded helper.', pattern: 'const openAiDialogQaRoute =' });
   probeContains({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_ai_dialog_shortcut_wrapped', expected: 'Admin AI dialog shortcut button must use guarded helper.', pattern: 'onPress={openAiDialogQaRoute}' });
   probeAbsent({ probes, findings, repoRoot, filePath: files.adminSettingsTesters, id: 'admin_no_direct_ai_dialog_home_push', expected: 'Admin must not directly push /ai_dialog_home from QA button.', pattern: "onPress={() => router.push('/ai_dialog_home' as any)}" });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'parity_test_guarded', expected: 'A narrow Jest contract covers French dev surface visibility and gated daily-task destinations.', pattern: 'keeps French daily-task sections visible but source-gates non-French task destinations before navigation' });
   probeContains({ probes, findings, repoRoot, filePath: files.dailyTasksTargetFilterTests, id: 'daily_quiz_challenge_visibility_test_guarded', expected: 'A narrow Jest contract proves French keeps every quiz/challenge daily task type visible while source-gating quiz content.', pattern: 'keeps every quiz/challenge daily task type visible for French while quiz content stays source-gated' });
-  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'compass_test_guarded', expected: 'A narrow Jest contract covers Compass French deep-link gates.', pattern: 'source-gates Compass deep links before French can reach unfinished practice surfaces' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'personal_plan_test_guarded', expected: 'A narrow Jest contract covers Personal Plan trainer redirect gates.', pattern: 'source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'trainer_session_test_guarded', expected: 'A narrow Jest contract covers direct trainer session self-gates.', pattern: 'keeps every direct trainer session screen behind the French trainer source gate' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'admin_shortcut_test_guarded', expected: 'A narrow Jest contract covers admin trainer QA shortcut gates.', pattern: 'source-gates admin trainer QA shortcuts before they can deep-link into French trainer sessions' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'ai_dialog_test_guarded', expected: 'A narrow Jest contract covers AI dialog source gates.', pattern: 'source-gates AI dialog routes before French can use English scenarios or prompts' });
 
-  const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
-  const warnings = findings.filter((finding) => finding.severity === 'warning').length;
   const visibleSurfaceParityReady = probes
     .filter((probe) => probe.id.startsWith('home_') || probe.id.startsWith('lesson_menu_') || probe.id === 'daily_tasks_fr_visible')
     .every((probe) => probe.passed);
   const dailyTaskNavigationGuardsReady = probes
     .filter((probe) => probe.id.startsWith('daily_tasks_screen_') || probe.id.startsWith('daily_task_navigation_'))
-    .every((probe) => probe.passed);
-  const compassNavigationGuardsReady = probes
-    .filter((probe) => probe.id.startsWith('compass_'))
     .every((probe) => probe.passed);
   const personalPlanNavigationGuardsReady = probes
     .filter((probe) => probe.id.startsWith('personal_plan_'))
@@ -344,7 +325,7 @@ function main(): void {
     .filter((probe) => probe.id.startsWith('admin_'))
     .every((probe) => probe.passed);
   const aiDialogSourceGatesReady = probes
-    .filter((probe) => probe.id.startsWith('ai_dialog_') || probe.id.startsWith('ai_companion_') || probe.id.startsWith('dialogs_tab_content_') || probe.id === 'compass_ai_dialog_gate')
+    .filter((probe) => probe.id.startsWith('ai_dialog_') || probe.id.startsWith('ai_companion_') || probe.id.startsWith('dialogs_tab_content_'))
     .every((probe) => probe.passed);
   const destinationSelfGatesReady = probes
     .filter((probe) => ['quizzes_self_gate', 'diagnostic_self_gate', 'flashcards_self_gate', 'trainer_self_gate'].includes(probe.id))
@@ -430,7 +411,6 @@ function main(): void {
       mode: 'dev_surface_visible_content_fail_closed',
       visibleSurfaceParityReady,
       dailyTaskNavigationGuardsReady,
-      compassNavigationGuardsReady,
       personalPlanNavigationGuardsReady,
       trainerSessionSelfGatesReady,
       adminShortcutGuardsReady,

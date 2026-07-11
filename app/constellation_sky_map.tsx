@@ -36,6 +36,7 @@ import type { Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { useDevForceLowEnd } from '../hooks/dev_force_low_end';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { ConstellationMatchPlayer, ConstellationStar } from './types/constellations';
 import { allMapHexes, hexKey, parseHexKey, ringOf, type ConstellationRing, type Hex } from './constellations_hex';
 import { starName } from './constellation_star_names';
@@ -53,6 +54,8 @@ const DEPTH: Record<ConstellationRing, number> = { outer: 12, middle: 15, inner:
 const HEX_SIZE = 27;
 const VIEW_W = 360;
 const VIEW_H = 400;
+/** Макс. ширина подписи имени звезды (ед. viewBox): длиннее — ужимаем глифы. */
+const STAR_NAME_MAX_WIDTH = 92;
 /** Вертикальное сжатие граней — иллюзия наклона доски. */
 const Y_SQUASH = 0.88;
 
@@ -326,13 +329,21 @@ function SkyMapInner({
             {(isPolar || isHome) ? (() => {
               const ny = isPolar ? c.top[1] + 30 : c.top[1] - 17;
               const label = starName(c.key, lang);
+              // Длинное имя не должно вылезать за край карты (аудит): при превышении
+              // лимита ширины SVG сам ужимает глифы (textLength+spacingAndGlyphs),
+              // короткое рисуется как есть. ~7 ед/символ — эмпирический порог.
+              const maxTextLen = STAR_NAME_MAX_WIDTH;
+              const needsSqueeze = label.length * 7 > maxTextLen;
+              const lenProps = needsSqueeze
+                ? { textLength: maxTextLen, lengthAdjust: 'spacingAndGlyphs' as const }
+                : {};
               // Авто-лайт (F9): react-native-svg не поддерживает paintOrder,
               // поэтому обводка+заливка требуют двух SvgText — на слабом тире
               // рисуем ОДИН проход (только заливку) вместо двух.
               if (isLowEnd) {
                 return (
                   <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
-                    fill="#EAF2FF" fontWeight="700">
+                    fill="#EAF2FF" fontWeight="700" {...lenProps}>
                     {label}
                   </SvgText>
                 );
@@ -341,11 +352,11 @@ function SkyMapInner({
                 <>
                   {/* тёмная обводка снизу — читаемость на любом фоне */}
                   <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
-                    fill="none" stroke="#05060E" strokeWidth={3} fontWeight="700">
+                    fill="none" stroke="#05060E" strokeWidth={3} fontWeight="700" {...lenProps}>
                     {label}
                   </SvgText>
                   <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
-                    fill="#EAF2FF" fontWeight="700">
+                    fill="#EAF2FF" fontWeight="700" {...lenProps}>
                     {label}
                   </SvgText>
                 </>

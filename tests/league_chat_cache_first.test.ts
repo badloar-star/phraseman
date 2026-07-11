@@ -22,7 +22,6 @@ describe('league chat cache-first behavior', () => {
       roomAuthorized: false,
       roomAuthorizing: true,
       subscriptionError: false,
-      sending: false,
       draft: 'hello',
       draftBlocked: false,
     });
@@ -39,7 +38,6 @@ describe('league chat cache-first behavior', () => {
       roomAuthorized: true,
       roomAuthorizing: false,
       subscriptionError: false,
-      sending: false,
       draft: 'hello',
       draftBlocked: false,
     });
@@ -55,7 +53,6 @@ describe('league chat cache-first behavior', () => {
       roomAuthorized: false,
       roomAuthorizing: false,
       subscriptionError: false,
-      sending: false,
       draft: 'hello',
       draftBlocked: false,
     });
@@ -72,7 +69,6 @@ describe('league chat cache-first behavior', () => {
       roomAuthorized: true,
       roomAuthorizing: false,
       subscriptionError: true,
-      sending: false,
       draft: '',
       draftBlocked: false,
     });
@@ -189,13 +185,12 @@ describe('league chat cache-first behavior', () => {
     expect(indexSource).toContain('exports.leagueChatDeleteMessage = leagueChatDeleteMessage');
   });
 
-  it('adds optimistic chat rows before awaiting Firestore send', () => {
+  it('adds optimistic chat rows and sends to Firestore in the background', () => {
     const source = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
 
     expect(source).toContain('setOptimisticMessages((cur) =>');
-    expect(source.indexOf('setOptimisticMessages((cur) =>')).toBeLessThan(
-      source.indexOf('await sendLeagueChatMessage(room, text'),
-    );
+    expect(source).toContain('void sendLeagueChatMessage(room, text');
+    expect(source).not.toContain('await sendLeagueChatMessage(room, text');
     expect(source).not.toContain('Сообщение отправлено');
   });
 

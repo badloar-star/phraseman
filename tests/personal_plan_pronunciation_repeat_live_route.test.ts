@@ -121,7 +121,9 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(source).toContain('buildSpeakingStartOptions({');
     expect(source).toContain("speechModule.addListener('result', applyResult)");
     expect(source).toContain('scheduleFinishAttempt');
-    expect(source).toContain("if (Platform.OS !== 'android') playRecordStart();");
+    expect(source).toContain('onFirstAudio');
+    expect(source).toContain('const playCueOnce = () =>');
+    expect(source).toContain('playRecordStart();');
     expect(source).toContain('useAudio()');
     expect(source).toContain('listenPronunciationTarget');
     expect(source).toContain('speakFallbackAudio(targetText, 0.86');

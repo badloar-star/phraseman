@@ -41,7 +41,7 @@ function LeagueCrownName({
   const safeCount = Math.max(0, Math.floor(Number(count) || 0));
 
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0, alignSelf: 'flex-start' }}>
       <Image
         source={LEAGUE_CROWN_ICON}
         contentFit="contain"
@@ -56,7 +56,10 @@ function LeagueCrownName({
           fontSize,
           color: crownColor,
           fontWeight,
-          flex: 1,
+          // Раньше flex:1: в схлопнутом (по контенту) родительском ряду это давало
+          // Text нулевую ширину → имя коронованных ПРОПАДАЛО. flexShrink берёт
+          // естественную ширину по тексту и ужимается только при нехватке места.
+          flexShrink: 1,
         }}
       >
         {text}

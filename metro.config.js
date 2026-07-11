@@ -111,7 +111,6 @@ const storeReleaseDevModules = new Set([
   // (подтверждено source-map'ом prod-сборки). Держим список синхронным со всеми
   // `_admin_*`-роутами под `if (ENABLE_DEV_TOOLS)`.
   './_admin_celebration_lab',
-  './_admin_compass_lab',
   './_admin_speaking_lab',
   './_admin_referral_lab',
   './_pos_analytics_audit',

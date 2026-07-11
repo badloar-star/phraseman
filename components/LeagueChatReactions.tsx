@@ -59,10 +59,12 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
   }, [message.id]);
 
   const react = useCallback(
-    async (emoji: string) => {
+    (emoji: string) => {
       hapticTap();
       setPaletteOpen(false);
       const prev = myReaction;
+      const nextReaction = prev === emoji ? undefined : emoji;
+      setMyReaction(nextReaction);
       // Оптимистичный апдейт счётчиков.
       setCounts((cur) => {
         const next = { ...cur };
@@ -74,8 +76,7 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
         }
         return next;
       });
-      const result = await toggleLeagueChatReaction(message.id, emoji).catch(() => prev);
-      setMyReaction(result);
+      void toggleLeagueChatReaction(message.id, emoji).catch(() => {});
     },
     [message.id, myReaction],
   );

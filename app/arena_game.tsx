@@ -1139,11 +1139,14 @@ export default function DuelGameScreen() {
               </View>
               <Text
                 style={[styles.optionText, { color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.4) }]}
-                numberOfLines={2}
-                // Длинный двуязычный вариант ужимается, а не обрезается: игрок
-                // под таймером обязан видеть ответ целиком (класс бага флешкарт).
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
+                // Длинный двуязычный вариант ПЕРЕНОСИТСЯ на несколько строк, а не
+                // обрезается: игрок под таймером обязан видеть ответ целиком.
+                // ВАЖНО: НЕ используем adjustsFontSizeToFit — на iOS в flex-строке
+                // он на первом рендере меряет ширину как ~0 и ужимает КОРОТКИЕ
+                // варианты («Заходи!») до нечитаемого огрызка, пока соседние
+                // остаются нормальными (регрессия, класс бага флешкарт). Кнопка
+                // растёт по высоте (minHeight + перенос), текст не мельчает.
+                numberOfLines={3}
               >
                 {arenaBilingualFirst(option, lang)}
               </Text>

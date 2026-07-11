@@ -16,15 +16,15 @@ import {
   markUserNotificationsRead,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
-  subscribeUserNotifications,
   type UserNotification,
   type UserNotificationType,
 } from '../app/user_notifications';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
  * на сообщение» — всё в одном месте. Данные пишут cloud functions в
- * users/{uid}/notifications; тап по событию ведёт ровно туда, где оно случилось
+ * users/{stableUid}/notifications; тап по событию ведёт ровно туда, где оно случилось
  * (чат — к конкретному сообщению с подсветкой).
  */
 
@@ -128,6 +128,7 @@ function timeLabel(ms: number): string {
 function NotificationCenterButton() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isScreenFocused = useIsScreenFocused();
   const insets = useStableSafeAreaInsets();
   const topInset = Math.max(18, insets.top + 8);
   const copy = useMemo(() => ({ ...centerCopy(lang as Lang), ...reportReplyCopy(lang as Lang) }), [lang]);
@@ -138,9 +139,11 @@ function NotificationCenterButton() {
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    if (!isScreenFocused) return;
     let alive = true;
     const refreshOnce = () => {
       void refreshUserNotificationsOnce({
+        force: true,
         minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
       }).then((list) => {
         if (alive) setItems(list);
@@ -151,23 +154,19 @@ function NotificationCenterButton() {
     });
     refreshOnce();
     const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') refreshOnce();
+      if (state === 'active') {
+        refreshOnce();
+      }
     });
     return () => {
       alive = false;
       appSub.remove();
     };
-  }, []);
+  }, [isScreenFocused]);
 
-  useEffect(() => {
-    if (!visible) return;
-    const unsubscribe = subscribeUserNotifications((list) => {
-      setItems(list);
-    });
-    return unsubscribe;
-  }, [visible]);
-
-  const unreadCount = countUnreadNotifications(items);
+  const unreadCount = countUnreadNotifications(
+    items.filter((row) => !markedReadIdsRef.current.has(row.id)),
+  );
   const selected = useMemo(() => items.find((row) => row.id === selectedId) ?? null, [items, selectedId]);
 
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
@@ -179,6 +178,9 @@ function NotificationCenterButton() {
       .map((row) => row.id);
     if (unreadIds.length) {
       unreadIds.forEach((id) => markedReadIdsRef.current.add(id));
+      setItems((current) => current.map((row) => (
+        unreadIds.includes(row.id) ? { ...row, read: true } : row
+      )));
       void markUserNotificationsRead(unreadIds);
     }
   }, [items]);

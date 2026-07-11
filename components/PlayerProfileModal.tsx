@@ -283,7 +283,7 @@ function PlayerProfileModalBody({
   const displayXp = isMe ? myInfo.totalXP : (totalXp ?? 0);
   const xp = displayXp;
   const level = getLevelFromXP(safeTotalXp);
-  const streak = isMe ? (myInfo.streak ?? null) : (player.streak ?? null);
+  const streak = isMe ? (myInfo.streak ?? player.streak ?? null) : (player.streak ?? null);
   const avatarStr = isMe
     ? (myInfo.avatar || String(getBestAvatarForLevel(level)))
     : (player.avatar ? String(player.avatar) : String(getBestAvatarForLevel(level)));

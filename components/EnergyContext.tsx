@@ -10,6 +10,7 @@ import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from '../app/boons
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 import { scheduleEnergyFullNotification, cancelEnergyFullNotification } from '../app/notifications';
 import type { Lang } from '../constants/i18n';
+import { energyCountdownClock } from './energy_countdown_clock';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -77,19 +78,14 @@ export function useEnergy(): EnergyContextValue {
   return useContext(EnergyContext);
 }
 
-export function useEnergyCountdown(): { timeUntilNextMs: number; formattedTime: string } {
+export function useEnergyCountdown(options: { visible?: boolean } = {}): { timeUntilNextMs: number; formattedTime: string } {
   const { energy, maxEnergy, isUnlimited, recoveryIntervalMs, recoveryEndsAtMs } = useEnergy();
-  const [appActive, setAppActive] = useState(() => AppState.currentState === 'active');
   const [now, setNow] = useState(() => Date.now());
-
-  useEffect(() => {
-    const sub = AppState.addEventListener('change', state => setAppActive(state === 'active'));
-    return () => sub.remove();
-  }, []);
+  const visible = options.visible ?? true;
 
   useEffect(() => {
     const shouldTick =
-      appActive
+      visible
       && !isUnlimited
       && energy < maxEnergy
       && recoveryEndsAtMs > 0
@@ -98,9 +94,8 @@ export function useEnergyCountdown(): { timeUntilNextMs: number; formattedTime: 
     setNow(Date.now());
     if (!shouldTick) return undefined;
 
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, [appActive, energy, isUnlimited, maxEnergy, recoveryEndsAtMs, recoveryIntervalMs]);
+    return energyCountdownClock.subscribe(setNow);
+  }, [energy, isUnlimited, maxEnergy, recoveryEndsAtMs, recoveryIntervalMs, visible]);
 
   if (isUnlimited || energy >= maxEnergy || recoveryEndsAtMs <= 0 || recoveryIntervalMs <= 0) {
     return { timeUntilNextMs: 0, formattedTime: '' };

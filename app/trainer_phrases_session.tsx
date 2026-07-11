@@ -143,6 +143,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const { flashKey, flash } = useWordFlash();
 
   const correctTokens = tokenizeRecallPhrase(item.key);
+  const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
 
   const tapBank = (tile: WordBankTile) => {
     if (feedback !== 'none') return;
@@ -277,20 +278,20 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         })}
       </View>
 
-      {/* Кнопка проверки */}
-      <TouchableOpacity
-        onPress={check}
-        disabled={selected.length === 0 || feedback !== 'none'}
-        style={[styles.checkBtn, {
-          backgroundColor: isCompassTheme ? (selected.length > 0 ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : selected.length > 0 ? '#4A9EFF' : t.bgSurface,
-          borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent',
-          borderRadius: isCompassTheme ? 9 : 16,
-          overflow: isCompassTheme ? 'hidden' : 'visible',
-          opacity: selected.length > 0 ? 1 : 0.4,
-        }]}
-      >
-        {isCompassTheme ? <CompassDepthSurface radius={9} cream={selected.length > 0} quiet={selected.length === 0} /> : null}
+          {/* Кнопка проверки */}
+          <TouchableOpacity
+            onPress={check}
+            disabled={!canCheck || feedback !== 'none'}
+            style={[styles.checkBtn, {
+              backgroundColor: isCompassTheme ? (canCheck ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : canCheck ? '#4A9EFF' : t.bgSurface,
+              borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent',
+              borderRadius: isCompassTheme ? 9 : 16,
+              overflow: isCompassTheme ? 'hidden' : 'visible',
+              opacity: canCheck ? 1 : 0.4,
+            }]}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={9} cream={canCheck} quiet={!canCheck} /> : null}
         <Text style={[styles.checkBtnText, { fontSize: f.body }]}>
           {triLang(lang, {
             ru: 'Проверить',

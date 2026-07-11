@@ -31,4 +31,16 @@ describe('admin digest v2 surface', () => {
     expect(digestModule).toContain('Н/Д');
     expect(digestModule).toContain('Нет событий');
   });
+
+  test('explains legacy digest documents instead of asking for a manual period', () => {
+    const digestModule = fs.readFileSync(digestModulePath, 'utf8');
+    expect(digestModule).toContain('Старый формат дайджеста');
+    expect(digestModule).toContain('Сформировать дайджест');
+  });
+
+  test('callable response includes source coverage diagnostics', () => {
+    const digestSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'admin_daily_digest.ts'), 'utf8');
+    const returnBlock = digestSource.slice(digestSource.lastIndexOf('return {'), digestSource.lastIndexOf('} catch (error)'));
+    expect(returnBlock).toContain('sourceCoverage');
+  });
 });

@@ -614,6 +614,7 @@ export interface DigestResult {
   revenueReconciliation: RevenueReconciliation;
   revenueCatCoverage: { status: 'ok' | 'failed' | 'not_configured'; errorCode?: string };
   coverageStatus: 'verified' | 'insufficient_coverage';
+  sourceCoverage: Array<{ sourceId: string; status: string; errorCode?: string }>;
   model: string;
 }
 
@@ -823,6 +824,7 @@ export async function runAdminDailyDigest(
     revenueReconciliation,
     revenueCatCoverage,
     coverageStatus,
+    sourceCoverage,
     model: empty ? 'none' : cfg.model,
   };
   } catch (error) {

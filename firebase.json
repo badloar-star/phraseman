@@ -73,7 +73,10 @@
   ],
   "functions": {
     "source": "functions",
-    "runtime": "nodejs22"
+    "runtime": "nodejs22",
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run build"
+    ]
   },
   "react-native": {
     "app_check_token_auto_refresh": false,

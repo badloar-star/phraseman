@@ -1,193 +1,78 @@
-// ════════════════════════════════════════════════════════════════════════════
-// SurveyTaskCard — плашка опроса за осколки, 4-е задание «Вызовов дня».
-// Самодостаточна: тянет активный опрос через getActiveShardSurvey. Когда опрос
-// пройден сегодня — показывает состояние «выполнено» (галочка) до конца дня
-// (сервер пройденный опрос не отдаёт, поэтому опираемся на локальную метку).
-// Если опроса нет / облако выкл / ошибка — рендерит null.
-//
-// Опрос считается 4-м заданием: награду «за все» дают за любые 3 из 4 (логика
-// порога — в daily_tasks_screen).
-// ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useMemo, useState } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useFocusEffect, useRouter } from 'expo-router';
-import TapScale from './TapScale';
-import { useLang } from './LangContext';
-import { useTheme } from './ThemeContext';
-import { triLang, type Lang } from '../constants/i18n';
+import React, { useMemo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import type { SurveyDailyChallengeSnapshot } from '../app/survey_daily_challenge_model';
 import { screenTextOnGradient } from '../constants/theme';
-import { hapticTap } from '../hooks/use-haptics';
-import { getCanonicalUserId } from '../app/user_id_policy';
-import { fetchActiveSurveyWithRetry, isSurveyCloudEnabled } from '../app/survey_client';
-import { primeSurvey } from '../app/survey_handoff';
-import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../app/survey_daily_task';
-import { getTodayKey } from '../app/daily_tasks';
-import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, type SurveyDailyChallengeSnapshot } from '../app/survey_daily_challenge_model';
-import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../app/survey_daily_task_cache';
-import { DebugLogger } from '../app/debug-logger';
+import TapScale from './TapScale';
+import { useTheme } from './ThemeContext';
 
-/** Светлый ли HEX-цвет (относительная яркость > 0.6) — для выбора цвета текста. */
 function isLightHex(hex: string): boolean {
   let h = hex.replace('#', '');
-  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
-  const r = parseInt(h.slice(0, 2), 16) / 255;
-  const g = parseInt(h.slice(2, 4), 16) / 255;
-  const b = parseInt(h.slice(4, 6), 16) / 255;
-  // Воспринимаемая яркость (перцептивные веса).
-  return 0.299 * r + 0.587 * g + 0.114 * b > 0.6;
+  if (h.length === 3) h = h.split('').map((character) => character + character).join('');
+  const red = parseInt(h.slice(0, 2), 16) / 255;
+  const green = parseInt(h.slice(2, 4), 16) / 255;
+  const blue = parseInt(h.slice(4, 6), 16) / 255;
+  return 0.299 * red + 0.587 * green + 0.114 * blue > 0.6;
 }
 
-type SurveyTaskCardState = {
-  scope: { stableId: string; dayKey: string; lang: Lang } | null;
-  snapshot: SurveyDailyChallengeSnapshot | null;
-  done: boolean;
+export type SurveyTaskCardProps = {
+  challenge: SurveyDailyChallengeSnapshot;
+  onOpen: (challenge: SurveyDailyChallengeSnapshot) => void;
 };
 
-export default function SurveyTaskCard({ owner }: { owner?: SurveyTaskCardState }) {
-  const router = useRouter();
-  const { lang } = useLang();
+export default function SurveyTaskCard({ challenge, onOpen }: SurveyTaskCardProps) {
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const [cardState, setCardState] = useState<SurveyTaskCardState>({ scope: null, snapshot: null, done: false });
-  const visibleState = owner ?? cardState;
-  const { scope, snapshot, done } = visibleState;
-  const survey = snapshot?.survey ?? null;
 
-  // useFocusEffect: пере-проверяем при возврате с экрана опроса, чтобы плашка
-  // сразу переключилась в «выполнено».
-  useFocusEffect(useCallback(() => {
-    if (owner) return () => {};
-    let cancelled = false;
-    (async () => {
-      try {
-        const dayKey = getTodayKey();
-        const stableId = await getCanonicalUserId();
-        if (cancelled || !stableId) return;
-        const nextScope = { stableId, dayKey, lang };
-        const cached = peekSurveyDailyTask(nextScope);
-        setCardState((current) => (
-          current.scope?.stableId === stableId
-            && current.scope.dayKey === dayKey
-            && current.scope.lang === lang
-            ? current
-            : { scope: nextScope, snapshot: cached, done: cached?.phase === 'completed' }
-        ));
-        if (cached) return;
-        const isDone = await isSurveyDailyTaskDone({ stableId, dayKey });
-        if (cancelled) return;
-        if (isDone) {
-          setCardState({ scope: nextScope, snapshot: buildServerConfirmedLegacyCompletion(lang), done: true });
-          return;
-        }
-        if (!isSurveyCloudEnabled()) return;
-        const requestId = beginSurveyDailyTaskRequest(nextScope);
-        const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-        const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
-        if (cancelled) return;
-        if (migrated) {
-          const completed = buildServerConfirmedLegacyCompletion(lang);
-          commitSurveyDailyTaskRequest(nextScope, requestId, completed);
-          setCardState({ scope: nextScope, snapshot: completed, done: true });
-          return;
-        }
-        if (lookup.survey && lookup.survey.questions.length > 0) {
-          const active = buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang });
-          commitSurveyDailyTaskRequest(nextScope, requestId, active);
-          setCardState({
-            scope: nextScope,
-            snapshot: active,
-            done: false,
-          });
-        } else {
-          commitSurveyDailyTaskRequest(nextScope, requestId, null);
-        }
-      } catch (e: unknown) {
-        // Опрос — задание, ошибка не должна ломать экран заданий, но и не глушим
-        // молча: пишем в debug-лог, чтобы реальные сбои (сеть/auth) были видны.
-        DebugLogger.warn('SurveyTaskCard', String((e as { message?: string })?.message ?? e ?? 'fetch_failed'));
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [lang, owner]));
-
-  // Пройденный опрос — плашка «выполнено» (галочка) до конца дня.
-  if (done) {
+  if (challenge.phase === 'completed') {
     return (
       <View style={[styles.card, { backgroundColor: t.bgCard, opacity: 0.85 }]}>
         <View style={[styles.iconWrap, { backgroundColor: sx.ghost }]}>
           <Ionicons name="checkmark-circle" size={24} color="#63D98F" />
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={styles.content}>
           <Text numberOfLines={1} style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>
-            {triLang(lang, {
-              ru: 'Опрос пройден', uk: 'Опитування пройдено', es: 'Encuesta completada',
-              'pt-BR': 'Pesquisa concluída', vi: 'Đã hoàn thành khảo sát', id: 'Survei selesai',
-              tr: 'Anket tamamlandı', pl: 'Ankieta ukończona',
-            })}
+            {challenge.title}
           </Text>
           <Text numberOfLines={1} style={{ color: sx.muted, fontSize: f.label, marginTop: 2 }}>
-            {triLang(lang, {
-              ru: 'Засчитано как задание', uk: 'Зараховано як завдання', es: 'Cuenta como tarea',
-              'pt-BR': 'Conta como tarefa', vi: 'Tính là nhiệm vụ', id: 'Dihitung sebagai tugas',
-              tr: 'Görev sayıldı', pl: 'Liczy się jako zadanie',
-            })}
+            {challenge.description}
           </Text>
         </View>
       </View>
     );
   }
 
+  const survey = challenge.survey;
   if (!survey) return null;
 
-  const open = () => {
-    hapticTap();
-    if (!scope) return;
-    const { stableId, dayKey } = scope;
-    primeSurvey({ survey, stableId, dayKey, lang });
-    router.push({ pathname: '/survey_screen', params: { surveyId: survey.surveyId, stableId, dayKey, lang } });
-  };
-
-  // Цвет плашки из конфига (accentColor) — «не как все задания». Есть цвет →
-  // красим фон в него; текст авто-контрастный (тёмный на светлом фоне, светлый на
-  // тёмном) — иначе белый текст на светлом цвете нечитаем.
   const accent = survey.accentColor && /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(survey.accentColor)
-    ? survey.accentColor : null;
-  const onAccentDark = accent ? isLightHex(accent) : false; // фон светлый → текст тёмный
-  const cardBg = accent || t.bgCard;
-  const fg = onAccentDark ? '#1A1A1A' : '#FFFFFF';
-  const titleColor = accent ? fg : sx.primary;
-  const subColor = accent ? (onAccentDark ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.82)') : sx.muted;
-  const iconTint = accent ? fg : sx.second;
-  const iconWrapBg = accent ? (onAccentDark ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.18)') : sx.ghost;
+    ? survey.accentColor
+    : null;
+  const lightAccent = accent ? isLightHex(accent) : false;
+  const foreground = lightAccent ? '#1A1A1A' : '#FFFFFF';
+  const titleColor = accent ? foreground : sx.primary;
+  const subtitleColor = accent
+    ? (lightAccent ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.82)')
+    : sx.muted;
+  const iconColor = accent ? foreground : sx.second;
+  const iconBackground = accent
+    ? (lightAccent ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.18)')
+    : sx.ghost;
 
   return (
-    <TapScale onPress={open} style={[styles.card, { backgroundColor: cardBg }]}>
-      <View style={[styles.iconWrap, { backgroundColor: iconWrapBg }]}>
-        <Ionicons name="chatbubble-ellipses" size={22} color={iconTint} />
+    <TapScale onPress={() => onOpen(challenge)} style={[styles.card, { backgroundColor: accent || t.bgCard }]}>
+      <View style={[styles.iconWrap, { backgroundColor: iconBackground }]}>
+        <Ionicons name="chatbubble-ellipses" size={22} color={iconColor} />
       </View>
-      <View style={{ flex: 1 }}>
+      <View style={styles.content}>
         <Text numberOfLines={1} style={{ color: titleColor, fontSize: f.body, fontWeight: '700' }}>
-          {survey.title || triLang(lang, {
-            ru: 'Короткий опрос', uk: 'Коротке опитування', es: 'Encuesta breve',
-            'pt-BR': 'Pesquisa rápida', vi: 'Khảo sát ngắn', id: 'Survei singkat',
-            tr: 'Kısa anket', pl: 'Krótka ankieta',
-          })}
+          {challenge.title}
         </Text>
-        <Text numberOfLines={1} style={{ color: subColor, fontSize: f.label, marginTop: 2 }}>
-          {triLang(lang, {
-            ru: `Ответь и получи 💎${survey.rewardShards}`,
-            uk: `Відповідай і отримай 💎${survey.rewardShards}`,
-            es: `Responde y gana 💎${survey.rewardShards}`,
-            'pt-BR': `Responda e ganhe 💎${survey.rewardShards}`,
-            vi: `Trả lời và nhận 💎${survey.rewardShards}`,
-            id: `Jawab dan dapatkan 💎${survey.rewardShards}`,
-            tr: `Yanıtla ve kazan 💎${survey.rewardShards}`,
-            pl: `Odpowiedz i zdobądź 💎${survey.rewardShards}`,
-          })}
+        <Text numberOfLines={1} style={{ color: subtitleColor, fontSize: f.label, marginTop: 2 }}>
+          {challenge.description}
         </Text>
       </View>
-      <Ionicons name="chevron-forward" size={22} color={subColor} />
+      <Ionicons name="chevron-forward" size={22} color={subtitleColor} />
     </TapScale>
   );
 }
@@ -195,4 +80,5 @@ export default function SurveyTaskCard({ owner }: { owner?: SurveyTaskCardState 
 const styles = StyleSheet.create({
   card: { flexDirection: 'row', alignItems: 'center', borderRadius: 20, padding: 14, gap: 12 },
   iconWrap: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  content: { flex: 1 },
 });

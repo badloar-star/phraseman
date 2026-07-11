@@ -50,10 +50,11 @@ import { useScreen } from '../hooks/use-screen';
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from './survey_client';
 import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from './survey_daily_task';
-import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion } from './survey_daily_challenge_model';
-import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from './survey_daily_task_cache';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, type SurveyDailyChallengeSnapshot } from './survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask, type SurveyDailyTaskScope } from './survey_daily_task_cache';
+import { primeSurvey } from './survey_handoff';
 import { getCanonicalUserId } from './user_id_policy';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import {
     beginDailyTasksScreenRequest,
@@ -1733,15 +1734,25 @@ export default function DailyTasksScreen() {
         ? { stableId: renderToken.stableId, dayKey: activeDayKey, lang }
         : null;
     const surveyScopeKey = surveyScope ? JSON.stringify([surveyScope.stableId, surveyScope.dayKey, surveyScope.lang]) : null;
-    const [surveyState, setSurveyState] = useState(() => ({
-        scopeKey: surveyScopeKey,
-        snapshot: surveyScope ? peekSurveyDailyTask(surveyScope) : null,
-    }));
-    const surveySnapshot = surveyState.scopeKey === surveyScopeKey
-        ? surveyState.snapshot
+    const [surveySnapshotState, setSurveySnapshot] = useState<SurveyDailyChallengeSnapshot | null>(() => (
+        surveyScope ? peekSurveyDailyTask(surveyScope) : null
+    ));
+    const [surveySnapshotScopeKey, setSurveySnapshotScopeKey] = useState<string | null>(() => surveyScopeKey);
+    const surveyOpenScopeRef = useRef<SurveyDailyTaskScope | null>(surveyScope);
+    const surveySnapshot = surveySnapshotScopeKey === surveyScopeKey
+        ? surveySnapshotState
         : surveyScope ? peekSurveyDailyTask(surveyScope) : null;
+    if (surveySnapshotScopeKey !== surveyScopeKey && surveySnapshot && surveyScope) {
+        surveyOpenScopeRef.current = surveyScope;
+    }
     const surveyPresent = surveySnapshot != null;
     const surveyDone = surveySnapshot?.phase === 'completed';
+    const publishSurveySnapshot = useCallback((scope: SurveyDailyTaskScope, snapshot: SurveyDailyChallengeSnapshot | null) => {
+        const scopeKey = JSON.stringify([scope.stableId, scope.dayKey, scope.lang]);
+        surveyOpenScopeRef.current = scope;
+        setSurveySnapshotScopeKey((current) => current === scopeKey ? current : scopeKey);
+        setSurveySnapshot((current) => JSON.stringify(current) === JSON.stringify(snapshot) ? current : snapshot);
+    }, []);
     /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
         показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
     const [loadingTasks, setLoadingTasks] = useState(() => initialSnapshot === null);
@@ -2039,43 +2050,58 @@ export default function DailyTasksScreen() {
         (async () => {
             try {
                 const dayKey = getTodayKey();
+                const accountToken = captureAccountGeneration();
                 const stableId = await getCanonicalUserId();
-                if (cancelled || !stableId) return;
+                if (cancelled || !stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
                 const scope = { stableId, dayKey, lang };
                 const cached = peekSurveyDailyTask(scope);
                 if (cached) {
-                    setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot: cached });
-                    return;
+                    publishSurveySnapshot(scope, cached);
                 }
                 const done = await isSurveyDailyTaskDone({ stableId, dayKey });
-                if (cancelled) return;
+                if (cancelled || !isCurrentAccountGeneration(accountToken, stableId)) return;
                 if (done) {
                     const completed = buildServerConfirmedLegacyCompletion(lang);
-                    commitSurveyDailyTaskRequest(scope, beginSurveyDailyTaskRequest(scope), completed);
-                    setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot: completed });
+                    const requestId = beginSurveyDailyTaskRequest(scope);
+                    if (commitSurveyDailyTaskRequest(scope, requestId, completed)) publishSurveySnapshot(scope, completed);
                     return;
                 }
+                if (cached) return;
                 if (!isSurveyCloudEnabled()) {
-                    setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot: null });
+                    publishSurveySnapshot(scope, null);
                     return;
                 }
                 const requestId = beginSurveyDailyTaskRequest(scope);
                 const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                if (cancelled || !isCurrentAccountGeneration(accountToken, stableId)) return;
                 const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
-                if (cancelled) return;
+                if (cancelled || !isCurrentAccountGeneration(accountToken, stableId)) return;
                 const snapshot = migrated
                     ? buildServerConfirmedLegacyCompletion(lang)
                     : lookup.survey && lookup.survey.questions.length > 0
                     ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
                     : null;
                 if (!commitSurveyDailyTaskRequest(scope, requestId, snapshot)) return;
-                setSurveyState({ scopeKey: JSON.stringify([stableId, dayKey, lang]), snapshot });
+                publishSurveySnapshot(scope, snapshot);
             } catch {
                 /* retain last-known survey state */
             }
         })();
         return () => { cancelled = true; };
-    }, [lang]));
+    }, [lang, publishSurveySnapshot]));
+    const openSurveyChallenge = useCallback((challenge: SurveyDailyChallengeSnapshot) => {
+        const scope = surveyOpenScopeRef.current;
+        const survey = challenge.survey;
+        if (!scope || !survey || challenge.phase !== 'active') return;
+        const { stableId, dayKey, lang: scopeLang } = scope;
+        if (!isCurrentAccountGeneration(captureAccountGeneration(), stableId)) return;
+        hapticTap();
+        primeSurvey({ survey, stableId, dayKey, lang: scopeLang });
+        router.push({
+            pathname: '/survey_screen',
+            params: { surveyId: survey.surveyId, stableId, dayKey, lang: scopeLang },
+        });
+    }, [router]);
     const handleClaim = async (taskId: string, xpBase: number) => {
         if (claimBusyId)
             return;
@@ -2594,7 +2620,9 @@ export default function DailyTasksScreen() {
 
         {/* Опрос за осколки — 4-я плашка-задание (когда активен). Сам решает,
             показываться ли; засчитывается в «любые 3 из 4» (порог в этом экране). */}
-        <SurveyTaskCard owner={{ scope: surveyScope, snapshot: surveySnapshot, done: surveyDone }} />
+        {surveySnapshot && (
+          <SurveyTaskCard challenge={surveySnapshot} onOpen={openSurveyChallenge} />
+        )}
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента

@@ -38,8 +38,10 @@ import Animated, {
 import { useTheme } from '../ThemeContext';
 import fk from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { getResultsSequenceMotionPlan } from './results_sequence_motion_plan';
 
-export type ResultsIntensity = 'full' | 'quiet';
+export type ResultsIntensity = 'quiet' | 'milestone' | 'major';
 
 export interface ResultsSequenceProps {
   /** Число звёзд 0-3. */
@@ -62,10 +64,9 @@ const T_BADGE = 0;
 const T_STARS = 500;
 const T_STAR_GAP = 260;
 const T_XP = 1400;
-const XP_DURATION = 900;
+const XP_REVEAL_DELAY = 900;
 const T_CTA = 2500;
 const CTA_HARD_UNLOCK = 3000; // спек §2.1: CTA доступны не позже 3с
-const TICK_THROTTLE = 70;
 
 function Star({
   filled,
@@ -102,9 +103,14 @@ export function ResultsSequence({
   ctaPrimaryLabel,
   onCtaSecondary,
   ctaSecondaryLabel,
-  intensity = 'full',
+  intensity = 'major',
 }: ResultsSequenceProps) {
   const { theme: t } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const motionPlan = useMemo(
+    () => getResultsSequenceMotionPlan(intensity, reduceMotion),
+    [intensity, reduceMotion],
+  );
 
   const clampedStars = Math.max(0, Math.min(3, Math.floor(stars)));
 
@@ -119,41 +125,13 @@ export function ResultsSequence({
   const [showConfetti, setShowConfetti] = useState(false);
   const [ctaReady, setCtaReady] = useState(false);
 
-  const xpTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const lastTickRef = useRef(0);
   const skippedRef = useRef(false);
 
   const clearAllTimers = useCallback(() => {
-    if (xpTimerRef.current) {
-      clearInterval(xpTimerRef.current);
-      xpTimerRef.current = null;
-    }
     timeoutsRef.current.forEach((id) => clearTimeout(id));
     timeoutsRef.current = [];
   }, []);
-
-  const runXpCounter = useCallback(() => {
-    if (xp <= 0) {
-      setXpDisplay(0);
-      return;
-    }
-    const start = Date.now();
-    xpTimerRef.current = setInterval(() => {
-      const now = Date.now();
-      const tt = Math.min(1, (now - start) / XP_DURATION);
-      const eased = 1 - Math.pow(1 - tt, 3);
-      setXpDisplay(Math.round(eased * xp));
-      if (now - lastTickRef.current >= TICK_THROTTLE && tt < 1) {
-        lastTickRef.current = now;
-        fk.tick();
-      }
-      if (tt >= 1 && xpTimerRef.current) {
-        clearInterval(xpTimerRef.current);
-        xpTimerRef.current = null;
-      }
-    }, 16);
-  }, [xp]);
 
   // Прыжок в финальное состояние (тап-скип).
   // Первый тап по экрану — доигрывает анимацию до конца и разблокирует CTA.
@@ -173,21 +151,48 @@ export function ResultsSequence({
     starSVs.forEach((sv) => (sv.value = withTiming(1, { duration: 120 })));
     ctaSV.value = withTiming(1, { duration: 160 });
     setXpDisplay(xp > 0 ? xp : 0);
-    if (intensity === 'full') setShowConfetti(true);
+    if (intensity !== 'quiet' && !reduceMotion) setShowConfetti(true);
     setCtaReady(true);
-  }, [badgeSV, starSVs, ctaSV, xp, intensity, clearAllTimers, onCtaPrimary]);
+  }, [badgeSV, starSVs, ctaSV, xp, intensity, reduceMotion, clearAllTimers, onCtaPrimary]);
 
   useEffect(() => {
+    clearAllTimers();
+    cancelAnimation(badgeSV);
+    starSVs.forEach((sv) => cancelAnimation(sv));
+    cancelAnimation(ctaSV);
+    skippedRef.current = false;
+    badgeSV.value = 0;
+    starSVs.forEach((sv) => { sv.value = 0; });
+    ctaSV.value = 0;
+    setXpDisplay(0);
+    setShowConfetti(false);
+    setCtaReady(false);
+
     const push = (fn: () => void, ms: number) => {
       timeoutsRef.current.push(setTimeout(fn, ms));
     };
+
+    if (motionPlan.immediate) {
+      skippedRef.current = true;
+      badgeSV.value = 1;
+      starSVs.forEach((sv) => { sv.value = 1; });
+      ctaSV.value = 1;
+      setXpDisplay(xp > 0 ? xp : 0);
+      setCtaReady(true);
+      return () => {
+        clearAllTimers();
+        cancelAnimation(badgeSV);
+        starSVs.forEach((sv) => cancelAnimation(sv));
+        cancelAnimation(ctaSV);
+      };
+    }
 
     // Медаль/бейдж.
     badgeSV.value = withDelay(
       T_BADGE,
       withSpring(1, { damping: 10, stiffness: 150, mass: 0.7 }),
     );
-    push(() => fk.milestone('medal'), T_BADGE + 40);
+    if (motionPlan.playMilestones) push(() => fk.milestone('medal'), T_BADGE + 40);
 
     // Звёзды по одной (только заполненные звучат восходящей нотой).
     for (let i = 0; i < 3; i++) {
@@ -196,7 +201,7 @@ export function ResultsSequence({
         at,
         withSpring(1, { damping: 11, stiffness: 170 }),
       );
-      if (i < clampedStars) {
+      if (motionPlan.playMilestones && i < clampedStars) {
         const kind = (i === 0 ? 'star1' : i === 1 ? 'star2' : 'star3') as
           | 'star1'
           | 'star2'
@@ -206,14 +211,14 @@ export function ResultsSequence({
     }
 
     // XP-каунтер.
-    push(runXpCounter, T_XP);
+    push(() => setXpDisplay(xp > 0 ? xp : 0), T_XP);
 
     // Конфетти на пике (кроме quiet).
-    if (intensity === 'full') {
+    if (motionPlan.confettiCount > 0) {
       push(() => {
         setShowConfetti(true);
         fk.milestone('chord');
-      }, T_XP + XP_DURATION);
+      }, T_XP + XP_REVEAL_DELAY);
     }
 
     // CTA slide-up + разблокировка.
@@ -231,8 +236,15 @@ export function ResultsSequence({
       starSVs.forEach((sv) => cancelAnimation(sv));
       cancelAnimation(ctaSV);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [
+    badgeSV,
+    clampedStars,
+    clearAllTimers,
+    ctaSV,
+    motionPlan,
+    starSVs,
+    xp,
+  ]);
 
   const badgeStyle = useAnimatedStyle(() => ({
     opacity: badgeSV.value,
@@ -250,7 +262,7 @@ export function ResultsSequence({
     <Pressable style={styles.root} onPress={skipToEnd} accessibilityRole="button">
       {showConfetti ? (
         <ConfettiBurst
-          count={intensity === 'full' ? 120 : 0}
+          count={motionPlan.confettiCount}
           durationMs={1200}
           seed={11}
         />

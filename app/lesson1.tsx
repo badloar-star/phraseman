@@ -53,6 +53,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
@@ -1177,6 +1178,16 @@ const LessonContent = React.memo(function LessonContent({
               width: '100%',
               transform: [{
                 translateY: fadeAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }),
+              }, {
+                translateX: fadeAnim.interpolate({
+                  inputRange: [0, 0.25, 0.5, 0.75, 1],
+                  outputRange: wasWrong ? [0, -3, 3, -2, 0] : [0, 0, 0, 0, 0],
+                }),
+              }, {
+                scale: fadeAnim.interpolate({
+                  inputRange: [0, 0.25, 0.5, 0.75, 1],
+                  outputRange: wasWrong ? [1, 1, 1, 1, 1] : [0.98, 1, 1, 1, 1],
+                }),
               }],
             }}>
               {wasWrong && (
@@ -1853,6 +1864,7 @@ export default function LessonScreen() {
   const compact = windowH < 780;
   const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
   const { theme: t , f, themeMode } = useTheme();
+  const reduceMotion = useReduceMotion();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const studyTargetRef = useRef(studyTarget);
@@ -3103,8 +3115,12 @@ export default function LessonScreen() {
 
     }
     fadeAnim.stopAnimation(() => {
+      if (reduceMotion) {
+        fadeAnim.setValue(1);
+        return;
+      }
       fadeAnim.setValue(0);
-      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: false }).start();
+      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
     });
 
     const nextCell = (cellIndex + 1) % effectiveTotal;
@@ -3231,7 +3247,7 @@ export default function LessonScreen() {
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, reduceMotion, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);

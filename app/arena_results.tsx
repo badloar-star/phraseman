@@ -9,6 +9,9 @@ import { useOverlayVisible } from '../components/OverlayArbiter';
 import TapScale from '../components/TapScale';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
+import ProgressProofBlock from '../components/feedback/ProgressProofBlock';
+import { buildProgressCompletionModel } from './completion/progress_completion_model';
+import { arenaNextStepCopy } from './completion/progress_completion_copy';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -242,6 +245,7 @@ export default function DuelResultsScreen() {
 
   const [players, setPlayers] = React.useState<SessionPlayer[]>([]);
   const [resultSaved, setResultSaved] = useState(false);
+  const [serverResultConfirmed, setServerResultConfirmed] = useState(false);
   const [starInfo, setStarInfo] = useState<{
     oldStars: number; newStars: number;
     oldTier: string; oldLevel: string;
@@ -800,7 +804,10 @@ export default function DuelResultsScreen() {
           writeFriendEvent(eventType, { rank: String(data.newTier) }).catch(() => {});
         }
 
-        if (mounted) setResultSaved(true);
+        if (mounted) {
+          setServerResultConfirmed(true);
+          setResultSaved(true);
+        }
         logEvent('arena_result_loaded_from_server', { won: data.won ? 1 : 0 });
 
         // Свести кошелёк осколков с облаком после матча. loadShardsFromCloud
@@ -1047,6 +1054,14 @@ export default function DuelResultsScreen() {
             tr: `${myRank}. sıra`,
             pl: `${myRank}. miejsce`,
           });
+  const arenaCompletionModel = buildProgressCompletionModel({
+    fact: headlineResult,
+    accumulated: triLang(lang, { ru: `${me?.score ?? 0} очков`, uk: `${me?.score ?? 0} очок`, es: `${me?.score ?? 0} puntos`, 'pt-BR': `${me?.score ?? 0} pontos`, vi: `${me?.score ?? 0} điểm`, id: `${me?.score ?? 0} poin`, tr: `${me?.score ?? 0} puan`, pl: `${me?.score ?? 0} punktów` }),
+    nextStep: arenaNextStepCopy(lang, isWinner, serverResultConfirmed),
+    primaryAction: { id: 'rematch', label: triLang(lang, { ru: 'Сыграть ещё раз', uk: 'Зіграти ще раз', es: 'Jugar otra vez', 'pt-BR': 'Jogar novamente', vi: 'Chơi lại', id: 'Main lagi', tr: 'Tekrar oyna', pl: 'Zagraj ponownie' }) },
+    outcome: isWinner ? 'success' : isDraw ? 'neutral' : 'defeat',
+    confirmed: serverResultConfirmed ? { streak: isWinner } : {},
+  });
 
   useEffect(() => {
     if (hillAttemptRecordedRef.current || isForfeited || !userId || !me || isRoomRun) return;
@@ -1553,9 +1568,7 @@ export default function DuelResultsScreen() {
             <Text style={styles.resultEmoji} numberOfLines={1}>
               {isForfeited ? '🏳️' : isDraw ? '🤝' : opponentSurrendered ? '🏆' : isWinner ? '🏆' : myRank === 2 ? '🥈' : '💪'}
             </Text>
-            <Text style={[styles.resultTitle, { color: t.textPrimary, fontSize: f.h1 }]}>
-              {headlineResult}
-            </Text>
+            <ProgressProofBlock model={arenaCompletionModel} testID="arena-progress-proof" />
             {opponentSurrendered && (
               <Text style={[{ color: t.textMuted, fontSize: f.body, fontWeight: '500', marginTop: -2 }]}>
                 {triLang(lang, {

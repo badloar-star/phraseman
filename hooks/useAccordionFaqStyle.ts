@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Animated, Easing } from 'react-native';
 
 import { MOTION_DURATION } from '../constants/motion';
+import { useReduceMotion } from './use_reduce_motion';
 
 export type AccordionChevronMode = 'down' | 'right';
 
@@ -11,15 +12,17 @@ export function useAccordionChevronStyle(
   chevronMode: AccordionChevronMode = 'down'
 ) {
   const chevronAnim = useRef(new Animated.Value(isOpen ? 1 : 0)).current;
+  const reduceMotion = useReduceMotion();
 
   useEffect(() => {
     Animated.timing(chevronAnim, {
       toValue: isOpen ? 1 : 0,
-      duration: MOTION_DURATION.slow,
+      duration: reduceMotion ? 0 : MOTION_DURATION.normal,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }, [isOpen, chevronAnim]);
+    return () => chevronAnim.stopAnimation();
+  }, [isOpen, chevronAnim, reduceMotion]);
 
   const rotate = chevronAnim.interpolate({
     inputRange: [0, 1],
@@ -35,6 +38,7 @@ export function useAccordionChevronStyle(
 export function useAccordionAnswerReveal(isOpen: boolean, options?: { enabled?: boolean }) {
   const { enabled = true } = options ?? {};
   const answerAnim = useRef(new Animated.Value(isOpen && enabled ? 1 : 0)).current;
+  const reduceMotion = useReduceMotion();
 
   useEffect(() => {
     if (!enabled) {
@@ -48,11 +52,12 @@ export function useAccordionAnswerReveal(isOpen: boolean, options?: { enabled?: 
     answerAnim.setValue(0);
     Animated.timing(answerAnim, {
       toValue: 1,
-      duration: MOTION_DURATION.normal,
+      duration: reduceMotion ? 0 : MOTION_DURATION.normal,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }, [isOpen, enabled, answerAnim]);
+    return () => answerAnim.stopAnimation();
+  }, [isOpen, enabled, answerAnim, reduceMotion]);
 
   const answerOpacity = answerAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 1] });
   const answerTranslateY = answerAnim.interpolate({ inputRange: [0, 1], outputRange: [-4, 0] });

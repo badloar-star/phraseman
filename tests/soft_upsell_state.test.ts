@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   claimSoftUpsell,
+  MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH,
   markSoftUpsellDismissed,
   markSoftUpsellImpression,
   readSoftUpsellState,
@@ -54,6 +55,7 @@ test.each([
 ])('returns an empty valid state for %s', async (_label, raw) => {
   await AsyncStorage.setItem(key('broken'), raw);
   await expect(readSoftUpsellState('broken', 'en')).resolves.toEqual(emptyState);
+  expect(await AsyncStorage.getItem(key('broken'))).toBe(JSON.stringify(emptyState));
 });
 
 test('ignores unsafe context keys', async () => {
@@ -128,6 +130,14 @@ test('a rejected storage operation does not poison later writes', async () => {
   await expect(readSoftUpsellState('retry', 'en')).resolves.toMatchObject({ contextDismissedAtMs: { weekly_review: 20 } });
 });
 
+test('a rejected read does not poison later reads or repair', async () => {
+  jest.spyOn(AsyncStorage, 'getItem').mockRejectedValueOnce(new Error('read unavailable'));
+  await expect(readSoftUpsellState('read-retry', 'en')).rejects.toThrow('read unavailable');
+  await AsyncStorage.setItem(key('read-retry'), '{bad');
+  await expect(readSoftUpsellState('read-retry', 'en')).resolves.toEqual(emptyState);
+  expect(await AsyncStorage.getItem(key('read-retry'))).toBe(JSON.stringify(emptyState));
+});
+
 test('rejects invalid write timestamps without changing state', async () => {
   await expect(markSoftUpsellDismissed('invalid', 'en', 'weekly_review', Number.NaN)).rejects.toThrow();
   await expect(markSoftUpsellImpression('invalid', 'en', 'weekly_review', 'm', Number.POSITIVE_INFINITY)).rejects.toThrow();
@@ -156,4 +166,34 @@ test('deduplicates milestones and keeps the newest 32', async () => {
     'm10',
     'm20',
   ]);
+});
+
+test('sanitizes empty and oversized persisted milestone IDs and repairs stored bytes', async () => {
+  const maximum = 'm'.repeat(MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH);
+  await AsyncStorage.setItem(key('milestone-size'), JSON.stringify({
+    ...emptyState,
+    consumedMilestones: ['', '   ', 'x'.repeat(MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH + 1), maximum],
+  }));
+  await expect(readSoftUpsellState('milestone-size', 'en')).resolves.toEqual({
+    ...emptyState,
+    consumedMilestones: [maximum],
+  });
+  expect(await AsyncStorage.getItem(key('milestone-size'))).toBe(JSON.stringify({
+    ...emptyState,
+    consumedMilestones: [maximum],
+  }));
+});
+
+test.each(['', '   ', 'x'.repeat(MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH + 1)])('rejects invalid milestone ID %p without updating cooldown', async (milestoneId) => {
+  await expect(markSoftUpsellImpression('invalid-id', 'en', 'weekly_review', milestoneId, 100)).rejects.toThrow();
+  await expect(readSoftUpsellState('invalid-id', 'en')).resolves.toEqual(emptyState);
+});
+
+test('accepts a milestone ID exactly at the maximum boundary', async () => {
+  const milestoneId = 'x'.repeat(MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH);
+  await markSoftUpsellImpression('max-id', 'en', 'weekly_review', milestoneId, 100);
+  await expect(readSoftUpsellState('max-id', 'en')).resolves.toMatchObject({
+    lastGlobalImpressionMs: 100,
+    consumedMilestones: [milestoneId],
+  });
 });

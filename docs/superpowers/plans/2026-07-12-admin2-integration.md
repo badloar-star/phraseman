@@ -109,4 +109,3 @@
 - [ ] Run browser checks at 375/768/1024/1440 px when a local static server is available.
 - [ ] Confirm `admin/legacy.html` contains no new analytics mounts or script includes and remains functionally unchanged apart from its path.
 - [ ] Submit the final diff and evidence to Advisor; completion requires `DECISION: APPROVED`.
-

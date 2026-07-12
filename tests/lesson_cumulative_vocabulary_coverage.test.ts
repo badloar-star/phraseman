@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ id: '1' }),
@@ -174,6 +176,55 @@ describe('lesson cumulative vocabulary coverage', () => {
     for (const row of diagnostics) expect(audit.raw[row.lessonId]).toHaveLength(row.rawCount);
     expect(audit.diagnostics).toEqual(diagnostics);
     expect(audit.runtime).toEqual(Object.fromEntries(Array.from({ length: 32 }, (_, i) => [i + 1, lessonWordBank(i + 1)])));
+    const scopedRuntime = Object.fromEntries(Array.from({ length: 8 }, (_, i) => [i + 1, audit.runtime[i + 1]]));
+    const scopedDiagnostics = audit.diagnostics.filter(({ lessonId }) => lessonId <= 8);
+    // Intentional Task5a update: only L1-8 counters move; later lessons must not offset this contract.
+    expect(createHash('sha256').update(JSON.stringify(scopedRuntime)).digest('hex'))
+      .toBe('7a7393f47fc6d2e69cc8d04c151bea4a80e617e3110d9b351ff8ccbe8a74fa49');
+    expect(scopedDiagnostics.reduce((sum, row) => sum + row.rawCount, 0)).toBe(357); // baseline 417 - 60
+    expect(scopedDiagnostics.reduce((sum, row) => sum + row.duplicatesRemoved, 0)).toBe(37); // baseline 97 - 60
+  });
+
+  it('removes the explicit 60 proven L2-8 rows and retains the exact three audit exclusions', () => {
+    const audit = lessonWordBankAuditState();
+    const removed: ReadonlyArray<readonly [laterLesson: number, firstLesson: number, semanticKey: string]> = [
+      [2, 1, 'i::pronouns'], [2, 1, 'you::pronouns'], [2, 1, 'he::pronouns'], [2, 1, 'she::pronouns'],
+      [2, 1, 'we::pronouns'], [2, 1, 'they::pronouns'], [2, 1, 'it::pronouns'], [2, 1, 'here::adverbs'],
+      [2, 1, 'outside::adverbs'], [2, 1, 'inside::adverbs'], [2, 1, 'together::adverbs'], [2, 1, 'ready::adjectives'],
+      [2, 1, 'busy::adjectives'], [2, 1, 'calm::adjectives'], [2, 1, 'happy::adjectives'], [2, 1, 'important::adjectives'],
+      [2, 1, 'okay::adjectives'], [2, 1, 'right::adjectives'], [2, 1, 'safe::adjectives'], [2, 1, 'sick::adjectives'],
+      [2, 1, 'sad::adjectives'], [2, 1, 'late::adjectives'], [2, 1, 'tired::adjectives'], [2, 1, 'hungry::adjectives'],
+      [2, 1, 'angry::adjectives'], [2, 1, 'serious::adjectives'],
+      [3, 1, 'i::pronouns'], [3, 1, 'you::pronouns'], [3, 1, 'he::pronouns'], [3, 1, 'she::pronouns'],
+      [3, 1, 'we::pronouns'], [3, 1, 'they::pronouns'], [3, 1, 'it::pronouns'], [3, 1, 'here::adverbs'],
+      [4, 3, 'listen::verbs'], [4, 3, 'understand::verbs'], [4, 3, 'live::verbs'], [4, 3, 'work::verbs'],
+      [4, 3, 'know::verbs'], [4, 3, 'remember::verbs'], [4, 3, 'buy::verbs'], [4, 3, 'wear::verbs'],
+      [4, 3, 'forget::verbs'], [4, 3, 'help::verbs'], [4, 3, 'read::verbs'], [4, 3, 'trust::verbs'], [4, 3, 'cook::verbs'],
+      [6, 3, 'cost::verbs'], [6, 3, 'wait::verbs'], [6, 4, 'see::verbs'], [6, 4, 'check::verbs'],
+      [6, 3, 'speak::verbs'], [6, 3, 'dinner::nouns'],
+      [7, 3, 'time::nouns'], [7, 3, 'good::adjectives'], [7, 3, 'coffee::nouns'],
+      [8, 3, 'music::nouns'], [8, 3, 'pizza::nouns'], [8, 3, 'tea::nouns'], [8, 3, 'travel::verbs'],
+    ];
+    expect(removed).toHaveLength(60);
+    for (const [laterLesson, firstLesson, semanticKey] of removed) {
+      expect((audit.raw[laterLesson] ?? []).some((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey)).toBe(false);
+      expect((audit.raw[firstLesson] ?? []).some((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey)).toBe(true);
+    }
+
+    const retained = [
+      { laterLesson: 4, firstLesson: 3, semanticKey: 'watch::verbs', reason: 'legacy_alias_dependency' },
+      { laterLesson: 6, firstLesson: 3, semanticKey: 'call::verbs', reason: 'gloss_or_sense_not_proven_equal' },
+      { laterLesson: 7, firstLesson: 6, semanticKey: 'key::nouns', reason: 'legacy_alias_dependency' },
+    ] as const;
+    for (const { laterLesson, firstLesson, semanticKey } of retained) {
+      expect((audit.raw[laterLesson] ?? []).some((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey)).toBe(true);
+      expect((audit.raw[firstLesson] ?? []).some((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey)).toBe(true);
+    }
+    expect(retained.map(({ laterLesson, semanticKey, reason }) => ({ laterLesson, semanticKey, reason }))).toEqual([
+      { laterLesson: 4, semanticKey: 'watch::verbs', reason: 'legacy_alias_dependency' },
+      { laterLesson: 6, semanticKey: 'call::verbs', reason: 'gloss_or_sense_not_proven_equal' },
+      { laterLesson: 7, semanticKey: 'key::nouns', reason: 'legacy_alias_dependency' },
+    ]);
   });
 
   it('dedupes the same normalized lemma, POS and sense while preserving the first card', () => {

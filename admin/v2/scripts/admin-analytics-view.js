@@ -57,20 +57,20 @@ function accessSection(snapshot) {
   const kinds = access.byKind || {};
   const available = sourceAvailable(snapshot, 'users');
   return `<section class="section" aria-labelledby="analytics-access-title">
-    <div class="section-heading"><div><h2 id="analytics-access-title">Активные доступы</h2><p>Доступ к Plus сейчас. Store, VIP, админские и подарочные доступы не смешиваются.</p></div>${snapshot?.sources?.users?.state === 'partial' ? '<span class="badge warning">Неполная база</span>' : ''}</div>
+    <div class="section-heading"><div><h2 id="analytics-access-title">Активные доступы</h2><p>Доступ к Plus сейчас. Магазинные, VIP, административные и подарочные доступы не смешиваются.</p></div>${snapshot?.sources?.users?.state === 'partial' ? '<span class="badge warning">Неполная база</span>' : ''}</div>
     <div class="analytics-summary-grid">
       ${metric('Всего активных доступов', access.activeAccessTotal, 'Все взаимоисключающие категории', available)}
-      ${metric('Store-доступы', access.storeBackedTotal, 'Подписки, trial и lifetime с RevenueCat-происхождением', available)}
-      ${metric('Активные trial', access.activeTrials, 'Только действующий store trial', available)}
-      ${metric('Пользователей проверено', access.scannedUsers, 'Скрытые неканонические записи исключены', available)}
+      ${metric('Оплачено через магазин', access.storeBackedTotal, 'Подписки, пробный период и покупка навсегда', available)}
+      ${metric('Активные пробные периоды', access.activeTrials, 'Только действующий пробный период магазина', available)}
+      ${metric('Документов проверено', access.scannedUsers, 'Скрытые неканонические записи исключены', available)}
     </div>
     <div class="analytics-breakdown-grid section">
-      ${metric('Store-подписки', kinds.store_subscription, 'Действующий monthly/yearly', available)}
-      ${metric('Store lifetime', kinds.store_lifetime, 'Разовая покупка навсегда', available)}
+      ${metric('Подписки магазина', kinds.store_subscription, 'Действующая месячная или годовая подписка', available)}
+      ${metric('Покупка навсегда', kinds.store_lifetime, 'Разовая бессрочная покупка', available)}
       ${metric('VIP', kinds.vip, 'Активный привилегированный доступ', available)}
-      ${metric('Admin grant', kinds.admin_grant, 'Ручная административная выдача', available)}
+      ${metric('Административная выдача', kinds.admin_grant, 'Ручной доступ от администратора', available)}
       ${metric('Подарочный доступ', kinds.gift, 'Активный приветственный или loyalty gift', available)}
-      ${metric('Ручной/неизвестный', kinds.manual_or_unknown, 'Нужно проверить происхождение', available)}
+      ${metric('Неподтверждённый источник', kinds.manual_or_unknown, 'Нужно проверить происхождение доступа', available)}
     </div>
   </section>`;
 }
@@ -125,7 +125,7 @@ function sourceSection(snapshot) {
 export function renderAdminAnalytics(model) {
   const rangeDays = Number(model.rangeDays || model.snapshot?.rangeDays || 28);
   const loading = model.status === 'loading';
-  const controlsDisabled = !model.authorized || model.busy || loading;
+  const controlsDisabled = Boolean(model.controlsDisabled || !model.authorized || model.busy || loading);
   const snapshot = model.snapshot;
   return `<header class="page-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Серверные показатели с отдельным состоянием каждого источника и честными определениями.</p></div><div class="analytics-toolbar"><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
     <div class="analytics-status" aria-live="polite">${stateNotice(model)}${snapshot ? `<small>Снимок: ${escapeHtml(dateTime(snapshot.generatedAtMs))} · период ${escapeHtml(snapshot.rangeDays)} дней · ${escapeHtml(snapshot.definitionVersion || '')}</small>` : ''}</div>

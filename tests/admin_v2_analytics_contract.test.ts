@@ -18,6 +18,9 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain('Сигналы экрана оплаты');
     expect(view).toContain('Качество источников');
     expect(view).toContain('События, не уникальные пользователи и не деньги');
+    expect(view).toContain('Административная выдача');
+    expect(view).toContain('Подписки магазина');
+    expect(view).not.toContain('>Admin grant<');
     expect(view).not.toContain('../../admin/index.html');
   });
 

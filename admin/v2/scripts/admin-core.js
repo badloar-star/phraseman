@@ -803,7 +803,7 @@ function renderAnalytics() {
     ...state.analytics,
     rangeDays: state.analytics.snapshot?.rangeDays ?? 28,
     authorized: can('money.read'),
-    permissionDisabled: disabledWhenUnauthorized('money.read'),
+    controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
     busy: state.busy,
   });
 }

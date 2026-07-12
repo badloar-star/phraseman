@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import {
   ActivityIndicator,
   View, Text, TouchableOpacity, TextInput, ScrollView, Animated,
-  Share, Keyboard, StyleSheet, Modal, InteractionManager,
+  Share, Keyboard, StyleSheet, Modal, InteractionManager, Platform,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { FlashList } from '@shopify/flash-list';
@@ -2064,9 +2064,11 @@ export default function FriendsTabScreen() {
     balanceAfter: number;
     dailyRemaining?: number;
   } | null>(null);
+  const sentGiftReceiptNativeVisibleRef = useRef(false);
   const [incomingGiftModal, setIncomingGiftModal] = useState<{ gifts: IncomingFriendGift[] } | null>(null);
   const [activeFriendQuest, setActiveFriendQuest] = useState<FriendQuest | null>(null);
   const [friendQuestStarted, setFriendQuestStarted] = useState<FriendQuest | null>(null);
+  const [pendingFriendQuestStarted, setPendingFriendQuestStarted] = useState<FriendQuest | null>(null);
   const [friendQuestCompleted, setFriendQuestCompleted] = useState<FriendQuest | null>(null);
   /** Анти-клин iOS: одновременный present двух <Modal> глушит тачи всего экрана («мёртвый экран»
    *  при серии быстрых тапов по карточке). Пока открыта/открывается одна модалка — вторую не пускаем. */
@@ -2698,6 +2700,7 @@ export default function FriendsTabScreen() {
       const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
       setGiftBalance(guardedBalance);
       setGiftTarget(null);
+      sentGiftReceiptNativeVisibleRef.current = true;
       setSentGiftReceipt({
         targetName: target.name,
         giftName: sentGiftName,
@@ -2708,7 +2711,11 @@ export default function FriendsTabScreen() {
       if (res.questStarted && res.quest) {
         const quest = res.quest as FriendQuest;
         setActiveFriendQuest(quest);
-        setFriendQuestStarted(quest);
+        if (sentGiftReceiptNativeVisibleRef.current) {
+          setPendingFriendQuestStarted(quest);
+        } else {
+          setFriendQuestStarted(quest);
+        }
       } else {
         void refreshFriendQuest(undefined, { force: true });
       }
@@ -2935,10 +2942,24 @@ export default function FriendsTabScreen() {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'friends' | 'activity'>('friends');
 
+  const handleSentGiftReceiptDismissed = useCallback(() => {
+    sentGiftReceiptNativeVisibleRef.current = false;
+    setPendingFriendQuestStarted(pending => {
+      if (pending) setFriendQuestStarted(pending);
+      return null;
+    });
+  }, []);
+
+  const closeSentGiftReceipt = useCallback(() => {
+    setSentGiftReceipt(null);
+    if (Platform.OS !== 'ios') handleSentGiftReceiptDismissed();
+  }, [handleSentGiftReceiptDismissed]);
+
   // Обновляем гард на каждый рендер: любая открытая модалка блокирует открытие следующей.
   modalWedgeGuardRef.current = selectedPlayer !== null || deleteTarget !== null
     || giftTarget !== null || incomingGiftModal !== null
-    || friendQuestCompleted !== null || addModalOpen;
+    || sentGiftReceipt !== null || pendingFriendQuestStarted !== null
+    || friendQuestStarted !== null || friendQuestCompleted !== null || addModalOpen;
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -3557,7 +3578,8 @@ export default function FriendsTabScreen() {
         visible={sentGiftReceipt !== null}
         transparent
         animationType="fade"
-        onRequestClose={() => setSentGiftReceipt(null)}
+        onRequestClose={closeSentGiftReceipt}
+        onDismiss={handleSentGiftReceiptDismissed}
       >
         <View testID="friend-gift-sent-modal" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(7, 8, 13, 0.72)' }}>
           <LinearGradient
@@ -3641,7 +3663,7 @@ export default function FriendsTabScreen() {
                 ) : null}
                 <TouchableOpacity
                   testID="friend-gift-sent-ok"
-                  onPress={() => setSentGiftReceipt(null)}
+                  onPress={closeSentGiftReceipt}
                   activeOpacity={0.86}
                   style={{ minHeight: 48, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', backgroundColor: sentGiftChrome.buttonBg, borderWidth: 0, borderColor: 'rgba(255,255,255,0.18)' }}
                 >
@@ -3806,7 +3828,7 @@ export default function FriendsTabScreen() {
       </Modal>
 
       <FriendQuestStartedModal
-        visible={friendQuestStarted !== null}
+        visible={friendQuestStarted !== null && sentGiftReceipt === null}
         onClose={() => setFriendQuestStarted(null)}
         L={L}
         f={f}

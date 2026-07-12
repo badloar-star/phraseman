@@ -56,6 +56,10 @@ describe('openai_jobs_config — resolveJobConfig', () => {
     expect(await resolveJobConfig(fakeDb(undefined), 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 40, enabled: true });
   });
 
+  it('preserves the existing constellations job on master', async () => {
+    expect(await resolveJobConfig(fakeDb(undefined), 'constellations')).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 3000, enabled: true });
+  });
+
   it('cap clamps negatives to 0', async () => {
     const db = fakeDb({ stats: { globalDailyCap: -50 } });
     expect((await resolveJobConfig(db, 'stats')).globalDailyCap).toBe(0);

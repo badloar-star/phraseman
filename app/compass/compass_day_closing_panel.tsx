@@ -419,7 +419,7 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
             {triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_TITLE)}
           </Text>
           {onUpgrade && (
-            <PremiumGoldButton f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
+            <PremiumGoldButton active f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
           )}
           <CompassLaterLink t={t} label={triLang(lang, COMPASS_LATER)} onPress={onLater} />
         </View>

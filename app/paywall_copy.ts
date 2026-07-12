@@ -1524,7 +1524,7 @@ CONTEXT_BENEFITS_PLANNED.flashcard_autoplay = [
   { 'pt-BR': 'Ótimo para trajetos e pausas curtas', vi: 'Tiện khi di chuyển và nghỉ ngắn', id: 'Nyaman untuk perjalanan dan jeda singkat', tr: 'Yol ve kısa molalar için rahat', pl: 'Wygodne w drodze i krótkich przerwach' },
 ];
 
-PAYWALL_COPY.constellations = {
+(PAYWALL_COPY as Record<string, PaywallCopy>).constellations = {
   titleRu: 'Открой Созвездия с Plus',
   titleUk: 'Відкрий Сузір’я з Plus',
   titleEs: 'Abre Constelaciones con Plus',
@@ -1533,7 +1533,7 @@ PAYWALL_COPY.constellations = {
   subtitleEs: 'Plus abre el modo táctico Constelaciones: reúne estrellas, controla sectores y desarrolla el mapa con tu equipo.',
 };
 
-PAYWALL_PLANNED_COPY.constellations = {
+(PAYWALL_PLANNED_COPY as Record<string, PremiumPlannedHeroCopy>).constellations = {
   title: { 'pt-BR': 'Abra Constelações com Plus', vi: 'Mở Chòm sao với Plus', id: 'Buka Konstelasi dengan Plus', tr: 'Plus ile Takımyıldızları aç', pl: 'Otwórz Konstelacje z Plus' },
   subtitle: {
     'pt-BR': 'Plus abre o modo tático Constelações: reúna estrelas, controle setores e desenvolva o mapa com a equipe.',
@@ -1544,13 +1544,15 @@ PAYWALL_PLANNED_COPY.constellations = {
   },
 };
 
-CONTEXT_BENEFITS.constellations = [
+(CONTEXT_BENEFITS as Record<string, Array<{ ru: string; uk: string; es: string } & PremiumPlannedCopy>>).constellations = [
   { ru: 'Тактические матчи на карте звёзд', uk: 'Тактичні матчі на карті зірок', es: 'Partidas tácticas en el mapa estelar', 'pt-BR': 'Partidas táticas no mapa estelar', vi: 'Trận chiến thuật trên bản đồ sao', id: 'Pertandingan taktis di peta bintang', tr: 'Yıldız haritasında taktik maçlar', pl: 'Taktyczne mecze na mapie gwiazd' },
   { ru: 'Командный захват и защита секторов', uk: 'Командне захоплення й захист секторів', es: 'Captura y defensa de sectores en equipo', 'pt-BR': 'Captura e defesa de setores em equipe', vi: 'Cùng đội chiếm và giữ khu vực', id: 'Rebut dan pertahankan sektor bersama tim', tr: 'Takımla bölgeleri ele geçir ve savun', pl: 'Drużynowe przejmowanie i obrona sektorów' },
   { ru: 'Отдельный прогресс Созвездий', uk: 'Окремий прогрес Сузір’їв', es: 'Progreso propio de Constelaciones', 'pt-BR': 'Progresso próprio de Constelações', vi: 'Tiến trình Chòm sao riêng', id: 'Progres Konstelasi tersendiri', tr: 'Ayrı Takımyıldız ilerlemesi', pl: 'Osobny postęp Konstelacji' },
 ];
 
-CONTEXT_BENEFITS_PLANNED.constellations = CONTEXT_BENEFITS.constellations.map(({ ru: _ru, uk: _uk, es: _es, ...planned }) => planned);
+(CONTEXT_BENEFITS_PLANNED as Record<string, PremiumPlannedCopy[]>).constellations =
+  ((CONTEXT_BENEFITS as Record<string, Array<{ ru: string; uk: string; es: string } & PremiumPlannedCopy>>).constellations ?? [])
+    .map(({ ru: _ru, uk: _uk, es: _es, ...planned }) => planned);
 
 CONTEXT_BENEFITS.first_lesson_success = CONTEXT_BENEFITS.personal_plan ?? CONTEXT_BENEFITS.generic;
 CONTEXT_BENEFITS.free_lessons_complete = CONTEXT_BENEFITS.personal_plan ?? CONTEXT_BENEFITS.generic;

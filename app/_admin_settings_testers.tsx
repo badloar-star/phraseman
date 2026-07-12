@@ -948,6 +948,7 @@ export default function SettingsTestersFunctions() {
 
   const buildLeagueBonusPreview = useCallback((isCrownWinner: boolean): LeagueBonusAvailability => ({
     available: true,
+    userUid: 'admin-current-user',
     weekId: 'admin-preview-week',
     groupId: 'admin_preview_group',
     leagueId: 3,

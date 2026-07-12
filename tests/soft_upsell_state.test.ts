@@ -8,6 +8,7 @@ import {
   readSoftUpsellState,
   resetSoftUpsellSessionForTests,
 } from '../app/soft_upsell_state';
+import { lessonSoftUpsellPersistenceScope } from '../app/lesson_complete_soft_upsell';
 
 const storageMock = AsyncStorage as typeof AsyncStorage & { __reset(): void };
 const emptyState = {
@@ -33,6 +34,15 @@ test('allows exactly one concurrent runtime session claim without persisting eli
     claimSoftUpsell({ accountScope: 'user-1', studyTarget: 'en' }),
   ])).resolves.toEqual([true, false]);
   expect(await AsyncStorage.getItem(key('user-1'))).toBeNull();
+});
+
+test('preserves cooldown across generations of one stable account and isolates another account', async () => {
+  const aliceGeneration1 = lessonSoftUpsellPersistenceScope({ phase: 'active', stableId: 'alice', generation: 1 });
+  const aliceGeneration2 = lessonSoftUpsellPersistenceScope({ phase: 'active', stableId: 'alice', generation: 2 });
+  const bob = lessonSoftUpsellPersistenceScope({ phase: 'active', stableId: 'bob', generation: 2 });
+  await markSoftUpsellImpression(aliceGeneration1, 'en', 'first_lesson_success', 'first_lesson:1:en', 100);
+  await expect(readSoftUpsellState(aliceGeneration2, 'en')).resolves.toMatchObject({ lastGlobalImpressionMs: 100 });
+  await expect(readSoftUpsellState(bob, 'en')).resolves.toEqual(emptyState);
 });
 
 test('checks a guarded claim inside the serialized operation without consuming a stale session', async () => {

@@ -31,6 +31,13 @@ type Result = {
   onCta: () => Promise<void>;
 };
 
+type OpportunityIdentity = Readonly<{ accountScope: string; studyTarget: SoftUpsellStudyTarget }>;
+type BoundOpportunity = Readonly<{ item: SoftUpsellOpportunity; identityKey: string }>;
+
+function identityKey(identity: OpportunityIdentity): string {
+  return `${identity.studyTarget}:${identity.accountScope}`;
+}
+
 const CONTEXT_BY_TRIGGER: Record<SoftUpsellCandidate['trigger'], SoftUpsellContext> = {
   first_lesson: 'first_lesson_success',
   free_lessons_complete: 'free_lessons_complete',
@@ -70,6 +77,9 @@ export function useSoftUpsellOpportunity({
   studyTarget,
   hasPremiumAccess,
 }: Input): Result {
+  const currentIdentityKey = identityKey({ accountScope, studyTarget });
+  const currentIdentityKeyRef = useRef(currentIdentityKey);
+  currentIdentityKeyRef.current = currentIdentityKey;
   const overlayOccupied = useOverlayOccupied();
   const targetCandidates = candidates.filter((candidate) => candidate.studyTarget === studyTarget);
   const candidateSignature = signature(targetCandidates);
@@ -83,9 +93,9 @@ export function useSoftUpsellOpportunity({
     };
   }
   const stableCandidates = stableCandidatesRef.current.value;
-  const [opportunity, setOpportunity] = useState<SoftUpsellOpportunity | null>(null);
-  const opportunityRef = useRef<SoftUpsellOpportunity | null>(null);
-  const pendingDismissRef = useRef<SoftUpsellOpportunity | null>(null);
+  const [boundOpportunity, setBoundOpportunity] = useState<BoundOpportunity | null>(null);
+  const opportunityRef = useRef<BoundOpportunity | null>(null);
+  const pendingDismissRef = useRef<BoundOpportunity | null>(null);
   const impressionCompletedRef = useRef(new Set<string>());
   const impressionInFlightRef = useRef(new Map<string, Promise<void>>());
   const dismissCompletedRef = useRef(new Set<string>());
@@ -94,7 +104,7 @@ export function useSoftUpsellOpportunity({
   useEffect(() => {
     let active = true;
     const run = async () => {
-      setOpportunity(null);
+      setBoundOpportunity(null);
       opportunityRef.current = null;
       pendingDismissRef.current = null;
       const persisted = await readSoftUpsellState(accountScope, studyTarget);
@@ -131,8 +141,9 @@ export function useSoftUpsellOpportunity({
         });
         return;
       }
-      opportunityRef.current = decision.opportunity;
-      setOpportunity(decision.opportunity);
+      const bound = { item: decision.opportunity, identityKey: currentIdentityKey };
+      opportunityRef.current = bound;
+      setBoundOpportunity(bound);
       await trackSoftUpsellEvent('soft_upsell_eligible', {
         context: decision.opportunity.context, trigger: decision.opportunity.trigger,
         studyTarget, overlayOccupied, schemaVersion: 1, triggerValue: decision.opportunity.value,
@@ -140,7 +151,7 @@ export function useSoftUpsellOpportunity({
     };
     void run().catch(() => {});
     return () => { active = false; };
-  }, [accountScope, candidateSignature, hasPremiumAccess, overlayOccupied, stableCandidates, studyTarget]);
+  }, [accountScope, candidateSignature, currentIdentityKey, hasPremiumAccess, overlayOccupied, stableCandidates, studyTarget]);
 
   const basePayload = useCallback((item: SoftUpsellOpportunity) => ({
     context: item.context,
@@ -152,8 +163,11 @@ export function useSoftUpsellOpportunity({
   }), [overlayOccupied]);
 
   const onImpression = useCallback(async () => {
-    const item = opportunityRef.current;
-    if (!item || impressionCompletedRef.current.has(item.milestoneId)) return;
+    const bound = opportunityRef.current;
+    if (!bound || bound.identityKey !== currentIdentityKey
+      || currentIdentityKeyRef.current !== currentIdentityKey) return;
+    const item = bound.item;
+    if (impressionCompletedRef.current.has(item.milestoneId)) return;
     const existing = impressionInFlightRef.current.get(item.milestoneId);
     if (existing) return existing;
     const operation = (async () => {
@@ -169,15 +183,18 @@ export function useSoftUpsellOpportunity({
     } finally {
       impressionInFlightRef.current.delete(item.milestoneId);
     }
-  }, [accountScope, basePayload, studyTarget]);
+  }, [accountScope, basePayload, currentIdentityKey, studyTarget]);
 
   const onDismiss = useCallback(async () => {
-    const item = opportunityRef.current ?? pendingDismissRef.current;
-    if (!item || dismissCompletedRef.current.has(item.milestoneId)) return;
+    const bound = opportunityRef.current ?? pendingDismissRef.current;
+    if (!bound || bound.identityKey !== currentIdentityKey
+      || currentIdentityKeyRef.current !== currentIdentityKey) return;
+    const item = bound.item;
+    if (dismissCompletedRef.current.has(item.milestoneId)) return;
     if (opportunityRef.current) {
       opportunityRef.current = null;
-      pendingDismissRef.current = item;
-      setOpportunity(null);
+      pendingDismissRef.current = bound;
+      setBoundOpportunity(null);
     }
     const existing = dismissInFlightRef.current.get(item.milestoneId);
     if (existing) return existing;
@@ -186,7 +203,7 @@ export function useSoftUpsellOpportunity({
         await attemptTwice(() => markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now()));
         await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
         dismissCompletedRef.current.add(item.milestoneId);
-        if (pendingDismissRef.current?.milestoneId === item.milestoneId) pendingDismissRef.current = null;
+        if (pendingDismissRef.current?.item.milestoneId === item.milestoneId) pendingDismissRef.current = null;
       } catch {
         // The card is already hidden. A later session may evaluate it again because no cooldown was persisted.
       }
@@ -197,13 +214,16 @@ export function useSoftUpsellOpportunity({
     } finally {
       dismissInFlightRef.current.delete(item.milestoneId);
     }
-  }, [accountScope, basePayload, studyTarget]);
+  }, [accountScope, basePayload, currentIdentityKey, studyTarget]);
 
   const onCta = useCallback(async () => {
-    const item = opportunityRef.current;
-    if (!item) return;
+    const bound = opportunityRef.current;
+    if (!bound || bound.identityKey !== currentIdentityKey
+      || currentIdentityKeyRef.current !== currentIdentityKey) return;
+    const item = bound.item;
     await trackSoftUpsellEvent('soft_upsell_cta', { ...basePayload(item), destination: item.destination });
-  }, [basePayload]);
+  }, [basePayload, currentIdentityKey]);
 
+  const opportunity = boundOpportunity?.identityKey === currentIdentityKey ? boundOpportunity.item : null;
   return { opportunity, onImpression, onDismiss, onCta };
 }

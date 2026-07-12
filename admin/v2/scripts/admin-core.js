@@ -192,7 +192,7 @@ function renderCapabilityWorkspace(capability) {
   const url = capabilityUrl(capability);
   return `${pageHeader(PAGES[capability.route] ?? PAGES.overview, capability.label, `<button class="button" data-action="close-capability" type="button" title="Вернуться к разделу">К списку инструментов</button><a class="button primary" href="${escapeHtml(url)}" target="_blank" rel="noopener" title="Открыть модуль в отдельной вкладке">Открыть отдельно</a>`)}
     <div class="notice">Это действующий рабочий модуль текущей админки внутри нового семираздельного пульта. Все его кнопки и обработчики сохранены; опасные операции продолжают использовать собственные подтверждения и серверные проверки.</div>
-    <section class="legacy-workspace section"><div class="legacy-workspace-bar"><div><strong>${escapeHtml(capability.label)}</strong><small>${escapeHtml(capability.description)}</small></div><span class="badge">Рабочий модуль</span></div><iframe id="legacy-module-frame" title="${escapeHtml(capability.label)}" src="${escapeHtml(url)}" loading="eager" referrerpolicy="same-origin"></iframe></section>`;
+    <section class="legacy-workspace section"><div class="legacy-workspace-bar"><div><strong>${escapeHtml(capability.label)}</strong><small>${escapeHtml(capability.description)}</small></div><span class="badge">Рабочий модуль</span></div><a class="button primary" title="${escapeHtml(capability.label)}" href="${escapeHtml(url)}" target="_blank" rel="noopener">Открыть рабочий инструмент</a></section>`;
 }
 
 function can(permission) {

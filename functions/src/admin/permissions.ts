@@ -14,6 +14,11 @@ export type AdminPermission =
   | 'application.compass.read'
   | 'application.compass.write'
   | 'application.compass.approve'
+  | 'application.review_promo.read'
+  | 'application.review_promo.write'
+  | 'application.alerts.read'
+  | 'application.alerts.write'
+  | 'application.alerts.test'
   | 'application.config.write'
   | 'campaigns.read'
   | 'campaigns.write'
@@ -87,6 +92,14 @@ const CACHE_ADMIN_PERMISSIONS: readonly AdminPermission[] = [
   'application.compass.approve',
 ];
 
+const APPLICATION_OPERATIONS_PERMISSIONS: readonly AdminPermission[] = [
+  'application.review_promo.read',
+  'application.review_promo.write',
+  'application.alerts.read',
+  'application.alerts.write',
+  'application.alerts.test',
+];
+
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -96,6 +109,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ...EMAIL_ADMIN_PERMISSIONS,
     ...CACHE_ADMIN_PERMISSIONS,
+    ...APPLICATION_OPERATIONS_PERMISSIONS,
   ]),
   admin: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -105,6 +119,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ...EMAIL_ADMIN_PERMISSIONS,
     ...CACHE_ADMIN_PERMISSIONS,
+    ...APPLICATION_OPERATIONS_PERMISSIONS,
   ]),
   support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
   content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),

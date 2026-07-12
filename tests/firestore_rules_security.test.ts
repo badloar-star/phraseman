@@ -21,7 +21,7 @@ describe('firestore.rules security baseline', () => {
     }
     expect(rules).toMatch(/match \/support_inbox\/\{docId\} \{[\s\S]*?allow read, write: if false;/);
     expect(rules).toMatch(/match \/support_reply_operations\/\{docId\} \{[\s\S]*?allow read, write: if false;/);
-    expect(rules).toContain("allow read: if isAdmin() && docId != 'support_inbox';");
+    expect(rules).toContain("allow read: if isAdmin() && docId != 'support_inbox' && docId != 'alerts';");
   });
 
   test('users collection is restricted to owner/admin, including stableId auth mapping', () => {

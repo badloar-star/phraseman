@@ -71,6 +71,19 @@ describe('admin permission matrix', () => {
     expect(hasPermission('content_editor', 'application.compass.write')).toBe(false);
   });
 
+  it('keeps Plus survey and Telegram alert controls owner/admin only', () => {
+    const permissions = [
+      'application.review_promo.read', 'application.review_promo.write',
+      'application.alerts.read', 'application.alerts.write', 'application.alerts.test',
+    ] as const;
+    for (const permission of permissions) {
+      expect(hasPermission('owner', permission)).toBe(true);
+      expect(hasPermission('admin', permission)).toBe(true);
+      expect(hasPermission('analyst', permission)).toBe(false);
+      expect(hasPermission('support', permission)).toBe(false);
+    }
+  });
+
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -86,6 +99,8 @@ describe('admin permission matrix', () => {
       'emails.campaigns.cancel',
       'content.cache.read', 'content.cache.export', 'content.cache.reset',
       'application.compass.read', 'application.compass.write', 'application.compass.approve',
+      'application.review_promo.read', 'application.review_promo.write',
+      'application.alerts.read', 'application.alerts.write', 'application.alerts.test',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

@@ -37,6 +37,23 @@ interface AlertsConfig {
   testPingHandled?: number;
 }
 
+export type TelegramDispatchStatus = 'accepted_by_provider' | 'rejected' | 'delivery_uncertain';
+
+export async function dispatchTelegramAlert(token: string, text: string, config: AlertsConfig): Promise<{ status: TelegramDispatchStatus }> {
+  if (!config || config.enabled === false || config.chatId === undefined || config.chatId === null || String(config.chatId).trim() === '' || !token) return { status: 'rejected' };
+  try {
+    const res = await fetch(`${TELEGRAM_API}/bot${token}/sendMessage`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: config.chatId, text, parse_mode: 'HTML', disable_web_page_preview: true }),
+    });
+    if (!res.ok) { const detail = await res.text().catch(() => ''); console.error('[adminAlerts] sendMessage non-200', res.status, detail.slice(0, 300)); return { status: 'rejected' }; }
+    return { status: 'accepted_by_provider' };
+  } catch (error) {
+    console.error('[adminAlerts] sendMessage transport uncertain', error);
+    return { status: 'delivery_uncertain' };
+  }
+}
+
 function db(): FirebaseFirestore.Firestore {
   return admin.firestore();
 }
@@ -79,34 +96,8 @@ function clip(value: unknown, max: number): string {
  */
 export async function sendTelegramAlert(token: string, text: string, cfg?: AlertsConfig | null): Promise<boolean> {
   const config = cfg ?? (await readAlertsConfig());
-  if (!config || config.enabled === false) return false;
-  const chatId = config.chatId;
-  if (chatId === undefined || chatId === null || String(chatId).trim() === '') return false;
-  if (!token) {
-    console.error('[adminAlerts] no bot token available');
-    return false;
-  }
-  try {
-    const res = await fetch(`${TELEGRAM_API}/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text,
-        parse_mode: 'HTML',
-        disable_web_page_preview: true,
-      }),
-    });
-    if (!res.ok) {
-      const detail = await res.text().catch(() => '');
-      console.error('[adminAlerts] sendMessage non-200', res.status, detail.slice(0, 300));
-      return false;
-    }
-    return true;
-  } catch (error) {
-    console.error('[adminAlerts] sendMessage failed', error);
-    return false;
-  }
+  if (!config) return false;
+  return (await dispatchTelegramAlert(token, text, config)).status === 'accepted_by_provider';
 }
 
 /** Record the time an alert of a given type was last sent (for throttling/UI). */
@@ -178,6 +169,7 @@ export const adminAlertOnCriticalError = onDocumentCreated(
 // lesson can't flood the chat; overflow is summarised by the hourly digest.
 const CONTENT_REPORT_IMMEDIATE_PER_HOUR = 6;
 const CONTENT_REPORT_WINDOW_MS = 60 * 60 * 1000;
+const CONTENT_REPORT_DIGEST_CLAIM_MS = 10 * 60 * 1000;
 const TELEGRAM_TEXT_LIMIT = 4096;
 
 interface ContentReportLimits {
@@ -286,21 +278,37 @@ export const adminAlertContentReportDigest = onSchedule(
   async () => {
     const cfg = await readAlertsConfig();
     if (!cfg || cfg.enabled === false) return;
-    const pending = Number(cfg.pendingContentReports || 0);
-    if (pending <= 0) return;
-    // Reset the counter first so we never double-count across digests.
-    try {
-      await db().doc(ALERTS_DOC).set({ pendingContentReports: 0 }, { merge: true });
-    } catch (error) {
-      console.error('[adminAlerts] digest reset failed', error);
-      return;
-    }
     if (cfg.types?.contentReportDigest === false) return;
+    const claimId = db().collection('_ids').doc().id;
+    const claim = await db().runTransaction(async (tx) => {
+      const ref = db().doc(ALERTS_DOC);
+      const snap = await tx.get(ref);
+      const latest = (snap.data() || {}) as AlertsConfig & { contentReportDigestClaim?: { id?: string; pending?: number; expiresAtMs?: number } };
+      const pending = Number(latest.pendingContentReports || 0);
+      if (pending <= 0 || latest.enabled === false || latest.types?.contentReportDigest === false) return null;
+      const activeClaim = latest.contentReportDigestClaim;
+      if (activeClaim?.id && Number(activeClaim.expiresAtMs || 0) > Date.now()) return null;
+      const nowMs = Date.now();
+      tx.set(ref, { contentReportDigestClaim: { id: claimId, pending, createdAtMs: nowMs, expiresAtMs: nowMs + CONTENT_REPORT_DIGEST_CLAIM_MS } }, { merge: true });
+      return { id: claimId, pending };
+    });
+    if (!claim) return;
+    const pending = claim.pending;
     const text =
       `📝 <b>Content-репорты за час</b>\n\n` +
       `Ещё <b>${pending}</b> сверх мгновенных алертов — полные тексты в админке.\n\n` +
       `<i>Открой админку → Reports.</i>`;
     const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
+    try {
+      await db().runTransaction(async (tx) => {
+        const ref = db().doc(ALERTS_DOC); const snap = await tx.get(ref); const latest = snap.data() || {};
+        if (latest.contentReportDigestClaim?.id !== claim.id) return;
+        tx.set(ref, {
+          ...(ok ? { pendingContentReports: Math.max(0, Number(latest.pendingContentReports || 0) - pending) } : {}),
+          contentReportDigestClaim: admin.firestore.FieldValue.delete(),
+        }, { merge: true });
+      });
+    } catch (error) { console.error('[adminAlerts] digest claim finalization failed', error); }
     if (ok) await markSent('contentReportDigest');
   },
 );

@@ -1173,9 +1173,20 @@ service cloud.firestore {
     // Read/write only by admin from the panel. The alert Cloud Functions use the
     // Admin SDK (bypasses rules) to read config and write bookkeeping fields.
     match /admin_config/{docId} {
-      allow read: if isAdmin() && docId != 'support_inbox';
+      allow read: if isAdmin() && docId != 'support_inbox' && docId != 'alerts';
       allow write: if false;
     }
+
+    // Plus survey and Telegram alert control planes are callable-only. Keeping
+    // these documents opaque prevents browser consoles from bypassing preview,
+    // revision, audit and idempotency checks or exposing Telegram destinations.
+    match /admin_vip_survey_state/{docId} { allow read, write: if false; }
+    match /admin_vip_survey_previews/{docId} { allow read, write: if false; }
+    match /admin_vip_survey_history/{docId} { allow read, write: if false; }
+    match /admin_alerts_previews/{docId} { allow read, write: if false; }
+    match /admin_alerts_history/{docId} { allow read, write: if false; }
+    match /admin_alert_test_previews/{docId} { allow read, write: if false; }
+    match /admin_alert_test_commands/{docId} { allow read, write: if false; }
 
     // Support correspondence and delivery state are exposed only through
     // permission-checked Cloud Functions. Even admins cannot bypass immutable
@@ -1398,7 +1409,11 @@ service cloud.firestore {
 
     match /app_messages/{messageId} {
       allow read: if request.auth != null;
-      allow create, update, delete: if isAdmin();
+      allow create: if isAdmin() && request.resource.data.kind != 'vip_survey';
+      allow update: if isAdmin()
+        && resource.data.kind != 'vip_survey'
+        && request.resource.data.kind != 'vip_survey';
+      allow delete: if isAdmin() && resource.data.kind != 'vip_survey';
 
       match /reactions/{userId} {
         allow read: if isAdmin();
@@ -1424,7 +1439,7 @@ service cloud.firestore {
 
     match /vip_survey_responses/{userId} {
       allow read: if isAdmin() || userDocOwnerMatchesAuth(userId);
-      allow create, update, delete: if isAdmin();
+      allow create, update, delete: if false;
     }
 
     // Опросы за осколки (shard-survey). Все записи идут через callable (Admin SDK

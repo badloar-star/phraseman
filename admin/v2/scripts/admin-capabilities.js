@@ -79,6 +79,8 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'asset-studio': 'asset-studio',
   'explain-cache': 'explain-cache',
   compass: 'compass',
+  'review-promo': 'review-promo',
+  alerts: 'alerts',
   'gmail-support': 'support',
   'website-inbox': 'support',
   'emails': 'emails',
@@ -92,7 +94,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
-  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass',
+  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts',
 ]);
 
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {

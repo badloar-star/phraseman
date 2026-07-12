@@ -37,6 +37,8 @@ const PAGES = Object.freeze({
   emails: { title: 'Email-контакты', description: 'Защищённый каталог адресов приложения и сайта с явной пригодностью для рассылок.' },
   'explain-cache': { title: 'Кэш объяснений', description: 'Проверка и безопасное обслуживание общих AI-объяснений без запуска генерации.' },
   compass: { title: 'Компас', description: 'Состояние, кэш и защищённые настройки учебного Компаса.' },
+  'review-promo': { title: 'Plus-опрос', description: 'Кампания бесплатного Plus-опроса и безопасная аналитика ответов.' },
+  alerts: { title: 'Telegram-алерты', description: 'Получатель, типы событий, пороги и проверка связи без раскрытия токена.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
   'daily-briefing': { title: 'Product Manager Digest', description: 'Утренний управленческий отчёт: рост, деньги, риски, очереди и действия на сегодня.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
@@ -45,8 +47,8 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
   content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
   analyst: new Set(['users.read', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
@@ -145,6 +147,8 @@ const state = {
   },
   cache: { state: 'idle', source: 'choice_explanations', status: '', lang: '', query: '', items: [], summary: null, nextCursor: '', hasMore: false, error: '', resetPreview: null, operationKeys: {} },
   compass: { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '' },
+  reviewPromo: { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' },
+  alerts: { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
@@ -1794,10 +1798,53 @@ function renderCompass() {
     <section class="card section"><div class="card-header"><div><h2>Кэш Compass</h2><p>Показатель попаданий в кэш пока недоступен: чтения готовых записей не логируются.</p></div></div><div class="card-body">${renderCacheFilters('compass')}<div class="field section"><label for="compass-cache-operation-reason">Причина точечного сброса</label><input id="compass-cache-operation-reason" maxlength="500" placeholder="Почему запись надо перестроить"></div>${renderCacheResetPreview('compass')}${renderCacheEntries(model.cacheItems, 'compass')}${model.cacheNextCursor ? '<div class="actions end section"><button class="button" data-action="load-compass-cache-next" type="button" title="Загрузить следующую страницу кэша Compass">Показать ещё</button></div>' : ''}</div></section>`;
 }
 
+const VIP_SURVEY_DEFAULTS = Object.freeze({
+  ru: ['Хотите получить месяц Plus?', 'Пройдите короткий опрос внутри приложения и активируйте 30 дней Plus.'],
+  uk: ['Хочете отримати місяць Plus?', 'Пройдіть коротке опитування в застосунку й активуйте 30 днів Plus.'],
+  es: ['¿Quieres recibir un mes de Plus?', 'Completa una breve encuesta dentro de la aplicación y activa 30 días de Plus.'],
+  ptBr: ['Quer ganhar um mês de Plus?', 'Responda a uma pesquisa rápida dentro do app e ative 30 dias de Plus.'],
+  vi: ['Bạn muốn nhận một tháng Plus?', 'Hoàn thành khảo sát ngắn trong ứng dụng và kích hoạt 30 ngày Plus.'],
+  id: ['Mau dapat satu bulan Plus?', 'Ikuti survei singkat di dalam aplikasi dan aktifkan 30 hari Plus.'],
+  tr: ['Bir aylık Plus ister misin?', 'Uygulama içindeki kısa anketi tamamla ve 30 günlük Plus’ı etkinleştir.'],
+  pl: ['Chcesz otrzymać miesiąc Plus?', 'Wypełnij krótką ankietę w aplikacji i aktywuj 30 dni Plus.'],
+});
+
+function vipSurveyForm() {
+  const translations = Object.fromEntries(Object.keys(VIP_SURVEY_DEFAULTS).map((lang) => [lang, { title: String(document.getElementById(`vip-title-${lang}`)?.value || '').trim(), body: String(document.getElementById(`vip-body-${lang}`)?.value || '').trim() }]));
+  return { campaignId: String(document.getElementById('vip-campaign-id')?.value || '').trim(), allVersions: document.getElementById('vip-all-versions')?.checked === true, targetAppVersions: String(document.getElementById('vip-target-versions')?.value || '').split(',').map((value) => value.trim()).filter(Boolean), priority: Number(document.getElementById('vip-priority')?.value || 30), ttlDays: Number(document.getElementById('vip-ttl-days')?.value || 7), translations };
+}
+
+function renderReviewPromo() {
+  const model = state.reviewPromo;
+  if (!model.workspace) return `${pageHeader(PAGES['review-promo'], 'Приложение / Plus-опрос')}<section class="card section"><div class="card-body">${model.error ? `<div class="notice danger">${escapeHtml(model.error)}</div>` : emptyState(model.state === 'loading' ? 'Загружаем кампанию и ответы…' : 'Рабочая область ещё не загружена.')}<button class="button primary" data-action="load-review-promo" type="button" title="Загрузить кампанию и безопасную проекцию ответов">Загрузить</button></div></section>`;
+  const workspace = model.workspace; const summary = model.responseSummary || {};
+  const langs = { ru: 'Русский', uk: 'Українська', es: 'Español', ptBr: 'Português', vi: 'Tiếng Việt', id: 'Indonesia', tr: 'Türkçe', pl: 'Polski' };
+  const active = workspace.activeCampaigns || [];
+  return `${pageHeader(PAGES['review-promo'], 'Приложение / Plus-опрос', '<a class="button" href="#campaigns">Все сообщения</a><a class="button" href="#users">Пользователи</a>')}
+    <div class="notice">Опрос показывается только full free-tier. Сервер всегда фиксирует награду 30 дней Plus и никогда не смешивает Spanish с English. Генерация и AI-перевод на этом экране отключены.</div>
+    ${model.error ? `<div class="notice danger section">${escapeHtml(model.error)}</div>` : ''}
+    <section class="metrics section">${operationalMetric('Активные кампании', active.length, 'vip_survey')}${operationalMetric('Ответы', summary.responses ?? '—', 'последние 500')}${operationalMetric('Plus выдан', summary.vipGranted ?? '—', 'callable')}${operationalMetric('Открыли магазин', summary.storeOpened ?? '—', 'review flow')}</section>
+    <section class="card section"><div class="card-header"><div><h2>Текущая кампания</h2><p>Ревизия ${Number(workspace.revision || 0)}. Новая публикация атомарно выключает прежние активные survey.</p></div><button class="button danger" data-action="preview-vip-survey-deactivate" type="button" title="Подготовить остановку всех активных Plus-опросов"${disabledWhenUnauthorized('application.review_promo.write')}>Остановить опрос</button></div><div class="card-body">${active.length ? active.map((item) => `<div class="support-message"><strong>${escapeHtml(item.campaignId || item.id)}</strong><small>${item.allVersions ? 'все версии' : escapeHtml((item.targetAppVersions || []).join(', '))} · истекает ${escapeHtml(dateTime(item.expiresAtMs))}</small></div>`).join('') : emptyState('Активного Plus-опроса сейчас нет.')}</div></section>
+    <section class="card section"><div class="card-header"><div><h2>Новая кампания</h2><p>Сначала серверный preview, затем точное подтверждение.</p></div><span class="badge">free only · 30 дней</span></div><div class="card-body"><div class="report-filters"><div class="field"><label for="vip-campaign-id">Campaign ID</label><input id="vip-campaign-id" placeholder="vip-feedback-july-2026"></div><div class="field"><label for="vip-target-versions">Версии через запятую</label><input id="vip-target-versions" placeholder="1.5.50, 1.5.51"></div><label class="check-row" for="vip-all-versions"><input id="vip-all-versions" type="checkbox"><span><strong>Все версии</strong><small>Явный охват без скрытой версии</small></span></label><div class="field"><label for="vip-priority">Приоритет</label><input id="vip-priority" type="number" min="0" max="100" value="30"></div><div class="field"><label for="vip-ttl-days">Срок, дней</label><input id="vip-ttl-days" type="number" min="1" max="90" value="7"></div></div><div class="columns section">${Object.entries(langs).map(([lang, label]) => `<div class="card"><div class="card-body"><div class="field"><label for="vip-title-${lang}">${escapeHtml(label)} · заголовок</label><input id="vip-title-${lang}" value="${escapeHtml(VIP_SURVEY_DEFAULTS[lang][0])}"></div><div class="field"><label for="vip-body-${lang}">${escapeHtml(label)} · текст</label><textarea id="vip-body-${lang}" maxlength="2000">${escapeHtml(VIP_SURVEY_DEFAULTS[lang][1])}</textarea></div></div></div>`).join('')}</div><div class="field section"><label for="vip-survey-reason">Причина публикации</label><textarea id="vip-survey-reason" maxlength="500" placeholder="Цель кампании и проверенный охват"></textarea></div><button class="button primary" data-action="preview-vip-survey-activate" type="button" title="Подготовить атомарную замену активного Plus-опроса"${disabledWhenUnauthorized('application.review_promo.write')}>Подготовить кампанию</button></div></section>
+    ${model.preview ? `<section class="card section"><div class="card-header"><div><h2>Неизменяемый preview</h2><p>Проверьте локализации, версии и список остановки.</p></div><span class="badge warning">${escapeHtml(model.preview.action)}</span></div><div class="card-body"><pre class="code-preview">${escapeHtml(JSON.stringify(model.preview, null, 2))}</pre><div class="field"><label for="vip-survey-confirmation">Точное подтверждение</label><input id="vip-survey-confirmation" placeholder="${escapeHtml(model.preview.confirmation)}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="discard-vip-survey-preview" type="button" title="Отменить без изменений">Отмена</button><button class="button ${model.preview.action === 'deactivate' ? 'danger' : 'primary'}" data-action="apply-vip-survey" type="button" title="Применить только неизменённый серверный preview">${model.preview.action === 'deactivate' ? 'Остановить' : 'Опубликовать'}</button></div></div></section>` : ''}
+    <section class="card section"><div class="card-header"><div><h2>Ответы</h2><p>Безопасная проекция последних 500 ответов; raw progress и auth-поля не возвращаются.</p></div><button class="button" data-action="load-vip-survey-responses" type="button" title="Обновить ответы и агрегаты"${disabledWhenUnauthorized('application.review_promo.read')}>Обновить</button></div><div class="card-body"><div class="report-filters"><div class="field"><label for="vip-response-filter">Фильтр</label><select id="vip-response-filter">${renderSelectOptions([['all','Все'],['vip','Plus выдан'],['review_yes','Хотели отзыв'],['store_opened','Открыли магазин'],['current_vip_off','Plus сейчас выключен']], model.responseFilter)}</select></div><div class="field"><label for="vip-response-query">Поиск</label><input id="vip-response-query" value="${escapeHtml(model.responseQuery)}" placeholder="UID, имя, email, комментарий"></div></div>${model.responseTruncated ? '<div class="notice warning">Окно ограничено последними 500 ответами.</div>' : ''}<div class="support-list">${model.responses.length ? model.responses.map((row) => `<article class="support-message"><header><div><strong>${escapeHtml(row.name || row.uid)}</strong><small>${escapeHtml(row.uid)}${row.email ? ` · ${escapeHtml(row.email)}` : ''} · ${escapeHtml(dateTime(row.submittedAtMs))}</small></div><div class="actions"><span class="badge ${row.vipGranted ? 'success' : ''}">${row.vipGranted ? 'Plus выдан' : 'без выдачи'}</span><span class="badge">${row.currentVipActive ? 'Plus активен' : 'Plus выключен'}</span></div></header><details><summary>Ответы</summary><pre class="code-preview">${escapeHtml(JSON.stringify(row.answers, null, 2))}</pre></details><footer><button class="button small" data-user-profile-uid="${escapeHtml(row.uid)}" type="button" title="Открыть нативный профиль для защищённой выдачи или отзыва Plus">Открыть профиль</button></footer></article>`).join('') : emptyState(model.state === 'loading' ? 'Загружаем ответы…' : 'Ответы ещё не загружены.')}</div>${model.responseNextCursor ? '<div class="actions end section"><button class="button" data-action="load-vip-survey-responses-next" type="button" title="Загрузить следующую страницу">Показать ещё</button></div>' : ''}</div></section>`;
+}
+
+function alertsDraftFromDom() {
+  const types = {}; ['userReport','criticalError','contentReportDigest','cancelRefundSpike','safetyFlag'].forEach((key) => { types[key] = document.getElementById(`alerts-type-${key}`)?.checked === true; });
+  return { enabled: document.getElementById('alerts-enabled')?.checked === true, chatId: String(document.getElementById('alerts-chat-id')?.value || '').trim(), spikePerHour: Number(document.getElementById('alerts-spike')?.value || 5), types };
+}
+
+function renderAlerts() {
+  const model = state.alerts; const workspace = model.workspace; if (!workspace) return `${pageHeader(PAGES.alerts, 'Приложение / Telegram-алерты')}<section class="card section"><div class="card-body">${model.error ? `<div class="notice danger">${escapeHtml(model.error)}</div>` : emptyState(model.state === 'loading' ? 'Загружаем настройки…' : 'Настройки ещё не загружены.')}<button class="button primary" data-action="load-alerts" type="button" title="Загрузить защищённую конфигурацию">Загрузить</button></div></section>`;
+  const cfg = workspace.config || { configRevision: 0, editable: { enabled: false, chatId: '', spikePerHour: 5, types: {} }, operational: {} }; const draft = model.draft || cfg.editable; const labels = { userReport:'Жалобы на пользователей', criticalError:'Критические ошибки', contentReportDigest:'Контентные репорты', cancelRefundSpike:'Всплеск отмен и возвратов', safetyFlag:'Опасные AI-сообщения' };
+  return `${pageHeader(PAGES.alerts, 'Приложение / Telegram-алерты', '<a class="button" href="#diagnostics">Аудит</a>')}<div class="notice">Токен бота остаётся только в Cloud Functions. Тест не сохраняет форму и не включает алерты. Статус «принято Telegram» не означает подтверждённую доставку пользователю.</div>${model.error ? `<div class="notice danger section">${escapeHtml(model.error)}</div>` : ''}<section class="metrics section">${operationalMetric('Master', cfg.editable.enabled ? 'Включён' : 'Выключен', `rev ${cfg.configRevision}`)}${operationalMetric('Ожидают digest', cfg.operational.pendingContentReports || 0, 'content reports')}${operationalMetric('Последний алерт', cfg.operational.lastSentAt ? dateTime(cfg.operational.lastSentAt) : '—', 'provider accepted')}${operationalMetric('Последний тест', cfg.operational.testPingResult || '—', cfg.operational.testPingResultAt ? dateTime(cfg.operational.testPingResultAt) : 'нет')}</section><div class="columns section"><section class="card"><div class="card-header"><div><h2>Подключение</h2><p>Изменения применяются только после server preview.</p></div></div><div class="card-body"><label class="check-row" for="alerts-enabled"><input id="alerts-enabled" type="checkbox"${draft.enabled ? ' checked' : ''}><span><strong>Алерты включены</strong><small>Master-переключатель</small></span></label><div class="field"><label for="alerts-chat-id">Telegram Chat ID</label><input id="alerts-chat-id" value="${escapeHtml(draft.chatId || '')}" autocomplete="off"></div><div class="field"><label for="alerts-spike">Порог всплеска в час</label><input id="alerts-spike" type="number" min="1" max="100" value="${Number(draft.spikePerHour || 5)}"></div></div></section><section class="card"><div class="card-header"><div><h2>Типы событий</h2><p>Критические и safety-алерты выделяются как риск при выключении.</p></div></div><div class="card-body">${Object.entries(labels).map(([key,label]) => `<label class="check-row" for="alerts-type-${key}"><input id="alerts-type-${key}" type="checkbox"${draft.types?.[key] !== false ? ' checked' : ''}><span><strong>${escapeHtml(label)}</strong><small>${escapeHtml(key)}</small></span></label>`).join('')}</div></section></div><section class="card section"><div class="card-body"><div class="field"><label for="alerts-reason">Причина изменения или теста</label><textarea id="alerts-reason" maxlength="500" placeholder="Что проверено и зачем меняется конфигурация"></textarea></div><div class="actions"><button class="button primary" data-action="preview-alerts-config" type="button" title="Подготовить before/after без сохранения"${disabledWhenUnauthorized('application.alerts.write')}>Подготовить изменения</button><button class="button" data-action="preview-alert-test" type="button" title="Подготовить один тест в указанный Chat ID без сохранения формы"${disabledWhenUnauthorized('application.alerts.test')}>Проверить связь</button><button class="button" data-action="load-alerts" type="button" title="Перечитать конфигурацию и историю">Обновить</button></div></div></section>${model.preview ? `<section class="card section"><div class="card-header"><div><h2>Preview конфигурации</h2><p>Риски: ${escapeHtml((model.preview.risks || []).join(', ') || 'нет')}</p></div></div><div class="card-body"><pre class="code-preview">${escapeHtml(JSON.stringify(model.preview, null, 2))}</pre><div class="field"><label for="alerts-confirmation">Точное подтверждение</label><input id="alerts-confirmation" placeholder="${escapeHtml(model.preview.confirmation)}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="discard-alerts-preview" type="button" title="Отменить без изменений">Отмена</button><button class="button primary" data-action="apply-alerts-config" type="button" title="Применить неизменённый preview">Сохранить настройки</button></div></div></section>` : ''}${model.testPreview ? `<section class="card section"><div class="card-header"><div><h2>Preview проверки связи</h2><p>Форма настроек не будет сохранена.</p></div></div><div class="card-body"><pre class="code-preview">${escapeHtml(JSON.stringify(model.testPreview, null, 2))}</pre><div class="field"><label for="alert-test-confirmation">Точное подтверждение</label><input id="alert-test-confirmation" placeholder="${escapeHtml(model.testPreview.confirmation)}" autocomplete="off"></div><button class="button primary" data-action="queue-alert-test" type="button" title="Отправить один тест в previewed Chat ID">Отправить тест</button></div></section>` : ''}<section class="card section"><div class="card-header"><div><h2>История и тесты</h2><p>Accepted означает принятие Telegram API, uncertain — доставка не подтверждена.</p></div></div><div class="card-body"><pre class="code-preview">${escapeHtml(JSON.stringify({ history: workspace.history || [], tests: workspace.tests || [] }, null, 2))}</pre></div></section>`;
+}
+
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -2017,6 +2064,85 @@ function maybeLoadCompassWorkspace() {
   }).catch((error) => {
     if (generation !== state.authGeneration) return;
     state.compass = { ...state.compass, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  });
+}
+
+function vipSurveyResponseInput(cursor = '') {
+  return {
+    filter: String(document.getElementById('vip-response-filter')?.value || state.reviewPromo.responseFilter || 'all'),
+    query: String(document.getElementById('vip-response-query')?.value || state.reviewPromo.responseQuery || '').trim(),
+    pageSize: 50,
+    cursor,
+  };
+}
+
+async function loadVipSurveyResponses(append = false) {
+  const input = vipSurveyResponseInput(append ? state.reviewPromo.responseNextCursor : '');
+  const result = await actions.listVipSurveyResponses(input);
+  state.reviewPromo = {
+    ...state.reviewPromo,
+    state: 'ready',
+    responses: append ? [...state.reviewPromo.responses, ...(Array.isArray(result?.items) ? result.items : [])] : (Array.isArray(result?.items) ? result.items : []),
+    responseSummary: result?.summary || null,
+    responseFilter: input.filter,
+    responseQuery: input.query,
+    responseNextCursor: String(result?.nextCursor || ''),
+    responseTruncated: result?.truncated === true,
+    error: '',
+  };
+}
+
+async function loadReviewPromoWorkspace() {
+  const [workspace, responses] = await Promise.all([
+    actions.getVipSurveyWorkspace(),
+    actions.listVipSurveyResponses({ filter: state.reviewPromo.responseFilter, query: state.reviewPromo.responseQuery, pageSize: 50, cursor: '' }),
+  ]);
+  state.reviewPromo = {
+    ...state.reviewPromo,
+    state: 'ready',
+    workspace,
+    responses: Array.isArray(responses?.items) ? responses.items : [],
+    responseSummary: responses?.summary || null,
+    responseNextCursor: String(responses?.nextCursor || ''),
+    responseTruncated: responses?.truncated === true,
+    error: '',
+  };
+}
+
+function maybeLoadReviewPromo() {
+  if (state.route !== 'review-promo' || !state.authorized || !actions || !can('application.review_promo.read') || state.reviewPromo.state !== 'idle') return;
+  const generation = state.authGeneration;
+  state.reviewPromo.state = 'loading';
+  loadReviewPromoWorkspace().then(() => {
+    if (generation !== state.authGeneration || state.route !== 'review-promo') return;
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    state.reviewPromo = { ...state.reviewPromo, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  });
+}
+
+function applyAlertsWorkspace(workspace) {
+  const editable = workspace?.config?.editable || { enabled: false, chatId: '', spikePerHour: 5, types: {} };
+  state.alerts = { ...state.alerts, state: 'ready', workspace, draft: structuredClone(editable), error: '' };
+}
+
+async function loadAlertsWorkspace() {
+  applyAlertsWorkspace(await actions.getAlertsWorkspace());
+}
+
+function maybeLoadAlerts() {
+  if (state.route !== 'alerts' || !state.authorized || !actions || !can('application.alerts.read') || state.alerts.state !== 'idle') return;
+  const generation = state.authGeneration;
+  state.alerts.state = 'loading';
+  loadAlertsWorkspace().then(() => {
+    if (generation !== state.authGeneration || state.route !== 'alerts') return;
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    state.alerts = { ...state.alerts, state: 'error', error: errorMessage(error) };
     renderCurrentPage();
   });
 }
@@ -2929,6 +3055,92 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-review-promo') return runBusy(loadReviewPromoWorkspace, 'Кампания и ответы Plus-опроса обновлены.');
+  if (action === 'load-vip-survey-responses' || action === 'load-vip-survey-responses-next') {
+    return runBusy(() => loadVipSurveyResponses(action.endsWith('-next')), 'Ответы Plus-опроса загружены через безопасную серверную проекцию.');
+  }
+  if (action === 'preview-vip-survey-activate' || action === 'preview-vip-survey-deactivate') {
+    const reason = String(document.getElementById('vip-survey-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину публикации или остановки опроса.', 'warning');
+    let campaign = null;
+    if (action === 'preview-vip-survey-activate') {
+      campaign = vipSurveyForm();
+      if (!campaign.campaignId) return setMessage('Укажите Campaign ID.', 'warning');
+      if (!campaign.allVersions && !campaign.targetAppVersions.length) return setMessage('Выберите «Все версии» или укажите хотя бы одну версию приложения.', 'warning');
+    }
+    return runBusy(async () => {
+      const preview = await actions.previewVipSurveyCampaign({
+        action: action === 'preview-vip-survey-deactivate' ? 'deactivate' : 'activate',
+        campaign,
+        expectedRevision: Number(state.reviewPromo.workspace?.revision || 0),
+        reason,
+        requestId: id('vip-survey-preview'),
+      });
+      state.reviewPromo = { ...state.reviewPromo, preview, error: '' };
+    }, 'Неизменяемый preview Plus-опроса подготовлен.');
+  }
+  if (action === 'discard-vip-survey-preview') { state.reviewPromo = { ...state.reviewPromo, preview: null }; renderCurrentPage(); return; }
+  if (action === 'apply-vip-survey') {
+    const preview = state.reviewPromo.preview;
+    if (!preview) return setMessage('Сначала подготовьте preview.', 'warning');
+    const confirmation = String(document.getElementById('vip-survey-confirmation')?.value || '').trim();
+    if (confirmation !== preview.confirmation) return setMessage('Точное подтверждение не совпадает с preview.', 'warning');
+    const scope = `${preview.action}:${preview.previewId}`;
+    return runBusy(async () => {
+      await actions.applyVipSurveyCampaign({ previewId: preview.previewId, confirmation, reason: preview.reason, requestId: id('vip-survey-apply'), idempotencyKey: protectedOperationKey('reviewPromo', scope) });
+      clearProtectedOperationKey('reviewPromo', scope);
+      state.reviewPromo = { ...state.reviewPromo, preview: null };
+      await loadReviewPromoWorkspace();
+    }, preview.action === 'deactivate' ? 'Plus-опрос остановлен.' : 'Новая Plus-кампания опубликована атомарно.');
+  }
+  if (action === 'load-alerts') return runBusy(loadAlertsWorkspace, 'Конфигурация и история Telegram-алертов обновлены.');
+  if (action === 'preview-alerts-config') {
+    const reason = String(document.getElementById('alerts-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину изменения алертов.', 'warning');
+    const draft = alertsDraftFromDom();
+    return runBusy(async () => {
+      const preview = await actions.previewAlertsConfig({ expectedRevision: Number(state.alerts.workspace?.config?.configRevision || 0), patch: draft, reason, requestId: id('alerts-preview') });
+      state.alerts = { ...state.alerts, draft, preview, testPreview: null, error: '' };
+    }, 'Server preview конфигурации алертов подготовлен.');
+  }
+  if (action === 'discard-alerts-preview') { state.alerts = { ...state.alerts, preview: null }; renderCurrentPage(); return; }
+  if (action === 'apply-alerts-config') {
+    const preview = state.alerts.preview;
+    if (!preview) return setMessage('Сначала подготовьте preview конфигурации.', 'warning');
+    const confirmation = String(document.getElementById('alerts-confirmation')?.value || '').trim();
+    if (confirmation !== preview.confirmation) return setMessage('Точное подтверждение не совпадает с preview.', 'warning');
+    const scope = `config:${preview.previewId}`;
+    return runBusy(async () => {
+      await actions.applyAlertsConfig({ previewId: preview.previewId, confirmation, reason: preview.reason, requestId: id('alerts-apply'), idempotencyKey: protectedOperationKey('alerts', scope) });
+      clearProtectedOperationKey('alerts', scope);
+      state.alerts = { ...state.alerts, preview: null };
+      await loadAlertsWorkspace();
+    }, 'Настройки Telegram-алертов сохранены через защищённую команду.');
+  }
+  if (action === 'preview-alert-test') {
+    const draft = alertsDraftFromDom();
+    const reason = String(document.getElementById('alerts-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину проверки связи.', 'warning');
+    if (!/^-?\d{3,30}$/.test(draft.chatId)) return setMessage('Укажите корректный Telegram Chat ID.', 'warning');
+    return runBusy(async () => {
+      const testPreview = await actions.previewAlertTest({ chatId: draft.chatId, reason, requestId: id('alert-test-preview') });
+      state.alerts = { ...state.alerts, draft, testPreview, preview: null, error: '' };
+    }, 'Preview тестового Telegram-сообщения подготовлен; настройки не сохранены.');
+  }
+  if (action === 'queue-alert-test') {
+    const preview = state.alerts.testPreview;
+    if (!preview) return setMessage('Сначала подготовьте preview проверки связи.', 'warning');
+    const confirmation = String(document.getElementById('alert-test-confirmation')?.value || '').trim();
+    if (confirmation !== preview.confirmation) return setMessage('Точное подтверждение теста не совпадает.', 'warning');
+    const scope = `test:${preview.previewId}`;
+    return runBusy(async () => {
+      const result = await actions.queueAlertTest({ previewId: preview.previewId, confirmation, reason: preview.reason, requestId: id('alert-test-send'), idempotencyKey: protectedOperationKey('alerts', scope) });
+      clearProtectedOperationKey('alerts', scope);
+      state.alerts = { ...state.alerts, testPreview: null };
+      await loadAlertsWorkspace();
+      setMessage(result?.status === 'accepted_by_provider' ? 'Telegram API принял тестовое сообщение.' : result?.status === 'rejected' ? 'Telegram отклонил тестовое сообщение.' : 'Результат доставки не подтверждён; повтор автоматически не выполнялся.', result?.status === 'accepted_by_provider' ? 'success' : 'warning');
+    });
+  }
   if (action === 'load-cache' || action === 'load-cache-next') {
     const input = cacheListInput('cache', action.endsWith('-next') ? state.cache.nextCursor : '');
     state.cache = { ...state.cache, source: input.source, status: input.status, lang: input.lang, query: input.query };
@@ -3771,6 +3983,8 @@ async function handleClick(event) {
   const profileUid = target.getAttribute('data-user-profile-uid');
   if (profileUid) {
     state.users.profileLoading = true;
+    state.users.query = profileUid;
+    if (state.route !== 'users') globalThis.location.hash = 'users';
     return runBusy(() => loadAdminUserProfile(profileUid), 'Единый профиль загружен.');
   }
   const promoUserUid = target.getAttribute('data-open-promo-user');
@@ -3829,6 +4043,8 @@ export function setAdminActions(nextActions) {
   maybeLoadEmailCampaigns();
   maybeLoadCacheWorkspace();
   maybeLoadCompassWorkspace();
+  maybeLoadReviewPromo();
+  maybeLoadAlerts();
 }
 
 export function setAuthState(auth) {
@@ -3872,6 +4088,8 @@ export function setAuthState(auth) {
   };
   if (!state.authorized || !can('content.cache.read')) state.cache = { state: 'idle', source: 'choice_explanations', status: '', lang: '', query: '', items: [], summary: null, nextCursor: '', hasMore: false, error: '', resetPreview: null, operationKeys: {} };
   if (!state.authorized || !can('application.compass.read')) state.compass = { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '', cacheResetPreview: null };
+  if (!state.authorized || !can('application.review_promo.read')) state.reviewPromo = { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' };
+  if (!state.authorized || !can('application.alerts.read')) state.alerts = { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
@@ -3879,6 +4097,8 @@ export function setAuthState(auth) {
   maybeLoadEmailCampaigns();
   maybeLoadCacheWorkspace();
   maybeLoadCompassWorkspace();
+  maybeLoadReviewPromo();
+  maybeLoadAlerts();
 }
 
 export function renderRoute(route, capabilityId = '') {
@@ -3892,6 +4112,8 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadEmailCampaigns();
   maybeLoadCacheWorkspace();
   maybeLoadCompassWorkspace();
+  maybeLoadReviewPromo();
+  maybeLoadAlerts();
 }
 
 export function initAdminUi() {

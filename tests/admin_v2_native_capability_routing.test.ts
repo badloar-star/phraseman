@@ -23,12 +23,14 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly twenty-one proven native capabilities as guarded', () => {
+  test('marks exactly twenty-three proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
-    expect(native.map(({ id, nativeRoute }) => [id, nativeRoute]).sort()).toEqual([
+    expect(native).toHaveLength(23);
+    expect(native.map(({ id, nativeRoute }) => [id, nativeRoute])).toEqual(expect.arrayContaining([
       ['analytics', 'analytics'],
+      ['alerts', 'alerts'],
       ['app-messages', 'campaigns'],
       ['asset-studio', 'asset-studio'],
       ['audit', 'diagnostics'],
@@ -47,9 +49,10 @@ describe('Admin v2 native capability routing', () => {
       ['push-notify', 'campaigns'],
       ['remote-config', 'application'],
       ['reports', 'report-center'],
+      ['review-promo', 'review-promo'],
       ['users', 'users'],
       ['website-inbox', 'support'],
-    ]);
+    ]));
     expect(native.every((capability) => capability.migrationStatus === 'guarded')).toBe(true);
     expect(registry.filter((capability) => !capability.nativeRoute).every((capability) => capability.migrationStatus === 'fallback')).toBe(true);
   });

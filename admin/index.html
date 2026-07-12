@@ -25560,6 +25560,9 @@
   }
 
   window.deactivateVipSurveyMessages = async function(confirmFirst = true) {
+    void confirmFirst;
+    window.location.href = './v2/index.html#review-promo';
+    return;
     if (confirmFirst) {
       const ok = await showConfirmModal({
         title: 'Выключить активные Plus survey?',
@@ -25593,6 +25596,8 @@
   };
 
   window.sendVipSurveyCampaign = async function() {
+    window.location.href = './v2/index.html#review-promo';
+    return;
     const titleRu = vipSurveyVal('vs-title-ru') || 'Хотите получить месяц Plus?';
     const messageRu = vipSurveyVal('vs-message-ru');
     const titleUk = vipSurveyVal('vs-title-uk') || titleRu;
@@ -25888,6 +25893,9 @@
   }
 
   window.loadVipSurveyResponses = async function loadVipSurveyResponses(force = false) {
+    void force;
+    window.location.href = './v2/index.html#review-promo';
+    return;
     applyCleanVipSurveyChrome();
     const list = document.getElementById('vs-list');
     const count = document.getElementById('vs-count');
@@ -29199,6 +29207,8 @@
   // Авто-перевод VIP-survey: RU заголовок/текст → все языковые поля vs-*. Тот же callable,
   // что и у обычных сообщений. Поле «es» в VIP-survey используется как Spanish/EN-слот.
   window.autoTranslateVipSurvey = async function() {
+    window.location.href = './v2/index.html#review-promo';
+    return;
     const get = (id) => String(document.getElementById(id)?.value || '').trim();
     const titleRu = get('vs-title-ru');
     const messageRu = get('vs-message-ru');
@@ -32252,6 +32262,9 @@
     ].filter(Boolean).join('<br>');
   }
   window.loadAlertsConfig = async function(force) {
+    void force;
+    window.location.href = './v2/index.html#alerts';
+    return;
     window._alertsLoaded = true;
     alertsSetStatus('Загрузка…');
     try {
@@ -32287,6 +32300,8 @@
     };
   }
   window.saveAlertsConfig = async function() {
+    window.location.href = './v2/index.html#alerts';
+    return;
     const reason = await showInputModal({ title: 'Сохранить настройки Telegram-алертов?', desc: 'Изменятся получатель, типы и порог уведомлений. Укажите причину.', multiline: true, confirmLabel: 'Сохранить', danger: true });
     if (reason === null) return;
     alertsSetStatus('Сохранение…');
@@ -32304,6 +32319,8 @@
     }
   };
   window.sendAlertTest = async function() {
+    window.location.href = './v2/index.html#alerts';
+    return;
     const chatId = String(document.getElementById('alerts-chatid')?.value || '').trim();
     if (!chatId) { alertsSetStatus('Сначала впиши chat_id.', '#fbbf24'); return; }
     const ok = await showConfirmModal({ title: 'Отправить тестовый Telegram-алерт?', desc: `Сообщение будет отправлено в chat_id ${chatId}.`, confirmLabel: 'Отправить тест' });

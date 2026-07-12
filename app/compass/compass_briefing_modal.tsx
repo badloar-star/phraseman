@@ -454,7 +454,7 @@ export default function CompassBriefingModal({
                         accessibilityLabel={socialToggleText}
                         style={styles.socialToggle}
                       >
-                        <Text style={[styles.socialToggleText, { color: accent }]} numberOfLines={1}>
+                        <Text style={[styles.socialToggleText, { color: accent }]}>
                           {socialToggleText}
                         </Text>
                         <Ionicons name={socialExpanded ? 'chevron-up' : 'chevron-down'} size={14} color={accent} />

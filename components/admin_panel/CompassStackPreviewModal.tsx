@@ -387,7 +387,7 @@ function PreviewCard({
           <Ionicons name={card.icon as any} size={24} color={card.accent} />
         </View>
         <View style={styles.sourcePill}>
-          <Text numberOfLines={1} style={styles.sourceText}>{card.source}</Text>
+          <Text style={styles.sourceText}>{card.source}</Text>
         </View>
       </View>
 

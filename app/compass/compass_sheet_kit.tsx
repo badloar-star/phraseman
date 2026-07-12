@@ -73,7 +73,7 @@ export function CompassEyebrow({
           <Ionicons name={icon} size={17} color={accent} />
         </View>
       )}
-      <Text style={[styles.eyebrowText, { color: accent }]} numberOfLines={1}>
+      <Text style={[styles.eyebrowText, { color: accent }]}>
         {text}
       </Text>
       {right ? <View style={styles.eyebrowRight}>{right}</View> : null}
@@ -86,7 +86,7 @@ export function CompassStreakPill({ t, accent, text }: { t: Theme; accent: strin
   return (
     <View style={[styles.streakPill, { backgroundColor: accent + '1A', borderColor: accent + '3A' }]}>
       <Ionicons name="flame-outline" size={12} color={accent} />
-      <Text style={[styles.streakPillText, { color: accent }]} numberOfLines={1}>
+      <Text style={[styles.streakPillText, { color: accent }]}>
         {text}
       </Text>
     </View>
@@ -157,11 +157,11 @@ export function CompassPickRow({
     >
       <Ionicons name={icon} size={20} color={accent} style={styles.pickIcon} />
       <View style={styles.pickBody}>
-        <Text style={[styles.pickTitle, { color: t.textPrimary }]} numberOfLines={1}>
+        <Text style={[styles.pickTitle, { color: t.textPrimary }]}>
           {title}
         </Text>
         {meta ? (
-          <Text style={[styles.pickMeta, { color: t.textMuted }]} numberOfLines={1}>
+          <Text style={[styles.pickMeta, { color: t.textMuted }]}>
             {meta}
           </Text>
         ) : null}

@@ -64,7 +64,7 @@ describe('admin conversion and observed-return analytics contract', () => {
     expect(source).toContain("COUNTIF(event_name = 'purchase_started') AS store_starts");
     expect(source).toContain("COUNTIF(event_name = 'purchase_completed') AS purchases");
     expect(source).toContain("'paywall_exit_offer_shown'");
-    expect(source).toContain("THEN paywall_source\n      ELSE 'unknown'");
+    expect(source).toMatch(/THEN paywall_source\s+ELSE 'unknown'/);
     expect(source).not.toContain("COUNTIF(event_name IN ('paywall_cta_click', 'purchase_started')) AS cta_clicks");
     expect(source).toContain("key = 'paywall_impression_id'");
     expect(source).toContain('distinct_paywall_impressions');

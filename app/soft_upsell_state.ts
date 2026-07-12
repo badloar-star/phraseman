@@ -17,6 +17,11 @@ export interface SoftUpsellPersistedState {
   consumedMilestones: string[];
 }
 
+interface SoftUpsellGlobalPersistedState {
+  schemaVersion: typeof SCHEMA_VERSION;
+  lastGlobalImpressionMs: number | null;
+}
+
 let operationQueue: Promise<void> = Promise.resolve();
 let sessionClaimed = false;
 
@@ -31,6 +36,10 @@ function emptyState(): SoftUpsellPersistedState {
 
 function storageKey(accountScope: string, studyTarget: SoftUpsellStudyTarget): string {
   return `soft_upsell_state_v1:${encodeURIComponent(accountScope)}:${studyTarget}`;
+}
+
+function globalStorageKey(accountScope: string): string {
+  return `soft_upsell_global_state_v1:${encodeURIComponent(accountScope)}`;
 }
 
 function isSafeTimestamp(value: unknown): value is number {
@@ -91,13 +100,34 @@ function parseState(raw: string | null): SoftUpsellPersistedState {
   }
 }
 
+function parseGlobalState(raw: string | null): SoftUpsellGlobalPersistedState {
+  if (raw == null) return { schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: null };
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return { schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: null };
+    }
+    const candidate = parsed as Record<string, unknown>;
+    if (candidate.schemaVersion !== SCHEMA_VERSION
+      || (candidate.lastGlobalImpressionMs !== null && !isSafeTimestamp(candidate.lastGlobalImpressionMs))) {
+      return { schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: null };
+    }
+    return {
+      schemaVersion: SCHEMA_VERSION,
+      lastGlobalImpressionMs: candidate.lastGlobalImpressionMs as number | null,
+    };
+  } catch {
+    return { schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: null };
+  }
+}
+
 function serialize<T>(operation: () => Promise<T>): Promise<T> {
   const result = operationQueue.then(operation);
   operationQueue = result.then(() => undefined, () => undefined);
   return result;
 }
 
-async function readUnqueued(accountScope: string, studyTarget: SoftUpsellStudyTarget): Promise<SoftUpsellPersistedState> {
+async function readTargetUnqueued(accountScope: string, studyTarget: SoftUpsellStudyTarget): Promise<SoftUpsellPersistedState> {
   const key = storageKey(accountScope, studyTarget);
   const raw = await AsyncStorage.getItem(key);
   const state = parseState(raw);
@@ -106,11 +136,42 @@ async function readUnqueued(accountScope: string, studyTarget: SoftUpsellStudyTa
   return state;
 }
 
+function newestTimestamp(...timestamps: (number | null)[]): number | null {
+  return timestamps.reduce<number | null>((newest, timestamp) => (
+    timestamp !== null && (newest === null || timestamp > newest) ? timestamp : newest
+  ), null);
+}
+
+async function reconcileGlobalUnqueued(
+  accountScope: string,
+  targetStates?: Partial<Record<SoftUpsellStudyTarget, SoftUpsellPersistedState>>,
+): Promise<{ en: SoftUpsellPersistedState; fr: SoftUpsellPersistedState; timestamp: number | null }> {
+  const en = targetStates?.en ?? await readTargetUnqueued(accountScope, 'en');
+  const fr = targetStates?.fr ?? await readTargetUnqueued(accountScope, 'fr');
+  const key = globalStorageKey(accountScope);
+  const raw = await AsyncStorage.getItem(key);
+  const globalState = parseGlobalState(raw);
+  const timestamp = newestTimestamp(
+    globalState.lastGlobalImpressionMs,
+    en.lastGlobalImpressionMs,
+    fr.lastGlobalImpressionMs,
+  );
+  const canonical = JSON.stringify({ schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: timestamp });
+  if (raw !== canonical) await AsyncStorage.setItem(key, canonical);
+  return { en, fr, timestamp };
+}
+
 export function readSoftUpsellState(
   accountScope: string,
   studyTarget: SoftUpsellStudyTarget,
 ): Promise<SoftUpsellPersistedState> {
-  return serialize(() => readUnqueued(accountScope, studyTarget));
+  return serialize(async () => {
+    const reconciled = await reconcileGlobalUnqueued(accountScope);
+    return {
+      ...reconciled[studyTarget],
+      lastGlobalImpressionMs: reconciled.timestamp,
+    };
+  });
 }
 
 export function claimSoftUpsell(_scope: {
@@ -138,13 +199,15 @@ export function markSoftUpsellImpression(
     if (!isValidMilestoneId(milestoneId)) {
       throw new TypeError(`milestoneId must contain 1-${MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH} characters`);
     }
-    const state = await readUnqueued(accountScope, studyTarget);
+    const state = await readTargetUnqueued(accountScope, studyTarget);
     const consumedMilestones = sanitizeMilestones([...state.consumedMilestones, milestoneId]) ?? [];
-    await AsyncStorage.setItem(storageKey(accountScope, studyTarget), JSON.stringify({
+    const updatedState: SoftUpsellPersistedState = {
       ...state,
       lastGlobalImpressionMs: nowMs,
       consumedMilestones,
-    }));
+    };
+    await AsyncStorage.setItem(storageKey(accountScope, studyTarget), JSON.stringify(updatedState));
+    await reconcileGlobalUnqueued(accountScope, { [studyTarget]: updatedState });
   });
 }
 
@@ -156,7 +219,7 @@ export function markSoftUpsellDismissed(
 ): Promise<void> {
   return serialize(async () => {
     if (!isSafeTimestamp(nowMs)) throw new TypeError('nowMs must be a finite safe timestamp');
-    const state = await readUnqueued(accountScope, studyTarget);
+    const state = await readTargetUnqueued(accountScope, studyTarget);
     await AsyncStorage.setItem(storageKey(accountScope, studyTarget), JSON.stringify({
       ...state,
       contextDismissedAtMs: { ...state.contextDismissedAtMs, [context]: nowMs },

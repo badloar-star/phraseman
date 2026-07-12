@@ -56,7 +56,7 @@ describe('lesson completion soft upsell behavior', () => {
   it('awaits analytics, ignores a concurrent double tap, and navigates once', async () => {
     let release!: () => void;
     const analytics = new Promise<void>((resolve) => { release = resolve; });
-    const onCta = jest.fn(() => analytics);
+    const onCta = jest.fn(async () => { await analytics; return true; });
     const navigatePersonal = jest.fn();
     const navigatePaywall = jest.fn();
     const handler = createLessonSoftUpsellCtaHandler({ onCta, navigatePersonal, navigatePaywall });
@@ -68,5 +68,21 @@ describe('lesson completion soft upsell behavior', () => {
     await Promise.all([first, second]);
     expect(navigatePersonal).toHaveBeenCalledTimes(1);
     expect(navigatePaywall).not.toHaveBeenCalled();
+  });
+
+  it('does not navigate when the hook revokes CTA authorization after awaiting analytics', async () => {
+    let release!: () => void;
+    const onCta = jest.fn().mockImplementationOnce(async () => {
+      await new Promise<void>((resolve) => { release = resolve; });
+      return false;
+    }).mockResolvedValue(false);
+    const navigatePersonal = jest.fn();
+    const handler = createLessonSoftUpsellCtaHandler({ onCta, navigatePersonal, navigatePaywall: jest.fn() });
+    const pending = handler('first_lesson');
+    release();
+    await pending;
+    expect(navigatePersonal).not.toHaveBeenCalled();
+    await handler('first_lesson');
+    expect(onCta).toHaveBeenCalledTimes(2);
   });
 });

@@ -239,4 +239,42 @@ describe('useSoftUpsellOpportunity', () => {
     await waitFor(() => expect(hook.result.current.opportunity?.studyTarget).toBe('fr'));
   });
 
+  it('writes captured impression scope but skips analytics if identity changes during persistence', async () => {
+    let release!: () => void;
+    storage.markSoftUpsellImpression.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    const pending = hook.result.current.onImpression();
+    await hook.rerender('B');
+    release();
+    await pending;
+    expect(storage.markSoftUpsellImpression).toHaveBeenCalledWith('A', 'en', expect.any(String), expect.any(String), expect.any(Number));
+    expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_impression')).toHaveLength(0);
+  });
+
+  it('writes captured dismiss scope but skips analytics if identity changes during persistence', async () => {
+    let release!: () => void;
+    storage.markSoftUpsellDismissed.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    let pending!: Promise<void>;
+    await act(async () => { pending = hook.result.current.onDismiss(); await Promise.resolve(); });
+    await hook.rerender('B');
+    release();
+    await pending;
+    expect(storage.markSoftUpsellDismissed).toHaveBeenCalledWith('A', 'en', expect.any(String), expect.any(Number));
+    expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_dismiss')).toHaveLength(0);
+  });
+
+  it('returns false when identity changes while CTA analytics is awaiting', async () => {
+    let release!: () => void;
+    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    analytics.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    const pending = hook.result.current.onCta();
+    await hook.rerender('B');
+    release();
+    await expect(pending).resolves.toBe(false);
+  });
+
 });

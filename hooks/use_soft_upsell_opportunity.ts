@@ -28,7 +28,7 @@ type Result = {
   opportunity: SoftUpsellOpportunity | null;
   onImpression: () => Promise<void>;
   onDismiss: () => Promise<void>;
-  onCta: () => Promise<void>;
+  onCta: () => Promise<boolean>;
 };
 
 type OpportunityIdentity = Readonly<{ accountScope: string; studyTarget: SoftUpsellStudyTarget }>;
@@ -174,6 +174,7 @@ export function useSoftUpsellOpportunity({
       await attemptTwice(() => markSoftUpsellImpression(
         accountScope, studyTarget, item.context, item.milestoneId, Date.now(),
       ));
+      if (currentIdentityKeyRef.current !== currentIdentityKey) return;
       await trackSoftUpsellEvent('soft_upsell_impression', { ...basePayload(item), destination: item.destination });
       impressionCompletedRef.current.add(item.milestoneId);
     })();
@@ -201,6 +202,7 @@ export function useSoftUpsellOpportunity({
     const operation = (async () => {
       try {
         await attemptTwice(() => markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now()));
+        if (currentIdentityKeyRef.current !== currentIdentityKey) return;
         await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
         dismissCompletedRef.current.add(item.milestoneId);
         if (pendingDismissRef.current?.item.milestoneId === item.milestoneId) pendingDismissRef.current = null;
@@ -219,9 +221,10 @@ export function useSoftUpsellOpportunity({
   const onCta = useCallback(async () => {
     const bound = opportunityRef.current;
     if (!bound || bound.identityKey !== currentIdentityKey
-      || currentIdentityKeyRef.current !== currentIdentityKey) return;
+      || currentIdentityKeyRef.current !== currentIdentityKey) return false;
     const item = bound.item;
     await trackSoftUpsellEvent('soft_upsell_cta', { ...basePayload(item), destination: item.destination });
+    return currentIdentityKeyRef.current === currentIdentityKey;
   }, [basePayload, currentIdentityKey]);
 
   const opportunity = boundOpportunity?.identityKey === currentIdentityKey ? boundOpportunity.item : null;

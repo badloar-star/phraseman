@@ -17,7 +17,7 @@ type Props = {
   opportunity: SoftUpsellOpportunity;
   onImpression: () => void | Promise<void>;
   onDismiss: () => void | Promise<void>;
-  onCta: () => void | Promise<void>;
+  onCta: () => void | Promise<void | boolean>;
 };
 
 export default function SoftContextualUpsellCard({

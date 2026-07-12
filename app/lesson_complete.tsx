@@ -4,7 +4,7 @@ import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, BackHandler, Modal, Platform, Pressable, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -42,10 +42,16 @@ import { formatLessonShardBatchReason } from './shard_earn_ui';
 import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus } from './premium_guard';
-import { FREE_LESSON_LIMIT, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
-import { captureAccountGeneration } from './account_generation';
+import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import type { SoftUpsellCandidate } from './soft_upsell_core';
+import {
+  candidateAfterLessonGrant,
+  createLessonSoftUpsellCtaHandler,
+  shouldRenderLessonSoftUpsell,
+  type LessonSoftUpsellIdentity,
+} from './lesson_complete_soft_upsell';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
@@ -509,7 +515,8 @@ export default function LessonComplete() {
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
-  const softUpsellAccountScope = accountScopeKey(captureAccountGeneration()) ?? '';
+  const [softUpsellAccountToken, setSoftUpsellAccountToken] = useState(() => captureAccountGeneration());
+  const softUpsellAccountScope = accountScopeKey(softUpsellAccountToken) ?? '';
   const isCompassTheme = false;
   const params = useLocalSearchParams<{
     id: string;
@@ -546,7 +553,13 @@ export default function LessonComplete() {
   const [showPremiumBanner, setShowPremiumBanner] = useState(false);
   const [repeatOpening, setRepeatOpening] = useState(false);
   const [softUpsellCandidates, setSoftUpsellCandidates] = useState<SoftUpsellCandidate[]>([]);
-  const softUpsellCtaInFlightRef = useRef(false);
+  const softUpsellMountedRef = useRef(true);
+  const softUpsellIdentityRef = useRef<LessonSoftUpsellIdentity>({
+    accountScope: softUpsellAccountScope,
+    lessonId,
+    studyTarget,
+  });
+  softUpsellIdentityRef.current = { accountScope: softUpsellAccountScope, lessonId, studyTarget };
   const repeatOpeningRef = useRef(false);
   const premiumBannerAnim = useRef(new Animated.Value(0)).current;
   const premiumBannerNextLesson = useRef(0);
@@ -560,23 +573,35 @@ export default function LessonComplete() {
     ? FREE_LIMIT_SOFT_UPSELL_COPY[lang]
     : LESSON_SOFT_UPSELL_COPY[lang];
 
-  const handleSoftUpsellCta = useCallback(async () => {
-    if (!softUpsell.opportunity || softUpsellCtaInFlightRef.current) return;
-    softUpsellCtaInFlightRef.current = true;
-    try {
-      await softUpsell.onCta();
-      if (softUpsell.opportunity.trigger === 'first_lesson') {
-        router.push('/personal_plan_setup' as any);
-      } else {
-        router.push({
+  const runSoftUpsellCta = useMemo(() => createLessonSoftUpsellCtaHandler({
+    onCta: softUpsell.onCta,
+    navigatePersonal: () => router.push('/personal_plan_setup' as any),
+    navigatePaywall: () => router.push({
           pathname: '/premium_modal',
           params: { context: 'free_lessons_complete', source: 'lesson_complete_soft_upsell' },
-        } as any);
-      }
-    } finally {
-      softUpsellCtaInFlightRef.current = false;
-    }
-  }, [router, softUpsell]);
+        } as any),
+  }), [router, softUpsell.onCta]);
+  const handleSoftUpsellCta = useCallback(() => {
+    if (!softUpsell.opportunity) return Promise.resolve();
+    return runSoftUpsellCta(softUpsell.opportunity.trigger);
+  }, [runSoftUpsellCta, softUpsell.opportunity]);
+
+  useEffect(() => {
+    softUpsellMountedRef.current = true;
+    return () => { softUpsellMountedRef.current = false; };
+  }, []);
+
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((token) => {
+      setSoftUpsellCandidates([]);
+      setSoftUpsellAccountToken(token);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    setSoftUpsellCandidates([]);
+  }, [lessonId, softUpsellAccountScope, studyTarget]);
 
   // Notification queue
   const [, setNotifQueue] = useState<Notif[]>([]);
@@ -691,6 +716,12 @@ export default function LessonComplete() {
   };
 
   const grantBonus = useCallback(async () => {
+      const grantAccountToken = captureAccountGeneration();
+      const capturedSoftUpsellIdentity: LessonSoftUpsellIdentity = {
+        accountScope: accountScopeKey(grantAccountToken) ?? '',
+        lessonId,
+        studyTarget,
+      };
       const suppress = { suppressEarnEvent: true } as const;
       const shardKeys: ShardSource[] = [];
 
@@ -698,16 +729,15 @@ export default function LessonComplete() {
       // Модуль сам логирует сбой и ставит выдачу в retry-очередь — раньше
       // ошибка здесь молча съедала ВСЕ награды экрана (пустой catch).
       const firstBonus = await grantLessonFirstCompleteBonus({ lessonId, studyTarget, lang });
+      const softUpsellCandidate = candidateAfterLessonGrant({
+        status: firstBonus.status,
+        captured: capturedSoftUpsellIdentity,
+        current: softUpsellIdentityRef.current,
+        mounted: softUpsellMountedRef.current,
+        accountGenerationCurrent: isCurrentAccountGeneration(grantAccountToken),
+      });
+      if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
       if (firstBonus.status === 'granted') {
-        if (lessonId === 1) {
-          setSoftUpsellCandidates([{ trigger: 'first_lesson', value: 1, studyTarget }]);
-        } else if (lessonId === FREE_LESSON_LIMIT) {
-          setSoftUpsellCandidates([{
-            trigger: 'free_lessons_complete',
-            value: FREE_LESSON_LIMIT,
-            studyTarget,
-          }]);
-        }
         if (firstBonus.hasBonusWon) {
           setBonusXP(firstBonus.bonusXP);
           setShowBonus(true);
@@ -1201,7 +1231,7 @@ export default function LessonComplete() {
           </View>
 
           {/* Следующий урок — Duolingo-кнопка (вдавливается в кромку при нажатии) */}
-          {seqDone && softUpsell.opportunity && (
+          {shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity) && softUpsell.opportunity && (
             <View style={{ width: '100%', marginBottom: 20 }}>
               <SoftContextualUpsellCard
                 title={softUpsellCopy.title}

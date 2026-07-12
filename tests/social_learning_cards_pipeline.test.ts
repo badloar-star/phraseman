@@ -539,4 +539,25 @@ describe('twenty-card editorial catalog', () => {
       expect(schema.validateCardManifest(card).ok).toBe(true);
     }
   });
+
+  it('expands the next twenty bilingual cards with a 7/7/6 layout split and no legacy answer panel', async () => {
+    const catalog = await importEsm(pathToFileURL(path.join(root, 'tools/social-learning-cards/src/catalog.mjs')).href) as any;
+    const schema = (await loadModules()).schema;
+    const source = JSON.parse(fs.readFileSync(path.join(root, 'content/marketing/social-learning-cards/series-next-20.json'), 'utf8'));
+    const cards = catalog.expandCatalog(source);
+    const variants = cards.map((card: any) => card.conversion.layoutVariant);
+
+    expect(cards).toHaveLength(20);
+    expect(catalog.validateCatalogUniqueness(cards)).toEqual({ ok: true, errors: [] });
+    expect(variants.filter((value: string) => value === 'A')).toHaveLength(7);
+    expect(variants.filter((value: string) => value === 'B')).toHaveLength(7);
+    expect(variants.filter((value: string) => value === 'C')).toHaveLength(6);
+    for (const card of cards) {
+      expect(card.languageMode).toBe('bilingual');
+      expect(card.items.every((item: any) => item.russian)).toBe(true);
+      expect(card.conversion).not.toHaveProperty('answerEn');
+      expect(card.conversion).not.toHaveProperty('answerRu');
+      expect(schema.validateCardManifest(card).ok).toBe(true);
+    }
+  });
 });

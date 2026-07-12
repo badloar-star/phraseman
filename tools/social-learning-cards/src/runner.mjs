@@ -8,7 +8,10 @@ import { revisionKey } from './paths.mjs';
 import { readCatalog } from './catalog.mjs';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const cardsPath = path.join(projectRoot, 'content/marketing/social-learning-cards/series-20.json');
+const cardsPaths = [
+  path.join(projectRoot, 'content/marketing/social-learning-cards/series-20.json'),
+  path.join(projectRoot, 'content/marketing/social-learning-cards/series-next-20.json'),
+];
 const manualQaPath = path.join(projectRoot, 'content/marketing/social-learning-cards/pilot-01/manual-qa.json');
 const outputRoot = path.join(projectRoot, 'output/social-learning-cards');
 
@@ -21,7 +24,8 @@ function argsMap(argv) {
 }
 
 async function loadCard(contentId) {
-  const card = (await readCatalog(cardsPath)).find((candidate) => candidate.contentId === contentId);
+  const catalogs = await Promise.all(cardsPaths.map((cardsPath) => readCatalog(cardsPath)));
+  const card = catalogs.flat().find((candidate) => candidate.contentId === contentId);
   if (!card) throw new Error(`unknown_card:${contentId}`);
   return card;
 }

@@ -37,6 +37,8 @@ async function loadClient(
 ) {
   jest.resetModules();
   activeStableId = stableId;
+  const reconcileLevelUpRewards = jest.fn(async () => []);
+  const accountGeneration = { generation: 1, stableId };
 
   jest.doMock('../app/config', () => ({
     CLOUD_SYNC_ENABLED: true,
@@ -50,6 +52,22 @@ async function loadClient(
   }));
   jest.doMock('../app/app_check_init', () => ({
     initFirebaseAppCheckIfAvailable: jest.fn(async () => appCheckReadiness.value),
+  }));
+  jest.doMock('../app/level_up_reward_reconciler', () => ({
+    reconcileLevelUpRewards,
+  }));
+  jest.doMock('../app/account_generation', () => ({
+    captureAccountGeneration: jest.fn(() => ({
+      generation: accountGeneration.generation,
+      stableId: accountGeneration.stableId,
+      phase: 'active',
+    })),
+    isCurrentAccountGeneration: jest.fn((token, expectedStableId) => (
+      token.generation === accountGeneration.generation
+      && token.stableId === accountGeneration.stableId
+      && expectedStableId === accountGeneration.stableId
+    )),
+    withAccountTransitionLock: jest.fn(async (work) => work()),
   }));
   jest.doMock('@react-native-firebase/app', () => ({
     getApp: jest.fn(() => ({})),
@@ -76,7 +94,7 @@ async function loadClient(
   AsyncStorage.__reset?.();
 
   const client = await import('../app/progress_events_client');
-  return { AsyncStorage, client };
+  return { AsyncStorage, client, reconcileLevelUpRewards, accountGeneration };
 }
 
 describe('progress events client durable queue', () => {
@@ -315,6 +333,224 @@ describe('progress events client durable queue', () => {
     expect(await AsyncStorage.getItem('weekly_xp')).toBe('350');
     expect(await AsyncStorage.getItem('week_points')).toBe('350');
     expect(await AsyncStorage.getItem('week_points_v2')).toBe(JSON.stringify({ weekKey: '2026-W24', points: 350 }));
+  });
+
+  it('reconciles a positive non-duplicate server XP advance after the local mirror', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '50');
+
+    await client.mirrorProgressResultToLocal(progressResult({ xpDelta: 100, totalXp: 150, duplicate: false }));
+
+    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(50, 150);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('150');
+  });
+
+  it('reconciles only the fresh server event interval when local XP is missing history', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '50');
+
+    await client.mirrorProgressResultToLocal(progressResult({ xpDelta: 100, totalXp: 5000, duplicate: false }));
+
+    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(4900, 5000);
+  });
+
+  it.each([
+    ['duplicate response', { duplicate: true, xpDelta: 100, totalXp: 150 }],
+    ['zero delta', { duplicate: false, xpDelta: 0, totalXp: 150 }],
+    ['negative delta', { duplicate: false, xpDelta: -10, totalXp: 150 }],
+    ['non-finite delta', { duplicate: false, xpDelta: Number.POSITIVE_INFINITY, totalXp: 150 }],
+    ['stale server total', { duplicate: false, xpDelta: 100, totalXp: 40 }],
+  ])('does not reconcile level rewards for a %s', async (_label, overrides) => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '50');
+
+    await client.mirrorProgressResultToLocal(progressResult(overrides));
+
+    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['string delta', { xpDelta: '100', totalXp: 150 }],
+    ['boolean delta', { xpDelta: true, totalXp: 150 }],
+    ['fractional delta', { xpDelta: 100.5, totalXp: 150 }],
+    ['unsafe delta', { xpDelta: Number.MAX_SAFE_INTEGER + 1, totalXp: Number.MAX_SAFE_INTEGER + 1 }],
+    ['missing delta', { xpDelta: undefined, totalXp: 150 }],
+    ['string total', { xpDelta: 100, totalXp: '150' }],
+    ['boolean total', { xpDelta: 1, totalXp: true }],
+    ['fractional total', { xpDelta: 100, totalXp: 150.5 }],
+    ['unsafe total', { xpDelta: 100, totalXp: Number.MAX_SAFE_INTEGER + 1 }],
+    ['missing total', { xpDelta: 100, totalXp: undefined }],
+    ['delta greater than total', { xpDelta: 151, totalXp: 150 }],
+  ])('does not reconcile rewards for a %s', async (_label, overrides) => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '50');
+
+    await client.mirrorProgressResultToLocal(progressResult({ duplicate: false, ...overrides }));
+
+    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+  });
+
+  it('does not apply a queued response after the account generation changes', async () => {
+    let resolveSubmit!: (value: unknown) => void;
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(() => new Promise((resolve) => { resolveSubmit = resolve; })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards, accountGeneration } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '50');
+
+    const submission = client.submitProgressEvent({
+      eventId: 'lesson:answer:account-race',
+      type: 'lesson_answer',
+      payload: { xpDelta: 100 },
+    });
+    await new Promise((resolve) => setImmediate(resolve));
+    accountGeneration.generation += 1;
+    accountGeneration.stableId = 'stable-2';
+    resolveSubmit({ data: progressResult({
+      eventId: 'lesson:answer:account-race',
+      stableUid: 'stable-1',
+      xpDelta: 100,
+      totalXp: 150,
+    }) });
+
+    await expect(submission).resolves.toMatchObject({ eventId: 'lesson:answer:account-race' });
+    const progressWrites = (AsyncStorage.multiSet as jest.Mock).mock.calls.filter(([pairs]) => (
+      pairs.some(([key]: [string, string]) => key === 'user_total_xp')
+    ));
+    expect(progressWrites).toHaveLength(0);
+    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+  });
+
+  it('dead-letters an owner mismatch and continues with the next queued event', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => {
+        const row = event as { eventId: string };
+        return {
+          data: progressResult(row.eventId === 'wrong-owner'
+            ? { eventId: row.eventId, stableUid: 'stable-2', xpDelta: 100, totalXp: 150 }
+            : { eventId: row.eventId, stableUid: 'stable-1', xpDelta: 10, totalXp: 160 }),
+        };
+      }),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const queued = (eventId: string) => ({
+      eventId,
+      type: 'lesson_answer',
+      clientLocalDate: '2026-07-10',
+      clientCreatedAt: 1,
+      appVersion: 'test',
+      platform: 'ios',
+      stableId: 'stable-1',
+      payload: { xpDelta: 10 },
+    });
+    await AsyncStorage.multiSet([
+      [ownedKey(MIGRATED_KEY), '1'],
+      [ownedKey(QUEUE_KEY), JSON.stringify([queued('wrong-owner'), queued('valid-owner')])],
+      ['user_total_xp', '50'],
+    ]);
+
+    await expect(client.flushPendingProgressEvents()).resolves.toBe(1);
+
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
+    const deadLetters = JSON.parse(String(await AsyncStorage.getItem(ownedKey(DEAD_LETTER_KEY))));
+    expect(deadLetters).toHaveLength(1);
+    expect(deadLetters[0]).toMatchObject({ event: { eventId: 'wrong-owner' } });
+    expect(reconcileLevelUpRewards).toHaveBeenCalledTimes(1);
+    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(150, 160);
+  });
+
+  it('does not resurrect a direct-submit owner mismatch after dead-lettering it', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => ({
+        data: progressResult({
+          eventId: (event as { eventId: string }).eventId,
+          stableUid: 'stable-2',
+          xpDelta: 100,
+          totalXp: 150,
+        }),
+      })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+
+    await expect(client.submitProgressEvent({
+      eventId: 'direct-wrong-owner',
+      type: 'lesson_answer',
+      payload: { xpDelta: 100 },
+    })).rejects.toThrow('progress_event_terminal');
+
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
+    const deadLetters = JSON.parse(String(await AsyncStorage.getItem(ownedKey(DEAD_LETTER_KEY))));
+    expect(deadLetters).toHaveLength(1);
+    expect(deadLetters[0]).toMatchObject({ event: { eventId: 'direct-wrong-owner' } });
+    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+  });
+
+  it('does not resurrect a direct owner mismatch when dead-letter persistence fails', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => ({
+        data: progressResult({
+          eventId: (event as { eventId: string }).eventId,
+          stableUid: 'stable-2',
+          xpDelta: 100,
+          totalXp: 150,
+        }),
+      })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    const setItem = AsyncStorage.setItem as jest.Mock;
+    const defaultSetItem = setItem.getMockImplementation()!;
+    setItem.mockImplementation((key: string, value: string) => (
+      key === ownedKey(DEAD_LETTER_KEY)
+        ? Promise.reject(new Error('dead_letter_storage_failed'))
+        : defaultSetItem(key, value)
+    ));
+
+    await expect(client.submitProgressEvent({
+      eventId: 'direct-wrong-owner-storage-failure',
+      type: 'lesson_answer',
+      payload: { xpDelta: 100 },
+    })).rejects.toThrow('progress_event_terminal');
+
+    expect(await AsyncStorage.getItem(ownedKey(QUEUE_KEY))).toBe('[]');
+    expect(handlers.progressSubmitEvent).toHaveBeenCalledTimes(1);
+    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['missing duplicate marker', { duplicate: undefined }],
+    ['non-boolean duplicate marker', { duplicate: 'false' }],
+  ])('mirrors XP but does not reconcile when the response has a %s', async (_label, overrides) => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client, reconcileLevelUpRewards } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '50');
+
+    await client.mirrorProgressResultToLocal(progressResult({ xpDelta: 100, totalXp: 150, ...overrides }));
+
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('150');
+    expect(reconcileLevelUpRewards).not.toHaveBeenCalled();
   });
 
   it('does not carry stale previous-week local XP into a new server week', async () => {

@@ -152,6 +152,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'notifNudge',
   'introFullAccess',
   'loyaltyGift',
+  'levelUp',
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',

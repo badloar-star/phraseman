@@ -10,7 +10,12 @@ import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
 import { getCurrentWeekStartIso } from './weekly_xp';
 import { getLevelFromXP } from '../constants/theme';
-import { emitAppEvent } from './events';
+import { reconcileLevelUpRewards } from './level_up_reward_reconciler';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 export type ProgressEventType =
   | 'lesson_answer'
@@ -356,7 +361,18 @@ function isPermanentProgressEventError(error: unknown): boolean {
     'invalid_progress_event',
     'unsupported_progress_event',
     'invalid_event_payload',
+    'progress_event_owner_mismatch',
   ].some((token) => diagnostic.includes(token));
+}
+
+async function hasDeadLetterEvent(stableId: string, eventId: string): Promise<boolean> {
+  try {
+    const raw = await AsyncStorage.getItem(progressOwnerKey(PROGRESS_EVENT_DEAD_LETTER_KEY, stableId));
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) && parsed.some((entry) => entry?.event?.eventId === eventId);
+  } catch {
+    return false;
+  }
 }
 
 async function appendDeadLetter(stableId: string, event: QueuedProgressEvent, error: unknown): Promise<void> {
@@ -382,6 +398,10 @@ function parseNonNegativeNumber(raw: unknown): number {
   return Number.isFinite(n) ? Math.max(0, n) : 0;
 }
 
+function isNonNegativeSafeInteger(raw: unknown): raw is number {
+  return typeof raw === 'number' && Number.isSafeInteger(raw) && raw >= 0;
+}
+
 function sameWeekPoints(raw: unknown, weekKey: string): number | null {
   if (typeof raw !== 'string' || raw.trim() === '') return null;
   try {
@@ -393,35 +413,29 @@ function sameWeekPoints(raw: unknown, weekKey: string): number | null {
   }
 }
 
-async function enqueueMirroredLevelUps(prevTotalXp: number, nextTotalXp: number): Promise<void> {
-  const prevLevel = getLevelFromXP(Math.max(0, Math.floor(prevTotalXp)));
-  const nextLevel = getLevelFromXP(Math.max(0, Math.floor(nextTotalXp)));
-  if (nextLevel <= prevLevel) return;
-
-  try {
-    const raw = await AsyncStorage.getItem('pending_level_up_queue');
-    let queue: number[] = [];
-    try {
-      const parsed = raw ? JSON.parse(raw) : [];
-      queue = Array.isArray(parsed)
-        ? parsed.filter((item): item is number => Number.isFinite(item) && item > 0)
-        : [];
-    } catch {
-      queue = [];
-    }
-    for (let level = prevLevel + 1; level <= nextLevel; level += 1) {
-      if (!queue.includes(level)) queue.push(level);
-    }
-    await AsyncStorage.setItem('pending_level_up_queue', JSON.stringify(queue));
-    emitAppEvent('level_up_pending');
-  } catch {
-    // Losing this queue would lose a visible reward; keep mirror robust and retry on next XP event/startup.
-  }
-}
-
 // Prevents two concurrent flush loops from racing on the same queue.
 let flushInFlight: Promise<number> | null = null;
 const flushedProgressResults = new Map<string, ProgressEventResult>();
+const terminalProgressEvents = new Map<string, true>();
+
+function terminalProgressEventKey(stableId: string, eventId: string): string {
+  return `${encodeURIComponent(stableId)}:${eventId}`;
+}
+
+function markTerminalProgressEvent(stableId: string, eventId: string): void {
+  const key = terminalProgressEventKey(stableId, eventId);
+  terminalProgressEvents.delete(key);
+  terminalProgressEvents.set(key, true);
+  while (terminalProgressEvents.size > 256) {
+    const oldest = terminalProgressEvents.keys().next().value;
+    if (!oldest) break;
+    terminalProgressEvents.delete(oldest);
+  }
+}
+
+function takeTerminalProgressEvent(stableId: string, eventId: string): boolean {
+  return terminalProgressEvents.delete(terminalProgressEventKey(stableId, eventId));
+}
 
 async function enqueue(event: QueuedProgressEvent): Promise<void> {
   const queue = await readQueue(event.stableId);
@@ -523,8 +537,21 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
     ['last_active_date', mergedActiveDate],
     ['streak_last_date', mergedActiveDate],
   ]);
-  if (mergedTotalXp > localTotalBeforeMirror) {
-    await enqueueMirroredLevelUps(localTotalBeforeMirror, mergedTotalXp);
+  if (
+    result.duplicate === false
+    && isNonNegativeSafeInteger(result.xpDelta)
+    && result.xpDelta > 0
+    && isNonNegativeSafeInteger(result.totalXp)
+    && result.xpDelta <= result.totalXp
+    && mergedTotalXp > localTotalBeforeMirror
+  ) {
+    const freshBefore = Math.max(
+      localTotalBeforeMirror,
+      result.totalXp - result.xpDelta,
+    );
+    if (result.totalXp > freshBefore) {
+      await reconcileLevelUpRewards(freshBefore, result.totalXp);
+    }
   }
 }
 
@@ -532,14 +559,21 @@ async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEv
   const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
   if (!appCheckReady) throw new Error('app_check_unavailable');
   const fn = callable<QueuedProgressEvent, ProgressEventResult>('progressSubmitEvent');
+  const accountGeneration = captureAccountGeneration();
   const res = await withTimeout(fn(event), CALLABLE_TIMEOUT_MS, 'progress_submit_event');
+  if (res.data.stableUid !== event.stableId) {
+    throw new Error('progress_event_owner_mismatch');
+  }
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountGeneration, event.stableId)) return;
+    await mirrorProgressResultToLocal(res.data);
+  });
   flushedProgressResults.set(event.eventId, res.data);
   while (flushedProgressResults.size > 256) {
     const oldest = flushedProgressResults.keys().next().value;
     if (!oldest) break;
     flushedProgressResults.delete(oldest);
   }
-  await mirrorProgressResultToLocal(res.data);
   return res.data;
 }
 
@@ -568,6 +602,7 @@ async function doFlush(): Promise<number> {
         // Transient transport/auth failures stay at the head for a later retry.
         break;
       }
+      markTerminalProgressEvent(stableId, next.eventId);
       await appendDeadLetter(stableId, next, error).catch(() => {});
       remaining.shift();
       await writeQueue(stableId, remaining);
@@ -628,9 +663,17 @@ export async function submitProgressEvent(
     }
     const stillQueued = (await readQueue(stableId)).some((item) => item.eventId === event.eventId);
     if (stillQueued) throw new Error('progress_event_pending');
+    if (
+      takeTerminalProgressEvent(stableId, event.eventId)
+      || await hasDeadLetterEvent(stableId, event.eventId)
+    ) {
+      throw Object.assign(new Error('progress_event_terminal'), { code: 'invalid_progress_event' });
+    }
     throw new Error('progress_event_result_unavailable');
   } catch (error) {
-    await enqueue(event).catch(() => {});
+    if (!isPermanentProgressEventError(error)) {
+      await enqueue(event).catch(() => {});
+    }
     throw error;
   }
 }

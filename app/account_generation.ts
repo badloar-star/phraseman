@@ -9,14 +9,24 @@ let currentStableId: string | null = null;
 let currentPhase: AccountGenerationToken['phase'] = 'uninitialized';
 let restoreLockTail: Promise<void> = Promise.resolve();
 let accountTransitionLockTail: Promise<void> = Promise.resolve();
+const generationListeners = new Set<(token: AccountGenerationToken) => void>();
 
 const normalizedStableId = (value: string | null): string | null => value?.trim() || null;
+
+const notifyAccountGeneration = (): void => {
+  const token = captureAccountGeneration();
+  generationListeners.forEach((listener) => {
+    try { listener(token); } catch { /* account transitions must not be interrupted by UI listeners */ }
+  });
+};
 
 export function beginAccountGeneration(stableId: string | null): AccountGenerationToken {
   currentGeneration += 1;
   currentStableId = normalizedStableId(stableId);
   currentPhase = 'active';
-  return captureAccountGeneration();
+  const token = captureAccountGeneration();
+  notifyAccountGeneration();
+  return token;
 }
 
 /** Keep repeated identity reads idempotent while still activating boot/test identities. */
@@ -36,7 +46,16 @@ export function invalidateAccountGeneration(): AccountGenerationToken {
   currentGeneration += 1;
   currentStableId = null;
   currentPhase = 'transitioning';
-  return captureAccountGeneration();
+  const token = captureAccountGeneration();
+  notifyAccountGeneration();
+  return token;
+}
+
+export function subscribeAccountGeneration(
+  listener: (token: AccountGenerationToken) => void,
+): { remove: () => void } {
+  generationListeners.add(listener);
+  return { remove: () => generationListeners.delete(listener) };
 }
 
 export function captureAccountGeneration(): AccountGenerationToken {
@@ -102,4 +121,5 @@ export function __resetAccountGenerationForTests(): void {
   currentPhase = 'uninitialized';
   restoreLockTail = Promise.resolve();
   accountTransitionLockTail = Promise.resolve();
+  generationListeners.clear();
 }

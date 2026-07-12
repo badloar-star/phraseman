@@ -105,6 +105,10 @@ jest.mock('../app/progress_events_client', () => ({
   submitProgressEvent: jest.fn(async () => {}),
 }));
 
+jest.mock('../app/level_up_reward_reconciler', () => ({
+  reconcileLevelUpRewards: jest.fn(async () => []),
+}));
+
 describe('registerXP', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -210,6 +214,38 @@ describe('registerXP', () => {
     expect(result.finalDelta).toBe(__xpManagerTestHooks.MAX_LOCAL_XP_DELTA);
     expect(result.multiplier).toBe(__xpManagerTestHooks.MAX_LOCAL_XP_MULTIPLIER);
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('25100');
+  });
+
+  it('awaits level-up reward reconciliation and leaves the pending event to the reconciler', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    const { reconcileLevelUpRewards } = await import('../app/level_up_reward_reconciler');
+    const { emitAppEvent } = await import('../app/events');
+    let finishReconciliation!: () => void;
+    (reconcileLevelUpRewards as jest.Mock).mockImplementationOnce(() => new Promise<void>((resolve) => {
+      finishReconciliation = resolve;
+    }));
+    await AsyncStorage.setItem('user_total_xp', '350');
+
+    let settled = false;
+    const registration = registerXP(100, 'lesson_complete', 'Learner').then(() => {
+      settled = true;
+    });
+    await new Promise((resolve) => setImmediate(resolve));
+
+    expect(reconcileLevelUpRewards).toHaveBeenCalledWith(350, 450);
+    expect(settled).toBe(false);
+    expect(emitAppEvent).not.toHaveBeenCalledWith('level_up_pending');
+
+    finishReconciliation();
+    await registration;
+    expect(settled).toBe(true);
+    expect(emitAppEvent).not.toHaveBeenCalledWith('level_up_pending');
+    expect(emitAppEvent).toHaveBeenCalledWith('energy_reload');
+    expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
+    const { writeFriendEvent } = await import('../app/firestore_friend_activity');
+    const { checkAchievements } = await import('../app/achievements');
+    expect(writeFriendEvent).toHaveBeenCalledWith('level_up', { level: 2 });
+    expect(checkAchievements).toHaveBeenCalledWith({ type: 'level_reached', level: 2 });
   });
 
   it('keeps local ledgers account-owned and maps club missions to server events', async () => {

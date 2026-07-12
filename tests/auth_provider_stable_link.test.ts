@@ -27,6 +27,8 @@ describe('auth provider stable-id linking', () => {
   const mergeSwapEnd = source.indexOf("if (outcome.kind === 'merged_keep_local')", mergeSwapStart);
   const prePostLinkSource = source.slice(signInStart, mergeSwapStart);
   const mergeSwapSource = source.slice(mergeSwapStart, mergeSwapEnd);
+  const mergeKeepLocalEnd = source.indexOf("if (outcome.kind === 'linked_existing')", mergeSwapEnd);
+  const mergeKeepLocalSource = source.slice(mergeSwapEnd, mergeKeepLocalEnd);
   const googleSignInStart = source.indexOf('async function runGoogleNativeSignIn');
   const googleSignInEnd = source.indexOf('async function runAppleNativeSignIn', googleSignInStart);
   const googleSignInSource = source.slice(googleSignInStart, googleSignInEnd);
@@ -148,6 +150,21 @@ describe('auth provider stable-id linking', () => {
     const quiesceBefore = source.lastIndexOf('quiesceSyncBeforeStableIdSwap', swapIdx);
     expect(quiesceBefore).toBeGreaterThan(0);
     expect(quiesceBefore).toBeLessThan(swapIdx);
+  });
+
+  test('both provider stable-id swaps invalidate A before wipe and activate B only after setStableId', () => {
+    for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
+      const invalidate = branch.indexOf('invalidateAccountGeneration();');
+      const wipe = branch.indexOf('await wipeLocalAccountData();');
+      const setStable = branch.indexOf('await setStableId(canonicalStableId);');
+      const activate = branch.indexOf('beginAccountGeneration(canonicalStableId);');
+
+      expect(invalidate).toBeGreaterThan(0);
+      expect(invalidate).toBeLessThan(wipe);
+      expect(wipe).toBeLessThan(setStable);
+      expect(setStable).toBeLessThan(activate);
+      expect(branch.match(/invalidateAccountGeneration\(\);/g)).toHaveLength(1);
+    }
   });
 
   test('provider sign-in has no client Firestore transaction that can be denied by user owner rules', () => {

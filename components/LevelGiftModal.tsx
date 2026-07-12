@@ -46,6 +46,12 @@ import {
   saveUnclaimedGift,
 } from '../app/level_gift_inventory';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../app/account_generation';
+import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 
 export {
   CLAIMED_GIFTS_KEY,
@@ -68,7 +74,7 @@ interface Props {
   /** claim = apply now; inventory = reveal and save for later application */
   deliveryMode?: 'claim' | 'inventory';
   /** Override cleanup for gifts that are stored in a split source, such as one part of a premium pair. */
-  onGiftClaimed?: (gift: GiftDef) => Promise<void>;
+  onGiftClaimed?: (gift: GiftDef, accountToken: AccountGenerationToken) => Promise<void>;
   /** Whether dismissing the unopened claim modal should save the gift back to inventory. */
   saveOnDismiss?: boolean;
   /** Force premium application semantics for gifts that came from a premium pair. */
@@ -159,10 +165,15 @@ function LevelGiftModal({
   const glowLoop   = useRef<Animated.CompositeAnimation | null>(null);
   const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
   const isVisibleRef = useRef(false);
+  const openingAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const isCurrentOpening = (accountToken: AccountGenerationToken): boolean =>
+    isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken);
 
   // Roll (or use pre-rolled) gift when the modal becomes visible; премиум — отдельный пул
   useEffect(() => {
+    const justOpened = visible && !isVisibleRef.current;
     isVisibleRef.current = visible;
+    if (justOpened) openingAccountTokenRef.current = captureAccountGeneration();
     if (visible) {
       setPhase('box');
       setXpBoostAlreadyActive(false);
@@ -173,8 +184,10 @@ function LevelGiftModal({
       if (preRolledGift) {
         setGift(preRolledGift);
       } else {
+        const accountToken = openingAccountTokenRef.current;
         void (async () => {
-          setGift(await rollF2pLevelGiftForUser(level, { studyTarget }));
+          const rolledGift = await rollF2pLevelGiftForUser(level, { studyTarget });
+          if (accountToken && isCurrentOpening(accountToken)) setGift(rolledGift);
         })();
       }
       fadeReveal.setValue(0);
@@ -231,13 +244,17 @@ function LevelGiftModal({
 
   useEffect(() => {
     if (!visible || !storesOnly || !gift) return;
-    void saveUnclaimedGift(level, gift);
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentAccountGeneration(accountToken)) return;
+    void saveUnclaimedGift(level, gift, accountToken);
   }, [visible, storesOnly, level, gift]);
 
   const rock = rockAnim.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
 
   const handleTap = () => {
     if (phase !== 'box' || !gift) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     hapticTap();
     setPhase('opening');
 
@@ -253,29 +270,31 @@ function LevelGiftModal({
     const applyP: Promise<ApplyGiftResult> = g.choices?.length || storesOnly
       ? Promise.resolve({ success: true })
       : (async () => {
-          const claimP = (onGiftClaimed ? onGiftClaimed(g) : markGiftClaimed(level))
-            .then(() => saveClaimedGiftRarity(level, g.rarity))
+          const claimP = (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken))
+            .then(() => saveClaimedGiftRarity(level, g.rarity, accountToken))
             .catch(() => {});
           await claimP;
+          if (!isCurrentAccountGeneration(accountToken)) return { success: false };
           const result = await applyGift(
             g,
             userName,
             energy,
             maxEnergy,
             setEnergyFn,
-            { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
+            { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken },
           );
+          if (!isCurrentAccountGeneration(accountToken)) return { success: false };
           if (result.success) {
             // Already claimed optimistically before applying the reward effect.
           } else if (!onGiftClaimed) {
-            await saveUnclaimedGift(level, g);
+            await saveUnclaimedGift(level, g, accountToken);
           }
           return result;
         })();
     const applyResultP: Promise<ApplyGiftResult> = applyP.catch(() => ({ success: false }));
     const updateAppliedMeta = () => {
       void applyResultP.then((result) => {
-        if (!isVisibleRef.current) return;
+        if (!isCurrentOpening(accountToken)) return;
         if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
         if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
         setAppliedResult(result);
@@ -285,11 +304,11 @@ function LevelGiftModal({
     let safetyTimer: ReturnType<typeof setTimeout> | undefined;
     let finalized = false;
     const finalize = () => {
-      if (finalized) return;
+      if (finalized || !isCurrentOpening(accountToken)) return;
       finalized = true;
       if (safetyTimer) clearTimeout(safetyTimer);
       if (storesOnly) {
-        void saveUnclaimedGift(level, g);
+        void saveUnclaimedGift(level, g, accountToken);
       }
       setAppliedResult({ success: true });
       setPhase('reveal');
@@ -299,6 +318,7 @@ function LevelGiftModal({
         Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
         Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
       ]).start(() => {
+        if (!isCurrentOpening(accountToken)) return;
         // мягкое «дыхание» награды после появления
         orbHoverLoop.current?.stop();
         orbHoverLoop.current = Animated.loop(
@@ -331,36 +351,45 @@ function LevelGiftModal({
   };
 
   const handleSkip = async () => {
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     if (!gift) { onClose(false); return; }
     if (phase === 'opening') return;
     if (storesOnly || saveOnDismiss) {
       // Save as unclaimed so user can pick it up later in the gifts inventory.
-      await saveUnclaimedGift(level, gift);
+      await saveUnclaimedGift(level, gift, accountToken);
+      if (!isCurrentOpening(accountToken)) return;
     }
     onClose(false);
   };
 
   const handleChoice = async (chosen: GiftDef) => {
     if (choiceBusy) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
     setChoiceBusy(true);
     setGift(chosen);
     void hapticSuccess();
     if (storesOnly) {
-      void saveUnclaimedGift(level, chosen).catch(() => {});
+      void saveUnclaimedGift(level, chosen, accountToken).catch(() => {});
+      if (!isCurrentOpening(accountToken)) return;
       onClose(false);
       return;
     }
     setAppliedResult({ success: true });
     onClose(true);
     if (isCosmeticGiftId(chosen.id)) {
-      setTimeout(() => router.push('/avatar_select' as any), 80);
+      setTimeout(() => {
+        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
     }
     void (async () => {
       try {
-        const claimP = (onGiftClaimed ? onGiftClaimed(chosen) : markGiftClaimed(level))
-          .then(() => saveClaimedGiftRarity(level, chosen.rarity))
+        const claimP = (onGiftClaimed ? onGiftClaimed(chosen, accountToken) : markGiftClaimed(level, accountToken))
+          .then(() => saveClaimedGiftRarity(level, chosen.rarity, accountToken))
           .catch(() => {});
         await claimP;
+        if (!isCurrentAccountGeneration(accountToken)) return;
         const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
         const result = await applyGift(
           chosen,
@@ -368,9 +397,10 @@ function LevelGiftModal({
           energy,
           maxEnergy,
           setEnergyFn,
-          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
+          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget, accountToken },
         );
-        if (isVisibleRef.current) {
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        if (isCurrentOpening(accountToken)) {
           if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
           if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
           setAppliedResult(result);
@@ -378,14 +408,25 @@ function LevelGiftModal({
         if (result.success) {
           // Already claimed optimistically before applying the reward effect.
         } else if (!onGiftClaimed) {
-          await saveUnclaimedGift(level, chosen);
+          await saveUnclaimedGift(level, chosen, accountToken);
         }
       } catch {
         // The user already saw the optimistic choice; keep retry paths/background logs quiet.
       } finally {
-        if (isVisibleRef.current) setChoiceBusy(false);
+        if (isCurrentOpening(accountToken)) setChoiceBusy(false);
       }
     })();
+  };
+
+  const closeForCurrentOpening = (claimed: boolean, openAvatar = false) => {
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
+    onClose(claimed);
+    if (openAvatar) {
+      setTimeout(() => {
+        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
+    }
   };
 
   if (!visible || !gift) return null;
@@ -607,7 +648,7 @@ function LevelGiftModal({
                       activeOpacity={0.85}
                       onPress={() => {
                         void hapticTap();
-                        onClose(false);
+                        closeForCurrentOpening(false);
                       }}
                       style={{
                         borderRadius: 14,
@@ -806,8 +847,7 @@ function LevelGiftModal({
                   activeOpacity={0.85}
                   onPress={() => {
                     void hapticSuccess();
-                    onClose(true);
-                    setTimeout(() => router.push('/avatar_select' as any), 80);
+                    closeForCurrentOpening(true, true);
                   }}
                   style={{
                     backgroundColor: t.bgSurface2,
@@ -830,7 +870,7 @@ function LevelGiftModal({
                 activeOpacity={0.85}
                 onPress={() => {
                   void hapticSuccess();
-                  onClose(!storesOnly);
+                  closeForCurrentOpening(!storesOnly);
                 }}
                 style={{
                   alignSelf: 'stretch',

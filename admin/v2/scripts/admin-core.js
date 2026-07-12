@@ -1,4 +1,6 @@
 import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
+import { completeAnalyticsLoad } from './admin-analytics-state.js';
+import { renderAdminAnalytics } from './admin-analytics-view.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 
 const ICONS = {
@@ -114,7 +116,7 @@ const state = {
   workspace: null,
   generation: null,
   support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
-  analytics: null,
+  analytics: { status: 'idle', snapshot: null, error: '' },
   budget: null,
   selectedCapabilityId: '',
   remoteConfig: null,
@@ -1005,10 +1007,13 @@ function renderSupport() {
 }
 
 function renderAnalytics() {
-  const snapshot = state.analytics;
-  return `${pageHeader(PAGES.analytics, 'Деньги / Аналитика')}
-    <section class="card"><div class="card-header"><div><h2>Снимок показателей</h2><p>Период и полнота источников фиксируются в ответе.</p></div><div class="actions"><label for="analytics-range" class="muted">Период</label><select id="analytics-range"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><button class="button primary" data-action="load-analytics" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div></div>
-      <div class="card-body">${snapshot ? `<pre class="code-preview">${escapeHtml(JSON.stringify(snapshot, null, 2))}</pre>` : emptyState('Выберите период и загрузите серверный снимок.')}</div></section>`;
+  return renderAdminAnalytics({
+    ...state.analytics,
+    rangeDays: state.analytics.snapshot?.rangeDays ?? 28,
+    authorized: can('money.read'),
+    controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
+    busy: state.busy,
+  });
 }
 
 function renderAssetStudio() {
@@ -2474,7 +2479,17 @@ async function handleAction(action, target) {
   }
   if (action === 'load-analytics') {
     const rangeDays = Number(document.getElementById('analytics-range')?.value ?? 28);
-    return runBusy(async () => { state.analytics = await actions.loadAnalytics({ rangeDays }); }, 'Аналитика загружена.');
+    state.analytics = { status: 'loading', snapshot: state.analytics.snapshot, error: '', rangeDays };
+    return runBusy(async () => {
+      try {
+        const snapshot = await actions.loadAnalytics({ rangeDays });
+        state.analytics = completeAnalyticsLoad(state.analytics, snapshot, rangeDays);
+        if (state.analytics.status === 'error') throw new Error(state.analytics.error);
+      } catch (error) {
+        state.analytics = { status: 'error', snapshot: state.analytics.snapshot, error: errorMessage(error), rangeDays };
+        throw error;
+      }
+    }, 'Аналитика загружена.');
   }
   if (action === 'load-asset-jobs') return runBusy(loadAssetJobs, 'Очередь ассетов загружена.');
   if (action === 'create-asset-job') {
@@ -2614,6 +2629,7 @@ export function setAuthState(auth) {
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+  if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };

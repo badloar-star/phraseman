@@ -27,7 +27,7 @@
       <label class="field" for="status">Статус<select id="status"><option value="">Все статусы</option><option value="inventory">Требует уточнения</option><option value="guarded">Нативный защищённый экран</option><option value="ported">Полностью перенесено</option><option value="fallback">Старый интерфейс</option><option value="blocked">Заблокировано</option></select></label>
     </div>
     <div id="summary" class="summary" aria-live="polite"></div>
-    <div class="section-title"><h2>Модули</h2><p class="muted">58 рабочих областей, распределённых по семи разделам.</p></div>
+    <div class="section-title"><h2>Модули</h2><p class="muted">Все рабочие области, распределённые по семи разделам.</p></div>
     <div id="capabilities" class="groups" aria-live="polite"><div class="empty">Загружаем модули…</div></div>
     <div class="section-title"><h2>Кнопки старой админки</h2><p class="muted">Детальная инвентаризация остаётся консервативной до проверки каждой операции.</p></div>
     <div id="groups" class="groups" aria-live="polite"><div class="empty">Загружаем кнопки…</div></div>
@@ -41,7 +41,7 @@
     const groupByRoute=rows=>{const groups=new Map();rows.forEach(row=>{const route=row.route||row.target?.route||'diagnostics';(groups.get(route)||groups.set(route,[]).get(route)).push(row)});return groups};
     async function boot(){
       try{
-        const response=await fetch('../../docs/admin/ADMIN_V2_MIGRATION_COVERAGE.json',{cache:'no-store'});
+        const response=await fetch('./data/ADMIN_V2_MIGRATION_COVERAGE.json',{cache:'no-store'});
         if(!response.ok)throw new Error('coverage_unavailable');
         state.board=await response.json();
         $('inventory-summary').textContent=`Фактически найдено: ${state.board.source.buttons} кнопок и ${state.board.source.functions} функций. Данные обновлены ${new Date(state.board.generatedAt).toLocaleString('ru-RU')}.`;

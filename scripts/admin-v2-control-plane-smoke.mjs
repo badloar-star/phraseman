@@ -1,24 +1,28 @@
 import fs from 'node:fs';
+import { ADMIN_SECTIONS } from '../admin/v2/scripts/admin-core.js';
+import { ADMIN_CAPABILITY_REGISTRY } from '../admin/v2/scripts/admin-capabilities.js';
 
-const html = fs.readFileSync('admin/v2/index.html', 'utf8');
+const core = fs.readFileSync('admin/v2/scripts/admin-core.js', 'utf8');
+const firebase = fs.readFileSync('admin/v2/scripts/admin-firebase.js', 'utf8');
+const router = fs.readFileSync('admin/v2/scripts/admin-router.js', 'utf8');
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
-const routes = [...html.matchAll(/data-route="([^"]+)"/g)].map((match) => match[1]);
-const buttons = [...html.matchAll(/<button\b[^>]*>/g)].map((match) => match[0]);
+const expectedRoutes = ['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics'];
+const routes = ADMIN_SECTIONS.map((section) => section.route);
 
-assert(html.includes('name="viewport"'), 'responsive viewport is missing');
-assert(routes.length === 7, `expected seven primary sections, got ${routes.length}`);
-assert(new Set(routes).size === 7, 'primary sections are not unique');
-assert(['overview', 'app', 'users', 'money', 'content', 'community', 'diagnostics'].every((route) => routes.includes(route)), 'control-plane sections are incomplete');
-assert(html.includes('data-factory="language"') && html.includes('data-factory="publish"'), 'language factory workflow is incomplete');
-assert(html.includes('Создать draft job') && html.includes('QA и источники'), 'language factory draft/QA controls are missing');
-assert(html.includes('server command') && html.includes('rollback'), 'server-side and rollback safety copy is missing');
-assert(html.includes('onAuthStateChanged') && html.includes('adminRole'), 'authenticated admin claim gate is missing');
-assert(html.includes("adminCreateContentGenerationJob") && html.includes('create-factory-job'), 'Language Factory job action is not wired to a callable');
-assert(!/[😀-🙏🌀-🫿]/u.test(html), 'emoji are used as interface icons');
-assert(buttons.every((button) => button.includes('title=') || button.includes('aria-label=')), 'a button lacks tooltip or aria-label');
-assert(!/animation\s*:/.test(html), 'prototype shell must not introduce unguarded animations');
+assert(JSON.stringify(routes) === JSON.stringify(expectedRoutes), `expected seven ordered primary sections, got ${routes.join(', ')}`);
+assert(ADMIN_CAPABILITY_REGISTRY.length === 59, `expected 59 capabilities, got ${ADMIN_CAPABILITY_REGISTRY.length}`);
+assert(core.includes('renderCapabilityWorkspace') && core.includes('<iframe'), 'same-origin legacy fallback workspace is missing');
+assert(router.includes('resolveCapabilityHash(globalThis.location.hash)'), 'capability deep-link resolver is missing');
+assert(core.includes('function renderDailyBriefing') && core.includes('Product Manager Digest'), 'Product Manager Digest screen is missing');
+assert(core.includes('function renderAssetStudio') && core.includes('DALL-E Asset Studio'), 'DALL-E Asset Studio screen is missing');
+assert(core.includes('function renderSupport') && core.includes("data-action=\"pull-support\""), 'support mail screen or Gmail pull action is missing');
+assert(core.includes('function renderAnalytics') && core.includes('renderAdminAnalytics'), 'native analytics screen is missing');
+assert(core.includes('function renderReportQueue') && core.includes('send-report-reply'), 'report center reply workflow is missing');
+assert(firebase.includes('onAuthStateChanged') && firebase.includes('adminRole'), 'authenticated admin role gate is missing');
+assert(firebase.includes('browserLocalPersistence') && firebase.includes('setPersistence'), 'persistent shared browser auth is missing');
+assert(firebase.includes('httpsCallable'), 'server command boundary is missing');
 
-const result = { verdict: failures.length ? 'FAIL' : 'PASS', failures, routes };
+const result = { verdict: failures.length ? 'FAIL' : 'PASS', failures, routes, capabilities: ADMIN_CAPABILITY_REGISTRY.length };
 console.log(JSON.stringify(result, null, 2));
 if (failures.length) process.exit(1);

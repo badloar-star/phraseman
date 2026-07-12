@@ -76,7 +76,7 @@ describe('Admin v2 native app messages workflow', () => {
     expect(core).toContain('Удалить сообщение и связанные данные');
     expect(core).toContain('Старый модуль сообщений');
     expect(core).toContain('title="Открыть старый модуль для Plus Survey и аварийной сверки"');
-    expect(core).toContain('Профильный workflow');
+    expect(core).toContain('Профильный процесс');
     expect(functions).toContain('app_message_managed_by_special_workflow');
     expect(core).toContain('title="Сначала показать точное сообщение, аудиторию и срок без записи в production"');
     expect(core).toContain('Включить или выключить сообщение через серверную команду с причиной и audit log');

@@ -46,7 +46,7 @@ describe('Admin v2 Free / Plus access workflow', () => {
 
   test('updates the control-panel map from legacy write module to guarded workflow', () => {
     expect(core).toContain("primaryLabel: 'Открыть v2 Free / Plus'");
-    expect(core).toContain('Premium lesson locks — перенесено в guarded workflow Free / Plus доступа.');
+    expect(core).toContain('Ограничения уроков Plus — перенесены в управление доступом Free / Plus.');
     expect(core).not.toContain("Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#premium'");
   });
 });

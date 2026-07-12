@@ -27229,8 +27229,11 @@
   }
 
   window.markSafetyHandled = async function(id) {
+    const ok = await showConfirmModal({ title: 'Отметить сигнал обработанным?', desc: `Сигнал ${id} исчезнет из очереди необработанных.`, confirmLabel: 'Отметить' });
+    if (!ok) return;
     try {
       await updateDoc(doc(db, 'safety_flags', id), { handled: true, handledAt: new Date().toISOString() });
+      await logAction('safety_flag_handled', id, {});
       const f = _allSafetyFlags.find(x => x.id === id);
       if (f) f.handled = true;
       filterSafetyFlags();
@@ -28956,6 +28959,7 @@
         fixed++;
       });
       if (fixed > 0) await batch.commit();
+      await logAction('admin_grant_premium_compat_repair', '_bulk', { checked, fixed });
       showToast(`🛠 Проверено ${checked}, исправлено ${fixed}`);
       if (typeof loadPremiumData === 'function') await loadPremiumData(true);
       if (typeof loadVipData === 'function') await loadVipData(true);
@@ -29675,6 +29679,8 @@
   };
 
   window.saveRemoteConfig = async function() {
+    const reason = await showInputModal({ title: 'Опубликовать Remote Config?', desc: 'Укажите причину изменения. Будет полностью перезаписан документ remote_config/app с сохранением неизвестных полей.', multiline: true, confirmLabel: 'Продолжить', danger: true });
+    if (reason === null) return;
     rcSetStatus('Сохранение…');
     try {
       // Capture previous doc FIRST so we preserve keys this form doesn't manage
@@ -29713,7 +29719,7 @@
             changes, by: who, at: new Date().toISOString(), numbers, bools,
           });
         } catch (_) {}
-        if (typeof logAction === 'function') logAction('remote_config_save', 'remote_config/app', { changes: changes.length });
+        if (typeof logAction === 'function') logAction('remote_config_save', 'remote_config/app', { changes: changes.length, reason });
       }
       rcSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят за секунды.`, '#4ade80');
       rcLoadHistory();
@@ -30558,10 +30564,13 @@
     const enabledEl = document.getElementById('cp-promo-enabled');
     const enabled = !enabledEl || enabledEl.checked;
     const note = promoGet('cp-promo-note').slice(0, 200);
+    const reason = await showInputModal({ title: `Сохранить промокод ${code}?`, desc: `Plus: ${days} дн. · лимит: ${maxRedemptions || 'без лимита'} · ${enabled ? 'включён' : 'выключен'}. Укажите причину.`, multiline: true, confirmLabel: 'Сохранить', danger: true });
+    if (reason === null) return;
     cpPromoStatus('Сохранение…');
     try {
       if (!_fnPromoUpsert) _fnPromoUpsert = httpsCallable(functionsUs, 'promoCodeUpsert');
       await _fnPromoUpsert({ code, rewardKind: 'days', rewardDays: days, maxRedemptions, expiresAtMs, enabled, note });
+      await logAction('promo_code_upsert', code, { rewardDays: days, maxRedemptions, expiresAtMs, enabled, reason });
       cpPromoStatus('Код «' + code + '» сохранён.', '#4ade80');
       if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     } catch (e) {
@@ -30593,13 +30602,15 @@
         payload.count = count;
         payload.prefix = promoGet('promo-prefix') || 'PM';
       }
+      const reason = await showInputModal({ title: 'Создать промокоды?', desc: `Будет создано ${payload.codes?.length || payload.count || 0} кодов. Укажите причину операции.`, multiline: true, confirmLabel: 'Создать', danger: true });
+      if (reason === null) return;
       promoAdminStatus('Создаю коды…');
       if (!_fnPromoBatchUpsert) _fnPromoBatchUpsert = httpsCallable(functionsUs, 'promoCodeBatchUpsert');
       const res = await _fnPromoBatchUpsert(payload);
       const codes = Array.isArray(res.data?.codes) ? res.data.codes.map(String) : [];
       promoAdminStatus('Создано кодов: ' + codes.length + '. Окно с копированием открыто.', '#4ade80');
       window.showGeneratedPromoCodes(codes, 'Срок Plus: ' + duration.label + ' · лимит: ' + payload.maxRedemptions + ' · кодов: ' + codes.length);
-      if (typeof logAction === 'function') logAction('promo_codes_admin_batch', 'promo_codes', { count: codes.length, oneTime: !!oneTime, rewardKind: duration.rewardKind, rewardDays: duration.rewardDays });
+      if (typeof logAction === 'function') logAction('promo_codes_admin_batch', 'promo_codes', { count: codes.length, oneTime: !!oneTime, rewardKind: duration.rewardKind, rewardDays: duration.rewardDays, reason });
       if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     } catch (e) {
       promoAdminStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
@@ -31057,6 +31068,8 @@
   };
 
   window.saveControlPanelPremium = async function() {
+    const reason = await showInputModal({ title: 'Изменить доступ Free / Plus?', desc: 'Изменения сразу повлияют на монетизацию и доступ к урокам. Укажите причину.', multiline: true, confirmLabel: 'Сохранить', danger: true });
+    if (reason === null) return;
     cpPremSetStatus('Сохранение…');
     try {
       let prev = {};
@@ -31104,7 +31117,7 @@
       await setDoc(doc(db, 'remote_config', 'app'), { numbers, bools, texts, updatedAt: Date.now(), updatedBy: who }, { merge: false });
       if (changes.length) {
         try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), numbers, bools }); } catch (_) {}
-        if (typeof logAction === 'function') logAction('control_panel_premium', 'remote_config/app', { changes: changes.length });
+        if (typeof logAction === 'function') logAction('control_panel_premium', 'remote_config/app', { changes: changes.length, reason });
       }
       cpPremSetStatus('✅ Сохранено' + (changes.length ? (' (' + changes.length + ' изм.)') : '') + '. Клиенты подхватят за секунды.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
@@ -31248,6 +31261,8 @@
     wbRenderAll(); wbSetStatus('Сброшено к дефолту (не забудь «Сохранить»).', '#fbbf24');
   };
   window.saveWeeklyBoons = async function() {
+    const reason = await showInputModal({ title: 'Сохранить недельные бонусы?', desc: 'Изменение сразу попадёт в remote_config/app. Укажите причину.', multiline: true, confirmLabel: 'Сохранить', danger: true });
+    if (reason === null) return;
     wbSetStatus('Сохранение…');
     try {
       // ВАЖНО: pre-read НЕ заворачиваем в try/catch. Ниже идёт setDoc({merge:false}),
@@ -31268,7 +31283,7 @@
       await setDoc(doc(db, 'remote_config', 'app'), { numbers, bools, texts, updatedAt: Date.now(), updatedBy: who }, { merge: false });
       if (changed) {
         try { await addDoc(collection(db, 'remote_config_history'), { changes: ['weekly_boons_config'], by: who, at: new Date().toISOString(), texts: { weekly_boons_config: nextStr } }); } catch (_) {}
-        if (typeof logAction === 'function') logAction('weekly_boons_save', 'remote_config/app', { config: nextStr });
+        if (typeof logAction === 'function') logAction('weekly_boons_save', 'remote_config/app', { config: nextStr, reason });
       }
       wbSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
@@ -31414,6 +31429,8 @@
     }
   };
   window.saveControlPanelMaintenance = async function() {
+    const reason = await showInputModal({ title: 'Изменить режим обслуживания?', desc: 'Жёсткий блок может закрыть приложение для всех пользователей. Укажите причину.', multiline: true, confirmLabel: 'Применить', danger: true });
+    if (reason === null) return;
     cpMaintSetStatus('Сохранение…');
     try {
       let prev = {};
@@ -31443,7 +31460,7 @@
           changes: ['maintenance_banner=' + bools.maintenance_banner + ', maintenance_block=' + bools.maintenance_block], by: who, at: new Date().toISOString(), numbers, bools,
         });
       } catch (_) {}
-      if (typeof logAction === 'function') logAction('control_panel_maintenance', 'remote_config/app', { banner: bools.maintenance_banner, block: bools.maintenance_block });
+      if (typeof logAction === 'function') logAction('control_panel_maintenance', 'remote_config/app', { banner: bools.maintenance_banner, block: bools.maintenance_block, reason });
       cpMaintRenderToggle('cp-maint-banner', bools.maintenance_banner);
       cpMaintRenderToggle('cp-maint-block', bools.maintenance_block);
       if (!wasBlock && bools.maintenance_block) cpMaintSetStatus('⚠️ ЖЁСТКИЙ БЛОК ВКЛЮЧЁН — приложение недоступно у всех.', '#f87171');
@@ -31585,6 +31602,8 @@
   };
 
   window.savePaywallAb = async function() {
+    const reason = await showInputModal({ title: 'Сохранить распределение Paywall A/B?', desc: 'Изменение повлияет на распределение пользователей и показатели оплаты. Укажите причину.', multiline: true, confirmLabel: 'Сохранить', danger: true });
+    if (reason === null) return;
     pabSetStatus('Сохраняю…');
     try {
       const { a, b, c } = pabShares();
@@ -31603,7 +31622,7 @@
       await setDoc(doc(db, 'remote_config', 'paywall_ab'), next, { merge: false });
       if (changes.length) {
         try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), doc: 'paywall_ab' }); } catch (_) {}
-        if (typeof logAction === 'function') logAction('paywall_ab_save', 'remote_config/paywall_ab', { changes: changes.length });
+        if (typeof logAction === 'function') logAction('paywall_ab_save', 'remote_config/paywall_ab', { changes: changes.length, reason });
       }
       pabSetStatus('✅ Сохранено. Приложение подхватит за пару секунд.', '#4ade80');
     } catch (e) {
@@ -32176,6 +32195,8 @@
     };
   }
   window.saveAlertsConfig = async function() {
+    const reason = await showInputModal({ title: 'Сохранить настройки Telegram-алертов?', desc: 'Изменятся получатель, типы и порог уведомлений. Укажите причину.', multiline: true, confirmLabel: 'Сохранить', danger: true });
+    if (reason === null) return;
     alertsSetStatus('Сохранение…');
     try {
       const form = alertsReadForm();
@@ -32183,7 +32204,7 @@
       await setDoc(doc(db, 'admin_config', 'alerts'), {
         ...form, updatedAt: Date.now(), updatedBy: who,
       }, { merge: true });
-      if (typeof logAction === 'function') logAction('admin_alerts_config', 'admin_config/alerts', { enabled: form.enabled, hasChatId: !!form.chatId });
+      if (typeof logAction === 'function') logAction('admin_alerts_config', 'admin_config/alerts', { enabled: form.enabled, hasChatId: !!form.chatId, reason });
       alertsSetStatus('✅ Сохранено.', '#4ade80');
       loadAlertsConfig(true);
     } catch (e) {
@@ -32193,6 +32214,8 @@
   window.sendAlertTest = async function() {
     const chatId = String(document.getElementById('alerts-chatid')?.value || '').trim();
     if (!chatId) { alertsSetStatus('Сначала впиши chat_id.', '#fbbf24'); return; }
+    const ok = await showConfirmModal({ title: 'Отправить тестовый Telegram-алерт?', desc: `Сообщение будет отправлено в chat_id ${chatId}.`, confirmLabel: 'Отправить тест' });
+    if (!ok) return;
     alertsSetStatus('Отправляем тест… (придёт через пару секунд)');
     try {
       const form = alertsReadForm();
@@ -33244,12 +33267,15 @@
   };
 
   window.markAppHealthStatus = async function(id, status) {
+    const ok = await showConfirmModal({ title: 'Изменить статус ошибки?', desc: `Запись ${id} получит статус ${status}.`, confirmLabel: 'Изменить статус' });
+    if (!ok) return;
     try {
       await updateDoc(doc(db, 'app_errors', id), {
         status,
         reviewedAt: new Date().toISOString(),
         reviewedBy: auth.currentUser?.email || null,
       });
+      await logAction('app_health_status', id, { status });
       const row = _appHealthAll.find(r => r.id === id);
       if (row) row.status = status;
       showToast(`App Health marked ${status}`);
@@ -37609,6 +37635,8 @@
     const row = _dailyPhrases.find(p => p.id === id);
     if (!row) return;
     const active = row.active === false;
+    const ok = await showConfirmModal({ title: active ? 'Включить фразу дня?' : 'Выключить фразу дня?', desc: `Документ daily_phrases/${id} изменится сразу.`, confirmLabel: active ? 'Включить' : 'Выключить' });
+    if (!ok) return;
     try {
       await updateDoc(doc(db, 'daily_phrases', id), { active, updatedAt: new Date().toISOString() });
       row.active = active;
@@ -37922,6 +37950,8 @@
     const row = _dailyPhrases.find(p => p.id === id);
     if (!row) return;
     const active = row.active === false;
+    const ok = await showConfirmModal({ title: active ? 'Включить фразу дня?' : 'Выключить фразу дня?', desc: `Документ daily_phrases/${id} изменится сразу.`, confirmLabel: active ? 'Включить' : 'Выключить' });
+    if (!ok) return;
     try {
       await updateDoc(doc(db, 'daily_phrases', id), { active, updatedAt: new Date().toISOString() });
       row.active = active;
@@ -39802,6 +39832,7 @@
           membSnap.docs.forEach(d => b.update(d.ref, { active: false, ready: false }));
           await b.commit();
         }
+        await logAction('arena_room_close', code, { deactivatedMembers: membSnap.size });
         showToast(`Arena room ${code} closed`, 'success');
         const room = _arRooms.find(r => r.code === code || r.id === code);
         if (room) room.status = 'closed';
@@ -39821,6 +39852,7 @@
       if (!ok) return;
       try {
         await deleteDoc(doc(db, 'arena_rooms_live', id));
+        await logAction('arena_room_delete', id, {});
         _arRooms = _arRooms.filter(r => r.id !== id);
         showToast('Arena room deleted', 'success');
         renderArenaRooms();

@@ -1,214 +1,143 @@
 import fs from 'node:fs';
+import path from 'node:path';
+import { Buffer } from 'node:buffer';
 
+const root = process.cwd();
 const liveBase = process.env.ADMIN_V2_SMOKE_URL || 'https://phraseman-ea0b3.web.app';
-const localIndex = fs.readFileSync('admin/v2/index.html', 'utf8');
-const rootIndex = fs.readFileSync('admin/index.html', 'utf8');
-
-const scriptFiles = [
-  'admin/v2/scripts/admin-core.js',
-  'admin/v2/scripts/admin-router.js',
-  'admin/v2/scripts/admin-firebase.js',
-  'admin/v2/scripts/admin-migration.js',
-  'admin/v2/scripts/admin-completion.js',
-  'admin/v2/scripts/admin-function-transfer.js',
-  'admin/v2/scripts/admin-operational-audit.js',
-  'admin/v2/scripts/admin-launch-readiness.js'
-];
-
-const scriptText = scriptFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-
+const localOnly = process.argv.includes('--local');
 const failures = [];
 const warnings = [];
+const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const scriptFiles = fs.readdirSync(path.join(root, 'admin', 'v2', 'scripts'))
+  .filter((name) => name.endsWith('.js'))
+  .sort()
+  .map((name) => `admin/v2/scripts/${name}`);
+const sourceFiles = ['admin/v2/index.html', ...scriptFiles];
+const sourceText = sourceFiles.map(read).join('\n');
+const legacyFiles = ['admin/index.html', 'admin/testers.html', 'admin/beta_testers.html', 'admin/full.html', 'admin/site.html'];
+const legacyIndex = read('admin/index.html');
+const capabilitySource = read('admin/v2/scripts/admin-capabilities.js');
+const capabilityModuleUrl = `data:text/javascript;base64,${Buffer.from(capabilitySource).toString('base64')}`;
+const { ADMIN_CAPABILITY_REGISTRY } = await import(capabilityModuleUrl);
 
-await checkLive();
-checkRootSync();
-checkRoutes();
-checkActions();
-checkButtonsAndLinks();
-checkDialogs();
-checkTextQuality();
-checkFirebaseGuardCopy();
-checkMoneyAnalyticsControls();
-checkAnalyticsAndLegacyDiscoverability();
-checkDiagnosticsPeriodControls();
+checkLocalShell();
+checkCapabilityParity();
+checkActionCoverage();
+checkAccessibility();
+checkCacheContinuity();
+if (!localOnly) await checkLiveHosting();
 
 const result = {
   verdict: failures.length ? 'FAIL' : 'PASS',
+  mode: localOnly ? 'local' : 'live',
   liveBase,
+  evidence: {
+    capabilities: ADMIN_CAPABILITY_REGISTRY.length,
+    nativeCapabilities: ADMIN_CAPABILITY_REGISTRY.filter((item) => item.nativeRoute).length,
+    fallbackCapabilities: ADMIN_CAPABILITY_REGISTRY.filter((item) => !item.nativeRoute).length,
+    legacyFiles: legacyFiles.length,
+    legacyTabs: [...legacyIndex.matchAll(/<div id="tab-([^"]+)"/g)].length,
+  },
   failures,
-  warnings
+  warnings,
 };
 
 console.log(JSON.stringify(result, null, 2));
 if (failures.length) process.exit(1);
 
-async function checkLive() {
-  const urls = [
-    ['root', `${liveBase}/#control-panel`],
-    ['firebase-js', `${liveBase}/v2/scripts/admin-firebase.js`],
-    ['migration-js', `${liveBase}/v2/scripts/admin-migration.js`],
-    ['completion-js', `${liveBase}/v2/scripts/admin-completion.js`]
-  ];
-
-  for (const [label, url] of urls) {
-    try {
-      const response = await fetch(url, { cache: 'no-store' });
-      if (!response.ok) {
-        failures.push(`${label}: live ${url} returned ${response.status}`);
-        continue;
-      }
-      const text = await response.text();
-      if (label === 'root') {
-        assert(text.includes('./v2/scripts/admin-router.js'), 'live root does not load v2 router');
-        assert(text.includes('Скопировать все'), 'live root does not include updated user reports copy button');
-        assert(!badVisibleText(text), 'live root still contains blocked visible text');
-      }
-      if (label.endsWith('-js')) {
-        assert(!/Ð|Ñ|\?\?\?\?/.test(text), `${label}: live script has mojibake or broken text`);
-      }
-    } catch (error) {
-      failures.push(`${label}: live fetch failed: ${error.message}`);
+function checkLocalShell() {
+  const index = read('admin/v2/index.html');
+  assert(index.includes('name="viewport"'), 'responsive viewport is missing');
+  assert(index.includes('id="primary-nav"'), 'dynamic primary navigation mount is missing');
+  assert(index.includes('id="app"'), 'application workspace mount is missing');
+  assert(index.includes('./scripts/admin-router.js'), 'router module is not loaded by the shell');
+  assert(index.includes('./styles/admin.css'), 'admin stylesheet is not loaded by the shell');
+  for (const file of sourceFiles) {
+    const source = read(file);
+    assert(!/Ã|Ã‘|\?\?\?\?/.test(source), `${file} contains mojibake or broken text`);
+    if (!file.endsWith('.js')) continue;
+    for (const match of source.matchAll(/(?:from\s+|import\s*)['"](\.\.?\/[^'"]+)['"]/g)) {
+      const imported = path.resolve(path.dirname(path.join(root, file)), match[1]);
+      assert(fs.existsSync(imported), `${file} imports missing module ${match[1]}`);
     }
   }
 }
 
-function checkRootSync() {
-  assert(/src="\.[/]v2[/]scripts[/]admin-router\.js(?:\?[^"]*)?"/.test(rootIndex), 'admin/index.html does not point to v2 scripts');
-  assert(/href="\.[/]v2[/]styles[/]admin\.css(?:\?[^"]*)?"/.test(rootIndex), 'admin/index.html does not point to v2 styles');
-  assert(!rootIndex.includes('href="../legacy/'), 'admin/index.html still has ../legacy links');
-  assert(rootIndex.includes('Скопировать все'), 'admin/index.html was not synced from v2 after user reports update');
+function checkCapabilityParity() {
+  const ids = ADMIN_CAPABILITY_REGISTRY.map((item) => item.id);
+  const registeredTabs = ADMIN_CAPABILITY_REGISTRY.filter((item) => item.legacyTab).map((item) => item.legacyTab).sort();
+  const legacyTabs = [...legacyIndex.matchAll(/<div id="tab-([^"]+)"/g)].map((match) => match[1]).sort();
+  const registeredPages = ADMIN_CAPABILITY_REGISTRY.filter((item) => item.legacyPage).map((item) => `admin/${item.legacyPage}`).sort();
+  assert(ADMIN_CAPABILITY_REGISTRY.length === 59, `expected 59 capabilities, got ${ADMIN_CAPABILITY_REGISTRY.length}`);
+  assert(new Set(ids).size === ids.length, 'capability registry contains duplicate ids');
+  assert(JSON.stringify(registeredTabs) === JSON.stringify(legacyTabs), 'not every legacy tab is registered exactly once');
+  assert(JSON.stringify(registeredPages) === JSON.stringify(legacyFiles.slice(1).sort()), 'standalone legacy pages are not registered exactly once');
+  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => item.nativeRoute).length === 12, 'native capability count drifted from 12');
+  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => !item.nativeRoute).length === 47, 'fallback capability count drifted from 47');
+  for (const file of legacyFiles) assert(fs.existsSync(path.join(root, file)), `legacy source is missing: ${file}`);
 }
 
-function checkRoutes() {
-  const routes = unique([...localIndex.matchAll(/data-route="([^"]+)"/g)].map((match) => match[1]));
-  const pages = new Set([...localIndex.matchAll(/data-page="([^"]+)"/g)].map((match) => match[1]));
-  const targets = unique([...localIndex.matchAll(/data-route-target="([^"]+)"/g)].map((match) => match[1]));
-  const router = fs.readFileSync('admin/v2/scripts/admin-router.js', 'utf8');
-
-  assert(routes.length === 9, `expected 9 primary routes, got ${routes.length}`);
-  routes.forEach((route) => assert(pages.has(route), `route ${route} has no data-page`));
-  targets.forEach((route) => assert(pages.has(route), `route target ${route} has no data-page`));
-  assert(router.includes("'control-panel': 'control-panel'"), 'legacy #control-panel route is not mapped to the native control-panel hub');
+function checkActionCoverage() {
+  const declared = unique([...sourceText.matchAll(/data-action=[\\]?['"]([^'"]+)/g)].map((match) => match[1]));
+  const handled = new Set([...sourceText.matchAll(/action\s*===\s*['"]([^'"]+)/g)].map((match) => match[1]));
+  const missing = declared.filter((action) => !handled.has(action));
+  assert(declared.length >= 65, `expected at least 65 native actions, got ${declared.length}`);
+  assert(!missing.length, `native actions without handlers: ${missing.join(', ')}`);
+  for (const attribute of ['data-support-filter', 'data-factory-step', 'data-select-job', 'data-select-asset-job', 'data-capability-id']) {
+    assert(sourceText.includes(`getAttribute('${attribute}')`) || sourceText.includes(`closest('[${attribute}]')`), `${attribute} has no delegated interaction handler`);
+  }
 }
 
-function checkActions() {
-  const actionFiles = ['admin/v2/index.html', 'admin/v2/scripts/admin-firebase.js', 'admin/v2/scripts/admin-migration.js'];
-  const handlerFiles = [
-    'admin/v2/scripts/admin-core.js',
-    'admin/v2/scripts/admin-firebase.js',
-    'admin/v2/scripts/admin-migration.js',
-    'admin/v2/scripts/admin-button-audit.js',
-    'admin/v2/scripts/admin-function-transfer.js'
+function checkAccessibility() {
+  const buttonTags = [...sourceText.matchAll(/<button\b[\s\S]*?>/g)].map((match) => match[0]);
+  const missingTooltip = buttonTags.filter((tag) => !/(?:title|aria-label)=/.test(tag));
+  assert(buttonTags.length >= 100, `native button inventory unexpectedly small: ${buttonTags.length}`);
+  assert(!missingTooltip.length, `${missingTooltip.length} native buttons lack title or aria-label`);
+  assert(!/[😀-🙏🌀-🫿]/u.test(sourceText), 'emoji are used as native interface icons');
+  const css = read('admin/v2/styles/admin.css');
+  assert(css.includes(':focus-visible'), 'visible keyboard focus style is missing');
+  assert(css.includes('@media (prefers-reduced-motion: reduce)'), 'reduced-motion override is missing');
+}
+
+function checkCacheContinuity() {
+  const rules = read('firestore.rules');
+  for (const collectionName of ['choice_explanations', 'phrase_explanations', 'mistake_explanations', 'quiz_explanations', 'compass_briefings']) {
+    assert(legacyIndex.includes(collectionName), `legacy cache reader is missing ${collectionName}`);
+    assert(rules.includes(collectionName), `Firestore rules are missing ${collectionName}`);
+  }
+  assert(capabilitySource.includes("id: 'explain-cache'"), 'explanation cache capability is missing');
+  assert(capabilitySource.includes("id: 'compass'"), 'Compass cache capability is missing');
+  const firebaseSource = read('admin/v2/scripts/admin-firebase.js');
+  assert(firebaseSource.includes('browserLocalPersistence'), 'v2 auth does not explicitly use persistent browser auth');
+  assert(legacyIndex.includes("fetch('/__/firebase/init.json'"), 'legacy fallback does not share Hosting Firebase configuration');
+}
+
+async function checkLiveHosting() {
+  const liveFiles = [
+    ['v2-index', '/v2/index.html'],
+    ['v2-style', '/v2/styles/admin.css'],
+    ...scriptFiles.map((file) => [file, `/${file.replaceAll('\\', '/')}`]),
+    ...legacyFiles.map((file) => [file, `/${file.replace(/^admin\//, '')}`]),
+    ['migration-board', '/v2/data/ADMIN_V2_MIGRATION_COVERAGE.json'],
   ];
-  const actionText = actionFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-  const handlerText = handlerFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-  const actions = unique([...actionText.matchAll(/data-action="([^"]+)"/g)].map((match) => match[1]));
-  const handled = new Set([...handlerText.matchAll(/action(?:El\.getAttribute\('data-action'\))?\s*(?:!==|===|==)\s*['"]([^'"]+)['"]/g)].map((match) => match[1]));
-  const missing = actions.filter((action) => !handled.has(action));
-  assert(actions.includes('open-report-user'), 'open-report-user action missing from rendered action set');
-  assert(!missing.length, `actions without handlers: ${missing.join(', ')}`);
-}
-
-function checkButtonsAndLinks() {
-  const buttons = [...localIndex.matchAll(/<button\b[\s\S]*?>/g)].map((match) => match[0]);
-  const actionableButtons = buttons.filter((tag) => !tag.includes('aria-hidden="true"'));
-  const missingTooltip = actionableButtons.filter((tag) => !tag.includes('data-tooltip=') && !tag.includes('aria-label='));
-  assert(!missingTooltip.length, `${missingTooltip.length} static buttons lack tooltip or aria-label`);
-
-  const buttonLabels = [...localIndex.matchAll(/<button\b[\s\S]*?<\/button>/g)]
-    .map((match) => stripTags(match[0]).trim())
-    .filter(Boolean);
-  const blockedLabels = buttonLabels.filter((text) => /(open|preview|refresh|registry|archive|copy visible|mark visible)/i.test(text));
-  assert(!blockedLabels.length, `button labels still contain English/old words: ${blockedLabels.join(' | ')}`);
-
-  const buttonLinks = [...localIndex.matchAll(/<a\b[^>]*class="[^"]*\bbutton\b[^"]*"[^>]*>/g)].map((match) => match[0]);
-  const linksMissingTooltip = buttonLinks.filter((tag) => !tag.includes('data-tooltip='));
-  assert(!linksMissingTooltip.length, `${linksMissingTooltip.length} button-like links lack tooltip`);
-}
-
-function checkDialogs() {
-  const dialogIds = unique([...localIndex.matchAll(/<dialog\b[^>]*id="([^"]+)"/g)].map((match) => match[1]));
-  ['previewDialog', 'migrationDetailDialog', 'savedViewsDialog'].forEach((id) => {
-    assert(dialogIds.includes(id), `dialog ${id} is missing`);
-  });
-  assert(scriptText.includes('openUpdatePreview'), 'preview update modal handler missing');
-  assert(scriptText.includes('openSavedViews'), 'saved views handler missing');
-  assert(scriptText.includes('openDetail'), 'migration detail handler missing');
-}
-
-function checkTextQuality() {
-  const combined = [localIndex, rootIndex, scriptText].join('\n');
-  assert(!/Ð|Ñ|\?\?\?\?/.test(combined), 'mojibake or broken question marks found');
-  assert(!badVisibleText(localIndex), 'admin/v2/index.html contains blocked visible text');
-  assert(!badVisibleText(rootIndex), 'admin/index.html contains blocked visible text');
-  assert(scriptText.includes('Пульт управления'), 'migration coverage is not Russian');
-  assert(scriptText.includes('Открыть профиль'), 'user report open profile action is not rendered from JS');
-}
-
-function checkMoneyAnalyticsControls() {
-  [
-    'moneyAnalyticsDate',
-    'moneyAnalyticsStartHour',
-    'moneyAnalyticsEndHour',
-    'moneyAnalyticsPeriodSummary',
-    'moneyHourlyList'
-  ].forEach((id) => {
-    assert(localIndex.includes(`id="${id}"`), `money analytics control ${id} is missing`);
-    assert(rootIndex.includes(`id="${id}"`), `root money analytics control ${id} is missing`);
-  });
-  assert(scriptText.includes('readMoneyAnalyticsPeriod'), 'money analytics period reader is missing');
-  assert(scriptText.includes('renderMoneyHourly'), 'money hourly chart renderer is missing');
-  assert(scriptText.includes("where('createdAtMs', '<'"), 'money activity query does not cap the selected period end');
-}
-
-function checkAnalyticsAndLegacyDiscoverability() {
-  [
-    'Деньги и аналитика',
-    'Открыть аналитику',
-    'VIP из Telegram',
-    'Старые графики',
-    'Детальная карточка',
-    'Где старые денежные инструменты'
-  ].forEach((text) => {
-    assert(localIndex.includes(text), `discoverability text missing in v2: ${text}`);
-    assert(rootIndex.includes(text), `discoverability text missing in root: ${text}`);
-  });
-  assert(localIndex.includes('href="/testers.html"'), 'Telegram VIP link to testers.html is missing');
-  assert(localIndex.includes('href="../legacy/index.html#analytics"'), 'legacy analytics link is missing in v2');
-  assert(rootIndex.includes('href="./legacy/index.html#analytics"'), 'legacy analytics link is missing or not rewritten in root');
-  assert(scriptText.includes('moneyLegacyTitle'), 'money legacy subsection is not registered');
-}
-
-function checkDiagnosticsPeriodControls() {
-  [
-    'diagnosticsDate',
-    'diagnosticsStartHour',
-    'diagnosticsEndHour',
-    'diagnosticsPeriodSummary'
-  ].forEach((id) => {
-    assert(localIndex.includes(`id="${id}"`), `diagnostics period control ${id} is missing`);
-    assert(rootIndex.includes(`id="${id}"`), `root diagnostics period control ${id} is missing`);
-  });
-  assert(localIndex.includes('id="telegramVipList"'), 'Telegram VIP read-only list is missing');
-  assert(rootIndex.includes('id="telegramVipList"'), 'root Telegram VIP read-only list is missing');
-  assert(scriptText.includes('readDiagnosticsPeriod'), 'diagnostics period reader is missing');
-  assert(scriptText.includes('telegram_premium_orders'), 'Telegram VIP Firestore source is missing');
-  assert(scriptText.includes('selectTelegramVipOrder'), 'Telegram VIP select handler is missing');
-  assert(scriptText.includes('grantSelectedTelegramVip'), 'Telegram VIP guarded grant handler is missing');
-  assert(scriptText.includes("action: 'telegram_vip_grant'"), 'Telegram VIP grant does not write admin_log action');
-  assert(scriptText.includes("'progress.vip_plan': 'telegram_tester'"), 'Telegram VIP grant does not set telegram_tester plan');
-  assert(scriptText.includes("where(item.orderField, '>='"), 'diagnostics queries do not use selected period start');
-  assert(scriptText.includes("where(item.orderField, '<'"), 'diagnostics queries do not use selected period end');
-}
-
-function checkFirebaseGuardCopy() {
-  assert(scriptText.includes('Это изменит жалобы пользователей в Firebase'), 'bulk reviewed confirm copy does not explain Firebase write');
-  assert(scriptText.includes("addDoc(collection(db, 'admin_log')"), 'user report mark-reviewed flow does not write admin_log');
-  assert(scriptText.includes('нет прав на этот источник'), 'Firebase permission errors are not humanized');
-}
-
-function badVisibleText(text) {
-  return /Скопировать видимые|Отметить видимые|community packs|explain cache|League chat|Arena live|Marketplace health|Queue, reports|pending review|New explain reports|Daily phrases publish|Card pack publish|Source health|review first|guarded write|backend contract|archive\./i.test(text);
+  for (const [label, pathname] of liveFiles) {
+    try {
+      const response = await fetch(`${liveBase}${pathname}`, { cache: 'no-store', redirect: 'follow' });
+      assert(response.ok, `${label} returned HTTP ${response.status}`);
+      if (label === 'v2-index') {
+        const text = await response.text();
+        assert(text.includes('./scripts/admin-router.js'), 'live v2 shell does not load the router');
+      }
+      if (label === 'admin/index.html') {
+        const framePolicy = response.headers.get('x-frame-options') || '';
+        const csp = response.headers.get('content-security-policy') || '';
+        assert(framePolicy.toUpperCase() === 'SAMEORIGIN', `legacy frame policy is ${framePolicy || 'missing'}, expected SAMEORIGIN`);
+        assert(/frame-ancestors\s+'self'/.test(csp), 'legacy CSP does not restrict framing to same origin');
+      }
+    } catch (error) {
+      failures.push(`${label} live check failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
 }
 
 function assert(condition, message) {
@@ -217,8 +146,4 @@ function assert(condition, message) {
 
 function unique(values) {
   return [...new Set(values)].sort();
-}
-
-function stripTags(value) {
-  return String(value || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
 }

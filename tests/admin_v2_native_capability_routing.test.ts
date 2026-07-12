@@ -87,7 +87,7 @@ describe('Admin v2 native capability routing', () => {
     expect(core).toContain('ИИ и бюджеты');
     expect(core).toContain('Кампании и коммуникации');
     expect(core).toContain('Старый модуль отдельно');
-    expect(core).toContain('Его действия могут менять production');
+    expect(core).toContain('Его действия могут менять рабочие данные');
     expect(core).not.toContain('Архивная сверка старой функции');
   });
 });

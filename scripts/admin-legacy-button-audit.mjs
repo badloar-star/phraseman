@@ -3,17 +3,34 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 
 const root = process.cwd();
-const sourcePath = path.join(root, 'admin', 'index.html');
 const outDir = path.join(root, '.codex-tmp', 'admin-audit');
+const sourceDefinitions = [
+  { relativePath: 'admin/index.html', capabilityId: null },
+  { relativePath: 'admin/testers.html', capabilityId: 'telegram-payments' },
+  { relativePath: 'admin/beta_testers.html', capabilityId: 'beta-testers' },
+  { relativePath: 'admin/full.html', capabilityId: 'full-content-control' },
+  { relativePath: 'admin/site.html', capabilityId: 'website-payments' },
+];
 
-const html = fs.readFileSync(sourcePath, 'utf8');
-const sections = collectSections(html);
-const scriptRanges = collectScriptRanges(html);
-const buttons = collectButtons(html, sections, scriptRanges);
-const functions = collectFunctions(html);
-const callableNames = collectCallableNames(readLinkedRuntimeSources(html, sourcePath));
+const sourceAudits = sourceDefinitions.map(({ relativePath, capabilityId }) => {
+  const sourcePath = path.join(root, relativePath);
+  const html = fs.readFileSync(sourcePath, 'utf8');
+  const sections = collectSections(html);
+  const scriptRanges = collectScriptRanges(html);
+  return {
+    relativePath,
+    capabilityId,
+    sections,
+    buttons: collectButtons(html, sections, scriptRanges, relativePath, capabilityId),
+    functions: collectFunctions(html, relativePath, capabilityId),
+    callableNames: collectCallableNames(readLinkedRuntimeSources(html, sourcePath)),
+  };
+});
+const buttons = sourceAudits.flatMap((source) => source.buttons);
+const functions = sourceAudits.flatMap((source) => source.functions);
+const callableNames = new Map(sourceAudits.map((source) => [source.relativePath, source.callableNames]));
 const links = linkButtonsToFunctions(buttons, functions, callableNames);
-const summary = summarize(buttons, sections);
+const summary = summarize(buttons, sourceAudits);
 const functionSummary = summarizeFunctions(functions, links);
 
 fs.mkdirSync(outDir, { recursive: true });
@@ -43,7 +60,7 @@ function collectScriptRanges(source) {
   return ranges;
 }
 
-function collectButtons(source, sectionRows, scriptRows) {
+function collectButtons(source, sectionRows, scriptRows, sourceFile, capabilityId) {
   const buttonRe = /<button\b[\s\S]*?<\/button>/gi;
   const dangerRe = /delete|remove|purge|ban|disable|deactivate|cleanup|reset|force|grant|save|send|publish|seed|repair|migrat|wipe|bulk|mark|set|update/i;
   const writeRe = /save|set|update|delete|remove|purge|ban|grant|send|seed|repair|cleanup|deactivate|disable|migrat|publish|create|bulk|mark|reset/i;
@@ -63,12 +80,16 @@ function collectButtons(source, sectionRows, scriptRows) {
     const hasEmoji = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(text);
     const write = writeRe.test(onclick);
     const hasConfirmSignal = /showConfirmModal|confirm\(|showInputModal/i.test(raw + ' ' + onclick);
-    const fingerprint = createHash('sha256').update(raw.replace(/\s+/g, ' ').trim()).digest('hex').slice(0, 16);
+    const normalizedButton = raw.replace(/\s+/g, ' ').trim();
+    const fingerprintInput = sourceFile === 'admin/index.html' ? normalizedButton : `${sourceFile}\n${normalizedButton}`;
+    const fingerprint = createHash('sha256').update(fingerprintInput).digest('hex').slice(0, 16);
     const occurrence = (fingerprintCounts.get(fingerprint) ?? 0) + 1;
     fingerprintCounts.set(fingerprint, occurrence);
 
     rows.push({
       buttonKey: `button-${fingerprint}-${occurrence}`,
+      sourceFile,
+      capabilityId,
       provenance,
       tab: provenance === 'static-html' ? section?.id || 'pre-sections' : null,
       line: source.slice(0, match.index).split(/\r?\n/).length,
@@ -88,7 +109,7 @@ function collectButtons(source, sectionRows, scriptRows) {
   return rows;
 }
 
-function summarize(rows, sectionRows) {
+function summarize(rows, sourceAudits) {
   const byTab = {};
   for (const row of rows) {
     const tab = row.tab ?? 'unresolved-script-template';
@@ -102,7 +123,14 @@ function summarize(rows, sectionRows) {
   }
 
   return {
-    sections: sectionRows.length,
+    sources: sourceAudits.map((source) => ({
+      file: source.relativePath,
+      capabilityId: source.capabilityId,
+      sections: source.sections.length,
+      buttons: source.buttons.length,
+      functions: source.functions.length,
+    })),
+    sections: sourceAudits.reduce((total, source) => total + source.sections.length, 0),
     total: rows.length,
     write: rows.filter((row) => row.write).length,
     danger: rows.filter((row) => row.danger).length,
@@ -113,16 +141,18 @@ function summarize(rows, sectionRows) {
   };
 }
 
-function collectFunctions(source) {
+function collectFunctions(source, sourceFile, capabilityId) {
   const functionRe = /(?:window\.)?([A-Za-z_$][\w$]*)\s*=\s*async\s*function\s*(?:[A-Za-z_$][\w$]*)?\s*\(|(?:async\s+)?function\s+([A-Za-z_$][\w$]*)\s*\(/g;
   const rows = [];
   let match;
   while ((match = functionRe.exec(source))) {
     const name = match[1] || match[2];
     const start = match.index;
-    const chunk = source.slice(start, Math.min(source.length, start + 2200));
+    const chunk = extractFunctionChunk(source, start, Boolean(match[1]));
     rows.push({
       name,
+      sourceFile,
+      capabilityId,
       line: source.slice(0, start).split(/\r?\n/).length,
       writes: /setDoc|updateDoc|deleteDoc|addDoc|writeBatch|runTransaction|httpsCallable/i.test(chunk),
       confirm: /showConfirmModal|confirm\(|showInputModal/i.test(chunk),
@@ -132,6 +162,23 @@ function collectFunctions(source) {
     });
   }
   return rows;
+}
+
+function extractFunctionChunk(source, start, assigned) {
+  const lineStart = source.lastIndexOf('\n', start) + 1;
+  const lineEnd = source.indexOf('\n', start);
+  const singleLine = source.slice(start, lineEnd < 0 ? source.length : lineEnd);
+  const openingBrace = singleLine.indexOf('{');
+  if (openingBrace >= 0 && singleLine.lastIndexOf('}') > openingBrace) return singleLine;
+  const indent = source.slice(lineStart, start).match(/^\s*/)?.[0] ?? '';
+  const escapedIndent = indent.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const ending = assigned
+    ? new RegExp(`\\r?\\n${escapedIndent}\\};(?=\\r?\\n|$)`, 'g')
+    : new RegExp(`\\r?\\n${escapedIndent}\\};?(?=\\r?\\n|$)`, 'g');
+  ending.lastIndex = start;
+  const match = ending.exec(source);
+  if (match) return source.slice(start, match.index + match[0].length);
+  return source.slice(start, Math.min(source.length, start + 2200));
 }
 
 function readLinkedRuntimeSources(source, entryPath) {
@@ -170,17 +217,19 @@ function collectCallableNames(source) {
   return names;
 }
 
-function linkButtonsToFunctions(buttonRows, functionRows, callableNames) {
+function linkButtonsToFunctions(buttonRows, functionRows, callableNamesBySource) {
   const links = [];
   for (const button of buttonRows) {
     const names = [...button.onclick.matchAll(/([A-Za-z_$][\w$]*)\s*\(/g)]
       .map((match) => match[1])
       .filter((name) => !['if', 'typeof', 'event', 'document', 'window'].includes(name));
     for (const name of names) {
-      const fn = functionRows.find((row) => row.name === name);
-      const found = Boolean(fn) || callableNames.has(name);
+      const fn = functionRows.find((row) => row.sourceFile === button.sourceFile && row.name === name);
+      const found = Boolean(fn) || callableNamesBySource.get(button.sourceFile)?.has(name);
       links.push({
         buttonKey: button.buttonKey,
+        sourceFile: button.sourceFile,
+        capabilityId: button.capabilityId,
         provenance: button.provenance,
         tab: button.tab,
         line: button.line,

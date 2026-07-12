@@ -55,6 +55,26 @@ fi
 exit 0
 `;
 
+const POST_COMMIT_HOOK = `#!/bin/sh
+# Managed by scripts/install-git-hooks.mjs — do not edit by hand.
+# Read-only status: makes release integration visible without merging user work.
+if [ -f scripts/release_branch_status.mjs ]; then
+  node scripts/release_branch_status.mjs
+  exit 0
+fi
+
+release_branch="\${PHRASEMAN_RELEASE_BRANCH:-codex/all-development-integration}"
+short_sha="$(git rev-parse --short=9 HEAD 2>/dev/null)"
+if ! git rev-parse --verify "$release_branch^{commit}" >/dev/null 2>&1; then
+  echo "RELEASE: unknown — branch $release_branch is unavailable"
+elif git merge-base --is-ancestor HEAD "$release_branch"; then
+  echo "RELEASE: integrated — $short_sha is in $release_branch"
+else
+  echo "RELEASE: pending — $short_sha → $release_branch"
+fi
+exit 0
+`;
+
 function main() {
   const gd = gitDir();
   if (!gd) {
@@ -72,6 +92,7 @@ function main() {
   const hooks = [
     ['pre-commit', PRE_COMMIT_HOOK],
     ['pre-push', PRE_PUSH_HOOK],
+    ['post-commit', POST_COMMIT_HOOK],
   ];
   for (const [name, content] of hooks) {
     const hookPath = join(targetHooksDir, name);

@@ -315,10 +315,8 @@ describe('firestore.rules security baseline', () => {
       'admin_pm_experiment_bundles',
       'admin_pm_decisions',
     ]) {
-      const block = rules.match(new RegExp(`match /${collection}/\\\\{docId\\\\} \\\\{[\\\\s\\\\S]*?\\\\}`));
-      expect(block).not.toBeNull();
-      expect(block![0]).toContain('allow read: if isAdmin();');
-      expect(block![0]).toContain('allow create, update, delete: if false;');
+      const line = `match /${collection}/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }`;
+      expect(rules).toContain(line);
     }
   });
 

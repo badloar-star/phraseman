@@ -153,14 +153,8 @@ describe('owner runtime direction contract', () => {
       'app/arena_lobby.tsx': 1,
       'app/arena_results.tsx': 1,
       'app/club_screen.tsx': 1,
-      // «Созвездия»: два секундных тика поиска (elapsed/UI state), оба ≥1000мс,
-      // гейтятся focus и очищаются на blur/unmount (осознанно, спек F2).
-      'app/constellation_search.tsx': 2,
-      // «Созвездия»: два секундных тика дедлайна/отображения матча с cleanup (спек F3/A3).
-      'app/constellation_match.tsx': 2,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
-      'app/constellation_results.tsx': 1,
       'app/exam.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
       'app/services/arena_db.ts': 2,
@@ -281,9 +275,6 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_invites.ts': 2,
       'app/services/arena_pulse.ts': 1,
       'app/services/arena_rooms_live.ts': 4,
-      // «Созвездия»: live-подписки режима (моя запись очереди, счётчик поиска,
-      // матч, мой player-док) — все отписываются в вызывающем коде (спек F2/F3).
-      'app/services/constellations_db.ts': 5,
       'app/services/league_chest_rewards.ts': 3,
       'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,
@@ -952,7 +943,9 @@ describe('owner runtime direction contract', () => {
     expect(dailyTasks).toContain('return { alreadyClaimed: false, newBalance, shardsUpdatedAtMs };');
 
     expect(leagueChest).toContain('const claimRef = db.collection(\'league_chest_claims\').doc(claimDocId(stableUid, weekId, groupId));');
-    expect(leagueChest).toContain('return { ok: true, claimed: true, alreadyClaimed: true, crown };');
+    expect(leagueChest).toContain('function buildClaimedRewardResponse');
+    expect(leagueChest.indexOf('if (claimSnap.exists) {')).toBeLessThan(leagueChest.indexOf("throw new HttpsError('failed-precondition', 'stale_week')"));
+    expect(leagueChest).toContain('return { ok: true, claimed: true, alreadyClaimed: true, crown: replayCrown, ...existing };');
 
     expect(collectibles).toContain("userRef.collection('collectible_claims').doc(safeId(eventIdRaw))");
     expect(collectibles).toContain('alreadyClaimed: true');
@@ -970,6 +963,27 @@ describe('owner runtime direction contract', () => {
     expect(revenueCat).toContain("db.collection('revenuecat_premium_events').doc(eventId)");
     expect(revenueCat).toContain("db.collection('revenuecat_shard_transactions').doc(transactionId)");
     expect(revenueCat).toContain('if (processedSnap.exists)');
+  });
+
+  it('keeps league bonus retry and UI refresh bounded and idempotent', () => {
+    const layout = read('app/_layout.tsx');
+    const clubScreen = read('app/club_screen.tsx');
+    const leagueClient = read('app/services/league_chest_rewards.ts');
+    const arenaLimit = read('app/arena_daily_limit.ts');
+    const packTrial = read('app/flashcards/pack_trial_gift.ts');
+
+    expect(clubScreen).toContain('const CLUB_REMOTE_REFRESH_MS = 45_000;');
+    expect(layout).toContain('const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;');
+    expect(layout).toContain('while (leagueBonusAvailableReservedThisSession.size > LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS)');
+    expect(leagueClient).toContain('LOCAL_REWARD_EFFECT_KEY_PREFIX');
+    expect(leagueClient).toContain('_xp_boost');
+    expect(leagueClient).toContain('addArenaPlaysBonusForClaimDayOnce');
+    expect(leagueClient).toContain('setPackGiftTrial48hOnce');
+    expect(leagueClient).not.toContain("return { claimed: true };\n  }\n  await AsyncStorage.setItem(pendingClaimKey, '1')");
+    expect(clubScreen).toContain('hasLeagueChestClaimOrPending');
+    expect(clubScreen).toContain('leagueChestReplayModalKeyRef');
+    expect(arenaLimit).toContain('export async function addArenaPlaysBonusForClaimDayOnce');
+    expect(packTrial).toContain('expiresAtOverride');
   });
 
   it('keeps release-wave shard grants stamped with shard wallet freshness meta', () => {
@@ -1013,23 +1027,25 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('false && purchasing');
   });
 
-  it('keeps friend gift server-first sends visibly pending without local gift unlock', () => {
+  it('keeps friend gift sends optimistic without exposing auth-link internals', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
     const legacyFriends = read('app/friends_screen.tsx');
 
     for (const source of [friendsTab, legacyFriends]) {
       expect(source).toContain('sendFriendGiftWithShards');
       expect(source).toContain('setGiftBusyId(giftId)');
-      expect(source).toContain('const sendingThisGift = giftBusyId === gift.id');
-      expect(source).toContain('<ActivityIndicator size="small" color={t.accent} />');
+      expect(source).toContain("reason: 'friend_gift_optimistic'");
+      expect(source).toContain("reason: 'friend_gift_rollback'");
       expect(source).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
       expect(source).toContain('setGiftBalance(guardedBalance)');
       expect(source).not.toContain('setGiftBalance(res.senderBalanceAfter)');
+      expect(source).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
+      expect(source).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
     }
 
-    expect(friendsTab).toContain('const disabled = giftBusyId !== null');
+    expect(friendsTab).toContain('setSentGiftReceipt({');
     expect(friendsTab).toContain('balanceAfter: guardedBalance');
-    expect(legacyFriends).toContain('const disabled = giftBalance < gift.costShards || giftBusyId !== null');
+    expect(legacyFriends).toContain('setGiftTarget(null);');
   });
 
   it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {

@@ -128,6 +128,7 @@ import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
+import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
 import { markNextNavigationAsReplace, rememberNavigationPath } from './navigation_back';
 import {
   cancelScheduledAnimatedStateUpdates,
@@ -145,6 +146,8 @@ import {
 } from '../components/RewardModalBackdrop';
 import {
   checkLeagueBonusAvailability,
+  buildLeagueBonusSeenKey,
+  reserveLeagueBonusNotice,
   type LeagueBonusAvailability,
 } from './services/league_chest_rewards';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
@@ -169,7 +172,7 @@ import {
   markLoyaltyGiftOfferSeen,
   startLoyaltyGift,
 } from './loyalty_gift';
-import { ensureLocalNickname } from './nickname_guard';
+import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
@@ -248,6 +251,8 @@ const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
+const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
+const leagueBonusAvailableReservedThisSession = new Set<string>();
 const LOYALTY_UPDATE_MODAL_ENABLED = true;
 const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
 const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
@@ -256,6 +261,16 @@ const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
 const POST_ONBOARDING_GOLD_BRIDGE_MS = 3000;
 const POST_ONBOARDING_GOLD_BRIDGE_SCREEN = ['rgba(255,224,144,0.34)', 'rgba(163,104,24,0.16)', 'rgba(18,14,6,0.08)'] as const;
+
+function reserveLeagueBonusNoticeThisSession(key: string): boolean {
+  if (!reserveLeagueBonusNotice(leagueBonusAvailableReservedThisSession, key)) return false;
+  while (leagueBonusAvailableReservedThisSession.size > LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS) {
+    const oldest = leagueBonusAvailableReservedThisSession.values().next().value;
+    if (!oldest) break;
+    leagueBonusAvailableReservedThisSession.delete(oldest);
+  }
+  return true;
+}
 const POST_ONBOARDING_GOLD_BRIDGE_PANEL = ['rgba(122,75,12,0.44)', 'rgba(54,34,8,0.30)', 'rgba(11,9,5,0.12)'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_CTA = ['#FFF0B5', '#E2A923'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
@@ -1549,7 +1564,8 @@ function AppContent() {
   }, [checkGlobalBroadcastFn]);
 
   const showLeagueBonusAvailableOnce = useCallback(async (availability: LeagueBonusAvailability, source: 'startup' | 'foreground' | 'route') => {
-    const seenKey = `${LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX}${availability.weekId}_${availability.groupId}`;
+    const seenKey = `${LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX}${buildLeagueBonusSeenKey(availability.userUid, availability.weekId)}`;
+    if (!reserveLeagueBonusNoticeThisSession(seenKey)) return;
     const seen = await AsyncStorage.getItem(seenKey).catch(() => null);
     if (seen === '1') return;
     await AsyncStorage.setItem(seenKey, '1').catch(() => {});
@@ -1919,7 +1935,7 @@ function AppContent() {
         await runContentDeliveryMigration().catch(() => {});
         const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
         if (onboardingDoneAfterHydrate === '1') {
-          await ensureLocalNickname().catch(() => null);
+          void resumePendingGeneratedNickname();
         }
         // Одноразовая починка после релиза, в котором (tabs)/index.tsx
         // перестал уважать persistedUnlocked: подтягиваем lesson{N-1}_best_score
@@ -1968,14 +1984,14 @@ function AppContent() {
           // подтянется при сети — тихий провал превращаем в понятный сигнал.
           emitAppEvent('action_toast', {
             type: 'info',
-            messageRu: 'Не удалось загрузить прогресс из облака. Проверь интернет — он подтянется автоматически.',
-            messageUk: 'Не вдалося завантажити прогрес із хмари. Перевір інтернет — він підтягнеться автоматично.',
-            messageEs: 'No pudimos cargar tu progreso desde la nube. Revisa tu conexión: se cargará automáticamente.',
-            messagePtBr: 'Não foi possível carregar seu progresso da nuvem. Verifique a internet — ele será carregado automaticamente.',
-            messageVi: 'Không tải được tiến độ từ đám mây. Kiểm tra internet — nó sẽ tự tải lại.',
-            messageId: 'Tidak bisa memuat progres dari cloud. Periksa internet — akan dimuat otomatis.',
-            messageTr: 'İlerleme buluttan yüklenemedi. İnterneti kontrol et — otomatik yüklenecek.',
-            messagePl: 'Nie udało się wczytać postępu z chmury. Sprawdź internet — wczyta się automatycznie.',
+            messageRu: 'Не удалось загрузить прогресс. Проверь интернет — он подтянется автоматически.',
+            messageUk: 'Не вдалося завантажити прогрес. Перевір інтернет — він підтягнеться автоматично.',
+            messageEs: 'No pudimos cargar tu progreso. Revisa tu conexión: se cargará automáticamente.',
+            messagePtBr: 'Não foi possível carregar seu progresso. Verifique a internet — ele será carregado automaticamente.',
+            messageVi: 'Không tải được tiến độ. Kiểm tra internet — nó sẽ tự tải lại.',
+            messageId: 'Tidak bisa memuat progres. Periksa internet — akan dimuat otomatis.',
+            messageTr: 'İlerleme yüklenemedi. İnterneti kontrol et — otomatik yüklenecek.',
+            messagePl: 'Nie udało się wczytać postępu. Sprawdź internet — wczyta się automatycznie.',
           });
         }
         await ensureStableAuthLink().catch(() => false);
@@ -2816,13 +2832,6 @@ function AppContent() {
       <Stack.Screen name="arena_room" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="arena_rating" />
       <Stack.Screen name="arena_leaderboard" />
-      {/* «Созвездия» (specs/constellations.md): поиск живёт с дефолтным freeze —
-          подписка очереди работает и в фоне, редирект в матч случится при возврате. */}
-      <Stack.Screen name="constellation_search" options={{ animation: 'none' }} />
-      {/* Живой матч — realtime-исключение как arena_game: фазовый таймер и
-          подписки должны рендерить актуальное состояние (perf_freeze_contract). */}
-      <Stack.Screen name="constellation_match" options={{ animation: 'none', freezeOnBlur: false }} />
-      <Stack.Screen name="constellation_results" />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />
@@ -2844,6 +2853,7 @@ function AppContent() {
     // Фон корня — константа темы: сплэш закрывает старт отдельным оверлеем,
     // а перекраска фона по асинхронным флагам давала «чёрный кадр».
     <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
+    <ProductAnalyticsRuntimeObserver studyTarget={studyTarget} />
     <MaintenanceGate />
     <PromoBanner />
 

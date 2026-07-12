@@ -67,7 +67,7 @@ describe('Admin v2 promo codes workflow', () => {
   test('marks promo codes as native v2 and updates control-panel migration map', () => {
     expect(capabilities).toContain("'promo-codes': 'money'");
     expect(core).toContain("primaryLabel: 'Открыть v2 промокоды'");
-    expect(core).toContain("risk: 'Server callable + banner pending'");
+    expect(core).toContain("risk: 'Server callable'");
     expect(core).toContain('guarded: true');
   });
 });

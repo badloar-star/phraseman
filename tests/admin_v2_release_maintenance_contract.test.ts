@@ -31,7 +31,7 @@ describe('Admin v2 release and maintenance workflow', () => {
     expect(core).toContain('Store destination:');
     expect(core).toContain('Укажите явную причину восстановления значений.');
     expect(core).toContain('const editorLocked = releasePreviewActive || restorePreviewActive');
-    expect(core).toContain("const releaseFormLocked = ['partial-restore-remote-config', 'premium-access'].includes(String(state.remoteConfigPreview?.source || ''))");
+    expect(core).toContain("const releaseFormLocked = ['partial-restore-remote-config', 'premium-access', 'promo-banner'].includes(String(state.remoteConfigPreview?.source || ''))");
     expect(core).toContain('Форма обновлений заблокирована');
     expect(core).toContain('releaseControlDisabled');
     expect(core).toContain('JSON-редактор заблокирован');
@@ -55,7 +55,7 @@ describe('Admin v2 release and maintenance workflow', () => {
   });
 
   test('keeps preview rendering source-aware so generic deletions stay visible', () => {
-    expect(core).toContain("['release-maintenance', 'partial-restore-remote-config', 'premium-access']");
+    expect(core).toContain("['release-maintenance', 'partial-restore-remote-config', 'premium-access', 'promo-banner']");
     expect(core).toMatch(/hasPreviewBranch && shouldMergePreview \? \{ \.\.\.current, \.\.\.previewBranch \} : hasPreviewBranch \? previewBranch : current/);
     expect(core).toContain("source: 'partial-restore-remote-config'");
     expect(core).toMatch(/remoteConfigChanges\(nextConfig\);\s+if \(maintenanceBlock\)/);

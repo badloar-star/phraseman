@@ -270,7 +270,8 @@ function renderOverviewDecisions(view) {
 const CONTROL_PANEL_WORKFLOWS = Object.freeze([
   { title: 'Обновления и обслуживание', description: 'Manual update modal, force update, store links, rollout и maintenance text.', primary: '#application', primaryLabel: 'Открыть v2 приложение', fallback: 'control-panel', risk: 'Высокий риск', coverage: '5 старых кнопок', guarded: true },
   { title: 'Remote Config и живые флаги', description: 'Промокоды, лига по XP, lifetime, идеи, arena bots, onboarding, paywall timers, video button и intro gift.', primary: '#application', primaryLabel: 'Открыть v2 конфигурацию', fallback: 'remote-config', risk: 'Guarded publish', coverage: '8 переключателей', guarded: true },
-  { title: 'Промокоды и промо-баннер', description: 'Создание пачек/своих кодов, список кодов и активации уже в v2; баннер кампании остаётся отдельным следующим переносом.', primary: '#money', primaryLabel: 'Открыть v2 промокоды', fallback: 'promo-codes', risk: 'Server callable + banner pending', coverage: 'частично перенесено', guarded: true },
+  { title: 'Промокоды', description: 'Создание пачек и собственных кодов, список кодов и активации перенесены в раздел «Деньги».', primary: '#money', primaryLabel: 'Открыть v2 промокоды', fallback: 'promo-codes', risk: 'Server callable', coverage: 'перенесено', guarded: true },
+  { title: 'Промо-баннер', description: 'Текст, ссылка, срок, аудитория, платформа и безопасное выключение перенесены в раздел «Приложение».', primary: '#application', primaryLabel: 'Открыть v2 промо-баннер', fallback: 'control-panel', risk: 'Guarded Remote Config', coverage: 'перенесено', guarded: true },
   { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть v2 Free / Plus', fallback: 'control-panel', risk: 'Guarded publish', coverage: '5 старых кнопок', guarded: true },
   { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
   { title: 'ИИ и бюджеты', description: 'Theo model, daily caps, фоновые AI jobs, OpenAI budget и Asset Studio.', primary: '#asset-studio', primaryLabel: 'Открыть v2 Asset Studio', fallback: 'openai-budget', risk: 'AI budget', coverage: '5 старых кнопок', guarded: true },
@@ -300,7 +301,7 @@ function remoteConfigBranch(branch) {
   const configBranch = state.remoteConfig?.config?.[branch];
   const current = configBranch && typeof configBranch === 'object' ? configBranch : {};
   const hasPreviewBranch = previewBranch && typeof previewBranch === 'object';
-  const shouldMergePreview = ['release-maintenance', 'partial-restore-remote-config', 'premium-access'].includes(String(state.remoteConfigPreview?.source || ''));
+  const shouldMergePreview = ['release-maintenance', 'partial-restore-remote-config', 'premium-access', 'promo-banner'].includes(String(state.remoteConfigPreview?.source || ''));
   const value = hasPreviewBranch && shouldMergePreview ? { ...current, ...previewBranch } : hasPreviewBranch ? previewBranch : current;
   return JSON.stringify(value, null, 2);
 }
@@ -319,7 +320,7 @@ function selectedBool(value, expected) {
 
 function renderReleaseMaintenanceWorkflow() {
   const releasePreview = state.remoteConfigPreview?.source === 'release-maintenance' ? state.remoteConfigPreview : null;
-  const releaseFormLocked = ['partial-restore-remote-config', 'premium-access'].includes(String(state.remoteConfigPreview?.source || ''));
+  const releaseFormLocked = ['partial-restore-remote-config', 'premium-access', 'promo-banner'].includes(String(state.remoteConfigPreview?.source || ''));
   const releaseControlDisabled = releaseFormLocked || !can('application.config.write') || state.busy;
   const reason = releasePreview?.reason ?? '';
   const manualMode = String(remoteConfigValue('texts', 'manual_update_mode', 'optional')) === 'force' ? 'force' : 'optional';
@@ -383,6 +384,45 @@ function renderPremiumAccessWorkflow() {
   </div></section>`;
 }
 
+function promoBannerDateValue(rawValue) {
+  const raw = String(rawValue ?? '').trim();
+  if (/^\d{4}-\d{2}-\d{2}/.test(raw)) return raw.slice(0, 10);
+  if (!/^\d{10,}$/.test(raw)) return '';
+  const date = new Date(Number(raw));
+  if (!Number.isFinite(date.getTime())) return '';
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function renderPromoBannerWorkflow() {
+  const promoPreview = state.remoteConfigPreview?.source === 'promo-banner' ? state.remoteConfigPreview : null;
+  const source = String(state.remoteConfigPreview?.source || '');
+  const promoFormLocked = Boolean(source && source !== 'promo-banner');
+  const controlDisabled = promoFormLocked || !can('application.config.write') || state.busy;
+  const audience = String(remoteConfigValue('texts', 'promo_banner_audience', ''));
+  const platform = String(remoteConfigValue('texts', 'promo_banner_platform', ''));
+  return `<section class="card section"><div class="card-header"><div><h2>Промо-баннер</h2><p>Выгодное предложение в верхней части приложения: текст, ссылка, срок и аудитория без релиза приложения.</p></div><span class="badge warning">Массовая кампания</span></div><div class="card-body">
+    <div class="notice"><strong>Баннер не меняет цену в сторе.</strong> Он только ведёт пользователя по указанной ссылке. Закрытие сохраняется по campaign ID; новый контент публикуйте с новым campaign ID. Агрегированный счётчик закрытий пока недоступен: текущее приложение хранит закрытие локально на устройстве.</div>
+    <div class="fields">
+      <div class="field"><label for="promo-banner-enabled">Показать верхний баннер</label><select id="promo-banner-enabled"${promoFormLocked ? ' disabled' : ''}><option value="false"${selectedBool(remoteConfigValue('bools', 'promo_banner_enabled', false), false)}>Выключен</option><option value="true"${selectedBool(remoteConfigValue('bools', 'promo_banner_enabled', false), true)}>Включён</option></select></div>
+      <div class="field"><label for="promo-banner-campaign">Campaign ID промо-баннера</label><input id="promo-banner-campaign" maxlength="80" value="${escapeHtml(remoteConfigValue('texts', 'promo_banner_campaign_id', ''))}" placeholder="promo_2026_07_offer_a"${promoFormLocked ? ' disabled' : ''}><span class="hint">Не переиспользуйте ID закрытой кампании для нового содержания.</span></div>
+      <div class="field full"><label for="promo-banner-text-ru">Текст RU</label><input id="promo-banner-text-ru" maxlength="240" value="${escapeHtml(remoteConfigValue('texts', 'promo_banner_text_ru', ''))}" placeholder="Специальное предложение — успейте воспользоваться"${promoFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="promo-banner-text-uk">Текст UK</label><input id="promo-banner-text-uk" maxlength="240" value="${escapeHtml(remoteConfigValue('texts', 'promo_banner_text_uk', ''))}" placeholder="Пусто = локализованный текст приложения"${promoFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="promo-banner-text-es">Текст ES</label><input id="promo-banner-text-es" maxlength="240" value="${escapeHtml(remoteConfigValue('texts', 'promo_banner_text_es', ''))}" placeholder="Пусто = локализованный текст приложения"${promoFormLocked ? ' disabled' : ''}></div>
+      <div class="field full"><label for="promo-banner-url">Ссылка по нажатию</label><input id="promo-banner-url" maxlength="400" value="${escapeHtml(remoteConfigValue('texts', 'promo_banner_url', ''))}" placeholder="https://... или phraseman://... (пусто = без перехода)"${promoFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="promo-banner-until">Показывать до конца дня</label><input id="promo-banner-until" type="date" value="${escapeHtml(promoBannerDateValue(remoteConfigValue('texts', 'promo_banner_until', '')))}"${promoFormLocked ? ' disabled' : ''}><span class="hint">Пусто = бессрочно, пока баннер не выключен.</span></div>
+      <div class="field"><label for="promo-banner-audience">Аудитория</label><select id="promo-banner-audience"${promoFormLocked ? ' disabled' : ''}><option value="all"${!audience || audience === 'all' ? ' selected' : ''}>Все пользователи</option><option value="free"${audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div>
+      <div class="field"><label for="promo-banner-platform">Платформа</label><select id="promo-banner-platform"${promoFormLocked ? ' disabled' : ''}><option value=""${platform ? '' : ' selected'}>iOS и Android</option><option value="ios"${platform === 'ios' ? ' selected' : ''}>Только iOS</option><option value="android"${platform === 'android' ? ' selected' : ''}>Только Android</option></select></div>
+      <div class="field full"><label for="promo-banner-reason">Причина публикации</label><textarea id="promo-banner-reason" maxlength="500" placeholder="Что показываем, кому, до какого момента и как остановить"${promoFormLocked ? ' disabled' : ''}>${escapeHtml(promoPreview?.reason ?? '')}</textarea></div>
+    </div>
+    ${promoFormLocked ? '<div class="notice warning section">Активен другой предпросмотр Remote Config. Завершите его или отмените, прежде чем менять промо-баннер.</div>' : ''}
+    ${promoPreview ? `<div class="notice ${promoPreview.changes?.length ? 'warning' : ''} section"><strong>${escapeHtml(promoPreview.title)}</strong><br>${escapeHtml(promoPreview.summary)}${Array.isArray(promoPreview.details) && promoPreview.details.length ? `<div class="code-preview section">${promoPreview.details.map((line) => escapeHtml(line)).join('<br>')}</div>` : ''}${promoPreview.changes?.length ? promoPreview.changes.map((change) => `<div>${escapeHtml(change)}</div>`).join('') : '<div>Изменений нет.</div>'}</div>` : ''}
+    <div class="actions end section">${promoPreview ? '<button class="button" data-action="discard-remote-config-preview" type="button" title="Отменить предпросмотр без изменения production">Изменить ещё</button>' : ''}<button class="button" data-action="preview-promo-banner-stop" type="button"${controlDisabled ? ' disabled' : ''} title="Подготовить безопасное выключение баннера для всех пользователей">Выключить баннер</button><button class="button ${promoPreview ? '' : 'primary'}" data-action="preview-promo-banner" type="button"${controlDisabled ? ' disabled' : ''} title="Показать точные изменения баннера до публикации">Предпросмотр баннера</button>${promoPreview?.changes?.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Опубликовать баннер через серверную команду с audit log и возможностью восстановления">Опубликовать</button>` : ''}</div>
+  </div></section>`;
+}
+
 function renderRemoteConfigHistory() {
   const history = Array.isArray(state.remoteConfig?.history) ? state.remoteConfig.history.slice(0, 12) : [];
   if (!history.length) return emptyState('История изменений пока пуста.');
@@ -395,8 +435,9 @@ function renderApplication() {
   const releasePreviewActive = state.remoteConfigPreview?.source === 'release-maintenance';
   const restorePreviewActive = state.remoteConfigPreview?.source === 'partial-restore-remote-config';
   const premiumPreviewActive = state.remoteConfigPreview?.source === 'premium-access';
-  const editorLocked = releasePreviewActive || restorePreviewActive || premiumPreviewActive;
-  const preview = releasePreviewActive || premiumPreviewActive ? null : state.remoteConfigPreview;
+  const promoPreviewActive = state.remoteConfigPreview?.source === 'promo-banner';
+  const editorLocked = releasePreviewActive || restorePreviewActive || premiumPreviewActive || promoPreviewActive;
+  const preview = releasePreviewActive || premiumPreviewActive || promoPreviewActive ? null : state.remoteConfigPreview;
   const keyCount = (branch) => Object.keys(config[branch] && typeof config[branch] === 'object' ? config[branch] : {}).length;
   const loadButton = `<button class="button" data-action="load-remote-config" type="button" title="Загрузить текущую конфигурацию и историю"${disabledWhenUnauthorized('application.config.write')}>${workspace ? 'Обновить данные' : 'Загрузить конфигурацию'}</button>`;
   return `${pageHeader(PAGES.application, 'Приложение', loadButton)}
@@ -408,7 +449,7 @@ function renderApplication() {
       <article class="card metric"><label>Тексты</label><strong>${workspace ? keyCount('texts') : '—'}</strong><span class="badge">ключей</span></article>
     </section>
     ${!workspace ? `<section class="card section">${emptyState(state.authorized ? 'Загрузите конфигурацию, чтобы редактировать её без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</section>` : `
-      ${renderReleaseMaintenanceWorkflow()}
+      ${renderReleaseMaintenanceWorkflow() + renderPromoBannerWorkflow()}
       ${renderPremiumAccessWorkflow()}
       <section class="card section"><div class="card-header"><div><h2>Редактор конфигурации</h2><p>Формат JSON позволяет сохранить все существующие и новые ключи. Тип каждого значения проверяется до публикации и повторно на сервере.</p></div><span class="badge">ревизия ${Number(config.revision ?? 0)}</span></div><div class="card-body">
         <div class="fields">
@@ -420,6 +461,7 @@ function renderApplication() {
         ${releasePreviewActive ? '<div class="notice warning section">Активен предпросмотр релиза и обслуживания выше. Завершите публикацию или нажмите «Изменить ещё», прежде чем использовать общий JSON-редактор.</div>' : ''}
         ${restorePreviewActive ? '<div class="notice warning section">Активен предпросмотр восстановления значений. JSON-редактор заблокирован, чтобы не отправить устаревший snapshot; нажмите «Изменить ещё», если нужно править вручную.</div>' : ''}
         ${premiumPreviewActive ? '<div class="notice warning section">Активен предпросмотр Free / Plus доступа выше. JSON-редактор заблокирован, чтобы не отправить устаревший snapshot.</div>' : ''}
+        ${promoPreviewActive ? '<div class="notice warning section">Активен предпросмотр промо-баннера выше. JSON-редактор заблокирован, чтобы не отправить устаревший snapshot.</div>' : ''}
         ${preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>${escapeHtml(preview.title || 'Предпросмотр изменений')}</strong><br>${preview.summary ? `${escapeHtml(preview.summary)}<br>` : ''}${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Значения не отличаются от текущей ревизии.'}</div>` : ''}
         <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button ${preview || editorLocked ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy && !editorLocked ? '' : ' disabled'}>Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Опубликовать</button>` : ''}</div>
       </div></section>
@@ -1476,6 +1518,86 @@ function buildReleaseMaintenanceStopPreview() {
   };
 }
 
+function buildPromoBannerPreview() {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const enabled = readReleaseMaintenanceBoolean('promo-banner-enabled');
+  const campaignId = readTextInput('promo-banner-campaign', 80);
+  if (enabled && !/^[A-Za-z0-9_.:-]{3,80}$/.test(campaignId)) throw new Error('Campaign ID промо-баннера: 3–80 символов A-Z, 0-9, _, ., :, -.');
+  const url = readTextInput('promo-banner-url', 400);
+  if (url && !/^(https:\/\/|phraseman:\/\/)/i.test(url)) throw new Error('Ссылка промо-баннера должна начинаться с https:// или phraseman://');
+  const date = readTextInput('promo-banner-until', 10);
+  let until = '';
+  if (date) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Срок промо-баннера должен быть календарной датой.');
+    const untilMs = Date.parse(`${date}T23:59:59`);
+    if (!Number.isFinite(untilMs)) throw new Error('Срок промо-баннера указан некорректно.');
+    until = String(untilMs);
+  }
+  const audienceRaw = String(document.getElementById('promo-banner-audience')?.value ?? 'all');
+  const audience = ['free', 'premium'].includes(audienceRaw) ? audienceRaw : 'all';
+  const platformRaw = String(document.getElementById('promo-banner-platform')?.value ?? '');
+  const platform = ['ios', 'android'].includes(platformRaw) ? platformRaw : '';
+  const reason = readTextInput('promo-banner-reason', 500);
+  if (!reason) throw new Error('Укажите причину изменения промо-баннера.');
+  const nextConfig = {
+    bools: { promo_banner_enabled: enabled },
+    texts: {
+      promo_banner_text_ru: readTextInput('promo-banner-text-ru', 240),
+      promo_banner_text_uk: readTextInput('promo-banner-text-uk', 240),
+      promo_banner_text_es: readTextInput('promo-banner-text-es', 240),
+      promo_banner_url: url,
+      promo_banner_until: until,
+      promo_banner_campaign_id: campaignId,
+      promo_banner_audience: audience,
+      promo_banner_platform: platform,
+    },
+  };
+  const version = Number(state.remoteConfig.config.version);
+  if (Number.isInteger(version) && version > 0) nextConfig.version = version;
+  const changes = remoteConfigChanges(nextConfig);
+  const expiry = date || 'бессрочно';
+  return {
+    nextConfig,
+    reason,
+    changes,
+    source: 'promo-banner',
+    kind: 'standard',
+    title: 'Предпросмотр промо-баннера',
+    summary: enabled ? `Баннер включён: campaign ${campaignId}, аудитория ${audience}, платформа ${platform || 'all'}, срок ${expiry}.` : 'Баннер будет выключен; тексты кампании сохранятся для истории и повторного использования.',
+    details: [
+      `Promo banner audience: ${audience}; platform ${platform || 'ios+android'}.`,
+      `Campaign ID: ${campaignId || 'не задан'}.`,
+      `Destination: ${url || 'баннер без ссылки'}.`,
+      `Expiry: ${expiry}.`,
+      'Close/swipe: пользователь может закрыть баннер; закрытие хранится по campaign ID.',
+      'Promo banner stop condition: подготовить «Выключить баннер» и опубликовать audited preview.',
+    ],
+  };
+}
+
+function buildPromoBannerStopPreview() {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const reason = readTextInput('promo-banner-reason', 500);
+  if (!reason) throw new Error('Укажите причину изменения промо-баннера.');
+  const nextConfig = { bools: { promo_banner_enabled: false } };
+  const version = Number(state.remoteConfig.config.version);
+  if (Number.isInteger(version) && version > 0) nextConfig.version = version;
+  return {
+    nextConfig,
+    reason,
+    changes: remoteConfigChanges(nextConfig),
+    source: 'promo-banner',
+    kind: 'quick-stop',
+    title: 'Предпросмотр выключения промо-баннера',
+    summary: 'Баннер будет скрыт у всех пользователей. Тексты, ссылка, срок и campaign ID не изменятся.',
+    details: [
+      'Promo banner audience: все пользователи, которым баннер виден сейчас.',
+      'Promo banner stop condition: публикация этого preview выключает только promo_banner_enabled.',
+      'Rollback: восстановить значение из истории Remote Config.',
+    ],
+  };
+}
+
 function remoteConfigSnapshotPatch(snapshot) {
   const patch = {};
   for (const branch of ['bools', 'numbers', 'texts']) {
@@ -1517,8 +1639,20 @@ function ensureReleaseMaintenancePreviewIsFresh(preview) {
   return false;
 }
 
+function ensurePromoBannerPreviewIsFresh(preview) {
+  if (preview?.source !== 'promo-banner') return true;
+  const current = preview.kind === 'quick-stop' ? buildPromoBannerStopPreview() : buildPromoBannerPreview();
+  const stale = JSON.stringify(current.nextConfig) !== JSON.stringify(preview.nextConfig) || current.reason !== preview.reason;
+  if (!stale) return true;
+  state.remoteConfigPreview = current;
+  setMessage('Поля баннера изменились после предпросмотра. Preview обновлён — проверьте его перед публикацией.', 'warning');
+  renderCurrentPage();
+  return false;
+}
+
 function ensureRemoteConfigPreviewIsFresh(preview) {
   if (preview?.source === 'release-maintenance') return ensureReleaseMaintenancePreviewIsFresh(preview);
+  if (preview?.source === 'promo-banner') return ensurePromoBannerPreviewIsFresh(preview);
   let current = null;
   if (preview?.source === 'partial-restore-remote-config') current = buildRemoteConfigRestorePreview(preview.reference);
   if (preview?.source === 'premium-access') current = buildPremiumAccessPreview();
@@ -1553,6 +1687,7 @@ function remoteConfigPublishQuestion(preview) {
   if (bools.force_update_enabled === true) risks.push('force update заставит пользователей на старых версиях обновиться');
   if (bools.maintenance_block === true) risks.push('maintenance hard block может закрыть доступ к приложению');
   if (preview?.source === 'premium-access') risks.push('Free / Plus gates меняют монетизацию и доступ к урокам');
+  if (preview?.source === 'promo-banner') risks.push('промо-баннер изменится для выбранной массовой аудитории');
   if (!risks.length) return `Опубликовать ${preview.changes.length} изменений конфигурации?`;
   return `Опубликовать ${preview.changes.length} изменений production-конфигурации?\n\nРиск: ${risks.join('; ')}.\n\nПроверьте audience, store links, campaign ID и stop condition перед подтверждением.`;
 }
@@ -2024,6 +2159,16 @@ async function handleAction(action, target) {
   }
   if (action === 'preview-release-maintenance-stop') {
     try { state.remoteConfigPreview = buildReleaseMaintenanceStopPreview(); setMessage('Предпросмотр быстрого стопа готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-promo-banner') {
+    try { state.remoteConfigPreview = buildPromoBannerPreview(); setMessage('Предпросмотр промо-баннера готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-promo-banner-stop') {
+    try { state.remoteConfigPreview = buildPromoBannerStopPreview(); setMessage('Предпросмотр выключения промо-баннера готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
     renderCurrentPage();
     return;
   }

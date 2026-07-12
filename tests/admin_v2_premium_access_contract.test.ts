@@ -22,7 +22,7 @@ describe('Admin v2 Free / Plus access workflow', () => {
     expect(core).toContain('max_energy');
     expect(core).toContain('free_lessons_extra');
     expect(core).toContain('premium_lessons_extra');
-    expect(core).toContain("['partial-restore-remote-config', 'premium-access']");
+    expect(core).toContain("['partial-restore-remote-config', 'premium-access', 'promo-banner']");
   });
 
   test('uses preview, reason, existing server publish and stale-preview guard', () => {

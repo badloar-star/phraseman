@@ -4463,7 +4463,7 @@ export const LESSON_28_PHRASES: LessonPhrase[] = [
       { text: 'Study', correct: 'Study', distractors: ['Studies', 'Studied', 'Studying', 'Teach', 'Learn'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'by', 'with', 'for'] },
       { text: 'your', correct: 'your', distractors: ['you', 'yours', 'my', 'our', 'their'] },
-      { text: 'own', correct: 'own', distractors: ['self', 'alone', 'same', 'only', 'one'] },
+      { text: 'own', correct: 'own', distractors: ['self', 'alone', 'same', 'only', 'one'], category: 'adjective' },
       { text: 'every', correct: 'every', distractors: ['each', 'all', 'always', 'any', 'some'] },
       { text: 'day', correct: 'day', distractors: ['days', 'daily', 'date', 'night', 'morning'] },
     ],

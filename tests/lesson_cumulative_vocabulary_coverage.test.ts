@@ -1,0 +1,283 @@
+jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
+jest.mock('expo-router', () => ({
+  useLocalSearchParams: () => ({ id: '1' }),
+  useRouter: () => ({ back: jest.fn(), replace: jest.fn() }),
+}));
+jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: ({ children }: any) => children }));
+jest.mock('../components/AddToFlashcard', () => () => null);
+jest.mock('../components/ContentWrap', () => ({ children }: any) => children);
+jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
+jest.mock('../components/feedback/VictoryBurst', () => () => null);
+jest.mock('../app/feedback/feedback_kit', () => ({ __esModule: true, default: {} }));
+jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru', s: { words: {} } }) }));
+jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => ({ studyTarget: 'en' }) }));
+jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: {}, f: {}, themeMode: 'dark' }) }));
+jest.mock('../components/EnergyContext', () => ({ useEnergy: () => ({ energy: 10, isUnlimited: true }) }));
+jest.mock('../components/NoEnergyModal', () => () => null);
+jest.mock('../components/CoachToast', () => () => null);
+jest.mock('../components/ReportErrorButton', () => () => null);
+jest.mock('../components/ThemedConfirmModal', () => () => null);
+jest.mock('../components/ScreenGradient', () => ({ children }: any) => children);
+jest.mock('../hooks/use-screen', () => ({ useScreen: () => ({ isSmallScreen: false }) }));
+jest.mock('../hooks/use-haptics', () => ({ hapticError: jest.fn(), hapticTap: jest.fn() }));
+jest.mock('../hooks/use-flashcards', () => ({ loadFlashcards: jest.fn() }));
+jest.mock('../hooks/use-audio', () => ({ useAudio: () => ({ speakAudio: jest.fn(), voiceOut: false, speechRate: 1 }) }));
+jest.mock('../app/daily_tasks', () => ({ updateMultipleTaskProgress: jest.fn() }));
+jest.mock('../app/settings_edu', () => ({ loadSettings: jest.fn() }));
+jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn() }));
+jest.mock('../app/shards_system', () => ({ addShards: jest.fn() }));
+jest.mock('../app/mistake_log', () => ({ logMistake: jest.fn() }));
+jest.mock('../app/trainer_store', () => ({ activateWordForTrainer: jest.fn(), recordWordMistake: jest.fn() }));
+jest.mock('../app/coach_toast_trigger', () => ({ checkCoachToastNeededWithAnalytics: jest.fn() }));
+jest.mock('../app/stats_daily_breakdown', () => ({ bumpStatsDaily: jest.fn() }));
+jest.mock('../app/lesson_premium_gate', () => ({ openLessonAccessGate: jest.fn(), openLessonGateByRuntime: jest.fn(), shouldBlockLessonAccess: jest.fn() }));
+jest.mock('../app/vocabulary_target_gate', () => ({ vocabularyContentAvailableForTarget: jest.fn(() => true) }));
+
+import { getLessonData } from '../app/lesson_data_all';
+import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
+import {
+  lessonVocabularyCoverageCandidates,
+  lessonVocabularyCoverageText,
+  lessonWordBank,
+} from '../app/lesson_words';
+
+type Classification = 'introduced_now' | 'known_before' | 'covered_irregular' | 'structural' | 'ambiguous' | 'missing';
+type AmbiguousEntry = { lessonId: number; phraseId: string | number; surface: string; reason: string };
+type PendingRemediationEntry = { lessonId: 31; phraseId: string; surface: string; reason: 'Task6 lexical simplification' };
+type Finding = { surface: string; classification: Classification };
+
+const STRUCTURAL = new Set([
+  'a', 'an', 'the', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them',
+  'my', 'your', 'his', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'this', 'that', 'these', 'those',
+  'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'do', 'does', 'did', 'have', 'has', 'had',
+  'can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'not', 'no', 'yes',
+  'and', 'or', 'but', 'if', 'because', 'so', 'than', 'as', 'of', 'to', 'for', 'from', 'in', 'on', 'at', 'by', 'with', 'without',
+  'about', 'into', 'over', 'under', 'up', 'down', 'off', 'out', 'back', 'away', 'there', 'here', 'then', 'now',
+  'what', 'where', 'when', 'why', 'who', 'whom', 'whose', 'which', 'how', 'all', 'any', 'some', 'much', 'many', 'more', 'most',
+  'very', 'too', 'also', 'just', 'only', 'still', 'already', 'yet', 'ever', 'never', 'again', 'really', 'please',
+  'cannot', 'every', 'before', 'after', 'during', 'onto',
+]);
+
+const L16_CHUNKS = [
+  'wake up', 'get up', 'put on', 'take off', 'turn on', 'turn off', 'look for', 'clean up', 'throw away', 'give back', 'find out', 'go back',
+] as const;
+
+// Every exception must be tied to one exact runtime phrase and must be consumed.
+const AMBIGUOUS: AmbiguousEntry[] = [];
+
+const PENDING_L31_REMEDIATION: readonly PendingRemediationEntry[] = ([
+  ['lesson31_phrase_1', 'inexperienced'], ['lesson31_phrase_1', 'huge'],
+  ['lesson31_phrase_2', 'pilot'], ['lesson31_phrase_2', 'complex'],
+  ['lesson31_phrase_4', 'strict'], ['lesson31_phrase_4', 'guard'], ['lesson31_phrase_4', 'suspicious'],
+  ['lesson31_phrase_4', 'visitor'], ['lesson31_phrase_4', 'contents'], ['lesson31_phrase_4', 'leather'],
+  ['lesson31_phrase_4', 'briefcase'], ['lesson31_phrase_6', 'huge'], ['lesson31_phrase_7', 'powerful'],
+  ['lesson31_phrase_7', 'brick'], ['lesson31_phrase_8', 'envelope'], ['lesson31_phrase_10', 'lightning'],
+  ['lesson31_phrase_11', 'sharp'], ['lesson31_phrase_11', 'wind'], ['lesson31_phrase_11', 'touch'],
+  ['lesson31_phrase_12', 'boss'], ['lesson31_phrase_13', 'skillful'], ['lesson31_phrase_13', 'ladder'],
+  ['lesson31_phrase_16', 'delegation'], ['lesson31_phrase_16', 'laboratory'], ['lesson31_phrase_17', 'strict'],
+  ['lesson31_phrase_17', 'inspector'], ['lesson31_phrase_18', 'sharp'], ['lesson31_phrase_18', 'needle'],
+  ['lesson31_phrase_19', 'base'], ['lesson31_phrase_22', 'touch'], ['lesson31_phrase_28', 'strict'],
+  ['lesson31_phrase_28', 'landlord'], ['lesson31_phrase_28', 'huge'], ['lesson31_phrase_28', 'electricity'],
+  ['lesson31_phrase_29', 'object'], ['lesson31_phrase_30', 'engine'], ['lesson31_phrase_31', 'stray'],
+  ['lesson31_phrase_31', 'cross'], ['lesson31_phrase_33', 'sunlight'], ['lesson31_phrase_34', 'stranger'],
+  ['lesson31_phrase_34', 'station'], ['lesson31_phrase_35', 'firefighter'], ['lesson31_phrase_35', 'emergency'],
+  ['lesson31_phrase_36', 'wedding'], ['lesson31_phrase_37', 'official'], ['lesson31_phrase_38', 'mural'],
+  ['lesson31_phrase_39', 'wind'], ['lesson31_phrase_39', 'cart'], ['lesson31_phrase_40', 'strict'],
+  ['lesson31_phrase_42', 'drain'], ['lesson31_phrase_44', 'verdict'], ['lesson31_phrase_45', 'building'],
+  ['lesson31_phrase_45', 'earthquake'], ['lesson31_phrase_46', 'ancient'], ['lesson31_phrase_48', 'mechanic'],
+  ['lesson31_phrase_48', 'engine'], ['lesson31_phrase_49', 'branch'], ['lesson31_phrase_50', 'touch'],
+] as const).map(([phraseId, surface]) => ({
+  lessonId: 31,
+  phraseId,
+  surface,
+  reason: 'Task6 lexical simplification',
+}));
+
+function expandContractions(text: string): string {
+  return text
+    .replace(/\b(i)'m\b/g, '$1 am')
+    .replace(/\b(you|we|they)'re\b/g, '$1 are')
+    .replace(/\b(he|she|it)'s\b/g, '$1 is')
+    .replace(/\b(who|what|where|when|why|how)'s\b/g, '$1 is')
+    .replace(/\b(can)'t\b/g, '$1 not')
+    .replace(/\b(won)'t\b/g, 'will not')
+    .replace(/\b([a-z]+)n't\b/g, '$1 not')
+    .replace(/\b([a-z]+)'ll\b/g, '$1 will')
+    .replace(/\b([a-z]+)'ve\b/g, '$1 have')
+    .replace(/\b([a-z]+)'d\b/g, '$1 would');
+}
+
+function classifySurface(
+  surface: string,
+  introduced: ReadonlySet<string>,
+  known: ReadonlySet<string>,
+  irregularKnown: ReadonlySet<string>,
+  ambiguous?: AmbiguousEntry,
+): Finding {
+  const candidates = lessonVocabularyCoverageCandidates(surface);
+  // Structural and irregular surfaces are categorically outside lexical eligibility.
+  if (STRUCTURAL.has(surface)) return { surface, classification: 'structural' };
+  if (irregularKnown.has(surface)) return { surface, classification: 'covered_irregular' };
+  const introducedExact = introduced.has(surface);
+  const knownExact = known.has(surface);
+  if ([introducedExact, knownExact, Boolean(ambiguous)].filter(Boolean).length > 1) {
+    throw new Error(`Conflicting vocabulary statuses for ${surface}`);
+  }
+  // An exact curated surface is categorically excluded from morphology fallback.
+  if (introducedExact) return { surface, classification: 'introduced_now' };
+  if (knownExact) return { surface, classification: 'known_before' };
+  const introducedMorph = candidates.filter((candidate) => introduced.has(candidate));
+  const knownMorph = candidates.filter((candidate) => known.has(candidate));
+  if ([introducedMorph.length > 0, knownMorph.length > 0, Boolean(ambiguous)].filter(Boolean).length > 1) {
+    throw new Error(`Conflicting vocabulary statuses for ${surface}`);
+  }
+  if (introducedMorph.length) return { surface, classification: 'introduced_now' };
+  if (knownMorph.length) return { surface, classification: 'known_before' };
+  if (ambiguous) return { surface, classification: 'ambiguous' };
+  return { surface, classification: 'missing' };
+}
+
+function consumePhraseSurfaces(text: string, chunks: readonly string[]): string[] {
+  let remaining = expandContractions(lessonVocabularyCoverageText(text));
+  const surfaces: string[] = [];
+  for (const chunk of [...chunks].sort((a, b) => b.length - a.length)) {
+    const normalizedChunk = lessonVocabularyCoverageText(chunk);
+    if (remaining.includes(normalizedChunk)) {
+      surfaces.push(normalizedChunk);
+      remaining = remaining.replace(normalizedChunk, ' ');
+    }
+  }
+  surfaces.push(...remaining.split(' ').filter(Boolean));
+  return surfaces;
+}
+
+describe('lesson cumulative vocabulary coverage', () => {
+  it.each([
+    ["I'm / don't / they’re", "i'm don't they're"],
+    ['Wi-Fi wi fi', 'wifi wifi'],
+  ])('normalizes apostrophes, contractions and Wi-Fi consistently: %s', (surface, normalized) => {
+    expect(lessonVocabularyCoverageText(surface)).toBe(normalized);
+  });
+
+  it.each([
+    ['works', 'work'], ['worked', 'work'], ['working', 'work'],
+    ['batteries', 'battery'], ['went', 'go'],
+    ['cheaper', 'cheap'], ['cheapest', 'cheap'],
+  ])('includes the expected lemma candidate for %s', (surface, lemma) => {
+    expect(lessonVocabularyCoverageCandidates(surface)).toContain(lemma);
+  });
+
+  it('supports adjective degree normalization when the app map defines it', () => {
+    expect(lessonVocabularyCoverageCandidates('better')).toContain('good');
+  });
+
+  it("expands don't and classifies its components without a missing token", () => {
+    const findings = consumePhraseSurfaces("I don't work", []).map((surface) =>
+      classifySurface(surface, new Set(), new Set(['work']), new Set()),
+    );
+    expect(findings).toEqual([
+      { surface: 'i', classification: 'structural' },
+      { surface: 'do', classification: 'structural' },
+      { surface: 'not', classification: 'structural' },
+      { surface: 'work', classification: 'known_before' },
+    ]);
+  });
+
+  it('consumes L16 wake up as one chunk before token classification', () => {
+    const surfaces = consumePhraseSurfaces('I wake up early', L16_CHUNKS);
+    expect(surfaces).toContain('wake up');
+    expect(surfaces).not.toContain('wake');
+    expect(surfaces).not.toContain('up');
+  });
+
+  it('categorically excludes a structural raw-bank token from lexical eligibility', () => {
+    expect(classifySurface('i', new Set(['i']), new Set(), new Set())).toEqual({
+      surface: 'i', classification: 'structural',
+    });
+  });
+
+  it('categorically excludes an irregular form from lexical eligibility', () => {
+    expect(classifySurface('went', new Set(['go']), new Set(), new Set(['went']))).toEqual({
+      surface: 'went', classification: 'covered_irregular',
+    });
+  });
+
+  it('throws when exact and morphology sources imply conflicting lexical statuses', () => {
+    expect(() => classifySurface('working', new Set(['work']), new Set(['worke']), new Set()))
+      .toThrow('Conflicting vocabulary statuses for working');
+  });
+
+  it('rejects a stale ambiguous exception when morphology already resolves the surface', () => {
+    const stale: AmbiguousEntry = {
+      lessonId: 99,
+      phraseId: 'synthetic',
+      surface: 'working',
+      reason: 'synthetic stale exception',
+    };
+    expect(() => classifySurface('working', new Set(['work']), new Set(), new Set(), stale))
+      .toThrow('Conflicting vocabulary statuses for working');
+  });
+
+  it('keeps L26 stay as remain, without stop or lodging ambiguity, in every locale', () => {
+    const stay = lessonWordBank(26).find((word) => word.en === 'stay');
+    expect(stay).toMatchObject({
+      ru: 'Оставаться', uk: 'Залишатися', es: 'quedarse', 'pt-BR': 'ficar',
+      vi: 'ở lại', id: 'tetap / tinggal', tr: 'kalmak', pl: 'zostawać', pos: 'verbs',
+    });
+  });
+
+  it('classifies every runtime phrase candidate exactly once against cumulative vocabulary', () => {
+    const known = new Set<string>();
+    const knownChunks = new Set<string>();
+    const irregularKnown = new Set<string>();
+    const usedAmbiguous = new Set<AmbiguousEntry>();
+    const rows: Array<{ lesson: number; introduced: number; known: number; irregular: number; structural: number; ambiguous: number; missing: string[] }> = [];
+
+    for (let lessonId = 1; lessonId <= 32; lessonId++) {
+      const introduced = new Set(lessonWordBank(lessonId).map((word) => lessonVocabularyCoverageText(word.en)));
+      const introducedChunks = new Set(lessonWordBank(lessonId).map((word) => lessonVocabularyCoverageText(word.en)).filter((word) => word.includes(' ')));
+      for (const verb of IRREGULAR_VERBS_BY_LESSON[lessonId] ?? []) {
+        for (const form of [verb.base, verb.past, verb.pp, ...(verb.altPast ?? []), ...(verb.altPp ?? [])]) {
+          irregularKnown.add(lessonVocabularyCoverageText(form));
+        }
+      }
+      const counts: Record<Classification, number> = { introduced_now: 0, known_before: 0, covered_irregular: 0, structural: 0, ambiguous: 0, missing: 0 };
+      const missing: string[] = [];
+
+      for (const phrase of getLessonData(lessonId)) {
+        const surfaces = consumePhraseSurfaces(
+          phrase.english,
+          [...introducedChunks, ...knownChunks, ...(lessonId === 16 ? L16_CHUNKS : [])],
+        );
+
+        for (const surface of surfaces) {
+          const ambiguous = AMBIGUOUS.find((entry) => entry.lessonId === lessonId && entry.phraseId === phrase.id && entry.surface === surface);
+          const chunkIntroduced = lessonId === 16 && L16_CHUNKS.includes(surface as any);
+          const finding = classifySurface(
+            surface,
+            chunkIntroduced ? new Set([...introduced, surface]) : introduced,
+            known,
+            irregularKnown,
+            ambiguous,
+          );
+          if (ambiguous) usedAmbiguous.add(ambiguous);
+          const classification = finding.classification;
+          counts[classification]++;
+          if (classification === 'missing') missing.push(`${phrase.id}:${surface}`);
+        }
+      }
+
+      rows.push({ lesson: lessonId, introduced: counts.introduced_now, known: counts.known_before, irregular: counts.covered_irregular, structural: counts.structural, ambiguous: counts.ambiguous, missing });
+      for (const word of lessonWordBank(lessonId)) known.add(lessonVocabularyCoverageText(word.en));
+      for (const chunk of introducedChunks) knownChunks.add(chunk);
+    }
+
+    const lesson31Missing = rows.find((row) => row.lesson === 31)?.missing ?? [];
+    const expectedLesson31Missing = PENDING_L31_REMEDIATION.map((entry) => `${entry.phraseId}:${entry.surface}`);
+    expect(lesson31Missing).toEqual(expectedLesson31Missing);
+    const failures = rows.filter((row) => row.lesson !== 31 && row.missing.length > 0);
+    const compactFailureTable = failures.map((row) => `L${row.lesson}\t${row.missing.join(',')}`).join('\n');
+    if (failures.length) throw new Error(`Cumulative vocabulary gaps:\n${compactFailureTable}`);
+    if (usedAmbiguous.size !== AMBIGUOUS.length) throw new Error('Remove unused typed ambiguous entries');
+  });
+});

@@ -55,7 +55,6 @@ import { recordWordMistake, activateWordForTrainer } from './trainer_store';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
-import { LESSON_DATA } from './lesson_data_all';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { buildLessonWordOptions } from './lesson_word_options';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -300,6 +299,7 @@ const FUNCTION_WORDS: Record<string, Word> = {
   small: { en: 'small', ru: 'маленький', uk: 'маленький', es: 'pequeno', 'pt-BR': 'pequeno', vi: 'nhỏ', id: 'kecil', tr: 'küçük', pl: 'mały', pos: 'adjectives' },
   clear: { en: 'clear', ru: 'ясный / понятный', uk: 'ясний / зрозумілий', es: 'claro', 'pt-BR': 'claro / fácil de entender', vi: 'rõ / dễ hiểu', id: 'jelas / mudah dipahami', tr: 'açık / anlaşılır', pl: 'jasny / zrozumiały', pos: 'adjectives' },
   simple: { en: 'simple', ru: 'простой', uk: 'простий', es: 'simple', 'pt-BR': 'simples', vi: 'đơn giản', id: 'sederhana', tr: 'basit / sade', pl: 'prosty', pos: 'adjectives' },
+  confusing: { en: 'confusing', ru: 'запутанный / непонятный', uk: 'заплутаний / незрозумілий', es: 'confuso', 'pt-BR': 'confuso', vi: 'khó hiểu / gây bối rối', id: 'membingungkan', tr: 'kafa karıştırıcı', pl: 'mylący / zagmatwany', pos: 'adjectives' },
   easy: { en: 'easy', ru: 'лёгкий', uk: 'легкий', es: 'facil', 'pt-BR': 'fácil', vi: 'dễ', id: 'mudah', tr: 'kolay', pl: 'łatwy', pos: 'adjectives' },
   body: { en: 'body', ru: 'тело', uk: 'тіло', es: 'cuerpo', 'pt-BR': 'corpo', vi: 'cơ thể / thân thể', id: 'tubuh / badan', tr: 'vücut / beden', pl: 'ciało', pos: 'nouns' },
   learn: { en: 'learn', ru: 'учиться / узнавать', uk: 'вчитися / дізнаватися', es: 'aprender', 'pt-BR': 'aprender', vi: 'học / biết thêm', id: 'belajar / mengetahui', tr: 'öğrenmek', pl: 'uczyć się / dowiadywać się', pos: 'verbs' },
@@ -410,15 +410,11 @@ function phraseTextForCoverage(english: string): string {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[']/g, "'")
+    .replace(/[’]/g, "'")
     .replace(/\bwi[\s-]?fi\b/g, 'wifi')
     .replace(/[^a-z0-9' ]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-}
-
-function supplementalWordsForLesson(lessonId: number): Word[] {
-  return [];
 }
 
 const WORDS_BY_LESSON: Record<number, Word[]> = {
@@ -509,6 +505,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'serious', ru: 'Серьёзный', uk: 'Серйозний', es: 'serio', pos: 'adjectives' },
   ],
   3: [
+    FUNCTION_WORDS.great,
+    { en: 'good', ru: 'Хороший', uk: 'Гарний', es: 'bueno', pos: 'adjectives' },
     // Личные местоимения — повторение
     { en: 'I', ru: 'Я', uk: 'Я', es: 'Yo', pos: 'pronouns' },
     { en: 'you', ru: 'Ты / Вы', uk: 'Ти / Ви', es: 'Tú / usted', pos: 'pronouns' },
@@ -641,6 +639,10 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'breakfast', ru: 'Завтрак', uk: 'Сніданок', es: 'desayuno', pos: 'nouns' },
   ],
   5: [
+    FUNCTION_WORDS.reserve,
+    { en: 'study', ru: 'Учиться / Изучать', uk: 'Вчитися / Вивчати', es: 'estudiar', pos: 'verbs' },
+    { en: 'hard', ru: 'Сложный; тяжелый', uk: 'Складний; важкий', es: 'difícil', pos: 'adjectives' },
+    { en: 'want', ru: 'Хотеть', uk: 'Хотіти', es: 'querer', pos: 'verbs' },
     { en: 'sing', ru: 'Петь', uk: 'Співати', es: 'cantar', pos: 'verbs' },
     { en: 'book', ru: 'Бронировать', uk: 'Бронювати', es: 'reservar',
     'pt-BR': 'reservar', pos: 'verbs' },
@@ -669,6 +671,10 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'cold', ru: 'Холодный', uk: 'Холодний', es: 'frío', pos: 'adjectives' },
   ],
   6: [
+    FUNCTION_WORDS.route,
+    { en: 'close', ru: 'Закрывать', uk: 'Закривати', es: 'cerrar', pos: 'verbs' },
+    { en: 'key', ru: 'Ключ', uk: 'Ключ', es: 'llave', pos: 'nouns' },
+    { en: 'window', ru: 'Окно', uk: 'Вікно', es: 'ventana', pos: 'nouns' },
     { en: 'where', ru: 'Где', uk: 'Де', es: 'dónde', pos: 'adverbs' },
     { en: 'what', ru: 'Что', uk: 'Що', es: 'qué', pos: 'adverbs' },
     { en: 'when', ru: 'Когда', uk: 'Коли', es: 'cuándo', pos: 'adverbs' },
@@ -715,6 +721,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'cafe', ru: 'Кафе (заведение; не напиток «кофе»)', uk: 'Кафе (заклад; не напій «кава»)', es: 'café', pos: 'nouns' },
   ],
   7: [
+    { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
+    { en: 'idea', ru: 'Идея', uk: 'Ідея', es: 'idea', pos: 'nouns' },
     { en: 'i', ru: 'Я', uk: 'Я', es: 'yo', pos: 'nouns' },
     { en: 'he', ru: 'Он', uk: 'Він', es: 'él', pos: 'nouns' },
     { en: 'she', ru: 'Она', uk: 'Вона', es: 'ella', pos: 'nouns' },
@@ -800,6 +808,9 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'coffee', ru: 'Кофе', uk: 'Кава', es: 'café', pos: 'nouns' },
   ],
   8: [
+    FUNCTION_WORDS.leave,
+    FUNCTION_WORDS.walk,
+    FUNCTION_WORDS.run,
     { en: 'on', ru: 'В / по (дни недели)', uk: 'У / по (дні тижня)', es: 'el / los + день', pos: 'adverbs' },
     { en: 'in', ru: 'В (месяцы, сезоны, части суток)', uk: 'У (місяці, пори року, частини доби)', es: 'en + месяц / сезон', pos: 'adverbs' },
     { en: 'at', ru: 'В / о (точное время, час)', uk: 'О / у (точний час, година)', es: 'a las + время', pos: 'adverbs' },
@@ -949,6 +960,12 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'window', ru: 'Окно', uk: 'Вікно', es: 'ventana', pos: 'nouns' },
   ],
   10: [
+    FUNCTION_WORDS.enter,
+    { en: 'later', ru: 'Позже', uk: 'Пізніше', es: 'después / más tarde', pos: 'adverbs' },
+    { en: 'today', ru: 'Сегодня', uk: 'Сьогодні', es: 'hoy', pos: 'adverbs' },
+    { en: 'water', ru: 'Поливать', uk: 'Поливати', es: 'regar', pos: 'verbs' },
+    { en: 'fast', ru: 'Быстро', uk: 'Швидко', es: 'rápido', pos: 'adverbs' },
+    FUNCTION_WORDS.show,
     { en: 'can', ru: 'Мочь / Уметь', uk: 'Могти / Вміти', es: 'poder', pos: 'verbs' },
     { en: 'must', ru: 'Должен / Обязан', uk: 'Повинен / Зобов\'язаний', es: 'deber', pos: 'verbs' },
     { en: "can\'t", ru: 'Нельзя / не могу', uk: 'Не можна / не можу', es: 'no poder', 'pt-BR': 'não pode / não consigo', vi: 'không thể / không được', id: 'tidak bisa / tidak boleh', tr: 'yapamamak / yasak', pl: 'nie mogę / nie wolno', pos: 'verbs' },
@@ -1000,6 +1017,9 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'mask', ru: 'Маска', uk: 'Маска', es: 'máscara', pos: 'nouns' },
   ],
   11: [
+    FUNCTION_WORDS.clothes,
+    { en: 'play', ru: 'Играть', uk: 'Грати', es: 'tocar / jugar', 'pt-BR': 'tocar / jogar', vi: 'chơi / chơi nhạc', id: 'bermain / memainkan', tr: 'çalmak / oynamak', pl: 'grać', pos: 'verbs' },
+    { en: 'letter', ru: 'Письмо', uk: 'Лист', es: 'carta', pos: 'nouns' },
     { en: 'past simple', ru: 'Прошедшее простое время', uk: 'Минулий простий час', es: 'pasado simple', pos: 'nouns' },
     { en: 'yesterday', ru: 'Вчера', uk: 'Вчора', es: 'ayer', pos: 'adverbs' },
     { en: 'last week', ru: 'На прошлой неделе', uk: 'Минулого тижня', es: 'la semana pasada', pos: 'adverbs' },
@@ -1150,6 +1170,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'shoes', ru: 'Туфли / ботинки', uk: 'Туфлі / черевики', es: 'zapatos', pos: 'nouns' },
   ],
   12: [
+    FUNCTION_WORDS.advice,
+    { en: 'early', ru: 'Рано', uk: 'Рано', es: 'temprano', pos: 'adverbs' },
     // Past Simple — неправильные формы (инфинитив → прошедшее)
     // Словарь урока
     { en: 'apple', ru: 'Яблоко', uk: 'Яблуко', es: 'manzana', pos: 'nouns' },
@@ -1244,6 +1266,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'early', ru: 'Рано', uk: 'Рано', es: 'temprano', pos: 'adverbs' },
   ],
   14: [
+    FUNCTION_WORDS.confusing,
     { en: 'cheaper', ru: 'Дешевле · более дешёвый', uk: 'Дешевший', es: 'más barato', pos: 'adjectives' },
     { en: 'more expensive', ru: 'Дороже · более дорогой', uk: 'Дорожчий', es: 'más caro', pos: 'adjectives' },
     { en: 'better', ru: 'Лучше (сравн. от good)', uk: 'Краще (від good)', es: 'mejor', pos: 'adjectives' },
@@ -1330,6 +1353,9 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'here', ru: 'Здесь', uk: 'Тут', es: 'aquí', pos: 'adverbs' },
   ],
   16: [
+    FUNCTION_WORDS.put,
+    FUNCTION_WORDS.throw,
+    FUNCTION_WORDS.give,
     { en: 'wake up', ru: 'Просыпаться', uk: 'Прокидатися', es: 'despertarse', pos: 'verbs' },
     { en: 'get up', ru: 'Вставать', uk: 'Вставати', es: 'levantarse', pos: 'verbs' },
     { en: 'put on', ru: 'Надевать', uk: 'Надягати', es: 'ponerse', pos: 'verbs' },
@@ -1459,6 +1485,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'stand', ru: 'Стоять', uk: 'Стояти', es: 'estar de pie', pos: 'verbs' },
   ],
   20: [
+    FUNCTION_WORDS.small,
     /* Урок 20: артикли a / an / the / нулевой артикль */
     { en: 'phone', ru: 'Телефон', uk: 'Телефон', es: 'teléfono',
     'pt-BR': 'telefone', pos: 'nouns' },
@@ -1482,6 +1509,9 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'food', ru: 'Еда', uk: 'Їжа', es: 'comida', pos: 'nouns' },
   ],
   21: [
+    FUNCTION_WORDS.simple,
+    { en: 'knock', ru: 'Стучать', uk: 'Стукати', es: 'llamar (a la puerta)', pos: 'verbs' },
+    FUNCTION_WORDS.clear,
     { en: 'someone', ru: 'Кто-то (нейтрально)', uk: 'Хтось (нейтрально)', es: 'alguien', pos: 'pronouns' },
     { en: 'somebody', ru: 'Кто-то (разговорно)', uk: 'Хтось (розмовно)', es: 'alguien', pos: 'pronouns' },
     { en: 'anyone', ru: 'Кто-нибудь (нейтрально)', uk: 'Хто-небудь (нейтрально)', es: 'alguien', pos: 'pronouns' },
@@ -1510,6 +1540,10 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'told', ru: 'Сказал(а)', uk: 'Сказав / сказала', es: 'dijo', pos: 'verbs' },
   ],
   22: [
+    FUNCTION_WORDS.body,
+    FUNCTION_WORDS.thank,
+    FUNCTION_WORDS.easy,
+    FUNCTION_WORDS.learn,
     { en: 'reading', ru: 'Чтение', uk: 'Читання', es: 'leer', pos: 'verbs' },
     { en: 'cooking', ru: 'Готовка; приготовление', uk: 'Готування', es: 'cocinar', pos: 'verbs' },
     { en: 'waiting', ru: 'Ожидание; ждать', uk: 'Очікування; чекати', es: 'esperar', pos: 'verbs' },
@@ -1552,6 +1586,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'late', ru: 'Опаздывать; поздно', uk: 'Запізнюватися; пізно', es: 'tarde', pos: 'adjectives' },
   ],
   23: [
+    FUNCTION_WORDS.online,
     { en: 'cleaned', ru: 'Убирается / убран', uk: 'Прибирається', es: 'se limpia / limpiado',
     'pt-BR': 'É limpo / está arrumado', pos: 'verbs' },
     { en: 'checked', ru: 'Проверяется / проверен', uk: 'Перевіряється', es: 'se revisa / revisado', pos: 'verbs' },
@@ -1686,7 +1721,9 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'knock', ru: 'Стучать', uk: 'Стукати', es: 'llamar (a la puerta)', pos: 'verbs' },
     { en: 'bus', ru: 'Автобус', uk: 'Автобус', es: 'autobús', pos: 'nouns' },
   ],
-    26: [
+  26: [
+    FUNCTION_WORDS.get,
+    { en: 'stay', ru: 'Оставаться', uk: 'Залишатися', es: 'quedarse', 'pt-BR': 'ficar', vi: 'ở lại', id: 'tetap / tinggal', tr: 'kalmak', pl: 'zostawać', pos: 'verbs' },
     { en: 'if', ru: 'Если', uk: 'Якщо', es: 'si',
     'pt-BR': 'Se', pos: 'adverbs' },
     { en: 'will', ru: 'Будет / сделает (будущее)', uk: 'Буде / зробить', es: 'will (futuro)', pos: 'verbs' },
@@ -1743,6 +1780,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'nothing', ru: 'Ничего', uk: 'Нічого', es: 'nada', pos: 'pronouns' },
   ],
   28: [
+    { en: 'own', ru: 'собственный', uk: 'власний', es: 'propio', 'pt-BR': 'próprio', vi: 'riêng / của chính mình', id: 'sendiri / milik sendiri', tr: 'kendi / kendine ait', pl: 'własny', pos: 'adjectives' },
     { en: 'myself', ru: 'Себя / сам (я)', uk: 'Себе / сам (я)', es: 'me mismo', 'pt-BR': 'eu mesmo / a mim mesmo', vi: 'chính tôi / bản thân tôi', id: 'diri saya sendiri', tr: 'kendim', pl: 'sam / siebie', pos: 'pronouns' },
     { en: 'yourself', ru: 'Себя / сам (ты/вы)', uk: 'Себе / сам (ти/ви)', es: 'te mismo', 'pt-BR': 'você mesmo / a si mesmo', vi: 'chính bạn / bản thân bạn', id: 'dirimu sendiri', tr: 'kendin / kendiniz', pl: 'sam / siebie', pos: 'pronouns' },
     { en: 'himself', ru: 'Себя / сам (он)', uk: 'Себе / сам (він)', es: 'se mismo', 'pt-BR': 'ele mesmo / a si mesmo', vi: 'chính anh ấy / bản thân anh ấy', id: 'dirinya sendiri', tr: 'kendisi', pl: 'sam / siebie', pos: 'pronouns' },
@@ -1941,6 +1979,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'let', ru: 'Позволил(а) / позволять', uk: 'Дозволив / дозволила; дозволяти', es: 'dejó / permitir', 'pt-BR': 'deixou / permitir', vi: 'đã cho phép / cho phép', id: 'membiarkan / mengizinkan', tr: 'izin verdi / izin vermek', pl: 'pozwolił / pozwalać', pos: 'verbs' },
   ],
   32: [
+    FUNCTION_WORDS.wake,
     { en: 'be used to', ru: 'Быть привыкшим к', uk: 'Бути звиклим до', es: 'estar acostumbrado a', 'pt-BR': 'estar acostumado a', vi: 'quen với', id: 'terbiasa dengan', tr: 'alışkın olmak', pl: 'być przyzwyczajonym do', pos: 'verbs' },
     { en: 'working', ru: 'Работать (в процессе)', uk: 'Працювати (у процесі)', es: 'trabajando', pos: 'verbs' },
     { en: 'studying', ru: 'Учиться', uk: 'Вчитися', es: 'estudiando', pos: 'verbs' },
@@ -2138,6 +2177,13 @@ const IRREGULAR_SURFACE_TO_BASE: Record<string, string> = {
   forgotten: 'forget',
 };
 
+const IRREGULAR_DEGREE_TO_BASE: Record<string, string> = {
+  better: 'good',
+  best: 'good',
+  worse: 'bad',
+  worst: 'bad',
+};
+
 const DICTIONARY_VERB_SURFACE_FORMS = new Set([
   'charged',
   'learning',
@@ -2162,10 +2208,6 @@ function canonicalDictionaryEnglish(w: Word, verbLex: Set<string>): string {
   if (w.pos === 'verbs') return canonicalLemmaVerb(lower, verbLex);
   if (w.pos === 'nouns') return canonicalLemmaNoun(lower);
   return lower;
-}
-
-function bankDictionaryKey(w: Word, verbLex: Set<string>): string {
-  return canonicalDictionaryEnglish(w, verbLex);
 }
 
 function mergeSurfaceToLemma(w: Word, lemma: string, singularNounGlosses?: Map<string, Word>): Word {
@@ -2194,6 +2236,7 @@ function coverageTokenCandidates(token: string, verbLex: Set<string>): string[] 
   const candidates = new Set<string>([lower, canonicalLemmaNoun(lower), canonicalLemmaVerb(lower, verbLex)]);
   const irregularBase = IRREGULAR_SURFACE_TO_BASE[lower];
   if (irregularBase) candidates.add(irregularBase);
+  if (IRREGULAR_DEGREE_TO_BASE[lower]) candidates.add(IRREGULAR_DEGREE_TO_BASE[lower]!);
 
   if (/[^aeiou]ies$/.test(lower) && lower.length > 4) candidates.add(lower.slice(0, -3) + 'y');
   if (lower.endsWith('es') && lower.length > 4) {
@@ -2220,59 +2263,6 @@ function coverageTokenCandidates(token: string, verbLex: Set<string>): string[] 
   return [...candidates];
 }
 
-function buildGlobalGlossIndex(
-  raw: Record<number, Word[]>,
-  verbLex: Set<string>,
-  singularNounGlosses: Map<string, Word>,
-): Map<string, Word> {
-  const index = new Map<string, Word>();
-  for (const lid of Object.keys(raw).map(Number).sort((a, b) => a - b)) {
-    for (const w of raw[lid] ?? []) {
-      if (w.pos === 'irregular_verbs') continue;
-      const key = bankDictionaryKey(w, verbLex);
-      if (index.has(key)) continue;
-      const row = w.pos === 'verbs' || w.pos === 'nouns'
-        ? mergeSurfaceToLemma(w, canonicalDictionaryEnglish(w, verbLex), singularNounGlosses)
-        : w;
-      index.set(key, row);
-      const compactKey = phraseTextForCoverage(w.en).replace(/\s+/g, '');
-      if (compactKey && !compactKey.includes(' ') && !index.has(compactKey)) index.set(compactKey, row);
-    }
-  }
-  return index;
-}
-
-function knownSupplementalWordsForLesson(
-  lessonId: number,
-  globalGlosses: Map<string, Word>,
-  verbLex: Set<string>,
-): Word[] {
-  const phrases = LESSON_DATA[lessonId]?.phrases ?? [];
-  const found = new Map<string, Word>();
-
-  for (const phrase of phrases) {
-    const text = phraseTextForCoverage(phrase.english);
-    if (!text) continue;
-    const padded = ` ${text} `;
-
-    for (const [key, row] of globalGlosses) {
-      if (key.includes(' ') && padded.includes(` ${key} `)) found.set(key, row);
-    }
-
-    for (const token of text.split(' ')) {
-      for (const candidate of coverageTokenCandidates(token, verbLex)) {
-        const row = globalGlosses.get(candidate);
-        if (row) {
-          found.set(row.en.toLowerCase(), row);
-          break;
-        }
-      }
-    }
-  }
-
-  return [...found.values()];
-}
-
 /**
  * Слова урока для словаря/тренажёра: лемма EN для `verbs`, без повторов леммы внутри урока
  * и без повторов между уроками (первое вхождение по номеру урока сохраняется).
@@ -2292,14 +2282,11 @@ function buildWordsByLessonForBank(raw: Record<number, Word[]>): Record<number, 
       }
     }
   }
-  const globalGlosses = buildGlobalGlossIndex(raw, verbLex, singularNounGlosses);
   const out: Record<number, Word[]> = {};
   const seenAcrossLessons = new Set<string>();
   for (const lid of lessonIds) {
     const arr = [
       ...(raw[lid] ?? []),
-      ...supplementalWordsForLesson(lid),
-      ...knownSupplementalWordsForLesson(lid, globalGlosses, verbLex),
     ];
     const rowOut: Word[] = [];
     const seenInLesson = new Set<string>();
@@ -2361,7 +2348,18 @@ function isDictionaryWordAllowed(word: Word): boolean {
   return true;
 }
 
+const LESSON_VERB_SURFACE_LEXICON = collectVerbSurfaceLexicon(WORDS_BY_LESSON);
 const WORDS_BY_LESSON_FOR_BANK = buildWordsByLessonForBank(WORDS_BY_LESSON);
+
+/** Audit-only normalization shared with the runtime lesson vocabulary builder. */
+export function lessonVocabularyCoverageText(surface: string): string {
+  return phraseTextForCoverage(surface);
+}
+
+/** Audit-only morphology shared with the runtime lesson vocabulary builder. */
+export function lessonVocabularyCoverageCandidates(surface: string): string[] {
+  return coverageTokenCandidates(phraseTextForCoverage(surface), LESSON_VERB_SURFACE_LEXICON);
+}
 
 /**
  * Слова урока для словаря и тренажёра: без `irregular_verbs` (отдельный экран «Неправильные глаголы»)

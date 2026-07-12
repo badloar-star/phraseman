@@ -1,5 +1,11 @@
 # Project Rules
 
+## Application Codex freshness
+
+- Any session that changes an app route, screen, admin section, Firestore path, Cloud Function/callable, analytics event, digest source, or metric definition must run `npm run codex:generate`.
+- Before completion, run `npm run codex:check`. A stale Codex is a blocking verification failure; do not hand-edit generated Codex JSON.
+- The searchable admin payload is `admin/generated/app-codex.json`; the technical source copies live under `docs/atlas/`.
+
 ## Admin UI Bible
 
 - Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.

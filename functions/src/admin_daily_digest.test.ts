@@ -2,12 +2,19 @@ import {
   aggregateDigestFacts,
   isDigestEmpty,
   buildDigestPrompt,
+  buildDigestSystemPrompt,
+  requirePendingDigestWindowStart,
   utcDayKey,
   assessDigestCompleteness,
   classifyStoredDigest,
   shouldPreserveCompleteDigest,
   type DigestSourceRows,
 } from './admin_daily_digest';
+import {
+  compareMetric,
+  readLastSuccessfulEndMs,
+  resolveDigestWindows,
+} from './admin_digest_contracts';
 
 describe('digest concurrent write guard', () => {
   it('preserves a schema-v2 complete digest when a partial run reaches the final commit', () => {
@@ -25,6 +32,8 @@ const EMPTY_ROWS: DigestSourceRows = {
   safety: [],
   newUsers: [],
   purchases: [],
+  shardPurchases: [],
+  progressEvents: [],
   paywallPurchases: [],
   ideas: [],
   queues: {
@@ -256,6 +265,96 @@ describe('buildDigestPrompt / utcDayKey', () => {
   test('utcDayKey — YYYY-MM-DD по UTC', () => {
     expect(utcDayKey(Date.UTC(2026, 6, 3, 23, 59, 0))).toBe('2026-07-03');
     expect(utcDayKey(Date.UTC(2026, 0, 1, 0, 0, 0))).toBe('2026-01-01');
+  });
+
+  test('включает учебную активность и покупки кристаллов в факты дайджеста', () => {
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      progressEvents: [
+        { userId: 'u1', type: 'lesson_complete' },
+        { userId: 'u1', type: 'xp_gain' },
+        { userId: 'u2', type: 'lesson_complete' },
+      ],
+      shardPurchases: [{ productId: 'phraseman_shards_80', shards: 92, eventType: 'NON_RENEWING_PURCHASE' }],
+    });
+    expect(facts.learning).toEqual({ events: 3, activeLearners: 2, lessonCompletions: 2 });
+    expect(facts.revenue.shardStorePurchases).toEqual({ total: 1, shardsGranted: 92 });
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
+  test('v2 prompt names exact windows, metric semantics and unavailable sources', () => {
+    const facts = aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{ platform: 'ios' }] });
+    const prompt = buildDigestPrompt(facts, {
+      currentWindow: { startMs: 100, endMs: 200 },
+      previousWindow: { startMs: 0, endMs: 100 },
+      sourceCoverage: [
+        { sourceId: 'app_errors', status: 'failed', errorCode: 'failed-precondition' },
+      ],
+      revenueReconciliation: { dashboard: 60, webhook: 58, funnel: 31, webhookDelta: null, funnelCoverageRatio: null, status: 'not_comparable', explanation: 'Different semantics.' },
+      revenueCatCoverage: { status: 'ok' },
+      codex: { product: 'Phraseman', routeCount: 42 },
+    });
+    const parsed = JSON.parse(prompt);
+    expect(parsed.reporting.currentWindow).toEqual({ startMs: 100, endMs: 200 });
+    expect(parsed.reporting.previousWindow).toEqual({ startMs: 0, endMs: 100 });
+    expect(parsed.instructions).toEqual(expect.arrayContaining([
+      expect.stringContaining('факт'),
+      expect.stringContaining('гипотез'),
+      expect.stringContaining('не называй данные полными'),
+    ]));
+    expect(parsed.metricDefinitions.some((metric: { id: string }) => metric.id === 'trial_starts')).toBe(true);
+    expect(parsed.sourceCoverage[0]).toMatchObject({ sourceId: 'app_errors', status: 'failed' });
+    expect(parsed.revenueReconciliation).toMatchObject({ dashboard: 60, webhook: 58, funnel: 31, status: 'not_comparable' });
+    expect(parsed.codex).toEqual({ product: 'Phraseman', routeCount: 42 });
+  });
+
+  test('system prompt no longer claims complete 24-hour coverage', () => {
+    const prompt = buildDigestSystemPrompt();
+    expect(prompt).toContain('НЕ считай вход полным');
+    expect(prompt).toContain('с момента предыдущего открытия вкладки дайджеста');
+    expect(prompt).toContain('RevenueCat API');
+    expect(prompt).not.toContain('ПОЛНУЮ СВОДКУ');
+    expect(prompt).not.toContain('за последние сутки');
+    expect(prompt).toContain('Product Manager');
+    expect(prompt).toContain('показательное сравнение');
+    expect(prompt).toContain('человеческие названия');
+  });
+});
+
+describe('digest v2 windows and comparisons', () => {
+  test('requires a registered opening cursor instead of silently using generation time', () => {
+    expect(requirePendingDigestWindowStart({ pendingWindowStartMs: 123 })).toBe(123);
+    expect(() => requirePendingDigestWindowStart({ windowEndMs: 456 })).toThrow('digest_open_required');
+  });
+  test('starts after the last successful run and compares an equal previous interval', () => {
+    expect(resolveDigestWindows(1_000_000, 700_000)).toEqual({
+      current: { startMs: 700_000, endMs: 1_000_000 },
+      previous: { startMs: 400_000, endMs: 700_000 },
+      reason: 'last_successful_digest',
+    });
+  });
+
+  test('uses a 24-hour fallback for the first digest', () => {
+    const nowMs = Date.UTC(2026, 6, 11, 12);
+    const windows = resolveDigestWindows(nowMs);
+    expect(windows.current).toEqual({ startMs: nowMs - 86_400_000, endMs: nowMs });
+    expect(windows.previous).toEqual({ startMs: nowMs - 172_800_000, endMs: nowMs - 86_400_000 });
+    expect(windows.reason).toBe('first_run_fallback');
+  });
+
+  test('does not manufacture a percent change from a zero baseline', () => {
+    expect(compareMetric(5, 0)).toEqual({
+      current: 5,
+      previous: 0,
+      absoluteDelta: 5,
+      percentDelta: null,
+    });
+  });
+
+  test('accepts only a successful finite cursor from digest state', () => {
+    expect(readLastSuccessfulEndMs({ status: 'succeeded', windowEndMs: 700_000 })).toBe(700_000);
+    expect(readLastSuccessfulEndMs({ status: 'failed', windowEndMs: 800_000 })).toBeUndefined();
+    expect(readLastSuccessfulEndMs({ status: 'succeeded', windowEndMs: 'bad' })).toBeUndefined();
   });
 });
 

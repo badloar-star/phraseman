@@ -10206,6 +10206,8 @@
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="ИИ-сводка «что случилось за сутки»: репорты, отмены, ошибки, safety — одним взглядом" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
+  <div class="tab" onclick="switchTab('product-manager')" title="Product Manager Workspace: период с прошлого PM-дайджеста, покрытие данных, выводы, решения и эксперименты" style="background:rgba(59,130,246,0.12);border:1px solid rgba(96,165,250,0.35);color:#bfdbfe;font-weight:700">PM Workspace</div>
+  <div class="tab" onclick="switchTab('app-codex')" title="Атлас экранов, маршрутов, данных, событий и метрик Phraseman">Кодекс приложения</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
   <div class="tab" onclick="switchTab('ideas-decided')" title="Архив решённых идей: принятые (выдан год Плюс) и отклонённые — с текстом, отправленным пользователю" style="background:rgba(74,222,128,0.10);border:1px solid rgba(74,222,128,0.30);color:#86efac;font-weight:700">✅ Идеи: решённые</div>
@@ -11934,14 +11936,50 @@
   <div id="cr-content"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
-<!-- DAILY DIGEST TAB (ИИ-сводка «что случилось за сутки» для владельца) -->
+<!-- DAILY DIGEST TAB — точный период с прошлого открытия -->
 <div id="tab-daily-digest" class="reports-tab">
   <div class="reports-toolbar">
-    <button id="dd-generate" onclick="generateDailyDigest()" style="background:rgba(139,124,255,0.18);border:1px solid rgba(139,124,255,0.45);color:#c4b5fd;font-weight:700">✨ Сгенерировать за сутки</button>
-    <button onclick="loadDailyDigest(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <button id="dd-generate" onclick="generateDailyDigest()" title="Собрать события с прошлого открытия дайджеста">Сформировать дайджест</button>
+    <button onclick="loadDailyDigest(true)" title="Обновить последний сохранённый результат">Обновить</button>
+    <label for="dd-history" class="sr-only">История запусков</label>
+    <select id="dd-history" aria-label="История запусков"><option value="">Последний успешный запуск</option></select>
     <span class="reports-count" id="dd-count"></span>
   </div>
-  <div id="dd-content"><div class="reports-empty">⏳ Загрузка...</div></div>
+  <div id="dd-open-status" role="status" style="min-height:18px;margin:2px 0 10px;color:#94a3b8;font-size:12px"></div>
+  <section id="dd-period" aria-label="Период дайджеста"></section>
+  <section id="dd-kpis" aria-label="Сравнительные показатели"></section>
+  <section id="dd-charts" aria-label="Графики дайджеста"></section>
+  <section id="dd-content" aria-live="polite"><div class="reports-empty">Загрузка…</div></section>
+  <section id="dd-coverage" aria-label="Покрытие источников"></section>
+</div>
+
+<div id="tab-product-manager" class="reports-tab">
+  <div class="reports-toolbar">
+    <button id="pm-generate" onclick="generateProductManagerBrief()" title="Собрать данные с момента прошлого PM-дайджеста и выпустить новый Product Manager brief">Сформировать PM brief</button>
+    <button onclick="loadProductManagerWorkspace(true)" title="Перечитать последний сохранённый Product Manager brief">Обновить</button>
+    <span class="reports-count" id="pm-count"></span>
+  </div>
+  <section id="pm-overview" aria-label="Product Manager обзор"></section>
+  <section id="pm-metrics" aria-label="Product Manager сравнительные метрики"></section>
+  <section id="pm-opportunities" aria-label="Product Manager рекомендации и идеи"></section>
+  <section id="pm-experiments" aria-label="Product Manager эксперименты"></section>
+  <section id="pm-decisions" aria-label="Product Manager журнал решений"></section>
+  <section id="pm-coverage" aria-label="Product Manager покрытие данных"></section>
+</div>
+
+<div id="tab-app-codex" class="reports-tab">
+  <div class="reports-toolbar">
+    <label for="app-codex-search" class="sr-only">Поиск по Кодексу приложения</label>
+    <input id="app-codex-search" type="text" aria-label="Поиск по Кодексу приложения" placeholder="Экран, маршрут, коллекция, событие или метрика">
+    <label for="app-codex-kind" class="sr-only">Тип сущности Кодекса</label>
+    <select id="app-codex-kind" aria-label="Тип сущности Кодекса">
+      <option value="">Все типы</option><option value="screen">Экраны</option><option value="admin_tab">Разделы админки</option><option value="firestore_path">Данные</option><option value="callable">Серверные функции</option><option value="event">События</option><option value="metric">Метрики</option>
+    </select>
+    <button type="button" onclick="loadAppCodex(true)" title="Перечитать сгенерированный Кодекс">Обновить</button>
+    <span class="reports-count" id="app-codex-count"></span>
+  </div>
+  <div id="app-codex-freshness" aria-live="polite"></div>
+  <div id="app-codex-results"><div class="reports-empty">Загрузка…</div></div>
 </div>
 
 <!-- GMAIL SUPPORT INBOX TAB (входящая почта support.phraseman@gmail.com + ИИ-ответы) -->
@@ -14309,6 +14347,30 @@
     }
     return _fnAdminGenerateDailyDigest;
   }
+  let _fnAdminOpenDailyDigest = null;
+  function getAdminOpenDailyDigestCallable() {
+    if (!_fnAdminOpenDailyDigest) {
+      _fnAdminOpenDailyDigest = httpsCallable(functionsUs, 'adminOpenDailyDigest');
+    }
+    return _fnAdminOpenDailyDigest;
+  }
+  let _fnAdminGenerateProductBrief = null;
+  function getAdminGenerateProductBriefCallable() {
+    if (!_fnAdminGenerateProductBrief) {
+      _fnAdminGenerateProductBrief = httpsCallable(functionsUs, 'adminGenerateProductBrief');
+    }
+    return _fnAdminGenerateProductBrief;
+  }
+  let _fnAdminMutateProductItem = null;
+  function getAdminMutateProductItemCallable() {
+    if (!_fnAdminMutateProductItem) {
+      _fnAdminMutateProductItem = httpsCallable(functionsUs, 'adminMutateProductItem');
+    }
+    return _fnAdminMutateProductItem;
+  }
+  window.getAdminGenerateProductBriefCallable = getAdminGenerateProductBriefCallable;
+  window.getAdminMutateProductItemCallable = getAdminMutateProductItemCallable;
+  window.pmAdminFirestore = { db, doc, getDoc, collection, getDocs, query, where, orderBy, limit };
   const _supportCallables = {};
   function supportCallable(name) {
     if (!_supportCallables[name]) _supportCallables[name] = httpsCallable(functionsUs, name);
@@ -14377,7 +14439,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','product-manager','app-codex','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -19284,7 +19346,12 @@
     if(tab==='safety-flags' && !window._safetyFlagsLoaded) loadSafetyFlags();
     if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
     if(tab==='compliance-radar' && !window._complianceRadarLoaded && typeof loadComplianceRadar === 'function') loadComplianceRadar(false);
-    if(tab==='daily-digest' && !window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    if(tab==='daily-digest') {
+      if (typeof window.registerDailyDigestOpen === 'function') void window.registerDailyDigestOpen();
+      if (!window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    }
+    if(tab==='product-manager' && typeof window.loadProductManagerWorkspace === 'function') window.loadProductManagerWorkspace(false);
+    if(tab==='app-codex' && typeof window.loadAppCodex === 'function') window.loadAppCodex(false);
     if(tab==='gmail-support' && !window._supportInboxLoaded && typeof loadSupportInbox === 'function') loadSupportInbox(false);
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
@@ -20730,6 +20797,7 @@
     site: 'Site',
     analytics: 'Analytics',
     'openai-budget': 'OpenAI budget',
+    'product-manager': 'PM Workspace',
     reports: 'Reports',
     emails: 'Emails',
     'website-inbox': 'Site support',
@@ -27186,6 +27254,7 @@
 
   // ═══ DAILY DIGEST — ИИ-сводка «что случилось за сутки» ══════════════════════
   function renderDigestDoc(box, data) {
+    if (typeof window.renderDigestV2 === 'function' && window.renderDigestV2(data)) return;
     if (!data) {
       box.innerHTML = '<div class="reports-empty" style="padding:22px">За сегодня дайджеста ещё нет. Нажми «✨ Сгенерировать за сутки» — ИИ прочитает репорты, отмены, ошибки и safety за последние 24 часа и напишет короткую сводку.</div>';
       return;
@@ -27208,6 +27277,19 @@
       <div style="margin-top:12px;font-size:11.5px;color:#6b7280">Сгенерировано: ${escapeHtml(String(when))} · модель: ${escapeHtml(String(data.model || '—'))} · за ${escapeHtml(String(data.dayKey || ''))}</div>`;
   }
 
+  window.registerDailyDigestOpen = async function registerDailyDigestOpen() {
+    const status = document.getElementById('dd-open-status');
+    try {
+      const result = await getAdminOpenDailyDigestCallable()({});
+      window._dailyDigestPendingWindows = result?.data?.windows || null;
+      if (status) status.textContent = result?.data?.reused
+        ? 'Окно уже зафиксировано для этого открытия.'
+        : 'Период зафиксирован от предыдущего открытия дайджеста.';
+    } catch (error) {
+      if (status) status.textContent = 'Не удалось зафиксировать открытие: ' + ((error && (error.message || error.code)) || error);
+    }
+  };
+
   window.loadDailyDigest = async function(force) {
     const box = document.getElementById('dd-content');
     if (!box) return;
@@ -27215,11 +27297,31 @@
     box.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
       await auth.currentUser?.getIdToken(true).catch(() => null);
+      const latest = await getDoc(doc(db, 'admin_digest_state', 'latest'));
+      const runId = latest.exists() ? String(latest.data().runId || '') : '';
       const dayKey = new Date().toISOString().slice(0, 10);
-      const snap = await getDoc(doc(db, 'admin_digests', dayKey));
+      const snap = runId
+        ? await getDoc(doc(db, 'admin_digest_runs', runId))
+        : await getDoc(doc(db, 'admin_digests', dayKey));
       renderDigestDoc(box, snap.exists() ? snap.data() : null);
+      const history = document.getElementById('dd-history');
+      if (history) {
+        const historySnap = await getDocs(query(collection(db, 'admin_digest_runs'), orderBy('generatedAtMs', 'desc'), limit(60)));
+        const successfulRuns = historySnap.docs.filter((runDoc) => runDoc.data()?.status === 'succeeded').slice(0, 30);
+        history.innerHTML = successfulRuns.map((runDoc, index) => {
+          const run = runDoc.data() || {};
+          const label = run.generatedAtMs ? new Date(run.generatedAtMs).toLocaleString('ru-RU') : runDoc.id;
+          return `<option value="${escapeHtml(runDoc.id)}"${index === 0 ? ' selected' : ''}>${escapeHtml(label)}</option>`;
+        }).join('') || '<option value="">История пока пуста</option>';
+        history.onchange = async () => {
+          if (!history.value) return;
+          box.innerHTML = '<div class="reports-empty">⏳ Загрузка запуска...</div>';
+          const selected = await getDoc(doc(db, 'admin_digest_runs', history.value));
+          renderDigestDoc(box, selected.exists() ? selected.data() : null);
+        };
+      }
       const countEl = document.getElementById('dd-count');
-      if (countEl) countEl.textContent = snap.exists() ? 'дайджест за сегодня' : 'ещё не создан';
+      if (countEl) countEl.textContent = snap.exists() ? 'последний успешный дайджест' : 'ещё не создан';
       window._dailyDigestLoaded = true;
     } catch (e) {
       window._dailyDigestLoaded = false;
@@ -27231,22 +27333,22 @@
     const box = document.getElementById('dd-content');
     const btn = document.getElementById('dd-generate');
     if (!box) return;
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ ИИ думает…'; }
-    box.innerHTML = '<div class="reports-empty">✨ ИИ читает события за сутки и пишет сводку… (10–20 сек)</div>';
+    if (btn) { btn.disabled = true; btn.textContent = 'Формирую…'; }
+    box.innerHTML = '<div class="reports-empty">Собираю данные с прошлого открытия, сравниваю с предыдущим равным периодом и готовлю продуктовые выводы…</div>';
     try {
       const call = getAdminGenerateDailyDigestCallable();
       const res = await call({});
       const data = res?.data || null;
       renderDigestDoc(box, data);
       const countEl = document.getElementById('dd-count');
-      if (countEl) countEl.textContent = data?.empty ? 'сутки тихие' : 'обновлено только что';
-      showToast(data?.empty ? 'За сутки заметных событий нет' : '✅ Дайджест готов', 'ok');
+      if (countEl) countEl.textContent = data?.empty ? 'за период нет подтверждённых событий' : 'обновлено только что';
+      showToast(data?.empty ? 'За период подтверждённых событий нет' : 'Дайджест готов', 'ok');
     } catch (e) {
       const msg = (e && (e.message || e.code)) || String(e);
       box.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(msg)}</div>`;
       showToast('Не удалось: ' + msg, 'err');
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = '✨ Сгенерировать за сутки'; }
+      if (btn) { btn.disabled = false; btn.textContent = 'Сформировать дайджест'; }
     }
   };
 
@@ -40049,5 +40151,8 @@
   setTimeout(init, 1200);
 })();
 </script>
+<script src="admin-digest.js"></script>
+<script src="admin-product-manager.js"></script>
+<script src="app-codex.js"></script>
 </body>
 </html>

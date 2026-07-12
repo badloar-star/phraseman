@@ -3,6 +3,8 @@
   "main": "index.js",
   "version": "1.5.53",
   "scripts": {
+    "codex:generate": "node scripts/generate_project_atlas.mjs --codex-only",
+    "codex:check": "node scripts/generate_project_atlas.mjs --check",
     "start": "expo start",
     "text-integrity:audit": "node scripts/text-integrity/inventory.mjs",
     "text-integrity:update-baseline": "node scripts/text-integrity/inventory.mjs --update-baseline",

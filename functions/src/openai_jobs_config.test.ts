@@ -51,6 +51,11 @@ describe('openai_jobs_config — resolveJobConfig', () => {
     expect(weekly.model).toBe('gpt-4o-mini');
   });
 
+  it('supports content factory and image jobs without restoring removed features', async () => {
+    expect(await resolveJobConfig(fakeDb(undefined), 'content_factory')).toEqual({ model: 'gpt-4.1-mini', globalDailyCap: 500, enabled: true });
+    expect(await resolveJobConfig(fakeDb(undefined), 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 40, enabled: true });
+  });
+
   it('cap clamps negatives to 0', async () => {
     const db = fakeDb({ stats: { globalDailyCap: -50 } });
     expect((await resolveJobConfig(db, 'stats')).globalDailyCap).toBe(0);

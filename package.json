@@ -1,7 +1,7 @@
 {
   "name": "phraseman",
   "main": "index.js",
-  "version": "1.5.53",
+  "version": "1.5.56",
   "scripts": {
     "codex:generate": "node scripts/generate_project_atlas.mjs --codex-only",
     "codex:check": "node scripts/generate_project_atlas.mjs --check",

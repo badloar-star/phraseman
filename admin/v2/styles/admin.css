@@ -132,6 +132,32 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .metric label { color: var(--muted); font-size: 12px; }
 .metric strong { display: block; margin: 12px 0 7px; font-size: 27px; letter-spacing: -0.03em; }
 .metric small { color: var(--muted); }
+.analytics-toolbar { display: flex; flex-wrap: wrap; align-items: end; justify-content: flex-end; gap: 10px; }
+.analytics-toolbar label { width: 100%; color: var(--muted); font-size: 12px; font-weight: 700; }
+.analytics-toolbar select { min-width: 132px; min-height: 44px; }
+.analytics-status { display: grid; gap: 8px; margin-bottom: 20px; }
+.analytics-status > small { color: var(--muted); font-size: 12px; }
+.section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+.section-heading h2 { margin: 0; font-size: 17px; }
+.section-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.analytics-summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.analytics-breakdown-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.analytics-funnel-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.analytics-metric { min-width: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); box-shadow: none; }
+.analytics-metric strong { overflow-wrap: anywhere; color: var(--ink); }
+.analytics-metric small { display: block; line-height: 1.4; }
+.analytics-source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.analytics-source-grid > article { min-width: 0; padding: 13px; border: 1px solid var(--line); border-radius: 10px; }
+.analytics-source-grid > article > div { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.analytics-source-grid dl { display: grid; grid-template-columns: minmax(90px, .7fr) minmax(0, 1.3fr); gap: 6px 10px; margin: 12px 0 0; font-size: 12px; }
+.analytics-source-grid dt { color: var(--muted); }
+.analytics-source-grid dd { min-width: 0; margin: 0; overflow-wrap: anywhere; text-align: right; }
+.analytics-empty { min-height: 72px; display: grid; place-items: center; color: var(--muted); text-align: center; }
+.table-scroll { max-width: 100%; overflow-x: auto; }
+.analytics-skeleton .analytics-metric > span, .analytics-skeleton .analytics-metric > strong, .analytics-skeleton .analytics-metric > small { display: block; border-radius: 999px; background: #e5e9ee; }
+.analytics-skeleton .analytics-metric > span { width: 42%; height: 9px; }
+.analytics-skeleton .analytics-metric > strong { width: 28%; height: 28px; margin: 14px 0 10px; }
+.analytics-skeleton .analytics-metric > small { width: 76%; height: 9px; }
 .columns { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr); gap: 16px; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .actions.end { justify-content: flex-end; }
@@ -347,6 +373,7 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .nav-button { justify-content: center; padding: 0; }
   .sidebar-footer { justify-content: center; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .analytics-summary-grid, .analytics-funnel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .toolbar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .briefing-board { grid-template-columns: 1fr; }
@@ -375,6 +402,9 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .factory-step > span:last-child { display: none; }
   .fields, .checkbox-grid, .unit-grid { grid-template-columns: 1fr; }
   .metrics { grid-template-columns: 1fr; }
+  .analytics-toolbar { width: 100%; justify-content: stretch; }
+  .analytics-toolbar select, .analytics-toolbar .button { flex: 1 1 140px; }
+  .analytics-summary-grid, .analytics-breakdown-grid, .analytics-funnel-grid, .analytics-source-grid { grid-template-columns: 1fr; }
   .briefing-count-grid { grid-template-columns: 1fr; }
   .user-search-form, .profile-section-grid, .profile-hero { grid-template-columns: 1fr; }
   .profile-hero { display: grid; }

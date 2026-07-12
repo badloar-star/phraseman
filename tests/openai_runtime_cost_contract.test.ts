@@ -56,6 +56,7 @@ describe('OpenAI runtime cost controls', () => {
     expect(timeout).toContain('ExplainCallableTimeoutError');
     expect(timeout).toContain('explain_callable_timeout');
     expect(timeout).toContain('Promise.race([promise, timeout])');
+    expect(timeout).toContain('const DEFAULT_EXPLAIN_CALLABLE_TIMEOUT_MS = 35000');
 
     for (const { source, callable } of [
       { source: read('app/ai_mistake_explain_client.ts'), callable: 'explainMistake' },

@@ -36,13 +36,14 @@ const PAGES = Object.freeze({
   'daily-briefing': { title: 'Product Manager Digest', description: 'Утренний управленческий отчёт: рост, деньги, риски, очереди и действия на сегодня.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
   'asset-studio': { title: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через безопасный серверный workflow Generate → Review → Publish.' },
+  campaigns: { title: 'Кампании', description: 'Сообщения внутри приложения, аудитории, опросы и история откликов.' },
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
   content_editor: new Set(['content.read', 'content.draft.write']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
   support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
   moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
@@ -89,6 +90,10 @@ const PREMIUM_ACCESS_LIMITS = Object.freeze([
 ]);
 
 const LESSON_LOCK_COUNT = 32;
+const APP_MESSAGE_LANGUAGES = Object.freeze([
+  { key: 'ru', label: 'RU' }, { key: 'uk', label: 'UK' }, { key: 'es', label: 'ES' }, { key: 'ptBr', label: 'PT-BR' },
+  { key: 'vi', label: 'VI' }, { key: 'id', label: 'ID' }, { key: 'tr', label: 'TR' }, { key: 'pl', label: 'PL' },
+]);
 
 const state = {
   route: 'overview',
@@ -121,6 +126,7 @@ const state = {
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
+  campaigns: { state: 'idle', items: [], preview: null, error: '' },
 };
 
 let actions = null;
@@ -201,11 +207,13 @@ function authStillValid(authGeneration, permission) {
 function renderNavigation() {
   const nav = document.getElementById('primary-nav');
   if (!nav) return;
-  nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${state.route === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span></button>`).join('');
-  const current = ADMIN_SECTIONS.find((section) => section.route === state.route);
+  const parentRoutes = { campaigns: 'application' };
+  const activeRoute = parentRoutes[state.route] || state.route;
+  nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${activeRoute === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span></button>`).join('');
+  const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
   const page = PAGES[state.route] ?? PAGES.overview;
   const breadcrumbs = document.getElementById('breadcrumbs');
-  if (breadcrumbs) breadcrumbs.innerHTML = current ? `Админка&nbsp;&nbsp;/&nbsp;&nbsp;<strong>${escapeHtml(current.label)}</strong>` : `Админка&nbsp;&nbsp;/&nbsp;&nbsp;<strong>${escapeHtml(page.title)}</strong>`;
+  if (breadcrumbs) breadcrumbs.innerHTML = current ? `Админка&nbsp;&nbsp;/&nbsp;&nbsp;${escapeHtml(current.label)}${state.route !== activeRoute ? `&nbsp;&nbsp;/&nbsp;&nbsp;<strong>${escapeHtml(page.title)}</strong>` : ''}` : `Админка&nbsp;&nbsp;/&nbsp;&nbsp;<strong>${escapeHtml(page.title)}</strong>`;
 }
 
 function renderAuthStatus() {
@@ -275,7 +283,7 @@ const CONTROL_PANEL_WORKFLOWS = Object.freeze([
   { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть v2 Free / Plus', fallback: 'control-panel', risk: 'Guarded publish', coverage: '5 старых кнопок', guarded: true },
   { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
   { title: 'ИИ и бюджеты', description: 'Theo model, daily caps, фоновые AI jobs, OpenAI budget и Asset Studio.', primary: '#asset-studio', primaryLabel: 'Открыть v2 Asset Studio', fallback: 'openai-budget', risk: 'AI budget', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Кампании и коммуникации', description: 'Paywall A/B, app messages, Telegram alerts и push-notify.', primary: '#app-messages', primaryLabel: 'Старый модуль сообщений', fallback: 'app-messages', risk: 'Legacy campaign module', coverage: '5 переходов', guarded: false },
+  { title: 'Кампании и коммуникации', description: 'App messages и опросы создаются и включаются в v2; push, Paywall A/B, Plus survey и Telegram остаются следующими переносами.', primary: '#campaigns', primaryLabel: 'Открыть v2 кампании', fallback: 'app-messages', risk: 'App messages guarded; push pending', coverage: 'частично перенесено', guarded: true },
 ]);
 
 function renderControlPanel() {
@@ -467,6 +475,46 @@ function renderApplication() {
       </div></section>
       <section class="card section"><div class="card-header"><div><h2>Последние изменения</h2><p>Серверный журнал с причиной и ревизией.</p></div></div><div class="card-body">${renderRemoteConfigHistory()}</div></section>
     `}`;
+}
+
+function appMessageDraftValue(draft, language, field, fallback = '') {
+  return draft?.translations?.[language]?.[field] ?? fallback;
+}
+
+function renderAppMessageTranslations(draft, locked) {
+  return APP_MESSAGE_LANGUAGES.filter((language) => language.key !== 'ru').map((language) => {
+    const options = Array.isArray(appMessageDraftValue(draft, language.key, 'pollOptions', [])) ? appMessageDraftValue(draft, language.key, 'pollOptions', []).join('\n') : '';
+    return `<div class="fields section"><div class="field"><label for="app-message-title-${language.key}">Тема ${language.label}</label><input id="app-message-title-${language.key}" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, language.key, 'title'))}" placeholder="Пусто = RU"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-body-${language.key}">Текст ${language.label}</label><textarea id="app-message-body-${language.key}" rows="2" maxlength="2000" placeholder="Пусто = RU"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, language.key, 'body'))}</textarea></div><div class="field"><label for="app-message-poll-question-${language.key}">Вопрос опроса ${language.label}</label><input id="app-message-poll-question-${language.key}" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, language.key, 'pollQuestion'))}" placeholder="Пусто = RU"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-poll-options-${language.key}">Варианты ${language.label}, по строке</label><textarea id="app-message-poll-options-${language.key}" rows="3" maxlength="1000" placeholder="Пусто = варианты RU"${locked ? ' disabled' : ''}>${escapeHtml(options)}</textarea></div></div>`;
+  }).join('');
+}
+
+function renderCampaigns() {
+  const campaignState = state.campaigns;
+  const draft = campaignState.preview?.payload || {};
+  const locked = !can('campaigns.write') || state.busy;
+  const now = Date.now();
+  const items = Array.isArray(campaignState.items) ? campaignState.items : [];
+  const activeCount = items.filter((item) => item.active !== false && Number(item.expiresAtMs || 0) > now).length;
+  const reads = items.reduce((sum, item) => sum + Number(item.readCount || 0), 0);
+  const reactions = items.reduce((sum, item) => sum + Number(item.likeCount || 0) + Number(item.dislikeCount || 0), 0);
+  const list = campaignState.state === 'loading' ? emptyState('Загрузка сообщений…') : campaignState.state === 'error' ? `<div class="notice danger">${escapeHtml(campaignState.error)}</div>` : !items.length ? emptyState('Сообщений пока нет. Создайте draft и проверьте preview.') : `<div class="data-list">${items.map((item) => {
+    const expired = Number(item.expiresAtMs || 0) > 0 && Number(item.expiresAtMs) <= now;
+    const active = item.active !== false && !expired;
+    const nextActive = item.active === false;
+    return `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без темы')}</strong><small>${escapeHtml(item.kind === 'poll' ? 'Опрос' : 'Сообщение')} · ${escapeHtml(item.audience || 'all')} · приоритет ${Number(item.priority || 0)} · до ${escapeHtml(dateTime(item.expiresAtMs))}</small><small>Прочтения ${Number(item.readCount || 0)} · лайки ${Number(item.likeCount || 0)} · дизлайки ${Number(item.dislikeCount || 0)} · голоса ${Number(item.pollVoteCount || 0)}</small><small><code>${escapeHtml(item.id)}</code></small></div><div class="actions"><span class="badge ${active ? 'success' : expired ? 'warning' : ''}">${expired ? 'Истекло' : active ? 'Активно' : 'Draft / выключено'}</span><button class="button small" data-app-message-toggle="${escapeHtml(item.id)}" data-next-active="${nextActive}" type="button"${locked || expired ? ' disabled' : ''} title="Включить или выключить сообщение через серверную команду с причиной и audit log">${nextActive ? 'Включить' : 'Выключить'}</button></div></article>`;
+  }).join('')}</div>`;
+  const options = Array.from({ length: 6 }, (_, index) => `<div class="field"><label for="app-message-poll-option-${index + 1}">Вариант ${index + 1}</label><input id="app-message-poll-option-${index + 1}" maxlength="160" value="${escapeHtml(draft?.translations?.ru?.pollOptions?.[index] || '')}" placeholder="${index < 2 ? 'Обязательно для опроса' : 'Необязательно'}"${locked ? ' disabled' : ''}></div>`).join('');
+  const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для редактирования, удаления и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
+  return `${pageHeader(PAGES.campaigns, 'Приложение / Кампании', headerActions)}
+    <div class="notice"><strong>Native v2: создание и управление показом.</strong> Редактирование и удаление будут перенесены следующим безопасным срезом после политики сохранения голосов. До этого старый модуль остаётся доступен для этих двух операций.</div>
+    <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">like + dislike</span></article></section>
+    <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное inbox-сообщение или опрос. Draft никому не показывается; active появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Production campaign</span></div><div class="card-body">
+      <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Draft / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема RU</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст RU</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса RU</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">Причина публикации</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и stop condition"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
+      <details class="section"><summary>Переводы на 8 языков</summary><div class="notice section">Пустое поле безопасно наследует RU. Для опроса варианты вводятся по одному на строку в том же порядке.</div>${renderAppMessageTranslations(draft, locked)}</details>
+      ${campaignState.preview ? `<div class="notice warning section"><strong>Предпросмотр кампании</strong><br>${escapeHtml(campaignState.preview.summary)}<div class="code-preview section">${campaignState.preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
+      <div class="actions end section">${campaignState.preview ? '<button class="button" data-action="discard-app-message-preview" type="button" title="Отменить preview без записи в production">Изменить ещё</button>' : ''}<button class="button ${campaignState.preview ? '' : 'primary'}" data-action="preview-app-message" type="button"${locked ? ' disabled' : ''} title="Сначала показать точное сообщение, аудиторию и срок без записи в production">Предпросмотр</button>${campaignState.preview ? `<button class="button primary" data-action="publish-app-message" type="button"${locked ? ' disabled' : ''} title="Создать сообщение через серверную команду с reason, idempotency и audit log">Опубликовать</button>` : ''}</div>
+    </div></section>
+    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2><p>Статус, срок, аудитория, прочтения, реакции и голоса опросов.</p></div></div><div class="card-body"><div class="field full"><label for="app-message-toggle-reason">Причина включения или выключения</label><input id="app-message-toggle-reason" maxlength="500" placeholder="Почему меняется показ и как вернуть прежнее состояние"></div>${list}</div></section>`;
 }
 
 function dateTime(value) {
@@ -759,6 +807,8 @@ const AUDIT_ACTION_LABELS = Object.freeze({
   grant_reward: 'Выдача награды',
   email_contacts_backfill: 'Обновление контактов почты',
   email_campaign_send: 'Отправка email-кампании',
+  'app_message.create': 'Создание сообщения в приложении',
+  'app_message.toggle': 'Изменение показа сообщения',
   ai_daily_digest: 'Ежедневный дайджест',
   ai_daily_digest_blocked: 'Дайджест заблокирован',
   promo_code_upsert: 'Изменение промокода',
@@ -1163,7 +1213,7 @@ function renderReportQueue() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1516,6 +1566,53 @@ function buildReleaseMaintenanceStopPreview() {
       'Stop condition: публикация этого preview сбрасывает опасные флаги; значения можно частично восстановить из истории.',
     ],
   };
+}
+
+function appMessageLines(id, maxItems = 6) {
+  return readTextInput(id, 1000).split(/\r?\n/).map((item) => item.trim()).filter(Boolean).slice(0, maxItems);
+}
+
+function buildAppMessagePreview() {
+  const kind = String(document.getElementById('app-message-kind')?.value || 'message') === 'poll' ? 'poll' : 'message';
+  const active = String(document.getElementById('app-message-active')?.value || 'false') === 'true';
+  const audienceRaw = String(document.getElementById('app-message-audience')?.value || 'all');
+  const audience = ['all', 'free', 'premium'].includes(audienceRaw) ? audienceRaw : 'all';
+  const priority = Math.floor(Number(readTextInput('app-message-priority', 4) || 0));
+  const ttlDays = Math.floor(Number(readTextInput('app-message-ttl-days', 3) || 30));
+  if (!Number.isFinite(priority) || priority < 0 || priority > 99) throw new Error('Приоритет должен быть от 0 до 99.');
+  if (!Number.isFinite(ttlDays) || ttlDays < 1 || ttlDays > 30) throw new Error('Срок сообщения должен быть от 1 до 30 дней.');
+  const translations = {};
+  for (const language of APP_MESSAGE_LANGUAGES) {
+    const pollOptions = language.key === 'ru'
+      ? Array.from({ length: 6 }, (_, index) => readTextInput(`app-message-poll-option-${index + 1}`, 160)).filter(Boolean)
+      : appMessageLines(`app-message-poll-options-${language.key}`);
+    translations[language.key] = {
+      title: readTextInput(`app-message-title-${language.key}`, 160),
+      body: readTextInput(`app-message-body-${language.key}`, 2000),
+      pollQuestion: readTextInput(`app-message-poll-question-${language.key}`, 300),
+      pollOptions,
+    };
+  }
+  if (!translations.ru.title || !translations.ru.body) throw new Error('Заполните тему и текст RU.');
+  if (kind === 'poll' && (!translations.ru.pollQuestion || translations.ru.pollOptions.length < 2)) throw new Error('Для опроса заполните вопрос RU и минимум два варианта.');
+  const reason = readTextInput('app-message-reason', 500);
+  if (!reason) throw new Error('Укажите причину публикации сообщения.');
+  const payload = { kind, active, audience, priority, ttlDays, translations };
+  const summary = `${kind === 'poll' ? 'Опрос' : 'Сообщение'} · ${active ? 'сразу активно' : 'draft'} · аудитория ${audience} · ${ttlDays} дней.`;
+  const details = [
+    `Тема RU: ${translations.ru.title}`,
+    `Текст RU: ${translations.ru.body}`,
+    `Аудитория: ${audience}; приоритет ${priority}.`,
+    `Срок: ${ttlDays} дней; после истечения клиент перестанет показывать сообщение.`,
+    kind === 'poll' ? `Опрос: ${translations.ru.pollQuestion}; вариантов ${translations.ru.pollOptions.length}.` : 'Опрос: нет.',
+    `Переводы: ${APP_MESSAGE_LANGUAGES.filter((language) => translations[language.key].title || language.key === 'ru').map((language) => language.label).join(', ')}; пустые значения наследуют RU.`,
+    active ? 'Stop condition: выключить сообщение в истории с обязательной причиной.' : 'Draft не виден пользователям до отдельного включения.',
+  ];
+  return { payload, reason, summary, details };
+}
+
+function sameAppMessagePayload(left, right) {
+  return JSON.stringify(left || {}) === JSON.stringify(right || {});
 }
 
 function buildPromoBannerPreview() {
@@ -1990,11 +2087,68 @@ async function loadPromoCodes() {
   }
 }
 
+async function loadAppMessages() {
+  const authGeneration = state.authGeneration;
+  state.campaigns = { ...state.campaigns, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listAppMessages({ limit: 120 });
+    if (!authStillValid(authGeneration, 'campaigns.read')) return STALE_AUTH_RESULT;
+    state.campaigns = { ...state.campaigns, state: 'ready', items: Array.isArray(result?.items) ? result.items : [], error: '' };
+    renderCurrentPage();
+    return result;
+  } catch (error) {
+    if (authGeneration === state.authGeneration) {
+      state.campaigns = { ...state.campaigns, state: 'error', error: errorMessage(error) };
+      renderCurrentPage();
+    }
+    throw error;
+  }
+}
+
+async function toggleAppMessage(messageId, active) {
+  const reason = readTextInput('app-message-toggle-reason', 500);
+  if (!reason) return setMessage('Укажите причину включения или выключения сообщения.', 'warning');
+  const item = state.campaigns.items.find((candidate) => String(candidate.id) === String(messageId));
+  if (!item) return setMessage('Сообщение не найдено в загруженном списке.', 'warning');
+  const actionLabel = active ? 'включить' : 'выключить';
+  if (!globalThis.confirm(`${actionLabel === 'включить' ? 'Включить' : 'Выключить'} сообщение «${item.titleRu || item.id}»?\n\nПричина: ${reason}`)) return;
+  return runBusy(async () => {
+    await actions.setAppMessageActive({ messageId, active, reason, idempotencyKey: id('app-message-toggle'), requestId: id('request-app-message-toggle') });
+    await loadAppMessages();
+  }, active ? 'Сообщение включено.' : 'Сообщение выключено.');
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
+  if (action === 'preview-app-message') {
+    try { state.campaigns.preview = buildAppMessagePreview(); setMessage('Предпросмотр сообщения готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'discard-app-message-preview') { state.campaigns.preview = null; renderCurrentPage(); return; }
+  if (action === 'publish-app-message') {
+    const preview = state.campaigns.preview;
+    if (!preview?.payload) return setMessage('Сначала соберите preview сообщения.', 'warning');
+    let current;
+    try { current = buildAppMessagePreview(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
+    if (!sameAppMessagePayload(current.payload, preview.payload) || current.reason !== preview.reason) {
+      state.campaigns.preview = current;
+      setMessage('Форма изменилась после preview. Проверьте обновлённый предпросмотр и опубликуйте ещё раз.', 'warning');
+      renderCurrentPage();
+      return;
+    }
+    if (!globalThis.confirm(`Создать ${preview.payload.kind === 'poll' ? 'опрос' : 'сообщение'}?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    return runBusy(async () => {
+      await actions.createAppMessage({ ...preview.payload, reason: preview.reason, idempotencyKey: id('app-message-create'), requestId: id('request-app-message-create') });
+      state.campaigns.preview = null;
+      await loadAppMessages();
+    }, preview.payload.active ? 'Сообщение опубликовано и активно.' : 'Draft сообщения создан.');
+  }
   if (action === 'load-promo-codes') return runBusy(loadPromoCodes, 'Промокоды и активации загружены.');
   if (action === 'preview-promo-codes' || action === 'preview-one-time-promo-codes') {
     try {
@@ -2395,6 +2549,8 @@ async function handleClick(event) {
     globalThis.location.hash = 'users';
     return runBusy(() => loadAdminUserProfile(promoUserUid), 'Единый профиль загружен из активации промокода.');
   }
+  const appMessageToggleId = target.getAttribute('data-app-message-toggle');
+  if (appMessageToggleId) return toggleAppMessage(appMessageToggleId, target.getAttribute('data-next-active') === 'true');
   const reportUserUid = target.getAttribute('data-report-user-uid');
   if (reportUserUid) {
     state.users.profileLoading = true;
@@ -2447,20 +2603,22 @@ export function setAuthState(auth) {
     state.message = '';
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
     state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
-        state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
-        state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
-        state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
-        state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
-      }
+    state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
+    state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+    state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
+    state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
+    state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
+  }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
-      if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
-      if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
-      if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
+  if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+  if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
+  if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
+  if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
 }

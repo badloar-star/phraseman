@@ -1592,6 +1592,7 @@ export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export { adminListAppMessages, adminCreateAppMessage, adminSetAppMessageActive } from './admin_app_messages';
 export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
 export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';

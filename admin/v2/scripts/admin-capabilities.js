@@ -69,6 +69,7 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
 export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'daily-digest': 'daily-briefing',
   'remote-config': 'application',
+  'app-messages': 'campaigns',
   users: 'users',
   reports: 'report-center',
   'asset-studio': 'asset-studio',
@@ -82,7 +83,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
-  'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'control-panel',
+  'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel',
 ]);
 
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {

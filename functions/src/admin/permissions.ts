@@ -9,6 +9,8 @@ export type AdminPermission =
   | 'content.draft.write'
   | 'content.publish'
   | 'application.config.write'
+  | 'campaigns.read'
+  | 'campaigns.write'
   | 'diagnostics.read'
   | 'community.moderate'
   | 'admin.roles.write'
@@ -51,14 +53,14 @@ const BRIEFING_OPERATOR_PERMISSIONS: readonly AdminPermission[] = [
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
-    'content.read', 'content.draft.write', 'content.publish', 'application.config.write',
+    'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
     'diagnostics.read', 'community.moderate', 'admin.roles.write',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
   ]),
   admin: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
-    'content.read', 'content.draft.write', 'content.publish', 'application.config.write',
+    'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
     'diagnostics.read', 'community.moderate',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
@@ -66,7 +68,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
   support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
   content_editor: new Set(['content.read', 'content.draft.write']),
   moderator: new Set(['users.read', 'community.moderate', 'reports.read', 'reports.status.write']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
+  analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
   developer: new Set(['content.read', 'diagnostics.read', 'briefing.read', 'diagnostics.status.write']),
 };
 

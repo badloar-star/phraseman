@@ -14,7 +14,7 @@ describe('admin app messages poll contract', () => {
   });
 
   it('renders six reusable option rows but only saves the selected count', () => {
-    const optionRows = html.match(/<div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="/g) || [];
+    const optionRows = html.match(/<div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="\d"/g) || [];
     const optionInputs = html.match(/id="am-poll-option-\d"/g) || [];
 
     expect(optionRows).toHaveLength(6);

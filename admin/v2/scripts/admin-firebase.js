@@ -59,6 +59,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
   const listPromoCodesCallable = httpsCallable(functionsUs, 'adminListPromoCodes');
+  const listAppMessagesCallable = httpsCallable(functionsUs, 'adminListAppMessages');
+  const createAppMessageCallable = httpsCallable(functionsUs, 'adminCreateAppMessage');
+  const setAppMessageActiveCallable = httpsCallable(functionsUs, 'adminSetAppMessageActive');
   const promoCodeUpsertCallable = httpsCallable(functionsUs, 'promoCodeUpsert');
   const promoCodeBatchUpsertCallable = httpsCallable(functionsUs, 'promoCodeBatchUpsert');
   const getDailyBriefingCallable = httpsCallable(functionsUs, 'adminGetDailyBriefing');
@@ -124,6 +127,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),
     listPromoCodes: async (input) => unwrap(await listPromoCodesCallable(input)),
+    listAppMessages: async (input) => unwrap(await listAppMessagesCallable(input)),
+    createAppMessage: async (input) => unwrap(await createAppMessageCallable(input)),
+    setAppMessageActive: async (input) => unwrap(await setAppMessageActiveCallable(input)),
     promoCodeUpsert: async (input) => unwrap(await promoCodeUpsertCallable(input)),
     promoCodeBatchUpsert: async (input) => unwrap(await promoCodeBatchUpsertCallable(input)),
     getDailyBriefing: async () => unwrap(await getDailyBriefingCallable({})),

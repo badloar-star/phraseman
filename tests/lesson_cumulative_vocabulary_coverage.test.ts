@@ -227,6 +227,43 @@ describe('lesson cumulative vocabulary coverage', () => {
     ]);
   });
 
+  it('removes every individually proven Task5b L9-16 row while retaining the non-identical food gloss', () => {
+    const manifest: ReadonlyArray<readonly [number, number, string]> = [
+      [10,6,'finish::verbs'],[10,5,'study::verbs'],[10,6,'report::nouns'],[10,6,'luggage::nouns'],[10,9,'email::nouns'],
+      [11,8,'two::nouns'],[11,8,'five::nouns'],[11,8,'ten::nouns'],[11,6,'close::verbs'],[11,10,'water::verbs'],
+      [11,6,'door::nouns'],[11,3,'dinner::nouns'],[11,10,'computer::nouns'],[11,9,'email::nouns'],[11,10,'password::nouns'],
+      [11,6,'report::nouns'],[11,7,'hotel::nouns'],[11,6,'meeting::nouns'],[11,3,'pizza::nouns'],[11,3,'good::adjectives'],
+      [12,9,'useful::adjectives'],[12,11,'long::adjectives'],[13,3,'help::verbs'],[13,4,'send::verbs'],[13,3,'cook::verbs'],
+      [13,5,'sing::verbs'],[13,5,'tomorrow::adverbs'],[13,10,'later::adverbs'],[13,4,'cash::nouns'],
+      [13,7,'plan::nouns'],[13,8,'rent::nouns'],[13,3,'dinner::nouns'],[13,12,'early::adverbs'],[14,5,'job::nouns'],
+      [15,7,'phone::nouns'],[15,7,'passport::nouns'],[15,14,'answer::nouns'],[15,1,'ready::adjectives'],[15,1,'here::adverbs'],
+      [16,8,'noon::nouns'],[16,12,'early::adverbs'],[16,6,'now::adverbs'],[16,11,'yesterday::adverbs'],
+      [16,11,'this morning::adverbs'],[16,11,'last week::adverbs'],
+    ];
+    expect(manifest).toHaveLength(45);
+    const baseline = lessonWordBankAuditState();
+    for (const [laterLesson, firstLesson, semanticKey] of manifest) {
+      const rowIndex = baseline.raw[laterLesson].findIndex((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey);
+      if (rowIndex !== -1) throw new Error(`Task5b row still present: L${laterLesson} ${semanticKey} at ${rowIndex}`);
+      expect(rowIndex).toBe(-1);
+      const firstRow = baseline.raw[firstLesson].find((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey);
+      expect(firstRow).toBeDefined();
+    }
+    expect(baseline.raw[13].find((word) => lessonWordSemanticKey(word.en, word.pos) === 'food::nouns')).toMatchObject({
+      en: 'food', uk: 'їжа', pos: 'nouns',
+    });
+    expect(baseline.raw[3].find((word) => lessonWordSemanticKey(word.en, word.pos) === 'food::nouns')).toMatchObject({
+      en: 'food', uk: 'Їжа', pos: 'nouns',
+    });
+    const scopedRuntime = Object.fromEntries(Array.from({ length: 8 }, (_, i) => [i + 9, baseline.runtime[i + 9]]));
+    const scopedDiagnostics = baseline.diagnostics.filter(({ lessonId }) => lessonId >= 9 && lessonId <= 16);
+    expect({
+      hash: createHash('sha256').update(JSON.stringify(scopedRuntime)).digest('hex'),
+      raw: scopedDiagnostics.reduce((sum, row) => sum + row.rawCount, 0),
+      duplicates: scopedDiagnostics.reduce((sum, row) => sum + row.duplicatesRemoved, 0),
+    }).toEqual({ hash: 'b6d6c97ad34c01164a0b85c322986c1fe8ce51c3e9815563f5b9051782011550', raw: 430, duplicates: 129 });
+  });
+
   it('dedupes the same normalized lemma, POS and sense while preserving the first card', () => {
     const first = { en: 'battery', pos: 'nouns', sense: 'power cell' };
     const later = { ...first, en: 'Battery' };

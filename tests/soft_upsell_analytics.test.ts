@@ -38,6 +38,18 @@ test('forwards a valid bounded payload through the existing analytics path', asy
   expect(firebaseLogEvent).toHaveBeenCalled();
 });
 
+test.each([
+  ['soft_upsell_eligible', base],
+  ['soft_upsell_impression', { ...base, destination: 'personal_plan' }],
+  ['soft_upsell_cta', { ...base, destination: 'personal_plan' }],
+  ['soft_upsell_dismiss', base],
+  ['soft_upsell_suppressed', { ...base, suppressionReason: 'disabled' }],
+] as const)('forwards valid %s payload', async (event, payload) => {
+  await trackSoftUpsellEvent(event, payload);
+  expect(capturePostHog).toHaveBeenCalledTimes(1);
+  expect(capturePostHog.mock.calls[0]?.[0]).toBe(event);
+});
+
 test.each([NaN, Infinity, -1, 10_001, 1.5])('rejects invalid triggerValue %p', async (triggerValue) => {
   await trackSoftUpsellEvent('soft_upsell_eligible', { ...base, triggerValue });
   expect(capturePostHog).not.toHaveBeenCalled();
@@ -59,4 +71,20 @@ test('suppressed requires a bounded reason and other events reject inappropriate
 
   await trackSoftUpsellEvent('soft_upsell_suppressed', { ...base, suppressionReason: 'disabled' });
   expect(capturePostHog).toHaveBeenCalledTimes(1);
+});
+
+test.each([
+  ['soft_upsell_eligible', { ...base, destination: 'paywall' }],
+  ['soft_upsell_eligible', { ...base, suppressionReason: 'disabled' }],
+  ['soft_upsell_impression', { ...base, destination: 'invalid' }],
+  ['soft_upsell_impression', { ...base, destination: 'paywall', suppressionReason: 'disabled' }],
+  ['soft_upsell_cta', { ...base, destination: 'invalid' }],
+  ['soft_upsell_cta', { ...base, destination: 'paywall', suppressionReason: 'disabled' }],
+  ['soft_upsell_dismiss', { ...base, destination: 'paywall' }],
+  ['soft_upsell_dismiss', { ...base, suppressionReason: 'disabled' }],
+  ['soft_upsell_suppressed', { ...base, destination: 'paywall', suppressionReason: 'disabled' }],
+  ['soft_upsell_suppressed', { ...base, suppressionReason: 'not_a_reason' }],
+] as const)('rejects invalid fields for %s', async (event, payload) => {
+  await trackSoftUpsellEvent(event, payload as never);
+  expect(capturePostHog).not.toHaveBeenCalled();
 });

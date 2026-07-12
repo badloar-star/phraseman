@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-12T11:19:18.312Z",
+  "generatedAt": "2026-07-12T11:27:05.417Z",
   "source": {
     "buttons": 471,
     "functions": 1010,
@@ -36,8 +36,8 @@
       "route": "overview",
       "legacyTab": "control-panel",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "control-panel",
       "inventory": {
         "buttons": 29,
         "functions": 0,
@@ -45,7 +45,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "overview",
@@ -53,8 +53,8 @@
       "route": "overview",
       "legacyTab": "overview",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "overview",
       "inventory": {
         "buttons": 10,
         "functions": 0,
@@ -62,7 +62,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "daily-digest",
@@ -223,8 +223,8 @@
       "route": "users",
       "legacyTab": "website-inbox",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "support",
       "inventory": {
         "buttons": 2,
         "functions": 0,
@@ -232,7 +232,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "gmail-support",
@@ -30720,8 +30720,8 @@
       "total": 59,
       "inventory": 0,
       "ported": 0,
-      "fallback": 47,
-      "guarded": 12,
+      "fallback": 44,
+      "guarded": 15,
       "blocked": 0
     },
     "buttons": {

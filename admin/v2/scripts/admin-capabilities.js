@@ -67,6 +67,8 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
 ];
 
 export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
+  'control-panel': 'control-panel',
+  overview: 'overview',
   'daily-digest': 'daily-briefing',
   'remote-config': 'application',
   'app-messages': 'campaigns',
@@ -74,6 +76,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   reports: 'report-center',
   'asset-studio': 'asset-studio',
   'gmail-support': 'support',
+  'website-inbox': 'support',
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
   'promo-codes': 'money',

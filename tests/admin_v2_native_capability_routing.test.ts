@@ -23,7 +23,7 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly twelve proven native capabilities as guarded', () => {
+  test('marks exactly fifteen proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
@@ -32,14 +32,17 @@ describe('Admin v2 native capability routing', () => {
       ['app-messages', 'campaigns'],
       ['asset-studio', 'asset-studio'],
       ['audit', 'diagnostics'],
+      ['control-panel', 'control-panel'],
       ['daily-digest', 'daily-briefing'],
       ['gmail-support', 'support'],
       ['openai-budget', 'diagnostics'],
       ['ops-log', 'diagnostics'],
+      ['overview', 'overview'],
       ['promo-codes', 'money'],
       ['remote-config', 'application'],
       ['reports', 'report-center'],
       ['users', 'users'],
+      ['website-inbox', 'support'],
     ]);
     expect(native.every((capability) => capability.migrationStatus === 'guarded')).toBe(true);
     expect(registry.filter((capability) => !capability.nativeRoute).every((capability) => capability.migrationStatus === 'fallback')).toBe(true);
@@ -59,7 +62,7 @@ describe('Admin v2 native capability routing', () => {
     expect(core).toContain('<iframe');
 
     const registry = loadRegistry();
-    expect(registry.find((capability) => capability.id === 'control-panel')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
+    expect(registry.find((capability) => capability.id === 'control-panel')).toMatchObject({ migrationStatus: 'guarded', nativeRoute: 'control-panel' });
     expect(registry.find((capability) => capability.id === 'paywall-ab')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
   });
 
@@ -71,7 +74,7 @@ describe('Admin v2 native capability routing', () => {
   test('keeps a top-level route native when a legacy capability has the same id', () => {
     expect(resolveCapabilityHash('#overview')).toEqual({ resolved: false, route: 'overview', capabilityId: '' });
     expect(resolveCapabilityHash('#control-panel')).toEqual({ resolved: false, route: 'control-panel', capabilityId: '' });
-    expect(resolveCapabilityHash('#overview:overview')).toEqual({ resolved: true, route: 'overview', capabilityId: 'overview' });
+    expect(resolveCapabilityHash('#overview:overview')).toEqual({ resolved: true, route: 'overview', capabilityId: '' });
   });
 
   test('renders a native Control Panel hub for the old pult groups', () => {

@@ -1578,6 +1578,8 @@ export {
   adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
+  adminWebsiteInboxList,
+  adminWebsiteInboxMarkRead,
 } from './support_inbox';
 
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─

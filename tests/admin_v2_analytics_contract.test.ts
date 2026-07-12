@@ -7,6 +7,7 @@ const read = (file: string): string => fs.readFileSync(path.join(root, file), 'u
 describe('Admin v2 trustworthy analytics contract', () => {
   const core = read('admin/v2/scripts/admin-core.js');
   const view = read('admin/v2/scripts/admin-analytics-view.js');
+  const analyticsState = read('admin/v2/scripts/admin-analytics-state.js');
   const firebase = read('admin/v2/scripts/admin-firebase.js');
   const css = read('admin/v2/styles/admin.css');
 
@@ -40,6 +41,8 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(core).toContain("status: 'loading'");
     expect(core).toContain("status: 'error'");
     expect(core).toContain('snapshot: state.analytics.snapshot');
+    expect(core).toContain('completeAnalyticsLoad');
+    expect(analyticsState).toContain("snapshot: current.snapshot");
     expect(view).toContain("model.status === 'partial'");
     expect(view).toContain("model.status === 'empty'");
     expect(view).toContain("model.status === 'error'");

@@ -1,4 +1,5 @@
 import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
+import { completeAnalyticsLoad } from './admin-analytics-state.js';
 import { renderAdminAnalytics } from './admin-analytics-view.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 
@@ -1853,7 +1854,8 @@ async function handleAction(action, target) {
     return runBusy(async () => {
       try {
         const snapshot = await actions.loadAnalytics({ rangeDays });
-        state.analytics = { status: snapshot?.state || 'ready', snapshot, error: '', rangeDays };
+        state.analytics = completeAnalyticsLoad(state.analytics, snapshot, rangeDays);
+        if (state.analytics.status === 'error') throw new Error(state.analytics.error);
       } catch (error) {
         state.analytics = { status: 'error', snapshot: state.analytics.snapshot, error: errorMessage(error), rangeDays };
         throw error;

@@ -97,8 +97,9 @@ function storeActive(progress: Record<string, unknown>, plan: string, nowMs: num
   if (!storePlan(plan) || !hasRevenueCatProvenance(progress)) return false;
   const expiry = millis(progress.premium_expiry);
   if (expiry > 0) return expiry > nowMs;
+  if (plan === 'lifetime') return true;
   const rcExpiry = millis(progress.premium_rc_expiry_ms);
-  return rcExpiry <= 0 || rcExpiry + REVENUECAT_GRACE_MS >= nowMs;
+  return rcExpiry > 0 && rcExpiry + REVENUECAT_GRACE_MS >= nowMs;
 }
 
 function giftActive(progress: Record<string, unknown>, nowMs: number): boolean {

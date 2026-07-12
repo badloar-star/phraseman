@@ -38,6 +38,17 @@ describe('admin analytics active access definitions', () => {
     expect(classifyActiveAccess(expired, NOW)).toBeNull();
   });
 
+  test('does not grant an expiry-less recurring RevenueCat subscription forever', () => {
+    expect(classifyActiveAccess(user({
+      premium_plan: 'monthly',
+      premium_rc_product_id: 'phraseman_monthly',
+    }), NOW)).toBeNull();
+    expect(classifyActiveAccess(user({
+      premium_plan: 'lifetime',
+      premium_rc_product_id: 'phraseman_lifetime',
+    }), NOW)?.kind).toBe('store_lifetime');
+  });
+
   test('separates active store trial and lifetime access', () => {
     expect(classifyActiveAccess(user({
       premium_plan: 'yearly',

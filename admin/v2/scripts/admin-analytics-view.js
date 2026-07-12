@@ -10,6 +10,7 @@ function number(value, available = true) {
 }
 
 function percent(value, available = true) {
+  if (value == null || value === '') return '—';
   const parsed = Number(value);
   return available && Number.isFinite(parsed) ? `${(parsed * 100).toFixed(1)}%` : '—';
 }

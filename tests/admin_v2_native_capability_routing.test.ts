@@ -23,7 +23,7 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly ten proven native capabilities as guarded', () => {
+  test('marks exactly eleven proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
@@ -35,6 +35,7 @@ describe('Admin v2 native capability routing', () => {
       ['gmail-support', 'support'],
       ['openai-budget', 'diagnostics'],
       ['ops-log', 'diagnostics'],
+      ['promo-codes', 'money'],
       ['remote-config', 'application'],
       ['reports', 'report-center'],
       ['users', 'users'],

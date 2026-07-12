@@ -39,10 +39,10 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
-  admin: new Set(['users.read', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
   content_editor: new Set(['content.read', 'content.draft.write']),
-  analyst: new Set(['users.read', 'content.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  analyst: new Set(['users.read', 'money.read', 'content.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
   support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
   moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
@@ -120,6 +120,7 @@ const state = {
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
+  promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
 };
 
 let actions = null;
@@ -269,7 +270,7 @@ function renderOverviewDecisions(view) {
 const CONTROL_PANEL_WORKFLOWS = Object.freeze([
   { title: 'Обновления и обслуживание', description: 'Manual update modal, force update, store links, rollout и maintenance text.', primary: '#application', primaryLabel: 'Открыть v2 приложение', fallback: 'control-panel', risk: 'Высокий риск', coverage: '5 старых кнопок', guarded: true },
   { title: 'Remote Config и живые флаги', description: 'Промокоды, лига по XP, lifetime, идеи, arena bots, onboarding, paywall timers, video button и intro gift.', primary: '#application', primaryLabel: 'Открыть v2 конфигурацию', fallback: 'remote-config', risk: 'Guarded publish', coverage: '8 переключателей', guarded: true },
-  { title: 'Промокоды и промо-баннер', description: 'Создание кода, список кодов, quick-link в большой раздел и баннер кампании.', primary: '#promo-codes', primaryLabel: 'Старый модуль промокодов', fallback: 'promo-codes', risk: 'Legacy write module', coverage: '5 старых кнопок', guarded: false },
+  { title: 'Промокоды и промо-баннер', description: 'Создание пачек/своих кодов, список кодов и активации уже в v2; баннер кампании остаётся отдельным следующим переносом.', primary: '#money', primaryLabel: 'Открыть v2 промокоды', fallback: 'promo-codes', risk: 'Server callable + banner pending', coverage: 'частично перенесено', guarded: true },
   { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть v2 Free / Plus', fallback: 'control-panel', risk: 'Guarded publish', coverage: '5 старых кнопок', guarded: true },
   { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
   { title: 'ИИ и бюджеты', description: 'Theo model, daily caps, фоновые AI jobs, OpenAI budget и Asset Studio.', primary: '#asset-studio', primaryLabel: 'Открыть v2 Asset Studio', fallback: 'openai-budget', risk: 'AI budget', coverage: '5 старых кнопок', guarded: true },
@@ -502,10 +503,63 @@ function renderUsers() {
     <div class="section">${renderProfile()}</div>`;
 }
 
+function formatPromoDate(ms) {
+  const value = Number(ms || 0);
+  if (!(value > 0) || !Number.isFinite(value)) return '—';
+  return dateTime(value);
+}
+
+function formatPromoReward(row) {
+  return row?.rewardKind === 'lifetime' ? 'lifetime' : `${Number(row?.rewardDays || 0)} дн.`;
+}
+
+function renderPromoCodesList() {
+  if (state.promo.state === 'loading') return '<div class="profile-loading" role="status"><span class="loading-bar"></span><span>Загружаю промокоды…</span></div>';
+  if (state.promo.error) return `<div class="notice danger">${escapeHtml(state.promo.error)}</div>`;
+  const generated = state.promo.generatedCodes.length ? `<div class="notice success section"><strong>Создано кодов: ${state.promo.generatedCodes.length}</strong><br><div class="code-preview">${state.promo.generatedCodes.map((code) => escapeHtml(code)).join('<br>')}</div></div>` : '';
+  const codes = state.promo.codes.length ? state.promo.codes.map((row) => {
+    const limit = Number(row.maxRedemptions || 0) > 0 ? `${Number(row.usedCount || 0)}/${Number(row.maxRedemptions || 0)}` : `${Number(row.usedCount || 0)}/∞`;
+    return `<div class="list-row"><div><strong class="mono">${escapeHtml(row.code)}</strong><small>${escapeHtml(formatPromoReward(row))} · ${escapeHtml(limit)} · до ${escapeHtml(formatPromoDate(row.expiresAtMs))}</small>${row.note ? `<small>${escapeHtml(row.note)}</small>` : ''}</div><span class="badge ${row.enabled ? 'success' : 'warning'}">${row.enabled ? 'Включён' : 'Выключен'}</span></div>`;
+  }).join('') : emptyState('Промокоды ещё не загружены или список пуст.');
+  return `${generated}<div class="data-list">${codes}</div>`;
+}
+
+function renderPromoRedemptionsList() {
+  if (!state.promo.redemptions.length) return emptyState('Активации ещё не загружены или их нет.');
+  return `<div class="data-list">${state.promo.redemptions.map((row) => `<div class="list-row"><div><strong class="mono">${escapeHtml(row.code)}</strong><small>${escapeHtml(row.userLabel || row.uid || 'Пользователь')} · ${escapeHtml(formatPromoDate(row.redeemedAtMs))}</small><small>Plus до: ${row.rewardKind === 'lifetime' ? 'lifetime' : escapeHtml(formatPromoDate(row.vipUntilMs))}</small></div><div class="actions"><span class="badge">${escapeHtml(formatPromoReward(row))}</span>${row.uid ? `<button class="button small" data-open-promo-user="${escapeHtml(row.uid)}" type="button" title="Открыть единый профиль пользователя, активировавшего промокод">Открыть пользователя</button>` : ''}</div></div>`).join('')}</div>`;
+}
+
+function renderPromoWorkflow() {
+  const preview = state.promo.preview;
+  const promoDraft = preview?.payload || {};
+  const promoMode = Array.isArray(promoDraft.codes) ? 'custom' : 'generated';
+  const promoExpires = String(promoDraft.expiresDate || '');
+  return `<section class="card section"><div class="card-header"><div><h2>Промокоды</h2><p>Создание кодов идёт через серверные callable, без прямой записи Firestore из браузера.</p></div><span class="badge success">Native v2</span></div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label for="promo-mode">Тип</label><select id="promo-mode"><option value="generated"${promoMode === 'generated' ? ' selected' : ''}>Сгенерировать пачку</option><option value="custom"${promoMode === 'custom' ? ' selected' : ''}>Свои коды</option></select></div>
+      <div class="field"><label for="promo-count">Количество</label><input id="promo-count" type="number" min="1" max="200" value="${escapeHtml(promoDraft.count || 10)}"></div>
+      <div class="field"><label for="promo-prefix">Префикс</label><input id="promo-prefix" value="${escapeHtml(promoDraft.prefix || 'PM')}" maxlength="16"></div>
+      <div class="field"><label for="promo-max-redemptions">Лимит активаций</label><input id="promo-max-redemptions" type="number" min="0" value="${escapeHtml(promoDraft.maxRedemptions ?? 1)}"><small class="hint">0 = без общего лимита; одноразовые ставят 1.</small></div>
+      <div class="field"><label for="promo-reward-kind">Награда</label><select id="promo-reward-kind"><option value="days"${promoDraft.rewardKind === 'lifetime' ? '' : ' selected'}>Plus дни</option><option value="lifetime"${promoDraft.rewardKind === 'lifetime' ? ' selected' : ''}>Lifetime</option></select></div>
+      <div class="field"><label for="promo-days">Дней Plus</label><input id="promo-days" type="number" min="1" max="3650" value="${escapeHtml(promoDraft.rewardDays || 7)}"></div>
+      <div class="field"><label for="promo-expires">Код действует до</label><input id="promo-expires" type="date" value="${escapeHtml(promoExpires)}"></div>
+      <div class="field"><label for="promo-enabled">Статус</label><select id="promo-enabled"><option value="on"${promoDraft.enabled === false ? '' : ' selected'}>Включён сразу</option><option value="off"${promoDraft.enabled === false ? ' selected' : ''}>Создать выключенным</option></select></div>
+      <div class="field full"><label for="promo-custom-codes">Свои коды</label><textarea id="promo-custom-codes" placeholder="WELCOME7, PARTNER-30">${escapeHtml(Array.isArray(promoDraft.codes) ? promoDraft.codes.join(', ') : '')}</textarea></div>
+      <div class="field full"><label for="promo-note">Заметка</label><input id="promo-note" maxlength="200" placeholder="Кампания / партнёр / причина" value="${escapeHtml(promoDraft.note || '')}"></div>
+      <div class="field full"><label for="promo-reason">Причина публикации</label><textarea id="promo-reason" maxlength="500" placeholder="Зачем создаём коды, кому выдаём, как остановить кампанию">${escapeHtml(preview?.reason || '')}</textarea></div>
+    </div>
+    <div class="notice section">Глобальный рубильник видимости/активации промокодов находится в Remote Config: <code>promo_codes_enabled</code>.</div>
+    ${preview ? `<div class="notice warning section"><strong>Предпросмотр промокодов</strong><br>${escapeHtml(preview.summary)}<div class="code-preview section">${preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
+    <div class="actions end section"><button class="button" data-action="load-promo-codes" type="button"${disabledWhenUnauthorized('money.read')} title="Загрузить последние промокоды и последние активации через сервер">Обновить список</button>${preview ? '<button class="button" data-action="discard-promo-preview" type="button" title="Отменить текущий предпросмотр и вернуться к редактированию">Изменить ещё</button>' : ''}<button class="button" data-action="preview-one-time-promo-codes" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Собрать предпросмотр пачки одноразовых промокодов без публикации">Preview одноразовых</button><button class="button ${preview ? '' : 'primary'}" data-action="preview-promo-codes" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Собрать предпросмотр промокодов без создания кодов">Preview промокодов</button>${preview ? `<button class="button primary" data-action="publish-promo-codes" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Создать промокоды по проверенному предпросмотру и записать аудит">Опубликовать</button>` : ''}</div>
+  </div></section>
+  <section class="card section"><div class="card-header"><div><h2>Последние коды и активации</h2><p>Серверный список: последние коды и последние user redemptions.</p></div></div><div class="card-body"><div class="split-grid"><div>${renderPromoCodesList()}</div><div>${renderPromoRedemptionsList()}</div></div></div></section>`;
+}
+
 function renderMoney() {
-  return `${pageHeader(PAGES.money, 'Деньги', '<a class="button primary" href="../../admin/index.html#promo-codes" title="Открыть рабочее управление промокодами">Промокоды</a>')}
+  return `${pageHeader(PAGES.money, 'Деньги', '<a class="button ghost" href="../../admin/index.html#promo-codes" title="Аварийно открыть старый модуль промокодов">Старый модуль промокодов</a>')}
     <div class="notice warning">События нажатия «Купить» не считаются выручкой. Денежные показатели должны приходить из платёжного источника.</div>
     <section class="metrics section">${['Активные подписки', 'Выручка за период', 'Платёжные проблемы', 'Возвраты'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>
+    ${renderPromoWorkflow()}
     <section class="card section"><div class="card-header"><div><h2>Платёжные инструменты</h2><p>Текущие рабочие операции доступны без потери функций.</p></div><div class="actions"><a class="button" href="#analytics">Аналитика</a><a class="button" href="../../admin/index.html#subscriptions">Подписки</a></div></div></section>`;
 }
 
@@ -1719,11 +1773,124 @@ async function updateReportStatus(target) {
   }, 'Статус репорта изменён и записан в журнал.');
 }
 
+function readPromoCreatePayload(oneTime = false) {
+  const mode = String(document.getElementById('promo-mode')?.value || 'generated') === 'custom' ? 'custom' : 'generated';
+  const rewardKind = String(document.getElementById('promo-reward-kind')?.value || 'days') === 'lifetime' ? 'lifetime' : 'days';
+  const rewardDays = rewardKind === 'lifetime' ? 0 : Math.trunc(Number(document.getElementById('promo-days')?.value || 0));
+  if (rewardKind === 'days' && (!Number.isInteger(rewardDays) || rewardDays < 1 || rewardDays > 3650)) throw new Error('Срок Plus должен быть 1–3650 дней.');
+  const maxRaw = Math.trunc(Number(document.getElementById('promo-max-redemptions')?.value || 0));
+  if (!Number.isInteger(maxRaw) || maxRaw < 0) throw new Error('Лимит активаций должен быть 0 или больше.');
+  const expiresRaw = String(document.getElementById('promo-expires')?.value || '').trim();
+  let expiresAtMs = 0;
+  if (expiresRaw) {
+    const parsed = Date.parse(`${expiresRaw}T23:59:59`);
+    if (!Number.isFinite(parsed)) throw new Error('Дата окончания промокода некорректна.');
+    expiresAtMs = parsed;
+  }
+  const payload = {
+    rewardKind,
+    rewardDays,
+    maxRedemptions: oneTime ? 1 : maxRaw,
+    expiresAtMs,
+    expiresDate: expiresRaw,
+    enabled: String(document.getElementById('promo-enabled')?.value || 'on') !== 'off',
+    note: String(document.getElementById('promo-note')?.value || '').trim().slice(0, 200),
+    reason: String(document.getElementById('promo-reason')?.value || '').trim().slice(0, 500),
+  };
+  if (!payload.reason) throw new Error('Укажите причину создания промокодов.');
+  if (mode === 'custom') {
+    const codes = String(document.getElementById('promo-custom-codes')?.value || '').split(/[\s,;]+/).map((code) => code.trim().toUpperCase()).filter(Boolean);
+    if (!codes.length) throw new Error('Введите хотя бы один свой код.');
+    return { ...payload, codes, createOnly: true };
+  }
+  const count = Math.trunc(Number(document.getElementById('promo-count')?.value || 0));
+  if (!Number.isInteger(count) || count < 1 || count > 200) throw new Error('Количество кодов должно быть 1–200.');
+  return { ...payload, count, prefix: String(document.getElementById('promo-prefix')?.value || 'PM').trim().toUpperCase().slice(0, 16) || 'PM' };
+}
+
+function buildPromoPreview(oneTime = false) {
+  const payload = readPromoCreatePayload(oneTime);
+  const count = Array.isArray(payload.codes) ? payload.codes.length : Number(payload.count || 0);
+  const reward = payload.rewardKind === 'lifetime' ? 'lifetime Plus' : `${payload.rewardDays} дней Plus`;
+  const limit = Number(payload.maxRedemptions || 0) > 0 ? `${payload.maxRedemptions} активаций на код` : 'без общего лимита';
+  const details = [
+    `Кодов: ${count}.`,
+    `Награда: ${reward}.`,
+    `Лимит: ${limit}.`,
+    `Статус: ${payload.enabled ? 'включены сразу' : 'создать выключенными'}.`,
+    `Истекают: ${payload.expiresAtMs ? formatPromoDate(payload.expiresAtMs) : 'не истекают'}.`,
+    `Причина: ${payload.reason}.`,
+  ];
+  if (Array.isArray(payload.codes)) details.push(`Свои коды: ${payload.codes.join(', ')}.`);
+  else details.push(`Генерация: prefix ${payload.prefix}.`);
+  return { payload, reason: payload.reason, summary: `${count} промокодов · ${reward} · ${limit}`, details, oneTime };
+}
+
+function samePromoPayload(left, right) {
+  return JSON.stringify(left || {}) === JSON.stringify(right || {});
+}
+
+async function loadPromoCodes() {
+  const authGeneration = state.authGeneration;
+  state.promo = { ...state.promo, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listPromoCodes({ limit: 100 });
+    if (authGeneration !== state.authGeneration) return STALE_AUTH_RESULT;
+    state.promo = {
+      ...state.promo,
+      state: 'ready',
+      codes: Array.isArray(result?.codes) ? result.codes : [],
+      redemptions: Array.isArray(result?.redemptions) ? result.redemptions : [],
+      error: '',
+    };
+    renderCurrentPage();
+    return result;
+  } catch (error) {
+    if (authGeneration === state.authGeneration) {
+      state.promo = { ...state.promo, state: 'error', error: errorMessage(error) };
+      renderCurrentPage();
+    }
+    throw error;
+  }
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-promo-codes') return runBusy(loadPromoCodes, 'Промокоды и активации загружены.');
+  if (action === 'preview-promo-codes' || action === 'preview-one-time-promo-codes') {
+    try {
+      state.promo.preview = buildPromoPreview(action === 'preview-one-time-promo-codes');
+      setMessage('Предпросмотр промокодов готов. Проверьте и нажмите «Опубликовать».', 'success');
+    } catch (error) {
+      setMessage(errorMessage(error), 'warning');
+    }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'discard-promo-preview') { state.promo.preview = null; renderCurrentPage(); return; }
+  if (action === 'publish-promo-codes') {
+    const preview = state.promo.preview;
+    if (!preview?.payload) return setMessage('Сначала соберите preview промокодов.', 'warning');
+    let current;
+    try { current = buildPromoPreview(preview.oneTime); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
+    if (!samePromoPayload(current.payload, preview.payload)) {
+      setMessage('Форма промокодов изменилась после preview. Соберите preview заново.', 'warning');
+      state.promo.preview = null;
+      renderCurrentPage();
+      return;
+    }
+    if (!globalThis.confirm(`Опубликовать промокоды?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    return runBusy(async () => {
+      const result = await actions.promoCodeBatchUpsert(preview.payload);
+      state.promo.generatedCodes = Array.isArray(result?.codes) ? result.codes.map(String) : [];
+      state.promo.preview = null;
+      await loadPromoCodes();
+    }, 'Промокоды созданы через серверный workflow.');
+  }
   if (action === 'load-daily-briefing') return runBusy(() => loadDailyBriefing(false), 'Последняя сводка загружена.');
   if (action === 'generate-daily-briefing') return runBusy(async () => {
     const result = await loadDailyBriefing(true);
@@ -2076,6 +2243,13 @@ async function handleClick(event) {
     state.users.profileLoading = true;
     return runBusy(() => loadAdminUserProfile(profileUid), 'Единый профиль загружен.');
   }
+  const promoUserUid = target.getAttribute('data-open-promo-user');
+  if (promoUserUid) {
+    state.users.profileLoading = true;
+    state.users.query = promoUserUid;
+    globalThis.location.hash = 'users';
+    return runBusy(() => loadAdminUserProfile(promoUserUid), 'Единый профиль загружен из активации промокода.');
+  }
   const reportUserUid = target.getAttribute('data-report-user-uid');
   if (reportUserUid) {
     state.users.profileLoading = true;
@@ -2128,18 +2302,20 @@ export function setAuthState(auth) {
     state.message = '';
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
     state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
-    state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
-    state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
-    state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
-  }
+        state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
+        state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+        state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
+        state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
+      }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
-  if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
-  if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
+      if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+      if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
+      if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
 }

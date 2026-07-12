@@ -75,6 +75,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'gmail-support': 'support',
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
+  'promo-codes': 'money',
   audit: 'diagnostics',
   'ops-log': 'diagnostics',
 });

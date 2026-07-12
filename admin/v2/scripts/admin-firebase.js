@@ -58,6 +58,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
+  const listPromoCodesCallable = httpsCallable(functionsUs, 'adminListPromoCodes');
+  const promoCodeUpsertCallable = httpsCallable(functionsUs, 'promoCodeUpsert');
+  const promoCodeBatchUpsertCallable = httpsCallable(functionsUs, 'promoCodeBatchUpsert');
   const getDailyBriefingCallable = httpsCallable(functionsUs, 'adminGetDailyBriefing');
   const generateDailyBriefingCallable = httpsCallable(functionsUs, 'adminGenerateDailyDigest');
   const listReportQueueCallable = httpsCallable(functionsUs, 'adminListReportQueue');
@@ -120,6 +123,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),
+    listPromoCodes: async (input) => unwrap(await listPromoCodesCallable(input)),
+    promoCodeUpsert: async (input) => unwrap(await promoCodeUpsertCallable(input)),
+    promoCodeBatchUpsert: async (input) => unwrap(await promoCodeBatchUpsertCallable(input)),
     getDailyBriefing: async () => unwrap(await getDailyBriefingCallable({})),
     generateDailyBriefing: async () => unwrap(await generateDailyBriefingCallable({})),
     listReportQueue: async (input) => unwrap(await listReportQueueCallable(input)),

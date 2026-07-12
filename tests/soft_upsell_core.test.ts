@@ -98,6 +98,41 @@ describe('soft upsell policy', () => {
   });
 
   test.each([
+    ['free_lessons_complete', 8, 'second_ai_dialogue', 2],
+    ['second_ai_dialogue', 2, 'weekly_review', 1],
+    ['weekly_review', 1, 'streak_milestone', 30],
+    ['streak_milestone', 7, 'first_lesson', 1],
+    ['first_lesson', 1, 'repeated_training', 1],
+  ] as const)(
+    'prioritizes %s (%i) over adjacent lower-priority %s (%i)',
+    (higherTrigger, higherValue, lowerTrigger, lowerValue) => {
+      expect(decideSoftUpsell(input({
+        candidates: [candidate(lowerTrigger, lowerValue), candidate(higherTrigger, higherValue)],
+        enabled: { [higherTrigger]: true, [lowerTrigger]: true },
+      }))).toMatchObject({
+        status: 'eligible',
+        opportunity: { trigger: higherTrigger, value: higherValue },
+      });
+    },
+  );
+
+  test.each([
+    [30, 14],
+    [14, 7],
+  ] as const)('prioritizes isolated streak %i over streak %i', (higherValue, lowerValue) => {
+    expect(decideSoftUpsell(input({
+      candidates: [
+        candidate('streak_milestone', lowerValue),
+        candidate('streak_milestone', higherValue),
+      ],
+      enabled: { streak_milestone: true },
+    }))).toMatchObject({
+      status: 'eligible',
+      opportunity: { trigger: 'streak_milestone', value: higherValue },
+    });
+  });
+
+  test.each([
     ['first_lesson', 0], ['first_lesson', 2],
     ['free_lessons_complete', 7], ['free_lessons_complete', 9],
     ['second_ai_dialogue', 1], ['second_ai_dialogue', 3],
@@ -130,25 +165,27 @@ describe('soft upsell policy', () => {
     expect(decideSoftUpsell(input(overrides))).toEqual({ status: 'suppressed', reason });
   });
 
-  test('applies suppression checks in the documented stable order', () => {
-    expect(decideSoftUpsell(input({
-      candidates: [candidate('first_lesson', 99)],
-      hasPremiumAccess: true,
-      enabled: {},
-      overlayOccupied: true,
-      sessionClaimed: true,
+  test.each([
+    ['no_candidate', { candidates: [], hasPremiumAccess: true }],
+    ['premium', { candidates: [candidate('first_lesson', 99)], hasPremiumAccess: true }],
+    ['invalid_trigger_value', { candidates: [candidate('first_lesson', 99)], enabled: {} }],
+    ['disabled', { enabled: {}, overlayOccupied: true }],
+    ['overlay_occupied', { overlayOccupied: true, sessionClaimed: true }],
+    ['session_cap', { sessionClaimed: true, lastGlobalImpressionMs: NOW_MS }],
+    ['global_cooldown', {
       lastGlobalImpressionMs: NOW_MS,
       contextDismissedAtMs: { first_lesson_success: NOW_MS },
-      consumedMilestones: ['first_lesson:99:en'],
-    }))).toEqual({ status: 'suppressed', reason: 'premium' });
-
-    expect(decideSoftUpsell(input({
-      enabled: {}, overlayOccupied: true, sessionClaimed: true,
-      lastGlobalImpressionMs: NOW_MS,
+    }],
+    ['context_cooldown', {
       contextDismissedAtMs: { first_lesson_success: NOW_MS },
       consumedMilestones: ['first_lesson:1:en'],
-    }))).toEqual({ status: 'suppressed', reason: 'disabled' });
-  });
+    }],
+  ] as const)(
+    'applies adjacent suppression precedence and returns %s',
+    (reason, competingConditions) => {
+      expect(decideSoftUpsell(input(competingConditions))).toEqual({ status: 'suppressed', reason });
+    },
+  );
 
   test.each([
     ['global', { lastGlobalImpressionMs: NOW_MS - 7 * DAY_MS + 1 }, 'global_cooldown'],

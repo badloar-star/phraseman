@@ -11,6 +11,7 @@ import {
   mergeAppMessagesWithStates,
   normalizeUserAppMessage,
   pickAppMessageText,
+  sanitizeAppMessagesInboxSnapshot,
 } from '../app/app_messages';
 
 describe('report reply user messages', () => {
@@ -59,17 +60,28 @@ describe('report reply user messages', () => {
     expect(broken.reportReply).toEqual({ shards: 0, claimed: false });
   });
 
-  it('merges into the inbox snapshot next to broadcast messages', () => {
+  it('excludes report replies from the Messages inbox and unread count', () => {
     const message = normalizeUserAppMessage('um1', baseDoc, now);
     const snapshot = mergeAppMessagesWithStates([message], [], now);
-    expect(snapshot.messages).toHaveLength(1);
-    expect(snapshot.messages[0].unread).toBe(true);
-    expect(snapshot.unreadCount).toBe(1);
+    expect(snapshot.messages).toHaveLength(0);
+    expect(snapshot.unreadCount).toBe(0);
   });
 
-  it('keeps a locally pending reward shown as claimed before the server write catches up', () => {
-    const message = normalizeUserAppMessage('um1', baseDoc, now);
-    const snapshot = mergeAppMessagesWithStates([message], [], now, ['um1']);
-    expect(snapshot.messages[0].reportReply).toEqual({ shards: 1, claimed: true });
+  it('sanitizes stale cached report replies without hiding ordinary messages', () => {
+    const reportReply = {
+      ...normalizeUserAppMessage('um1', baseDoc, now),
+      readAtMs: null,
+      dismissedAtMs: null,
+      reaction: null,
+      pollOptionId: null,
+      unread: true,
+    };
+    const ordinary = { ...reportReply, id: 'broadcast1', kind: 'message' as const, reportReply: null };
+    const snapshot = sanitizeAppMessagesInboxSnapshot({
+      messages: [reportReply, ordinary],
+      unreadCount: 2,
+    });
+    expect(snapshot.messages.map((message) => message.id)).toEqual(['broadcast1']);
+    expect(snapshot.unreadCount).toBe(1);
   });
 });

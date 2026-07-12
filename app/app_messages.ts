@@ -518,6 +518,18 @@ export function buildAppMessagePreview(body: string, maxChars = 120): string {
   return `${head}...`;
 }
 
+/**
+ * The report-reply document remains a private reward ledger for older clients,
+ * but its only visible surface in current clients is the home notification centre.
+ */
+export function sanitizeAppMessagesInboxSnapshot(snapshot: AppMessagesSnapshot): AppMessagesSnapshot {
+  const messages = snapshot.messages.filter((message) => message.kind !== 'report_reply');
+  return {
+    messages,
+    unreadCount: messages.reduce((count, message) => count + (message.unread ? 1 : 0), 0),
+  };
+}
+
 export function mergeAppMessagesWithStates(
   messages: AppMessage[],
   states: AppMessageState[],
@@ -550,10 +562,10 @@ export function mergeAppMessagesWithStates(
         unread: !readAtMs,
       };
     });
-  return {
+  return sanitizeAppMessagesInboxSnapshot({
     messages: merged,
     unreadCount: merged.reduce((n, message) => n + (message.unread ? 1 : 0), 0),
-  };
+  });
 }
 
 export function applyPendingReportReplyClaimsToSnapshot(
@@ -733,7 +745,10 @@ async function readCachedSnapshot(): Promise<AppMessagesSnapshot> {
       messages: parsed.messages,
       unreadCount: Math.max(0, Math.floor(Number(parsed.unreadCount || 0))),
     };
-    return applyPendingReportReplyClaimsToSnapshot(snapshot, await readPendingReportReplyShardClaims());
+    return applyPendingReportReplyClaimsToSnapshot(
+      sanitizeAppMessagesInboxSnapshot(snapshot),
+      await readPendingReportReplyShardClaims(),
+    );
   } catch {
     return { messages: [], unreadCount: 0 };
   }
@@ -745,7 +760,7 @@ export async function readCachedAppMessagesSnapshot(): Promise<AppMessagesSnapsh
 
 async function writeCachedSnapshot(snapshot: AppMessagesSnapshot): Promise<void> {
   try {
-    await AsyncStorage.setItem(APP_MESSAGES_CACHE_KEY, JSON.stringify(snapshot));
+    await AsyncStorage.setItem(APP_MESSAGES_CACHE_KEY, JSON.stringify(sanitizeAppMessagesInboxSnapshot(snapshot)));
   } catch {
     // Cache is a comfort feature only.
   }

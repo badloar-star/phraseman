@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'constellations';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'content_factory' | 'image_assets';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'content_factory', 'image_assets'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -30,7 +30,8 @@ export const ALLOWED_JOB_MODELS = [
   'gpt-4.1',
   'gpt-4o-mini',
 ] as const;
-export type JobModel = (typeof ALLOWED_JOB_MODELS)[number];
+const ALLOWED_IMAGE_JOB_MODELS = ['gpt-image-1'] as const;
+export type JobModel = (typeof ALLOWED_JOB_MODELS)[number] | (typeof ALLOWED_IMAGE_JOB_MODELS)[number];
 
 const DAILY_CAP_MAX = 1_000_000;
 
@@ -62,9 +63,8 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
   // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
   support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
-  // Квизы «Созвездий»: генерация вопросов с судьёй-валидатором дистракторов.
-  // Дешёвая модель, щедрый кап (кэш досыпается фоном), kill-switch → только кэш+банк.
-  constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
+  content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
+  image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
 };
 
 export interface JobConfig {
@@ -81,9 +81,13 @@ function isAllowedJob(value: unknown): value is OpenAiJob {
   return (OPENAI_JOBS as readonly string[]).includes(text(value, 20));
 }
 
-function normalizeModel(value: unknown, fallback: JobModel): JobModel {
+function allowedModelsForJob(job: OpenAiJob): readonly JobModel[] {
+  return job === 'image_assets' ? ALLOWED_IMAGE_JOB_MODELS : ALLOWED_JOB_MODELS;
+}
+
+function normalizeModel(value: unknown, fallback: JobModel, allowedModels: readonly JobModel[]): JobModel {
   const m = text(value, 80);
-  return (ALLOWED_JOB_MODELS as readonly string[]).includes(m) ? (m as JobModel) : fallback;
+  return (allowedModels as readonly string[]).includes(m) ? (m as JobModel) : fallback;
 }
 
 function normalizeCap(value: unknown, fallback: number): number {
@@ -98,8 +102,9 @@ function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | unde
     | Record<string, unknown>
     | undefined;
   const def = JOB_DEFAULTS[job];
+  const allowedModels = allowedModelsForJob(job);
   return {
-    model: normalizeModel(d?.model, def.model),
+    model: normalizeModel(d?.model, def.model, allowedModels),
     globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap),
     // enabled по умолчанию TRUE (kill-switch семантика): фича работает, выключается вручную.
     enabled: d?.enabled === false ? false : true,
@@ -144,10 +149,11 @@ export const openAiJobsConfig = onCall({ region: REGION, enforceAppCheck: ENFORC
     const job = request.data?.job;
     if (!isAllowedJob(job)) throw new HttpsError('invalid-argument', 'unsupported_job');
     const def = JOB_DEFAULTS[job];
+    const allowedModels = allowedModelsForJob(job);
     const prevSnap = await ref.get();
     const prev = jobFromData(job, prevSnap.data());
     const next: JobConfig = {
-      model: request.data?.model == null ? prev.model : normalizeModel(request.data.model, def.model),
+      model: request.data?.model == null ? prev.model : normalizeModel(request.data.model, def.model, allowedModels),
       globalDailyCap:
         request.data?.globalDailyCap == null
           ? prev.globalDailyCap
@@ -157,7 +163,10 @@ export const openAiJobsConfig = onCall({ region: REGION, enforceAppCheck: ENFORC
     await ref.set(
       {
         [job]: next,
-        allowedModels: ALLOWED_JOB_MODELS,
+        allowedModels: {
+          text: ALLOWED_JOB_MODELS,
+          image_assets: ALLOWED_IMAGE_JOB_MODELS,
+        },
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAtMs: Date.now(),
         updatedBy: text(request.auth?.token?.email, 200) || 'admin',
@@ -176,7 +185,10 @@ export const openAiJobsConfig = onCall({ region: REGION, enforceAppCheck: ENFORC
     ok: true,
     jobs,
     defaults: JOB_DEFAULTS,
-    allowedModels: ALLOWED_JOB_MODELS,
+    allowedModels: {
+      text: ALLOWED_JOB_MODELS,
+      image_assets: ALLOWED_IMAGE_JOB_MODELS,
+    },
     updatedAtMs: Number(snap.data()?.updatedAtMs || 0),
   };
 });

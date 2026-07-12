@@ -23,7 +23,7 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly fifteen proven native capabilities as guarded', () => {
+  test('marks exactly sixteen proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
@@ -38,6 +38,7 @@ describe('Admin v2 native capability routing', () => {
       ['openai-budget', 'diagnostics'],
       ['ops-log', 'diagnostics'],
       ['overview', 'overview'],
+      ['paywall-ab', 'application'],
       ['promo-codes', 'money'],
       ['remote-config', 'application'],
       ['reports', 'report-center'],
@@ -63,12 +64,12 @@ describe('Admin v2 native capability routing', () => {
 
     const registry = loadRegistry();
     expect(registry.find((capability) => capability.id === 'control-panel')).toMatchObject({ migrationStatus: 'guarded', nativeRoute: 'control-panel' });
-    expect(registry.find((capability) => capability.id === 'paywall-ab')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
+    expect(registry.find((capability) => capability.id === 'paywall-ab')).toMatchObject({ migrationStatus: 'guarded', nativeRoute: 'application' });
   });
 
-  test('decodes an encoded fallback hash into its exact route and capability', () => {
-    expect(resolveCapabilityHash('#application%3Apaywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
-    expect(resolveCapabilityHash('#application:paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
+  test('decodes an encoded native capability hash into its consolidated route', () => {
+    expect(resolveCapabilityHash('#application%3Apaywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: '' });
+    expect(resolveCapabilityHash('#application:paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: '' });
   });
 
   test('keeps a top-level route native when a legacy capability has the same id', () => {

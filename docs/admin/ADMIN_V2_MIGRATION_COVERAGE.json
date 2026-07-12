@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-12T11:27:05.417Z",
+  "generatedAt": "2026-07-12T11:37:49.026Z",
   "source": {
     "buttons": 471,
     "functions": 1010,
@@ -104,8 +104,8 @@
       "route": "application",
       "legacyTab": "paywall-ab",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "application",
       "inventory": {
         "buttons": 12,
         "functions": 0,
@@ -113,7 +113,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "app-messages",
@@ -30720,8 +30720,8 @@
       "total": 59,
       "inventory": 0,
       "ported": 0,
-      "fallback": 44,
-      "guarded": 15,
+      "fallback": 43,
+      "guarded": 16,
       "blocked": 0
     },
     "buttons": {

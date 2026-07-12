@@ -124,6 +124,7 @@ const state = {
   selectedCapabilityId: '',
   remoteConfig: null,
   remoteConfigPreview: null,
+  paywallAb: { status: 'idle', workspace: null, draft: null, preview: null, rangeDays: 28, includeDev: false, error: '' },
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
   reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
@@ -442,6 +443,68 @@ function renderRemoteConfigHistory() {
   return `<div class="data-list">${history.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.action || 'Изменение конфигурации')}</strong><small>${escapeHtml(item.timestamp || item.at || '')} · ${escapeHtml(item.reason || item.by || 'Причина не указана')}</small>${item.rollbackReference ? `<small>Rollback reference: <code>${escapeHtml(item.rollbackReference)}</code></small>` : ''}</div><div class="actions"><span class="badge">ревизия ${Number(item.revision ?? 0)}</span>${item.before && typeof item.before === 'object' ? `<button class="button small" data-action="preview-remote-config-restore" data-rollback-reference="${escapeHtml(item.id || item.rollbackReference || '')}" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Подготовить предпросмотр восстановления значений из состояния до этой публикации. Новые ключи не удаляются.">Восстановить значения</button>` : ''}</div></div>`).join('')}</div>`;
 }
 
+const PAYWALL_AB_PRESETS = Object.freeze({
+  off: { aPct: 0, bPct: 0, cPct: 0 },
+  soft: { aPct: 10, bPct: 10, cPct: 80 },
+  even: { aPct: 33, bPct: 33, cPct: 34 },
+  atrium: { aPct: 0, bPct: 0, cPct: 100 },
+});
+
+function paywallAbDraft() {
+  const config = state.paywallAb.draft ?? state.paywallAb.workspace?.config ?? {};
+  return {
+    aPct: Number(config.aPct ?? 0), bPct: Number(config.bPct ?? 0), cPct: Number(config.cPct ?? 0),
+    salt: String(config.salt || 'v3'), ratingX10: Number(config.ratingX10 ?? 0), ratingsCount: Number(config.ratingsCount ?? 0),
+  };
+}
+
+function paywallAbRate(purchases, shown) {
+  return Number(shown) > 0 ? `${(Number(purchases || 0) / Number(shown) * 100).toFixed(1)}%` : '—';
+}
+
+function renderPaywallAbWorkflow() {
+  const view = state.paywallAb;
+  const workspace = view.workspace;
+  const draft = paywallAbDraft();
+  const analytics = workspace?.analytics ?? {};
+  const variants = analytics.variants ?? {};
+  const preview = view.preview;
+  const locked = state.busy || !can('application.config.write') || !!preview;
+  const rows = ['A', 'B', 'C', 'v1'].map((variant) => {
+    const item = variants[variant] ?? {};
+    return `<tr><td><strong>${escapeHtml(variant === 'v1' ? 'Архив v1' : `Вариант ${variant}`)}</strong></td><td>${Number(item.shown || 0).toLocaleString('ru-RU')}</td><td>${Number(item.trialStarted || 0).toLocaleString('ru-RU')}</td><td>${Number(item.purchaseCompleted || 0).toLocaleString('ru-RU')}</td><td>${escapeHtml(paywallAbRate(item.purchaseCompleted, item.shown))}</td></tr>`;
+  }).join('');
+  const history = Array.isArray(workspace?.history) ? workspace.history : [];
+  return `<section class="card section" id="paywall-ab-workspace"><div class="card-header"><div><h2>A/B экрана оплаты</h2><p>Распределение трафика, оценка на экране и фактическая воронка в одном защищённом рабочем месте.</p></div><div class="actions"><span class="badge ${workspace ? 'success' : ''}">${workspace ? `ревизия ${Number(workspace.config?.revision || 0)}` : 'не загружено'}</span><button class="button" data-action="load-paywall-ab" type="button"${disabledWhenUnauthorized('application.config.write')} title="Загрузить настройки и агрегированную воронку с сервера">${workspace ? 'Обновить' : 'Загрузить'}</button></div></div><div class="card-body">
+    ${view.error ? `<div class="notice danger" role="alert">${escapeHtml(view.error)}</div>` : ''}
+    ${!workspace ? emptyState('Загрузите A/B-настройки. Браузер не читает и не записывает коллекции напрямую.') : `
+      <div class="metrics"><article class="card metric"><label>События</label><strong>${Number(analytics.totalEvents || 0).toLocaleString('ru-RU')}</strong><span class="badge">${Number(workspace.rangeDays || view.rangeDays)} дней</span></article><article class="card metric"><label>Тестовые исключены</label><strong>${Number(analytics.excludedDevEvents || 0).toLocaleString('ru-RU')}</strong><span class="badge">dev</span></article><article class="card metric"><label>Источник</label><strong>${workspace.source?.truncated ? 'Частично' : 'Готов'}</strong><span class="badge ${workspace.source?.truncated ? 'warning' : 'success'}">${Number(workspace.source?.count || 0).toLocaleString('ru-RU')} строк</span></article></div>
+      <div class="fields section"><div class="field full"><label>Быстрые сценарии</label><div class="actions"><button class="button small" data-action="set-paywall-ab-preset" data-preset="off" type="button"${locked ? ' disabled' : ''} title="Все пользователи увидят вариант C через fallback приложения">Без теста</button><button class="button small" data-action="set-paywall-ab-preset" data-preset="soft" type="button"${locked ? ' disabled' : ''} title="10% A, 10% B и 80% C">Осторожный 10/10/80</button><button class="button small" data-action="set-paywall-ab-preset" data-preset="even" type="button"${locked ? ' disabled' : ''} title="Почти равное распределение A/B/C">Поровну</button><button class="button small" data-action="set-paywall-ab-preset" data-preset="atrium" type="button"${locked ? ' disabled' : ''} title="Весь трафик направить в вариант C">Только C</button></div></div>
+      <div class="field"><label for="paywall-ab-a">Вариант A, %</label><input id="paywall-ab-a" type="number" min="0" max="100" value="${draft.aPct}"${locked ? ' disabled' : ''}></div><div class="field"><label for="paywall-ab-b">Вариант B, %</label><input id="paywall-ab-b" type="number" min="0" max="100" value="${draft.bPct}"${locked ? ' disabled' : ''}></div><div class="field"><label for="paywall-ab-c">Вариант C, %</label><input id="paywall-ab-c" type="number" min="0" max="100" value="${draft.cPct}"${locked ? ' disabled' : ''}></div><div class="field"><label for="paywall-ab-rating">Оценка 1–5; 0 — скрыть</label><input id="paywall-ab-rating" type="number" min="0" max="5" step="0.1" value="${draft.ratingX10 ? (draft.ratingX10 / 10).toFixed(1) : '0'}"${locked ? ' disabled' : ''}></div><div class="field"><label for="paywall-ab-count">Количество оценок</label><input id="paywall-ab-count" type="number" min="0" step="1" value="${draft.ratingsCount}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="paywall-ab-reason">Причина изменения</label><textarea id="paywall-ab-reason" maxlength="500" placeholder="Гипотеза, аудитория, срок проверки и условие остановки"${locked ? ' disabled' : ''}>${escapeHtml(preview?.reason || '')}</textarea></div></div>
+      ${preview ? `<div class="notice warning section"><strong>Предпросмотр A/B</strong><br>${preview.changes.map(escapeHtml).join('<br>')}<br><small>Откат: восстановить значения из истории или опубликовать предыдущий сплит новой ревизией.</small></div>` : ''}
+      <div class="actions end section">${preview ? '<button class="button" data-action="discard-paywall-ab-preview" type="button" title="Вернуться к редактированию без записи">Изменить ещё</button>' : ''}<button class="button ${preview ? '' : 'primary'}" data-action="preview-paywall-ab" type="button"${locked ? ' disabled' : ''} title="Проверить доли, оценку и причину без записи">Предпросмотр</button>${preview ? `<button class="button primary" data-action="publish-paywall-ab" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Опубликовать с контролем ревизии и записью аудита">Опубликовать</button>` : ''}</div>
+      <div class="card-header section"><div><h3>Воронка</h3><p>Только агрегаты; персональные идентификаторы в браузер не передаются.</p></div><div class="actions"><label class="checkbox"><input id="paywall-ab-include-dev" type="checkbox"${view.includeDev ? ' checked' : ''}> включая мои/тестовые</label>${[7, 28, 90].map((days) => `<button class="button small${Number(workspace.rangeDays) === days ? ' primary' : ''}" data-action="load-paywall-ab-range" data-range="${days}" type="button" title="Загрузить агрегаты за ${days} дней">${days} дн.</button>`).join('')}</div></div>
+      <div class="table-wrap"><table><thead><tr><th>Экран</th><th>Показы</th><th>Пробный период</th><th>Покупки</th><th>Конверсия</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="section"><h3>История изменений</h3>${history.length ? `<div class="data-list">${history.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.action || 'paywall_ab.publish')}</strong><small>${escapeHtml(item.timestamp || item.at || '')} · ${escapeHtml(item.reason || 'без причины')}</small></div><span class="badge">ревизия ${Number(item.revision || 0)}</span></div>`).join('')}</div>` : emptyState('История A/B пока пуста.')}</div>
+    `}
+  </div></section>`;
+}
+
+function readPaywallAbPreview() {
+  if (!state.paywallAb.workspace) throw new Error('Сначала загрузите A/B-настройки.');
+  const number = (id) => Number(document.getElementById(id)?.value ?? 0);
+  const config = { aPct: Math.round(number('paywall-ab-a')), bPct: Math.round(number('paywall-ab-b')), cPct: Math.round(number('paywall-ab-c')), salt: String(state.paywallAb.workspace.config?.salt || 'v3'), ratingX10: Math.round(number('paywall-ab-rating') * 10), ratingsCount: Math.round(number('paywall-ab-count')) };
+  if ([config.aPct, config.bPct, config.cPct].some((value) => !Number.isInteger(value) || value < 0 || value > 100) || config.aPct + config.bPct + config.cPct > 100) throw new Error('Доли A, B и C должны быть целыми от 0 до 100, а сумма — не больше 100%.');
+  if (!Number.isInteger(config.ratingX10) || config.ratingX10 < 0 || config.ratingX10 > 50 || (config.ratingX10 > 0 && config.ratingX10 < 10)) throw new Error('Оценка должна быть 0 или от 1.0 до 5.0.');
+  if (!Number.isInteger(config.ratingsCount) || config.ratingsCount < 0) throw new Error('Количество оценок должно быть целым неотрицательным числом.');
+  const reason = String(document.getElementById('paywall-ab-reason')?.value ?? '').trim();
+  if (!reason) throw new Error('Укажите причину изменения и условие остановки теста.');
+  const before = state.paywallAb.workspace.config ?? {};
+  const labels = { aPct: 'A, %', bPct: 'B, %', cPct: 'C, %', ratingX10: 'оценка ×10', ratingsCount: 'число оценок' };
+  const changes = Object.keys(labels).filter((key) => Number(before[key] ?? 0) !== Number(config[key])).map((key) => `${labels[key]}: ${Number(before[key] ?? 0)} → ${Number(config[key])}`);
+  return { config, reason, changes };
+}
+
 function renderApplication() {
   const workspace = state.remoteConfig;
   const config = workspace?.config ?? {};
@@ -479,7 +542,8 @@ function renderApplication() {
         <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button" title="Отменить предпросмотр без изменения production">Изменить ещё</button>' : ''}<button class="button ${preview || editorLocked ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy && !editorLocked ? '' : ' disabled'} title="Показать точные изменения конфигурации до публикации">Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Опубликовать подтверждённый предпросмотр через серверную команду">Опубликовать</button>` : ''}</div>
       </div></section>
       <section class="card section"><div class="card-header"><div><h2>Последние изменения</h2><p>Серверный журнал с причиной и ревизией.</p></div></div><div class="card-body">${renderRemoteConfigHistory()}</div></section>
-    `}`;
+    `}
+    ${renderPaywallAbWorkflow()}`;
 }
 
 function appMessageDraftValue(draft, language, field, fallback = '') {
@@ -2564,6 +2628,47 @@ async function handleAction(action, target) {
       state.remoteConfigPreview = null;
     }, 'Конфигурация опубликована и записана в журнал.');
   }
+  if (action === 'load-paywall-ab') {
+    return runBusy(async () => {
+      const workspace = await actions.getPaywallAbWorkspace({ rangeDays: state.paywallAb.rangeDays, includeDev: state.paywallAb.includeDev });
+      state.paywallAb = { ...state.paywallAb, status: 'ready', workspace, draft: workspace.config, preview: null, error: '', rangeDays: Number(workspace.rangeDays || state.paywallAb.rangeDays), includeDev: workspace.includeDev === true };
+    }, 'A/B-настройки и воронка загружены.');
+  }
+  if (action === 'load-paywall-ab-range') {
+    const rangeDays = Number(target.getAttribute('data-range') || 28);
+    const includeDev = document.getElementById('paywall-ab-include-dev')?.checked === true;
+    state.paywallAb.rangeDays = rangeDays;
+    state.paywallAb.includeDev = includeDev;
+    return runBusy(async () => {
+      const workspace = await actions.getPaywallAbWorkspace({ rangeDays, includeDev });
+      state.paywallAb = { ...state.paywallAb, status: 'ready', workspace, draft: state.paywallAb.draft ?? workspace.config, preview: null, error: '', rangeDays, includeDev };
+    }, `Воронка за ${rangeDays} дней загружена.`);
+  }
+  if (action === 'set-paywall-ab-preset') {
+    const preset = PAYWALL_AB_PRESETS[String(target.getAttribute('data-preset') || '')];
+    if (!preset) return;
+    state.paywallAb.draft = { ...paywallAbDraft(), ...preset };
+    state.paywallAb.preview = null;
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-paywall-ab') {
+    try { state.paywallAb.preview = readPaywallAbPreview(); state.paywallAb.draft = state.paywallAb.preview.config; setMessage('Предпросмотр A/B готов. Проверьте точные изменения.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'discard-paywall-ab-preview') { state.paywallAb.preview = null; renderCurrentPage(); return; }
+  if (action === 'publish-paywall-ab') {
+    const preview = state.paywallAb.preview;
+    if (!preview?.changes?.length) return setMessage('Нет изменений A/B для публикации.', 'warning');
+    if (!globalThis.confirm(`Опубликовать A/B экрана оплаты?\n\n${preview.changes.join('\n')}\n\nПричина: ${preview.reason}`)) return;
+    const expectedRevision = Number(state.paywallAb.workspace?.config?.revision || 0);
+    return runBusy(async () => {
+      await actions.publishPaywallAb({ config: preview.config, expectedRevision, idempotencyKey: id('paywall-ab'), reason: preview.reason, requestId: id('request-paywall-ab') });
+      const workspace = await actions.getPaywallAbWorkspace({ rangeDays: state.paywallAb.rangeDays, includeDev: state.paywallAb.includeDev });
+      state.paywallAb = { ...state.paywallAb, status: 'ready', workspace, draft: workspace.config, preview: null, error: '' };
+    }, 'A/B экрана оплаты опубликован и записан в аудит.');
+  }
   if (action === 'load-factory-jobs') return runBusy(async () => { await loadJobs(); state.factoryStep = 2; }, 'Черновики загружены.');
   if (action === 'back-to-factory-jobs') { state.detail = null; state.preview = null; renderCurrentPage(); return; }
   if (action === 'create-factory-job') {
@@ -2861,6 +2966,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
+  if (!state.authorized || (!can('application.config.write') && !can('money.read'))) state.paywallAb = { status: 'idle', workspace: null, draft: null, preview: null, rangeDays: 28, includeDev: false, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };

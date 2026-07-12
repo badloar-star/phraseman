@@ -67,6 +67,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
+  const getPaywallAbWorkspaceCallable = httpsCallable(functionsUs, 'adminGetPaywallAbWorkspace');
+  const publishPaywallAbCallable = httpsCallable(functionsUs, 'adminPublishPaywallAb');
   const listPromoCodesCallable = httpsCallable(functionsUs, 'adminListPromoCodes');
   const listAppMessagesCallable = httpsCallable(functionsUs, 'adminListAppMessages');
   const createAppMessageCallable = httpsCallable(functionsUs, 'adminCreateAppMessage');
@@ -141,6 +143,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),
+    getPaywallAbWorkspace: async (input) => unwrap(await getPaywallAbWorkspaceCallable(input)),
+    publishPaywallAb: async (input) => unwrap(await publishPaywallAbCallable(input)),
     listPromoCodes: async (input) => unwrap(await listPromoCodesCallable(input)),
     listAppMessages: async (input) => unwrap(await listAppMessagesCallable(input)),
     createAppMessage: async (input) => unwrap(await createAppMessageCallable(input)),

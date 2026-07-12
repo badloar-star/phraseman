@@ -1620,6 +1620,8 @@ export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
+export { adminListCacheEntries, adminExportCacheEntries, adminPreviewCacheReset, adminResetCacheEntry } from './admin_cache_control';
+export { adminGetCompassWorkspace, adminPreviewCompassChange, adminRequestCompassApproval, adminApproveCompassChange, adminApplyCompassChange } from './admin_compass_control';
 export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';
 export {
   adminPreviewEmailCampaign,

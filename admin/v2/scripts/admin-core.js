@@ -35,6 +35,8 @@ const PAGES = Object.freeze({
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
   emails: { title: 'Email-контакты', description: 'Защищённый каталог адресов приложения и сайта с явной пригодностью для рассылок.' },
+  'explain-cache': { title: 'Кэш объяснений', description: 'Проверка и безопасное обслуживание общих AI-объяснений без запуска генерации.' },
+  compass: { title: 'Компас', description: 'Состояние, кэш и защищённые настройки учебного Компаса.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
   'daily-briefing': { title: 'Product Manager Digest', description: 'Утренний управленческий отчёт: рост, деньги, риски, очереди и действия на сегодня.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
@@ -43,11 +45,11 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
-  content_editor: new Set(['content.read', 'content.draft.write']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
-  developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
+  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
+  analyst: new Set(['users.read', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
   support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
   moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
 });
@@ -141,6 +143,8 @@ const state = {
     state: 'idle', items: [], counts: null, filteredCount: 0, nextCursor: '', source: 'all', eligibility: 'all', suppression: 'all', query: '', error: '',
     campaignState: 'idle', campaigns: [], approvals: [], draft: { audienceKind: 'all' }, preview: null, operationKeys: {}, campaignError: '',
   },
+  cache: { state: 'idle', source: 'choice_explanations', status: '', lang: '', query: '', items: [], summary: null, nextCursor: '', hasMore: false, error: '', resetPreview: null, operationKeys: {} },
+  compass: { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '' },
 };
 
 let actions = null;
@@ -1266,6 +1270,34 @@ function clearEmailOperationKey(scope) {
   try { globalThis.sessionStorage?.removeItem(`phraseman_admin_email_operation_${key}`); } catch { /* No-op. */ }
 }
 
+function protectedOperationKey(area, scope) {
+  const key = String(scope || 'command');
+  const bucket = state[area];
+  const existing = bucket?.operationKeys?.[key];
+  if (existing) return existing;
+  const storageKey = `phraseman_admin_${area}_operation_${key}`;
+  try {
+    const persisted = globalThis.sessionStorage?.getItem(storageKey);
+    if (persisted) {
+      bucket.operationKeys = { ...(bucket.operationKeys || {}), [key]: persisted };
+      return persisted;
+    }
+  } catch { /* Session storage is only a retry aid. */ }
+  const operationId = id(`${area}-${key.replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 60)}`);
+  bucket.operationKeys = { ...(bucket.operationKeys || {}), [key]: operationId };
+  try { globalThis.sessionStorage?.setItem(storageKey, operationId); } catch { /* Keep the in-memory key. */ }
+  return operationId;
+}
+
+function clearProtectedOperationKey(area, scope) {
+  const key = String(scope || 'command');
+  const bucket = state[area];
+  const keys = { ...(bucket?.operationKeys || {}) };
+  delete keys[key];
+  bucket.operationKeys = keys;
+  try { globalThis.sessionStorage?.removeItem(`phraseman_admin_${area}_operation_${key}`); } catch { /* No-op. */ }
+}
+
 function emailApprovalIsLive(approval) {
   const expiresAtMs = Math.min(Number(approval?.expiresAtMs || 0), Number(approval?.previewExpiresAtMs || approval?.expiresAtMs || 0));
   return (approval?.status === 'pending' || approval?.status === 'approved') && expiresAtMs > Date.now();
@@ -1584,10 +1616,188 @@ function renderReportQueue() {
     </div></section>`;
 }
 
+const CACHE_SOURCE_LABELS = Object.freeze({
+  choice_explanations: 'Выбор ответа',
+  phrase_explanations: 'Фразы',
+  mistake_explanations: 'Ошибки',
+  quiz_explanations: 'Квизы',
+  compass_briefings: 'Compass',
+});
+
+const COMPASS_BOOL_LABELS = Object.freeze({
+  compass_enabled: 'Compass включён',
+  compass_ai_voice_enabled: 'AI-голос',
+  compass_deep_dive_enabled: 'Углубление темы',
+  compass_lesson_invite_enabled: 'Приглашение в урок',
+  compass_economy_enabled: 'Экономика',
+  compass_retention_enabled: 'Удержание',
+  compass_topic_map_enabled: 'Карта тем',
+});
+
+const COMPASS_TEXT_LABELS = Object.freeze({
+  compass_voice_fallback_ru: 'Резервный текст голоса · RU',
+  compass_voice_fallback_uk: 'Резервный текст голоса · UK',
+  compass_voice_fallback_es: 'Резервный текст голоса · ES',
+});
+
+function cacheListInput(area = 'cache', cursor = '') {
+  const compass = area === 'compass';
+  return {
+    source: compass ? 'compass_briefings' : String(document.getElementById('cache-source')?.value || state.cache.source),
+    status: String(document.getElementById(compass ? 'compass-cache-status' : 'cache-status')?.value || (compass ? state.compass.cacheStatus : state.cache.status) || ''),
+    lang: String(document.getElementById(compass ? 'compass-cache-lang' : 'cache-lang')?.value || (compass ? state.compass.cacheLang : state.cache.lang) || '').trim(),
+    query: String(document.getElementById(compass ? 'compass-cache-query' : 'cache-query')?.value || (compass ? state.compass.cacheQuery : state.cache.query) || '').trim(),
+    pageSize: 25,
+    cursor,
+  };
+}
+
+function applyCachePage(result, area = 'cache', append = false) {
+  if (area === 'compass') {
+    state.compass = {
+      ...state.compass,
+      cacheItems: append ? [...state.compass.cacheItems, ...(result?.items || [])] : (result?.items || []),
+      cacheSummary: result?.summary || null,
+      cacheNextCursor: String(result?.nextCursor || ''),
+      error: '',
+    };
+    return;
+  }
+  state.cache = {
+    ...state.cache,
+    state: 'ready',
+    items: append ? [...state.cache.items, ...(result?.items || [])] : (result?.items || []),
+    summary: result?.summary || null,
+    nextCursor: String(result?.nextCursor || ''),
+    hasMore: result?.hasMore === true,
+    error: '',
+  };
+}
+
+async function loadCacheEntries(area = 'cache', append = false) {
+  const cursor = append ? (area === 'compass' ? state.compass.cacheNextCursor : state.cache.nextCursor) : '';
+  const input = cacheListInput(area, cursor);
+  if (area === 'compass') {
+    state.compass = { ...state.compass, cacheStatus: input.status, cacheLang: input.lang, cacheQuery: input.query };
+  } else {
+    state.cache = { ...state.cache, state: 'loading', source: input.source, status: input.status, lang: input.lang, query: input.query };
+  }
+  const result = await actions.listCacheEntries(input);
+  applyCachePage(result, area, append);
+  return result;
+}
+
+function cacheEntryTitle(item) {
+  return item.correctEn || item.phraseEn || item.targetEn || item.questionPrompt || item.comment || item.id;
+}
+
+function renderCacheEntries(items, area) {
+  if (!items.length) return emptyState('По выбранным фильтрам записей нет.');
+  return `<div class="support-list">${items.map((item) => `<article class="support-message">
+    <header><div><strong>${escapeHtml(String(cacheEntryTitle(item)).slice(0, 180))}</strong><small>${escapeHtml(item.id)} · ${escapeHtml(item.lang || 'язык не указан')} · схема ${Number(item.schemaVersion || 0)}</small></div><div class="actions"><span class="badge ${item.status === 'ready' ? 'success' : item.status === 'pending' ? 'warning' : item.status === 'rejected' ? 'danger' : ''}">${escapeHtml(item.status || 'unknown')}</span></div></header>
+    <details><summary>Безопасная проекция записи</summary><pre class="code-preview">${escapeHtml(JSON.stringify(item, null, 2))}</pre></details>
+    ${can('content.cache.reset') ? `<footer><button class="button danger small" data-action="preview-cache-reset" data-cache-area="${area}" data-cache-source="${escapeHtml(item.source)}" data-cache-document-id="${escapeHtml(item.id)}" type="button" title="Подготовить удаление ровно одной записи; генерация не запускается">Подготовить сброс</button></footer>` : ''}
+  </article>`).join('')}</div>`;
+}
+
+function renderCacheResetPreview(area) {
+  const preview = area === 'compass' ? state.compass.cacheResetPreview : state.cache.resetPreview;
+  if (!preview) return '';
+  return `<div class="notice warning section"><strong>Сброс одной записи подготовлен</strong><br>
+    ${escapeHtml(preview.source)}/${escapeHtml(preview.documentId)} · ${escapeHtml(preview.status || 'unknown')}<br>
+    Удалится только эта запись. Новая генерация возможна позже только по запросу пользователя.
+    <div class="field section"><label for="${area}-cache-reset-confirmation">Введите точное подтверждение</label><input id="${area}-cache-reset-confirmation" value="" placeholder="${escapeHtml(preview.confirmation)}" autocomplete="off"></div>
+    <div class="actions end"><button class="button" data-action="discard-cache-reset" data-cache-area="${area}" type="button" title="Отменить без удаления">Отмена</button><button class="button danger" data-action="confirm-cache-reset" data-cache-area="${area}" type="button" title="Удалить ровно одну подтверждённую запись">Удалить одну запись</button></div>
+  </div>`;
+}
+
+function renderCacheFilters(area = 'cache') {
+  const compass = area === 'compass';
+  const model = compass ? state.compass : state.cache;
+  return `<div class="report-filters">
+    ${compass ? '' : `<div class="field"><label for="cache-source">Источник</label><select id="cache-source">${renderSelectOptions(Object.entries(CACHE_SOURCE_LABELS), model.source)}</select></div>`}
+    <div class="field"><label for="${compass ? 'compass-cache-status' : 'cache-status'}">Статус</label><select id="${compass ? 'compass-cache-status' : 'cache-status'}">${renderSelectOptions([['', 'Все'], ['ready', 'Готово'], ['pending', 'В работе'], ['rejected', 'Отклонено']], compass ? model.cacheStatus : model.status)}</select></div>
+    <div class="field"><label for="${compass ? 'compass-cache-lang' : 'cache-lang'}">Язык</label><input id="${compass ? 'compass-cache-lang' : 'cache-lang'}" value="${escapeHtml(compass ? model.cacheLang : model.lang)}" placeholder="en"></div>
+    <div class="field"><label for="${compass ? 'compass-cache-query' : 'cache-query'}">Поиск</label><input id="${compass ? 'compass-cache-query' : 'cache-query'}" value="${escapeHtml(compass ? model.cacheQuery : model.query)}" placeholder="Фраза или текст"></div>
+    ${compass ? '<button class="button primary" data-action="load-compass-cache" type="button" title="Применить фильтры и загрузить безопасную серверную проекцию Compass">Применить</button>' : '<button class="button primary" data-action="load-cache" type="button" title="Применить фильтры и загрузить безопасную серверную проекцию">Применить</button>'}
+  </div>`;
+}
+
+function renderExplainCache() {
+  const cache = state.cache;
+  const summary = cache.summary || {};
+  return `${pageHeader(PAGES['explain-cache'], 'Контент / Кэш объяснений', '<a class="button" href="#diagnostics">Журнал операций</a>')}
+    <div class="notice">Здесь используются те же рабочие коллекции, что и в старой админке. Чтение, экспорт и точечный сброс выполняются через защищённые серверные операции; этот экран никогда не запускает генерацию.</div>
+    ${cache.error ? `<div class="notice danger section">${escapeHtml(cache.error)}</div>` : ''}
+    <section class="metrics section">${operationalMetric('Всего', summary.total ?? '—', 'выбранная коллекция')}${operationalMetric('Готово', summary.ready ?? '—', 'ready', 'success')}${operationalMetric('В работе', summary.pending ?? '—', 'pending', 'warning')}${operationalMetric('Отклонено', summary.rejected ?? '—', 'rejected', 'danger')}</section>
+    <section class="card section"><div class="card-header"><div><h2>Фильтры и экспорт</h2><p>Выгрузка ограничена 500 записями и фиксируется в журнале аудита.</p></div></div><div class="card-body">${renderCacheFilters('cache')}<div class="field section"><label for="cache-operation-reason">Причина экспорта или сброса</label><input id="cache-operation-reason" maxlength="500" placeholder="Что проверяем и зачем"></div><div class="actions"><button class="button" data-action="export-cache-json" type="button" title="Скопировать ограниченную JSON-выгрузку и записать действие в аудит"${disabledWhenUnauthorized('content.cache.export')}>Копировать JSON</button><button class="button" data-action="export-cache-review" type="button" title="Скопировать пакет ручной проверки и записать действие в аудит"${disabledWhenUnauthorized('content.cache.export')}>Копировать пакет проверки</button></div>${renderCacheResetPreview('cache')}</div></section>
+    <section class="card section"><div class="card-header"><div><h2>Записи</h2><p>Показано ${cache.items.length}; свежие блокировки pending защищены от сброса.</p></div><span class="badge ${badgeClass(cache.state)}">${escapeHtml(cache.state)}</span></div><div class="card-body">${renderCacheEntries(cache.items, 'cache')}${cache.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-cache-next" type="button" title="Загрузить следующую страницу текущей выборки">Показать ещё</button></div>' : ''}</div></section>`;
+}
+
+function compassDraftFromDom() {
+  const bools = {};
+  Object.keys(COMPASS_BOOL_LABELS).forEach((key) => { bools[key] = document.getElementById(`compass-bool-${key}`)?.checked === true; });
+  const texts = {};
+  Object.keys(COMPASS_TEXT_LABELS).forEach((key) => { texts[key] = String(document.getElementById(`compass-text-${key}`)?.value || '').trim(); });
+  return { bools, texts };
+}
+
+function compassPatchFromDraft(draft, config) {
+  const patch = { bools: {}, texts: {} };
+  Object.keys(COMPASS_BOOL_LABELS).forEach((key) => { if (draft.bools[key] !== config.bools[key]?.effective) patch.bools[key] = draft.bools[key]; });
+  Object.keys(COMPASS_TEXT_LABELS).forEach((key) => { if (draft.texts[key] !== (config.texts[key]?.configured ?? '')) patch.texts[key] = draft.texts[key]; });
+  if (!Object.keys(patch.bools).length) delete patch.bools;
+  if (!Object.keys(patch.texts).length) delete patch.texts;
+  return patch;
+}
+
+function compassReviewPacket(item, requestedBy = '') {
+  return {
+    previewId: item.previewId,
+    revision: item.revision,
+    requestedBy: item.requestedBy || requestedBy,
+    previewRequestId: item.previewRequestId || item.requestId,
+    reason: item.reason,
+    expiresAtMs: item.expiresAtMs,
+    risk: item.risk,
+    rollbackPath: item.rollbackPath,
+    before: item.before,
+    patch: item.patch,
+    after: item.after,
+    fingerprint: item.fingerprint,
+    confirmation: item.confirmation,
+  };
+}
+
+function renderCompassApprovals(approvals) {
+  const live = approvals.filter((item) => ['pending', 'approved'].includes(item.status) && Math.min(Number(item.expiresAtMs || 0), Number(item.previewExpiresAtMs || 0)) > Date.now());
+  if (!live.length) return emptyState('Активных запросов на изменение нет.');
+  return `<div class="support-list">${live.map((item) => `<article class="support-message"><header><div><strong>${item.status === 'pending' ? 'Ожидает второго администратора' : 'Одобрено'}</strong><small>${escapeHtml(item.id)} · автор ${escapeHtml(item.requestedBy)} · истекает ${escapeHtml(dateTime(item.expiresAtMs))}</small></div><span class="badge ${item.status === 'approved' ? 'success' : 'warning'}">${escapeHtml(item.status)}</span></header><details open><summary>Неизменяемый пакет решения</summary><pre class="code-preview">${escapeHtml(JSON.stringify(compassReviewPacket(item), null, 2))}</pre></details>${item.status === 'approved' && item.requestedBy === state.adminUid ? `<div class="field"><label for="compass-approved-confirmation-${escapeHtml(item.id)}">Точное подтверждение</label><input id="compass-approved-confirmation-${escapeHtml(item.id)}" placeholder="${escapeHtml(item.confirmation)}" autocomplete="off"></div>` : ''}<footer class="actions">${item.status === 'pending' && item.requestedBy !== state.adminUid && can('application.compass.approve') ? `<button class="button primary small" data-action="approve-compass-change" data-approval-id="${escapeHtml(item.id)}" type="button" title="Одобрить изменение как второй администратор">Одобрить</button>` : ''}${item.status === 'approved' && item.requestedBy === state.adminUid && can('application.compass.write') ? `<button class="button primary small" data-action="apply-approved-compass-change" data-approval-id="${escapeHtml(item.id)}" type="button" title="Опубликовать одобренные настройки после точного подтверждения">Применить</button>` : ''}</footer></article>`).join('')}</div>`;
+}
+
+function renderCompass() {
+  const model = state.compass;
+  const workspace = model.workspace;
+  if (!workspace) return `${pageHeader(PAGES.compass, 'Контент / Compass')}<section class="card section"><div class="card-body">${model.error ? `<div class="notice danger">${escapeHtml(model.error)}</div>` : emptyState(model.state === 'loading' ? 'Загружаем Compass…' : 'Данные Compass ещё не загружены.')}<div class="actions section"><button class="button primary" data-action="load-compass" type="button" title="Загрузить настройки, аналитику, одобрения и кэш Compass">Загрузить</button></div></div></section>`;
+  const config = workspace.config || { bools: {}, texts: {}, revision: 0 };
+  const analytics = workspace.analytics || { cache: {}, billing: {} };
+  const draft = model.draft || { bools: Object.fromEntries(Object.entries(config.bools).map(([key, value]) => [key, value.effective])), texts: Object.fromEntries(Object.entries(config.texts).map(([key, value]) => [key, value.configured ?? ''])) };
+  const preview = model.preview;
+  return `${pageHeader(PAGES.compass, 'Контент / Compass', '<a class="button" href="#explain-cache">Все кэши</a><a class="button" href="#diagnostics">Диагностика</a>')}
+    <div class="notice">Настройки читаются и публикуются в том же документе Remote Config, который использует приложение. Экстренное выключение доступно сразу; включение и любые другие изменения требуют второго администратора.</div>
+    ${model.error ? `<div class="notice danger section">${escapeHtml(model.error)}</div>` : ''}
+    <section class="metrics section">${operationalMetric('Кэш всего', analytics.cache?.total ?? 0, 'compass_briefings')}${operationalMetric('Готово', analytics.cache?.ready ?? 0, 'ready', 'success')}${operationalMetric(`Попытки · ${analytics.rangeDays || 28} дн.`, analytics.billing?.attempts ?? 0, 'compass_billing')}${operationalMetric('Опубликовано', analytics.billing?.published ?? 0, 'published', 'success')}</section>
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Переключатели</h2><p>Ревизия ${Number(config.revision || 0)}. Зелёный означает включённую функцию.</p></div></div><div class="card-body">${Object.entries(COMPASS_BOOL_LABELS).map(([key, label]) => `<label class="check-row" for="compass-bool-${key}"><input id="compass-bool-${key}" type="checkbox"${draft.bools[key] ? ' checked' : ''}><span><strong>${escapeHtml(label)}</strong><small>${config.bools[key]?.configured === null ? 'Встроенное значение по умолчанию' : 'Явно настроено'}</small></span></label>`).join('')}</div></section>
+    <section class="card"><div class="card-header"><div><h2>Резервные тексты</h2><p>Пустое значение оставляет встроенный текст приложения.</p></div></div><div class="card-body">${Object.entries(COMPASS_TEXT_LABELS).map(([key, label]) => `<div class="field"><label for="compass-text-${key}">${escapeHtml(label)}</label><textarea id="compass-text-${key}" maxlength="500">${escapeHtml(draft.texts[key] || '')}</textarea></div>`).join('')}<div class="field"><label for="compass-change-reason">Причина изменения</label><textarea id="compass-change-reason" maxlength="500" placeholder="Что меняем, зачем и что проверено"></textarea></div><button class="button primary" data-action="preview-compass-change" type="button" title="Проверить ревизию и подготовить серверный предпросмотр без публикации"${disabledWhenUnauthorized('application.compass.write')}>Подготовить изменения</button></div></section></div>
+    ${preview ? `<section class="card section"><div class="card-header"><div><h2>Серверный предпросмотр</h2><p>${preview.requiresApproval ? 'Нужно одобрение другого администратора.' : 'Экстренное выключение можно применить сразу.'}</p></div><span class="badge ${preview.requiresApproval ? 'warning' : 'danger'}">${preview.requiresApproval ? '2 администратора' : 'emergency off'}</span></div><div class="card-body"><details open><summary>Полный пакет до принятия решения</summary><pre class="code-preview">${escapeHtml(JSON.stringify(compassReviewPacket(preview, state.adminUid), null, 2))}</pre></details><div class="field"><label for="compass-confirmation">Точное подтверждение</label><input id="compass-confirmation" placeholder="${escapeHtml(preview.confirmation)}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="discard-compass-preview" type="button" title="Отменить предпросмотр без изменения настроек">Отмена</button>${preview.requiresApproval ? '<button class="button primary" data-action="request-compass-approval" type="button" title="Отправить изменение на проверку другому администратору">Запросить одобрение</button>' : '<button class="button danger" data-action="apply-compass-change" type="button" title="Применить только экстренное выключение после точного подтверждения">Применить выключение</button>'}</div></div></section>` : ''}
+    <section class="card section"><div class="card-header"><div><h2>Одобрения</h2><p>Для решения укажите, что именно проверено.</p></div><button class="button" data-action="load-compass" type="button" title="Обновить настройки, аналитику и очередь одобрений">Обновить</button></div><div class="card-body"><div class="field"><label for="compass-approval-reason">Комментарий администратора</label><input id="compass-approval-reason" maxlength="500" placeholder="Проверены значения и влияние на приложение"></div>${renderCompassApprovals(workspace.approvals || [])}</div></section>
+    <section class="card section"><div class="card-header"><div><h2>Кэш Compass</h2><p>Показатель попаданий в кэш пока недоступен: чтения готовых записей не логируются.</p></div></div><div class="card-body">${renderCacheFilters('compass')}<div class="field section"><label for="compass-cache-operation-reason">Причина точечного сброса</label><input id="compass-cache-operation-reason" maxlength="500" placeholder="Почему запись надо перестроить"></div>${renderCacheResetPreview('compass')}${renderCacheEntries(model.cacheItems, 'compass')}${model.cacheNextCursor ? '<div class="actions end section"><button class="button" data-action="load-compass-cache-next" type="button" title="Загрузить следующую страницу кэша Compass">Показать ещё</button></div>' : ''}</div></section>`;
+}
+
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1754,6 +1964,59 @@ function maybeLoadEmailCampaigns() {
   }).catch((error) => {
     if (generation !== state.authGeneration) return;
     state.emails = { ...state.emails, campaignState: 'error', campaignError: errorMessage(error) };
+    renderCurrentPage();
+  });
+}
+
+function maybeLoadCacheWorkspace() {
+  if (state.route !== 'explain-cache' || !state.authorized || !actions || !can('content.cache.read') || state.cache.state !== 'idle') return;
+  const generation = state.authGeneration;
+  state.cache.state = 'loading';
+  actions.listCacheEntries(cacheListInput('cache')).then((result) => {
+    if (generation !== state.authGeneration || state.route !== 'explain-cache') return;
+    applyCachePage(result);
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    state.cache = { ...state.cache, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  });
+}
+
+function applyCompassWorkspace(result) {
+  const config = result?.config || { revision: 0, bools: {}, texts: {} };
+  state.compass = {
+    ...state.compass,
+    state: 'ready',
+    workspace: result || null,
+    approvals: Array.isArray(result?.approvals) ? result.approvals : [],
+    draft: {
+      bools: Object.fromEntries(Object.entries(config.bools || {}).map(([key, value]) => [key, value.effective])),
+      texts: Object.fromEntries(Object.entries(config.texts || {}).map(([key, value]) => [key, value.configured ?? ''])),
+    },
+    error: '',
+  };
+}
+
+async function loadCompassWorkspace() {
+  const [workspace, cache] = await Promise.all([
+    actions.getCompassWorkspace({ rangeDays: 28 }),
+    actions.listCacheEntries(cacheListInput('compass')),
+  ]);
+  applyCompassWorkspace(workspace);
+  applyCachePage(cache, 'compass');
+}
+
+function maybeLoadCompassWorkspace() {
+  if (state.route !== 'compass' || !state.authorized || !actions || !can('application.compass.read') || state.compass.state !== 'idle') return;
+  const generation = state.authGeneration;
+  state.compass.state = 'loading';
+  loadCompassWorkspace().then(() => {
+    if (generation !== state.authGeneration || state.route !== 'compass') return;
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    state.compass = { ...state.compass, state: 'error', error: errorMessage(error) };
     renderCurrentPage();
   });
 }
@@ -2666,6 +2929,128 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-cache' || action === 'load-cache-next') {
+    const input = cacheListInput('cache', action.endsWith('-next') ? state.cache.nextCursor : '');
+    state.cache = { ...state.cache, source: input.source, status: input.status, lang: input.lang, query: input.query };
+    return runBusy(() => loadCacheEntries('cache', action.endsWith('-next')), 'Кэш загружен через защищённую серверную проекцию.');
+  }
+  if (action === 'load-compass-cache' || action === 'load-compass-cache-next') {
+    const input = cacheListInput('compass', action.endsWith('-next') ? state.compass.cacheNextCursor : '');
+    state.compass = { ...state.compass, cacheStatus: input.status, cacheLang: input.lang, cacheQuery: input.query };
+    return runBusy(() => loadCacheEntries('compass', action.endsWith('-next')), 'Кэш Compass обновлён.');
+  }
+  if (action === 'export-cache-json' || action === 'export-cache-review') {
+    const reason = String(document.getElementById('cache-operation-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину выгрузки кэша.', 'warning');
+    const format = action === 'export-cache-json' ? 'json' : 'review_packet_v1';
+    const input = cacheListInput('cache');
+    const scope = `export:${format}:${input.source}:${input.status}:${input.lang}:${input.query}`;
+    return runBusy(async () => {
+      const result = await actions.exportCacheEntries({ ...input, format, reason, requestId: id('cache-export-request'), idempotencyKey: protectedOperationKey('cache', scope) });
+      await navigator.clipboard.writeText(String(result?.payload || ''));
+      clearProtectedOperationKey('cache', scope);
+      setMessage(result?.truncated
+        ? `Скопировано ${Number(result.count || 0)} записей, но выборка обрезана после проверки ${Number(result.scannedCount || 0)} документов. Сузьте фильтры.`
+        : `${format === 'json' ? 'JSON' : 'Пакет проверки'} скопирован полностью; экспорт записан в аудит.`, result?.truncated ? 'warning' : 'success');
+    });
+  }
+  if (action === 'preview-cache-reset') {
+    const area = String(target.getAttribute('data-cache-area') || 'cache');
+    const reasonId = area === 'compass' ? 'compass-cache-operation-reason' : 'cache-operation-reason';
+    const reason = String(document.getElementById(reasonId)?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину точечного сброса.', 'warning');
+    const source = String(target.getAttribute('data-cache-source') || '');
+    const documentId = String(target.getAttribute('data-cache-document-id') || '');
+    return runBusy(async () => {
+      const preview = await actions.previewCacheReset({ source, documentId, reason, requestId: id('cache-reset-preview') });
+      const stored = { ...preview, reason };
+      if (area === 'compass') state.compass.cacheResetPreview = stored;
+      else state.cache.resetPreview = stored;
+    }, 'Предпросмотр точечного сброса готов. Проверьте запись и точное подтверждение.');
+  }
+  if (action === 'discard-cache-reset') {
+    const area = String(target.getAttribute('data-cache-area') || 'cache');
+    if (area === 'compass') state.compass.cacheResetPreview = null;
+    else state.cache.resetPreview = null;
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'confirm-cache-reset') {
+    const area = String(target.getAttribute('data-cache-area') || 'cache');
+    const preview = area === 'compass' ? state.compass.cacheResetPreview : state.cache.resetPreview;
+    const confirmation = String(document.getElementById(`${area}-cache-reset-confirmation`)?.value || '').trim();
+    if (!preview || confirmation !== preview.confirmation) return setMessage('Точное подтверждение не совпадает.', 'warning');
+    const scope = `reset:${preview.previewId}`;
+    return runBusy(async () => {
+      await actions.resetCacheEntry({ previewId: preview.previewId, confirmation, reason: preview.reason, requestId: id('cache-reset-request'), idempotencyKey: protectedOperationKey(area, scope) });
+      clearProtectedOperationKey(area, scope);
+      if (area === 'compass') state.compass.cacheResetPreview = null;
+      else state.cache.resetPreview = null;
+      await loadCacheEntries(area, false);
+    }, 'Удалена ровно одна запись кэша; генерация не запускалась.');
+  }
+  if (action === 'load-compass') return runBusy(loadCompassWorkspace, 'Рабочая область Compass обновлена.');
+  if (action === 'discard-compass-preview') { state.compass.preview = null; renderCurrentPage(); return; }
+  if (action === 'preview-compass-change') {
+    const reason = String(document.getElementById('compass-change-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину изменения Compass.', 'warning');
+    const config = state.compass.workspace?.config;
+    if (!config) return setMessage('Сначала загрузите рабочую область Compass.', 'warning');
+    const draft = compassDraftFromDom();
+    const patch = compassPatchFromDraft(draft, config);
+    if (!patch.bools && !patch.texts) return setMessage('Настройки не изменились.', 'warning');
+    return runBusy(async () => {
+      const preview = await actions.previewCompassChange({ expectedRevision: Number(config.revision || 0), patch, reason, requestId: id('compass-preview-request') });
+      state.compass = { ...state.compass, draft, preview: { ...preview, reason }, error: '' };
+    }, 'Серверный предпросмотр Compass готов.');
+  }
+  if (action === 'request-compass-approval') {
+    const preview = state.compass.preview;
+    if (!preview?.requiresApproval) return;
+    const scope = `approval-request:${preview.previewId}`;
+    return runBusy(async () => {
+      await actions.requestCompassApproval({ previewId: preview.previewId, reason: preview.reason, requestId: id('compass-approval-request'), idempotencyKey: protectedOperationKey('compass', scope) });
+      clearProtectedOperationKey('compass', scope);
+      state.compass.preview = null;
+      await loadCompassWorkspace();
+    }, 'Запрос создан. Изменения ещё не применены; нужен второй администратор.');
+  }
+  if (action === 'approve-compass-change') {
+    const approvalId = String(target.getAttribute('data-approval-id') || '');
+    const reason = String(document.getElementById('compass-approval-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите, что проверено перед одобрением.', 'warning');
+    const scope = `approve:${approvalId}`;
+    return runBusy(async () => {
+      await actions.approveCompassChange({ approvalId, reason, requestId: id('compass-approval-decision'), idempotencyKey: protectedOperationKey('compass', scope) });
+      clearProtectedOperationKey('compass', scope);
+      await loadCompassWorkspace();
+    }, 'Изменение одобрено. Настройки ещё не опубликованы.');
+  }
+  if (action === 'apply-compass-change') {
+    const preview = state.compass.preview;
+    const confirmation = String(document.getElementById('compass-confirmation')?.value || '').trim();
+    if (!preview || confirmation !== preview.confirmation) return setMessage('Точное подтверждение не совпадает.', 'warning');
+    const scope = `apply:${preview.previewId}`;
+    return runBusy(async () => {
+      await actions.applyCompassChange({ previewId: preview.previewId, approvalId: '', confirmation, reason: preview.reason, requestId: id('compass-apply-request'), idempotencyKey: protectedOperationKey('compass', scope) });
+      clearProtectedOperationKey('compass', scope);
+      state.compass.preview = null;
+      await loadCompassWorkspace();
+    }, 'Экстренное выключение Compass применено и записано в аудит.');
+  }
+  if (action === 'apply-approved-compass-change') {
+    const approvalId = String(target.getAttribute('data-approval-id') || '');
+    const approval = (state.compass.workspace?.approvals || []).find((item) => item.id === approvalId);
+    const confirmation = String(document.getElementById(`compass-approved-confirmation-${approvalId}`)?.value || '').trim();
+    if (!approval || confirmation !== approval.confirmation) return setMessage('Точное подтверждение не совпадает.', 'warning');
+    const reason = String(approval.reason || '');
+    const scope = `apply-approved:${approvalId}`;
+    return runBusy(async () => {
+      await actions.applyCompassChange({ previewId: approval.previewId, approvalId, confirmation, reason, requestId: id('compass-approved-apply'), idempotencyKey: protectedOperationKey('compass', scope) });
+      clearProtectedOperationKey('compass', scope);
+      await loadCompassWorkspace();
+    }, 'Одобренные настройки Compass опубликованы и записаны в аудит.');
+  }
   if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
   if (action === 'change-push-mode') return;
   if (action === 'load-push-campaigns') return runBusy(loadPushCampaigns, 'Push-кампании загружены.');
@@ -3442,6 +3827,8 @@ export function setAdminActions(nextActions) {
   maybeLoadSupportQueues();
   maybeLoadEmailDirectory();
   maybeLoadEmailCampaigns();
+  maybeLoadCacheWorkspace();
+  maybeLoadCompassWorkspace();
 }
 
 export function setAuthState(auth) {
@@ -3483,11 +3870,15 @@ export function setAuthState(auth) {
     state: 'idle', items: [], counts: null, filteredCount: 0, nextCursor: '', source: 'all', eligibility: 'all', suppression: 'all', query: '', error: '',
     campaignState: 'idle', campaigns: [], approvals: [], draft: { audienceKind: 'all' }, preview: null, operationKeys: {}, campaignError: '',
   };
+  if (!state.authorized || !can('content.cache.read')) state.cache = { state: 'idle', source: 'choice_explanations', status: '', lang: '', query: '', items: [], summary: null, nextCursor: '', hasMore: false, error: '', resetPreview: null, operationKeys: {} };
+  if (!state.authorized || !can('application.compass.read')) state.compass = { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '', cacheResetPreview: null };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
   maybeLoadEmailDirectory();
   maybeLoadEmailCampaigns();
+  maybeLoadCacheWorkspace();
+  maybeLoadCompassWorkspace();
 }
 
 export function renderRoute(route, capabilityId = '') {
@@ -3499,6 +3890,8 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadSupportQueues();
   maybeLoadEmailDirectory();
   maybeLoadEmailCampaigns();
+  maybeLoadCacheWorkspace();
+  maybeLoadCompassWorkspace();
 }
 
 export function initAdminUi() {

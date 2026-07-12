@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, resolveAdminRole } from './admin/permissions';
+import { protectedCompassChanges } from './admin_compass_control';
 
 const REGION = 'us-central1';
 const REMOTE_CONFIG_ID = 'app';
@@ -74,6 +75,16 @@ export function mergeRemoteConfigBranches(
   return merged;
 }
 
+export function assertNoProtectedCompassChanges(
+  before: Readonly<Record<string, unknown>>,
+  patch: Readonly<Record<string, unknown>>,
+): void {
+  const changed = protectedCompassChanges(before, patch);
+  if (changed.length) {
+    throw new HttpsError('failed-precondition', `protected Compass keys require the Compass approval workflow: ${changed.join(', ')}`);
+  }
+}
+
 export const adminPublishRemoteConfig = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
@@ -108,6 +119,7 @@ export const adminPublishRemoteConfig = onCall(
       }
 
       const before = (configSnap.data() ?? {}) as Record<string, unknown>;
+      assertNoProtectedCompassChanges(before, input.nextConfig);
       const currentRevision = Number(before.revision ?? 0);
       if (!Number.isInteger(currentRevision) || currentRevision !== input.expectedRevision) {
         throw new HttpsError('failed-precondition', 'remote config changed; reload before publishing');

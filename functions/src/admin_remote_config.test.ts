@@ -1,5 +1,5 @@
 import { HttpsError } from 'firebase-functions/v2/https';
-import { mergeRemoteConfigBranches, parseRemoteConfigRequest } from './admin_remote_config';
+import { assertNoProtectedCompassChanges, mergeRemoteConfigBranches, parseRemoteConfigRequest } from './admin_remote_config';
 
 describe('parseRemoteConfigRequest', () => {
   it('accepts the compatible remote-config shape', () => {
@@ -35,5 +35,12 @@ describe('parseRemoteConfigRequest', () => {
       texts: { banner: 'new' },
       untouched: 'keep',
     });
+  });
+
+  it('rejects actual Compass key changes while allowing unchanged keys in a full branch', () => {
+    const before = { bools: { compass_enabled: false, maintenance: false }, texts: { compass_voice_fallback_ru: 'old' } };
+    expect(() => assertNoProtectedCompassChanges(before, { bools: { compass_enabled: false, maintenance: true } })).not.toThrow();
+    expect(() => assertNoProtectedCompassChanges(before, { bools: { compass_enabled: true } })).toThrow(HttpsError);
+    expect(() => assertNoProtectedCompassChanges(before, { texts: { compass_voice_fallback_ru: 'new' } })).toThrow(HttpsError);
   });
 });

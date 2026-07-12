@@ -8,6 +8,12 @@ export type AdminPermission =
   | 'content.read'
   | 'content.draft.write'
   | 'content.publish'
+  | 'content.cache.read'
+  | 'content.cache.export'
+  | 'content.cache.reset'
+  | 'application.compass.read'
+  | 'application.compass.write'
+  | 'application.compass.approve'
   | 'application.config.write'
   | 'campaigns.read'
   | 'campaigns.write'
@@ -72,6 +78,15 @@ const EMAIL_ADMIN_PERMISSIONS: readonly AdminPermission[] = [
   'emails.campaigns.cancel',
 ];
 
+const CACHE_ADMIN_PERMISSIONS: readonly AdminPermission[] = [
+  'content.cache.read',
+  'content.cache.export',
+  'content.cache.reset',
+  'application.compass.read',
+  'application.compass.write',
+  'application.compass.approve',
+];
+
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -80,6 +95,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ...EMAIL_ADMIN_PERMISSIONS,
+    ...CACHE_ADMIN_PERMISSIONS,
   ]),
   admin: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -88,12 +104,13 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ...EMAIL_ADMIN_PERMISSIONS,
+    ...CACHE_ADMIN_PERMISSIONS,
   ]),
   support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
-  content_editor: new Set(['content.read', 'content.draft.write']),
+  content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
   moderator: new Set(['users.read', 'community.moderate', 'reports.read', 'reports.status.write']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
-  developer: new Set(['content.read', 'diagnostics.read', 'briefing.read', 'diagnostics.status.write']),
+  analyst: new Set(['users.read', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
+  developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'diagnostics.read', 'briefing.read', 'diagnostics.status.write']),
 };
 
 export function hasPermission(role: unknown, permission: AdminPermission): boolean {

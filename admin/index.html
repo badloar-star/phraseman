@@ -28622,6 +28622,9 @@
   window._explainCacheCollection = 'choice_explanations';
 
   window.loadExplainCache = async function() {
+    showToast('Кэш объяснений перенесён в защищённый экран новой админки');
+    window.location.href = './v2/index.html#explain-cache';
+    return;
     window._explainCacheLoaded = true;
     const coll = document.getElementById('xc-source')?.value || 'choice_explanations';
     window._explainCacheCollection = coll;
@@ -28749,6 +28752,9 @@
   }
 
   async function xcDelete(btn) {
+    showToast('Точечный сброс доступен только через серверный preview в новой админке');
+    window.location.href = './v2/index.html#explain-cache';
+    return;
     const hash = btn.dataset.xcHash;
     const coll = window._explainCacheCollection || 'choice_explanations';
     const ok = await showConfirmModal({
@@ -28775,6 +28781,9 @@
   // «Скопировать для ИИ» — выгружает все загруженные разборы как JSON (точный id ⇄ фраза ⇄ ошибка
   // ⇄ разбор ⇄ eli5) + детальный промпт, чтобы ИИ проверил и вернул правки точечно по id.
   window.copyExplainCacheForAI = async function() {
+    showToast('Защищённый экспорт перенесён в новую админку');
+    window.location.href = './v2/index.html#explain-cache';
+    return;
     const coll = window._explainCacheCollection || 'choice_explanations';
     const status = document.getElementById('xc-filter-status')?.value || '';
     let arr = window._explainCacheDocs || [];
@@ -28844,6 +28853,9 @@
   }
 
   window.loadCompassAdmin = async function() {
+    showToast('Compass перенесён в защищённый экран новой админки');
+    window.location.href = './v2/index.html#compass';
+    return;
     window._compassAdminLoaded = true;
     cmStatus('Загрузка…');
     renderCompassToggles();
@@ -28889,6 +28901,10 @@
 
   // Переиспользуем общий писатель флагов «Пульта» (remote_config/app.bools).
   window.saveCompassBool = function(key, value) {
+    void key; void value;
+    showToast('Настройки Compass требуют server preview и, кроме emergency off, второго администратора');
+    window.location.href = './v2/index.html#compass';
+    return;
     if (typeof saveControlPanelBool === 'function') return saveControlPanelBool(key, value);
     showToast('❌ Писатель флагов недоступен', 'err');
   };
@@ -28922,6 +28938,9 @@
   }
 
   window.loadCompassCache = async function() {
+    showToast('Кэш Compass перенесён в защищённый экран новой админки');
+    window.location.href = './v2/index.html#compass';
+    return;
     const list = document.getElementById('cm-cache-list');
     if (list) list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
@@ -28966,6 +28985,10 @@
   };
 
   async function cmDelete(btn) {
+    void btn;
+    showToast('Точечный сброс Compass доступен только через серверный preview в новой админке');
+    window.location.href = './v2/index.html#compass';
+    return;
     const hash = btn.dataset.cmHash;
     const ok = await showConfirmModal({ title: 'Удалить комментарий дня?', desc: 'Сгенерится заново при следующем показе.', confirmLabel: 'Удалить', danger: true });
     if (!ok) return;

@@ -327,6 +327,8 @@ describe('firestore.rules security baseline', () => {
     expect(campaignsBlock![0]).toContain('allow read, write: if false;');
     expect(rules).toMatch(/match \/email_campaigns\/\{docId\}\/\{document=\*\*\} \{\s*allow read, write: if false;/);
     expect(rules).toMatch(/match \/admin_email_previews\/\{docId\}\/\{document=\*\*\} \{\s*allow read, write: if false;/);
+    expect(rules).toMatch(/match \/admin_cache_reset_previews\/\{docId\} \{\s*allow read, write: if false;/);
+    expect(rules).toMatch(/match \/admin_compass_previews\/\{docId\} \{\s*allow read, write: if false;/);
     expect(rules).toMatch(/match \/admin_approval_requests\/\{docId\} \{\s*allow read, write: if false;/);
     expect(rules).toMatch(/match \/email_suppressions\/\{docId\} \{\s*allow read, write: if false;/);
   });
@@ -510,15 +512,32 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
   // Запись контента — только Admin SDK из CF explainPhrase (инвариант аудита).
   // delete: isAdmin() — это «Сбросить объяснение» в админке (2026-06-10, раздел «Непонятно
   // объяснили»): удаление дока заставляет следующий запрос сгенерировать фразу заново.
-  test('phrase_explanations: world-readable, content writes denied, admin may only DELETE (reset)', () => {
+  test('phrase_explanations: known-hash get remains public while list and every client mutation are denied', () => {
     const block = rules.match(/match \/phrase_explanations\/\{phraseHash\} \{[\s\S]*?\n    \}/);
     expect(block).not.toBeNull();
-    expect(block![0]).toContain('allow read: if true;');
-    expect(block![0]).toContain('allow create, update: if false;');
-    expect(block![0]).toContain('allow delete: if isAdmin();');
+    expect(block![0]).toContain('allow get: if true;');
+    expect(block![0]).toContain('allow list: if false;');
+    expect(block![0]).toContain('allow create, update, delete: if false;');
     // Клиент (и даже админ из браузера) не должен СОЗДАВАТЬ/МЕНЯТЬ публичный контент.
     expect(block![0]).not.toContain('allow write: if request.auth != null;');
     expect(block![0]).not.toContain('allow create, update: if isAdmin()');
+  });
+
+  test('all shared AI caches preserve runtime get but deny enumeration and browser/admin writes', () => {
+    for (const [collection, id] of [
+      ['choice_explanations', 'choiceHash'],
+      ['phrase_explanations', 'phraseHash'],
+      ['mistake_explanations', 'mistakeHash'],
+      ['quiz_explanations', 'quizHash'],
+      ['compass_briefings', 'hash'],
+    ]) {
+      const block = rules.match(new RegExp(`match /${collection}/\\{${id}\\} \\{[\\s\\S]*?\\n    \\}`));
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow get: if true;');
+      expect(block![0]).toContain('allow list: if false;');
+      expect(block![0]).toContain('allow create, update, delete: if false;');
+      expect(block![0]).not.toContain('isAdmin()');
+    }
   });
 
   // Три внутренние CF-only коллекции: read И write полностью закрыты (если false), а НЕ

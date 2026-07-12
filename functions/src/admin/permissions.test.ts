@@ -58,6 +58,19 @@ describe('admin permission matrix', () => {
     }
   });
 
+  it('allows cache inspection broadly while keeping reset and Compass writes owner/admin only', () => {
+    for (const role of ['owner', 'admin', 'content_editor', 'analyst', 'developer'] as const) {
+      expect(hasPermission(role, 'content.cache.read')).toBe(true);
+      expect(hasPermission(role, 'application.compass.read')).toBe(true);
+    }
+    expect(hasPermission('content_editor', 'content.cache.export')).toBe(true);
+    expect(hasPermission('analyst', 'content.cache.export')).toBe(false);
+    expect(hasPermission('developer', 'content.cache.reset')).toBe(false);
+    expect(hasPermission('owner', 'content.cache.reset')).toBe(true);
+    expect(hasPermission('admin', 'application.compass.write')).toBe(true);
+    expect(hasPermission('content_editor', 'application.compass.write')).toBe(false);
+  });
+
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -71,6 +84,8 @@ describe('admin permission matrix', () => {
       'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill',
       'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve',
       'emails.campaigns.cancel',
+      'content.cache.read', 'content.cache.export', 'content.cache.reset',
+      'application.compass.read', 'application.compass.write', 'application.compass.approve',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

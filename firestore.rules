@@ -1311,6 +1311,14 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    match /admin_cache_reset_previews/{docId} {
+      allow read, write: if false;
+    }
+
+    match /admin_compass_previews/{docId} {
+      allow read, write: if false;
+    }
+
     match /admin_approval_requests/{docId} {
       allow read, write: if false;
     }
@@ -2029,18 +2037,18 @@ service cloud.firestore {
     // удаление дока ⇒ следующий запрос фразы генерирует заново. Создавать/менять контент
     // из браузера (включая админа) по-прежнему НЕЛЬЗЯ.
     match /phrase_explanations/{phraseHash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
+      allow get: if true;
+      allow list: if false;
+      allow create, update, delete: if false;
     }
 
     // Объяснения вариантов упражнения «Выбери фразу» (explainChoice). Та же модель:
     // публичное чтение прогретого кэша ($0), запись только сервер (Admin SDK), удаление —
     // только админ (удаление дока ⇒ следующий ответ сгенерирует батч заново).
     match /choice_explanations/{choiceHash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
+      allow get: if true;
+      allow list: if false;
+      allow create, update, delete: if false;
     }
     match /choice_explain_billing/{docId} {
       allow read: if false;
@@ -2051,9 +2059,9 @@ service cloud.firestore {
     // запись только сервер (Admin SDK), удаление — админ (удаление дока ⇒
     // разбор сгенерится заново). Биллинг — только сервер.
     match /mistake_explanations/{mistakeHash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
+      allow get: if true;
+      allow list: if false;
+      allow create, update, delete: if false;
     }
     match /mistake_explain_billing/{docId} {
       allow read: if false;
@@ -2064,9 +2072,9 @@ service cloud.firestore {
     // публичное чтение прогретого кэша ($0), запись только сервер (Admin SDK), удаление —
     // только админ (удаление дока ⇒ следующий ответ сгенерирует разбор заново). Биллинг — сервер.
     match /quiz_explanations/{quizHash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
+      allow get: if true;
+      allow list: if false;
+      allow create, update, delete: if false;
     }
     match /quiz_explain_billing/{docId} {
       allow read: if false;
@@ -2077,9 +2085,9 @@ service cloud.firestore {
     // прогретого кэша ($0), запись только сервер (Admin SDK), удаление — админ
     // (удаление дока ⇒ комментарий сгенерится заново). Биллинг — только сервер.
     match /compass_briefings/{hash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
+      allow get: if true;
+      allow list: if false;
+      allow create, update, delete: if false;
     }
     match /compass_billing/{docId} {
       allow read: if false;

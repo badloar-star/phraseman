@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-12T21:12:29.388Z",
+  "generatedAt": "2026-07-12T22:52:13.424Z",
   "source": {
     "buttons": 471,
     "functions": 1010,
@@ -733,8 +733,8 @@
       "route": "content",
       "legacyTab": "explain-cache",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "explain-cache",
       "inventory": {
         "buttons": 2,
         "functions": 0,
@@ -742,7 +742,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "compass",
@@ -750,8 +750,8 @@
       "route": "content",
       "legacyTab": "compass",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "compass",
       "inventory": {
         "buttons": 2,
         "functions": 0,
@@ -759,7 +759,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "full-content-control",
@@ -30720,8 +30720,8 @@
       "total": 59,
       "inventory": 0,
       "ported": 0,
-      "fallback": 40,
-      "guarded": 19,
+      "fallback": 38,
+      "guarded": 21,
       "blocked": 0
     },
     "buttons": {

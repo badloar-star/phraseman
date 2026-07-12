@@ -68,12 +68,45 @@ test('ignores unsafe context keys', async () => {
 });
 
 test('isolates delimiter-containing account scopes and study targets', async () => {
-  await markSoftUpsellDismissed('a:b', 'en', 'weekly_review', 10);
+  const encodedScope = 'a:b%tenant';
+  await markSoftUpsellDismissed(encodedScope, 'en', 'weekly_review', 10);
   await markSoftUpsellDismissed('a', 'fr', 'streak_milestone', 20);
 
-  await expect(readSoftUpsellState('a:b', 'en')).resolves.toMatchObject({ contextDismissedAtMs: { weekly_review: 10 } });
+  expect(await AsyncStorage.getItem(`soft_upsell_state_v1:${encodeURIComponent(encodedScope)}:en`)).not.toBeNull();
+  expect(await AsyncStorage.getItem(`soft_upsell_state_v1:${encodedScope}:en`)).toBeNull();
+  await expect(readSoftUpsellState(encodedScope, 'en')).resolves.toMatchObject({ contextDismissedAtMs: { weekly_review: 10 } });
   await expect(readSoftUpsellState('a', 'en')).resolves.toEqual(emptyState);
   await expect(readSoftUpsellState('a', 'fr')).resolves.toMatchObject({ contextDismissedAtMs: { streak_milestone: 20 } });
+});
+
+test.each([
+  ['top-level array', JSON.stringify([])],
+  ['top-level null', JSON.stringify(null)],
+  ['missing contexts', JSON.stringify({ schemaVersion: 1, lastGlobalImpressionMs: null, consumedMilestones: [] })],
+  ['null contexts', JSON.stringify({ ...emptyState, contextDismissedAtMs: null })],
+  ['array contexts', JSON.stringify({ ...emptyState, contextDismissedAtMs: [] })],
+  ['non-array milestones', JSON.stringify({ ...emptyState, consumedMilestones: {} })],
+  ['negative global timestamp', JSON.stringify({ ...emptyState, lastGlobalImpressionMs: -1 })],
+  ['non-safe global timestamp', JSON.stringify({ ...emptyState, lastGlobalImpressionMs: Number.MAX_SAFE_INTEGER + 1 })],
+  ['non-finite global timestamp', '{"schemaVersion":1,"lastGlobalImpressionMs":1e400,"contextDismissedAtMs":{},"consumedMilestones":[]}'],
+  ['negative context timestamp', JSON.stringify({ ...emptyState, contextDismissedAtMs: { weekly_review: -1 } })],
+  ['non-safe context timestamp', JSON.stringify({ ...emptyState, contextDismissedAtMs: { weekly_review: Number.MAX_SAFE_INTEGER + 1 } })],
+  ['non-finite context timestamp', '{"schemaVersion":1,"lastGlobalImpressionMs":null,"contextDismissedAtMs":{"weekly_review":1e400},"consumedMilestones":[]}'],
+  ['fractional context timestamp', JSON.stringify({ ...emptyState, contextDismissedAtMs: { weekly_review: 1.5 } })],
+])('returns safe empty state for malformed shape: %s', async (_label, raw) => {
+  await AsyncStorage.setItem(key('shape'), raw);
+  await expect(readSoftUpsellState('shape', 'en')).resolves.toEqual(emptyState);
+});
+
+test('sanitizes invalid milestone element types while retaining valid newest entries', async () => {
+  await AsyncStorage.setItem(key('milestone-types'), JSON.stringify({
+    ...emptyState,
+    consumedMilestones: ['valid-1', 42, null, '', 'valid-2'],
+  }));
+  await expect(readSoftUpsellState('milestone-types', 'en')).resolves.toEqual({
+    ...emptyState,
+    consumedMilestones: ['valid-1', 'valid-2'],
+  });
 });
 
 test('serializes concurrent writes so both changes survive', async () => {

@@ -46,9 +46,31 @@ jest.mock('../app/vocabulary_target_gate', () => ({
 
 import { buildLessonWordOptions } from '../app/lesson_word_options';
 import { isCorrectAnswer } from '../constants/contractions';
-import { lessonWordBank } from '../app/lesson_words';
+import { LEGACY_PLURAL_WORD_COUNT_MERGES, lessonWordBank } from '../app/lesson_words';
+import { mergeLegacyLessonWordCounts } from '../app/lesson_word_progress_legacy';
+
+const runtimeLessonWords = new Set(Array.from({ length: 32 }, (_, index) => lessonWordBank(index + 1)).flat().map((word) => word.en));
 
 describe('lesson words bank regressions from error reports', () => {
+  it.each([
+    ['batteries', 'battery'],
+    ['friends', 'friend'],
+    ['books', 'book'],
+    ['dishes', 'dish'],
+    ['children', 'child'],
+  ])('migrates legacy progress %s to the runtime card %s', (legacy, canonical) => {
+    const migrated = mergeLegacyLessonWordCounts({ [legacy]: 2 }, LEGACY_PLURAL_WORD_COUNT_MERGES, runtimeLessonWords);
+    expect(migrated).toEqual({ counts: { [canonical]: 2 }, dirty: true });
+  });
+
+  it('merges legacy progress into an existing canonical count without replacing the first-introduction card', () => {
+    const before = lessonWordBank(11).find((word) => word.en === 'battery');
+    const migrated = mergeLegacyLessonWordCounts({ battery: 1, batteries: 3 }, LEGACY_PLURAL_WORD_COUNT_MERGES, runtimeLessonWords);
+
+    expect(migrated).toEqual({ counts: { battery: 3 }, dirty: true });
+    expect(lessonWordBank(11).find((word) => word.en === 'battery')).toBe(before);
+  });
+
   it('keeps lesson 11 battery vocabulary singular', () => {
     const words = lessonWordBank(11);
     const batteryWords = words.filter((word) => word.en === 'battery');

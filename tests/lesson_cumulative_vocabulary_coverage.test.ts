@@ -36,10 +36,23 @@ jest.mock('../app/vocabulary_target_gate', () => ({ vocabularyContentAvailableFo
 import { getLessonData } from '../app/lesson_data_all';
 import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
 import {
+  LESSON_WORD_BANK_SENSE_EXCEPTIONS,
+  lessonWordBankDiagnostics,
   lessonVocabularyCoverageCandidates,
   lessonVocabularyCoverageText,
   lessonWordBank,
 } from '../app/lesson_words';
+import {
+  buildLessonWordBankCore,
+  lessonWordSemanticKey,
+  type LessonWordSenseException,
+} from '../app/lesson_word_bank_builder';
+
+type SyntheticWord = { en: string; pos: string; sense?: string };
+const syntheticBuild = (
+  raw: Record<number, SyntheticWord[]>,
+  exceptions: readonly LessonWordSenseException[] = [],
+) => buildLessonWordBankCore({ raw, canonicalize: (word) => ({ ...word, en: word.en.toLowerCase() }), isAllowed: () => true, exceptions });
 
 type Classification = 'introduced_now' | 'known_before' | 'covered_irregular' | 'structural' | 'ambiguous' | 'missing';
 type AmbiguousEntry = { lessonId: number; phraseId: string | number; surface: string; reason: string };
@@ -152,6 +165,106 @@ function consumePhraseSurfaces(text: string, chunks: readonly string[]): string[
 }
 
 describe('lesson cumulative vocabulary coverage', () => {
+  it('dedupes the same normalized lemma, POS and sense while preserving the first card', () => {
+    const first = { en: 'battery', pos: 'nouns', sense: 'power cell' };
+    const later = { ...first, en: 'Battery' };
+    const built = syntheticBuild({ 1: [first], 2: [later] });
+
+    expect(built.wordsByLesson[1]).toEqual([first]);
+    expect(built.wordsByLesson[2]).toEqual([]);
+    expect(built.diagnostics).toEqual([
+      { lessonId: 1, rawCount: 1, runtimeCount: 1, duplicatesRemoved: 0, filteredCount: 0 },
+      { lessonId: 2, rawCount: 1, runtimeCount: 0, duplicatesRemoved: 1, filteredCount: 0 },
+    ]);
+  });
+
+  it('preserves the same normalized lemma when it introduces a different POS', () => {
+    const built = syntheticBuild({
+      1: [{ en: 'light', pos: 'nouns' }],
+      2: [{ en: 'LIGHT', pos: 'adjectives' }],
+    });
+    expect(built.wordsByLesson[1]).toHaveLength(1);
+    expect(built.wordsByLesson[2]).toHaveLength(1);
+  });
+
+  it('rejects cross-POS homographs inside the same lesson because progress is keyed by EN', () => {
+    expect(() => syntheticBuild({
+      1: [{ en: 'light', pos: 'nouns' }, { en: 'LIGHT', pos: 'adjectives' }],
+    })).toThrow('Cross-POS lesson word homograph: lemma=light lesson=L1 POS=nouns/adjectives');
+  });
+
+  it('normalizes POS whitespace and case in the semantic key', () => {
+    expect(lessonWordSemanticKey(' Light ', ' Nouns ')).toBe('light::nouns');
+  });
+
+  it('preserves a same-POS new sense only through an exact consumed exception', () => {
+    const raw = {
+      1: [{ en: 'bank', pos: 'nouns', sense: 'money' }],
+      2: [{ en: 'BANK', pos: 'nouns', sense: 'river' }],
+    };
+    expect(syntheticBuild(raw).wordsByLesson[2]).toEqual([]);
+
+    const exception: LessonWordSenseException = {
+      key: lessonWordSemanticKey('bank', 'nouns'), firstLesson: 1, laterLesson: 2, reason: 'new_sense',
+    };
+    const built = syntheticBuild(raw, [exception]);
+    expect(built.wordsByLesson[2]).toHaveLength(1);
+    expect(built.consumedExceptions).toEqual([exception]);
+  });
+
+  it('rejects an unconsumed new-sense exception', () => {
+    expect(() => syntheticBuild({ 1: [{ en: 'bank', pos: 'nouns' }] }, [{
+      key: lessonWordSemanticKey('bank', 'nouns'), firstLesson: 1, laterLesson: 2, reason: 'new_sense',
+    }])).toThrow('Unconsumed lesson word sense exception');
+  });
+
+  it('allows one new-sense exception to preserve exactly one later card', () => {
+    const exception: LessonWordSenseException = {
+      key: lessonWordSemanticKey('bank', 'nouns'), firstLesson: 1, laterLesson: 2, reason: 'new_sense',
+    };
+    const built = syntheticBuild({
+      1: [{ en: 'bank', pos: 'nouns', sense: 'money' }],
+      2: [
+        { en: 'bank', pos: 'nouns', sense: 'river' },
+        { en: 'BANK', pos: 'nouns', sense: 'duplicate river' },
+      ],
+    }, [exception]);
+
+    expect(built.wordsByLesson[2]).toHaveLength(1);
+    expect(built.diagnostics[1]).toMatchObject({ runtimeCount: 1, duplicatesRemoved: 1 });
+    expect(built.consumedExceptions).toEqual([exception]);
+  });
+
+  it('never reintroduces a normalized runtime key in a later actual lesson bank', () => {
+    const firstByKey = new Map<string, { lesson: number; pos: string }>();
+    const consumed = new Set<LessonWordSenseException>();
+    const failures: string[] = [];
+
+    for (let lesson = 1; lesson <= 32; lesson++) {
+      for (const word of lessonWordBank(lesson)) {
+        const key = lessonWordSemanticKey(lessonVocabularyCoverageText(word.en), word.pos);
+        const first = firstByKey.get(key);
+        if (!first) {
+          firstByKey.set(key, { lesson, pos: word.pos });
+          continue;
+        }
+        const exception = LESSON_WORD_BANK_SENSE_EXCEPTIONS.find((entry) =>
+          entry.key === key && entry.firstLesson === first.lesson && entry.laterLesson === lesson
+        );
+        if (exception) consumed.add(exception);
+        else failures.push(`key=${key} first=L${first.lesson}/${first.pos} later=L${lesson}/${word.pos}`);
+      }
+    }
+
+    if (failures.length) throw new Error(`Runtime vocabulary duplicates:\n${failures.join('\n')}`);
+    expect(consumed.size).toBe(LESSON_WORD_BANK_SENSE_EXCEPTIONS.length);
+    expect(lessonWordBankDiagnostics()).toHaveLength(32);
+    for (const row of lessonWordBankDiagnostics()) {
+      expect(row.runtimeCount).toBe(lessonWordBank(row.lessonId).length);
+      expect(row.runtimeCount + row.duplicatesRemoved + row.filteredCount).toBe(row.rawCount);
+    }
+  });
+
   it.each([
     ["I'm / don't / they’re", "i'm don't they're"],
     ['Wi-Fi wi fi', 'wifi wifi'],
@@ -235,6 +348,8 @@ describe('lesson cumulative vocabulary coverage', () => {
 
     for (let lessonId = 1; lessonId <= 32; lessonId++) {
       const introduced = new Set(lessonWordBank(lessonId).map((word) => lessonVocabularyCoverageText(word.en)));
+      // A deliberately new POS/sense in this lesson owns the surface for this lesson's phrases.
+      const knownBeforeThisIntroduction = new Set([...known].filter((surface) => !introduced.has(surface)));
       const introducedChunks = new Set(lessonWordBank(lessonId).map((word) => lessonVocabularyCoverageText(word.en)).filter((word) => word.includes(' ')));
       for (const verb of IRREGULAR_VERBS_BY_LESSON[lessonId] ?? []) {
         for (const form of [verb.base, verb.past, verb.pp, ...(verb.altPast ?? []), ...(verb.altPp ?? [])]) {
@@ -256,7 +371,7 @@ describe('lesson cumulative vocabulary coverage', () => {
           const finding = classifySurface(
             surface,
             chunkIntroduced ? new Set([...introduced, surface]) : introduced,
-            known,
+            knownBeforeThisIntroduction,
             irregularKnown,
             ambiguous,
           );

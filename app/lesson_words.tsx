@@ -66,6 +66,12 @@ import {
 } from './target_storage_keys';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
+import {
+  buildLessonWordBankCore,
+  type LessonWordBankDiagnostic,
+  type LessonWordSenseException,
+} from './lesson_word_bank_builder';
+import { mergeLegacyLessonWordCounts } from './lesson_word_progress_legacy';
 
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
@@ -2269,7 +2275,10 @@ function coverageTokenCandidates(token: string, verbLex: Set<string>): string[] 
  * `irregular_verbs` живут в отдельном источнике для экрана неправильных глаголов; здесь они только поддержаны
  * на уровне типа для старых сохранений/тестов.
  */
-function buildWordsByLessonForBank(raw: Record<number, Word[]>): Record<number, Word[]> {
+function buildWordsByLessonForBank(raw: Record<number, Word[]>): {
+  wordsByLesson: Record<number, Word[]>;
+  diagnostics: LessonWordBankDiagnostic[];
+} {
   const verbLex = collectVerbSurfaceLexicon(raw);
   const lessonIds = Object.keys(raw).map(Number).sort((a, b) => a - b);
   const singularNounGlosses = new Map<string, Word>();
@@ -2282,30 +2291,14 @@ function buildWordsByLessonForBank(raw: Record<number, Word[]>): Record<number, 
       }
     }
   }
-  const out: Record<number, Word[]> = {};
-  const seenAcrossLessons = new Set<string>();
-  for (const lid of lessonIds) {
-    const arr = [
-      ...(raw[lid] ?? []),
-    ];
-    const rowOut: Word[] = [];
-    const seenInLesson = new Set<string>();
-    for (let i = 0; i < arr.length; i++) {
-      const w = arr[i]!;
-      const row = w.pos === 'verbs' || w.pos === 'nouns'
-        ? mergeSurfaceToLemma(w, canonicalDictionaryEnglish(w, verbLex), singularNounGlosses)
-        : w;
-      if (!isDictionaryWordAllowed(row)) continue;
-      const k = row.en.trim().toLowerCase();
-      if (seenInLesson.has(k)) continue;
-      seenInLesson.add(k);
-      if (seenAcrossLessons.has(k)) continue;
-      seenAcrossLessons.add(k);
-      rowOut.push(row);
-    }
-    out[lid] = rowOut;
-  }
-  return out;
+  return buildLessonWordBankCore({
+    raw,
+    canonicalize: (word) => word.pos === 'verbs' || word.pos === 'nouns'
+      ? mergeSurfaceToLemma(word, canonicalDictionaryEnglish(word, verbLex), singularNounGlosses)
+      : word,
+    isAllowed: isDictionaryWordAllowed,
+    exceptions: LESSON_WORD_BANK_SENSE_EXCEPTIONS,
+  });
 }
 
 const AUXILIARY_DICTIONARY_BLOCKLIST = new Set([
@@ -2349,7 +2342,13 @@ function isDictionaryWordAllowed(word: Word): boolean {
 }
 
 const LESSON_VERB_SURFACE_LEXICON = collectVerbSurfaceLexicon(WORDS_BY_LESSON);
-const WORDS_BY_LESSON_FOR_BANK = buildWordsByLessonForBank(WORDS_BY_LESSON);
+export const LESSON_WORD_BANK_SENSE_EXCEPTIONS: readonly LessonWordSenseException[] = [];
+const LESSON_WORD_BANK_BUILD = buildWordsByLessonForBank(WORDS_BY_LESSON);
+const WORDS_BY_LESSON_FOR_BANK = LESSON_WORD_BANK_BUILD.wordsByLesson;
+
+export function lessonWordBankDiagnostics(): LessonWordBankDiagnostic[] {
+  return LESSON_WORD_BANK_BUILD.diagnostics.map((row) => ({ ...row }));
+}
 
 /** Audit-only normalization shared with the runtime lesson vocabulary builder. */
 export function lessonVocabularyCoverageText(surface: string): string {
@@ -2432,7 +2431,7 @@ const LESSON_WORD_BANK_EN_SET = new Set(ALL_WORDS_FLAT.map((w) => w.en));
  * Старые ключи прогресса (мн. ч.) до singularize — см. scripts/singularize_lesson_vocab.py.
  * Плюс `jewels` → `jewel`, если осталось в сохранении после правок словаря.
  */
-const LEGACY_PLURAL_WORD_COUNT_MERGES: Record<string, string> = {
+export const LEGACY_PLURAL_WORD_COUNT_MERGES: Readonly<Record<string, string>> = {
   friends: 'friend',
   enemies: 'enemy',
   books: 'book',
@@ -2571,22 +2570,8 @@ const LEGACY_PLURAL_WORD_COUNT_MERGES: Record<string, string> = {
   eyes: 'eye',
 };
 
-function mergeLegacyPluralLessonWordCounts(counts: Record<string, number>): { counts: Record<string, number>; dirty: boolean } {
-  let dirty = false;
-  const out = { ...counts };
-  for (const [legacyPlural, canonical] of Object.entries(LEGACY_PLURAL_WORD_COUNT_MERGES)) {
-    if (legacyPlural === canonical) continue;
-    if (out[legacyPlural] == null) continue;
-    if (LESSON_WORD_BANK_EN_SET.has(legacyPlural)) continue;
-    if (!LESSON_WORD_BANK_EN_SET.has(canonical)) continue;
-    const a = Number(out[canonical]) || 0;
-    const b = Number(out[legacyPlural]) || 0;
-    out[canonical] = Math.max(a, b);
-    delete out[legacyPlural];
-    dirty = true;
-  }
-  return { counts: dirty ? out : counts, dirty };
-}
+const mergeLegacyPluralLessonWordCounts = (counts: Record<string, number>) =>
+  mergeLegacyLessonWordCounts(counts, LEGACY_PLURAL_WORD_COUNT_MERGES, LESSON_WORD_BANK_EN_SET);
 
 // 6 вариантов – правильный гарантирован, дистракторы того же POS
 // Всегда берём часть из cross-lesson для разнообразия (не всегда одни и те же слова урока)

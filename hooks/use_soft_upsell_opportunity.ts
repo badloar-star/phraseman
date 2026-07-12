@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { trackSoftUpsellEvent } from '../app/analytics';
 import {
@@ -40,6 +40,15 @@ const CONTEXT_BY_TRIGGER: Record<SoftUpsellCandidate['trigger'], SoftUpsellConte
   repeated_training: 'trainer_repeat_success',
 };
 
+const TRIGGER_PRIORITY: Record<SoftUpsellCandidate['trigger'], number> = {
+  free_lessons_complete: 6,
+  second_ai_dialogue: 5,
+  weekly_review: 4,
+  streak_milestone: 3,
+  first_lesson: 2,
+  repeated_training: 1,
+};
+
 function signature(candidates: readonly SoftUpsellCandidate[]): string {
   return candidates
     .map(({ trigger, value, studyTarget }) => `${trigger}:${value}:${studyTarget}`)
@@ -55,9 +64,16 @@ export function useSoftUpsellOpportunity({
 }: Input): Result {
   const overlayOccupied = useOverlayOccupied();
   const candidateSignature = signature(candidates);
-  // The signature intentionally provides value semantics for caller-created arrays.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const stableCandidates = useMemo(() => candidates.map((candidate) => ({ ...candidate })), [candidateSignature]);
+  const stableCandidatesRef = useRef<{ signature: string; value: SoftUpsellCandidate[] } | null>(null);
+  if (stableCandidatesRef.current?.signature !== candidateSignature) {
+    stableCandidatesRef.current = {
+      signature: candidateSignature,
+      value: candidates.map((candidate) => ({ ...candidate }))
+        .sort((left, right) => TRIGGER_PRIORITY[right.trigger] - TRIGGER_PRIORITY[left.trigger]
+          || (right.trigger === 'streak_milestone' ? right.value - left.value : 0)),
+    };
+  }
+  const stableCandidates = stableCandidatesRef.current.value;
   const [opportunity, setOpportunity] = useState<SoftUpsellOpportunity | null>(null);
   const opportunityRef = useRef<SoftUpsellOpportunity | null>(null);
   const impressionRef = useRef<string | null>(null);
@@ -92,7 +108,7 @@ export function useSoftUpsellOpportunity({
         }
         return;
       }
-      const claimed = await claimSoftUpsell({ accountScope, studyTarget });
+      const claimed = await claimSoftUpsell({ accountScope, studyTarget, canClaim: () => active });
       if (!active) return;
       if (!claimed) {
         await trackSoftUpsellEvent('soft_upsell_suppressed', {

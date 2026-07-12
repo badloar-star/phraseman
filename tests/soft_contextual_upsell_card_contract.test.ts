@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react-native';
+import { cleanup, fireEvent, render } from '@testing-library/react-native';
 
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
 
@@ -17,6 +17,8 @@ jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { bgC
 
 const opportunity = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const, context: 'first_lesson_success' as const, destination: 'personal_plan' as const, milestoneId: 'first_lesson:1:en' };
 
+afterEach(async () => { await cleanup(); });
+
 it('is inline, accessible, and reports a visible layout once', async () => {
   const onImpression = jest.fn();
   const onDismiss = jest.fn();
@@ -24,7 +26,13 @@ it('is inline, accessible, and reports a visible layout once', async () => {
   const view = await render(React.createElement(SoftContextualUpsellCard, { title: 'Great result', body: 'Keep learning', ctaLabel: 'Continue', opportunity, onImpression, onDismiss, onCta }));
   fireEvent(view.getByTestId('soft-upsell-card'), 'layout', { nativeEvent: { layout: { width: 300, height: 120 } } });
   fireEvent(view.getByTestId('soft-upsell-card'), 'layout', { nativeEvent: { layout: { width: 300, height: 120 } } });
+  await view.rerender(React.createElement(SoftContextualUpsellCard, { title: 'Great result', body: 'Keep learning', ctaLabel: 'Continue', opportunity, onImpression, onDismiss, onCta }));
+  fireEvent(view.getByTestId('soft-upsell-card'), 'layout', { nativeEvent: { layout: { width: 0, height: 0 } } });
+  fireEvent(view.getByTestId('soft-upsell-card'), 'layout', { nativeEvent: { layout: { width: 300, height: 120 } } });
   expect(onImpression).toHaveBeenCalledTimes(1);
+  expect(view.getByText('Great result')).toBeTruthy();
+  expect(view.getByText('Keep learning')).toBeTruthy();
+  expect(view.getByText('Continue')).toBeTruthy();
   fireEvent.press(view.getByLabelText('Continue'));
   fireEvent.press(view.getByLabelText('Dismiss'));
   expect(onCta).toHaveBeenCalledTimes(1);

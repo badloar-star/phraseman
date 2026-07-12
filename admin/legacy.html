@@ -14241,12 +14241,19 @@
   const RANK_NAMES_RU = {bronze:'Бронза',silver:'Серебро',gold:'Золото',platinum:'Платина',diamond:'Алмаз',master:'Мастер',grandmaster:'Грандмастер',legend:'Легенда'};
   let _arenaProfiles = {}; // uid -> ArenaProfile
 
-  const app = initializeApp({
-    apiKey: "AIzaSyBxO_8xe9-HV-wFSMO4abkCHvZX8zb-T7s",
-    authDomain: "phraseman-ea0b3.firebaseapp.com",
-    projectId: "phraseman-ea0b3",
-    storageBucket: "phraseman-ea0b3.firebasestorage.app",
-  });
+  async function resolveAdminFirebaseConfig() {
+    const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
+    if (injected && typeof injected === 'object') return injected;
+    const response = await fetch('/__/firebase/init.json', { cache: 'no-store', credentials: 'same-origin' });
+    if (!response.ok) throw new Error('firebase_hosting_config_unavailable');
+    const config = await response.json();
+    if (!config || typeof config !== 'object' || !config.projectId || !config.apiKey) {
+      throw new Error('firebase_hosting_config_invalid');
+    }
+    return config;
+  }
+
+  const app = initializeApp(await resolveAdminFirebaseConfig());
   const db = getFirestore(app);
   const auth = getAuth(app);
   const functionsUs = getFunctions(app, 'us-central1');

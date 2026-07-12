@@ -1508,13 +1508,22 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
-export { adminGenerateDailyDigest } from './admin_daily_digest';
+export { adminGenerateDailyDigest, adminGetDailyBriefing } from './admin_daily_digest';
+export { adminListAssetJobs, adminCreateAssetJob, adminRunAssetJob } from './admin_asset_studio';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
   adminSupportPull,
+  adminSupportList,
   adminSupportGenerateReply,
+  adminSupportPrepareReply,
+  adminSupportDispatchReply,
   adminSupportSendReply,
+  adminSupportCancelReply,
+  adminSupportPrepareReplyBatch,
+  adminSupportDispatchReplyBatch,
+  adminSupportCancelReplyBatch,
+  adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
 } from './support_inbox';
@@ -1526,7 +1535,7 @@ export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './
 export { adminGrantReward } from './admin_grant';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
-export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert } from './promo_codes';
+export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoCodes } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
@@ -1543,6 +1552,29 @@ export { siteStatsTrack } from './site_stats';
 export { revenueCatShardsWebhook } from './revenuecat_shards';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
+
+// Admin 2 read-only analytics. Product events remain consent-gated; RevenueCat remains money truth.
+export { adminGetAnalyticsSnapshot } from './admin_analytics';
+export { adminProductAnalytics } from './admin_product_analytics';
+export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
+export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
+export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminListAuditLog } from './admin_audit_log';
+export { adminListOpsLog } from './admin_ops_log';
+export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export {
+  adminListAppMessages,
+  adminCreateAppMessage,
+  adminSetAppMessageActive,
+  adminUpdateAppMessage,
+  adminDeleteAppMessage,
+  adminCleanupExpiredAppMessages,
+} from './admin_app_messages';
+export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
+export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
+export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
+export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
+export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
 
 // ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
 export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture, webOrderStatus, webPrices } from './web_checkout';

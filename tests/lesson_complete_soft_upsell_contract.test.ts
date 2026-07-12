@@ -2,18 +2,20 @@ import fs from 'fs';
 import path from 'path';
 
 const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_complete.tsx'), 'utf8');
+const helperSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_complete_soft_upsell.ts'), 'utf8');
 
 describe('lesson completion soft upsell integration', () => {
   it('derives first-only candidates from the canonical first-completion grant', () => {
     expect(source).toContain("firstBonus.status === 'granted'");
-    expect(source).toMatch(/lessonId === 1[\s\S]*trigger: 'first_lesson'/);
-    expect(source).toMatch(/lessonId === FREE_LESSON_LIMIT[\s\S]*trigger: 'free_lessons_complete'/);
-    expect(source).not.toMatch(/lessonId\s*>=\s*FREE_LESSON_LIMIT/);
-    expect(source).not.toMatch(/firstBonus\.status === 'already_granted'[\s\S]*setSoftUpsellCandidates/);
+    expect(helperSource).toMatch(/lessonId === 1[\s\S]*trigger: 'first_lesson'/);
+    expect(helperSource).toMatch(/lessonId === FREE_LESSON_LIMIT[\s\S]*trigger: 'free_lessons_complete'/);
+    expect(helperSource).not.toMatch(/lessonId\s*>=\s*FREE_LESSON_LIMIT/);
+    expect(helperSource).toContain("input.status !== 'granted'");
   });
 
   it('uses canonical account, study target, and premium access inputs', () => {
-    expect(source).toContain('accountScopeKey(captureAccountGeneration())');
+    expect(source).toContain('accountScopeKey(softUpsellAccountToken)');
+    expect(source).toContain('subscribeAccountGeneration');
     expect(source).toContain('useSoftUpsellOpportunity({');
     expect(source).toContain('accountScope: softUpsellAccountScope');
     expect(source).toContain('studyTarget');
@@ -21,7 +23,7 @@ describe('lesson completion soft upsell integration', () => {
   });
 
   it('renders only after the reward sequence and preserves existing controls', () => {
-    expect(source).toMatch(/seqDone && softUpsell\.opportunity/);
+    expect(source).toContain('shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity)');
     expect(source).toContain('<SoftContextualUpsellCard');
     expect(source).toContain('testID="lesson-complete-next-lesson"');
     expect(source).toContain('testID="lesson-complete-repeat"');

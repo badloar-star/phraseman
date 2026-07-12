@@ -38,6 +38,7 @@ import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
 import {
   LESSON_WORD_BANK_SENSE_EXCEPTIONS,
   lessonWordBankDiagnostics,
+  lessonWordBankAuditState,
   lessonVocabularyCoverageCandidates,
   lessonVocabularyCoverageText,
   lessonWordBank,
@@ -165,6 +166,16 @@ function consumePhraseSurfaces(text: string, chunks: readonly string[]): string[
 }
 
 describe('lesson cumulative vocabulary coverage', () => {
+  it('exports the exact raw rows used by runtime diagnostics for read-only cleanup audits', () => {
+    const audit = lessonWordBankAuditState();
+    const diagnostics = lessonWordBankDiagnostics();
+    expect(Object.values(audit.raw).reduce((sum, rows) => sum + rows.length, 0))
+      .toBe(diagnostics.reduce((sum, row) => sum + row.rawCount, 0));
+    for (const row of diagnostics) expect(audit.raw[row.lessonId]).toHaveLength(row.rawCount);
+    expect(audit.diagnostics).toEqual(diagnostics);
+    expect(audit.runtime).toEqual(Object.fromEntries(Array.from({ length: 32 }, (_, i) => [i + 1, lessonWordBank(i + 1)])));
+  });
+
   it('dedupes the same normalized lemma, POS and sense while preserving the first card', () => {
     const first = { en: 'battery', pos: 'nouns', sense: 'power cell' };
     const later = { ...first, en: 'Battery' };

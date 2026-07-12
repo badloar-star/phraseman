@@ -2350,6 +2350,26 @@ export function lessonWordBankDiagnostics(): LessonWordBankDiagnostic[] {
   return LESSON_WORD_BANK_BUILD.diagnostics.map((row) => ({ ...row }));
 }
 
+/** Read-only evidence surface for vocabulary cleanup audits. Returned values never share mutable rows with runtime state. */
+export function lessonWordBankAuditState(rawOverride?: Readonly<Record<number, readonly Word[]>>): {
+  raw: Record<number, Word[]>;
+  runtime: Record<number, Word[]>;
+  diagnostics: LessonWordBankDiagnostic[];
+} {
+  const raw = Object.fromEntries(Object.entries(rawOverride ?? WORDS_BY_LESSON).map(([lessonId, rows]) => [
+    Number(lessonId),
+    rows.map((word) => ({ ...word })),
+  ]));
+  const build = buildWordsByLessonForBank(raw);
+  return {
+    raw,
+    runtime: Object.fromEntries(Object.entries(build.wordsByLesson).map(([lessonId, rows]) => [
+      Number(lessonId), rows.map((word) => ({ ...word })),
+    ])),
+    diagnostics: build.diagnostics.map((row) => ({ ...row })),
+  };
+}
+
 /** Audit-only normalization shared with the runtime lesson vocabulary builder. */
 export function lessonVocabularyCoverageText(surface: string): string {
   return phraseTextForCoverage(surface);

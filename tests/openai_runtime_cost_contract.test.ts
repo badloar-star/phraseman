@@ -156,7 +156,7 @@ describe('OpenAI runtime cost controls', () => {
     const adminCore = read('admin/v2/scripts/admin-core.js');
     const adminRouter = read('admin/v2/scripts/admin-router.js');
     const adminCapabilities = read('admin/v2/scripts/admin-capabilities.js');
-    const legacyAdmin = adminHtml;
+    const legacyAdmin = read('admin/legacy.html');
     const budgetFn = read('functions/src/openai_budget_dashboard.ts');
 
     expect(adminRouter).toContain("'openai-budget': 'diagnostics'");
@@ -167,11 +167,11 @@ describe('OpenAI runtime cost controls', () => {
     expect(legacyAdmin).toContain('id="openai-budget-grid"');
     expect(legacyAdmin).toContain('Feature costs');
     expect(legacyAdmin).toContain('Model costs');
-    expect(adminHtml).toContain('OpenAI estimated month');
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
-    expect(adminHtml).not.toContain("collection(db, 'premium_dialog_billing'");
-    expect(adminHtml).not.toContain('collection(db, "premium_dialog_billing"');
+    expect(legacyAdmin).toContain('OpenAI estimated month');
+    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
+    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
+    expect(legacyAdmin).not.toContain("collection(db, 'premium_dialog_billing'");
+    expect(legacyAdmin).not.toContain('collection(db, "premium_dialog_billing"');
     expect(budgetFn).toContain("request.auth?.token?.admin");
     // Дашборд должен покрывать ВСЕ billing-коллекции проекта (раньше было 4 из 11,
     // из-за чего суммарная цифра недосчитывала >60% трат). Проверяем каждую.

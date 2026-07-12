@@ -269,24 +269,78 @@ function renderOverview() {
 function remoteConfigBranch(branch) {
   const previewBranch = state.remoteConfigPreview?.nextConfig?.[branch];
   const configBranch = state.remoteConfig?.config?.[branch];
-  const value = previewBranch && typeof previewBranch === 'object' ? previewBranch : configBranch && typeof configBranch === 'object' ? configBranch : {};
+  const current = configBranch && typeof configBranch === 'object' ? configBranch : {};
+  const hasPreviewBranch = previewBranch && typeof previewBranch === 'object';
+  const shouldMergePreview = ['release-maintenance', 'partial-restore-remote-config'].includes(String(state.remoteConfigPreview?.source || ''));
+  const value = hasPreviewBranch && shouldMergePreview ? { ...current, ...previewBranch } : hasPreviewBranch ? previewBranch : current;
   return JSON.stringify(value, null, 2);
+}
+
+function remoteConfigValue(branch, key, fallback = '') {
+  const previewBranch = state.remoteConfigPreview?.nextConfig?.[branch];
+  const configBranch = state.remoteConfig?.config?.[branch];
+  const current = configBranch && typeof configBranch === 'object' ? configBranch : {};
+  const source = previewBranch && typeof previewBranch === 'object' ? { ...current, ...previewBranch } : current;
+  return Object.prototype.hasOwnProperty.call(source, key) ? source[key] : fallback;
+}
+
+function selectedBool(value, expected) {
+  return (value === true) === expected ? ' selected' : '';
+}
+
+function renderReleaseMaintenanceWorkflow() {
+  const releasePreview = state.remoteConfigPreview?.source === 'release-maintenance' ? state.remoteConfigPreview : null;
+  const releaseFormLocked = state.remoteConfigPreview?.source === 'partial-restore-remote-config';
+  const releaseControlDisabled = releaseFormLocked || !can('application.config.write') || state.busy;
+  const reason = releasePreview?.reason ?? '';
+  const manualMode = String(remoteConfigValue('texts', 'manual_update_mode', 'optional')) === 'force' ? 'force' : 'optional';
+  const manualPlatform = String(remoteConfigValue('texts', 'manual_update_platform', ''));
+  const rollout = remoteConfigValue('numbers', 'force_update_enabled_rollout_pct', '');
+  return `<section class="card section"><div class="card-header"><div><h2>Обновления и обслуживание</h2><p>Manual update, force update и maintenance через один безопасный preview → publish workflow.</p></div><span class="badge warning">Влияет на production</span></div><div class="card-body">
+    <div class="notice warning"><strong>Это массовые настройки.</strong> Перед публикацией проверьте превью, target build, rollout и причину. Сервер проверит ревизию и запишет audit/rollback reference. Если поменять поля после предпросмотра, публикация остановится и попросит пересобрать preview.</div>
+    <div class="fields">
+      <div class="field"><label for="release-force-enabled">Force update включён</label><select id="release-force-enabled"${releaseFormLocked ? ' disabled' : ''}><option value="false"${selectedBool(remoteConfigValue('bools', 'force_update_enabled', false), false)}>Выключено</option><option value="true"${selectedBool(remoteConfigValue('bools', 'force_update_enabled', false), true)}>Включено</option></select></div>
+      <div class="field"><label for="release-force-version">Минимальная версия</label><input id="release-force-version" value="${escapeHtml(remoteConfigValue('texts', 'min_app_version', ''))}" placeholder="например 1.5.44"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="release-force-rollout">Rollout force update, %</label><input id="release-force-rollout" type="number" min="0" max="100" value="${escapeHtml(rollout === '' ? '' : String(rollout))}" placeholder="100"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="release-store-ios">App Store URL</label><input id="release-store-ios" value="${escapeHtml(remoteConfigValue('texts', 'store_url_ios', ''))}" placeholder="https://apps.apple.com/app/id..."${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="release-store-android">Google Play URL</label><input id="release-store-android" value="${escapeHtml(remoteConfigValue('texts', 'store_url_android', ''))}" placeholder="https://play.google.com/store/apps/details?id=..."${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="release-manual-enabled">Manual update modal</label><select id="release-manual-enabled"${releaseFormLocked ? ' disabled' : ''}><option value="false"${selectedBool(remoteConfigValue('bools', 'manual_update_enabled', false), false)}>Выключено</option><option value="true"${selectedBool(remoteConfigValue('bools', 'manual_update_enabled', false), true)}>Включено</option></select></div>
+      <div class="field"><label for="release-manual-mode">Режим modal</label><select id="release-manual-mode"${releaseFormLocked ? ' disabled' : ''}><option value="optional"${manualMode === 'optional' ? ' selected' : ''}>Voluntary: можно закрыть</option><option value="force"${manualMode === 'force' ? ' selected' : ''}>Force: держит окно</option></select></div>
+      <div class="field"><label for="release-manual-platform">Платформа modal</label><select id="release-manual-platform"${releaseFormLocked ? ' disabled' : ''}><option value=""${manualPlatform ? '' : ' selected'}>iOS и Android</option><option value="ios"${manualPlatform === 'ios' ? ' selected' : ''}>Только iOS</option><option value="android"${manualPlatform === 'android' ? ' selected' : ''}>Только Android</option></select></div>
+      <div class="field"><label for="release-manual-campaign">Campaign ID</label><input id="release-manual-campaign" value="${escapeHtml(remoteConfigValue('texts', 'manual_update_campaign_id', ''))}" placeholder="manual_update_2026_07_11_a"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="release-manual-target">Target build/version</label><input id="release-manual-target" value="${escapeHtml(remoteConfigValue('texts', 'manual_update_target_build', ''))}" placeholder="1.5.44 или 81"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field full"><label for="release-manual-title-ru">Заголовок RU</label><input id="release-manual-title-ru" value="${escapeHtml(remoteConfigValue('texts', 'manual_update_title_ru', ''))}" placeholder="Доступно обновление"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field full"><label for="release-manual-body-ru">Текст RU</label><textarea id="release-manual-body-ru" rows="2" placeholder="Мы улучшили приложение. Обновите его в сторе."${releaseFormLocked ? ' disabled' : ''}>${escapeHtml(remoteConfigValue('texts', 'manual_update_body_ru', ''))}</textarea></div>
+      <div class="field"><label for="release-manual-cta-ru">Кнопка RU</label><input id="release-manual-cta-ru" value="${escapeHtml(remoteConfigValue('texts', 'manual_update_cta_ru', ''))}" placeholder="Обновить"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="release-maint-banner">Maintenance banner</label><select id="release-maint-banner"${releaseFormLocked ? ' disabled' : ''}><option value="false"${selectedBool(remoteConfigValue('bools', 'maintenance_banner', false), false)}>Выключен</option><option value="true"${selectedBool(remoteConfigValue('bools', 'maintenance_banner', false), true)}>Включён</option></select></div>
+      <div class="field"><label for="release-maint-block">Maintenance hard block</label><select id="release-maint-block"${releaseFormLocked ? ' disabled' : ''}><option value="false"${selectedBool(remoteConfigValue('bools', 'maintenance_block', false), false)}>Выключен</option><option value="true"${selectedBool(remoteConfigValue('bools', 'maintenance_block', false), true)}>Включён</option></select></div>
+      <div class="field"><label for="release-maint-campaign">Maintenance campaign ID</label><input id="release-maint-campaign" value="${escapeHtml(remoteConfigValue('texts', 'maintenance_campaign_id', ''))}" placeholder="maintenance_2026_07_11_a"${releaseFormLocked ? ' disabled' : ''}></div>
+      <div class="field full"><label for="release-maint-text-ru">Maintenance text RU</label><textarea id="release-maint-text-ru" rows="2" placeholder="Идут технические работы. Скоро вернёмся."${releaseFormLocked ? ' disabled' : ''}>${escapeHtml(remoteConfigValue('texts', 'maintenance_ru', ''))}</textarea></div>
+      <div class="field full"><label for="release-maintenance-reason">Причина публикации</label><textarea id="release-maintenance-reason" maxlength="500" placeholder="Что изменится, кто увидит, как откатить"${releaseFormLocked ? ' disabled' : ''}>${escapeHtml(reason)}</textarea></div>
+    </div>
+    ${releaseFormLocked ? '<div class="notice warning section">Активен предпросмотр восстановления значений. Форма обновлений заблокирована, чтобы не изменить restored snapshot перед публикацией.</div>' : ''}
+    ${releasePreview ? `<div class="notice ${releasePreview.changes?.length ? 'warning' : ''} section"><strong>${escapeHtml(releasePreview.title || 'Предпросмотр релиза и обслуживания')}</strong><br>${releasePreview.summary ? `${escapeHtml(releasePreview.summary)}<br>` : ''}${Array.isArray(releasePreview.details) && releasePreview.details.length ? `<div class="code-preview section">${releasePreview.details.map((line) => escapeHtml(line)).join('<br>')}</div>` : ''}${releasePreview.changes?.length ? releasePreview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Изменений нет.'}</div>` : ''}
+    <div class="actions end section">${releasePreview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button" data-action="preview-release-maintenance-stop" type="button"${releaseControlDisabled ? ' disabled' : ''} title="Подготовить audited preview для выключения force update, manual update и maintenance">Быстрый стоп</button><button class="button" data-action="preview-release-maintenance" type="button"${releaseControlDisabled ? ' disabled' : ''} title="Собрать безопасный предпросмотр только по ключам обновления и обслуживания">Предпросмотр релиза и обслуживания</button>${releasePreview?.changes?.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Опубликовать через серверную команду с ревизией, причиной и audit log">Опубликовать</button>` : ''}</div>
+  </div></section>`;
 }
 
 function renderRemoteConfigHistory() {
   const history = Array.isArray(state.remoteConfig?.history) ? state.remoteConfig.history.slice(0, 12) : [];
   if (!history.length) return emptyState('История изменений пока пуста.');
-  return `<div class="data-list">${history.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.action || 'Изменение конфигурации')}</strong><small>${escapeHtml(item.timestamp || item.at || '')} · ${escapeHtml(item.reason || item.by || 'Причина не указана')}</small></div><span class="badge">ревизия ${Number(item.revision ?? 0)}</span></div>`).join('')}</div>`;
+  return `<div class="data-list">${history.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.action || 'Изменение конфигурации')}</strong><small>${escapeHtml(item.timestamp || item.at || '')} · ${escapeHtml(item.reason || item.by || 'Причина не указана')}</small>${item.rollbackReference ? `<small>Rollback reference: <code>${escapeHtml(item.rollbackReference)}</code></small>` : ''}</div><div class="actions"><span class="badge">ревизия ${Number(item.revision ?? 0)}</span>${item.before && typeof item.before === 'object' ? `<button class="button small" data-action="preview-remote-config-restore" data-rollback-reference="${escapeHtml(item.id || item.rollbackReference || '')}" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Подготовить предпросмотр восстановления значений из состояния до этой публикации. Новые ключи не удаляются.">Восстановить значения</button>` : ''}</div></div>`).join('')}</div>`;
 }
 
 function renderApplication() {
   const workspace = state.remoteConfig;
   const config = workspace?.config ?? {};
-  const preview = state.remoteConfigPreview;
+  const releasePreviewActive = state.remoteConfigPreview?.source === 'release-maintenance';
+  const restorePreviewActive = state.remoteConfigPreview?.source === 'partial-restore-remote-config';
+  const editorLocked = releasePreviewActive || restorePreviewActive;
+  const preview = releasePreviewActive ? null : state.remoteConfigPreview;
   const keyCount = (branch) => Object.keys(config[branch] && typeof config[branch] === 'object' ? config[branch] : {}).length;
   const loadButton = `<button class="button" data-action="load-remote-config" type="button" title="Загрузить текущую конфигурацию и историю"${disabledWhenUnauthorized('application.config.write')}>${workspace ? 'Обновить данные' : 'Загрузить конфигурацию'}</button>`;
   return `${pageHeader(PAGES.application, 'Приложение', loadButton)}
-    <div class="notice">Изменения проходят путь: загрузка текущей ревизии → предпросмотр → подтверждение причины → серверная публикация → журнал и возможность отката.</div>
+    <div class="notice">Изменения проходят путь: загрузка текущей ревизии → предпросмотр → подтверждение причины → серверная публикация → журнал и восстановление значений из истории.</div>
     <section class="metrics section">
       <article class="card metric"><label>Ревизия</label><strong>${workspace ? Number(config.revision ?? 0) : '—'}</strong><span class="badge ${workspace ? 'success' : ''}">${workspace ? 'Серверное значение' : 'Не загружено'}</span></article>
       <article class="card metric"><label>Переключатели</label><strong>${workspace ? keyCount('bools') : '—'}</strong><span class="badge">ключей</span></article>
@@ -294,15 +348,18 @@ function renderApplication() {
       <article class="card metric"><label>Тексты</label><strong>${workspace ? keyCount('texts') : '—'}</strong><span class="badge">ключей</span></article>
     </section>
     ${!workspace ? `<section class="card section">${emptyState(state.authorized ? 'Загрузите конфигурацию, чтобы редактировать её без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</section>` : `
+      ${renderReleaseMaintenanceWorkflow()}
       <section class="card section"><div class="card-header"><div><h2>Редактор конфигурации</h2><p>Формат JSON позволяет сохранить все существующие и новые ключи. Тип каждого значения проверяется до публикации и повторно на сервере.</p></div><span class="badge">ревизия ${Number(config.revision ?? 0)}</span></div><div class="card-body">
         <div class="fields">
-          <div class="field"><label for="remote-config-bools">Переключатели · только true/false</label><textarea id="remote-config-bools" class="mono config-editor" spellcheck="false">${escapeHtml(remoteConfigBranch('bools'))}</textarea></div>
-          <div class="field"><label for="remote-config-numbers">Числа · только конечные числа</label><textarea id="remote-config-numbers" class="mono config-editor" spellcheck="false">${escapeHtml(remoteConfigBranch('numbers'))}</textarea></div>
-          <div class="field full"><label for="remote-config-texts">Тексты · только строки</label><textarea id="remote-config-texts" class="mono config-editor" spellcheck="false">${escapeHtml(remoteConfigBranch('texts'))}</textarea></div>
-          <div class="field full"><label for="remote-config-reason">Причина изменения</label><textarea id="remote-config-reason" maxlength="500" placeholder="Что меняется, зачем и кто проверил">${escapeHtml(preview?.reason ?? '')}</textarea></div>
+          <div class="field"><label for="remote-config-bools">Переключатели · только true/false</label><textarea id="remote-config-bools" class="mono config-editor" spellcheck="false"${editorLocked ? ' disabled' : ''}>${escapeHtml(remoteConfigBranch('bools'))}</textarea></div>
+          <div class="field"><label for="remote-config-numbers">Числа · только конечные числа</label><textarea id="remote-config-numbers" class="mono config-editor" spellcheck="false"${editorLocked ? ' disabled' : ''}>${escapeHtml(remoteConfigBranch('numbers'))}</textarea></div>
+          <div class="field full"><label for="remote-config-texts">Тексты · только строки</label><textarea id="remote-config-texts" class="mono config-editor" spellcheck="false"${editorLocked ? ' disabled' : ''}>${escapeHtml(remoteConfigBranch('texts'))}</textarea></div>
+          <div class="field full"><label for="remote-config-reason">Причина изменения</label><textarea id="remote-config-reason" maxlength="500" placeholder="Что меняется, зачем и кто проверил"${editorLocked ? ' disabled' : ''}>${escapeHtml(preview?.reason ?? '')}</textarea></div>
         </div>
-        ${preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>Предпросмотр изменений</strong><br>${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Значения не отличаются от текущей ревизии.'}</div>` : ''}
-        <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button ${preview ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Опубликовать</button>` : ''}</div>
+        ${releasePreviewActive ? '<div class="notice warning section">Активен предпросмотр релиза и обслуживания выше. Завершите публикацию или нажмите «Изменить ещё», прежде чем использовать общий JSON-редактор.</div>' : ''}
+        ${restorePreviewActive ? '<div class="notice warning section">Активен предпросмотр восстановления значений. JSON-редактор заблокирован, чтобы не отправить устаревший snapshot; нажмите «Изменить ещё», если нужно править вручную.</div>' : ''}
+        ${preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>${escapeHtml(preview.title || 'Предпросмотр изменений')}</strong><br>${preview.summary ? `${escapeHtml(preview.summary)}<br>` : ''}${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Значения не отличаются от текущей ревизии.'}</div>` : ''}
+        <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button ${preview || editorLocked ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy && !editorLocked ? '' : ' disabled'}>Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Опубликовать</button>` : ''}</div>
       </div></section>
       <section class="card section"><div class="card-header"><div><h2>Последние изменения</h2><p>Серверный журнал с причиной и ревизией.</p></div></div><div class="card-body">${renderRemoteConfigHistory()}</div></section>
     `}`;
@@ -1054,6 +1111,216 @@ function parseRemoteConfigEditor(id, branch) {
   return value;
 }
 
+function remoteConfigChanges(nextConfig, options = {}) {
+  const changes = [];
+  for (const branch of ['bools', 'numbers', 'texts']) {
+    if (!nextConfig[branch] || typeof nextConfig[branch] !== 'object') continue;
+    const before = state.remoteConfig.config[branch] && typeof state.remoteConfig.config[branch] === 'object' ? state.remoteConfig.config[branch] : {};
+    const after = nextConfig[branch];
+    const keys = options.includeRemoved ? [...new Set([...Object.keys(before), ...Object.keys(after)])] : Object.keys(after);
+    for (const key of keys.sort()) {
+      if (JSON.stringify(before[key]) !== JSON.stringify(after[key])) changes.push(`${branch}.${key}: ${JSON.stringify(before[key]) ?? '∅'} → ${JSON.stringify(after[key]) ?? '∅'}`);
+    }
+  }
+  return changes;
+}
+
+function readReleaseMaintenanceBoolean(id) {
+  return String(document.getElementById(id)?.value ?? 'false') === 'true';
+}
+
+function readTextInput(id, max = 500) {
+  return String(document.getElementById(id)?.value ?? '').trim().slice(0, max);
+}
+
+function requireSemverish(value, label) {
+  if (value && !/^\d+(\.\d+){0,3}$/.test(value)) throw new Error(`${label}: используйте формат 1.2.3 или 81.`);
+}
+
+function requireHttpUrl(value, label) {
+  if (!value) throw new Error(`${label}: укажите ссылку на стор.`);
+  if (!/^https:\/\/[^\s]+$/i.test(value)) throw new Error(`${label}: используйте https-ссылку.`);
+}
+
+function requireAnyStoreUrl(platform, iosUrl, androidUrl) {
+  if (platform === 'ios') return requireHttpUrl(iosUrl, 'App Store URL');
+  if (platform === 'android') return requireHttpUrl(androidUrl, 'Google Play URL');
+  requireHttpUrl(iosUrl, 'App Store URL');
+  requireHttpUrl(androidUrl, 'Google Play URL');
+}
+
+function buildReleaseMaintenancePreview() {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const rolloutRaw = readTextInput('release-force-rollout', 8);
+  let rollout = 100;
+  if (rolloutRaw !== '') {
+    rollout = Math.round(Number(rolloutRaw));
+    if (!Number.isFinite(rollout) || rollout < 0 || rollout > 100) throw new Error('Rollout force update должен быть числом 0–100.');
+  }
+  const minVersion = readTextInput('release-force-version', 40);
+  const targetBuild = readTextInput('release-manual-target', 40);
+  requireSemverish(minVersion, 'Минимальная версия');
+  requireSemverish(targetBuild, 'Target build/version');
+  const forceEnabled = readReleaseMaintenanceBoolean('release-force-enabled');
+  const manualEnabled = readReleaseMaintenanceBoolean('release-manual-enabled');
+  const manualCampaign = readTextInput('release-manual-campaign', 80);
+  if (manualEnabled && !/^[A-Za-z0-9_.:-]{3,80}$/.test(manualCampaign)) throw new Error('Manual update: campaign_id 3–80 символов: A-Z, 0-9, _, ., :, -.');
+  const manualPlatform = ['ios', 'android'].includes(String(document.getElementById('release-manual-platform')?.value ?? '')) ? String(document.getElementById('release-manual-platform')?.value ?? '') : '';
+  const maintenanceBanner = readReleaseMaintenanceBoolean('release-maint-banner');
+  const maintenanceBlock = readReleaseMaintenanceBoolean('release-maint-block');
+  const maintenanceEnabled = maintenanceBanner || maintenanceBlock;
+  const maintenanceCampaign = readTextInput('release-maint-campaign', 80);
+  if (maintenanceEnabled && !/^[A-Za-z0-9_.:-]{3,80}$/.test(maintenanceCampaign)) throw new Error('Maintenance campaign_id 3–80 символов: A-Z, 0-9, _, ., :, -.');
+  const iosUrl = readTextInput('release-store-ios', 400);
+  const androidUrl = readTextInput('release-store-android', 400);
+  if (forceEnabled && !minVersion) throw new Error('Force update: укажите минимальную версию.');
+  if (forceEnabled) requireAnyStoreUrl('', iosUrl, androidUrl);
+  const manualTitle = readTextInput('release-manual-title-ru', 160);
+  const manualBody = readTextInput('release-manual-body-ru', 500);
+  const manualCta = readTextInput('release-manual-cta-ru', 80);
+  if (manualEnabled && !targetBuild) throw new Error('Manual update: укажите target build/version.');
+  if (manualEnabled) requireAnyStoreUrl(manualPlatform, iosUrl, androidUrl);
+  if (manualEnabled && (!manualTitle || !manualBody || !manualCta)) throw new Error('Manual update: заполните RU заголовок, текст и кнопку.');
+  const maintenanceTextRu = readTextInput('release-maint-text-ru', 500);
+  if (maintenanceEnabled && !maintenanceTextRu) throw new Error('Maintenance: заполните RU текст.');
+  const reason = readTextInput('release-maintenance-reason', 500);
+  if (!reason) throw new Error('Укажите причину публикации.');
+  const nextConfig = {
+    bools: {
+      force_update_enabled: forceEnabled,
+      manual_update_enabled: manualEnabled,
+      maintenance_banner: maintenanceBanner,
+      maintenance_block: maintenanceBlock,
+    },
+    numbers: { force_update_enabled_rollout_pct: rollout },
+    texts: {
+      min_app_version: minVersion,
+      store_url_ios: iosUrl,
+      store_url_android: androidUrl,
+      manual_update_campaign_id: manualCampaign,
+      manual_update_mode: String(document.getElementById('release-manual-mode')?.value ?? 'optional') === 'force' ? 'force' : 'optional',
+      manual_update_platform: manualPlatform,
+      manual_update_target_build: targetBuild,
+      manual_update_title_ru: manualTitle,
+      manual_update_body_ru: manualBody,
+      manual_update_cta_ru: manualCta,
+      maintenance_campaign_id: maintenanceCampaign,
+      maintenance_ru: maintenanceTextRu,
+    },
+  };
+  const version = Number(state.remoteConfig.config.version);
+  if (Number.isInteger(version) && version > 0) nextConfig.version = version;
+  const changes = remoteConfigChanges(nextConfig);
+  if (maintenanceBlock) changes.unshift('Внимание: maintenance_block=true — приложение может стать недоступным для пользователей.');
+  if (nextConfig.bools.force_update_enabled) changes.unshift(`Внимание: force_update_enabled=true — rollout ${rollout}% для устаревших сборок.`);
+  const summary = [
+    forceEnabled ? `Force update: min ${minVersion}, rollout ${rollout}%.` : 'Force update выключен.',
+    manualEnabled ? `Manual modal: campaign ${manualCampaign}, target ${targetBuild}, platform ${manualPlatform || 'all'}.` : 'Manual update modal выключен.',
+    maintenanceEnabled ? `Maintenance: ${maintenanceBlock ? 'hard block' : 'banner'}, campaign ${maintenanceCampaign}.` : 'Maintenance выключен.',
+  ].join(' ');
+  const details = [
+    `Force audience: iOS и Android; rollout ${rollout}%; min version ${minVersion || 'не задана'}.`,
+    `Manual modal audience: ${manualEnabled ? (manualPlatform ? `только ${manualPlatform}` : 'iOS и Android') : 'выключена'}.`,
+    `Maintenance audience: ${maintenanceEnabled ? 'iOS и Android' : 'выключен'}.`,
+    `Store destination: iOS ${iosUrl || 'не задан'}; Android ${androidUrl || 'не задан'}.`,
+    `Manual modal: ${manualEnabled ? (nextConfig.texts.manual_update_mode === 'force' ? 'нельзя закрыть' : 'можно закрыть') : 'выключена'}.`,
+    `Campaign ID: manual ${manualCampaign || 'не задан'}; maintenance ${maintenanceCampaign || 'не задан'}.`,
+    `RU title: ${manualTitle || '—'}`,
+    `RU body: ${manualBody || '—'}`,
+    `RU CTA: ${manualCta || '—'}`,
+    `Stop condition: нажать «Быстрый стоп» и опубликовать audited preview, либо восстановить значения из истории.`,
+  ];
+  return { nextConfig, reason, changes, source: 'release-maintenance', kind: 'standard', title: 'Предпросмотр релиза и обслуживания', summary, details };
+}
+
+function buildReleaseMaintenanceStopPreview() {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const reason = readTextInput('release-maintenance-reason', 500);
+  if (!reason) throw new Error('Укажите причину быстрого стопа.');
+  const nextConfig = {
+    bools: {
+      force_update_enabled: false,
+      manual_update_enabled: false,
+      maintenance_banner: false,
+      maintenance_block: false,
+    },
+    numbers: { force_update_enabled_rollout_pct: 0 },
+  };
+  const version = Number(state.remoteConfig.config.version);
+  if (Number.isInteger(version) && version > 0) nextConfig.version = version;
+  const changes = remoteConfigChanges(nextConfig);
+  return {
+    nextConfig,
+    reason,
+    changes,
+    source: 'release-maintenance',
+    kind: 'quick-stop',
+    title: 'Предпросмотр быстрого стопа',
+    summary: 'Выключает force update, manual update modal, maintenance banner и maintenance hard block через audited publish.',
+    details: [
+      'Аудитория: все пользователи, на которых сейчас действуют force/manual/maintenance flags.',
+      'Store destination: не меняется.',
+      'Manual modal: выключается.',
+      'Stop condition: публикация этого preview сбрасывает опасные флаги; значения можно частично восстановить из истории.',
+    ],
+  };
+}
+
+function remoteConfigSnapshotPatch(snapshot) {
+  const patch = {};
+  for (const branch of ['bools', 'numbers', 'texts']) {
+    if (snapshot?.[branch] && typeof snapshot[branch] === 'object') patch[branch] = { ...snapshot[branch] };
+  }
+  const version = Number(state.remoteConfig?.config?.version);
+  if (Number.isInteger(version) && version > 0) patch.version = version;
+  return patch;
+}
+
+function buildRemoteConfigRestorePreview(reference) {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const history = Array.isArray(state.remoteConfig?.history) ? state.remoteConfig.history : [];
+  const item = history.find((entry) => String(entry.id || entry.rollbackReference || '') === String(reference || ''));
+  if (!item?.before || typeof item.before !== 'object') throw new Error('Для этой записи нет снимка before для восстановления.');
+  const reason = readTextInput('remote-config-reason', 500);
+  if (!reason) throw new Error('Укажите явную причину восстановления значений.');
+  const nextConfig = remoteConfigSnapshotPatch(item.before);
+  const changes = remoteConfigChanges(nextConfig);
+  return {
+    nextConfig,
+    reason,
+    changes,
+    source: 'partial-restore-remote-config',
+    reference: String(item.id || item.rollbackReference || ''),
+    title: 'Предпросмотр восстановления значений Remote Config',
+    summary: 'Восстанавливает значения из before-снимка через audited publish. Новые ключи, добавленные позже, не удаляются текущей merge-командой.',
+  };
+}
+
+function ensureReleaseMaintenancePreviewIsFresh(preview) {
+  if (preview?.source !== 'release-maintenance') return true;
+  const current = preview.kind === 'quick-stop' ? buildReleaseMaintenanceStopPreview() : buildReleaseMaintenancePreview();
+  const stale = JSON.stringify(current.nextConfig) !== JSON.stringify(preview.nextConfig) || current.reason !== preview.reason;
+  if (!stale) return true;
+  state.remoteConfigPreview = current;
+  setMessage('Поля изменились после предпросмотра. Я обновил preview — проверьте его и нажмите публикацию ещё раз.', 'warning');
+  renderCurrentPage();
+  return false;
+}
+
+function ensureRemoteConfigPreviewIsFresh(preview) {
+  if (preview?.source === 'release-maintenance') return ensureReleaseMaintenancePreviewIsFresh(preview);
+  let current = null;
+  if (preview?.source === 'partial-restore-remote-config') current = buildRemoteConfigRestorePreview(preview.reference);
+  if (preview?.source === 'generic-remote-config') current = buildRemoteConfigPreview();
+  if (!current) return true;
+  const stale = JSON.stringify(current.nextConfig) !== JSON.stringify(preview.nextConfig) || current.reason !== preview.reason;
+  if (!stale) return true;
+  state.remoteConfigPreview = current;
+  setMessage('Поля изменились после предпросмотра. Я обновил preview — проверьте его и нажмите публикацию ещё раз.', 'warning');
+  renderCurrentPage();
+  return false;
+}
+
 function buildRemoteConfigPreview() {
   if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
   const nextConfig = {
@@ -1065,15 +1332,17 @@ function buildRemoteConfigPreview() {
   if (Number.isInteger(version) && version > 0) nextConfig.version = version;
   const reason = String(document.getElementById('remote-config-reason')?.value ?? '').trim();
   if (!reason) throw new Error('Укажите причину изменения.');
-  const changes = [];
-  for (const branch of ['bools', 'numbers', 'texts']) {
-    const before = state.remoteConfig.config[branch] && typeof state.remoteConfig.config[branch] === 'object' ? state.remoteConfig.config[branch] : {};
-    const after = nextConfig[branch];
-    for (const key of [...new Set([...Object.keys(before), ...Object.keys(after)])].sort()) {
-      if (JSON.stringify(before[key]) !== JSON.stringify(after[key])) changes.push(`${branch}.${key}: ${JSON.stringify(before[key]) ?? '∅'} → ${JSON.stringify(after[key]) ?? '∅'}`);
-    }
-  }
-  return { nextConfig, reason, changes };
+  const changes = remoteConfigChanges(nextConfig, { includeRemoved: true });
+  return { nextConfig, reason, changes, source: 'generic-remote-config' };
+}
+
+function remoteConfigPublishQuestion(preview) {
+  const bools = preview?.nextConfig?.bools && typeof preview.nextConfig.bools === 'object' ? preview.nextConfig.bools : {};
+  const risks = [];
+  if (bools.force_update_enabled === true) risks.push('force update заставит пользователей на старых версиях обновиться');
+  if (bools.maintenance_block === true) risks.push('maintenance hard block может закрыть доступ к приложению');
+  if (!risks.length) return `Опубликовать ${preview.changes.length} изменений конфигурации?`;
+  return `Опубликовать ${preview.changes.length} изменений production-конфигурации?\n\nРиск: ${risks.join('; ')}.\n\nПроверьте audience, store links, campaign ID и stop condition перед подтверждением.`;
 }
 
 async function runGeneration() {
@@ -1423,11 +1692,33 @@ async function handleAction(action, target) {
     renderCurrentPage();
     return;
   }
+  if (action === 'preview-release-maintenance') {
+    try { state.remoteConfigPreview = buildReleaseMaintenancePreview(); setMessage('Предпросмотр релиза и обслуживания готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-release-maintenance-stop') {
+    try { state.remoteConfigPreview = buildReleaseMaintenanceStopPreview(); setMessage('Предпросмотр быстрого стопа готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-remote-config-restore') {
+    try { state.remoteConfigPreview = buildRemoteConfigRestorePreview(target?.dataset?.rollbackReference); setMessage('Предпросмотр восстановления готов. Проверьте изменения перед публикацией.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
   if (action === 'discard-remote-config-preview') { state.remoteConfigPreview = null; renderCurrentPage(); return; }
   if (action === 'publish-remote-config') {
     const preview = state.remoteConfigPreview;
     if (!preview?.changes.length) return setMessage('Нет изменений для публикации.', 'warning');
-    if (!globalThis.confirm(`Опубликовать ${preview.changes.length} изменений конфигурации?`)) return;
+    try {
+      if (!ensureRemoteConfigPreviewIsFresh(preview)) return;
+    } catch (error) {
+      setMessage(errorMessage(error), 'warning');
+      renderCurrentPage();
+      return;
+    }
+    if (!globalThis.confirm(remoteConfigPublishQuestion(preview))) return;
     const expectedRevision = Number(state.remoteConfig?.config?.revision ?? 0);
     return runBusy(async () => {
       await actions.publishRemoteConfig({ nextConfig: preview.nextConfig, expectedRevision, idempotencyKey: id('remote-config'), reason: preview.reason, requestId: id('request-remote-config') });

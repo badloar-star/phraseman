@@ -1,6 +1,13 @@
-import { hasPermission, type AdminPermission } from './permissions';
+import { hasPermission, resolveAdminRole, type AdminPermission } from './permissions';
 
 describe('admin permission matrix', () => {
+  it('preserves legacy admin=true access without granting roles to ordinary users', () => {
+    expect(resolveAdminRole({ admin: true })).toBe('admin');
+    expect(resolveAdminRole({ admin: true, adminRole: 'owner' })).toBe('owner');
+    expect(resolveAdminRole({ admin: false, adminRole: 'owner' })).toBeNull();
+    expect(resolveAdminRole({ adminRole: 'admin' })).toBeNull();
+  });
+
   it('allows content editors to manage drafts but not billing', () => {
     expect(hasPermission('content_editor', 'content.draft.write')).toBe(true);
     expect(hasPermission('content_editor', 'money.manual_access.write')).toBe(false);

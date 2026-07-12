@@ -1,8 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasAdminRole, type AdminRole } from './admin/roles';
-import { hasPermission } from './admin/permissions';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
 import {
   ANALYTICS_DEFINITION_VERSION,
   aggregateActiveAccess,
@@ -69,10 +68,6 @@ export function analyticsSnapshotState(sources: readonly { state: SourceState }[
   if (sources.every((source) => source.state === 'error')) return 'error';
   if (sources.some((source) => source.state === 'error' || source.state === 'partial')) return 'partial';
   return 'ready';
-}
-
-function roleFromToken(token: Record<string, unknown>): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
 }
 
 function timestampMillis(value: unknown): number {
@@ -161,7 +156,7 @@ export const adminGetAnalyticsSnapshot = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 60, memory: '512MiB' },
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-    const role = roleFromToken(request.auth.token as Record<string, unknown>);
+    const role = resolveAdminRole(request.auth.token as Record<string, unknown>);
     if (!role || !hasPermission(role, 'money.read')) throw new HttpsError('permission-denied', 'Role cannot read analytics');
 
     const { rangeDays } = parseAnalyticsRequest(request.data);

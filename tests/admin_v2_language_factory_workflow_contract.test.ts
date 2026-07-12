@@ -29,6 +29,7 @@ describe('Admin v2 Language Factory workflow', () => {
     expect(firebase).not.toContain("collection(db, 'content_factory_");
     expect(firebase).toContain('/__/firebase/init.json');
     expect(firebase).not.toContain('AIza');
+    expect(firebase).toContain("token.claims.admin === true ? 'admin' : ''");
     expect(core).toContain('const ADMIN_ROLE_PERMISSIONS');
     expect(core).toContain("disabledWhenUnauthorized('content.draft.write')");
     expect(core).toContain("can('content.publish')");

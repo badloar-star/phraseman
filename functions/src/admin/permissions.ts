@@ -29,6 +29,11 @@ export type AdminPermission =
   | 'reports.reply.send'
   | 'diagnostics.status.write';
 
+export function resolveAdminRole(token: Readonly<Record<string, unknown>> | null | undefined): AdminRole | null {
+  if (token?.admin !== true) return null;
+  return hasAdminRole(token.adminRole) ? token.adminRole : 'admin';
+}
+
 const SUPPORT_OPERATOR_PERMISSIONS: readonly AdminPermission[] = [
   'support.inbox.read',
   'support.inbox.pull',

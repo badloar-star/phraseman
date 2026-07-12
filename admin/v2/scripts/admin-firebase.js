@@ -2,6 +2,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
+const ADMIN_ROLES = new Set(['owner', 'admin', 'support', 'content_editor', 'moderator', 'analyst', 'developer']);
+
 function unwrap(result) {
   return result && typeof result === 'object' && 'data' in result ? result.data : result;
 }
@@ -88,8 +90,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     }
     try {
       const token = await user.getIdTokenResult(true);
-      const role = typeof token.claims.adminRole === 'string' ? token.claims.adminRole : '';
-      onAuth({ authorized: token.claims.admin === true && Boolean(role), email: user.email ?? '', role });
+      const claimedRole = typeof token.claims.adminRole === 'string' && ADMIN_ROLES.has(token.claims.adminRole) ? token.claims.adminRole : '';
+      const role = claimedRole || (token.claims.admin === true ? 'admin' : '');
+      onAuth({ authorized: token.claims.admin === true, email: user.email ?? '', role });
     } catch {
       onAuth({ authorized: false, email: user.email ?? '', role: '' });
     }

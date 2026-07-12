@@ -2,8 +2,8 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
-import { hasPermission } from './admin/permissions';
-import { hasAdminRole, type AdminRole } from './admin/roles';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
+import { type AdminRole } from './admin/roles';
 import { clearAppMessagePollEngagement, deleteAppMessageWithEngagement } from './app_messages';
 
 const REGION = 'us-central1';
@@ -238,8 +238,8 @@ export function appMessagePollStructureChanged(previous: unknown, next: unknown)
 }
 
 function roleFor(token: RecordValue): AdminRole {
-  const role = token.adminRole;
-  if (!hasAdminRole(role)) throw new HttpsError('permission-denied', 'adminRole claim required');
+  const role = resolveAdminRole(token);
+  if (!role) throw new HttpsError('permission-denied', 'Admin only');
   return role;
 }
 

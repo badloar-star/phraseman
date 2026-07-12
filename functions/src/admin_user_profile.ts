@@ -1,8 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasPermission } from './admin/permissions';
-import { hasAdminRole, type AdminRole } from './admin/roles';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
 
 const REGION = 'us-central1';
 const MAX_SEARCH_RESULTS = 20;
@@ -98,13 +97,9 @@ export function buildLearningSnapshot(progress: Row): LearningSnapshot {
   });
 }
 
-function roleFromToken(token: Row): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
-}
-
 function requireUserReader(request: { auth?: { token?: Row } }): void {
   if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-  const role = roleFromToken(request.auth.token);
+  const role = resolveAdminRole(request.auth.token);
   if (!role || !hasPermission(role, 'users.read')) throw new HttpsError('permission-denied', 'Role cannot read users');
 }
 

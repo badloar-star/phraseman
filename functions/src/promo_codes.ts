@@ -22,7 +22,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { stackVipUntilMs, vipUntilFromProgress } from './referral';
 import { resolveRemoteBool } from './remote_gates';
-import { hasPermission } from './admin/permissions';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -106,7 +106,7 @@ function readRewardKind(v: unknown): PromoRewardKind {
 
 function assertAdminPermission(request: { auth?: { uid?: string; token?: Record<string, unknown> } }, permission: 'money.read' | 'money.manual_access.write'): void {
   if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) throw new HttpsError('permission-denied', 'Admin only');
-  const role = request.auth?.token?.adminRole;
+  const role = resolveAdminRole(request.auth?.token);
   if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
 }
 

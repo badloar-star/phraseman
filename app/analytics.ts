@@ -295,9 +295,25 @@ type SoftUpsellAnalyticsBase = {
   schemaVersion: 1;
   triggerValue: number;
 };
-export type SoftUpsellAnalyticsPayload = SoftUpsellAnalyticsBase & {
-  destination?: SoftUpsellDestination;
-  suppressionReason?: SoftUpsellSuppressionReason;
+type SoftUpsellNoOutcomeFields = {
+  destination?: never;
+  suppressionReason?: never;
+};
+export type SoftUpsellAnalyticsPayloadByEvent = {
+  soft_upsell_eligible: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields;
+  soft_upsell_impression: SoftUpsellAnalyticsBase & {
+    destination: SoftUpsellDestination;
+    suppressionReason?: never;
+  };
+  soft_upsell_cta: SoftUpsellAnalyticsBase & {
+    destination: SoftUpsellDestination;
+    suppressionReason?: never;
+  };
+  soft_upsell_dismiss: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields;
+  soft_upsell_suppressed: SoftUpsellAnalyticsBase & {
+    destination?: never;
+    suppressionReason: SoftUpsellSuppressionReason;
+  };
 };
 
 const SOFT_UPSELL_DESTINATIONS: readonly SoftUpsellDestination[] = ['personal_plan', 'paywall'];
@@ -306,32 +322,42 @@ const SOFT_UPSELL_SUPPRESSION_REASONS: readonly SoftUpsellSuppressionReason[] = 
   'global_cooldown', 'context_cooldown', 'milestone_consumed', 'invalid_trigger_value',
 ];
 
-export async function trackSoftUpsellEvent(
-  event: SoftUpsellAnalyticsEvent,
-  payload: SoftUpsellAnalyticsPayload,
+export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEvent>(
+  event: Event,
+  payload: SoftUpsellAnalyticsPayloadByEvent[Event],
 ): Promise<void> {
+  const candidate = payload as SoftUpsellAnalyticsBase & {
+    destination?: unknown;
+    suppressionReason?: unknown;
+  };
   if (!SOFT_UPSELL_ANALYTICS_EVENTS.includes(event)) return;
-  if (!SOFT_UPSELL_CONTEXTS.includes(payload?.context)) return;
-  if (!SOFT_UPSELL_TRIGGERS.includes(payload?.trigger)) return;
-  if (payload?.studyTarget !== 'en' && payload?.studyTarget !== 'fr') return;
-  if (typeof payload?.overlayOccupied !== 'boolean' || payload?.schemaVersion !== 1) return;
-  if (!Number.isSafeInteger(payload?.triggerValue) || payload.triggerValue < 0 || payload.triggerValue > 10_000) return;
-  if (payload.destination != null && !SOFT_UPSELL_DESTINATIONS.includes(payload.destination)) return;
+  if (!SOFT_UPSELL_CONTEXTS.includes(candidate?.context)) return;
+  if (!SOFT_UPSELL_TRIGGERS.includes(candidate?.trigger)) return;
+  if (candidate?.studyTarget !== 'en' && candidate?.studyTarget !== 'fr') return;
+  if (typeof candidate?.overlayOccupied !== 'boolean' || candidate?.schemaVersion !== 1) return;
+  if (!Number.isSafeInteger(candidate?.triggerValue) || candidate.triggerValue < 0 || candidate.triggerValue > 10_000) return;
+
+  const destinationAllowed = event === 'soft_upsell_impression' || event === 'soft_upsell_cta';
+  if (destinationAllowed) {
+    if (!SOFT_UPSELL_DESTINATIONS.includes(candidate.destination as SoftUpsellDestination)) return;
+  } else if (candidate.destination != null) return;
+
   if (event === 'soft_upsell_suppressed') {
-    if (!SOFT_UPSELL_SUPPRESSION_REASONS.includes(payload.suppressionReason as SoftUpsellSuppressionReason)) return;
-  } else if (payload.suppressionReason != null) return;
-  if ((event === 'soft_upsell_impression' || event === 'soft_upsell_cta') && payload.destination == null) return;
+    if (!SOFT_UPSELL_SUPPRESSION_REASONS.includes(candidate.suppressionReason as SoftUpsellSuppressionReason)) return;
+  } else if (candidate.suppressionReason != null) return;
 
   const props: Record<string, string | number | boolean> = {
-    context: payload.context,
-    trigger: payload.trigger,
-    studyTarget: payload.studyTarget,
-    overlayOccupied: payload.overlayOccupied,
-    schemaVersion: payload.schemaVersion,
-    triggerValue: payload.triggerValue,
+    context: candidate.context,
+    trigger: candidate.trigger,
+    studyTarget: candidate.studyTarget,
+    overlayOccupied: candidate.overlayOccupied,
+    schemaVersion: candidate.schemaVersion,
+    triggerValue: candidate.triggerValue,
   };
-  if (payload.destination != null) props.destination = payload.destination;
-  if (event === 'soft_upsell_suppressed') props.suppressionReason = payload.suppressionReason!;
+  if (destinationAllowed) props.destination = candidate.destination as SoftUpsellDestination;
+  if (event === 'soft_upsell_suppressed') {
+    props.suppressionReason = candidate.suppressionReason as SoftUpsellSuppressionReason;
+  }
   await trackEvent(event, props);
 }
 

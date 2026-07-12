@@ -116,8 +116,10 @@ export function readSoftUpsellState(
 export function claimSoftUpsell(_scope: {
   accountScope: string;
   studyTarget: SoftUpsellStudyTarget;
+  canClaim?: () => boolean;
 }): Promise<boolean> {
   return serialize(async () => {
+    if (_scope.canClaim?.() === false) return false;
     if (sessionClaimed) return false;
     sessionClaimed = true;
     return true;

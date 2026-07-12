@@ -35,6 +35,25 @@ test('allows exactly one concurrent runtime session claim without persisting eli
   expect(await AsyncStorage.getItem(key('user-1'))).toBeNull();
 });
 
+test('checks a guarded claim inside the serialized operation without consuming a stale session', async () => {
+  let releaseRead!: (value: string | null) => void;
+  let markReadEntered!: () => void;
+  const readEntered = new Promise<void>((resolve) => { markReadEntered = resolve; });
+  jest.spyOn(AsyncStorage, 'getItem').mockImplementationOnce(() => new Promise((resolve) => {
+    releaseRead = resolve;
+    markReadEntered();
+  }));
+  const queuedRead = readSoftUpsellState('guarded', 'en');
+  await readEntered;
+  let current = true;
+  const staleClaim = claimSoftUpsell({ accountScope: 'guarded', studyTarget: 'en', canClaim: () => current });
+  current = false;
+  releaseRead(null);
+  await queuedRead;
+  await expect(staleClaim).resolves.toBe(false);
+  await expect(claimSoftUpsell({ accountScope: 'current', studyTarget: 'en' })).resolves.toBe(true);
+});
+
 test('keeps impression and dismissal timestamps distinct', async () => {
   await markSoftUpsellDismissed('user', 'en', 'weekly_review', 100);
   await markSoftUpsellImpression('user', 'en', 'first_lesson_success', 'lesson:1:en', 200);

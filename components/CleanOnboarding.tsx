@@ -7,6 +7,7 @@ import {
   AppState,
   Image,
   ImageSourcePropType,
+  InteractionManager,
   Keyboard,
   KeyboardAvoidingView,
   Linking,
@@ -16,7 +17,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   View,
   type StyleProp,
   type ViewStyle,
@@ -40,10 +40,20 @@ import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
 import { requestNotificationPermissionWithFallback, scheduleDailyReminder } from '../app/notifications';
-import { ensureLocalNickname } from '../app/nickname_guard';
+import { ensureUniqueGeneratedNickname } from '../app/nickname_guard';
 import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
+import { onAppEvent } from '../app/events';
+import { getEnabledOnboardingSteps } from '../app/remote_flags';
+import {
+  decideOnboardingTransition,
+  getOnboardingProgress,
+  resolveEnabledOnboardingOrder,
+  resolveOnboardingStep,
+  runOnboardingTransitionEffects,
+  type OnboardingStepId,
+} from '../app/onboarding_flow';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
@@ -233,22 +243,6 @@ const MINUTE_OPTIONS: Array<Option<PlanMinutesChoice> & { tone: string }> = [
   { id: 15, title: '15 минут в день', tone: 'быстрее прогресс', icon: 'flash-outline', asset: ONBOARDING_ASSETS.minutes15 },
   { id: 20, title: '20 минут в день', tone: 'глубже практика', icon: 'rocket-outline', asset: ONBOARDING_ASSETS.minutes20 },
 ];
-const STEP_PROGRESS_INDEX: Partial<Record<CleanOnboardingStep, number>> = {
-  source: 1,
-  ...(SHOW_ONBOARDING_LANGUAGE_STEP ? { language: 2 } : {}),
-  level: SHOW_ONBOARDING_LANGUAGE_STEP ? 3 : 2,
-  goal: SHOW_ONBOARDING_LANGUAGE_STEP ? 4 : 3,
-  minutes: SHOW_ONBOARDING_LANGUAGE_STEP ? 5 : 4,
-  notifications: SHOW_ONBOARDING_LANGUAGE_STEP ? 6 : 5,
-  plusBenefits: SHOW_ONBOARDING_LANGUAGE_STEP ? 7 : 6,
-  startMode: SHOW_ONBOARDING_LANGUAGE_STEP ? 8 : 7,
-  planComparison: SHOW_ONBOARDING_LANGUAGE_STEP ? 9 : 8,
-  onboardingPaywall: SHOW_ONBOARDING_LANGUAGE_STEP ? 10 : 9,
-  name: SHOW_ONBOARDING_LANGUAGE_STEP ? 11 : 10,
-};
-
-const PROGRESS_TOTAL = SHOW_ONBOARDING_LANGUAGE_STEP ? 11 : 10;
-
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
   if (!SHOW_ONBOARDING_LANGUAGE_STEP && value === 'language') return 'level';
@@ -432,9 +426,12 @@ function Background() {
 // шаге, поэтому «откуда ехать» помним на уровне модуля.
 let lastProgressFraction = 0;
 
+const OnboardingOrderContext = React.createContext<readonly OnboardingStepId[]>(CLEAN_ONBOARDING_ORDER);
+
 function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboardingStep; onBack?: () => void; light?: boolean }) {
-  const progress = STEP_PROGRESS_INDEX[step] ?? 0;
-  const fraction = Math.max(0, Math.min(1, progress / PROGRESS_TOTAL));
+  const enabledOrder = React.useContext(OnboardingOrderContext);
+  const { progress, total } = getOnboardingProgress(enabledOrder, step);
+  const fraction = Math.max(0, Math.min(1, progress / total));
   const [trackWidth, setTrackWidth] = useState(0);
   const fillAnim = useRef(new Animated.Value(lastProgressFraction)).current;
 
@@ -470,7 +467,7 @@ function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboarding
       </Pressable>
       <View
         style={[styles.progressTrack, light && styles.progressTrackLight]}
-        accessibilityLabel={`Шаг ${progress} из ${PROGRESS_TOTAL}`}
+        accessibilityLabel={`Шаг ${progress} из ${total}`}
         onLayout={(event) => setTrackWidth(event.nativeEvent.layout.width)}
       >
         <Animated.View style={[StyleSheet.absoluteFillObject, { transform: [{ translateX }] }]}>
@@ -788,7 +785,7 @@ function ScreenFrame({
           {title ? (
             <FadeUp>
               {plainTitle ? (
-                <Text style={[styles.plainTitle, light && styles.plainTitleLight]}>{title}</Text>
+                <Text style={[styles.plainTitle, step === 'name' && styles.consentTitle, light && styles.plainTitleLight]}>{title}</Text>
               ) : (
                 <CompassBubble compact>{title}</CompassBubble>
               )}
@@ -995,14 +992,14 @@ function CleanOnboarding({
   const [plusSelected, setPlusSelected] = useState(true);
   const [notificationBusy, setNotificationBusy] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
-  const [name, setName] = useState('');
-  const [nameError, setNameError] = useState<string | null>(null);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
   const [legalAccepted, setLegalAccepted] = useState(false);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
   const [legalError, setLegalError] = useState<string | null>(null);
   const [finishBusy, setFinishBusy] = useState(false);
+  const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
   const finishingRef = useRef(false);
+  const paywallTransitionBusyRef = useRef(false);
 
   const selectedGoal = goal ?? 'everyday';
   const selectedMinutes = minutes ?? 10;
@@ -1032,6 +1029,11 @@ function CleanOnboarding({
     forceTrialUI: true,
   });
 
+  const enabledOrder = useMemo(
+    () => resolveEnabledOnboardingOrder(remoteEnabledSteps, SHOW_ONBOARDING_LANGUAGE_STEP),
+    [remoteEnabledSteps],
+  );
+
   const persistStep = useCallback(async (next: CleanOnboardingStep) => {
     await AsyncStorage.multiSet([
       [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
@@ -1039,19 +1041,32 @@ function CleanOnboarding({
     ]).catch(() => {});
   }, []);
 
-  const go = useCallback((next: CleanOnboardingStep) => {
+  const go = useCallback((requested: CleanOnboardingStep) => {
+    const next = resolveOnboardingStep(enabledOrder, requested, 'current-or-forward');
     setStep(next);
     void persistStep(next);
     trackOnboardingStepView({ step: next });
-  }, [persistStep]);
+  }, [enabledOrder, persistStep]);
 
   const { displayStep, slideStyle } = useStepSlide(step);
 
   const back = useCallback(() => {
-    const index = CLEAN_ONBOARDING_ORDER.indexOf(step);
-    if (index <= 0) return;
-    go(CLEAN_ONBOARDING_ORDER[index - 1]);
-  }, [go, step]);
+    const previous = resolveOnboardingStep(enabledOrder, step, 'backward');
+    if (previous === step) return;
+    go(previous);
+  }, [enabledOrder, go, step]);
+
+  useEffect(() => {
+    const subscription = onAppEvent('remote_config_changed', () => {
+      setRemoteEnabledSteps(getEnabledOnboardingSteps());
+    });
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    if (paywallBusy || paywallPurchasing || enabledOrder.includes(step)) return;
+    go(resolveOnboardingStep(enabledOrder, step, 'current-or-forward'));
+  }, [enabledOrder, go, paywallBusy, paywallPurchasing, step]);
 
   useEffect(() => {
     let active = true;
@@ -1078,14 +1093,14 @@ function CleanOnboarding({
         const savedStep = normalizedStoredStep(map.get(STEP_KEY) ?? null);
         const savedVersion = map.get(FLOW_VERSION_KEY);
         if (savedVersion === CLEAN_ONBOARDING_FLOW_VERSION && savedStep) {
-          setStep(savedStep);
+          setStep(resolveOnboardingStep(enabledOrder, savedStep, 'current-or-forward'));
         } else {
           void persistStep('welcome');
         }
       })
       .finally(() => { if (active) setRestored(true); });
     return () => { active = false; };
-  }, [persistStep, startAtNameStep]);
+  }, [enabledOrder, persistStep, startAtNameStep]);
 
   useEffect(() => {
     let active = true;
@@ -1187,6 +1202,10 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_minutes_select', { minutes: next });
   }, []);
 
+  const continueAfterNotificationDialog = useCallback(() => {
+    InteractionManager.runAfterInteractions(() => go('plusBenefits'));
+  }, [go]);
+
   const requestPracticeNotification = useCallback(async () => {
     if (notificationBusy) return;
     setNotificationBusy(true);
@@ -1204,7 +1223,7 @@ function CleanOnboarding({
           'Напоминание не включилось',
           'Разрешение на уведомления отключено. Включить его можно в настройках телефона.',
           [
-            { text: 'Позже', style: 'cancel', onPress: () => go('plusBenefits') },
+            { text: 'Позже', style: 'cancel', onPress: continueAfterNotificationDialog },
             {
               text: 'Открыть настройки',
               onPress: () => {
@@ -1220,7 +1239,7 @@ function CleanOnboarding({
     } finally {
       setNotificationBusy(false);
     }
-  }, [go, lang, notificationBusy, studyTarget]);
+  }, [continueAfterNotificationDialog, go, lang, notificationBusy, studyTarget]);
 
   const choosePaywallPlan = useCallback((next: PaywallPlan) => {
     selectBillingPlan(next);
@@ -1245,25 +1264,40 @@ function CleanOnboarding({
   // делаем на переходе «сравнение → цены» (continueFromPlanComparison), а не здесь,
   // чтобы экран сравнения открывался мгновенно, без busy-состояния.
   const openPaywallOrName = useCallback(async () => {
+    if (paywallBusy || paywallTransitionBusyRef.current) return;
     if (!plusSelected) {
       go('name');
       return;
     }
-    go('planComparison');
-  }, [go, plusSelected]);
-
-  const continueFromPlanComparison = useCallback(async () => {
-    if (paywallBusy) return;
+    const decision = decideOnboardingTransition(enabledOrder, 'startMode');
     setPaywallBusy(true);
     try {
-      await queueSelectedPlan('yearly');
-      trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' });
-      trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' });
-      go('onboardingPaywall');
+      await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
+        createPendingPlan: () => queueSelectedPlan('yearly'),
+        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+      });
+      go(decision.destination);
     } finally {
       setPaywallBusy(false);
     }
-  }, [go, paywallBusy, planId, queueSelectedPlan, selectedMinutes]);
+  }, [enabledOrder, go, paywallBusy, planId, plusSelected, queueSelectedPlan, selectedMinutes]);
+
+  const continueFromPlanComparison = useCallback(async () => {
+    if (paywallBusy || paywallTransitionBusyRef.current) return;
+    setPaywallBusy(true);
+    try {
+      const decision = decideOnboardingTransition(enabledOrder, 'planComparison');
+      await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
+        createPendingPlan: () => queueSelectedPlan('yearly'),
+        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+      });
+      go(decision.destination);
+    } finally {
+      setPaywallBusy(false);
+    }
+  }, [enabledOrder, go, paywallBusy, planId, queueSelectedPlan, selectedMinutes]);
 
   const continueFromOnboardingPaywall = useCallback(async () => {
     if (paywallBusy || paywallPurchasing) return;
@@ -1286,11 +1320,6 @@ function CleanOnboarding({
   const finish = useCallback(async () => {
     if (finishBusy || finishingRef.current) return;
     setLegalError(null);
-    const enteredName = name.trim();
-    if (enteredName.length < 2) {
-      setNameError('Введи имя.');
-      return;
-    }
     if (ageAnswer !== 'yes') {
       setLegalError(ageAnswer === 'no' ? 'Приложение доступно с 16 лет.' : 'Подтверди, что тебе уже есть 16.');
       return;
@@ -1303,7 +1332,13 @@ function CleanOnboarding({
     finishingRef.current = true;
     setFinishBusy(true);
     try {
-      const finalName = await ensureLocalNickname(enteredName).catch(() => enteredName || 'Phraseman');
+      let finalName: string;
+      try {
+        finalName = await ensureUniqueGeneratedNickname();
+      } catch {
+        setLegalError('Не удалось создать уникальное имя. Проверь интернет и попробуй снова.');
+        return;
+      }
       const currentLevel = levelToCurrentLevel(selectedLevel);
       const profileMinutes = minutesToProfileMinutes(selectedMinutes);
       const targetLevel = targetAfterLevel(currentLevel);
@@ -1359,7 +1394,6 @@ function CleanOnboarding({
     finishBusy,
     lang,
     legalAccepted,
-    name,
     onDone,
     plusSelected,
     selectedGoal,
@@ -1747,36 +1781,23 @@ function CleanOnboarding({
   const renderName = () => (
     <ScreenFrame
       step="name"
-      title="Как ты хочешь, чтобы мы тебя называли?"
+      title="Почти готово"
+      plainTitle
       onBack={back}
       footer={(
         <PrimaryButton
-          label="Сохранить и начать"
+          label="Начать обучение"
           onPress={() => {
             Keyboard.dismiss();
             void finish();
           }}
           loading={finishBusy}
+          disabled={ageAnswer !== 'yes' || !legalAccepted}
           testID="onboarding-finish"
         />
       )}
     >
-      <View style={styles.inputCard}>
-        <TextInput
-          testID="onboarding-name-input"
-          value={name}
-          onChangeText={(value) => { setName(value); setNameError(null); }}
-          placeholder="Твоё имя"
-          placeholderTextColor="#69728E"
-          autoCapitalize="words"
-          autoCorrect={false}
-          returnKeyType="done"
-          onSubmitEditing={() => { void finish(); }}
-          style={styles.nameInput}
-        />
-      </View>
-      {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}
-      <Text style={styles.inlineQuestion}>Тебе уже есть 16?</Text>
+      <Text style={styles.consentLead}>Подтверди два пункта — и начинаем</Text>
       <View style={styles.ageButtons}>
         <Pressable
           testID="onboarding-age-yes"
@@ -1784,7 +1805,7 @@ function CleanOnboarding({
           onPress={() => { setAgeAnswer('yes'); setLegalError(null); }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'yes' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Да</Text>
+          <Text style={styles.ageButtonText}>Мне есть 16</Text>
         </Pressable>
         <Pressable
           testID="onboarding-age-no"
@@ -1795,39 +1816,54 @@ function CleanOnboarding({
           }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Нет</Text>
+          <Text style={styles.ageButtonText}>Мне нет 16</Text>
         </Pressable>
       </View>
+      <Text style={styles.consentSectionLabel}>ТВОЙ ВЫБОР</Text>
       <Pressable
         testID="onboarding-analytics-checkbox"
         onPressIn={() => { void hapticTap(); }}
         onPress={() => setAnalyticsAllowed((value) => !value)}
-        style={styles.checkboxRow}
+        style={[styles.consentDecisionRow, analyticsAllowed && styles.consentDecisionRowSelected]}
+        accessibilityRole="switch"
+        accessibilityState={{ checked: analyticsAllowed }}
       >
-        <View style={[styles.checkbox, analyticsAllowed && styles.checkboxSelected]}>
-          {analyticsAllowed ? <Ionicons name="checkmark" size={18} color="#07111F" /> : null}
+        <View style={styles.consentDecisionIcon}>
+          <Ionicons name="stats-chart-outline" size={22} color="#B9C8FF" />
         </View>
-        <Text style={styles.checkboxText}>
-          Разрешить собирать анонимную аналитику.
-        </Text>
+        <View style={styles.consentDecisionCopy}>
+          <Text style={styles.consentDecisionTitle}>Анонимная аналитика</Text>
+          <Text style={styles.consentDecisionHint}>Помогает улучшать приложение</Text>
+        </View>
+        <View style={[styles.consentSwitch, analyticsAllowed && styles.consentSwitchOn]}>
+          <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
+        </View>
       </Pressable>
       <Pressable
         testID="onboarding-legal-checkbox"
         onPressIn={() => { void hapticTap(); }}
         onPress={() => { setLegalAccepted((value) => !value); setLegalError(null); }}
-        style={styles.checkboxRow}
+        style={[styles.consentDecisionRow, legalAccepted && styles.consentDecisionRowSelected]}
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked: legalAccepted }}
       >
-        <View style={[styles.checkbox, legalAccepted && styles.checkboxSelected]}>
-          {legalAccepted ? <Ionicons name="checkmark" size={18} color="#07111F" /> : null}
+        <View style={styles.consentDecisionIcon}>
+          <Ionicons name="document-text-outline" size={23} color="#B9C8FF" />
         </View>
-        <Text style={styles.checkboxText}>
-          Я принимаю{' '}
-          <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия использования</Text>
-          {' '}и{' '}
-          <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>
-        </Text>
+        <View style={styles.consentDecisionCopy}>
+          <Text style={styles.consentDecisionTitle}>Принимаю правила</Text>
+          <Text style={styles.consentDecisionHint}>Условия и конфиденциальность</Text>
+        </View>
+        <View style={[styles.consentCheck, legalAccepted && styles.consentCheckSelected]}>
+          {legalAccepted ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
+        </View>
       </Pressable>
+      <View style={styles.consentLegalLinks}>
+        <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
+        <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
+      </View>
       {legalError ? <Text style={styles.errorText}>{legalError}</Text> : null}
+      <Text style={styles.consentNameHint}>Имя создадим автоматически — изменить можно позже</Text>
     </ScreenFrame>
   );
   // Welcome (свои анимации) и aha (полноэкранная сцена со своими переходами)
@@ -1854,6 +1890,7 @@ function CleanOnboarding({
   const bare = displayStep === 'welcome' || displayStep === 'aha';
 
   return (
+    <OnboardingOrderContext.Provider value={enabledOrder}>
     <View style={styles.root}>
       <Background />
       {bare ? (
@@ -1862,6 +1899,7 @@ function CleanOnboarding({
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
       )}
     </View>
+    </OnboardingOrderContext.Provider>
   );
 }
 
@@ -2985,6 +3023,31 @@ const styles = StyleSheet.create({
     marginTop: 18,
     marginBottom: 12,
   },
+  consentTitle: {
+    fontSize: 31,
+    lineHeight: 36,
+    fontWeight: '700',
+    letterSpacing: -0.6,
+  },
+  consentLead: {
+    color: '#9BA7C4',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '500',
+    textAlign: 'center',
+    marginTop: -2,
+    marginBottom: 28,
+  },
+  consentSectionLabel: {
+    color: '#98A4C4',
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '700',
+    letterSpacing: 2.2,
+    marginTop: 24,
+    marginBottom: 10,
+    paddingHorizontal: 6,
+  },
   ageButtons: {
     flexDirection: 'row',
     gap: 14,
@@ -2994,20 +3057,107 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 54,
     borderRadius: 14,
-    borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.18)',
-    backgroundColor: 'rgba(255,255,255,0.045)',
+    borderWidth: 1.5,
+    borderColor: '#343B59',
+    backgroundColor: '#101321',
     alignItems: 'center',
     justifyContent: 'center',
   },
   ageButtonSelected: {
-    borderColor: '#AAB5FF',
-    backgroundColor: 'rgba(151,138,255,0.20)',
+    borderColor: '#9DB8FF',
+    backgroundColor: '#20264A',
   },
   ageButtonText: {
     color: '#FFFFFF',
-    fontSize: 22,
-    fontWeight: '900',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  consentDecisionRow: {
+    minHeight: 76,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingHorizontal: 6,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#2A3048',
+  },
+  consentDecisionRowSelected: {
+    borderBottomColor: '#55628A',
+  },
+  consentDecisionIcon: {
+    width: 46,
+    height: 46,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1B2142',
+  },
+  consentDecisionCopy: {
+    flex: 1,
+  },
+  consentDecisionTitle: {
+    color: '#F7F8FF',
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: '700',
+  },
+  consentDecisionHint: {
+    color: '#929DB9',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '500',
+    marginTop: 2,
+  },
+  consentSwitch: {
+    width: 52,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1.5,
+    borderColor: '#69738F',
+    backgroundColor: '#141827',
+    justifyContent: 'center',
+    paddingHorizontal: 4,
+  },
+  consentSwitchOn: {
+    borderColor: '#C8FF3D',
+    backgroundColor: '#C8FF3D',
+  },
+  consentSwitchThumb: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: '#818CA8',
+  },
+  consentSwitchThumbOn: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#07110A',
+  },
+  consentCheck: {
+    width: 34,
+    height: 34,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#8994B2',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  consentCheckSelected: {
+    borderColor: '#C8FF3D',
+    backgroundColor: '#C8FF3D',
+  },
+  consentLegalLinks: {
+    flexDirection: 'row',
+    gap: 16,
+    paddingHorizontal: 6,
+    marginTop: 16,
+  },
+  consentNameHint: {
+    color: '#717C98',
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '500',
+    textAlign: 'center',
+    marginTop: 28,
   },
   checkboxRow: {
     flexDirection: 'row',

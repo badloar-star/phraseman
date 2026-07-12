@@ -22,6 +22,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { stackVipUntilMs, vipUntilFromProgress } from './referral';
 import { resolveRemoteBool } from './remote_gates';
+import { hasPermission } from './admin/permissions';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -101,6 +102,16 @@ function readInt(v: unknown, fallback = 0): number {
 
 function readRewardKind(v: unknown): PromoRewardKind {
   return v === 'lifetime' ? 'lifetime' : 'days';
+}
+
+function assertAdminPermission(request: { auth?: { uid?: string; token?: Record<string, unknown> } }, permission: 'money.read' | 'money.manual_access.write'): void {
+  if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) throw new HttpsError('permission-denied', 'Admin only');
+  const role = request.auth?.token?.adminRole;
+  if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
+}
+
+function readAdminReason(raw: unknown): string {
+  return String(raw ?? '').trim().slice(0, 500);
 }
 
 /** Парсит сырой Firestore-док кода в типизированный PromoCodeDoc (или null). */
@@ -299,16 +310,16 @@ function readExplicitPromoCodes(raw: unknown): string[] {
 
 /* ── onCall: promoCodeUpsert (админ создаёт/правит код) ──────────────────────── */
 export const promoCodeUpsert = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  if (!request.auth?.token?.admin) {
-    throw new HttpsError('permission-denied', 'Admin only');
-  }
+  assertAdminPermission(request, 'money.manual_access.write');
   const code = normalizePromoCode(request.data?.code);
   if (!CODE_RE.test(code)) throw new HttpsError('invalid-argument', 'bad_code');
 
   const payload = readPromoCodeWritePayload(request.data ?? {});
+  const reason = readAdminReason(request.data?.reason);
 
   const db = admin.firestore();
   const codeRef = db.collection(PROMO_CODES).doc(code);
+  const auditRef = db.collection('admin_log').doc();
   const adminEmail = String(request.auth?.token?.email ?? '');
   const now = Date.now();
 
@@ -319,32 +330,32 @@ export const promoCodeUpsert = onCall({ region: REGION, enforceAppCheck: ENFORCE
     const snap = await tx.get(codeRef);
     const patch = buildPromoCodeWritePatch({ ...payload, now, adminEmail, existing: snap.data() });
     tx.set(codeRef, patch, { merge: true });
+    tx.set(auditRef, {
+      action: 'promo_code_upsert',
+      targetUid: code,
+      reason,
+      details: {
+        rewardDays: payload.rewardDays,
+        rewardKind: payload.rewardKind,
+        maxRedemptions: payload.maxRedemptions,
+        enabled: payload.enabled,
+      },
+      adminEmail,
+      ts: new Date(now).toISOString(),
+    });
   });
-
-  await db.collection('admin_log').add({
-    action: 'promo_code_upsert',
-    targetUid: code,
-    details: {
-      rewardDays: payload.rewardDays,
-      rewardKind: payload.rewardKind,
-      maxRedemptions: payload.maxRedemptions,
-      enabled: payload.enabled,
-    },
-    adminEmail,
-    ts: new Date(now).toISOString(),
-  }).catch(() => {});
 
   return { ok: true, code, rewardDays: payload.rewardDays, rewardKind: payload.rewardKind };
 });
 
 /* ── onCall: promoCodeBatchUpsert (админ создаёт/правит пачку кодов) ─────────── */
 export const promoCodeBatchUpsert = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  if (!request.auth?.token?.admin) {
-    throw new HttpsError('permission-denied', 'Admin only');
-  }
+  assertAdminPermission(request, 'money.manual_access.write');
   const payload = readPromoCodeWritePayload(request.data ?? {});
+  const reason = readAdminReason(request.data?.reason);
   const explicitCodes = readExplicitPromoCodes(request.data?.codes);
   const generated = explicitCodes.length === 0;
+  const createOnly = request.data?.createOnly === true;
 
   let codes = explicitCodes;
   if (generated) {
@@ -369,34 +380,147 @@ export const promoCodeBatchUpsert = onCall({ region: REGION, enforceAppCheck: EN
   const adminEmail = String(request.auth?.token?.email ?? '');
   const now = Date.now();
   const refs = codes.map((code) => db.collection(PROMO_CODES).doc(code));
+  const auditRef = db.collection('admin_log').doc();
 
   await db.runTransaction(async (tx) => {
     const snaps = await Promise.all(refs.map((ref) => tx.get(ref)));
     if (generated) {
       const collision = snaps.find((snap) => snap.exists);
       if (collision) throw new HttpsError('already-exists', 'generated_code_collision');
+    } else if (createOnly) {
+      const existing = snaps.find((snap) => snap.exists);
+      if (existing) throw new HttpsError('already-exists', `promo_code_exists:${existing.id}`);
     }
     refs.forEach((ref, index) => {
       const snap = snaps[index];
       const patch = buildPromoCodeWritePatch({ ...payload, now, adminEmail, existing: snap.data() });
       tx.set(ref, patch, { merge: true });
     });
+    tx.set(auditRef, {
+      action: 'promo_codes_batch_upsert',
+      targetUid: 'promo_codes',
+      reason,
+      details: {
+        count: codes.length,
+        generated,
+        createOnly,
+        rewardDays: payload.rewardDays,
+        rewardKind: payload.rewardKind,
+        maxRedemptions: payload.maxRedemptions,
+        enabled: payload.enabled,
+      },
+      adminEmail,
+      ts: new Date(now).toISOString(),
+    });
   });
 
-  await db.collection('admin_log').add({
-    action: 'promo_codes_batch_upsert',
-    targetUid: 'promo_codes',
-    details: {
-      count: codes.length,
-      generated,
-      rewardDays: payload.rewardDays,
-      rewardKind: payload.rewardKind,
-      maxRedemptions: payload.maxRedemptions,
-      enabled: payload.enabled,
-    },
-    adminEmail,
-    ts: new Date(now).toISOString(),
-  }).catch(() => {});
-
   return { ok: true, codes, rewardDays: payload.rewardDays, rewardKind: payload.rewardKind };
+});
+
+function promoDateMs(raw: unknown): number {
+  const n = Number(raw ?? 0);
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+function firstNonEmpty(values: unknown[]): string {
+  for (const value of values) {
+    const text = String(value ?? '').trim();
+    if (text) return text;
+  }
+  return '';
+}
+
+function promoUserLabel(data: FirebaseFirestore.DocumentData | undefined, uid: string): string {
+  const progress = data?.progress && typeof data.progress === 'object' ? data.progress : {};
+  const profile = data?.profile && typeof data.profile === 'object' ? data.profile : {};
+  const name = firstNonEmpty([
+    data?.name,
+    data?.displayName,
+    data?.userName,
+    data?.username,
+    profile.name,
+    profile.displayName,
+    progress.name,
+    progress.displayName,
+    progress.user_name,
+  ]);
+  const email = firstNonEmpty([data?.email, profile.email, progress.email]);
+  if (name && email) return `${name} · ${email}`;
+  return name || email || uid || 'Unknown user';
+}
+
+function promoPlusUntilLabel(row: FirebaseFirestore.DocumentData, progress: FirebaseFirestore.DocumentData): number {
+  const vipPlan = String(row.vipPlan ?? '').toLowerCase();
+  if (row.rewardKind === 'lifetime' || vipPlan.includes('lifetime')) return 0;
+  const explicit = promoDateMs(row.vipUntilMs);
+  if (explicit > 0) return explicit;
+  const lastCode = String(progress?.promo_vip_last_code ?? '').toUpperCase();
+  const rowCode = String(row.code ?? '').toUpperCase();
+  if (!lastCode || lastCode === rowCode) return promoDateMs(progress?.vip_until);
+  return 0;
+}
+
+export const adminListPromoCodes = onCall(CALLABLE_BASE, async (request) => {
+  assertAdminPermission(request, 'money.read');
+
+  const limitRaw = Math.trunc(Number(request.data?.limit ?? 80));
+  const safeLimit = Math.max(1, Math.min(Number.isFinite(limitRaw) ? limitRaw : 80, 200));
+  const db = admin.firestore();
+
+  const codesSnap = await db
+    .collection(PROMO_CODES)
+    .orderBy('updatedAtMs', 'desc')
+    .limit(safeLimit)
+    .get();
+
+  const redemptionsSnap = await db
+    .collectionGroup(PROMO_REDEMPTIONS)
+    .orderBy('redeemedAtMs', 'desc')
+    .limit(Math.min(100, safeLimit))
+    .get();
+
+  const codes = codesSnap.docs.map((doc) => {
+    const data = doc.data() || {};
+    return {
+      code: doc.id,
+      rewardDays: Number(data.rewardDays ?? 0) || 0,
+      rewardKind: data.rewardKind === 'lifetime' || data.lifetime === true ? 'lifetime' : 'days',
+      enabled: data.enabled === true,
+      maxRedemptions: Math.max(0, Number(data.maxRedemptions ?? 0) || 0),
+      usedCount: Math.max(0, Number(data.usedCount ?? 0) || 0),
+      expiresAtMs: promoDateMs(data.expiresAtMs),
+      updatedAtMs: promoDateMs(data.updatedAtMs),
+      updatedBy: String(data.updatedBy ?? ''),
+      note: String(data.note ?? ''),
+    };
+  });
+
+  const redemptions = await Promise.all(redemptionsSnap.docs.map(async (doc) => {
+      const row = doc.data() || {};
+      const userRef = doc.ref.parent.parent;
+      const uid = String(row.stableUid || userRef?.id || '');
+      let userData: FirebaseFirestore.DocumentData | undefined;
+      if (userRef) {
+        try {
+          const userSnap = await userRef.get();
+          userData = userSnap.exists ? userSnap.data() : undefined;
+        } catch {
+          userData = undefined;
+        }
+      }
+      const progress = userData?.progress && typeof userData.progress === 'object' ? userData.progress : {};
+      return {
+        id: doc.id,
+        code: String(row.code || doc.id),
+        uid,
+        authUid: String(row.authUid || ''),
+        userLabel: promoUserLabel(userData, uid),
+        rewardDays: Number(row.rewardDays ?? 0) || 0,
+        rewardKind: row.rewardKind === 'lifetime' ? 'lifetime' : 'days',
+        redeemedAtMs: promoDateMs(row.redeemedAtMs),
+        vipUntilMs: promoPlusUntilLabel(row, progress),
+      };
+    }));
+
+  return { ok: true, codes, redemptions };
 });

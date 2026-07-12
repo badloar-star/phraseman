@@ -15,6 +15,11 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  ONBOARDING_ENABLED_STEPS_TEXT_KEY,
+  parseEnabledOnboardingSteps,
+  type OnboardingStepId,
+} from './onboarding_flow';
 
 export type RemoteNumberKey =
   | 'free_lesson_limit'
@@ -135,10 +140,6 @@ export type RemoteBoolKey =
   // (onSnapshot), без релиза — тогда пункт в настройках прячется и сам экран отдаёт
   // заглушку. Данные борда — публичная проекция top_helpers/{uid}.
   | 'top_helpers_enabled'
-  // Игра «Созвездия» (specs/constellations.md, I1). Дефолт FALSE — режим тёмный,
-  // пока владелец не включит в «Пульте»; выключение живьём прячет вход у всех
-  // (kill-switch) — дуэльный код при этом не трогается вообще.
-  | 'constellations_enabled'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
   // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
   // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
@@ -227,10 +228,7 @@ export type RemoteTextKey =
   // строится из handle: https://www.youtube.com/@handle/videos. Должна быть
   // https и на youtube.com, иначе приложение её отбросит и построит из handle.
   | 'youtube_channel_url'
-  // Позиция входа «Созвездий» в лобби арены (I1): secondary (ниже дуэлей) →
-  // primary (главная кнопка, дуэли ниже) → only (дуэлей нет). Любое другое
-  // значение читается как secondary. Меняется из «Пульта» живьём, откат тем же путём.
-  | 'constellations_placement';
+  | 'onboarding_enabled_steps_v1';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -372,10 +370,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
   // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
   top_helpers_enabled: true,
-  // «Созвездия»: в ПРОДЕ дефолт false — режим тёмный, пока не включён из «Пульта».
-  // В dev-сборках (__DEV__) включён всегда: владелец видит карточку без крутки конфига.
-  // typeof-гард: в jest/node __DEV__ не определён — там действует прод-дефолт false.
-  constellations_enabled: typeof __DEV__ !== 'undefined' && __DEV__,
   // Подарок «3 дня полного доступа» новым юзерам: дефолт TRUE = kill-switch
   // (новые получают подарок и модал как сейчас). Админ ставит false в «Пульте» →
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
@@ -424,7 +418,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   youtube_channel_name: '',
   youtube_channel_url: '',
   youtube_pinned_videos: '',
-  constellations_placement: 'secondary',
+  onboarding_enabled_steps_v1: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -515,6 +509,10 @@ export function getRemoteText(key: RemoteTextKey): string {
   const override = _textOverrides[key];
   if (typeof override === 'string') return override;
   return DEFAULT_TEXTS[key];
+}
+
+export function getEnabledOnboardingSteps(): OnboardingStepId[] {
+  return parseEnabledOnboardingSteps(getRemoteText(ONBOARDING_ENABLED_STEPS_TEXT_KEY));
 }
 
 /**
@@ -918,10 +916,6 @@ export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enab
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
 /** Борд «Топ хелперов» в настройках (топ-репортёры багов). Дефолт true — kill-switch. */
 export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
-
-// ── «Созвездия» (specs/constellations.md, I1) ────────────────────────────────
-export const isConstellationsEnabled = () => getRemoteBool('constellations_enabled');
-
 /**
  * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт true =
  * kill-switch (новые получают подарок как сейчас). false (из «Пульта») → новые
@@ -930,13 +924,6 @@ export const isConstellationsEnabled = () => getRemoteBool('constellations_enabl
  */
 export const isIntroFullAccessEnabled = () => getRemoteBool('intro_full_access_enabled');
 
-export type ConstellationsPlacement = 'secondary' | 'primary' | 'only';
-
-/** Позиция входа в лобби арены; любое кривое значение из конфига = secondary. */
-export function getConstellationsPlacement(): ConstellationsPlacement {
-  const raw = getRemoteText('constellations_placement').trim().toLowerCase();
-  return raw === 'primary' || raw === 'only' ? raw : 'secondary';
-}
 /**
  * Компас — ГЛАВНЫЙ выключатель всей фичи. Дефолт false (sell-switch). Если false —
  * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже

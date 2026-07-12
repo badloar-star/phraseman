@@ -21,17 +21,17 @@ describe('onboarding plan comparison screen contract', () => {
     expect(iCmp).toBeGreaterThan(iStart);
     expect(iPay).toBeGreaterThan(iCmp);
     // прогресс-бар знает про новый шаг
-    expect(source).toContain('planComparison: SHOW_ONBOARDING_LANGUAGE_STEP ? 9 : 8');
+    expect(source).toContain('getOnboardingProgress(enabledOrder, step)');
   });
 
   it('routes Plus -> planComparison -> onboardingPaywall (never Plus -> paywall directly)', () => {
     // выбор Plus ведёт на сравнение
-    expect(source).toContain("go('planComparison')");
+    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'startMode')");
     // единственный переход на пейвол — из обработчика сравнения
     expect(source).toContain('continueFromPlanComparison');
     // сам переход на цены существует ровно в одном месте (внутри continueFromPlanComparison)
-    const paywallGotos = source.match(/go\('onboardingPaywall'\)/g) || [];
-    expect(paywallGotos.length).toBe(1);
+    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'planComparison')");
+    expect(source).toContain('go(decision.destination)');
   });
 
   it('renders the comparison screen light with FREE/PLUS columns and real perks', () => {

@@ -62,6 +62,34 @@ const SURFACE_LABELS = Object.freeze({
   arena: 'Арена',
 });
 
+const PREMIUM_ACCESS_FEATURES = Object.freeze([
+  { key: 'gate_lessons_premium', label: 'Уроки сверх бесплатных' },
+  { key: 'gate_speaking_premium', label: 'Устно и произношение' },
+  { key: 'gate_ai_dialog_premium', label: 'Theo / ИИ-диалоги' },
+  { key: 'gate_smart_trainer_premium', label: 'Умный тренажёр' },
+  { key: 'gate_trainer_modes_premium', label: 'Лимит тренажёра' },
+  { key: 'gate_diagnosis_training_premium', label: 'Разбор ошибок' },
+  { key: 'gate_personal_plan_premium', label: 'Личный план / Компас' },
+  { key: 'gate_stats_premium', label: 'Статистика и инсайты' },
+  { key: 'gate_flashcards_premium', label: 'Карточки сверх лимита' },
+  { key: 'gate_themes_premium', label: 'Темы оформления' },
+  { key: 'gate_avatar_auras_premium', label: 'Ауры аватара' },
+  { key: 'gate_mastery_premium', label: 'Мастерство / повтор урока' },
+  { key: 'gate_quizzes_premium', label: 'Квизы сверх лимита' },
+  { key: 'gate_arena_premium', label: 'Арена сверх лимита' },
+  { key: 'gate_energy_premium', label: 'Энергия' },
+]);
+
+const PREMIUM_ACCESS_LIMITS = Object.freeze([
+  { key: 'free_lesson_limit', label: 'Бесплатных уроков', def: 8, min: 1, max: 32 },
+  { key: 'free_daily_quiz_limit', label: 'Квизов в день', def: 3, min: 0, max: 999 },
+  { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день', def: 2, min: 0, max: 99 },
+  { key: 'arena_daily_max', label: 'Матчей Арены/день', def: 5, min: 0, max: 999 },
+  { key: 'max_energy', label: 'Максимум энергии', def: 5, min: 1, max: 99 },
+]);
+
+const LESSON_LOCK_COUNT = 32;
+
 const state = {
   route: 'overview',
   authorized: false,
@@ -242,7 +270,7 @@ const CONTROL_PANEL_WORKFLOWS = Object.freeze([
   { title: 'Обновления и обслуживание', description: 'Manual update modal, force update, store links, rollout и maintenance text.', primary: '#application', primaryLabel: 'Открыть v2 приложение', fallback: 'control-panel', risk: 'Высокий риск', coverage: '5 старых кнопок', guarded: true },
   { title: 'Remote Config и живые флаги', description: 'Промокоды, лига по XP, lifetime, идеи, arena bots, onboarding, paywall timers, video button и intro gift.', primary: '#application', primaryLabel: 'Открыть v2 конфигурацию', fallback: 'remote-config', risk: 'Guarded publish', coverage: '8 переключателей', guarded: true },
   { title: 'Промокоды и промо-баннер', description: 'Создание кода, список кодов, quick-link в большой раздел и баннер кампании.', primary: '#promo-codes', primaryLabel: 'Старый модуль промокодов', fallback: 'promo-codes', risk: 'Legacy write module', coverage: '5 старых кнопок', guarded: false },
-  { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#premium', primaryLabel: 'Старый модуль Plus', fallback: 'control-panel', risk: 'Legacy write module', coverage: '5 старых кнопок', guarded: false },
+  { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть v2 Free / Plus', fallback: 'control-panel', risk: 'Guarded publish', coverage: '5 старых кнопок', guarded: true },
   { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
   { title: 'ИИ и бюджеты', description: 'Theo model, daily caps, фоновые AI jobs, OpenAI budget и Asset Studio.', primary: '#asset-studio', primaryLabel: 'Открыть v2 Asset Studio', fallback: 'openai-budget', risk: 'AI budget', coverage: '5 старых кнопок', guarded: true },
   { title: 'Кампании и коммуникации', description: 'Paywall A/B, app messages, Telegram alerts и push-notify.', primary: '#app-messages', primaryLabel: 'Старый модуль сообщений', fallback: 'app-messages', risk: 'Legacy campaign module', coverage: '5 переходов', guarded: false },
@@ -254,7 +282,7 @@ function renderControlPanel() {
     <div class="notice"><strong>Native v2 слой.</strong> Здесь собраны все группы старого control-panel. Опасные write-действия не копируются прямым onclick: они ведут в guarded workflow или в старый рабочий модуль до полноценного переноса конкретной формы.</div>
     <section class="card section"><div class="card-header"><div><h2>Карта старого пульта</h2><p>29 старых кнопок разложены по рабочим процессам, чтобы ничего не потерять и не смешивать рискованные действия.</p></div><span class="badge">control-panel</span></div>
       <div class="card-body"><div class="control-panel-workflows">${CONTROL_PANEL_WORKFLOWS.map((item) => `<article class="control-panel-workflow"><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description)}</p><div class="control-panel-tags"><span class="badge">${escapeHtml(item.coverage)}</span><span class="badge ${item.guarded ? 'success' : 'warning'}">${escapeHtml(item.risk)}</span></div></div><div class="actions"><a class="button ${item.guarded ? '' : 'ghost'} small" href="${escapeHtml(item.primary)}" title="${item.guarded ? 'Открыть основной v2 workflow' : 'Открыть legacy working module'}: ${escapeHtml(item.title)}">${escapeHtml(item.primaryLabel)}</a><a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.fallback)}" target="_blank" rel="noopener" title="Открыть старый рабочий модуль отдельно. Его действия могут менять production.">Старый модуль отдельно</a></div></article>`).join('')}</div></div></section>
-    <section class="card section"><div class="card-header"><div><h2>Правило переноса write-кнопок</h2><p>Каждая опасная кнопка переезжает отдельно: preview, reason, expected revision, audit log и rollback.</p></div></div><div class="card-body"><div class="control-panel-transfer-list"><span>Manual update / force update — следующий кандидат на native wizard.</span><span>Premium lesson locks — переносить после проверки клиентских ключей и paywall gates.</span><span>AI jobs — уже частично covered через budget diagnostics и Asset Studio; нужен отдельный config editor.</span></div></div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>Правило переноса write-кнопок</h2><p>Каждая опасная кнопка переезжает отдельно: preview, reason, expected revision, audit log и rollback.</p></div></div><div class="card-body"><div class="control-panel-transfer-list"><span>Manual update / force update — перенесено в guarded workflow.</span><span>Premium lesson locks — перенесено в guarded workflow Free / Plus доступа.</span><span>AI jobs — уже частично covered через budget diagnostics и Asset Studio; нужен отдельный config editor.</span></div></div></section>`;
 }
 
 function renderOverview() {
@@ -271,7 +299,7 @@ function remoteConfigBranch(branch) {
   const configBranch = state.remoteConfig?.config?.[branch];
   const current = configBranch && typeof configBranch === 'object' ? configBranch : {};
   const hasPreviewBranch = previewBranch && typeof previewBranch === 'object';
-  const shouldMergePreview = ['release-maintenance', 'partial-restore-remote-config'].includes(String(state.remoteConfigPreview?.source || ''));
+  const shouldMergePreview = ['release-maintenance', 'partial-restore-remote-config', 'premium-access'].includes(String(state.remoteConfigPreview?.source || ''));
   const value = hasPreviewBranch && shouldMergePreview ? { ...current, ...previewBranch } : hasPreviewBranch ? previewBranch : current;
   return JSON.stringify(value, null, 2);
 }
@@ -290,7 +318,7 @@ function selectedBool(value, expected) {
 
 function renderReleaseMaintenanceWorkflow() {
   const releasePreview = state.remoteConfigPreview?.source === 'release-maintenance' ? state.remoteConfigPreview : null;
-  const releaseFormLocked = state.remoteConfigPreview?.source === 'partial-restore-remote-config';
+  const releaseFormLocked = ['partial-restore-remote-config', 'premium-access'].includes(String(state.remoteConfigPreview?.source || ''));
   const releaseControlDisabled = releaseFormLocked || !can('application.config.write') || state.busy;
   const reason = releasePreview?.reason ?? '';
   const manualMode = String(remoteConfigValue('texts', 'manual_update_mode', 'optional')) === 'force' ? 'force' : 'optional';
@@ -324,6 +352,36 @@ function renderReleaseMaintenanceWorkflow() {
   </div></section>`;
 }
 
+function renderPremiumAccessWorkflow() {
+  const premiumPreview = state.remoteConfigPreview?.source === 'premium-access' ? state.remoteConfigPreview : null;
+  const source = String(state.remoteConfigPreview?.source || '');
+  const premiumFormLocked = Boolean(source && source !== 'premium-access');
+  const controlDisabled = premiumFormLocked || !can('application.config.write') || state.busy;
+  const featureControls = PREMIUM_ACCESS_FEATURES.map((feature) => {
+    const premium = remoteConfigValue('bools', feature.key, true) === true;
+    return `<div class="field"><label for="premium-gate-${escapeHtml(feature.key)}">${escapeHtml(feature.label)}</label><select id="premium-gate-${escapeHtml(feature.key)}"${premiumFormLocked ? ' disabled' : ''}><option value="premium"${premium ? ' selected' : ''}>Plus</option><option value="free"${premium ? '' : ' selected'}>Free</option></select></div>`;
+  }).join('');
+  const limitControls = PREMIUM_ACCESS_LIMITS.map((limit) => {
+    const value = remoteConfigValue('numbers', limit.key, limit.def);
+    return `<div class="field"><label for="premium-limit-${escapeHtml(limit.key)}">${escapeHtml(limit.label)}</label><input id="premium-limit-${escapeHtml(limit.key)}" type="number" min="${limit.min}" max="${limit.max}" value="${escapeHtml(value)}"${premiumFormLocked ? ' disabled' : ''}><span class="hint">${limit.min}–${limit.max}</span></div>`;
+  }).join('');
+  const freeExtra = remoteConfigValue('texts', 'free_lessons_extra', '');
+  const premiumExtra = remoteConfigValue('texts', 'premium_lessons_extra', '');
+  return `<section class="card section"><div class="card-header"><div><h2>Free / Plus доступ и уроки</h2><p>Глобальные paywall gates, лимиты free-тарифа и поурочные исключения 1–32 через безопасный preview → publish workflow.</p></div><span class="badge warning">Влияет на монетизацию</span></div><div class="card-body">
+    <div class="notice"><strong>Не выдаёт VIP пользователю.</strong> Это только глобальная конфигурация приложения. Админский Plus/VIP остаётся отдельным user command workflow.</div>
+    <div class="fields">${featureControls}</div>
+    <div class="fields section">${limitControls}</div>
+    <div class="fields section">
+      <div class="field"><label for="premium-free-lessons-extra">Уроки дополнительно Free</label><input id="premium-free-lessons-extra" value="${escapeHtml(formatLessonList(freeExtra))}" placeholder="например 9, 10, 12"${premiumFormLocked ? ' disabled' : ''}></div>
+      <div class="field"><label for="premium-premium-lessons-extra">Уроки принудительно Plus</label><input id="premium-premium-lessons-extra" value="${escapeHtml(formatLessonList(premiumExtra))}" placeholder="например 2, 3"${premiumFormLocked ? ' disabled' : ''}></div>
+      <div class="field full"><label for="premium-access-reason">Причина публикации</label><textarea id="premium-access-reason" maxlength="500" placeholder="Что меняется в доступе Free/Plus, кого затронет, как откатить"${premiumFormLocked ? ' disabled' : ''}>${escapeHtml(premiumPreview?.reason ?? '')}</textarea></div>
+    </div>
+    ${premiumFormLocked ? '<div class="notice warning section">Активен другой предпросмотр Remote Config. Завершите публикацию или нажмите «Изменить ещё», прежде чем менять Free/Plus доступ.</div>' : ''}
+    ${premiumPreview ? `<div class="notice ${premiumPreview.changes?.length ? 'warning' : ''} section"><strong>Предпросмотр Free / Plus доступа</strong><br>${premiumPreview.summary ? `${escapeHtml(premiumPreview.summary)}<br>` : ''}${Array.isArray(premiumPreview.details) && premiumPreview.details.length ? `<div class="code-preview section">${premiumPreview.details.map((line) => escapeHtml(line)).join('<br>')}</div>` : ''}${premiumPreview.changes?.length ? premiumPreview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Изменений нет.'}</div>` : ''}
+    <div class="actions end section">${premiumPreview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button" data-action="preview-premium-access" type="button"${controlDisabled ? ' disabled' : ''} title="Собрать предпросмотр изменения Free/Plus доступа без прямой записи">Предпросмотр Free / Plus</button>${premiumPreview?.changes?.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Опубликовать через серверную команду с ревизией, причиной и audit log">Опубликовать</button>` : ''}</div>
+  </div></section>`;
+}
+
 function renderRemoteConfigHistory() {
   const history = Array.isArray(state.remoteConfig?.history) ? state.remoteConfig.history.slice(0, 12) : [];
   if (!history.length) return emptyState('История изменений пока пуста.');
@@ -335,8 +393,9 @@ function renderApplication() {
   const config = workspace?.config ?? {};
   const releasePreviewActive = state.remoteConfigPreview?.source === 'release-maintenance';
   const restorePreviewActive = state.remoteConfigPreview?.source === 'partial-restore-remote-config';
-  const editorLocked = releasePreviewActive || restorePreviewActive;
-  const preview = releasePreviewActive ? null : state.remoteConfigPreview;
+  const premiumPreviewActive = state.remoteConfigPreview?.source === 'premium-access';
+  const editorLocked = releasePreviewActive || restorePreviewActive || premiumPreviewActive;
+  const preview = releasePreviewActive || premiumPreviewActive ? null : state.remoteConfigPreview;
   const keyCount = (branch) => Object.keys(config[branch] && typeof config[branch] === 'object' ? config[branch] : {}).length;
   const loadButton = `<button class="button" data-action="load-remote-config" type="button" title="Загрузить текущую конфигурацию и историю"${disabledWhenUnauthorized('application.config.write')}>${workspace ? 'Обновить данные' : 'Загрузить конфигурацию'}</button>`;
   return `${pageHeader(PAGES.application, 'Приложение', loadButton)}
@@ -349,6 +408,7 @@ function renderApplication() {
     </section>
     ${!workspace ? `<section class="card section">${emptyState(state.authorized ? 'Загрузите конфигурацию, чтобы редактировать её без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</section>` : `
       ${renderReleaseMaintenanceWorkflow()}
+      ${renderPremiumAccessWorkflow()}
       <section class="card section"><div class="card-header"><div><h2>Редактор конфигурации</h2><p>Формат JSON позволяет сохранить все существующие и новые ключи. Тип каждого значения проверяется до публикации и повторно на сервере.</p></div><span class="badge">ревизия ${Number(config.revision ?? 0)}</span></div><div class="card-body">
         <div class="fields">
           <div class="field"><label for="remote-config-bools">Переключатели · только true/false</label><textarea id="remote-config-bools" class="mono config-editor" spellcheck="false"${editorLocked ? ' disabled' : ''}>${escapeHtml(remoteConfigBranch('bools'))}</textarea></div>
@@ -358,6 +418,7 @@ function renderApplication() {
         </div>
         ${releasePreviewActive ? '<div class="notice warning section">Активен предпросмотр релиза и обслуживания выше. Завершите публикацию или нажмите «Изменить ещё», прежде чем использовать общий JSON-редактор.</div>' : ''}
         ${restorePreviewActive ? '<div class="notice warning section">Активен предпросмотр восстановления значений. JSON-редактор заблокирован, чтобы не отправить устаревший snapshot; нажмите «Изменить ещё», если нужно править вручную.</div>' : ''}
+        ${premiumPreviewActive ? '<div class="notice warning section">Активен предпросмотр Free / Plus доступа выше. JSON-редактор заблокирован, чтобы не отправить устаревший snapshot.</div>' : ''}
         ${preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>${escapeHtml(preview.title || 'Предпросмотр изменений')}</strong><br>${preview.summary ? `${escapeHtml(preview.summary)}<br>` : ''}${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Значения не отличаются от текущей ревизии.'}</div>` : ''}
         <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button ${preview || editorLocked ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy && !editorLocked ? '' : ' disabled'}>Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Опубликовать</button>` : ''}</div>
       </div></section>
@@ -1149,6 +1210,101 @@ function requireAnyStoreUrl(platform, iosUrl, androidUrl) {
   requireHttpUrl(androidUrl, 'Google Play URL');
 }
 
+function parseLessonList(raw) {
+  if (Array.isArray(raw)) {
+    const parsed = [];
+    for (const value of raw) {
+      const number = Number(value);
+      if (!Number.isInteger(number) || number < 1 || number > LESSON_LOCK_COUNT) throw new Error('Список уроков должен содержать только целые числа 1–32.');
+      parsed.push(number);
+    }
+    return [...new Set(parsed)].sort((a, b) => a - b);
+  }
+  const text = String(raw ?? '').trim();
+  if (!text) return [];
+  if (text.startsWith('[')) {
+    try { return parseLessonList(JSON.parse(text)); } catch { throw new Error('Список уроков должен быть числами 1–32 через запятую или JSON-массивом.'); }
+  }
+  const parsed = [];
+  for (const token of text.split(/[,\s]+/).filter(Boolean)) {
+    if (!/^\d+$/.test(token)) throw new Error(`Некорректный номер урока: ${token}. Используйте целые числа 1–32.`);
+    const number = Number(token);
+    if (!Number.isInteger(number) || number < 1 || number > LESSON_LOCK_COUNT) throw new Error(`Урок вне диапазона 1–32: ${token}.`);
+    parsed.push(number);
+  }
+  return [...new Set(parsed)].sort((a, b) => a - b);
+}
+
+function formatLessonList(raw) {
+  try {
+    return parseLessonList(raw).join(', ');
+  } catch {
+    return String(raw ?? '');
+  }
+}
+
+function lessonListText(list) {
+  return list.length ? JSON.stringify(list) : '';
+}
+
+function premiumLessonAccessSummary(limit, freeExtra, premiumExtra, lessonsGatePremium) {
+  const free = [];
+  const plus = [];
+  for (let lessonId = 1; lessonId <= LESSON_LOCK_COUNT; lessonId += 1) {
+    let isFree = !lessonsGatePremium;
+    if (lessonsGatePremium) {
+      isFree = lessonId <= limit;
+      if (premiumExtra.includes(lessonId)) isFree = false;
+    }
+    if (freeExtra.includes(lessonId)) isFree = true;
+    (isFree ? free : plus).push(lessonId);
+  }
+  return { free, plus };
+}
+
+function readPremiumAccessLimit(limit) {
+  const raw = readTextInput(`premium-limit-${limit.key}`, 12);
+  const value = raw === '' ? limit.def : Math.round(Number(raw));
+  if (!Number.isFinite(value) || value < limit.min || value > limit.max) throw new Error(`${limit.label}: укажите число ${limit.min}–${limit.max}.`);
+  return value;
+}
+
+function buildPremiumAccessPreview() {
+  if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
+  const bools = {};
+  for (const feature of PREMIUM_ACCESS_FEATURES) {
+    const value = String(document.getElementById(`premium-gate-${feature.key}`)?.value ?? 'premium');
+    bools[feature.key] = value !== 'free';
+  }
+  const numbers = {};
+  for (const limit of PREMIUM_ACCESS_LIMITS) numbers[limit.key] = readPremiumAccessLimit(limit);
+  const freeExtra = parseLessonList(document.getElementById('premium-free-lessons-extra')?.value ?? '');
+  const premiumExtra = parseLessonList(document.getElementById('premium-premium-lessons-extra')?.value ?? '');
+  const overlap = freeExtra.filter((lessonId) => premiumExtra.includes(lessonId));
+  if (overlap.length) throw new Error(`Уроки не могут быть одновременно Free и Plus: ${overlap.join(', ')}.`);
+  const reason = readTextInput('premium-access-reason', 500);
+  if (!reason) throw new Error('Укажите причину изменения Free / Plus доступа.');
+  const texts = {
+    free_lessons_extra: lessonListText(freeExtra),
+    premium_lessons_extra: lessonListText(premiumExtra),
+  };
+  const nextConfig = { bools, numbers, texts };
+  const version = Number(state.remoteConfig.config.version);
+  if (Number.isInteger(version) && version > 0) nextConfig.version = version;
+  const changes = remoteConfigChanges(nextConfig);
+  const lessonAccess = premiumLessonAccessSummary(numbers.free_lesson_limit, freeExtra, premiumExtra, bools.gate_lessons_premium);
+  const freeFeatureCount = Object.values(bools).filter((value) => value === false).length;
+  const summary = `Free features: ${freeFeatureCount}/${PREMIUM_ACCESS_FEATURES.length}. Free lessons: ${lessonAccess.free.length}/${LESSON_LOCK_COUNT}.`;
+  const details = [
+    `Free lessons: ${lessonAccess.free.join(', ') || 'нет'}.`,
+    `Plus lessons: ${lessonAccess.plus.join(', ') || 'нет'}.`,
+    `Limits: уроки ${numbers.free_lesson_limit}; квизы ${numbers.free_daily_quiz_limit}/день; тренажёр ${numbers.free_trainer_sessions_per_day}/день; арена ${numbers.arena_daily_max}/день; энергия ${numbers.max_energy}.`,
+    `Free feature gates: ${PREMIUM_ACCESS_FEATURES.filter((feature) => bools[feature.key] === false).map((feature) => feature.label).join(', ') || 'нет'}.`,
+    'Stop condition: восстановить значения из истории Remote Config или собрать новый preview с прежними лимитами.',
+  ];
+  return { nextConfig, reason, changes, source: 'premium-access', title: 'Предпросмотр Free / Plus доступа', summary, details };
+}
+
 function buildReleaseMaintenancePreview() {
   if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
   const rolloutRaw = readTextInput('release-force-rollout', 8);
@@ -1311,6 +1467,7 @@ function ensureRemoteConfigPreviewIsFresh(preview) {
   if (preview?.source === 'release-maintenance') return ensureReleaseMaintenancePreviewIsFresh(preview);
   let current = null;
   if (preview?.source === 'partial-restore-remote-config') current = buildRemoteConfigRestorePreview(preview.reference);
+  if (preview?.source === 'premium-access') current = buildPremiumAccessPreview();
   if (preview?.source === 'generic-remote-config') current = buildRemoteConfigPreview();
   if (!current) return true;
   const stale = JSON.stringify(current.nextConfig) !== JSON.stringify(preview.nextConfig) || current.reason !== preview.reason;
@@ -1341,6 +1498,7 @@ function remoteConfigPublishQuestion(preview) {
   const risks = [];
   if (bools.force_update_enabled === true) risks.push('force update заставит пользователей на старых версиях обновиться');
   if (bools.maintenance_block === true) risks.push('maintenance hard block может закрыть доступ к приложению');
+  if (preview?.source === 'premium-access') risks.push('Free / Plus gates меняют монетизацию и доступ к урокам');
   if (!risks.length) return `Опубликовать ${preview.changes.length} изменений конфигурации?`;
   return `Опубликовать ${preview.changes.length} изменений production-конфигурации?\n\nРиск: ${risks.join('; ')}.\n\nПроверьте audience, store links, campaign ID и stop condition перед подтверждением.`;
 }
@@ -1699,6 +1857,11 @@ async function handleAction(action, target) {
   }
   if (action === 'preview-release-maintenance-stop') {
     try { state.remoteConfigPreview = buildReleaseMaintenanceStopPreview(); setMessage('Предпросмотр быстрого стопа готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-premium-access') {
+    try { state.remoteConfigPreview = buildPremiumAccessPreview(); setMessage('Предпросмотр Free / Plus доступа готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
     renderCurrentPage();
     return;
   }

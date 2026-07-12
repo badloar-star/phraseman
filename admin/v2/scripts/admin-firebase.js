@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { browserLocalPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
 const ADMIN_ROLES = new Set(['owner', 'admin', 'support', 'content_editor', 'moderator', 'analyst', 'developer']);
@@ -25,6 +25,11 @@ async function resolveFirebaseConfig() {
 export async function createFirebaseAdminActions({ onAuth }) {
   const app = initializeApp(await resolveFirebaseConfig());
   const auth = getAuth(app);
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+  } catch (error) {
+    console.warn('Admin auth persistence is unavailable; the session may not survive reload.', error);
+  }
   const functionsUs = getFunctions(app, 'us-central1');
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });

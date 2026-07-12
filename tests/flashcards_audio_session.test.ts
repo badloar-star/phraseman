@@ -42,6 +42,7 @@ describe('flashcards audio session engine', () => {
 
   it('uses target TTS locale for the front side and source locale for the back side', () => {
     expect(speechLanguageForSide(baseCard, 'front', 'ru', 'fr')).toBe('fr-FR');
+    expect(speechLanguageForSide(baseCard, 'front', 'ru', 'de')).toBe('de');
     expect(speechLanguageForSide(baseCard, 'back', 'uk', 'en')).toBe('uk-UA');
     expect(speechLanguageForSide(baseCard, 'back', 'es', 'en')).toBe('es-ES');
   });

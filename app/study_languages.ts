@@ -15,7 +15,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
-import { setStoredStudyTarget } from './study_target';
+import { isStudyTarget, setStoredStudyTarget } from './study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang, type StudyTargetLang } from './study_target_lang_dev';
 import { prefetchAndRecordStudyTargetServerPack } from './study_target_server_prefetch';
 import { shouldGateFeature } from './feature_gates';
@@ -24,8 +24,7 @@ import { shouldGateFeature } from './feature_gates';
 const KNOWN_STUDY_LANGUAGE_CODES = ['en', 'fr', 'es'] as const;
 
 export function isKnownStudyLanguage(value: unknown): value is StudyTargetLang {
-  return typeof value === 'string'
-    && (KNOWN_STUDY_LANGUAGE_CODES as readonly string[]).includes(value);
+  return isStudyTarget(value);
 }
 
 /** Сколько языков доступно бесплатному аккаунту. */
@@ -149,7 +148,7 @@ export async function applyStudyLanguageSelection(code: StudyTargetLang, uiLang:
       void prefetchAndRecordStudyTargetServerPack('fr', uiLang).catch(() => {});
     }
   } else {
-    await setStoredStudyTarget('en', uiLang);
+    await setStoredStudyTarget(code, uiLang);
     if (ENABLE_DEV_STUDY_TARGET_LANG) {
       await setDevStudyTargetLang('en', uiLang);
     }

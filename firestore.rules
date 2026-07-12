@@ -1221,7 +1221,7 @@ service cloud.firestore {
 
     match /banned_users/{docId} {
       allow read:  if isAdmin() || (request.auth != null && request.auth.uid == docId);
-      allow write: if isAdmin();
+      allow write: if false;
     }
 
     // â”€â”€ Admin config (alerts settings, admin-only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1229,12 +1229,33 @@ service cloud.firestore {
     // Read/write only by admin from the panel. The alert Cloud Functions use the
     // Admin SDK (bypasses rules) to read config and write bookkeeping fields.
     match /admin_config/{docId} {
-      allow read, write: if isAdmin();
+      allow read: if isAdmin() && docId != 'support_inbox';
+      allow write: if false;
+    }
+
+    // Support correspondence and delivery state are exposed only through
+    // permission-checked Cloud Functions. Even admins cannot bypass immutable
+    // reply operations by mutating these collections from a browser console.
+    match /support_inbox/{docId} {
+      allow read, write: if false;
+    }
+
+    match /support_reply_operations/{docId} {
+      allow read, write: if false;
+    }
+
+    match /support_reply_batches/{docId} {
+      allow read, write: if false;
+    }
+
+    match /admin_command_operations/{docId} {
+      allow read, write: if false;
     }
 
     // Remote Config changelog — admin-only audit trail of config saves.
     match /remote_config_history/{docId} {
-      allow read, create: if isAdmin();
+      allow read: if isAdmin();
+      allow create: if false;
       allow update, delete: if false;
     }
 
@@ -1360,6 +1381,7 @@ service cloud.firestore {
       let message = get(/databases/$(database)/documents/app_messages/$(messageId)).data;
       return userDocOwnerMatchesAuth(userId)
         && message.active == true
+        && (!message.keys().hasAny(['adminOperationLock']) || message.adminOperationLock == '')
         && (!message.keys().hasAny(['expiresAtMs']) || message.expiresAtMs > request.time.toMillis())
         && message.keys().hasAny(['poll'])
         && message.poll is map
@@ -1376,11 +1398,11 @@ service cloud.firestore {
     }
 
     // Remote Config: admin-tuned runtime flags (limits, energy, A/B split).
-    // Read by any signed-in client (remote_config_client.ts); written only from
-    // the admin panel (custom claim admin). Docs: `app`, `paywall_ab`.
+    // Read by any signed-in client (remote_config_client.ts). Writes are server-only
+    // through adminPublishRemoteConfig; the browser must not bypass CAS/audit.
     match /remote_config/{docId} {
       allow read: if request.auth != null;
-      allow create, update, delete: if isAdmin();
+      allow create, update, delete: if false;
     }
 
     // Воронка пейвол-эксперимента (app/paywall_funnel.ts → admin/paywall_ab.html).
@@ -1503,14 +1525,24 @@ service cloud.firestore {
     match /arena_rooms/{roomId} {
       allow read: if request.auth != null;
       allow create: if request.auth != null
-        && request.resource.data.hostId == request.auth.uid;
+        && request.resource.data.hostId == request.auth.uid
+        && (!request.resource.data.keys().hasAny(['studyTarget', 'learnerSourceLocale', 'courseReleaseId'])
+          || (request.resource.data.studyTarget is string
+            && request.resource.data.studyTarget.matches('^[a-z]{2,12}(-[A-Z]{2})?$')
+            && request.resource.data.learnerSourceLocale is string
+            && request.resource.data.learnerSourceLocale.matches('^[a-z]{2,12}(-[A-Z]{2})?$')
+            && request.resource.data.courseReleaseId is string
+            && request.resource.data.courseReleaseId.matches('^[A-Za-z0-9._-]{1,160}$')
+            && (!request.resource.data.courseReleaseId.matches('^legacy-.*')
+              || ((request.resource.data.studyTarget == 'en' || request.resource.data.studyTarget == 'es')
+                && request.resource.data.courseReleaseId == 'legacy-' + request.resource.data.studyTarget + '-v1'))));
       allow update: if request.auth != null
         && (
           resource.data.hostId == request.auth.uid
           || request.resource.data.guestId == request.auth.uid
         )
         && request.resource.data.diff(resource.data).affectedKeys()
-           .hasOnly(['guestId', 'guestName', 'status', 'sessionId']);
+           .hasOnly(['guestId', 'guestName', 'guestStudyTarget', 'guestLearnerSourceLocale', 'guestCourseReleaseId', 'status', 'sessionId']);
     }
 
     // â”€â”€ Arena invites (legacy friend-invite docs) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1552,12 +1584,20 @@ service cloud.firestore {
         && d.rankTier is string
         && d.keys().hasOnly([
           'userId', 'rankTier', 'size', 'joinedAt',
-          'rankIndex', 'searchRange', 'expoPushToken', 'displayName'
+          'rankIndex', 'searchRange', 'expoPushToken', 'displayName',
+          'studyTarget', 'learnerSourceLocale', 'courseReleaseId'
         ])
         && (!('rankIndex' in d) || ((d.rankIndex is int || d.rankIndex is float) && d.rankIndex >= 0 && d.rankIndex <= 23))
         && (!('searchRange' in d) || ((d.searchRange is int || d.searchRange is float) && d.searchRange >= 1 && d.searchRange <= 8))
         && (!('expoPushToken' in d) || d.expoPushToken is string)
-        && (!('displayName' in d) || d.displayName is string);
+        && (!('displayName' in d) || d.displayName is string)
+        && (!('studyTarget' in d) || (d.studyTarget is string && d.studyTarget.matches('^[a-z]{2,12}(-[A-Z]{2})?$')))
+        && (!('learnerSourceLocale' in d) || (d.learnerSourceLocale is string && d.learnerSourceLocale.matches('^[a-z]{2,12}(-[A-Z]{2})?$')))
+        && (!('courseReleaseId' in d) || (d.courseReleaseId is string
+          && d.courseReleaseId.matches('^[A-Za-z0-9._-]{1,160}$')
+          && (!d.courseReleaseId.matches('^legacy-.*')
+            || ((d.studyTarget == 'en' || d.studyTarget == 'es')
+              && d.courseReleaseId == 'legacy-' + d.studyTarget + '-v1'))));
     }
 
     match /matchmaking_queue/{entryId} {
@@ -1857,7 +1897,8 @@ service cloud.firestore {
 
     // â”€â”€ Admin audit log â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /admin_log/{docId} {
-      allow read, create: if isAdmin();
+      allow read: if isAdmin();
+      allow create: if false;
       allow update, delete: if false;
     }
 
@@ -2135,12 +2176,12 @@ service cloud.firestore {
     // не нужен и запрещён (нельзя подсмотреть/подменить rewardDays/usedCount).
     match /promo_codes/{code} {
       // Только админ. Не-админ запрещён дефолтным deny (и общим catch-all ниже).
-      allow read, write: if isAdmin();
+      allow read: if isAdmin();
+      allow write: if false;
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /{document=**} {
-      allow read, write: if isAdmin();
       allow read, write: if false;
     }
   }

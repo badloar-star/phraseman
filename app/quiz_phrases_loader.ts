@@ -11,17 +11,28 @@ import {
   getCachedFrenchRemoteQuizRows,
   prefetchFrenchRemoteQuizRows,
 } from './french_quiz_remote_runtime';
+import {
+  ensureCourseReleaseQuizRows,
+  getCachedCourseReleaseQuizRows,
+  prefetchCourseReleaseQuizRows,
+} from './language_runtime/course_release_quiz_loader';
 
 export async function ensureQuizPhrasesLoaded(lang: Lang = 'ru', studyTarget: QuizStudyTargetLang = 'en'): Promise<void> {
-  if (storageStudyTarget(studyTarget) === 'fr') {
-    await ensureFrenchRemoteQuizRows(lang);
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'en') return;
+  try {
+    await ensureCourseReleaseQuizRows(target, lang);
+  } catch (error) {
+    if (target === 'fr') return ensureFrenchRemoteQuizRows(lang);
+    if (target !== 'es') throw error;
   }
 }
 
 export function prefetchQuizPhrases(lang: Lang = 'ru', studyTarget: QuizStudyTargetLang = 'en'): void {
-  if (storageStudyTarget(studyTarget) === 'fr') {
-    prefetchFrenchRemoteQuizRows(lang);
-  }
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'en') return;
+  prefetchCourseReleaseQuizRows(target, lang);
+  if (target === 'fr') prefetchFrenchRemoteQuizRows(lang);
 }
 
 export function getQuizPhrasesLoaded(
@@ -30,8 +41,12 @@ export function getQuizPhrasesLoaded(
   lang: Lang = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] {
-  if (storageStudyTarget(studyTarget) === 'fr') {
-    return getCachedFrenchRemoteQuizRows(difficulty, count, lang);
+  const target = storageStudyTarget(studyTarget);
+  if (target !== 'en') {
+    const canonical = getCachedCourseReleaseQuizRows(target, lang, difficulty, count);
+    if (canonical.length > 0) return canonical;
+    if (target === 'fr') return getCachedFrenchRemoteQuizRows(difficulty, count, lang);
+    if (target !== 'es') return [];
   }
   return getQuizPhrases(difficulty, count, lang, studyTarget);
 }

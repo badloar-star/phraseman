@@ -270,6 +270,11 @@ export async function joinMatchmakingQueue(entry: MatchmakingEntry): Promise<voi
   }
   const rankIndex = Math.max(0, Math.min(23, Math.round(Number(entry.rankIndex ?? 0))));
   const searchRange = Math.max(1, Math.min(8, Math.round(Number(entry.searchRange ?? 2))));
+  const studyTarget = String(entry.studyTarget ?? 'en').trim();
+  const learnerSourceLocale = String(entry.learnerSourceLocale ?? 'ru').trim();
+  const courseReleaseId = String(entry.courseReleaseId ?? 'legacy-en-v1').trim();
+  if (!/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(learnerSourceLocale) || !/^[A-Za-z0-9._-]{1,160}$/.test(courseReleaseId)) throw new Error('joinMatchmakingQueue: invalid course identity');
+  if (courseReleaseId.startsWith('legacy-') && !((studyTarget === 'en' || studyTarget === 'es') && courseReleaseId === `legacy-${studyTarget}-v1`)) throw new Error('joinMatchmakingQueue: invalid legacy course identity');
 
   const payload: Record<string, unknown> = {
     userId: uid,
@@ -278,6 +283,9 @@ export async function joinMatchmakingQueue(entry: MatchmakingEntry): Promise<voi
     joinedAt,
     rankIndex,
     searchRange,
+    studyTarget,
+    learnerSourceLocale,
+    courseReleaseId,
   };
   if (entry.expoPushToken != null && String(entry.expoPushToken).length > 0) {
     payload.expoPushToken = String(entry.expoPushToken);

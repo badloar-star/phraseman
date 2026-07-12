@@ -4,7 +4,8 @@ const files = [
   'admin/v2/index.html',
   'admin/v2/scripts/admin-core.js',
   'admin/v2/scripts/admin-firebase.js',
-  'admin/v2/scripts/admin-router.js'
+  'admin/v2/scripts/admin-router.js',
+  'admin/v2/scripts/admin-operational-snapshot.js'
 ];
 
 const hardTerms = [

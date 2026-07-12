@@ -120,6 +120,9 @@ export interface ArenaSession {
   questionStartedAt: number | null; // timestamp ms
   questionTimeoutMs: number;   // сколько даётся на вопрос
   createdAt: number;
+  studyTarget?: string;
+  learnerSourceLocale?: string;
+  courseReleaseId?: string;
   forfeitedBy?: string;        // userId who forfeited
   acceptDeadlineAt?: number;
   getReadyEndsAt?: number;
@@ -215,6 +218,9 @@ export interface MatchmakingEntry {
   searchRange?: number; // ±N ranks; starts at 2, expands to 4 after 3 min
   expoPushToken?: string;
   displayName?: string;
+  studyTarget?: string;
+  learnerSourceLocale?: string;
+  courseReleaseId?: string;
   /** Выставляет Cloud Function при матче; клиент сразу удаляет документ из очереди. */
   sessionId?: string;
   matchedAt?: number;
@@ -235,6 +241,12 @@ export interface ArenaRoom {
   rankTier?: RankTier;
   expiresAt?: number;
   createdAt: number;
+  studyTarget?: string;
+  learnerSourceLocale?: string;
+  courseReleaseId?: string;
+  guestStudyTarget?: string;
+  guestLearnerSourceLocale?: string;
+  guestCourseReleaseId?: string;
 }
 
 // ─── Начисление очков ────────────────────────────────────────────────────────

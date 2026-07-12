@@ -3,8 +3,19 @@ import {
   isDigestEmpty,
   buildDigestPrompt,
   utcDayKey,
+  assessDigestCompleteness,
+  classifyStoredDigest,
+  shouldPreserveCompleteDigest,
   type DigestSourceRows,
 } from './admin_daily_digest';
+
+describe('digest concurrent write guard', () => {
+  it('preserves a schema-v2 complete digest when a partial run reaches the final commit', () => {
+    expect(shouldPreserveCompleteDigest({ schemaVersion: 2, generationState: 'complete' }, 'partial')).toBe(true);
+    expect(shouldPreserveCompleteDigest({ schemaVersion: 2, generationState: 'partial' }, 'partial')).toBe(false);
+    expect(shouldPreserveCompleteDigest({ schemaVersion: 2, generationState: 'complete' }, 'complete')).toBe(false);
+  });
+});
 
 // Полный пустой набор источников (все ключи обязательны в новом DigestSourceRows).
 const EMPTY_ROWS: DigestSourceRows = {
@@ -245,5 +256,34 @@ describe('buildDigestPrompt / utcDayKey', () => {
   test('utcDayKey — YYYY-MM-DD по UTC', () => {
     expect(utcDayKey(Date.UTC(2026, 6, 3, 23, 59, 0))).toBe('2026-07-03');
     expect(utcDayKey(Date.UTC(2026, 0, 1, 0, 0, 0))).toBe('2026-01-01');
+  });
+});
+
+describe('daily briefing completeness', () => {
+  const health = (source: string, state: 'ready' | 'empty' | 'error' | 'truncated') => ({
+    source, queryField: 'createdAtMs', state, count: state === 'empty' || state === 'error' ? 0 : 2,
+    checkedAtMs: 100, latestEventAtMs: 90, limit: 100,
+  });
+
+  test('allows a quiet day only when every source was read completely', () => {
+    expect(assessDigestCompleteness([health('reports', 'empty'), health('errors', 'ready')])).toEqual({
+      state: 'complete', errorSources: [], truncatedSources: [], quietAllowed: true,
+    });
+  });
+
+  test('blocks generation on source errors and marks capped reads partial', () => {
+    expect(assessDigestCompleteness([health('reports', 'error')])).toEqual({
+      state: 'blocked', errorSources: ['reports'], truncatedSources: [], quietAllowed: false,
+    });
+    expect(assessDigestCompleteness([health('reports', 'truncated')])).toEqual({
+      state: 'partial', errorSources: [], truncatedSources: ['reports'], quietAllowed: false,
+    });
+  });
+
+  test('labels old and stale stored digests honestly', () => {
+    expect(classifyStoredDigest({ generatedAtMs: 900 }, 1000)).toBe('legacy');
+    expect(classifyStoredDigest({ schemaVersion: 2, generationState: 'partial', generatedAtMs: 900 }, 1000)).toBe('partial');
+    expect(classifyStoredDigest({ schemaVersion: 2, generationState: 'complete', generatedAtMs: 0 }, 200_000_000)).toBe('stale');
+    expect(classifyStoredDigest({ schemaVersion: 2, generationState: 'complete', generatedAtMs: 900 }, 1000)).toBe('ready');
   });
 });

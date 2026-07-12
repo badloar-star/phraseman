@@ -44,14 +44,15 @@ beforeEach(() => {
 });
 
 describe('production StudyTarget contract', () => {
-  it('exposes only English as a production study target while keeping French internal', () => {
+  it('starts with English and accepts safe catalog-delivered target codes', () => {
     expect(STUDY_TARGETS).toEqual(['en']);
     expect(studyTargetsForSourceLocale('ru')).toEqual(['en']);
     expect(studyTargetsForSourceLocale('uk')).toEqual(['en']);
     expect(isStudyTarget('en')).toBe(true);
     expect(isStudyTarget('fr')).toBe(true);
-    expect(isStudyTarget('es')).toBe(false);
-    expect(() => assertStudyTarget('es')).toThrow(/Unsupported StudyTarget/);
+    expect(isStudyTarget('es')).toBe(true);
+    expect(assertStudyTarget('de')).toBe('de');
+    expect(() => assertStudyTarget('../de')).toThrow(/Unsupported StudyTarget/);
   });
 
   it('keeps sourceLocale separate from studyTarget', () => {
@@ -65,21 +66,21 @@ describe('production StudyTarget contract', () => {
     expect(ttsLocaleForProductionStudyTarget('en')).toBe('en-US');
   });
 
-  it('coerces French back to English in production study target storage', async () => {
+  it('persists a safe production target for supported source UIs', async () => {
     await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
-    await expect(setStoredStudyTarget('fr', 'ru')).resolves.toBe('en');
-    await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
-    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('en');
+    await expect(setStoredStudyTarget('fr', 'ru')).resolves.toBe('fr');
+    await expect(getStoredStudyTarget('ru')).resolves.toBe('fr');
+    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('fr');
 
     await expect(setStoredStudyTarget('fr', 'es')).resolves.toBe('en');
     await expect(getStoredStudyTarget('es')).resolves.toBe('en');
   });
 
-  it('normalizes a previously stored French production target back to English', async () => {
+  it('keeps a previously stored safe production target', async () => {
     await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, 'fr');
 
-    await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
-    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('en');
+    await expect(getStoredStudyTarget('ru')).resolves.toBe('fr');
+    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('fr');
   });
 
   it('uses English production storage while keeping French and Spanish dev-only', () => {
@@ -95,7 +96,7 @@ describe('production StudyTarget contract', () => {
     expect(settings).toContain('French and Spanish are DEV-only. The public version keeps English active.');
     expect(studyLanguages).toContain("if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr'))");
     expect(studyLanguages).toContain('await setDevStudyTargetLang(code, uiLang)');
-    expect(studyLanguages).toContain("await setStoredStudyTarget('en', uiLang)");
+    expect(studyLanguages).toContain('await setStoredStudyTarget(code, uiLang)');
     expect(studyLanguages).toContain("prefetchAndRecordStudyTargetServerPack('fr', uiLang)");
     expect(picker).toContain('language_en.webp');
     expect(picker).toContain('language_fr_dev.webp');

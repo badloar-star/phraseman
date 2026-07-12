@@ -152,13 +152,21 @@ describe('OpenAI runtime cost controls', () => {
 
   test('the unified admin has a read-only OpenAI budget dashboard backed by billing collections', () => {
     const adminHtml = read('admin/index.html');
+    const adminFirebase = read('admin/v2/scripts/admin-firebase.js');
+    const adminCore = read('admin/v2/scripts/admin-core.js');
+    const adminRouter = read('admin/v2/scripts/admin-router.js');
+    const adminCapabilities = read('admin/v2/scripts/admin-capabilities.js');
+    const legacyAdmin = adminHtml;
     const budgetFn = read('functions/src/openai_budget_dashboard.ts');
 
-    expect(adminHtml).toContain('id="tab-openai-budget"');
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
-    expect(adminHtml).toContain('window.loadOpenAiBudgetDashboard = async function loadOpenAiBudgetDashboard');
-    expect(adminHtml).toContain('id="openai-budget-summary"');
-    expect(adminHtml).toContain('id="openai-budget-grid"');
+    expect(adminRouter).toContain("'openai-budget': 'diagnostics'");
+    expect(adminCapabilities).toContain("id: 'openai-budget', route: 'money'");
+    expect(adminCore).toContain("'load-openai-budget'");
+    expect(legacyAdmin).toContain('id="openai-budget-status"');
+    expect(legacyAdmin).toContain('id="openai-budget-summary"');
+    expect(legacyAdmin).toContain('id="openai-budget-grid"');
+    expect(legacyAdmin).toContain('Feature costs');
+    expect(legacyAdmin).toContain('Model costs');
     expect(adminHtml).toContain('OpenAI estimated month');
     expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
     expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");

@@ -14,6 +14,10 @@ admin.initializeApp();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { runMatchmaking, tryMatchForUser } = require('./matchmaking');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { isLegacyArenaCourseIdentity, normalizeArenaCourseIdentity, sameArenaCourseIdentity } = require('./arena_course_identity');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { pickCanonicalArenaQuestions } = require('./content_factory/arena_release_runtime');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resetWeeklyXp } = require('./reset_weekly_xp');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
@@ -26,8 +30,9 @@ const { runPremiumExpiryReminder } = require('./premium_expiry_reminder') as {
   runPremiumExpiryReminder: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failed: number }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox') as {
+const { runSupportInboxPullCron, runSupportReplyDispatchSweeper, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox') as {
   runSupportInboxPullCron: () => Promise<unknown>;
+  runSupportReplyDispatchSweeper: () => Promise<{ scanned: number; markedUnknown: number }>;
   GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -680,6 +685,17 @@ export const gmailSupportPullCron = functions.scheduler.onSchedule(
   }
 );
 
+// A crashed SMTP worker leaves an intentionally non-retryable `dispatching`
+// operation. Promote stale attempts to `delivery_unknown` so the owner can
+// reconcile them against Gmail Sent without any automatic resend.
+export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
+  { schedule: 'every 15 minutes', timeZone: 'UTC', region: 'us-central1', memory: '256MiB', timeoutSeconds: 120 },
+  async () => {
+    const summary = await runSupportReplyDispatchSweeper();
+    if (summary.markedUnknown > 0) console.warn('supportReplyDispatchSweeperCron', JSON.stringify(summary));
+  }
+);
+
 // ─── Matchmaking: instant trigger on queue write ──────────────────────────────
 
 export const onMatchmakingWrite = functions.firestore.onDocumentWritten(
@@ -746,7 +762,26 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
     const sessionRef = db.collection('arena_sessions').doc(roomId);
     const hostPlayerRef = db.collection('session_players').doc(`${roomId}_${after.hostId}`);
     const guestPlayerRef = db.collection('session_players').doc(`${roomId}_${after.guestId}`);
-    const questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
+    const courseIdentity = normalizeArenaCourseIdentity(after);
+    const guestIdentity = {
+      studyTarget: after.guestStudyTarget,
+      learnerSourceLocale: after.guestLearnerSourceLocale,
+      courseReleaseId: after.guestCourseReleaseId,
+    };
+    if (!sameArenaCourseIdentity(courseIdentity, guestIdentity)) {
+      await roomRef.update({
+        status: 'waiting',
+        guestId: admin.firestore.FieldValue.delete(),
+        guestName: admin.firestore.FieldValue.delete(),
+        guestStudyTarget: admin.firestore.FieldValue.delete(),
+        guestLearnerSourceLocale: admin.firestore.FieldValue.delete(),
+        guestCourseReleaseId: admin.firestore.FieldValue.delete(),
+      });
+      return;
+    }
+    const questions = isLegacyArenaCourseIdentity(courseIdentity)
+      ? await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT)
+      : await pickCanonicalArenaQuestions(courseIdentity, null, PRIVATE_DUEL_QUESTION_COUNT);
     const tPrivate = Date.now();
 
     // Read XP + selected avatar for both players to record the displayed avatar in session_players.
@@ -778,10 +813,21 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         guestName?: string;
         status?: string;
         sessionId?: string | null;
+        studyTarget?: string;
+        learnerSourceLocale?: string;
+        courseReleaseId?: string;
+        guestStudyTarget?: string;
+        guestLearnerSourceLocale?: string;
+        guestCourseReleaseId?: string;
       };
 
       if (room.status !== 'matched' || !room.guestId || !room.hostId) return;
       if (room.sessionId || sessionSnap.exists) return;
+      if (!sameArenaCourseIdentity(room, {
+        studyTarget: room.guestStudyTarget,
+        learnerSourceLocale: room.guestLearnerSourceLocale,
+        courseReleaseId: room.guestCourseReleaseId,
+      })) return;
 
       tx.set(sessionRef, {
         id: roomId,
@@ -795,6 +841,7 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         questionStartedAt: null,
         questionTimeoutMs: 40_000,
         createdAt: tPrivate,
+        ...courseIdentity,
       });
 
       tx.set(hostPlayerRef, {
@@ -1378,10 +1425,13 @@ export const onArenaRematchAccepted = functions.firestore.onDocumentUpdated(
     const newSid = `rematch_${oldSid}_${Date.now()}`;
     const db = admin.firestore();
     const oldSessionRef = event.data!.after.ref;
+    const courseIdentity = normalizeArenaCourseIdentity(after);
 
     let questions: string[];
     try {
-      questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
+      questions = isLegacyArenaCourseIdentity(courseIdentity)
+        ? await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT)
+        : await pickCanonicalArenaQuestions(courseIdentity, null, PRIVATE_DUEL_QUESTION_COUNT);
     } catch (e) {
       console.error('rematch: pickArenaQuestions failed', e);
       await oldSessionRef.update({ 'rematchOffer.status': 'expired' });
@@ -1431,6 +1481,7 @@ export const onArenaRematchAccepted = functions.firestore.onDocumentUpdated(
         questionStartedAt: null,
         questionTimeoutMs: 40_000,
         createdAt: tCreated,
+        ...courseIdentity,
       });
       for (const uid of after.playerIds!) {
         tx.set(db.collection('session_players').doc(`${newSid}_${uid}`), {
@@ -1510,13 +1561,22 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
-export { adminGenerateDailyDigest } from './admin_daily_digest';
+export { adminGenerateDailyDigest, adminGetDailyBriefing } from './admin_daily_digest';
+export { adminListAssetJobs, adminCreateAssetJob, adminRunAssetJob } from './admin_asset_studio';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
   adminSupportPull,
+  adminSupportList,
   adminSupportGenerateReply,
+  adminSupportPrepareReply,
+  adminSupportDispatchReply,
   adminSupportSendReply,
+  adminSupportCancelReply,
+  adminSupportPrepareReplyBatch,
+  adminSupportDispatchReplyBatch,
+  adminSupportCancelReplyBatch,
+  adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
 } from './support_inbox';
@@ -1528,10 +1588,33 @@ export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './
 export { adminGrantReward } from './admin_grant';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
-export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert } from './promo_codes';
+export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoCodes } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
+export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export {
+  adminListAppMessages,
+  adminCreateAppMessage,
+  adminSetAppMessageActive,
+  adminUpdateAppMessage,
+  adminDeleteAppMessage,
+  adminCleanupExpiredAppMessages,
+} from './admin_app_messages';
+export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
+export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
+export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
+export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
+export { adminActivateCourseRelease, adminRollbackCourseRelease, getPublishedCourseRelease } from './language_release';
+export { getPublishedCourseSurfaceBundle, getPublishedCourseSurfaceEntry } from './language_release_content';
+export { adminPublishContentPack, adminRollbackContentPack } from './admin_content_publish';
+export { getActiveLanguageCatalog } from './language_catalog';
+export { getPublishedLessonArtifact } from './language_content';
+export { adminGetAnalyticsSnapshot } from './admin_analytics';
+export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
+export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminListAuditLog } from './admin_audit_log';
+export { adminListOpsLog } from './admin_ops_log';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 export { emailUnsubscribe } from './email_unsubscribe';

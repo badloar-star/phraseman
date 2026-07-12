@@ -41,6 +41,9 @@ export interface MatchmakingEntry {
   searchRange?: number;
   expoPushToken?: string;
   displayName?: string;
+  studyTarget?: string;
+  learnerSourceLocale?: string;
+  courseReleaseId?: string;
   sessionId?: string | null;
   /** Когда сопоставили в матч; для подчистки «осиротевших» queue-док в cron */
   matchedAt?: number;
@@ -67,6 +70,9 @@ export interface DuelSession {
   questionStartedAt: number | null;
   questionTimeoutMs: number;
   createdAt: number;
+  studyTarget?: string;
+  learnerSourceLocale?: string;
+  courseReleaseId?: string;
   finishedAt?: number;
   /** Кінець вікна accept (ranked + friend). */
   acceptDeadlineAt?: number;

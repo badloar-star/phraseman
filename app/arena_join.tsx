@@ -13,6 +13,7 @@ import { useLang } from '../components/LangContext';
 import { joinArenaFriendRoomAsGuest } from './arena_friend_room_guest';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
+import { useStudyTarget } from '../components/StudyTargetContext';
 
 type RoomStatus = 'loading' | 'waiting' | 'not_found' | 'expired' | 'joining';
 
@@ -24,6 +25,7 @@ export default function DuelJoinScreen() {
   const { theme: t, f } = useTheme();
   const { spendOne, isUnlimited } = useEnergy();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const defaultPlayerName = () => triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador', 'pt-BR': 'Jogador', vi: 'Người chơi', id: 'Pemain', tr: 'Oyuncu', pl: 'Gracz' });
   const [status, setStatus] = useState<RoomStatus>('loading');
   const [hostName, setHostName] = useState('');
@@ -56,6 +58,8 @@ export default function DuelJoinScreen() {
       defaultPlayerName: dn,
       spendOne,
       isUnlimited,
+      studyTarget,
+      learnerSourceLocale: lang,
     });
     if (res.ok) {
       emitAppEvent('action_toast', {
@@ -82,6 +86,16 @@ export default function DuelJoinScreen() {
         messageEs: 'Tu rival no confirmó a tiempo.',
       });
       setStatus('not_found');
+      return;
+    }
+    if (res.code === 'content_mismatch') {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'У вас выбраны разные языки обучения. Переключись на язык друга и открой приглашение снова.',
+        messageUk: 'У вас обрані різні мови навчання. Перемкнися на мову друга й відкрий запрошення знову.',
+        messageEs: 'Habéis elegido idiomas de estudio distintos. Cambia al idioma de tu amigo y vuelve a abrir la invitación.',
+      });
+      setStatus('waiting');
       return;
     }
     emitAppEvent('action_toast', {

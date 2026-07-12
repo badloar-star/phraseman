@@ -98,6 +98,7 @@ import {
   flashcardsSystemCardsForTarget,
 } from './flashcards_target_gate';
 import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
+import { ensureCourseReleaseFlashcards, prefetchCourseReleaseFlashcards } from './language_runtime/course_release_flashcard_loader';
 import { safeRouterBack } from './navigation_back';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
@@ -120,10 +121,10 @@ function normalizePackParam(pack: string | string[] | undefined): string | null 
 }
 
 // Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
-let _savedCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
-let _customCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
+let _savedCardsCacheByTarget: Partial<Record<string, CardItem[]>> = {};
+let _customCardsCacheByTarget: Partial<Record<string, CardItem[]>> = {};
 
-function flashcardsCacheTarget(studyTarget?: RuntimeStudyTarget): 'en' | 'fr' {
+function flashcardsCacheTarget(studyTarget?: RuntimeStudyTarget): string {
   return storageStudyTarget(studyTarget);
 }
 
@@ -258,7 +259,7 @@ export function primeCustomFlashcardsCache(studyTarget?: RuntimeStudyTarget) {
  * тоді перший кадр уже містить картки з бандла (без порожнього «створити картку»).
  */
 let stagedOwnedPackMarketCards: CardItem[] | null = null;
-let stagedOwnedPackMarketCardsTarget: 'en' | 'fr' | null = null;
+let stagedOwnedPackMarketCardsTarget: string | null = null;
 
 export function stageOwnedPackCardsForNavigation(packId: string, studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
   stagedOwnedPackMarketCards = null;
@@ -302,16 +303,14 @@ export default function FlashcardsScreen() {
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const [flashcardPackTick, setFlashcardPackTick] = useState(0);
   useEffect(() => {
-    if (storageStudyTarget(studyTarget) !== 'fr') return;
-    prefetchFrenchRemoteFlashcards(lang);
+    const target = storageStudyTarget(studyTarget);
+    if (target === 'en') return;
+    prefetchCourseReleaseFlashcards(target, lang);
+    if (target === 'fr') prefetchFrenchRemoteFlashcards(lang);
     let cancelled = false;
-    ensureFrenchRemoteFlashcards(lang)
-      .then(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      })
-      .catch(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      });
+    ensureCourseReleaseFlashcards(target, lang)
+      .catch(() => target === 'fr' ? ensureFrenchRemoteFlashcards(lang) : undefined)
+      .finally(() => { if (!cancelled) setFlashcardPackTick((value) => value + 1); });
     return () => { cancelled = true; };
   }, [lang, studyTarget]);
   useEffect(() => {

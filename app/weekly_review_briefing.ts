@@ -38,7 +38,7 @@ export interface WeeklyReviewRecommendation {
 
 export interface WeeklyReviewBriefing {
   lang: Lang;
-  studyTarget: 'en' | 'fr';
+  studyTarget: string;
   windowDays: number;
   totalMistakes: number;
   weakCategories: WeeklyReviewWeakCategory[];

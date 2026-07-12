@@ -15,6 +15,15 @@ const rulesPath = path.join(process.cwd(), 'firestore.rules');
 describe('firestore.rules security baseline', () => {
   const rules = readFileSync(rulesPath, 'utf8');
 
+  test('support mail, reply operations and batch manifests are server-only', () => {
+    for (const collection of ['support_inbox', 'support_reply_operations', 'support_reply_batches', 'admin_command_operations']) {
+      expect(rules).toContain(`match /${collection}/{docId} {`);
+    }
+    expect(rules).toMatch(/match \/support_inbox\/\{docId\} \{[\s\S]*?allow read, write: if false;/);
+    expect(rules).toMatch(/match \/support_reply_operations\/\{docId\} \{[\s\S]*?allow read, write: if false;/);
+    expect(rules).toContain("allow read: if isAdmin() && docId != 'support_inbox';");
+  });
+
   test('users collection is restricted to owner/admin, including stableId auth mapping', () => {
     expect(rules).toContain('match /users/{userId} {');
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');
@@ -328,7 +337,8 @@ describe('firestore.rules security baseline', () => {
 
   test('arena_rooms updates are field-restricted', () => {
     expect(rules).toContain('match /arena_rooms/{roomId} {');
-    expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'status', 'sessionId']);");
+    expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'guestStudyTarget', 'guestLearnerSourceLocale', 'guestCourseReleaseId', 'status', 'sessionId']);");
+    expect(rules).toContain("request.resource.data.courseReleaseId.matches('^[A-Za-z0-9._-]{1,160}$')");
   });
 
   test('arena_invites allows only status updates from participants', () => {

@@ -29,6 +29,15 @@ const unsubscribeSecret = defineString('EMAIL_UNSUBSCRIBE_SECRET', {
 });
 
 /**
+ * Previous signing secret used only during credential rotation. New links are
+ * never signed with it; keeping it temporarily prevents already delivered
+ * unsubscribe links from breaking while the current secret is replaced.
+ */
+const previousUnsubscribeSecret = defineString('EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET', {
+  default: '',
+});
+
+/**
  * Базовый публичный URL функций, от которого строится ссылка отписки.
  * По умолчанию — стандартный хост Cloud Functions проекта.
  */
@@ -53,17 +62,15 @@ export function suppressionDocId(email: string): string {
     .slice(0, 48);
 }
 
-/** Подпись email для ссылки отписки (первые 32 hex-символа HMAC-SHA256). */
-export function unsubscribeToken(email: string): string {
-  return createHmac('sha256', unsubscribeSecret.value())
+/** Подпись email указанным секретом (первые 32 hex-символа HMAC-SHA256). */
+export function unsubscribeTokenWithSecret(email: string, secret: string): string {
+  return createHmac('sha256', secret)
     .update(email.trim().toLowerCase())
     .digest('hex')
     .slice(0, 32);
 }
 
-/** Timing-safe проверка токена. */
-export function verifyUnsubscribeToken(email: string, token: string): boolean {
-  const expected = unsubscribeToken(email);
+function tokenMatches(expected: string, token: string): boolean {
   const given = String(token || '').toLowerCase();
   if (given.length !== expected.length) return false;
   try {
@@ -71,6 +78,35 @@ export function verifyUnsubscribeToken(email: string, token: string): boolean {
   } catch {
     return false;
   }
+}
+
+/** Проверка токена текущим секретом и, во время ротации, предыдущим. */
+export function verifyUnsubscribeTokenWithSecrets(
+  email: string,
+  token: string,
+  currentSecret: string,
+  previousSecret = '',
+): boolean {
+  const currentMatches = tokenMatches(unsubscribeTokenWithSecret(email, currentSecret), token);
+  const previousMatches = previousSecret
+    ? tokenMatches(unsubscribeTokenWithSecret(email, previousSecret), token)
+    : false;
+  return currentMatches || previousMatches;
+}
+
+/** Подпись новых ссылок только текущим секретом. */
+export function unsubscribeToken(email: string): string {
+  return unsubscribeTokenWithSecret(email, unsubscribeSecret.value());
+}
+
+/** Timing-safe проверка токена с поддержкой безопасного переходного периода. */
+export function verifyUnsubscribeToken(email: string, token: string): boolean {
+  return verifyUnsubscribeTokenWithSecrets(
+    email,
+    token,
+    unsubscribeSecret.value(),
+    previousUnsubscribeSecret.value(),
+  );
 }
 
 /** Готовая ссылка отписки для конкретного адреса. */

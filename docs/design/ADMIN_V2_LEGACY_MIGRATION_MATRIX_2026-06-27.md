@@ -25,7 +25,7 @@
 | --- | --- | --- | --- | --- |
 | `control-panel` | Приложение | В v2 | высокий | Разбит на update, banners, maintenance, flags, promo, premium и AI controls. |
 | `remote-config` | Приложение | Workflow | высокий | Должен стать Flag Registry. |
-| `app-messages` | Кампании | Workflow | высокий | Должен идти через Campaign Wizard. |
+| `app-messages` | Кампании | Частично в v2 | высокий | Обычные message/poll: create, edit, toggle, delete и cleanup перенесены в server commands; полный Campaign Wizard и профильный Plus Survey ещё обязательны. |
 | `push-notify` | Кампании | Workflow | высокий | Нужны audience, quiet hours, test send, approval. |
 | `review-promo` | Кампании | Workflow | средний | VIP survey как campaign с stop action. |
 | `referrals` | Кампании | В v2 | средний | Есть v2-дом в Native completion board и campaign analytics lane. |

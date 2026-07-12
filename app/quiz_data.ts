@@ -18,7 +18,7 @@ export type QuizSourceLocaleCopy = {
 export type QuizSourceLocaleMap = Partial<Record<QuizExtraSourceLocale, QuizSourceLocaleCopy>>;
 
 /** Цель изучения для выбора пула квиза (испанский L2 — отдельный пул уроков 1–16; French gated). */
-export type QuizStudyTargetLang = 'en' | 'es' | 'fr';
+export type QuizStudyTargetLang = string;
 
 export interface QuizPhrase {
   ru: string;
@@ -25498,7 +25498,8 @@ export const getQuizPhrases = (
   _lang: QuizSourceLocale = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] => {
-  if (storageStudyTarget(studyTarget) === 'fr') {
+  const target = storageStudyTarget(studyTarget);
+  if (target !== 'en' && target !== 'es') {
     return [];
   }
 

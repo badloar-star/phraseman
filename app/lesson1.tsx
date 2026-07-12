@@ -117,6 +117,7 @@ import { MOTION_DURATION } from '../constants/motion';
 import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
+import { loadCanonicalCourseReleaseLessonRows } from './language_runtime/course_release_lesson_loader';
 import { safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
@@ -1959,20 +1960,24 @@ export default function LessonScreen() {
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
   const frenchRemoteSourceLocale = lang === 'uk' ? 'uk' : 'ru';
-  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget) && !isPlanPhraseLessonTask;
+  const courseReleaseLessonRequired = studyTarget !== 'en' && !isPlanPhraseLessonTask;
   const [remoteFrenchLessonRows, setRemoteFrenchLessonRows] = useState<LessonPhrase[] | null>(null);
   const [remoteFrenchLessonLoadState, setRemoteFrenchLessonLoadState] = useState<'idle' | 'loading' | 'ready' | 'failed'>('idle');
   const [remoteFrenchLessonReloadNonce, setRemoteFrenchLessonReloadNonce] = useState(0);
   useEffect(() => {
     let cancelled = false;
-    if (!frenchRemoteLessonRequired) {
+    if (!courseReleaseLessonRequired) {
       setRemoteFrenchLessonRows(null);
       setRemoteFrenchLessonLoadState('idle');
       return () => { cancelled = true; };
     }
     setRemoteFrenchLessonLoadState('loading');
     setRemoteFrenchLessonRows(null);
-    loadFrenchRemoteLessonRows(lessonId, frenchRemoteSourceLocale)
+    loadCanonicalCourseReleaseLessonRows({ studyTarget, learnerSourceLocale: lang, lessonId })
+      .catch((error) => {
+        if (frenchStudyActive(studyTarget) && (lang === 'ru' || lang === 'uk')) return loadFrenchRemoteLessonRows(lessonId, frenchRemoteSourceLocale);
+        throw error;
+      })
       .then((rows) => {
         if (cancelled) return;
         setRemoteFrenchLessonRows(rows);
@@ -1984,7 +1989,7 @@ export default function LessonScreen() {
         setRemoteFrenchLessonLoadState('failed');
       });
     return () => { cancelled = true; };
-  }, [frenchRemoteLessonRequired, frenchRemoteSourceLocale, lessonId, remoteFrenchLessonReloadNonce]);
+  }, [courseReleaseLessonRequired, frenchRemoteSourceLocale, lang, lessonId, remoteFrenchLessonReloadNonce, studyTarget]);
   const lessonStorageId = isPlanPhraseLessonTask
     ? `${isPlanPhraseRecallTask ? 'plan_phrase_recall_' : 'plan_phrase_'}${planPhraseLesson?.id ?? 'unknown'}`
     : lessonId;
@@ -1998,12 +2003,12 @@ export default function LessonScreen() {
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
-    () => (planPhraseLesson?.phrases ?? remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
+    () => (planPhraseLesson?.phrases ?? (courseReleaseLessonRequired ? remoteFrenchLessonRows ?? [] : getLessonData(lessonId))).filter(p => {
       if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
       if (isPlanLessonTask && planRequiredPhraseIdSet.size > 0 && !planRequiredPhraseIdSet.has(String(p.id))) return false;
       return p.words && p.words.length > 0;
     }),
-    [planPhraseLesson, remoteFrenchLessonRows, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
+    [planPhraseLesson, courseReleaseLessonRequired, remoteFrenchLessonRows, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
@@ -3576,9 +3581,9 @@ export default function LessonScreen() {
     AsyncStorage.setItem(todayKey, String(newCount));
   }, [fiftyFiftyUsedToday, bonusHints, phrase]);
 
-  const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
-  const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
-  const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
+  const frenchLessonRemotePending = courseReleaseLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
+  const frenchLessonRemoteFailed = courseReleaseLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
+  const frenchLessonSourceGateBlocked = studyTarget !== 'en' && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
   const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
 
   if (frenchLessonRemotePending) {

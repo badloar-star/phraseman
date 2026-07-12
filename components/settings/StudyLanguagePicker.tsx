@@ -28,6 +28,7 @@ import {
   shouldGateExtraLanguage,
 } from '../../app/study_languages';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
+import { refreshRuntimeStudyTargetCatalog } from '../../app/language_runtime/runtime_catalog_bootstrap';
 
 /** Качественные иконки языков (512×512, те же, что в онбординге). */
 const RELEASE_LANGUAGE_FLAG_ASSETS: Record<'en', ImageSourcePropType> = {
@@ -81,6 +82,7 @@ export default function StudyLanguagePicker({
   const { hasPremiumAccess } = usePremium();
   const [startedLanguages, setStartedLanguages] = useState<readonly StudyTargetLang[]>([]);
   const [busy, setBusy] = useState(false);
+  const [, setCatalogRevision] = useState(0);
 
   const reloadStarted = useCallback(async () => {
     const started = await getStartedStudyLanguages(activeTarget);
@@ -90,6 +92,14 @@ export default function StudyLanguagePicker({
   useEffect(() => {
     void reloadStarted();
   }, [reloadStarted]);
+
+  useEffect(() => {
+    let active = true;
+    void refreshRuntimeStudyTargetCatalog().then(() => {
+      if (active) setCatalogRevision((value) => value + 1);
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   const options: readonly StudyTargetLang[] = ENABLE_DEV_STUDY_TARGET_LANG
     ? devStudyTargetsForUiLang(lang)

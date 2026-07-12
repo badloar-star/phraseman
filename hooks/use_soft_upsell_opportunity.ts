@@ -56,6 +56,14 @@ function signature(candidates: readonly SoftUpsellCandidate[]): string {
     .join('|');
 }
 
+async function attemptTwice(operation: () => Promise<void>): Promise<void> {
+  try {
+    await operation();
+  } catch {
+    await operation();
+  }
+}
+
 export function useSoftUpsellOpportunity({
   candidates,
   accountScope,
@@ -149,7 +157,9 @@ export function useSoftUpsellOpportunity({
     const existing = impressionInFlightRef.current.get(item.milestoneId);
     if (existing) return existing;
     const operation = (async () => {
-      await markSoftUpsellImpression(accountScope, studyTarget, item.context, item.milestoneId, Date.now());
+      await attemptTwice(() => markSoftUpsellImpression(
+        accountScope, studyTarget, item.context, item.milestoneId, Date.now(),
+      ));
       await trackSoftUpsellEvent('soft_upsell_impression', { ...basePayload(item), destination: item.destination });
       impressionCompletedRef.current.add(item.milestoneId);
     })();
@@ -172,10 +182,14 @@ export function useSoftUpsellOpportunity({
     const existing = dismissInFlightRef.current.get(item.milestoneId);
     if (existing) return existing;
     const operation = (async () => {
-      await markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now());
-      await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
-      dismissCompletedRef.current.add(item.milestoneId);
-      if (pendingDismissRef.current?.milestoneId === item.milestoneId) pendingDismissRef.current = null;
+      try {
+        await attemptTwice(() => markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now()));
+        await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
+        dismissCompletedRef.current.add(item.milestoneId);
+        if (pendingDismissRef.current?.milestoneId === item.milestoneId) pendingDismissRef.current = null;
+      } catch {
+        // The card is already hidden. A later session may evaluate it again because no cooldown was persisted.
+      }
     })();
     dismissInFlightRef.current.set(item.milestoneId, operation);
     try {

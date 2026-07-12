@@ -26,11 +26,15 @@ export default function SoftContextualUpsellCard({
 }: Props) {
   const { theme: t, f } = useTheme();
   const reportedRef = useRef(false);
+  const impressionInFlightRef = useRef<Promise<void> | null>(null);
   const handleLayout = useCallback((event: { nativeEvent: { layout: { width: number; height: number } } }) => {
     const { width, height } = event.nativeEvent.layout;
-    if (reportedRef.current || width <= 0 || height <= 0) return;
-    reportedRef.current = true;
-    void onImpression();
+    if (reportedRef.current || impressionInFlightRef.current || width <= 0 || height <= 0) return;
+    const operation = Promise.resolve(onImpression())
+      .then(() => { reportedRef.current = true; })
+      .catch(() => undefined)
+      .finally(() => { impressionInFlightRef.current = null; });
+    impressionInFlightRef.current = operation;
   }, [onImpression]);
 
   return (

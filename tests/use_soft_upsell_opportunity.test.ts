@@ -133,7 +133,7 @@ describe('useSoftUpsellOpportunity', () => {
     resetSoftUpsellSessionForTests();
     const second = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(second.result.current.opportunity).not.toBeNull());
-    await expect(second.result.current.onImpression()).rejects.toThrow('disk');
+    await expect(second.result.current.onImpression()).resolves.toBeUndefined();
     await expect(second.result.current.onImpression()).resolves.toBeUndefined();
     expect(storage.markSoftUpsellImpression).toHaveBeenCalledTimes(3);
     expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_impression')).toHaveLength(2);
@@ -190,12 +190,20 @@ describe('useSoftUpsellOpportunity', () => {
     let failed!: Promise<void>;
     await act(async () => { failed = hook.result.current.onDismiss(); await Promise.resolve(); });
     await waitFor(() => expect(hook.result.current.opportunity).toBeNull());
-    const rejection = expect(failed).rejects.toThrow('disk');
     rejectPersist(new Error('disk'));
-    await rejection;
-    await expect(hook.result.current.onDismiss()).resolves.toBeUndefined();
+    await expect(failed).resolves.toBeUndefined();
     expect(storage.markSoftUpsellDismissed).toHaveBeenCalledTimes(2);
     expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_dismiss')).toHaveLength(1);
+  });
+
+  it('contains two dismiss persistence failures without analytics or an unhandled rejection', async () => {
+    storage.markSoftUpsellDismissed.mockRejectedValueOnce(new Error('disk-1')).mockRejectedValueOnce(new Error('disk-2'));
+    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'dismiss-fail', studyTarget: 'en', hasPremiumAccess: false }));
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    await act(async () => { await hook.result.current.onDismiss(); });
+    expect(hook.result.current.opportunity).toBeNull();
+    expect(storage.markSoftUpsellDismissed).toHaveBeenCalledTimes(2);
+    expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_dismiss')).toHaveLength(0);
   });
 
   it('filters candidates to the requested study target before deciding or claiming', async () => {

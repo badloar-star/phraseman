@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
-import { cleanup, fireEvent, render } from '@testing-library/react-native';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
 
@@ -51,4 +51,29 @@ it('has no modal, portal, router, emoji, or animation and enforces touch/contras
   expect(source).toMatch(/accessibilityHint/);
   expect(source).toMatch(/flexWrap:\s*'wrap'/);
   expect(source).not.toMatch(/["']Dismiss["']|["']Closes this suggestion["']|["']Opens premium options["']/);
+});
+
+it('coalesces layouts, contains impression rejection, and retries on a later layout', async () => {
+  let rejectFirst!: (error: Error) => void;
+  const onImpression = jest.fn()
+    .mockImplementationOnce(() => new Promise<void>((_resolve, reject) => { rejectFirst = reject; }))
+    .mockResolvedValue(undefined);
+  const labels = { dismissLabel: 'Later', dismissAccessibilityLabel: 'Later', dismissAccessibilityHint: 'Hide', ctaAccessibilityLabel: 'Open', ctaAccessibilityHint: 'Open plan' };
+  const view = await render(React.createElement(SoftContextualUpsellCard, {
+    title: 'Result', body: 'Body', ctaLabel: 'Open', ...labels, opportunity,
+    onImpression, onDismiss: jest.fn(), onCta: jest.fn(),
+  }));
+  const card = view.getByTestId('soft-upsell-card');
+  await fireEvent(card, 'layout', { nativeEvent: { layout: { width: 100, height: 100 } } });
+  await fireEvent(card, 'layout', { nativeEvent: { layout: { width: 100, height: 100 } } });
+  expect(onImpression).toHaveBeenCalledTimes(1);
+  rejectFirst(new Error('temporary'));
+  await Promise.resolve();
+  await Promise.resolve();
+  await waitFor(() => {
+    fireEvent(card, 'layout', { nativeEvent: { layout: { width: 100, height: 100 } } });
+    expect(onImpression).toHaveBeenCalledTimes(2);
+  });
+  await fireEvent(card, 'layout', { nativeEvent: { layout: { width: 100, height: 100 } } });
+  expect(onImpression).toHaveBeenCalledTimes(2);
 });

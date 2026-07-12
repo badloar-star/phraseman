@@ -48,6 +48,42 @@ const REVENUECAT_ANALYTICS_API_KEY = defineSecret('REVENUECAT_ANALYTICS_API_KEY'
 const REVENUECAT_PROJECT_ID = defineString('REVENUECAT_PROJECT_ID', { default: '' });
 const DIGESTS_COLLECTION = 'admin_digests';
 
+export interface DigestSourceHealth {
+  source: string;
+  queryField: string;
+  state: 'ready' | 'empty' | 'error' | 'truncated';
+  count: number;
+  checkedAtMs: number;
+  latestEventAtMs: number;
+  limit: number;
+  error?: string;
+}
+
+export interface DigestCompleteness {
+  state: 'complete' | 'partial' | 'blocked';
+  errorSources: string[];
+  truncatedSources: string[];
+  quietAllowed: boolean;
+}
+
+export function assessDigestCompleteness(health: readonly DigestSourceHealth[]): DigestCompleteness {
+  const errorSources = health.filter((item) => item.state === 'error').map((item) => item.source);
+  const truncatedSources = health.filter((item) => item.state === 'truncated').map((item) => item.source);
+  const state = errorSources.length ? 'blocked' : truncatedSources.length ? 'partial' : 'complete';
+  return Object.freeze({ state, errorSources, truncatedSources, quietAllowed: state === 'complete' });
+}
+
+export function classifyStoredDigest(digest: Record<string, unknown>, nowMs = Date.now()): 'ready' | 'partial' | 'stale' | 'legacy' {
+  if (Number(digest.schemaVersion ?? 0) < 2) return 'legacy';
+  if (digest.generationState === 'partial' || digest.coverageStatus === 'insufficient_coverage') return 'partial';
+  const generatedAtMs = Number(digest.generatedAtMs ?? 0);
+  return !Number.isFinite(generatedAtMs) || generatedAtMs <= 0 || nowMs - generatedAtMs > 36 * 60 * 60 * 1000 ? 'stale' : 'ready';
+}
+
+export function shouldPreserveCompleteDigest(digest: Record<string, unknown>, incomingState: 'complete' | 'partial'): boolean {
+  return incomingState === 'partial' && Number(digest.schemaVersion ?? 0) === 2 && digest.generationState === 'complete';
+}
+
 function requireDigestPermission(
   request: { auth?: { uid?: string; token?: Record<string, unknown> } | null },
   permission: AdminPermission,

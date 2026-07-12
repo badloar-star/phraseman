@@ -192,10 +192,11 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
         explanationLines: conversion.explanationLines,
         benefitPrimary: conversion.benefits[0],
         benefitSecondary: conversion.benefits[1],
-        button: conversion.cta,
+        button: 'Открыть приложение',
         buttonBackground: '#B7FF3C',
         buttonTextColor: '#07110A',
-        footer: 'Без регистрации • начни первый урок за 30 секунд',
+        footer: 'Установи и начни заниматься за 30 секунд',
+        appLabel: 'МОБИЛЬНОЕ ПРИЛОЖЕНИЕ',
         url: conversion.url,
       },
     };
@@ -211,10 +212,21 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
       <circle cx="64" cy="${variant.benefitY}" r="9" fill="#77D61D"/><text x="88" y="${variant.benefitY + 11}" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0b1016">${escapeXml(conversion.benefits[0])}</text>
       <circle cx="64" cy="${variant.benefitY + 58}" r="9" fill="#77D61D"/><text x="88" y="${variant.benefitY + 69}" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0b1016">${escapeXml(conversion.benefits[1])}</text>
       <rect x="48" y="${variant.buttonY}" width="540" height="100" rx="28" fill="#B7FF3C"/>
-      <text x="318" y="${variant.buttonY + 65}" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="900" fill="#07110A">${escapeXml(conversion.cta)}</text>
-      <text x="48" y="${variant.buttonY + 164}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">Без регистрации • начни первый урок</text>
+      <text x="318" y="${variant.buttonY + 65}" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="900" fill="#07110A">${escapeXml(layout.cta.button)}</text>
+      <text x="48" y="${variant.buttonY + 164}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">Установи и начни заниматься</text>
       <text x="48" y="${variant.buttonY + 200}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">за 30 секунд</text>
       <text x="48" y="${variant.buttonY + 270}" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">${escapeXml(displayUrl)}</text>
+      <g aria-label="Мобильное приложение Phraseman">
+        <rect x="790" y="862" width="76" height="132" rx="16" fill="#0b1016"/>
+        <rect x="797" y="874" width="62" height="103" rx="10" fill="#F4FFE2"/>
+        <rect x="808" y="891" width="40" height="9" rx="4" fill="#B7FF3C"/>
+        <rect x="808" y="913" width="40" height="7" rx="3" fill="#26313D"/>
+        <rect x="808" y="932" width="31" height="7" rx="3" fill="#738092"/>
+        <circle cx="828" cy="964" r="5" fill="#77D61D"/>
+        <text x="884" y="913" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#0b1016">МОБИЛЬНОЕ</text>
+        <text x="884" y="942" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#0b1016">ПРИЛОЖЕНИЕ</text>
+        <text x="884" y="971" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#596273">Phraseman</text>
+      </g>
     </svg>`;
     return writeArtifacts({ outputPath, layout, svg });
   }

@@ -422,6 +422,11 @@ describe('two-slide renderer', () => {
     expect(svg).not.toContain('готовая фраза');
     expect(svg).not.toContain('ready phrase');
     expect(svg).toContain('knowlyapps.com');
+    expect(svg).toContain('МОБИЛЬНОЕ</text>');
+    expect(svg).toContain('ПРИЛОЖЕНИЕ</text>');
+    expect(svg).toContain('Установи и начни заниматься');
+    expect(svg).toContain('Открыть приложение');
+    expect(svg).not.toContain('начни первый урок');
     const metadata = await sharp(result.jpegPath).metadata();
     expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg' });
   });

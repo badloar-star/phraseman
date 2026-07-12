@@ -57,6 +57,7 @@ const { accountDeleteWorker, accountDeleteRetryCron } = require('./account_delet
 const {
   leaderboardUpdateDailyAnalytics,
   nameCheckAvailability,
+  nameGenerateAndReserve,
   nameReserve,
   nameReleaseMine,
 } = require('./leaderboard');
@@ -204,6 +205,7 @@ exports.accountDeleteWorker = accountDeleteWorker;
 exports.accountDeleteRetryCron = accountDeleteRetryCron;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
+exports.nameGenerateAndReserve = nameGenerateAndReserve;
 exports.nameReserve = nameReserve;
 exports.nameReleaseMine = nameReleaseMine;
 exports.leagueChestClaim = leagueChestClaim;

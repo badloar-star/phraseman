@@ -90,6 +90,12 @@
   },
   "definitions": {
     "conversion": {
+      "oneOf": [
+        { "$ref": "#/definitions/legacyConversion" },
+        { "$ref": "#/definitions/modernConversion" }
+      ]
+    },
+    "legacyConversion": {
       "type": "object",
       "additionalProperties": false,
       "required": ["hookLabel", "titleLines", "explanationLines", "answerEn", "answerRu", "benefits", "cta", "url", "heroItemId"],
@@ -100,6 +106,21 @@
         "answerEn": { "type": "string", "minLength": 1, "maxLength": 80 },
         "answerRu": { "type": "string", "minLength": 1, "maxLength": 100 },
         "benefits": { "type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 50 } },
+        "cta": { "type": "string", "minLength": 1, "maxLength": 32 },
+        "url": { "const": "https://knowlyapps.com/" },
+        "heroItemId": { "type": "string", "pattern": "^item_[0-9]{2}$" }
+      }
+    },
+    "modernConversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layoutVariant", "hookLabel", "titleLines", "explanationLines", "benefits", "cta", "url", "heroItemId"],
+      "properties": {
+        "layoutVariant": { "enum": ["A", "B", "C"] },
+        "hookLabel": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "titleLines": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "string", "minLength": 1, "maxLength": 36 } },
+        "explanationLines": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+        "benefits": { "type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 42 } },
         "cta": { "type": "string", "minLength": 1, "maxLength": 32 },
         "url": { "const": "https://knowlyapps.com/" },
         "heroItemId": { "type": "string", "pattern": "^item_[0-9]{2}$" }

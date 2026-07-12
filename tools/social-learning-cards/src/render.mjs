@@ -143,6 +143,58 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
   assertCard(card);
   await fs.access(heroCellPath);
   const conversion = card.conversion;
+  if (conversion.layoutVariant) {
+    const variants = {
+      A: { hero: { x: 628, y: 92, width: 404, height: 770 }, textWidth: 550, titleSize: 50, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
+      B: { hero: { x: 392, y: 70, width: 640, height: 820 }, textWidth: 420, titleSize: 46, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
+      C: { hero: { x: 470, y: 82, width: 562, height: 800 }, textWidth: 430, titleSize: 46, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
+    };
+    const variant = variants[conversion.layoutVariant];
+    const layout = {
+      kind: 'install',
+      layoutVariant: conversion.layoutVariant,
+      width: WIDTH,
+      height: HEIGHT,
+      safeArea: SAFE_AREA,
+      hero: { path: heroCellPath, ...variant.hero, used: true, preserveFullSubject: true },
+      cta: {
+        x: 48,
+        y: 70,
+        width: variant.textWidth,
+        height: 938,
+        fontSize: variant.titleSize,
+        eyebrow: conversion.hookLabel,
+        title: conversion.titleLines.join(' '),
+        titleLines: conversion.titleLines,
+        explanationLines: conversion.explanationLines,
+        benefitPrimary: conversion.benefits[0],
+        benefitSecondary: conversion.benefits[1],
+        button: conversion.cta,
+        buttonBackground: '#B7FF3C',
+        buttonTextColor: '#07110A',
+        footer: 'Без регистрации • первый урок через 30 секунд',
+        url: conversion.url,
+      },
+    };
+    const heroUri = await imageDataUri(heroCellPath);
+    const displayUrl = conversion.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
+      <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
+      <image href="${heroUri}" x="${variant.hero.x}" y="${variant.hero.y}" width="${variant.hero.width}" height="${variant.hero.height}" preserveAspectRatio="xMidYMid meet"/>
+      <rect x="48" y="70" width="304" height="48" rx="24" fill="#B7FF3C"/>
+      <text x="200" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(conversion.hookLabel)}</text>
+      ${conversion.titleLines.map((line, index) => `<text x="48" y="${variant.titleY + index * 56}" font-family="Arial, sans-serif" font-size="${variant.titleSize}" font-weight="900" fill="#0b1016">${escapeXml(line)}</text>`).join('')}
+      ${conversion.explanationLines.map((line, index) => `<text x="48" y="${variant.explanationY + index * 38}" font-family="Arial, sans-serif" font-size="28" fill="#384252">${escapeXml(line)}</text>`).join('')}
+      <circle cx="64" cy="${variant.benefitY}" r="9" fill="#77D61D"/><text x="88" y="${variant.benefitY + 11}" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0b1016">${escapeXml(conversion.benefits[0])}</text>
+      <circle cx="64" cy="${variant.benefitY + 58}" r="9" fill="#77D61D"/><text x="88" y="${variant.benefitY + 69}" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0b1016">${escapeXml(conversion.benefits[1])}</text>
+      <rect x="48" y="${variant.buttonY}" width="540" height="100" rx="28" fill="#B7FF3C"/>
+      <text x="318" y="${variant.buttonY + 65}" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="900" fill="#07110A">${escapeXml(conversion.cta)}</text>
+      <text x="48" y="${variant.buttonY + 164}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">Без регистрации • первый урок</text>
+      <text x="48" y="${variant.buttonY + 200}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">через 30 секунд</text>
+      <text x="48" y="${variant.buttonY + 270}" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">${escapeXml(displayUrl)}</text>
+    </svg>`;
+    return writeArtifacts({ outputPath, layout, svg });
+  }
   const layout = {
     kind: 'install',
     width: WIDTH,

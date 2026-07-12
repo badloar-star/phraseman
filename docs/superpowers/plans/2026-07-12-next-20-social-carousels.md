@@ -14,6 +14,7 @@
 
 - Modify: `content/marketing/social-learning-cards/series-20.json` — добавить 20 новых уникальных карточек и вариант макета A/B/C.
 - Modify: `tools/social-learning-cards/src/schema.mjs` — валидировать вариант рекламного слайда.
+- Modify: `functions/src/contracts/social_learning_card_manifest_v1.json` — сохранить legacy conversion и добавить обратно совместимый modern conversion A/B/C.
 - Modify: `tools/social-learning-cards/src/render.mjs` — поддержать A/B/C и полностью убрать блок «готовая фраза» из новых макетов.
 - Modify: `tests/social_learning_cards_pipeline.test.ts` — контракты 20 новых карточек и трёх макетов.
 - Create: `output/social-learning-cards/<contentId>/revision_001/**` — игнорируемые исходники и финальные результаты.
@@ -51,6 +52,7 @@
 **Files:**
 - Modify: `tests/social_learning_cards_pipeline.test.ts`
 - Modify: `tools/social-learning-cards/src/schema.mjs`
+- Modify: `functions/src/contracts/social_learning_card_manifest_v1.json`
 - Modify: `tools/social-learning-cards/src/render.mjs`
 
 - [ ] **Step 1: Добавить падающие тесты**

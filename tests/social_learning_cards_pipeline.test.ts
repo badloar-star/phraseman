@@ -123,6 +123,23 @@ describe('social learning card manifest contract', () => {
     ]);
   });
 
+  it('accepts new install layouts without the legacy answer panel and rejects unknown variants', async () => {
+    const { schema } = await loadModules();
+    const fixture = readFixture();
+    const legacyConversion = fixture.conversion as Record<string, unknown>;
+    const { answerEn: _answerEn, answerRu: _answerRu, ...baseConversion } = legacyConversion;
+    const modern = {
+      ...fixture,
+      conversion: { ...baseConversion, layoutVariant: 'A' },
+    };
+
+    expect(schema.validateCardManifest(modern)).toEqual({ ok: true, value: modern, errors: [] });
+    expect(schema.validateCardManifest({
+      ...modern,
+      conversion: { ...modern.conversion, layoutVariant: 'D' },
+    }).ok).toBe(false);
+  });
+
   it.each([8, 10])('rejects a manifest containing %i learning items', async (count) => {
     const { schema } = await loadModules();
     const fixture = readFixture();
@@ -372,6 +389,37 @@ describe('two-slide renderer', () => {
     expect(svg).toContain('It&apos;s too sweet');
     const metadata = await sharp(result.jpegPath).metadata();
     expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg', space: 'srgb', channels: 3 });
+  });
+
+  it.each(['A', 'B', 'C'])('renders modern install layout %s without the ready-phrase panel', async (layoutVariant) => {
+    const renderer = await loadRender();
+    const { fixture, cellPaths } = await createRenderInputs();
+    const legacyConversion = fixture.conversion as Record<string, unknown>;
+    const { answerEn: _answerEn, answerRu: _answerRu, ...baseConversion } = legacyConversion;
+    const card = {
+      ...fixture,
+      conversion: { ...baseConversion, layoutVariant },
+    };
+    const outputPath = path.join(tempRoot, `slide_02_install_${layoutVariant}.jpg`);
+
+    const result = await renderer.renderInstallSlide({
+      card,
+      heroCellPath: cellPaths.item_01,
+      outputPath,
+    });
+    const layout = JSON.parse(fs.readFileSync(result.layoutPath, 'utf8'));
+    const svg = fs.readFileSync(result.svgPath, 'utf8');
+
+    expect(layout.layoutVariant).toBe(layoutVariant);
+    expect(layout.hero.used).toBe(true);
+    expect(layout.hero.preserveFullSubject).toBe(true);
+    expect(layout.cta).not.toHaveProperty('answerEn');
+    expect(layout.cta).not.toHaveProperty('answerRu');
+    expect(svg).not.toContain('готовая фраза');
+    expect(svg).not.toContain('ready phrase');
+    expect(svg).toContain('knowlyapps.com');
+    const metadata = await sharp(result.jpegPath).metadata();
+    expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg' });
   });
 });
 

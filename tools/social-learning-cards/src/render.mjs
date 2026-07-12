@@ -45,6 +45,26 @@ async function imageDataUri(filePath) {
   return `data:${mime};base64,${bytes.toString('base64')}`;
 }
 
+async function trimmedHeroDataUri(filePath) {
+  const trimmed = await sharp(filePath)
+    .flatten({ background: '#ffffff' })
+    .trim({ background: '#ffffff', threshold: 12 })
+    .extend({ top: 18, bottom: 18, left: 18, right: 18, background: '#ffffff' })
+    .jpeg({ quality: 92 })
+    .toBuffer();
+  return `data:image/jpeg;base64,${trimmed.toString('base64')}`;
+}
+
+async function trimmedLearningDataUri(filePath) {
+  const trimmed = await sharp(filePath)
+    .flatten({ background: '#ffffff' })
+    .trim({ background: '#ffffff', threshold: 12 })
+    .extend({ top: 4, bottom: 4, left: 4, right: 4, background: '#ffffff' })
+    .jpeg({ quality: 92 })
+    .toBuffer();
+  return `data:image/jpeg;base64,${trimmed.toString('base64')}`;
+}
+
 function artifactPaths(outputPath) {
   const parsed = path.parse(outputPath);
   return {
@@ -98,8 +118,9 @@ function learningLayout(card, cellPaths) {
     height: cellHeight,
     english: item.english,
     russian: card.languageMode === 'bilingual' ? item.russian ?? '' : '',
-    englishFontSize: 34,
-    russianFontSize: 24,
+    englishFontSize: item.english.length > 19 ? 27 : item.english.length > 16 ? 30 : 34,
+    russianFontSize: (item.russian ?? '').length > 24 ? 20 : 24,
+    trimWhitespace: true,
   }));
   if (cells.some((cell) => !cell.imagePath)) throw new Error('missing_cell_image');
   return {
@@ -116,11 +137,11 @@ function learningLayout(card, cellPaths) {
 
 async function learningSvg(layout) {
   const cells = await Promise.all(layout.cells.map(async (cell) => {
-    const imageHeight = cell.russian ? cell.height - 112 : cell.height - 72;
-    const englishY = cell.y + imageHeight + 36;
+    const imageHeight = cell.russian ? cell.height - 90 : cell.height - 58;
+    const englishY = cell.y + imageHeight + 30;
     const russianY = englishY + 28;
     return `<g>
-      <image href="${await imageDataUri(cell.imagePath)}" x="${cell.x + 18}" y="${cell.y + 10}" width="${cell.width - 36}" height="${imageHeight - 14}" preserveAspectRatio="xMidYMid meet"/>
+      <image href="${await trimmedLearningDataUri(cell.imagePath)}" x="${cell.x + 4}" y="${cell.y + 2}" width="${cell.width - 8}" height="${imageHeight - 2}" preserveAspectRatio="xMidYMid meet"/>
       <text x="${cell.x + cell.width / 2}" y="${englishY}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${cell.englishFontSize}" font-weight="800" fill="#10151c">${escapeXml(cell.english)}</text>
       ${cell.russian ? `<text x="${cell.x + cell.width / 2}" y="${russianY}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${cell.russianFontSize}" fill="#4b5563">${escapeXml(cell.russian)}</text>` : ''}
     </g>`;
@@ -150,13 +171,15 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
       C: { hero: { x: 470, y: 82, width: 562, height: 800 }, textWidth: 430, titleSize: 46, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
     };
     const variant = variants[conversion.layoutVariant];
+    const badgeWidth = Math.min(500, Math.max(304, conversion.hookLabel.length * 14 + 48));
     const layout = {
       kind: 'install',
       layoutVariant: conversion.layoutVariant,
       width: WIDTH,
       height: HEIGHT,
       safeArea: SAFE_AREA,
-      hero: { path: heroCellPath, ...variant.hero, used: true, preserveFullSubject: true },
+      badge: { x: 48, y: 70, width: badgeWidth, height: 48 },
+      hero: { path: heroCellPath, ...variant.hero, used: true, preserveFullSubject: true, trimWhitespace: true },
       cta: {
         x: 48,
         y: 70,
@@ -176,13 +199,13 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
         url: conversion.url,
       },
     };
-    const heroUri = await imageDataUri(heroCellPath);
+    const heroUri = await trimmedHeroDataUri(heroCellPath);
     const displayUrl = conversion.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
       <rect width="${WIDTH}" height="${HEIGHT}" fill="#ffffff"/>
       <image href="${heroUri}" x="${variant.hero.x}" y="${variant.hero.y}" width="${variant.hero.width}" height="${variant.hero.height}" preserveAspectRatio="xMidYMid meet"/>
-      <rect x="48" y="70" width="304" height="48" rx="24" fill="#B7FF3C"/>
-      <text x="200" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(conversion.hookLabel)}</text>
+      <rect x="48" y="70" width="${badgeWidth}" height="48" rx="24" fill="#B7FF3C"/>
+      <text x="${48 + badgeWidth / 2}" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#07110A">${escapeXml(conversion.hookLabel)}</text>
       ${conversion.titleLines.map((line, index) => `<text x="48" y="${variant.titleY + index * 56}" font-family="Arial, sans-serif" font-size="${variant.titleSize}" font-weight="900" fill="#0b1016">${escapeXml(line)}</text>`).join('')}
       ${conversion.explanationLines.map((line, index) => `<text x="48" y="${variant.explanationY + index * 38}" font-family="Arial, sans-serif" font-size="28" fill="#384252">${escapeXml(line)}</text>`).join('')}
       <circle cx="64" cy="${variant.benefitY}" r="9" fill="#77D61D"/><text x="88" y="${variant.benefitY + 11}" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0b1016">${escapeXml(conversion.benefits[0])}</text>

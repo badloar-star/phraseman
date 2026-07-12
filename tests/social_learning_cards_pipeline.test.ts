@@ -350,7 +350,8 @@ describe('two-slide renderer', () => {
       expect(cell.y).toBeGreaterThanOrEqual(48);
       expect(cell.x + cell.width).toBeLessThanOrEqual(1032);
       expect(cell.y + cell.height).toBeLessThanOrEqual(1032);
-      expect(cell.englishFontSize).toBeGreaterThanOrEqual(34);
+      expect(cell.englishFontSize).toBeGreaterThanOrEqual(27);
+      expect(cell.trimWhitespace).toBe(true);
     }
     expect(fs.readFileSync(result.svgPath, 'utf8')).toContain('TASTE VOCABULARY');
     expect(metadata).toMatchObject({ width: 1080, height: 1080, format: 'jpeg', space: 'srgb', channels: 3 });
@@ -413,6 +414,9 @@ describe('two-slide renderer', () => {
     expect(layout.layoutVariant).toBe(layoutVariant);
     expect(layout.hero.used).toBe(true);
     expect(layout.hero.preserveFullSubject).toBe(true);
+    expect(layout.hero.trimWhitespace).toBe(true);
+    expect(layout.badge.width).toBeGreaterThanOrEqual(304);
+    expect(layout.badge.x + layout.badge.width).toBeLessThanOrEqual(548);
     expect(layout.cta).not.toHaveProperty('answerEn');
     expect(layout.cta).not.toHaveProperty('answerRu');
     expect(svg).not.toContain('готовая фраза');

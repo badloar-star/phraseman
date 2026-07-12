@@ -146,7 +146,7 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
   if (conversion.layoutVariant) {
     const variants = {
       A: { hero: { x: 628, y: 92, width: 404, height: 770 }, textWidth: 550, titleSize: 50, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
-      B: { hero: { x: 392, y: 70, width: 640, height: 820 }, textWidth: 420, titleSize: 46, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
+      B: { hero: { x: 520, y: 126, width: 512, height: 724 }, textWidth: 420, titleSize: 46, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
       C: { hero: { x: 470, y: 82, width: 562, height: 800 }, textWidth: 430, titleSize: 46, titleY: 174, explanationY: 350, benefitY: 455, buttonY: 650 },
     };
     const variant = variants[conversion.layoutVariant];
@@ -172,7 +172,7 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
         button: conversion.cta,
         buttonBackground: '#B7FF3C',
         buttonTextColor: '#07110A',
-        footer: 'Без регистрации • первый урок через 30 секунд',
+        footer: 'Без регистрации • начни первый урок за 30 секунд',
         url: conversion.url,
       },
     };
@@ -189,8 +189,8 @@ export async function renderInstallSlide({ card, heroCellPath, outputPath }) {
       <circle cx="64" cy="${variant.benefitY + 58}" r="9" fill="#77D61D"/><text x="88" y="${variant.benefitY + 69}" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0b1016">${escapeXml(conversion.benefits[1])}</text>
       <rect x="48" y="${variant.buttonY}" width="540" height="100" rx="28" fill="#B7FF3C"/>
       <text x="318" y="${variant.buttonY + 65}" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="900" fill="#07110A">${escapeXml(conversion.cta)}</text>
-      <text x="48" y="${variant.buttonY + 164}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">Без регистрации • первый урок</text>
-      <text x="48" y="${variant.buttonY + 200}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">через 30 секунд</text>
+      <text x="48" y="${variant.buttonY + 164}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">Без регистрации • начни первый урок</text>
+      <text x="48" y="${variant.buttonY + 200}" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#0b1016">за 30 секунд</text>
       <text x="48" y="${variant.buttonY + 270}" font-family="Arial, sans-serif" font-size="30" font-weight="900" fill="#0b1016">${escapeXml(displayUrl)}</text>
     </svg>`;
     return writeArtifacts({ outputPath, layout, svg });

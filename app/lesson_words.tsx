@@ -1094,7 +1094,6 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'laptop', ru: 'Ноутбук', uk: 'Ноутбук', es: 'portátil', pos: 'nouns' },
     { en: 'battery', ru: 'Батарейка', uk: 'Батарейка', es: 'pila / batería',
     'pt-BR': 'Pilha', pos: 'nouns' },
-    { en: 'batteries', ru: 'Батарейки', uk: 'Батарейки', es: 'pilas', pos: 'nouns' },
     { en: 'plant', ru: 'Растение', uk: 'Рослина', es: 'planta', pos: 'nouns' },
     { en: 'parcel', ru: 'Посылка', uk: 'Посилка', es: 'paquete', pos: 'nouns' },
     { en: 'lecture', ru: 'Лекция', uk: 'Лекція', es: 'conferencia', pos: 'nouns' },

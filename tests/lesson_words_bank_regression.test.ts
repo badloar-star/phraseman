@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ id: '11' }),
@@ -46,6 +49,20 @@ import { isCorrectAnswer } from '../constants/contractions';
 import { lessonWordBank } from '../app/lesson_words';
 
 describe('lesson words bank regressions from error reports', () => {
+  it('keeps lesson 11 battery vocabulary singular', () => {
+    const words = lessonWordBank(11);
+    const batteryWords = words.filter((word) => word.en === 'battery');
+
+    expect(batteryWords).toHaveLength(1);
+    expect(batteryWords[0]?.ru).toBe('Батарейка');
+    expect(batteryWords[0]?.uk).toBe('Батарейка');
+    expect(words.some((word) => word.en === 'batteries')).toBe(false);
+
+    const source = fs.readFileSync(path.join(__dirname, '../app/lesson_words.tsx'), 'utf8');
+    expect(source).not.toContain("{ en: 'batteries', ru: 'Батарейки'");
+    expect(source).toContain("batteries: 'battery'");
+  });
+
   it('keeps lesson 11 past-simple verb forms aligned with past-tense RU prompts', () => {
     const words = lessonWordBank(11);
     const byEn = new Map(words.map((word) => [word.en, word]));

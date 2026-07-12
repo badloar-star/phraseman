@@ -13,11 +13,11 @@ export const ACCOUNT_DELETE_WORKER_OPTIONS = {
 } as const;
 
 export const ACCOUNT_DELETE_RETRY_OPTIONS = {
-  schedule: 'every 30 minutes',
+  schedule: 'every 5 minutes',
   region: 'us-central1',
   retryCount: 3,
-  timeoutSeconds: 60,
-  memory: '256MiB' as const,
+  timeoutSeconds: 540,
+  memory: '1GiB' as const,
 } as const;
 
 export const accountDeleteWorker = onDocumentWritten(
@@ -34,6 +34,7 @@ export const accountDeleteWorker = onDocumentWritten(
 export async function sweepAccountDeletionJobs(
   db: FirebaseFirestore.Firestore,
   nowMs = Date.now(),
+  process: typeof processAccountDeletionJob = processAccountDeletionJob,
 ): Promise<void> {
   const jobs = db.collection(ACCOUNT_DELETE_JOBS);
   const [due, stranded, expired, expiredTombstones] = await Promise.all([
@@ -43,25 +44,17 @@ export async function sweepAccountDeletionJobs(
     db.collection(ACCOUNT_DELETE_TOMBSTONES).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
   ]);
 
-  const expiredIds = new Set(expired.docs.map((doc) => doc.id));
-  const terminalStatuses = new Set(['completed', 'failed']);
-  const recoverable = new Map<string, FirebaseFirestore.DocumentReference>();
-  for (const doc of [...due.docs, ...stranded.docs]) {
-    const status = String(doc.data().status ?? '');
-    if (!expiredIds.has(doc.id) && !terminalStatuses.has(status)) recoverable.set(doc.id, doc.ref);
-  }
-
-  const batch = db.batch();
-  for (const ref of recoverable.values()) {
-    batch.set(ref, {
-      retryRequestedAtMs: nowMs,
-      updatedAtMs: nowMs,
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-    }, { merge: true });
-  }
-  for (const doc of expired.docs) batch.delete(doc.ref);
-  for (const doc of expiredTombstones.docs) batch.delete(doc.ref);
-  if (recoverable.size + expired.size + expiredTombstones.size > 0) await batch.commit();
+  const recoverableIds = new Set([
+    ...due.docs.map((doc) => doc.id),
+    ...stranded.docs.map((doc) => doc.id),
+  ]);
+  await Promise.allSettled(
+    Array.from(recoverableIds, (jobId) => process(db, jobId, executeAccountDeletion, nowMs)),
+  );
+  await Promise.allSettled([
+    ...expired.docs.map((doc) => doc.ref.delete()),
+    ...expiredTombstones.docs.map((doc) => doc.ref.delete()),
+  ]);
 }
 
 export const accountDeleteRetryCron = onSchedule(

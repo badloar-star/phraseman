@@ -41,6 +41,7 @@ const storage = jest.requireMock('../app/soft_upsell_state') as {
   claimSoftUpsell: jest.Mock;
 };
 const candidate = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const };
+(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 type HookProps = { candidates: typeof candidate[]; accountScope: string; studyTarget: 'en'; hasPremiumAccess: boolean };
 
 describe('useSoftUpsellOpportunity', () => {
@@ -133,6 +134,21 @@ describe('useSoftUpsellOpportunity', () => {
     const second = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(second.result.current.opportunity).not.toBeNull());
     await expect(second.result.current.onImpression()).rejects.toThrow('disk');
+    await expect(second.result.current.onImpression()).resolves.toBeUndefined();
+    expect(storage.markSoftUpsellImpression).toHaveBeenCalledTimes(3);
+    expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_impression')).toHaveLength(2);
+  });
+
+  it('coalesces concurrent impression calls into one persistence operation', async () => {
+    let release!: () => void;
+    storage.markSoftUpsellImpression.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'concurrent', studyTarget: 'en', hasPremiumAccess: false }));
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    const first = hook.result.current.onImpression();
+    const second = hook.result.current.onImpression();
+    expect(storage.markSoftUpsellImpression).toHaveBeenCalledTimes(1);
+    release();
+    await Promise.all([first, second]);
     expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_impression')).toHaveLength(1);
   });
 
@@ -154,15 +170,41 @@ describe('useSoftUpsellOpportunity', () => {
     await hook.rerender([]);
     await act(async () => { resolve(state); await Promise.resolve(); });
     await waitFor(() => expect(hook.result.current.opportunity).toBeNull());
-    hook.unmount();
+    await hook.unmount();
 
     resetSoftUpsellSessionForTests();
     const active = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(active.result.current.opportunity).not.toBeNull());
-    await act(async () => { await active.result.current.onDismiss(); await active.result.current.onCta(); });
+    await act(async () => { await active.result.current.onCta(); await active.result.current.onDismiss(); });
+    await waitFor(() => expect(active.result.current.opportunity).toBeNull());
     expect(storage.markSoftUpsellDismissed).toHaveBeenCalledTimes(1);
     expect(analytics).toHaveBeenCalledWith('soft_upsell_dismiss', expect.any(Object));
     expect(analytics).toHaveBeenCalledWith('soft_upsell_cta', expect.objectContaining({ destination: 'personal_plan' }));
+  });
+
+  it('hides immediately on dismiss, retries transient persistence, and tracks only success', async () => {
+    let rejectPersist!: (error: Error) => void;
+    storage.markSoftUpsellDismissed.mockImplementationOnce(() => new Promise<void>((_resolve, reject) => { rejectPersist = reject; }));
+    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'dismiss-retry', studyTarget: 'en', hasPremiumAccess: false }));
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    let failed!: Promise<void>;
+    await act(async () => { failed = hook.result.current.onDismiss(); await Promise.resolve(); });
+    await waitFor(() => expect(hook.result.current.opportunity).toBeNull());
+    const rejection = expect(failed).rejects.toThrow('disk');
+    rejectPersist(new Error('disk'));
+    await rejection;
+    await expect(hook.result.current.onDismiss()).resolves.toBeUndefined();
+    expect(storage.markSoftUpsellDismissed).toHaveBeenCalledTimes(2);
+    expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_dismiss')).toHaveLength(1);
+  });
+
+  it('filters candidates to the requested study target before deciding or claiming', async () => {
+    const french = { ...candidate, studyTarget: 'fr' as const };
+    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [french], accountScope: 'target', studyTarget: 'en', hasPremiumAccess: false }));
+    await waitFor(() => expect(storage.readSoftUpsellState).toHaveBeenCalled());
+    expect(hook.result.current.opportunity).toBeNull();
+    expect(storage.claimSoftUpsell).not.toHaveBeenCalled();
+    expect(analytics).not.toHaveBeenCalled();
   });
 
 });

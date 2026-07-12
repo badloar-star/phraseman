@@ -63,12 +63,13 @@ export function useSoftUpsellOpportunity({
   hasPremiumAccess,
 }: Input): Result {
   const overlayOccupied = useOverlayOccupied();
-  const candidateSignature = signature(candidates);
+  const targetCandidates = candidates.filter((candidate) => candidate.studyTarget === studyTarget);
+  const candidateSignature = signature(targetCandidates);
   const stableCandidatesRef = useRef<{ signature: string; value: SoftUpsellCandidate[] } | null>(null);
   if (stableCandidatesRef.current?.signature !== candidateSignature) {
     stableCandidatesRef.current = {
       signature: candidateSignature,
-      value: candidates.map((candidate) => ({ ...candidate }))
+      value: targetCandidates.map((candidate) => ({ ...candidate }))
         .sort((left, right) => TRIGGER_PRIORITY[right.trigger] - TRIGGER_PRIORITY[left.trigger]
           || (right.trigger === 'streak_milestone' ? right.value - left.value : 0)),
     };
@@ -76,14 +77,18 @@ export function useSoftUpsellOpportunity({
   const stableCandidates = stableCandidatesRef.current.value;
   const [opportunity, setOpportunity] = useState<SoftUpsellOpportunity | null>(null);
   const opportunityRef = useRef<SoftUpsellOpportunity | null>(null);
-  const impressionRef = useRef<string | null>(null);
-  const dismissRef = useRef<string | null>(null);
+  const pendingDismissRef = useRef<SoftUpsellOpportunity | null>(null);
+  const impressionCompletedRef = useRef(new Set<string>());
+  const impressionInFlightRef = useRef(new Map<string, Promise<void>>());
+  const dismissCompletedRef = useRef(new Set<string>());
+  const dismissInFlightRef = useRef(new Map<string, Promise<void>>());
 
   useEffect(() => {
     let active = true;
     const run = async () => {
       setOpportunity(null);
       opportunityRef.current = null;
+      pendingDismissRef.current = null;
       const persisted = await readSoftUpsellState(accountScope, studyTarget);
       if (!active) return;
       const decision = decideSoftUpsell({
@@ -140,18 +145,44 @@ export function useSoftUpsellOpportunity({
 
   const onImpression = useCallback(async () => {
     const item = opportunityRef.current;
-    if (!item || impressionRef.current === item.milestoneId) return;
-    impressionRef.current = item.milestoneId;
-    await markSoftUpsellImpression(accountScope, studyTarget, item.context, item.milestoneId, Date.now());
-    await trackSoftUpsellEvent('soft_upsell_impression', { ...basePayload(item), destination: item.destination });
+    if (!item || impressionCompletedRef.current.has(item.milestoneId)) return;
+    const existing = impressionInFlightRef.current.get(item.milestoneId);
+    if (existing) return existing;
+    const operation = (async () => {
+      await markSoftUpsellImpression(accountScope, studyTarget, item.context, item.milestoneId, Date.now());
+      await trackSoftUpsellEvent('soft_upsell_impression', { ...basePayload(item), destination: item.destination });
+      impressionCompletedRef.current.add(item.milestoneId);
+    })();
+    impressionInFlightRef.current.set(item.milestoneId, operation);
+    try {
+      await operation;
+    } finally {
+      impressionInFlightRef.current.delete(item.milestoneId);
+    }
   }, [accountScope, basePayload, studyTarget]);
 
   const onDismiss = useCallback(async () => {
-    const item = opportunityRef.current;
-    if (!item || dismissRef.current === item.milestoneId) return;
-    dismissRef.current = item.milestoneId;
-    await markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now());
-    await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
+    const item = opportunityRef.current ?? pendingDismissRef.current;
+    if (!item || dismissCompletedRef.current.has(item.milestoneId)) return;
+    if (opportunityRef.current) {
+      opportunityRef.current = null;
+      pendingDismissRef.current = item;
+      setOpportunity(null);
+    }
+    const existing = dismissInFlightRef.current.get(item.milestoneId);
+    if (existing) return existing;
+    const operation = (async () => {
+      await markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now());
+      await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
+      dismissCompletedRef.current.add(item.milestoneId);
+      if (pendingDismissRef.current?.milestoneId === item.milestoneId) pendingDismissRef.current = null;
+    })();
+    dismissInFlightRef.current.set(item.milestoneId, operation);
+    try {
+      await operation;
+    } finally {
+      dismissInFlightRef.current.delete(item.milestoneId);
+    }
   }, [accountScope, basePayload, studyTarget]);
 
   const onCta = useCallback(async () => {

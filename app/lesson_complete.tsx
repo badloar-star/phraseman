@@ -56,7 +56,9 @@ import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
-import ResultsSequence from '../components/feedback/ResultsSequence';
+import ProgressCompletionView from '../components/feedback/ProgressCompletionView';
+import { buildProgressCompletionModel } from './completion/progress_completion_model';
+import { lessonSavedResultCopy } from './completion/progress_completion_copy';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
@@ -81,11 +83,6 @@ const RESULTS_STARS_BY_TIER: Record<MedalTier, number> = {
   silver: 2,
   gold: 3,
 };
-// Витринное значение XP-тикера секвенции — то же «+500 XP», что и статичная
-// плашка бонуса ниже (s.lessonComplete.bonus). Только визуал: начисление XP
-// живёт в уроке/грантах, этот экран экономику не трогает.
-const RESULTS_SEQUENCE_XP = 500;
-
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
@@ -1297,11 +1294,21 @@ export default function LessonComplete() {
           тап по экрану пропускает анимацию (внутри компонента), CTA закрывает. */}
       {sequenceShowing && (
         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }}>
-          <ResultsSequence
+          <ProgressCompletionView
+            model={buildProgressCompletionModel({
+              fact: c.title,
+              accumulated: c.subtitle(lessonId),
+              nextStep: lessonSavedResultCopy(lang),
+              primaryAction: {
+                id: 'continue',
+                label: triLang(lang, { ru: 'Продолжить путь', uk: 'Продовжити шлях', es: 'Continuar el camino', 'pt-BR': 'Continuar o caminho', vi: 'Tiếp tục hành trình', id: 'Lanjutkan perjalanan', tr: 'Yola devam et', pl: 'Kontynuuj drogę' }),
+              },
+              confirmed: {
+                perfect: medalTier === 'gold',
+              },
+            })}
             stars={RESULTS_STARS_BY_TIER[medalTier]}
-            xp={RESULTS_SEQUENCE_XP}
-            title={c.title}
-            subtitle={c.subtitle(lessonId)}
+            xp={bonusXP}
             badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
               <Image
                 source={MEDAL_IMAGES_COMPLETE[medalTier]}
@@ -1309,9 +1316,7 @@ export default function LessonComplete() {
                 contentFit="contain"
               />
             ) : undefined}
-            intensity="full"
-            onCtaPrimary={() => setSeqDone(true)}
-            ctaPrimaryLabel={triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
+            onAction={() => setSeqDone(true)}
           />
         </View>
       )}

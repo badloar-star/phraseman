@@ -9,6 +9,8 @@ import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import ProgressProofBlock from '../components/feedback/ProgressProofBlock';
+import { buildProgressCompletionModel } from './completion/progress_completion_model';
 import {
   getPlanById,
   type PersonalPlanDefinition,
@@ -39,7 +41,7 @@ type CompleteView = {
  */
 export default function PersonalPlanCompleteScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const [view, setView] = useState<CompleteView | null>(null);
@@ -110,6 +112,15 @@ export default function PersonalPlanCompleteScreen() {
 
   const { summary, nextPlan } = view;
   const accent = nextPlan.accent || t.accent;
+  const completionModel = buildProgressCompletionModel({
+    fact: triLang(lang, {
+      ru: `Маршрут «${summary.planName}» пройден`, uk: `Маршрут «${summary.planName}» пройдено`, es: `Ruta «${summary.planName}» completada`, 'pt-BR': `Rota «${summary.planName}» concluída`, vi: `Đã hoàn thành «${summary.planName}»`, id: `Rute «${summary.planName}» selesai`, tr: `«${summary.planName}» rotası tamamlandı`, pl: `Trasa „${summary.planName}” ukończona`,
+    }),
+    accumulated: triLang(lang, { ru: `${summary.completedTasks} вызовов за ${summary.totalDays} дней`, uk: `${summary.completedTasks} викликів за ${summary.totalDays} днів`, es: `${summary.completedTasks} tareas en ${summary.totalDays} días`, 'pt-BR': `${summary.completedTasks} tarefas em ${summary.totalDays} dias`, vi: `${summary.completedTasks} nhiệm vụ trong ${summary.totalDays} ngày`, id: `${summary.completedTasks} tugas dalam ${summary.totalDays} hari`, tr: `${summary.totalDays} günde ${summary.completedTasks} görev`, pl: `${summary.completedTasks} zadań w ${summary.totalDays} dni` }),
+    nextStep: nextPlan.goal,
+    primaryAction: { id: 'next-plan', label: triLang(lang, { ru: 'Начать новый маршрут', uk: 'Почати новий маршрут', es: 'Empezar nueva ruta', 'pt-BR': 'Começar nova rota', vi: 'Bắt đầu lộ trình mới', id: 'Mulai rute baru', tr: 'Yeni rotaya başla', pl: 'Zacznij nową trasę' }) },
+    confirmed: { routeComplete: true },
+  });
 
   return (
     <ScreenGradient>
@@ -132,18 +143,7 @@ export default function PersonalPlanCompleteScreen() {
                 pl: 'TRASA UKOŃCZONA',
               })}
             </Text>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
-              {triLang(lang, {
-                ru: `Ты прошёл «${summary.planName}»`,
-                uk: `Ти пройшов «${summary.planName}»`,
-                es: `Completaste «${summary.planName}»`,
-                'pt-BR': `Você concluiu «${summary.planName}»`,
-                vi: `Bạn đã hoàn thành «${summary.planName}»`,
-                id: `Kamu menyelesaikan «${summary.planName}»`,
-                tr: `«${summary.planName}» rotasını bitirdin`,
-                pl: `Ukończyłeś «${summary.planName}»`,
-              })}
-            </Text>
+            <ProgressProofBlock model={completionModel} testID="personal-plan-progress-proof" />
 
             <View style={styles.statsRow}>
               <View style={[styles.statBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>

@@ -20,6 +20,8 @@ import GoldBevel from '../../components/GoldBevel';
 import { getQuizCompletionMedalSource } from './medal_assets';
 import { monoIcon } from '../../constants/monoIcon';
 import BouncyScrollView from '../../components/BouncyScrollView';
+import ProgressProofBlock from '../../components/feedback/ProgressProofBlock';
+import { buildProgressCompletionModel } from '../completion/progress_completion_model';
 
 type Props = {
   phrases: QuizPhrase[];
@@ -90,6 +92,15 @@ export default function QuizResultView({
   });
   const wrongPhrases = phrases.filter((_, i) => !results[i]);
   const { level: lv, xpNeeded } = getXPProgress(totalXP + score);
+  const completionModel = buildProgressCompletionModel({
+    fact: `${right} / ${total} · ${pct}%`,
+    accumulated: rankLabel,
+    nextStep: wrongPhrases.length > 0
+      ? triLang(effectiveLang, { ru: `${wrongPhrases.length} фраз ждут закрепления`, uk: `${wrongPhrases.length} фраз чекають закріплення`, es: `${wrongPhrases.length} frases esperan repaso`, 'pt-BR': `${wrongPhrases.length} frases aguardam revisão`, vi: `${wrongPhrases.length} cụm từ cần ôn lại`, id: `${wrongPhrases.length} frasa menunggu ulasan`, tr: `${wrongPhrases.length} ifade tekrar bekliyor`, pl: `${wrongPhrases.length} zwrotów czeka na powtórkę` })
+      : triLang(effectiveLang, { ru: 'Все ответы подтверждены', uk: 'Усі відповіді підтверджено', es: 'Todas las respuestas confirmadas', 'pt-BR': 'Todas as respostas confirmadas', vi: 'Tất cả câu trả lời đã được xác nhận', id: 'Semua jawaban telah dikonfirmasi', tr: 'Tüm yanıtlar doğrulandı', pl: 'Wszystkie odpowiedzi potwierdzone' }),
+    primaryAction: { id: wrongPhrases.length ? 'review' : 'back', label: triLang(effectiveLang, { ru: wrongPhrases.length ? 'Закрепить фразы' : 'Вернуться', uk: wrongPhrases.length ? 'Закріпити фрази' : 'Повернутися', es: wrongPhrases.length ? 'Repasar frases' : 'Volver', 'pt-BR': wrongPhrases.length ? 'Revisar frases' : 'Voltar', vi: wrongPhrases.length ? 'Ôn lại cụm từ' : 'Quay lại', id: wrongPhrases.length ? 'Tinjau frasa' : 'Kembali', tr: wrongPhrases.length ? 'İfadeleri pekiştir' : 'Geri dön', pl: wrongPhrases.length ? 'Utrwal zwroty' : 'Wróć' }) },
+    confirmed: { perfect: pct === 100 },
+  });
 
   return (
     <ScreenGradient artBackdrop="quizzes">
@@ -113,9 +124,7 @@ export default function QuizResultView({
               {isGoldTheme && <GoldBevel radius={12} intensity="normal" />}
               <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
             </LinearGradient>
-            <Text style={{ color: sx.primary, fontSize: f.numLg, fontWeight: '700', marginBottom: 10 }} numberOfLines={1}>{sQuiz.quizzes.done}</Text>
-            <Text style={{ color: sx.primary, fontSize: f.h1, marginBottom: 4 }}>{right} / {total}</Text>
-            <Text style={{ color: sx.second, fontSize: f.numLg + 8, fontWeight: '700', marginBottom: 8 }} numberOfLines={1}>{pct}%</Text>
+            <ProgressProofBlock model={completionModel} testID="quiz-progress-proof" />
             <Animated.Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '600', marginBottom: bonusXP > 0 ? 4 : 16, transform: [{ translateY: xpFlyY }], opacity: xpFlyOpacity }}>
               +{Math.round(score)}{' '}
               {triLang(effectiveLang, {

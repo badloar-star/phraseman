@@ -12,6 +12,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, Animated, StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import AccordionChevronIonicons from '../components/AccordionChevronIonicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -392,7 +393,13 @@ function Header({
   onPress: () => void;
 }) {
   return (
-    <TouchableOpacity activeOpacity={0.86} onPress={onPress} style={styles.titleRow}>
+    <TouchableOpacity
+      activeOpacity={0.86}
+      onPress={onPress}
+      style={styles.titleRow}
+      accessibilityRole="button"
+      accessibilityState={{ expanded, busy }}
+    >
       <WeeklyCompassIcon active={active} themeMode={themeMode} accent={iconAccent} />
       <View style={{ flex: 1 }}>
         <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: Math.max(16, f.h2 * 0.82) }]}>
@@ -416,7 +423,7 @@ function Header({
               })}
         </Text>
       </View>
-      <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={18} color={t.textMuted} />
+      <AccordionChevronIonicons isOpen={expanded} size={18} color={t.textMuted} />
     </TouchableOpacity>
   );
 }

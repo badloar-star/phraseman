@@ -28,7 +28,11 @@ function AccordionChevronIonicons({
   const iconColor = isOpen && openColor != null ? openColor : color;
 
   return (
-    <Animated.View style={{ opacity: chevronOpacity, transform: [{ rotate }, { scale: chevronScale }] }}>
+    <Animated.View
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={{ opacity: chevronOpacity, transform: [{ rotate }, { scale: chevronScale }] }}
+    >
       <Ionicons name="chevron-down" size={size} color={iconColor} />
     </Animated.View>
   );

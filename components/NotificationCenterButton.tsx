@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useTheme } from './ThemeContext';
@@ -20,6 +20,8 @@ import {
   type UserNotificationType,
 } from '../app/user_notifications';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import PressableScale from './PressableScale';
+import MotionModal from './MotionModal';
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
@@ -143,7 +145,6 @@ function NotificationCenterButton() {
     let alive = true;
     const refreshOnce = () => {
       void refreshUserNotificationsOnce({
-        force: true,
         minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
       }).then((list) => {
         if (alive) setItems(list);
@@ -171,7 +172,6 @@ function NotificationCenterButton() {
 
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
   const open = useCallback(() => {
-    hapticTap();
     setVisible(true);
     const unreadIds = items
       .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
@@ -275,13 +275,14 @@ function NotificationCenterButton() {
 
   return (
     <>
-      <TouchableOpacity
+      <PressableScale
         testID="home-notification-center-button"
-        activeOpacity={0.78}
+        variant="icon"
         accessibilityRole="button"
         accessibilityLabel={copy.title}
         onPress={open}
-        style={styles.headerButton}
+        style={styles.headerPressable}
+        contentStyle={styles.headerButton}
       >
         <View style={styles.headerIconWrap}>
           <Ionicons name="notifications-outline" size={30} color={t.accent} />
@@ -291,9 +292,9 @@ function NotificationCenterButton() {
             <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
           </View>
         ) : null}
-      </TouchableOpacity>
+      </PressableScale>
 
-      <Modal visible={visible} animationType="slide" presentationStyle="fullScreen" onRequestClose={close}>
+      <MotionModal visible={visible} onRequestClose={close} testID="notification-center-motion-modal">
         <View testID="notification-center-screen" style={{ flex: 1, backgroundColor: t.bgCard, paddingTop: topInset }}>
           <View style={styles.header}>
             {selected ? (
@@ -388,12 +389,16 @@ function NotificationCenterButton() {
           </ScrollView>
           )}
         </View>
-      </Modal>
+      </MotionModal>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  headerPressable: {
+    width: 48,
+    height: 46,
+  },
   headerButton: {
     width: 48,
     height: 46,

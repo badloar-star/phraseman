@@ -495,6 +495,8 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx }: TabScaffoldPr
                     testID={`tab-${tab.key}`}
                     accessibilityLabel={`qa-tab-${tab.key}`}
                     accessible={true}
+                    accessibilityRole="tab"
+                    accessibilityState={{ selected: visuallyFocused }}
                     style={s.tabBtn}
                     onPressIn={() => beginTabPress(i)}
                     onPressOut={endTabPress}

@@ -178,7 +178,6 @@ describe('owner runtime direction contract', () => {
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
-      'components/feedback/ResultsSequence.tsx': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/LeagueChatPanel.tsx': 1,
       'components/StreakReviveModal.tsx': 1,

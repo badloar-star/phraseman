@@ -19,6 +19,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
+import MotionModal from './MotionModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon } from '../constants/monoIcon';
@@ -143,8 +144,6 @@ function AppMessagesInbox() {
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
   const [renderButton, setRenderButton] = useState(isScreenFocused);
   const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
-  const fade = useRef(new Animated.Value(0)).current;
-  const panel = useRef(new Animated.Value(18)).current;
   const badgePulse = useRef(new Animated.Value(1)).current;
   const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const blurRenderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -400,13 +399,6 @@ function AppMessagesInbox() {
     if (flyTimer.current) clearTimeout(flyTimer.current);
     flightInProgressRef.current = false; // снять замок при размонтировании
   }, []);
-
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fade, { toValue: visible ? 1 : 0, duration: visible ? 180 : 140, useNativeDriver: true }),
-      Animated.spring(panel, { toValue: visible ? 0 : 18, useNativeDriver: true, friction: 9, tension: 120 }),
-    ]).start();
-  }, [fade, panel, visible]);
 
   useEffect(() => {
     if (!selected || !selected.unread) return;
@@ -970,12 +962,12 @@ function AppMessagesInbox() {
         );
       })() : null}
 
-      <Modal visible={visible} transparent animationType="none" onRequestClose={closeInbox}>
-        <Animated.View style={[styles.backdrop, { opacity: fade }]}>
+      <MotionModal visible={visible} onRequestClose={closeInbox} testID="app-messages-motion-modal">
+        <View style={styles.backdrop}>
           <Pressable style={StyleSheet.absoluteFill} onPress={closeInbox} />
-        </Animated.View>
+        </View>
         <View pointerEvents="box-none" style={styles.modalWrap}>
-          <Animated.View style={[styles.panelAnim, { opacity: fade, transform: [{ translateY: panel }] }]}>
+          <View style={styles.panelAnim}>
             <LinearGradient
               colors={chrome.panelGradient}
               start={{ x: 0, y: 0 }}
@@ -993,9 +985,9 @@ function AppMessagesInbox() {
               />
               {selected ? renderDetail() : renderList()}
             </LinearGradient>
-          </Animated.View>
+          </View>
         </View>
-      </Modal>
+      </MotionModal>
       <VipSurveyModal
         visible={!!surveyTarget}
         messageId={surveyTarget?.id ?? ''}

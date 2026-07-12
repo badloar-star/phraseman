@@ -1520,6 +1520,8 @@ export {
   adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
+  adminWebsiteInboxList,
+  adminWebsiteInboxMarkRead,
 } from './support_inbox';
 
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
@@ -1534,6 +1536,7 @@ export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
 export {
   adminListAppMessages,
   adminCreateAppMessage,
@@ -1553,6 +1556,7 @@ export { getActiveLanguageCatalog } from './language_catalog';
 export { getPublishedLessonArtifact } from './language_content';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
+export { adminListBetaTesters, adminUpdateBetaTester } from './admin_beta_testers';
 export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';

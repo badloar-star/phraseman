@@ -13,7 +13,9 @@
 // дедуп, обрезка, сборка ответа с подписью, отбор для «всем») отделена от I/O
 // (IMAP/SMTP/OpenAI) — чистое покрыто unit-тестами без сети.
 //
-// НЕ трогает Support (site) (website_contact_inbox) и Resend-рассылку (admin_email).
+// Gmail-поток не смешивает данные с Support (site), но этот модуль также отдаёт
+// отдельный защищённый admin bridge для website_contact_inbox, чтобы обе очереди
+// были видны на одном экране без прямого чтения Firestore из нового клиента.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
@@ -1798,6 +1800,88 @@ export const adminSupportSetStatus = onCall(
       });
     });
     return { ok: true, status };
+  },
+);
+
+function websiteInboxDateMs(value: unknown): number {
+  if (value && typeof value === 'object' && 'toMillis' in value && typeof (value as { toMillis?: unknown }).toMillis === 'function') {
+    return Number((value as { toMillis: () => number }).toMillis()) || 0;
+  }
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  const parsed = Date.parse(String(value ?? ''));
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+export const adminWebsiteInboxList = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requireSupportPermission(request, 'support.inbox.read');
+    const requestedLimit = Math.floor(Number(request.data?.limit ?? 200));
+    const pageSize = Math.max(1, Math.min(200, Number.isFinite(requestedLimit) ? requestedLimit : 200));
+    const snap = await admin.firestore().collection('website_contact_inbox').orderBy('createdAt', 'desc').limit(pageSize).get();
+    const items = snap.docs.map((docSnap) => {
+      const data = docSnap.data() ?? {};
+      return {
+        id: docSnap.id,
+        status: String(data.status ?? 'new').slice(0, 40),
+        name: String(data.name ?? '').slice(0, 320),
+        email: String(data.email ?? '').slice(0, 320),
+        topic: String(data.topic ?? 'Общее').slice(0, 200),
+        message: String(data.message ?? '').slice(0, 12_000),
+        pageUrl: String(data.pageUrl ?? '').slice(0, 2_000),
+        createdAtMs: websiteInboxDateMs(data.createdAt),
+        readAt: String(data.readAt ?? '').slice(0, 80),
+      };
+    });
+    return { state: items.length ? 'ready' : 'empty', items, truncated: snap.size >= pageSize, limit: pageSize };
+  },
+);
+
+export const adminWebsiteInboxMarkRead = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    const context = requireSupportPermission(request, 'support.archive');
+    const messageId = String(request.data?.messageId ?? '').trim().slice(0, 240);
+    const reason = String(request.data?.reason ?? '').trim().slice(0, 500);
+    const idempotencyKey = String(request.data?.idempotencyKey ?? '').trim().slice(0, 160);
+    const requestId = boundedSupportRequestId(request.data?.requestId, 'website-inbox-read');
+    if (!messageId || !reason || !idempotencyKey || !/^[A-Za-z0-9._:-]+$/.test(idempotencyKey)) {
+      throw new HttpsError('invalid-argument', 'messageId, reason and idempotencyKey are required');
+    }
+    const db = admin.firestore();
+    const messageRef = db.collection('website_contact_inbox').doc(messageId);
+    const operationRef = db.collection('admin_command_operations').doc(idempotencyKey);
+    const auditRef = db.collection('admin_log').doc();
+    const requestFingerprint = createHash('sha256').update(JSON.stringify({ messageId, reason }), 'utf8').digest('hex');
+    return db.runTransaction(async (tx) => {
+      const [message, operation] = await Promise.all([tx.get(messageRef), tx.get(operationRef)]);
+      if (operation.exists) {
+        const previous = operation.data() ?? {};
+        if (String(previous.requestFingerprint ?? '') !== requestFingerprint) throw new HttpsError('already-exists', 'idempotencyKey reused for another payload');
+        if (String(previous.actorUid ?? '') !== context.actorUid) throw new HttpsError('permission-denied', 'operation belongs to another actor');
+        return { ok: true, messageId, auditId: String(previous.auditId ?? ''), replayed: true };
+      }
+      if (!message.exists) throw new HttpsError('not-found', 'website_message_not_found');
+      const before = message.data() ?? {};
+      const after = {
+        ...before,
+        status: 'read',
+        readAt: new Date().toISOString(),
+        readBy: context.actorUid,
+      };
+      const audit = createAuditRecord({
+        action: 'support.website.read', actorUid: context.actorUid, role: context.role,
+        entity: { collection: 'website_contact_inbox', id: messageId }, reason,
+        before, after, requestId, rollbackReference: messageId, timestamp: new Date().toISOString(),
+      });
+      tx.set(messageRef, { status: after.status, readAt: after.readAt, readBy: after.readBy }, { merge: true });
+      tx.create(auditRef, { ...audit, operationId: idempotencyKey });
+      tx.create(operationRef, {
+        operationId: idempotencyKey, requestFingerprint, actorUid: context.actorUid,
+        entityId: messageId, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return { ok: true, messageId, auditId: auditRef.id, replayed: false };
+    });
   },
 );
 

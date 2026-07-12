@@ -51,14 +51,15 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain('data-tooltip="Открыть защищённое управление аккаунтом"');
     expect(core).toContain('data-tooltip="Найти пользователя без загрузки всей базы"');
     const profileRenderer = core.slice(core.indexOf('function renderProfile()'), core.indexOf('function renderUsers()'));
-    expect(profileRenderer).not.toContain('button primary');
+    expect(profileRenderer).toContain('data-action="confirm-beta-tester-action"');
     expect(server).toContain("invitedBy: sources.invitedBy");
     expect(server).toContain("sourceResult('referral_attribution_owner'");
   });
 
-  test('keeps dangerous mutations in the legacy fallback until each has a guarded command protocol', () => {
+  test('keeps unported dangerous mutations in legacy while allowing the guarded beta protocol', () => {
     const core = read('admin/v2/scripts/admin-core.js');
-    expect(core).toContain('Изменяющие действия пока открываются в действующем модуле');
+    expect(core).toContain('data-action="preview-beta-tester-action"');
+    expect(core).toContain('data-action="confirm-beta-tester-action"');
     expect(core).not.toContain('data-action="delete-user"');
     expect(core).not.toContain('data-action="merge-user"');
     expect(core).not.toContain('data-action="grant-user-plus"');

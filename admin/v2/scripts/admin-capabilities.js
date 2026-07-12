@@ -78,6 +78,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'asset-studio': 'asset-studio',
   'gmail-support': 'support',
   'website-inbox': 'support',
+  'beta-testers': 'users',
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
   'promo-codes': 'money',

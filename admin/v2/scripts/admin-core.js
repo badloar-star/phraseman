@@ -126,6 +126,7 @@ const state = {
   remoteConfigPreview: null,
   paywallAb: { status: 'idle', workspace: null, draft: null, preview: null, rangeDays: 28, includeDev: false, error: '' },
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
+  betaTesters: { state: 'idle', items: [], pending: null, error: '', truncated: false },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
   reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
@@ -679,7 +680,8 @@ function renderProfile() {
   return `<div class="profile-workspace">
     ${state.users.profileLoading ? '<div class="notice" role="status" aria-live="polite">Обновляю источники; текущий снимок остаётся на экране.</div>' : ''}
     <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(profile.identity?.reason || 'requested')}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(legacyUrl)}" target="_blank" rel="noopener" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
-    <div class="notice warning">Изменяющие действия пока открываются в действующем модуле: имя, XP, streak, Plus, осколки, награды, merge, сбросы, предупреждение, бан и удаление. Для каждого будет отдельный защищённый протокол с причиной, подтверждением и аудитом.</div>
+    <div class="notice warning">Остальные изменяющие действия пока открываются в действующем модуле: имя, XP, streak, осколки, награды, merge, сбросы, предупреждение, бан и удаление. Бета-статус, «Нимб», постоянный Plus и команды энергии уже перенесены ниже.</div>
+    <section class="card section"><div class="card-header"><div><h3>Бета-тестер и тестовый доступ</h3><p>Команды применяются к каноническому UID через сервер, с причиной и обязательным аудитом.</p></div><div class="actions"><span class="badge ${summary.betaTester ? 'success' : ''}">${summary.betaTester ? 'Бета-тестер' : 'Обычный пользователь'}</span><span class="badge ${summary.activeAura === 'aura_beta_nimbus' ? 'success' : ''}">${summary.activeAura === 'aura_beta_nimbus' ? 'Нимб активен' : 'Нимб не активен'}</span><span class="badge ${summary.plusForever ? 'success' : ''}">${summary.plusForever ? 'Plus навсегда' : 'Без постоянного Plus'}</span></div></div><div class="card-body"><div class="field full"><label for="beta-tester-reason">Причина операции</label><textarea id="beta-tester-reason" maxlength="500" placeholder="Кто запросил, зачем нужна операция и как проверить результат">${escapeHtml(state.betaTesters.pending?.reason || '')}</textarea></div><div class="actions section"><button class="button" data-action="preview-beta-tester-action" data-beta-action="${summary.betaTester ? 'unset_beta' : 'set_beta'}" type="button"${disabledWhenUnauthorized('users.write')} title="${summary.betaTester ? 'Снять только бета-флаг; Нимб останется у пользователя' : 'Выдать бета-флаг и активировать Нимб'}">${summary.betaTester ? 'Снять бета-статус' : 'Назначить + выдать Нимб'}</button><button class="button" data-action="preview-beta-tester-action" data-beta-action="grant_plus" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Выдать административный Plus без срока окончания">Выдать Plus навсегда</button><button class="button" data-action="preview-beta-tester-action" data-beta-action="energy_fill" type="button"${disabledWhenUnauthorized('users.write')} title="Поставить одноразовую команду заполнения энергии">Заполнить энергию</button><button class="button danger" data-action="preview-beta-tester-action" data-beta-action="energy_drain" type="button"${disabledWhenUnauthorized('users.write')} title="Поставить одноразовую команду обнуления энергии">Обнулить энергию</button></div>${state.betaTesters.pending ? `<div class="notice warning section"><strong>Предпросмотр операции</strong><br>${escapeHtml(state.betaTesters.pending.label)} для <code>${escapeHtml(profile.canonicalUid)}</code><br>Причина: ${escapeHtml(state.betaTesters.pending.reason)}<div class="actions end section"><button class="button" data-action="cancel-beta-tester-action" type="button" title="Отменить без записи">Отмена</button><button class="button primary" data-action="confirm-beta-tester-action" type="button" title="Выполнить серверную команду и записать аудит">Подтвердить</button></div></div>` : ''}</div></section>
     <div class="profile-section-grid">
       <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
       <section class="card profile-section"><div class="card-header"><div><h3>2. Обучение</h3><p>Прогресс без выдачи сырого документа.</p></div></div><div class="profile-metrics"><div><strong>${Number(summary.xp || 0).toLocaleString('ru-RU')}</strong><small>XP</small></div><div><strong>${Number(summary.streak || 0)}</strong><small>дней streak</small></div><div><strong>${Number(summary.lessonsCompleted || 0)}</strong><small>уроков</small></div><div><strong>${escapeHtml(summary.placementLevel || '—')}</strong><small>уровень</small></div></div></section>
@@ -692,9 +694,16 @@ function renderProfile() {
   </div>`;
 }
 
+function renderBetaTesters() {
+  const view = state.betaTesters;
+  const content = view.state === 'loading' ? '<div class="profile-loading" role="status"><span class="loading-bar"></span><span>Загружаю бета-тестеров…</span></div>' : view.error ? `<div class="notice danger">${escapeHtml(view.error)}</div>` : !view.items.length ? emptyState(view.state === 'idle' ? 'Нажмите «Загрузить список».' : 'Активных бета-тестеров нет.') : `<div class="data-list">${view.items.map((item) => `<div class="list-row"><div><strong>${escapeHtml(item.name || item.uid)}</strong><small>${escapeHtml(item.email || item.uid)} · с ${escapeHtml(dateTime(item.betaSinceMs))}</small></div><div class="actions"><span class="badge ${item.ownsNimbus ? 'success' : 'warning'}">${item.ownsNimbus ? 'Нимб' : 'Без Нимба'}</span><span class="badge ${item.plusForever ? 'success' : ''}">${item.plusForever ? 'Plus ∞' : 'Free'}</span><button class="button small" data-action="open-beta-tester" data-beta-uid="${escapeHtml(item.uid)}" type="button" title="Открыть канонический профиль и защищённые действия">Открыть</button></div></div>`).join('')}</div>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Бета-тестеры</h2><p>Список объединён с единым профилем; отдельная административная страница больше не нужна для ежедневной работы.</p></div><div class="actions"><span class="badge ${view.truncated ? 'warning' : ''}">${view.items.length || '—'}${view.truncated ? '+' : ''}</span><button class="button" data-action="load-beta-testers" type="button"${disabledWhenUnauthorized('users.read')} title="Загрузить до 300 активных бета-тестеров с сервера">${view.state === 'idle' ? 'Загрузить список' : 'Обновить'}</button></div></div><div class="card-body">${content}</div></section>`;
+}
+
 function renderUsers() {
   if (!can('users.read')) return `${pageHeader(PAGES.users, 'Пользователи')}<div class="notice warning">Для просмотра профилей нужна роль с разрешением users.read. Сохранённые результаты скрыты.</div>`;
   return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a><a class="button primary" href="#report-center" title="Открыть единый центр репортов">Центр репортов</a>')}
+    ${renderBetaTesters()}
     <section class="card user-search-card"><div class="card-header"><div><h2>Найти пользователя</h2><p>Точный серверный поиск без загрузки всей базы в браузер.</p></div><span class="badge">users.read</span></div><div class="card-body"><div class="user-search-form"><div class="field"><label for="user-search">Почта, точное имя или UID</label><input id="user-search" type="search" value="${escapeHtml(state.users.query)}" placeholder="alice@example.com или stable UID" autocomplete="off"></div><button class="button primary" data-action="search-admin-users" type="button" title="Найти пользователя без загрузки всей базы" data-tooltip="Найти пользователя без загрузки всей базы"${disabledWhenUnauthorized('users.read')}>Найти</button></div>${renderUserSearchResults()}</div></section>
     <div class="section">${renderProfile()}</div>`;
 }
@@ -2573,6 +2582,43 @@ async function handleAction(action, target) {
     state.users.profileLoading = true;
     return runBusy(() => loadAdminUserProfile(uid), 'Профиль обновлён.');
   }
+  if (action === 'load-beta-testers') return runBusy(async () => {
+    state.betaTesters.state = 'loading';
+    const result = await actions.listBetaTesters();
+    state.betaTesters = { state: 'ready', items: Array.isArray(result?.items) ? result.items : [], pending: null, error: '', truncated: result?.truncated === true };
+  }, 'Список бета-тестеров загружен.');
+  if (action === 'open-beta-tester') {
+    const uid = String(target.getAttribute('data-beta-uid') || '').trim();
+    if (!uid) return;
+    state.users.profileLoading = true;
+    return runBusy(() => loadAdminUserProfile(uid), 'Профиль бета-тестера загружен.');
+  }
+  if (action === 'preview-beta-tester-action') {
+    const command = String(target.getAttribute('data-beta-action') || '');
+    const reason = String(document.getElementById('beta-tester-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину операции с бета-тестером.', 'warning');
+    const labels = { set_beta: 'Назначить бета-тестером и выдать «Нимб»', unset_beta: 'Снять только бета-статус, сохранив «Нимб»', grant_plus: 'Выдать Plus навсегда', energy_fill: 'Поставить команду заполнения энергии', energy_drain: 'Поставить команду обнуления энергии' };
+    if (!labels[command]) return setMessage('Неизвестная операция.', 'warning');
+    state.betaTesters.pending = { action: command, reason, label: labels[command] };
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'cancel-beta-tester-action') { state.betaTesters.pending = null; renderCurrentPage(); return; }
+  if (action === 'confirm-beta-tester-action') {
+    const pending = state.betaTesters.pending;
+    const uid = String(state.users.profile?.canonicalUid || '');
+    if (!pending || !uid) return;
+    if (!globalThis.confirm(`${pending.label}?\n\nUID: ${uid}\nПричина: ${pending.reason}`)) return;
+    return runBusy(async () => {
+      await actions.updateBetaTester({ uid, action: pending.action, reason: pending.reason, idempotencyKey: id(`beta-tester:${uid}`), requestId: id('request-beta-tester') });
+      state.betaTesters.pending = null;
+      await loadAdminUserProfile(uid);
+      if (state.betaTesters.state === 'ready') {
+        const result = await actions.listBetaTesters();
+        state.betaTesters = { state: 'ready', items: Array.isArray(result?.items) ? result.items : [], pending: null, error: '', truncated: result?.truncated === true };
+      }
+    }, 'Операция выполнена и записана в аудит.');
+  }
   if (action === 'load-remote-config') return runBusy(async () => { state.remoteConfig = await actions.getRemoteConfigWorkspace(); state.remoteConfigPreview = null; }, 'Конфигурация и история загружены.');
   if (action === 'preview-remote-config') {
     try { state.remoteConfigPreview = buildRemoteConfigPreview(); setMessage('Предпросмотр готов. Проверьте изменения перед публикацией.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
@@ -2962,6 +3008,7 @@ export function setAuthState(auth) {
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
+    state.betaTesters = { state: 'idle', items: [], pending: null, error: '', truncated: false };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };

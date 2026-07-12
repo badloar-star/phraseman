@@ -59,7 +59,6 @@ const syntheticBuild = (
 
 type Classification = 'introduced_now' | 'known_before' | 'covered_irregular' | 'structural' | 'ambiguous' | 'missing';
 type AmbiguousEntry = { lessonId: number; phraseId: string | number; surface: string; reason: string };
-type PendingRemediationEntry = { lessonId: 31; phraseId: string; surface: string; reason: 'Task6 lexical simplification' };
 type Finding = { surface: string; classification: Classification };
 
 const STRUCTURAL = new Set([
@@ -80,34 +79,6 @@ const L16_CHUNKS = [
 
 // Every exception must be tied to one exact runtime phrase and must be consumed.
 const AMBIGUOUS: AmbiguousEntry[] = [];
-
-const PENDING_L31_REMEDIATION: readonly PendingRemediationEntry[] = ([
-  ['lesson31_phrase_1', 'inexperienced'], ['lesson31_phrase_1', 'huge'],
-  ['lesson31_phrase_2', 'pilot'], ['lesson31_phrase_2', 'complex'],
-  ['lesson31_phrase_4', 'strict'], ['lesson31_phrase_4', 'guard'], ['lesson31_phrase_4', 'suspicious'],
-  ['lesson31_phrase_4', 'visitor'], ['lesson31_phrase_4', 'contents'], ['lesson31_phrase_4', 'leather'],
-  ['lesson31_phrase_4', 'briefcase'], ['lesson31_phrase_6', 'huge'], ['lesson31_phrase_7', 'powerful'],
-  ['lesson31_phrase_7', 'brick'], ['lesson31_phrase_8', 'envelope'], ['lesson31_phrase_10', 'lightning'],
-  ['lesson31_phrase_11', 'sharp'], ['lesson31_phrase_11', 'wind'], ['lesson31_phrase_11', 'touch'],
-  ['lesson31_phrase_12', 'boss'], ['lesson31_phrase_13', 'skillful'], ['lesson31_phrase_13', 'ladder'],
-  ['lesson31_phrase_16', 'delegation'], ['lesson31_phrase_16', 'laboratory'], ['lesson31_phrase_17', 'strict'],
-  ['lesson31_phrase_17', 'inspector'], ['lesson31_phrase_18', 'sharp'], ['lesson31_phrase_18', 'needle'],
-  ['lesson31_phrase_19', 'base'], ['lesson31_phrase_22', 'touch'], ['lesson31_phrase_28', 'strict'],
-  ['lesson31_phrase_28', 'landlord'], ['lesson31_phrase_28', 'huge'], ['lesson31_phrase_28', 'electricity'],
-  ['lesson31_phrase_29', 'object'], ['lesson31_phrase_30', 'engine'], ['lesson31_phrase_31', 'stray'],
-  ['lesson31_phrase_31', 'cross'], ['lesson31_phrase_33', 'sunlight'], ['lesson31_phrase_34', 'stranger'],
-  ['lesson31_phrase_34', 'station'], ['lesson31_phrase_35', 'firefighter'], ['lesson31_phrase_35', 'emergency'],
-  ['lesson31_phrase_36', 'wedding'], ['lesson31_phrase_37', 'official'], ['lesson31_phrase_38', 'mural'],
-  ['lesson31_phrase_39', 'wind'], ['lesson31_phrase_39', 'cart'], ['lesson31_phrase_40', 'strict'],
-  ['lesson31_phrase_42', 'drain'], ['lesson31_phrase_44', 'verdict'], ['lesson31_phrase_45', 'building'],
-  ['lesson31_phrase_45', 'earthquake'], ['lesson31_phrase_46', 'ancient'], ['lesson31_phrase_48', 'mechanic'],
-  ['lesson31_phrase_48', 'engine'], ['lesson31_phrase_49', 'branch'], ['lesson31_phrase_50', 'touch'],
-] as const).map(([phraseId, surface]) => ({
-  lessonId: 31,
-  phraseId,
-  surface,
-  reason: 'Task6 lexical simplification',
-}));
 
 function expandContractions(text: string): string {
   return text
@@ -576,8 +547,11 @@ describe('lesson cumulative vocabulary coverage', () => {
     }
 
     const lesson31Missing = rows.find((row) => row.lesson === 31)?.missing ?? [];
-    const expectedLesson31Missing = PENDING_L31_REMEDIATION.map((entry) => `${entry.phraseId}:${entry.surface}`);
-    expect(lesson31Missing).toEqual(expectedLesson31Missing);
+    // Task 6 baseline was 130 first-introduced L31 content surfaces; 78 is a 40% reduction.
+    const lesson31Introduced = rows.find((row) => row.lesson === 31)?.introduced;
+    expect(lesson31Introduced).toBeLessThanOrEqual(78);
+    expect(lesson31Introduced).toBe(71);
+    expect(lesson31Missing).toEqual([]);
     const failures = rows.filter((row) => row.lesson !== 31 && row.missing.length > 0);
     const compactFailureTable = failures.map((row) => `L${row.lesson}\t${row.missing.join(',')}`).join('\n');
     if (failures.length) throw new Error(`Cumulative vocabulary gaps:\n${compactFailureTable}`);

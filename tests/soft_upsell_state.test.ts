@@ -8,6 +8,7 @@ import {
   readSoftUpsellState,
   resetSoftUpsellSessionForTests,
 } from '../app/soft_upsell_state';
+import { decideSoftUpsell } from '../app/soft_upsell_core';
 import { lessonSoftUpsellPersistenceScope } from '../app/lesson_complete_soft_upsell';
 
 const storageMock = AsyncStorage as typeof AsyncStorage & { __reset(): void };
@@ -20,6 +21,10 @@ const emptyState = {
 
 function key(scope: string, target: 'en' | 'fr' = 'en'): string {
   return `soft_upsell_state_v1:${encodeURIComponent(scope)}:${target}`;
+}
+
+function globalKey(scope: string): string {
+  return `soft_upsell_global_state_v1:${encodeURIComponent(scope)}`;
 }
 
 beforeEach(() => {
@@ -225,4 +230,69 @@ test('accepts a milestone ID exactly at the maximum boundary', async () => {
     lastGlobalImpressionMs: 100,
     consumedMilestones: [milestoneId],
   });
+});
+
+test('shares global impression cooldown across study targets for the same account', async () => {
+  await markSoftUpsellImpression('shared', 'en', 'weekly_review', 'weekly:en', 1_000);
+  const frenchState = await readSoftUpsellState('shared', 'fr');
+  expect(frenchState.lastGlobalImpressionMs).toBe(1_000);
+  expect(decideSoftUpsell({
+    candidates: [{ trigger: 'weekly_review', value: 1, studyTarget: 'fr' }],
+    hasPremiumAccess: false,
+    enabled: { weekly_review: true },
+    overlayOccupied: false,
+    sessionClaimed: false,
+    nowMs: 1_001,
+    lastGlobalImpressionMs: frenchState.lastGlobalImpressionMs,
+    contextDismissedAtMs: frenchState.contextDismissedAtMs,
+    consumedMilestones: frenchState.consumedMilestones,
+  })).toEqual({ status: 'suppressed', reason: 'global_cooldown' });
+  await expect(readSoftUpsellState('other', 'fr')).resolves.toEqual(emptyState);
+});
+
+test('migrates a legacy target timestamp into account-global state', async () => {
+  await AsyncStorage.setItem(key('legacy', 'en'), JSON.stringify({ ...emptyState, lastGlobalImpressionMs: 2_000 }));
+  await expect(readSoftUpsellState('legacy', 'fr')).resolves.toMatchObject({ lastGlobalImpressionMs: 2_000 });
+  expect(await AsyncStorage.getItem(globalKey('legacy'))).toBe(JSON.stringify({
+    schemaVersion: 1,
+    lastGlobalImpressionMs: 2_000,
+  }));
+});
+
+test('repairs corrupted global state conservatively from target timestamps', async () => {
+  await AsyncStorage.setItem(globalKey('repair-global'), '{bad');
+  await AsyncStorage.setItem(key('repair-global', 'fr'), JSON.stringify({ ...emptyState, lastGlobalImpressionMs: 3_000 }));
+  await expect(readSoftUpsellState('repair-global', 'en')).resolves.toMatchObject({ lastGlobalImpressionMs: 3_000 });
+  expect(await AsyncStorage.getItem(globalKey('repair-global'))).toBe(JSON.stringify({
+    schemaVersion: 1,
+    lastGlobalImpressionMs: 3_000,
+  }));
+});
+
+test('serializes concurrent cross-target impressions and preserves the newest global timestamp', async () => {
+  await Promise.all([
+    markSoftUpsellImpression('concurrent-targets', 'en', 'weekly_review', 'en-m', 4_000),
+    markSoftUpsellImpression('concurrent-targets', 'fr', 'weekly_review', 'fr-m', 5_000),
+  ]);
+  await expect(readSoftUpsellState('concurrent-targets', 'en')).resolves.toMatchObject({
+    lastGlobalImpressionMs: 5_000,
+    consumedMilestones: ['en-m'],
+  });
+  await expect(readSoftUpsellState('concurrent-targets', 'fr')).resolves.toMatchObject({
+    lastGlobalImpressionMs: 5_000,
+    consumedMilestones: ['fr-m'],
+  });
+});
+
+test('recovers global cooldown from target state after global write failure', async () => {
+  const setItem = AsyncStorage.setItem as jest.MockedFunction<typeof AsyncStorage.setItem>;
+  const originalSetItem = setItem.getMockImplementation();
+  if (!originalSetItem) throw new Error('AsyncStorage setItem mock implementation is required');
+  setItem.mockImplementation((storageKey, value) => storageKey === globalKey('partial')
+    ? Promise.reject(new Error('global write unavailable'))
+    : originalSetItem(storageKey, value));
+  await expect(markSoftUpsellImpression('partial', 'en', 'weekly_review', 'partial-m', 6_000))
+    .rejects.toThrow('global write unavailable');
+  setItem.mockImplementation(originalSetItem);
+  await expect(readSoftUpsellState('partial', 'fr')).resolves.toMatchObject({ lastGlobalImpressionMs: 6_000 });
 });

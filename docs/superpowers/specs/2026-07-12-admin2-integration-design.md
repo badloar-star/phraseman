@@ -47,4 +47,3 @@ Admin 2 следует `docs/design/ADMIN_UI_BIBLE.md`: спокойный св�
 - `Приложение` содержит технические работы, обновление и баннеры; хотя бы технические работы проходят полный guarded workflow.
 - Migration matrix показывает текущую правду; fallback не маскируется как готовая функция.
 - Полные Admin 2 smoke, runtime-state, visible-text, language и route/action проверки проходят на фактических модульных путях.
-

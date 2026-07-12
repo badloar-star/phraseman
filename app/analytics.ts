@@ -24,10 +24,24 @@ import {
   resetPostHog,
   isPostHogEnabled,
 } from './posthog_client';
+import {
+  SOFT_UPSELL_CONTEXTS,
+  SOFT_UPSELL_TRIGGERS,
+  type SoftUpsellContext,
+  type SoftUpsellDestination,
+  type SoftUpsellStudyTarget,
+  type SoftUpsellSuppressionReason,
+  type SoftUpsellTrigger,
+} from './soft_upsell_core';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  | 'soft_upsell_eligible'
+  | 'soft_upsell_impression'
+  | 'soft_upsell_cta'
+  | 'soft_upsell_dismiss'
+  | 'soft_upsell_suppressed'
   // обучение
   | 'app_open'
   | 'lesson_start'
@@ -263,6 +277,63 @@ export const trackEvent = async (
     /* no-op */
   }
 };
+
+export const SOFT_UPSELL_ANALYTICS_EVENTS = [
+  'soft_upsell_eligible',
+  'soft_upsell_impression',
+  'soft_upsell_cta',
+  'soft_upsell_dismiss',
+  'soft_upsell_suppressed',
+] as const;
+
+type SoftUpsellAnalyticsEvent = (typeof SOFT_UPSELL_ANALYTICS_EVENTS)[number];
+type SoftUpsellAnalyticsBase = {
+  context: SoftUpsellContext;
+  trigger: SoftUpsellTrigger;
+  studyTarget: SoftUpsellStudyTarget;
+  overlayOccupied: boolean;
+  schemaVersion: 1;
+  triggerValue: number;
+};
+export type SoftUpsellAnalyticsPayload = SoftUpsellAnalyticsBase & {
+  destination?: SoftUpsellDestination;
+  suppressionReason?: SoftUpsellSuppressionReason;
+};
+
+const SOFT_UPSELL_DESTINATIONS: readonly SoftUpsellDestination[] = ['personal_plan', 'paywall'];
+const SOFT_UPSELL_SUPPRESSION_REASONS: readonly SoftUpsellSuppressionReason[] = [
+  'no_candidate', 'premium', 'disabled', 'overlay_occupied', 'session_cap',
+  'global_cooldown', 'context_cooldown', 'milestone_consumed', 'invalid_trigger_value',
+];
+
+export async function trackSoftUpsellEvent(
+  event: SoftUpsellAnalyticsEvent,
+  payload: SoftUpsellAnalyticsPayload,
+): Promise<void> {
+  if (!SOFT_UPSELL_ANALYTICS_EVENTS.includes(event)) return;
+  if (!SOFT_UPSELL_CONTEXTS.includes(payload?.context)) return;
+  if (!SOFT_UPSELL_TRIGGERS.includes(payload?.trigger)) return;
+  if (payload?.studyTarget !== 'en' && payload?.studyTarget !== 'fr') return;
+  if (typeof payload?.overlayOccupied !== 'boolean' || payload?.schemaVersion !== 1) return;
+  if (!Number.isSafeInteger(payload?.triggerValue) || payload.triggerValue < 0 || payload.triggerValue > 10_000) return;
+  if (payload.destination != null && !SOFT_UPSELL_DESTINATIONS.includes(payload.destination)) return;
+  if (event === 'soft_upsell_suppressed') {
+    if (!SOFT_UPSELL_SUPPRESSION_REASONS.includes(payload.suppressionReason as SoftUpsellSuppressionReason)) return;
+  } else if (payload.suppressionReason != null) return;
+  if ((event === 'soft_upsell_impression' || event === 'soft_upsell_cta') && payload.destination == null) return;
+
+  const props: Record<string, string | number | boolean> = {
+    context: payload.context,
+    trigger: payload.trigger,
+    studyTarget: payload.studyTarget,
+    overlayOccupied: payload.overlayOccupied,
+    schemaVersion: payload.schemaVersion,
+    triggerValue: payload.triggerValue,
+  };
+  if (payload.destination != null) props.destination = payload.destination;
+  if (event === 'soft_upsell_suppressed') props.suppressionReason = payload.suppressionReason!;
+  await trackEvent(event, props);
+}
 
 // ── Очередь (отладка / резерв) ─────────────────────────────────────────────────
 export const getEventQueue = async (): Promise<EventRecord[]> => {

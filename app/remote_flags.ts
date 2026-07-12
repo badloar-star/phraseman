@@ -15,6 +15,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { SoftUpsellTrigger } from './soft_upsell_core';
 
 export type RemoteNumberKey =
   | 'free_lesson_limit'
@@ -48,6 +49,12 @@ export type RemoteNumberKey =
   | 'streak_freeze_cost_shards';
 
 export type RemoteBoolKey =
+  | 'soft_upsell_first_lesson_enabled'
+  | 'soft_upsell_free_lessons_complete_enabled'
+  | 'soft_upsell_weekly_review_enabled'
+  | 'soft_upsell_second_ai_dialogue_enabled'
+  | 'soft_upsell_streak_enabled'
+  | 'soft_upsell_repeated_training_enabled'
   | 'referral_enabled'
   | 'speaking_enabled'
   | 'collectibles_enabled'
@@ -262,6 +269,12 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
+  soft_upsell_first_lesson_enabled: false,
+  soft_upsell_free_lessons_complete_enabled: false,
+  soft_upsell_weekly_review_enabled: false,
+  soft_upsell_second_ai_dialogue_enabled: false,
+  soft_upsell_streak_enabled: false,
+  soft_upsell_repeated_training_enabled: false,
   // Дефолт true = kill-switch семантика (фича едет с релизом, админка может
   // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
   // задеплоенная invite-страница — иначе ссылки будут битыми.
@@ -637,6 +650,21 @@ export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_r
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
+
+const SOFT_UPSELL_FLAG_BY_TRIGGER: Record<SoftUpsellTrigger, RemoteBoolKey> = {
+  first_lesson: 'soft_upsell_first_lesson_enabled',
+  free_lessons_complete: 'soft_upsell_free_lessons_complete_enabled',
+  weekly_review: 'soft_upsell_weekly_review_enabled',
+  second_ai_dialogue: 'soft_upsell_second_ai_dialogue_enabled',
+  streak_milestone: 'soft_upsell_streak_enabled',
+  repeated_training: 'soft_upsell_repeated_training_enabled',
+};
+
+export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boolean> {
+  return Object.fromEntries(
+    Object.entries(SOFT_UPSELL_FLAG_BY_TRIGGER).map(([trigger, flag]) => [trigger, getRemoteBool(flag)]),
+  ) as Record<SoftUpsellTrigger, boolean>;
+}
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */

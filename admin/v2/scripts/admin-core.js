@@ -34,6 +34,7 @@ const PAGES = Object.freeze({
   community: { title: 'Комьюнити', description: 'Жалобы, пользовательский контент, чат и состояние Арены.' },
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
+  emails: { title: 'Email-контакты', description: 'Защищённый каталог адресов приложения и сайта с явной пригодностью для рассылок.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
   'daily-briefing': { title: 'Product Manager Digest', description: 'Утренний управленческий отчёт: рост, деньги, риски, очереди и действия на сегодня.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
@@ -42,8 +43,8 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
   content_editor: new Set(['content.read', 'content.draft.write']),
   analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
@@ -136,6 +137,10 @@ const state = {
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
   campaigns: { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' },
   pushCampaigns: { state: 'idle', jobs: [], approvals: [], draft: { mode: 'uid' }, preview: null, operationKeys: {}, error: '' },
+  emails: {
+    state: 'idle', items: [], counts: null, filteredCount: 0, nextCursor: '', source: 'all', eligibility: 'all', suppression: 'all', query: '', error: '',
+    campaignState: 'idle', campaigns: [], approvals: [], draft: { audienceKind: 'all' }, preview: null, operationKeys: {}, campaignError: '',
+  },
 };
 
 let actions = null;
@@ -1231,6 +1236,119 @@ function renderWebsiteInbox() {
   return `<section class="card section"><div class="card-header"><div><h2>Обращения с сайта</h2><p>Форма сайта хранится отдельно от Gmail, но показывается в этой же рабочей очереди.</p></div><div class="actions"><span class="badge ${unread ? 'warning' : 'success'}">новых ${unread}</span><button class="button" data-action="load-website-inbox" type="button"${disabledWhenUnauthorized()} title="Загрузить до 200 последних обращений с сайта">${website.loaded ? 'Обновить сайт' : 'Загрузить сайт'}</button></div></div><div class="card-body">${website.truncated ? '<div class="notice warning">Показаны последние 200 записей; список обрезан.</div>' : ''}${confirmation}${body}</div></section>`;
 }
 
+function renderSelectOptions(values, selected) {
+  return values.map(([value, label]) => `<option value="${escapeHtml(value)}"${selected === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
+}
+
+function emailOperationKey(scope) {
+  const key = String(scope || 'command');
+  const existing = state.emails.operationKeys?.[key];
+  if (existing) return existing;
+  const storageKey = `phraseman_admin_email_operation_${key}`;
+  try {
+    const persisted = globalThis.sessionStorage?.getItem(storageKey);
+    if (persisted) {
+      state.emails.operationKeys = { ...(state.emails.operationKeys || {}), [key]: persisted };
+      return persisted;
+    }
+  } catch { /* Session storage is an optional retry aid. */ }
+  const operationId = id(`email-${key.replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 60)}`);
+  state.emails.operationKeys = { ...(state.emails.operationKeys || {}), [key]: operationId };
+  try { globalThis.sessionStorage?.setItem(storageKey, operationId); } catch { /* Keep the in-memory key. */ }
+  return operationId;
+}
+
+function clearEmailOperationKey(scope) {
+  const key = String(scope || 'command');
+  const keys = { ...(state.emails.operationKeys || {}) };
+  delete keys[key];
+  state.emails.operationKeys = keys;
+  try { globalThis.sessionStorage?.removeItem(`phraseman_admin_email_operation_${key}`); } catch { /* No-op. */ }
+}
+
+function emailApprovalIsLive(approval) {
+  const expiresAtMs = Math.min(Number(approval?.expiresAtMs || 0), Number(approval?.previewExpiresAtMs || approval?.expiresAtMs || 0));
+  return (approval?.status === 'pending' || approval?.status === 'approved') && expiresAtMs > Date.now();
+}
+
+function readEmailCampaignForm() {
+  const subject = String(document.getElementById('email-campaign-subject')?.value || '').trim();
+  const text = String(document.getElementById('email-campaign-text')?.value || '').trim();
+  const reason = String(document.getElementById('email-campaign-reason')?.value || '').trim();
+  const kind = String(document.getElementById('email-campaign-audience')?.value || 'all');
+  if (subject.length < 3 || text.length < 10 || !reason) throw new Error('Заполните тему, текст и причину кампании.');
+  const audience = kind === 'current' ? { kind, filter: emailDirectoryInput() } : { kind };
+  delete audience.filter?.pageSize;
+  delete audience.filter?.cursor;
+  return { payload: { subject, text, audience }, reason };
+}
+
+async function loadEmailCampaigns() {
+  state.emails = { ...state.emails, campaignState: 'loading', campaignError: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listEmailCampaigns();
+    state.emails = {
+      ...state.emails,
+      campaignState: 'ready',
+      campaigns: Array.isArray(result?.campaigns) ? result.campaigns : [],
+      approvals: Array.isArray(result?.approvals) ? result.approvals : [],
+      campaignError: '',
+    };
+  } catch (error) {
+    state.emails = { ...state.emails, campaignState: 'error', campaignError: errorMessage(error) };
+    throw error;
+  }
+}
+
+function renderEmailCampaigns() {
+  const view = state.emails;
+  const preview = view.preview;
+  const draft = preview?.payload || view.draft || { audienceKind: 'all' };
+  const locked = state.busy || !!preview || !can('emails.campaigns.write');
+  const summary = preview?.summary || {};
+  const campaignRows = view.campaignState === 'loading'
+    ? emptyState('Загружаем кампании…')
+    : view.campaignError
+      ? `<div class="notice danger">${escapeHtml(view.campaignError)}</div>`
+      : !view.campaigns.length
+        ? emptyState('Email-кампаний пока нет.')
+        : `<div class="data-list">${view.campaigns.map((campaign) => {
+          const acceptedLabel = campaign.providerMetricLabel === 'accepted_by_provider' || Number(campaign.acceptedCount || 0) > 0 ? 'принято провайдером' : 'принято провайдером';
+          return `<div class="list-row"><div><strong>${escapeHtml(campaign.subject || 'Без темы')}</strong><small>${escapeHtml(dateTime(campaign.createdAtMs))} · ${escapeHtml(campaign.createdBy || '—')} · аудитория preview: ${Number(campaign.recipientPreviewCount || 0)} · фактически проверено: ${Number(campaign.targetCount || 0)}</small><small>${acceptedLabel}: ${Number(campaign.acceptedCount || 0)} · ошибок: ${Number(campaign.failedCount || 0)} · отписок перед отправкой: ${Number(campaign.suppressedAtSendCount || 0)}</small>${campaign.error ? `<small class="danger-text">${escapeHtml(campaign.error)}</small>` : ''}</div><div class="actions"><span class="badge ${campaign.status === 'completed' ? 'success' : ['failed','partial_failed','delivery_uncertain'].includes(campaign.status) ? 'danger' : ['queued_hold','processing','cancel_requested'].includes(campaign.status) ? 'warning' : ''}">${escapeHtml(campaign.status || 'queued_hold')}</span>${campaign.cancelable ? `<button class="button danger small" data-action="cancel-email-campaign" data-email-campaign-id="${escapeHtml(campaign.id)}" type="button"${disabledWhenUnauthorized('emails.campaigns.cancel')} title="Отменить кампанию; уже принятые провайдером письма вернуть нельзя">Отменить</button>` : ''}</div></div>`;
+        }).join('')}</div>`;
+  const approvalRows = !view.approvals.length ? emptyState('Запросов на одобрение email-кампаний нет.') : `<div class="data-list">${view.approvals.map((approval) => {
+    const live = emailApprovalIsLive(approval);
+    const own = approval.requestedBy === state.adminUid;
+    const status = live ? approval.status : (approval.status === 'consumed' ? 'consumed' : 'expired');
+    return `<div class="list-row"><div><strong>${escapeHtml(approval.content?.subject || 'Email-кампания')}</strong><small>Получателей: ${Number(approval.recipientCount || 0)} · точная аудитория: ${escapeHtml(JSON.stringify(approval.audience || {}))}</small><small>Исключения: отписаны ${Number(approval.summary?.suppressed || 0)}, назначение не подтверждено ${Number(approval.summary?.unknownPurpose || 0)}, недопустимы ${Number(approval.summary?.ineligible || 0)}, скрыты ${Number(approval.summary?.hidden || 0)}, Apple relay ${Number(approval.summary?.relay || 0)}</small><small>Запросил: ${escapeHtml(approval.requestedBy || '—')} · Preview: ${escapeHtml(approval.previewId || '—')} · действует до ${escapeHtml(dateTime(Math.min(Number(approval.expiresAtMs || 0), Number(approval.previewExpiresAtMs || approval.expiresAtMs || 0))))}</small><small>Причина / условие остановки: ${escapeHtml(approval.reason || '')}</small><details open class="section"><summary>Полный неизменяемый текст письма</summary><div class="support-body" style="white-space:pre-wrap">${escapeHtml(approval.content?.text || '')}</div></details><div class="notice warning section">Риск: массовая отправка. После постановки в очередь есть 5 минут на отмену; уже принятые провайдером письма вернуть нельзя.</div></div><div class="actions"><span class="badge ${status === 'approved' ? 'success' : status === 'pending' ? 'warning' : ''}">${escapeHtml(status)}</span>${approval.status === 'pending' && live && !own && can('emails.campaigns.approve') ? `<button class="button primary small" data-action="approve-email-campaign" data-approval-id="${escapeHtml(approval.id)}" type="button" title="Одобрить неизменяемый пакет вторым администратором">Одобрить</button>` : ''}${approval.status === 'pending' && live && own ? '<span class="badge">нужен второй администратор</span>' : ''}${approval.status === 'approved' && live && can('emails.campaigns.write') ? `<button class="button primary small" data-action="publish-approved-email" data-approval-id="${escapeHtml(approval.id)}" data-preview-id="${escapeHtml(approval.previewId)}" type="button" title="Поставить одобренную кампанию в очередь с пятиминутной задержкой отмены">В очередь</button>` : ''}</div></div>`;
+  }).join('')}</div>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Email-кампании</h2><p>Preview → одобрение вторым администратором → очередь с 5-минутным окном отмены → отправка пакетами без дублей.</p></div><button class="button" data-action="load-email-campaigns" type="button"${disabledWhenUnauthorized('emails.campaigns.read')} title="Обновить кампании и запросы одобрения">${view.campaignState === 'idle' ? 'Загрузить' : 'Обновить'}</button></div><div class="card-body">
+    <div class="notice">Адреса подбирает сервер. Отписки и пригодность проверяются ещё раз непосредственно перед каждым пакетом. Счётчик <strong>«принято провайдером»</strong> не означает гарантированную доставку.</div>
+    <div class="fields section"><div class="field full"><label for="email-campaign-subject">Тема письма</label><input id="email-campaign-subject" maxlength="140" value="${escapeHtml(draft.subject || '')}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="email-campaign-text">Текст письма</label><textarea id="email-campaign-text" rows="8" maxlength="6000"${locked ? ' disabled' : ''}>${escapeHtml(draft.text || '')}</textarea></div><div class="field"><label for="email-campaign-audience">Аудитория</label><select id="email-campaign-audience"${locked ? ' disabled' : ''}>${renderSelectOptions([['all','Все допустимые'],['plus','Plus'],['active','Активные'],['free','Free'],['dormant','Неактивные'],['app','Приложение'],['site','Сайт'],['current','Текущий фильтр каталога']], draft.audience?.kind || draft.audienceKind || 'all')}</select></div><div class="field full"><label for="email-campaign-reason">Причина и условие остановки</label><textarea id="email-campaign-reason" maxlength="500"${locked ? ' disabled' : ''}>${escapeHtml(preview?.reason || '')}</textarea></div></div>
+    ${preview ? `<div class="notice warning section"><strong>Предпросмотр готов, письма не отправлены.</strong><br>Получателей: ${Number(preview.recipientCount || 0)} · найдено: ${Number(summary.directoryMatched || 0)} · отписаны: ${Number(summary.suppressed || 0)} · назначение не подтверждено: ${Number(summary.unknownPurpose || 0)} · недопустимы: ${Number(summary.ineligible || 0)} · скрыты: ${Number(summary.hidden || 0)} · Apple relay: ${Number(summary.relay || 0)}<br>Preview: ${escapeHtml(preview.previewId || '')} · истекает ${escapeHtml(dateTime(preview.expiresAtMs))}</div>` : ''}
+    <div class="actions end section">${preview ? '<button class="button" data-action="discard-email-preview" type="button" title="Отменить предпросмотр и вернуться к редактированию">Изменить ещё</button>' : ''}<button class="button ${preview ? '' : 'primary'}" data-action="preview-email-campaign" type="button"${locked ? ' disabled' : ''} title="Рассчитать аудиторию без отправки">Предпросмотр</button>${preview ? '<button class="button primary" data-action="request-email-approval" type="button" title="Запросить обязательное одобрение второго администратора">Запросить одобрение</button>' : ''}</div>
+    <div class="field section"><label for="email-approval-reason">Что проверено перед одобрением</label><input id="email-approval-reason" maxlength="500" placeholder="Аудитория, текст, ссылки, цель и условие остановки"></div>${approvalRows}
+    <div class="field section"><label for="email-cancel-reason">Причина отмены</label><input id="email-cancel-reason" maxlength="500" placeholder="Почему очередь нужно остановить"></div>${campaignRows}
+  </div></section>`;
+}
+
+function renderEmails() {
+  const directory = state.emails;
+  const counts = directory.counts || {};
+  const options = (values, selected) => values.map(([value, label]) => `<option value="${value}"${selected === value ? ' selected' : ''}>${label}</option>`).join('');
+  const rows = directory.items.map((item) => `<tr><td><a href="mailto:${escapeHtml(item.email)}">${escapeHtml(item.email)}</a>${item.displayName ? `<small>${escapeHtml(item.displayName)}</small>` : ''}</td><td>${(item.sources || []).map((source) => `<span class="badge">${source === 'app' ? 'приложение' : 'сайт'}</span>`).join(' ')}</td><td><span class="badge ${item.bulkEligibility === 'eligible' ? 'success' : item.bulkEligibility === 'ineligible' ? 'danger' : 'warning'}">${item.bulkEligibility === 'eligible' ? 'допустим' : item.bulkEligibility === 'ineligible' ? 'только контакт' : 'не проверен'}</span>${item.suppressed ? ' <span class="badge danger">отписан</span>' : ''}<small>${escapeHtml(item.eligibilitySource || '')}</small></td><td>${escapeHtml(item.contextLabel || '—')}</td><td>${escapeHtml(dateTime(item.lastSeenAtMs))}</td></tr>`).join('');
+  return `${pageHeader(PAGES.emails, 'Пользователи / Email-контакты', `<button class="button primary" data-action="load-email-directory" type="button"${can('emails.directory.read') && !state.busy ? '' : ' disabled'} title="Обновить защищённый каталог контактов">Обновить каталог</button>`)}
+    <section class="metrics section"><article class="card metric"><label>Все контакты</label><strong>${directory.state === 'ready' ? Number(counts.all || 0) : '—'}</strong><span class="badge">каталог</span></article><article class="card metric"><label>Приложение</label><strong>${directory.state === 'ready' ? Number(counts.app || 0) : '—'}</strong><span class="badge">app</span></article><article class="card metric"><label>Сайт</label><strong>${directory.state === 'ready' ? Number(counts.site || 0) : '—'}</strong><span class="badge">site</span></article><article class="card metric"><label>Отписаны</label><strong>${directory.state === 'ready' ? Number(counts.suppressed || 0) : '—'}</strong><span class="badge danger">не отправлять</span></article></section>
+    <section class="card section"><div class="card-header"><div><h2>Каталог контактов</h2><p>Поиск выполняется на сервере. Закрытые UID и номера заказов используются для поиска, но не передаются в браузер.</p></div></div><div class="card-body">
+      <div class="form-grid"><div class="field"><label for="email-directory-query">Поиск</label><input id="email-directory-query" value="${escapeHtml(directory.query)}" placeholder="Email, имя, UID или заказ"></div><div class="field"><label for="email-directory-source">Источник</label><select id="email-directory-source" data-email-source>${options([['all','Все'],['app','Приложение'],['site','Сайт']], directory.source)}</select></div><div class="field"><label for="email-directory-eligibility">Для рассылки</label><select id="email-directory-eligibility" data-email-eligibility>${options([['all','Все'],['eligible','Допустимые'],['unknown','Не проверены'],['ineligible','Только контакты']], directory.eligibility)}</select></div><div class="field"><label for="email-directory-suppression">Отписка</label><select id="email-directory-suppression" data-email-suppression>${options([['all','Все'],['active','Не отписаны'],['suppressed','Отписаны']], directory.suppression)}</select></div></div>
+      <div class="actions section"><button class="button" data-action="load-email-directory" type="button"${can('emails.directory.read') && !state.busy ? '' : ' disabled'} title="Применить поиск и фильтры">Найти контакты</button><span class="hint">Найдено: ${Number(directory.filteredCount || 0)}</span></div>
+      ${directory.state === 'loading' ? emptyState('Загружаем защищённый каталог…') : directory.error ? `<div class="notice danger">${escapeHtml(directory.error)}</div>` : !rows ? emptyState('Контактов по выбранным условиям нет.') : `<div class="table-wrap section"><table><thead><tr><th>Email</th><th>Источник</th><th>Статус</th><th>Контекст</th><th>Последний сигнал</th></tr></thead><tbody>${rows}</tbody></table></div>${directory.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-email-directory-next" type="button" title="Загрузить следующую страницу">Показать ещё</button></div>' : ''}`}
+    </div></section>
+    <section class="card section"><div class="card-header"><div><h2>Экспорт и синхронизация</h2><p>Обе операции требуют причины и записываются в аудит. Синхронизация безопасно повторно собирает каталог из канонических источников.</p></div></div><div class="card-body"><div class="field"><label for="email-export-reason">Причина экспорта или синхронизации</label><input id="email-export-reason" maxlength="500" placeholder="Для какой проверенной задачи нужны адреса или синхронизация"></div><div class="actions end section"><button class="button" data-action="backfill-email-directory" type="button"${can('emails.directory.backfill') && !state.busy ? '' : ' disabled'} title="Повторно собрать защищённый каталог из пользователей, заказов и обращений">Синхронизировать каталог</button><button class="button" data-action="export-email-directory" type="button"${can('emails.directory.export') && !state.busy ? '' : ' disabled'} title="Скопировать отфильтрованные адреса с записью в аудит">Скопировать адреса</button></div></div></section>
+    ${renderEmailCampaigns()}`;
+}
+
 function renderSupport() {
   const items = state.support.items;
   const pending = state.support.pendingReply;
@@ -1469,7 +1587,7 @@ function renderReportQueue() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1586,6 +1704,58 @@ function maybeLoadSupportQueues() {
       renderCurrentPage();
     });
   }
+}
+
+function emailDirectoryInput(cursor = '') {
+  return {
+    source: String(document.getElementById('email-directory-source')?.value || state.emails.source || 'all'),
+    eligibility: String(document.getElementById('email-directory-eligibility')?.value || state.emails.eligibility || 'all'),
+    suppression: String(document.getElementById('email-directory-suppression')?.value || state.emails.suppression || 'all'),
+    query: String(document.getElementById('email-directory-query')?.value || state.emails.query || '').trim(),
+    pageSize: 50,
+    cursor,
+  };
+}
+
+function applyEmailDirectory(result, append = false) {
+  state.emails = {
+    ...state.emails,
+    state: 'ready',
+    items: append ? [...state.emails.items, ...(Array.isArray(result?.items) ? result.items : [])] : (Array.isArray(result?.items) ? result.items : []),
+    counts: result?.counts || null,
+    filteredCount: Number(result?.filteredCount || 0),
+    nextCursor: String(result?.nextCursor || ''),
+    error: '',
+  };
+}
+
+function maybeLoadEmailDirectory() {
+  if (state.route !== 'emails' || !state.authorized || !actions || !can('emails.directory.read') || state.emails.state !== 'idle') return;
+  state.emails.state = 'loading';
+  const generation = state.authGeneration;
+  actions.listEmailContacts(emailDirectoryInput()).then((result) => {
+    if (generation !== state.authGeneration || state.route !== 'emails') return;
+    applyEmailDirectory(result);
+    renderCurrentPage();
+  }).catch((error) => {
+    state.emails = { ...state.emails, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  });
+}
+
+function maybeLoadEmailCampaigns() {
+  if (state.route !== 'emails' || !state.authorized || !actions || !can('emails.campaigns.read') || state.emails.campaignState !== 'idle') return;
+  const generation = state.authGeneration;
+  state.emails.campaignState = 'loading';
+  actions.listEmailCampaigns().then((result) => {
+    if (generation !== state.authGeneration || state.route !== 'emails') return;
+    state.emails = { ...state.emails, campaignState: 'ready', campaigns: Array.isArray(result?.campaigns) ? result.campaigns : [], approvals: Array.isArray(result?.approvals) ? result.approvals : [], campaignError: '' };
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    state.emails = { ...state.emails, campaignState: 'error', campaignError: errorMessage(error) };
+    renderCurrentPage();
+  });
 }
 
 function readCreateForm() {
@@ -3044,6 +3214,100 @@ async function handleAction(action, target) {
       applySupportListResult(await actions.loadSupport({ limit: 500 }));
     }, sent ? 'Доставка подтверждена вручную.' : 'Подтверждено: письмо не отправлено, можно подготовить новую операцию.');
   }
+  if (action === 'load-email-directory' || action === 'load-email-directory-next') {
+    const append = action === 'load-email-directory-next';
+    const input = emailDirectoryInput(append ? state.emails.nextCursor : '');
+    state.emails = { ...state.emails, state: 'loading', source: input.source, eligibility: input.eligibility, suppression: input.suppression, query: input.query, error: '' };
+    return runBusy(async () => { applyEmailDirectory(await actions.listEmailContacts(input), append); }, append ? 'Следующая страница контактов загружена.' : 'Каталог контактов обновлён.');
+  }
+  if (action === 'export-email-directory') {
+    const reason = String(document.getElementById('email-export-reason')?.value || '').trim();
+    if (!reason) { setMessage('Укажите причину экспорта.', 'warning'); return; }
+    const input = emailDirectoryInput('');
+    return runBusy(async () => {
+      const result = await actions.exportEmailContacts({ ...input, reason, requestId: id('email-export-request'), idempotencyKey: id('email-export') });
+      await navigator.clipboard.writeText((result?.emails || []).join('\n'));
+      setMessage(`Скопировано адресов: ${Number(result?.count || 0)}. Экспорт записан в аудит.`, 'success');
+    });
+  }
+  if (action === 'backfill-email-directory') {
+    const reason = String(document.getElementById('email-export-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину синхронизации каталога.', 'warning');
+    if (!globalThis.confirm('Повторно собрать каталог email-контактов из пользователей, заказов и обращений?')) return;
+    return runBusy(async () => {
+      const scope = 'directory-backfill-v2';
+      const result = await actions.backfillEmailContacts({ reason, requestId: id('email-backfill-request'), idempotencyKey: emailOperationKey(scope) });
+      clearEmailOperationKey(scope);
+      applyEmailDirectory(await actions.listEmailContacts(emailDirectoryInput()), false);
+      setMessage(`Синхронизация завершена: приложение ${Number(result?.writtenApp || 0)}, сайт ${Number(result?.writtenSite || 0)}.`, 'success');
+    });
+  }
+  if (action === 'load-email-campaigns') return runBusy(loadEmailCampaigns, 'Email-кампании и одобрения загружены.');
+  if (action === 'preview-email-campaign') {
+    let form;
+    try { form = readEmailCampaignForm(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
+    return runBusy(async () => {
+      const result = await actions.previewEmailCampaign(form.payload);
+      state.emails = { ...state.emails, draft: form.payload, preview: { ...result, payload: form.payload, reason: form.reason }, campaignError: '' };
+    }, 'Предпросмотр аудитории готов. Письма не отправлялись.');
+  }
+  if (action === 'discard-email-preview') {
+    state.emails.preview = null;
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'request-email-approval') {
+    const preview = state.emails.preview;
+    if (!preview?.previewId) return;
+    if (!globalThis.confirm(`Запросить одобрение email-кампании у второго администратора?\n\nПолучателей: ${Number(preview.recipientCount || 0)}\nТема: ${preview.payload?.subject || ''}`)) return;
+    return runBusy(async () => {
+      const scope = `approval-request:${preview.previewId}`;
+      await actions.requestEmailApproval({ previewId: preview.previewId, reason: preview.reason, requestId: id('request-email-approval'), idempotencyKey: emailOperationKey(scope) });
+      clearEmailOperationKey(scope);
+      state.emails.preview = null;
+      await loadEmailCampaigns();
+    }, 'Запрос создан. Кампанию должен проверить другой администратор.');
+  }
+  if (action === 'approve-email-campaign') {
+    const approvalId = String(target.getAttribute('data-approval-id') || '');
+    const approval = state.emails.approvals.find((item) => String(item.id) === approvalId);
+    const reason = String(document.getElementById('email-approval-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите, что именно проверено перед одобрением.', 'warning');
+    if (!approval || !emailApprovalIsLive(approval) || approval.status !== 'pending' || approval.requestedBy === state.adminUid || !can('emails.campaigns.approve')) return setMessage('Запрос нельзя одобрить: проверьте срок, статус, права и автора.', 'warning');
+    if (!globalThis.confirm('Одобрить неизменяемую email-кампанию как второй администратор?')) return;
+    return runBusy(async () => {
+      const scope = `approve:${approvalId}`;
+      await actions.approveEmailCampaign({ approvalId, reason, requestId: id('approve-email-campaign'), idempotencyKey: emailOperationKey(scope) });
+      clearEmailOperationKey(scope);
+      await loadEmailCampaigns();
+    }, 'Email-кампания одобрена. Она ещё не поставлена в очередь.');
+  }
+  if (action === 'publish-approved-email') {
+    const approvalId = String(target.getAttribute('data-approval-id') || '');
+    const previewId = String(target.getAttribute('data-preview-id') || '');
+    const approval = state.emails.approvals.find((item) => String(item.id) === approvalId);
+    if (!approval || !emailApprovalIsLive(approval) || approval.status !== 'approved' || !can('emails.campaigns.write')) return setMessage('Одобрение истекло, уже использовано или недоступно.', 'warning');
+    const reason = String(document.getElementById('email-approval-reason')?.value || '').trim() || `Approved email campaign: ${String(approval.reason || '').slice(0, 450)}`;
+    if (!globalThis.confirm(`Поставить email-кампанию в очередь?\n\nПолучателей: ${Number(approval.recipientCount || 0)}\nПосле создания будет 5 минут на отмену. Затем начнётся пакетная отправка.`)) return;
+    return runBusy(async () => {
+      const scope = `campaign:${approvalId}`;
+      await actions.createEmailCampaign({ previewId, approvalId, reason, requestId: id('create-email-campaign'), idempotencyKey: emailOperationKey(scope) });
+      clearEmailOperationKey(scope);
+      await loadEmailCampaigns();
+    }, 'Email-кампания поставлена в очередь. Доступно пятиминутное окно отмены.');
+  }
+  if (action === 'cancel-email-campaign') {
+    const campaignId = String(target.getAttribute('data-email-campaign-id') || '');
+    const reason = String(document.getElementById('email-cancel-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину отмены кампании.', 'warning');
+    if (!globalThis.confirm('Остановить email-кампанию? Уже принятые почтовым провайдером письма вернуть нельзя.')) return;
+    return runBusy(async () => {
+      const scope = `cancel:${campaignId}`;
+      await actions.cancelEmailCampaign({ campaignId, reason, requestId: id('cancel-email-campaign'), idempotencyKey: emailOperationKey(scope) });
+      clearEmailOperationKey(scope);
+      await loadEmailCampaigns();
+    }, 'Запрос отмены email-кампании записан в аудит.');
+  }
   if (action === 'load-analytics') {
     const rangeDays = Number(document.getElementById('analytics-range')?.value ?? 28);
     state.analytics = { status: 'loading', snapshot: state.analytics.snapshot, error: '', rangeDays };
@@ -3176,6 +3440,8 @@ export function setAdminActions(nextActions) {
   actions = nextActions;
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
+  maybeLoadEmailDirectory();
+  maybeLoadEmailCampaigns();
 }
 
 export function setAuthState(auth) {
@@ -3213,9 +3479,15 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.pushCampaigns = { state: 'idle', jobs: [], approvals: [], draft: { mode: 'uid' }, preview: null, operationKeys: {}, error: '' };
+  if (!state.authorized || !can('emails.directory.read')) state.emails = {
+    state: 'idle', items: [], counts: null, filteredCount: 0, nextCursor: '', source: 'all', eligibility: 'all', suppression: 'all', query: '', error: '',
+    campaignState: 'idle', campaigns: [], approvals: [], draft: { audienceKind: 'all' }, preview: null, operationKeys: {}, campaignError: '',
+  };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
+  maybeLoadEmailDirectory();
+  maybeLoadEmailCampaigns();
 }
 
 export function renderRoute(route, capabilityId = '') {
@@ -3225,6 +3497,8 @@ export function renderRoute(route, capabilityId = '') {
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
+  maybeLoadEmailDirectory();
+  maybeLoadEmailCampaigns();
 }
 
 export function initAdminUi() {

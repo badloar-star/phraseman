@@ -1292,13 +1292,31 @@ service cloud.firestore {
     }
 
     match /email_contacts/{docId} {
-      allow read, update, delete: if isAdmin();
-      allow create: if false;
+      allow read, write: if false;
     }
 
     match /email_campaigns/{docId} {
-      allow read, update, delete: if isAdmin();
-      allow create: if false;
+      allow read, write: if false;
+    }
+
+    match /email_campaigns/{docId}/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /admin_email_previews/{docId} {
+      allow read, write: if false;
+    }
+
+    match /admin_email_previews/{docId}/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /admin_approval_requests/{docId} {
+      allow read, write: if false;
+    }
+
+    match /email_suppressions/{docId} {
+      allow read, write: if false;
     }
 
     match /client_report_rate_limits/{docId} {

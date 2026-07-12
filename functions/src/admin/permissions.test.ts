@@ -40,6 +40,24 @@ describe('admin permission matrix', () => {
     expect(hasPermission('admin', 'support.reply.resolve_ambiguous')).toBe(true);
   });
 
+  it('keeps exact email contacts and campaigns restricted to owner/admin roles', () => {
+    const emailPermissions: AdminPermission[] = [
+      'emails.directory.read',
+      'emails.directory.export',
+      'emails.directory.backfill',
+      'emails.campaigns.read',
+      'emails.campaigns.write',
+      'emails.campaigns.approve',
+      'emails.campaigns.cancel',
+    ];
+    for (const permission of emailPermissions) {
+      expect(hasPermission('owner', permission)).toBe(true);
+      expect(hasPermission('admin', permission)).toBe(true);
+      expect(hasPermission('support', permission)).toBe(false);
+      expect(hasPermission('analyst', permission)).toBe(false);
+    }
+  });
+
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -50,6 +68,9 @@ describe('admin permission matrix', () => {
       'support.reply.resolve_ambiguous',
       'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write',
       'reports.reply.draft', 'reports.reply.send', 'diagnostics.status.write',
+      'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill',
+      'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve',
+      'emails.campaigns.cancel',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

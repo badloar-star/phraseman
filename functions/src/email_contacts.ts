@@ -2,6 +2,18 @@ import { createHash } from 'crypto';
 import { FieldValue } from 'firebase-admin/firestore';
 
 export type EmailContactSource = 'app' | 'site';
+export type EmailBulkEligibility = 'eligible' | 'ineligible' | 'unknown';
+
+export interface EmailContactProjection {
+  email: string;
+  sources: EmailContactSource[];
+  displayName?: string;
+  contextLabel?: string;
+  lastSeenAtMs: number;
+  bulkEligibility: EmailBulkEligibility;
+  eligibilitySource: string;
+  eligibilityUpdatedAtMs: number;
+}
 
 export interface UpsertEmailContactInput {
   email: unknown;
@@ -17,6 +29,10 @@ export interface UpsertEmailContactInput {
   plan?: unknown;
   amountCents?: unknown;
   currency?: unknown;
+  contextLabel?: unknown;
+  signalAtMs?: unknown;
+  bulkEligibility?: EmailBulkEligibility;
+  eligibilitySource?: unknown;
 }
 
 const EMAIL_RE =
@@ -71,6 +87,102 @@ function millisFromUnknown(value: unknown): number {
   return 0;
 }
 
+export function resolveEmailBulkEligibility(input: Pick<UpsertEmailContactInput, 'source' | 'provider' | 'bulkEligibility' | 'eligibilitySource'>): {
+  bulkEligibility: EmailBulkEligibility;
+  eligibilitySource: string;
+} {
+  const explicit = input.bulkEligibility;
+  const explicitSource = cleanShortText(input.eligibilitySource, 80);
+  if (explicit && ['eligible', 'ineligible', 'unknown'].includes(explicit)) {
+    return { bulkEligibility: explicit, eligibilitySource: explicitSource || 'explicit_server_policy' };
+  }
+  const provider = cleanShortText(input.provider, 32).toLowerCase();
+  if (provider === 'site_form') {
+    return { bulkEligibility: 'ineligible', eligibilitySource: 'support_contact_only' };
+  }
+  if (provider === 'quiz_lead') {
+    return { bulkEligibility: 'eligible', eligibilitySource: 'quiz_lead_product_email' };
+  }
+  if (input.source === 'app') {
+    return { bulkEligibility: 'unknown', eligibilitySource: 'app_identity_unverified' };
+  }
+  return { bulkEligibility: 'unknown', eligibilitySource: 'site_order_unverified' };
+}
+
+function eligibilityRank(value: EmailBulkEligibility): number {
+  if (value === 'eligible') return 3;
+  if (value === 'ineligible') return 2;
+  return 1;
+}
+
+export function mergeEmailContactProjection(
+  existingValue: Record<string, unknown> | undefined,
+  input: UpsertEmailContactInput,
+  nowMs = Date.now(),
+): EmailContactProjection {
+  const existing = existingValue ?? {};
+  const email = normalizeEmailContactEmail(input.email) || normalizeEmailContactEmail(existing.email) || '';
+  const existingSources = Array.isArray(existing.sources)
+    ? existing.sources.filter((source): source is EmailContactSource => source === 'app' || source === 'site')
+    : [];
+  const sources = [...new Set([...existingSources, input.source])].sort() as EmailContactSource[];
+  const signalAtMs = millisFromUnknown(input.signalAtMs)
+    || millisFromUnknown(input.lastSignInAt)
+    || nowMs;
+  const previousSeenAtMs = millisFromUnknown(existing.lastSeenAtMs);
+  const useIncomingContext = signalAtMs >= previousSeenAtMs;
+  const incomingEligibility = resolveEmailBulkEligibility(input);
+  const previousEligibility = ['eligible', 'ineligible', 'unknown'].includes(String(existing.bulkEligibility))
+    ? String(existing.bulkEligibility) as EmailBulkEligibility
+    : 'unknown';
+  const previousEligibilityAtMs = millisFromUnknown(existing.eligibilityUpdatedAtMs);
+  const useIncomingEligibility = eligibilityRank(incomingEligibility.bulkEligibility) > eligibilityRank(previousEligibility)
+    || (eligibilityRank(incomingEligibility.bulkEligibility) === eligibilityRank(previousEligibility)
+      && signalAtMs >= previousEligibilityAtMs);
+  const displayName = cleanShortText(useIncomingContext ? input.displayName : existing.displayName, 160);
+  const incomingContext = cleanShortText(input.contextLabel, 200);
+  const contextLabel = cleanShortText(useIncomingContext ? (incomingContext || existing.contextLabel) : existing.contextLabel, 200);
+  return {
+    email,
+    sources,
+    ...(displayName ? { displayName } : {}),
+    ...(contextLabel ? { contextLabel } : {}),
+    lastSeenAtMs: Math.max(previousSeenAtMs, signalAtMs),
+    bulkEligibility: useIncomingEligibility ? incomingEligibility.bulkEligibility : previousEligibility,
+    eligibilitySource: useIncomingEligibility
+      ? incomingEligibility.eligibilitySource
+      : cleanShortText(existing.eligibilitySource, 80) || 'legacy_unknown',
+    eligibilityUpdatedAtMs: useIncomingEligibility ? signalAtMs : previousEligibilityAtMs,
+  };
+}
+
+export function projectEmailContactForAdmin(
+  id: string,
+  value: Record<string, unknown>,
+  suppressedEmails: ReadonlySet<string>,
+): Omit<EmailContactProjection, 'eligibilityUpdatedAtMs'> & { id: string; suppressed: boolean } {
+  const email = normalizeEmailContactEmail(value.email ?? value.lowerEmail) || '';
+  const sources = Array.isArray(value.sources)
+    ? value.sources.filter((source): source is EmailContactSource => source === 'app' || source === 'site').sort()
+    : [];
+  const bulkEligibility = ['eligible', 'ineligible', 'unknown'].includes(String(value.bulkEligibility))
+    ? String(value.bulkEligibility) as EmailBulkEligibility
+    : 'unknown';
+  const displayName = cleanShortText(value.displayName ?? value.appLastDisplayName, 160);
+  const contextLabel = cleanShortText(value.contextLabel, 200);
+  return {
+    id: cleanShortText(id, 160),
+    email,
+    sources,
+    ...(displayName ? { displayName } : {}),
+    ...(contextLabel ? { contextLabel } : {}),
+    lastSeenAtMs: millisFromUnknown(value.lastSeenAtMs ?? value.updatedAt ?? value.updatedAtIso),
+    bulkEligibility,
+    eligibilitySource: cleanShortText(value.eligibilitySource, 80) || 'legacy_unknown',
+    suppressed: suppressedEmails.has(email),
+  };
+}
+
 function amountCentsFromUnknown(value: unknown): number {
   const amount = Number(value);
   return Number.isFinite(amount) && amount > 0 ? Math.floor(amount) : 0;
@@ -85,52 +197,68 @@ export async function upsertEmailContact(
   if (input.source === 'app' && isApplePrivateRelayEmail(email)) return false;
 
   const ref = db.collection('email_contacts').doc(emailContactDocId(email));
-  const snap = await ref.get().catch(() => null);
-  const nowIso = new Date().toISOString();
-  const patch: Record<string, unknown> = {
-    email,
-    lowerEmail: email,
-    sources: FieldValue.arrayUnion(input.source),
-    lastSource: input.source,
-    updatedAt: FieldValue.serverTimestamp(),
-    updatedAtIso: nowIso,
-    ...(!snap?.exists ? { createdAt: FieldValue.serverTimestamp(), createdAtIso: nowIso } : {}),
-  };
+  await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const existing = snap.exists ? (snap.data() ?? {}) : {};
+    const nowMs = Date.now();
+    const nowIso = new Date(nowMs).toISOString();
+    const signalAtMs = millisFromUnknown(input.signalAtMs) || millisFromUnknown(input.lastSignInAt) || nowMs;
+    const previousSeenAtMs = millisFromUnknown(existing.lastSeenAtMs);
+    const projection = mergeEmailContactProjection(existing, { ...input, email }, nowMs);
+    const patch: Record<string, unknown> = {
+      ...projection,
+      lowerEmail: email,
+      lastSource: signalAtMs >= previousSeenAtMs ? input.source : existing.lastSource,
+      updatedAt: FieldValue.serverTimestamp(),
+      updatedAtIso: nowIso,
+      ...(!snap.exists ? { createdAt: FieldValue.serverTimestamp(), createdAtIso: nowIso } : {}),
+    };
 
-  if (input.source === 'app') {
-    const provider = cleanShortText(input.provider, 32) || 'app';
-    const providerUid = cleanShortText(input.providerUid, 160);
-    const stableId = cleanShortText(input.stableId, 160);
-    const displayName = cleanShortText(input.displayName, 160);
-    const devicePlatform = cleanShortText(input.devicePlatform, 20);
-    const lastSignInAt = millisFromUnknown(input.lastSignInAt);
-    Object.assign(patch, {
-      appLastProvider: provider,
-      appLastProviderUid: providerUid || null,
-      appLastStableId: stableId || null,
-      appLastDisplayName: displayName || null,
-      appLastDevicePlatform: devicePlatform || null,
-      ...(providerUid ? { appProviderUids: FieldValue.arrayUnion(providerUid) } : {}),
-      ...(stableId ? { appStableIds: FieldValue.arrayUnion(stableId) } : {}),
-      ...(lastSignInAt ? {
-        appLastSignInAt: lastSignInAt,
-        appLastSignInAtIso: new Date(lastSignInAt).toISOString(),
-      } : {}),
-      ...(input.countSignal === false ? {} : { appSeenCount: FieldValue.increment(1) }),
-    });
-  } else {
-    const orderId = cleanShortText(input.orderId, 120);
-    Object.assign(patch, {
-      siteLastProvider: cleanShortText(input.provider, 32) || 'site',
-      siteLastOrderId: orderId || null,
-      siteLastPlan: cleanShortText(input.plan, 32) || null,
-      siteLastAmountCents: amountCentsFromUnknown(input.amountCents),
-      siteLastCurrency: cleanShortText(input.currency, 8).toLowerCase() || null,
-      ...(orderId ? { siteOrderIds: FieldValue.arrayUnion(orderId) } : {}),
-      ...(input.countSignal === false ? {} : { siteSeenCount: FieldValue.increment(1) }),
-    });
-  }
+    if (input.source === 'app') {
+      const provider = cleanShortText(input.provider, 32) || 'app';
+      const providerUid = cleanShortText(input.providerUid, 160);
+      const stableId = cleanShortText(input.stableId, 160);
+      const displayName = cleanShortText(input.displayName, 160);
+      const devicePlatform = cleanShortText(input.devicePlatform, 20);
+      const lastSignInAt = millisFromUnknown(input.lastSignInAt);
+      const previousAppSignalAtMs = millisFromUnknown(existing.appLastSignalAtMs) || millisFromUnknown(existing.appLastSignInAt);
+      const useIncomingApp = signalAtMs >= previousAppSignalAtMs;
+      Object.assign(patch, {
+        ...(providerUid ? { appProviderUids: FieldValue.arrayUnion(providerUid) } : {}),
+        ...(stableId ? { appStableIds: FieldValue.arrayUnion(stableId) } : {}),
+        ...(input.countSignal === false ? {} : { appSeenCount: FieldValue.increment(1) }),
+        ...(useIncomingApp ? {
+          appLastSignalAtMs: signalAtMs,
+          appLastProvider: provider,
+          appLastProviderUid: providerUid || null,
+          appLastStableId: stableId || null,
+          appLastDisplayName: displayName || null,
+          appLastDevicePlatform: devicePlatform || null,
+          ...(lastSignInAt ? {
+            appLastSignInAt: lastSignInAt,
+            appLastSignInAtIso: new Date(lastSignInAt).toISOString(),
+          } : {}),
+        } : {}),
+      });
+    } else {
+      const orderId = cleanShortText(input.orderId, 120);
+      const previousSiteSignalAtMs = millisFromUnknown(existing.siteLastSignalAtMs);
+      const useIncomingSite = signalAtMs >= previousSiteSignalAtMs;
+      Object.assign(patch, {
+        ...(orderId ? { siteOrderIds: FieldValue.arrayUnion(orderId) } : {}),
+        ...(input.countSignal === false ? {} : { siteSeenCount: FieldValue.increment(1) }),
+        ...(useIncomingSite ? {
+          siteLastSignalAtMs: signalAtMs,
+          siteLastProvider: cleanShortText(input.provider, 32) || 'site',
+          siteLastOrderId: orderId || null,
+          siteLastPlan: cleanShortText(input.plan, 32) || null,
+          siteLastAmountCents: amountCentsFromUnknown(input.amountCents),
+          siteLastCurrency: cleanShortText(input.currency, 8).toLowerCase() || null,
+        } : {}),
+      });
+    }
 
-  await ref.set(patch, { merge: true });
+    tx.set(ref, patch, { merge: true });
+  });
   return true;
 }

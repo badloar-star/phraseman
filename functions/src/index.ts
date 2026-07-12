@@ -1620,6 +1620,16 @@ export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
+export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';
+export {
+  adminPreviewEmailCampaign,
+  adminRequestEmailCampaignApproval,
+  adminApproveEmailCampaign,
+  adminCreateEmailCampaign,
+  adminListEmailCampaigns,
+  adminCancelEmailCampaign,
+} from './admin_email_campaign_control';
+export { adminEmailCampaignCreated, adminEmailCampaignsCron } from './admin_email_campaign_worker';
 export { emailUnsubscribe } from './email_unsubscribe';
 
 export { dailyPhraseSetSaved } from './daily_phrases';

@@ -11771,7 +11771,7 @@
         <button type="button" class="emails-segment" data-email-source="app" onclick="setAdminEmailSource('app')">Из приложения</button>
         <button type="button" class="emails-segment" data-email-source="site" onclick="setAdminEmailSource('site')">Из сайта</button>
       </div>
-      <input id="email-search" class="emails-search" type="search" autocomplete="off" placeholder="Поиск: email, имя, UID, заказ" oninput="renderAdminEmails()" aria-label="Поиск по email" />
+      <input id="email-search" class="emails-search" type="search" autocomplete="off" placeholder="Поиск: email, имя, UID, заказ" oninput="scheduleLegacyEmailDirectorySearch()" aria-label="Поиск по email" />
       <button type="button" onclick="copyAdminEmailList()" title="Скопировать текущий отфильтрованный список, один email на строку">Скопировать все</button>
     </div>
 
@@ -11834,7 +11834,7 @@
           <input id="email-bulk-confirm" type="checkbox" onchange="updateAdminEmailBulkCount()" style="width:16px;height:16px" />
           Я проверил аудиторию, тему и текст
         </label>
-        <button type="button" onclick="sendAdminEmailCampaign()" title="Отправить письмо выбранным адресам">Отправить рассылку</button>
+        <button type="button" onclick="sendAdminEmailCampaign()" title="Открыть защищённый процесс Preview → Approval → Queue в новой админке">Открыть защищённую рассылку</button>
         <span id="email-bulk-status" class="emails-muted"></span>
       </div>
     </div>
@@ -14341,12 +14341,15 @@
     if (!_supportCallables[name]) _supportCallables[name] = httpsCallable(functionsUs, name);
     return _supportCallables[name];
   }
-  let _fnAdminEmailBroadcast = null;
-  function getAdminEmailBroadcastCallable() {
-    if (!_fnAdminEmailBroadcast) {
-      _fnAdminEmailBroadcast = httpsCallable(functionsUs, 'adminEmailBroadcast');
-    }
-    return _fnAdminEmailBroadcast;
+  let _fnAdminListEmailContacts = null;
+  function getAdminListEmailContactsCallable() {
+    if (!_fnAdminListEmailContacts) _fnAdminListEmailContacts = httpsCallable(functionsUs, 'adminListEmailContacts');
+    return _fnAdminListEmailContacts;
+  }
+  let _fnAdminExportEmailContacts = null;
+  function getAdminExportEmailContactsCallable() {
+    if (!_fnAdminExportEmailContacts) _fnAdminExportEmailContacts = httpsCallable(functionsUs, 'adminExportEmailContacts');
+    return _fnAdminExportEmailContacts;
   }
   let _fnAdminEmailContactsBackfill = null;
   function getAdminEmailContactsBackfillCallable() {
@@ -17899,9 +17902,16 @@
     if (window._adminEmailBackfillRunning) return;
     window._adminEmailBackfillRunning = true;
     _adminEmailBackfillAttempted = true;
+    const reason = silent ? '' : String(window.prompt('Причина синхронизации email-каталога для аудита:') || '').trim();
+    if (!reason) {
+      window._adminEmailBackfillRunning = false;
+      if (!silent) showToast('Синхронизация отменена: нужна причина для аудита', 'warn');
+      return;
+    }
     if (status) status.textContent = 'Собираем email из базы...';
     try {
-      const result = await getAdminEmailContactsBackfillCallable()({});
+      const operationId = `legacy-email-backfill-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+      const result = await getAdminEmailContactsBackfillCallable()({ reason, requestId: operationId, idempotencyKey: operationId });
       const data = result.data || {};
       if (status) {
         status.textContent = `Готово: приложение ${data.writtenApp || 0}, сайт ${data.writtenSite || 0}`;
@@ -17918,6 +17928,40 @@
 
   window.loadAdminEmails = async function loadAdminEmails(force) {
     window._adminEmailsLoaded = true;
+    try {
+      const protectedRows = [];
+      let protectedCounts = null;
+      let protectedFilteredCount = 0;
+      const protectedQuery = String(document.getElementById('email-search')?.value || '').trim();
+      const protectedSource = ['app', 'site'].includes(_adminEmailSource) ? _adminEmailSource : 'all';
+      const response = await getAdminListEmailContactsCallable()({
+        view: 'legacy_table', source: protectedSource, eligibility: 'all', suppression: 'all', query: protectedQuery, pageSize: 1000, cursor: '',
+      });
+      const data = response.data || {};
+      protectedCounts = data.counts || null;
+      protectedFilteredCount = Number(data.filteredCount || 0);
+      (Array.isArray(data.items) ? data.items : []).forEach((item) => {
+        protectedRows.push({
+          email: item.email,
+          sources: Array.isArray(item.sources) ? item.sources : [],
+          contexts: [item.contextLabel || '', item.bulkEligibility || '', item.suppressed ? 'suppressed' : ''].filter(Boolean),
+          uids: [], orderIds: [], name: item.displayName || '', provider: '', isPlus: false, lastActiveMs: 0,
+          lastSeenMs: Number(item.lastSeenAtMs || 0), lastSeenLabel: 'protected directory',
+        });
+      });
+      window._adminEmailRows = protectedRows;
+      window._adminEmailCounts = protectedCounts;
+      window._adminEmailFilteredCount = protectedFilteredCount;
+      renderAdminEmails();
+      updateAdminEmailBulkCount();
+      if (force) showToast('Email list loaded through protected directory');
+      return;
+    } catch (error) {
+      const list = document.getElementById('email-list');
+      if (list) list.innerHTML = '<tr><td colspan="4"><div class="reports-empty">Protected email directory failed: ' + escapeHtml(error.message || String(error)) + '</div></td></tr>';
+      showToast('Protected email directory failed: ' + (error.message || String(error)), 'err');
+      return;
+    }
     const list = document.getElementById('email-list');
     if (list) list.innerHTML = '<tr><td colspan="4"><div class="reports-empty">Загрузка email...</div></td></tr>';
     try {
@@ -18013,7 +18057,16 @@
     document.querySelectorAll('[data-email-source]').forEach((button) => {
       button.classList.toggle('active', button.getAttribute('data-email-source') === _adminEmailSource);
     });
-    renderAdminEmails();
+    void window.loadAdminEmails(false);
+  };
+
+  let _legacyEmailDirectorySearchTimer = null;
+  window.scheduleLegacyEmailDirectorySearch = function scheduleLegacyEmailDirectorySearch() {
+    if (_legacyEmailDirectorySearchTimer) clearTimeout(_legacyEmailDirectorySearchTimer);
+    _legacyEmailDirectorySearchTimer = setTimeout(() => {
+      _legacyEmailDirectorySearchTimer = null;
+      void window.loadAdminEmails(false);
+    }, 250);
   };
 
   const EMAIL_ACTIVE_WINDOW_DAYS = 30;
@@ -18044,17 +18097,17 @@
 
   window.renderAdminEmails = function renderAdminEmails() {
     const rows = window._adminEmailRows || [];
-    const queryText = document.getElementById('email-search')?.value || '';
-    const visible = filterAdminEmailRows(_adminEmailSource, queryText);
+    const visible = rows;
     window._adminEmailFiltered = visible;
     const statAll = document.getElementById('email-stat-all');
     const statApp = document.getElementById('email-stat-app');
     const statSite = document.getElementById('email-stat-site');
     const statVisible = document.getElementById('email-stat-visible');
-    if (statAll) statAll.textContent = String(rows.length);
-    if (statApp) statApp.textContent = String(rows.filter((row) => row.sources.includes('app')).length);
-    if (statSite) statSite.textContent = String(rows.filter((row) => row.sources.includes('site')).length);
-    if (statVisible) statVisible.textContent = String(visible.length);
+    const counts = window._adminEmailCounts || {};
+    if (statAll) statAll.textContent = String(Number(counts.all ?? rows.length));
+    if (statApp) statApp.textContent = String(Number(counts.app ?? rows.filter((row) => row.sources.includes('app')).length));
+    if (statSite) statSite.textContent = String(Number(counts.site ?? rows.filter((row) => row.sources.includes('site')).length));
+    if (statVisible) statVisible.textContent = String(Number(window._adminEmailFilteredCount ?? visible.length));
     const list = document.getElementById('email-list');
     if (!list) return;
     if (!visible.length) {
@@ -18082,6 +18135,22 @@
   }
 
   window.copyAdminEmailList = async function copyAdminEmailList() {
+    const reason = String(window.prompt('Причина экспорта email для аудита:') || '').trim();
+    if (!reason) { showToast('Экспорт отменён: нужна причина для аудита', 'warn'); return; }
+    const operationId = `legacy-email-export-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    try {
+      const result = await getAdminExportEmailContactsCallable()({
+        source: ['app', 'site'].includes(_adminEmailSource) ? _adminEmailSource : 'all',
+        eligibility: 'all', suppression: 'all', query: String(document.getElementById('email-search')?.value || '').trim(),
+        reason, requestId: operationId, idempotencyKey: operationId,
+      });
+      const emails = Array.isArray(result.data?.emails) ? result.data.emails : [];
+      await navigator.clipboard.writeText(emails.join('\n'));
+      showToast('Скопировано email: ' + emails.length + '. Экспорт записан в аудит.');
+    } catch (error) {
+      showToast('Email export failed: ' + (error.message || String(error)), 'err');
+    }
+    return;
     const rows = window._adminEmailFiltered || [];
     const text = rows.map((row) => row.email).join('\n');
     if (!text) { showToast('Нет email для копирования', 'warn'); return; }
@@ -18107,6 +18176,11 @@
   };
 
   window.sendAdminEmailCampaign = async function sendAdminEmailCampaign() {
+    const archiveStatus = document.getElementById('email-bulk-status');
+    if (archiveStatus) archiveStatus.textContent = 'Рассылки перенесены в защищённый процесс новой админки.';
+    showToast('Открываем Preview → Approval → Queue в новой админке');
+    window.location.href = './v2/index.html#emails';
+    return;
     const rows = updateAdminEmailBulkCount();
     const emails = rows.map((row) => row.email);
     const subject = String(document.getElementById('email-bulk-subject')?.value || '').trim();
@@ -18122,12 +18196,7 @@
     if (!ok) return;
     if (status) status.textContent = 'Отправляем...';
     try {
-      const result = await getAdminEmailBroadcastCallable()({
-        emails,
-        subject,
-        text,
-        audienceLabel: audience,
-      });
+      const result = await Promise.reject(new Error('legacy_email_broadcast_removed'));
       const data = result.data || {};
       if (status) status.textContent = `Готово: отправлено ${data.sentCount || 0}, ошибок ${data.failedCount || 0}`;
       showToast(`Рассылка отправлена: ${data.sentCount || 0}`);

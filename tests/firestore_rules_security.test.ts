@@ -317,18 +317,18 @@ describe('firestore.rules security baseline', () => {
     expect(orderBlock![0]).not.toContain('request.auth != null');
   });
 
-  test('admin email contacts and campaigns are server-created with admin read/update', () => {
+  test('email contacts, campaigns, approval packets and suppressions are callable-only', () => {
     const contactsBlock = rules.match(/match \/email_contacts\/\{docId\} \{[\s\S]*?\n    \}/);
     expect(contactsBlock).not.toBeNull();
-    expect(contactsBlock![0]).toContain('allow read, update, delete: if isAdmin();');
-    expect(contactsBlock![0]).toContain('allow create: if false;');
-    expect(contactsBlock![0]).not.toContain('request.auth != null');
+    expect(contactsBlock![0]).toContain('allow read, write: if false;');
 
     const campaignsBlock = rules.match(/match \/email_campaigns\/\{docId\} \{[\s\S]*?\n    \}/);
     expect(campaignsBlock).not.toBeNull();
-    expect(campaignsBlock![0]).toContain('allow read, update, delete: if isAdmin();');
-    expect(campaignsBlock![0]).toContain('allow create: if false;');
-    expect(campaignsBlock![0]).not.toContain('request.auth != null');
+    expect(campaignsBlock![0]).toContain('allow read, write: if false;');
+    expect(rules).toMatch(/match \/email_campaigns\/\{docId\}\/\{document=\*\*\} \{\s*allow read, write: if false;/);
+    expect(rules).toMatch(/match \/admin_email_previews\/\{docId\}\/\{document=\*\*\} \{\s*allow read, write: if false;/);
+    expect(rules).toMatch(/match \/admin_approval_requests\/\{docId\} \{\s*allow read, write: if false;/);
+    expect(rules).toMatch(/match \/email_suppressions\/\{docId\} \{\s*allow read, write: if false;/);
   });
 
   test('arena_rooms updates are field-restricted', () => {

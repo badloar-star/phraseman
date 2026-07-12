@@ -3,6 +3,7 @@ import * as logger from 'firebase-functions/logger';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { defineString } from 'firebase-functions/params';
 import { createHash } from 'crypto';
+import { upsertEmailContact } from './email_contacts';
 
 /** Опционально: ключ Resend для письма на почту при новом обращении (Firebase params / secrets env). */
 const resendApiKey = defineString('RESEND_API_KEY', { default: '' });
@@ -247,6 +248,19 @@ export const submitWebsiteContact = onRequest(
       status: 'new',
       createdAt: FieldValue.serverTimestamp(),
       meta: { ua, forwarded },
+    });
+
+    await upsertEmailContact(db, {
+      email,
+      source: 'site',
+      provider: 'website_contact',
+      displayName: name,
+      contextLabel: `support:${topic}`,
+      signalAtMs: Date.now(),
+      bulkEligibility: 'ineligible',
+      eligibilitySource: 'support_contact_only',
+    }).catch((error) => {
+      logger.warn('website_contact_projection_failed', error);
     });
 
     const subject = `[PhraseMan web · ${topic}] ${email}`;

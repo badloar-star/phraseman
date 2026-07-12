@@ -25,7 +25,7 @@ const REGION = 'us-central1';
  * рассылку на реальных людей запускать только с заданным секретом.
  */
 const unsubscribeSecret = defineString('EMAIL_UNSUBSCRIBE_SECRET', {
-  default: 'phraseman-unsubscribe-dev-secret-change-me',
+  default: 'UNCONFIGURED',
 });
 
 /**
@@ -44,6 +44,45 @@ const previousUnsubscribeSecret = defineString('EMAIL_UNSUBSCRIBE_PREVIOUS_SECRE
 const unsubscribeBaseUrl = defineString('EMAIL_UNSUBSCRIBE_BASE_URL', {
   default: 'https://knowlyapps.com/unsubscribe',
 });
+
+export const EMAIL_UNSUBSCRIBE_PLACEHOLDER_SECRET = 'UNCONFIGURED';
+
+export interface MarketingEmailConfiguration {
+  unsubscribeSecret: string;
+  unsubscribeBaseUrl: string;
+  from: string;
+}
+
+export function validateMarketingEmailConfiguration(input: MarketingEmailConfiguration): { ok: true } | { ok: false; error: string } {
+  const secret = String(input.unsubscribeSecret || '').trim();
+  if (secret.length < 32 || secret === EMAIL_UNSUBSCRIBE_PLACEHOLDER_SECRET || /change[-_ ]?me/i.test(secret)) {
+    return { ok: false, error: 'email_unsubscribe_secret_not_configured' };
+  }
+  try {
+    const url = new URL(String(input.unsubscribeBaseUrl || '').trim());
+    if (url.protocol !== 'https:' || !url.hostname || url.username || url.password) {
+      return { ok: false, error: 'email_unsubscribe_url_not_secure' };
+    }
+  } catch {
+    return { ok: false, error: 'email_unsubscribe_url_not_secure' };
+  }
+  const from = String(input.from || '').trim();
+  const match = from.match(/<([^<>]+)>\s*$/);
+  const address = normalizeEmail(match ? match[1] : from);
+  if (!address || address === 'onboarding@resend.dev' || address.endsWith('@resend.dev')) {
+    return { ok: false, error: 'admin_email_sender_not_approved' };
+  }
+  return { ok: true };
+}
+
+export function assertMarketingEmailConfiguration(from: string): void {
+  const result = validateMarketingEmailConfiguration({
+    unsubscribeSecret: unsubscribeSecret.value(),
+    unsubscribeBaseUrl: unsubscribeBaseUrl.value(),
+    from,
+  });
+  if (!result.ok) throw new Error(result.error);
+}
 
 const EMAIL_RE =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -169,6 +208,29 @@ function confirmPageHtml(email: string, ok: boolean): string {
 </body></html>`;
 }
 
+export async function resolveUnsubscribeRequest(input: {
+  method: string;
+  email: string;
+  token: string;
+  currentSecret: string;
+  previousSecret?: string;
+  persist: (email: string) => Promise<void>;
+  onError?: (error: unknown) => void;
+}): Promise<{ status: number; valid: boolean; persisted: boolean; email: string | null }> {
+  const method = String(input.method || '').toUpperCase();
+  if (method !== 'GET' && method !== 'POST') return { status: 405, valid: false, persisted: false, email: null };
+  const email = normalizeEmail(input.email);
+  const valid = !!email && verifyUnsubscribeTokenWithSecrets(email, input.token, input.currentSecret, input.previousSecret || '');
+  if (!valid || !email) return { status: 400, valid: false, persisted: false, email };
+  try {
+    await input.persist(email);
+    return { status: 200, valid: true, persisted: true, email };
+  } catch (error) {
+    input.onError?.(error);
+    return { status: 503, valid: true, persisted: false, email };
+  }
+}
+
 /**
  * Публичная функция отписки.
  * GET  ?e=<email>&t=<token> — клик по ссылке из письма → HTML-страница.
@@ -186,26 +248,24 @@ export const emailUnsubscribe = onRequest(
       (req.query.e as string) || (req.body && (req.body.e as string)) || '';
     const rawToken =
       (req.query.t as string) || (req.body && (req.body.t as string)) || '';
-    const email = normalizeEmail(rawEmail);
-    const valid = !!email && verifyUnsubscribeToken(email, rawToken);
-
-    if (valid && email) {
-      try {
-        await suppressEmail(getFirestore(), email, 'user_unsubscribe');
-      } catch (error) {
-        logger.error('emailUnsubscribe suppress failed', error);
-        // Всё равно показываем «отписаны», чтобы пользователь не жал повторно.
-      }
-    }
-
+    const outcome = await resolveUnsubscribeRequest({
+      method,
+      email: rawEmail,
+      token: rawToken,
+      currentSecret: unsubscribeSecret.value(),
+      previousSecret: previousUnsubscribeSecret.value(),
+      persist: (normalized) => suppressEmail(getFirestore(), normalized, 'user_unsubscribe'),
+      onError: (error) => logger.error('emailUnsubscribe suppress failed', error),
+    });
+    const success = outcome.valid && outcome.persisted;
     if (method === 'POST') {
-      // one-click: тело не нужно, только статус.
-      res.status(valid ? 200 : 400).send(valid ? 'OK' : 'INVALID');
+      res.status(outcome.status).send(success ? 'OK' : outcome.status === 503 ? 'RETRY' : 'INVALID');
       return;
     }
     res
-      .status(valid ? 200 : 400)
+      .status(outcome.status)
       .set('Content-Type', 'text/html; charset=utf-8')
-      .send(confirmPageHtml(email || rawEmail, valid));
+      .send(confirmPageHtml(outcome.email || rawEmail, success));
+    return;
   },
 );

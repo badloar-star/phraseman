@@ -23,20 +23,26 @@ describe('admin emails surface', () => {
     expect(adminHtml).toContain('Скопировать все');
   });
 
-  test('admin email list merges app and site sources while hiding Apple private relay from app segment', () => {
-    expect(adminHtml).toContain('email_contacts');
-    expect(adminHtml).toContain('web_premium_orders');
-    expect(adminHtml).toContain('website_contact_inbox');
-    expect(adminHtml).toContain('@privaterelay.appleid.com');
-    expect(adminHtml).toContain('adminEmailIsApplePrivateRelay');
-    expect(adminHtml).toContain('appLastStableId');
-    expect(adminHtml).toContain('appLastSignInAt');
+  test('archive email list uses the protected server projection rather than browser reads', () => {
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'adminListEmailContacts')");
+    expect(adminHtml).not.toContain('for (let page = 0; page < 50; page += 1)');
+    expect(adminHtml).toContain("view: 'legacy_table'");
+    expect(adminHtml).toContain('pageSize: 1000');
+    expect(adminHtml).toContain('source: protectedSource');
+    expect(adminHtml).toContain('query: protectedQuery');
+    expect(adminHtml).toContain('scheduleLegacyEmailDirectorySearch()');
+    expect(adminHtml).toContain('void window.loadAdminEmails(false)');
+    expect(adminHtml).toContain('getAdminListEmailContactsCallable');
+    expect(adminHtml).toContain('protected directory');
+    expect(adminHtml).toContain('Protected email directory failed');
   });
 
-  test('mass email uses a server callable instead of exposing provider credentials in the browser', () => {
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'adminEmailBroadcast')");
-    expect(adminHtml).toContain('getAdminEmailBroadcastCallable');
+  test('archive mass-email control redirects to the protected v2 workflow', () => {
+    expect(adminHtml).not.toContain("httpsCallable(functionsUs, 'adminEmailBroadcast')");
+    expect(adminHtml).not.toContain('getAdminEmailBroadcastCallable');
     expect(adminHtml).toContain('sendAdminEmailCampaign');
+    expect(adminHtml).toContain("window.location.href = './v2/index.html#emails'");
+    expect(adminHtml).toContain('Открыть защищённую рассылку');
     expect(adminHtml).not.toContain('api.resend.com/emails');
   });
 
@@ -71,5 +77,11 @@ describe('admin emails surface', () => {
 
   test('admin email functions are exported', () => {
     expect(functionsIndex).toContain("export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';");
+    expect(functionsIndex).toContain("adminListEmailContacts");
+    expect(functionsIndex).toContain("adminExportEmailContacts");
+    expect(functionsIndex).toContain("from './admin_email_control'");
+    expect(functionsIndex).toContain('adminPreviewEmailCampaign');
+    expect(functionsIndex).toContain('adminEmailCampaignCreated');
+    expect(functionsIndex).toContain("from './admin_email_campaign_worker'");
   });
 });

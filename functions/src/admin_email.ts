@@ -10,6 +10,7 @@ import {
   upsertEmailContact,
 } from './email_contacts';
 import { loadSuppressedEmails, unsubscribeUrlFor } from './email_unsubscribe';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
 
 const REGION = 'us-central1';
 const MAX_RECIPIENTS = 5000;
@@ -312,6 +313,7 @@ async function backfillWebOrderEmailContact(
     plan: data.plan || data.planDuration,
     amountCents: data.amountCents,
     currency: data.currency,
+    signalAtMs: data.paidAt || data.capturedAt || data.updatedAt || data.createdAt || data.createdAtIso,
   });
   return ok ? 'site' : 'skipped_invalid';
 }
@@ -330,6 +332,10 @@ async function backfillWebsiteInboxEmailContact(
     provider: 'site_form',
     orderId: doc.id,
     plan: data.topic,
+    contextLabel: `support:${cleanString(data.topic, 64) || 'other'}`,
+    bulkEligibility: 'ineligible',
+    eligibilitySource: 'support_contact_only',
+    signalAtMs: data.createdAt || data.updatedAt || data.createdAtIso,
   });
   return ok ? 'site' : 'skipped_invalid';
 }
@@ -340,10 +346,35 @@ export const adminEmailContactsBackfill = onCall({
   timeoutSeconds: 540,
   memory: '1GiB',
 }, async (request) => {
-  if (!request.auth?.token?.admin) {
-    throw new HttpsError('permission-denied', 'admin_only');
-  }
+  const role = resolveAdminRole((request.auth?.token || {}) as Record<string, unknown>);
+  if (!request.auth || !role || !hasPermission(role, 'emails.directory.backfill')) throw new HttpsError('permission-denied', 'email_backfill_forbidden');
+  const actorUid = request.auth.uid;
+  const input = request.data && typeof request.data === 'object' && !Array.isArray(request.data) ? request.data as Record<string, unknown> : {};
+  const reason = cleanString(input.reason, 500);
+  const requestId = cleanString(input.requestId, 160);
+  const idempotencyKey = cleanString(input.idempotencyKey, 160);
+  if (!reason || !requestId || !idempotencyKey) throw new HttpsError('invalid-argument', 'reason, requestId and idempotencyKey are required');
   const db = admin.firestore();
+  const operationRef = db.collection('admin_command_operations').doc(idempotencyKey);
+  const fingerprint = 'email_contacts_backfill:v2';
+  const claimAtMs = Date.now();
+  const replay = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(operationRef);
+    if (snap.exists) {
+      const existing = snap.data() || {};
+      if (existing.actorUid !== actorUid || existing.requestFingerprint !== fingerprint) throw new HttpsError('already-exists', 'idempotency_conflict');
+      if (existing.status === 'complete') return existing.result || { ok: true, replayed: true };
+      if (existing.status === 'running' && claimAtMs - Number(existing.startedAtMs || 0) < 10 * 60 * 1000) throw new HttpsError('failed-precondition', 'email_backfill_already_running');
+      tx.set(operationRef, { status: 'running', startedAtMs: claimAtMs, updatedAtMs: claimAtMs, restartCount: admin.firestore.FieldValue.increment(1) }, { merge: true });
+      return null;
+    }
+    tx.create(operationRef, {
+      type: 'email_contacts_backfill', status: 'running', actorUid,
+      requestFingerprint: fingerprint, reason, requestId, startedAtMs: claimAtMs, updatedAtMs: claimAtMs, createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return null;
+  });
+  if (replay) return { ...(replay as Record<string, unknown>), replayed: true };
   const stats: BackfillStats = {
     scannedUsers: 0,
     scannedAuthLinks: 0,
@@ -392,12 +423,21 @@ export const adminEmailContactsBackfill = onCall({
     createdBy: cleanString(request.auth.token.email, 160) || 'admin',
     createdByUid: request.auth.uid || null,
     stats,
+    reason,
+    requestId,
+    operationId: idempotencyKey,
     durationMs: Date.now() - startedAt,
     ts: finishedAtIso,
   });
 
-  return { ok: true, durationMs: Date.now() - startedAt, ...stats };
+  const result = { ok: true, durationMs: Date.now() - startedAt, ...stats };
+  await operationRef.set({ status: 'complete', result, updatedAtMs: Date.now(), finishedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+  return result;
 });
+
+function rejectLegacyEmailBroadcast(): void {
+  throw new HttpsError('failed-precondition', 'protected_email_campaign_workflow_required');
+}
 
 export const adminEmailBroadcast = onCall({
   region: REGION,
@@ -408,6 +448,7 @@ export const adminEmailBroadcast = onCall({
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'admin_only');
   }
+  rejectLegacyEmailBroadcast();
   const payload = normalizeBroadcastPayload(request.data);
   const db = admin.firestore();
   const campaignRef = db.collection('email_campaigns').doc();

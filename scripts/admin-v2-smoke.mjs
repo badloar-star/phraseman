@@ -72,8 +72,8 @@ function checkCapabilityParity() {
   assert(new Set(ids).size === ids.length, 'capability registry contains duplicate ids');
   assert(JSON.stringify(registeredTabs) === JSON.stringify(legacyTabs), 'not every legacy tab is registered exactly once');
   assert(JSON.stringify(registeredPages) === JSON.stringify(legacyFiles.slice(1).sort()), 'standalone legacy pages are not registered exactly once');
-  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => item.nativeRoute).length === 18, 'native capability count drifted from 18');
-  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => !item.nativeRoute).length === 41, 'fallback capability count drifted from 41');
+  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => item.nativeRoute).length === 19, 'native capability count drifted from 19');
+  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => !item.nativeRoute).length === 40, 'fallback capability count drifted from 40');
   for (const file of legacyFiles) assert(fs.existsSync(path.join(root, file)), `legacy source is missing: ${file}`);
 }
 

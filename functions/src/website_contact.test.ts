@@ -78,6 +78,8 @@ jest.mock('firebase-admin/firestore', () => ({
   getFirestore: jest.fn(() => fakeDb()),
   FieldValue: {
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
+    arrayUnion: (...values: unknown[]) => ({ __op: 'arrayUnion', values }),
+    increment: (value: number) => ({ __op: 'increment', value }),
   },
 }));
 
@@ -126,6 +128,16 @@ beforeEach(() => {
 });
 
 describe('submitWebsiteContact rate limit', () => {
+  test('projects a support-form address as contact-only, never bulk eligible', async () => {
+    await postContact();
+    const contact = Array.from(mockDocs.entries()).find(([path]) => path.startsWith('email_contacts/'))?.[1];
+    expect(contact).toMatchObject({
+      email: 'alice@example.com',
+      bulkEligibility: 'ineligible',
+      eligibilitySource: 'support_contact_only',
+    });
+  });
+
   test('rejects repeated submissions from the same IP before writing inbox docs', async () => {
     await postContact();
     await postContact();

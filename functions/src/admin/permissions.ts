@@ -27,7 +27,14 @@ export type AdminPermission =
   | 'reports.status.write'
   | 'reports.reply.draft'
   | 'reports.reply.send'
-  | 'diagnostics.status.write';
+  | 'diagnostics.status.write'
+  | 'emails.directory.read'
+  | 'emails.directory.export'
+  | 'emails.directory.backfill'
+  | 'emails.campaigns.read'
+  | 'emails.campaigns.write'
+  | 'emails.campaigns.approve'
+  | 'emails.campaigns.cancel';
 
 export function resolveAdminRole(token: Readonly<Record<string, unknown>> | null | undefined): AdminRole | null {
   if (token?.admin !== true) return null;
@@ -55,6 +62,16 @@ const BRIEFING_OPERATOR_PERMISSIONS: readonly AdminPermission[] = [
   'briefing.generate',
 ];
 
+const EMAIL_ADMIN_PERMISSIONS: readonly AdminPermission[] = [
+  'emails.directory.read',
+  'emails.directory.export',
+  'emails.directory.backfill',
+  'emails.campaigns.read',
+  'emails.campaigns.write',
+  'emails.campaigns.approve',
+  'emails.campaigns.cancel',
+];
+
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -62,6 +79,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     'diagnostics.read', 'community.moderate', 'admin.roles.write',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
+    ...EMAIL_ADMIN_PERMISSIONS,
   ]),
   admin: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -69,6 +87,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     'diagnostics.read', 'community.moderate',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
     ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
+    ...EMAIL_ADMIN_PERMISSIONS,
   ]),
   support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
   content_editor: new Set(['content.read', 'content.draft.write']),

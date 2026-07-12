@@ -299,6 +299,35 @@ describe('lesson cumulative vocabulary coverage', () => {
   });
 
 
+  it('removes every individually proven Task5d L25-32 row', () => {
+    const manifest: ReadonlyArray<readonly [number, number, string]> = [
+      [25,16,"at noon::adverbs"],[25,10,"fast::adverbs"],[25,7,"phone::nouns"],[25,21,"knock::verbs"],[26,7,"news::nouns"],
+      [26,8,"arrive::verbs"],[27,10,"explain::verbs"],[27,1,"ready::adjectives"],[27,2,"dangerous::adjectives"],[27,1,"important::adjectives"],
+      [27,13,"soon::adverbs"],[27,10,"password::nouns"],[27,6,"meeting::nouns"],[27,21,"nothing::pronouns"],[28,3,"dinner::nouns"],
+      [28,6,"why::adverbs"],[28,26,"rest::verbs"],[29,3,"live::verbs"],[29,3,"travel::verbs"],[29,4,"check::verbs"],
+      [29,26,"faster::adverbs"],[29,23,"on time::adverbs"],[29,1,"together::adverbs"],[29,11,"play::verbs"],[30,10,"explain::verbs"],
+      [30,26,"invite::verbs"],[30,7,"plan::nouns"],[30,7,"hotel::nouns"],[30,19,"bank::nouns"],[30,5,"correctly::adverbs"],
+      [32,14,"lesson::nouns"],[32,7,"phone::nouns"],[32,26,"without::adverbs"],[32,23,"quickly::adverbs"],[32,27,"okay::adverbs"],
+      [32,10,"today::adverbs"],
+    ];
+    expect(manifest).toHaveLength(36);
+    const baseline = lessonWordBankAuditState();
+    for (const [laterLesson, firstLesson, semanticKey] of manifest) {
+      const rowIndex = baseline.raw[laterLesson].findIndex((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey);
+      expect(rowIndex).toBe(-1);
+      const firstRow = baseline.raw[firstLesson].find((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey);
+      expect(firstRow).toBeDefined();
+    }
+    const scopedRuntime = Object.fromEntries(Array.from({ length: 8 }, (_, i) => [i + 25, baseline.runtime[i + 25]]));
+    const scopedDiagnostics = baseline.diagnostics.filter(({ lessonId }) => lessonId >= 25 && lessonId <= 32);
+    expect({
+      hash: createHash('sha256').update(JSON.stringify(scopedRuntime)).digest('hex'),
+      raw: scopedDiagnostics.reduce((sum, row) => sum + row.rawCount, 0),
+      duplicates: scopedDiagnostics.reduce((sum, row) => sum + row.duplicatesRemoved, 0),
+    }).toEqual({ hash: 'cb3c84c4f0933fb8ac895b7dccdf34cbb03549f47fbb1df8e3941d939967dbee', raw: 281, duplicates: 77 });
+  });
+
+
   it('dedupes the same normalized lemma, POS and sense while preserving the first card', () => {
     const first = { en: 'battery', pos: 'nouns', sense: 'power cell' };
     const later = { ...first, en: 'Battery' };

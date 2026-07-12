@@ -1214,7 +1214,7 @@ const styles = StyleSheet.create({
   vipSurveyBadge: {
     height: 22,
     borderRadius: 11,
-    borderWidth: 0.5,
+    borderWidth: 0,
     paddingHorizontal: 7,
     flexDirection: 'row',
     alignItems: 'center',
@@ -1296,7 +1296,7 @@ const styles = StyleSheet.create({
   vipSurveyCard: {
     marginTop: 18,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 14,
     gap: 14,
   },

@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   detailBox: {
     alignSelf: 'stretch',
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 16,
     gap: 8,
     marginTop: 10,

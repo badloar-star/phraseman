@@ -305,7 +305,7 @@ function UnownedMarketPackCard({
             height: 28,
             borderRadius: 14,
             backgroundColor: t.bgCard,
-            borderWidth: 1,
+            borderWidth: 0,
             borderColor: t.border,
             alignItems: 'center',
             justifyContent: 'center',
@@ -365,7 +365,7 @@ function UnownedMarketPackCard({
             end={{ x: 1, y: 1 }}
             style={{
               borderRadius: 12,
-              borderWidth: 1,
+              borderWidth: 0,
               borderColor: 'rgba(255,255,255,0.22)',
               paddingVertical: 5,
               paddingHorizontal: 8,

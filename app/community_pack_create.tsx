@@ -1100,7 +1100,7 @@ export default function CommunityPackCreateScreen() {
                   paddingVertical: 14,
                   paddingHorizontal: 16,
                   borderRadius: 14,
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: t.accent,
                   alignItems: 'center',
                   opacity: rows.length >= 50 || isEditingCard ? 0.45 : 1,
@@ -1176,7 +1176,7 @@ export default function CommunityPackCreateScreen() {
                         paddingVertical: 12,
                         paddingHorizontal: 8,
                         borderRadius: 12,
-                        borderWidth: 1,
+                        borderWidth: 0,
                         borderColor: t.border,
                         alignItems: 'center',
                       }}
@@ -1346,7 +1346,7 @@ function draftLabelStyle(t: { textMuted: string }) {
 function fieldInputStyle(t: { bgCard: string; textPrimary: string; border: string }) {
   return {
     backgroundColor: t.bgCard,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: t.border,
     borderRadius: 12,
     paddingHorizontal: 16,
@@ -1374,7 +1374,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   stepperRow: {
     flexDirection: 'row',
@@ -1387,7 +1387,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 16,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   stepperHit: { padding: 8, minWidth: 48, alignItems: 'center' },
   stepperVal: { fontSize: 22, fontWeight: '800', minWidth: 0, textAlign: 'center' },
@@ -1396,7 +1396,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   cardBackHeroRow: {
     flexDirection: 'row',
@@ -1426,7 +1426,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 86,
     borderRadius: 12,
-    borderWidth: 1.5,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',

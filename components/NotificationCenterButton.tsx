@@ -470,7 +470,7 @@ const styles = StyleSheet.create({
   rewardCard: {
     marginTop: 18,
     borderRadius: 14,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 14,
     gap: 14,
   },

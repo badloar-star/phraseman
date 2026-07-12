@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 390,
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: 0,
     padding: 20,
     overflow: 'hidden',
     shadowOpacity: 0.4,

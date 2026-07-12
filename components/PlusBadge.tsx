@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     borderRadius: 999,
     overflow: 'hidden',
-    borderWidth: 0.5,
+    borderWidth: 0,
     borderColor: GOLD_RICH.hairlineStrong,
   },
   text: {

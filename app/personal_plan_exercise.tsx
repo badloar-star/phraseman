@@ -3021,7 +3021,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   feedbackTitle: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
   feedbackBody: { fontSize: 15, lineHeight: 22, fontWeight: '700' },
   inlineFeedbackHost: { flex: 1, minHeight: 12, justifyContent: 'center', paddingVertical: 16 },
-  retryAfterMistake: { marginTop: 12, alignSelf: 'center', borderWidth: 0, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 11 },
+  retryAfterMistake: { marginTop: 12, alignSelf: 'center', borderWidth:0, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 11 },
   inlineFeedback: {
     width: '100%',
     borderRadius: 14,

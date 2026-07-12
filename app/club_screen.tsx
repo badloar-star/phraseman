@@ -1328,7 +1328,7 @@ export default function ClubScreen() {
             </>
           ) : (
             <>
-              <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
+              <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth: 0, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
               <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
             </>
           )}
@@ -1375,7 +1375,7 @@ export default function ClubScreen() {
               setChatModalVisible(true);
               void hapticTap();
             }}
-            style={{ position:'absolute', top:12, right:12, width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.50)' : leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.22)' : leagueBonusPalette.modal.metaBorder }}
+            style={{ position:'absolute', top:12, right:12, width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.50)' : leagueBonusPalette.modal.metaBg, borderWidth: 0, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.22)' : leagueBonusPalette.modal.metaBorder }}
           >
             <Ionicons name="chatbubbles-outline" size={22} color={leagueBonusPalette.accent} />
             {leagueChatUnreadCount > 0 && (
@@ -1407,7 +1407,7 @@ export default function ClubScreen() {
         {leaguePreviewState.shouldShowLiveContent && (
         <View>
         {leagueRaceVisible && (
-        <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:18, borderWidth:0.5, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden', shadowColor:leagueChestVisualAccent, shadowOpacity:0.12, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:4 }}>
+        <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:18, borderWidth: 0, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden', shadowColor:leagueChestVisualAccent, shadowOpacity:0.12, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:4 }}>
           <LeagueBonusGiftImageWithFallback
             source={leagueBonusGiftImage}
             color={leagueChestVisualAccent}
@@ -1433,13 +1433,13 @@ export default function ClubScreen() {
                 })}
               </Text>
             </View>
-            <View style={{ minWidth:44, minHeight:32, borderRadius:999, paddingHorizontal:10, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:leagueBonusPalette.modal.metaBorder }}>
+            <View style={{ minWidth:44, minHeight:32, borderRadius:999, paddingHorizontal:10, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth: 0, borderColor:leagueBonusPalette.modal.metaBorder }}>
             <Text style={{ color: leagueChestVisualAccent, fontSize:f.body, fontWeight:'900' }}>
               {leagueChestPct}%
             </Text>
             </View>
           </View>
-          <View style={{ height:12, borderRadius:7, overflow:'hidden', backgroundColor:leagueBonusPalette.track, borderWidth:0.5, borderColor:leagueBonusPalette.trackBorder }}>
+          <View style={{ height:12, borderRadius:7, overflow:'hidden', backgroundColor:leagueBonusPalette.track, borderWidth: 0, borderColor:leagueBonusPalette.trackBorder }}>
             <LinearGradient colors={leagueChestVisualFill} start={{ x:0, y:0 }} end={{ x:1, y:0 }} style={{ height:'100%', width:`${leagueChestPct}%` as any, borderRadius:7 }} />
           </View>
           <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
@@ -1679,7 +1679,7 @@ export default function ClubScreen() {
             </View>
           )}
           {!leagueChestReady && crownRaceTop.length > 0 && (
-            <View style={{ backgroundColor:leagueBonusPalette.innerBg, borderRadius:12, borderWidth:0.5, borderColor:leagueBonusPalette.innerBorder, padding:10, gap:8 }}>
+            <View style={{ backgroundColor:leagueBonusPalette.innerBg, borderRadius:12, borderWidth: 0, borderColor:leagueBonusPalette.innerBorder, padding:10, gap:8 }}>
               <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:10 }}>
                 <View style={{ flexDirection:'row', alignItems:'center', gap:6, flex:1, minWidth:0 }}>
                   <Ionicons name="trophy-outline" size={16} color={leagueCrownAccent} />
@@ -2033,7 +2033,7 @@ export default function ClubScreen() {
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
               </TapScale>
               <View style={{ flexDirection:'row', alignItems:'center', gap:10, flex:1, minWidth:0 }}>
-                <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}>
+                <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth: 0, borderColor:leagueBonusPalette.modal.metaBorder }}>
                   <Ionicons name="chatbubbles-outline" size={21} color={leagueBonusPalette.accent} />
                 </View>
                 <View style={{ flex:1, minWidth:0 }}>

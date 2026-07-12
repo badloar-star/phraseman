@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     gap: 10,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,255,255,0.06)',
   },
   kicker: {

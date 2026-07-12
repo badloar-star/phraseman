@@ -103,6 +103,7 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     platform,
   };
   const lastSurveyAtMs = Math.trunc(Number(progress.shard_survey_last_at_ms ?? 0)) || 0;
+  const completion = lastSurveyAtMs > 0 ? { completedAtMs: lastSurveyAtMs } : null;
 
   // Собираем валидные активные конфиги, сортируем по updatedAtMs (свежие раньше).
   // Сначала отсеиваем в памяти (аудитория + cooldown) — без I/O, затем берём топ-N
@@ -132,6 +133,7 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     if (config) {
       const lang = text(request.data?.lang, 10) || 'ru';
       return {
+        completion,
         survey: {
           surveyId: config.surveyId,
           title: resolveLocalized(config.title, lang),
@@ -151,7 +153,7 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     }
   }
 
-  return { survey: null };
+  return { survey: null, completion };
 });
 
 // ────────────────────────────────────────────────────────────────────────────

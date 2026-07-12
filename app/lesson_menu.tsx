@@ -1160,7 +1160,7 @@ export default function LessonMenu() {
             style={{
             width:90,height:90,borderRadius:isCompassTheme ? 16 : 45,
             backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderWidth:1,borderColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            borderWidth: 0,borderColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
             justifyContent:'center',alignItems:'center',
             marginBottom:24,
             shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6,
@@ -1353,7 +1353,7 @@ export default function LessonMenu() {
                 style={{
                 width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
                 backgroundColor:isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
-                borderWidth:StyleSheet.hairlineWidth,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderWidth:0,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity="quiet" />}

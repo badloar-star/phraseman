@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 360,
     borderRadius: 24,
-    borderWidth: 1,
+    borderWidth: 0,
     paddingHorizontal: 22,
     paddingTop: 24,
     paddingBottom: 22,

@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://knowlyapps.com/contracts/social-learning-card-manifest-v1.json",
+  "title": "Phraseman social learning card manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "contentId",
+    "revision",
+    "status",
+    "campaign",
+    "grid",
+    "titleEn",
+    "titleRu",
+    "visualStyle",
+    "languageMode",
+    "items",
+    "conversion",
+    "surfaces",
+    "images"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentId": { "type": "string", "pattern": "^slc_[a-z0-9_]+$", "maxLength": 64 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "status": {
+      "enum": [
+        "idea",
+        "copy_ready",
+        "waiting_dalle",
+        "images_ready",
+        "review",
+        "ready",
+        "published",
+        "collecting",
+        "scored"
+      ]
+    },
+    "campaign": { "type": "string", "pattern": "^slc_[a-z0-9_]+$", "maxLength": 64 },
+    "grid": { "enum": ["2x3", "3x3"] },
+    "titleEn": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "titleRu": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "visualStyle": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "languageMode": { "enum": ["english_only", "bilingual"] },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/item" },
+      "anyOf": [
+        { "minItems": 6, "maxItems": 6 },
+        { "minItems": 9, "maxItems": 9 }
+      ]
+    },
+    "conversion": { "$ref": "#/definitions/conversion" },
+    "surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instagram", "tiktok", "facebook", "youtube"],
+      "properties": {
+        "instagram": { "$ref": "#/definitions/surface" },
+        "tiktok": { "$ref": "#/definitions/surface" },
+        "facebook": { "$ref": "#/definitions/surface" },
+        "youtube": { "$ref": "#/definitions/surface" }
+      }
+    },
+    "images": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["learning", "install"],
+      "properties": {
+        "learning": { "$ref": "#/definitions/image" },
+        "install": { "$ref": "#/definitions/image" }
+      }
+    },
+    "quality": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reportSha256", "machinePassed", "manualPassed"],
+          "properties": {
+            "reportSha256": { "$ref": "#/definitions/sha256" },
+            "machinePassed": { "type": "boolean" },
+            "manualPassed": { "type": "boolean" }
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "conversion": {
+      "oneOf": [
+        { "$ref": "#/definitions/legacyConversion" },
+        { "$ref": "#/definitions/modernConversion" }
+      ]
+    },
+    "legacyConversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hookLabel", "titleLines", "explanationLines", "answerEn", "answerRu", "benefits", "cta", "url", "heroItemId"],
+      "properties": {
+        "hookLabel": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "titleLines": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "string", "minLength": 1, "maxLength": 36 } },
+        "explanationLines": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+        "answerEn": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "answerRu": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "benefits": { "type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 50 } },
+        "cta": { "type": "string", "minLength": 1, "maxLength": 32 },
+        "url": { "const": "https://knowlyapps.com/" },
+        "heroItemId": { "type": "string", "pattern": "^item_[0-9]{2}$" }
+      }
+    },
+    "modernConversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layoutVariant", "hookLabel", "titleLines", "explanationLines", "benefits", "cta", "url", "heroItemId"],
+      "properties": {
+        "layoutVariant": { "enum": ["A", "B", "C"] },
+        "hookLabel": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "titleLines": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "string", "minLength": 1, "maxLength": 36 } },
+        "explanationLines": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+        "benefits": { "type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 42 } },
+        "cta": { "type": "string", "minLength": 1, "maxLength": 32 },
+        "url": { "const": "https://knowlyapps.com/" },
+        "heroItemId": { "type": "string", "pattern": "^item_[0-9]{2}$" }
+      }
+    },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "english", "visualBrief"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^item_[0-9]{2}$" },
+        "english": { "type": "string", "minLength": 1, "maxLength": 48 },
+        "russian": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "visualBrief": { "type": "string", "minLength": 8, "maxLength": 280 }
+      }
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "format", "slideOrder"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "format": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "slideOrder": {
+          "type": "array",
+          "items": { "enum": ["learning", "install"] },
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": { "enum": ["slide_01_learning.jpg", "slide_02_install.jpg"] },
+        "sha256": { "$ref": "#/definitions/sha256" }
+      }
+    }
+  }
+}

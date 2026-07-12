@@ -192,6 +192,8 @@ service cloud.firestore {
         // profileCardUpgrade Cloud Function (Admin SDK) may raise it, so a tampered
         // client can't forge Pro for free. Theme/motion/focus are legacy mirrors.
         'profile_card_level',
+        // Survey completion timestamp is written only by submitShardSurvey (Admin SDK).
+        'shard_survey_last_at_ms',
       ];
     }
 

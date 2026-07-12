@@ -27,6 +27,11 @@ export type ActiveSurvey = {
   questions: SurveyQuestionClient[];
 };
 
+export type ActiveSurveyLookupResult = {
+  survey: ActiveSurvey | null;
+  completion: { completedAtMs: number } | null;
+};
+
 export type SubmitSurveyResult = {
   ok: boolean;
   alreadyGranted: boolean;
@@ -54,13 +59,13 @@ export async function fetchActiveSurvey(data: {
   stableId: string;
   platform: string;
   lang: string;
-}): Promise<ActiveSurvey | null> {
-  if (!isSurveyCloudEnabled()) return null;
-  const res = await callFunction<typeof data, { survey: ActiveSurvey | null }>(
+}): Promise<ActiveSurveyLookupResult> {
+  if (!isSurveyCloudEnabled()) return { survey: null, completion: null };
+  const res = await callFunction<typeof data, ActiveSurveyLookupResult>(
     'getActiveShardSurvey',
     data,
   );
-  return res.survey ?? null;
+  return { survey: res.survey ?? null, completion: res.completion ?? null };
 }
 
 /**
@@ -70,24 +75,29 @@ export async function fetchActiveSurvey(data: {
  */
 export async function fetchActiveSurveyWithRetry(
   data: { stableId: string; platform: string; lang: string },
-  options: { attempts?: number; delayMs?: number } = {},
-): Promise<ActiveSurvey | null> {
-  const attempts = Math.max(1, Math.floor(Number(options.attempts ?? 3)) || 3);
-  const delayMs = Math.max(0, Math.floor(Number(options.delayMs ?? 350)) || 0);
+  options: { attempts?: number; delayMs?: number; wait?: (ms: number) => Promise<void> } = {},
+): Promise<ActiveSurveyLookupResult> {
+  const requestedAttempts = Number(options.attempts ?? 3);
+  const attempts = Math.min(5, Math.max(1, Number.isFinite(requestedAttempts)
+    ? Math.floor(requestedAttempts)
+    : 3));
+  const delayMs = Math.min(2000, Math.max(0, Math.floor(Number(options.delayMs ?? 350)) || 0));
+  const wait = options.wait ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
   let lastError: unknown;
+  let lastResult: ActiveSurveyLookupResult = { survey: null, completion: null };
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     try {
-      const survey = await fetchActiveSurvey(data);
-      if (survey) return survey;
+      lastResult = await fetchActiveSurvey(data);
+      if (lastResult.survey || lastResult.completion) return lastResult;
     } catch (error) {
       lastError = error;
     }
     if (attempt < attempts - 1 && delayMs > 0) {
-      await new Promise<void>((resolve) => setTimeout(resolve, delayMs));
+      await wait(delayMs);
     }
   }
   if (lastError) throw lastError;
-  return null;
+  return lastResult;
 }
 
 export async function submitSurvey(data: {

@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
   },
   under: {
     position: 'absolute',
-    borderWidth: 1,
+    borderWidth: 0,
   },
   under1: {
     top: -9,
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
   claimAll: {
     alignSelf: 'stretch',
     minWidth: 300,
-    borderWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    borderWidth: 1,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 8,

@@ -1212,7 +1212,7 @@ function FriendQuestStartedModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
-        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>
           <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(232,195,106,0.42)']} style={{ padding: 22, gap: 14 }}>
             <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 82, height: 82 }}>
               <FriendsThemeIcon themeMode={themeMode} size={82} accessibilityLabel="Friend quest" />
@@ -1247,7 +1247,7 @@ function FriendQuestCompletedModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
-        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>
           <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(52,199,89,0.24)']} style={{ padding: 22, gap: 14 }}>
             <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#19351F' }}>
               <Ionicons name="sparkles-outline" size={38} color={monoIcon(themeMode, '#B9F6C9')} />
@@ -3475,7 +3475,7 @@ export default function FriendsTabScreen() {
                   paddingVertical: 10,
                   borderRadius: 12,
                   backgroundColor: chrome.surface,
-                  borderWidth: 0.5,
+                  borderWidth: 0,
                   borderColor: chrome.border,
                 }}
               >
@@ -3577,7 +3577,7 @@ export default function FriendsTabScreen() {
               elevation: 18,
             }}
           >
-            <View style={{ borderRadius: sentGiftChrome.innerRadius, overflow: 'hidden', backgroundColor: sentGiftChrome.innerBg, borderWidth: 1, borderColor: sentGiftChrome.innerBorder }}>
+            <View style={{ borderRadius: sentGiftChrome.innerRadius, overflow: 'hidden', backgroundColor: sentGiftChrome.innerBg, borderWidth: 0, borderColor: sentGiftChrome.innerBorder }}>
               <LinearGradient
                 colors={sentGiftChrome.washColors}
                 start={{ x: 0, y: 0 }}
@@ -3591,7 +3591,7 @@ export default function FriendsTabScreen() {
                     colors={sentGiftChrome.iconColors}
                     start={{ x: 0.1, y: 0 }}
                     end={{ x: 0.95, y: 1 }}
-                    style={{ width: 72, height: 72, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)' }}
+                    style={{ width: 72, height: 72, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: 'rgba(255,255,255,0.22)' }}
                   >
                     <Ionicons name="checkmark" size={38} color={sentGiftChrome.buttonText} />
                   </LinearGradient>
@@ -3603,7 +3603,7 @@ export default function FriendsTabScreen() {
                   {L('Подарок отправлен', 'Подарунок надіслано', 'Gift sent', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany')}
                 </Text>
                 {sentGiftReceipt ? (
-                  <View style={{ borderRadius: 18, padding: 14, gap: 10, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)' }}>
+                  <View style={{ borderRadius: 18, padding: 14, gap: 10, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 0, borderColor: 'rgba(255,255,255,0.12)' }}>
                     <Text style={{ color: sentGiftChrome.bodyColor, fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {L(
                         `${sentGiftReceipt.targetName} получит: ${sentGiftReceipt.giftName}`,
@@ -3643,7 +3643,7 @@ export default function FriendsTabScreen() {
                   testID="friend-gift-sent-ok"
                   onPress={() => setSentGiftReceipt(null)}
                   activeOpacity={0.86}
-                  style={{ minHeight: 48, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', backgroundColor: sentGiftChrome.buttonBg, borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)' }}
+                  style={{ minHeight: 48, borderRadius: sentGiftChrome.iconRadius, alignItems: 'center', justifyContent: 'center', backgroundColor: sentGiftChrome.buttonBg, borderWidth: 0, borderColor: 'rgba(255,255,255,0.18)' }}
                 >
                   <Text style={{ color: sentGiftChrome.buttonText, fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('Понятно', 'Зрозуміло', 'Done', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
@@ -3679,7 +3679,7 @@ export default function FriendsTabScreen() {
               elevation: 18,
             }}
           >
-          <View style={{ borderRadius: 27, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+          <View style={{ borderRadius: 27, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>
             <LinearGradient
               colors={['rgba(68,48,20,0.06)', 'rgba(255,255,255,0)', 'rgba(184,132,38,0.12)']}
               start={{ x: 0, y: 0 }}
@@ -3719,7 +3719,7 @@ export default function FriendsTabScreen() {
                       ? L('Новые подарки', 'Нові подарунки', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
                       : L('Подарок получен', 'Подарунок отримано', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
                   </Text>
-                  <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: 'rgba(255,255,255,0.54)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.14)' }}>
+                  <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: 'rgba(255,255,255,0.54)', borderWidth: 0, borderColor: 'rgba(126,88,27,0.14)' }}>
                     <Text style={{ color: monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {multi
                         ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
@@ -3742,7 +3742,7 @@ export default function FriendsTabScreen() {
                     activeOpacity={0.86}
                     disabled={giftBusyId !== null}
                     onPress={handleIncomingGiftThanks}
-                    style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.62)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.16)' }}
+                    style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.62)', borderWidth: 0, borderColor: 'rgba(126,88,27,0.16)' }}
                   >
                     <Text style={{ color: monoIcon(themeMode, '#3D2B10', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                       {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
@@ -3754,7 +3754,7 @@ export default function FriendsTabScreen() {
                       activeOpacity={0.86}
                       disabled={giftBusyId !== null}
                       onPress={() => void handleIncomingGiftReply('chain_shield_1')}
-                      style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
+                      style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 0, borderColor: 'rgba(255,255,255,0.16)' }}
                     >
                       <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                         {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
@@ -3782,7 +3782,7 @@ export default function FriendsTabScreen() {
                     router.push('/level_gifts_inventory' as any);
                   }}
                   activeOpacity={0.86}
-                  style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
+                  style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 0, borderColor: 'rgba(255,255,255,0.16)' }}
                 >
                   <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('В подарки', 'До подарунків', 'Gifts', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}

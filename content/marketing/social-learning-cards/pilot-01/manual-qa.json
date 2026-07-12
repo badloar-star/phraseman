@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "semanticMatch": false,
+  "noRandomText": false,
+  "noAnatomyOrObjectDefects": false,
+  "noCrop": false,
+  "correctCopy": false,
+  "secondSlideVisualApproved": false,
+  "ctaReadable": false,
+  "slideOrderCorrect": false,
+  "cellReviews": [],
+  "reviewedBy": "",
+  "reviewedAt": ""
+}

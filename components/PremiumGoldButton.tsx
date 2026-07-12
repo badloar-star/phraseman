@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   premiumRim: {
     ...StyleSheet.absoluteFillObject,
-    borderWidth: 1,
+    borderWidth: 0,
     zIndex: 3,
   },
   goldBtnTouchable: {

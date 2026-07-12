@@ -194,7 +194,7 @@ export default function PaywallPlanCards({
 const S = StyleSheet.create({
   wrap: { gap: 11, marginTop: 16 },
   card: {
-    borderRadius: 18, borderWidth: 1.5, paddingHorizontal: 17, paddingVertical: 15,
+    borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15,
     shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12, elevation: 5,
   },
   planHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },

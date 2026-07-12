@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
+import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration, invalidateAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
+import { emitAppEvent } from '../app/events';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -18,13 +20,59 @@ beforeEach(() => {
     mockStorage[k] = v;
     return Promise.resolve();
   });
-  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: Array<[string, string]>) => {
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: [string, string][]) => {
     for (const [k, v] of pairs) mockStorage[k] = v;
     return Promise.resolve();
   });
+  (AsyncStorage.removeItem as jest.Mock).mockImplementation((key: string) => {
+    delete mockStorage[key];
+    return Promise.resolve();
+  });
+  __resetAccountGenerationForTests();
 });
 
 describe('shards_system guards and one-time awards', () => {
+  it('serializes stale A commit, account wipe, and B hydration without restoring A over B', async () => {
+    mockStorage.shards_balance = '7';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({ updatedAtMs: 1, op: 'earn', reason: 'old' });
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    let release!: () => void;
+    const pendingEligibleRead = new Promise<void>((resolve) => { release = resolve; });
+    (AsyncStorage.getItem as jest.Mock).mockImplementationOnce(async () => {
+      await pendingEligibleRead;
+      return null;
+    });
+
+    const reconcile = replaceShardsBalanceForAccountGeneration(13, token, 'account-a', {
+      updatedAtMs: 42, op: 'earn', reason: 'survey_completed',
+    });
+    await Promise.resolve(); await Promise.resolve();
+    invalidateAccountGeneration();
+    const transition = withAccountTransitionLock(async () => {
+      delete mockStorage.shards_balance;
+      delete mockStorage.shards_balance_meta_v1;
+    });
+    release();
+
+    await expect(reconcile).resolves.toBe('stale-generation');
+    expect(emitAppEvent).not.toHaveBeenCalledWith('shards_balance_updated', expect.anything());
+    await transition;
+    beginAccountGeneration('account-b');
+    await replaceShardsBalanceLocal(22, { updatedAtMs: 50, op: 'replace', reason: 'account_b_hydration' });
+    expect(mockStorage.shards_balance).toBe('22');
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({ updatedAtMs: 50, reason: 'account_b_hydration' });
+  });
+
+  it('returns already-newer without replacing a newer wallet', async () => {
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({ updatedAtMs: 100, op: 'earn', reason: 'newer' });
+    beginAccountGeneration('account-a');
+    await expect(replaceShardsBalanceForAccountGeneration(13, captureAccountGeneration(), 'account-a', {
+      updatedAtMs: 42, op: 'earn', reason: 'survey_completed',
+    })).resolves.toBe('already-newer');
+    expect(mockStorage.shards_balance).toBe('80');
+  });
   it('rejects non-positive spend values', async () => {
     mockStorage.shards_balance = '10';
     await expect(spendShards(0)).resolves.toBe(false);

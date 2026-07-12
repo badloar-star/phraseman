@@ -743,7 +743,7 @@ export default function FriendsScreen() {
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: t.bgSurface,
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: t.accent,
     },
     deleteBtnText: {
@@ -810,7 +810,7 @@ export default function FriendsScreen() {
       backgroundColor: t.bgSurface,
       borderRadius: 12,
       padding: 12,
-      borderWidth: 1,
+      borderWidth: 0,
       borderColor: 'rgba(127,127,127,0.18)',
     },
     giftOptionDisabled: {

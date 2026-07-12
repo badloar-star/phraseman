@@ -512,13 +512,13 @@ const S = StyleSheet.create({
   },
   closeBtn: {
     alignSelf: 'flex-end', marginBottom: 7,
-    width: 36, height: 36, borderRadius: 18, borderWidth: 1,
+    width: 36, height: 36, borderRadius: 18, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
   },
   priceRetryBox: {
     alignSelf: 'stretch', alignItems: 'center', gap: 12,
     paddingVertical: 22, paddingHorizontal: 19, marginTop: 10,
-    borderRadius: 16, borderWidth: 1,
+    borderRadius: 16, borderWidth: 0,
   },
   priceRetryText: { fontSize: 15.5, lineHeight: 22, textAlign: 'center' },
   priceRetryBtn: { paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
@@ -526,15 +526,15 @@ const S = StyleSheet.create({
   tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',
-    maxWidth: '100%', paddingHorizontal: 13, paddingVertical: 8, borderRadius: 18, borderWidth: 1,
+    maxWidth: '100%', paddingHorizontal: 13, paddingVertical: 8, borderRadius: 18, borderWidth: 0,
   },
   tagText: { flexShrink: 1, fontSize: 13, fontWeight: '700' },
-  testimonialCard: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
+  testimonialCard: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
   testimonialTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 10 },
   testimonialText: { fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
   testimonialAuthor: { fontSize: 12, marginTop: 5 },
   glyphCap: {
-    alignSelf: 'center', width: 70, height: 70, borderRadius: 35, borderWidth: 1,
+    alignSelf: 'center', width: 70, height: 70, borderRadius: 35, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center',
     shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 20, elevation: 7,
   },
@@ -548,7 +548,7 @@ const S = StyleSheet.create({
   sticky: {
     position: 'absolute', left: 10, right: 10, bottom: 12, zIndex: 50,
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderRadius: 20, borderWidth: 1, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
+    borderRadius: 20, borderWidth: 0, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
     shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 22, elevation: 14,
   },
   stickyTextWrap: { flex: 1, minWidth: 0 },

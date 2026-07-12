@@ -5,6 +5,9 @@ const cloudSyncSource = fs.readFileSync(path.join(__dirname, '../app/cloud_sync.
 const authProviderSource = fs.readFileSync(path.join(__dirname, '../app/auth_provider.ts'), 'utf8');
 
 describe('cloud sync account-transition race contract', () => {
+  test('serializes account wipe with wallet commits and hydration', () => {
+    expect(cloudSyncSource).toContain('await withAccountTransitionLock(wipeLocalAccountDataUnsafe);');
+  });
   test('outbound sync is generation-bound at the user write and local marker boundaries', () => {
     expect(cloudSyncSource).toContain('const syncGeneration = captureAccountGeneration()');
     expect(cloudSyncSource).toContain('isCurrentAccountGeneration(syncGeneration, uid)');

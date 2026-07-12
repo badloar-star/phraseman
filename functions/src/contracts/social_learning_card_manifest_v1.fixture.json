@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "contentId": "slc_pilot_01_taste",
+  "revision": 1,
+  "status": "copy_ready",
+  "campaign": "slc_pilot_01",
+  "grid": "3x3",
+  "titleEn": "TASTE VOCABULARY",
+  "titleRu": "Вкусы на английском",
+  "visualStyle": "adult editorial character study",
+  "languageMode": "english_only",
+  "items": [
+    { "id": "item_01", "english": "sweet", "visualBrief": "Woman happily tasting a colorful lollipop" },
+    { "id": "item_02", "english": "sour", "visualBrief": "Same woman reacting to a sour green apple" },
+    { "id": "item_03", "english": "salty", "visualBrief": "Same woman tasting a salty pretzel" },
+    { "id": "item_04", "english": "bitter", "visualBrief": "Same woman tasting dark chocolate and coffee" },
+    { "id": "item_05", "english": "spicy", "visualBrief": "Same woman reacting to a spicy red soup" },
+    { "id": "item_06", "english": "savory", "visualBrief": "Same woman enjoying a savory noodle bowl" },
+    { "id": "item_07", "english": "bland", "visualBrief": "Same woman unimpressed by plain oatmeal" },
+    { "id": "item_08", "english": "tangy", "visualBrief": "Same woman tasting kiwi and lime cheesecake" },
+    { "id": "item_09", "english": "crunchy", "visualBrief": "Same woman delighted by crunchy potato chips" }
+  ],
+  "conversion": {
+    "hookLabel": "МИНИ-ТЕСТ НА 3 СЕКУНДЫ",
+    "titleLines": ["Как сказать:", "«Для меня слишком", "сладко»?"],
+    "explanationLines": ["Если вспомнил только sweet —", "Phraseman как раз для тебя."],
+    "answerEn": "It's too sweet for me.",
+    "answerRu": "Для меня это слишком сладко.",
+    "benefits": ["10 000+ живых фраз", "Тренировка произношения"],
+    "cta": "Начать бесплатно",
+    "url": "https://knowlyapps.com/",
+    "heroItemId": "item_01"
+  },
+  "surfaces": {
+    "instagram": { "enabled": true, "format": "carousel", "slideOrder": ["learning", "install"] },
+    "tiktok": { "enabled": true, "format": "photo_mode", "slideOrder": ["learning", "install"] },
+    "facebook": { "enabled": true, "format": "multi_photo", "slideOrder": ["learning", "install"] },
+    "youtube": { "enabled": true, "format": "community_image", "slideOrder": ["learning"] }
+  },
+  "images": {
+    "learning": { "fileName": "slide_01_learning.jpg", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+    "install": { "fileName": "slide_02_install.jpg", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }
+  },
+  "quality": null
+}

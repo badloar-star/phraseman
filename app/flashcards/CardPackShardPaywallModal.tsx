@@ -379,7 +379,7 @@ export default function CardPackShardPaywallModal({
                       borderRadius: 24,
                       overflow: 'hidden',
                       backgroundColor: sheetCardBg,
-                      borderWidth: 1,
+                      borderWidth: 0,
                       borderColor: paywallVisual.borderAccent,
                     },
                     cardShadow,
@@ -434,7 +434,7 @@ export default function CardPackShardPaywallModal({
                                 borderRadius: 28,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.iconBorder,
                               }}
                             >
@@ -512,7 +512,7 @@ export default function CardPackShardPaywallModal({
                                 paddingVertical: 16,
                                 paddingHorizontal: 20,
                                 width: '100%',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.priceBorder,
                               }}
                             >
@@ -626,7 +626,7 @@ export default function CardPackShardPaywallModal({
                                 borderRadius: 28,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.iconBorder,
                               }}
                             >
@@ -698,7 +698,7 @@ export default function CardPackShardPaywallModal({
                               marginTop: 16,
                               borderRadius: 14,
                               padding: 14,
-                              borderWidth: 1,
+                              borderWidth: 0,
                               borderColor: `${t.gold}55`,
                               backgroundColor: `${t.gold}14`,
                             }}
@@ -722,7 +722,7 @@ export default function CardPackShardPaywallModal({
                                 borderRadius: 28,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.iconBorder,
                               }}
                             >
@@ -793,7 +793,7 @@ export default function CardPackShardPaywallModal({
                                 paddingVertical: 14,
                                 paddingHorizontal: 24,
                                 width: '100%',
-                                borderWidth: 1,
+                                borderWidth: 0,
                                 borderColor: paywallVisual.priceBorder,
                                 alignItems: 'center',
                               }}

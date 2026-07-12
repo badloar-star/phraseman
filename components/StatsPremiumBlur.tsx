@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   veilVignette: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 16,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,215,0,0.10)',
     backgroundColor: 'rgba(0,0,0,0.00)',
   },
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     width: 72,
     borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.10)',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: 'rgba(255,215,0,0.16)',
   },
   placeholderBody: {
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: '#FFD700',
   },
   title: {

@@ -24,7 +24,7 @@ test('daily challenge cards use extracted semantic presentation without calculat
 });
 
 test('screen retains every live task capability after removing duplicate renderers', () => {
-  for (const token of ['handleTaskCardPress', 'handleClaim(task.id', 'setRerollConfirm({ task })', 'PlusBadge', 'taskCapsuleBottomFillGradient']) {
+  for (const token of ['handleTaskCardPress', 'handleClaim(task.id', 'setRerollConfirm({ task })', 'PlusBadge', 'taskCapsuleFill']) {
     expect(screen).toContain(token);
   }
 });

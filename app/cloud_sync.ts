@@ -39,6 +39,7 @@ import {
   beginInitialAccountGeneration,
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
@@ -317,6 +318,8 @@ export const SYNC_KEYS = [
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
+  // Server-confirmed survey completion timestamp; restored locally, never uploaded by clients.
+  'shard_survey_last_at_ms',
   // XP-01: Weekly XP tracking — synced so users/{uid}.progress.weekly_xp matches device.
   'weekly_xp',
   'weekly_xp_period_start',
@@ -601,6 +604,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
     'daily_tasks_progress',
+    'shard_survey_done_daykey_v1',
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
     'shards_balance',
@@ -928,6 +932,7 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   // ломается синк XP/streak/прогресса. profile_card_theme/motion/public_focus НЕ сюда —
   // они клиент-выбираемые и синкаются штатно.
   'profile_card_level',
+  'shard_survey_last_at_ms',
 ]);
 
 export const isServerOwnedProgressKey = (key: string): boolean => {
@@ -2729,7 +2734,7 @@ export async function saveAccountSwitchEmergencyBackup(reason: string): Promise<
   }
 }
 
-export async function wipeLocalAccountData(): Promise<void> {
+async function wipeLocalAccountDataUnsafe(): Promise<void> {
   const accountKeys = new Set<string>(accountLocalDataKeysForToday());
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
@@ -2748,6 +2753,10 @@ export async function wipeLocalAccountData(): Promise<void> {
     clearTimeout(syncTimer);
     syncTimer = null;
   }
+}
+
+export async function wipeLocalAccountData(): Promise<void> {
+  await withAccountTransitionLock(wipeLocalAccountDataUnsafe);
 }
 
 // ── Удалить все данные пользователя из облака ────────────────────────────────

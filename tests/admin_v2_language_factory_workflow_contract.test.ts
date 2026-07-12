@@ -11,8 +11,9 @@ describe('Admin v2 Language Factory workflow', () => {
     const firebase = read('admin/v2/scripts/admin-firebase.js');
     const router = read('admin/v2/scripts/admin-router.js');
 
-    expect(html).toContain('admin/v2/styles/admin.css');
-    expect(html).toContain('admin/v2/scripts/admin-router.js');
+    expect(html).toContain('href="./styles/admin.css"');
+    expect(html).toContain('src="./scripts/admin-router.js"');
+    expect(html).not.toContain('="/admin/v2/');
     for (const route of ['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics']) {
       expect(router).toContain(`'${route}'`);
     }

@@ -20,33 +20,69 @@ function toMs(value: unknown): number {
   return 0;
 }
 
-async function deleteMessageWithReactions(
+export async function deleteAppMessageWithEngagement(
   db: FirebaseFirestore.Firestore,
-  doc: FirebaseFirestore.QueryDocumentSnapshot,
+  messageRef: FirebaseFirestore.DocumentReference,
 ): Promise<void> {
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const reactions = await doc.ref.collection('reactions').limit(400).get();
+    const reactions = await messageRef.collection('reactions').limit(400).get();
     if (reactions.empty) break;
     const batch = db.batch();
     reactions.docs.forEach((reaction) => batch.delete(reaction.ref));
     await batch.commit();
   }
   while (true) {
-    const votes = await doc.ref.collection('poll_votes').limit(400).get();
+    const votes = await messageRef.collection('poll_votes').limit(400).get();
     if (votes.empty) break;
     const batch = db.batch();
     votes.docs.forEach((vote) => batch.delete(vote.ref));
     await batch.commit();
   }
   while (true) {
-    const states = await db.collectionGroup('app_message_states').where('messageId', '==', doc.id).limit(400).get();
+    const states = await db.collectionGroup('app_message_states').where('messageId', '==', messageRef.id).limit(400).get();
     if (states.empty) break;
     const batch = db.batch();
     states.docs.forEach((state) => batch.delete(state.ref));
     await batch.commit();
   }
-  await doc.ref.delete();
+  await messageRef.delete();
+}
+
+export async function clearAppMessagePollEngagement(
+  db: FirebaseFirestore.Firestore,
+  messageRef: FirebaseFirestore.DocumentReference,
+): Promise<void> {
+  // Votes and the selected option in user state refer to the old option structure.
+  // The message must be inactive before this helper is called, so rules reject new votes.
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const votes = await messageRef.collection('poll_votes').limit(400).get();
+    if (votes.empty) break;
+    const batch = db.batch();
+    votes.docs.forEach((vote) => batch.delete(vote.ref));
+    await batch.commit();
+  }
+  let cursor: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    let query = db.collectionGroup('app_message_states')
+      .where('messageId', '==', messageRef.id)
+      .orderBy(admin.firestore.FieldPath.documentId())
+      .limit(400);
+    if (cursor) query = query.startAfter(cursor);
+    const states = await query.get();
+    if (states.empty) break;
+    const batch = db.batch();
+    const updatedAtMs = Date.now();
+    states.docs.forEach((state) => batch.update(state.ref, {
+      pollOptionId: admin.firestore.FieldValue.delete(),
+      updatedAtMs,
+    }));
+    await batch.commit();
+    cursor = states.docs[states.docs.length - 1];
+    if (states.size < 400) break;
+  }
 }
 
 export async function cleanupExpiredAppMessages(): Promise<{ deleted: number; scanned: number }> {
@@ -62,7 +98,7 @@ export async function cleanupExpiredAppMessages(): Promise<{ deleted: number; sc
     const expiresAtMs = toMs(data.expiresAtMs ?? data.expiresAt);
     const expired = (expiresAtMs > 0 && expiresAtMs <= now) || (createdAtMs > 0 && createdAtMs <= cutoff);
     if (!expired) continue;
-    await deleteMessageWithReactions(db, doc);
+    await deleteAppMessageWithEngagement(db, doc.ref);
     deleted += 1;
   }
 

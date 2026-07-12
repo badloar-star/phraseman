@@ -62,6 +62,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const listAppMessagesCallable = httpsCallable(functionsUs, 'adminListAppMessages');
   const createAppMessageCallable = httpsCallable(functionsUs, 'adminCreateAppMessage');
   const setAppMessageActiveCallable = httpsCallable(functionsUs, 'adminSetAppMessageActive');
+  const updateAppMessageCallable = httpsCallable(functionsUs, 'adminUpdateAppMessage');
+  const deleteAppMessageCallable = httpsCallable(functionsUs, 'adminDeleteAppMessage');
+  const cleanupExpiredAppMessagesCallable = httpsCallable(functionsUs, 'adminCleanupExpiredAppMessages');
   const promoCodeUpsertCallable = httpsCallable(functionsUs, 'promoCodeUpsert');
   const promoCodeBatchUpsertCallable = httpsCallable(functionsUs, 'promoCodeBatchUpsert');
   const getDailyBriefingCallable = httpsCallable(functionsUs, 'adminGetDailyBriefing');
@@ -130,6 +133,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     listAppMessages: async (input) => unwrap(await listAppMessagesCallable(input)),
     createAppMessage: async (input) => unwrap(await createAppMessageCallable(input)),
     setAppMessageActive: async (input) => unwrap(await setAppMessageActiveCallable(input)),
+    updateAppMessage: async (input) => unwrap(await updateAppMessageCallable(input)),
+    deleteAppMessage: async (input) => unwrap(await deleteAppMessageCallable(input)),
+    cleanupExpiredAppMessages: async (input) => unwrap(await cleanupExpiredAppMessagesCallable(input)),
     promoCodeUpsert: async (input) => unwrap(await promoCodeUpsertCallable(input)),
     promoCodeBatchUpsert: async (input) => unwrap(await promoCodeBatchUpsertCallable(input)),
     getDailyBriefing: async () => unwrap(await getDailyBriefingCallable({})),

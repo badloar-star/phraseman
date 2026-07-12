@@ -93,8 +93,8 @@ const PREMIUM_ACCESS_LIMITS = Object.freeze([
 
 const LESSON_LOCK_COUNT = 32;
 const APP_MESSAGE_LANGUAGES = Object.freeze([
-  { key: 'ru', label: 'RU' }, { key: 'uk', label: 'UK' }, { key: 'es', label: 'ES' }, { key: 'ptBr', label: 'PT-BR' },
-  { key: 'vi', label: 'VI' }, { key: 'id', label: 'ID' }, { key: 'tr', label: 'TR' }, { key: 'pl', label: 'PL' },
+  { key: 'ru', label: 'RU', suffix: 'Ru' }, { key: 'uk', label: 'UK', suffix: 'Uk' }, { key: 'es', label: 'ES', suffix: 'Es' }, { key: 'ptBr', label: 'PT-BR', suffix: 'PtBr' },
+  { key: 'vi', label: 'VI', suffix: 'Vi' }, { key: 'id', label: 'ID', suffix: 'Id' }, { key: 'tr', label: 'TR', suffix: 'Tr' }, { key: 'pl', label: 'PL', suffix: 'Pl' },
 ]);
 
 const state = {
@@ -128,7 +128,7 @@ const state = {
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
-  campaigns: { state: 'idle', items: [], preview: null, error: '' },
+  campaigns: { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
@@ -490,33 +490,70 @@ function renderAppMessageTranslations(draft, locked) {
   }).join('');
 }
 
+function appMessageItemPayload(item) {
+  const translations = {};
+  for (const language of APP_MESSAGE_LANGUAGES) {
+    translations[language.key] = {
+      title: String(item?.[`title${language.suffix}`] || ''),
+      body: String(item?.[`message${language.suffix}`] || ''),
+      pollQuestion: String(item?.poll?.[`question${language.suffix}`] || ''),
+      pollOptions: Array.isArray(item?.poll?.options)
+        ? item.poll.options.map((option) => String(option?.[`text${language.suffix}`] || ''))
+        : [],
+    };
+  }
+  return {
+    kind: item?.poll ? 'poll' : 'message',
+    active: false,
+    audience: item?.audience || 'all',
+    priority: Number(item?.priority || 0),
+    ttlDays: Number(item?.ttlDays || 30),
+    translations,
+  };
+}
+
+function appMessageEditResetsPoll(item, payload) {
+  const before = Array.isArray(item?.poll?.options) ? item.poll.options : [];
+  const after = payload?.kind === 'poll' && Array.isArray(payload?.translations?.ru?.pollOptions)
+    ? payload.translations.ru.pollOptions
+    : [];
+  if (Boolean(item?.poll) !== (payload?.kind === 'poll')) return true;
+  if (before.length !== after.length) return true;
+  return before.some((option, index) => String(option?.textRu || '').trim() !== String(after[index] || '').trim());
+}
+
 function renderCampaigns() {
   const campaignState = state.campaigns;
-  const draft = campaignState.preview?.payload || {};
+  const draft = campaignState.preview?.payload || campaignState.draft || {};
+  const editingId = String(campaignState.editingId || '');
   const locked = !can('campaigns.write') || state.busy;
   const now = Date.now();
   const items = Array.isArray(campaignState.items) ? campaignState.items : [];
-  const activeCount = items.filter((item) => item.active !== false && Number(item.expiresAtMs || 0) > now).length;
+  const expiredItems = items.filter((item) => Number(item.expiresAtMs || 0) > 0 && Number(item.expiresAtMs) <= now);
+  const activeCount = items.filter((item) => item.active !== false && (Number(item.expiresAtMs || 0) <= 0 || Number(item.expiresAtMs) > now)).length;
   const reads = items.reduce((sum, item) => sum + Number(item.readCount || 0), 0);
   const reactions = items.reduce((sum, item) => sum + Number(item.likeCount || 0) + Number(item.dislikeCount || 0), 0);
   const list = campaignState.state === 'loading' ? emptyState('Загрузка сообщений…') : campaignState.state === 'error' ? `<div class="notice danger">${escapeHtml(campaignState.error)}</div>` : !items.length ? emptyState('Сообщений пока нет. Создайте draft и проверьте preview.') : `<div class="data-list">${items.map((item) => {
     const expired = Number(item.expiresAtMs || 0) > 0 && Number(item.expiresAtMs) <= now;
     const active = item.active !== false && !expired;
     const nextActive = item.active === false;
-    return `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без темы')}</strong><small>${escapeHtml(item.kind === 'poll' ? 'Опрос' : 'Сообщение')} · ${escapeHtml(item.audience || 'all')} · приоритет ${Number(item.priority || 0)} · до ${escapeHtml(dateTime(item.expiresAtMs))}</small><small>Прочтения ${Number(item.readCount || 0)} · лайки ${Number(item.likeCount || 0)} · дизлайки ${Number(item.dislikeCount || 0)} · голоса ${Number(item.pollVoteCount || 0)}</small><small><code>${escapeHtml(item.id)}</code></small></div><div class="actions"><span class="badge ${active ? 'success' : expired ? 'warning' : ''}">${expired ? 'Истекло' : active ? 'Активно' : 'Draft / выключено'}</span><button class="button small" data-app-message-toggle="${escapeHtml(item.id)}" data-next-active="${nextActive}" type="button"${locked || expired ? ' disabled' : ''} title="Включить или выключить сообщение через серверную команду с причиной и audit log">${nextActive ? 'Включить' : 'Выключить'}</button></div></article>`;
+    const generic = item.kind === 'message' || item.kind === 'poll' || !item.kind;
+    const editDisabled = locked || active || expired || !generic;
+    const kindLabel = item.kind === 'poll' ? 'Опрос' : item.kind === 'vip_survey' ? 'Plus Survey' : generic ? 'Сообщение' : `Специальное: ${item.kind}`;
+    return `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без темы')}</strong><small>${escapeHtml(kindLabel)} · ${escapeHtml(item.audience || 'all')} · приоритет ${Number(item.priority || 0)} · до ${escapeHtml(dateTime(item.expiresAtMs))}</small><small>Прочтения ${Number(item.readCount || 0)} · лайки ${Number(item.likeCount || 0)} · дизлайки ${Number(item.dislikeCount || 0)} · голоса ${Number(item.pollVoteCount || 0)}</small><small><code>${escapeHtml(item.id)}</code></small></div><div class="actions"><span class="badge ${active ? 'success' : expired ? 'warning' : ''}">${expired ? 'Истекло' : active ? 'Активно' : 'Draft / выключено'}</span>${!generic ? '<span class="badge warning">Профильный workflow</span>' : ''}<button class="button" data-app-message-edit="${escapeHtml(item.id)}" type="button"${editDisabled ? ' disabled' : ''} title="${!generic ? 'Специальным сообщением управляет профильный workflow' : active ? 'Сообщение нужно сначала выключить, чтобы во время редактирования не появились новые голоса' : 'Открыть выключенное сообщение в форме редактирования с preview и проверкой устаревших данных'}">Изменить</button><button class="button" data-app-message-toggle="${escapeHtml(item.id)}" data-next-active="${nextActive}" type="button"${locked || expired || !generic ? ' disabled' : ''} title="${generic ? 'Включить или выключить сообщение через серверную команду с причиной и audit log' : 'Специальным сообщением управляет профильный workflow'}">${nextActive ? 'Включить' : 'Выключить'}</button><button class="button danger" data-app-message-delete="${escapeHtml(item.id)}" type="button"${locked || !generic ? ' disabled' : ''} title="${generic ? 'Удалить сообщение и связанные данные: реакции, голоса и состояния inbox' : 'Специальным сообщением управляет профильный workflow'}">Удалить</button></div></article>`;
   }).join('')}</div>`;
   const options = Array.from({ length: 6 }, (_, index) => `<div class="field"><label for="app-message-poll-option-${index + 1}">Вариант ${index + 1}</label><input id="app-message-poll-option-${index + 1}" maxlength="160" value="${escapeHtml(draft?.translations?.ru?.pollOptions?.[index] || '')}" placeholder="${index < 2 ? 'Обязательно для опроса' : 'Необязательно'}"${locked ? ' disabled' : ''}></div>`).join('');
-  const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для редактирования, удаления и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
+  const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для Plus Survey и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button><button class="button danger" data-action="preview-app-message-cleanup" type="button"${locked || !expiredItems.length ? ' disabled' : ''} title="Сначала показать список истёкших сообщений; удаление выполняется только после отдельного подтверждения">Очистить истёкшие (${expiredItems.length})</button>`;
   return `${pageHeader(PAGES.campaigns, 'Приложение / Кампании', headerActions)}
-    <div class="notice"><strong>Native v2: создание и управление показом.</strong> Редактирование и удаление будут перенесены следующим безопасным срезом после политики сохранения голосов. До этого старый модуль остаётся доступен для этих двух операций.</div>
+    <div class="notice"><strong>Native v2: полный жизненный цикл обычного сообщения и опроса.</strong> Активную кампанию сначала выключают. Изменение вариантов опроса явно сбрасывает старые голоса; удаление каскадно очищает реакции, голоса и состояния inbox. Plus Survey остаётся в профильном workflow старой админки до его отдельного переноса.</div>
     <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">like + dislike</span></article></section>
-    <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное inbox-сообщение или опрос. Draft никому не показывается; active появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Production campaign</span></div><div class="card-body">
-      <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Draft / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема RU</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст RU</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса RU</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">Причина публикации</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и stop condition"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
+    <section class="card section"><div class="card-header"><div><h2>${editingId ? 'Редактирование сообщения' : 'Новое сообщение'}</h2><p>${editingId ? 'Сообщение выключено. Срок окончания не продлевается; изменение вариантов опроса будет отдельно показано в preview.' : 'Создайте обычное inbox-сообщение или опрос. Draft никому не показывается; active появляется у выбранной аудитории после публикации.'}</p></div><span class="badge warning">Production campaign</span></div><div class="card-body">
+      <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked || editingId ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Draft / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked || editingId ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема RU</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст RU</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса RU</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">${editingId ? 'Причина изменения' : 'Причина публикации'}</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и stop condition"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
       <details class="section"><summary>Переводы на 8 языков</summary><div class="notice section">Пустое поле безопасно наследует RU. Для опроса варианты вводятся по одному на строку в том же порядке.</div>${renderAppMessageTranslations(draft, locked)}</details>
       ${campaignState.preview ? `<div class="notice warning section"><strong>Предпросмотр кампании</strong><br>${escapeHtml(campaignState.preview.summary)}<div class="code-preview section">${campaignState.preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
-      <div class="actions end section">${campaignState.preview ? '<button class="button" data-action="discard-app-message-preview" type="button" title="Отменить preview без записи в production">Изменить ещё</button>' : ''}<button class="button ${campaignState.preview ? '' : 'primary'}" data-action="preview-app-message" type="button"${locked ? ' disabled' : ''} title="Сначала показать точное сообщение, аудиторию и срок без записи в production">Предпросмотр</button>${campaignState.preview ? `<button class="button primary" data-action="publish-app-message" type="button"${locked ? ' disabled' : ''} title="Создать сообщение через серверную команду с reason, idempotency и audit log">Опубликовать</button>` : ''}</div>
+      <div class="actions end section">${editingId ? '<button class="button" data-action="cancel-app-message-edit" type="button" title="Закрыть редактирование без записи в production">Отменить редактирование</button>' : ''}${campaignState.preview ? '<button class="button" data-action="discard-app-message-preview" type="button" title="Отменить preview без записи в production">Изменить ещё</button>' : ''}<button class="button ${campaignState.preview ? '' : 'primary'}" data-action="preview-app-message" type="button"${locked ? ' disabled' : ''} title="Сначала показать точное сообщение, аудиторию и срок без записи в production">Предпросмотр</button>${campaignState.preview ? `<button class="button primary" data-action="publish-app-message" type="button"${locked ? ' disabled' : ''} title="${editingId ? 'Сохранить выключенное сообщение с проверкой версии, reason и audit log' : 'Создать сообщение через серверную команду с reason, idempotency и audit log'}">${editingId ? 'Сохранить изменения' : 'Опубликовать'}</button>` : ''}</div>
     </div></section>
-    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2><p>Статус, срок, аудитория, прочтения, реакции и голоса опросов.</p></div></div><div class="card-body"><div class="field full"><label for="app-message-toggle-reason">Причина включения или выключения</label><input id="app-message-toggle-reason" maxlength="500" placeholder="Почему меняется показ и как вернуть прежнее состояние"></div>${list}</div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2><p>Статус, срок, аудитория, прочтения, реакции и голоса опросов.</p></div></div><div class="card-body"><div class="field full"><label for="app-message-operation-reason">Причина операции со списком</label><input id="app-message-operation-reason" maxlength="500" value="${escapeHtml(campaignState.cleanupPreview?.reason || '')}" placeholder="Почему сообщение включается, выключается или удаляется"></div>${campaignState.cleanupPreview ? `<div class="notice danger section"><strong>Предпросмотр очистки</strong><br>Будут удалены ${campaignState.cleanupPreview.ids.length} истёкших сообщений вместе с реакциями, голосами и состояниями inbox.<div class="actions end section"><button class="button" data-action="discard-app-message-cleanup" type="button" title="Отменить очистку без изменений">Отмена</button><button class="button danger" data-action="run-app-message-cleanup" type="button" title="Подтвердить каскадное удаление показанного списка">Удалить истёкшие</button></div></div>` : ''}${list}</div></section>`;
 }
 
 function dateTime(value) {
@@ -811,6 +848,9 @@ const AUDIT_ACTION_LABELS = Object.freeze({
   email_campaign_send: 'Отправка email-кампании',
   'app_message.create': 'Создание сообщения в приложении',
   'app_message.toggle': 'Изменение показа сообщения',
+  'app_message.update': 'Редактирование сообщения в приложении',
+  'app_message.delete': 'Удаление сообщения в приложении',
+  'app_message.cleanup_expired': 'Очистка истёкших сообщений',
   ai_daily_digest: 'Ежедневный дайджест',
   ai_daily_digest_blocked: 'Дайджест заблокирован',
   promo_code_upsert: 'Изменение промокода',
@@ -1601,19 +1641,27 @@ function buildAppMessagePreview() {
   if (!translations.ru.title || !translations.ru.body) throw new Error('Заполните тему и текст RU.');
   if (kind === 'poll' && (!translations.ru.pollQuestion || translations.ru.pollOptions.length < 2)) throw new Error('Для опроса заполните вопрос RU и минимум два варианта.');
   const reason = readTextInput('app-message-reason', 500);
-  if (!reason) throw new Error('Укажите причину публикации сообщения.');
+  if (!reason) throw new Error(state.campaigns.editingId ? 'Укажите причину изменения сообщения.' : 'Укажите причину публикации сообщения.');
   const payload = { kind, active, audience, priority, ttlDays, translations };
-  const summary = `${kind === 'poll' ? 'Опрос' : 'Сообщение'} · ${active ? 'сразу активно' : 'draft'} · аудитория ${audience} · ${ttlDays} дней.`;
+  const editingItem = state.campaigns.editingId
+    ? state.campaigns.items.find((item) => String(item.id) === String(state.campaigns.editingId))
+    : null;
+  if (state.campaigns.editingId && !editingItem) throw new Error('Редактируемое сообщение больше не найдено. Обновите список.');
+  if (editingItem?.active !== false) throw new Error('Сообщение нужно сначала выключить, затем снова открыть редактирование.');
+  if (editingItem?.poll?.options) payload.pollOptionIds = editingItem.poll.options.map((option) => String(option?.id || '')).filter(Boolean);
+  const resetPollEngagement = editingItem ? appMessageEditResetsPoll(editingItem, payload) : false;
+  const summary = `${editingItem ? 'Изменение' : kind === 'poll' ? 'Опрос' : 'Сообщение'} · ${active ? 'сразу активно' : 'draft'} · аудитория ${audience} · ${editingItem ? 'исходный срок сохраняется' : `${ttlDays} дней`}.`;
   const details = [
     `Тема RU: ${translations.ru.title}`,
     `Текст RU: ${translations.ru.body}`,
     `Аудитория: ${audience}; приоритет ${priority}.`,
-    `Срок: ${ttlDays} дней; после истечения клиент перестанет показывать сообщение.`,
+    editingItem ? `Срок: остаётся ${dateTime(editingItem.expiresAtMs)}; редактирование его не продлевает.` : `Срок: ${ttlDays} дней; после истечения клиент перестанет показывать сообщение.`,
     kind === 'poll' ? `Опрос: ${translations.ru.pollQuestion}; вариантов ${translations.ru.pollOptions.length}.` : 'Опрос: нет.',
     `Переводы: ${APP_MESSAGE_LANGUAGES.filter((language) => translations[language.key].title || language.key === 'ru').map((language) => language.label).join(', ')}; пустые значения наследуют RU.`,
     active ? 'Stop condition: выключить сообщение в истории с обязательной причиной.' : 'Draft не виден пользователям до отдельного включения.',
+    resetPollEngagement ? 'Внимание: структура опроса меняется — старые голоса и выбранные варианты будут сброшены.' : 'Голоса и реакции сохраняются.',
   ];
-  return { payload, reason, summary, details };
+  return { payload, reason, summary, details, resetPollEngagement, expectedUpdatedAtMs: Number(editingItem?.updatedAtMs || 0) };
 }
 
 function sameAppMessagePayload(left, right) {
@@ -2112,7 +2160,7 @@ async function loadAppMessages() {
 }
 
 async function toggleAppMessage(messageId, active) {
-  const reason = readTextInput('app-message-toggle-reason', 500);
+  const reason = readTextInput('app-message-operation-reason', 500);
   if (!reason) return setMessage('Укажите причину включения или выключения сообщения.', 'warning');
   const item = state.campaigns.items.find((candidate) => String(candidate.id) === String(messageId));
   if (!item) return setMessage('Сообщение не найдено в загруженном списке.', 'warning');
@@ -2124,12 +2172,97 @@ async function toggleAppMessage(messageId, active) {
   }, active ? 'Сообщение включено.' : 'Сообщение выключено.');
 }
 
+function appMessageOperationKey(scope) {
+  const key = String(scope || 'command');
+  const existing = state.campaigns.operationKeys?.[key];
+  if (existing) return existing;
+  const storageKey = `phraseman_admin_campaign_operation_${key}`;
+  try {
+    const persisted = globalThis.sessionStorage?.getItem(storageKey);
+    if (persisted) {
+      state.campaigns.operationKeys = { ...(state.campaigns.operationKeys || {}), [key]: persisted };
+      return persisted;
+    }
+  } catch { /* Session storage is an optional retry aid. */ }
+  const operationId = id(`app-message-${key.replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 60)}`);
+  state.campaigns.operationKeys = { ...(state.campaigns.operationKeys || {}), [key]: operationId };
+  try { globalThis.sessionStorage?.setItem(storageKey, operationId); } catch { /* Keep the in-memory key. */ }
+  return operationId;
+}
+
+function clearAppMessageOperationKey(scope) {
+  const keys = { ...(state.campaigns.operationKeys || {}) };
+  delete keys[String(scope || 'command')];
+  state.campaigns.operationKeys = keys;
+  try { globalThis.sessionStorage?.removeItem(`phraseman_admin_campaign_operation_${String(scope || 'command')}`); } catch { /* No-op. */ }
+}
+
+function startAppMessageEdit(messageId) {
+  const item = state.campaigns.items.find((candidate) => String(candidate.id) === String(messageId));
+  if (!item) return setMessage('Сообщение не найдено в загруженном списке.', 'warning');
+  if (item.active !== false) return setMessage('Сообщение нужно сначала выключить, затем открыть редактирование.', 'warning');
+  state.campaigns = { ...state.campaigns, editingId: item.id, draft: appMessageItemPayload(item), preview: null, cleanupPreview: null };
+  renderCurrentPage();
+  globalThis.scrollTo?.({ top: 0, behavior: 'smooth' });
+  return setMessage('Сообщение открыто для редактирования. Срок окончания не изменится.', 'success');
+}
+
+async function deleteAppMessage(messageId) {
+  const reason = readTextInput('app-message-operation-reason', 500);
+  if (!reason) return setMessage('Укажите причину удаления сообщения.', 'warning');
+  const item = state.campaigns.items.find((candidate) => String(candidate.id) === String(messageId));
+  if (!item) return setMessage('Сообщение не найдено в загруженном списке.', 'warning');
+  const impact = `Прочтения: ${Number(item.readCount || 0)}, реакции: ${Number(item.likeCount || 0) + Number(item.dislikeCount || 0)}, голоса: ${Number(item.pollVoteCount || 0)}.`;
+  if (!globalThis.confirm(`Удалить сообщение и связанные данные «${item.titleRu || item.id}»?\n\n${impact}\nБудут удалены реакции, голоса и состояния inbox.\n\nПричина: ${reason}`)) return;
+  const operationScope = `delete-${messageId}`;
+  const operationId = appMessageOperationKey(operationScope);
+  return runBusy(async () => {
+    await actions.deleteAppMessage({ messageId, reason, idempotencyKey: operationId, requestId: id('request-app-message-delete') });
+    clearAppMessageOperationKey(operationScope);
+    if (state.campaigns.editingId === messageId) state.campaigns = { ...state.campaigns, editingId: '', draft: null, preview: null };
+    await loadAppMessages();
+  }, 'Сообщение и связанные данные удалены.');
+}
+
+function previewExpiredAppMessageCleanup() {
+  const reason = readTextInput('app-message-operation-reason', 500);
+  if (!reason) return setMessage('Укажите причину очистки истёкших сообщений.', 'warning');
+  const now = Date.now();
+  const ids = state.campaigns.items
+    .filter((item) => Number(item.expiresAtMs || 0) > 0 && Number(item.expiresAtMs) <= now)
+    .map((item) => String(item.id))
+    .slice(0, 120);
+  if (!ids.length) return setMessage('Истёкших сообщений в загруженном списке нет.', 'warning');
+  state.campaigns = { ...state.campaigns, cleanupPreview: { ids, reason } };
+  renderCurrentPage();
+  return setMessage('Предпросмотр очистки готов. Проверьте количество перед удалением.', 'success');
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
   if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
+  if (action === 'cancel-app-message-edit') {
+    state.campaigns = { ...state.campaigns, editingId: '', draft: null, preview: null };
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-app-message-cleanup') return previewExpiredAppMessageCleanup();
+  if (action === 'discard-app-message-cleanup') { state.campaigns.cleanupPreview = null; renderCurrentPage(); return; }
+  if (action === 'run-app-message-cleanup') {
+    const preview = state.campaigns.cleanupPreview;
+    if (!preview?.ids?.length) return setMessage('Сначала соберите preview очистки.', 'warning');
+    if (!globalThis.confirm(`Удалить ${preview.ids.length} истёкших сообщений и все связанные данные?\n\nПричина: ${preview.reason}`)) return;
+    return runBusy(async () => {
+      const operationScope = `cleanup-${preview.ids.join('-')}`;
+      await actions.cleanupExpiredAppMessages({ messageIds: preview.ids, reason: preview.reason, idempotencyKey: appMessageOperationKey(operationScope), requestId: id('request-app-message-cleanup') });
+      clearAppMessageOperationKey(operationScope);
+      state.campaigns.cleanupPreview = null;
+      await loadAppMessages();
+    }, `Истёкшие сообщения удалены: ${preview.ids.length}.`);
+  }
   if (action === 'preview-app-message') {
     try { state.campaigns.preview = buildAppMessagePreview(); setMessage('Предпросмотр сообщения готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
     renderCurrentPage();
@@ -2141,18 +2274,25 @@ async function handleAction(action, target) {
     if (!preview?.payload) return setMessage('Сначала соберите preview сообщения.', 'warning');
     let current;
     try { current = buildAppMessagePreview(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
-    if (!sameAppMessagePayload(current.payload, preview.payload) || current.reason !== preview.reason) {
+    if (!sameAppMessagePayload(current.payload, preview.payload) || current.reason !== preview.reason || current.resetPollEngagement !== preview.resetPollEngagement || current.expectedUpdatedAtMs !== preview.expectedUpdatedAtMs) {
       state.campaigns.preview = current;
       setMessage('Форма изменилась после preview. Проверьте обновлённый предпросмотр и опубликуйте ещё раз.', 'warning');
       renderCurrentPage();
       return;
     }
-    if (!globalThis.confirm(`Создать ${preview.payload.kind === 'poll' ? 'опрос' : 'сообщение'}?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    const editingId = String(state.campaigns.editingId || '');
+    if (!globalThis.confirm(`${editingId ? 'Сохранить изменения сообщения' : `Создать ${preview.payload.kind === 'poll' ? 'опрос' : 'сообщение'}`}?\n\n${preview.summary}\n${preview.resetPollEngagement ? '\nСтарые голоса опроса будут сброшены.\n' : ''}\nПричина: ${preview.reason}`)) return;
     return runBusy(async () => {
-      await actions.createAppMessage({ ...preview.payload, reason: preview.reason, idempotencyKey: id('app-message-create'), requestId: id('request-app-message-create') });
-      state.campaigns.preview = null;
+      if (editingId) {
+        const operationScope = `update-${editingId}-${preview.expectedUpdatedAtMs}`;
+        await actions.updateAppMessage({ ...preview.payload, messageId: editingId, expectedUpdatedAtMs: preview.expectedUpdatedAtMs, resetPollEngagement: preview.resetPollEngagement, reason: preview.reason, idempotencyKey: appMessageOperationKey(operationScope), requestId: id('request-app-message-update') });
+        clearAppMessageOperationKey(operationScope);
+      } else {
+        await actions.createAppMessage({ ...preview.payload, reason: preview.reason, idempotencyKey: id('app-message-create'), requestId: id('request-app-message-create') });
+      }
+      state.campaigns = { ...state.campaigns, preview: null, editingId: '', draft: null };
       await loadAppMessages();
-    }, preview.payload.active ? 'Сообщение опубликовано и активно.' : 'Draft сообщения создан.');
+    }, editingId ? 'Изменения сообщения сохранены.' : preview.payload.active ? 'Сообщение опубликовано и активно.' : 'Draft сообщения создан.');
   }
   if (action === 'load-promo-codes') return runBusy(loadPromoCodes, 'Промокоды и активации загружены.');
   if (action === 'preview-promo-codes' || action === 'preview-one-time-promo-codes') {
@@ -2566,6 +2706,10 @@ async function handleClick(event) {
   }
   const appMessageToggleId = target.getAttribute('data-app-message-toggle');
   if (appMessageToggleId) return toggleAppMessage(appMessageToggleId, target.getAttribute('data-next-active') === 'true');
+  const appMessageEditId = target.getAttribute('data-app-message-edit');
+  if (appMessageEditId) return startAppMessageEdit(appMessageEditId);
+  const appMessageDeleteId = target.getAttribute('data-app-message-delete');
+  if (appMessageDeleteId) return deleteAppMessage(appMessageDeleteId);
   const reportUserUid = target.getAttribute('data-report-user-uid');
   if (reportUserUid) {
     state.users.profileLoading = true;
@@ -2622,7 +2766,7 @@ export function setAuthState(auth) {
     state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
     state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
     state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
-    state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
+    state.campaigns = { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
@@ -2634,7 +2778,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
-  if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
+  if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
 }

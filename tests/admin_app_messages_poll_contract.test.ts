@@ -4,6 +4,7 @@ import path from 'path';
 describe('admin app messages poll contract', () => {
   const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'index.html'), 'utf8');
   const functionsSource = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'app_messages.ts'), 'utf8');
+  const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
 
   it('lets admins choose a poll option count from 2 to 6', () => {
     expect(html).toContain('id="am-poll-option-count"');
@@ -46,5 +47,10 @@ describe('admin app messages poll contract', () => {
     expect(functionsSource).toContain('countedBeforeOptionId');
     expect(functionsSource).toMatch(/pollResetAtMs >= beforeUpdatedAtMs/);
     expect(functionsSource).toMatch(/pollVoteCount: admin\.firestore\.FieldValue\.increment\(\(afterOptionId \? 1 : 0\) - \(countedBeforeOptionId \? 1 : 0\)\)/);
+  });
+
+  it('blocks new votes while a server-side edit or delete operation owns the message', () => {
+    expect(rules).toContain("!message.keys().hasAny(['adminOperationLock'])");
+    expect(rules).toContain("message.adminOperationLock == ''");
   });
 });

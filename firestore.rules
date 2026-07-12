@@ -1325,6 +1325,7 @@ service cloud.firestore {
       let message = get(/databases/$(database)/documents/app_messages/$(messageId)).data;
       return userDocOwnerMatchesAuth(userId)
         && message.active == true
+        && (!message.keys().hasAny(['adminOperationLock']) || message.adminOperationLock == '')
         && (!message.keys().hasAny(['expiresAtMs']) || message.expiresAtMs > request.time.toMillis())
         && message.keys().hasAny(['poll'])
         && message.poll is map

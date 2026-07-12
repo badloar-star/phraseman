@@ -9,6 +9,33 @@
     refunds: 'Возвраты',
     reports: 'Репорты',
     criticalErrors: 'Критические ошибки',
+    learningEvents: 'Учебные действия',
+    activeLearners: 'Активные ученики',
+    shardStorePurchases: 'Покупки кристаллов',
+  };
+
+  const SOURCE_LABELS = {
+    error_reports: 'Сообщения пользователей об ошибках', subscription_cancel_surveys: 'Причины отмены подписки',
+    app_errors: 'Ошибки приложения', safety_flags: 'Сигналы безопасности', users: 'Новые пользователи',
+    progress_events: 'Учебные действия пользователей', revenuecat_premium_events: 'События подписки RevenueCat',
+    revenuecat_shard_transactions: 'Покупки пакетов кристаллов', paywall_funnel: 'Воронка предложения Plus',
+    user_ideas: 'Идеи пользователей', user_reports: 'Жалобы на пользователей', community_pack_reports: 'Жалобы на паки сообщества',
+    explain_reports: 'Отзывы об объяснениях', website_contact_inbox: 'Обращения с сайта', support_inbox: 'Почта поддержки',
+    help_board_topics: 'Темы доски помощи', league_chat_messages: 'Сообщения чата лиг на модерации',
+    referral_attributions: 'Реферальные связи', community_pack_purchases: 'Покупки паков сообщества',
+    promo_redemptions: 'Активации промокодов', vip_survey_responses: 'Ответы на опрос Plus',
+    community_pack_submissions: 'Паки на модерации', arena_rooms_live: 'Созданные комнаты Арены',
+    users_active_subscription_snapshot: 'Активные подписки на конец периода', moderation_backlog_snapshot: 'Остаток очередей модерации',
+    remote_config: 'Настройки приложения',
+  };
+
+  function sourceLabel(source) { return source && (source.label || SOURCE_LABELS[source.sourceId]) || 'Источник данных'; }
+
+  const COVERAGE_NOTES = {
+    source_adapter_not_exact: 'Для этого источника ещё не было точного сопоставления.',
+    source_adapter_missing: 'Адаптер чтения не подключён.',
+    calendar_day_granularity_not_exact: 'Источник хранит только календарный день, поэтому границы приблизительны.',
+    page_limit_reached: 'Достигнут безопасный лимит выборки.',
   };
 
   function escapeText(value) {
@@ -45,7 +72,7 @@
     const status = source && source.status;
     if (status === 'failed') return { label: 'Недоступен', className: 'dd-state-failed' };
     if (status === 'partial') return { label: 'Частично', className: 'dd-state-partial' };
-    if (status === 'not_configured') return { label: 'Не подключён', className: 'dd-state-muted' };
+    if (status === 'not_configured' || status === 'not_applicable') return { label: 'Не сравнивается', className: 'dd-state-muted' };
     return { label: 'Полностью', className: 'dd-state-ok' };
   }
 
@@ -113,6 +140,8 @@
       .dd-coverage-table { width:100%; background:#11141b; border:1px solid #282d38; border-radius:10px; overflow:hidden; }
       .dd-state { display:inline-block; border-radius:999px; padding:3px 8px; font-size:10px; font-weight:800; }
       .dd-state-ok { background:#84cc16; color:#07110a; } .dd-state-partial { background:#f59e0b; color:#171006; } .dd-state-failed { background:#441d23; color:#fecaca; } .dd-state-muted { background:#27272a; color:#d4d4d8; }
+      .dd-source-name { color:#e4e4e7; font-weight:700; } .dd-source-id { color:#71717a; font-size:10px; margin-top:2px; }
+      .dd-legacy-warning { background:#271f10; border:1px solid #5b4316; color:#fde68a; border-radius:9px; padding:10px 12px; margin-bottom:12px; }
       .dd-summary { background:#11141b; border:1px solid #282d38; border-left:3px solid #60a5fa; border-radius:10px; padding:16px; line-height:1.7; color:#e4e4e7; margin-bottom:14px; }
       @media (max-width:768px) { .dd-bar-row { grid-template-columns:1fr; gap:4px; } .dd-bar-values { margin-bottom:8px; } }
       @media (prefers-reduced-motion:reduce) { #tab-daily-digest * { transition:none !important; } }
@@ -147,12 +176,14 @@
     charts.innerHTML = Object.keys(verifiedComparisons).length
       ? renderComparisonChart(verifiedComparisons)
       : `<div class="reports-empty">${hasExactWindows ? 'Графики скрыты: для этих метрик нет полного покрытия обоих периодов.' : 'Сформировать дайджест нужно один раз в новом формате — после этого появятся сравнения и проверенные графики.'}</div>`;
-    content.innerHTML = `<div class="dd-summary">${escapeText(data.summary || 'Сводка отсутствует').replace(/\n/g, '<br>')}</div>`;
+    const legacyPrompt = Number(data.promptVersion || 0) < 3;
+    content.innerHTML = `${legacyPrompt ? '<div class="dd-legacy-warning">Этот сохранённый отчёт создан старым промптом. Сформируйте новый дайджест, чтобы получить расширенное сравнение и Product Manager-инсайты.</div>' : ''}<div class="dd-summary">${escapeText(data.summary || 'Сводка отсутствует').replace(/\n/g, '<br>')}</div>`;
     const sources = Array.isArray(data.sourceCoverage) ? data.sourceCoverage : [];
     coverage.innerHTML = `<h3 style="margin:4px 0 8px;font-size:14px">Покрытие источников</h3><div style="overflow-x:auto"><table class="dd-coverage-table"><thead><tr><th>Источник</th><th>Статус</th><th>Примечание</th></tr></thead><tbody>
       ${sources.map((source) => {
         const state = coverageState(source);
-        return `<tr><td>${escapeText(source.sourceId)}</td><td><span class="dd-state ${state.className}">${state.label}</span></td><td>${escapeText(source.errorCode || '')}</td></tr>`;
+        const note = COVERAGE_NOTES[source.errorCode] || source.note || source.errorCode || '';
+        return `<tr><td><div class="dd-source-name">${escapeText(sourceLabel(source))}</div><div class="dd-source-id">${escapeText(source.sourceId || '')}</div></td><td><span class="dd-state ${state.className}">${state.label}</span></td><td>${escapeText(note)}</td></tr>`;
       }).join('') || '<tr><td colspan="3">Диагностика источников недоступна.</td></tr>'}
     </tbody></table></div>`;
     return true;

@@ -1509,7 +1509,7 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
-export { adminGenerateDailyDigest } from './admin_daily_digest';
+export { adminGenerateDailyDigest, adminOpenDailyDigest } from './admin_daily_digest';
 export { adminGenerateProductBrief, adminMutateProductItem } from './admin_pm_callables';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───

@@ -50,6 +50,12 @@ describe('validatePmBrief', () => {
     expect(validatePmBrief(brief, new Set(['ev-1']), new Set(['screen:/home']))).toMatchObject({ ok: false });
   });
 
+  test('rejects executable or malformed model-generated item ids', () => {
+    const brief = fullBrief();
+    brief.recommendations[0].id = "');alert(1);//";
+    expect(validatePmBrief(brief, new Set(['ev-1']), new Set(['screen:/home']))).toMatchObject({ ok: false, errors: expect.arrayContaining(['unsafe_item_id']) });
+  });
+
   test('measures serialized document bytes', () => {
     expect(serializedBytes({ value: 'abc' })).toBe(Buffer.byteLength(JSON.stringify({ value: 'abc' }), 'utf8'));
     expect(PM_LIMITS.documentBytes).toBe(700 * 1024);

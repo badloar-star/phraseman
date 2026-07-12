@@ -2,6 +2,7 @@ import type { DigestWindow } from './admin_digest_contracts';
 
 export interface DigestSourceDefinition {
   id: string;
+  label: string;
   domain: 'growth' | 'revenue' | 'quality' | 'safety' | 'support' | 'community' | 'learning' | 'operations';
   mode: 'event' | 'snapshot' | 'configuration';
   readTarget?: { kind: 'collection' | 'collectionGroup'; path: string };
@@ -12,31 +13,32 @@ export interface DigestSourceDefinition {
 }
 
 export const DIGEST_SOURCE_REGISTRY: readonly DigestSourceDefinition[] = [
-  { id: 'error_reports', domain: 'quality', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'subscription_cancel_surveys', domain: 'revenue', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'app_errors', domain: 'quality', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'safety_flags', domain: 'safety', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'users', domain: 'growth', mode: 'event', timestampField: 'created_at', timestampType: 'number_ms', included: true },
-  { id: 'revenuecat_premium_events', domain: 'revenue', mode: 'event', timestampField: 'eventTimestampMs', timestampType: 'number_ms', included: true },
-  { id: 'revenuecat_shard_transactions', domain: 'revenue', mode: 'event', timestampField: 'eventTimestampMs', timestampType: 'number_ms', included: true },
-  { id: 'paywall_funnel', domain: 'revenue', mode: 'event', timestampField: 'day', timestampType: 'day_string', included: true },
-  { id: 'user_ideas', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'user_reports', domain: 'safety', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'community_pack_reports', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'explain_reports', domain: 'quality', mode: 'event', readTarget: { kind: 'collection', path: 'explain_report_entries' }, timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'website_contact_inbox', domain: 'support', mode: 'event', timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
-  { id: 'support_inbox', domain: 'support', mode: 'event', timestampField: 'receivedAtMs', timestampType: 'number_ms', included: true },
-  { id: 'help_board_topics', domain: 'support', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
-  { id: 'league_chat_messages', domain: 'community', mode: 'event', readTarget: { kind: 'collection', path: 'league_chat_moderation_queue' }, timestampField: 'createdAt', timestampType: 'number_ms', included: true },
-  { id: 'referral_attributions', domain: 'growth', mode: 'event', timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
-  { id: 'community_pack_purchases', domain: 'community', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
-  { id: 'promo_redemptions', domain: 'growth', mode: 'event', readTarget: { kind: 'collectionGroup', path: 'promo_redemptions' }, timestampField: 'redeemedAtMs', timestampType: 'number_ms', included: true },
-  { id: 'vip_survey_responses', domain: 'revenue', mode: 'event', timestampField: 'updatedAtMs', timestampType: 'number_ms', included: true },
-  { id: 'community_pack_submissions', domain: 'community', mode: 'event', timestampField: 'submittedAt', timestampType: 'number_ms', included: true },
-  { id: 'arena_rooms_live', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
-  { id: 'users_active_subscription_snapshot', domain: 'revenue', mode: 'snapshot', timestampField: null, timestampType: 'snapshot', included: true },
-  { id: 'moderation_backlog_snapshot', domain: 'operations', mode: 'snapshot', timestampField: null, timestampType: 'snapshot', included: true },
-  { id: 'remote_config', domain: 'operations', mode: 'configuration', timestampField: null, timestampType: 'none', included: false, exclusionReason: 'Configuration is represented by change events, not counted as period activity.' },
+  { id: 'error_reports', label: 'Сообщения пользователей об ошибках', domain: 'quality', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'subscription_cancel_surveys', label: 'Причины отмены подписки', domain: 'revenue', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'app_errors', label: 'Ошибки приложения', domain: 'quality', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'safety_flags', label: 'Сигналы безопасности', domain: 'safety', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'users', label: 'Новые пользователи', domain: 'growth', mode: 'event', timestampField: 'created_at', timestampType: 'number_ms', included: true },
+  { id: 'progress_events', label: 'Учебные действия пользователей', domain: 'learning', mode: 'event', readTarget: { kind: 'collectionGroup', path: 'progress_events' }, timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
+  { id: 'revenuecat_premium_events', label: 'События подписки RevenueCat', domain: 'revenue', mode: 'event', timestampField: 'eventTimestampMs', timestampType: 'number_ms', included: true },
+  { id: 'revenuecat_shard_transactions', label: 'Покупки пакетов кристаллов', domain: 'revenue', mode: 'event', timestampField: 'eventTimestampMs', timestampType: 'number_ms', included: true },
+  { id: 'paywall_funnel', label: 'Воронка предложения Plus', domain: 'revenue', mode: 'event', timestampField: 'ts', timestampType: 'number_ms', included: true },
+  { id: 'user_ideas', label: 'Идеи пользователей', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'user_reports', label: 'Жалобы на пользователей', domain: 'safety', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'community_pack_reports', label: 'Жалобы на паки сообщества', domain: 'community', mode: 'event', timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'explain_reports', label: 'Отзывы об объяснениях', domain: 'quality', mode: 'event', readTarget: { kind: 'collection', path: 'explain_report_entries' }, timestampField: 'createdAtMs', timestampType: 'number_ms', included: true },
+  { id: 'website_contact_inbox', label: 'Обращения с сайта', domain: 'support', mode: 'event', timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
+  { id: 'support_inbox', label: 'Почта поддержки', domain: 'support', mode: 'event', timestampField: 'receivedAtMs', timestampType: 'number_ms', included: true },
+  { id: 'help_board_topics', label: 'Темы доски помощи', domain: 'support', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
+  { id: 'league_chat_messages', label: 'Сообщения чата лиг на модерации', domain: 'community', mode: 'event', readTarget: { kind: 'collection', path: 'league_chat_moderation_queue' }, timestampField: 'createdAt', timestampType: 'number_ms', included: true },
+  { id: 'referral_attributions', label: 'Реферальные связи', domain: 'growth', mode: 'event', timestampField: 'createdAt', timestampType: 'firestore_timestamp', included: true },
+  { id: 'community_pack_purchases', label: 'Покупки паков сообщества', domain: 'community', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
+  { id: 'promo_redemptions', label: 'Активации промокодов', domain: 'growth', mode: 'event', readTarget: { kind: 'collectionGroup', path: 'promo_redemptions' }, timestampField: 'redeemedAtMs', timestampType: 'number_ms', included: true },
+  { id: 'vip_survey_responses', label: 'Ответы на опрос Plus', domain: 'revenue', mode: 'event', timestampField: 'updatedAtMs', timestampType: 'number_ms', included: true },
+  { id: 'community_pack_submissions', label: 'Паки на модерации', domain: 'community', mode: 'event', timestampField: 'submittedAt', timestampType: 'number_ms', included: true },
+  { id: 'arena_rooms_live', label: 'Созданные комнаты Арены', domain: 'community', mode: 'event', timestampField: 'createdAt', timestampType: 'number_ms', included: true },
+  { id: 'users_active_subscription_snapshot', label: 'Активные подписки на конец периода', domain: 'revenue', mode: 'snapshot', timestampField: null, timestampType: 'snapshot', included: false, exclusionReason: 'Исторические снимки ещё не накоплены; источник не участвует в сравнении периодов.' },
+  { id: 'moderation_backlog_snapshot', label: 'Текущий остаток очередей модерации', domain: 'operations', mode: 'snapshot', timestampField: null, timestampType: 'snapshot', included: false, exclusionReason: 'Исторические снимки ещё не накоплены; источник не участвует в сравнении периодов.' },
+  { id: 'remote_config', label: 'Настройки приложения', domain: 'operations', mode: 'configuration', timestampField: null, timestampType: 'none', included: false, exclusionReason: 'Конфигурация является контекстом, а не событием периода.' },
 ] as const;
 
 export function readTargetForDigestSource(source: DigestSourceDefinition): { kind: 'collection' | 'collectionGroup'; path: string } {

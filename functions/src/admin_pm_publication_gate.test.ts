@@ -11,13 +11,17 @@ test('requires ok current and previous coverage in all four core domains', () =>
       users: { current: coverage('ok'), previous: coverage('ok') },
       progress_events: { current: coverage('ok'), previous: coverage('ok') },
       revenuecat_premium_events: { current: coverage('ok'), previous: coverage('partial') },
+      paywall_funnel: { current: coverage('ok'), previous: coverage('ok') },
       app_errors: { current: coverage('ok'), previous: coverage('ok') },
     },
     metrics: {
-      'growth_activation.users.events': { domain: 'growth_activation', sourceId: 'users' },
-      'learning_engagement.progress_events.events': { domain: 'learning_engagement', sourceId: 'progress_events' },
-      'revenue.revenuecat_premium_events.events': { domain: 'revenue', sourceId: 'revenuecat_premium_events' },
-      'quality_support.app_errors.events': { domain: 'quality_support', sourceId: 'app_errors' },
+      'growth_activation.activation_rate': { domain: 'growth_activation', sourceId: 'users' },
+      'learning_engagement.unique_learners': { domain: 'learning_engagement', sourceId: 'progress_events' },
+      'learning_engagement.lesson_completions': { domain: 'learning_engagement', sourceId: 'progress_events' },
+      'revenue.paywall_cta_rate': { domain: 'revenue', sourceId: 'paywall_funnel' },
+      'revenue.initial_paid_purchases': { domain: 'revenue', sourceId: 'revenuecat_premium_events' },
+      'revenue.refunds': { domain: 'revenue', sourceId: 'revenuecat_premium_events' },
+      'quality_support.errors_per_100_learners': { domain: 'quality_support', sourceId: 'app_errors' },
     },
   } as unknown as PmEvidenceBundle;
 
@@ -34,13 +38,17 @@ test('opens full mode only when every core domain has current and previous ok co
       users: { current: coverage('ok'), previous: coverage('ok') },
       progress_events: { current: coverage('ok'), previous: coverage('ok') },
       revenuecat_premium_events: { current: coverage('ok'), previous: coverage('ok') },
+      paywall_funnel: { current: coverage('ok'), previous: coverage('ok') },
       app_errors: { current: coverage('ok'), previous: coverage('ok') },
     },
     metrics: {
-      'growth_activation.users.events': { domain: 'growth_activation', sourceId: 'users' },
-      'learning_engagement.progress_events.events': { domain: 'learning_engagement', sourceId: 'progress_events' },
-      'revenue.revenuecat_premium_events.events': { domain: 'revenue', sourceId: 'revenuecat_premium_events' },
-      'quality_support.app_errors.events': { domain: 'quality_support', sourceId: 'app_errors' },
+      'growth_activation.activation_rate': { domain: 'growth_activation', sourceId: 'users' },
+      'learning_engagement.unique_learners': { domain: 'learning_engagement', sourceId: 'progress_events' },
+      'learning_engagement.lesson_completions': { domain: 'learning_engagement', sourceId: 'progress_events' },
+      'revenue.paywall_cta_rate': { domain: 'revenue', sourceId: 'paywall_funnel' },
+      'revenue.initial_paid_purchases': { domain: 'revenue', sourceId: 'revenuecat_premium_events' },
+      'revenue.refunds': { domain: 'revenue', sourceId: 'revenuecat_premium_events' },
+      'quality_support.errors_per_100_learners': { domain: 'quality_support', sourceId: 'app_errors' },
     },
   } as unknown as PmEvidenceBundle;
 

@@ -41,15 +41,17 @@ function evidenceIdsFor(bundle: PmEvidenceBundle, metricId: string): string[] {
 
 export function computeProductInsights(bundle: PmEvidenceBundle, options: ComputeProductInsightsOptions = {}): ProductInsights {
   const threshold = options.anomalyPercentThreshold ?? 150;
-  const facts = Object.values(bundle.metrics).map((metric) => {
-    const absoluteDelta = metric.current - metric.previous;
-    const percentDelta = metric.previous === 0 ? null : (absoluteDelta / metric.previous) * 100;
+  const facts = Object.values(bundle.metrics).filter((metric) => typeof metric.current === 'number' && typeof metric.previous === 'number').map((metric) => {
+    const current = metric.current as number;
+    const previous = metric.previous as number;
+    const absoluteDelta = current - previous;
+    const percentDelta = previous === 0 ? null : (absoluteDelta / previous) * 100;
     return {
       metricId: metric.metricId,
       sourceId: metric.sourceId,
       domain: metric.domain,
-      current: metric.current,
-      previous: metric.previous,
+      current,
+      previous,
       absoluteDelta,
       percentDelta,
       confidence: confidenceFor(metric.caveats),

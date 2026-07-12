@@ -3,6 +3,7 @@ import {
   isDigestEmpty,
   buildDigestPrompt,
   buildDigestSystemPrompt,
+  requirePendingDigestWindowStart,
   utcDayKey,
   type DigestSourceRows,
 } from './admin_daily_digest';
@@ -20,6 +21,8 @@ const EMPTY_ROWS: DigestSourceRows = {
   safety: [],
   newUsers: [],
   purchases: [],
+  shardPurchases: [],
+  progressEvents: [],
   paywallPurchases: [],
   ideas: [],
   queues: {
@@ -253,6 +256,21 @@ describe('buildDigestPrompt / utcDayKey', () => {
     expect(utcDayKey(Date.UTC(2026, 0, 1, 0, 0, 0))).toBe('2026-01-01');
   });
 
+  test('включает учебную активность и покупки кристаллов в факты дайджеста', () => {
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      progressEvents: [
+        { userId: 'u1', type: 'lesson_complete' },
+        { userId: 'u1', type: 'xp_gain' },
+        { userId: 'u2', type: 'lesson_complete' },
+      ],
+      shardPurchases: [{ productId: 'phraseman_shards_80', shards: 92, eventType: 'NON_RENEWING_PURCHASE' }],
+    });
+    expect(facts.learning).toEqual({ events: 3, activeLearners: 2, lessonCompletions: 2 });
+    expect(facts.revenue.shardStorePurchases).toEqual({ total: 1, shardsGranted: 92 });
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
   test('v2 prompt names exact windows, metric semantics and unavailable sources', () => {
     const facts = aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{ platform: 'ios' }] });
     const prompt = buildDigestPrompt(facts, {
@@ -282,12 +300,21 @@ describe('buildDigestPrompt / utcDayKey', () => {
   test('system prompt no longer claims complete 24-hour coverage', () => {
     const prompt = buildDigestSystemPrompt();
     expect(prompt).toContain('НЕ считай вход полным');
-    expect(prompt).toContain('с момента последнего успешного дайджеста');
+    expect(prompt).toContain('с момента предыдущего открытия вкладки дайджеста');
     expect(prompt).toContain('RevenueCat API');
+    expect(prompt).not.toContain('ПОЛНУЮ СВОДКУ');
+    expect(prompt).not.toContain('за последние сутки');
+    expect(prompt).toContain('Product Manager');
+    expect(prompt).toContain('показательное сравнение');
+    expect(prompt).toContain('человеческие названия');
   });
 });
 
 describe('digest v2 windows and comparisons', () => {
+  test('requires a registered opening cursor instead of silently using generation time', () => {
+    expect(requirePendingDigestWindowStart({ pendingWindowStartMs: 123 })).toBe(123);
+    expect(() => requirePendingDigestWindowStart({ windowEndMs: 456 })).toThrow('digest_open_required');
+  });
   test('starts after the last successful run and compares an equal previous interval', () => {
     expect(resolveDigestWindows(1_000_000, 700_000)).toEqual({
       current: { startMs: 700_000, endMs: 1_000_000 },

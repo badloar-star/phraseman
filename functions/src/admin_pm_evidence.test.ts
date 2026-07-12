@@ -42,7 +42,7 @@ test('collects stable aggregate evidence from paginated sources without raw iden
     pageSize: 2,
   });
 
-  expect(bundle.evidence.map((item) => item.evidenceId)).toEqual([
+  expect(bundle.evidence.map((item) => item.evidenceId).filter((id) => id.includes('.users.events.'))).toEqual([
     'ev:growth_activation.users.events.current',
     'ev:growth_activation.users.events.previous',
     'ev:growth_activation.users.events.context_7d',
@@ -72,7 +72,7 @@ test('marks a failed source as failed instead of returning a false zero', async 
   });
 });
 
-test('marks day-string sources partial for arbitrary exact windows', async () => {
+test('uses the exact paywall event timestamp for arbitrary windows', async () => {
   const bundle = await collectProductManagerEvidence({
     window: { startMs: Date.UTC(2026, 0, 1, 6), endMs: Date.UTC(2026, 0, 2, 12) },
     readers: {
@@ -81,10 +81,7 @@ test('marks day-string sources partial for arbitrary exact windows', async () =>
     sourceIds: ['paywall_funnel'],
   });
 
-  expect(bundle.coverage.paywall_funnel.current).toMatchObject({
-    status: 'partial',
-    errorCode: 'calendar_day_granularity_not_exact',
-  });
+  expect(bundle.coverage.paywall_funnel.current).toMatchObject({ status: 'ok', timestampField: 'ts' });
 });
 
 test('creates Firestore readers from the source registry read targets', async () => {
@@ -112,13 +109,57 @@ test('creates Firestore readers from the source registry read targets', async ()
   const readers = createFirestorePmSourceReaders(db as never);
   const page = await readers.users({ startMs: 100, endMs: 200, pageSize: 25 });
 
-  expect(calls).toEqual([
-    'collection:users',
-    'where:created_at:>=:100',
-    'where:created_at:<:200',
-    'orderBy:created_at',
-    'limit:25',
-  ]);
-  expect(page.rows).toEqual([{ __digestId: 'users/u1', id: 'users/u1' }]);
+  expect(calls.filter((call) => call === 'collection:users')).toHaveLength(4);
+  expect(calls).toContain('where:created_at:>=:100');
+  expect(calls.filter((call) => call.startsWith('where:created_at:>=:'))).toHaveLength(4);
+  expect(page.rows).toEqual([{ __digestId: 'users/u1', id: 'users/u1', created_at: 150 }]);
   expect(JSON.stringify(page.rows)).not.toContain('raw-user-id');
+});
+
+test('builds curated semantic KPIs with denominators and zero-safe rates', async () => {
+  const sourceRows: Record<string, Array<Record<string, unknown>>> = {
+    users: [{ id: 'u1', progress: { lesson1_pass_count: '1' } }, { id: 'u2', progress: {} }],
+    progress_events: [{ id: 'users/u1/progress_events/a', type: 'lesson_complete' }, { id: 'users/u1/progress_events/b', type: 'xp_gain' }],
+    paywall_funnel: [{ id: 'p1', step: 'shown' }, { id: 'p2', step: 'shown' }, { id: 'p3', step: 'cta_click' }],
+    revenuecat_premium_events: [{ id: 'r1', eventType: 'INITIAL_PURCHASE' }, { id: 'r2', eventType: 'REFUND' }],
+    app_errors: [{ id: 'e1', severity: 'critical' }],
+    error_reports: [{ id: 'q1' }],
+  };
+  const readers = Object.fromEntries(Object.entries(sourceRows).map(([sourceId, rows]) => [sourceId, async () => ({ rows })]));
+  const bundle = await collectProductManagerEvidence({ window: { startMs: 100, endMs: 200 }, readers, sourceIds: Object.keys(sourceRows) });
+  expect(bundle.metrics['growth_activation.activation_rate']).toMatchObject({ current: 50 });
+  expect(bundle.metrics['learning_engagement.unique_learners']).toMatchObject({ current: 1 });
+  expect(bundle.metrics['learning_engagement.lesson_completions']).toMatchObject({ current: 1 });
+  expect(bundle.metrics['revenue.paywall_cta_rate']).toMatchObject({ current: 50 });
+  expect(bundle.metrics['revenue.initial_paid_purchases']).toMatchObject({ current: 1 });
+  expect(bundle.metrics['revenue.refunds']).toMatchObject({ current: 1 });
+  expect(bundle.metrics['quality_support.errors_per_100_learners']).toMatchObject({ current: 100 });
+  expect(Object.values(bundle.metrics).every((metric) => Number.isFinite(metric.current))).toBe(true);
+});
+
+test('omits rates when the denominator is zero instead of reporting a false 0%', async () => {
+  const bundle = await collectProductManagerEvidence({
+    window: { startMs: 100, endMs: 200 },
+    readers: { paywall_funnel: async () => ({ rows: [{ id: 'click', step: 'cta_click' }] }) },
+    sourceIds: ['paywall_funnel'],
+  });
+  expect(bundle.metrics['revenue.paywall_cta_rate']).toBeUndefined();
+  expect(bundle.metrics['revenue.paywall_purchase_rate']).toBeUndefined();
+  expect(bundle.metrics['revenue.paywall_shown']).toBeDefined();
+});
+
+test('counts activation only from progress events inside the same cohort window', async () => {
+  const bundle = await collectProductManagerEvidence({
+    window: { startMs: 100, endMs: 200 },
+    readers: {
+      users: async (input) => ({ rows: input.startMs === 100 ? [{ id: 'users/current' }] : input.startMs === 0 ? [{ id: 'users/previous' }] : [] }),
+      progress_events: async (input) => ({ rows: input.startMs === 100 ? [
+        { id: 'users/current/progress_events/in-window', type: 'lesson_complete' },
+        { id: 'users/previous/progress_events/too-late', type: 'lesson_complete' },
+      ] : [] }),
+    },
+    sourceIds: ['users', 'progress_events'],
+  });
+  expect(bundle.metrics['growth_activation.activation_rate']).toMatchObject({ current: 100, previous: 0 });
+  expect(bundle.metrics['growth_activation.activated_new_users']).toMatchObject({ current: 1, previous: 0 });
 });

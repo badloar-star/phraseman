@@ -11909,15 +11909,16 @@
   <div id="cr-content"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
-<!-- DAILY DIGEST TAB — точный период с последнего успешного запуска -->
+<!-- DAILY DIGEST TAB — точный период с прошлого открытия -->
 <div id="tab-daily-digest" class="reports-tab">
   <div class="reports-toolbar">
-    <button id="dd-generate" onclick="generateDailyDigest()" title="Собрать события с окончания последнего успешного дайджеста">Сформировать дайджест</button>
+    <button id="dd-generate" onclick="generateDailyDigest()" title="Собрать события с прошлого открытия дайджеста">Сформировать дайджест</button>
     <button onclick="loadDailyDigest(true)" title="Обновить последний сохранённый результат">Обновить</button>
     <label for="dd-history" class="sr-only">История запусков</label>
     <select id="dd-history" aria-label="История запусков"><option value="">Последний успешный запуск</option></select>
     <span class="reports-count" id="dd-count"></span>
   </div>
+  <div id="dd-open-status" role="status" style="min-height:18px;margin:2px 0 10px;color:#94a3b8;font-size:12px"></div>
   <section id="dd-period" aria-label="Период дайджеста"></section>
   <section id="dd-kpis" aria-label="Сравнительные показатели"></section>
   <section id="dd-charts" aria-label="Графики дайджеста"></section>
@@ -14365,6 +14366,13 @@
       _fnAdminGenerateDailyDigest = httpsCallable(functionsUs, 'adminGenerateDailyDigest');
     }
     return _fnAdminGenerateDailyDigest;
+  }
+  let _fnAdminOpenDailyDigest = null;
+  function getAdminOpenDailyDigestCallable() {
+    if (!_fnAdminOpenDailyDigest) {
+      _fnAdminOpenDailyDigest = httpsCallable(functionsUs, 'adminOpenDailyDigest');
+    }
+    return _fnAdminOpenDailyDigest;
   }
   let _fnAdminGenerateProductBrief = null;
   function getAdminGenerateProductBriefCallable() {
@@ -19358,7 +19366,10 @@
     if(tab==='safety-flags' && !window._safetyFlagsLoaded) loadSafetyFlags();
     if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
     if(tab==='compliance-radar' && !window._complianceRadarLoaded && typeof loadComplianceRadar === 'function') loadComplianceRadar(false);
-    if(tab==='daily-digest' && !window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    if(tab==='daily-digest') {
+      if (typeof window.registerDailyDigestOpen === 'function') void window.registerDailyDigestOpen();
+      if (!window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    }
     if(tab==='product-manager' && typeof window.loadProductManagerWorkspace === 'function') window.loadProductManagerWorkspace(false);
     if(tab==='app-codex' && typeof window.loadAppCodex === 'function') window.loadAppCodex(false);
     if(tab==='gmail-support' && !window._supportInboxLoaded && typeof loadSupportInbox === 'function') loadSupportInbox(false);
@@ -27465,6 +27476,19 @@
       <div style="margin-top:12px;font-size:11.5px;color:#6b7280">Сгенерировано: ${escapeHtml(String(when))} · модель: ${escapeHtml(String(data.model || '—'))} · за ${escapeHtml(String(data.dayKey || ''))}</div>`;
   }
 
+  window.registerDailyDigestOpen = async function registerDailyDigestOpen() {
+    const status = document.getElementById('dd-open-status');
+    try {
+      const result = await getAdminOpenDailyDigestCallable()({});
+      window._dailyDigestPendingWindows = result?.data?.windows || null;
+      if (status) status.textContent = result?.data?.reused
+        ? 'Окно уже зафиксировано для этого открытия.'
+        : 'Период зафиксирован от предыдущего открытия дайджеста.';
+    } catch (error) {
+      if (status) status.textContent = 'Не удалось зафиксировать открытие: ' + ((error && (error.message || error.code)) || error);
+    }
+  };
+
   window.loadDailyDigest = async function(force) {
     const box = document.getElementById('dd-content');
     if (!box) return;
@@ -27508,8 +27532,8 @@
     const box = document.getElementById('dd-content');
     const btn = document.getElementById('dd-generate');
     if (!box) return;
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ ИИ думает…'; }
-    box.innerHTML = '<div class="reports-empty">Собираем события с окончания последнего успешного дайджеста…</div>';
+    if (btn) { btn.disabled = true; btn.textContent = 'Формирую…'; }
+    box.innerHTML = '<div class="reports-empty">Собираю данные с прошлого открытия, сравниваю с предыдущим равным периодом и готовлю продуктовые выводы…</div>';
     try {
       const call = getAdminGenerateDailyDigestCallable();
       const res = await call({});

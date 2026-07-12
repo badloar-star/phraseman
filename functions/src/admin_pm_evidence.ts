@@ -42,9 +42,9 @@ export interface PmEvidenceMetric {
   metricId: string;
   sourceId: string;
   domain: PmDomain;
-  current: number;
-  previous: number;
-  context: Record<'7d' | '28d', number>;
+  current: number | null;
+  previous: number | null;
+  context: Record<'7d' | '28d', number | null>;
   caveats: string[];
 }
 
@@ -146,12 +146,50 @@ function firestoreBound(source: DigestSourceDefinition, ms: number): number | st
   return ms;
 }
 
+function projectPmRow(source: DigestSourceDefinition, doc: FirebaseFirestore.QueryDocumentSnapshot): PmSourceReaderRow {
+  const data = doc.data();
+  const base = { __digestId: doc.ref.path, id: doc.ref.path };
+  if (source.id === 'users') return { ...base, created_at: data.created_at };
+  if (source.id === 'progress_events') return { ...base, type: data.type };
+  if (source.id === 'paywall_funnel') return { ...base, step: data.step, dev: data.dev === true };
+  if (source.id === 'revenuecat_premium_events') return { ...base, eventType: data.eventType, periodType: data.periodType };
+  if (source.id === 'app_errors') return { ...base, severity: data.severity };
+  if (source.id === 'error_reports') return { ...base, status: data.status };
+  return base;
+}
+
 export function createFirestorePmSourceReaders(db: admin.firestore.Firestore): PmSourceReaderMap {
   const readers: PmSourceReaderMap = {};
   for (const source of DIGEST_SOURCE_REGISTRY) {
     if (!source.included || source.mode !== 'event' || !source.timestampField) continue;
     const target = readTargetForDigestSource(source);
     const field = source.timestampField;
+    if (source.id === 'users') {
+      readers[source.id] = async (input: DigestPageInput): Promise<DigestPage<PmSourceReaderRow>> => {
+        if (input.cursor) return { rows: [] };
+        const variants: Array<[number | string | admin.firestore.Timestamp, number | string | admin.firestore.Timestamp]> = [
+          [input.startMs, input.endMs],
+          [admin.firestore.Timestamp.fromMillis(input.startMs), admin.firestore.Timestamp.fromMillis(input.endMs)],
+          [String(input.startMs), String(input.endMs)],
+          [new Date(input.startMs).toISOString(), new Date(input.endMs).toISOString()],
+        ];
+        const docs = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
+        for (const [start, end] of variants) {
+          let last: FirebaseFirestore.QueryDocumentSnapshot | undefined;
+          for (let page = 0; page < 100; page += 1) {
+            let query = db.collection(target.path).where(field, '>=', start).where(field, '<', end).orderBy(field).limit(input.pageSize);
+            if (last) query = query.startAfter(last);
+            const snapshot = await query.get();
+            snapshot.docs.forEach((doc) => docs.set(doc.ref.path, doc));
+            if (snapshot.size < input.pageSize) break;
+            last = snapshot.docs[snapshot.docs.length - 1];
+            if (page === 99) throw Object.assign(new Error('users pagination limit reached'), { code: 'page_limit_reached' });
+          }
+        }
+        return { rows: [...docs.values()].map((doc) => projectPmRow(source, doc)) };
+      };
+      continue;
+    }
     let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | undefined;
     readers[source.id] = async (input: DigestPageInput): Promise<DigestPage<PmSourceReaderRow>> => {
       if (!input.cursor) lastDoc = undefined;
@@ -170,7 +208,7 @@ export function createFirestorePmSourceReaders(db: admin.firestore.Firestore): P
       const snap = await query.get();
       lastDoc = snap.docs[snap.docs.length - 1];
       return {
-        rows: snap.docs.map((doc) => ({ __digestId: doc.ref.path, id: doc.ref.path })),
+        rows: snap.docs.map((doc) => projectPmRow(source, doc)),
         nextCursor: snap.size === input.pageSize ? 'next' : undefined,
       };
     };
@@ -184,12 +222,12 @@ async function readSourceWindow(
   window: DigestWindow,
   pageSize: number,
   maxPages: number,
-): Promise<{ value?: number; coverage: SourceCoverage }> {
+): Promise<{ value?: number; rows: PmSourceReaderRow[]; coverage: SourceCoverage }> {
   if (!source.included) {
-    return { coverage: emptyCoverage(source, window, 'not_configured', source.exclusionReason || 'source_excluded') };
+    return { rows: [], coverage: emptyCoverage(source, window, 'not_configured', source.exclusionReason || 'source_excluded') };
   }
   if (!reader || source.mode !== 'event' || !source.timestampField) {
-    return { coverage: emptyCoverage(source, window, 'failed', 'source_adapter_missing') };
+    return { rows: [], coverage: emptyCoverage(source, window, 'failed', 'source_adapter_missing') };
   }
 
   const result = await readPaginatedSource<PmSourceReaderRow>({
@@ -203,9 +241,83 @@ async function readSourceWindow(
   });
   const coverage = applyWindowCaveats(source, result.coverage);
   return {
+    rows: result.rows,
     value: coverage.status === 'ok' || coverage.status === 'partial' ? coverage.uniqueCount : undefined,
     coverage,
   };
+}
+
+type PmWindowReads = Record<PmEvidenceWindowKey, { value?: number; rows: PmSourceReaderRow[]; coverage: SourceCoverage }>;
+
+function addCuratedProductMetrics(input: {
+  metrics: Record<string, PmEvidenceMetric>;
+  evidence: PmEvidenceItem[];
+  sourceReads: Record<string, PmWindowReads>;
+}): void {
+  const keys: PmEvidenceWindowKey[] = ['current', 'previous', 'context_7d', 'context_28d'];
+  const rows = (sourceId: string, key: PmEvidenceWindowKey) => input.sourceReads[sourceId]?.[key]?.rows || [];
+  const ratio = (numerator: number, denominator: number, scale = 100): number | null => denominator > 0 ? (numerator / denominator) * scale : null;
+  const learnerId = (row: PmSourceReaderRow) => String(row.id || '').split('/progress_events/')[0];
+  const normalizeUserId = (value: string) => value.startsWith('users/') ? value.slice('users/'.length).split('/')[0] : value;
+  const activeLearners = (key: PmEvidenceWindowKey) => new Set(rows('progress_events', key).map(learnerId).filter(Boolean)).size;
+  const activatedNewUsers = (key: PmEvidenceWindowKey) => {
+    const cohort = new Set(rows('users', key).map((row) => normalizeUserId(String(row.id || ''))).filter(Boolean));
+    const activated = new Set(rows('progress_events', key).map((row) => normalizeUserId(learnerId(row))).filter((id) => cohort.has(id)));
+    return activated.size;
+  };
+
+  const add = (definition: {
+    metricId: string; sourceId: string; domain: PmDomain; dependencies: string[];
+    calculate: (key: PmEvidenceWindowKey) => number | null;
+  }) => {
+    const available = definition.dependencies.every((sourceId) => !!input.sourceReads[sourceId]
+      && input.sourceReads[sourceId].current.coverage.status !== 'failed'
+      && input.sourceReads[sourceId].previous.coverage.status !== 'failed');
+    if (!available) return;
+    const values = Object.fromEntries(keys.map((key) => [key, definition.calculate(key)])) as Record<PmEvidenceWindowKey, number | null>;
+    if (values.current === null || values.previous === null) return;
+    const caveats = definition.dependencies.flatMap((sourceId) => keys.map((key) => input.sourceReads[sourceId]?.[key]?.coverage)
+      .filter((item): item is SourceCoverage => !!item && (item.status !== 'ok' || !!item.errorCode))
+      .map((item) => `${item.sourceId}:${item.status}${item.errorCode ? `:${item.errorCode}` : ''}`));
+    input.metrics[definition.metricId] = {
+      metricId: definition.metricId,
+      sourceId: definition.sourceId,
+      domain: definition.domain,
+      current: values.current,
+      previous: values.previous,
+      context: { '7d': values.context_7d, '28d': values.context_28d },
+      caveats: [...new Set(caveats)],
+    };
+    for (const key of keys) {
+      if (values[key] === null) continue;
+      const coverageStatus = definition.dependencies.some((sourceId) => input.sourceReads[sourceId]?.[key]?.coverage.status === 'partial') ? 'partial' : 'ok';
+      input.evidence.push({
+        evidenceId: `ev:${definition.metricId}.${key}`,
+        metricId: definition.metricId,
+        sourceId: definition.sourceId,
+        domain: definition.domain,
+        windowKey: key,
+        value: values[key] as number,
+        codexEntityIds: [`metric:${definition.metricId}`],
+        coverageStatus,
+      });
+    }
+  };
+
+  add({ metricId: 'growth_activation.new_users', sourceId: 'users', domain: 'growth_activation', dependencies: ['users'], calculate: (key) => rows('users', key).length });
+  add({ metricId: 'growth_activation.activated_new_users', sourceId: 'users', domain: 'growth_activation', dependencies: ['users', 'progress_events'], calculate: activatedNewUsers });
+  add({ metricId: 'growth_activation.activation_rate', sourceId: 'users', domain: 'growth_activation', dependencies: ['users', 'progress_events'], calculate: (key) => ratio(activatedNewUsers(key), rows('users', key).length) });
+  add({ metricId: 'learning_engagement.unique_learners', sourceId: 'progress_events', domain: 'learning_engagement', dependencies: ['progress_events'], calculate: activeLearners });
+  add({ metricId: 'learning_engagement.lesson_completions', sourceId: 'progress_events', domain: 'learning_engagement', dependencies: ['progress_events'], calculate: (key) => rows('progress_events', key).filter((row) => String(row.type || '').toLowerCase() === 'lesson_complete').length });
+  add({ metricId: 'revenue.paywall_shown', sourceId: 'paywall_funnel', domain: 'revenue', dependencies: ['paywall_funnel'], calculate: (key) => rows('paywall_funnel', key).filter((row) => row.dev !== true && row.step === 'shown').length });
+  add({ metricId: 'revenue.paywall_cta_rate', sourceId: 'paywall_funnel', domain: 'revenue', dependencies: ['paywall_funnel'], calculate: (key) => ratio(rows('paywall_funnel', key).filter((row) => row.dev !== true && row.step === 'cta_click').length, rows('paywall_funnel', key).filter((row) => row.dev !== true && row.step === 'shown').length) });
+  add({ metricId: 'revenue.paywall_purchase_rate', sourceId: 'paywall_funnel', domain: 'revenue', dependencies: ['paywall_funnel'], calculate: (key) => ratio(rows('paywall_funnel', key).filter((row) => row.dev !== true && row.step === 'purchase_completed').length, rows('paywall_funnel', key).filter((row) => row.dev !== true && row.step === 'shown').length) });
+  add({ metricId: 'revenue.trial_starts', sourceId: 'revenuecat_premium_events', domain: 'revenue', dependencies: ['revenuecat_premium_events'], calculate: (key) => rows('revenuecat_premium_events', key).filter((row) => String(row.periodType || '').toUpperCase() === 'TRIAL').length });
+  add({ metricId: 'revenue.initial_paid_purchases', sourceId: 'revenuecat_premium_events', domain: 'revenue', dependencies: ['revenuecat_premium_events'], calculate: (key) => rows('revenuecat_premium_events', key).filter((row) => ['INITIAL_PURCHASE', 'NON_RENEWING_PURCHASE'].includes(String(row.eventType || '').toUpperCase())).length });
+  add({ metricId: 'revenue.renewals', sourceId: 'revenuecat_premium_events', domain: 'revenue', dependencies: ['revenuecat_premium_events'], calculate: (key) => rows('revenuecat_premium_events', key).filter((row) => String(row.eventType || '').toUpperCase() === 'RENEWAL').length });
+  add({ metricId: 'revenue.refunds', sourceId: 'revenuecat_premium_events', domain: 'revenue', dependencies: ['revenuecat_premium_events'], calculate: (key) => rows('revenuecat_premium_events', key).filter((row) => String(row.eventType || '').toUpperCase() === 'REFUND').length });
+  add({ metricId: 'quality_support.errors_per_100_learners', sourceId: 'app_errors', domain: 'quality_support', dependencies: ['app_errors', 'progress_events'], calculate: (key) => ratio(rows('app_errors', key).length, activeLearners(key), 100) });
+  add({ metricId: 'quality_support.reports_per_100_learners', sourceId: 'error_reports', domain: 'quality_support', dependencies: ['error_reports', 'progress_events'], calculate: (key) => ratio(rows('error_reports', key).length, activeLearners(key), 100) });
 }
 
 export async function collectProductManagerEvidence(input: CollectProductManagerEvidenceInput): Promise<PmEvidenceBundle> {
@@ -217,6 +329,7 @@ export async function collectProductManagerEvidence(input: CollectProductManager
   const metrics: Record<string, PmEvidenceMetric> = {};
   const evidence: PmEvidenceItem[] = [];
   const coverage: PmEvidenceBundle['coverage'] = {};
+  const sourceReads: Record<string, Record<PmEvidenceWindowKey, { value?: number; rows: PmSourceReaderRow[]; coverage: SourceCoverage }>> = {};
 
   for (const source of sources) {
     const domain = domainFor(source);
@@ -228,6 +341,7 @@ export async function collectProductManagerEvidence(input: CollectProductManager
       context_7d: await readSourceWindow(source, reader, windows.context[0].window, pageSize, maxPages),
       context_28d: await readSourceWindow(source, reader, windows.context[1].window, pageSize, maxPages),
     } satisfies Record<PmEvidenceWindowKey, Awaited<ReturnType<typeof readSourceWindow>>>;
+    sourceReads[source.id] = reads;
 
     coverage[source.id] = {
       current: reads.current.coverage,
@@ -267,6 +381,8 @@ export async function collectProductManagerEvidence(input: CollectProductManager
         .map((item) => `${item.sourceId}:${item.status}${item.errorCode ? `:${item.errorCode}` : ''}`),
     };
   }
+
+  addCuratedProductMetrics({ metrics, evidence, sourceReads });
 
   return { windows, metrics, evidence, coverage };
 }

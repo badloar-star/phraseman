@@ -80,9 +80,16 @@ function wordCount(value: unknown): number {
   return typeof value === 'string' ? value.trim().split(/\s+/).filter(Boolean).length : 0;
 }
 
+const SAFE_ITEM_ID = /^[a-z0-9][a-z0-9._:-]{0,119}$/i;
+
+function validateItemId(value: unknown, errors: string[]): void {
+  if (typeof value !== 'string' || !SAFE_ITEM_ID.test(value)) errors.push('unsafe_item_id');
+}
+
 function validateClaim(value: unknown, evidenceIds: ReadonlySet<string>, codexIds: ReadonlySet<string>, errors: string[]): void {
   if (!value || typeof value !== 'object') { errors.push('claim_not_object'); return; }
   const claim = value as Partial<PmClaim>;
+  validateItemId(claim.id, errors);
   if (!Number.isFinite(claim.confidence) || Number(claim.confidence) < 0 || Number(claim.confidence) > 1) errors.push('confidence_out_of_range');
   if (!Array.isArray(claim.evidenceIds) || claim.evidenceIds.some((id) => !evidenceIds.has(id))) errors.push('unknown_evidence_id');
   if (!Array.isArray(claim.codexEntityIds) || claim.codexEntityIds.some((id) => !codexIds.has(id))) errors.push('unknown_codex_id');
@@ -103,6 +110,7 @@ export function validatePmBrief(value: unknown, evidenceIds: ReadonlySet<string>
     if (!Array.isArray(brief.experiments) || brief.experiments.length < PM_LIMITS.experimentsMin || brief.experiments.length > PM_LIMITS.experimentsMax) errors.push('experiment_count');
     for (const claim of [...(Array.isArray(brief.hypotheses) ? brief.hypotheses : []), ...(Array.isArray(brief.recommendations) ? brief.recommendations : []), ...(Array.isArray(brief.ideas) ? brief.ideas : [])]) validateClaim(claim, evidenceIds, codexIds, errors);
     for (const experiment of Array.isArray(brief.experiments) ? brief.experiments : []) {
+      validateItemId(experiment.id, errors);
       if (!experiment.evidenceIds?.every((id) => evidenceIds.has(id))) errors.push('unknown_evidence_id');
       if (!experiment.codexEntityIds?.every((id) => codexIds.has(id))) errors.push('unknown_codex_id');
     }

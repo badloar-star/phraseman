@@ -2,6 +2,51 @@
   'use strict';
 
   var state = { loaded: false, loading: false, briefId: '', brief: null, manifest: null, recommendations: null, experiments: null, decisions: [] };
+  var SOURCE_LABELS = {
+    error_reports: 'Сообщения пользователей об ошибках', subscription_cancel_surveys: 'Причины отмены подписки', app_errors: 'Ошибки приложения',
+    safety_flags: 'Сигналы безопасности', users: 'Новые пользователи', progress_events: 'Учебные действия пользователей',
+    revenuecat_premium_events: 'События подписки RevenueCat', revenuecat_shard_transactions: 'Покупки пакетов кристаллов',
+    paywall_funnel: 'Воронка предложения Plus', user_ideas: 'Идеи пользователей', user_reports: 'Жалобы на пользователей',
+    community_pack_reports: 'Жалобы на паки сообщества', explain_reports: 'Отзывы об объяснениях', website_contact_inbox: 'Обращения с сайта',
+    support_inbox: 'Почта поддержки', help_board_topics: 'Темы доски помощи', league_chat_messages: 'Сообщения чата лиг на модерации',
+    referral_attributions: 'Реферальные связи', community_pack_purchases: 'Покупки паков сообщества', promo_redemptions: 'Активации промокодов',
+    vip_survey_responses: 'Ответы на опрос Plus', community_pack_submissions: 'Паки на модерации', arena_rooms_live: 'Созданные комнаты Арены',
+    users_active_subscription_snapshot: 'Активные подписки на конец периода', moderation_backlog_snapshot: 'Остаток очередей модерации', remote_config: 'Настройки приложения'
+  };
+  var METRIC_LABELS = {
+    'growth_activation.users.events': 'Новые пользователи',
+    'learning_engagement.progress_events.events': 'Учебные действия',
+    'revenue.revenuecat_premium_events.events': 'События подписки RevenueCat',
+    'quality_support.app_errors.events': 'Ошибки приложения'
+    ,'growth_activation.new_users': 'Новые пользователи'
+    ,'growth_activation.activated_new_users': 'Активированные новые пользователи'
+    ,'growth_activation.activation_rate': 'Доля активации новых пользователей, %'
+    ,'learning_engagement.unique_learners': 'Уникальные активные ученики'
+    ,'learning_engagement.lesson_completions': 'Завершённые уроки'
+    ,'revenue.paywall_shown': 'Показы предложения Plus'
+    ,'revenue.paywall_cta_rate': 'Переход с предложения Plus к кнопке, %'
+    ,'revenue.paywall_purchase_rate': 'Покупки после показа Plus, %'
+    ,'revenue.trial_starts': 'Начатые пробные периоды'
+    ,'revenue.initial_paid_purchases': 'Новые платные покупки'
+    ,'revenue.renewals': 'Продления подписки'
+    ,'revenue.refunds': 'Возвраты'
+    ,'quality_support.errors_per_100_learners': 'Ошибок на 100 активных учеников'
+    ,'quality_support.reports_per_100_learners': 'Жалоб на 100 активных учеников'
+  };
+  var DOMAIN_LABELS = { growth_activation: 'Рост и активация', learning_engagement: 'Обучение и вовлечение', revenue: 'Доход и подписка', quality_support: 'Качество и поддержка', safety_community: 'Безопасность и сообщество', operations: 'Операции' };
+  function sourceLabel(sourceId) { return SOURCE_LABELS[sourceId] || String(sourceId || 'Источник данных').replace(/_/g, ' '); }
+  function metricLabel(metricId) {
+    if (METRIC_LABELS[metricId]) return METRIC_LABELS[metricId];
+    var parts = String(metricId || '').split('.');
+    return sourceLabel(parts.length > 1 ? parts[1] : metricId) + ' — события';
+  }
+  function evidenceSummary(ids) {
+    ids = Array.isArray(ids) ? ids : [];
+    return '<strong>' + text(ids.length ? ('Подтверждений: ' + ids.length) : 'Нет подтверждений') + '</strong>' + (ids.length ? '<span class="pm-tech-id" title="Технические ссылки на доказательства">' + text(ids.join(', ')) + '</span>' : '');
+  }
+  function actionButton(kind, itemId, to, label) {
+    return '<button type="button" data-pm-action="mutate" data-pm-kind="' + text(kind) + '" data-pm-id="' + text(itemId || '') + '" data-pm-from="proposed" data-pm-to="' + text(to) + '">' + text(label) + '</button>';
+  }
 
   function byId(id) { return document.getElementById(id); }
   function text(value) {
@@ -13,7 +58,7 @@
       .replace(/'/g, '&#39;');
   }
   function number(value) {
-    return Number.isFinite(Number(value)) ? Number(value).toLocaleString('ru-RU') : 'Н/Д';
+    return typeof value === 'number' && Number.isFinite(value) ? value.toLocaleString('ru-RU') : 'Н/Д';
   }
   function date(ms) {
     return Number.isFinite(Number(ms)) ? new Date(Number(ms)).toLocaleString('ru-RU') : 'Н/Д';
@@ -52,8 +97,9 @@
       }).join('');
   }
   function statusPill(value) {
-    var cls = value === 'ok' ? 'ok' : (value === 'partial' ? 'partial' : 'bad');
-    return '<span class="pm-pill ' + cls + '">' + text(value || 'unknown') + '</span>';
+    var labels = { ok: 'Доступен', partial: 'Неполный', failed: 'Недоступен', not_configured: 'Не сравнивается', not_applicable: 'Не сравнивается' };
+    var cls = value === 'ok' ? 'ok' : (value === 'partial' ? 'partial' : (value === 'not_configured' || value === 'not_applicable' ? 'muted' : 'bad'));
+    return '<span class="pm-pill ' + cls + '">' + text(labels[value] || 'Неизвестно') + '</span>';
   }
   function installStyles() {
     if (byId('pm-workspace-styles')) return;
@@ -73,6 +119,8 @@
       '.pm-pill.ok{color:#86efac;background:rgba(22,163,74,.12);border-color:rgba(34,197,94,.32)}',
       '.pm-pill.partial{color:#fde68a;background:rgba(217,119,6,.12);border-color:rgba(245,158,11,.32)}',
       '.pm-pill.bad{color:#fca5a5;background:rgba(220,38,38,.12);border-color:rgba(248,113,113,.32)}',
+      '.pm-pill.muted{color:#d4d4d8;background:#27272a;border-color:#3f3f46}',
+      '.pm-tech-id{display:block;color:#6b7280;font-size:10px;margin-top:2px;font-weight:400}',
       '.pm-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}',
       '.pm-actions button{min-height:36px}',
       '@media(max-width:720px){#tab-product-manager{padding:14px}.pm-data-table{font-size:12px}}'
@@ -126,7 +174,7 @@
     var metrics = state.manifest && state.manifest.metrics ? Object.values(state.manifest.metrics) : [];
     var rows = metrics.map(function (m) {
       var delta = Number(m.current || 0) - Number(m.previous || 0);
-      return '<tr><td>' + text(m.metricId) + '</td><td>' + text(m.domain) + '</td><td>' + number(m.current) + '</td><td>' + number(m.previous) + '</td><td>' + number(delta) + '</td><td>' + text((m.caveats || []).join(', ') || 'нет') + '</td></tr>';
+      return '<tr><td><strong>' + text(metricLabel(m.metricId)) + '</strong><span class="pm-tech-id">' + text(m.metricId) + '</span></td><td>' + text(DOMAIN_LABELS[m.domain] || m.domain) + '</td><td>' + number(m.current) + '</td><td>' + number(m.previous) + '</td><td>' + number(delta) + '</td><td>' + text((m.caveats || []).join(', ') || 'нет') + '</td></tr>';
     }).join('');
     setHtml('pm-metrics', '<div class="pm-card"><h3>Сравнительные метрики</h3><div class="pm-muted">Таблица — доступная замена графикам: текущий период против предыдущего равного периода.</div><table class="pm-data-table" aria-label="Product Manager comparative metric table"><thead><tr><th>Метрика</th><th>Домен</th><th>Сейчас</th><th>Раньше</th><th>Дельта</th><th>Оговорки</th></tr></thead><tbody>' + (rows || '<tr><td colspan="6">Нет полностью сравнимых метрик.</td></tr>') + '</tbody></table></div>');
   }
@@ -135,11 +183,11 @@
     var brief = state.brief || {};
     var recs = (brief.recommendations || []).concat(brief.ideas || []);
     var recRows = recs.map(function (item) {
-      return '<tr><td>' + text(item.title || item.id) + '</td><td>' + text(item.impact || '') + '</td><td>' + text(item.effort || '') + '</td><td>' + text((item.evidenceIds || []).join(', ')) + '</td><td><div class="pm-actions"><button onclick="pmMutateItem(\'recommendation\',\'' + text(item.id) + '\',\'proposed\',\'accepted\')">Принять</button><button onclick="pmMutateItem(\'recommendation\',\'' + text(item.id) + '\',\'proposed\',\'deferred\')">Отложить</button><button onclick="pmMutateItem(\'recommendation\',\'' + text(item.id) + '\',\'proposed\',\'rejected\')">Отклонить</button></div></td></tr>';
+      return '<tr><td><strong>' + text(item.title || 'Рекомендация') + '</strong><span class="pm-tech-id">' + text(item.id || '') + '</span></td><td>' + text(item.impact || '') + '</td><td>' + text(item.effort || '') + '</td><td>' + evidenceSummary(item.evidenceIds) + '</td><td><div class="pm-actions">' + actionButton('recommendation', item.id, 'accepted', 'Принять') + actionButton('recommendation', item.id, 'deferred', 'Отложить') + actionButton('recommendation', item.id, 'rejected', 'Отклонить') + '</div></td></tr>';
     }).join('');
     setHtml('pm-opportunities', '<div class="pm-card"><h3>Рекомендации и идеи</h3><table class="pm-data-table" aria-label="Product Manager recommendations table"><thead><tr><th>Идея</th><th>Impact</th><th>Effort</th><th>Evidence</th><th>Решение</th></tr></thead><tbody>' + (recRows || '<tr><td colspan="5">Пока нет рекомендаций: gate покрытия закрыт или brief в coverage-only режиме.</td></tr>') + '</tbody></table></div>');
     var expRows = (brief.experiments || []).map(function (item) {
-      return '<tr><td>' + text(item.hypothesis || item.id) + '</td><td>' + text(item.primaryMetricId || '') + '</td><td>' + text((item.evidenceIds || []).join(', ')) + '</td><td><div class="pm-actions"><button onclick="pmMutateItem(\'experiment\',\'' + text(item.id) + '\',\'proposed\',\'running\')">Запустить</button><button onclick="pmMutateItem(\'experiment\',\'' + text(item.id) + '\',\'proposed\',\'rejected\')">Отклонить</button></div></td></tr>';
+      return '<tr><td>' + text(item.hypothesis || 'Гипотеза не описана') + '</td><td><strong>' + text(metricLabel(item.primaryMetricId)) + '</strong><span class="pm-tech-id">' + text(item.primaryMetricId || '') + '</span></td><td>' + evidenceSummary(item.evidenceIds) + '</td><td><div class="pm-actions">' + actionButton('experiment', item.id, 'running', 'Запустить') + actionButton('experiment', item.id, 'rejected', 'Отклонить') + '</div></td></tr>';
     }).join('');
     setHtml('pm-experiments', '<div class="pm-card"><h3>Эксперименты</h3><table class="pm-data-table" aria-label="Product Manager experiments table"><thead><tr><th>Гипотеза</th><th>Метрика</th><th>Evidence</th><th>Решение</th></tr></thead><tbody>' + (expRows || '<tr><td colspan="4">Нет предложенных экспериментов.</td></tr>') + '</tbody></table></div>');
   }
@@ -155,7 +203,7 @@
     var coverage = state.manifest && state.manifest.coverage ? state.manifest.coverage : {};
     var rows = Object.keys(coverage).sort().map(function (sourceId) {
       var c = coverage[sourceId] || {};
-      return '<tr><td>' + text(sourceId) + '</td><td>' + statusPill(c.current && c.current.status) + '</td><td>' + statusPill(c.previous && c.previous.status) + '</td><td>' + statusPill(c.context_7d && c.context_7d.status) + '</td><td>' + statusPill(c.context_28d && c.context_28d.status) + '</td><td>' + text((c.current && c.current.errorCode) || (c.previous && c.previous.errorCode) || '') + '</td></tr>';
+      return '<tr><td><strong>' + text(sourceLabel(sourceId)) + '</strong><span class="pm-tech-id">' + text(sourceId) + '</span></td><td>' + statusPill(c.current && c.current.status) + '</td><td>' + statusPill(c.previous && c.previous.status) + '</td><td>' + statusPill(c.context_7d && c.context_7d.status) + '</td><td>' + statusPill(c.context_28d && c.context_28d.status) + '</td><td>' + text((c.current && c.current.errorCode) || (c.previous && c.previous.errorCode) || '') + '</td></tr>';
     }).join('');
     setHtml('pm-coverage', '<div class="pm-card"><h3>Покрытие источников</h3><div class="pm-muted">Если здесь failed/partial, Product Manager не имеет права делать уверенные рекомендации по этому домену.</div><table class="pm-data-table" aria-label="Product Manager source coverage table"><thead><tr><th>Источник</th><th>Текущий</th><th>Предыдущий</th><th>7 дней</th><th>28 дней</th><th>Причина</th></tr></thead><tbody>' + (rows || '<tr><td colspan="6">Манифест покрытия ещё не сохранён.</td></tr>') + '</tbody></table></div>');
   }
@@ -239,4 +287,10 @@
     state.loaded = true;
     render();
   };
+
+  document.addEventListener('click', function (event) {
+    var button = event.target && event.target.closest ? event.target.closest('[data-pm-action="mutate"]') : null;
+    if (!button || !byId('tab-product-manager')?.contains(button)) return;
+    void window.pmMutateItem(button.dataset.pmKind, button.dataset.pmId, button.dataset.pmFrom, button.dataset.pmTo);
+  });
 })();

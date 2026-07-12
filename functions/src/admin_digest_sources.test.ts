@@ -131,5 +131,16 @@ describe('DIGEST_SOURCE_REGISTRY', () => {
     expect(byId.get('community_pack_purchases')?.timestampField).toBe('createdAt');
     expect(byId.get('community_pack_submissions')?.timestampField).toBe('submittedAt');
     expect(byId.get('vip_survey_responses')?.timestampField).toBe('updatedAtMs');
+    expect(readTargetForDigestSource(byId.get('progress_events')!)).toEqual({ kind: 'collectionGroup', path: 'progress_events' });
+    expect(byId.get('progress_events')?.timestampField).toBe('createdAt');
+    expect(byId.get('paywall_funnel')?.timestampField).toBe('ts');
+    expect(byId.get('arena_rooms_live')?.timestampField).toBe('createdAt');
+  });
+
+  test('provides a human Russian label for every source shown to an administrator', () => {
+    for (const source of DIGEST_SOURCE_REGISTRY) {
+      expect(source.label).toMatch(/[А-Яа-яЁё]/);
+      expect(source.label).not.toBe(source.id);
+    }
   });
 });

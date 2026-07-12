@@ -52,6 +52,7 @@ const { accountDeleteWorker, accountDeleteRetryCron } = require('./account_delet
 const {
   leaderboardUpdateDailyAnalytics,
   nameCheckAvailability,
+  nameGenerateAndReserve,
   nameReserve,
   nameReleaseMine,
 } = require('./leaderboard');
@@ -157,15 +158,6 @@ const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationSubmitAction } = require('./constellations/submit');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationAdmin } = require('./constellations/admin');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, fillConstellationAfterDelay } = require('./constellations/queue') as {
-  tryMatchConstellationUser: (userId: string) => Promise<void>;
-  fillConstellationAfterDelay: (userId: string) => Promise<void>;
-};
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
@@ -207,6 +199,7 @@ exports.accountDeleteWorker = accountDeleteWorker;
 exports.accountDeleteRetryCron = accountDeleteRetryCron;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
+exports.nameGenerateAndReserve = nameGenerateAndReserve;
 exports.nameReserve = nameReserve;
 exports.nameReleaseMine = nameReleaseMine;
 exports.leagueChestClaim = leagueChestClaim;
@@ -299,59 +292,6 @@ exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
-exports.constellationSubmitAction = constellationSubmitAction;
-exports.constellationAdmin = constellationAdmin;
-
-// ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
-// Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
-// bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
-export const onConstellationQueueWrite = functions.firestore.onDocumentWritten(
-  // timeoutSeconds 90: после мгновенной попытки функция «досыпает» до
-  // bot_fill_delay (30с) и добирает матч ботами точно в срок — игрок не ждёт
-  // минутный cron (он остаётся страховкой).
-  { document: 'constellation_queue/{userId}', timeoutSeconds: 90 },
-  async (event) => {
-    const beforeExists = !!event.data?.before.exists;
-    const after = event.data?.after;
-    const afterData = after?.exists ? (after.data() as { matchId?: string } | undefined) : undefined;
-    const beforeData = beforeExists ? (event.data?.before.data() as { matchId?: string } | undefined) : undefined;
-
-    // Живой счётчик «в поиске»: активная запись = существует и ещё без matchId.
-    // Обновляем инкрементально на каждое изменение — клиент видит ненулевое
-    // число мгновенно, не дожидаясь минутного cron (он лишь сверяет точное).
-    const wasSearching = beforeExists && !beforeData?.matchId;
-    const isSearching = !!after?.exists && !afterData?.matchId;
-    const delta = (isSearching ? 1 : 0) - (wasSearching ? 1 : 0);
-    if (delta !== 0) {
-      try {
-        await admin.firestore().doc('app_meta/constellation_searching').set(
-          {
-            searchingCount: admin.firestore.FieldValue.increment(delta),
-            updatedAt: Date.now(),
-          },
-          { merge: true },
-        );
-      } catch (e) {
-        console.warn('constellation searching increment', e);
-      }
-    }
-
-    if (!after?.exists || afterData?.matchId) return;
-    // Дальше — только на СОЗДАНИЕ новой записи поиска (не на server-side update).
-    if (beforeExists) return;
-    const userId = event.params.userId as string;
-    try {
-      await tryMatchConstellationUser(userId);
-    } catch (e) {
-      console.warn('onConstellationQueueWrite tryMatch', e);
-    }
-    try {
-      await fillConstellationAfterDelay(userId);
-    } catch (e) {
-      console.warn('onConstellationQueueWrite botFill', e);
-    }
-  },
-);
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
@@ -1508,13 +1448,22 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
-export { adminGenerateDailyDigest } from './admin_daily_digest';
+export { adminGenerateDailyDigest, adminOpenDailyDigest, adminGetDailyBriefing } from './admin_daily_digest';
+export { adminListAssetJobs, adminCreateAssetJob, adminRunAssetJob } from './admin_asset_studio';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
   adminSupportPull,
+  adminSupportList,
   adminSupportGenerateReply,
+  adminSupportPrepareReply,
+  adminSupportDispatchReply,
   adminSupportSendReply,
+  adminSupportCancelReply,
+  adminSupportPrepareReplyBatch,
+  adminSupportDispatchReplyBatch,
+  adminSupportCancelReplyBatch,
+  adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
 } from './support_inbox';
@@ -1526,8 +1475,29 @@ export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './
 export { adminGrantReward } from './admin_grant';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
-export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert } from './promo_codes';
+export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoCodes } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
+export { adminProductAnalytics } from './admin_product_analytics';
+export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
+export { adminGetAnalyticsSnapshot } from './admin_analytics';
+export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
+export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminListAuditLog } from './admin_audit_log';
+export { adminListOpsLog } from './admin_ops_log';
+export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export {
+  adminListAppMessages,
+  adminCreateAppMessage,
+  adminSetAppMessageActive,
+  adminUpdateAppMessage,
+  adminDeleteAppMessage,
+  adminCleanupExpiredAppMessages,
+} from './admin_app_messages';
+export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
+export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
+export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
+export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
+export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminTranslateMessage } from './admin_translate';

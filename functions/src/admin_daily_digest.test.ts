@@ -2,6 +2,11 @@ import {
   aggregateDigestFacts,
   isDigestEmpty,
   buildDigestPrompt,
+  buildDigestComparisons,
+  compareDigestMetric,
+  humanizeDigestName,
+  parseDigestNarrative,
+  resolveDigestWindows,
   utcDayKey,
   type DigestSourceRows,
 } from './admin_daily_digest';
@@ -65,7 +70,7 @@ describe('aggregateDigestFacts', () => {
     expect(facts.reports.total).toBe(4);
     expect(facts.reports.open).toBe(2); // fixed + answered исключены
     expect(facts.reports.byCategory).toEqual({ audio: 3, typo: 1 });
-    expect(facts.reports.topScreens[0]).toEqual({ screen: 'lesson', count: 3 });
+    expect(facts.reports.topScreens[0]).toEqual({ screen: 'Экран урока', count: 3 });
     expect(isDigestEmpty(facts)).toBe(false);
   });
 
@@ -81,7 +86,7 @@ describe('aggregateDigestFacts', () => {
       ],
     });
     expect(facts.reports.samples.length).toBe(2);
-    expect(facts.reports.samples[0]).toEqual({ screen: 'lesson', category: 'bug', comment: 'звук не играет' });
+    expect(facts.reports.samples[0]).toEqual({ screen: 'Экран урока', category: 'bug', comment: 'звук не играет' });
     expect(facts.reports.samples.every((s) => s.comment.length <= 220)).toBe(true);
   });
 
@@ -156,10 +161,11 @@ describe('aggregateDigestFacts', () => {
         { eventType: 'RENEWAL', periodType: 'NORMAL' },
         { eventType: 'REFUND', periodType: 'NORMAL' },
         { eventType: 'INITIAL_PURCHASE', periodType: 'TRIAL' },
+        { eventType: 'CANCELLATION', periodType: 'TRIAL' },
       ],
       paywallPurchases: [{ day: '2026-07-04' }, { day: '2026-07-04' }],
     });
-    expect(facts.revenue.newPaying).toBe(3); // 2 initial/non-renewing + 1 trial-initial
+    expect(facts.revenue.newPaying).toBe(2); // trial start ещё не является платящим
     expect(facts.revenue.renewals).toBe(1);
     expect(facts.revenue.refunds).toBe(1);
     expect(facts.revenue.trials).toBe(1);
@@ -231,15 +237,146 @@ describe('aggregateDigestFacts', () => {
 });
 
 describe('buildDigestPrompt / utcDayKey', () => {
-  test('промпт — валидный JSON фактов', () => {
-    const facts = aggregateDigestFacts({ ...EMPTY_ROWS, reports: [{ status: 'new', category: 'audio' }] });
-    const prompt = buildDigestPrompt(facts);
-    const parsed = JSON.parse(prompt);
-    expect(parsed.reports.total).toBe(1);
-    // новые блоки присутствуют в payload для ИИ
-    expect(parsed.growth).toBeDefined();
-    expect(parsed.revenue).toBeDefined();
-    expect(parsed.ideas).toBeDefined();
+  test('окно начинается с прошлого открытия и предыдущий период имеет ту же длину', () => {
+    expect(resolveDigestWindows(1_000_000, 700_000)).toEqual({
+      current: { startMs: 700_000, endMs: 1_000_000 },
+      previous: { startMs: 400_000, endMs: 700_000 },
+      reason: 'last_digest_open',
+    });
+  });
+
+  test('первое открытие использует честный fallback 24 часа', () => {
+    expect(resolveDigestWindows(1_000_000)).toEqual({
+      current: { startMs: 1_000_000 - 86_400_000, endMs: 1_000_000 },
+      previous: { startMs: 1_000_000 - 172_800_000, endMs: 1_000_000 - 86_400_000 },
+      reason: 'first_open_fallback',
+    });
+  });
+
+  test('сравнение не выдумывает процент при нулевой базе', () => {
+    expect(compareDigestMetric(5, 0)).toEqual({
+      current: 5,
+      previous: 0,
+      absoluteDelta: 5,
+      percentDelta: null,
+      direction: 'new',
+    });
+  });
+
+  test('технические пути получают человеческие названия', () => {
+    expect(humanizeDigestName('app/lesson_words.tsx')).toBe('Экран урока');
+    expect(humanizeDigestName('manage_subscription')).toBe('Управление подпиской');
+    expect(humanizeDigestName('app/unknown_new_screen.tsx')).toBe('Неизвестный экран приложения');
+  });
+
+  test('сравнения имеют стабильные id и человеческие названия', () => {
+    const current = aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{}, {}], reports: [{ status: 'new' }] });
+    const previous = aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{}] });
+    const comparisons = buildDigestComparisons(current, previous);
+    expect(comparisons).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: 'new_users', label: 'Новые пользователи', current: 2, previous: 1 }),
+      expect.objectContaining({ id: 'open_reports', label: 'Открытые сообщения об ошибках', current: 1, previous: 0 }),
+    ]));
+    expect(comparisons.every((item) => !item.label.includes('.tsx'))).toBe(true);
+  });
+
+  test('failed источник не превращается в точный ноль в сравнении', () => {
+    const current = aggregateDigestFacts(EMPTY_ROWS);
+    const previous = aggregateDigestFacts({ ...EMPTY_ROWS, appErrors: [{ severity: 'critical' }] });
+    const comparisons = buildDigestComparisons(current, previous, [
+      { sourceId: 'app_errors', label: 'Ошибки приложения', status: 'failed', rowCount: 0, truncated: false, period: 'current' },
+      { sourceId: 'app_errors', label: 'Ошибки приложения', status: 'ok', rowCount: 1, truncated: false, period: 'previous' },
+    ]);
+    expect(comparisons.find((item) => item.id === 'critical_errors')).toMatchObject({
+      availability: 'unavailable', current: null, previous: null, absoluteDelta: null, percentDelta: null,
+    });
+  });
+
+  test('day-only paywall источник помечается как неточное сравнение', () => {
+    const comparisons = buildDigestComparisons(aggregateDigestFacts(EMPTY_ROWS), aggregateDigestFacts(EMPTY_ROWS), [
+      { sourceId: 'paywall_funnel', label: 'Воронка Plus', status: 'partial', rowCount: 0, truncated: false, period: 'current' },
+      { sourceId: 'paywall_funnel', label: 'Воронка Plus', status: 'partial', rowCount: 0, truncated: false, period: 'previous' },
+    ]);
+    expect(comparisons.find((item) => item.id === 'paywall_purchase_signals')?.availability).toBe('partial');
+  });
+
+  test('промпт требует полноценный Product Manager и разделяет факты от гипотез', () => {
+    const current = aggregateDigestFacts({ ...EMPTY_ROWS, reports: [{ status: 'new', category: 'audio', screen: 'app/lesson_words.tsx' }] });
+    const previous = aggregateDigestFacts(EMPTY_ROWS);
+    const prompt = buildDigestPrompt({
+      current,
+      previous,
+      comparisons: buildDigestComparisons(current, previous),
+      windows: resolveDigestWindows(1_000_000, 700_000),
+      sourceCoverage: [{ sourceId: 'error_reports', label: 'Сообщения об ошибках', status: 'ok', rowCount: 1, truncated: false }],
+    });
+    expect(prompt).toContain('"productManager"');
+    expect(prompt).toContain('"hypothesis"');
+    expect(prompt).toContain('"successMetric"');
+    expect(prompt).toContain('Экран урока');
+    expect(prompt).toContain('предыдущим равным интервалом');
+    expect(prompt).not.toContain('ПОЛНУЮ СВОДКУ');
+  });
+
+  test('пользовательские сэмплы в промпте не раскрывают email, телефон и имя автора идеи', () => {
+    const current = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      reports: [{ status: 'new', comment: 'Пишите мне user@example.com или +353871234567' }],
+      ideas: [{ title: 'Идея', description: 'Связаться с me@example.com', userName: 'Private Name' }],
+    });
+    const prompt = buildDigestPrompt({
+      current,
+      previous: aggregateDigestFacts(EMPTY_ROWS),
+      comparisons: [], windows: resolveDigestWindows(1_000_000, 700_000), sourceCoverage: [],
+    });
+    expect(prompt).not.toContain('user@example.com');
+    expect(prompt).not.toContain('me@example.com');
+    expect(prompt).not.toContain('353871234567');
+    expect(prompt).not.toContain('Private Name');
+    expect(prompt).toContain('[email]');
+  });
+
+  test('невалидный структурированный ответ превращается в безопасный fallback', () => {
+    const parsed = parseDigestNarrative('не json', {
+      comparisons: [{ id: 'new_users', label: 'Новые пользователи', sourceIds: ['users'], availability: 'ok', current: 2, previous: 1, absoluteDelta: 1, percentDelta: 100, direction: 'up' }],
+      sourceWarnings: ['Источник ошибок недоступен'],
+    });
+    expect(parsed.executiveSummary).toContain('Новые пользователи');
+    expect(parsed.productManager).toEqual([]);
+    expect(parsed.sourceWarnings).toContain('Источник ошибок недоступен');
+  });
+
+  test('модель не может вернуть имя файла как заголовок Product Manager', () => {
+    const comparisons = buildDigestComparisons(
+      aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{}, {}] }),
+      aggregateDigestFacts({ ...EMPTY_ROWS, newUsers: [{}] }),
+    );
+    const parsed = parseDigestNarrative(JSON.stringify({
+      executiveSummary: 'Есть сигнал.',
+      productManager: [{
+        title: 'app/lesson_words.tsx', metricIds: ['new_users'],
+        whyItMatters: 'Мешает уроку.', hypothesis: 'Гипотеза: проблема звука.',
+        action: 'Проверить воспроизведение.', successMetric: 'Ноль повторов.', confidence: 'medium',
+      }],
+      growthAndRevenue: [], qualityAndRisks: [], userVoice: [], actions: [], sourceWarnings: [],
+    }), { comparisons, sourceWarnings: [] });
+    expect(parsed.productManager[0].title).toBe('Экран урока');
+    expect(parsed.productManager[0].title).not.toContain('.tsx');
+    expect(parsed.productManager[0].fact).toContain('Новые пользователи: 2');
+    expect(parsed.productManager[0].comparison).toContain('было 1');
+    expect(parsed.productManager[0].sourceIds).toContain('users');
+  });
+
+  test('Product Manager отклоняет неизвестную метрику и неполный вывод', () => {
+    const parsed = parseDigestNarrative(JSON.stringify({
+      executiveSummary: 'Итог.',
+      productManager: [
+        { title: 'Выдумка', metricIds: ['invented_metric'], whyItMatters: 'x', hypothesis: 'x', action: 'x', successMetric: 'x', confidence: 'high' },
+        { title: 'Без гипотезы', metricIds: ['new_users'], whyItMatters: 'x', action: 'x', successMetric: 'x', confidence: 'high' },
+      ],
+      growthAndRevenue: [], qualityAndRisks: [], userVoice: [], actions: [], sourceWarnings: [],
+    }), { comparisons: buildDigestComparisons(aggregateDigestFacts(EMPTY_ROWS), aggregateDigestFacts(EMPTY_ROWS)), sourceWarnings: [] });
+    expect(parsed.productManager).toEqual([]);
   });
 
   test('utcDayKey — YYYY-MM-DD по UTC', () => {

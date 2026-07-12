@@ -15,6 +15,8 @@ import {
   type ShardTransactionRow,
 } from './admin_analytics_core';
 
+if (admin.apps.length === 0) admin.initializeApp();
+
 const REGION = 'us-central1';
 const USER_CAP = 10_000;
 const USER_PAGE_SIZE = 1_000;

@@ -69,4 +69,8 @@ describe('analytics callable source contract', () => {
     expect(source).toContain('startAfter');
     expect(source).toContain('USER_PAGE_SIZE');
   });
+
+  it('initializes Firebase Admin when deployed as a standalone callable', () => {
+    expect(source).toContain('if (admin.apps.length === 0) admin.initializeApp();');
+  });
 });

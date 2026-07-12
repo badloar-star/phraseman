@@ -264,6 +264,41 @@ describe('lesson cumulative vocabulary coverage', () => {
     }).toEqual({ hash: 'b6d6c97ad34c01164a0b85c322986c1fe8ce51c3e9815563f5b9051782011550', raw: 430, duplicates: 129 });
   });
 
+  it('removes every individually proven Task5c L17-24 row', () => {
+    const manifest: ReadonlyArray<readonly [number, number, string]> = [
+      [17,3,"work::verbs"],[17,3,"read::verbs"],[17,3,"cook::verbs"],[17,3,"write::verbs"],[17,3,"wait::verbs"],
+      [17,3,"listen::verbs"],[17,3,"speak::verbs"],[17,4,"check::verbs"],[17,4,"send::verbs"],[17,3,"buy::verbs"],
+      [17,3,"help::verbs"],[17,4,"do::verbs"],[17,6,"cry::verbs"],[17,16,"turn off::verbs"],[17,16,"put on::verbs"],
+      [17,6,"now::adverbs"],[17,10,"today::adverbs"],[17,3,"well::adverbs"],[17,3,"music::nouns"],[17,3,"tv::nouns"],
+      [18,3,"wait::verbs"],[18,3,"help::verbs"],[18,4,"check::verbs"],[18,4,"send::verbs"],[18,6,"open::verbs"],
+      [18,6,"close::verbs"],[18,6,"start::verbs"],[18,3,"listen::verbs"],[18,4,"share::verbs"],[18,4,"waste::verbs"],
+      [18,6,"finish::verbs"],[18,3,"work::verbs"],[18,1,"together::adverbs"],[18,6,"door::nouns"],[18,14,"option::nouns"],
+      [18,3,"time::nouns"],[18,4,"cash::nouns"],[19,9,"bed::nouns"],[19,6,"door::nouns"],[19,9,"house::nouns"],
+      [19,6,"shop::nouns"],[19,7,"hotel::nouns"],[19,7,"passport::nouns"],[20,7,"passport::nouns"],[20,7,"idea::nouns"],
+      [20,11,"man::nouns"],[20,14,"option::nouns"],[20,3,"coffee::nouns"],[20,3,"money::nouns"],[20,3,"food::nouns"],
+      [21,12,"strange::adjectives"],[21,1,"ready::adjectives"],[21,2,"sure::adjectives"],[21,10,"explain::verbs"],[22,6,"finish::verbs"],
+      [22,2,"dangerous::adjectives"],[22,4,"cash::nouns"],[22,3,"food::nouns"],[23,10,"password::nouns"],[23,7,"plan::nouns"],
+      [23,3,"often::adverbs"],[23,4,"send::verbs"],[23,4,"sell::verbs"],[24,10,"password::nouns"],[24,14,"option::nouns"],
+      [24,7,"phone::nouns"],[24,3,"dinner::nouns"],[24,4,"see::verbs"],[24,3,"buy::verbs"],[24,4,"lose::verbs"],
+    ];
+    expect(manifest).toHaveLength(70);
+    const baseline = lessonWordBankAuditState();
+    for (const [laterLesson, firstLesson, semanticKey] of manifest) {
+      const rowIndex = baseline.raw[laterLesson].findIndex((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey);
+      expect(rowIndex).toBe(-1);
+      const firstRow = baseline.raw[firstLesson].find((word) => lessonWordSemanticKey(word.en, word.pos) === semanticKey);
+      expect(firstRow).toBeDefined();
+    }
+    const scopedRuntime = Object.fromEntries(Array.from({ length: 8 }, (_, i) => [i + 17, baseline.runtime[i + 17]]));
+    const scopedDiagnostics = baseline.diagnostics.filter(({ lessonId }) => lessonId >= 17 && lessonId <= 24);
+    expect({
+      hash: createHash('sha256').update(JSON.stringify(scopedRuntime)).digest('hex'),
+      raw: scopedDiagnostics.reduce((sum, row) => sum + row.rawCount, 0),
+      duplicates: scopedDiagnostics.reduce((sum, row) => sum + row.duplicatesRemoved, 0),
+    }).toEqual({ hash: '02dc9b903e47dc9f7ce9223d8b224e9519bfb20238e2b99476d93257cde1c2ee', raw: 199, duplicates: 112 });
+  });
+
+
   it('dedupes the same normalized lemma, POS and sense while preserving the first card', () => {
     const first = { en: 'battery', pos: 'nouns', sense: 'power cell' };
     const later = { ...first, en: 'Battery' };

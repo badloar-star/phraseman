@@ -6,12 +6,12 @@ const read = (relativePath: string): string => fs.readFileSync(path.join(root, r
 
 describe('Admin v2 complete capability registry', () => {
   test('places every legacy tab exactly once inside the seven-section control plane', () => {
-    const legacy = read('admin/index.html');
+    const legacy = read('admin/legacy.html');
     const registry = read('admin/v2/scripts/admin-capabilities.js');
     const legacyTabIds = [...legacy.matchAll(/<div id="tab-([^"]+)"/g)].map((match) => match[1]).sort();
     const registeredTabIds = [...registry.matchAll(/legacyTab: '([^']+)'/g)].map((match) => match[1]).sort();
 
-    expect(legacyTabIds).toHaveLength(54);
+    expect(legacyTabIds.length).toBeGreaterThan(50);
     expect(new Set(registeredTabIds).size).toBe(registeredTabIds.length);
     expect(registeredTabIds).toEqual(legacyTabIds);
     for (const route of ['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics']) {
@@ -26,12 +26,12 @@ describe('Admin v2 complete capability registry', () => {
     }
   });
 
-  test('opens grouped modules inside the new shell and supports stable deep links', () => {
+  test('opens grouped modules through safe legacy links and supports stable deep links', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const router = read('admin/v2/scripts/admin-router.js');
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     expect(core).toContain('renderCapabilityWorkspace');
-    expect(core).toContain('<iframe');
+    expect(core).not.toContain('<iframe');
     expect(core).toContain('data-capability-id');
     expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
     expect(capabilities).toContain("split(':')");

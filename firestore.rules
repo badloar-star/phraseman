@@ -2183,6 +2183,15 @@ service cloud.firestore {
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    match /admin_pm_state/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_runs/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_briefs/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_evidence_manifests/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_recommendation_bundles/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_idea_bundles/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_experiment_bundles/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+    match /admin_pm_decisions/{docId} { allow read: if isAdmin(); allow create, update, delete: if false; }
+
     match /{document=**} {
       allow read, write: if false;
     }

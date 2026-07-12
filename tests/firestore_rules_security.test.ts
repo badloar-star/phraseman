@@ -322,11 +322,11 @@ describe('firestore.rules security baseline', () => {
     }
   });
 
-  test('admin Product Manager paths are excluded from broad admin write fallback', () => {
-    expect(rules).toContain('function isServerOwnedAdminPmPath(document)');
+  test('admin Product Manager paths do not weaken the deny-all fallback', () => {
+    expect(rules).not.toContain('function isServerOwnedAdminPmPath(document)');
     const catchAllBlock = rules.match(/match \/\{document=\*\*\} \{[\s\S]*?\n    \}/);
     expect(catchAllBlock).not.toBeNull();
-    expect(catchAllBlock![0]).toContain('allow write: if isAdmin() && !isServerOwnedAdminPmPath(document);');
+    expect(catchAllBlock![0]).toContain('allow read, write: if false;');
   });
 
   test('app diagnostics collections are server/admin-write only with admin read', () => {
@@ -564,7 +564,7 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
 
   for (const collection of SERVER_ONLY_EXPLAIN_COLLECTIONS) {
     test(`${collection} is server-only: read AND write are denied (if false, not isAdmin())`, () => {
-      const block = rules.match(new RegExp(`match /${collection}/\\{docId\\} \\{[\\s\\S]*?\\n    \\}`));
+      const block = rules.match(new RegExp(`match /${collection}/\\{docId\\} \\{[\\s\\S]*?\\}`));
       expect(block).not.toBeNull();
       expect(block![0]).toContain('allow read: if false;');
       expect(block![0]).toContain('allow write: if false;');

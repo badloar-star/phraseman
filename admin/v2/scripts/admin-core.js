@@ -2,6 +2,7 @@ import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-cap
 import { completeAnalyticsLoad } from './admin-analytics-state.js';
 import { renderAdminAnalytics } from './admin-analytics-view.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
+import { specificGuidanceForControl } from './admin-guidance.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -1046,14 +1047,24 @@ function renderSupport() {
       <section class="card"><div class="card-header"><div><h2>${pending ? (pendingIsBatch ? 'Подтверждение пакета' : 'Подтверждение отправки') : 'Подпись'}</h2><p>${pending ? (pendingIsBatch ? 'Проверьте состав запечатанного пакета.' : 'Проверьте точного получателя и итоговый текст.') : 'Добавляется сервером после текста ответа.'}</p></div></div><div class="card-body">${pending ? (pendingIsBatch ? `<div class="confirmation-panel"><dl><dt>Писем</dt><dd>${Number(pending.count || 0)}</dd><dt>Пакет</dt><dd><code>${escapeHtml(pending.batchId || '')}</code></dd><dt>Манифест</dt><dd><code>${escapeHtml(pending.manifestHash || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'attention_required' ? 'danger' : ''}">${escapeHtml(pending.state || 'prepared')}</span></dd></dl><div class="batch-preview section">${(Array.isArray(pending.items) ? pending.items : []).map((item, index) => `<details${index < 2 ? ' open' : ''}><summary>${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div class="support-body confirmation-text">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}</div><div class="notice section">Каждое письмо имеет отдельную защищённую операцию. При частичном сбое пакет продолжит только ещё не начатые операции и никогда автоматически не повторит неопределённую доставку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply-batch" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Отменить пакет</button><button class="button primary" data-action="dispatch-support-reply-batch" type="button"${state.busy || !['prepared', 'dispatching', 'attention_required'].includes(pending.state) ? ' disabled' : ''}>Подтвердить пакет</button></div></div>` : `<div class="confirmation-panel"><dl><dt>Кому</dt><dd>${escapeHtml(pending.payload?.to || '')}</dd><dt>Тема</dt><dd>${escapeHtml(pending.payload?.subject || '')}</dd><dt>Операция</dt><dd><code>${escapeHtml(pending.operationId || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(pending.state || 'prepared')}</span></dd></dl><div class="support-body confirmation-text">${escapeHtml(pending.payload?.finalText || '')}</div><div class="notice section">После подтверждения этот запечатанный текст уже не изменяется. Повторный клик не создаст вторую SMTP-отправку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply" type="button"${state.busy ? ' disabled' : ''}>Отменить</button><button class="button primary" data-action="dispatch-support-reply" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Подтвердить и отправить</button></div></div>`) : `<div class="field"><label for="support-signature">Подпись поддержки</label><textarea id="support-signature" maxlength="2000" placeholder="С уважением, команда Phraseman">${escapeHtml(state.support.signature || '')}</textarea></div><div class="hint">Ревизия подписи: ${Number(state.support.signatureRevision || 0)}</div><div class="actions end section"><button class="button primary" data-action="save-support-signature" type="button"${state.authorized && !state.busy ? '' : ' disabled'}>Сохранить подпись</button></div><div class="notice section">Одиночная и пакетная отправка защищены неизменяемыми операциями, явным предпросмотром и блокировкой автоматического повтора при неопределённом ответе Gmail.</div><a class="button section" href="../../admin/index.html#gmail-support" target="_blank" rel="noopener">Открыть прежний модуль</a>`}</div></section></div>`;
 }
 
+function renderDetailedAnalyticsWorkspace() {
+  return `<section id="product-analytics-panel" class="card section">
+    <div id="product-analytics-sessions"></div><div id="product-analytics-screens"></div>
+    <div id="product-analytics-lessons"></div><div id="product-analytics-learning-dropoff"></div>
+    <div id="product-analytics-conversion"></div><div id="product-analytics-retention"></div>
+    <div id="product-analytics-quality"></div></section>
+    <section id="subscription-analytics-panel" class="card section"><div id="subscription-analytics-content"></div></section>`;
+}
+
 function renderAnalytics() {
-  return renderAdminAnalytics({
+  const summary = renderAdminAnalytics({
     ...state.analytics,
     rangeDays: state.analytics.snapshot?.rangeDays ?? 28,
     authorized: can('money.read'),
     controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
     busy: state.busy,
   });
+  return `${summary}${can('money.read') ? renderDetailedAnalyticsWorkspace() : ''}`;
 }
 
 function renderAssetStudio() {
@@ -1266,9 +1277,34 @@ function renderCurrentPage() {
     const page = (renderers[state.route] ?? renderOverview)();
     target.innerHTML = `${page}${ADMIN_SECTIONS.some((section) => section.route === state.route) ? renderCapabilityHub(state.route) : ''}`;
   }
+  target.querySelectorAll('a[href^="../../admin/index.html"]').forEach((link) => {
+    const href = link.getAttribute('href') || '';
+    link.setAttribute('href', href.replace('../../admin/index.html', '/legacy.html'));
+  });
   renderNavigation();
+  ensureInteractiveGuidance(document);
   renderAuthStatus();
   setMessage(state.message, state.messageKind);
+  if (state.route === 'analytics' && state.authorized) {
+    queueMicrotask(() => {
+      globalThis.loadProductAnalytics?.();
+      globalThis.loadSubscriptionAnalytics?.();
+    });
+  }
+}
+
+function ensureInteractiveGuidance(root) {
+  root.querySelectorAll('button, a').forEach((element) => {
+    if (element.hasAttribute('title') || element.hasAttribute('data-tooltip') || element.hasAttribute('aria-label')) return;
+    const label = String(element.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (!label) return;
+    const specific = specificGuidanceForControl({
+      action: element.getAttribute('data-action'), href: element.getAttribute('href'),
+      supportFilter: element.getAttribute('data-support-filter'), resolution: element.getAttribute('data-resolution'),
+      status: element.getAttribute('data-status'), factoryStep: element.getAttribute('data-factory-step'), className: element.className,
+    });
+    element.setAttribute('title', specific || `${element instanceof HTMLAnchorElement ? 'Открыть' : 'Выполнить действие'}: ${label}`);
+  });
 }
 
 async function runBusy(operation, successMessage = '') {

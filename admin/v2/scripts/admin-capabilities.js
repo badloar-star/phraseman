@@ -126,5 +126,5 @@ export function resolveCapabilityHash(rawHash) {
 export function capabilityUrl(capability) {
   if (!capability) return '';
   if (capability.legacyPage) return `../${capability.legacyPage}`;
-  return `../index.html#${capability.legacyTab}`;
+  return `/legacy.html#${encodeURIComponent(capability.legacyTab)}`;
 }

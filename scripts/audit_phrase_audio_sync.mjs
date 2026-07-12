@@ -146,6 +146,65 @@ function extractPhrases(absFile) {
       wordsEnSurface: wordsSurface(block, 'wordsEn'),
     });
   }
+  applyRuntimeOverrides(src, out);
+  return out;
+}
+
+// Some lesson arrays are deliberately built from a source/template array and
+// exported override maps. Auditing the template would voice text that the app
+// never renders. Apply those exported maps just like the runtime mapper does.
+// This stays data-driven: adding/changing entries in the maps changes the audit
+// without duplicating the lesson text in this script.
+function applyRuntimeOverrides(src, phrases) {
+  const byId = new Map(phrases.map((phrase) => [phrase.id, phrase]));
+  const english = exportedStringMap(src, 'L31_NATURAL_ENGLISH');
+  const translations = exportedObjectMap(src, 'L31_FINAL_TRANSLATIONS');
+  for (const [id, text] of english) {
+    const phrase = byId.get(id);
+    if (!phrase) continue;
+    phrase.english = text;
+    // LESSON_31_PHRASES calls l31Words(english); the assembled answer is the
+    // final English sentence, not wordsEn from LESSON_31_SOURCE_PHRASES.
+    phrase.wordsEnSurface = text;
+  }
+  for (const [id, fields] of translations) {
+    const phrase = byId.get(id);
+    if (phrase) Object.assign(phrase, fields);
+  }
+}
+
+function exportedBody(src, name) {
+  const at = src.search(new RegExp(`export\\s+const\\s+${name}\\b`));
+  if (at < 0) return '';
+  const start = src.indexOf('{', at);
+  if (start < 0) return '';
+  let depth = 0;
+  for (let i = start; i < src.length; i++) {
+    if (src[i] === '{') depth++;
+    else if (src[i] === '}' && --depth === 0) return src.slice(start + 1, i);
+  }
+  return '';
+}
+
+function exportedStringMap(src, name) {
+  const out = new Map();
+  for (const m of exportedBody(src, name).matchAll(/\b([A-Za-z0-9_]+)\s*:\s*(['"`])((?:\\.|(?!\2).)*)\2\s*,?/g)) {
+    out.set(m[1], m[3].replace(/\\(['"`\\])/g, '$1'));
+  }
+  return out;
+}
+
+function exportedObjectMap(src, name) {
+  const out = new Map();
+  const body = exportedBody(src, name);
+  for (const m of body.matchAll(/\b([A-Za-z0-9_]+)\s*:\s*\{([^{}]*)\}/g)) {
+    const fields = {};
+    for (const field of ['russian', 'ukrainian', 'spanish']) {
+      const value = firstFieldInline(m[2], field);
+      if (value != null) fields[field] = value;
+    }
+    out.set(m[1], fields);
+  }
   return out;
 }
 
@@ -328,7 +387,7 @@ const counts = Object.fromEntries(Object.entries(findings).map(([k, v]) => [k, v
 const totalActionable = counts.SHOWN_NO_AUDIO + counts.AUDIO_SAYS_OLD + counts.FIELD_DRIFT;
 
 if (JSON_OUT) {
-  console.log(JSON.stringify({ counts, totalActionable, findings }, null, 2));
+  console.log(JSON.stringify({ phrasesScanned: phrases.length, counts, totalActionable, findings }, null, 2));
 } else {
   const line = '─'.repeat(60);
   console.log(line);

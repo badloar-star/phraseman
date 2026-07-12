@@ -6,11 +6,13 @@
  * (normalized text -> url), built from .codex-tmp/tts-voicing/audio_url_map.json
  * (id -> {url, source, text}). When a phrase's wording is edited, the old mp3
  * keeps speaking the old words. This script regenerates ONLY the phrases the
- * audit flags as AUDIO_SAYS_OLD, re-voicing them with the SAME voice/model the
- * corpus was built with, uploads under the SAME id (so Storage overwrites in
- * place â€” no orphan is created), rewrites the voiced text in audio_url_map.json,
- * and rebuilds the runtime map. The old key drops out of the map automatically
- * because the map is keyed by text and gets rebuilt from scratch.
+ * audit flags as missing or stale, re-voicing them with the SAME voice/model the
+ * corpus was built with. Phase A generates and verifies every target locally;
+ * no upload starts unless the whole batch succeeds. Phase B uploads immutable,
+ * content-versioned objects, atomically checkpoints the voiced manifest, then
+ * rebuilds the runtime map. Old objects are retained until a separate cleanup
+ * command receives an external release receipt proving OTA/store rollout and
+ * expiry of the compatibility-retention window.
  *
  * Safety:
  *   - Dry-run by default: prints the plan, spends nothing, writes nothing.
@@ -22,6 +24,8 @@
  *   node scripts/regen_phrase_audio_storage.mjs                 # dry-run plan
  *   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 PHRASEMAN_ALLOW_UPLOAD=1 \
  *     node scripts/regen_phrase_audio_storage.mjs --apply       # do it
+ *   node scripts/regen_phrase_audio_storage.mjs --cleanup-old \
+ *     --release-receipt <external-release-receipt.json>
  */
 import fs from 'node:fs';
 import os from 'node:os';
@@ -29,7 +33,9 @@ import path from 'node:path';
 import { spawnSync, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { requireOpenAiDevSpendGuard } from './openai-dev-guard.mjs';
+import { atomicWriteJson, buildCleanupManifest, parseAuditProcess, readJsonStrict, runTwoPhase, validateCleanupRow, validateReleaseReceipt, versionedObjectName } from './lib/phrase_audio_regen_pipeline.mjs';
 
 const pexec = promisify(execFile);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -39,6 +45,17 @@ const GAPS_JSON = path.join(TTS_DIR, 'audio_url_map_gaps.json');
 const REGEN_DIR = path.join(TTS_DIR, 'audio_regen');
 const NULL = os.platform() === 'win32' ? 'NUL' : '/dev/null';
 const APPLY = process.argv.includes('--apply');
+const CLEANUP_OLD = process.argv.includes('--cleanup-old');
+const receiptArg = process.argv.indexOf('--release-receipt');
+const RELEASE_RECEIPT = receiptArg >= 0 ? process.argv[receiptArg + 1] : '';
+const JOURNAL_FILE = path.join(TTS_DIR, 'audio_regen_journal.json');
+const CLEANUP_FILE = path.join(TTS_DIR, 'old_object_cleanup.json');
+const targetArg = process.argv.indexOf('--target-ids-file');
+const TARGET_FILE = targetArg >= 0 ? process.argv[targetArg + 1] : '';
+if (targetArg >= 0 && !TARGET_FILE) {
+  console.error('--target-ids-file requires a JSON path');
+  process.exit(2);
+}
 
 // Match the corpus exactly (see .codex-tmp/tts-voicing/regen_one.mjs).
 const VOICE = 'fable';
@@ -53,9 +70,53 @@ const PREFIX = 'phrase-audio';
 function publicUrl(objName) {
   return `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${encodeURIComponent(objName)}?alt=media`;
 }
-function objectName(id, source) {
-  const safe = String(id).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 80);
-  return `${PREFIX}/${source}/${safe}.mp3`;
+function objectName(id, source, sha) {
+  return versionedObjectName(PREFIX, source, id, sha);
+}
+
+function fileSha(file) {
+  return createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
+function objectFromPublicUrl(url) {
+  const m = String(url).match(/\/o\/([^?]+)/);
+  return m ? decodeURIComponent(m[1]) : '';
+}
+
+if (CLEANUP_OLD) {
+  const runtimeMap = path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts');
+  if (!RELEASE_RECEIPT) { console.error('Cleanup refused: --release-receipt is required as external OTA/store rollout evidence.'); process.exit(2); }
+  try { validateReleaseReceipt(readJsonStrict(path.resolve(ROOT, RELEASE_RECEIPT)), fileSha(runtimeMap)); }
+  catch (e) { console.error(`Cleanup refused: ${e.message}`); process.exit(2); }
+  if (process.env.PHRASEMAN_ALLOW_UPLOAD !== '1' || !process.env.FB_TOKEN) {
+    console.error('Cleanup refused: PHRASEMAN_ALLOW_UPLOAD=1 and FB_TOKEN are required.');
+    process.exit(2);
+  }
+  const cleanup = readJsonStrict(CLEANUP_FILE);
+  if (!Array.isArray(cleanup.rows)) { console.error('Cleanup manifest malformed'); process.exit(2); }
+  const runtimeSource = fs.readFileSync(runtimeMap, 'utf8');
+  const authoritative = { ...readJsonStrict(MAP_JSON), ...readJsonStrict(GAPS_JSON) };
+  for (const row of cleanup.rows) {
+    const record = authoritative[row.id];
+    if (!record || record.source !== row.source || record.url !== row.newUrl) {
+      console.error(`Cleanup refused for ${row.id}: source/new URL differs from authoritative id record`); process.exit(2);
+    }
+    const count = runtimeSource.split(row.newUrl).length - 1;
+    try { validateCleanupRow(row, count === 1 ? row.newUrl : ''); }
+    catch (e) { console.error(`Cleanup refused for ${row.id}: ${e.message}`); process.exit(2); }
+  }
+  for (const row of cleanup.rows) {
+    if (row.deletedAt) continue;
+    const oldObject = objectFromPublicUrl(row.oldUrl);
+    if (!oldObject) { console.error(`Cleanup refused: invalid old URL for ${row.id}`); process.exit(2); }
+    const response = await fetch(`https://storage.googleapis.com/storage/v1/b/${BUCKET}/o/${encodeURIComponent(oldObject)}`, {
+      method: 'DELETE', headers: { Authorization: `Bearer ${process.env.FB_TOKEN}` },
+    });
+    if (!response.ok && response.status !== 404) { console.error(`Cleanup delete failed for ${row.id}: HTTP ${response.status}`); process.exit(1); }
+    row.deletedAt = new Date().toISOString();
+    atomicWriteJson(CLEANUP_FILE, cleanup, { backup: true });
+  }
+  console.log(`Deleted/confirmed ${cleanup.rows.length} old objects after deployment confirmation.`);
+  process.exit(0);
 }
 
 // â”€â”€ 1) get the drift list from the audit (single source of truth) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -63,40 +124,79 @@ function runAudit() {
   const r = spawnSync('node', [path.join('scripts', 'audit_phrase_audio_sync.mjs'), '--json'], {
     cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32', maxBuffer: 32 * 1024 * 1024,
   });
-  try { return JSON.parse(r.stdout || '{}'); } catch { return { findings: {} }; }
+  return parseAuditProcess(r);
 }
 
 // Resolve each flagged phrase to its {id, source} via the voiced-text map, so we
 // upload to the correct existing object and overwrite in place.
 function buildIdIndex() {
   const byUrl = new Map();
+  const byId = new Map();
   for (const f of [MAP_JSON, GAPS_JSON]) {
     if (!fs.existsSync(f)) continue;
-    let obj; try { obj = JSON.parse(fs.readFileSync(f, 'utf8')); } catch { continue; }
+    const obj = readJsonStrict(f);
     for (const id of Object.keys(obj)) {
       const rec = obj[id];
-      if (rec && rec.url) byUrl.set(rec.url, { id, source: rec.source, file: f });
+      if (rec && rec.url) {
+        const meta = { id, source: rec.source, file: f, url: rec.url, text: rec.text || '' };
+        byUrl.set(rec.url, meta);
+        byId.set(id, meta);
+      }
     }
   }
-  return byUrl;
+  return { byUrl, byId };
 }
 
 const audit = runAudit();
-const drift = (audit.findings && audit.findings.AUDIO_SAYS_OLD) || [];
+const actionable = [
+  ...((audit.findings && audit.findings.AUDIO_SAYS_OLD) || []),
+  ...((audit.findings && audit.findings.SHOWN_NO_AUDIO) || []),
+];
+const actionableById = new Map(actionable.map((item) => [item.id, item]));
+let targets = null;
+if (TARGET_FILE) {
+  let parsed;
+  try { parsed = JSON.parse(fs.readFileSync(path.resolve(ROOT, TARGET_FILE), 'utf8')); }
+  catch (e) { console.error(`Target manifest could not be read: ${e.message}`); process.exit(2); }
+  if (!Array.isArray(parsed) || parsed.some((x) => !x || typeof x.id !== 'string' || typeof x.text !== 'string')) {
+    console.error('Target manifest must be an array of {id,text} records'); process.exit(2);
+  }
+  const ids = parsed.map((x) => x.id);
+  if (new Set(ids).size !== ids.length) { console.error('Target manifest contains duplicate ids'); process.exit(2); }
+  const targetSet = new Set(ids);
+  const targetDrift = ((audit.findings && audit.findings.FIELD_DRIFT) || []).filter((x) => targetSet.has(x.id));
+  if (targetDrift.length) { console.error(`Target FIELD_DRIFT: ${targetDrift.map((x) => x.id).join(', ')}`); process.exit(2); }
+  for (const target of parsed) {
+    const finding = actionableById.get(target.id);
+    if (!finding) { console.error(`Target is not actionable: ${target.id}`); process.exit(2); }
+    if (finding.shown !== target.text) {
+      console.error(`Target text mismatch for ${target.id}: manifest=${JSON.stringify(target.text)} runtime=${JSON.stringify(finding.shown)}`);
+      process.exit(2);
+    }
+  }
+  targets = parsed.map((target) => actionableById.get(target.id));
+}
+const drift = targets || actionable;
 if (drift.length === 0) {
-  console.log('Nothing to do â€” audit reports no AUDIO_SAYS_OLD drift.');
+  console.log('Nothing to do — audit reports no missing or stale target audio.');
   process.exit(0);
 }
 
-const byUrl = buildIdIndex();
+const { byUrl, byId } = buildIdIndex();
 const plan = [];
 for (const d of drift) {
-  const meta = byUrl.get(d.url);
-  if (!meta) {
-    console.warn(`! ${d.id}: could not resolve mp3 id for url ${d.url} â€” skipping`);
-    continue;
+  // Phrase id is the authority for the Storage slot. URL is only a consistency
+  // check; it must never redirect a phrase into a different id's object.
+  const meta = byId.get(d.id);
+  if (!meta || meta.id !== d.id || !meta.url) {
+    console.error(`Target slot unresolved or not URL-backed: ${d.id}`);
+    process.exit(2);
   }
-  plan.push({ phraseId: d.id, mp3Id: meta.id, source: meta.source, mapFile: meta.file, newText: d.shown, oldText: d.voiced });
+  if (d.url && d.url !== meta.url) {
+    console.error(`Target URL mismatch for ${d.id}`);
+    process.exit(2);
+  }
+  plan.push({ phraseId: d.id, mp3Id: meta.id, source: meta.source, mapFile: meta.file, newText: d.shown, oldText: d.voiced || meta.text });
 }
 
 console.log('â”€'.repeat(60));
@@ -144,7 +244,8 @@ if (uploadEnabled && !token) {
   token = (r.stdout || '').trim();
 }
 if (!uploadEnabled) {
-  console.log('\nPHRASEMAN_ALLOW_UPLOAD != 1 â€” will generate + verify locally but NOT upload or patch the map.');
+  console.error('Apply refused: PHRASEMAN_ALLOW_UPLOAD=1 is required for the journaled two-phase publication.');
+  process.exit(2);
 } else if (!token) {
   console.error('Upload requested but no Firebase token (set FB_TOKEN or log in with firebase CLI).');
   process.exit(2);
@@ -170,6 +271,17 @@ async function ttsOnce(text) {
   return Buffer.from(await res.arrayBuffer());
 }
 async function uploadOne(objName, buf) {
+  // Content-hashed names make a prior successful-but-uncheckpointed upload
+  // safely resumable. Query metadata first; an existing exact object needs no
+  // second upload and still resolves to the same immutable URL.
+  const metadataUrl = `https://storage.googleapis.com/storage/v1/b/${BUCKET}/o/${encodeURIComponent(objName)}?fields=name,size`;
+  const existing = await fetch(metadataUrl, { headers: { Authorization: `Bearer ${token}` } });
+  if (existing.ok) {
+    const metadata = await existing.json();
+    if (Number(metadata.size) !== buf.length) throw new Error(`Existing content-versioned object has wrong size: ${objName}`);
+    return;
+  }
+  if (existing.status !== 404) throw new Error(`Storage metadata query failed: HTTP ${existing.status}`);
   const url = `https://storage.googleapis.com/upload/storage/v1/b/${BUCKET}/o?uploadType=media&name=${encodeURIComponent(objName)}`;
   for (let attempt = 1; attempt <= 4; attempt++) {
     try {
@@ -188,66 +300,44 @@ async function uploadOne(objName, buf) {
   }
 }
 
-// Immutable JSON patch: read, produce a new object, write once at the end.
-const patchedByFile = new Map(); // file -> {â€¦updated map object}
-function loadMapObj(file) {
-  if (patchedByFile.has(file)) return patchedByFile.get(file);
-  const obj = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
-  patchedByFile.set(file, obj);
-  return obj;
-}
+const manifestFiles = {};
+for (const file of new Set(plan.map((p) => p.mapFile))) manifestFiles[file] = { path: file, data: readJsonStrict(file) };
+const oldById = Object.fromEntries(plan.map((p) => [p.mp3Id, manifestFiles[p.mapFile].data[p.mp3Id].url]));
 
-let ok = 0, failed = 0;
-for (const p of plan) {
-  const dir = path.join(REGEN_DIR, p.source);
-  fs.mkdirSync(dir, { recursive: true });
-  const abs = path.join(dir, `${p.mp3Id}.mp3`);
-  console.log(`\nâ–¶ ${p.mp3Id}: "${p.newText}"`);
-
-  let audible = false, buf = null;
-  for (let attempt = 1; attempt <= 5; attempt++) {
-    buf = await ttsOnce(p.newText);
-    fs.writeFileSync(abs, buf);
-    const max = await maxDb(abs);
-    console.log(`   attempt ${attempt}: max=${max}dB size=${buf.length}B`);
-    if (max != null && max > -30) { audible = true; break; }
-    await new Promise((r) => setTimeout(r, 400 * attempt));
-  }
-  if (!audible) { console.error('   âœ— still silent after retries â€” skipped'); failed++; continue; }
-
-  if (!uploadEnabled) { console.log('   (local only â€” no upload)'); ok++; continue; }
-
-  const objName = objectName(p.mp3Id, p.source);
-  try {
-    await uploadOne(objName, buf);
-    console.log(`   âœ“ uploaded ${objName} (overwrote old in place)`);
-    // patch the voiced text so future audits see the new wording
-    const mapObj = loadMapObj(p.mapFile);
-    const prev = mapObj[p.mp3Id] || {};
-    mapObj[p.mp3Id] = { ...prev, url: publicUrl(objName), source: p.source, text: p.newText };
-    ok++;
-  } catch (e) {
-    console.error(`   âœ— upload failed: ${e.message}`);
-    failed++;
-  }
-}
-
-// â”€â”€ 4) flush patched json + rebuild the runtime map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-if (uploadEnabled && ok > 0) {
-  for (const [file, obj] of patchedByFile) {
-    fs.writeFileSync(file, JSON.stringify(obj, null, 0));
-    console.log(`\nPatched ${path.relative(ROOT, file)}`);
-  }
-  const rebuild = spawnSync('node', [path.join('.codex-tmp', 'tts-voicing', 'build_map_ts.mjs')], {
-    cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32',
+try {
+  await runTwoPhase({
+    plan, journalFile: JOURNAL_FILE, manifestFiles,
+    generate: async (p) => {
+      const dir = path.join(REGEN_DIR, p.source); fs.mkdirSync(dir, { recursive: true });
+      const abs = path.join(dir, `${p.mp3Id}.mp3`);
+      let lastError = new Error('not generated');
+      for (let attempt = 1; attempt <= 5; attempt++) {
+        try {
+          const buf = await ttsOnce(p.newText); fs.writeFileSync(abs, buf);
+          const max = await maxDb(abs);
+          if (max != null && max > -30) return { localFile: abs, sha: createHash('sha256').update(buf).digest('hex'), bytes: buf.length };
+          lastError = new Error(`inaudible max=${max}`);
+        } catch (e) { lastError = e; }
+        await new Promise((r) => setTimeout(r, 400 * attempt));
+      }
+      throw lastError;
+    },
+    upload: async (p, row) => {
+      const buf = fs.readFileSync(row.localFile);
+      if (createHash('sha256').update(buf).digest('hex') !== row.sha) throw new Error(`Local audio SHA changed: ${p.mp3Id}`);
+      const objName = objectName(p.mp3Id, p.source, row.sha);
+      await uploadOne(objName, buf);
+      return { objectName: objName, newUrl: publicUrl(objName), uploadedAt: new Date().toISOString() };
+    },
+    rebuild: async () => {
+      const r = spawnSync('node', [path.join('.codex-tmp', 'tts-voicing', 'build_map_ts.mjs')], { cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32' });
+      if (r.status !== 0) throw new Error(`Runtime map rebuild failed: ${r.stderr || r.stdout || r.status}`);
+    },
   });
-  process.stdout.write(rebuild.stdout || '');
-  if (rebuild.status !== 0) console.error(rebuild.stderr || 'build_map_ts failed');
+  const journal = readJsonStrict(JOURNAL_FILE);
+  atomicWriteJson(CLEANUP_FILE, buildCleanupManifest(plan, oldById, journal));
+  console.log(`DONE: ${plan.length} generated, uploaded, manifested, and runtime map rebuilt.`);
+  console.log(`Old objects were NOT deleted. Cleanup manifest: ${CLEANUP_FILE}`);
+} catch (e) {
+  console.error(e.message); process.exit(1);
 }
-
-console.log('\n' + 'â”€'.repeat(60));
-console.log(`DONE: ${ok} regenerated, ${failed} failed.`);
-if (uploadEnabled && ok > 0) {
-  console.log('Runtime map rebuilt. Re-run the audit to confirm 0 drift, then commit the generated map.');
-}
-process.exit(failed > 0 ? 1 : 0);

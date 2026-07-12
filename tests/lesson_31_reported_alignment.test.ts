@@ -29,9 +29,9 @@ describe('lesson 31 reported phrase alignment', () => {
     ],
     [
       'lesson31_phrase_35',
-      'That brave firefighter made that panicked family follow that emergency exit.',
-      'Тот храбрый пожарный заставил ту паникующую семью пройти к тому аварийному выходу.',
-      'Той хоробрий пожежник змусив ту запаніковану родину пройти до того аварійного виходу.',
+      'That brave firefighter made that panicked family follow the emergency exit signs.',
+      'Тот храбрый пожарный заставил ту паникующую семью следовать указателям к аварийному выходу.',
+      'Той хоробрий пожежник змусив ту запаніковану родину йти за вказівниками до аварійного виходу.',
     ],
     [
       'lesson31_phrase_42',

@@ -215,7 +215,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson1_phrase_18',
     english: 'They are outside',
-    russian: 'Они снаружи',
+    russian: 'Они на улице',
     ukrainian: 'Вони надворі',
     spanish: 'Están fuera.',
     words: [
@@ -375,7 +375,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson1_phrase_31',
     english: 'I am outside',
-    russian: 'Я снаружи',
+    russian: 'Я на улице',
     ukrainian: 'Я надворі',
     spanish: 'Estoy afuera.',
     words: [
@@ -911,7 +911,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson2_phrase_24',
     english: 'Is she outside?',
-    russian: 'Она снаружи?',
+    russian: 'Она на улице?',
     ukrainian: 'Вона зовні?',
     spanish: '¿Está ella afuera?',
     words: [
@@ -1112,7 +1112,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson2_phrase_40',
     english: 'I am not outside',
-    russian: 'Я не снаружи',
+    russian: 'Я не на улице',
     ukrainian: 'Я не зовні',
     spanish: 'No estoy afuera.',
     words: [
@@ -1188,7 +1188,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson2_phrase_46',
     english: 'She is not outside',
-    russian: 'Она не снаружи',
+    russian: 'Она не на улице',
     ukrainian: 'Вона не зовні',
     spanish: 'Ella no está afuera.',
     words: [
@@ -3752,7 +3752,7 @@ export const LESSON_6_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson6_phrase_35',
     english: 'How do you find it?',
-    russian: 'Как ты это находишь?',
+    russian: 'Как тебе это?',
     ukrainian: 'Як ти це знаходиш?',
     spanish: '¿Cómo lo encuentras tú?',
     words: [

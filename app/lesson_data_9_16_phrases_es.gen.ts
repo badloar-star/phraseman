@@ -3178,8 +3178,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson12_phrase_8',
-    english: 'We built a plan last week',
-    russian: 'Мы построили план на прошлой неделе',
+    english: 'We made a plan last week',
+    russian: 'Мы составили план на прошлой неделе',
     ukrainian: 'Ми склали план минулого тижня',
     spanish: 'Hicimos un plan la semana pasada.',
     words: [
@@ -3193,7 +3193,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'built', correct: 'built', distractors: ['build', 'builds', 'building', 'builded', 'billed'] },
+      { text: 'made', correct: 'made', distractors: ['make', 'makes', 'making', 'maid', 'billed'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
       { text: 'plan', correct: 'plan', distractors: ['plans', 'plain', 'plane', 'clan', 'plant'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
@@ -4481,7 +4481,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson13_phrase_19',
     english: 'I will pay rent next month',
-    russian: 'Я заплачу аренду в следующем месяце',
+    russian: 'Я заплачу за аренду в следующем месяце',
     ukrainian: 'Я заплачу оренду наступного місяця',
     spanish: 'Pagaré el alquiler el mes que viene.',
     words: [
@@ -6208,7 +6208,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson14_phrase_50',
     english: 'He got a better job',
-    russian: 'Он получил работу лучше',
+    russian: 'Он нашёл работу получше',
     ukrainian: 'Він отримав кращу роботу',
     spanish: 'Consiguió un trabajo mejor.',
     words: [

@@ -8,6 +8,7 @@ import {
 
 const SCHEMA_VERSION = 1 as const;
 const MAX_CONSUMED_MILESTONES = 32;
+export const MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH = 160;
 
 export interface SoftUpsellPersistedState {
   schemaVersion: typeof SCHEMA_VERSION;
@@ -36,13 +37,19 @@ function isSafeTimestamp(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 }
 
+function isValidMilestoneId(value: unknown): value is string {
+  return typeof value === 'string'
+    && value.trim().length > 0
+    && value.length <= MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH;
+}
+
 function sanitizeMilestones(value: unknown): string[] | null {
   if (!Array.isArray(value)) return null;
   const newestFirst: string[] = [];
   const seen = new Set<string>();
   for (let index = value.length - 1; index >= 0; index -= 1) {
     const milestone = value[index];
-    if (typeof milestone !== 'string' || milestone.length === 0 || seen.has(milestone)) continue;
+    if (!isValidMilestoneId(milestone) || seen.has(milestone)) continue;
     seen.add(milestone);
     newestFirst.push(milestone);
     if (newestFirst.length === MAX_CONSUMED_MILESTONES) break;
@@ -91,7 +98,12 @@ function serialize<T>(operation: () => Promise<T>): Promise<T> {
 }
 
 async function readUnqueued(accountScope: string, studyTarget: SoftUpsellStudyTarget): Promise<SoftUpsellPersistedState> {
-  return parseState(await AsyncStorage.getItem(storageKey(accountScope, studyTarget)));
+  const key = storageKey(accountScope, studyTarget);
+  const raw = await AsyncStorage.getItem(key);
+  const state = parseState(raw);
+  const sanitized = JSON.stringify(state);
+  if (raw !== null && raw !== sanitized) await AsyncStorage.setItem(key, sanitized);
+  return state;
 }
 
 export function readSoftUpsellState(
@@ -121,6 +133,9 @@ export function markSoftUpsellImpression(
 ): Promise<void> {
   return serialize(async () => {
     if (!isSafeTimestamp(nowMs)) throw new TypeError('nowMs must be a finite safe timestamp');
+    if (!isValidMilestoneId(milestoneId)) {
+      throw new TypeError(`milestoneId must contain 1-${MAX_SOFT_UPSELL_MILESTONE_ID_LENGTH} characters`);
+    }
     const state = await readUnqueued(accountScope, studyTarget);
     const consumedMilestones = sanitizeMilestones([...state.consumedMilestones, milestoneId]) ?? [];
     await AsyncStorage.setItem(storageKey(accountScope, studyTarget), JSON.stringify({

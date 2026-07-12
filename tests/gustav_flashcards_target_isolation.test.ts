@@ -587,7 +587,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(levelGiftSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
     expect(levelGiftSource).toContain('loadOwnedPackIds(studyTarget)');
     expect(levelGiftSource).toContain('isFlashcardPackLevelGiftId(id)');
-    expect(leagueChestSource).toContain('setRandomPackGiftTrial48h(studyTarget)');
+    expect(leagueChestSource).toContain('setPackGiftTrial48hOnce(studyTarget');
     expect(globalBroadcastSource).toContain('setRandomPackGiftTrial48h(studyTarget)');
     expect(globalBroadcastModalSource).toContain('claimAndDismissGlobalBroadcastModal(payload, studyTarget)');
     expect(clubSource).toContain('const { studyTarget } = useStudyTarget()');

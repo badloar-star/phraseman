@@ -144,7 +144,7 @@ describe('help board product contract', () => {
   });
 
   it('adds dedicated Help Board controls to admin and moderation queue', () => {
-    const admin = read(path.join('admin', 'index.html'));
+    const admin = read(path.join('admin', 'legacy.html'));
 
     expect(admin).toContain("switchTab('help-board')");
     expect(admin).toContain('id="tab-help-board"');

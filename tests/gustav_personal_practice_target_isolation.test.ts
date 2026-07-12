@@ -104,7 +104,8 @@ describe('Gustav personal practice target isolation', () => {
     expect(adminSource).toContain('const diagnosisDevBlocked = !personalPracticeCoachEnabled');
     expect(adminSource).toContain('testID="admin-french-personal-practice-source-gate"');
     expect(adminSource).toContain('if (diagnosisDevBlocked) {');
-    expect(adminSource).toContain('openDiagnosisDevRoute(category, microDiagnosisId)');
+    expect(adminSource).toContain('const openDiagnosisDevRoute = (category: string, microDiagnosisId: string) =>');
+    expect(adminSource).toContain('/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}');
     expect(trainerSource).toContain('personalPracticeCoachEnabledForTarget(studyTarget)');
     expect(trainerSource).toContain('devSeedTrainer(studyTarget)');
     expect(trainerSource).toContain('personalTrainingEnabled={personalPracticeCoachEnabled}');

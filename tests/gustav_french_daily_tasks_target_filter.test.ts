@@ -170,7 +170,9 @@ describe('Gustav French daily task target filter', () => {
     expect(notifications).toContain("AsyncStorage.removeItem('phrase_notif_scheduled')");
 
     expect(dailyPhraseCard).toContain("import { useStudyTarget } from './StudyTargetContext'");
-    expect(dailyPhraseCard).toContain("import {\n  dailyPhraseContentAvailableForTarget,\n  frenchDailyPhraseGateCopy,\n} from '../app/daily_phrase_target_gate'");
+    expect(dailyPhraseCard).toContain('dailyPhraseContentAvailableForTarget');
+    expect(dailyPhraseCard).toContain('frenchDailyPhraseGateCopy');
+    expect(dailyPhraseCard).toContain("from '../app/daily_phrase_target_gate'");
     expect(dailyPhraseCard).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
     expect(dailyPhraseCard).toContain('getTodayPhraseSyncForTarget(studyTarget, lang)');
     expect(dailyPhraseCard).toContain('getTodayPhraseForTarget(studyTarget, lang)');
@@ -210,7 +212,7 @@ describe('Gustav French daily task target filter', () => {
     expect(adminSettings).toContain('seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode, studyTarget)');
     expect(adminSettings).toContain('clearDailyTasksAdminOverride(studyTarget)');
 
-    expect(dailyScreen).toContain('{ tasksForClaim: tasks, studyTarget }');
+    expect(dailyScreen).toMatch(/tasksForClaim:\s*tasks,\s*studyTarget/);
     expect(lesson).toContain('{ studyTarget: studyTargetRef.current }');
     expect(lesson).toContain('dailyTaskLessonVisitedKey(');
     expect(lesson).toContain('studyTargetRef.current,');

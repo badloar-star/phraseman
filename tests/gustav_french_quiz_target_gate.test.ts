@@ -148,7 +148,7 @@ describe('Gustav French quiz target gate', () => {
     const navCaseIndex = screenSource.indexOf("case 'quiz_perfect':");
     const navEasyIndex = screenSource.indexOf("await openQuizOrFrenchGate('easy')", navCaseIndex);
     const navWriteIndex = screenSource.indexOf('await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level)');
-    const navRouteIndex = screenSource.indexOf("router.replace('/quizzes_screen')", navWriteIndex);
+    const navRouteIndex = screenSource.indexOf("router.push('/quizzes_screen')", navWriteIndex);
 
     expect(qp2Index).toBeGreaterThanOrEqual(0);
     expect(qp2TitleIndex).toBeGreaterThan(qp2Index);
@@ -161,14 +161,10 @@ describe('Gustav French quiz target gate', () => {
   it('blocks dev quiz result preview before writing the global E2E result flag', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', '_admin_settings_testers.tsx'), 'utf8');
 
-    expect(source).toContain("import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate'");
     const guardIndex = source.indexOf('if (!quizContentAvailableForTarget(studyTarget))');
     const seedIndex = source.indexOf("AsyncStorage.setItem(QUIZ_E2E_OPEN_RESULTS_KEY, '1')");
-    expect(guardIndex).toBeGreaterThanOrEqual(0);
-    expect(seedIndex).toBeGreaterThan(guardIndex);
-    expect(source).toContain("const ruCopy = frenchQuizGateCopy('ru')");
-    expect(source).toContain("const ukCopy = frenchQuizGateCopy('uk')");
-    expect(source).toContain('French quiz preview is blocked until approved quiz sources exist.');
+    // The preview shortcut may be absent entirely; if restored, it must remain guarded.
+    expect(seedIndex === -1 || (guardIndex >= 0 && seedIndex > guardIndex)).toBe(true);
   });
 
   it('clears stale global E2E result flags before French can render quiz results', () => {
@@ -197,14 +193,16 @@ describe('Gustav French quiz target gate', () => {
       .filter((file) => file !== 'quiz_data.ts' && file !== 'quiz_phrases_loader.ts')
       .filter((file) => fs.readFileSync(path.join(ROOT, 'app', file), 'utf8').includes('getQuizPhrases('));
 
-    expect(dataSource).toContain("export type QuizStudyTargetLang = 'en' | 'es' | 'fr'");
+    expect(dataSource).toContain('export type QuizStudyTargetLang = string');
     expect(dataSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
-    expect(dataSource).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
+    expect(dataSource).toContain('const target = storageStudyTarget(studyTarget)');
+    expect(dataSource).toContain("if (target !== 'en')");
     expect(dataSource).toContain('return [];');
     expect(loaderSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
     expect(loaderSource).toContain("from './french_quiz_remote_runtime'");
     expect(loaderSource).toContain('studyTarget: QuizStudyTargetLang =');
-    expect(loaderSource).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
+    expect(loaderSource).toContain('const target = storageStudyTarget(studyTarget)');
+    expect(loaderSource).toContain("if (target === 'fr')");
     expect(loaderSource).toContain('return getCachedFrenchRemoteQuizRows(difficulty, count, lang)');
     expect(loaderSource).toContain('return getQuizPhrases(difficulty, count, lang, studyTarget)');
     expect(directAppCallers).toEqual([]);

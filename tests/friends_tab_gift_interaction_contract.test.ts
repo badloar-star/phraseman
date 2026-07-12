@@ -50,4 +50,21 @@ describe('friends tab gift interaction contract', () => {
     expect(pendingToast).toBeLessThan(sendCall);
     expect(closeSheet).toBeGreaterThan(sendCall);
   });
+
+  it('never presents the sent receipt and started quest as overlapping native modals', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
+    const sentGiftModal = extract(source, 'visible={sentGiftReceipt !== null}', 'visible={incomingGiftModal !== null}');
+
+    expect(source).toContain('const sentGiftReceiptNativeVisibleRef = useRef(false);');
+    expect(source).toContain('const [pendingFriendQuestStarted, setPendingFriendQuestStarted]');
+    expect(handleSendGift).toContain('sentGiftReceiptNativeVisibleRef.current = true;');
+    expect(handleSendGift).toContain('if (sentGiftReceiptNativeVisibleRef.current) {');
+    expect(handleSendGift).toContain('setPendingFriendQuestStarted(quest);');
+    expect(handleSendGift).toContain('setFriendQuestStarted(quest);');
+    expect(sentGiftModal).toContain('onRequestClose={closeSentGiftReceipt}');
+    expect(sentGiftModal).toContain('onDismiss={handleSentGiftReceiptDismissed}');
+    expect(source).toContain('visible={friendQuestStarted !== null && sentGiftReceipt === null}');
+    expect(source).toContain('|| sentGiftReceipt !== null || pendingFriendQuestStarted !== null');
+  });
 });

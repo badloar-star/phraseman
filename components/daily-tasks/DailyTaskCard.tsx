@@ -119,14 +119,14 @@ export function DailyBonusCard(props: DailyBonusCardProps) {
 }
 
 const styles = StyleSheet.create({
-  card: { minHeight: 92, borderWidth: 1, borderRadius: 22, overflow: 'hidden', paddingHorizontal: 22, paddingVertical: 12, gap: 8 },
+  card: { minHeight: 92, borderWidth: 0, borderRadius: 22, overflow: 'hidden', paddingHorizontal: 22, paddingVertical: 12, gap: 8 },
   bonusCard: { minHeight: 0, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 9, gap: 0 },
   pressable: { minWidth: 0, flexGrow: 1, justifyContent: 'center' },
   progressLayer: StyleSheet.absoluteFillObject,
   content: { flexDirection: 'row', alignItems: 'center', gap: 14, minWidth: 0, minHeight: 66 },
   bonusContent: { gap: 10, minHeight: 0 },
   contentStacked: { flexDirection: 'column', alignItems: 'stretch' },
-  icon: { width: 56, minHeight: 56, borderWidth: 1, borderRadius: 18, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  icon: { width: 56, minHeight: 56, borderWidth: 0, borderRadius: 18, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   bonusIcon: { width: 38, minHeight: 38, borderRadius: 11 },
   copy: { flex: 1, minWidth: 0, gap: 3 },
   title: { fontWeight: '900', flexShrink: 1 },

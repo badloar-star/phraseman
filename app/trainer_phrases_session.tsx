@@ -278,7 +278,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         })}
       </View>
 
-      {/* ???????????? ???????????????? */}
+      {/* Кнопка проверки */}
       <TouchableOpacity
         onPress={check}
         disabled={!canCheck || feedback !== 'none'}

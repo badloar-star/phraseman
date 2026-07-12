@@ -19,7 +19,7 @@ describe('lessons 1-32 linguistic remediation', () => {
     [28, 'lesson28_phrase_23', 'Did she teach herself English?', 'Она сама выучила английский?'],
     [28, 'lesson28_phrase_46', 'Study on your own every day', 'Учись самостоятельно каждый день'],
     [30, 'lesson30_phrase_31', 'I know a man whose phone is missing', 'Я знаю мужчину, у которого пропал телефон'],
-    [31, 'lesson31_phrase_35', 'That brave firefighter made that panicked family follow the emergency exit signs.', 'Тот храбрый пожарный заставил ту паникующую семью следовать указателям к аварийному выходу.'],
+    [31, 'lesson31_phrase_35', 'A brave man made the nervous family follow the exit signs.', 'Храбрый мужчина заставил нервную семью следовать указателям выхода.'],
     [32, 'lesson32_phrase_10', 'She is the woman whose bag we found.', 'Она та женщина, чью сумку мы нашли.'],
     [32, 'lesson32_phrase_15', 'They opened the door to the room where we waited.', 'Они открыли дверь в комнату, где мы ждали.'],
     [32, 'lesson32_phrase_29', 'If I had known, I would have helped.', 'Если бы я тогда знал, я бы помог.'],

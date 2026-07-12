@@ -320,7 +320,7 @@ describe('lesson cumulative vocabulary coverage', () => {
       hash: createHash('sha256').update(JSON.stringify(scopedRuntime)).digest('hex'),
       raw: scopedDiagnostics.reduce((sum, row) => sum + row.rawCount, 0),
       duplicates: scopedDiagnostics.reduce((sum, row) => sum + row.duplicatesRemoved, 0),
-    }).toEqual({ hash: 'cb3c84c4f0933fb8ac895b7dccdf34cbb03549f47fbb1df8e3941d939967dbee', raw: 281, duplicates: 77 });
+    }).toEqual({ hash: '5499d6d22484ff65bfe52aba1b452e5aa3e24496009c0ec0a3f7019266d40ddd', raw: 281, duplicates: 77 });
   });
 
 
@@ -550,7 +550,7 @@ describe('lesson cumulative vocabulary coverage', () => {
     // Task 6 baseline was 130 first-introduced L31 content surfaces; 78 is a 40% reduction.
     const lesson31Introduced = rows.find((row) => row.lesson === 31)?.introduced;
     expect(lesson31Introduced).toBeLessThanOrEqual(78);
-    expect(lesson31Introduced).toBe(71);
+    expect(lesson31Introduced).toBe(78);
     expect(lesson31Missing).toEqual([]);
     const failures = rows.filter((row) => row.lesson !== 31 && row.missing.length > 0);
     const compactFailureTable = failures.map((row) => `L${row.lesson}\t${row.missing.join(',')}`).join('\n');

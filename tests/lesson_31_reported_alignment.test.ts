@@ -5,44 +5,17 @@ const phraseById = new Map(LESSON_31_PHRASES.map((phrase) => [phrase.id, phrase]
 
 describe('lesson 31 reported phrase alignment', () => {
   it.each([
-    [
-      'lesson31_phrase_31',
-      'I saw that lost dog leave that busy street.',
-      'Я видел, как та потерявшаяся собака покинула ту оживлённую улицу.',
-      'Я бачив, як той загублений пес залишив ту жваву вулицю.',
-    ],
-    [
-      'lesson31_phrase_32',
-      'They heard that quiet student ask that difficult question.',
-      'Они слышали, как тот тихий ученик задал тот трудный вопрос.',
-      'Вони чули, як той тихий учень поставив те складне запитання.',
-    ],
-    [
-      'lesson31_phrase_35',
-      'That brave man made that nervous family follow the red exit signs.',
-      'Тот храбрый мужчина заставил ту нервную семью следовать красным указателям выхода.',
-      'Той хоробрий чоловік змусив ту нервову родину йти за червоними вказівниками виходу.',
-    ],
-    [
-      'lesson31_phrase_42',
-      'She noticed that old man drop that metal key into that bag.',
-      'Она заметила, как тот пожилой мужчина уронил тот металлический ключ в ту сумку.',
-      'Вона помітила, як той літній чоловік упустив той металевий ключ у ту сумку.',
-    ],
-    [
-      'lesson31_phrase_46',
-      'She let that helpful guide show that old map to that tourist group.',
-      'Она разрешила тому готовому помочь гиду показать ту старую карту той группе туристов.',
-      'Вона дозволила тому помічному гіду показати ту стару мапу тій групі туристів.',
-    ],
-  ])('keeps %s demonstratives and meaning aligned', (dataId, english, russian, ukrainian) => {
-    expect(phraseById.get(dataId)).toMatchObject({ english, russian, ukrainian });
+    ['lesson31_phrase_31', 'I saw a lost dog leave the busy street.', 'Я видел, как потерявшаяся собака покинула оживлённую улицу.', 'Я бачив, як загублений пес залишив жваву вулицю.', 'Vi a un perro perdido salir de la calle concurrida.'],
+    ['lesson31_phrase_32', 'They heard a quiet student ask a difficult question.', 'Они слышали, как тихий ученик задал трудный вопрос.', 'Вони чули, як тихий учень поставив складне запитання.', 'Oyeron a un alumno tranquilo hacer una pregunta difícil.'],
+    ['lesson31_phrase_35', 'A brave man made the nervous family follow the exit signs.', 'Храбрый мужчина заставил нервную семью следовать указателям выхода.', 'Хоробрий чоловік змусив нервову родину йти за вказівниками виходу.', 'Un hombre valiente hizo que la familia nerviosa siguiera las señales de salida.'],
+    ['lesson31_phrase_42', 'She noticed an old man drop a metal key into his bag.', 'Она заметила, как пожилой мужчина уронил металлический ключ в свою сумку.', 'Вона помітила, як літній чоловік упустив металевий ключ у свою сумку.', 'Notó a un hombre mayor dejar caer una llave metálica en su bolsa.'],
+    ['lesson31_phrase_46', 'She let a helpful local guide show the old map to her tourist group.', 'Она разрешила отзывчивому местному гиду показать старую карту своей группе туристов.', 'Вона дозволила привітному місцевому гіду показати стару мапу своїй групі туристів.', 'Dejó que un guía local servicial mostrara el mapa antiguo a su grupo de turistas.'],
+  ])('keeps %s exactly aligned in all four locales', (dataId, english, russian, ukrainian, spanish) => {
+    expect(phraseById.get(dataId)).toMatchObject({ english, russian, ukrainian, spanish });
   });
 
-  it.each([
-    ['lesson31_phrase_31', 'busy'],
-  ])('keeps %s word training coverage for %s', (dataId, word) => {
-    expect(phraseById.get(dataId)?.words?.some((entry) => entry.correct === word)).toBe(true);
+  it('keeps lesson31_phrase_31 word training coverage for busy', () => {
+    expect(phraseById.get('lesson31_phrase_31')?.words?.some((entry) => entry.correct === 'busy')).toBe(true);
   });
 
   it('keeps the Complex Object vocabulary intro before the phrase practice', () => {

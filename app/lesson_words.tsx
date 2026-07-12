@@ -1695,7 +1695,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'mayor', ru: 'Мэр', uk: 'Мер', es: 'alcalde', 'pt-BR': 'prefeito', vi: 'thị trưởng', id: 'wali kota', tr: 'belediye başkanı', pl: 'burmistrz / prezydent miasta', pos: 'nouns' },
     { en: 'arm', ru: 'Рука (от плеча до кисти)', uk: 'Рука (від плеча до кисті)', es: 'brazo', 'pt-BR': 'braço', vi: 'cánh tay', id: 'lengan', tr: 'kol', pl: 'ręka / ramię', pos: 'nouns' },
     { en: 'hand', ru: 'Рука (кисть)', uk: 'Рука (кисть)', es: 'mano', 'pt-BR': 'mão', vi: 'bàn tay', id: 'tangan', tr: 'el', pl: 'dłoń', pos: 'nouns' },
-    { en: 'bare', ru: 'Голый, оголённый', uk: 'Голий, оголений', es: 'desnudo', 'pt-BR': 'nu / descoberto', vi: 'trần / để lộ', id: 'telanjang / terbuka', tr: 'çıplak / açık', pl: 'goły / odsłonięty', pos: 'adjectives' },
+    { en: 'touch', ru: 'Касаться', uk: 'Торкатися', es: 'tocar', 'pt-BR': 'tocar / encostar', vi: 'chạm / đụng vào', id: 'menyentuh', tr: 'dokunmak', pl: 'dotykać', pos: 'verbs' },
     { en: 'child', ru: 'Ребёнок', uk: 'Дитина', es: 'niño', 'pt-BR': 'criança', vi: 'đứa trẻ', id: 'anak', tr: 'çocuk', pl: 'dziecko', pos: 'nouns' },
     { en: 'chocolate', ru: 'Шоколадный', uk: 'Шоколадний', es: 'de chocolate', 'pt-BR': 'de chocolate', vi: 'sô cô la', id: 'cokelat', tr: 'çikolatalı', pl: 'czekoladowy', pos: 'adjectives' },
     { en: 'cake', ru: 'Торт', uk: 'Торт', es: 'pastel', 'pt-BR': 'bolo', vi: 'bánh', id: 'kue', tr: 'pasta / kek', pl: 'ciasto / tort', pos: 'nouns' },

@@ -6953,7 +6953,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   },
 ];
 
-export const LESSON_31_PHRASES: LessonPhrase[] = [
+const LESSON_31_SOURCE_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_1',
     english: 'They made that new driver pay that big fine.',
@@ -7882,6 +7882,186 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
     ],
   }
 ];
+
+export const L31_NATURAL_ENGLISH: Record<string, string> = {
+  lesson31_phrase_1: 'They made the new driver pay a big fine.',
+  lesson31_phrase_2: 'I heard an experienced teacher explain the difficult plan.',
+  lesson31_phrase_3: 'She felt a cold raindrop fall on her face.',
+  lesson31_phrase_4: 'The teacher made a student open the old bag.',
+  lesson31_phrase_5: 'She heard the famous singer sing an old song.',
+  lesson31_phrase_6: 'They let the small child eat his dinner.',
+  lesson31_phrase_7: 'We felt the bus shake on the old street.',
+  lesson31_phrase_8: 'She noticed a man put the letter into his bag.',
+  lesson31_phrase_9: 'They heard the angry people say those words.',
+  lesson31_phrase_10: 'We saw a car hit the tree.',
+  lesson31_phrase_11: 'She felt the warm water touch her hands.',
+  lesson31_phrase_12: 'They heard an angry customer speak to the manager.',
+  lesson31_phrase_13: 'I saw a good carpenter fix the broken wooden chair.',
+  lesson31_phrase_14: 'She heard the tired workers discuss a new plan.',
+  lesson31_phrase_15: 'We would like this shop to deliver our new books.',
+  lesson31_phrase_16: 'They let the foreign group inspect the modern room.',
+  lesson31_phrase_17: 'The teacher made a nervous driver open the dirty trunk.',
+  lesson31_phrase_18: 'She felt a heavy bag hit her arm.',
+  lesson31_phrase_19: 'They let the young genius use a secret government room.',
+  lesson31_phrase_20: 'An experienced man made the old car work well.',
+  lesson31_phrase_21: 'We heard an angry customer demand his money back.',
+  lesson31_phrase_22: 'She felt the soft woolen fabric move on her sensitive skin.',
+  lesson31_phrase_23: 'They saw an experienced man find a rare gold coin.',
+  lesson31_phrase_24: 'A wise teacher made the lazy student rewrite his long report.',
+  lesson31_phrase_25: 'We heard a talented man perform a sad song in the city square.',
+  lesson31_phrase_26: 'She felt the hot water burn her right hand.',
+  lesson31_phrase_27: 'They let a local reporter interview the nervous manager.',
+  lesson31_phrase_28: 'The owner made a noisy tenant pay the big phone bill.',
+  lesson31_phrase_29: 'She felt a heavy box hit her left knee.',
+  lesson31_phrase_30: 'They let an experienced engineer test the new solar car.',
+  lesson31_phrase_31: 'I saw a lost dog leave the busy street.',
+  lesson31_phrase_32: 'They heard a quiet student ask a difficult question.',
+  lesson31_phrase_33: 'She felt the warm water move over her face.',
+  lesson31_phrase_34: 'We noticed a tall man leave the crowded room.',
+  lesson31_phrase_35: 'A brave man made the nervous family follow the exit signs.',
+  lesson31_phrase_36: 'He heard a young couple plan an expensive dinner.',
+  lesson31_phrase_37: 'She saw a nervous candidate sign the important document.',
+  lesson31_phrase_38: 'They let a famous artist paint the big picture.',
+  lesson31_phrase_39: 'I felt the bus push my empty car.',
+  lesson31_phrase_40: 'We heard our teacher read a long list of rules.',
+  lesson31_phrase_41: 'A kind nurse made the shy child take his bitter medicine.',
+  lesson31_phrase_42: 'She noticed an old man drop a metal key into his bag.',
+  lesson31_phrase_43: 'They saw a wild horse jump the high wooden fence.',
+  lesson31_phrase_44: 'I heard the teacher read the answer.',
+  lesson31_phrase_45: 'We felt the whole house shake during a short storm.',
+  lesson31_phrase_46: 'She let a helpful local guide show the old map to her tourist group.',
+  lesson31_phrase_47: 'A good manager made the late worker finish a boring report.',
+  lesson31_phrase_48: 'They heard a skilled driver explain the serious car problem.',
+  lesson31_phrase_49: 'I saw a heavy bag fall onto the parked car.',
+  lesson31_phrase_50: 'She felt the soft fabric touch her arm.',
+};
+
+const L31_DISTRACTORS: Record<string, string[]> = {
+  a: ['the', 'some', 'one', 'another', 'our'], an: ['the', 'some', 'one', 'another', 'our'],
+  the: ['a', 'an', 'some', 'our', 'their'], my: ['your', 'his', 'her', 'our', 'their'],
+  his: ['my', 'your', 'her', 'our', 'their'], her: ['my', 'your', 'his', 'our', 'their'],
+  our: ['my', 'your', 'his', 'her', 'their'], those: ['these', 'the', 'some', 'many', 'other'],
+  pilot: ['driver', 'engineer', 'teacher', 'manager', 'worker'], flight: ['travel', 'road', 'work', 'study', 'safety'],
+  raindrop: ['snowflake', 'leaf', 'stone', 'coin', 'seed'], wind: ['rain', 'water', 'snow', 'air', 'steam'],
+  needle: ['pin', 'branch', 'wire', 'stick', 'tool'], box: ['bag', 'case', 'book', 'basket', 'bottle'],
+  kitten: ['puppy', 'rabbit', 'bird', 'cat', 'dog'], mechanic: ['driver', 'engineer', 'worker', 'manager', 'teacher'],
+  engine: ['car', 'motor', 'machine', 'road', 'power'], host: ['teacher', 'manager', 'guide', 'reporter', 'student'],
+  firefighter: ['nurse', 'guard', 'driver', 'teacher', 'worker'], carpenter: ['mechanic', 'worker', 'driver', 'farmer', 'builder'],
+  explorer: ['traveler', 'driver', 'reporter', 'student', 'worker'], musician: ['singer', 'artist', 'teacher', 'student', 'worker'],
+  rough: ['smooth', 'flat', 'wet', 'dry', 'quiet'], curious: ['quiet', 'nervous', 'tired', 'young', 'small'],
+  brief: ['long', 'heavy', 'quiet', 'cold', 'warm'], local: ['foreign', 'young', 'old', 'new', 'helpful'],
+};
+
+const L31_TARGETED_OPTIONS: Record<string, string[]> = {
+  driver: ['teacher', 'worker', 'manager', 'student', 'engineer'],
+  explain: ['describe', 'discuss', 'present', 'repeat', 'clarify'],
+  perform: ['sing', 'play', 'present', 'read', 'practice'],
+  drop: ['put', 'leave', 'throw', 'set', 'hold'],
+  plan: ['prepare', 'arrange', 'discuss', 'organize', 'cancel'],
+};
+const L31_OPTION_FAMILIES = {
+  article: ['a', 'an', 'the', 'some', 'another', 'one'],
+  pronoun: ['I', 'you', 'he', 'she', 'we', 'they', 'my', 'your', 'his', 'her', 'our', 'their'],
+  preposition: ['in', 'on', 'at', 'to', 'with', 'from', 'into', 'onto', 'during', 'near'],
+  verb: ['make', 'hear', 'explain', 'describe', 'discuss', 'present', 'repeat', 'read', 'write', 'show', 'take', 'leave', 'hold', 'put', 'ask', 'answer', 'finish', 'start', 'follow', 'help'],
+  adjective: ['new', 'old', 'big', 'small', 'good', 'bad', 'quiet', 'loud', 'warm', 'cold', 'happy', 'sad', 'long', 'short', 'local', 'foreign', 'busy', 'empty', 'clean', 'dirty'],
+  noun: ['teacher', 'student', 'driver', 'worker', 'manager', 'engineer', 'car', 'bus', 'bag', 'box', 'book', 'letter', 'room', 'street', 'house', 'family', 'child', 'answer', 'question', 'report'],
+  pastVerb: ['made', 'heard', 'felt', 'noticed', 'saw', 'let'],
+  pluralNoun: ['teachers', 'students', 'drivers', 'workers', 'managers', 'engineers', 'cars', 'books', 'letters', 'rules', 'signs', 'questions'],
+  adverb: ['well', 'back', 'quickly', 'slowly', 'quietly', 'carefully'],
+  modal: ['would', 'could', 'should', 'might', 'will', 'can'],
+  determiner: ['this', 'that', 'these', 'those', 'some', 'many'],
+} as const;
+const L31_PAST_VERBS = new Set(['made', 'heard', 'felt', 'noticed', 'saw', 'let']);
+const L31_PLURAL_NOUNS = new Set(['people', 'words', 'workers', 'books', 'eyes', 'hands', 'rules', 'signs']);
+
+const l31Words = (english: string) => {
+  const tokens = english.match(/[A-Za-z]+(?:'[A-Za-z]+)?/g) ?? [];
+  return tokens.map((correct, index) => {
+    const lower = correct.toLowerCase();
+    const category = ['a', 'an', 'the'].includes(lower) ? 'article'
+      : ['this', 'that', 'these', 'those'].includes(lower) ? 'determiner'
+        : lower === 'would' ? 'modal'
+          : ['well', 'back'].includes(lower) ? 'adverb'
+            : ['i', 'you', 'he', 'she', 'we', 'they', 'my', 'your', 'his', 'her', 'our', 'their'].includes(lower) ? 'pronoun'
+              : ['in', 'on', 'onto', 'into', 'to', 'at', 'during', 'with', 'of', 'over'].includes(lower) ? 'preposition'
+                : ['made', 'pay', 'heard', 'explain', 'felt', 'fall', 'open', 'sing', 'let', 'eat', 'shake', 'noticed', 'put', 'say', 'saw', 'hit', 'touch', 'speak', 'fix', 'discuss', 'deliver', 'inspect', 'use', 'work', 'demand', 'move', 'find', 'rewrite', 'perform', 'burn', 'interview', 'test', 'leave', 'ask', 'follow', 'plan', 'sign', 'paint', 'push', 'read', 'take', 'drop', 'jump', 'show', 'finish', 'would', 'like'].includes(lower) ? 'verb'
+                  : ['new', 'big', 'experienced', 'difficult', 'cold', 'old', 'famous', 'small', 'angry', 'good', 'broken', 'wooden', 'tired', 'foreign', 'modern', 'nervous', 'dirty', 'heavy', 'young', 'secret', 'government', 'soft', 'woolen', 'sensitive', 'rare', 'gold', 'wise', 'lazy', 'long', 'talented', 'sad', 'hot', 'right', 'local', 'noisy', 'left', 'solar', 'lost', 'busy', 'quiet', 'warm', 'tall', 'crowded', 'brave', 'red', 'expensive', 'important', 'empty', 'kind', 'shy', 'bitter', 'metal', 'wild', 'high', 'helpful', 'late', 'boring', 'skilled', 'serious', 'parked', 'bare', 'whole'].includes(lower) ? 'adjective' : 'noun';
+    const grammaticalFamily = category === 'verb' && L31_PAST_VERBS.has(lower) ? L31_OPTION_FAMILIES.pastVerb
+      : category === 'noun' && L31_PLURAL_NOUNS.has(lower) ? L31_OPTION_FAMILIES.pluralNoun
+        : L31_OPTION_FAMILIES[category];
+    const nextToken = tokens[index + 1]?.toLowerCase() ?? '';
+    const possibleIndefiniteArticle = /^[aeiou]/.test(nextToken) ? 'an' : 'a';
+    const candidates = lower === 'the'
+      ? [possibleIndefiniteArticle, 'some', 'our', 'their', 'that']
+      : L31_TARGETED_OPTIONS[lower] ?? L31_DISTRACTORS[lower] ?? grammaticalFamily;
+    const distractors = [...new Set(candidates.filter((item) => item.toLowerCase() !== lower))].slice(0, 5);
+    return { text: correct, correct, distractors, category };
+  });
+};
+
+const L31_TRANSLATION_OVERRIDES: Record<string, Pick<LessonPhrase, 'russian' | 'ukrainian' | 'spanish'>> = {
+  lesson31_phrase_2: { russian: 'Я слышал, как опытный учитель объяснял сложный план.', ukrainian: 'Я чув, як досвідчений учитель пояснював складний план.', spanish: 'Oí a un profesor experimentado explicar el plan difícil.' },
+  lesson31_phrase_3: { russian: 'Она почувствовала, как холодная капля дождя упала ей на лицо.', ukrainian: 'Вона відчула, як холодна крапля дощу впала їй на обличчя.', spanish: 'Sintió caer una gota fría de lluvia sobre la cara.' },
+  lesson31_phrase_5: { russian: 'Она слышала, как знаменитый певец пел старую песню.', ukrainian: 'Вона чула, як відомий співак співав стару пісню.', spanish: 'Oyó al cantante famoso cantar una canción antigua.' },
+  lesson31_phrase_6: { russian: 'Они разрешили маленькому ребёнку съесть свой ужин.', ukrainian: 'Вони дозволили маленькій дитині з’їсти свою вечерю.', spanish: 'Dejaron que el niño pequeño comiera su cena.' },
+  lesson31_phrase_7: { russian: 'Мы почувствовали, как автобус трясётся на старой улице.', ukrainian: 'Ми відчули, як автобус трясеться на старій вулиці.', spanish: 'Sentimos el autobús sacudirse en la calle vieja.' },
+  lesson31_phrase_8: { russian: 'Она заметила, как мужчина положил письмо в свою сумку.', ukrainian: 'Вона помітила, як чоловік поклав листа у свою сумку.', spanish: 'Notó que un hombre metió la carta en su bolsa.' },
+  lesson31_phrase_11: { russian: 'Она почувствовала, как тёплая вода коснулась её рук.', ukrainian: 'Вона відчула, як тепла вода торкнулася її рук.', spanish: 'Sintió el agua tibia tocarle las manos.' },
+  lesson31_phrase_12: { russian: 'Они слышали, как сердитый клиент говорил с менеджером.', ukrainian: 'Вони чули, як сердитий клієнт говорив із менеджером.', spanish: 'Oyeron a un cliente enfadado hablar con el gerente.' },
+  lesson31_phrase_13: { russian: 'Я видел, как хороший плотник починил сломанный деревянный стул.', ukrainian: 'Я бачив, як вправний тесля полагодив зламаний дерев’яний стілець.', spanish: 'Vi a un buen carpintero arreglar la silla de madera rota.' },
+  lesson31_phrase_17: { russian: 'Учитель заставил нервного водителя открыть грязный багажник.', ukrainian: 'Учитель змусив нервового водія відкрити брудний багажник.', spanish: 'El profesor hizo que un conductor nervioso abriera el maletero sucio.' },
+  lesson31_phrase_18: { russian: 'Она почувствовала, как тяжёлая сумка ударила её по руке.', ukrainian: 'Вона відчула, як важка сумка вдарила її по руці.', spanish: 'Sintió una bolsa pesada golpearle el brazo.' },
+  lesson31_phrase_29: { russian: 'Она почувствовала, как тяжёлая коробка ударила её по левому колену.', ukrainian: 'Вона відчула, як важка коробка вдарила її по лівому коліну.', spanish: 'Sintió una caja pesada golpearle la rodilla izquierda.' },
+  lesson31_phrase_28: { russian: 'Владелец заставил шумного жильца оплатить большой телефонный счёт.', ukrainian: 'Власник змусив галасливого мешканця сплатити великий телефонний рахунок.', spanish: 'El propietario hizo que el inquilino ruidoso pagara la gran factura de teléfono.' },
+  lesson31_phrase_40: { russian: 'Мы слышали, как наш учитель читал длинный список правил.', ukrainian: 'Ми чули, як наш учитель читав довгий список правил.', spanish: 'Oímos a nuestro profesor leer una larga lista de reglas.' },
+  lesson31_phrase_35: { russian: 'Храбрый мужчина заставил нервную семью следовать указателям выхода.', ukrainian: 'Хоробрий чоловік змусив нервову родину йти за вказівниками виходу.', spanish: 'Un hombre valiente hizo que la familia nerviosa siguiera las señales de salida.' },
+  lesson31_phrase_42: { russian: 'Она заметила, как пожилой мужчина уронил металлический ключ в свою сумку.', ukrainian: 'Вона помітила, як літній чоловік упустив металевий ключ у свою сумку.', spanish: 'Notó a un hombre mayor dejar caer una llave metálica en su bolsa.' },
+  lesson31_phrase_44: { russian: 'Я слышал, как учитель прочитал ответ.', ukrainian: 'Я чув, як учитель прочитав відповідь.', spanish: 'Oí al profesor leer la respuesta.' },
+  lesson31_phrase_45: { russian: 'Мы почувствовали, как весь дом задрожал во время короткой бури.', ukrainian: 'Ми відчули, як увесь будинок затремтів під час короткої бурі.', spanish: 'Sentimos toda la casa temblar durante una tormenta breve.' },
+  lesson31_phrase_46: { russian: 'Она разрешила отзывчивому местному гиду показать старую карту своей группе туристов.', ukrainian: 'Вона дозволила привітному місцевому гіду показати стару мапу своїй групі туристів.', spanish: 'Dejó que un guía local servicial mostrara el mapa antiguo a su grupo de turistas.' },
+  lesson31_phrase_48: { russian: 'Они слышали, как опытный водитель объяснял серьёзную проблему с машиной.', ukrainian: 'Вони чули, як досвідчений водій пояснював серйозну проблему з машиною.', spanish: 'Oyeron a un conductor experto explicar el grave problema del coche.' },
+  lesson31_phrase_50: { russian: 'Она почувствовала, как мягкая ткань коснулась её руки.', ukrainian: 'Вона відчула, як м’яка тканина торкнулася її руки.', spanish: 'Sintió la tela suave tocarle el brazo.' },
+};
+
+export const L31_FINAL_TRANSLATIONS: Record<string, Pick<LessonPhrase, 'russian' | 'ukrainian' | 'spanish'>> = {
+  ...L31_TRANSLATION_OVERRIDES,
+  lesson31_phrase_1: { russian: 'Они заставили нового водителя заплатить большой штраф.', ukrainian: 'Вони змусили нового водія сплатити великий штраф.', spanish: 'Hicieron que el conductor nuevo pagara una multa grande.' },
+  lesson31_phrase_4: { russian: 'Учитель заставил ученика открыть старую сумку.', ukrainian: 'Учитель змусив учня відкрити стару сумку.', spanish: 'El profesor hizo que un alumno abriera la bolsa vieja.' },
+  lesson31_phrase_9: { russian: 'Они слышали, как сердитые люди произнесли те слова.', ukrainian: 'Вони чули, як сердиті люди сказали ті слова.', spanish: 'Oyeron a las personas enfadadas decir esas palabras.' },
+  lesson31_phrase_10: { russian: 'Мы видели, как машина ударилась о дерево.', ukrainian: 'Ми бачили, як машина вдарилася об дерево.', spanish: 'Vimos un coche golpear el árbol.' },
+  lesson31_phrase_14: { russian: 'Она слышала, как уставшие рабочие обсуждали новый план.', ukrainian: 'Вона чула, як втомлені робітники обговорювали новий план.', spanish: 'Oyó a los trabajadores cansados discutir un plan nuevo.' },
+  lesson31_phrase_15: { russian: 'Мы хотели бы, чтобы этот магазин доставил наши новые книги.', ukrainian: 'Ми хотіли б, щоб цей магазин доставив наші нові книжки.', spanish: 'Nos gustaría que esta tienda entregara nuestros libros nuevos.' },
+  lesson31_phrase_16: { russian: 'Они разрешили иностранной группе осмотреть современную комнату.', ukrainian: 'Вони дозволили іноземній групі оглянути сучасну кімнату.', spanish: 'Dejaron que el grupo extranjero inspeccionara la habitación moderna.' },
+  lesson31_phrase_19: { russian: 'Они разрешили молодому гению использовать секретную правительственную комнату.', ukrainian: 'Вони дозволили молодому генієві використати таємну урядову кімнату.', spanish: 'Dejaron que el joven genio usara una sala secreta del gobierno.' },
+  lesson31_phrase_20: { russian: 'Опытный мужчина заставил старую машину хорошо работать.', ukrainian: 'Досвідчений чоловік змусив стару машину добре працювати.', spanish: 'Un hombre experimentado hizo funcionar bien el coche viejo.' },
+  lesson31_phrase_21: { russian: 'Мы слышали, как сердитый клиент потребовал вернуть свои деньги.', ukrainian: 'Ми чули, як сердитий клієнт вимагав повернути свої гроші.', spanish: 'Oímos a un cliente enfadado exigir que le devolvieran su dinero.' },
+  lesson31_phrase_22: { russian: 'Она почувствовала, как мягкая шерстяная ткань двигалась по её чувствительной коже.', ukrainian: 'Вона відчула, як м’яка вовняна тканина рухалася по її чутливій шкірі.', spanish: 'Sintió la tela suave de lana moverse sobre su piel sensible.' },
+  lesson31_phrase_23: { russian: 'Они видели, как опытный мужчина нашёл редкую золотую монету.', ukrainian: 'Вони бачили, як досвідчений чоловік знайшов рідкісну золоту монету.', spanish: 'Vieron a un hombre experimentado encontrar una rara moneda de oro.' },
+  lesson31_phrase_24: { russian: 'Мудрый учитель заставил ленивого ученика переписать свой длинный отчёт.', ukrainian: 'Мудрий учитель змусив лінивого учня переписати свій довгий звіт.', spanish: 'Un profesor sabio hizo que el alumno perezoso reescribiera su informe largo.' },
+  lesson31_phrase_25: { russian: 'Мы слышали, как талантливый мужчина исполнял грустную песню на городской площади.', ukrainian: 'Ми чули, як талановитий чоловік виконував сумну пісню на міській площі.', spanish: 'Oímos a un hombre talentoso interpretar una canción triste en la plaza de la ciudad.' },
+  lesson31_phrase_26: { russian: 'Она почувствовала, как горячая вода обожгла её правую руку.', ukrainian: 'Вона відчула, як гаряча вода обпекла її праву руку.', spanish: 'Sintió el agua caliente quemarle la mano derecha.' },
+  lesson31_phrase_27: { russian: 'Они разрешили местному репортёру взять интервью у нервного руководителя.', ukrainian: 'Вони дозволили місцевому репортерові взяти інтерв’ю в нервового керівника.', spanish: 'Dejaron que un reportero local entrevistara al jefe nervioso.' },
+  lesson31_phrase_30: { russian: 'Они разрешили опытному инженеру испытать новую солнечную машину.', ukrainian: 'Вони дозволили досвідченому інженерові випробувати нову сонячну машину.', spanish: 'Dejaron que un ingeniero experimentado probara el nuevo coche solar.' },
+  lesson31_phrase_31: { russian: 'Я видел, как потерявшаяся собака покинула оживлённую улицу.', ukrainian: 'Я бачив, як загублений пес залишив жваву вулицю.', spanish: 'Vi a un perro perdido salir de la calle concurrida.' },
+  lesson31_phrase_32: { russian: 'Они слышали, как тихий ученик задал трудный вопрос.', ukrainian: 'Вони чули, як тихий учень поставив складне запитання.', spanish: 'Oyeron a un alumno tranquilo hacer una pregunta difícil.' },
+  lesson31_phrase_33: { russian: 'Она почувствовала, как тёплая вода стекала по её лицу.', ukrainian: 'Вона відчула, як тепла вода стікала по її обличчю.', spanish: 'Sintió el agua tibia correr por su cara.' },
+  lesson31_phrase_34: { russian: 'Мы заметили, как высокий мужчина вышел из переполненной комнаты.', ukrainian: 'Ми помітили, як високий чоловік вийшов із переповненої кімнати.', spanish: 'Notamos a un hombre alto salir de la habitación llena.' },
+  lesson31_phrase_36: { russian: 'Он слышал, как молодая пара планировала дорогой ужин.', ukrainian: 'Він чув, як молода пара планувала дорогу вечерю.', spanish: 'Oyó a una pareja joven planear una cena cara.' },
+  lesson31_phrase_37: { russian: 'Она видела, как нервный кандидат подписал важный документ.', ukrainian: 'Вона бачила, як нервовий кандидат підписав важливий документ.', spanish: 'Vio a un candidato nervioso firmar el documento importante.' },
+  lesson31_phrase_38: { russian: 'Они разрешили известному художнику нарисовать большую картину.', ukrainian: 'Вони дозволили відомому художникові намалювати велику картину.', spanish: 'Dejaron que un artista famoso pintara el cuadro grande.' },
+  lesson31_phrase_39: { russian: 'Я почувствовал, как автобус толкнул мою пустую машину.', ukrainian: 'Я відчув, як автобус штовхнув мою порожню машину.', spanish: 'Sentí el autobús empujar mi coche vacío.' },
+  lesson31_phrase_41: { russian: 'Добрая медсестра заставила застенчивого ребёнка принять своё горькое лекарство.', ukrainian: 'Добра медсестра змусила сором’язливу дитину прийняти свої гіркі ліки.', spanish: 'Una enfermera amable hizo que el niño tímido tomara su medicina amarga.' },
+  lesson31_phrase_43: { russian: 'Они видели, как дикая лошадь перепрыгнула высокий деревянный забор.', ukrainian: 'Вони бачили, як дикий кінь перестрибнув високий дерев’яний паркан.', spanish: 'Vieron a un caballo salvaje saltar la valla alta de madera.' },
+  lesson31_phrase_47: { russian: 'Хороший руководитель заставил опоздавшего работника закончить скучный отчёт.', ukrainian: 'Хороший керівник змусив працівника, який запізнився, закінчити нудний звіт.', spanish: 'Un buen jefe hizo que el trabajador que llegó tarde terminara un informe aburrido.' },
+  lesson31_phrase_49: { russian: 'Я видел, как тяжёлая сумка упала на припаркованную машину.', ukrainian: 'Я бачив, як важка сумка впала на припарковану машину.', spanish: 'Vi una bolsa pesada caer sobre el coche estacionado.' },
+};
+
+export const LESSON_31_PHRASES: LessonPhrase[] = LESSON_31_SOURCE_PHRASES.map((phrase) => {
+  const english = L31_NATURAL_ENGLISH[phrase.id];
+  const translations = L31_FINAL_TRANSLATIONS[phrase.id]!;
+  return { ...phrase, ...translations, english, words: l31Words(english) };
+});
 
 export const LESSON_32_PHRASES: LessonPhrase[] = [
   {

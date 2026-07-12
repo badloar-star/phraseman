@@ -38,9 +38,7 @@ describe('perf freeze contract', () => {
     const source = read('app/_layout.tsx');
     // Экраны, которым разрешено НЕ замораживаться (живой матч/комната/лобби-поиск, экзамен).
     // Добавление нового исключения = осознанное решение хозяина: расширь список и объясни зачем.
-    // constellation_match — живой 4-игроковый матч «Созвездий» (фазовый таймер,
-    // onSnapshot матча): та же природа, что arena_game (спек F3/A10).
-    const allowed = ['arena_game', 'arena_lobby', 'arena_join', 'arena_room', 'exam', 'constellation_match'];
+    const allowed = ['arena_game', 'arena_lobby', 'arena_join', 'arena_room', 'exam'];
     const offenders = source
       .split(/\r?\n/)
       .filter((line) => line.includes('freezeOnBlur: false'))

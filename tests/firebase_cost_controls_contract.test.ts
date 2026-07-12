@@ -114,16 +114,6 @@ describe('Firebase cost controls', () => {
     expect(thanksSource).toContain('function nextPollDelayMs()');
   });
 
-  it('does not deploy the dormant Constellations minute cron', () => {
-    const indexSource = read('functions/src/index.ts');
-    const packageJson = read('functions/package.json');
-
-    expect(indexSource).not.toContain('export const constellationCron');
-    expect(packageJson).not.toContain('functions:constellationCron');
-    expect(indexSource).toContain('onConstellationQueueWrite');
-    expect(indexSource).toContain('constellationSubmitAction');
-  });
-
   it('keeps duplicate identity cleanup callable-driven but not scheduled', () => {
     const indexSource = read('functions/src/index.ts');
     const packageJson = read('functions/package.json');

@@ -10,10 +10,6 @@
  */
 export type PremiumContext =
   | 'arena'
-  // Игра «Созвездия» (specs/constellations.md C5): апселл Plus в лобби/поиске
-  // режима (безлимит игр). Шапка/тексты пейвола — как arena, контекст отдельный
-  // для аналитики конверсии режима.
-  | 'constellations'
   | 'no_energy'
   | 'course_after_lesson3'
   | 'lesson_b1'
@@ -72,7 +68,6 @@ export type PremiumContext =
 
 export const PREMIUM_CONTEXT_VALUES = [
   'arena',
-  'constellations',
   'no_energy',
   'course_after_lesson3',
   'lesson_b1',

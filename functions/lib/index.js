@@ -33,8 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportSendReply = exports.adminSupportGenerateReply = exports.adminSupportPull = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = exports.onConstellationQueueWrite = void 0;
-exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = void 0;
+exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportSendReply = exports.adminSupportGenerateReply = exports.adminSupportPull = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -145,12 +145,6 @@ const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDel
 const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationSubmitAction } = require('./constellations/submit');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationAdmin } = require('./constellations/admin');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, fillConstellationAfterDelay } = require('./constellations/queue');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -272,56 +266,6 @@ exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
-exports.constellationSubmitAction = constellationSubmitAction;
-exports.constellationAdmin = constellationAdmin;
-// ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
-// Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
-// bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
-exports.onConstellationQueueWrite = functions.firestore.onDocumentWritten(
-// timeoutSeconds 90: после мгновенной попытки функция «досыпает» до
-// bot_fill_delay (30с) и добирает матч ботами точно в срок — игрок не ждёт
-// минутный cron (он остаётся страховкой).
-{ document: 'constellation_queue/{userId}', timeoutSeconds: 90 }, async (event) => {
-    const beforeExists = !!event.data?.before.exists;
-    const after = event.data?.after;
-    const afterData = after?.exists ? after.data() : undefined;
-    const beforeData = beforeExists ? event.data?.before.data() : undefined;
-    // Живой счётчик «в поиске»: активная запись = существует и ещё без matchId.
-    // Обновляем инкрементально на каждое изменение — клиент видит ненулевое
-    // число мгновенно, не дожидаясь минутного cron (он лишь сверяет точное).
-    const wasSearching = beforeExists && !beforeData?.matchId;
-    const isSearching = !!after?.exists && !afterData?.matchId;
-    const delta = (isSearching ? 1 : 0) - (wasSearching ? 1 : 0);
-    if (delta !== 0) {
-        try {
-            await admin.firestore().doc('app_meta/constellation_searching').set({
-                searchingCount: admin.firestore.FieldValue.increment(delta),
-                updatedAt: Date.now(),
-            }, { merge: true });
-        }
-        catch (e) {
-            console.warn('constellation searching increment', e);
-        }
-    }
-    if (!after?.exists || afterData?.matchId)
-        return;
-    // Дальше — только на СОЗДАНИЕ новой записи поиска (не на server-side update).
-    if (beforeExists)
-        return;
-    const userId = event.params.userId;
-    try {
-        await tryMatchConstellationUser(userId);
-    }
-    catch (e) {
-        console.warn('onConstellationQueueWrite tryMatch', e);
-    }
-    try {
-        await fillConstellationAfterDelay(userId);
-    }
-    catch (e) {
-        console.warn('onConstellationQueueWrite botFill', e);
-    }
-});
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;

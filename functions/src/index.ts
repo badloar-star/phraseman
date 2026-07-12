@@ -163,15 +163,6 @@ const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationSubmitAction } = require('./constellations/submit');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationAdmin } = require('./constellations/admin');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, fillConstellationAfterDelay } = require('./constellations/queue') as {
-  tryMatchConstellationUser: (userId: string) => Promise<void>;
-  fillConstellationAfterDelay: (userId: string) => Promise<void>;
-};
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
@@ -306,59 +297,6 @@ exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
-exports.constellationSubmitAction = constellationSubmitAction;
-exports.constellationAdmin = constellationAdmin;
-
-// ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
-// Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
-// bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
-export const onConstellationQueueWrite = functions.firestore.onDocumentWritten(
-  // timeoutSeconds 90: после мгновенной попытки функция «досыпает» до
-  // bot_fill_delay (30с) и добирает матч ботами точно в срок — игрок не ждёт
-  // минутный cron (он остаётся страховкой).
-  { document: 'constellation_queue/{userId}', timeoutSeconds: 90 },
-  async (event) => {
-    const beforeExists = !!event.data?.before.exists;
-    const after = event.data?.after;
-    const afterData = after?.exists ? (after.data() as { matchId?: string } | undefined) : undefined;
-    const beforeData = beforeExists ? (event.data?.before.data() as { matchId?: string } | undefined) : undefined;
-
-    // Живой счётчик «в поиске»: активная запись = существует и ещё без matchId.
-    // Обновляем инкрементально на каждое изменение — клиент видит ненулевое
-    // число мгновенно, не дожидаясь минутного cron (он лишь сверяет точное).
-    const wasSearching = beforeExists && !beforeData?.matchId;
-    const isSearching = !!after?.exists && !afterData?.matchId;
-    const delta = (isSearching ? 1 : 0) - (wasSearching ? 1 : 0);
-    if (delta !== 0) {
-      try {
-        await admin.firestore().doc('app_meta/constellation_searching').set(
-          {
-            searchingCount: admin.firestore.FieldValue.increment(delta),
-            updatedAt: Date.now(),
-          },
-          { merge: true },
-        );
-      } catch (e) {
-        console.warn('constellation searching increment', e);
-      }
-    }
-
-    if (!after?.exists || afterData?.matchId) return;
-    // Дальше — только на СОЗДАНИЕ новой записи поиска (не на server-side update).
-    if (beforeExists) return;
-    const userId = event.params.userId as string;
-    try {
-      await tryMatchConstellationUser(userId);
-    } catch (e) {
-      console.warn('onConstellationQueueWrite tryMatch', e);
-    }
-    try {
-      await fillConstellationAfterDelay(userId);
-    } catch (e) {
-      console.warn('onConstellationQueueWrite botFill', e);
-    }
-  },
-);
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

@@ -56,7 +56,7 @@ const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
-exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations'];
+exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support'];
 exports.ALLOWED_JOB_MODELS = [
     'gpt-4.1-nano',
     'gpt-4.1-mini',
@@ -83,9 +83,6 @@ const JOB_DEFAULTS = {
     // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
     // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
     support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
-    // Квизы «Созвездий»: генерация вопросов с судьёй-валидатором дистракторов.
-    // Дешёвая модель, щедрый кап (кэш досыпается фоном), kill-switch → только кэш+банк.
-    constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
 };
 function text(value, max = 120) {
     return String(value ?? '').trim().slice(0, max);

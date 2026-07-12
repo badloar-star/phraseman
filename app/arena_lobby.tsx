@@ -31,8 +31,6 @@ import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
-import { ConstellationLobbyCard } from './constellation_lobby_card';
-import { getConstellationsPlacement, isConstellationsEnabled } from './remote_flags';
 import { arenaToasts } from '../constants/arena_i18n';
 import { arenaActionIconSource } from './arena_action_icons';
 import { ARENA_LOBBY_ACCEPT_MS, ARENA_PLAY_AGAIN_BOT_MAX_MS, ARENA_PLAY_AGAIN_BOT_MIN_MS, CLOUD_SYNC_ENABLED, ENABLE_ARENA_RANKED_WAGER, IS_EXPO_GO, } from './config';
@@ -202,22 +200,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const { theme: t, f, themeMode } = useTheme();
     const arenaTabVisible = !isTab || activeIdx === 2;
     const lobbyRuntimeActive = useRuntimeActive(arenaTabVisible);
-    // «Созвездия» (I1): вход управляется флагами живьём; only = дуэльная кнопка скрыта.
-    const constellationsOn = isConstellationsEnabled();
-    const constellationsPlacement = getConstellationsPlacement();
     // Пауза вечных лупов лобби при сворачивании приложения (таб-гарда мало: при
     // свёрнутом приложении с активным табом «Арена» они продолжали крутиться в фоне).
     const screenTitleColor = t.textPrimary;
     const screenMuted = t.textMuted;
     const { lang } = useLang();
-    const { studyTarget } = useStudyTarget();
-    const constellationCardEl = constellationsOn ? (
-      <ConstellationLobbyCard
-        lang={lang}
-        prominent={constellationsPlacement !== 'secondary'}
-        onPress={() => router.push('/constellation_search' as any)}
-      />
-    ) : null;
     const effectiveOs = useEffectivePlatformOS();
     const defaultPlayerName = useMemo(() => triLang(lang, {
         ru: 'Игрок',
@@ -2241,11 +2228,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   />
                 ) : null}
 
-                {constellationsOn && constellationsPlacement !== 'secondary'
-                  ? constellationCardEl
-                  : null}
-
-                {constellationsOn && constellationsPlacement === 'only' ? null : (<DuoPressable
+                <DuoPressable
                   testID="arena-find-match"
                   accessibilityLabel="qa-arena-find-match"
                   accessible={true}
@@ -2295,11 +2278,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     </Text>
                   </View>
                   <Ionicons name="arrow-forward-circle" size={34} color={arenaGlass.ctaIcon}/>
-                </DuoPressable>)}
-
-                {constellationsOn && constellationsPlacement === 'secondary'
-                  ? constellationCardEl
-                  : null}
+                </DuoPressable>
 
                 {!isUnlimited ? (<View style={styles.arenaCostRow}>
                       <View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.innerBg, borderColor: arenaGlass.innerBorder }]}>

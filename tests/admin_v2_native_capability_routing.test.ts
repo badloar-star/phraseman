@@ -51,6 +51,7 @@ describe('Admin v2 native capability routing', () => {
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
     expect(router).toContain("'control-panel': 'control-panel'");
+    expect(router).toMatch(/SUB_ROUTES[^\n]+['\"]campaigns['\"]/);
     expect(capabilities).toContain('directCapability.nativeRoute');
     expect(capabilities).toContain('requestedCapability?.nativeRoute');
     expect(core).toContain('!capability.nativeRoute');

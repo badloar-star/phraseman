@@ -44,11 +44,11 @@ import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
-import { accountScopeKey } from './account_scope_key';
 import type { SoftUpsellCandidate } from './soft_upsell_core';
 import {
   candidateAfterLessonGrant,
   createLessonSoftUpsellCtaHandler,
+  lessonSoftUpsellPersistenceScope,
   shouldRenderLessonSoftUpsell,
   type LessonSoftUpsellIdentity,
 } from './lesson_complete_soft_upsell';
@@ -516,7 +516,7 @@ export default function LessonComplete() {
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
   const [softUpsellAccountToken, setSoftUpsellAccountToken] = useState(() => captureAccountGeneration());
-  const softUpsellAccountScope = accountScopeKey(softUpsellAccountToken) ?? '';
+  const softUpsellAccountScope = lessonSoftUpsellPersistenceScope(softUpsellAccountToken);
   const isCompassTheme = false;
   const params = useLocalSearchParams<{
     id: string;
@@ -556,10 +556,16 @@ export default function LessonComplete() {
   const softUpsellMountedRef = useRef(true);
   const softUpsellIdentityRef = useRef<LessonSoftUpsellIdentity>({
     accountScope: softUpsellAccountScope,
+    generation: softUpsellAccountToken.generation,
     lessonId,
     studyTarget,
   });
-  softUpsellIdentityRef.current = { accountScope: softUpsellAccountScope, lessonId, studyTarget };
+  softUpsellIdentityRef.current = {
+    accountScope: softUpsellAccountScope,
+    generation: softUpsellAccountToken.generation,
+    lessonId,
+    studyTarget,
+  };
   const repeatOpeningRef = useRef(false);
   const premiumBannerAnim = useRef(new Animated.Value(0)).current;
   const premiumBannerNextLesson = useRef(0);
@@ -718,7 +724,8 @@ export default function LessonComplete() {
   const grantBonus = useCallback(async () => {
       const grantAccountToken = captureAccountGeneration();
       const capturedSoftUpsellIdentity: LessonSoftUpsellIdentity = {
-        accountScope: accountScopeKey(grantAccountToken) ?? '',
+        accountScope: lessonSoftUpsellPersistenceScope(grantAccountToken),
+        generation: grantAccountToken.generation,
         lessonId,
         studyTarget,
       };

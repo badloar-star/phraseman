@@ -1,13 +1,15 @@
 import {
   candidateAfterLessonGrant,
   createLessonSoftUpsellCtaHandler,
+  lessonSoftUpsellPersistenceScope,
   sameLessonSoftUpsellIdentity,
   shouldRenderLessonSoftUpsell,
   type LessonSoftUpsellIdentity,
 } from '../app/lesson_complete_soft_upsell';
 
 const identity = (overrides: Partial<LessonSoftUpsellIdentity> = {}): LessonSoftUpsellIdentity => ({
-  accountScope: 'generation:1:uid:a',
+  accountScope: 'a',
+  generation: 1,
   lessonId: 1,
   studyTarget: 'en',
   ...overrides,
@@ -16,8 +18,16 @@ const identity = (overrides: Partial<LessonSoftUpsellIdentity> = {}): LessonSoft
 describe('lesson completion soft upsell behavior', () => {
   it('rejects a deferred grant after the account generation changes', () => {
     const captured = identity();
-    const current = identity({ accountScope: 'generation:2:uid:b' });
+    const current = identity({ accountScope: 'b', generation: 2 });
     expect(candidateAfterLessonGrant({ status: 'granted', captured, current, mounted: true, accountGenerationCurrent: false })).toBeNull();
+  });
+
+  it('keeps durable scope stable across generations and isolates different accounts', () => {
+    expect(lessonSoftUpsellPersistenceScope({ phase: 'active', stableId: 'alice', generation: 1 })).toBe('alice');
+    expect(lessonSoftUpsellPersistenceScope({ phase: 'active', stableId: 'alice', generation: 2 })).toBe('alice');
+    expect(lessonSoftUpsellPersistenceScope({ phase: 'active', stableId: 'bob', generation: 2 })).toBe('bob');
+    expect(lessonSoftUpsellPersistenceScope({ phase: 'transitioning', stableId: 'alice', generation: 3 })).toBe('');
+    expect(sameLessonSoftUpsellIdentity(identity(), identity({ generation: 2 }))).toBe(false);
   });
 
   it('rejects a deferred grant after unmount or route identity change', () => {

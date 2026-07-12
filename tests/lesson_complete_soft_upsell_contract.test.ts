@@ -14,7 +14,8 @@ describe('lesson completion soft upsell integration', () => {
   });
 
   it('uses canonical account, study target, and premium access inputs', () => {
-    expect(source).toContain('accountScopeKey(softUpsellAccountToken)');
+    expect(source).toContain('lessonSoftUpsellPersistenceScope(softUpsellAccountToken)');
+    expect(source).not.toContain('accountScopeKey(softUpsellAccountToken)');
     expect(source).toContain('subscribeAccountGeneration');
     expect(source).toContain('useSoftUpsellOpportunity({');
     expect(source).toContain('accountScope: softUpsellAccountScope');

@@ -1,8 +1,10 @@
 import { FREE_LESSON_LIMIT } from './monetization_policy';
+import type { AccountGenerationToken } from './account_generation';
 import type { SoftUpsellCandidate, SoftUpsellStudyTarget, SoftUpsellTrigger } from './soft_upsell_core';
 
 export type LessonSoftUpsellIdentity = Readonly<{
   accountScope: string;
+  generation: number;
   lessonId: number;
   studyTarget: SoftUpsellStudyTarget;
 }>;
@@ -12,8 +14,16 @@ export function sameLessonSoftUpsellIdentity(
   right: LessonSoftUpsellIdentity,
 ): boolean {
   return left.accountScope === right.accountScope
+    && left.generation === right.generation
     && left.lessonId === right.lessonId
     && left.studyTarget === right.studyTarget;
+}
+
+export function lessonSoftUpsellPersistenceScope(
+  token: Pick<AccountGenerationToken, 'phase' | 'stableId' | 'generation'>,
+): string {
+  if (token.phase !== 'active') return '';
+  return token.stableId?.trim() ?? '';
 }
 
 export function candidateAfterLessonGrant(input: {

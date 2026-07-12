@@ -215,4 +215,28 @@ describe('useSoftUpsellOpportunity', () => {
     expect(analytics).not.toHaveBeenCalled();
   });
 
+  it('synchronously hides stale identity and makes callbacks from the prior identity no-op', async () => {
+    const french = { ...candidate, studyTarget: 'fr' as const };
+    type Props = { accountScope: string; studyTarget: 'en' | 'fr'; candidates: typeof candidate[] | typeof french[] };
+    const hook = await renderHook((props: Props) => useSoftUpsellOpportunity({ ...props, hasPremiumAccess: false }), {
+      initialProps: { accountScope: 'A', studyTarget: 'en', candidates: [candidate] },
+    });
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    const stale = {
+      onImpression: hook.result.current.onImpression,
+      onDismiss: hook.result.current.onDismiss,
+      onCta: hook.result.current.onCta,
+    };
+    jest.clearAllMocks();
+    resetSoftUpsellSessionForTests();
+    await hook.rerender({ accountScope: 'B', studyTarget: 'fr', candidates: [french] });
+    expect(hook.result.current.opportunity?.studyTarget ?? null).not.toBe('en');
+    const analyticsCallsBeforeStaleActions = analytics.mock.calls.length;
+    await Promise.all([stale.onImpression(), stale.onDismiss(), stale.onCta()]);
+    expect(storage.markSoftUpsellImpression).not.toHaveBeenCalled();
+    expect(storage.markSoftUpsellDismissed).not.toHaveBeenCalled();
+    expect(analytics).toHaveBeenCalledTimes(analyticsCallsBeforeStaleActions);
+    await waitFor(() => expect(hook.result.current.opportunity?.studyTarget).toBe('fr'));
+  });
+
 });

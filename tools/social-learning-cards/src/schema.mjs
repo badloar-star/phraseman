@@ -52,7 +52,12 @@ export function validateCardManifest(input) {
   const schemaOk = validateSchema(input);
   const errors = schemaOk
     ? []
-    : (validateSchema.errors ?? []).map((error) => `${error.instancePath || '/'}:${error.keyword}`);
+    : (validateSchema.errors ?? []).map((error) => {
+      const path = !error.instancePath && (error.keyword === 'minItems' || error.keyword === 'maxItems')
+        ? '/items'
+        : (error.instancePath || '/');
+      return `${path}:${error.keyword}`;
+    });
   if (input && typeof input === 'object' && Array.isArray(input.items)) {
     errors.push(...duplicateErrors(input.items));
     if (input.languageMode === 'bilingual') {

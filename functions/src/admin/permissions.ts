@@ -80,3 +80,10 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
 export function hasPermission(role: unknown, permission: AdminPermission): boolean {
   return hasAdminRole(role) && ROLE_PERMISSIONS[role].has(permission);
 }
+
+export function hasClaimedPermission(token: unknown, permission: AdminPermission): boolean {
+  const role = token && typeof token === 'object'
+    ? resolveAdminRole(token as Readonly<Record<string, unknown>>)
+    : null;
+  return role !== null && hasPermission(role, permission);
+}

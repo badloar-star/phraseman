@@ -69,7 +69,9 @@ describe('admin v2 daily briefing and report center', () => {
     expect(core).toContain('generationResult?.preservedExisting');
     expect(core).toContain('не означает, что репортов нет вообще');
     expect(core).toContain("state.briefing = { state: 'idle'");
-    expect(core).toContain("state.reports = { state: 'idle'");
+    expect(core).toContain('defaultReportState(state.adminSettings)');
+    expect(core).toContain("items: []");
+    expect(core).toContain("replyDrafts: {}");
 
     const statusBlock = core.slice(core.indexOf('async function updateReportStatus'), core.indexOf('async function handleAction'));
     expect(statusBlock.indexOf('await actions.updateReportStatus')).toBeLessThan(statusBlock.indexOf('authStillValid(authGeneration, requiredPermission)'));

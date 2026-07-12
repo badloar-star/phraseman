@@ -20,7 +20,7 @@ describe('friends tab gift interaction contract', () => {
     const source = read('app/(tabs)/friends.tsx');
     const friendRow = extract(source, 'function FriendRow', 'function RequestRow');
 
-    expect(friendRow).toContain('<View\n      testID={`friend-row-${profile.uid}`');
+    expect(friendRow).toContain('testID={`friend-row-${profile.uid}`}');
     expect(friendRow).toContain('testID={`friend-row-profile-${profile.uid}`}');
     expect(friendRow).toContain('testID={`friend-gift-${profile.uid}`}');
     expect(friendRow).toContain('testID={`friend-delete-${profile.uid}`}');
@@ -38,16 +38,36 @@ describe('friends tab gift interaction contract', () => {
     expect(requestSendGift).toContain('void handleSendGift(giftId, target, giftBalance);');
   });
 
-  it('shows pending feedback without closing the gift sheet before the callable resolves', () => {
+  it('closes the gift sheet and shows optimistic receipt before the callable resolves', () => {
     const source = read('app/(tabs)/friends.tsx');
     const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
     const sendCall = handleSendGift.indexOf('sendFriendGiftWithShards({');
-    const closeSheet = handleSendGift.indexOf('setGiftTarget(null);', sendCall);
-    const pendingToast = handleSendGift.indexOf("emitAppEvent('action_toast'");
+    const closeSheet = handleSendGift.indexOf('setGiftTarget(null);');
+    const receipt = handleSendGift.indexOf('setSentGiftReceipt({');
+    const optimisticSpend = handleSendGift.indexOf("reason: 'friend_gift_optimistic'");
 
-    expect(pendingToast).toBeGreaterThanOrEqual(0);
     expect(closeSheet).toBeGreaterThanOrEqual(0);
-    expect(pendingToast).toBeLessThan(sendCall);
-    expect(closeSheet).toBeGreaterThan(sendCall);
+    expect(receipt).toBeGreaterThanOrEqual(0);
+    expect(optimisticSpend).toBeGreaterThanOrEqual(0);
+    expect(closeSheet).toBeLessThan(sendCall);
+    expect(receipt).toBeLessThan(sendCall);
+    expect(optimisticSpend).toBeLessThan(sendCall);
+    expect(handleSendGift).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
+  });
+  it('queues a started friend quest until the sent-gift modal has fully dismissed', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
+    const sentGiftModal = extract(source, 'visible={sentGiftReceipt !== null}', 'visible={incomingGiftModal !== null}');
+
+    expect(source).toContain('const [pendingFriendQuestStarted, setPendingFriendQuestStarted]');
+    expect(source).toContain('const sentGiftReceiptNativeVisibleRef = useRef(false);');
+    expect(handleSendGift).toContain('sentGiftReceiptNativeVisibleRef.current = true;');
+    expect(handleSendGift).toContain('if (sentGiftReceiptNativeVisibleRef.current) {');
+    expect(handleSendGift).toContain('setPendingFriendQuestStarted(quest);');
+    expect(handleSendGift).toContain('setFriendQuestStarted(quest);');
+    expect(sentGiftModal).toContain('onDismiss={handleSentGiftReceiptDismissed}');
+    expect(source).toContain('sentGiftReceiptNativeVisibleRef.current = false;');
+    expect(source).toContain('visible={friendQuestStarted !== null && sentGiftReceipt === null}');
+    expect(source).toContain('|| sentGiftReceipt !== null || pendingFriendQuestStarted !== null');
   });
 });

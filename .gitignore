@@ -306,3 +306,4 @@ _frames/
 
 # Local isolated Codex worktrees
 /.worktrees/
+.superpowers/

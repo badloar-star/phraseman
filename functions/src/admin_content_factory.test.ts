@@ -1,5 +1,6 @@
 import { HttpsError } from 'firebase-functions/v2/https';
-import { buildContentFactoryJobPlan, parseContentFactoryJobRequest } from './admin_content_factory';
+import { assertContentFactorySourceCoverage, buildContentFactoryJobPlan, parseContentFactoryJobRequest, storedGenerationPlanFingerprint } from './admin_content_factory';
+import type { SourceRegistry } from './content_factory/source_registry';
 
 describe('parseContentFactoryJobRequest', () => {
   it('accepts bounded lesson and surface scopes', () => {
@@ -27,5 +28,31 @@ describe('parseContentFactoryJobRequest', () => {
 
   it('rejects a non-versioned blueprint reference before writing a job', () => {
     expect(() => parseContentFactoryJobRequest({ projectId: 'fr-a1', studyTarget: 'fr', sourceLocale: 'ru', lessonIds: [1], surfaces: ['lessons'], idempotencyKey: 'job-1', blueprintVersion: 'en-v1' })).toThrow(HttpsError);
+  });
+
+  it('returns an actionable source coverage error before creating a job', () => {
+    const lessons = Object.fromEntries(Array.from({ length: 32 }, (_, index) => {
+      const lessonId = index + 1;
+      return [String(lessonId), { lessonId, topic: `topic-${lessonId}`, sourcePhrases: [`Phrase ${lessonId}`], vocabularyFocus: [], drills: [] }];
+    }));
+    const registry: SourceRegistry = {
+      blueprintId: 'english-core-32', blueprintLocale: 'en', blueprintHash: 'a'.repeat(64), version: 'v1',
+      evidence: [{ evidenceId: 'e1', kind: 'official_curriculum', authority: 'Source', url: 'https://example.com', retrievedAt: '2026-07-12T00:00:00.000Z', claim: 'sequence' }],
+      lessons,
+    };
+
+    try {
+      assertContentFactorySourceCoverage(registry, [32, 33]);
+      throw new Error('expected coverage error');
+    } catch (error) {
+      expect(error).toBeInstanceOf(HttpsError);
+      expect(error).toMatchObject({ message: 'source_coverage', details: { missingLessonIds: [33] } });
+    }
+  });
+
+  it('derives plan identity for legacy stored jobs without a fingerprint', () => {
+    const legacy = storedGenerationPlanFingerprint({ lessonIds: [2, 1], surfaces: ['vocabulary', 'quizzes'] });
+    const current = buildContentFactoryJobPlan(parseContentFactoryJobRequest({ projectId: 'fr-a1', studyTarget: 'fr', sourceLocale: 'ru', lessonIds: [1, 2], surfaces: ['lessons', 'quizzes'], idempotencyKey: 'job-legacy', blueprintVersion: 'english-core-32:v1' }), 'admin-1').job.planFingerprint;
+    expect(legacy).toBe(current);
   });
 });

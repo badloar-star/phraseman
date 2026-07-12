@@ -12,7 +12,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import ContentWrap from '../components/ContentWrap';
-import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import StatsArtBackdrop from '../components/StatsArtBackdrop';
 import StatsCardArtSurface from '../components/StatsCardArtSurface';
@@ -52,7 +51,7 @@ import { loadAchievementStates } from './achievements';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import type { ThemeMode } from '../constants/theme';
-import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg, statsThemeAccent, statsThemeSoftBg, type StatsChromeTone } from '../constants/statsThemeChrome';
+import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsPageField, statsSoftBg, statsThemeAccent, statsThemeSoftBg, type StatsChromeTone } from '../constants/statsThemeChrome';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
 import PlusBadge from '../components/PlusBadge';
@@ -949,7 +948,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     const collapseZeros = !gateExpandAll && !showAllPathCharts;
     const zeroRows = collapseZeros ? lifetimeRows.filter((r) => r.numValue <= 0) : [];
     const [zeroRowsExpanded, setZeroRowsExpanded] = React.useState(false);
-    return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={[t.bgCard, t.bgCard, t.bgSurface]} radius={18} scrim="strong" style={{
+    return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={[t.bgCard, t.bgCard, t.bgSurface]} radius={18} scrim="stats" style={{
             borderRadius: 18,
             padding: 16,
             marginBottom: 12,
@@ -1192,7 +1191,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
     if (wager && !wager.active && wager.result !== 'pending') {
         const won = wager.result === 'won';
         const resultColor = won ? '#34C759' : '#FF3B30';
-        return (<StatsCardArtSurface name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} testID="wager-result-card" style={[{ borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 0, borderColor: wagerBorder }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
+        return (<StatsCardArtSurface name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} scrim="stats" testID="wager-result-card" style={[{ borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 0, borderColor: wagerBorder }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
         <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: resultColor + '22', alignItems: 'center', justifyContent: 'center' }}>
           <Ionicons name={won ? 'trophy' : 'close-circle'} size={22} color={monoIcon(themeMode, resultColor, won ? MONO_ICON.light : MONO_ICON.muted)}/>
         </View>
@@ -1279,7 +1278,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         const tierIcon = TIER_ICONS_WAGER[wager.tierIdx] ?? 'flame-outline';
         const progressPct = Math.max(0, Math.min(100, Math.round((daysKept / wager.daysRequired) * 100)));
         const netShards = Math.max(0, wager.rewardShards - wager.betShards);
-        return (<StatsCardArtSurface name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={18} testID="wager-active-card" style={[{ borderRadius: 18, padding: 14, borderWidth: 1, borderColor: wagerBorder, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
+        return (<StatsCardArtSurface name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={18} scrim="stats" testID="wager-active-card" style={[{ borderRadius: 18, padding: 14, borderWidth: 1, borderColor: wagerBorder, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
         <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
           <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: wagerSoftBg, alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name={tierIcon} size={20} color={wagerAccent}/>
@@ -1413,7 +1412,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
     const canAfford = shardsWager >= effectiveBetShards;
     return (<>
       <TouchableOpacity testID="wager-open" onPress={() => setModalOpen(true)} activeOpacity={0.86}>
-        <StatsCardArtSurface testID="wager-open-card" name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} style={[{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: wagerBorder, flexDirection: 'row', alignItems: 'flex-start', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
+        <StatsCardArtSurface testID="wager-open-card" name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} scrim="stats" style={[{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: wagerBorder, flexDirection: 'row', alignItems: 'flex-start', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
           <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: wagerSoftBg, alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name="dice-outline" size={22} color={wagerAccent}/>
           </View>
@@ -1523,7 +1522,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               </Text>
 
               {/* Твой вызов */}
-              <View style={{ borderRadius: 18, padding: 14, marginBottom: 12, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }}>
+              <View style={{ borderRadius: 18, padding: 14, marginBottom: 12, backgroundColor: glassFill(t.bgSurface, 0.46) }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                   <View style={{ width: 30, height: 30, borderRadius: 10, backgroundColor: statsSoftBg(themeMode, 'wager', 'strong'), alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name={TIER_ICONS_WAGER[clampTierIdx(selectedTier)]} size={17} color={wagerAccent}/>
@@ -1997,7 +1996,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
         };
     const visibleStreakPercentile = visiblePercentile(percentilesStreak, totalStreak > 0);
     const cardRadius = statsSurfaceRadius(themeMode, luxuryStats ? 16 : 22);
-    return (<StatsCardArtSurface name="streak" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={luxuryLocations} radius={cardRadius} scrim={freezeActive ? 'strong' : 'medium'} style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, borderColor: isGoldTheme ? (freezeActive ? GOLD_RICH.hairlineStrong : goldHairline) : statsBorder(themeMode, heroTone, 'medium'), overflow: 'hidden' }, luxuryShadow ?? statsGlowStyle(themeMode, heroTone)]}>
+    return (<StatsCardArtSurface name="streak" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={luxuryLocations} radius={cardRadius} scrim={freezeActive ? 'strong' : 'stats'} style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, borderColor: isGoldTheme ? (freezeActive ? GOLD_RICH.hairlineStrong : goldHairline) : statsBorder(themeMode, heroTone, 'medium'), overflow: 'hidden' }, luxuryShadow ?? statsGlowStyle(themeMode, heroTone)]}>
       {isGoldTheme && <GoldBevel radius={16} intensity="strong"/>}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
         <View style={[{
@@ -2375,7 +2374,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
         },
     ];
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
-    return (<StatsCardArtSurface name="practiceBalance" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} testID="stats-learning-health-card" style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance')]}>
+    return (<StatsCardArtSurface name="practiceBalance" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} scrim="stats" testID="stats-learning-health-card" style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance')]}>
       {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
         <StatScoreRing
@@ -2413,7 +2412,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
       </View>
 
       {/* График 7 дней — из бывшего «Ритма недели». Подпись — лучший/слабый день. */}
-      <View style={{ marginTop: 16, borderRadius: 16, padding: 12, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }}>
+      <View style={{ marginTop: 16, borderRadius: 16, padding: 12, backgroundColor: glassFill(t.bgSurface, 0.46) }}>
         <StatBars
           bars={metrics.rhythmDays.map((d): StatBar => ({
             key: d.date,
@@ -3134,7 +3133,8 @@ export default function StreakStats() {
           onUnlock={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'stats' } } as any); }}
         />);
     };
-    return (<ScreenGradient artBackdrop={false}>
+    return (<View style={{ flex: 1, backgroundColor: statsPageField(themeMode) }}>
+    <StatsArtBackdrop />
     <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
 
       {/* Подтверждение траты осколков на заморозку */}
@@ -3284,8 +3284,8 @@ export default function StreakStats() {
         })} activeOpacity={0.82} onPress={() => {
             hapticTap();
             router.push('/level_gifts_inventory' as any);
-        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: pendingGiftCount > 0 ? statsBorder(themeMode, 'multipliers', 'strong') : (isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'multipliers')) }}>
-          <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? t.textSecond : t.textMuted}/>
+        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.washStrong : statsSoftBg(themeMode, 'multipliers', 'strong')) : (isGoldTheme ? GOLD_RICH.blackPiano : statsSoftBg(themeMode, 'multipliers', 'quiet')), borderWidth: 0 }}>
+          <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers')) : t.textMuted}/>
           <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
             {triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
@@ -3432,7 +3432,7 @@ export default function StreakStats() {
                         hapticTap();
                         setBonusOpen(true);
                     }}>
-                <StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: bonusAccent, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
+                <StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: bonusAccent, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
                   <View style={{ width: 42, height: 42, borderRadius: 14, backgroundColor: isGoldTheme ? (hasBonus ? GOLD_RICH.washStrong : GOLD_RICH.bronzeWash) : statsSoftBg(themeMode, 'multipliers', hasBonus ? 'strong' : 'normal'), alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name="sparkles-outline" size={22} color={isGoldTheme ? (hasBonus ? GOLD_RICH.champagne : GOLD_RICH.agedGold) : bonusAccentColor}/>
                   </View>
@@ -3490,7 +3490,7 @@ export default function StreakStats() {
                 </StatsCardArtSurface>
               </TouchableOpacity>);
             }
-            return (<StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} testID="stats-bonus-expanded" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: bonusAccent, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
+            return (<StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" testID="stats-bonus-expanded" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: bonusAccent, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
               <TouchableOpacity activeOpacity={0.84} onPress={() => {
                     hapticTap();
                     setBonusOpen(false);
@@ -3573,7 +3573,7 @@ export default function StreakStats() {
         <View testID="stats-activity-365" onLayout={(event) => {
             activity365YRef.current = event.nativeEvent.layout.y;
         }}>
-          <ActivityHeatmap365 hideNextStep={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE}/>
+          <ActivityHeatmap365 hideNextStep={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE} scrim="stats"/>
         </View>
         </StatsPremiumBlur>
         {renderAiNote('year', 'activity')}
@@ -3607,7 +3607,7 @@ export default function StreakStats() {
                 return null;
             const percentilesAccent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'percentiles');
             return (<StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
-              <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
+              <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
                 <Text style={{ color: percentilesAccent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 4 }}>
                   {triLang(lang, {
                     ru: 'Твой результат среди других',
@@ -3659,7 +3659,7 @@ export default function StreakStats() {
             hapticTap();
             setDetailsOpen((v) => !v);
         }}>
-          <StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'archiveMap', 'medium'), flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'archiveMap') : null]}>
+          <StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'archiveMap', 'medium'), flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'archiveMap') : null]}>
             <View style={{ width: 42, height: 42, borderRadius: 14, backgroundColor: isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'archiveMap'), alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="bar-chart-outline" size={22} color={isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'archiveMap')}/>
             </View>
@@ -3688,7 +3688,7 @@ export default function StreakStats() {
                 const chartDays = allDays.length > 0 ? allDays : days;
                 // У новичка график — простыня пустых столбиков; вместо неё честная заглушка.
                 if (chartDays.filter(d => d.active).length < 3) {
-                    return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} style={{ borderRadius: 16, padding: 20, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap'), alignItems: 'center' }}>
+                    return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} scrim="stats" style={{ borderRadius: 16, padding: 20, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap'), alignItems: 'center' }}>
                     <Ionicons name="bar-chart-outline" size={24} color={t.textMuted}/>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', marginTop: 8, lineHeight: f.sub * 1.4 }}>
                       {triLang(lang, {
@@ -3717,7 +3717,7 @@ export default function StreakStats() {
                 const maxMs = Math.max(...timeDaysChart.map(d => d.ms), 1);
                 const segBg = t.bgSurface ?? (isLightTheme ? 'rgba(0,0,0,0.06)' : t.bgSurface);
                 const segActive = t.bgCard ?? t.bgSurface2 ?? '#2a2a2a';
-                return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={16} style={{ borderRadius: 16, padding: 16, paddingBottom: 8, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap') }}>
+                return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={16} scrim="stats" style={{ borderRadius: 16, padding: 16, paddingBottom: 8, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap') }}>
               <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',
@@ -4024,5 +4024,5 @@ export default function StreakStats() {
       />
 
     </SafeAreaView>
-    </ScreenGradient>);
+    </View>);
 }

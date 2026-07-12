@@ -1,0 +1,205 @@
+{
+  "totalDecisions": 0,
+  "modelDistribution": {
+    "haiku": 0,
+    "sonnet": 0,
+    "opus": 0,
+    "inherit": 0
+  },
+  "avgComplexity": 0.5,
+  "avgConfidence": 0.8,
+  "circuitBreakerTrips": 19,
+  "lastUpdated": "2026-07-11T18:43:54.782Z",
+  "learningHistory": [
+    {
+      "task": "Inspect the workspace directly and complete your assigned read-only audit now. Use targeted rg and f",
+      "model": "sonnet",
+      "complexity": 0.47376373626373625,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:57:00.718Z"
+    },
+    {
+      "task": "Inspect the workspace directly and complete your assigned read-only audit now. Use targeted rg and f",
+      "model": "sonnet",
+      "complexity": 0.5653571428571428,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:57:00.745Z"
+    },
+    {
+      "task": "Inspect the workspace directly and complete your assigned read-only audit now. No edits/tests/deploy",
+      "model": "opus",
+      "complexity": 0.49646103896103894,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:57:00.772Z"
+    },
+    {
+      "task": "Inspect the workspace directly and complete the assigned read-only adversarial root-cause audit now.",
+      "model": "opus",
+      "complexity": 0.5003032345013476,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:57:00.798Z"
+    },
+    {
+      "task": "Ты независимый read-only аудитор. Ни файлов, ни деплоя, ни тестов. Разбери каждый репорт отдельно по",
+      "model": "sonnet",
+      "complexity": 0.3830436156763591,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:59:09.132Z"
+    },
+    {
+      "task": "Ты независимый read-only аудитор. Разбери отдельно каждый репорт: №/id, тема, подтверждаемость тольк",
+      "model": "sonnet",
+      "complexity": 0.29605847520355294,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:59:09.160Z"
+    },
+    {
+      "task": "Ты независимый read-only forensic-аудитор. По каждому: №/id, тема, подтверждаемость только репортом,",
+      "model": "sonnet",
+      "complexity": 0.4566082519964508,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:59:09.187Z"
+    },
+    {
+      "task": "Ты независимый read-only аудитор. По каждому: №/id, тема, подтверждаемость только репортом, релевант",
+      "model": "sonnet",
+      "complexity": 0.47701915403032724,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T05:59:09.213Z"
+    },
+    {
+      "task": "You are an independent read-only security reviewer. Review these facts from C:\\appsprojects\\phrasema",
+      "model": "sonnet",
+      "complexity": 0.5944339622641509,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T06:01:42.579Z"
+    },
+    {
+      "task": "You are an independent read-only debugger. Review:\n- app/_layout.tsx calls migrateXPFormulaV2() on e",
+      "model": "sonnet",
+      "complexity": 0.6385537190082644,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T06:01:42.606Z"
+    },
+    {
+      "task": "You are an independent read-only security reviewer. Review:\n- firestore.rules allows users/{userId} ",
+      "model": "sonnet",
+      "complexity": 0.5806122448979592,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T06:01:42.633Z"
+    },
+    {
+      "task": "READ-ONLY audit critique. Do not invent file contents or claim execution. Use only the supplied veri",
+      "model": "sonnet",
+      "complexity": 0.5761428571428571,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T06:05:09.278Z"
+    },
+    {
+      "task": "READ-ONLY audit critique. Do not invent file contents or claim execution. Use only the supplied veri",
+      "model": "sonnet",
+      "complexity": 0.5793920265780731,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T06:05:09.304Z"
+    },
+    {
+      "task": "READ-ONLY audit critique. Do not invent file contents or claim execution. Use only the supplied veri",
+      "model": "sonnet",
+      "complexity": 0.5775636007827788,
+      "outcome": "failure",
+      "timestamp": "2026-07-10T06:05:09.330Z"
+    },
+    {
+      "task": "REVIEW mode. Objective: review the completed first implementation step for the independent reader-pl",
+      "model": "inherit",
+      "complexity": 0.6549119373776908,
+      "outcome": "failure",
+      "timestamp": "2026-07-11T18:14:59.456Z"
+    },
+    {
+      "task": "REVIEW mode. Objective: review latest PageMan reader-platform change. Added the user's no-age social",
+      "model": "inherit",
+      "complexity": 0.6725238095238095,
+      "outcome": "failure",
+      "timestamp": "2026-07-11T18:32:36.121Z"
+    },
+    {
+      "task": "REVIEW mode. Objective: review latest concrete progress toward PageMan safe vertical slice. Changes:",
+      "model": "inherit",
+      "complexity": 0.5646988795518207,
+      "outcome": "failure",
+      "timestamp": "2026-07-11T18:36:30.015Z"
+    },
+    {
+      "task": "REVIEW mode. Objective: review latest PageMan progress toward safe vertical slice. Changes: Added mo",
+      "model": "inherit",
+      "complexity": 0.557875939849624,
+      "outcome": "failure",
+      "timestamp": "2026-07-11T18:39:06.804Z"
+    },
+    {
+      "task": "REVIEW mode. Objective: review latest progress toward PageMan safe vertical slice. Changes: Added ap",
+      "model": "inherit",
+      "complexity": 0.6830952380952382,
+      "outcome": "failure",
+      "timestamp": "2026-07-11T18:43:54.782Z"
+    }
+  ],
+  "version": 2,
+  "priors": {
+    "low": {
+      "haiku": {
+        "alpha": 1,
+        "beta": 1
+      },
+      "sonnet": {
+        "alpha": 1,
+        "beta": 3
+      },
+      "opus": {
+        "alpha": 1,
+        "beta": 1
+      },
+      "inherit": {
+        "alpha": 1,
+        "beta": 1
+      }
+    },
+    "med": {
+      "haiku": {
+        "alpha": 1,
+        "beta": 1
+      },
+      "sonnet": {
+        "alpha": 1,
+        "beta": 11
+      },
+      "opus": {
+        "alpha": 1,
+        "beta": 3
+      },
+      "inherit": {
+        "alpha": 1,
+        "beta": 6
+      }
+    },
+    "high": {
+      "haiku": {
+        "alpha": 1,
+        "beta": 1
+      },
+      "sonnet": {
+        "alpha": 1,
+        "beta": 1
+      },
+      "opus": {
+        "alpha": 1,
+        "beta": 1
+      },
+      "inherit": {
+        "alpha": 1,
+        "beta": 1
+      }
+    }
+  }
+}

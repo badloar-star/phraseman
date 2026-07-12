@@ -691,8 +691,8 @@ export default function ArenaLeaderboardScreen() {
                         />
                       </PremiumAvatarHalo>
                       <View style={{ flex: 1, minWidth: 0 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
-                          <View style={{ flexShrink: 1, minWidth: 0 }}>
+                        <View style={{ minWidth: 0, overflow: 'hidden' }}>
+                          <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
                             {hasLeagueCrown ? (
                               <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayLeagueCrownCount} />
                             ) : rowIsPremium ? (
@@ -712,8 +712,8 @@ export default function ArenaLeaderboardScreen() {
                               </Text>
                             )}
                           </View>
-                          <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} />
                         </View>
+                        <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} style={{ marginTop: 3 }} />
                         <Text numberOfLines={2} style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
                           {`${triLang(lang, { uk: 'Місце', ru: 'Место', es: 'Puesto', 'pt-BR': 'Posição', vi: 'Vị trí', id: 'Posisi', tr: 'Sıra', pl: 'Miejsce' })} ${item.place} · ${duelLabel} · ${triLang(lang, { uk: 'рів.', ru: 'ур.', es: 'nv.', 'pt-BR': 'nív.', vi: 'cấp', id: 'lvl', tr: 'sv.', pl: 'poz.' })} ${lvl}`}
                         </Text>

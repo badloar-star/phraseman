@@ -14,4 +14,25 @@ describe('Language Factory job visibility', () => {
     expect(index).toContain('adminListContentFactoryJobs');
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminListContentFactoryJobs')");
   });
+
+  test('retains actionable unit errors instead of swallowing worker failures', () => {
+    const worker = fs.readFileSync(path.join(root, 'functions', 'src', 'content_factory_worker.ts'), 'utf8');
+    const read = fs.readFileSync(path.join(root, 'functions', 'src', 'admin_content_factory_read.ts'), 'utf8');
+    const admin = fs.readFileSync(path.join(root, 'admin', 'v2', 'scripts', 'admin-core.js'), 'utf8');
+
+    expect(worker).toContain('errorCode');
+    expect(worker).toContain('errorMessage');
+    expect(worker).toContain('retryable');
+    expect(read).toContain('attemptHistory');
+    expect(admin).toContain('unit.errorCode');
+    expect(admin).toContain('unit.retryable');
+    expect(admin).not.toMatch(/catch\s*\{\s*state\.generation\.failed\s*\+=\s*1;\s*\}/);
+  });
+
+  test('keeps successful partial drafts out of publication review', () => {
+    const admin = fs.readFileSync(path.join(root, 'admin', 'v2', 'scripts', 'admin-core.js'), 'utf8');
+    expect(admin).toContain('job?.releaseCandidate === true');
+    expect(admin).toContain('Черновик готов; для публикационной проверки нужны урок, квиз, карточки и Арена.');
+    expect(admin).toContain('allReady && releaseCandidate');
+  });
 });

@@ -113,14 +113,14 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Код сохранён. Если облако ещё не готово, приложение попробует применить его автоматически позже.',
-          'Код збережено. Якщо хмара ще не готова, застосунок спробує застосувати його автоматично пізніше.',
-          'Código guardado. Si la nube aún no está lista, lo intentaremos automáticamente más tarde.',
-          'Código salvo. Se a nuvem ainda não estiver pronta, tentaremos automaticamente mais tarde.',
-          'Đã lưu mã. Nếu đám mây chưa sẵn sàng, ứng dụng sẽ tự thử lại sau.',
-          'Kode disimpan. Jika cloud belum siap, aplikasi akan mencoba lagi otomatis nanti.',
-          'Kod kaydedildi. Bulut hazır değilse uygulama daha sonra otomatik deneyecek.',
-          'Kod zapisany. Jeśli chmura nie jest gotowa, aplikacja spróbuje później automatycznie.',
+          'Код сохранён. Приложение применит его автоматически, как только соединение будет готово.',
+          'Код збережено. Застосунок застосує його автоматично, щойно з’єднання буде готове.',
+          'Código guardado. Lo aplicaremos automáticamente cuando la conexión esté lista.',
+          'Código salvo. Vamos aplicar automaticamente quando a conexão estiver pronta.',
+          'Đã lưu mã. Ứng dụng sẽ tự áp dụng khi kết nối sẵn sàng.',
+          'Kode disimpan. Aplikasi akan menerapkannya otomatis saat koneksi siap.',
+          'Kod kaydedildi. Bağlantı hazır olduğunda otomatik uygulanacak.',
+          'Kod zapisany. Aplikacja zastosuje go automatycznie, gdy połączenie będzie gotowe.',
         ),
       };
     case 'disabled':
@@ -213,8 +213,6 @@ export default function ReferralCodeEntryScreen() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: t.bgSurface,
-                  borderWidth: 0,
-                  borderColor: t.border,
                   marginRight: 12,
                 }}
               >
@@ -230,8 +228,6 @@ export default function ReferralCodeEntryScreen() {
                 borderRadius: 20,
                 padding: 18,
                 backgroundColor: t.bgCard,
-                borderWidth: 0,
-                borderColor: t.border,
                 gap: 14,
               }}
             >
@@ -279,8 +275,6 @@ export default function ReferralCodeEntryScreen() {
                   paddingHorizontal: 16,
                   backgroundColor: t.bgSurface,
                   color: t.textPrimary,
-                  borderWidth: 0,
-                  borderColor: t.border,
                   fontSize: f.body ?? 16,
                   fontWeight: '900',
                   letterSpacing: 1,

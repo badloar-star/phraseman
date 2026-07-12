@@ -6,8 +6,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const revenuecat_shards_1 = require("./revenuecat_shards");
-const { candidateUserIds, isRevenueCatAnonymousId, looksLikePremiumSubscription, premiumPlanFromEvent, prioritizeUserCandidates, stableCandidateUserIds, transferTargetIds, transferSourceIds, } = revenuecat_shards_1.__revenueCatWebhookTestHooks;
+const { candidateUserIds, isRevenueCatAnonymousId, looksLikePremiumSubscription, premiumPlanFromEvent, prioritizeUserCandidates, stableCandidateUserIds, transferTargetIds, transferSourceIds, revenueCatLifecycleReasonFields, } = revenuecat_shards_1.__revenueCatWebhookTestHooks;
 describe('RevenueCat webhook premium matching', () => {
+    it('normalizes lifecycle reason enums and rejects arbitrary text', () => {
+        expect(revenueCatLifecycleReasonFields({ cancel_reason: ' unsubscribe ' }, 'CANCELLATION'))
+            .toEqual({ cancelReason: 'UNSUBSCRIBE' });
+        expect(revenueCatLifecycleReasonFields({ expiration_reason: 'billing_error' }, 'EXPIRATION'))
+            .toEqual({ expirationReason: 'BILLING_ERROR' });
+        expect(revenueCatLifecycleReasonFields({ cancel_reason: 'user wrote free text!' }, 'CANCELLATION'))
+            .toEqual({});
+        expect(revenueCatLifecycleReasonFields({ cancel_reason: 'A'.repeat(65) }, 'CANCELLATION'))
+            .toEqual({});
+        expect(revenueCatLifecycleReasonFields({ cancel_reason: 'UNSUBSCRIBE' }, 'RENEWAL'))
+            .toEqual({});
+    });
+    it('stores lifecycle reasons only in the RevenueCat audit event document', () => {
+        const source = fs_1.default.readFileSync(path_1.default.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+        expect(source).toContain('...revenueCatLifecycleReasonFields(event, eventType)');
+        expect(source).not.toContain('progressPatch.cancelReason');
+        expect(source).not.toContain('progressPatch.expirationReason');
+    });
     it('accepts explicit premium entitlement events', () => {
         expect(looksLikePremiumSubscription({
             type: 'INITIAL_PURCHASE',

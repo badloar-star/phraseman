@@ -727,14 +727,14 @@ export default function CommunityPackCreateScreen() {
           await auth().signInAnonymously();
         } catch {
           emitAppEvent('action_toast', actionToastTri('error', {
-            ru: 'Войдите в приложение (облако).',
-            uk: 'Увійдіть у застосунок (хмара).',
-            es: 'Inicia sesión en la app (nube).',
-            'pt-BR': 'Entre no aplicativo (nuvem).',
-            vi: 'Đăng nhập vào ứng dụng (đám mây).',
-            id: 'Masuk ke aplikasi (cloud).',
-            tr: 'Uygulamaya giriş yap (bulut).',
-            pl: 'Zaloguj się w aplikacji (chmura).',
+            ru: 'Не удалось подтвердить аккаунт. Перезапусти раздел и попробуй снова.',
+            uk: 'Не вдалося підтвердити акаунт. Перезапусти розділ і спробуй ще раз.',
+            es: 'No se pudo confirmar la cuenta. Reabre la sección e inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível confirmar a conta. Reabra a seção e tente novamente.',
+            vi: 'Không thể xác nhận tài khoản. Mở lại mục này rồi thử lại.',
+            id: 'Tidak dapat mengonfirmasi akun. Buka ulang bagian ini lalu coba lagi.',
+            tr: 'Hesap doğrulanamadı. Bölümü yeniden açıp tekrar dene.',
+            pl: 'Nie udało się potwierdzić konta. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
           }));
           return;
         }
@@ -846,7 +846,7 @@ export default function CommunityPackCreateScreen() {
             <View style={styles.formHorizontalInset}>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 24 }}>
                 {communityPacksTargetEnabled
-                  ? L('Создание наборов с облаком недоступно в этой сборке.', 'Створення наборів з хмарою недоступне в цьому білді.', 'Crear packs con la nube no está disponible en esta versión.', 'A criação de packs com nuvem não está disponível nesta versão.', 'Tính năng tạo bộ thẻ bằng đám mây không khả dụng trong bản dựng này.', 'Pembuatan paket dengan cloud tidak tersedia di build ini.', 'Bulutla paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów z chmurą nie jest dostępne w tej wersji.')
+                  ? L('Создание наборов недоступно в этой сборке.', 'Створення наборів недоступне в цьому білді.', 'Crear packs no está disponible en esta versión.', 'A criação de packs não está disponível nesta versão.', 'Tính năng tạo bộ thẻ không khả dụng trong bản dựng này.', 'Pembuatan paket tidak tersedia di build ini.', 'Paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów nie jest dostępne w tej wersji.')
                   : L('Community-наборы для French закрыты до отдельной проверки источников.', 'Community-набори для French закриті до окремої перевірки джерел.', 'Los packs community para French están bloqueados hasta una revisión de fuentes.', 'Os packs community para French estão bloqueados até uma revisão de fontes.', 'Các gói community cho French đang bị khóa cho đến khi kiểm tra nguồn riêng.', 'Paket community untuk French dikunci sampai pemeriksaan sumber terpisah.', 'French için community paketleri ayrı kaynak kontrolüne kadar kapalı.', 'Pakiety community dla French są zablokowane do osobnej kontroli źródeł.')}
               </Text>
             </View>

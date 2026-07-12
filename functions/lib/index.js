@@ -33,8 +33,9 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportSendReply = exports.adminSupportGenerateReply = exports.adminSupportPull = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = exports.onConstellationQueueWrite = void 0;
-exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = void 0;
+exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportResolveReplyDelivery = exports.adminSupportCancelReplyBatch = exports.adminSupportDispatchReplyBatch = exports.adminSupportPrepareReplyBatch = exports.adminSupportCancelReply = exports.adminSupportSendReply = exports.adminSupportDispatchReply = exports.adminSupportPrepareReply = exports.adminSupportGenerateReply = exports.adminSupportList = exports.adminSupportPull = exports.adminRunAssetJob = exports.adminCreateAssetJob = exports.adminListAssetJobs = exports.adminGetDailyBriefing = exports.adminOpenDailyDigest = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.adminRollbackCourseRelease = exports.adminActivateCourseRelease = exports.adminSealCourseRelease = exports.adminReviewCourseGeneration = exports.CONTENT_FACTORY_OPENAI_API_KEY = exports.adminRunContentGenerationUnit = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = exports.adminListContentFactoryJobs = exports.adminCreateContentGenerationJob = exports.adminCleanupExpiredAppMessages = exports.adminDeleteAppMessage = exports.adminUpdateAppMessage = exports.adminSetAppMessageActive = exports.adminCreateAppMessage = exports.adminListAppMessages = exports.adminPublishRemoteConfig = exports.adminGetRemoteConfigWorkspace = exports.adminListOpsLog = exports.adminListAuditLog = exports.adminUpdateReportStatus = exports.adminListReportQueue = exports.adminGetUserProfile = exports.adminSearchUsers = exports.adminGetAnalyticsSnapshot = exports.adminSubscriptionAnalytics = exports.adminProductAnalytics = exports.openAiBudgetDashboard = exports.adminListPromoCodes = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = void 0;
+exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -73,7 +74,7 @@ const { accountDeleteMine, accountDeleteEnqueue } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteWorker, accountDeleteRetryCron } = require('./account_delete_worker');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameReserve, nameReleaseMine, } = require('./leaderboard');
+const { leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameGenerateAndReserve, nameReserve, nameReleaseMine, } = require('./leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueChestClaim } = require('./league_chest');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -146,12 +147,6 @@ const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationSubmitAction } = require('./constellations/submit');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { constellationAdmin } = require('./constellations/admin');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tryMatchConstellationUser, fillConstellationAfterDelay } = require('./constellations/queue');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
@@ -180,6 +175,7 @@ exports.accountDeleteWorker = accountDeleteWorker;
 exports.accountDeleteRetryCron = accountDeleteRetryCron;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
+exports.nameGenerateAndReserve = nameGenerateAndReserve;
 exports.nameReserve = nameReserve;
 exports.nameReleaseMine = nameReleaseMine;
 exports.leagueChestClaim = leagueChestClaim;
@@ -272,56 +268,6 @@ exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
-exports.constellationSubmitAction = constellationSubmitAction;
-exports.constellationAdmin = constellationAdmin;
-// ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
-// Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
-// bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
-exports.onConstellationQueueWrite = functions.firestore.onDocumentWritten(
-// timeoutSeconds 90: после мгновенной попытки функция «досыпает» до
-// bot_fill_delay (30с) и добирает матч ботами точно в срок — игрок не ждёт
-// минутный cron (он остаётся страховкой).
-{ document: 'constellation_queue/{userId}', timeoutSeconds: 90 }, async (event) => {
-    const beforeExists = !!event.data?.before.exists;
-    const after = event.data?.after;
-    const afterData = after?.exists ? after.data() : undefined;
-    const beforeData = beforeExists ? event.data?.before.data() : undefined;
-    // Живой счётчик «в поиске»: активная запись = существует и ещё без matchId.
-    // Обновляем инкрементально на каждое изменение — клиент видит ненулевое
-    // число мгновенно, не дожидаясь минутного cron (он лишь сверяет точное).
-    const wasSearching = beforeExists && !beforeData?.matchId;
-    const isSearching = !!after?.exists && !afterData?.matchId;
-    const delta = (isSearching ? 1 : 0) - (wasSearching ? 1 : 0);
-    if (delta !== 0) {
-        try {
-            await admin.firestore().doc('app_meta/constellation_searching').set({
-                searchingCount: admin.firestore.FieldValue.increment(delta),
-                updatedAt: Date.now(),
-            }, { merge: true });
-        }
-        catch (e) {
-            console.warn('constellation searching increment', e);
-        }
-    }
-    if (!after?.exists || afterData?.matchId)
-        return;
-    // Дальше — только на СОЗДАНИЕ новой записи поиска (не на server-side update).
-    if (beforeExists)
-        return;
-    const userId = event.params.userId;
-    try {
-        await tryMatchConstellationUser(userId);
-    }
-    catch (e) {
-        console.warn('onConstellationQueueWrite tryMatch', e);
-    }
-    try {
-        await fillConstellationAfterDelay(userId);
-    }
-    catch (e) {
-        console.warn('onConstellationQueueWrite botFill', e);
-    }
-});
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;
@@ -1309,11 +1255,25 @@ Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: functi
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
 var admin_daily_digest_1 = require("./admin_daily_digest");
 Object.defineProperty(exports, "adminGenerateDailyDigest", { enumerable: true, get: function () { return admin_daily_digest_1.adminGenerateDailyDigest; } });
+Object.defineProperty(exports, "adminOpenDailyDigest", { enumerable: true, get: function () { return admin_daily_digest_1.adminOpenDailyDigest; } });
+Object.defineProperty(exports, "adminGetDailyBriefing", { enumerable: true, get: function () { return admin_daily_digest_1.adminGetDailyBriefing; } });
+var admin_asset_studio_1 = require("./admin_asset_studio");
+Object.defineProperty(exports, "adminListAssetJobs", { enumerable: true, get: function () { return admin_asset_studio_1.adminListAssetJobs; } });
+Object.defineProperty(exports, "adminCreateAssetJob", { enumerable: true, get: function () { return admin_asset_studio_1.adminCreateAssetJob; } });
+Object.defineProperty(exports, "adminRunAssetJob", { enumerable: true, get: function () { return admin_asset_studio_1.adminRunAssetJob; } });
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 var support_inbox_1 = require("./support_inbox");
 Object.defineProperty(exports, "adminSupportPull", { enumerable: true, get: function () { return support_inbox_1.adminSupportPull; } });
+Object.defineProperty(exports, "adminSupportList", { enumerable: true, get: function () { return support_inbox_1.adminSupportList; } });
 Object.defineProperty(exports, "adminSupportGenerateReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportGenerateReply; } });
+Object.defineProperty(exports, "adminSupportPrepareReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportPrepareReply; } });
+Object.defineProperty(exports, "adminSupportDispatchReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportDispatchReply; } });
 Object.defineProperty(exports, "adminSupportSendReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportSendReply; } });
+Object.defineProperty(exports, "adminSupportCancelReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportCancelReply; } });
+Object.defineProperty(exports, "adminSupportPrepareReplyBatch", { enumerable: true, get: function () { return support_inbox_1.adminSupportPrepareReplyBatch; } });
+Object.defineProperty(exports, "adminSupportDispatchReplyBatch", { enumerable: true, get: function () { return support_inbox_1.adminSupportDispatchReplyBatch; } });
+Object.defineProperty(exports, "adminSupportCancelReplyBatch", { enumerable: true, get: function () { return support_inbox_1.adminSupportCancelReplyBatch; } });
+Object.defineProperty(exports, "adminSupportResolveReplyDelivery", { enumerable: true, get: function () { return support_inbox_1.adminSupportResolveReplyDelivery; } });
 Object.defineProperty(exports, "adminSupportSaveSignature", { enumerable: true, get: function () { return support_inbox_1.adminSupportSaveSignature; } });
 Object.defineProperty(exports, "adminSupportSetStatus", { enumerable: true, get: function () { return support_inbox_1.adminSupportSetStatus; } });
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
@@ -1329,8 +1289,51 @@ var promo_codes_1 = require("./promo_codes");
 Object.defineProperty(exports, "promoCodeRedeem", { enumerable: true, get: function () { return promo_codes_1.promoCodeRedeem; } });
 Object.defineProperty(exports, "promoCodeUpsert", { enumerable: true, get: function () { return promo_codes_1.promoCodeUpsert; } });
 Object.defineProperty(exports, "promoCodeBatchUpsert", { enumerable: true, get: function () { return promo_codes_1.promoCodeBatchUpsert; } });
+Object.defineProperty(exports, "adminListPromoCodes", { enumerable: true, get: function () { return promo_codes_1.adminListPromoCodes; } });
 var openai_budget_dashboard_1 = require("./openai_budget_dashboard");
 Object.defineProperty(exports, "openAiBudgetDashboard", { enumerable: true, get: function () { return openai_budget_dashboard_1.openAiBudgetDashboard; } });
+var admin_product_analytics_1 = require("./admin_product_analytics");
+Object.defineProperty(exports, "adminProductAnalytics", { enumerable: true, get: function () { return admin_product_analytics_1.adminProductAnalytics; } });
+var admin_subscription_analytics_1 = require("./admin_subscription_analytics");
+Object.defineProperty(exports, "adminSubscriptionAnalytics", { enumerable: true, get: function () { return admin_subscription_analytics_1.adminSubscriptionAnalytics; } });
+var admin_analytics_1 = require("./admin_analytics");
+Object.defineProperty(exports, "adminGetAnalyticsSnapshot", { enumerable: true, get: function () { return admin_analytics_1.adminGetAnalyticsSnapshot; } });
+var admin_user_profile_1 = require("./admin_user_profile");
+Object.defineProperty(exports, "adminSearchUsers", { enumerable: true, get: function () { return admin_user_profile_1.adminSearchUsers; } });
+Object.defineProperty(exports, "adminGetUserProfile", { enumerable: true, get: function () { return admin_user_profile_1.adminGetUserProfile; } });
+var admin_reports_center_1 = require("./admin_reports_center");
+Object.defineProperty(exports, "adminListReportQueue", { enumerable: true, get: function () { return admin_reports_center_1.adminListReportQueue; } });
+Object.defineProperty(exports, "adminUpdateReportStatus", { enumerable: true, get: function () { return admin_reports_center_1.adminUpdateReportStatus; } });
+var admin_audit_log_1 = require("./admin_audit_log");
+Object.defineProperty(exports, "adminListAuditLog", { enumerable: true, get: function () { return admin_audit_log_1.adminListAuditLog; } });
+var admin_ops_log_1 = require("./admin_ops_log");
+Object.defineProperty(exports, "adminListOpsLog", { enumerable: true, get: function () { return admin_ops_log_1.adminListOpsLog; } });
+var admin_remote_config_1 = require("./admin_remote_config");
+Object.defineProperty(exports, "adminGetRemoteConfigWorkspace", { enumerable: true, get: function () { return admin_remote_config_1.adminGetRemoteConfigWorkspace; } });
+Object.defineProperty(exports, "adminPublishRemoteConfig", { enumerable: true, get: function () { return admin_remote_config_1.adminPublishRemoteConfig; } });
+var admin_app_messages_1 = require("./admin_app_messages");
+Object.defineProperty(exports, "adminListAppMessages", { enumerable: true, get: function () { return admin_app_messages_1.adminListAppMessages; } });
+Object.defineProperty(exports, "adminCreateAppMessage", { enumerable: true, get: function () { return admin_app_messages_1.adminCreateAppMessage; } });
+Object.defineProperty(exports, "adminSetAppMessageActive", { enumerable: true, get: function () { return admin_app_messages_1.adminSetAppMessageActive; } });
+Object.defineProperty(exports, "adminUpdateAppMessage", { enumerable: true, get: function () { return admin_app_messages_1.adminUpdateAppMessage; } });
+Object.defineProperty(exports, "adminDeleteAppMessage", { enumerable: true, get: function () { return admin_app_messages_1.adminDeleteAppMessage; } });
+Object.defineProperty(exports, "adminCleanupExpiredAppMessages", { enumerable: true, get: function () { return admin_app_messages_1.adminCleanupExpiredAppMessages; } });
+var admin_content_factory_1 = require("./admin_content_factory");
+Object.defineProperty(exports, "adminCreateContentGenerationJob", { enumerable: true, get: function () { return admin_content_factory_1.adminCreateContentGenerationJob; } });
+Object.defineProperty(exports, "adminListContentFactoryJobs", { enumerable: true, get: function () { return admin_content_factory_1.adminListContentFactoryJobs; } });
+var admin_content_factory_read_1 = require("./admin_content_factory_read");
+Object.defineProperty(exports, "adminGetContentFactoryJobDetail", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryJobDetail; } });
+Object.defineProperty(exports, "adminGetContentFactoryUnitPreview", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryUnitPreview; } });
+Object.defineProperty(exports, "adminGetContentFactoryWorkspace", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryWorkspace; } });
+var content_factory_worker_1 = require("./content_factory_worker");
+Object.defineProperty(exports, "adminRunContentGenerationUnit", { enumerable: true, get: function () { return content_factory_worker_1.adminRunContentGenerationUnit; } });
+Object.defineProperty(exports, "CONTENT_FACTORY_OPENAI_API_KEY", { enumerable: true, get: function () { return content_factory_worker_1.CONTENT_FACTORY_OPENAI_API_KEY; } });
+var admin_content_release_1 = require("./admin_content_release");
+Object.defineProperty(exports, "adminReviewCourseGeneration", { enumerable: true, get: function () { return admin_content_release_1.adminReviewCourseGeneration; } });
+Object.defineProperty(exports, "adminSealCourseRelease", { enumerable: true, get: function () { return admin_content_release_1.adminSealCourseRelease; } });
+var language_release_1 = require("./language_release");
+Object.defineProperty(exports, "adminActivateCourseRelease", { enumerable: true, get: function () { return language_release_1.adminActivateCourseRelease; } });
+Object.defineProperty(exports, "adminRollbackCourseRelease", { enumerable: true, get: function () { return language_release_1.adminRollbackCourseRelease; } });
 var openai_dialog_model_config_1 = require("./openai_dialog_model_config");
 Object.defineProperty(exports, "openAiDialogModelConfig", { enumerable: true, get: function () { return openai_dialog_model_config_1.openAiDialogModelConfig; } });
 Object.defineProperty(exports, "openAiDialogQuotaConfig", { enumerable: true, get: function () { return openai_dialog_model_config_1.openAiDialogQuotaConfig; } });

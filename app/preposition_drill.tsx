@@ -527,7 +527,7 @@ export default function PrepositionDrillScreen() {
             <EnergyBar size={30} />
           </View>
 
-          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), marginBottom: 12 }}>
+          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 14, marginBottom: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
           </View>
 
@@ -560,8 +560,6 @@ export default function PrepositionDrillScreen() {
                 style={{
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: ds.radius.lg,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: ds.spacing.md,
                   marginBottom: ds.spacing.md,
                   ...(effectiveOs === 'android' ? { elevation: 2 } : {}),

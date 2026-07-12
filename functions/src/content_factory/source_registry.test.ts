@@ -1,4 +1,4 @@
-import { sourceRegistryDocId, validateSourceRegistry, type SourceRegistry } from './source_registry';
+import { inspectSourceRegistryCoverage, sourceRegistryDocId, validateSourceRegistry, type SourceRegistry } from './source_registry';
 
 const registry: SourceRegistry = {
   blueprintId: 'english-core-32', blueprintLocale: 'en', blueprintHash: 'a'.repeat(64), version: 'v1',
@@ -15,5 +15,18 @@ describe('server source registry', () => {
   it('rejects invented source evidence and non-English blueprint locale', () => {
     expect(validateSourceRegistry({ ...registry, blueprintLocale: 'fr' }).errors).toContain('blueprint_locale_must_be_en');
     expect(validateSourceRegistry({ ...registry, evidence: [{ ...registry.evidence[0], url: 'javascript:bad' }] }).errors).toContain('source_evidence_invalid');
+  });
+
+  it('reports the exact requested lessons missing from a 32-lesson registry', () => {
+    const lessons = Object.fromEntries(Array.from({ length: 32 }, (_, index) => {
+      const lessonId = index + 1;
+      return [String(lessonId), { lessonId, topic: `topic-${lessonId}`, sourcePhrases: [`Phrase ${lessonId}`], vocabularyFocus: [], drills: [] }];
+    }));
+
+    expect(inspectSourceRegistryCoverage({ ...registry, lessons }, [32, 33])).toEqual({
+      ok: false,
+      code: 'source_coverage',
+      missingLessonIds: [33],
+    });
   });
 });

@@ -34,6 +34,7 @@ describe('Language Factory protected reads', () => {
       catalog: { revision: 3 },
     });
     expect(detail.units.map((unit) => unit.unitId)).toEqual(['lesson-1', 'quiz-1', 'arena-2']);
+    expect(detail.units.every((unit) => Array.isArray(unit.attemptHistory))).toBe(true);
     expect(detail.review).toEqual({ status: 'approved', reason: 'checked' });
     expect(detail.catalog).toEqual({ revision: 3 });
   });

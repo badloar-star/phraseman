@@ -533,6 +533,8 @@ function AppMessagesInbox() {
       bg: '#111820',
       panel: '#17202A',
       card: '#202934',
+      cardStrong: '#263241',
+      readCard: '#1B232D',
       border: 'rgba(255,255,255,0.10)',
       text: '#F7F8FB',
       muted: '#AAB3C2',
@@ -543,6 +545,8 @@ function AppMessagesInbox() {
       bg: '#F7F8FB',
       panel: '#FFFFFF',
       card: '#F1F4F8',
+      cardStrong: '#E8EDF4',
+      readCard: '#F8FAFC',
       border: 'rgba(32,37,46,0.12)',
       text: '#20252E',
       muted: '#657084',
@@ -605,14 +609,7 @@ function AppMessagesInbox() {
               : message.poll
               ? pickAppMessagePollQuestion(message.poll, lang)
               : buildAppMessagePreview(text.body, 160);
-            const rowBackgroundColor = messageRead
-              ? isDark
-                ? 'rgba(148,163,184,0.14)'
-                : '#E5E7EB'
-              : chrome.card;
-            const rowBorderColor = messageRead
-              ? 'rgba(100,116,139,0.20)'
-              : chrome.border;
+            const rowBackgroundColor = messageRead ? chrome.readCard : chrome.cardStrong;
             const rowTitleColor = messageRead ? chrome.muted : chrome.text;
             const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
             return (
@@ -621,7 +618,7 @@ function AppMessagesInbox() {
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
-                style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor, borderColor: rowBorderColor }]}
+                style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
                 {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
                 <View style={styles.messageRowTop}>
@@ -1137,7 +1134,7 @@ const styles = StyleSheet.create({
   messageRow: {
     position: 'relative',
     borderRadius: 16,
-    borderWidth: 0.5,
+    borderWidth: 0,
     padding: 13,
     overflow: 'visible',
   },

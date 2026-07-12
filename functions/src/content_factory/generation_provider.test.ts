@@ -21,8 +21,15 @@ describe('generation provider seam', () => {
   });
 
   it('generates quiz/card/arena units through the same provider seam', async () => {
-    const provider: GenerationProvider = { generate: async ({ prompt }) => prompt.includes('flashcard') ? JSON.stringify({ lessonId: 1, surface: 'flashcard', items: [{ id: 'c1', front: 'I am', back: 'Je suis' }] }) : JSON.stringify({ lessonId: 1, surface: 'quiz', items: [{ id: 'q1', prompt: 'Как?', answer: 'Je suis', options: ['Je suis', 'Tu es'] }] }) };
-    const result = await generateSurfaceUnit({ provider, model: 'fake', surface: 'flashcard', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, topic: 'identity', sourcePhrases: ['I am ready'] });
-    expect(result.surface).toBe('flashcard');
+    const provider: GenerationProvider = { generate: async ({ prompt }) => {
+      if (prompt.includes('surface=flashcard')) return JSON.stringify({ lessonId: 1, surface: 'flashcard', items: [{ id: 'c1', front: 'Je suis', back: 'Я есть' }] });
+      if (prompt.includes('surface=arena')) return JSON.stringify({ lessonId: 1, surface: 'arena', items: [{ id: 'a1', prompt: 'Как сказать?', answer: 'Je suis', options: ['Je suis', 'Tu es', 'Il est', 'Nous sommes'] }] });
+      return JSON.stringify({ lessonId: 1, surface: 'quiz', items: [{ id: 'q1', prompt: 'Как сказать?', answer: 'Je suis', options: ['Je suis', 'Tu es'] }] });
+    } };
+    const common = { provider, model: 'fake', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, topic: 'identity', sourcePhrases: ['I am ready'] } as const;
+    const quiz = await generateSurfaceUnit({ ...common, surface: 'quiz' });
+    const flashcard = await generateSurfaceUnit({ ...common, surface: 'flashcard' });
+    const arena = await generateSurfaceUnit({ ...common, surface: 'arena' });
+    expect([quiz.surface, flashcard.surface, arena.surface]).toEqual(['quiz', 'flashcard', 'arena']);
   });
 });

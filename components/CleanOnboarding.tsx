@@ -40,7 +40,7 @@ import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
 import { requestNotificationPermissionWithFallback, scheduleDailyReminder } from '../app/notifications';
-import { ensureUniqueGeneratedNickname } from '../app/nickname_guard';
+import { GENERATED_NICKNAME_PENDING_KEY, resumePendingGeneratedNickname } from '../app/nickname_guard';
 import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
@@ -996,7 +996,6 @@ function CleanOnboarding({
   const [legalAccepted, setLegalAccepted] = useState(false);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
   const [legalError, setLegalError] = useState<string | null>(null);
-  const [finishBusy, setFinishBusy] = useState(false);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
@@ -1318,7 +1317,7 @@ function CleanOnboarding({
   }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, planId, queueSelectedPlan, selectedBillingPlan, selectedMinutes]);
 
   const finish = useCallback(async () => {
-    if (finishBusy || finishingRef.current) return;
+    if (finishingRef.current) return;
     setLegalError(null);
     if (ageAnswer !== 'yes') {
       setLegalError(ageAnswer === 'no' ? 'Приложение доступно с 16 лет.' : 'Подтверди, что тебе уже есть 16.');
@@ -1330,22 +1329,14 @@ function CleanOnboarding({
     }
 
     finishingRef.current = true;
-    setFinishBusy(true);
     try {
-      let finalName: string;
-      try {
-        finalName = await ensureUniqueGeneratedNickname();
-      } catch {
-        setLegalError('Не удалось создать уникальное имя. Проверь интернет и попробуй снова.');
-        return;
-      }
       const currentLevel = levelToCurrentLevel(selectedLevel);
       const profileMinutes = minutesToProfileMinutes(selectedMinutes);
       const targetLevel = targetAfterLevel(currentLevel);
       const estimatedDays = estimateDaysToTarget(currentLevel, targetLevel, profileMinutes);
       const targetDate = addDays(new Date(), estimatedDays || 30);
       const profile: UserProfile = {
-        name: finalName,
+        name: '',
         learningGoal: goalToLearningGoal(selectedGoal),
         minutesPerDay: profileMinutes,
         currentLevel,
@@ -1358,17 +1349,21 @@ function CleanOnboarding({
       };
 
       await AsyncStorage.multiSet([
-        ['user_name', finalName],
         ['user_profile', JSON.stringify(profile)],
+        [GENERATED_NICKNAME_PENDING_KEY, JSON.stringify({ createdAt: Date.now() })],
         [LEGAL_ACCEPTED_KEY, '1'],
         [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
-      await AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
-      await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE).catch(() => null);
-      await setAnalyticsConsent(analyticsAllowed ? 'granted' : 'denied').catch(() => null);
-      void recordConsentToCloud();
+      onDone();
+      void resumePendingGeneratedNickname();
+      void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
+      void (async () => {
+        await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE).catch(() => null);
+        await setAnalyticsConsent(analyticsAllowed ? 'granted' : 'denied').catch(() => null);
+        await recordConsentToCloud().catch(() => null);
+      })();
       void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
       if (analyticsAllowed && source) {
         trackOnboarding('onboarding_source_select', {
@@ -1383,15 +1378,12 @@ function CleanOnboarding({
         target: studyTarget,
         plusSelected,
       });
-      onDone();
     } finally {
-      setFinishBusy(false);
       finishingRef.current = false;
     }
   }, [
     ageAnswer,
     analyticsAllowed,
-    finishBusy,
     lang,
     legalAccepted,
     onDone,
@@ -1791,13 +1783,11 @@ function CleanOnboarding({
             Keyboard.dismiss();
             void finish();
           }}
-          loading={finishBusy}
           disabled={ageAnswer !== 'yes' || !legalAccepted}
           testID="onboarding-finish"
         />
       )}
     >
-      <Text style={styles.consentLead}>Подтверди два пункта — и начинаем</Text>
       <View style={styles.ageButtons}>
         <Pressable
           testID="onboarding-age-yes"
@@ -1863,7 +1853,6 @@ function CleanOnboarding({
         <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
       </View>
       {legalError ? <Text style={styles.errorText}>{legalError}</Text> : null}
-      <Text style={styles.consentNameHint}>Имя создадим автоматически — изменить можно позже</Text>
     </ScreenFrame>
   );
   // Welcome (свои анимации) и aha (полноэкранная сцена со своими переходами)

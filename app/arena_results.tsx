@@ -235,6 +235,7 @@ export default function DuelResultsScreen() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
+  const arenaLeaderboardSurface = [t.accent + '12', glassFill(t.bgSurface, 0.72), t.bgCard];
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const arenaShardAccent = '#A78BFA';
   const arenaLossAccent = '#F87171';
@@ -1821,7 +1822,7 @@ export default function DuelResultsScreen() {
         </Animated.View>
 
         {isRoomRun ? (
-          <View style={[styles.leaderboard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopColor: glassFill(t.accent, 0.14) }]}>
+          <LinearGradient testID="arena-results-leaderboard-surface" colors={arenaLeaderboardSurface} style={styles.leaderboard}>
             <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
               {triLang(lang, {
                 ru: `Таблица комнаты ${cleanRoomCode}`,
@@ -1870,9 +1871,9 @@ export default function DuelResultsScreen() {
                 </View>
               );
             })}
-          </View>
+          </LinearGradient>
         ) : (
-          <View style={[styles.leaderboard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopColor: glassFill(t.accent, 0.14) }]}>
+          <LinearGradient testID="arena-results-leaderboard-surface" colors={arenaLeaderboardSurface} style={styles.leaderboard}>
             <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
               {triLang(lang, {
                 ru: 'Результаты матча',
@@ -1967,7 +1968,7 @@ export default function DuelResultsScreen() {
                 </TouchableOpacity>
               );
             })}
-          </View>
+          </LinearGradient>
         )}
 
         {/* Разбивка очков — работает и для мока (через query-параметры),
@@ -1997,7 +1998,7 @@ export default function DuelResultsScreen() {
             }
           }
           return (
-            <View style={[styles.leaderboard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopColor: glassFill(t.accent, 0.14) }]}>
+            <LinearGradient testID="arena-results-leaderboard-surface" colors={arenaLeaderboardSurface} style={styles.leaderboard}>
               <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Твои очки',
@@ -2110,7 +2111,7 @@ export default function DuelResultsScreen() {
                   <Text style={[{ color: t.accent, fontSize: f.body, fontWeight: '900', flexShrink: 0 }]}>{me?.score ?? 0}</Text>
                 </View>
               </View>
-            </View>
+            </LinearGradient>
           );
         })()}
 
@@ -2750,7 +2751,7 @@ const styles = StyleSheet.create({
     width: 46,
     height: 46,
   },
-  leaderboard: { borderRadius: 20, borderTopWidth: 1, overflow: 'hidden' },
+  leaderboard: { borderRadius: 20, overflow: 'hidden', borderWidth: 0 },
   leaderboardTitle: {
     paddingHorizontal: 16, paddingVertical: 10, fontWeight: '600', textTransform: 'uppercase',
   },

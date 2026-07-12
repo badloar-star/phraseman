@@ -271,8 +271,6 @@ function UnownedMarketPackCard({
           height: tileW,
           borderRadius: TILE_RADIUS,
           overflow: 'hidden',
-          borderTopWidth: 1,
-          borderTopColor: glassFill(t.accent, 0.14),
         },
         cardShadow,
       ]}

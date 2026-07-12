@@ -42,7 +42,7 @@ describe('clean midnight onboarding contract', () => {
     expect(source).not.toContain("'planResult'");
   });
 
-  it('keeps monetization inside onboarding and finishes with name, age, analytics, and legal consent', () => {
+  it('keeps monetization inside onboarding and finishes with age, analytics, legal consent, and an automatic nickname', () => {
     [
       'testID="onboarding-start-mode-plus"',
       'testID="onboarding-start-mode-free"',
@@ -55,16 +55,22 @@ describe('clean midnight onboarding contract', () => {
       'PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY',
       'usePaywallPurchase',
       "go('name')",
-      'testID="onboarding-name-input"',
       'testID="onboarding-age-yes"',
       'testID="onboarding-analytics-checkbox"',
       'testID="onboarding-legal-checkbox"',
     ].forEach((text) => expect(source).toContain(text));
+    expect(source).not.toContain('testID="onboarding-name-input"');
+    expect(source).toContain('resumePendingGeneratedNickname');
+    expect(source).toContain('GENERATED_NICKNAME_PENDING_KEY');
+    expect(source).not.toContain('Подтверди два пункта — и начинаем');
+    expect(source).not.toContain('Имя создадим автоматически — изменить можно позже');
+    expect(source).not.toContain('Не удалось создать уникальное имя');
+    expect(source).not.toContain('loading={finishBusy}');
+    expect(source.indexOf('onDone();')).toBeLessThan(source.indexOf('resumePendingGeneratedNickname()'));
 
     expect(source).toContain('Phraseman Plus');
     expect(source).not.toContain('testID="onboarding-exit-app"');
-    expect(source).toContain("label={ageAnswer === 'no' ? 'Выйти' : 'Сохранить и начать'}");
-    expect(source).toContain('BackHandler.exitApp');
+    expect(source).toContain('label="Начать обучение"');
     expect(source).toContain('trackOnboardingPlanPaywallView');
     expect(source).toContain("trackEvent('onboarding_plan_paywall_view'");
     expect(source).toContain("trackEvent('onboarding_plan_trial_cta'");

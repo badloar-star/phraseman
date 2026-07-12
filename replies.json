@@ -1,0 +1,74 @@
+[
+  {
+    "reportId": "KQ3a5NdHJJCq7cPIgzyL",
+    "uid": "hGmob8b01wgEHsPpw7ugUUVFuUK2",
+    "title": "Спасибо, мы проверили перевод",
+    "body": "Спасибо, что обратили внимание на оттенок значения. В этой фразе enjoy означает «нравится, получаю удовольствие», а love выражает более сильное чувство, поэтому текущий перевод «Мне нравится читать» соответствует заданию.",
+    "shards": 0,
+    "resolution": "by_design",
+    "rewardGroup": "lesson22-enjoy-meaning"
+  },
+  {
+    "reportId": "JDbcUxXynyyBiCvsBzk2",
+    "uid": "cfe21f3d-82eb-46f9-8b64-0329aa6f124f",
+    "title": "Спасибо, разбираемся со звуком",
+    "body": "Спасибо, что подробно описали проблему. Мы подтвердили, что в задании на слух фраза у части пользователей может не воспроизводиться, и сейчас разбираемся с причиной.",
+    "shards": 0,
+    "resolution": "duplicate",
+    "rewardGroup": "personal-plan-impuls-listening"
+  },
+  {
+    "reportId": "IsA4gslKhWuiIyL9Rb5E",
+    "uid": "cfe21f3d-82eb-46f9-8b64-0329aa6f124f",
+    "title": "Спасибо, проблему со звуком подтвердили",
+    "body": "Спасибо, что сообщили о неработающей кнопке «Слушать». Проблема подтверждена, команда разбирается с воспроизведением; за находку вам начислен 1 осколок.",
+    "shards": 1,
+    "resolution": "confirmed_investigating",
+    "rewardGroup": "personal-plan-impuls-listening"
+  },
+  {
+    "reportId": "AJytlM5NdHtyQMnZ1OiR",
+    "uid": "cfe21f3d-82eb-46f9-8b64-0329aa6f124f",
+    "title": "Спасибо, мы проверили озвучку ответа",
+    "body": "Спасибо за сообщение. Мы проверили озвучку после ответа: она запускается, когда в настройках включено произношение, поэтому подтверждённой ошибки в этом задании не нашли.",
+    "shards": 0,
+    "resolution": "not_reproduced",
+    "rewardGroup": "lesson-result-audio-setting"
+  },
+  {
+    "reportId": "pBOO1fDwVk4th3GnFkpc",
+    "uid": "cfe21f3d-82eb-46f9-8b64-0329aa6f124f",
+    "title": "Спасибо, исправили произношение вариантов",
+    "body": "Спасибо, вы точно заметили проблему: при выборе варианта могло звучать другое, правильное слово. Теперь приложение произносит именно выбранную форму, поэтому разницу между sang и sung можно услышать; изменение вступит в силу со следующим обновлением приложения, а вам начислен 1 осколок.",
+    "shards": 1,
+    "resolution": "confirmed_fixed",
+    "rewardGroup": "irregular-selected-form-audio"
+  },
+  {
+    "reportId": "2DnpiLpbGscGtxQ1KoQq",
+    "uid": "b5927e15-1f1a-4072-86ba-9cb72c0e9d97",
+    "title": "Спасибо, проверяем чувствительность записи",
+    "body": "Спасибо, что подробно описали, как работает запись на вашем устройстве. Мы приняли отзыв и продолжаем проверять чувствительность распознавания в разных условиях.",
+    "shards": 0,
+    "resolution": "not_reproduced",
+    "rewardGroup": "speaking-microphone-sensitivity"
+  },
+  {
+    "reportId": "DAShjpK0W1KEKFraeVl1",
+    "uid": "03442fb8-6ecf-4886-b7c4-5b5382b07ee3",
+    "title": "Спасибо, мы проверили эту фразу",
+    "body": "Спасибо, что сообщили о несовпадении. В указанном задании сейчас написано и озвучивается «Did anybody see him?», поэтому расхождение между somebody и someone подтвердить не удалось.",
+    "shards": 0,
+    "resolution": "not_reproduced",
+    "rewardGroup": "lesson21-anybody-pronunciation"
+  },
+  {
+    "reportId": "wMvOxNNxICJCOqZKrRen",
+    "uid": "PL58uhnvVzcLTafWqeQ1JajmDG53",
+    "title": "Спасибо, обновление прогресса друзей исправлено",
+    "body": "Спасибо, вы помогли найти причину: уровень и цепочка друга могли оставаться устаревшими после повторного открытия вкладки. Теперь приложение заново проверяет прогресс при возвращении на экран; изменение вступит в силу со следующим обновлением приложения, а вам начислен 1 осколок.",
+    "shards": 1,
+    "resolution": "confirmed_fixed",
+    "rewardGroup": "friends-profile-revalidation"
+  }
+]

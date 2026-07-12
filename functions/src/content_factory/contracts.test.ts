@@ -31,7 +31,7 @@ describe('language factory contracts', () => {
     });
 
     expect(job).toMatchObject<Partial<GenerationJob>>({
-      projectId: 'project-1', lessonIds: [1, 2, 3], state: 'queued', progress: { total: 6, completed: 0, failed: 0 },
+      projectId: 'project-1', lessonIds: [1, 2, 3], state: 'queued', progress: { total: 3, completed: 0, failed: 0 },
     });
     expect(job.idempotencyKey).toBe('job-1');
   });

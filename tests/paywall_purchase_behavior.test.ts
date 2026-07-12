@@ -79,7 +79,43 @@ jest.mock('../app/personal_plan_activation', () => ({
   PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY: 'k',
 }));
 
-import { storePriceTrim } from '../app/paywall_purchase';
+import { purchaseErrorCategory, storePriceTrim } from '../app/paywall_purchase';
+
+describe('purchaseErrorCategory (analytics privacy)', () => {
+  test('returns a bounded category without copying the raw message', () => {
+    expect(purchaseErrorCategory({ code: 'NETWORK_ERROR', message: 'user@example.com failed' })).toBe('network_error');
+    expect(purchaseErrorCategory({ code: 'SOMETHING_NEW', message: 'card 4111111111111111' })).toBe('sdk_other');
+    expect(purchaseErrorCategory({ message: 'private free-form text' })).toBe('unknown');
+  });
+});
+
+describe('paywall impression analytics contract', () => {
+  test('attaches one impression identity to canonical purchase events', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
+    expect(source).toContain('paywallImpressionParams(impression)');
+    expect(source).toContain("trackEvent('purchase_started'");
+    expect(source).toContain("trackEvent('purchase_completed'");
+    expect(source).toContain("trackEvent('purchase_failed'");
+    expect(source).toContain("trackEvent('purchase_cancelled'");
+  });
+});
+
+describe('paywall inventory analytics contract', () => {
+  test('emits one finite initial resolution without raw store data', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
+    expect(source).toContain("trackEvent('paywall_inventory_resolved'");
+    expect(source).toContain('inventoryResolutionEmittedRef');
+    expect(source).toContain('classifyPaywallInventory');
+    expect(source).toContain('resolvedPackages');
+    expect(source).not.toContain("paywall_inventory_resolved', { error");
+    expect(source).not.toContain("paywall_inventory_resolved', { price");
+    expect(source).not.toContain("paywall_inventory_resolved', { product");
+  });
+});
 
 describe('storePriceTrim (paywall price normalization)', () => {
   test('returns "" for empty / null / undefined', () => {

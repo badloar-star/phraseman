@@ -40,7 +40,42 @@ const PAGES = Object.freeze({
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
   'asset-studio': { title: 'Студия изображений', description: 'Создание изображений через безопасный серверный процесс: создать → проверить → опубликовать.' },
   campaigns: { title: 'Кампании', description: 'Сообщения внутри приложения, аудитории, опросы и история откликов.' },
+  'admin-settings': { title: 'Настройки админки', description: 'Личный вид, рабочие привычки, репорты, алерты и защитные правила этой панели.' },
 });
+
+const ADMIN_V2_SETTINGS_STORAGE_KEY = 'phraseman.admin.v2.settings';
+const ADMIN_ACCENT_PRESETS = Object.freeze({
+  lime: { label: 'Салатовый', color: '#b7e35b', hover: '#a8d149', soft: '#eff8d7', ink: '#07110a' },
+  blue: { label: 'Синий', color: '#60a5fa', hover: '#3b82f6', soft: '#dbeafe', ink: '#0b1220' },
+  purple: { label: 'Фиолетовый', color: '#a78bfa', hover: '#8b5cf6', soft: '#ede9fe', ink: '#14101f' },
+  red: { label: 'Красный', color: '#fb7185', hover: '#f43f5e', soft: '#ffe4e6', ink: '#1f0b10' },
+  amber: { label: 'Янтарный', color: '#fbbf24', hover: '#f59e0b', soft: '#fef3c7', ink: '#1c1203' },
+  custom: { label: 'Свой', color: '#b7e35b', hover: '#a8d149', soft: '#eff8d7', ink: '#07110a' },
+});
+const DEFAULT_ADMIN_UI_SETTINGS = Object.freeze({
+  theme: 'light',
+  accent: 'lime',
+  customAccent: '#b7e35b',
+  density: 'comfortable',
+  startPage: 'overview',
+  autoRefreshSeconds: 30,
+  importantAlertsOnly: false,
+  rememberSectionFilters: true,
+  expandedAdvancedActions: false,
+  defaultSinceDays: 7,
+  defaultSource: 'all',
+  defaultLane: 'open',
+  reportGrouping: 'status',
+  showAnsweredBelowOpen: true,
+  hideArchivedByDefault: true,
+  criticalAlertSound: false,
+  sidebarCounters: true,
+  quietMode: false,
+  strongProductionWarning: true,
+  requireReasonForStatus: true,
+  collapseDangerousActions: true,
+});
+const ADMIN_REPORT_SOURCE_DEFAULT_OPTIONS = Object.freeze(['all', 'error_reports', 'user_reports', 'community_pack_reports', 'explain_report_entries', 'app_errors']);
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
   owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
@@ -98,6 +133,113 @@ const APP_MESSAGE_LANGUAGES = Object.freeze([
   { key: 'vi', label: 'VI' }, { key: 'id', label: 'ID' }, { key: 'tr', label: 'TR' }, { key: 'pl', label: 'PL' },
 ]);
 
+function clampChoice(value, allowed, fallback) {
+  return allowed.includes(String(value)) ? String(value) : fallback;
+}
+
+function clampBoolean(value, fallback) {
+  return typeof value === 'boolean' ? value : fallback;
+}
+
+function clampNumberChoice(value, allowed, fallback) {
+  const number = Number(value);
+  return allowed.includes(number) ? number : fallback;
+}
+
+function sanitizeHexColor(value, fallback = DEFAULT_ADMIN_UI_SETTINGS.customAccent) {
+  const color = String(value || '').trim();
+  return /^#[0-9a-f]{6}$/i.test(color) ? color : fallback;
+}
+
+function normalizeAdminUiSettings(input = {}) {
+  const source = input && typeof input === 'object' ? input : {};
+  return {
+    theme: clampChoice(source.theme, ['light', 'dark', 'system'], DEFAULT_ADMIN_UI_SETTINGS.theme),
+    accent: clampChoice(source.accent, Object.keys(ADMIN_ACCENT_PRESETS), DEFAULT_ADMIN_UI_SETTINGS.accent),
+    customAccent: sanitizeHexColor(source.customAccent),
+    density: clampChoice(source.density, ['comfortable', 'compact'], DEFAULT_ADMIN_UI_SETTINGS.density),
+    startPage: clampChoice(source.startPage, Object.keys(PAGES), DEFAULT_ADMIN_UI_SETTINGS.startPage),
+    autoRefreshSeconds: clampNumberChoice(source.autoRefreshSeconds, [0, 15, 30, 60], DEFAULT_ADMIN_UI_SETTINGS.autoRefreshSeconds),
+    importantAlertsOnly: clampBoolean(source.importantAlertsOnly, DEFAULT_ADMIN_UI_SETTINGS.importantAlertsOnly),
+    rememberSectionFilters: clampBoolean(source.rememberSectionFilters, DEFAULT_ADMIN_UI_SETTINGS.rememberSectionFilters),
+    expandedAdvancedActions: clampBoolean(source.expandedAdvancedActions, DEFAULT_ADMIN_UI_SETTINGS.expandedAdvancedActions),
+    defaultSinceDays: clampNumberChoice(source.defaultSinceDays, [1, 7, 30, 90], DEFAULT_ADMIN_UI_SETTINGS.defaultSinceDays),
+    defaultSource: clampChoice(source.defaultSource, ADMIN_REPORT_SOURCE_DEFAULT_OPTIONS, DEFAULT_ADMIN_UI_SETTINGS.defaultSource),
+    defaultLane: clampChoice(source.defaultLane, ['', 'open', 'answered', 'resolved', 'escalated'], DEFAULT_ADMIN_UI_SETTINGS.defaultLane),
+    reportGrouping: clampChoice(source.reportGrouping, ['status', 'source', 'time'], DEFAULT_ADMIN_UI_SETTINGS.reportGrouping),
+    showAnsweredBelowOpen: clampBoolean(source.showAnsweredBelowOpen, DEFAULT_ADMIN_UI_SETTINGS.showAnsweredBelowOpen),
+    hideArchivedByDefault: clampBoolean(source.hideArchivedByDefault, DEFAULT_ADMIN_UI_SETTINGS.hideArchivedByDefault),
+    criticalAlertSound: clampBoolean(source.criticalAlertSound, DEFAULT_ADMIN_UI_SETTINGS.criticalAlertSound),
+    sidebarCounters: clampBoolean(source.sidebarCounters, DEFAULT_ADMIN_UI_SETTINGS.sidebarCounters),
+    quietMode: clampBoolean(source.quietMode, DEFAULT_ADMIN_UI_SETTINGS.quietMode),
+    strongProductionWarning: clampBoolean(source.strongProductionWarning, DEFAULT_ADMIN_UI_SETTINGS.strongProductionWarning),
+    requireReasonForStatus: clampBoolean(source.requireReasonForStatus, DEFAULT_ADMIN_UI_SETTINGS.requireReasonForStatus),
+    collapseDangerousActions: clampBoolean(source.collapseDangerousActions, DEFAULT_ADMIN_UI_SETTINGS.collapseDangerousActions),
+  };
+}
+
+function loadAdminUiSettings() {
+  try {
+    const raw = globalThis.localStorage?.getItem(ADMIN_V2_SETTINGS_STORAGE_KEY);
+    return normalizeAdminUiSettings(raw ? JSON.parse(raw) : {});
+  } catch {
+    return normalizeAdminUiSettings({});
+  }
+}
+
+function saveAdminUiSettings(settings) {
+  const normalized = normalizeAdminUiSettings(settings);
+  globalThis.localStorage?.setItem(ADMIN_V2_SETTINGS_STORAGE_KEY, JSON.stringify(normalized));
+  return normalized;
+}
+
+function accentForSettings(settings) {
+  if (settings.accent !== 'custom') return ADMIN_ACCENT_PRESETS[settings.accent] || ADMIN_ACCENT_PRESETS.lime;
+  return { ...ADMIN_ACCENT_PRESETS.custom, color: settings.customAccent, hover: settings.customAccent, soft: '#f3f6f8' };
+}
+
+function applyAdminUiSettings(settings) {
+  const root = globalThis.document?.documentElement;
+  if (!root) return;
+  const normalized = normalizeAdminUiSettings(settings);
+  const accent = accentForSettings(normalized);
+  root.dataset.adminTheme = normalized.theme;
+  root.dataset.adminAccent = normalized.accent;
+  root.dataset.adminDensity = normalized.density;
+  root.dataset.adminQuietMode = normalized.quietMode ? 'true' : 'false';
+  root.dataset.adminStrongProductionWarning = normalized.strongProductionWarning ? 'true' : 'false';
+  root.dataset.adminCollapseDangerousActions = normalized.collapseDangerousActions ? 'true' : 'false';
+  root.dataset.adminSidebarCounters = normalized.sidebarCounters ? 'true' : 'false';
+  root.style.setProperty('--admin-accent', accent.color);
+  root.style.setProperty('--admin-accent-hover', accent.hover);
+  root.style.setProperty('--admin-accent-soft', accent.soft);
+  root.style.setProperty('--admin-accent-ink', accent.ink);
+  root.style.setProperty('--lime', accent.color);
+  root.style.setProperty('--lime-hover', accent.hover);
+  root.style.setProperty('--lime-soft', accent.soft);
+  root.style.setProperty('--lime-ink', accent.ink);
+}
+
+function defaultReportState(settings = DEFAULT_ADMIN_UI_SETTINGS) {
+  const normalized = normalizeAdminUiSettings(settings);
+  return {
+    state: 'idle',
+    items: [],
+    sourceHealth: [],
+    source: normalized.defaultSource,
+    lane: normalized.defaultLane,
+    rawStatus: normalized.hideArchivedByDefault ? '' : '',
+    uid: '',
+    category: '',
+    sinceDays: normalized.defaultSinceDays,
+    nextCursor: '',
+    error: '',
+    replyDrafts: {},
+  };
+}
+
+const initialAdminUiSettings = loadAdminUiSettings();
+
 const state = {
   route: 'overview',
   authorized: false,
@@ -105,6 +247,7 @@ const state = {
   adminEmail: '',
   adminRole: '',
   authGeneration: 0,
+  adminSettings: initialAdminUiSettings,
   busy: false,
   message: '',
   messageKind: 'info',
@@ -124,7 +267,7 @@ const state = {
   remoteConfigPreview: null,
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
-  reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
+  reports: defaultReportState(initialAdminUiSettings),
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
@@ -136,6 +279,7 @@ let actions = null;
 let initialized = false;
 let reportFilterTimer = 0;
 let reportRequestId = 0;
+let adminAutoRefreshTimer = 0;
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
 
 export function escapeHtml(value) {
@@ -194,6 +338,65 @@ function renderCapabilityWorkspace(capability) {
   const url = capabilityUrl(capability);
   return `${pageHeader(PAGES[capability.route] ?? PAGES.overview, capability.label, `<button class="button" data-action="close-capability" type="button" title="Вернуться к разделу">К списку инструментов</button>`)}
     <section class="card section"><div class="card-header"><div><h2>${escapeHtml(capability.label)}</h2><p>${escapeHtml(capability.description)}</p></div><span class="badge warning">Старая версия</span></div><div class="card-body"><div class="notice warning"><strong>Этот инструмент ещё переносится.</strong> Он откроется в отдельной вкладке, потому что политика безопасности запрещает встраивать старую админку внутрь Admin 2.</div><div class="actions section"><a class="button primary" href="${escapeHtml(url)}" target="_blank" rel="noopener" title="Открыть рабочий инструмент «${escapeHtml(capability.label)}» в старой админке">Открыть рабочий инструмент</a></div></div></section>`;
+}
+
+function settingsSelect(id, label, value, options, title) {
+  return `<div class="field"><label for="${id}">${escapeHtml(label)}</label><select id="${id}" data-admin-setting="${id.replace('admin-setting-', '')}" title="${escapeHtml(title)}">${options.map(([optionValue, optionLabel]) => `<option value="${escapeHtml(optionValue)}"${String(value) === String(optionValue) ? ' selected' : ''}>${escapeHtml(optionLabel)}</option>`).join('')}</select></div>`;
+}
+
+function settingsCheckbox(id, label, checked, title) {
+  return `<label class="check settings-check" title="${escapeHtml(title)}"><input id="${id}" data-admin-setting="${id.replace('admin-setting-', '')}" type="checkbox"${checked ? ' checked' : ''}><span>${escapeHtml(label)}</span></label>`;
+}
+
+function renderAdminSettings() {
+  const settings = state.adminSettings;
+  const accentOptions = Object.entries(ADMIN_ACCENT_PRESETS).map(([key, preset]) => [key, preset.label]);
+  const startPageOptions = Object.entries(PAGES).filter(([route]) => ADMIN_SECTIONS.some((section) => section.route === route) || route === 'report-center' || route === 'daily-briefing').map(([route, page]) => [route, page.title]);
+  const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => [value, label]);
+  return `${pageHeader(PAGES['admin-settings'], 'Админка / Страница', '<button class="button" data-action="reset-admin-settings" type="button" title="Вернуть стандартные настройки этой админки">Сбросить</button><button class="button primary" data-action="save-admin-settings" type="button" title="Сохранить настройки в этом браузере">Сохранить</button>')}
+    <section class="card section"><div class="card-header"><div><h2>Настройки только этой панели</h2><p>Хранятся локально в браузере администратора и не меняют приложение для пользователей.</p></div><span class="badge">localStorage</span></div><div class="card-body">
+      <nav class="settings-tabs" aria-label="Разделы настроек админки">
+        <button type="button" data-settings-target="settings-appearance" title="Перейти к теме, акценту и плотности">Внешний вид</button>
+        <button type="button" data-settings-target="settings-workflow" title="Перейти к рабочему режиму">Рабочий режим</button>
+        <button type="button" data-settings-target="settings-reports" title="Перейти к дефолтам центра репортов">Центр репортов</button>
+        <button type="button" data-settings-target="settings-alerts" title="Перейти к алертам интерфейса">Уведомления</button>
+        <button type="button" data-settings-target="settings-safety" title="Перейти к защитным правилам">Безопасность</button>
+      </nav>
+    </div></section>
+    <div class="settings-layout">
+      <section id="settings-appearance" class="card settings-panel" data-admin-settings-panel="appearance" tabindex="-1"><div class="card-header"><div><h2>Внешний вид</h2><p>Тема, основной акцент и плотность рабочей панели.</p></div></div><div class="card-body fields">
+        ${settingsSelect('admin-setting-theme', 'Тема', settings.theme, [['light', 'Светлая'], ['dark', 'Тёмная'], ['system', 'Как в системе']], 'Выбрать светлую, тёмную или системную тему')}
+        ${settingsSelect('admin-setting-accent', 'Акцент', settings.accent, accentOptions, 'Выбрать основной цвет кнопок, активных пунктов и подсветок')}
+        <div class="field"><label for="admin-setting-customAccent">Свой акцент</label><input id="admin-setting-customAccent" data-admin-setting="customAccent" type="color" value="${escapeHtml(settings.customAccent)}" title="Выбрать произвольный цвет акцента"></div>
+        ${settingsSelect('admin-setting-density', 'Плотность', settings.density, [['comfortable', 'Комфортно'], ['compact', 'Компактно']], 'Выбрать расстояния между элементами интерфейса')}
+        <div class="accent-swatch" aria-label="Предпросмотр акцента"><span style="background:${escapeHtml(accentForSettings(settings).color)}"></span><strong>${escapeHtml(ADMIN_ACCENT_PRESETS[settings.accent]?.label || 'Свой')}</strong><small>Текст на ярком акценте остаётся тёмным для контраста.</small></div>
+      </div></section>
+      <section id="settings-workflow" class="card settings-panel" data-admin-settings-panel="workflow" tabindex="-1"><div class="card-header"><div><h2>Рабочий режим</h2><p>Как админка ведёт себя в обычной ежедневной работе.</p></div></div><div class="card-body fields">
+        ${settingsSelect('admin-setting-startPage', 'Стартовая страница', settings.startPage, startPageOptions, 'Выбрать страницу, которую удобнее открывать первой')}
+        ${settingsSelect('admin-setting-autoRefreshSeconds', 'Автообновление', settings.autoRefreshSeconds, [[0, 'Выключено'], [15, '15 секунд'], [30, '30 секунд'], [60, '1 минута']], 'Выбрать частоту автообновления рабочих очередей')}
+        ${settingsCheckbox('admin-setting-importantAlertsOnly', 'На главной показывать только важные алерты', settings.importantAlertsOnly, 'Скрывать тихие информационные сигналы на обзорной странице')}
+        ${settingsCheckbox('admin-setting-rememberSectionFilters', 'Запоминать последние фильтры разделов', settings.rememberSectionFilters, 'Оставлять выбранные фильтры при возврате в раздел')}
+        ${settingsCheckbox('admin-setting-expandedAdvancedActions', 'Расширенные действия раскрыты по умолчанию', settings.expandedAdvancedActions, 'Показывать дополнительные действия без ручного раскрытия')}
+      </div></section>
+      <section id="settings-reports" class="card settings-panel" data-admin-settings-panel="reports" tabindex="-1"><div class="card-header"><div><h2>Центр репортов</h2><p>Дефолты очереди, чтобы открытые обращения сразу были выше шума.</p></div></div><div class="card-body fields">
+        ${settingsSelect('admin-setting-defaultSinceDays', 'Период по умолчанию', settings.defaultSinceDays, [[1, '24 часа'], [7, '7 дней'], [30, '30 дней'], [90, '90 дней']], 'Выбрать период, который центр репортов ставит при первом открытии')}
+        ${settingsSelect('admin-setting-defaultSource', 'Источник по умолчанию', settings.defaultSource, sourceOptions, 'Выбрать источник репортов при первом открытии')}
+        ${settingsSelect('admin-setting-defaultLane', 'Статус по умолчанию', settings.defaultLane, [['', 'Все состояния'], ['open', 'Открытые'], ['answered', 'Отвеченные'], ['resolved', 'Закрытые'], ['escalated', 'Эскалированные']], 'Выбрать рабочее состояние репортов при первом открытии')}
+        ${settingsSelect('admin-setting-reportGrouping', 'Группировка', settings.reportGrouping, [['status', 'По статусу'], ['source', 'По источнику'], ['time', 'По времени']], 'Выбрать основную группировку очереди')}
+        ${settingsCheckbox('admin-setting-showAnsweredBelowOpen', 'Отвеченные показывать ниже открытых', settings.showAnsweredBelowOpen, 'Сначала показывать то, что ещё ждёт решения')}
+        ${settingsCheckbox('admin-setting-hideArchivedByDefault', 'Архив скрыт по умолчанию', settings.hideArchivedByDefault, 'Не смешивать архив с рабочей очередью')}
+      </div></section>
+      <section id="settings-alerts" class="card settings-panel" data-admin-settings-panel="alerts" tabindex="-1"><div class="card-header"><div><h2>Уведомления и алерты</h2><p>Сколько внимания админка просит у человека.</p></div></div><div class="card-body fields">
+        ${settingsCheckbox('admin-setting-criticalAlertSound', 'Звук для критических событий', settings.criticalAlertSound, 'Разрешить звуковой сигнал только для критических алертов')}
+        ${settingsCheckbox('admin-setting-sidebarCounters', 'Показывать счётчики в меню', settings.sidebarCounters, 'Показывать полезные счётчики рядом с разделами, когда они доступны')}
+        ${settingsCheckbox('admin-setting-quietMode', 'Тихий режим без лишних вспышек', settings.quietMode, 'Уменьшить визуальное внимание второстепенных уведомлений')}
+      </div></section>
+      <section id="settings-safety" class="card settings-panel" data-admin-settings-panel="safety" tabindex="-1"><div class="card-header"><div><h2>Безопасность интерфейса</h2><p>Защитные привычки для production и опасных действий.</p></div></div><div class="card-body fields">
+        ${settingsCheckbox('admin-setting-strongProductionWarning', 'Production-предупреждение показывать ярче', settings.strongProductionWarning, 'Сильнее выделять рабочее окружение, где действия влияют на пользователей')}
+        ${settingsCheckbox('admin-setting-requireReasonForStatus', 'Требовать причину при смене статуса', settings.requireReasonForStatus, 'Не давать менять статус репорта без понятной причины')}
+        ${settingsCheckbox('admin-setting-collapseDangerousActions', 'Опасные действия держать свернутыми', settings.collapseDangerousActions, 'Скрывать destructive-действия до явного раскрытия')}
+      </div></section>
+    </div>`;
 }
 
 function can(permission) {
@@ -285,13 +488,13 @@ const CONTROL_PANEL_WORKFLOWS = Object.freeze([
   { title: 'Промокоды', description: 'Создание пачек и собственных кодов, список кодов и активации перенесены в раздел «Деньги».', primary: '#money', primaryLabel: 'Открыть промокоды', fallback: 'promo-codes', risk: 'Серверная команда', coverage: 'перенесено', guarded: true },
   { title: 'Промо-баннер', description: 'Текст, ссылка, срок, аудитория, платформа и безопасное выключение перенесены в раздел «Приложение».', primary: '#application', primaryLabel: 'Открыть промо-баннер', fallback: 'control-panel', risk: 'Защищённая публикация', coverage: 'перенесено', guarded: true },
   { title: 'Plus-доступ и уроки', description: 'Глобальные возможности Plus, бесплатные лимиты и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть доступ Бесплатный / Plus', fallback: 'control-panel', risk: 'Защищённая публикация', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
+  { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и возврат к исходным значениям.', primary: '#remote-config', primaryLabel: 'Открыть удалённую конфигурацию', fallback: 'control-panel', risk: 'Контент и экономика', coverage: '3 старые кнопки', guarded: true },
   { title: 'ИИ и бюджеты', description: 'Модель Theo, дневные лимиты, фоновые задания ИИ, бюджет и Студия изображений.', primary: '#asset-studio', primaryLabel: 'Открыть Студию изображений', fallback: 'openai-budget', risk: 'Бюджет ИИ', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Кампании и коммуникации', description: 'App messages и опросы создаются и включаются в v2; push, Paywall A/B, Plus survey и Telegram остаются следующими переносами.', primary: '#campaigns', primaryLabel: 'Открыть v2 кампании', fallback: 'app-messages', risk: 'App messages guarded; push pending', coverage: 'частично перенесено', guarded: true },
+  { title: 'Кампании и коммуникации', description: 'Сообщения и опросы создаются и включаются в новой версии; push-уведомления, варианты экрана оплаты, опрос Plus и Telegram будут перенесены следующими.', primary: '#campaigns', primaryLabel: 'Открыть кампании', fallback: 'app-messages', risk: 'Сообщения защищены; push-уведомления ещё переносятся', coverage: 'частично перенесено', guarded: true },
 ]);
 
 function renderControlPanel() {
-  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><a class="button primary" href="#application" title="Открыть основной v2 workflow для конфигурации приложения">Открыть v2 конфигурацию</a><a class="button ghost" href="../../admin/index.html#control-panel" target="_blank" rel="noopener" title="Открыть старый пульт только для аварийной сверки">Старый пульт</a>`;
+  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><a class="button primary" href="#application" title="Открыть основной процесс настройки приложения">Открыть конфигурацию</a><a class="button ghost" href="../../admin/index.html#control-panel" target="_blank" rel="noopener" title="Открыть старый пульт только для аварийной сверки">Старый пульт</a>`;
   return `${pageHeader(PAGES['control-panel'], 'Обзор / Пульт', headerActions)}
     <div class="notice"><strong>Рабочий слой Admin 2.</strong> Здесь собраны группы старого пульта. Опасные действия не копируются прямой записью: они ведут в защищённый процесс или во временный старый модуль до полноценного переноса формы.</div>
     <section class="card section"><div class="card-header"><div><h2>Карта старого пульта</h2><p>29 старых кнопок разложены по рабочим процессам, чтобы ничего не потерять и не смешивать рискованные действия.</p></div><span class="badge">control-panel</span></div>
@@ -414,7 +617,7 @@ function renderPremiumAccessWorkflow() {
   const freeExtra = remoteConfigValue('texts', 'free_lessons_extra', '');
   const premiumExtra = remoteConfigValue('texts', 'premium_lessons_extra', '');
   return `<section class="card section"><div class="card-header"><div><h2>Бесплатный / Plus доступ и уроки</h2><p>Глобальные ограничения экрана оплаты, лимиты бесплатного тарифа и поурочные исключения 1–32 через безопасный предпросмотр и защищённую публикацию.</p></div><span class="badge warning">Влияет на монетизацию</span></div><div class="card-body">
-    <div class="notice"><strong>Не выдаёт VIP пользователю.</strong> Это только глобальная конфигурация приложения. Админский Plus/VIP остаётся отдельным user command workflow.</div>
+    <div class="notice"><strong>Не выдаёт VIP пользователю.</strong> Это только глобальная конфигурация приложения. Админский Plus/VIP остаётся отдельной защищённой командой для пользователя.</div>
     <div class="fields">${featureControls}</div>
     <div class="fields section">${limitControls}</div>
     <div class="fields section">
@@ -545,7 +748,7 @@ function renderCampaigns() {
   const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для редактирования, удаления и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
   return `${pageHeader(PAGES.campaigns, 'Приложение / Кампании', headerActions)}
     <div class="notice"><strong>Новая версия: создание сообщения и управление его показом.</strong> Редактирование и удаление будут перенесены следующим безопасным срезом после политики сохранения голосов. До этого старый модуль остаётся доступен для этих двух операций.</div>
-    <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">like + dislike</span></article></section>
+    <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">нравится и не нравится</span></article></section>
     <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное сообщение для входящих или опрос. Черновик никому не показывается; активное сообщение появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Рабочая кампания</span></div><div class="card-body">
       <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Черновик / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема на русском</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст на русском</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса на русском</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">Причина публикации</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и условие остановки"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
       <details class="section"><summary>Переводы на 8 языков</summary><div class="notice section">Пустое поле безопасно наследует RU. Для опроса варианты вводятся по одному на строку в том же порядке.</div>${renderAppMessageTranslations(draft, locked)}</details>
@@ -728,20 +931,25 @@ function renderJobPicker() {
 function renderFactoryGeneration() {
   const detail = state.detail;
   const job = detail?.job;
+  const releaseCandidate = job?.releaseCandidate === true;
   const units = Array.isArray(detail?.units) ? detail.units : [];
   const completed = Number(job?.progress?.completed ?? units.filter((unit) => unit.state === 'succeeded').length);
   const total = Number(job?.progress?.total ?? units.length);
   const percent = total ? Math.min(100, Math.round((completed / total) * 100)) : 0;
-  const pending = units.filter((unit) => unit.state !== 'succeeded').length;
+  const runnable = units.filter((unit) => unit.state !== 'succeeded' && (unit.state !== 'failed' || unit.retryable === true));
+  const pending = runnable.length;
+  const incomplete = units.some((unit) => unit.state !== 'succeeded');
   return `<section class="card factory-panel"><div class="card-header"><div><h2>Генерация и предпросмотр</h2><p>Задание можно безопасно продолжить после закрытия браузера: готовые юниты и контрольные точки не создаются повторно.</p></div><span class="badge">Этап 2 из 4</span></div>
     <div class="card-body">
       <div class="actions"><button class="button" data-action="load-factory-jobs" type="button"${disabledWhenUnauthorized('content.read')}>Загрузить черновики</button>${detail ? `<button class="button" data-action="refresh-factory-detail" type="button"${disabledWhenUnauthorized('content.read')}>Обновить</button>` : ''}</div>
       ${!detail ? `<div class="section">${renderJobPicker()}</div>` : `
         <div class="notice section"><strong>${escapeHtml(job.studyTarget)} ← ${escapeHtml(job.learnerSourceLocale ?? job.sourceLocale)}</strong><br><span class="mono">${escapeHtml(detail.jobId)}</span></div>
         <div class="section"><div class="actions" style="justify-content:space-between"><span class="hint">Готово ${completed} из ${total}</span><span class="badge ${badgeClass(job.state)}">${escapeHtml(statusLabel(job.state))}</span></div><div class="progress" aria-label="Прогресс ${percent}%"><span style="width:${percent}%"></span></div></div>
-        ${state.generation ? `<div class="notice ${state.generation.failed ? 'warning' : ''} section">Обработано в этом запуске: ${state.generation.done}/${state.generation.total}. Ошибок: ${state.generation.failed}.</div>` : ''}
-        <div class="actions end section"><button class="button" data-action="back-to-factory-jobs" type="button">Другой черновик</button>${pending ? `<button class="button primary" data-action="run-factory-generation" type="button" title="Сгенерировать или продолжить оставшиеся части"${disabledWhenUnauthorized('content.draft.write')}>${state.generation ? 'Продолжить генерацию' : 'Запустить генерацию'}</button>` : `<button class="button primary" data-factory-step="3" type="button">Перейти к проверке</button>`}</div>
-        <div class="unit-grid section">${units.map((unit) => `<article class="unit-card"><div class="actions" style="justify-content:space-between"><strong>Урок ${Number(unit.lessonId)} · ${escapeHtml(SURFACE_LABELS[unit.surface] ?? unit.surface)}</strong><span class="badge ${badgeClass(unit.state)}">${escapeHtml(statusLabel(unit.state))}</span></div><div class="actions"><button class="button small" data-preview-unit="${escapeHtml(unit.id ?? unit.unitId)}" type="button" title="Проверить неизменяемый файл и открыть содержимое"${unit.state === 'succeeded' && can('content.read') ? '' : ' disabled'}>Предпросмотр</button></div></article>`).join('')}</div>
+        ${state.generation ? `<div class="notice ${state.generation.failed ? 'warning' : ''} section" role="status">Обработано в этом запуске: ${state.generation.done}/${state.generation.total}. Ошибок: ${state.generation.failed}.${state.generation.errors?.length ? `<br>${state.generation.errors.map((message) => escapeHtml(message)).join('<br>')}` : ''}</div>` : ''}
+        ${incomplete && !pending ? '<div class="notice warning section" role="alert">Есть ошибки, которые нельзя повторить без изменения входных данных. Откройте причину в карточке операции.</div>' : ''}
+        ${!incomplete && !releaseCandidate ? '<div class="notice success section">Черновик готов; для публикационной проверки нужны урок, квиз, карточки и Арена.</div>' : ''}
+        <div class="actions end section"><button class="button" data-action="back-to-factory-jobs" type="button">Другой черновик</button>${pending ? `<button class="button primary" data-action="run-factory-generation" type="button" title="Сгенерировать или продолжить оставшиеся части"${disabledWhenUnauthorized('content.draft.write')}>${state.generation ? 'Продолжить генерацию' : 'Запустить генерацию'}</button>` : incomplete || !releaseCandidate ? '' : `<button class="button primary" data-factory-step="3" type="button">Перейти к проверке</button>`}</div>
+        <div class="unit-grid section">${units.map((unit) => `<article class="unit-card"><div class="actions" style="justify-content:space-between"><strong>Урок ${Number(unit.lessonId)} · ${escapeHtml(SURFACE_LABELS[unit.surface] ?? unit.surface)}</strong><span class="badge ${badgeClass(unit.state)}">${escapeHtml(statusLabel(unit.state))}</span></div>${unit.errorCode ? `<div class="notice danger" role="alert"><strong>${escapeHtml(unit.errorCode)}</strong><br>${escapeHtml(unit.errorMessage || 'Причина не указана.')}<br><small>${unit.retryable ? 'Можно безопасно повторить.' : 'Повтор без изменения входных данных заблокирован.'} · попыток: ${Array.isArray(unit.attemptHistory) ? unit.attemptHistory.length : Number(unit.attempts || 0)}</small></div>` : ''}<div class="actions"><button class="button small" data-preview-unit="${escapeHtml(unit.id ?? unit.unitId)}" type="button" title="Проверить неизменяемый файл и открыть содержимое"${unit.state === 'succeeded' && can('content.read') ? '' : ' disabled'}>Предпросмотр</button>${unit.state !== 'succeeded' && unit.retryable === true ? `<button class="button small" data-retry-factory-unit="${escapeHtml(unit.id ?? unit.unitId)}" type="button" title="Повторить только эту временно неудачную операцию"${disabledWhenUnauthorized('content.draft.write')}>Повторить</button>` : ''}</div></article>`).join('')}</div>
       `}
     </div></section>`;
 }
@@ -754,15 +962,17 @@ function renderPreview() {
 function renderFactoryReview() {
   const detail = state.detail;
   const allReady = Boolean(detail?.units?.length) && detail.units.every((unit) => unit.state === 'succeeded');
+  const releaseCandidate = detail?.job?.releaseCandidate === true;
   const review = detail?.review;
   return `<section class="card factory-panel"><div class="card-header"><div><h2>Проверка качества и источников</h2><p>Решение доступно только после фактического предпросмотра. Сервер повторно проверит все юниты, хеш шаблона и реестр источников.</p></div><span class="badge">Этап 3 из 4</span></div>
     <div class="card-body">
       ${!detail ? `<div class="notice warning">Сначала выберите черновик на втором этапе.</div><div class="actions end section"><button class="button primary" data-factory-step="2" type="button">Выбрать черновик</button></div>` : `
+        ${!releaseCandidate ? '<div class="notice warning">Черновик готов; для публикационной проверки нужны урок, квиз, карточки и Арена.</div>' : ''}
         <div class="actions" style="justify-content:space-between"><div><strong>${escapeHtml(detail.job.studyTarget)} · ${escapeHtml(detail.jobId)}</strong><div class="hint">Готовых частей: ${detail.units.filter((unit) => unit.state === 'succeeded').length}/${detail.units.length}</div></div>${review ? `<span class="badge ${badgeClass(review.status)}">${escapeHtml(statusLabel(review.status))}</span>` : '<span class="badge">Решения ещё нет</span>'}</div>
         <div class="section">${renderPreview()}</div>
         <div class="field full section"><label for="factory-review-reason">Комментарий проверяющего</label><textarea id="factory-review-reason" maxlength="500" placeholder="Что проверено: язык, соответствие источникам, структура, варианты ответов…">${escapeHtml(review?.reason ?? '')}</textarea></div>
         <div class="notice section">Одобрение не публикует пакет. Оно только разрешает запечатать неизменяемый релиз на следующем этапе.</div>
-        <div class="actions end section"><button class="button danger" data-action="reject-factory-job" type="button"${allReady && state.preview && can('content.publish') && !state.busy ? '' : ' disabled'} title="Отклонить и вернуть на доработку">Отклонить</button><button class="button primary" data-action="approve-factory-job" type="button"${allReady && state.preview && can('content.publish') && !state.busy ? '' : ' disabled'} title="Одобрить после проверки содержимого и источников">Одобрить проверку</button></div>
+        <div class="actions end section"><button class="button danger" data-action="reject-factory-job" type="button"${allReady && releaseCandidate && state.preview && can('content.publish') && !state.busy ? '' : ' disabled'} title="Отклонить и вернуть на доработку">Отклонить</button><button class="button primary" data-action="approve-factory-job" type="button"${allReady && releaseCandidate && state.preview && can('content.publish') && !state.busy ? '' : ' disabled'} title="Одобрить после проверки содержимого и источников">Одобрить проверку</button></div>
       `}
     </div></section>`;
 }
@@ -986,7 +1196,7 @@ function renderOpsLogPanel() {
   if (ops.state === 'loading') body = '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю операционный журнал…</span></div>';
   else if (ops.state === 'error') body = `<div class="notice danger" role="alert"><strong>Операционный журнал не загружен.</strong><br>${escapeHtml(ops.error || 'Сервер не вернул данные.')}<div class="actions section"><button class="button" data-action="load-ops-log" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Повторно загрузить операционный журнал">Повторить чтение</button></div></div>`;
   else if (!items.length) body = emptyState(ops.state === 'idle' ? 'Загрузите журнал после входа с правом диагностики.' : 'В выбранной серверной выборке событий не найдено.');
-  else body = `<div class="data-list ops-list">${items.map((row) => `<article class="list-row ops-row"><div><strong>${escapeHtml(opsTypeLabel(row.type))}</strong><small><code>${escapeHtml(row.type || 'event')}</code> · ${escapeHtml(row.sourceLabel || OPS_SOURCE_LABELS[row.source] || 'Источник')} · ${escapeHtml(dateTime(row.timestampMs))}</small><small>UID: <code>${escapeHtml(row.uid || '—')}</code>${row.name ? ` · ${escapeHtml(row.name)}` : ''}${row.status ? ` · статус ${escapeHtml(row.status)}` : ''}</small><small>Детали: ${escapeHtml(opsDetailsSummary(row.details))}</small></div><div class="actions"><span class="badge ${row.source === 'admin' ? 'success' : row.source === 'error_report' ? 'warning' : 'danger'}">${escapeHtml(OPS_SOURCE_LABELS[row.source] || row.source || 'Источник')}</span></div></article>`).join('')}</div>`;
+  else body = `<div class="data-list ops-list">${items.map((row) => `<article class="list-row ops-row"><div><strong>${escapeHtml(opsTypeLabel(row.type))}</strong><small><code>${escapeHtml(row.type || 'event')}</code> · ${escapeHtml(row.sourceLabel || OPS_SOURCE_LABELS[row.source] || 'Источник')} · ${escapeHtml(dateTime(row.timestampMs))}</small><small>UID: <code>${escapeHtml(row.uid || '—')}</code>${row.name ? ` · ${escapeHtml(row.name)}` : ''}${row.status ? ` · статус: ${escapeHtml(operationalStateLabel(row.status))} <code>${escapeHtml(row.status)}</code>` : ''}</small><small>Детали: ${escapeHtml(opsDetailsSummary(row.details))}</small></div><div class="actions"><span class="badge ${row.source === 'admin' ? 'success' : row.source === 'error_report' ? 'warning' : 'danger'}">${escapeHtml(OPS_SOURCE_LABELS[row.source] || row.source || 'Источник')}</span></div></article>`).join('')}</div>`;
   return `<section class="card section"><div class="card-header"><div><h2>Операционный журнал</h2><p>Серверные действия, баг-репорты и жалобы в одном безопасном снимке только для чтения.</p></div><div class="actions"><span class="badge ${badgeClass(ops.state)}">${escapeHtml(opsStateLabel(ops.state))}</span><a class="button small ghost" href="../../admin/index.html#ops-log" target="_blank" rel="noopener" title="Открыть старый операционный журнал для сверки">Старый ops-log</a></div></div><div class="card-body">${filterBar}${['partial', 'truncated'].includes(ops.state) ? '<div class="notice warning section"><strong>Выборка неполная.</strong> Один из источников вернул ошибку или достиг серверного лимита. Числа ниже относятся только к загруженной части.</div>' : ''}<section class="metrics section">${[
     metric('Событий', kpis.events ?? items.length),
     metric('Баг-репорты', kpis.reportCreated ?? 0),
@@ -1264,9 +1474,16 @@ function reportToneClass(lane) {
   return 'neutral';
 }
 
+function reportSortKey(item) {
+  const laneOrder = state.adminSettings.showAnsweredBelowOpen ? { escalated: 0, open: 1, answered: 2, resolved: 3 } : { escalated: 0, open: 1, answered: 1, resolved: 2 };
+  if (state.adminSettings.reportGrouping === 'source') return `${item.source || 'zz'}:${laneOrder[item.lane] ?? 9}:${9999999999999 - Number(item.createdAtMs || 0)}`;
+  if (state.adminSettings.reportGrouping === 'time') return `${9999999999999 - Number(item.createdAtMs || 0)}`;
+  return `${laneOrder[item.lane] ?? 9}:${item.source || 'zz'}:${9999999999999 - Number(item.createdAtMs || 0)}`;
+}
+
 function renderReportQueue() {
   const reports = state.reports;
-  const items = Array.isArray(reports.items) ? reports.items : [];
+  const items = (Array.isArray(reports.items) ? [...reports.items] : []).sort((left, right) => reportSortKey(left).localeCompare(reportSortKey(right)));
   const canChange = (item) => item.source === 'app_errors' ? can('diagnostics.status.write') : can('reports.status.write');
   const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => `<option value="${value}"${reports.source === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
   const laneOptions = `<option value="">Все состояния</option>${Object.entries(REPORT_LANE_LABELS).map(([value, label]) => `<option value="${value}"${reports.lane === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}`;
@@ -1298,7 +1515,7 @@ function renderReportQueue() {
         return `<article class="report-card tone-${reportToneClass(item.lane)}" data-report-lane="${escapeHtml(item.lane)}"><header><div><div class="report-source">${escapeHtml(REPORT_SOURCE_LABELS[item.source] || 'Неизвестный источник')} · <code>${escapeHtml(item.id)}</code></div><h3>${escapeHtml(item.summary || '(без описания)')}</h3><small>${escapeHtml(item.category || context.feature || context.screen || 'без категории')} · ${escapeHtml(dateTime(item.createdAtMs))}</small></div><div class="actions"><span class="badge">Ключ источника: <code>${escapeHtml(item.source)}</code></span><span class="badge">Исходный статус: ${escapeHtml(item.rawStatus)}</span><span class="badge ${item.lane === 'resolved' || item.lane === 'answered' ? 'success' : item.lane === 'escalated' ? 'danger' : 'warning'}">${escapeHtml(REPORT_LANE_LABELS[item.lane] || 'Неизвестное состояние')}</span></div></header>
           ${userButtons ? `<div class="actions report-users">${userButtons}</div>` : ''}
           <div class="report-context">${Object.entries(context).filter(([, value]) => value).map(([key, value]) => `<span><b>${escapeHtml(contextFieldLabel(key))}:</b> ${escapeHtml(value)}</span>`).join('')}</div>
-          ${canChange(item) && transitions.length ? `<div class="report-status-controls"><div class="field"><label for="${escapeHtml(reasonId)}">Причина изменения статуса</label><input id="${escapeHtml(reasonId)}" maxlength="500" placeholder="Что проверено и почему меняется статус"></div><div class="actions">${transitions.map((next) => `<button class="button small" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-current-status="${escapeHtml(item.rawStatus)}" data-report-next-status="${escapeHtml(next)}" data-report-reason-id="${escapeHtml(reasonId)}" type="button" title="Изменить статус с обязательным аудитом">${escapeHtml(reportStatusLabel(next))}</button>`).join('')}</div></div>` : ''}
+          ${canChange(item) && transitions.length ? `<div class="report-status-controls"><div class="field"><label for="${escapeHtml(reasonId)}">Причина изменения статуса</label><input id="${escapeHtml(reasonId)}" maxlength="500"${state.adminSettings.requireReasonForStatus ? ' required' : ''} placeholder="Что проверено и почему меняется статус"></div><div class="actions">${transitions.map((next) => `<button class="button small" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-current-status="${escapeHtml(item.rawStatus)}" data-report-next-status="${escapeHtml(next)}" data-report-reason-id="${escapeHtml(reasonId)}" type="button" title="Изменить статус с обязательным аудитом">${escapeHtml(reportStatusLabel(next))}</button>`).join('')}</div></div>` : ''}
           ${replySupported && (can('reports.reply.draft') || can('reports.reply.send')) ? `<details class="report-reply"><summary>Ответить пользователю</summary><div class="report-reply-grid">
             <div class="field"><label for="${replyId}-verdict">Результат проверки</label><select id="${replyId}-verdict"><option value="confirmed">Подтверждено</option><option value="rejected">Не подтвердилось</option></select></div>
             <div class="field"><label for="${replyId}-lang">Язык ответа</label><input id="${replyId}-lang" value="ru" maxlength="8"></div>
@@ -1317,7 +1534,7 @@ function renderReportQueue() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1333,6 +1550,7 @@ function renderCurrentPage() {
   ensureInteractiveGuidance(document);
   renderAuthStatus();
   setMessage(state.message, state.messageKind);
+  scheduleAdminAutoRefresh();
   if (state.route === 'analytics' && state.authorized) {
     queueMicrotask(() => {
       globalThis.loadProductAnalytics?.();
@@ -1437,7 +1655,7 @@ function readCreateForm() {
   const surfaces = [...document.querySelectorAll('input[name="factory-surface"]:checked')].map((input) => input.value);
   if (!/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(sourceLocale)) throw new Error('Проверьте коды языков.');
   if (!Number.isInteger(start) || !Number.isInteger(count) || start < 1 || count < 1 || start + count - 1 > 100) throw new Error('Диапазон уроков должен находиться между 1 и 100.');
-  if (surfaces.length !== 6) throw new Error('Для публикуемого пакета выберите все шесть групп контента.');
+  if (!surfaces.length) throw new Error('Выберите хотя бы одну группу контента.');
   const jobId = id(`admin-${studyTarget}-${sourceLocale}`);
   return { projectId: `${studyTarget}-${sourceLocale}-course`, studyTarget, sourceLocale, lessonIds: Array.from({ length: count }, (_, index) => start + index), surfaces, idempotencyKey: jobId, blueprintVersion, requestId: jobId };
 }
@@ -1928,9 +2146,9 @@ function remoteConfigPublishQuestion(preview) {
 }
 
 async function runGeneration() {
-  const units = [...(state.detail?.units ?? [])].filter((unit) => unit.state !== 'succeeded');
+  const units = [...(state.detail?.units ?? [])].filter((unit) => unit.state !== 'succeeded' && (unit.state !== 'failed' || unit.retryable === true));
   if (!units.length) return;
-  state.generation = { total: units.length, done: 0, failed: 0 };
+  state.generation = { total: units.length, done: 0, failed: 0, errors: [] };
   renderCurrentPage();
   let cursor = 0;
   const worker = async () => {
@@ -1938,8 +2156,9 @@ async function runGeneration() {
       const unit = units[cursor++];
       try {
         await actions.runFactoryUnit({ jobId: state.selectedJobId, surface: unit.surface, lessonId: Number(unit.lessonId) });
-      } catch {
+      } catch (error) {
         state.generation.failed += 1;
+        state.generation.errors.push(`Урок ${Number(unit.lessonId)}, ${SURFACE_LABELS[unit.surface] ?? unit.surface}: ${errorMessage(error)}`);
       } finally {
         state.generation.done += 1;
         renderCurrentPage();
@@ -1948,6 +2167,17 @@ async function runGeneration() {
   };
   await Promise.all([worker(), worker()]);
   await loadJobDetail(state.selectedJobId);
+}
+
+async function retryFactoryUnit(unitId) {
+  const unit = (state.detail?.units ?? []).find((item) => String(item.id ?? item.unitId) === String(unitId));
+  if (!unit) throw new Error('Операция генерации не найдена.');
+  if (unit.retryable !== true) throw new Error('Эта ошибка требует изменить входные данные, а не повторять тот же запрос.');
+  try {
+    await actions.runFactoryUnit({ jobId: state.selectedJobId, surface: unit.surface, lessonId: Number(unit.lessonId) });
+  } finally {
+    await loadJobDetail(state.selectedJobId);
+  }
 }
 
 async function loadAdminUserProfile(uid) {
@@ -2024,6 +2254,29 @@ async function loadReportQueue(append = false) {
   }
 }
 
+function scheduleAdminAutoRefresh() {
+  globalThis.clearTimeout(adminAutoRefreshTimer);
+  const seconds = Number(state.adminSettings.autoRefreshSeconds || 0);
+  if (!seconds || state.busy || state.route !== 'report-center' || !state.authorized || !can('reports.read')) return;
+  adminAutoRefreshTimer = globalThis.setTimeout(() => {
+    if (state.busy || state.route !== 'report-center' || !can('reports.read')) return;
+    void loadReportQueue(false).catch((error) => {
+      setMessage(`Автообновление репортов не удалось: ${errorMessage(error)}`, 'warning');
+      renderCurrentPage();
+    });
+  }, seconds * 1000);
+}
+
+function assertFactoryWorkspaceCoverage(workspace, input) {
+  const registries = Array.isArray(workspace?.sourceRegistries) ? workspace.sourceRegistries : [];
+  const registry = registries.find((item) => String(item.id || `${item.blueprintId}:${item.version}`) === input.blueprintVersion);
+  if (!registry) throw new Error(`Учебный шаблон ${input.blueprintVersion} не найден.`);
+  const lessons = registry.lessons && typeof registry.lessons === 'object' ? registry.lessons : {};
+  const missingLessonIds = input.lessonIds.filter((lessonId) => !Object.prototype.hasOwnProperty.call(lessons, String(lessonId)));
+  if (missingLessonIds.length) throw new Error(`Шаблон не содержит уроки: ${missingLessonIds.join(', ')}.`);
+  return { registry, missingLessonIds };
+}
+
 function buildOnboardingStepsPreview() {
   if (!state.remoteConfig?.config) throw new Error('Сначала загрузите текущую конфигурацию.');
   const reason = readTextInput('onboarding-steps-reason', 500);
@@ -2076,6 +2329,24 @@ function handleReportFilterInput(event) {
   if (!(target instanceof HTMLInputElement) || !target.id.startsWith('report-') || !target.id.endsWith('-filter')) return;
   globalThis.clearTimeout(reportFilterTimer);
   reportFilterTimer = globalThis.setTimeout(() => void applyReportFiltersAndLoad(), 450);
+}
+
+function parseAdminSettingValue(target) {
+  if (target instanceof HTMLInputElement && target.type === 'checkbox') return target.checked;
+  if (target instanceof HTMLInputElement && target.type === 'color') return target.value;
+  if (target instanceof HTMLSelectElement && ['autoRefreshSeconds', 'defaultSinceDays'].includes(String(target.dataset.adminSetting))) return Number(target.value);
+  return target instanceof HTMLInputElement || target instanceof HTMLSelectElement ? target.value : '';
+}
+
+function handleAdminSettingsChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+  const key = String(target.dataset.adminSetting || '');
+  if (!key) return;
+  state.adminSettings = normalizeAdminUiSettings({ ...state.adminSettings, [key]: parseAdminSettingValue(target) });
+  applyAdminUiSettings(state.adminSettings);
+  if (key.startsWith('default') || key === 'hideArchivedByDefault') state.reports = { ...defaultReportState(state.adminSettings), replyDrafts: state.reports.replyDrafts };
+  renderCurrentPage();
 }
 
 async function loadAuditLog(append = false) {
@@ -2178,7 +2449,7 @@ async function updateReportStatus(target) {
   const nextStatus = String(target.getAttribute('data-report-next-status') || '');
   const reasonId = String(target.getAttribute('data-report-reason-id') || '');
   const reason = String(document.getElementById(reasonId)?.value || '').trim();
-  if (!reason) return setMessage('Укажите причину изменения статуса.', 'warning');
+  if (state.adminSettings.requireReasonForStatus && !reason) return setMessage('Укажите причину изменения статуса.', 'warning');
   if (!globalThis.confirm(`Изменить статус «${reportStatusLabel(expectedStatus)}» на «${reportStatusLabel(nextStatus)}»?`)) return;
   const authGeneration = state.authGeneration;
   const requiredPermission = source === 'app_errors' ? 'diagnostics.status.write' : 'reports.status.write';
@@ -2188,7 +2459,7 @@ async function updateReportStatus(target) {
       reportId,
       expectedStatus,
       nextStatus,
-      reason,
+      reason: reason || 'Причина не указана администратором.',
       idempotencyKey: id('report-status'),
       requestId: id('report-status-request'),
     });
@@ -2371,7 +2642,7 @@ async function handleAction(action, target) {
       state.promo.generatedCodes = Array.isArray(result?.codes) ? result.codes.map(String) : [];
       state.promo.preview = null;
       await loadPromoCodes();
-    }, 'Промокоды созданы через серверный workflow.');
+    }, 'Промокоды созданы через защищённый серверный процесс.');
   }
   if (action === 'load-daily-briefing') return runBusy(() => loadDailyBriefing(false), 'Последняя сводка загружена.');
   if (action === 'generate-daily-briefing') return runBusy(async () => {
@@ -2380,6 +2651,24 @@ async function handleAction(action, target) {
     setMessage(result?.preservedExisting ? 'Полная сводка уже существовала; неполный прогон не был сохранён.' : 'Новая сводка сформирована и сохранена.', result?.preservedExisting ? 'warning' : 'success');
     return result;
   });
+  if (action === 'save-admin-settings') {
+    state.adminSettings = saveAdminUiSettings(state.adminSettings);
+    applyAdminUiSettings(state.adminSettings);
+    state.reports = { ...state.reports, source: state.reports.source || state.adminSettings.defaultSource, lane: state.reports.lane || state.adminSettings.defaultLane, sinceDays: Number(state.reports.sinceDays || state.adminSettings.defaultSinceDays) };
+    setMessage('Настройки админки сохранены в этом браузере.', 'success');
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'reset-admin-settings') {
+    if (!globalThis.confirm('Сбросить личные настройки Admin v2 к стандартному виду?')) return;
+    try { globalThis.localStorage?.removeItem(ADMIN_V2_SETTINGS_STORAGE_KEY); } catch {}
+    state.adminSettings = normalizeAdminUiSettings({});
+    state.reports = defaultReportState(state.adminSettings);
+    applyAdminUiSettings(state.adminSettings);
+    setMessage('Настройки админки сброшены.', 'success');
+    renderCurrentPage();
+    return;
+  }
   if (action === 'load-report-queue') {
     state.reports = { ...state.reports, ...readReportFilters(), nextCursor: '' };
     return runBusy(loadReportQueue, 'Очередь репортов загружена.');
@@ -2550,7 +2839,13 @@ async function handleAction(action, target) {
   if (action === 'create-factory-job') {
     let input;
     try { input = readCreateForm(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
-    return runBusy(async () => { const result = await actions.createFactoryJob(input); await loadJobs(result.jobId); state.factoryStep = 2; }, 'Черновик создан. Публикация не выполнялась.');
+    return runBusy(async () => {
+      const workspace = await actions.getFactoryWorkspace({ studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, limit: 100 });
+      assertFactoryWorkspaceCoverage(workspace, input);
+      const result = await actions.createFactoryJob(input);
+      await loadJobs(result.jobId);
+      state.factoryStep = 2;
+    }, 'Черновик создан. Публикация не выполнялась.');
   }
   if (action === 'refresh-factory-detail') return runBusy(() => loadJobDetail(state.selectedJobId), 'Данные задания обновлены.');
   if (action === 'run-factory-generation') return runBusy(runGeneration, 'Генерация завершила текущий проход. Проверьте результат и ошибки.');
@@ -2617,7 +2912,7 @@ async function handleAction(action, target) {
       state.support = { ...state.support, loaded: true, items: Array.isArray(list?.items) ? list.items : [], signature: String(list?.signature ?? ''), signatureRevision: Number(list?.signatureRevision ?? 0), pendingReply: result?.state === 'accepted' ? null : state.support.pendingReply };
       if (result?.state === 'delivery_unknown') setMessage('Результат Gmail неизвестен. Повтор заблокирован; проверьте «Отправленные».', 'warning');
       else if (result?.state === 'accepted') setMessage('Ответ принят Gmail и отмечен как отправленный.', 'success');
-      else setMessage(`Операция не отправлена: ${String(result?.state || 'неизвестное состояние')}.`, 'warning');
+      else setMessage(`Операция не отправлена: ${operationalStateLabel(result?.state)}.`, 'warning');
     });
   }
   if (action === 'cancel-support-reply') {
@@ -2720,6 +3015,13 @@ async function handleClick(event) {
     document.body.classList.remove('nav-open');
     return;
   }
+  const settingsTarget = target.getAttribute('data-settings-target');
+  if (settingsTarget) {
+    const panel = document.getElementById(settingsTarget);
+    panel?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    panel?.focus?.({ preventScroll: true });
+    return;
+  }
   const step = Number(target.getAttribute('data-factory-step'));
   if (step >= 1 && step <= 4) {
     state.factoryStep = step;
@@ -2737,6 +3039,8 @@ async function handleClick(event) {
   }
   const unitId = target.getAttribute('data-preview-unit');
   if (unitId) return runBusy(async () => { state.preview = await actions.previewFactoryUnit({ unitId }); state.factoryStep = 3; }, 'Предпросмотр проверен и загружен.');
+  const retryUnitId = target.getAttribute('data-retry-factory-unit');
+  if (retryUnitId) return runBusy(() => retryFactoryUnit(retryUnitId), 'Операция повторена. Проверьте новый статус.');
   const profileUid = target.getAttribute('data-user-profile-uid');
   if (profileUid) {
     state.users.profileLoading = true;
@@ -2802,7 +3106,7 @@ export function setAuthState(auth) {
     state.preview = null;
     state.message = '';
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
-    state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+    state.reports = defaultReportState(state.adminSettings);
     state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
     state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
     state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
@@ -2813,7 +3117,7 @@ export function setAuthState(auth) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
-  if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+  if (!state.authorized || !can('reports.read')) state.reports = defaultReportState(state.adminSettings);
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
@@ -2825,7 +3129,8 @@ export function setAuthState(auth) {
 }
 
 export function renderRoute(route, capabilityId = '') {
-  state.route = PAGES[route] ? route : 'overview';
+  const requestedRoute = route === 'overview' && !globalThis.location.hash && PAGES[state.adminSettings.startPage] ? state.adminSettings.startPage : route;
+  state.route = PAGES[requestedRoute] ? requestedRoute : 'overview';
   const capability = capabilityById(capabilityId);
   state.selectedCapabilityId = capability?.route === state.route && !capability.nativeRoute ? capability.id : '';
   renderCurrentPage();
@@ -2835,9 +3140,12 @@ export function renderRoute(route, capabilityId = '') {
 export function initAdminUi() {
   if (initialized) return;
   initialized = true;
+  applyAdminUiSettings(state.adminSettings);
   document.addEventListener('click', handleClick);
   document.addEventListener('change', handleReportFilterChange);
+  document.addEventListener('change', handleAdminSettingsChange);
   document.addEventListener('input', handleReportFilterInput);
+  document.addEventListener('input', handleAdminSettingsChange);
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && event.target instanceof HTMLInputElement && event.target.id === 'user-search') {
       event.preventDefault();

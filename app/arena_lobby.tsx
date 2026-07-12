@@ -30,8 +30,6 @@ import { useTabNav } from './TabContext';
 import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
-import { ConstellationLobbyCard } from './constellation_lobby_card';
-import { getConstellationsPlacement, isConstellationsEnabled } from './remote_flags';
 import { arenaToasts } from '../constants/arena_i18n';
 import { arenaActionIconSource } from './arena_action_icons';
 import { ARENA_LOBBY_ACCEPT_MS, ARENA_PLAY_AGAIN_BOT_MAX_MS, ARENA_PLAY_AGAIN_BOT_MIN_MS, CLOUD_SYNC_ENABLED, ENABLE_ARENA_RANKED_WAGER, IS_EXPO_GO, } from './config';
@@ -200,21 +198,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const { theme: t, f, themeMode } = useTheme();
     const arenaTabVisible = !isTab || activeIdx === 2;
     const lobbyRuntimeActive = useRuntimeActive(arenaTabVisible);
-    // «Созвездия» (I1): вход управляется флагами живьём; only = дуэльная кнопка скрыта.
-    const constellationsOn = isConstellationsEnabled();
-    const constellationsPlacement = getConstellationsPlacement();
     // Пауза вечных лупов лобби при сворачивании приложения (таб-гарда мало: при
     // свёрнутом приложении с активным табом «Арена» они продолжали крутиться в фоне).
     const screenTitleColor = t.textPrimary;
     const screenMuted = t.textMuted;
     const { lang } = useLang();
-    const constellationCardEl = constellationsOn ? (
-      <ConstellationLobbyCard
-        lang={lang}
-        prominent={constellationsPlacement !== 'secondary'}
-        onPress={() => router.push('/constellation_search' as any)}
-      />
-    ) : null;
     const effectiveOs = useEffectivePlatformOS();
     const defaultPlayerName = useMemo(() => triLang(lang, {
         ru: 'Игрок',
@@ -1001,8 +989,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     emitAppEvent('action_toast', actionToastTri('error', {
                         ru: 'Синхронизация выключена. Включи её — иначе друг не сможет зайти.',
                         uk: 'Хмара недоступна (синхронізація вимкнена). Друг не зможе зайти в кімнату.',
-                        es: 'La nube no está disponible (sincronización desactivada). Tu amigo no podrá entrar en la sala.',
-                        'pt-BR': 'A nuvem está indisponível (sincronização desligada). Seu amigo não poderá entrar na sala.',
+                        es: 'Las salas con amigos no están disponibles en esta versión. Tu amigo no podrá entrar.',
+                        'pt-BR': 'Salas com amigos não estão disponíveis nesta versão. Seu amigo não poderá entrar.',
                         vi: 'Đám mây không khả dụng (đồng bộ hóa đang tắt). Bạn của bạn sẽ không thể vào phòng.',
                         id: 'Cloud tidak tersedia (sinkronisasi mati). Temanmu tidak bisa masuk ke room.',
                         tr: 'Bulut kullanılamıyor (senkronizasyon kapalı). Arkadaşın odaya giremeyecek.',
@@ -1081,14 +1069,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 setArenaFriendPickUid(null);
                 friendMatchNavRef.current = false;
                 emitAppEvent('action_toast', actionToastTri('error', {
-                    ru: 'Комната не создалась в облаке. Проверь сеть — если друг не заходит, пригласи ещё раз.',
-                    uk: 'Не вдалося створити кімнату в хмарі. Перевірте мережу — якщо друг не заходить, запросіть ще раз.',
-                    es: 'No se pudo crear la sala en la nube. Revisa la conexión: si tu amigo no puede entrar, vuelve a invitarlo.',
-                    'pt-BR': 'Não foi possível criar a sala na nuvem. Verifique a conexão; se seu amigo não entrar, envie outro convite.',
-                    vi: 'Không thể tạo phòng trên đám mây. Kiểm tra kết nối; nếu bạn của bạn không vào được, hãy mời lại.',
-                    id: 'Tidak dapat membuat room di cloud. Periksa koneksi; jika temanmu tidak bisa masuk, undang lagi.',
+                    ru: 'Комната не создалась. Проверь сеть — если друг не заходит, пригласи ещё раз.',
+                    uk: 'Не вдалося створити кімнату. Перевірте мережу — якщо друг не заходить, запросіть ще раз.',
+                    es: 'No se pudo crear la sala. Revisa la conexión: si tu amigo no puede entrar, vuelve a invitarlo.',
+                    'pt-BR': 'Não foi possível criar a sala. Verifique a conexão; se seu amigo não entrar, envie outro convite.',
+                    vi: 'Không thể tạo phòng. Kiểm tra kết nối; nếu bạn của bạn không vào được, hãy mời lại.',
+                    id: 'Tidak dapat membuat room. Periksa koneksi; jika temanmu tidak bisa masuk, undang lagi.',
                     tr: 'Bulutta oda oluşturulamadı. Bağlantını kontrol et; arkadaşın giremezse yeniden davet et.',
-                    pl: 'Nie udało się utworzyć pokoju w chmurze. Sprawdź połączenie; jeśli znajomy nie wejdzie, zaproś ponownie.',
+                    pl: 'Nie udało się utworzyć pokoju. Sprawdź połączenie; jeśli znajomy nie wejdzie, zaproś ponownie.',
                 }));
             }
         };
@@ -1134,28 +1122,28 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     ? {
                         ru: effectiveOs === 'ios'
                             ? 'У друга нет активной сессии. Пусть откроет приложение или выберите его в списке ниже.'
-                            : 'У друга нет активной сессии в облаке. Пусть откроет приложение и попробуйте ещё раз.',
+                            : 'Друг сейчас не в сети. Пусть откроет приложение, затем попробуйте ещё раз.',
                         uk: effectiveOs === 'ios'
                             ? 'У друга немає активної сесії. Нехай відкриє застосунок або обери його в списку нижче.'
-                            : 'У друга немає активної сесії в хмарі. Нехай відкриє застосунок і спробуйте ще раз.',
+                            : 'Друг зараз не в мережі. Нехай відкриє застосунок, потім спробуйте ще раз.',
                         es: effectiveOs === 'ios'
                             ? 'Tu amigo no tiene sesión activa. Pídele que abra la app o elígelo en la lista de abajo.'
-                            : 'Tu amigo no tiene sesión en la nube. Pídele que abra la app e inténtalo otra vez.',
+                            : 'Tu amigo no está conectado. Pídele que abra la app e inténtalo otra vez.',
                         'pt-BR': effectiveOs === 'ios'
                             ? 'Seu amigo não tem sessão ativa. Peça para abrir o app ou escolha na lista abaixo.'
-                            : 'Seu amigo não tem sessão na nuvem. Peça para abrir o app e tente outra vez.',
+                            : 'Seu amigo não está online. Peça para abrir o app e tente outra vez.',
                         vi: effectiveOs === 'ios'
                             ? 'Bạn của bạn chưa có phiên hoạt động. Hãy nhờ họ mở ứng dụng hoặc chọn trong danh sách bên dưới.'
-                            : 'Bạn của bạn chưa có phiên trên đám mây. Hãy nhờ họ mở ứng dụng rồi thử lại.',
+                            : 'Bạn của bạn chưa online. Hãy nhờ họ mở ứng dụng rồi thử lại.',
                         id: effectiveOs === 'ios'
                             ? 'Temanmu tidak punya sesi aktif. Minta mereka membuka app atau pilih dari daftar di bawah.'
-                            : 'Temanmu tidak punya sesi cloud. Minta mereka membuka app lalu coba lagi.',
+                            : 'Temanmu sedang tidak online. Minta mereka membuka app lalu coba lagi.',
                         tr: effectiveOs === 'ios'
                             ? 'Arkadaşının aktif oturumu yok. Uygulamayı açmasını iste veya aşağıdaki listeden seç.'
-                            : 'Arkadaşının bulut oturumu yok. Uygulamayı açmasını iste ve tekrar dene.',
+                            : 'Arkadaşın çevrimiçi değil. Uygulamayı açmasını iste ve tekrar dene.',
                         pl: effectiveOs === 'ios'
                             ? 'Znajomy nie ma aktywnej sesji. Poproś o otwarcie aplikacji albo wybierz go z listy poniżej.'
-                            : 'Znajomy nie ma sesji w chmurze. Poproś o otwarcie aplikacji i spróbuj ponownie.',
+                            : 'Znajomy nie jest online. Poproś o otwarcie aplikacji i spróbuj ponownie.',
                     }
                     : res.reason === 'not_friend'
                         ? {
@@ -2235,11 +2223,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   />
                 ) : null}
 
-                {constellationsOn && constellationsPlacement !== 'secondary'
-                  ? constellationCardEl
-                  : null}
-
-                {constellationsOn && constellationsPlacement === 'only' ? null : (<DuoPressable
+                <DuoPressable
                   testID="arena-find-match"
                   accessibilityLabel="qa-arena-find-match"
                   accessible={true}
@@ -2289,11 +2273,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     </Text>
                   </View>
                   <Ionicons name="arrow-forward-circle" size={34} color={arenaGlass.ctaIcon}/>
-                </DuoPressable>)}
-
-                {constellationsOn && constellationsPlacement === 'secondary'
-                  ? constellationCardEl
-                  : null}
+                </DuoPressable>
 
                 {!isUnlimited ? (<View style={styles.arenaCostRow}>
                       <View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.innerBg, borderColor: arenaGlass.innerBorder }]}>

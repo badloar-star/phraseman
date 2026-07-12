@@ -9,6 +9,8 @@ const {
   buildBatchLocaleCoverageAudit,
   buildExistingLocaleAudit,
   buildExistingLocaleAuditMarkdown,
+  buildLocalizationRuntimeLedger,
+  buildPresentLocaleReviewCandidates,
   buildAgentReviewBoardMarkdown,
   buildResearchChecklist,
   buildRunbook,
@@ -30,6 +32,7 @@ function parseArgs(argv) {
     lang: null,
     outRoot: path.join('docs', 'heisenberg'),
     blockSize: 40,
+    surface: null,
     auditOnly: false,
     includeSupporting: false,
     runChecks: false,
@@ -48,6 +51,8 @@ function parseArgs(argv) {
       args.outRoot = argv[++i];
     } else if (token === '--block-size') {
       args.blockSize = Number(argv[++i]);
+    } else if (token === '--surface') {
+      args.surface = argv[++i];
     } else if (token === '--audit-only') {
       args.auditOnly = true;
     } else if (token === '--include-supporting') {
@@ -75,6 +80,9 @@ function parseArgs(argv) {
     if (!Number.isFinite(args.blockSize) || args.blockSize < 5 || args.blockSize > 200) {
       throw new Error('--block-size must be between 5 and 200');
     }
+    if (args.surface && !PRODUCT_SURFACES.has(args.surface)) {
+      throw new Error(`--surface must be one of: ${[...PRODUCT_SURFACES].sort().join(', ')}`);
+    }
   }
   return args;
 }
@@ -93,6 +101,7 @@ Options:
   --all-batch      Run the current Heisenberg batch locales: ${HEISENBERG_BATCH_SOURCE_LOCALES.join(', ')}.
   --out-root       Output root. Default: docs/heisenberg
   --block-size     Rows per translation block. Default: 40
+  --surface        Limit work items/blocks to one product surface (for example ui-locale).
   --audit-only     Generate inventory, research checklist, and guard report only.
   --include-supporting
                   Also write docs/tests/scripts-tools localized items into blocks.
@@ -155,6 +164,7 @@ function safeBlockName(block) {
 
 function childArgsForLocale(args, locale) {
   const out = [__filename, '--lang', locale, '--out-root', args.outRoot, '--block-size', String(args.blockSize)];
+  if (args.surface) out.push('--surface', args.surface);
   if (args.auditOnly) out.push('--audit-only');
   if (args.includeSupporting) out.push('--include-supporting');
   if (args.coverageStrict) out.push('--coverage-strict');
@@ -185,6 +195,11 @@ function runSelectedChecks(root) {
   checks.push(runCheck('npx', ['tsc', '--noEmit', '--pretty', 'false'], root));
   checks.push(runCheck('npm', ['run', 'heisenberg:semantic-audit:strict'], root));
   checks.push(runCheck('npm', ['run', 'heisenberg:ui-audit'], root));
+  checks.push(runCheck('npm', ['run', 'heisenberg:production-readiness'], root));
+  checks.push(runCheck('npm', ['run', 'heisenberg:blocker-matrix'], root));
+  checks.push(runCheck('npm', ['run', 'heisenberg:raw-strings:strict'], root));
+  checks.push(runCheck('npm', ['run', 'heisenberg:prompt-language-audit:strict'], root));
+  checks.push(runCheck('npm', ['run', 'heisenberg:preflight:strict'], root));
   return checks;
 }
 
@@ -279,18 +294,25 @@ function main() {
   const inventory = inventoryFiles(root, files);
   const guard = guardReport(inventory, locale);
   const batchLocaleCoverage = buildBatchLocaleCoverageAudit(inventory);
+  const runtimeLedger = buildLocalizationRuntimeLedger(inventory, [locale]);
+  const presentReviewCandidates = buildPresentLocaleReviewCandidates(inventory, locale, { surface: args.surface });
   const existingLocaleAudit = guard.knownLocaleConflict ? buildExistingLocaleAudit(inventory, locale) : null;
-  const blockItems = existingLocaleAudit
+  const candidateBlockItems = existingLocaleAudit
     ? missingTargetSourceItems(inventory, locale)
     : args.includeSupporting
       ? inventory.items
       : inventory.items.filter((item) => PRODUCT_SURFACES.has(item.surface));
+  const blockItems = args.surface
+    ? candidateBlockItems.filter((item) => item.surface === args.surface)
+    : candidateBlockItems;
   const blocks = args.auditOnly ? [] : buildTranslationBlocks(blockItems, locale, { blockSize: args.blockSize });
 
   fs.mkdirSync(outDir, { recursive: true });
   writeJson(path.join(outDir, 'inventory.json'), { totals: inventory.totals, files: inventory.files });
   writeJson(path.join(outDir, 'guard_report.json'), guard);
   writeJson(path.join(outDir, 'batch_locale_coverage.json'), batchLocaleCoverage);
+  writeJson(path.join(outDir, 'runtime_ledger.json'), runtimeLedger);
+  writeJsonl(path.join(outDir, 'present_review_candidates.jsonl'), presentReviewCandidates);
   if (existingLocaleAudit) {
     writeJson(path.join(outDir, 'existing_locale_audit.json'), existingLocaleAudit);
     writeText(path.join(outDir, 'existing_locale_audit.md'), buildExistingLocaleAuditMarkdown(existingLocaleAudit));
@@ -347,7 +369,9 @@ function main() {
     localizedItemsForBlocks: blockItems.length,
     includeSupporting: args.includeSupporting,
     blockSize: args.blockSize,
+    requestedSurface: args.surface,
     translationBlocks: blocks.length,
+    presentReviewCandidates: presentReviewCandidates.length,
     guard: {
       knownLocaleConflict: guard.knownLocaleConflict,
       targetInterfaceStatus: guard.targetInterfaceStatus,
@@ -356,6 +380,7 @@ function main() {
       integrationBlockers: guard.integrationBlockers.length,
     },
     batchLocaleCoverage: batchLocaleCoverage.summary,
+    runtimeLedger: runtimeLedger.summary.locales[locale] || runtimeLedger.summary.locales[localeSlug(locale)] || null,
     existingLocaleAudit: existingLocaleAudit
       ? {
           fieldCoverageGapFiles: existingLocaleAudit.summary.fieldCoverageGapFiles,
@@ -402,9 +427,13 @@ function main() {
   }
 }
 
-try {
-  main();
-} catch (err) {
-  console.error(`[heisenberg] ${err && err.message ? err.message : err}`);
-  process.exitCode = 1;
+if (require.main === module) {
+  try {
+    main();
+  } catch (err) {
+    console.error(`[heisenberg] ${err && err.message ? err.message : err}`);
+    process.exitCode = 1;
+  }
 }
+
+module.exports = { childArgsForLocale, parseArgs };

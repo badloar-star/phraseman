@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, LayoutAnimation } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { ProgressMirror } from '../../app/paywall_progress_mirror';
 import type { PaywallProfile } from '../../app/paywall_profile';
@@ -20,10 +21,19 @@ import { hapticTap } from '../../hooks/use-haptics';
 // ── обёртка-карточка ──────────────────────────────────────────────────────────
 function ProofCard({ title, chrome, children }: { title?: string; chrome: PaywallChrome; children: React.ReactNode }) {
   return (
-    <View style={[S.card, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+    <LinearGradient
+      colors={[`${chrome.tc.heroAccent}14`, chrome.cardBg, chrome.cardBgStrong]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={[S.card, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}
+    >
+      <View
+        pointerEvents="none"
+        style={[S.cardHighlight, { backgroundColor: `${chrome.tc.heroAccent}38` }]}
+      />
       {title ? <Text style={[S.cardTitle, { color: chrome.textMuted }]}>{title.toUpperCase()}</Text> : null}
       {children}
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -418,7 +428,8 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
 }
 
 const S = StyleSheet.create({
-  card: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
+  card: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14, overflow: 'hidden' },
+  cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },
   cardTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 12 },
 
   mirrorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 9 },

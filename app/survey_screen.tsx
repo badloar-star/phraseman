@@ -254,8 +254,8 @@ export default function SurveyScreen() {
       'pt-BR': 'A pesquisa não está mais disponível.', vi: 'Khảo sát không còn khả dụng.', id: 'Survei sudah tidak tersedia.',
       tr: 'Anket artık kullanılamıyor.', pl: 'Ankieta jest już niedostępna.',
     }) : triLang(lang, {
-      ru: submission.messageKey === 'auth' ? 'Нужен вход в облако. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
-      uk: submission.messageKey === 'auth' ? 'Потрібен вхід у хмару. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
+      ru: submission.messageKey === 'auth' ? 'Не удалось подтвердить аккаунт. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
+      uk: submission.messageKey === 'auth' ? 'Не вдалося підтвердити акаунт. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
       es: 'No se pudo enviar. Inténtalo de nuevo.', 'pt-BR': 'Falha ao enviar. Tente de novo.',
       vi: 'Gửi không thành công. Thử lại.', id: 'Gagal mengirim. Coba lagi.',
       tr: 'Gönderilemedi. Tekrar dene.', pl: 'Nie udało się wysłać. Spróbuj ponownie.',

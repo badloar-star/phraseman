@@ -1029,8 +1029,6 @@ export default function AiDialogSession() {
       <View
         style={{
           backgroundColor: glassFill(t.bgSurface, 0.46),
-          borderTopWidth: 1,
-          borderTopColor: glassFill(t.accent, 0.14),
           borderRadius: 12,
           padding: 12,
           marginTop: 12,
@@ -1634,8 +1632,6 @@ export default function AiDialogSession() {
                         borderBottomLeftRadius: 6,
                         paddingHorizontal: 16,
                         paddingVertical: 12,
-                        borderTopWidth: 1,
-                        borderTopColor: glassFill(t.accent, 0.14),
                         maxWidth: '82%',
                         flexShrink: 1,
                         shadowColor: t.shadowDark,
@@ -1900,8 +1896,6 @@ export default function AiDialogSession() {
                   alignItems: 'center',
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 14,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   paddingHorizontal: 16,
                   paddingVertical: 12,
                   marginBottom: 12,
@@ -1951,8 +1945,6 @@ export default function AiDialogSession() {
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 18,
                   padding: 18,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   marginTop: 6,
                   marginBottom: 6,
                 }}
@@ -2344,8 +2336,6 @@ export default function AiDialogSession() {
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
                   padding: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   marginTop: 6,
                 }}
               >
@@ -2423,8 +2413,6 @@ export default function AiDialogSession() {
               <View
                 style={{
                   borderRadius: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   paddingHorizontal: 14,
                   paddingVertical: 12,

@@ -72,6 +72,23 @@ const PREMIUM_INACTIVE_EVENTS = new Set([
 function cleanId(raw) {
     return String(raw ?? '').trim();
 }
+function normalizeLifecycleReason(raw) {
+    if (typeof raw !== 'string')
+        return '';
+    const reason = raw.trim().toUpperCase();
+    return reason.length <= 64 && /^[A-Z][A-Z0-9_]*$/.test(reason) ? reason : '';
+}
+function revenueCatLifecycleReasonFields(event, eventType) {
+    if (eventType === 'CANCELLATION') {
+        const cancelReason = normalizeLifecycleReason(event.cancel_reason);
+        return cancelReason ? { cancelReason } : {};
+    }
+    if (eventType === 'EXPIRATION') {
+        const expirationReason = normalizeLifecycleReason(event.expiration_reason);
+        return expirationReason ? { expirationReason } : {};
+    }
+    return {};
+}
 function isRevenueCatAnonymousId(raw) {
     const id = cleanId(raw);
     return id.startsWith('$RCAnonymousID:') || id.startsWith('$RCA');
@@ -299,6 +316,7 @@ async function handlePremiumSubscriptionEvent(event, eventType, productId, res) 
                 purchasedAtMs: purchasedMs,
                 expirationAtMs: expiryMs,
                 eventTimestampMs: eventMs(event.event_timestamp_ms),
+                ...revenueCatLifecycleReasonFields(event, eventType),
                 userDocExists: userSnap.exists,
                 createdAt: admin.firestore.FieldValue.serverTimestamp(),
             });
@@ -713,6 +731,7 @@ exports.__revenueCatWebhookTestHooks = {
     stableCandidateUserIds,
     transferTargetIds,
     transferSourceIds,
+    revenueCatLifecycleReasonFields,
     handleTransferEvent,
 };
 //# sourceMappingURL=revenuecat_shards.js.map

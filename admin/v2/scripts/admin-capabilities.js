@@ -42,7 +42,7 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'card-packs', route: 'content', label: 'Наборы карточек', description: 'Содержимое и управление наборами карточек.', legacyTab: 'card-packs' },
   { id: 'daily-phrases', route: 'content', label: 'Фразы дня', description: 'Фразы, расписание и публикация.', legacyTab: 'daily-phrases' },
   { id: 'french-quizzes', route: 'content', label: 'Французские квизы', description: 'Предпросмотр, черновик, публикация и откат.', legacyTab: 'french-quizzes' },
-  { id: 'asset-studio', route: 'content', label: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через серверный job workflow.' },
+  { id: 'asset-studio', route: 'content', label: 'Студия изображений', description: 'Создание изображений через безопасные серверные задания.' },
   { id: 'explain-reports', route: 'content', label: 'Репорты объяснений', description: 'Ошибки и отзывы по объяснениям.', legacyTab: 'explain-reports' },
   { id: 'explain-cache', route: 'content', label: 'Кэш объяснений', description: 'Проверка и обслуживание готовых объяснений.', legacyTab: 'explain-cache' },
   { id: 'compass', route: 'content', label: 'Компас', description: 'Контент и параметры учебного Компаса.', legacyTab: 'compass' },

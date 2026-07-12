@@ -1246,7 +1246,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
             alignItems: 'center',
             gap: 10,
           }, freeQuizState.exhausted
-            ? { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
+            ? { backgroundColor: glassFill(t.bgSurface, 0.46) }
             : { backgroundColor: glassFill(t.accent, 0.12), borderWidth: 0, borderColor: 'transparent' }]}>
             <Ionicons
               name={freeQuizState.exhausted ? 'lock-closed' : 'flash-outline'}
@@ -2206,7 +2206,7 @@ function QuizGame({
             return (
               <View style={[isCompassTheme
                 ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderRadius: 9, borderWidth:0, borderColor: 'transparent', overflow: 'hidden' }
-                : { backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
+                : { backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14 },
                 { padding:14, width:'100%', flexDirection:'row', alignItems:'center', gap:12, marginBottom:28 }, isCompassTheme && compassShadow(1)]}>
                 <LevelBadge level={lv} size={40} />
                 <View style={{ flex:1 }}>
@@ -2908,7 +2908,7 @@ function QuizGame({
             <View style={{
               marginTop: 8,
               backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14,
-              padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),
+              padding: 14,
             }}>
               <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 19, marginBottom: 10 }}>
                 {triLang(lang, {
@@ -3142,8 +3142,6 @@ function FrenchQuizUnavailable() {
           <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
             <View style={{
               borderRadius: 18,
-              borderTopWidth: 1,
-              borderTopColor: glassFill(t.accent, 0.14),
               backgroundColor: glassFill(t.bgSurface, 0.46),
               padding: 18,
               gap: 12,

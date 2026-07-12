@@ -47,7 +47,7 @@ import { randomSelfFriendCodeMessage } from './friends_self_code_messages';
 import { triLang } from '../constants/i18n';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { trackActivity } from './app_activity';
-import { getShardsBalance } from './shards_system';
+import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import {
   FRIEND_GIFT_CATALOG,
@@ -463,7 +463,7 @@ export default function FriendsScreen() {
     const gift = FRIEND_GIFT_CATALOG.find((x) => x.id === giftId);
     if (!gift) return;
     if (!isFriendGiftsCloudEnabled()) {
-      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronización en la nube', 'Presentes só estão disponíveis com sincronização na nuvem', 'Quà tặng chỉ khả dụng khi đồng bộ đám mây', 'Hadiah hanya tersedia dengan sinkronisasi cloud', 'Hediyeler yalnızca bulut senkronizasyonuyla kullanılabilir', 'Prezenty są dostępne tylko z synchronizacją w chmurze'));
+      showFeedback(L('Подарки временно недоступны. Попробуй позже.', 'Подарунки тимчасово недоступні. Спробуй пізніше.', 'Los regalos no están disponibles ahora. Inténtalo más tarde.', 'Os presentes estão temporariamente indisponíveis. Tente mais tarde.', 'Quà tặng tạm thời chưa khả dụng. Hãy thử lại sau.', 'Hadiah sementara tidak tersedia. Coba lagi nanti.', 'Hediyeler geçici olarak kullanılamıyor. Daha sonra dene.', 'Prezenty są chwilowo niedostępne. Spróbuj później.'));
       return;
     }
     if (giftBalance < gift.costShards) {
@@ -474,17 +474,24 @@ export default function FriendsScreen() {
     setGiftBusyId(giftId);
     const target = giftTarget;
     const sentGiftName = giftLabel(gift);
-    showFeedback(L('Отправляем подарок...', 'Надсилаємо подарунок...', 'Enviando regalo...', 'Enviando presente...', 'Đang gửi quà...', 'Mengirim hadiah...', 'Hediye gönderiliyor...', 'Wysyłanie prezentu...'));
+    const optimisticBalance = Math.max(0, giftBalance - gift.costShards);
+    setGiftBalance(optimisticBalance);
+    setGiftTarget(null);
+    void replaceShardsBalanceLocal(optimisticBalance, {
+      op: 'spend',
+      reason: 'friend_gift_optimistic',
+    });
+    showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
     emitAppEvent('action_toast', {
-      type: 'info',
-      messageRu: `Отправляем подарок: ${sentGiftName}`,
-      messageUk: `Надсилаємо подарунок: ${sentGiftName}`,
-      messageEs: `Enviando regalo: ${sentGiftName}`,
-      messagePtBr: `Enviando presente: ${sentGiftName}`,
-      messageVi: `Đang gửi quà: ${sentGiftName}`,
-      messageId: `Mengirim hadiah: ${sentGiftName}`,
-      messageTr: `Hediye gönderiliyor: ${sentGiftName}`,
-      messagePl: `Wysyłanie prezentu: ${sentGiftName}`,
+      type: 'success',
+      messageRu: `Подарок отправлен: ${sentGiftName}`,
+      messageUk: `Подарунок надіслано: ${sentGiftName}`,
+      messageEs: `Regalo enviado: ${sentGiftName}`,
+      messagePtBr: `Presente enviado: ${sentGiftName}`,
+      messageVi: `Đã gửi quà: ${sentGiftName}`,
+      messageId: `Hadiah terkirim: ${sentGiftName}`,
+      messageTr: `Hediye gönderildi: ${sentGiftName}`,
+      messagePl: `Prezent wysłany: ${sentGiftName}`,
     });
     try {
       const res = await sendFriendGiftWithShards({
@@ -493,19 +500,6 @@ export default function FriendsScreen() {
       });
       const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
       setGiftBalance(guardedBalance);
-      setGiftTarget(null);
-      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
-      emitAppEvent('action_toast', {
-        type: 'success',
-        messageRu: `Подарок отправлен: ${sentGiftName}`,
-        messageUk: `Подарунок надіслано: ${sentGiftName}`,
-        messageEs: `Regalo enviado: ${sentGiftName}`,
-        messagePtBr: `Presente enviado: ${sentGiftName}`,
-        messageVi: `Đã gửi quà: ${sentGiftName}`,
-        messageId: `Hadiah terkirim: ${sentGiftName}`,
-        messageTr: `Hediye gönderildi: ${sentGiftName}`,
-        messagePl: `Prezent wysłany: ${sentGiftName}`,
-      });
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
@@ -515,6 +509,11 @@ export default function FriendsScreen() {
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       const kind = classifyFriendGiftError(e);
+      setGiftBalance(giftBalance);
+      void replaceShardsBalanceLocal(giftBalance, {
+        op: 'replace',
+        reason: 'friend_gift_rollback',
+      });
       if (kind !== 'unknown') {
         const feedback =
           kind === 'limit'
@@ -524,7 +523,7 @@ export default function FriendsScreen() {
             : kind === 'not_friends' || kind === 'user_missing'
             ? L('Дружба уже не активна. Обнови список друзей.', 'Дружба вже не активна. Онови список друзів.', 'La amistad ya no esta activa. Actualiza la lista.', 'A amizade não está mais ativa. Atualize a lista.', 'Tình bạn không còn hoạt động. Hãy làm mới danh sách.', 'Pertemanan sudah tidak aktif. Segarkan daftar.', 'Arkadaşlık artık aktif değil. Listeyi yenile.', 'Znajomość nie jest już aktywna. Odśwież listę.')
             : kind === 'auth' || kind === 'identity_changed'
-            ? L('Аккаунт ещё связывается с облаком. Подожди пару секунд и попробуй снова.', 'Акаунт ще зв’язується з хмарою. Зачекай кілька секунд і спробуй знову.', 'La cuenta aun se esta vinculando. Espera unos segundos e intentalo de nuevo.', 'A conta ainda esta vinculando. Espere alguns segundos e tente de novo.', 'Tài khoản đang liên kết đám mây. Chờ vài giây rồi thử lại.', 'Akun masih ditautkan ke cloud. Tunggu sebentar lalu coba lagi.', 'Hesap buluta bağlanıyor. Birkaç saniye bekleyip tekrar dene.', 'Konto nadal łączy się z chmurą. Poczekaj chwilę i spróbuj ponownie.')
+            ? L('Подарок не дошёл. Осколки вернулись.', 'Подарунок не дійшов. Осколки повернулися.', 'No se pudo enviar el regalo. Recuperaste los fragmentos.', 'O presente não foi enviado. Os fragmentos voltaram.', 'Không gửi được quà. Mảnh đã hoàn lại.', 'Hadiah tidak terkirim. Pecahan dikembalikan.', 'Hediye ulaşmadı. Parçalar geri geldi.', 'Prezent nie dotarł. Odłamki wróciły.')
             : kind === 'network'
             ? L('Сеть не ответила. Подарок не списан, попробуй ещё раз.', 'Мережа не відповіла. Подарунок не списано, спробуй ще раз.', 'La red no respondio. No se cobro el regalo; intentalo de nuevo.', 'A rede não respondeu. O presente não foi cobrado; tente de novo.', 'Mạng chưa phản hồi. Quà chưa bị trừ, hãy thử lại.', 'Jaringan tidak merespons. Hadiah belum ditagih; coba lagi.', 'Ağ yanıt vermedi. Hediye ücretlendirilmedi, tekrar dene.', 'Sieć nie odpowiedziała. Prezent nie został pobrany, spróbuj ponownie.')
             : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');

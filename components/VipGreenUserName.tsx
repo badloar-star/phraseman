@@ -88,8 +88,14 @@ function VipGreenUserName({ text, fontSize }: Props) {
 export default memo(VipGreenUserName);
 
 const styles = StyleSheet.create({
-  wrap: { alignSelf: 'flex-start', position: 'relative', marginTop: 2 },
-  svg: { overflow: 'visible' },
+  wrap: {
+    alignSelf: 'flex-start',
+    position: 'relative',
+    marginTop: 2,
+    maxWidth: '100%',
+    overflow: 'hidden',
+  },
+  svg: { overflow: 'hidden' },
   measure: {
     position: 'absolute',
     opacity: 0,

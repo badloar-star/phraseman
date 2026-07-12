@@ -28,6 +28,10 @@ export interface ThemePaywallConfig {
   selectedCardBg: string;
   /** Фон невыбранной карточки */
   unselectedCardBg: string;
+  /** Borderless semantic panel tone for paywall blocks. */
+  panelBg: string;
+  /** Stronger borderless tone for selected/high-priority paywall blocks. */
+  panelBgStrong: string;
   /** Тень выбранной карточки (shadowColor) */
   selectedCardShadow: string;
 
@@ -73,6 +77,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#58CC89',
     selectedCardBg: 'rgba(88,204,137,0.13)',
     unselectedCardBg: 'rgba(21,32,25,0.86)',
+    panelBg: 'rgba(17,31,23,0.74)',
+    panelBgStrong: 'rgba(30,56,40,0.88)',
     selectedCardShadow: '#47C870',
 
     savingsBadgeBg: '#FFC800',
@@ -109,6 +115,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: GOLD_RICH.metalGold,
     selectedCardBg: GOLD_RICH.washStrong,
     unselectedCardBg: 'rgba(10,10,10,0.88)',
+    panelBg: 'rgba(18,15,9,0.78)',
+    panelBgStrong: 'rgba(41,32,15,0.88)',
     selectedCardShadow: GOLD_RICH.metalGold,
 
     savingsBadgeBg: GOLD_RICH.metalGold,
@@ -145,6 +153,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#FF6464',
     selectedCardBg: 'rgba(255,100,100,0.12)',
     unselectedCardBg: 'rgba(33,24,27,0.88)',
+    panelBg: 'rgba(38,24,29,0.78)',
+    panelBgStrong: 'rgba(62,32,38,0.88)',
     selectedCardShadow: '#FF6464',
 
     savingsBadgeBg: '#FFD060',
@@ -183,6 +193,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#6EA8FF',
     selectedCardBg: 'rgba(110,168,255,0.12)',
     unselectedCardBg: 'rgba(35,36,40,0.88)',
+    panelBg: 'rgba(34,36,41,0.78)',
+    panelBgStrong: 'rgba(44,49,58,0.88)',
     selectedCardShadow: '#6EA8FF',
 
     savingsBadgeBg: '#E9B949',
@@ -219,6 +231,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#0095F6',
     selectedCardBg: 'rgba(0,149,246,0.12)',
     unselectedCardBg: 'rgba(26,26,26,0.88)',
+    panelBg: 'rgba(24,24,24,0.82)',
+    panelBgStrong: 'rgba(24,39,56,0.88)',
     selectedCardShadow: '#000000',
 
     savingsBadgeBg: '#0095F6',
@@ -255,6 +269,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#0095F6',
     selectedCardBg: 'rgba(0,149,246,0.10)',
     unselectedCardBg: 'rgba(255,255,255,0.92)',
+    panelBg: 'rgba(18,27,35,0.78)',
+    panelBgStrong: 'rgba(24,43,58,0.86)',
     selectedCardShadow: 'rgba(0,0,0,0)',
 
     savingsBadgeBg: '#0095F6',
@@ -291,6 +307,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: 'rgba(143,160,255,0.46)',
     selectedCardBg: 'rgba(143,160,255,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(17,20,42,0.78)',
+    panelBgStrong: 'rgba(30,35,72,0.86)',
     selectedCardShadow: '#39448F',
 
     savingsBadgeBg: '#8FA0FF',
@@ -325,6 +343,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: 'rgba(255,162,69,0.46)',
     selectedCardBg: 'rgba(255,162,69,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(36,22,14,0.78)',
+    panelBgStrong: 'rgba(59,32,16,0.86)',
     selectedCardShadow: '#9A4E0E',
 
     savingsBadgeBg: '#FFA245',
@@ -359,6 +379,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: 'rgba(61,232,166,0.46)',
     selectedCardBg: 'rgba(61,232,166,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(13,34,28,0.78)',
+    panelBgStrong: 'rgba(19,58,45,0.86)',
     selectedCardShadow: '#0E7A57',
 
     savingsBadgeBg: '#3DE8A6',
@@ -393,6 +415,8 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: 'rgba(214,255,61,0.46)',
     selectedCardBg: 'rgba(214,255,61,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(31,37,11,0.78)',
+    panelBgStrong: 'rgba(49,61,14,0.86)',
     selectedCardShadow: '#5F7A0A',
 
     savingsBadgeBg: '#D6FF3D',

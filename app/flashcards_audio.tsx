@@ -783,7 +783,7 @@ export default function FlashcardsAudioScreen() {
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(bottomInset, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.summaryPanel, { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+        <View style={[styles.summaryPanel, { backgroundColor: glassFill(t.bgCard, 0.46) }]}>
           <View style={styles.summaryRow}>
             <View style={[styles.summaryIcon, { backgroundColor: t.accent }]}>
               <Ionicons name="headset-outline" size={24} color={t.correctText} />
@@ -876,7 +876,7 @@ export default function FlashcardsAudioScreen() {
                 styles.sourceRow,
                 selected
                   ? { backgroundColor: `${source.accent}22`, borderWidth: 0, borderColor: 'transparent' }
-                  : { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
+                  : { backgroundColor: glassFill(t.bgCard, 0.46) },
               ]}
             >
               <View style={[styles.sourceIcon, { backgroundColor: `${source.accent}24` }]}>
@@ -1088,7 +1088,7 @@ export default function FlashcardsAudioScreen() {
     <>
       {renderHeader(backToSetup)}
       <View style={[styles.doneWrap, { paddingBottom: Math.max(bottomInset, 16) + 12 }]}>
-        <View style={[styles.donePanel, { backgroundColor: glassFill(t.bgCard, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+        <View style={[styles.donePanel, { backgroundColor: glassFill(t.bgCard, 0.46) }]}>
           <View style={[styles.doneIcon, { backgroundColor: t.correctBg }]}>
             <Ionicons name="checkmark-circle" size={46} color={t.correct} />
           </View>

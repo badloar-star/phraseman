@@ -2103,7 +2103,7 @@ export default function FlashcardsSwipeScreen() {
 
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
 
-      <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), shadowColor: t.cardShadow }]}>
+      <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }]}>
         <View style={styles.heroTop}>
           <View style={[styles.heroIcon, { backgroundColor: `${t.accent}22` }]}>
             <Ionicons name="sparkles-outline" size={22} color={t.accent} />
@@ -2173,7 +2173,7 @@ export default function FlashcardsSwipeScreen() {
                   styles.sourceRow,
                   selected
                     ? { backgroundColor: `${selectedAccent}2E` }
-                    : { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
+                    : { backgroundColor: glassFill(t.bgSurface, 0.46) },
                 ]}
               >
                 <View style={[styles.sourceIcon, { backgroundColor: `${selected ? selectedAccent : source.accent}22` }]}>
@@ -2226,7 +2226,7 @@ export default function FlashcardsSwipeScreen() {
         >
           <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
         </TapScale>
-        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
           <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isPlanFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
           <Text style={[styles.doneTitle, isPlanFlashcardsTask && styles.planDoneTitle, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.bodyLg : f.h2 }]}>
             {cleanSession ? text.cleanDone : text.done}
@@ -2587,7 +2587,7 @@ export default function FlashcardsSwipeScreen() {
       >
         <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
       </TapScale>
-      <View style={[styles.noCardsPanel, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+      <View style={[styles.noCardsPanel, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
         <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22` }]}>
           <Ionicons name="albums-outline" size={30} color={t.accent} />
         </View>

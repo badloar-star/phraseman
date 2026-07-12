@@ -83,15 +83,15 @@ function storeSection(snapshot) {
   const shard = snapshot?.shardActivity || {};
   const premiumAvailable = sourceAvailable(snapshot, 'revenuecat_premium_events');
   const shardAvailable = sourceAvailable(snapshot, 'revenuecat_shard_transactions');
-  return `<section class="card section" aria-labelledby="analytics-store-title"><div class="card-header"><div><h2 id="analytics-store-title">События магазина</h2><p>Только production RevenueCat за выбранный период. Это события webhook, а не текущие доступы.</p></div><span class="badge ${sourceTone(snapshot?.sources?.revenuecat_premium_events?.state)}">${escapeHtml(sourceLabel(snapshot?.sources?.revenuecat_premium_events?.state))}</span></div><div class="card-body">
+  return `<section class="card section" aria-labelledby="analytics-store-title"><div class="card-header"><div><h2 id="analytics-store-title">События магазина</h2><p>Только подтверждённые рабочие события RevenueCat за выбранный период. Это история уведомлений магазина, а не текущие доступы пользователей.</p></div><span class="badge ${sourceTone(snapshot?.sources?.revenuecat_premium_events?.state)}">${escapeHtml(sourceLabel(snapshot?.sources?.revenuecat_premium_events?.state))}</span></div><div class="card-body">
     <div class="analytics-summary-grid">
-      ${metric('Начальные покупки', store.newPurchases, 'INITIAL_PURCHASE + NON_RENEWING_PURCHASE', premiumAvailable)}
-      ${metric('Продления', store.renewals, 'RENEWAL', premiumAvailable)}
-      ${metric('Старты trial', store.trialStarts, 'Только INITIAL_PURCHASE + TRIAL', premiumAvailable)}
-      ${metric('Возвраты', store.refunds, 'REFUND', premiumAvailable)}
-      ${metric('Покупки шардов', shard.productionPurchases, 'Только production', shardAvailable)}
+      ${metric('Начальные покупки', store.newPurchases, 'Первая подписка или разовая покупка', premiumAvailable)}
+      ${metric('Продления', store.renewals, 'Подписка успешно продлена', premiumAvailable)}
+      ${metric('Начало пробного периода', store.trialStarts, 'Первая покупка с пробным периодом', premiumAvailable)}
+      ${metric('Возвраты', store.refunds, 'Магазин подтвердил возврат', premiumAvailable)}
+      ${metric('Покупки осколков', shard.productionPurchases, 'Только подтверждённые рабочие покупки', shardAvailable)}
     </div>
-    <div class="notice section">Sandbox и события без подтверждённого production environment исключены. Любые lifecycle-события с periodType=TRIAL отдельно не считаются стартами trial.</div>
+    <div class="notice section">Тестовые покупки и события без подтверждённого рабочего окружения исключены. Событие подписки с признаком пробного периода само по себе не считается началом пробного периода.</div>
   </div></section>`;
 }
 
@@ -101,11 +101,11 @@ function funnelSection(snapshot) {
   const available = sourceAvailable(snapshot, 'paywall_funnel');
   return `<section class="card section" aria-labelledby="analytics-funnel-title"><div class="card-header"><div><h2 id="analytics-funnel-title">Сигналы экрана оплаты</h2><p>События, не уникальные пользователи и не деньги. Только пользователи, разрешившие аналитику.</p></div><span class="badge ${sourceTone(snapshot?.sources?.paywall_funnel?.state)}">${escapeHtml(sourceLabel(snapshot?.sources?.paywall_funnel?.state))}</span></div><div class="card-body">
     <div class="analytics-funnel-grid">
-      ${metric('Показы', events.shown, 'События shown', available)}
-      ${metric('Нажатия CTA', events.ctaClick, 'События cta_click', available)}
-      ${metric('Trial-сигналы', events.trialStarted, 'In-app signal, не RevenueCat truth', available)}
-      ${metric('Purchase-сигналы', events.purchaseCompleted, 'In-app signal, не магазинная покупка', available)}
-      <article class="metric analytics-metric"><label>Отношение сигналов</label><strong>${escapeHtml(percent(funnel.purchaseSignalRate, available))}</strong><small>purchase_completed ÷ shown</small></article>
+      ${metric('Показы', events.shown, 'Сколько раз открыли экран оплаты', available)}
+      ${metric('Нажатия главной кнопки', events.ctaClick, 'Сколько раз нажали кнопку покупки', available)}
+      ${metric('Сигналы пробного периода', events.trialStarted, 'Сигнал приложения, ещё не подтверждение магазина', available)}
+      ${metric('Сигналы завершённой покупки', events.purchaseCompleted, 'Сигнал приложения, ещё не подтверждение магазина', available)}
+      <article class="metric analytics-metric"><label>Доля завершённых покупок</label><strong>${escapeHtml(percent(funnel.purchaseSignalRate, available))}</strong><small>Завершённые покупки относительно показов экрана оплаты</small></article>
     </div>
   </div></section>`;
 }

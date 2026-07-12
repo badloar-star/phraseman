@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.USER_MESSAGES_COLLECTION = void 0;
+exports.reportRecipientCandidate = reportRecipientCandidate;
 /**
  * Ответы на юзерские репорты через персональные уведомления (инбокс-колокольчик).
  *
@@ -159,6 +160,18 @@ function requireAdmin(request) {
 function cleanString(value, maxLen) {
     return String(value ?? '').trim().slice(0, maxLen);
 }
+function reportRecipientCandidate(reportCollection, report) {
+    if (reportCollection === 'error_reports') {
+        return cleanString(report.stableUid || report.uid, 128);
+    }
+    if (reportCollection === 'explain_report_entries') {
+        return cleanString(report.stableUid || report.uid, 128);
+    }
+    if (reportCollection === 'user_reports' || reportCollection === 'community_pack_reports') {
+        return cleanString(report.reporterUid, 128);
+    }
+    return '';
+}
 /**
  * adminReplyToReport — отправить юзеру персональный ответ на его репорт.
  *
@@ -179,15 +192,12 @@ function cleanString(value, maxLen) {
  */
 exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     requireAdmin(request);
-    const uid = cleanString(request.data?.uid, 128);
     const reportCollection = cleanString(request.data?.reportCollection, 64);
     const reportId = cleanString(request.data?.reportId, 128);
     const title = cleanString(request.data?.title, REPLY_TITLE_MAX);
     const body = cleanString(request.data?.body, REPLY_BODY_MAX);
     const shardsRaw = Number(request.data?.shards ?? 0);
     const shards = Number.isFinite(shardsRaw) ? Math.floor(shardsRaw) : NaN;
-    if (!uid || uid === 'unknown')
-        throw new https_1.HttpsError('invalid-argument', 'uid required');
     if (!REPORT_COLLECTIONS.has(reportCollection)) {
         throw new https_1.HttpsError('invalid-argument', `reportCollection must be one of: ${Array.from(REPORT_COLLECTIONS).join(', ')}`);
     }
@@ -203,6 +213,15 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
     const nowMs = Date.now();
     const nowIso = new Date(nowMs).toISOString();
     const reportRef = db.collection(reportCollection).doc(reportId);
+    const initialReportSnap = await reportRef.get();
+    if (!initialReportSnap.exists) {
+        throw new https_1.HttpsError('not-found', `report ${reportCollection}/${reportId} not found`);
+    }
+    const originalUid = reportRecipientCandidate(reportCollection, initialReportSnap.data() ?? {});
+    if (!originalUid || originalUid === 'unknown') {
+        throw new https_1.HttpsError('failed-precondition', 'report recipient identity is missing');
+    }
+    const uid = await (0, auth_identity_1.resolveStableUidForAuth)(db, originalUid, undefined, { requireKnownIdentity: true });
     const userRef = db.collection('users').doc(uid);
     const messageRef = userRef.collection(exports.USER_MESSAGES_COLLECTION).doc();
     const notificationRef = (0, user_notifications_1.userNotificationRef)(db, uid, `report_reply_${messageRef.id}`);
@@ -286,6 +305,8 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
             replyShards: shards,
             repliedAt: nowIso,
             repliedBy: adminEmail,
+            replyRecipientUid: uid,
+            ...(originalUid !== uid ? { replyOriginalUid: originalUid } : {}),
         }, { merge: true });
         tx.set(auditRef, {
             ts: nowIso,

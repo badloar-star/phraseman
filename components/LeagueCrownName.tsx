@@ -41,7 +41,7 @@ function LeagueCrownName({
   const safeCount = Math.max(0, Math.floor(Number(count) || 0));
 
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0, alignSelf: 'flex-start' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0, maxWidth: '100%', overflow: 'hidden', alignSelf: 'flex-start' }}>
       <Image
         source={LEAGUE_CROWN_ICON}
         contentFit="contain"

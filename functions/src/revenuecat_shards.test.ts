@@ -11,9 +11,29 @@ const {
   stableCandidateUserIds,
   transferTargetIds,
   transferSourceIds,
+  revenueCatLifecycleReasonFields,
 } = __revenueCatWebhookTestHooks;
 
 describe('RevenueCat webhook premium matching', () => {
+  it('normalizes lifecycle reason enums and rejects arbitrary text', () => {
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: ' unsubscribe ' } as any, 'CANCELLATION'))
+      .toEqual({ cancelReason: 'UNSUBSCRIBE' });
+    expect(revenueCatLifecycleReasonFields({ expiration_reason: 'billing_error' } as any, 'EXPIRATION'))
+      .toEqual({ expirationReason: 'BILLING_ERROR' });
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: 'user wrote free text!' } as any, 'CANCELLATION'))
+      .toEqual({});
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: 'A'.repeat(65) } as any, 'CANCELLATION'))
+      .toEqual({});
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: 'UNSUBSCRIBE' } as any, 'RENEWAL'))
+      .toEqual({});
+  });
+
+  it('stores lifecycle reasons only in the RevenueCat audit event document', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+    expect(source).toContain('...revenueCatLifecycleReasonFields(event, eventType)');
+    expect(source).not.toContain('progressPatch.cancelReason');
+    expect(source).not.toContain('progressPatch.expirationReason');
+  });
   it('accepts explicit premium entitlement events', () => {
     expect(looksLikePremiumSubscription({
       type: 'INITIAL_PURCHASE',

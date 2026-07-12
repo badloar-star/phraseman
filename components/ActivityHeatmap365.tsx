@@ -25,7 +25,7 @@ import type { Theme } from '../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg } from '../constants/statsThemeChrome';
 import GoldBevel from './GoldBevel';
-import StatsCardArtSurface from './StatsCardArtSurface';
+import StatsCardArtSurface, { type StatsCardArtScrim } from './StatsCardArtSurface';
 import {
   RewardModalBackdrop,
   rewardModalAccentColor,
@@ -613,7 +613,7 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
   );
 }
 
-function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean } = {}) {
+function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: boolean; scrim?: StatsCardArtScrim } = {}) {
   const { theme: t, f, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
   const { lang } = useLang();
@@ -769,14 +769,22 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
   const weakAccent = isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'wager');
   const activityBorder = isGoldTheme ? GOLD_RICH.hairline : statsBorder(themeMode, 'activity', 'medium');
   const activityHairline = isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'activity');
-  const quietPanel = isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'activity', 'quiet');
+  const activityMapSurface = (isGoldTheme
+    ? [GOLD_RICH.blackPiano, GOLD_RICH.bronzeWash]
+    : [statsSoftBg(themeMode, 'activity', 'strong'), 'rgba(255,255,255,0.035)']) as [string, string];
+  const activityGoalSurface = (isGoldTheme
+    ? [GOLD_RICH.washStrong, GOLD_RICH.bronzeWash]
+    : [statsSoftBg(themeMode, 'practiceBalance', 'strong'), statsSoftBg(themeMode, 'activity', 'quiet')]) as [string, string];
+  const activityNudgeSurface = (isGoldTheme
+    ? [GOLD_RICH.bronzeWashStrong, GOLD_RICH.mist]
+    : [statsSoftBg(themeMode, 'multipliers', 'normal'), statsSoftBg(themeMode, 'activity', 'quiet')]) as [string, string];
   const revealStyle = {
     opacity: revealAnim,
     transform: [{ translateY: revealAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
   };
 
   return (
-    <StatsCardArtSurface testID="activity-365-card" name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} style={[styles.card, { borderColor: activityBorder }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'activity')]}>
+    <StatsCardArtSurface testID="activity-365-card" name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} scrim={scrim} style={[styles.card, { borderColor: activityBorder }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'activity')]}>
       {isGoldTheme && <GoldBevel radius={18} intensity="normal" />}
       <TouchableOpacity testID="activity-365-toggle" activeOpacity={0.88} onPress={() => setExpanded(prev => !prev)} style={styles.topBar}>
         <View style={[styles.iconOrb, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'activity') }]}>
@@ -886,9 +894,10 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
       ) : null}
 
       {expanded ? (
-        <View
+        <LinearGradient
           testID="activity-365-map-expanded"
-          style={[styles.mapShell, styles.monthShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: activityHairline }]}
+          colors={activityMapSurface}
+          style={[styles.mapShell, styles.monthShell, { borderColor: activityHairline }]}
           onLayout={onGridLayout}
         >
           {/* Шапка месяца со стрелками переключения */}
@@ -972,15 +981,16 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
               );
             })}
           </View>
-        </View>
+        </LinearGradient>
       ) : (
         <TouchableOpacity
           testID="activity-365-map-collapsed"
           activeOpacity={0.92}
           onPress={() => setExpanded(true)}
-          style={[styles.mapShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: activityHairline }]}
+          style={[styles.mapShell, { borderColor: activityHairline }]}
           onLayout={onGridLayout}
         >
+          <LinearGradient pointerEvents="none" colors={activityMapSurface} style={StyleSheet.absoluteFillObject} />
           <View
             style={{
               width: previewCols * previewCell + (previewCols - 1) * previewGap,
@@ -1010,17 +1020,17 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
       {/* Скрываем подсказку «что дальше», когда её уже показывает карточка
           «Баланс практики» (actionable-вариант), чтобы не дублировать нудж. */}
       {hideNextStep ? null : (
-      <View style={[styles.nextStepBar, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'activity', 'quiet'), borderColor: activityHairline }]}>
+      <LinearGradient colors={activityNudgeSurface} style={[styles.nextStepBar, { borderColor: activityHairline }]}>
         <Ionicons name="sparkles-outline" size={16} color={activeAccent} />
         <Text style={{ color: isGoldTheme ? GOLD_RICH.ivoryMuted : activeAccent, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>
           {nextStepText}
         </Text>
-      </View>
+      </LinearGradient>
       )}
 
       {expanded && analytics ? (
         <Animated.View style={revealStyle}>
-          <View testID="activity-365-goal-card" style={[styles.goalCard, { backgroundColor: quietPanel, borderColor: activityHairline }]}>
+          <LinearGradient testID="activity-365-goal-card" colors={activityGoalSurface} style={[styles.goalCard, { borderColor: activityHairline }]}>
             <View style={styles.headerRow}>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
@@ -1094,7 +1104,7 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
                 );
               })}
             </View>
-          </View>
+          </LinearGradient>
 
           <View style={styles.periodGrid}>
             <LinearGradient colors={isGoldTheme ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : [statsSoftBg(themeMode, 'activity'), statsSoftBg(themeMode, 'activity', 'quiet')]} style={[styles.periodCard, { borderColor: activityHairline }]}>

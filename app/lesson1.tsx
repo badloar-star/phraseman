@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -73,6 +74,12 @@ import { recordPhraseMistake } from './trainer_store';
 import { checkCoachToastNeededWithAnalytics, coachToastDecisionToRouteParams } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
+import {
+  createLessonAnalyticsAttempt,
+  lessonAttemptElapsedMs,
+  markLessonAttemptStarted,
+  markLessonAttemptTerminal,
+} from './lesson_analytics_attempt';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
@@ -2115,6 +2122,13 @@ export default function LessonScreen() {
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
   const lessonExitInFlightRef = useRef(false);
+  const lessonAnalyticsKey = `${lessonId}:${lessonStorageId}:${studyTarget}`;
+  const lessonAnalyticsKeyRef = useRef(lessonAnalyticsKey);
+  const lessonAnalyticsAttemptRef = useRef<ReturnType<typeof createLessonAnalyticsAttempt> | null>(null);
+  if (!lessonAnalyticsAttemptRef.current || lessonAnalyticsKeyRef.current !== lessonAnalyticsKey) {
+    lessonAnalyticsKeyRef.current = lessonAnalyticsKey;
+    lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
+  }
   const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
 
   useEffect(() => {
@@ -2475,10 +2489,13 @@ export default function LessonScreen() {
   const handleLessonHeaderBack = useCallback(() => {
     if (lessonExitInFlightRef.current) return;
     if (!beginLessonExit()) return;
-    logLessonAbandoned(lessonId, cellIndex, 50);
+    const attempt = lessonAnalyticsAttemptRef.current!;
+    if (markLessonAttemptTerminal(attempt, 'abandon')) {
+      logLessonAbandoned(lessonId, cellIndex, effectiveTotal, attempt.id, lessonAttemptElapsedMs(attempt));
+    }
     trackLessonAbandoned().catch(() => {});
     navigateUpFromLessonScreen();
-  }, [beginLessonExit, lessonId, cellIndex, navigateUpFromLessonScreen]);
+  }, [beginLessonExit, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
   const handleIntroDone = useCallback(async () => {
     if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
@@ -2537,7 +2554,10 @@ export default function LessonScreen() {
       setLessonHydrated(false);
     }
     try {
-      logLessonStart(lessonId);
+      const attempt = lessonAnalyticsAttemptRef.current!;
+      if (markLessonAttemptStarted(attempt)) {
+        logLessonStart(lessonId, effectiveTotal, attempt.id);
+      }
       trackLessonStart().catch(() => {});
       if (!hasPlayableLessonRows) {
         phraseOrderRef.current = [];
@@ -2816,7 +2836,7 @@ export default function LessonScreen() {
         serializeLessonTeachingNoteSeenIds([...seenTeachingNoteIds, nextTeachingNote.id]),
       ).catch(() => {});
     }
-    logLessonAnswer(lessonId, isRight);
+    logLessonAnswer(lessonId, isRight, cellIndex, effectiveTotal, lessonAnalyticsAttemptRef.current!.id);
     void trackActivity('lesson:answer_result', {
       feature: 'lesson',
       screen: 'lesson1',
@@ -3188,7 +3208,10 @@ export default function LessonScreen() {
             .catch(() => {});
         }
 
-        logLessonComplete(lessonId);
+        const analyticsAttempt = lessonAnalyticsAttemptRef.current!;
+        if (markLessonAttemptTerminal(analyticsAttempt, 'complete')) {
+          logLessonComplete(lessonId, analyticsAttempt.id, lessonAttemptElapsedMs(analyticsAttempt));
+        }
         void trackFeatureSuccess('lesson', 'complete', {
           lessonId,
           finalScore,

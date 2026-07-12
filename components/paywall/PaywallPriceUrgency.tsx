@@ -87,7 +87,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
     }
     if (!urgency.isActive) return null;
     return (
-      <View style={[S.compactActiveWrap, { backgroundColor: tc.urgencyBg, borderColor: `${tc.urgencyTimerText}3a` }]}>
+      <View style={[S.compactActiveWrap, { backgroundColor: chrome.cardBgStrong }]}>
         <View style={S.compactUrgencyHead}>
           <Ionicons name="time" size={18} color={tc.urgencyTimerText} style={S.compactUrgencyIcon} />
           <Text style={[S.compactUrgencyTitle, { color: tc.urgencyLabelText }]}>
@@ -260,7 +260,7 @@ const S = StyleSheet.create({
   headline: { flex: 1, fontSize: 14, fontWeight: '900', lineHeight: 19 },
   // компактный режим — мини-блок
   compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 16, borderWidth: 0, paddingHorizontal: 14, paddingVertical: 11, marginTop: 16 },
-  compactActiveWrap: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 15, marginTop: 16 },
+  compactActiveWrap: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 15, marginTop: 16 },
   compactUrgencyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   compactUrgencyIcon: { marginRight: 8, flexShrink: 0 },
   compactUrgencyTitle: { flex: 1, fontSize: 16, lineHeight: 20, fontWeight: '900', letterSpacing: 0 },

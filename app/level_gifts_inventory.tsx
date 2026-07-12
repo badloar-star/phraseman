@@ -5,7 +5,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
-import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Platform, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -41,6 +41,9 @@ import {
 
 const giftAccent = (rarity: string): string =>
   rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
+
+const giftTone = (accent: string, alpha: string): string =>
+  /^#[0-9a-f]{6}$/i.test(accent) ? `${accent}${alpha}` : accent;
 
 const giftBonusLabel = (lang: Parameters<typeof giftTitleForLang>[1]): string =>
   triLang(lang, { ru: 'Бонус', uk: 'Бонус', es: 'Bono', 'pt-BR': 'Bônus', vi: 'Thưởng', id: 'Bonus', tr: 'Bonus', pl: 'Bonus' });
@@ -108,6 +111,7 @@ export default function LevelGiftsInventoryScreen() {
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
+  const emptyGiftSurface = [giftTone(t.accent, '26'), t.bgCard, t.bgPrimary] as [string, string, string];
 
   const loadData = useCallback(async () => {
     const [nextItems, nextActiveItems, nameRaw] = await Promise.all([
@@ -125,9 +129,20 @@ export default function LevelGiftsInventoryScreen() {
     return undefined;
   }, [loadData]));
 
-  const closeGiftModal = () => {
+  const closeGiftModal = (claimed = false) => {
+    if (claimed && selected) {
+      const selectedKey = selected.kind === 'single' && selected.dualPart
+        ? `${selected.kind}-${selected.level}-${selected.dualPart}`
+        : `${selected.kind}-${selected.level}`;
+      setItems((current) => current.filter((item) => {
+        const itemKey = item.kind === 'single' && item.dualPart
+          ? `${item.kind}-${item.level}-${item.dualPart}`
+          : `${item.kind}-${item.level}`;
+        return itemKey !== selectedKey;
+      }));
+    }
     setSelected(null);
-    void loadData();
+    if (!claimed) void loadData();
   };
 
   return (
@@ -177,13 +192,14 @@ export default function LevelGiftsInventoryScreen() {
                     borderRadius: 18,
                     paddingVertical: 11,
                     paddingHorizontal: 12,
-                    backgroundColor: t.bgCard,
                     borderWidth: 0,
                     borderColor: `${gift.accent}70`,
+                    overflow: 'hidden' as const,
                   };
                   const chipInner = (
-                    <View style={chipStyle}>
-                      <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: `${gift.accent}22` }}>
+                    <LinearGradient colors={[giftTone(gift.accent, '24'), t.bgCard, t.bgSurface]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={chipStyle}>
+                      <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 14, right: 14, height: 1, backgroundColor: giftTone(gift.accent, '66'), opacity: 0.8 }} />
+                      <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: giftTone(gift.accent, '28') }}>
                         <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} contentFit="contain" />
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>
@@ -200,7 +216,7 @@ export default function LevelGiftsInventoryScreen() {
                         )}
                       </View>
                       <View style={{ alignItems: 'flex-end', gap: 4 }}>
-                        <View style={{ borderRadius: 999, paddingHorizontal: 9, paddingVertical: 5, backgroundColor: `${gift.accent}18` }}>
+                        <View style={{ borderRadius: 999, paddingHorizontal: 9, paddingVertical: 5, backgroundColor: giftTone(gift.accent, '1F') }}>
                           <Text style={{ color: gift.accent, fontSize: 10, fontWeight: '900', textTransform: 'uppercase' }}>
                             {triLang(lang, {
                               ru: 'Активно',
@@ -218,7 +234,7 @@ export default function LevelGiftsInventoryScreen() {
                           <Ionicons name="chevron-forward" size={16} color={gift.accent} />
                         )}
                       </View>
-                    </View>
+                    </LinearGradient>
                   );
                   return gift.actionRoute ? (
                     <TapScale
@@ -241,7 +257,7 @@ export default function LevelGiftsInventoryScreen() {
             {items.length === 0 ? (
               activeItems.length > 0 ? null : (
               <LinearGradient
-                colors={[t.bgCard, t.bgSurface, t.bgPrimary]}
+                colors={emptyGiftSurface}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{ borderRadius: 22, padding: 22, borderWidth: 0, borderColor: `${t.accent}55`, alignItems: 'center' }}
@@ -286,6 +302,7 @@ export default function LevelGiftsInventoryScreen() {
                       : 'common'
                   : primaryGift.rarity;
                 const accent = giftAccent(strongestRarity);
+                const giftCardSurface = [giftTone(accent, '2E'), t.bgCard, t.bgSurface] as [string, string, string];
                 const singleShardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
                 const rowArtSize = singleShardAmount > 0 ? 74 : 68;
                 const rowKey = item.kind === 'single' && item.dualPart
@@ -297,11 +314,12 @@ export default function LevelGiftsInventoryScreen() {
                 return (
                   <LinearGradient
                     key={rowKey}
-                    colors={[t.bgCard, t.bgSurface, t.bgPrimary]}
+                    colors={giftCardSurface}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: `${accent}88`, overflow: 'hidden' }}
                   >
+                    <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 18, right: 18, height: 1, backgroundColor: giftTone(accent, '70'), opacity: 0.82 }} />
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                       <View style={{ width: 78, minHeight: 96, alignItems: 'center', justifyContent: 'center', padding: 2, flexShrink: 0 }}>
                         <Image
@@ -415,6 +433,7 @@ export default function LevelGiftsInventoryScreen() {
             onClose={closeGiftModal}
             preRolledGift={selected.gift}
             deliveryMode="claim"
+            presentationMode="apply"
             onGiftClaimed={selected.dualPart
               ? (_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)
               : undefined}
@@ -432,6 +451,7 @@ export default function LevelGiftsInventoryScreen() {
             onClose={closeGiftModal}
             preRolledPair={selected.pair}
             deliveryMode="claim"
+            presentationMode="apply"
             studyTarget={studyTarget}
           />
         )}

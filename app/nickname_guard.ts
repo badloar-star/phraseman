@@ -1,8 +1,23 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AppState } from 'react-native';
+import { emitAppEvent } from './events';
+import { peekStableId } from './stable_id';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 const FALLBACK_NICKNAME_PREFIX = 'Phraseman';
 /** Метка «имя X уже успешно записано в серверный name_index». Ключ — само имя. */
 const NAME_INDEX_SYNCED_KEY = 'name_index_synced_for_v1';
+const GENERATED_NAME_CONFIRMED_KEY = 'generated_name_confirmed_v1';
+export const GENERATED_NICKNAME_PENDING_KEY = 'generated_nickname_pending_v1';
+let pendingNicknameFlight: Promise<void> | null = null;
+let pendingNicknameRetry: ReturnType<typeof setTimeout> | null = null;
+let pendingNicknameAppStateSub: { remove: () => void } | null = null;
+let pendingNicknameRetryAttempt = 0;
+const PENDING_NICKNAME_RETRY_DELAYS_MS = [5_000, 15_000, 45_000] as const;
 
 export function createRandomNickname(now = Date.now(), random = Math.random()): string {
   const rand = Math.floor(Math.max(0, Math.min(0.99999, random)) * 90_000) + 10_000;
@@ -70,4 +85,96 @@ export async function ensureLocalNickname(candidate?: string | null): Promise<st
   await reconcileNameIndex(finalName, stored, justChanged);
 
   return finalName;
+}
+
+export async function ensureUniqueGeneratedNickname(): Promise<string> {
+  const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
+  const confirmed = (await AsyncStorage.getItem(GENERATED_NAME_CONFIRMED_KEY).catch(() => null))?.trim() ?? '';
+  if (stored && confirmed === stored) return stored;
+  const { generateAndReserveNickname } = await import('./firestore_leaderboard');
+  const result = await generateAndReserveNickname();
+  const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
+  if (!name) throw new Error('nickname_reservation_unavailable');
+  await AsyncStorage.multiSet([
+    ['user_name', name],
+    [NAME_INDEX_SYNCED_KEY, name],
+    [GENERATED_NAME_CONFIRMED_KEY, name],
+  ]);
+  return name;
+}
+
+function schedulePendingNicknameRetry(): void {
+  if (pendingNicknameRetry || pendingNicknameRetryAttempt >= PENDING_NICKNAME_RETRY_DELAYS_MS.length) return;
+  if (!pendingNicknameAppStateSub) {
+    pendingNicknameAppStateSub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') {
+        if (pendingNicknameRetry) clearTimeout(pendingNicknameRetry);
+        pendingNicknameRetry = null;
+        return;
+      }
+      void resumePendingGeneratedNickname();
+    });
+  }
+  if (AppState.currentState !== 'active') return;
+  const delay = PENDING_NICKNAME_RETRY_DELAYS_MS[pendingNicknameRetryAttempt];
+  pendingNicknameRetryAttempt += 1;
+  pendingNicknameRetry = setTimeout(() => {
+    pendingNicknameRetry = null;
+    void resumePendingGeneratedNickname();
+  }, delay);
+}
+
+export function cancelPendingGeneratedNicknameRetry(): void {
+  if (pendingNicknameRetry) clearTimeout(pendingNicknameRetry);
+  pendingNicknameRetry = null;
+  pendingNicknameAppStateSub?.remove();
+  pendingNicknameAppStateSub = null;
+  pendingNicknameRetryAttempt = 0;
+}
+
+export function resumePendingGeneratedNickname(): Promise<void> {
+  if (pendingNicknameFlight) return pendingNicknameFlight;
+  pendingNicknameFlight = (async () => {
+    const pending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(() => null);
+    if (!pending) {
+      cancelPendingGeneratedNicknameRetry();
+      return;
+    }
+    const accountToken = captureAccountGeneration();
+    const { generateAndReserveNickname } = await import('./firestore_leaderboard');
+    const result = await generateAndReserveNickname();
+    const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
+    const resultStableId = String(result.stableId ?? '').trim();
+    if (!name || !resultStableId) {
+      schedulePendingNicknameRetry();
+      return;
+    }
+    let applied = false;
+    await withAccountTransitionLock(async () => {
+      const stillPending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(() => null);
+      if (!stillPending || !isCurrentAccountGeneration(accountToken, resultStableId)) return;
+      const activeStableId = peekStableId();
+      if (resultStableId !== activeStableId) return;
+
+      const rawProfile = await AsyncStorage.getItem('user_profile').catch(() => null);
+      let profile: Record<string, unknown> = {};
+      try { profile = rawProfile ? JSON.parse(rawProfile) as Record<string, unknown> : {}; } catch {}
+      await AsyncStorage.multiSet([
+        ['user_name', name],
+        ['user_profile', JSON.stringify({ ...profile, name })],
+        [NAME_INDEX_SYNCED_KEY, name],
+        [GENERATED_NAME_CONFIRMED_KEY, name],
+      ]);
+      await AsyncStorage.removeItem(GENERATED_NICKNAME_PENDING_KEY);
+      applied = true;
+    });
+    if (!applied) return;
+    cancelPendingGeneratedNicknameRetry();
+    emitAppEvent('cloud_profile_hydrated');
+  })().catch(() => {
+    schedulePendingNicknameRetry();
+  }).finally(() => {
+    pendingNicknameFlight = null;
+  });
+  return pendingNicknameFlight;
 }

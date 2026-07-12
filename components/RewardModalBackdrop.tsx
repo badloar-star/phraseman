@@ -12,6 +12,12 @@ type RewardModalPanelBackdropProps = RewardModalBackdropProps & {
   opacity?: number;
 };
 
+type RewardModalLiquidGlassProps = {
+  themeMode: ThemeMode;
+  accent: string;
+  intensity?: 'regular' | 'strong';
+};
+
 export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: RewardModalBackdropProps) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -49,6 +55,74 @@ export function RewardModalPanelBackdrop({
         colors={rewardModalPanelScrimColors(themeMode, intensity)}
         locations={[0, 0.46, 1]}
         style={StyleSheet.absoluteFill}
+      />
+    </View>
+  );
+}
+
+/**
+ * Static "liquid glass" illusion for reward/gift modals.
+ *
+ * Deliberately avoids realtime native blur/backdrop filters: this is only gradients,
+ * highlights and tonal veils, so it keeps the premium material feeling without
+ * adding a realtime blur cost on low-end devices.
+ */
+export function RewardModalLiquidGlass({
+  themeMode,
+  accent,
+  intensity = 'regular',
+}: RewardModalLiquidGlassProps) {
+  const strong = intensity === 'strong';
+  const accentVeil = withAccentAlpha(accent, strong ? '42' : '30');
+  const accentSoft = withAccentAlpha(accent, strong ? '24' : '18');
+  const topLight = themeMode === 'gold'
+    ? 'rgba(255,232,172,0.20)'
+    : 'rgba(255,255,255,0.18)';
+  const sideLight = themeMode === 'gold'
+    ? 'rgba(255,213,128,0.16)'
+    : 'rgba(255,255,255,0.12)';
+
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill} testID="reward-modal-liquid-glass">
+      <LinearGradient
+        pointerEvents="none"
+        colors={[topLight, 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0)']}
+        locations={[0, 0.42, 1]}
+        style={[StyleSheet.absoluteFill, { opacity: strong ? 0.86 : 0.68 }]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={['rgba(0,0,0,0)', accentSoft, accentVeil]}
+        locations={[0, 0.58, 1]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 22,
+          right: 22,
+          height: 1,
+          backgroundColor: topLight,
+          opacity: strong ? 0.9 : 0.68,
+        }}
+      />
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          top: 18,
+          left: -34,
+          width: 112,
+          height: 220,
+          borderRadius: 80,
+          backgroundColor: sideLight,
+          opacity: strong ? 0.34 : 0.24,
+          transform: [{ rotate: '18deg' }],
+        }}
       />
     </View>
   );

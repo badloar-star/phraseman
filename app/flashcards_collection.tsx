@@ -1768,8 +1768,6 @@ export default function FlashcardsScreen() {
               paddingVertical: 10,
               paddingHorizontal: 12,
               borderRadius: 15,
-              borderTopWidth: 1,
-              borderTopColor: glassFill(t.accent, 0.14),
               backgroundColor: glassFill(t.bgSurface, 0.46),
               flexDirection: 'row',
               alignItems: 'center',

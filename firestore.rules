@@ -1577,52 +1577,6 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // ── «Созвездия» (specs/constellations.md H3) ────────────────────────────────
-    // Очередь: игрок управляет ТОЛЬКО своей записью (auth uid, как matchmaking_queue).
-    // matchId ставит ТОЛЬКО сервер: клиент при create/update обязан слать matchId null —
-    // иначе можно сфабриковать «матч найден».
-    function constellationQueueDocOk(entryId) {
-      let d = request.resource.data;
-      return d.userId is string
-        && d.userId == request.auth.uid
-        && entryId == d.userId
-        && (d.joinedAt is int || d.joinedAt is float)
-        && d.joinedAt > 0
-        && d.joinedAt < 10000000000000
-        && (!('matchId' in d) || d.matchId == null)
-        && d.keys().hasOnly(['userId', 'joinedAt', 'displayName', 'rankIndex',
-             'searchRange', 'wager', 'expoPushToken', 'matchId', 'matchedAt']);
-    }
-    match /constellation_queue/{entryId} {
-      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
-      allow create: if request.auth != null && constellationQueueDocOk(entryId);
-      allow update: if request.auth != null
-        && resource.data.userId == request.auth.uid
-        && constellationQueueDocOk(entryId);
-      allow delete: if request.auth != null && resource.data.userId == request.auth.uid;
-    }
-
-    // Матч читают ТОЛЬКО участники (playerIds пишет сервер при создании).
-    // Никаких клиентских записей: все ходы — callable constellationSubmitAction.
-    match /constellation_matches/{matchId} {
-      allow read: if request.auth != null && request.auth.uid in resource.data.playerIds;
-      allow write: if false;
-    }
-
-    // Приватный док игрока: вопросы БЕЗ correct + свои ответы. Только владелец.
-    match /constellation_players/{docId} {
-      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
-      allow write: if false;
-    }
-
-    // Финал матча — участникам (история/результаты).
-    match /constellation_results/{matchId} {
-      allow read: if request.auth != null && request.auth.uid in resource.data.uids;
-      allow write: if false;
-    }
-    // constellation_server / constellation_pity / constellation_recent /
-    // constellation_quizzes — БЕЗ правил: catch-all deny (админ читает как isAdmin).
-    // correct-ответы живут только в constellation_server — клиент их не видит (D6).
 
     // â”€â”€ Name index (unique nickname reservation) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /name_index/{nameKey} {

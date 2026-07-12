@@ -202,7 +202,7 @@ async function prepareFriendGiftSender(): Promise<string> {
   if (!senderStableId) {
     throw new Error('sender_unavailable');
   }
-  const link = await ensureStableAuthLinkForStableIdDetailed(senderStableId, { lastSignInAt: Date.now() })
+  const link = await ensureStableAuthLinkForStableIdDetailed(senderStableId)
     .catch(() => null);
   if (!link?.ok) {
     throw new Error('friend_gift_auth_unavailable');

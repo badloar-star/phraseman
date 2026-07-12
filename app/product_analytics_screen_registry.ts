@@ -1,0 +1,47 @@
+const STATIC_SCREEN_NAMES = [
+  'achievements_screen', 'arena_game', 'arena_join', 'arena_leaderboard', 'arena_lobby',
+  'arena_rating', 'arena_results', 'arena_room', 'avatar_select', 'club_screen',
+  'collectibles_screen', 'community_pack_create', 'daily_tasks_screen', 'diagnostic_test', 'exam', 'flashcards',
+  'flashcards_audio', 'flashcards_collection', 'flashcards_swipe', 'hint', 'language_welcome',
+  'league_screen', 'lesson_complete', 'lesson_help', 'lesson_irregular_verbs', 'lesson_menu',
+  'lesson_theory_v2', 'lesson_words', 'level_exam', 'level_gifts_inventory', 'lingman_video_player',
+  'lingman_videos', 'manage_subscription', 'pack_opening', 'paywall_a', 'paywall_b', 'paywall_c',
+  'personal_plan', 'personal_plan_complete', 'personal_plan_dev', 'personal_plan_exercise_transition',
+  'personal_plan_runtime_dev', 'personal_plan_stats_screen', 'personal_plan_task_done',
+  'personal_plan_thank_you', 'personal_plan_theory', 'phrase_analytics_screen', 'premium_modal',
+  'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry', 'quizzes_screen',
+  'referral_code_entry', 'referrals', 'review', 'settings_edu', 'settings_language',
+  'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
+  'top_helpers', 'trainer', 'trainer_arena_session', 'trainer_phrases_session',
+  'trainer_plan_session', 'trainer_words_session',
+] as const;
+
+const EXACT_SCREEN_IDS: Readonly<Record<string, string>> = Object.freeze({
+  '/': 'root',
+  '/home': 'home',
+  '/lessons': 'lessons',
+  '/quizzes': 'quizzes',
+  '/friends': 'friends',
+  ...Object.fromEntries(STATIC_SCREEN_NAMES.map((name) => [`/${name}`, name])),
+});
+
+function normalizedPath(pathname: string): string {
+  const withoutGroups = pathname.replace(/\/\([^/]+\)/g, '');
+  const withoutQuery = withoutGroups.split(/[?#]/, 1)[0] || '/';
+  const compact = withoutQuery.replace(/\/{2,}/g, '/').replace(/\/$/, '');
+  return compact || '/';
+}
+
+export function productAnalyticsScreenId(pathname: unknown): string {
+  if (typeof pathname !== 'string' || !pathname.startsWith('/') || pathname.includes('://')) {
+    return 'unknown_screen';
+  }
+  const path = normalizedPath(pathname);
+  const exact = EXACT_SCREEN_IDS[path];
+  if (exact) return exact;
+  if (/^\/lesson(?:1|\/[^/]+)$/.test(path)) return 'lesson';
+  if (/^\/friends\/[^/]+$/.test(path)) return 'friend_profile';
+  return 'unknown_screen';
+}
+
+export default function __RouteShim() { return null; }

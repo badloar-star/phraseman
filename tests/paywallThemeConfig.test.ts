@@ -6,7 +6,11 @@ import {
 import type { ThemeMode } from '../constants/theme';
 
 const ALL_THEMES: ThemeMode[] = [
-  'dark', 'gold', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt',
+  'dark', 'gold', 'coral', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
+];
+
+const DISTINCT_ACCENT_THEMES: ThemeMode[] = [
+  'dark', 'gold', 'coral', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
 ];
 
 const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
@@ -14,6 +18,8 @@ const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
   'selectedCardBorder',
   'selectedCardBg',
   'unselectedCardBg',
+  'panelBg',
+  'panelBgStrong',
   'selectedCardShadow',
   'savingsBadgeBg',
   'savingsBadgeText',
@@ -70,16 +76,16 @@ describe('getPaywallThemeConfig', () => {
 
 describe('PAYWALL_THEME_CONFIG — уникальность акцентов', () => {
   it('каждая тема имеет уникальный heroAccent (темы не копируют друг друга)', () => {
-    const accents = ALL_THEMES.map((t) => PAYWALL_THEME_CONFIG[t].heroAccent);
+    const accents = DISTINCT_ACCENT_THEMES.map((t) => PAYWALL_THEME_CONFIG[t].heroAccent);
     const unique = new Set(accents);
     // Все 7 тем должны иметь разные heroAccent
-    expect(unique.size).toBe(ALL_THEMES.length);
+    expect(unique.size).toBe(DISTINCT_ACCENT_THEMES.length);
   });
 
   it('каждая тема имеет уникальный ctaBg', () => {
-    const ctaBgs = ALL_THEMES.map((t) => PAYWALL_THEME_CONFIG[t].ctaBg);
+    const ctaBgs = DISTINCT_ACCENT_THEMES.map((t) => PAYWALL_THEME_CONFIG[t].ctaBg);
     const unique = new Set(ctaBgs);
-    expect(unique.size).toBe(ALL_THEMES.length);
+    expect(unique.size).toBe(DISTINCT_ACCENT_THEMES.length);
   });
 });
 

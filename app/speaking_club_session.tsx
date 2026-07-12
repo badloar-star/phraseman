@@ -702,8 +702,6 @@ export default function SpeakingClubSession() {
               marginBottom: 8,
               backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 14,
-              borderTopWidth: 1,
-              borderTopColor: glassFill(t.accent, 0.14),
               padding: 10,
             }}
           >
@@ -726,8 +724,6 @@ export default function SpeakingClubSession() {
                 style={{
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 14,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: 12,
                 }}
               >
@@ -762,9 +758,6 @@ export default function SpeakingClubSession() {
                     borderRadius: 14,
                     borderBottomLeftRadius: isAi ? 4 : 14,
                     borderBottomRightRadius: isAi ? 14 : 4,
-                    ...(isAi
-                      ? { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
-                      : {}),
                     paddingHorizontal: 12,
                     paddingVertical: 8,
                   }}
@@ -822,8 +815,6 @@ export default function SpeakingClubSession() {
                 style={{
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: 14,
                   marginTop: 4,
                 }}

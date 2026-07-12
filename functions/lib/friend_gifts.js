@@ -834,6 +834,10 @@ exports.friendClaimQuestReward = (0, https_1.onCall)({ region: REGION, enforceAp
         const callerAlreadyClaimed = rewardClaimedByUid[stableId] === true;
         if (participantUids.every((uid) => rewardClaimedByUid[uid] === true)) {
             const callerData = userDataByUid[stableId] ?? {};
+            const callerServerState = callerData.progressServerState && typeof callerData.progressServerState === 'object'
+                ? callerData.progressServerState
+                : {};
+            const callerXpBeforeReward = Math.max(getTotalXp(callerData), parseProgressInt(callerServerState.totalXp));
             return {
                 ok: true,
                 questId,
@@ -841,10 +845,20 @@ exports.friendClaimQuestReward = (0, https_1.onCall)({ region: REGION, enforceAp
                 reached: true,
                 callerShards: parseShards(callerData.shards),
                 shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
+                callerXpBeforeReward,
+                rewardXpApplied: 0,
                 callerXp: getTotalXp(callerData),
             };
         }
         const nextClaimed = { ...rewardClaimedByUid };
+        const initialCallerData = userDataByUid[stableId] ?? {};
+        const initialCallerServerState = initialCallerData.progressServerState
+            && typeof initialCallerData.progressServerState === 'object'
+            ? initialCallerData.progressServerState
+            : {};
+        let callerXpBeforeReward = callerAlreadyClaimed
+            ? Math.max(getTotalXp(initialCallerData), parseProgressInt(initialCallerServerState.totalXp))
+            : undefined;
         for (const uid of participantUids) {
             if (nextClaimed[uid] === true)
                 continue;
@@ -854,6 +868,8 @@ exports.friendClaimQuestReward = (0, https_1.onCall)({ region: REGION, enforceAp
                 ? data.progressServerState
                 : {};
             const beforeXp = Math.max(getTotalXp(data), parseProgressInt(existingServerState.totalXp));
+            if (uid === stableId)
+                callerXpBeforeReward = beforeXp;
             const afterShards = beforeShards + rewardShards;
             const afterXp = beforeXp + rewardXp;
             tx.set(userRefs[uid], {
@@ -912,6 +928,8 @@ exports.friendClaimQuestReward = (0, https_1.onCall)({ region: REGION, enforceAp
             reached: true,
             callerShards: parseShards(callerData.shards),
             shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
+            callerXpBeforeReward,
+            rewardXpApplied: callerAlreadyClaimed ? 0 : rewardXp,
             callerXp: getTotalXp(callerData),
         };
     });

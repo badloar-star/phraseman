@@ -145,6 +145,13 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - Never replace a whole screen with a centered spinner while loading — keep final geometry (skeleton blocks or last-known content). Layout must not shift when data arrives.
 - Focus-driven refetch (`useFocusEffect`) must (a) be wrapped in `useCallback`, (b) compare fresh data with current state and skip `setState` when nothing changed ("quiet revalidation"), and (c) respect a TTL (30–60s) unless an explicit app event invalidates it.
 
+### Optimistic UI and offline mutations
+- Phraseman is local-first for ordinary rewards and reversible user actions: the visible result must update immediately, without `Applying...`, spinners, disabled close buttons, or waiting for a server response.
+- Persist the local intent/effect first, then synchronize or retry in the background. Offline/transient failure uses the existing no-network notification and must not roll back newer user-visible state merely because the server is temporarily unavailable.
+- Pending mutations must be account-scoped and idempotent where the underlying system supports a durable outbox. Never claim durable retry for a flow that has no journal/outbox yet.
+- Payments, authentication, destructive/security-sensitive actions, and genuinely server-authoritative competitive results are explicit exceptions; do not fake success for them.
+- `docs/OPTIMISTIC_UI_AND_OFFLINE_MUTATIONS.md` is the source of truth for implementation, retry, error, and exception rules.
+
 ### Stack navigation (no black frames)
 - The Stack `contentStyle.backgroundColor` and the root container background are CONSTANT theme colors. Never derive them from async readiness flags.
 - Screen transition animations only via flags in `app/config.ts` (`ENABLE_SCREEN_TRANSITIONS`, `SCREEN_FADE_TRANSITIONS` — fade is iOS-only until manually verified on Android/Fabric). No direct `animation: 'slide_*'` on individual `<Stack.Screen>`.

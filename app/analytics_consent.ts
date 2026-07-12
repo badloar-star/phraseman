@@ -28,6 +28,13 @@ const CONSENT_KEY = 'analytics_consent_v1';
 /** Снапшот в памяти. До гидрации — 'unset' (безопасный дефолт: ничего не шлём). */
 let consentMemory: AnalyticsConsentState = 'unset';
 let hydrated = false;
+const consentListeners = new Set<(state: AnalyticsConsentState) => void>();
+
+function notifyConsentListeners(): void {
+  consentListeners.forEach((listener) => {
+    try { listener(consentMemory); } catch { /* analytics listeners must not break consent updates */ }
+  });
+}
 
 function normalize(raw: string | null): AnalyticsConsentState {
   if (raw === 'granted' || raw === 'denied' || raw === 'unset') return raw;
@@ -39,9 +46,9 @@ function normalize(raw: string | null): AnalyticsConsentState {
  * (setAnalyticsCollectionEnabled). Динамический import — firebase.ts статически
  * импортирует этот модуль, статический импорт в обратную сторону дал бы цикл.
  */
-function syncNativeCollection(): void {
-  void import('./firebase')
-    .then((m) => m.applyAnalyticsCollectionConsent())
+async function syncNativeCollection(enabled: boolean): Promise<void> {
+  await import('./firebase')
+    .then((m) => m.applyAnalyticsCollectionConsent(enabled))
     .catch(() => {});
 }
 
@@ -59,6 +66,13 @@ export function getAnalyticsConsentState(): AnalyticsConsentState {
   return consentMemory;
 }
 
+export function subscribeAnalyticsConsent(
+  listener: (state: AnalyticsConsentState) => void,
+): () => void {
+  consentListeners.add(listener);
+  return () => { consentListeners.delete(listener); };
+}
+
 /** Сделан ли уже выбор (нужно ли показывать запрос согласия). */
 export function hasAnalyticsConsentDecision(): boolean {
   return consentMemory === 'granted' || consentMemory === 'denied';
@@ -69,14 +83,18 @@ export function hasAnalyticsConsentDecision(): boolean {
  * hydrateNotifSettingsFromStorage), чтобы гейт работал с первого кадра.
  */
 export async function hydrateAnalyticsConsentFromStorage(): Promise<void> {
+  const previous = consentMemory;
+  let next: AnalyticsConsentState = 'unset';
   try {
     const raw = await AsyncStorage.getItem(CONSENT_KEY);
-    consentMemory = normalize(raw);
+    next = normalize(raw);
   } catch {
-    consentMemory = 'unset';
+    next = 'unset';
   } finally {
+    await syncNativeCollection(next === 'granted');
+    consentMemory = next;
     hydrated = true;
-    syncNativeCollection();
+    if (consentMemory !== previous) notifyConsentListeners();
   }
 }
 
@@ -86,8 +104,19 @@ export function isAnalyticsConsentHydrated(): boolean {
 
 /** Записать выбор пользователя (онбординг, модал, настройки). */
 export async function setAnalyticsConsent(state: AnalyticsConsentState): Promise<void> {
-  consentMemory = state;
-  syncNativeCollection();
+  const previous = consentMemory;
+  if (state === 'granted') {
+    // Keep the in-memory gate closed until the native Firebase SDK is enabled,
+    // otherwise the first session events can be dropped before BigQuery sees them.
+    await syncNativeCollection(true);
+    consentMemory = state;
+    if (state !== previous) notifyConsentListeners();
+  } else {
+    // Revocation is immediate in memory; disabling native collection can finish after.
+    consentMemory = state;
+    if (state !== previous) notifyConsentListeners();
+    await syncNativeCollection(false);
+  }
   try {
     await AsyncStorage.setItem(CONSENT_KEY, state);
   } catch {

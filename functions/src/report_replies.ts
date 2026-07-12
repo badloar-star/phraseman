@@ -149,6 +149,22 @@ function cleanString(value: unknown, maxLen: number): string {
   return String(value ?? '').trim().slice(0, maxLen);
 }
 
+export function reportRecipientCandidate(
+  reportCollection: string,
+  report: FirebaseFirestore.DocumentData,
+): string {
+  if (reportCollection === 'error_reports') {
+    return cleanString(report.stableUid || report.uid, 128);
+  }
+  if (reportCollection === 'explain_report_entries') {
+    return cleanString(report.stableUid || report.uid, 128);
+  }
+  if (reportCollection === 'user_reports' || reportCollection === 'community_pack_reports') {
+    return cleanString(report.reporterUid, 128);
+  }
+  return '';
+}
+
 /**
  * adminReplyToReport — отправить юзеру персональный ответ на его репорт.
  *
@@ -172,7 +188,6 @@ export const adminReplyToReport = onCall(
   async (request) => {
     requireAdmin(request);
 
-    const uid = cleanString(request.data?.uid, 128);
     const reportCollection = cleanString(request.data?.reportCollection, 64);
     const reportId = cleanString(request.data?.reportId, 128);
     const title = cleanString(request.data?.title, REPLY_TITLE_MAX);
@@ -180,7 +195,6 @@ export const adminReplyToReport = onCall(
     const shardsRaw = Number(request.data?.shards ?? 0);
     const shards = Number.isFinite(shardsRaw) ? Math.floor(shardsRaw) : NaN;
 
-    if (!uid || uid === 'unknown') throw new HttpsError('invalid-argument', 'uid required');
     if (!REPORT_COLLECTIONS.has(reportCollection)) {
       throw new HttpsError('invalid-argument', `reportCollection must be one of: ${Array.from(REPORT_COLLECTIONS).join(', ')}`);
     }
@@ -196,6 +210,15 @@ export const adminReplyToReport = onCall(
     const nowIso = new Date(nowMs).toISOString();
 
     const reportRef = db.collection(reportCollection).doc(reportId);
+    const initialReportSnap = await reportRef.get();
+    if (!initialReportSnap.exists) {
+      throw new HttpsError('not-found', `report ${reportCollection}/${reportId} not found`);
+    }
+    const originalUid = reportRecipientCandidate(reportCollection, initialReportSnap.data() ?? {});
+    if (!originalUid || originalUid === 'unknown') {
+      throw new HttpsError('failed-precondition', 'report recipient identity is missing');
+    }
+    const uid = await resolveStableUidForAuth(db, originalUid, undefined, { requireKnownIdentity: true });
     const userRef = db.collection('users').doc(uid);
     const messageRef = userRef.collection(USER_MESSAGES_COLLECTION).doc();
     const notificationRef = userNotificationRef(db, uid, `report_reply_${messageRef.id}`);
@@ -287,6 +310,8 @@ export const adminReplyToReport = onCall(
         replyShards: shards,
         repliedAt: nowIso,
         repliedBy: adminEmail,
+        replyRecipientUid: uid,
+        ...(originalUid !== uid ? { replyOriginalUid: originalUid } : {}),
       }, { merge: true });
 
       tx.set(auditRef, {

@@ -23,6 +23,7 @@ import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const ts = require('typescript');
+const reviewCore = require('./lib/heisenberg_review_core.cjs');
 
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..');
@@ -126,7 +127,32 @@ function classifyAndLocate(pathIndex, row, locale) {
   );
   if (localeKeys.length < 2) return { status: 'not-locale-container' };
   const lastLocaleProp = localeKeys[localeKeys.length - 1];
-  return { status: 'insert', insertAfter: lastLocaleProp.end, parentPath, indentRef: lastLocaleProp };
+  return { status: 'insert', insertAfter: lastLocaleProp.end, parentPath, indentRef: lastLocaleProp, sourceProp: prop };
+}
+
+function stringInitializerValue(prop) {
+  const value = prop?.initializer;
+  if (value && (ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value))) return value.text;
+  return null;
+}
+
+function bindingIsCurrent(row, sourceProp) {
+  if (!reviewCore.isApplyApproved(row)) return { ok: false, code: 'unapproved' };
+  const recomputed = reviewCore.buildReviewPacketRow(row);
+  if (recomputed.bindingHash !== row.bindingHash || recomputed.targetHash !== row.targetHash) {
+    return { ok: false, code: 'binding-mismatch' };
+  }
+  const currentSourceText = stringInitializerValue(sourceProp);
+  if (currentSourceText === null) return { ok: false, code: 'source-not-static-string' };
+  const currentSourceHash = reviewCore.sha256({
+    file: row.file,
+    keyPath: row.keyPath,
+    sourceLocale: row.sourceLocale,
+    sourceText: currentSourceText,
+    sourceTexts: { ...(row.sourceTexts || { [row.sourceLocale]: row.sourceText }), [row.sourceLocale]: currentSourceText },
+  });
+  if (currentSourceHash !== row.sourceHash) return { ok: false, code: 'source-drift' };
+  return { ok: true };
 }
 
 function escapeSingleQuoted(text) {
@@ -135,7 +161,8 @@ function escapeSingleQuoted(text) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const rows = parseJsonl(absFromRoot(args.ledger)).filter((r) => r.targetLocale === args.locale && r.status === 'GO');
+  const ledgerRows = parseJsonl(absFromRoot(args.ledger)).filter((r) => r.targetLocale === args.locale);
+  const rows = ledgerRows.filter((row) => reviewCore.isApplyApproved(row));
   const dirty = new Set(
     execSync('git status --porcelain', { cwd: ROOT, encoding: 'utf8' })
       .split(/\r?\n/)
@@ -149,7 +176,21 @@ function main() {
     byFile.get(row.file).push(row);
   }
 
-  const report = { applied: 0, alreadyPresent: 0, unsupported: 0, notFound: 0, fileBusy: 0, conflicts: 0, files: {}, details: [] };
+  const report = {
+    applied: 0,
+    dryRunInsert: 0,
+    alreadyPresent: 0,
+    unsupported: 0,
+    notFound: 0,
+    fileBusy: 0,
+    conflicts: 0,
+    rejectedUnapproved: ledgerRows.length - rows.length,
+    rejectedBindingMismatch: 0,
+    rejectedDecision: ledgerRows.filter((row) => row.review?.verdict && row.review.verdict !== 'APPROVE').length,
+    activationApproved: false,
+    files: {},
+    details: [],
+  };
   for (const [file, fileRows] of [...byFile.entries()].sort()) {
     const abs = path.join(ROOT, file);
     if (!fs.existsSync(abs) || !/\.(ts|tsx)$/.test(file)) {
@@ -166,10 +207,16 @@ function main() {
     const pathIndex = indexPropertyPaths(sf);
     const inserts = [];
     const seenParents = new Map();
-    const stats = { applied: 0, alreadyPresent: 0, unsupported: 0, notFound: 0, conflicts: 0 };
+    const stats = { applied: 0, dryRunInsert: 0, alreadyPresent: 0, unsupported: 0, notFound: 0, conflicts: 0, rejectedBindingMismatch: 0 };
     for (const row of fileRows) {
       const res = classifyAndLocate(pathIndex, row, args.locale);
       if (res.status === 'insert') {
+        const binding = bindingIsCurrent(row, res.sourceProp);
+        if (!binding.ok) {
+          stats.rejectedBindingMismatch += 1;
+          report.details.push({ file, id: row.id, status: binding.code });
+          continue;
+        }
         const prev = seenParents.get(res.parentPath);
         if (prev !== undefined) {
           if (prev !== row.targetText) stats.conflicts += 1;
@@ -177,7 +224,8 @@ function main() {
         }
         seenParents.set(res.parentPath, row.targetText);
         inserts.push({ at: res.insertAfter, text: row.targetText, indentRef: res.indentRef });
-        stats.applied += 1;
+        if (args.execute) stats.applied += 1;
+        else stats.dryRunInsert += 1;
       } else if (res.status === 'already-present') stats.alreadyPresent += 1;
       else if (res.status === 'keypath-not-found') stats.notFound += 1;
       else stats.unsupported += 1;
@@ -194,15 +242,17 @@ function main() {
       fs.writeFileSync(abs, out, 'utf8');
     }
     report.applied += stats.applied;
+    report.dryRunInsert += stats.dryRunInsert;
     report.alreadyPresent += stats.alreadyPresent;
     report.unsupported += stats.unsupported;
     report.notFound += stats.notFound;
     report.conflicts += stats.conflicts;
+    report.rejectedBindingMismatch += stats.rejectedBindingMismatch;
     report.files[file] = stats;
   }
 
   const mode = args.execute ? 'EXECUTE' : 'DRY_RUN';
-  console.log(`[heisenberg-apply] ${mode}: insert ${report.applied}, already-present ${report.alreadyPresent}, unsupported ${report.unsupported}, not-found ${report.notFound}, file-busy ${report.fileBusy}, conflicts ${report.conflicts}.`);
+  console.log(`[heisenberg-apply] ${mode}: applied ${report.applied}, dry-run-insert ${report.dryRunInsert}, rejected-unapproved ${report.rejectedUnapproved}, rejected-binding ${report.rejectedBindingMismatch}, already-present ${report.alreadyPresent}, unsupported ${report.unsupported}, not-found ${report.notFound}, file-busy ${report.fileBusy}, conflicts ${report.conflicts}.`);
   if (args.out) {
     fs.mkdirSync(path.dirname(absFromRoot(args.out)), { recursive: true });
     fs.writeFileSync(absFromRoot(args.out), `${JSON.stringify(report, null, 2)}\n`, 'utf8');

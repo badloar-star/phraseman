@@ -49,25 +49,25 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   const lower = raw.toLowerCase();
   if (lower.includes('unauthenticated') || lower.includes('auth required')) {
     return {
-      ru: 'Нужен вход в облако. Перезайдите в раздел и попробуйте снова.',
-      uk: 'Потрібен вхід в хмару. Зайдіть у розділ знову й спробуйте ще раз.',
-      es: 'Hace falta la sesión en la nube. Vuelve al apartado e inténtalo de nuevo.',
-      'pt-BR': 'É preciso entrar na nuvem. Reabra a seção e tente novamente.',
-      vi: 'Cần đăng nhập vào đám mây. Mở lại mục này rồi thử lại.',
-      id: 'Perlu masuk ke cloud. Buka kembali bagian ini lalu coba lagi.',
-      tr: 'Bulut oturumu gerekiyor. Bölümü yeniden açıp tekrar dene.',
-      pl: 'Wymagane jest logowanie do chmury. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
+      ru: 'Не удалось подтвердить аккаунт. Перезайдите в раздел и попробуйте снова.',
+      uk: 'Не вдалося підтвердити акаунт. Зайдіть у розділ знову й спробуйте ще раз.',
+      es: 'No se pudo confirmar la cuenta. Vuelve al apartado e inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível confirmar a conta. Reabra a seção e tente novamente.',
+      vi: 'Không thể xác nhận tài khoản. Mở lại mục này rồi thử lại.',
+      id: 'Tidak dapat mengonfirmasi akun. Buka kembali bagian ini lalu coba lagi.',
+      tr: 'Hesap doğrulanamadı. Bölümü yeniden açıp tekrar dene.',
+      pl: 'Nie udało się potwierdzić konta. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
     };
   }
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
-      ru: 'Недостаточно осколков на балансе. Проверь баланс после синхронизации.',
-      uk: 'Недостатньо уламків на балансі. Перевірте баланс після синхронізації.',
-      es: 'Saldo de fragmentos insuficiente. Sincroniza con el servidor y comprueba.',
-      'pt-BR': 'Saldo de fragmentos insuficiente. Sincronize com o servidor e confira.',
-      vi: 'Không đủ mảnh trong số dư. Đồng bộ với máy chủ rồi kiểm tra.',
-      id: 'Saldo pecahan tidak cukup. Sinkronkan dengan server lalu periksa.',
-      tr: 'Parça bakiyesi yetersiz. Sunucuyla eşitleyip kontrol et.',
+      ru: 'Недостаточно осколков на балансе. Проверь баланс и попробуй снова.',
+      uk: 'Недостатньо уламків на балансі. Перевір баланс і спробуй ще раз.',
+      es: 'Saldo de fragmentos insuficiente. Comprueba el saldo e inténtalo de nuevo.',
+      'pt-BR': 'Saldo de fragmentos insuficiente. Confira o saldo e tente novamente.',
+      vi: 'Không đủ mảnh trong số dư. Kiểm tra số dư rồi thử lại.',
+      id: 'Saldo pecahan tidak cukup. Periksa saldo lalu coba lagi.',
+      tr: 'Parça bakiyesi yetersiz. Bakiyeni kontrol edip tekrar dene.',
       pl: 'Za mało odłamków na saldzie. Zsynchronizuj z serwerem i sprawdź.',
     };
   }
@@ -136,14 +136,14 @@ export async function purchaseCommunityPackWithShards(
 
   if (!(await ensureFirebaseUserSignedInForCallable())) {
     emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Облачный вход не подключился. Повтори попытку.',
-      uk: 'Не вдалося підключити хмарний вхід. Спробуйте ще раз.',
-      es: 'No se pudo conectar con la cuenta en la nube. Inténtalo de nuevo.',
-      'pt-BR': 'Não foi possível conectar o login na nuvem. Tente novamente.',
-      vi: 'Không thể kết nối đăng nhập đám mây. Hãy thử lại.',
-      id: 'Tidak dapat menghubungkan login cloud. Coba lagi.',
-      tr: 'Bulut girişi bağlanamadı. Tekrar dene.',
-      pl: 'Nie udało się połączyć logowania w chmurze. Spróbuj ponownie.',
+      ru: 'Не удалось подтвердить аккаунт. Повтори попытку.',
+      uk: 'Не вдалося підтвердити акаунт. Спробуйте ще раз.',
+      es: 'No se pudo confirmar la cuenta. Inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível confirmar a conta. Tente novamente.',
+      vi: 'Không thể xác nhận tài khoản. Hãy thử lại.',
+      id: 'Tidak dapat mengonfirmasi akun. Coba lagi.',
+      tr: 'Hesap doğrulanamadı. Tekrar dene.',
+      pl: 'Nie udało się potwierdzić konta. Spróbuj ponownie.',
     }));
     return 'spend_failed';
   }

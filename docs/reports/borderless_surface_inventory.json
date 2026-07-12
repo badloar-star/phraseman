@@ -274,7 +274,7 @@
       "tone": null,
       "reason": "One-sided AI-message top accent separates assistant surface without a closed container border",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "at": "2026-07-11",
@@ -300,7 +300,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -459,7 +459,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -485,7 +485,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -511,7 +511,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -530,7 +530,7 @@
         "value": "AiDialogSession"
       },
       "fingerprint": "app/ai_dialog_session.tsx|component:AiDialogSession|borderWidth:conversationMode ? 1 : 0|context:a0de60d23ea3|occurrence:1",
-      "lastSeenLine": 2529,
+      "lastSeenLine": 2517,
       "excerpt": "borderWidth: conversationMode ? 1 : 0,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -587,7 +587,7 @@
         "value": "AiDialogSession"
       },
       "fingerprint": "app/ai_dialog_session.tsx|component:AiDialogSession|borderTopWidth:ci === 0 ? 0 : 0.5|context:546760b7bbed|occurrence:1",
-      "lastSeenLine": 1084,
+      "lastSeenLine": 1082,
       "excerpt": "borderTopWidth: ci === 0 ? 0 : 0.5,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -613,7 +613,7 @@
         "value": "AiDialogSession"
       },
       "fingerprint": "app/ai_dialog_session.tsx|component:AiDialogSession|borderBottomWidth:0.5|context:ae9173243e5a|occurrence:1",
-      "lastSeenLine": 1325,
+      "lastSeenLine": 1323,
       "excerpt": "borderBottomWidth: 0.5,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -708,7 +708,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -734,7 +734,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -760,7 +760,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -779,7 +779,7 @@
         "value": "AiDialogSession"
       },
       "fingerprint": "app/ai_dialog_session.tsx|component:AiDialogSession|borderWidth:outcome === 'success' || outcome === 'lost_patience' ? 2 : 0|context:f07ac84b3460|occurrence:1",
-      "lastSeenLine": 2117,
+      "lastSeenLine": 2109,
       "excerpt": "borderWidth: outcome === 'success' || outcome === 'lost_patience' ? 2 : 0,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -1953,7 +1953,7 @@
         "value": "eliteCornerBR"
       },
       "fingerprint": "app/arena_lobby.tsx|style:eliteCornerBR|borderBottomWidth:2|context:1e9c8699a981|occurrence:1",
-      "lastSeenLine": 3345,
+      "lastSeenLine": 3333,
       "excerpt": "borderBottomWidth: 2,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -1979,7 +1979,7 @@
         "value": "eliteCornerBR"
       },
       "fingerprint": "app/arena_lobby.tsx|style:eliteCornerBR|borderRightWidth:2|context:5cb941edc686|occurrence:1",
-      "lastSeenLine": 3346,
+      "lastSeenLine": 3334,
       "excerpt": "borderRightWidth: 2,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -2005,7 +2005,7 @@
         "value": "eliteCornerTL"
       },
       "fingerprint": "app/arena_lobby.tsx|style:eliteCornerTL|borderTopWidth:2|context:355b46b665ca|occurrence:1",
-      "lastSeenLine": 3335,
+      "lastSeenLine": 3323,
       "excerpt": "borderTopWidth: 2,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -2031,7 +2031,7 @@
         "value": "eliteCornerTL"
       },
       "fingerprint": "app/arena_lobby.tsx|style:eliteCornerTL|borderLeftWidth:2|context:c271ec51e91d|occurrence:1",
-      "lastSeenLine": 3336,
+      "lastSeenLine": 3324,
       "excerpt": "borderLeftWidth: 2,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -2057,7 +2057,7 @@
         "value": "eliteRadarRingStatic"
       },
       "fingerprint": "app/arena_lobby.tsx|style:eliteRadarRingStatic|borderWidth:1|context:32e950a663b8|occurrence:1",
-      "lastSeenLine": 3596,
+      "lastSeenLine": 3584,
       "excerpt": "borderWidth: 1,",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -3140,7 +3140,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -3368,18 +3368,23 @@
       "fingerprint": "app/arena_room.tsx|component:ArenaRoomScreen|borderTopWidth:1|context:0ef0742a9d4f|occurrence:1",
       "lastSeenLine": 667,
       "excerpt": "<View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), padding: 16, gap: 12 }}>",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -3456,18 +3461,23 @@
       "fingerprint": "app/arena_room.tsx|component:ArenaRoomScreen|borderTopWidth:1|context:03277352fecf|occurrence:1",
       "lastSeenLine": 1021,
       "excerpt": "<View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -3482,18 +3492,23 @@
       "fingerprint": "app/arena_room.tsx|component:ArenaRoomScreen|borderTopWidth:1|context:03277352fecf|occurrence:2",
       "lastSeenLine": 1057,
       "excerpt": "<View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -4118,18 +4133,23 @@
       "fingerprint": "app/club_screen.tsx|component:ClubScreen|borderTopWidth:1|context:c1c002f23960|occurrence:1",
       "lastSeenLine": 1795,
       "excerpt": "<View style={{ backgroundColor:glassFill(t.bgSurface, 0.46), borderRadius:16, borderTopWidth:1, borderTopColor:glassFill(t.accent, 0.14), overflow:'hidden', marginTop:8 }}>",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -6992,7 +7012,7 @@
         "value": "diagnostic-continue-footer"
       },
       "fingerprint": "app/diagnostic_test.tsx|testID:diagnostic-continue-footer|borderTopWidth:1|context:717596fb10be|occurrence:1",
-      "lastSeenLine": 1903,
+      "lastSeenLine": 1897,
       "excerpt": "borderTopWidth: 1,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -7051,7 +7071,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -7077,7 +7097,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -7103,7 +7123,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -7129,7 +7149,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -7155,7 +7175,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -7922,7 +7942,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -8010,7 +8030,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -8036,7 +8056,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -8431,7 +8451,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -8853,7 +8873,7 @@
         "value": "header"
       },
       "fingerprint": "app/flashcards_collection.tsx|style:header|borderBottomWidth:0.5|context:375a895e7231|occurrence:1",
-      "lastSeenLine": 2073,
+      "lastSeenLine": 2071,
       "excerpt": "header: { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:16, paddingTop:12, paddingBottom:8, borderBottomWidth:0.5 },",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -9364,7 +9384,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -9511,7 +9531,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -9682,7 +9702,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -9708,7 +9728,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -9734,7 +9754,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -9786,7 +9806,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -10733,7 +10753,7 @@
         "value": "GlobalLevelUpHandler"
       },
       "fingerprint": "app/_layout.tsx|component:GlobalLevelUpHandler|borderWidth:USE_ELITE_LEVEL_UP_MODAL ? 1 : 0|context:9eb425041799|occurrence:1",
-      "lastSeenLine": 1096,
+      "lastSeenLine": 1183,
       "excerpt": "<View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent' }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -10797,7 +10817,7 @@
         "value": "level-up-dismiss"
       },
       "fingerprint": "app/_layout.tsx|testID:level-up-dismiss|borderWidth:USE_ELITE_LEVEL_UP_MODAL ? 1 : 0|context:7b20b9d9dc38|occurrence:1",
-      "lastSeenLine": 1124,
+      "lastSeenLine": 1211,
       "excerpt": "style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 22 : 20, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'transparent' : t.textPrimary) : t.accent, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 46 : 40, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 14 : 12, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairlineStrong : 'rgba(255,255,255,0.18)') : 'transparent', overflow: 'hidden' }}",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -11259,7 +11279,7 @@
         "value": "LessonComplete"
       },
       "fingerprint": "app/lesson_complete.tsx|component:LessonComplete|borderWidth:1|context:88c9f06ae08f|occurrence:1",
-      "lastSeenLine": 1105,
+      "lastSeenLine": 1111,
       "excerpt": "borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct, marginBottom: 20,",
       "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STATE",
@@ -11378,7 +11398,7 @@
         "value": "ReviewModal"
       },
       "fingerprint": "app/lesson_complete.tsx|component:ReviewModal|borderTopWidth:0.5|context:154393a9dec1|occurrence:1",
-      "lastSeenLine": 139,
+      "lastSeenLine": 140,
       "excerpt": "borderTopWidth: 0.5,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -13273,7 +13293,7 @@
         "value": "lesson-teaching-note"
       },
       "fingerprint": "app/lesson1.tsx|testID:lesson-teaching-note|borderLeftWidth:3|context:380f6978b65b|occurrence:1",
-      "lastSeenLine": 1247,
+      "lastSeenLine": 1248,
       "excerpt": "borderLeftWidth: 3,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -13325,7 +13345,7 @@
         "value": "lesson1-source-prompt"
       },
       "fingerprint": "app/lesson1.tsx|testID:lesson1-source-prompt|borderBottomWidth:1|context:4bc590f2eec5|occurrence:1",
-      "lastSeenLine": 1125,
+      "lastSeenLine": 1126,
       "excerpt": "<View style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -13351,7 +13371,7 @@
         "value": "LessonContent"
       },
       "fingerprint": "app/lesson1.tsx|component:LessonContent|borderLeftWidth:3|context:dd66719d5343|occurrence:1",
-      "lastSeenLine": 1182,
+      "lastSeenLine": 1183,
       "excerpt": "<View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, marginBottom: linkedSliceCompact ? 6 : 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STATE",
@@ -13377,7 +13397,7 @@
         "value": "LessonContent"
       },
       "fingerprint": "app/lesson1.tsx|component:LessonContent|borderLeftWidth:3|context:39f7d424a460|occurrence:1",
-      "lastSeenLine": 1208,
+      "lastSeenLine": 1209,
       "excerpt": "<View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STATE",
@@ -13403,7 +13423,7 @@
         "value": "LessonContent"
       },
       "fingerprint": "app/lesson1.tsx|component:LessonContent|borderLeftWidth:3|context:e69da9d4bc4a|occurrence:1",
-      "lastSeenLine": 1290,
+      "lastSeenLine": 1291,
       "excerpt": "borderLeftWidth: 3,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -13466,7 +13486,7 @@
         "value": "LessonContent"
       },
       "fingerprint": "app/lesson1.tsx|component:LessonContent|borderTopWidth:0.5|context:c0988595eab8|occurrence:1",
-      "lastSeenLine": 1426,
+      "lastSeenLine": 1427,
       "excerpt": "<View style={{ flexDirection: 'row', paddingTop: linkedSliceCompact ? 8 : 14, paddingBottom: (linkedSliceCompact ? 8 : 14) + bottomInset, borderTopWidth: 0.5, borderTopColor: t.border }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -14801,7 +14821,7 @@
         "value": "footer"
       },
       "fingerprint": "app/pack_opening.tsx|style:footer|borderTopWidth:StyleSheet.hairlineWidth|context:c7e73e297eb3|occurrence:1",
-      "lastSeenLine": 821,
+      "lastSeenLine": 830,
       "excerpt": "borderTopWidth: StyleSheet.hairlineWidth,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -14897,7 +14917,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -17333,7 +17353,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -17359,7 +17379,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -17523,7 +17543,7 @@
         "value": "header"
       },
       "fingerprint": "app/problem_coach.tsx|style:header|borderBottomWidth:0.5|context:2ff998c42e02|occurrence:1",
-      "lastSeenLine": 650,
+      "lastSeenLine": 648,
       "excerpt": "borderBottomWidth: 0.5,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -17711,7 +17731,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -18303,7 +18323,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -18329,7 +18349,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -19997,7 +20017,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20054,7 +20074,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20080,7 +20100,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20106,7 +20126,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20132,7 +20152,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20158,7 +20178,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20215,7 +20235,7 @@
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20265,14 +20285,14 @@
         "value": "LearningCoachCard"
       },
       "fingerprint": "app/streak_stats.tsx|component:LearningCoachCard|borderTopWidth:1|context:7167fea53dab|occurrence:1",
-      "lastSeenLine": 2414,
+      "lastSeenLine": 2413,
       "excerpt": "<View style={{ marginTop: 16, borderRadius: 16, padding: 12, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -20355,7 +20375,7 @@
         "value": "LifetimeTotalsBlock"
       },
       "fingerprint": "app/streak_stats.tsx|component:LifetimeTotalsBlock|borderBottomWidth:0.5|context:9494bf13d6de|occurrence:1",
-      "lastSeenLine": 884,
+      "lastSeenLine": 883,
       "excerpt": "borderBottomWidth: 0.5,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -21101,9 +21121,9 @@
         "kind": "testID",
         "value": "wager-active-card"
       },
-      "fingerprint": "app/streak_stats.tsx|testID:wager-active-card|borderWidth:1|context:3cbde1aed013|occurrence:1",
-      "lastSeenLine": 1280,
-      "excerpt": "return (<StatsCardArtSurface name=\"wager\" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={18} testID=\"wager-active-card\" style={[{ borderRadius: 18, padding: 14, borderWidth: 1, borderColor: wagerBorder, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>",
+      "fingerprint": "app/streak_stats.tsx|testID:wager-active-card|borderWidth:1|context:4b4aa951cf16|occurrence:1",
+      "lastSeenLine": 1279,
+      "excerpt": "return (<StatsCardArtSurface name=\"wager\" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={18} scrim=\"stats\" testID=\"wager-active-card\" style={[{ borderRadius: 18, padding: 14, borderWidth: 1, borderColor: wagerBorder, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STATE",
       "tone": null,
@@ -21288,7 +21308,7 @@
         "value": "wager-place"
       },
       "fingerprint": "app/streak_stats.tsx|testID:wager-place|borderWidth:canAfford ? 0 : 1|context:70ac1bc7374f|occurrence:1",
-      "lastSeenLine": 1662,
+      "lastSeenLine": 1661,
       "excerpt": "<LinearGradient colors={canAfford ? [wagerAccent, wagerAccent] : [t.bgSurface, t.bgSurface]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ paddingVertical: 15, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', gap: 6, borderRadius: 16, borderWidth: canAfford ? 0 : 1, borderColor: statsHairline(themeMode, 'wager') }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -21417,14 +21437,14 @@
         "value": "WagerCard"
       },
       "fingerprint": "app/streak_stats.tsx|component:WagerCard|borderTopWidth:1|context:2f08229c4a7a|occurrence:1",
-      "lastSeenLine": 1524,
+      "lastSeenLine": 1523,
       "excerpt": "<View style={{ borderRadius: 18, padding: 14, marginBottom: 12, backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
       "reason": "One-sided structural divider or top highlight",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -21443,7 +21463,7 @@
         "value": "WagerCard"
       },
       "fingerprint": "app/streak_stats.tsx|component:WagerCard|borderWidth:selected ? 1.5 : 1|context:fe2fd4fac6a1|occurrence:1",
-      "lastSeenLine": 1603,
+      "lastSeenLine": 1602,
       "excerpt": "borderWidth: selected ? 1.5 : 1,",
       "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STATE",
@@ -21726,18 +21746,23 @@
       "fingerprint": "app/(tabs)/friends.tsx|testID:friend-quest-card|borderTopWidth:1|context:933a3faac457|occurrence:1",
       "lastSeenLine": 3127,
       "excerpt": "borderTopWidth: 1,",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -21816,18 +21841,23 @@
       "fingerprint": "app/(tabs)/friends.tsx|component:FriendRow|borderTopWidth:1|context:94c3a46425d7|occurrence:1",
       "lastSeenLine": 690,
       "excerpt": "borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -21842,18 +21872,23 @@
       "fingerprint": "app/(tabs)/friends.tsx|testID:friends-activity-digest|borderTopWidth:1|context:3fc81d9d3095|occurrence:1",
       "lastSeenLine": 1635,
       "excerpt": "borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -21866,7 +21901,7 @@
         "value": "friends-code-input"
       },
       "fingerprint": "app/(tabs)/friends.tsx|testID:friends-code-input|borderWidth:0.5|context:760611ab88eb|occurrence:1",
-      "lastSeenLine": 1781,
+      "lastSeenLine": 1779,
       "excerpt": "letterSpacing: codeMode ? 4 : 0, borderWidth: 0.5, borderColor: chrome.border,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -21985,7 +22020,7 @@
         "value": "friends-open-referrals"
       },
       "fingerprint": "app/(tabs)/friends.tsx|testID:friends-open-referrals|borderWidth:1.5|context:63154a588a76|occurrence:1",
-      "lastSeenLine": 3091,
+      "lastSeenLine": 3089,
       "excerpt": "borderWidth: 1.5, borderColor: t.bgPrimary ?? '#000',",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -22011,7 +22046,7 @@
         "value": "friends-search"
       },
       "fingerprint": "app/(tabs)/friends.tsx|testID:friends-search|borderWidth:0.5|context:f769a1defd4b|occurrence:1",
-      "lastSeenLine": 1807,
+      "lastSeenLine": 1805,
       "excerpt": "borderWidth: 0.5,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22037,7 +22072,7 @@
         "value": "FriendsTabScreen"
       },
       "fingerprint": "app/(tabs)/friends.tsx|component:FriendsTabScreen|borderWidth:0.5|context:76326d6dca50|occurrence:1",
-      "lastSeenLine": 3049,
+      "lastSeenLine": 3047,
       "excerpt": "borderWidth: 0.5, borderColor: active ? t.accent : chrome.border,",
       "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STATE",
@@ -22063,7 +22098,7 @@
         "value": "FriendsTabScreen"
       },
       "fingerprint": "app/(tabs)/friends.tsx|component:FriendsTabScreen|borderWidth:1.5|context:4d73705403e8|occurrence:1",
-      "lastSeenLine": 3060,
+      "lastSeenLine": 3058,
       "excerpt": "borderWidth: 1.5, borderColor: t.bgPrimary ?? '#000',",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -22183,7 +22218,7 @@
         "value": "FriendsTabScreen"
       },
       "fingerprint": "app/(tabs)/friends.tsx|component:FriendsTabScreen|borderWidth:1|context:a01401d31e40|occurrence:1",
-      "lastSeenLine": 3705,
+      "lastSeenLine": 3701,
       "excerpt": "style={{ width: 76, height: 76, borderRadius: 26, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(109,76,24,0.24)' }}",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -22240,13 +22275,13 @@
         "kind": "component",
         "value": "L"
       },
-      "fingerprint": "app/(tabs)/friends.tsx|component:L|borderTopWidth:1|context:162877ea20c7|occurrence:1",
-      "lastSeenLine": 1532,
-      "excerpt": "borderTopWidth: 1, borderTopColor: isMilestone ? color + '55' : glassFill(t.accent, 0.14),",
-      "category": "KEEP_STRUCTURE",
+      "fingerprint": "app/(tabs)/friends.tsx|component:L|borderTopWidth:1|context:c2fd76e5e8ce|occurrence:1",
+      "lastSeenLine": 1531,
+      "excerpt": "...(isMilestone ? { borderTopWidth: 1, borderTopColor: color + '55' } : null),",
+      "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
+      "reason": "Milestone activity signal only; ordinary activity rows remain borderless.",
       "status": "kept",
       "scanState": "present",
       "history": [
@@ -22255,6 +22290,11 @@
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "reviewed",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Milestone activity signal only; ordinary activity rows remain borderless."
         }
       ]
     },
@@ -22267,7 +22307,7 @@
         "value": "L"
       },
       "fingerprint": "app/(tabs)/friends.tsx|component:L|borderWidth:1.5|context:e07e6bf9dcc0|occurrence:1",
-      "lastSeenLine": 1562,
+      "lastSeenLine": 1561,
       "excerpt": "borderWidth: 1.5, borderColor: chrome.card,",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -22293,7 +22333,7 @@
         "value": "L"
       },
       "fingerprint": "app/(tabs)/friends.tsx|component:L|borderWidth:0.5|context:bc2f28421fcf|occurrence:1",
-      "lastSeenLine": 1592,
+      "lastSeenLine": 1591,
       "excerpt": "borderWidth: 0.5,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22352,18 +22392,23 @@
       "fingerprint": "app/(tabs)/friends.tsx|component:RequestRow|borderTopWidth:1|context:516ab1de485a|occurrence:1",
       "lastSeenLine": 805,
       "excerpt": "borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), gap: 12,",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -22471,7 +22516,7 @@
         "value": "home-league-chat-unread-badge"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-league-chat-unread-badge|borderWidth:1.5|context:bd090e407a6b|occurrence:1",
-      "lastSeenLine": 3443,
+      "lastSeenLine": 3445,
       "excerpt": "borderWidth: 1.5,",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -22497,7 +22542,7 @@
         "value": "home-league-chat-unread-badge"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-league-chat-unread-badge|borderWidth:1.5|context:bd090e407a6b|occurrence:2",
-      "lastSeenLine": 3481,
+      "lastSeenLine": 3483,
       "excerpt": "borderWidth: 1.5,",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -22555,7 +22600,7 @@
         "value": "home-league-open"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-league-open|borderWidth:isGoldTheme ? 1 : 0.5|context:0ba6b4fab5d1|occurrence:1",
-      "lastSeenLine": 3522,
+      "lastSeenLine": 3524,
       "excerpt": "<LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, padding: 14, overflow: 'hidden', ...({}) }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22651,7 +22696,7 @@
         "value": "home-stats-card"
       },
       "fingerprint": "app/(tabs)/home.tsx|testID:home-stats-card|borderWidth:HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 1 : (isGoldTheme ? 1 : 0.5)|context:7c4c981a7657|occurrence:1",
-      "lastSeenLine": 2566,
+      "lastSeenLine": 2568,
       "excerpt": "<LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 1 : (isGoldTheme ? 1 : 0.5), borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : t.border, padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22684,7 +22729,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:0c4e6091f6e5|occurrence:1",
-      "lastSeenLine": 790,
+      "lastSeenLine": 792,
       "excerpt": "borderWidth: 1,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22710,7 +22755,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:isGoldTheme ? StyleSheet.hairlineWidth : 0|context:de26d78a6c3d|occurrence:1",
-      "lastSeenLine": 2649,
+      "lastSeenLine": 2651,
       "excerpt": "borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22743,7 +22788,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:marker === 'freeze' ? 1 : todayRingWidth(i|context:abee98025f93|occurrence:1",
-      "lastSeenLine": 2693,
+      "lastSeenLine": 2695,
       "excerpt": "borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked && !isGoldTheme ? 0 : 1),",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22776,7 +22821,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0))|context:cb1e92a7c942|occurrence:1",
-      "lastSeenLine": 2816,
+      "lastSeenLine": 2818,
       "excerpt": "borderWidth: marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22802,7 +22847,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:482404b21348|occurrence:1",
-      "lastSeenLine": 2849,
+      "lastSeenLine": 2851,
       "excerpt": "borderWidth: 1,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -22922,7 +22967,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:a25d8eb4f6c2|occurrence:1",
-      "lastSeenLine": 3220,
+      "lastSeenLine": 3222,
       "excerpt": "borderWidth: 1,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -23043,7 +23088,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:0.5|context:0a8b1aff95b0|occurrence:1",
-      "lastSeenLine": 3540,
+      "lastSeenLine": 3542,
       "excerpt": "<View style={{ width: homeTodayIconSize, height: homeTodayIconSize, borderRadius: isCompassTheme ? compassHomeRadius : Math.round(homeTodayIconSize / 2), backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -23108,7 +23153,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderTopWidth:HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5|context:54984468b6b1|occurrence:1",
-      "lastSeenLine": 3595,
+      "lastSeenLine": 3597,
       "excerpt": "<View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -23229,7 +23274,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:b2364036e693|occurrence:1",
-      "lastSeenLine": 3858,
+      "lastSeenLine": 3860,
       "excerpt": "return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole=\"button\" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "KEEP_STATE",
@@ -23255,7 +23300,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:3d90bfb8382b|occurrence:1",
-      "lastSeenLine": 3859,
+      "lastSeenLine": 3861,
       "excerpt": "<View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20', borderWidth: 1, borderColor: titleColor + '55' }}>",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -23281,7 +23326,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:8eb76755ca06|occurrence:1",
-      "lastSeenLine": 2085,
+      "lastSeenLine": 2087,
       "excerpt": "<View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusAccentSoft, borderWidth: 1, borderColor: loginBonusBorder }}>",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -23307,7 +23352,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:a586e65e3476|occurrence:1",
-      "lastSeenLine": 2122,
+      "lastSeenLine": 2124,
       "excerpt": "{showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -23333,7 +23378,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:1|context:87265c565e63|occurrence:1",
-      "lastSeenLine": 2148,
+      "lastSeenLine": 2150,
       "excerpt": "{showRepairCard && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, borderWidth: 1, borderColor: '#FF9500' + '99' }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -23390,7 +23435,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:isGoldTheme ? StyleSheet.hairlineWidth : 0|context:166dba0548a4|occurrence:1",
-      "lastSeenLine": 2438,
+      "lastSeenLine": 2440,
       "excerpt": "borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -23423,7 +23468,7 @@
         "value": "HomeScreen"
       },
       "fingerprint": "app/(tabs)/home.tsx|component:HomeScreen|borderWidth:marker === 'freeze' ? 1 : todayRingWidth(i|context:07429ca5c135|occurrence:1",
-      "lastSeenLine": 2485,
+      "lastSeenLine": 2487,
       "excerpt": "borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -23511,7 +23556,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderLeftWidth:7|context:2f8a37e2e627|occurrence:1",
-      "lastSeenLine": 3747,
+      "lastSeenLine": 3749,
       "excerpt": "<View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -23537,7 +23582,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderRightWidth:7|context:2f8a37e2e627|occurrence:1",
-      "lastSeenLine": 3747,
+      "lastSeenLine": 3749,
       "excerpt": "<View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -23563,7 +23608,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderBottomWidth:7|context:2f8a37e2e627|occurrence:1",
-      "lastSeenLine": 3747,
+      "lastSeenLine": 3749,
       "excerpt": "<View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -23589,7 +23634,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderLeftWidth:6|context:a1582bd829e2|occurrence:1",
-      "lastSeenLine": 3748,
+      "lastSeenLine": 3750,
       "excerpt": "<View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -23615,7 +23660,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderRightWidth:6|context:a1582bd829e2|occurrence:1",
-      "lastSeenLine": 3748,
+      "lastSeenLine": 3750,
       "excerpt": "<View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -23641,7 +23686,7 @@
         "value": "shadowOffset"
       },
       "fingerprint": "app/(tabs)/home.tsx|style:shadowOffset|borderBottomWidth:6|context:a1582bd829e2|occurrence:1",
-      "lastSeenLine": 3748,
+      "lastSeenLine": 3750,
       "excerpt": "<View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -24069,18 +24114,23 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:FrenchQuizUnavailable|borderTopWidth:1|context:bd7a882a9836|occurrence:1",
       "lastSeenLine": 3145,
       "excerpt": "borderTopWidth: 1,",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -24095,18 +24145,23 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:LevelSelect|borderTopWidth:1|context:2a527223246a|occurrence:1",
       "lastSeenLine": 1249,
       "excerpt": "? { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -24598,18 +24653,23 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderTopWidth:1|context:bbbcc9207b38|occurrence:1",
       "lastSeenLine": 2911,
       "excerpt": "padding: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14),",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided structural divider or top highlight",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "context-rule-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided structural divider or top highlight"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -24624,18 +24684,23 @@
       "fingerprint": "app/(tabs)/quizzes.tsx|component:QuizGame|borderTopWidth:1|context:e975fed95382|occurrence:1",
       "lastSeenLine": 2209,
       "excerpt": ": { backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },",
-      "category": "KEEP_STRUCTURE",
+      "category": "MIGRATE",
       "suggestedCategory": "KEEP_STRUCTURE",
       "tone": null,
-      "reason": "One-sided top highlight for tonal progress panel; not a closed container border",
-      "status": "kept",
-      "scanState": "present",
+      "reason": "Decorative top bevel migrated to a borderless tonal container.",
+      "status": "migrated",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
           "method": "final-ledger-review-v1",
           "category": "KEEP_STRUCTURE",
           "reason": "One-sided top highlight for tonal progress panel; not a closed container border"
+        },
+        {
+          "action": "migrated",
+          "at": "2026-07-11T00:00:00.000Z",
+          "note": "Decorative top bevel migrated to a borderless tonal container."
         }
       ]
     },
@@ -26117,7 +26182,7 @@
         "value": "TrainerScreenInner"
       },
       "fingerprint": "app/trainer.tsx|component:TrainerScreenInner|borderWidth:isCompassTheme ? StyleSheet.hairlineWidth : 0|context:85cc5594f22b|occurrence:1",
-      "lastSeenLine": 992,
+      "lastSeenLine": 994,
       "excerpt": "<View style={[styles.phraseMinibadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : isGoldTheme ? GOLD_RICH.wash : t.bgCard, borderRadius: isCompassTheme ? 7 : 8, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -26150,7 +26215,7 @@
         "value": "TrainerScreenInner"
       },
       "fingerprint": "app/trainer.tsx|component:TrainerScreenInner|borderWidth:(isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (isNext ? 1 : 0)|context:13e0bf5e6814|occurrence:1",
-      "lastSeenLine": 803,
+      "lastSeenLine": 805,
       "excerpt": "borderWidth: (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (isNext ? 1 : 0),",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -26183,7 +26248,7 @@
         "value": "TrainerScreenInner"
       },
       "fingerprint": "app/trainer.tsx|component:TrainerScreenInner|borderWidth:isCompassTheme ? StyleSheet.hairlineWidth : 0|context:f146b36edc79|occurrence:1",
-      "lastSeenLine": 818,
+      "lastSeenLine": 820,
       "excerpt": "{isNext && option.id !== 'context' ? (<View style={[styles.nextBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.washStrong : option.accent + '22', borderRadius: trainerPillRadius, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent' }]}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -26216,7 +26281,7 @@
         "value": "TrainerScreenInner"
       },
       "fingerprint": "app/trainer.tsx|component:TrainerScreenInner|borderWidth:(isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (empty ? 0 : 1)|context:042564561c99|occurrence:1",
-      "lastSeenLine": 848,
+      "lastSeenLine": 850,
       "excerpt": "<View style={[styles.countBadge, { backgroundColor: empty ? trainerRowBg : isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.wash : option.accent + '22', borderColor: empty ? trainerBorder : optionAccentBorder, borderWidth: (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (empty ? 0 : 1), borderRadius: isCompassTheme ? 9 : 23 }]}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -26281,7 +26346,7 @@
         "value": "TrainerScreenInner"
       },
       "fingerprint": "app/trainer.tsx|component:TrainerScreenInner|borderWidth:isCompassTheme ? StyleSheet.hairlineWidth : 0|context:cdd11b34e5bf|occurrence:1",
-      "lastSeenLine": 898,
+      "lastSeenLine": 900,
       "excerpt": "<View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -26438,7 +26503,7 @@
         "value": "footer"
       },
       "fingerprint": "app/WeeklyReviewCard.tsx|style:footer|borderTopWidth:0.5|context:5581dceb0525|occurrence:1",
-      "lastSeenLine": 452,
+      "lastSeenLine": 460,
       "excerpt": "footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingTop: 10, borderTopWidth: 0.5 },",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -27379,7 +27444,7 @@
         "value": "envelope"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:envelope|borderWidth:2|context:3a31339f0152|occurrence:1",
-      "lastSeenLine": 1042,
+      "lastSeenLine": 1039,
       "excerpt": "borderWidth: 2,",
       "category": "KEEP_ART",
       "suggestedCategory": "MIGRATE",
@@ -27405,7 +27470,7 @@
         "value": "envelopeFlap"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:envelopeFlap|borderLeftWidth:68|context:d6fff2e327fb|occurrence:1",
-      "lastSeenLine": 1058,
+      "lastSeenLine": 1055,
       "excerpt": "borderLeftWidth: 68,",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -27431,7 +27496,7 @@
         "value": "envelopeFlap"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:envelopeFlap|borderRightWidth:68|context:d209a6b5ee43|occurrence:1",
-      "lastSeenLine": 1059,
+      "lastSeenLine": 1056,
       "excerpt": "borderRightWidth: 68,",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -27457,7 +27522,7 @@
         "value": "envelopeFlap"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:envelopeFlap|borderTopWidth:50|context:6b7be302e1d3|occurrence:1",
-      "lastSeenLine": 1060,
+      "lastSeenLine": 1057,
       "excerpt": "borderTopWidth: 50,",
       "category": "KEEP_ART",
       "suggestedCategory": "KEEP_STRUCTURE",
@@ -27490,7 +27555,7 @@
       "tone": null,
       "reason": "Border participates in read and unread message state",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -27602,7 +27667,7 @@
         "value": "pollOption"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:pollOption|borderWidth:1|context:b25e2bacbea0|occurrence:1",
-      "lastSeenLine": 1386,
+      "lastSeenLine": 1383,
       "excerpt": "borderWidth: 1,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -27628,7 +27693,7 @@
         "value": "reactionButton"
       },
       "fingerprint": "components/AppMessagesInbox.tsx|style:reactionButton|borderWidth:1|context:7b274dca9e86|occurrence:1",
-      "lastSeenLine": 1432,
+      "lastSeenLine": 1429,
       "excerpt": "borderWidth: 1,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -33651,7 +33716,7 @@
         "value": "GiftResultBlock"
       },
       "fingerprint": "components/LevelGiftDualModal.tsx|component:GiftResultBlock|borderWidth:USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.2|context:05e4085c02a8|occurrence:1",
-      "lastSeenLine": 1052,
+      "lastSeenLine": 1096,
       "excerpt": "borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.2,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -33684,7 +33749,7 @@
         "value": "level-gift-dual-claim"
       },
       "fingerprint": "components/LevelGiftDualModal.tsx|testID:level-gift-dual-claim|borderWidth:USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5|context:a3f5ab4ee35a|occurrence:1",
-      "lastSeenLine": 874,
+      "lastSeenLine": 918,
       "excerpt": "borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -33813,7 +33878,7 @@
         "value": "level-gift-dual-modal"
       },
       "fingerprint": "components/LevelGiftDualModal.tsx|testID:level-gift-dual-modal|borderWidth:USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5|context:66131dc73f5f|occurrence:1",
-      "lastSeenLine": 606,
+      "lastSeenLine": 650,
       "excerpt": "borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5,",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -33942,7 +34007,7 @@
         "value": "LevelGiftDualModal"
       },
       "fingerprint": "components/LevelGiftDualModal.tsx|component:LevelGiftDualModal|borderWidth:USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0|context:f7c95d715580|occurrence:1",
-      "lastSeenLine": 698,
+      "lastSeenLine": 742,
       "excerpt": "<View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -33975,7 +34040,7 @@
         "value": "LevelGiftDualModal"
       },
       "fingerprint": "components/LevelGiftDualModal.tsx|component:LevelGiftDualModal|borderWidth:USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0|context:ac84e1c16164|occurrence:1",
-      "lastSeenLine": 734,
+      "lastSeenLine": 778,
       "excerpt": "<View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}14` : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}36` : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>",
       "category": "KEEP_STATE",
       "suggestedCategory": "MIGRATE",
@@ -35567,7 +35632,7 @@
       "tone": null,
       "reason": "Second pass: kept because border expresses state, selection, answer correctness, active/current item, or structural interaction feedback.",
       "status": "kept",
-      "scanState": "present",
+      "scanState": "missing",
       "history": [
         {
           "action": "reviewed",
@@ -36755,7 +36820,7 @@
         "value": "PromoBanner"
       },
       "fingerprint": "components/PromoBanner.tsx|component:PromoBanner|borderBottomWidth:1|context:11345df2e78d|occurrence:1",
-      "lastSeenLine": 160,
+      "lastSeenLine": 189,
       "excerpt": "borderBottomWidth: 1,",
       "category": "KEEP_STRUCTURE",
       "suggestedCategory": "KEEP_STRUCTURE",

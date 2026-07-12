@@ -52,6 +52,8 @@ type RevenueCatWebhookBody = {
     purchased_at_ms?: number;
     expiration_at_ms?: number;
     period_type?: string;
+    cancel_reason?: string;
+    expiration_reason?: string;
     entitlement_id?: string;
     entitlement_ids?: unknown[];
     presented_offering_id?: string;
@@ -67,6 +69,27 @@ type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
 
 function cleanId(raw: unknown): string {
   return String(raw ?? '').trim();
+}
+
+function normalizeLifecycleReason(raw: unknown): string {
+  if (typeof raw !== 'string') return '';
+  const reason = raw.trim().toUpperCase();
+  return reason.length <= 64 && /^[A-Z][A-Z0-9_]*$/.test(reason) ? reason : '';
+}
+
+function revenueCatLifecycleReasonFields(
+  event: RevenueCatEvent,
+  eventType: string,
+): { cancelReason?: string; expirationReason?: string } {
+  if (eventType === 'CANCELLATION') {
+    const cancelReason = normalizeLifecycleReason(event.cancel_reason);
+    return cancelReason ? { cancelReason } : {};
+  }
+  if (eventType === 'EXPIRATION') {
+    const expirationReason = normalizeLifecycleReason(event.expiration_reason);
+    return expirationReason ? { expirationReason } : {};
+  }
+  return {};
 }
 
 function isRevenueCatAnonymousId(raw: unknown): boolean {
@@ -316,6 +339,7 @@ async function handlePremiumSubscriptionEvent(
         purchasedAtMs: purchasedMs,
         expirationAtMs: expiryMs,
         eventTimestampMs: eventMs(event.event_timestamp_ms),
+        ...revenueCatLifecycleReasonFields(event, eventType),
         userDocExists: userSnap.exists,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
@@ -774,5 +798,6 @@ export const __revenueCatWebhookTestHooks = {
   stableCandidateUserIds,
   transferTargetIds,
   transferSourceIds,
+  revenueCatLifecycleReasonFields,
   handleTransferEvent,
 };

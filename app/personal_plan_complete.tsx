@@ -126,7 +126,7 @@ export default function PersonalPlanCompleteScreen() {
     <ScreenGradient>
       <View style={[styles.safe, { paddingTop: insets.top }]}>
         <BounceView style={styles.safe}>
-          <View style={[styles.card, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
+          <View style={[styles.card, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
             <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
               <Ionicons name="trophy" size={34} color={t.correctText} />
             </View>

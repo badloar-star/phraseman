@@ -28,6 +28,12 @@ import {
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  // Consent-gated product navigation/session analytics (schema v1).
+  | 'product_session_start'
+  | 'product_session_resume'
+  | 'product_session_background'
+  | 'product_screen_view'
+  | 'product_screen_leave'
   // обучение
   | 'app_open'
   | 'lesson_start'
@@ -121,6 +127,7 @@ export type AnalyticsEvent =
   | 'paywall_exit_offer_shown'    // exit-intent: показан тёплый триал-оффер при попытке уйти
   | 'paywall_exit_offer_accepted' // exit-intent: юзер согласился попробовать триал
   | 'paywall_exit_offer_declined' // exit-intent: юзер отказался и закрыл
+  | 'paywall_inventory_resolved'
   | 'purchase_started'            // нажат CTA, открывается диалог стора
   | 'purchase_completed'
   | 'purchase_failed'

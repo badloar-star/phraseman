@@ -17,6 +17,11 @@ export interface SourceRegistry {
   readonly lessons: Readonly<Record<string, SourceBlueprintLesson>>;
 }
 
+export type SourceRegistryCoverage = Readonly<
+  | { ok: true; code: 'ok'; missingLessonIds: readonly number[] }
+  | { ok: false; code: 'source_coverage'; missingLessonIds: readonly number[] }
+>;
+
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const HASH_RE = /^[a-f0-9]{64}$/i;
 
@@ -32,6 +37,15 @@ export function parseSourceRegistryReference(reference: string): { blueprintId: 
   const version = reference.slice(separator + 1);
   sourceRegistryDocId(blueprintId, version);
   return Object.freeze({ blueprintId, version });
+}
+
+export function inspectSourceRegistryCoverage(registry: SourceRegistry, requestedLessonIds: readonly number[]): SourceRegistryCoverage {
+  const missingLessonIds = [...new Set(requestedLessonIds)]
+    .filter((lessonId) => !Object.prototype.hasOwnProperty.call(registry.lessons, String(lessonId)))
+    .sort((left, right) => left - right);
+  return missingLessonIds.length
+    ? Object.freeze({ ok: false as const, code: 'source_coverage' as const, missingLessonIds: Object.freeze(missingLessonIds) })
+    : Object.freeze({ ok: true as const, code: 'ok' as const, missingLessonIds: Object.freeze([]) });
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

@@ -17,6 +17,7 @@ import { useTheme } from './ThemeContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
+import { RewardModalLiquidGlass } from './RewardModalBackdrop';
 
 const STAGE_SIZE = 150;
 /** Подстраховка: даже если spring не доиграет колбэк — раскрытие произойдёт. */
@@ -61,7 +62,7 @@ export default function BoonChestModal({
   onClaim,
   onClose,
 }: BoonChestModalProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const [phase, setPhase] = useState<Phase>('box');
 
   const modalEntrance = useRef(new Animated.Value(0)).current;
@@ -221,6 +222,7 @@ export default function BoonChestModal({
             style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
           />
           <View pointerEvents="none" style={[styles.topGlow, { backgroundColor: palette.accentSoft }]} />
+          <RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />
 
           {phase === 'box' && (
             <TouchableOpacity

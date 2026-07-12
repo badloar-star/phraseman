@@ -403,8 +403,8 @@
       "lesson": 31,
       "id": "lesson31_phrase_46",
       "en": "She let that helpful guide show that ancient map to that tourist group.",
-      "ru": "Она разрешила тому готовому помочь гиду показать древнюю карту той группе туристов.",
-      "uk": "Вона дозволила тому помічному гіду показати стародавню мапу тій групі туристів.",
+      "ru": "Она разрешила тому готовому помочь гиду показать ту древнюю карту той группе туристов.",
+      "uk": "Вона дозволила тому помічному гіду показати ту стародавню мапу тій групі туристів.",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify manually when editing this phrase."
     },
     {

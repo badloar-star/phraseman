@@ -34,6 +34,8 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.onAppMessagePollVoteWritten = exports.onAppMessageStateWritten = exports.onAppMessageReactionWritten = void 0;
+exports.deleteAppMessageWithEngagement = deleteAppMessageWithEngagement;
+exports.clearAppMessagePollEngagement = clearAppMessagePollEngagement;
 exports.cleanupExpiredAppMessages = cleanupExpiredAppMessages;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
@@ -56,10 +58,10 @@ function toMs(value) {
     }
     return 0;
 }
-async function deleteMessageWithReactions(db, doc) {
+async function deleteAppMessageWithEngagement(db, messageRef) {
     // eslint-disable-next-line no-constant-condition
     while (true) {
-        const reactions = await doc.ref.collection('reactions').limit(400).get();
+        const reactions = await messageRef.collection('reactions').limit(400).get();
         if (reactions.empty)
             break;
         const batch = db.batch();
@@ -67,7 +69,7 @@ async function deleteMessageWithReactions(db, doc) {
         await batch.commit();
     }
     while (true) {
-        const votes = await doc.ref.collection('poll_votes').limit(400).get();
+        const votes = await messageRef.collection('poll_votes').limit(400).get();
         if (votes.empty)
             break;
         const batch = db.batch();
@@ -75,14 +77,50 @@ async function deleteMessageWithReactions(db, doc) {
         await batch.commit();
     }
     while (true) {
-        const states = await db.collectionGroup('app_message_states').where('messageId', '==', doc.id).limit(400).get();
+        const states = await db.collectionGroup('app_message_states').where('messageId', '==', messageRef.id).limit(400).get();
         if (states.empty)
             break;
         const batch = db.batch();
         states.docs.forEach((state) => batch.delete(state.ref));
         await batch.commit();
     }
-    await doc.ref.delete();
+    await messageRef.delete();
+}
+async function clearAppMessagePollEngagement(db, messageRef) {
+    // Votes and the selected option in user state refer to the old option structure.
+    // The message must be inactive before this helper is called, so rules reject new votes.
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+        const votes = await messageRef.collection('poll_votes').limit(400).get();
+        if (votes.empty)
+            break;
+        const batch = db.batch();
+        votes.docs.forEach((vote) => batch.delete(vote.ref));
+        await batch.commit();
+    }
+    let cursor = null;
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+        let query = db.collectionGroup('app_message_states')
+            .where('messageId', '==', messageRef.id)
+            .orderBy(admin.firestore.FieldPath.documentId())
+            .limit(400);
+        if (cursor)
+            query = query.startAfter(cursor);
+        const states = await query.get();
+        if (states.empty)
+            break;
+        const batch = db.batch();
+        const updatedAtMs = Date.now();
+        states.docs.forEach((state) => batch.update(state.ref, {
+            pollOptionId: admin.firestore.FieldValue.delete(),
+            updatedAtMs,
+        }));
+        await batch.commit();
+        cursor = states.docs[states.docs.length - 1];
+        if (states.size < 400)
+            break;
+    }
 }
 async function cleanupExpiredAppMessages() {
     const db = admin.firestore();
@@ -97,7 +135,7 @@ async function cleanupExpiredAppMessages() {
         const expired = (expiresAtMs > 0 && expiresAtMs <= now) || (createdAtMs > 0 && createdAtMs <= cutoff);
         if (!expired)
             continue;
-        await deleteMessageWithReactions(db, doc);
+        await deleteAppMessageWithEngagement(db, doc.ref);
         deleted += 1;
     }
     return { deleted, scanned: snap.size };

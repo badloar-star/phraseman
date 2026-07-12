@@ -36,6 +36,7 @@ import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import PlusBadge from './PlusBadge';
 import {
   RewardModalPanelBackdrop,
+  RewardModalLiquidGlass,
   rewardModalPanelBorder,
   rewardModalPanelColors,
   rewardModalSoftSurface,
@@ -73,6 +74,8 @@ interface Props {
   preRolledGift?: GiftDef;
   /** claim = apply now; inventory = reveal and save for later application */
   deliveryMode?: 'claim' | 'inventory';
+  /** open = show the chest ritual; apply = apply an already revealed inventory gift. */
+  presentationMode?: 'open' | 'apply';
   /** Override cleanup for gifts that are stored in a split source, such as one part of a premium pair. */
   onGiftClaimed?: (gift: GiftDef, accountToken: AccountGenerationToken) => Promise<void>;
   /** Whether dismissing the unopened claim modal should save the gift back to inventory. */
@@ -135,6 +138,7 @@ function LevelGiftModal({
   onClose,
   preRolledGift,
   deliveryMode = 'claim',
+  presentationMode = 'open',
   onGiftClaimed,
   saveOnDismiss = true,
   applyAsPremium,
@@ -173,8 +177,15 @@ function LevelGiftModal({
   useEffect(() => {
     const justOpened = visible && !isVisibleRef.current;
     isVisibleRef.current = visible;
-    if (justOpened) openingAccountTokenRef.current = captureAccountGeneration();
-    if (visible) {
+    if (!visible) {
+      idleLoop.current?.stop();
+      glowLoop.current?.stop();
+      orbHoverLoop.current?.stop();
+      return;
+    }
+    if (!justOpened) return;
+    openingAccountTokenRef.current = captureAccountGeneration();
+    {
       setPhase('box');
       setXpBoostAlreadyActive(false);
       setEnergyBoostAlreadyActive(false);
@@ -213,10 +224,6 @@ function LevelGiftModal({
         ])
       );
       glowLoop.current.start();
-    } else {
-      idleLoop.current?.stop();
-      glowLoop.current?.stop();
-      orbHoverLoop.current?.stop();
     }
   }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, modalEntrance, modalGlow, studyTarget]);
 
@@ -251,11 +258,11 @@ function LevelGiftModal({
 
   const rock = rockAnim.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
 
-  const handleTap = () => {
+  const handleTap = (skipOpeningAnimation = false) => {
     if (phase !== 'box' || !gift) return;
     const accountToken = openingAccountTokenRef.current;
     if (!accountToken || !isCurrentOpening(accountToken)) return;
-    hapticTap();
+    if (!skipOpeningAnimation) hapticTap();
     setPhase('opening');
 
     idleLoop.current?.stop();
@@ -331,6 +338,10 @@ function LevelGiftModal({
       });
       updateAppliedMeta();
     };
+    if (skipOpeningAnimation) {
+      finalize();
+      return;
+    }
     safetyTimer = setTimeout(finalize, LEVEL_GIFT_OPEN_SAFETY_MS);
 
     // Короткая дрожь → крышка отлетает (lidLift) → finalize раскрывает награду.
@@ -350,9 +361,20 @@ function LevelGiftModal({
     });
   };
 
+  useEffect(() => {
+    if (!visible || presentationMode !== 'apply' || !gift || phase !== 'box') return;
+    handleTap(true);
+    // handleTap intentionally runs once per phase transition; adding its render-local identity would retrigger this effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, presentationMode, gift, phase]);
+
   const handleSkip = async () => {
     const accountToken = openingAccountTokenRef.current;
     if (!accountToken || !isCurrentOpening(accountToken)) return;
+    if (presentationMode === 'apply') {
+      onClose(true);
+      return;
+    }
     if (!gift) { onClose(false); return; }
     if (phase === 'opening') return;
     if (storesOnly || saveOnDismiss) {
@@ -376,9 +398,14 @@ function LevelGiftModal({
       onClose(false);
       return;
     }
-    setAppliedResult({ success: true });
-    onClose(true);
-    if (isCosmeticGiftId(chosen.id)) {
+    if (presentationMode === 'apply') {
+      setAppliedResult({ success: true });
+      setChoiceBusy(false);
+    } else {
+      setAppliedResult({ success: true });
+      onClose(true);
+    }
+    if (presentationMode !== 'apply' && isCosmeticGiftId(chosen.id)) {
       setTimeout(() => {
         if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
       }, 80);
@@ -413,7 +440,9 @@ function LevelGiftModal({
       } catch {
         // The user already saw the optimistic choice; keep retry paths/background logs quiet.
       } finally {
-        if (isCurrentOpening(accountToken)) setChoiceBusy(false);
+        if (isCurrentOpening(accountToken)) {
+          setChoiceBusy(false);
+        }
       }
     })();
   };
@@ -429,7 +458,7 @@ function LevelGiftModal({
     }
   };
 
-  if (!visible || !gift) return null;
+  if (!visible || !gift || (presentationMode === 'apply' && phase !== 'reveal')) return null;
 
   const rarity      = gift.rarity;
   const palette     = paletteForRarity(rarity);
@@ -480,6 +509,7 @@ function LevelGiftModal({
             end={{ x: 0.5, y: 1 }}
             style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
           />
+          <RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />
 
           {/* Верхняя линия-свечение */}
           <Animated.View
@@ -896,7 +926,9 @@ function LevelGiftModal({
                 {/* верхний блик на кнопке */}
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
                 <Text style={{ color: palette.buttonInk, fontSize: f.bodyLg, fontWeight: '900' }}>
-                  {storesOnly
+                  {presentationMode === 'apply'
+                    ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
+                    : storesOnly
                     ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
                     : triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
                 </Text>

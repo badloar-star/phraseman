@@ -37,6 +37,7 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import {
   RewardModalPanelBackdrop,
+  RewardModalLiquidGlass,
   rewardModalAccentColor,
   rewardModalPanelBorder,
   rewardModalPrimaryButtonColors,
@@ -184,13 +185,15 @@ interface Props {
   preRolledPair?:    PremPair;
   /** claim = apply now; inventory = reveal and save for later application */
   deliveryMode?:     'claim' | 'inventory';
+  /** open = show both chests; apply = apply an already revealed inventory pair. */
+  presentationMode?: 'open' | 'apply';
   studyTarget?:      RuntimeStudyTarget;
 }
 
 /** pair: сундуки + мини-раскрытие (только названия); full: описания + «Получить всё» */
 type Phase = 'pair' | 'full';
 
-function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', studyTarget }: Props) {
+function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', presentationMode = 'open', studyTarget }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
@@ -230,6 +233,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const f2pApplyPromiseRef = useRef<Promise<ApplyGiftResult> | null>(null);
   const premApplyPromiseRef = useRef<Promise<ApplyGiftResult> | null>(null);
   const doneClosingRef = useRef(false);
+  const directApplyStartedRef = useRef(false);
   /** Только false→true по `visible` — иначе лишний сброс `opened` (Strict Mode / смена deps) убирает уже открытые сундуки. */
   const wasVisibleRef = useRef(false);
   const openingAccountTokenRef = useRef<AccountGenerationToken | null>(null);
@@ -250,6 +254,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     if (!visible) {
       wasVisibleRef.current = false;
       doneClosingRef.current = false;
+      directApplyStartedRef.current = false;
       idleAll.current?.stop();
       idleLeft.current?.stop();
       idleRight.current?.stop();
@@ -261,8 +266,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const justOpened = !wasVisibleRef.current;
     wasVisibleRef.current = true;
     if (justOpened) {
+      directApplyStartedRef.current = false;
       openingAccountTokenRef.current = captureAccountGeneration();
-      setOpened(new Set());
+      setOpened(presentationMode === 'apply' ? new Set<BoxKey>(['f2p', 'prem']) : new Set<BoxKey>());
       setPhase('pair');
       setOpening(null);
       setClaimNowBusy(false);
@@ -305,7 +311,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         })();
       }
     }
-  }, [visible, level, preRolledPair, resetAnims, modalEntrance, modalGlow, studyTarget]);
+  }, [visible, level, preRolledPair, resetAnims, modalEntrance, modalGlow, presentationMode, studyTarget]);
 
   useEffect(() => {
     if (!visible || phase !== 'pair' || opened.size !== 2 || !f2pGift || !premGift) return;
@@ -602,6 +608,47 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     })();
   };
 
+  useEffect(() => {
+    if (presentationMode !== 'apply' || !visible || !f2pGift || !premGift) return;
+    if (directApplyStartedRef.current) return;
+    const accountToken = openingAccountTokenRef.current;
+    if (!accountToken || !isCurrentOpening(accountToken)) return;
+    directApplyStartedRef.current = true;
+    setClaimNowBusy(true);
+    const f2pResultP = applyGift(f2pGift, userName, energy, maxEnergy, setEnergyFn, {
+      isPremium: true,
+      studyTarget,
+      accountToken,
+    }).catch(() => ({ success: false }));
+    const premResultP = applyGift(premGift, userName, energy, maxEnergy, setEnergyFn, {
+      isPremium: true,
+      studyTarget,
+      accountToken,
+    }).catch(() => ({ success: false }));
+    f2pApplyPromiseRef.current = f2pResultP;
+    premApplyPromiseRef.current = premResultP;
+    void Promise.all([f2pResultP, premResultP]).then(async ([f2pResult, premResult]) => {
+      if (!isCurrentOpening(accountToken)) return;
+      setF2pAppliedMeta(f2pResult);
+      setPremAppliedMeta(premResult);
+      await persistDualGiftOutcome(f2pGift, premGift, f2pResult, premResult, accountToken);
+    }).finally(() => {
+      if (isCurrentOpening(accountToken)) setClaimNowBusy(false);
+    });
+    // The ref above makes this operation idempotent for one modal opening.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [presentationMode, visible, f2pGift, premGift, userName, energy, maxEnergy, studyTarget]);
+
+  const closeAppliedResult = (openAvatar = false) => {
+    onClose(true);
+    if (openAvatar) {
+      setTimeout(() => {
+        const accountToken = openingAccountTokenRef.current;
+        if (accountToken && isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
+    }
+  };
+
   if (!visible || !f2pGift || !premGift) return null;
 
   const borderC = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
@@ -624,13 +671,19 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const modalPanelBackground = dualGiftModalPanelBackground(themeMode, t);
   const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
   const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
-  const canCloseWithIcon = !opening && (opened.size === 0 || opened.size === 2);
+  const applyModeCanClose = presentationMode === 'apply';
+  const canCloseWithIcon = !opening && (applyModeCanClose || !claimNowBusy) && (opened.size === 0 || opened.size === 2);
   const screenDim = USE_ELITE_DUAL_LEVEL_GIFT_MODAL
     ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.48)')
     : 'rgba(0,0,0,0.78)';
 
   const onRequestCloseModal = () => {
+    if (!applyModeCanClose && claimNowBusy) return;
     if (opened.size === 2 && f2pGift && premGift) {
+      if (presentationMode === 'apply') {
+        onClose(true);
+        return;
+      }
       void handleDone();
       return;
     }
@@ -647,7 +700,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           width: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 334 : 320,
           maxHeight: '88%',
           overflow: 'hidden',
-          borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5,
+          borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0 : 1.5,
           borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t, borderC === RARITY_BORDER.common ? undefined : borderC) : borderC,
           shadowColor: premGift?.rarity === 'epic' || f2pGift?.rarity === 'epic' ? '#FFD700' : USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '#D6B85C' : '#7C3AED',
           shadowOpacity: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.32 : 0.35,
@@ -656,6 +709,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         }}>
           {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
             <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
+          )}
+          {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
+            <RewardModalLiquidGlass themeMode={themeMode} accent={modalAccent} intensity="strong" />
           )}
           {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
             <>
@@ -695,7 +751,10 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
               accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               activeOpacity={0.76}
               onPress={() => {
-                if (opened.size === 2) void handleDone();
+                if (opened.size === 2) {
+                  if (presentationMode === 'apply') closeAppliedResult();
+                  else void handleDone();
+                }
                 else void handleSkip();
               }}
               style={{
@@ -739,7 +798,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           {phase === 'pair' && (
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 10 : 6 }}>
-                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
+                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
                   {opened.has('f2p') && f2pGift ? (
                     <MiniRewardPeek
                       gift={f2pGift}
@@ -775,7 +834,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                     {firstChestLabel(lang)}
                   </Text>
                 </View>
-                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}14` : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}36` : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
+                <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}14` : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}36` : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
                   {opened.has('prem') && premGift ? (
                     <MiniRewardPeek
                       gift={premGift}
@@ -888,8 +947,11 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                     <TouchableOpacity
                       testID="level-gift-dual-open-avatar"
                       activeOpacity={0.86}
-                      onPress={() => { void (storesOnly ? handleUseNow(true) : handleDone(true)); }}
-                      disabled={claimNowBusy}
+                      onPress={() => {
+                        if (presentationMode === 'apply') closeAppliedResult(true);
+                        else void (storesOnly ? handleUseNow(true) : handleDone(true));
+                      }}
+                      disabled={presentationMode === 'apply' ? false : claimNowBusy}
                       style={{
                           backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface,
                           borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
@@ -909,13 +971,16 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                   <TouchableOpacity
                     testID="level-gift-dual-claim"
                     activeOpacity={0.88}
-                    disabled={claimNowBusy}
-                    onPress={() => { void (storesOnly ? handleUseNow() : handleDone()); }}
+                    disabled={presentationMode === 'apply' ? false : claimNowBusy}
+                    onPress={() => {
+                      if (presentationMode === 'apply') closeAppliedResult();
+                      else void (storesOnly ? handleUseNow() : handleDone());
+                    }}
                     style={{
                       borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 14,
                       marginTop: hasCosmeticGift ? 10 : 16,
                       overflow: 'hidden',
-                      borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.5,
+                      borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0 : 1.5,
                       borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : '#A78BFA',
                       shadowColor: '#FFFFFF',
                       shadowOpacity: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.18 : 0,
@@ -944,7 +1009,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                         />
                       )}
                       <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonText : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
-                        {storesOnly
+                        {presentationMode === 'apply'
+                          ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
+                          : storesOnly
                           ? triLang(lang, { ru: claimNowBusy ? 'Применяем...' : 'Использовать сейчас', uk: claimNowBusy ? 'Застосовуємо...' : 'Використати зараз', es: claimNowBusy ? 'Aplicando...' : 'Usar ahora', 'pt-BR': claimNowBusy ? 'Aplicando...' : 'Usar agora', vi: claimNowBusy ? 'Đang áp dụng...' : 'Dùng ngay', id: claimNowBusy ? 'Menerapkan...' : 'Gunakan sekarang', tr: claimNowBusy ? 'Uygulanıyor...' : 'Şimdi kullan', pl: claimNowBusy ? 'Stosowanie...' : 'Użyj teraz' })
                           : triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
                       </Text>
@@ -1093,10 +1160,10 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
   return (
     <View style={{
       borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 16,
-      borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 1.2,
+      borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0 : 1.2,
       borderColor: borderCol,
       padding: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 14 : 12,
-      backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.045)' : 'rgba(0,0,0,0.15)',
+      backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? (premVisual ? 'rgba(214,184,92,0.085)' : 'rgba(255,255,255,0.058)') : 'rgba(0,0,0,0.15)',
       overflow: 'hidden',
     }}>
       {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (

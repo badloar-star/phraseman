@@ -1025,7 +1025,7 @@ function PlayerProfileModalBody({
           // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
           // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
           // Модель: заливка градиентом следующего уровня + бриллиант (в превью — номер).
-          <TouchableOpacity
+          <Pressable
             testID="player-profile-upgrade-card"
             accessibilityRole="button"
             accessibilityLabel={triLang(lang as Lang, {
@@ -1040,11 +1040,10 @@ function PlayerProfileModalBody({
             })}
             hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
             onPress={handleUpgradeButtonTap}
-            activeOpacity={0.85}
             style={{
               position: 'absolute',
-              top: PROFILE_HEADER_ACTION_TOP,
-              left: PROFILE_HEADER_ACTION_RIGHT,
+              top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
+              right: PROFILE_HEADER_ACTION_RIGHT,
               zIndex: 30,
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
@@ -1067,14 +1066,14 @@ function PlayerProfileModalBody({
             />
             <Animated.View style={{ opacity: shimmerOpacity }}>
               {previewLevel === null ? (
-                <Ionicons name="diamond" size={19} color={monoIcon(themeMode, '#111827', MONO_ICON.onLight)} />
+                <Ionicons name="arrow-up" size={22} color={monoIcon(themeMode, '#111827', MONO_ICON.onLight)} />
               ) : (
                 <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontSize: 15, fontWeight: '900' }}>
                   {profileCardLevelRoman(previewLevel)}
                 </Text>
               )}
             </Animated.View>
-          </TouchableOpacity>
+          </Pressable>
         ) : null}
         {prestigeActive && (
           // При смене уровня (превью/покупка) фон и эффекты мягко проявляются заново —

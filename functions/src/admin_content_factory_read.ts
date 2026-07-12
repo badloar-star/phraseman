@@ -74,7 +74,10 @@ export interface ContentFactoryJobDetailInput {
 }
 
 export function buildContentFactoryJobDetail(input: ContentFactoryJobDetailInput): Readonly<ContentFactoryJobDetailInput> {
-  const units = [...input.units].sort((left, right) => {
+  const units: ReadDocument[] = input.units.map((unit): ReadDocument => ({
+    ...unit,
+    attemptHistory: Object.freeze(Array.isArray(unit.attemptHistory) ? [...unit.attemptHistory] : []),
+  })).sort((left, right) => {
     const lessonDelta = Number(left.lessonId ?? 0) - Number(right.lessonId ?? 0);
     if (lessonDelta) return lessonDelta;
     const surfaceDelta = (SURFACE_ORDER.get(String(left.surface ?? '')) ?? 99) - (SURFACE_ORDER.get(String(right.surface ?? '')) ?? 99);

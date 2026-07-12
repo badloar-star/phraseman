@@ -1513,14 +1513,14 @@ export default function SettingsMain() {
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
               {L(
-                'Перед выходом сохраним всё в облако. Если сервер не ответит — отменим смену аккаунта, чтобы твой прогресс не потерялся.',
-                'Перед виходом збережемо все в хмарі. Якщо сервер не відповість — скасуємо зміну акаунту, щоб твій прогрес не загубився.',
-                'Antes de cerrar sesión guardaremos todo en la nube. Si el servidor no responde, cancelaremos el cambio de cuenta para que no pierdas tu progreso.',
-                'Antes de sair, salvaremos tudo na nuvem. Se o servidor não responder, cancelaremos a troca de conta para que seu progresso não se perca.',
-                'Trước khi đăng xuất, chúng tôi sẽ lưu mọi thứ lên đám mây. Nếu máy chủ không phản hồi, việc đổi tài khoản sẽ bị hủy để tiến độ của bạn không bị mất.',
-                'Sebelum keluar, kami akan menyimpan semuanya ke cloud. Jika server tidak merespons, pergantian akun dibatalkan agar progresmu tidak hilang.',
-                'Çıkmadan önce her şeyi buluta kaydedeceğiz. Sunucu yanıt vermezse, ilerlemen kaybolmasın diye hesap değişimini iptal edeceğiz.',
-                'Przed wylogowaniem zapiszemy wszystko w chmurze. Jeśli serwer nie odpowie, anulujemy zmianę konta, aby Twój postęp nie przepadł.',
+                'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим смену аккаунта, чтобы ничего не потерялось.',
+                'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо зміну акаунту, щоб нічого не загубилося.',
+                'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si la conexión no responde, cancelaremos el cambio de cuenta para que no pierdas nada.',
+                'Antes de sair, salvaremos seu progresso com segurança. Se a conexão não responder, cancelaremos a troca de conta para que nada se perca.',
+                'Trước khi đăng xuất, chúng tôi sẽ lưu tiến độ của bạn an toàn. Nếu kết nối không phản hồi, việc đổi tài khoản sẽ bị hủy để không mất gì.',
+                'Sebelum keluar, progresmu akan disimpan dengan aman. Jika koneksi tidak merespons, pergantian akun dibatalkan agar tidak ada yang hilang.',
+                'Çıkmadan önce ilerlemeni güvenle kaydedeceğiz. Bağlantı yanıt vermezse hiçbir şey kaybolmasın diye hesap değişimini iptal edeceğiz.',
+                'Przed wylogowaniem bezpiecznie zapiszemy Twój postęp. Jeśli połączenie nie odpowie, anulujemy zmianę konta, aby nic nie przepadło.',
               )}
             </Text>
 
@@ -1548,14 +1548,14 @@ export default function SettingsMain() {
                     Alert.alert(
                       L('Прогресс не сохранён', 'Прогрес не збережено', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
                       L(
-                        'Не удалось сохранить прогресс в облако — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',
-                        'Не вдалося зберегти прогрес у хмарі — схоже, немає з\'єднання. Зміну акаунту скасовано, все залишилося на місці. Перевір інтернет і спробуй ще раз.',
-                        'No pudimos guardar tu progreso en la nube: parece que no hay conexión. El cambio de cuenta se canceló y todo sigue en su lugar. Revisa tu internet e inténtalo de nuevo.',
-                        'Não foi possível salvar seu progresso na nuvem — parece que não há conexão. A troca de conta foi cancelada e tudo continua no lugar. Verifique a internet e tente novamente.',
-                        'Không thể lưu tiến độ lên đám mây — có vẻ mất kết nối. Việc đổi tài khoản đã bị hủy, mọi thứ vẫn nguyên. Kiểm tra internet và thử lại.',
-                        'Kami tidak bisa menyimpan progres ke cloud — sepertinya tidak ada koneksi. Pergantian akun dibatalkan dan semuanya tetap aman. Periksa internet lalu coba lagi.',
-                        'İlerlemen buluta kaydedilemedi — bağlantı yok gibi görünüyor. Hesap değişimi iptal edildi, her şey yerinde. İnterneti kontrol edip tekrar dene.',
-                        'Nie udało się zapisać postępu w chmurze — wygląda na brak połączenia. Zmiana konta została anulowana, wszystko zostało na miejscu. Sprawdź internet i spróbuj ponownie.',
+                        'Не удалось надёжно сохранить прогресс — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',
+                        'Не вдалося надійно зберегти прогрес — схоже, немає з’єднання. Зміну акаунту скасовано, все залишилося на місці. Перевір інтернет і спробуй ще раз.',
+                        'No pudimos guardar tu progreso de forma segura: parece que no hay conexión. El cambio de cuenta se canceló y todo sigue en su lugar. Revisa tu internet e inténtalo de nuevo.',
+                        'Não foi possível salvar seu progresso com segurança — parece que não há conexão. A troca de conta foi cancelada e tudo continua no lugar. Verifique a internet e tente novamente.',
+                        'Không thể lưu tiến độ an toàn — có vẻ mất kết nối. Việc đổi tài khoản đã bị hủy, mọi thứ vẫn nguyên. Kiểm tra internet và thử lại.',
+                        'Kami tidak bisa menyimpan progres dengan aman — sepertinya tidak ada koneksi. Pergantian akun dibatalkan dan semuanya tetap aman. Periksa internet lalu coba lagi.',
+                        'İlerlemen güvenle kaydedilemedi — bağlantı yok gibi görünüyor. Hesap değişimi iptal edildi, her şey yerinde. İnterneti kontrol edip tekrar dene.',
+                        'Nie udało się bezpiecznie zapisać postępu — wygląda na brak połączenia. Zmiana konta została anulowana, wszystko zostało na miejscu. Sprawdź internet i spróbuj ponownie.',
                       ),
                       [
                         {

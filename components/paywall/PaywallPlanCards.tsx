@@ -8,6 +8,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import type { PaywallPlan } from '../../app/paywall_purchase';
@@ -92,6 +93,11 @@ export default function PaywallPlanCards({
     hidePerMonth = false,
   ) => {
     const sel = selected === plan;
+    const planSurfaceColors = [
+      `${tc.heroAccent}${sel ? '28' : '14'}`,
+      sel ? chrome.cardBgStrong : cardBg,
+      cardBg,
+    ] as [string, string, string];
     return (
       <TouchableOpacity
         activeOpacity={0.72}
@@ -99,10 +105,23 @@ export default function PaywallPlanCards({
         onPress={() => onSelect(plan)}
         style={[S.card, {
           borderColor: sel ? tc.selectedCardBorder : cardBorder,
-          backgroundColor: sel ? `${tc.heroAccent}10` : cardBg,
+          backgroundColor: sel ? chrome.cardBgStrong : cardBg,
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
         }]}
       >
+        <LinearGradient
+          colors={planSurfaceColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <View
+          pointerEvents="none"
+          style={[
+            S.cardHighlight,
+            { backgroundColor: `${tc.heroAccent}${sel ? '66' : '2E'}` },
+          ]}
+        />
         <View style={S.planHeader}>
           <View style={S.nameWrap}>
             <Ionicons
@@ -196,7 +215,9 @@ const S = StyleSheet.create({
   card: {
     borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15,
     shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12, elevation: 5,
+    overflow: 'hidden',
   },
+  cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },
   planHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
   nameWrap: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0, flex: 1 },
   name: { flexShrink: 1, fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },

@@ -664,7 +664,7 @@ export default function ArenaRoomScreen() {
 
         {/* Блок ввода кода + создание — только до открытия комнаты */}
         {!room && (
-          <View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), padding: 16, gap: 12 }}>
+          <View style={{ borderRadius: 18, backgroundColor: glassFill(t.bgSurface, 0.46), padding: 16, gap: 12 }}>
             <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', textTransform: 'uppercase' }}>
               {triLang(lang, {
                 ru: 'Войти в комнату по коду',
@@ -1018,7 +1018,7 @@ export default function ArenaRoomScreen() {
 
         {/* Список участников */}
         {room && members.length > 0 && (
-          <View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>
+          <View style={{ borderRadius: 18, backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, paddingBottom: 10 }}>
               <Ionicons name="people" size={16} color={t.textMuted} style={{ marginRight: 6 }} />
               <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '900', textTransform: 'uppercase' }}>
@@ -1054,7 +1054,7 @@ export default function ArenaRoomScreen() {
 
         {/* Таблица результатов */}
         {room && (
-          <View style={{ borderRadius: 18, borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>
+          <View style={{ borderRadius: 18, backgroundColor: glassFill(t.bgSurface, 0.46), overflow: 'hidden' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, paddingBottom: 10 }}>
               <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '900', textTransform: 'uppercase' }}>
                 {triLang(lang, {

@@ -178,8 +178,6 @@ export default function SpeakingClubHome() {
             style={{
               backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 16,
-              borderTopWidth: 1,
-              borderTopColor: glassFill(t.accent, 0.14),
               padding: 14,
               marginBottom: 12,
             }}
@@ -263,8 +261,6 @@ export default function SpeakingClubHome() {
                   gap: 12,
                   backgroundColor: glassFill(t.bgSurface, 0.46),
                   borderRadius: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   padding: 12,
                   marginBottom: 8,
                   opacity: unlocked ? 1 : 0.45,
@@ -314,8 +310,6 @@ export default function SpeakingClubHome() {
             style={{
               backgroundColor: glassFill(t.bgSurface, 0.46),
               borderRadius: 16,
-              borderTopWidth: 1,
-              borderTopColor: glassFill(t.accent, 0.14),
               padding: 14,
               marginTop: 4,
               opacity: 0.6,

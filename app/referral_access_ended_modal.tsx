@@ -183,8 +183,7 @@ export function ReferralAccessEndedModal({
             style={({ pressed }) => [
               styles.btnSecondary,
               {
-                backgroundColor: pressed ? t.bgSurface2 : 'transparent',
-                borderColor: t.accent,
+                backgroundColor: pressed ? t.bgSurface2 : t.bgSurface,
               },
             ]}
             onPress={onOpenFullAccess}

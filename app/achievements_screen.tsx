@@ -17,6 +17,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { safeRouterBack } from './navigation_back';
@@ -68,6 +69,14 @@ import {
 const GRID_GAP = 10;
 const GRID_SIDE_PADDING = 36;
 const ACHIEVEMENT_PROGRESS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
+const sectionHighlightStyle = {
+  position: 'absolute' as const,
+  top: 0,
+  left: 12,
+  right: 12,
+  height: 1,
+  borderRadius: 1,
+};
 
 function getAchievementGridMetrics(screenW: number) {
   const safeW = Math.max(1, screenW);
@@ -1751,9 +1760,20 @@ const AccordionSection = memo(function AccordionSection({
   revealLockedDetails,
   themeMode,
 }: AccordionSectionProps) {
+  const sectionSurfaceColors = isOpen
+    ? [section.color + '24', t.bgCard, t.bgSurface]
+    : [section.color + '14', glassFill(t.bgSurface, 0.72), t.bgSurface];
   return (
     <View style={{ marginBottom: 8 }}>
       {/* Заголовок-полоска */}
+      <LinearGradient
+        testID="achievements-section-surface"
+        colors={sectionSurfaceColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={{ borderRadius: 14, overflow: 'hidden' }}
+      >
+      <View pointerEvents="none" style={[sectionHighlightStyle, { backgroundColor: section.color + '70' }]} />
       <TouchableOpacity
         onPress={onToggle}
         activeOpacity={0.75}
@@ -1763,12 +1783,9 @@ const AccordionSection = memo(function AccordionSection({
           gap: 10,
           paddingHorizontal: 14,
           paddingVertical: 14,
-          backgroundColor: isOpen ? section.color + '18' : glassFill(t.bgSurface, 0.46),
+          backgroundColor: 'transparent',
           borderRadius: 14,
-          borderTopWidth: isOpen ? undefined : 1,
-          borderTopColor: isOpen ? undefined : glassFill(t.accent, 0.14),
-          borderWidth: isOpen ? 1 : undefined,
-          borderColor: isOpen ? section.color + '44' : undefined,
+          borderWidth: 0,
         }}
       >
         <View style={{
@@ -1801,6 +1818,7 @@ const AccordionSection = memo(function AccordionSection({
           color={t.textGhost}
         />
       </TouchableOpacity>
+      </LinearGradient>
 
       {/* Сетка достижений — только когда раскрыто */}
       {isOpen && (

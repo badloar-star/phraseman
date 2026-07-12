@@ -623,6 +623,8 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     // Прочее account-level
     'last_active_date',
     'user_profile',
+    'generated_nickname_pending_v1',
+    'generated_name_confirmed_v1',
     // Производный display-флаг реального премиума (НЕ в SYNC_KEYS, пересчитывается
     // резолвером). Чистим при смене/сбросе аккаунта, чтобы старое premium_active='true'
     // не перетекло к новому аккаунту до первого пересчёта доступа.
@@ -2737,6 +2739,8 @@ export async function saveAccountSwitchEmergencyBackup(reason: string): Promise<
 }
 
 async function wipeLocalAccountDataUnsafe(): Promise<void> {
+  const { cancelPendingGeneratedNicknameRetry } = await import('./nickname_guard');
+  cancelPendingGeneratedNicknameRetry();
   const accountKeys = new Set<string>(accountLocalDataKeysForToday());
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);

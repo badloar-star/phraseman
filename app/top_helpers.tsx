@@ -251,8 +251,8 @@ export default function TopHelpersScreen() {
             </PremiumAvatarHalo>
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
-              <View style={{ flexShrink: 1, minWidth: 0 }}>
+            <View style={{ minWidth: 0, overflow: 'hidden' }}>
+              <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
                 {hasLeagueCrown ? (
                   <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayCrownCount} />
                 ) : item.isPremium ? (
@@ -272,8 +272,8 @@ export default function TopHelpersScreen() {
                   </Text>
                 )}
               </View>
-              <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} />
             </View>
+            <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} style={{ marginTop: 3 }} />
             <Text numberOfLines={1} style={{ color: HELPERS_ACCENT, fontSize: f.label, marginTop: 2, fontWeight: '700' }}>
               {helperTitle(item.confirmed, lang)}
             </Text>

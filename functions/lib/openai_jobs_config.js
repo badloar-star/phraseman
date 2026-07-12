@@ -56,13 +56,14 @@ const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
-exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations'];
+exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'content_factory', 'image_assets'];
 exports.ALLOWED_JOB_MODELS = [
     'gpt-4.1-nano',
     'gpt-4.1-mini',
     'gpt-4.1',
     'gpt-4o-mini',
 ];
+const ALLOWED_IMAGE_JOB_MODELS = ['gpt-image-1'];
 const DAILY_CAP_MAX = 1000000;
 const JOB_DEFAULTS = {
     weekly: { model: 'gpt-4o-mini', globalDailyCap: 0 },
@@ -83,9 +84,8 @@ const JOB_DEFAULTS = {
     // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
     // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
     support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
-    // Квизы «Созвездий»: генерация вопросов с судьёй-валидатором дистракторов.
-    // Дешёвая модель, щедрый кап (кэш досыпается фоном), kill-switch → только кэш+банк.
-    constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
+    content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
+    image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
 };
 function text(value, max = 120) {
     return String(value ?? '').trim().slice(0, max);
@@ -93,9 +93,12 @@ function text(value, max = 120) {
 function isAllowedJob(value) {
     return exports.OPENAI_JOBS.includes(text(value, 20));
 }
-function normalizeModel(value, fallback) {
+function allowedModelsForJob(job) {
+    return job === 'image_assets' ? ALLOWED_IMAGE_JOB_MODELS : exports.ALLOWED_JOB_MODELS;
+}
+function normalizeModel(value, fallback, allowedModels) {
     const m = text(value, 80);
-    return exports.ALLOWED_JOB_MODELS.includes(m) ? m : fallback;
+    return allowedModels.includes(m) ? m : fallback;
 }
 function normalizeCap(value, fallback) {
     const raw = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
@@ -107,8 +110,9 @@ function normalizeCap(value, fallback) {
 function jobFromData(job, data) {
     const d = (data && typeof data === 'object' ? data[job] : undefined);
     const def = JOB_DEFAULTS[job];
+    const allowedModels = allowedModelsForJob(job);
     return {
-        model: normalizeModel(d?.model, def.model),
+        model: normalizeModel(d?.model, def.model, allowedModels),
         globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap),
         // enabled по умолчанию TRUE (kill-switch семантика): фича работает, выключается вручную.
         enabled: d?.enabled === false ? false : true,
@@ -148,10 +152,11 @@ exports.openAiJobsConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck
         if (!isAllowedJob(job))
             throw new https_1.HttpsError('invalid-argument', 'unsupported_job');
         const def = JOB_DEFAULTS[job];
+        const allowedModels = allowedModelsForJob(job);
         const prevSnap = await ref.get();
         const prev = jobFromData(job, prevSnap.data());
         const next = {
-            model: request.data?.model == null ? prev.model : normalizeModel(request.data.model, def.model),
+            model: request.data?.model == null ? prev.model : normalizeModel(request.data.model, def.model, allowedModels),
             globalDailyCap: request.data?.globalDailyCap == null
                 ? prev.globalDailyCap
                 : normalizeCap(request.data.globalDailyCap, def.globalDailyCap),
@@ -159,7 +164,10 @@ exports.openAiJobsConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck
         };
         await ref.set({
             [job]: next,
-            allowedModels: exports.ALLOWED_JOB_MODELS,
+            allowedModels: {
+                text: exports.ALLOWED_JOB_MODELS,
+                image_assets: ALLOWED_IMAGE_JOB_MODELS,
+            },
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAtMs: Date.now(),
             updatedBy: text(request.auth?.token?.email, 200) || 'admin',
@@ -176,7 +184,10 @@ exports.openAiJobsConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck
         ok: true,
         jobs,
         defaults: JOB_DEFAULTS,
-        allowedModels: exports.ALLOWED_JOB_MODELS,
+        allowedModels: {
+            text: exports.ALLOWED_JOB_MODELS,
+            image_assets: ALLOWED_IMAGE_JOB_MODELS,
+        },
         updatedAtMs: Number(snap.data()?.updatedAtMs || 0),
     };
 });

@@ -81,9 +81,7 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
   });
 
   expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);
-  expect(mockEnsureStableAuthLinkForStableIdDetailed).toHaveBeenCalledWith('stable-from-auth', {
-    lastSignInAt: expect.any(Number),
-  });
+  expect(mockEnsureStableAuthLinkForStableIdDetailed).toHaveBeenCalledWith('stable-from-auth');
   expect(mockCallableInvoker).toHaveBeenCalledWith({
     senderStableId: 'stable-from-auth',
     friendStableId: 'friend-123',

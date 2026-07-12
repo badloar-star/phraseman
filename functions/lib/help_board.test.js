@@ -30,6 +30,31 @@ jest.mock('./admin_alerts', () => ({
 }));
 const help_board_1 = require("./help_board");
 describe('help_board contract helpers', () => {
+    it('keeps Compass silent on product settings questions it cannot verify', () => {
+        expect((0, help_board_1.classifyHelpBoardCompassScope)('Американский английский', 'Есть ли в приложении опция американской версии английского и как её настроить?')).toBe('product_support');
+        expect((0, help_board_1.resolveShouldPost)('genuine', true, 'product_support')).toBe(false);
+        expect((0, help_board_1.resolveShouldPost)('dangerous', false, 'product_support')).toBe(true);
+        expect((0, help_board_1.resolveShouldPost)('rude', false, 'product_support')).toBe(true);
+    });
+    it('allows self-contained language questions about American and British usage', () => {
+        expect((0, help_board_1.classifyHelpBoardCompassScope)('American English', 'Чем apartment отличается от flat и какой вариант используют в США?')).toBe('learning');
+        expect((0, help_board_1.resolveShouldPost)('genuine', true, 'learning')).toBe(true);
+    });
+    it.each([
+        ['Подписка', 'Как изменить подписку в приложении?'],
+        ['Аккаунт', 'Где в Phraseman настроить вход в аккаунт?'],
+        ['Ошибка', 'В приложении не работает кнопка, как исправить баг?'],
+        ['Функция', 'Есть ли в приложении опция выбора акцента?'],
+    ])('classifies product support as silent: %s', (title, question) => {
+        expect((0, help_board_1.classifyHelpBoardCompassScope)(title, question)).toBe('product_support');
+    });
+    it.each([
+        ['Color или colour?', 'Когда используется color, а когда colour?'],
+        ['Произношение', 'Как правильно произнести thought?'],
+        ['Грамматика', 'Исправьте предложение: I have seen him yesterday.'],
+    ])('keeps language content in scope: %s', (title, question) => {
+        expect((0, help_board_1.classifyHelpBoardCompassScope)(title, question)).toBe('learning');
+    });
     it('scopes boards by study target and interface language', () => {
         expect((0, help_board_1.normalizeHelpBoardScope)('en', 'ru')).toEqual({
             targetLang: 'en',
@@ -110,44 +135,44 @@ describe('help_board contract helpers', () => {
         // Явная установка на юмор + разные голоса под режимы.
         expect(prompt).toContain('You are genuinely funny');
         expect(prompt).toContain('the funny professor');
-        expect(prompt).toContain('the charming showman');
+        expect(prompt).toContain('offtopic → stay silent');
         // Гардрейлы юмора: только в genuine/offtopic, не в rude/dangerous.
-        expect(prompt).toContain('jokes are welcome ONLY in genuine and offtopic');
+        expect(prompt).toContain('HARD PRODUCT BOUNDARY');
         expect(prompt).toContain('humor STRICTLY OFF');
         // JSON-конверт с вердиктом тона и решением «постить ли».
-        expect(prompt).toContain('{"tone": "genuine|offtopic|rude|dangerous", "shouldPost": true|false');
+        expect(prompt).toContain('{"tone": "genuine|offtopic|rude|dangerous", "scope": "learning|product_support|other"');
         expect(prompt).toContain('does not invite a dialog with Compass');
         // Характер Компаса: сам решает, отвечать ли (STEP 3).
-        expect(prompt).toContain('genuine → shouldPost: true, ALWAYS');
-        expect(prompt).toContain('offtopic → shouldPost: true ONLY if');
-        expect(prompt).toContain('prefer false');
+        expect(prompt).toContain('genuine + learning → shouldPost: true');
+        expect(prompt).toContain('product_support or offtopic → shouldPost: false, ALWAYS');
     });
     it('parses the Compass envelope defensively', () => {
-        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"rude","answer":"Так у нас не разговаривают."}'))
-            .toEqual({ tone: 'rude', answer: 'Так у нас не разговаривают.', shouldPost: true });
-        expect((0, help_board_1.parseCompassEnvelope)('```json\n{"tone":"offtopic","answer":"Привет!"}\n```'))
-            .toEqual({ tone: 'offtopic', answer: 'Привет!', shouldPost: true });
-        // Не-JSON → весь текст = ответ, tone genuine (лучше показать, чем молчать).
+        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"rude","scope":"other","shouldPost":true,"answer":"Так у нас не разговаривают."}'))
+            .toEqual({ tone: 'rude', scope: 'other', answer: 'Так у нас не разговаривают.', shouldPost: true });
+        expect((0, help_board_1.parseCompassEnvelope)('```json\n{"tone":"offtopic","scope":"other","shouldPost":false,"answer":"Привет!"}\n```'))
+            .toEqual({ tone: 'offtopic', scope: 'other', answer: 'Привет!', shouldPost: false });
+        // Не-JSON разбирается fail-closed: текст сохраняется только для диагностики, публикация запрещена.
         expect((0, help_board_1.parseCompassEnvelope)('Просто текст ответа без конверта'))
-            .toEqual({ tone: 'genuine', answer: 'Просто текст ответа без конверта', shouldPost: true });
-        // Неизвестный tone → genuine.
-        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"angry","answer":"текст"}').tone).toBe('genuine');
+            .toEqual({ tone: 'offtopic', scope: 'other', answer: 'Просто текст ответа без конверта', shouldPost: false });
+        // Неизвестный tone → безопасный offtopic.
+        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"angry","answer":"текст"}').tone).toBe('offtopic');
         // Пустой answer в JSON → фолбэк на сырой текст.
         expect((0, help_board_1.parseCompassEnvelope)('{"tone":"rude","answer":""}').answer).toContain('"tone"');
-        // shouldPost: явный false читается, отсутствие поля → true (не молчим зря).
+        // shouldPost разрешён только явным true; отсутствие поля означает молчание.
         expect((0, help_board_1.parseCompassEnvelope)('{"tone":"offtopic","shouldPost":false,"answer":"Ничего по делу."}').shouldPost).toBe(false);
         expect((0, help_board_1.parseCompassEnvelope)('{"tone":"offtopic","shouldPost":true,"answer":"Есть что сказать."}').shouldPost).toBe(true);
-        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"genuine","answer":"Ответ без поля shouldPost."}').shouldPost).toBe(true);
+        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"genuine","scope":"learning","answer":"Ответ без поля shouldPost."}').shouldPost).toBe(false);
     });
     it('Compass decides whether to post by topic character (resolveShouldPost)', () => {
         // Вопросы по языку и грубые/опасные темы — отвечает ВСЕГДА, даже если модель
         // прислала shouldPost:false (модерация/де-эскалация не пропускаются).
-        expect((0, help_board_1.resolveShouldPost)('genuine', false)).toBe(true);
+        expect((0, help_board_1.resolveShouldPost)('genuine', true, 'learning')).toBe(true);
+        expect((0, help_board_1.resolveShouldPost)('genuine', false, 'learning')).toBe(false);
         expect((0, help_board_1.resolveShouldPost)('rude', false)).toBe(true);
         expect((0, help_board_1.resolveShouldPost)('dangerous', false)).toBe(true);
-        // Оффтоп — решает сам Компас: если сказать нечего, молчит.
+        // Оффтоп всегда остаётся без автоматического комментария.
         expect((0, help_board_1.resolveShouldPost)('offtopic', false)).toBe(false);
-        expect((0, help_board_1.resolveShouldPost)('offtopic', true)).toBe(true);
+        expect((0, help_board_1.resolveShouldPost)('offtopic', true, 'other')).toBe(false);
     });
     it('validates Compass output deterministically (replaces the off_topic LLM judge)', () => {
         const ru = 'Отличный вопрос! Present Perfect не дружит с yesterday: скажи "I saw him yesterday".';

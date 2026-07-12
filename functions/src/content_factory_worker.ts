@@ -13,6 +13,7 @@ import { type CanonicalReleaseSurface } from './content_factory/course_release_c
 import { assertGenerationCheckpointIdentity, chooseGenerationCheckpointAction } from './content_factory/generation_checkpoint';
 import { reserveContentFactoryBudget } from './content_factory/content_factory_budget';
 import { applyUnitProgressTransition, type ContentFactoryProgress } from './content_factory/job_progress';
+import { buildGenerationFailureRecord } from './content_factory/generation_errors';
 
 const REGION = 'us-central1';
 export const CONTENT_FACTORY_OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -144,12 +145,13 @@ export const adminRunContentGenerationUnit = onCall(
       });
       return { ok: true, unitId, state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash };
     } catch (error) {
+      const failure = buildGenerationFailureRecord(error, checkpoint.attempt);
       await db.runTransaction(async (tx) => {
         const [currentUnitSnap, currentJobSnap] = await Promise.all([tx.get(unitRef), tx.get(jobRef)]);
         const currentUnit = currentUnitSnap.data() ?? {};
         const currentJob = currentJobSnap.data() ?? {};
         const transition = applyUnitProgressTransition(readJobProgress(currentJob), { next: 'failed', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true });
-        tx.set(unitRef, { unitId, state: checkpointWritten ? 'generated' : 'failed', failureCounted: transition.failureCounted, errorCode: error instanceof HttpsError ? error.code : 'generation_failed', errorMessage: error instanceof Error ? error.message.slice(0, 300) : 'generation_failed', leaseExpiresAtMs: admin.firestore.FieldValue.delete(), failedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+        tx.set(unitRef, { unitId, state: checkpointWritten ? 'generated' : 'failed', failureCounted: transition.failureCounted, errorCode: failure.code, errorMessage: failure.message, retryable: failure.retryable, attemptHistory: admin.firestore.FieldValue.arrayUnion(failure), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), failedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
         tx.set(jobRef, { state: transition.jobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
       }).catch((progressError) => console.error('content factory failure progress update failed', unitId, progressError));
       throw error instanceof HttpsError ? error : new HttpsError('unavailable', 'content_generation_failed');

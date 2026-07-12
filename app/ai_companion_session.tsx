@@ -321,9 +321,6 @@ export default function AiCompanionSession() {
                     backgroundColor: isUser ? t.bgSurface : glassFill(t.bgCard, 0.46),
                     borderRadius: 16,
                     padding: 16,
-                    ...(isUser
-                      ? {}
-                      : { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }),
                     marginBottom: 10,
                     alignSelf: isUser ? 'flex-end' : 'stretch',
                     maxWidth: isUser ? '88%' : '100%',
@@ -430,8 +427,6 @@ export default function AiCompanionSession() {
               <View
                 style={{
                   borderRadius: 14,
-                  borderTopWidth: 1,
-                  borderTopColor: glassFill(t.accent, 0.14),
                   paddingVertical: 12,
                   paddingHorizontal: 14,
                   backgroundColor: glassFill(t.bgSurface, 0.46),

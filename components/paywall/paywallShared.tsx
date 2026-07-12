@@ -36,6 +36,7 @@ export interface PaywallChrome {
   textMuted: string;
   divider: string;
   cardBg: string;
+  cardBgStrong: string;
   cardBorder: string;
   uncheckedBorder: string;
 }
@@ -43,17 +44,22 @@ export interface PaywallChrome {
 /** Цветовая обвязка пейвола, адаптивная к теме (паттерн v2). */
 export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
   const { themeMode } = useTheme();
-  return useMemo(() => ({
-    tc: getPaywallThemeConfig(overrideThemeMode ?? themeMode),
-    themeMode: overrideThemeMode ?? themeMode,
-    bgColors: screenBgTuple(overrideThemeMode ?? themeMode),
-    textPrimary: '#FFFFFF',
-    textMuted: 'rgba(255,255,255,0.62)',
-    divider: 'rgba(255,255,255,0.06)',
-    cardBg: 'rgba(255,255,255,0.035)',
-    cardBorder: 'rgba(255,255,255,0.08)',
-    uncheckedBorder: 'rgba(255,255,255,0.22)',
-  }), [overrideThemeMode, themeMode]);
+  return useMemo(() => {
+    const mode = overrideThemeMode ?? themeMode;
+    const tc = getPaywallThemeConfig(mode);
+    return {
+      tc,
+      themeMode: mode,
+      bgColors: screenBgTuple(mode),
+      textPrimary: '#FFFFFF',
+      textMuted: 'rgba(255,255,255,0.62)',
+      divider: 'rgba(255,255,255,0.06)',
+      cardBg: tc.panelBg,
+      cardBgStrong: tc.panelBgStrong,
+      cardBorder: 'rgba(255,255,255,0.08)',
+      uncheckedBorder: 'rgba(255,255,255,0.22)',
+    };
+  }, [overrideThemeMode, themeMode]);
 }
 
 /**

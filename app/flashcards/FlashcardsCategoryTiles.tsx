@@ -77,7 +77,7 @@ export default function FlashcardsCategoryTiles({
                   justifyContent: 'center',
                   ...(active
                     ? { borderWidth: 0, borderColor: t.accent, backgroundColor: `${t.accent}18` }
-                    : { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14), backgroundColor: glassFill(t.bgSurface, 0.46) }),
+                    : { backgroundColor: glassFill(t.bgSurface, 0.46) }),
                 }}
               >
                 {active && (

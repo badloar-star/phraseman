@@ -35,6 +35,14 @@ function read(rel: string): string {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
 }
 
+function listTypeScriptFiles(dir: string): string[] {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return listTypeScriptFiles(fullPath);
+    return /\.tsx?$/.test(entry.name) ? [fullPath] : [];
+  });
+}
+
 describe('lesson lightning feedback scope', () => {
   it('requires an explicit lesson surface before playing combo lightning effects', () => {
     const feedbackKit = read('app/feedback/feedback_kit.ts');
@@ -55,6 +63,19 @@ describe('lesson lightning feedback scope', () => {
     expect(words).not.toContain("surface: 'lesson'");
     expect(irregular).not.toContain("surface: 'lesson'");
     expect(prepositions).not.toContain("surface: 'lesson'");
+  });
+
+  it('does not allow lesson lightning opt-in or overlay mounting in other app screens', () => {
+    const appRoot = path.join(ROOT, 'app');
+    const offenders = listTypeScriptFiles(appRoot)
+      .filter((file) => path.basename(file) !== 'lesson1.tsx')
+      .filter((file) => {
+        const source = fs.readFileSync(file, 'utf8');
+        return source.includes("surface: 'lesson'") || source.includes('<LightningOverlay');
+      })
+      .map((file) => path.relative(ROOT, file));
+
+    expect(offenders).toEqual([]);
   });
 
   it('keeps practice combo haptics but suppresses practice lightning sounds', async () => {

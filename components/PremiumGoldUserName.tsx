@@ -102,8 +102,13 @@ function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
 export default memo(PremiumGoldUserName);
 
 const styles = StyleSheet.create({
-  wrap: { alignSelf: 'flex-start', position: 'relative' },
-  svg: { overflow: 'visible' },
+  wrap: {
+    alignSelf: 'flex-start',
+    position: 'relative',
+    maxWidth: '100%',
+    overflow: 'hidden',
+  },
+  svg: { overflow: 'hidden' },
   measure: {
     position: 'absolute',
     opacity: 0,

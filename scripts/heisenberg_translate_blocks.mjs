@@ -381,7 +381,6 @@ async function main() {
 
   const selected = rows.slice(args.startIndex - 1, args.limit > 0 ? args.startIndex - 1 + args.limit : undefined);
   const estimatedCostUsd = Number((selected.length * CALLS_PER_ROW * ESTIMATED_COST_PER_CALL_USD).toFixed(4));
-  const apiKey = readEnvValue('OPENAI_API_KEY');
 
   if (!args.execute) {
     const plan = {
@@ -396,26 +395,29 @@ async function main() {
         rowsInScope: rows.length,
         rowsSelected: selected.length,
         invalidRows: invalid.length,
-        callsPlanned: selected.length * CALLS_PER_ROW,
-        estimatedCostUsd,
-        apiKeyPresent: Boolean(apiKey),
+        callsPlanned: 0,
+        estimatedCostUsd: 0,
+        apiKeyPresent: false,
+        executionAvailable: false,
+        executionBlockedBy: 'Phraseman Codex OpenAI API firewall: non-TTS API use is forbidden',
         maxRowsPerLiveLaunch: MAX_ROWS_PER_LIVE_LAUNCH,
       },
       invalid,
-      nextStep: `Re-run with --execute --limit <n<=${MAX_ROWS_PER_LIVE_LAUNCH}> and PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 to spend intentionally.`,
+      nextStep: 'Use heisenberg_claude_translation_packets.mjs --emit, fill packet files with local agents, then --ingest and run heisenberg:review.',
     };
     writeJson(path.join(outDir, 'translation_run_plan.json'), plan);
-    console.log(`[heisenberg-translate] DRY_RUN: ${selected.length} rows selected of ${rows.length} in scope; estimated cost $${estimatedCostUsd}.`);
+    console.log(`[heisenberg-translate] DRY_RUN: ${selected.length} rows selected of ${rows.length} in scope; live API execution is blocked by the project firewall.`);
     console.log(`[heisenberg-translate] Plan: ${rel(path.join(outDir, 'translation_run_plan.json'))}`);
     return;
   }
 
+  requireCodexOpenAiTtsOnly({ action: 'heisenberg translation factory', endpoint: 'responses' });
+  const apiKey = readEnvValue('OPENAI_API_KEY');
   if (!apiKey) throw new Error('OPENAI_API_KEY is required for --execute (env or .env.local).');
   if (selected.length === 0) throw new Error('No rows selected. Check --blocks path, --locale, --start-index and --limit.');
   if (selected.length > MAX_ROWS_PER_LIVE_LAUNCH) {
     throw new Error(`Refusing to process ${selected.length} rows in one launch. Use --limit <= ${MAX_ROWS_PER_LIVE_LAUNCH} and repeat launches.`);
   }
-  requireCodexOpenAiTtsOnly({ action: 'heisenberg translation factory', endpoint: 'responses' });
   requireOpenAiDevSpendGuard({
     action: 'heisenberg translation factory live run',
     estimatedCostUsd,

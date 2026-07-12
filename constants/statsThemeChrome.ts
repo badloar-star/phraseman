@@ -28,6 +28,21 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   volt: '#D6FF3D',
 };
 
+// Statistics deliberately uses a quieter page field than the shared app backdrop so
+// borderless data cards keep a clear tonal edge without changing global theme tokens.
+const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
+  dark: '#202B22',
+  gold: '#272114',
+  coral: '#38252A',
+  minimalDark: '#34373D',
+  business: '#1C1C1C',
+  businessLight: '#F0F0F0',
+  midnight: '#1B2032',
+  ember: '#362418',
+  aurora: '#162B2B',
+  volt: '#20250E',
+};
+
 const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
   dark: {
     streak: '#FF6B35',
@@ -151,6 +166,10 @@ export function statsAccent(themeMode: ThemeMode, tone: StatsChromeTone): string
 
 export function statsThemeAccent(themeMode: ThemeMode): string {
   return STATS_CHROME_ACCENT_BY_THEME[themeMode] ?? STATS_CHROME_ACCENT_BY_THEME.dark;
+}
+
+export function statsPageField(themeMode: ThemeMode): string {
+  return STATS_PAGE_FIELD_BY_THEME[themeMode] ?? STATS_PAGE_FIELD_BY_THEME.dark;
 }
 
 export function statsThemeSoftBg(themeMode: ThemeMode, strength: 'quiet' | 'normal' | 'strong' = 'normal'): string {

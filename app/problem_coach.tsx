@@ -218,8 +218,6 @@ export default function ProblemCoach() {
 
   const cardStyle = {
     backgroundColor: glassFill(t.bgSurface, 0.46),
-    borderTopWidth: 1,
-    borderTopColor: glassFill(t.accent, 0.14),
     ...getVolumetricShadow(themeMode, t, 2),
   };
   const accentSoft = `${t.accent}18`;

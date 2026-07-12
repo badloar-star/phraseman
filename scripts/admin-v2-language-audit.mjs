@@ -23,6 +23,11 @@ const forbiddenVisibleTerms = [
   'force update', 'manual update', 'Maintenance:', 'Stop condition:', 'Rollback:',
   'Promo banner audience:', 'signed preview links', 'Generated asset preview',
   'server-side', 'inbox-сообщение', 'paywall gates', 'publish workflow',
+  'production environment', 'Sandbox / Test Store', 'periodType=TRIAL', 'In-app signal',
+  'webhook', 'lifecycle', 'DALL-E Asset Studio', 'server job workflow',
+  'дефолтный reset', 'v2 Remote Config', 'v2 workflow', 'user command workflow',
+  'like + dislike', 'серверный workflow',
+  '<strong>Production</strong>', '<title>Phraseman Admin</title>',
 ];
 const findings = [];
 
@@ -50,6 +55,9 @@ const rawPrimaryPatterns = [
   { file: 'admin/v2/scripts/admin-core.js', pattern: /<b>\$\{escapeHtml\(key\)\}:<\/b>/, term: 'сырое имя поля контекста' },
   { file: 'admin/v2/scripts/admin-core.js', pattern: /escapeHtml\(item\.audience \|\| 'all'\)/, term: 'сырой код аудитории' },
   { file: 'admin/v2/scripts/admin-core.js', pattern: /escapeHtml\(job\.kind \|\| 'generic'\)/, term: 'сырой тип задания изображения' },
+  { file: 'admin/v2/scripts/admin-core.js', pattern: /статус \$\{escapeHtml\(row\.status\)\}/, term: 'сырой статус операции' },
+  { file: 'admin/v2/scripts/admin-core.js', pattern: /String\(result\?\.state \|\| 'неизвестное состояние'\)/, term: 'сырой результат отправки' },
+  { file: 'admin/v2/migration.html', pattern: /row\.linkedFunctions\.join/, term: 'внутренние функции как основное объяснение' },
 ];
 for (const rule of rawPrimaryPatterns) {
   const text = fs.readFileSync(rule.file, 'utf8');

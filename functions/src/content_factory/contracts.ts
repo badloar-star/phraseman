@@ -6,6 +6,9 @@ export type FactorySurface =
   | 'cards'
   | 'arena_questions';
 
+import { canonicalizeFactorySurfaces, countLegacyGenerationUnits, generationPlanFingerprint } from './generation_plan';
+import type { CanonicalReleaseSurface } from './course_release_contract';
+
 export type ReviewStatus = 'needs_review' | 'approved' | 'rejected';
 export type ActivationStatus = 'draft' | 'staged' | 'published' | 'rolled_back';
 
@@ -32,6 +35,8 @@ export interface GenerationJob {
   readonly sourceLocale: string;
   readonly lessonIds: readonly number[];
   readonly surfaces: readonly FactorySurface[];
+  readonly plannedSurfaces: readonly CanonicalReleaseSurface[];
+  readonly planFingerprint: string;
   readonly idempotencyKey: string;
   readonly requestedBy: string;
   readonly blueprintVersion: string;
@@ -139,13 +144,15 @@ export function createGenerationJob(input: {
     throw new Error('validation_failed');
   }
 
-  const total = input.lessonIds.length * input.surfaces.length;
+  const total = countLegacyGenerationUnits(input.lessonIds, input.surfaces);
   return Object.freeze({
     projectId: input.projectId.trim(),
     studyTarget: input.studyTarget.trim(),
     sourceLocale: input.sourceLocale.trim(),
     lessonIds: Object.freeze([...input.lessonIds]),
     surfaces: Object.freeze([...input.surfaces]),
+    plannedSurfaces: canonicalizeFactorySurfaces(input.surfaces),
+    planFingerprint: generationPlanFingerprint(input.lessonIds, input.surfaces),
     idempotencyKey: input.idempotencyKey.trim(),
     requestedBy: input.requestedBy.trim(),
     blueprintVersion: input.blueprintVersion.trim(),

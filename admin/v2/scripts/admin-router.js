@@ -53,7 +53,11 @@ function syncRoute() {
 
 try {
   initAdminUi();
-  createFirebaseAdminActions({ onAuth: setAuthState }).then(setAdminActions).catch(reportInitializationError);
+  createFirebaseAdminActions({ onAuth: setAuthState }).then((actions) => {
+    setAdminActions(actions);
+    globalThis.callAdminProductAnalytics = async (input) => ({ data: await actions.loadProductAnalytics(input) });
+    globalThis.callAdminSubscriptionAnalytics = async (input) => ({ data: await actions.loadSubscriptionAnalytics(input) });
+  }).catch(reportInitializationError);
   globalThis.addEventListener('hashchange', syncRoute);
   syncRoute();
 } catch (error) {

@@ -77,6 +77,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const sendReportReplyCallable = httpsCallable(functionsUs, 'adminReplyToReport');
   const listAuditLogCallable = httpsCallable(functionsUs, 'adminListAuditLog');
   const listOpsLogCallable = httpsCallable(functionsUs, 'adminListOpsLog');
+  const productAnalyticsCallable = httpsCallable(functionsUs, 'adminProductAnalytics');
+  const subscriptionAnalyticsCallable = httpsCallable(functionsUs, 'adminSubscriptionAnalytics');
 
   async function loadOpenAiBudgetDashboard() {
     const result = await openAiBudgetCallable({ rangeDays: 30 });
@@ -149,5 +151,7 @@ export async function createFirebaseAdminActions({ onAuth }) {
     sendReportReply: async (input) => unwrap(await sendReportReplyCallable(input)),
     listAuditLog: async (input) => unwrap(await listAuditLogCallable(input)),
     listOpsLog: async (input) => unwrap(await listOpsLogCallable(input)),
+    loadProductAnalytics: async (input) => unwrap(await productAnalyticsCallable(input)),
+    loadSubscriptionAnalytics: async (input) => unwrap(await subscriptionAnalyticsCallable(input)),
   });
 }

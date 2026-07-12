@@ -1564,6 +1564,8 @@ export { friendSendGift } from './friend_gifts';
 export { adminGenerateDailyDigest, adminGetDailyBriefing, adminOpenDailyDigest } from './admin_daily_digest';
 export { adminListAssetJobs, adminCreateAssetJob, adminRunAssetJob } from './admin_asset_studio';
 export { adminGenerateProductBrief, adminMutateProductItem } from './admin_pm_callables';
+export { adminProductAnalytics } from './admin_product_analytics';
+export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {

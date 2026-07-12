@@ -1631,6 +1631,7 @@ export { siteStatsTrack } from './site_stats';
 export { revenueCatShardsWebhook } from './revenuecat_shards';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
+export { adminPreviewPushAudience, adminRequestPushApproval, adminApprovePushCampaign, adminCreatePushJob, adminListPushJobs, adminCancelPushJob } from './admin_push_control';
 
 // ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
 export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture, webOrderStatus, webPrices } from './web_checkout';

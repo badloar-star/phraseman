@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-12T11:44:52.107Z",
+  "generatedAt": "2026-07-12T19:38:07.643Z",
   "source": {
     "buttons": 471,
     "functions": 1010,
@@ -172,8 +172,8 @@
       "route": "application",
       "legacyTab": "push-notify",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "campaigns",
       "inventory": {
         "buttons": 9,
         "functions": 0,
@@ -181,7 +181,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "users",
@@ -30720,8 +30720,8 @@
       "total": 59,
       "inventory": 0,
       "ported": 0,
-      "fallback": 42,
-      "guarded": 17,
+      "fallback": 41,
+      "guarded": 18,
       "blocked": 0
     },
     "buttons": {

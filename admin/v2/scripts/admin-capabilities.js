@@ -73,6 +73,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'remote-config': 'application',
   'paywall-ab': 'application',
   'app-messages': 'campaigns',
+  'push-notify': 'campaigns',
   users: 'users',
   reports: 'report-center',
   'asset-studio': 'asset-studio',

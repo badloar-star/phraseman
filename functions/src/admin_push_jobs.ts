@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { classifyActiveAccess } from './admin_analytics_core';
 
 const REGION = 'us-central1';
 const EXPO_PUSH_ENDPOINT = 'https://exp.host/--/api/v2/push/send';
@@ -44,6 +45,7 @@ export interface AdminPushUser {
   token: string;
   language: string;
   premiumActive: boolean;
+  identityHidden: boolean;
   streak: number;
   lastActiveAtMs: number;
 }
@@ -179,24 +181,13 @@ export function isAdminPushJobDue(job: AdminPushJob, nowMs: number): boolean {
 
 export function isPremiumActive(data: Record<string, unknown>, nowMs: number): boolean {
   const progress = asRecord(data.progress);
-  const planRaw = cleanString(data.premium, 80) || cleanString(progress.premium_plan, 80);
-  const plan = planRaw.toLowerCase();
-  const hasPlan = Boolean(plan && plan !== 'null');
-  const adminOverride = cleanString(progress.admin_premium_override || data.admin_premium_override, 16) === 'true';
-  const legacyAdminPremium = adminOverride || plan === 'admin_grant';
-  const premiumExpiry = toMillis(data.premiumExpiry || progress.premium_expiry);
-  const rcExpiry = toMillis(progress.premium_rc_expiry_ms);
-  const rcPeriod = cleanString(progress.premium_rc_period_type, 40).toUpperCase();
-  const isTrial = rcPeriod === 'TRIAL' || plan === 'trial';
-  const expiresAt = rcExpiry || premiumExpiry;
-  const expired = Boolean(
-    hasPlan &&
-    !legacyAdminPremium &&
-    expiresAt > 0 &&
-    expiresAt < nowMs &&
-    (isTrial || premiumExpiry > 0),
-  );
-  return Boolean(hasPlan && !legacyAdminPremium && !expired);
+  const canonicalProgress = {
+    ...progress,
+    premium_plan: progress.premium_plan ?? data.premium,
+    premium_expiry: progress.premium_expiry ?? data.premiumExpiry,
+    admin_premium_override: progress.admin_premium_override ?? data.admin_premium_override,
+  };
+  return classifyActiveAccess({ id: 'push-audience', identityHidden: data.identityHidden === true, progress: canonicalProgress }, nowMs) !== null;
 }
 
 export function parseAdminPushUser(uid: string, data: Record<string, unknown>, nowMs: number): AdminPushUser {
@@ -204,6 +195,7 @@ export function parseAdminPushUser(uid: string, data: Record<string, unknown>, n
   return {
     uid,
     token: cleanString(data.expoPushToken, 220),
+    identityHidden: data.identityHidden === true,
     language:
       cleanString(data.lang, 32) ||
       cleanString(data.app_lang, 32) ||
@@ -225,7 +217,18 @@ export function parseAdminPushUser(uid: string, data: Record<string, unknown>, n
 }
 
 function hasDeliverableToken(user: AdminPushUser): boolean {
-  return isValidExpoPushToken(user.token);
+  return !user.identityHidden && isValidExpoPushToken(user.token);
+}
+
+export function dedupeAdminPushUsersByToken(users: AdminPushUser[]): AdminPushUser[] {
+  const seen = new Set<string>();
+  return users.filter((user) => {
+    if (!hasDeliverableToken(user)) return false;
+    const token = user.token.trim();
+    if (seen.has(token)) return false;
+    seen.add(token);
+    return true;
+  });
 }
 
 export function matchesAdminPushSegment(user: AdminPushUser, segment: AdminPushSegment | undefined): boolean {
@@ -298,7 +301,7 @@ export function chunkArray<T>(items: T[], size = EXPO_CHUNK_SIZE): T[][] {
   return out;
 }
 
-async function readTargetUsers(
+export async function readTargetUsers(
   db: FirebaseFirestore.Firestore,
   job: AdminPushJob,
   nowMs: number,
@@ -307,7 +310,7 @@ async function readTargetUsers(
     const snap = await db.collection('users').doc(job.uid || '').get();
     if (!snap.exists) return [];
     const user = parseAdminPushUser(snap.id, snap.data() || {}, nowMs);
-    return selectAdminPushUsers(job, [user], nowMs);
+    return dedupeAdminPushUsersByToken(selectAdminPushUsers(job, [user], nowMs));
   }
 
   const out: AdminPushUser[] = [];
@@ -326,7 +329,7 @@ async function readTargetUsers(
     if (snap.size < USER_SCAN_PAGE_SIZE) break;
   }
 
-  return out;
+  return dedupeAdminPushUsersByToken(out);
 }
 
 async function pruneExpiredTokens(db: FirebaseFirestore.Firestore, uids: string[]): Promise<void> {
@@ -434,7 +437,7 @@ async function claimJob(
     const data = snap.data() || {};
     const status = cleanString(data.status, 32) || 'pending';
     const processingAt = toMillis(data.processingStartedAtMs || data.updatedAtMs);
-    if (status === 'done' || status === 'error') return { claimed: false, reason: 'terminal' };
+    if (status === 'done' || status === 'error' || status === 'cancelled') return { claimed: false, reason: 'terminal' };
     if (status === 'processing' && processingAt > 0 && nowMs - processingAt < PROCESSING_STALE_MS) {
       return { claimed: false, reason: 'processing' };
     }

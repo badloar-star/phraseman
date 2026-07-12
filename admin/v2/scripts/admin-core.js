@@ -102,6 +102,7 @@ const state = {
   authorized: false,
   authReady: false,
   adminEmail: '',
+  adminUid: '',
   adminRole: '',
   authGeneration: 0,
   busy: false,
@@ -134,6 +135,7 @@ const state = {
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
   campaigns: { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' },
+  pushCampaigns: { state: 'idle', jobs: [], approvals: [], draft: { mode: 'uid' }, preview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
@@ -590,6 +592,119 @@ function appMessageEditResetsPoll(item, payload) {
   return before.some((option, index) => String(option?.textRu || '').trim() !== String(after[index] || '').trim());
 }
 
+const PUSH_MODE_LABELS = Object.freeze({ uid: 'Один пользователь', segment: 'Сегмент', reactivate: 'Возврат неактивных', scheduled: 'По расписанию' });
+
+function pushDraft() {
+  return state.pushCampaigns.preview?.payload || state.pushCampaigns.draft || { mode: 'uid' };
+}
+
+function pushApprovalIsLive(approval) {
+  const expiresAtMs = Math.min(Number(approval?.expiresAtMs || 0), Number(approval?.previewExpiresAtMs || approval?.expiresAtMs || 0));
+  return (approval?.status === 'pending' || approval?.status === 'approved') && expiresAtMs > Date.now();
+}
+
+function pushApprovalStatusLabel(approval) {
+  if (approval.status === 'consumed') return 'consumed';
+  if (approval.status === 'cancelled' || approval.status === 'rejected') return approval.status;
+  return pushApprovalIsLive(approval) ? (approval.status || 'pending') : 'expired';
+}
+
+function pushOperationKey(scope) {
+  const key = String(scope || 'command');
+  const existing = state.pushCampaigns.operationKeys?.[key];
+  if (existing) return existing;
+  const storageKey = `phraseman_admin_push_operation_${key}`;
+  try {
+    const persisted = globalThis.sessionStorage?.getItem(storageKey);
+    if (persisted) {
+      state.pushCampaigns.operationKeys = { ...(state.pushCampaigns.operationKeys || {}), [key]: persisted };
+      return persisted;
+    }
+  } catch { /* Session storage is an optional retry aid. */ }
+  const operationId = id(`push-${key.replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 60)}`);
+  state.pushCampaigns.operationKeys = { ...(state.pushCampaigns.operationKeys || {}), [key]: operationId };
+  try { globalThis.sessionStorage?.setItem(storageKey, operationId); } catch { /* Keep the in-memory key. */ }
+  return operationId;
+}
+
+function clearPushOperationKey(scope) {
+  const key = String(scope || 'command');
+  const keys = { ...(state.pushCampaigns.operationKeys || {}) };
+  delete keys[key];
+  state.pushCampaigns.operationKeys = keys;
+  try { globalThis.sessionStorage?.removeItem(`phraseman_admin_push_operation_${key}`); } catch { /* No-op. */ }
+}
+
+function renderPushApprovalPacket(approval) {
+  const summary = approval?.summary || {};
+  const exactAudience = summary.mode === 'segment'
+    ? JSON.stringify(summary.segment || {})
+    : summary.mode === 'reactivate'
+      ? JSON.stringify(summary.reactivation || {})
+      : summary.mode === 'scheduled'
+        ? `${summary.audience || 'all'} · ${dateTime(summary.scheduledAtMs)}`
+        : summary.uid || '—';
+  const live = pushApprovalIsLive(approval);
+  const statusLabel = pushApprovalStatusLabel(approval);
+  const own = approval.requestedBy === state.adminUid;
+  const canWrite = can('campaigns.write');
+  return `<div class="list-row"><div><strong>${escapeHtml(summary.title || 'Массовый push')}</strong><small>${escapeHtml(PUSH_MODE_LABELS[summary.mode] || summary.mode || '')} · аудитория: ${escapeHtml(exactAudience)} · получателей на preview: ${Number(approval.audienceCount || 0)}</small><small>${escapeHtml(summary.body || '')}</small><small>Действие: ${escapeHtml(summary.action || 'нет')} · Запросил: ${escapeHtml(approval.requestedBy || '—')} · Истекает: ${escapeHtml(dateTime(Math.min(Number(approval.expiresAtMs || 0), Number(approval.previewExpiresAtMs || approval.expiresAtMs || 0))))}</small><small>Preview: ${escapeHtml(approval.previewId || '—')} · Причина / stop condition: ${escapeHtml(approval.reason || '')}</small><small>Риск: массовая отправка. До создания задания запрос можно оставить истечь; созданное pending/scheduled задание отменяется в истории ниже.</small></div><div class="actions"><span class="badge ${statusLabel === 'approved' ? 'success' : statusLabel === 'pending' ? 'warning' : ''}">${escapeHtml(statusLabel)}</span>${approval.status === 'pending' && live && !own && canWrite ? `<button class="button primary small" data-action="approve-push-campaign" data-approval-id="${escapeHtml(approval.id)}" type="button" title="Одобрить неизменяемый пакет массового push как второй администратор">Одобрить</button>` : ''}${approval.status === 'pending' && own && live ? '<span class="badge">нужен второй администратор</span>' : ''}${approval.status === 'approved' && live && canWrite ? `<button class="button primary small" data-action="publish-approved-push" data-approval-id="${escapeHtml(approval.id)}" data-preview-id="${escapeHtml(approval.previewId)}" type="button" title="Создать push-задание по одобренному preview">Создать задание</button>` : ''}</div></div>`;
+}
+
+function renderPushModeFields(draft, locked) {
+  if (draft.mode === 'uid') return `<div class="field full"><label for="push-campaign-uid">UID пользователя</label><input id="push-campaign-uid" value="${escapeHtml(draft.uid || '')}" placeholder="Канонический stable UID"${locked ? ' disabled' : ''}></div>`;
+  if (draft.mode === 'segment') return `<div class="field"><label for="push-campaign-language">Язык</label><select id="push-campaign-language"${locked ? ' disabled' : ''}><option value=""${draft.segment?.language ? '' : ' selected'}>Любой</option><option value="ru"${draft.segment?.language === 'ru' ? ' selected' : ''}>ru</option><option value="uk"${draft.segment?.language === 'uk' ? ' selected' : ''}>uk</option></select></div><div class="field"><label for="push-campaign-premium">Доступ</label><select id="push-campaign-premium"${locked ? ' disabled' : ''}><option value=""${typeof draft.segment?.premium === 'boolean' ? '' : ' selected'}>Любой</option><option value="true"${draft.segment?.premium === true ? ' selected' : ''}>Только Plus</option><option value="false"${draft.segment?.premium === false ? ' selected' : ''}>Только Free</option></select></div><div class="field"><label for="push-campaign-streak">Минимальный streak</label><input id="push-campaign-streak" type="number" min="0" value="${Number(draft.segment?.streakMin || 0)}"${locked ? ' disabled' : ''}></div>`;
+  if (draft.mode === 'reactivate') return `<div class="field"><label for="push-campaign-days-min">Неактивен минимум, дней</label><input id="push-campaign-days-min" type="number" min="1" value="${Number(draft.reactivation?.daysMin || 7)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="push-campaign-days-max">Неактивен максимум, дней</label><input id="push-campaign-days-max" type="number" min="1" value="${Number(draft.reactivation?.daysMax || 30)}"${locked ? ' disabled' : ''}></div>`;
+  const localTime = draft.scheduledAt ? String(draft.scheduledAt).slice(0, 16) : '';
+  return `<div class="field"><label for="push-campaign-scheduled-at">Дата и время</label><input id="push-campaign-scheduled-at" type="datetime-local" value="${escapeHtml(localTime)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="push-campaign-audience">Аудитория</label><select id="push-campaign-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience === 'all' || !draft.audience ? ' selected' : ''}>Все</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Plus</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Free</option><option value="inactive7"${draft.audience === 'inactive7' ? ' selected' : ''}>Неактивны 7+ дней</option></select></div>`;
+}
+
+function renderPushCampaigns() {
+  const view = state.pushCampaigns;
+  const draft = pushDraft();
+  const locked = state.busy || !!view.preview || !can('campaigns.write');
+  const preview = view.preview;
+  const approvals = Array.isArray(view.approvals) ? view.approvals : [];
+  const jobs = Array.isArray(view.jobs) ? view.jobs : [];
+  const jobsHtml = view.state === 'loading' ? '<div class="profile-loading" role="status"><span class="loading-bar"></span><span>Загружаю push-кампании…</span></div>' : view.error ? `<div class="notice danger">${escapeHtml(view.error)}</div>` : !jobs.length ? emptyState('Push-заданий пока нет.') : `<div class="data-list">${jobs.map((job) => `<div class="list-row"><div><strong>${escapeHtml(job.notification?.title || 'Без заголовка')}</strong><small>${escapeHtml(PUSH_MODE_LABELS[job.mode] || job.mode)} · ${escapeHtml(job.notification?.body || '')}</small><small>${escapeHtml(job.createdAt || dateTime(job.createdAtMs))} · ${escapeHtml(job.createdBy || '—')} · preview: ${Number(job.audiencePreviewCount || 0)} · фактически при отправке: ${Number(job.targetCount || 0)} · доставлено ${Number(job.sentCount || 0)} · ошибок ${Number(job.failedCount || 0)}</small>${job.error ? `<small class="danger-text">${escapeHtml(job.error)}</small>` : ''}</div><div class="actions"><span class="badge ${job.status === 'done' ? 'success' : job.status === 'error' ? 'danger' : job.status === 'cancelled' ? '' : 'warning'}">${escapeHtml(job.status || 'pending')}</span>${job.cancelable ? `<button class="button danger small" data-action="cancel-push-job" data-push-job-id="${escapeHtml(job.id)}" type="button"${disabledWhenUnauthorized('campaigns.write')} title="Отменить только ещё не начатое push-задание">Отменить</button>` : ''}</div></div>`).join('')}</div>`;
+  const approvalsHtml = !approvals.length ? emptyState('Запросов на одобрение массовых push нет.') : `<div class="data-list">${approvals.slice(0, 30).map(renderPushApprovalPacket).join('')}</div>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Push-кампании</h2><p>Серверный расчёт аудитории, обязательный preview и двухэтапное одобрение массовых отправок.</p></div><button class="button" data-action="load-push-campaigns" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Обновить задания и запросы одобрения">${view.state === 'idle' ? 'Загрузить' : 'Обновить'}</button></div><div class="card-body">
+    <div class="notice">Для push одному UID достаточно preview и подтверждения. Сегменты, возврат неактивных и расписание требуют одобрения другого администратора. Для scheduled аудитория будет повторно рассчитана непосредственно перед отправкой.</div>
+    <div class="fields section"><div class="field"><label for="push-campaign-mode">Режим</label><select id="push-campaign-mode" data-action="change-push-mode"${locked ? ' disabled' : ''}><option value="uid"${draft.mode === 'uid' ? ' selected' : ''}>Один пользователь</option><option value="segment"${draft.mode === 'segment' ? ' selected' : ''}>Сегмент</option><option value="reactivate"${draft.mode === 'reactivate' ? ' selected' : ''}>Возврат неактивных</option><option value="scheduled"${draft.mode === 'scheduled' ? ' selected' : ''}>По расписанию</option></select></div>${renderPushModeFields(draft, locked)}<div class="field full"><label for="push-campaign-title">Заголовок</label><input id="push-campaign-title" maxlength="120" value="${escapeHtml(draft.notification?.title || '')}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="push-campaign-body">Текст</label><textarea id="push-campaign-body" maxlength="500"${locked ? ' disabled' : ''}>${escapeHtml(draft.notification?.body || '')}</textarea></div><div class="field full"><label for="push-campaign-action">Действие по нажатию</label><input id="push-campaign-action" maxlength="160" value="${escapeHtml(draft.action || '')}" placeholder="например open_lessons"${locked ? ' disabled' : ''}></div><div class="field full"><label for="push-campaign-reason">Причина и условие остановки</label><textarea id="push-campaign-reason" maxlength="500"${locked ? ' disabled' : ''}>${escapeHtml(preview?.reason || '')}</textarea></div></div>
+    ${preview ? `<div class="notice warning section"><strong>Предпросмотр готов</strong><br>${escapeHtml(PUSH_MODE_LABELS[preview.payload.mode])} · получателей сейчас: ${Number(preview.audienceCount || 0)} · создан ${escapeHtml(dateTime(preview.generatedAtMs))}<br>${escapeHtml(preview.payload.notification.title)} — ${escapeHtml(preview.payload.notification.body)}${preview.scheduledAudienceRecomputedAtSend ? '<br><strong>Важно:</strong> scheduled-аудитория будет пересчитана перед фактической отправкой.' : ''}</div>` : ''}
+    <div class="actions end section">${preview ? '<button class="button" data-action="discard-push-preview" type="button" title="Отменить preview без создания задания">Изменить ещё</button>' : ''}<button class="button ${preview ? '' : 'primary'}" data-action="preview-push-campaign" type="button"${locked ? ' disabled' : ''} title="Серверно рассчитать получателей и показать итог без отправки">Предпросмотр</button>${preview && !preview.requiresApproval ? `<button class="button primary" data-action="publish-push-campaign" type="button" title="Создать UID push-задание после подтверждения">Создать задание</button>` : ''}${preview?.requiresApproval ? `<button class="button primary" data-action="request-push-approval" type="button" title="Запросить обязательное одобрение другого администратора">Запросить одобрение</button>` : ''}</div>
+    <div class="fields section"><div class="field"><label for="push-approval-reason">Комментарий одобряющего</label><input id="push-approval-reason" maxlength="500" placeholder="Что проверено перед одобрением"></div><div class="field"><label for="push-cancel-reason">Причина отмены задания</label><input id="push-cancel-reason" maxlength="500" placeholder="Почему задание нужно остановить"></div></div>
+    <div class="section"><h3>Запросы одобрения</h3>${approvalsHtml}</div><div class="section"><h3>История заданий</h3>${jobsHtml}</div>
+  </div></section>`;
+}
+
+function readPushCampaignForm() {
+  const mode = String(document.getElementById('push-campaign-mode')?.value || 'uid');
+  const title = String(document.getElementById('push-campaign-title')?.value || '').trim();
+  const body = String(document.getElementById('push-campaign-body')?.value || '').trim();
+  const action = String(document.getElementById('push-campaign-action')?.value || '').trim();
+  const reason = String(document.getElementById('push-campaign-reason')?.value || '').trim();
+  if (!title || !body || !reason) throw new Error('Заполните заголовок, текст и причину кампании.');
+  const payload = { mode, notification: { title, body }, ...(action ? { action } : {}) };
+  if (mode === 'uid') { const uid = String(document.getElementById('push-campaign-uid')?.value || '').trim(); if (!uid) throw new Error('Укажите UID пользователя.'); payload.uid = uid; }
+  if (mode === 'segment') { const language = String(document.getElementById('push-campaign-language')?.value || ''); const premiumRaw = String(document.getElementById('push-campaign-premium')?.value || ''); const streakMin = Number(document.getElementById('push-campaign-streak')?.value || 0); payload.segment = { ...(language ? { language } : {}), ...(premiumRaw ? { premium: premiumRaw === 'true' } : {}), ...(streakMin > 0 ? { streakMin } : {}) }; }
+  if (mode === 'reactivate') { const daysMin = Number(document.getElementById('push-campaign-days-min')?.value || 7); const daysMax = Number(document.getElementById('push-campaign-days-max')?.value || 30); if (daysMin < 1 || daysMax < daysMin) throw new Error('Проверьте диапазон неактивных дней.'); payload.reactivation = { daysMin, daysMax }; }
+  if (mode === 'scheduled') { const local = String(document.getElementById('push-campaign-scheduled-at')?.value || ''); if (!local || !Number.isFinite(Date.parse(local)) || Date.parse(local) <= Date.now()) throw new Error('Выберите будущую дату и время.'); payload.scheduledAt = new Date(local).toISOString(); payload.audience = String(document.getElementById('push-campaign-audience')?.value || 'all'); }
+  return { payload, reason };
+}
+
+async function loadPushCampaigns() {
+  state.pushCampaigns = { ...state.pushCampaigns, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listPushJobs();
+    state.pushCampaigns = { ...state.pushCampaigns, state: 'ready', jobs: Array.isArray(result?.jobs) ? result.jobs : [], approvals: Array.isArray(result?.approvals) ? result.approvals : [], error: '' };
+  } catch (error) {
+    state.pushCampaigns = { ...state.pushCampaigns, state: 'error', error: errorMessage(error) };
+    throw error;
+  }
+}
+
 function renderCampaigns() {
   const campaignState = state.campaigns;
   const draft = campaignState.preview?.payload || campaignState.draft || {};
@@ -614,6 +729,7 @@ function renderCampaigns() {
   const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для Plus Survey и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button><button class="button danger" data-action="preview-app-message-cleanup" type="button"${locked || !expiredItems.length ? ' disabled' : ''} title="Сначала показать список истёкших сообщений; удаление выполняется только после отдельного подтверждения">Очистить истёкшие (${expiredItems.length})</button>`;
   return `${pageHeader(PAGES.campaigns, 'Приложение / Кампании', headerActions)}
     <div class="notice"><strong>Новый экран: полный жизненный цикл обычного сообщения и опроса.</strong> Активную кампанию сначала выключают. Изменение вариантов опроса явно сбрасывает старые голоса; удаление каскадно очищает реакции, голоса и состояния inbox. Plus Survey остаётся в профильном процессе старой админки до его отдельного переноса.</div>
+    ${renderPushCampaigns()}
     <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">like + dislike</span></article></section>
     <section class="card section"><div class="card-header"><div><h2>${editingId ? 'Редактирование сообщения' : 'Новое сообщение'}</h2><p>${editingId ? 'Сообщение выключено. Срок окончания не продлевается; изменение вариантов опроса будет отдельно показано в preview.' : 'Создайте обычное inbox-сообщение или опрос. Draft никому не показывается; active появляется у выбранной аудитории после публикации.'}</p></div><span class="badge warning">Production campaign</span></div><div class="card-body">
       <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked || editingId ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Draft / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked || editingId ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема RU</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст RU</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса RU</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">${editingId ? 'Причина изменения' : 'Причина публикации'}</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и stop condition"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
@@ -2381,6 +2497,81 @@ async function handleAction(action, target) {
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
   if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
+  if (action === 'change-push-mode') return;
+  if (action === 'load-push-campaigns') return runBusy(loadPushCampaigns, 'Push-кампании загружены.');
+  if (action === 'preview-push-campaign') {
+    let form;
+    try { form = readPushCampaignForm(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
+    return runBusy(async () => {
+      const result = await actions.previewPushAudience(form.payload);
+      state.pushCampaigns = { ...state.pushCampaigns, draft: form.payload, preview: { ...result, payload: form.payload, reason: form.reason }, error: '' };
+    }, 'Серверный предпросмотр аудитории готов. Отправка не выполнялась.');
+  }
+  if (action === 'discard-push-preview') { state.pushCampaigns.preview = null; renderCurrentPage(); return; }
+  if (action === 'publish-push-campaign') {
+    const preview = state.pushCampaigns.preview;
+    if (!preview || preview.requiresApproval) return;
+    if (!globalThis.confirm(`Создать push-задание для UID?\n\nПолучателей: ${Number(preview.audienceCount || 0)}\n${preview.payload.notification.title}\n${preview.payload.notification.body}`)) return;
+    return runBusy(async () => {
+      const operationScope = `job:${preview.previewId}`;
+      await actions.createPushJob({ previewId: preview.previewId, reason: preview.reason, idempotencyKey: pushOperationKey(operationScope), requestId: id('request-push-job') });
+      clearPushOperationKey(operationScope);
+      state.pushCampaigns.preview = null;
+      await loadPushCampaigns();
+    }, 'UID push-задание создано и записано в аудит.');
+  }
+  if (action === 'request-push-approval') {
+    const preview = state.pushCampaigns.preview;
+    if (!preview?.requiresApproval) return;
+    if (!globalThis.confirm(`Запросить одобрение массового push?\n\nАудитория на preview: ${Number(preview.audienceCount || 0)}\n${preview.payload.notification.title}`)) return;
+    return runBusy(async () => {
+      const operationScope = `approval-request:${preview.previewId}`;
+      await actions.requestPushApproval({ previewId: preview.previewId, reason: preview.reason, idempotencyKey: pushOperationKey(operationScope), requestId: id('request-push-approval') });
+      clearPushOperationKey(operationScope);
+      state.pushCampaigns.preview = null;
+      await loadPushCampaigns();
+    }, 'Запрос одобрения создан. Другой администратор должен проверить кампанию.');
+  }
+  if (action === 'approve-push-campaign') {
+    const approvalId = String(target.getAttribute('data-approval-id') || '');
+    const approval = state.pushCampaigns.approvals.find((item) => String(item.id) === approvalId);
+    if (!approval || !pushApprovalIsLive(approval) || approval.status !== 'pending' || approval.requestedBy === state.adminUid || !can('campaigns.write')) return setMessage('Этот запрос нельзя одобрить: проверьте срок, статус, права и автора запроса.', 'warning');
+    const reason = String(document.getElementById('push-approval-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите, что проверено перед одобрением.', 'warning');
+    if (!globalThis.confirm('Одобрить массовую push-кампанию как второй администратор?')) return;
+    return runBusy(async () => {
+      const operationScope = `approve:${approvalId}`;
+      await actions.approvePushCampaign({ approvalId, reason, idempotencyKey: pushOperationKey(operationScope), requestId: id('request-push-approval-decision') });
+      clearPushOperationKey(operationScope);
+      await loadPushCampaigns();
+    }, 'Массовая push-кампания одобрена. Задание ещё не создано.');
+  }
+  if (action === 'publish-approved-push') {
+    const approvalId = String(target.getAttribute('data-approval-id') || '');
+    const previewId = String(target.getAttribute('data-preview-id') || '');
+    const approval = state.pushCampaigns.approvals.find((item) => String(item.id) === approvalId);
+    if (!approval || !pushApprovalIsLive(approval) || approval.status !== 'approved' || !can('campaigns.write')) return setMessage('Одобрение истекло, уже использовано или недоступно для этой роли.', 'warning');
+    const reason = String(document.getElementById('push-approval-reason')?.value || '').trim() || `Approved push: ${String(approval?.reason || '').slice(0, 450)}`;
+    if (!globalThis.confirm(`Создать одобренное массовое push-задание?\n\nАудитория на preview: ${Number(approval?.audienceCount || 0)}\nПосле создания немедленный режим начнёт отправку.`)) return;
+    return runBusy(async () => {
+      const operationScope = `approved-job:${approvalId}`;
+      await actions.createPushJob({ previewId, approvalId, reason, idempotencyKey: pushOperationKey(operationScope), requestId: id('request-push-job-approved') });
+      clearPushOperationKey(operationScope);
+      await loadPushCampaigns();
+    }, 'Одобренное push-задание создано и записано в аудит.');
+  }
+  if (action === 'cancel-push-job') {
+    const jobId = String(target.getAttribute('data-push-job-id') || '');
+    const reason = String(document.getElementById('push-cancel-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину отмены push-задания.', 'warning');
+    if (!globalThis.confirm('Отменить ещё не начатое push-задание?')) return;
+    return runBusy(async () => {
+      const operationScope = `cancel:${jobId}`;
+      await actions.cancelPushJob({ jobId, reason, idempotencyKey: pushOperationKey(operationScope), requestId: id('request-push-job-cancel') });
+      clearPushOperationKey(operationScope);
+      await loadPushCampaigns();
+    }, 'Push-задание отменено и записано в аудит.');
+  }
   if (action === 'cancel-app-message-edit') {
     state.campaigns = { ...state.campaigns, editingId: '', draft: null, preview: null };
     renderCurrentPage();
@@ -2992,6 +3183,7 @@ export function setAuthState(auth) {
   state.authReady = true;
   state.authorized = auth.authorized === true;
   state.adminEmail = String(auth.email ?? '');
+  state.adminUid = String(auth.uid ?? '');
   state.adminRole = String(auth.role ?? '');
   if (!state.authorized) {
     state.detail = null;
@@ -3004,6 +3196,7 @@ export function setAuthState(auth) {
     state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
     state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
     state.campaigns = { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' };
+    state.pushCampaigns = { state: 'idle', jobs: [], approvals: [], draft: { mode: 'uid' }, preview: null, operationKeys: {}, error: '' };
     state.support = { loaded: false, loading: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null, website: { loaded: false, loading: false, items: [], pendingReadId: '', error: '', truncated: false } };
   }
   if (!state.authorized || !can('users.read')) {
@@ -3019,6 +3212,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' };
+  if (!state.authorized || !can('campaigns.read')) state.pushCampaigns = { state: 'idle', jobs: [], approvals: [], draft: { mode: 'uid' }, preview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
@@ -3042,6 +3236,11 @@ export function initAdminUi() {
       event.preventDefault();
       document.querySelector('[data-action="search-admin-users"]')?.click();
     }
+  });
+  document.addEventListener('change', (event) => {
+    if (!(event.target instanceof HTMLSelectElement) || event.target.id !== 'push-campaign-mode') return;
+    state.pushCampaigns = { ...state.pushCampaigns, draft: { mode: event.target.value }, preview: null };
+    renderCurrentPage();
   });
   document.addEventListener('load', (event) => {
     const frame = event.target;

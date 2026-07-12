@@ -78,6 +78,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const updateAppMessageCallable = httpsCallable(functionsUs, 'adminUpdateAppMessage');
   const deleteAppMessageCallable = httpsCallable(functionsUs, 'adminDeleteAppMessage');
   const cleanupExpiredAppMessagesCallable = httpsCallable(functionsUs, 'adminCleanupExpiredAppMessages');
+  const previewPushAudienceCallable = httpsCallable(functionsUs, 'adminPreviewPushAudience');
+  const requestPushApprovalCallable = httpsCallable(functionsUs, 'adminRequestPushApproval');
+  const approvePushCampaignCallable = httpsCallable(functionsUs, 'adminApprovePushCampaign');
+  const createPushJobCallable = httpsCallable(functionsUs, 'adminCreatePushJob');
+  const listPushJobsCallable = httpsCallable(functionsUs, 'adminListPushJobs');
+  const cancelPushJobCallable = httpsCallable(functionsUs, 'adminCancelPushJob');
   const promoCodeUpsertCallable = httpsCallable(functionsUs, 'promoCodeUpsert');
   const promoCodeBatchUpsertCallable = httpsCallable(functionsUs, 'promoCodeBatchUpsert');
   const getDailyBriefingCallable = httpsCallable(functionsUs, 'adminGetDailyBriefing');
@@ -96,16 +102,16 @@ export async function createFirebaseAdminActions({ onAuth }) {
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      onAuth({ authorized: false, email: '', role: '' });
+      onAuth({ authorized: false, email: '', role: '', uid: '' });
       return;
     }
     try {
       const token = await user.getIdTokenResult(true);
       const claimedRole = typeof token.claims.adminRole === 'string' && ADMIN_ROLES.has(token.claims.adminRole) ? token.claims.adminRole : '';
       const role = claimedRole || (token.claims.admin === true ? 'admin' : '');
-      onAuth({ authorized: token.claims.admin === true, email: user.email ?? '', role });
+      onAuth({ authorized: token.claims.admin === true, email: user.email ?? '', role, uid: user.uid });
     } catch {
-      onAuth({ authorized: false, email: user.email ?? '', role: '' });
+      onAuth({ authorized: false, email: user.email ?? '', role: '', uid: user.uid });
     }
   });
 
@@ -156,6 +162,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
     updateAppMessage: async (input) => unwrap(await updateAppMessageCallable(input)),
     deleteAppMessage: async (input) => unwrap(await deleteAppMessageCallable(input)),
     cleanupExpiredAppMessages: async (input) => unwrap(await cleanupExpiredAppMessagesCallable(input)),
+    previewPushAudience: async (input) => unwrap(await previewPushAudienceCallable(input)),
+    requestPushApproval: async (input) => unwrap(await requestPushApprovalCallable(input)),
+    approvePushCampaign: async (input) => unwrap(await approvePushCampaignCallable(input)),
+    createPushJob: async (input) => unwrap(await createPushJobCallable(input)),
+    listPushJobs: async () => unwrap(await listPushJobsCallable({})),
+    cancelPushJob: async (input) => unwrap(await cancelPushJobCallable(input)),
     promoCodeUpsert: async (input) => unwrap(await promoCodeUpsertCallable(input)),
     promoCodeBatchUpsert: async (input) => unwrap(await promoCodeBatchUpsertCallable(input)),
     getDailyBriefing: async () => unwrap(await getDailyBriefingCallable({})),

@@ -1,6 +1,7 @@
 import {
   buildAdminPushMessage,
   chunkArray,
+  dedupeAdminPushUsersByToken,
   isAdminPushJobDue,
   isPremiumActive,
   isValidExpoPushToken,
@@ -21,6 +22,7 @@ function user(overrides: Partial<AdminPushUser> = {}): AdminPushUser {
     token: TOKEN,
     language: 'ru',
     premiumActive: false,
+    identityHidden: false,
     streak: 0,
     lastActiveAtMs: NOW - 2 * 24 * 60 * 60 * 1000,
     ...overrides,
@@ -171,7 +173,36 @@ describe('admin push jobs', () => {
   });
 
   it('matches admin Plus logic for expired and active plans', () => {
-    expect(isPremiumActive({ progress: { premium_plan: 'yearly', premium_expiry: String(NOW + 1) } }, NOW)).toBe(true);
+    expect(isPremiumActive({ progress: { premium_plan: 'yearly', premium_expiry: String(NOW + 1), premium_rc_product_id: 'yearly' } }, NOW)).toBe(true);
     expect(isPremiumActive({ progress: { premium_plan: 'yearly', premium_expiry: String(NOW - 1) } }, NOW)).toBe(false);
+    expect(isPremiumActive({ progress: { premium_plan: 'admin_grant', admin_premium_override: 'true' } }, NOW)).toBe(true);
+    expect(isPremiumActive({ progress: { vip_plan: 'admin_vip', vip_active: 'true', vip_until: '0' } }, NOW)).toBe(true);
+  });
+
+  it('excludes hidden merged identities from every audience', () => {
+    const hidden = parseAdminPushUser('hidden', {
+      identityHidden: true,
+      expoPushToken: TOKEN,
+      last_active_at: NOW - 10 * 24 * 60 * 60 * 1000,
+    }, NOW);
+    const jobs = [
+      normalizeAdminPushJob('uid', { mode: 'uid', uid: 'hidden', notification: { title: 'T', body: 'B' } }),
+      normalizeAdminPushJob('segment', { mode: 'segment', notification: { title: 'T', body: 'B' }, segment: {} }),
+      normalizeAdminPushJob('reactivate', { mode: 'reactivate', notification: { title: 'T', body: 'B' }, reactivation: { daysMin: 7, daysMax: 30 } }),
+      normalizeAdminPushJob('scheduled', { mode: 'scheduled', notification: { title: 'T', body: 'B' }, scheduledAt: new Date(NOW - 1).toISOString(), audience: 'all' }),
+    ];
+
+    expect(hidden.identityHidden).toBe(true);
+    for (const job of jobs) expect(selectAdminPushUsers(job, [hidden], NOW)).toEqual([]);
+  });
+
+  it('deduplicates shared Expo tokens before preview and dispatch', () => {
+    const users = [
+      user({ uid: 'canonical', token: TOKEN }),
+      user({ uid: 'duplicate', token: `  ${TOKEN}  ` }),
+      user({ uid: 'other', token: 'ExpoPushToken[other]' }),
+    ];
+
+    expect(dedupeAdminPushUsersByToken(users).map((item) => item.uid)).toEqual(['canonical', 'other']);
   });
 });

@@ -4,6 +4,9 @@
  */
 
 import type { Lang } from '../constants/i18n';
+import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
+import { normalizeAvatarAuraId } from '../constants/avatar_auras';
+import { getLevelFromXP } from '../constants/theme';
 import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
@@ -24,6 +27,7 @@ export type HomeScreenHydration = {
   premiumFreezeUsed: boolean;
   totalXPMulti: number;
   userAvatar: string;
+  userAvatarAura?: string | null;
   userFrame: string;
   lastLessonId: number | null;
   lastLessonProgress: number;
@@ -48,8 +52,33 @@ export function rememberHomeScreenHydration(next: HomeScreenHydration, studyTarg
   snapshotByTarget[storageStudyTarget(studyTarget)] = next;
 }
 
+export function patchHomeScreenHydration(
+  patch: Partial<HomeScreenHydration>,
+  studyTarget?: StudyTargetLang,
+): void {
+  const key = storageStudyTarget(studyTarget);
+  const current = snapshotByTarget[key];
+  if (!current) return;
+  snapshotByTarget[key] = { ...current, ...patch };
+}
+
 export function peekHomeScreenHydration(studyTarget?: StudyTargetLang): HomeScreenHydration | null {
   return snapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
+}
+
+export function resolveHomeProfileVisuals(params: {
+  hydration?: Pick<HomeScreenHydration, 'totalXP' | 'userAvatar' | 'userAvatarAura' | 'userFrame'> | null;
+  snapshot?: { totalXp?: number; avatar?: string; frame?: string; aura?: string } | null;
+}): { avatar: string; frame: string; aura: string | null; level: number } {
+  const totalXP = params.hydration?.totalXP ?? params.snapshot?.totalXp ?? 0;
+  const level = getLevelFromXP(Math.max(0, Math.floor(Number(totalXP) || 0)));
+  const levelAvatar = getBestAvatarForLevel(level);
+  const hydrationAvatar = params.hydration?.userAvatar ?? '';
+  const snapshotAvatar = params.snapshot?.avatar ?? '';
+  const avatar = hydrationAvatar || (snapshotAvatar && !(snapshotAvatar === '1' && levelAvatar !== '1') ? snapshotAvatar : levelAvatar);
+  const frame = (params.hydration?.userFrame ?? params.snapshot?.frame ?? '') || getBestFrameForLevel(level).id;
+  const aura = normalizeAvatarAuraId(params.hydration?.userAvatarAura) ?? normalizeAvatarAuraId(params.snapshot?.aura) ?? null;
+  return { avatar, frame, aura, level };
 }
 
 export function buildLastLessonFromHydration(

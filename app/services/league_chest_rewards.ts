@@ -5,8 +5,8 @@ import { ensureAnonUser } from '../cloud_sync';
 import { replaceShardsBalanceLocal } from '../shards_system';
 import { emitAppEvent } from '../events';
 import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
-import { addArenaPlaysBonusForToday } from '../arena_daily_limit';
-import { setRandomPackGiftTrial48h } from '../flashcards/pack_trial_gift';
+import { addArenaPlaysBonusForClaimDayOnce } from '../arena_daily_limit';
+import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from '../flashcards/marketplace';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import {
@@ -22,7 +22,6 @@ import {
 } from '../../constants/custom_avatars';
 
 export const LEAGUE_CROWN_NICK_COLOR = '#16B7D9';
-export const LEAGUE_CHEST_MIN_CONTRIBUTION = 500;
 export const LEAGUE_CHEST_SHARDS_REWARD = 30;
 export const LEAGUE_CHEST_ENERGY_MS = 5 * 60 * 1000;
 export const LEAGUE_CHEST_BASE_GOAL = 200_000;
@@ -48,6 +47,8 @@ const STREAK_SHIELD_KEY = 'chain_shield';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
 const FUNCTIONS_REGION = 'us-central1';
 const LOCAL_CLAIM_KEY_PREFIX = 'league_chest_claimed_';
+const LOCAL_PENDING_CLAIM_KEY_PREFIX = 'league_chest_claim_pending_';
+const LOCAL_REWARD_EFFECT_KEY_PREFIX = 'league_chest_reward_effect_';
 const LOCAL_CLAIM_MAX_KEYS = 32;
 const LOCAL_CLAIM_PRUNE_INTERVAL_MS = 12 * 60 * 60 * 1000;
 const leagueChestClaimInFlight = new Map<string, Promise<LeagueChestClaim>>();
@@ -113,6 +114,8 @@ export type LeagueChestRewardDrop = {
 
 export type LeagueChestClaim = {
   claimed: boolean;
+  pending?: boolean;
+  claimedAtMs?: number;
   crown?: LeagueCrown | null;
   balance?: number;
   shardsUpdatedAtMs?: number;
@@ -139,7 +142,18 @@ export type LeagueBonusAvailability = {
   crownName?: string;
   crownUid?: string;
   isCrownWinner: boolean;
+  userUid: string;
 };
+
+export function buildLeagueBonusSeenKey(userUid: string, weekId: string): string {
+  return `${safeId(userUid)}_${safeId(weekId)}`;
+}
+
+export function reserveLeagueBonusNotice(reservations: Set<string>, key: string): boolean {
+  if (reservations.has(key)) return false;
+  reservations.add(key);
+  return true;
+}
 
 export async function hasLeagueGoldThemeReward(): Promise<boolean> {
   try {
@@ -239,6 +253,10 @@ function localClaimKey(uid: string, weekId: string, groupId: string): string {
   return `${LOCAL_CLAIM_KEY_PREFIX}${claimDocId(uid, weekId, groupId)}`;
 }
 
+function localPendingClaimKey(uid: string, weekId: string, groupId: string): string {
+  return `${LOCAL_PENDING_CLAIM_KEY_PREFIX}${claimDocId(uid, weekId, groupId)}`;
+}
+
 async function pruneLocalClaimKeys(retainKey: string): Promise<void> {
   const now = Date.now();
   if (localClaimPruneInFlight || now - lastLocalClaimPruneAt < LOCAL_CLAIM_PRUNE_INTERVAL_MS) return;
@@ -276,6 +294,39 @@ function parseMembers(raw: unknown): LeagueChestMember[] {
     .filter((m) => !!m.uid);
 }
 
+export type LeagueBonusProgressSnapshot = {
+  weekId: string;
+  groupId: string;
+  leagueId: number;
+  members: LeagueChestMember[];
+  leaguePoints: number;
+  arenaBonus: number;
+  progress: number;
+  goal: number;
+  ready: boolean;
+};
+
+export function buildLeagueBonusProgressSnapshot(params: {
+  meta: { weekId: string; groupId: string; leagueId: number };
+  groupData?: Record<string, unknown> | null;
+  arenaData?: Record<string, unknown> | null;
+}): LeagueBonusProgressSnapshot | null {
+  const { meta, groupData, arenaData } = params;
+  if (!groupData || groupData.weekId !== meta.weekId) return null;
+  if (Math.max(0, Math.floor(Number(groupData.leagueId) || 0)) !== meta.leagueId) return null;
+  if (arenaData && (
+    arenaData.weekId !== meta.weekId ||
+    arenaData.groupId !== meta.groupId ||
+    Math.max(0, Math.floor(Number(arenaData.leagueId) || 0)) !== meta.leagueId
+  )) return null;
+  const members = parseMembers(groupData.members);
+  const leaguePoints = members.reduce((sum, member) => sum + member.points, 0);
+  const arenaBonus = Math.max(0, Math.floor(Number(arenaData?.totalPoints) || 0));
+  const progress = leaguePoints + arenaBonus;
+  const goal = getLeagueChestGoal(meta.leagueId);
+  return { ...meta, members, leaguePoints, arenaBonus, progress, goal, ready: progress >= goal };
+}
+
 function buildLeagueBonusAvailability(params: {
   meta: { weekId: string; groupId: string; leagueId: number };
   myUid: string;
@@ -285,15 +336,10 @@ function buildLeagueBonusAvailability(params: {
   locallyClaimed: boolean;
 }): LeagueBonusAvailability | null {
   const { meta, myUid, groupData, arenaData, claimExists, locallyClaimed } = params;
-  if (!groupData || groupData.weekId !== meta.weekId) return null;
-  const groupLeagueId = Math.max(0, Math.floor(Number(groupData.leagueId) || 0));
-  if (groupLeagueId !== meta.leagueId) return null;
-  const members = parseMembers(groupData.members);
+  const snapshot = buildLeagueBonusProgressSnapshot({ meta, groupData, arenaData });
+  if (!snapshot) return null;
+  const { members, goal, progress } = snapshot;
   if (!members.some((m) => m.uid === myUid)) return null;
-  const goal = getLeagueChestGoal(meta.leagueId);
-  const leaguePoints = members.reduce((sum, m) => sum + Math.max(0, Math.floor(Number(m.points) || 0)), 0);
-  const arenaBonus = Math.max(0, Math.floor(Number(arenaData?.totalPoints) || 0));
-  const progress = leaguePoints + arenaBonus;
   if (members.length < LEAGUE_RACE_MIN_PARTICIPANTS || progress < goal || claimExists || locallyClaimed) return null;
   const sorted = [...members].sort((a, b) => b.points - a.points);
   const winner = sorted[0];
@@ -308,6 +354,7 @@ function buildLeagueBonusAvailability(params: {
     crownName: winner?.name,
     crownUid: winner?.uid,
     isCrownWinner: winner?.uid === myUid,
+    userUid: myUid,
   };
 }
 
@@ -317,7 +364,12 @@ export async function checkLeagueBonusAvailability(): Promise<LeagueBonusAvailab
   const [meta, myUid] = await Promise.all([resolveMyLeagueGroupMeta(), ensureAnonUser()]);
   if (!meta || !myUid) return null;
   const claimKey = localClaimKey(myUid, meta.weekId, meta.groupId);
-  const locallyClaimed = (await AsyncStorage.getItem(claimKey).catch(() => null)) === '1';
+  const pendingClaimKey = localPendingClaimKey(myUid, meta.weekId, meta.groupId);
+  const [claimRaw, pendingRaw] = await Promise.all([
+    AsyncStorage.getItem(claimKey).catch(() => null),
+    AsyncStorage.getItem(pendingClaimKey).catch(() => null),
+  ]);
+  const locallyClaimed = claimRaw === '1' || pendingRaw === '1';
   if (locallyClaimed) return null;
   const [groupSnap, arenaSnap, claimSnap] = await Promise.all([
     db.collection('league_groups').doc(meta.groupId).get().catch(() => null),
@@ -331,6 +383,22 @@ export async function checkLeagueBonusAvailability(): Promise<LeagueBonusAvailab
     arenaData: arenaSnap?.exists ? (arenaSnap.data() as Record<string, unknown>) : null,
     claimExists: !!claimSnap?.exists,
     locallyClaimed,
+  });
+}
+
+export async function fetchLeagueBonusProgressSnapshot(): Promise<LeagueBonusProgressSnapshot | null> {
+  const db = getDb();
+  if (!db) return null;
+  const meta = await resolveMyLeagueGroupMeta();
+  if (!meta) return null;
+  const [groupSnap, arenaSnap] = await Promise.all([
+    db.collection('league_groups').doc(meta.groupId).get().catch(() => null),
+    db.collection('arena_club_events').doc(`${safeId(meta.weekId)}_${safeId(meta.groupId)}`).get().catch(() => null),
+  ]);
+  return buildLeagueBonusProgressSnapshot({
+    meta,
+    groupData: groupSnap?.exists ? (groupSnap.data() as Record<string, unknown>) : null,
+    arenaData: arenaSnap?.exists ? (arenaSnap.data() as Record<string, unknown>) : null,
   });
 }
 
@@ -372,7 +440,11 @@ export function subscribeLeagueBonusAvailability(
     meta = resolved[0];
     myUid = String(resolved[1] ?? '');
     if (!meta || !myUid) return;
-    locallyClaimed = (await AsyncStorage.getItem(localClaimKey(myUid, meta.weekId, meta.groupId)).catch(() => null)) === '1';
+    const [claimRaw, pendingRaw] = await Promise.all([
+      AsyncStorage.getItem(localClaimKey(myUid, meta.weekId, meta.groupId)).catch(() => null),
+      AsyncStorage.getItem(localPendingClaimKey(myUid, meta.weekId, meta.groupId)).catch(() => null),
+    ]);
+    locallyClaimed = claimRaw === '1' || pendingRaw === '1';
     if (closed) return;
     const arenaDocId = `${safeId(meta.weekId)}_${safeId(meta.groupId)}`;
     // Защита от гонки: teardown мог отработать, пока выше шли await'ы. В этом случае
@@ -515,6 +587,8 @@ async function applyLocalRewardPack(
   balance?: number,
   shardsUpdatedAtMs?: number,
   studyTarget?: RuntimeStudyTarget,
+  claimEffectId?: string,
+  claimedAtMs?: number,
 ): Promise<void> {
   const drops = Array.isArray(rewardPack.drops) ? rewardPack.drops : [];
   const expiresAt = Math.max(0, Math.floor(Number(rewardPack.expiresAt) || 0));
@@ -534,19 +608,27 @@ async function applyLocalRewardPack(
   const writes: [string, string][] = [];
   const xpBoost = drops.find((drop) => drop.kind === 'xp_boost');
   if (xpBoost && expiresAt > Date.now()) {
-    writes.push([XP_OVERRIDE_KEY, JSON.stringify({
-      multiplier: Math.max(1, Number(xpBoost.multiplier) || 2),
-      remainingUses: Math.max(1, Math.floor(Number(xpBoost.uses) || 3)),
-      expiresAt,
-    })]);
+    const xpEffectKey = claimEffectId ? `${LOCAL_REWARD_EFFECT_KEY_PREFIX}${safeId(claimEffectId)}_xp_boost` : '';
+    if (!xpEffectKey || (await AsyncStorage.getItem(xpEffectKey).catch(() => null)) !== '1') {
+      writes.push([XP_OVERRIDE_KEY, JSON.stringify({
+        multiplier: Math.max(1, Number(xpBoost.multiplier) || 2),
+        remainingUses: Math.max(1, Math.floor(Number(xpBoost.uses) || 3)),
+        expiresAt,
+      })]);
+      if (xpEffectKey) writes.push([xpEffectKey, '1']);
+    }
   }
 
   const energyBoost = drops.find((drop) => drop.kind === 'energy_fast_recovery');
   if (energyBoost && expiresAt > Date.now()) {
-    writes.push([ENERGY_OVERRIDE_KEY, JSON.stringify({
-      recoveryMs: Math.max(60_000, Math.floor(Number(energyBoost.recoveryMs) || LEAGUE_CHEST_ENERGY_MS)),
-      expiresAt,
-    })]);
+    const energyEffectKey = claimEffectId ? `${LOCAL_REWARD_EFFECT_KEY_PREFIX}${safeId(claimEffectId)}_energy_fast_recovery` : '';
+    if (!energyEffectKey || (await AsyncStorage.getItem(energyEffectKey).catch(() => null)) !== '1') {
+      writes.push([ENERGY_OVERRIDE_KEY, JSON.stringify({
+        recoveryMs: Math.max(60_000, Math.floor(Number(energyBoost.recoveryMs) || LEAGUE_CHEST_ENERGY_MS)),
+        expiresAt,
+      })]);
+      if (energyEffectKey) writes.push([energyEffectKey, '1']);
+    }
   }
 
   if (writes.length > 0) await AsyncStorage.multiSet(writes);
@@ -555,6 +637,10 @@ async function applyLocalRewardPack(
     .filter((drop) => drop.kind === 'streak_shield')
     .reduce((sum, drop) => sum + Math.max(1, rewardAmount(drop) || 1), 0);
   if (shieldCount > 0) {
+    const shieldEffectKey = claimEffectId ? `${LOCAL_REWARD_EFFECT_KEY_PREFIX}${safeId(claimEffectId)}_streak_shield` : '';
+    if (shieldEffectKey && (await AsyncStorage.getItem(shieldEffectKey).catch(() => null)) === '1') {
+      // Already applied for this league claim.
+    } else {
     const shieldRaw = await AsyncStorage.getItem(STREAK_SHIELD_KEY);
     let shields = 0;
     try {
@@ -563,19 +649,22 @@ async function applyLocalRewardPack(
     } catch {
       shields = 0;
     }
-    await AsyncStorage.setItem(STREAK_SHIELD_KEY, JSON.stringify({
-      daysLeft: shields + shieldCount,
-      grantedAt: new Date().toISOString().split('T')[0],
-    }));
+    const writes: [string, string][] = [[STREAK_SHIELD_KEY, JSON.stringify({
+        daysLeft: shields + shieldCount,
+        grantedAt: new Date().toISOString().split('T')[0],
+      })]];
+      if (shieldEffectKey) writes.push([shieldEffectKey, '1']);
+      await AsyncStorage.multiSet(writes);
+    }
   }
 
   for (const drop of drops) {
     if (drop.kind === 'gold_theme') {
       await unlockLeagueGoldThemeReward('league_chest');
     } else if (drop.kind === 'arena_plays') {
-      await addArenaPlaysBonusForToday(rewardAmount(drop) || 5);
+      await addArenaPlaysBonusForClaimDayOnce(rewardAmount(drop) || 5, `${claimEffectId ?? 'league_chest'}:${drop.id}:arena_plays`, claimedAtMs);
     } else if (drop.kind === 'pack_trial_48h') {
-      const trial = await setRandomPackGiftTrial48h(studyTarget);
+      const trial = await setPackGiftTrial48hOnce(studyTarget, `${claimEffectId ?? 'league_chest'}:${drop.id}:pack_trial_48h`, drop.expiresAt);
       if (trial) await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
     } else if (drop.kind === 'avatar_aura') {
       await grantAvatarAuraReward(drop.auraId);
@@ -593,7 +682,6 @@ export async function ensureLeagueChestRewards(params: {
   leagueId: number;
   members: LeagueChestMember[];
   chestReady: boolean;
-  myContribution: number;
   studyTarget?: RuntimeStudyTarget;
 }): Promise<LeagueChestClaim> {
   if (!params.chestReady || !params.groupId || !params.weekId) return { claimed: false };
@@ -602,14 +690,19 @@ export async function ensureLeagueChestRewards(params: {
   if (!myUid) return { claimed: false };
 
   const claimKey = localClaimKey(myUid, params.weekId, params.groupId);
+  const pendingClaimKey = localPendingClaimKey(myUid, params.weekId, params.groupId);
   const alreadyLocal = await AsyncStorage.getItem(claimKey);
-  if (alreadyLocal === '1') return { claimed: true };
+  if (alreadyLocal === '1') {
+    await AsyncStorage.removeItem(pendingClaimKey).catch(() => {});
+  } else {
+    await AsyncStorage.setItem(pendingClaimKey, '1').catch(() => {});
+  }
 
   const fn = callable<
     { weekId: string; groupId: string },
     LeagueChestClaim & { ok?: boolean; balance?: number; alreadyClaimed?: boolean }
   >('leagueChestClaim');
-  if (!fn) return { claimed: false };
+  if (!fn) return { claimed: true, pending: alreadyLocal !== '1' };
   const key = leagueChestClaimRequestKey(myUid, params.weekId, params.groupId);
   const existing = leagueChestClaimInFlight.get(key);
   if (existing) return existing;
@@ -618,20 +711,32 @@ export async function ensureLeagueChestRewards(params: {
     try {
       const { data } = await fn({ weekId: params.weekId, groupId: params.groupId });
       if (data.claimed) {
+        if (data.crown?.uid === myUid) {
+          emitAppEvent('league_crown_updated', {
+            uid: myUid,
+            expiresAt: data.crown.expiresAt,
+            crownCount: Math.max(1, Math.floor(Number(data.crown.crownCount) || 1)),
+          });
+        }
+        if (data.rewards) {
+          await applyLocalRewardPack(
+            data.rewards,
+            data.balance,
+            data.shardsUpdatedAtMs,
+            params.studyTarget,
+            claimDocId(myUid, params.weekId, params.groupId),
+            data.claimedAtMs,
+          );
+        }
         await AsyncStorage.setItem(claimKey, '1');
+        await AsyncStorage.removeItem(pendingClaimKey).catch(() => {});
         void pruneLocalClaimKeys(claimKey).catch(() => {});
+      } else {
+        await AsyncStorage.removeItem(pendingClaimKey).catch(() => {});
       }
-      if (data.crown?.uid === myUid) {
-        emitAppEvent('league_crown_updated', {
-          uid: myUid,
-          expiresAt: data.crown.expiresAt,
-          crownCount: Math.max(1, Math.floor(Number(data.crown.crownCount) || 1)),
-        });
-      }
-      if (data.rewards) await applyLocalRewardPack(data.rewards, data.balance, data.shardsUpdatedAtMs, params.studyTarget);
       return data;
     } catch {
-      return { claimed: false };
+      return { claimed: true, pending: alreadyLocal !== '1' };
     }
   })().finally(() => {
     leagueChestClaimInFlight.delete(key);
@@ -639,6 +744,28 @@ export async function ensureLeagueChestRewards(params: {
 
   leagueChestClaimInFlight.set(key, request);
   return request;
+}
+
+export async function hasLeagueChestClaimOrPending(params: {
+  weekId: string;
+  groupId: string;
+}): Promise<boolean> {
+  const myUid = await ensureAnonUser();
+  if (!myUid || !params.weekId || !params.groupId) return false;
+  const [claimRaw, pendingRaw] = await Promise.all([
+    AsyncStorage.getItem(localClaimKey(myUid, params.weekId, params.groupId)).catch(() => null),
+    AsyncStorage.getItem(localPendingClaimKey(myUid, params.weekId, params.groupId)).catch(() => null),
+  ]);
+  return claimRaw === '1' || pendingRaw === '1';
+}
+
+export async function hasLeagueChestPendingClaim(params: {
+  weekId: string;
+  groupId: string;
+}): Promise<boolean> {
+  const myUid = await ensureAnonUser();
+  if (!myUid || !params.weekId || !params.groupId) return false;
+  return (await AsyncStorage.getItem(localPendingClaimKey(myUid, params.weekId, params.groupId)).catch(() => null)) === '1';
 }
 
 export async function fetchActiveLeagueCrowns(uids: string[]): Promise<Record<string, LeagueCrown>> {

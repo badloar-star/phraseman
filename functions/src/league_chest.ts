@@ -5,7 +5,6 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
 const PACK_TRIAL_MS = 48 * 60 * 60 * 1000;
-const MIN_CONTRIBUTION = 500;
 const MIN_RACE_PARTICIPANTS = 10;
 const BASE_SHARDS_MIN = 15;
 const BASE_SHARDS_MAX = 35;
@@ -190,6 +189,47 @@ function sumShardDrops(drops: RewardDrop[]): number {
       ? sum + Math.max(0, readInt(drop.amount, 0))
       : sum
   ), 0);
+}
+
+function buildClaimedRewardResponse(params: {
+  claim: FirebaseFirestore.DocumentData | undefined;
+  user: FirebaseFirestore.DocumentData | undefined;
+}): {
+  balance: number;
+  shardsUpdatedAtMs: number;
+  rewards?: {
+    drops: RewardDrop[];
+    shards?: number;
+    energyRecoveryMs?: number;
+    xpOverrideMultiplier?: number;
+    xpOverrideUses?: number;
+    streakShieldCount?: number;
+    themeGoldUnlocked?: boolean;
+    expiresAt: number;
+  };
+  claimedAtMs: number;
+} {
+  const { claim, user } = params;
+  const drops = Array.isArray(claim?.rewards) ? claim?.rewards as RewardDrop[] : [];
+  const expiresAt = Math.max(0, readInt(claim?.expiresAt, 0));
+  const rewardPayload = drops.length > 0 && expiresAt > 0
+    ? {
+      drops,
+      shards: Math.max(0, readInt(claim?.shards, 0)),
+      energyRecoveryMs: Math.max(0, readInt(claim?.energyRecoveryMs, 0)) || undefined,
+      xpOverrideMultiplier: Math.max(1, Number(claim?.xpOverrideMultiplier) || 1) || undefined,
+      xpOverrideUses: Math.max(0, readInt(claim?.xpOverrideUses, 0)) || undefined,
+      streakShieldCount: Math.max(0, readInt(claim?.streakShieldCount, 0)) || undefined,
+      themeGoldUnlocked: claim?.themeGoldUnlocked === true,
+      expiresAt,
+    }
+    : undefined;
+  return {
+    balance: Math.max(0, readInt(user?.shards, 0)),
+    shardsUpdatedAtMs: Math.max(0, readInt(user?.shards_updated_at_ms, 0)),
+    rewards: rewardPayload,
+    claimedAtMs: Math.max(0, readInt(claim?.createdAt, 0)),
+  };
 }
 
 function buildLeagueRewardDrops(params: {
@@ -378,7 +418,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
   const weekId = sanitizeString(request.data?.weekId, 20) || currentWeekId();
   const groupId = sanitizeString(request.data?.groupId, 180);
   if (!groupId) throw new HttpsError('invalid-argument', 'group_required');
-  if (weekId !== currentWeekId()) throw new HttpsError('failed-precondition', 'stale_week');
 
   const groupRef = db.collection('league_groups').doc(groupId);
   const lbRef = db.collection('leaderboard').doc(stableUid);
@@ -399,6 +438,30 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       tx.get(arenaEventRef),
     ]);
 
+    if (claimSnap.exists) {
+      const claim = claimSnap.data() || {};
+      if (claim.uid && claim.uid !== stableUid) throw new HttpsError('permission-denied', 'claim_owner_mismatch');
+      const crownData = eventSnap.exists ? eventSnap.data() || {} : {};
+      const replayCrown = crownData.uid
+        ? {
+          uid: sanitizeString(crownData.uid, 180),
+          name: sanitizeString(crownData.name, 48) || 'Player',
+          weekId: sanitizeString(crownData.weekId, 20) || weekId,
+          groupId: sanitizeString(crownData.groupId, 180) || groupId,
+          leagueId: Math.max(0, readInt(crownData.leagueId, readInt(claim.leagueId, 0))),
+          expiresAt: Math.max(0, readInt(crownData.expiresAt, 0)),
+          crownCount: Math.max(1, readInt(crownData.crownCount, 1)),
+          aura: CROWN_AURA,
+        }
+        : null;
+      const existing = buildClaimedRewardResponse({
+        claim,
+        user: userSnap.data() || {},
+      });
+      return { ok: true, claimed: true, alreadyClaimed: true, crown: replayCrown, ...existing };
+    }
+
+    if (weekId !== currentWeekId()) throw new HttpsError('failed-precondition', 'stale_week');
     if (!groupSnap.exists) throw new HttpsError('not-found', 'league_group_not_found');
     const group = groupSnap.data() || {};
     if (group.weekId !== weekId) throw new HttpsError('permission-denied', 'week_mismatch');
@@ -497,19 +560,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       }, { merge: true });
     }
 
-    const arenaMembers = arenaEvent.members && typeof arenaEvent.members === 'object'
-      ? arenaEvent.members as Record<string, Record<string, unknown>>
-      : {};
-    const myContribution = Math.max(0, readInt(membersRaw[stableUid]?.points, 0))
-      + Math.max(0, readInt(arenaMembers[stableUid]?.points, 0));
-    if (myContribution < MIN_CONTRIBUTION) {
-      return { ok: true, claimed: false, status: 'low_contribution', crown };
-    }
-
-    if (claimSnap.exists) {
-      return { ok: true, claimed: true, alreadyClaimed: true, crown };
-    }
-
     const user = userSnap.data() || {};
     const isCrownWinner = !!crown && crown.uid === stableUid;
     const rewardDrops = buildLeagueRewardDrops({
@@ -545,7 +595,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       weekId,
       groupId,
       leagueId,
-      contribution: myContribution,
       roomPoints: totalPoints,
       goal,
       rewards: rewardDrops,
@@ -579,6 +628,7 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       crown,
       balance: afterShards,
       shardsUpdatedAtMs: shardReward > 0 ? now : readInt(user.shards_updated_at_ms, 0),
+      claimedAtMs: now,
       rewards: {
         drops: rewardDrops,
         shards: shardReward,

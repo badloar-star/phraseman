@@ -4,6 +4,7 @@ import { getArenaDailyMax, getArenaShardRefillCost, getArenaShardRefillSlots } f
 const KEY = 'arena_daily_limit_v1';
 /** Доп. попытки за подарок уровня (сбрасывается в полночь вместе с count) */
 const BONUS_KEY = 'arena_daily_gift_bonus_v1';
+const BONUS_ONCE_KEY_PREFIX = 'arena_daily_gift_bonus_once_';
 /** Build-time defaults; runtime uses remote-tunable getters below. */
 export const ARENA_DAILY_MAX = 5;
 /** Покупка слотов рейтинг-матчей за осколки (модалка лимита арены). */
@@ -65,6 +66,26 @@ export async function addArenaPlaysBonusForToday(amount: number): Promise<void> 
   const t = todayStr();
   const cur = await readGiftExtra();
   await AsyncStorage.setItem(BONUS_KEY, JSON.stringify({ date: t, extra: cur + Math.floor(amount) }));
+}
+
+export async function addArenaPlaysBonusForTodayOnce(amount: number, idempotencyKey: string): Promise<void> {
+  if (!Number.isFinite(amount) || amount <= 0) return;
+  const safeKey = idempotencyKey.replace(/[^\w.-]/g, '_').slice(0, 160);
+  if (!safeKey) return addArenaPlaysBonusForToday(amount);
+  const markerKey = `${BONUS_ONCE_KEY_PREFIX}${safeKey}`;
+  if ((await AsyncStorage.getItem(markerKey).catch(() => null)) === '1') return;
+  const t = todayStr();
+  const cur = await readGiftExtra();
+  await AsyncStorage.multiSet([
+    [BONUS_KEY, JSON.stringify({ date: t, extra: cur + Math.floor(amount) })],
+    [markerKey, '1'],
+  ]);
+}
+
+export async function addArenaPlaysBonusForClaimDayOnce(amount: number, idempotencyKey: string, claimedAtMs?: number): Promise<void> {
+  const claimDay = claimedAtMs ? new Date(claimedAtMs).toISOString().slice(0, 10) : todayStr();
+  if (claimDay !== todayStr()) return;
+  await addArenaPlaysBonusForTodayOnce(amount, idempotencyKey);
 }
 
 export async function getDailyArenaCount(): Promise<number> {

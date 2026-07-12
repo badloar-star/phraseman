@@ -83,7 +83,7 @@ import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
-import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration } from '../home_screen_hydration';
+import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import AppMessagesInbox from '../../components/AppMessagesInbox';
@@ -98,7 +98,7 @@ import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
-import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_chest_rewards';
+import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
 import { shouldShowLeagueRace } from '../league_race_visibility';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
@@ -369,7 +369,7 @@ function LightSketchMenuImage({ width, height, lighten, align, ...props }: Light
     void lighten;
     return <Image {...props} style={imageStyle as any}/>;
 }
-function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number): {
+function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number, arenaBonus = 0, totalOverride?: number): {
     leagueName: string;
     progress: number;
     goal: number;
@@ -381,37 +381,18 @@ function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId
         return null;
     const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
     const goal = getLeagueChestGoal(leagueId);
-    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
+    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0)
+        + Math.max(0, Math.floor(Number(arenaBonus) || 0));
     const leader = sorted[0];
     return {
         leagueName,
-        progress: Math.min(goal, total),
+        progress: Math.min(goal, totalOverride == null ? total : Math.max(0, totalOverride)),
         goal,
         myContribution: Math.max(0, Math.floor(Number(sorted.find((p) => p.isMe)?.points) || 0)),
         leaderName: leader?.name || 'Player',
         leaderPoints: Math.max(0, Math.floor(Number(leader?.points) || 0)),
     };
 }
-function buildFallbackHomeLeagueChest(lang: Lang) {
-    return {
-        leagueName: triLang(lang, {
-            ru: 'Лига недели',
-            uk: 'Ліга тижня',
-            es: 'Liga semanal',
-            'pt-BR': "Liga semanal",
-            vi: "Giải đấu tuần",
-            id: "Liga mingguan",
-            tr: "Haftalık lig",
-            pl: "Liga tygodnia",
-        }),
-        progress: 0,
-        goal: getLeagueChestGoal(0),
-        myContribution: 0,
-        leaderName: 'Player',
-        leaderPoints: 0,
-    };
-}
-
 // ── Титулы: кэш вне рендера ──────────────────────────────────────────────────
 // Главная — самый часто перерисовываемый экран (энергия/XP/фокус). Раньше на
 // КАЖДЫЙ рендер строились ~60 объектов титулов + локализация, хотя модалка
@@ -570,6 +551,8 @@ export default function HomeScreen() {
     const snapshotStreak = appSnapshot.progress?.streak ?? 0;
     const snapshotTotalXp = appSnapshot.profile?.totalXp ?? 0;
     const snapshotShards = appSnapshot.progress?.shards ?? 0;
+    const initialTotalXP = hh?.totalXP ?? snapshotTotalXp;
+    const initialVisuals = resolveHomeProfileVisuals({ hydration: hh, snapshot: appSnapshot.profile });
     const [userName, setUserName] = useState(() => hh?.userName ?? snapshotName);
     const [streak, setStreak] = useState(() => hh?.streak ?? snapshotStreak);
     const [displayStreak, setDisplayStreak] = useState(() => hh?.displayStreak ?? hh?.streak ?? snapshotStreak);
@@ -586,7 +569,7 @@ export default function HomeScreen() {
         })
         : s.home.streakDays;
     const streakScaleAnim = useRef(new Animated.Value(1)).current;
-    const [totalXP, setTotalXP] = useState(() => hh?.totalXP ?? snapshotTotalXp);
+    const [totalXP, setTotalXP] = useState(() => initialTotalXP);
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!((homeStatsLoadedOnce && hh) || appSnapshot.profile || appSnapshot.progress));
     // true только когда загрузка ОБОРВАЛАСЬ и показывать нечего (первый запуск + оффлайн).
     // Если есть кэш/hydration — баннер НЕ показываем: экран деградирует до кэша молча.
@@ -655,10 +638,10 @@ export default function HomeScreen() {
     // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
     // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
     const [dueCount, setDueCount] = useState(0);
-    const [userAvatar, setUserAvatar] = useState(() => hh?.userAvatar ?? '🐣');
-    const [userAvatarAura, setUserAvatarAura] = useState<string | null>(null);
+    const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
+    const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
     const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip);
-    const [userFrame, setUserFrame] = useState(() => hh?.userFrame ?? 'plain');
+    const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
     // Бонусные баннеры
     const [loginBonus, setLoginBonus] = useState<{
         xp: number;
@@ -843,7 +826,7 @@ export default function HomeScreen() {
         myContribution: number;
         leaderName: string;
         leaderPoints: number;
-    } | null>(() => hh?.homeLeagueChest ?? buildFallbackHomeLeagueChest(lang));
+    } | null>(() => hh?.homeLeagueChest ?? null);
     const homeLeagueChatUnreadCount = useLeagueChatUnread({ active: false });
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
@@ -856,7 +839,13 @@ export default function HomeScreen() {
         if (!profile && !progress) return;
         setHomeStatsReady(true);
         if (profile?.name) setUserName((current) => current || profile.name);
-        if (profile && totalXP === 0 && profile.totalXp > 0) setTotalXP(profile.totalXp);
+        if (profile) {
+            if (totalXP === 0 && profile.totalXp > 0) setTotalXP(profile.totalXp);
+            const visuals = resolveHomeProfileVisuals({ snapshot: profile });
+            setUserAvatar((current) => current === visuals.avatar ? current : visuals.avatar);
+            setUserFrame((current) => current === visuals.frame ? current : visuals.frame);
+            setUserAvatarAura((current) => current === visuals.aura ? current : visuals.aura);
+        }
         if (progress && streak === 0 && progress.streak > 0) {
             setStreak(progress.streak);
             setDisplayStreak((current) => current || progress.streak);
@@ -1702,6 +1691,7 @@ export default function HomeScreen() {
                 premiumFreezeUsed: freeFreezeRaw === 'true',
                 totalXPMulti: baseMulti,
                 userAvatar: avatarSnap,
+                userAvatarAura: normalizeAvatarAuraId(savedAuraSnap) ?? null,
                 userFrame: frameSnap,
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
@@ -1775,6 +1765,12 @@ export default function HomeScreen() {
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
                 const showLeagueRace = shouldShowLeagueRace(leagueState.group?.length ?? 0, name);
+                const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
+                const matchingFreshBonus = freshLeagueBonus
+                    && freshLeagueBonus.weekId === leagueState.weekId
+                    && freshLeagueBonus.leagueId === leagueState.leagueId
+                    ? freshLeagueBonus
+                    : null;
                 const nextHomeLeagueChest = showLeagueRace
                     ? buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
                         ru: 'Лига недели',
@@ -1785,15 +1781,19 @@ export default function HomeScreen() {
                         id: "Liga mingguan",
                         tr: "Haftalık lig",
                         pl: "Liga tygodnia",
-                    }), leagueState.leagueId)
-                    : buildFallbackHomeLeagueChest(lang);
+                    }), leagueState.leagueId, matchingFreshBonus?.arenaBonus ?? 0, matchingFreshBonus?.progress)
+                    : null;
                 setHomeLeagueRaceVisible(showLeagueRace);
                 setEngineLeague(league);
                 setHomeLeagueChest(nextHomeLeagueChest);
+                patchHomeScreenHydration({
+                    homeLeagueRaceVisible: showLeagueRace,
+                    homeLeagueChest: nextHomeLeagueChest,
+                }, studyTarget);
             }
             else {
                 setHomeLeagueRaceVisible(false);
-                setHomeLeagueChest((prev) => prev ?? buildFallbackHomeLeagueChest(lang));
+                setHomeLeagueChest((prev) => prev);
             }
             if (leaguePending && mountedRef.current) {
                 const pendingSig = getLeagueResultSignature(leaguePending);
@@ -2567,7 +2567,7 @@ export default function HomeScreen() {
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <Animated.View style={sectionStyle(1)}>
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 1 : (isGoldTheme ? 1 : 0.5), borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : t.border, padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
               {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}

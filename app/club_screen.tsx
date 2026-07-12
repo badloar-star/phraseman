@@ -68,6 +68,7 @@ import {
   ensureLeagueChestRewards,
   fetchActiveLeagueCrowns,
   getLeagueChestGoal,
+  hasLeagueChestClaimOrPending,
   resolveMyLeagueGroupMeta,
   unlockLeagueGoldThemeReward,
   type LeagueBonusAdminPreview,
@@ -106,7 +107,9 @@ import { hasClubGiftFreeBoostFromLevel } from './club_boosts';
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
 // fetchGroupForUser возвращал только пользователя из-за PERMISSION_DENIED.
 const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
-const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
+// The bonus modal reads Firestore on app start, so the League screen must also
+// revalidate on every open; otherwise it can contradict a just-shown modal.
+const CLUB_REMOTE_REFRESH_MS = 45_000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
 const CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD = 54;
@@ -453,7 +456,6 @@ export default function ClubScreen() {
   const CLUB_LEADERBOARD_AVATAR_SIZE = 56;
   const ROW_HEIGHT_CLUB = 84;
   const myRowAnim = useRef(new Animated.Value(0)).current;
-  const leagueChestRewardCheckKeyRef = useRef<string | null>(null);
   const chatMetaRefreshAtRef = useRef(0);
 
   /** Подсказка про зону повышения: только первый раз за календарный день при открытии вкладки лиги. */
@@ -490,6 +492,7 @@ export default function ClubScreen() {
     isCrownWinner?: boolean;
     rewards?: LeagueChestRewardDrop[];
   } | null>(null);
+  const leagueChestReplayModalKeyRef = useRef('');
 
   const isMountedRef = useRef(true);
 
@@ -597,6 +600,20 @@ export default function ClubScreen() {
       };
     }, []),
   );
+
+  useEffect(() => {
+    let cancelled = false;
+    if ((leagueBonusAdminPreview && Date.now() < leagueBonusAdminPreview.expiresAt) || !leagueGroupMeta?.weekId || !leagueGroupMeta?.groupId) return () => {};
+    void hasLeagueChestClaimOrPending({
+      weekId: leagueGroupMeta.weekId,
+      groupId: leagueGroupMeta.groupId,
+    }).then((claimedOrPending) => {
+      if (!cancelled && isMountedRef.current) setLeagueChestClaimed(claimedOrPending);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [leagueBonusAdminPreview, leagueGroupMeta?.groupId, leagueGroupMeta?.weekId]);
 
   const LEAGUE_LOAD_TIMEOUT_MS = 22_000;
 
@@ -732,9 +749,9 @@ export default function ClubScreen() {
       // может зайти в Лиги и не увидеть LeagueResultModal, если последний refresh был <6h.
       const lastRemoteAtRaw = await AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY);
       const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
-      const within6h = (Date.now() - lastRemoteAt < CLUB_REMOTE_REFRESH_MS);
+      const withinRefreshTtl = (Date.now() - lastRemoteAt < CLUB_REMOTE_REFRESH_MS);
       const weekChanged = !!cachedLeague && cachedLeague.weekId !== getWeekId();
-      const shouldRefreshRemote = !!opts?.forceRemote || !within6h || weekChanged;
+      const shouldRefreshRemote = !!opts?.forceRemote || !withinRefreshTtl || weekChanged;
       if (!shouldRefreshRemote) return;
       invalidateLeagueGroupCache();
       const wp = await getMyWeekPoints();
@@ -927,12 +944,12 @@ export default function ClubScreen() {
   const claimLeagueChestReward = useCallback(async () => {
     if (!leagueRaceVisible || !leagueChestReady || leagueChestClaimed || leagueChestClaiming) return;
     if (leagueBonusAdminActive) {
+      setLeagueChestClaimed(true);
       setLeagueChestClaiming(true);
       try {
         const previewRewards = buildLeagueChestPreviewRewards(!!leagueBonusAdminPreview?.crownWinner);
         await unlockLeagueGoldThemeReward('admin_league_bonus_preview');
         if (!isMountedRef.current) return;
-        setLeagueChestClaimed(true);
         setLeagueChestOpenModal({
           crownName: leagueCrownWinnerName || userName || 'Fable9521',
           isCrownWinner: !!leagueBonusAdminPreview?.crownWinner,
@@ -954,9 +971,7 @@ export default function ClubScreen() {
       return;
     }
     if (!leagueGroupMeta || sortedGroup.length === 0) return;
-    const checkKey = `${leagueGroupMeta.weekId}:${leagueGroupMeta.groupId}:${Math.floor(myLeagueChestContribution)}`;
-    leagueChestRewardCheckKeyRef.current = checkKey;
-    setLeagueChestClaiming(true);
+    setLeagueChestClaimed(true);
     try {
       const res = await ensureLeagueChestRewards({
         weekId: leagueGroupMeta.weekId,
@@ -969,11 +984,9 @@ export default function ClubScreen() {
           isMe: m.isMe,
         })),
         chestReady: leagueChestReady,
-        myContribution: myLeagueChestContribution,
         studyTarget,
       });
       if (!isMountedRef.current) return;
-      if (res.claimed) setLeagueChestClaimed(true);
       if (res.rewards) {
         const drops = res.rewards.drops ?? [];
         const rewardCount = drops.length || 1;
@@ -1038,21 +1051,69 @@ export default function ClubScreen() {
           pl: 'Bonus ligi został już odebrany',
         }));
       } else {
+        setLeagueChestClaimed(false);
         emitAppEvent('action_toast', actionToastTri('info', {
-          ru: 'Бонус пока не готов или не хватает личного вклада',
-          uk: 'Бонус ще не готовий або бракує особистого внеску',
-          es: 'El bono aún no está listo o falta contribución personal',
-          'pt-BR': 'O bônus ainda não está pronto ou falta contribuição pessoal',
-          vi: 'Thưởng chưa sẵn sàng hoặc bạn chưa đóng góp đủ',
-          id: 'Bonus belum siap atau kontribusi pribadi belum cukup',
-          tr: 'Bonus henüz hazır değil veya kişisel katkı eksik',
-          pl: 'Bonus nie jest jeszcze gotowy albo brakuje osobistego wkładu',
+          ru: 'Бонус лиги пока не готов',
+          uk: 'Бонус ліги ще не готовий',
+          es: 'El bono de liga aún no está listo',
+          'pt-BR': 'O bônus da liga ainda não está pronto',
+          vi: 'Thưởng giải đấu chưa sẵn sàng',
+          id: 'Bonus liga belum siap',
+          tr: 'Lig bonusu henüz hazır değil',
+          pl: 'Bonus ligi nie jest jeszcze gotowy',
         }));
       }
+    } catch {
+      if (isMountedRef.current) setLeagueChestClaimed(false);
     } finally {
       if (isMountedRef.current) setLeagueChestClaiming(false);
     }
-  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, leagueChestClaiming, leagueBonusAdminActive, leagueBonusAdminPreview?.crownWinner, leagueCrownWinnerName, userName, myLeagueChestContribution, sortedGroup, arenaClubStableUid, studyTarget]);
+  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, leagueChestClaiming, leagueBonusAdminActive, leagueBonusAdminPreview?.crownWinner, leagueCrownWinnerName, userName, sortedGroup, arenaClubStableUid, studyTarget]);
+
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      if (leagueBonusAdminActive || !leagueRaceVisible || !leagueChestReady || !leagueGroupMeta || sortedGroup.length === 0) return () => {};
+      void (async () => {
+        const claimOrPending = await hasLeagueChestClaimOrPending({
+          weekId: leagueGroupMeta.weekId,
+          groupId: leagueGroupMeta.groupId,
+        }).catch(() => false);
+        if (!claimOrPending || cancelled || !isMountedRef.current) return;
+        setLeagueChestClaimed(true);
+        const res = await ensureLeagueChestRewards({
+          weekId: leagueGroupMeta.weekId,
+          groupId: leagueGroupMeta.groupId,
+          leagueId: leagueGroupMeta.leagueId,
+          members: sortedGroup.map((m) => ({
+            uid: m.uid,
+            name: m.name,
+            points: Math.max(0, Math.floor(Number(m.points) || 0)),
+            isMe: m.isMe,
+          })),
+          chestReady: leagueChestReady,
+          studyTarget,
+        });
+        if (cancelled || !isMountedRef.current) return;
+        if (res.rewards) {
+          const replayKey = `${leagueGroupMeta.weekId}:${leagueGroupMeta.groupId}`;
+          if (leagueChestReplayModalKeyRef.current !== replayKey) {
+            leagueChestReplayModalKeyRef.current = replayKey;
+            setLeagueChestOpenModal({
+              crownName: res.crown?.name,
+              isCrownWinner: !!res.crown?.uid && res.crown.uid === arenaClubStableUid,
+              rewards: res.rewards.drops ?? [],
+            });
+          }
+        } else if (!res.claimed) {
+          setLeagueChestClaimed(false);
+        }
+      })();
+      return () => {
+        cancelled = true;
+      };
+    }, [arenaClubStableUid, leagueBonusAdminActive, leagueChestReady, leagueGroupMeta, leagueRaceVisible, sortedGroup, studyTarget]),
+  );
 
   const showLeagueToast = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
     emitAppEvent('action_toast', {
@@ -1792,7 +1853,7 @@ export default function ClubScreen() {
         </LinearGradient>
         )}
 
-        <View style={{ backgroundColor:glassFill(t.bgSurface, 0.46), borderRadius:16, borderTopWidth:1, borderTopColor:glassFill(t.accent, 0.14), overflow:'hidden', marginTop:8 }}>
+        <View style={{ backgroundColor:glassFill(t.bgSurface, 0.46), borderRadius:16, overflow:'hidden', marginTop:8 }}>
           {showEmptyParticipants ? (
             <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
               {triLang(lang, {
@@ -1907,9 +1968,9 @@ export default function ClubScreen() {
                     </PremiumAvatarHalo>
                   </View>
                 </View>
-                <View style={{ flex:1, minWidth: 0 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
-                    <View style={{ flexShrink: 1, minWidth: 0 }}>
+                <View style={{ flex:1, minWidth: 0, paddingRight: 8 }}>
+                  <View style={{ minWidth: 0, maxWidth: '100%', overflow: 'hidden' }}>
+                    <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
                       {hasLeagueCrown ? (
                         <LeagueCrownName text={p.name} fontSize={f.body} count={displayLeagueCrownCount} />
                       ) : !!p.isVip ? (
@@ -1922,8 +1983,8 @@ export default function ClubScreen() {
                         </Text>
                       )}
                     </View>
-                    <ProfileCardBadge level={p.profileCardLevel} theme={p.profileCardTheme} />
                   </View>
+                  <ProfileCardBadge level={p.profileCardLevel} theme={p.profileCardTheme} style={{ marginTop: 3, maxWidth: '100%' }} />
                 </View>
                 {isMyRow && (
                   <View style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0, borderColor: t.accent + '55' }}>

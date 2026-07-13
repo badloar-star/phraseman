@@ -19,14 +19,15 @@ describe('OpenAI runtime cost controls', () => {
     expect(companion).not.toContain('(start the conversation: greet me warmly');
   });
 
-  test('weekly review and stats insights are generated from local templates, not paid callables', () => {
+  test('weekly review callable is Plus-only and stats insights remain local', () => {
     const weekly = read('app/weekly_review_client.ts');
     const stats = read('app/stats_insights_client.ts');
 
-    expect(weekly).toContain('buildLocalWeeklyReview');
+    expect(weekly).toContain("'weeklyReviewGenerate'");
+    expect(weekly).toContain('if (!options.isPremium)');
+    expect(weekly.indexOf('if (!options.isPremium)'))
+      .toBeLessThan(weekly.indexOf("import('@react-native-firebase/functions')"));
     expect(stats).toContain('buildLocalStatsInsights');
-    expect(weekly).not.toContain("weeklyReviewGenerate'");
-    expect(weekly).not.toContain('"weeklyReviewGenerate"');
     expect(stats).not.toContain("statsInsightsGenerate'");
     expect(stats).not.toContain('"statsInsightsGenerate"');
   });

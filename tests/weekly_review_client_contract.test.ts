@@ -6,11 +6,11 @@ describe('weekly review client contract', () => {
   const cardSource = fs.readFileSync(path.join(__dirname, '../app/WeeklyReviewCard.tsx'), 'utf8');
   const serverSource = fs.readFileSync(path.join(__dirname, '../functions/src/weekly_review.ts'), 'utf8');
 
-  it('premium regenerates daily, free — once a week (owner decision 2026-07-02)', () => {
-    expect(clientSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
-    expect(clientSource).toContain('const FREE_WINDOW_DAYS = 7');
-    expect(serverSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
-    expect(serverSource).toContain('const FREE_WINDOW_DAYS = 7');
+  it('Free never calls AI and Plus uses the server-owned rolling 24h window', () => {
+    expect(clientSource).toContain("if (!options.isPremium) return { status: 'free_eligible', snapshot }");
+    expect(clientSource).toContain("'weeklyReviewGenerate'");
+    expect(serverSource).toContain('const PLUS_WINDOW_MS = DAY_MS');
+    expect(serverSource).toContain('weekly_review_plus_required');
   });
 
   it('renders collapsed by default and expands only after a tap', () => {

@@ -1626,6 +1626,7 @@ export { adminGetVipSurveyWorkspace, adminListVipSurveyResponses, adminPreviewVi
 export { adminGetAlertsWorkspace, adminPreviewAlertsConfig, adminApplyAlertsConfig, adminPreviewAlertTest, adminQueueAlertTest } from './admin_alerts_control';
 export { adminGetPlusControlWorkspace, adminPreviewLegacyPlusMigration, adminApplyLegacyPlusMigration } from './admin_plus_control';
 export { adminGetVoiceResearchWorkspace, adminPreviewVoiceResearchMutation, adminApplyVoiceResearchMutation } from './admin_voice_research';
+export { adminGetSafetyModerationWorkspace, adminGetSafetyModerationSensitiveDetail } from './admin_safety_moderation';
 export { adminPreviewManualAccess, adminApplyManualAccess } from './admin_manual_access';
 export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';
 export {

@@ -8,6 +8,7 @@ import {
   projectConsentAggregateInput,
   projectSafetyFlagSummary,
   projectUserReport,
+  namedSourceState,
   sourceState,
 } from './admin_safety_moderation_core';
 
@@ -93,6 +94,9 @@ describe('Admin Safety & Moderation core', () => {
     });
     expect(sourceState({ scanned: 0, matched: 0, cap: 500, hasMore: false, capturedAtMs: NOW, error: 'permission-denied' })).toEqual({
       status: 'error', scanned: 0, matched: 0, cap: 500, capturedAtMs: NOW, reason: 'permission-denied',
+    });
+    expect(namedSourceState('user_reports', { scanned: 2, matched: 1, cap: 500, hasMore: false, capturedAtMs: NOW })).toEqual({
+      name: 'user_reports', status: 'ready', scanned: 2, matched: 1, cap: 500, capturedAtMs: NOW, reason: '',
     });
   });
 

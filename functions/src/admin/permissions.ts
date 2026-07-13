@@ -6,6 +6,16 @@ export type AdminPermission =
   | 'users.research.read'
   | 'users.research.export'
   | 'users.research.write'
+  | 'users.moderation.read'
+  | 'users.moderation.safety.read'
+  | 'users.moderation.sensitive.read'
+  | 'users.moderation.aggregate.read'
+  | 'users.moderation.export'
+  | 'users.moderation.write'
+  | 'users.moderation.identity.write'
+  | 'users.moderation.ban.write'
+  | 'users.moderation.approve'
+  | 'users.moderation.restore'
   | 'money.read'
   | 'money.manual_access.write'
   | 'content.read'
@@ -103,6 +113,19 @@ const APPLICATION_OPERATIONS_PERMISSIONS: readonly AdminPermission[] = [
   'application.alerts.test',
 ];
 
+const MODERATION_ADMIN_PERMISSIONS: readonly AdminPermission[] = [
+  'users.moderation.read',
+  'users.moderation.safety.read',
+  'users.moderation.sensitive.read',
+  'users.moderation.aggregate.read',
+  'users.moderation.export',
+  'users.moderation.write',
+  'users.moderation.identity.write',
+  'users.moderation.ban.write',
+  'users.moderation.approve',
+  'users.moderation.restore',
+];
+
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -114,6 +137,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...EMAIL_ADMIN_PERMISSIONS,
     ...CACHE_ADMIN_PERMISSIONS,
     ...APPLICATION_OPERATIONS_PERMISSIONS,
+    ...MODERATION_ADMIN_PERMISSIONS,
   ]),
   admin: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -125,11 +149,12 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...EMAIL_ADMIN_PERMISSIONS,
     ...CACHE_ADMIN_PERMISSIONS,
     ...APPLICATION_OPERATIONS_PERMISSIONS,
+    ...MODERATION_ADMIN_PERMISSIONS,
   ]),
-  support: new Set(['users.read', 'users.research.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
+  support: new Set(['users.read', 'users.research.read', 'users.moderation.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
   content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
-  moderator: new Set(['users.read', 'users.research.read', 'community.moderate', 'reports.read', 'reports.status.write']),
-  analyst: new Set(['users.read', 'users.research.read', 'users.research.export', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
+  moderator: new Set(['users.read', 'users.research.read', 'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read', 'users.moderation.write', 'community.moderate', 'reports.read', 'reports.status.write']),
+  analyst: new Set(['users.read', 'users.research.read', 'users.research.export', 'users.moderation.aggregate.read', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
   developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'diagnostics.read', 'briefing.read', 'diagnostics.status.write']),
 };
 

@@ -96,6 +96,39 @@ describe('admin permission matrix', () => {
     expect(hasPermission('analyst', 'users.research.write')).toBe(false);
   });
 
+  it('separates moderation queues, sensitive text, aggregates and dangerous actions', () => {
+    expect(hasPermission('support', 'users.moderation.read')).toBe(true);
+    expect(hasPermission('support', 'users.moderation.safety.read')).toBe(false);
+    expect(hasPermission('support', 'users.moderation.sensitive.read')).toBe(false);
+    expect(hasPermission('support', 'users.moderation.write')).toBe(false);
+
+    expect(hasPermission('moderator', 'users.moderation.read')).toBe(true);
+    expect(hasPermission('moderator', 'users.moderation.safety.read')).toBe(true);
+    expect(hasPermission('moderator', 'users.moderation.sensitive.read')).toBe(true);
+    expect(hasPermission('moderator', 'users.moderation.write')).toBe(true);
+    expect(hasPermission('moderator', 'users.moderation.identity.write')).toBe(false);
+    expect(hasPermission('moderator', 'users.moderation.ban.write')).toBe(false);
+
+    expect(hasPermission('analyst', 'users.moderation.aggregate.read')).toBe(true);
+    expect(hasPermission('analyst', 'users.moderation.read')).toBe(false);
+    expect(hasPermission('analyst', 'users.moderation.safety.read')).toBe(false);
+    expect(hasPermission('analyst', 'users.moderation.export')).toBe(false);
+
+    for (const role of ['owner', 'admin'] as const) {
+      for (const permission of [
+        'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read',
+        'users.moderation.aggregate.read', 'users.moderation.export', 'users.moderation.write',
+        'users.moderation.identity.write', 'users.moderation.ban.write', 'users.moderation.approve',
+        'users.moderation.restore',
+      ] as const) expect(hasPermission(role, permission)).toBe(true);
+    }
+
+    for (const role of ['content_editor', 'developer'] as const) {
+      expect(hasPermission(role, 'users.moderation.read')).toBe(false);
+      expect(hasPermission(role, 'users.moderation.aggregate.read')).toBe(false);
+    }
+  });
+
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -114,6 +147,10 @@ describe('admin permission matrix', () => {
       'application.review_promo.read', 'application.review_promo.write',
       'application.alerts.read', 'application.alerts.write', 'application.alerts.test',
       'users.research.read', 'users.research.export', 'users.research.write',
+      'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read',
+      'users.moderation.aggregate.read', 'users.moderation.export', 'users.moderation.write',
+      'users.moderation.identity.write', 'users.moderation.ban.write', 'users.moderation.approve',
+      'users.moderation.restore',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

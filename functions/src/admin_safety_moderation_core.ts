@@ -213,6 +213,10 @@ export function sourceState(input: SourceStateInput) {
   });
 }
 
+export function namedSourceState(name: unknown, input: SourceStateInput) {
+  return Object.freeze({ name: text(name, 80), ...sourceState(input) });
+}
+
 export interface PolicyEvidenceOptions {
   nowMs?: number;
   staleAfterMs?: number;

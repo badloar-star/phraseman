@@ -142,6 +142,40 @@ describe('weekly review global budget', () => {
     expect(Array.from(db.docs.keys()).filter((path) => path.startsWith('weekly_review_billing/'))).toHaveLength(1);
   });
 
+  it('rejects a non-positive weekly cap instead of silently disabling the safeguard', async () => {
+    const db = new MemoryFirestore();
+    const lease = await acquireGenerationLease(db as any, {
+      stableUid: 'stable-1', requestHash: 'hash', ownerAuthUid: 'auth-a', nowMs: NOW, leaseId: 'lease-a',
+    });
+    await expect(reserveWeeklyBudget(db as any, {
+      quotaRef: lease.quotaRef, leaseId: lease.leaseId, stableUid: 'stable-1', cap: 0, nowMs: NOW,
+    })).rejects.toBeInstanceOf(HttpsError);
+  });
+
+  it('keeps actual token usage when a paid response is structurally invalid', async () => {
+    const db = new MemoryFirestore();
+    const lease = await acquireGenerationLease(db as any, {
+      stableUid: 'stable-1', requestHash: 'hash', ownerAuthUid: 'auth-a', nowMs: NOW, leaseId: 'lease-a',
+    });
+    const token = await reserveWeeklyBudget(db as any, {
+      quotaRef: lease.quotaRef, leaseId: lease.leaseId, stableUid: 'stable-1', cap: 1, nowMs: NOW,
+    });
+    await settleWeeklyBudgetUsedAndRecordBilling(db as any, {
+      token,
+      billing: {
+        stableUidHash: 'safe-hash', authUid: 'auth-a', model: 'm', lang: 'ru', studyTarget: 'en',
+        promptTokens: 321, completionTokens: 87, totalTokens: 408,
+      },
+      nowMs: NOW + 1,
+    });
+    await finalizeWeeklyReviewBillingOutcome(db as any, {
+      leaseId: 'lease-a', outcome: 'invalid_response', nowMs: NOW + 2,
+    });
+    expect(db.docs.get('weekly_review_billing/lease-a')).toMatchObject({
+      outcome: 'invalid_response', promptTokens: 321, completionTokens: 87, totalTokens: 408,
+    });
+  });
+
   it('refunds a pending reservation using the token day and does not spend budget', async () => {
     const db = new MemoryFirestore();
     const lease = await acquireGenerationLease(db as any, {

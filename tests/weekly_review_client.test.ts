@@ -1,5 +1,6 @@
 import {
   generateWeeklyReview,
+  getWeeklyReviewState,
   type WeeklyReviewClientDependencies,
   type WeeklyReviewCallableResult,
   type WeeklyReviewStoredV2,
@@ -148,6 +149,17 @@ describe('weekly review client account-scoped cache', () => {
     const state = await generateWeeklyReview({ lang: 'ru', isPremium: true, aiV2Enabled: true }, deps);
     expect(state.status).toBe('cooldown');
     expect(state.status === 'cooldown' && state.review).toEqual(review);
+  });
+
+  it('marks an expired cached review ready so the card auto-generates the next daily review', async () => {
+    const { deps, storage } = makeDeps({ aiEnabled: () => true });
+    storage.getItem.mockResolvedValue(JSON.stringify(storedEnvelope(500)));
+
+    const state = await getWeeklyReviewState({ lang: 'ru', isPremium: true }, deps);
+
+    expect(state.status).toBe('plus_ready_to_generate');
+    expect(state.status === 'plus_ready_to_generate' && state.fallback).toEqual(review);
+    expect(deps.requestCallable).not.toHaveBeenCalled();
   });
 
   it('separates lang/schema/account keys and deletes legacy only after V2 save', async () => {

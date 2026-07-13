@@ -104,6 +104,11 @@ describe('openai_jobs_config — resolveJobConfig', () => {
     const db = fakeDb({ stats: { globalDailyCap: -50 } });
     expect((await resolveJobConfig(db, 'stats')).globalDailyCap).toBe(0);
   });
+
+  it('keeps the weekly paid-work cap positive even when admin config is zero or negative', async () => {
+    expect((await resolveJobConfig(fakeDb({ weekly: { globalDailyCap: 0 } }), 'weekly')).globalDailyCap).toBe(1);
+    expect((await resolveJobConfig(fakeDb({ weekly: { globalDailyCap: -50 } }), 'weekly')).globalDailyCap).toBe(1);
+  });
 });
 
 describe('openai_jobs_config — assertJobEnabled', () => {

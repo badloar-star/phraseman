@@ -66,3 +66,17 @@ The in-app browser could not reach the ambient local URL because `http://localho
 ## Production status
 
 No Firebase deploy was run. No Remote Config or server rollout flag was enabled. The implementation is fail-closed and ready for the controlled checklist in `docs/rollouts/weekly-review-v2-rollout.md`.
+
+## Final Advisor remediation
+
+The first final review identified three release-blocking gaps. All three were corrected with regression coverage:
+
+- an expired Plus cache now returns `plus_ready_to_generate` while the V2 flag is enabled, so opening the card starts the next daily review automatically;
+- paid-response token usage is read and persisted before structured-output validation, so `invalid_response` keeps the actual provider usage when the provider returned normal JSON;
+- weekly config clamps the daily cap to at least 1, and the reservation function independently rejects any non-positive cap instead of treating it as unlimited.
+
+Fresh remediation checks:
+
+- weekly client: 10/10 passed;
+- Functions config, behavior, transaction and prompt-security suites: 47/47 passed;
+- strict Functions TypeScript compile to ignored temporary output: passed.

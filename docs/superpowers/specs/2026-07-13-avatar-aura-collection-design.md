@@ -1,7 +1,7 @@
 # Phraseman Avatar Aura Collection Design
 
 Date: 2026-07-13
-Status: Draft for user review
+Status: Approved by user
 Owner: Codex design pass
 
 ## Goal
@@ -137,7 +137,8 @@ paid-gold Plus wins over admin-green Plus.
 
 - Keep ID `aura-nimbus`, name Nimbus/Нимб, and the existing beta-tester admin
   grant path.
-- Use three non-rotating blue breathing layers and a soft vertical light accent.
+- Use three non-rotating blue breathing layers. The rejected white vertical
+  stripe/light beam must not exist.
 - Set `acquisition: 'admin'`.
 - Do not silently turn Nimbus into a Top Helpers reward.
 

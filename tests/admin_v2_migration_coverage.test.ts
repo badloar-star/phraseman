@@ -44,7 +44,7 @@ describe('Admin v2 migration coverage', () => {
       ],
     });
     expect(board.capabilityCoverage).toHaveLength(59);
-    expect(board.summary.capabilities).toEqual({ total: 59, inventory: 0, guarded: 36, fallback: 23, ported: 0, blocked: 0 });
+    expect(board.summary.capabilities).toEqual({ total: 59, inventory: 0, guarded: 39, fallback: 20, ported: 0, blocked: 0 });
     expect(board.buttonCoverage.every((row) => row.status === 'inventory' || row.status === 'fallback')).toBe(true);
     expect(board.functionCoverage.every((row) => row.status === 'inventory' || row.status === 'fallback')).toBe(true);
   });

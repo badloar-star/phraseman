@@ -23,11 +23,11 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly thirty-six proven native capabilities as guarded', () => {
+  test('marks exactly thirty-nine proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
-    expect(native).toHaveLength(36);
+    expect(native).toHaveLength(39);
     expect(native.map(({ id, nativeRoute }) => [id, nativeRoute])).toEqual(expect.arrayContaining([
       ['analytics', 'analytics'],
       ['alerts', 'alerts'],
@@ -65,6 +65,9 @@ describe('Admin v2 native capability routing', () => {
       ['age-consent', 'safety-moderation'],
       ['compliance-radar', 'safety-moderation'],
       ['ban-list', 'safety-moderation'],
+      ['app-health', 'diagnostics'],
+      ['archive', 'diagnostics'],
+      ['changelog-0608', 'diagnostics'],
     ]));
     expect(native.every((capability) => capability.migrationStatus === 'guarded')).toBe(true);
     expect(registry.filter((capability) => !capability.nativeRoute).every((capability) => capability.migrationStatus === 'fallback')).toBe(true);
@@ -100,6 +103,12 @@ describe('Admin v2 native capability routing', () => {
     const router = read('admin/v2/scripts/admin-router.js');
     expect(router).toContain("'safety-moderation': 'safety-moderation'");
     expect(router).toMatch(/SUB_ROUTES[^\n]+['\"]safety-moderation['\"]/);
+  });
+
+  test('routes every legacy diagnostics entry point into the unified diagnostics workspace', () => {
+    for (const id of ['app-health', 'archive', 'changelog-0608']) {
+      expect(resolveCapabilityHash(`#${id}`)).toEqual({ resolved: true, route: 'diagnostics', capabilityId: id });
+    }
   });
 
   test('keeps a top-level route native when a legacy capability has the same id', () => {

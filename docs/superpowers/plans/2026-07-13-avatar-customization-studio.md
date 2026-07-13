@@ -33,6 +33,7 @@
 - `tests/customization_purchase_intent.test.ts`.
 - `tests/customization_purchase_confirmation.test.ts`.
 - `tests/shards_idempotent_spend.test.ts`.
+- `tests/cloud_sync_customization_account_isolation.test.ts`.
 - `tests/avatar_select_studio_contract.test.ts`.
 - `tests/avatar_select_first_frame_contract.test.ts`.
 
@@ -42,6 +43,7 @@
 - `constants/avatar_auras.ts` — переэкспортировать aura keys из лёгкого модуля.
 - `app/level_gift_system.ts` — сохранить прежний экспорт подарочного ключа как alias.
 - `app/shards_system.ts` — добавить opt-in idempotency key для безопасного повторного spend.
+- `app/cloud_sync.ts` — включить intent/ledger в полный account-local wipe.
 - `app/app_snapshot_store.ts` — добавить поле `customization?: CustomizationSnapshot`.
 - `app/app_snapshot_bootstrap.ts` — включить ключи кастомизации в ранний `multiGet`.
 - `app/avatar_select.tsx` — заменить монолитный экран на координатор студии.
@@ -148,12 +150,18 @@ export const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
 export const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
 export const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
 export const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
+export const CUSTOMIZATION_PURCHASE_INTENT_KEY = 'customization_purchase_intent_v1';
+export const SHARD_SPEND_OP_LEDGER_KEY = 'shard_spend_op_ledger_v1';
 export const CUSTOMIZATION_STORAGE_KEYS = [
   USER_AVATAR_AURA_KEY,
   CUSTOM_AVATAR_OWNED_KEY,
   CUSTOM_AVATAR_GIFT_OWNED_KEY,
   AVATAR_AURA_OWNED_KEY,
   AVATAR_AURA_GIFT_OWNED_KEY,
+] as const;
+export const CUSTOMIZATION_ACCOUNT_LOCAL_KEYS = [
+  CUSTOMIZATION_PURCHASE_INTENT_KEY,
+  SHARD_SPEND_OP_LEDGER_KEY,
 ] as const;
 
 // Existing modules import/re-export these lightweight constants.
@@ -228,6 +236,34 @@ it('seeds avatar studio from the snapshot instead of fake defaults', () => {
   expect(source).not.toContain('const [activeAuraId, setActiveAuraId] = useState<string | null>(null)');
 });
 
+it('exposes the complete first-frame state before delayed storage resolves', async () => {
+  const hydrated: CustomizationSnapshot = {
+    source: 'storage', updatedAt: 100,
+    activeAvatar: 'custom:custom-gen-41:aurora:white',
+    storedAuraSelection: 'aura-aurora',
+    totalXp: 1250, level: 18, shards: 77,
+    ownedAvatars: { 'custom-gen-41': 'aurora:white' },
+    ownedAuras: { 'aura-aurora': true },
+    giftedAvatarId: null, giftedAuraId: null,
+  };
+  let resolveFresh!: (value: CustomizationSnapshot) => void;
+  const delayed = new Promise<CustomizationSnapshot>((resolve) => { resolveFresh = resolve; });
+  const initial = createCustomizationInitialState({ customization: hydrated });
+
+  expect(initial.confirmed).toEqual(hydrated);
+  expect(initial.previewAvatarValue).toBe(hydrated.activeAvatar);
+  expect(initial.previewStoredAuraSelection).toBe(hydrated.storedAuraSelection);
+  expect(initial.shards).toBe(77);
+  expect(initial.ownedAvatars['custom-gen-41']).toBe('aurora:white');
+
+  const publish = jest.fn();
+  const pending = revalidateCustomizationSnapshot(initial.confirmed, () => delayed, publish);
+  expect(publish).not.toHaveBeenCalled();
+  expect(initial.previewAvatarValue).toBe('custom:custom-gen-41:aurora:white');
+  resolveFresh(hydrated);
+  await pending;
+});
+
 it('publishes no update while delayed storage returns equal data', async () => {
   const current = buildCustomizationSnapshot(new Map(), 100, 4);
   let resolveFresh!: (value: CustomizationSnapshot) => void;
@@ -251,6 +287,8 @@ it('publishes one coherent update when delayed storage differs', async () => {
 ```
 
 В `app_snapshot_store_contract` добавить поведенческую проверку: записать снимок с owned/style данными, вызвать `resetAppSnapshotForAccountSwitch()` и проверить `expect(getAppSnapshot().customization).toBeUndefined()`.
+
+`createCustomizationInitialState` — чистый синхронный builder. Route обязан передать его третьим аргументом initializer-а `useReducer`; source-контракт проверяет этот вызов. Поэтому тест выше проверяет фактический вход первого render, а не только фоновый `revalidate`.
 
 - [ ] **Step 2: Запустить только новые/изменённые контракты**
 
@@ -303,19 +341,21 @@ patchAppSnapshot({
 
 ```ts
 const snapshotCustomization = useAppSnapshotSelector((snapshot) => snapshot.customization);
-const [confirmed, setConfirmed] = useState(() =>
-  snapshotCustomization ?? createCustomizationFallback(getAppSnapshot()),
+const [studioState, dispatchStudio] = useReducer(
+  customizationStudioReducer,
+  getAppSnapshot(),
+  createCustomizationInitialState,
 );
 
 useEffect(() => {
   if (!snapshotCustomization) return;
-  setConfirmed((current) =>
-    customizationSnapshotsEqual(current, snapshotCustomization) ? current : snapshotCustomization,
-  );
-}, [snapshotCustomization]);
+  if (!customizationSnapshotsEqual(studioState.confirmed, snapshotCustomization)) {
+    dispatchStudio({ type: 'hydrate', snapshot: snapshotCustomization });
+  }
+}, [snapshotCustomization, studioState.confirmed]);
 
 const publishFreshSnapshot = useCallback((fresh: CustomizationSnapshot) => {
-  setConfirmed((current) => customizationSnapshotsEqual(current, fresh) ? current : fresh);
+  dispatchStudio({ type: 'hydrate', snapshot: fresh });
   patchAppSnapshot({ customization: fresh });
 }, []);
 ```
@@ -613,11 +653,19 @@ git commit -m "feat: add composite customization draft"
 - Create: `tests/customization_purchase_intent.test.ts`
 - Create: `tests/shards_idempotent_spend.test.ts`
 - Modify: `app/shards_system.ts`
+- Modify: `app/cloud_sync.ts`
 - Modify: `app/avatar_select.tsx`
+- Create: `tests/cloud_sync_customization_account_isolation.test.ts`
 
 - [ ] **Step 1: Написать падающие service-тесты с mock-зависимостями**
 
 ```ts
+const previousSnapshot = makeCustomizationSnapshot({
+  activeAvatar: '18',
+  storedAuraSelection: 'aura-flame-18',
+  level: 18,
+});
+
 const availableInput = {
   avatarValue: 'custom:custom-gen-41:violet:black',
   storedAuraSelection: 'none',
@@ -643,6 +691,7 @@ function makeDeps() {
     },
     getShardsBalance: jest.fn().mockResolvedValue(100),
     spendShardsIdempotent: jest.fn().mockResolvedValue('applied'),
+    getCurrentSnapshot: jest.fn().mockReturnValue(previousSnapshot),
     publishSnapshot: jest.fn(),
     invalidateCaches: jest.fn().mockResolvedValue(undefined),
     syncCloud: jest.fn(),
@@ -650,24 +699,41 @@ function makeDeps() {
   } satisfies CustomizationServiceDeps;
 }
 
-it('writes avatar, frame and explicit aura in one multiSet', async () => {
+it('publishes the complete draft immediately, then persists and syncs', async () => {
   const deps = makeDeps();
-  await applyCustomizationDraft(availableInput, deps);
+  let finishWrite!: () => void;
+  deps.storage.multiSet.mockReturnValueOnce(new Promise<void>((resolve) => { finishWrite = resolve; }));
+  const pending = applyCustomizationDraft(availableInput, deps);
+
+  expect(deps.publishSnapshot).toHaveBeenCalledTimes(1);
+  expect(deps.publishSnapshot).toHaveBeenLastCalledWith(expect.objectContaining({
+    activeAvatar: availableInput.avatarValue,
+    storedAuraSelection: availableInput.storedAuraSelection,
+  }));
+  expect(deps.syncCloud).not.toHaveBeenCalled();
+  finishWrite();
+  await pending;
+
   expect(deps.storage.multiSet).toHaveBeenCalledWith(expect.arrayContaining([
     ['user_avatar', availableInput.avatarValue],
     ['user_frame', availableInput.frameId],
     ['user_avatar_aura', availableInput.storedAuraSelection],
   ]));
-  expect(deps.publishSnapshot).toHaveBeenCalledTimes(1);
   expect(deps.syncCloud).toHaveBeenCalledTimes(1);
 });
 
-it('does not publish or sync when local multiSet rejects', async () => {
+it('rolls both fields back and does not sync when local multiSet rejects', async () => {
   const deps = makeDeps();
   deps.storage.multiSet.mockRejectedValueOnce(new Error('disk'));
   await expect(applyCustomizationDraft(availableInput, deps)).rejects.toThrow('disk');
-  expect(deps.publishSnapshot).not.toHaveBeenCalled();
+  expect(deps.publishSnapshot).toHaveBeenNthCalledWith(1, expect.objectContaining({
+    activeAvatar: availableInput.avatarValue,
+    storedAuraSelection: 'none',
+  }));
+  expect(deps.publishSnapshot).toHaveBeenNthCalledWith(2, previousSnapshot);
+  expect(deps.invalidateCaches).not.toHaveBeenCalled();
   expect(deps.syncCloud).not.toHaveBeenCalled();
+  expect(deps.syncPublicProfile).not.toHaveBeenCalled();
 });
 
 it('never spends twice for a confirmed purchase', async () => {
@@ -708,6 +774,24 @@ it('retries the same charged intent without a second debit, then grants ownershi
   expect(deps.storage.multiRemove).toHaveBeenCalledWith(['customization_purchase_intent_v1']);
 });
 
+it('restores buy-and-apply from a granted intent and applies the captured draft once', async () => {
+  const deps = makeDeps();
+  const intent = makePurchaseIntent({
+    ...purchaseInput,
+    mode: 'buy-and-apply',
+    applyInput: availableInput,
+  }, { opId: 'customization:resume-apply', phase: 'granted' });
+
+  deps.storage.multiRemove.mockRejectedValueOnce(new Error('crash after apply'));
+  await expect(resumeCustomizationPurchase(intent, deps)).rejects.toThrow('crash after apply');
+  deps.getCurrentSnapshot.mockReturnValue(snapshotFor(availableInput));
+  await resumeCustomizationPurchase(intent, deps);
+
+  expect(deps.spendShardsIdempotent).not.toHaveBeenCalled();
+  expect(deps.syncCloud).toHaveBeenCalledTimes(1);
+  expect(deps.syncPublicProfile).toHaveBeenCalledTimes(1);
+});
+
 it('resets to the level avatar while preserving the stored aura selection', async () => {
   const deps = makeDeps();
   await resetToLevelAvatar({ level: 18, storedAuraSelection: 'none' }, deps);
@@ -743,6 +827,7 @@ export interface CustomizationServiceDeps {
   storage: Pick<typeof AsyncStorage, 'multiSet' | 'multiRemove' | 'getItem'>;
   getShardsBalance: typeof getShardsBalance;
   spendShardsIdempotent: typeof spendShardsIdempotent;
+  getCurrentSnapshot: () => CustomizationSnapshot;
   publishSnapshot: (snapshot: CustomizationSnapshot) => void;
   invalidateCaches: (avatar: string, storedAuraSelection: string | null) => Promise<void>;
   syncCloud: (mode: 'immediate' | 'deferred') => void;
@@ -756,17 +841,22 @@ export interface ApplyCustomizationInput {
   frameId: string;
 }
 
-export interface PurchaseCustomizationInput {
+interface PurchaseCustomizationBase {
   target: 'avatar' | 'aura';
   itemId: string;
   cost: number;
   spendReason: 'custom_avatar' | 'custom_avatar_restyle' | 'avatar_aura';
-  mode: 'buy-only' | 'buy-and-apply';
   ownedValue: true | string;
 }
+
+export type PurchaseCustomizationInput =
+  | (PurchaseCustomizationBase & { mode: 'buy-only'; applyInput?: never })
+  | (PurchaseCustomizationBase & { mode: 'buy-and-apply'; applyInput: ApplyCustomizationInput });
 ```
 
-Порядок `applyCustomizationDraft`: повторная валидация доступности → единый `multiSet` → patch app snapshot → обновление зависимых локальных кэшей → `emitAppEvent('xp_changed')` → ровно по одному cloud/public sync. Для `storedAuraSelection === null` в storage записывается пустая строка; `none` остаётся явным `none`. В hero вычисляется `effectivePreviewAuraId`, но storage, кэши и существующий public-sync получают именно stored selection, поэтому Premium/VIP fallback не превращается случайно в пользовательский выбор. Если `multiSet` падает, snapshot и внешняя синхронизация не меняются.
+Порядок `applyCustomizationDraft`: повторная валидация доступности → сохранить предыдущий confirmed snapshot → синхронно опубликовать полный optimistic snapshot avatar+aura → единый `multiSet` → обновление зависимых локальных кэшей → `emitAppEvent('xp_changed')` → ровно по одному cloud/public sync. Функция не делает `await` до optimistic publish, поэтому видимый результат появляется в тот же кадр. Для `storedAuraSelection === null` в storage записывается пустая строка; `none` остаётся явным `none`. В hero вычисляется `effectivePreviewAuraId`, но storage, кэши и существующий public-sync получают именно stored selection, поэтому Premium/VIP fallback не превращается случайно в пользовательский выбор.
+
+Если локальный `multiSet` падает, сервис одним publish возвращает предыдущий confirmed snapshot целиком (avatar и aura вместе), не трогает зависимые кэши и не запускает cloud/public sync. Если текущий confirmed snapshot уже содержательно равен `ApplyCustomizationInput`, apply является идемпотентным no-op; это позволяет безопасно завершить восстановленный intent после сбоя между apply и удалением intent.
 
 `resetToLevelAvatar` вычисляет строковый level-avatar и `getBestFrameForLevel(level).id`, сохраняет текущую stored aura selection и проходит через тот же apply pipeline. Тест проверяет вычисленное значение, инвалидирование кэшей и ровно один cloud/public sync, а не только наличие текста кнопки.
 
@@ -799,7 +889,7 @@ export interface CustomizationPurchaseIntent extends PurchaseCustomizationInput 
   v: 1;
   accountScope: string;
   opId: string;
-  phase: 'prepared' | 'charged';
+  phase: 'prepared' | 'charged' | 'granted';
   createdAt: number;
 }
 ```
@@ -808,26 +898,30 @@ export interface CustomizationPurchaseIntent extends PurchaseCustomizationInput 
 
 1. `prepareCustomizationPurchase` валидирует цель/цену, добавляет текущий stable account scope и сохраняет `prepared` до списания.
 2. `resumeCustomizationPurchase` для `prepared` вызывает `spendShardsIdempotent` с тем же `opId`; `applied` и `already-applied` переводят intent в `charged`.
-3. Для `charged` сервис записывает owned map. Ошибка оставляет intent в `charged`, не меняет профиль и не вызывает apply.
-4. Только после успешного grant intent удаляется; `buy-only` обновляет каталог, `buy-and-apply` затем вызывает `applyCustomizationDraft`.
-5. При монтировании route незавершённый intent возобновляется тем же `opId` только при совпадении `accountScope`; чужой/повреждённый intent не исполняется. Account reset удаляет intent вместе с customization snapshot.
+3. Для `charged` сервис одним `multiSet` записывает owned map и intent в фазе `granted`. Ошибка оставляет intent в `charged`, не меняет профиль и не вызывает apply.
+4. Для `buy-only` granted intent удаляется после обновления каталога. Для `buy-and-apply` intent обязан содержать валидируемый полный `applyInput`; сервис идемпотентно применяет именно этот составной draft и только затем удаляет intent. Если процесс упал после apply, повтор видит уже равный confirmed snapshot, не делает второй publish/sync/spend и лишь удаляет intent.
+5. При монтировании route незавершённый intent возобновляется тем же `opId` только при совпадении `accountScope`; чужой/повреждённый intent не исполняется.
 
 Так сбой между списанием и выдачей предмета восстанавливается без второго списания. Списание не считается транзакцией вместе с профильным выбором: профиль меняется только после подтверждённой выдачи владения.
 
-- [ ] **Step 6: Перенести существующие helper-ы из маршрута без изменения контрактов**
+- [ ] **Step 6: Очистить durable-ключи при полном переходе между аккаунтами**
+
+Добавить `CUSTOMIZATION_ACCOUNT_LOCAL_KEYS` в `accountLocalDataKeysForToday()` в `app/cloud_sync.ts`. Поведенческий тест записывает sentinel в `customization_purchase_intent_v1` и `shard_spend_op_ledger_v1`, вызывает `wipeLocalAccountData()`, затем проверяет, что оба значения стали `null`, а in-memory customization snapshot очищен. Это покрывает реальный account-switch wipe, а не только `resetAppSnapshotForAccountSwitch()`.
+
+- [ ] **Step 7: Перенести существующие helper-ы из маршрута без изменения контрактов**
 
 Перенести `syncAvatarDisplayToCloud`, `writeProfileAvatarSnapshot`, `invalidateAvatarDependentCaches`, парсинг owned maps и операции покупки в сервис/снимок. Оставить в маршруте только вызовы use-case. Не менять ключи storage, причины списания или режимы immediate/deferred.
 
-- [ ] **Step 7: Проверить сервис и существующие облачные контракты**
+- [ ] **Step 8: Проверить сервис и существующие облачные контракты**
 
-Run: `npx jest --runInBand --runTestsByPath tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts tests/cloud_sync_owned_aura_merge.test.ts tests/avatar_select_vip_aura_contract.test.ts`
+Run: `npx jest --runInBand --runTestsByPath tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts tests/cloud_sync_customization_account_isolation.test.ts tests/cloud_sync_owned_aura_merge.test.ts tests/avatar_select_vip_aura_contract.test.ts`
 
 Expected: PASS; повтор с тем же opId не уменьшает баланс второй раз, write-failure после charge сохраняет intent, профиль не меняется до grant, reward-only не попадает в purchase path.
 
-- [ ] **Step 8: Зафиксировать этап**
+- [ ] **Step 9: Зафиксировать этап**
 
 ```powershell
-git add app/customization_service.ts app/customization_purchase_intent.ts app/shards_system.ts app/avatar_select.tsx tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts
+git add app/customization_service.ts app/customization_purchase_intent.ts app/shards_system.ts app/cloud_sync.ts app/avatar_select.tsx tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts tests/cloud_sync_customization_account_isolation.test.ts
 git commit -m "refactor: isolate customization persistence"
 ```
 
@@ -1177,6 +1271,7 @@ npx jest --runInBand --runTestsByPath `
   tests/customization_purchase_intent.test.ts `
   tests/customization_purchase_confirmation.test.ts `
   tests/shards_idempotent_spend.test.ts `
+  tests/cloud_sync_customization_account_isolation.test.ts `
   tests/avatar_select_first_frame_contract.test.ts `
   tests/avatar_select_studio_contract.test.ts `
   tests/avatar_select_vip_aura_contract.test.ts `

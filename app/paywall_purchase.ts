@@ -234,11 +234,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
 
   const lifetimePkg = packages.lifetime ?? (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PACKAGE : undefined);
   const selectedPkg = selected === 'lifetime' ? lifetimePkg : selected === 'yearly' ? packages.yearly : packages.monthly;
-  const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
+  const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg, selected), [selected, selectedPkg]);
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
   // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
-  const subscriptionTrialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 7 : null;
+  const subscriptionTrialDays = trialDaysOrDefault(trial) ?? (devForceTrial && selected === 'yearly' ? 7 : null);
   const trialDays = selected === 'yearly' ? subscriptionTrialDays : null;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
   const currentSoftAttribution = useCallback(() => {
@@ -344,12 +344,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       if (!purchaseAccountIsCurrent()) return;
-      const pkgTrial = getTrialInfo(pkg);
+      const pkgTrial = getTrialInfo(pkg, selected);
       const { customerInfo } = await Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений
       // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
       // deferred-исход / аномалия sandbox без этой проверки давали локальный
       // «премиум», которого нет на сервере, — доступ потом «отваливался».
-      const activationType = classifyPurchaseActivation(customerInfo, selected);
+      const activationType = classifyPurchaseActivation(customerInfo, selected, pkg.product.identifier);
       if (activationType === 'pending') {
         // error-тег вместо отдельного имени события: тип AnalyticsEvent живёт в
         // analytics.ts, который сейчас правит другая сессия — не трогаем.
@@ -392,6 +392,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             const granted = await requestNotificationPermission();
             if (!granted) return;
             const days = trialDaysOrDefault(pkgTrial);
+            if (days == null) return;
             const price = storePriceTrim(pkg.product.priceString);
             const ok = await scheduleTrialEndReminder(
               days,
@@ -606,7 +607,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
   const doClose = useCallback((reason: 'close' | 'continue_free') => {
-    void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...softUpsellAnalyticsParams(currentSoftAttribution(), reason === 'continue_free' ? 'continue_free' : 'paywall_close') } as never);
+    const attribution = currentSoftAttribution();
+    void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...softUpsellAnalyticsParams(attribution, 'paywall_close') } as never);
+    if (reason === 'continue_free') {
+      void trackEvent('paywall_continue_free', { context, source, paywall: variant, ...softUpsellAnalyticsParams(attribution, 'paywall_continue_free') } as never);
+    }
     softAttributionRef.current = null;
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
@@ -638,7 +643,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [router, context, source, variant, selected, lang, currentSoftAttribution]);
 
   // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в
-  // сторе реально есть бесплатный триал, мягко спрашиваем «может, всё-таки 3 дня
+  // сторе реально есть годовой семидневный trial, мягко предлагаем попробовать
   // бесплатно?» — без давления, с честным «платить не нужно, отмени за день».
   // Показываем ОДИН раз на устройство (кулдаун-ключ), и только если триал есть в
   // сторе — иначе это была бы пустая всплывашка. Не в онбординге.
@@ -675,7 +680,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(() => {});
         } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
         void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant });
-        const days = trialDays ?? 3;
+        const days = trialDays;
         Alert.alert(
           triLang(lang, {
             ru: `Точно уходишь? ${days} дня доступа — бесплатно`,

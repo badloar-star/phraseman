@@ -62,6 +62,11 @@ export type PremiumContext =
   | 'ai_explain'
   /** Недельный обзор: free видит тизер, полный разбор и план — в Plus. */
   | 'weekly_review'
+  | 'first_lesson_success'
+  | 'free_lessons_complete'
+  | 'dialog_repeat_success'
+  | 'streak_milestone'
+  | 'trainer_repeat_success'
   /** Премиум-аура вокруг аватара (лиги/Арена/друзья). */
   | 'avatar_aura'
   | 'generic';
@@ -104,6 +109,11 @@ export const PREMIUM_CONTEXT_VALUES = [
   'language_add',
   'ai_explain',
   'weekly_review',
+  'first_lesson_success',
+  'free_lessons_complete',
+  'dialog_repeat_success',
+  'streak_milestone',
+  'trainer_repeat_success',
   'avatar_aura',
   'generic',
 ] as const satisfies readonly PremiumContext[];

@@ -4,6 +4,7 @@ import {
   softUpsellAnalyticsParams,
   softUpsellRouteParams,
 } from '../app/soft_upsell_attribution';
+import { normalizePremiumContext } from '../app/paywall_copy';
 
 const attribution = createSoftUpsellAttribution({
   impressionId: 'soft_chain_12345678',
@@ -28,4 +29,15 @@ test('partial or conflicting chains are dropped atomically', () => {
     soft_upsell_context: 'streak_milestone',
   })).toBeNull();
   expect(softUpsellAnalyticsParams(null, 'paywall_shown')).toEqual({});
+});
+
+test.each([
+  'first_lesson_success',
+  'free_lessons_complete',
+  'weekly_review',
+  'dialog_repeat_success',
+  'streak_milestone',
+  'trainer_repeat_success',
+] as const)('keeps soft context %s first-class on the paywall', (context) => {
+  expect(normalizePremiumContext(context)).toBe(context);
 });

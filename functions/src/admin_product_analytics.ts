@@ -569,19 +569,18 @@ soft_chain_events AS (
       OR (soft_upsell_trigger = 'streak_milestone' AND soft_upsell_context = 'streak_milestone')
       OR (soft_upsell_trigger = 'repeated_training' AND soft_upsell_context = 'trainer_repeat_success'))
 ),
-valid_soft_chain_ids AS (
-  SELECT soft_upsell_impression_id AS impression_id
+valid_soft_chains AS (
+  SELECT soft_upsell_mode AS mode, soft_upsell_impression_id AS impression_id
   FROM base
   WHERE soft_upsell_impression_id IS NOT NULL
-  GROUP BY impression_id
-  HAVING COUNTIF(soft_upsell_mode IN ('production', 'test')) = COUNT(*)
+  GROUP BY mode, impression_id
+  HAVING mode IN ('production', 'test')
     AND COUNTIF((soft_upsell_trigger = 'first_lesson' AND soft_upsell_context = 'first_lesson_success')
       OR (soft_upsell_trigger = 'free_lessons_complete' AND soft_upsell_context = 'free_lessons_complete')
       OR (soft_upsell_trigger = 'weekly_review' AND soft_upsell_context = 'weekly_review')
       OR (soft_upsell_trigger = 'second_ai_dialogue' AND soft_upsell_context = 'dialog_repeat_success')
       OR (soft_upsell_trigger = 'streak_milestone' AND soft_upsell_context = 'streak_milestone')
       OR (soft_upsell_trigger = 'repeated_training' AND soft_upsell_context = 'trainer_repeat_success')) = COUNT(*)
-    AND COUNT(DISTINCT soft_upsell_mode) = 1
     AND COUNT(DISTINCT CONCAT(soft_upsell_trigger, '|', soft_upsell_context)) = 1
 ),
 soft_chain_facts AS (
@@ -589,6 +588,7 @@ soft_chain_facts AS (
     soft_upsell_mode AS mode,
     soft_upsell_trigger AS trigger,
     soft_upsell_impression_id AS impression_id,
+    COUNTIF(event_name = 'soft_upsell_eligible') > 0 AS eligible,
     COUNTIF(event_name = 'soft_upsell_impression') > 0 AS impressed,
     COUNTIF(event_name = 'soft_upsell_cta') > 0 AS soft_cta,
     COUNTIF(event_name = 'soft_upsell_dismiss') > 0 AS dismissed,
@@ -599,6 +599,9 @@ soft_chain_facts AS (
     COUNTIF(event_name = 'purchase_completed') > 0 AS purchased,
     COUNTIF(event_name = 'trial_started') > 0 AS trial_started,
     COUNTIF(event_name = 'purchase_completed' AND activation_type = 'paid') > 0 AS paid_activation,
+    COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'monthly') > 0 AS monthly_activation,
+    COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'yearly') > 0 AS yearly_activation,
+    COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'lifetime') > 0 AS lifetime_activation,
     COUNTIF(event_name = 'purchase_failed') > 0 AS failed,
     COUNTIF(event_name = 'purchase_cancelled') > 0 AS cancelled,
     COUNTIF(event_name = 'paywall_close' AND close_reason = 'close') > 0 AS closed,
@@ -607,13 +610,15 @@ soft_chain_facts AS (
     MIN(IF(event_name = 'soft_upsell_cta', event_timestamp, NULL)) AS soft_cta_at,
     MIN(IF(event_name IN ('purchase_completed', 'purchase_pending', 'purchase_failed', 'purchase_cancelled'), event_timestamp, NULL)) AS purchase_result_at
   FROM soft_chain_events
-  INNER JOIN valid_soft_chain_ids ON impression_id = soft_upsell_impression_id
+  INNER JOIN valid_soft_chains valid
+    ON valid.mode = soft_upsell_mode AND valid.impression_id = soft_upsell_impression_id
   GROUP BY mode, trigger, impression_id
 ),
 soft_rows AS (
   SELECT 'soft_upsell' AS row_kind, TO_JSON_STRING(STRUCT(
     mode,
     trigger,
+    COUNTIF(eligible) AS eligible,
     COUNTIF(impressed) AS impressions,
     COUNTIF(soft_cta) AS soft_cta_clicks,
     COUNTIF(dismissed) AS dismissals,
@@ -624,16 +629,22 @@ soft_rows AS (
     COUNTIF(purchased) AS purchases,
     COUNTIF(trial_started) AS trials,
     COUNTIF(paid_activation) AS paid_activations,
+    COUNTIF(monthly_activation) AS monthly_activations,
+    COUNTIF(yearly_activation) AS yearly_activations,
+    COUNTIF(lifetime_activation) AS lifetime_activations,
     COUNTIF(failed) AS failures,
     COUNTIF(cancelled) AS cancellations,
     COUNTIF(closed) AS closes,
     COUNTIF(continued_free) AS continue_free,
     SAFE_DIVIDE(COUNTIF(soft_cta), COUNTIF(impressed)) AS soft_cta_rate,
+    SAFE_DIVIDE(COUNTIF(impressed), COUNTIF(eligible)) AS eligible_to_impression_rate,
     SAFE_DIVIDE(COUNTIF(dismissed), COUNTIF(impressed)) AS dismiss_rate,
     SAFE_DIVIDE(COUNTIF(paywall_shown), COUNTIF(impressed)) AS paywall_show_rate,
     SAFE_DIVIDE(COUNTIF(trial_started), COUNTIF(impressed)) AS trial_rate,
     SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(impressed)) AS purchase_rate,
     SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(soft_cta)) AS cta_to_purchase_rate,
+    SAFE_DIVIDE(COUNTIF(closed), COUNTIF(paywall_shown)) AS paywall_close_rate,
+    SAFE_DIVIDE(COUNTIF(continued_free), COUNTIF(paywall_shown)) AS continue_free_rate,
     APPROX_QUANTILES(IF(soft_cta_at >= impression_at, (soft_cta_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_cta_ms,
     APPROX_QUANTILES(IF(purchase_result_at >= impression_at, (purchase_result_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_result_ms
   )) AS payload
@@ -643,14 +654,16 @@ soft_rows AS (
 soft_quality_row AS (
   SELECT 'soft_quality' AS row_kind, TO_JSON_STRING(STRUCT(
     (SELECT COUNT(*) FROM (
-      SELECT soft_upsell_impression_id FROM base
+      SELECT soft_upsell_mode, soft_upsell_impression_id FROM base
       WHERE soft_upsell_impression_id IS NOT NULL
-      GROUP BY soft_upsell_impression_id
-      HAVING COUNT(DISTINCT soft_upsell_mode) > 1
-        OR COUNT(DISTINCT CONCAT(IFNULL(soft_upsell_trigger, ''), '|', IFNULL(soft_upsell_context, ''))) > 1
+      GROUP BY soft_upsell_mode, soft_upsell_impression_id
+      HAVING COUNT(DISTINCT CONCAT(IFNULL(soft_upsell_trigger, ''), '|', IFNULL(soft_upsell_context, ''))) > 1
     )) AS conflicting_chain_ids,
-    (SELECT COUNT(DISTINCT soft_upsell_impression_id) FROM base WHERE soft_upsell_impression_id IS NOT NULL)
-      - (SELECT COUNT(*) FROM valid_soft_chain_ids) AS rejected_chain_ids,
+    (SELECT COUNT(*) FROM (
+      SELECT soft_upsell_mode, soft_upsell_impression_id FROM base
+      WHERE soft_upsell_impression_id IS NOT NULL
+      GROUP BY soft_upsell_mode, soft_upsell_impression_id
+    )) - (SELECT COUNT(*) FROM valid_soft_chains) AS rejected_chain_ids,
     COUNTIF(soft_cta AND NOT impressed) AS cta_without_impression,
     COUNTIF(paywall_shown AND NOT soft_cta) AS paywall_without_soft_cta,
     COUNTIF((purchased OR purchase_pending OR failed OR cancelled) AND NOT purchase_started) AS outcome_without_purchase_start,
@@ -831,7 +844,7 @@ export const adminProductAnalytics = onCall({
     softUpsells: {
       production: softUpsells.production.sort((a, b) => Number(b.impressions ?? 0) - Number(a.impressions ?? 0)),
       test: softUpsells.test.sort((a, b) => Number(b.impressions ?? 0) - Number(a.impressions ?? 0)),
-      quality: { ...softQuality, attribution: 'exact_impression_id_only', production_test_isolated: true },
+      quality: { ...softQuality, attribution: 'exact_mode_and_impression_id', production_test_isolated: true },
     },
     quality,
   };

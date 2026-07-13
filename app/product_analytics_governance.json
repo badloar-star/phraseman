@@ -13,6 +13,7 @@
     "paywall_plan_select",
     "paywall_cta_click",
     "paywall_close",
+    "paywall_continue_free",
     "purchase_started",
     "purchase_pending",
     "purchase_completed",

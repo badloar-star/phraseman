@@ -66,10 +66,13 @@ describe('Admin v2 product analytics contract', () => {
     for (const field of [
       'soft_cta_rate', 'dismiss_rate', 'pending_purchases', 'paid_activations', 'failures',
       'cancellations', 'continue_free', 'trial_rate', 'cta_to_purchase_rate',
+      'eligible_to_impression_rate', 'paywall_close_rate', 'continue_free_rate',
+      'monthly_activations', 'yearly_activations', 'lifetime_activations',
       'median_impression_to_cta_ms', 'median_impression_to_result_ms',
     ]) expect(product).toContain(field);
-    expect(product).toContain("renderSoftMode('Production', 'production'");
-    expect(product).toContain("renderSoftMode('Test', 'test'");
+    expect(product).toContain('data-soft-mode');
+    expect(product).toContain('_productAnalyticsSoftMode');
+    expect(product).toContain("selectedMode === 'test'");
     expect(product).toContain('RevenueCat');
     for (const quality of [
       'rejected_chain_ids', 'conflicting_chain_ids', 'cta_without_impression',

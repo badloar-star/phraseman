@@ -5,7 +5,8 @@
 // отдал бесплатную intro-фазу, и дни берутся из стора, а не из хардкода.
 // iOS: product.introPrice { price, periodNumberOfUnits, periodUnit | period }.
 // Android (RC): product.introductoryPrice в той же форме. Где парс не удался,
-// но бесплатная intro-фаза точно есть — fallback 3 дня (текущая стор-настройка).
+// Неизвестная или отличная от 7 дней фаза не получает trial-framing: обещание должно
+// в точности совпадать с годовым семидневным предложением в сторе.
 // ════════════════════════════════════════════════════════════════════════════
 import type { PurchasesPackage } from 'react-native-purchases';
 
@@ -50,8 +51,11 @@ function parsePhaseDays(phase: IntroPhaseLike): number | null {
  * Бесплатный триал = intro-фаза с price === 0. Платная intro-цена (например,
  * первый месяц со скидкой) триалом НЕ считается — таймлайн «бесплатно» не врёт.
  */
-export function getTrialInfo(pkg: PurchasesPackage | undefined | null): TrialInfo {
-  if (!pkg) return { hasTrial: false, days: null };
+export function getTrialInfo(
+  pkg: PurchasesPackage | undefined | null,
+  plan: 'monthly' | 'yearly' | 'lifetime' = 'yearly',
+): TrialInfo {
+  if (!pkg || plan !== 'yearly') return { hasTrial: false, days: null };
   const product = pkg.product as unknown as {
     introPrice?: IntroPhaseLike | null;
     introductoryPrice?: IntroPhaseLike | null;
@@ -60,12 +64,13 @@ export function getTrialInfo(pkg: PurchasesPackage | undefined | null): TrialInf
   if (!phase || typeof phase !== 'object') return { hasTrial: false, days: null };
   const price = typeof phase.price === 'number' ? phase.price : null;
   if (price !== null && price > 0) return { hasTrial: false, days: null };
-  return { hasTrial: true, days: parsePhaseDays(phase) };
+  const days = parsePhaseDays(phase);
+  return days === 7 ? { hasTrial: true, days: 7 } : { hasTrial: false, days: null };
 }
 
-/** Дни триала для копирайта; fallback = 3 (текущая настройка сторов). */
-export function trialDaysOrDefault(info: TrialInfo, fallback = 3): number {
-  return info.hasTrial && info.days && info.days > 0 ? info.days : fallback;
+/** Только подтверждённый годовой семидневный trial можно показывать и напоминать. */
+export function trialDaysOrDefault(info: TrialInfo): 7 | null {
+  return info.hasTrial && info.days === 7 ? 7 : null;
 }
 
 /* expo-router route shim. */

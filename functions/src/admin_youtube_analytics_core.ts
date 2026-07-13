@@ -317,12 +317,12 @@ function attemptsFrom(
     const channels = new Set(rows.map(row => row.channel).filter(Boolean));
     const conflictingVideo = videos.size > 1;
     const conflictingChannel = channels.size > 1;
+    const starts = rows.filter(row => row.name === 'youtube_playback_start');
     if (conflictingVideo) quality.conflictingVideo += 1;
     if (conflictingChannel) quality.conflictingChannel += 1;
-    if (conflictingVideo || conflictingChannel) continue;
-    const starts = rows.filter(row => row.name === 'youtube_playback_start');
-    if (!starts.length) { quality.rowsWithoutStart += 1; continue; }
-    if (starts.length !== 1) { quality.duplicateStartAttempts += 1; continue; }
+    if (!starts.length) quality.rowsWithoutStart += 1;
+    if (starts.length > 1) quality.duplicateStartAttempts += 1;
+    if (conflictingVideo || conflictingChannel || starts.length !== 1) continue;
     const start = starts[0];
     if (!matchesDimensionFilters(start, filters)) continue;
     const ownedRows = rows.filter(row => row.at >= start.at && matchesDimensionFilters(row, filters));
@@ -464,7 +464,7 @@ export function aggregateYoutubeAnalytics(
     if (row.schema_version !== 1) { if (rawInScope) quality.unknownSchema += 1; continue; }
     const valid = validBase(row);
     if (!valid) { if (rawInScope) quality.missingRequiredFields += 1; continue; }
-    validated.push(valid);
+    if (filters.platform === 'all' || valid.platform === filters.platform) validated.push(valid);
   }
   validated.sort((a, b) => a.at - b.at || codePointCompare(a.eventId, b.eventId)
     || codePointCompare(a.name, b.name) || codePointCompare(a.user, b.user) || codePointCompare(a.session, b.session)
@@ -851,13 +851,14 @@ WITH raw_extracted AS (
       AND (event_name NOT IN ('youtube_playback_checkpoint','youtube_playback_end') OR active_watch_ms BETWEEN 0 AND 86400000)
       AS required_valid
   FROM normalized_window
+), platform_classified AS (
+  SELECT * FROM classified WHERE @platform = 'all' OR platform = @platform
 ), scoped_classified AS (
-  SELECT * FROM classified
-  WHERE (@platform = 'all' OR platform = @platform)
-    AND (@videoId IS NULL OR video_id=@videoId)
+  SELECT * FROM platform_classified
+  WHERE (@videoId IS NULL OR video_id=@videoId)
     AND (@channelId IS NULL OR channel_id=@channelId)
 ), validated AS (
-  SELECT * EXCEPT(known_schema,required_valid) FROM classified WHERE known_schema AND required_valid
+  SELECT * EXCEPT(known_schema,required_valid) FROM platform_classified WHERE known_schema AND required_valid
 ), deduped AS (
   SELECT * EXCEPT(dedupe_rank) FROM (
     SELECT *, ROW_NUMBER() OVER(PARTITION BY event_id ORDER BY event_timestamp,event_name,user_pseudo_id,session_id,platform,
@@ -866,21 +867,18 @@ WITH raw_extracted AS (
   ) WHERE dedupe_rank=1
 ), scoped_validated AS (
   SELECT * FROM validated
-  WHERE (@platform = 'all' OR platform = @platform)
-    AND (@videoId IS NULL OR video_id=@videoId)
+  WHERE (@videoId IS NULL OR video_id=@videoId)
     AND (@channelId IS NULL OR channel_id=@channelId)
 ), scoped_deduped AS (
   SELECT * FROM deduped
-  WHERE (@platform = 'all' OR platform = @platform)
-    AND (@videoId IS NULL OR video_id=@videoId)
+  WHERE (@videoId IS NULL OR video_id=@videoId)
     AND (@channelId IS NULL OR channel_id=@channelId)
 ), candidate_conflicts AS (
   SELECT user_pseudo_id,playback_id,schema_version,
     COUNT(DISTINCT NULLIF(video_id,''))>1 conflicting_video,
     COUNT(DISTINCT NULLIF(channel_id,''))>1 conflicting_channel,
     COUNTIF(event_name='youtube_playback_start') start_count,
-    COUNTIF((@platform='all' OR platform=@platform)
-      AND (@videoId IS NULL OR video_id=@videoId)
+    COUNTIF((@videoId IS NULL OR video_id=@videoId)
       AND (@channelId IS NULL OR channel_id=@channelId))>0 selected_scope
   FROM deduped WHERE event_name IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end')
   GROUP BY user_pseudo_id,playback_id,schema_version
@@ -1042,7 +1040,7 @@ WITH raw_extracted AS (
     (SELECT COUNTIF(selected_scope AND start_count=0) FROM candidate_conflicts) rowsWithoutStart,
     (SELECT COUNTIF(selected_scope AND conflicting_video) FROM candidate_conflicts) conflictingVideo,
     (SELECT COUNTIF(selected_scope AND conflicting_channel) FROM candidate_conflicts) conflictingChannel,
-    (SELECT COUNTIF(selected_scope AND start_count>1) FROM candidate_conflicts WHERE NOT conflicting_video AND NOT conflicting_channel) duplicateStartAttempts,
+    (SELECT COUNTIF(selected_scope AND start_count>1) FROM candidate_conflicts) duplicateStartAttempts,
     (SELECT COUNTIF(active_watch_ms>0 AND duration_ms IS NULL) FROM attempt_rollup) invalidDurationAttempts,
     (SELECT COUNTIF(active_watch_ms>0 AND NOT ended) FROM attempt_rollup) unfinishedAttempts,
     (SELECT MAX(event_timestamp) FROM scoped_classified) dataThroughMicros

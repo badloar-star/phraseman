@@ -295,6 +295,20 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.quality).toMatchObject({ conflictingVideo: 1, conflictingChannel: 1 });
   });
 
+  test('reports missing-start and both conflicts independently before excluding one candidate', () => {
+    const snapshot = aggregate([
+      event('youtube_playback_checkpoint', FROM + 1, { active_watch_ms: 5, duration_ms: 100 }),
+      event('youtube_playback_end', FROM + 2, {
+        video_id: 'video-2', channel_id: 'channel-2', active_watch_ms: 10, duration_ms: 100,
+      }),
+    ]);
+    expect(snapshot.summary).toMatchObject({ playbackStarts: 0, watchAttempts: 0, totalActiveWatchMs: 0 });
+    expect(snapshot.quality).toMatchObject({
+      rowsWithoutStart: 1, duplicateStartAttempts: 0, conflictingVideo: 1, conflictingChannel: 1,
+      acceptedEvents: 0,
+    });
+  });
+
   test('counts ordered distinct-session funnel and rejects out-of-order or equal timestamps', () => {
     const ordered = ['youtube_home_entry_click', 'youtube_catalog_open', 'youtube_video_select', 'youtube_playback_start'] as const;
     const events = ordered.map((name, index) => event(name, FROM + index, { session_id: 'ordered', playback_id: 'ordered' }));
@@ -349,12 +363,22 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.funnel.find(row => row.step === 'completed75')?.count).toBe(1);
   });
 
-  test('deduplicates before platform scoping in both fixture and SQL semantics', () => {
+  test('applies Android platform scoping before event-id dedupe and candidate construction', () => {
     const ios = event('youtube_home_entry_click', FROM + 1, { platform: 'ios', event_id: 'same-id' });
     const android = event('youtube_home_entry_click', FROM + 2, { platform: 'android', event_id: 'same-id' });
     const snapshot = aggregate([ios, android], { platform: 'android' });
-    expect(snapshot.summary.homeClicks).toBe(0);
-    expect(snapshot.quality).toMatchObject({ totalEvents: 1, duplicates: 1 });
+    expect(snapshot.summary.homeClicks).toBe(1);
+    expect(snapshot.quality).toMatchObject({ totalEvents: 1, acceptedEvents: 1, duplicates: 0, validationRatio: 1 });
+    expect(snapshot.dataThroughMicros).toBe(FROM + 2);
+  });
+
+  test('applies iOS platform scoping before event-id dedupe and candidate construction', () => {
+    const ios = event('youtube_home_entry_click', FROM + 1, { platform: 'ios', event_id: 'same-id' });
+    const android = event('youtube_home_entry_click', FROM + 2, { platform: 'android', event_id: 'same-id' });
+    const snapshot = aggregate([ios, android], { platform: 'ios' });
+    expect(snapshot.summary.homeClicks).toBe(1);
+    expect(snapshot.quality).toMatchObject({ totalEvents: 1, acceptedEvents: 1, duplicates: 0, validationRatio: 1 });
+    expect(snapshot.dataThroughMicros).toBe(FROM + 1);
   });
 
   test('takes latest nonempty select title for exact channel/video, caps Unicode safely, otherwise null', () => {
@@ -460,8 +484,9 @@ describe('BigQuery SQL semantic contract', () => {
     expect(built.sql).toContain('CHAR_LENGTH(video_id)<=256');
     expect(built.sql).toContain("(@videoId IS NULL OR video_id=@videoId)");
     expect(built.sql).toContain("(@channelId IS NULL OR channel_id=@channelId)");
-    expect(built.sql).toMatch(/classified AS \([\s\S]*?FROM normalized_window[\s\S]*?\), scoped_classified AS \([\s\S]*?WHERE \(@platform = 'all' OR platform = @platform\)[\s\S]*?AND \(@videoId IS NULL OR video_id=@videoId\)[\s\S]*?AND \(@channelId IS NULL OR channel_id=@channelId\)/);
+    expect(built.sql).toMatch(/classified AS \([\s\S]*?FROM normalized_window[\s\S]*?\), platform_classified AS \([\s\S]*?\), scoped_classified AS \([\s\S]*?AND \(@channelId IS NULL OR channel_id=@channelId\)/);
     expect(built.sql).toContain('selected_scope');
+    expect(built.sql).toMatch(/platform_classified AS \([\s\S]*?WHERE @platform = 'all' OR platform = @platform[\s\S]*?\), scoped_classified AS/);
     expect(built.sql).toContain("BigQuery's default binary ordering compares Unicode code points");
     expect(built.params).toEqual({
       fromMicros: FROM,

@@ -45,6 +45,8 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import type { SoftUpsellCandidate, SoftUpsellStudyTarget } from './soft_upsell_core';
+import { selectSoftUpsellCopy } from './soft_upsell_copy';
+import { softUpsellRouteParams } from './soft_upsell_attribution';
 import {
   candidateAfterLessonGrant,
   createLessonSoftUpsellCtaHandler,
@@ -578,18 +580,28 @@ export default function LessonComplete() {
     studyTarget: softUpsellStudyTarget,
     hasPremiumAccess,
   });
-  const softUpsellCopy = softUpsell.opportunity?.trigger === 'free_lessons_complete'
+  const softUpsellAccessibilityCopy = softUpsell.opportunity?.trigger === 'free_lessons_complete'
     ? FREE_LIMIT_SOFT_UPSELL_COPY[lang]
     : LESSON_SOFT_UPSELL_COPY[lang];
+  const softUpsellCopy = softUpsell.opportunity
+    ? {
+        ...softUpsellAccessibilityCopy,
+        ...selectSoftUpsellCopy({ opportunity: softUpsell.opportunity, locale: lang }),
+      }
+    : softUpsellAccessibilityCopy;
 
   const runSoftUpsellCta = useMemo(() => createLessonSoftUpsellCtaHandler({
     onCta: softUpsell.onCta,
-    navigatePersonal: () => router.push('/personal_plan_setup' as any),
-    navigatePaywall: () => router.push({
+    getAttribution: () => softUpsell.attribution,
+    navigatePaywall: (attribution) => router.push({
           pathname: '/premium_modal',
-          params: { context: 'free_lessons_complete', source: 'lesson_complete_soft_upsell' },
+          params: {
+            context: attribution.context,
+            source: 'soft_upsell',
+            ...softUpsellRouteParams(attribution),
+          },
         } as any),
-  }), [router, softUpsell.onCta]);
+  }), [router, softUpsell.attribution, softUpsell.onCta]);
   const handleSoftUpsellCta = useCallback(() => {
     if (!softUpsell.opportunity) return Promise.resolve();
     return runSoftUpsellCta(softUpsell.opportunity.trigger);
@@ -1244,6 +1256,7 @@ export default function LessonComplete() {
           {shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity) && softUpsell.opportunity && (
             <View style={{ width: '100%', marginBottom: 20 }}>
               <SoftContextualUpsellCard
+                proof={softUpsellCopy.proof}
                 title={softUpsellCopy.title}
                 body={softUpsellCopy.body}
                 ctaLabel={softUpsellCopy.ctaLabel}

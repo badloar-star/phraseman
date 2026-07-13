@@ -7,6 +7,8 @@ import { SOFT_UPSELL_ADMIN_PREVIEWS } from '../components/admin_panel/soft_upsel
 import SoftUpsellPreviewSection from '../components/admin_panel/sections/SoftUpsellPreviewSection';
 
 const qaToast = jest.fn();
+const routerPush = jest.fn();
+const trackSoftUpsellEvent = jest.fn(async (_name: unknown, _payload: unknown) => undefined);
 
 jest.mock('react-native', () => {
   const RuntimeReact = jest.requireActual<typeof import('react')>('react');
@@ -25,6 +27,9 @@ jest.mock('react-native', () => {
 });
 
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
+jest.mock('expo-router', () => ({ useRouter: () => ({ push: routerPush }) }));
+jest.mock('expo-crypto', () => ({ randomUUID: () => '12345678-admin-test' }));
+jest.mock('../app/analytics', () => ({ trackSoftUpsellEvent: (name: unknown, payload: unknown) => trackSoftUpsellEvent(name, payload) }));
 
 jest.mock('../components/admin_panel/ui', () => {
   const RuntimeReact = jest.requireActual<typeof import('react')>('react');
@@ -65,6 +70,8 @@ jest.mock('../components/SoftContextualUpsellCard', () => ({
 
 afterEach(async () => {
   qaToast.mockClear();
+  routerPush.mockClear();
+  trackSoftUpsellEvent.mockClear();
   await cleanup();
 });
 
@@ -80,24 +87,34 @@ test('opens every soft upsell independently and closes the local preview', async
   }
 });
 
-test('keeps CTA local and reports only QA feedback', async () => {
+test('opens the real premium dispatcher with an isolated test attribution chain', async () => {
   const preview = SOFT_UPSELL_ADMIN_PREVIEWS[0];
   const view = await render(React.createElement(SoftUpsellPreviewSection, { open: true, onToggle: jest.fn() }));
 
   await fireEvent.press(view.getByTestId(`admin-soft-upsell-preview-${preview.id}`));
   await fireEvent.press(view.getByLabelText(preview.ctaLabel));
 
-  expect(qaToast).toHaveBeenCalledWith('info', `QA: ${preview.ctaLabel}`);
-  expect(view.getByTestId('soft-upsell-card')).toBeTruthy();
+  expect(routerPush).toHaveBeenCalledWith(expect.objectContaining({
+    pathname: '/premium_modal',
+    params: expect.objectContaining({
+      source: 'soft_upsell',
+      soft_upsell_mode: 'test',
+      soft_upsell_trigger: preview.opportunity.trigger,
+      soft_upsell_context: preview.opportunity.context,
+      soft_upsell_impression_id: '12345678-admin-test',
+    }),
+  }));
+  expect(view.queryByTestId('soft-upsell-card')).toBeNull();
 });
 
-test('contains no production state, navigation, persistence, or analytics dependencies', () => {
+test('contains no outer modal or production persistence and explains test isolation', () => {
   const source = fs.readFileSync(
     path.join(process.cwd(), 'components', 'admin_panel', 'sections', 'SoftUpsellPreviewSection.tsx'),
     'utf8',
   );
-  expect(source).not.toMatch(/firestore|AsyncStorage|trackSoftUpsell|useSoftUpsellOpportunity|useRouter/);
-  expect(source).toContain('accessibilityViewIsModal');
-  expect(source).toContain('minHeight: 52');
-  expect(source).toContain('maxWidth: 560');
+  expect(source).not.toMatch(/firestore|AsyncStorage|useSoftUpsellOpportunity/);
+  expect(source).toContain('useRouter');
+  expect(source).toContain("mode: 'test'");
+  expect(source).toContain('Тестовая цепочка — не попадёт в Production funnel');
+  expect(source).not.toMatch(/<Modal|from 'react-native'.*Modal/);
 });

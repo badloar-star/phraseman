@@ -1,5 +1,6 @@
 import { FREE_LESSON_LIMIT } from './monetization_policy';
 import type { AccountGenerationToken } from './account_generation';
+import type { SoftUpsellAttribution } from './soft_upsell_attribution';
 import type { SoftUpsellCandidate, SoftUpsellStudyTarget, SoftUpsellTrigger } from './soft_upsell_core';
 
 export type LessonSoftUpsellIdentity = Readonly<{
@@ -54,18 +55,24 @@ export function shouldRenderLessonSoftUpsell(seqDone: boolean, opportunity: unkn
 
 export function createLessonSoftUpsellCtaHandler(input: {
   onCta: () => boolean | Promise<boolean>;
-  navigatePersonal: () => void;
-  navigatePaywall: () => void;
+  getAttribution: () => SoftUpsellAttribution | null;
+  navigatePaywall: (attribution: SoftUpsellAttribution) => void | Promise<void>;
+  onNavigationFailure?: () => void | Promise<void>;
 }): (trigger: SoftUpsellTrigger) => Promise<void> {
   let inFlight = false;
   return async (trigger) => {
     if (inFlight) return;
     inFlight = true;
     try {
+      const attribution = input.getAttribution();
+      if (!attribution || attribution.trigger !== trigger) return;
       const authorized = await input.onCta();
       if (!authorized) return;
-      if (trigger === 'first_lesson') input.navigatePersonal();
-      else input.navigatePaywall();
+      try {
+        await input.navigatePaywall(attribution);
+      } catch {
+        await input.onNavigationFailure?.();
+      }
     } finally {
       inFlight = false;
     }

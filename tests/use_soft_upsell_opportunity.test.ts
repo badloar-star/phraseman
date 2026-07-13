@@ -6,6 +6,8 @@ import { resetSoftUpsellSessionForTests } from '../app/soft_upsell_state';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
 
 const occupied = { value: false };
+const releaseLease = jest.fn();
+const tryClaim = jest.fn(async () => occupied.value ? null : { token: 'lease-1', release: releaseLease });
 const flags: Record<string, boolean> = { first_lesson: true };
 const state: {
   schemaVersion: 1;
@@ -19,7 +21,14 @@ const state: {
   consumedMilestones: [],
 };
 
-jest.mock('../components/OverlayArbiter', () => ({ useOverlayOccupied: () => occupied.value }));
+jest.mock('../components/OverlayArbiter', () => ({
+  useOverlayOccupied: () => occupied.value,
+  useOverlayTryClaim: () => tryClaim,
+}));
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ generation: 1, stableId: 'u1', phase: 'active' }),
+  isCurrentAccountGeneration: () => true,
+}));
 jest.mock('../app/remote_flags', () => ({ getSoftUpsellEnabledByTrigger: () => flags }));
 jest.mock('../app/soft_upsell_state', () => {
   const actual = jest.requireActual('../app/soft_upsell_state');
@@ -54,6 +63,7 @@ describe('useSoftUpsellOpportunity', () => {
     state.consumedMilestones = [];
     resetSoftUpsellSessionForTests();
     jest.clearAllMocks();
+    tryClaim.mockImplementation(async () => occupied.value ? null : { token: 'lease-1', release: releaseLease });
     storage.readSoftUpsellState.mockResolvedValue(state);
   });
 
@@ -111,6 +121,33 @@ describe('useSoftUpsellOpportunity', () => {
     expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_eligible')).toHaveLength(1);
     expect(storage.markSoftUpsellImpression).not.toHaveBeenCalled();
     expect(storage.markSoftUpsellDismissed).not.toHaveBeenCalled();
+  });
+
+  it('creates one immutable direct-chain id only after the non-queued overlay lease succeeds', async () => {
+    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    expect(tryClaim).toHaveBeenCalledTimes(1);
+    expect(hook.result.current.attribution).toMatchObject({
+      trigger: 'first_lesson', context: 'first_lesson_success', mode: 'production',
+    });
+    expect(hook.result.current.attribution?.impressionId).toBeTruthy();
+    expect(analytics).toHaveBeenCalledWith('soft_upsell_eligible', expect.objectContaining({
+      soft_upsell_impression_id: hook.result.current.attribution?.impressionId,
+      soft_upsell_mode: 'production',
+    }));
+  });
+
+  it('releases the lease and hides synchronously before non-blocking CTA analytics finishes', async () => {
+    let finish!: () => void;
+    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    analytics.mockImplementationOnce(() => new Promise<void>((resolve) => { finish = resolve; }));
+    let result = false;
+    await act(async () => { result = await hook.result.current.onCta(); });
+    expect(result).toBe(true);
+    expect(releaseLease).toHaveBeenCalledTimes(1);
+    expect(hook.result.current.opportunity).toBeNull();
+    finish();
   });
 
   it('reports session cap after another eligible hook has claimed', async () => {
@@ -177,9 +214,9 @@ describe('useSoftUpsellOpportunity', () => {
     await waitFor(() => expect(active.result.current.opportunity).not.toBeNull());
     await act(async () => { await active.result.current.onCta(); await active.result.current.onDismiss(); });
     await waitFor(() => expect(active.result.current.opportunity).toBeNull());
-    expect(storage.markSoftUpsellDismissed).toHaveBeenCalledTimes(1);
-    expect(analytics).toHaveBeenCalledWith('soft_upsell_dismiss', expect.any(Object));
-    expect(analytics).toHaveBeenCalledWith('soft_upsell_cta', expect.objectContaining({ destination: 'personal_plan' }));
+    expect(storage.markSoftUpsellDismissed).not.toHaveBeenCalled();
+    expect(analytics).not.toHaveBeenCalledWith('soft_upsell_dismiss', expect.any(Object));
+    expect(analytics).toHaveBeenCalledWith('soft_upsell_cta', expect.objectContaining({ destination: 'paywall' }));
   });
 
   it('hides immediately on dismiss, retries transient persistence, and tracks only success', async () => {
@@ -266,15 +303,17 @@ describe('useSoftUpsellOpportunity', () => {
     expect(analytics.mock.calls.filter(([name]) => name === 'soft_upsell_dismiss')).toHaveLength(0);
   });
 
-  it('returns false when identity changes while CTA analytics is awaiting', async () => {
+  it('does not wait for CTA analytics and invalidates subsequent stale callbacks after identity changes', async () => {
     let release!: () => void;
     const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     analytics.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
-    const pending = hook.result.current.onCta();
+    let result = false;
+    await act(async () => { result = await hook.result.current.onCta(); });
     await hook.rerender('B');
     release();
-    await expect(pending).resolves.toBe(false);
+    expect(result).toBe(true);
+    await expect(hook.result.current.onCta()).resolves.toBe(false);
   });
 
 });

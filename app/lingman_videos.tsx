@@ -38,6 +38,8 @@ import {
   beginLingmanSnapshotRequest, commitLingmanSnapshot, isLingmanSnapshotRequestCurrent,
   lingmanSnapshotCacheKey, patchLingmanUnread, readLingmanSnapshot,
 } from './lingman_youtube_cache';
+import { emitYoutubeAnalyticsEvent } from './youtube_analytics_emitter';
+import { setLingmanVideoTitleHandoff } from './lingman_video_title_handoff';
 
 function formatViews(count?: number): string {
   if (!Number.isFinite(count)) return '';
@@ -187,6 +189,14 @@ export default function LingmanVideosScreen() {
     void load('initial');
   }, [load]);
 
+  useEffect(() => {
+    emitYoutubeAnalyticsEvent({
+      eventName: 'youtube_catalog_open',
+      source: 'home',
+      channelId: channel.channelId,
+    });
+  }, [channel.channelId]);
+
   // Админ из «Пульта» добавил пин / сменил канал, пока экран открыт → перечитать
   // ленту живьём (remote_config_changed), чтобы новое видео появилось сверху.
   useEffect(() => {
@@ -194,15 +204,30 @@ export default function LingmanVideosScreen() {
     return () => sub.remove();
   }, [load]);
 
-  const openExternalUrl = (rawUrl: string, fallbackVideoId?: string) => {
-    const trustedUrl = getTrustedLingmanYoutubeUrl(rawUrl, fallbackVideoId);
+  const openExternalVideo = (rawUrl: string, videoId: string) => {
+    const trustedUrl = getTrustedLingmanYoutubeUrl(rawUrl, videoId);
     if (!trustedUrl) return;
     hapticTap();
+    emitYoutubeAnalyticsEvent({
+      eventName: 'youtube_external_video_open', source: 'catalog', channelId: channel.channelId, videoId,
+    });
+    void Linking.openURL(trustedUrl);
+  };
+
+  const openChannel = (rawUrl: string) => {
+    const trustedUrl = getTrustedLingmanYoutubeUrl(rawUrl);
+    if (!trustedUrl) return;
+    hapticTap();
+    emitYoutubeAnalyticsEvent({ eventName: 'youtube_channel_open', source: 'catalog', channelId: channel.channelId });
     void Linking.openURL(trustedUrl);
   };
 
   const openVideo = (video: LingmanYoutubeVideo) => {
     hapticTap();
+    emitYoutubeAnalyticsEvent({
+      eventName: 'youtube_video_select', source: 'catalog', channelId: channel.channelId,
+      videoId: video.id, videoTitle: video.title,
+    });
     const videoIndex = videos.findIndex((item) => item.id === video.id);
     const unreadCount = snapshot?.unreadCount ?? 0;
     if (videoIndex >= 0 && videoIndex < Math.max(1, unreadCount)) {
@@ -211,13 +236,10 @@ export default function LingmanVideosScreen() {
       patchLingmanUnread(captureAccountGeneration(), channel.channelId, nextUnread);
       setCachedSnapshot((current) => current ? { ...current, unreadCount: nextUnread } : current);
     }
+    setLingmanVideoTitleHandoff(video.id, video.title);
     router.push({
       pathname: '/lingman_video_player',
-      params: {
-        id: video.id,
-        title: video.title,
-        watchUrl: video.watchUrl,
-      },
+      params: { id: video.id },
     } as any);
   };
 
@@ -268,7 +290,7 @@ export default function LingmanVideosScreen() {
               activeOpacity={0.78}
               onPress={(event) => {
                 event.stopPropagation?.();
-                openExternalUrl(item.watchUrl, item.id);
+                openExternalVideo(item.watchUrl, item.id);
               }}
               style={[styles.youtubeButton, { borderColor: chrome.quietButtonBorder, backgroundColor: chrome.quietButtonBg }]}
             >
@@ -325,7 +347,7 @@ export default function LingmanVideosScreen() {
             activeOpacity={0.78}
             onPress={() => {
               hapticTap();
-              openExternalUrl(channel.url);
+              openChannel(channel.url);
             }}
             style={styles.channelOpen}
           >

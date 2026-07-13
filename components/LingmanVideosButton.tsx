@@ -12,6 +12,7 @@ import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
 import { hasRemoteConfigSnapshotApplied, isVideoButtonEnabled } from '../app/remote_flags';
 import { onAppEvent } from '../app/events';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
+import { emitYoutubeAnalyticsEvent } from '../app/youtube_analytics_emitter';
 
 function readVideoButtonVisibility() {
   const remoteReady = hasRemoteConfigSnapshotApplied();
@@ -162,6 +163,11 @@ function LingmanVideosButton() {
       accessibilityLabel={label}
       onPress={() => {
         hapticTap();
+        emitYoutubeAnalyticsEvent({
+          eventName: 'youtube_home_entry_click',
+          source: 'home',
+          channelId: getActiveYoutubeChannel().channelId,
+        });
         router.push('/lingman_videos' as any);
       }}
       style={styles.button}

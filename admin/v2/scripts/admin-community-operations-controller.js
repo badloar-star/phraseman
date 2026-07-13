@@ -24,7 +24,7 @@ export function createCommunityOperationsController({ getModel, setModel, action
   async function detail(id, source) { const result = await actions().getCommunityOperationDetail({ capabilityId: getModel().capabilityId, id, source }); setModel({ ...getModel(), detail: result }); render(); }
 
   function payload(action) {
-    if (action === 'mod-queue-status') return { status: value('community-status') };
+    if (action === 'mod-queue-status') return { decision: value('community-status'), message: value('community-resolution') };
     if (action === 'help-topic-status' || action === 'help-comment-status') return { status: value('community-status') };
     if (action === 'help-report-resolve' || action === 'league-chat-report') return { resolution: value('community-resolution') };
     if (action === 'help-restriction' || action === 'league-chat-restriction') return { active: checked('community-active'), reason: value('community-resolution') };

@@ -50,5 +50,9 @@ describe('Admin v2 native Community Operations', () => {
     expect(backend).toContain("row['stats.matchesPlayed']");
     expect(backend).toContain('row.matchesPlayed');
     expect(backend).toContain("'arena-rooms': ['arena_rooms_live', 'arena_room_members']");
+    expect(backend).toContain('applyCommunitySubmissionModerationInTransaction');
+    expect(backend).toContain("collection('league_chat_messages').doc()");
+    expect(backend).toContain("status: 'visible'");
+    expect(view).toContain('request_changes');
   });
 });

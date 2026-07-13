@@ -4,6 +4,10 @@ import { hasPermission, type AdminPermission } from './admin/permissions';
 import { createAuditRecord } from './admin/audit_contract';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
+  applyCommunitySubmissionModerationInTransaction,
+  type CommunitySubmissionModerationAction,
+} from './community_packs';
+import {
   applyNativePatch, approveNativeMutation, asRecord, boundedLimit, cleanText, createNativePreview,
   documentVersion, parseMutationEnvelope, projectNativeRow, readBoundedCollection, requestNativeApproval,
   requireNativePermission, stableHash, type NativeRow,
@@ -26,6 +30,21 @@ export function parseCommunityWorkspaceInput(value: unknown) {
 }
 
 function filterCommunityRows(items: NativeRow[], query: string, status: string): NativeRow[] { return items.filter((item) => (!status || cleanText(item.status || item.decision || item.state, 40) === status) && (!query || JSON.stringify(item).toLowerCase().includes(query))); }
+
+const LEAGUE_CHAT_MESSAGE_FIELDS = Object.freeze([
+  'groupId', 'weekId', 'leagueId', 'authorUid', 'authorAuthUid', 'authorName', 'authorAvatar', 'authorAura',
+  'text', 'normalizedText', 'moderationCategories', 'moderationReasons', 'replyToMessageId', 'replyToAuthorUid',
+  'replyToAuthorName', 'replyToText', 'replyToKind', 'platform', 'appVersion', 'createdAt',
+] as const);
+
+export function buildApprovedLeagueChatMessage(queueRow: NativeRow, queueId: string, nowMs: number): NativeRow {
+  const message: NativeRow = {};
+  for (const field of LEAGUE_CHAT_MESSAGE_FIELDS) if (queueRow[field] !== undefined) message[field] = queueRow[field];
+  if (!cleanText(message.groupId, 160) || !cleanText(message.weekId, 160) || !cleanText(message.authorUid, 160) || !cleanText(message.text, 2000)) {
+    throw new HttpsError('failed-precondition', 'queued_league_message_missing_canonical_fields');
+  }
+  return { ...message, status: 'visible', reportCount: 0, updatedAt: nowMs, approvedFromQueueId: queueId };
+}
 
 export function isSafeArenaPlaceholder(value: unknown): boolean {
   const row = asRecord(value); const stats = asRecord(row.stats); const name = cleanText(row.displayName, 120);
@@ -133,16 +152,33 @@ const COMMUNITY_ACTIONS = new Set(['mod-queue-status', 'help-topic-status', 'hel
 export const adminApplyCommunityMutation = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   const actor = requireNativePermission(request, 'community.read'); const data = asRecord(request.data);
   return applyNativePatch({ db: admin.firestore(), packageId: 'community', ...actor, previewId: cleanText(data.previewId, 160), confirmation: cleanText(data.confirmation, 240), idempotencyKey: cleanText(data.idempotencyKey, 160), allowedActions: COMMUNITY_ACTIONS,
-    transform: async ({ action, before, payload, nowMs, db, tx, targetId }) => {
+    transform: async ({ action, before, canonicalBefore, payload, nowMs, db, tx, targetId }) => {
       const iso = new Date(nowMs).toISOString();
-      if (action === 'mod-queue-status') { const status = cleanText(payload.status, 40); if (!['approved', 'rejected', 'removed'].includes(status)) throw new HttpsError('invalid-argument', 'invalid moderation status'); return { status, moderatedAt: iso, moderatedByUid: actor.actorUid }; }
+      if (action === 'mod-queue-status') {
+        const rawDecision = cleanText(payload.decision || payload.status, 40);
+        const decision = (rawDecision === 'approved' ? 'approve' : rawDecision === 'rejected' ? 'reject' : rawDecision) as CommunitySubmissionModerationAction;
+        if (!['approve', 'reject', 'request_changes'].includes(decision)) throw new HttpsError('invalid-argument', 'invalid moderation decision');
+        const result = await applyCommunitySubmissionModerationInTransaction({ db, tx, submissionId: targetId, submission: canonicalBefore, action: decision, moderatorMessage: cleanText(payload.message || payload.moderatorMessage, 3500), now: nowMs });
+        return result.patch;
+      }
       if (action === 'help-topic-status') { const status = cleanText(payload.status, 40); if (!['open', 'resolved', 'hidden'].includes(status)) throw new HttpsError('invalid-argument', 'invalid help status'); return { status, moderatedAtMs: nowMs, moderatedByUid: actor.actorUid }; }
       if (action === 'help-comment-status') { const status = cleanText(payload.status, 40); if (!['visible', 'hidden', 'deleted'].includes(status)) throw new HttpsError('invalid-argument', 'invalid help comment status'); return { status, moderatedAtMs: nowMs, moderatedByUid: actor.actorUid }; }
       if (action === 'help-report-resolve') return { status: 'resolved', resolution: cleanText(payload.resolution, 500), resolvedAtMs: nowMs, resolvedByUid: actor.actorUid };
       if (action === 'help-restriction') return { active: payload.active === true, reason: cleanText(payload.reason, 500), scope: 'help-board', updatedAtMs: nowMs, updatedByUid: actor.actorUid };
       if (action === 'help-admin-post') { const title = cleanText(payload.title, 180); const body = cleanText(payload.body, 4000); if (!title || !body) throw new HttpsError('invalid-argument', 'title and body required'); return { title, body, status: 'open', postAs: 'admin', createdAtMs: nowMs, authorUid: actor.actorUid, updatedByUid: actor.actorUid }; }
       if (action === 'helpers-description') { return { texts: { ...asRecord(before.texts), top_helpers_description: cleanText(payload.description, 500) }, updatedAtIso: iso, updatedByUid: actor.actorUid }; }
-      if (action === 'league-chat-status') { const status = cleanText(payload.status, 40); if (!['approved', 'rejected'].includes(status)) throw new HttpsError('invalid-argument', 'invalid chat status'); return { decision: status, status, decidedAt: nowMs, decidedByUid: actor.actorUid }; }
+      if (action === 'league-chat-status') {
+        const status = cleanText(payload.status, 40);
+        if (!['approved', 'rejected'].includes(status)) throw new HttpsError('invalid-argument', 'invalid chat status');
+        if (!['review', 'pending'].includes(cleanText(before.status, 40)) || !['', 'pending'].includes(cleanText(before.decision, 40))) throw new HttpsError('failed-precondition', 'league_chat_queue_row_already_decided');
+        const patch: NativeRow = { decision: status, status, decidedAt: nowMs, decidedByUid: actor.actorUid };
+        if (status === 'approved') {
+          const messageRef = db.collection('league_chat_messages').doc();
+          tx.create(messageRef, buildApprovedLeagueChatMessage(canonicalBefore, targetId, nowMs));
+          patch.publishedMessageId = messageRef.id;
+        }
+        return patch;
+      }
       if (action === 'league-chat-report') return { status: 'resolved', resolution: cleanText(payload.resolution, 500), resolvedAt: nowMs, resolvedByUid: actor.actorUid };
       if (action === 'league-chat-restriction') return { active: payload.active === true, scope: 'league-chat', reason: cleanText(payload.reason, 500), updatedAt: nowMs, updatedByUid: actor.actorUid };
       if (action === 'league-chat-admin-message') { const roomId = cleanText(payload.roomId, 160); const text = cleanText(payload.text, 2000); if (!roomId || !text) throw new HttpsError('invalid-argument', 'roomId and text required'); return { roomId, text, authorUid: actor.actorUid, authorRole: 'admin', status: 'approved', createdAt: nowMs }; }

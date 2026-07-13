@@ -5,6 +5,17 @@ import { documentVersion } from './admin_native_operations';
 const EMULATOR = process.env.FIRESTORE_EMULATOR_HOST; const PROJECT_ID = process.env.GCLOUD_PROJECT || 'phraseman-ea0b3'; const runIfEmulator = EMULATOR ? describe : describe.skip;
 type Row = Record<string, unknown>; function request(data: Row, uid: string) { return { data, auth: { uid, token: { admin: true, adminRole: 'admin' } }, app: { appId: 'admin-native-test' }, rawRequest: {} } as never; }
 async function clear() { await fetch(`http://${EMULATOR}/emulator/v1/projects/${PROJECT_ID}/databases/(default)/documents`, { method: 'DELETE' }); }
+function validSubmission(authorStableId = 'author-1'): Row {
+  return {
+    status: 'pending',
+    authorStableId,
+    payload: {
+      studyTarget: 'en', sourceLang: 'ru', title: 'Reviewed pack', titleRu: 'Reviewed pack', titleUk: '',
+      priceShards: 10,
+      cards: Array.from({ length: 10 }, (_, index) => ({ id: `card-${index}`, en: `Phrase ${index}`, ru: `Фраза ${index}` })),
+    },
+  };
+}
 
 runIfEmulator('Admin Content Operations transactions', () => {
   beforeEach(clear); afterAll(async () => Promise.all(admin.apps.filter(Boolean).map((app) => app!.delete())));
@@ -24,8 +35,39 @@ runIfEmulator('Admin Content Operations transactions', () => {
     const preview = await adminPreviewContentMutation.run(request({ action: 'community-submission-decision', targetId: 'submission-1', reason: 'Moderation evidence reviewed', expectedVersion: documentVersion('submission-1', before), payload: { decision: 'request_changes', expectedStatus: 'pending', message: 'Fix card 3' } }, 'admin-one')) as unknown as Row;
     await adminRequestContentApproval.run(request({ previewId: preview.previewId, confirmation: preview.confirmation }, 'admin-one')); await adminApproveContentMutation.run(request({ previewId: preview.previewId, reason: 'Second moderator agrees' }, 'admin-two'));
     await adminApplyContentMutation.run(request({ previewId: preview.previewId, confirmation: preview.confirmation, idempotencyKey: 'content-pack-1' }, 'admin-one'));
-    expect((await db.collection('community_pack_submissions').doc('submission-1').get()).data()).toMatchObject({ status: 'changes_requested' });
-    expect((await db.collection('users').doc('author-1').collection('community_seller_inbox').get()).size).toBe(1); expect((await db.collection('admin_log').get()).size).toBe(1);
+    expect((await db.collection('community_pack_submissions').doc('submission-1').get()).data()).toMatchObject({ status: 'needs_revision' });
+    const inbox = await db.collection('users').doc('author-1').collection('community_seller_inbox').get();
+    expect(inbox.docs[0]?.data()).toMatchObject({ type: 'moderation_result', result: 'revision_requested', submissionId: 'submission-1', message: 'Fix card 3', seen: false });
+    expect((await db.collection('admin_log').get()).size).toBe(1);
+  });
+
+  it('publishes an approved community submission and writes the canonical author notification atomically', async () => {
+    const db = admin.firestore(); const before = validSubmission('author-publish');
+    await db.collection('community_pack_submissions').doc('submission-publish').set(before);
+    const preview = await adminPreviewContentMutation.run(request({ action: 'community-submission-decision', targetId: 'submission-publish', reason: 'Full pack reviewed', expectedVersion: documentVersion('submission-publish', before), payload: { decision: 'approve', expectedStatus: 'pending', message: 'Approved for publication' } }, 'admin-one')) as unknown as Row;
+    await adminRequestContentApproval.run(request({ previewId: preview.previewId, confirmation: preview.confirmation }, 'admin-one')); await adminApproveContentMutation.run(request({ previewId: preview.previewId, reason: 'Second moderator verified all cards' }, 'admin-two'));
+    await adminApplyContentMutation.run(request({ previewId: preview.previewId, confirmation: preview.confirmation, idempotencyKey: 'content-pack-publish-1' }, 'admin-one'));
+    expect((await db.collection('community_pack_submissions').doc('submission-publish').get()).data()).toMatchObject({ status: 'approved', publishedPackId: 'submission-publish' });
+    expect((await db.collection('community_packs').doc('submission-publish').get()).data()).toMatchObject({ listingStatus: 'published', authorStableId: 'author-publish', submissionId: 'submission-publish', cardCount: 10, salesCount: 0 });
+    const inbox = await db.collection('users').doc('author-publish').collection('community_seller_inbox').get();
+    expect(inbox.docs[0]?.data()).toMatchObject({ type: 'moderation_result', result: 'approved', submissionId: 'submission-publish', studyTarget: 'en', message: 'Approved for publication', seen: false });
+    expect((await db.collection('admin_log').get()).size).toBe(1);
+  });
+
+  it('moderates active community packs through listingStatus and rejects pending-edit bypasses', async () => {
+    const db = admin.firestore(); const pack = { listingStatus: 'published', authorStableId: 'author-active', studyTarget: 'en', titleRu: 'Active pack', titleUk: '' };
+    await db.collection('community_packs').doc('active-pack').set(pack);
+    const preview = await adminPreviewContentMutation.run(request({ action: 'community-pack-status', targetId: 'active-pack', reason: 'Author revision required', expectedVersion: documentVersion('active-pack', pack), payload: { decision: 'require_revision', message: 'Correct card 2' } }, 'admin-one')) as unknown as Row;
+    await adminRequestContentApproval.run(request({ previewId: preview.previewId, confirmation: preview.confirmation }, 'admin-one')); await adminApproveContentMutation.run(request({ previewId: preview.previewId, reason: 'Second moderator confirmed revision request' }, 'admin-two'));
+    await adminApplyContentMutation.run(request({ previewId: preview.previewId, confirmation: preview.confirmation, idempotencyKey: 'content-active-pack-1' }, 'admin-one'));
+    expect((await db.collection('community_packs').doc('active-pack').get()).data()).toMatchObject({ listingStatus: 'admin_revision_required', adminLastAction: 'require_revision', adminLastMessage: 'Correct card 2' });
+    const inbox = await db.collection('users').doc('author-active').collection('community_seller_inbox').get();
+    expect(inbox.docs[0]?.data()).toMatchObject({ type: 'moderation_result', result: 'revision_requested', packId: 'active-pack', message: 'Correct card 2' });
+
+    const pending = { ...pack, listingStatus: 'update_pending' }; await db.collection('community_packs').doc('pending-pack').set(pending);
+    const blocked = await adminPreviewContentMutation.run(request({ action: 'community-pack-status', targetId: 'pending-pack', reason: 'Attempted direct removal', expectedVersion: documentVersion('pending-pack', pending), payload: { decision: 'remove', message: 'Remove' } }, 'admin-one')) as unknown as Row;
+    await adminRequestContentApproval.run(request({ previewId: blocked.previewId, confirmation: blocked.confirmation }, 'admin-one')); await adminApproveContentMutation.run(request({ previewId: blocked.previewId, reason: 'Second moderator tests pending edit guard' }, 'admin-two'));
+    await expect(adminApplyContentMutation.run(request({ previewId: blocked.previewId, confirmation: blocked.confirmation, idempotencyKey: 'content-active-pack-blocked-1' }, 'admin-one'))).rejects.toMatchObject({ code: 'failed-precondition' });
   });
 
   it('imports a version-checked daily-phrase batch and preserves rollback snapshots', async () => {
@@ -40,6 +82,20 @@ runIfEmulator('Admin Content Operations transactions', () => {
     expect((await db.collection('daily_phrases').doc('existing').get()).data()).toMatchObject({ english: 'After', savedCount: 9, rollbackBefore: existing });
     expect((await db.collection('daily_phrases').doc('new-one').get()).data()).toMatchObject({ english: 'New', scheduledDate: '2026-07-16' });
     expect((await db.collection('admin_native_bulk_manifests').doc('import-1').get()).data()).toMatchObject({ kind: 'daily-phrase-import', importedCount: 2 });
+  });
+
+  it('rejects import and reorder rows that omit explicit expectedVersion', async () => {
+    const db = admin.firestore(); const existing = { english: 'Before', scheduledDate: '2026-07-10', savedCount: 1 };
+    await db.collection('daily_phrases').doc('version-required').set(existing);
+    for (const [action, targetId, items] of [
+      ['daily-phrase-import', 'import-missing-version', [{ id: 'version-required', english: 'After', scheduledDate: '2026-07-20' }]],
+      ['daily-phrase-reorder', 'reorder-missing-version', [{ id: 'version-required', scheduledDate: '2026-07-21' }]],
+    ] as const) {
+      const preview = await adminPreviewContentMutation.run(request({ action, targetId, reason: 'Version requirement test', expectedVersion: 'missing', payload: { items } }, 'admin-one')) as unknown as Row;
+      await adminRequestContentApproval.run(request({ previewId: preview.previewId, confirmation: preview.confirmation }, 'admin-one')); await adminApproveContentMutation.run(request({ previewId: preview.previewId, reason: 'Second editor verifies missing version rejection' }, 'admin-two'));
+      await expect(adminApplyContentMutation.run(request({ previewId: preview.previewId, confirmation: preview.confirmation, idempotencyKey: `${targetId}-key` }, 'admin-one'))).rejects.toMatchObject({ code: 'invalid-argument' });
+    }
+    expect((await db.collection('daily_phrases').doc('version-required').get()).data()).toEqual(existing);
   });
 
   it('updates version-checked explanation reports in bulk without touching explanation caches', async () => {

@@ -48,5 +48,9 @@ describe('Admin v2 native Content Operations', () => {
     for (const marker of ['content-decision', 'content-price', 'content-category', 'content-card-status', 'content-import-lines', 'content-reorder-lines', 'content-report-lines', 'content-from-date', 'content-to-date']) expect(view).toContain(marker);
     for (const action of ['community-submission-decision', 'community-pack-status', 'card-pack-update', 'daily-phrase-upsert', 'daily-phrase-import', 'daily-phrase-reorder', 'daily-phrase-rollback', 'explain-report-status', 'explain-reports-bulk']) expect(`${controller}\n${view}\n${backend}`).toContain(action);
     expect(backend).toContain("collection('plan_content_telemetry_events').doc(key).collection('events')");
+    expect(backend).toContain('applyCommunitySubmissionModerationInTransaction');
+    expect(backend).toContain('applyCommunityPackModerationInTransaction');
+    expect(backend).toContain('daily_phrase_expected_version_required');
+    expect(backend).not.toContain('row.expectedVersion || documentVersion');
   });
 });

@@ -6,6 +6,7 @@ const EMULATOR = process.env.FIRESTORE_EMULATOR_HOST; const PROJECT_ID = process
 type Row = Record<string, unknown>; function request(data: Row, uid: string) { return { data, auth: { uid, token: { admin: true, adminRole: 'admin' } }, app: { appId: 'admin-native-test' }, rawRequest: {} } as never; }
 async function clear() { await fetch(`http://${EMULATOR}/emulator/v1/projects/${PROJECT_ID}/databases/(default)/documents`, { method: 'DELETE' }); }
 async function approveAndApply(preview: Row, key: string) { await adminRequestCommunityApproval.run(request({ previewId: preview.previewId, confirmation: preview.confirmation }, 'admin-one')); await adminApproveCommunityMutation.run(request({ previewId: preview.previewId, reason: 'Second administrator verified canonical target' }, 'admin-two')); return adminApplyCommunityMutation.run(request({ previewId: preview.previewId, confirmation: preview.confirmation, idempotencyKey: key }, 'admin-one')); }
+function validSubmission(authorStableId = 'queue-author'): Row { return { status: 'pending', authorStableId, payload: { studyTarget: 'en', sourceLang: 'ru', title: 'Queue pack', titleRu: 'Queue pack', titleUk: '', priceShards: 10, cards: Array.from({ length: 10 }, (_, index) => ({ id: `queue-card-${index}`, en: `Phrase ${index}`, ru: `Фраза ${index}` })) } }; }
 
 runIfEmulator('Admin Community Operations transactions', () => {
   beforeEach(clear); afterAll(async () => Promise.all(admin.apps.filter(Boolean).map((app) => app!.delete())));
@@ -38,6 +39,29 @@ runIfEmulator('Admin Community Operations transactions', () => {
     const helpPreview = await adminPreviewCommunityMutation.run(request({ action: 'help-topic-status', targetId: 'topic-1', reason: 'Resolved answer verified', expectedVersion: documentVersion('topic-1', topic), payload: { status: 'resolved' } }, 'admin-one')) as unknown as Row; await approveAndApply(helpPreview, 'community-help-1');
     const chatPreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-status', targetId: 'message-1', reason: 'Message reviewed against league rules', expectedVersion: documentVersion('message-1', queued), payload: { status: 'rejected' } }, 'admin-one')) as unknown as Row; await approveAndApply(chatPreview, 'community-chat-1');
     expect((await db.collection('help_board_topics').doc('topic-1').get()).data()).toMatchObject({ status: 'resolved' }); expect((await db.collection('league_chat_moderation_queue').doc('message-1').get()).data()).toMatchObject({ status: 'rejected' }); expect((await db.collection('global_bans').get()).empty).toBe(true); expect((await db.collection('admin_log').get()).size).toBe(2);
+  });
+
+  it('publishes community submissions from the unified moderator queue with the canonical inbox schema', async () => {
+    const db = admin.firestore(); const queued = validSubmission(); await db.collection('community_pack_submissions').doc('queue-pack-1').set(queued);
+    const preview = await adminPreviewCommunityMutation.run(request({ action: 'mod-queue-status', targetId: 'queue-pack-1', reason: 'Unified queue moderation completed', expectedVersion: documentVersion('queue-pack-1', queued), payload: { decision: 'approve', message: 'Queue approval' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(preview, 'community-queue-pack-1');
+    expect((await db.collection('community_pack_submissions').doc('queue-pack-1').get()).data()).toMatchObject({ status: 'approved', publishedPackId: 'queue-pack-1' });
+    expect((await db.collection('community_packs').doc('queue-pack-1').get()).data()).toMatchObject({ listingStatus: 'published', authorStableId: 'queue-author', cardCount: 10 });
+    const inbox = await db.collection('users').doc('queue-author').collection('community_seller_inbox').get();
+    expect(inbox.docs[0]?.data()).toMatchObject({ type: 'moderation_result', result: 'approved', submissionId: 'queue-pack-1', message: 'Queue approval', seen: false });
+    expect((await db.collection('admin_log').get()).size).toBe(1);
+  });
+
+  it('publishes approved league-chat queue rows as visible canonical messages in the same transaction', async () => {
+    const db = admin.firestore(); const queued = { status: 'review', decision: 'pending', groupId: 'group-1', weekId: '2026-W29', leagueId: 3, authorUid: 'chat-author', authorAuthUid: 'auth-author', authorName: 'Author', authorAvatar: 'avatar-1', authorAura: 'aura-1', text: 'Reviewed message', normalizedText: 'reviewed message', moderationCategories: ['review'], moderationReasons: ['manual'], platform: 'android', appVersion: '1.5.43', createdAt: 12345 };
+    await db.collection('league_chat_moderation_queue').doc('chat-approve-1').set(queued);
+    const preview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-status', targetId: 'chat-approve-1', reason: 'League message reviewed', expectedVersion: documentVersion('chat-approve-1', queued), payload: { status: 'approved' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(preview, 'community-chat-approve-1');
+    const queueAfter = (await db.collection('league_chat_moderation_queue').doc('chat-approve-1').get()).data() as Row;
+    expect(queueAfter).toMatchObject({ status: 'approved', decision: 'approved' });
+    const messageId = String(queueAfter.publishedMessageId || ''); expect(messageId).not.toBe('');
+    expect((await db.collection('league_chat_messages').doc(messageId).get()).data()).toMatchObject({ groupId: 'group-1', weekId: '2026-W29', leagueId: 3, authorUid: 'chat-author', authorAuthUid: 'auth-author', authorAura: 'aura-1', text: 'Reviewed message', status: 'visible', reportCount: 0, approvedFromQueueId: 'chat-approve-1', createdAt: 12345 });
+    expect((await db.collection('admin_log').get()).size).toBe(1);
   });
 
   it('resyncs an Arena name and changes the wager flag with rollback metadata', async () => {

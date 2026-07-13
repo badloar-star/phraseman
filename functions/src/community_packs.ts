@@ -386,210 +386,211 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
  * Модерация: approve | reject | request_changes. Только custom claim admin.
  * Опциональный moderatorMessage (и legacy rejectReason) — в заявке и в inbox автора.
  */
+export type CommunitySubmissionModerationAction = 'approve' | 'reject' | 'request_changes';
+
+type CommunitySubmissionModerationResult = {
+  patch: Record<string, unknown>;
+  publishedPackId: string | null;
+};
+
+function canonicalPublishedPackFields(payload: SubmissionPayload): Record<string, unknown> {
+  return {
+    studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget),
+    titleRu: payload.titleRu.trim(),
+    titleUk: payload.titleUk.trim(),
+    titleEs: (payload.titleEs ?? '').trim() || null,
+    titlePtBr: (payload.titlePtBr ?? '').trim() || null,
+    titleVi: (payload.titleVi ?? '').trim() || null,
+    titleId: (payload.titleId ?? '').trim() || null,
+    titleTr: (payload.titleTr ?? '').trim() || null,
+    titlePl: (payload.titlePl ?? '').trim() || null,
+    descriptionRu: (payload.descriptionRu ?? '').trim() || null,
+    descriptionUk: (payload.descriptionUk ?? '').trim() || null,
+    descriptionEs: (payload.descriptionEs ?? '').trim() || null,
+    descriptionPtBr: (payload.descriptionPtBr ?? '').trim() || null,
+    descriptionVi: (payload.descriptionVi ?? '').trim() || null,
+    descriptionId: (payload.descriptionId ?? '').trim() || null,
+    descriptionTr: (payload.descriptionTr ?? '').trim() || null,
+    descriptionPl: (payload.descriptionPl ?? '').trim() || null,
+    priceShards: Math.floor(Number(payload.priceShards)),
+    cards: payload.cards,
+    cardCount: payload.cards.length,
+    cardThemeKey: safeCardThemeKey(payload),
+    cardBackKey: safeCardBackKey(payload),
+  };
+}
+
+export async function applyCommunitySubmissionModerationInTransaction(params: {
+  db: FirebaseFirestore.Firestore;
+  tx: FirebaseFirestore.Transaction;
+  submissionId: string;
+  submission: Record<string, unknown>;
+  action: CommunitySubmissionModerationAction;
+  moderatorMessage: string;
+  now: number;
+}): Promise<CommunitySubmissionModerationResult> {
+  const { db, tx, submissionId, submission, action, now } = params;
+  if (submission.status !== 'pending') {
+    throw new HttpsError('failed-precondition', 'Submission is not pending');
+  }
+  const authorStableId = String(submission.authorStableId ?? '').trim();
+  const rawPayload = submission.payload as SubmissionPayload | undefined;
+  const effectiveMessage = trimModeratorMessage(params.moderatorMessage);
+  const msgForInbox = moderatorMessageOrNull(effectiveMessage);
+
+  const writeModerationInbox = (result: 'approved' | 'rejected' | 'revision_requested') => {
+    if (!authorStableId) return;
+    const studyTarget = normalizeCommunityPackStudyTarget(rawPayload?.studyTarget);
+    const inboxRef = db.collection('users').doc(authorStableId).collection(SELLER_INBOX).doc();
+    tx.set(inboxRef, {
+      type: 'moderation_result',
+      result,
+      submissionId,
+      studyTarget,
+      message: msgForInbox,
+      titleRu: (rawPayload?.titleRu ?? '').trim().slice(0, 200) || null,
+      titleUk: (rawPayload?.titleUk ?? '').trim().slice(0, 200) || null,
+      titleEs: (rawPayload?.titleEs ?? '').trim().slice(0, 200) || null,
+      titlePtBr: (rawPayload?.titlePtBr ?? '').trim().slice(0, 200) || null,
+      titleVi: (rawPayload?.titleVi ?? '').trim().slice(0, 200) || null,
+      titleId: (rawPayload?.titleId ?? '').trim().slice(0, 200) || null,
+      titleTr: (rawPayload?.titleTr ?? '').trim().slice(0, 200) || null,
+      titlePl: (rawPayload?.titlePl ?? '').trim().slice(0, 200) || null,
+      createdAt: now,
+      seen: false,
+    });
+  };
+
+  const editTarget = String(submission.editTargetPackId ?? '').trim();
+  if (action === 'reject' || action === 'request_changes') {
+    if (editTarget) {
+      const packRef = db.collection(COMMUNITY_PACKS).doc(editTarget);
+      const packSnap = await tx.get(packRef);
+      if (packSnap.exists) tx.update(packRef, { listingStatus: 'published', updatedAt: now });
+    }
+    if (action === 'reject') {
+      writeModerationInbox('rejected');
+      return {
+        patch: {
+          status: 'rejected',
+          reviewedAt: now,
+          rejectReason: effectiveMessage,
+          moderatorMessage: msgForInbox,
+        },
+        publishedPackId: null,
+      };
+    }
+    writeModerationInbox('revision_requested');
+    return {
+      patch: {
+        status: 'needs_revision',
+        reviewedAt: now,
+        moderatorMessage: effectiveMessage,
+      },
+      publishedPackId: null,
+    };
+  }
+
+  if (!rawPayload) {
+    throw new HttpsError('failed-precondition', 'Submission has no payload');
+  }
+  const payload = normalizeSubmissionPayload(rawPayload);
+  const publishedFields = canonicalPublishedPackFields(payload);
+
+  if (editTarget) {
+    const packRef = db.collection(COMMUNITY_PACKS).doc(editTarget);
+    const packSnap = await tx.get(packRef);
+    if (!packSnap.exists) {
+      throw new HttpsError('not-found', 'Pack to update not found');
+    }
+    const existing = (packSnap.data() ?? {}) as Record<string, unknown>;
+    const existingStudyTarget = normalizeCommunityPackStudyTarget(existing.studyTarget);
+    if (existingStudyTarget !== normalizeCommunityPackStudyTarget(payload.studyTarget)) {
+      throw new HttpsError('failed-precondition', 'Cannot change pack study target');
+    }
+    tx.set(packRef, {
+      ...existing,
+      ...publishedFields,
+      listingStatus: 'published',
+      authorStableId: submission.authorStableId ?? existing.authorStableId ?? null,
+      submissionId: editTarget,
+      studyTarget: existingStudyTarget,
+      updatedAt: now,
+    });
+    writeModerationInbox('approved');
+    return {
+      patch: {
+        status: 'approved',
+        reviewedAt: now,
+        publishedPackId: editTarget,
+        moderatorMessage: msgForInbox,
+      },
+      publishedPackId: editTarget,
+    };
+  }
+
+  const packRef = db.collection(COMMUNITY_PACKS).doc(submissionId);
+  const packSnap = await tx.get(packRef);
+  if (packSnap.exists) {
+    throw new HttpsError('already-exists', 'Published pack already exists for this id');
+  }
+  tx.set(packRef, {
+    ...publishedFields,
+    listingStatus: 'published',
+    authorStableId: submission.authorStableId ?? null,
+    submissionId,
+    salesCount: 0,
+    publishedAt: now,
+    updatedAt: now,
+  });
+  writeModerationInbox('approved');
+  return {
+    patch: {
+      status: 'approved',
+      reviewedAt: now,
+      publishedPackId: submissionId,
+      moderatorMessage: msgForInbox,
+    },
+    publishedPackId: submissionId,
+  };
+}
+
+/**
+ * Community submission moderation callable. The same canonical transaction helper is used by Admin v2.
+ */
 export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
   const submissionId = String(request.data?.submissionId ?? '').trim();
-  const action = String(request.data?.action ?? '').trim() as 'approve' | 'reject' | 'request_changes';
+  const action = String(request.data?.action ?? '').trim() as CommunitySubmissionModerationAction;
   const moderatorMessage = trimModeratorMessage(request.data?.moderatorMessage);
   const legacyReject = trimModeratorMessage(request.data?.rejectReason);
   const effectiveMessage = moderatorMessage || legacyReject;
-
   if (!submissionId || !['approve', 'reject', 'request_changes'].includes(action)) {
     throw new HttpsError('invalid-argument', 'submissionId and action approve|reject|request_changes required');
   }
 
   const db = admin.firestore();
   const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc(submissionId);
-
-  let approvedPackId: string | null = null;
-
+  let publishedPackId: string | null = null;
   await db.runTransaction(async (tx) => {
     const snap = await tx.get(subRef);
-    if (!snap.exists) {
-      throw new HttpsError('not-found', 'Submission not found');
-    }
-    const d = snap.data() as {
-      status?: string;
-      authorStableId?: string;
-      payload?: SubmissionPayload;
-      editTargetPackId?: string;
-    };
-    if (d.status !== 'pending') {
-      throw new HttpsError('failed-precondition', 'Submission is not pending');
-    }
-    const authorStableId = String(d.authorStableId ?? '').trim();
-    const now = Date.now();
-    const msgForInbox = moderatorMessageOrNull(effectiveMessage);
-
-    const writeModerationInbox = (result: 'approved' | 'rejected' | 'revision_requested') => {
-      if (!authorStableId) return;
-      const studyTarget = normalizeCommunityPackStudyTarget(d.payload?.studyTarget);
-      const inboxRef = db.collection('users').doc(authorStableId).collection(SELLER_INBOX).doc();
-      tx.set(inboxRef, {
-        type: 'moderation_result',
-        result,
-        submissionId,
-        studyTarget,
-        message: msgForInbox,
-        titleRu: (d.payload?.titleRu ?? '').trim().slice(0, 200) || null,
-        titleUk: (d.payload?.titleUk ?? '').trim().slice(0, 200) || null,
-        titleEs: (d.payload?.titleEs ?? '').trim().slice(0, 200) || null,
-        titlePtBr: (d.payload?.titlePtBr ?? '').trim().slice(0, 200) || null,
-        titleVi: (d.payload?.titleVi ?? '').trim().slice(0, 200) || null,
-        titleId: (d.payload?.titleId ?? '').trim().slice(0, 200) || null,
-        titleTr: (d.payload?.titleTr ?? '').trim().slice(0, 200) || null,
-        titlePl: (d.payload?.titlePl ?? '').trim().slice(0, 200) || null,
-        createdAt: now,
-        seen: false,
-      });
-    };
-
-    const editTargetEarly = String(d.editTargetPackId ?? '').trim();
-    let editPackExistsForRestore = false;
-    if (editTargetEarly && (action === 'reject' || action === 'request_changes')) {
-      const ps = await tx.get(db.collection(COMMUNITY_PACKS).doc(editTargetEarly));
-      editPackExistsForRestore = ps.exists;
-    }
-
-    if (action === 'reject') {
-      tx.update(subRef, {
-        status: 'rejected',
-        reviewedAt: now,
-        rejectReason: effectiveMessage,
-        moderatorMessage: msgForInbox,
-      });
-      if (editTargetEarly && editPackExistsForRestore) {
-        tx.update(db.collection(COMMUNITY_PACKS).doc(editTargetEarly), { listingStatus: 'published', updatedAt: now });
-      }
-      writeModerationInbox('rejected');
-      return;
-    }
-
-    if (action === 'request_changes') {
-      tx.update(subRef, {
-        status: 'needs_revision',
-        reviewedAt: now,
-        moderatorMessage: effectiveMessage,
-      });
-      if (editTargetEarly && editPackExistsForRestore) {
-        tx.update(db.collection(COMMUNITY_PACKS).doc(editTargetEarly), { listingStatus: 'published', updatedAt: now });
-      }
-      writeModerationInbox('revision_requested');
-      return;
-    }
-
-    const rawPayload = d.payload;
-    if (!rawPayload) {
-      throw new HttpsError('failed-precondition', 'Submission has no payload');
-    }
-    const payload = normalizeSubmissionPayload(rawPayload);
-    const themeKey = safeCardThemeKey(payload);
-    const cardBackKey = safeCardBackKey(payload);
-    const editTarget = String(d.editTargetPackId ?? '').trim();
-
-    if (editTarget) {
-      const packRef = db.collection(COMMUNITY_PACKS).doc(editTarget);
-      const packSnap = await tx.get(packRef);
-      if (!packSnap.exists) {
-        throw new HttpsError('not-found', 'Pack to update not found');
-      }
-      const existing = (packSnap.data() ?? {}) as Record<string, unknown>;
-      const existingStudyTarget = normalizeCommunityPackStudyTarget(existing.studyTarget);
-      if (existingStudyTarget !== normalizeCommunityPackStudyTarget(payload.studyTarget)) {
-        throw new HttpsError('failed-precondition', 'Cannot change pack study target');
-      }
-      tx.set(packRef, {
-        ...existing,
-        listingStatus: 'published',
-        authorStableId: d.authorStableId ?? existing.authorStableId ?? null,
-        submissionId: editTarget,
-        studyTarget: existingStudyTarget,
-        titleRu: payload.titleRu.trim(),
-        titleUk: payload.titleUk.trim(),
-        titleEs: (payload.titleEs ?? '').trim() || null,
-        titlePtBr: (payload.titlePtBr ?? '').trim() || null,
-        titleVi: (payload.titleVi ?? '').trim() || null,
-        titleId: (payload.titleId ?? '').trim() || null,
-        titleTr: (payload.titleTr ?? '').trim() || null,
-        titlePl: (payload.titlePl ?? '').trim() || null,
-        descriptionRu: (payload.descriptionRu ?? '').trim() || null,
-        descriptionUk: (payload.descriptionUk ?? '').trim() || null,
-        descriptionEs: (payload.descriptionEs ?? '').trim() || null,
-        descriptionPtBr: (payload.descriptionPtBr ?? '').trim() || null,
-        descriptionVi: (payload.descriptionVi ?? '').trim() || null,
-        descriptionId: (payload.descriptionId ?? '').trim() || null,
-        descriptionTr: (payload.descriptionTr ?? '').trim() || null,
-        descriptionPl: (payload.descriptionPl ?? '').trim() || null,
-        priceShards: Math.floor(Number(payload.priceShards)),
-        cards: payload.cards,
-        cardCount: payload.cards.length,
-        cardThemeKey: themeKey,
-        cardBackKey,
-        updatedAt: now,
-      });
-      tx.update(subRef, {
-        status: 'approved',
-        reviewedAt: now,
-        publishedPackId: editTarget,
-        moderatorMessage: msgForInbox,
-      });
-      writeModerationInbox('approved');
-      approvedPackId = editTarget;
-      return;
-    }
-
-    const packRef = db.collection(COMMUNITY_PACKS).doc(submissionId);
-    const packSnap = await tx.get(packRef);
-    if (packSnap.exists) {
-      throw new HttpsError('already-exists', 'Published pack already exists for this id');
-    }
-
-    tx.set(packRef, {
-      listingStatus: 'published',
-      authorStableId: d.authorStableId ?? null,
+    if (!snap.exists) throw new HttpsError('not-found', 'Submission not found');
+    const result = await applyCommunitySubmissionModerationInTransaction({
+      db,
+      tx,
       submissionId,
-      studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget),
-      titleRu: payload.titleRu.trim(),
-      titleUk: payload.titleUk.trim(),
-      titleEs: (payload.titleEs ?? '').trim() || null,
-      titlePtBr: (payload.titlePtBr ?? '').trim() || null,
-      titleVi: (payload.titleVi ?? '').trim() || null,
-      titleId: (payload.titleId ?? '').trim() || null,
-      titleTr: (payload.titleTr ?? '').trim() || null,
-      titlePl: (payload.titlePl ?? '').trim() || null,
-      descriptionRu: (payload.descriptionRu ?? '').trim() || null,
-      descriptionUk: (payload.descriptionUk ?? '').trim() || null,
-      descriptionEs: (payload.descriptionEs ?? '').trim() || null,
-      descriptionPtBr: (payload.descriptionPtBr ?? '').trim() || null,
-      descriptionVi: (payload.descriptionVi ?? '').trim() || null,
-      descriptionId: (payload.descriptionId ?? '').trim() || null,
-      descriptionTr: (payload.descriptionTr ?? '').trim() || null,
-      descriptionPl: (payload.descriptionPl ?? '').trim() || null,
-      priceShards: Math.floor(Number(payload.priceShards)),
-      cards: payload.cards,
-      cardCount: payload.cards.length,
-      cardThemeKey: themeKey,
-      cardBackKey,
-      salesCount: 0,
-      publishedAt: now,
-      updatedAt: now,
+      submission: (snap.data() ?? {}) as Record<string, unknown>,
+      action,
+      moderatorMessage: effectiveMessage,
+      now: Date.now(),
     });
-
-    tx.update(subRef, {
-      status: 'approved',
-      reviewedAt: now,
-      publishedPackId: submissionId,
-      moderatorMessage: msgForInbox,
-    });
-    writeModerationInbox('approved');
-    approvedPackId = submissionId;
+    tx.update(subRef, result.patch);
+    publishedPackId = result.publishedPackId;
   });
-
-  return { ok: true, publishedPackId: action === 'approve' ? approvedPackId : null };
+  return { ok: true, publishedPackId: action === 'approve' ? publishedPackId : null };
 });
-
 function buildSellerInboxModerationRow(params: {
   result: 'revision_requested' | 'pack_removed';
   packId: string;
@@ -619,116 +620,118 @@ function buildSellerInboxModerationRow(params: {
  * Админ: снять набор с витрины на доработку или удалить (мягко). Inbox автору — как при модерации заявок.
  * Явный регион us-central1 — как getFunctions в админке и в приложении.
  */
+export type CommunityPackModerationAction = 'require_revision' | 'remove';
+
+export function applyCommunityPackModerationInTransaction(params: {
+  db: FirebaseFirestore.Firestore;
+  tx: FirebaseFirestore.Transaction;
+  packId: string;
+  pack: Record<string, unknown>;
+  action: CommunityPackModerationAction;
+  moderatorMessage: string;
+  now: number;
+}): Record<string, unknown> {
+  const { db, tx, packId, pack, action, now } = params;
+  const listingStatus = String(pack.listingStatus ?? '');
+  if (listingStatus === LISTING_ADMIN_REMOVED) {
+    throw new HttpsError('failed-precondition', 'Pack already removed');
+  }
+  if (!['published', 'update_pending', LISTING_ADMIN_REVISION].includes(listingStatus)) {
+    throw new HttpsError('failed-precondition', 'Pack is not active for admin action');
+  }
+  const authorStableId = String(pack.authorStableId ?? '').trim();
+  const studyTarget = normalizeCommunityPackStudyTarget(pack.studyTarget);
+  const message = moderatorMessageOrNull(trimModeratorMessage(params.moderatorMessage));
+  const titleRu = String(pack.titleRu ?? '').trim().slice(0, 200) || null;
+  const titleUk = String(pack.titleUk ?? '').trim().slice(0, 200) || null;
+  const titleEs = String(pack.titleEs ?? '').trim().slice(0, 200) || null;
+
+  const writeInbox = (result: 'revision_requested' | 'pack_removed') => {
+    if (!authorStableId) return;
+    const inboxRef = db.collection('users').doc(authorStableId).collection(SELLER_INBOX).doc();
+    tx.set(inboxRef, buildSellerInboxModerationRow({
+      result,
+      packId,
+      studyTarget,
+      now,
+      message,
+      titleRu,
+      titleUk,
+      titleEs,
+    }));
+  };
+  const withAdminMessage = (patch: Record<string, unknown>) => (
+    message
+      ? { ...patch, adminLastMessage: message }
+      : { ...patch, adminLastMessage: admin.firestore.FieldValue.delete() }
+  );
+
+  if (action === 'require_revision') {
+    if (listingStatus === 'update_pending') {
+      throw new HttpsError('failed-precondition', 'Pack has a pending edit submission; moderate that submission first');
+    }
+    writeInbox('revision_requested');
+    return withAdminMessage({
+      listingStatus: LISTING_ADMIN_REVISION,
+      updatedAt: now,
+      adminLastAction: 'require_revision',
+      adminLastActionAt: now,
+    });
+  }
+  if (listingStatus === 'update_pending') {
+    throw new HttpsError('failed-precondition', 'Pack has a pending edit submission; moderate that submission first');
+  }
+  writeInbox('pack_removed');
+  return withAdminMessage({
+    listingStatus: LISTING_ADMIN_REMOVED,
+    updatedAt: now,
+    adminLastAction: 'remove',
+    adminLastActionAt: now,
+  });
+}
+
+/**
+ * Admin moderation of an active pack. Admin v2 uses the same canonical transaction helper.
+ */
 export const communityAdminModeratePack = onCall({ region: 'us-central1', enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
   const packId = String(request.data?.packId ?? '').trim();
-  const action = String(request.data?.action ?? '').trim() as 'require_revision' | 'remove';
+  const action = String(request.data?.action ?? '').trim() as CommunityPackModerationAction;
   const moderatorMessage = trimModeratorMessage(request.data?.moderatorMessage);
-  const msgForInbox = moderatorMessageOrNull(moderatorMessage);
-
   if (!packId || !['require_revision', 'remove'].includes(action)) {
     throw new HttpsError('invalid-argument', 'packId and action require_revision|remove required');
   }
 
   const db = admin.firestore();
   const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
-
-  const run = async () => {
+  try {
     await db.runTransaction(async (tx) => {
       const packSnap = await tx.get(packRef);
-      if (!packSnap.exists) {
-        throw new HttpsError('not-found', 'Pack not found');
-      }
-      const pack = packSnap.data() as Record<string, unknown>;
-      const st = String(pack.listingStatus ?? '');
-      if (st === LISTING_ADMIN_REMOVED) {
-        throw new HttpsError('failed-precondition', 'Pack already removed');
-      }
-      if (st !== 'published' && st !== 'update_pending' && st !== LISTING_ADMIN_REVISION) {
-        throw new HttpsError('failed-precondition', 'Pack is not active for admin action');
-      }
-      const authorStableId = String(pack.authorStableId ?? '').trim();
-      const studyTarget = normalizeCommunityPackStudyTarget(pack.studyTarget);
-      const now = Date.now();
-      const tRu = String(pack.titleRu ?? '').trim().slice(0, 200) || null;
-      const tUk = String(pack.titleUk ?? '').trim().slice(0, 200) || null;
-      const tEs = String(pack.titleEs ?? '').trim().slice(0, 200) || null;
-
-      const writeInbox = (result: 'revision_requested' | 'pack_removed') => {
-        if (!authorStableId) return;
-        const inboxRef = db.collection('users').doc(authorStableId).collection(SELLER_INBOX).doc();
-        tx.set(
-          inboxRef,
-          buildSellerInboxModerationRow({
-            result,
-            packId,
-            studyTarget,
-            now,
-            message: msgForInbox,
-            titleRu: tRu,
-            titleUk: tUk,
-            titleEs: tEs,
-          }),
-        );
-      };
-
-      const patchAdminMessage = (base: Record<string, unknown>) => {
-        if (msgForInbox) {
-          return { ...base, adminLastMessage: msgForInbox };
-        }
-        return { ...base, adminLastMessage: admin.firestore.FieldValue.delete() };
-      };
-
-      if (action === 'require_revision') {
-        if (st === 'update_pending') {
-          throw new HttpsError(
-            'failed-precondition',
-            'У набора уже висит заявка на правку в очереди — обработайте её во вкладке заявок.',
-          );
-        }
-        tx.update(packRef, patchAdminMessage({
-          listingStatus: LISTING_ADMIN_REVISION,
-          updatedAt: now,
-          adminLastAction: 'require_revision',
-          adminLastActionAt: now,
-        }) as Record<string, unknown>);
-        writeInbox('revision_requested');
-        return;
-      }
-
-      if (st === 'update_pending') {
-        throw new HttpsError(
-          'failed-precondition',
-          'У набора висит заявка на правку в очереди — сначала заявки.',
-        );
-      }
-
-      tx.update(packRef, patchAdminMessage({
-        listingStatus: LISTING_ADMIN_REMOVED,
-        updatedAt: now,
-        adminLastAction: 'remove',
-        adminLastActionAt: now,
-      }) as Record<string, unknown>);
-      writeInbox('pack_removed');
+      if (!packSnap.exists) throw new HttpsError('not-found', 'Pack not found');
+      const patch = applyCommunityPackModerationInTransaction({
+        db,
+        tx,
+        packId,
+        pack: (packSnap.data() ?? {}) as Record<string, unknown>,
+        action,
+        moderatorMessage,
+        now: Date.now(),
+      });
+      tx.update(packRef, patch);
     });
-  };
-
-  try {
-    await run();
-  } catch (e) {
-    if (e instanceof HttpsError) throw e;
-    const m = e instanceof Error ? e.message : String(e);
-    console.error('communityAdminModeratePack failed', m, e);
-    throw new HttpsError('internal', m || 'server');
+  } catch (error) {
+    if (error instanceof HttpsError) throw error;
+    const message = error instanceof Error ? error.message : String(error);
+    console.error('communityAdminModeratePack failed', message, error);
+    throw new HttpsError('internal', message || 'server');
   }
-
   return { ok: true };
 });
 
 /**
- * Карточки набора, если пользователь — автор (кроме admin_removed) или покупатель.
+ * Cards for an accessible pack.
  */
 export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1', enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth) {

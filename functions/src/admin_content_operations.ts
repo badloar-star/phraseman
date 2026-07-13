@@ -3,6 +3,12 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
+  applyCommunityPackModerationInTransaction,
+  applyCommunitySubmissionModerationInTransaction,
+  type CommunityPackModerationAction,
+  type CommunitySubmissionModerationAction,
+} from './community_packs';
+import {
   applyNativePatch, approveNativeMutation, asRecord, boundedLimit, cleanText, createNativePreview,
   documentVersion, parseMutationEnvelope, projectNativeRow, readBoundedCollection, requestNativeApproval,
   requireNativePermission, type NativeRow,
@@ -124,10 +130,21 @@ export const adminApplyContentMutation = onCall({ region: REGION, enforceAppChec
   const actor = requireNativePermission(request, 'content.read'); const data = asRecord(request.data);
   return applyNativePatch({
     db: admin.firestore(), packageId: 'content', ...actor, previewId: cleanText(data.previewId, 160), confirmation: cleanText(data.confirmation, 240), idempotencyKey: cleanText(data.idempotencyKey, 160), allowedActions: CONTENT_ACTIONS,
-    transform: async ({ action, targetId, before, payload, nowMs, db, tx }) => {
+    transform: async ({ action, targetId, before, canonicalBefore, payload, nowMs, db, tx }) => {
       const iso = new Date(nowMs).toISOString();
-      if (action === 'community-submission-decision') { const decision = cleanText(payload.decision, 40); if (!['approve', 'reject', 'request_changes'].includes(decision)) throw new HttpsError('invalid-argument', 'invalid submission decision'); const expected = cleanText(payload.expectedStatus || 'pending', 40); if (cleanText(before.status, 40) !== expected) throw new HttpsError('failed-precondition', 'submission_status_changed'); const author = cleanText(before.authorStableId || before.sellerStableId || before.authorUid, 160); if (author) tx.set(db.collection('users').doc(author).collection('community_seller_inbox').doc(), { type: 'moderation_result', submissionId: targetId, decision, moderatorMessage: cleanText(payload.message, 500), createdAt: iso, seen: false }, { merge: true }); return { status: decision === 'approve' ? 'approved' : decision === 'reject' ? 'rejected' : 'changes_requested', moderatorMessage: cleanText(payload.message, 500), moderatedAt: iso, moderatedByUid: actor.actorUid }; }
-      if (action === 'community-pack-status') { const decision = cleanText(payload.decision || payload.status, 40); if (!['require_revision', 'remove'].includes(decision)) throw new HttpsError('invalid-argument', 'invalid pack decision'); const author = cleanText(before.authorStableId || before.sellerStableId || before.authorUid, 160); if (author) tx.set(db.collection('users').doc(author).collection('community_seller_inbox').doc(), { type: 'moderation_result', packId: targetId, decision, moderatorMessage: cleanText(payload.message, 500), createdAt: iso, seen: false }, { merge: true }); return { status: decision === 'remove' ? 'admin_removed' : 'admin_revision_required', moderatorMessage: cleanText(payload.message, 500), updatedAt: iso, updatedByUid: actor.actorUid }; }
+      if (action === 'community-submission-decision') {
+        const decision = cleanText(payload.decision, 40) as CommunitySubmissionModerationAction;
+        if (!['approve', 'reject', 'request_changes'].includes(decision)) throw new HttpsError('invalid-argument', 'invalid submission decision');
+        const expected = cleanText(payload.expectedStatus || 'pending', 40);
+        if (cleanText(before.status, 40) !== expected) throw new HttpsError('failed-precondition', 'submission_status_changed');
+        const result = await applyCommunitySubmissionModerationInTransaction({ db, tx, submissionId: targetId, submission: canonicalBefore, action: decision, moderatorMessage: cleanText(payload.message, 3500), now: nowMs });
+        return result.patch;
+      }
+      if (action === 'community-pack-status') {
+        const decision = cleanText(payload.decision || payload.status, 40) as CommunityPackModerationAction;
+        if (!['require_revision', 'remove'].includes(decision)) throw new HttpsError('invalid-argument', 'invalid pack decision');
+        return applyCommunityPackModerationInTransaction({ db, tx, packId: targetId, pack: canonicalBefore, action: decision, moderatorMessage: cleanText(payload.message, 3500), now: nowMs });
+      }
       if (action === 'community-pack-report-status') { const status = cleanText(payload.status, 40); if (!['reviewed', 'resolved'].includes(status)) throw new HttpsError('invalid-argument', 'invalid pack report status'); return { status, reviewNote: cleanText(payload.message, 500), reviewedAt: iso, reviewedByUid: actor.actorUid }; }
       if (action === 'card-pack-draft') { return { title: cleanText(payload.title, 160), category: cleanText(payload.category, 80), status: 'draft', updatedAt: iso, updatedByUid: actor.actorUid }; }
       if (action === 'card-pack-update') { const patch: NativeRow = { updatedAt: iso, updatedByUid: actor.actorUid }; if (typeof payload.title === 'string') patch.title = cleanText(payload.title, 160); if (payload.priceShards !== undefined) { const price = Math.floor(Number(payload.priceShards)); if (price < 0 || price > 1_000_000) throw new HttpsError('invalid-argument', 'invalid priceShards'); patch.priceShards = price; } if (typeof payload.category === 'string') patch.category = cleanText(payload.category, 80); if (typeof payload.status === 'string') { const status = cleanText(payload.status, 40); if (!['draft', 'published', 'unpublished', 'archived'].includes(status)) throw new HttpsError('invalid-argument', 'invalid card pack status'); patch.status = status; } return patch; }
@@ -142,15 +159,16 @@ export const adminApplyContentMutation = onCall({ region: REGION, enforceAppChec
         snapshots.forEach((snapshot, index) => {
           const row = rows[index]; const scheduledDate = cleanText(row.scheduledDate || row.date, 10); const english = cleanText(row.english || row.en, 500);
           if (!english || !/^\d{4}-\d{2}-\d{2}$/.test(scheduledDate)) throw new HttpsError('invalid-argument', 'every import row requires english and valid scheduledDate');
-          const expected = cleanText(row.expectedVersion || (snapshot.exists ? documentVersion(snapshot.id, snapshot.data()) : 'missing'), 160);
+          const expected = cleanText(row.expectedVersion, 160);
           const actual = snapshot.exists ? documentVersion(snapshot.id, snapshot.data()) : 'missing';
+          if (!expected) throw new HttpsError('invalid-argument', `daily_phrase_expected_version_required:${snapshot.id}`);
           if (expected !== actual) throw new HttpsError('aborted', `daily_phrase_version_changed:${snapshot.id}`);
           const previous = asRecord(snapshot.data());
           tx.set(snapshot.ref, { english, literal: cleanText(row.literal, 1000), meaning: cleanText(row.meaning || row.ru, 1000), scheduledDate, order: Math.max(1, Math.floor(Number(row.order) || index + 1)), active: row.active !== false, allowSave: row.allowSave !== false, savedCount: Math.max(0, Number(previous.savedCount) || 0), rollbackBefore: previous, updatedAt: iso, updatedByUid: actor.actorUid }, { merge: true });
         });
         return { kind: 'daily-phrase-import', importedAt: iso, importedCount: rows.length, phraseIds: refs.map((ref) => ref.id) };
       }
-      if (action === 'daily-phrase-reorder') { const rows = Array.isArray(payload.items) ? payload.items.slice(0, 100).map(asRecord) : []; if (!rows.length) throw new HttpsError('invalid-argument', 'reorder items required'); const snapshots = await Promise.all(rows.map((row) => tx.get(db.collection('daily_phrases').doc(cleanText(row.id, 160))))); snapshots.forEach((snapshot, index) => { if (!snapshot.exists) throw new HttpsError('failed-precondition', 'daily_phrase_missing'); const row = rows[index]; const scheduledDate = cleanText(row.scheduledDate, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(scheduledDate)) throw new HttpsError('invalid-argument', 'valid scheduledDate required for every reorder row'); const expected = cleanText(row.expectedVersion || documentVersion(snapshot.id, snapshot.data()), 160); if (expected !== documentVersion(snapshot.id, snapshot.data())) throw new HttpsError('aborted', `daily_phrase_version_changed:${snapshot.id}`); tx.update(snapshot.ref, { scheduledDate, order: index + 1, rollbackBefore: asRecord(snapshot.data()), updatedAt: iso, updatedByUid: actor.actorUid }); }); return { kind: 'daily-phrase-reorder', reorderedAt: iso, reorderedCount: rows.length, queueIds: rows.map((row) => cleanText(row.id, 160)) }; }
+      if (action === 'daily-phrase-reorder') { const rows = Array.isArray(payload.items) ? payload.items.slice(0, 100).map(asRecord) : []; if (!rows.length) throw new HttpsError('invalid-argument', 'reorder items required'); const snapshots = await Promise.all(rows.map((row) => tx.get(db.collection('daily_phrases').doc(cleanText(row.id, 160))))); snapshots.forEach((snapshot, index) => { if (!snapshot.exists) throw new HttpsError('failed-precondition', 'daily_phrase_missing'); const row = rows[index]; const scheduledDate = cleanText(row.scheduledDate, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(scheduledDate)) throw new HttpsError('invalid-argument', 'valid scheduledDate required for every reorder row'); const expected = cleanText(row.expectedVersion, 160); if (!expected) throw new HttpsError('invalid-argument', `daily_phrase_expected_version_required:${snapshot.id}`); if (expected !== documentVersion(snapshot.id, snapshot.data())) throw new HttpsError('aborted', `daily_phrase_version_changed:${snapshot.id}`); tx.update(snapshot.ref, { scheduledDate, order: index + 1, rollbackBefore: asRecord(snapshot.data()), updatedAt: iso, updatedByUid: actor.actorUid }); }); return { kind: 'daily-phrase-reorder', reorderedAt: iso, reorderedCount: rows.length, queueIds: rows.map((row) => cleanText(row.id, 160)) }; }
       if (action === 'daily-phrase-rollback') { const rollback = asRecord(before.rollbackBefore); if (!Object.keys(rollback).length) throw new HttpsError('failed-precondition', 'daily_phrase_rollback_unavailable'); const restored = { ...rollback }; delete restored.id; delete restored.version; return { ...restored, rollbackBefore: before, rolledBackAt: iso, rolledBackByUid: actor.actorUid }; }
       if (action === 'french-draft') return { ...payload, studyTarget: 'fr', surface: 'quiz', status: 'HOLD', activationApproved: false, productionReady: false, rolloutPercent: 0, updatedAt: iso, updatedByUid: actor.actorUid };
       if (action === 'french-rollback') return { ...payload, studyTarget: 'fr', surface: 'quiz', status: 'HOLD', activationApproved: false, productionReady: false, deleteHistoricalPayloads: false, updatedAt: iso, updatedByUid: actor.actorUid };

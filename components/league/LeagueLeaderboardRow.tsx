@@ -18,6 +18,7 @@ interface LeagueLeaderboardRowProps {
   renderAvatar: (member: GroupMember, size: number) => React.ReactNode;
   renderName: (member: GroupMember) => React.ReactNode;
   hasCrown: boolean;
+  xpPromotionBadgeTestID?: string;
   onOpenProfile: (member: GroupMember) => void;
 }
 
@@ -27,7 +28,7 @@ function zoneColor(zone: LeagueLeaderboardZone, palette: LeagueHubPalette): stri
   return palette.muted;
 }
 
-function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, renderAvatar, renderName, hasCrown, onOpenProfile }: LeagueLeaderboardRowProps) {
+function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, renderAvatar, renderName, hasCrown, xpPromotionBadgeTestID, onOpenProfile }: LeagueLeaderboardRowProps) {
   useReduceMotion();
   const place = index + 1;
   const label = `${place}. ${member.name}, ${member.points} XP${member.isMe ? `, ${triLang(lang, { ru: 'это вы', uk: 'це ви', es: 'eres tú', 'pt-BR': 'é você', vi: 'là bạn', id: 'ini kamu', tr: 'bu sensin', pl: 'to ty' })}` : ''}`;
@@ -50,6 +51,11 @@ function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, ren
         <View style={styles.nameRow}>
           <View style={styles.nameWrap}>{renderName(member)}</View>
           {member.isMe ? <View style={[styles.mePill, { backgroundColor: palette.accent }]}><Text style={[styles.meText, { color: palette.accentText }]}>{triLang(lang, { ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}</Text></View> : null}
+          {xpPromotionBadgeTestID ? (
+            <View testID={xpPromotionBadgeTestID} style={[styles.promotionPill, { backgroundColor: `${palette.positive}22` }]}>
+              <Text style={[styles.promotionText, { color: palette.positive }]}>{triLang(lang, { ru: 'Переход', uk: 'Перехід', es: 'Sube', 'pt-BR': 'Sobe', vi: 'Lên hạng', id: 'Naik', tr: 'Yükselir', pl: 'Awans' })}</Text>
+            </View>
+          ) : null}
           {hasCrown ? <Ionicons name="trophy" size={15} color={palette.warning} /> : null}
         </View>
         <View style={styles.metaRow}>
@@ -77,6 +83,8 @@ const styles = StyleSheet.create({
   nameWrap: { flexShrink: 1, minWidth: 0 },
   mePill: { minHeight: 22, borderRadius: 11, paddingHorizontal: 7, alignItems: 'center', justifyContent: 'center' },
   meText: { fontSize: 10, fontWeight: '900' },
+  promotionPill: { minHeight: 22, borderRadius: 11, paddingHorizontal: 7, alignItems: 'center', justifyContent: 'center' },
+  promotionText: { fontSize: 10, fontWeight: '900' },
   metaRow: { minHeight: 18, marginTop: 3, flexDirection: 'row', alignItems: 'center', gap: 8 },
   meta: { fontSize: 11, fontWeight: '700' },
   boost: { fontSize: 11, fontWeight: '900' },

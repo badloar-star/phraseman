@@ -54,4 +54,18 @@ describe('league club hub composition', () => {
     expect(files).toContain('accessibilityLabel');
     expect(files).toContain('accentText');
   });
+
+  it('composes the hub from cached league state and virtualizes the member list', () => {
+    const screen = read('app/club_screen.tsx');
+    expect(screen).toContain('getCachedLeagueChatRoomSync');
+    expect(screen).toContain('getCachedLeagueChatMessagesSync');
+    expect(screen).toContain('buildLeagueActivityEvents');
+    expect(screen).toContain('<LeagueClubHero');
+    expect(screen).toContain('<LeagueActivityPreview');
+    expect(screen).toContain('<LeagueBonusMission');
+    expect(screen).toContain('<LeaguePodium');
+    expect(screen).toContain('<Reanimated.FlatList');
+    expect(screen).toContain('keyExtractor={leagueMemberKeyExtractor}');
+    expect(screen).not.toContain('subscribeLeagueChatMessages');
+  });
 });

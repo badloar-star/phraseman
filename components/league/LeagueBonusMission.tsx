@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import { Image, type ImageSource } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,7 +14,7 @@ interface LeagueBonusMissionProps {
   model: LeagueBonusMissionModel;
   lang: Lang;
   palette: LeagueHubPalette;
-  giftImage: ImageSource;
+  giftImage: ImageSourcePropType;
   renderContributorAvatar: (member: GroupMember, size: number) => React.ReactNode;
   onClaim: () => void;
   onBoost: () => void;
@@ -38,7 +38,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
           <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
           <Text style={[styles.title, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'Бонус-лига', uk: 'Бонус-ліга', es: 'Liga de bonus', 'pt-BR': 'Liga de bônus', vi: 'Giải thưởng chung', id: 'Liga bonus', tr: 'Bonus ligi', pl: 'Liga bonusowa' })}</Text>
         </View>
-        <Image source={giftImage} style={styles.gift} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
+        <Image source={giftImage as ImageSource} style={styles.gift} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
       </View>
 
       <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: model.goal, now: model.progress }} style={[styles.track, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.18)' : palette.elevated }]}>

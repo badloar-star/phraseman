@@ -110,7 +110,13 @@ describe('openai_jobs_config — resolveJobConfig', () => {
       image_assets: { model: 'gpt-image-1', globalDailyCap: 7 },
       digest: { model: 'gpt-image-1' },
     });
-    expect(await resolveJobConfig(db, 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 7, enabled: true });
+    expect(await resolveJobConfig(db, 'image_assets')).toEqual({
+      model: 'gpt-image-1',
+      globalDailyCap: 7,
+      enabled: true,
+      aiV2Enabled: false,
+      rolloutPct: 0,
+    });
     expect((await resolveJobConfig(db, 'digest')).model).toBe('gpt-4.1-mini');
   });
 

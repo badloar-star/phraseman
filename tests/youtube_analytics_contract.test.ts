@@ -201,12 +201,35 @@ describe('YouTube analytics contract', () => {
   it.each([
     ['{"version":1,"type":"ready","ignored":"value"}', { version: 1, type: 'ready' }],
     [
-      '{"version":1,"type":"state","state":1,"positionMs":123,"durationMs":456,"ignored":true}',
-      { version: 1, type: 'state', state: 1, positionMs: 123, durationMs: 456 },
+      '{"version":1,"type":"state","state":"playing","positionMs":123,"durationMs":456,"ignored":true}',
+      { version: 1, type: 'state', state: 'playing', positionMs: 123, durationMs: 456 },
     ],
     ['{"version":1,"type":"error","code":150,"message":"private"}', { version: 1, type: 'error', code: 150 }],
   ])('parses and allowlists a player message', (raw, expected) => {
     expect(parseYoutubePlayerMessage(raw)).toEqual(expected);
+  });
+
+  it.each(['playing', 'paused', 'buffering', 'ended'] as const)(
+    'parses the exact %s state emitted by the generated bridge',
+    (state) => {
+      const raw = JSON.stringify({ version: 1, type: 'state', state, positionMs: 123, durationMs: 456 });
+
+      expect(parseYoutubePlayerMessage(raw)).toEqual({
+        version: 1,
+        type: 'state',
+        state,
+        positionMs: 123,
+        durationMs: 456,
+      });
+    },
+  );
+
+  it.each([
+    JSON.stringify({ version: 1, type: 'ready' }),
+    JSON.stringify({ version: 1, type: 'state', state: 'playing', positionMs: 0, durationMs: 1_000 }),
+    JSON.stringify({ version: 1, type: 'error', code: 150 }),
+  ])('accepts a representative exact generated-bridge message: %s', (raw) => {
+    expect(parseYoutubePlayerMessage(raw)).not.toBeNull();
   });
 
   it.each([2, 5, 100, 101, 150] as const)('accepts known YouTube player error code %s', (code) => {
@@ -237,10 +260,11 @@ describe('YouTube analytics contract', () => {
     ['not json'],
     ['{"version":2,"type":"ready"}'],
     ['{"version":1,"type":"unknown"}'],
-    ['{"version":1,"type":"state","state":4,"positionMs":0,"durationMs":1}'],
-    ['{"version":1,"type":"state","state":1,"positionMs":-1,"durationMs":1}'],
-    ['{"version":1,"type":"state","state":1,"positionMs":0,"durationMs":86400001}'],
-    ['{"version":1,"type":"state","state":1,"positionMs":0}'],
+    ['{"version":1,"type":"state","state":1,"positionMs":0,"durationMs":1}'],
+    ['{"version":1,"type":"state","state":"unknown","positionMs":0,"durationMs":1}'],
+    ['{"version":1,"type":"state","state":"playing","positionMs":-1,"durationMs":1}'],
+    ['{"version":1,"type":"state","state":"playing","positionMs":0,"durationMs":86400001}'],
+    ['{"version":1,"type":"state","state":"playing","positionMs":0}'],
     ['{"version":1,"type":"error","code":999}'],
     [null],
   ])('rejects an unknown or malformed player message', (raw) => {

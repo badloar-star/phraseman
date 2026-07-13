@@ -304,10 +304,18 @@ export function buildYoutubeAnalyticsEvent(input: YoutubeAnalyticsEventInput): B
 
 export type YoutubePlayerMessage =
   | { version: 1; type: 'ready' }
-  | { version: 1; type: 'state'; state: -1 | 0 | 1 | 2 | 3 | 5; positionMs: number; durationMs: number }
+  | {
+    version: 1;
+    type: 'state';
+    state: 'playing' | 'paused' | 'buffering' | 'ended';
+    positionMs: number;
+    durationMs: number;
+  }
   | { version: 1; type: 'error'; code: 2 | 5 | 100 | 101 | 150 };
 
-const playerStates = new Set([-1, 0, 1, 2, 3, 5]);
+type YoutubePlayerState = Extract<YoutubePlayerMessage, { type: 'state' }>['state'];
+
+const playerStates = new Set<YoutubePlayerState>(['playing', 'paused', 'buffering', 'ended']);
 const playerErrorCodes = new Set([2, 5, 100, 101, 150]);
 
 export function parseYoutubePlayerMessage(raw: unknown): YoutubePlayerMessage | null {
@@ -322,15 +330,14 @@ export function parseYoutubePlayerMessage(raw: unknown): YoutubePlayerMessage | 
   if (parsed.type === 'ready') return { version: 1, type: 'ready' };
   if (parsed.type === 'state') {
     if (
-      typeof parsed.state !== 'number'
-      || !Number.isInteger(parsed.state)
-      || !playerStates.has(parsed.state)
+      typeof parsed.state !== 'string'
+      || !playerStates.has(parsed.state as YoutubePlayerState)
     ) return null;
     try {
       return {
         version: 1,
         type: 'state',
-        state: parsed.state as -1 | 0 | 1 | 2 | 3 | 5,
+        state: parsed.state as YoutubePlayerState,
         positionMs: boundedInteger(parsed.positionMs, 'positionMs', MAX_YOUTUBE_PLAYBACK_MS),
         durationMs: boundedInteger(parsed.durationMs, 'durationMs', MAX_YOUTUBE_PLAYBACK_MS),
       };

@@ -1,3 +1,5 @@
+import { runInNewContext } from 'node:vm';
+
 import {
   buildLingmanEmbedHtml,
   fetchYoutubeFeedWithFallback,
@@ -15,6 +17,95 @@ import {
   mergePinnedVideos,
   type LingmanYoutubeVideo,
 } from '../app/lingman_youtube';
+import { parseYoutubePlayerMessage } from '../app/youtube_analytics_contract';
+
+type BridgeEventListener = () => void;
+
+function createBridgeHarness() {
+  const html = buildLingmanEmbedHtml('X7L3Xg3qITo');
+  const inlineScript = html.match(/<script>\s*([\s\S]*?)<\/script>/)?.[1];
+  if (!inlineScript) throw new Error('Generated bridge script not found');
+
+  const rawMessages: string[] = [];
+  const documentListeners = new Map<string, BridgeEventListener>();
+  const windowListeners = new Map<string, BridgeEventListener>();
+  const intervals = new Map<number, () => void>();
+  let nextIntervalId = 1;
+  let playerState = 2;
+  let playerEvents: Record<string, (event?: { data?: number }) => void> | null = null;
+
+  const player = {
+    getCurrentTime: () => 12.345,
+    getDuration: () => 60,
+    getPlayerState: () => playerState,
+  };
+  const documentObject = {
+    visibilityState: 'visible',
+    addEventListener: (name: string, listener: BridgeEventListener) => {
+      documentListeners.set(name, listener);
+    },
+  };
+  const windowObject: Record<string, unknown> = {
+    ReactNativeWebView: {
+      postMessage: (raw: string) => rawMessages.push(raw),
+    },
+    addEventListener: (name: string, listener: BridgeEventListener) => {
+      windowListeners.set(name, listener);
+    },
+  };
+  function MockPlayer(
+    _elementId: string,
+    options: { events: Record<string, (event?: { data?: number }) => void> },
+  ) {
+    playerEvents = options.events;
+    return player;
+  }
+  const YT = { Player: MockPlayer };
+
+  runInNewContext(inlineScript, {
+    window: windowObject,
+    document: documentObject,
+    YT,
+    setInterval: (callback: () => void, delayMs: number) => {
+      if (delayMs !== 1_000) throw new Error(`Unexpected interval: ${delayMs}`);
+      const id = nextIntervalId;
+      nextIntervalId += 1;
+      intervals.set(id, callback);
+      return id;
+    },
+    clearInterval: (id: number) => intervals.delete(id),
+  });
+
+  const apiReady = windowObject.onYouTubeIframeAPIReady;
+  if (typeof apiReady !== 'function') throw new Error('YouTube API callback not installed');
+  apiReady();
+  if (!playerEvents) throw new Error('YouTube player events not installed');
+
+  return {
+    emitYoutubeState(state: number) {
+      playerState = state;
+      playerEvents?.onStateChange({ data: state });
+    },
+    setAnalyticsActive(active: boolean) {
+      const setter = windowObject.__phrasemanSetAnalyticsActive;
+      if (typeof setter !== 'function') throw new Error('Analytics activity setter not installed');
+      setter(active);
+    },
+    setVisibility(visibilityState: 'visible' | 'hidden') {
+      documentObject.visibilityState = visibilityState;
+      documentListeners.get('visibilitychange')?.();
+    },
+    dispatchWindowEvent(name: 'pagehide' | 'beforeunload') {
+      windowListeners.get(name)?.();
+    },
+    parsedMessages() {
+      return rawMessages.map(parseYoutubePlayerMessage);
+    },
+    get intervalCount() {
+      return intervals.size;
+    },
+  };
+}
 
 function makeVideo(id: string): LingmanYoutubeVideo {
   return {
@@ -180,6 +271,69 @@ describe('lingman_youtube', () => {
 
   it('rejects invalid video IDs before interpolating generated HTML', () => {
     expect(() => buildLingmanEmbedHtml(`bad'</script><script>alert(1)</script>`)).toThrow('Invalid YouTube video ID');
+  });
+
+  it('executes the generated bridge and ignores unknown YouTube states', () => {
+    const bridge = createBridgeHarness();
+
+    bridge.emitYoutubeState(-1);
+    bridge.emitYoutubeState(5);
+
+    expect(bridge.parsedMessages()).toEqual([]);
+    expect(bridge.intervalCount).toBe(0);
+  });
+
+  it('keeps one interval and gates it by analytics activity, visibility, and playback state', () => {
+    const bridge = createBridgeHarness();
+
+    bridge.emitYoutubeState(1);
+    bridge.emitYoutubeState(1);
+    expect(bridge.intervalCount).toBe(1);
+
+    bridge.setAnalyticsActive(false);
+    expect(bridge.intervalCount).toBe(0);
+    bridge.emitYoutubeState(1);
+    expect(bridge.intervalCount).toBe(0);
+
+    bridge.setAnalyticsActive(true);
+    expect(bridge.intervalCount).toBe(1);
+    bridge.setVisibility('hidden');
+    expect(bridge.intervalCount).toBe(0);
+    bridge.setAnalyticsActive(true);
+    expect(bridge.intervalCount).toBe(0);
+
+    bridge.setVisibility('visible');
+    expect(bridge.intervalCount).toBe(1);
+    bridge.emitYoutubeState(2);
+    expect(bridge.intervalCount).toBe(0);
+    bridge.setAnalyticsActive(false);
+    bridge.setAnalyticsActive(true);
+    expect(bridge.intervalCount).toBe(0);
+  });
+
+  it.each(['pagehide', 'beforeunload'] as const)('stops generated bridge polling on %s', (eventName) => {
+    const bridge = createBridgeHarness();
+    bridge.emitYoutubeState(1);
+
+    bridge.dispatchWindowEvent(eventName);
+
+    expect(bridge.intervalCount).toBe(0);
+  });
+
+  it('emits bridge state shapes accepted by the React Native parser', () => {
+    const bridge = createBridgeHarness();
+
+    bridge.emitYoutubeState(1);
+    bridge.emitYoutubeState(3);
+    bridge.emitYoutubeState(2);
+    bridge.emitYoutubeState(0);
+
+    expect(bridge.parsedMessages()).toEqual([
+      { version: 1, type: 'state', state: 'playing', positionMs: 12_345, durationMs: 60_000 },
+      { version: 1, type: 'state', state: 'buffering', positionMs: 12_345, durationMs: 60_000 },
+      { version: 1, type: 'state', state: 'paused', positionMs: 12_345, durationMs: 60_000 },
+      { version: 1, type: 'state', state: 'ended', positionMs: 12_345, durationMs: 60_000 },
+    ]);
   });
 
   it('counts unread videos relative to the last opened latest video', () => {

@@ -97,7 +97,13 @@ $env:EXPO_NO_TELEMETRY = "1"
 $env:UV_THREADPOOL_SIZE = "128"
 $env:NODE_OPTIONS = "--max-old-space-size=12288"
 
-$expoArgs = @("expo", "start", "--dev-client", "--port", "$Port")
+$localExpoCli = Join-Path $ProjectRoot 'node_modules\expo\bin\cli'
+if (-not (Test-Path -LiteralPath $localExpoCli)) {
+  Say "ERROR: project-local Expo CLI is missing. Run npm install in $ProjectRoot."
+  exit 1
+}
+
+$expoArgs = @("start", "--dev-client", "--port", "$Port")
 if ($Tunnel) {
   $expoArgs += "--tunnel"
   Say "TUNNEL mode. URL appears in log as exp://<...>.exp.direct (phone needs internet)."
@@ -114,5 +120,5 @@ if ($Tunnel) {
 }
 if ($Clear) { $expoArgs += "--clear" }
 
-Say ("Start: npx " + ($expoArgs -join ' '))
-& npx @expoArgs
+Say ("Start: project-local Expo CLI " + ($expoArgs -join ' '))
+& node $localExpoCli @expoArgs

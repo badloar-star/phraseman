@@ -19,16 +19,24 @@ describe('OpenAI runtime cost controls', () => {
     expect(companion).not.toContain('(start the conversation: greet me warmly');
   });
 
-  test('weekly review and stats insights are generated from local templates, not paid callables', () => {
+  test('weekly review and stats insights preserve their intended cost controls', () => {
     const weekly = read('app/weekly_review_client.ts');
     const stats = read('app/stats_insights_client.ts');
+    const statsServer = read('functions/src/stats_insights.ts');
 
     expect(weekly).toContain('buildLocalWeeklyReview');
     expect(stats).toContain('buildLocalStatsInsights');
     expect(weekly).not.toContain("weeklyReviewGenerate'");
     expect(weekly).not.toContain('"weeklyReviewGenerate"');
-    expect(stats).not.toContain("statsInsightsGenerate'");
-    expect(stats).not.toContain('"statsInsightsGenerate"');
+    expect(stats).toContain("'statsInsightsGenerate'");
+    expect(stats).toContain('if (!options.isPremium)');
+    expect(stats).toContain('nextAllowedAtMs');
+    expect(stats).toContain('buildVerifiedFallbackNotes');
+    expect(statsServer).toContain('resolvePremiumAccess');
+    expect(statsServer).toContain('replay');
+    expect(statsServer).toContain('enforceRateLimit');
+    expect(statsServer).toContain('enforceGlobalBudget');
+    expect(statsServer).toContain('commitWindow');
   });
 
   test('cache-warm AI clients dedupe identical in-flight callable requests', () => {

@@ -12,13 +12,20 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getApp } from '@react-native-firebase/app';
+import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { DebugLogger } from './debug-logger';
 import { triLang, type Lang } from '../constants/i18n';
-import { statsInsightsStorageKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
+import type { StatsInsightAnalysis, StatsInsightBlockKey } from './stats_insights_analysis';
+import { statsInsightsStorageKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const PREMIUM_WINDOW_DAYS = 3;
 const FREE_WINDOW_DAYS = 7;
+const FUNCTIONS_REGION = 'us-central1';
+const VERIFIED_NOTE_MAX_CHARS = 400;
 
 /** Ключи блоков — синхронны с CF stats_insights.ts. */
 export const STATS_INSIGHT_BLOCKS = ['balance', 'rhythm', 'year', 'percentiles', 'lifetime'] as const;
@@ -306,4 +313,277 @@ export async function generateStatsInsights(options: GenerateStatsInsightsOption
   };
   await saveStored(nextStored, studyTarget);
   return { kind: 'cached', notes, nextAllowedAtMs: nextStored.nextAllowedAtMs, lang };
+}
+
+// The legacy five-block API above stays local until its screen migration is complete.
+// This separate v2 API is Premium-only and accepts only the verified four-block analysis
+// shared with the server. Keeping the contracts separate prevents either shape becoming
+// an unsafe union during the migration.
+export const VERIFIED_STATS_INSIGHT_BLOCKS = ['week', 'longTerm', 'comparison', 'lifetime'] as const;
+export type VerifiedStatsInsightsNotes = Record<StatsInsightBlockKey, string>;
+export type VerifiedStatsInsightsErrorCode = StatsInsightsErrorCode;
+
+export interface VerifiedStatsInsightsStored {
+  schemaVersion: 2;
+  fingerprint: string;
+  observationIds: Record<StatsInsightBlockKey, string>;
+  notes: VerifiedStatsInsightsNotes;
+  generatedAtMs: number;
+  nextAllowedAtMs: number;
+  lang: Lang;
+  studyTarget: string;
+}
+
+export type VerifiedStatsInsightsState =
+  | { kind: 'none' }
+  | {
+      kind: 'cached';
+      notes: VerifiedStatsInsightsNotes;
+      observationIds: Record<StatsInsightBlockKey, string>;
+      nextAllowedAtMs: number;
+      lang: Lang;
+    }
+  | { kind: 'insufficient_data' }
+  | { kind: 'fallback'; code: VerifiedStatsInsightsErrorCode; notes: VerifiedStatsInsightsNotes };
+
+export interface GetVerifiedStatsInsightsOptions {
+  analysis: StatsInsightAnalysis;
+  lang: Lang;
+  studyTarget?: RuntimeStudyTarget;
+  nowMs?: number;
+}
+
+export interface GenerateVerifiedStatsInsightsOptions extends GetVerifiedStatsInsightsOptions {
+  isPremium: boolean;
+  force?: boolean;
+}
+
+interface StatsInsightsGenerateResponse {
+  ok: boolean;
+  notes: unknown;
+  observationIds: unknown;
+  nextAllowedAtMs: number;
+  model: string;
+}
+
+function normalizedVerifiedStudyTarget(studyTarget?: RuntimeStudyTarget): string {
+  return storageStudyTarget(studyTarget);
+}
+
+function normalizeVerifiedNotes(raw: unknown): VerifiedStatsInsightsNotes | null {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  const input = raw as Record<string, unknown>;
+  if (Object.keys(input).length !== VERIFIED_STATS_INSIGHT_BLOCKS.length) return null;
+  const notes = {} as VerifiedStatsInsightsNotes;
+  for (const block of VERIFIED_STATS_INSIGHT_BLOCKS) {
+    const value = input[block];
+    if (typeof value !== 'string') return null;
+    const clean = value.trim().slice(0, VERIFIED_NOTE_MAX_CHARS);
+    if (!clean) return null;
+    notes[block] = clean;
+  }
+  return notes;
+}
+
+function normalizeObservationIds(raw: unknown): Record<StatsInsightBlockKey, string> | null {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  const input = raw as Record<string, unknown>;
+  if (Object.keys(input).length !== VERIFIED_STATS_INSIGHT_BLOCKS.length) return null;
+  const ids = {} as Record<StatsInsightBlockKey, string>;
+  for (const block of VERIFIED_STATS_INSIGHT_BLOCKS) {
+    const value = input[block];
+    if (typeof value !== 'string' || !value.trim()) return null;
+    ids[block] = value.trim();
+  }
+  return ids;
+}
+
+function observationIdsMatch(
+  ids: Record<StatsInsightBlockKey, string>,
+  analysis: StatsInsightAnalysis,
+): boolean {
+  return VERIFIED_STATS_INSIGHT_BLOCKS.every((block) => ids[block] === analysis.blocks[block].id);
+}
+
+export function buildVerifiedFallbackNotes(
+  analysis: StatsInsightAnalysis,
+  lang: Lang,
+): VerifiedStatsInsightsNotes {
+  const notes = {} as VerifiedStatsInsightsNotes;
+  for (const block of VERIFIED_STATS_INSIGHT_BLOCKS) {
+    notes[block] = String(analysis.blocks[block].fallback[lang] ?? '').trim().slice(0, VERIFIED_NOTE_MAX_CHARS);
+  }
+  return notes;
+}
+
+function asCachedVerifiedState(stored: VerifiedStatsInsightsStored): VerifiedStatsInsightsState {
+  return {
+    kind: 'cached',
+    notes: stored.notes,
+    observationIds: stored.observationIds,
+    nextAllowedAtMs: stored.nextAllowedAtMs,
+    lang: stored.lang,
+  };
+}
+
+async function loadVerifiedStored(studyTarget?: RuntimeStudyTarget): Promise<VerifiedStatsInsightsStored | null> {
+  try {
+    const raw = await AsyncStorage.getItem(statsInsightsStorageKey(studyTarget));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<VerifiedStatsInsightsStored>;
+    if (parsed.schemaVersion !== 2) return null;
+    const notes = normalizeVerifiedNotes(parsed.notes);
+    const observationIds = normalizeObservationIds(parsed.observationIds);
+    if (
+      !notes ||
+      !observationIds ||
+      typeof parsed.fingerprint !== 'string' ||
+      !parsed.fingerprint ||
+      typeof parsed.generatedAtMs !== 'number' ||
+      !Number.isFinite(parsed.generatedAtMs) ||
+      typeof parsed.nextAllowedAtMs !== 'number' ||
+      !Number.isFinite(parsed.nextAllowedAtMs) ||
+      typeof parsed.lang !== 'string' ||
+      typeof parsed.studyTarget !== 'string'
+    ) return null;
+    return {
+      schemaVersion: 2,
+      fingerprint: parsed.fingerprint,
+      observationIds,
+      notes,
+      generatedAtMs: parsed.generatedAtMs,
+      nextAllowedAtMs: parsed.nextAllowedAtMs,
+      lang: parsed.lang as Lang,
+      studyTarget: parsed.studyTarget,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function saveVerifiedStored(stored: VerifiedStatsInsightsStored, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  try {
+    await AsyncStorage.setItem(statsInsightsStorageKey(studyTarget), JSON.stringify(stored));
+  } catch (err) {
+    DebugLogger.error('stats_insights_client:save_v2', err, 'warning');
+  }
+}
+
+function compatibleVerifiedStored(
+  stored: VerifiedStatsInsightsStored | null,
+  options: GetVerifiedStatsInsightsOptions,
+): stored is VerifiedStatsInsightsStored {
+  return !!stored &&
+    stored.lang === options.lang &&
+    stored.studyTarget === normalizedVerifiedStudyTarget(options.studyTarget) &&
+    stored.fingerprint === options.analysis.fingerprint &&
+    observationIdsMatch(stored.observationIds, options.analysis);
+}
+
+/** Reads a compatible v2 result only; it deliberately starts no background request. */
+export async function getVerifiedStatsInsightsState(
+  options: GetVerifiedStatsInsightsOptions,
+): Promise<VerifiedStatsInsightsState> {
+  const stored = await loadVerifiedStored(options.studyTarget);
+  return compatibleVerifiedStored(stored, options) ? asCachedVerifiedState(stored) : { kind: 'none' };
+}
+
+function firebaseErrorDetails(error: unknown): Record<string, unknown> {
+  if (!error || typeof error !== 'object') return {};
+  const details = (error as { details?: unknown }).details;
+  return details && typeof details === 'object' ? details as Record<string, unknown> : {};
+}
+
+function verifiedErrorCode(error: unknown): VerifiedStatsInsightsErrorCode {
+  const raw = error && typeof error === 'object' ? String((error as { code?: unknown }).code ?? '') : '';
+  const detailsCode = String(firebaseErrorDetails(error).code ?? '');
+  if (detailsCode === 'insufficient_data') return 'insufficient_data';
+  if (detailsCode === 'not_ready' || raw.includes('failed-precondition')) return 'not_ready';
+  if (raw.includes('unavailable') || raw.includes('network') || raw.includes('deadline-exceeded')) return 'offline';
+  if (raw.includes('internal') || raw.includes('resource-exhausted')) return 'provider_failed';
+  return 'unknown';
+}
+
+function serverNextAllowedAtMs(error: unknown): number | null {
+  const value = firebaseErrorDetails(error).nextAllowedAtMs;
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
+}
+
+/**
+ * Calls the verified, budgeted Firebase function for Premium users. The server—not
+ * `isPremium` from this client—authorizes access and owns the generation window.
+ */
+export async function generateVerifiedStatsInsights(
+  options: GenerateVerifiedStatsInsightsOptions,
+): Promise<VerifiedStatsInsightsState> {
+  if (!options.isPremium) return { kind: 'none' };
+
+  const nowMs = options.nowMs ?? Date.now();
+  const stored = await loadVerifiedStored(options.studyTarget);
+  const compatible = compatibleVerifiedStored(stored, options) ? stored : null;
+
+  if (!options.force && stored && stored.lang === options.lang &&
+      stored.studyTarget === normalizedVerifiedStudyTarget(options.studyTarget) && nowMs < stored.nextAllowedAtMs) {
+    return compatible
+      ? asCachedVerifiedState(compatible)
+      : { kind: 'fallback', code: 'not_ready', notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
+  }
+
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    return { kind: 'fallback', code: 'offline', notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
+  }
+
+  try {
+    const stableId = await ensureAnonUser();
+    if (!stableId || !(await ensureStableAuthLinkForStableId(stableId))) {
+      return { kind: 'fallback', code: 'offline', notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
+    }
+    const callable = httpsCallable<{ analysis: StatsInsightAnalysis }, StatsInsightsGenerateResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'statsInsightsGenerate',
+    );
+    const response = await callable({ analysis: options.analysis });
+    const data = response.data;
+    const notes = normalizeVerifiedNotes(data?.notes);
+    const observationIds = normalizeObservationIds(data?.observationIds);
+    if (
+      data?.ok !== true ||
+      !notes ||
+      !observationIds ||
+      !observationIdsMatch(observationIds, options.analysis) ||
+      typeof data.nextAllowedAtMs !== 'number' ||
+      !Number.isFinite(data.nextAllowedAtMs) ||
+      data.nextAllowedAtMs < 0 ||
+      typeof data.model !== 'string' ||
+      !data.model.trim()
+    ) {
+      return { kind: 'fallback', code: 'provider_failed', notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
+    }
+
+    const nextStored: VerifiedStatsInsightsStored = {
+      schemaVersion: 2,
+      fingerprint: options.analysis.fingerprint,
+      observationIds,
+      notes,
+      generatedAtMs: nowMs,
+      nextAllowedAtMs: data.nextAllowedAtMs,
+      lang: options.lang,
+      studyTarget: normalizedVerifiedStudyTarget(options.studyTarget),
+    };
+    await saveVerifiedStored(nextStored, options.studyTarget);
+    return asCachedVerifiedState(nextStored);
+  } catch (error) {
+    const code = verifiedErrorCode(error);
+    if (code === 'insufficient_data') return { kind: 'insufficient_data' };
+    if (code === 'not_ready' && compatible) {
+      const nextAllowedAtMs = serverNextAllowedAtMs(error);
+      if (nextAllowedAtMs != null) {
+        const synced = { ...compatible, nextAllowedAtMs };
+        await saveVerifiedStored(synced, options.studyTarget);
+        return asCachedVerifiedState(synced);
+      }
+      return asCachedVerifiedState(compatible);
+    }
+    return { kind: 'fallback', code, notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
+  }
 }

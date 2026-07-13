@@ -36,6 +36,7 @@ import {
 } from '../app/firestore_league_chat';
 import { emitAppEvent } from '../app/events';
 import { leagueChatRoomKey, markLeagueChatRoomRead } from '../app/league_chat_unread';
+import { isLeagueChatMessageVisibleInFeed } from '../app/league_chat_visibility';
 import { ensureAnonUser, getCurrentUid } from '../app/cloud_sync';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -94,14 +95,6 @@ function systemMessageIcon(type: LeagueChatSystemType | undefined): keyof typeof
     case 'week_ending': return 'time';
     default: return 'sparkles';
   }
-}
-
-function isRetiredCompassSystemMessage(message: LeagueChatMessage): boolean {
-  return Boolean(
-    message.pinned ||
-    message.compassKind === 'icebreaker' ||
-    message.compassKind === 'daily_summary'
-  );
 }
 
 function roomKey(room: LeagueChatRoom | null | undefined): string {
@@ -410,7 +403,7 @@ function LeagueChatPanel({
 
   const visibleMessages = useMemo(
     () => allVisible.filter((m) => (
-      isOptimisticLeagueChatMessage(m) || !isRetiredCompassSystemMessage(m as LeagueChatMessage)
+      isOptimisticLeagueChatMessage(m) || isLeagueChatMessageVisibleInFeed(m as LeagueChatMessage)
     )),
     [allVisible],
   );

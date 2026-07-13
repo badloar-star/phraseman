@@ -61,8 +61,10 @@ import { StatBars, type StatBar } from '../components/stats/StatBars';
 import { StatProgressRow } from '../components/stats/StatProgressRow';
 import { StatCountUpText } from '../components/stats/StatCountUpText';
 import { AiBlockNote } from '../components/stats/AiBlockNote';
-import { getStatsInsightsState, generateStatsInsights, buildLocalStatsInsights, type StatsInsightsNotes, type StatsInsightsBriefing } from './stats_insights_client';
-import { loadActivity365Analytics } from './activity_365_analytics';
+import { getVerifiedStatsInsightsState, generateVerifiedStatsInsights, buildVerifiedFallbackNotes, type VerifiedStatsInsightsNotes } from './stats_insights_client';
+import { buildStatsInsightAnalysis, type StatsInsightBlockKey } from './stats_insights_analysis';
+import { buildStatsInsightsSnapshot } from './stats_insights_snapshot';
+import { loadActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
@@ -2689,9 +2691,14 @@ export default function StreakStats() {
     });
     const [myXp7, setMyXp7] = useState(0);
     const [myTime7ms, setMyTime7ms] = useState(0);
-    // ИИ-микротексты под блоками (premium, ленивая генерация — см. stats_insights_client).
-    const [aiNotes, setAiNotes] = useState<StatsInsightsNotes | null>(null);
+    const [activity365, setActivity365] = useState<Activity365Analytics | null>(null);
+    const [activity365Status, setActivity365Status] = useState<'loading' | 'ready' | 'unavailable'>('loading');
+    const [percentilesStatus, setPercentilesStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
+    const analyticsLoadRequestRef = useRef(0);
+    // Четыре заметки строятся из одних и тех же проверенных фактов в fallback и на сервере.
+    const [aiNotes, setAiNotes] = useState<VerifiedStatsInsightsNotes | null>(null);
     const [aiNotesLoading, setAiNotesLoading] = useState(false);
+    const previousObservationIdsRef = useRef<string[]>([]);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
     // Слова/фразы за 7 дней — для строки прогресса в «Твоей неделе».
     const [weekLearned, setWeekLearned] = useState<{ words7: number; phrases7: number } | null>(null);
@@ -2798,6 +2805,46 @@ export default function StreakStats() {
         setPendingGiftCount(snapshot.pendingGiftCount);
     }, [wdays]);
     const loadAll = React.useCallback(async () => {
+        const analyticsRequestId = ++analyticsLoadRequestRef.current;
+        const activityRefresh = loadActivity365Analytics()
+            .then((activity) => {
+            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+                return;
+            setActivity365(activity);
+            setActivity365Status('ready');
+        })
+            .catch((error) => {
+            debugStatsRoute('loadAll:activity365Error', String(error));
+            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+                return;
+            setActivity365(null);
+            setActivity365Status('unavailable');
+        });
+        const percentilesRefresh = loadPercentileData()
+            .then(({ myXp7: x7, myTime7ms: t7, percentiles: p }) => {
+            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+                return;
+            debugStatsRoute('loadAll:percentiles', { x7, t7, xp: p.xp, weekXp: p.weekXp, daily7xp: p.daily7xp, daily7timeMs: p.daily7timeMs });
+            setMyXp7(x7);
+            setMyTime7ms(t7);
+            setPercentiles(p);
+            setPercentilesStatus(p.sample.status === 'unavailable' ? 'unavailable' : 'ready');
+        })
+            .catch((error) => {
+            debugStatsRoute('loadAll:percentilesError', String(error));
+            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+                return;
+            setPercentiles((current) => ({
+                ...current,
+                xp: null,
+                streak: null,
+                weekXp: null,
+                daily7xp: null,
+                daily7timeMs: null,
+                sample: { ...current.sample, status: 'unavailable', isStale: false },
+            }));
+            setPercentilesStatus('unavailable');
+        });
         debugStatsRoute('loadAll:start');
         await hydrateStatsCacheFromStorage();
         const cachedSnapshot = getStatsCache(studyTarget);
@@ -2833,96 +2880,90 @@ export default function StreakStats() {
         loadWeeklyLearnedCounts()
             .then((counts) => setWeekLearned(counts))
             .catch(() => setWeekLearned(null));
-        // Синк аналитики + перцентиль (не блокирует рендер — запускаем после основной загрузки)
+        // Синк аналитики не блокирует первую геометрию экрана.
         void syncDailyAnalyticsIfNeeded();
-        loadPercentileData().then(({ myXp7: x7, myTime7ms: t7, percentiles: p }) => {
-            debugStatsRoute('loadAll:percentiles', { x7, t7, xp: p.xp, weekXp: p.weekXp, daily7xp: p.daily7xp, daily7timeMs: p.daily7timeMs });
-            setMyXp7(x7);
-            setMyTime7ms(t7);
-            setPercentiles(p);
-        }).catch((error) => { debugStatsRoute('loadAll:percentilesError', String(error)); });
+        await Promise.all([activityRefresh, percentilesRefresh]);
     }, [applyStatsSnapshot, studyTarget]);
     // Reload data when screen regains focus (e.g. after tester functions).
     useFocusEffect(React.useCallback(() => {
         void loadAll();
-        return undefined;
+        return () => {
+            analyticsLoadRequestRef.current += 1;
+        };
     }, [loadAll]));
-    // ── ИИ-микротексты под блоками ──────────────────────────────────────────
-    // 1) Мгновенно показываем кэш. 2) Только для premium и только когда данные
-    //    загружены — ленивая генерация (серверное окно 3 дня не даст частить).
-    useFocusEffect(React.useCallback(() => {
-        let cancelled = false;
-        void (async () => {
-            const cached = await getStatsInsightsState(studyTarget, Date.now(), lang);
-            if (!cancelled && cached.kind === 'cached') setAiNotes(cached.notes);
-        })();
-        return () => { cancelled = true; };
-    }, [studyTarget, lang]));
+    // ── Проверенный гибридный разбор ─────────────────────────────────────────
+    const statsInsightsSnapshot = useMemo(() => {
+        if (!lifetimeStats || activity365Status !== 'ready' || !activity365 || percentilesStatus === 'loading')
+            return null;
+        return buildStatsInsightsSnapshot({
+            lang,
+            studyTarget,
+            week: {
+                activeDays7: coachMetrics.active7,
+                minutes7: coachMetrics.minutes7,
+                xp7: coachMetrics.xp7,
+                bestDayLabel: coachMetrics.bestDayLabel || null,
+                dailyMinutes7: coachMetrics.rhythmDays.map((day) => day.minutes),
+                currentPeriodDates: coachMetrics.rhythmDays.map((day) => day.date),
+            },
+            timeDays: allTimeDays,
+            activity: activity365,
+            percentiles,
+            lifetime: lifetimeStats,
+        });
+    }, [activity365, activity365Status, allTimeDays, coachMetrics, lang, lifetimeStats, percentiles, percentilesStatus, studyTarget]);
+    const statsInsightAnalysis = useMemo(() => statsInsightsSnapshot
+        ? buildStatsInsightAnalysis(statsInsightsSnapshot, previousObservationIdsRef.current)
+        : null, [statsInsightsSnapshot]);
     React.useEffect(() => {
-        if (!isPremium || !lifetimeStats) return; // фича premium-only; ждём данные
+        if (!statsInsightAnalysis) {
+            setAiNotesLoading(false);
+            return;
+        }
         let cancelled = false;
         void (async () => {
+            const options = { analysis: statsInsightAnalysis, lang, studyTarget };
+            const cached = await getVerifiedStatsInsightsState(options);
+            if (cancelled)
+                return;
+            if (cached.kind === 'cached') {
+                setAiNotes(cached.notes);
+                previousObservationIdsRef.current = Object.values(cached.observationIds);
+            }
+            else {
+                setAiNotes(null);
+            }
+            if (!isPremium) {
+                setAiNotesLoading(false);
+                return;
+            }
+            setAiNotesLoading(true);
             try {
-                const activity = await loadActivity365Analytics().catch(() => null);
-                const briefing: StatsInsightsBriefing = {
-                    lang,
-                    studyTarget,
-                    balance: {
-                        score: coachMetrics.score,
-                        isWarmup: coachMetrics.isWarmup,
-                        active7: coachMetrics.active7,
-                        avgMinutes: Math.round(coachMetrics.avgMinutesActive),
-                    },
-                    rhythm: {
-                        active7: coachMetrics.active7,
-                        xp7: coachMetrics.xp7,
-                        minutes7: Math.round(coachMetrics.minutes7),
-                        bestDay: coachMetrics.bestDayLabel ?? '',
-                    },
-                    year: {
-                        activeDays: activity?.activeDays ?? 0,
-                        currentStreak: activity?.currentStreak ?? totalStreak,
-                        longestStreak: activity?.longestStreak ?? 0,
-                        bestMonth: '',
-                        goalPct: activity?.goal ? Math.round((activity.goal.activeDays / Math.max(1, activity.goal.goal)) * 100) : 0,
-                    },
-                    percentiles: {
-                        totalXp: percentiles.xp,
-                        week: percentiles.weekXp,
-                        daily7: myXp7 > 0 ? percentiles.daily7xp : null,
-                    },
-                    lifetime: {
-                        words: lifetimeStats.wordsLearned,
-                        phrases: lifetimeStats.phrasesLearned,
-                        quizzes: lifetimeStats.quizzesTotal,
-                        arenaWins: lifetimeStats.arenaWins,
-                        daysActive: lifetimeStats.appDaysUnion,
-                    },
-                    weakCategories: [],
-                };
-                if (!cancelled) setAiNotesLoading(true);
-                // QA-сценарий (qa365=1) форсит регенерацию, минуя локальный гейт.
-                const forceQa = params.qa365 === '1';
-                const state = await generateStatsInsights({ briefing, isPremium, force: forceQa });
-                if (cancelled) return;
-                if (state.kind === 'cached') setAiNotes(state.notes);
-                else if (state.kind === 'error' && state.notes) setAiNotes(state.notes);
-                else if (forceQa) {
-                    // Форс минует серверное окно и гейт сигнала, но если briefing
-                    // ещё не успел подтянуть данные (insufficient_data / none),
-                    // показываем локальный разбор сразу, чтобы QA увидел результат.
-                    setAiNotes(buildLocalStatsInsights(briefing));
+                const generated = await generateVerifiedStatsInsights({
+                    ...options,
+                    isPremium,
+                    force: params.qa365 === '1',
+                });
+                if (cancelled)
+                    return;
+                if (generated.kind === 'cached') {
+                    setAiNotes(generated.notes);
+                    previousObservationIdsRef.current = Object.values(generated.observationIds);
                 }
-            } finally {
-                if (!cancelled) setAiNotesLoading(false);
+                else if (generated.kind === 'fallback') {
+                    setAiNotes(generated.notes);
+                }
+                else if (generated.kind === 'insufficient_data') {
+                    setAiNotes(buildVerifiedFallbackNotes(statsInsightAnalysis, lang));
+                }
+            }
+            finally {
+                if (!cancelled)
+                    setAiNotesLoading(false);
             }
         })();
         return () => { cancelled = true; };
-    // Намеренно зависим только от ключевых сигналов, не от каждого числа —
-    // генерацию всё равно гейтит серверное окно. qa365 добавлен, чтобы
-    // форс-регенерация QA гарантированно перезапустила эффект.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isPremium, !!lifetimeStats, studyTarget, lang, params.qa365]);
+    }, [isPremium, lang, params.qa365, statsInsightAnalysis, statsInsightAnalysis?.fingerprint, studyTarget]);
     const randomizeLifetimeChartsForDev = React.useCallback(async () => {
         if (!ENABLE_DEV_TOOLS)
             return;
@@ -3124,14 +3165,12 @@ export default function StreakStats() {
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
     };
-    // ИИ-заметка под карточкой `block`. Premium → текст Тео; free → тизер на пейвол.
-    const renderAiNote = (block: keyof StatsInsightsNotes, tone: StatsChromeTone) => {
+    // Заметка Компаса под связанной карточкой; free получает один тизер на пейвол.
+    const renderAiNote = (block: StatsInsightBlockKey, tone: StatsChromeTone) => {
         const note = aiNotes?.[block];
-        // Free без текста и без загрузки прячем целиком, кроме случая «есть что показать».
-        if (!isPremium && !note && !aiNotesLoading) {
-            // Тизер показываем только под «Балансом» (первый блок), чтобы не спамить пейволом.
-            if (block !== 'balance') return null;
-        } else if (isPremium && !note && !aiNotesLoading) {
+        if (!isPremium && block !== 'week')
+            return null;
+        if (isPremium && !note && !aiNotesLoading) {
             return null;
         }
         const accent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, tone);
@@ -3582,7 +3621,7 @@ export default function StreakStats() {
             router.push('/trainer' as any);
         }}/>
         </StatsPremiumBlur>
-        {renderAiNote('balance', 'practiceBalance')}
+        {renderAiNote('week', 'practiceBalance')}
 
         {/* Годовая карта активности (~365 дней); премиум — без блюра. */}
         <StatsPremiumBlur isPremium={isPremium} context="heatmap" snapshotKey="heatmap" devUnlock={statsDevUnlock}>
@@ -3592,10 +3631,12 @@ export default function StreakStats() {
           <ActivityHeatmap365 hideNextStep={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE}/>
         </View>
         </StatsPremiumBlur>
-        {renderAiNote('year', 'activity')}
+        {renderAiNote('longTerm', 'activity')}
 
         {/* Перцентили — единый блок: горизонтальные дорожки «ты обходишь N%». */}
         {(() => {
+            if (percentilesStatus === 'loading')
+                return null;
             const pItems: {
                 icon: keyof typeof Ionicons.glyphMap;
                 color: string;
@@ -3619,10 +3660,45 @@ export default function StreakStats() {
                 pItems.push({ icon: 'time-outline', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), percent: visibleDaily7TimePercentile, label: triLang(lang, {
                         ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni',
                     }) });
-            if (pItems.length === 0)
-                return null;
+            const comparisonContextText = percentiles.sample.status === 'below_sample_floor'
+                ? triLang(lang, {
+                    ru: `Для сравнения нужно ${percentiles.sample.minimumSampleXp} XP. Сейчас показываем только твою личную динамику.`,
+                    uk: `Для порівняння потрібно ${percentiles.sample.minimumSampleXp} XP. Зараз показуємо лише твою особисту динаміку.`,
+                    es: `La comparación se activa con ${percentiles.sample.minimumSampleXp} XP. Por ahora mostramos solo tu progreso personal.`,
+                    'pt-BR': `A comparação é ativada com ${percentiles.sample.minimumSampleXp} XP. Por enquanto, mostramos apenas seu progresso pessoal.`,
+                    vi: `So sánh mở khi đạt ${percentiles.sample.minimumSampleXp} XP. Hiện tại chỉ hiển thị tiến độ cá nhân của bạn.`,
+                    id: `Perbandingan aktif setelah ${percentiles.sample.minimumSampleXp} XP. Saat ini hanya progres pribadimu yang ditampilkan.`,
+                    tr: `Karşılaştırma ${percentiles.sample.minimumSampleXp} XP ile açılır. Şimdilik yalnızca kişisel ilerlemen gösteriliyor.`,
+                    pl: `Porównanie włącza się od ${percentiles.sample.minimumSampleXp} XP. Na razie pokazujemy tylko Twój własny postęp.`,
+                })
+                : percentiles.sample.status === 'unavailable'
+                    ? triLang(lang, {
+                        ru: 'Сравнение сейчас недоступно: свежая выборка пользователей не получена. Твоя личная статистика продолжает работать.',
+                        uk: 'Порівняння зараз недоступне: свіжу вибірку користувачів не отримано. Твоя особиста статистика продовжує працювати.',
+                        es: 'La comparación no está disponible ahora porque falta una muestra reciente. Tus estadísticas personales siguen funcionando.',
+                        'pt-BR': 'A comparação está indisponível porque não há uma amostra recente. Suas estatísticas pessoais continuam funcionando.',
+                        vi: 'Hiện chưa thể so sánh vì chưa có mẫu người dùng mới. Thống kê cá nhân của bạn vẫn hoạt động.',
+                        id: 'Perbandingan belum tersedia karena sampel terbaru belum ada. Statistik pribadimu tetap berfungsi.',
+                        tr: 'Güncel kullanıcı örneklemi olmadığı için karşılaştırma şu anda kullanılamıyor. Kişisel istatistiklerin çalışmaya devam ediyor.',
+                        pl: 'Porównanie jest teraz niedostępne, bo brakuje świeżej próby użytkowników. Twoje statystyki osobiste nadal działają.',
+                    })
+                    : pItems.length === 0
+                        ? triLang(lang, {
+                            ru: 'Выборка готова, но точный ранг ниже медианы не показывается. Ориентируйся на собственную динамику.',
+                            uk: 'Вибірка готова, але точний ранг нижче медіани не показується. Орієнтуйся на власну динаміку.',
+                            es: 'La muestra está lista, pero no mostramos el rango exacto por debajo de la mediana. Sigue tu propio progreso.',
+                            'pt-BR': 'A amostra está pronta, mas não exibimos a posição exata abaixo da mediana. Acompanhe seu próprio progresso.',
+                            vi: 'Mẫu đã sẵn sàng, nhưng không hiển thị thứ hạng chính xác dưới trung vị. Hãy theo dõi tiến bộ của chính bạn.',
+                            id: 'Sampel sudah siap, tetapi peringkat tepat di bawah median tidak ditampilkan. Ikuti progresmu sendiri.',
+                            tr: 'Örneklem hazır, ancak medyanın altındaki kesin sıra gösterilmez. Kendi ilerlemeni izle.',
+                            pl: 'Próba jest gotowa, ale nie pokazujemy dokładnej pozycji poniżej mediany. Śledź własny postęp.',
+                        })
+                        : triLang(lang, {
+                            ru: 'Доля пользователей, которых ты обходишь.', uk: 'Частка користувачів, яких ти обходиш.', es: 'Porcentaje de usuarios a los que superas.', 'pt-BR': 'Porcentagem de usuários que você supera.', vi: 'Tỷ lệ người dùng bạn vượt qua.', id: 'Persentase pengguna yang kamu lampaui.', tr: 'Geçtiğin kullanıcıların yüzdesi.', pl: 'Odsetek użytkowników, których wyprzedzasz.',
+                        });
             const percentilesAccent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'percentiles');
-            return (<StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
+            return (<>
+            <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
               <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
                 <Text style={{ color: percentilesAccent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 4 }}>
                   {triLang(lang, {
@@ -3637,16 +3713,7 @@ export default function StreakStats() {
                 })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.label, lineHeight: f.label * 1.35, marginBottom: 14 }}>
-                  {triLang(lang, {
-                    ru: 'Доля пользователей, которых ты обходишь.',
-                    uk: 'Частка користувачів, яких ти обходиш.',
-                    es: 'Porcentaje de usuarios a los que superas.',
-                    'pt-BR': "Porcentagem de usuários que você supera.",
-                    vi: "Tỷ lệ người dùng bạn vượt qua.",
-                    id: "Persentase pengguna yang kamu lampaui.",
-                    tr: "Geçtiğin kullanıcıların yüzdesi.",
-                    pl: "Odsetek użytkowników, których wyprzedzasz.",
-                })}
+                  {comparisonContextText}
                 </Text>
                 <View style={{ gap: 16 }}>
                   {pItems.map((item, idx) => (
@@ -3666,9 +3733,10 @@ export default function StreakStats() {
                   ))}
                 </View>
               </StatsCardArtSurface>
-            </StatsPremiumBlur>);
+            </StatsPremiumBlur>
+            {renderAiNote('comparison', 'percentiles')}
+            </>);
         })()}
-        {renderAiNote('percentiles', 'percentiles')}
 
         {/* Два премиум-графика подряд; сразу под «Аналитика ошибок». */}
         <TouchableOpacity testID="stats-details-toggle" activeOpacity={0.84} onPress={() => {
@@ -3894,7 +3962,7 @@ export default function StreakStats() {
                     setExpandedLifetimeKind((prev) => (prev === kind ? null : kind));
                 }} chartDays={lifetimeChartDays} chartLoading={lifetimeChartLoading} chartScrollRef={lifetimeChartScrollRef} showAllPathCharts={devLifetimeAllCharts} pathChartsByKind={lifetimePathChartsByKind} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
           </StatsPremiumBlur>)}
-        {detailsOpen ? renderAiNote('lifetime', 'archiveMap') : null}
+        {lifetimeStats != null ? renderAiNote('lifetime', 'archiveMap') : null}
         {ENABLE_DEV_TOOLS && (<TouchableOpacity onPress={() => void randomizeLifetimeChartsForDev()} disabled={devLifetimeChartsBusy} activeOpacity={0.75} style={{
                     marginBottom: 12,
                     borderRadius: 14,

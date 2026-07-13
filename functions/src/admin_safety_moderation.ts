@@ -529,13 +529,15 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
       db.collection('user_reports').doc(input.targetId).get(),
     ]);
     if (!userSnap.exists || !reportSnap.exists) throw new HttpsError('not-found', 'rename_target_not_found');
-    const progress = record(record(userSnap.data()).progress);
+    const user = record(userSnap.data());
+    const progress = record(user.progress);
     const currentNameLower = clean(progress.user_name_lower ?? progress.user_name, 32).toLowerCase();
     const oldIndexSnap = currentNameLower ? await db.collection('name_index').doc(currentNameLower).get() : null;
     return {
       uid,
       currentName: clean(progress.user_name, 32),
       currentNameLower,
+      authUid: clean(user.firebaseAuthUid ?? record(user.linkedAuth).providerUid, 180),
       oldNameOwnerUid: oldIndexSnap?.exists ? clean(oldIndexSnap.data()?.uid, 180) : '',
       newNameOwnerUid: newIndexSnap.exists ? clean(newIndexSnap.data()?.uid, 180) : '',
       leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null,
@@ -753,11 +755,13 @@ async function readMutationBeforeInTransaction(
       tx.get(db.collection('name_index').doc(nameLower)), tx.get(db.collection('user_reports').doc(input.targetId)),
     ]);
     if (!userSnap.exists || !reportSnap.exists) throw new HttpsError('not-found', 'rename_target_not_found');
-    const progress = record(record(userSnap.data()).progress);
+    const user = record(userSnap.data());
+    const progress = record(user.progress);
     const currentNameLower = clean(progress.user_name_lower ?? progress.user_name, 32).toLowerCase();
     const oldIndexSnap = currentNameLower ? await tx.get(db.collection('name_index').doc(currentNameLower)) : null;
     return {
       uid, currentName: clean(progress.user_name, 32), currentNameLower,
+      authUid: clean(user.firebaseAuthUid ?? record(user.linkedAuth).providerUid, 180),
       oldNameOwnerUid: oldIndexSnap?.exists ? clean(oldIndexSnap.data()?.uid, 180) : '',
       newNameOwnerUid: newIndexSnap.exists ? clean(newIndexSnap.data()?.uid, 180) : '',
       leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null,
@@ -902,7 +906,15 @@ export const adminApplySafetyModerationMutation = onCall(
         await assertNoNicknameCollision(tx, db, uid, nickname.name, nickname.nameLower, clean(before.newNameOwnerUid, 180));
         const currentNameLower = clean(before.currentNameLower, 32);
         const newIndexRef = db.collection('name_index').doc(nickname.nameLower);
-        tx.set(newIndexRef, { uid, name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs }, { merge: true });
+        const authUid = clean(before.authUid, 180);
+        tx.set(newIndexRef, {
+          uid,
+          name: nickname.name,
+          nameLower: nickname.nameLower,
+          authUid: authUid || admin.firestore.FieldValue.delete(),
+          identityHidden: admin.firestore.FieldValue.delete(),
+          updatedAt: nowMs,
+        }, { merge: true });
         if (currentNameLower && currentNameLower !== nickname.nameLower && before.oldNameOwnerUid === uid) tx.delete(db.collection('name_index').doc(currentNameLower));
         tx.set(db.collection('users').doc(uid), { progress: { user_name: nickname.name, user_name_lower: nickname.nameLower }, updatedAt: nowMs }, { merge: true });
         if (before.leaderboard) tx.set(db.collection('leaderboard').doc(uid), { name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs }, { merge: true });

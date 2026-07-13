@@ -136,4 +136,48 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect((await db.collection('leaderboard').doc('user-ban').get()).data()).toEqual(leaderboard);
     expect((await db.collection('league_chat_bans').doc('user-ban').get()).exists).toBe(false);
   });
+
+  test('reclaims a tombstoned nickname without inheriting the former owner identity', async () => {
+    const db = admin.firestore();
+    const user = { firebaseAuthUid: 'auth-target', progress: { user_name: 'Old Name', user_name_lower: 'old name' }, banned: false };
+    const report = { reportedUid: 'user-rename', reportedName: 'Old Name', reporterUid: 'reporter-one', reason: 'offensive_nickname', status: 'new', createdAtMs: 100 };
+    await Promise.all([
+      db.collection('users').doc('user-rename').set(user),
+      db.collection('leaderboard').doc('user-rename').set({ uid: 'user-rename', name: 'Old Name', nameLower: 'old name', points: 10 }),
+      db.collection('public_profiles').doc('user-rename').set({ uid: 'user-rename', name: 'Old Name', nameLower: 'old name' }),
+      db.collection('name_index').doc('old name').set({ uid: 'user-rename', authUid: 'auth-target', name: 'Old Name', nameLower: 'old name' }),
+      db.collection('name_index').doc('new name').set({ uid: 'deleted-user', authUid: 'deleted-auth', name: 'New Name', nameLower: 'new name', identityHidden: true }),
+      db.collection('user_reports').doc('report-rename').set(report),
+    ]);
+    const input = parseSafetyModerationMutationInput({
+      action: 'report_rename', targetId: 'report-rename', reason: 'Remove offensive nickname', requestId: 'request-rename',
+      payload: { uid: 'user-rename', newName: 'New Name' },
+    });
+    const before = {
+      uid: 'user-rename', currentName: 'Old Name', currentNameLower: 'old name', authUid: 'auth-target',
+      oldNameOwnerUid: 'user-rename', newNameOwnerUid: 'deleted-user',
+      leaderboard: { uid: 'user-rename', name: 'Old Name', nameLower: 'old name', points: 10 },
+      publicProfile: { uid: 'user-rename', name: 'Old Name', nameLower: 'old name' },
+      report: projectUserReport('report-rename', report),
+    };
+    const preview = buildSafetyModerationPreview(input, before, Date.now(), 'admin-one', 'admin') as unknown as Row;
+    await Promise.all([
+      seedPreview('preview-rename', preview),
+      db.collection('admin_approval_requests').doc('approval-rename').set({
+        type: 'safety_moderation', status: 'approved', requestedBy: 'admin-one', approvedBy: 'admin-two',
+        previewId: 'preview-rename', fingerprint: preview.fingerprint, expiresAtMs: preview.expiresAtMs,
+      }),
+    ]);
+
+    await adminApplySafetyModerationMutation.run(request({
+      previewId: 'preview-rename', approvalId: 'approval-rename', confirmation: preview.confirmation, reason: preview.reason,
+      requestId: 'apply-rename', idempotencyKey: 'operation-rename',
+    }));
+
+    const index = (await db.collection('name_index').doc('new name').get()).data();
+    expect(index).toMatchObject({ uid: 'user-rename', authUid: 'auth-target', name: 'New Name', nameLower: 'new name' });
+    expect(index).not.toHaveProperty('identityHidden');
+    expect((await db.collection('name_index').doc('old name').get()).exists).toBe(false);
+    expect((await db.collection('user_reports').doc('report-rename').get()).data()).toMatchObject({ status: 'reviewed' });
+  });
 });

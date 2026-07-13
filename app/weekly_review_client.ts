@@ -286,7 +286,12 @@ export async function generateWeeklyReview(
 
   const fallback = stored?.review ?? buildLocalWeeklyReview(briefingResult.briefing);
   const aiV2Enabled = options.aiV2Enabled ?? deps.aiEnabled();
-  if (!aiV2Enabled || options.allowGenerate === false) {
+  if (options.allowGenerate === false) {
+    if (aiV2Enabled) return { status: 'plus_ready_to_generate', snapshot, fallback };
+    if (stored) return { status: 'cached', snapshot, review: stored.review, nextAllowedAtMs: stored.nextAllowedAtMs };
+    return { status: 'plus_ready_to_generate', snapshot, fallback };
+  }
+  if (!aiV2Enabled) {
     if (stored) return { status: 'cached', snapshot, review: stored.review, nextAllowedAtMs: stored.nextAllowedAtMs };
     return { status: 'plus_ready_to_generate', snapshot, fallback };
   }

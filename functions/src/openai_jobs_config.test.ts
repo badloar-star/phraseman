@@ -113,6 +113,11 @@ describe('openai_jobs_config — resolveJobConfig', () => {
     expect(await resolveJobConfig(db, 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 7, enabled: true });
     expect((await resolveJobConfig(db, 'digest')).model).toBe('gpt-4.1-mini');
   });
+
+  it('keeps the weekly paid-work cap positive even when admin config is zero or negative', async () => {
+    expect((await resolveJobConfig(fakeDb({ weekly: { globalDailyCap: 0 } }), 'weekly')).globalDailyCap).toBe(1);
+    expect((await resolveJobConfig(fakeDb({ weekly: { globalDailyCap: -50 } }), 'weekly')).globalDailyCap).toBe(1);
+  });
 });
 
 describe('openai_jobs_config — assertJobEnabled', () => {

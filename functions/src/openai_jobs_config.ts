@@ -94,11 +94,11 @@ function normalizeModel(value: unknown, fallback: JobModel, allowedModels: reado
   return (allowedModels as readonly string[]).includes(m) ? (m as JobModel) : fallback;
 }
 
-function normalizeCap(value: unknown, fallback: number): number {
+function normalizeCap(value: unknown, fallback: number, minimum = 0): number {
   const raw = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
   const n = typeof raw === 'number' ? raw : NaN;
   if (!Number.isFinite(n)) return fallback;
-  return Math.min(DAILY_CAP_MAX, Math.max(0, Math.floor(n)));
+  return Math.min(DAILY_CAP_MAX, Math.max(minimum, Math.floor(n)));
 }
 
 function normalizeRolloutPct(value: unknown, fallback: number): number {
@@ -116,7 +116,7 @@ function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | unde
   const allowedModels = allowedModelsForJob(job);
   return {
     model: normalizeModel(d?.model, def.model, allowedModels),
-    globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap),
+    globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap, job === 'weekly' ? 1 : 0),
     // enabled по умолчанию TRUE (kill-switch семантика): фича работает, выключается вручную.
     enabled: d?.enabled === false ? false : true,
     aiV2Enabled: job === 'weekly' && d?.aiV2Enabled === true,

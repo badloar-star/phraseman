@@ -537,6 +537,9 @@ async function reserveWeeklyBudget(
     nowMs: number;
   },
 ): Promise<WeeklyBudgetReservationToken> {
+  if (!Number.isFinite(params.cap) || params.cap < 1) {
+    throw new HttpsError('failed-precondition', 'weekly_review_global_daily_cap_invalid');
+  }
   const budgetDayKey = weeklyBudgetDayKeyUtc(params.nowMs);
   const budgetRef = weeklyBudgetRef(db, budgetDayKey);
   await db.runTransaction(async (tx) => {
@@ -549,7 +552,7 @@ async function reserveWeeklyBudget(
     const budgetRaw = (budgetSnap.data() ?? {}) as Partial<WeeklyBudgetDoc>;
     const usedCount = Math.max(0, Number(budgetRaw.usedCount ?? 0));
     const reservations = pruneExpiredReservations(budgetRaw.reservations ?? {}, params.nowMs);
-    if (!reservations[params.leaseId] && params.cap > 0 && usedCount + Object.keys(reservations).length >= params.cap) {
+    if (!reservations[params.leaseId] && usedCount + Object.keys(reservations).length >= params.cap) {
       throw new HttpsError('resource-exhausted', 'weekly_review_global_daily_cap');
     }
     reservations[params.leaseId] = {
@@ -918,6 +921,39 @@ export const weeklyReviewGenerate = onCall({
       throw new HttpsError('unavailable', 'weekly_review_provider_failed');
     }
 
+    let json: OpenAIChatResponse;
+    try {
+      json = (await response.json()) as OpenAIChatResponse;
+    } catch (error) {
+      await settleWeeklyBudgetUsedAndRecordBilling(db, {
+        token: budgetToken,
+        billing: {
+          stableUidHash: createHash('sha256').update(stableUid).digest('hex').slice(0, 48),
+          authUid,
+          model: jobCfg.model,
+          lang: briefing.lang,
+          studyTarget: briefing.studyTarget,
+          promptTokens: 0,
+          completionTokens: 0,
+          totalTokens: 0,
+        },
+        nowMs: Date.now(),
+      });
+      paidResponseSettled = true;
+      await finalizeWeeklyReviewBillingOutcome(db, {
+        leaseId: lease.leaseId,
+        outcome: 'invalid_response',
+        nowMs: Date.now(),
+      }).catch(() => undefined);
+      throw error;
+    }
+
+    const usage = json.usage ?? {};
+    const paidUsage = {
+      promptTokens: clampInt(usage.prompt_tokens, 0, 10_000_000),
+      completionTokens: clampInt(usage.completion_tokens, 0, 10_000_000),
+      totalTokens: clampInt(usage.total_tokens, 0, 10_000_000),
+    };
     await settleWeeklyBudgetUsedAndRecordBilling(db, {
       token: budgetToken,
       billing: {
@@ -926,18 +962,14 @@ export const weeklyReviewGenerate = onCall({
         model: jobCfg.model,
         lang: briefing.lang,
         studyTarget: briefing.studyTarget,
-        promptTokens: 0,
-        completionTokens: 0,
-        totalTokens: 0,
+        ...paidUsage,
       },
       nowMs: Date.now(),
     });
     paidResponseSettled = true;
 
-    let json: OpenAIChatResponse;
     let result: WeeklyReviewResult;
     try {
-      json = (await response.json()) as OpenAIChatResponse;
       const content = text(json.choices?.[0]?.message?.content, 8000);
       if (!content) throw new HttpsError('unavailable', 'weekly_review_empty_reply');
       result = parseAndGuardResult(content, briefing);
@@ -960,16 +992,11 @@ export const weeklyReviewGenerate = onCall({
     });
     if (nextAllowedAtMs == null) throw new HttpsError('aborted', 'weekly_review_lease_lost');
 
-    const usage = json.usage ?? {};
     await finalizeWeeklyReviewBillingOutcome(db, {
       leaseId: lease.leaseId,
       outcome: 'success',
       nowMs: Date.now(),
-      usage: {
-        promptTokens: Number(usage.prompt_tokens ?? 0),
-        completionTokens: Number(usage.completion_tokens ?? 0),
-        totalTokens: Number(usage.total_tokens ?? 0),
-      },
+      usage: paidUsage,
     });
 
     return { ok: true, review: result, nextAllowedAtMs, model: jobCfg.model };

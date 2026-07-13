@@ -21,6 +21,8 @@ function event(
   overrides: Partial<YoutubeAnalyticsFixtureEvent> = {},
 ): YoutubeAnalyticsFixtureEvent {
   sequence += 1;
+  const source = eventName === 'youtube_home_entry_click' || eventName === 'youtube_catalog_open' ? 'home'
+    : eventName === 'youtube_video_select' ? 'catalog' : 'player';
   return {
     event_name: eventName,
     event_timestamp: at,
@@ -29,6 +31,7 @@ function event(
     user_pseudo_id: 'user-1',
     session_id: 'session-1',
     platform: 'android',
+    source,
     channel_id: 'channel-1',
     video_id: 'video-1',
     playback_id: 'playback-1',
@@ -45,12 +48,16 @@ function aggregate(events: YoutubeAnalyticsFixtureEvent[], filters: { platform?:
   });
 }
 
-function orderedParams(overrides: readonly YoutubeAnalyticsFixtureParam[] = []): YoutubeAnalyticsFixtureParam[] {
+function orderedParams(
+  overrides: readonly YoutubeAnalyticsFixtureParam[] = [],
+  source: 'home' | 'catalog' | 'player' = 'player',
+): YoutubeAnalyticsFixtureParam[] {
   return [
     { key: 'schema_version', int_value: 1 },
     { key: 'event_id', string_value: `ordered-${sequence}` },
     { key: 'session_id', string_value: 'session-1' },
     { key: 'platform', string_value: 'android' },
+    { key: 'source', string_value: source },
     { key: 'channel_id', string_value: 'channel-1' },
     { key: 'video_id', string_value: 'video-1' },
     { key: 'playback_id', string_value: 'playback-1' },
@@ -101,7 +108,7 @@ describe('fixture aggregation behavioral oracle', () => {
     const snapshot = aggregate([event('youtube_home_entry_click', FROM + 1, {
       event_params: orderedParams([
         { key: 'schema_version', string_value: '1' },
-      ]).filter((_, index) => index !== 0),
+      ], 'home').filter((_, index) => index !== 0),
     })]);
     expect(snapshot.quality).toMatchObject({ acceptedEvents: 0, unknownSchema: 1, duplicateParameterKeys: 0 });
   });
@@ -114,7 +121,8 @@ describe('fixture aggregation behavioral oracle', () => {
     const duplicate = key === 'schema_version'
       ? { key, int_value: 1 }
       : { key, string_value: `duplicate-${key}` };
-    const snapshot = aggregate([event(eventName, FROM + 1, { event_params: orderedParams([duplicate]) })]);
+    const source = eventName === 'youtube_home_entry_click' ? 'home' : 'catalog';
+    const snapshot = aggregate([event(eventName, FROM + 1, { event_params: orderedParams([duplicate], source) })]);
     expect(snapshot.quality).toMatchObject({
       totalEvents: 1, acceptedEvents: 0, duplicateParameterKeys: 1,
       unknownSchema: 0, missingRequiredFields: 0,
@@ -125,11 +133,11 @@ describe('fixture aggregation behavioral oracle', () => {
     const rejected = event('youtube_video_select', FROM + 1, { event_params: orderedParams([
       { key: 'event_id', string_value: 'second-event-id' },
       { key: 'video_id', string_value: 'second-video' },
-    ]) });
+    ], 'catalog') });
     const accepted = event('youtube_home_entry_click', FROM + 2, { event_params: orderedParams([
       { key: 'duration_ms', int_value: 10 },
       { key: 'duration_ms', int_value: 20 },
-    ]) });
+    ], 'home') });
     expect(aggregate([rejected, accepted]).quality).toMatchObject({
       totalEvents: 2, acceptedEvents: 1, duplicateParameterKeys: 1,
     });
@@ -326,6 +334,18 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.summary.externalVideoOpens).toBe(3);
     expect(snapshot.videos.map(row => [row.videoId, row.externalVideoOpens]))
       .toEqual([['video-1', 1], ['video-2', 2]]);
+  });
+
+  test('validates channel-open source shapes and preserves catalog/player attribution', () => {
+    const snapshot = aggregate([
+      event('youtube_channel_open', FROM + 1, { source: 'catalog', video_id: undefined }),
+      event('youtube_channel_open', FROM + 2, { source: 'player', video_id: 'video-1' }),
+      event('youtube_channel_open', FROM + 3, { source: 'player', video_id: undefined }),
+      event('youtube_channel_open', FROM + 4, { source: 'catalog', video_id: 'video-1' }),
+      event('youtube_channel_open', FROM + 5, { source: 'home', video_id: undefined }),
+    ]);
+    expect(snapshot.summary).toMatchObject({ channelOpens: 2, catalogChannelOpens: 1, playerChannelOpens: 1 });
+    expect(snapshot.quality.missingRequiredFields).toBe(3);
   });
 
   test('scopes all quality metrics and data-through to the selected video', () => {
@@ -583,7 +603,7 @@ function emptyDecoderRows(): Array<{ row_kind: string; payload_json: string }> {
       anonymousInstancesWithValidStart: 0, watchAttempts: 0, totalActiveWatchMs: 0,
       averageActiveWatchMs: null, p50ActiveWatchMs: null, p90ActiveWatchMs: null,
       completed25: 0, completed50: 0, completed75: 0, completed95: 0,
-      externalVideoOpens: 0, channelOpens: 0,
+      externalVideoOpens: 0, channelOpens: 0, catalogChannelOpens: 0, playerChannelOpens: 0,
     }) },
     ...Array.from({ length: 7 }, (_, index) => ({ row_kind: 'trend', payload_json: JSON.stringify({
       day: `2026-01-0${index + 1}`, homeClicks: 0, catalogOpens: 0, videoSelects: 0, playbackStarts: 0, activeWatchMs: 0,
@@ -705,6 +725,11 @@ describe('BigQuery SQL semantic contract', () => {
     expect(sql).not.toContain('ANY_VALUE');
     expect(sql).not.toMatch(/schema_version[\s\S]{0,200}value\.string_value/);
     expect(sql).toContain('duplicate_parameter_keys');
+    expect(sql).toContain("COUNTIF(key='source') source_count");
+    expect(sql).toContain("event_name='youtube_channel_open' AND source='catalog'");
+    expect(sql).toContain("event_name='youtube_channel_open' AND source='player'");
+    expect(sql).toContain("source='player' AND NULLIF(video_id,'') IS NOT NULL");
+    expect(sql).toContain("source='catalog' AND NULLIF(video_id,'') IS NULL");
   });
 
   test('uses staged funnel and one-pass grouped video metrics', () => {
@@ -745,7 +770,7 @@ describe('BigQuery SQL semantic contract', () => {
         anonymousInstancesWithValidStart: 1, watchAttempts: 201, totalActiveWatchMs: 10_050,
         averageActiveWatchMs: 50, p50ActiveWatchMs: 50, p90ActiveWatchMs: 50,
         completed25: 201, completed50: 201, completed75: 0, completed95: 0,
-        externalVideoOpens: 0, channelOpens: 0,
+        externalVideoOpens: 0, channelOpens: 0, catalogChannelOpens: 0, playerChannelOpens: 0,
       }) },
       ...Array.from({ length: 7 }, (_, index) => ({ row_kind: 'trend', payload_json: JSON.stringify({
         day: `2026-01-0${index + 1}`, homeClicks: index === 0 ? 1 : 0, catalogOpens: index === 0 ? 1 : 0,

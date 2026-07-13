@@ -13,6 +13,7 @@ export const YOUTUBE_ANALYTICS_EVENT_NAMES = [
 export type YoutubeAnalyticsEventName = typeof YOUTUBE_ANALYTICS_EVENT_NAMES[number];
 export type YoutubeAnalyticsPlatform = 'all' | 'ios' | 'android';
 export type YoutubeAnalyticsRangeDays = 7 | 28 | 90;
+export type YoutubeAnalyticsSource = 'home' | 'catalog' | 'player';
 
 export interface YoutubeAnalyticsRequest {
   readonly rangeDays?: unknown;
@@ -97,6 +98,7 @@ export interface YoutubeAnalyticsFixtureEvent {
   readonly user_pseudo_id?: unknown;
   readonly session_id?: unknown;
   readonly platform?: unknown;
+  readonly source?: unknown;
   readonly channel_id?: unknown;
   readonly video_id?: unknown;
   readonly video_title?: unknown;
@@ -117,6 +119,7 @@ interface ValidEvent {
   readonly user: string;
   readonly session: string;
   readonly platform: 'ios' | 'android';
+  readonly source: YoutubeAnalyticsSource;
   readonly channel: string;
   readonly video: string;
   readonly title: string;
@@ -157,6 +160,8 @@ export interface YoutubeAnalyticsSummary {
   completed95: number;
   externalVideoOpens: number;
   channelOpens: number;
+  catalogChannelOpens: number;
+  playerChannelOpens: number;
 }
 
 export interface YoutubeAnalyticsTrendRow {
@@ -212,7 +217,7 @@ export interface YoutubeAnalyticsQuality {
   videoRowsReturned: number;
 }
 
-const COMMON_GOVERNED_PARAMS = ['schema_version', 'event_id', 'session_id', 'platform', 'channel_id'] as const;
+const COMMON_GOVERNED_PARAMS = ['schema_version', 'event_id', 'session_id', 'platform', 'source', 'channel_id'] as const;
 
 function materializeFixtureEvent(source: YoutubeAnalyticsFixtureEvent): {
   row: YoutubeAnalyticsFixtureEvent;
@@ -242,6 +247,7 @@ function materializeFixtureEvent(source: YoutubeAnalyticsFixtureEvent): {
       event_id: stringValue('event_id'),
       session_id: stringValue('session_id'),
       platform: stringValue('platform'),
+      source: stringValue('source'),
       channel_id: stringValue('channel_id'),
       video_id: stringValue('video_id'),
       video_title: stringValue('video_title'),
@@ -340,17 +346,25 @@ function validBase(row: YoutubeAnalyticsFixtureEvent): ValidEvent | null {
   const user = boundedString(row.user_pseudo_id);
   const session = boundedString(row.session_id);
   const platform = row.platform === 'ios' || row.platform === 'android' ? row.platform : '';
+  const source = row.source === 'home' || row.source === 'catalog' || row.source === 'player' ? row.source : '';
   const channel = boundedString(row.channel_id);
   const video = boundedString(row.video_id);
   const playback = boundedString(row.playback_id);
-  if (at == null || at < 0 || !eventId || !user || !session || !platform || !channel) return null;
+  if (at == null || at < 0 || !eventId || !user || !session || !platform || !source || !channel) return null;
+  const sourceAllowed = (name === 'youtube_home_entry_click' || name === 'youtube_catalog_open') ? source === 'home'
+    : name === 'youtube_video_select' ? source === 'catalog'
+      : (name === 'youtube_player_ready' || PLAYBACK_EVENTS.has(name)) ? source === 'player'
+        : (name === 'youtube_external_video_open' || name === 'youtube_channel_open')
+          ? source === 'catalog' || source === 'player' : false;
+  if (!sourceAllowed) return null;
   if (VIDEO_EVENTS.has(name) && !video) return null;
+  if (name === 'youtube_channel_open' && ((source === 'player' && !video) || (source === 'catalog' && video))) return null;
   if (PLAYBACK_EVENTS.has(name) && !playback) return null;
   const active = metric(row.active_watch_ms);
   const duration = metric(row.duration_ms);
   if ((name === 'youtube_playback_checkpoint' || name === 'youtube_playback_end') && active == null) return null;
   return {
-    name, at, schema: 1, eventId, user, session, platform, channel, video,
+    name, at, schema: 1, eventId, user, session, platform, source, channel, video,
     title: boundedString(row.video_title, 4096, true), playback, active, duration,
   };
 }
@@ -414,7 +428,7 @@ function emptySummary(): YoutubeAnalyticsSummary {
     anonymousInstancesWithValidStart: 0, watchAttempts: 0, totalActiveWatchMs: 0,
     averageActiveWatchMs: null, p50ActiveWatchMs: null, p90ActiveWatchMs: null,
     completed25: 0, completed50: 0, completed75: 0, completed95: 0,
-    externalVideoOpens: 0, channelOpens: 0,
+    externalVideoOpens: 0, channelOpens: 0, catalogChannelOpens: 0, playerChannelOpens: 0,
   };
 }
 
@@ -425,7 +439,11 @@ function addEventCounts(summary: YoutubeAnalyticsSummary, events: readonly Valid
     else if (row.name === 'youtube_video_select') summary.videoSelects += 1;
     else if (row.name === 'youtube_player_ready') summary.playerReady += 1;
     else if (row.name === 'youtube_external_video_open') summary.externalVideoOpens += 1;
-    else if (row.name === 'youtube_channel_open') summary.channelOpens += 1;
+    else if (row.name === 'youtube_channel_open') {
+      summary.channelOpens += 1;
+      if (row.source === 'catalog') summary.catalogChannelOpens += 1;
+      else summary.playerChannelOpens += 1;
+    }
   }
 }
 
@@ -722,6 +740,7 @@ function decodeSummary(payload: Record<string, unknown>): YoutubeAnalyticsSummar
     'homeClicks', 'catalogOpens', 'videoSelects', 'playerReady', 'playbackStarts',
     'anonymousInstancesWithValidStart', 'watchAttempts', 'totalActiveWatchMs',
     'completed25', 'completed50', 'completed75', 'completed95', 'externalVideoOpens', 'channelOpens',
+    'catalogChannelOpens', 'playerChannelOpens',
   ] as const;
   exactPayloadKeys(payload, [...countFields, 'averageActiveWatchMs', 'p50ActiveWatchMs', 'p90ActiveWatchMs']);
   const counts = Object.fromEntries(countFields.map(field => [field, queryCount(payload, field)])) as unknown as Pick<YoutubeAnalyticsSummary, typeof countFields[number]>;
@@ -890,6 +909,9 @@ export function decodeYoutubeAnalyticsQueryRows(
     }
   }
   if (!summary || !qualityWithData) throw new InvalidYoutubeAnalyticsRequestError('Incomplete YouTube analytics query result');
+  if (summary.channelOpens !== summary.catalogChannelOpens + summary.playerChannelOpens) {
+    throw new InvalidYoutubeAnalyticsRequestError('Channel-open source totals do not match summary');
+  }
   const expectedDays = expectedUtcDays(context.fromMicros, context.toMicros);
   if (trend.length !== expectedDays.length || trend.some((row, index) => row.day !== expectedDays[index])) {
     throw new InvalidYoutubeAnalyticsRequestError('Incomplete or unordered trend rows');
@@ -1042,6 +1064,7 @@ WITH raw_param_rows AS (
       ARRAY_AGG(IF(key='event_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v event_id,
       ARRAY_AGG(IF(key='session_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v session_id,
       ARRAY_AGG(IF(key='platform',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v platform,
+      ARRAY_AGG(IF(key='source',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v source,
       ARRAY_AGG(IF(key='channel_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v channel_id,
       ARRAY_AGG(IF(key='video_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v video_id,
       ARRAY_AGG(IF(key='video_title',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v video_title,
@@ -1050,7 +1073,7 @@ WITH raw_param_rows AS (
       ARRAY_AGG(IF(key='active_watch_ms',STRUCT(param_offset,value.int_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v active_watch_ms,
       ARRAY_AGG(IF(key='duration_ms',STRUCT(param_offset,value.int_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v duration_ms,
       COUNTIF(key='schema_version') schema_version_count,COUNTIF(key='event_id') event_id_count,
-      COUNTIF(key='session_id') session_id_count,COUNTIF(key='platform') platform_count,
+      COUNTIF(key='session_id') session_id_count,COUNTIF(key='platform') platform_count,COUNTIF(key='source') source_count,
       COUNTIF(key='channel_id') channel_id_count,COUNTIF(key='video_id') video_id_count,
       COUNTIF(key='playback_id') playback_id_count,COUNTIF(key='active_watch_ms') active_watch_ms_count
     FROM UNNEST(event_params) WITH OFFSET AS param_offset) params
@@ -1062,7 +1085,7 @@ WITH raw_param_rows AS (
   SELECT event_name,event_timestamp,user_pseudo_id,params.* FROM raw_param_rows
 ), normalized_window AS (
   SELECT event_name,event_timestamp,TRIM(user_pseudo_id) user_pseudo_id,TRIM(event_id) event_id,
-    TRIM(session_id) session_id,platform,TRIM(channel_id) channel_id,TRIM(video_id) video_id,
+    TRIM(session_id) session_id,platform,TRIM(source) source,TRIM(channel_id) channel_id,TRIM(video_id) video_id,
     IF(CHAR_LENGTH(TRIM(video_title))<=4096 AND NOT EXISTS(
       SELECT 1 FROM UNNEST(IFNULL(TO_CODE_POINTS(video_title),ARRAY<INT64>[])) code_point
       WHERE code_point BETWEEN 0 AND 31 OR code_point BETWEEN 127 AND 159
@@ -1070,18 +1093,19 @@ WITH raw_param_rows AS (
     ),TRIM(video_title),'') video_title,
     TRIM(playback_id) playback_id,schema_version,SAFE_CAST(active_watch_ms AS FLOAT64) active_watch_ms,
     SAFE_CAST(duration_ms AS FLOAT64) duration_ms,schema_version_count,event_id_count,session_id_count,
-    platform_count,channel_id_count,video_id_count,playback_id_count,active_watch_ms_count,
+    platform_count,source_count,channel_id_count,video_id_count,playback_id_count,active_watch_ms_count,
     REGEXP_CONTAINS(IFNULL(event_id,''),r'[\\p{Cc}\\p{Cf}]') event_id_unsafe_controls,
     REGEXP_CONTAINS(IFNULL(user_pseudo_id,''),r'[\\p{Cc}\\p{Cf}]') user_unsafe_controls,
     REGEXP_CONTAINS(IFNULL(session_id,''),r'[\\p{Cc}\\p{Cf}]') session_id_unsafe_controls,
+    REGEXP_CONTAINS(IFNULL(source,''),r'[\\p{Cc}\\p{Cf}]') source_unsafe_controls,
     REGEXP_CONTAINS(IFNULL(channel_id,''),r'[\\p{Cc}\\p{Cf}]') channel_id_unsafe_controls,
     REGEXP_CONTAINS(IFNULL(video_id,''),r'[\\p{Cc}\\p{Cf}]') video_id_unsafe_controls,
     REGEXP_CONTAINS(IFNULL(playback_id,''),r'[\\p{Cc}\\p{Cf}]') playback_id_unsafe_controls
   FROM raw_extracted
 ), classified AS (
   SELECT *,
-    schema_version_count>1 OR event_id_count>1 OR session_id_count>1 OR platform_count>1 OR channel_id_count>1
-      OR (event_name IN ('youtube_video_select','youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end','youtube_external_video_open') AND video_id_count>1)
+    schema_version_count>1 OR event_id_count>1 OR session_id_count>1 OR platform_count>1 OR source_count>1 OR channel_id_count>1
+      OR (event_name IN ('youtube_video_select','youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end','youtube_external_video_open','youtube_channel_open') AND video_id_count>1)
       OR (event_name IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end') AND playback_id_count>1)
       OR (event_name IN ('youtube_playback_checkpoint','youtube_playback_end') AND active_watch_ms_count>1)
       AS duplicate_parameter_keys,
@@ -1095,7 +1119,16 @@ WITH raw_param_rows AS (
       AND channel_id IS NOT NULL AND channel_id!='' AND CHAR_LENGTH(channel_id)<=256
       AND NOT channel_id_unsafe_controls
       AND platform IN ('ios','android')
+      AND NOT source_unsafe_controls
+      AND CASE
+        WHEN event_name IN ('youtube_home_entry_click','youtube_catalog_open') THEN source='home'
+        WHEN event_name='youtube_video_select' THEN source='catalog'
+        WHEN event_name IN ('youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end') THEN source='player'
+        WHEN event_name IN ('youtube_external_video_open','youtube_channel_open') THEN source IN ('catalog','player')
+        ELSE FALSE
+      END
       AND (event_name NOT IN ('youtube_video_select','youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end','youtube_external_video_open') OR (NULLIF(video_id,'') IS NOT NULL AND CHAR_LENGTH(video_id)<=256 AND NOT video_id_unsafe_controls))
+      AND (event_name!='youtube_channel_open' OR (source='player' AND NULLIF(video_id,'') IS NOT NULL AND CHAR_LENGTH(video_id)<=256 AND NOT video_id_unsafe_controls) OR (source='catalog' AND NULLIF(video_id,'') IS NULL))
       AND (event_name NOT IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end') OR (NULLIF(playback_id,'') IS NOT NULL AND CHAR_LENGTH(playback_id)<=256 AND NOT playback_id_unsafe_controls))
       AND (event_name NOT IN ('youtube_playback_checkpoint','youtube_playback_end') OR active_watch_ms BETWEEN 0 AND 86400000)
       AS required_valid
@@ -1111,7 +1144,7 @@ WITH raw_param_rows AS (
   WHERE NOT duplicate_parameter_keys AND known_schema AND required_valid
 ), deduped AS (
   SELECT * EXCEPT(dedupe_rank) FROM (
-    SELECT *, ROW_NUMBER() OVER(PARTITION BY event_id ORDER BY event_timestamp,event_name,user_pseudo_id,session_id,platform,
+    SELECT *, ROW_NUMBER() OVER(PARTITION BY event_id ORDER BY event_timestamp,event_name,user_pseudo_id,session_id,platform,source,
       IFNULL(playback_id,''),IFNULL(video_id,''),IFNULL(channel_id,''),IFNULL(video_title,''),IFNULL(active_watch_ms,-1),IFNULL(duration_ms,-1)) dedupe_rank
     FROM validated
   ) WHERE dedupe_rank=1
@@ -1193,7 +1226,9 @@ WITH raw_param_rows AS (
     (SELECT COUNTIF(completion_ratio>=0.75) FROM watch_attempts) AS completed75,
     (SELECT COUNTIF(completion_ratio>=0.95) FROM watch_attempts) AS completed95,
     COUNTIF(event_name='youtube_external_video_open') AS externalVideoOpens,
-    COUNTIF(event_name='youtube_channel_open') AS channelOpens
+    COUNTIF(event_name='youtube_channel_open') AS channelOpens,
+    COUNTIF(event_name='youtube_channel_open' AND source='catalog') AS catalogChannelOpens,
+    COUNTIF(event_name='youtube_channel_open' AND source='player') AS playerChannelOpens
   )) payload_json FROM filtered_events
 ), date_spine AS (
   SELECT day FROM UNNEST(GENERATE_DATE_ARRAY(DATE(TIMESTAMP_MICROS(@fromMicros),'UTC'),DATE(TIMESTAMP_MICROS(@toMicros-1),'UTC'))) day

@@ -16,7 +16,7 @@ function snapshot(overrides = {}) {
       anonymousInstancesWithValidStart: 2, watchAttempts: 2, totalActiveWatchMs: 50_000,
       averageActiveWatchMs: 25_000, p50ActiveWatchMs: 20_000, p90ActiveWatchMs: 30_000,
       completed25: 2, completed50: 2, completed75: 1, completed95: 0,
-      externalVideoOpens: 1, channelOpens: 1,
+      externalVideoOpens: 1, channelOpens: 1, catalogChannelOpens: 0, playerChannelOpens: 1,
     },
     trend: [{ day: '2026-07-13', homeClicks: 3, catalogOpens: 3, videoSelects: 2, playbackStarts: 2, activeWatchMs: 50_000 }],
     funnel: [

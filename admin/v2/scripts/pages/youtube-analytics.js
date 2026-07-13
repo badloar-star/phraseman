@@ -55,9 +55,10 @@
       'homeClicks', 'catalogOpens', 'videoSelects', 'playerReady', 'playbackStarts',
       'anonymousInstancesWithValidStart', 'watchAttempts', 'totalActiveWatchMs',
       'completed25', 'completed50', 'completed75', 'completed95',
-      'externalVideoOpens', 'channelOpens',
+      'externalVideoOpens', 'channelOpens', 'catalogChannelOpens', 'playerChannelOpens',
     ];
     summaryFields.forEach((field) => finiteNumber(input.summary[field], `summary_${field}`));
+    if (input.summary.channelOpens !== input.summary.catalogChannelOpens + input.summary.playerChannelOpens) throw new Error('invalid_channel_open_totals');
     ['averageActiveWatchMs', 'p50ActiveWatchMs', 'p90ActiveWatchMs'].forEach((field) => finiteNumber(input.summary[field], `summary_${field}`, true));
     input.trend.forEach((row) => {
       if (!row || typeof row.day !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(row.day)) throw new Error('invalid_trend');
@@ -192,7 +193,7 @@
     else if (snapshot?.quality?.state === 'partial') notice = '<div class="notice warning"><strong>Данные частичные.</strong> Доступные показатели показаны, а проблемы качества перечислены ниже.</div>';
     else if (snapshot?.quality?.state === 'empty') notice = '<div class="notice warning"><strong>Событий пока нет.</strong> Они появятся после выпуска версии с трекингом и следующей выгрузки Firebase Analytics в BigQuery.</div>';
 
-    const content = snapshot && snapshot.quality.state !== 'empty' ? `${renderMetric('Клики с главной', formatNumber(snapshot.summary.homeClicks), 'переходы к YouTube-разделу')}${renderMetric('Запуски', formatNumber(snapshot.summary.playbackStarts), 'валидные старты воспроизведения')}${renderMetric('Анонимные экземпляры', formatNumber(snapshot.summary.anonymousInstancesWithValidStart), 'не гарантированно уникальные люди')}${renderMetric('Активное время', formatDuration(snapshot.summary.totalActiveWatchMs), 'сумма по попыткам')}${renderMetric('Среднее время', formatDuration(snapshot.summary.averageActiveWatchMs), `p50 ${formatDuration(snapshot.summary.p50ActiveWatchMs)} · p90 ${formatDuration(snapshot.summary.p90ActiveWatchMs)}`)}${renderMetric('Открыли канал', formatNumber(snapshot.summary.channelOpens), 'нажатия внешней ссылки')}` : '';
+    const content = snapshot && snapshot.quality.state !== 'empty' ? `${renderMetric('Клики с главной', formatNumber(snapshot.summary.homeClicks), 'переходы к YouTube-разделу')}${renderMetric('Запуски', formatNumber(snapshot.summary.playbackStarts), 'валидные старты воспроизведения')}${renderMetric('Анонимные экземпляры', formatNumber(snapshot.summary.anonymousInstancesWithValidStart), 'не гарантированно уникальные люди')}${renderMetric('Активное время', formatDuration(snapshot.summary.totalActiveWatchMs), 'сумма по попыткам')}${renderMetric('Среднее время', formatDuration(snapshot.summary.averageActiveWatchMs), `p50 ${formatDuration(snapshot.summary.p50ActiveWatchMs)} · p90 ${formatDuration(snapshot.summary.p90ActiveWatchMs)}`)}${renderMetric('Открыли канал', formatNumber(snapshot.summary.channelOpens), `из каталога ${formatNumber(snapshot.summary.catalogChannelOpens)} · из плеера ${formatNumber(snapshot.summary.playerChannelOpens)}`)}` : '';
     return `<section id="youtube-analytics-panel"><header class="page-header"><div><div class="eyebrow">Аналитика / Видео YouTube</div><h1>Аналитика видео YouTube</h1><p>Показывает путь от кнопки на главной до просмотра внутри Phraseman и нажатий внешних ссылок YouTube.</p></div><div class="actions"><a class="button" href="#analytics" title="Вернуться к общей аналитике">К общей аналитике</a></div></header>${renderFilters()}${notice}${snapshot && snapshot.quality.state !== 'empty' ? `<section class="metrics section youtube-kpis">${content}</section>${renderTrend(snapshot)}${renderFunnel(snapshot)}${renderVideoTable(snapshot)}` : ''}${snapshot ? renderQuality(snapshot) : ''}</section>`;
   }
 

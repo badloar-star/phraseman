@@ -266,6 +266,33 @@ describe('Admin v2 native diagnostics workspace', () => {
     expect(fs.existsSync(path.join(root, 'admin/v2/data/changelog-0608.html'))).toBe(true);
   });
 
+  test('gives the Diagnostics source-health retry button the same title and keyboard tooltip', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    const start = core.indexOf('function renderDiagnosticsSourceHealth');
+    const end = core.indexOf('function auditSummary', start);
+    const block = core.slice(start, end);
+    const retryButton = block.match(/<button\b[^>]*data-action="load-daily-briefing"[^>]*>/)?.[0] || '';
+
+    expect(retryButton).toContain('title="Повторно прочитать состояние источников"');
+    expect(retryButton).toContain('data-tooltip="Повторно прочитать состояние источников"');
+  });
+
+  test('makes ops source-health badges keyboard-focusable with a non-empty tooltip', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    const start = core.indexOf('function renderOpsLogPanel');
+    const end = core.indexOf('function renderDiagnostics()', start);
+    const block = core.slice(start, end);
+    const healthStart = block.indexOf('<section class="report-health section"');
+    const healthEnd = block.indexOf('<div class="hint section">', healthStart);
+    const healthBlock = block.slice(healthStart, healthEnd);
+
+    expect(healthStart).toBeGreaterThanOrEqual(0);
+    expect(healthBlock).toContain('tabindex="0"');
+    expect(healthBlock).toContain('data-tooltip="${escapeHtml(sourceTooltip)}"');
+    expect(healthBlock).toContain("const sourceTooltip = source.error");
+    expect(healthBlock).not.toContain("title=\"${escapeHtml(source.error || '')}\"");
+  });
+
   test('keeps the workspace accessible and visibly honest about partial data', () => {
     const view = read('admin/v2/scripts/admin-diagnostics-view.js');
     const css = read('admin/v2/styles/admin.css');

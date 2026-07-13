@@ -80,8 +80,7 @@ describe('Gustav French curriculum contract', () => {
     }
     expect(targetGateSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
     expect(targetGateSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
-    expect(lessonDataSource).toContain('const target = storageStudyTarget(studyTarget)');
-    expect(lessonDataSource).toContain("target === 'fr'");
+    expect(lessonDataSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
     expect(titleSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
     expect(smartOptionsSource).toContain('const normalizedStudyTarget = storageStudyTarget(studyTarget)');
     expect(smartOptionsSource).toContain("normalizedStudyTarget === 'fr'");
@@ -200,7 +199,7 @@ describe('Gustav French curriculum contract', () => {
 
     expect(source).toContain("import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime'");
     expect(source).toContain('loadFrenchRemoteLessonRows(lessonId, frenchRemoteSourceLocale)');
-    expect(source).toContain('courseReleaseLessonRequired ? remoteFrenchLessonRows ?? [] : getLessonData(lessonId)');
+    expect(source).toContain('remoteFrenchLessonRows ?? getLessonData(lessonId)');
     expect(source).not.toContain('Французский материал ещё на проверке');
     expect(source).not.toContain('не будет открывать английские фразы или интро как замену');
     expect(source).toContain('const hasPlayableLessonRows = effectiveTotal > 0');

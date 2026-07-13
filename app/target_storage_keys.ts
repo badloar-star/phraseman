@@ -139,9 +139,7 @@ export function targetKey(domain: TargetKeyDomain, studyTarget: StudyTarget, id?
 }
 
 export function storageStudyTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
-  // `es` is a legacy source-language alias, not a separate learning target.
-  // Only French has isolated target storage today; everything else remains on English keys.
-  return studyTarget === 'fr' ? assertStudyTarget('fr') : defaultStudyTarget();
+  return isStudyTarget(studyTarget) ? assertStudyTarget(studyTarget) : defaultStudyTarget();
 }
 
 export function storageSourceLocale(sourceLocale?: RuntimeSourceLocale): SourceLocale {

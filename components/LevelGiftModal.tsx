@@ -539,7 +539,7 @@ function LevelGiftModal({
 
           {phase !== 'reveal' ? (
             <>
-              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={() => handleTap()} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
+              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={handleTap} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
                 <GiftBox3D
                   palette={palette}
                   size={LEVEL_GIFT_STAGE_SIZE}

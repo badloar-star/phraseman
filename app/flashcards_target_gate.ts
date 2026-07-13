@@ -52,9 +52,7 @@ export function flashcardsSourceGateForTarget(
 
   const canonicalCardsAvailable = getCachedCourseReleaseFlashcards(target, String(sourceLocale ?? 'ru')).length > 0;
   const legacyFrenchCardsAvailable = target === 'fr' && getCachedFrenchRemoteFlashcards(sourceLocale).length > 0;
-  // French system cards are server-delivered. Keep the route open while its
-  // cache warms; an empty synchronous peek must not hide the entry point.
-  const systemCardsEnabled = surface === 'system_cards' && (target === 'fr' || canonicalCardsAvailable || legacyFrenchCardsAvailable);
+  const systemCardsEnabled = surface === 'system_cards' && (canonicalCardsAvailable || legacyFrenchCardsAvailable);
   const marketplacePacksEnabled =
     target === 'fr' &&
     surface === 'official_marketplace_packs' &&

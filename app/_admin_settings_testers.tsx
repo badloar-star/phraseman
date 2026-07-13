@@ -2457,12 +2457,6 @@ export default function SettingsTestersFunctions() {
     <View style={{ flex: 1, backgroundColor: ADMIN_BG }}>
       <AdminBackground />
       <SafeAreaView style={{ flex: 1 }}>
-        {diagnosisDevBlocked ? (
-          <View testID="admin-french-personal-practice-source-gate" style={{ marginHorizontal: 16, marginTop: 8, padding: 12, borderRadius: 12, backgroundColor: ADMIN_SURFACE }}>
-            <Text style={{ color: ADMIN_TEXT, fontWeight: '800' }}>{frenchPersonalPracticeGate.title}</Text>
-            <Text style={{ color: ADMIN_TEXT_MUTED, marginTop: 4 }}>{frenchPersonalPracticeGate.body}</Text>
-          </View>
-        ) : null}
         {/* Header: заголовок + поиск + чипы глав */}
         <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: ACCENT_BORDER, backgroundColor: ADMIN_HEADER_BG }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>

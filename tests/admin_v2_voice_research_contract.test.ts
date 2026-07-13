@@ -22,6 +22,7 @@ describe('Admin v2 Voice & Research Center', () => {
     const firebase = read('admin/v2/scripts/admin-firebase.js');
     expect(core).toContain("from './admin-voice-research-controller.js'");
     expect(core).toContain('renderVoiceResearchCenter');
+    expect(core).toContain("target.querySelector('#voice-survey-final-title')?.closest('.fields.section')?.remove()");
     expect(state).toContain('createVoiceResearchState');
     expect(view).toContain('voice-research-tabs');
     expect(view).toContain('snapshotCursor');

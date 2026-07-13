@@ -1913,6 +1913,7 @@ function renderCurrentPage() {
     const page = (renderers[state.route] ?? renderOverview)();
     target.innerHTML = `${page}${ADMIN_SECTIONS.some((section) => section.route === state.route) ? renderCapabilityHub(state.route) : ''}`;
   }
+  target.querySelector('#voice-survey-final-title')?.closest('.fields.section')?.remove();
   renderNavigation();
   renderAuthStatus();
   setMessage(state.message, state.messageKind);

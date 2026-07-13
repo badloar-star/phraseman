@@ -185,8 +185,9 @@ export function exportVoiceResearchRows(view: VoiceView, rows: readonly Row[], s
   if (view === 'surveys') {
     const selectedId = clean(summary.selectedSurveyId, 80); const surveys = Array.isArray(summary.surveys) ? summary.surveys.map(record) : [];
     const selected = surveys.find((survey) => clean(survey.surveyId, 80) === selectedId) || {}; const questions = Array.isArray(selected.questions) ? selected.questions.map(record) : [];
-    const columns = ['uid', 'submittedAtMs', 'platform', 'appVersion', ...questions.map((question) => clean(question.id, 80)).filter(Boolean)];
-    const lines = rows.map((row) => { const answers = record(row.answers); return columns.map((column) => { const answer = record(answers[column]); if (!Object.keys(answer).length) return row[column]; const optionId = clean(answer.optionId, 80); const comment = clean(answer.comment, 2000); return [optionId, comment].filter(Boolean).join(' — '); }); });
+    const metadataColumns = ['uid', 'submittedAtMs', 'platform', 'appVersion']; const questionIds = questions.map((question) => clean(question.id, 80)).filter(Boolean);
+    const columns = [...metadataColumns, ...questionIds];
+    const lines = rows.map((row) => { const answers = record(row.answers); const metadata = metadataColumns.map((column) => row[column]); const questionCells = questionIds.map((questionId) => { const answer = record(answers[questionId]); const optionId = clean(answer.optionId, 80); const comment = clean(answer.comment, 2000); return [optionId, comment].filter(Boolean).join(' — '); }); return [...metadata, ...questionCells]; });
     return [columns, ...lines].map((line) => line.map(csvCell).join(',')).join('\r\n');
   }
   const columns = view.startsWith('ideas') ? ['id', 'uid', 'userName', 'status', 'category', 'title', 'description', 'benefit', 'lang', 'platform', 'appVersion', 'createdAtMs', 'decidedAtMs', 'decidedBy', 'decisionMessageRu']

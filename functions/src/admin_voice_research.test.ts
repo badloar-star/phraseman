@@ -42,5 +42,7 @@ describe('Admin Voice & Research read contract', () => {
     expect(csv).toContain('"yes — Because"');
     expect(csv).toContain('"comment — =formula"');
     expect(csv).not.toContain('"answers"');
+    const collision = exportVoiceResearchRows('surveys', [{ uid: 'real-user', submittedAtMs: 10, platform: 'ios', appVersion: '1.0', answers: { uid: { optionId: 'answer-user' }, platform: { optionId: 'answer-platform' } } }], { selectedSurveyId: 's1', surveys: [{ surveyId: 's1', questions: [{ id: 'uid' }, { id: 'platform' }] }] });
+    expect(collision.split('\r\n')[1]).toBe('"real-user","10","ios","1.0","answer-user","answer-platform"');
   });
 });

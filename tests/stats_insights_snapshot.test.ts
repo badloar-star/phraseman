@@ -1,4 +1,8 @@
-import { buildStatsInsightsSnapshot } from '../app/stats_insights_snapshot';
+import {
+  buildStatsInsightsSnapshot,
+  canBuildStatsInsightsSnapshotForCycle,
+  isCurrentStatsInsightsLoadCycle,
+} from '../app/stats_insights_snapshot';
 
 const sample = {
   status: 'available' as const,
@@ -83,5 +87,29 @@ describe('buildStatsInsightsSnapshot', () => {
     expect(snapshot.week.previousMinutes7).toBe(21);
     expect(snapshot.longTerm.previous30ActiveDays).toBe(10);
     expect(snapshot.longTerm.goalPct).toBe(0);
+  });
+
+  it('rejects out-of-order and invalidated load completions', () => {
+    expect(isCurrentStatsInsightsLoadCycle(4, 5)).toBe(false);
+    expect(isCurrentStatsInsightsLoadCycle(5, 5)).toBe(true);
+    expect(isCurrentStatsInsightsLoadCycle(5, 6)).toBe(false);
+  });
+
+  it('opens the snapshot gate only when all data belongs to the current completed cycle', () => {
+    const ready = {
+      cycleId: 8,
+      currentCycleId: 8,
+      activityStatus: 'ready' as const,
+      percentilesStatus: 'unavailable' as const,
+      lifetimeStatus: 'ready' as const,
+      hasActivity: true,
+      hasLifetime: true,
+    };
+    expect(canBuildStatsInsightsSnapshotForCycle(ready)).toBe(true);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, currentCycleId: 9 })).toBe(false);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, activityStatus: 'loading' })).toBe(false);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, percentilesStatus: 'loading' })).toBe(false);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, lifetimeStatus: 'loading' })).toBe(false);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, lifetimeStatus: 'unavailable' })).toBe(false);
   });
 });

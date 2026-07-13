@@ -63,7 +63,7 @@ import { StatCountUpText } from '../components/stats/StatCountUpText';
 import { AiBlockNote } from '../components/stats/AiBlockNote';
 import { getVerifiedStatsInsightsState, generateVerifiedStatsInsights, buildVerifiedFallbackNotes, type VerifiedStatsInsightsNotes } from './stats_insights_client';
 import { buildStatsInsightAnalysis, type StatsInsightBlockKey } from './stats_insights_analysis';
-import { buildStatsInsightsSnapshot } from './stats_insights_snapshot';
+import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, isCurrentStatsInsightsLoadCycle } from './stats_insights_snapshot';
 import { loadActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
@@ -2694,6 +2694,8 @@ export default function StreakStats() {
     const [activity365, setActivity365] = useState<Activity365Analytics | null>(null);
     const [activity365Status, setActivity365Status] = useState<'loading' | 'ready' | 'unavailable'>('loading');
     const [percentilesStatus, setPercentilesStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
+    const [lifetimeStatus, setLifetimeStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
+    const [insightsLoadCycleId, setInsightsLoadCycleId] = useState(0);
     const analyticsLoadRequestRef = useRef(0);
     // Четыре заметки строятся из одних и тех же проверенных фактов в fallback и на сервере.
     const [aiNotes, setAiNotes] = useState<VerifiedStatsInsightsNotes | null>(null);
@@ -2806,23 +2808,26 @@ export default function StreakStats() {
     }, [wdays]);
     const loadAll = React.useCallback(async () => {
         const analyticsRequestId = ++analyticsLoadRequestRef.current;
+        setInsightsLoadCycleId(analyticsRequestId);
+        setActivity365Status('loading');
+        setPercentilesStatus('loading');
+        setLifetimeStatus('loading');
         const activityRefresh = loadActivity365Analytics()
             .then((activity) => {
-            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
                 return;
             setActivity365(activity);
             setActivity365Status('ready');
         })
             .catch((error) => {
             debugStatsRoute('loadAll:activity365Error', String(error));
-            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
                 return;
-            setActivity365(null);
             setActivity365Status('unavailable');
         });
         const percentilesRefresh = loadPercentileData()
             .then(({ myXp7: x7, myTime7ms: t7, percentiles: p }) => {
-            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
                 return;
             debugStatsRoute('loadAll:percentiles', { x7, t7, xp: p.xp, weekXp: p.weekXp, daily7xp: p.daily7xp, daily7timeMs: p.daily7timeMs });
             setMyXp7(x7);
@@ -2832,7 +2837,7 @@ export default function StreakStats() {
         })
             .catch((error) => {
             debugStatsRoute('loadAll:percentilesError', String(error));
-            if (analyticsLoadRequestRef.current !== analyticsRequestId)
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
                 return;
             setPercentiles((current) => ({
                 ...current,
@@ -2847,26 +2852,48 @@ export default function StreakStats() {
         });
         debugStatsRoute('loadAll:start');
         await hydrateStatsCacheFromStorage();
+        if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+            return;
         const cachedSnapshot = getStatsCache(studyTarget);
         debugStatsRoute('loadAll:cache', { loaded: cachedSnapshot.loaded });
         if (cachedSnapshot.loaded)
             applyStatsSnapshot(cachedSnapshot);
+        let cachedLifetimeForCycle: LifetimeProfileStats | null = null;
         try {
-            const cachedLifetime = await readLifetimeProfileStatsCache();
-            debugStatsRoute('loadAll:lifetimeCache', { ok: !!cachedLifetime });
-            if (cachedLifetime)
-                setLifetimeStats(cachedLifetime);
+            cachedLifetimeForCycle = await readLifetimeProfileStatsCache();
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+                return;
+            debugStatsRoute('loadAll:lifetimeCache', { ok: !!cachedLifetimeForCycle });
+            if (cachedLifetimeForCycle)
+                setLifetimeStats(cachedLifetimeForCycle);
         }
-        catch { /* ignore */ }
+        catch { /* refresh below decides ready vs unavailable */ }
         const lifetimeRefresh = loadLifetimeProfileStats()
             .then((stats) => {
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+                return;
             debugStatsRoute('loadAll:lifetimeRefresh', { ok: !!stats });
-            setLifetimeStats(stats);
+            if (stats) {
+                setLifetimeStats(stats);
+                setLifetimeStatus('ready');
+            }
+            else {
+                if (cachedLifetimeForCycle)
+                    setLifetimeStats(cachedLifetimeForCycle);
+                setLifetimeStatus(cachedLifetimeForCycle ? 'ready' : 'unavailable');
+            }
         })
-            .catch((error) => { debugStatsRoute('loadAll:lifetimeRefreshError', String(error)); });
+            .catch((error) => {
+            debugStatsRoute('loadAll:lifetimeRefreshError', String(error));
+            if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+                return;
+            if (cachedLifetimeForCycle)
+                setLifetimeStats(cachedLifetimeForCycle);
+            setLifetimeStatus(cachedLifetimeForCycle ? 'ready' : 'unavailable');
+        });
         const snapshot = await refreshStatsCache(studyTarget);
         debugStatsRoute('loadAll:refreshStatsCache', { ok: !!snapshot });
-        if (snapshot)
+        if (snapshot && isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
             applyStatsSnapshot(snapshot);
         const activeLeagueBoost = await loadActiveLeagueBoost().catch(() => null);
         debugStatsRoute('loadAll:leagueBoost', { ok: !!activeLeagueBoost });
@@ -2877,6 +2904,8 @@ export default function StreakStats() {
         setLeagueGroupBoostMultiplier(activeLeagueGroupBoost?.multiplier ?? 1);
         setLeagueGroupBoostExpiresAt(activeLeagueGroupBoost?.expiresAt ?? 0);
         await lifetimeRefresh;
+        if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+            return;
         loadWeeklyLearnedCounts()
             .then((counts) => setWeekLearned(counts))
             .catch(() => setWeekLearned(null));
@@ -2889,11 +2918,22 @@ export default function StreakStats() {
         void loadAll();
         return () => {
             analyticsLoadRequestRef.current += 1;
+            setInsightsLoadCycleId(-1);
         };
     }, [loadAll]));
     // ── Проверенный гибридный разбор ─────────────────────────────────────────
     const statsInsightsSnapshot = useMemo(() => {
-        if (!lifetimeStats || activity365Status !== 'ready' || !activity365 || percentilesStatus === 'loading')
+        if (!canBuildStatsInsightsSnapshotForCycle({
+            cycleId: insightsLoadCycleId,
+            currentCycleId: analyticsLoadRequestRef.current,
+            activityStatus: activity365Status,
+            percentilesStatus: percentilesStatus,
+            lifetimeStatus: lifetimeStatus,
+            hasActivity: !!activity365,
+            hasLifetime: !!lifetimeStats,
+        }))
+            return null;
+        if (!activity365 || !lifetimeStats)
             return null;
         return buildStatsInsightsSnapshot({
             lang,
@@ -2911,7 +2951,7 @@ export default function StreakStats() {
             percentiles,
             lifetime: lifetimeStats,
         });
-    }, [activity365, activity365Status, allTimeDays, coachMetrics, lang, lifetimeStats, percentiles, percentilesStatus, studyTarget]);
+    }, [activity365, activity365Status, allTimeDays, coachMetrics, insightsLoadCycleId, lang, lifetimeStats, lifetimeStatus, percentiles, percentilesStatus, studyTarget]);
     const statsInsightAnalysis = useMemo(() => statsInsightsSnapshot
         ? buildStatsInsightAnalysis(statsInsightsSnapshot, previousObservationIdsRef.current)
         : null, [statsInsightsSnapshot]);
@@ -2974,8 +3014,12 @@ export default function StreakStats() {
             setLifetimeChartSeed((s) => s + 1);
             setExpandedLifetimeKind(null);
             await loadAll();
+            const devStatsCycleId = analyticsLoadRequestRef.current;
             const base = await loadLifetimeProfileStats();
+            if (!isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current))
+                return;
             setLifetimeStats(mergeDevRandomSumsIntoLifetime(base, sums));
+            setLifetimeStatus('ready');
             const byKind: Partial<Record<LifetimeTotalsChartKind, LifetimeChartDay[]>> = {};
             await Promise.all(LIFETIME_PATH_DEV_CHART_KINDS.map(async (k) => {
                 const series = await loadLifetimeTotalsChartDays(k, lang, REPORT_SCREENS_RUSSIAN_ONLY);

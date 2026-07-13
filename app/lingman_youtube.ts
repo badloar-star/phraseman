@@ -296,6 +296,10 @@ export function parseYoutubeVideoId(raw: string | null | undefined): string {
   return '';
 }
 
+export function getValidLingmanYoutubeVideoId(raw: string | null | undefined): string | null {
+  return parseYoutubeVideoId(raw) || null;
+}
+
 /**
  * Парсит сырой JSON пришпиленных видео из «Пульта» в нормализованный список.
  * Принимает массив вида [{id|url, title?, ...}, ...] или массив строк (id/url).
@@ -555,7 +559,7 @@ export async function markLingmanYoutubeCatalogSeen(latestVideoId: string | null
 }
 
 export function buildLingmanEmbedHtml(videoId: string): string {
-  const safeVideoId = parseYoutubeVideoId(videoId);
+  const safeVideoId = getValidLingmanYoutubeVideoId(videoId);
   if (!safeVideoId) {
     throw new Error('Invalid YouTube video ID');
   }
@@ -572,12 +576,23 @@ export function buildLingmanEmbedHtml(videoId: string): string {
   </head>
   <body>
     <div id="player"></div>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
       (function() {
+        if (window.__phrasemanYoutubeBridgeInstalled === true) return;
+        window.__phrasemanYoutubeBridgeInstalled = true;
+
         var player = null;
         var pollTimer = null;
-        var analyticsActive = true;
+        var initTimeout = null;
+        var initStarted = false;
+        var initCompleted = false;
+        var initFailed = false;
+        var readyEmitted = false;
+        var errorEmitted = false;
+        var playerFailed = false;
+        var analyticsActive = false;
+        var pageActive = true;
+        var beforeUnloadStarted = false;
         var stateNames = {
           0: 'ended',
           1: 'playing',
@@ -617,6 +632,30 @@ export function buildLingmanEmbedHtml(videoId: string): string {
           pollTimer = null;
         }
 
+        function clearInitTimeout() {
+          if (initTimeout === null) return;
+          clearTimeout(initTimeout);
+          initTimeout = null;
+        }
+
+        function emitPlayerError(rawCode) {
+          stopPolling();
+          playerFailed = true;
+          if (errorEmitted) return;
+          errorEmitted = true;
+          var numericCode = Number(rawCode);
+          var officialCodes = [2, 5, 100, 101, 150];
+          var errorCode = officialCodes.indexOf(numericCode) >= 0 ? numericCode : 5;
+          postMessage({ version: 1, type: 'error', code: errorCode });
+        }
+
+        function failInitialization() {
+          if (initCompleted || initFailed) return;
+          initFailed = true;
+          clearInitTimeout();
+          emitPlayerError(5);
+        }
+
         function isPlaying() {
           try {
             return player !== null && player.getPlayerState() === 1;
@@ -626,7 +665,7 @@ export function buildLingmanEmbedHtml(videoId: string): string {
         }
 
         function emitCurrentState() {
-          if (!analyticsActive || document.visibilityState !== 'visible' || !isPlaying()) {
+          if (!analyticsActive || !pageActive || playerFailed || document.visibilityState !== 'visible' || !isPlaying()) {
             stopPolling();
             return;
           }
@@ -635,15 +674,22 @@ export function buildLingmanEmbedHtml(videoId: string): string {
 
         function startPolling() {
           if (pollTimer !== null) return;
-          if (!analyticsActive || document.visibilityState !== 'visible' || !isPlaying()) return;
+          if (!analyticsActive || !pageActive || playerFailed || document.visibilityState !== 'visible' || !isPlaying()) return;
           pollTimer = setInterval(emitCurrentState, 1000);
         }
 
         function onReady() {
+          clearInitTimeout();
+          if (readyEmitted || playerFailed) return;
+          readyEmitted = true;
           postMessage({ version: 1, type: 'ready' });
         }
 
         function onStateChange(event) {
+          if (playerFailed) {
+            stopPolling();
+            return;
+          }
           var state = stateNames[event.data];
           if (!state) {
             stopPolling();
@@ -659,11 +705,8 @@ export function buildLingmanEmbedHtml(videoId: string): string {
         }
 
         function onError(event) {
-          stopPolling();
-          var rawCode = Number(event && event.data);
-          var officialCodes = [2, 5, 100, 101, 150];
-          var errorCode = officialCodes.indexOf(rawCode) >= 0 ? rawCode : 5;
-          postMessage({ version: 1, type: 'error', code: errorCode });
+          clearInitTimeout();
+          emitPlayerError(event && event.data);
         }
 
         window.__phrasemanSetAnalyticsActive = function(active) {
@@ -683,23 +726,53 @@ export function buildLingmanEmbedHtml(videoId: string): string {
           }
           startPolling();
         });
-        window.addEventListener('pagehide', stopPolling);
-        window.addEventListener('beforeunload', stopPolling);
+        window.addEventListener('pagehide', function() {
+          pageActive = false;
+          stopPolling();
+        });
+        window.addEventListener('beforeunload', function() {
+          beforeUnloadStarted = true;
+          pageActive = false;
+          stopPolling();
+        });
+        window.addEventListener('pageshow', function() {
+          if (beforeUnloadStarted) return;
+          pageActive = true;
+          startPolling();
+        });
 
         window.onYouTubeIframeAPIReady = function() {
-          player = new YT.Player('player', {
-            videoId: '${safeVideoId}',
-            playerVars: {
-              playsinline: 1,
-              rel: 0,
-              controls: 1,
-              fs: 1,
-              origin: '${baseOrigin}',
-              widget_referrer: '${LINGMAN_YOUTUBE_EMBED_BASE_URL}'
-            },
-            events: { onReady: onReady, onStateChange: onStateChange, onError: onError }
-          });
+          if (initStarted || initCompleted || initFailed) return;
+          initStarted = true;
+          try {
+            player = new YT.Player('player', {
+              videoId: '${safeVideoId}',
+              playerVars: {
+                playsinline: 1,
+                rel: 0,
+                controls: 1,
+                fs: 1,
+                origin: '${baseOrigin}',
+                widget_referrer: '${LINGMAN_YOUTUBE_EMBED_BASE_URL}'
+              },
+              events: { onReady: onReady, onStateChange: onStateChange, onError: onError }
+            });
+            initCompleted = true;
+            clearInitTimeout();
+          } catch (_) {
+            failInitialization();
+          }
         };
+
+        initTimeout = setTimeout(failInitialization, 10000);
+        if (!document.getElementById('phraseman-youtube-iframe-api')) {
+          var apiScript = document.createElement('script');
+          apiScript.id = 'phraseman-youtube-iframe-api';
+          apiScript.src = 'https://www.youtube.com/iframe_api';
+          apiScript.async = true;
+          apiScript.onerror = failInitialization;
+          document.head.appendChild(apiScript);
+        }
       })();
     </script>
   </body>

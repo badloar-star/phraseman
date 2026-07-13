@@ -65,6 +65,17 @@ describe('lingman YouTube quality gate', () => {
     expect(player).toContain('testID="lingman-player-error"');
   });
 
+  it('normalizes malformed deep-link video IDs before building player HTML during render', () => {
+    const player = playerSource();
+
+    expect(dataSource()).toContain('getValidLingmanYoutubeVideoId');
+    expect(player).toContain('getValidLingmanYoutubeVideoId');
+    expect(player).toContain('const validVideoId = getValidLingmanYoutubeVideoId(id)');
+    expect(player).toContain('validVideoId ? buildLingmanEmbedHtml(validVideoId) : null');
+    expect(player).toContain('{validVideoId && !playerError ? (');
+    expect(player).not.toContain('id ? buildLingmanEmbedHtml(id) : null');
+  });
+
   it('connects the catalog to the PHRASEMAN English YouTube channel', () => {
     const combined = [catalogSource(), buttonSource(), dataSource()].join('\n');
 

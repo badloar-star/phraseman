@@ -3,7 +3,10 @@ import {
   canBuildStatsInsightsSnapshotForCycle,
   finishStatsInsightsLoadCycle,
   isCurrentStatsInsightsLoadCycle,
+  notesForStatsInsightsFingerprint,
+  shouldRenderStatsComparison,
 } from '../app/stats_insights_snapshot';
+import { buildStatsInsightAnalysis } from '../app/stats_insights_analysis';
 
 const sample = {
   status: 'available' as const,
@@ -100,6 +103,7 @@ describe('buildStatsInsightsSnapshot', () => {
     const ready = {
       cycleId: 8,
       currentCycleId: 8,
+      completedCycleId: 8,
       activityStatus: 'ready' as const,
       percentilesStatus: 'unavailable' as const,
       lifetimeStatus: 'ready' as const,
@@ -107,11 +111,52 @@ describe('buildStatsInsightsSnapshot', () => {
       hasLifetime: true,
     };
     expect(canBuildStatsInsightsSnapshotForCycle(ready)).toBe(true);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, completedCycleId: -1 })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, currentCycleId: 9 })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, activityStatus: 'loading' })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, percentilesStatus: 'loading' })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, lifetimeStatus: 'loading' })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, lifetimeStatus: 'unavailable' })).toBe(false);
+  });
+
+  it('keeps the gate closed when analytics finish before the core load cycle', () => {
+    const analyticsReady = {
+      cycleId: 12,
+      currentCycleId: 12,
+      completedCycleId: -1,
+      activityStatus: 'ready' as const,
+      percentilesStatus: 'ready' as const,
+      lifetimeStatus: 'ready' as const,
+      hasActivity: true,
+      hasLifetime: true,
+    };
+    expect(canBuildStatsInsightsSnapshotForCycle(analyticsReady)).toBe(false);
+    expect(canBuildStatsInsightsSnapshotForCycle({ ...analyticsReady, completedCycleId: 12 })).toBe(true);
+  });
+
+  it('shows notes only for the exact current fingerprint', () => {
+    const stored = { fingerprint: 'new', notes: { week: 'new note' } };
+    expect(notesForStatsInsightsFingerprint('old', stored)).toBeNull();
+    expect(notesForStatsInsightsFingerprint(null, stored)).toBeNull();
+    expect(notesForStatsInsightsFingerprint('new', stored)).toEqual(stored.notes);
+  });
+
+  it('keeps comparison geometry after the first resolved result', () => {
+    expect(shouldRenderStatsComparison(false)).toBe(false);
+    expect(shouldRenderStatsComparison(true)).toBe(true);
+  });
+
+  it('keeps unchanged facts on the same deterministic fingerprint', () => {
+    const input = {
+      lang: 'ru' as const,
+      studyTarget: 'en' as const,
+      week: { activeDays7: 1, minutes7: 5, xp7: 20, previousMinutes7: null, bestDayLabel: null, dailyMinutes7: [0, 0, 0, 0, 0, 0, 5] },
+      longTerm: { activeDays365: 1, currentStreak: 1, longestStreak: 1, bestMonthLabel: null, last30ActiveDays: 1, previous30ActiveDays: null, goalPct: 1 },
+      comparison: { sample, totalXpPercentile: 60, daily7XpPercentile: null, daily7TimePercentile: null },
+      lifetime: { words: 2, phrases: 1, quizzes: 0, arenaWins: 0, daysActive: 1 },
+      weakCategories: [],
+    };
+    expect(buildStatsInsightAnalysis(input).fingerprint).toBe(buildStatsInsightAnalysis(input).fingerprint);
   });
 
   it('does not apply a deferred cycle after blur or a newer focus wins', async () => {

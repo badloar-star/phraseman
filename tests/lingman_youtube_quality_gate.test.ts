@@ -12,6 +12,7 @@ describe('lingman YouTube quality gate', () => {
   const playerSource = () => readProjectFile('app/lingman_video_player.tsx');
   const buttonSource = () => readProjectFile('components/LingmanVideosButton.tsx');
   const dataSource = () => readProjectFile('app/lingman_youtube.ts');
+  const controllerSource = () => readProjectFile('app/youtube_playback_analytics_controller.ts');
 
   it('uses theme-native chrome instead of hardcoded YouTube red in app surfaces', () => {
     const combined = [catalogSource(), playerSource(), buttonSource()].join('\n');
@@ -69,7 +70,8 @@ describe('lingman YouTube quality gate', () => {
     const catalog = catalogSource();
     const player = playerSource();
     const button = buttonSource();
-    const combined = [catalog, player, button].join('\n');
+    const controller = controllerSource();
+    const combined = [catalog, player, button, controller].join('\n');
 
     expect(button).toContain("eventName: 'youtube_home_entry_click'");
     expect(catalog).toContain("eventName: 'youtube_catalog_open'");
@@ -77,9 +79,9 @@ describe('lingman YouTube quality gate', () => {
     expect(catalog).toContain("eventName: 'youtube_external_video_open'");
     expect(catalog).toContain("eventName: 'youtube_channel_open'");
     expect(player).toContain("eventName: 'youtube_player_ready'");
-    expect(player).toContain("eventName: 'youtube_playback_start'");
-    expect(player).toContain("eventName: 'youtube_playback_checkpoint'");
-    expect(player).toContain("eventName: 'youtube_playback_end'");
+    expect(controller).toContain("eventName: 'youtube_playback_start'");
+    expect(controller).toContain("eventName: 'youtube_playback_checkpoint'");
+    expect(controller).toContain("eventName: 'youtube_playback_end'");
     expect(combined).toContain('emitYoutubeAnalyticsEvent');
     expect(combined).not.toMatch(/from ['"]\.\/analytics['"]/);
     expect(combined).not.toMatch(/firebase|posthog|AsyncStorage/);
@@ -89,8 +91,8 @@ describe('lingman YouTube quality gate', () => {
     const catalogExternal = catalog.match(/const openExternalVideo[\s\S]*?\n  \};/)?.[0] ?? '';
     expect(catalogExternal.indexOf('emitYoutubeAnalyticsEvent')).toBeLessThan(catalogExternal.indexOf('Linking.openURL'));
     const playerExternal = player.match(/const openExternal = \(\) => \{[\s\S]*?\n  \};/)?.[0] ?? '';
-    expect(playerExternal.indexOf("runtime.finish('external'")).toBeLessThan(playerExternal.indexOf('emitYoutubeAnalyticsEvent'));
-    expect(playerExternal.indexOf('emitYoutubeAnalyticsEvent')).toBeLessThan(playerExternal.indexOf('Linking.openURL'));
+    expect(playerExternal.indexOf("runtime.finish('external'")).toBeLessThan(playerExternal.indexOf('runtime.emitPlayerEvent'));
+    expect(playerExternal.indexOf('runtime.emitPlayerEvent')).toBeLessThan(playerExternal.indexOf('Linking.openURL'));
   });
 
   it('gates player polling by consent, focus, and AppState without native intervals', () => {
@@ -109,12 +111,28 @@ describe('lingman YouTube quality gate', () => {
     expect(player).not.toMatch(/videoTitle\s*:|video_title\s*:/);
   });
 
+  it('pins player context/controller and exposes a separate governed channel action', () => {
+    const player = playerSource();
+    const catalog = catalogSource();
+
+    expect(catalog).toContain('setLingmanVideoHandoff({ videoId: video.id, channelId: channel.channelId, title: video.title })');
+    expect(player).toContain('peekLingmanVideoHandoff(videoId)');
+    expect(player).toContain('const [playerContext] = useState(() => readPinnedPlayerContext(id))');
+    expect(player).toContain('createYoutubePlaybackAnalyticsController');
+    expect(player.match(/\bgetActiveYoutubeChannel\(\)/g)).toHaveLength(1);
+    expect(player).toContain("eventName: 'youtube_channel_open', source: 'player', channelId, videoId: validVideoId");
+    expect(player).toContain('accessibilityLabel={copy.openChannel}');
+    expect(player).toContain('runNonBlockingYoutubeAction');
+    expect(player).not.toContain('consumeLingmanVideoTitle');
+    expect(player).not.toContain('as \'ended\' | \'screen_exit\'');
+  });
+
   it('normalizes malformed deep-link video IDs before building player HTML during render', () => {
     const player = playerSource();
 
     expect(dataSource()).toContain('getValidLingmanYoutubeVideoId');
     expect(player).toContain('getValidLingmanYoutubeVideoId');
-    expect(player).toContain('const validVideoId = getValidLingmanYoutubeVideoId(id)');
+    expect(player).toContain('const videoId = getValidLingmanYoutubeVideoId(rawVideoId)');
     expect(player).toContain('validVideoId ? buildLingmanEmbedHtml(validVideoId) : null');
     expect(player).toContain('{validVideoId && !playerError ? (');
     expect(player).not.toContain('id ? buildLingmanEmbedHtml(id) : null');

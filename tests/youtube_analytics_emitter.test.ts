@@ -63,6 +63,20 @@ describe('governed YouTube analytics emitter', () => {
     expect(trackEvent).not.toHaveBeenCalled();
   });
 
+  test('uses an explicit validated immutable session override without falling back', () => {
+    sessionId = 'session-B';
+    expect(emitYoutubeAnalyticsEvent(
+      { eventName: 'youtube_player_ready', source: 'player', channelId: 'channel-1', videoId: 'vid_1' },
+      { sessionId: 'session-A' },
+    )).toBe(true);
+    expect(trackEvent.mock.calls[0][1]).toMatchObject({ session_id: 'session-A' });
+    expect(emitYoutubeAnalyticsEvent(
+      { eventName: 'youtube_player_ready', source: 'player', channelId: 'channel-1', videoId: 'vid_1' },
+      { sessionId: ' invalid ' },
+    )).toBe(false);
+    expect(trackEvent).toHaveBeenCalledTimes(1);
+  });
+
   test('deduplicates A-A and A-B-A per session while retained', () => {
     const eventA = { eventName: 'youtube_catalog_open', source: 'home', channelId: 'channel-A' } as const;
     const eventB = { eventName: 'youtube_catalog_open', source: 'home', channelId: 'channel-B' } as const;

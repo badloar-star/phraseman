@@ -26,6 +26,20 @@ function rememberCatalogOpen(key: string): void {
   }
 }
 
+export function getValidYoutubeAnalyticsSessionId(value: string | null): string | null {
+  const valid = value != null
+    && value === value.trim()
+    && value.length > 0
+    && value.length <= 80
+    && /[A-Za-z0-9]/.test(value)
+    && /^[A-Za-z0-9._:-]+$/.test(value);
+  return valid ? value : null;
+}
+
+interface YoutubeAnalyticsEmitOptions {
+  sessionId: string;
+}
+
 function validSessionId(value: string | null): value is string {
   return value != null
     && value === value.trim()
@@ -35,10 +49,15 @@ function validSessionId(value: string | null): value is string {
     && /^[A-Za-z0-9._:-]+$/.test(value);
 }
 
-export function emitYoutubeAnalyticsEvent(event: YoutubeAnalyticsEmission): boolean {
+export function emitYoutubeAnalyticsEvent(
+  event: YoutubeAnalyticsEmission,
+  options?: YoutubeAnalyticsEmitOptions,
+): boolean {
   if (getAnalyticsConsentState() !== 'granted') return false;
-  const sessionId = getProductAnalyticsSessionId();
-  if (!validSessionId(sessionId)) return false;
+  const sessionId = options
+    ? getValidYoutubeAnalyticsSessionId(options.sessionId)
+    : getValidYoutubeAnalyticsSessionId(getProductAnalyticsSessionId());
+  if (!sessionId || !validSessionId(sessionId)) return false;
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') return false;
 
   const catalogKey = event.eventName === 'youtube_catalog_open'

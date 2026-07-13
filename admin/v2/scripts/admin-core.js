@@ -1920,6 +1920,19 @@ function renderCurrentPage() {
     target.innerHTML = `${page}${ADMIN_SECTIONS.some((section) => section.route === state.route) ? renderCapabilityHub(state.route) : ''}`;
   }
   target.querySelector('#voice-survey-final-title')?.closest('.fields.section')?.remove();
+  if (state.route === 'safety-moderation') {
+    const labels = state.safetyModeration.view === 'user-reports'
+      ? ['Выбор', 'Пользователь', 'Причина', 'Статус', 'Источник', 'Дата', 'Действия']
+      : state.safetyModeration.view === 'safety-flags'
+        ? ['Выбор', 'Пользователь', 'Категория', 'Фрагмент', 'Состояние', 'Дата', 'Действия']
+        : state.safetyModeration.view === 'ban-list'
+          ? ['Пользователь', 'Причина', 'Проекции', 'Дата', 'Действие']
+          : [];
+    target.querySelectorAll('.table-wrap table').forEach((table) => {
+      table.classList.add('safety-responsive-table');
+      table.querySelectorAll('tbody tr').forEach((row) => row.querySelectorAll('td').forEach((cell, index) => cell.setAttribute('data-label', labels[index] || 'Поле')));
+    });
+  }
   renderNavigation();
   renderAuthStatus();
   setMessage(state.message, state.messageKind);

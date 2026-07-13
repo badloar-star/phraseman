@@ -486,6 +486,14 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .safety-overview-links { grid-template-columns: 1fr; }
   .moderation-actions { min-width: min(280px, 75vw); }
   .moderation-preview dl { grid-template-columns: 1fr; }
+  .table-wrap:has(.safety-responsive-table) { overflow: visible; }
+  .safety-responsive-table, .safety-responsive-table tbody, .safety-responsive-table tr, .safety-responsive-table td { display: block; width: 100%; }
+  .safety-responsive-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .safety-responsive-table tbody tr { padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .safety-responsive-table tbody tr:last-child { border-bottom: 0; }
+  .safety-responsive-table td { display: grid; grid-template-columns: minmax(88px, .45fr) minmax(0, 1fr); gap: 10px; padding: 9px 0; border: 0; overflow-wrap: anywhere; }
+  .safety-responsive-table td::before { content: attr(data-label); color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .03em; text-transform: uppercase; }
+  .safety-responsive-table td .moderation-actions { min-width: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

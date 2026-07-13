@@ -4379,40 +4379,6 @@
       }
     },
     {
-      "file": "app/avatar_select.tsx",
-      "ownerName": "AvatarSelect",
-      "ownerPath": "AvatarSelect",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "Modal",
-        "Pressable",
-        "Pressable",
-        "ScrollView",
-        "TouchableOpacity",
-        "LinearGradient",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "4dec7240a6e4ef81618d600d07a5c2173bb8a83ae2863b8aec0208ab40c0897c",
-      "count": 1,
-      "lineHints": [
-        1091
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/arena_rating.tsx",
       "ownerName": "MatchRow",
       "ownerPath": "MatchRow",
@@ -7572,42 +7538,6 @@
       }
     },
     {
-      "file": "app/avatar_select.tsx",
-      "ownerName": "AvatarSelect",
-      "ownerPath": "AvatarSelect",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "8e4990c79ad96f152427c10bbc9b71d3acaea7efde87e7dafed8dc8a6c64ed24",
-      "count": 3,
-      "lineHints": [
-        822,
-        825,
-        881
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards/FlashcardListItem.tsx",
       "ownerName": "FlashcardListItemImpl",
       "ownerPath": "FlashcardListItemImpl",
@@ -8496,40 +8426,6 @@
       "count": 1,
       "lineHints": [
         527
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/avatar_select.tsx",
-      "ownerName": "AvatarSelect",
-      "ownerPath": "AvatarSelect",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "ScrollView",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a58e2a1696b342d8731418c05abf02b3eadfad1c6b8cbd2e7f1d761f0e136c23",
-      "count": 1,
-      "lineHints": [
-        946
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

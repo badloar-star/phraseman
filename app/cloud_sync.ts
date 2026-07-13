@@ -49,6 +49,7 @@ import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation
 import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
 import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
+import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
 import {
   activeRecallItemsKey,
   achievementStateKey,
@@ -640,6 +641,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'login_bonus_v1',
     'last_opened_lesson',
     PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
+    ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
     ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
     ...localOnlyTargetKeys,
   ]));

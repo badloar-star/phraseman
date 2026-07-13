@@ -1,258 +1,242 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import TapScale from '../components/TapScale';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import {
+  AppState,
   Dimensions,
-  Modal,
   Pressable,
-  ScrollView,
+  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
+  type AppStateStatus,
 } from 'react-native';
-import Reanimated from 'react-native-reanimated';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
+import Reanimated from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { hapticTap } from '../hooks/use-haptics';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { safeRouterBack } from './navigation_back';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
+import { triLang, type Lang } from '../constants/i18n';
 import {
-  ARENA_PASS_AURA_PREFIX,
-  AVATAR_AURA_BUY_COST,
-  AVATAR_AURA_GIFT_OWNED_KEY,
-  AVATAR_AURA_OWNED_KEY,
-  AVATAR_AURAS,
   NO_AVATAR_AURA_ID,
-  PREMIUM_AVATAR_AURA_ID,
-  VIP_AVATAR_AURA_ID,
-  USER_AVATAR_AURA_KEY,
   getAvatarAuraById,
-  isAvatarAuraUnlockedByLevel,
-  isPremiumAvatarAura,
-  isRewardOnlyAvatarAura,
-  normalizeAvatarAuraId,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
 import {
-  CUSTOM_AVATAR_BUY_COST,
   CUSTOM_AVATAR_GRADIENTS,
-  CUSTOM_AVATAR_GIFT_ONLY,
-  CUSTOM_AVATAR_OWNED_KEY,
-  CUSTOM_AVATAR_RESTYLE_COST,
-  CUSTOM_AVATAR_SHOP,
-  CustomAvatarLogoColor,
-  CustomAvatarDef,
   customAvatarGradientNameForLang,
-  isCustomAvatarGiftOnly,
+  customAvatarNameForLang,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
+  type CustomAvatarDef,
+  type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
-import { triLang } from '../constants/i18n';
-import CustomAvatarBadge from '../components/CustomAvatarBadge';
-import AvatarView from '../components/AvatarView';
-import AvatarAura from '../components/AvatarAura';
-import PlusBadge from '../components/PlusBadge';
-import ThemedConfirmModal from '../components/ThemedConfirmModal';
-import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
+import {
+  CUSTOMIZATION_STORAGE_KEYS,
+} from '../constants/customization_storage_keys';
+import { getBestFrameForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
-import { ENABLE_PROFILE_CARD } from './config';
-import { getShardsBalance, spendShards } from './shards_system';
-import { oskolokImageForPackShards } from './oskolok';
-import { actionToastTri, emitAppEvent } from './events';
+import {
+  buildAuraCatalog,
+  buildAvatarCatalog,
+  filterCatalog,
+  type CatalogAvailability,
+  type CatalogFilter,
+  type CustomizationCatalogItem,
+} from './customization_catalog';
+import {
+  resolveCustomizationAction,
+  resolveEffectivePreviewAuraId,
+  type CustomizationAction,
+  type CustomizationTab,
+} from './customization_draft';
+import {
+  buildCustomizationSnapshot,
+  createCustomizationInitialState,
+  customizationSnapshotsEqual,
+  revalidateCustomizationSnapshot,
+  type CustomizationSnapshot,
+} from './customization_snapshot';
+import {
+  applyCustomizationDraft,
+  resetToLevelAvatar,
+  type ApplyCustomizationInput,
+  type CustomizationServiceDeps,
+} from './customization_service';
+import {
+  prepareCustomizationPurchase,
+  resumeCustomizationPurchase,
+  resumePersistedCustomizationPurchase,
+  type CustomizationPurchaseDeps,
+  type PurchaseCustomizationInput,
+} from './customization_purchase_intent';
+import {
+  confirmPendingPurchase,
+  reducePurchaseConfirmation,
+} from './customization_purchase_confirmation';
+import {
+  validateCustomizationPurchase,
+  validateCustomizationPurchaseApply,
+} from './customization_purchase_validation';
+import {
+  getAppSnapshot,
+  patchAppSnapshot,
+  useAppSnapshotSelector,
+} from './app_snapshot_store';
+import { getShardsBalance, spendShardsIdempotent } from './shards_system';
 import { syncToCloud } from './cloud_sync';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { updateMyGroupPoints } from './firestore_leagues';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
-import { COSMETIC_GIFT_OWNED_AVATAR_KEY } from './level_gift_system';
-import { fetchActivityLikeTotal } from './friend_activity_likes';
 import { getCanonicalUserId } from './user_id_policy';
+import { getStableId } from './stable_id';
+import { actionToastTri, emitAppEvent } from './events';
+import { CustomizationHero } from '../components/customization/CustomizationHero';
+import { CustomizationCatalogCard } from '../components/customization/CustomizationCatalogCard';
 import {
-  getNextProfileCardLevel,
-  getProfileCardLevelDef,
-  getProfileCardSnapshot,
-  normalizeProfileCardLevel,
-  PROFILE_CARD_GRADIENTS,
-  PROFILE_CARD_LEVEL_NAME_RU,
-  PROFILE_CARD_SURFACES,
-  PROFILE_CARD_THEME_COLORS,
-  themeForProfileCardLevel,
-  type ProfileCardLevel,
-  type ProfileCardMotion,
-  type ProfileCardSnapshot,
-  type ProfileCardTheme,
-} from './profile_card_system';
-import { profileCardLevelLabel } from '../components/profileCardLabel';
+  CustomizationActionBar,
+  CustomizationOverflowMenu,
+  CustomizationTabs,
+  OwnershipFilters,
+} from '../components/customization/CustomizationControls';
+import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
+import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
 
-type OwnedAvatars = Record<string, string>;
-type OwnedAuras = Record<string, true>;
-
-const { width: SCREEN_W } = Dimensions.get('window');
 const GRID_GAP = 10;
-const GRID_PAD = 16;
-const GRID_COLS = 3;
-const CELL_W = Math.floor((SCREEN_W - GRID_PAD * 2 - GRID_GAP * (GRID_COLS - 1)) / GRID_COLS);
-const CUSTOM_AVATAR_CELL_H = Math.max(124, Math.round(CELL_W * 1.22));
-const CUSTOM_AVATAR_SLOT_SIZE = Math.min(96, Math.round(CELL_W * 0.82));
-const CUSTOM_AVATAR_BADGE_SIZE = Math.min(82, Math.round(CELL_W * 0.68));
+const GRID_PAD = 14;
+const ACTION_BAR_HEIGHT = 82;
 const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
+const REVALIDATE_TTL_MS = 30_000;
 
-type AvatarDisplayCloudSyncMode = 'immediate' | 'deferred';
+const RU_STUDIO_COPY = {
+  title: 'Студия образа', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
+  apply: 'Применить образ', applied: 'Образ применён', purchased: 'Добавлено в коллекцию', buy: 'Купить', buyApply: 'Купить и применить', plus: 'Открыть Plus',
+  reward: 'Награда Арены', owned: 'В коллекции', selected: 'Выбрано', noAura: 'Без ауры', levelAvatar: 'Аватар уровня', resetLevelAvatar: 'Вернуть аватар уровня',
+  levelAvatarEnabled: 'Аватар уровня включён', profileCard: 'Карточка профиля', editAvatar: 'Настроить аватар', applyStyle: 'Выбрать оформление', dark: 'Тёмное', light: 'Светлое',
+  cancel: 'Отмена', confirm: 'Подтвердить', purchaseTitle: 'Подтвердить покупку', purchaseError: 'Не удалось завершить покупку. Попробуй ещё раз.',
+  applyError: 'Образ не применился. Попробуй ещё раз.', arenaHint: 'Эту награду можно заработать в Арене',
+};
+type StudioCopy = { [K in keyof typeof RU_STUDIO_COPY]: string };
 
-function syncAvatarDisplayToCloud(mode: AvatarDisplayCloudSyncMode): void {
-  if (mode === 'immediate') {
-    void syncToCloud({ forceNow: true });
-    return;
-  }
-  void syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS });
+const STUDIO_COPY: Record<Lang, StudioCopy> = {
+  ru: RU_STUDIO_COPY,
+  uk: {
+    title: 'Студія образу', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
+    apply: 'Застосувати образ', applied: 'Образ застосовано', purchased: 'Додано до колекції', buy: 'Купити', buyApply: 'Купити й застосувати', plus: 'Відкрити Plus',
+    reward: 'Нагорода Арени', owned: 'У колекції', selected: 'Вибрано', noAura: 'Без аури', levelAvatar: 'Аватар рівня', resetLevelAvatar: 'Повернути аватар рівня',
+    levelAvatarEnabled: 'Аватар рівня ввімкнено', profileCard: 'Картка профілю', editAvatar: 'Налаштувати аватар', applyStyle: 'Обрати оформлення', dark: 'Темне', light: 'Світле',
+    cancel: 'Скасувати', confirm: 'Підтвердити', purchaseTitle: 'Підтвердити покупку', purchaseError: 'Не вдалося завершити покупку. Спробуй ще раз.',
+    applyError: 'Образ не застосовано. Спробуй ще раз.', arenaHint: 'Цю нагороду можна заробити на Арені',
+  },
+  es: {
+    title: 'Estudio de estilo', preview: 'Vista previa', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Míos', catalog: 'Catálogo',
+    apply: 'Aplicar estilo', applied: 'Estilo aplicado', purchased: 'Añadido a la colección', buy: 'Comprar', buyApply: 'Comprar y aplicar', plus: 'Abrir Plus',
+    reward: 'Recompensa de Arena', owned: 'En la colección', selected: 'Seleccionado', noAura: 'Sin aura', levelAvatar: 'Avatar de nivel', resetLevelAvatar: 'Volver al avatar de nivel',
+    levelAvatarEnabled: 'Avatar de nivel restaurado', profileCard: 'Tarjeta de perfil', editAvatar: 'Personalizar avatar', applyStyle: 'Elegir estilo', dark: 'Oscuro', light: 'Claro',
+    cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Confirmar compra', purchaseError: 'No se pudo completar la compra. Inténtalo de nuevo.',
+    applyError: 'No se pudo aplicar el estilo. Inténtalo de nuevo.', arenaHint: 'Consigue esta recompensa en la Arena',
+  },
+  'pt-BR': {
+    title: 'Estúdio de estilo', preview: 'Prévia do visual', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Meus', catalog: 'Catálogo',
+    apply: 'Aplicar visual', applied: 'Visual aplicado', purchased: 'Adicionado à coleção', buy: 'Comprar', buyApply: 'Comprar e aplicar', plus: 'Abrir Plus',
+    reward: 'Recompensa da Arena', owned: 'Na coleção', selected: 'Selecionado', noAura: 'Sem aura', levelAvatar: 'Avatar de nível', resetLevelAvatar: 'Restaurar avatar de nível',
+    levelAvatarEnabled: 'Avatar de nível restaurado', profileCard: 'Cartão de perfil', editAvatar: 'Personalizar avatar', applyStyle: 'Escolher estilo', dark: 'Escuro', light: 'Claro',
+    cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Confirmar compra', purchaseError: 'Não foi possível concluir a compra. Tente novamente.',
+    applyError: 'Não foi possível aplicar o visual. Tente novamente.', arenaHint: 'Ganhe esta recompensa na Arena',
+  },
+  vi: {
+    title: 'Xưởng phong cách', preview: 'Xem trước diện mạo', avatars: 'Avatar', auras: 'Hào quang', all: 'Tất cả', mine: 'Của tôi', catalog: 'Danh mục',
+    apply: 'Áp dụng diện mạo', applied: 'Đã áp dụng diện mạo', purchased: 'Đã thêm vào bộ sưu tập', buy: 'Mua', buyApply: 'Mua và áp dụng', plus: 'Mở Plus',
+    reward: 'Phần thưởng Đấu trường', owned: 'Trong bộ sưu tập', selected: 'Đã chọn', noAura: 'Không hào quang', levelAvatar: 'Avatar theo cấp', resetLevelAvatar: 'Khôi phục avatar theo cấp',
+    levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', profileCard: 'Thẻ hồ sơ', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Chọn phong cách', dark: 'Tối', light: 'Sáng',
+    cancel: 'Hủy', confirm: 'Xác nhận', purchaseTitle: 'Xác nhận mua', purchaseError: 'Không thể hoàn tất giao dịch. Hãy thử lại.',
+    applyError: 'Không thể áp dụng diện mạo. Hãy thử lại.', arenaHint: 'Nhận phần thưởng này trong Đấu trường',
+  },
+  id: {
+    title: 'Studio Gaya', preview: 'Pratinjau tampilan', avatars: 'Avatar', auras: 'Aura', all: 'Semua', mine: 'Milik saya', catalog: 'Katalog',
+    apply: 'Terapkan tampilan', applied: 'Tampilan diterapkan', purchased: 'Ditambahkan ke koleksi', buy: 'Beli', buyApply: 'Beli dan terapkan', plus: 'Buka Plus',
+    reward: 'Hadiah Arena', owned: 'Dalam koleksi', selected: 'Dipilih', noAura: 'Tanpa aura', levelAvatar: 'Avatar level', resetLevelAvatar: 'Kembalikan avatar level',
+    levelAvatarEnabled: 'Avatar level dipulihkan', profileCard: 'Kartu profil', editAvatar: 'Sesuaikan avatar', applyStyle: 'Pilih gaya', dark: 'Gelap', light: 'Terang',
+    cancel: 'Batal', confirm: 'Konfirmasi', purchaseTitle: 'Konfirmasi pembelian', purchaseError: 'Pembelian tidak dapat diselesaikan. Coba lagi.',
+    applyError: 'Tampilan tidak dapat diterapkan. Coba lagi.', arenaHint: 'Dapatkan hadiah ini di Arena',
+  },
+  tr: {
+    title: 'Stil Stüdyosu', preview: 'Görünüm önizlemesi', avatars: 'Avatarlar', auras: 'Auralar', all: 'Tümü', mine: 'Benimkiler', catalog: 'Katalog',
+    apply: 'Görünümü uygula', applied: 'Görünüm uygulandı', purchased: 'Koleksiyona eklendi', buy: 'Satın al', buyApply: 'Satın al ve uygula', plus: "Plus'ı aç",
+    reward: 'Arena ödülü', owned: 'Koleksiyonda', selected: 'Seçildi', noAura: 'Aurasız', levelAvatar: 'Seviye avatarı', resetLevelAvatar: 'Seviye avatarına dön',
+    levelAvatarEnabled: 'Seviye avatarı geri yüklendi', profileCard: 'Profil kartı', editAvatar: 'Avatarı özelleştir', applyStyle: 'Stili seç', dark: 'Koyu', light: 'Açık',
+    cancel: 'İptal', confirm: 'Onayla', purchaseTitle: 'Satın almayı onayla', purchaseError: 'Satın alma tamamlanamadı. Tekrar dene.',
+    applyError: 'Görünüm uygulanamadı. Tekrar dene.', arenaHint: "Bu ödülü Arena'da kazan",
+  },
+  pl: {
+    title: 'Studio stylu', preview: 'Podgląd wyglądu', avatars: 'Awatary', auras: 'Aury', all: 'Wszystkie', mine: 'Moje', catalog: 'Katalog',
+    apply: 'Zastosuj wygląd', applied: 'Wygląd zastosowany', purchased: 'Dodano do kolekcji', buy: 'Kup', buyApply: 'Kup i zastosuj', plus: 'Otwórz Plus',
+    reward: 'Nagroda Areny', owned: 'W kolekcji', selected: 'Wybrano', noAura: 'Bez aury', levelAvatar: 'Awatar poziomu', resetLevelAvatar: 'Przywróć awatar poziomu',
+    levelAvatarEnabled: 'Przywrócono awatar poziomu', profileCard: 'Karta profilu', editAvatar: 'Dostosuj awatar', applyStyle: 'Wybierz styl', dark: 'Ciemne', light: 'Jasne',
+    cancel: 'Anuluj', confirm: 'Potwierdź', purchaseTitle: 'Potwierdź zakup', purchaseError: 'Nie udało się dokończyć zakupu. Spróbuj ponownie.',
+    applyError: 'Nie udało się zastosować wyglądu. Spróbuj ponownie.', arenaHint: 'Zdobądź tę nagrodę na Arenie',
+  },
+};
+
+function studioCopy(lang: Lang): StudioCopy {
+  return STUDIO_COPY[lang];
 }
 
-type ProfileCardPreviewVisual = {
-  theme: ProfileCardTheme;
-  motion: ProfileCardMotion;
-  gradient: readonly [string, string, string];
-  accent: string;
-  accentSoft: string;
-  accentStrong: string;
-  secondary: string;
-  surface: string;
-  surfaceBorder: string;
-  shadowColor: string;
-};
-
-const DEFAULT_PROFILE_CARD_SNAPSHOT: ProfileCardSnapshot = {
-  level: 0,
-  theme: 'classic',
-  motion: 'none',
-  publicFocus: 'balanced',
-};
-
-// Цвета/градиенты уровней живут в profile_card_system.ts — один источник для
-// превью здесь, экрана апгрейда и модалки профиля.
-const buildProfileCardPreviewVisual = (theme: ProfileCardTheme): Omit<ProfileCardPreviewVisual, 'theme' | 'motion'> => ({
-  gradient: PROFILE_CARD_GRADIENTS[theme],
-  ...PROFILE_CARD_THEME_COLORS[theme],
-  ...PROFILE_CARD_SURFACES[theme],
-});
-
-const PROFILE_CARD_PREVIEW_VISUALS = Object.fromEntries(
-  (Object.keys(PROFILE_CARD_THEME_COLORS) as ProfileCardTheme[]).map((theme) => [theme, buildProfileCardPreviewVisual(theme)]),
-) as Record<ProfileCardTheme, Omit<ProfileCardPreviewVisual, 'theme' | 'motion'>>;
-
-const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
-const decodeOwnedStyle = (value?: string | null): { gradientId: string; logoColor: CustomAvatarLogoColor } => {
-  if (!value) return { gradientId: CUSTOM_AVATAR_GRADIENTS[0].id, logoColor: 'black' };
-  const parts = String(value).split(':');
-  return {
-    gradientId: parts[0] || CUSTOM_AVATAR_GRADIENTS[0].id,
-    logoColor: parts[1] === 'white' ? 'white' : 'black',
-  };
-};
-
-const HEX_COLOR_RE = /^#[0-9a-f]{6}$/i;
-const withGradientAlpha = (color: string, alpha: string): string =>
-  HEX_COLOR_RE.test(color) ? `${color}${alpha}` : color;
-
-const customGradientOptionColors = (
-  colors: readonly [string, string, string],
-  selected: boolean,
-): [string, string, string] => [
-  withGradientAlpha(colors[0], selected ? '66' : '2E'),
-  withGradientAlpha(colors[1], selected ? '4D' : '24'),
-  withGradientAlpha(colors[2], selected ? '3D' : '18'),
-];
-
-const normalizeProfileCardSnapshotForPreview = (snapshot?: Partial<ProfileCardSnapshot> | null): ProfileCardSnapshot => {
-  const level = normalizeProfileCardLevel(snapshot?.level);
-  return {
-    level,
-    theme: themeForProfileCardLevel(level),
-    motion: 'none',
-    publicFocus: 'balanced',
-  };
-};
-
-const getProfileCardPreviewVisual = (snapshot: ProfileCardSnapshot): ProfileCardPreviewVisual => {
-  const theme = themeForProfileCardLevel(snapshot.level);
-  const motion = 'none';
-  return { theme, motion, ...PROFILE_CARD_PREVIEW_VISUALS[theme] };
-};
-
-function ShardCost({
-  amount,
-  color,
-  fontSize = 11,
-  iconSize = 14,
-}: { amount: number; color: string; fontSize?: number; iconSize?: number }) {
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-      <Text style={{ color, fontSize, fontWeight: '900' }}>{amount}</Text>
-      <Image source={oskolokImageForPackShards(amount)} style={{ width: iconSize, height: iconSize }} contentFit="contain" />
-    </View>
-  );
+function localized(lang: Lang, copy: Record<Lang, string>): string {
+  return copy[lang];
 }
 
-const readOwnedAvatars = async (): Promise<OwnedAvatars> => {
-  try {
-    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
-  } catch {
-    return {};
-  }
-};
+function auraName(aura: AvatarAuraDef, lang: Lang): string {
+  return triLang(lang, {
+    ru: aura.nameRu,
+    uk: aura.nameUk,
+    es: aura.nameEs,
+    'pt-BR': aura.namePtBr,
+    vi: aura.nameVi,
+    id: aura.nameId,
+    tr: aura.nameTr,
+    pl: aura.namePl,
+  });
+}
 
-const readOwnedAuras = async (): Promise<OwnedAuras> => {
-  try {
-    const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
-  } catch {
-    return {};
-  }
-};
+function syncAvatarDisplayToCloud(mode: 'immediate' | 'deferred'): void {
+  if (mode === 'immediate') void syncToCloud({ forceNow: true });
+  else void syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS });
+}
 
-const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: string | null) => {
+async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: string | null): Promise<void> {
   try {
     const [[, nameRaw], [, xpRaw], [, langRaw], [, weekRaw], [, streakRaw], [, leagueRaw], [, frameRaw]] =
-      await AsyncStorage.multiGet([
-        'user_name',
-        'user_total_xp',
-        'app_lang',
-        'week_points_v2',
-        'streak_count',
-        'league_state_v3',
-        'user_frame',
-      ]);
+      await AsyncStorage.multiGet(['user_name', 'user_total_xp', 'app_lang', 'week_points_v2', 'streak_count', 'league_state_v3', 'user_frame']);
     const totalXp = parseInt(xpRaw || '0', 10) || 0;
     const weekPoints = parseWeekPointsForWeek(weekRaw);
     let leagueId: number | undefined;
     try { if (leagueRaw) leagueId = JSON.parse(leagueRaw).leagueId; } catch {}
-    const name = (nameRaw || '').trim() || `Level ${level}`;
-    const streak = parseInt(streakRaw || '0', 10) || undefined;
     const [realPremium, vip] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
     ]);
     await syncPublicProfileSnapshot({
       reason: 'display_change',
-      name,
+      name: (nameRaw || '').trim() || `Level ${level}`,
       totalXp,
       weekPoints,
       lang: langRaw || 'ru',
       avatar,
-      streak,
+      streak: parseInt(streakRaw || '0', 10) || undefined,
       leagueId,
       frame: frameRaw || undefined,
       aura: aura || undefined,
@@ -261,900 +245,508 @@ const writeProfileAvatarSnapshot = async (avatar: string, level: number, aura?: 
     });
     await updateMyGroupPoints(weekPoints);
   } catch {}
-};
+}
 
-const invalidateAvatarDependentCaches = async (nextAvatar: string, nextAura?: string | null) => {
+async function invalidateAvatarDependentCaches(nextAvatar: string, nextAura: string | null): Promise<void> {
   try {
     const leagueRaw = await AsyncStorage.getItem('league_state_v3');
     if (leagueRaw) {
       const league = JSON.parse(leagueRaw);
       if (Array.isArray(league?.group)) {
-        league.group = league.group.map((member: any) =>
-          member?.isMe ? { ...member, avatar: nextAvatar, aura: nextAura ?? '' } : member,
-        );
+        league.group = league.group.map((member: any) => member?.isMe
+          ? { ...member, avatar: nextAvatar, aura: nextAura ?? '' }
+          : member);
         await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
       }
     }
   } catch {}
-
   await AsyncStorage.multiRemove([
-    'global_lb_cache_v4',
-    'leaderboard_cache_v1',
-    'arena_top100_snapshot_v8',
-    'arena_top100_remote_at_v1',
-    'arena_rating_screen_cache_v1',
-    'club_remote_refresh_at_v2',
-    'friend_profiles_cache_v1',
-    'friends_tab_swr_v1',
-    'friends_activity_feed_v2',
-    'friends_activity_feed_v1',
+    'global_lb_cache_v4', 'leaderboard_cache_v1', 'arena_top100_snapshot_v8',
+    'arena_top100_remote_at_v1', 'arena_rating_screen_cache_v1', 'club_remote_refresh_at_v2',
+    'friend_profiles_cache_v1', 'friends_tab_swr_v1', 'friends_activity_feed_v2', 'friends_activity_feed_v1',
   ]).catch(() => {});
-};
+}
+
+async function readFreshCustomizationSnapshot(): Promise<CustomizationSnapshot> {
+  const keys = ['user_avatar', 'user_total_xp', 'shards_balance', ...CUSTOMIZATION_STORAGE_KEYS];
+  const pairs = await AsyncStorage.multiGet([...new Set(keys)]);
+  const values = new Map(pairs);
+  const totalXp = Number(values.get('user_total_xp') || 0);
+  return buildCustomizationSnapshot(values, Date.now(), getLevelFromXP(Number.isFinite(totalXp) ? totalXp : 0));
+}
+
+function encodeOwnedStyle(avatarValue: string): string {
+  const parsed = parseCustomAvatarValue(avatarValue);
+  return parsed ? `${parsed.gradientId}:${parsed.logoColor}` : `${CUSTOM_AVATAR_GRADIENTS[0].id}:black`;
+}
+
+function availabilityStatus(
+  item: CustomizationCatalogItem,
+  lang: Lang,
+  copy: ReturnType<typeof studioCopy>,
+  selected: boolean,
+): string {
+  if (selected) return copy.selected;
+  switch (item.availability.kind) {
+    case 'owned': return copy.owned;
+    case 'none': return copy.noAura;
+    case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'осколков', uk: 'уламків', es: 'fragmentos', 'pt-BR': 'fragmentos', vi: 'mảnh', id: 'shard', tr: 'parça', pl: 'odłamków' })}`;
+    case 'level': return `${localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' })} ${item.availability.level}`;
+    case 'plus': return 'Plus';
+    case 'reward': return copy.reward;
+  }
+}
+
+function itemLabel(item: CustomizationCatalogItem, lang: Lang, copy: ReturnType<typeof studioCopy>): string {
+  if (item.kind === 'custom-avatar') return customAvatarNameForLang(item.avatar, lang);
+  if (item.kind === 'none-aura') return copy.noAura;
+  return auraName(item.aura, lang);
+}
 
 export default function AvatarSelect() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const { theme: t, f, themeMode } = useTheme();
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const avatarAccent = '#A78BFA';
+  const { theme: t } = useTheme();
   const { lang } = useLang();
   const { isPremium, isVip } = usePremium();
-  const hasPlusAuraAccess = isPremium || isVip;
-  // Both status auras are Plus variants for users: paid Plus and admin-granted
-  // Plus unlock the same cosmetics.
-  const isUK = lang === 'uk';
-  const [level, setLevel] = useState(1);
-  const [shards, setShards] = useState(0);
-  const [activeAvatar, setActiveAvatar] = useState<string>('1');
-  const [owned, setOwned] = useState<OwnedAvatars>({});
-  const [ownedAuras, setOwnedAuras] = useState<OwnedAuras>({});
-  const [activeAuraId, setActiveAuraId] = useState<string | null>(null);
-  const [giftedAuraId, setGiftedAuraId] = useState<string | null>(null);
-  const [giftedAvatarId, setGiftedAvatarId] = useState<string | null>(null);
-  const [draftAvatar, setDraftAvatar] = useState<CustomAvatarDef | null>(null);
-  const [pendingAuraPurchase, setPendingAuraPurchase] = useState<AvatarAuraDef | null>(null);
-  const [draftGradientId, setDraftGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
-  const [draftLogoColor, setDraftLogoColor] = useState<CustomAvatarLogoColor>('black');
+  const copy = useMemo(() => studioCopy(lang), [lang]);
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
+  const focused = useIsScreenFocused();
+  const [appState, setAppState] = useState<AppStateStatus>(AppState.currentState);
+  const appSnapshotCustomization = useAppSnapshotSelector((snapshot) => snapshot.customization);
+  const initialCustomization = useMemo(() => createCustomizationInitialState(getAppSnapshot()), []);
+  const [confirmed, setConfirmed] = useState(initialCustomization.confirmed);
+  const [previewAvatarValue, setPreviewAvatarValue] = useState(initialCustomization.previewAvatarValue);
+  const [previewStoredAuraSelection, setPreviewStoredAuraSelection] = useState(initialCustomization.previewStoredAuraSelection);
+  const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
+  const [filter, setFilter] = useState<CatalogFilter>('all');
   const [busy, setBusy] = useState(false);
-  const [userName, setUserName] = useState('User');
-  const [totalXp, setTotalXp] = useState(0);
-  const [weekPoints, setWeekPoints] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [activityLikeTotal, setActivityLikeTotal] = useState(0);
-  const [leagueId, setLeagueId] = useState(0);
-  const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(DEFAULT_PROFILE_CARD_SNAPSHOT);
+  const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
+  const [editorGradientId, setEditorGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
+  const [editorLogoColor, setEditorLogoColor] = useState<CustomAvatarLogoColor>('black');
+  const [purchaseState, dispatchPurchase] = useReducer(reducePurchaseConfirmation, { pending: null });
+  const confirmedRef = useRef(confirmed);
+  const previewRef = useRef({ avatar: previewAvatarValue, aura: previewStoredAuraSelection });
+  const lastValidationRef = useRef(0);
+  const listRef = useRef<any>(null);
 
-  const activeCustom = useMemo(() => parseCustomAvatarValue(activeAvatar), [activeAvatar]);
-  const showProfileCardSection = ENABLE_PROFILE_CARD;
-  const auraExplicitlyDisabled = activeAuraId === NO_AVATAR_AURA_ID;
-  const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : null);
-  const profileCardVisual = useMemo(() => getProfileCardPreviewVisual(profileCardSnapshot), [profileCardSnapshot]);
-  const nextProfileCardLevel = useMemo(() => getNextProfileCardLevel(profileCardSnapshot.level), [profileCardSnapshot.level]);
-  const nextProfileCardDef = useMemo(
-    () => (nextProfileCardLevel === null ? null : getProfileCardLevelDef(nextProfileCardLevel)),
-    [nextProfileCardLevel],
-  );
-  const auraName = useCallback(
-    (aura: AvatarAuraDef) => triLang(lang, {
-      ru: aura.nameRu,
-      uk: aura.nameUk,
-      es: aura.nameEs,
-      'pt-BR': aura.namePtBr,
-      vi: aura.nameVi,
-      id: aura.nameId,
-      tr: aura.nameTr,
-      pl: aura.namePl,
-    }),
-    [lang],
-  );
-  const visibleCustomAvatars = useMemo(
-    () => [
-      ...CUSTOM_AVATAR_SHOP,
-      ...CUSTOM_AVATAR_GIFT_ONLY.filter((avatar) => !!owned[avatar.id]),
-    ],
-    [owned],
-  );
-
-  const load = useCallback(async () => {
-    try {
-      const [
-        [, xpRaw],
-        [, avatarRaw],
-        [, giftedRaw],
-        [, auraRaw],
-        [, giftedAuraRaw],
-        [, nameRaw],
-        [, weekRaw],
-        [, streakRaw],
-        [, leagueRaw],
-      ] = await AsyncStorage.multiGet([
-        'user_total_xp',
-        'user_avatar',
-        COSMETIC_GIFT_OWNED_AVATAR_KEY,
-        USER_AVATAR_AURA_KEY,
-        AVATAR_AURA_GIFT_OWNED_KEY,
-        'user_name',
-        'week_points_v2',
-        'streak_count',
-        'league_state_v3',
-      ]);
-      const xp = parseInt(xpRaw || '0', 10) || 0;
-      const lvl = getLevelFromXP(xp);
-      const nextOwned = await readOwnedAvatars();
-      const nextOwnedAuras = await readOwnedAuras();
-      const nextProfileCardSnapshot = await getProfileCardSnapshot();
-      let nextLeagueId = 0;
-      try {
-        const parsed = leagueRaw ? JSON.parse(leagueRaw) : null;
-        nextLeagueId = Math.max(0, Math.floor(Number(parsed?.leagueId) || 0));
-      } catch {}
-      setLevel(lvl);
-      setTotalXp(xp);
-      setUserName((nameRaw || '').trim() || `Level ${lvl}`);
-      setWeekPoints(parseWeekPointsForWeek(weekRaw));
-      setStreak(Math.max(0, parseInt(streakRaw || '0', 10) || 0));
-      setLeagueId(nextLeagueId);
-      setProfileCardSnapshot(normalizeProfileCardSnapshotForPreview(nextProfileCardSnapshot));
-      setOwned(nextOwned);
-      setOwnedAuras(nextOwnedAuras);
-      setGiftedAvatarId(giftedRaw || null);
-      setGiftedAuraId(giftedAuraRaw || null);
-      const storedAura = normalizeAvatarAuraId(auraRaw) ?? null;
-      const storedAuraDef = getAvatarAuraById(storedAura);
-      const storedAuraLockedByLevel = !!storedAuraDef?.unlockLevel
-        && !isAvatarAuraUnlockedByLevel(storedAuraDef, lvl)
-        && !nextOwnedAuras[storedAuraDef.id];
-      const storedAuraLockedByPremium = isPremiumAvatarAura(storedAura) && !isPremium;
-      const storedAuraLockedByVip = storedAura === VIP_AVATAR_AURA_ID && !isVip;
-      setActiveAuraId(storedAura && !storedAuraLockedByLevel && !storedAuraLockedByPremium && !storedAuraLockedByVip ? storedAura : null);
-      setActiveAvatar(avatarRaw || getBestAvatarForLevel(lvl));
-      setShards(await getShardsBalance());
-      getCanonicalUserId()
-        .then((uid) => fetchActivityLikeTotal(uid || ''))
-        .then(setActivityLikeTotal)
-        .catch(() => setActivityLikeTotal(0));
-    } catch {}
-  }, [isPremium, isVip]);
+  useEffect(() => { confirmedRef.current = confirmed; }, [confirmed]);
+  useEffect(() => { previewRef.current = { avatar: previewAvatarValue, aura: previewStoredAuraSelection }; }, [previewAvatarValue, previewStoredAuraSelection]);
 
   useEffect(() => {
-    load().catch(() => {});
-  }, [load]);
+    if (!focused) return undefined;
+    setAppState(AppState.currentState);
+    const subscription = AppState.addEventListener('change', setAppState);
+    return () => subscription.remove();
+  }, [focused]);
 
-  useFocusEffect(
-    useCallback(() => {
-      let cancelled = false;
-      getShardsBalance()
-        .then((balance) => {
-          if (!cancelled) setShards(balance);
-        })
-        .catch(() => {});
-      getProfileCardSnapshot()
-        .then((snapshot) => {
-          if (!cancelled) setProfileCardSnapshot(normalizeProfileCardSnapshotForPreview(snapshot));
-        })
-        .catch(() => {});
-      return () => {
-        cancelled = true;
-      };
-    }, []),
+  const publishCustomizationSnapshot = useCallback((snapshot: CustomizationSnapshot) => {
+    confirmedRef.current = snapshot;
+    setConfirmed(snapshot);
+    setPreviewAvatarValue(snapshot.activeAvatar);
+    setPreviewStoredAuraSelection(snapshot.storedAuraSelection);
+    patchAppSnapshot({ customization: snapshot });
+  }, []);
+
+  useEffect(() => {
+    if (!appSnapshotCustomization || customizationSnapshotsEqual(confirmedRef.current, appSnapshotCustomization)) return;
+    const draftDirty = previewRef.current.avatar !== confirmedRef.current.activeAvatar
+      || previewRef.current.aura !== confirmedRef.current.storedAuraSelection;
+    confirmedRef.current = appSnapshotCustomization;
+    setConfirmed(appSnapshotCustomization);
+    if (!draftDirty) {
+      setPreviewAvatarValue(appSnapshotCustomization.activeAvatar);
+      setPreviewStoredAuraSelection(appSnapshotCustomization.storedAuraSelection);
+    }
+  }, [appSnapshotCustomization]);
+
+  useFocusEffect(useCallback(() => {
+    if (Date.now() - lastValidationRef.current < REVALIDATE_TTL_MS) return undefined;
+    lastValidationRef.current = Date.now();
+    let active = true;
+    void revalidateCustomizationSnapshot(
+      confirmedRef.current,
+      readFreshCustomizationSnapshot,
+      (fresh) => { if (active) publishCustomizationSnapshot(fresh); },
+    ).catch(() => {});
+    return () => { active = false; };
+  }, [publishCustomizationSnapshot]));
+
+  const serviceDeps = useMemo<CustomizationServiceDeps>(() => ({
+    storage: AsyncStorage,
+    getCurrentSnapshot: () => confirmedRef.current,
+    publishSnapshot: publishCustomizationSnapshot,
+    invalidateCaches: invalidateAvatarDependentCaches,
+    syncCloud: syncAvatarDisplayToCloud,
+    syncPublicProfile: writeProfileAvatarSnapshot,
+  }), [publishCustomizationSnapshot]);
+
+  const purchaseDeps = useMemo<CustomizationPurchaseDeps>(() => ({
+    ...serviceDeps,
+    storage: AsyncStorage,
+    getAccountScope: async () => (await getCanonicalUserId()) || getStableId(),
+    spendShardsIdempotent,
+    validatePurchase: (intent) => validateCustomizationPurchase(intent, {
+      snapshot: confirmedRef.current,
+      isPremium,
+      isVip,
+    }),
+    validateApply: (intent) => validateCustomizationPurchaseApply(intent, {
+      snapshot: confirmedRef.current,
+      isPremium,
+      isVip,
+    }),
+    onOwnershipGranted: async (target, itemId, ownedValue) => {
+      const current = confirmedRef.current;
+      const isNewAvatar = target === 'avatar' && !current.ownedAvatars[itemId];
+      const next: CustomizationSnapshot = target === 'avatar'
+        ? { ...current, updatedAt: Date.now(), ownedAvatars: { ...current.ownedAvatars, [itemId]: String(ownedValue) } }
+        : { ...current, updatedAt: Date.now(), ownedAuras: { ...current.ownedAuras, [itemId]: true } };
+      confirmedRef.current = next;
+      setConfirmed(next);
+      patchAppSnapshot({ customization: next });
+      if (isNewAvatar) {
+        void import('./achievements')
+          .then(({ checkAchievements }) => checkAchievements({ type: 'avatar_custom_set' }))
+          .catch(() => {});
+      }
+    },
+  }), [serviceDeps, isPremium, isVip]);
+
+  useEffect(() => {
+    void resumePersistedCustomizationPurchase(purchaseDeps)
+      .then(async () => {
+        const shards = await getShardsBalance();
+        const current = confirmedRef.current;
+        const next = { ...current, shards };
+        confirmedRef.current = next;
+        setConfirmed(next);
+        patchAppSnapshot({ customization: next });
+      })
+      .catch(() => {});
+  }, [purchaseDeps]);
+
+  const effectivePreviewAuraId = resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip);
+  const avatarItems = useMemo(() => buildAvatarCatalog({
+    ownedAvatars: confirmed.ownedAvatars,
+    giftedAvatarId: confirmed.giftedAvatarId,
+    activeAvatar: previewAvatarValue,
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, previewAvatarValue]);
+  const auraItems = useMemo(() => buildAuraCatalog({
+    activeAvatar: previewAvatarValue,
+    activeAuraId: previewStoredAuraSelection,
+    level: confirmed.level,
+    ownedAuras: confirmed.ownedAuras,
+    isPremium,
+    isVip,
+  }), [previewAvatarValue, previewStoredAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip]);
+  const catalogItems = useMemo(
+    () => filterCatalog(activeTab === 'avatars' ? avatarItems : auraItems, filter),
+    [activeTab, avatarItems, auraItems, filter],
   );
 
-  const showToast = (
-    type: 'info' | 'success' | 'error',
-    m: { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string },
-  ) => {
-    emitAppEvent('action_toast', actionToastTri(type, m));
-  };
+  const selectedAvatar = parseCustomAvatarValue(previewAvatarValue);
+  const selectedAvatarItem = avatarItems.find((item) => item.kind === 'custom-avatar' && item.id === selectedAvatar?.avatarId);
+  const selectedAuraItem = previewStoredAuraSelection === null
+    ? undefined
+    : auraItems.find((item) => item.id === (previewStoredAuraSelection === NO_AVATAR_AURA_ID ? 'none' : previewStoredAuraSelection));
+  const avatarAvailability: CatalogAvailability = selectedAvatarItem?.availability ?? { kind: 'owned' };
+  const auraAvailability: CatalogAvailability = selectedAuraItem?.availability ?? { kind: 'owned' };
+  const resolvedAction = resolveCustomizationAction({
+    confirmed: { avatarValue: confirmed.activeAvatar, storedAuraSelection: confirmed.storedAuraSelection },
+    previewAvatarValue,
+    previewStoredAuraSelection,
+    effectivePreviewAuraId,
+    activeTab,
+    avatarAvailability,
+    auraAvailability,
+    ownedAvatarStyles: confirmed.ownedAvatars,
+  });
 
-  const openAvatar = (avatar: CustomAvatarDef) => {
-    hapticTap();
-    const ownedStyle = decodeOwnedStyle(owned[avatar.id]);
-    const currentGradient = activeCustom?.avatarId === avatar.id ? activeCustom.gradientId : ownedStyle.gradientId;
-    const currentLogoColor = activeCustom?.avatarId === avatar.id ? activeCustom.logoColor : ownedStyle.logoColor;
-    setDraftAvatar(avatar);
-    setDraftGradientId(currentGradient);
-    setDraftLogoColor(currentLogoColor);
-  };
+  const previewAvatarLabel = selectedAvatarItem?.kind === 'custom-avatar' ? customAvatarNameForLang(selectedAvatarItem.avatar, lang) : copy.levelAvatar;
+  const previewAura = effectivePreviewAuraId ? getAvatarAuraById(effectivePreviewAuraId) : undefined;
+  const previewAuraLabel = previewStoredAuraSelection === NO_AVATAR_AURA_ID
+    ? copy.noAura
+    : previewAura ? auraName(previewAura, lang) : copy.noAura;
 
-  const persistAvatar = async (
-    nextAvatar: string,
-    nextOwned: OwnedAvatars,
-    cloudSyncMode: AvatarDisplayCloudSyncMode = 'deferred',
-  ) => {
-    const frameId = getBestFrameForLevel(level).id;
-    await AsyncStorage.multiSet([
-      ['user_avatar', nextAvatar],
-      ['user_frame', frameId],
-      [USER_AVATAR_AURA_KEY, activeAuraId || ''],
-      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(nextOwned)],
-    ]);
-    await invalidateAvatarDependentCaches(nextAvatar, activeAuraId);
-    setActiveAvatar(nextAvatar);
-    setOwned(nextOwned);
-    emitAppEvent('xp_changed');
-    syncAvatarDisplayToCloud(cloudSyncMode);
-    void writeProfileAvatarSnapshot(nextAvatar, level, activeAuraId);
-  };
+  const actionLabel = useMemo(() => {
+    switch (resolvedAction.kind) {
+      case 'unchanged': return copy.applied;
+      case 'apply': return copy.apply;
+      case 'buy-and-apply': return `${copy.buyApply} · ${resolvedAction.cost}`;
+      case 'buy-only': return `${copy.buy} · ${resolvedAction.cost}`;
+      case 'open-plus': return copy.plus;
+      case 'explain-level': return `${localized(lang, { ru: 'Откроется на уровне', uk: 'Відкриється на рівні', es: 'Se desbloquea en el nivel', 'pt-BR': 'Desbloqueia no nível', vi: 'Mở khóa ở cấp', id: 'Terbuka di level', tr: 'Açılacağı seviye', pl: 'Odblokuje się na poziomie' })} ${resolvedAction.level}`;
+      case 'explain-reward': return copy.reward;
+    }
+  }, [resolvedAction, copy, lang]);
 
-  const applyDraft = async () => {
-    if (!draftAvatar || busy) return;
-    const avatarId = draftAvatar.id;
-    const wasOwned = !!owned[avatarId];
-    const giftOnly = isCustomAvatarGiftOnly(avatarId);
-    if (giftOnly && !wasOwned) {
-      setDraftAvatar(null);
-      showToast('info', {
-        ru: 'Этот аватар можно получить только подарком',
-        uk: 'Цей аватар можна отримати лише в подарунок',
-        es: 'Este avatar solo se consigue como regalo',
-        'pt-BR': 'Este avatar só pode ser obtido como presente',
-        vi: 'Avatar này chỉ có thể nhận được khi được tặng',
-        id: 'Avatar ini hanya bisa didapatkan sebagai hadiah',
-        tr: 'Bu avatar yalnızca hediye olarak alınabilir',
-        pl: 'Ten awatar można zdobyć tylko w prezencie',
-      });
+  const applyInput = useCallback((): ApplyCustomizationInput => ({
+    avatarValue: previewAvatarValue,
+    storedAuraSelection: previewStoredAuraSelection,
+    level: confirmed.level,
+    frameId: getBestFrameForLevel(confirmed.level).id,
+    cloudSyncMode: 'immediate',
+  }), [previewAvatarValue, previewStoredAuraSelection, confirmed.level]);
+
+  const purchaseInputForAction = useCallback((action: Extract<CustomizationAction, { kind: 'buy-only' | 'buy-and-apply' }>): PurchaseCustomizationInput | null => {
+    if (action.target === 'avatar') {
+      const parsed = parseCustomAvatarValue(previewAvatarValue);
+      if (!parsed) return null;
+      const base = {
+        target: 'avatar' as const,
+        itemId: parsed.avatarId,
+        cost: action.cost,
+        spendReason: action.purchaseKind === 'restyle' ? 'custom_avatar_restyle' as const : 'custom_avatar' as const,
+        ownedValue: encodeOwnedStyle(previewAvatarValue),
+      };
+      return action.kind === 'buy-and-apply'
+        ? { ...base, mode: 'buy-and-apply', applyInput: applyInput() }
+        : { ...base, mode: 'buy-only' };
+    }
+    if (!previewStoredAuraSelection || previewStoredAuraSelection === NO_AVATAR_AURA_ID) return null;
+    const base = {
+      target: 'aura' as const,
+      itemId: previewStoredAuraSelection,
+      cost: action.cost,
+      spendReason: 'avatar_aura' as const,
+      ownedValue: true as const,
+    };
+    return action.kind === 'buy-and-apply'
+      ? { ...base, mode: 'buy-and-apply', applyInput: applyInput() }
+      : { ...base, mode: 'buy-only' };
+  }, [previewAvatarValue, previewStoredAuraSelection, applyInput]);
+
+  const showToast = useCallback((kind: 'success' | 'error' | 'info', text: string) => {
+    emitAppEvent('action_toast', actionToastTri(kind, { ru: text, uk: text, es: text, 'pt-BR': text, vi: text, id: text, tr: text, pl: text }));
+  }, []);
+
+  const handleAction = useCallback(async () => {
+    if (busy) return;
+    if (resolvedAction.kind === 'unchanged') return;
+    if (resolvedAction.kind === 'open-plus') {
+      router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
       return;
     }
-    const previousStyle = decodeOwnedStyle(owned[avatarId]);
-    const styleChanged = wasOwned && (
-      previousStyle.gradientId !== draftGradientId ||
-      previousStyle.logoColor !== draftLogoColor
-    );
-    const cost = wasOwned ? (styleChanged ? CUSTOM_AVATAR_RESTYLE_COST : 0) : CUSTOM_AVATAR_BUY_COST;
-
-    setBusy(true);
-    try {
-      const currentShards = await getShardsBalance();
-      setShards(currentShards);
-      if (cost > 0 && currentShards < cost) {
-        setDraftAvatar(null);
-        router.push({
-          pathname: '/shards_shop',
-          params: {
-            need: String(Math.max(0, cost - currentShards)),
-            source: wasOwned ? 'custom_avatar_restyle' : 'custom_avatar',
-          },
-        } as any);
-        return;
-      }
-
-      if (cost > 0) {
-        const ok = await spendShards(cost, wasOwned ? 'custom_avatar_restyle' : 'custom_avatar');
-        if (!ok) {
-          showToast('error', {
-            ru: 'Осколки не списались. Попробуй ещё раз.',
-            uk: 'Уламки не списалися. Спробуй ще раз.',
-            es: 'No se descontaron los fragmentos. Inténtalo de nuevo.',
-            'pt-BR': 'Os fragmentos não foram descontados. Tente novamente.',
-            vi: 'Chưa trừ được mảnh. Hãy thử lại.',
-            id: 'Shard tidak terpotong. Coba lagi.',
-            tr: 'Parçalar düşülmedi. Tekrar dene.',
-            pl: 'Nie odjęto odłamków. Spróbuj ponownie.',
-          });
-          return;
-        }
-      }
-      const nextOwned = { ...owned, [avatarId]: encodeOwnedStyle(draftGradientId, draftLogoColor) };
-      const nextAvatar = makeCustomAvatarValue(avatarId, draftGradientId, draftLogoColor);
-      await persistAvatar(nextAvatar, nextOwned, cost > 0 ? 'immediate' : 'deferred');
-      setShards(await getShardsBalance());
-      setDraftAvatar(null);
-      showToast('success', wasOwned
-        ? {
-            ru: 'Аватар применен',
-            uk: 'Аватар застосовано',
-            es: 'Avatar aplicado',
-            'pt-BR': 'Avatar aplicado',
-            vi: 'Đã áp dụng avatar',
-            id: 'Avatar diterapkan',
-            tr: 'Avatar uygulandı',
-            pl: 'Awatar zastosowany',
-          }
-        : {
-            ru: 'Аватар куплен',
-            uk: 'Аватар придбано',
-            es: 'Avatar comprado',
-            'pt-BR': 'Avatar comprado',
-            vi: 'Đã mua avatar',
-            id: 'Avatar dibeli',
-            tr: 'Avatar satın alındı',
-            pl: 'Awatar kupiony',
-          });
-      if (!wasOwned) {
-        const { checkAchievements } = await import('./achievements');
-        void checkAchievements({ type: 'avatar_custom_set' });
-      }
-    } finally {
-      setBusy(false);
+    if (resolvedAction.kind === 'explain-level') {
+      showToast('info', actionLabel);
+      return;
     }
-  };
-
-  const applyAura = async (aura: AvatarAuraDef | null, purchaseConfirmed = false) => {
-    if (busy) return;
-    const previousAuraId = activeAuraId;
-    let appliedOptimistic = false;
-    hapticTap();
+    if (resolvedAction.kind === 'explain-reward') {
+      showToast('info', copy.arenaHint);
+      return;
+    }
+    if (resolvedAction.kind === 'buy-only' || resolvedAction.kind === 'buy-and-apply') {
+      const input = purchaseInputForAction(resolvedAction);
+      if (input) dispatchPurchase({ type: 'request', input });
+      return;
+    }
     setBusy(true);
     try {
-      if (!aura) {
-        setActiveAuraId(NO_AVATAR_AURA_ID);
-        appliedOptimistic = true;
-        await AsyncStorage.setItem(USER_AVATAR_AURA_KEY, NO_AVATAR_AURA_ID);
-        await invalidateAvatarDependentCaches(activeAvatar, NO_AVATAR_AURA_ID);
-        setActiveAuraId(NO_AVATAR_AURA_ID);
-        emitAppEvent('xp_changed');
-        syncAvatarDisplayToCloud('deferred');
-        void writeProfileAvatarSnapshot(activeAvatar, level, NO_AVATAR_AURA_ID);
-        showToast('success', {
-          ru: 'Аура выключена',
-          uk: 'Ауру вимкнено',
-          es: 'Aura desactivada',
-          'pt-BR': 'Aura desativada',
-          vi: 'Đã tắt hào quang',
-          id: 'Aura dimatikan',
-          tr: 'Aura kapatıldı',
-          pl: 'Aura wyłączona',
-        });
-        return;
-      }
-
-      const isPremiumAura = aura.premiumOnly === true;
-      const isVipAura = aura.vipOnly === true;
-      const isRewardOnlyAura = aura.rewardOnly === true;
-      const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-      const isOwned = isPremiumAura || isVipAura ? hasPlusAuraAccess : unlockedByLevel || !!ownedAuras[aura.id];
-      let purchasedAura = false;
-      if (isOwned) {
-        setActiveAuraId(aura.id);
-        appliedOptimistic = true;
-      }
-      if (!isOwned) {
-        if (isPremiumAura || isVipAura) {
-          router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
-          return;
-        }
-        if (isRewardOnlyAura) {
-          // Сезонные / наградные ауры Арены не продаются — их можно только заработать.
-          showToast('info', {
-            ru: 'Награда Арены — её нельзя купить, только заработать в сезоне',
-            uk: 'Нагорода Арени — її не можна купити, лише заробити в сезоні',
-            es: 'Recompensa de la Arena: no se compra, solo se gana en la temporada',
-            'pt-BR': 'Recompensa da Arena: não pode ser comprada, só ganha na temporada',
-            vi: 'Phần thưởng Đấu trường — không thể mua, chỉ giành được trong mùa giải',
-            id: 'Hadiah Arena — tidak bisa dibeli, hanya diraih di musim ini',
-            tr: 'Arena ödülü — satın alınamaz, yalnızca sezonda kazanılır',
-            pl: 'Nagroda Areny — nie można jej kupić, tylko zdobyć w sezonie',
-          });
-          return;
-        }
-        if (aura.unlockLevel !== undefined) {
-          showToast('info', {
-            ru: `Откроется на уровне ${aura.unlockLevel}`,
-            uk: `Відкриється на рівні ${aura.unlockLevel}`,
-            es: `Se desbloquea en el nivel ${aura.unlockLevel}`,
-            'pt-BR': `Desbloqueia no nível ${aura.unlockLevel}`,
-            vi: `Mở khóa ở cấp ${aura.unlockLevel}`,
-            id: `Terbuka di level ${aura.unlockLevel}`,
-            tr: `${aura.unlockLevel}. seviyede açılır`,
-            pl: `Odblokuje się na poziomie ${aura.unlockLevel}`,
-          });
-          return;
-        }
-        const currentShards = await getShardsBalance();
-        setShards(currentShards);
-        if (currentShards < AVATAR_AURA_BUY_COST) {
-          router.push({
-            pathname: '/shards_shop',
-            params: { need: String(AVATAR_AURA_BUY_COST - currentShards), source: 'avatar_aura' },
-          } as any);
-          return;
-        }
-        if (!purchaseConfirmed) {
-          setPendingAuraPurchase(aura);
-          return;
-        }
-        const ok = await spendShards(AVATAR_AURA_BUY_COST, 'avatar_aura');
-        if (!ok) {
-          showToast('error', {
-            ru: 'Осколки не списались. Попробуй ещё раз.',
-            uk: 'Уламки не списалися. Спробуй ще раз.',
-            es: 'No se descontaron los fragmentos. Inténtalo de nuevo.',
-            'pt-BR': 'Os fragmentos não foram descontados. Tente novamente.',
-            vi: 'Chưa trừ được mảnh. Hãy thử lại.',
-            id: 'Shard tidak terpotong. Coba lagi.',
-            tr: 'Parçalar düşülmedi. Tekrar dene.',
-            pl: 'Nie odjęto odłamków. Spróbuj ponownie.',
-          });
-          return;
-        }
-        const nextOwnedAuras: OwnedAuras = { ...ownedAuras, [aura.id]: true };
-        await AsyncStorage.setItem(AVATAR_AURA_OWNED_KEY, JSON.stringify(nextOwnedAuras));
-        setOwnedAuras(nextOwnedAuras);
-        setShards(await getShardsBalance());
-        purchasedAura = true;
-      }
-
-      await AsyncStorage.setItem(USER_AVATAR_AURA_KEY, aura.id);
-      await invalidateAvatarDependentCaches(activeAvatar, aura.id);
-      setActiveAuraId(aura.id);
+      await applyCustomizationDraft(applyInput(), serviceDeps);
       emitAppEvent('xp_changed');
-      syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred');
-      void writeProfileAvatarSnapshot(activeAvatar, level, aura.id);
-      showToast('success', isOwned
-        ? {
-            ru: 'Аура применена',
-            uk: 'Ауру застосовано',
-            es: 'Aura aplicada',
-            'pt-BR': 'Aura aplicada',
-            vi: 'Đã áp dụng hào quang',
-            id: 'Aura diterapkan',
-            tr: 'Aura uygulandı',
-            pl: 'Aura zastosowana',
-          }
-        : {
-            ru: 'Аура открыта',
-            uk: 'Ауру відкрито',
-            es: 'Aura desbloqueada',
-            'pt-BR': 'Aura desbloqueada',
-            vi: 'Đã mở khóa hào quang',
-            id: 'Aura terbuka',
-            tr: 'Aura açıldı',
-            pl: 'Aura odblokowana',
-          });
+      showToast('success', copy.applied);
     } catch {
-      if (appliedOptimistic) {
-        setActiveAuraId(previousAuraId);
-      }
-      showToast('error', {
-        ru: 'Аура не применилась. Попробуй ещё раз.',
-        uk: 'Ауру не вдалося застосувати. Спробуй ще раз.',
-        es: 'No se pudo aplicar el aura. Inténtalo de nuevo.',
-        'pt-BR': 'Não foi possível aplicar a aura. Tente novamente.',
-        vi: 'Không áp dụng được hào quang. Hãy thử lại.',
-        id: 'Aura gagal diterapkan. Coba lagi.',
-        tr: 'Aura uygulanamadı. Tekrar dene.',
-        pl: 'Nie udało się zastosować aury. Spróbuj ponownie.',
-      });
+      showToast('error', copy.applyError);
     } finally {
       setBusy(false);
     }
-  };
+  }, [busy, resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction, applyInput, serviceDeps]);
 
-  const resetToLevelAvatar = async () => {
-    if (busy) return;
-    const previousAvatar = activeAvatar;
-    hapticTap();
+  const handleConfirmPurchase = useCallback(async () => {
+    const pendingPurchase = purchaseState.pending;
+    if (!pendingPurchase || busy) return;
     setBusy(true);
     try {
-      const nextAvatar = getBestAvatarForLevel(level);
-      setActiveAvatar(nextAvatar);
-      await persistAvatar(nextAvatar, owned);
-      showToast('success', {
-        ru: 'Вернули обычный аватар уровня',
-        uk: 'Повернули звичайний аватар рівня',
-        es: 'Restauramos el avatar normal del nivel',
-        'pt-BR': 'Restauramos o avatar normal do nível',
-        vi: 'Đã khôi phục avatar thường của cấp',
-        id: 'Avatar level biasa dikembalikan',
-        tr: 'Seviyenin normal avatarına dönüldü',
-        pl: 'Przywrócono zwykły awatar poziomu',
+      const outcome = await confirmPendingPurchase(purchaseState, async (input) => {
+        const prepared = await prepareCustomizationPurchase(input, purchaseDeps);
+        return resumeCustomizationPurchase(prepared, purchaseDeps);
       });
-    } catch {
-      setActiveAvatar(previousAvatar);
-      showToast('error', {
-        ru: 'Аватар не применился. Попробуй ещё раз.',
-        uk: 'Аватар не вдалося застосувати. Спробуй ще раз.',
-        es: 'No se pudo aplicar el avatar. Inténtalo de nuevo.',
-        'pt-BR': 'Não foi possível aplicar o avatar. Tente novamente.',
-        vi: 'Không áp dụng được avatar. Hãy thử lại.',
-        id: 'Avatar gagal diterapkan. Coba lagi.',
-        tr: 'Avatar uygulanamadı. Tekrar dene.',
-        pl: 'Nie udało się zastosować awatara. Spróbuj ponownie.',
-      });
+      dispatchPurchase({ type: 'cancel' });
+      const shards = await getShardsBalance();
+      const current = confirmedRef.current;
+      const next = { ...current, shards };
+      confirmedRef.current = next;
+      setConfirmed(next);
+      patchAppSnapshot({ customization: next });
+      showToast('success', outcome === 'applied' ? copy.applied : copy.purchased);
+    } catch (error) {
+      if (error instanceof Error && error.message === 'insufficient_shards') {
+        router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any);
+      } else {
+        showToast('error', copy.purchaseError);
+      }
     } finally {
       setBusy(false);
     }
-  };
+  }, [purchaseState, busy, purchaseDeps, showToast, copy, router]);
+
+  const handleResetLevelAvatar = useCallback(async () => {
+    if (busy) return;
+    setBusy(true);
+    try {
+      await resetToLevelAvatar({ level: confirmed.level, storedAuraSelection: confirmed.storedAuraSelection }, serviceDeps);
+      emitAppEvent('xp_changed');
+      showToast('success', copy.levelAvatarEnabled);
+    } catch {
+      showToast('error', copy.applyError);
+    } finally {
+      setBusy(false);
+    }
+  }, [busy, confirmed.level, confirmed.storedAuraSelection, serviceDeps, showToast, copy]);
+
+  const selectCatalogItem = useCallback((id: string) => {
+    const item = catalogItems.find((candidate) => candidate.id === id);
+    if (!item) return;
+    if (item.kind === 'custom-avatar') {
+      setPreviewAvatarValue(item.previewValue);
+      const parsed = parseCustomAvatarValue(item.previewValue);
+      setEditorAvatar(item.avatar);
+      setEditorGradientId(parsed?.gradientId ?? CUSTOM_AVATAR_GRADIENTS[0].id);
+      setEditorLogoColor(parsed?.logoColor ?? 'black');
+      return;
+    }
+    setPreviewStoredAuraSelection(item.kind === 'none-aura' ? NO_AVATAR_AURA_ID : item.auraId);
+  }, [catalogItems]);
+
+  const handleTabChange = useCallback((tab: CustomizationTab) => {
+    setActiveTab(tab);
+    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: Math.max(420, Dimensions.get('window').height - insets.top - 92), animated: false }));
+  }, [insets.top]);
+
+  const handleFilterChange = useCallback((nextFilter: CatalogFilter) => {
+    setFilter(nextFilter);
+    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: Math.max(420, Dimensions.get('window').height - insets.top - 92), animated: false }));
+  }, [insets.top]);
+
+  const renderCatalogItem = useCallback(({ item }: { item: CustomizationCatalogItem }) => {
+    const selected = item.kind === 'custom-avatar'
+      ? item.id === selectedAvatar?.avatarId
+      : item.id === (previewStoredAuraSelection === NO_AVATAR_AURA_ID ? 'none' : previewStoredAuraSelection);
+    return (
+      <View style={styles.cell}>
+        <CustomizationCatalogCard
+          item={item}
+          selected={selected}
+          label={itemLabel(item, lang, copy)}
+          statusLabel={availabilityStatus(item, lang, copy, selected)}
+          onPress={selectCatalogItem}
+        />
+      </View>
+    );
+  }, [selectedAvatar?.avatarId, previewStoredAuraSelection, lang, copy, selectCatalogItem]);
+
+  const heroHeight = Math.max(420, Dimensions.get('window').height - insets.top - 92);
+  const listHeader = useMemo(() => (
+    <View>
+      <View style={[styles.topBar, { paddingTop: insets.top + 8 }]}>
+        <Pressable accessibilityRole="button" accessibilityLabel={localized(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => safeRouterBack(router)} style={[styles.iconButton, { backgroundColor: t.bgSurface }]}>
+          <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
+        </Pressable>
+        <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
+        <CustomizationOverflowMenu
+          onOpenProfileCard={() => router.push('/profile_card_upgrade')}
+          onResetLevelAvatar={handleResetLevelAvatar}
+          profileCardLabel={copy.profileCard}
+          levelAvatarLabel={copy.resetLevelAvatar}
+          showLevelAvatar={parseCustomAvatarValue(confirmed.activeAvatar) !== null}
+        />
+      </View>
+      <CustomizationHero
+        avatarValue={previewAvatarValue}
+        auraId={effectivePreviewAuraId}
+        level={confirmed.level}
+        avatarLabel={previewAvatarLabel}
+        auraLabel={previewAuraLabel}
+        themeAccent={t.accent}
+        motionEnabled={focused && appState === 'active'}
+        minHeight={heroHeight}
+        previewLabel={copy.preview}
+      />
+      <View style={styles.controls}>
+        <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
+        <View style={styles.filterRow}>
+          <Text style={[styles.catalogTitle, { color: t.textPrimary }]}>{copy.catalog}</Text>
+          <View style={styles.filterBox}>
+            <OwnershipFilters value={filter} onChange={handleFilterChange} allLabel={copy.all} mineLabel={copy.mine} />
+          </View>
+        </View>
+      </View>
+    </View>
+  ), [insets.top, lang, router, t, copy, handleResetLevelAvatar, confirmed.activeAvatar, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, previewAuraLabel, focused, appState, heroHeight, activeTab, handleTabChange, filter, handleFilterChange]);
+
+  const purchaseMessage = purchaseState.pending
+    ? `${purchaseState.pending.cost} ${localized(lang, { ru: 'осколков будут списаны после подтверждения.', uk: 'уламків буде списано після підтвердження.', es: 'fragmentos se descontarán tras confirmar.', 'pt-BR': 'fragmentos serão descontados após a confirmação.', vi: 'mảnh sẽ được trừ sau khi xác nhận.', id: 'shard akan dipotong setelah konfirmasi.', tr: 'parça onaydan sonra düşülecek.', pl: 'odłamków zostanie odjętych po potwierdzeniu.' })}`
+    : '';
 
   return (
     <ScreenGradient>
-      <View testID="screen-avatar-select" style={{ flex: 1 }}>
-      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-        <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
-          <TapScale
-            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
-            onPress={() => { hapticTap(); safeRouterBack(router); }}
-          >
-            <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-          </TapScale>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Кастомизация</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <Text style={{ color: avatarAccent, fontSize: 16, fontWeight: '900' }}>{shards}</Text>
-            <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} contentFit="contain" />
-          </View>
-        </View>
-
-        <View style={{ alignItems: 'center', paddingVertical: 14 }}>
-          <AvatarView avatar={activeAvatar} level={level} size={82} auraId={effectiveAuraId} />
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8 }}>Текущий аватар</Text>
-        </View>
-
-        {activeCustom && (
-          <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-            <TouchableOpacity
-              activeOpacity={0.82}
-              onPress={resetToLevelAvatar}
-              style={{ borderRadius: 16, borderWidth: 0, borderColor: t.border, backgroundColor: t.bgCard, paddingVertical: 12, alignItems: 'center' }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>Вернуть аватар уровня</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-
-      <BouncyWrap>
-      <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: bottomInset + 18 }} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
-        {showProfileCardSection ? (
-        <View style={{ marginBottom: 18 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginBottom: 8 }}>Карточка профиля</Text>
-          {/* Компактная строка-вход в одношаговый Pro-апгрейд карточки. */}
-          <TouchableOpacity
-            testID="avatar-profile-card-entry"
-            activeOpacity={0.86}
-            onPress={() => { hapticTap(); router.push('/profile_card_upgrade' as any); }}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 12,
-              borderRadius: 16,
-              borderWidth: 0,
-              borderColor: profileCardVisual.accentStrong,
-              backgroundColor: t.bgCard,
-              paddingHorizontal: 14,
-              paddingVertical: 13,
-            }}
-          >
-            <View style={{ width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: profileCardVisual.accentSoft, borderWidth: 0, borderColor: profileCardVisual.accentStrong }}>
-              <Ionicons name="card" size={22} color={profileCardVisual.accent} />
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
-                {profileCardLevelLabel(profileCardSnapshot.level, lang === 'ru')}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
-                {nextProfileCardDef
-                  ? `Новая: ${lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[nextProfileCardLevel as ProfileCardLevel] : (nextProfileCardDef.name)} · ${nextProfileCardDef.cost}`
-                  : 'Максимальный уровень'}
-              </Text>
-            </View>
-            {nextProfileCardDef ? (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: profileCardVisual.accent, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
-                <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900' }}>Открыть</Text>
-              </View>
-            ) : (
-              <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
-            )}
-          </TouchableOpacity>
-        </View>
-        ) : null}
-
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GRID_GAP, justifyContent: 'center' }}>
-          {visibleCustomAvatars.map((avatar) => {
-            const isOwned = !!owned[avatar.id];
-            const isGifted = isOwned && (giftedAvatarId === avatar.id || isCustomAvatarGiftOnly(avatar.id));
-            const ownedStyle = decodeOwnedStyle(owned[avatar.id]);
-            const gradientId = ownedStyle.gradientId;
-            const logoColor = ownedStyle.logoColor;
-            const isActive = activeCustom?.avatarId === avatar.id;
-            return (
-              <TouchableOpacity
-                key={avatar.id}
-                activeOpacity={0.78}
-                onPress={() => openAvatar(avatar)}
-                style={{
-                  width: CELL_W,
-                  height: CUSTOM_AVATAR_CELL_H,
-                  borderRadius: 18,
-                  borderWidth: isActive ? 2 : 1,
-                  borderColor: isActive ? t.accent : t.border,
-                  backgroundColor: t.bgCard,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                  paddingHorizontal: 6,
-                  paddingVertical: 8,
-                }}
-              >
-                <View style={{ width: '100%', height: CUSTOM_AVATAR_SLOT_SIZE, alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
-                  <CustomAvatarBadge
-                    avatarId={avatar.id}
-                    gradientId={gradientId}
-                    logoColor={logoColor}
-                    size={CUSTOM_AVATAR_BADGE_SIZE}
-                    style={{ alignSelf: 'center' }}
-                  />
-                </View>
-                <View style={{ width: '100%', marginTop: 6, minHeight: 17, alignItems: 'center', justifyContent: 'center' }}>
-                  {isOwned
-                    ? (
-                      <Text
-                        numberOfLines={1}
-                        style={{ width: '100%', color: isGifted ? t.accent : t.textPrimary, fontSize: 11, fontWeight: '900', textAlign: 'center' }}
-                      >
-                        {isGifted ? 'Получено' : 'Куплен'}
-                      </Text>
-                    )
-                    : <ShardCost amount={CUSTOM_AVATAR_BUY_COST} color={t.textMuted} fontSize={13} iconSize={16} />}
-                </View>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-
-        <View style={{ marginTop: 18, marginBottom: 10 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginBottom: 8 }}>Аура</Text>
-          <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingRight: 4 }}>
-            <TouchableOpacity
-              activeOpacity={0.78}
-              onPress={() => { void applyAura(null); }}
-              style={{
-                width: 82,
-                minHeight: 96,
-                borderRadius: 16,
-                borderWidth: !effectiveAuraId ? 2 : 1,
-                borderColor: !effectiveAuraId ? t.accent : t.border,
-                backgroundColor: t.bgCard,
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 8,
-              }}
-            >
-              <View style={{ width: 54, height: 54, borderRadius: 27, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name="close" size={22} color={t.textMuted} />
-              </View>
-              <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800', marginTop: 7 }}>Без ауры</Text>
-            </TouchableOpacity>
-            {AVATAR_AURAS.map((aura) => {
-              const isPremiumAura = aura.premiumOnly === true;
-              const isVipAura = aura.vipOnly === true;
-              const isRewardOnlyAura = aura.rewardOnly === true;
-              const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-              const isOwned = isPremiumAura || isVipAura ? hasPlusAuraAccess : unlockedByLevel || !!ownedAuras[aura.id];
-              const isGifted = !isPremiumAura && !isVipAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
-              const isActive = effectiveAuraId === aura.id;
-              return (
-                <TouchableOpacity
-                  key={aura.id}
-                  activeOpacity={0.78}
-                  onPress={() => { void applyAura(aura); }}
-                  style={{
-                    width: 82,
-                    minHeight: 96,
-                    borderRadius: 16,
-                    borderWidth: isActive ? 2 : 1,
-                    borderColor: isActive ? t.accent : t.border,
-                    backgroundColor: t.bgCard,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: 8,
-                  }}
-                >
-                  <AvatarAura auraId={aura.id} size={54}>
-                    <AvatarView avatar={activeAvatar} level={level} size={54} />
-                  </AvatarAura>
-                  <Text style={{ color: t.textPrimary, fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
-                    {auraName(aura)}
-                  </Text>
-                  <View style={{ marginTop: 3, minHeight: 15, justifyContent: 'center' }}>
-                    {isOwned
-                      ? <Text style={{ color: isGifted ? t.accent : t.textMuted, fontSize: 9, fontWeight: '800' }}>{isGifted ? 'Подарок' : 'Открыта'}</Text>
-                      : isPremiumAura || isVipAura
-                        ? <PlusBadge themeMode={themeMode} size="xs" />
-                        : isRewardOnlyAura
-                          ? (
-                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                              <Ionicons name="lock-closed" size={9} color={t.textMuted} />
-                              <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>{aura.id.startsWith(ARENA_PASS_AURA_PREFIX) ? 'Арена' : 'Награда'}</Text>
-                            </View>
-                          )
-                        : aura.unlockLevel !== undefined
-                          ? <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Ур. {aura.unlockLevel}</Text>
-                          : <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textMuted} />}
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </View>
-      </Reanimated.ScrollView>
-      </BouncyWrap>
-      </Reanimated.View>
-
-      <ThemedConfirmModal
-        visible={!!pendingAuraPurchase}
-        title={triLang(lang, {
-          ru: 'Открыть ауру?',
-          uk: 'Відкрити ауру?',
-          es: '¿Desbloquear el aura?',
-          'pt-BR': 'Abrir a aura?',
-          vi: 'Mở hào quang?',
-          id: 'Buka aura?',
-          tr: 'Aurayı aç?',
-          pl: 'Odblokować aurę?',
-        })}
-        messageNode={pendingAuraPurchase ? (
-          <View style={{ marginBottom: 22 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.5 }}>
-              {triLang(lang, {
-                ru: `Открыть ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
-                uk: `Відкрити ауру «${auraName(pendingAuraPurchase)}» за уламки?`,
-                es: `¿Desbloquear el aura «${auraName(pendingAuraPurchase)}» con fragmentos?`,
-                'pt-BR': `Desbloquear a aura «${auraName(pendingAuraPurchase)}» com fragmentos?`,
-                vi: `Mở khóa hào quang «${auraName(pendingAuraPurchase)}» bằng mảnh?`,
-                id: `Buka aura «${auraName(pendingAuraPurchase)}» dengan shard?`,
-                tr: `«${auraName(pendingAuraPurchase)}» aurasını parçalarla aç?`,
-                pl: `Odblokować aurę „${auraName(pendingAuraPurchase)}” za odłamki?`,
-              })}
-            </Text>
-            <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>Стоимость:</Text>
-              <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textPrimary} />
-            </View>
-          </View>
-        ) : null}
-        cancelLabel="Отмена"
-        confirmLabel="Купить"
-        onCancel={() => setPendingAuraPurchase(null)}
-        onConfirm={() => {
-          const aura = pendingAuraPurchase;
-          setPendingAuraPurchase(null);
-          if (aura) void applyAura(aura, true);
-        }}
-        testIDPrefix="avatar-aura-purchase-confirm"
-      />
-
-      <Modal visible={!!draftAvatar} transparent animationType="fade" onRequestClose={() => setDraftAvatar(null)}>
-        <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.58)', justifyContent: 'flex-end' }} onPress={() => setDraftAvatar(null)}>
-          <Pressable
-            style={{
-              backgroundColor: t.bgCard,
-              borderTopLeftRadius: 26,
-              borderTopRightRadius: 26,
-              padding: 18,
-              paddingBottom: bottomInset + 18,
-              borderTopWidth: 1,
-              borderColor: t.border,
-            }}
-          >
-            {draftAvatar && (
-              <>
-                <View style={{ alignItems: 'center', marginBottom: 18 }}>
-                  <CustomAvatarBadge avatarId={draftAvatar.id} gradientId={draftGradientId} logoColor={draftLogoColor} size={112} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', marginTop: 10 }}>Настройка</Text>
-                  {(() => {
-                    const previousStyle = decodeOwnedStyle(owned[draftAvatar.id]);
-                    const isOwned = !!owned[draftAvatar.id];
-                    const styleChanged = isOwned && (
-                      previousStyle.gradientId !== draftGradientId ||
-                      previousStyle.logoColor !== draftLogoColor
-                    );
-                    const visibleCost = !isOwned
-                      ? CUSTOM_AVATAR_BUY_COST
-                      : (styleChanged ? CUSTOM_AVATAR_RESTYLE_COST : 0);
-                    if (visibleCost <= 0) return null;
-                    return (
-                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 3 }}>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{visibleCost}</Text>
-                        <Image source={oskolokImageForPackShards(visibleCost)} style={{ width: 18, height: 18 }} contentFit="contain" />
-                      </View>
-                    );
-                  })()}
-                </View>
-
-                <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingBottom: 4 }}>
-                  {CUSTOM_AVATAR_GRADIENTS.map((gradient) => {
-                    const selected = gradient.id === draftGradientId;
-                    const optionColors = customGradientOptionColors(gradient.colors, selected);
-                    return (
-                      <TouchableOpacity
-                        key={gradient.id}
-                        activeOpacity={0.78}
-                        onPress={() => { hapticTap(); setDraftGradientId(gradient.id); }}
-                        style={{
-                          width: 78,
-                          borderRadius: 14,
-                          borderWidth: selected ? 2 : 1,
-                          borderColor: selected ? gradient.colors[2] : withGradientAlpha(gradient.colors[2], '66'),
-                          backgroundColor: t.bgCard,
-                          shadowColor: selected ? gradient.colors[2] : '#000000',
-                          shadowOffset: { width: 0, height: selected ? 5 : 2 },
-                          shadowOpacity: selected ? 0.22 : 0.08,
-                          shadowRadius: selected ? 9 : 3,
-                          elevation: selected ? 4 : 1,
-                        }}
-                      >
-                        <LinearGradient
-                          colors={optionColors}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          style={{
-                            minHeight: 94,
-                            borderRadius: selected ? 12 : 13,
-                            overflow: 'hidden',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: 7,
-                          }}
-                        >
-                          <CustomAvatarBadge avatarId={draftAvatar.id} gradientId={gradient.id} logoColor={draftLogoColor} size={52} />
-                          <Text
-                            style={{
-                              color: selected ? t.textPrimary : t.textMuted,
-                              fontSize: 10,
-                              fontWeight: '900',
-                              marginTop: 6,
-                              textAlign: 'center',
-                            }}
-                            numberOfLines={1}
-                          >
-                            {customAvatarGradientNameForLang(gradient, lang)}
-                          </Text>
-                        </LinearGradient>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-
-
-                <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
-                  {(['black', 'white'] as CustomAvatarLogoColor[]).map((color) => {
-                    const selected = draftLogoColor === color;
-                    return (
-                      <TouchableOpacity
-                        key={color}
-                        activeOpacity={0.8}
-                        onPress={() => { hapticTap(); setDraftLogoColor(color); }}
-                        style={{
-                          flex: 1,
-                          borderRadius: 14,
-                          borderWidth: selected ? 2 : 1,
-                          borderColor: selected ? t.accent : t.border,
-                          backgroundColor: color === 'black' ? '#111827' : '#F8FAFC',
-                          paddingVertical: 11,
-                          alignItems: 'center',
-                        }}
-                      >
-                        <Text style={{ color: color === 'black' ? '#FFFFFF' : '#111827', fontSize: f.body, fontWeight: '900' }}>
-                          {color === 'black' ? 'Темное' : 'Светлое'}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-
-                <TouchableOpacity
-                  activeOpacity={0.86}
-                  disabled={busy}
-                  onPress={applyDraft}
-                  style={{
-                    marginTop: 18,
-                    borderRadius: 16,
-                    backgroundColor: busy ? t.textGhost : t.accent,
-                    paddingVertical: 14,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={{ color: t.textOnGold ?? '#111827', fontSize: f.bodyLg, fontWeight: '900' }}>
-                    {'Применить'}
-                  </Text>
-                </TouchableOpacity>
-              </>
-            )}
-          </Pressable>
-        </Pressable>
-      </Modal>
+      <View style={styles.flex}>
+        <BouncyWrap>
+          <Reanimated.View style={[styles.flex, bouncyStyle]}>
+            <Reanimated.FlatList
+              ref={listRef}
+              data={catalogItems}
+              keyExtractor={(item) => item.id}
+              renderItem={renderCatalogItem}
+              numColumns={3}
+              ListHeaderComponent={listHeader}
+              columnWrapperStyle={styles.row}
+              contentContainerStyle={{ paddingBottom: bottomInset + ACTION_BAR_HEIGHT + 20 }}
+              onScroll={onAnimatedScroll}
+              scrollEventThrottle={16}
+              bounces
+              alwaysBounceVertical
+              overScrollMode="always"
+              showsVerticalScrollIndicator={false}
+            />
+          </Reanimated.View>
+        </BouncyWrap>
+        <CustomizationActionBar action={resolvedAction} label={actionLabel} busy={busy} onPress={handleAction} />
+        <AvatarEditorSheet
+          visible={editorAvatar !== null}
+          avatar={editorAvatar}
+          gradientId={editorGradientId}
+          logoColor={editorLogoColor}
+          owned={editorAvatar ? !!confirmed.ownedAvatars[editorAvatar.id] : false}
+          title={copy.editAvatar}
+          applyLabel={copy.applyStyle}
+          darkLabel={copy.dark}
+          lightLabel={copy.light}
+          gradientLabel={(id) => customAvatarGradientNameForLang(CUSTOM_AVATAR_GRADIENTS.find((item) => item.id === id) ?? CUSTOM_AVATAR_GRADIENTS[0], lang)}
+          onGradientChange={setEditorGradientId}
+          onLogoColorChange={setEditorLogoColor}
+          onConfirm={() => {
+            if (editorAvatar) setPreviewAvatarValue(makeCustomAvatarValue(editorAvatar.id, editorGradientId, editorLogoColor));
+            setEditorAvatar(null);
+          }}
+          onClose={() => setEditorAvatar(null)}
+        />
+        <CustomizationPurchaseConfirmModal
+          visible={purchaseState.pending !== null}
+          title={copy.purchaseTitle}
+          message={purchaseMessage}
+          cancelLabel={copy.cancel}
+          confirmLabel={copy.confirm}
+          onCancel={() => dispatchPurchase({ type: 'cancel' })}
+          onConfirm={handleConfirmPurchase}
+        />
       </View>
     </ScreenGradient>
   );
 }
+
+const styles = StyleSheet.create({
+  flex: { flex: 1 },
+  topBar: { minHeight: 72, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingBottom: 10, gap: 10 },
+  iconButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  title: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '900', textAlign: 'center' },
+  controls: { paddingHorizontal: GRID_PAD, paddingTop: 18, paddingBottom: 12, gap: 14 },
+  filterRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  catalogTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '900' },
+  filterBox: { width: 190 },
+  row: { paddingHorizontal: GRID_PAD, gap: GRID_GAP, marginBottom: GRID_GAP },
+  cell: { flex: 1, maxWidth: `${100 / 3}%` as any },
+});

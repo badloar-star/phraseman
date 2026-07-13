@@ -16,6 +16,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
+import { CUSTOM_AVATAR_GIFT_OWNED_KEY } from '../constants/customization_storage_keys';
 import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { addEnergy } from './energy_system';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
@@ -950,7 +951,7 @@ const GIFT_MULT_KEY = 'gift_xp_multiplier';
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
-export const COSMETIC_GIFT_OWNED_AVATAR_KEY = 'custom_avatar_gift_owned_v1';
+export const COSMETIC_GIFT_OWNED_AVATAR_KEY = CUSTOM_AVATAR_GIFT_OWNED_KEY;
 const GIFT_XP_BANK_CAP = 1500;
 
 export interface BonusEnergyState { amount: number; expiresAt: number }

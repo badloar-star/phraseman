@@ -1,5 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
+import {
+  CUSTOMIZATION_STORAGE_KEYS,
+  USER_AVATAR_AURA_KEY,
+} from '../constants/customization_storage_keys';
 import { getLevelFromXP } from '../constants/theme';
 import { ARENA_RATING_SCREEN_CACHE_KEY, sanitizeArenaProfileForRating, sanitizeArenaRatingHistory } from './arena_rating_cache';
 import {
@@ -15,6 +18,7 @@ import {
 import { startFriendsTabSwrPrime, peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
 import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
+import { buildCustomizationSnapshot } from './customization_snapshot';
 
 const BOOT_PROFILE_KEYS = [
   'user_name',
@@ -175,6 +179,7 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   const keys = [
     ...BOOT_PROFILE_KEYS,
     ...BOOT_PROGRESS_KEYS,
+    ...CUSTOMIZATION_STORAGE_KEYS,
     ...BOOT_SETTINGS_KEYS,
     lastOpenedKey,
     BOOT_LANG_KEY,
@@ -194,9 +199,11 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   const values = mapPairs(pairs);
   writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
   writePeekStudyTargetRaw(values.get(BOOT_STUDY_TARGET_KEY) ?? null);
+  const profile = buildProfileSnapshot(values, now);
   patchAppSnapshot({
-    profile: buildProfileSnapshot(values, now),
+    profile,
     progress: buildProgressSnapshot(values, studyTarget, now),
+    customization: buildCustomizationSnapshot(values, now, profile.level),
     lessons: {
       source: 'storage',
       updatedAt: now,

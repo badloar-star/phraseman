@@ -2,7 +2,7 @@
 // leaderboard_stats.ts — Чтение предвычисленных перцентильных порогов
 //
 // Cloud Function computeLeaderboardStatsCron пишет leaderboard_stats/global
-// каждый час. Клиент читает его один раз и кэширует на час локально.
+// ежедневно. Клиент читает его один раз и кэширует на час локально.
 //
 // Активный пользователь получает точный перцентиль через lookupPercentile()
 // без дополнительных Firestore запросов.
@@ -14,8 +14,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 const CACHE_KEY = 'leaderboard_stats_cache_v2';
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 час
 export const MIN_PERCENTILE_SAMPLE_XP = 5000;
-/** The hourly cron may be delayed, so source data remains current for up to three hours. */
-export const LEADERBOARD_STATS_MAX_SOURCE_AGE_MS = 3 * 60 * 60 * 1000;
+/** The daily cron may be delayed; allow its 24-hour cadence plus a six-hour execution margin. */
+export const LEADERBOARD_STATS_MAX_SOURCE_AGE_MS = 30 * 60 * 60 * 1000;
 /** Allow small Firestore/server clock skew without hiding otherwise current statistics. */
 export const LEADERBOARD_STATS_MAX_FUTURE_SKEW_MS = 5 * 60 * 1000;
 

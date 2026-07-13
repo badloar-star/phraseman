@@ -223,6 +223,7 @@ describe('leaderboard percentile active sample floor', () => {
   it('defines source freshness independently from the local cache age', () => {
     const now = 1_800_000_000_000;
 
+    expect(LEADERBOARD_STATS_MAX_SOURCE_AGE_MS).toBe(30 * 60 * 60 * 1000);
     expect(isLeaderboardStatsSourceStale(
       now - LEADERBOARD_STATS_MAX_SOURCE_AGE_MS + 1,
       now,

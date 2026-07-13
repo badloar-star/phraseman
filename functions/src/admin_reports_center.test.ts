@@ -1,5 +1,6 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
+  assertReportOperationReplay,
   canonicalReportLane,
   isAllowedReportTransition,
   matchesReportFilters,
@@ -75,5 +76,14 @@ describe('admin reports center contracts', () => {
       source: 'error_reports', reportId: 'r1', expectedStatus: 'new', nextStatus: 'answered',
       reason: 'no', idempotencyKey: 'op', requestId: 'req',
     })).toThrow(HttpsError);
+    expect(() => parseReportStatusUpdateRequest({
+      source: 'user_reports', reportId: 'r1', expectedStatus: 'new', nextStatus: 'reviewed',
+      reason: 'Handled', idempotencyKey: 'op-user-report', requestId: 'req-user-report',
+    })).toThrow('safety_moderation_required');
+  });
+
+  test('binds report status idempotency to the actor as well as the request fingerprint', () => {
+    expect(() => assertReportOperationReplay({ actorUid: 'a1', requestFingerprint: 'f1' }, 'a1', 'f1')).not.toThrow();
+    expect(() => assertReportOperationReplay({ actorUid: 'a1', requestFingerprint: 'f1' }, 'a2', 'f1')).toThrow('idempotency_conflict');
   });
 });

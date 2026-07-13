@@ -1309,16 +1309,22 @@ export const helpBoardDeleteMyTopic = onCall({ region: REGION, enforceAppCheck: 
   return { ok: true, status: 'deleted' };
 });
 
+export function validateHelpBoardAdminAction(value: unknown): string {
+  const action = asText(value, 20);
+  if (action === 'ban_author') throw new HttpsError('failed-precondition', 'safety_moderation_required');
+  if (!['hide', 'restore', 'delete', 'resolve_report', 'restrict_author', 'unrestrict_author'].includes(action)) throw new HttpsError('invalid-argument', 'bad_action');
+  return action;
+}
+
 export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'admin_required');
   const db = admin.firestore();
   const targetType = asText(request.data?.targetType, 20) as HelpBoardTargetType | 'report';
   const targetId = asText(request.data?.targetId, 160);
-  const action = asText(request.data?.action, 20);
+  const action = validateHelpBoardAdminAction(request.data?.action);
   const reason = asText(request.data?.reason, MAX_REPORT_REASON_LENGTH);
   const adminEmail = asText(request.auth.token.email, 200) || 'admin';
   if (!targetId) throw new HttpsError('invalid-argument', 'target_required');
-  if (!['hide', 'restore', 'delete', 'resolve_report', 'ban_author', 'restrict_author', 'unrestrict_author'].includes(action)) throw new HttpsError('invalid-argument', 'bad_action');
 
   const now = Date.now();
   if (targetType === 'report' || action === 'resolve_report') {

@@ -1,6 +1,5 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 
@@ -211,6 +210,7 @@ export interface ReportStatusUpdateRequest {
 export function parseReportStatusUpdateRequest(data: unknown): ReportStatusUpdateRequest {
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'status update request required');
   const source = parseSource(data.source, false) as ReportSource;
+  if (source === 'user_reports') throw new HttpsError('failed-precondition', 'safety_moderation_required');
   const reportId = cleanText(data.reportId, 161);
   const expectedStatus = cleanText(data.expectedStatus, 40).toLowerCase();
   const nextStatus = cleanText(data.nextStatus, 40).toLowerCase();
@@ -222,6 +222,11 @@ export function parseReportStatusUpdateRequest(data: unknown): ReportStatusUpdat
   }
   if (!isAllowedReportTransition(source, expectedStatus, nextStatus)) throw new HttpsError('invalid-argument', 'report status transition is not allowed');
   return Object.freeze({ source, reportId, expectedStatus, nextStatus, reason, idempotencyKey, requestId });
+}
+
+export function assertReportOperationReplay(operation: unknown, actorUid: string, requestFingerprint: string): void {
+  const row = isRecord(operation) ? operation : {};
+  if (row.actorUid !== actorUid || row.requestFingerprint !== requestFingerprint) throw new Error('idempotency_conflict');
 }
 
 interface SourceFetchResult {
@@ -291,7 +296,7 @@ async function fetchReportSource(db: FirebaseFirestore.Firestore, source: Report
 }
 
 export const adminListReportQueue = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 20, memory: '512MiB' },
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 20, memory: '512MiB' },
   async (request) => {
     const context = requireReportPermission(request as { auth?: { uid?: string; token?: Row } }, 'reports.read');
     const input = parseReportListRequest(request.data);
@@ -318,7 +323,7 @@ export const adminListReportQueue = onCall(
 );
 
 export const adminUpdateReportStatus = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  { region: REGION, enforceAppCheck: true },
   async (request) => {
     const input = parseReportStatusUpdateRequest(request.data);
     const context = requireReportPermission(request as { auth?: { uid?: string; token?: Row } }, input.source === 'app_errors' ? 'diagnostics.status.write' : 'reports.status.write');
@@ -332,7 +337,8 @@ export const adminUpdateReportStatus = onCall(
       const [reportSnap, operationSnap] = await Promise.all([tx.get(reportRef), tx.get(operationRef)]);
       if (operationSnap.exists) {
         const operation = operationSnap.data() ?? {};
-        if (operation.requestFingerprint !== fingerprint) throw new HttpsError('already-exists', 'idempotency key reused for another report update');
+        try { assertReportOperationReplay(operation, context.actorUid, fingerprint); }
+        catch { throw new HttpsError('already-exists', 'idempotency_conflict'); }
         return { ok: true, replayed: true, status: String(operation.nextStatus ?? input.nextStatus), auditId: String(operation.auditId ?? '') };
       }
       if (!reportSnap.exists) throw new HttpsError('not-found', 'report not found');
@@ -346,7 +352,7 @@ export const adminUpdateReportStatus = onCall(
         before: { status: currentStatus }, after: { status: input.nextStatus }, reason: input.reason, requestId: input.requestId,
       });
       tx.create(operationRef, {
-        operationId: input.idempotencyKey, requestFingerprint: fingerprint, nextStatus: input.nextStatus,
+        operationId: input.idempotencyKey, actorUid: context.actorUid, requestFingerprint: fingerprint, nextStatus: input.nextStatus,
         auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
       return { ok: true, replayed: false, status: input.nextStatus, auditId: auditRef.id };

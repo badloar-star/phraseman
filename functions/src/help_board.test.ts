@@ -44,9 +44,16 @@ import {
   parseCompassEnvelope,
   resolveShouldPost,
   validateCompassAnswer,
+  validateHelpBoardAdminAction,
 } from './help_board';
 
 describe('help_board contract helpers', () => {
+  it('routes global author bans through the Safety Center while preserving topic restrictions', () => {
+    expect(() => validateHelpBoardAdminAction('ban_author')).toThrow('safety_moderation_required');
+    expect(validateHelpBoardAdminAction('restrict_author')).toBe('restrict_author');
+    expect(validateHelpBoardAdminAction('unrestrict_author')).toBe('unrestrict_author');
+    expect(validateHelpBoardAdminAction('hide')).toBe('hide');
+  });
   it('scopes boards by study target and interface language', () => {
     expect(normalizeHelpBoardScope('en', 'ru')).toEqual({
       targetLang: 'en',

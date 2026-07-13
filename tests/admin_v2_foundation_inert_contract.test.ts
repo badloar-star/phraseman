@@ -1,7 +1,9 @@
-import { existsSync, readFileSync } from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
 
 const root = process.cwd();
+const read = (relativePath: string) => readFileSync(path.join(root, relativePath), 'utf8');
+
 const foundationFiles = [
   'admin/v2/daily-digest.js',
   'admin/v2/migration.html',
@@ -12,8 +14,8 @@ const foundationFiles = [
   'admin/v2/styles/admin.css',
 ];
 
-describe('Admin v2 inert foundation release gate', () => {
-  test('foundation files contain no callable or Firebase write surface', () => {
+describe('Admin v2 analytics-only release gate', () => {
+  test('foundation files remain free of callable and Firebase write surfaces', () => {
     const forbidden = [
       /httpsCallable\s*\(/,
       /firebase-functions/,
@@ -22,7 +24,7 @@ describe('Admin v2 inert foundation release gate', () => {
     ];
 
     for (const relativePath of foundationFiles) {
-      const source = readFileSync(path.join(root, relativePath), 'utf8');
+      const source = read(relativePath);
       for (const pattern of forbidden) {
         expect({ relativePath, pattern: String(pattern), matched: pattern.test(source) }).toEqual({
           relativePath,
@@ -33,15 +35,31 @@ describe('Admin v2 inert foundation release gate', () => {
     }
   });
 
-  test('foundation release does not ship a privileged Firebase bridge', () => {
-    expect(existsSync(path.join(root, 'admin/v2/scripts/admin-firebase.js'))).toBe(false);
+  test('Firebase bridge exposes exactly the three money.read analytics callables', () => {
+    const bridge = read('admin/v2/scripts/admin-analytics-firebase.js');
+    const callableNames = Array.from(
+      bridge.matchAll(/httpsCallable\(functionsUs,\s*'([^']+)'\)/g),
+      (match) => match[1],
+    ).sort();
+
+    expect(callableNames).toEqual([
+      'adminMonthlyDecisionPack',
+      'adminProductAnalytics',
+      'adminSubscriptionAnalytics',
+    ]);
+    expect(bridge).not.toMatch(/firebase-firestore|\bgetFirestore\b|\b(?:addDoc|setDoc|updateDoc|deleteDoc|writeBatch|runTransaction)\b/);
+    expect(bridge).not.toContain('revenueCatShardsWebhook');
   });
 
-  test('foundation release does not activate Admin v2 or replace legacy admin', () => {
-    expect(existsSync(path.join(root, 'admin/v2/index.html'))).toBe(false);
-    expect(existsSync(path.join(root, 'admin/v2/scripts/admin-router.js'))).toBe(false);
+  test('analytics-only activation preserves legacy admin as the primary fallback', () => {
+    const index = read('admin/v2/index.html');
+    const app = read('admin/v2/scripts/admin-analytics-app.js');
+    const legacyAdmin = read('admin/index.html');
 
-    const legacyAdmin = readFileSync(path.join(root, 'admin/index.html'), 'utf8');
+    expect(index).toContain('href="../index.html"');
+    expect(index).toContain('/v2/scripts/admin-analytics-app.js');
+    expect(app).toContain('admin-analytics-firebase.js');
+    expect(app).not.toMatch(/publishRemoteConfig|dispatchSupport|promoCode|createAsset|runAsset|activateFactory|rollbackFactory/);
     expect(legacyAdmin).not.toMatch(/location\.(?:assign|replace)\([^)]*\/v2\//);
   });
 });

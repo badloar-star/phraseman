@@ -25,6 +25,8 @@ export function createSafetyModerationState(view = 'overview') {
     sensitive: null,
     preview: null,
     approvalId: '',
+    approvals: { state: 'idle', items: [], error: '' },
+    history: { state: 'idle', items: [], error: '' },
     manualBanUid: '',
     operationKeys: {},
     error: '',

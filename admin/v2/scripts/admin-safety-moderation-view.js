@@ -21,6 +21,8 @@ const BUTTON_TOOLTIPS = Object.freeze({
   'safety-close-sensitive': 'Закрыть чувствительный контекст',
   'safety-preview-manual-ban': 'Подготовить блокировку по UID',
   'safety-preview-unban': 'Подготовить снятие глобальной блокировки',
+  'safety-preview-restore': 'Подготовить безопасный откат выбранной записи истории',
+  'safety-resume-bulk': 'Продолжить выбранную незавершённую пакетную операцию',
   'safety-request-approval': 'Запросить подтверждение второго администратора',
   'safety-approve': 'Подтвердить операцию как второй администратор',
   'safety-discard-preview': 'Отменить подготовленную операцию',
@@ -77,9 +79,45 @@ function filters(model, escapeHtml) {
   return `<section class="card section"><div class="card-body report-filters"><div class="field"><label for="safety-query">Поиск</label><input id="safety-query" type="search" value="${escapeHtml(model.filters.query || '')}" placeholder="UID, имя, причина или ID"></div>${status}${category}${reason}<button class="button primary" data-action="safety-load" type="button" title="Создать новый серверный снимок" data-tooltip="Создать новый серверный снимок">Применить</button>${model.view === 'user-reports' ? '<button class="button" data-action="safety-export" type="button" title="Экспортировать полный отфильтрованный снимок в CSV" data-tooltip="Экспортировать полный отфильтрованный снимок в CSV">CSV</button>' : ''}</div></section>`;
 }
 
-function overview(model, escapeHtml) {
+function resourceContent(resource, kind, emptyText, renderItems, escapeHtml) {
+  const items = Array.isArray(resource?.items) ? resource.items : [];
+  const content = items.length ? renderItems(items) : '';
+  if (resource?.state === 'loading') return `<div class="notice" role="status">Обновляем защищённые данные. Уже загруженная информация остаётся на экране.</div>${content}`;
+  if (resource?.state === 'error') return `<div class="notice danger" role="alert" data-safety-resource-error="${kind}"><strong>Этот блок не загружен.</strong> ${escapeHtml(resource.error || 'Повторите запрос.')}</div>${content}`;
+  if (!items.length) return `<div class="empty-state"><strong>${emptyText}</strong><p>Обновите сводку, чтобы проверить сервер ещё раз.</p></div>`;
+  return content;
+}
+
+function approvalQueue(model, escapeHtml, can) {
+  if (!can('users.moderation.approve')) return '';
+  const body = resourceContent(model.approvals, 'approvals', 'Ожидающих подтверждений нет.', (items) => `<div class="table-scroll"><table class="safety-responsive-table"><thead><tr><th>Действие</th><th>Цель</th><th>Причина</th><th>Риск</th><th>Отпечаток</th><th>Запросил</th><th>Истекает</th><th>Подтверждение</th></tr></thead><tbody>${items.map((row) => {
+    const approvalId = escapeHtml(row.approvalId || '');
+    const canApprove = row.canApprove === true;
+    return `<tr><td data-label="Действие" data-approval-field="action"><code>${escapeHtml(row.action || '—')}</code></td><td data-label="Цель" data-approval-field="targetId"><strong class="mono">${escapeHtml(row.targetId || '—')}</strong><small class="mono">${approvalId}</small></td><td data-label="Причина" data-approval-field="reason">${escapeHtml(row.reason || '—')}</td><td data-label="Риск" data-approval-field="risk" class="safety-preview-text">${escapeHtml(row.risk || '—')}</td><td data-label="Отпечаток" data-approval-field="fingerprint"><code>${escapeHtml(row.fingerprint || '—')}</code></td><td data-label="Запросил" data-approval-field="requestedBy"><span class="mono">${escapeHtml(row.requestedBy || '—')}</span></td><td data-label="Истекает" data-approval-field="expiry">${dateTime(row.expiresAtMs)}</td><td data-label="Подтверждение"><div class="field compact"><label for="safety-approval-reason-${approvalId}">Основание подтверждения</label><input id="safety-approval-reason-${approvalId}" maxlength="500"${canApprove ? '' : ' disabled'}></div><button class="button" data-action="safety-approve" data-approval-id="${approvalId}" type="button"${canApprove ? '' : ' disabled'}>${canApprove ? 'Подтвердить' : 'Запрос создан вами'}</button>${canApprove ? '' : '<small>Нужен другой администратор.</small>'}</td></tr>`;
+  }).join('')}</tbody></table></div>`, escapeHtml);
+  return `<section class="card section"><div class="card-header"><div><h2>Ожидают второго администратора</h2><p>Подтверждение привязано к точной строке и отпечатку операции. Инициатор не может подтвердить собственный запрос.</p></div></div><div class="card-body">${body}</div></section>`;
+}
+
+function moderationHistory(model, escapeHtml, can) {
+  if (!can('users.moderation.restore')) return '';
+  const body = resourceContent(model.history, 'history', 'История изменений пока пуста.', (items) => `<div class="table-scroll"><table class="safety-responsive-table"><thead><tr><th>Действие</th><th>Цель</th><th>Администратор</th><th>Дата</th><th>Откат</th><th>Действия</th></tr></thead><tbody>${items.map((row) => {
+    const historyId = escapeHtml(row.historyId || '');
+    const manifestId = escapeHtml(row.bulkManifestId || '');
+    const targetCount = Math.max(0, Number(row.targetCount || 0));
+    const processedCount = Math.min(targetCount, Math.max(0, Number(row.processedCount || 0)));
+    const resumable = Boolean(manifestId) && ['pending', 'running'].includes(String(row.bulkStatus || '')) && processedCount < targetCount;
+    const rollback = row.canRestore ? '<span class="badge success">Можно откатить</span>' : row.reversible ? '<span class="badge warning">Откат уже подготовлен или выполнен</span>' : '<span class="badge">Откат недоступен</span>';
+    const restore = row.canRestore ? `<div class="field compact"><label for="safety-history-reason-${historyId}">Причина отката</label><input id="safety-history-reason-${historyId}" maxlength="500"></div><button class="button" data-action="safety-preview-restore" data-target-id="${escapeHtml(row.targetId || '')}" data-operation-id="${historyId}" type="button">Подготовить откат</button>` : '';
+    const progress = manifestId ? `<div class="field compact"><label for="safety-bulk-progress-${manifestId}">Пакет: ${escapeHtml(row.bulkStatus || 'pending')} · ${processedCount} / ${targetCount}</label><progress id="safety-bulk-progress-${manifestId}" value="${processedCount}" max="${targetCount || 1}">${processedCount} / ${targetCount}</progress></div>` : '';
+    const resume = resumable ? `<div class="field compact"><label for="safety-bulk-resume-reason-${manifestId}">Причина продолжения</label><input id="safety-bulk-resume-reason-${manifestId}" maxlength="500"></div><button class="button" data-action="safety-resume-bulk" data-manifest-id="${manifestId}" type="button">Продолжить</button>` : '';
+    return `<tr><td data-label="Действие"><code>${escapeHtml(row.action || '—')}</code><small class="mono">${historyId}</small></td><td data-label="Цель"><span class="mono">${escapeHtml(row.targetId || '—')}</span></td><td data-label="Администратор"><span class="mono">${escapeHtml(row.actorUid || '—')}</span></td><td data-label="Дата">${dateTime(row.createdAtMs)}</td><td data-label="Откат">${rollback}</td><td data-label="Действия"><div class="moderation-actions">${progress}${restore}${resume}${!restore && !resume ? '<span class="hint">Дополнительных действий нет.</span>' : ''}</div></td></tr>`;
+  }).join('')}</tbody></table></div>`, escapeHtml);
+  return `<section class="card section"><div class="card-header"><div><h2>Недавняя история</h2><p>Каждый откат сначала создаёт новый предпросмотр. Незавершённые пакетные операции можно безопасно продолжить отдельной командой.</p></div></div><div class="card-body">${body}</div></section>`;
+}
+
+function overview(model, escapeHtml, can) {
   const counts = model.workspace?.summary?.counts || {};
-  return `<section class="metrics section">${metric('Жалобы', Number(counts.user_reports || 0), 'user_reports')}${metric('Сигналы безопасности', counts.safety_flags == null ? '—' : Number(counts.safety_flags), counts.safety_flags == null ? 'Нет доступа' : 'safety_flags')}${metric('Записи согласия', counts.user_consents == null ? '—' : Number(counts.user_consents), 'Клиентская телеметрия')}${metric('Глобальные блокировки', Number(counts.banned_users || 0), 'banned_users')}</section><section class="card section"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Все связанные инструменты собраны в одном месте, но права доступа к чувствительным данным остаются раздельными.</p></div></div><div class="card-body safety-overview-links">${Object.entries(LABELS).filter(([id]) => !['overview','other-reports'].includes(id)).map(([id, label]) => `<button class="capability-item" type="button" data-action="safety-set-view" data-safety-view="${id}" title="Открыть ${escapeHtml(label)}" data-tooltip="Открыть ${escapeHtml(label)}"><span><strong>${escapeHtml(label)}</strong><small>Открыть защищённый серверный снимок</small></span>${ICON}</button>`).join('')}</div></section>`;
+  return `<section class="metrics section">${metric('Жалобы', Number(counts.user_reports || 0), 'user_reports')}${metric('Сигналы безопасности', counts.safety_flags == null ? '—' : Number(counts.safety_flags), counts.safety_flags == null ? 'Нет доступа' : 'safety_flags')}${metric('Записи согласия', counts.user_consents == null ? '—' : Number(counts.user_consents), 'Клиентская телеметрия')}${metric('Глобальные блокировки', Number(counts.banned_users || 0), 'banned_users')}</section><section class="card section"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Все связанные инструменты собраны в одном месте, но права доступа к чувствительным данным остаются раздельными.</p></div></div><div class="card-body safety-overview-links">${Object.entries(LABELS).filter(([id]) => !['overview','other-reports'].includes(id)).map(([id, label]) => `<button class="capability-item" type="button" data-action="safety-set-view" data-safety-view="${id}" title="Открыть ${escapeHtml(label)}" data-tooltip="Открыть ${escapeHtml(label)}"><span><strong>${escapeHtml(label)}</strong><small>Открыть защищённый серверный снимок</small></span>${ICON}</button>`).join('')}</div></section>${approvalQueue(model, escapeHtml, can)}${moderationHistory(model, escapeHtml, can)}`;
 }
 
 function selection(row, model) {
@@ -129,7 +167,7 @@ function otherReports(model, escapeHtml) {
 function previewCard(model, escapeHtml) {
   const preview = model.preview;
   if (!preview) return '';
-  return `<section class="card section moderation-preview"><div class="card-header"><div><h2>Предпросмотр изменения</h2><p>${escapeHtml(preview.action)} · ${escapeHtml(preview.targetId)}</p></div><span class="badge ${preview.irreversible ? 'danger' : preview.requiresApproval ? 'warning' : 'success'}">${preview.irreversible ? 'Необратимо' : preview.requiresApproval ? 'Нужен второй администратор' : 'Можно применить'}</span></div><div class="card-body"><dl><dt>Риск</dt><dd>${escapeHtml(preview.risk || '—')}</dd><dt>Откат</dt><dd>${escapeHtml(preview.rollbackPath || '—')}</dd><dt>Истекает</dt><dd>${dateTime(preview.expiresAtMs)}</dd></dl><span class="visually-hidden">requiresApproval rollbackPath irreversible</span>${preview.requiresApproval ? `<div class="actions"><button class="button" data-action="safety-request-approval" type="button">Запросить подтверждение</button><div class="field"><label for="safety-approval-id">ID подтверждения второго администратора</label><input id="safety-approval-id" value="${escapeHtml(model.approvalId || '')}" autocomplete="off"></div><div class="field"><label for="safety-approval-reason">Основание подтверждения</label><input id="safety-approval-reason" maxlength="500"></div><button class="button" data-action="safety-approve" type="button">Подтвердить как второй администратор</button></div>` : ''}<div class="field"><label for="safety-confirmation">Точное подтверждение</label><input id="safety-confirmation" placeholder="${escapeHtml(preview.confirmation || '')}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="safety-discard-preview" type="button">Отмена</button><button class="button primary" data-action="safety-apply-preview" type="button">Применить</button></div></div></section>`;
+  return `<section class="card section moderation-preview"><div class="card-header"><div><h2>Предпросмотр изменения</h2><p>${escapeHtml(preview.action)} · ${escapeHtml(preview.targetId)}</p></div><span class="badge ${preview.irreversible ? 'danger' : preview.requiresApproval ? 'warning' : 'success'}">${preview.irreversible ? 'Необратимо' : preview.requiresApproval ? 'Нужен второй администратор' : 'Можно применить'}</span></div><div class="card-body"><dl><dt>Риск</dt><dd>${escapeHtml(preview.risk || '—')}</dd><dt>Откат</dt><dd>${escapeHtml(preview.rollbackPath || '—')}</dd><dt>Истекает</dt><dd>${dateTime(preview.expiresAtMs)}</dd></dl><span class="visually-hidden">requiresApproval rollbackPath irreversible</span>${preview.requiresApproval ? `<div class="actions"><button class="button" data-action="safety-request-approval" type="button"${model.approvalId ? ' disabled' : ''}>${model.approvalId ? 'Подтверждение запрошено' : 'Запросить подтверждение'}</button>${model.approvalId ? `<span class="hint">ID запроса только для сверки: <code>${escapeHtml(model.approvalId)}</code>. Второй администратор подтверждает строку в очереди на сводке.</span>` : ''}</div>` : ''}<div class="field"><label for="safety-confirmation">Точное подтверждение</label><input id="safety-confirmation" placeholder="${escapeHtml(preview.confirmation || '')}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="safety-discard-preview" type="button">Отмена</button><button class="button primary" data-action="safety-apply-preview" type="button">Применить</button></div></div></section>`;
 }
 
 function renderSafetyModerationCenterRaw(model, { escapeHtml, can }) {
@@ -141,7 +179,7 @@ function renderSafetyModerationCenterRaw(model, { escapeHtml, can }) {
   const tabs = visibleViews.map(([id, label]) => `<button class="${model.view === id ? 'active' : ''}" data-action="safety-set-view" data-safety-view="${id}" type="button" aria-pressed="${model.view === id}" title="Открыть ${escapeHtml(label)}" data-tooltip="Открыть ${escapeHtml(label)}">${escapeHtml(label)}</button>`).join('');
   const mobile = visibleViews.map(([id, label]) => option(id, model.view, label)).join('');
   let content = '';
-  if (model.view === 'overview') content = overview(model, escapeHtml);
+  if (model.view === 'overview') content = overview(model, escapeHtml, can);
   else if (model.view === 'user-reports') content = reportRows(model, escapeHtml, can);
   else if (model.view === 'safety-flags') content = `${sensitiveDetail(model, escapeHtml)}${flagRows(model, escapeHtml, can)}`;
   else if (model.view === 'age-consent' || model.view === 'policy-evidence') content = evidence(model, escapeHtml);

@@ -23,20 +23,64 @@ export function createSafetyModerationController(context) {
     return 'ready';
   }
 
+  async function loadSafetyApprovals() {
+    if (!context.can('users.moderation.approve')) {
+      patch({ approvals: { state: 'empty', items: [], error: '' } });
+      return;
+    }
+    patch({ approvals: { ...model().approvals, state: 'loading', error: '' } });
+    context.render();
+    try {
+      const result = await context.actions().listSafetyModerationApprovals();
+      const items = Array.isArray(result?.items) ? result.items : [];
+      patch({ approvals: { state: items.length ? 'ready' : 'empty', items, error: '' } });
+    } catch (error) {
+      patch({ approvals: { state: 'error', items: model().approvals.items || [], error: context.errorMessage(error) } });
+    } finally {
+      context.render();
+    }
+  }
+
+  async function loadSafetyHistory() {
+    if (!context.can('users.moderation.restore')) {
+      patch({ history: { state: 'empty', items: [], error: '' } });
+      return;
+    }
+    patch({ history: { ...model().history, state: 'loading', error: '' } });
+    context.render();
+    try {
+      const result = await context.actions().listSafetyModerationHistory();
+      const items = Array.isArray(result?.items) ? result.items : [];
+      patch({ history: { state: items.length ? 'ready' : 'empty', items, error: '' } });
+    } catch (error) {
+      patch({ history: { state: 'error', items: model().history.items || [], error: context.errorMessage(error) } });
+    } finally {
+      context.render();
+    }
+  }
+
+  async function loadOverviewResources() {
+    await Promise.allSettled([loadSafetyApprovals(), loadSafetyHistory()]);
+  }
+
   async function load(append = false) {
     const input = request(append ? model().nextCursor : '');
     patch({ state: 'loading', filters: input.filters, error: '' });
     context.render();
+    const overviewResources = !append && model().view === 'overview' ? loadOverviewResources() : Promise.resolve();
+    let workspaceError = null;
     try {
       const workspace = await context.actions().getSafetyModerationWorkspace(input);
       const items = append ? [...model().items, ...(workspace.items || [])] : (workspace.items || []);
       patch({ workspace, items, nextCursor: String(workspace.nextCursor || ''), snapshotCursor: String(workspace.snapshotCursor || ''), selectedIds: [], state: deriveState(workspace, items), error: '' });
     } catch (error) {
       patch({ state: 'error', error: context.errorMessage(error) });
-      throw error;
+      workspaceError = error;
     } finally {
+      await overviewResources;
       context.render();
     }
+    if (workspaceError) throw workspaceError;
   }
 
   async function preview(action, targetId, payload, reason = reasonFor(targetId)) {
@@ -102,7 +146,10 @@ export function createSafetyModerationController(context) {
         else if (action === 'safety-preview-unban') await preview('user_unban', target.dataset.targetId, { historyId: '' });
         else if (action === 'safety-preview-flag') await preview('safety_set_disposition', target.dataset.targetId, { handled: true, disposition: value(`safety-disposition-${target.dataset.targetId}`), note: value(`safety-note-${target.dataset.targetId}`) });
         else if (action === 'safety-preview-flags-bulk') await preview('safety_handle_bulk', model().selectedIds[0] || 'bulk-flags', { targetIds: model().selectedIds, disposition: 'reviewed', note: '' }, bulkReason());
-        else if (action === 'safety-preview-restore') await preview('restore_operation', target.dataset.targetId, { operationId: target.dataset.operationId });
+        else if (action === 'safety-preview-restore') {
+          const operationId = target.dataset.operationId || '';
+          await preview('restore_operation', target.dataset.targetId, { operationId }, value(`safety-history-reason-${operationId}`));
+        }
         else if (action === 'safety-request-approval') {
           const current = model().preview;
           if (!current) return true;
@@ -114,19 +161,34 @@ export function createSafetyModerationController(context) {
           context.message(`Запрос подтверждения создан: ${result.approvalId || 'ID не получен'}. Второй администратор должен его подтвердить.`, 'success');
           context.render();
         } else if (action === 'safety-approve') {
-          const approvalId = value('safety-approval-id') || model().approvalId;
-          const reason = value('safety-approval-reason');
-          if (!approvalId || !reason) return context.message('Укажите ID и основание подтверждения.', 'warning');
+          const approvalId = String(target.dataset.approvalId || '').trim();
+          const approval = (model().approvals.items || []).find((item) => item.approvalId === approvalId);
+          const reason = value(`safety-approval-reason-${approvalId}`);
+          if (!approval?.canApprove) return context.message('Инициатор запроса не может подтвердить собственную операцию.', 'warning');
+          if (!reason) return context.message('Укажите основание подтверждения этой строки.', 'warning');
           const key = `approve:${approvalId}`;
           const operationKeys = { ...model().operationKeys, [key]: model().operationKeys[key] || context.id('safety-approve-operation') };
           patch({ operationKeys });
           await context.actions().approveSafetyModerationMutation({ approvalId, reason, requestId: context.id('safety-approve'), idempotencyKey: operationKeys[key] });
-          patch({ approvalId });
           context.message('Второй администратор подтвердил операцию.', 'success');
+          await loadSafetyApprovals();
+        } else if (action === 'safety-resume-bulk') {
+          const manifestId = String(target.dataset.manifestId || '').trim();
+          const reason = value(`safety-bulk-resume-reason-${manifestId}`);
+          if (!manifestId || !reason) return context.message('Укажите основание продолжения пакетной операции.', 'warning');
+          const key = `resume:${manifestId}`;
+          const operationKeys = { ...model().operationKeys, [key]: model().operationKeys[key] || context.id('safety-bulk-resume-operation') };
+          patch({ operationKeys });
+          const result = await context.actions().resumeSafetyModerationBulk({ manifestId, reason, requestId: context.id('safety-bulk-resume'), idempotencyKey: operationKeys[key] });
+          const nextOperationKeys = { ...model().operationKeys };
+          delete nextOperationKeys[key];
+          patch({ operationKeys: nextOperationKeys });
+          context.message(`Пакетная операция продолжена: ${Number(result?.bulk?.processedCount || 0)} из ${Number(result?.bulk?.targetCount || 0)}.`, 'success');
+          await loadSafetyHistory();
         } else if (action === 'safety-apply-preview') {
           const current = model().preview;
           const confirmation = value('safety-confirmation');
-          const approvalId = value('safety-approval-id') || model().approvalId;
+          const approvalId = model().approvalId;
           if (!current || confirmation !== current.confirmation) return context.message('Точное подтверждение не совпадает.', 'warning');
           if (current.requiresApproval && !approvalId) return context.message('Сначала требуется подтверждение второго администратора.', 'warning');
           const key = `apply:${current.previewId}`;

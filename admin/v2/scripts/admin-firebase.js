@@ -102,8 +102,11 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const getSafetyModerationSensitiveDetailCallable = httpsCallable(functionsUs, 'adminGetSafetyModerationSensitiveDetail');
   const previewSafetyModerationMutationCallable = httpsCallable(functionsUs, 'adminPreviewSafetyModerationMutation');
   const requestSafetyModerationApprovalCallable = httpsCallable(functionsUs, 'adminRequestSafetyModerationApproval');
+  const listSafetyModerationApprovalsCallable = httpsCallable(functionsUs, 'adminListSafetyModerationApprovals');
+  const listSafetyModerationHistoryCallable = httpsCallable(functionsUs, 'adminListSafetyModerationHistory');
   const approveSafetyModerationMutationCallable = httpsCallable(functionsUs, 'adminApproveSafetyModerationMutation');
   const applySafetyModerationMutationCallable = httpsCallable(functionsUs, 'adminApplySafetyModerationMutation');
+  const resumeSafetyModerationBulkCallable = httpsCallable(functionsUs, 'adminResumeSafetyModerationBulk');
   const websiteInboxListCallable = httpsCallable(functionsUs, 'adminWebsiteInboxList');
   const websiteInboxMarkReadCallable = httpsCallable(functionsUs, 'adminWebsiteInboxMarkRead');
   const listAssetJobsCallable = httpsCallable(functionsUs, 'adminListAssetJobs');
@@ -228,8 +231,11 @@ export async function createFirebaseAdminActions({ onAuth }) {
     getSafetyModerationSensitiveDetail: async (input) => unwrap(await getSafetyModerationSensitiveDetailCallable(input)),
     previewSafetyModerationMutation: async (input) => unwrap(await previewSafetyModerationMutationCallable(input)),
     requestSafetyModerationApproval: async (input) => unwrap(await requestSafetyModerationApprovalCallable(input)),
+    listSafetyModerationApprovals: async () => unwrap(await listSafetyModerationApprovalsCallable({})),
+    listSafetyModerationHistory: async () => unwrap(await listSafetyModerationHistoryCallable({})),
     approveSafetyModerationMutation: async (input) => unwrap(await approveSafetyModerationMutationCallable(input)),
     applySafetyModerationMutation: async (input) => unwrap(await applySafetyModerationMutationCallable(input)),
+    resumeSafetyModerationBulk: async (input) => unwrap(await resumeSafetyModerationBulkCallable(input)),
     listWebsiteInbox: async (input) => unwrap(await websiteInboxListCallable(input)),
     markWebsiteInboxRead: async (input) => unwrap(await websiteInboxMarkReadCallable(input)),
     listAssetJobs: async (input) => unwrap(await listAssetJobsCallable(input)),

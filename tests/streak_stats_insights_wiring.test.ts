@@ -50,5 +50,17 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toContain('if (devStatsCycleId === null)');
     expect(source).toContain('isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current)');
     expect(source).toContain('return finishStatsInsightsLoadCycle(analyticsRequestId');
+    expect(source).toMatch(/const snapshot = await refreshStatsCache\(studyTarget\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
+    expect(source).toMatch(/const activeLeagueBoost = await loadActiveLeagueBoost\(\)\.catch\(\(\) => null\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
+    expect(source).toMatch(/const activeLeagueGroupBoost = await getActiveLeagueGroupBoost\(\)\.catch\(\(\) => null\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
+    expect(source).toContain('isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))\n                setWeekLearned(counts)');
+  });
+
+  it('invalidates a dev action before it can start a new load cycle after blur', () => {
+    expect(source).toContain('const devActionCycleId = analyticsLoadRequestRef.current');
+    expect(source).toMatch(/const sums = await devRandomizeLifetimePathDailyMetrics\(7\);\s*if \(!isCurrentStatsInsightsLoadCycle\(devActionCycleId, analyticsLoadRequestRef\.current\)\)\s*return;\s*setLifetimeChartSeed/);
+    expect(source).toContain('statsScreenFocusedRef.current = false');
+    expect(source).toContain('const devBusyCycleId = devStatsCycleIdForBusy ?? devActionCycleId');
+    expect(source).toContain('statsScreenFocusedRef.current && isCurrentStatsInsightsLoadCycle(devBusyCycleId, analyticsLoadRequestRef.current)');
   });
 });

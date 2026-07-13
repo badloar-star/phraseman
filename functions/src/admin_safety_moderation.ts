@@ -219,6 +219,15 @@ export function decodeSafetyModerationCursor(value: string, scope: string): { sn
   }
 }
 
+export function safetyModerationAccessScope(requestScopeValue: string, role: string, permission: AdminPermission): string {
+  return requestScope({
+    definitionVersion: DEFINITION_VERSION,
+    requestScope: clean(requestScopeValue, 64),
+    role: clean(role, 40),
+    permission,
+  });
+}
+
 export function parseSafetyModerationRequest(value: unknown) {
   const input = record(value);
   const candidate = clean(input.view, 40) as SafetyModerationView;
@@ -236,8 +245,8 @@ export function parseSafetyModerationRequest(value: unknown) {
   const pageSize = Math.min(PAGE_MAX, Math.max(10, finite(input.pageSize) || 50));
   const exportCsv = input.exportCsv === true;
   const scope = requestScope({ definitionVersion: DEFINITION_VERSION, view, filters, uid, exportCsv });
-  const cursor = decodeSafetyModerationCursor(clean(input.cursor, 500), scope);
-  return { view, filters, uid, pageSize, exportCsv, scope, cursor };
+  const cursorToken = clean(input.cursor, 500);
+  return { view, filters, uid, pageSize, exportCsv, scope, cursorToken };
 }
 
 export function requiredSafetyModerationPermission(view: SafetyModerationView, exportCsv: boolean): AdminPermission {
@@ -407,24 +416,45 @@ async function cleanupSnapshots(db: FirebaseFirestore.Firestore): Promise<void> 
   }
 }
 
-async function persistSnapshot(db: FirebaseFirestore.Firestore, actorUid: string, scope: string, payload: SafetyModerationSnapshotPayload): Promise<string> {
+async function persistSnapshot(
+  db: FirebaseFirestore.Firestore,
+  actorUid: string,
+  accessScope: string,
+  role: string,
+  permission: AdminPermission,
+  payload: SafetyModerationSnapshotPayload,
+): Promise<string> {
   const ref = db.collection('admin_safety_moderation_snapshots').doc();
   const chunks = packSafetyModerationSnapshot(payload);
   try { assertSafetySnapshotBatchFits(chunks); } catch { throw new HttpsError('resource-exhausted', 'safety_snapshot_too_large'); }
   const nowMs = Date.now();
   const batch = db.batch();
-  batch.create(ref, { actorUid, scope, definitionVersion: DEFINITION_VERSION, chunkCount: chunks.length, generatedAtMs: payload.generatedAtMs, createdAtMs: nowMs, expiresAtMs: nowMs + SNAPSHOT_TTL_MS });
+  batch.create(ref, { actorUid, accessScope, role, permission, definitionVersion: DEFINITION_VERSION, chunkCount: chunks.length, generatedAtMs: payload.generatedAtMs, createdAtMs: nowMs, expiresAtMs: nowMs + SNAPSHOT_TTL_MS });
   chunks.forEach((data, index) => batch.create(ref.collection('chunks').doc(String(index).padStart(4, '0')), { index, data }));
   await batch.commit();
   return ref.id;
 }
 
-async function loadSnapshot(db: FirebaseFirestore.Firestore, actorUid: string, scope: string, snapshotId: string): Promise<SafetyModerationSnapshotPayload> {
+async function loadSnapshot(
+  db: FirebaseFirestore.Firestore,
+  actorUid: string,
+  accessScope: string,
+  role: string,
+  permission: AdminPermission,
+  snapshotId: string,
+): Promise<SafetyModerationSnapshotPayload> {
   const ref = db.collection('admin_safety_moderation_snapshots').doc(snapshotId);
   const metaSnap = await ref.get();
   if (!metaSnap.exists) throw new HttpsError('failed-precondition', 'safety_snapshot_expired');
   const meta = record(metaSnap.data());
-  if (meta.actorUid !== actorUid || meta.scope !== scope || meta.definitionVersion !== DEFINITION_VERSION || finite(meta.expiresAtMs) <= Date.now()) throw new HttpsError('failed-precondition', 'safety_snapshot_expired');
+  if (
+    meta.actorUid !== actorUid
+    || meta.accessScope !== accessScope
+    || meta.role !== role
+    || meta.permission !== permission
+    || meta.definitionVersion !== DEFINITION_VERSION
+    || finite(meta.expiresAtMs) <= Date.now()
+  ) throw new HttpsError('failed-precondition', 'safety_snapshot_expired');
   const chunkCount = finite(meta.chunkCount);
   if (chunkCount < 1 || chunkCount > 11) throw new HttpsError('data-loss', 'safety_snapshot_corrupt');
   const chunks = await db.getAll(...Array.from({ length: chunkCount }, (_, index) => ref.collection('chunks').doc(String(index).padStart(4, '0'))));
@@ -441,17 +471,21 @@ export const adminGetSafetyModerationWorkspace = onCall(
     catch (error) { throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'invalid_safety_moderation_request'); }
     const permission = requiredSafetyModerationPermission(input.view, input.exportCsv);
     const role = requireRole(request, permission);
+    const accessScope = safetyModerationAccessScope(input.scope, role, permission);
+    let cursor: ReturnType<typeof decodeSafetyModerationCursor>;
+    try { cursor = decodeSafetyModerationCursor(input.cursorToken, accessScope); }
+    catch (error) { throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'invalid_cursor'); }
     const actorUid = request.auth!.uid;
     const db = admin.firestore();
-    let snapshotId = input.cursor?.snapshotId || '';
+    let snapshotId = cursor?.snapshotId || '';
     let payload: SafetyModerationSnapshotPayload;
-    if (input.cursor) payload = await loadSnapshot(db, actorUid, input.scope, input.cursor.snapshotId);
+    if (cursor) payload = await loadSnapshot(db, actorUid, accessScope, role, permission, cursor.snapshotId);
     else {
       await cleanupSnapshots(db);
       payload = await buildSnapshotPayload(db, role, input);
-      snapshotId = await persistSnapshot(db, actorUid, input.scope, payload);
+      snapshotId = await persistSnapshot(db, actorUid, accessScope, role, permission, payload);
     }
-    const offset = input.cursor?.offset || 0;
+    const offset = cursor?.offset || 0;
     const items = payload.items.slice(offset, offset + input.pageSize);
     const nextOffset = offset + items.length;
     const csv = input.exportCsv && input.view === 'user-reports' ? buildUserReportsCsv(payload.items as never[]) : null;
@@ -461,8 +495,8 @@ export const adminGetSafetyModerationWorkspace = onCall(
       view: input.view,
       items,
       totalMatched: payload.items.length,
-      nextCursor: nextOffset < payload.items.length ? encodeSafetyModerationCursor(snapshotId, nextOffset, input.scope) : '',
-      snapshotCursor: encodeSafetyModerationCursor(snapshotId, 0, input.scope),
+      nextCursor: nextOffset < payload.items.length ? encodeSafetyModerationCursor(snapshotId, nextOffset, accessScope) : '',
+      snapshotCursor: encodeSafetyModerationCursor(snapshotId, 0, accessScope),
       summary: payload.summary,
       sources: payload.sources,
       csv,

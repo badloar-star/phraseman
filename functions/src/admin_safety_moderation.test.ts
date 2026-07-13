@@ -12,6 +12,7 @@ import {
   packSafetyModerationSnapshot,
   parseSafetyModerationMutationInput,
   parseSafetyModerationRequest,
+  safetyModerationAccessScope,
   requiredSafetyModerationMutationPermission,
   requiredSafetyModerationPermission,
   unpackSafetyModerationSnapshot,
@@ -20,7 +21,7 @@ import {
 describe('Admin Safety & Moderation read contract', () => {
   test('normalizes supported views, filters and bounded page sizes', () => {
     expect(parseSafetyModerationRequest({ view: 'secrets', pageSize: 999 })).toMatchObject({
-      view: 'overview', pageSize: 100, cursor: null, exportCsv: false,
+      view: 'overview', pageSize: 100, cursorToken: '', exportCsv: false,
     });
     expect(parseSafetyModerationRequest({
       view: 'user-reports', uid: '../u-1', filters: { status: 'NEW', reason: 'OFFENSIVE_NICKNAME', query: ' Alice ' },
@@ -31,15 +32,27 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(parseSafetyModerationRequest({ view: 'ban-list', filters: { sort: 'sideways' }, pageSize: 1 })).toMatchObject({
       view: 'ban-list', pageSize: 10, filters: { status: '', reason: '', category: '', query: '', sort: 'date_desc' },
     });
-    expect(() => parseSafetyModerationRequest({ cursor: 'broken' })).toThrow('invalid_cursor');
+    expect(parseSafetyModerationRequest({ cursor: 'broken' })).toMatchObject({ cursorToken: 'broken' });
   });
 
   test('binds cursors to an immutable snapshot and exact request scope', () => {
     const request = parseSafetyModerationRequest({ view: 'safety-flags', uid: 'u1', filters: { status: 'open', category: 'self_harm' } });
-    const cursor = encodeSafetyModerationCursor('snap-a', 50, request.scope);
-    expect(decodeSafetyModerationCursor(cursor, request.scope)).toEqual({ snapshotId: 'snap-a', offset: 50 });
+    const adminScope = safetyModerationAccessScope(request.scope, 'admin', 'users.moderation.safety.read');
+    const cursor = encodeSafetyModerationCursor('snap-a', 50, adminScope);
+    expect(decodeSafetyModerationCursor(cursor, adminScope)).toEqual({ snapshotId: 'snap-a', offset: 50 });
     const changed = parseSafetyModerationRequest({ view: 'safety-flags', uid: 'u1', filters: { status: 'handled', category: 'self_harm' } });
-    expect(() => decodeSafetyModerationCursor(cursor, changed.scope)).toThrow('cursor_mismatch');
+    const changedScope = safetyModerationAccessScope(changed.scope, 'admin', 'users.moderation.safety.read');
+    expect(() => decodeSafetyModerationCursor(cursor, changedScope)).toThrow('cursor_mismatch');
+  });
+
+  test('invalidates an existing cursor after an administrator role or permission scope changes', () => {
+    const request = parseSafetyModerationRequest({ view: 'overview' });
+    const adminScope = safetyModerationAccessScope(request.scope, 'admin', 'users.moderation.read');
+    const cursor = encodeSafetyModerationCursor('snap-role-bound', 0, adminScope);
+    const downgradedScope = safetyModerationAccessScope(request.scope, 'support', 'users.moderation.read');
+    const otherPermissionScope = safetyModerationAccessScope(request.scope, 'admin', 'reports.read');
+    expect(() => decodeSafetyModerationCursor(cursor, downgradedScope)).toThrow('cursor_mismatch');
+    expect(() => decodeSafetyModerationCursor(cursor, otherPermissionScope)).toThrow('cursor_mismatch');
   });
 
   test('round-trips immutable snapshot payloads and enforces atomic batch limits', () => {

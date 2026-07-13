@@ -48,6 +48,12 @@ import {
 } from './help_board';
 
 describe('help_board contract helpers', () => {
+  it('keeps admin moderation behind strict App Check and community moderation RBAC', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'help_board.ts'), 'utf8');
+    expect(source).toMatch(/helpBoardAdminModerate\s*=\s*onCall\(\{[^}]*enforceAppCheck:\s*true/);
+    expect(source).toMatch(/helpBoardAdminModerate[\s\S]*?const token = request\.auth\?\.token;[\s\S]*?resolveAdminRole\(token\)[\s\S]*?hasPermission\(role, 'community\.moderate'\)/);
+  });
+
   it('routes global author bans through the Safety Center while preserving topic restrictions', () => {
     expect(() => validateHelpBoardAdminAction('ban_author')).toThrow('safety_moderation_required');
     expect(validateHelpBoardAdminAction('restrict_author')).toBe('restrict_author');
@@ -206,3 +212,5 @@ describe('help_board contract helpers', () => {
     expect(__helpBoardTestHooks.helpBoardBoardKey('en', 'ru')).toBe('en:ru');
   });
 });
+import fs from 'fs';
+import path from 'path';

@@ -3,7 +3,8 @@ import { defineSecret } from 'firebase-functions/params';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
-import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_OPENAI } from './callable_options';
+import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveJobConfig } from './openai_jobs_config';
 import { aiGloballyDisabled } from './remote_gates';
@@ -1316,14 +1317,16 @@ export function validateHelpBoardAdminAction(value: unknown): string {
   return action;
 }
 
-export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'admin_required');
+export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+  const token = request.auth?.token;
+  const role = resolveAdminRole(token);
+  if (!role || !hasPermission(role, 'community.moderate')) throw new HttpsError('permission-denied', 'community_moderation_required');
   const db = admin.firestore();
   const targetType = asText(request.data?.targetType, 20) as HelpBoardTargetType | 'report';
   const targetId = asText(request.data?.targetId, 160);
   const action = validateHelpBoardAdminAction(request.data?.action);
   const reason = asText(request.data?.reason, MAX_REPORT_REASON_LENGTH);
-  const adminEmail = asText(request.auth.token.email, 200) || 'admin';
+  const adminEmail = asText(token?.email, 200) || 'admin';
   if (!targetId) throw new HttpsError('invalid-argument', 'target_required');
 
   const now = Date.now();

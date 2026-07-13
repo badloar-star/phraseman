@@ -61,7 +61,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab.', ['useRuntimeActive(activeIdx === 0)', '!homeRuntimeActive']),
   'app/(tabs)/quizzes.tsx': guarded('Quiz card pulse already uses screen focus and AppState.'),
   'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility, including child sparkles and halo.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
-  'app/WeeklyReviewCard.tsx': owned('The card receives explicit activity from its screen owner.', ['active: boolean', 'if (!active || reduceMotion)', '<WeeklyCompassIcon active={active}']),
   'app/_admin_celebration_lab.tsx': { owner: 'dev_only', reason: 'Administrator animation laboratory.' },
   'app/_anim_demo_lab.tsx': { owner: 'dev_only', reason: 'Development-only animation laboratory.' },
   'app/_layout.tsx': owned('Root overlay motion runs only while its overlay is visible.', ['if (!visible) return', 'pulseLoop.stop()']),

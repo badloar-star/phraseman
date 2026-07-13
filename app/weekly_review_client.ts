@@ -22,6 +22,11 @@ import {
   type WeeklyReviewSnapshot,
   type WeeklyReviewV2,
 } from './weekly_review_types';
+import {
+  latencyBucket,
+  signalBucket,
+  trackWeeklyReviewEvent,
+} from './weekly_review_analytics';
 
 export type WeeklyReviewErrorCode =
   | 'offline'
@@ -204,10 +209,51 @@ async function requestDeduped(
   key: string,
   briefing: WeeklyReviewBriefingV2,
   request: WeeklyReviewClientDependencies['requestCallable'],
+  analytics?: {
+    signalCount: number;
+    studyTarget: 'en' | 'fr';
+    now: () => number;
+  },
 ): Promise<WeeklyReviewCallableResult> {
   const existing = weeklyReviewInFlight.get(key);
   if (existing) return existing;
-  const pending = request(briefing).finally(() => weeklyReviewInFlight.delete(key));
+  const startedAt = analytics?.now() ?? Date.now();
+  if (analytics) {
+    trackWeeklyReviewEvent('weekly_review_generate_started', {
+      tier: 'plus',
+      study_target: analytics.studyTarget,
+      signal_bucket: signalBucket(analytics.signalCount),
+      schema_version: WEEKLY_REVIEW_SCHEMA_VERSION,
+    });
+  }
+  const pending = request(briefing)
+    .then((result) => {
+      if (analytics) {
+        trackWeeklyReviewEvent('weekly_review_generate_succeeded', {
+          tier: 'plus',
+          study_target: analytics.studyTarget,
+          signal_bucket: signalBucket(analytics.signalCount),
+          result_source: result.idempotentReplay ? 'replay' : 'provider',
+          latency_bucket: latencyBucket(Math.max(0, analytics.now() - startedAt)),
+          schema_version: WEEKLY_REVIEW_SCHEMA_VERSION,
+        });
+      }
+      return result;
+    })
+    .catch((error: unknown) => {
+      if (analytics) {
+        trackWeeklyReviewEvent('weekly_review_generate_failed', {
+          tier: 'plus',
+          study_target: analytics.studyTarget,
+          signal_bucket: signalBucket(analytics.signalCount),
+          error_code: errorCode(error),
+          latency_bucket: latencyBucket(Math.max(0, analytics.now() - startedAt)),
+          schema_version: WEEKLY_REVIEW_SCHEMA_VERSION,
+        });
+      }
+      throw error;
+    })
+    .finally(() => weeklyReviewInFlight.delete(key));
   weeklyReviewInFlight.set(key, pending);
   return pending;
 }
@@ -246,7 +292,11 @@ export async function generateWeeklyReview(
   }
 
   try {
-    const result = await requestDeduped(key, briefingResult.briefing, deps.requestCallable);
+    const result = await requestDeduped(key, briefingResult.briefing, deps.requestCallable, {
+      signalCount: snapshot.signalCount,
+      studyTarget,
+      now: deps.now,
+    });
     if (!deps.isCurrentGeneration(token, token.stableId)) return { status: 'hydrating', snapshot };
     const envelope: WeeklyReviewStoredV2 = {
       schemaVersion: WEEKLY_REVIEW_SCHEMA_VERSION,

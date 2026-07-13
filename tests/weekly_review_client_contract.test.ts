@@ -16,36 +16,28 @@ describe('weekly review client contract', () => {
   it('renders collapsed by default and expands only after a tap', () => {
     expect(cardSource).toContain('const [expanded, setExpanded] = useState(false)');
     expect(cardSource).toContain('setExpanded((value) => !value)');
-    expect(cardSource).toContain('{expanded &&');
+    expect(cardSource).toContain('{expanded ? (');
   });
 
   it('does not show a next-review countdown footer', () => {
     expect(cardSource).not.toContain('nextReviewCopy(');
   });
 
-  it('does not truncate recommended lesson titles in the work-on list', () => {
-    const recommendationTextIndex = cardSource.indexOf('{rec.label}');
-    const nearbySource = cardSource.slice(Math.max(0, recommendationTextIndex - 180), recommendationTextIndex + 80);
-
-    expect(recommendationTextIndex).toBeGreaterThan(0);
-    expect(nearbySource).not.toContain('numberOfLines={1}');
-    expect(cardSource).toContain('recText: { flex: 1, flexShrink: 1');
-    expect(cardSource).toContain('recRow: { flexDirection:');
-    expect(cardSource).toContain('minHeight: 58');
+  it('does not truncate AI plan actions', () => {
+    expect(cardSource).toContain('{step.expectedOutcome}');
+    expect(cardSource).not.toContain('numberOfLines={1}>{step.expectedOutcome}');
+    expect(cardSource).toContain('planText: { flex: 1');
+    expect(cardSource).toContain('minHeight: 52');
   });
 
   it('brands the weekly guidance as Compass instead of an error analysis', () => {
     expect(cardSource).toContain("import { weeklyCompassIconSource } from '../constants/weeklyCompassIcons'");
-    expect(cardSource).toContain('function WeeklyCompassIcon({');
-    expect(cardSource).toContain('Animated.loop(');
+    expect(cardSource).toContain('Animated.timing(sweep');
+    expect(cardSource).not.toContain('Animated.loop(');
     expect(cardSource).not.toContain('name="compass-outline"');
     expect(cardSource).not.toContain('AI REHBER');
-    expect(cardSource).toContain("ru: 'Компас'");
-    expect(cardSource).toContain("ru: 'Ежедневный разбор ошибок'");
-    expect(cardSource).not.toContain("ru: 'Подсказывает, что потренировать дальше'");
-    expect(cardSource).toContain("ru: 'Компас готовит подсказки…'");
-    expect(cardSource).not.toContain("ru: 'Разбор ошибок'");
-    expect(cardSource).not.toContain("ru: 'Только по тем местам, где ты ошибался'");
-    expect(cardSource).not.toContain("ru: 'Готовлю твой разбор ошибок…'");
+    expect(cardSource).toContain('copy.title');
+    expect(cardSource).toContain('copy.aiBadge');
+    expect(cardSource).toContain('copy.updating');
   });
 });

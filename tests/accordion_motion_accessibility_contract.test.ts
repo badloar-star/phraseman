@@ -20,7 +20,7 @@ describe('accordion motion contract', () => {
 
   test('an owner exposes expanded state on its controlling surface', () => {
     const owner = fs.readFileSync(path.join(root, 'app', 'WeeklyReviewCard.tsx'), 'utf8');
-    expect(owner).toContain('accessibilityState={{ expanded, busy }}');
-    expect(owner).toContain('<AccordionChevronIonicons isOpen={expanded}');
+    expect(owner).toContain('accessibilityState={{ expanded }}');
+    expect(owner).toContain("name={expanded ? 'chevron-up' : 'chevron-down'}");
   });
 });

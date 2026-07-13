@@ -1119,6 +1119,7 @@ WITH raw_param_rows AS (
       AND channel_id IS NOT NULL AND channel_id!='' AND CHAR_LENGTH(channel_id)<=256
       AND NOT channel_id_unsafe_controls
       AND platform IN ('ios','android')
+      AND source IS NOT NULL AND source!=''
       AND NOT source_unsafe_controls
       AND CASE
         WHEN event_name IN ('youtube_home_entry_click','youtube_catalog_open') THEN source='home'

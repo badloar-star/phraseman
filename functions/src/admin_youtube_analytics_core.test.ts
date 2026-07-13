@@ -348,6 +348,21 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.quality.missingRequiredFields).toBe(3);
   });
 
+  test('counts missing and disallowed sources as invalid when valid rows also exist', () => {
+    const snapshot = aggregate([
+      event('youtube_home_entry_click', FROM + 1),
+      event('youtube_home_entry_click', FROM + 2, { source: undefined }),
+      event('youtube_home_entry_click', FROM + 3, { source: 'player' }),
+    ]);
+    expect(snapshot.summary.homeClicks).toBe(1);
+    expect(snapshot.quality).toMatchObject({
+      totalEvents: 3,
+      acceptedEvents: 1,
+      missingRequiredFields: 2,
+      state: 'partial',
+    });
+  });
+
   test('scopes all quality metrics and data-through to the selected video', () => {
     const onlyOutside = aggregate([
       event('youtube_video_select', FROM + 20, { video_id: 'video-2' }),
@@ -726,6 +741,7 @@ describe('BigQuery SQL semantic contract', () => {
     expect(sql).not.toMatch(/schema_version[\s\S]{0,200}value\.string_value/);
     expect(sql).toContain('duplicate_parameter_keys');
     expect(sql).toContain("COUNTIF(key='source') source_count");
+    expect(sql).toContain("source IS NOT NULL AND source!=''");
     expect(sql).toContain("event_name='youtube_channel_open' AND source='catalog'");
     expect(sql).toContain("event_name='youtube_channel_open' AND source='player'");
     expect(sql).toContain("source='player' AND NULLIF(video_id,'') IS NOT NULL");

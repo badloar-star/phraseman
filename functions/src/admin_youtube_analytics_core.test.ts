@@ -185,6 +185,15 @@ describe('fixture aggregation behavioral oracle', () => {
     })).toThrow(InvalidYoutubeAnalyticsRequestError);
   });
 
+  test('requires fixture generation time to be nonnegative and at or after the window', () => {
+    const base = { fromMicros: FROM, toMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    expect(() => aggregateYoutubeAnalytics([], { ...base, generatedAtMicros: -1 }))
+      .toThrow(InvalidYoutubeAnalyticsRequestError);
+    expect(() => aggregateYoutubeAnalytics([], { ...base, generatedAtMicros: TO - 1 }))
+      .toThrow(InvalidYoutubeAnalyticsRequestError);
+    expect(() => aggregateYoutubeAnalytics([], { ...base, generatedAtMicros: TO })).not.toThrow();
+  });
+
   test('distinguishes starts from watch attempts and handles unfinished attempts', () => {
     const snapshot = aggregate([
       event('youtube_playback_start', FROM + 1),
@@ -514,6 +523,20 @@ describe('fixture aggregation behavioral oracle', () => {
     ['user_pseudo_id', 'session_id', 'playback_id', 'event_id', 'raw'].forEach(forbidden => expect(json).not.toContain(forbidden));
   });
 
+  test('preserves legitimate title joiners and drops dangerous title controls in fixture normalization', () => {
+    const validTitle = '👩‍💻 می‌رود';
+    expect(aggregate([event('youtube_video_select', FROM + 1, { video_title: validTitle })]).videos[0].title)
+      .toBe(validTitle);
+    expect(aggregate([event('youtube_video_select', FROM + 2, { video_title: 'unsafe\u202Etitle' })]).videos[0].title)
+      .toBeNull();
+    expect(aggregate([event('youtube_video_select', FROM + 3, { video_id: 'video\u200Djoiner' })]).quality)
+      .toMatchObject({ acceptedEvents: 0, missingRequiredFields: 1 });
+    expect(aggregate([event('youtube_home_entry_click', FROM + 4, { event_id: '\tevent-id' })]).quality)
+      .toMatchObject({ acceptedEvents: 0, missingRequiredFields: 1 });
+    expect(aggregate([event('youtube_video_select', FROM + 5, { video_id: '\tvideo-1' })], { videoId: 'video-1' }).quality)
+      .toMatchObject({ totalEvents: 1, acceptedEvents: 0, missingRequiredFields: 1 });
+  });
+
   test('keeps a high-multiplicity session funnel nonmultiplicative', () => {
     const rows: YoutubeAnalyticsFixtureEvent[] = [];
     for (let index = 0; index < 40; index += 1) {
@@ -590,6 +613,13 @@ function singleWatchDecoderRows(): Array<{ row_kind: string; payload_json: strin
   return rows;
 }
 
+function decoderRowsWithTitle(title: string): Array<{ row_kind: string; payload_json: string }> {
+  const rows = singleWatchDecoderRows();
+  const index = rows.findIndex(row => row.row_kind === 'video');
+  rows[index] = { ...rows[index], payload_json: JSON.stringify({ ...JSON.parse(rows[index].payload_json), title }) };
+  return rows;
+}
+
 describe('BigQuery SQL semantic contract', () => {
   const builtQuery = () => buildYoutubeAnalyticsSql('project-1.analytics_123.events_*', {
     fromMicros: FROM,
@@ -636,6 +666,16 @@ describe('BigQuery SQL semantic contract', () => {
     expect(built.params).toMatchObject({ fromSuffix: '20260101', toSuffix: '20260102' });
   });
 
+  test('rejects negative or reversed SQL windows before constructing suffixes', () => {
+    const input = { filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    expect(() => buildYoutubeAnalyticsSql('project-1.analytics_123.events_*', { ...input, fromMicros: -1, toMicros: TO }))
+      .toThrow(InvalidYoutubeAnalyticsRequestError);
+    expect(() => buildYoutubeAnalyticsSql('project-1.analytics_123.events_*', { ...input, fromMicros: FROM, toMicros: -1 }))
+      .toThrow(InvalidYoutubeAnalyticsRequestError);
+    expect(() => buildYoutubeAnalyticsSql('project-1.analytics_123.events_*', { ...input, fromMicros: TO, toMicros: FROM }))
+      .toThrow(InvalidYoutubeAnalyticsRequestError);
+  });
+
   test('contains dedupe, conflict-before-attempt, exact duration/active semantics, funnel, title and stable limit contract', () => {
     const sql = builtQuery().sql;
     ['deduped', 'candidate_conflicts', 'valid_starts', 'active_watch_ms > 0', 'duration_ms BETWEEN 1 AND 86400000',
@@ -662,10 +702,15 @@ describe('BigQuery SQL semantic contract', () => {
       'video_attempt_metrics', 'watch_with_percentiles', 'video_watch_metrics']
       .forEach(stage => expect(sql).toContain(`${stage} AS`));
     expect(sql).not.toMatch(/FROM video_keys[\s\S]*?\(SELECT[\s\S]*?WHERE [^)]*k\.channel_id/);
-    expect(sql).not.toContain('EXISTS(');
+    expect(sql).not.toMatch(/select_paths AS \([\s\S]*?EXISTS\([\s\S]*?\), start_paths AS/);
     expect(sql).not.toMatch(/start_paths AS \([\s\S]*?QUALIFY ROW_NUMBER[\s\S]*?\), c25_paths AS/);
     expect(sql).toContain('result_rows AS');
     expect(sql).toContain('ORDER BY section_order,first_number,second_number,first_text,second_text');
+    expect(sql).toContain('TO_CODE_POINTS(video_title)');
+    expect(sql).toContain('code_point IN (1564,8206,8207,8234,8235,8236,8237,8238,8294,8295,8296,8297,65279)');
+    expect(sql).not.toContain('code_point IN (8204,8205');
+    expect(sql).toContain("REGEXP_CONTAINS(IFNULL(event_id,''),r'[\\p{Cc}\\p{Cf}]') event_id_unsafe_controls");
+    expect(sql).toContain('AND NOT event_id_unsafe_controls');
   });
 
   test('exports a pure dry-run-ready BigQuery configuration with explicit parameter types', () => {
@@ -791,6 +836,26 @@ describe('BigQuery SQL semantic contract', () => {
     malformed.splice(malformed.length - 1, 0, video('safe', '\uD800'));
     expect(() => decodeYoutubeAnalyticsQueryRows(malformed, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
   });
+
+  test('decoder allows title ZWJ/ZWNJ but rejects dangerous title control classes', () => {
+    const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    expect(() => decodeYoutubeAnalyticsQueryRows(decoderRowsWithTitle('👩‍💻 می‌رود'), context)).not.toThrow();
+    const unsafeIdentifier = singleWatchDecoderRows();
+    const videoIndex = unsafeIdentifier.findIndex(row => row.row_kind === 'video');
+    unsafeIdentifier[videoIndex] = { ...unsafeIdentifier[videoIndex], payload_json: JSON.stringify({
+      ...JSON.parse(unsafeIdentifier[videoIndex].payload_json), videoId: 'video\u200Djoiner',
+    }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(unsafeIdentifier, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+  });
+
+  test.each(['\u0001', '\u061C', '\u200E', '\u200F', '\u202A', '\u202E', '\u2066', '\u2069', '\uFEFF'])(
+    'decoder rejects prohibited title control %p',
+    control => {
+      const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+      expect(() => decodeYoutubeAnalyticsQueryRows(decoderRowsWithTitle(`safe${control}text`), context))
+        .toThrow(InvalidYoutubeAnalyticsRequestError);
+    },
+  );
 
   test('decoder rejects percentile statistics above total or the per-attempt maximum', () => {
     const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };

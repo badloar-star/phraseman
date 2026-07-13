@@ -279,10 +279,20 @@ function isWellFormedUnicode(value: string): boolean {
   return true;
 }
 
-function boundedString(value: unknown, max = 256): string {
+const DANGEROUS_TITLE_FORMATS = /[\u061C\u200E\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/u;
+
+function hasUnsafeTextControls(value: string, title: boolean): boolean {
+  return title ? /\p{Cc}/u.test(value) || DANGEROUS_TITLE_FORMATS.test(value) : /[\p{Cc}\p{Cf}]/u.test(value);
+}
+
+function boundedString(value: unknown, max = 256, title = false): string {
   if (typeof value !== 'string') return '';
   const result = value.trim();
-  return result && isWellFormedUnicode(result) && [...result].length <= max ? result : '';
+  return result && isWellFormedUnicode(value) && !hasUnsafeTextControls(value, title) && [...result].length <= max ? result : '';
+}
+
+function trimmedFixtureDimension(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
 }
 
 function integer(value: unknown): number | null {
@@ -340,7 +350,7 @@ function validBase(row: YoutubeAnalyticsFixtureEvent): ValidEvent | null {
   if ((name === 'youtube_playback_checkpoint' || name === 'youtube_playback_end') && active == null) return null;
   return {
     name, at, schema: 1, eventId, user, session, platform, channel, video,
-    title: boundedString(row.video_title, 4096), playback, active, duration,
+    title: boundedString(row.video_title, 4096, true), playback, active, duration,
   };
 }
 
@@ -492,10 +502,13 @@ export function aggregateYoutubeAnalytics(
     readonly filters: NormalizedYoutubeAnalyticsRequest;
   },
 ): YoutubeAnalyticsSnapshot {
-  if (!Number.isSafeInteger(input.fromMicros) || !Number.isSafeInteger(input.toMicros) || input.fromMicros >= input.toMicros) {
+  if (!Number.isSafeInteger(input.fromMicros) || !Number.isSafeInteger(input.toMicros)
+    || input.fromMicros < 0 || input.fromMicros >= input.toMicros) {
     throw new InvalidYoutubeAnalyticsRequestError('fromMicros and toMicros must be safe integers with from < to');
   }
-  if (!Number.isSafeInteger(input.generatedAtMicros)) throw new InvalidYoutubeAnalyticsRequestError('generatedAtMicros is invalid');
+  if (!Number.isSafeInteger(input.generatedAtMicros) || input.generatedAtMicros < input.toMicros) {
+    throw new InvalidYoutubeAnalyticsRequestError('generatedAtMicros is invalid');
+  }
   const filters = normalizeYoutubeAnalyticsRequest(input.filters);
   const quality: YoutubeAnalyticsQuality = {
     state: 'empty', totalEvents: 0, acceptedEvents: 0, validationRatio: 0,
@@ -510,8 +523,8 @@ export function aggregateYoutubeAnalytics(
     const at = integer(row.event_timestamp);
     if (!EVENT_SET.has(row.event_name) || at == null || at < input.fromMicros || at >= input.toMicros) continue;
     const rawInScope = (filters.platform === 'all' || row.platform === filters.platform)
-      && (!filters.channelId || boundedString(row.channel_id) === filters.channelId)
-      && (!filters.videoId || boundedString(row.video_id) === filters.videoId);
+      && (!filters.channelId || trimmedFixtureDimension(row.channel_id) === filters.channelId)
+      && (!filters.videoId || trimmedFixtureDimension(row.video_id) === filters.videoId);
     if (rawInScope) {
       quality.totalEvents += 1;
       dataThroughMicros = Math.max(dataThroughMicros ?? at, at);
@@ -691,11 +704,11 @@ function queryCount(payload: Record<string, unknown>, field: string): number {
   return value;
 }
 
-function queryText(payload: Record<string, unknown>, field: string, nullable = false, max = 256): string | null {
+function queryText(payload: Record<string, unknown>, field: string, nullable = false, max = 256, title = false): string | null {
   const value = payload[field];
   if (value == null && nullable) return null;
   if (typeof value !== 'string' || !value || value !== value.trim() || !isWellFormedUnicode(value)
-    || /[\p{Cc}\p{Cf}]/u.test(value) || [...value].length > max) {
+    || hasUnsafeTextControls(value, title) || [...value].length > max) {
     throw new InvalidYoutubeAnalyticsRequestError(`Invalid query field: ${field}`);
   }
   return value;
@@ -752,7 +765,7 @@ function decodeVideo(payload: Record<string, unknown>): YoutubeAnalyticsVideoRow
   exactPayloadKeys(payload, ['channelId', 'videoId', 'title', 'videoSelects', 'playbackStarts', 'anonymousInstances',
     'activeWatchMs', 'averageActiveWatchMs', 'p50ActiveWatchMs', 'p90ActiveWatchMs',
     'completed25', 'completed50', 'completed75', 'completed95']);
-  const title = queryText(payload, 'title', true, 100);
+  const title = queryText(payload, 'title', true, 100, true);
   return {
     channelId: queryText(payload, 'channelId') as string,
     videoId: queryText(payload, 'videoId') as string,
@@ -999,7 +1012,8 @@ export function buildYoutubeAnalyticsSql(
   input: { readonly fromMicros: number; readonly toMicros: number; readonly filters: NormalizedYoutubeAnalyticsRequest },
 ): { sql: string; params: YoutubeAnalyticsQueryParams; rowKinds: readonly YoutubeAnalyticsQueryRowKind[] } {
   const table = validateBigQueryEventsTable(eventsTable);
-  if (!Number.isSafeInteger(input.fromMicros) || !Number.isSafeInteger(input.toMicros) || input.fromMicros >= input.toMicros) {
+  if (!Number.isSafeInteger(input.fromMicros) || !Number.isSafeInteger(input.toMicros)
+    || input.fromMicros < 0 || input.toMicros < 0 || input.fromMicros >= input.toMicros) {
     throw new InvalidYoutubeAnalyticsRequestError('Invalid SQL window');
   }
   const filters = normalizeYoutubeAnalyticsRequest(input.filters);
@@ -1044,10 +1058,20 @@ WITH raw_param_rows AS (
 ), normalized_window AS (
   SELECT event_name,event_timestamp,TRIM(user_pseudo_id) user_pseudo_id,TRIM(event_id) event_id,
     TRIM(session_id) session_id,platform,TRIM(channel_id) channel_id,TRIM(video_id) video_id,
-    IF(CHAR_LENGTH(TRIM(video_title))<=4096,TRIM(video_title),'') video_title,
+    IF(CHAR_LENGTH(TRIM(video_title))<=4096 AND NOT EXISTS(
+      SELECT 1 FROM UNNEST(IFNULL(TO_CODE_POINTS(video_title),ARRAY<INT64>[])) code_point
+      WHERE code_point BETWEEN 0 AND 31 OR code_point BETWEEN 127 AND 159
+        OR code_point IN (1564,8206,8207,8234,8235,8236,8237,8238,8294,8295,8296,8297,65279)
+    ),TRIM(video_title),'') video_title,
     TRIM(playback_id) playback_id,schema_version,SAFE_CAST(active_watch_ms AS FLOAT64) active_watch_ms,
     SAFE_CAST(duration_ms AS FLOAT64) duration_ms,schema_version_count,event_id_count,session_id_count,
-    platform_count,channel_id_count,video_id_count,playback_id_count,active_watch_ms_count
+    platform_count,channel_id_count,video_id_count,playback_id_count,active_watch_ms_count,
+    REGEXP_CONTAINS(IFNULL(event_id,''),r'[\\p{Cc}\\p{Cf}]') event_id_unsafe_controls,
+    REGEXP_CONTAINS(IFNULL(user_pseudo_id,''),r'[\\p{Cc}\\p{Cf}]') user_unsafe_controls,
+    REGEXP_CONTAINS(IFNULL(session_id,''),r'[\\p{Cc}\\p{Cf}]') session_id_unsafe_controls,
+    REGEXP_CONTAINS(IFNULL(channel_id,''),r'[\\p{Cc}\\p{Cf}]') channel_id_unsafe_controls,
+    REGEXP_CONTAINS(IFNULL(video_id,''),r'[\\p{Cc}\\p{Cf}]') video_id_unsafe_controls,
+    REGEXP_CONTAINS(IFNULL(playback_id,''),r'[\\p{Cc}\\p{Cf}]') playback_id_unsafe_controls
   FROM raw_extracted
 ), classified AS (
   SELECT *,
@@ -1058,12 +1082,16 @@ WITH raw_param_rows AS (
       AS duplicate_parameter_keys,
     IFNULL(schema_version = 1,FALSE) AS known_schema,
     event_id IS NOT NULL AND event_id!='' AND CHAR_LENGTH(event_id)<=256
+      AND NOT event_id_unsafe_controls
       AND user_pseudo_id IS NOT NULL AND user_pseudo_id!='' AND CHAR_LENGTH(user_pseudo_id)<=256
+      AND NOT user_unsafe_controls
       AND session_id IS NOT NULL AND session_id!='' AND CHAR_LENGTH(session_id)<=256
+      AND NOT session_id_unsafe_controls
       AND channel_id IS NOT NULL AND channel_id!='' AND CHAR_LENGTH(channel_id)<=256
+      AND NOT channel_id_unsafe_controls
       AND platform IN ('ios','android')
-      AND (event_name NOT IN ('youtube_video_select','youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end','youtube_external_video_open') OR (NULLIF(video_id,'') IS NOT NULL AND CHAR_LENGTH(video_id)<=256))
-      AND (event_name NOT IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end') OR (NULLIF(playback_id,'') IS NOT NULL AND CHAR_LENGTH(playback_id)<=256))
+      AND (event_name NOT IN ('youtube_video_select','youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end','youtube_external_video_open') OR (NULLIF(video_id,'') IS NOT NULL AND CHAR_LENGTH(video_id)<=256 AND NOT video_id_unsafe_controls))
+      AND (event_name NOT IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end') OR (NULLIF(playback_id,'') IS NOT NULL AND CHAR_LENGTH(playback_id)<=256 AND NOT playback_id_unsafe_controls))
       AND (event_name NOT IN ('youtube_playback_checkpoint','youtube_playback_end') OR active_watch_ms BETWEEN 0 AND 86400000)
       AS required_valid
   FROM normalized_window

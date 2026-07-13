@@ -1,8 +1,11 @@
 import { HttpsError } from 'firebase-functions/v2/https';
+import fs from 'fs';
+import path from 'path';
 import {
   buildUserProfileSummary,
   buildLearningSnapshot,
   applyAuthoritativeBan,
+  applyBanReconciliationToSummary,
   applySearchBanState,
   isSafeDocumentId,
   projectAdminRow,
@@ -97,15 +100,29 @@ describe('admin user profile read contracts', () => {
     });
   });
 
-  it('lets the authoritative banned_users document override a stale active users flag', () => {
+  it('uses banned_users as the authoritative state instead of a stale users flag', () => {
     expect(applyAuthoritativeBan({ uid: 'u1', banned: false }, true)).toEqual({ uid: 'u1', banned: true });
-    expect(applyAuthoritativeBan({ uid: 'u1', banned: true }, false)).toEqual({ uid: 'u1', banned: true });
+    expect(applyAuthoritativeBan({ uid: 'u1', banned: true }, false)).toEqual({ uid: 'u1', banned: false });
+    expect(applyBanReconciliationToSummary({ uid: 'u1', banned: false }, {
+      bannedDocumentExists: true, usersBanned: false, leaderboardPresent: true, chatRestricted: true,
+    })).toMatchObject({
+      uid: 'u1', banned: true, banState: 'banned',
+      banProjection: { projectionState: 'inconsistent', mismatches: ['leaderboard_present_while_banned', 'users_flag_missing'], chatRestricted: true },
+    });
   });
 
   it('marks search ban state unknown when the authoritative source failed', () => {
     expect(applySearchBanState({ uid: 'u1', banned: false }, false, true)).toEqual({ uid: 'u1', banned: false, banState: 'unknown' });
     expect(applySearchBanState({ uid: 'u1', banned: false }, true, false)).toEqual({ uid: 'u1', banned: true, banState: 'banned' });
     expect(applySearchBanState({ uid: 'u1', banned: false }, false, false)).toEqual({ uid: 'u1', banned: false, banState: 'active' });
+    expect(applySearchBanState({ uid: 'u1', banned: true }, false, false)).toEqual({ uid: 'u1', banned: false, banState: 'active' });
+  });
+
+  it('uses strict App Check for both user lookup callables', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_user_profile.ts'), 'utf8');
+    expect(source).toMatch(/adminSearchUsers\s*=\s*onCall\([\s\S]*?enforceAppCheck:\s*true/);
+    expect(source).toMatch(/adminGetUserProfile\s*=\s*onCall\([\s\S]*?enforceAppCheck:\s*true/);
+    expect(source).not.toContain("import { ENFORCE_APP_CHECK } from './callable_options'");
   });
 
   it('distinguishes empty, partial and failed sources instead of reporting false zeroes', () => {

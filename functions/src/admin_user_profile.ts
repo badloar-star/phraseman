@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission, resolveAdminRole } from './admin/permissions';
+import { buildBanReconciliation, type BanReconciliationInput } from './admin_global_ban_core';
 import { isVipActive, parseProgressMs } from './premium_status';
 
 const REGION = 'us-central1';
@@ -182,13 +182,23 @@ export function buildUserProfileSummary(uid: string, user: Row): Row {
 }
 
 export function applyAuthoritativeBan(summary: Row, bannedDocumentExists: boolean): Row {
-  return Object.freeze({ ...summary, banned: summary.banned === true || bannedDocumentExists });
+  return Object.freeze({ ...summary, banned: bannedDocumentExists });
 }
 
 export function applySearchBanState(summary: Row, bannedDocumentExists: boolean, sourceFailed: boolean): Row {
   if (sourceFailed) return Object.freeze({ ...summary, banState: 'unknown' });
-  const banned = summary.banned === true || bannedDocumentExists;
+  const banned = bannedDocumentExists;
   return Object.freeze({ ...summary, banned, banState: banned ? 'banned' : 'active' });
+}
+
+export function applyBanReconciliationToSummary(summary: Row, input: BanReconciliationInput): Row {
+  const projection = buildBanReconciliation(input);
+  return Object.freeze({
+    ...summary,
+    banned: projection.globalState === 'banned',
+    banState: projection.globalState === 'unavailable' ? 'unknown' : projection.globalState,
+    banProjection: projection,
+  });
 }
 
 export function sourceResult<T>(source: string, data: readonly T[], options: {
@@ -256,7 +266,7 @@ function searchSummary(summary: Row, matchReasons: readonly string[], identityRe
 }
 
 export const adminSearchUsers = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 15, memory: '256MiB' },
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 15, memory: '256MiB' },
   async (request) => {
     requireUserReader(request as { auth?: { token?: Row } });
     const input = parseUserSearchRequest(request.data);
@@ -402,7 +412,7 @@ function adapterSource(source: string, result: AdapterResult, fields: readonly s
 }
 
 export const adminGetUserProfile = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 20, memory: '512MiB' },
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 20, memory: '512MiB' },
   async (request) => {
     requireUserReader(request as { auth?: { token?: Row } });
     const { uid: requestedUid } = parseUserProfileRequest(request.data);
@@ -423,10 +433,11 @@ export const adminGetUserProfile = onCall(
     const canonicalUser = users.get(identity.canonicalUid) ?? requestedUser;
     const uid = identity.canonicalUid;
 
-    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, chatMessages, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
+    const [leaderboardSnap, arenaSnap, banRead, chatBanRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, chatMessages, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
       db.collection('leaderboard').doc(uid).get().catch(() => null),
       db.collection('arena_profiles').doc(uid).get().catch(() => null),
       db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
+      db.collection('league_chat_bans').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
       db.collection('leaderboard_stats').doc('global').get().catch(() => null),
       readRecentByField(db, 'error_reports', 'uid', uid),
       readRecentByField(db, 'user_reports', 'reportedUid', uid),
@@ -442,7 +453,12 @@ export const adminGetUserProfile = onCall(
     if (banRead.error || !banRead.snap) throw new HttpsError('unavailable', 'ban_status_unavailable');
     const banSnap = banRead.snap;
 
-    const summary = applyAuthoritativeBan(buildUserProfileSummary(uid, canonicalUser), banSnap?.exists === true);
+    const summary = applyBanReconciliationToSummary(buildUserProfileSummary(uid, canonicalUser), {
+      bannedDocumentExists: banSnap?.exists === true,
+      usersBanned: canonicalUser.banned === true,
+      leaderboardPresent: leaderboardSnap ? leaderboardSnap.exists : null,
+      chatRestricted: chatBanRead.error || !chatBanRead.snap ? null : chatBanRead.snap.exists,
+    });
     const progress = isRecord(canonicalUser.progress) ? canonicalUser.progress : {};
     const learning = Object.freeze({ ...buildLearningSnapshot(progress), lessonsCompleted: summary.lessonsCompleted });
     const directSource = (source: string, snap: FirebaseFirestore.DocumentSnapshot | null, fields: readonly string[]): Row => {
@@ -478,7 +494,7 @@ export const adminGetUserProfile = onCall(
       identity: { ...identity, aliases: [...users.keys()].filter((candidate) => candidate !== uid) },
       summary,
       sections: {
-        identity: { summary, banned: banSnap?.exists === true, ban: banSnap?.exists ? projectRows([withId(banSnap)], ['id', 'reason', 'bannedAt', 'bannedBy'])[0] : null },
+        identity: { summary, banned: banSnap?.exists === true, banProjection: summary.banProjection, ban: banSnap?.exists ? projectRows([withId(banSnap)], ['id', 'reason', 'bannedAt', 'bannedBy'])[0] : null },
         learning,
         competition: { leaderboard: sources.leaderboard, arena: sources.arena, percentileStats: sources.percentileStats },
         money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, referrals: sources.referrals, invitedBy: sources.invitedBy },

@@ -123,6 +123,20 @@ runIfEmulator('Admin Community Operations transactions', () => {
     expect((await db.collection('admin_log').where('action', '==', 'community.help-admin-comment').get()).size).toBe(1);
   });
 
+  it.each(['hidden', 'deleted'])('allows an admin reply in a %s Help Board thread with a moderated parent', async (status) => {
+    const db = admin.firestore();
+    const topicId = `topic-${status}`;
+    const parentId = `parent-${status}`;
+    await Promise.all([
+      db.collection('help_board_topics').doc(topicId).set({ boardKey: 'en:ru', targetLang: 'en', uiLang: 'ru', status, commentCount: 0, createdAt: 1000 }),
+      db.collection('help_board_comments').doc(parentId).set({ topicId, text: `${status} parent`, authorUid: 'moderated-user', authorName: 'Learner', status }),
+    ]);
+    const preview = await adminPreviewCommunityMutation.run(request({ action: 'help-admin-comment', targetId: `admin-comment-${status}`, reason: `Moderator reply in ${status} thread`, expectedVersion: 'missing', payload: { topicId, replyToCommentId: parentId, body: 'Official moderation reply.', postAsName: 'Phraseman Support' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(preview, `community-help-comment-${status}`);
+    expect((await db.collection('help_board_comments').doc(`admin-comment-${status}`).get()).data()).toMatchObject({ topicId, replyToCommentId: parentId, replyToText: `${status} parent`, status: 'visible', adminAuthored: true });
+    expect((await db.collection('help_board_topics').doc(topicId).get()).data()).toMatchObject({ commentCount: 1 });
+  });
+
   it('publishes community submissions from the unified moderator queue with the canonical inbox schema', async () => {
     const db = admin.firestore(); const queued = validSubmission(); await db.collection('community_pack_submissions').doc('queue-pack-1').set(queued);
     const preview = await adminPreviewCommunityMutation.run(request({ action: 'mod-queue-status', targetId: 'queue-pack-1', reason: 'Unified queue moderation completed', expectedVersion: documentVersion('queue-pack-1', queued), payload: { decision: 'approve', message: 'Queue approval' } }, 'admin-one')) as unknown as Row;

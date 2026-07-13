@@ -208,12 +208,11 @@ export const adminApplyCommunityMutation = onCall({ region: REGION, enforceAppCh
         const [topicSnap, replySnap] = await Promise.all([tx.get(topicRef), replyRef ? tx.get(replyRef) : Promise.resolve(null)]);
         if (!topicSnap.exists) throw new HttpsError('not-found', 'topic_not_found');
         const topic = asRecord(topicSnap.data());
-        if (cleanText(topic.status, 40) !== 'visible') throw new HttpsError('failed-precondition', 'topic_not_visible');
         let replyTo: NativeRow | undefined;
         if (replyToCommentId) {
           if (!replySnap?.exists) throw new HttpsError('not-found', 'reply_comment_not_found');
           replyTo = asRecord(replySnap.data());
-          if (cleanText(replyTo.topicId, 160) !== topicId || cleanText(replyTo.status, 40) !== 'visible') throw new HttpsError('failed-precondition', 'reply_comment_not_visible_in_topic');
+          if (cleanText(replyTo.topicId, 160) !== topicId) throw new HttpsError('failed-precondition', 'reply_comment_not_in_topic');
         }
         const nextCommentCount = Math.max(0, Number(topic.commentCount || 0)) + 1;
         const nextTopicMeta = { helpfulScore: Number(topic.helpfulScore || 0), commentCount: nextCommentCount, reportCount: Number(topic.reportCount || 0), createdAt: Number(topic.createdAt || nowMs), lastActivityAt: nowMs };

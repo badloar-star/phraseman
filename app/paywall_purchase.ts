@@ -104,6 +104,26 @@ export function storePriceTrim(raw: string | undefined | null): string {
   return raw.replace(/\s*\/\s*(mo|month|мес|місяць|месяц)(?![a-zа-яёіїєґ]).*/i, '').trim();
 }
 
+export type PurchaseErrorCategory =
+  | 'network_error'
+  | 'payment_error'
+  | 'store_error'
+  | 'configuration_error'
+  | 'sdk_other'
+  | 'unknown';
+
+/** Privacy-safe analytics category. Raw SDK messages may contain sensitive details. */
+export function purchaseErrorCategory(error: unknown): PurchaseErrorCategory {
+  if (!error || typeof error !== 'object') return 'unknown';
+  const code = String((error as { code?: unknown }).code ?? '').trim().toLowerCase();
+  if (!code) return 'unknown';
+  if (code.includes('network')) return 'network_error';
+  if (code.includes('payment') || code.includes('purchase_not_allowed')) return 'payment_error';
+  if (code.includes('store') || code.includes('product') || code.includes('package')) return 'store_error';
+  if (code.includes('config') || code.includes('api_key')) return 'configuration_error';
+  return 'sdk_other';
+}
+
 function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
   const raw = (pkg?.product as { pricePerMonthString?: string | null } | undefined)?.pricePerMonthString;
   return storePriceTrim(raw);

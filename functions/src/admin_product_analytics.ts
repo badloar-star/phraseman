@@ -748,6 +748,15 @@ function parsePayload(row: QueryRow): Record<string, unknown> | null {
   }
 }
 
+export function isAnalyticsExportPendingError(error: unknown): boolean {
+  const candidate = error as { code?: unknown; message?: unknown } | null;
+  const code = Number(candidate?.code);
+  const message = String(candidate?.message ?? '').toLowerCase();
+  return code === 404
+    || message.includes('does not match any table')
+    || message.includes('not found: table');
+}
+
 export const adminProductAnalytics = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK,
@@ -767,12 +776,19 @@ export const adminProductAnalytics = onCall({
   const now = new Date();
   const from = new Date(now.getTime() - (rangeDays - 1) * 24 * 60 * 60 * 1000);
   const bigquery = new BigQuery();
-  const [rows] = await bigquery.query({
-    query: queryText(datasetTable()),
-    params: { fromSuffix: yyyymmdd(from), toSuffix: yyyymmdd(now), platform },
-    location: bigQueryLocation(),
-    maximumBytesBilled: '5000000000',
-  }) as [QueryRow[], unknown];
+  let rows: QueryRow[] = [];
+  let exportPending = false;
+  try {
+    [rows] = await bigquery.query({
+      query: queryText(datasetTable()),
+      params: { fromSuffix: yyyymmdd(from), toSuffix: yyyymmdd(now), platform },
+      location: bigQueryLocation(),
+      maximumBytesBilled: '5000000000',
+    }) as [QueryRow[], unknown];
+  } catch (error) {
+    if (!isAnalyticsExportPendingError(error)) throw error;
+    exportPending = true;
+  }
 
   const screens: Record<string, unknown>[] = [];
   const lessons: Record<string, unknown>[] = [];

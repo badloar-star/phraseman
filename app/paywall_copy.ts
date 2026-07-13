@@ -72,6 +72,7 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   dialog_repeat_success: { accent: '#F5C76B', accent2: '#58D6FF', shardAmount: 180 },
   streak_milestone: { accent: '#F5C76B', accent2: '#FF8A5C', shardAmount: 180 },
   trainer_repeat_success: { accent: '#F5C76B', accent2: '#A78BFA', shardAmount: 180 },
+  constellations: { accent: '#8B7CFF', accent2: '#58D6FF', shardAmount: 420 },
   avatar_aura: { accent: '#E879F9', accent2: '#38BDF8', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };

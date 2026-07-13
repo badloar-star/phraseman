@@ -1,4 +1,8 @@
-import { clampProductAnalyticsDays, normalizeProductAnalyticsPlatform } from './admin_product_analytics';
+import {
+  clampProductAnalyticsDays,
+  isAnalyticsExportPendingError,
+  normalizeProductAnalyticsPlatform,
+} from './admin_product_analytics';
 import fs from 'fs';
 import path from 'path';
 
@@ -19,6 +23,12 @@ describe('admin product analytics input contract', () => {
     expect(normalizeProductAnalyticsPlatform('ios')).toBe('ios');
     expect(normalizeProductAnalyticsPlatform('android')).toBe('android');
     expect(normalizeProductAnalyticsPlatform('anything')).toBe('all');
+  });
+
+  it('returns an honest empty state while the first daily export is pending', () => {
+    expect(isAnalyticsExportPendingError({ code: 404, message: 'Not found: Dataset' })).toBe(true);
+    expect(isAnalyticsExportPendingError({ message: 'Wildcard table does not match any table' })).toBe(true);
+    expect(isAnalyticsExportPendingError({ code: 403, message: 'Access denied' })).toBe(false);
   });
 });
 

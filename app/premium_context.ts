@@ -67,6 +67,7 @@ export type PremiumContext =
   | 'dialog_repeat_success'
   | 'streak_milestone'
   | 'trainer_repeat_success'
+  | 'constellations'
   /** Премиум-аура вокруг аватара (лиги/Арена/друзья). */
   | 'avatar_aura'
   | 'generic';
@@ -114,6 +115,7 @@ export const PREMIUM_CONTEXT_VALUES = [
   'dialog_repeat_success',
   'streak_milestone',
   'trainer_repeat_success',
+  'constellations',
   'avatar_aura',
   'generic',
 ] as const satisfies readonly PremiumContext[];

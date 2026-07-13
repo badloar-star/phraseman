@@ -145,22 +145,20 @@ function newestTimestamp(...timestamps: (number | null)[]): number | null {
 async function reconcileGlobalUnqueued(
   accountScope: string,
   targetStates?: Partial<Record<SoftUpsellStudyTarget, SoftUpsellPersistedState>>,
-): Promise<{ en: SoftUpsellPersistedState; fr: SoftUpsellPersistedState; es: SoftUpsellPersistedState; timestamp: number | null }> {
+): Promise<{ states: Record<string, SoftUpsellPersistedState>; timestamp: number | null }> {
   const en = targetStates?.en ?? await readTargetUnqueued(accountScope, 'en');
   const fr = targetStates?.fr ?? await readTargetUnqueued(accountScope, 'fr');
   const es = targetStates?.es ?? await readTargetUnqueued(accountScope, 'es');
   const key = globalStorageKey(accountScope);
   const raw = await AsyncStorage.getItem(key);
   const globalState = parseGlobalState(raw);
-  const timestamp = newestTimestamp(
-    globalState.lastGlobalImpressionMs,
-    en.lastGlobalImpressionMs,
-    fr.lastGlobalImpressionMs,
-    es.lastGlobalImpressionMs,
-  );
+  const states: Record<string, SoftUpsellPersistedState> = { en, fr, es, ...targetStates };
+  const timestamp = newestTimestamp(globalState.lastGlobalImpressionMs, ...Object.values(states).map(
+    (state) => state.lastGlobalImpressionMs,
+  ));
   const canonical = JSON.stringify({ schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: timestamp });
   if (raw !== canonical) await AsyncStorage.setItem(key, canonical);
-  return { en, fr, es, timestamp };
+  return { states, timestamp };
 }
 
 export function readSoftUpsellState(
@@ -168,9 +166,10 @@ export function readSoftUpsellState(
   studyTarget: SoftUpsellStudyTarget,
 ): Promise<SoftUpsellPersistedState> {
   return serialize(async () => {
-    const reconciled = await reconcileGlobalUnqueued(accountScope);
+    const targetState = await readTargetUnqueued(accountScope, studyTarget);
+    const reconciled = await reconcileGlobalUnqueued(accountScope, { [studyTarget]: targetState });
     return {
-      ...reconciled[studyTarget],
+      ...targetState,
       lastGlobalImpressionMs: reconciled.timestamp,
     };
   });

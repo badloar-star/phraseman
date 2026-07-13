@@ -31,7 +31,7 @@ describe('soft upsell overlay occupancy contract', () => {
       'dailyPlan', 'levelUp', 'themedAlert', 'premiumCelebration',
       'vipCelebration', 'leagueResult', 'arenaSeasonResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-      'boonActivated', 'lessonResultsSequence', 'lessonCompleteNotif',
+      'boonActivated', 'compassBriefing', 'lessonResultsSequence', 'lessonCompleteNotif',
       'arenaRoomConfirm', 'collectibleDrop', 'shardsEarned',
       'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
       'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',

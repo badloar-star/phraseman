@@ -76,7 +76,7 @@ describe('stats insights client copy', () => {
     expect((await getStatsInsightsState('en', 10, 'ru')).kind).toBe('cached');
   });
 
-  it('calls the verified Premium callable once with only the analysis and links anonymous auth', async () => {
+  it('calls the verified Premium callable with the exact ru/en envelope and links anonymous auth', async () => {
     const a = analysis();
     mockCallable.mockResolvedValue({ data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } });
 
@@ -86,7 +86,15 @@ describe('stats insights client copy', () => {
     expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);
     expect(mockEnsureStableAuthLinkForStableId).toHaveBeenCalledWith('stable-user');
     expect(mockHttpsCallable).toHaveBeenCalledWith(expect.anything(), 'statsInsightsGenerate');
-    expect(mockCallable).toHaveBeenCalledWith({ analysis: a });
+    expect(mockCallable).toHaveBeenCalledWith({ analysis: a, lang: 'ru', studyTarget: 'en' });
+  });
+
+  it('sends another supported locale and target in the exact verified envelope', async () => {
+    const a = analysis();
+    mockCallable.mockResolvedValue({ data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } });
+
+    expect((await generateVerifiedStatsInsights({ analysis: a, isPremium: true, lang: 'uk', studyTarget: 'fr', nowMs: 10 })).kind).toBe('cached');
+    expect(mockCallable).toHaveBeenCalledWith({ analysis: a, lang: 'uk', studyTarget: 'fr' });
   });
 
   it('caches an exact successful response and replays it without a second call', async () => {
@@ -158,13 +166,14 @@ describe('stats insights client copy', () => {
       return { data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } };
     });
 
-    const first = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
-    const second = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
+    const first = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'es', nowMs: 10 });
+    const second = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', nowMs: 10 });
     await Promise.resolve();
     release();
 
     const [firstState, secondState] = await Promise.all([first, second]);
     expect(mockCallable).toHaveBeenCalledTimes(1);
+    expect(mockCallable).toHaveBeenCalledWith({ analysis: a, lang: 'ru', studyTarget: 'en' });
     expect(secondState).toEqual(firstState);
   });
 

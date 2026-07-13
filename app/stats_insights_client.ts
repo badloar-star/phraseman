@@ -367,7 +367,13 @@ interface StatsInsightsGenerateResponse {
   model: string;
 }
 
-function normalizedVerifiedStudyTarget(studyTarget?: RuntimeStudyTarget): string {
+interface StatsInsightsGenerateRequest {
+  analysis: StatsInsightAnalysis;
+  lang: Lang;
+  studyTarget: 'en' | 'fr';
+}
+
+function normalizedVerifiedStudyTarget(studyTarget?: RuntimeStudyTarget): 'en' | 'fr' {
   return storageStudyTarget(studyTarget);
 }
 
@@ -541,11 +547,12 @@ async function generateVerifiedStatsInsightsRequest(
   if (!options.isPremium) return { kind: 'none' };
 
   const nowMs = options.nowMs ?? Date.now();
-  const stored = await loadVerifiedStored(options.studyTarget);
+  const studyTarget = normalizedVerifiedStudyTarget(options.studyTarget);
+  const stored = await loadVerifiedStored(studyTarget);
   const compatible = compatibleVerifiedStored(stored, options) ? stored : null;
 
   if (!options.force && stored && stored.lang === options.lang &&
-      stored.studyTarget === normalizedVerifiedStudyTarget(options.studyTarget) && nowMs < stored.nextAllowedAtMs) {
+      stored.studyTarget === studyTarget && nowMs < stored.nextAllowedAtMs) {
     return compatible
       ? asCachedVerifiedState(compatible)
       : { kind: 'fallback', code: 'not_ready', notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
@@ -560,11 +567,11 @@ async function generateVerifiedStatsInsightsRequest(
     if (!stableId || !(await ensureStableAuthLinkForStableId(stableId))) {
       return { kind: 'fallback', code: 'offline', notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
     }
-    const callable = httpsCallable<{ analysis: StatsInsightAnalysis }, StatsInsightsGenerateResponse>(
+    const callable = httpsCallable<StatsInsightsGenerateRequest, StatsInsightsGenerateResponse>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'statsInsightsGenerate',
     );
-    const response = await callable({ analysis: options.analysis });
+    const response = await callable({ analysis: options.analysis, lang: options.lang, studyTarget });
     const data = response.data;
     const notes = normalizeVerifiedNotes(data?.notes);
     const observationIds = normalizeObservationIds(data?.observationIds);
@@ -590,9 +597,9 @@ async function generateVerifiedStatsInsightsRequest(
       generatedAtMs: nowMs,
       nextAllowedAtMs: data.nextAllowedAtMs,
       lang: options.lang,
-      studyTarget: normalizedVerifiedStudyTarget(options.studyTarget),
+      studyTarget,
     };
-    await saveVerifiedStored(nextStored, options.studyTarget);
+    await saveVerifiedStored(nextStored, studyTarget);
     return asCachedVerifiedState(nextStored);
   } catch (error) {
     const code = verifiedErrorCode(error);
@@ -601,7 +608,7 @@ async function generateVerifiedStatsInsightsRequest(
       const nextAllowedAtMs = serverNextAllowedAtMs(error);
       if (nextAllowedAtMs != null) {
         const synced = { ...compatible, nextAllowedAtMs };
-        await saveVerifiedStored(synced, options.studyTarget);
+        await saveVerifiedStored(synced, studyTarget);
         return asCachedVerifiedState(synced);
       }
       return asCachedVerifiedState(compatible);

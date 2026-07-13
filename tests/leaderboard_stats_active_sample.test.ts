@@ -1,8 +1,22 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const mockFirestoreGet = jest.fn();
+
+jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
+jest.mock('@react-native-firebase/firestore', () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    collection: jest.fn(() => ({
+      doc: jest.fn(() => ({ get: mockFirestoreGet })),
+    })),
+  })),
+}));
+
 import {
   clearMockLeaderboardStats,
   computeAllPercentiles,
   type GlobalLeaderboardStats,
+  lookupPercentile,
   MIN_PERCENTILE_SAMPLE_XP,
 } from '../app/leaderboard_stats';
 
@@ -14,22 +28,25 @@ const highMetricOpts = {
   myArenaXp: 9999,
 };
 
+const thresholds = (value: number): number[] => new Array(99).fill(value);
+
 const stats: GlobalLeaderboardStats = {
   totalUsers: 12_847,
   updatedAt: 1_725_000_000_000,
   minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
-  xpThresholds: [MIN_PERCENTILE_SAMPLE_XP - 1],
-  streakThresholds: [1],
-  weekXpThresholds: [1],
-  daily7xpThresholds: [1],
-  daily7timeMsThresholds: [1],
-  arenaXpThresholds: [1],
+  xpThresholds: thresholds(MIN_PERCENTILE_SAMPLE_XP - 1),
+  streakThresholds: thresholds(1),
+  weekXpThresholds: thresholds(1),
+  daily7xpThresholds: thresholds(1),
+  daily7timeMsThresholds: thresholds(1),
+  arenaXpThresholds: thresholds(1),
 };
 
 describe('leaderboard percentile active sample floor', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
     clearMockLeaderboardStats();
+    mockFirestoreGet.mockReset().mockRejectedValue(new Error('offline'));
   });
 
   afterEach(() => {
@@ -113,6 +130,7 @@ describe('leaderboard percentile active sample floor', () => {
     expect(percentiles.sample.status).toBe('available');
     expect(percentiles.sample.isStale).toBe(true);
     expect(percentiles.totalUsers).toBe(stats.totalUsers);
+    expect(mockFirestoreGet).toHaveBeenCalledTimes(1);
   });
 
   it('does not use a corrupted expired cache', async () => {
@@ -131,5 +149,71 @@ describe('leaderboard percentile active sample floor', () => {
     expect(percentiles.sample.status).toBe('unavailable');
     expect(percentiles.sample.isStale).toBe(false);
     expect(percentiles.totalUsers).toBe(0);
+  });
+
+  it('keeps app-wide percentiles unavailable for an arena-only zero-user sample', async () => {
+    const now = 1_800_000_000_000;
+    jest.useFakeTimers().setSystemTime(now);
+    await AsyncStorage.setItem('leaderboard_stats_cache_v2', JSON.stringify({
+      data: { ...stats, totalUsers: 0 },
+      fetchedAt: now - 2 * 60 * 60 * 1000,
+    }));
+
+    const percentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+
+    expect(percentiles.xp).toBeNull();
+    expect(percentiles.streak).toBeNull();
+    expect(percentiles.sample.status).toBe('unavailable');
+    expect(percentiles.sample.totalUsers).toBe(0);
+    expect(percentiles.sample.isStale).toBe(true);
+    expect(percentiles.arenaXp).toBe(99);
+  });
+
+  it('rejects an expired cache whose populated thresholds exceed 99 entries', async () => {
+    const now = 1_800_000_000_000;
+    jest.useFakeTimers().setSystemTime(now);
+    await AsyncStorage.setItem('leaderboard_stats_cache_v2', JSON.stringify({
+      data: { ...stats, xpThresholds: thresholds(1).concat(1) },
+      fetchedAt: now - 2 * 60 * 60 * 1000,
+    }));
+
+    const percentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+
+    expect(percentiles.sample.status).toBe('unavailable');
+    expect(percentiles.totalUsers).toBe(0);
+  });
+
+  it('never returns a percentile above 99 for malformed direct input', () => {
+    expect(lookupPercentile(new Array(100).fill(1), 2)).toBe(99);
+  });
+
+  it('prefers a valid fresh Firestore response over an expired cache', async () => {
+    const now = 1_800_000_000_000;
+    const freshStats = { ...stats, totalUsers: 22_000, updatedAt: now };
+    jest.useFakeTimers().setSystemTime(now);
+    await AsyncStorage.setItem('leaderboard_stats_cache_v2', JSON.stringify({
+      data: stats,
+      fetchedAt: now - 2 * 60 * 60 * 1000,
+    }));
+    mockFirestoreGet.mockResolvedValue({
+      exists: true,
+      data: () => freshStats,
+    });
+
+    const percentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+
+    expect(percentiles.totalUsers).toBe(freshStats.totalUsers);
+    expect(percentiles.sample.updatedAtMs).toBe(freshStats.updatedAt);
+    expect(percentiles.sample.isStale).toBe(false);
+    expect(mockFirestoreGet).toHaveBeenCalledTimes(1);
   });
 });

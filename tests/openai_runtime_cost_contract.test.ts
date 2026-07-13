@@ -34,10 +34,28 @@ describe('OpenAI runtime cost controls', () => {
     expect(stats).toContain('nextAllowedAtMs');
     expect(stats).toContain('buildVerifiedFallbackNotes');
     expect(statsServer).toContain('resolvePremiumAccess');
-    expect(statsServer).toContain('readReplayOrAssertWindowOpen');
+    expect(statsServer).not.toContain('readReplayOrAssertWindowOpen');
     expect(statsServer).toContain('enforceRateLimit');
     expect(statsServer).toContain('enforceGlobalBudget');
-    expect(statsServer).toContain('commitWindow');
+    expect(statsServer).not.toContain('commitWindow');
+    expect(statsServer).toContain('reserveGenerationLease');
+    expect(statsServer).toContain('commitGenerationLease');
+    expect(statsServer).toContain('releaseGenerationLease');
+    expect(statsServer).toContain('generationLeaseExpiresAtMs');
+    expect(statsServer).toContain('if (quotaData.generationLeaseToken !== leaseToken) return null;');
+    expect(statsServer).toContain('const reservation = await reserveGenerationLease');
+    expect(statsServer).toContain('await enforceRateLimit(authUid, stableUid)');
+    expect(statsServer).toContain('await fetch(OPENAI_CHAT_URL');
+    expect(statsServer).toContain('await commitGenerationLease(reservation.ref, leaseToken, success)');
+    expect(statsServer.indexOf('const reservation = await reserveGenerationLease')).toBeLessThan(
+      statsServer.indexOf('await enforceRateLimit(authUid, stableUid)'),
+    );
+    expect(statsServer.indexOf('await enforceRateLimit(authUid, stableUid)')).toBeLessThan(
+      statsServer.indexOf('await fetch(OPENAI_CHAT_URL'),
+    );
+    expect(statsServer.indexOf('await fetch(OPENAI_CHAT_URL')).toBeLessThan(
+      statsServer.indexOf('await commitGenerationLease(reservation.ref, leaseToken, success)'),
+    );
   });
 
   test('cache-warm AI clients dedupe identical in-flight callable requests', () => {

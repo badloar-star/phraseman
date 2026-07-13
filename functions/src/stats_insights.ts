@@ -48,7 +48,6 @@ const MAX_PER_HOUR = 6;
 // (premium-only feature) but a window is kept defensively. SERVER is source of
 // truth — the client gate is bypassable.
 const PREMIUM_WINDOW_DAYS = 3;
-const FREE_WINDOW_DAYS = 7;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 // Product-wide daily breaker — protects the wallet from a spike. The feature
@@ -442,61 +441,6 @@ function decideStatsInsightsReplay(
   }
 
   return { kind: 'not_ready', nextAllowedAtMs };
-}
-
-async function readReplayOrAssertWindowOpen(
-  authUid: string,
-  stableUid: string,
-  expectedBriefingHash: string,
-  lang: SupportedLang,
-): Promise<Extract<StatsInsightsReplayDecision, { kind: 'replay' }> | null> {
-  const db = admin.firestore();
-  const now = Date.now();
-  const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
-  const snap = await ref.get();
-  const decision = decideStatsInsightsReplay(snap.data() ?? {}, expectedBriefingHash, now, lang);
-  if (decision.kind === 'open') return null;
-  if (decision.kind === 'replay') return decision;
-  if (decision.kind === 'not_ready') {
-    throw new HttpsError('resource-exhausted', 'stats_insights_not_ready', {
-      nextAllowedAtMs: decision.nextAllowedAtMs,
-    });
-  }
-  return null;
-}
-
-async function commitWindow(
-  authUid: string,
-  stableUid: string,
-  isPremium: boolean,
-  briefingHash: string,
-  notes: StatsInsightsNotes,
-  model: string,
-): Promise<number> {
-  const db = admin.firestore();
-  const now = Date.now();
-  const windowDays = isPremium ? PREMIUM_WINDOW_DAYS : FREE_WINDOW_DAYS;
-  const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
-  return db.runTransaction(async (tx) => {
-    const data = (await tx.get(ref)).data() ?? {};
-    const existingNext = Number(data.nextAllowedAtMs ?? 0);
-    if (now < existingNext) {
-      return existingNext;
-    }
-    const newNext = startOfNextWindow(now, windowDays);
-    tx.set(ref, {
-      authUid,
-      stableUid,
-      isPremium,
-      lastGeneratedAtMs: now,
-      lastBriefingHash: briefingHash,
-      lastNotes: notes,
-      lastModel: model,
-      nextAllowedAtMs: newNext,
-      updatedAtMs: now,
-    }, { merge: true });
-    return newNext;
-  });
 }
 
 // ── Prompt ─────────────────────────────────────────────────────────────────

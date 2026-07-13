@@ -15,6 +15,9 @@ jest.mock('@react-native-firebase/firestore', () => ({
 import {
   clearMockLeaderboardStats,
   computeAllPercentiles,
+  isLeaderboardStatsSourceStale,
+  LEADERBOARD_STATS_MAX_SOURCE_AGE_MS,
+  LEADERBOARD_STATS_MAX_FUTURE_SKEW_MS,
   type GlobalLeaderboardStats,
   lookupPercentile,
   MIN_PERCENTILE_SAMPLE_XP,
@@ -214,6 +217,103 @@ describe('leaderboard percentile active sample floor', () => {
     expect(percentiles.totalUsers).toBe(freshStats.totalUsers);
     expect(percentiles.sample.updatedAtMs).toBe(freshStats.updatedAt);
     expect(percentiles.sample.isStale).toBe(false);
+    expect(mockFirestoreGet).toHaveBeenCalledTimes(1);
+  });
+
+  it('defines source freshness independently from the local cache age', () => {
+    const now = 1_800_000_000_000;
+
+    expect(isLeaderboardStatsSourceStale(
+      now - LEADERBOARD_STATS_MAX_SOURCE_AGE_MS + 1,
+      now,
+    )).toBe(false);
+    expect(isLeaderboardStatsSourceStale(
+      now - LEADERBOARD_STATS_MAX_SOURCE_AGE_MS,
+      now,
+    )).toBe(false);
+    expect(isLeaderboardStatsSourceStale(
+      now - LEADERBOARD_STATS_MAX_SOURCE_AGE_MS - 1,
+      now,
+    )).toBe(true);
+  });
+
+  it('tolerates small server clock skew but treats a materially future source as stale', () => {
+    const now = 1_800_000_000_000;
+
+    expect(isLeaderboardStatsSourceStale(
+      now + LEADERBOARD_STATS_MAX_FUTURE_SKEW_MS,
+      now,
+    )).toBe(false);
+    expect(isLeaderboardStatsSourceStale(
+      now + LEADERBOARD_STATS_MAX_FUTURE_SKEW_MS + 1,
+      now,
+    )).toBe(true);
+  });
+
+  it('marks a newly fetched old Firestore document stale and caches it', async () => {
+    const now = 1_800_000_000_000;
+    const oldStats = {
+      ...stats,
+      updatedAt: now - LEADERBOARD_STATS_MAX_SOURCE_AGE_MS - 1,
+    };
+    jest.useFakeTimers().setSystemTime(now);
+    mockFirestoreGet.mockResolvedValue({ exists: true, data: () => oldStats });
+
+    const percentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+
+    expect(percentiles.sample.isStale).toBe(true);
+    expect(JSON.parse((await AsyncStorage.getItem('leaderboard_stats_cache_v2'))!)).toEqual({
+      data: oldStats,
+      fetchedAt: now,
+    });
+
+    const cachedPercentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+    expect(cachedPercentiles.sample.isStale).toBe(true);
+    expect(mockFirestoreGet).toHaveBeenCalledTimes(1);
+  });
+
+  it('marks a fresh local cache stale when its source document is old', async () => {
+    const now = 1_800_000_000_000;
+    const oldStats = {
+      ...stats,
+      updatedAt: now - LEADERBOARD_STATS_MAX_SOURCE_AGE_MS - 1,
+    };
+    jest.useFakeTimers().setSystemTime(now);
+    await AsyncStorage.setItem('leaderboard_stats_cache_v2', JSON.stringify({
+      data: oldStats,
+      fetchedAt: now - 1_000,
+    }));
+
+    const percentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+
+    expect(percentiles.sample.isStale).toBe(true);
+    expect(mockFirestoreGet).not.toHaveBeenCalled();
+  });
+
+  it('keeps an offline expired cache stale even when its source document is fresh', async () => {
+    const now = 1_800_000_000_000;
+    const freshSourceStats = { ...stats, updatedAt: now - 1_000 };
+    jest.useFakeTimers().setSystemTime(now);
+    await AsyncStorage.setItem('leaderboard_stats_cache_v2', JSON.stringify({
+      data: freshSourceStats,
+      fetchedAt: now - 2 * 60 * 60 * 1000,
+    }));
+
+    const percentiles = await computeAllPercentiles({
+      myXp: MIN_PERCENTILE_SAMPLE_XP,
+      ...highMetricOpts,
+    });
+
+    expect(percentiles.sample.isStale).toBe(true);
     expect(mockFirestoreGet).toHaveBeenCalledTimes(1);
   });
 });

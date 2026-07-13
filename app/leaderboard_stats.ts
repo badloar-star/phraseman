@@ -14,6 +14,10 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 const CACHE_KEY = 'leaderboard_stats_cache_v2';
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 час
 export const MIN_PERCENTILE_SAMPLE_XP = 5000;
+/** The hourly cron may be delayed, so source data remains current for up to three hours. */
+export const LEADERBOARD_STATS_MAX_SOURCE_AGE_MS = 3 * 60 * 60 * 1000;
+/** Allow small Firestore/server clock skew without hiding otherwise current statistics. */
+export const LEADERBOARD_STATS_MAX_FUTURE_SKEW_MS = 5 * 60 * 1000;
 
 export interface GlobalLeaderboardStats {
   totalUsers: number;
@@ -48,6 +52,12 @@ interface LeaderboardStatsLoadResult {
 }
 
 let _memCache: LeaderboardStatsCacheEntry | null = null;
+
+export function isLeaderboardStatsSourceStale(updatedAt: number, now: number): boolean {
+  const sourceAgeMs = now - updatedAt;
+  if (sourceAgeMs < 0) return -sourceAgeMs > LEADERBOARD_STATS_MAX_FUTURE_SKEW_MS;
+  return sourceAgeMs > LEADERBOARD_STATS_MAX_SOURCE_AGE_MS;
+}
 
 function hasFiniteThresholds(value: unknown): value is number[] {
   return Array.isArray(value)
@@ -134,7 +144,10 @@ async function fetchLeaderboardStatsWithMeta(): Promise<LeaderboardStatsLoadResu
   // Память — самый быстрый кэш
   if (_memCache && isValidCacheEntry(_memCache)) {
     if (now - _memCache.fetchedAt < CACHE_TTL_MS) {
-      return { data: _memCache.data, isStale: false };
+      return {
+        data: _memCache.data,
+        isStale: isLeaderboardStatsSourceStale(_memCache.data.updatedAt, now),
+      };
     }
     staleCandidate = _memCache;
   }
@@ -146,7 +159,10 @@ async function fetchLeaderboardStatsWithMeta(): Promise<LeaderboardStatsLoadResu
       const cached: unknown = JSON.parse(raw);
       if (isValidCacheEntry(cached) && now - cached.fetchedAt < CACHE_TTL_MS) {
         _memCache = cached;
-        return { data: cached.data, isStale: false };
+        return {
+          data: cached.data,
+          isStale: isLeaderboardStatsSourceStale(cached.data.updatedAt, now),
+        };
       }
       if (isValidCacheEntry(cached)
         && (!staleCandidate || cached.fetchedAt > staleCandidate.fetchedAt)) {
@@ -169,9 +185,10 @@ async function fetchLeaderboardStatsWithMeta(): Promise<LeaderboardStatsLoadResu
     if (!isValidLeaderboardStats(data)) {
       return staleCandidate ? { data: staleCandidate.data, isStale: true } : null;
     }
-    _memCache = { data, fetchedAt: Date.now() };
+    const fetchedAt = Date.now();
+    _memCache = { data, fetchedAt };
     await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(_memCache)).catch(() => {});
-    return { data, isStale: false };
+    return { data, isStale: isLeaderboardStatsSourceStale(data.updatedAt, fetchedAt) };
   } catch {
     return staleCandidate ? { data: staleCandidate.data, isStale: true } : null;
   }

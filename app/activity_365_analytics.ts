@@ -435,6 +435,36 @@ const EMPTY_ACTIVITY_365_METRICS: Activity365Day['metrics'] = {
   planTasksCompleted: 0,
 };
 
+export interface ActivityWindowSummary {
+  activeDays: number;
+  xp: number;
+  minutes: number;
+  lessons: number;
+  quizzes: number;
+  reviews: number;
+  arena: number;
+}
+
+export function summarizeActivityWindow(
+  days: readonly Activity365Day[],
+  windowDays: 7 | 30,
+  nowMs = Date.now(),
+): ActivityWindowSummary {
+  const todayKey = new Date(nowMs).toISOString().slice(0, 10);
+  const startKey = new Date(nowMs - (windowDays - 1) * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return days.reduce<ActivityWindowSummary>((summary, day) => {
+    if (day.future || day.date < startKey || day.date > todayKey) return summary;
+    summary.activeDays += day.active ? 1 : 0;
+    summary.xp += Math.max(0, Math.floor(day.xp));
+    summary.minutes += Math.max(0, Math.floor(day.minutes));
+    summary.lessons += Math.max(0, Math.floor(day.metrics.lessons));
+    summary.quizzes += Math.max(0, Math.floor(day.metrics.quizzes));
+    summary.reviews += Math.max(0, Math.floor(day.metrics.review));
+    summary.arena += Math.max(0, Math.floor(day.metrics.arena));
+    return summary;
+  }, { activeDays: 0, xp: 0, minutes: 0, lessons: 0, quizzes: 0, reviews: 0, arena: 0 });
+}
+
 export function emptyActivity365Day(date: string, future = false): Activity365Day {
   return {
     date,

@@ -431,6 +431,19 @@ describe('trainer_store premium modes', () => {
     }));
   });
 
+  it('dashboard separates overdue items from everything due today', async () => {
+    seedTrainerStore([
+      makeTrainerStoreItem({ key: 'overdue', queue: 'phrases', nextDue: NOW - MS_DAY }),
+      makeTrainerStoreItem({ key: 'due-now', queue: 'words', nextDue: NOW - 1000 }),
+      makeTrainerStoreItem({ key: 'future', queue: 'words', nextDue: NOW + MS_DAY }),
+    ]);
+
+    const dashboard = await getTrainerDashboard();
+
+    expect(dashboard.totalDue).toBe(2);
+    expect(dashboard.overdue).toBe(1);
+  });
+
   it('dashboard hardest POS follows analytics priority before raw store totals', async () => {
     seedTrainerStore([
       makeTrainerStoreItem({ key: 'run', queue: 'words', category: 'verb', mistakeCount: 8 }),

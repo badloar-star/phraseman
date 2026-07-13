@@ -21,13 +21,201 @@ export const APP_MESSAGE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 export const REPORT_REPLY_TTL_MS = 365 * 24 * 60 * 60 * 1000;
 export const APP_MESSAGES_BACKGROUND_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
-const APP_MESSAGES_CACHE_KEY = 'app_messages_cache_v1';
-const APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY = 'app_messages_last_background_refresh_ms_v1';
-const LOCAL_APP_MESSAGES_KEY = 'app_messages_local_preview_v1';
-const LOCAL_APP_MESSAGE_STATES_KEY = 'app_message_local_preview_states_v1';
+const APP_MESSAGES_CACHE_KEY_PREFIX = 'app_messages_cache_v2';
+const APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX = 'app_messages_last_background_refresh_ms_v2';
+const LEGACY_APP_MESSAGES_CACHE_KEY = 'app_messages_cache_v1';
+const LEGACY_APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY = 'app_messages_last_background_refresh_ms_v1';
+const LOCAL_APP_MESSAGES_KEY_PREFIX = 'app_messages_local_preview_v2';
+const LOCAL_APP_MESSAGE_STATES_KEY_PREFIX = 'app_message_local_preview_states_v2';
+const LEGACY_LOCAL_APP_MESSAGES_KEY = 'app_messages_local_preview_v1';
+const LEGACY_LOCAL_APP_MESSAGE_STATES_KEY = 'app_message_local_preview_states_v1';
 const APP_MESSAGES_BACKGROUND_FETCH_LIMIT = 80;
-const REPORT_REPLY_PENDING_CLAIMS_KEY = 'app_messages_report_reply_pending_claims_v1';
+const REPORT_REPLY_PENDING_CLAIMS_KEY_PREFIX = 'app_messages_report_reply_pending_claims_v2';
+// Kept untouched: v1 has no owner metadata, so assigning it to the next signed-in account is unsafe.
+export const LEGACY_REPORT_REPLY_PENDING_CLAIMS_KEY = 'app_messages_report_reply_pending_claims_v1';
 const REPORT_REPLY_PENDING_CLAIMS_CAP = 200;
+const APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX = 'app_message_visibility_outbox_v1';
+const APP_MESSAGE_VISIBILITY_OUTBOX_CAP = 200;
+const LEGACY_ANIMATED_MESSAGE_IDS_KEY = 'app_message_received_anim_ids_v1';
+const ANIMATED_MESSAGE_IDS_KEY_PREFIX = 'app_message_received_anim_ids_v2';
+let unownedAppMessageStorageCleanupStarted = false;
+const visibilityMutationQueueByOwner = new Map<string, Promise<void>>();
+const visibilityActionQueueByOwner = new Map<string, Promise<void>>();
+const lastVisibilityRevisionByOwner = new Map<string, number>();
+const VISIBILITY_REVISION_OWNER_CAP = 20;
+let visibilitySchedulingQueue: Promise<void> = Promise.resolve();
+
+function rememberVisibilityRevision(ownerUid: string, revision: number): void {
+  lastVisibilityRevisionByOwner.delete(ownerUid);
+  lastVisibilityRevisionByOwner.set(ownerUid, revision);
+  while (lastVisibilityRevisionByOwner.size > VISIBILITY_REVISION_OWNER_CAP) {
+    const oldestOwner = lastVisibilityRevisionByOwner.keys().next().value as string | undefined;
+    if (!oldestOwner) break;
+    lastVisibilityRevisionByOwner.delete(oldestOwner);
+  }
+}
+
+export type PendingAppMessageVisibility = {
+  messageId: string;
+  dismissedAtMs: number | null;
+  revision: number;
+};
+
+function appMessagesOwnerStorageKey(prefix: string, ownerUid: string): string {
+  return `${prefix}:${encodeURIComponent(ownerUid)}`;
+}
+
+async function getAppMessagesOwnerUid(): Promise<string | null> {
+  return String(await getCanonicalUserId().catch(() => '')).trim() || null;
+}
+
+function cleanupUnownedAppMessageStorage(): void {
+  if (unownedAppMessageStorageCleanupStarted) return;
+  unownedAppMessageStorageCleanupStarted = true;
+  void AsyncStorage.multiRemove([
+    LEGACY_APP_MESSAGES_CACHE_KEY,
+    LEGACY_APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY,
+    LEGACY_ANIMATED_MESSAGE_IDS_KEY,
+    LEGACY_LOCAL_APP_MESSAGES_KEY,
+    LEGACY_LOCAL_APP_MESSAGE_STATES_KEY,
+  ]).catch(() => {});
+}
+
+export async function readPendingAppMessageVisibility(ownerUid: string | null): Promise<PendingAppMessageVisibility[]> {
+  if (!ownerUid) return [];
+  try {
+    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX, ownerUid));
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((row): row is PendingAppMessageVisibility => (
+      !!row
+      && typeof row.messageId === 'string'
+      && row.messageId.length > 0
+      && (row.dismissedAtMs === null || Number.isFinite(row.dismissedAtMs))
+      && Number.isFinite(row.revision)
+    )).slice(-APP_MESSAGE_VISIBILITY_OUTBOX_CAP);
+  } catch {
+    return [];
+  }
+}
+
+async function writePendingAppMessageVisibility(ownerUid: string, rows: PendingAppMessageVisibility[]): Promise<void> {
+  await AsyncStorage.setItem(
+    appMessagesOwnerStorageKey(APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX, ownerUid),
+    JSON.stringify(rows.slice(-APP_MESSAGE_VISIBILITY_OUTBOX_CAP)),
+  );
+}
+
+async function acknowledgePendingAppMessageVisibility(
+  ownerUid: string,
+  states: AppMessageState[],
+): Promise<PendingAppMessageVisibility[]> {
+  const serverRevisionByMessage = new Map(
+    states.map((state) => [state.messageId, state.visibilityRevision ?? 0]),
+  );
+  const current = await readPendingAppMessageVisibility(ownerUid);
+  const remaining = current.filter((operation) => (
+    (serverRevisionByMessage.get(operation.messageId) ?? 0) < operation.revision
+  ));
+  if (remaining.length !== current.length) {
+    await writePendingAppMessageVisibility(ownerUid, remaining);
+  }
+  return remaining;
+}
+
+async function recordPendingAppMessageVisibility(
+  ownerUid: string,
+  messageId: string,
+  dismissedAtMs: number | null,
+): Promise<PendingAppMessageVisibility> {
+  let recorded!: PendingAppMessageVisibility;
+  const previous = visibilityMutationQueueByOwner.get(ownerUid) ?? Promise.resolve();
+  const current = previous.catch(() => {}).then(async () => {
+    const rows = await readPendingAppMessageVisibility(ownerUid);
+    const maxStoredRevision = rows.reduce((max, row) => Math.max(max, row.revision), 0);
+    const revision = Math.max(
+      Date.now(),
+      maxStoredRevision + 1,
+      (lastVisibilityRevisionByOwner.get(ownerUid) ?? 0) + 1,
+    );
+    rememberVisibilityRevision(ownerUid, revision);
+    recorded = { messageId, dismissedAtMs, revision };
+    const next = [...rows.filter((row) => row.messageId !== messageId), recorded]
+      .sort((a, b) => a.revision - b.revision);
+    await writePendingAppMessageVisibility(ownerUid, next);
+  });
+  visibilityMutationQueueByOwner.set(ownerUid, current);
+  await current.finally(() => {
+    if (visibilityMutationQueueByOwner.get(ownerUid) === current) visibilityMutationQueueByOwner.delete(ownerUid);
+  });
+  return recorded;
+}
+
+async function flushPendingAppMessageVisibility(
+  firestoreFactory: FirestoreFactory | null,
+  ownerUid: string | null,
+): Promise<void> {
+  if (!firestoreFactory || !ownerUid) return;
+  const pending = await readPendingAppMessageVisibility(ownerUid);
+  if (pending.length === 0) return;
+  const db = firestoreFactory();
+  for (const operation of pending) {
+    try {
+      const stateRef = db.collection('users').doc(ownerUid).collection(APP_MESSAGE_STATES_COLLECTION).doc(operation.messageId);
+      await db.runTransaction(async (transaction: any) => {
+        const stateSnap = await transaction.get(stateRef);
+        const serverRevision = toMs(stateSnap?.exists ? stateSnap.data?.()?.visibilityRevision : 0, 0);
+        if (serverRevision > operation.revision) return;
+        transaction.set(stateRef, {
+          messageId: operation.messageId,
+          dismissedAtMs: operation.dismissedAtMs,
+          updatedAtMs: operation.revision,
+          visibilityRevision: operation.revision,
+        }, { merge: true });
+      });
+    } catch {
+      // Keep the operation until a server snapshot acknowledges this revision.
+    }
+  }
+}
+
+export async function flushPendingAppMessageVisibilityForCurrentOwner(): Promise<void> {
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) return;
+  await flushPendingAppMessageVisibility(await getFirestoreModule(), ownerUid);
+}
+
+export function applyPendingVisibilityToStates(
+  states: AppMessageState[],
+  rows: PendingAppMessageVisibility[],
+): AppMessageState[] {
+  const stateByMessage = new Map(states.map((state) => [state.messageId, state]));
+  rows.forEach((row) => {
+    const existing = stateByMessage.get(row.messageId);
+    if ((existing?.visibilityRevision ?? 0) > row.revision) return;
+    stateByMessage.set(row.messageId, {
+      messageId: row.messageId,
+      readAtMs: existing?.readAtMs ?? null,
+      dismissedAtMs: row.dismissedAtMs,
+      reaction: existing?.reaction ?? null,
+      pollOptionId: existing?.pollOptionId ?? null,
+      updatedAtMs: Math.max(existing?.updatedAtMs ?? 0, row.revision),
+      visibilityRevision: row.revision,
+    });
+  });
+  return [...stateByMessage.values()];
+}
+
+export function applyPendingVisibilityToSnapshot(
+  snapshot: AppMessagesSnapshot,
+  rows: PendingAppMessageVisibility[],
+): AppMessagesSnapshot {
+  if (rows.length === 0) return snapshot;
+  const latestByMessage = new Map(rows.map((row) => [row.messageId, row]));
+  const messages = snapshot.messages.filter((message) => !latestByMessage.get(message.id)?.dismissedAtMs);
+  return { messages, unreadCount: messages.reduce((count, message) => count + (message.unread ? 1 : 0), 0) };
+}
 
 export type AppMessagePollOption = {
   id: string;
@@ -110,6 +298,7 @@ export type AppMessageState = {
   reaction: AppMessageReaction | null;
   pollOptionId?: string | null;
   updatedAtMs: number;
+  visibilityRevision?: number;
 };
 
 export type AppMessageWithState = AppMessage & {
@@ -189,9 +378,15 @@ function normalizePendingReportReplyShardClaim(value: unknown): PendingReportRep
   return { messageId, amount, creditedAtMs };
 }
 
-export async function readPendingReportReplyShardClaims(): Promise<PendingReportReplyShardClaim[]> {
+export async function readPendingReportReplyShardClaims(
+  expectedOwnerUid?: string | null,
+): Promise<PendingReportReplyShardClaim[]> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return [];
   try {
-    const raw = await AsyncStorage.getItem(REPORT_REPLY_PENDING_CLAIMS_KEY);
+    const storageKey = appMessagesOwnerStorageKey(REPORT_REPLY_PENDING_CLAIMS_KEY_PREFIX, ownerUid);
+    const raw = await AsyncStorage.getItem(storageKey);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
@@ -206,7 +401,14 @@ export async function readPendingReportReplyShardClaims(): Promise<PendingReport
   }
 }
 
-async function writePendingReportReplyShardClaims(claims: PendingReportReplyShardClaim[]): Promise<void> {
+async function writePendingReportReplyShardClaims(
+  claims: PendingReportReplyShardClaim[],
+  expectedOwnerUid?: string | null,
+): Promise<void> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return;
+  const storageKey = appMessagesOwnerStorageKey(REPORT_REPLY_PENDING_CLAIMS_KEY_PREFIX, ownerUid);
   const byId = new Map<string, PendingReportReplyShardClaim>();
   claims.forEach((claim) => {
     const normalized = normalizePendingReportReplyShardClaim(claim);
@@ -214,32 +416,65 @@ async function writePendingReportReplyShardClaims(claims: PendingReportReplyShar
   });
   const next = [...byId.values()].slice(-REPORT_REPLY_PENDING_CLAIMS_CAP);
   if (next.length === 0) {
-    await AsyncStorage.removeItem(REPORT_REPLY_PENDING_CLAIMS_KEY).catch(() => {});
+    await AsyncStorage.removeItem(storageKey).catch(() => {});
     return;
   }
-  await AsyncStorage.setItem(REPORT_REPLY_PENDING_CLAIMS_KEY, JSON.stringify(next));
+  await AsyncStorage.setItem(storageKey, JSON.stringify(next));
+}
+
+export async function migrateLegacyReportReplyClaimsForOwnedMessages(
+  ownerUid: string,
+  ownedMessages: AppMessage[],
+): Promise<PendingReportReplyShardClaim[]> {
+  const ownedReportReplyIds = new Set(
+    ownedMessages.filter((message) => message.kind === 'report_reply').map((message) => message.id),
+  );
+  if (ownedReportReplyIds.size === 0) return readPendingReportReplyShardClaims(ownerUid);
+  const legacyRows = await readJsonArray<unknown>(LEGACY_REPORT_REPLY_PENDING_CLAIMS_KEY);
+  const legacyClaims = legacyRows
+    .map(normalizePendingReportReplyShardClaim)
+    .filter((claim): claim is PendingReportReplyShardClaim => !!claim);
+  const ownedLegacyClaims = legacyClaims.filter((claim) => ownedReportReplyIds.has(claim.messageId));
+  if (ownedLegacyClaims.length === 0) return readPendingReportReplyShardClaims(ownerUid);
+
+  const scopedClaims = await readPendingReportReplyShardClaims(ownerUid);
+  await writePendingReportReplyShardClaims([...scopedClaims, ...ownedLegacyClaims], ownerUid);
+  const remainingLegacyClaims = legacyClaims.filter((claim) => !ownedReportReplyIds.has(claim.messageId));
+  if (remainingLegacyClaims.length > 0) {
+    await AsyncStorage.setItem(LEGACY_REPORT_REPLY_PENDING_CLAIMS_KEY, JSON.stringify(remainingLegacyClaims));
+  } else {
+    await AsyncStorage.removeItem(LEGACY_REPORT_REPLY_PENDING_CLAIMS_KEY);
+  }
+  const migrated = await readPendingReportReplyShardClaims(ownerUid);
+  emitAppEvent('app_messages_local_changed');
+  void resumePendingReportReplyShardClaims();
+  return migrated;
 }
 
 async function addPendingReportReplyShardClaim(messageId: string, amount: number): Promise<boolean> {
   const clean = cleanPollOptionId(messageId, '');
   const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
   if (!clean || safeAmount <= 0) return false;
-  const pending = await readPendingReportReplyShardClaims();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) return false;
+  const pending = await readPendingReportReplyShardClaims(ownerUid);
   if (pending.some((claim) => claim.messageId === clean)) return false;
   await writePendingReportReplyShardClaims([
     ...pending,
     { messageId: clean, amount: safeAmount, creditedAtMs: Date.now() },
-  ]);
+  ], ownerUid);
   return true;
 }
 
 async function removePendingReportReplyShardClaim(messageId: string): Promise<boolean> {
   const clean = cleanPollOptionId(messageId, '');
   if (!clean) return false;
-  const pending = await readPendingReportReplyShardClaims();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) return false;
+  const pending = await readPendingReportReplyShardClaims(ownerUid);
   const next = pending.filter((claim) => claim.messageId !== clean);
   if (next.length === pending.length) return false;
-  await writePendingReportReplyShardClaims(next);
+  await writePendingReportReplyShardClaims(next, ownerUid);
   return true;
 }
 
@@ -431,6 +666,7 @@ export function normalizeAppMessageState(messageId: string, data: Record<string,
     reaction: reactionRaw === 'like' || reactionRaw === 'dislike' ? reactionRaw : null,
     pollOptionId: pollOptionId || null,
     updatedAtMs: toMs(data.updatedAtMs ?? data.updatedAt, 0),
+    visibilityRevision: toMs(data.visibilityRevision, 0),
   };
 }
 
@@ -541,7 +777,7 @@ export function mergeAppMessagesWithStates(
   const merged = messages
     .filter((message) => {
       const state = stateByMessage.get(message.id);
-      const hiddenByUserState = message.kind === 'vip_survey' && !!state?.dismissedAtMs;
+      const hiddenByUserState = !!state?.dismissedAtMs;
       return !hiddenByUserState && isAppMessageVisible(message, nowMs);
     })
     .sort((a, b) => (b.priority - a.priority) || (b.createdAtMs - a.createdAtMs))
@@ -609,8 +845,12 @@ async function readJsonArray<T>(key: string): Promise<T[]> {
   }
 }
 
-async function readLocalPreviewMessages(): Promise<AppMessage[]> {
-  const rows = await readJsonArray<Record<string, unknown> & { id?: string }>(LOCAL_APP_MESSAGES_KEY);
+async function readLocalPreviewMessages(expectedOwnerUid?: string | null): Promise<AppMessage[]> {
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return [];
+  const rows = await readJsonArray<Record<string, unknown> & { id?: string }>(
+    appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX, ownerUid),
+  );
   return rows
     .map((row) => {
       const id = cleanPollOptionId(row.id, '');
@@ -619,8 +859,12 @@ async function readLocalPreviewMessages(): Promise<AppMessage[]> {
     .filter((row): row is AppMessage => !!row);
 }
 
-async function readLocalPreviewStates(): Promise<AppMessageState[]> {
-  const rows = await readJsonArray<Record<string, unknown> & { messageId?: string }>(LOCAL_APP_MESSAGE_STATES_KEY);
+async function readLocalPreviewStates(expectedOwnerUid?: string | null): Promise<AppMessageState[]> {
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return [];
+  const rows = await readJsonArray<Record<string, unknown> & { messageId?: string }>(
+    appMessagesOwnerStorageKey(LOCAL_APP_MESSAGE_STATES_KEY_PREFIX, ownerUid),
+  );
   return rows
     .map((row) => {
       const messageId = cleanPollOptionId(row.messageId, '');
@@ -629,17 +873,21 @@ async function readLocalPreviewStates(): Promise<AppMessageState[]> {
     .filter((row): row is AppMessageState => !!row);
 }
 
-async function writeLocalPreviewMessages(messages: AppMessage[]): Promise<void> {
+async function writeLocalPreviewMessages(messages: AppMessage[], expectedOwnerUid?: string | null): Promise<void> {
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return;
   try {
-    await AsyncStorage.setItem(LOCAL_APP_MESSAGES_KEY, JSON.stringify(messages));
+    await AsyncStorage.setItem(appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX, ownerUid), JSON.stringify(messages));
   } catch {
     // Local preview is best-effort only.
   }
 }
 
-async function writeLocalPreviewStates(states: AppMessageState[]): Promise<void> {
+async function writeLocalPreviewStates(states: AppMessageState[], expectedOwnerUid?: string | null): Promise<void> {
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return;
   try {
-    await AsyncStorage.setItem(LOCAL_APP_MESSAGE_STATES_KEY, JSON.stringify(states));
+    await AsyncStorage.setItem(appMessagesOwnerStorageKey(LOCAL_APP_MESSAGE_STATES_KEY_PREFIX, ownerUid), JSON.stringify(states));
   } catch {
     // Local preview is best-effort only.
   }
@@ -648,27 +896,32 @@ async function writeLocalPreviewStates(states: AppMessageState[]): Promise<void>
 async function updateLocalPreviewState(
   messageId: string,
   patch: Partial<AppMessageState>,
+  expectedOwnerUid?: string | null,
 ): Promise<boolean> {
   const cleanMessageId = cleanPollOptionId(messageId, '');
   if (!cleanMessageId) return false;
-  const localMessages = await readLocalPreviewMessages();
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return false;
+  const localMessages = await readLocalPreviewMessages(ownerUid);
   if (!localMessages.some((message) => message.id === cleanMessageId)) return false;
 
   const nowMs = Date.now();
-  const localStates = await readLocalPreviewStates();
+  const localStates = await readLocalPreviewStates(ownerUid);
+  const existing = localStates.find((state) => state.messageId === cleanMessageId);
   const nextState: AppMessageState = {
     messageId: cleanMessageId,
-    readAtMs: patch.readAtMs ?? null,
-    dismissedAtMs: patch.dismissedAtMs ?? null,
-    reaction: patch.reaction ?? null,
-    pollOptionId: patch.pollOptionId ?? null,
+    readAtMs: patch.readAtMs !== undefined ? patch.readAtMs : (existing?.readAtMs ?? null),
+    dismissedAtMs: patch.dismissedAtMs !== undefined ? patch.dismissedAtMs : (existing?.dismissedAtMs ?? null),
+    reaction: patch.reaction !== undefined ? patch.reaction : (existing?.reaction ?? null),
+    pollOptionId: patch.pollOptionId !== undefined ? patch.pollOptionId : (existing?.pollOptionId ?? null),
     updatedAtMs: patch.updatedAtMs ?? nowMs,
+    visibilityRevision: patch.visibilityRevision ?? existing?.visibilityRevision,
   };
   const nextStates = [
     ...localStates.filter((state) => state.messageId !== cleanMessageId),
     nextState,
   ];
-  await writeLocalPreviewStates(nextStates);
+  await writeLocalPreviewStates(nextStates, ownerUid);
   emitAppEvent('app_messages_local_changed');
   return true;
 }
@@ -678,6 +931,8 @@ function isLocalVipSurveyTestMessageId(id: string): boolean {
 }
 
 export async function seedLocalVipSurveyTestMessage(nowMs = Date.now()): Promise<string> {
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) throw new Error('app_messages_owner_required');
   const id = `admin_test_vip_survey_${nowMs}`;
   const createdAt = new Date(nowMs).toISOString();
   const expiresAtMs = nowMs + APP_MESSAGE_TTL_MS;
@@ -714,13 +969,13 @@ export async function seedLocalVipSurveyTestMessage(nowMs = Date.now()): Promise
     expiresAt: new Date(expiresAtMs).toISOString(),
     expiresAtMs,
   }, nowMs);
-  const existing = await readLocalPreviewMessages();
+  const existing = await readLocalPreviewMessages(ownerUid);
   await writeLocalPreviewMessages([
     preview,
     ...existing.filter((message) => !isLocalVipSurveyTestMessageId(message.id)),
-  ]);
-  const states = await readLocalPreviewStates();
-  await writeLocalPreviewStates(states.filter((state) => !isLocalVipSurveyTestMessageId(state.messageId)));
+  ], ownerUid);
+  const states = await readLocalPreviewStates(ownerUid);
+  await writeLocalPreviewStates(states.filter((state) => !isLocalVipSurveyTestMessageId(state.messageId)), ownerUid);
   emitAppEvent('app_messages_local_changed');
   return id;
 }
@@ -736,8 +991,11 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
 }
 
 async function readCachedSnapshot(): Promise<AppMessagesSnapshot> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) return { messages: [], unreadCount: 0 };
   try {
-    const raw = await AsyncStorage.getItem(APP_MESSAGES_CACHE_KEY);
+    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid));
     if (!raw) return { messages: [], unreadCount: 0 };
     const parsed = JSON.parse(raw) as AppMessagesSnapshot;
     if (!Array.isArray(parsed.messages)) return { messages: [], unreadCount: 0 };
@@ -745,10 +1003,11 @@ async function readCachedSnapshot(): Promise<AppMessagesSnapshot> {
       messages: parsed.messages,
       unreadCount: Math.max(0, Math.floor(Number(parsed.unreadCount || 0))),
     };
-    return applyPendingReportReplyClaimsToSnapshot(
+    const withClaims = applyPendingReportReplyClaimsToSnapshot(
       sanitizeAppMessagesInboxSnapshot(snapshot),
       await readPendingReportReplyShardClaims(),
     );
+    return applyPendingVisibilityToSnapshot(withClaims, await readPendingAppMessageVisibility(ownerUid));
   } catch {
     return { messages: [], unreadCount: 0 };
   }
@@ -758,17 +1017,29 @@ export async function readCachedAppMessagesSnapshot(): Promise<AppMessagesSnapsh
   return readCachedSnapshot();
 }
 
-async function writeCachedSnapshot(snapshot: AppMessagesSnapshot): Promise<void> {
+async function writeCachedSnapshot(
+  snapshot: AppMessagesSnapshot,
+  expectedOwnerUid?: string | null,
+): Promise<void> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid || (expectedOwnerUid && ownerUid !== expectedOwnerUid)) return;
   try {
-    await AsyncStorage.setItem(APP_MESSAGES_CACHE_KEY, JSON.stringify(sanitizeAppMessagesInboxSnapshot(snapshot)));
+    await AsyncStorage.setItem(
+      appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid),
+      JSON.stringify(sanitizeAppMessagesInboxSnapshot(snapshot)),
+    );
   } catch {
     // Cache is a comfort feature only.
   }
 }
 
 async function readLastBackgroundRefreshMs(): Promise<number> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) return 0;
   try {
-    const raw = await AsyncStorage.getItem(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY);
+    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX, ownerUid));
     const n = Math.floor(Number(raw || 0));
     return Number.isFinite(n) && n > 0 ? n : 0;
   } catch {
@@ -776,9 +1047,15 @@ async function readLastBackgroundRefreshMs(): Promise<number> {
   }
 }
 
-async function writeLastBackgroundRefreshMs(ms: number): Promise<void> {
+async function writeLastBackgroundRefreshMs(ms: number, expectedOwnerUid?: string | null): Promise<void> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid || (expectedOwnerUid && ownerUid !== expectedOwnerUid)) return;
   try {
-    await AsyncStorage.setItem(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY, String(Math.max(0, Math.floor(ms))));
+    await AsyncStorage.setItem(
+      appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX, ownerUid),
+      String(Math.max(0, Math.floor(ms))),
+    );
   } catch {
     // Best-effort throttle only.
   }
@@ -796,6 +1073,11 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     ? Math.max(0, rawMinIntervalMs)
     : APP_MESSAGES_BACKGROUND_REFRESH_INTERVAL_MS;
   const cached = await readCachedSnapshot();
+  const uid = await getAppMessagesOwnerUid();
+  const firestoreFactory = await getFirestoreModule();
+  if (firestoreFactory && uid) {
+    await flushPendingAppMessageVisibility(firestoreFactory, uid);
+  }
 
   if (!options.force) {
     const lastRefreshMs = await readLastBackgroundRefreshMs();
@@ -804,13 +1086,11 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     }
   }
 
-  const firestoreFactory = await getFirestoreModule();
-  const uid = await getCanonicalUserId().catch(() => null);
   if (!firestoreFactory || !uid) return cached;
 
   try {
     const db = firestoreFactory();
-    const [messagesSnap, userMessagesSnap, statesSnap, localMessages, localStates, pendingClaims] = await Promise.all([
+    const [messagesSnap, userMessagesSnap, statesSnap, localMessages, localStates] = await Promise.all([
       db
         .collection(APP_MESSAGES_COLLECTION)
         .orderBy('createdAtMs', 'desc')
@@ -830,9 +1110,8 @@ export async function refreshAppMessagesSnapshotOnce(options: {
         .doc(uid)
         .collection(APP_MESSAGE_STATES_COLLECTION)
         .get(),
-      readLocalPreviewMessages(),
-      readLocalPreviewStates(),
-      readPendingReportReplyShardClaims(),
+      readLocalPreviewMessages(uid),
+      readLocalPreviewStates(uid),
     ]);
     const messages = (messagesSnap.docs || []).map((docSnap: any) =>
       normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}, nowMs),
@@ -840,17 +1119,19 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     const userMessages = (userMessagesSnap.docs || []).map((docSnap: any) =>
       normalizeUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, nowMs),
     );
+    const pendingClaims = await migrateLegacyReportReplyClaimsForOwnedMessages(uid, userMessages);
     const states = (statesSnap.docs || []).map((docSnap: any) =>
       normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
     );
+    const pendingVisibility = await acknowledgePendingAppMessageVisibility(uid, states);
     const snapshot = mergeAppMessagesWithStates(
       [...messages, ...userMessages, ...localMessages],
-      [...states, ...localStates],
+      applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
       nowMs,
       pendingClaims.map((claim) => claim.messageId),
     );
-    await writeCachedSnapshot(snapshot);
-    await writeLastBackgroundRefreshMs(nowMs);
+    await writeCachedSnapshot(snapshot, uid);
+    await writeLastBackgroundRefreshMs(nowMs, uid);
     return snapshot;
   } catch {
     return cached;
@@ -871,28 +1152,32 @@ export function subscribeUserAppMessages(
   let localMessages: AppMessage[] = [];
   let localStates: AppMessageState[] = [];
   let pendingReportReplyClaims: PendingReportReplyShardClaim[] = [];
+  let pendingVisibility: PendingAppMessageVisibility[] = [];
+  let ownerUid: string | null = null;
 
   const emit = () => {
     const snapshot = mergeAppMessagesWithStates(
       [...messages, ...userMessages, ...localMessages],
-      [...states, ...localStates],
+      applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
       Date.now(),
       pendingReportReplyClaims.map((claim) => claim.messageId),
     );
     onChange(snapshot);
-    void writeCachedSnapshot(snapshot);
+    if (ownerUid) void writeCachedSnapshot(snapshot, ownerUid);
   };
 
   const reloadLocal = () => {
     void Promise.all([
-      readLocalPreviewMessages(),
-      readLocalPreviewStates(),
-      readPendingReportReplyShardClaims(),
-    ]).then(([nextMessages, nextStates, nextPendingClaims]) => {
+      readLocalPreviewMessages(ownerUid),
+      readLocalPreviewStates(ownerUid),
+      readPendingReportReplyShardClaims(ownerUid),
+      readPendingAppMessageVisibility(ownerUid),
+    ]).then(([nextMessages, nextStates, nextPendingClaims, nextPendingVisibility]) => {
       if (disposed) return;
       localMessages = nextMessages;
       localStates = nextStates;
       pendingReportReplyClaims = nextPendingClaims;
+      pendingVisibility = nextPendingVisibility;
       emit();
     });
   };
@@ -905,11 +1190,15 @@ export function subscribeUserAppMessages(
 
   void (async () => {
     const firestoreFactory = await getFirestoreModule();
-    const uid = await getCanonicalUserId().catch(() => null);
+    const uid = await getAppMessagesOwnerUid();
+    ownerUid = uid;
+    reloadLocal();
     if (disposed || !firestoreFactory || !uid) {
       if (!disposed) emit();
       return;
     }
+
+    await flushPendingAppMessageVisibility(firestoreFactory, uid);
 
     const db = firestoreFactory();
     unsubscribeMessages = db
@@ -939,7 +1228,11 @@ export function subscribeUserAppMessages(
           userMessages = (snap.docs || []).map((docSnap: any) =>
             normalizeUserAppMessage(docSnap.id, docSnap.data?.() ?? {}),
           );
-          emit();
+          void migrateLegacyReportReplyClaimsForOwnedMessages(uid, userMessages).then((nextPendingClaims) => {
+            if (disposed) return;
+            pendingReportReplyClaims = nextPendingClaims;
+            emit();
+          });
         },
         () => {
           // Персональная лента опциональна: ошибка (нет rules/коллекции) не должна
@@ -956,7 +1249,11 @@ export function subscribeUserAppMessages(
           states = (snap.docs || []).map((docSnap: any) =>
             normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
           );
-          emit();
+          void acknowledgePendingAppMessageVisibility(uid, states).then((nextPendingVisibility) => {
+            if (disposed) return;
+            pendingVisibility = nextPendingVisibility;
+            emit();
+          });
         },
         (error: unknown) => {
           onError?.(error);
@@ -975,27 +1272,48 @@ export function subscribeUserAppMessages(
   };
 }
 
-export async function dismissAppMessage(messageId: string): Promise<void> {
-  const nowMs = Date.now();
-  const localHandled = await updateLocalPreviewState(messageId, {
-    readAtMs: nowMs,
-    dismissedAtMs: nowMs,
-    updatedAtMs: nowMs,
+function enqueueAppMessageVisibilityMutation(
+  messageId: string,
+  dismissedAtMs: number | null,
+  requestedAtMs: number,
+  capturedOwnerUid: Promise<string | null>,
+): Promise<void> {
+  const cleanMessageId = cleanPollOptionId(messageId, '');
+  if (!cleanMessageId) return Promise.resolve();
+  let operation: Promise<void> = Promise.resolve();
+  const scheduled = visibilitySchedulingQueue.catch(() => {}).then(async () => {
+    const ownerUid = await capturedOwnerUid;
+    if (!ownerUid) return;
+    const previous = visibilityActionQueueByOwner.get(ownerUid) ?? Promise.resolve();
+    operation = previous.catch(() => {}).then(async () => {
+      const localHandled = await updateLocalPreviewState(cleanMessageId, {
+        dismissedAtMs,
+        updatedAtMs: requestedAtMs,
+      }, ownerUid);
+      if (localHandled) return;
+      await recordPendingAppMessageVisibility(ownerUid, cleanMessageId, dismissedAtMs);
+      emitAppEvent('app_messages_local_changed');
+      await flushPendingAppMessageVisibility(await getFirestoreModule(), ownerUid);
+    });
+    visibilityActionQueueByOwner.set(ownerUid, operation);
+    void operation.finally(() => {
+      if (visibilityActionQueueByOwner.get(ownerUid) === operation) visibilityActionQueueByOwner.delete(ownerUid);
+    }).catch(() => {});
   });
-  if (localHandled) return;
-  const firestoreFactory = await getFirestoreModule();
-  const uid = await getCanonicalUserId().catch(() => null);
-  if (!firestoreFactory || !uid || !messageId) return;
-  const db = firestoreFactory();
-  await db.collection('users').doc(uid).collection(APP_MESSAGE_STATES_COLLECTION).doc(messageId).set(
-    {
-      messageId,
-      readAtMs: nowMs,
-      dismissedAtMs: nowMs,
-      updatedAtMs: nowMs,
-    },
-    { merge: true },
-  );
+  visibilitySchedulingQueue = scheduled;
+  return scheduled.then(() => operation);
+}
+
+export async function dismissAppMessage(messageId: string): Promise<void> {
+  const requestedAtMs = Date.now();
+  const capturedOwnerUid = getAppMessagesOwnerUid();
+  return enqueueAppMessageVisibilityMutation(messageId, requestedAtMs, requestedAtMs, capturedOwnerUid);
+}
+
+export async function restoreAppMessage(messageId: string): Promise<void> {
+  const requestedAtMs = Date.now();
+  const capturedOwnerUid = getAppMessagesOwnerUid();
+  return enqueueAppMessageVisibilityMutation(messageId, null, requestedAtMs, capturedOwnerUid);
 }
 
 export async function markAppMessageRead(messageId: string): Promise<void> {
@@ -1068,12 +1386,14 @@ export async function setAppMessagePollVote(messageId: string, optionId: string)
 // Теперь храним ID сообщений, для которых анимация УЖЕ проигрывалась, в AsyncStorage:
 // прилёт показывается один раз на сообщение, независимо от перезапусков и от того,
 // прочитал юзер его или нет.
-const ANIMATED_MESSAGE_IDS_KEY = 'app_message_received_anim_ids_v1';
 const ANIMATED_IDS_CAP = 300;
 
-export async function readAnimatedMessageIds(): Promise<string[]> {
+export async function readAnimatedMessageIds(expectedOwnerUid?: string | null): Promise<string[]> {
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = expectedOwnerUid ?? await getAppMessagesOwnerUid();
+  if (!ownerUid) return [];
   try {
-    const raw = await AsyncStorage.getItem(ANIMATED_MESSAGE_IDS_KEY);
+    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(ANIMATED_MESSAGE_IDS_KEY_PREFIX, ownerUid));
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === 'string') : [];
@@ -1088,12 +1408,18 @@ export async function readAnimatedMessageIds(): Promise<string[]> {
  */
 export async function markMessageIdsAnimated(ids: string[]): Promise<void> {
   if (ids.length === 0) return;
+  cleanupUnownedAppMessageStorage();
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!ownerUid) return;
   try {
-    const existing = await readAnimatedMessageIds();
+    const existing = await readAnimatedMessageIds(ownerUid);
     const set = new Set(existing);
     for (const id of ids) if (id) set.add(id);
     const next = [...set].slice(-ANIMATED_IDS_CAP);
-    await AsyncStorage.setItem(ANIMATED_MESSAGE_IDS_KEY, JSON.stringify(next));
+    await AsyncStorage.setItem(
+      appMessagesOwnerStorageKey(ANIMATED_MESSAGE_IDS_KEY_PREFIX, ownerUid),
+      JSON.stringify(next),
+    );
   } catch {
     // Best-effort: при сбое в худшем случае анимация повторится один раз.
   }

@@ -9,6 +9,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
+import AppMessagesInbox from './AppMessagesInbox';
 import { openCommunityHub } from '../app/community_hub_deeplink';
 import { claimReportReplyShardsOptimistically } from '../app/app_messages';
 import {
@@ -22,6 +23,7 @@ import {
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
 import MotionModal from './MotionModal';
+import auth from '@react-native-firebase/auth';
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
@@ -30,7 +32,12 @@ import MotionModal from './MotionModal';
  * (чат — к конкретному сообщению с подсветкой).
  */
 
-const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000;
+const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 30_000;
+
+type NotificationCenterButtonProps = {
+  isHomeTabActive: boolean;
+  homeFocusTick: number;
+};
 
 function centerCopy(lang: Lang) {
   return {
@@ -127,7 +134,7 @@ function timeLabel(ms: number): string {
   return `${Math.floor(h / 24)}d`;
 }
 
-function NotificationCenterButton() {
+function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: NotificationCenterButtonProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
@@ -137,21 +144,52 @@ function NotificationCenterButton() {
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [items, setItems] = useState<UserNotification[]>([]);
+  const [teamUnreadCount, setTeamUnreadCount] = useState(0);
+  const [teamMessageCount, setTeamMessageCount] = useState(0);
+  const [teamDetailOpen, setTeamDetailOpen] = useState(false);
   const markedReadIdsRef = useRef<Set<string>>(new Set());
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
+  const notificationTargetRef = useRef<View>(null);
+  const requestGenerationRef = useRef(0);
+  const [identityRevision, setIdentityRevision] = useState(0);
 
   useEffect(() => {
-    if (!isScreenFocused) return;
+    try {
+      return auth().onAuthStateChanged(() => {
+        requestGenerationRef.current += 1;
+        setItems([]);
+        setSelectedId(null);
+        setTeamUnreadCount(0);
+        setTeamMessageCount(0);
+        setTeamDetailOpen(false);
+        markedReadIdsRef.current.clear();
+        optimisticReportClaimIdsRef.current.clear();
+        setIdentityRevision((current) => current + 1);
+      });
+    } catch {
+      return undefined;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isScreenFocused || !isHomeTabActive) return;
     let alive = true;
+    const generation = ++requestGenerationRef.current;
+    let authoritativeResultApplied = false;
     const refreshOnce = () => {
       void refreshUserNotificationsOnce({
         minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
       }).then((list) => {
-        if (alive) setItems(list);
+        if (alive && requestGenerationRef.current === generation) {
+          authoritativeResultApplied = true;
+          setItems(list);
+        }
       });
     };
     void readCachedUserNotifications().then((cached) => {
-      if (alive && cached.length) setItems((cur) => (cur.length ? cur : cached));
+      if (alive && requestGenerationRef.current === generation && !authoritativeResultApplied && cached.length) {
+        setItems((cur) => (cur.length ? cur : cached));
+      }
     });
     refreshOnce();
     const appSub = AppState.addEventListener('change', (state) => {
@@ -163,11 +201,12 @@ function NotificationCenterButton() {
       alive = false;
       appSub.remove();
     };
-  }, [isScreenFocused]);
+  }, [homeFocusTick, identityRevision, isHomeTabActive, isScreenFocused]);
 
   const unreadCount = countUnreadNotifications(
     items.filter((row) => !markedReadIdsRef.current.has(row.id)),
   );
+  const combinedUnreadCount = teamUnreadCount + unreadCount;
   const selected = useMemo(() => items.find((row) => row.id === selectedId) ?? null, [items, selectedId]);
 
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
@@ -275,6 +314,7 @@ function NotificationCenterButton() {
 
   return (
     <>
+      <View ref={notificationTargetRef} collapsable={false}>
       <PressableScale
         testID="home-notification-center-button"
         variant="icon"
@@ -287,12 +327,13 @@ function NotificationCenterButton() {
         <View style={styles.headerIconWrap}>
           <Ionicons name="notifications-outline" size={30} color={t.accent} />
         </View>
-        {unreadCount > 0 ? (
+        {combinedUnreadCount > 0 ? (
           <View testID="home-notification-center-badge" style={styles.badge}>
-            <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
+            <Text style={styles.badgeText}>{combinedUnreadCount > 99 ? '99+' : String(combinedUnreadCount)}</Text>
           </View>
         ) : null}
       </PressableScale>
+      </View>
 
       <MotionModal visible={visible} onRequestClose={close} testID="notification-center-motion-modal">
         <View testID="notification-center-screen" style={{ flex: 1, backgroundColor: t.bgCard, paddingTop: topInset }}>
@@ -323,7 +364,16 @@ function NotificationCenterButton() {
           </View>
           {selected ? renderReportReplyDetail(selected) : (
           <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24, gap: 8 }}>
-            {items.length === 0 ? (
+            <AppMessagesInbox
+              key={identityRevision}
+              mode="notification-center"
+              centerVisible={visible}
+              onUnreadCountChange={setTeamUnreadCount}
+              onMessageCountChange={setTeamMessageCount}
+              onDetailOpenChange={setTeamDetailOpen}
+              notificationTargetRef={notificationTargetRef}
+            />
+            {teamDetailOpen ? null : items.length === 0 && teamMessageCount === 0 ? (
               <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>
                 <Ionicons name="notifications-off-outline" size={40} color={t.textGhost} />
                 <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>

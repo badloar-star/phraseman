@@ -7,8 +7,10 @@
 import {
   APP_MESSAGE_TTL_MS,
   REPORT_REPLY_TTL_MS,
+  applyPendingVisibilityToStates,
   isAppMessageAllowedForAudience,
   mergeAppMessagesWithStates,
+  normalizeAppMessage,
   normalizeUserAppMessage,
   pickAppMessageText,
   sanitizeAppMessagesInboxSnapshot,
@@ -83,5 +85,93 @@ describe('report reply user messages', () => {
     });
     expect(snapshot.messages.map((message) => message.id)).toEqual(['broadcast1']);
     expect(snapshot.unreadCount).toBe(1);
+  });
+
+  it('filters every dismissed team message kind', () => {
+    const news = normalizeAppMessage('news1', {
+      kind: 'message',
+      active: true,
+      audience: 'all',
+      titleRu: 'Новость',
+      messageRu: 'Текст',
+      createdAtMs: now,
+      expiresAtMs: now + APP_MESSAGE_TTL_MS,
+    }, now);
+    const poll = normalizeAppMessage('poll1', {
+      kind: 'poll',
+      active: true,
+      audience: 'all',
+      titleRu: 'Опрос',
+      messageRu: 'Текст',
+      createdAtMs: now + 1,
+      expiresAtMs: now + APP_MESSAGE_TTL_MS,
+    }, now);
+
+    const snapshot = mergeAppMessagesWithStates([news, poll], [{
+      messageId: news.id,
+      readAtMs: now,
+      dismissedAtMs: now,
+      reaction: null,
+      pollOptionId: null,
+      updatedAtMs: now,
+    }], now);
+
+    expect(snapshot.messages.map((message) => message.id)).toEqual(['poll1']);
+    expect(snapshot.unreadCount).toBe(1);
+  });
+
+  it('applies delete and Undo as a visibility-only LWW patch', () => {
+    const original = {
+      messageId: 'poll1',
+      readAtMs: now - 100,
+      dismissedAtMs: null,
+      reaction: 'like' as const,
+      pollOptionId: 'option-a',
+      updatedAtMs: now - 50,
+      visibilityRevision: 10,
+    };
+    const deleted = applyPendingVisibilityToStates([original], [{
+      messageId: 'poll1',
+      dismissedAtMs: now,
+      revision: 11,
+    }])[0];
+    expect(deleted).toMatchObject({
+      readAtMs: now - 100,
+      dismissedAtMs: now,
+      reaction: 'like',
+      pollOptionId: 'option-a',
+      visibilityRevision: 11,
+    });
+
+    const restored = applyPendingVisibilityToStates([deleted], [{
+      messageId: 'poll1',
+      dismissedAtMs: null,
+      revision: 12,
+    }])[0];
+    expect(restored).toMatchObject({
+      readAtMs: now - 100,
+      dismissedAtMs: null,
+      reaction: 'like',
+      pollOptionId: 'option-a',
+      visibilityRevision: 12,
+    });
+  });
+
+  it('ignores a delayed stale visibility operation after a newer Undo', () => {
+    const restored = {
+      messageId: 'news1',
+      readAtMs: null,
+      dismissedAtMs: null,
+      reaction: null,
+      pollOptionId: null,
+      updatedAtMs: 102,
+      visibilityRevision: 102,
+    };
+    const result = applyPendingVisibilityToStates([restored], [{
+      messageId: 'news1',
+      dismissedAtMs: 100,
+      revision: 101,
+    }]);
+    expect(result[0]).toEqual(restored);
   });
 });

@@ -8,12 +8,15 @@ function read(relPath: string): string {
 }
 
 describe('help board product contract', () => {
-  it('keeps Inbox separate and opens Help Board first from the dedicated chat icon', () => {
+  it('keeps Help Board dedicated while team messages move into the notification center', () => {
     const inbox = read(path.join('components', 'AppMessagesInbox.tsx'));
+    const notifications = read(path.join('components', 'NotificationCenterButton.tsx'));
     const chatHub = read(path.join('components', 'CommunityChatHubButton.tsx'));
     const home = read(path.join('app', '(tabs)', 'home.tsx'));
 
-    expect(home).toContain('<AppMessagesInbox />');
+    expect(home).not.toContain('<AppMessagesInbox />');
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
+    expect(notifications).toContain('mode="notification-center"');
     expect(home).toContain('<CommunityChatHubButton />');
     expect(inbox).not.toContain('HelpBoardPanel');
     expect(inbox).not.toContain('LeagueChatPanel');
@@ -21,7 +24,7 @@ describe('help board product contract', () => {
 
     expect(chatHub).toContain("type CommunityHubTab = 'help' | 'league'");
     expect(chatHub).toContain("const [tab, setTab] = useState<CommunityHubTab>('help')");
-    expect(chatHub).toContain("setTab('help');\n    setVisible(true);");
+    expect(chatHub).toMatch(/setTab\('help'\);\s*setVisible\(true\);/);
     expect(chatHub).toContain('testID="home-league-chat-button"');
     expect(chatHub).toContain('testID="community-chat-hub-fullscreen"');
     expect(chatHub).toContain('HelpBoardPanel');

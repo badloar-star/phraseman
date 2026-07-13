@@ -30,6 +30,7 @@ import {
   buildAppMessagePreview,
   dismissAppMessage,
   filterAppMessagesSnapshotForAudience,
+  flushPendingAppMessageVisibilityForCurrentOwner,
   markAppMessageRead,
   pickAppMessagePollOptionText,
   pickAppMessagePollQuestion,
@@ -42,6 +43,7 @@ import {
   markMessageIdsAnimated,
   readCachedAppMessagesSnapshot,
   refreshAppMessagesSnapshotOnce,
+  restoreAppMessage,
 } from '../app/app_messages';
 import VipSurveyModal from './VipSurveyModal';
 import VipCelebrationModal from './VipCelebrationModal';
@@ -87,6 +89,10 @@ function inboxText(lang: Lang) {
       pl: 'Answer a few questions and activate one month of Plus.',
     }),
     dismiss: triLang(lang, { ru: 'Убрать уведомление', uk: 'Прибрати сповіщення', es: 'Dismiss notification', 'pt-BR': 'Dismiss notification', vi: 'Dismiss notification', id: 'Dismiss notification', tr: 'Dismiss notification', pl: 'Dismiss notification' }),
+    team: triLang(lang, { ru: 'От команды', uk: 'Від команди', es: 'Del equipo', 'pt-BR': 'Da equipe', vi: 'Từ đội ngũ', id: 'Dari tim', tr: 'Ekipten', pl: 'Od zespołu' }),
+    pinned: triLang(lang, { ru: 'Закреплено', uk: 'Закріплено', es: 'Fijado', 'pt-BR': 'Fixado', vi: 'Đã ghim', id: 'Disematkan', tr: 'Sabitlendi', pl: 'Przypięte' }),
+    deleted: triLang(lang, { ru: 'Сообщение удалено', uk: 'Повідомлення видалено', es: 'Mensaje eliminado', 'pt-BR': 'Mensagem removida', vi: 'Đã xóa tin nhắn', id: 'Pesan dihapus', tr: 'Mesaj silindi', pl: 'Wiadomość usunięta' }),
+    undo: triLang(lang, { ru: 'Отменить', uk: 'Скасувати', es: 'Deshacer', 'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Urungkan', tr: 'Geri al', pl: 'Cofnij' }),
     pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
     pollSelected: triLang(lang, { ru: 'Ваш выбор', uk: 'Ваш вибір', es: 'Tu eleccion', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihan Anda', tr: 'Seçiminiz', pl: 'Twój wybór' }),
     pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', es: 'Resultados despues de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
@@ -128,7 +134,23 @@ function formatMessageDate(createdAtMs: number): string {
   return `${day}.${month}`;
 }
 
-function AppMessagesInbox() {
+type AppMessagesInboxProps = {
+  mode?: 'standalone' | 'notification-center';
+  centerVisible?: boolean;
+  onUnreadCountChange?: (count: number) => void;
+  onMessageCountChange?: (count: number) => void;
+  onDetailOpenChange?: (open: boolean) => void;
+  notificationTargetRef?: React.RefObject<View | null>;
+};
+
+function AppMessagesInbox({
+  mode = 'standalone',
+  centerVisible = false,
+  onUnreadCountChange,
+  onMessageCountChange,
+  onDetailOpenChange,
+  notificationTargetRef,
+}: AppMessagesInboxProps) {
   const isScreenFocused = useIsFocused();
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
@@ -141,6 +163,7 @@ function AppMessagesInbox() {
   const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
   const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
   const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
+  const [undoMessage, setUndoMessage] = useState<AppMessageWithState | null>(null);
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
   const [renderButton, setRenderButton] = useState(isScreenFocused);
   const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
@@ -163,6 +186,23 @@ function AppMessagesInbox() {
   // AsyncStorage). Письмо «прилетает» один раз на сообщение, а не при каждом заходе.
   const animatedIdsRef = useRef<Set<string> | null>(null);
   const flyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    onUnreadCountChange?.(unreadCount);
+  }, [onUnreadCountChange, unreadCount]);
+
+  useEffect(() => {
+    onMessageCountChange?.(messages.length);
+  }, [messages.length, onMessageCountChange]);
+
+  useEffect(() => {
+    if (mode === 'notification-center') onDetailOpenChange?.(!!selectedId);
+  }, [mode, onDetailOpenChange, selectedId]);
+
+  useEffect(() => {
+    if (mode === 'notification-center' && !centerVisible) setSelectedId(null);
+  }, [centerVisible, mode]);
 
   // Загружаем сохранённые ID один раз при монтировании.
   useEffect(() => {
@@ -177,14 +217,14 @@ function AppMessagesInbox() {
   }, []);
 
   const measureIcon = useCallback(() => {
-    const node = buttonRef.current;
+    const node = notificationTargetRef?.current ?? buttonRef.current;
     if (!node || typeof node.measureInWindow !== 'function') return;
     node.measureInWindow((x, y, w, h) => {
       if (Number.isFinite(x) && Number.isFinite(y)) {
         iconCenterRef.current = { x: x + (w || 0) / 2, y: y + (h || 0) / 2 };
       }
     });
-  }, []);
+  }, [notificationTargetRef]);
 
   // Защита от наложения: пока конверт ЛЕТИТ, повторный вызов игнорируется —
   // иначе несколько новых сообщений подряд запускали анимацию+звук несколько раз.
@@ -258,6 +298,7 @@ function AppMessagesInbox() {
     () => messages.find((message) => message.id === selectedId) ?? null,
     [messages, selectedId],
   );
+  const effectiveVisible = mode === 'notification-center' ? centerVisible : visible;
 
   const applyAppMessagesSnapshot = useCallback((snapshot: AppMessagesSnapshot) => {
     const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
@@ -266,15 +307,21 @@ function AppMessagesInbox() {
   }, [hasPremiumAccess]);
 
   useEffect(() => {
-    if (!visible) return;
+    if (!effectiveVisible) return;
     const sub = subscribeUserAppMessages((snapshot) => {
       applyAppMessagesSnapshot(snapshot);
     });
-    return () => sub.remove();
-  }, [applyAppMessagesSnapshot, visible]);
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') void flushPendingAppMessageVisibilityForCurrentOwner();
+    });
+    return () => {
+      appSub.remove();
+      sub.remove();
+    };
+  }, [applyAppMessagesSnapshot, effectiveVisible]);
 
   useEffect(() => {
-    if (!isScreenFocused || visible) return;
+    if (!isScreenFocused || effectiveVisible) return;
     let cancelled = false;
 
     const refreshBadge = async () => {
@@ -301,7 +348,7 @@ function AppMessagesInbox() {
       cancelled = true;
       appSub.remove();
     };
-  }, [applyAppMessagesSnapshot, isScreenFocused, visible]);
+  }, [applyAppMessagesSnapshot, effectiveVisible, isScreenFocused]);
 
   useEffect(() => {
     if (!hasPremiumAccess || !surveyTarget) return;
@@ -387,16 +434,17 @@ function AppMessagesInbox() {
     // Если инбокс открыт — пользователь и так видит письмо: помечаем без анимации.
     // Если экран не в фокусе — НЕ помечаем, чтобы прилёт показался один раз, когда
     // экран снова станет видимым.
-    if (visible) { consume(); return; }
+    if (effectiveVisible) { consume(); return; }
     if (!isScreenFocused) return;
 
     // Реально новое сообщение и экран виден → проигрываем прилёт ровно один раз.
     consume();
     playEnvelopeFlight();
-  }, [animatedIdsReady, messages, isScreenFocused, visible, playEnvelopeFlight]);
+  }, [animatedIdsReady, effectiveVisible, messages, isScreenFocused, playEnvelopeFlight]);
 
   useEffect(() => () => {
     if (flyTimer.current) clearTimeout(flyTimer.current);
+    if (undoTimer.current) clearTimeout(undoTimer.current);
     flightInProgressRef.current = false; // снять замок при размонтировании
   }, []);
 
@@ -427,6 +475,40 @@ function AppMessagesInbox() {
   const selectMessage = (message: AppMessageWithState) => {
     hapticTap();
     setSelectedId(message.id);
+  };
+
+  const dismissMessage = (message: AppMessageWithState, event?: { stopPropagation?: () => void }) => {
+    event?.stopPropagation?.();
+    hapticTap();
+    setMessages((prev) => prev.filter((row) => row.id !== message.id));
+    if (message.unread) setUnreadCount((prev) => Math.max(0, prev - 1));
+    if (selectedId === message.id) setSelectedId(null);
+    if (surveyTarget?.id === message.id) setSurveyTarget(null);
+    setUndoMessage(message);
+    if (undoTimer.current) clearTimeout(undoTimer.current);
+    undoTimer.current = setTimeout(() => {
+      undoTimer.current = null;
+      setUndoMessage((current) => (current?.id === message.id ? null : current));
+    }, 5_000);
+    void dismissAppMessage(message.id);
+  };
+
+  const undoDismissMessage = () => {
+    const message = undoMessage;
+    if (!message) return;
+    hapticTap();
+    if (undoTimer.current) {
+      clearTimeout(undoTimer.current);
+      undoTimer.current = null;
+    }
+    setUndoMessage(null);
+    setMessages((prev) => (
+      prev.some((row) => row.id === message.id)
+        ? prev
+        : [...prev, message].sort((a, b) => (b.priority - a.priority) || (b.createdAtMs - a.createdAtMs))
+    ));
+    if (message.unread) setUnreadCount((prev) => prev + 1);
+    void restoreAppMessage(message.id);
   };
 
   const reactToSelected = (reaction: 'like' | 'dislike') => {
@@ -481,14 +563,8 @@ function AppMessagesInbox() {
   };
 
   const dismissSurveyMessage = (messageId: string) => {
-    setMessages((prev) => prev.filter((message) => message.id !== messageId));
-    setUnreadCount((prev) => {
-      const target = messages.find((message) => message.id === messageId);
-      return target?.unread ? Math.max(0, prev - 1) : prev;
-    });
-    if (selectedId === messageId) setSelectedId(null);
-    if (surveyTarget?.id === messageId) setSurveyTarget(null);
-    void dismissAppMessage(messageId);
+    const target = messages.find((message) => message.id === messageId);
+    if (target) dismissMessage(target);
   };
 
   const openSurvey = (message: AppMessageWithState) => {
@@ -571,6 +647,76 @@ function AppMessagesInbox() {
     hexToRgba(themeAccent, isDark ? 0.05 : 0.04),
     'rgba(0,0,0,0)',
   ] as const;
+
+  const renderEmbeddedSection = () => {
+    if (!centerVisible || (messages.length === 0 && !undoMessage)) return null;
+    if (selected) return renderUnifiedDetail();
+    return (
+      <View testID="notification-center-team-section" style={styles.embeddedSection}>
+        <View style={styles.embeddedSectionHeader}>
+          <Text style={[styles.embeddedSectionTitle, { color: chrome.text }]}>{copy.team}</Text>
+          <Text style={[styles.embeddedSectionMeta, { color: chrome.soft }]}>{copy.pinned}</Text>
+        </View>
+        <View style={styles.embeddedRows}>
+          {messages.map((message) => {
+            const text = pickAppMessageText(message, lang);
+            const preview = message.kind === 'vip_survey'
+              ? copy.vipSurveyHint
+              : message.poll
+              ? pickAppMessagePollQuestion(message.poll, lang)
+              : buildAppMessagePreview(text.body, 120);
+            return (
+              <TouchableOpacity
+                key={message.id}
+                activeOpacity={0.82}
+                onPress={() => selectMessage(message)}
+                style={[styles.embeddedRow, { backgroundColor: message.unread ? chrome.cardStrong : chrome.readCard }]}
+              >
+                {message.unread ? <View pointerEvents="none" style={styles.embeddedUnreadDot} /> : null}
+                <View style={styles.embeddedCopy}>
+                  <Text numberOfLines={2} style={[styles.embeddedTitle, { color: message.unread ? chrome.text : chrome.muted }]}>
+                    {text.title}
+                  </Text>
+                  {preview ? (
+                    <Text numberOfLines={2} style={[styles.embeddedPreview, { color: chrome.muted }]}>{preview}</Text>
+                  ) : null}
+                  <Text style={[styles.embeddedDate, { color: chrome.soft }]}>{formatMessageDate(message.createdAtMs)}</Text>
+                </View>
+                <TouchableOpacity
+                  testID={`team-message-dismiss-${message.id}`}
+                  activeOpacity={0.72}
+                  accessibilityRole="button"
+                  accessibilityLabel={copy.dismiss}
+                  onPress={(event) => {
+                    event.stopPropagation?.();
+                    dismissMessage(message);
+                  }}
+                  style={styles.embeddedDismiss}
+                >
+                  <Ionicons name="close" size={19} color={chrome.soft} />
+                </TouchableOpacity>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+        {undoMessage ? (
+          <View style={[styles.undoBar, { backgroundColor: chrome.cardStrong }]}>
+            <Text style={[styles.undoText, { color: chrome.muted }]}>{copy.deleted}</Text>
+            <TouchableOpacity
+              testID="team-message-undo"
+              activeOpacity={0.75}
+              accessibilityRole="button"
+              accessibilityLabel={copy.undo}
+              onPress={undoDismissMessage}
+              style={styles.undoButton}
+            >
+              <Text style={[styles.undoButtonText, { color: themeAccent }]}>{copy.undo}</Text>
+            </TouchableOpacity>
+          </View>
+        ) : null}
+      </View>
+    );
+  };
 
   const renderList = () => (
     <>
@@ -879,10 +1025,76 @@ function AppMessagesInbox() {
     );
   };
 
+  const renderUnifiedDetail = () => {
+    if (!selected) return null;
+    const text = pickAppMessageText(selected, lang);
+    return (
+      <View testID="notification-center-team-detail" style={styles.embeddedDetail}>
+        <View style={styles.embeddedDetailHeader}>
+          <TouchableOpacity
+            testID="notification-center-team-detail-back"
+            accessibilityRole="button"
+            accessibilityLabel={copy.back}
+            activeOpacity={0.75}
+            onPress={() => {
+              hapticTap();
+              setSelectedId(null);
+            }}
+            style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
+          >
+            <Ionicons name="chevron-back" size={22} color={chrome.text} />
+          </TouchableOpacity>
+          <Text style={[styles.embeddedSectionTitle, { color: chrome.text }]}>{copy.team}</Text>
+        </View>
+        <View style={styles.detailContent}>
+          <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
+          <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
+          <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
+          {renderVipSurveyCta(selected)}
+          {renderReportReplyClaim(selected)}
+          {renderPoll(selected)}
+          {selected.kind === 'vip_survey' ? null : (
+            <View style={styles.reactions}>
+              <TouchableOpacity
+                activeOpacity={0.82}
+                onPress={() => reactToSelected('like')}
+                style={[
+                  styles.reactionButton,
+                  {
+                    borderColor: selected.reaction === 'like' ? '#63D98F' : chrome.border,
+                    backgroundColor: selected.reaction === 'like' ? 'rgba(99,217,143,0.14)' : chrome.card,
+                  },
+                ]}
+              >
+                <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? monoIcon(themeMode, '#63D98F') : chrome.muted} />
+                <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.82}
+                onPress={() => reactToSelected('dislike')}
+                style={[
+                  styles.reactionButton,
+                  {
+                    borderColor: selected.reaction === 'dislike' ? '#F87171' : chrome.border,
+                    backgroundColor: selected.reaction === 'dislike' ? 'rgba(248,113,113,0.14)' : chrome.card,
+                  },
+                ]}
+              >
+                <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? monoIcon(themeMode, '#F87171') : chrome.muted} />
+                <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+      </View>
+    );
+  };
+
   if (!renderButton) return null;
 
   return (
     <>
+      {mode === 'notification-center' ? renderEmbeddedSection() : (
       <TouchableOpacity
         ref={buttonRef}
         onLayout={measureIcon}
@@ -908,6 +1120,7 @@ function AppMessagesInbox() {
           </Animated.View>
         )}
       </TouchableOpacity>
+      )}
 
       {flying ? (() => {
         const screen = Dimensions.get('window');
@@ -1009,6 +1222,120 @@ function AppMessagesInbox() {
 export default memo(AppMessagesInbox);
 
 const styles = StyleSheet.create({
+  embeddedDetail: {
+    minHeight: 320,
+  },
+  embeddedDetailHeader: {
+    minHeight: 48,
+    paddingHorizontal: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  embeddedSection: {
+    gap: 8,
+    marginBottom: 10,
+  },
+  embeddedSectionHeader: {
+    minHeight: 28,
+    paddingHorizontal: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  embeddedSectionTitle: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '900',
+  },
+  embeddedSectionMeta: {
+    fontSize: 10,
+    lineHeight: 14,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+  },
+  embeddedRows: {
+    gap: 8,
+  },
+  embeddedRow: {
+    position: 'relative',
+    minHeight: 72,
+    borderRadius: 16,
+    paddingLeft: 13,
+    paddingVertical: 11,
+    paddingRight: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  embeddedCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  embeddedTitle: {
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: '900',
+  },
+  embeddedPreview: {
+    marginTop: 3,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '600',
+  },
+  embeddedDate: {
+    marginTop: 5,
+    fontSize: 10,
+    lineHeight: 13,
+    fontWeight: '800',
+  },
+  embeddedDismiss: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    width: 44,
+    height: 44,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  embeddedUnreadDot: {
+    position: 'absolute',
+    top: 12,
+    left: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
+  },
+  undoBar: {
+    minHeight: 48,
+    borderRadius: 14,
+    paddingLeft: 13,
+    paddingRight: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  undoText: {
+    flex: 1,
+    minWidth: 0,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '700',
+  },
+  undoButton: {
+    minWidth: 74,
+    minHeight: 44,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  undoButtonText: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '900',
+  },
   headerButton: {
     width: 48,
     height: 46,

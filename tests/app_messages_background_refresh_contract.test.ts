@@ -18,17 +18,20 @@ describe('app messages background refresh contract', () => {
 
     expect(refreshBlock).toContain('readCachedSnapshot()');
     expect(refreshBlock).toContain('readLastBackgroundRefreshMs()');
-    expect(refreshBlock).toContain('writeLastBackgroundRefreshMs(nowMs)');
+    expect(refreshBlock).toContain('writeLastBackgroundRefreshMs(nowMs, uid)');
+    expect(refreshBlock.indexOf('flushPendingAppMessageVisibility(firestoreFactory, uid)')).toBeLessThan(
+      refreshBlock.indexOf('if (!options.force)'),
+    );
     expect(refreshBlock).toContain('limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)');
     expect(refreshBlock).toContain('.get()');
     expect(refreshBlock).not.toContain('.onSnapshot(');
   });
 
-  it('keeps realtime subscription only for the visible modal while the closed badge uses a short foreground refresh', () => {
+  it('keeps realtime subscription for the effective standalone or embedded surface while the closed badge refreshes', () => {
     const subscriptionStart = inboxSource.indexOf('const sub = subscribeUserAppMessages');
-    const subscriptionEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, visible]);', subscriptionStart);
+    const subscriptionEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, effectiveVisible]);', subscriptionStart);
     const pollStart = inboxSource.indexOf('const refreshBadge = async () =>');
-    const pollEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, isScreenFocused, visible]);', pollStart);
+    const pollEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, effectiveVisible, isScreenFocused]);', pollStart);
     const pollBlock = inboxSource.slice(pollStart, pollEnd);
 
     expect(subscriptionStart).toBeGreaterThan(0);

@@ -84,7 +84,6 @@ import { oskolokImageForPackShards } from '../oskolok';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import AppMessagesInbox from '../../components/AppMessagesInbox';
 import CommunityChatHubButton from '../../components/CommunityChatHubButton';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
@@ -2511,14 +2510,22 @@ export default function HomeScreen() {
             </Animated.View>);
         return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
-          {/* ХЕДЕР: один ряд. Слева — письмо (новости команды) + бюст (карточка профиля).
-              Справа — энергия (1 иконка + цифры), осколки, видео, чаты, колокольчик (центр событий).
+          {/* ХЕДЕР: один ряд. Слева — осколки + бюст (карточка профиля).
+              Справа — энергия (1 иконка + цифры), видео, чаты, колокольчик (единый центр событий и сообщений команды).
               Имя убрано с главной: оно есть в карточке профиля по тапу на бюст. */}
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 0 }}>
-                <AppMessagesInbox />
+                <TouchableOpacity activeOpacity={0.75} onPress={() => {
+                    hapticTap();
+                    nav.push('/shards_shop');
+                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
+                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
+                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
+                  </Animated.View>
+                </TouchableOpacity>
                 {renderHomeProfileButton()}
                 <View style={{ flex: 1, minWidth: 0 }} />
                 {showHomeEnergy && (
@@ -2536,18 +2543,9 @@ export default function HomeScreen() {
                     </TouchableOpacity>
                   </View>
                 )}
-                <TouchableOpacity activeOpacity={0.75} onPress={() => {
-                    hapticTap();
-                    nav.push('/shards_shop');
-                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
-                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
-                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
-                  </Animated.View>
-                </TouchableOpacity>
                 <LingmanVideosButton />
                 <CommunityChatHubButton />
-                <NotificationCenterButton />
+                <NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{

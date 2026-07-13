@@ -12,13 +12,13 @@ function read(relPath: string): string {
 describe('header accent buttons (vector icons)', () => {
   const videoSource = () => read(path.join('components', 'LingmanVideosButton.tsx'));
   const inboxSource = () => read(path.join('components', 'AppMessagesInbox.tsx'));
+  const notificationSource = () => read(path.join('components', 'NotificationCenterButton.tsx'));
   const chatHubSource = () => read(path.join('components', 'CommunityChatHubButton.tsx'));
   const homeSource = () => read(path.join('app', '(tabs)', 'home.tsx'));
 
-  test('video, messages and league-chat buttons use vector Ionicons, not per-theme assets', () => {
+  test('video, notifications and league-chat buttons use vector Ionicons, not per-theme assets', () => {
     expect(videoSource()).toContain('play-circle-outline');
-    // Инбокс команды — конверт; колокольчик отдан центру событий (NotificationCenterButton).
-    expect(inboxSource()).toContain('mail-outline');
+    expect(notificationSource()).toContain('notifications-outline');
     expect(chatHubSource()).toContain('chatbubbles-outline');
   });
 
@@ -34,8 +34,8 @@ describe('header accent buttons (vector icons)', () => {
     expect(files.filter((f) => f.startsWith('message-button-'))).toHaveLength(0);
   });
 
-  test('video and messages buttons keep the same visual box (48x46 / 44x38)', () => {
-    for (const source of [videoSource(), inboxSource(), chatHubSource()]) {
+  test('video, notifications and chat buttons keep the same visual box (48x46 / 44x38)', () => {
+    for (const source of [videoSource(), notificationSource(), chatHubSource()]) {
       expect(source).toContain('width: 48');
       expect(source).toContain('height: 46');
       expect(source).toContain('width: 44');
@@ -53,11 +53,13 @@ describe('header accent buttons (vector icons)', () => {
     expect(videoSource()).not.toContain('backgroundColor: chrome.accent');
   });
 
-  test('league-chat button is a separate fullscreen chat hub next to the inbox', () => {
+  test('league-chat button remains separate while team messages move into notifications', () => {
     const home = homeSource();
     const chatHub = chatHubSource();
 
-    expect(home).toContain('<AppMessagesInbox />');
+    expect(home).not.toContain('<AppMessagesInbox />');
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
+    expect(notificationSource()).toContain('mode="notification-center"');
     expect(home).toContain('<CommunityChatHubButton />');
     expect(chatHub).toContain('home-league-chat-button');
     expect(chatHub).toContain('community-chat-hub-fullscreen');

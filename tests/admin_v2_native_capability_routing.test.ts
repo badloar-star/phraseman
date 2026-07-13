@@ -31,11 +31,11 @@ function capabilityHubHash(id: string): string {
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly thirty-nine proven native capabilities as guarded', () => {
+  test('marks all fifty-nine proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
-    expect(native).toHaveLength(39);
+    expect(native).toHaveLength(59);
     expect(native.map(({ id, nativeRoute }) => [id, nativeRoute])).toEqual(expect.arrayContaining([
       ['analytics', 'analytics'],
       ['alerts', 'alerts'],
@@ -76,12 +76,32 @@ describe('Admin v2 native capability routing', () => {
       ['app-health', 'diagnostics'],
       ['archive', 'diagnostics'],
       ['changelog-0608', 'diagnostics'],
+      ['ugc-purchases', 'money-operations'],
+      ['refunds', 'money-operations'],
+      ['referrals', 'money-operations'],
+      ['telegram-payments', 'money-operations'],
+      ['website-payments', 'money-operations'],
+      ['community-packs', 'content-operations'],
+      ['card-packs', 'content-operations'],
+      ['daily-phrases', 'content-operations'],
+      ['french-quizzes', 'content-operations'],
+      ['explain-reports', 'content-operations'],
+      ['full-content-control', 'content-operations'],
+      ['mod-queue', 'community-operations'],
+      ['help-board', 'community-operations'],
+      ['helpers-board', 'community-operations'],
+      ['clubs', 'community-operations'],
+      ['league-chat', 'community-operations'],
+      ['arena-ranks', 'community-operations'],
+      ['arena-live', 'community-operations'],
+      ['arena-bets', 'community-operations'],
+      ['arena-rooms', 'community-operations'],
     ]));
     expect(native.every((capability) => capability.migrationStatus === 'guarded')).toBe(true);
-    expect(registry.filter((capability) => !capability.nativeRoute).every((capability) => capability.migrationStatus === 'fallback')).toBe(true);
+    expect(registry.filter((capability) => !capability.nativeRoute)).toEqual([]);
   });
 
-  test('routes native capabilities directly and preserves iframe fallback for the rest', () => {
+  test('routes every capability directly without a live iframe fallback', () => {
     const router = read('admin/v2/scripts/admin-router.js');
     const core = read('admin/v2/scripts/admin-core.js');
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
@@ -90,9 +110,9 @@ describe('Admin v2 native capability routing', () => {
     expect(router).toMatch(/SUB_ROUTES[^\n]+['\"]campaigns['\"]/);
     expect(capabilities).toContain('directCapability.nativeRoute');
     expect(capabilities).toContain('requestedCapability?.nativeRoute');
-    expect(core).toContain('!capability.nativeRoute');
-    expect(core).toContain('renderCapabilityWorkspace');
-    expect(core).toContain('<iframe');
+    expect(core).not.toContain('!capability.nativeRoute');
+    expect(core).not.toContain('renderCapabilityWorkspace');
+    expect(core).not.toContain('legacy-module-frame');
 
     const registry = loadRegistry();
     expect(registry.find((capability) => capability.id === 'control-panel')).toMatchObject({ migrationStatus: 'guarded', nativeRoute: 'control-panel' });
@@ -126,7 +146,7 @@ describe('Admin v2 native capability routing', () => {
     expect(capabilityHubHash('audit')).toBe('diagnostics');
     expect(capabilityHubHash('ops-log')).toBe('diagnostics');
     expect(capabilityHubHash('paywall-ab')).toBe('application');
-    expect(capabilityHubHash('mod-queue')).toBe('community:mod-queue');
+    expect(capabilityHubHash('mod-queue')).toBe('community-operations');
 
     const core = read('admin/v2/scripts/admin-core.js');
     expect(core).toContain('capabilityHubHash(capability)');

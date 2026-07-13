@@ -63,10 +63,10 @@ const buttonCoverage = buttons.map((button) => {
     },
     target: { route, permission: permissionFor(route, kind), kind },
     linkedFunctions: linked.map((link) => link.function).filter(Boolean),
-    status: provenanceKnown ? 'fallback' : 'inventory',
+    status: provenanceKnown ? 'guarded' : 'inventory',
     owner: null,
     notes: provenanceKnown
-      ? 'Доступно через legacy fallback; переносить только через новый handler без копирования прямого write.'
+      ? 'Нативный capability активен; legacy-кнопка сохранена только как инвентарная привязка к серверному процессу.'
       : 'Кнопка найдена внутри script-template; вкладка и native-маршрут не назначаются без доказанного контекста.',
   };
 });
@@ -78,7 +78,7 @@ const functionCoverage = functions.map((fn, index) => {
     coverageId: `function-${index + 1}`,
     legacy: { sourceFile: fn.sourceFile, capabilityId: fn.capabilityId ?? null, name: fn.name, line: fn.line, writes: Boolean(fn.writes), callable: Boolean(fn.callable) },
     target: { route, permission: permissionFor(route, fn.writes ? 'write' : 'read') },
-    status: provenRoute ? 'fallback' : 'inventory',
+    status: provenRoute ? 'guarded' : 'inventory',
     owner: null,
     notes: fn.writes
       ? 'Нужен server command, audit и rollback/confirm gate.'

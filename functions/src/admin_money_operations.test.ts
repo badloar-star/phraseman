@@ -1,4 +1,4 @@
-import { buildMoneyMutationPlan, parseMoneyWorkspaceInput } from './admin_money_operations';
+import { buildMoneyMutationPlan, buildTelegramVipProgress, parseMoneyWorkspaceInput } from './admin_money_operations';
 import { csvCell, documentVersion } from './admin_native_operations';
 
 describe('Admin native Money Operations', () => {
@@ -21,5 +21,16 @@ describe('Admin native Money Operations', () => {
   it('produces stable versions and safe CSV cells', () => {
     expect(documentVersion('a', { x: 1 })).toBe(documentVersion('a', { x: 1 }));
     expect(csvCell('a,"b"')).toBe('"a,""b"""');
+  });
+
+  it('activates Telegram-paid VIP without marking it revoked', () => {
+    expect(buildTelegramVipProgress(1_700_000_000_000, 3)).toEqual({
+      vip_active: 'true',
+      vip_plan: 'telegram_paid',
+      vip_from: '1700000000000',
+      vip_until: '1707948800000',
+      vip_admin_override: 'true',
+      vip_admin_grant_at: '1700000000000',
+    });
   });
 });

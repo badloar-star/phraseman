@@ -40,6 +40,20 @@ export function buildMoneyMutationPlan(action: string, _targetId: string, _befor
   }
 }
 
+export function buildTelegramVipProgress(nowMs: number, months: number): Record<string, string> {
+  const until = new Date(nowMs);
+  until.setUTCMonth(until.getUTCMonth() + months);
+  const grantedAt = String(nowMs);
+  return {
+    vip_active: 'true',
+    vip_plan: 'telegram_paid',
+    vip_from: grantedAt,
+    vip_until: String(until.getTime()),
+    vip_admin_override: 'true',
+    vip_admin_grant_at: grantedAt,
+  };
+}
+
 function mutationPlanFromEnvelope(input: ReturnType<typeof parseMutationEnvelope>) {
   try { return buildMoneyMutationPlan(input.action, input.targetId, {}, input.payload); }
   catch (error) { throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'unsupported_money_action'); }
@@ -107,8 +121,8 @@ export const adminApplyMoneyMutation = onCall({ region: REGION, enforceAppCheck:
         if (!['paid', 'paid_confirmed'].includes(cleanText(before.status, 40))) throw new HttpsError('failed-precondition', 'telegram_order_not_paid');
         const uid = cleanText(payload.uid || before.appStableId || before.stableUid, 160); if (!uid) throw new HttpsError('invalid-argument', 'canonical uid required');
         const userRef = db.collection('users').doc(uid); const userSnap = await tx.get(userRef); if (!userSnap.exists) throw new HttpsError('not-found', 'user_not_found');
-        const plan = cleanText(before.planDuration || before.plan, 40); const months = plan.includes('year') ? 12 : plan.includes('3') ? 3 : 1; const until = new Date(nowMs); until.setUTCMonth(until.getUTCMonth() + months);
-        tx.set(userRef, { progress: { vip_active: 'true', vip_plan: 'telegram_paid', vip_from: String(nowMs), vip_until: String(until.getTime()), vip_admin_override: 'false' }, updatedAt: nowMs }, { merge: true });
+        const plan = cleanText(before.planDuration || before.plan, 40); const months = plan.includes('year') ? 12 : plan.includes('3') ? 3 : 1;
+        tx.set(userRef, { progress: buildTelegramVipProgress(nowMs, months), updatedAt: nowMs }, { merge: true });
         return { status: 'vip_activated', testerActivationStatus: 'activated', activatedAt: iso, activatedUserId: uid, activatedPeriod: plan };
       }
       if (action === 'web-order-close') {

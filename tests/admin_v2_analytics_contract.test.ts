@@ -49,9 +49,9 @@ describe('Admin v2 trustworthy analytics contract', () => {
   });
 
   test('mirrors the backend money.read permission and existing callable', () => {
-    expect(core).toContain("owner: new Set(['users.read', 'money.read'");
-    expect(core).toContain("admin: new Set(['users.read', 'money.read'");
-    expect(core).toContain("analyst: new Set(['users.read', 'money.read'");
+    for (const role of ['owner', 'admin', 'analyst']) {
+      expect(core).toMatch(new RegExp(`${role}: new Set\\(\\[[^\\n]*'money\\.read'`));
+    }
     expect(core).toContain("disabledWhenUnauthorized('money.read')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot')");
     expect(core).toContain("if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' }");

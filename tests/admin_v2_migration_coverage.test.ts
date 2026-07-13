@@ -44,9 +44,9 @@ describe('Admin v2 migration coverage', () => {
       ],
     });
     expect(board.capabilityCoverage).toHaveLength(59);
-    expect(board.summary.capabilities).toEqual({ total: 59, inventory: 0, guarded: 39, fallback: 20, ported: 0, blocked: 0 });
-    expect(board.buttonCoverage.every((row) => row.status === 'inventory' || row.status === 'fallback')).toBe(true);
-    expect(board.functionCoverage.every((row) => row.status === 'inventory' || row.status === 'fallback')).toBe(true);
+    expect(board.summary.capabilities).toEqual({ total: 59, inventory: 0, guarded: 59, fallback: 0, ported: 0, blocked: 0 });
+    expect(board.buttonCoverage.some((row) => row.status === 'fallback')).toBe(false);
+    expect(board.functionCoverage.some((row) => row.status === 'fallback')).toBe(false);
   });
 
   it('builds links by stable button key and checks generated-board drift read-only', () => {

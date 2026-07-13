@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<script>
+    (function installNativeCompletionRedirects() {
+      const params = new URLSearchParams(globalThis.location.search);
+      const archive = params.get('legacyArchive') === '1';
+      const archiveMarkup = '<!doctype html><html data-native-completion-archive="true"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Legacy Admin Archive</title></head><body><main><h1>Legacy Admin Archive</h1><p>Native completion archive: no live reads or writes</p><p>Этот статический снимок оставлен только для сверки. Рабочая админка находится в Admin v2.</p></main></body></html>';
+      if (archive) {
+        globalThis.location.replace('./legacy-archive.html');
+        return;
+      }
+      const target = './v2/index.html#telegram-payments';
+      globalThis.location.replace(target);
+      document.open();
+      document.write('<!doctype html><title>Переход в Admin v2</title><p>Переход в <a href="' + target + '">Admin v2</a>…</p>');
+      document.close();
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">

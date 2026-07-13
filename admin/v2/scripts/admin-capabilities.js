@@ -102,10 +102,25 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'openai-budget': 'diagnostics',
   'promo-codes': 'money',
   'ugc-purchases': 'money-operations',
-  refunds: 'money-operations',
-  referrals: 'money-operations',
+  'refunds': 'money-operations',
+  'referrals': 'money-operations',
   'telegram-payments': 'money-operations',
   'website-payments': 'money-operations',
+  'community-packs': 'content-operations',
+  'card-packs': 'content-operations',
+  'daily-phrases': 'content-operations',
+  'french-quizzes': 'content-operations',
+  'explain-reports': 'content-operations',
+  'full-content-control': 'content-operations',
+  'mod-queue': 'community-operations',
+  'help-board': 'community-operations',
+  'helpers-board': 'community-operations',
+  'clubs': 'community-operations',
+  'league-chat': 'community-operations',
+  'arena-ranks': 'community-operations',
+  'arena-live': 'community-operations',
+  'arena-bets': 'community-operations',
+  'arena-rooms': 'community-operations',
   audit: 'diagnostics',
   'ops-log': 'diagnostics',
   'app-health': 'diagnostics',
@@ -115,7 +130,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
-  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research', 'safety-moderation', 'money-operations',
+  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research', 'safety-moderation', 'money-operations', 'content-operations', 'community-operations',
 ]);
 
 const DIAGNOSTICS_NATIVE_VIEW_HASHES = new Set(['app-health', 'archive', 'changelog-0608']);

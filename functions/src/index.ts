@@ -1644,6 +1644,15 @@ export {
   adminGetMoneyOperationsWorkspace, adminGetMoneyOperationDetail, adminPreviewMoneyMutation,
   adminRequestMoneyApproval, adminApproveMoneyMutation, adminApplyMoneyMutation,
 } from './admin_money_operations';
+export {
+  adminGetContentOperationsWorkspace, adminGetContentOperationDetail, adminPreviewContentMutation,
+  adminRequestContentApproval, adminApproveContentMutation, adminApplyContentMutation,
+} from './admin_content_operations';
+export {
+  adminGetCommunityOperationsWorkspace, adminGetCommunityOperationDetail, adminPreviewCommunityMutation,
+  adminRequestCommunityApproval, adminApproveCommunityMutation, adminApplyCommunityMutation,
+  adminResumeCommunityBulk,
+} from './admin_community_operations';
 export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';
 export {
   adminPreviewEmailCampaign,

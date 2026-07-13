@@ -111,12 +111,13 @@ export async function createNativePreview(args: {
   consequence: string;
   requiredPermission: AdminPermission;
   requiresApproval?: boolean;
+  allowMissing?: boolean;
 }) {
   const ref = args.db.collection(args.collection).doc(args.targetId);
   const snapshot = await ref.get();
-  if (!snapshot.exists) throw new HttpsError('not-found', 'target_not_found');
-  const before = asRecord(safeProjection(snapshot.data()));
-  const currentVersion = documentVersion(snapshot.id, snapshot.data());
+  if (!snapshot.exists && !args.allowMissing) throw new HttpsError('not-found', 'target_not_found');
+  const before = snapshot.exists ? asRecord(safeProjection(snapshot.data())) : {};
+  const currentVersion = snapshot.exists ? documentVersion(snapshot.id, snapshot.data()) : 'missing';
   if (currentVersion !== args.expectedVersion) throw new HttpsError('failed-precondition', 'stale_expected_version');
   const packet = {
     packageId: args.packageId,
@@ -130,6 +131,7 @@ export async function createNativePreview(args: {
     consequence: args.consequence,
     requiredPermission: args.requiredPermission,
     requiresApproval: args.requiresApproval !== false,
+    allowMissing: args.allowMissing === true,
   };
   const fingerprint = stableHash(packet);
   const confirmation = `${args.packageId.toUpperCase()}/${args.action.toUpperCase()}/${args.targetId}/${fingerprint.slice(0, 12)}`;
@@ -206,13 +208,16 @@ export async function applyNativePatch(args: {
     if (!previewSnap.exists) throw new HttpsError('not-found', 'preview_not_found');
     const preview = asRecord(previewSnap.data());
     const action = cleanText(preview.action, 80); const targetId = cleanText(preview.targetId, 200); const collection = cleanText(preview.collection, 120);
+    const requiredPermission = cleanText(preview.requiredPermission, 120) as AdminPermission;
+    if (!hasPermission(args.role, requiredPermission)) throw new HttpsError('permission-denied', `Missing ${requiredPermission}`);
     if (preview.packageId !== args.packageId || preview.actorUid !== args.actorUid || preview.confirmation !== args.confirmation || preview.status !== 'approved' || !args.allowedActions.has(action)) {
       throw new HttpsError('failed-precondition', 'approved_preview_required');
     }
     const targetRef = args.db.collection(collection).doc(targetId);
     const targetSnap = await tx.get(targetRef);
-    if (!targetSnap.exists || documentVersion(targetSnap.id, targetSnap.data()) !== preview.expectedVersion) throw new HttpsError('failed-precondition', 'target_changed_after_preview');
-    const before = asRecord(safeProjection(targetSnap.data())); const nowMs = Date.now();
+    const currentVersion = targetSnap.exists ? documentVersion(targetSnap.id, targetSnap.data()) : 'missing';
+    if ((!targetSnap.exists && preview.allowMissing !== true) || currentVersion !== preview.expectedVersion) throw new HttpsError('failed-precondition', 'target_changed_after_preview');
+    const before = targetSnap.exists ? asRecord(safeProjection(targetSnap.data())) : {}; const nowMs = Date.now();
     const patch = await args.transform({ action, targetId, before, payload: asRecord(preview.payload), nowMs, db: args.db, tx });
     const after = { ...before, ...asRecord(safeProjection(patch)) };
     const auditRef = args.db.collection('admin_log').doc();

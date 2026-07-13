@@ -19,22 +19,34 @@ describe('Admin v2 complete capability registry', () => {
     }
   });
 
-  test('keeps the four standalone legacy admin pages reachable from the new shell', () => {
+  test('keeps standalone legacy page provenance without using it as a live route', () => {
     const registry = read('admin/v2/scripts/admin-capabilities.js');
     for (const page of ['testers.html', 'beta_testers.html', 'full.html', 'site.html']) {
       expect(registry).toContain(`legacyPage: '${page}'`);
     }
   });
 
-  test('opens grouped modules inside the new shell and supports stable deep links', () => {
+  test('opens all grouped modules natively and supports stable deep links', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const router = read('admin/v2/scripts/admin-router.js');
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
-    expect(core).toContain('renderCapabilityWorkspace');
-    expect(core).toContain('<iframe');
+    expect(core).not.toContain('renderCapabilityWorkspace');
+    expect(core).not.toContain('legacy-module-frame');
     expect(core).toContain('data-capability-id');
     expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
     expect(capabilities).toContain("split(':')");
     expect(capabilities).toContain('decodeURIComponent(encoded)');
+  });
+
+  test('maps the final twenty capabilities to three native operational workspaces', () => {
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
+    const expected: Record<string, string[]> = {
+      'money-operations': ['ugc-purchases', 'refunds', 'referrals', 'telegram-payments', 'website-payments'],
+      'content-operations': ['community-packs', 'card-packs', 'daily-phrases', 'french-quizzes', 'explain-reports', 'full-content-control'],
+      'community-operations': ['mod-queue', 'help-board', 'helpers-board', 'clubs', 'league-chat', 'arena-ranks', 'arena-live', 'arena-bets', 'arena-rooms'],
+    };
+    for (const [route, ids] of Object.entries(expected)) {
+      for (const id of ids) expect(capabilities).toContain(`'${id}': '${route}'`);
+    }
   });
 });

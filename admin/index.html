@@ -40249,8 +40249,14 @@
 (function installNativeSafetyModerationRedirects() {
   var nativeTabs = new Set(['user-reports', 'safety-flags', 'age-consent', 'compliance-radar', 'ban-list']);
   var archiveMode = new URLSearchParams(window.location.search).get('legacyArchive') === '1';
-  var go = function goSafetyV2(hash, uid) {
-    var query = uid ? '?moderateUser=' + encodeURIComponent(String(uid)) : '';
+  var go = function goSafetyV2(hash, context) {
+    context = context || {};
+    var params = new URLSearchParams();
+    if (context.uid) params.set('moderateUser', String(context.uid));
+    if (context.source) params.set('source', String(context.source));
+    if (context.targetType) params.set('targetType', String(context.targetType));
+    if (context.targetId) params.set('targetId', String(context.targetId));
+    var query = params.toString() ? '?' + params.toString() : '';
     window.location.href = './v2/index.html' + query + '#' + encodeURIComponent(String(hash));
   };
 
@@ -40261,9 +40267,11 @@
   window.markAllSafetyHandled = function markAllSafetyHandledSafetyV2() { window.location.href = './v2/index.html#safety-flags'; };
   window.unbanFromList = function unbanFromListSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
   window.banByUidPrompt = function banByUidPromptSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
-  window.banUser = function banUserSafetyV2(uid) { go('ban-list', uid); };
+  window.banUser = function banUserSafetyV2(uid) { go('ban-list', { uid: uid }); };
   window.unbanUser = function unbanUserSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
-  window.helpBoardBanAuthor = function helpBoardBanAuthorSafetyV2(uid) { go('ban-list', uid); };
+  window.helpBoardBanAuthor = function helpBoardBanAuthorSafetyV2(uid, targetType, targetId) {
+    go('ban-list', { uid: uid, source: 'help-board', targetType: targetType, targetId: targetId });
+  };
   window.exportUserReportsCSV = function exportUserReportsCSVSafetyV2() { window.location.href = './v2/index.html#user-reports'; };
 
   var originalSwitchTab = window.switchTab;
@@ -40275,11 +40283,6 @@
       }
       return originalSwitchTab.call(this, tab, opts);
     };
-    window.loadUserReports = async function loadUserReportsSafetyV2() { go('user-reports'); };
-    window.loadSafetyFlags = async function loadSafetyFlagsSafetyV2() { go('safety-flags'); };
-    window.loadAgeConsent = async function loadAgeConsentSafetyV2() { go('age-consent'); };
-    window.loadComplianceRadar = async function loadComplianceRadarSafetyV2() { go('compliance-radar'); };
-    window.loadBanList = async function loadBanListSafetyV2() { go('ban-list'); };
     var initialTab = decodeURIComponent(String(window.location.hash || '').replace(/^#/, '').split(':').pop() || '');
     if (nativeTabs.has(initialTab)) window.location.replace('./v2/index.html#' + encodeURIComponent(initialTab));
     return;

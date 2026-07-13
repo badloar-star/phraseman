@@ -256,6 +256,7 @@ export const trackEvent = async (
   event: AnalyticsEvent,
   props: Record<string, unknown> = {},
 ): Promise<void> => {
+  if (!isValidGovernedSoftUpsellChainPayload(event, props)) return;
   const now = Date.now();
   const eventKey = `${event}|${JSON.stringify(props)}`;
   if (eventKey === lastEventKey && now - lastEventAt < DUPLICATE_EVENT_WINDOW_MS) return;
@@ -358,7 +359,7 @@ export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEven
   if (!SOFT_UPSELL_ANALYTICS_EVENTS.includes(event)) return;
   if (!SOFT_UPSELL_CONTEXTS.includes(candidate?.context)) return;
   if (!SOFT_UPSELL_TRIGGERS.includes(candidate?.trigger)) return;
-  if (candidate?.studyTarget !== 'en' && candidate?.studyTarget !== 'fr') return;
+  if (candidate?.studyTarget !== 'en' && candidate?.studyTarget !== 'fr' && candidate?.studyTarget !== 'es') return;
   if (typeof candidate?.overlayOccupied !== 'boolean' || candidate?.schemaVersion !== 1) return;
   if (!Number.isSafeInteger(candidate?.triggerValue) || candidate.triggerValue < 0 || candidate.triggerValue > 10_000) return;
 

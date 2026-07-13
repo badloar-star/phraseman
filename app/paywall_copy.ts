@@ -67,6 +67,11 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   language_add: { accent: '#66A8FF', accent2: '#5EEAD4', shardAmount: 180 },
   ai_explain: { accent: '#FDE68A', accent2: '#A78BFA', shardAmount: 180 },
   weekly_review: { accent: '#72E6A9', accent2: '#FDE68A', shardAmount: 180 },
+  first_lesson_success: { accent: '#F5C76B', accent2: '#72E6A9', shardAmount: 180 },
+  free_lessons_complete: { accent: '#F5C76B', accent2: '#66A8FF', shardAmount: 420 },
+  dialog_repeat_success: { accent: '#F5C76B', accent2: '#58D6FF', shardAmount: 180 },
+  streak_milestone: { accent: '#F5C76B', accent2: '#FF8A5C', shardAmount: 180 },
+  trainer_repeat_success: { accent: '#F5C76B', accent2: '#A78BFA', shardAmount: 180 },
   avatar_aura: { accent: '#E879F9', accent2: '#38BDF8', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
@@ -454,6 +459,14 @@ PAYWALL_COPY.avatar_aura = {
   subtitleEs: 'El aura premium ilumina tu avatar en ligas, la Arena y entre amigos. Se te ve al instante: en listas, duelos y chats.',
 };
 
+// Soft-upsell contexts remain first-class through the paywall. Reuse the closest
+// proven result copy while preserving the exact context in navigation/analytics.
+PAYWALL_COPY.first_lesson_success = PAYWALL_COPY.personal_plan ?? PAYWALL_COPY.generic;
+PAYWALL_COPY.free_lessons_complete = PAYWALL_COPY.personal_plan ?? PAYWALL_COPY.generic;
+PAYWALL_COPY.dialog_repeat_success = PAYWALL_COPY.dialog_limit ?? PAYWALL_COPY.generic;
+PAYWALL_COPY.streak_milestone = PAYWALL_COPY.streak ?? PAYWALL_COPY.generic;
+PAYWALL_COPY.trainer_repeat_success = PAYWALL_COPY.trainer ?? PAYWALL_COPY.generic;
+
 export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
   language_add: {
     title: { 'pt-BR': 'Adicione um segundo idioma', vi: 'Thêm ngôn ngữ thứ hai', id: 'Tambahkan bahasa kedua', tr: 'İkinci bir dil ekle', pl: 'Dodaj drugi język' },
@@ -676,6 +689,12 @@ PAYWALL_PLANNED_COPY.personal_plan = {
     pl: 'Plus otwiera codzienne zadania: lekcje, żywe frazy, powtórki i quizy pod twój cel.',
   },
 };
+
+PAYWALL_PLANNED_COPY.first_lesson_success = PAYWALL_PLANNED_COPY.personal_plan ?? PAYWALL_PLANNED_COPY.generic;
+PAYWALL_PLANNED_COPY.free_lessons_complete = PAYWALL_PLANNED_COPY.personal_plan ?? PAYWALL_PLANNED_COPY.generic;
+PAYWALL_PLANNED_COPY.dialog_repeat_success = PAYWALL_PLANNED_COPY.dialog_limit ?? PAYWALL_PLANNED_COPY.generic;
+PAYWALL_PLANNED_COPY.streak_milestone = PAYWALL_PLANNED_COPY.streak ?? PAYWALL_PLANNED_COPY.generic;
+PAYWALL_PLANNED_COPY.trainer_repeat_success = PAYWALL_PLANNED_COPY.trainer ?? PAYWALL_PLANNED_COPY.generic;
 
 PAYWALL_PLANNED_COPY.premium_expired = {
   title: {

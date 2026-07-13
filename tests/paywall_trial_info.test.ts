@@ -10,9 +10,9 @@ describe('paywall_trial_info — getTrialInfo', () => {
     expect(getTrialInfo(undefined)).toEqual({ hasTrial: false, days: null });
   });
 
-  it('iOS introPrice бесплатный, дни из periodNumberOfUnits+periodUnit', () => {
+  it('не показывает non-7 intro как обещанный trial', () => {
     const info = getTrialInfo(pkg({ introPrice: { price: 0, periodNumberOfUnits: 3, periodUnit: 'DAY' } }));
-    expect(info).toEqual({ hasTrial: true, days: 3 });
+    expect(info).toEqual({ hasTrial: false, days: null });
   });
 
   it('неделя → 7 дней', () => {
@@ -20,9 +20,10 @@ describe('paywall_trial_info — getTrialInfo', () => {
       .toEqual({ hasTrial: true, days: 7 });
   });
 
-  it('Android introductoryPrice ISO-период P3D', () => {
-    expect(getTrialInfo(pkg({ introductoryPrice: { price: 0, period: 'P3D' } })))
-      .toEqual({ hasTrial: true, days: 3 });
+  it('месячный и lifetime планы не получают trial framing даже с бесплатной фазой', () => {
+    const weekly = pkg({ introductoryPrice: { price: 0, period: 'P1W' } });
+    expect(getTrialInfo(weekly, 'monthly')).toEqual({ hasTrial: false, days: null });
+    expect(getTrialInfo(weekly, 'lifetime')).toEqual({ hasTrial: false, days: null });
   });
 
   it('платная intro-фаза (price>0) НЕ триал', () => {
@@ -30,9 +31,9 @@ describe('paywall_trial_info — getTrialInfo', () => {
       .toEqual({ hasTrial: false, days: null });
   });
 
-  it('есть триал, но длина не парсится → days=null', () => {
+  it('неизвестная длина не получает trial framing', () => {
     expect(getTrialInfo(pkg({ introPrice: { price: 0 } })))
-      .toEqual({ hasTrial: true, days: null });
+      .toEqual({ hasTrial: false, days: null });
   });
 });
 
@@ -40,10 +41,7 @@ describe('paywall_trial_info — trialDaysOrDefault', () => {
   it('возвращает дни если известны', () => {
     expect(trialDaysOrDefault({ hasTrial: true, days: 7 })).toBe(7);
   });
-  it('fallback 3 если триал есть, но дни неизвестны', () => {
-    expect(trialDaysOrDefault({ hasTrial: true, days: null })).toBe(3);
-  });
-  it('кастомный fallback', () => {
-    expect(trialDaysOrDefault({ hasTrial: true, days: null }, 14)).toBe(14);
+  it('не подменяет неизвестную длительность fallback-значением', () => {
+    expect(trialDaysOrDefault({ hasTrial: true, days: null })).toBeNull();
   });
 });

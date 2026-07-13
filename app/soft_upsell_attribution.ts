@@ -67,7 +67,8 @@ export function parseSoftUpsellAttribution(params: RouteParams): SoftUpsellAttri
 export function softUpsellEventId(value: SoftUpsellAttribution, semanticSuffix: string): string {
   const valid = createSoftUpsellAttribution(value);
   const suffix = semanticSuffix.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 32) || 'event';
-  return `${valid.impressionId}:${suffix}`.slice(0, 80);
+  const impressionPrefixLength = Math.max(1, 80 - suffix.length - 1);
+  return `${valid.impressionId.slice(0, impressionPrefixLength)}:${suffix}`;
 }
 
 export function softUpsellAnalyticsParams(

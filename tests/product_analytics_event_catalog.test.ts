@@ -87,3 +87,16 @@ describe('product analytics event catalog', () => {
     expect(event).toBe('lesson_abandoned');
   });
 });
+
+test('runtime governance rejects partial or non-catalogued exact-chain payloads', () => {
+  const exact = {
+    soft_upsell_mode: 'production',
+    soft_upsell_impression_id: 'chain_12345678',
+    soft_upsell_trigger: 'weekly_review',
+    soft_upsell_context: 'weekly_review',
+    event_id: 'chain_12345678:paywall_shown',
+  };
+  expect(isValidGovernedSoftUpsellChainPayload('paywall_shown', exact)).toBe(true);
+  expect(isValidGovernedSoftUpsellChainPayload('paywall_shown', { ...exact, event_id: undefined })).toBe(false);
+  expect(isValidGovernedSoftUpsellChainPayload('subscription_restored', exact)).toBe(false);
+});

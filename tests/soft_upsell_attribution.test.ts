@@ -43,6 +43,15 @@ test('creates bounded stable semantic event ids', () => {
   expect(softUpsellEventId(attribution, 'x'.repeat(200)).length).toBeLessThanOrEqual(80);
 });
 
+test('keeps semantic suffixes distinct for the longest allowed impression ID', () => {
+  const attribution = createSoftUpsellAttribution({ ...valid, impressionId: `a${'b'.repeat(79)}` });
+  const started = softUpsellEventId(attribution, 'purchase_started_1');
+  const completed = softUpsellEventId(attribution, 'purchase_completed_1');
+  expect(started).not.toBe(completed);
+  expect(started).toMatch(/:purchase_started_1$/);
+  expect(completed).toMatch(/:purchase_completed_1$/);
+});
+
 test('rejects invalid generated IDs and mismatched pairs', () => {
   expect(() => createSoftUpsellAttribution({ ...valid, impressionId: '' })).toThrow();
   expect(() => createSoftUpsellAttribution({ ...valid, context: 'weekly_review' })).toThrow();

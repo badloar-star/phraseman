@@ -1,4 +1,5 @@
 import { __statsInsightsTestHooks, type StatsInsightsBriefing } from './stats_insights';
+import { readFileSync } from 'fs';
 
 const {
   sanitizeBriefing,
@@ -8,7 +9,28 @@ const {
   briefingHashForReplay,
   decideStatsInsightsReplay,
   readStoredStatsInsightsNotes,
+  sanitizeVerifiedAnalysis,
+  sanitizeVerifiedRequest,
+  buildVerifiedSystemPrompt,
+  parseAndGuardVerifiedResult,
+  verifiedTextUsesOnlyAllowedNumbers,
+  hasDuplicateVerifiedNotes,
+  decideStatsInsightsGeneration,
+  buildLeaseCommitMutation,
+  buildLeaseReleaseMutation,
+  assertPremiumStatsInsightsAccess,
 } = __statsInsightsTestHooks;
+
+const verifiedAnalysis = () => ({
+  fingerprint: 'stats-v1-12345678',
+  generatedFromCompleteSnapshot: true,
+  blocks: {
+    week: { id: 'week.minutes-up', block: 'week', priority: 500, facts: [42, 25, 'Tuesday'], allowedClaim: 'Practice time rose from 25 to 42 minutes; Tuesday was strongest.', allowedAction: 'Repeat the Tuesday routine once.', fallback: { ru: 'Неделя стала активнее.' } },
+    longTerm: { id: 'longTerm.streak', block: 'longTerm', priority: 400, facts: [7], allowedClaim: 'The verified current streak is 7 days.', allowedAction: null, fallback: { ru: 'Серия продолжается.' } },
+    comparison: { id: 'comparison.unavailable', block: 'comparison', priority: 100, facts: [], allowedClaim: 'Comparison is temporarily unavailable; focus only on personal progress.', allowedAction: null, fallback: { ru: 'Сравнение пока недоступно.' } },
+    lifetime: { id: 'lifetime.phrases', block: 'lifetime', priority: 300, facts: [120], allowedClaim: 'A verified lifetime milestone is 120 phrases.', allowedAction: null, fallback: { ru: 'Уже 120 фраз.' } },
+  },
+});
 
 function fullNotes(): string {
   return JSON.stringify({
@@ -224,5 +246,125 @@ describe('stats_insights quota replay helpers', () => {
 
     expect(notes?.balance).toBe('');
     expect(notes?.rhythm).toBe('Your rhythm is steady.');
+  });
+});
+
+describe('stats_insights verified analysis contract', () => {
+  it('sanitizes the exact client-shaped four-block analysis', () => {
+    const clean = sanitizeVerifiedAnalysis(verifiedAnalysis());
+    expect(Object.keys(clean.blocks)).toEqual(['week', 'longTerm', 'comparison', 'lifetime']);
+    expect(clean.generatedFromCompleteSnapshot).toBe(true);
+    expect(clean.blocks.week).not.toHaveProperty('fallback');
+  });
+
+  it('requires and preserves explicit v2 language and study target', () => {
+    expect(sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'es', studyTarget: 'fr' })).toMatchObject({ lang: 'es', studyTarget: 'fr' });
+    expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), studyTarget: 'en' })).toThrow('stats_insights_invalid_analysis');
+    expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru' })).toThrow('stats_insights_invalid_analysis');
+    expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'xx', studyTarget: 'en' })).toThrow('stats_insights_invalid_analysis');
+  });
+
+  it.each([
+    [{ ...verifiedAnalysis(), generatedFromCompleteSnapshot: false }],
+    [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, extra: verifiedAnalysis().blocks.week } }],
+    [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, week: { ...verifiedAnalysis().blocks.week, block: 'lifetime' } } }],
+    [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, week: { ...verifiedAnalysis().blocks.week, id: 'wrong.owner' } } }],
+    [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, week: { ...verifiedAnalysis().blocks.week, priority: 1.5 } } }],
+    [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, longTerm: { ...verifiedAnalysis().blocks.longTerm, id: verifiedAnalysis().blocks.week.id } } }],
+    [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, longTerm: { ...verifiedAnalysis().blocks.longTerm, allowedClaim: verifiedAnalysis().blocks.week.allowedClaim } } }],
+  ])('rejects malformed verified analysis before paid work', (raw) => {
+    expect(() => sanitizeVerifiedAnalysis(raw)).toThrow('stats_insights_invalid_analysis');
+  });
+
+  it('builds a separate prompt constrained to allowed claims and exact JSON', () => {
+    const prompt = buildVerifiedSystemPrompt('ru', sanitizeVerifiedAnalysis(verifiedAnalysis()));
+    expect(prompt).toContain('only rephrase');
+    expect(prompt).toContain('no new calculations');
+    expect(prompt).toContain('observationId');
+    expect(prompt).not.toContain('Неделя стала активнее');
+  });
+
+  it('returns exact verified notes and observation ids', () => {
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis());
+    const result = parseAndGuardVerifiedResult(JSON.stringify({
+      week: { observationId: 'week.minutes-up', text: 'За неделю — 42 минуты вместо 25. Повтори ритм вторника.' },
+      longTerm: { observationId: 'longTerm.streak', text: 'Текущая серия — 7 дней.' },
+      comparison: { observationId: 'comparison.unavailable', text: 'Сравнение пока недоступно; смотри на свой прогресс.' },
+      lifetime: { observationId: 'lifetime.phrases', text: 'За всё время освоено 120 фраз.' },
+    }), analysis, 'ru');
+    expect(Object.keys(result.notes)).toEqual(['week', 'longTerm', 'comparison', 'lifetime']);
+    expect(result.observationIds.week).toBe('week.minutes-up');
+  });
+
+  it('rejects unknown observation ids and numbers absent from block facts', () => {
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis());
+    const base = {
+      week: { observationId: 'week.minutes-up', text: 'За неделю — 42 минуты вместо 25.' },
+      longTerm: { observationId: 'longTerm.streak', text: 'Текущая серия — 7 дней.' },
+      comparison: { observationId: 'comparison.unavailable', text: 'Сравнение пока недоступно.' },
+      lifetime: { observationId: 'lifetime.phrases', text: 'Освоено 120 фраз.' },
+    };
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...base, week: { ...base.week, observationId: 'week.unknown' } }), analysis, 'ru')).toThrow('stats_insights_observation_mismatch');
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...base, week: { ...base.week, text: 'За неделю — 99 минут.' } }), analysis, 'ru')).toThrow('stats_insights_unverified_number');
+    expect(verifiedTextUsesOnlyAllowedNumbers('Результат: 42,0 и 25%.', [42, 25])).toBe(true);
+    expect(verifiedTextUsesOnlyAllowedNumbers('Результат: 42,5.', [42])).toBe(false);
+  });
+
+  it('rejects exact and near-duplicate verified notes', () => {
+    expect(hasDuplicateVerifiedNotes({ week: 'Отличный устойчивый ритм на этой неделе.', longTerm: 'Отличный, устойчивый ритм на этой неделе!', comparison: 'Сравнение недоступно.', lifetime: 'Освоено много фраз.' })).toBe(true);
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis());
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({
+      week: { observationId: 'week.minutes-up', text: 'Хороший ритм.' },
+      longTerm: { observationId: 'longTerm.streak', text: 'Хороший ритм!' },
+      comparison: { observationId: 'comparison.unavailable', text: 'Сравнение недоступно.' },
+      lifetime: { observationId: 'lifetime.phrases', text: 'Освоено 120 фраз.' },
+    }), analysis, 'ru')).toThrow('stats_insights_duplicate');
+  });
+});
+
+describe('stats_insights atomic lease decisions', () => {
+  const legacyNotes = { balance: 'A', rhythm: 'B', year: '', percentiles: '', lifetime: 'C' };
+  const v2Result = {
+    notes: { week: 'A', longTerm: 'B', comparison: 'C', lifetime: 'D' },
+    observationIds: { week: 'week.a', longTerm: 'longTerm.b', comparison: 'comparison.c', lifetime: 'lifetime.d' },
+  };
+
+  it('replays only a compatible stored response schema', () => {
+    const stored = { nextAllowedAtMs: 2000, lastRequestHash: 'same', responseSchemaVersion: 2, lastResult: v2Result, lastModel: 'm' };
+    expect(decideStatsInsightsGeneration(stored, 'same', 1000, 2, 'lease').kind).toBe('replay');
+    expect(decideStatsInsightsGeneration(stored, 'same', 1000, 1, 'lease')).toEqual({ kind: 'not_ready', nextAllowedAtMs: 2000 });
+    expect(decideStatsInsightsGeneration({ nextAllowedAtMs: 2000, lastBriefingHash: 'same', lastNotes: legacyNotes }, 'same', 1000, 1, 'lease').kind).toBe('replay');
+  });
+
+  it('blocks active same or different leases and replaces expired leases', () => {
+    for (const hash of ['same', 'different']) {
+      expect(decideStatsInsightsGeneration({ generationLeaseToken: 'old', generationLeaseHash: hash, generationLeaseExpiresAtMs: 1500 }, 'new', 1000, 2, 'new-token')).toEqual({ kind: 'in_progress' });
+    }
+    const open = decideStatsInsightsGeneration({ generationLeaseToken: 'old', generationLeaseExpiresAtMs: 999 }, 'new', 1000, 2, 'new-token');
+    expect(open.kind).toBe('reserve');
+  });
+
+  it('requires the matching lease for commit and release without setting a window on failure', () => {
+    expect(buildLeaseCommitMutation({ generationLeaseToken: 'other' }, 'mine', { nextAllowedAtMs: 999 })).toBeNull();
+    expect(buildLeaseReleaseMutation({ generationLeaseToken: 'other', nextAllowedAtMs: 0 }, 'mine')).toBeNull();
+    expect(buildLeaseReleaseMutation({ generationLeaseToken: 'mine', nextAllowedAtMs: 0 }, 'mine')).toEqual({ generationLeaseToken: null, generationLeaseHash: null, generationLeaseExpiresAtMs: 0 });
+    expect(buildLeaseCommitMutation({ generationLeaseToken: 'mine' }, 'mine', { nextAllowedAtMs: 999 })?.nextAllowedAtMs).toBe(999);
+  });
+});
+
+describe('stats_insights Premium server gate', () => {
+  it('rejects free access with the stable feature error', () => {
+    expect(() => assertPremiumStatsInsightsAccess(false)).toThrow('stats_insights_premium_required');
+    expect(() => assertPremiumStatsInsightsAccess(true)).not.toThrow();
+  });
+
+  it('keeps Premium rejection before quota, rate, budget, and provider work', () => {
+    const source = readFileSync(require.resolve('./stats_insights'), 'utf8');
+    const handler = source.slice(source.indexOf('export const statsInsightsGenerate'));
+    const premium = handler.indexOf('assertPremiumStatsInsightsAccess(isPremium)');
+    for (const later of ['reserveGenerationLease(', 'enforceRateLimit(', 'enforceGlobalBudget(', 'fetch(OPENAI_CHAT_URL']) {
+      expect(premium).toBeGreaterThanOrEqual(0);
+      expect(handler.indexOf(later)).toBeGreaterThan(premium);
+    }
   });
 });

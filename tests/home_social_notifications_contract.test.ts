@@ -4,7 +4,7 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 
 function read(relPath: string): string {
-  return fs.readFileSync(path.join(ROOT, relPath), 'utf8');
+  return fs.readFileSync(path.join(ROOT, relPath), 'utf8').replace(/\r\n/g, '\n');
 }
 
 describe('home social notification center', () => {

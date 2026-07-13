@@ -1537,6 +1537,7 @@ export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoC
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
+export { adminYoutubeAnalytics } from './admin_youtube_analytics';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
 export {

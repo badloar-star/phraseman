@@ -26,6 +26,13 @@ export const ENFORCE_APP_CHECK_SENSITIVE = appCheckGroup('ENFORCE_APP_CHECK_SENS
 /** Платные OpenAI-функции (explain/dialog/weekly/stats) — включать ПОСЛЕДНИМИ, после прогрева. */
 export const ENFORCE_APP_CHECK_OPENAI = appCheckGroup('ENFORCE_APP_CHECK_OPENAI');
 
+/** Shared baseline for ordinary authenticated callables that may perform bounded I/O. */
+export const DEFAULT_CALLABLE_OPTIONS = {
+  region: REGION,
+  timeoutSeconds: 60,
+  memory: '512MiB' as const,
+} as const;
+
 export const HOT_CALLABLE_OPTIONS = {
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK,

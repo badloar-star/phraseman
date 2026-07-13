@@ -42,7 +42,7 @@ describe('admin permission matrix', () => {
 
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
-      'users.read', 'users.write', 'money.read', 'money.manual_access.write',
+      'users.read', 'users.write', 'money.read', 'analytics.read', 'money.manual_access.write',
       'content.read', 'content.draft.write', 'content.publish', 'application.config.write',
       'diagnostics.read', 'community.moderate', 'admin.roles.write',
       'support.inbox.read', 'support.inbox.pull', 'support.draft.write',
@@ -52,5 +52,15 @@ describe('admin permission matrix', () => {
       'reports.reply.draft', 'reports.reply.send', 'diagnostics.status.write',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
+  });
+
+  it('limits detailed analytics to owner, admin, and analyst roles', () => {
+    expect(hasPermission('owner', 'analytics.read')).toBe(true);
+    expect(hasPermission('admin', 'analytics.read')).toBe(true);
+    expect(hasPermission('analyst', 'analytics.read')).toBe(true);
+    expect(hasPermission('support', 'analytics.read')).toBe(false);
+    expect(hasPermission('content_editor', 'analytics.read')).toBe(false);
+    expect(hasPermission('moderator', 'analytics.read')).toBe(false);
+    expect(hasPermission('developer', 'analytics.read')).toBe(false);
   });
 });

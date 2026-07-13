@@ -354,6 +354,20 @@ export interface GetVerifiedStatsInsightsOptions {
   nowMs?: number;
 }
 
+export interface GetVerifiedStatsInsightsSelectionOptions {
+  lang: Lang;
+  studyTarget?: RuntimeStudyTarget;
+  nowMs?: number;
+}
+
+export type VerifiedStatsInsightsSelectionState =
+  | { kind: 'none' }
+  | {
+      kind: 'preserve' | 'rotate';
+      observationIds: Record<StatsInsightBlockKey, string>;
+      nextAllowedAtMs: number;
+    };
+
 export interface GenerateVerifiedStatsInsightsOptions extends GetVerifiedStatsInsightsOptions {
   isPremium: boolean;
   force?: boolean;
@@ -497,6 +511,23 @@ export async function getVerifiedStatsInsightsState(
 ): Promise<VerifiedStatsInsightsState> {
   const stored = await loadVerifiedStored(options.studyTarget);
   return compatibleVerifiedStored(stored, options) ? asCachedVerifiedState(stored) : { kind: 'none' };
+}
+
+/** Reads the last validated v2 selection window without requiring a newly built analysis. */
+export async function getVerifiedStatsInsightsSelectionState(
+  options: GetVerifiedStatsInsightsSelectionOptions,
+): Promise<VerifiedStatsInsightsSelectionState> {
+  const studyTarget = normalizedVerifiedStudyTarget(options.studyTarget);
+  const stored = await loadVerifiedStored(studyTarget);
+  if (!stored || stored.lang !== options.lang || stored.studyTarget !== studyTarget) return { kind: 'none' };
+
+  const observationIds = normalizeObservationIds(stored.observationIds);
+  if (!observationIds) return { kind: 'none' };
+  return {
+    kind: (options.nowMs ?? Date.now()) < stored.nextAllowedAtMs ? 'preserve' : 'rotate',
+    observationIds,
+    nextAllowedAtMs: stored.nextAllowedAtMs,
+  };
 }
 
 function firebaseErrorDetails(error: unknown): Record<string, unknown> {

@@ -20,6 +20,7 @@ import {
   generateStatsInsights,
   generateVerifiedStatsInsights,
   getStatsInsightsState,
+  getVerifiedStatsInsightsSelectionState,
   getVerifiedStatsInsightsState,
   type StatsInsightsBriefing,
   type VerifiedStatsInsightsNotes,
@@ -60,6 +61,24 @@ function serverNotes(prefix = 'server'): VerifiedStatsInsightsNotes {
 
 function serverIds(a: StatsInsightAnalysis): Record<StatsInsightBlockKey, string> {
   return Object.fromEntries(BLOCKS.map((block) => [block, a.blocks[block].id])) as Record<StatsInsightBlockKey, string>;
+}
+
+async function seedVerifiedCache(
+  a: StatsInsightAnalysis,
+  options: { lang?: 'ru' | 'uk'; studyTarget?: 'en' | 'fr'; nextAllowedAtMs?: number } = {},
+): Promise<void> {
+  const lang = options.lang ?? 'ru';
+  const studyTarget = options.studyTarget ?? 'en';
+  await AsyncStorage.setItem(`${statsInsightsStorageKey(studyTarget)}:v2`, JSON.stringify({
+    schemaVersion: 2,
+    fingerprint: a.fingerprint,
+    observationIds: serverIds(a),
+    notes: serverNotes(),
+    generatedAtMs: 10,
+    nextAllowedAtMs: options.nextAllowedAtMs ?? 100,
+    lang,
+    studyTarget,
+  }));
 }
 
 describe('stats insights client copy', () => {
@@ -108,6 +127,47 @@ describe('stats insights client copy', () => {
     expect(cached.kind).toBe('cached');
     expect(replay.kind).toBe('cached');
     expect(mockCallable).toHaveBeenCalledTimes(1);
+  });
+
+  it('reads exact observation ids as preserve before the v2 selection boundary without network or auth', async () => {
+    const a = analysis();
+    await seedVerifiedCache(a, { nextAllowedAtMs: 100 });
+
+    await expect(getVerifiedStatsInsightsSelectionState({ lang: 'ru', studyTarget: 'en', nowMs: 99 })).resolves.toEqual({
+      kind: 'preserve',
+      observationIds: serverIds(a),
+      nextAllowedAtMs: 100,
+    });
+    expect(mockCallable).not.toHaveBeenCalled();
+    expect(mockHttpsCallable).not.toHaveBeenCalled();
+    expect(mockEnsureAnonUser).not.toHaveBeenCalled();
+    expect(mockEnsureStableAuthLinkForStableId).not.toHaveBeenCalled();
+  });
+
+  it('rotates the stored observation ids exactly at the v2 selection boundary', async () => {
+    const a = analysis();
+    await seedVerifiedCache(a, { nextAllowedAtMs: 100 });
+
+    await expect(getVerifiedStatsInsightsSelectionState({ lang: 'ru', studyTarget: 'en', nowMs: 100 })).resolves.toEqual({
+      kind: 'rotate',
+      observationIds: serverIds(a),
+      nextAllowedAtMs: 100,
+    });
+  });
+
+  it('does not expose v2 selection metadata for another language or target', async () => {
+    await seedVerifiedCache(analysis());
+
+    await expect(getVerifiedStatsInsightsSelectionState({ lang: 'uk', studyTarget: 'en', nowMs: 50 })).resolves.toEqual({ kind: 'none' });
+    await expect(getVerifiedStatsInsightsSelectionState({ lang: 'ru', studyTarget: 'fr', nowMs: 50 })).resolves.toEqual({ kind: 'none' });
+  });
+
+  it('does not expose legacy or corrupt cache as v2 selection metadata', async () => {
+    await AsyncStorage.setItem(statsInsightsStorageKey('en'), JSON.stringify({ notes: { rhythm: 'legacy' }, generatedAtMs: 1, nextAllowedAtMs: 100, lang: 'ru' }));
+    await expect(getVerifiedStatsInsightsSelectionState({ lang: 'ru', studyTarget: 'en', nowMs: 50 })).resolves.toEqual({ kind: 'none' });
+
+    await AsyncStorage.setItem(`${statsInsightsStorageKey('en')}:v2`, JSON.stringify({ schemaVersion: 2, observationIds: { week: 'only-one' } }));
+    await expect(getVerifiedStatsInsightsSelectionState({ lang: 'ru', studyTarget: 'en', nowMs: 50 })).resolves.toEqual({ kind: 'none' });
   });
 
   it('never calls the server for free users', async () => {

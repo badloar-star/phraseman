@@ -1,6 +1,7 @@
 import { useRef, useSyncExternalStore } from 'react';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import type { ArenaProfile } from './types/arena';
+import type { CustomizationSnapshot } from './customization_snapshot';
 
 export const APP_SNAPSHOT_RESOURCE_LIMITS = {
   friendProfileMaxEntries: 240,
@@ -88,6 +89,7 @@ export interface AppSnapshot {
   friends?: AppSnapshotFriends;
   arena?: AppSnapshotArena;
   settings?: AppSnapshotSettings;
+  customization?: CustomizationSnapshot;
   primedAt?: number;
 }
 

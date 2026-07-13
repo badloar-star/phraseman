@@ -69,4 +69,26 @@ describe('app snapshot store contract', () => {
     expect(APP_SNAPSHOT_RESOURCE_LIMITS.leaderboardRowsMax).toBe(100);
     expect(APP_SNAPSHOT_RESOURCE_LIMITS.serializedSnapshotBudgetBytes).toBeLessThanOrEqual(300 * 1024);
   });
+
+  it('clears account-scoped customization ownership and styles', () => {
+    patchAppSnapshot({
+      customization: {
+        source: 'storage',
+        updatedAt: 100,
+        activeAvatar: 'custom:custom-gen-41:aurora:white',
+        storedAuraSelection: 'aura-aurora',
+        totalXp: 1250,
+        level: 18,
+        shards: 77,
+        ownedAvatars: { 'custom-gen-41': 'aurora:white' },
+        ownedAuras: { 'aura-aurora': true },
+        giftedAvatarId: null,
+        giftedAuraId: null,
+      },
+    });
+
+    resetAppSnapshotForAccountSwitch();
+
+    expect(getAppSnapshot().customization).toBeUndefined();
+  });
 });

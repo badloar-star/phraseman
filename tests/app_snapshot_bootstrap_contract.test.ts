@@ -37,6 +37,14 @@ describe('app snapshot bootstrap contract', () => {
     expect(lessons).not.toContain('onSnapshot(');
   });
 
+  it('primes account-scoped customization in the startup multiGet', () => {
+    const bootstrap = readProjectFile('app', 'app_snapshot_bootstrap.ts');
+
+    expect(bootstrap).toContain('CUSTOMIZATION_STORAGE_KEYS');
+    expect(bootstrap).toContain('buildCustomizationSnapshot(values, now, profile.level)');
+    expect(bootstrap).toContain('customization:');
+  });
+
   it('visible high-traffic screens seed their first frame from the shared snapshot', () => {
     const home = readProjectFile('app', '(tabs)', 'home.tsx');
     const friends = readProjectFile('app', '(tabs)', 'friends.tsx');

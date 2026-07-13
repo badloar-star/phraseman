@@ -18,6 +18,7 @@ import {
   removeShardDeltas,
 } from './shards_delta_queue';
 import { isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from './account_generation';
+import { SHARD_SPEND_OP_LEDGER_KEY } from '../constants/customization_storage_keys';
 
 export type ShardSpendReason =
   | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–10)
@@ -518,7 +519,7 @@ const applyShardDeltaToCloud = async (
   _localBaseMeta?: ShardBalanceMeta | null,
   opIdOverride?: string,
 ): Promise<
-  | { ok: true; balance: number; balanceBefore: number; updatedAtMs: number; opId: string }
+  | { ok: true; balance: number; balanceBefore: number; updatedAtMs: number; opId: string; alreadyApplied: boolean }
   | { ok: false; reason: 'unavailable'; opId: string }
   | { ok: false; reason: 'insufficient'; cloudBalance: number; opId: string }
 > => {
@@ -542,7 +543,7 @@ const applyShardDeltaToCloud = async (
     const balance = Math.max(0, Math.floor(Number(data.balance) || 0));
     const updatedAtMs = parseUpdatedAtMs(data.shardsUpdatedAtMs) ?? Date.now();
     const balanceBefore = data.alreadyApplied ? balance : balance - delta;
-    return { ok: true, balance, balanceBefore, updatedAtMs, opId };
+    return { ok: true, balance, balanceBefore, updatedAtMs, opId, alreadyApplied: data.alreadyApplied };
   } catch {
     return { ok: false, reason: 'unavailable', opId };
   }
@@ -557,6 +558,23 @@ const persistLocalBalance = async (
     [BALANCE_META_KEY, JSON.stringify(meta)],
   ]);
 };
+
+const SHARD_SPEND_OP_LEDGER_LIMIT = 128;
+
+const readShardSpendOpLedger = async (): Promise<string[]> => {
+  try {
+    const raw = await AsyncStorage.getItem(SHARD_SPEND_OP_LEDGER_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed)
+      ? parsed.filter((value): value is string => typeof value === 'string' && value.length > 0)
+      : [];
+  } catch {
+    return [];
+  }
+};
+
+const appendShardSpendOp = (ledger: readonly string[], opId: string): string[] =>
+  [...ledger.filter((value) => value !== opId), opId].slice(-SHARD_SPEND_OP_LEDGER_LIMIT);
 
 // ── Добавить осколки ───────────────────────────────────────────────────────
 export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promise<number> => {
@@ -933,29 +951,42 @@ const trackShardsSpentAchievement = (amount: number): void => {
     .catch(() => {});
 };
 
-// ── Потратить осколки (возвращает true если успешно) ──────────────────────
-export const spendShards = async (
+export type IdempotentShardSpendResult =
+  | 'applied'
+  | 'already-applied'
+  | 'insufficient'
+  | 'failed';
+
+export const spendShardsIdempotent = async (
   amount: number,
-  reason: ShardSpendReason = 'buy_energy',
+  reason: ShardSpendReason,
+  opId: string,
   options?: SpendShardsOptions,
-): Promise<boolean> => {
+): Promise<IdempotentShardSpendResult> => {
   try {
-    if (!Number.isFinite(amount) || amount <= 0) return false;
+    if (!Number.isFinite(amount) || amount <= 0 || !opId.trim()) return 'failed';
     const spendAmount = Math.floor(amount);
-    if (spendAmount <= 0) return false;
+    if (spendAmount <= 0) return 'failed';
+    if ((await readShardSpendOpLedger()).includes(opId)) return 'already-applied';
     const localBase = await getShardsBalance();
     const localBaseMeta = await readBalanceMeta();
-    const cloudApplied = await applyShardDeltaToCloud(-spendAmount, 'spend', reason, localBase, localBaseMeta);
-    if (cloudApplied.ok) {
+    const cloudApplied = await applyShardDeltaToCloud(-spendAmount, 'spend', reason, localBase, localBaseMeta, opId);
+    if (cloudApplied.ok === true) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'spend', reason };
       await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);
-      await consumeStorePurchasedShardsOnSpend(spendAmount);
-      void bumpLifetimeShardsSpent(spendAmount);
-      logShardTransaction('spend', spendAmount, reason, cloudApplied.balance, cloudApplied.balanceBefore);
-      trackShardsSpentAchievement(spendAmount);
-      return true;
+      await withStorageLock(async () => {
+        const ledger = await readShardSpendOpLedger();
+        await AsyncStorage.setItem(SHARD_SPEND_OP_LEDGER_KEY, JSON.stringify(appendShardSpendOp(ledger, opId)));
+      });
+      if (!cloudApplied.alreadyApplied) {
+        await consumeStorePurchasedShardsOnSpend(spendAmount);
+        void bumpLifetimeShardsSpent(spendAmount);
+        logShardTransaction('spend', spendAmount, reason, cloudApplied.balance, cloudApplied.balanceBefore);
+        trackShardsSpentAchievement(spendAmount);
+      }
+      return cloudApplied.alreadyApplied ? 'already-applied' : 'applied';
     }
-    if (cloudApplied.reason === 'insufficient') {
+    if (cloudApplied.ok === false && cloudApplied.reason === 'insufficient') {
       // Облако авторитетно и его не хватает, хотя локально могло показываться больше
       // (рассинхрон: начисление не доехало до облака / облако перезаписано).
       // Чиним локальный баланс под облачный, иначе пользователь видит «фантомные»
@@ -967,24 +998,32 @@ export const spendShards = async (
         setShardsBalanceMemory(reconciled);
         await emitShardsBalanceUpdated(reconciled, meta);
       }
-      return false;
+      return 'insufficient';
     }
 
     const meta = localWriteStamp('spend', reason);
-    const newBalance = await withStorageLock(async () => {
+    const localResult = await withStorageLock(async () => {
+      const ledger = await readShardSpendOpLedger();
+      if (ledger.includes(opId)) return { kind: 'already' as const, balance: await getShardsBalance() };
       const current = await getShardsBalance();
-      if (current < spendAmount) return -1;
+      if (current < spendAmount) return { kind: 'insufficient' as const, balance: current };
       const next = current - spendAmount;
-      await persistLocalBalance(next, meta);
-      return next;
+      await AsyncStorage.multiSet([
+        [STORAGE_KEY, String(next)],
+        [BALANCE_META_KEY, JSON.stringify(meta)],
+        [SHARD_SPEND_OP_LEDGER_KEY, JSON.stringify(appendShardSpendOp(ledger, opId))],
+      ]);
+      return { kind: 'applied' as const, balance: next };
     });
-    if (newBalance < 0) return false;
+    if (localResult.kind === 'already') return 'already-applied';
+    if (localResult.kind === 'insufficient') return 'insufficient';
+    const newBalance = localResult.balance;
     setShardsBalanceMemory(newBalance);
     await consumeStorePurchasedShardsOnSpend(spendAmount);
     void bumpLifetimeShardsSpent(spendAmount);
     // K3: сервер недоступен — списание применено локально, серверную сверку в
     // идемпотентную очередь (тот же opId → без двойного списания при ретрае).
-    await enqueuePendingShardDelta(cloudApplied.opId, spendAmount, 'spend', reason);
+    await enqueuePendingShardDelta(opId, spendAmount, 'spend', reason);
     if (options?.skipServerAwait) {
       void resumePendingShardDeltas();
       void logShardTransaction('spend', spendAmount, reason, newBalance, newBalance + spendAmount);
@@ -993,10 +1032,20 @@ export const spendShards = async (
     }
     await emitShardsBalanceUpdated(newBalance, meta);
     trackShardsSpentAchievement(spendAmount);
-    return true;
+    return 'applied';
   } catch {
-    return false;
+    return 'failed';
   }
+};
+
+// ── Потратить осколки (обратно совместимая boolean-обёртка) ───────────────
+export const spendShards = async (
+  amount: number,
+  reason: ShardSpendReason = 'buy_energy',
+  options?: SpendShardsOptions,
+): Promise<boolean> => {
+  const result = await spendShardsIdempotent(amount, reason, newShardOpId(), options);
+  return result === 'applied' || result === 'already-applied';
 };
 
 // ── Проверить и начислить единоразовые события ────────────────────────────

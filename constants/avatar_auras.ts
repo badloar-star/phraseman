@@ -1,6 +1,8 @@
-export const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
-export const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
-export const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
+export {
+  AVATAR_AURA_GIFT_OWNED_KEY,
+  AVATAR_AURA_OWNED_KEY,
+  USER_AVATAR_AURA_KEY,
+} from './customization_storage_keys';
 export const AVATAR_AURA_BUY_COST = 35;
 export const NO_AVATAR_AURA_ID = 'none';
 export const PREMIUM_AVATAR_AURA_ID = 'aura-premium';

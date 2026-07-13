@@ -1,9 +1,9 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { Lang } from './i18n';
+export { CUSTOM_AVATAR_OWNED_KEY } from './customization_storage_keys';
 
 export const CUSTOM_AVATAR_BUY_COST = 50;
 export const CUSTOM_AVATAR_RESTYLE_COST = 10;
-export const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 
 export type CustomAvatarGradient = {
   id: string;

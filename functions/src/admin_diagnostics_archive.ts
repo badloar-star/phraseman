@@ -132,6 +132,11 @@ function millis(value: unknown): number {
   return 0;
 }
 
+function archiveCreatedAtMs(row: Row | undefined): number {
+  if (!row) return 0;
+  return millis(row.createdAt) || millis(row.createdAtMs) || millis(row.serverCreatedAt);
+}
+
 function hash(value: string, length = 12): string {
   return createHash('sha256').update(value).digest('hex').slice(0, length);
 }
@@ -206,7 +211,7 @@ function requireArchiveStatus(type: ArchiveDetailType, value: unknown): string {
 }
 
 export function projectDiagnosticsArchiveListRow(type: ArchiveDetailType, id: string, row: Row, canReadUsers: boolean): Row {
-  const createdAtMs = millis(row.createdAtMs || row.createdAt || row.serverCreatedAt);
+  const createdAtMs = archiveCreatedAtMs(row);
   return Object.freeze({
     id: cleanText(id, 160),
     type,
@@ -400,10 +405,10 @@ async function readArchiveSource(
   const scanSize = Math.min(MAX_SOURCE_SCAN, Math.max(input.pageSize * 5, input.pageSize + 1));
   try {
     const collection = db.collection(source);
-    let query: FirebaseFirestore.Query = collection.orderBy('createdAtMs', 'desc');
+    let query: FirebaseFirestore.Query = collection.orderBy('createdAt', 'desc');
     if (position) {
       const cursorDoc = await collection.doc(position.id).get();
-      if (!cursorDoc.exists || millis(cursorDoc.data()?.createdAtMs) !== position.createdAtMs) {
+      if (!cursorDoc.exists || archiveCreatedAtMs(cursorDoc.data() as Row | undefined) !== position.createdAtMs) {
         throw new HttpsError('failed-precondition', 'archive cursor document is unavailable');
       }
       // A document snapshot preserves Firestore's implicit __name__ tiebreak without a new compound index.
@@ -421,7 +426,7 @@ async function readArchiveSource(
       cap: scanSize,
       truncated: snapshot.size > scanSize,
       error: '',
-      boundaryAtMs: docs.length ? millis(docs[docs.length - 1].data().createdAtMs) : 0,
+      boundaryAtMs: docs.length ? archiveCreatedAtMs(docs[docs.length - 1].data() as Row) : 0,
       boundaryId: docs.length ? docs[docs.length - 1].id : '',
     });
   } catch (error) {

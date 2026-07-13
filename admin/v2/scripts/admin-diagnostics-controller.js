@@ -8,6 +8,110 @@ export function buildAppErrorStatusConfirmation(reportId, expectedStatus, nextSt
   return `CONFIRM app_errors/${reportId} ${expectedStatus}->${nextStatus}`;
 }
 
+function diagnosticsText(value, max = 2_000) {
+  return String(value ?? '').trim().slice(0, max);
+}
+
+function appHealthEventKey(event) {
+  const fingerprint = diagnosticsText(event?.fingerprint, 120);
+  if (fingerprint) return fingerprint;
+  const context = diagnosticsText(event?.context, 180).replace(/\s+/g, ' ').toLowerCase();
+  return context ? `context:${context}` : 'context:unknown';
+}
+
+function appHealthEventUserKey(event) {
+  return diagnosticsText(event?.userAggregationKey, 24);
+}
+
+export function aggregateAppHealthEvents(events, completeness = {}) {
+  const groups = new Map();
+  const affectedUsers = new Set();
+  let critical = 0;
+  let warnings = 0;
+
+  (Array.isArray(events) ? events : []).forEach((event, index) => {
+    if (!event || typeof event !== 'object') return;
+    const key = appHealthEventKey(event);
+    const severityValue = diagnosticsText(event.severity, 20).toLowerCase();
+    const severity = severityValue === 'critical' || severityValue === 'info' ? severityValue : 'warning';
+    const userKey = appHealthEventUserKey(event);
+    const createdAtMs = Number(event.createdAtMs || 0);
+    const current = groups.get(key) || {
+      key,
+      count: 0,
+      critical: 0,
+      warnings: 0,
+      users: new Set(),
+      firstIndex: index,
+      representative: event,
+      lastSeenAtMs: 0,
+    };
+    current.count += 1;
+    if (severity === 'critical') {
+      current.critical += 1;
+      critical += 1;
+    } else if (severity === 'warning') {
+      current.warnings += 1;
+      warnings += 1;
+    }
+    if (userKey) {
+      current.users.add(userKey);
+      affectedUsers.add(userKey);
+    }
+    if (Number.isFinite(createdAtMs) && createdAtMs > current.lastSeenAtMs) {
+      current.lastSeenAtMs = createdAtMs;
+      current.representative = event;
+    }
+    groups.set(key, current);
+  });
+
+  const items = [...groups.values()]
+    .sort((left, right) => right.count - left.count || left.firstIndex - right.firstIndex)
+    .map((group) => {
+      const representative = group.representative;
+      const reportId = diagnosticsText(representative.id, 160);
+      return {
+        id: reportId,
+        reportId,
+        key: group.key,
+        fingerprint: diagnosticsText(representative.fingerprint, 120) || null,
+        context: diagnosticsText(representative.context, 180) || null,
+        feature: diagnosticsText(representative.feature, 80) || 'app',
+        status: diagnosticsText(representative.status, 40).toLowerCase() || 'new',
+        severity: group.critical > 0 ? 'critical' : group.warnings > 0 ? 'warning' : 'info',
+        message: diagnosticsText(representative.message) || null,
+        count: group.count,
+        repeatCount: group.count,
+        critical: group.critical,
+        warnings: group.warnings,
+        affectedUsers: group.users.size,
+        lastSeenAtMs: group.lastSeenAtMs,
+      };
+    });
+
+  const affectedUserCount = affectedUsers.size;
+  const topRepeat = items.reduce((maximum, group) => Math.max(maximum, group.count), 0);
+  const health = critical > 0 || affectedUserCount >= 10
+    ? 'RED'
+    : warnings >= 5 || affectedUserCount >= 3
+      ? 'YELLOW'
+      : 'GREEN';
+  const partial = Boolean(completeness.nextCursor || completeness.truncated || completeness.partial);
+  const conclusive = !(health === 'GREEN' && partial);
+  const reason = health === 'GREEN' && partial
+    ? 'sample_incomplete'
+    : critical > 0 ? 'critical_errors'
+      : affectedUserCount >= 10 ? 'affected_users_red'
+        : warnings >= 5 ? 'warning_volume'
+          : affectedUserCount >= 3 ? 'affected_users_yellow'
+            : 'within_thresholds';
+
+  return {
+    items,
+    kpis: { critical, warnings, affectedUsers: affectedUserCount, topRepeat, health, conclusive, partial, reason },
+  };
+}
+
 export function createDiagnosticsController(context) {
   let appHealthRequestGeneration = 0;
   let activityRequestGeneration = 0;
@@ -97,15 +201,24 @@ export function createDiagnosticsController(context) {
     try {
       const result = await context.actions().listAppHealth(input);
       if (generation !== appHealthRequestGeneration || !activeView('app-health')) return;
-      const incoming = Array.isArray(result?.groups) ? result.groups : Array.isArray(result?.items) ? result.items : [];
-      const items = append ? [...model().appHealth.items, ...incoming] : incoming;
+      const hasEventPage = Array.isArray(result?.items);
+      const previousEvents = Array.isArray(model().appHealth.events) ? model().appHealth.events : [];
+      const events = hasEventPage
+        ? append ? [...previousEvents, ...result.items] : result.items
+        : append ? previousEvents : [];
+      const aggregated = hasEventPage ? aggregateAppHealthEvents(events, result) : null;
+      const incoming = Array.isArray(result?.groups) ? result.groups : [];
+      const items = aggregated?.items || (append ? [...model().appHealth.items, ...incoming] : incoming);
       patchAppHealth({
+        events,
         items,
         kpis: {
           ...(result?.kpis || result?.summary || {}),
           ...(result?.health?.kpis || {}),
-          health: result?.health?.level || result?.kpis?.health || '',
-          conclusive: result?.health?.conclusive !== false,
+          ...(aggregated?.kpis || {
+            health: result?.health?.level || result?.kpis?.health || '',
+            conclusive: result?.health?.conclusive !== false,
+          }),
         },
         sourceHealth: Array.isArray(result?.sourceHealth) ? result.sourceHealth : [],
         nextCursor: String(result?.nextCursor || ''),

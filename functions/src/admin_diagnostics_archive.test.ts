@@ -12,34 +12,47 @@ import {
   projectDiagnosticsArchiveListRow,
 } from './admin_diagnostics_archive';
 
-type FakeArchiveRow = { id: string; createdAtMs: number; status: string } & Record<string, unknown>;
+type FakeArchiveRow = { id: string; createdAtMs?: number; createdAt?: string; status: string } & Record<string, unknown>;
 
 function fakeArchiveDb(
   collectionRows: Record<string, FakeArchiveRow[]>,
   failReads: Partial<Record<string, number>> = {},
 ) {
+  const normalizedRows = Object.fromEntries(Object.entries(collectionRows).map(([name, rows]) => [
+    name,
+    rows.map((row) => row.createdAt === undefined && row.createdAtMs !== undefined
+      ? { ...row, createdAt: new Date(row.createdAtMs).toISOString() }
+      : row),
+  ]));
+  const atMs = (row: Record<string, unknown>, field: string): number => {
+    const value = row[field];
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string') return Date.parse(value) || 0;
+    return 0;
+  };
   const remainingFailures = { ...failReads };
   class Query {
     constructor(
       private readonly collectionName: string,
+      private readonly orderField = 'createdAtMs',
       private readonly cursorAtMs: number | null = null,
       private readonly cursorId = '',
       private readonly limitCount = Number.POSITIVE_INFINITY,
     ) {}
 
-    orderBy() { return new Query(this.collectionName, this.cursorAtMs, this.cursorId, this.limitCount); }
+    orderBy(field: string) { return new Query(this.collectionName, field, this.cursorAtMs, this.cursorId, this.limitCount); }
 
     startAfter(cursor: number | { id?: string; data?: () => Record<string, unknown> }, documentRef?: { id?: string }) {
       if (typeof cursor === 'object') {
-        return new Query(this.collectionName, Number(cursor.data?.().createdAtMs || 0), String(cursor.id || ''), this.limitCount);
+        return new Query(this.collectionName, this.orderField, atMs(cursor.data?.() || {}, this.orderField), String(cursor.id || ''), this.limitCount);
       }
-      return new Query(this.collectionName, cursor, String(documentRef?.id || ''), this.limitCount);
+      return new Query(this.collectionName, this.orderField, cursor, String(documentRef?.id || ''), this.limitCount);
     }
 
-    limit(count: number) { return new Query(this.collectionName, this.cursorAtMs, this.cursorId, count); }
+    limit(count: number) { return new Query(this.collectionName, this.orderField, this.cursorAtMs, this.cursorId, count); }
 
     doc(id: string) {
-      const row = (collectionRows[this.collectionName] || []).find((item) => item.id === id);
+      const row = (normalizedRows[this.collectionName] || []).find((item) => item.id === id);
       return { id, get: async () => ({ id, exists: Boolean(row), data: () => row }) };
     }
 
@@ -48,11 +61,12 @@ function fakeArchiveDb(
         remainingFailures[this.collectionName] = Number(remainingFailures[this.collectionName]) - 1;
         throw new Error(`${this.collectionName}_temporarily_unavailable`);
       }
-      let rows = [...(collectionRows[this.collectionName] || [])]
-        .sort((left, right) => right.createdAtMs - left.createdAtMs || right.id.localeCompare(left.id));
+      let rows = [...(normalizedRows[this.collectionName] || [])]
+        .filter((row) => row[this.orderField] !== undefined)
+        .sort((left, right) => atMs(right, this.orderField) - atMs(left, this.orderField) || right.id.localeCompare(left.id));
       if (this.cursorAtMs !== null) {
-        rows = rows.filter((row) => row.createdAtMs < this.cursorAtMs!
-          || (row.createdAtMs === this.cursorAtMs && Boolean(this.cursorId) && row.id < this.cursorId));
+        rows = rows.filter((row) => atMs(row, this.orderField) < this.cursorAtMs!
+          || (atMs(row, this.orderField) === this.cursorAtMs && Boolean(this.cursorId) && row.id < this.cursorId));
       }
       const limited = rows.slice(0, this.limitCount);
       return { size: limited.length, docs: limited.map((row) => ({ id: row.id, data: () => row })) };
@@ -181,6 +195,20 @@ describe('native diagnostics archive contracts', () => {
     expect(ids).toEqual(['e-3', 'e-2', 'e-1']);
   });
 
+  test('lists legacy archived rows that only have the canonical ISO createdAt field', async () => {
+    const createdAt = '2026-05-01T12:34:56.000Z';
+    const result = await listDiagnosticsArchiveRows(fakeArchiveDb({
+      user_reports: [{ id: 'legacy-user-report', createdAt, status: 'archived' }],
+    }), parseDiagnosticsArchiveListRequest({ type: 'user', pageSize: 10 }), false) as Record<string, any>;
+
+    expect(result.items).toEqual([expect.objectContaining({
+      id: 'legacy-user-report',
+      createdAt,
+      createdAtMs: Date.parse(createdAt),
+    })]);
+    expect(result.sourceHealth).toEqual([expect.objectContaining({ source: 'user_reports', state: 'ready', count: 1 })]);
+  });
+
   test('merges sources in descending date order with truthful truncation and partial state', () => {
     const merged = mergeDiagnosticsArchiveRows([
       { source: 'user_reports', rows: [{ id: 'u1', createdAtMs: 200 }], scanned: 5, truncated: false, error: '' },
@@ -206,7 +234,7 @@ describe('native diagnostics archive contracts', () => {
     }
     expect(source).toContain("'diagnostics.read'");
     expect(source).toContain("hasPermission(role, 'users.read')");
-    expect(source).toMatch(/orderBy\('createdAtMs',\s*'desc'\)/);
+    expect(source).toMatch(/orderBy\('createdAt',\s*'desc'\)/);
     expect(source).toContain('query = query.startAfter(cursorDoc)');
     expect(source).not.toMatch(/\.where\s*\(/);
     expect(source).not.toMatch(/runTransaction|\b(?:tx|batch|documentRef|reportRef|ref)\.update\s*\(/);

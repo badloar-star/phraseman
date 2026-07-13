@@ -25,6 +25,7 @@ export function createDiagnosticsState(view = 'overview') {
       query: '',
     },
     appHealth: {
+      events: [],
       items: [],
       kpis: null,
       sourceHealth: emptySourceHealth(),

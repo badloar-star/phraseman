@@ -132,6 +132,44 @@ function runDiagnosticsRuntimeProtections(): Record<string, any> {
   return JSON.parse(run.stdout) as Record<string, any>;
 }
 
+function runDiagnosticsAppendAggregation(): Record<string, any> {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-diagnostics-controller.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then(async (m) => {
+    let model = {
+      view: 'app-health', state: 'idle', error: '',
+      filters: { periodHours: 24, severity: 'all', status: 'all', feature: '', query: '' },
+      appHealth: { events: [], items: [], kpis: null, sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      activity: { state: 'idle', items: [], sourceHealth: [], nextCursor: '', truncated: false, error: '' },
+      archive: { type: 'all', items: [], sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      operationKeys: {},
+    };
+    globalThis.document = { getElementById: () => ({ value: '' }) };
+    globalThis.location = { hash: '#app-health' };
+    const event = (id, createdAtMs) => ({
+      id, fingerprint: 'repeat-across-pages', context: 'Audio retry', feature: 'audio', status: 'new', severity: 'warning',
+      message: id, createdAtMs, userAggregationKey: 'opaque_same_user',
+    });
+    const pages = [
+      { state: 'truncated', items: [event('newest', 500), event('newer', 400), event('middle', 300)], groups: [{ key: 'repeat-across-pages', count: 3 }], kpis: { warnings: 3, affectedUsers: 1, topRepeat: 3 }, health: { level: 'GREEN', conclusive: false, kpis: { warnings: 3, affectedUsers: 1, topRepeat: 3 } }, sourceHealth: [], nextCursor: 'next', truncated: true, partial: true },
+      { state: 'ready', items: [event('older', 200), event('oldest', 100)], groups: [{ key: 'repeat-across-pages', count: 2 }], kpis: { warnings: 2, affectedUsers: 1, topRepeat: 2 }, health: { level: 'GREEN', conclusive: true, kpis: { warnings: 2, affectedUsers: 1, topRepeat: 2 } }, sourceHealth: [], nextCursor: '', truncated: false, partial: false },
+    ];
+    let call = 0;
+    const controller = m.createDiagnosticsController({
+      getModel: () => model,
+      setModel: (value) => { model = value; },
+      actions: () => ({ listAppHealth: async () => pages[call++] }),
+      render: () => {}, route: () => 'diagnostics', authorized: () => true,
+      message: () => {}, errorMessage: (error) => String(error), id: () => 'id', download: () => {}, copy: async () => {},
+    });
+    await controller.handle('diagnostics-load-app-health', { dataset: {} });
+    await controller.handle('diagnostics-next-app-health', { dataset: {} });
+    process.stdout.write(JSON.stringify(model.appHealth));
+  }).catch((error) => { console.error(error); process.exitCode = 1; })`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout) as Record<string, any>;
+}
+
 function runDiagnosticsLoadRace(): Array<{ id: string }> {
   const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-diagnostics-controller.js')).href;
   const script = `import(${JSON.stringify(moduleUrl)}).then(async (m) => {
@@ -341,6 +379,19 @@ describe('Admin v2 native diagnostics workspace', () => {
     expect(result.lifecycle.calls).toBe(2);
     expect(result.lifecycle.state).toBe('ready');
     expect(result.lifecycle.items).toEqual([{ id: 'returned' }]);
+  });
+
+  test('merges a repeated fingerprint and recomputes KPIs across appended event pages', () => {
+    const result = runDiagnosticsAppendAggregation();
+    expect(result.events).toHaveLength(5);
+    expect(result.items).toEqual([expect.objectContaining({
+      id: 'newest',
+      key: 'repeat-across-pages',
+      count: 5,
+      repeatCount: 5,
+      affectedUsers: 1,
+    })]);
+    expect(result.kpis).toMatchObject({ warnings: 5, affectedUsers: 1, topRepeat: 5, health: 'YELLOW', conclusive: true });
   });
 
   test('renders callable detail error and empty envelopes as explicit states', () => {

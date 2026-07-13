@@ -154,7 +154,47 @@ describe('native diagnostics app health contracts', () => {
 
     const full = projectAppHealthRow('e1', raw, true, false);
     expect(full).toMatchObject({ user: { uid: 'stable-secret-uid', name: 'Alice Secret', email: 'alice@example.com' } });
+    expect(hidden.userAggregationKey).toBeUndefined();
+    expect(full.userAggregationKey).toMatch(/^[a-f0-9]{24}$/);
     expect(JSON.stringify(full)).not.toContain('firebase-secret-uid');
+  });
+
+  test('keeps the opaque user aggregation key role-invariant and out of safe exports', () => {
+    const raw = { authUid: 'auth-only-secret', severity: 'warning', status: 'new', createdAtMs: 100 };
+    const hidden = projectAppHealthRow('auth-only', raw, false, false);
+    const full = projectAppHealthRow('auth-only', raw, true, false);
+
+    expect(hidden.userAggregationKey).toMatch(/^[a-f0-9]{24}$/);
+    expect(full.userAggregationKey).toBe(hidden.userAggregationKey);
+    expect(JSON.stringify(hidden)).not.toContain('auth-only-secret');
+    expect(JSON.stringify(full)).not.toContain('auth-only-secret');
+
+    const summary = summarizeAppHealth([{ severity: 'warning', fingerprint: 'auth-only', context: '', userKey: String(hidden.userAggregationKey) }], { truncated: false, partial: false });
+    const exported = buildAppHealthExport([hidden], summary, 'json');
+    expect(exported.content).not.toContain(String(hidden.userAggregationKey));
+  });
+
+  test('keeps affected-user list KPIs identical with and without users.read', async () => {
+    const nowMs = 2_000_000_000_000;
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(nowMs);
+    try {
+      const db = fakeDiagnosticsDb({
+        app_errors: [{
+          id: 'auth-only-event', authUid: 'auth-only-secret', createdAtMs: nowMs - 1_000,
+          severity: 'warning', status: 'new', fingerprint: 'auth-only',
+        }],
+      });
+      const input = parseAppHealthListRequest({ periodHours: 1 });
+      const hidden = await listAppHealthRows(db, input, false) as Record<string, any>;
+      const full = await listAppHealthRows(db, input, true) as Record<string, any>;
+
+      expect(hidden.kpis).toMatchObject({ warnings: 1, affectedUsers: 1, topRepeat: 1 });
+      expect(full.kpis).toEqual(hidden.kpis);
+      expect(full.items[0].userAggregationKey).toBe(hidden.items[0].userAggregationKey);
+      expect(JSON.stringify(full)).not.toContain('auth-only-secret');
+    } finally {
+      nowSpy.mockRestore();
+    }
   });
 
   test('redacts two-character and safe standalone one-character identities from every projected text surface', () => {
@@ -200,6 +240,71 @@ describe('native diagnostics app health contracts', () => {
         activityCursor = page.nextCursor || '';
       }
       expect(activityIds).toEqual(['a-3', 'a-2', 'a-1']);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  test('aggregates only the events returned by each cursor page', async () => {
+    const nowMs = 2_000_000_000_000;
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(nowMs);
+    try {
+      const db = fakeDiagnosticsDb({
+        app_errors: [
+          { id: 'repeat-new', createdAtMs: nowMs - 1_000, severity: 'warning', status: 'new', feature: 'audio', fingerprint: 'same-repeat', uid: 'user-a' },
+          { id: 'repeat-old', createdAtMs: nowMs - 2_000, severity: 'warning', status: 'new', feature: 'audio', fingerprint: 'same-repeat', uid: 'user-b' },
+        ],
+      });
+      const first = await listAppHealthRows(db, parseAppHealthListRequest({ periodHours: 1, pageSize: 1 }), false) as Record<string, any>;
+      expect(first).toMatchObject({
+        items: [expect.objectContaining({ id: 'repeat-new' })],
+        groups: [expect.objectContaining({ key: 'same-repeat', count: 1, affectedUsers: 1 })],
+        kpis: { warnings: 1, affectedUsers: 1, topRepeat: 1 },
+      });
+      expect(first.nextCursor).toBeTruthy();
+
+      const second = await listAppHealthRows(db, parseAppHealthListRequest({ periodHours: 1, pageSize: 1, cursor: first.nextCursor }), false) as Record<string, any>;
+      expect(second).toMatchObject({
+        items: [expect.objectContaining({ id: 'repeat-old' })],
+        groups: [expect.objectContaining({ key: 'same-repeat', count: 1, affectedUsers: 1 })],
+        kpis: { warnings: 1, affectedUsers: 1, topRepeat: 1 },
+      });
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  test('searches the allowlisted projection while keeping identity gated by users.read', async () => {
+    const nowMs = 2_000_000_000_000;
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(nowMs);
+    try {
+      const db = fakeDiagnosticsDb({
+        app_errors: [{
+          id: 'search-health', createdAtMs: nowMs - 1_000, severity: 'warning', status: 'new', feature: 'audio',
+          uid: 'search-user-uid', userName: 'Search Person', platform: 'android', appVersion: '9.8.7', message: 'playback failed',
+        }],
+        app_activity: [{
+          id: 'search-activity', createdAtMs: nowMs - 1_000, action: 'lesson:complete', result: 'blocked', feature: 'lessons',
+          uid: 'activity-private-uid', userName: 'Activity Person', platform: 'ios', appVersion: '7.6.5',
+        }],
+      });
+      const healthIds = async (query: string, canReadUsers: boolean) => diagnosticsPage(await listAppHealthRows(
+        db, parseAppHealthListRequest({ periodHours: 1, query }), canReadUsers,
+      )).items.map((row) => row.id);
+      const activityIds = async (query: string, canReadUsers: boolean) => diagnosticsPage(await listAppActivityRows(
+        db, parseAppActivityListRequest({ periodHours: 1, query }), canReadUsers,
+      )).items.map((row) => row.id);
+
+      expect(await healthIds('search-user-uid', true)).toEqual(['search-health']);
+      expect(await healthIds('search person', true)).toEqual(['search-health']);
+      expect(await healthIds('search-user-uid', false)).toEqual([]);
+      expect(await healthIds('search person', false)).toEqual([]);
+      expect(await healthIds('android', false)).toEqual(['search-health']);
+      expect(await healthIds('9.8.7', false)).toEqual(['search-health']);
+      expect(await activityIds('lesson:complete', false)).toEqual(['search-activity']);
+      expect(await activityIds('blocked', false)).toEqual(['search-activity']);
+      expect(await activityIds('ios', false)).toEqual(['search-activity']);
+      expect(await activityIds('activity-private-uid', false)).toEqual([]);
     } finally {
       nowSpy.mockRestore();
     }

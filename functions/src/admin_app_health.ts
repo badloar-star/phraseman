@@ -369,6 +369,7 @@ export function projectAppHealthRow(id: string, row: Row, canReadUsers: boolean,
       osVersion: safeText(row.osVersion, 80, row, canReadUsers) || null,
     }),
     user: projectUser(row, canReadUsers),
+    ...(includeDetail ? {} : { userAggregationKey: userKey(row) || null }),
     tags: safeTags(row.tags, row, canReadUsers),
   };
   if (includeDetail) base.stack = safeText(row.stack, 4_000, row, canReadUsers) || null;
@@ -494,17 +495,17 @@ export function summarizeAppHealth(
 }
 
 function userKey(row: Row): string {
-  const identity = cleanText(row.uid || row.stableUid || row.authUid, 180);
-  return identity ? hash(identity, 24) : '';
+  const identity = cleanText(row.uid || row.stableUid || row.authUid || row.email || row.userName || row.name, 180);
+  return identity ? hash(`app_health_user:${identity}`, 24) : '';
 }
 
-function metricFrom(row: Row, projected: Row): AppHealthMetricRow {
+function metricFrom(projected: Row): AppHealthMetricRow {
   return {
     id: cleanText(projected.id, 160),
     severity: projected.severity,
     fingerprint: projected.fingerprint,
     context: projected.context,
-    userKey: userKey(row),
+    userKey: cleanText(projected.userAggregationKey, 24),
     feature: projected.feature,
     status: projected.status,
     message: projected.message,
@@ -514,7 +515,14 @@ function metricFrom(row: Row, projected: Row): AppHealthMetricRow {
 
 function matchesTextQuery(row: Row, query: string): boolean {
   if (!query) return true;
-  const haystack = [row.id, row.feature, row.context, row.screen, row.errorName, row.message, row.fingerprint, row.status, row.severity]
+  const app = isRecord(row.app) ? row.app : {};
+  const user = isRecord(row.user) ? row.user : {};
+  const haystack = [
+    row.id, row.feature, row.context, row.screen, row.errorName, row.message, row.fingerprint, row.status, row.severity,
+    row.action, row.result, row.appState,
+    app.platform, app.version, app.buildNumber,
+    user.uid, user.name, user.email, user.maskedId,
+  ]
     .map((value) => cleanText(value, 2_000).toLowerCase()).join('\n');
   return haystack.includes(query);
 }
@@ -587,8 +595,9 @@ export async function listAppHealthRows(db: FirebaseFirestore.Firestore, input: 
     const scanIncomplete = snapshot.size > scanSize && !reachedPeriodBoundary;
     const resultOverflow = matching.length > input.pageSize;
     const truncated = scanIncomplete || resultOverflow;
-    const items = matching.slice(0, input.pageSize).map(({ projected }) => projected);
-    const metrics = matching.map(({ raw, projected }) => metricFrom(raw, projected));
+    const pagePairs = matching.slice(0, input.pageSize);
+    const items = pagePairs.map(({ projected }) => projected);
+    const metrics = pagePairs.map(({ projected }) => metricFrom(projected));
     const health = summarizeAppHealth(metrics, { truncated, partial: scanIncomplete });
     const cursorRow = resultOverflow
       ? items[items.length - 1]

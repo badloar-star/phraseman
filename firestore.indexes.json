@@ -1,6 +1,14 @@
 {
   "indexes": [
     {
+      "collectionGroup": "app_messages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "kind", "order": "ASCENDING" },
+        { "fieldPath": "active", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "shard_survey_responses",
       "queryScope": "COLLECTION",
       "fields": [

@@ -116,8 +116,8 @@ function campaignDocument(campaign: VipSurveyCampaign, actorUid: string, nowMs: 
 }
 
 async function activeCampaigns(db: FirebaseFirestore.Firestore) {
-  const snap = await db.collection('app_messages').where('kind', '==', 'vip_survey').limit(100).get();
-  return snap.docs.filter((doc) => doc.data().active === true).map((doc) => ({ id: doc.id, data: doc.data() as Row }));
+  const snap = await db.collection('app_messages').where('kind', '==', 'vip_survey').where('active', '==', true).limit(100).get();
+  return snap.docs.map((doc) => ({ id: doc.id, data: doc.data() as Row }));
 }
 
 export const adminGetVipSurveyWorkspace = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
@@ -196,9 +196,9 @@ export const adminApplyVipSurveyCampaign = onCall({ region: REGION, enforceAppCh
     if (preview.actorUid !== actorUid || Number(preview.expiresAtMs || 0) <= Date.now() || preview.consumedAtMs || preview.confirmation !== confirmation || preview.reason !== fields.reason) throw new HttpsError('failed-precondition', 'vip_survey_preview_invalid');
     const revision = Math.max(0, Number(stateSnap.data()?.revision || 0));
     if (revision !== Number(preview.revision || 0)) throw new HttpsError('failed-precondition', 'vip_survey_state_changed');
-    const activeQuery = db.collection('app_messages').where('kind', '==', 'vip_survey').limit(100);
+    const activeQuery = db.collection('app_messages').where('kind', '==', 'vip_survey').where('active', '==', true).limit(100);
     const activeSnap = await tx.get(activeQuery);
-    const activeDocs = activeSnap.docs.filter((doc) => doc.data().active === true);
+    const activeDocs = activeSnap.docs;
     const currentSet = activeDocs.map((doc) => ({ id: doc.id, updatedAtMs: numberValue(doc.data().updatedAtMs), expiresAtMs: numberValue(doc.data().expiresAtMs) }));
     if (fingerprint({ action: preview.action, revision, campaign: preview.campaign || null, activeSet: currentSet, reason: preview.reason }) !== preview.fingerprint) throw new HttpsError('failed-precondition', 'vip_survey_preview_changed');
     const nowMs = Date.now();

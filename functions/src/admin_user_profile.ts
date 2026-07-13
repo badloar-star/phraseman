@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission, resolveAdminRole } from './admin/permissions';
+import { isVipActive, parseProgressMs } from './premium_status';
 
 const REGION = 'us-central1';
 const MAX_SEARCH_RESULTS = 20;
@@ -157,6 +158,8 @@ export function buildUserProfileSummary(uid: string, user: Row): Row {
     betaTesterSinceMs: Math.max(0, finiteNumber(progress.beta_tester_since)),
     activeAura: text(progress.user_avatar_aura, 80) || null,
     plusForever: text(progress.vip_active, 10) === 'true' && text(progress.vip_until, 40) === '0',
+    vipActive: isVipActive(progress),
+    vipUntilMs: parseProgressMs(progress.vip_until),
     language: text(progress.lang || progress.app_lang, 16) || 'unknown',
     appVersion: text(progress.app_version, 40) || null,
     platform: text(progress.device_platform, 20) || null,

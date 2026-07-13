@@ -171,6 +171,41 @@ const CONTENT_REPORT_IMMEDIATE_PER_HOUR = 6;
 const CONTENT_REPORT_WINDOW_MS = 60 * 60 * 1000;
 const CONTENT_REPORT_DIGEST_CLAIM_MS = 10 * 60 * 1000;
 const TELEGRAM_TEXT_LIMIT = 4096;
+type ContentReportDigestClaim = { id: string; pending: number };
+
+export async function claimContentReportDigest(
+  firestore: FirebaseFirestore.Firestore,
+  claimId: string,
+  nowMs: number,
+): Promise<ContentReportDigestClaim | null> {
+  return firestore.runTransaction(async (tx) => {
+    const ref = firestore.doc(ALERTS_DOC);
+    const snap = await tx.get(ref);
+    const latest = (snap.data() || {}) as AlertsConfig & { contentReportDigestClaim?: { id?: string; pending?: number; expiresAtMs?: number } };
+    const pending = Number(latest.pendingContentReports || 0);
+    if (pending <= 0 || latest.enabled === false || latest.types?.contentReportDigest === false) return null;
+    const activeClaim = latest.contentReportDigestClaim;
+    if (activeClaim?.id && Number(activeClaim.expiresAtMs || 0) > nowMs) return null;
+    tx.set(ref, { contentReportDigestClaim: { id: claimId, pending, createdAtMs: nowMs, expiresAtMs: nowMs + CONTENT_REPORT_DIGEST_CLAIM_MS } }, { merge: true });
+    return { id: claimId, pending };
+  });
+}
+
+export async function finalizeContentReportDigestClaim(
+  firestore: FirebaseFirestore.Firestore,
+  claim: ContentReportDigestClaim | null,
+  acceptedByProvider: boolean,
+): Promise<void> {
+  if (!claim) return;
+  await firestore.runTransaction(async (tx) => {
+    const ref = firestore.doc(ALERTS_DOC); const snap = await tx.get(ref); const latest = snap.data() || {};
+    if (latest.contentReportDigestClaim?.id !== claim.id) return;
+    tx.set(ref, {
+      ...(acceptedByProvider ? { pendingContentReports: Math.max(0, Number(latest.pendingContentReports || 0) - claim.pending) } : {}),
+      contentReportDigestClaim: admin.firestore.FieldValue.delete(),
+    }, { merge: true });
+  });
+}
 
 interface ContentReportLimits {
   comment: number;
@@ -280,18 +315,7 @@ export const adminAlertContentReportDigest = onSchedule(
     if (!cfg || cfg.enabled === false) return;
     if (cfg.types?.contentReportDigest === false) return;
     const claimId = db().collection('_ids').doc().id;
-    const claim = await db().runTransaction(async (tx) => {
-      const ref = db().doc(ALERTS_DOC);
-      const snap = await tx.get(ref);
-      const latest = (snap.data() || {}) as AlertsConfig & { contentReportDigestClaim?: { id?: string; pending?: number; expiresAtMs?: number } };
-      const pending = Number(latest.pendingContentReports || 0);
-      if (pending <= 0 || latest.enabled === false || latest.types?.contentReportDigest === false) return null;
-      const activeClaim = latest.contentReportDigestClaim;
-      if (activeClaim?.id && Number(activeClaim.expiresAtMs || 0) > Date.now()) return null;
-      const nowMs = Date.now();
-      tx.set(ref, { contentReportDigestClaim: { id: claimId, pending, createdAtMs: nowMs, expiresAtMs: nowMs + CONTENT_REPORT_DIGEST_CLAIM_MS } }, { merge: true });
-      return { id: claimId, pending };
-    });
+    const claim = await claimContentReportDigest(db(), claimId, Date.now());
     if (!claim) return;
     const pending = claim.pending;
     const text =
@@ -300,14 +324,7 @@ export const adminAlertContentReportDigest = onSchedule(
       `<i>Открой админку → Reports.</i>`;
     const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
     try {
-      await db().runTransaction(async (tx) => {
-        const ref = db().doc(ALERTS_DOC); const snap = await tx.get(ref); const latest = snap.data() || {};
-        if (latest.contentReportDigestClaim?.id !== claim.id) return;
-        tx.set(ref, {
-          ...(ok ? { pendingContentReports: Math.max(0, Number(latest.pendingContentReports || 0) - pending) } : {}),
-          contentReportDigestClaim: admin.firestore.FieldValue.delete(),
-        }, { merge: true });
-      });
+      await finalizeContentReportDigestClaim(db(), claim, ok);
     } catch (error) { console.error('[adminAlerts] digest claim finalization failed', error); }
     if (ok) await markSent('contentReportDigest');
   },

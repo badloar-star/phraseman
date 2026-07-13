@@ -63,6 +63,7 @@ describe('admin user profile read contracts', () => {
       progress: {
         user_name: 'Alice', user_total_xp: '1250', streak_count: '9', premium_plan: 'annual',
         app_lang: 'ru', app_version: '2.4.0', device_platform: 'ios', unlocked_lessons: '[1,2,3]',
+        vip_active: 'true', vip_until: String(Date.now() + 90_000), vip_admin_override: 'true',
         secret_inside_progress: 'must-not-leak',
       },
       linkedAuth: { provider: 'google', email: 'Alice@example.com', providerUid: 'provider-1' },
@@ -76,6 +77,7 @@ describe('admin user profile read contracts', () => {
     expect(summary).toMatchObject({
       uid: 'stable-1', name: 'Alice', xp: 1250, streak: 9, premiumPlan: 'annual',
       language: 'ru', appVersion: '2.4.0', platform: 'ios', lessonsCompleted: 3, shards: 45,
+      vipActive: true, vipUntilMs: expect.any(Number),
       auth: { provider: 'google', email: 'Alice@example.com' },
     });
     expect(JSON.stringify(summary)).not.toContain('ExponentPushToken');

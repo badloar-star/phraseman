@@ -149,10 +149,12 @@ const state = {
   compass: { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '' },
   reviewPromo: { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' },
   alerts: { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' },
+  manualAccess: { preview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
 let initialized = false;
+let requestedUserHandled = false;
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
 
 export function escapeHtml(value) {
@@ -305,7 +307,7 @@ const CONTROL_PANEL_WORKFLOWS = Object.freeze([
   { title: 'Plus-доступ и уроки', description: 'Глобальные Plus-функции, free limits и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть v2 Free / Plus', fallback: 'control-panel', risk: 'Guarded publish', coverage: '5 старых кнопок', guarded: true },
   { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и дефолтный reset.', primary: '#remote-config', primaryLabel: 'Открыть v2 Remote Config', fallback: 'control-panel', risk: 'Content/economy', coverage: '3 старые кнопки', guarded: true },
   { title: 'ИИ и бюджеты', description: 'Theo model, daily caps, фоновые AI jobs, OpenAI budget и Asset Studio.', primary: '#asset-studio', primaryLabel: 'Открыть v2 Asset Studio', fallback: 'openai-budget', risk: 'AI budget', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Кампании и коммуникации', description: 'App messages и опросы создаются и включаются в v2; push, Paywall A/B, Plus survey и Telegram остаются следующими переносами.', primary: '#campaigns', primaryLabel: 'Открыть v2 кампании', fallback: 'app-messages', risk: 'App messages guarded; push pending', coverage: 'частично перенесено', guarded: true },
+  { title: 'Кампании и коммуникации', description: 'App messages, push, Paywall A/B, Plus survey и Telegram управляются нативными защищёнными процессами v2.', primary: '#campaigns', primaryLabel: 'Открыть v2 кампании', fallback: 'app-messages', risk: 'Guarded server workflows', coverage: 'ключевые процессы перенесены', guarded: true },
 ]);
 
 function renderControlPanel() {
@@ -809,8 +811,9 @@ function renderProfile() {
   return `<div class="profile-workspace">
     ${state.users.profileLoading ? '<div class="notice" role="status" aria-live="polite">Обновляю источники; текущий снимок остаётся на экране.</div>' : ''}
     <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(profile.identity?.reason || 'requested')}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(legacyUrl)}" target="_blank" rel="noopener" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
-    <div class="notice warning">Остальные изменяющие действия пока открываются в действующем модуле: имя, XP, streak, осколки, награды, merge, сбросы, предупреждение, бан и удаление. Бета-статус, «Нимб», постоянный Plus и команды энергии уже перенесены ниже.</div>
+    <div class="notice warning">Остальные изменяющие действия пока открываются в действующем модуле: имя, XP, streak, осколки, награды, merge, сбросы, предупреждение, бан и удаление. Бета-статус, «Нимб», ручной Plus и команды энергии уже перенесены ниже.</div>
     <section class="card section"><div class="card-header"><div><h3>Бета-тестер и тестовый доступ</h3><p>Команды применяются к каноническому UID через сервер, с причиной и обязательным аудитом.</p></div><div class="actions"><span class="badge ${summary.betaTester ? 'success' : ''}">${summary.betaTester ? 'Бета-тестер' : 'Обычный пользователь'}</span><span class="badge ${summary.activeAura === 'aura_beta_nimbus' ? 'success' : ''}">${summary.activeAura === 'aura_beta_nimbus' ? 'Нимб активен' : 'Нимб не активен'}</span><span class="badge ${summary.plusForever ? 'success' : ''}">${summary.plusForever ? 'Plus навсегда' : 'Без постоянного Plus'}</span></div></div><div class="card-body"><div class="field full"><label for="beta-tester-reason">Причина операции</label><textarea id="beta-tester-reason" maxlength="500" placeholder="Кто запросил, зачем нужна операция и как проверить результат">${escapeHtml(state.betaTesters.pending?.reason || '')}</textarea></div><div class="actions section"><button class="button" data-action="preview-beta-tester-action" data-beta-action="${summary.betaTester ? 'unset_beta' : 'set_beta'}" type="button"${disabledWhenUnauthorized('users.write')} title="${summary.betaTester ? 'Снять только бета-флаг; Нимб останется у пользователя' : 'Выдать бета-флаг и активировать Нимб'}">${summary.betaTester ? 'Снять бета-статус' : 'Назначить + выдать Нимб'}</button><button class="button" data-action="preview-beta-tester-action" data-beta-action="grant_plus" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Выдать административный Plus без срока окончания">Выдать Plus навсегда</button><button class="button" data-action="preview-beta-tester-action" data-beta-action="energy_fill" type="button"${disabledWhenUnauthorized('users.write')} title="Поставить одноразовую команду заполнения энергии">Заполнить энергию</button><button class="button danger" data-action="preview-beta-tester-action" data-beta-action="energy_drain" type="button"${disabledWhenUnauthorized('users.write')} title="Поставить одноразовую команду обнуления энергии">Обнулить энергию</button></div>${state.betaTesters.pending ? `<div class="notice warning section"><strong>Предпросмотр операции</strong><br>${escapeHtml(state.betaTesters.pending.label)} для <code>${escapeHtml(profile.canonicalUid)}</code><br>Причина: ${escapeHtml(state.betaTesters.pending.reason)}<div class="actions end section"><button class="button" data-action="cancel-beta-tester-action" type="button" title="Отменить без записи">Отмена</button><button class="button primary" data-action="confirm-beta-tester-action" type="button" title="Выполнить серверную команду и записать аудит">Подтвердить</button></div></div>` : ''}</div></section>
+    <section class="card section"><div class="card-header"><div><h3>Ручной Plus-доступ</h3><p>Срочная или бессрочная выдача и отзыв только административного VIP. Покупки Store и RevenueCat не изменяются.</p></div><span class="badge warning">Денежное право</span></div><div class="card-body"><div class="report-filters"><div class="field"><label for="manual-plus-action">Операция</label><select id="manual-plus-action"><option value="grant_months">Выдать на срок</option><option value="grant_forever">Выдать бессрочно</option><option value="revoke">Отозвать admin Plus</option></select></div><div class="field"><label for="manual-plus-months">Месяцев</label><input id="manual-plus-months" type="number" min="1" max="12" value="1"></div></div><div class="field full"><label for="manual-plus-reason">Причина операции</label><textarea id="manual-plus-reason" maxlength="500" placeholder="Кто запросил, основание и как проверить результат">${escapeHtml(state.manualAccess.preview?.reason || '')}</textarea></div><button class="button primary" data-action="preview-manual-plus" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Подготовить серверный before/after без изменения доступа">Подготовить изменение Plus</button>${state.manualAccess.preview ? `<div class="notice warning section"><strong>Серверный preview</strong><pre class="code-preview">${escapeHtml(JSON.stringify(state.manualAccess.preview, null, 2))}</pre><div class="field"><label for="manual-plus-confirmation">Точное подтверждение</label><input id="manual-plus-confirmation" placeholder="${escapeHtml(state.manualAccess.preview.confirmation)}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="discard-manual-plus" type="button" title="Отменить preview без изменения доступа">Отмена</button><button class="button ${state.manualAccess.preview.action === 'revoke' ? 'danger' : 'primary'}" data-action="apply-manual-plus" type="button" title="Применить неизменённый server preview">${state.manualAccess.preview.action === 'revoke' ? 'Отозвать Plus' : 'Выдать Plus'}</button></div></div>` : ''}</div></section>
     <div class="profile-section-grid">
       <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
       <section class="card profile-section"><div class="card-header"><div><h3>2. Обучение</h3><p>Прогресс без выдачи сырого документа.</p></div></div><div class="profile-metrics"><div><strong>${Number(summary.xp || 0).toLocaleString('ru-RU')}</strong><small>XP</small></div><div><strong>${Number(summary.streak || 0)}</strong><small>дней streak</small></div><div><strong>${Number(summary.lessonsCompleted || 0)}</strong><small>уроков</small></div><div><strong>${escapeHtml(summary.placementLevel || '—')}</strong><small>уровень</small></div></div></section>
@@ -2068,6 +2071,24 @@ function maybeLoadCompassWorkspace() {
   });
 }
 
+function maybeOpenRequestedUser() {
+  if (requestedUserHandled || !state.authorized || !actions || !can('users.read')) return;
+  const uid = String(new URLSearchParams(globalThis.location.search).get('openUser') || '').trim();
+  if (!uid) return;
+  requestedUserHandled = true;
+  state.users.query = uid;
+  state.users.profileLoading = true;
+  const generation = state.authGeneration;
+  loadAdminUserProfile(uid).then(() => {
+    if (generation !== state.authGeneration) return;
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    setMessage(`Не удалось открыть профиль: ${errorMessage(error)}`, 'danger');
+    renderCurrentPage();
+  });
+}
+
 function vipSurveyResponseInput(cursor = '') {
   return {
     filter: String(document.getElementById('vip-response-filter')?.value || state.reviewPromo.responseFilter || 'all'),
@@ -2682,6 +2703,7 @@ async function loadAdminUserProfile(uid) {
   try {
     const profile = await actions.getUserProfile({ uid });
     if (authGeneration !== state.authGeneration || !can('users.read')) return;
+    if (state.users.profile?.canonicalUid !== profile?.canonicalUid) state.manualAccess = { preview: null, operationKeys: {}, error: '' };
     state.users.profile = profile;
   } finally {
     if (authGeneration === state.authGeneration) state.users.profileLoading = false;
@@ -3540,6 +3562,33 @@ async function handleAction(action, target) {
     state.users.profileLoading = true;
     return runBusy(() => loadAdminUserProfile(uid), 'Профиль обновлён.');
   }
+  if (action === 'preview-manual-plus') {
+    const uid = String(state.users.profile?.canonicalUid || '').trim();
+    const command = String(document.getElementById('manual-plus-action')?.value || 'grant_months');
+    const months = Number(document.getElementById('manual-plus-months')?.value || 1);
+    const reason = String(document.getElementById('manual-plus-reason')?.value || '').trim();
+    if (!uid) return setMessage('Сначала откройте канонический профиль пользователя.', 'warning');
+    if (!reason) return setMessage('Укажите причину изменения Plus-доступа.', 'warning');
+    if (command === 'grant_months' && (!Number.isInteger(months) || months < 1 || months > 12)) return setMessage('Срок должен быть от 1 до 12 месяцев.', 'warning');
+    return runBusy(async () => {
+      const preview = await actions.previewManualAccess({ uid, action: command, months, reason, requestId: id('manual-plus-preview') });
+      state.manualAccess = { ...state.manualAccess, preview, error: '' };
+    }, 'Server preview ручного Plus-доступа подготовлен.');
+  }
+  if (action === 'discard-manual-plus') { state.manualAccess = { ...state.manualAccess, preview: null }; renderCurrentPage(); return; }
+  if (action === 'apply-manual-plus') {
+    const preview = state.manualAccess.preview;
+    if (!preview) return setMessage('Сначала подготовьте server preview.', 'warning');
+    const confirmation = String(document.getElementById('manual-plus-confirmation')?.value || '').trim();
+    if (confirmation !== preview.confirmation) return setMessage('Точное подтверждение не совпадает.', 'warning');
+    const scope = `${preview.action}:${preview.previewId}`;
+    return runBusy(async () => {
+      await actions.applyManualAccess({ previewId: preview.previewId, confirmation, reason: preview.reason, requestId: id('manual-plus-apply'), idempotencyKey: protectedOperationKey('manualAccess', scope) });
+      clearProtectedOperationKey('manualAccess', scope);
+      state.manualAccess = { ...state.manualAccess, preview: null };
+      await loadAdminUserProfile(preview.uid);
+    }, preview.action === 'revoke' ? 'Административный Plus отозван; Store/RevenueCat не изменены.' : 'Административный Plus выдан и записан в аудит.');
+  }
   if (action === 'load-beta-testers') return runBusy(async () => {
     state.betaTesters.state = 'loading';
     const result = await actions.listBetaTesters();
@@ -4045,6 +4094,7 @@ export function setAdminActions(nextActions) {
   maybeLoadCompassWorkspace();
   maybeLoadReviewPromo();
   maybeLoadAlerts();
+  maybeOpenRequestedUser();
 }
 
 export function setAuthState(auth) {
@@ -4090,6 +4140,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('application.compass.read')) state.compass = { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '', cacheResetPreview: null };
   if (!state.authorized || !can('application.review_promo.read')) state.reviewPromo = { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('application.alerts.read')) state.alerts = { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' };
+  if (!state.authorized || !can('money.manual_access.write')) state.manualAccess = { preview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
@@ -4099,6 +4150,7 @@ export function setAuthState(auth) {
   maybeLoadCompassWorkspace();
   maybeLoadReviewPromo();
   maybeLoadAlerts();
+  maybeOpenRequestedUser();
 }
 
 export function renderRoute(route, capabilityId = '') {
@@ -4114,6 +4166,7 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadCompassWorkspace();
   maybeLoadReviewPromo();
   maybeLoadAlerts();
+  maybeOpenRequestedUser();
 }
 
 export function initAdminUi() {

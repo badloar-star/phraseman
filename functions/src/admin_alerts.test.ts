@@ -1,4 +1,4 @@
-import { formatContentReportAlert, formatContentReportAlertSafe } from './admin_alerts';
+import { dispatchTelegramAlert, formatContentReportAlert, formatContentReportAlertSafe } from './admin_alerts';
 
 const TELEGRAM_TEXT_LIMIT = 4096;
 
@@ -93,5 +93,19 @@ describe('formatContentReportAlertSafe', () => {
     };
     const text = formatContentReportAlertSafe(nasty);
     expect(text.length).toBeLessThanOrEqual(TELEGRAM_TEXT_LIMIT);
+  });
+});
+
+describe('dispatchTelegramAlert', () => {
+  afterEach(() => jest.restoreAllMocks());
+
+  it('reports provider acceptance, HTTP rejection and uncertain transport separately', async () => {
+    const fetchMock = jest.spyOn(globalThis, 'fetch');
+    fetchMock.mockResolvedValueOnce({ ok: true } as Response);
+    await expect(dispatchTelegramAlert('token', 'hello', { enabled: true, chatId: '123' })).resolves.toEqual({ status: 'accepted_by_provider' });
+    fetchMock.mockResolvedValueOnce({ ok: false, status: 400, text: async () => 'bad chat' } as Response);
+    await expect(dispatchTelegramAlert('token', 'hello', { enabled: true, chatId: '123' })).resolves.toEqual({ status: 'rejected' });
+    fetchMock.mockRejectedValueOnce(new Error('timeout'));
+    await expect(dispatchTelegramAlert('token', 'hello', { enabled: true, chatId: '123' })).resolves.toEqual({ status: 'delivery_uncertain' });
   });
 });

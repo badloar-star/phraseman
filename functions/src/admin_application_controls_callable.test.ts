@@ -14,8 +14,15 @@ jest.mock('firebase-admin', () => ({
   }),
 }));
 
+jest.mock('./admin_alerts', () => ({
+  ADMIN_ALERT_BOT_TOKEN: { value: () => 'test-token' },
+  dispatchTelegramAlert: jest.fn(),
+}));
+
 const { adminPreviewVipSurveyCampaign, adminApplyVipSurveyCampaign } = require('./admin_vip_survey_control');
-const { adminPreviewAlertsConfig, adminApplyAlertsConfig } = require('./admin_alerts_control');
+const { adminPreviewAlertsConfig, adminApplyAlertsConfig, adminPreviewAlertTest, adminQueueAlertTest } = require('./admin_alerts_control');
+const { adminPreviewManualAccess, adminApplyManualAccess } = require('./admin_manual_access');
+const { dispatchTelegramAlert } = require('./admin_alerts');
 
 function makeDb(initial: Store = {}) {
   const store: Store = Object.fromEntries(Object.entries(initial).map(([collection, docs]) => [collection, { ...docs }]));
@@ -72,7 +79,10 @@ function makeDb(initial: Store = {}) {
 
   const db: any = {
     doc: (path: string) => { const [collection, id] = path.split('/'); return document(collection, id); },
-    collection: (name: string) => Object.assign(query(name), { doc: (id?: string) => document(name, id || `auto-${++autoId}`) }),
+    collection: (name: string) => Object.assign(query(name), {
+      doc: (id?: string) => document(name, id || `auto-${++autoId}`),
+      add: async (value: Row) => { const ref = document(name, `auto-${++autoId}`); await ref.create(value); return ref; },
+    }),
     runTransaction: async (worker: (tx: any) => Promise<unknown>) => worker({
       get: async (ref: any) => { reads += 1; return typeof ref.get === 'function' && !ref.collection ? ref.get() : ref.id ? snapshot(ref.collection, ref.id) : ref.get(); },
       create: (ref: any, value: Row) => write('create', ref, value),
@@ -95,6 +105,13 @@ const translations = Object.fromEntries(['ru', 'uk', 'es', 'ptBr', 'vi', 'id', '
 describe('admin application control callables', () => {
   beforeEach(() => jest.spyOn(Date, 'now').mockReturnValue(10_000_000));
   afterEach(() => jest.restoreAllMocks());
+
+  test('finds an active Plus survey after more than one hundred inactive survey documents', async () => {
+    const archived = Object.fromEntries(Array.from({ length: 101 }, (_, index) => [`archive-${index.toString().padStart(3, '0')}`, { kind: 'vip_survey', active: false, updatedAtMs: index }]));
+    makeDb({ admin_vip_survey_state: { current: { revision: 0 } }, app_messages: { ...archived, live: { kind: 'vip_survey', active: true, updatedAtMs: 999, expiresAtMs: 20_000_000 } } });
+    const preview = await run(adminPreviewVipSurveyCampaign, request({ action: 'deactivate', expectedRevision: 0, reason: 'stop campaign', requestId: 'preview-many' }));
+    expect(preview.activeSet).toEqual([{ id: 'live', updatedAtMs: 999, expiresAtMs: 20_000_000 }]);
+  });
 
   test('atomically replaces the active Plus survey and safely replays the command', async () => {
     const state = makeDb({
@@ -123,5 +140,27 @@ describe('admin application control callables', () => {
     expect(history?.projection.before.chatId).toBe('123…789');
     expect(history?.projection.after.chatId).toBe('987…321');
     await expect(run(adminApplyAlertsConfig, request(command))).resolves.toMatchObject({ replayed: true, configRevision: 4 });
+  });
+
+  test.each(['accepted_by_provider', 'rejected', 'delivery_uncertain'])('dispatches an isolated alert test with truthful %s status and no config mutation', async (status) => {
+    const state = makeDb({ admin_config: { alerts: { configRevision: 7, enabled: false, chatId: '111111111', pendingContentReports: 4 } } });
+    dispatchTelegramAlert.mockResolvedValueOnce({ status });
+    const preview = await run(adminPreviewAlertTest, request({ chatId: '987654321', reason: 'connectivity check', requestId: `test-preview-${status}` }));
+    const command = { previewId: preview.previewId, confirmation: preview.confirmation, reason: 'connectivity check', requestId: `test-send-${status}`, idempotencyKey: `test-op-${status}` };
+    await expect(run(adminQueueAlertTest, request(command))).resolves.toMatchObject({ ok: true, status, replayed: false });
+    expect(state.store.admin_config.alerts).toEqual({ configRevision: 7, enabled: false, chatId: '111111111', pendingContentReports: 4 });
+    expect(dispatchTelegramAlert).toHaveBeenLastCalledWith('test-token', expect.any(String), { enabled: true, chatId: '987654321' });
+    await expect(run(adminQueueAlertTest, request(command))).resolves.toMatchObject({ status, replayed: true });
+  });
+
+  test('previews and applies a bounded Plus grant, then revokes only the admin VIP override', async () => {
+    const state = makeDb({ users: { 'stable-1': { progress: { vip_active: 'false', vip_until: '0', premium_plan: 'yearly' } } } });
+    const grantPreview = await run(adminPreviewManualAccess, request({ uid: 'stable-1', action: 'grant_months', months: 3, reason: 'support resolution', requestId: 'manual-preview-1' }));
+    await run(adminApplyManualAccess, request({ previewId: grantPreview.previewId, confirmation: grantPreview.confirmation, reason: 'support resolution', requestId: 'manual-apply-1', idempotencyKey: 'manual-op-1' }));
+    expect(state.store.users['stable-1']?.progress).toMatchObject({ vip_active: 'true', vip_plan: 'admin_vip', vip_admin_override: 'true' });
+    expect(Number(state.store.users['stable-1']?.progress.vip_until)).toBeGreaterThan(Date.now());
+    const revokePreview = await run(adminPreviewManualAccess, request({ uid: 'stable-1', action: 'revoke', reason: 'grant withdrawn', requestId: 'manual-preview-2' }));
+    await run(adminApplyManualAccess, request({ previewId: revokePreview.previewId, confirmation: revokePreview.confirmation, reason: 'grant withdrawn', requestId: 'manual-apply-2', idempotencyKey: 'manual-op-2' }));
+    expect(state.store.users['stable-1']?.progress).toMatchObject({ vip_active: 'false', vip_admin_override: 'false', premium_plan: 'yearly' });
   });
 });

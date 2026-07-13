@@ -18657,6 +18657,8 @@
   };
 
   window.openPremiumGrantModal = function openPremiumGrantModal(uid) {
+    window.location.href = './v2/index.html?openUser=' + encodeURIComponent(uid) + '#users';
+    return;
     const u = window._users.find(x => x.uid === uid);
     if (!u) return;
     window._pgGrantUid = uid;
@@ -18681,6 +18683,9 @@
   };
 
   async function grantAdminPremiumChoice(uid, spec) {
+    void spec;
+    window.location.href = './v2/index.html?openUser=' + encodeURIComponent(uid) + '#users';
+    return;
     const u = window._users.find(x => x.uid === uid);
     if (!u) return;
     try {
@@ -18753,6 +18758,8 @@
   }
 
   window.revokeAdminVip = async function(uid) {
+    window.location.href = './v2/index.html?openUser=' + encodeURIComponent(uid) + '#users';
+    return;
     const u = window._users.find(x => x.uid === uid);
     if (!u) return;
     const ok = await showConfirmModal({

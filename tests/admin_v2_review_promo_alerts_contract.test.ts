@@ -24,12 +24,14 @@ describe('Admin v2 Plus survey and Telegram alerts migration', () => {
     expect(core).toContain('alerts: renderAlerts');
     expect(legacy).toContain("window.location.href = './v2/index.html#review-promo'");
     expect(legacy).toContain("window.location.href = './v2/index.html#alerts'");
+    expect(legacy).toContain("window.location.href = './v2/index.html?openUser=' + encodeURIComponent(uid) + '#users'");
   });
 
   test('wires every protected survey and alerts callable into the interface', () => {
     for (const name of [
       'adminGetVipSurveyWorkspace', 'adminListVipSurveyResponses', 'adminPreviewVipSurveyCampaign', 'adminApplyVipSurveyCampaign',
       'adminGetAlertsWorkspace', 'adminPreviewAlertsConfig', 'adminApplyAlertsConfig', 'adminPreviewAlertTest', 'adminQueueAlertTest',
+      'adminPreviewManualAccess', 'adminApplyManualAccess',
     ]) {
       expect(functionsIndex).toContain(name);
       expect(firebase).toContain(name);
@@ -37,6 +39,7 @@ describe('Admin v2 Plus survey and Telegram alerts migration', () => {
     for (const action of [
       'preview-vip-survey-activate', 'preview-vip-survey-deactivate', 'apply-vip-survey',
       'preview-alerts-config', 'apply-alerts-config', 'preview-alert-test', 'queue-alert-test',
+      'preview-manual-plus', 'apply-manual-plus',
     ]) expect(core).toContain(`action === '${action}'`);
   });
 
@@ -55,6 +58,7 @@ describe('Admin v2 Plus survey and Telegram alerts migration', () => {
     expect(rules).toContain("request.resource.data.kind != 'vip_survey'");
     expect(rules).toMatch(/match \/vip_survey_responses\/\{userId\}[\s\S]*?allow create, update, delete: if false;/);
     expect(rules).toContain('match /admin_alerts_history/{docId} { allow read, write: if false; }');
+    expect(rules).toContain('match /admin_manual_access_previews/{docId} { allow read, write: if false; }');
     expect(alerts).toContain('maskAlertsChatId');
     expect(alerts).toContain('projectAlertsConfig');
     expect(alerts).not.toContain('secrets: [OPENAI_API_KEY]');

@@ -93,6 +93,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const getUserProfileCallable = httpsCallable(functionsUs, 'adminGetUserProfile');
   const listBetaTestersCallable = httpsCallable(functionsUs, 'adminListBetaTesters');
   const updateBetaTesterCallable = httpsCallable(functionsUs, 'adminUpdateBetaTester');
+  const previewManualAccessCallable = httpsCallable(functionsUs, 'adminPreviewManualAccess');
+  const applyManualAccessCallable = httpsCallable(functionsUs, 'adminApplyManualAccess');
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
@@ -204,6 +206,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
     getUserProfile: async (input) => unwrap(await getUserProfileCallable(input)),
     listBetaTesters: async () => unwrap(await listBetaTestersCallable({})),
     updateBetaTester: async (input) => unwrap(await updateBetaTesterCallable(input)),
+    previewManualAccess: async (input) => unwrap(await previewManualAccessCallable(input)),
+    applyManualAccess: async (input) => unwrap(await applyManualAccessCallable(input)),
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),

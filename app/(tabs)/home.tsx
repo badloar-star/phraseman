@@ -80,6 +80,7 @@ import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
+import { emitSoftUpsellTrigger, streakCandidate } from '../soft_upsell_trigger_adapters';
 import { oskolokImageForPackShards } from '../oskolok';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
@@ -1497,6 +1498,12 @@ export default function HomeScreen() {
             if (streakVal)
                 setStreak(currentStreakNum);
             const lastStreakShown = parseInt(lastStreakShownRaw || '0') || 0;
+            emitSoftUpsellTrigger(streakCandidate({
+                previous: lastStreakShown,
+                current: currentStreakNum,
+                studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+                hasPremiumAccess,
+            }));
             if (currentStreakNum > 0 && currentStreakNum !== lastStreakShown) {
                 await AsyncStorage.setItem('streak_last_shown', String(currentStreakNum));
                 if (lastStreakShown > 0 && currentStreakNum > lastStreakShown) {

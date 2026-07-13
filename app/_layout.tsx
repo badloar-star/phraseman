@@ -96,6 +96,7 @@ import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
 import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
+import GlobalSoftUpsellHost from '../components/GlobalSoftUpsellHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import GlobalCompassSocialHost from '../components/GlobalCompassSocialHost';
@@ -3109,6 +3110,7 @@ export default function RootLayout() {
                     <MatchFoundToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
+                    <GlobalSoftUpsellHost />
                     <EntitlementExpiredHost />
                     <ReferralWelcomeHost />
                     <MysteryMondayHost />

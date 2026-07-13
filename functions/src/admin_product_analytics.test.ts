@@ -142,3 +142,23 @@ describe('bounded purchase-failure aggregate query', () => {
     expect(source).toContain('.slice(0, 10)');
   });
 });
+
+describe('exact soft upsell funnel contract', () => {
+  it('isolates modes, rejects conflicting metadata, and exposes every commercial outcome', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
+    expect(source).toContain("key = 'soft_upsell_impression_id'");
+    expect(source).toContain("soft_upsell_mode IN ('production', 'test')");
+    expect(source).toContain('valid_soft_chain_ids AS');
+    expect(source).toContain('COUNT(DISTINCT soft_upsell_mode) = 1');
+    expect(source).toContain('GROUP BY mode, trigger, impression_id');
+    expect(source).toContain('event_name = \'purchase_pending\'');
+    expect(source).toContain('event_name = \'purchase_failed\'');
+    expect(source).toContain('event_name = \'purchase_cancelled\'');
+    expect(source).toContain('median_impression_to_cta_ms');
+    expect(source).toContain('median_impression_to_result_ms');
+    expect(source).toContain('cta_to_purchase_rate');
+    expect(source).toContain('rejected_chain_ids');
+    expect(source).toContain('outcome_without_purchase_start');
+    expect(source).not.toMatch(/soft_chain_facts[\s\S]*user_pseudo_id[\s\S]*GROUP BY mode, trigger, impression_id/);
+  });
+});

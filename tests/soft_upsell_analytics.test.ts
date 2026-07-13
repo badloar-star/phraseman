@@ -19,6 +19,14 @@ const base = {
   schemaVersion: 1 as const,
   triggerValue: 1,
 };
+const chain = {
+  soft_upsell_impression_id: 'impression_123456',
+  soft_upsell_trigger: 'first_lesson' as const,
+  soft_upsell_context: 'first_lesson_success' as const,
+  soft_upsell_mode: 'production' as const,
+  event_id: 'impression_123456:event',
+};
+const suppression = { event_id: 'suppression_123456' };
 
 beforeEach(() => { firebaseLogEvent.mockClear(); capturePostHog.mockClear(); });
 
@@ -30,20 +38,21 @@ test('publishes the exact finite soft-upsell event catalog', () => {
 });
 
 test('forwards a valid bounded payload through the existing analytics path', async () => {
-  await trackSoftUpsellEvent('soft_upsell_cta', { ...base, destination: 'personal_plan' });
+  await trackSoftUpsellEvent('soft_upsell_cta', { ...base, ...chain, destination: 'paywall' });
   expect(capturePostHog).toHaveBeenCalledWith('soft_upsell_cta', {
-    context: 'first_lesson_success', trigger: 'first_lesson', destination: 'personal_plan',
+    context: 'first_lesson_success', trigger: 'first_lesson', destination: 'paywall',
     studyTarget: 'en', overlayOccupied: false, schemaVersion: 1, triggerValue: 1,
+    ...chain,
   });
   expect(firebaseLogEvent).toHaveBeenCalled();
 });
 
 test.each([
-  ['soft_upsell_eligible', base],
-  ['soft_upsell_impression', { ...base, destination: 'personal_plan' }],
-  ['soft_upsell_cta', { ...base, destination: 'personal_plan' }],
-  ['soft_upsell_dismiss', base],
-  ['soft_upsell_suppressed', { ...base, suppressionReason: 'disabled' }],
+  ['soft_upsell_eligible', { ...base, ...chain }],
+  ['soft_upsell_impression', { ...base, ...chain, destination: 'paywall' }],
+  ['soft_upsell_cta', { ...base, ...chain, destination: 'paywall' }],
+  ['soft_upsell_dismiss', { ...base, ...chain }],
+  ['soft_upsell_suppressed', { ...base, ...suppression, suppressionReason: 'disabled' }],
 ] as const)('forwards valid %s payload', async (event, payload) => {
   await trackSoftUpsellEvent(event, payload);
   expect(capturePostHog).toHaveBeenCalledTimes(1);
@@ -51,15 +60,15 @@ test.each([
 });
 
 test.each([NaN, Infinity, -1, 10_001, 1.5])('rejects invalid triggerValue %p', async (triggerValue) => {
-  await trackSoftUpsellEvent('soft_upsell_eligible', { ...base, triggerValue });
+  await trackSoftUpsellEvent('soft_upsell_eligible', { ...base, ...chain, triggerValue });
   expect(capturePostHog).not.toHaveBeenCalled();
 });
 
 test('strips arbitrary and free-text fields', async () => {
   await trackSoftUpsellEvent('soft_upsell_eligible', {
-    ...base, userId: 'secret', reviewText: 'free text', rawError: 'raw', extra: 'extra',
+    ...base, ...chain, userId: 'secret', reviewText: 'free text', rawError: 'raw', extra: 'extra',
   } as never);
-  expect(capturePostHog.mock.calls[0]?.[1]).toEqual(base);
+  expect(capturePostHog.mock.calls[0]?.[1]).toEqual({ ...base, ...chain });
 });
 
 test('suppressed requires a bounded reason and other events reject inappropriate missing fields', async () => {
@@ -69,7 +78,7 @@ test('suppressed requires a bounded reason and other events reject inappropriate
   await trackSoftUpsellEvent('soft_upsell_dismiss', { ...base, context: 'bad' } as never);
   expect(capturePostHog).not.toHaveBeenCalled();
 
-  await trackSoftUpsellEvent('soft_upsell_suppressed', { ...base, suppressionReason: 'disabled' });
+  await trackSoftUpsellEvent('soft_upsell_suppressed', { ...base, ...suppression, suppressionReason: 'disabled' });
   expect(capturePostHog).toHaveBeenCalledTimes(1);
 });
 

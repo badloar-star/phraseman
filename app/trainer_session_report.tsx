@@ -36,10 +36,27 @@ export default function TrainerSessionReport({
     ? COMPASS_RICH.textDark
     : buttonForegroundForBackground(accent);
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const { hasPremiumAccess } = usePremium();
   const attempted = Math.max(total, correct + wrong);
   const isEmpty = attempted === 0;
   const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
   const perfect = attempted > 0 && wrong === 0;
+  const completionRecordedRef = useRef(false);
+  useEffect(() => {
+    if (completionRecordedRef.current || attempted < 5 || correct / attempted < 0.7) return;
+    completionRecordedRef.current = true;
+    const target = studyTarget;
+    void recordSuccessfulTraining(target).then((result) => {
+      emitSoftUpsellTrigger(repeatedTrainingCandidate({
+        successful: true,
+        completedLifetime: result.completedLifetime,
+        newlyCompleted: result.newlyCompleted,
+        studyTarget: target,
+        hasPremiumAccess,
+      }));
+    });
+  }, [attempted, correct, hasPremiumAccess, studyTarget, wrong]);
   const title = isEmpty
     ? triLang(lang, {
       ru: 'Очередь чистая',

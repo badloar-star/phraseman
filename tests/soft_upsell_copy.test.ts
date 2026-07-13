@@ -27,6 +27,16 @@ test.each([
   expect(copy.ctaLabel.length).toBeGreaterThan(5);
 });
 
+test.each(['uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'en'] as const)(
+  'localizes the single-result promise for %s',
+  (locale) => {
+    const copy = selectSoftUpsellCopy({ opportunity: opportunity('weekly_review'), locale });
+    expect(copy.title).toBeTruthy();
+    expect(copy.body).toBeTruthy();
+    expect(copy).not.toEqual(selectSoftUpsellCopy({ opportunity: opportunity('weekly_review'), locale: 'ru' }));
+  },
+);
+
 test('never promises a daily free AI dialogue', () => {
   const copy = selectSoftUpsellCopy({ opportunity: opportunity('second_ai_dialogue', 2), locale: 'ru' });
   expect(JSON.stringify(copy).toLowerCase()).not.toMatch(/в день|daily|каждый день.*бесплат/);

@@ -56,6 +56,12 @@ WITH raw_base AS (
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'event_id') AS event_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'lesson_attempt_id') AS lesson_attempt_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'paywall_impression_id') AS paywall_impression_id,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_impression_id') AS soft_upsell_impression_id,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_trigger') AS soft_upsell_trigger,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_context') AS soft_upsell_context,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_mode') AS soft_upsell_mode,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'activation_type') AS activation_type,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'reason') AS close_reason,
     COALESCE(
       (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'session_id'),
       (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'product_session_id')
@@ -203,6 +209,8 @@ WITH raw_base AS (
       'paywall_continue_free', 'paywall_close', 'premium_purchased',
       'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_failed',
       'purchase_cancelled', 'trial_started',
+      'purchase_pending',
+      'soft_upsell_eligible', 'soft_upsell_impression', 'soft_upsell_cta', 'soft_upsell_dismiss',
       'paywall_inventory_resolved',
       'paywall_exit_offer_shown', 'paywall_exit_offer_accepted', 'paywall_exit_offer_declined',
       'exit_trial_offer_shown', 'exit_trial_offer_accepted', 'exit_trial_offer_declined'
@@ -1133,6 +1141,8 @@ UNION ALL SELECT * FROM session_summary_row
 UNION ALL SELECT * FROM session_bucket_rows
 UNION ALL SELECT * FROM session_entry_rows
 UNION ALL SELECT * FROM session_last_rows
+UNION ALL SELECT * FROM soft_rows
+UNION ALL SELECT * FROM soft_quality_row
 `;
 }
 
@@ -1369,6 +1379,10 @@ export const adminProductAnalytics = onCall({
     else if (row.row_kind === 'session_bucket') sessionBuckets.push(payload);
     else if (row.row_kind === 'session_entry') sessionEntryScreens.push(payload);
     else if (row.row_kind === 'session_last') sessionLastScreens.push(payload);
+    else if (row.row_kind === 'soft_upsell' && (payload.mode === 'production' || payload.mode === 'test')) {
+      softUpsells[payload.mode].push(payload);
+    }
+    else if (row.row_kind === 'soft_quality') softQuality = payload;
   }
   screens.sort((a, b) => Number(b.views ?? 0) - Number(a.views ?? 0));
   lessons.sort((a, b) => Number(a.lesson_id ?? 0) - Number(b.lesson_id ?? 0));

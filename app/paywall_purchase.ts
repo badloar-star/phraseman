@@ -53,6 +53,8 @@ import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
+import { softUpsellAnalyticsParams, type SoftUpsellAttribution } from './soft_upsell_attribution';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
 import { invalidatePremiumCache } from './premium_guard';
@@ -60,6 +62,7 @@ import {
   activatePendingPersonalPlanAfterPremium,
   PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
 } from './personal_plan_activation';
+import { classifyPurchaseActivation } from './paywall_purchase_outcomes';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
@@ -287,9 +290,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
   // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
-  const subscriptionTrialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 3 : null;
-  const trialDays = selected === 'lifetime' ? null : subscriptionTrialDays;
+  const subscriptionTrialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 7 : null;
+  const trialDays = selected === 'yearly' ? subscriptionTrialDays : null;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
+  const currentSoftAttribution = useCallback(() => {
+    const token = softAttributionAccountTokenRef.current;
+    return token && isCurrentAccountGeneration(token) ? softAttributionRef.current : null;
+  }, []);
 
   // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
   // отображения в PaywallPriceUrgency; в Purchases никогда не уходит.
@@ -335,6 +342,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [reloadEnergy, router]);
 
   const handlePurchase = useCallback(async () => {
+    const purchaseAccountToken = captureAccountGeneration();
+    const purchaseAccountIsCurrent = () => isCurrentAccountGeneration(purchaseAccountToken);
+    const purchaseSoftAttribution = currentSoftAttribution();
     hapticTap();
     void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
     if (source === 'afterwin_levelup' || context === 'level_up') {
@@ -354,6 +364,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     }
     const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
     if (!pkg || purchasing || restoring) return;
+    const purchaseAttempt = ++purchaseAttemptRef.current;
     setPurchasing(true);
     void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
     try {
@@ -384,17 +395,17 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync', ...paywallImpressionParams(impression) });
         return;
       }
+      if (!purchaseAccountIsCurrent()) return;
       const pkgTrial = getTrialInfo(pkg);
       const { customerInfo } = await Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений
       // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
       // deferred-исход / аномалия sandbox без этой проверки давали локальный
       // «премиум», которого нет на сервере, — доступ потом «отваливался».
-      const hasActiveEntitlement = Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0;
-      const hasActiveSubscription = (customerInfo?.activeSubscriptions ?? []).length > 0;
-      if (!hasActiveEntitlement && !hasActiveSubscription) {
+      const activationType = classifyPurchaseActivation(customerInfo, selected);
+      if (activationType === 'pending') {
         // error-тег вместо отдельного имени события: тип AnalyticsEvent живёт в
         // analytics.ts, который сейчас правит другая сессия — не трогаем.
-        void trackEvent('purchase_failed', {
+        void trackEvent('purchase_pending' as never, {
           context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           error: 'no_active_entitlement_after_purchase',
           ...paywallImpressionParams(impression),
@@ -404,8 +415,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
-      await persistStorePremiumLocally(confirmedPlan, metadata);
-      if (context !== 'personal_plan') {
+      const persistedForCurrentAccount = await persistStorePremiumLocally(
+        confirmedPlan, metadata, purchaseAccountIsCurrent,
+      );
+      const currentSoftAttribution = purchaseAccountIsCurrent() ? purchaseSoftAttribution : null;
+      if (persistedForCurrentAccount && context !== 'personal_plan') {
         // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
         await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
         emitAppEvent('premium_activated');
@@ -420,6 +434,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // ставим напоминание за день до списания. Обещание таймлайна = правда.
         void (async () => {
           try {
+            if (!persistedForCurrentAccount || !purchaseAccountIsCurrent()) return;
             const reminderChoice = context === 'personal_plan' && source === 'onboarding_plan'
               ? await AsyncStorage.getItem(ONBOARDING_TRIAL_REMINDER_CHOICE_KEY).catch(() => null)
               : null;
@@ -455,8 +470,18 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           } catch { /* напоминание — best-effort */ }
         })();
       }
+      softAttributionRef.current = null;
+      if (!persistedForCurrentAccount || !purchaseAccountIsCurrent()) return;
       if (context === 'personal_plan') {
         await finishPersonalPlanActivationFlow();
+        return;
+      }
+      if (purchaseSoftAttribution?.context === 'first_lesson_success') {
+        const activated = await activatePendingPersonalPlanAfterPremium().catch(() => null);
+        if (!purchaseAccountIsCurrent()) return;
+        markNextNavigationAsReplace();
+        if (activated) router.replace('/personal_plan_thank_you' as never);
+        else router.replace({ pathname: '/personal_plan_setup', params: { post_purchase: '1' } } as never);
         return;
       }
       dismissPaywallModal(router);
@@ -469,7 +494,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // Ask to Buy / 3-D Secure: оплата ушла на подтверждение. Раньше эта
         // ветка падала в общий «Не удалось оформить» — юзер путался и платил
         // повторно. Доступ включится сам после подтверждения платежа.
-        void trackEvent('purchase_failed', {
+        void trackEvent('purchase_pending' as never, {
           context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           error: 'payment_pending',
           ...paywallImpressionParams(impression),
@@ -512,6 +537,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
+    softAttributionRef.current = null;
     hapticTap();
     if (DEV_IAP_BYPASS || restoring || purchasing) return;
     setRestoring(true);

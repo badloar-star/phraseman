@@ -55,6 +55,57 @@ const RU_COPY: Record<SoftUpsellTrigger, SoftUpsellCopy> = {
   },
 };
 
+const LOCALIZED_RESULT: Record<Exclude<SoftUpsellLocale, 'ru'>, SoftUpsellCopy> = {
+  en: {
+    proof: 'YOUR PROGRESS IS REAL',
+    title: 'Turn today’s progress into confident speech.',
+    body: 'Plus builds one clear personal path from what you already know to what you should practise next.',
+    ctaLabel: 'Open my personal path',
+  },
+  uk: {
+    proof: 'ТВІЙ ПРОГРЕС УЖЕ ВИДНО',
+    title: 'Перетвори сьогоднішній прогрес на впевнене мовлення.',
+    body: 'Plus складає один зрозумілий особистий маршрут: від того, що ти вже знаєш, до наступної потрібної практики.',
+    ctaLabel: 'Відкрити мій маршрут',
+  },
+  es: {
+    proof: 'TU PROGRESO YA ES REAL',
+    title: 'Convierte el progreso de hoy en habla segura.',
+    body: 'Plus crea una ruta personal clara desde lo que ya sabes hasta lo siguiente que necesitas practicar.',
+    ctaLabel: 'Abrir mi ruta personal',
+  },
+  'pt-BR': {
+    proof: 'SEU PROGRESSO JÁ É REAL',
+    title: 'Transforme o progresso de hoje em fala confiante.',
+    body: 'O Plus cria um caminho pessoal claro do que você já sabe até o próximo ponto que precisa praticar.',
+    ctaLabel: 'Abrir meu caminho',
+  },
+  vi: {
+    proof: 'TIẾN BỘ CỦA BẠN LÀ THẬT',
+    title: 'Biến tiến bộ hôm nay thành khả năng nói tự tin.',
+    body: 'Plus tạo một lộ trình cá nhân rõ ràng từ điều bạn đã biết đến phần cần luyện tiếp theo.',
+    ctaLabel: 'Mở lộ trình của tôi',
+  },
+  id: {
+    proof: 'KEMAJUANMU SUDAH NYATA',
+    title: 'Ubah kemajuan hari ini menjadi bicara percaya diri.',
+    body: 'Plus menyusun satu jalur pribadi yang jelas dari yang sudah kamu kuasai ke latihan berikutnya.',
+    ctaLabel: 'Buka jalur pribadiku',
+  },
+  tr: {
+    proof: 'İLERLEMEN ARTIK GERÇEK',
+    title: 'Bugünkü ilerlemeyi kendinden emin konuşmaya dönüştür.',
+    body: 'Plus, bildiklerinden sıradaki doğru alıştırmaya uzanan tek ve net bir kişisel yol oluşturur.',
+    ctaLabel: 'Kişisel yolumu aç',
+  },
+  pl: {
+    proof: 'TWÓJ POSTĘP JEST JUŻ REALNY',
+    title: 'Zamień dzisiejszy postęp w pewne mówienie.',
+    body: 'Plus układa jedną jasną osobistą ścieżkę: od tego, co już umiesz, do następnego potrzebnego ćwiczenia.',
+    ctaLabel: 'Otwórz moją ścieżkę',
+  },
+};
+
 const CATEGORY_RU: Record<SoftUpsellCategory, string> = {
   vocabulary: 'лексику', grammar: 'грамматику', listening: 'аудирование', speaking: 'разговорную речь', reading: 'чтение',
 };
@@ -103,8 +154,7 @@ export function selectSoftUpsellCopy(input: {
   locale: SoftUpsellLocale;
   measured?: SoftUpsellMeasuredSignal | null;
 }): SoftUpsellCopy {
-  // Russian is the approved source copy. Other locales temporarily receive the same bounded promise
-  // until their localized catalog is added; no raw/generated string is ever interpolated.
+  if (input.locale !== 'ru') return LOCALIZED_RESULT[input.locale];
   return measuredRuCopy(input.opportunity.trigger, input.measured) ?? RU_COPY[input.opportunity.trigger];
 }
 

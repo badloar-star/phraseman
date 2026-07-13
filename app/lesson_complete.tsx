@@ -583,7 +583,7 @@ export default function LessonComplete() {
   const softUpsellAccessibilityCopy = softUpsell.opportunity?.trigger === 'free_lessons_complete'
     ? FREE_LIMIT_SOFT_UPSELL_COPY[lang]
     : LESSON_SOFT_UPSELL_COPY[lang];
-  const softUpsellCopy = softUpsell.opportunity
+  const softUpsellCopy: LessonSoftUpsellCopy & { proof?: string } = softUpsell.opportunity
     ? {
         ...softUpsellAccessibilityCopy,
         ...selectSoftUpsellCopy({ opportunity: softUpsell.opportunity, locale: lang }),

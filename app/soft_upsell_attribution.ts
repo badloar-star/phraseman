@@ -70,4 +70,15 @@ export function softUpsellEventId(value: SoftUpsellAttribution, semanticSuffix: 
   return `${valid.impressionId}:${suffix}`.slice(0, 80);
 }
 
+export function softUpsellAnalyticsParams(
+  value: SoftUpsellAttribution | null | undefined,
+  semanticSuffix: string,
+): Record<string, string> {
+  if (!value) return {};
+  return {
+    ...softUpsellRouteParams(value),
+    event_id: softUpsellEventId(value, semanticSuffix),
+  };
+}
+
 export default function __RouteShim() { return null; }

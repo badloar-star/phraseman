@@ -19,7 +19,7 @@ const emptyState = {
   consumedMilestones: [],
 };
 
-function key(scope: string, target: 'en' | 'fr' = 'en'): string {
+function key(scope: string, target: 'en' | 'fr' | 'es' = 'en'): string {
   return `soft_upsell_state_v1:${encodeURIComponent(scope)}:${target}`;
 }
 
@@ -48,6 +48,15 @@ test('preserves cooldown across generations of one stable account and isolates a
   await markSoftUpsellImpression(aliceGeneration1, 'en', 'first_lesson_success', 'first_lesson:1:en', 100);
   await expect(readSoftUpsellState(aliceGeneration2, 'en')).resolves.toMatchObject({ lastGlobalImpressionMs: 100 });
   await expect(readSoftUpsellState(bob, 'en')).resolves.toEqual(emptyState);
+});
+
+test('shares the global cooldown with Spanish while keeping target state isolated', async () => {
+  await markSoftUpsellImpression('user-es', 'es', 'first_lesson_success', 'first_lesson:1:es', 300);
+  await expect(readSoftUpsellState('user-es', 'en')).resolves.toMatchObject({ lastGlobalImpressionMs: 300 });
+  await expect(readSoftUpsellState('user-es', 'es')).resolves.toMatchObject({
+    lastGlobalImpressionMs: 300,
+    consumedMilestones: ['first_lesson:1:es'],
+  });
 });
 
 test('checks a guarded claim inside the serialized operation without consuming a stale session', async () => {

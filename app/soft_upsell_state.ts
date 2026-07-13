@@ -145,9 +145,10 @@ function newestTimestamp(...timestamps: (number | null)[]): number | null {
 async function reconcileGlobalUnqueued(
   accountScope: string,
   targetStates?: Partial<Record<SoftUpsellStudyTarget, SoftUpsellPersistedState>>,
-): Promise<{ en: SoftUpsellPersistedState; fr: SoftUpsellPersistedState; timestamp: number | null }> {
+): Promise<{ en: SoftUpsellPersistedState; fr: SoftUpsellPersistedState; es: SoftUpsellPersistedState; timestamp: number | null }> {
   const en = targetStates?.en ?? await readTargetUnqueued(accountScope, 'en');
   const fr = targetStates?.fr ?? await readTargetUnqueued(accountScope, 'fr');
+  const es = targetStates?.es ?? await readTargetUnqueued(accountScope, 'es');
   const key = globalStorageKey(accountScope);
   const raw = await AsyncStorage.getItem(key);
   const globalState = parseGlobalState(raw);
@@ -155,10 +156,11 @@ async function reconcileGlobalUnqueued(
     globalState.lastGlobalImpressionMs,
     en.lastGlobalImpressionMs,
     fr.lastGlobalImpressionMs,
+    es.lastGlobalImpressionMs,
   );
   const canonical = JSON.stringify({ schemaVersion: SCHEMA_VERSION, lastGlobalImpressionMs: timestamp });
   if (raw !== canonical) await AsyncStorage.setItem(key, canonical);
-  return { en, fr, timestamp };
+  return { en, fr, es, timestamp };
 }
 
 export function readSoftUpsellState(

@@ -15,6 +15,7 @@ import { weeklyReviewCopy } from './weekly_review_copy';
 import { captureAccountGeneration } from './account_generation';
 import { signalBucket, trackWeeklyReviewEvent } from './weekly_review_analytics';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { emitSoftUpsellTrigger, weeklyReviewCandidate } from './soft_upsell_trigger_adapters';
 
 interface WeeklyReviewCardProps {
   isPremium: boolean;

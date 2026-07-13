@@ -195,12 +195,23 @@ function firebaseSafeName(event: string): string {
   return event.replace(/[^a-zA-Z0-9_]/g, '_').slice(0, 40);
 }
 
+function truncateFirebaseString(value: string, maxCharacters = 100): string {
+  const characters = Array.from(value);
+  if (characters.some(character => {
+    const codePoint = character.codePointAt(0) ?? 0;
+    return codePoint >= 0xD800 && codePoint <= 0xDFFF;
+  })) {
+    throw new Error('Invalid analytics string');
+  }
+  return characters.slice(0, maxCharacters).join('');
+}
+
 /** В Firebase params значения должны быть string|number. Приводим безопасно. */
 function firebaseSafeParams(props: Record<string, unknown>): Record<string, string | number> {
   const out: Record<string, string | number> = {};
   for (const [k, v] of Object.entries(props)) {
     if (v == null) continue;
-    out[k.slice(0, 40)] = typeof v === 'number' ? v : String(v).slice(0, 100);
+    out[k.slice(0, 40)] = typeof v === 'number' ? v : truncateFirebaseString(String(v));
   }
   return out;
 }

@@ -298,8 +298,11 @@ function attemptsFrom(events: readonly ValidEvent[], quality: YoutubeAnalyticsQu
   for (const rows of candidates.values()) {
     const videos = new Set(rows.map(row => row.video).filter(Boolean));
     const channels = new Set(rows.map(row => row.channel).filter(Boolean));
-    if (videos.size > 1) { quality.conflictingVideo += 1; continue; }
-    if (channels.size > 1) { quality.conflictingChannel += 1; continue; }
+    const conflictingVideo = videos.size > 1;
+    const conflictingChannel = channels.size > 1;
+    if (conflictingVideo) quality.conflictingVideo += 1;
+    if (conflictingChannel) quality.conflictingChannel += 1;
+    if (conflictingVideo || conflictingChannel) continue;
     const starts = rows.filter(row => row.name === 'youtube_playback_start');
     if (!starts.length) { quality.rowsWithoutStart += 1; continue; }
     if (starts.length !== 1) { quality.duplicateStartAttempts += 1; continue; }
@@ -434,6 +437,8 @@ export function aggregateYoutubeAnalytics(
     const at = integer(row.event_timestamp);
     if (!EVENT_SET.has(row.event_name) || at == null || at < input.fromMicros || at >= input.toMicros) continue;
     if (filters.platform !== 'all' && row.platform !== filters.platform) continue;
+    if (filters.channelId && boundedString(row.channel_id) !== filters.channelId) continue;
+    if (filters.videoId && boundedString(row.video_id) !== filters.videoId) continue;
     quality.totalEvents += 1;
     dataThroughMicros = Math.max(dataThroughMicros ?? at, at);
     if (row.schema_version !== 1) { quality.unknownSchema += 1; continue; }
@@ -815,7 +820,10 @@ WITH raw_extracted AS (
     TRIM(playback_id) playback_id,schema_version,active_watch_ms,duration_ms
   FROM raw_extracted
 ), raw_scoped AS (
-  SELECT * FROM normalized_window WHERE @platform = 'all' OR platform = @platform
+  SELECT * FROM normalized_window
+  WHERE (@platform = 'all' OR platform = @platform)
+    AND (@videoId IS NULL OR video_id=@videoId)
+    AND (@channelId IS NULL OR channel_id=@channelId)
 ), classified AS (
   SELECT *, IFNULL(schema_version = 1,FALSE) AS known_schema,
     event_id IS NOT NULL AND event_id!='' AND CHAR_LENGTH(event_id)<=256

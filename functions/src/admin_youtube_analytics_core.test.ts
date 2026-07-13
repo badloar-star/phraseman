@@ -89,7 +89,10 @@ describe('fixture aggregation behavioral oracle', () => {
       event('youtube_video_select', FROM + 3, { video_id: 'x'.repeat(257) }),
     ], { videoId: 'video-1' });
     expect(snapshot.summary.videoSelects).toBe(1);
-    expect(snapshot.quality.missingRequiredFields).toBe(2);
+    expect(snapshot.quality.missingRequiredFields).toBe(1);
+    expect(aggregate([
+      event('youtube_video_select', FROM + 3, { video_id: 'x'.repeat(257) }),
+    ]).quality.missingRequiredFields).toBe(1);
   });
 
   test('rejects a whole playback candidate for a video conflict before attempt grouping', () => {
@@ -101,8 +104,8 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.summary.playbackStarts).toBe(0);
     expect(snapshot.quality.conflictingVideo).toBe(1);
     const filtered = aggregate(videoConflict, { videoId: 'video-1' });
-    expect(filtered.summary.playbackStarts).toBe(0);
-    expect(filtered.quality.conflictingVideo).toBe(1);
+    expect(filtered.summary.playbackStarts).toBe(1);
+    expect(filtered.quality.conflictingVideo).toBe(0);
   });
 
   test('rejects a whole playback candidate for a channel conflict before attempt grouping', () => {
@@ -243,6 +246,46 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.funnel[0]).toMatchObject({ step: 'home', status: 'not_applicable' });
     expect(snapshot.funnel[1]).toMatchObject({ step: 'catalog', status: 'not_applicable' });
     expect(snapshot.funnel[2]).toMatchObject({ step: 'select', count: 1, percentOfPrevious: null });
+  });
+
+  test('scopes all quality metrics and data-through to the selected video', () => {
+    const onlyOutside = aggregate([
+      event('youtube_video_select', FROM + 20, { video_id: 'video-2' }),
+    ], { videoId: 'video-1' });
+    expect(onlyOutside.quality).toMatchObject({ totalEvents: 0, acceptedEvents: 0, validationRatio: 0, state: 'empty' });
+    expect(onlyOutside.dataThroughMicros).toBeNull();
+
+    const mixed = aggregate([
+      event('youtube_video_select', FROM + 10, { video_id: 'video-1' }),
+      event('youtube_video_select', FROM + 30, { video_id: 'video-2' }),
+      event('youtube_video_select', FROM + 15, { video_id: 'video-1', schema_version: 2 }),
+      event('youtube_video_select', FROM + 16, { video_id: 'video-1', session_id: '' }),
+    ], { videoId: 'video-1' });
+    expect(mixed.quality).toMatchObject({
+      totalEvents: 3, acceptedEvents: 1, unknownSchema: 1, missingRequiredFields: 1,
+      validationRatio: 1 / 3, state: 'partial',
+    });
+    expect(mixed.dataThroughMicros).toBe(FROM + 16);
+  });
+
+  test('scopes quality to the selected channel without leaking another channel timestamp', () => {
+    const snapshot = aggregate([
+      event('youtube_home_entry_click', FROM + 10, { channel_id: 'channel-1' }),
+      event('youtube_home_entry_click', FROM + 50, { channel_id: 'channel-2' }),
+    ], { channelId: 'channel-1' });
+    expect(snapshot.quality).toMatchObject({ totalEvents: 1, acceptedEvents: 1, validationRatio: 1 });
+    expect(snapshot.dataThroughMicros).toBe(FROM + 10);
+  });
+
+  test('reports both conflict counters when one candidate changes video and channel', () => {
+    const snapshot = aggregate([
+      event('youtube_playback_start', FROM + 1),
+      event('youtube_playback_end', FROM + 2, {
+        video_id: 'video-2', channel_id: 'channel-2', active_watch_ms: 10, duration_ms: 100,
+      }),
+    ]);
+    expect(snapshot.summary.playbackStarts).toBe(0);
+    expect(snapshot.quality).toMatchObject({ conflictingVideo: 1, conflictingChannel: 1 });
   });
 
   test('counts ordered distinct-session funnel and rejects out-of-order or equal timestamps', () => {
@@ -390,6 +433,9 @@ describe('BigQuery SQL semantic contract', () => {
     expect(built.sql).toContain("NULLIF(TRIM(video_title),'')");
     expect(built.sql).toContain('normalized_window AS');
     expect(built.sql).toContain('CHAR_LENGTH(video_id)<=256');
+    expect(built.sql).toContain("(@videoId IS NULL OR video_id=@videoId)");
+    expect(built.sql).toContain("(@channelId IS NULL OR channel_id=@channelId)");
+    expect(built.sql).toMatch(/raw_scoped AS \([\s\S]*?WHERE \(@platform = 'all' OR platform = @platform\)[\s\S]*?AND \(@videoId IS NULL OR video_id=@videoId\)[\s\S]*?AND \(@channelId IS NULL OR channel_id=@channelId\)[\s\S]*?\), classified AS/);
     expect(built.params).toEqual({
       fromMicros: FROM,
       toMicros: TO,

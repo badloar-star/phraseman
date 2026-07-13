@@ -87,7 +87,7 @@ function appHealthFilters(model, escapeHtml) {
   const filters = model.filters || {};
   return `<section class="card section"><div class="card-header"><div><h2>Фильтры событий</h2><p>Сервер применяет закрытые значения, ограничивает размер страницы и не раскрывает личность без права на просмотр пользователей.</p></div></div><div class="card-body diagnostics-filters">
     <div class="field"><label for="diagnostics-period">Период</label><select id="diagnostics-period"><option value="1"${Number(filters.periodHours) === 1 ? ' selected' : ''}>Последний час</option><option value="6"${Number(filters.periodHours) === 6 ? ' selected' : ''}>Последние 6 часов</option><option value="24"${Number(filters.periodHours) === 24 ? ' selected' : ''}>Последние 24 часа</option><option value="168"${Number(filters.periodHours) === 168 ? ' selected' : ''}>Последние 7 дней</option></select></div>
-    <div class="field"><label for="diagnostics-severity">Важность</label><select id="diagnostics-severity">${option('all', filters.severity, 'Все')}${option('critical', filters.severity, 'Критическая')}${option('warning', filters.severity, 'Предупреждение')}</select></div>
+    <div class="field"><label for="diagnostics-severity">Важность</label><select id="diagnostics-severity">${option('all', filters.severity, 'Все')}${option('info', filters.severity, 'Информация')}${option('critical', filters.severity, 'Критическая')}${option('warning', filters.severity, 'Предупреждение')}</select></div>
     <div class="field"><label for="diagnostics-status">Статус</label><select id="diagnostics-status">${option('all', filters.status, 'Все')}${option('new', filters.status, 'Новый')}${option('open', filters.status, 'Открыт')}${option('reviewed', filters.status, 'Проверен')}${option('fixed', filters.status, 'Исправлен')}${option('known', filters.status, 'Известная проблема')}</select></div>
     <div class="field"><label for="diagnostics-feature">Функция</label><input id="diagnostics-feature" value="${escapeHtml(filters.feature || '')}" maxlength="80" placeholder="Например: lessons"></div>
     <div class="field diagnostics-query-field"><label for="diagnostics-query">Поиск</label><input id="diagnostics-query" value="${escapeHtml(filters.query || '')}" maxlength="120" placeholder="Контекст, сообщение или идентификатор"></div>
@@ -110,7 +110,7 @@ function statusActions(row, escapeHtml, canWrite) {
   const reviewedDisabled = canWrite && allowed.includes('reviewed') ? '' : ' disabled';
   const fixedDisabled = canWrite && allowed.includes('fixed') ? '' : ' disabled';
   const knownDisabled = canWrite && allowed.includes('known') ? '' : ' disabled';
-  return `<details class="diagnostics-status-actions"><summary>Изменить статус</summary><div class="field"><label for="diagnostics-status-reason-${escapeHtml(reportId)}">Причина</label><input id="diagnostics-status-reason-${escapeHtml(reportId)}" maxlength="500" autocomplete="off" placeholder="Что проверено и почему меняется статус"></div><div class="actions"><button class="button small" data-action="diagnostics-update-status" data-report-id="${escapeHtml(reportId)}" data-expected-status="${escapeHtml(current)}" data-next-status="reviewed" type="button" title="Пометить событие как проверенное"${reviewedDisabled}>Проверен</button><button class="button small" data-action="diagnostics-update-status" data-report-id="${escapeHtml(reportId)}" data-expected-status="${escapeHtml(current)}" data-next-status="fixed" type="button" title="Пометить событие как исправленное"${fixedDisabled}>Исправлен</button><button class="button small" data-action="diagnostics-update-status" data-report-id="${escapeHtml(reportId)}" data-expected-status="${escapeHtml(current)}" data-next-status="known" type="button" title="Пометить событие как известную проблему"${knownDisabled}>Известная проблема</button></div></details>`;
+  return `<details class="diagnostics-status-actions"><summary>Изменить статус</summary><div class="field"><label for="diagnostics-status-reason-${escapeHtml(reportId)}">Причина</label><input id="diagnostics-status-reason-${escapeHtml(reportId)}" maxlength="500" autocomplete="off" placeholder="Что проверено и почему меняется статус"></div><div class="actions"><button class="button small" data-action="diagnostics-update-status" data-report-id="${escapeHtml(reportId)}" data-expected-status="${escapeHtml(current)}" data-next-status="reviewed" type="button" title="Пометить событие как проверенное" data-tooltip="Пометить событие как проверенное"${reviewedDisabled}>Проверен</button><button class="button small" data-action="diagnostics-update-status" data-report-id="${escapeHtml(reportId)}" data-expected-status="${escapeHtml(current)}" data-next-status="fixed" type="button" title="Пометить событие как исправленное" data-tooltip="Пометить событие как исправленное"${fixedDisabled}>Исправлен</button><button class="button small" data-action="diagnostics-update-status" data-report-id="${escapeHtml(reportId)}" data-expected-status="${escapeHtml(current)}" data-next-status="known" type="button" title="Пометить событие как известную проблему" data-tooltip="Пометить событие как известную проблему"${knownDisabled}>Известная проблема</button></div></details>`;
 }
 
 function appHealthRows(model, escapeHtml, canWrite) {
@@ -126,7 +126,7 @@ function appHealthDetail(model, escapeHtml) {
   const detail = model.appHealth.detail;
   if (!detail) return '';
   const safe = detail.item || detail.detail || detail;
-  return `<section class="card section diagnostics-detail" aria-live="polite"><div class="card-header"><div><h2>Деталь события</h2><p>Серверная проекция с ограниченными полями.</p></div><button class="button" data-action="diagnostics-close-app-health-detail" type="button" title="Закрыть деталь события">Закрыть</button></div><div class="card-body"><dl class="diagnostics-detail-grid">${detailGrid(safe, escapeHtml, 48)}</dl></div></section>`;
+  return `<section class="card section diagnostics-detail" aria-live="polite"><div class="card-header"><div><h2>Деталь события</h2><p>Серверная проекция с ограниченными полями.</p></div><button class="button" data-action="diagnostics-close-app-health-detail" type="button" title="Закрыть деталь события" data-tooltip="Закрыть деталь события">Закрыть</button></div><div class="card-body"><dl class="diagnostics-detail-grid">${detailGrid(safe, escapeHtml, 48)}</dl></div></section>`;
 }
 
 function activityRows(model, escapeHtml) {
@@ -141,12 +141,12 @@ function activityRows(model, escapeHtml) {
         : rows.length
           ? `<div class="diagnostics-activity-list">${rows.map((row) => `<article><div><strong>${escapeHtml(row.action || row.type || row.context || 'Событие')}</strong><small>${escapeHtml(row.message || row.feature || '')}</small></div><time>${dateTime(row.createdAtMs || row.timestampMs)}</time></article>`).join('')}</div>`
           : '<p class="hint">За выбранный период активности нет.</p>';
-  return `<section class="card section"><div class="card-header"><div><h2>Недавняя активность</h2><p>Ленивая серверная выборка, независимая от списка ошибок.</p></div><button class="button" data-action="diagnostics-load-activity" type="button" title="Загрузить активность по текущему периоду" data-tooltip="Загрузить активность по текущему периоду">Загрузить</button></div><div class="card-body">${sourceHealth(activity.sourceHealth, escapeHtml)}${content}${activity.nextCursor ? '<div class="actions end"><button class="button" data-action="diagnostics-next-activity" type="button" title="Загрузить следующую страницу активности">Показать ещё</button></div>' : ''}</div></section>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Недавняя активность</h2><p>Ленивая серверная выборка, независимая от списка ошибок.</p></div><button class="button" data-action="diagnostics-load-activity" type="button" title="Загрузить активность по текущему периоду" data-tooltip="Загрузить активность по текущему периоду">Загрузить</button></div><div class="card-body">${sourceHealth(activity.sourceHealth, escapeHtml)}${content}${activity.nextCursor ? '<div class="actions end"><button class="button" data-action="diagnostics-next-activity" type="button" title="Загрузить следующую страницу активности" data-tooltip="Загрузить следующую страницу активности">Показать ещё</button></div>' : ''}</div></section>`;
 }
 
 function renderAppHealth(model, escapeHtml, can) {
   const canWrite = can('diagnostics.status.write');
-  return `${stateNotice(model.state, model.error, escapeHtml)}${sourceHealth(model.appHealth.sourceHealth, escapeHtml)}${appHealthMetrics(model, escapeHtml)}${appHealthFilters(model, escapeHtml)}${appHealthDetail(model, escapeHtml)}${appHealthRows(model, escapeHtml, canWrite)}${model.appHealth.nextCursor ? '<div class="actions end section"><button class="button" data-action="diagnostics-next-app-health" type="button" title="Загрузить следующую страницу событий">Показать ещё</button></div>' : ''}${activityRows(model, escapeHtml)}`;
+  return `${stateNotice(model.state, model.error, escapeHtml)}${sourceHealth(model.appHealth.sourceHealth, escapeHtml)}${appHealthMetrics(model, escapeHtml)}${appHealthFilters(model, escapeHtml)}${appHealthDetail(model, escapeHtml)}${appHealthRows(model, escapeHtml, canWrite)}${model.appHealth.nextCursor ? '<div class="actions end section"><button class="button" data-action="diagnostics-next-app-health" type="button" title="Загрузить следующую страницу событий" data-tooltip="Загрузить следующую страницу событий">Показать ещё</button></div>' : ''}${activityRows(model, escapeHtml)}`;
 }
 
 function archiveFilters(model) {
@@ -157,7 +157,7 @@ function archiveDetail(model, escapeHtml) {
   const detail = model.archive.detail;
   if (!detail) return '';
   const safe = detail.item || detail.detail || detail;
-  return `<section id="archive-detail" class="card section diagnostics-detail" aria-live="polite"><div class="card-header"><div><h2>Архивная запись</h2><p>Личность скрыта, если у роли нет права users.read.</p></div><button class="button" data-action="diagnostics-close-archive-detail" type="button" title="Закрыть архивную запись">Закрыть</button></div><div class="card-body"><dl class="diagnostics-detail-grid">${detailGrid(safe, escapeHtml, 64)}</dl></div></section>`;
+  return `<section id="archive-detail" class="card section diagnostics-detail" aria-live="polite"><div class="card-header"><div><h2>Архивная запись</h2><p>Личность скрыта, если у роли нет права users.read.</p></div><button class="button" data-action="diagnostics-close-archive-detail" type="button" title="Закрыть архивную запись" data-tooltip="Закрыть архивную запись">Закрыть</button></div><div class="card-body"><dl class="diagnostics-detail-grid">${detailGrid(safe, escapeHtml, 64)}</dl></div></section>`;
 }
 
 function archiveRows(model, escapeHtml) {
@@ -172,7 +172,7 @@ function archiveRows(model, escapeHtml) {
 }
 
 function renderArchive(model, escapeHtml) {
-  return `${stateNotice(model.state, model.error, escapeHtml)}${sourceHealth(model.archive.sourceHealth, escapeHtml)}${archiveFilters(model)}${archiveDetail(model, escapeHtml)}${archiveRows(model, escapeHtml)}${model.archive.nextCursor ? '<div class="actions end section"><button class="button" data-action="diagnostics-next-archive" type="button" title="Загрузить следующую страницу архива">Показать ещё</button></div>' : ''}`;
+  return `${stateNotice(model.state, model.error, escapeHtml)}${sourceHealth(model.archive.sourceHealth, escapeHtml)}${archiveFilters(model)}${archiveDetail(model, escapeHtml)}${archiveRows(model, escapeHtml)}${model.archive.nextCursor ? '<div class="actions end section"><button class="button" data-action="diagnostics-next-archive" type="button" title="Загрузить следующую страницу архива" data-tooltip="Загрузить следующую страницу архива">Показать ещё</button></div>' : ''}`;
 }
 
 function renderChangelogArchive() {

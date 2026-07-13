@@ -60,6 +60,34 @@ function runDiagnosticsLoadRace(): Array<{ id: string }> {
   return JSON.parse(run.stdout) as Array<{ id: string }>;
 }
 
+function runDiagnosticsLoadResult(result: Record<string, unknown>): Record<string, any> {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-diagnostics-controller.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then(async (m) => {
+    let model = {
+      view: 'app-health', state: 'idle', error: '',
+      filters: { periodHours: 24, severity: 'all', status: 'all', feature: '', query: '' },
+      appHealth: { items: [], kpis: null, sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      activity: { state: 'idle', items: [], sourceHealth: [], nextCursor: '', truncated: false, error: '' },
+      archive: { type: 'all', items: [], sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      operationKeys: {},
+    };
+    globalThis.document = { getElementById: () => ({ value: '' }) };
+    globalThis.location = { hash: '#app-health' };
+    const controller = m.createDiagnosticsController({
+      getModel: () => model,
+      setModel: (value) => { model = value; },
+      actions: () => ({ listAppHealth: async () => (${JSON.stringify(result)}) }),
+      render: () => {}, route: () => 'diagnostics', authorized: () => true,
+      message: () => {}, errorMessage: (error) => String(error), id: () => 'id', download: () => {}, copy: async () => {},
+    });
+    await controller.handle('diagnostics-load-app-health', { dataset: {} });
+    process.stdout.write(JSON.stringify(model));
+  }).catch((error) => { console.error(error); process.exitCode = 1; })`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout) as Record<string, any>;
+}
+
 function renderAppHealthStatus(status: string): string {
   return renderDiagnostics({
     view: 'app-health', state: 'ready', error: '',
@@ -99,6 +127,14 @@ describe('Admin v2 native diagnostics workspace', () => {
     expect(core).toContain('renderDiagnosticsWorkspace');
   });
 
+  test('retries the lazy diagnostics load when admin actions arrive after authentication', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    const start = core.indexOf('export function setAdminActions');
+    const end = core.indexOf('export function setAuthState', start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(core.slice(start, end)).toContain('getDiagnosticsController().maybeLoad();');
+  });
+
   test('maps all three migrated capabilities natively to diagnostics', () => {
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     for (const id of ['app-health', 'archive', 'changelog-0608']) {
@@ -115,6 +151,7 @@ describe('Admin v2 native diagnostics workspace', () => {
     expect(source).not.toMatch(/collection\(|getDocs\(|setDoc\(|updateDoc\(|deleteDoc\(/);
     for (const period of ['1', '6', '24', '168']) expect(view).toContain(`value="${period}"`);
     for (const id of ['diagnostics-severity', 'diagnostics-status', 'diagnostics-feature', 'diagnostics-query']) expect(view).toContain(id);
+    expect(view).toContain("option('info'");
     for (const label of ['Status', 'Critical', 'Warnings', 'Affected users', 'Top repeat']) expect(view).toContain(label);
     expect(controller).toContain('listAppHealth');
     expect(controller).toContain('listAppActivity');
@@ -177,6 +214,31 @@ describe('Admin v2 native diagnostics workspace', () => {
     expect(runDiagnosticsLoadRace()).toEqual([{ id: 'second' }]);
   });
 
+  test('keeps truncation visible when the same backend response is also partial', () => {
+    const model = runDiagnosticsLoadResult({
+      state: 'truncated',
+      groups: [{ id: 'event-1', severity: 'info' }],
+      kpis: { critical: 0, warnings: 0, affectedUsers: 1, topRepeat: 1 },
+      health: { level: 'GREEN', conclusive: false, kpis: { critical: 0, warnings: 0, affectedUsers: 1, topRepeat: 1 } },
+      sourceHealth: [{ source: 'app_errors', state: 'partial', truncated: true, partial: true }],
+      nextCursor: 'next',
+      truncated: true,
+      partial: true,
+    });
+
+    expect(model).toMatchObject({
+      state: 'truncated',
+      appHealth: {
+        truncated: true,
+        partial: true,
+        sourceHealth: [{ source: 'app_errors', state: 'partial', truncated: true, partial: true }],
+      },
+    });
+    const html = renderDiagnostics(model);
+    expect(html).toContain('data-state="truncated"');
+    expect(html).toContain('app_errors');
+  });
+
   test('disables App Health status actions that the server transition map will reject', () => {
     const fixed = renderAppHealthStatus('fixed');
     for (const next of ['reviewed', 'fixed', 'known']) expect(statusButton(fixed, next)).toContain('disabled');
@@ -212,6 +274,14 @@ describe('Admin v2 native diagnostics workspace', () => {
     expect(view).not.toMatch(/[\u{1F300}-\u{1FAFF}]/u);
     expect(view).toContain('Выборка ограничена');
     expect(view).toContain('aria-label="Раздел диагностики"');
+    const buttons = view.match(/<button\b[^>]*>/g) || [];
+    expect(buttons.length).toBeGreaterThan(0);
+    for (const button of buttons) {
+      expect(button).toContain('title=');
+      expect(button).toContain('data-tooltip=');
+    }
+    expect(css).toMatch(/\.diagnostics-workspace\s+\.button\.small\s*\{[^}]*min-height:\s*44px[^}]*\}/);
+    expect(css).toContain('[data-tooltip]:hover::after, [data-tooltip]:focus-visible::after');
     expect(css).toContain('.diagnostics-mobile-view');
     expect(css).toContain('.diagnostics-archive-frame');
   });

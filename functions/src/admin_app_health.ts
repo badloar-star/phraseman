@@ -13,7 +13,7 @@ const TOKEN_RE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$/;
 const FEATURE_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,79}$/;
 const CURSOR_RE = /^[A-Za-z0-9_-]{1,500}$/;
 const PERIODS = [1, 6, 24, 168] as const;
-const SEVERITIES = ['all', 'warning', 'critical'] as const;
+const SEVERITIES = ['all', 'info', 'warning', 'critical'] as const;
 const APP_ERROR_STATUSES = ['all', 'new', 'open', 'reviewed', 'known', 'fixed'] as const;
 const ACTIVITY_RESULTS = ['all', 'start', 'success', 'blocked', 'error', 'info'] as const;
 const TAG_KEYS = new Set(['action', 'code', 'locale', 'network', 'operation', 'phase', 'plan', 'result', 'route', 'source', 'state', 'step']);
@@ -302,8 +302,10 @@ function safeText(value: unknown, max: number, row: Row, canReadUsers: boolean):
   return output.slice(0, max);
 }
 
-function normalizedSeverity(value: unknown): 'warning' | 'critical' {
-  return cleanText(value, 20).toLowerCase() === 'critical' ? 'critical' : 'warning';
+function normalizedSeverity(value: unknown): Exclude<SeverityFilter, 'all'> {
+  const severity = cleanText(value, 20).toLowerCase();
+  if (severity === 'critical' || severity === 'info') return severity;
+  return 'warning';
 }
 
 function normalizedStatus(value: unknown): Exclude<AppErrorStatusFilter, 'all'> {
@@ -426,8 +428,9 @@ export function groupAppHealthRows(rows: readonly AppHealthMetricRow[], requeste
       lastSeenAtMs: 0,
     };
     current.count += 1;
-    if (normalizedSeverity(row.severity) === 'critical') current.critical += 1;
-    else current.warnings += 1;
+    const severity = normalizedSeverity(row.severity);
+    if (severity === 'critical') current.critical += 1;
+    else if (severity === 'warning') current.warnings += 1;
     const userKey = cleanText(row.userKey, 200);
     if (userKey) current.users.add(userKey);
     current.lastSeenAtMs = Math.max(current.lastSeenAtMs, millis(row.createdAtMs));
@@ -447,7 +450,7 @@ export function groupAppHealthRows(rows: readonly AppHealthMetricRow[], requeste
         context: cleanText(group.representative.context, 180) || null,
         feature: cleanText(group.representative.feature, 80) || 'app',
         status: normalizedStatus(group.representative.status),
-        severity: group.critical > 0 ? 'critical' : 'warning',
+        severity: group.critical > 0 ? 'critical' : group.warnings > 0 ? 'warning' : 'info',
         message: cleanText(group.representative.message, 2_000) || null,
         count: group.count,
         repeatCount: group.count,
@@ -464,7 +467,7 @@ export function summarizeAppHealth(
   completeness: Readonly<{ truncated: boolean; partial: boolean }>,
 ): AppHealthSummary {
   const critical = rows.filter((row) => normalizedSeverity(row.severity) === 'critical').length;
-  const warnings = rows.length - critical;
+  const warnings = rows.filter((row) => normalizedSeverity(row.severity) === 'warning').length;
   const affectedUsers = new Set(rows.map((row) => cleanText(row.userKey, 200)).filter(Boolean)).size;
   const topRepeat = groupAppHealthRows(rows, 1)[0]?.count as number | undefined ?? 0;
   const level: AppHealthSummary['level'] = critical > 0 || affectedUsers >= 10

@@ -46,8 +46,8 @@ export function createDiagnosticsController(context) {
     const states = sourceHealth.map((source) => String(source.status || source.state || '')).filter(Boolean);
     if (result?.state === 'error') return 'error';
     if (states.length && states.every((state) => state === 'error')) return 'error';
-    if (result?.state === 'partial' || result?.partial || states.some((state) => state === 'partial' || state === 'error')) return 'partial';
     if (result?.state === 'truncated' || result?.truncated || states.some((state) => state === 'truncated')) return 'truncated';
+    if (result?.state === 'partial' || result?.partial || states.some((state) => state === 'partial' || state === 'error')) return 'partial';
     return items.length ? 'ready' : 'empty';
   }
 

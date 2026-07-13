@@ -83,6 +83,49 @@ describe('native diagnostics app health contracts', () => {
     expect(APP_HEALTH_STATUS_TARGETS).toEqual(['reviewed', 'fixed', 'known']);
   });
 
+  test('accepts and projects the legacy info severity without coercing it to warning', () => {
+    expect(parseAppHealthListRequest({ severity: 'info' }).severity).toBe('info');
+    expect(parseAppHealthExportRequest({ severity: 'info' }).severity).toBe('info');
+    expect(projectAppHealthRow('info-1', {
+      severity: 'info', status: 'new', feature: 'app', createdAtMs: 100,
+    }, false, false)).toMatchObject({ id: 'info-1', severity: 'info' });
+  });
+
+  test('filters and groups info events without raising warning count or health status', async () => {
+    const rows = Array.from({ length: 5 }, (_, index) => ({
+      id: `info-${index}`,
+      severity: 'info',
+      fingerprint: 'info-fingerprint',
+      context: 'Expected lifecycle event',
+      userKey: 'same-user',
+      createdAtMs: 2_000_000_000_000 - index,
+    }));
+    expect(groupAppHealthRows(rows, 10)[0]).toMatchObject({
+      severity: 'info',
+      critical: 0,
+      warnings: 0,
+    });
+    expect(summarizeAppHealth(rows, { truncated: false, partial: false })).toMatchObject({
+      level: 'GREEN',
+      kpis: { critical: 0, warnings: 0, affectedUsers: 1, topRepeat: 5 },
+    });
+
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(2_000_000_000_000);
+    try {
+      const result = await listAppHealthRows(fakeDiagnosticsDb({
+        app_errors: [
+          { id: 'info-row', createdAtMs: 2_000_000_000_000 - 1_000, severity: 'info', status: 'new', feature: 'app' },
+          { id: 'warning-row', createdAtMs: 2_000_000_000_000 - 2_000, severity: 'warning', status: 'new', feature: 'app' },
+        ],
+      }), parseAppHealthListRequest({ periodHours: 1, severity: 'info' }), false) as Record<string, any>;
+      expect(result.items).toEqual([expect.objectContaining({ id: 'info-row', severity: 'info' })]);
+      expect(result.groups).toEqual([expect.objectContaining({ severity: 'info', warnings: 0 })]);
+      expect(result.health).toMatchObject({ level: 'GREEN', kpis: { warnings: 0 } });
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
   test('uses a filter-bound older-page cursor and rejects tampering or reuse with other filters', () => {
     const input = parseAppHealthListRequest({ periodHours: 24, severity: 'warning', feature: 'audio', query: 'timeout' });
     const cursor = encodeAppHealthCursor({ id: 'e2', createdAtMs: 200 }, input);

@@ -113,6 +113,8 @@ const NATIVE_PAGE_HASHES = new Set([
   'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research', 'safety-moderation',
 ]);
 
+const DIAGNOSTICS_NATIVE_VIEW_HASHES = new Set(['app-health', 'archive', 'changelog-0608']);
+
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {
   const nativeRoute = NATIVE_CAPABILITY_ROUTES[capability.id] ?? '';
   return Object.freeze({
@@ -128,6 +130,12 @@ export function capabilitiesForRoute(route) {
 
 export function capabilityById(id) {
   return ADMIN_CAPABILITY_REGISTRY.find((capability) => capability.id === id) ?? null;
+}
+
+export function capabilityHubHash(capability) {
+  if (!capability) return '';
+  if (DIAGNOSTICS_NATIVE_VIEW_HASHES.has(capability.id)) return capability.id;
+  return capability.nativeRoute || `${capability.route}:${capability.id}`;
 }
 
 export function resolveCapabilityHash(rawHash) {

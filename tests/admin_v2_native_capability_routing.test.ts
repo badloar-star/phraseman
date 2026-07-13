@@ -22,6 +22,14 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
   return JSON.parse(run.stdout);
 }
 
+function capabilityHubHash(id: string): string {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-capabilities.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then((m) => process.stdout.write(JSON.stringify(m.capabilityHubHash(m.capabilityById(${JSON.stringify(id)})))))`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout);
+}
+
 describe('Admin v2 native capability routing', () => {
   test('marks exactly thirty-nine proven native capabilities as guarded', () => {
     const registry = loadRegistry();
@@ -109,6 +117,19 @@ describe('Admin v2 native capability routing', () => {
     for (const id of ['app-health', 'archive', 'changelog-0608']) {
       expect(resolveCapabilityHash(`#${id}`)).toEqual({ resolved: true, route: 'diagnostics', capabilityId: id });
     }
+  });
+
+  test('keeps diagnostics hub cards on their exact native views without changing other capability routes', () => {
+    expect(capabilityHubHash('app-health')).toBe('app-health');
+    expect(capabilityHubHash('archive')).toBe('archive');
+    expect(capabilityHubHash('changelog-0608')).toBe('changelog-0608');
+    expect(capabilityHubHash('audit')).toBe('diagnostics');
+    expect(capabilityHubHash('ops-log')).toBe('diagnostics');
+    expect(capabilityHubHash('paywall-ab')).toBe('application');
+    expect(capabilityHubHash('mod-queue')).toBe('community:mod-queue');
+
+    const core = read('admin/v2/scripts/admin-core.js');
+    expect(core).toContain('capabilityHubHash(capability)');
   });
 
   test('keeps a top-level route native when a legacy capability has the same id', () => {

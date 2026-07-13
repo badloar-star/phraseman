@@ -111,6 +111,12 @@ interface OpenAIChatResponse {
   usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
 }
 
+function asOpenAIChatResponse(value: unknown): OpenAIChatResponse {
+  return value !== null && typeof value === 'object' && !Array.isArray(value)
+    ? value as OpenAIChatResponse
+    : {};
+}
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 function text(value: unknown, max: number): string {
@@ -923,7 +929,7 @@ export const weeklyReviewGenerate = onCall({
 
     let json: OpenAIChatResponse;
     try {
-      json = (await response.json()) as OpenAIChatResponse;
+      json = asOpenAIChatResponse(await response.json());
     } catch (error) {
       await settleWeeklyBudgetUsedAndRecordBilling(db, {
         token: budgetToken,
@@ -1033,5 +1039,6 @@ export const __weeklyReviewTestHooks = {
   finalizeWeeklyReviewBillingOutcome,
   refundWeeklyBudget,
   runWeeklyReviewPreflight,
+  asOpenAIChatResponse,
 };
 export type { WeeklyReviewBriefing, WeeklyReviewResult };

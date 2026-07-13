@@ -11,9 +11,45 @@ const {
   stableCandidateUserIds,
   transferTargetIds,
   transferSourceIds,
+  revenueCatLifecycleReasonFields,
 } = __revenueCatWebhookTestHooks;
 
 describe('RevenueCat webhook premium matching', () => {
+  it('normalizes lifecycle reason enums and rejects arbitrary text', () => {
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: ' unsubscribe ' } as any, 'CANCELLATION'))
+      .toEqual({ cancelReason: 'UNSUBSCRIBE' });
+    expect(revenueCatLifecycleReasonFields({ expiration_reason: 'billing_error' } as any, 'EXPIRATION'))
+      .toEqual({ expirationReason: 'BILLING_ERROR' });
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: 'user wrote free text!' } as any, 'CANCELLATION'))
+      .toEqual({});
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: 'A'.repeat(65) } as any, 'CANCELLATION'))
+      .toEqual({});
+    expect(revenueCatLifecycleReasonFields({ cancel_reason: 'UNSUBSCRIBE' } as any, 'RENEWAL'))
+      .toEqual({});
+  });
+
+  it('stores lifecycle reasons only in the RevenueCat audit event document', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+    expect(source).toContain('...revenueCatLifecycleReasonFields(event, eventType)');
+    expect(source).not.toContain('progressPatch.cancelReason');
+    expect(source).not.toContain('progressPatch.expirationReason');
+  });
+
+  it('stores normalized optional financial truth without changing entitlement fields', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+    for (const field of [
+      'price_in_purchased_currency?: number',
+      'tax_percentage?: number',
+      'commission_percentage?: number',
+      'renewal_number?: number',
+      'is_trial_conversion?: boolean',
+      '...normalizeRevenueCatFinancials(event)',
+      'billingCadence: classifyRevenueCatBillingCadence(event)',
+    ]) expect(source).toContain(field);
+    expect(source).toContain('const progressPatch: Record<string, string>');
+    expect(source).not.toContain('progressPatch.grossUsdMicros');
+    expect(source).not.toContain('progressPatch.estimatedProceedsUsdMicros');
+  });
   it('accepts explicit premium entitlement events', () => {
     expect(looksLikePremiumSubscription({
       type: 'INITIAL_PURCHASE',

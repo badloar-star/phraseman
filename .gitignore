@@ -301,5 +301,11 @@ _frames/
 /SECURITY_AUDIT_*.md
 .rc_key.local
 
+# Firebase Functions deploy environments stay local. Only the documented
+# key-only example may be committed.
+/functions/.env.*
+!/functions/.env.example
+/.release-card.md
+
 # debug screenshots (transient)
 .shots/

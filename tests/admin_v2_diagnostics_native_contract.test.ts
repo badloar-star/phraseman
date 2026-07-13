@@ -6,18 +6,130 @@ import { spawnSync } from 'node:child_process';
 const root = process.cwd();
 const read = (file: string): string => fs.readFileSync(path.join(root, file), 'utf8');
 
-function renderDiagnostics(model: Record<string, unknown>): string {
+function renderDiagnostics(model: Record<string, unknown>, canRead = true): string {
   const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-diagnostics-view.js')).href;
   const script = `import(${JSON.stringify(moduleUrl)}).then((m) => {
     const html = m.renderDiagnosticsWorkspace(${JSON.stringify(model)}, {
       escapeHtml: (value) => String(value ?? ''),
-      can: () => true,
+      can: (permission) => permission === 'diagnostics.read' ? ${JSON.stringify(canRead)} : true,
     });
     process.stdout.write(html);
   })`;
   const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
   expect(run.status).toBe(0);
   return run.stdout;
+}
+
+function runDiagnosticsRuntimeProtections(): Record<string, any> {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-diagnostics-controller.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then(async (m) => {
+    const createModel = (view = 'app-health') => ({
+      view, state: 'idle', error: '',
+      filters: { periodHours: 24, severity: 'all', status: 'all', feature: '', query: '' },
+      appHealth: { items: [], kpis: null, sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      activity: { state: 'idle', items: [], sourceHealth: [], nextCursor: '', truncated: false, error: '' },
+      archive: { type: 'all', items: [], sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      operationKeys: {},
+    });
+    const appResult = (id) => ({ state: 'ready', groups: [{ id }], kpis: {}, health: { level: 'GREEN', conclusive: true, kpis: {} }, sourceHealth: [], nextCursor: '', truncated: false, partial: false });
+    const archiveResult = { state: 'empty', items: [], sourceHealth: [], nextCursor: '', truncated: false, partial: false };
+    const fields = {
+      'diagnostics-period': '24', 'diagnostics-severity': 'all', 'diagnostics-status': 'all',
+      'diagnostics-feature': '', 'diagnostics-query': '', 'diagnostics-archive-type': 'all',
+    };
+    globalThis.document = { getElementById: (id) => ({ value: fields[id] || '' }) };
+    globalThis.location = { hash: '#app-health' };
+    const makeController = ({ getModel, setModel, actions, route = () => 'diagnostics', authorized = () => true, messages = [] }) => m.createDiagnosticsController({
+      getModel, setModel, actions: () => actions, render: () => {}, route, authorized,
+      message: (message) => messages.push(message), errorMessage: (error) => String(error),
+      id: () => 'id', download: () => {}, copy: async () => {},
+    });
+
+    let cursorModel = createModel();
+    cursorModel.state = 'ready';
+    cursorModel.filters.query = 'committed-query';
+    cursorModel.appHealth.nextCursor = 'app-cursor';
+    fields['diagnostics-query'] = 'unsaved-query';
+    const cursorInputs = [];
+    let holdFresh = false;
+    let resolveFresh;
+    const cursorActions = {
+      listAppHealth: (input) => {
+        cursorInputs.push({ kind: 'app', input });
+        if (holdFresh) return new Promise((resolve) => { resolveFresh = resolve; });
+        return Promise.resolve(appResult('append'));
+      },
+      listDiagnosticsArchive: async (input) => {
+        cursorInputs.push({ kind: 'archive', input });
+        return archiveResult;
+      },
+    };
+    const cursorController = makeController({
+      getModel: () => cursorModel,
+      setModel: (value) => { cursorModel = value; },
+      actions: cursorActions,
+    });
+    await cursorController.handle('diagnostics-next-app-health', { dataset: {} });
+    cursorModel = { ...cursorModel, view: 'archive', state: 'ready', archive: { ...cursorModel.archive, type: 'user', nextCursor: 'archive-cursor' } };
+    fields['diagnostics-archive-type'] = 'error';
+    await cursorController.handle('diagnostics-next-archive', { dataset: {} });
+    cursorModel = createModel();
+    cursorModel.state = 'ready';
+    cursorModel.filters.query = 'previous-query';
+    cursorModel.appHealth.nextCursor = 'stale-cursor';
+    fields['diagnostics-query'] = 'fresh-query';
+    holdFresh = true;
+    const freshRequest = cursorController.handle('diagnostics-load-app-health', { dataset: {} });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const cursorDuringFreshLoad = cursorModel.appHealth.nextCursor;
+    resolveFresh(appResult('fresh'));
+    await freshRequest;
+
+    let permissionModel = createModel();
+    let permissionCalls = 0;
+    const permissionMessages = [];
+    const permissionController = makeController({
+      getModel: () => permissionModel,
+      setModel: (value) => { permissionModel = value; },
+      actions: { listAppHealth: async () => { permissionCalls += 1; return appResult('forbidden'); } },
+      authorized: () => false,
+      messages: permissionMessages,
+    });
+    await permissionController.handle('diagnostics-load-app-health', { dataset: {} });
+
+    let lifecycleModel = createModel();
+    let lifecycleRoute = 'diagnostics';
+    let lifecycleCalls = 0;
+    let resolveFirst;
+    const lifecycleController = makeController({
+      getModel: () => lifecycleModel,
+      setModel: (value) => { lifecycleModel = value; },
+      actions: { listAppHealth: () => {
+        lifecycleCalls += 1;
+        if (lifecycleCalls === 1) return new Promise((resolve) => { resolveFirst = resolve; });
+        return Promise.resolve(appResult('returned'));
+      } },
+      route: () => lifecycleRoute,
+    });
+    const firstLoad = lifecycleController.maybeLoad();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    lifecycleRoute = 'overview';
+    await lifecycleController.maybeLoad();
+    const stateWhileAway = lifecycleModel.state;
+    resolveFirst(appResult('stale'));
+    await firstLoad;
+    lifecycleRoute = 'diagnostics';
+    await lifecycleController.maybeLoad();
+
+    process.stdout.write(JSON.stringify({
+      cursor: { inputs: cursorInputs, cursorDuringFreshLoad },
+      permission: { calls: permissionCalls, state: permissionModel.state, messages: permissionMessages },
+      lifecycle: { calls: lifecycleCalls, stateWhileAway, state: lifecycleModel.state, items: lifecycleModel.appHealth.items },
+    }));
+  }).catch((error) => { console.error(error); process.exitCode = 1; })`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout) as Record<string, any>;
 }
 
 function runDiagnosticsLoadRace(): Array<{ id: string }> {
@@ -212,6 +324,66 @@ describe('Admin v2 native diagnostics workspace', () => {
 
   test('ignores an older App Health response that arrives after a newer filter request', () => {
     expect(runDiagnosticsLoadRace()).toEqual([{ id: 'second' }]);
+  });
+
+  test('binds cursors to committed filters, blocks unauthorized reads, and recovers after leaving mid-load', () => {
+    const result = runDiagnosticsRuntimeProtections();
+
+    expect(result.cursor.inputs[0]).toMatchObject({ kind: 'app', input: { cursor: 'app-cursor', query: 'committed-query' } });
+    expect(result.cursor.inputs[1]).toMatchObject({ kind: 'archive', input: { cursor: 'archive-cursor', type: 'user' } });
+    expect(result.cursor.cursorDuringFreshLoad).toBe('');
+
+    expect(result.permission.calls).toBe(0);
+    expect(result.permission.state).toBe('idle');
+    expect(result.permission.messages.length).toBeGreaterThan(0);
+
+    expect(result.lifecycle.stateWhileAway).toBe('idle');
+    expect(result.lifecycle.calls).toBe(2);
+    expect(result.lifecycle.state).toBe('ready');
+    expect(result.lifecycle.items).toEqual([{ id: 'returned' }]);
+  });
+
+  test('renders callable detail error and empty envelopes as explicit states', () => {
+    const base = {
+      state: 'ready', error: '',
+      filters: { periodHours: 24, severity: 'all', status: 'all', feature: '', query: '' },
+      activity: { state: 'idle', items: [], sourceHealth: [], nextCursor: '', truncated: false, error: '' },
+      operationKeys: {},
+    };
+    const appHtml = renderDiagnostics({
+      ...base,
+      view: 'app-health',
+      appHealth: { items: [], kpis: null, sourceHealth: [], nextCursor: '', detail: { state: 'error', item: null, error: 'detail failed' }, truncated: false, partial: false },
+      archive: { type: 'all', items: [], sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+    });
+    const archiveHtml = renderDiagnostics({
+      ...base,
+      view: 'archive',
+      appHealth: { items: [], kpis: null, sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      archive: { type: 'all', items: [], sourceHealth: [], nextCursor: '', detail: { state: 'empty', item: null }, truncated: false, partial: false },
+    });
+
+    expect(appHtml).toContain('data-diagnostics-detail-state="error"');
+    expect(appHtml).toContain('role="alert"');
+    expect(appHtml).not.toContain('diagnostics-detail-grid');
+    expect(archiveHtml).toContain('data-diagnostics-detail-state="empty"');
+    expect(archiveHtml).toContain('role="status"');
+    expect(archiveHtml).not.toContain('diagnostics-detail-grid');
+  });
+
+  test('renders a fail-closed no-permission state without live read actions', () => {
+    const html = renderDiagnostics({
+      view: 'app-health', state: 'idle', error: '',
+      filters: { periodHours: 24, severity: 'all', status: 'all', feature: '', query: '' },
+      appHealth: { items: [], kpis: null, sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      activity: { state: 'idle', items: [], sourceHealth: [], nextCursor: '', truncated: false, error: '' },
+      archive: { type: 'all', items: [], sourceHealth: [], nextCursor: '', detail: null, truncated: false, partial: false },
+      operationKeys: {},
+    }, false);
+
+    expect(html).toContain('data-diagnostics-no-read');
+    expect(html).toContain('role="alert"');
+    expect(html).not.toContain('data-action="diagnostics-load-app-health"');
   });
 
   test('keeps truncation visible when the same backend response is also partial', () => {

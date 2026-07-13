@@ -30,6 +30,21 @@ export function createDiagnosticsController(context) {
     archiveDetailGeneration += 1;
   }
 
+  function resetLoadingState() {
+    const current = model();
+    const next = {};
+    if (current.state === 'loading') next.state = 'idle';
+    if (current.activity?.state === 'loading') next.activity = { ...current.activity, state: 'idle', error: '' };
+    if (Object.keys(next).length) patch(next);
+  }
+
+  function denyRead() {
+    invalidateRequests();
+    resetLoadingState();
+    context.message('Недостаточно прав для просмотра диагностики.', 'warning');
+    context.render();
+  }
+
   function filtersFromDocument() {
     const periodHours = Number(value('diagnostics-period') || model().filters.periodHours || 24);
     return {
@@ -51,25 +66,32 @@ export function createDiagnosticsController(context) {
     return items.length ? 'ready' : 'empty';
   }
 
-  function appHealthInput(cursor = '') {
-    const filters = filtersFromDocument();
+  function appHealthInput(cursor = '', filters = filtersFromDocument()) {
+    const periodHours = Number(filters.periodHours || 24);
     return {
-      ...filters,
-      severity: filters.severity || 'all',
-      status: filters.status || 'all',
+      periodHours: [1, 6, 24, 168].includes(periodHours) ? periodHours : 24,
+      severity: String(filters.severity || 'all'),
+      status: String(filters.status || 'all'),
+      feature: String(filters.feature || ''),
+      query: String(filters.query || ''),
       pageSize: APP_HEALTH_PAGE_SIZE,
       cursor,
     };
   }
 
   async function loadAppHealth(append = false) {
+    if (append && (model().state === 'loading' || !model().appHealth.nextCursor)) return;
     const generation = ++appHealthRequestGeneration;
+    const input = appHealthInput(
+      append ? model().appHealth.nextCursor : '',
+      append ? model().filters : filtersFromDocument(),
+    );
     if (!append) {
       activityRequestGeneration += 1;
       appHealthDetailGeneration += 1;
       patchActivity({ state: 'idle', items: [], sourceHealth: [], nextCursor: '', truncated: false, error: '' });
+      patchAppHealth({ nextCursor: '', detail: null });
     }
-    const input = appHealthInput(append ? model().appHealth.nextCursor : '');
     patch({ state: 'loading', filters: { ...model().filters, ...input, pageSize: undefined, cursor: undefined }, error: '' });
     context.render();
     try {
@@ -100,6 +122,7 @@ export function createDiagnosticsController(context) {
   }
 
   async function loadAppActivity(append = false) {
+    if (append && (model().activity.state === 'loading' || !model().activity.nextCursor)) return;
     const generation = ++activityRequestGeneration;
     const cursor = append ? model().activity.nextCursor : '';
     const input = {
@@ -110,7 +133,7 @@ export function createDiagnosticsController(context) {
       pageSize: ACTIVITY_PAGE_SIZE,
       cursor,
     };
-    patchActivity({ state: 'loading', error: '' });
+    patchActivity({ state: 'loading', error: '', ...(append ? {} : { nextCursor: '' }) });
     context.render();
     try {
       const result = await context.actions().listAppActivity(input);
@@ -222,16 +245,17 @@ export function createDiagnosticsController(context) {
   }
 
   async function loadArchive(append = false) {
+    if (append && (model().state === 'loading' || !model().archive.nextCursor)) return;
     const generation = ++archiveRequestGeneration;
     if (!append) archiveDetailGeneration += 1;
-    const type = value('diagnostics-archive-type') || model().archive.type || 'all';
+    const type = append ? (model().archive.type || 'all') : (value('diagnostics-archive-type') || model().archive.type || 'all');
     const input = {
       type,
       pageSize: ARCHIVE_PAGE_SIZE,
       cursor: append ? model().archive.nextCursor : '',
     };
     patch({ state: 'loading', error: '' });
-    patchArchive({ type });
+    patchArchive({ type, ...(append ? {} : { nextCursor: '', detail: null }) });
     context.render();
     try {
       const result = await context.actions().listDiagnosticsArchive(input);
@@ -269,9 +293,15 @@ export function createDiagnosticsController(context) {
   }
 
   async function selectView(view) {
+    if (!context.authorized()) {
+      denyRead();
+      return;
+    }
     const next = diagnosticsViewFromCapability(view);
     const hash = next === 'overview' ? 'diagnostics' : next;
-    const currentHash = decodeURIComponent(String(globalThis.location?.hash || '').replace(/^#/, '').split(':').pop() || '');
+    const rawHash = String(globalThis.location?.hash || '').replace(/^#/, '').split(':').pop() || '';
+    let currentHash = rawHash;
+    try { currentHash = decodeURIComponent(rawHash); } catch (error) { /* Keep malformed input inert. */ }
     if (currentHash !== hash && globalThis.location) {
       invalidateRequests();
       globalThis.location.hash = hash;
@@ -293,12 +323,26 @@ export function createDiagnosticsController(context) {
       if (model().view !== view) this.reset(view);
     },
     async maybeLoad() {
-      if (!context.actions() || context.route() !== 'diagnostics' || !context.authorized() || model().state !== 'idle') return;
+      if (context.route() !== 'diagnostics') {
+        invalidateRequests();
+        resetLoadingState();
+        return;
+      }
+      if (!context.authorized()) {
+        invalidateRequests();
+        resetLoadingState();
+        return;
+      }
+      if (!context.actions() || model().state !== 'idle') return;
       if (model().view === 'app-health') await loadAppHealth(false);
       else if (model().view === 'archive') await loadArchive(false);
     },
     async handle(action, target) {
       if (!action?.startsWith('diagnostics-')) return false;
+      if (!context.authorized()) {
+        denyRead();
+        return true;
+      }
       if (action === 'diagnostics-set-view') await selectView(target.dataset.diagnosticsView || 'overview');
       else if (action === 'diagnostics-load-app-health') await loadAppHealth(false);
       else if (action === 'diagnostics-next-app-health') await loadAppHealth(true);

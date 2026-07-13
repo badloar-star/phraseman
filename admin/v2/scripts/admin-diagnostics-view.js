@@ -45,6 +45,16 @@ function detailGrid(detail, escapeHtml, maxRows) {
     .join('');
 }
 
+function detailStateNotice(detail, options, escapeHtml) {
+  const state = String(detail?.state || '');
+  if (!['error', 'empty'].includes(state)) return '';
+  const isError = state === 'error';
+  const message = isError
+    ? String(detail?.error || detail?.message || options.errorMessage)
+    : options.emptyMessage;
+  return `<section class="card section diagnostics-detail" data-diagnostics-detail-state="${state}" aria-live="polite"><div class="card-header"><div><h2>${options.title}</h2><p>${options.description}</p></div>${options.closeButton}</div><div class="card-body"><div class="notice${isError ? ' danger' : ''}" role="${isError ? 'alert' : 'status'}">${escapeHtml(message)}</div></div></section>`;
+}
+
 function sourceHealth(sources, escapeHtml) {
   const rows = asArray(sources);
   if (!rows.length) return '';
@@ -125,6 +135,14 @@ function appHealthRows(model, escapeHtml, canWrite) {
 function appHealthDetail(model, escapeHtml) {
   const detail = model.appHealth.detail;
   if (!detail) return '';
+  const stateNotice = detailStateNotice(detail, {
+    title: 'Деталь события',
+    description: 'Серверная проекция с ограниченными полями.',
+    closeButton: '<button class="button" data-action="diagnostics-close-app-health-detail" type="button" title="Закрыть деталь события" data-tooltip="Закрыть деталь события">Закрыть</button>',
+    emptyMessage: 'Запись события не найдена или больше недоступна.',
+    errorMessage: 'Не удалось загрузить деталь события.',
+  }, escapeHtml);
+  if (stateNotice) return stateNotice;
   const safe = detail.item || detail.detail || detail;
   return `<section class="card section diagnostics-detail" aria-live="polite"><div class="card-header"><div><h2>Деталь события</h2><p>Серверная проекция с ограниченными полями.</p></div><button class="button" data-action="diagnostics-close-app-health-detail" type="button" title="Закрыть деталь события" data-tooltip="Закрыть деталь события">Закрыть</button></div><div class="card-body"><dl class="diagnostics-detail-grid">${detailGrid(safe, escapeHtml, 48)}</dl></div></section>`;
 }
@@ -156,6 +174,14 @@ function archiveFilters(model) {
 function archiveDetail(model, escapeHtml) {
   const detail = model.archive.detail;
   if (!detail) return '';
+  const stateNotice = detailStateNotice(detail, {
+    title: 'Архивная запись',
+    description: 'Личность скрыта, если у роли нет права users.read.',
+    closeButton: '<button class="button" data-action="diagnostics-close-archive-detail" type="button" title="Закрыть архивную запись" data-tooltip="Закрыть архивную запись">Закрыть</button>',
+    emptyMessage: 'Архивная запись не найдена или больше недоступна.',
+    errorMessage: 'Не удалось загрузить архивную запись.',
+  }, escapeHtml);
+  if (stateNotice) return stateNotice;
   const safe = detail.item || detail.detail || detail;
   return `<section id="archive-detail" class="card section diagnostics-detail" aria-live="polite"><div class="card-header"><div><h2>Архивная запись</h2><p>Личность скрыта, если у роли нет права users.read.</p></div><button class="button" data-action="diagnostics-close-archive-detail" type="button" title="Закрыть архивную запись" data-tooltip="Закрыть архивную запись">Закрыть</button></div><div class="card-body"><dl class="diagnostics-detail-grid">${detailGrid(safe, escapeHtml, 64)}</dl></div></section>`;
 }
@@ -187,7 +213,9 @@ function navigation(model, escapeHtml) {
 
 export function renderDiagnosticsWorkspace(model, { escapeHtml, can, pageHeader = '', overview = '' }) {
   let content = overview;
-  if (model.view === 'app-health') content = renderAppHealth(model, escapeHtml, can);
+  if (!can('diagnostics.read')) {
+    content = '<div class="notice danger section" role="alert" data-diagnostics-no-read>Недостаточно прав для просмотра диагностики. Обратитесь к администратору ролей.</div>';
+  } else if (model.view === 'app-health') content = renderAppHealth(model, escapeHtml, can);
   else if (model.view === 'archive') content = renderArchive(model, escapeHtml);
   else if (model.view === 'changelog-0608') content = renderChangelogArchive();
   return `<div class="diagnostics-workspace" data-view="${escapeHtml(model.view)}">${pageHeader || `<header class="page-header"><div><h1>${DIAGNOSTICS_ICON} Диагностика</h1></div></header>`}${navigation(model, escapeHtml)}${content}</div>`;

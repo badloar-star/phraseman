@@ -40338,7 +40338,13 @@
 (function installNativeDiagnosticsRedirects() {
   var nativeTabs = new Set(['app-health', 'archive', 'changelog-0608']);
   var archiveMode = new URLSearchParams(window.location.search).get('legacyArchive') === '1';
-  var initialTab = decodeURIComponent(String(window.location.hash || '').replace(/^#/, '').split(':').pop() || '');
+  var rawInitialTab = String(window.location.hash || '').replace(/^#/, '').split(':').pop() || '';
+  var initialTab = rawInitialTab;
+  try {
+    initialTab = decodeURIComponent(rawInitialTab);
+  } catch (error) {
+    /* A malformed hash must never prevent legacyArchive read-only guards. */
+  }
 
   function goToDiagnosticsV2(tab, replace) {
     var target = './v2/index.html#' + encodeURIComponent(String(tab));

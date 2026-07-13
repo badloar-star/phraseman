@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 
 const source = fs.readFileSync(path.join(process.cwd(), 'admin/index.html'), 'utf8');
 
@@ -24,5 +25,41 @@ describe('legacy diagnostics native cutover', () => {
     expect(source).toContain('window.markAppHealthStatus = function markAppHealthStatusDiagnosticsV2');
     expect(source).toContain('window.copyAppHealthForAI = function copyAppHealthForAIDiagnosticsV2');
     expect(source).toContain('window.copyAppHealthRaw = function copyAppHealthRawDiagnosticsV2');
+  });
+
+  test('installs read-only guards even when the legacy archive hash is malformed', () => {
+    const script = source.match(/<script>\s*\/\* Native Diagnostics cutover\.[\s\S]*?<\/script>/)?.[0]
+      .replace(/^<script>\s*/, '')
+      .replace(/<\/script>$/, '');
+    expect(script).toBeTruthy();
+
+    const attributes = new Map<string, string>();
+    const windowObject: Record<string, any> = {
+      location: {
+        search: '?legacyArchive=1',
+        hash: '#%E0%A4%A',
+        replace: jest.fn(),
+        href: '',
+      },
+    };
+    const documentObject = {
+      readyState: 'complete',
+      documentElement: { setAttribute: (name: string, value: string) => attributes.set(name, value) },
+      createElement: () => ({ textContent: '' }),
+      head: { appendChild: jest.fn() },
+      getElementById: () => null,
+      addEventListener: jest.fn(),
+    };
+
+    expect(() => vm.runInNewContext(script!, {
+      window: windowObject,
+      document: documentObject,
+      URLSearchParams,
+      setTimeout: jest.fn(),
+    })).not.toThrow();
+    expect(attributes.get('data-diagnostics-archive')).toBe('true');
+    for (const name of ['loadAppHealth', 'loadAppActivity', 'loadArchive', 'markAppHealthStatus', 'copyAppHealthForAI', 'copyAppHealthRaw']) {
+      expect(typeof windowObject[name]).toBe('function');
+    }
   });
 });

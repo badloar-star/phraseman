@@ -41,7 +41,6 @@ export interface YoutubePlaybackAnalyticsController {
   updateProgress(progress: YoutubePlaybackProgress): void;
   tick(progress?: YoutubePlaybackProgress): void;
   finish(reason: YoutubePlaybackEndReason, progress?: YoutubePlaybackProgress): void;
-  emitPlayerEvent(event: YoutubeAnalyticsEmission): boolean;
   getSnapshot(): YoutubePlaybackRuntimeSnapshot;
 }
 
@@ -56,57 +55,59 @@ export function createYoutubePlaybackAnalyticsController(
     now: deps.now,
     createId: deps.createId,
     emit: event => {
-      if (!pinnedSessionId) return;
+      const attemptSessionId = pinnedSessionId;
+      if (!attemptSessionId) return;
       if (event.kind === 'start') {
-        deps.emit({ eventName: 'youtube_playback_start', source: 'player', channelId: deps.channelId, videoId: event.videoId, playbackId: event.playbackId }, pinnedSessionId);
+        deps.emit({ eventName: 'youtube_playback_start', source: 'player', channelId: deps.channelId, videoId: event.videoId, playbackId: event.playbackId }, attemptSessionId);
       } else if (event.kind === 'checkpoint') {
-        deps.emit({ eventName: 'youtube_playback_checkpoint', source: 'player', channelId: deps.channelId, videoId: event.videoId, playbackId: event.playbackId, activeWatchMs: event.activeWatchMs, positionMs: event.positionMs, durationMs: event.durationMs, maxPositionPermille: event.maxPositionPermille }, pinnedSessionId);
+        deps.emit({ eventName: 'youtube_playback_checkpoint', source: 'player', channelId: deps.channelId, videoId: event.videoId, playbackId: event.playbackId, activeWatchMs: event.activeWatchMs, positionMs: event.positionMs, durationMs: event.durationMs, maxPositionPermille: event.maxPositionPermille }, attemptSessionId);
       } else {
-        deps.emit({ eventName: 'youtube_playback_end', source: 'player', channelId: deps.channelId, videoId: event.videoId, playbackId: event.playbackId, activeWatchMs: event.activeWatchMs, positionMs: event.positionMs, durationMs: event.durationMs, maxPositionPermille: event.maxPositionPermille, endReason: mapYoutubePlaybackEndReason(event.reason) }, pinnedSessionId);
+        deps.emit({ eventName: 'youtube_playback_end', source: 'player', channelId: deps.channelId, videoId: event.videoId, playbackId: event.playbackId, activeWatchMs: event.activeWatchMs, positionMs: event.positionMs, durationMs: event.durationMs, maxPositionPermille: event.maxPositionPermille, endReason: mapYoutubePlaybackEndReason(event.reason) }, attemptSessionId);
+        pinnedSessionId = null;
       }
     },
   });
 
-  const ensureSession = (): boolean => {
-    if (!consentRequested) return false;
-    if (!pinnedSessionId) pinnedSessionId = getValidYoutubeAnalyticsSessionId(deps.readSessionId());
-    if (!pinnedSessionId) return false;
-    runtime.setConsent(true);
-    if (!visible) runtime.background();
-    return true;
+  const prepareNewAttempt = (): boolean => {
+    if (!consentRequested || runtime.getSnapshot().playbackId) return pinnedSessionId != null;
+    pinnedSessionId = getValidYoutubeAnalyticsSessionId(deps.readSessionId());
+    return pinnedSessionId != null;
   };
 
   return {
     setConsent(granted) {
       consentRequested = granted;
-      if (!granted) runtime.revokeConsent();
-      else ensureSession();
+      if (!granted) {
+        pinnedSessionId = null;
+        runtime.revokeConsent();
+      } else {
+        runtime.setConsent(true);
+        if (!visible) runtime.background();
+      }
     },
     revokeConsent() {
       consentRequested = false;
+      pinnedSessionId = null;
       runtime.revokeConsent();
     },
     setVisible(active, progress) {
       visible = active;
       if (active) runtime.resume();
-      else if (ensureSession()) runtime.background(progress);
+      else if (consentRequested) runtime.background(progress);
     },
     handleState(state, progress) {
-      if (ensureSession()) runtime.handleState(state, progress);
+      const hasAttempt = runtime.getSnapshot().playbackId != null;
+      if (!consentRequested || (!hasAttempt && (state !== 'playing' || !visible))) return;
+      if ((hasAttempt && pinnedSessionId) || prepareNewAttempt()) runtime.handleState(state, progress);
     },
     updateProgress(progress) {
-      if (ensureSession()) runtime.updateProgress(progress);
+      if (consentRequested && pinnedSessionId) runtime.updateProgress(progress);
     },
     tick(progress) {
-      if (ensureSession()) runtime.tick(progress);
+      if (consentRequested && pinnedSessionId) runtime.tick(progress);
     },
     finish(reason, progress) {
-      if (ensureSession()) runtime.finish(reason, progress);
-    },
-    emitPlayerEvent(event) {
-      return ensureSession() && pinnedSessionId != null
-        ? deps.emit(event, pinnedSessionId)
-        : false;
+      if (consentRequested && pinnedSessionId) runtime.finish(reason, progress);
     },
     getSnapshot: runtime.getSnapshot,
   };

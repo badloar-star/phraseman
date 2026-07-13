@@ -43,12 +43,13 @@ export function setLingmanVideoHandoff(handoff: LingmanVideoHandoff, nowMs = Dat
 }
 
 export function peekLingmanVideoHandoff(videoId: string | null, nowMs = Date.now()): LingmanVideoHandoff | null {
-  if (!slot || slot.expiresAtMs < nowMs) {
-    slot = null;
-    return null;
-  }
+  if (!slot || slot.expiresAtMs < nowMs) return null;
   if (!videoId || slot.videoId !== videoId) return null;
   return Object.freeze({ videoId: slot.videoId, channelId: slot.channelId, title: slot.title });
+}
+
+export function getLingmanVideoHandoffDebugSnapshotForTests(): Readonly<StoredHandoff> | null {
+  return slot ? Object.freeze({ ...slot }) : null;
 }
 
 export function clearLingmanVideoTitleHandoff(): void {

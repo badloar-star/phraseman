@@ -14242,6 +14242,7 @@
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
   import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+  import { getToken, initializeAppCheck, ReCaptchaEnterpriseProvider } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
   // Arena rank config (mirrors app/types/arena.ts)
@@ -14263,6 +14264,11 @@
   }
 
   const app = initializeApp(await resolveAdminFirebaseConfig());
+  const legacyAdminAppCheck = initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider('6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR'),
+    isTokenAutoRefreshEnabled: true,
+  });
+  await getToken(legacyAdminAppCheck, false);
   const db = getFirestore(app);
   const auth = getAuth(app);
   const functionsUs = getFunctions(app, 'us-central1');
@@ -40270,7 +40276,7 @@
   window.banUser = function banUserSafetyV2(uid) { go('ban-list', { uid: uid }); };
   window.unbanUser = function unbanUserSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
   window.helpBoardBanAuthor = function helpBoardBanAuthorSafetyV2(uid, targetType, targetId) {
-    go('ban-list', { uid: uid, source: 'help-board', targetType: targetType, targetId: targetId });
+    go('ban-list', { uid: uid, source: 'help_board', targetType: targetType, targetId: targetId });
   };
   window.exportUserReportsCSV = function exportUserReportsCSVSafetyV2() { window.location.href = './v2/index.html#user-reports'; };
 

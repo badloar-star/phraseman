@@ -71,7 +71,14 @@ describe('Admin v2 Safety & Moderation Center', () => {
     expect(view).toContain('irreversible');
     expect(view).toContain('safety-manual-ban-uid');
     expect(controller).toContain('safety-preview-manual-ban');
-    expect(controller).toContain("new URLSearchParams(globalThis.location.search).get('moderateUser')");
+    expect(controller).toContain('new URLSearchParams(globalThis.location.search)');
+    expect(controller).toContain("handoffParams.get('moderateUser')");
+    expect(controller).toContain("handoffParams.get('source')");
+    expect(controller).toContain("handoffParams.get('targetType')");
+    expect(controller).toContain("handoffParams.get('targetId')");
+    expect(controller).toContain("['topic', 'comment', 'compass'].includes(sourceTargetType)");
+    expect(controller).toContain("{ source: 'help_board', sourceTargetType, sourceTargetId }");
+    expect(controller).toContain('...(model().manualBanContext');
   });
 
   test('exposes all protected callable wrappers and no direct browser data SDK', () => {

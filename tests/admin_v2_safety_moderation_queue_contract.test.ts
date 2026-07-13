@@ -23,6 +23,8 @@ function renderSafety(overrides: SafetyModel): string {
     approvalId: '',
     approvals: { state: 'ready', items: [], error: '' },
     history: { state: 'ready', items: [], error: '' },
+    manualBanUid: '',
+    manualBanContext: { source: 'manual', sourceTargetType: '', sourceTargetId: '' },
     ...overrides,
   };
   const script = `import(${JSON.stringify(moduleUrl)}).then((m) => {
@@ -175,5 +177,19 @@ describe('Admin v2 safety moderation approval and history queues', () => {
     expect(controller).toContain("requestId: context.id('safety-bulk-resume')");
     expect(controller).toContain('idempotencyKey: operationKeys[key]');
     expect(controller).toContain('safety-bulk-resume-reason-');
+  });
+
+  test('shows validated Help Board handoff context on the manual ban preview', () => {
+    const html = renderSafety({
+      view: 'ban-list',
+      manualBanUid: 'user-from-board',
+      manualBanContext: { source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' },
+    });
+
+    expect(html).toContain('Передано из Help Board.');
+    expect(html).toContain('comment');
+    expect(html).toContain('comment-42');
+    expect(html).toContain('Контекст будет сохранён в preview, истории и аудите.');
+    expect(html).toContain('value="user-from-board"');
   });
 });

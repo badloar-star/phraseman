@@ -111,8 +111,17 @@ export function createSafetyModerationController(context) {
     },
     async maybeLoad() {
       if (context.route() === 'safety-moderation' && context.authorized() && model().state === 'idle') {
-        const moderateUser = String(new URLSearchParams(globalThis.location.search).get('moderateUser') || '').trim();
-        if (moderateUser) patch({ manualBanUid: moderateUser });
+        const handoffParams = new URLSearchParams(globalThis.location.search);
+        const moderateUser = String(handoffParams.get('moderateUser') || '').trim();
+        const source = String(handoffParams.get('source') || '').trim().toLowerCase();
+        const sourceTargetType = String(handoffParams.get('targetType') || '').trim().toLowerCase();
+        const sourceTargetId = String(handoffParams.get('targetId') || '').trim();
+        const manualBanContext = source === 'help_board'
+          && ['topic', 'comment', 'compass'].includes(sourceTargetType)
+          && /^[a-zA-Z0-9_.:-]{1,180}$/.test(sourceTargetId)
+          ? { source: 'help_board', sourceTargetType, sourceTargetId }
+          : { source: 'manual', sourceTargetType: '', sourceTargetId: '' };
+        if (moderateUser) patch({ manualBanUid: moderateUser, manualBanContext });
         if (model().view === 'overview' && !context.can('users.moderation.read')) this.reset(context.defaultView());
         await load(false);
       }
@@ -141,7 +150,7 @@ export function createSafetyModerationController(context) {
           const uid = value('safety-manual-ban-uid');
           const reason = value('safety-manual-ban-reason');
           if (!uid) return context.message('Укажите канонический UID пользователя.', 'warning');
-          await preview('user_ban', uid, { name: value('safety-manual-ban-name'), source: 'manual' }, reason);
+          await preview('user_ban', uid, { name: value('safety-manual-ban-name'), ...(model().manualBanContext || { source: 'manual' }) }, reason);
         }
         else if (action === 'safety-preview-unban') await preview('user_unban', target.dataset.targetId, { historyId: '' });
         else if (action === 'safety-preview-flag') await preview('safety_set_disposition', target.dataset.targetId, { handled: true, disposition: value(`safety-disposition-${target.dataset.targetId}`), note: value(`safety-note-${target.dataset.targetId}`) });

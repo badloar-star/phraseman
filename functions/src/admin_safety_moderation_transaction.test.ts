@@ -194,6 +194,27 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect((await db.collection('admin_approval_requests').doc('approval-two-account').get()).data()).toMatchObject({ status: 'approved', approvedBy: 'admin-two' });
   });
 
+  test('does not let unrelated approval types hide the Safety queue limit', async () => {
+    const db = admin.firestore();
+    const batch = db.batch();
+    for (let index = 0; index < 105; index += 1) {
+      batch.set(db.collection('admin_approval_requests').doc(`unrelated-${index}`), {
+        type: 'other_workflow', status: 'pending', requestedAtMs: Date.now() + index,
+      });
+    }
+    batch.set(db.collection('admin_approval_requests').doc('approval-visible-safety'), {
+      type: 'safety_moderation', status: 'pending', previewId: 'preview-visible-safety',
+      action: 'user_ban', targetId: 'user-visible-safety', requestedBy: 'admin-one', requestedAtMs: 1,
+      expiresAtMs: Date.now() + 60_000, reason: 'Confirmed abuse', risk: 'Creates a global account block.', fingerprint: 'fingerprint-visible-safety',
+    });
+    await batch.commit();
+
+    const queue = await adminListSafetyModerationApprovals.run(request({}, 'admin-two')) as unknown as Row;
+    const items = queue.items as Row[];
+    expect(items).toHaveLength(1);
+    expect(items[0]).toMatchObject({ approvalId: 'approval-visible-safety', targetId: 'user-visible-safety' });
+  });
+
   test('bans and unbans with separate approvals while restoring the captured leaderboard state', async () => {
     const db = admin.firestore();
     const user = { progress: { user_name: 'Alice' }, banned: false };
@@ -251,6 +272,39 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect((await db.collection('users').doc('user-ban').get()).data()).toMatchObject({ banned: false });
     expect((await db.collection('leaderboard').doc('user-ban').get()).data()).toEqual(leaderboard);
     expect((await db.collection('league_chat_bans').doc('user-ban').get()).exists).toBe(false);
+  });
+
+  test('carries Help Board handoff context through preview, ban history, and audit', async () => {
+    const db = admin.firestore();
+    await db.collection('users').doc('user-help-board').set({ progress: { user_name: 'Board user' }, banned: false });
+    const input = parseSafetyModerationMutationInput({
+      action: 'user_ban', targetId: 'user-help-board', reason: 'Confirmed Help Board abuse', requestId: 'request-help-board',
+      payload: { name: 'Board user', source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' },
+    });
+    const before = { uid: 'user-help-board', ban: null, usersBanned: false, leaderboard: null, chatRestricted: false, banHistory: null, sourceReport: null };
+    const preview = buildSafetyModerationPreview(input, before, Date.now(), 'admin-one', 'admin') as unknown as Row;
+    expect(preview.payload).toMatchObject({ source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' });
+    await Promise.all([
+      seedPreview('preview-help-board', preview),
+      db.collection('admin_approval_requests').doc('approval-help-board').set({
+        type: 'safety_moderation', status: 'approved', requestedBy: 'admin-one', approvedBy: 'admin-two',
+        previewId: 'preview-help-board', fingerprint: preview.fingerprint, expiresAtMs: preview.expiresAtMs,
+      }),
+    ]);
+
+    const result = await adminApplySafetyModerationMutation.run(request({
+      previewId: 'preview-help-board', approvalId: 'approval-help-board', confirmation: preview.confirmation, reason: preview.reason,
+      requestId: 'apply-help-board', idempotencyKey: 'operation-help-board',
+    })) as unknown as Row;
+    const context = { source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' };
+    const banDoc = (await db.collection('banned_users').doc('user-help-board').get()).data() as Row;
+    const history = (await db.collection('admin_safety_moderation_history').doc(String(result.historyId)).get()).data() as Row;
+    const audit = (await db.collection('admin_log').doc(String(result.auditId)).get()).data() as Row;
+
+    expect(banDoc).toMatchObject(context);
+    expect(((history.after as Row).banWrites as Row).bannedDocument).toMatchObject(context);
+    expect(((history.after as Row).banWrites as Row).history).toMatchObject(context);
+    expect(audit.after).toMatchObject(context);
   });
 
   test('rejects a ban when its source report changes after preview', async () => {

@@ -28,6 +28,7 @@ export function createSafetyModerationState(view = 'overview') {
     approvals: { state: 'idle', items: [], error: '' },
     history: { state: 'idle', items: [], error: '' },
     manualBanUid: '',
+    manualBanContext: { source: 'manual', sourceTargetType: '', sourceTargetId: '' },
     operationKeys: {},
     error: '',
   };

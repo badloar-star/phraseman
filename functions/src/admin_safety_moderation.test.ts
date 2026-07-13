@@ -135,6 +135,14 @@ describe('Admin Safety & Moderation read contract', () => {
       payload: { targetIds: ['f1', 'f1', 'f2'], disposition: 'resolved', note: 'Checked' },
     })).toMatchObject({ payload: { targetIds: ['f1', 'f2'], disposition: 'resolved', note: 'Checked' } });
     expect(() => parseSafetyModerationMutationInput({ action: 'safety_handle_bulk', targetId: 'bulk', reason: 'x', requestId: 'r', payload: { targetIds: Array.from({ length: 401 }, (_, index) => `f-${index}`) } })).toThrow('bulk_target_limit');
+    expect(parseSafetyModerationMutationInput({
+      action: 'user_ban', targetId: 'u-help', reason: 'Confirmed abuse', requestId: 'req-help',
+      payload: { source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' },
+    })).toMatchObject({ payload: { source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' } });
+    expect(() => parseSafetyModerationMutationInput({
+      action: 'user_ban', targetId: 'u-help', reason: 'Confirmed abuse', requestId: 'req-help-missing',
+      payload: { source: 'help_board', sourceTargetType: 'comment' },
+    })).toThrow('ban_source_context_required');
     expect(() => parseSafetyModerationMutationInput({ action: 'user_ban', targetId: 'u1', reason: '', requestId: 'r' })).toThrow('mutation_fields_required');
     expect(() => parseSafetyModerationMutationInput({ action: 'unknown', targetId: 'u1', reason: 'x', requestId: 'r' })).toThrow('safety_action_invalid');
   });
@@ -224,6 +232,27 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(indexSource).toContain('adminApproveSafetyModerationMutation');
   });
 
+  test('filters the shared approval collection before applying the Safety queue limit', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
+    const queueStart = source.indexOf('export const adminListSafetyModerationApprovals');
+    const queueEnd = source.indexOf('export const adminListSafetyModerationHistory', queueStart);
+    const queue = source.slice(queueStart, queueEnd);
+    expect(queue.indexOf(".where('type', '==', 'safety_moderation')")).toBeGreaterThanOrEqual(0);
+    expect(queue.indexOf(".where('status', '==', 'pending')")).toBeGreaterThan(queue.indexOf(".where('type', '==', 'safety_moderation')"));
+    expect(queue.indexOf(".orderBy('requestedAtMs', 'desc')")).toBeGreaterThan(queue.indexOf(".where('status', '==', 'pending')"));
+    expect(queue.indexOf('.limit(100)')).toBeGreaterThan(queue.indexOf(".orderBy('requestedAtMs', 'desc')"));
+
+    const indexes = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'firestore.indexes.json'), 'utf8')) as { indexes: Array<Record<string, unknown>> };
+    expect(indexes.indexes).toEqual(expect.arrayContaining([expect.objectContaining({
+      collectionGroup: 'admin_approval_requests',
+      fields: [
+        { fieldPath: 'type', order: 'ASCENDING' },
+        { fieldPath: 'status', order: 'ASCENDING' },
+        { fieldPath: 'requestedAtMs', order: 'DESCENDING' },
+      ],
+    })]));
+  });
+
   test('keeps mutation audit projections free of messages and sensitive payloads', () => {
     const projection = buildModerationAuditProjection({
       action: 'report_warn', targetId: 'r1', beforeFingerprint: 'before', fingerprint: 'after',
@@ -232,6 +261,10 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(projection).toEqual({ action: 'report_warn', targetId: 'r1', targetCount: 1, beforeFingerprint: 'before', afterFingerprint: 'after' });
     expect(JSON.stringify(projection)).not.toContain('sensitive warning text');
     expect(JSON.stringify(projection)).not.toContain('private note');
+    expect(buildModerationAuditProjection({
+      action: 'user_ban', targetId: 'u-help', beforeFingerprint: 'before', fingerprint: 'after',
+      payload: { source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42', private: 'hidden' },
+    }, 1)).toMatchObject({ source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42' });
   });
 
   test('registers a strict transactional apply callable', () => {

@@ -46,6 +46,23 @@ describe('legacy Safety & Moderation redirect context', () => {
     expect(cutover).toContain("params.set('source', String(context.source))");
     expect(cutover).toContain("params.set('targetType', String(context.targetType))");
     expect(cutover).toContain("params.set('targetId', String(context.targetId))");
-    expect(cutover).toContain("source: 'help-board'");
+    expect(cutover).toContain("source: 'help_board'");
+  });
+
+  test('initializes App Check before authenticated Help Board moderation callables become available', () => {
+    const appInit = source.indexOf('const app = initializeApp(');
+    const appCheckInit = source.indexOf('const legacyAdminAppCheck = initializeAppCheck(app');
+    const tokenGate = source.indexOf('await getToken(legacyAdminAppCheck, false)');
+    const functionsInit = source.indexOf("const functionsUs = getFunctions(app, 'us-central1')");
+    const authGate = source.indexOf('onAuthStateChanged(auth, async (user) =>');
+    const moderationCallable = source.indexOf("httpsCallable(functionsUs, 'helpBoardAdminModerate')");
+
+    expect(source).toContain('ReCaptchaEnterpriseProvider');
+    expect(appInit).toBeGreaterThanOrEqual(0);
+    expect(appCheckInit).toBeGreaterThan(appInit);
+    expect(tokenGate).toBeGreaterThan(appCheckInit);
+    expect(functionsInit).toBeGreaterThan(tokenGate);
+    expect(authGate).toBeGreaterThan(functionsInit);
+    expect(moderationCallable).toBeGreaterThan(functionsInit);
   });
 });

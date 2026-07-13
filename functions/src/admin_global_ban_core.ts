@@ -84,6 +84,8 @@ export interface BuildBanWritesInput {
   leaderboardBefore?: unknown;
   sourceReportId?: unknown;
   source?: unknown;
+  sourceTargetType?: unknown;
+  sourceTargetId?: unknown;
 }
 
 export function buildBanWrites(input: BuildBanWritesInput) {
@@ -94,6 +96,10 @@ export function buildBanWrites(input: BuildBanWritesInput) {
   if (!uid || !reason || !actorUid || !nowMs) throw new Error('ban_input_invalid');
   const sourceReportId = text(input.sourceReportId, 180);
   const leaderboardBefore = cloneJsonRecord(input.leaderboardBefore);
+  const source = text(input.source, 80) || 'manual';
+  const sourceContext = source === 'help_board'
+    ? { sourceTargetType: text(input.sourceTargetType, 20), sourceTargetId: text(input.sourceTargetId, 180) }
+    : {};
   return Object.freeze({
     bannedDocument: Object.freeze({
       uid,
@@ -102,13 +108,19 @@ export function buildBanWrites(input: BuildBanWritesInput) {
       bannedAtMs: nowMs,
       bannedAt: new Date(nowMs).toISOString(),
       bannedBy: actorUid,
-      source: text(input.source, 80) || 'manual',
+      source,
       sourceReportId,
+      ...sourceContext,
     }),
     userPatch: Object.freeze({ banned: true, bannedAtMs: nowMs, updatedAt: nowMs }),
     deleteLeaderboard: true,
     reportPatch: sourceReportId ? Object.freeze({ status: 'banned', reviewedAtMs: nowMs, reviewedBy: actorUid }) : null,
-    history: Object.freeze({ leaderboardBefore, leaderboardFingerprint: fingerprintLeaderboard(leaderboardBefore) }),
+    history: Object.freeze({
+      leaderboardBefore,
+      leaderboardFingerprint: fingerprintLeaderboard(leaderboardBefore),
+      source,
+      ...sourceContext,
+    }),
   });
 }
 

@@ -210,7 +210,18 @@ function normalizeMutationPayload(action: SafetyModerationMutationAction, value:
   if (action === 'report_rename') return Object.freeze({ uid: safeId(payload.uid, 180), oldName: clean(payload.oldName, 32), newName: clean(payload.newName, 32), sourceReportId: safeId(payload.sourceReportId, 180) });
   if (action === 'safety_set_disposition') return Object.freeze({ handled: payload.handled !== false, disposition: clean(payload.disposition, 80).toLowerCase(), note: clean(payload.note, 1_000) });
   if (action === 'safety_handle_bulk') return Object.freeze({ targetIds: normalizeTargetIds(payload.targetIds), disposition: clean(payload.disposition, 80).toLowerCase(), note: clean(payload.note, 1_000) });
-  if (action === 'user_ban') return Object.freeze({ name: clean(payload.name, 160), sourceReportId: safeId(payload.sourceReportId, 180), source: clean(payload.source, 80) || (payload.sourceReportId ? 'user_report' : 'manual') });
+  if (action === 'user_ban') {
+    const sourceReportId = safeId(payload.sourceReportId, 180);
+    const requestedSource = clean(payload.source, 80).toLowerCase();
+    const source = sourceReportId ? 'user_report' : requestedSource === 'help_board' ? 'help_board' : 'manual';
+    return Object.freeze({
+      name: clean(payload.name, 160),
+      sourceReportId,
+      source,
+      sourceTargetType: source === 'help_board' && ['topic', 'comment', 'compass'].includes(clean(payload.sourceTargetType, 20)) ? clean(payload.sourceTargetType, 20) : '',
+      sourceTargetId: source === 'help_board' ? safeId(payload.sourceTargetId, 180) : '',
+    });
+  }
   if (action === 'user_unban') return Object.freeze({ historyId: safeId(payload.historyId, 180) });
   return Object.freeze({ operationId: safeId(payload.operationId ?? payload.historyId, 180) });
 }
@@ -227,6 +238,7 @@ export function parseSafetyModerationMutationInput(value: unknown) {
   if ((action === 'report_archive_bulk' || action === 'safety_handle_bulk') && !(payload.targetIds as unknown[]).length) throw new Error('bulk_targets_required');
   if (action === 'report_warn' && (!payload.uid || !payload.message)) throw new Error('warning_fields_required');
   if (action === 'report_rename' && (!payload.uid || !payload.newName)) throw new Error('rename_fields_required');
+  if (action === 'user_ban' && payload.source === 'help_board' && (!payload.sourceTargetType || !payload.sourceTargetId)) throw new Error('ban_source_context_required');
   return Object.freeze({ action, targetId, reason, requestId, payload });
 }
 
@@ -355,12 +367,17 @@ export function projectSafetyModerationHistory(id: string, value: unknown) {
 
 export function buildModerationAuditProjection(previewValue: unknown, targetCount: number) {
   const preview = record(previewValue);
+  const payload = record(preview.payload);
+  const sourceContext = preview.action === 'user_ban' && payload.source === 'help_board'
+    ? { source: 'help_board', sourceTargetType: clean(payload.sourceTargetType, 20), sourceTargetId: clean(payload.sourceTargetId, 180) }
+    : {};
   return Object.freeze({
     action: clean(preview.action, 40),
     targetId: clean(preview.targetId, 180),
     targetCount: Math.max(0, Math.floor(Number(targetCount) || 0)),
     beforeFingerprint: clean(preview.beforeFingerprint, 64),
     afterFingerprint: clean(preview.fingerprint, 64),
+    ...sourceContext,
   });
 }
 
@@ -917,7 +934,9 @@ export const adminListSafetyModerationApprovals = onCall(
     const actorUid = request.auth!.uid;
     const nowMs = Date.now();
     const snap = await admin.firestore().collection('admin_approval_requests')
+      .where('type', '==', 'safety_moderation')
       .where('status', '==', 'pending')
+      .orderBy('requestedAtMs', 'desc')
       .limit(100)
       .get();
     const items = snap.docs
@@ -1346,7 +1365,11 @@ export const adminApplySafetyModerationMutation = onCall(
         });
       } else if (action === 'user_ban') {
         if (before.ban) throw new HttpsError('failed-precondition', 'user_already_banned');
-        const writes = buildBanWrites({ uid: input.targetId, name: payload.name, reason: input.reason, actorUid, nowMs, leaderboardBefore: before.leaderboard, sourceReportId: payload.sourceReportId, source: payload.source });
+        const writes = buildBanWrites({
+          uid: input.targetId, name: payload.name, reason: input.reason, actorUid, nowMs,
+          leaderboardBefore: before.leaderboard, sourceReportId: payload.sourceReportId, source: payload.source,
+          sourceTargetType: payload.sourceTargetType, sourceTargetId: payload.sourceTargetId,
+        });
         tx.create(db.collection('banned_users').doc(input.targetId), { ...writes.bannedDocument, banHistoryId: historyRef.id });
         tx.set(db.collection('users').doc(input.targetId), writes.userPatch, { merge: true });
         if (before.leaderboard) tx.delete(db.collection('leaderboard').doc(input.targetId));

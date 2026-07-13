@@ -562,6 +562,24 @@
       ]
     },
     {
+      "collectionGroup": "admin_approval_requests",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "type",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "requestedAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "compass_billing",
       "queryScope": "COLLECTION",
       "fields": [

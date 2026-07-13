@@ -45,10 +45,24 @@ describe('Admin global ban core', () => {
       userPatch: { banned: true, bannedAtMs: NOW, updatedAt: NOW },
       deleteLeaderboard: true,
       reportPatch: { status: 'banned', reviewedAtMs: NOW, reviewedBy: 'owner-1' },
-      history: { leaderboardBefore, leaderboardFingerprint: fingerprintLeaderboard(leaderboardBefore) },
+      history: { leaderboardBefore, leaderboardFingerprint: fingerprintLeaderboard(leaderboardBefore), source: 'user_report' },
     });
     expect(JSON.stringify(result)).not.toContain('league_chat_bans');
     expect(JSON.stringify(result)).not.toContain('chatRestricted');
+  });
+
+  test('preserves validated Help Board context in the authoritative ban and rollback history', () => {
+    const result = buildBanWrites({
+      uid: 'u2', name: 'Bob', reason: 'Confirmed abuse', actorUid: 'owner-1', nowMs: NOW,
+      source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42',
+    });
+
+    expect(result.bannedDocument).toMatchObject({
+      source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42',
+    });
+    expect(result.history).toMatchObject({
+      source: 'help_board', sourceTargetType: 'comment', sourceTargetId: 'comment-42',
+    });
   });
 
   test('unbans without promising leaderboard restoration when no safe before-state exists', () => {

@@ -5,6 +5,7 @@ import {
   packVoiceResearchSnapshot,
   parseVoiceResearchRequest,
   unpackVoiceResearchSnapshot,
+  exportVoiceResearchRows,
 } from './admin_voice_research';
 
 describe('Admin Voice & Research read contract', () => {
@@ -33,5 +34,13 @@ describe('Admin Voice & Research read contract', () => {
     payload.items[10_000].id = 'mutated';
     expect(restored.items[10_000]).toEqual({ id: 'i-10000' });
     expect(() => assertVoiceSnapshotBatchFits(Array(12).fill('x'.repeat(700_000)))).toThrow('voice_snapshot_too_large');
+  });
+
+  test('exports survey answers into one column per question', () => {
+    const csv = exportVoiceResearchRows('surveys', [{ uid: 'u1', submittedAtMs: 10, platform: 'ios', appVersion: '1.0', answers: { q1: { optionId: 'yes', comment: 'Because' }, q2: { optionId: 'comment', comment: '=formula' } } }], { selectedSurveyId: 's1', surveys: [{ surveyId: 's1', questions: [{ id: 'q1' }, { id: 'q2' }] }] });
+    expect(csv.split('\r\n')[0]).toBe('"uid","submittedAtMs","platform","appVersion","q1","q2"');
+    expect(csv).toContain('"yes — Because"');
+    expect(csv).toContain('"comment — =formula"');
+    expect(csv).not.toContain('"answers"');
   });
 });

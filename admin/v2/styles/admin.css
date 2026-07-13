@@ -387,6 +387,7 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
 .voice-question-summary > div { display: grid; grid-template-columns: minmax(120px, .8fr) minmax(120px, 1fr) auto; gap: 8px; align-items: center; }
 .voice-question-summary progress { width: 100%; accent-color: var(--green); }
 .voice-survey-form { border-top: 1px solid var(--line); padding-top: 14px; }
+.voice-survey-form > .fields.section { display: none; }
 .voice-question-editors, .voice-option-editors { display: grid; gap: 12px; }
 .voice-survey-question-editor { display: grid; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-soft); }
 .voice-survey-option-editor { display: grid; grid-template-columns: minmax(130px, .5fr) repeat(2, minmax(160px, 1fr)); gap: 10px; align-items: end; padding: 10px; border-left: 3px solid var(--line); }

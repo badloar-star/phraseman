@@ -181,7 +181,14 @@ async function readCancellations(db: FirebaseFirestore.Firestore, input: ReturnT
   return { generatedAtMs: nowMs, view: input.view, items: items as unknown as Row[], summary: summary as unknown as Row, sources: [source('subscription_cancel_surveys', Math.min(snap.size, CANCEL_LIMIT), CANCEL_LIMIT, snap.size > CANCEL_LIMIT, 'Feed ограничен последними 500 записями; 14-дневные тренды рассчитаны отдельными точными aggregate-запросами.')] };
 }
 
-function exportRows(view: VoiceView, rows: readonly Row[]): string {
+export function exportVoiceResearchRows(view: VoiceView, rows: readonly Row[], summary: Row = {}): string {
+  if (view === 'surveys') {
+    const selectedId = clean(summary.selectedSurveyId, 80); const surveys = Array.isArray(summary.surveys) ? summary.surveys.map(record) : [];
+    const selected = surveys.find((survey) => clean(survey.surveyId, 80) === selectedId) || {}; const questions = Array.isArray(selected.questions) ? selected.questions.map(record) : [];
+    const columns = ['uid', 'submittedAtMs', 'platform', 'appVersion', ...questions.map((question) => clean(question.id, 80)).filter(Boolean)];
+    const lines = rows.map((row) => { const answers = record(row.answers); return columns.map((column) => { const answer = record(answers[column]); if (!Object.keys(answer).length) return row[column]; const optionId = clean(answer.optionId, 80); const comment = clean(answer.comment, 2000); return [optionId, comment].filter(Boolean).join(' — '); }); });
+    return [columns, ...lines].map((line) => line.map(csvCell).join(',')).join('\r\n');
+  }
   const columns = view.startsWith('ideas') ? ['id', 'uid', 'userName', 'status', 'category', 'title', 'description', 'benefit', 'lang', 'platform', 'appVersion', 'createdAtMs', 'decidedAtMs', 'decidedBy', 'decisionMessageRu']
     : view === 'cancel-surveys' ? ['id', 'uid', 'userName', 'reason', 'reasonText', 'platform', 'lang', 'premiumPlan', 'appVersion', 'createdAtMs']
       : view === 'onboarding-sources' ? ['uid', 'source', 'platform', 'createdAtMs']
@@ -230,7 +237,7 @@ export const adminGetVoiceResearchWorkspace = onCall(
       snapshotId = await persistSnapshot(db, actorUid, input.scope, payload);
     }
     const offset = input.cursor?.offset || 0; const items = payload.items.slice(offset, offset + input.pageSize); const next = offset + items.length;
-    return { definitionVersion: 'admin_voice_research_v1', generatedAtMs: payload.generatedAtMs, view: input.view, items, totalMatched: payload.items.length, nextCursor: next < payload.items.length ? encodeVoiceResearchCursor(snapshotId, next, input.scope) : '', snapshotCursor: encodeVoiceResearchCursor(snapshotId, 0, input.scope), summary: payload.summary, sources: payload.sources, csv: input.exportCsv ? exportRows(input.view, payload.items) : null, exportedCount: input.exportCsv ? payload.items.length : 0 };
+    return { definitionVersion: 'admin_voice_research_v1', generatedAtMs: payload.generatedAtMs, view: input.view, items, totalMatched: payload.items.length, nextCursor: next < payload.items.length ? encodeVoiceResearchCursor(snapshotId, next, input.scope) : '', snapshotCursor: encodeVoiceResearchCursor(snapshotId, 0, input.scope), summary: payload.summary, sources: payload.sources, csv: input.exportCsv ? exportVoiceResearchRows(input.view, payload.items, payload.summary) : null, exportedCount: input.exportCsv ? payload.items.length : 0 };
   },
 );
 

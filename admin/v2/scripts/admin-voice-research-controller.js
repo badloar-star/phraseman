@@ -35,9 +35,8 @@ export function createVoiceResearchController(context) {
     });
     base.surveyId = value('voice-survey-id') || base.surveyId; base.enabled = document.getElementById('voice-survey-enabled')?.checked === true; base.rewardShards = Number(value('voice-survey-reward') || 3); base.minDaysBetweenSurveys = Number(value('voice-survey-cooldown') || 7); base.accentColor = value('voice-survey-accent');
     base.audience = { ...(base.audience || {}), tier: value('voice-survey-tier') || 'any', minLessons: value('voice-survey-min-lessons') === '' ? null : Number(value('voice-survey-min-lessons')), maxLessons: value('voice-survey-max-lessons') === '' ? null : Number(value('voice-survey-max-lessons')), platforms: ['ios', 'android'].filter((platform) => document.getElementById(`voice-survey-${platform}`)?.checked) };
-    const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']; base.title = {}; base.subtitle = {};
-    for (const lang of langs) { const key = lang.replace(/[^a-z0-9]/gi, '-').toLowerCase(); const title = value(`voice-survey-title-${key}`); const subtitle = value(`voice-survey-subtitle-${key}`); if (title) base.title[lang] = title; if (subtitle) base.subtitle[lang] = subtitle; }
-    base.finalScreen = { ...(base.finalScreen || {}), title: { ...(base.finalScreen?.title || {}), ru: value('voice-survey-final-title') }, subtitle: { ...(base.finalScreen?.subtitle || {}), ru: value('voice-survey-final-subtitle') } };
+    const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']; base.title = {}; base.subtitle = {}; base.finalScreen = { title: {}, subtitle: {} };
+    for (const lang of langs) { const key = lang.replace(/[^a-z0-9]/gi, '-').toLowerCase(); const title = value(`voice-survey-title-${key}`); const subtitle = value(`voice-survey-subtitle-${key}`); const finalTitle = value(`voice-survey-final-title-${key}`); const finalSubtitle = value(`voice-survey-final-subtitle-${key}`); if (title) base.title[lang] = title; if (subtitle) base.subtitle[lang] = subtitle; if (finalTitle) base.finalScreen.title[lang] = finalTitle; if (finalSubtitle) base.finalScreen.subtitle[lang] = finalSubtitle; }
     return base;
   }
   function ideaPayload(target) {

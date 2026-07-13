@@ -30,6 +30,10 @@ describe('Admin v2 Voice & Research Center', () => {
     expect(view).toContain('surveyQuestionSummary');
     expect(view).toContain('Проверить цену и регионы');
     expect(view).toContain('AI-черновик принятия');
+    expect(view).toContain("option('found_better_app'");
+    expect(view).toContain("option('other'");
+    expect(view).toContain('voice-survey-final-title-${key}');
+    expect(view).toContain('voice-survey-final-subtitle-${key}');
     expect(controller).toContain('previewVoiceResearchMutation');
     expect(controller).toContain('applyVoiceResearchMutation');
     expect(controller).toContain("preview('survey_create'");

@@ -100,7 +100,15 @@
     "assignment_quality": { "valueClass": "enum_code", "description": "Frozen or excluded fallback assignment quality." },
     "operation": { "valueClass": "enum_code", "description": "Allowlisted product operation code." },
     "failure_code": { "valueClass": "enum_code", "description": "Normalized bounded failure code without raw error text." },
-    "retryable": { "valueClass": "boolean", "description": "Whether the bounded operation may be retried." }
+    "retryable": { "valueClass": "boolean", "description": "Whether the bounded operation may be retried." },
+    "channel_id": { "valueClass": "opaque_id", "description": "Bounded YouTube channel identifier." },
+    "video_id": { "valueClass": "opaque_id", "description": "Bounded YouTube video identifier." },
+    "video_title": { "valueClass": "bounded_text", "description": "Normalized catalog video title truncated to 100 characters; never user-authored text." },
+    "playback_id": { "valueClass": "opaque_id", "description": "Random identifier for one embedded playback attempt." },
+    "active_watch_ms": { "valueClass": "duration_ms", "description": "Bounded cumulative wall-clock playback time." },
+    "position_ms": { "valueClass": "duration_ms", "description": "Bounded current YouTube player position." },
+    "max_position_permille": { "valueClass": "integer", "description": "Bounded maximum player position from 0 to 1000." },
+    "end_reason": { "valueClass": "enum_code", "description": "Allowlisted playback terminal reason." }
   },
   "fieldSets": {
     "session": ["schema_version", "event_id", "session_id", "screen_id", "platform", "app_version", "build_number", "study_target", "occurred_at_ms", "duration_ms", "leave_reason"],
@@ -110,7 +118,14 @@
     "reviewAnswer": ["schema_version", "event_id", "session_id", "review_session_id", "review_attempt_id", "analytics_item_id", "lesson_id", "study_target", "source", "review_mode", "content_version", "correct", "response_time_ms", "actual_delay_bucket", "due_status", "previous_repetitions", "next_repetitions", "previous_interval_days", "next_interval_days", "previous_mastery_state", "next_mastery_state", "mastery_transition", "occurred_at_ms"],
     "reviewSession": ["schema_version", "event_id", "session_id", "review_session_id", "study_target", "review_mode", "planned_item_count", "answered_item_count", "correct_item_count", "duration_ms", "completion_reason", "abandon_reason", "occurred_at_ms"],
     "experimentExposure": ["schema_version", "event_id", "session_id", "experiment_id", "definition_version", "variant_id", "control_variant_id", "exposure_id", "surface", "config_revision", "assignment_quality", "app_version", "build_number", "occurred_at_ms"],
-    "operationFailure": ["schema_version", "event_id", "session_id", "feature", "operation", "failure_code", "retryable", "app_version", "build_number", "occurred_at_ms"]
+    "operationFailure": ["schema_version", "event_id", "session_id", "feature", "operation", "failure_code", "retryable", "app_version", "build_number", "occurred_at_ms"],
+    "youtube_common": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms"],
+    "youtube_video": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms", "video_id"],
+    "youtube_select": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms", "video_id", "video_title"],
+    "youtube_playback": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms", "video_id", "playback_id"],
+    "youtube_playback_snapshot": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms", "video_id", "playback_id", "active_watch_ms", "position_ms", "duration_ms", "max_position_permille"],
+    "youtube_playback_end": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms", "video_id", "playback_id", "active_watch_ms", "position_ms", "duration_ms", "max_position_permille", "end_reason"],
+    "youtube_channel": ["schema_version", "event_id", "session_id", "channel_id", "source", "platform", "app_version", "build_number", "occurred_at_ms", "video_id"]
   },
   "events": [
     { "name": "product_session_start", "entity": "session", "warehouse": "product", "fieldSet": "session" },
@@ -147,7 +162,16 @@
     { "name": "paywall_exit_offer_declined", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
     { "name": "exit_trial_offer_shown", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
     { "name": "exit_trial_offer_accepted", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
-    { "name": "exit_trial_offer_declined", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" }
+    { "name": "exit_trial_offer_declined", "entity": "impression", "warehouse": "product", "fieldSet": "paywall" },
+    { "name": "youtube_home_entry_click", "entity": "event", "warehouse": "product", "fieldSet": "youtube_common" },
+    { "name": "youtube_catalog_open", "entity": "event", "warehouse": "product", "fieldSet": "youtube_common" },
+    { "name": "youtube_video_select", "entity": "event", "warehouse": "product", "fieldSet": "youtube_select" },
+    { "name": "youtube_player_ready", "entity": "event", "warehouse": "product", "fieldSet": "youtube_video" },
+    { "name": "youtube_playback_start", "entity": "attempt", "warehouse": "product", "fieldSet": "youtube_playback" },
+    { "name": "youtube_playback_checkpoint", "entity": "attempt", "warehouse": "product", "fieldSet": "youtube_playback_snapshot" },
+    { "name": "youtube_playback_end", "entity": "attempt", "warehouse": "product", "fieldSet": "youtube_playback_end" },
+    { "name": "youtube_external_video_open", "entity": "event", "warehouse": "product", "fieldSet": "youtube_video" },
+    { "name": "youtube_channel_open", "entity": "event", "warehouse": "product", "fieldSet": "youtube_channel" }
   ],
   "metrics": [
     { "id": "sessions.lifecycle.v1", "events": ["product_session_start", "product_session_resume", "product_session_background"], "rowKinds": ["session_summary"] },
@@ -161,6 +185,15 @@
     { "id": "retention.firebase_first_touch.v1", "events": ["product_session_start"], "rowKinds": ["true_retention_day", "true_retention_summary", "active_day_bucket"] },
     { "id": "learning.review_outcomes.v1", "events": ["learning_review_session_start", "learning_review_answer", "learning_review_session_complete", "learning_review_session_abandoned"], "rowKinds": ["review_summary", "review_delay", "mastery_transition", "review_content", "review_session_summary", "weekly_effective_learner"] },
     { "id": "experiments.exposure.v1", "events": ["experiment_exposure"], "rowKinds": ["experiment_exposure"] },
-    { "id": "reliability.operation_failure.v1", "events": ["product_operation_failure"], "rowKinds": ["operation_failure", "release_adoption"] }
+    { "id": "reliability.operation_failure.v1", "events": ["product_operation_failure"], "rowKinds": ["operation_failure", "release_adoption"] },
+    { "id": "youtube.home.entry.click.v1", "events": ["youtube_home_entry_click"], "rowKinds": ["event"] },
+    { "id": "youtube.catalog.open.v1", "events": ["youtube_catalog_open"], "rowKinds": ["event"] },
+    { "id": "youtube.video.select.v1", "events": ["youtube_video_select"], "rowKinds": ["event"] },
+    { "id": "youtube.player.ready.v1", "events": ["youtube_player_ready"], "rowKinds": ["event"] },
+    { "id": "youtube.playback.start.v1", "events": ["youtube_playback_start"], "rowKinds": ["attempt"] },
+    { "id": "youtube.playback.checkpoint.v1", "events": ["youtube_playback_checkpoint"], "rowKinds": ["attempt"] },
+    { "id": "youtube.playback.end.v1", "events": ["youtube_playback_end"], "rowKinds": ["attempt"] },
+    { "id": "youtube.external.video.open.v1", "events": ["youtube_external_video_open"], "rowKinds": ["event"] },
+    { "id": "youtube.channel.open.v1", "events": ["youtube_channel_open"], "rowKinds": ["event"] }
   ]
 }

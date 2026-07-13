@@ -10,6 +10,7 @@ export type ProductAnalyticsEntity =
 export type ProductAnalyticsWarehouse = 'product' | 'revenue' | 'telemetry_only';
 export type ProductAnalyticsFieldValueClass =
   | 'boolean'
+  | 'bounded_text'
   | 'duration_ms'
   | 'enum_code'
   | 'integer'
@@ -96,6 +97,15 @@ export const PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES = [
   'exit_trial_offer_shown',
   'exit_trial_offer_accepted',
   'exit_trial_offer_declined',
+  'youtube_home_entry_click',
+  'youtube_catalog_open',
+  'youtube_video_select',
+  'youtube_player_ready',
+  'youtube_playback_start',
+  'youtube_playback_checkpoint',
+  'youtube_playback_end',
+  'youtube_external_video_open',
+  'youtube_channel_open',
 ] as const;
 
 export type GovernedProductAnalyticsEventName =
@@ -195,5 +205,4 @@ export function isValidGovernedSoftUpsellChainPayload(
     && typeof impressionId === 'string' && /^[A-Za-z0-9][A-Za-z0-9_-]{7,79}$/.test(impressionId)
     && typeof eventId === 'string' && eventId.length <= 80;
 }
-
 export default function __RouteShim() { return null; }

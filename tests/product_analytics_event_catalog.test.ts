@@ -1,6 +1,7 @@
 import {
   PRODUCT_ANALYTICS_FIELD_REGISTRY,
   PRODUCT_ANALYTICS_EVENT_CATALOG,
+  PRODUCT_ANALYTICS_METRIC_REGISTRY,
   PRODUCT_ANALYTICS_WAREHOUSE_EVENTS,
   canonicalProductAnalyticsEventName,
   isValidGovernedSoftUpsellChainPayload,
@@ -8,6 +9,17 @@ import {
 } from '../app/product_analytics_event_catalog';
 import type { AnalyticsEvent } from '../app/analytics';
 
+const youtubeEvents = [
+  'youtube_home_entry_click',
+  'youtube_catalog_open',
+  'youtube_video_select',
+  'youtube_player_ready',
+  'youtube_playback_start',
+  'youtube_playback_checkpoint',
+  'youtube_playback_end',
+  'youtube_external_video_open',
+  'youtube_channel_open',
+] as const;
 describe('product analytics event catalog', () => {
   it('normalizes the legacy lesson abandon spelling to the warehouse name', () => {
     expect(canonicalProductAnalyticsEventName('lesson_abandon')).toBe('lesson_abandoned');
@@ -55,6 +67,7 @@ describe('product analytics event catalog', () => {
       'purchase_failed',
       'purchase_started',
       'trial_started',
+      ...youtubeEvents,
     ].sort());
   });
 
@@ -86,6 +99,41 @@ describe('product analytics event catalog', () => {
   it('exposes the canonical warehouse spelling through the public analytics type', () => {
     const event: AnalyticsEvent = 'lesson_abandoned';
     expect(event).toBe('lesson_abandoned');
+  });
+
+  it('governs all YouTube events with exact fields and unique metric ids', () => {
+    const definitions = youtubeEvents.map(name => (
+      PRODUCT_ANALYTICS_EVENT_CATALOG.find(event => event.name === name)
+    ));
+    const metricIds = definitions.flatMap(definition => definition?.metricIds ?? []);
+
+    expect(definitions.every(Boolean)).toBe(true);
+    expect(definitions.every(definition => definition?.warehouse === 'product')).toBe(true);
+    expect(definitions.slice(0, 4).every(definition => definition?.entity === 'event')).toBe(true);
+    expect(definitions.slice(4, 7).every(definition => definition?.entity === 'attempt')).toBe(true);
+    expect(definitions.slice(7).every(definition => definition?.entity === 'event')).toBe(true);
+    expect(metricIds).toEqual(youtubeEvents.map(name => (
+      `${name.replace(/^youtube_/, 'youtube.').replaceAll('_', '.')}.v1`
+    )));
+    expect(new Set(metricIds).size).toBe(youtubeEvents.length);
+
+    for (const definition of definitions) {
+      expect(definition?.allowedFields).toEqual(expect.arrayContaining([
+        'schema_version',
+        'event_id',
+        'session_id',
+        'channel_id',
+        'source',
+        'platform',
+        'app_version',
+        'build_number',
+        'occurred_at_ms',
+      ]));
+      expect(definition?.allowedFields).not.toContain('product_session_id');
+    }
+    expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.video_title.valueClass).toBe('bounded_text');
+    expect(PRODUCT_ANALYTICS_METRIC_REGISTRY.filter(metric => metric.id.startsWith('youtube.')))
+      .toHaveLength(youtubeEvents.length);
   });
 });
 

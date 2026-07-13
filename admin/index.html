@@ -40243,5 +40243,67 @@
   }
 })();
 </script>
+<script>
+/* Safety & Moderation cutover. The legacy tabs remain only as a disabled
+   emergency layout reference; all live reads and writes use Admin v2 callables. */
+(function installNativeSafetyModerationRedirects() {
+  var nativeTabs = new Set(['user-reports', 'safety-flags', 'age-consent', 'compliance-radar', 'ban-list']);
+  var archiveMode = new URLSearchParams(window.location.search).get('legacyArchive') === '1';
+  var go = function goSafetyV2(hash, uid) {
+    var query = uid ? '?moderateUser=' + encodeURIComponent(String(uid)) : '';
+    window.location.href = './v2/index.html' + query + '#' + encodeURIComponent(String(hash));
+  };
+
+  window.urAction = function urActionSafetyV2() { window.location.href = './v2/index.html#user-reports'; };
+  window.urBulkAction = function urBulkActionSafetyV2() { window.location.href = './v2/index.html#user-reports'; };
+  window.urMarkReviewed = function urMarkReviewedSafetyV2() { window.location.href = './v2/index.html#user-reports'; };
+  window.markSafetyHandled = function markSafetyHandledSafetyV2() { window.location.href = './v2/index.html#safety-flags'; };
+  window.markAllSafetyHandled = function markAllSafetyHandledSafetyV2() { window.location.href = './v2/index.html#safety-flags'; };
+  window.unbanFromList = function unbanFromListSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
+  window.banByUidPrompt = function banByUidPromptSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
+  window.banUser = function banUserSafetyV2(uid) { go('ban-list', uid); };
+  window.unbanUser = function unbanUserSafetyV2() { window.location.href = './v2/index.html#ban-list'; };
+  window.helpBoardBanAuthor = function helpBoardBanAuthorSafetyV2(uid) { go('ban-list', uid); };
+  window.exportUserReportsCSV = function exportUserReportsCSVSafetyV2() { window.location.href = './v2/index.html#user-reports'; };
+
+  var originalSwitchTab = window.switchTab;
+  if (!archiveMode && typeof originalSwitchTab === 'function') {
+    window.switchTab = function switchTabSafetyModerationV2(tab, opts) {
+      if (nativeTabs.has(String(tab || ''))) {
+        window.location.href = './v2/index.html#' + encodeURIComponent(String(tab));
+        return;
+      }
+      return originalSwitchTab.call(this, tab, opts);
+    };
+    window.loadUserReports = async function loadUserReportsSafetyV2() { go('user-reports'); };
+    window.loadSafetyFlags = async function loadSafetyFlagsSafetyV2() { go('safety-flags'); };
+    window.loadAgeConsent = async function loadAgeConsentSafetyV2() { go('age-consent'); };
+    window.loadComplianceRadar = async function loadComplianceRadarSafetyV2() { go('compliance-radar'); };
+    window.loadBanList = async function loadBanListSafetyV2() { go('ban-list'); };
+    var initialTab = decodeURIComponent(String(window.location.hash || '').replace(/^#/, '').split(':').pop() || '');
+    if (nativeTabs.has(initialTab)) window.location.replace('./v2/index.html#' + encodeURIComponent(initialTab));
+    return;
+  }
+
+  if (archiveMode) {
+    document.documentElement.setAttribute('data-safety-moderation-archive', 'true');
+    var style = document.createElement('style');
+    style.textContent = '[data-safety-moderation-archive="true"] #tab-user-reports :is(button,input,textarea,select),[data-safety-moderation-archive="true"] #tab-safety-flags :is(button,input,textarea,select),[data-safety-moderation-archive="true"] #tab-age-consent :is(button,input,textarea,select),[data-safety-moderation-archive="true"] #tab-compliance-radar :is(button,input,textarea,select),[data-safety-moderation-archive="true"] #tab-ban-list :is(button,input,textarea,select){pointer-events:none!important;opacity:.58!important}';
+    document.head.appendChild(style);
+    var archiveNotice = function archiveNotice(targetId, hash) {
+      var target = document.getElementById(targetId);
+      if (target) target.innerHTML = '<div class="reports-empty"><strong>Архивный макет — без прямого доступа к данным.</strong><br>Живые данные и действия доступны только в <a href="./v2/index.html#' + hash + '">новом центре безопасности и модерации</a>.</div>';
+    };
+    window.loadUserReports = async function loadUserReportsArchive() { archiveNotice('ur-list', 'user-reports'); };
+    window.loadSafetyFlags = async function loadSafetyFlagsArchive() { archiveNotice('sf-list', 'safety-flags'); };
+    window.loadAgeConsent = async function loadAgeConsentArchive() { archiveNotice('ac-summary', 'age-consent'); };
+    window.loadComplianceRadar = async function loadComplianceRadarArchive() { archiveNotice('cr-content', 'compliance-radar'); };
+    window.loadBanList = async function loadBanListArchive() { archiveNotice('bl-list', 'ban-list'); };
+    window.filterUserReports = function filterUserReportsArchive() { archiveNotice('ur-list', 'user-reports'); };
+    window.filterSafetyFlags = function filterSafetyFlagsArchive() { archiveNotice('sf-list', 'safety-flags'); };
+    window.renderBanList = function renderBanListArchive() { archiveNotice('bl-list', 'ban-list'); };
+  }
+})();
+</script>
 </body>
 </html>

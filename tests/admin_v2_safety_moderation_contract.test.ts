@@ -69,6 +69,9 @@ describe('Admin v2 Safety & Moderation Center', () => {
     expect(view).toContain('requiresApproval');
     expect(view).toContain('rollbackPath');
     expect(view).toContain('irreversible');
+    expect(view).toContain('safety-manual-ban-uid');
+    expect(controller).toContain('safety-preview-manual-ban');
+    expect(controller).toContain("new URLSearchParams(globalThis.location.search).get('moderateUser')");
   });
 
   test('exposes all protected callable wrappers and no direct browser data SDK', () => {

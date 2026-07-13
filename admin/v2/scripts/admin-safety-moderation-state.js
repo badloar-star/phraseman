@@ -25,6 +25,7 @@ export function createSafetyModerationState(view = 'overview') {
     sensitive: null,
     preview: null,
     approvalId: '',
+    manualBanUid: '',
     operationKeys: {},
     error: '',
   };
@@ -33,4 +34,3 @@ export function createSafetyModerationState(view = 'overview') {
 export function safetyModerationViewFromCapability(id) {
   return CAPABILITY_VIEW[id] || (SAFETY_MODERATION_VIEWS.includes(id) ? id : 'overview');
 }
-

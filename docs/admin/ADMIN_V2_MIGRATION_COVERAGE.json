@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-13T06:06:19.426Z",
+  "generatedAt": "2026-07-13T06:13:03.783Z",
   "source": {
     "buttons": 471,
-    "functions": 1027,
+    "functions": 1055,
     "links": 359,
     "legacyFiles": [
       "admin/index.html",
@@ -29727,6 +29727,510 @@
     {
       "coverageId": "function-956",
       "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "installNativeSafetyModerationRedirects",
+        "line": 40249,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-957",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "goSafetyV2",
+        "line": 40252,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-958",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "urActionSafetyV2",
+        "line": 40257,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-959",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "urBulkActionSafetyV2",
+        "line": 40258,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-960",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "urMarkReviewedSafetyV2",
+        "line": 40259,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-961",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "markSafetyHandledSafetyV2",
+        "line": 40260,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-962",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "markAllSafetyHandledSafetyV2",
+        "line": 40261,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-963",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "unbanFromListSafetyV2",
+        "line": 40262,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-964",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "banByUidPromptSafetyV2",
+        "line": 40263,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-965",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "banUserSafetyV2",
+        "line": 40264,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-966",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "unbanUserSafetyV2",
+        "line": 40265,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-967",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "helpBoardBanAuthorSafetyV2",
+        "line": 40266,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-968",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "exportUserReportsCSVSafetyV2",
+        "line": 40267,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-969",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "switchTabSafetyModerationV2",
+        "line": 40271,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-970",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadUserReports",
+        "line": 40278,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-971",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadSafetyFlags",
+        "line": 40279,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-972",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadAgeConsent",
+        "line": 40280,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-973",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadComplianceRadar",
+        "line": 40281,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-974",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadBanList",
+        "line": 40282,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "community",
+        "permission": "community.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-975",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "archiveNotice",
+        "line": 40293,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-976",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadUserReports",
+        "line": 40297,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-977",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadSafetyFlags",
+        "line": 40298,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-978",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadAgeConsent",
+        "line": 40299,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-979",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadComplianceRadar",
+        "line": 40300,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "users",
+        "permission": "users.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-980",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "loadBanList",
+        "line": 40301,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "community",
+        "permission": "community.read"
+      },
+      "status": "fallback",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-981",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "filterUserReportsArchive",
+        "line": 40302,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-982",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "filterSafetyFlagsArchive",
+        "line": 40303,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-983",
+      "legacy": {
+        "sourceFile": "admin/index.html",
+        "capabilityId": null,
+        "name": "renderBanListArchive",
+        "line": 40304,
+        "writes": false,
+        "callable": false
+      },
+      "target": {
+        "route": "diagnostics",
+        "permission": "diagnostics.read"
+      },
+      "status": "inventory",
+      "owner": null,
+      "notes": "Нужен read-model с loading/empty/error состояниями."
+    },
+    {
+      "coverageId": "function-984",
+      "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
         "name": "escapeHtml",
@@ -29743,7 +30247,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-957",
+      "coverageId": "function-985",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29761,7 +30265,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-958",
+      "coverageId": "function-986",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29779,7 +30283,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-959",
+      "coverageId": "function-987",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29797,7 +30301,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-960",
+      "coverageId": "function-988",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29815,7 +30319,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-961",
+      "coverageId": "function-989",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29833,7 +30337,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-962",
+      "coverageId": "function-990",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29851,7 +30355,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-963",
+      "coverageId": "function-991",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29869,7 +30373,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-964",
+      "coverageId": "function-992",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29887,7 +30391,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-965",
+      "coverageId": "function-993",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29905,7 +30409,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-966",
+      "coverageId": "function-994",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29923,7 +30427,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-967",
+      "coverageId": "function-995",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29941,7 +30445,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-968",
+      "coverageId": "function-996",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29959,7 +30463,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-969",
+      "coverageId": "function-997",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29977,7 +30481,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-970",
+      "coverageId": "function-998",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -29995,7 +30499,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-971",
+      "coverageId": "function-999",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30013,7 +30517,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-972",
+      "coverageId": "function-1000",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30031,7 +30535,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-973",
+      "coverageId": "function-1001",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30049,7 +30553,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-974",
+      "coverageId": "function-1002",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30067,7 +30571,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-975",
+      "coverageId": "function-1003",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30085,7 +30589,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-976",
+      "coverageId": "function-1004",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30103,7 +30607,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-977",
+      "coverageId": "function-1005",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30121,7 +30625,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-978",
+      "coverageId": "function-1006",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30139,7 +30643,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-979",
+      "coverageId": "function-1007",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30157,7 +30661,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-980",
+      "coverageId": "function-1008",
       "legacy": {
         "sourceFile": "admin/testers.html",
         "capabilityId": "telegram-payments",
@@ -30175,7 +30679,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-981",
+      "coverageId": "function-1009",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30193,7 +30697,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-982",
+      "coverageId": "function-1010",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30211,7 +30715,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-983",
+      "coverageId": "function-1011",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30229,7 +30733,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-984",
+      "coverageId": "function-1012",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30247,7 +30751,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-985",
+      "coverageId": "function-1013",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30265,7 +30769,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-986",
+      "coverageId": "function-1014",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30283,7 +30787,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-987",
+      "coverageId": "function-1015",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30301,7 +30805,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-988",
+      "coverageId": "function-1016",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30319,7 +30823,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-989",
+      "coverageId": "function-1017",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30337,7 +30841,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-990",
+      "coverageId": "function-1018",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30355,7 +30859,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-991",
+      "coverageId": "function-1019",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30373,7 +30877,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-992",
+      "coverageId": "function-1020",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30391,7 +30895,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-993",
+      "coverageId": "function-1021",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30409,7 +30913,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-994",
+      "coverageId": "function-1022",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30427,7 +30931,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-995",
+      "coverageId": "function-1023",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30445,7 +30949,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-996",
+      "coverageId": "function-1024",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30463,7 +30967,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-997",
+      "coverageId": "function-1025",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30481,7 +30985,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-998",
+      "coverageId": "function-1026",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30499,7 +31003,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-999",
+      "coverageId": "function-1027",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30517,7 +31021,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-1000",
+      "coverageId": "function-1028",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30535,7 +31039,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-1001",
+      "coverageId": "function-1029",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30553,7 +31057,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-1002",
+      "coverageId": "function-1030",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30571,7 +31075,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1003",
+      "coverageId": "function-1031",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30589,7 +31093,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1004",
+      "coverageId": "function-1032",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30607,7 +31111,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1005",
+      "coverageId": "function-1033",
       "legacy": {
         "sourceFile": "admin/beta_testers.html",
         "capabilityId": "beta-testers",
@@ -30625,7 +31129,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1006",
+      "coverageId": "function-1034",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30643,7 +31147,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1007",
+      "coverageId": "function-1035",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30661,7 +31165,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1008",
+      "coverageId": "function-1036",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30679,7 +31183,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1009",
+      "coverageId": "function-1037",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30697,7 +31201,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1010",
+      "coverageId": "function-1038",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30715,7 +31219,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1011",
+      "coverageId": "function-1039",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30733,7 +31237,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1012",
+      "coverageId": "function-1040",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30751,7 +31255,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1013",
+      "coverageId": "function-1041",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30769,7 +31273,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1014",
+      "coverageId": "function-1042",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30787,7 +31291,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1015",
+      "coverageId": "function-1043",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30805,7 +31309,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1016",
+      "coverageId": "function-1044",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30823,7 +31327,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1017",
+      "coverageId": "function-1045",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30841,7 +31345,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1018",
+      "coverageId": "function-1046",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30859,7 +31363,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1019",
+      "coverageId": "function-1047",
       "legacy": {
         "sourceFile": "admin/full.html",
         "capabilityId": "full-content-control",
@@ -30877,7 +31381,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1020",
+      "coverageId": "function-1048",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -30895,7 +31399,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1021",
+      "coverageId": "function-1049",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -30913,7 +31417,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-1022",
+      "coverageId": "function-1050",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -30931,7 +31435,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1023",
+      "coverageId": "function-1051",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -30949,7 +31453,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-1024",
+      "coverageId": "function-1052",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -30967,7 +31471,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1025",
+      "coverageId": "function-1053",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -30985,7 +31489,7 @@
       "notes": "Нужен server command, audit и rollback/confirm gate."
     },
     {
-      "coverageId": "function-1026",
+      "coverageId": "function-1054",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -31003,7 +31507,7 @@
       "notes": "Нужен read-model с loading/empty/error состояниями."
     },
     {
-      "coverageId": "function-1027",
+      "coverageId": "function-1055",
       "legacy": {
         "sourceFile": "admin/site.html",
         "capabilityId": "website-payments",
@@ -31039,10 +31543,10 @@
       "blocked": 0
     },
     "functions": {
-      "total": 1027,
-      "inventory": 794,
+      "total": 1055,
+      "inventory": 812,
       "ported": 0,
-      "fallback": 233,
+      "fallback": 243,
       "guarded": 0,
       "blocked": 0
     }

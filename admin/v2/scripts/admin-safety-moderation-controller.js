@@ -67,6 +67,8 @@ export function createSafetyModerationController(context) {
     },
     async maybeLoad() {
       if (context.route() === 'safety-moderation' && context.authorized() && model().state === 'idle') {
+        const moderateUser = String(new URLSearchParams(globalThis.location.search).get('moderateUser') || '').trim();
+        if (moderateUser) patch({ manualBanUid: moderateUser });
         if (model().view === 'overview' && !context.can('users.moderation.read')) this.reset(context.defaultView());
         await load(false);
       }
@@ -91,6 +93,12 @@ export function createSafetyModerationController(context) {
         else if (action === 'safety-preview-warning') await preview('report_warn', target.dataset.targetId, { uid: target.dataset.uid, name: target.dataset.name, message: value(`safety-warning-${target.dataset.targetId}`) });
         else if (action === 'safety-preview-rename') await preview('report_rename', target.dataset.targetId, { uid: target.dataset.uid, oldName: target.dataset.name, newName: value(`safety-rename-${target.dataset.targetId}`), sourceReportId: target.dataset.targetId });
         else if (action === 'safety-preview-ban') await preview('user_ban', target.dataset.targetId, { name: target.dataset.name, sourceReportId: target.dataset.reportId, source: 'user_report' }, reasonFor(target.dataset.reportId));
+        else if (action === 'safety-preview-manual-ban') {
+          const uid = value('safety-manual-ban-uid');
+          const reason = value('safety-manual-ban-reason');
+          if (!uid) return context.message('Укажите канонический UID пользователя.', 'warning');
+          await preview('user_ban', uid, { name: value('safety-manual-ban-name'), source: 'manual' }, reason);
+        }
         else if (action === 'safety-preview-unban') await preview('user_unban', target.dataset.targetId, { historyId: '' });
         else if (action === 'safety-preview-flag') await preview('safety_set_disposition', target.dataset.targetId, { handled: true, disposition: value(`safety-disposition-${target.dataset.targetId}`), note: value(`safety-note-${target.dataset.targetId}`) });
         else if (action === 'safety-preview-flags-bulk') await preview('safety_handle_bulk', model().selectedIds[0] || 'bulk-flags', { targetIds: model().selectedIds, disposition: 'reviewed', note: '' }, bulkReason());

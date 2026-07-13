@@ -1624,6 +1624,7 @@ export { adminListCacheEntries, adminExportCacheEntries, adminPreviewCacheReset,
 export { adminGetCompassWorkspace, adminPreviewCompassChange, adminRequestCompassApproval, adminApproveCompassChange, adminApplyCompassChange } from './admin_compass_control';
 export { adminGetVipSurveyWorkspace, adminListVipSurveyResponses, adminPreviewVipSurveyCampaign, adminApplyVipSurveyCampaign } from './admin_vip_survey_control';
 export { adminGetAlertsWorkspace, adminPreviewAlertsConfig, adminApplyAlertsConfig, adminPreviewAlertTest, adminQueueAlertTest } from './admin_alerts_control';
+export { adminGetPlusControlWorkspace, adminPreviewLegacyPlusMigration, adminApplyLegacyPlusMigration } from './admin_plus_control';
 export { adminPreviewManualAccess, adminApplyManualAccess } from './admin_manual_access';
 export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';
 export {

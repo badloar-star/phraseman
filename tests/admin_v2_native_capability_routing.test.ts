@@ -23,14 +23,17 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly twenty-three proven native capabilities as guarded', () => {
+  test('marks exactly twenty-six proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
-    expect(native).toHaveLength(23);
+    expect(native).toHaveLength(26);
     expect(native.map(({ id, nativeRoute }) => [id, nativeRoute])).toEqual(expect.arrayContaining([
       ['analytics', 'analytics'],
       ['alerts', 'alerts'],
+      ['premium', 'money'],
+      ['vip', 'money'],
+      ['plus-radar', 'money'],
       ['app-messages', 'campaigns'],
       ['asset-studio', 'asset-studio'],
       ['audit', 'diagnostics'],

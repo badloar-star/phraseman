@@ -40182,5 +40182,29 @@
   setTimeout(init, 1200);
 })();
 </script>
+<script>
+/* Native v2 cutover adapters. The legacy markup stays available as a read-only
+   archive, while every public loader enters the server-backed Plus workspace. */
+(function installNativePlusControlRedirects() {
+  window.loadPremiumData = function loadPremiumDataV2() {
+    window.location.href = './v2/index.html#premium';
+  };
+  window.loadVipData = function loadVipDataV2() {
+    window.location.href = './v2/index.html#vip';
+  };
+  window.loadPlusRadarData = function loadPlusRadarDataV2() {
+    window.location.href = './v2/index.html#plus-radar';
+  };
+  window.repairAdminGrantPremiumCompat = function repairAdminGrantPremiumCompatV2() {
+    window.location.href = './v2/index.html#vip';
+  };
+  window.openPremiumGrantModal = function openPremiumGrantModalV2(uid) {
+    window.location.href = './v2/index.html?openUser=' + encodeURIComponent(uid || '') + '#users';
+  };
+  window.revokeAdminVip = function revokeAdminVipV2(uid) {
+    window.location.href = './v2/index.html?openUser=' + encodeURIComponent(uid || '') + '#users';
+  };
+})();
+</script>
 </body>
 </html>

@@ -155,12 +155,41 @@ export function isGiftAccessActive(progress: ProgressLike, now: number = Date.no
   return introUntil > now || loyaltyUntil > now;
 }
 
+/** Канонический breakdown доступа для админских и продуктовых проекций. */
+export function resolvePremiumAccessBreakdown(progress: ProgressLike, now: number = Date.now()): Readonly<{
+  active: boolean;
+  storeActive: boolean;
+  legacyAdminGrantActive: boolean;
+  vipShapeActive: boolean;
+  giftActive: boolean;
+  lifetimeActive: boolean;
+}> {
+  const data = progress ?? {};
+  const hasVipShape = Boolean(
+    cleanPlan(data.vip_plan)
+    || cleanStr(data.vip_active)
+    || cleanStr(data.vip_admin_override)
+    || parseProgressMs(data.vip_from)
+    || parseProgressMs(data.vip_until ?? data.vip_expiry)
+    || cleanStr(data.vip_admin_grant_at ?? data.vip_grant_at),
+  );
+  const storeActive = isStorePremiumActive(data, now);
+  const legacyAdminGrantActive = isAdminGrantActive(data, now);
+  const vipShapeActive = hasVipShape && isVipActive(data, now);
+  const giftActive = isGiftAccessActive(data, now);
+  return Object.freeze({
+    active: storeActive || legacyAdminGrantActive || vipShapeActive || giftActive,
+    storeActive,
+    legacyAdminGrantActive,
+    vipShapeActive,
+    giftActive,
+    lifetimeActive: cleanPlan(data.premium_plan) === 'lifetime' && storeActive,
+  });
+}
+
 /** TRUE если у пользователя сейчас активен ЛЮБОЙ премиум-доступ (store / admin / VIP / подарок 72ч). */
 export function isPremiumAccessActive(progress: ProgressLike, now: number = Date.now()): boolean {
-  return isStorePremiumActive(progress, now)
-    || isAdminGrantActive(progress, now)
-    || isVipActive(progress, now)
-    || isGiftAccessActive(progress, now);
+  return resolvePremiumAccessBreakdown(progress, now).active;
 }
 
 /**

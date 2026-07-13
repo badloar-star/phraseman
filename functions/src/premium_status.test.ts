@@ -1,10 +1,17 @@
-import { isGiftAccessActive, isPremiumAccessActive, isVipActive, parseProgressMs, resolvePremiumAccess } from './premium_status';
+import { isGiftAccessActive, isPremiumAccessActive, isVipActive, parseProgressMs, resolvePremiumAccess, resolvePremiumAccessBreakdown } from './premium_status';
 
 const NOW = 1_700_000_000_000;
 const FUTURE = NOW + 86_400_000;
 const PAST = NOW - 86_400_000;
 
 describe('premium_status — серверный источник правды по премиуму', () => {
+  test('canonical breakdown exposes overlapping origins without double-counting active status', () => {
+    const breakdown = resolvePremiumAccessBreakdown({
+      premium_plan: 'yearly', premium_rc_product_id: 'yearly', premium_rc_expiry_ms: String(FUTURE),
+      vip_active: 'true', vip_plan: 'admin_vip', vip_until: String(FUTURE),
+    }, NOW);
+    expect(breakdown).toMatchObject({ active: true, storeActive: true, vipShapeActive: true, giftActive: false, legacyAdminGrantActive: false });
+  });
   describe('store-премиум (RevenueCat)', () => {
     it('monthly с expiry=0 (бессрочный активный) → премиум', () => {
       expect(isPremiumAccessActive({ premium_plan: 'monthly', premium_expiry: '0' }, NOW)).toBe(true);

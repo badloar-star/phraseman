@@ -81,6 +81,9 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   compass: 'compass',
   'review-promo': 'review-promo',
   alerts: 'alerts',
+  premium: 'money',
+  vip: 'money',
+  'plus-radar': 'money',
   'gmail-support': 'support',
   'website-inbox': 'support',
   'emails': 'emails',
@@ -125,7 +128,7 @@ export function resolveCapabilityHash(rawHash) {
   const directCapability = capabilityById(requestedRoute);
   if (directCapability && !requestedCapabilityId) {
     return directCapability.nativeRoute
-      ? { resolved: true, route: directCapability.nativeRoute, capabilityId: '' }
+      ? { resolved: true, route: directCapability.nativeRoute, capabilityId: directCapability.id }
       : { resolved: true, route: directCapability.route, capabilityId: directCapability.id };
   }
   const requestedCapability = capabilityById(requestedCapabilityId);

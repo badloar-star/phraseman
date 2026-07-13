@@ -1,8 +1,11 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { browserLocalPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getToken, initializeAppCheck, ReCaptchaEnterpriseProvider } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
 const ADMIN_ROLES = new Set(['owner', 'admin', 'support', 'content_editor', 'moderator', 'analyst', 'developer']);
+const ADMIN_FIREBASE_APP_ID = '1:1047658658799:web:8ddb5f1d0d152df313541a';
+const ADMIN_APP_CHECK_SITE_KEY = '6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR';
 
 function unwrap(result) {
   return result && typeof result === 'object' && 'data' in result ? result.data : result;
@@ -14,16 +17,21 @@ function renderOpenAiBudgetContract(data) {
 
 async function resolveFirebaseConfig() {
   const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
-  if (injected && typeof injected === 'object') return injected;
+  if (injected && typeof injected === 'object') return { ...injected, appId: injected.appId || ADMIN_FIREBASE_APP_ID };
   const response = await fetch('/__/firebase/init.json', { cache: 'no-store', credentials: 'same-origin' });
   if (!response.ok) throw new Error('firebase_hosting_config_unavailable');
   const config = await response.json();
   if (!config || typeof config !== 'object' || !config.projectId) throw new Error('firebase_hosting_config_invalid');
-  return config;
+  return { ...config, appId: config.appId || ADMIN_FIREBASE_APP_ID };
 }
 
 export async function createFirebaseAdminActions({ onAuth }) {
   const app = initializeApp(await resolveFirebaseConfig());
+  const appCheck = initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider(ADMIN_APP_CHECK_SITE_KEY),
+    isTokenAutoRefreshEnabled: true,
+  });
+  await getToken(appCheck, false);
   const auth = getAuth(app);
   try {
     await setPersistence(auth, browserLocalPersistence);
@@ -83,6 +91,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const applyAlertsConfigCallable = httpsCallable(functionsUs, 'adminApplyAlertsConfig');
   const previewAlertTestCallable = httpsCallable(functionsUs, 'adminPreviewAlertTest');
   const queueAlertTestCallable = httpsCallable(functionsUs, 'adminQueueAlertTest');
+  const getPlusControlWorkspaceCallable = httpsCallable(functionsUs, 'adminGetPlusControlWorkspace');
+  const previewLegacyPlusMigrationCallable = httpsCallable(functionsUs, 'adminPreviewLegacyPlusMigration');
+  const applyLegacyPlusMigrationCallable = httpsCallable(functionsUs, 'adminApplyLegacyPlusMigration');
   const websiteInboxListCallable = httpsCallable(functionsUs, 'adminWebsiteInboxList');
   const websiteInboxMarkReadCallable = httpsCallable(functionsUs, 'adminWebsiteInboxMarkRead');
   const listAssetJobsCallable = httpsCallable(functionsUs, 'adminListAssetJobs');
@@ -196,6 +207,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     applyAlertsConfig: async (input) => unwrap(await applyAlertsConfigCallable(input)),
     previewAlertTest: async (input) => unwrap(await previewAlertTestCallable(input)),
     queueAlertTest: async (input) => unwrap(await queueAlertTestCallable(input)),
+    getPlusControlWorkspace: async (input) => unwrap(await getPlusControlWorkspaceCallable(input)),
+    previewLegacyPlusMigration: async (input) => unwrap(await previewLegacyPlusMigrationCallable(input)),
+    applyLegacyPlusMigration: async (input) => unwrap(await applyLegacyPlusMigrationCallable(input)),
     listWebsiteInbox: async (input) => unwrap(await websiteInboxListCallable(input)),
     markWebsiteInboxRead: async (input) => unwrap(await websiteInboxMarkReadCallable(input)),
     listAssetJobs: async (input) => unwrap(await listAssetJobsCallable(input)),

@@ -11,6 +11,7 @@ jest.mock('firebase-admin', () => ({
       serverTimestamp: () => ({ __serverTimestamp: true }),
       delete: () => ({ __delete: true }),
     },
+    FieldPath: { documentId: () => '__name__' },
   }),
 }));
 
@@ -22,6 +23,7 @@ jest.mock('./admin_alerts', () => ({
 const { adminPreviewVipSurveyCampaign, adminApplyVipSurveyCampaign } = require('./admin_vip_survey_control');
 const { adminPreviewAlertsConfig, adminApplyAlertsConfig, adminPreviewAlertTest, adminQueueAlertTest } = require('./admin_alerts_control');
 const { adminPreviewManualAccess, adminApplyManualAccess } = require('./admin_manual_access');
+const { adminGetPlusControlWorkspace, adminPreviewLegacyPlusMigration, adminApplyLegacyPlusMigration } = require('./admin_plus_control');
 const { dispatchTelegramAlert } = require('./admin_alerts');
 
 function makeDb(initial: Store = {}) {
@@ -35,8 +37,14 @@ function makeDb(initial: Store = {}) {
     return { id, ref, exists: value !== undefined, data: () => value === undefined ? undefined : { ...value } };
   };
 
+  const collectionApi = (name: string): any => Object.assign(query(name), {
+    doc: (id?: string) => document(name, id || `auto-${++autoId}`),
+    add: async (value: Row) => { const ref = document(name, `auto-${++autoId}`); await ref.create(value); return ref; },
+  });
+
   const document = (collection: string, id: string): any => ({
-    collection, id, path: `${collection}/${id}`,
+    _collection: collection, id, path: `${collection}/${id}`,
+    collection: (name: string) => collectionApi(`${collection}/${id}/${name}`),
     get: async () => { reads += 1; return snapshot(collection, id); },
     create: async (value: Row) => {
       store[collection] ||= {};
@@ -49,42 +57,66 @@ function makeDb(initial: Store = {}) {
     },
   });
 
-  const query = (collection: string, filters: [string, unknown][] = [], order: [string, string] | null = null, max = Infinity): any => {
+  function query(collection: string, filters: [string, string, unknown][] = [], order: [string, string] | null = null, max = Infinity, afterId = ''): any {
     const api: any = {
       where: (field: string, op: string, value: unknown) => {
-        if (op !== '==') throw new Error(`unexpected query operator ${op}`);
-        return query(collection, [...filters, [field, value]], order, max);
+        if (!['==', '<='].includes(op)) throw new Error(`unexpected query operator ${op}`);
+        return query(collection, [...filters, [field, op, value]], order, max, afterId);
       },
-      orderBy: (field: string, direction = 'asc') => query(collection, filters, [field, direction], max),
-      limit: (value: number) => query(collection, filters, order, value),
+      orderBy: (field: string, direction = 'asc') => query(collection, filters, [field, direction], max, afterId),
+      select: () => query(collection, filters, order, max, afterId),
+      startAfter: (cursor: { id?: string } | string) => query(collection, filters, order, max, typeof cursor === 'string' ? cursor : String(cursor?.id || '')),
+      limit: (value: number) => query(collection, filters, order, value, afterId),
       get: async () => {
         reads += 1;
         let rows = Object.entries(store[collection] || {}).filter(([, value]) => value !== undefined) as [string, Row][];
-        rows = rows.filter(([, value]) => filters.every(([field, expected]) => value[field] === expected));
-        if (order) rows.sort((left, right) => (Number(left[1][order[0]] || 0) - Number(right[1][order[0]] || 0)) * (order[1] === 'desc' ? -1 : 1));
+        rows = rows.filter(([, value]) => filters.every(([field, op, expected]) => op === '<=' ? Number(value[field]) <= Number(expected) : value[field] === expected));
+        if (order?.[0] === '__name__') rows.sort((left, right) => left[0].localeCompare(right[0]) * (order[1] === 'desc' ? -1 : 1));
+        else if (order) rows.sort((left, right) => (Number(left[1][order[0]] || 0) - Number(right[1][order[0]] || 0)) * (order[1] === 'desc' ? -1 : 1));
+        if (afterId) rows = rows.filter(([id]) => id.localeCompare(afterId) > 0);
         const docs = rows.slice(0, max).map(([id]) => snapshot(collection, id));
         return { docs, size: docs.length, empty: docs.length === 0 };
       },
     };
     return api;
-  };
+  }
 
   const write = (mode: 'create' | 'set' | 'update', ref: any, value: Row, options?: { merge?: boolean }) => {
-    store[ref.collection] ||= {};
-    if (mode === 'create' && store[ref.collection][ref.id] !== undefined) throw new Error('already-exists');
-    if (mode === 'update' && store[ref.collection][ref.id] === undefined) throw new Error('not-found');
-    const base = mode === 'set' && !options?.merge ? {} : (store[ref.collection][ref.id] || {});
-    store[ref.collection][ref.id] = { ...base, ...value };
+    store[ref._collection] ||= {};
+    if (mode === 'create' && store[ref._collection][ref.id] !== undefined) throw new Error('already-exists');
+    if (mode === 'update' && store[ref._collection][ref.id] === undefined) throw new Error('not-found');
+    const base = mode === 'set' && !options?.merge ? {} : (store[ref._collection][ref.id] || {});
+    const next = { ...base };
+    Object.entries(value).forEach(([key, item]) => {
+      if (!key.includes('.')) { next[key] = item; return; }
+      const parts = key.split('.'); let cursor = next;
+      parts.forEach((part, index) => {
+        if (index === parts.length - 1) cursor[part] = item;
+        else cursor = cursor[part] = { ...(cursor[part] || {}) };
+      });
+    });
+    store[ref._collection][ref.id] = next;
   };
 
   const db: any = {
     doc: (path: string) => { const [collection, id] = path.split('/'); return document(collection, id); },
-    collection: (name: string) => Object.assign(query(name), {
-      doc: (id?: string) => document(name, id || `auto-${++autoId}`),
-      add: async (value: Row) => { const ref = document(name, `auto-${++autoId}`); await ref.create(value); return ref; },
-    }),
+    collection: collectionApi,
+    getAll: async (...refs: any[]) => Promise.all(refs.map((ref) => ref.get())),
+    recursiveDelete: async (ref: any) => {
+      delete store[ref._collection]?.[ref.id];
+      const prefix = `${ref._collection}/${ref.id}/`;
+      Object.keys(store).filter((name) => name.startsWith(prefix)).forEach((name) => { delete store[name]; });
+    },
+    batch: () => {
+      const writes: (() => void)[] = [];
+      return {
+        create: (ref: any, value: Row) => { writes.push(() => write('create', ref, value)); },
+        set: (ref: any, value: Row, options?: { merge?: boolean }) => { writes.push(() => write('set', ref, value, options)); },
+        commit: async () => { writes.forEach((apply) => apply()); },
+      };
+    },
     runTransaction: async (worker: (tx: any) => Promise<unknown>) => worker({
-      get: async (ref: any) => { reads += 1; return typeof ref.get === 'function' && !ref.collection ? ref.get() : ref.id ? snapshot(ref.collection, ref.id) : ref.get(); },
+      get: async (ref: any) => { reads += 1; return ref.id ? snapshot(ref._collection, ref.id) : ref.get(); },
       create: (ref: any, value: Row) => write('create', ref, value),
       set: (ref: any, value: Row, options?: { merge?: boolean }) => write('set', ref, value, options),
       update: (ref: any, value: Row) => write('update', ref, value),
@@ -164,6 +196,25 @@ describe('admin application control callables', () => {
     expect(state.store.users['stable-1']?.progress).toMatchObject({ vip_active: 'false', vip_admin_override: 'false', premium_plan: 'yearly' });
   });
 
+  test('paginates a complete immutable Plus snapshot across source pages and source mutations', async () => {
+    const users = Object.fromEntries(Array.from({ length: 1001 }, (_, index) => {
+      const uid = `user-${String(index).padStart(5, '0')}`;
+      return [uid, { name: uid, progress: { premium_active: 'true', premium_plan: 'monthly' } }];
+    }));
+    const state = makeDb({ users });
+    const first = await run(adminGetPlusControlWorkspace, request({ view: 'accounts', filter: 'all', pageSize: 10 }));
+    expect(first).toMatchObject({ totalMatched: 1001, source: { state: 'ready', count: 1001, truncated: false } });
+    expect(first.nextCursor).toBeTruthy();
+    state.store.users['user-00010']!.name = 'AAA changed after first page';
+    const second = await run(adminGetPlusControlWorkspace, request({ view: 'accounts', filter: 'all', pageSize: 10, cursor: first.nextCursor }));
+    expect(second.items[0]).toMatchObject({ uid: 'user-00010', name: 'user-00010' });
+    expect(second.generatedAtMs).toBe(first.generatedAtMs);
+    const exported = await run(adminGetPlusControlWorkspace, request({ view: 'accounts', filter: 'all', pageSize: 10, cursor: first.snapshotCursor, exportCsv: true }));
+    expect(exported.csv).toContain('"user-00010","user-00010"');
+    expect(exported.csv).not.toContain('AAA changed after first page');
+    expect(exported.generatedAtMs).toBe(first.generatedAtMs);
+  });
+
   test('uses auth_links as the authoritative manual-access target instead of the requested local UID', async () => {
     const state = makeDb({
       users: {
@@ -194,5 +245,33 @@ describe('admin application control callables', () => {
       .rejects.toMatchObject({ code: 'failed-precondition', message: 'manual_access_identity_changed' });
     expect(state.store.users['canonical-a']?.progress.vip_active).toBe('false');
     expect(state.store.users['canonical-b']?.progress.vip_active).toBe('false');
+  });
+
+  test('migrates a checked legacy admin_grant atomically, preserves Store fields and safely replays', async () => {
+    const state = makeDb({ users: {
+      legacy: { progress: { premium_plan: 'admin_grant', admin_premium_override: 'true', premium_expiry: '0', premium_admin_grant_at: '9000', premium_rc_product_id: 'must-stay' } },
+      already: { progress: { premium_plan: 'admin_grant', admin_premium_override: 'true', vip_active: 'true', vip_plan: 'admin_vip' } },
+    } });
+    const preview = await run(adminPreviewLegacyPlusMigration, request({ reason: 'safe legacy migration', requestId: 'legacy-preview-1' }));
+    expect(preview).toMatchObject({ candidateCount: 1, remainingCandidates: 0 });
+    const command = { previewId: preview.previewId, confirmation: preview.confirmation, reason: 'safe legacy migration', requestId: 'legacy-apply-1', idempotencyKey: 'legacy-op-1' };
+    await expect(run(adminApplyLegacyPlusMigration, request(command))).resolves.toMatchObject({ migrated: 1, replayed: false });
+    expect(state.store.users.legacy?.progress).toMatchObject({ vip_active: 'true', vip_plan: 'admin_vip', vip_from: '9000', vip_until: '0', premium_rc_product_id: 'must-stay' });
+    expect(state.store.users.already?.progress.vip_active).toBe('true');
+    await expect(run(adminApplyLegacyPlusMigration, request(command))).resolves.toMatchObject({ migrated: 1, replayed: true });
+    expect(Object.values(state.store.admin_log || {}).filter((row) => row?.action === 'manual_access.migrate_legacy_admin_grant')).toHaveLength(1);
+  });
+
+  test('rejects the whole legacy migration batch when any candidate changed after preview', async () => {
+    const state = makeDb({ users: {
+      one: { progress: { premium_plan: 'admin_grant', admin_premium_override: 'true', premium_expiry: '0' } },
+      two: { progress: { premium_plan: 'admin_grant', admin_premium_override: 'true', premium_expiry: '0' } },
+    } });
+    const preview = await run(adminPreviewLegacyPlusMigration, request({ reason: 'stale batch check', requestId: 'legacy-preview-2' }));
+    state.store.users.two!.progress.premium_expiry = '12345';
+    await expect(run(adminApplyLegacyPlusMigration, request({ previewId: preview.previewId, confirmation: preview.confirmation, reason: 'stale batch check', requestId: 'legacy-apply-2', idempotencyKey: 'legacy-op-2' })))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'plus_migration_candidate_changed' });
+    expect(state.store.users.one?.progress.vip_active).toBeUndefined();
+    expect(state.store.users.two?.progress.vip_active).toBeUndefined();
   });
 });

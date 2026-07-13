@@ -149,6 +149,7 @@ const state = {
   compass: { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '' },
   reviewPromo: { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' },
   alerts: { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' },
+  plusControl: { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' },
   manualAccess: { preview: null, operationKeys: {}, error: '' },
 };
 
@@ -892,10 +893,61 @@ function renderPromoWorkflow() {
   <section class="card section"><div class="card-header"><div><h2>Последние коды и активации</h2><p>Серверный список: последние коды и последние user redemptions.</p></div></div><div class="card-body"><div class="split-grid"><div>${renderPromoCodesList()}</div><div>${renderPromoRedemptionsList()}</div></div></div></section>`;
 }
 
+const PLUS_KIND_LABELS = Object.freeze({
+  store_trial: 'Store · trial', store_subscription: 'Store · подписка', store_lifetime: 'Store · lifetime',
+  gift: 'Подарочный доступ', admin_grant: 'Legacy admin grant', vip: 'Административный Plus',
+  manual_or_unknown: 'Ручной / неизвестный источник', inactive: 'Неактивен',
+});
+
+const PLUS_RADAR_LABELS = Object.freeze({
+  double_access: 'Store + admin одновременно', identity_duplicate_access: 'Дубли идентичности',
+  name_duplicate_access: 'Одинаковые имена', legacy_admin_grant: 'Legacy admin_grant',
+  stale_premium_flag: 'Устаревший premium_active', manual_store_fields: 'Store-поля без RevenueCat',
+  vip_inactive_shape: 'Неактивные vip-поля',
+});
+
+function renderPlusAccount(row) {
+  const origin = PLUS_KIND_LABELS[row.primaryKind] || row.primaryKind || 'Неизвестно';
+  const dates = row.startsAtMs || row.endsAtMs
+    ? `<small>Начало: ${escapeHtml(row.startsAtMs ? dateTime(row.startsAtMs) : '—')} · Окончание: ${escapeHtml(row.endsAtMs ? dateTime(row.endsAtMs) : 'бессрочно / не указано')}</small>` : '';
+  const sourceBadges = Object.entries(row.sources || {}).filter(([, active]) => active).map(([source]) => `<span class="badge">${escapeHtml(source)}</span>`).join('');
+  return `<article class="support-message"><header><div><strong>${escapeHtml(row.name || row.uid)}</strong><small class="mono">${escapeHtml(row.uid)}${row.email ? ` · ${escapeHtml(row.email)}` : ''}</small>${dates}</div><div class="actions"><span class="badge ${row.active ? 'success' : 'warning'}">${row.active ? 'Доступ активен' : 'Неактивен'}</span><span class="badge">${escapeHtml(origin)}</span></div></header><div class="actions section">${sourceBadges}${row.plan ? `<span class="badge">${escapeHtml(row.plan)}</span>` : ''}${row.storePeriod ? `<span class="badge">${escapeHtml(row.storePeriod)}</span>` : ''}${row.identityHidden ? '<span class="badge warning">Скрытый/дублирующий документ</span>' : ''}</div><footer><button class="button small primary" data-user-profile-uid="${escapeHtml(row.uid)}" type="button" title="Открыть канонический профиль, историю Plus и защищённую выдачу/отзыв">Открыть управление Plus</button></footer></article>`;
+}
+
+function renderPlusFinding(row) {
+  const users = Array.isArray(row.users) && row.users.length > 1
+    ? `<details><summary>Связанные документы: ${Number(row.userCount || row.users.length)}</summary><div class="data-list">${row.users.map((user) => `<div class="list-row"><div><strong>${escapeHtml(user.name || user.uid)}</strong><small class="mono">${escapeHtml(user.uid)}${user.email ? ` · ${escapeHtml(user.email)}` : ''}</small></div><span class="badge ${user.active ? 'success' : 'warning'}">${escapeHtml(PLUS_KIND_LABELS[user.primaryKind] || user.primaryKind)}</span></div>`).join('')}</div></details>` : '';
+  return `<article class="support-message"><header><div><strong>${escapeHtml(row.title || PLUS_RADAR_LABELS[row.kind] || row.kind)}</strong><small>${escapeHtml(row.name || row.uid)} · <span class="mono">${escapeHtml(row.uid)}</span>${row.email ? ` · ${escapeHtml(row.email)}` : ''}</small></div><div class="actions"><span class="badge ${row.severity === 'critical' ? 'danger' : row.severity === 'warning' ? 'warning' : ''}">${escapeHtml(row.severity)}</span><span class="badge">${escapeHtml(PLUS_RADAR_LABELS[row.kind] || row.kind)}</span></div></header><p>${escapeHtml(row.details || '')}</p>${row.matchedSignals?.length ? `<small>Совпавшие типы сигналов: ${escapeHtml(row.matchedSignals.join(', '))}. Значения скрыты.</small>` : ''}${users}<footer><button class="button small" data-user-profile-uid="${escapeHtml(row.uid)}" type="button" title="Открыть канонический профиль для проверки и безопасного исправления">Проверить профиль</button></footer></article>`;
+}
+
+function renderPlusControlCenter() {
+  const model = state.plusControl;
+  const workspace = model.workspace;
+  const summary = workspace?.summary || {};
+  const source = workspace?.source;
+  const byKind = summary.byKind || {};
+  const view = model.view === 'radar' ? 'radar' : 'accounts';
+  const premiumFilters = [['premium','Весь Store / RevenueCat Plus'],['store','Только с RevenueCat metadata'],['trial','Trial'],['annual','Annual'],['monthly','Monthly'],['lifetime','Lifetime'],['manual','Store-поля без RevenueCat']];
+  const vipFilters = [['vip_all','Все административные и другие выдачи'],['vip_active','Активные'],['legacy','Legacy admin_grant'],['vip_expired','Истёкшие / отозванные'],['gift','Подарки intro / loyalty']];
+  const radarFilters = [['all','Все случаи'],['critical','Только критичные'], ...Object.entries(PLUS_RADAR_LABELS)];
+  const list = model.state === 'loading' ? emptyState('Сервер проверяет источники Plus…')
+    : model.error ? `<div class="notice danger">${escapeHtml(model.error)}</div>`
+    : model.items.length ? `<div class="support-list">${model.items.map(view === 'radar' ? renderPlusFinding : renderPlusAccount).join('')}</div>`
+    : emptyState(model.state === 'idle' ? 'Данные ещё не загружены.' : 'По этому фильтру ничего не найдено.');
+  return `<section class="card section"><div class="card-header"><div><h2>Plus Control Center</h2><p>Единый серверный экран вместо трёх старых страниц: Store/RevenueCat, административный Plus, подарки, неизвестные источники и Radar аномалий.</p></div><div class="actions"><span class="badge success">Native v2</span><button class="button" data-action="export-plus-control" type="button"${disabledWhenUnauthorized('money.read')} title="Выгрузить весь текущий серверный результат, а не только видимую страницу">CSV</button><button class="button primary" data-action="load-plus-control" type="button"${disabledWhenUnauthorized('money.read')} title="Пересчитать Plus по серверному источнику правды">Обновить</button></div></div><div class="card-body">
+    ${source ? `<div class="notice ${source.truncated ? 'warning' : 'success'}"><strong>${source.truncated ? 'Частичный охват' : 'Полный охват'}</strong><br>${escapeHtml(source.note || '')} Проверено документов: ${Number(source.count || 0)}. Срез: ${escapeHtml(dateTime(workspace.generatedAtMs))}.</div>` : '<div class="notice">До загрузки цифры не показываются как нули: источник ещё не проверен.</div>'}
+    <section class="metrics section"><article class="card metric"><label>Активный доступ</label><strong>${workspace ? Number(summary.activeAccessTotal || 0) : '—'}</strong><span class="badge">уникальные канонические документы</span></article><article class="card metric"><label>Store-backed</label><strong>${workspace ? Number(summary.storeBackedTotal || 0) : '—'}</strong><span class="badge">trial + subscription + lifetime</span></article><article class="card metric"><label>Admin / VIP</label><strong>${workspace ? Number(byKind.admin_grant || 0) + Number(byKind.vip || 0) : '—'}</strong><span class="badge">административные источники</span></article><article class="card metric"><label>Подарки</label><strong>${workspace ? Number(byKind.gift || 0) : '—'}</strong><span class="badge">intro + loyalty</span></article><article class="card metric"><label>Radar</label><strong>${workspace ? Number(summary.findingsTotal || 0) : '—'}</strong><span class="badge ${summary.criticalFindings ? 'danger' : ''}">критичных: ${workspace ? Number(summary.criticalFindings || 0) : '—'}</span></article></section>
+    <div class="actions section" role="tablist" aria-label="Разделы управления Plus"><button class="button ${model.section === 'premium' ? 'primary' : ''}" data-action="set-plus-control-view" data-plus-view="premium" type="button" role="tab" aria-selected="${model.section === 'premium'}" title="Платный Store / RevenueCat Plus">Store / RevenueCat</button><button class="button ${model.section === 'vip' ? 'primary' : ''}" data-action="set-plus-control-view" data-plus-view="vip" type="button" role="tab" aria-selected="${model.section === 'vip'}" title="Административные, наградные и подарочные доступы">Административный и другой</button><button class="button ${model.section === 'radar' ? 'primary' : ''}" data-action="set-plus-control-view" data-plus-view="radar" type="button" role="tab" aria-selected="${model.section === 'radar'}" title="Дубли и противоречивые сигналы">Radar</button><a class="button" href="#users" title="Точный поиск и защищённые операции профиля">Найти пользователя</a></div>
+    <div class="report-filters"><div class="field"><label for="plus-control-filter">Фильтр</label><select id="plus-control-filter">${renderSelectOptions(view === 'radar' ? radarFilters : model.section === 'vip' ? vipFilters : premiumFilters, model.filter)}</select></div><div class="field"><label for="plus-control-query">Поиск</label><input id="plus-control-query" type="search" value="${escapeHtml(model.query)}" placeholder="UID, email, имя, план или причина"></div><button class="button" data-action="apply-plus-control-filter" type="button" title="Применить фильтр на сервере">Применить</button></div>
+    <div class="section">${list}</div>${model.nextCursor ? '<div class="actions end"><button class="button" data-action="load-plus-control-next" type="button" title="Загрузить следующую безопасную страницу">Показать ещё</button></div>' : ''}
+    <details class="section"><summary>Миграция старых admin_grant</summary><div class="notice warning section">Операция только копирует активный legacy-доступ в канонические <code>vip_*</code> поля. Store и RevenueCat не изменяются. Перед записью сервер повторно сверяет все документы; частичное применение запрещено.</div><div class="field"><label for="plus-migration-reason">Причина миграции</label><textarea id="plus-migration-reason" maxlength="500" placeholder="Основание, проверенный объём и способ контроля результата">${escapeHtml(model.migrationPreview?.reason || '')}</textarea></div><div class="actions"><button class="button" data-action="preview-plus-migration" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Найти до 100 активных legacy admin_grant и подготовить неизменяемый preview">Подготовить миграцию</button></div>${model.migrationPreview ? `<div class="notice warning section"><strong>Кандидатов: ${Number(model.migrationPreview.candidateCount || 0)}</strong> · осталось после этой пачки: ${Number(model.migrationPreview.remainingCandidates || 0)}${model.migrationPreview.usersTruncated ? '<br>Скан пользователей неполон — после пачки потребуется повторная проверка.' : ''}<pre class="code-preview">${escapeHtml(JSON.stringify({ candidates: model.migrationPreview.candidates?.map((item) => ({ uid: item.uid, before: item.before, after: item.after })), consequence: model.migrationPreview.consequence }, null, 2))}</pre><div class="field"><label for="plus-migration-confirmation">Точное подтверждение</label><input id="plus-migration-confirmation" placeholder="${escapeHtml(model.migrationPreview.confirmation)}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="discard-plus-migration" type="button" title="Отменить preview без записи">Отмена</button><button class="button primary" data-action="apply-plus-migration" type="button"${model.migrationPreview.candidateCount > 0 ? '' : ' disabled'} title="Применить только неизменившуюся проверенную пачку">Мигрировать ${Number(model.migrationPreview.candidateCount || 0)}</button></div></div>` : ''}</details>
+  </div></section>`;
+}
+
 function renderMoney() {
   return `${pageHeader(PAGES.money, 'Деньги', '<a class="button ghost" href="../../admin/index.html#promo-codes" title="Аварийно открыть старый модуль промокодов">Старый модуль промокодов</a>')}
     <div class="notice warning">События нажатия «Купить» не считаются выручкой. Денежные показатели должны приходить из платёжного источника.</div>
-    <section class="metrics section">${['Активные подписки', 'Выручка за период', 'Платёжные проблемы', 'Возвраты'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>
+    ${renderPlusControlCenter()}
     ${renderPromoWorkflow()}
     <section class="card section"><div class="card-header"><div><h2>Платёжные инструменты</h2><p>Текущие рабочие операции доступны без потери функций.</p></div><div class="actions"><a class="button" href="#analytics">Аналитика</a><a class="button" href="../../admin/index.html#subscriptions">Подписки</a></div></div></section>`;
 }
@@ -2168,6 +2220,49 @@ function maybeLoadAlerts() {
   });
 }
 
+function plusControlInput(cursor = '', exportCsv = false) {
+  return {
+    view: state.plusControl.view,
+    filter: String(document.getElementById('plus-control-filter')?.value || state.plusControl.filter || 'all'),
+    query: String(document.getElementById('plus-control-query')?.value || state.plusControl.query || '').trim(),
+    pageSize: 50,
+    cursor,
+    exportCsv,
+  };
+}
+
+async function loadPlusControl(append = false) {
+  const input = plusControlInput(append ? state.plusControl.nextCursor : '');
+  const workspace = await actions.getPlusControlWorkspace(input);
+  state.plusControl = {
+    ...state.plusControl,
+    state: 'ready', filter: input.filter, query: input.query,
+    items: append ? [...state.plusControl.items, ...(Array.isArray(workspace?.items) ? workspace.items : [])] : (Array.isArray(workspace?.items) ? workspace.items : []),
+    nextCursor: String(workspace?.nextCursor || ''), workspace, error: '',
+  };
+}
+
+function maybeLoadPlusControl() {
+  if (state.route !== 'money' || !state.authorized || !actions || !can('money.read') || state.plusControl.state !== 'idle') return;
+  const generation = state.authGeneration;
+  state.plusControl.state = 'loading';
+  loadPlusControl().then(() => {
+    if (generation !== state.authGeneration || state.route !== 'money') return;
+    renderCurrentPage();
+  }).catch((error) => {
+    if (generation !== state.authGeneration) return;
+    state.plusControl = { ...state.plusControl, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  });
+}
+
+function downloadTextFile(filename, text, type = 'text/plain;charset=utf-8') {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  const link = document.createElement('a');
+  link.href = url; link.download = filename; document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
 function readCreateForm() {
   const studyTarget = String(document.getElementById('factory-target')?.value ?? '').trim();
   const sourceLocale = String(document.getElementById('factory-source')?.value ?? '').trim();
@@ -3077,6 +3172,50 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'load-plus-control' || action === 'apply-plus-control-filter') {
+    return runBusy(() => loadPlusControl(false), 'Plus Control Center пересчитан на сервере.');
+  }
+  if (action === 'load-plus-control-next') return runBusy(() => loadPlusControl(true), 'Следующая страница Plus загружена.');
+  if (action === 'set-plus-control-view') {
+    const requestedSection = target.getAttribute('data-plus-view');
+    const section = ['premium', 'vip', 'radar'].includes(requestedSection) ? requestedSection : 'premium';
+    const view = section === 'radar' ? 'radar' : 'accounts';
+    const filter = section === 'premium' ? 'premium' : section === 'vip' ? 'vip_all' : 'all';
+    state.plusControl = { ...state.plusControl, section, view, filter, query: '', items: [], nextCursor: '', state: 'loading', error: '' };
+    renderCurrentPage();
+    return runBusy(() => loadPlusControl(false), section === 'radar' ? 'Radar Plus загружен.' : 'Список доступов Plus загружен.');
+  }
+  if (action === 'export-plus-control') {
+    return runBusy(async () => {
+      const snapshotCursor = String(state.plusControl.workspace?.snapshotCursor || '');
+      if (!snapshotCursor) throw new Error('Сначала обновите Plus Control Center, чтобы зафиксировать снимок для экспорта.');
+      const result = await actions.getPlusControlWorkspace(plusControlInput(snapshotCursor, true));
+      if (!result?.csv) throw new Error('Сервер не вернул CSV.');
+      downloadTextFile(`phraseman-plus-${state.plusControl.section}-${new Date().toISOString().slice(0, 10)}.csv`, `\uFEFF${result.csv}`, 'text/csv;charset=utf-8');
+    }, 'CSV текущего Plus-фильтра подготовлен сервером.');
+  }
+  if (action === 'preview-plus-migration') {
+    const reason = String(document.getElementById('plus-migration-reason')?.value || '').trim();
+    if (!reason) return setMessage('Укажите причину миграции legacy admin_grant.', 'warning');
+    return runBusy(async () => {
+      const migrationPreview = await actions.previewLegacyPlusMigration({ reason, requestId: id('plus-migration-preview') });
+      state.plusControl = { ...state.plusControl, migrationPreview };
+    }, 'Server preview миграции admin_grant подготовлен.');
+  }
+  if (action === 'discard-plus-migration') { state.plusControl = { ...state.plusControl, migrationPreview: null }; renderCurrentPage(); return; }
+  if (action === 'apply-plus-migration') {
+    const preview = state.plusControl.migrationPreview;
+    if (!preview) return setMessage('Сначала подготовьте preview миграции.', 'warning');
+    const confirmation = String(document.getElementById('plus-migration-confirmation')?.value || '').trim();
+    if (confirmation !== preview.confirmation) return setMessage('Точное подтверждение не совпадает с preview.', 'warning');
+    const scope = `${preview.previewId}:${preview.fingerprint}`;
+    return runBusy(async () => {
+      await actions.applyLegacyPlusMigration({ previewId: preview.previewId, confirmation, reason: preview.reason, requestId: id('plus-migration-apply'), idempotencyKey: protectedOperationKey('plusControl', scope) });
+      clearProtectedOperationKey('plusControl', scope);
+      state.plusControl = { ...state.plusControl, migrationPreview: null };
+      await loadPlusControl(false);
+    }, 'Проверенная пачка legacy admin_grant перенесена в vip_* поля.');
+  }
   if (action === 'load-review-promo') return runBusy(loadReviewPromoWorkspace, 'Кампания и ответы Plus-опроса обновлены.');
   if (action === 'load-vip-survey-responses' || action === 'load-vip-survey-responses-next') {
     return runBusy(() => loadVipSurveyResponses(action.endsWith('-next')), 'Ответы Plus-опроса загружены через безопасную серверную проекцию.');
@@ -4140,6 +4279,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('application.compass.read')) state.compass = { state: 'idle', workspace: null, draft: null, preview: null, approvals: [], approvalReason: '', operationKeys: {}, error: '', cacheItems: [], cacheSummary: null, cacheNextCursor: '', cacheStatus: '', cacheLang: '', cacheQuery: '', cacheResetPreview: null };
   if (!state.authorized || !can('application.review_promo.read')) state.reviewPromo = { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('application.alerts.read')) state.alerts = { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' };
+  if (!state.authorized || !can('money.read')) state.plusControl = { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('money.manual_access.write')) state.manualAccess = { preview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
@@ -4150,13 +4290,22 @@ export function setAuthState(auth) {
   maybeLoadCompassWorkspace();
   maybeLoadReviewPromo();
   maybeLoadAlerts();
+  maybeLoadPlusControl();
   maybeOpenRequestedUser();
 }
 
 export function renderRoute(route, capabilityId = '') {
   state.route = PAGES[route] ? route : 'overview';
   const capability = capabilityById(capabilityId);
-  state.selectedCapabilityId = capability?.route === state.route && !capability.nativeRoute ? capability.id : '';
+  state.selectedCapabilityId = capability?.route === state.route ? capability.id : '';
+  if (state.route === 'money' && ['premium', 'vip', 'plus-radar'].includes(capability?.id)) {
+    const section = capability.id === 'plus-radar' ? 'radar' : capability.id;
+    const view = section === 'radar' ? 'radar' : 'accounts';
+    const filter = section === 'premium' ? 'premium' : section === 'vip' ? 'vip_all' : 'all';
+    if (state.plusControl.section !== section || state.plusControl.view !== view || state.plusControl.filter !== filter) {
+      state.plusControl = { ...state.plusControl, section, view, filter, query: '', items: [], nextCursor: '', state: 'idle', error: '' };
+    }
+  }
   renderCurrentPage();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
@@ -4166,6 +4315,7 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadCompassWorkspace();
   maybeLoadReviewPromo();
   maybeLoadAlerts();
+  maybeLoadPlusControl();
   maybeOpenRequestedUser();
 }
 

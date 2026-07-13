@@ -87,6 +87,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .auth-status { padding-left: 14px; border-left: 1px solid var(--line); }
 .auth-status button { min-height: 34px; }
 .page { width: min(1480px, 100%); margin: 0 auto; padding: 30px; }
+.workspace, .page, .page-header > *, .card-body, .metric { min-width: 0; }
 .global-message { position: sticky; top: 68px; z-index: 14; padding: 11px 30px; border-bottom: 1px solid #ead28f; background: #fff8e6; color: #76520d; font-size: 13px; }
 
 .page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
@@ -123,6 +124,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 
 .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
 .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.card-header > * { min-width: 0; }
 .card-header h2, .card-body h2 { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
 .card-header p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .card-body { padding: 20px; }
@@ -163,6 +165,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .actions.end { justify-content: flex-end; }
 
 .notice { padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: #566176; font-size: 13px; line-height: 1.55; }
+.page-header p, .card-header p, .notice, .metric .badge { overflow-wrap: anywhere; }
 .notice.warning { border-color: #ead28f; background: var(--warning-soft); color: #735010; }
 .notice.success { border-color: #b9dfca; background: var(--success-soft); color: #155f3d; }
 .notice.danger { border-color: #ebc0c5; background: var(--danger-soft); color: #852d37; }
@@ -395,6 +398,11 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .page { padding: 22px 15px; }
   .page-header { display: block; }
   .page-header > .actions { margin-top: 15px; }
+  .card-header { flex-direction: column; }
+  .card-header > .actions, .page-header > .actions { width: 100%; justify-content: flex-start; }
+  .card-header > .actions .button, .page-header > .actions .button { max-width: 100%; white-space: normal; }
+  .auth-status { max-width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .topbar-actions { min-width: 0; }
   .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid { grid-template-columns: 1fr; }
   .report-reply-grid .full { grid-column: auto; }
   .factory-steps { position: static; grid-template-columns: repeat(4, minmax(68px, 1fr)); overflow: auto; }

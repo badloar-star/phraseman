@@ -72,8 +72,10 @@ const count = (value: unknown, max = 1_000_000_000): number => {
   return Math.min(max, Math.max(0, Math.round(value)));
 };
 
-const nullableCount = (value: unknown, max = 1_000_000_000): number | null =>
-  value === null || value === undefined ? null : count(value, max);
+const nullableCount = (value: unknown, max = 1_000_000_000): number | null => {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return null;
+  return Math.min(max, Math.round(value));
+};
 
 const percentile = (value: unknown): number | null => {
   if (value === null || value === undefined || typeof value !== 'number' || !Number.isFinite(value)) return null;

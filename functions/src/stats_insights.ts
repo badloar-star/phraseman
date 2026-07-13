@@ -58,6 +58,7 @@ const MAX_OUTPUT_TOKENS = 600;
 // Notes are 1-2 short sentences (Bible: ≤10 words/sentence). 400 allowed wordy paragraphs;
 // 160 keeps them tight for the 50+ audience without cutting a normal two-sentence note.
 const MAX_NOTE_CHARS = 160;
+const MAX_VERIFIED_NOTE_CHARS = 400;
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4o-mini';
@@ -73,6 +74,8 @@ type VerifiedBlockKey = (typeof VERIFIED_BLOCK_KEYS)[number];
 const VERIFIED_SCHEMA_VERSION = 2;
 const LEGACY_SCHEMA_VERSION = 1;
 const GENERATION_LEASE_MS = 2 * 60 * 1000;
+const VERIFIED_STYLE_KEYS = ['insight', 'focus', 'coach', 'momentum'] as const;
+type VerifiedStyleKey = (typeof VERIFIED_STYLE_KEYS)[number];
 
 interface VerifiedObservation {
   id: string;
@@ -81,6 +84,7 @@ interface VerifiedObservation {
   facts: Array<string | number>;
   allowedClaim: string;
   allowedAction: string | null;
+  fallback: string;
 }
 
 interface VerifiedAnalysis {
@@ -259,7 +263,7 @@ function requiredBoundedString(value: unknown, max: number): string {
   return clean;
 }
 
-function sanitizeVerifiedAnalysis(raw: unknown): VerifiedAnalysis {
+function sanitizeVerifiedAnalysis(raw: unknown, lang: SupportedLang): VerifiedAnalysis {
   if (!isPlainRecord(raw) || !hasExactKeys(raw, ['fingerprint', 'generatedFromCompleteSnapshot', 'blocks'])) invalidAnalysis();
   if (raw.generatedFromCompleteSnapshot !== true || !isPlainRecord(raw.blocks) || !hasExactKeys(raw.blocks, VERIFIED_BLOCK_KEYS)) invalidAnalysis();
   const blocks = {} as Record<VerifiedBlockKey, VerifiedObservation>;
@@ -279,6 +283,9 @@ function sanitizeVerifiedAnalysis(raw: unknown): VerifiedAnalysis {
     });
     let allowedAction: string | null = null;
     if (value.allowedAction !== null) allowedAction = requiredBoundedString(value.allowedAction, 500);
+    if (!isPlainRecord(value.fallback)) invalidAnalysis();
+    const fallback = requiredBoundedString(value.fallback[lang], 240);
+    if (!verifiedTextUsesOnlyAllowedNumbers(fallback, facts)) invalidAnalysis();
     const id = requiredBoundedString(value.id, 128);
     const allowedClaim = requiredBoundedString(value.allowedClaim, 1000);
     const normalizedClaim = allowedClaim.toLocaleLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
@@ -292,6 +299,7 @@ function sanitizeVerifiedAnalysis(raw: unknown): VerifiedAnalysis {
       facts,
       allowedClaim,
       allowedAction,
+      fallback,
     };
   }
   return {
@@ -306,14 +314,14 @@ function sanitizeVerifiedRequest(raw: unknown): VerifiedRequest {
   if (typeof raw.lang !== 'string' || !SUPPORTED_LANGS.includes(raw.lang as SupportedLang)) invalidAnalysis();
   if (raw.studyTarget !== 'en' && raw.studyTarget !== 'fr') invalidAnalysis();
   return {
-    analysis: sanitizeVerifiedAnalysis(raw.analysis),
+    analysis: sanitizeVerifiedAnalysis(raw.analysis, raw.lang as SupportedLang),
     lang: raw.lang as SupportedLang,
     studyTarget: raw.studyTarget,
   };
 }
 
-function verifiedAnalysisHashForReplay(analysis: VerifiedAnalysis): string {
-  return createHash('sha256').update(JSON.stringify(analysis)).digest('hex');
+function verifiedRequestHashForReplay(request: VerifiedRequest): string {
+  return createHash('sha256').update(JSON.stringify(request)).digest('hex');
 }
 
 /**
@@ -506,9 +514,12 @@ function readStoredVerifiedResult(raw: unknown): VerifiedResult | null {
   const notes = {} as VerifiedNotes;
   const observationIds = {} as VerifiedObservationIds;
   for (const key of VERIFIED_BLOCK_KEYS) {
-    const note = text(raw.notes[key], MAX_NOTE_CHARS);
-    const id = text(raw.observationIds[key], 128);
-    if (!note || !id) return null;
+    const rawNote = raw.notes[key];
+    const rawId = raw.observationIds[key];
+    if (typeof rawNote !== 'string' || !rawNote || rawNote.length > MAX_VERIFIED_NOTE_CHARS || rawNote.trim() !== rawNote) return null;
+    if (typeof rawId !== 'string' || !rawId || rawId.length > 128 || rawId.trim() !== rawId) return null;
+    const note = rawNote;
+    const id = rawId;
     notes[key] = note;
     observationIds[key] = id;
   }
@@ -612,7 +623,6 @@ async function commitGenerationLease(
 }
 
 function buildVerifiedSystemPrompt(lang: SupportedLang, analysis: VerifiedAnalysis): string {
-  const langName = LANG_NAMES[lang];
   const observations = VERIFIED_BLOCK_KEYS.map((key) => ({
     block: key,
     observationId: analysis.blocks[key].id,
@@ -620,16 +630,13 @@ function buildVerifiedSystemPrompt(lang: SupportedLang, analysis: VerifiedAnalys
     allowedClaim: analysis.blocks[key].allowedClaim,
     allowedAction: analysis.blocks[key].allowedAction,
   }));
-  return `You are a careful editor for learner-facing statistics notes.
-Write entirely in ${langName}, using an informal but respectful second person.
-For each block, only rephrase its supplied allowedClaim. Treat it as the complete truth.
-Do not infer from unavailable or below-floor data: rely solely on allowedClaim.
-Make no new calculations and add no facts or numbers. Every number must come from that block's facts.
-You may include at most one supplied allowedAction. Never invent an action.
-Do not repeat the same fact or advice across blocks. Keep each text non-empty and concise.
-Return strict JSON only, with no markdown and exactly this shape:
-{"week":{"observationId":"...","text":"..."},"longTerm":{"observationId":"...","text":"..."},"comparison":{"observationId":"...","text":"..."},"lifetime":{"observationId":"...","text":"..."}}
-Use each exact observationId supplied below.
+  return `You assign presentation styles to four verified observations.
+Do not write, rephrase, translate, summarize, calculate, or return any prose, facts, advice, or numbers.
+Assign each exact observationId one distinct styleKey. Use every approved styleKey exactly once.
+Approved styleKeys: insight, focus, coach, momentum.
+Return strict JSON only, with no markdown and exactly this shape and no extra keys:
+{"week":{"observationId":"...","styleKey":"insight"},"longTerm":{"observationId":"...","styleKey":"focus"},"comparison":{"observationId":"...","styleKey":"coach"},"lifetime":{"observationId":"...","styleKey":"momentum"}}
+The requested locale is ${lang}; it is context only because you must return no natural-language text.
 VERIFIED OBSERVATIONS:
 ${JSON.stringify(observations)}`;
 }
@@ -704,6 +711,21 @@ function hasDuplicateVerifiedNotes(notes: VerifiedNotes): boolean {
   return false;
 }
 
+const VERIFIED_STYLE_HOOKS: Record<SupportedLang, Record<VerifiedStyleKey, string>> = {
+  ru: { insight: 'Наблюдение:', focus: 'В фокусе:', coach: 'Ориентир:', momentum: 'Текущий итог:' },
+  uk: { insight: 'Спостереження:', focus: 'У фокусі:', coach: 'Орієнтир:', momentum: 'Поточний підсумок:' },
+  es: { insight: 'Observación:', focus: 'En foco:', coach: 'Referencia:', momentum: 'Resultado actual:' },
+  'pt-BR': { insight: 'Observação:', focus: 'Em foco:', coach: 'Referência:', momentum: 'Resultado atual:' },
+  vi: { insight: 'Nhận xét:', focus: 'Trọng tâm:', coach: 'Tham chiếu:', momentum: 'Kết quả hiện tại:' },
+  id: { insight: 'Pengamatan:', focus: 'Fokus:', coach: 'Acuan:', momentum: 'Hasil saat ini:' },
+  tr: { insight: 'Gözlem:', focus: 'Odak:', coach: 'Referans:', momentum: 'Güncel sonuç:' },
+  pl: { insight: 'Obserwacja:', focus: 'W centrum:', coach: 'Punkt odniesienia:', momentum: 'Aktualny wynik:' },
+};
+
+function renderVerifiedNote(lang: SupportedLang, styleKey: VerifiedStyleKey, fallback: string): string {
+  return `${VERIFIED_STYLE_HOOKS[lang][styleKey]} ${fallback}`;
+}
+
 function parseAndGuardVerifiedResult(rawContent: string, analysis: VerifiedAnalysis, lang: SupportedLang): VerifiedResult {
   let parsed: unknown;
   try {
@@ -716,25 +738,24 @@ function parseAndGuardVerifiedResult(rawContent: string, analysis: VerifiedAnaly
   }
   const notes = {} as VerifiedNotes;
   const observationIds = {} as VerifiedObservationIds;
+  const usedStyles = new Set<VerifiedStyleKey>();
   for (const key of VERIFIED_BLOCK_KEYS) {
     const entry = parsed[key];
-    if (!isPlainRecord(entry) || !hasExactKeys(entry, ['observationId', 'text'])) {
+    if (!isPlainRecord(entry) || !hasExactKeys(entry, ['observationId', 'styleKey'])) {
       throw new HttpsError('unavailable', 'stats_insights_bad_shape');
     }
     if (entry.observationId !== analysis.blocks[key].id) {
       throw new HttpsError('unavailable', 'stats_insights_observation_mismatch');
     }
-    if (typeof entry.text !== 'string') throw new HttpsError('unavailable', 'stats_insights_empty');
-    const note = entry.text.trim();
-    if (!note || note.length > MAX_NOTE_CHARS) throw new HttpsError('unavailable', 'stats_insights_empty');
-    if (!verifiedTextUsesOnlyAllowedNumbers(note, analysis.blocks[key].facts)) {
-      throw new HttpsError('unavailable', 'stats_insights_unverified_number');
+    if (typeof entry.styleKey !== 'string' || !VERIFIED_STYLE_KEYS.includes(entry.styleKey as VerifiedStyleKey)) {
+      throw new HttpsError('unavailable', 'stats_insights_invalid_style');
     }
-    notes[key] = note;
+    const styleKey = entry.styleKey as VerifiedStyleKey;
+    if (usedStyles.has(styleKey)) throw new HttpsError('unavailable', 'stats_insights_duplicate_style');
+    usedStyles.add(styleKey);
+    notes[key] = renderVerifiedNote(lang, styleKey, analysis.blocks[key].fallback);
     observationIds[key] = analysis.blocks[key].id;
   }
-  assertAiJsonTextFieldsLanguage({ texts: Object.values(notes), targetLang: lang, feature: 'stats_insights' });
-  if (hasDuplicateVerifiedNotes(notes)) throw new HttpsError('unavailable', 'stats_insights_duplicate');
   return { notes, observationIds };
 }
 
@@ -800,7 +821,7 @@ export const statsInsightsGenerate = onCall({
   // remains gated until the window opens.
   const schemaVersion: GenerationSchemaVersion = isVerified ? VERIFIED_SCHEMA_VERSION : LEGACY_SCHEMA_VERSION;
   const requestHash = verifiedRequest
-    ? createHash('sha256').update(JSON.stringify(verifiedRequest)).digest('hex')
+    ? verifiedRequestHashForReplay(verifiedRequest)
     : briefingHashForReplay(briefing!);
   const reservation = await reserveGenerationLease(authUid, stableUid, requestHash, schemaVersion, lang);
   if (reservation.replay) {
@@ -913,5 +934,7 @@ export const __statsInsightsTestHooks = {
   buildLeaseCommitMutation,
   buildLeaseReleaseMutation,
   assertPremiumStatsInsightsAccess,
+  renderVerifiedNote,
+  verifiedRequestHashForReplay,
 };
 export type { StatsInsightsBriefing, StatsInsightsResult, StatsInsightsNotes, BlockKey, VerifiedAnalysis, VerifiedResult };

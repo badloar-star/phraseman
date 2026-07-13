@@ -19,16 +19,23 @@ const {
   buildLeaseCommitMutation,
   buildLeaseReleaseMutation,
   assertPremiumStatsInsightsAccess,
+  renderVerifiedNote,
+  verifiedRequestHashForReplay,
 } = __statsInsightsTestHooks;
+
+const localized = (values: { ru: string; uk: string; es: string; ptBR: string; vi: string; id: string; tr: string; pl: string }) => ({
+  ru: values.ru, uk: values.uk, es: values.es, 'pt-BR': values.ptBR,
+  vi: values.vi, id: values.id, tr: values.tr, pl: values.pl,
+});
 
 const verifiedAnalysis = () => ({
   fingerprint: 'stats-v1-12345678',
   generatedFromCompleteSnapshot: true,
   blocks: {
-    week: { id: 'week.minutes-up', block: 'week', priority: 500, facts: [42, 25, 'Tuesday'], allowedClaim: 'Practice time rose from 25 to 42 minutes; Tuesday was strongest.', allowedAction: 'Repeat the Tuesday routine once.', fallback: { ru: 'Неделя стала активнее.' } },
-    longTerm: { id: 'longTerm.streak', block: 'longTerm', priority: 400, facts: [7], allowedClaim: 'The verified current streak is 7 days.', allowedAction: null, fallback: { ru: 'Серия продолжается.' } },
-    comparison: { id: 'comparison.unavailable', block: 'comparison', priority: 100, facts: [], allowedClaim: 'Comparison is temporarily unavailable; focus only on personal progress.', allowedAction: null, fallback: { ru: 'Сравнение пока недоступно.' } },
-    lifetime: { id: 'lifetime.phrases', block: 'lifetime', priority: 300, facts: [120], allowedClaim: 'A verified lifetime milestone is 120 phrases.', allowedAction: null, fallback: { ru: 'Уже 120 фраз.' } },
+    week: { id: 'week.minutes-up', block: 'week', priority: 500, facts: [42, 25, 'Tuesday'], allowedClaim: 'Practice time rose from 25 to 42 minutes; Tuesday was strongest.', allowedAction: 'Repeat the Tuesday routine once.', fallback: localized({ ru: '42 минуты вместо 25.', uk: '42 хвилини замість 25.', es: '42 minutos en vez de 25.', ptBR: '42 minutos em vez de 25.', vi: '42 phút thay vì 25.', id: '42 menit dibanding 25.', tr: '25 yerine 42 dakika.', pl: '42 minuty zamiast 25.' }) },
+    longTerm: { id: 'longTerm.streak', block: 'longTerm', priority: 400, facts: [7], allowedClaim: 'The verified current streak is 7 days.', allowedAction: null, fallback: localized({ ru: 'Серия — 7 дней.', uk: 'Серія — 7 днів.', es: 'La racha es de 7 días.', ptBR: 'A sequência é de 7 dias.', vi: 'Chuỗi hiện tại là 7 ngày.', id: 'Rangkaian saat ini 7 hari.', tr: 'Seri 7 gün.', pl: 'Seria trwa 7 dni.' }) },
+    comparison: { id: 'comparison.unavailable', block: 'comparison', priority: 100, facts: [], allowedClaim: 'Comparison is temporarily unavailable; focus only on personal progress.', allowedAction: null, fallback: localized({ ru: 'Сравнение пока недоступно.', uk: 'Порівняння поки недоступне.', es: 'La comparación no está disponible.', ptBR: 'A comparação não está disponível.', vi: 'So sánh hiện chưa có.', id: 'Perbandingan belum tersedia.', tr: 'Karşılaştırma henüz yok.', pl: 'Porównanie jest niedostępne.' }) },
+    lifetime: { id: 'lifetime.phrases', block: 'lifetime', priority: 300, facts: [120], allowedClaim: 'A verified lifetime milestone is 120 phrases.', allowedAction: null, fallback: localized({ ru: 'Уже 120 фраз.', uk: 'Уже 120 фраз.', es: 'Ya tienes 120 frases.', ptBR: 'Você já tem 120 frases.', vi: 'Bạn đã có 120 cụm từ.', id: 'Kamu sudah punya 120 frasa.', tr: 'Artık 120 ifaden var.', pl: 'Masz już 120 zwrotów.' }) },
   },
 });
 
@@ -251,10 +258,10 @@ describe('stats_insights quota replay helpers', () => {
 
 describe('stats_insights verified analysis contract', () => {
   it('sanitizes the exact client-shaped four-block analysis', () => {
-    const clean = sanitizeVerifiedAnalysis(verifiedAnalysis());
+    const clean = sanitizeVerifiedAnalysis(verifiedAnalysis(), 'ru');
     expect(Object.keys(clean.blocks)).toEqual(['week', 'longTerm', 'comparison', 'lifetime']);
     expect(clean.generatedFromCompleteSnapshot).toBe(true);
-    expect(clean.blocks.week).not.toHaveProperty('fallback');
+    expect(clean.blocks.week.fallback).toBe('42 минуты вместо 25.');
   });
 
   it('requires and preserves explicit v2 language and study target', () => {
@@ -273,52 +280,124 @@ describe('stats_insights verified analysis contract', () => {
     [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, longTerm: { ...verifiedAnalysis().blocks.longTerm, id: verifiedAnalysis().blocks.week.id } } }],
     [{ ...verifiedAnalysis(), blocks: { ...verifiedAnalysis().blocks, longTerm: { ...verifiedAnalysis().blocks.longTerm, allowedClaim: verifiedAnalysis().blocks.week.allowedClaim } } }],
   ])('rejects malformed verified analysis before paid work', (raw) => {
-    expect(() => sanitizeVerifiedAnalysis(raw)).toThrow('stats_insights_invalid_analysis');
+    expect(() => sanitizeVerifiedAnalysis(raw, 'ru')).toThrow('stats_insights_invalid_analysis');
   });
 
   it('builds a separate prompt constrained to allowed claims and exact JSON', () => {
-    const prompt = buildVerifiedSystemPrompt('ru', sanitizeVerifiedAnalysis(verifiedAnalysis()));
-    expect(prompt).toContain('only rephrase');
-    expect(prompt).toContain('no new calculations');
+    const prompt = buildVerifiedSystemPrompt('ru', sanitizeVerifiedAnalysis(verifiedAnalysis(), 'ru'));
+    expect(prompt).toContain('Assign each exact observationId');
+    expect(prompt).toContain('return no natural-language text');
     expect(prompt).toContain('observationId');
+    expect(prompt).toContain('styleKey');
     expect(prompt).not.toContain('Неделя стала активнее');
   });
 
   it('returns exact verified notes and observation ids', () => {
-    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis());
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis(), 'ru');
     const result = parseAndGuardVerifiedResult(JSON.stringify({
-      week: { observationId: 'week.minutes-up', text: 'За неделю — 42 минуты вместо 25. Повтори ритм вторника.' },
-      longTerm: { observationId: 'longTerm.streak', text: 'Текущая серия — 7 дней.' },
-      comparison: { observationId: 'comparison.unavailable', text: 'Сравнение пока недоступно; смотри на свой прогресс.' },
-      lifetime: { observationId: 'lifetime.phrases', text: 'За всё время освоено 120 фраз.' },
+      week: { observationId: 'week.minutes-up', styleKey: 'insight' },
+      longTerm: { observationId: 'longTerm.streak', styleKey: 'focus' },
+      comparison: { observationId: 'comparison.unavailable', styleKey: 'coach' },
+      lifetime: { observationId: 'lifetime.phrases', styleKey: 'momentum' },
     }), analysis, 'ru');
     expect(Object.keys(result.notes)).toEqual(['week', 'longTerm', 'comparison', 'lifetime']);
     expect(result.observationIds.week).toBe('week.minutes-up');
   });
 
-  it('rejects unknown observation ids and numbers absent from block facts', () => {
-    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis());
+  it('rejects unknown observation ids and keeps numeric fallback provenance guard', () => {
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis(), 'ru');
     const base = {
-      week: { observationId: 'week.minutes-up', text: 'За неделю — 42 минуты вместо 25.' },
-      longTerm: { observationId: 'longTerm.streak', text: 'Текущая серия — 7 дней.' },
-      comparison: { observationId: 'comparison.unavailable', text: 'Сравнение пока недоступно.' },
-      lifetime: { observationId: 'lifetime.phrases', text: 'Освоено 120 фраз.' },
+      week: { observationId: 'week.minutes-up', styleKey: 'insight' },
+      longTerm: { observationId: 'longTerm.streak', styleKey: 'focus' },
+      comparison: { observationId: 'comparison.unavailable', styleKey: 'coach' },
+      lifetime: { observationId: 'lifetime.phrases', styleKey: 'momentum' },
     };
     expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...base, week: { ...base.week, observationId: 'week.unknown' } }), analysis, 'ru')).toThrow('stats_insights_observation_mismatch');
-    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...base, week: { ...base.week, text: 'За неделю — 99 минут.' } }), analysis, 'ru')).toThrow('stats_insights_unverified_number');
     expect(verifiedTextUsesOnlyAllowedNumbers('Результат: 42,0 и 25%.', [42, 25])).toBe(true);
     expect(verifiedTextUsesOnlyAllowedNumbers('Результат: 42,5.', [42])).toBe(false);
   });
 
-  it('rejects exact and near-duplicate verified notes', () => {
+  it('detects exact and near-duplicate note text for stored-data guards', () => {
     expect(hasDuplicateVerifiedNotes({ week: 'Отличный устойчивый ритм на этой неделе.', longTerm: 'Отличный, устойчивый ритм на этой неделе!', comparison: 'Сравнение недоступно.', lifetime: 'Освоено много фраз.' })).toBe(true);
-    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis());
-    expect(() => parseAndGuardVerifiedResult(JSON.stringify({
-      week: { observationId: 'week.minutes-up', text: 'Хороший ритм.' },
-      longTerm: { observationId: 'longTerm.streak', text: 'Хороший ритм!' },
-      comparison: { observationId: 'comparison.unavailable', text: 'Сравнение недоступно.' },
-      lifetime: { observationId: 'lifetime.phrases', text: 'Освоено 120 фраз.' },
-    }), analysis, 'ru')).toThrow('stats_insights_duplicate');
+  });
+
+  it('accepts only four unique server-approved style assignments and renders no model prose', () => {
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis(), 'ru');
+    const result = parseAndGuardVerifiedResult(JSON.stringify({
+      week: { observationId: 'week.minutes-up', styleKey: 'insight' },
+      longTerm: { observationId: 'longTerm.streak', styleKey: 'focus' },
+      comparison: { observationId: 'comparison.unavailable', styleKey: 'coach' },
+      lifetime: { observationId: 'lifetime.phrases', styleKey: 'momentum' },
+    }), analysis, 'ru');
+    expect(result.notes.week).toBe('Наблюдение: 42 минуты вместо 25.');
+    expect(result.notes.longTerm).toBe('В фокусе: Серия — 7 дней.');
+    expect(result.observationIds).toEqual({
+      week: 'week.minutes-up', longTerm: 'longTerm.streak',
+      comparison: 'comparison.unavailable', lifetime: 'lifetime.phrases',
+    });
+  });
+
+  it('rejects prose, extra fields, invalid styles, and duplicate styles', () => {
+    const analysis = sanitizeVerifiedAnalysis(verifiedAnalysis(), 'ru');
+    const valid = {
+      week: { observationId: 'week.minutes-up', styleKey: 'insight' },
+      longTerm: { observationId: 'longTerm.streak', styleKey: 'focus' },
+      comparison: { observationId: 'comparison.unavailable', styleKey: 'coach' },
+      lifetime: { observationId: 'lifetime.phrases', styleKey: 'momentum' },
+    };
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...valid, extra: valid.week }), analysis, 'ru')).toThrow('stats_insights_bad_shape');
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...valid, week: { ...valid.week, text: 'Practice fell, not rose.' } }), analysis, 'ru')).toThrow('stats_insights_bad_shape');
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...valid, week: { ...valid.week, styleKey: 'sarcastic' } }), analysis, 'ru')).toThrow('stats_insights_invalid_style');
+    expect(() => parseAndGuardVerifiedResult(JSON.stringify({ ...valid, longTerm: { ...valid.longTerm, styleKey: 'insight' } }), analysis, 'ru')).toThrow('stats_insights_duplicate_style');
+  });
+
+  it('uses a localized server-owned hook for every supported locale', () => {
+    const raw = verifiedAnalysis();
+    for (const lang of ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      const clean = sanitizeVerifiedAnalysis(raw, lang);
+      const rendered = renderVerifiedNote(lang, 'insight', clean.blocks.week.fallback);
+      expect(rendered).toContain(clean.blocks.week.fallback);
+      expect(rendered).not.toBe(clean.blocks.week.fallback);
+    }
+  });
+
+  it('rejects missing requested fallback and fallback numbers absent from facts', () => {
+    const missing = verifiedAnalysis();
+    delete (missing.blocks.week.fallback as Record<string, string>).es;
+    expect(() => sanitizeVerifiedAnalysis(missing, 'es')).toThrow('stats_insights_invalid_analysis');
+    const invented = verifiedAnalysis();
+    invented.blocks.week.fallback.ru = '99 минут вместо 25.';
+    expect(() => sanitizeVerifiedAnalysis(invented, 'ru')).toThrow('stats_insights_invalid_analysis');
+  });
+
+  it('includes the selected deterministic fallback in the replay hash', () => {
+    const first = sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru', studyTarget: 'en' });
+    const changedRaw = verifiedAnalysis();
+    changedRaw.blocks.comparison.fallback.ru = 'Сравнение сейчас недоступно.';
+    const changed = sanitizeVerifiedRequest({ analysis: changedRaw, lang: 'ru', studyTarget: 'en' });
+    expect(verifiedRequestHashForReplay(changed)).not.toBe(verifiedRequestHashForReplay(first));
+  });
+
+  it('replays a valid deterministic v2 note longer than the legacy 160-char bound byte-for-byte', () => {
+    const raw = verifiedAnalysis();
+    raw.blocks.comparison.fallback.ru = `Сравнение недоступно. ${'Свой темп остаётся главным ориентиром. '.repeat(4)}`.trim();
+    const analysis = sanitizeVerifiedAnalysis(raw, 'ru');
+    const generated = parseAndGuardVerifiedResult(JSON.stringify({
+      week: { observationId: 'week.minutes-up', styleKey: 'insight' },
+      longTerm: { observationId: 'longTerm.streak', styleKey: 'focus' },
+      comparison: { observationId: 'comparison.unavailable', styleKey: 'coach' },
+      lifetime: { observationId: 'lifetime.phrases', styleKey: 'momentum' },
+    }), analysis, 'ru');
+    expect(generated.notes.comparison.length).toBeGreaterThan(160);
+    const replay = decideStatsInsightsGeneration({
+      nextAllowedAtMs: 2000,
+      lastRequestHash: 'same',
+      responseSchemaVersion: 2,
+      lastResult: generated,
+    }, 'same', 1000, 2, 'lease');
+    expect(replay.kind).toBe('replay');
+    if (replay.kind !== 'replay') throw new Error('expected replay');
+    expect((replay.result as typeof generated).notes.comparison).toBe(generated.notes.comparison);
   });
 });
 

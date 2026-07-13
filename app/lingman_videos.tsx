@@ -39,7 +39,7 @@ import {
   lingmanSnapshotCacheKey, patchLingmanUnread, readLingmanSnapshot,
 } from './lingman_youtube_cache';
 import { emitYoutubeAnalyticsEvent } from './youtube_analytics_emitter';
-import { setLingmanVideoTitleHandoff } from './lingman_video_title_handoff';
+import { setLingmanVideoHandoff } from './lingman_video_title_handoff';
 
 function formatViews(count?: number): string {
   if (!Number.isFinite(count)) return '';
@@ -236,7 +236,7 @@ export default function LingmanVideosScreen() {
       patchLingmanUnread(captureAccountGeneration(), channel.channelId, nextUnread);
       setCachedSnapshot((current) => current ? { ...current, unreadCount: nextUnread } : current);
     }
-    setLingmanVideoTitleHandoff(video.id, video.title);
+    setLingmanVideoHandoff({ videoId: video.id, channelId: channel.channelId, title: video.title });
     router.push({
       pathname: '/lingman_video_player',
       params: { id: video.id },

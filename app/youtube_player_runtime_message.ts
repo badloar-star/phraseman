@@ -2,9 +2,10 @@ import type { YoutubePlayerMessage } from './youtube_analytics_contract';
 import type { YoutubePlaybackRuntime } from './youtube_playback_runtime';
 
 type RuntimePlayerMessage = Exclude<YoutubePlayerMessage, { type: 'ready' }>;
+type RuntimeMessageTarget = Pick<YoutubePlaybackRuntime, 'finish' | 'getSnapshot' | 'tick' | 'handleState'>;
 
 export function handleYoutubePlayerRuntimeMessage(
-  runtime: YoutubePlaybackRuntime,
+  runtime: RuntimeMessageTarget,
   message: RuntimePlayerMessage,
 ): void {
   if (message.type === 'error') {

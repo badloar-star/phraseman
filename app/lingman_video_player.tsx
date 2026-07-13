@@ -24,11 +24,13 @@ import {
 import { getLingmanYoutubeChrome } from './lingman_youtube_chrome';
 import { getAnalyticsConsentState, subscribeAnalyticsConsent } from './analytics_consent';
 import { emitYoutubeAnalyticsEvent } from './youtube_analytics_emitter';
-import { consumeLingmanVideoTitle } from './lingman_video_title_handoff';
+import { peekLingmanVideoHandoff } from './lingman_video_title_handoff';
 import { parseYoutubePlayerMessage } from './youtube_analytics_contract';
-import { createYoutubePlaybackRuntime, type YoutubePlaybackRuntimeEvent } from './youtube_playback_runtime';
+import { createYoutubePlaybackAnalyticsController } from './youtube_playback_analytics_controller';
 import { handleYoutubePlayerRuntimeMessage } from './youtube_player_runtime_message';
+import { runNonBlockingYoutubeAction } from './youtube_player_actions';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { getProductAnalyticsSessionId } from './product_analytics_session_context';
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
   'https://www.youtube.com',
@@ -66,41 +68,50 @@ function analyticsActiveScript(active: boolean): string {
   return `window.__phrasemanSetAnalyticsActive && window.__phrasemanSetAnalyticsActive(${active});true;`;
 }
 
-function emitRuntimeEvent(event: YoutubePlaybackRuntimeEvent, channelId: string): void {
-  if (event.kind === 'start') {
-    emitYoutubeAnalyticsEvent({ eventName: 'youtube_playback_start', source: 'player', channelId, videoId: event.videoId, playbackId: event.playbackId });
-  } else if (event.kind === 'checkpoint') {
-    emitYoutubeAnalyticsEvent({ eventName: 'youtube_playback_checkpoint', source: 'player', channelId, videoId: event.videoId, playbackId: event.playbackId, activeWatchMs: event.activeWatchMs, positionMs: event.positionMs, durationMs: event.durationMs, maxPositionPermille: event.maxPositionPermille });
-  } else {
-    const endReason = { ended: 'ended', exit: 'screen_exit', external: 'external_open', error: 'error' }[event.reason] as 'ended' | 'screen_exit' | 'external_open' | 'error';
-    emitYoutubeAnalyticsEvent({ eventName: 'youtube_playback_end', source: 'player', channelId, videoId: event.videoId, playbackId: event.playbackId, activeWatchMs: event.activeWatchMs, positionMs: event.positionMs, durationMs: event.durationMs, maxPositionPermille: event.maxPositionPermille, endReason });
-  }
+interface PinnedPlayerContext {
+  videoId: string | null;
+  channelId: string;
+  title: string | null;
+  channelUrl: string;
+}
+
+function readPinnedPlayerContext(rawVideoId: string | undefined): PinnedPlayerContext {
+  const videoId = getValidLingmanYoutubeVideoId(rawVideoId);
+  const handoff = peekLingmanVideoHandoff(videoId);
+  const channelId = handoff ? handoff.channelId : getActiveYoutubeChannel().channelId;
+  const channelUrl = getTrustedLingmanYoutubeUrl(
+    `https://www.youtube.com/channel/${encodeURIComponent(channelId)}`,
+  ) ?? LINGMAN_CHANNEL_URL;
+  return Object.freeze({ videoId, channelId, title: handoff?.title ?? null, channelUrl });
 }
 
 export default function LingmanVideoPlayerScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id?: string }>();
-  const validVideoId = getValidLingmanYoutubeVideoId(id);
-  const channelId = getActiveYoutubeChannel().channelId;
-  const [displayTitle] = useState(() => consumeLingmanVideoTitle(validVideoId));
+  const isScreenFocused = useIsScreenFocused();
+  const [playerContext] = useState(() => readPinnedPlayerContext(id));
+  const { videoId: validVideoId, channelId, title: displayTitle, channelUrl } = playerContext;
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const [playerError, setPlayerError] = useState(false);
   const [playerKey, setPlayerKey] = useState(0);
-  const isScreenFocused = useIsScreenFocused();
   const [appState, setAppState] = useState(AppState.currentState);
   const [consentGranted, setConsentGranted] = useState(() => getAnalyticsConsentState() === 'granted');
   const consentGrantedRef = useRef(consentGranted);
   const webViewRef = useRef<WebView>(null);
   const lastPositionMs = useRef(0);
   const lastDurationMs = useRef(0);
-  const visibilityActiveRef = useRef(false);
-  const runtime = useMemo(() => createYoutubePlaybackRuntime({
-    videoId: validVideoId ?? '',
-    now: Date.now,
-    createId: Crypto.randomUUID,
-    emit: event => emitRuntimeEvent(event, channelId),
-  }), [channelId, validVideoId]);
+  const initialActive = isScreenFocused && appState === 'active';
+  const visibilityActiveRef = useRef(initialActive);
+  const [runtime] = useState(() => {
+    const controller = createYoutubePlaybackAnalyticsController({
+      videoId: validVideoId ?? '', channelId, initiallyActive: initialActive,
+      now: Date.now, createId: Crypto.randomUUID, readSessionId: getProductAnalyticsSessionId,
+      emit: (event, sessionId) => emitYoutubeAnalyticsEvent(event, { sessionId }),
+    });
+    controller.setConsent(consentGranted);
+    return controller;
+  });
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const copy = useMemo(() => ({
@@ -123,6 +134,16 @@ export default function LingmanVideoPlayerScreen() {
       id: 'Open in YouTube',
       tr: 'Open in YouTube',
       pl: 'Open in YouTube',
+    }),
+    openChannel: triLang(lang, {
+      ru: 'Открыть канал',
+      uk: 'Відкрити канал',
+      es: 'Open channel',
+      'pt-BR': 'Open channel',
+      vi: 'Open channel',
+      id: 'Open channel',
+      tr: 'Open channel',
+      pl: 'Open channel',
     }),
     retry: triLang(lang, {
       ru: 'Повторить',
@@ -147,15 +168,11 @@ export default function LingmanVideoPlayerScreen() {
   }), [lang]);
 
   const playerHtml = validVideoId ? buildLingmanEmbedHtml(validVideoId) : null;
-  const externalUrl = getTrustedLingmanYoutubeUrl(undefined, validVideoId) ?? LINGMAN_CHANNEL_URL;
+  const externalUrl = getTrustedLingmanYoutubeUrl(undefined, validVideoId) ?? channelUrl;
 
   const injectAnalyticsActive = useCallback((active: boolean) => {
     try { webViewRef.current?.injectJavaScript(analyticsActiveScript(active)); } catch { /* page may not be ready */ }
   }, []);
-
-  useEffect(() => {
-    runtime.setConsent(consentGrantedRef.current);
-  }, [runtime]);
 
   useEffect(() => subscribeAnalyticsConsent((state) => {
     const granted = state === 'granted';
@@ -174,8 +191,7 @@ export default function LingmanVideoPlayerScreen() {
   useEffect(() => {
     const active = consentGranted && isScreenFocused && appState === 'active';
     if (active !== visibilityActiveRef.current) {
-      if (active) runtime.resume();
-      else if (consentGranted) runtime.background({ positionMs: lastPositionMs.current, durationMs: lastDurationMs.current });
+      runtime.setVisible(active, { positionMs: lastPositionMs.current, durationMs: lastDurationMs.current });
       visibilityActiveRef.current = active;
     }
     injectAnalyticsActive(active);
@@ -190,7 +206,7 @@ export default function LingmanVideoPlayerScreen() {
     const message = parseYoutubePlayerMessage(event.nativeEvent.data);
     if (!message) return;
     if (message.type === 'ready') {
-      if (validVideoId) emitYoutubeAnalyticsEvent({ eventName: 'youtube_player_ready', source: 'player', channelId, videoId: validVideoId });
+      if (validVideoId) runtime.emitPlayerEvent({ eventName: 'youtube_player_ready', source: 'player', channelId, videoId: validVideoId });
       return;
     }
     if (message.type === 'error') {
@@ -205,8 +221,18 @@ export default function LingmanVideoPlayerScreen() {
   const openExternal = () => {
     hapticTap();
     runtime.finish('external', { positionMs: lastPositionMs.current, durationMs: lastDurationMs.current });
-    if (validVideoId) emitYoutubeAnalyticsEvent({ eventName: 'youtube_external_video_open', source: 'player', channelId, videoId: validVideoId });
-    void Linking.openURL(externalUrl);
+    runNonBlockingYoutubeAction(
+      () => validVideoId && runtime.emitPlayerEvent({ eventName: 'youtube_external_video_open', source: 'player', channelId, videoId: validVideoId }),
+      () => Linking.openURL(externalUrl),
+    );
+  };
+
+  const openChannel = () => {
+    hapticTap();
+    runNonBlockingYoutubeAction(
+      () => validVideoId && runtime.emitPlayerEvent({ eventName: 'youtube_channel_open', source: 'player', channelId, videoId: validVideoId }),
+      () => Linking.openURL(channelUrl),
+    );
   };
 
   return (
@@ -299,6 +325,16 @@ export default function LingmanVideoPlayerScreen() {
           <Ionicons name="open-outline" size={19} color={chrome.accent} />
           <Text style={[styles.youtubeButtonText, { color: chrome.accent }]}>{copy.openYoutube}</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel={copy.openChannel}
+          activeOpacity={0.84}
+          onPress={openChannel}
+          style={[styles.youtubeButton, styles.channelButton, { borderColor: chrome.quietButtonBorder, backgroundColor: chrome.quietButtonBg }]}
+        >
+          <Ionicons name="people-outline" size={19} color={t.textPrimary} />
+          <Text style={[styles.youtubeButtonText, { color: t.textPrimary }]}>{copy.openChannel}</Text>
+        </TouchableOpacity>
         </BounceView>
       </SafeAreaView>
     </ScreenGradient>
@@ -375,6 +411,9 @@ const styles = StyleSheet.create({
   youtubeButtonText: {
     fontSize: 15,
     fontWeight: '900',
+  },
+  channelButton: {
+    marginTop: 10,
   },
   retryButton: {
     minHeight: 42,

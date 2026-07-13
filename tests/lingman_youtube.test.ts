@@ -129,17 +129,57 @@ describe('lingman_youtube', () => {
     expect(isLingmanLongFormVideo({ id: 'xdISurogEds', title: 'Any title', description: '' })).toBe(false);
   });
 
-  it('builds an official YouTube embed without autoplay', () => {
+  it('builds an official YouTube IFrame API player without autoplay', () => {
     const html = buildLingmanEmbedHtml('X7L3Xg3qITo');
 
-    expect(html).toContain('https://www.youtube.com/embed/X7L3Xg3qITo');
-    expect(html).toContain('playsinline=1');
-    expect(html).toContain(`origin=${encodeURIComponent(LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, ''))}`);
-    expect(html).toContain(`widget_referrer=${encodeURIComponent(LINGMAN_YOUTUBE_EMBED_BASE_URL)}`);
+    expect(html).toContain('https://www.youtube.com/iframe_api');
+    expect(html).toContain('new YT.Player(');
+    expect(html).toContain(`videoId: 'X7L3Xg3qITo'`);
+    expect(html).toContain("playsinline: 1");
+    expect(html).toContain("rel: 0");
+    expect(html).toContain("controls: 1");
+    expect(html).toContain("fs: 1");
+    expect(html).toContain(`origin: '${LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, '')}'`);
+    expect(html).toContain(`widget_referrer: '${LINGMAN_YOUTUBE_EMBED_BASE_URL}'`);
     expect(html).toContain('<meta name="referrer" content="strict-origin-when-cross-origin">');
-    expect(html).not.toContain('autoplay=1');
-    expect(html).not.toContain('modestbranding=1');
+    expect(html).not.toMatch(/autoplay\s*[:=]/);
+    expect(html).not.toMatch(/modestbranding\s*[:=]/);
     expect(html).not.toContain(' autoplay;');
+  });
+
+  it('bridges ready, bounded errors, and exact supported player state snapshots', () => {
+    const html = buildLingmanEmbedHtml('X7L3Xg3qITo');
+
+    expect(html).toContain("postMessage(JSON.stringify(message))");
+    expect(html).toContain("postMessage({ version: 1, type: 'ready' })");
+    expect(html).toContain("postMessage({ version: 1, type: 'error', code: errorCode })");
+    expect(html).toContain("0: 'ended'");
+    expect(html).toContain("1: 'playing'");
+    expect(html).toContain("2: 'paused'");
+    expect(html).toContain("3: 'buffering'");
+    expect(html).toContain("events: { onReady: onReady, onStateChange: onStateChange, onError: onError }");
+    expect(html).toContain("positionMs = toBoundedMs(player.getCurrentTime())");
+    expect(html).toContain("durationMs = toBoundedMs(player.getDuration())");
+    expect(html).toContain('[2, 5, 100, 101, 150]');
+  });
+
+  it('polls once per second only while active, visible, and playing', () => {
+    const html = buildLingmanEmbedHtml('X7L3Xg3qITo');
+
+    expect(html).toContain('setInterval(emitCurrentState, 1000)');
+    expect(html).toContain('if (pollTimer !== null) return');
+    expect(html).toContain('clearInterval(pollTimer)');
+    expect(html).toContain('player.getPlayerState() === 1');
+    expect(html).toContain('analyticsActive');
+    expect(html).toContain("document.visibilityState !== 'visible'");
+    expect(html).toContain('window.__phrasemanSetAnalyticsActive = function(active)');
+    expect(html).toContain("document.addEventListener('visibilitychange'");
+    expect(html).toContain("window.addEventListener('pagehide', stopPolling)");
+    expect(html).toContain("window.addEventListener('beforeunload', stopPolling)");
+  });
+
+  it('rejects invalid video IDs before interpolating generated HTML', () => {
+    expect(() => buildLingmanEmbedHtml(`bad'</script><script>alert(1)</script>`)).toThrow('Invalid YouTube video ID');
   });
 
   it('counts unread videos relative to the last opened latest video', () => {

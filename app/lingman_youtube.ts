@@ -555,15 +555,11 @@ export async function markLingmanYoutubeCatalogSeen(latestVideoId: string | null
 }
 
 export function buildLingmanEmbedHtml(videoId: string): string {
+  const safeVideoId = parseYoutubeVideoId(videoId);
+  if (!safeVideoId) {
+    throw new Error('Invalid YouTube video ID');
+  }
   const baseOrigin = LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, '');
-  const playerParams = new URLSearchParams({
-    playsinline: '1',
-    rel: '0',
-    enablejsapi: '1',
-    origin: baseOrigin,
-    widget_referrer: LINGMAN_YOUTUBE_EMBED_BASE_URL,
-  });
-  const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${playerParams.toString()}`;
   return `<!doctype html>
 <html>
   <head>
@@ -571,16 +567,138 @@ export function buildLingmanEmbedHtml(videoId: string): string {
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <style>
       html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
-      iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+      #player, iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
     </style>
   </head>
   <body>
-    <iframe
-      src="${embedUrl}"
-      title="Phraseman YouTube video"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div id="player"></div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      (function() {
+        var player = null;
+        var pollTimer = null;
+        var analyticsActive = true;
+        var stateNames = {
+          0: 'ended',
+          1: 'playing',
+          2: 'paused',
+          3: 'buffering'
+        };
+
+        function postMessage(message) {
+          if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
+            window.ReactNativeWebView.postMessage(JSON.stringify(message));
+          }
+        }
+
+        function toBoundedMs(seconds) {
+          var numericSeconds = Number(seconds);
+          if (!Number.isFinite(numericSeconds) || numericSeconds <= 0) return 0;
+          return Math.min(86400000, Math.round(numericSeconds * 1000));
+        }
+
+        function emitState(state) {
+          var positionMs = 0;
+          var durationMs = 0;
+          try { positionMs = toBoundedMs(player.getCurrentTime()); } catch (_) {}
+          try { durationMs = toBoundedMs(player.getDuration()); } catch (_) {}
+          postMessage({
+            version: 1,
+            type: 'state',
+            state: state,
+            positionMs: positionMs,
+            durationMs: durationMs
+          });
+        }
+
+        function stopPolling() {
+          if (pollTimer === null) return;
+          clearInterval(pollTimer);
+          pollTimer = null;
+        }
+
+        function isPlaying() {
+          try {
+            return player !== null && player.getPlayerState() === 1;
+          } catch (_) {
+            return false;
+          }
+        }
+
+        function emitCurrentState() {
+          if (!analyticsActive || document.visibilityState !== 'visible' || !isPlaying()) {
+            stopPolling();
+            return;
+          }
+          emitState('playing');
+        }
+
+        function startPolling() {
+          if (pollTimer !== null) return;
+          if (!analyticsActive || document.visibilityState !== 'visible' || !isPlaying()) return;
+          pollTimer = setInterval(emitCurrentState, 1000);
+        }
+
+        function onReady() {
+          postMessage({ version: 1, type: 'ready' });
+        }
+
+        function onStateChange(event) {
+          var state = stateNames[event.data];
+          if (!state) return;
+          if (state === 'playing') {
+            emitState(state);
+            startPolling();
+            return;
+          }
+          stopPolling();
+          emitState(state);
+        }
+
+        function onError(event) {
+          stopPolling();
+          var rawCode = Number(event && event.data);
+          var officialCodes = [2, 5, 100, 101, 150];
+          var errorCode = officialCodes.indexOf(rawCode) >= 0 ? rawCode : 5;
+          postMessage({ version: 1, type: 'error', code: errorCode });
+        }
+
+        window.__phrasemanSetAnalyticsActive = function(active) {
+          analyticsActive = active === true;
+          if (!analyticsActive) {
+            stopPolling();
+            return true;
+          }
+          startPolling();
+          return true;
+        };
+
+        document.addEventListener('visibilitychange', function() {
+          if (document.visibilityState !== 'visible') {
+            stopPolling();
+            return;
+          }
+          startPolling();
+        });
+        window.addEventListener('pagehide', stopPolling);
+        window.addEventListener('beforeunload', stopPolling);
+
+        window.onYouTubeIframeAPIReady = function() {
+          player = new YT.Player('player', {
+            videoId: '${safeVideoId}',
+            playerVars: {
+              playsinline: 1,
+              rel: 0,
+              controls: 1,
+              fs: 1,
+              origin: '${baseOrigin}',
+              widget_referrer: '${LINGMAN_YOUTUBE_EMBED_BASE_URL}'
+            },
+            events: { onReady: onReady, onStateChange: onStateChange, onError: onError }
+          });
+        };
+      })();
+    </script>
   </body>
 </html>`;
 }

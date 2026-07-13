@@ -177,6 +177,31 @@ describe('stats insights client copy', () => {
     expect(secondState).toEqual(firstState);
   });
 
+  it('does not deduplicate analyses with a colliding fingerprint but different observation ids', async () => {
+    const firstAnalysis = analysis('collision');
+    const secondAnalysis = analysis('collision');
+    for (const block of BLOCKS) {
+      secondAnalysis.blocks[block] = { ...secondAnalysis.blocks[block], id: `${block}-second-id` };
+    }
+    let release!: () => void;
+    const pending = new Promise<void>((resolve) => { release = resolve; });
+    mockCallable.mockImplementation(async ({ analysis: requested }: { analysis: StatsInsightAnalysis }) => {
+      await pending;
+      const prefix = requested.blocks.week.id === firstAnalysis.blocks.week.id ? 'first' : 'second';
+      return { data: { ok: true, notes: serverNotes(prefix), observationIds: serverIds(requested), nextAllowedAtMs: 999, model: 'gpt-test' } };
+    });
+
+    const first = generateVerifiedStatsInsights({ analysis: firstAnalysis, isPremium: true, force: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
+    const second = generateVerifiedStatsInsights({ analysis: secondAnalysis, isPremium: true, force: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
+    await Promise.resolve();
+    release();
+
+    const [firstState, secondState] = await Promise.all([first, second]);
+    expect(mockCallable).toHaveBeenCalledTimes(2);
+    expect(firstState).toMatchObject({ kind: 'cached', notes: serverNotes('first'), observationIds: serverIds(firstAnalysis) });
+    expect(secondState).toMatchObject({ kind: 'cached', notes: serverNotes('second'), observationIds: serverIds(secondAnalysis) });
+  });
+
   it('does not reuse a v2 cache for another language or target', async () => {
     const a = analysis();
     mockCallable.mockResolvedValue({ data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } });

@@ -2,6 +2,8 @@ import * as admin from 'firebase-admin';
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
   adminApplySafetyModerationMutation,
+  adminApproveSafetyModerationMutation,
+  adminListSafetyModerationApprovals,
   adminPreviewSafetyModerationMutation,
   adminResumeSafetyModerationBulk,
   buildSafetyModerationPreview,
@@ -117,6 +119,7 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     const restored = (await db.collection('user_reports').doc('report-restore').get()).data();
     expect(restored).toMatchObject(report);
     for (const field of ['reviewedAtMs', 'reviewedAt', 'reviewedBy', 'archivedAt', 'warningId']) expect(restored).not.toHaveProperty(field);
+    expect((await db.collection('admin_safety_moderation_history').doc(String(changed.historyId)).get()).data()).toMatchObject({ restoredBy: 'admin-one', restoreHistoryId: expect.any(String) });
   });
 
   test('persists bulk progress in resumable chunks and completes idempotently', async () => {
@@ -145,6 +148,24 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect(replayed).toMatchObject({ replayed: true, bulk: { status: 'completed', processedCount: 205 } });
     const archived = await db.collection('user_reports').where('status', '==', 'archived').get();
     expect(archived.size).toBe(205);
+  });
+
+  test('shows a reviewable approval packet to both accounts but only the second administrator can approve', async () => {
+    const db = admin.firestore();
+    await db.collection('admin_approval_requests').doc('approval-two-account').set({
+      type: 'safety_moderation', status: 'pending', previewId: 'preview-two-account',
+      action: 'user_ban', targetId: 'user-two-account', requestedBy: 'admin-one', requestedAtMs: Date.now(),
+      expiresAtMs: Date.now() + 60_000, reason: 'Confirmed abuse', risk: 'Creates a global account block.', fingerprint: 'fingerprint-two-account',
+    });
+    const ownQueue = await adminListSafetyModerationApprovals.run(request({}, 'admin-one')) as unknown as Row;
+    const secondQueue = await adminListSafetyModerationApprovals.run(request({}, 'admin-two')) as unknown as Row;
+    expect((ownQueue.items as Row[])[0]).toMatchObject({ approvalId: 'approval-two-account', action: 'user_ban', targetId: 'user-two-account', reason: 'Confirmed abuse', risk: expect.stringContaining('global'), canApprove: false });
+    expect((secondQueue.items as Row[])[0]).toMatchObject({ approvalId: 'approval-two-account', requestedBy: 'admin-one', fingerprint: 'fingerprint-two-account', canApprove: true });
+
+    const approvalData = { approvalId: 'approval-two-account', reason: 'Independent review complete', requestId: 'approve-two-account', idempotencyKey: 'operation-approve-two-account' };
+    await expect(adminApproveSafetyModerationMutation.run(request(approvalData, 'admin-one'))).rejects.toMatchObject({ code: 'failed-precondition', message: 'self_approval_forbidden' } satisfies Partial<HttpsError>);
+    await expect(adminApproveSafetyModerationMutation.run(request(approvalData, 'admin-two'))).resolves.toMatchObject({ ok: true, replayed: false });
+    expect((await db.collection('admin_approval_requests').doc('approval-two-account').get()).data()).toMatchObject({ status: 'approved', approvedBy: 'admin-two' });
   });
 
   test('bans and unbans with separate approvals while restoring the captured leaderboard state', async () => {

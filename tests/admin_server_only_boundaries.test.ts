@@ -40,6 +40,7 @@ describe('admin server-only boundaries', () => {
     'admin_safety_moderation_snapshots',
     'admin_safety_moderation_previews',
     'admin_safety_moderation_history',
+    'admin_safety_moderation_bulk_operations',
   ])('keeps %s opaque behind permission-checked callables', (collectionName) => {
     const matchBlock = `match /${collectionName}/{document=**}`;
     const start = rules.indexOf(matchBlock);

@@ -1385,6 +1385,11 @@ export const adminApplySafetyModerationMutation = onCall(
             else tx.delete(db.collection('name_index').doc(newNameLower));
           }
         }
+        tx.update(db.collection('admin_safety_moderation_history').doc(clean(history.id, 180)), {
+          restoredAtMs: nowMs,
+          restoredBy: actorUid,
+          restoreHistoryId: historyRef.id,
+        });
         after = { restoredHistoryId: history.id, restoredAction: history.action, targetId: history.targetId };
       }
 

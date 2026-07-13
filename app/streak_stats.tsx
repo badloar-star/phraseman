@@ -63,7 +63,7 @@ import { StatCountUpText } from '../components/stats/StatCountUpText';
 import { AiBlockNote } from '../components/stats/AiBlockNote';
 import { getVerifiedStatsInsightsState, generateVerifiedStatsInsights, buildVerifiedFallbackNotes, type VerifiedStatsInsightsNotes } from './stats_insights_client';
 import { buildStatsInsightAnalysis, type StatsInsightBlockKey } from './stats_insights_analysis';
-import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, isCurrentStatsInsightsLoadCycle } from './stats_insights_snapshot';
+import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, finishStatsInsightsLoadCycle, isCurrentStatsInsightsLoadCycle } from './stats_insights_snapshot';
 import { loadActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
@@ -2806,7 +2806,7 @@ export default function StreakStats() {
         setTrainerPracticeDue(snapshot.trainerPracticeDue);
         setPendingGiftCount(snapshot.pendingGiftCount);
     }, [wdays]);
-    const loadAll = React.useCallback(async () => {
+    const loadAll = React.useCallback(async (): Promise<number | null> => {
         const analyticsRequestId = ++analyticsLoadRequestRef.current;
         setInsightsLoadCycleId(analyticsRequestId);
         setActivity365Status('loading');
@@ -2853,7 +2853,7 @@ export default function StreakStats() {
         debugStatsRoute('loadAll:start');
         await hydrateStatsCacheFromStorage();
         if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
-            return;
+            return null;
         const cachedSnapshot = getStatsCache(studyTarget);
         debugStatsRoute('loadAll:cache', { loaded: cachedSnapshot.loaded });
         if (cachedSnapshot.loaded)
@@ -2862,7 +2862,7 @@ export default function StreakStats() {
         try {
             cachedLifetimeForCycle = await readLifetimeProfileStatsCache();
             if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
-                return;
+                return null;
             debugStatsRoute('loadAll:lifetimeCache', { ok: !!cachedLifetimeForCycle });
             if (cachedLifetimeForCycle)
                 setLifetimeStats(cachedLifetimeForCycle);
@@ -2905,13 +2905,13 @@ export default function StreakStats() {
         setLeagueGroupBoostExpiresAt(activeLeagueGroupBoost?.expiresAt ?? 0);
         await lifetimeRefresh;
         if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
-            return;
+            return null;
         loadWeeklyLearnedCounts()
             .then((counts) => setWeekLearned(counts))
             .catch(() => setWeekLearned(null));
         // Синк аналитики не блокирует первую геометрию экрана.
         void syncDailyAnalyticsIfNeeded();
-        await Promise.all([activityRefresh, percentilesRefresh]);
+        return finishStatsInsightsLoadCycle(analyticsRequestId, Promise.all([activityRefresh, percentilesRefresh]), () => analyticsLoadRequestRef.current);
     }, [applyStatsSnapshot, studyTarget]);
     // Reload data when screen regains focus (e.g. after tester functions).
     useFocusEffect(React.useCallback(() => {
@@ -3013,8 +3013,9 @@ export default function StreakStats() {
             const sums = await devRandomizeLifetimePathDailyMetrics(7);
             setLifetimeChartSeed((s) => s + 1);
             setExpandedLifetimeKind(null);
-            await loadAll();
-            const devStatsCycleId = analyticsLoadRequestRef.current;
+            const devStatsCycleId = await loadAll();
+            if (devStatsCycleId === null)
+                return;
             const base = await loadLifetimeProfileStats();
             if (!isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current))
                 return;
@@ -3026,6 +3027,8 @@ export default function StreakStats() {
                 if (series)
                     byKind[k] = series;
             }));
+            if (!isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current))
+                return;
             setLifetimePathChartsByKind(byKind);
             setDevLifetimeAllCharts(true);
         }

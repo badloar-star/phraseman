@@ -66,7 +66,9 @@ describe('Admin v2 product analytics contract', () => {
     for (const field of [
       'soft_cta_rate', 'dismiss_rate', 'pending_purchases', 'paid_activations', 'failures',
       'cancellations', 'continue_free', 'trial_rate', 'cta_to_purchase_rate',
-      'eligible_to_impression_rate', 'paywall_close_rate', 'continue_free_rate',
+      'eligible_to_impression_rate', 'eligible_events', 'eligible_app_instances',
+      'paywall_reach_rate', 'paywall_close_rate', 'continue_free_rate',
+      'monthly_selections', 'yearly_selections', 'lifetime_selections',
       'monthly_activations', 'yearly_activations', 'lifetime_activations',
       'median_impression_to_cta_ms', 'median_impression_to_result_ms',
     ]) expect(product).toContain(field);

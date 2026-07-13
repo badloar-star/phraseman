@@ -106,6 +106,10 @@ describe('exact soft upsell funnel contract', () => {
     expect(source).toContain('median_impression_to_result_ms');
     expect(source).toContain('cta_to_purchase_rate');
     expect(source).toContain('eligible_to_impression_rate');
+    expect(source).toContain('eligible_events');
+    expect(source).toContain('eligible_app_instances');
+    expect(source).toContain('paywall_reach_rate');
+    expect(source).toContain('monthly_selections');
     expect(source).toContain('monthly_activations');
     expect(source).toContain('yearly_activations');
     expect(source).toContain('lifetime_activations');

@@ -85,19 +85,19 @@
       ], lessons.map((row) => [number(row.lesson_id), number(row.starts), number(row.completes), number(row.abandons), percent(row.completion_rate), number(row.avg_abandon_phrase)]));
       const softHeaders = [
         ['Триггер', 'Точная причина показа мягкого предложения.'],
-        ['Eligible', 'Цепочки, где триггер прошёл продуктовые условия и мог претендовать на показ.'],
+        ['Eligible events', 'Сколько раз триггер прошёл продуктовые условия до попытки показа.'],
+        ['Eligible app instances', 'Сколько установок приложения с согласием на аналитику дали хотя бы одно eligible-событие. Это не обязательно уникальные люди.'],
         ['Показы', 'Уникальные soft_upsell_impression_id с фактическим показом.'],
         ['Клик soft CTA', 'Нажатия основной кнопки в мягком предложении.'],
         ['Закрыли', 'Цепочки, в которых пользователь выбрал «Не сейчас» или закрыл предложение.'],
-        ['Открылся paywall', 'Цепочки, в которых paywall действительно смонтировался.'],
+        ['Открылся paywall', 'Количество открытий и reach: paywall shown / soft CTA.'],
         ['CTA paywall', 'Цепочки с нажатием кнопки покупки на paywall.'],
         ['Старт магазина', 'Цепочки, дошедшие до системного окна магазина.'],
         ['Ожидает', 'Покупка отправлена на подтверждение, но entitlement ещё не активен.'],
         ['Trial', 'Подтверждённый годовой семидневный trial.'],
         ['Оплачено', 'Подтверждённая платная подписка или lifetime без trial.'],
-        ['Monthly', 'Подтверждённые покупки месячного плана без trial.'],
-        ['Yearly', 'Подтверждённые покупки годового плана, включая trial и прямую оплату.'],
-        ['Lifetime', 'Подтверждённые разовые lifetime-покупки.'],
+        ['Выбрали M/Y/L', 'Сколько цепочек содержали paywall_plan_select для monthly / yearly / lifetime.'],
+        ['Купили M/Y/L', 'Подтверждённые purchase_completed по monthly / yearly / lifetime.'],
         ['Всего покупок', 'Подтверждённая активация trial или платной подписки.'],
         ['Конверсия', 'Покупки / фактические показы soft upsell.'],
       ];
@@ -106,11 +106,12 @@
         return '<h4 style="margin:16px 0 8px">' + esc(title) + '</h4>' +
           (warning ? '<div class="notice warning">' + esc(warning) + '</div>' : '') +
           table(softHeaders, rows.map((row) => [
-            row.trigger, number(row.eligible), number(row.impressions) + ' · ' + percent(row.eligible_to_impression_rate), number(row.soft_cta_clicks) + ' · ' + percent(row.soft_cta_rate),
+            row.trigger, number(row.eligible_events), number(row.eligible_app_instances), number(row.impressions) + ' · ' + percent(row.eligible_to_impression_rate), number(row.soft_cta_clicks) + ' · ' + percent(row.soft_cta_rate),
             number(row.dismissals) + ' · ' + percent(row.dismiss_rate),
-            number(row.paywall_shows), number(row.paywall_cta_clicks), number(row.purchase_starts),
+            number(row.paywall_shows) + ' · ' + percent(row.paywall_reach_rate), number(row.paywall_cta_clicks), number(row.purchase_starts),
             number(row.pending_purchases), number(row.trials), number(row.paid_activations),
-            number(row.monthly_activations), number(row.yearly_activations), number(row.lifetime_activations),
+            [row.monthly_selections, row.yearly_selections, row.lifetime_selections].map(number).join(' / '),
+            [row.monthly_activations, row.yearly_activations, row.lifetime_activations].map(number).join(' / '),
             number(row.purchases), percent(row.purchase_rate),
           ]));
       };

@@ -599,6 +599,9 @@ soft_chain_facts AS (
     COUNTIF(event_name = 'purchase_completed') > 0 AS purchased,
     COUNTIF(event_name = 'trial_started') > 0 AS trial_started,
     COUNTIF(event_name = 'purchase_completed' AND activation_type = 'paid') > 0 AS paid_activation,
+    COUNTIF(event_name = 'paywall_plan_select' AND paywall_plan = 'monthly') > 0 AS selected_monthly,
+    COUNTIF(event_name = 'paywall_plan_select' AND paywall_plan = 'yearly') > 0 AS selected_yearly,
+    COUNTIF(event_name = 'paywall_plan_select' AND paywall_plan = 'lifetime') > 0 AS selected_lifetime,
     COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'monthly') > 0 AS monthly_activation,
     COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'yearly') > 0 AS yearly_activation,
     COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'lifetime') > 0 AS lifetime_activation,
@@ -614,11 +617,25 @@ soft_chain_facts AS (
     ON valid.mode = soft_upsell_mode AND valid.impression_id = soft_upsell_impression_id
   GROUP BY mode, trigger, impression_id
 ),
+soft_eligibility_aggregates AS (
+  SELECT
+    soft_upsell_mode AS mode,
+    soft_upsell_trigger AS trigger,
+    COUNT(*) AS eligible_events,
+    COUNT(DISTINCT user_pseudo_id) AS eligible_app_instances
+  FROM soft_chain_events
+  INNER JOIN valid_soft_chains valid
+    ON valid.mode = soft_upsell_mode AND valid.impression_id = soft_upsell_impression_id
+  WHERE event_name = 'soft_upsell_eligible'
+  GROUP BY mode, trigger
+),
 soft_rows AS (
   SELECT 'soft_upsell' AS row_kind, TO_JSON_STRING(STRUCT(
     mode,
     trigger,
-    COUNTIF(eligible) AS eligible,
+    COUNTIF(eligible) AS eligible_chains,
+    IFNULL(ANY_VALUE(eligibility.eligible_events), 0) AS eligible_events,
+    IFNULL(ANY_VALUE(eligibility.eligible_app_instances), 0) AS eligible_app_instances,
     COUNTIF(impressed) AS impressions,
     COUNTIF(soft_cta) AS soft_cta_clicks,
     COUNTIF(dismissed) AS dismissals,
@@ -629,6 +646,9 @@ soft_rows AS (
     COUNTIF(purchased) AS purchases,
     COUNTIF(trial_started) AS trials,
     COUNTIF(paid_activation) AS paid_activations,
+    COUNTIF(selected_monthly) AS monthly_selections,
+    COUNTIF(selected_yearly) AS yearly_selections,
+    COUNTIF(selected_lifetime) AS lifetime_selections,
     COUNTIF(monthly_activation) AS monthly_activations,
     COUNTIF(yearly_activation) AS yearly_activations,
     COUNTIF(lifetime_activation) AS lifetime_activations,
@@ -640,6 +660,7 @@ soft_rows AS (
     SAFE_DIVIDE(COUNTIF(impressed), COUNTIF(eligible)) AS eligible_to_impression_rate,
     SAFE_DIVIDE(COUNTIF(dismissed), COUNTIF(impressed)) AS dismiss_rate,
     SAFE_DIVIDE(COUNTIF(paywall_shown), COUNTIF(impressed)) AS paywall_show_rate,
+    SAFE_DIVIDE(COUNTIF(paywall_shown), COUNTIF(soft_cta)) AS paywall_reach_rate,
     SAFE_DIVIDE(COUNTIF(trial_started), COUNTIF(impressed)) AS trial_rate,
     SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(impressed)) AS purchase_rate,
     SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(soft_cta)) AS cta_to_purchase_rate,
@@ -649,6 +670,7 @@ soft_rows AS (
     APPROX_QUANTILES(IF(purchase_result_at >= impression_at, (purchase_result_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_result_ms
   )) AS payload
   FROM soft_chain_facts
+  LEFT JOIN soft_eligibility_aggregates eligibility USING (mode, trigger)
   GROUP BY mode, trigger
 ),
 soft_quality_row AS (

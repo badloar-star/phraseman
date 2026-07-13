@@ -35,6 +35,11 @@ describe('paywall_trial_info — getTrialInfo', () => {
     expect(getTrialInfo(pkg({ introPrice: { price: 0 } })))
       .toEqual({ hasTrial: false, days: null });
   });
+
+  it('неизвестная цена не считается бесплатным trial', () => {
+    expect(getTrialInfo(pkg({ introPrice: { periodNumberOfUnits: 1, periodUnit: 'WEEK' } })))
+      .toEqual({ hasTrial: false, days: null });
+  });
 });
 
 describe('paywall_trial_info — trialDaysOrDefault', () => {

@@ -61,3 +61,70 @@ export interface WeeklyReviewSnapshot {
   totalTracked: number;
   sourceCoverage: SourceCoverage;
 }
+
+export interface PhraseWindowSummary {
+  mistakes: number;
+  uniquePhrases: number;
+  repeatedMistakes: number;
+  recoveredPhrases: number;
+  accuracyPct: number | null;
+}
+
+export interface WeeklyReviewWeakCategory {
+  category: string;
+  label: string;
+  pct: number;
+  priorityScore: number;
+  topWords: string[];
+}
+
+export interface WeeklyReviewRecommendation {
+  recommendationId: string;
+  actionKind: WeeklyReviewActionKind;
+  label: string;
+  routePayload: Record<string, string | number>;
+}
+
+export interface WeeklyReviewBriefingV2 {
+  schemaVersion: typeof WEEKLY_REVIEW_SCHEMA_VERSION;
+  lang: string;
+  studyTarget: 'en' | 'fr';
+  mistakes: {
+    last7: PhraseWindowSummary;
+    last30: PhraseWindowSummary;
+    delta: { accuracyPct: number | null; mistakes: number };
+    weakCategories: WeeklyReviewWeakCategory[];
+    strongCategories: Array<{ category: string; label: string; recoveryScore: number }>;
+    recoveredCategories: Array<{ category: string; label: string; recoveryScore: number }>;
+    weakLessons: Array<{ lessonId: number; title: string; pct: number; mistakeCount: number }>;
+    topMistakePhrases: Array<{
+      phrase: string;
+      count: number;
+      trend: 'up' | 'flat' | 'down';
+    }>;
+  };
+  practice: {
+    dueWords: number;
+    duePhrases: number;
+    overdue: number;
+    totalTracked: number;
+    completed7d: number;
+    accuracy7d: number | null;
+    accuracyDelta: number | null;
+  };
+  effort: {
+    activeDays7d: number;
+    activeDays30d: number;
+    currentStreak: number;
+    longestStreak: number;
+    weekXp: number;
+    weekMinutes: number;
+    lessons7d: number;
+    quizzes7d: number;
+    reviews7d: number;
+    arena7d: number;
+  };
+  recommendations: WeeklyReviewRecommendation[];
+  evidenceRegistry: Record<string, number | string | string[]>;
+  coverage: SourceCoverage;
+}

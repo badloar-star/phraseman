@@ -14,7 +14,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   buildWeeklyReviewBriefing,
   type WeeklyReviewBriefing,
-  type WeeklyReviewRecommendation,
 } from './weekly_review_briefing';
 import { getLast7DaysXp, getLast7DaysTimeMs } from './daily_analytics_sync';
 import { loadActivity365Analytics } from './activity_365_analytics';
@@ -29,7 +28,7 @@ const FREE_WINDOW_DAYS = 7;
 export interface WeeklyReview {
   greeting: string;
   paragraphs: string[];
-  recommendations: WeeklyReviewRecommendation[];
+  recommendations: Array<{ microDiagnosisId: string; label: string }>;
 }
 
 export interface WeeklyReviewStored {
@@ -148,23 +147,25 @@ function localText(
 }
 
 export function buildLocalWeeklyReview(briefing: WeeklyReviewBriefing): WeeklyReview {
-  const weak = briefing.weakCategories[0];
-  const strong = briefing.strongCategories[0] ?? briefing.recoveredCategories[0];
-  const lesson = briefing.weakLessons[0];
-  const phrase = briefing.topMistakePhrases[0];
+  const weak = briefing.mistakes.weakCategories[0];
+  const strong = briefing.mistakes.strongCategories[0] ?? briefing.mistakes.recoveredCategories[0];
+  const lesson = briefing.mistakes.weakLessons[0];
+  const phrase = briefing.mistakes.topMistakePhrases[0];
   const minutes = Math.max(0, Math.round(briefing.effort.weekMinutes));
   const xp = Math.max(0, Math.round(briefing.effort.weekXp));
+  const windowDays = 30;
+  const totalMistakes = briefing.mistakes.last30.mistakes;
 
   const greeting = localText(
     briefing.lang,
-    `Разбор готов: за ${briefing.windowDays} дн. найдено ${briefing.totalMistakes} ошибок.`,
-    `Розбір готовий: за ${briefing.windowDays} дн. знайдено ${briefing.totalMistakes} помилок.`,
-    `Resumen listo: en ${briefing.windowDays} días encontramos ${briefing.totalMistakes} errores.`,
-    `Resumo pronto: em ${briefing.windowDays} dias encontramos ${briefing.totalMistakes} erros.`,
-    `Bản tổng kết đã sẵn sàng: trong ${briefing.windowDays} ngày tìm thấy ${briefing.totalMistakes} lỗi.`,
-    `Ringkasan siap: dalam ${briefing.windowDays} hari ditemukan ${briefing.totalMistakes} kesalahan.`,
-    `Özet hazır: ${briefing.windowDays} günde ${briefing.totalMistakes} hata bulundu.`,
-    `Podsumowanie gotowe: w ${briefing.windowDays} dni znaleziono ${briefing.totalMistakes} błędów.`,
+    `Разбор готов: за ${windowDays} дн. найдено ${totalMistakes} ошибок.`,
+    `Розбір готовий: за ${windowDays} дн. знайдено ${totalMistakes} помилок.`,
+    `Resumen listo: en ${windowDays} días encontramos ${totalMistakes} errores.`,
+    `Resumo pronto: em ${windowDays} dias encontramos ${totalMistakes} erros.`,
+    `Bản tổng kết đã sẵn sàng: trong ${windowDays} ngày tìm thấy ${totalMistakes} lỗi.`,
+    `Ringkasan siap: dalam ${windowDays} hari ditemukan ${totalMistakes} kesalahan.`,
+    `Özet hazır: ${windowDays} günde ${totalMistakes} hata bulundu.`,
+    `Podsumowanie gotowe: w ${windowDays} dni znaleziono ${totalMistakes} błędów.`,
   );
 
   const paragraphs = [
@@ -265,7 +266,13 @@ export function buildLocalWeeklyReview(briefing: WeeklyReviewBriefing): WeeklyRe
   return {
     greeting,
     paragraphs,
-    recommendations: briefing.recommendedLessons,
+    recommendations: briefing.recommendations
+      .filter((item) => item.actionKind === 'open_personal_training')
+      .map((item) => ({
+        microDiagnosisId: String(item.routePayload.microDiagnosisId ?? ''),
+        label: item.label,
+      }))
+      .filter((item) => Boolean(item.microDiagnosisId)),
   };
 }
 
@@ -299,20 +306,21 @@ export async function generateWeeklyReview(options: GenerateOptions): Promise<We
     weekMinutes: Math.round(weekTimeMs / 60000),
   };
 
-  const briefing = await buildWeeklyReviewBriefing({ lang, studyTarget, isPremium, effort });
-  if (!briefing) {
+  const briefingResult = await buildWeeklyReviewBriefing({ lang, studyTarget, isPremium, effort });
+  if (briefingResult.status !== 'ready') {
     // Данных мало. Сохраняем «окно» чтобы не пытаться каждую секунду.
     return storedForLang
       ? { kind: 'cached', stored: storedForLang, canRefresh: false, nextAllowedAtMs: storedForLang.nextAllowedAtMs }
       : { kind: 'insufficient_data' };
   }
 
+  const briefing = briefingResult.briefing;
   const review = buildLocalWeeklyReview(briefing);
   const nextStored: WeeklyReviewStored = {
     review,
     generatedAtMs: nowMs,
     nextAllowedAtMs: nowMs + windowDaysFor(isPremium) * DAY_MS,
-    windowDays: briefing.windowDays,
+    windowDays: 30,
     lang,
   };
   await saveStored(nextStored, studyTarget);

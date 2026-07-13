@@ -101,6 +101,12 @@ function todayEnd(): number {
   return d.getTime();
 }
 
+function todayStart(): number {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d.getTime();
+}
+
 function nextInterval(correctStreak: number): number {
   const days = INTERVALS[Math.min(correctStreak, INTERVALS.length - 1)] ?? 30;
   return daysFromNow(days);
@@ -494,6 +500,7 @@ export async function getTrainerTotalDue(studyTarget?: RuntimeStudyTarget): Prom
 export interface TrainerDashboard {
   due: Record<TrainerQueue, number>;
   totalDue: number;
+  overdue: number;
   totalTracked: number;
   active: number;
   future: number;
@@ -565,6 +572,7 @@ export async function getTrainerDashboard(
   return {
     due,
     totalDue: due.words + due.phrases + due.arena,
+    overdue: dueItems.filter((item) => item.nextDue < todayStart()).length,
     totalTracked,
     active: activeItems.length,
     future: activeItems.filter(i => i.nextDue > end).length,

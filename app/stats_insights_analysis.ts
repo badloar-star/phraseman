@@ -67,9 +67,17 @@ type Candidate = StatsInsightObservation;
 
 const localized = (copy: Localized): Localized => copy;
 
+const INCOMPLETE_SNAPSHOT_ERROR = 'stats_insights_incomplete_snapshot';
+
+const incompleteSnapshot = (): never => {
+  throw new Error(INCOMPLETE_SNAPSHOT_ERROR);
+};
+
 const count = (value: unknown, max = 1_000_000_000): number => {
-  if (typeof value !== 'number' || !Number.isFinite(value)) return 0;
-  return Math.min(max, Math.max(0, Math.round(value)));
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > max) {
+    return incompleteSnapshot();
+  }
+  return Math.round(value);
 };
 
 const nullableCount = (value: unknown, max = 1_000_000_000): number | null => {
@@ -78,8 +86,11 @@ const nullableCount = (value: unknown, max = 1_000_000_000): number | null => {
 };
 
 const percentile = (value: unknown): number | null => {
-  if (value === null || value === undefined || typeof value !== 'number' || !Number.isFinite(value)) return null;
-  return Math.min(99, Math.max(0, Math.round(value)));
+  if (value === null) return null;
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 99) {
+    return incompleteSnapshot();
+  }
+  return Math.round(value);
 };
 
 const shortText = (value: unknown, max = 80): string | null => {
@@ -89,12 +100,34 @@ const shortText = (value: unknown, max = 80): string | null => {
 };
 
 const normalize = (input: StatsInsightsSnapshot) => {
-  const rawDays = Array.isArray(input.week.dailyMinutes7) ? input.week.dailyMinutes7 : [];
-  const dailyMinutes7 = Array.from({ length: 7 }, (_, index) => count(rawDays[index]));
+  if (!input || typeof input !== 'object' || !input.week || !input.longTerm || !input.comparison
+    || !input.comparison.sample || !input.lifetime) {
+    return incompleteSnapshot();
+  }
+  if (!(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as readonly unknown[]).includes(input.lang)) {
+    return incompleteSnapshot();
+  }
+  if (input.studyTarget !== 'en' && input.studyTarget !== 'fr') return incompleteSnapshot();
+
+  const rawDays = input.week.dailyMinutes7;
+  if (!Array.isArray(rawDays) || rawDays.length !== 7) return incompleteSnapshot();
+  const dailyMinutes7 = rawDays.map((minutes) => count(minutes));
   const sample = input.comparison.sample;
-  const status = sample.status === 'available' || sample.status === 'below_sample_floor'
-    ? sample.status
-    : 'unavailable';
+  const status = sample.status;
+  if (status !== 'available' && status !== 'below_sample_floor' && status !== 'unavailable') {
+    return incompleteSnapshot();
+  }
+  if (typeof sample.isStale !== 'boolean') return incompleteSnapshot();
+
+  const weakCategories = (Array.isArray(input.weakCategories) ? input.weakCategories : [])
+    .map((category) => {
+      const label = shortText(category?.label);
+      const pct = category?.pct;
+      if (!label || typeof pct !== 'number' || !Number.isFinite(pct) || pct < 0 || pct > 100) return null;
+      return { label, pct: Math.round(pct) };
+    })
+    .filter((category): category is { label: string; pct: number } => category !== null)
+    .slice(0, 3);
 
   return {
     lang: input.lang,
@@ -106,7 +139,7 @@ const normalize = (input: StatsInsightsSnapshot) => {
       previousMinutes7: nullableCount(input.week.previousMinutes7),
       bestDayLabel: shortText(input.week.bestDayLabel),
       dailyMinutes7,
-      hasSevenMeasuredDays: rawDays.length >= 7,
+      hasSevenMeasuredDays: true,
     },
     longTerm: {
       activeDays365: count(input.longTerm.activeDays365, 365),
@@ -137,10 +170,7 @@ const normalize = (input: StatsInsightsSnapshot) => {
       arenaWins: count(input.lifetime.arenaWins),
       daysActive: count(input.lifetime.daysActive),
     },
-    weakCategories: (Array.isArray(input.weakCategories) ? input.weakCategories : [])
-      .slice(0, 3)
-      .map((category) => ({ label: shortText(category?.label), pct: count(category?.pct, 100) }))
-      .filter((category): category is { label: string; pct: number } => category.label !== null),
+    weakCategories,
   };
 };
 
@@ -399,56 +429,67 @@ const lifetimeCandidates = (s: Normalized): Candidate[] => {
   const weak = s.weakCategories[0];
   if (weak && weak.pct < 100) {
     result.push(candidate('lifetime', 'weak-category', 400, [weak.label, weak.pct],
-      'This is the first verified weak category and its exact percentage; do not diagnose a cause.',
+      'This is one verified area for improvement and its exact percentage; do not claim it is the weakest area or diagnose a cause.',
       `Offer focused practice in ${weak.label} as an optional concrete next step.`,
       localized({
-        ru: `Самая конкретная зона роста — «${weak.label}» (${weak.pct}%). Короткая целевая практика даст понятный следующий шаг.`,
-        uk: `Найконкретніша зона зростання — «${weak.label}» (${weak.pct}%). Коротка цільова практика дасть зрозумілий наступний крок.`,
-        es: `El área de mejora más concreta es «${weak.label}» (${weak.pct}%). Una práctica breve y específica ofrece un siguiente paso claro.`,
-        'pt-BR': `A área de melhoria mais concreta é “${weak.label}” (${weak.pct}%). Uma prática curta e específica oferece um próximo passo claro.`,
-        vi: `Mảng cần cải thiện cụ thể nhất là “${weak.label}” (${weak.pct}%). Một bài luyện ngắn, đúng trọng tâm sẽ tạo bước tiếp theo rõ ràng.`,
-        id: `Area peningkatan paling konkret adalah “${weak.label}” (${weak.pct}%). Latihan singkat dan terarah memberi langkah berikutnya yang jelas.`,
-        tr: `En somut gelişim alanı “${weak.label}” (%${weak.pct}). Kısa ve odaklı bir pratik, net bir sonraki adım sunar.`,
-        pl: `Najbardziej konkretna przestrzeń do poprawy to „${weak.label}” (${weak.pct}%). Krótka, ukierunkowana praktyka daje jasny kolejny krok.`,
+        ru: `Одна подтверждённая зона роста — «${weak.label}» (${weak.pct}%). Короткая целевая практика даст понятный следующий шаг.`,
+        uk: `Одна підтверджена зона зростання — «${weak.label}» (${weak.pct}%). Коротка цільова практика дасть зрозумілий наступний крок.`,
+        es: `Un área de mejora verificada es «${weak.label}» (${weak.pct}%). Una práctica breve y específica ofrece un siguiente paso claro.`,
+        'pt-BR': `Uma área de melhoria verificada é “${weak.label}” (${weak.pct}%). Uma prática curta e específica oferece um próximo passo claro.`,
+        vi: `Một mảng cải thiện đã được xác minh là “${weak.label}” (${weak.pct}%). Bài luyện ngắn, đúng trọng tâm sẽ tạo bước tiếp theo rõ ràng.`,
+        id: `Satu area peningkatan yang terverifikasi adalah “${weak.label}” (${weak.pct}%). Latihan singkat dan terarah memberi langkah berikutnya yang jelas.`,
+        tr: `Doğrulanmış bir gelişim alanı “${weak.label}” (%${weak.pct}). Kısa ve odaklı pratik net bir sonraki adım sunar.`,
+        pl: `Jednym zweryfikowanym obszarem do poprawy jest „${weak.label}” (${weak.pct}%). Krótka, ukierunkowana praktyka daje jasny kolejny krok.`,
       })));
   }
 
+  // Milestone levels are product-defined within each category. Raw counts from
+  // unlike units are never compared; ties use an explicit, stable product order.
   const milestones = [
-    { key: 'words', value: s.lifetime.words, labels: localized({ ru: 'изученные слова', uk: 'вивчені слова', es: 'palabras estudiadas', 'pt-BR': 'palavras estudadas', vi: 'từ đã học', id: 'kata yang dipelajari', tr: 'öğrenilen kelimeler', pl: 'poznane słowa' }) },
-    { key: 'phrases', value: s.lifetime.phrases, labels: localized({ ru: 'изученные фразы', uk: 'вивчені фрази', es: 'frases estudiadas', 'pt-BR': 'frases estudadas', vi: 'cụm từ đã học', id: 'frasa yang dipelajari', tr: 'öğrenilen ifadeler', pl: 'poznane zwroty' }) },
-    { key: 'quizzes', value: s.lifetime.quizzes, labels: localized({ ru: 'пройденные квизы', uk: 'пройдені квізи', es: 'cuestionarios completados', 'pt-BR': 'quizzes concluídos', vi: 'bài kiểm tra đã hoàn thành', id: 'kuis yang diselesaikan', tr: 'tamamlanan testler', pl: 'ukończone quizy' }) },
-    { key: 'arena wins', value: s.lifetime.arenaWins, labels: localized({ ru: 'победы на Арене', uk: 'перемоги на Арені', es: 'victorias en la Arena', 'pt-BR': 'vitórias na Arena', vi: 'chiến thắng Đấu trường', id: 'kemenangan Arena', tr: 'Arena galibiyetleri', pl: 'zwycięstwa na Arenie' }) },
-    { key: 'active days', value: s.lifetime.daysActive, labels: localized({ ru: 'активные дни', uk: 'активні дні', es: 'días activos', 'pt-BR': 'dias ativos', vi: 'ngày hoạt động', id: 'hari aktif', tr: 'aktif günler', pl: 'aktywne dni' }) },
-  ].filter((item) => item.value > 0).sort((a, b) => b.value - a.value || a.key.localeCompare(b.key));
-  const biggest = milestones[0];
-  if (biggest) {
-    result.push(candidate('lifetime', `milestone-${biggest.key.replace(/\s+/g, '-')}`, 300,
-      [biggest.key, biggest.labels[s.lang], biggest.value],
-      `This is the largest verified non-zero lifetime count: ${biggest.key}; do not equate unlike unit types.`, null,
+    { key: 'words', value: s.lifetime.words, thresholds: [1, 100, 500, 1000], productPriority: 5, labels: localized({ ru: 'изученные слова', uk: 'вивчені слова', es: 'palabras estudiadas', 'pt-BR': 'palavras estudadas', vi: 'từ đã học', id: 'kata yang dipelajari', tr: 'öğrenilen kelimeler', pl: 'poznane słowa' }) },
+    { key: 'phrases', value: s.lifetime.phrases, thresholds: [1, 50, 250, 500], productPriority: 4, labels: localized({ ru: 'изученные фразы', uk: 'вивчені фрази', es: 'frases estudiadas', 'pt-BR': 'frases estudadas', vi: 'cụm từ đã học', id: 'frasa yang dipelajari', tr: 'öğrenilen ifadeler', pl: 'poznane zwroty' }) },
+    { key: 'quizzes', value: s.lifetime.quizzes, thresholds: [1, 10, 50, 100], productPriority: 3, labels: localized({ ru: 'пройденные квизы', uk: 'пройдені квізи', es: 'cuestionarios completados', 'pt-BR': 'quizzes concluídos', vi: 'bài kiểm tra đã hoàn thành', id: 'kuis yang diselesaikan', tr: 'tamamlanan testler', pl: 'ukończone quizy' }) },
+    { key: 'arena wins', value: s.lifetime.arenaWins, thresholds: [1, 5, 10, 25], productPriority: 2, labels: localized({ ru: 'победы на Арене', uk: 'перемоги на Арені', es: 'victorias en la Arena', 'pt-BR': 'vitórias na Arena', vi: 'chiến thắng Đấu trường', id: 'kemenangan Arena', tr: 'Arena galibiyetleri', pl: 'zwycięstwa na Arenie' }) },
+    { key: 'active days', value: s.lifetime.daysActive, thresholds: [1, 7, 30, 100], productPriority: 1, labels: localized({ ru: 'активные дни', uk: 'активні дні', es: 'días activos', 'pt-BR': 'dias ativos', vi: 'ngày hoạt động', id: 'hari aktif', tr: 'aktif günler', pl: 'aktywne dni' }) },
+  ].map((item) => {
+    const thresholdIndex = item.thresholds.reduce(
+      (reached, threshold, index) => item.value >= threshold ? index : reached,
+      -1,
+    );
+    return thresholdIndex < 0 ? null : { ...item, thresholdIndex, threshold: item.thresholds[thresholdIndex] };
+  }).filter((item): item is NonNullable<typeof item> => item !== null)
+    .sort((a, b) => b.thresholdIndex - a.thresholdIndex
+      || b.productPriority - a.productPriority
+      || (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  const milestone = milestones[0];
+  if (milestone) {
+    result.push(candidate('lifetime', `milestone-${milestone.key.replace(/\s+/g, '-')}-${milestone.threshold}`, 300,
+      [milestone.key, milestone.labels[s.lang], milestone.value, milestone.threshold],
+      `This is a verified lifetime milestone for ${milestone.key}: the supplied count reached the product-defined ${milestone.threshold} threshold; do not compare raw counts across unit types.`, null,
       localized({
-        ru: `Самый крупный подтверждённый итог — ${biggest.value} по показателю «${biggest.labels.ru}». Это уже реальная часть личной истории.`,
-        uk: `Найбільший підтверджений підсумок — ${biggest.value} за показником «${biggest.labels.uk}». Це вже реальна частина особистої історії.`,
-        es: `El mayor total verificado es ${biggest.value} en «${biggest.labels.es}». Ya forma parte real de tu trayectoria.`,
-        'pt-BR': `O maior total verificado é ${biggest.value} em “${biggest.labels['pt-BR']}”. Isso já é uma parte real da sua trajetória.`,
-        vi: `Tổng lớn nhất đã xác minh là ${biggest.value} ở “${biggest.labels.vi}”. Đây đã là một phần thật trong hành trình của bạn.`,
-        id: `Total terverifikasi terbesar adalah ${biggest.value} pada “${biggest.labels.id}”. Ini sudah menjadi bagian nyata dari perjalananmu.`,
-        tr: `Doğrulanmış en büyük toplam, “${biggest.labels.tr}” alanında ${biggest.value}. Bu, kişisel yolculuğunun gerçek bir parçası.`,
-        pl: `Największy zweryfikowany wynik to ${biggest.value} w kategorii „${biggest.labels.pl}”. To już realna część Twojej historii.`,
+        ru: `Подтверждённый накопительный рубеж: ${milestone.value} по показателю «${milestone.labels.ru}». Это реальная часть личной истории.`,
+        uk: `Підтверджений накопичувальний рубіж: ${milestone.value} за показником «${milestone.labels.uk}». Це реальна частина особистої історії.`,
+        es: `Hito acumulado verificado: ${milestone.value} en «${milestone.labels.es}». Ya forma parte real de tu trayectoria.`,
+        'pt-BR': `Marco acumulado verificado: ${milestone.value} em “${milestone.labels['pt-BR']}”. Isso já é uma parte real da sua trajetória.`,
+        vi: `Cột mốc tích lũy đã xác minh: ${milestone.value} ở “${milestone.labels.vi}”. Đây là một phần thật trong hành trình của bạn.`,
+        id: `Tonggak akumulatif terverifikasi: ${milestone.value} pada “${milestone.labels.id}”. Ini bagian nyata dari perjalananmu.`,
+        tr: `Doğrulanmış birikimli dönüm noktası: “${milestone.labels.tr}” alanında ${milestone.value}. Bu, kişisel yolculuğunun gerçek bir parçası.`,
+        pl: `Zweryfikowany łączny kamień milowy: ${milestone.value} w kategorii „${milestone.labels.pl}”. To realna część Twojej historii.`,
       })));
   }
-  result.push(candidate('lifetime', biggest ? 'verified-summary' : 'first-milestone', 100,
+  result.push(candidate('lifetime', milestone ? 'verified-summary' : 'first-milestone', 100,
     [s.lifetime.words, s.lifetime.phrases, s.lifetime.quizzes, s.lifetime.arenaWins, s.lifetime.daysActive],
     'Summarize only the five supplied lifetime totals; when all are zero, say that the first milestone is still ahead.',
-    biggest ? null : 'Complete one learning activity to create the first lifetime milestone.',
+    milestone ? null : 'Complete one learning activity to create the first lifetime milestone.',
     localized({
-      ru: biggest ? 'Накопленные результаты подтверждены в пяти категориях; их можно использовать как личную базовую линию.' : 'Первый накопительный результат ещё впереди. Одно завершённое занятие создаст первый честный рубеж.',
-      uk: biggest ? 'Накопичені результати підтверджені у п’яти категоріях; їх можна використати як особисту базову лінію.' : 'Перший накопичувальний результат ще попереду. Одне завершене заняття створить перший чесний рубіж.',
-      es: biggest ? 'Los resultados acumulados están verificados en cinco categorías y sirven como referencia personal.' : 'El primer hito acumulado aún está por llegar. Una actividad completada creará el primer logro real.',
-      'pt-BR': biggest ? 'Os resultados acumulados estão verificados em cinco categorias e servem como referência pessoal.' : 'O primeiro marco acumulado ainda está por vir. Uma atividade concluída criará o primeiro resultado real.',
-      vi: biggest ? 'Kết quả tích lũy đã được xác minh ở năm hạng mục và có thể làm mốc cá nhân.' : 'Cột mốc tích lũy đầu tiên vẫn đang ở phía trước. Hoàn thành một hoạt động sẽ tạo thành quả thực đầu tiên.',
-      id: biggest ? 'Hasil akumulatif terverifikasi dalam lima kategori dan dapat menjadi garis dasar pribadi.' : 'Pencapaian akumulatif pertama masih menanti. Menyelesaikan satu aktivitas akan membuat tonggak nyata pertama.',
-      tr: biggest ? 'Birikmiş sonuçlar beş kategoride doğrulandı ve kişisel başlangıç çizgisi olarak kullanılabilir.' : 'İlk birikimli dönüm noktası henüz ileride. Tamamlanan tek bir etkinlik ilk gerçek eşiği oluşturur.',
-      pl: biggest ? 'Łączne wyniki są zweryfikowane w pięciu kategoriach i mogą służyć jako osobisty punkt bazowy.' : 'Pierwszy łączny kamień milowy jest jeszcze przed Tobą. Jedna ukończona aktywność stworzy pierwszy rzetelny próg.',
+      ru: milestone ? 'Накопленные результаты подтверждены в пяти категориях; их можно использовать как личную базовую линию.' : 'Первый накопительный результат ещё впереди. Одно завершённое занятие создаст первый честный рубеж.',
+      uk: milestone ? 'Накопичені результати підтверджені у п’яти категоріях; їх можна використати як особисту базову лінію.' : 'Перший накопичувальний результат ще попереду. Одне завершене заняття створить перший чесний рубіж.',
+      es: milestone ? 'Los resultados acumulados están verificados en cinco categorías y sirven como referencia personal.' : 'El primer hito acumulado aún está por llegar. Una actividad completada creará el primer logro real.',
+      'pt-BR': milestone ? 'Os resultados acumulados estão verificados em cinco categorias e servem como referência pessoal.' : 'O primeiro marco acumulado ainda está por vir. Uma atividade concluída criará o primeiro resultado real.',
+      vi: milestone ? 'Kết quả tích lũy đã được xác minh ở năm hạng mục và có thể làm mốc cá nhân.' : 'Cột mốc tích lũy đầu tiên vẫn đang ở phía trước. Hoàn thành một hoạt động sẽ tạo thành quả thực đầu tiên.',
+      id: milestone ? 'Hasil akumulatif terverifikasi dalam lima kategori dan dapat menjadi garis dasar pribadi.' : 'Pencapaian akumulatif pertama masih menanti. Menyelesaikan satu aktivitas akan membuat tonggak nyata pertama.',
+      tr: milestone ? 'Birikmiş sonuçlar beş kategoride doğrulandı ve kişisel başlangıç çizgisi olarak kullanılabilir.' : 'İlk birikimli dönüm noktası henüz ileride. Tamamlanan tek bir etkinlik ilk gerçek eşiği oluşturur.',
+      pl: milestone ? 'Łączne wyniki są zweryfikowane w pięciu kategoriach i mogą służyć jako osobisty punkt bazowy.' : 'Pierwszy łączny kamień milowy jest jeszcze przed Tobą. Jedna ukończona aktywność stworzy pierwszy rzetelny próg.',
     })));
   return result;
 };

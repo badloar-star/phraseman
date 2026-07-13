@@ -209,6 +209,19 @@ describe('buildStatsInsightAnalysis', () => {
     expect(lifetime.fallback.ru).toMatch(/640.*слова/i);
   });
 
+  test('uses category thresholds instead of comparing unrelated lifetime units', () => {
+    const input = snapshot({
+      lifetime: { words: 5, phrases: 500, quizzes: 1000, arenaWins: 1000, daysActive: 365 },
+      weakCategories: [],
+    });
+
+    const lifetime = buildStatsInsightAnalysis(input).blocks.lifetime;
+    expect(lifetime.id).toContain('milestone-phrases-500');
+    expect(lifetime.facts).toEqual(expect.arrayContaining(['phrases', 500]));
+    expect(lifetime.allowedClaim).toMatch(/verified lifetime milestone/i);
+    expect(`${lifetime.allowedClaim} ${lifetime.fallback.ru}`).not.toMatch(/largest|biggest|most|крупн|наибольш|сам(?:ый|ая|ое)/i);
+  });
+
   test('selects and rotates a valid weak-category improvement without duplicate identity or claim', () => {
     const input = snapshot({
       lifetime: { words: 640, phrases: 120, quizzes: 30, arenaWins: 3, daysActive: 90 },
@@ -246,9 +259,9 @@ describe('buildStatsInsightAnalysis', () => {
     expect(Object.values(result.blocks).map((item) => item.fallback.ru).join(' ')).not.toMatch(/NaN|undefined|null/);
   });
 
-  test('does not mutate the input while normalizing hostile values', () => {
+  test('does not mutate valid input while filtering hostile optional values', () => {
     const input = snapshot({
-      week: { activeDays7: -4, minutes7: -1, xp7: -2, previousMinutes7: -3, bestDayLabel: ' X '.repeat(200), dailyMinutes7: [-1, 2, Number.NaN] as number[] },
+      week: { activeDays7: 4, minutes7: 80, xp7: 500, previousMinutes7: -3, bestDayLabel: ' X '.repeat(200), dailyMinutes7: [10, 20, 20, 30, 0, 0, 0] },
       weakCategories: [{ label: ' A '.repeat(100), pct: 400 }, { label: 'B', pct: -2 }, { label: 'C', pct: 30 }, { label: 'D', pct: 40 }],
     });
     const before = input.week.bestDayLabel;
@@ -258,7 +271,58 @@ describe('buildStatsInsightAnalysis', () => {
 
     expect(input.week.bestDayLabel).toBe(before);
     expect(input.weakCategories).toHaveLength(categoriesBefore);
-    expect(input.week.dailyMinutes7).toHaveLength(3);
+    expect(input.week.dailyMinutes7).toHaveLength(7);
+  });
+
+  test.each([
+    ['missing week minutes', (value: StatsInsightsSnapshot) => { delete (value.week as Partial<StatsInsightsSnapshot['week']>).minutes7; }],
+    ['NaN goal percentage', (value: StatsInsightsSnapshot) => { value.longTerm.goalPct = Number.NaN; }],
+    ['negative lifetime words', (value: StatsInsightsSnapshot) => { value.lifetime.words = -1; }],
+    ['active days outside week range', (value: StatsInsightsSnapshot) => { value.week.activeDays7 = 8; }],
+  ] as const)('rejects an incomplete required measurement: %s', (_name, mutate) => {
+    const input = snapshot();
+    mutate(input);
+    expect(() => buildStatsInsightAnalysis(input)).toThrow('stats_insights_incomplete_snapshot');
+  });
+
+  test.each([
+    [[0, 0, 0, 0, 0, 0]],
+    [[0, 0, 0, 0, 0, 0, 0, 0]],
+    [[0, 0, Number.NaN, 0, 0, 0, 0]],
+    [[0, 0, -1, 0, 0, 0, 0]],
+  ] as Array<[number[]]>)('rejects a daily measurement that is not exactly seven finite nonnegative values', (dailyMinutes7) => {
+    const input = snapshot({ week: { ...snapshot().week, dailyMinutes7 } });
+    expect(() => buildStatsInsightAnalysis(input)).toThrow('stats_insights_incomplete_snapshot');
+  });
+
+  test.each(['es', null, undefined])('rejects invalid runtime study target %p', (studyTarget) => {
+    const input = snapshot({ studyTarget: studyTarget as StatsInsightsSnapshot['studyTarget'] });
+    expect(() => buildStatsInsightAnalysis(input)).toThrow('stats_insights_incomplete_snapshot');
+  });
+
+  test.each([-1, 100, Number.NaN, Number.POSITIVE_INFINITY])('rejects invalid non-null percentile %p', (invalidPercentile) => {
+    const input = snapshot({ comparison: { ...snapshot().comparison, totalXpPercentile: invalidPercentile } });
+    expect(() => buildStatsInsightAnalysis(input)).toThrow('stats_insights_incomplete_snapshot');
+  });
+
+  test('drops invalid weak categories before applying the three-category cap', () => {
+    const input = snapshot({
+      lifetime: { words: 0, phrases: 0, quizzes: 0, arenaWins: 0, daysActive: 0 },
+      weakCategories: [
+        { label: 'Invalid NaN', pct: Number.NaN },
+        { label: 'Invalid negative', pct: -1 },
+        { label: 'Valid one', pct: 20 },
+        { label: 'Valid two', pct: 30 },
+        { label: 'Valid three', pct: 40 },
+        { label: 'Valid four', pct: 50 },
+      ],
+    });
+
+    const lifetime = buildStatsInsightAnalysis(input).blocks.lifetime;
+    expect(lifetime.id).toContain('weak-category');
+    expect(lifetime.facts).toEqual(expect.arrayContaining(['Valid one', 20]));
+    expect(lifetime.facts).not.toEqual(expect.arrayContaining(['Invalid NaN', 0]));
+    expect(lifetime.fallback.ru).not.toMatch(/самая конкретная|наиболее конкретная/i);
   });
 
   test('uses the requested non-Russian language for fallbacks', () => {

@@ -20,6 +20,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
   subscriptions: 'money',
   'promo-codes': 'money',
   analytics: 'analytics',
+  'youtube-analytics': 'youtube-analytics',
   content: 'content',
   lessons: 'content',
   'language-factory': 'content',
@@ -34,7 +35,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
 });
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel']);
+const SUB_ROUTES = new Set(['support', 'analytics', 'youtube-analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel']);
 
 function routeFromLocation() {
   const capabilityRoute = resolveCapabilityHash(globalThis.location.hash);
@@ -57,6 +58,8 @@ try {
     setAdminActions(actions);
     globalThis.callAdminProductAnalytics = async (input) => ({ data: await actions.loadProductAnalytics(input) });
     globalThis.callAdminSubscriptionAnalytics = async (input) => ({ data: await actions.loadSubscriptionAnalytics(input) });
+    globalThis.callAdminYoutubeAnalytics = async (input) => ({ data: await actions.loadYoutubeAnalytics(input) });
+    syncRoute();
   }).catch(reportInitializationError);
   globalThis.addEventListener('hashchange', syncRoute);
   syncRoute();

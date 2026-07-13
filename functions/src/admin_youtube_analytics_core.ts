@@ -190,6 +190,7 @@ export interface YoutubeAnalyticsVideoRow {
   completed50: number;
   completed75: number;
   completed95: number;
+  externalVideoOpens: number;
 }
 
 export interface YoutubeAnalyticsQuality {
@@ -601,14 +602,15 @@ export function aggregateYoutubeAnalytics(
       latestTitles.set(key, { at: row.at, eventId: row.eventId, title: [...row.title].slice(0, 100).join('') });
     }
   }
-  const pairs = new Map<string, { channel: string; video: string; selects: number; attempts: Attempt[] }>();
+  const pairs = new Map<string, { channel: string; video: string; selects: number; externalOpens: number; attempts: Attempt[] }>();
   const ensurePair = (channel: string, video: string) => {
     const key = tuple(channel, video);
-    const existing = pairs.get(key) ?? { channel, video, selects: 0, attempts: [] };
+    const existing = pairs.get(key) ?? { channel, video, selects: 0, externalOpens: 0, attempts: [] };
     pairs.set(key, existing);
     return existing;
   };
   accepted.filter(row => row.name === 'youtube_video_select').forEach(row => { ensurePair(row.channel, row.video).selects += 1; });
+  accepted.filter(row => row.name === 'youtube_external_video_open').forEach(row => { ensurePair(row.channel, row.video).externalOpens += 1; });
   attempts.forEach(attempt => ensurePair(attempt.channel, attempt.video).attempts.push(attempt));
   const allVideos: YoutubeAnalyticsVideoRow[] = [...pairs.values()].map(pair => {
     const pairWatches = pair.attempts.filter(attempt => attempt.active > 0);
@@ -625,6 +627,7 @@ export function aggregateYoutubeAnalytics(
       completed50: pairWatches.filter(attempt => (attempt.ratio ?? -1) >= 0.5).length,
       completed75: pairWatches.filter(attempt => (attempt.ratio ?? -1) >= 0.75).length,
       completed95: pairWatches.filter(attempt => (attempt.ratio ?? -1) >= 0.95).length,
+      externalVideoOpens: pair.externalOpens,
     };
   }).sort((a, b) => b.playbackStarts - a.playbackStarts || b.activeWatchMs - a.activeWatchMs
     || codePointCompare(a.channelId, b.channelId) || codePointCompare(a.videoId, b.videoId));
@@ -764,7 +767,7 @@ function decodeFunnel(payload: Record<string, unknown>): YoutubeAnalyticsFunnelR
 function decodeVideo(payload: Record<string, unknown>): YoutubeAnalyticsVideoRow {
   exactPayloadKeys(payload, ['channelId', 'videoId', 'title', 'videoSelects', 'playbackStarts', 'anonymousInstances',
     'activeWatchMs', 'averageActiveWatchMs', 'p50ActiveWatchMs', 'p90ActiveWatchMs',
-    'completed25', 'completed50', 'completed75', 'completed95']);
+    'completed25', 'completed50', 'completed75', 'completed95', 'externalVideoOpens']);
   const title = queryText(payload, 'title', true, 100, true);
   return {
     channelId: queryText(payload, 'channelId') as string,
@@ -781,6 +784,7 @@ function decodeVideo(payload: Record<string, unknown>): YoutubeAnalyticsVideoRow
     completed50: queryCount(payload, 'completed50'),
     completed75: queryCount(payload, 'completed75'),
     completed95: queryCount(payload, 'completed95'),
+    externalVideoOpens: queryCount(payload, 'externalVideoOpens'),
   };
 }
 
@@ -979,13 +983,14 @@ export function decodeYoutubeAnalyticsQueryRows(
       || dataThroughMicros > context.generatedAtMicros))) {
     throw new InvalidYoutubeAnalyticsRequestError('Inconsistent quality row');
   }
-  const sumVideo = (field: 'videoSelects' | 'playbackStarts' | 'activeWatchMs' | 'completed25' | 'completed50' | 'completed75' | 'completed95') =>
+  const sumVideo = (field: 'videoSelects' | 'playbackStarts' | 'activeWatchMs' | 'completed25' | 'completed50' | 'completed75' | 'completed95' | 'externalVideoOpens') =>
     videos.reduce((sum, video) => sum + video[field], 0);
   const videoPairs: Array<[ReturnType<typeof sumVideo>, number]> = [
     [sumVideo('videoSelects'), summary.videoSelects], [sumVideo('playbackStarts'), summary.playbackStarts],
     [sumVideo('activeWatchMs'), summary.totalActiveWatchMs], [sumVideo('completed25'), summary.completed25],
     [sumVideo('completed50'), summary.completed50], [sumVideo('completed75'), summary.completed75],
     [sumVideo('completed95'), summary.completed95],
+    [sumVideo('externalVideoOpens'), summary.externalVideoOpens],
   ];
   if (videoPairs.some(([actual, expected]) => videosTruncated ? actual > expected : actual !== expected)) {
     throw new InvalidYoutubeAnalyticsRequestError('Video totals do not match summary');
@@ -1266,8 +1271,9 @@ WITH raw_param_rows AS (
     STRUCT('completed75' AS step,'ready' AS status,c75_count AS count,SAFE_DIVIDE(c75_count,c25_count) AS percentOfPrevious)
   ])
 ), video_event_metrics AS (
-  SELECT channel_id,video_id,COUNTIF(event_name='youtube_video_select') videoSelects
-  FROM filtered_events WHERE event_name='youtube_video_select' GROUP BY channel_id,video_id
+  SELECT channel_id,video_id,COUNTIF(event_name='youtube_video_select') videoSelects,
+    COUNTIF(event_name='youtube_external_video_open') externalVideoOpens
+  FROM filtered_events WHERE event_name IN ('youtube_video_select','youtube_external_video_open') GROUP BY channel_id,video_id
 ), video_attempt_metrics AS (
   SELECT channel_id,video_id,COUNT(*) playback_starts,COUNT(DISTINCT user_pseudo_id) anonymousInstances
   FROM attempt_rollup GROUP BY channel_id,video_id
@@ -1282,7 +1288,7 @@ WITH raw_param_rows AS (
     COUNTIF(completion_ratio>=0.75) completed75,COUNTIF(completion_ratio>=0.95) completed95
   FROM watch_with_percentiles GROUP BY channel_id,video_id
 ), video_keys AS (
-  SELECT DISTINCT channel_id,video_id FROM filtered_events WHERE event_name='youtube_video_select'
+  SELECT DISTINCT channel_id,video_id FROM filtered_events WHERE event_name IN ('youtube_video_select','youtube_external_video_open')
   UNION DISTINCT SELECT DISTINCT channel_id,video_id FROM attempt_rollup
 ), video_aggregates AS (
   SELECT k.channel_id,k.video_id,t.title,
@@ -1290,7 +1296,8 @@ WITH raw_param_rows AS (
     IFNULL(a.anonymousInstances,0) anonymousInstances,IFNULL(w.active_watch_ms,0) active_watch_ms,
     w.averageActiveWatchMs,w.p50ActiveWatchMs,w.p90ActiveWatchMs,
     IFNULL(w.completed25,0) completed25,IFNULL(w.completed50,0) completed50,
-    IFNULL(w.completed75,0) completed75,IFNULL(w.completed95,0) completed95
+    IFNULL(w.completed75,0) completed75,IFNULL(w.completed95,0) completed95,
+    IFNULL(e.externalVideoOpens,0) externalVideoOpens
   FROM video_keys k LEFT JOIN latest_titles t USING(channel_id,video_id)
   LEFT JOIN video_event_metrics e USING(channel_id,video_id)
   LEFT JOIN video_attempt_metrics a USING(channel_id,video_id)
@@ -1298,7 +1305,7 @@ WITH raw_param_rows AS (
 ), video_rows AS (
       SELECT TO_JSON_STRING(STRUCT(channel_id AS channelId,video_id AS videoId,title,videoSelects,playback_starts AS playbackStarts,
         anonymousInstances,active_watch_ms AS activeWatchMs,averageActiveWatchMs,p50ActiveWatchMs,p90ActiveWatchMs,
-    completed25,completed50,completed75,completed95)) payload_json,
+    completed25,completed50,completed75,completed95,externalVideoOpens)) payload_json,
     playback_starts,active_watch_ms,channel_id,video_id
   FROM video_aggregates
       ORDER BY playback_starts DESC, active_watch_ms DESC, channel_id ASC, video_id ASC

@@ -36,6 +36,7 @@ const PAGES = Object.freeze({
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
+  'youtube-analytics': { title: 'Аналитика видео YouTube', description: 'Клики, запуски и активное время просмотра видео внутри Phraseman.' },
   'daily-briefing': { title: 'Product Manager Digest', description: 'Утренний управленческий отчёт: рост, деньги, риски, очереди и действия на сегодня.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
   'asset-studio': { title: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через безопасный серверный workflow Generate → Review → Publish.' },
@@ -43,10 +44,10 @@ const PAGES = Object.freeze({
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  owner: new Set(['users.read', 'money.read', 'analytics.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  admin: new Set(['users.read', 'money.read', 'analytics.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
   content_editor: new Set(['content.read', 'content.draft.write']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  analyst: new Set(['users.read', 'money.read', 'analytics.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
   support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
   moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
@@ -1077,7 +1078,13 @@ function renderAnalytics() {
     controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
     busy: state.busy,
   });
-  return `${summary}${can('money.read') ? renderDetailedAnalyticsWorkspace() : ''}`;
+  const youtubeEntry = can('analytics.read') ? `<section class="card section youtube-analytics-entry"><div class="card-header"><div><h2>Видео YouTube</h2><p>Клики с главной, запуски, активное время просмотра и нажатия внешних ссылок.</p></div><a class="button" href="#youtube-analytics" title="Открыть подробную аналитику видео YouTube">Открыть аналитику видео</a></div></section>` : '';
+  return `${summary}${youtubeEntry}${can('money.read') ? renderDetailedAnalyticsWorkspace() : ''}`;
+}
+
+function renderYoutubeAnalytics() {
+  if (!globalThis.AdminYoutubeAnalytics?.renderPanel) return `${pageHeader(PAGES['youtube-analytics'], 'Аналитика / Видео YouTube')}<div class="notice danger">Модуль аналитики видео не загрузился. Обновите страницу.</div>`;
+  return globalThis.AdminYoutubeAnalytics.renderPanel({ authorized: state.authorized, canRead: can('analytics.read') });
 }
 
 function renderAssetStudio() {
@@ -1282,7 +1289,7 @@ function renderReportQueue() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'youtube-analytics': renderYoutubeAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1304,6 +1311,7 @@ function renderCurrentPage() {
       globalThis.loadSubscriptionAnalytics?.();
     });
   }
+  if (state.route === 'youtube-analytics' && can('analytics.read')) queueMicrotask(() => globalThis.AdminYoutubeAnalytics?.load(false));
 }
 
 function ensureInteractiveGuidance(root) {
@@ -2823,6 +2831,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
+  if (!state.authorized || !can('analytics.read')) globalThis.AdminYoutubeAnalytics?.reset?.();
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };

@@ -317,6 +317,17 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.funnel[2]).toMatchObject({ step: 'select', count: 1, percentOfPrevious: null });
   });
 
+  test('attributes external YouTube opens to the matching video as well as the summary', () => {
+    const snapshot = aggregate([
+      event('youtube_external_video_open', FROM + 1, { video_id: 'video-1' }),
+      event('youtube_external_video_open', FROM + 2, { video_id: 'video-2' }),
+      event('youtube_external_video_open', FROM + 3, { video_id: 'video-2' }),
+    ]);
+    expect(snapshot.summary.externalVideoOpens).toBe(3);
+    expect(snapshot.videos.map(row => [row.videoId, row.externalVideoOpens]))
+      .toEqual([['video-1', 1], ['video-2', 2]]);
+  });
+
   test('scopes all quality metrics and data-through to the selected video', () => {
     const onlyOutside = aggregate([
       event('youtube_video_select', FROM + 20, { video_id: 'video-2' }),
@@ -603,7 +614,7 @@ function singleWatchDecoderRows(): Array<{ row_kind: string; payload_json: strin
     channelId: 'channel', videoId: 'video', title: null, videoSelects: 0, playbackStarts: 1,
     anonymousInstances: 1, activeWatchMs: 100, averageActiveWatchMs: 100,
     p50ActiveWatchMs: 100, p90ActiveWatchMs: 100,
-    completed25: 0, completed50: 0, completed75: 0, completed95: 0,
+    completed25: 0, completed50: 0, completed75: 0, completed95: 0, externalVideoOpens: 0,
   }) });
   const qualityIndex = rows.length - 1;
   rows[qualityIndex] = { row_kind: 'quality', payload_json: JSON.stringify({
@@ -749,7 +760,7 @@ describe('BigQuery SQL semantic contract', () => {
         channelId: `c-${String(index).padStart(3, '0')}`, videoId: `v-${index}`, title: null,
         videoSelects: 0, playbackStarts: 1, anonymousInstances: 1, activeWatchMs: 50,
         averageActiveWatchMs: 50, p50ActiveWatchMs: 50, p90ActiveWatchMs: 50,
-        completed25: 1, completed50: 1, completed75: 0, completed95: 0,
+        completed25: 1, completed50: 1, completed75: 0, completed95: 0, externalVideoOpens: 0,
       }) })),
       { row_kind: 'quality', payload_json: JSON.stringify({
         state: 'ready', totalEvents: 402, acceptedEvents: 402, validationRatio: 1,
@@ -823,7 +834,7 @@ describe('BigQuery SQL semantic contract', () => {
     const video = (videoId: string, title: string | null = null) => ({ row_kind: 'video', payload_json: JSON.stringify({
       channelId: 'channel', videoId, title, videoSelects: 0, playbackStarts: 0, anonymousInstances: 0,
       activeWatchMs: 0, averageActiveWatchMs: null, p50ActiveWatchMs: null, p90ActiveWatchMs: null,
-      completed25: 0, completed50: 0, completed75: 0, completed95: 0,
+      completed25: 0, completed50: 0, completed75: 0, completed95: 0, externalVideoOpens: 0,
     }) });
     const duplicate = emptyDecoderRows();
     duplicate.splice(duplicate.length - 1, 0, video('same'), video('same'));

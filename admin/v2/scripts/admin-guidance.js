@@ -22,6 +22,7 @@ const HREF_GUIDANCE = Object.freeze({
   '#support': 'Открыть почту поддержки и защищённую подготовку ответов.',
   '#content': 'Открыть фабрику языков и управление контентом.',
   '#analytics': 'Открыть подробную продуктовую и подписочную аналитику.',
+  '#youtube-analytics': 'Открыть агрегированную аналитику видео YouTube внутри Phraseman.',
 });
 
 export function specificGuidanceForControl(attributes) {

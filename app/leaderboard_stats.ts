@@ -37,7 +37,57 @@ const getFirestore = () => {
   }
 };
 
-let _memCache: { data: GlobalLeaderboardStats; fetchedAt: number } | null = null;
+interface LeaderboardStatsCacheEntry {
+  data: GlobalLeaderboardStats;
+  fetchedAt: number;
+}
+
+interface LeaderboardStatsLoadResult {
+  data: GlobalLeaderboardStats;
+  isStale: boolean;
+}
+
+let _memCache: LeaderboardStatsCacheEntry | null = null;
+
+function hasFiniteThresholds(value: unknown, allowEmpty = false): value is number[] {
+  return Array.isArray(value)
+    && (allowEmpty || value.length > 0)
+    && value.every((threshold, index) => typeof threshold === 'number'
+      && Number.isFinite(threshold)
+      && threshold >= 0
+      && (index === 0 || threshold >= (value[index - 1] as number)));
+}
+
+function isValidLeaderboardStats(value: unknown): value is GlobalLeaderboardStats {
+  if (!value || typeof value !== 'object') return false;
+  const stats = value as Partial<GlobalLeaderboardStats>;
+  return typeof stats.totalUsers === 'number'
+    && Number.isFinite(stats.totalUsers)
+    && stats.totalUsers > 0
+    && typeof stats.updatedAt === 'number'
+    && Number.isFinite(stats.updatedAt)
+    && stats.updatedAt > 0
+    && (stats.minimumSampleXp === undefined
+      || (typeof stats.minimumSampleXp === 'number'
+        && Number.isFinite(stats.minimumSampleXp)
+        && stats.minimumSampleXp > 0))
+    && hasFiniteThresholds(stats.xpThresholds)
+    && hasFiniteThresholds(stats.streakThresholds)
+    && hasFiniteThresholds(stats.weekXpThresholds)
+    && hasFiniteThresholds(stats.daily7xpThresholds)
+    && hasFiniteThresholds(stats.daily7timeMsThresholds)
+    && hasFiniteThresholds(stats.arenaXpThresholds, true);
+}
+
+function isValidCacheEntry(value: unknown): value is LeaderboardStatsCacheEntry {
+  if (!value || typeof value !== 'object') return false;
+  const cached = value as Partial<LeaderboardStatsCacheEntry>;
+  return typeof cached.fetchedAt === 'number'
+    && Number.isFinite(cached.fetchedAt)
+    && cached.fetchedAt > 0
+    && cached.fetchedAt <= Date.now()
+    && isValidLeaderboardStats(cached.data);
+}
 
 /**
  * Инжектировать mock-данные для тестирования перцентилей без Firestore.
@@ -77,37 +127,57 @@ export function clearMockLeaderboardStats(): void {
  * Загружает leaderboard_stats/global из Firestore (кэш 1 час в памяти + AsyncStorage).
  * Возвращает null если нет сети или функция ещё ни разу не отработала.
  */
-export async function fetchLeaderboardStats(): Promise<GlobalLeaderboardStats | null> {
+async function fetchLeaderboardStatsWithMeta(): Promise<LeaderboardStatsLoadResult | null> {
+  const now = Date.now();
+  let staleCandidate: LeaderboardStatsCacheEntry | null = null;
   // Память — самый быстрый кэш
-  if (_memCache && Date.now() - _memCache.fetchedAt < CACHE_TTL_MS) {
-    return _memCache.data;
+  if (_memCache && isValidCacheEntry(_memCache)) {
+    if (now - _memCache.fetchedAt < CACHE_TTL_MS) {
+      return { data: _memCache.data, isStale: false };
+    }
+    staleCandidate = _memCache;
   }
 
   // AsyncStorage — переживает перезапуск приложения
   try {
     const raw = await AsyncStorage.getItem(CACHE_KEY);
     if (raw) {
-      const cached: { data: GlobalLeaderboardStats; fetchedAt: number } = JSON.parse(raw);
-      if (Date.now() - cached.fetchedAt < CACHE_TTL_MS) {
+      const cached: unknown = JSON.parse(raw);
+      if (isValidCacheEntry(cached) && now - cached.fetchedAt < CACHE_TTL_MS) {
         _memCache = cached;
-        return cached.data;
+        return { data: cached.data, isStale: false };
+      }
+      if (isValidCacheEntry(cached)
+        && (!staleCandidate || cached.fetchedAt > staleCandidate.fetchedAt)) {
+        staleCandidate = cached;
       }
     }
   } catch { /* */ }
 
   // Firestore
   const db = getFirestore();
-  if (!db) return null;
+  if (!db) {
+    return staleCandidate ? { data: staleCandidate.data, isStale: true } : null;
+  }
   try {
     const snap = await db.collection('leaderboard_stats').doc('global').get();
-    if (!snap.exists) return null;
-    const data = snap.data() as GlobalLeaderboardStats;
+    if (!snap.exists) {
+      return staleCandidate ? { data: staleCandidate.data, isStale: true } : null;
+    }
+    const data: unknown = snap.data();
+    if (!isValidLeaderboardStats(data)) {
+      return staleCandidate ? { data: staleCandidate.data, isStale: true } : null;
+    }
     _memCache = { data, fetchedAt: Date.now() };
     await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(_memCache)).catch(() => {});
-    return data;
+    return { data, isStale: false };
   } catch {
-    return null;
+    return staleCandidate ? { data: staleCandidate.data, isStale: true } : null;
   }
+}
+
+export async function fetchLeaderboardStats(): Promise<GlobalLeaderboardStats | null> {
+  return (await fetchLeaderboardStatsWithMeta())?.data ?? null;
 }
 
 /** Сбросить кэш (для pull-to-refresh). */
@@ -150,6 +220,18 @@ export interface AllPercentiles {
   arenaXp: number | null;
   /** Размер выборки (количество пользователей в базе) */
   totalUsers: number;
+  sample: PercentileSampleMeta;
+}
+
+export type PercentileSampleStatus = 'unavailable' | 'below_sample_floor' | 'available';
+
+export interface PercentileSampleMeta {
+  status: PercentileSampleStatus;
+  userTotalXp: number;
+  minimumSampleXp: number;
+  totalUsers: number;
+  updatedAtMs: number | null;
+  isStale: boolean;
 }
 
 /**
@@ -164,15 +246,29 @@ export async function computeAllPercentiles(opts: {
   myDaily7xp: number;
   myDaily7timeMs: number;
   myArenaXp: number;
-}): Promise<AllPercentiles> {
+}, statsOverride?: GlobalLeaderboardStats | null): Promise<AllPercentiles> {
   const empty: AllPercentiles = {
     xp: null, streak: null, weekXp: null,
     daily7xp: null, daily7timeMs: null, arenaXp: null, totalUsers: 0,
+    sample: {
+      status: 'unavailable',
+      userTotalXp: opts.myXp,
+      minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
+      totalUsers: 0,
+      updatedAtMs: null,
+      isStale: false,
+    },
   };
-  const stats = await fetchLeaderboardStats();
-  if (!stats) return empty;
+  const loaded = statsOverride === undefined
+    ? await fetchLeaderboardStatsWithMeta()
+    : statsOverride === null
+      ? null
+      : { data: statsOverride, isStale: false };
+  if (!loaded) return empty;
 
-  const isInAppSample = opts.myXp >= percentileSampleXpFloor(stats);
+  const stats = loaded.data;
+  const minimumSampleXp = percentileSampleXpFloor(stats);
+  const isInAppSample = opts.myXp >= minimumSampleXp;
 
   return {
     xp: isInAppSample ? lookupPercentile(stats.xpThresholds, opts.myXp) : null,
@@ -182,6 +278,14 @@ export async function computeAllPercentiles(opts: {
     daily7timeMs: isInAppSample ? lookupPercentile(stats.daily7timeMsThresholds, opts.myDaily7timeMs) : null,
     arenaXp: lookupPercentile(stats.arenaXpThresholds, opts.myArenaXp),
     totalUsers: stats.totalUsers,
+    sample: {
+      status: isInAppSample ? 'available' : 'below_sample_floor',
+      userTotalXp: opts.myXp,
+      minimumSampleXp,
+      totalUsers: stats.totalUsers,
+      updatedAtMs: Number.isFinite(stats.updatedAt) ? stats.updatedAt : null,
+      isStale: loaded.isStale,
+    },
   };
 }
 

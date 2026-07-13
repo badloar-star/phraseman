@@ -54,6 +54,7 @@
     "scan:secrets": "node scripts/scan_secrets.mjs",
     "scan:secrets:staged": "node scripts/scan_secrets.mjs --staged",
     "analytics:deploy:preflight": "node scripts/analytics_deploy_preflight.mjs",
+    "analytics:privacy:staged": "node scripts/analytics_release_privacy_scan.mjs",
     "test": "jest --testPathPattern=tests/ --no-cache",
     "test:watch": "jest --testPathPattern=tests/ --watch --no-cache",
     "test:coverage": "jest --testPathPattern=tests/ --coverage",

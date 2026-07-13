@@ -1245,14 +1245,22 @@ function parsePayload(row: ProductAnalyticsQueryRow): Record<string, unknown> | 
   }
 }
 
-async function loadProductAnalyticsAggregateRows(input: {
+export async function loadProductAnalyticsAggregateRows(input: {
   startMs: number;
   endExclusiveMs: number;
   platform?: ProductAnalyticsPlatform;
+  reportingTimezone?: string;
 }): Promise<{ rows: ProductAnalyticsQueryRow[]; exportPending: boolean }> {
   const start = new Date(input.startMs);
   const endInclusive = new Date(Math.max(input.startMs, input.endExclusiveMs - 1));
-  const reportingTimezone = 'UTC';
+  const requestedTimezone = input.reportingTimezone ?? 'UTC';
+  let reportingTimezone: string;
+  try {
+    reportingTimezone = new Intl.DateTimeFormat('en-CA', { timeZone: requestedTimezone })
+      .resolvedOptions().timeZone;
+  } catch {
+    throw new HttpsError('invalid-argument', 'Invalid IANA reporting timezone');
+  }
   const localDate = (value: Date) => new Intl.DateTimeFormat('en-CA', {
     timeZone: reportingTimezone, year: 'numeric', month: '2-digit', day: '2-digit',
   }).format(value);

@@ -66,7 +66,7 @@ describe('admin product analytics input contract', () => {
     expect(source).toContain('maximumBytesBilled: String(MAXIMUM_BYTES_BILLED)');
     expect(source).toContain('const MAXIMUM_BYTES_BILLED = 5_000_000_000');
     expect(source).not.toContain('maximumBytesBilled?:');
-    expect(source).not.toContain('reportingTimezone?:');
+    expect(source).toContain('Invalid IANA reporting timezone');
   });
 
   it('limits the query window to supported periods', () => {

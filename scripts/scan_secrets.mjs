@@ -131,6 +131,7 @@ const FIREBASE_CLIENT_KEY_CONTEXT = /\b(?:apiKey|api_key|current_key)\s*[:=]/;
 const PUBLIC_AUDIO_URL_MAP_FILES = new Set([
   'app/plan_audio_url_map.generated.ts',
   'app/phrase_audio_url_map.generated.ts',
+  'app/collectibles/collectible_image_url_map.generated.ts',
 ]);
 const FIREBASE_STORAGE_DOWNLOAD_URL = /firebasestorage\.googleapis\.com\/.*[?&]alt=media&token=/;
 function isExemptFinding(ruleId, line, relPath) {

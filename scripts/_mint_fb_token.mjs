@@ -13,9 +13,14 @@ if (!refresh) {
   process.exit(1);
 }
 
-// firebase-tools' public OAuth client (same one the CLI uses; not a secret).
+// firebase-tools' public OAuth client ID. The companion credential is supplied
+// locally so the repository never contains a key-shaped value.
 const CLIENT_ID = '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com';
-const CLIENT_SECRET = 'j9iVZfS8kkCEFUPaAeJV0sAi';
+const CLIENT_SECRET = String(process.env.PHRASEMAN_FIREBASE_TOOLS_CLIENT_SECRET ?? '').trim();
+if (!CLIENT_SECRET) {
+  console.error('Set PHRASEMAN_FIREBASE_TOOLS_CLIENT_SECRET in the local shell.');
+  process.exit(1);
+}
 
 const body = new URLSearchParams({
   client_id: CLIENT_ID,

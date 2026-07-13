@@ -4,6 +4,7 @@ import {
   finishStatsInsightsLoadCycle,
   isCurrentStatsInsightsLoadCycle,
   notesForStatsInsightsFingerprint,
+  selectionPolicyForStatsInsightsSnapshot,
   shouldRenderStatsComparison,
 } from '../app/stats_insights_snapshot';
 import { buildStatsInsightAnalysis } from '../app/stats_insights_analysis';
@@ -139,6 +140,37 @@ describe('buildStatsInsightsSnapshot', () => {
     expect(notesForStatsInsightsFingerprint('old', stored)).toBeNull();
     expect(notesForStatsInsightsFingerprint(null, stored)).toBeNull();
     expect(notesForStatsInsightsFingerprint('new', stored)).toEqual(stored.notes);
+  });
+
+  it('maps a matching persisted selection window to preserve, rotate, or default', () => {
+    const ids = { week: 'w', longTerm: 'l', comparison: 'c', lifetime: 't' };
+    expect(selectionPolicyForStatsInsightsSnapshot('base', {
+      snapshotKey: 'base',
+      selection: { kind: 'none' },
+    })).toEqual({});
+    expect(selectionPolicyForStatsInsightsSnapshot('base', {
+      snapshotKey: 'base',
+      selection: { kind: 'preserve', observationIds: ids, nextAllowedAtMs: 100 },
+    })).toEqual({ preferredObservationIds: ['w', 'l', 'c', 't'] });
+    expect(selectionPolicyForStatsInsightsSnapshot('base', {
+      snapshotKey: 'base',
+      selection: { kind: 'rotate', observationIds: ids, nextAllowedAtMs: 100 },
+    })).toEqual({ previousObservationIds: ['w', 'l', 'c', 't'] });
+  });
+
+  it('rejects late selection metadata from another base snapshot and lets QA rotate deliberately', () => {
+    const state = {
+      snapshotKey: 'old',
+      selection: {
+        kind: 'preserve' as const,
+        observationIds: { week: 'w', longTerm: 'l', comparison: 'c', lifetime: 't' },
+        nextAllowedAtMs: 100,
+      },
+    };
+    expect(selectionPolicyForStatsInsightsSnapshot('new', state)).toBeNull();
+    expect(selectionPolicyForStatsInsightsSnapshot('old', state, true)).toEqual({
+      previousObservationIds: ['w', 'l', 'c', 't'],
+    });
   });
 
   it('keeps comparison geometry after the first resolved result', () => {

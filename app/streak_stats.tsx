@@ -61,9 +61,9 @@ import { StatBars, type StatBar } from '../components/stats/StatBars';
 import { StatProgressRow } from '../components/stats/StatProgressRow';
 import { StatCountUpText } from '../components/stats/StatCountUpText';
 import { AiBlockNote } from '../components/stats/AiBlockNote';
-import { getVerifiedStatsInsightsState, generateVerifiedStatsInsights, buildVerifiedFallbackNotes, type VerifiedStatsInsightsNotes } from './stats_insights_client';
+import { getVerifiedStatsInsightsSelectionState, getVerifiedStatsInsightsState, generateVerifiedStatsInsights, buildVerifiedFallbackNotes, type VerifiedStatsInsightsNotes, type VerifiedStatsInsightsSelectionState } from './stats_insights_client';
 import { buildStatsInsightAnalysis, type StatsInsightBlockKey } from './stats_insights_analysis';
-import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, finishStatsInsightsLoadCycle, isCurrentStatsInsightsLoadCycle, notesForStatsInsightsFingerprint, shouldRenderStatsComparison } from './stats_insights_snapshot';
+import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, finishStatsInsightsLoadCycle, isCurrentStatsInsightsLoadCycle, notesForStatsInsightsFingerprint, selectionPolicyForStatsInsightsSnapshot, shouldRenderStatsComparison } from './stats_insights_snapshot';
 import { loadActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
@@ -2702,6 +2702,11 @@ export default function StreakStats() {
     const statsScreenFocusedRef = useRef(false);
     // Четыре заметки строятся из одних и тех же проверенных фактов в fallback и на сервере.
     const [aiNotesState, setAiNotesState] = useState<{ fingerprint: string; notes: VerifiedStatsInsightsNotes } | null>(null);
+    const [statsInsightsSelectionState, setStatsInsightsSelectionState] = useState<{
+        snapshotKey: string;
+        loadCycleId: number;
+        selection: VerifiedStatsInsightsSelectionState;
+    } | null>(null);
     const [aiNotesLoading, setAiNotesLoading] = useState(false);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
     // Слова/фразы за 7 дней — для строки прогресса в «Твоей неделе».
@@ -2812,6 +2817,7 @@ export default function StreakStats() {
         const analyticsRequestId = ++analyticsLoadRequestRef.current;
         setInsightsLoadCycleId(analyticsRequestId);
         setCompletedInsightsLoadCycleId(-1);
+        setStatsInsightsSelectionState(null);
         setActivity365Status('loading');
         setPercentilesStatus('loading');
         setLifetimeStatus('loading');
@@ -2979,9 +2985,31 @@ export default function StreakStats() {
             lifetime: lifetimeStats,
         });
     }, [activity365, activity365Status, allTimeDays, coachMetrics, completedInsightsLoadCycleId, insightsLoadCycleId, lang, lifetimeStats, lifetimeStatus, percentiles, percentilesStatus, studyTarget]);
-    const statsInsightAnalysis = useMemo(() => statsInsightsSnapshot
+    const baseStatsInsightAnalysis = useMemo(() => statsInsightsSnapshot
         ? buildStatsInsightAnalysis(statsInsightsSnapshot)
         : null, [statsInsightsSnapshot]);
+    React.useEffect(() => {
+        if (!baseStatsInsightAnalysis) {
+            setStatsInsightsSelectionState(null);
+            return;
+        }
+        let cancelled = false;
+        const requestedSnapshotKey = baseStatsInsightAnalysis.fingerprint;
+        const requestedLoadCycleId = completedInsightsLoadCycleId;
+        setStatsInsightsSelectionState(null);
+        void getVerifiedStatsInsightsSelectionState({ lang, studyTarget })
+            .then((selection) => {
+            if (!cancelled)
+                setStatsInsightsSelectionState({ snapshotKey: requestedSnapshotKey, loadCycleId: requestedLoadCycleId, selection });
+        });
+        return () => { cancelled = true; };
+    }, [baseStatsInsightAnalysis, completedInsightsLoadCycleId, lang, studyTarget]);
+    const statsInsightAnalysis = useMemo(() => {
+        if (!statsInsightsSnapshot || !baseStatsInsightAnalysis || statsInsightsSelectionState?.loadCycleId !== completedInsightsLoadCycleId)
+            return null;
+        const selectionPolicy = selectionPolicyForStatsInsightsSnapshot(baseStatsInsightAnalysis.fingerprint, statsInsightsSelectionState, params.qa365 === '1');
+        return selectionPolicy ? buildStatsInsightAnalysis(statsInsightsSnapshot, selectionPolicy) : null;
+    }, [baseStatsInsightAnalysis, completedInsightsLoadCycleId, params.qa365, statsInsightsSelectionState, statsInsightsSnapshot]);
     const visibleAiNotes = notesForStatsInsightsFingerprint(statsInsightAnalysis?.fingerprint ?? null, aiNotesState);
     React.useEffect(() => {
         if (!statsInsightAnalysis) {

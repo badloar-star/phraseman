@@ -1,7 +1,7 @@
 import type { Lang } from '../constants/i18n';
 import type { AllPercentiles } from './leaderboard_stats';
 import type { LifetimeProfileStats } from './lifetime_profile_stats';
-import type { StatsInsightsSnapshot } from './stats_insights_analysis';
+import type { StatsInsightBlockKey, StatsInsightSelectionPolicy, StatsInsightsSnapshot } from './stats_insights_analysis';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 type WeekInput = {
@@ -79,6 +79,30 @@ export function notesForStatsInsightsFingerprint<T>(
   state: { fingerprint: string; notes: T } | null,
 ): T | null {
   return currentFingerprint !== null && state?.fingerprint === currentFingerprint ? state.notes : null;
+}
+
+type StatsInsightsStoredSelection =
+  | { kind: 'none' }
+  | {
+      kind: 'preserve' | 'rotate';
+      observationIds: Record<StatsInsightBlockKey, string>;
+      nextAllowedAtMs: number;
+    };
+
+export function selectionPolicyForStatsInsightsSnapshot(
+  currentSnapshotKey: string | null,
+  state: { snapshotKey: string; selection: StatsInsightsStoredSelection } | null,
+  forceRotate = false,
+): StatsInsightSelectionPolicy | null {
+  if (currentSnapshotKey === null || state?.snapshotKey !== currentSnapshotKey) return null;
+  if (state.selection.kind === 'none') return {};
+
+  const selection = state.selection;
+  const observationIds = (['week', 'longTerm', 'comparison', 'lifetime'] as const)
+    .map((block) => selection.observationIds[block]);
+  return selection.kind === 'rotate' || forceRotate
+    ? { previousObservationIds: observationIds }
+    : { preferredObservationIds: observationIds };
 }
 
 export function shouldRenderStatsComparison(hasResolvedPercentiles: boolean): boolean {

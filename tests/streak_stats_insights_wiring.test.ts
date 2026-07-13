@@ -50,6 +50,19 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toContain('buildStatsInsightAnalysis(statsInsightsSnapshot)');
   });
 
+  it('reconstructs selection from the persisted window bound to the exact base snapshot', () => {
+    expect(source).toContain('getVerifiedStatsInsightsSelectionState');
+    expect(source).toContain('const baseStatsInsightAnalysis = useMemo');
+    expect(source).toContain('const requestedSnapshotKey = baseStatsInsightAnalysis.fingerprint');
+    expect(source).toContain('const requestedLoadCycleId = completedInsightsLoadCycleId');
+    expect(source).toContain('snapshotKey: requestedSnapshotKey');
+    expect(source).toContain('loadCycleId: requestedLoadCycleId');
+    expect(source).toContain('statsInsightsSelectionState?.loadCycleId !== completedInsightsLoadCycleId');
+    expect(source).toContain('selectionPolicyForStatsInsightsSnapshot(');
+    expect(source).toContain('buildStatsInsightAnalysis(statsInsightsSnapshot, selectionPolicy)');
+    expect(source).not.toContain('previousObservationIdsRef');
+  });
+
   it('keeps the resolved comparison card mounted during background loading', () => {
     expect(source).toContain('const [hasResolvedPercentiles, setHasResolvedPercentiles] = useState(false)');
     expect(source).toContain('shouldRenderStatsComparison(hasResolvedPercentiles)');

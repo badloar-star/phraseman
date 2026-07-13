@@ -34,9 +34,9 @@ jest.mock('../components/text-integrity/use_text_integrity_probe', () => ({
 }));
 let mockReduceMotionEnabled = true;
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => mockReduceMotionEnabled }));
-const mockOskolokImageForPackShards = jest.fn(() => ({ uri: 'survey-shard' }));
+const mockOskolokImageForPackShards = jest.fn<any, [number]>(() => ({ uri: 'survey-shard' }));
 jest.mock('../app/oskolok', () => ({
-  oskolokImageForPackShards: (...args: unknown[]) => mockOskolokImageForPackShards(...args),
+  oskolokImageForPackShards: (...args: unknown[]) => mockOskolokImageForPackShards(Number(args[0])),
 }));
 
 import SurveyTaskCard from '../components/SurveyTaskCard';
@@ -158,7 +158,7 @@ test.each(['optimistic-reward', 'reconciled'] as const)(
 test('optimistic to reconciled rerender does not replay the entrance animation', async () => {
   mockReduceMotionEnabled = false;
   const animation = { start: jest.fn(), stop: jest.fn() };
-  const timing = jest.spyOn(Animated, 'timing').mockReturnValue(animation as ReturnType<typeof Animated.timing>);
+  const timing = jest.spyOn(Animated, 'timing').mockReturnValue(animation as unknown as ReturnType<typeof Animated.timing>);
   const props = {
     reward: 3,
     title: 'Dziękujemy',

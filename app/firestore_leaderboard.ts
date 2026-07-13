@@ -214,6 +214,11 @@ export type ReserveNameResult = {
   status: ReserveNameStatus;
   nextChangeAt?: number;
 };
+export type GeneratedNicknameResult = {
+  status: 'ok' | 'error';
+  name?: string;
+  stableId?: string;
+};
 export type ReserveNameOptions = {
   source?: 'onboarding' | 'settings';
 };
@@ -286,6 +291,30 @@ export async function reserveNameDetailed(
         return { status: 'error' };
       }
     }
+    return { status: 'error' };
+  }
+}
+
+export async function generateAndReserveNickname(): Promise<GeneratedNicknameResult> {
+  if (!CLOUD_SYNC_ENABLED) return { status: 'error' };
+  let stableId = readCachedNameReservationIdentity() || await ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS);
+  if (!stableId) {
+    const authReady = await waitForAnonAuth(NAME_RESERVE_RETRY_TIMEOUT_MS);
+    stableId = authReady ? await ensureNameReservationIdentityReady(NAME_RESERVE_RETRY_TIMEOUT_MS) : null;
+  }
+  if (!stableId) return { status: 'error' };
+  try {
+    const fn = callable<{ stableId?: string }, { ok: boolean; status: 'ok'; name: string }>('nameGenerateAndReserve');
+    const { data } = await withTimeout(
+      fn({ stableId }),
+      NAME_RESERVE_RETRY_TIMEOUT_MS,
+      'name_generate_and_reserve',
+    );
+    const name = String(data.name ?? '').trim();
+    if (!data.ok || data.status !== 'ok' || name.length < 2) return { status: 'error' };
+    rememberNameReservationIdentity(stableId);
+    return { status: 'ok', name, stableId };
+  } catch {
     return { status: 'error' };
   }
 }

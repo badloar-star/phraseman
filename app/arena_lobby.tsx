@@ -205,6 +205,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const screenTitleColor = t.textPrimary;
     const screenMuted = t.textMuted;
     const { lang } = useLang();
+    const { studyTarget } = useStudyTarget();
     const effectiveOs = useEffectivePlatformOS();
     const defaultPlayerName = useMemo(() => triLang(lang, {
         ru: 'Игрок',

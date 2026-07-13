@@ -308,7 +308,7 @@ function NotificationCenterButton() {
                 <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
               </TouchableOpacity>
             ) : null}
-            <Text allowFontScaling={false} numberOfLines={1} style={[styles.headerTitle, { color: t.textPrimary }]}>
+            <Text style={[styles.headerTitle, { color: t.textPrimary }]}>
               {selected ? copy.reportReply : copy.title}
             </Text>
             <TouchableOpacity
@@ -365,11 +365,11 @@ function NotificationCenterButton() {
                     </View>
                   )}
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text numberOfLines={2} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800', lineHeight: Math.round(f.caption * 1.3) }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800', lineHeight: Math.round(f.caption * 1.3) }}>
                       {rowTitle}
                     </Text>
                     {rowPreview ? (
-                      <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 2 }}>
+                      <Text style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 2 }}>
                         {rowPreview}
                       </Text>
                     ) : null}

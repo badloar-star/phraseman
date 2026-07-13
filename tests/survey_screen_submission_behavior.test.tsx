@@ -5,13 +5,13 @@ import { act, fireEvent, render } from '@testing-library/react-native';
 jest.unmock('react-native');
 
 const mockBack = jest.fn();
-const mockSubmitSurvey = jest.fn();
-const mockReplaceBalance = jest.fn(() => Promise.resolve());
-const mockMarkDone = jest.fn(() => Promise.resolve());
-const mockBeginCache = jest.fn(() => 17);
-const mockCommitCache = jest.fn();
-const mockEmit = jest.fn();
-const mockClearPrimed = jest.fn();
+const mockSubmitSurvey = jest.fn<any, any>();
+const mockReplaceBalance = jest.fn<any, any>(() => Promise.resolve());
+const mockMarkDone = jest.fn<any, any>(() => Promise.resolve());
+const mockBeginCache = jest.fn<any, any>(() => 17);
+const mockCommitCache = jest.fn<any, any>();
+const mockEmit = jest.fn<any, any>();
+const mockClearPrimed = jest.fn<any, any>();
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ back: mockBack }),

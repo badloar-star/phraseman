@@ -139,7 +139,7 @@ export default function SurveyRewardPanel({
               style={({ pressed }) => [styles.action, styles.retry, { borderColor: t.wrong, opacity: retryDisabled ? 0.45 : pressed ? 0.78 : 1 }]}
             >
               <Ionicons name="refresh" size={20} color={t.textPrimary} accessibilityElementsHidden />
-              <FlowText provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
+              <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
                 {labels.retry}
               </FlowText>
             </Pressable>
@@ -152,7 +152,7 @@ export default function SurveyRewardPanel({
                 style={({ pressed }) => [styles.action, { opacity: pressed ? 0.78 : 1 }]}
               >
                 <Ionicons name="arrow-back" size={20} color={t.textPrimary} accessibilityElementsHidden />
-                <FlowText provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
+                <FlowText testID="survey-back-label" provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
                   {labels.back}
                 </FlowText>
               </Pressable>
@@ -167,7 +167,7 @@ export default function SurveyRewardPanel({
             android_ripple={{ color: 'rgba(7,17,10,0.16)' }}
             style={({ pressed }) => [styles.action, { backgroundColor: t.accent, opacity: pressed ? 0.82 : 1 }]}
           >
-            <FlowText provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>
+            <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>
               {labels.done}
             </FlowText>
           </Pressable>

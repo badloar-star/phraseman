@@ -377,11 +377,11 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
             {locked ? (
               <View style={[styles.metricMask, { backgroundColor: t.textMuted + '33' }]} />
             ) : (
-              <Text style={[styles.metricValue, { color: accent }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+              <Text style={[styles.metricValue, { color: accent }]}>
                 {item.value}
               </Text>
             )}
-            <Text style={[styles.metricLabel, { color: t.textMuted }]} numberOfLines={2}>
+            <Text style={[styles.metricLabel, { color: t.textMuted }]}>
               {triLang(lang, COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL[item.kind])}
             </Text>
           </View>
@@ -403,10 +403,10 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
         </View>
         <View style={styles.focusText}>
           <Text style={[styles.focusTitle, { color: accent }]}>{triLang(lang, COMPASS_DAY_CLOSING_TOMORROW)}</Text>
-          <Text style={[styles.focusBody, { color: t.textPrimary }]} numberOfLines={2}>
+          <Text style={[styles.focusBody, { color: t.textPrimary }]}>
             {locked ? dayClosingLockedTeaser(dayClosing, lang) : dayClosingFocusText(dayClosing, lang)}
           </Text>
-          <Text style={[styles.focusNote, { color: t.textMuted }]} numberOfLines={2}>
+          <Text style={[styles.focusNote, { color: t.textMuted }]}>
             {locked ? triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_BODY) : dayClosingFocusNote(dayClosing, lang)}
           </Text>
         </View>
@@ -419,7 +419,7 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
             {triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_TITLE)}
           </Text>
           {onUpgrade && (
-            <PremiumGoldButton f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
+            <PremiumGoldButton active f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
           )}
           <CompassLaterLink t={t} label={triLang(lang, COMPASS_LATER)} onPress={onLater} />
         </View>

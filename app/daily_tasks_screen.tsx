@@ -17,8 +17,6 @@ import { GOLD_RICH, goldTaskAccent, goldShadow } from '../constants/goldTheme';
 import { localizedDailyTaskStrings } from './daily_tasks_es_locale';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
-import { LinearGradient } from '../components/SafeLinearGradient';
-import { lightenHex } from '../components/GradientProgressBar';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
@@ -26,7 +24,7 @@ import PlusBadge from '../components/PlusBadge';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
@@ -49,9 +47,12 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { useScreen } from '../hooks/use-screen';
 import SurveyTaskCard from '../components/SurveyTaskCard';
 import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from './survey_client';
-import { isSurveyDailyTaskDoneToday } from './survey_daily_task';
+import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from './survey_daily_task';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts, type SurveyDailyChallengeSnapshot } from './survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask, type SurveyDailyTaskScope } from './survey_daily_task_cache';
+import { primeSurvey } from './survey_handoff';
 import { getCanonicalUserId } from './user_id_policy';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import {
     beginDailyTasksScreenRequest,
@@ -66,6 +67,10 @@ import {
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 const EMPTY_DAILY_TASKS: DailyTask[] = [];
 const EMPTY_DAILY_PROGRESS: TaskProgress[] = [];
+type SurveyDailyTaskOwnerState = {
+    scope: SurveyDailyTaskScope | null;
+    snapshot: SurveyDailyChallengeSnapshot | null;
+};
 
 const safeDailyTaskEventPart = (value: unknown): string =>
     String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
@@ -1727,8 +1732,28 @@ export default function DailyTasksScreen() {
     const progress = snapshotVisible ? progressState : EMPTY_DAILY_PROGRESS;
     /** Опрос за осколки как 4-е задание: активен ли сегодня и пройден ли он.
         Когда активен — набор = 3 обычных + опрос, награда за любые 3 из 4. */
-    const [surveyPresent, setSurveyPresent] = useState(false);
-    const [surveyDone, setSurveyDone] = useState(false);
+    const surveyScope = renderToken.phase === 'active' && renderToken.stableId
+        ? { stableId: renderToken.stableId, dayKey: activeDayKey, lang }
+        : null;
+    const surveyScopeKey = surveyScope ? JSON.stringify([surveyScope.stableId, surveyScope.dayKey, surveyScope.lang]) : null;
+    const [surveyState, setSurveyState] = useState<SurveyDailyTaskOwnerState>(() => ({
+        scope: surveyScope,
+        snapshot: surveyScope ? peekSurveyDailyTask(surveyScope) : null,
+    }));
+    const committedSurveyScopeKey = surveyState.scope
+        ? JSON.stringify([surveyState.scope.stableId, surveyState.scope.dayKey, surveyState.scope.lang])
+        : null;
+    const surveySnapshot = committedSurveyScopeKey === surveyScopeKey ? surveyState.snapshot : null;
+    const publishSurveySnapshot = useCallback((scope: SurveyDailyTaskScope, snapshot: SurveyDailyChallengeSnapshot | null) => {
+        setSurveyState((current) => {
+            const sameScope = current.scope?.stableId === scope.stableId
+                && current.scope.dayKey === scope.dayKey
+                && current.scope.lang === scope.lang;
+            return sameScope && JSON.stringify(current.snapshot) === JSON.stringify(snapshot)
+                ? current
+                : { scope, snapshot };
+        });
+    }, []);
     /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
         показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
     const [loadingTasks, setLoadingTasks] = useState(() => initialSnapshot === null);
@@ -2025,21 +2050,62 @@ export default function DailyTasksScreen() {
         let cancelled = false;
         (async () => {
             try {
-                const done = await isSurveyDailyTaskDoneToday();
-                if (cancelled) return;
-                setSurveyDone(done);
-                if (done) { setSurveyPresent(true); return; }
-                if (!isSurveyCloudEnabled()) { setSurveyPresent(false); return; }
+                const dayKey = getTodayKey();
+                const accountToken = captureAccountGeneration();
                 const stableId = await getCanonicalUserId();
-                if (cancelled || !stableId) return;
-                const active = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-                if (!cancelled) setSurveyPresent(!!active && active.questions.length > 0);
+                if (cancelled || !stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                const scope = { stableId, dayKey, lang };
+                const cached = peekSurveyDailyTask(scope);
+                if (cached) {
+                    publishSurveySnapshot(scope, cached);
+                }
+                const done = await isSurveyDailyTaskDone({ stableId, dayKey });
+                if (cancelled || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                if (done) {
+                    const completed = buildServerConfirmedLegacyCompletion(lang);
+                    const requestId = beginSurveyDailyTaskRequest(scope);
+                    if (commitSurveyDailyTaskRequest(scope, requestId, completed)) publishSurveySnapshot(scope, completed);
+                    return;
+                }
+                if (cached) return;
+                if (!isSurveyCloudEnabled()) {
+                    publishSurveySnapshot(scope, null);
+                    return;
+                }
+                const requestId = beginSurveyDailyTaskRequest(scope);
+                const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                if (cancelled || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
+                if (cancelled || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                const snapshot = migrated
+                    ? buildServerConfirmedLegacyCompletion(lang)
+                    : lookup.survey && lookup.survey.questions.length > 0
+                    ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
+                    : null;
+                if (!commitSurveyDailyTaskRequest(scope, requestId, snapshot)) return;
+                publishSurveySnapshot(scope, snapshot);
             } catch {
-                if (!cancelled) setSurveyPresent(false);
+                /* retain last-known survey state */
             }
         })();
         return () => { cancelled = true; };
-    }, [lang]));
+    }, [lang, publishSurveySnapshot]));
+    const openSurveyChallenge = useCallback((challenge: SurveyDailyChallengeSnapshot) => {
+        const scope = surveyState.scope;
+        const survey = challenge.survey;
+        if (!scope || !survey || challenge.phase !== 'active') return;
+        const { stableId, dayKey, lang: scopeLang } = scope;
+        const scopeKey = JSON.stringify([stableId, dayKey, scopeLang]);
+        if (committedSurveyScopeKey !== scopeKey) return;
+        if (dayKey !== getTodayKey() || scopeLang !== lang) return;
+        if (!isCurrentAccountGeneration(captureAccountGeneration(), stableId)) return;
+        hapticTap();
+        primeSurvey({ survey, stableId, dayKey, lang: scopeLang });
+        router.push({
+            pathname: '/survey_screen',
+            params: { surveyId: survey.surveyId, stableId, dayKey, lang: scopeLang },
+        });
+    }, [committedSurveyScopeKey, lang, router, surveyState.scope]);
     const handleClaim = async (taskId: string, xpBase: number) => {
         if (claimBusyId)
             return;
@@ -2157,9 +2223,12 @@ export default function DailyTasksScreen() {
             const row = progress.find((p) => p.taskId === task.id);
             return row?.completed === true || row?.claimed === true;
         }).length;
-        const doneWithSurvey = realDone + (surveyPresent && surveyDone ? 1 : 0);
-        const threshold = surveyPresent ? Math.min(3, tasks.length + 1) : tasks.length;
-        const done = doneWithSurvey >= threshold;
+        const { done: completedCount, rewardThreshold } = computeSurveyDailyCounts({
+            baseTotal: tasks.length,
+            baseDone: realDone,
+            survey: surveySnapshot,
+        });
+        const done = completedCount >= rewardThreshold;
         if (!done || trioShardsClaimed || trioClaimBusy)
             return;
         setTrioClaimBusy(true);
@@ -2206,8 +2275,7 @@ export default function DailyTasksScreen() {
         finally {
             setTrioClaimBusy(false);
         }
-    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveyPresent, surveyDone]);
-    const claimedCount = countClaimedForTaskList(tasks, progress);
+    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveySnapshot]);
     // Опрос-как-4-е-задание: когда активен, набор = 3 обычных + опрос (всего 4),
     // а награду «за все» дают за ЛЮБЫЕ 3 из 4. Порог = 3, а «выполнено» считает и
     // пройденный опрос. Когда опроса нет — поведение прежнее (все N из N).
@@ -2215,10 +2283,12 @@ export default function DailyTasksScreen() {
         const row = progress.find((p) => p.taskId === task.id);
         return row?.completed === true || row?.claimed === true;
     }).length;
-    const totalTaskCount = tasks.length + (surveyPresent ? 1 : 0);
-    const totalObjectivesDone = realObjectivesDone + (surveyPresent && surveyDone ? 1 : 0);
-    const dailyRewardThreshold = surveyPresent ? Math.min(3, totalTaskCount) : tasks.length;
-    const allTasksObjectivesDone = tasks.length > 0 && totalObjectivesDone >= dailyRewardThreshold;
+    const dailyCounts = computeSurveyDailyCounts({
+        baseTotal: tasks.length,
+        baseDone: realObjectivesDone,
+        survey: surveySnapshot,
+    });
+    const allTasksObjectivesDone = tasks.length > 0 && dailyCounts.done >= dailyCounts.rewardThreshold;
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy;
     const bonusAccent = isGoldTheme
@@ -2237,11 +2307,7 @@ export default function DailyTasksScreen() {
     const trioActionText = trioClaimButtonEnabled
         ? rewardActionText
         : (isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
-    const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
     // Счётчик и знаменатель учитывают опрос как 4-е задание, когда он активен.
-    const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length
-        + (surveyPresent && surveyDone ? 1 : 0);
-    const objectivesTotalCount = totalTaskCount;
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
             router.replace('/(tabs)/lessons' as any);
@@ -2528,7 +2594,7 @@ export default function DailyTasksScreen() {
           </Text>
         </View>
         <View style={{ alignItems: 'center' }}>
-          <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '700' }}>{objectivesDoneCount}/{objectivesTotalCount}</Text>
+          <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '700' }}>{dailyCounts.done}/{dailyCounts.total}</Text>
           <Text style={{ color: sx.muted, fontSize: f.label }}>
             {triLang(lang, {
             ru: 'выполнено',
@@ -2555,10 +2621,6 @@ export default function DailyTasksScreen() {
 
       <BouncyWrap>
       <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
-
-        {/* Опрос за осколки — 4-я плашка-задание (когда активен). Сам решает,
-            показываться ли; засчитывается в «любые 3 из 4» (порог в этом экране). */}
-        <SurveyTaskCard />
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
@@ -2608,7 +2670,7 @@ export default function DailyTasksScreen() {
           titleTextProps={{ style: { fontSize: f.body, fontWeight: '800' } }}
           descriptionTextProps={{ style: { fontSize: f.caption, lineHeight: f.caption * 1.35, fontWeight: '400' } }}
           icon={<Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 24, height: 24, opacity: trioShardsClaimed ? 0.55 : trioClaimButtonEnabled ? 1 : 0.72 }} contentFit="contain" />}
-          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${objectivesTotalCount ? Math.min((objectivesDoneCount / objectivesTotalCount) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
+          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${dailyCounts.total ? Math.min((dailyCounts.done / dailyCounts.total) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
           action={!trioShardsClaimed ? { label: `${bonusClaimLabel} ${trioRewardCount}`, accessibilityLabel: bonusClaimAccessibilityLabel, labelProps: { style: { fontSize: Math.min(f.sub, 13), fontWeight: '900' } }, onPress: handleClaimTrioShards, foregroundColor: trioActionText, backgroundColor: trioActionBg, disabled: !trioClaimButtonEnabled, loading: trioClaimBusy, icon: <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain" /> } : undefined}
           claimed={trioShardsClaimed}
           claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
@@ -2682,11 +2744,6 @@ export default function DailyTasksScreen() {
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
                 </>}
-                progress={<View style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
-                  <View style={[dailyTaskStyles.taskCapsuleBottomFill, taskFillSizeStyle]}>
-                    <LinearGradient colors={claimed ? (isGoldTheme ? [GOLD_RICH.agedGold, GOLD_RICH.champagne] : ['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.46)']) : [taskAccent, lightenHex(taskAccent, 0.28)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskCapsuleBottomFillGradient} />
-                  </View>
-                </View>}
                 action={completed && !claimed ? { label: claimLabel, onPress: () => { void handleClaim(task.id, task.xp); }, foregroundColor: rewardActionText, backgroundColor: rewardActionBg, disabled: claimBusyId === task.id, loading: claimBusyId === task.id } : undefined}
                 claimed={claimed}
                 claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
@@ -2697,7 +2754,11 @@ export default function DailyTasksScreen() {
 
         })}
 
-        {claimedCount === tasks.length && tasks.length > 0 && (<View style={{ alignItems: 'center', padding: 24, gap: 8 }}>
+        {surveySnapshot && (
+          <SurveyTaskCard challenge={surveySnapshot} onOpen={openSurveyChallenge} />
+        )}
+
+        {dailyCounts.done >= dailyCounts.total && dailyCounts.total > 0 && (<View style={{ alignItems: 'center', padding: 24, gap: 8 }}>
             <Text style={{ fontSize: f.numLg + 12 }}>🎉</Text>
             <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>
               {triLang(lang, {
@@ -2896,27 +2957,6 @@ const dailyTaskStyles = StyleSheet.create({
         borderBottomRightRadius: 4,
         opacity: 0.88,
     },
-    taskCapsuleBottomTrack: {
-        position: 'absolute',
-        left: 18,
-        right: 18,
-        bottom: 9,
-        height: 3,
-        borderRadius: 999,
-        overflow: 'hidden',
-    },
-    taskCapsuleBottomFill: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        borderRadius: 999,
-        overflow: 'hidden',
-    },
-    taskCapsuleBottomFillGradient: {
-        flex: 1,
-        borderRadius: 999,
-    },
     taskMainRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -3111,7 +3151,7 @@ const dailyTaskStyles = StyleSheet.create({
     claimedPill: {
         minHeight: 30,
         borderRadius: 15,
-        borderWidth: 1,
+        borderWidth: 0,
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',

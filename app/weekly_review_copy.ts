@@ -1,10 +1,6 @@
 import { triLang, type Lang } from '../constants/i18n';
 
-type WeeklyReviewLocalizedCopy = {
-  ru: string;
-  uk: string;
-  es: string;
-} & Partial<Record<Lang, string>>;
+type WeeklyReviewLocalizedCopy = Record<Lang, string>;
 
 const L = (lang: Lang, values: WeeklyReviewLocalizedCopy): string => triLang(lang, values);
 

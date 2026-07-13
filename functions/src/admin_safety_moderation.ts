@@ -1267,7 +1267,14 @@ export const adminApplySafetyModerationMutation = onCall(
         const handled = payload.handled !== false;
         const patch = { handled, disposition: clean(payload.disposition, 80), handlingNote: clean(payload.note, 1_000), handledBy: actorUid, handledAtMs: nowMs, handledAt: new Date(nowMs).toISOString() };
         tx.update(db.collection('safety_flags').doc(input.targetId), patch);
-        after = { ...projectSafetyFlagSummary(input.targetId, { ...before, ...patch }), mutableFields: patchExactFieldState(before.mutableFields, patch) };
+        after = {
+          ...before,
+          handled,
+          disposition: clean(payload.disposition, 80).toLowerCase(),
+          handledBy: actorUid,
+          handledAtMs: nowMs,
+          mutableFields: patchExactFieldState(before.mutableFields, patch),
+        };
       } else if (action === 'safety_handle_bulk') {
         const ids = payload.targetIds as string[];
         targetCount = ids.length;

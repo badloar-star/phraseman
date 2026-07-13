@@ -137,6 +137,8 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     const restore = await previewThroughCallable({
       action: 'restore_operation', targetId: String(changed.historyId), reason: 'Undo safety disposition', requestId: 'preview-flag-restore', payload: { operationId: changed.historyId },
     });
+    const flagHistory = (await db.collection('admin_safety_moderation_history').doc(String(changed.historyId)).get()).data() as Row;
+    expect(((restore.response.before as Row).current as Row)).toEqual(flagHistory.after);
     await adminApplySafetyModerationMutation.run(request({
       previewId: restore.previewId, confirmation: restore.preview.confirmation, reason: restore.preview.reason,
       requestId: 'apply-flag-restore', idempotencyKey: 'operation-flag-restore',

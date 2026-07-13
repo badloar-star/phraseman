@@ -271,8 +271,9 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
-  soft_upsell_first_lesson_enabled: false,
-  soft_upsell_free_lessons_complete_enabled: false,
+  // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.
+  soft_upsell_first_lesson_enabled: true,
+  soft_upsell_free_lessons_complete_enabled: true,
   soft_upsell_weekly_review_enabled: false,
   soft_upsell_second_ai_dialogue_enabled: false,
   soft_upsell_streak_enabled: false,

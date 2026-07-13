@@ -16,11 +16,13 @@ const FLAGS = {
 
 afterEach(__resetRemoteFlagsForTest);
 
-test('all six soft-upsell switches default safely to false', () => {
-  expect(Object.values(FLAGS).map((key) => getRemoteBool(key))).toEqual(Array(6).fill(false));
+test('verified lesson switches default on while deferred integrations stay off', () => {
+  expect(Object.values(FLAGS).map((key) => getRemoteBool(key))).toEqual([
+    true, true, false, false, false, false,
+  ]);
   expect(getSoftUpsellEnabledByTrigger()).toEqual({
-    first_lesson: false,
-    free_lessons_complete: false,
+    first_lesson: true,
+    free_lessons_complete: true,
     weekly_review: false,
     second_ai_dialogue: false,
     streak_milestone: false,
@@ -30,10 +32,10 @@ test('all six soft-upsell switches default safely to false', () => {
 
 test('accepts booleans and rejects non-booleans without changing existing defaults', () => {
   applyRemoteConfigSnapshot({ bools: {
-    soft_upsell_first_lesson_enabled: true,
+    soft_upsell_first_lesson_enabled: false,
     soft_upsell_weekly_review_enabled: 'true',
   } });
-  expect(getRemoteBool('soft_upsell_first_lesson_enabled')).toBe(true);
+  expect(getRemoteBool('soft_upsell_first_lesson_enabled')).toBe(false);
   expect(getRemoteBool('soft_upsell_weekly_review_enabled')).toBe(false);
   expect(getRemoteBool('referral_enabled')).toBe(true);
   expect(getRemoteBool('ideas_enabled')).toBe(false);

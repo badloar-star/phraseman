@@ -679,8 +679,9 @@ export function buildLingmanEmbedHtml(videoId: string): string {
         }
 
         function onReady() {
+          if (readyEmitted || initFailed || playerFailed) return;
+          initCompleted = true;
           clearInitTimeout();
-          if (readyEmitted || playerFailed) return;
           readyEmitted = true;
           postMessage({ version: 1, type: 'ready' });
         }
@@ -705,6 +706,7 @@ export function buildLingmanEmbedHtml(videoId: string): string {
         }
 
         function onError(event) {
+          if (!initCompleted) initFailed = true;
           clearInitTimeout();
           emitPlayerError(event && event.data);
         }
@@ -757,8 +759,6 @@ export function buildLingmanEmbedHtml(videoId: string): string {
               },
               events: { onReady: onReady, onStateChange: onStateChange, onError: onError }
             });
-            initCompleted = true;
-            clearInitTimeout();
           } catch (_) {
             failInitialization();
           }

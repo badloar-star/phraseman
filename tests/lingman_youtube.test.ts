@@ -408,6 +408,23 @@ describe('lingman_youtube', () => {
     expect(bridge.timeoutCount).toBe(0);
   });
 
+  it('keeps the watchdog until player ready and latches timeout against late callbacks', () => {
+    const bridge = createBridgeHarness({ autoApiReady: false });
+
+    bridge.fireApiReady();
+    expect(bridge.constructorArgs).not.toBeNull();
+    expect(bridge.timeoutCount).toBe(1);
+
+    bridge.fireTimeouts();
+    bridge.firePlayerReady();
+    bridge.setAnalyticsActive(true);
+    bridge.emitYoutubeState(1);
+
+    expect(bridge.parsedMessages()).toEqual([{ version: 1, type: 'error', code: 5 }]);
+    expect(bridge.intervalCount).toBe(0);
+    expect(bridge.timeoutCount).toBe(0);
+  });
+
   it('executes ready/error handlers once and keeps official bounded error codes', () => {
     const bridge = createBridgeHarness();
 

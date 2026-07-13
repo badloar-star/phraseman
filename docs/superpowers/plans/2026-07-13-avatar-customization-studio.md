@@ -14,25 +14,34 @@
 
 **Создать:**
 
+- `constants/customization_storage_keys.ts` — лёгкие storage keys без каталогов и asset `require()`.
 - `app/customization_snapshot.ts` — типы, безопасный парсинг storage и сравнение снимков.
 - `app/customization_catalog.ts` — элементы каталога, фильтры и состояния доступности.
 - `app/customization_draft.ts` — составной черновик и детерминированный resolver нижней CTA.
 - `app/customization_service.ts` — атомарное применение образа и write-through обновление snapshot.
+- `app/customization_purchase_intent.ts` — durable purchase intent и восстановление частично завершённой покупки.
+- `app/customization_purchase_confirmation.ts` — чистое состояние request/confirm/cancel без списаний до подтверждения.
 - `components/customization/CustomizationHero.tsx` — «Зал созвездий» с акцентом темы.
 - `components/customization/CustomizationCatalogCard.tsx` — мемоизированная статичная карточка.
 - `components/customization/CustomizationControls.tsx` — вкладки, `Все/Мои`, меню и нижняя CTA.
 - `components/customization/AvatarEditorSheet.tsx` — редактор градиента/цвета логотипа.
+- `components/customization/CustomizationPurchaseConfirmModal.tsx` — единое подтверждение покупки аватара/ауры/рестайлинга.
 - `tests/customization_snapshot.test.ts`.
 - `tests/customization_catalog.test.ts`.
 - `tests/customization_draft.test.ts`.
 - `tests/customization_service.test.ts`.
+- `tests/customization_purchase_intent.test.ts`.
+- `tests/customization_purchase_confirmation.test.ts`.
+- `tests/shards_idempotent_spend.test.ts`.
 - `tests/avatar_select_studio_contract.test.ts`.
 - `tests/avatar_select_first_frame_contract.test.ts`.
 
 **Изменить:**
 
-- `constants/custom_avatars.ts` — вынести лёгкий storage-key подарочного аватара.
-- `app/level_gift_system.ts` — сохранить прежний экспорт ключа как alias.
+- `constants/custom_avatars.ts` — переэкспортировать avatar keys из лёгкого модуля.
+- `constants/avatar_auras.ts` — переэкспортировать aura keys из лёгкого модуля.
+- `app/level_gift_system.ts` — сохранить прежний экспорт подарочного ключа как alias.
+- `app/shards_system.ts` — добавить opt-in idempotency key для безопасного повторного spend.
 - `app/app_snapshot_store.ts` — добавить поле `customization?: CustomizationSnapshot`.
 - `app/app_snapshot_bootstrap.ts` — включить ключи кастомизации в ранний `multiGet`.
 - `app/avatar_select.tsx` — заменить монолитный экран на координатор студии.
@@ -48,12 +57,16 @@
 
 - Create: `app/customization_snapshot.ts`
 - Create: `tests/customization_snapshot.test.ts`
+- Create: `constants/customization_storage_keys.ts`
 - Modify: `constants/custom_avatars.ts`
+- Modify: `constants/avatar_auras.ts`
 - Modify: `app/level_gift_system.ts`
 
 - [ ] **Step 1: Написать падающие тесты безопасного парсинга**
 
 ```ts
+import fs from 'fs';
+import path from 'path';
 import {
   buildCustomizationSnapshot,
   customizationSnapshotsEqual,
@@ -70,9 +83,9 @@ describe('customization snapshot', () => {
       ['avatar_aura_owned_v1', JSON.stringify({ 'aura-aurora': true })],
       ['custom_avatar_gift_owned_v1', 'custom-61'],
       ['avatar_aura_gift_owned_v1', 'aura-nimbus'],
-    ]), 100);
+    ]), 100, 18);
 
-    expect(snapshot.activeAuraId).toBe('none');
+    expect(snapshot.storedAuraSelection).toBe('none');
     expect(snapshot.shards).toBe(44);
     expect(snapshot.ownedAvatars['custom-01']).toBe('violet:black');
     expect(snapshot.ownedAuras['aura-aurora']).toBe(true);
@@ -82,15 +95,23 @@ describe('customization snapshot', () => {
     const snapshot = buildCustomizationSnapshot(new Map([
       ['custom_avatar_owned_v1', '["custom-01"]'],
       ['avatar_aura_owned_v1', '{bad'],
-    ]), 100);
+    ]), 100, 1);
     expect(snapshot.ownedAvatars).toEqual({});
     expect(snapshot.ownedAuras).toEqual({});
   });
 
   it('compares normalized content instead of object identity', () => {
-    const a = buildCustomizationSnapshot(new Map(), 100);
-    const b = buildCustomizationSnapshot(new Map(), 200);
+    const a = buildCustomizationSnapshot(new Map(), 100, 1);
+    const b = buildCustomizationSnapshot(new Map(), 200, 1);
     expect(customizationSnapshotsEqual(a, b)).toBe(true);
+  });
+
+  it('stays lightweight for startup', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../app/customization_snapshot.ts'), 'utf8');
+    expect(source).not.toContain("from '../constants/custom_avatars'");
+    expect(source).not.toContain("from '../constants/avatars'");
+    expect(source).not.toContain("from '../constants/avatar_auras'");
+    expect(source).not.toContain('require(');
   });
 });
 ```
@@ -111,7 +132,7 @@ export interface CustomizationSnapshot {
   source: 'storage' | 'memory' | 'local';
   updatedAt: number;
   activeAvatar: string;
-  activeAuraId: string | null;
+  storedAuraSelection: string | null;
   totalXp: number;
   level: number;
   shards: number;
@@ -121,24 +142,37 @@ export interface CustomizationSnapshot {
   giftedAuraId: string | null;
 }
 
-// constants/custom_avatars.ts
+// constants/customization_storage_keys.ts — no catalog imports, no asset require().
+export const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 export const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
+export const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
+export const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
+export const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
+export const CUSTOMIZATION_STORAGE_KEYS = [
+  USER_AVATAR_AURA_KEY,
+  CUSTOM_AVATAR_OWNED_KEY,
+  CUSTOM_AVATAR_GIFT_OWNED_KEY,
+  AVATAR_AURA_OWNED_KEY,
+  AVATAR_AURA_GIFT_OWNED_KEY,
+] as const;
 
-// app/level_gift_system.ts keeps the public legacy name.
+// Existing modules import/re-export these lightweight constants.
 export const COSMETIC_GIFT_OWNED_AVATAR_KEY = CUSTOM_AVATAR_GIFT_OWNED_KEY;
 
 export function buildCustomizationSnapshot(
   values: ReadonlyMap<string, string | null>,
   updatedAt: number,
+  level: number,
 ): CustomizationSnapshot {
   const totalXp = readNonNegativeInt(values.get('user_total_xp'));
+  const safeLevel = Math.max(1, Math.floor(level));
   return {
     source: 'storage',
     updatedAt,
-    activeAvatar: values.get('user_avatar')?.trim() || String(getBestAvatarForLevel(getLevelFromXP(totalXp))),
-    activeAuraId: normalizeStoredAura(values.get(USER_AVATAR_AURA_KEY)),
+    activeAvatar: values.get('user_avatar')?.trim() || String(Math.min(60, safeLevel)),
+    storedAuraSelection: normalizeStoredAuraSelection(values.get(USER_AVATAR_AURA_KEY)),
     totalXp,
-    level: getLevelFromXP(totalXp),
+    level: safeLevel,
     shards: readNonNegativeInt(values.get('shards_balance')),
     ownedAvatars: parseOwnedAvatars(values.get(CUSTOM_AVATAR_OWNED_KEY)),
     ownedAuras: parseOwnedAuras(values.get(AVATAR_AURA_OWNED_KEY)),
@@ -148,20 +182,20 @@ export function buildCustomizationSnapshot(
 }
 ```
 
-`customization_snapshot.ts` импортирует ключ из `constants/custom_avatars.ts`, а не загружает большой `app/level_gift_system.ts` в ранний bootstrap. Старый экспорт остаётся alias, поэтому существующие потребители не меняют storage contract.
+`customization_snapshot.ts` импортирует только `constants/customization_storage_keys.ts`. Он не импортирует `constants/custom_avatars.ts`, `constants/avatars.ts`, `constants/avatar_auras.ts` или `app/level_gift_system.ts`, поэтому ранний bootstrap не загружает каталоги и статические asset `require()`. Старые модули переэкспортируют те же ключи, поэтому существующие потребители не меняют storage contract.
 
-`normalizeStoredAura` обязан возвращать `NO_AVATAR_AURA_ID` для строки `none`, `null` для пустого/невалидного значения и валидный id для известной ауры. `customizationSnapshotsEqual` сравнивает все содержательные поля, игнорируя `source` и `updatedAt`.
+`normalizeStoredAuraSelection` возвращает строку `none` без преобразования, `null` для пустого значения и trimmed id для непустой строки. Проверка существования aura id выполняется позже catalog policy, где импорт каталога уже допустим. `customizationSnapshotsEqual` сравнивает все содержательные поля, игнорируя `source` и `updatedAt`.
 
 - [ ] **Step 4: Запустить тест и подтвердить зелёную фазу**
 
 Run: `npx jest --runInBand --runTestsByPath tests/customization_snapshot.test.ts`
 
-Expected: PASS, 3 tests.
+Expected: PASS, 4 tests.
 
 - [ ] **Step 5: Зафиксировать этап**
 
 ```powershell
-git add constants/custom_avatars.ts app/level_gift_system.ts app/customization_snapshot.ts tests/customization_snapshot.test.ts
+git add constants/customization_storage_keys.ts constants/custom_avatars.ts constants/avatar_auras.ts app/level_gift_system.ts app/customization_snapshot.ts tests/customization_snapshot.test.ts
 git commit -m "feat: add customization snapshot model"
 ```
 
@@ -171,6 +205,7 @@ git commit -m "feat: add customization snapshot model"
 
 - Modify: `app/app_snapshot_store.ts`
 - Modify: `app/app_snapshot_bootstrap.ts`
+- Modify: `app/customization_snapshot.ts`
 - Modify: `tests/app_snapshot_store_contract.test.ts`
 - Modify: `tests/app_snapshot_bootstrap_contract.test.ts`
 - Create: `tests/avatar_select_first_frame_contract.test.ts`
@@ -181,7 +216,7 @@ git commit -m "feat: add customization snapshot model"
 it('primes account-scoped customization in the startup multiGet', () => {
   const bootstrap = readProjectFile('app', 'app_snapshot_bootstrap.ts');
   expect(bootstrap).toContain('CUSTOMIZATION_STORAGE_KEYS');
-  expect(bootstrap).toContain('buildCustomizationSnapshot(values, now)');
+  expect(bootstrap).toContain('buildCustomizationSnapshot(values, now, profile.level)');
   expect(bootstrap).toContain('customization:');
 });
 
@@ -192,9 +227,30 @@ it('seeds avatar studio from the snapshot instead of fake defaults', () => {
   expect(source).not.toContain("const [activeAvatar, setActiveAvatar] = useState<string>('1')");
   expect(source).not.toContain('const [activeAuraId, setActiveAuraId] = useState<string | null>(null)');
 });
+
+it('publishes no update while delayed storage returns equal data', async () => {
+  const current = buildCustomizationSnapshot(new Map(), 100, 4);
+  let resolveFresh!: (value: CustomizationSnapshot) => void;
+  const delayed = new Promise<CustomizationSnapshot>((resolve) => { resolveFresh = resolve; });
+  const publish = jest.fn();
+  const pending = revalidateCustomizationSnapshot(current, () => delayed, publish);
+  expect(publish).not.toHaveBeenCalled();
+  resolveFresh({ ...current, updatedAt: 200 });
+  await pending;
+  expect(publish).not.toHaveBeenCalled();
+});
+
+it('publishes one coherent update when delayed storage differs', async () => {
+  const current = buildCustomizationSnapshot(new Map(), 100, 4);
+  const fresh = { ...current, shards: 50, ownedAuras: { 'aura-aurora': true }, updatedAt: 200 };
+  const publish = jest.fn();
+  await revalidateCustomizationSnapshot(current, async () => fresh, publish);
+  expect(publish).toHaveBeenCalledTimes(1);
+  expect(publish).toHaveBeenCalledWith(fresh);
+});
 ```
 
-В `app_snapshot_store_contract` добавить проверку, что `resetAppSnapshotForAccountSwitch()` удаляет `customization` вместе с профилем.
+В `app_snapshot_store_contract` добавить поведенческую проверку: записать снимок с owned/style данными, вызвать `resetAppSnapshotForAccountSwitch()` и проверить `expect(getAppSnapshot().customization).toBeUndefined()`.
 
 - [ ] **Step 2: Запустить только новые/изменённые контракты**
 
@@ -220,12 +276,7 @@ export interface AppSnapshot {
 - [ ] **Step 4: Добавить ключи в существующий startup `multiGet`**
 
 ```ts
-export const CUSTOMIZATION_STORAGE_KEYS = [
-  CUSTOM_AVATAR_OWNED_KEY,
-  AVATAR_AURA_OWNED_KEY,
-  COSMETIC_GIFT_OWNED_AVATAR_KEY,
-  AVATAR_AURA_GIFT_OWNED_KEY,
-] as const;
+import { CUSTOMIZATION_STORAGE_KEYS } from '../constants/customization_storage_keys';
 
 const keys = [
   ...BOOT_PROFILE_KEYS,
@@ -237,10 +288,11 @@ const keys = [
   BOOT_STUDY_TARGET_KEY,
 ];
 
+const profile = buildProfileSnapshot(values, now);
 patchAppSnapshot({
-  profile: buildProfileSnapshot(values, now),
+  profile,
   progress: buildProgressSnapshot(values, studyTarget, now),
-  customization: buildCustomizationSnapshot(values, now),
+  customization: buildCustomizationSnapshot(values, now, profile.level),
   // existing fields unchanged
 });
 ```
@@ -270,6 +322,19 @@ const publishFreshSnapshot = useCallback((fresh: CustomizationSnapshot) => {
 
 `createCustomizationFallback` берёт avatar/aura/XP/level из `snapshot.profile` и shards из `snapshot.progress`; только при полностью пустом app snapshot использует безопасные значения нового аккаунта. Он не подменяет существующий профиль аватаром `1`.
 
+В том же модуле реализовать единую тихую сверку, чтобы маршрут не делал серию независимых `setState`:
+
+```ts
+export async function revalidateCustomizationSnapshot(
+  current: CustomizationSnapshot,
+  load: () => Promise<CustomizationSnapshot>,
+  publish: (fresh: CustomizationSnapshot) => void,
+): Promise<void> {
+  const fresh = await load();
+  if (!customizationSnapshotsEqual(current, fresh)) publish(fresh);
+}
+```
+
 - [ ] **Step 6: Проверить первый кадр и bootstrap**
 
 Run: `npx jest --runInBand --runTestsByPath tests/customization_snapshot.test.ts tests/app_snapshot_store_contract.test.ts tests/app_snapshot_bootstrap_contract.test.ts tests/avatar_select_first_frame_contract.test.ts`
@@ -279,7 +344,7 @@ Expected: PASS, без новых источников AsyncStorage в store.
 - [ ] **Step 7: Зафиксировать этап**
 
 ```powershell
-git add app/app_snapshot_store.ts app/app_snapshot_bootstrap.ts app/avatar_select.tsx tests/app_snapshot_store_contract.test.ts tests/app_snapshot_bootstrap_contract.test.ts tests/avatar_select_first_frame_contract.test.ts
+git add app/app_snapshot_store.ts app/app_snapshot_bootstrap.ts app/customization_snapshot.ts app/avatar_select.tsx tests/app_snapshot_store_contract.test.ts tests/app_snapshot_bootstrap_contract.test.ts tests/avatar_select_first_frame_contract.test.ts
 git commit -m "fix: hydrate avatar studio first frame"
 ```
 
@@ -393,13 +458,17 @@ git commit -m "feat: model avatar and aura catalog"
 
 ```ts
 const owned = { kind: 'owned' } as const;
-const none = { kind: 'none' } as const;
 const availableDraft = {
-  avatarValue: 'custom:custom-01:violet:black',
-  auraId: 'none',
+  confirmed: {
+    avatarValue: 'custom:custom-gen-41:violet:black',
+    storedAuraSelection: null,
+  },
+  previewAvatarValue: 'custom:custom-gen-42:violet:black',
+  previewStoredAuraSelection: 'none',
+  effectivePreviewAuraId: null,
   activeTab: 'avatars' as const,
   avatarAvailability: owned,
-  auraAvailability: none,
+  auraAvailability: { kind: 'none' } as const,
 };
 
 describe('resolveCustomizationAction', () => {
@@ -412,7 +481,7 @@ describe('resolveCustomizationAction', () => {
       ...availableDraft,
       avatarAvailability: { kind: 'shards', cost: 50 },
     })).toEqual({
-      kind: 'buy-and-apply', target: 'avatar', cost: 50,
+      kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'purchase', cost: 50,
     });
   });
 
@@ -423,7 +492,7 @@ describe('resolveCustomizationAction', () => {
       avatarAvailability: { kind: 'shards', cost: 50 },
       auraAvailability: { kind: 'shards', cost: 35 },
     })).toEqual({
-      kind: 'buy-only', target: 'aura', cost: 35,
+      kind: 'buy-only', target: 'aura', purchaseKind: 'purchase', cost: 35,
     });
   });
 
@@ -451,6 +520,39 @@ describe('resolveCustomizationAction', () => {
   it('treats none aura as an available explicit value', () => {
     expect(resolveCustomizationAction(availableDraft)).toEqual({ kind: 'apply' });
   });
+
+  it('returns unchanged when stored selections equal the confirmed state', () => {
+    expect(resolveCustomizationAction({
+      ...availableDraft,
+      previewAvatarValue: availableDraft.confirmed.avatarValue,
+      previewStoredAuraSelection: null,
+      effectivePreviewAuraId: 'aura-premium',
+      auraAvailability: owned,
+    })).toEqual({ kind: 'unchanged' });
+  });
+
+  it('charges 10 shards for a style delta on the same owned avatar', () => {
+    expect(resolveCustomizationAction({
+      ...availableDraft,
+      confirmed: {
+        ...availableDraft.confirmed,
+        avatarValue: 'custom:custom-gen-41:violet:black',
+      },
+      previewAvatarValue: 'custom:custom-gen-41:aurora:white',
+      avatarAvailability: owned,
+    })).toEqual({
+      kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 10,
+    });
+  });
+
+  it.each([
+    [null, true, false, 'aura-premium'],
+    [null, false, true, 'aura-vip'],
+    ['none', true, true, null],
+    ['aura-aurora', true, true, 'aura-aurora'],
+  ] as const)('keeps stored %s distinct from effective fallback', (stored, premium, vip, effective) => {
+    expect(resolveEffectivePreviewAuraId(stored, premium, vip)).toBe(effective);
+  });
 });
 ```
 
@@ -464,8 +566,13 @@ Expected: FAIL с отсутствующим модулем.
 
 ```ts
 export interface CustomizationDraft {
-  avatarValue: string;
-  auraId: string | null;
+  confirmed: {
+    avatarValue: string;
+    storedAuraSelection: string | null;
+  };
+  previewAvatarValue: string;
+  previewStoredAuraSelection: string | null;
+  effectivePreviewAuraId: string | null;
   activeTab: 'avatars' | 'auras';
   avatarAvailability: CatalogAvailability;
   auraAvailability: CatalogAvailability;
@@ -473,15 +580,15 @@ export interface CustomizationDraft {
 
 export type CustomizationAction =
   | { kind: 'apply' }
-  | { kind: 'buy-and-apply'; target: 'avatar' | 'aura'; cost: number }
-  | { kind: 'buy-only'; target: 'avatar' | 'aura'; cost: number }
+  | { kind: 'buy-and-apply'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
+  | { kind: 'buy-only'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
   | { kind: 'open-plus' }
   | { kind: 'explain-level'; level: number }
   | { kind: 'explain-reward'; source: 'arena' | 'gift' }
   | { kind: 'unchanged' };
 ```
 
-Resolver сначала обрабатывает непокупаемые блокеры, затем считает shard-блокеры, затем сравнивает черновик с подтверждённым состоянием. Он не читает storage, не списывает осколки и не вызывает router.
+Resolver сначала обрабатывает непокупаемые блокеры, затем вычисляет `avatarCost`: 50 для нового shard-shop avatar, 10 для изменения gradient/logo того же owned avatar и 0 для неизменного owned style. После этого он считает shard-блокеры и сравнивает `previewAvatarValue`/`previewStoredAuraSelection` с `confirmed`. `effectivePreviewAuraId` используется только для hero; в storage записывается `previewStoredAuraSelection`, поэтому `null`, `none`, Premium fallback и VIP fallback не смешиваются. Resolver не читает storage, не списывает осколки и не вызывает router.
 
 - [ ] **Step 4: Проверить матрицу**
 
@@ -496,12 +603,16 @@ git add app/customization_draft.ts tests/customization_draft.test.ts
 git commit -m "feat: add composite customization draft"
 ```
 
-## Task 5: Атомарное локальное применение и синхронизация
+## Task 5: Атомарное применение и durable-покупки
 
 **Files:**
 
 - Create: `app/customization_service.ts`
+- Create: `app/customization_purchase_intent.ts`
 - Create: `tests/customization_service.test.ts`
+- Create: `tests/customization_purchase_intent.test.ts`
+- Create: `tests/shards_idempotent_spend.test.ts`
+- Modify: `app/shards_system.ts`
 - Modify: `app/avatar_select.tsx`
 
 - [ ] **Step 1: Написать падающие service-тесты с mock-зависимостями**
@@ -509,7 +620,7 @@ git commit -m "feat: add composite customization draft"
 ```ts
 const availableInput = {
   avatarValue: 'custom:custom-gen-41:violet:black',
-  auraId: 'none',
+  storedAuraSelection: 'none',
   level: 18,
   frameId: 'frame-18',
 };
@@ -520,6 +631,7 @@ const purchaseInput = {
   cost: 35,
   spendReason: 'avatar_aura' as const,
   mode: 'buy-only' as const,
+  ownedValue: true,
 };
 
 function makeDeps() {
@@ -530,7 +642,7 @@ function makeDeps() {
       getItem: jest.fn().mockResolvedValue(null),
     },
     getShardsBalance: jest.fn().mockResolvedValue(100),
-    spendShards: jest.fn().mockResolvedValue(true),
+    spendShardsIdempotent: jest.fn().mockResolvedValue('applied'),
     publishSnapshot: jest.fn(),
     invalidateCaches: jest.fn().mockResolvedValue(undefined),
     syncCloud: jest.fn(),
@@ -544,7 +656,7 @@ it('writes avatar, frame and explicit aura in one multiSet', async () => {
   expect(deps.storage.multiSet).toHaveBeenCalledWith(expect.arrayContaining([
     ['user_avatar', availableInput.avatarValue],
     ['user_frame', availableInput.frameId],
-    ['user_avatar_aura', 'none'],
+    ['user_avatar_aura', availableInput.storedAuraSelection],
   ]));
   expect(deps.publishSnapshot).toHaveBeenCalledTimes(1);
   expect(deps.syncCloud).toHaveBeenCalledTimes(1);
@@ -560,14 +672,67 @@ it('does not publish or sync when local multiSet rejects', async () => {
 
 it('never spends twice for a confirmed purchase', async () => {
   const deps = makeDeps();
-  await purchaseCustomizationTarget(purchaseInput, deps);
-  expect(deps.spendShards).toHaveBeenCalledTimes(1);
+  await resumeCustomizationPurchase(
+    await prepareCustomizationPurchase(purchaseInput, deps),
+    deps,
+  );
+  expect(deps.spendShardsIdempotent).toHaveBeenCalledTimes(1);
+});
+
+it('keeps a charged intent and leaves profile unchanged when ownership write fails', async () => {
+  const deps = makeDeps();
+  deps.storage.multiSet
+    .mockResolvedValueOnce(undefined) // prepared intent
+    .mockResolvedValueOnce(undefined) // charged intent
+    .mockRejectedValueOnce(new Error('owned write failed'));
+
+  const prepared = await prepareCustomizationPurchase(purchaseInput, deps);
+  await expect(resumeCustomizationPurchase(prepared, deps)).rejects.toThrow('owned write failed');
+
+  expect(deps.spendShardsIdempotent).toHaveBeenCalledTimes(1);
+  expect(deps.publishSnapshot).not.toHaveBeenCalled();
+  expect(deps.syncCloud).not.toHaveBeenCalled();
+  expect(readPersistedIntent(deps)).resolves.toMatchObject({ phase: 'charged' });
+});
+
+it('retries the same charged intent without a second debit, then grants ownership', async () => {
+  const deps = makeDeps();
+  const charged = makePurchaseIntent(purchaseInput, { opId: 'customization:test', phase: 'charged' });
+
+  await resumeCustomizationPurchase(charged, deps);
+
+  expect(deps.spendShardsIdempotent).not.toHaveBeenCalled();
+  expect(deps.storage.multiSet).toHaveBeenCalledWith(expect.arrayContaining([
+    ['avatar_aura_owned_v1', expect.stringContaining('aura-aurora')],
+  ]));
+  expect(deps.storage.multiRemove).toHaveBeenCalledWith(['customization_purchase_intent_v1']);
+});
+
+it('resets to the level avatar while preserving the stored aura selection', async () => {
+  const deps = makeDeps();
+  await resetToLevelAvatar({ level: 18, storedAuraSelection: 'none' }, deps);
+  expect(deps.storage.multiSet).toHaveBeenCalledWith(expect.arrayContaining([
+    ['user_avatar', '18'],
+    ['user_avatar_aura', 'none'],
+    ['user_frame', expect.any(String)],
+  ]));
+  expect(deps.invalidateCaches).toHaveBeenCalledTimes(1);
+  expect(deps.syncCloud).toHaveBeenCalledTimes(1);
+  expect(deps.syncPublicProfile).toHaveBeenCalledTimes(1);
+});
+
+it('deducts a shard operation id only once across a retry', async () => {
+  await expect(spendShardsIdempotent(35, 'avatar_aura', 'customization:same-op'))
+    .resolves.toBe('applied');
+  await expect(spendShardsIdempotent(35, 'avatar_aura', 'customization:same-op'))
+    .resolves.toBe('already-applied');
+  await expect(getShardsBalance()).resolves.toBe(65);
 });
 ```
 
 - [ ] **Step 2: Подтвердить красную фазу**
 
-Run: `npx jest --runInBand --runTestsByPath tests/customization_service.test.ts`
+Run: `npx jest --runInBand --runTestsByPath tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts`
 
 Expected: FAIL с отсутствующим сервисом.
 
@@ -577,16 +742,16 @@ Expected: FAIL с отсутствующим сервисом.
 export interface CustomizationServiceDeps {
   storage: Pick<typeof AsyncStorage, 'multiSet' | 'multiRemove' | 'getItem'>;
   getShardsBalance: typeof getShardsBalance;
-  spendShards: typeof spendShards;
+  spendShardsIdempotent: typeof spendShardsIdempotent;
   publishSnapshot: (snapshot: CustomizationSnapshot) => void;
-  invalidateCaches: (avatar: string, auraId: string | null) => Promise<void>;
+  invalidateCaches: (avatar: string, storedAuraSelection: string | null) => Promise<void>;
   syncCloud: (mode: 'immediate' | 'deferred') => void;
-  syncPublicProfile: (avatar: string, level: number, auraId: string | null) => void;
+  syncPublicProfile: (avatar: string, level: number, storedAuraSelection: string | null) => void;
 }
 
 export interface ApplyCustomizationInput {
   avatarValue: string;
-  auraId: string;
+  storedAuraSelection: string | null;
   level: number;
   frameId: string;
 }
@@ -597,27 +762,72 @@ export interface PurchaseCustomizationInput {
   cost: number;
   spendReason: 'custom_avatar' | 'custom_avatar_restyle' | 'avatar_aura';
   mode: 'buy-only' | 'buy-and-apply';
+  ownedValue: true | string;
 }
 ```
 
-Порядок `applyCustomizationDraft`: повторная валидация доступности → единый `multiSet` → patch app snapshot → обновление зависимых локальных кэшей → `emitAppEvent('xp_changed')` → cloud/public sync. Если `multiSet` падает, snapshot и внешняя синхронизация не меняются.
+Порядок `applyCustomizationDraft`: повторная валидация доступности → единый `multiSet` → patch app snapshot → обновление зависимых локальных кэшей → `emitAppEvent('xp_changed')` → ровно по одному cloud/public sync. Для `storedAuraSelection === null` в storage записывается пустая строка; `none` остаётся явным `none`. В hero вычисляется `effectivePreviewAuraId`, но storage, кэши и существующий public-sync получают именно stored selection, поэтому Premium/VIP fallback не превращается случайно в пользовательский выбор. Если `multiSet` падает, snapshot и внешняя синхронизация не меняются.
 
-`purchaseCustomizationTarget` повторно читает баланс, вызывает `spendShards` один раз, записывает owned map, затем либо возвращает обновлённый черновик (`buy-only`), либо вызывает применение (`buy-and-apply`).
+`resetToLevelAvatar` вычисляет строковый level-avatar и `getBestFrameForLevel(level).id`, сохраняет текущую stored aura selection и проходит через тот же apply pipeline. Тест проверяет вычисленное значение, инвалидирование кэшей и ровно один cloud/public sync, а не только наличие текста кнопки.
 
-- [ ] **Step 4: Перенести существующие helper-ы из маршрута без изменения контрактов**
+- [ ] **Step 4: Добавить идемпотентное списание с устойчивым opId**
+
+В `app/shards_system.ts` экспортировать:
+
+```ts
+export type IdempotentShardSpendResult =
+  | 'applied'
+  | 'already-applied'
+  | 'insufficient'
+  | 'failed';
+
+export async function spendShardsIdempotent(
+  amount: number,
+  reason: ShardSpendReason,
+  opId: string,
+): Promise<IdempotentShardSpendResult>;
+```
+
+Передать `opId` в уже существующий `applyShardDeltaToCloud(..., opIdOverride)` и вернуть из его success-ветки флаг `alreadyApplied`. Для локальной/offline ветки хранить bounded ledger `shard_spend_op_ledger_v1` (последние 128 opId): под существующим storage lock сначала проверить ledger, затем одним `AsyncStorage.multiSet` записать баланс, метаданные и ledger. Тот же `opId` ставить в существующую pending-delta queue. Повтор после server success использует тот же callable opId; повтор после local success видит ledger. `spendShards` остаётся обратно совместимой boolean-обёрткой, которая генерирует свежий opId.
+
+- [ ] **Step 5: Реализовать durable purchase intent**
+
+`app/customization_purchase_intent.ts` хранит одну account-scoped запись `customization_purchase_intent_v1`:
+
+```ts
+export interface CustomizationPurchaseIntent extends PurchaseCustomizationInput {
+  v: 1;
+  accountScope: string;
+  opId: string;
+  phase: 'prepared' | 'charged';
+  createdAt: number;
+}
+```
+
+Порядок строго такой:
+
+1. `prepareCustomizationPurchase` валидирует цель/цену, добавляет текущий stable account scope и сохраняет `prepared` до списания.
+2. `resumeCustomizationPurchase` для `prepared` вызывает `spendShardsIdempotent` с тем же `opId`; `applied` и `already-applied` переводят intent в `charged`.
+3. Для `charged` сервис записывает owned map. Ошибка оставляет intent в `charged`, не меняет профиль и не вызывает apply.
+4. Только после успешного grant intent удаляется; `buy-only` обновляет каталог, `buy-and-apply` затем вызывает `applyCustomizationDraft`.
+5. При монтировании route незавершённый intent возобновляется тем же `opId` только при совпадении `accountScope`; чужой/повреждённый intent не исполняется. Account reset удаляет intent вместе с customization snapshot.
+
+Так сбой между списанием и выдачей предмета восстанавливается без второго списания. Списание не считается транзакцией вместе с профильным выбором: профиль меняется только после подтверждённой выдачи владения.
+
+- [ ] **Step 6: Перенести существующие helper-ы из маршрута без изменения контрактов**
 
 Перенести `syncAvatarDisplayToCloud`, `writeProfileAvatarSnapshot`, `invalidateAvatarDependentCaches`, парсинг owned maps и операции покупки в сервис/снимок. Оставить в маршруте только вызовы use-case. Не менять ключи storage, причины списания или режимы immediate/deferred.
 
-- [ ] **Step 5: Проверить сервис и существующие облачные контракты**
+- [ ] **Step 7: Проверить сервис и существующие облачные контракты**
 
-Run: `npx jest --runInBand --runTestsByPath tests/customization_service.test.ts tests/cloud_sync_owned_aura_merge.test.ts tests/avatar_select_vip_aura_contract.test.ts`
+Run: `npx jest --runInBand --runTestsByPath tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts tests/cloud_sync_owned_aura_merge.test.ts tests/avatar_select_vip_aura_contract.test.ts`
 
-Expected: PASS; списание выполняется один раз, reward-only не попадает в purchase path.
+Expected: PASS; повтор с тем же opId не уменьшает баланс второй раз, write-failure после charge сохраняет intent, профиль не меняется до grant, reward-only не попадает в purchase path.
 
-- [ ] **Step 6: Зафиксировать этап**
+- [ ] **Step 8: Зафиксировать этап**
 
 ```powershell
-git add app/customization_service.ts app/avatar_select.tsx tests/customization_service.test.ts
+git add app/customization_service.ts app/customization_purchase_intent.ts app/shards_system.ts app/avatar_select.tsx tests/customization_service.test.ts tests/customization_purchase_intent.test.ts tests/shards_idempotent_spend.test.ts
 git commit -m "refactor: isolate customization persistence"
 ```
 
@@ -723,6 +933,9 @@ git commit -m "feat: add constellation customization hero"
 
 - Create: `components/customization/CustomizationCatalogCard.tsx`
 - Create: `components/customization/CustomizationControls.tsx`
+- Create: `components/customization/CustomizationPurchaseConfirmModal.tsx`
+- Create: `app/customization_purchase_confirmation.ts`
+- Create: `tests/customization_purchase_confirmation.test.ts`
 - Modify: `app/avatar_select.tsx`
 - Modify: `tests/avatar_select_bouncy_contract.test.ts`
 - Modify: `tests/avatar_select_studio_contract.test.ts`
@@ -804,7 +1017,43 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
 />
 ```
 
-- [ ] **Step 5: Собрать один `Reanimated.FlatList`**
+- [ ] **Step 5: Добавить обязательное подтверждение до любого списания**
+
+`app/customization_purchase_confirmation.ts` содержит чистый reducer для `request / cancel` и отдельную функцию подтверждения:
+
+```ts
+export interface PurchaseConfirmationState {
+  pending: PurchaseCustomizationInput | null;
+}
+
+export function reducePurchaseConfirmation(
+  state: PurchaseConfirmationState,
+  event: { type: 'request'; input: PurchaseCustomizationInput } | { type: 'cancel' },
+): PurchaseConfirmationState;
+
+export async function confirmPendingPurchase(
+  state: PurchaseConfirmationState,
+  execute: (input: PurchaseCustomizationInput) => Promise<void>,
+): Promise<void>;
+```
+
+Поведенческий тест фиксирует границу:
+
+```ts
+it('does not spend on request and executes only after explicit confirm', async () => {
+  const execute = jest.fn().mockResolvedValue(undefined);
+  const pending = reducePurchaseConfirmation({ pending: null }, { type: 'request', input: purchaseInput });
+
+  expect(execute).not.toHaveBeenCalled();
+  await confirmPendingPurchase(pending, execute);
+  expect(execute).toHaveBeenCalledTimes(1);
+  expect(execute).toHaveBeenCalledWith(purchaseInput);
+});
+```
+
+`CustomizationPurchaseConfirmModal` оборачивает существующий `ThemedConfirmModal` и показывает предмет, цену и тип операции (покупка или смена стиля). `handleAction` при `buy-only`/`buy-and-apply` только dispatch-ит `request`; `prepareCustomizationPurchase` вызывается исключительно из `onConfirm`. `onCancel` очищает pending без записи intent и без spend. Этот один путь используется и для avatar, и для aura, и для restyle; старые отдельные confirm-модалки удаляются только после подключения нового.
+
+- [ ] **Step 6: Собрать один `Reanimated.FlatList`**
 
 ```tsx
 <BouncyWrap>
@@ -829,16 +1078,16 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
 
 Не вкладывать вертикальный список в `ScrollView`. При смене основной вкладки или фильтра вызывать `listRef.current?.scrollToOffset({ offset: heroHeight, animated: false })`, чтобы каждый новый набор начинался с начала каталога.
 
-- [ ] **Step 6: Проверить структуру, VIP и bouncy**
+- [ ] **Step 7: Проверить структуру, подтверждение, VIP и bouncy**
 
-Run: `npx jest --runInBand --runTestsByPath tests/avatar_select_studio_contract.test.ts tests/avatar_select_bouncy_contract.test.ts tests/avatar_select_vip_aura_contract.test.ts`
+Run: `npx jest --runInBand --runTestsByPath tests/customization_purchase_confirmation.test.ts tests/avatar_select_studio_contract.test.ts tests/avatar_select_bouncy_contract.test.ts tests/avatar_select_vip_aura_contract.test.ts`
 
-Expected: PASS; в маршруте ровно один вертикальный виртуализированный список.
+Expected: PASS; в маршруте ровно один вертикальный виртуализированный список, а ни одна shard-покупка не начинает intent/spend до `onConfirm`.
 
-- [ ] **Step 7: Зафиксировать этап**
+- [ ] **Step 8: Зафиксировать этап**
 
 ```powershell
-git add components/customization/CustomizationCatalogCard.tsx components/customization/CustomizationControls.tsx app/avatar_select.tsx tests/avatar_select_studio_contract.test.ts tests/avatar_select_bouncy_contract.test.ts tests/avatar_select_vip_aura_contract.test.ts
+git add components/customization/CustomizationCatalogCard.tsx components/customization/CustomizationControls.tsx components/customization/CustomizationPurchaseConfirmModal.tsx app/customization_purchase_confirmation.ts app/avatar_select.tsx tests/customization_purchase_confirmation.test.ts tests/avatar_select_studio_contract.test.ts tests/avatar_select_bouncy_contract.test.ts tests/avatar_select_vip_aura_contract.test.ts
 git commit -m "feat: build virtualized customization catalog"
 ```
 
@@ -925,6 +1174,9 @@ npx jest --runInBand --runTestsByPath `
   tests/customization_catalog.test.ts `
   tests/customization_draft.test.ts `
   tests/customization_service.test.ts `
+  tests/customization_purchase_intent.test.ts `
+  tests/customization_purchase_confirmation.test.ts `
+  tests/shards_idempotent_spend.test.ts `
   tests/avatar_select_first_frame_contract.test.ts `
   tests/avatar_select_studio_contract.test.ts `
   tests/avatar_select_vip_aura_contract.test.ts `
@@ -941,9 +1193,9 @@ npx jest --runInBand --runTestsByPath `
 
 Expected: PASS, 0 failed suites. Не запускать snapshot-update или source-writing scripts.
 
-- [ ] **Step 2: Запустить узкий TypeScript check по изменённым файлам**
+- [ ] **Step 2: Запустить узкий статический check по изменённым файлам**
 
-Проектный `tsc` не поддерживает выбор файлов поверх `tsconfig`, поэтому выполнить полный `npx tsc --noEmit --pretty false`, сохранить объёмный вывод в `.codex-tmp/avatar-studio/tsc.log`, а в отчёт вынести только exit code и ошибки из изменённых файлов. Если общий check падает на чужих исходных ошибках, отдельно показать, что среди путей `customization_*`, `components/customization` и `app/avatar_select.tsx` ошибок нет; не исправлять чужие ошибки.
+Не запускать широкий project-wide `tsc`. Выполнить `npx eslint` только для изменённых `.ts/.tsx` файлов студии; типы новых модулей дополнительно проверяются узкими Jest/ts-jest suites из Step 1. Сохранить объёмный вывод в `.codex-tmp/avatar-studio/static-check.log`, а в отчёт вынести только exit code и относящиеся к изменённым файлам ошибки.
 
 - [ ] **Step 3: Провести ручную проверку на устройстве/dev build**
 
@@ -985,6 +1237,7 @@ Expected: только запланированные файлы; никакие
 - Locked items видимы с условием, secret gifts скрыты до владения.
 - Выбор не меняет профиль до явной CTA.
 - Составной apply не оставляет частичного avatar/aura state.
+- Любая shard-покупка сначала показывает единое подтверждение; повтор незавершённой операции не списывает осколки второй раз и не меняет профиль до выдачи владения.
 - Существующие цены, Plus/VIP, Arena/reward, gift, profile-card route и sync-контракты сохранены.
 - В экране один вертикальный виртуализированный список; каталожные ауры статичны.
 - Узкий Jest-пакет проходит; ручная проверка подтверждает отсутствие визуального скачка.

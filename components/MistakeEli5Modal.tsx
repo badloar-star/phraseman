@@ -27,7 +27,8 @@ import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import BilingualMistakeText from './BilingualMistakeText';
+import LearningSemanticBlock from './LearningSemanticBlock';
+import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 
 export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -119,6 +120,10 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
   });
 
   const showSkeleton = state === 'loading' || state === 'idle';
+  const readyBlocks = React.useMemo(
+    () => buildMistakeExplanationBlocks({ lang, explanation: text }),
+    [lang, text],
+  );
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={handleClose}>
@@ -201,13 +206,11 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
                 </Pressable>
               </View>
             ) : (
-              // Английский (ключевой язык) — акцентным цветом, перевод — обычным.
-              <BilingualMistakeText
-                text={text ?? ''}
-                englishColor={t.accent}
-                nativeColor={t.textPrimary}
-                style={[styles.bodyText, { fontSize: f.bodyLg || f.body }]}
-              />
+              <View style={styles.semanticBlocks}>
+                {readyBlocks.map((block, idx) => (
+                  <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
+                ))}
+              </View>
             )}
           </ScrollView>
         </Animated.View>
@@ -285,9 +288,8 @@ const styles = StyleSheet.create({
   bodyScrollContent: {
     paddingBottom: 12,
   },
-  bodyText: {
-    lineHeight: 26,
-    fontWeight: '600',
+  semanticBlocks: {
+    gap: 8,
   },
   skeleton: {
     gap: 12,

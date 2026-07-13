@@ -16,7 +16,9 @@ describe('thematic quiz AI-only explanation contract', () => {
 
     expect(quizSource).toContain('(isThematicQuiz || current.explanations)');
     expect(quizSource).toContain("const loading = quizExplain.state === 'idle' || quizExplain.state === 'loading'");
-    expect(quizSource).toContain('{aiExplanation}');
+    expect(quizSource).toContain('buildQuizExplanationBlocks');
+    expect(quizSource).toContain('explanation: unavailable ? unavailableText : aiExplanation');
+    expect(quizSource).toContain('LearningSemanticBlock');
   });
 
   it('keeps static explanations isolated to easy medium hard quizzes', () => {

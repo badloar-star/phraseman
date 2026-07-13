@@ -4,10 +4,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import SkeletonBlock from './SkeletonShimmer';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
-import BilingualMistakeText from './BilingualMistakeText';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
 import { aiErrorToast, aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
+import LearningSemanticBlock from './LearningSemanticBlock';
+import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -87,8 +88,6 @@ export default function AiMistakeCard({
     [state, lang],
   );
 
-  if (state === 'hidden') return null;
-
   const title = triLang(lang, {
     ru: 'Разбор промаха',
     uk: 'Розбір промаху',
@@ -98,17 +97,6 @@ export default function AiMistakeCard({
     id: 'Analisis kesalahan',
     tr: 'Hata analizi',
     pl: 'Analiza błędu',
-  });
-
-  const subtitle = triLang(lang, {
-    ru: 'Где сбилось и как правильно',
-    uk: 'Де збилося і як правильно',
-    es: 'Qué falló y cómo decirlo bien',
-    'pt-BR': 'O que errou e como dizer certo',
-    vi: 'Sai ở đâu và nói sao cho đúng',
-    id: 'Bagian yang salah dan cara benar',
-    tr: 'Nerede hata var ve doğrusu',
-    pl: 'Co poszło źle i jak poprawnie',
   });
 
   const isReadyExplanation = state === 'ready' && Boolean(explanation);
@@ -136,11 +124,17 @@ export default function AiMistakeCard({
       pl: 'Analizuję dokładnie Twoją odpowiedź: co poszło źle i jak poprawnie.',
     });
   })();
+  const readyBlocks = React.useMemo(
+    () => buildMistakeExplanationBlocks({ lang, explanation: body, userAnswer, targetAnswer }),
+    [lang, body, userAnswer, targetAnswer],
+  );
+
+  if (state === 'hidden') return null;
 
   return (
     <View
       testID="ai-mistake-card"
-      style={[styles.card, { backgroundColor: t.bgCard, borderColor: state === 'ready' ? t.correct : t.border }]}
+      style={[styles.card, { backgroundColor: t.bgCard }]}
     >
       <View style={styles.header}>
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
@@ -159,15 +153,12 @@ export default function AiMistakeCard({
           <SkeletonBlock width="80%" height={13} borderRadius={6} />
           <SkeletonBlock width="88%" height={13} borderRadius={6} />
         </View>
-      ) : isReadyExplanation ? (
-        // Английский (ключевой язык) — акцентным цветом, перевод — обычным, чтобы
-        // языки не сливались в один цвет.
-        <BilingualMistakeText
-          text={body}
-          englishColor={t.accent}
-          nativeColor={t.textSecond}
-          style={{ fontSize: f.body, lineHeight: 20 }}
-        />
+      ) : isReadyExplanation && readyBlocks.length ? (
+        <View style={styles.semanticBlocks}>
+          {readyBlocks.map((block, idx) => (
+            <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
+          ))}
+        </View>
       ) : state === 'limit' && limitCopy ? (
         <AiLimitUpsellCard
           lang={lang}
@@ -246,7 +237,7 @@ export default function AiMistakeCard({
 const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
-    borderWidth: 1,
+    borderWidth: 0,
     gap: 10,
     padding: 12,
   },
@@ -269,6 +260,9 @@ const styles = StyleSheet.create({
   busyCol: {
     alignSelf: 'stretch',
     paddingVertical: 4,
+    gap: 8,
+  },
+  semanticBlocks: {
     gap: 8,
   },
   reportRow: {

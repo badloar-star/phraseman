@@ -238,9 +238,11 @@ describe('Lesson explain footer contract', () => {
 describe('ExplainSheet: рендер тела и слайд-ап в доме', () => {
   const src = read(path.join(COMPONENTS_DIR, 'ExplainSheet.tsx'));
 
-  it('рендерит тело объяснения из resolveExplainDisplay (display.text → абзацы)', () => {
+  it('рендерит тело объяснения из resolveExplainDisplay через семантические блоки', () => {
     expect(src).toContain('resolveExplainDisplay');
-    expect(src).toContain('splitExplainParagraphs(display.text)');
+    expect(src).toContain('buildExplainSheetBlocks');
+    expect(src).toContain("explanation: display.showSkeleton || explainFreeLimitReached ? '' : display.text");
+    expect(src).toContain('LearningSemanticBlock');
   });
 
   it('показывает скелетон-лоадер с дружелюбной строкой во время генерации', () => {
@@ -266,11 +268,11 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('ExplainReportButton');
   });
 
-  it('рендерит объяснение абзацами с подсветкой английского (splitExplain*)', () => {
-    expect(src).toContain('splitExplainParagraphs');
-    expect(src).toContain('splitExplainSegments');
-    // Английские сегменты красятся акцентом.
-    expect(src).toContain('bodyEn');
+  it('рендерит объяснение семантическими блоками без перекраски всей латиницы', () => {
+    expect(src).toContain('semanticBlocks');
+    expect(src).toContain('bodyBlocks.map');
+    expect(src).not.toContain('splitExplainSegments');
+    expect(src).not.toContain('bodyEn');
   });
 
   it('на degraded-пути есть кнопка «Попробовать ещё раз» → state.retry()', () => {

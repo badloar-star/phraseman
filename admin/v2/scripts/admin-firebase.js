@@ -98,6 +98,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const previewVoiceResearchMutationCallable = httpsCallable(functionsUs, 'adminPreviewVoiceResearchMutation');
   const applyVoiceResearchMutationCallable = httpsCallable(functionsUs, 'adminApplyVoiceResearchMutation');
   const draftIdeaDecisionCallable = httpsCallable(functionsUs, 'adminDraftIdeaDecision');
+  const getSafetyModerationWorkspaceCallable = httpsCallable(functionsUs, 'adminGetSafetyModerationWorkspace');
+  const getSafetyModerationSensitiveDetailCallable = httpsCallable(functionsUs, 'adminGetSafetyModerationSensitiveDetail');
+  const previewSafetyModerationMutationCallable = httpsCallable(functionsUs, 'adminPreviewSafetyModerationMutation');
+  const requestSafetyModerationApprovalCallable = httpsCallable(functionsUs, 'adminRequestSafetyModerationApproval');
+  const approveSafetyModerationMutationCallable = httpsCallable(functionsUs, 'adminApproveSafetyModerationMutation');
+  const applySafetyModerationMutationCallable = httpsCallable(functionsUs, 'adminApplySafetyModerationMutation');
   const websiteInboxListCallable = httpsCallable(functionsUs, 'adminWebsiteInboxList');
   const websiteInboxMarkReadCallable = httpsCallable(functionsUs, 'adminWebsiteInboxMarkRead');
   const listAssetJobsCallable = httpsCallable(functionsUs, 'adminListAssetJobs');
@@ -218,6 +224,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
     previewVoiceResearchMutation: async (input) => unwrap(await previewVoiceResearchMutationCallable(input)),
     applyVoiceResearchMutation: async (input) => unwrap(await applyVoiceResearchMutationCallable(input)),
     draftIdeaDecision: async (input) => unwrap(await draftIdeaDecisionCallable(input)),
+    getSafetyModerationWorkspace: async (input) => unwrap(await getSafetyModerationWorkspaceCallable(input)),
+    getSafetyModerationSensitiveDetail: async (input) => unwrap(await getSafetyModerationSensitiveDetailCallable(input)),
+    previewSafetyModerationMutation: async (input) => unwrap(await previewSafetyModerationMutationCallable(input)),
+    requestSafetyModerationApproval: async (input) => unwrap(await requestSafetyModerationApprovalCallable(input)),
+    approveSafetyModerationMutation: async (input) => unwrap(await approveSafetyModerationMutationCallable(input)),
+    applySafetyModerationMutation: async (input) => unwrap(await applySafetyModerationMutationCallable(input)),
     listWebsiteInbox: async (input) => unwrap(await websiteInboxListCallable(input)),
     markWebsiteInboxRead: async (input) => unwrap(await websiteInboxMarkReadCallable(input)),
     listAssetJobs: async (input) => unwrap(await listAssetJobsCallable(input)),

@@ -242,7 +242,7 @@ export function parseSafetyModerationRequest(value: unknown) {
 
 export function requiredSafetyModerationPermission(view: SafetyModerationView, exportCsv: boolean): AdminPermission {
   if (exportCsv) return 'users.moderation.export';
-  if (view === 'safety-flags') return 'users.moderation.safety.read';
+  if (view === 'safety-flags' || view === 'ban-list') return 'users.moderation.safety.read';
   if (view === 'age-consent' || view === 'policy-evidence') return 'users.moderation.aggregate.read';
   if (view === 'other-reports') return 'reports.read';
   return 'users.moderation.read';
@@ -297,9 +297,11 @@ async function readOverview(db: FirebaseFirestore.Firestore, role: ReturnType<ty
   const nowMs = Date.now();
   const tasks: Array<Promise<{ name: string; count: number; error: string }>> = [
     exactCount(db, 'user_reports').then((result) => ({ name: 'user_reports', ...result })),
-    exactCount(db, 'banned_users').then((result) => ({ name: 'banned_users', ...result })),
   ];
-  if (role && hasPermission(role, 'users.moderation.safety.read')) tasks.push(exactCount(db, 'safety_flags').then((result) => ({ name: 'safety_flags', ...result })));
+  if (role && hasPermission(role, 'users.moderation.safety.read')) tasks.push(
+    exactCount(db, 'safety_flags').then((result) => ({ name: 'safety_flags', ...result })),
+    exactCount(db, 'banned_users').then((result) => ({ name: 'banned_users', ...result })),
+  );
   if (role && hasPermission(role, 'users.moderation.aggregate.read')) tasks.push(exactCount(db, 'user_consents').then((result) => ({ name: 'user_consents', ...result })));
   const results = await Promise.all(tasks);
   return {
@@ -549,15 +551,16 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
       db.collection('league_chat_bans').doc(input.targetId).get(),
     ]);
     if (!userSnap.exists) throw new HttpsError('not-found', 'ban_user_not_found');
+    const ban = banSnap.exists ? record(banSnap.data()) : null;
     let banHistory: Row | null = null;
-    const historyId = clean(input.payload.historyId, 180);
+    const historyId = clean(input.payload.historyId || ban?.banHistoryId, 180);
     if (input.action === 'user_unban' && historyId) {
       const historySnap = await db.collection('admin_safety_moderation_history').doc(historyId).get();
       if (historySnap.exists) banHistory = record(historySnap.data());
     }
     return {
       uid: input.targetId,
-      ban: banSnap.exists ? record(banSnap.data()) : null,
+      ban,
       usersBanned: record(userSnap.data()).banned === true,
       leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null,
       chatRestricted: chatBanSnap.exists,
@@ -769,13 +772,14 @@ async function readMutationBeforeInTransaction(
     ];
     const [banSnap, userSnap, leaderboardSnap, chatBanSnap] = await Promise.all(refs.map((ref) => tx.get(ref)));
     if (!userSnap.exists) throw new HttpsError('not-found', 'ban_user_not_found');
+    const ban = banSnap.exists ? record(banSnap.data()) : null;
     let banHistory: Row | null = null;
-    const historyId = clean(input.payload.historyId, 180);
+    const historyId = clean(input.payload.historyId || ban?.banHistoryId, 180);
     if (input.action === 'user_unban' && historyId) {
       const historySnap = await tx.get(db.collection('admin_safety_moderation_history').doc(historyId));
       if (historySnap.exists) banHistory = record(historySnap.data());
     }
-    return { uid: input.targetId, ban: banSnap.exists ? record(banSnap.data()) : null, usersBanned: record(userSnap.data()).banned === true, leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null, chatRestricted: chatBanSnap.exists, banHistory };
+    return { uid: input.targetId, ban, usersBanned: record(userSnap.data()).banned === true, leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null, chatRestricted: chatBanSnap.exists, banHistory };
   }
   const historyId = clean(input.payload.operationId, 180) || input.targetId;
   const historySnap = await tx.get(db.collection('admin_safety_moderation_history').doc(historyId));
@@ -908,7 +912,7 @@ export const adminApplySafetyModerationMutation = onCall(
       } else if (action === 'user_ban') {
         if (before.ban) throw new HttpsError('failed-precondition', 'user_already_banned');
         const writes = buildBanWrites({ uid: input.targetId, name: payload.name, reason: input.reason, actorUid, nowMs, leaderboardBefore: before.leaderboard, sourceReportId: payload.sourceReportId, source: payload.source });
-        tx.create(db.collection('banned_users').doc(input.targetId), writes.bannedDocument);
+        tx.create(db.collection('banned_users').doc(input.targetId), { ...writes.bannedDocument, banHistoryId: historyRef.id });
         tx.set(db.collection('users').doc(input.targetId), writes.userPatch, { merge: true });
         if (before.leaderboard) tx.delete(db.collection('leaderboard').doc(input.targetId));
         if (writes.reportPatch && payload.sourceReportId) tx.update(db.collection('user_reports').doc(clean(payload.sourceReportId, 180)), writes.reportPatch);

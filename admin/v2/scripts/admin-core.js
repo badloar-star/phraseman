@@ -5,6 +5,9 @@ import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 import { createVoiceResearchController } from './admin-voice-research-controller.js';
 import { createVoiceResearchState } from './admin-voice-research-state.js';
 import { renderVoiceResearchCenter } from './admin-voice-research-view.js';
+import { createSafetyModerationController } from './admin-safety-moderation-controller.js';
+import { createSafetyModerationState } from './admin-safety-moderation-state.js';
+import { renderSafetyModerationCenter } from './admin-safety-moderation-view.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -48,16 +51,17 @@ const PAGES = Object.freeze({
   'asset-studio': { title: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через безопасный серверный процесс «Создать → Проверить → Опубликовать».' },
   campaigns: { title: 'Кампании', description: 'Сообщения внутри приложения, аудитории, опросы и история откликов.' },
   'voice-research': { title: 'Голос пользователей', description: 'Идеи, опросы, источники привлечения и причины отмены в одном рабочем месте.' },
+  'safety-moderation': { title: 'Безопасность и модерация', description: 'Жалобы, чувствительные сигналы, доказательства согласия и блокировки с единым аудитом.' },
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'users.research.read', 'users.research.export', 'users.research.write', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
-  admin: new Set(['users.read', 'users.research.read', 'users.research.export', 'users.research.write', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  owner: new Set(['users.read', 'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read', 'users.moderation.aggregate.read', 'users.moderation.export', 'users.moderation.write', 'users.moderation.identity.write', 'users.moderation.ban.write', 'users.moderation.approve', 'users.moderation.restore', 'users.research.read', 'users.research.export', 'users.research.write', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  admin: new Set(['users.read', 'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read', 'users.moderation.aggregate.read', 'users.moderation.export', 'users.moderation.write', 'users.moderation.identity.write', 'users.moderation.ban.write', 'users.moderation.approve', 'users.moderation.restore', 'users.research.read', 'users.research.export', 'users.research.write', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
   content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
-  analyst: new Set(['users.read', 'users.research.read', 'users.research.export', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  analyst: new Set(['users.read', 'users.moderation.aggregate.read', 'users.research.read', 'users.research.export', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
-  support: new Set(['users.read', 'users.research.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
-  moderator: new Set(['users.read', 'users.research.read', 'reports.read', 'reports.status.write']),
+  support: new Set(['users.read', 'users.moderation.read', 'users.research.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
+  moderator: new Set(['users.read', 'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read', 'users.moderation.write', 'users.research.read', 'reports.read', 'reports.status.write']),
 });
 
 const FACTORY_STEPS = Object.freeze([
@@ -155,11 +159,13 @@ const state = {
   alerts: { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' },
   plusControl: { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' },
   voiceResearch: createVoiceResearchState(),
+  safetyModeration: createSafetyModerationState(),
   manualAccess: { preview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
 let voiceResearchController = null;
+let safetyModerationController = null;
 let initialized = false;
 let requestedUserHandled = false;
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
@@ -841,7 +847,7 @@ function renderBetaTesters() {
 
 function renderUsers() {
   if (!can('users.read')) return `${pageHeader(PAGES.users, 'Пользователи')}<div class="notice warning">Для просмотра профилей нужна роль с разрешением users.read. Сохранённые результаты скрыты.</div>`;
-  return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a><a class="button primary" href="#report-center" title="Открыть единый центр репортов">Центр репортов</a>')}
+  return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a><a class="button primary" href="#safety-moderation" title="Открыть центр безопасности и модерации">Безопасность и модерация</a>')}
     ${renderBetaTesters()}
     <section class="card user-search-card"><div class="card-header"><div><h2>Найти пользователя</h2><p>Точный серверный поиск без загрузки всей базы в браузер.</p></div><span class="badge">users.read</span></div><div class="card-body"><div class="user-search-form"><div class="field"><label for="user-search">Почта, точное имя или UID</label><input id="user-search" type="search" value="${escapeHtml(state.users.query)}" placeholder="alice@example.com или stable UID" autocomplete="off"></div><button class="button primary" data-action="search-admin-users" type="button" title="Найти пользователя без загрузки всей базы" data-tooltip="Найти пользователя без загрузки всей базы"${disabledWhenUnauthorized('users.read')}>Найти</button></div>${renderUserSearchResults()}</div></section>
     <div class="section">${renderProfile()}</div>`;
@@ -1905,7 +1911,7 @@ function renderAlerts() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts, 'voice-research': () => renderVoiceResearchCenter(state.voiceResearch, { escapeHtml, can }) };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts, 'voice-research': () => renderVoiceResearchCenter(state.voiceResearch, { escapeHtml, can }), 'safety-moderation': () => renderSafetyModerationCenter(state.safetyModeration, { escapeHtml, can }) };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -3192,12 +3198,33 @@ function getVoiceResearchController() {
   return voiceResearchController;
 }
 
+function getSafetyModerationController() {
+  if (!safetyModerationController) {
+    safetyModerationController = createSafetyModerationController({
+      getModel: () => state.safetyModeration,
+      setModel: (value) => { state.safetyModeration = value; },
+      actions: () => actions,
+      render: renderCurrentPage,
+      route: () => state.route,
+      authorized: () => state.authorized && (can('users.moderation.read') || can('users.moderation.aggregate.read')),
+      can,
+      defaultView: () => can('users.moderation.read') ? 'overview' : 'age-consent',
+      message: setMessage,
+      errorMessage,
+      id,
+      download: (name, text) => downloadTextFile(name, text, 'text/csv;charset=utf-8'),
+    });
+  }
+  return safetyModerationController;
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
   if (action.startsWith('voice-')) return getVoiceResearchController().handle(action, target);
+  if (action.startsWith('safety-')) return getSafetyModerationController().handle(action, target);
   if (action === 'load-plus-control' || action === 'apply-plus-control-filter') {
     return runBusy(() => loadPlusControl(false), 'Plus Control Center пересчитан на сервере.');
   }
@@ -4260,6 +4287,7 @@ export function setAdminActions(nextActions) {
   maybeLoadReviewPromo();
   maybeLoadAlerts();
   getVoiceResearchController().maybeLoad();
+  getSafetyModerationController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
@@ -4308,6 +4336,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('application.alerts.read')) state.alerts = { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('money.read')) state.plusControl = { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('users.research.read')) state.voiceResearch = createVoiceResearchState();
+  if (!state.authorized || (!can('users.moderation.read') && !can('users.moderation.aggregate.read'))) state.safetyModeration = createSafetyModerationState();
   if (!state.authorized || !can('money.manual_access.write')) state.manualAccess = { preview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
@@ -4320,6 +4349,7 @@ export function setAuthState(auth) {
   maybeLoadAlerts();
   maybeLoadPlusControl();
   getVoiceResearchController().maybeLoad();
+  getSafetyModerationController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
@@ -4328,6 +4358,7 @@ export function renderRoute(route, capabilityId = '') {
   const capability = capabilityById(capabilityId);
   state.selectedCapabilityId = capability && (capability.route === state.route || capability.nativeRoute === state.route) ? capability.id : '';
   if (state.route === 'voice-research') getVoiceResearchController().selectCapability(capability?.id || capabilityId);
+  if (state.route === 'safety-moderation') getSafetyModerationController().selectCapability(capability?.id || capabilityId);
   if (state.route === 'money' && ['premium', 'vip', 'plus-radar'].includes(capability?.id)) {
     const section = capability.id === 'plus-radar' ? 'radar' : capability.id;
     const view = section === 'radar' ? 'radar' : 'accounts';
@@ -4347,6 +4378,7 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadAlerts();
   maybeLoadPlusControl();
   getVoiceResearchController().maybeLoad();
+  getSafetyModerationController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
@@ -4361,9 +4393,18 @@ export function initAdminUi() {
     }
   });
   document.addEventListener('change', (event) => {
-    if (!(event.target instanceof HTMLSelectElement) || event.target.id !== 'push-campaign-mode') return;
-    state.pushCampaigns = { ...state.pushCampaigns, draft: { mode: event.target.value }, preview: null };
-    renderCurrentPage();
+    if (event.target instanceof HTMLSelectElement && event.target.id === 'push-campaign-mode') {
+      state.pushCampaigns = { ...state.pushCampaigns, draft: { mode: event.target.value }, preview: null };
+      renderCurrentPage();
+      return;
+    }
+    if (event.target instanceof HTMLSelectElement && event.target.hasAttribute('data-safety-mobile-view')) {
+      void getSafetyModerationController().selectMobileView(event.target.value);
+      return;
+    }
+    if (event.target instanceof HTMLInputElement && event.target.hasAttribute('data-safety-select')) {
+      getSafetyModerationController().toggleSelection(event.target.getAttribute('data-safety-select') || '', event.target.checked);
+    }
   });
   document.addEventListener('load', (event) => {
     const frame = event.target;

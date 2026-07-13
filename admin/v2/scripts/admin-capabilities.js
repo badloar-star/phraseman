@@ -22,7 +22,7 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'onboarding-sources', route: 'users', label: 'Источники привлечения', description: 'Откуда новые пользователи узнали о приложении.', legacyTab: 'onboarding-sources' },
   { id: 'safety-flags', route: 'users', label: 'Сигналы безопасности', description: 'Опасные сообщения и очередь проверки.', legacyTab: 'safety-flags' },
   { id: 'age-consent', route: 'users', label: 'Возраст и согласие', description: 'Возрастные ограничения и согласие взрослых.', legacyTab: 'age-consent' },
-  { id: 'compliance-radar', route: 'users', label: 'Правовые риски', description: 'Юрисдикции, возраст и незакрытые риски.', legacyTab: 'compliance-radar' },
+  { id: 'compliance-radar', route: 'users', label: 'Политика и доказательства', description: 'Наблюдаемые факты, пробелы доказательств и расхождения политики без юридических выводов.', legacyTab: 'compliance-radar' },
   { id: 'cancel-surveys', route: 'users', label: 'Причины отмены', description: 'Ответы пользователей при отмене подписки.', legacyTab: 'cancel-surveys' },
   { id: 'beta-testers', route: 'users', label: 'Бета-тестеры', description: 'Ауры, постоянный Plus и управление энергией.', legacyPage: 'beta_testers.html' },
 
@@ -89,6 +89,11 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'surveys': 'voice-research',
   'onboarding-sources': 'voice-research',
   'cancel-surveys': 'voice-research',
+  'user-reports': 'safety-moderation',
+  'safety-flags': 'safety-moderation',
+  'age-consent': 'safety-moderation',
+  'compliance-radar': 'safety-moderation',
+  'ban-list': 'safety-moderation',
   'gmail-support': 'support',
   'website-inbox': 'support',
   'emails': 'emails',
@@ -102,7 +107,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
-  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research',
+  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research', 'safety-moderation',
 ]);
 
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {

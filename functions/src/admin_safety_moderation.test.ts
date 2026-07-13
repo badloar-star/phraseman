@@ -59,7 +59,7 @@ describe('Admin Safety & Moderation read contract', () => {
   test('selects the narrow permission for every view and reserves export for admins', () => {
     expect(requiredSafetyModerationPermission('overview', false)).toBe('users.moderation.read');
     expect(requiredSafetyModerationPermission('user-reports', false)).toBe('users.moderation.read');
-    expect(requiredSafetyModerationPermission('ban-list', false)).toBe('users.moderation.read');
+    expect(requiredSafetyModerationPermission('ban-list', false)).toBe('users.moderation.safety.read');
     expect(requiredSafetyModerationPermission('safety-flags', false)).toBe('users.moderation.safety.read');
     expect(requiredSafetyModerationPermission('age-consent', false)).toBe('users.moderation.aggregate.read');
     expect(requiredSafetyModerationPermission('policy-evidence', false)).toBe('users.moderation.aggregate.read');
@@ -72,6 +72,17 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(source).toMatch(/adminGetSafetyModerationWorkspace\s*=\s*onCall\([\s\S]*?enforceAppCheck:\s*true/);
     expect(source).toMatch(/adminGetSafetyModerationSensitiveDetail\s*=\s*onCall\([\s\S]*?enforceAppCheck:\s*true/);
     expect(source).not.toMatch(/createAuditRecord\([\s\S]{0,800}(userText|historyContext)/);
+  });
+
+  test('does not expose global-ban counts to report-only support operators', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
+    expect(source).toMatch(/if \(role && hasPermission\(role, 'users\.moderation\.safety\.read'\)\) tasks\.push\([\s\S]{0,300}exactCount\(db, 'banned_users'\)/);
+  });
+
+  test('links new bans to their rollback history and uses that link for safe unban restore', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
+    expect(source).toContain('banHistoryId: historyRef.id');
+    expect(source).toMatch(/input\.payload\.historyId \|\| ban\?\.banHistoryId/);
   });
 
   test('registers both read callables in the Functions entrypoint', () => {

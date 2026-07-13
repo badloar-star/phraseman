@@ -36,7 +36,7 @@ type Props = {
   opportunity: SoftUpsellOpportunity;
   onImpression: () => void | Promise<void>;
   onDismiss: () => void | Promise<void>;
-  onCta: () => void | Promise<void | boolean>;
+  onCta: () => void | boolean | Promise<void | boolean>;
 };
 
 const GOLD = '#E8C56A';

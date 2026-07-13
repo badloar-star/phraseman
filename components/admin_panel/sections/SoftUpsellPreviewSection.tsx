@@ -1,29 +1,95 @@
-import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
-import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import * as Crypto from 'expo-crypto';
+import { useRouter } from 'expo-router';
+import React, { useCallback, useState } from 'react';
 
+import { trackSoftUpsellEvent } from '../../../app/analytics';
+import {
+  createSoftUpsellAttribution,
+  softUpsellEventId,
+  softUpsellRouteParams,
+  type SoftUpsellAttribution,
+} from '../../../app/soft_upsell_attribution';
 import SoftContextualUpsellCard from '../../SoftContextualUpsellCard';
 import { qaToast } from '../qa_utils';
-import {
-  SOFT_UPSELL_ADMIN_PREVIEWS,
-  type SoftUpsellAdminPreview,
-} from '../soft_upsell_preview_catalog';
-import {
-  AccordionSection,
-  AdminHint,
-  ADMIN_BORDER_MUTED,
-  ADMIN_SURFACE,
-  ADMIN_TEXT,
-  ButtonRow,
-} from '../ui';
+import { SOFT_UPSELL_ADMIN_PREVIEWS, type SoftUpsellAdminPreview } from '../soft_upsell_preview_catalog';
+import { AccordionSection, AdminHint, ButtonRow } from '../ui';
 
-interface Props {
-  open: boolean;
-  onToggle: (id: string) => void;
-}
+interface Props { open: boolean; onToggle: (id: string) => void }
+type SelectedPreview = Readonly<{ preview: SoftUpsellAdminPreview; attribution: SoftUpsellAttribution }>;
 
 export default function SoftUpsellPreviewSection({ open, onToggle }: Props) {
-  const [selected, setSelected] = useState<SoftUpsellAdminPreview | null>(null);
+  const router = useRouter();
+  const [selected, setSelected] = useState<SelectedPreview | null>(null);
+
+  const openPreview = useCallback((preview: SoftUpsellAdminPreview) => {
+    const attribution = createSoftUpsellAttribution({
+      impressionId: Crypto.randomUUID(),
+      trigger: preview.opportunity.trigger,
+      context: preview.opportunity.context,
+      mode: 'test',
+    });
+    setSelected({ preview, attribution });
+    void trackSoftUpsellEvent('soft_upsell_eligible', {
+      context: attribution.context,
+      trigger: attribution.trigger,
+      studyTarget: preview.opportunity.studyTarget,
+      overlayOccupied: false,
+      schemaVersion: 1,
+      triggerValue: preview.opportunity.value,
+      soft_upsell_impression_id: attribution.impressionId,
+      soft_upsell_trigger: attribution.trigger,
+      soft_upsell_context: attribution.context,
+      soft_upsell_mode: attribution.mode,
+      event_id: softUpsellEventId(attribution, 'eligible'),
+    } as never);
+  }, []);
+
+  const impression = useCallback(() => {
+    if (!selected) return;
+    const { preview, attribution } = selected;
+    return trackSoftUpsellEvent('soft_upsell_impression', {
+      context: attribution.context, trigger: attribution.trigger,
+      studyTarget: preview.opportunity.studyTarget, overlayOccupied: false,
+      schemaVersion: 1, triggerValue: preview.opportunity.value, destination: 'paywall',
+      soft_upsell_impression_id: attribution.impressionId,
+      soft_upsell_trigger: attribution.trigger, soft_upsell_context: attribution.context,
+      soft_upsell_mode: attribution.mode, event_id: softUpsellEventId(attribution, 'impression'),
+    } as never);
+  }, [selected]);
+
+  const dismiss = useCallback(() => {
+    if (!selected) return;
+    const { preview, attribution } = selected;
+    setSelected(null);
+    void trackSoftUpsellEvent('soft_upsell_dismiss', {
+      context: attribution.context, trigger: attribution.trigger,
+      studyTarget: preview.opportunity.studyTarget, overlayOccupied: false,
+      schemaVersion: 1, triggerValue: preview.opportunity.value,
+      soft_upsell_impression_id: attribution.impressionId,
+      soft_upsell_trigger: attribution.trigger, soft_upsell_context: attribution.context,
+      soft_upsell_mode: attribution.mode, event_id: softUpsellEventId(attribution, 'dismiss'),
+    } as never);
+  }, [selected]);
+
+  const openPaywall = useCallback(() => {
+    if (!selected) return false;
+    const { preview, attribution } = selected;
+    setSelected(null);
+    void trackSoftUpsellEvent('soft_upsell_cta', {
+      context: attribution.context, trigger: attribution.trigger,
+      studyTarget: preview.opportunity.studyTarget, overlayOccupied: false,
+      schemaVersion: 1, triggerValue: preview.opportunity.value, destination: 'paywall',
+      soft_upsell_impression_id: attribution.impressionId,
+      soft_upsell_trigger: attribution.trigger, soft_upsell_context: attribution.context,
+      soft_upsell_mode: attribution.mode, event_id: softUpsellEventId(attribution, 'cta'),
+    } as never);
+    router.push({
+      pathname: '/premium_modal',
+      params: { context: attribution.context, source: 'soft_upsell', ...softUpsellRouteParams(attribution) },
+    } as never);
+    qaToast('info', 'Открыта тестовая цепочка paywall');
+    return true;
+  }, [router, selected]);
 
   return (
     <>
@@ -35,9 +101,8 @@ export default function SoftUpsellPreviewSection({ open, onToggle }: Props) {
         open={open}
         onToggle={onToggle}
       >
-        <AdminHint>
-          Локальное превью. Ничего не публикует и не меняет у пользователей.
-        </AdminHint>
+        <AdminHint>Тестовая цепочка — не попадёт в Production funnel.</AdminHint>
+        <AdminHint>События появятся в Test funnel только при включённом согласии на аналитику.</AdminHint>
         {SOFT_UPSELL_ADMIN_PREVIEWS.map((preview) => (
           <ButtonRow
             key={preview.id}
@@ -45,85 +110,29 @@ export default function SoftUpsellPreviewSection({ open, onToggle }: Props) {
             icon={preview.icon}
             label={preview.adminLabel}
             sub={preview.adminDescription}
-            onPress={() => setSelected(preview)}
+            onPress={() => openPreview(preview)}
           />
         ))}
       </AccordionSection>
 
-      <Modal
-        visible={selected != null}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setSelected(null)}
-      >
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: 'rgba(0,0,0,0.72)',
-            justifyContent: 'center',
-            padding: 16,
-          }}
-        >
-          <View
-            accessibilityViewIsModal
-            accessibilityLabel="Локальное QA-превью мягкого пейвола"
-            style={{
-              width: '100%',
-              maxWidth: 560,
-              maxHeight: '90%',
-              alignSelf: 'center',
-              backgroundColor: ADMIN_SURFACE,
-              borderColor: ADMIN_BORDER_MUTED,
-              borderWidth: 1,
-              borderRadius: 14,
-              overflow: 'hidden',
-            }}
-          >
-            <View
-              style={{
-                minHeight: 52,
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingLeft: 16,
-                borderBottomColor: ADMIN_BORDER_MUTED,
-                borderBottomWidth: 1,
-              }}
-            >
-              <Text style={{ color: ADMIN_TEXT, fontSize: 16, fontWeight: '700', flex: 1 }}>
-                Локальное QA-превью
-              </Text>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel="Закрыть локальное превью"
-                accessibilityHint="Возвращает в раздел мягких пейволов"
-                onPress={() => setSelected(null)}
-                style={{ width: 52, minHeight: 52, alignItems: 'center', justifyContent: 'center' }}
-              >
-                <Ionicons name="close" size={24} color={ADMIN_TEXT} />
-              </Pressable>
-            </View>
-
-            <ScrollView contentContainerStyle={{ padding: 16 }}>
-              {selected && (
-                <SoftContextualUpsellCard
-                  title={selected.title}
-                  body={selected.body}
-                  ctaLabel={selected.ctaLabel}
-                  dismissLabel="Не сейчас"
-                  dismissAccessibilityLabel="Закрыть предложение"
-                  dismissAccessibilityHint="Закрывает только локальное QA-превью"
-                  ctaAccessibilityLabel={selected.ctaLabel}
-                  ctaAccessibilityHint="Показывает результат локальной проверки без навигации"
-                  opportunity={selected.opportunity}
-                  onImpression={() => undefined}
-                  onDismiss={() => setSelected(null)}
-                  onCta={() => qaToast('info', `QA: ${selected.ctaLabel}`)}
-                />
-              )}
-            </ScrollView>
-          </View>
-        </View>
-      </Modal>
+      {selected && (
+        <SoftContextualUpsellCard
+          visible
+          proof={selected.preview.proof}
+          title={selected.preview.title}
+          body={selected.preview.body}
+          ctaLabel={selected.preview.ctaLabel}
+          dismissLabel="Не сейчас"
+          dismissAccessibilityLabel="Закрыть тестовое предложение"
+          dismissAccessibilityHint="Возвращает в настройки без открытия paywall"
+          ctaAccessibilityLabel={selected.preview.ctaLabel}
+          ctaAccessibilityHint="Открывает настоящий paywall в изолированном Test funnel"
+          opportunity={selected.preview.opportunity}
+          onImpression={impression}
+          onDismiss={dismiss}
+          onCta={openPaywall}
+        />
+      )}
     </>
   );
 }

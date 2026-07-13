@@ -1,6 +1,14 @@
+import * as Crypto from 'expo-crypto';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from '../app/account_generation';
 import { trackSoftUpsellEvent } from '../app/analytics';
+import {
+  createSoftUpsellAttribution,
+  softUpsellEventId,
+  type SoftUpsellAttribution,
+  type SoftUpsellMode,
+} from '../app/soft_upsell_attribution';
 import {
   decideSoftUpsell,
   type SoftUpsellCandidate,
@@ -15,218 +23,234 @@ import {
   markSoftUpsellImpression,
   readSoftUpsellState,
 } from '../app/soft_upsell_state';
-import { useOverlayOccupied } from '../components/OverlayArbiter';
+import { useOverlayTryClaim, type OverlayLease } from '../components/OverlayArbiter';
 
 type Input = {
   candidates: readonly SoftUpsellCandidate[];
   accountScope: string;
   studyTarget: SoftUpsellStudyTarget;
   hasPremiumAccess: boolean;
+  mode?: SoftUpsellMode;
 };
 
 type Result = {
   opportunity: SoftUpsellOpportunity | null;
+  attribution: SoftUpsellAttribution | null;
   onImpression: () => Promise<void>;
   onDismiss: () => Promise<void>;
   onCta: () => Promise<boolean>;
 };
 
-type OpportunityIdentity = Readonly<{ accountScope: string; studyTarget: SoftUpsellStudyTarget }>;
-type BoundOpportunity = Readonly<{ item: SoftUpsellOpportunity; identityKey: string }>;
-
-function identityKey(identity: OpportunityIdentity): string {
-  return `${identity.studyTarget}:${identity.accountScope}`;
-}
+type BoundOpportunity = Readonly<{
+  item: SoftUpsellOpportunity;
+  identityKey: string;
+  attribution: SoftUpsellAttribution;
+  accountToken: AccountGenerationToken;
+  lease: OverlayLease;
+}>;
 
 const CONTEXT_BY_TRIGGER: Record<SoftUpsellCandidate['trigger'], SoftUpsellContext> = {
-  first_lesson: 'first_lesson_success',
-  free_lessons_complete: 'free_lessons_complete',
-  weekly_review: 'weekly_review',
-  second_ai_dialogue: 'dialog_repeat_success',
-  streak_milestone: 'streak_milestone',
-  repeated_training: 'trainer_repeat_success',
+  first_lesson: 'first_lesson_success', free_lessons_complete: 'free_lessons_complete',
+  weekly_review: 'weekly_review', second_ai_dialogue: 'dialog_repeat_success',
+  streak_milestone: 'streak_milestone', repeated_training: 'trainer_repeat_success',
+};
+const TRIGGER_PRIORITY: Record<SoftUpsellCandidate['trigger'], number> = {
+  free_lessons_complete: 6, second_ai_dialogue: 5, weekly_review: 4,
+  streak_milestone: 3, first_lesson: 2, repeated_training: 1,
 };
 
-const TRIGGER_PRIORITY: Record<SoftUpsellCandidate['trigger'], number> = {
-  free_lessons_complete: 6,
-  second_ai_dialogue: 5,
-  weekly_review: 4,
-  streak_milestone: 3,
-  first_lesson: 2,
-  repeated_training: 1,
-};
+function identityKey(accountScope: string, studyTarget: SoftUpsellStudyTarget): string {
+  return `${studyTarget}:${accountScope}`;
+}
 
 function signature(candidates: readonly SoftUpsellCandidate[]): string {
-  return candidates
-    .map(({ trigger, value, studyTarget }) => `${trigger}:${value}:${studyTarget}`)
-    .sort()
-    .join('|');
+  return candidates.map(({ trigger, value, studyTarget }) => `${trigger}:${value}:${studyTarget}`).sort().join('|');
 }
 
 async function attemptTwice(operation: () => Promise<void>): Promise<void> {
-  try {
-    await operation();
-  } catch {
-    await operation();
-  }
+  try { await operation(); } catch { await operation(); }
 }
 
 export function useSoftUpsellOpportunity({
-  candidates,
-  accountScope,
-  studyTarget,
-  hasPremiumAccess,
+  candidates, accountScope, studyTarget, hasPremiumAccess, mode = 'production',
 }: Input): Result {
-  const currentIdentityKey = identityKey({ accountScope, studyTarget });
-  const currentIdentityKeyRef = useRef(currentIdentityKey);
-  currentIdentityKeyRef.current = currentIdentityKey;
-  const overlayOccupied = useOverlayOccupied();
+  const currentIdentity = identityKey(accountScope, studyTarget);
+  const currentIdentityRef = useRef(currentIdentity);
+  currentIdentityRef.current = currentIdentity;
+  const tryClaimOverlay = useOverlayTryClaim();
   const targetCandidates = candidates.filter((candidate) => candidate.studyTarget === studyTarget);
   const candidateSignature = signature(targetCandidates);
   const stableCandidatesRef = useRef<{ signature: string; value: SoftUpsellCandidate[] } | null>(null);
   if (stableCandidatesRef.current?.signature !== candidateSignature) {
     stableCandidatesRef.current = {
       signature: candidateSignature,
-      value: targetCandidates.map((candidate) => ({ ...candidate }))
-        .sort((left, right) => TRIGGER_PRIORITY[right.trigger] - TRIGGER_PRIORITY[left.trigger]
-          || (right.trigger === 'streak_milestone' ? right.value - left.value : 0)),
+      value: targetCandidates.map((candidate) => ({ ...candidate })).sort((left, right) => (
+        TRIGGER_PRIORITY[right.trigger] - TRIGGER_PRIORITY[left.trigger]
+        || (right.trigger === 'streak_milestone' ? right.value - left.value : 0)
+      )),
     };
   }
   const stableCandidates = stableCandidatesRef.current.value;
-  const [boundOpportunity, setBoundOpportunity] = useState<BoundOpportunity | null>(null);
-  const opportunityRef = useRef<BoundOpportunity | null>(null);
-  const pendingDismissRef = useRef<BoundOpportunity | null>(null);
-  const impressionCompletedRef = useRef(new Set<string>());
+  const [bound, setBound] = useState<BoundOpportunity | null>(null);
+  const boundRef = useRef<BoundOpportunity | null>(null);
+  const outcomeRef = useRef<'cta' | 'dismiss' | null>(null);
+  const impressionDoneRef = useRef(new Set<string>());
   const impressionInFlightRef = useRef(new Map<string, Promise<void>>());
-  const dismissCompletedRef = useRef(new Set<string>());
-  const dismissInFlightRef = useRef(new Map<string, Promise<void>>());
 
   useEffect(() => {
     let active = true;
     const run = async () => {
-      setBoundOpportunity(null);
-      opportunityRef.current = null;
-      pendingDismissRef.current = null;
+      boundRef.current?.lease.release();
+      boundRef.current = null;
+      setBound(null);
+      outcomeRef.current = null;
       const persisted = await readSoftUpsellState(accountScope, studyTarget);
       if (!active) return;
       const decision = decideSoftUpsell({
         candidates: stableCandidates,
         hasPremiumAccess,
         enabled: getSoftUpsellEnabledByTrigger(),
-        overlayOccupied,
+        overlayOccupied: false,
         sessionClaimed: false,
         nowMs: Date.now(),
-        lastGlobalImpressionMs: persisted.lastGlobalImpressionMs,
-        contextDismissedAtMs: persisted.contextDismissedAtMs,
-        consumedMilestones: persisted.consumedMilestones,
+        lastGlobalImpressionMs: mode === 'production' ? persisted.lastGlobalImpressionMs : null,
+        contextDismissedAtMs: mode === 'production' ? persisted.contextDismissedAtMs : {},
+        consumedMilestones: mode === 'production' ? persisted.consumedMilestones : [],
       });
       const candidate = stableCandidates[0];
       if (decision.status === 'suppressed') {
-        if (candidate) {
-          await trackSoftUpsellEvent('soft_upsell_suppressed', {
-            context: CONTEXT_BY_TRIGGER[candidate.trigger], trigger: candidate.trigger,
-            studyTarget, overlayOccupied, schemaVersion: 1, triggerValue: candidate.value,
-            suppressionReason: decision.reason,
-          });
-        }
+        if (candidate) void trackSoftUpsellEvent('soft_upsell_suppressed', {
+          context: CONTEXT_BY_TRIGGER[candidate.trigger], trigger: candidate.trigger, studyTarget,
+          overlayOccupied: false, schemaVersion: 1, triggerValue: candidate.value,
+          suppressionReason: decision.reason,
+        });
         return;
       }
-      const claimed = await claimSoftUpsell({ accountScope, studyTarget, canClaim: () => active });
-      if (!active) return;
-      if (!claimed) {
-        await trackSoftUpsellEvent('soft_upsell_suppressed', {
-          context: decision.opportunity.context, trigger: decision.opportunity.trigger,
-          studyTarget, overlayOccupied, schemaVersion: 1, triggerValue: decision.opportunity.value,
+      const lease = await tryClaimOverlay();
+      if (!active) { lease?.release(); return; }
+      if (!lease) {
+        void trackSoftUpsellEvent('soft_upsell_suppressed', {
+          context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget,
+          overlayOccupied: true, schemaVersion: 1, triggerValue: decision.opportunity.value,
+          suppressionReason: 'overlay_occupied',
+        });
+        return;
+      }
+      const sessionClaimed = mode === 'test' || await claimSoftUpsell({ accountScope, studyTarget, canClaim: () => active });
+      if (!active || !sessionClaimed) {
+        lease.release();
+        if (active) void trackSoftUpsellEvent('soft_upsell_suppressed', {
+          context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget,
+          overlayOccupied: false, schemaVersion: 1, triggerValue: decision.opportunity.value,
           suppressionReason: 'session_cap',
         });
         return;
       }
-      const bound = { item: decision.opportunity, identityKey: currentIdentityKey };
-      opportunityRef.current = bound;
-      setBoundOpportunity(bound);
-      await trackSoftUpsellEvent('soft_upsell_eligible', {
-        context: decision.opportunity.context, trigger: decision.opportunity.trigger,
-        studyTarget, overlayOccupied, schemaVersion: 1, triggerValue: decision.opportunity.value,
+      const accountToken = captureAccountGeneration();
+      const attribution = createSoftUpsellAttribution({
+        impressionId: Crypto.randomUUID(), trigger: decision.opportunity.trigger,
+        context: decision.opportunity.context, mode,
       });
+      const next: BoundOpportunity = { item: decision.opportunity, identityKey: currentIdentity, attribution, accountToken, lease };
+      boundRef.current = next;
+      setBound(next);
+      void trackSoftUpsellEvent('soft_upsell_eligible', {
+        context: next.item.context, trigger: next.item.trigger, studyTarget, overlayOccupied: false,
+        schemaVersion: 1, triggerValue: next.item.value,
+        soft_upsell_impression_id: attribution.impressionId,
+        soft_upsell_trigger: attribution.trigger,
+        soft_upsell_context: attribution.context,
+        soft_upsell_mode: attribution.mode,
+        event_id: softUpsellEventId(attribution, 'eligible'),
+      } as never);
     };
     void run().catch(() => {});
-    return () => { active = false; };
-  }, [accountScope, candidateSignature, currentIdentityKey, hasPremiumAccess, overlayOccupied, stableCandidates, studyTarget]);
+    return () => {
+      active = false;
+      const current = boundRef.current;
+      if (current?.identityKey === currentIdentity) {
+        current.lease.release();
+        boundRef.current = null;
+      }
+    };
+  }, [accountScope, candidateSignature, currentIdentity, hasPremiumAccess, mode, stableCandidates, studyTarget, tryClaimOverlay]);
 
-  const basePayload = useCallback((item: SoftUpsellOpportunity) => ({
-    context: item.context,
-    trigger: item.trigger,
-    studyTarget: item.studyTarget,
-    overlayOccupied,
-    schemaVersion: 1 as const,
-    triggerValue: item.value,
-  }), [overlayOccupied]);
+  const isCurrent = useCallback((value: BoundOpportunity | null): value is BoundOpportunity => (
+    value != null && value.identityKey === currentIdentity
+    && currentIdentityRef.current === currentIdentity
+    && isCurrentAccountGeneration(value.accountToken)
+  ), [currentIdentity]);
+
+  const payload = useCallback((value: BoundOpportunity, suffix: string) => ({
+    context: value.item.context, trigger: value.item.trigger, studyTarget: value.item.studyTarget,
+    overlayOccupied: false, schemaVersion: 1 as const, triggerValue: value.item.value,
+    soft_upsell_impression_id: value.attribution.impressionId,
+    soft_upsell_trigger: value.attribution.trigger,
+    soft_upsell_context: value.attribution.context,
+    soft_upsell_mode: value.attribution.mode,
+    event_id: softUpsellEventId(value.attribution, suffix),
+  }), []);
 
   const onImpression = useCallback(async () => {
-    const bound = opportunityRef.current;
-    if (!bound || bound.identityKey !== currentIdentityKey
-      || currentIdentityKeyRef.current !== currentIdentityKey) return;
-    const item = bound.item;
-    if (impressionCompletedRef.current.has(item.milestoneId)) return;
-    const existing = impressionInFlightRef.current.get(item.milestoneId);
+    const current = boundRef.current;
+    if (!isCurrent(current)) return;
+    const key = current.attribution.impressionId;
+    if (impressionDoneRef.current.has(key)) return;
+    const existing = impressionInFlightRef.current.get(key);
     if (existing) return existing;
     const operation = (async () => {
-      await attemptTwice(() => markSoftUpsellImpression(
-        accountScope, studyTarget, item.context, item.milestoneId, Date.now(),
-      ));
-      if (currentIdentityKeyRef.current !== currentIdentityKey) return;
-      await trackSoftUpsellEvent('soft_upsell_impression', { ...basePayload(item), destination: item.destination });
-      impressionCompletedRef.current.add(item.milestoneId);
+      if (current.attribution.mode === 'production') {
+        await attemptTwice(() => markSoftUpsellImpression(
+          accountScope, studyTarget, current.item.context, current.item.milestoneId, Date.now(),
+        ));
+      }
+      if (!isCurrent(current)) return;
+      await trackSoftUpsellEvent('soft_upsell_impression', {
+        ...payload(current, 'impression'), destination: 'paywall',
+      } as never);
+      impressionDoneRef.current.add(key);
     })();
-    impressionInFlightRef.current.set(item.milestoneId, operation);
-    try {
-      await operation;
-    } finally {
-      impressionInFlightRef.current.delete(item.milestoneId);
-    }
-  }, [accountScope, basePayload, currentIdentityKey, studyTarget]);
+    impressionInFlightRef.current.set(key, operation);
+    try { await operation; } finally { impressionInFlightRef.current.delete(key); }
+  }, [accountScope, isCurrent, payload, studyTarget]);
+
+  const releaseAndHide = useCallback((current: BoundOpportunity) => {
+    current.lease.release();
+    if (boundRef.current === current) boundRef.current = null;
+    setBound((value) => value === current ? null : value);
+  }, []);
 
   const onDismiss = useCallback(async () => {
-    const bound = opportunityRef.current ?? pendingDismissRef.current;
-    if (!bound || bound.identityKey !== currentIdentityKey
-      || currentIdentityKeyRef.current !== currentIdentityKey) return;
-    const item = bound.item;
-    if (dismissCompletedRef.current.has(item.milestoneId)) return;
-    if (opportunityRef.current) {
-      opportunityRef.current = null;
-      pendingDismissRef.current = bound;
-      setBoundOpportunity(null);
-    }
-    const existing = dismissInFlightRef.current.get(item.milestoneId);
-    if (existing) return existing;
-    const operation = (async () => {
-      try {
-        await attemptTwice(() => markSoftUpsellDismissed(accountScope, studyTarget, item.context, Date.now()));
-        if (currentIdentityKeyRef.current !== currentIdentityKey) return;
-        await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
-        dismissCompletedRef.current.add(item.milestoneId);
-        if (pendingDismissRef.current?.item.milestoneId === item.milestoneId) pendingDismissRef.current = null;
-      } catch {
-        // The card is already hidden. A later session may evaluate it again because no cooldown was persisted.
-      }
-    })();
-    dismissInFlightRef.current.set(item.milestoneId, operation);
+    const current = boundRef.current;
+    if (!isCurrent(current) || outcomeRef.current !== null) return;
+    outcomeRef.current = 'dismiss';
+    releaseAndHide(current);
     try {
-      await operation;
-    } finally {
-      dismissInFlightRef.current.delete(item.milestoneId);
-    }
-  }, [accountScope, basePayload, currentIdentityKey, studyTarget]);
+      if (current.attribution.mode === 'production') {
+        await attemptTwice(() => markSoftUpsellDismissed(accountScope, studyTarget, current.item.context, Date.now()));
+      }
+      if (currentIdentityRef.current !== currentIdentity) return;
+      await trackSoftUpsellEvent('soft_upsell_dismiss', payload(current, 'dismiss') as never);
+    } catch { /* dismissal is intentionally non-blocking */ }
+  }, [accountScope, currentIdentity, isCurrent, payload, releaseAndHide, studyTarget]);
 
   const onCta = useCallback(async () => {
-    const bound = opportunityRef.current;
-    if (!bound || bound.identityKey !== currentIdentityKey
-      || currentIdentityKeyRef.current !== currentIdentityKey) return false;
-    const item = bound.item;
-    await trackSoftUpsellEvent('soft_upsell_cta', { ...basePayload(item), destination: item.destination });
-    return currentIdentityKeyRef.current === currentIdentityKey;
-  }, [basePayload, currentIdentityKey]);
+    const current = boundRef.current;
+    if (!isCurrent(current) || outcomeRef.current !== null) return false;
+    outcomeRef.current = 'cta';
+    releaseAndHide(current);
+    void trackSoftUpsellEvent('soft_upsell_cta', {
+      ...payload(current, 'cta'), destination: 'paywall',
+    } as never).catch(() => undefined);
+    return true;
+  }, [isCurrent, payload, releaseAndHide]);
 
-  const opportunity = boundOpportunity?.identityKey === currentIdentityKey ? boundOpportunity.item : null;
-  return { opportunity, onImpression, onDismiss, onCta };
+  const visibleBound = bound?.identityKey === currentIdentity ? bound : null;
+  return {
+    opportunity: visibleBound?.item ?? null,
+    attribution: visibleBound?.attribution ?? null,
+    onImpression,
+    onDismiss,
+    onCta,
+  };
 }

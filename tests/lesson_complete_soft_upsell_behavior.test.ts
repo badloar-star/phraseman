@@ -53,36 +53,37 @@ describe('lesson completion soft upsell behavior', () => {
     expect(shouldRenderLessonSoftUpsell(true, { milestoneId: 'x' })).toBe(true);
   });
 
-  it('awaits analytics, ignores a concurrent double tap, and navigates once', async () => {
-    let release!: () => void;
-    const analytics = new Promise<void>((resolve) => { release = resolve; });
-    const onCta = jest.fn(async () => { await analytics; return true; });
-    const navigatePersonal = jest.fn();
+  it('ignores a concurrent double tap and sends first lesson through the real paywall with attribution', async () => {
+    const onCta = jest.fn(async () => true);
+    const attribution = { impressionId: '12345678-test', trigger: 'first_lesson' as const, context: 'first_lesson_success' as const, mode: 'production' as const };
     const navigatePaywall = jest.fn();
-    const handler = createLessonSoftUpsellCtaHandler({ onCta, navigatePersonal, navigatePaywall });
+    const handler = createLessonSoftUpsellCtaHandler({ onCta, getAttribution: () => attribution, navigatePaywall });
 
     const first = handler('first_lesson');
     const second = handler('first_lesson');
     expect(onCta).toHaveBeenCalledTimes(1);
-    release();
     await Promise.all([first, second]);
-    expect(navigatePersonal).toHaveBeenCalledTimes(1);
-    expect(navigatePaywall).not.toHaveBeenCalled();
+    expect(navigatePaywall).toHaveBeenCalledWith(attribution);
   });
 
-  it('does not navigate when the hook revokes CTA authorization after awaiting analytics', async () => {
+  it('does not navigate without authorization or a valid captured attribution', async () => {
     let release!: () => void;
     const onCta = jest.fn().mockImplementationOnce(async () => {
       await new Promise<void>((resolve) => { release = resolve; });
       return false;
     }).mockResolvedValue(false);
-    const navigatePersonal = jest.fn();
-    const handler = createLessonSoftUpsellCtaHandler({ onCta, navigatePersonal, navigatePaywall: jest.fn() });
+    const navigatePaywall = jest.fn();
+    const attribution = { impressionId: '12345678-test', trigger: 'first_lesson' as const, context: 'first_lesson_success' as const, mode: 'production' as const };
+    const handler = createLessonSoftUpsellCtaHandler({ onCta, getAttribution: () => attribution, navigatePaywall });
     const pending = handler('first_lesson');
     release();
     await pending;
-    expect(navigatePersonal).not.toHaveBeenCalled();
+    expect(navigatePaywall).not.toHaveBeenCalled();
     await handler('first_lesson');
+    expect(onCta).toHaveBeenCalledTimes(2);
+
+    const missing = createLessonSoftUpsellCtaHandler({ onCta, getAttribution: () => null, navigatePaywall });
+    await missing('first_lesson');
     expect(onCta).toHaveBeenCalledTimes(2);
   });
 });

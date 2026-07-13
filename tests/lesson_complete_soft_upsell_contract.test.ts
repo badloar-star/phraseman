@@ -31,11 +31,12 @@ describe('lesson completion soft upsell integration', () => {
     expect(source).toContain('testID="lesson-complete-back-home"');
   });
 
-  it('routes the first lesson to the personal path and the boundary lesson to the explicit paywall context', () => {
-    expect(source).toContain("router.push('/personal_plan_setup' as any)");
+  it('routes both lesson triggers through the dispatcher with exact soft attribution', () => {
+    expect(source).not.toContain("router.push('/personal_plan_setup' as any)");
     expect(source).toContain("pathname: '/premium_modal'");
-    expect(source).toContain("context: 'free_lessons_complete'");
-    expect(source).toContain("source: 'lesson_complete_soft_upsell'");
+    expect(source).toContain('context: attribution.context');
+    expect(source).toContain("source: 'soft_upsell'");
+    expect(source).toContain('softUpsellRouteParams(attribution)');
     expect(source).not.toMatch(/useEffect\([\s\S]{0,400}lesson_complete_soft_upsell/);
   });
 
@@ -43,7 +44,7 @@ describe('lesson completion soft upsell integration', () => {
     for (const key of ['ru', 'uk', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
       expect(source).toContain(`${key}: {`);
     }
-    for (const prop of ['title', 'body', 'ctaLabel', 'dismissLabel', 'dismissAccessibilityLabel', 'dismissAccessibilityHint', 'ctaAccessibilityLabel', 'ctaAccessibilityHint']) {
+    for (const prop of ['proof', 'title', 'body', 'ctaLabel', 'dismissLabel', 'dismissAccessibilityLabel', 'dismissAccessibilityHint', 'ctaAccessibilityLabel', 'ctaAccessibilityHint']) {
       expect(source).toContain(`${prop}={softUpsellCopy.${prop}}`);
     }
     expect(source).toContain('onImpression={softUpsell.onImpression}');

@@ -3,7 +3,7 @@ import { csvCell, documentVersion } from './admin_native_operations';
 
 describe('Admin native Money Operations', () => {
   it('bounds workspace input and rejects unknown capabilities', () => {
-    expect(parseMoneyWorkspaceInput({ capabilityId: 'refunds', limit: 999 })).toEqual({ capabilityId: 'refunds', limit: 100, cursor: '' });
+    expect(parseMoneyWorkspaceInput({ capabilityId: 'refunds', limit: 999 })).toEqual({ capabilityId: 'refunds', limit: 100, cursor: '', query: '', status: '' });
     expect(() => parseMoneyWorkspaceInput({ capabilityId: 'unknown' })).toThrow('invalid_money_capability');
   });
 
@@ -23,12 +23,12 @@ describe('Admin native Money Operations', () => {
     expect(csvCell('a,"b"')).toBe('"a,""b"""');
   });
 
-  it('activates Telegram-paid VIP without marking it revoked', () => {
-    expect(buildTelegramVipProgress(1_700_000_000_000, 3)).toEqual({
+  it('extends Telegram-paid VIP from an existing future expiry without marking it revoked', () => {
+    expect(buildTelegramVipProgress(1_700_000_000_000, 3, 1_800_000_000_000)).toEqual({
       vip_active: 'true',
       vip_plan: 'telegram_paid',
       vip_from: '1700000000000',
-      vip_until: '1707948800000',
+      vip_until: '1807776000000',
       vip_admin_override: 'true',
       vip_admin_grant_at: '1700000000000',
     });

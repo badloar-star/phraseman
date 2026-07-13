@@ -1,11 +1,12 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import type { AdminPermission } from './admin/permissions';
+import { hasPermission, type AdminPermission } from './admin/permissions';
+import { createAuditRecord } from './admin/audit_contract';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   applyNativePatch, approveNativeMutation, asRecord, boundedLimit, cleanText, createNativePreview,
-  documentVersion, parseMutationEnvelope, readBoundedCollection, requestNativeApproval,
-  requireNativePermission, safeProjection, stableHash, type NativeRow,
+  documentVersion, parseMutationEnvelope, projectNativeRow, readBoundedCollection, requestNativeApproval,
+  requireNativePermission, stableHash, type NativeRow,
 } from './admin_native_operations';
 
 if (admin.apps.length === 0) admin.initializeApp();
@@ -21,12 +22,34 @@ type CommunityCapability = keyof typeof COMMUNITY_SOURCES;
 export function parseCommunityWorkspaceInput(value: unknown) {
   const data = asRecord(value); const capabilityId = cleanText(data.capabilityId || 'mod-queue', 60) as CommunityCapability;
   if (!Object.prototype.hasOwnProperty.call(COMMUNITY_SOURCES, capabilityId)) throw new Error('invalid_community_capability');
-  return { capabilityId, limit: boundedLimit(data.limit), cursor: cleanText(data.cursor, 200) };
+  return { capabilityId, limit: boundedLimit(data.limit), cursor: cleanText(data.cursor, 200), query: cleanText(data.query, 120).toLowerCase(), status: cleanText(data.status, 40) };
 }
+
+function filterCommunityRows(items: NativeRow[], query: string, status: string): NativeRow[] { return items.filter((item) => (!status || cleanText(item.status || item.decision || item.state, 40) === status) && (!query || JSON.stringify(item).toLowerCase().includes(query))); }
 
 export function isSafeArenaPlaceholder(value: unknown): boolean {
   const row = asRecord(value); const stats = asRecord(row.stats); const name = cleanText(row.displayName, 120);
-  return (!name || name === 'Игрок' || name === 'Гравець' || name === '—') && Number(stats.matchesPlayed || 0) === 0;
+  const playedValues = [stats.matchesPlayed, row['stats.matchesPlayed'], row.matchesPlayed]
+    .map((item) => Number(item || 0))
+    .filter(Number.isFinite);
+  const matchesPlayed = playedValues.length ? Math.max(...playedValues) : 0;
+  return (!name || name === 'Игрок' || name === 'Гравець' || name === '—') && matchesPlayed === 0;
+}
+
+async function loadSafeArenaPlaceholderIds(db: FirebaseFirestore.Firestore): Promise<string[]> {
+  const ids: string[] = []; let cursor = ''; let scanned = 0; const pageSize = 400; const hardCap = 20_000; const scanCap = 100_000;
+  while (scanned <= scanCap) {
+    let query: FirebaseFirestore.Query = db.collection('arena_profiles').orderBy(admin.firestore.FieldPath.documentId()).limit(pageSize);
+    if (cursor) query = query.startAfter(cursor);
+    const snapshot = await query.get();
+    for (const doc of snapshot.docs) if (isSafeArenaPlaceholder(doc.data())) ids.push(doc.id);
+    scanned += snapshot.size;
+    if (ids.length > hardCap) throw new HttpsError('resource-exhausted', 'arena_profile_manifest_exceeds_safe_cap');
+    if (snapshot.size < pageSize) return ids;
+    cursor = snapshot.docs[snapshot.docs.length - 1]?.id || '';
+    if (!cursor) return ids;
+  }
+  throw new HttpsError('resource-exhausted', 'arena_profile_scan_exceeds_safe_cap');
 }
 
 type CommunityPlan = { collection: string; requiredPermission: AdminPermission; consequence: string; allowMissing?: boolean; deletionTargets?: readonly string[] };
@@ -34,12 +57,21 @@ export function buildCommunityMutationPlan(action: string, _targetId: string, _b
   switch (action) {
     case 'mod-queue-status': return { collection: 'community_pack_submissions', requiredPermission: 'community.moderate', consequence: 'Updates one community submission decision; global bans remain in Safety & Moderation.' };
     case 'help-topic-status': return { collection: 'help_board_topics', requiredPermission: 'community.help.write', consequence: 'Updates one Help Board topic workflow status.' };
+    case 'help-comment-status': return { collection: 'help_board_comments', requiredPermission: 'community.help.write', consequence: 'Hides or restores one Help Board comment.' };
+    case 'help-report-resolve': return { collection: 'help_board_reports', requiredPermission: 'community.help.write', consequence: 'Resolves one Help Board report without creating a global ban.' };
+    case 'help-restriction': return { collection: 'help_board_restrictions', requiredPermission: 'community.help.write', consequence: 'Creates or removes a Help Board-only posting restriction.', allowMissing: true };
+    case 'help-admin-post': return { collection: 'help_board_topics', requiredPermission: 'community.help.write', consequence: 'Creates an administrator Help Board topic.', allowMissing: true };
     case 'helpers-description': return { collection: 'remote_config', requiredPermission: 'community.help.write', consequence: 'Updates the public helpers-board description only.' };
     case 'league-chat-status': return { collection: 'league_chat_moderation_queue', requiredPermission: 'community.chat.write', consequence: 'Approves or rejects one queued league-chat message; global bans are not available here.' };
+    case 'league-chat-report': return { collection: 'league_chat_reports', requiredPermission: 'community.chat.write', consequence: 'Resolves one league-chat report.' };
+    case 'league-chat-restriction': return { collection: 'league_chat_bans', requiredPermission: 'community.chat.write', consequence: 'Changes a league-chat-only restriction; global bans remain in Safety.', allowMissing: true };
+    case 'league-chat-admin-message': return { collection: 'league_chat_messages', requiredPermission: 'community.chat.write', consequence: 'Posts an audited administrator message to one league room.', allowMissing: true };
     case 'arena-profile-resync': return { collection: 'arena_profiles', requiredPermission: 'community.arena.write', consequence: 'Copies a non-placeholder name from the canonical users profile into one Arena profile.' };
     case 'arena-placeholder-cleanup': return { collection: 'admin_native_bulk_manifests', requiredPermission: 'community.arena.destructive', consequence: 'Creates a resumable manifest that may delete only zero-match placeholder arena_profiles; users and Auth are never targets.', allowMissing: true, deletionTargets: ['arena_profiles'] };
     case 'arena-wager-flag': return { collection: 'app_meta', requiredPermission: 'community.arena.economy.write', consequence: 'Changes ranked wager availability and therefore Arena economy behavior.' };
     case 'arena-room-close': return { collection: 'arena_rooms_live', requiredPermission: 'community.arena.write', consequence: 'Closes one Arena room and deactivates its active member rows.' };
+    case 'arena-room-delete': return { collection: 'arena_rooms_live', requiredPermission: 'community.arena.destructive', consequence: 'Deletes one stale Arena room after second-admin approval.' };
+    case 'arena-session-finish': return { collection: 'arena_sessions', requiredPermission: 'community.arena.write', consequence: 'Explicitly aborts one stuck Arena session; reads never trigger this action.' };
     default: throw new Error('unsupported_community_action');
   }
 }
@@ -52,24 +84,38 @@ function readPermission(capabilityId: CommunityCapability): AdminPermission { re
 
 export const adminGetCommunityOperationsWorkspace = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   let input: ReturnType<typeof parseCommunityWorkspaceInput>; try { input = parseCommunityWorkspaceInput(request.data); } catch (error) { throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'invalid_community_input'); }
-  const { role } = requireNativePermission(request, readPermission(input.capabilityId)); const source = COMMUNITY_SOURCES[input.capabilityId];
-  try { const page = await readBoundedCollection(admin.firestore(), source, input.limit, input.cursor); return { ok: true, capabilityId: input.capabilityId, ...page, role, sourceHealth: [{ source, state: 'ready', count: page.items.length }], safetyRoute: '#safety-moderation' }; }
+  const { role } = requireNativePermission(request, readPermission(input.capabilityId)); const source = COMMUNITY_SOURCES[input.capabilityId]; const db = admin.firestore(); const revealIdentity = hasPermission(role, 'users.read');
+  try {
+    const sourceMap: Partial<Record<CommunityCapability, string[]>> = {
+      'mod-queue': ['community_pack_submissions', 'help_board_reports', 'league_chat_moderation_queue'],
+      'help-board': ['help_board_topics', 'help_board_comments', 'help_board_reports', 'help_board_restrictions'],
+      'helpers-board': ['top_helpers'],
+      clubs: ['league_groups', 'league_chest_events', 'league_crowns'],
+      'league-chat': ['league_groups', 'league_chat_moderation_queue', 'league_chat_reports', 'league_chat_messages', 'league_chat_bans'],
+      'arena-live': ['matchmaking_queue', 'arena_sessions', 'arena_rooms'],
+      'arena-rooms': ['arena_rooms_live', 'arena_room_members'],
+    };
+    const sources = sourceMap[input.capabilityId];
+    if (sources) { const pages = await Promise.all(sources.map((name) => readBoundedCollection(db, name, input.limit, '', revealIdentity))); const allItems = pages.flatMap((page, index) => page.items.map((item) => ({ ...item, source: sources[index] }))); return { ok: true, capabilityId: input.capabilityId, items: filterCommunityRows(allItems, input.query, input.status), sections: Object.fromEntries(sources.map((name, index) => [name, pages[index].items])), truncated: pages.some((page) => page.truncated), nextCursor: '', role, sourceHealth: sources.map((name, index) => ({ source: name, state: 'ready', count: pages[index].items.length })), safetyRoute: '#safety-moderation' }; }
+    const page = await readBoundedCollection(db, source, input.limit, input.cursor, revealIdentity); return { ok: true, capabilityId: input.capabilityId, ...page, items: filterCommunityRows(page.items, input.query, input.status), role, sourceHealth: [{ source, state: 'ready', count: page.items.length }], safetyRoute: '#safety-moderation' };
+  }
   catch (error) { return { ok: true, capabilityId: input.capabilityId, items: [], nextCursor: '', truncated: false, role, sourceHealth: [{ source, state: 'error', message: cleanText(error instanceof Error ? error.message : error, 240) }], safetyRoute: '#safety-moderation' }; }
 });
 
 export const adminGetCommunityOperationDetail = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  const data = asRecord(request.data); const capabilityId = cleanText(data.capabilityId, 60) as CommunityCapability; const id = cleanText(data.id, 200);
+  const data = asRecord(request.data); const capabilityId = cleanText(data.capabilityId, 60) as CommunityCapability; const id = cleanText(data.id, 200); const requestedSource = cleanText(data.source, 120);
   if (!id || !Object.prototype.hasOwnProperty.call(COMMUNITY_SOURCES, capabilityId)) throw new HttpsError('invalid-argument', 'valid capabilityId and id required');
-  requireNativePermission(request, readPermission(capabilityId)); const snap = await admin.firestore().collection(COMMUNITY_SOURCES[capabilityId]).doc(id).get(); if (!snap.exists) throw new HttpsError('not-found', 'community_row_not_found');
-  return { ok: true, item: { id: snap.id, ...asRecord(safeProjection(snap.data())), version: documentVersion(snap.id, snap.data()) }, safetyRoute: '#safety-moderation' };
+  const allowedSources: Partial<Record<CommunityCapability, readonly string[]>> = { 'mod-queue': ['community_pack_submissions', 'help_board_reports', 'league_chat_moderation_queue'], 'help-board': ['help_board_topics', 'help_board_comments', 'help_board_reports', 'help_board_restrictions'], 'helpers-board': ['top_helpers'], clubs: ['league_groups', 'league_chest_events', 'league_crowns'], 'league-chat': ['league_groups', 'league_chat_moderation_queue', 'league_chat_reports', 'league_chat_messages', 'league_chat_bans'], 'arena-live': ['matchmaking_queue', 'arena_sessions', 'arena_rooms'], 'arena-rooms': ['arena_rooms_live', 'arena_room_members'] };
+  const source = requestedSource && allowedSources[capabilityId]?.includes(requestedSource) ? requestedSource : COMMUNITY_SOURCES[capabilityId];
+  const { role } = requireNativePermission(request, readPermission(capabilityId)); const snap = await admin.firestore().collection(source).doc(id).get(); if (!snap.exists) throw new HttpsError('not-found', 'community_row_not_found');
+  return { ok: true, item: { id: snap.id, ...asRecord(projectNativeRow(snap.data(), hasPermission(role, 'users.read'))), version: documentVersion(snap.id, snap.data()) }, safetyRoute: '#safety-moderation' };
 });
 
 export const adminPreviewCommunityMutation = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   const input = parseMutationEnvelope(request.data); const plan = planFor(input); const actor = requireNativePermission(request, plan.requiredPermission); let payload = input.payload;
   if (input.action === 'arena-placeholder-cleanup') {
     if (input.expectedVersion !== 'missing') throw new HttpsError('invalid-argument', 'new cleanup manifest requires expectedVersion=missing');
-    const snap = await admin.firestore().collection('arena_profiles').orderBy(admin.firestore.FieldPath.documentId()).limit(500).get();
-    const targetIds = snap.docs.filter((doc) => isSafeArenaPlaceholder(doc.data())).map((doc) => doc.id);
+    const targetIds = await loadSafeArenaPlaceholderIds(admin.firestore());
     const manifestFingerprint = stableHash({ collection: 'arena_profiles', targetIds });
     payload = { targetCollection: 'arena_profiles', targetIds, manifestFingerprint, nextIndex: 0, total: targetIds.length, status: 'prepared', usersDeletionAllowed: false, authDeletionAllowed: false };
   }
@@ -83,7 +129,7 @@ export const adminApproveCommunityMutation = onCall({ region: REGION, enforceApp
   const { actorUid } = requireNativePermission(request, 'community.approve'); const data = asRecord(request.data); return approveNativeMutation(admin.firestore(), actorUid, cleanText(data.previewId, 160), cleanText(data.reason, 500));
 });
 
-const COMMUNITY_ACTIONS = new Set(['mod-queue-status', 'help-topic-status', 'helpers-description', 'league-chat-status', 'arena-profile-resync', 'arena-placeholder-cleanup', 'arena-wager-flag', 'arena-room-close']);
+const COMMUNITY_ACTIONS = new Set(['mod-queue-status', 'help-topic-status', 'help-comment-status', 'help-report-resolve', 'help-restriction', 'help-admin-post', 'helpers-description', 'league-chat-status', 'league-chat-report', 'league-chat-restriction', 'league-chat-admin-message', 'arena-profile-resync', 'arena-placeholder-cleanup', 'arena-wager-flag', 'arena-room-close', 'arena-room-delete', 'arena-session-finish']);
 export const adminApplyCommunityMutation = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   const actor = requireNativePermission(request, 'community.read'); const data = asRecord(request.data);
   return applyNativePatch({ db: admin.firestore(), packageId: 'community', ...actor, previewId: cleanText(data.previewId, 160), confirmation: cleanText(data.confirmation, 240), idempotencyKey: cleanText(data.idempotencyKey, 160), allowedActions: COMMUNITY_ACTIONS,
@@ -91,12 +137,21 @@ export const adminApplyCommunityMutation = onCall({ region: REGION, enforceAppCh
       const iso = new Date(nowMs).toISOString();
       if (action === 'mod-queue-status') { const status = cleanText(payload.status, 40); if (!['approved', 'rejected', 'removed'].includes(status)) throw new HttpsError('invalid-argument', 'invalid moderation status'); return { status, moderatedAt: iso, moderatedByUid: actor.actorUid }; }
       if (action === 'help-topic-status') { const status = cleanText(payload.status, 40); if (!['open', 'resolved', 'hidden'].includes(status)) throw new HttpsError('invalid-argument', 'invalid help status'); return { status, moderatedAtMs: nowMs, moderatedByUid: actor.actorUid }; }
+      if (action === 'help-comment-status') { const status = cleanText(payload.status, 40); if (!['visible', 'hidden', 'deleted'].includes(status)) throw new HttpsError('invalid-argument', 'invalid help comment status'); return { status, moderatedAtMs: nowMs, moderatedByUid: actor.actorUid }; }
+      if (action === 'help-report-resolve') return { status: 'resolved', resolution: cleanText(payload.resolution, 500), resolvedAtMs: nowMs, resolvedByUid: actor.actorUid };
+      if (action === 'help-restriction') return { active: payload.active === true, reason: cleanText(payload.reason, 500), scope: 'help-board', updatedAtMs: nowMs, updatedByUid: actor.actorUid };
+      if (action === 'help-admin-post') { const title = cleanText(payload.title, 180); const body = cleanText(payload.body, 4000); if (!title || !body) throw new HttpsError('invalid-argument', 'title and body required'); return { title, body, status: 'open', postAs: 'admin', createdAtMs: nowMs, authorUid: actor.actorUid, updatedByUid: actor.actorUid }; }
       if (action === 'helpers-description') { return { texts: { ...asRecord(before.texts), top_helpers_description: cleanText(payload.description, 500) }, updatedAtIso: iso, updatedByUid: actor.actorUid }; }
       if (action === 'league-chat-status') { const status = cleanText(payload.status, 40); if (!['approved', 'rejected'].includes(status)) throw new HttpsError('invalid-argument', 'invalid chat status'); return { decision: status, status, decidedAt: nowMs, decidedByUid: actor.actorUid }; }
+      if (action === 'league-chat-report') return { status: 'resolved', resolution: cleanText(payload.resolution, 500), resolvedAt: nowMs, resolvedByUid: actor.actorUid };
+      if (action === 'league-chat-restriction') return { active: payload.active === true, scope: 'league-chat', reason: cleanText(payload.reason, 500), updatedAt: nowMs, updatedByUid: actor.actorUid };
+      if (action === 'league-chat-admin-message') { const roomId = cleanText(payload.roomId, 160); const text = cleanText(payload.text, 2000); if (!roomId || !text) throw new HttpsError('invalid-argument', 'roomId and text required'); return { roomId, text, authorUid: actor.actorUid, authorRole: 'admin', status: 'approved', createdAt: nowMs }; }
       if (action === 'arena-profile-resync') { const userSnap = await tx.get(db.collection('users').doc(targetId)); const name = cleanText(asRecord(userSnap.data()?.progress).user_name, 120); if (!userSnap.exists || !name || ['Игрок', 'Гравець', '—'].includes(name)) throw new HttpsError('failed-precondition', 'canonical_name_unavailable'); return { displayName: name, updatedAt: nowMs, updatedByUid: actor.actorUid }; }
       if (action === 'arena-placeholder-cleanup') { const ids = Array.isArray(payload.targetIds) ? payload.targetIds.map((id) => cleanText(id, 160)).filter(Boolean) : []; const manifestFingerprint = stableHash({ collection: 'arena_profiles', targetIds: ids }); if (manifestFingerprint !== payload.manifestFingerprint) throw new HttpsError('failed-precondition', 'manifest_fingerprint_mismatch'); return { targetCollection: 'arena_profiles', targetIds: ids, manifestFingerprint, nextIndex: 0, total: ids.length, status: 'approved', usersDeletionAllowed: false, authDeletionAllowed: false, createdAtMs: nowMs, createdByUid: actor.actorUid }; }
-      if (action === 'arena-wager-flag') return { rankedWagerEnabled: payload.enabled === true, updatedAt: nowMs, updatedByUid: actor.actorUid };
-      if (action === 'arena-room-close') { const code = cleanText(before.code || targetId, 80); const members = await tx.get(db.collection('arena_room_members').where('code', '==', code).where('active', '==', true).limit(100)); for (const member of members.docs) tx.set(member.ref, { active: false, leftAt: nowMs, closedByAdminUid: actor.actorUid }, { merge: true }); return { status: 'closed', closedAt: nowMs, closedByUid: actor.actorUid }; }
+      if (action === 'arena-wager-flag') return { rankedWagerEnabled: payload.enabled === true, rollbackBefore: before, updatedAt: nowMs, updatedByUid: actor.actorUid };
+      if (action === 'arena-room-close') { const code = cleanText(before.code || targetId, 80); const members = await tx.get(db.collection('arena_room_members').where('code', '==', code).where('active', '==', true).limit(101)); if (members.size > 100) throw new HttpsError('resource-exhausted', 'arena_room_has_more_than_100_active_members'); for (const member of members.docs) tx.set(member.ref, { active: false, leftAt: nowMs, closedByAdminUid: actor.actorUid }, { merge: true }); return { status: 'closed', closedAt: nowMs, closedByUid: actor.actorUid, deactivatedMembers: members.size }; }
+      if (action === 'arena-room-delete') return { __deleteTarget: true, deletedAt: nowMs, deletedByUid: actor.actorUid };
+      if (action === 'arena-session-finish') { if (['finished', 'aborted'].includes(cleanText(before.state, 40))) throw new HttpsError('failed-precondition', 'session_already_closed'); return { state: 'aborted', abortReason: cleanText(payload.reason, 500), abortedAt: nowMs, abortedByUid: actor.actorUid }; }
       throw new HttpsError('invalid-argument', 'unsupported_community_action');
     },
   });
@@ -106,9 +161,10 @@ export const adminResumeCommunityBulk = onCall({ region: REGION, enforceAppCheck
   const actor = requireNativePermission(request, 'community.arena.destructive'); const data = asRecord(request.data); const manifestId = cleanText(data.manifestId, 160); const idempotencyKey = cleanText(data.idempotencyKey, 160);
   if (!manifestId || !idempotencyKey) throw new HttpsError('invalid-argument', 'manifestId and idempotencyKey required'); const db = admin.firestore(); const manifestRef = db.collection('admin_native_bulk_manifests').doc(manifestId); const operationRef = db.collection('admin_command_operations').doc(idempotencyKey);
   return db.runTransaction(async (tx) => {
-    const [manifestSnap, operationSnap] = await Promise.all([tx.get(manifestRef), tx.get(operationRef)]); if (operationSnap.exists) return { ok: true, replayed: true, ...asRecord(operationSnap.data()) }; if (!manifestSnap.exists) throw new HttpsError('not-found', 'manifest_not_found');
+    const [manifestSnap, operationSnap] = await Promise.all([tx.get(manifestRef), tx.get(operationRef)]); if (!manifestSnap.exists) throw new HttpsError('not-found', 'manifest_not_found');
     const manifest = asRecord(manifestSnap.data()); const ids = Array.isArray(manifest.targetIds) ? manifest.targetIds.map((id) => cleanText(id, 160)).filter(Boolean) : []; const manifestFingerprint = stableHash({ collection: 'arena_profiles', targetIds: ids }); if (manifest.targetCollection !== 'arena_profiles' || manifest.manifestFingerprint !== manifestFingerprint || manifest.usersDeletionAllowed !== false || manifest.authDeletionAllowed !== false) throw new HttpsError('failed-precondition', 'unsafe_manifest');
+    if (operationSnap.exists) { const prior = asRecord(operationSnap.data()); if (prior.actorUid !== actor.actorUid || prior.manifestId !== manifestId || prior.manifestFingerprint !== manifestFingerprint) throw new HttpsError('already-exists', 'idempotency_conflict'); return { ok: true, replayed: true, ...prior }; }
     const start = Math.max(0, Math.floor(Number(manifest.nextIndex) || 0)); const batchIds = ids.slice(start, start + 25); const profiles = await Promise.all(batchIds.map((id) => tx.get(db.collection('arena_profiles').doc(id)))); let deleted = 0;
-    profiles.forEach((snap) => { if (snap.exists && isSafeArenaPlaceholder(snap.data())) { tx.delete(snap.ref); deleted += 1; } }); const nextIndex = start + batchIds.length; const done = nextIndex >= ids.length; tx.set(manifestRef, { nextIndex, status: done ? 'completed' : 'in_progress', lastBatchDeleted: deleted, updatedAtMs: Date.now(), updatedByUid: actor.actorUid }, { merge: true }); tx.create(operationRef, { packageId: 'community', action: 'arena-placeholder-cleanup.resume', manifestId, manifestFingerprint, actorUid: actor.actorUid, start, nextIndex, deleted, done, createdAtMs: Date.now() }); return { ok: true, replayed: false, manifestId, manifestFingerprint, nextIndex, deleted, done };
+    profiles.forEach((snap) => { if (snap.exists && isSafeArenaPlaceholder(snap.data())) { tx.delete(snap.ref); deleted += 1; } }); const nextIndex = start + batchIds.length; const done = nextIndex >= ids.length; const nowMs = Date.now(); const after = { ...manifest, nextIndex, status: done ? 'completed' : 'in_progress', lastBatchDeleted: deleted, updatedAtMs: nowMs, updatedByUid: actor.actorUid }; const auditRef = db.collection('admin_log').doc(); const audit = createAuditRecord({ action: 'community.arena-placeholder-cleanup.resume', actorUid: actor.actorUid, role: actor.role, entity: { collection: 'admin_native_bulk_manifests', id: manifestId }, reason: 'Resume approved Arena placeholder cleanup manifest', before: manifest, after, rollbackReference: `admin_native_bulk_manifests/${manifestId}`, requestId: idempotencyKey, timestamp: new Date(nowMs).toISOString() }); tx.set(manifestRef, after, { merge: true }); tx.create(auditRef, { ...audit, operationId: operationRef.id }); tx.create(operationRef, { packageId: 'community', action: 'arena-placeholder-cleanup.resume', manifestId, manifestFingerprint, actorUid: actor.actorUid, start, nextIndex, deleted, done, auditId: auditRef.id, createdAtMs: nowMs }); return { ok: true, replayed: false, manifestId, manifestFingerprint, nextIndex, deleted, done };
   });
 });

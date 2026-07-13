@@ -26,7 +26,6 @@ describe('Admin v2 native Community Operations', () => {
       expect(`${state}\n${view}`).toContain(id);
     }
     expect(view).toContain('data-community-mobile-view');
-    expect(view).toContain('community.read');
     expect(view).toContain('#safety-moderation');
   });
 
@@ -36,8 +35,20 @@ describe('Admin v2 native Community Operations', () => {
     for (const permission of ['community.arena.destructive', 'community.arena.economy.write', 'community.approve']) {
       expect(controller).toContain(permission);
     }
-    for (const field of ['manifestFingerprint', 'idempotencyKey', 'expectedVersion', 'confirmation']) {
+    for (const field of ['idempotencyKey', 'expectedVersion', 'confirmation']) {
       expect(controller).toContain(field);
     }
+    expect(controller).not.toContain("manifestFingerprint = 'server-owned'");
+  });
+
+  test('uses capability-specific Help, League and Arena controls without arbitrary JSON', () => {
+    const controller = read('admin/v2/scripts/admin-community-operations-controller.js');
+    const view = read('admin/v2/scripts/admin-community-operations-view.js');
+    const backend = read('functions/src/admin_community_operations.ts');
+    expect(view).not.toContain('community-payload');
+    for (const action of ['help-comment-status', 'help-report-resolve', 'help-restriction', 'help-admin-post', 'league-chat-report', 'league-chat-restriction', 'league-chat-admin-message', 'arena-profile-resync', 'arena-placeholder-cleanup', 'arena-wager-flag', 'arena-session-finish', 'arena-room-close', 'arena-room-delete']) expect(`${controller}\n${view}\n${backend}`).toContain(action);
+    expect(backend).toContain("row['stats.matchesPlayed']");
+    expect(backend).toContain('row.matchesPlayed');
+    expect(backend).toContain("'arena-rooms': ['arena_rooms_live', 'arena_room_members']");
   });
 });

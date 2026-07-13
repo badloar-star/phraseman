@@ -39,4 +39,14 @@ describe('Admin v2 native Content Operations', () => {
     expect(`${controller}\n${view}`).toContain('false');
     expect(`${controller}\n${view}`).not.toContain('activateFrench');
   });
+
+  test('uses capability-specific forms for the complete content workflow', () => {
+    const controller = read('admin/v2/scripts/admin-content-operations-controller.js');
+    const view = read('admin/v2/scripts/admin-content-operations-view.js');
+    const backend = read('functions/src/admin_content_operations.ts');
+    expect(view).not.toContain('content-payload');
+    for (const marker of ['content-decision', 'content-price', 'content-category', 'content-card-status', 'content-import-lines', 'content-reorder-lines', 'content-report-lines', 'content-from-date', 'content-to-date']) expect(view).toContain(marker);
+    for (const action of ['community-submission-decision', 'community-pack-status', 'card-pack-update', 'daily-phrase-upsert', 'daily-phrase-import', 'daily-phrase-reorder', 'daily-phrase-rollback', 'explain-report-status', 'explain-reports-bulk']) expect(`${controller}\n${view}\n${backend}`).toContain(action);
+    expect(backend).toContain("collection('plan_content_telemetry_events').doc(key).collection('events')");
+  });
 });

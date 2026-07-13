@@ -3,5 +3,5 @@ export const CONTENT_OPERATION_CAPABILITIES = Object.freeze([
 ]);
 
 export function createContentOperationsState() {
-  return { status: 'idle', capabilityId: 'community-packs', workspace: null, detail: null, preview: null, approvalStatus: '', activationApproved: false, productionReady: false, error: '' };
+  return { status: 'idle', capabilityId: 'community-packs', workspace: null, detail: null, preview: null, approvalStatus: '', activationApproved: false, productionReady: false, filters: { query: '', status: '' }, dateRange: { fromDate: '', toDate: '' }, error: '' };
 }

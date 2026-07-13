@@ -14,6 +14,7 @@ import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import {
   buildLingmanEmbedHtml,
+  getValidLingmanYoutubeVideoId,
   getTrustedLingmanYoutubeUrl,
   LINGMAN_CHANNEL_URL,
   LINGMAN_YOUTUBE_EMBED_BASE_URL,
@@ -104,8 +105,9 @@ export default function LingmanVideoPlayerScreen() {
     }),
   }), [lang]);
 
-  const playerHtml = id ? buildLingmanEmbedHtml(id) : null;
-  const externalUrl = getTrustedLingmanYoutubeUrl(watchUrl, id) ?? LINGMAN_CHANNEL_URL;
+  const validVideoId = getValidLingmanYoutubeVideoId(id);
+  const playerHtml = validVideoId ? buildLingmanEmbedHtml(validVideoId) : null;
+  const externalUrl = getTrustedLingmanYoutubeUrl(watchUrl, validVideoId) ?? LINGMAN_CHANNEL_URL;
 
   const openExternal = () => {
     hapticTap();
@@ -139,7 +141,7 @@ export default function LingmanVideoPlayerScreen() {
         </View>
 
         <View style={[styles.playerWrap, { borderColor: chrome.cardBorder }]}>
-          {id && !playerError ? (
+          {validVideoId && !playerError ? (
             <WebView
               key={playerKey}
               testID="lingman-player-webview"

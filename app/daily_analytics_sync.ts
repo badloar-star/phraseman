@@ -123,6 +123,7 @@ export type { AllPercentiles as PercentileResult };
  * myArenaXp передаётся опционально — если 0, arena percentile = null.
  */
 export async function loadPercentileData(myArenaXp = 0): Promise<{
+  userTotalXp: number;
   myXp7: number;
   myTime7ms: number;
   percentiles: AllPercentiles;
@@ -147,7 +148,7 @@ export async function loadPercentileData(myArenaXp = 0): Promise<{
     myArenaXp,
   });
 
-  return { myXp7, myTime7ms, percentiles };
+  return { userTotalXp: myXp, myXp7, myTime7ms, percentiles };
 }
 
 /* expo-router route shim */

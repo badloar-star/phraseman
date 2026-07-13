@@ -10,6 +10,34 @@ const LABELS = Object.freeze({
 
 const ICON = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 4 6v5c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>';
 
+const BUTTON_TOOLTIPS = Object.freeze({
+  'safety-preview-report-status': 'Подготовить изменение статуса жалобы',
+  'safety-preview-warning': 'Подготовить предупреждение пользователю',
+  'safety-preview-rename': 'Подготовить безопасное переименование',
+  'safety-preview-ban': 'Подготовить глобальную блокировку',
+  'safety-preview-flags-bulk': 'Обработать выбранные сигналы',
+  'safety-sensitive-detail': 'Открыть чувствительный контекст с записью в аудит',
+  'safety-preview-flag': 'Подготовить решение по сигналу',
+  'safety-close-sensitive': 'Закрыть чувствительный контекст',
+  'safety-preview-manual-ban': 'Подготовить блокировку по UID',
+  'safety-preview-unban': 'Подготовить снятие глобальной блокировки',
+  'safety-request-approval': 'Запросить подтверждение второго администратора',
+  'safety-approve': 'Подтвердить операцию как второй администратор',
+  'safety-discard-preview': 'Отменить подготовленную операцию',
+  'safety-apply-preview': 'Применить подтверждённую операцию',
+  'safety-next': 'Загрузить следующую страницу снимка',
+});
+
+export function ensureButtonTooltips(html) {
+  return String(html).replace(/<button\b[^>]*>/g, (tag) => {
+    if (/(?:title|aria-label)=/.test(tag)) return tag;
+    const action = tag.match(/data-action="([^"]+)"/)?.[1] || '';
+    const label = BUTTON_TOOLTIPS[action]
+      || (tag.includes('data-user-profile-uid=') ? 'Открыть профиль пользователя' : 'Действие центра модерации');
+    return tag.replace(/>$/, ` aria-label="${label}" title="${label}" data-tooltip="${label}">`);
+  });
+}
+
 function dateTime(value) {
   const ms = Number(value || 0);
   return ms ? new Intl.DateTimeFormat('ru-RU', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(ms)) : '—';
@@ -104,7 +132,7 @@ function previewCard(model, escapeHtml) {
   return `<section class="card section moderation-preview"><div class="card-header"><div><h2>Предпросмотр изменения</h2><p>${escapeHtml(preview.action)} · ${escapeHtml(preview.targetId)}</p></div><span class="badge ${preview.irreversible ? 'danger' : preview.requiresApproval ? 'warning' : 'success'}">${preview.irreversible ? 'Необратимо' : preview.requiresApproval ? 'Нужен второй администратор' : 'Можно применить'}</span></div><div class="card-body"><dl><dt>Риск</dt><dd>${escapeHtml(preview.risk || '—')}</dd><dt>Откат</dt><dd>${escapeHtml(preview.rollbackPath || '—')}</dd><dt>Истекает</dt><dd>${dateTime(preview.expiresAtMs)}</dd></dl><span class="visually-hidden">requiresApproval rollbackPath irreversible</span>${preview.requiresApproval ? `<div class="actions"><button class="button" data-action="safety-request-approval" type="button">Запросить подтверждение</button><div class="field"><label for="safety-approval-id">ID подтверждения второго администратора</label><input id="safety-approval-id" value="${escapeHtml(model.approvalId || '')}" autocomplete="off"></div><div class="field"><label for="safety-approval-reason">Основание подтверждения</label><input id="safety-approval-reason" maxlength="500"></div><button class="button" data-action="safety-approve" type="button">Подтвердить как второй администратор</button></div>` : ''}<div class="field"><label for="safety-confirmation">Точное подтверждение</label><input id="safety-confirmation" placeholder="${escapeHtml(preview.confirmation || '')}" autocomplete="off"></div><div class="actions end"><button class="button" data-action="safety-discard-preview" type="button">Отмена</button><button class="button primary" data-action="safety-apply-preview" type="button">Применить</button></div></div></section>`;
 }
 
-export function renderSafetyModerationCenter(model, { escapeHtml, can }) {
+function renderSafetyModerationCenterRaw(model, { escapeHtml, can }) {
   const canView = (id) => id === 'other-reports' ? can('reports.read')
     : ['age-consent', 'policy-evidence'].includes(id) ? can('users.moderation.aggregate.read')
       : ['safety-flags', 'ban-list'].includes(id) ? can('users.moderation.safety.read')
@@ -120,4 +148,8 @@ export function renderSafetyModerationCenter(model, { escapeHtml, can }) {
   else if (model.view === 'ban-list') content = banRows(model, escapeHtml, can);
   else content = otherReports(model, escapeHtml);
   return `<header class="page-header"><div><div class="eyebrow">Пользователи / Контроль рисков</div><h1>${ICON} Безопасность и модерация</h1><p>Жалобы, чувствительные сигналы, доказательства согласия и блокировки с единым аудитом действий.</p></div><div class="page-actions"><a class="button" href="#users">Пользователи</a><button class="button primary" data-action="safety-load" type="button" title="Обновить текущий серверный снимок" data-tooltip="Обновить текущий серверный снимок">Обновить</button></div></header><nav class="safety-moderation-tabs section" aria-label="Раздел центра безопасности">${tabs}</nav><div class="field safety-moderation-mobile-view section"><label for="safety-mobile-view">Раздел центра безопасности</label><select id="safety-mobile-view" data-safety-mobile-view>${mobile}</select></div>${stateNotice(model, escapeHtml)}${sourceHealth(model, escapeHtml)}${filters(model, escapeHtml)}${content}${model.nextCursor ? '<div class="actions end section"><button class="button" data-action="safety-next" type="button">Показать ещё</button></div>' : ''}${previewCard(model, escapeHtml)}`;
+}
+
+export function renderSafetyModerationCenter(model, helpers) {
+  return ensureButtonTooltips(renderSafetyModerationCenterRaw(model, helpers));
 }

@@ -102,5 +102,7 @@ describe('Admin v2 Safety & Moderation Center', () => {
     expect(css).toContain('@media (max-width: 640px)');
     expect(css).toContain('.safety-responsive-table td::before');
     expect(read('admin/v2/scripts/admin-core.js')).toContain("cell.setAttribute('data-label'");
+    expect(view).toContain('export function ensureButtonTooltips');
+    expect(view).toContain("data-tooltip=\"${label}\"");
   });
 });

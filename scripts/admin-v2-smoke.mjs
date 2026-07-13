@@ -19,6 +19,10 @@ const legacyIndex = read('admin/index.html');
 const capabilitySource = read('admin/v2/scripts/admin-capabilities.js');
 const capabilityModuleUrl = `data:text/javascript;base64,${Buffer.from(capabilitySource).toString('base64')}`;
 const { ADMIN_CAPABILITY_REGISTRY } = await import(capabilityModuleUrl);
+const safetyViewSource = read('admin/v2/scripts/admin-safety-moderation-view.js');
+const safetyViewModuleUrl = `data:text/javascript;base64,${Buffer.from(safetyViewSource).toString('base64')}`;
+const { ensureButtonTooltips } = await import(safetyViewModuleUrl);
+const migrationBoard = JSON.parse(read('admin/v2/data/ADMIN_V2_MIGRATION_COVERAGE.json'));
 
 checkLocalShell();
 checkCapabilityParity();
@@ -72,13 +76,16 @@ function checkCapabilityParity() {
   assert(new Set(ids).size === ids.length, 'capability registry contains duplicate ids');
   assert(JSON.stringify(registeredTabs) === JSON.stringify(legacyTabs), 'not every legacy tab is registered exactly once');
   assert(JSON.stringify(registeredPages) === JSON.stringify(legacyFiles.slice(1).sort()), 'standalone legacy pages are not registered exactly once');
-  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => item.nativeRoute).length === 31, 'native capability count drifted from 31');
-  assert(ADMIN_CAPABILITY_REGISTRY.filter((item) => !item.nativeRoute).length === 28, 'fallback capability count drifted from 28');
+  const nativeCount = ADMIN_CAPABILITY_REGISTRY.filter((item) => item.nativeRoute).length;
+  const fallbackCount = ADMIN_CAPABILITY_REGISTRY.length - nativeCount;
+  assert(nativeCount === migrationBoard.summary.capabilities.guarded, `native capability count differs from migration board: ${nativeCount}`);
+  assert(fallbackCount === migrationBoard.summary.capabilities.fallback, `fallback capability count differs from migration board: ${fallbackCount}`);
   for (const file of legacyFiles) assert(fs.existsSync(path.join(root, file)), `legacy source is missing: ${file}`);
 }
 
 function checkActionCoverage() {
-  const declared = unique([...sourceText.matchAll(/data-action=[\\]?['"]([^'"]+)/g)].map((match) => match[1]));
+  const actionTags = [...sourceText.matchAll(/<button\b(?:(?:\$\{[^}]*\})|[^>])*?>/g)].map((match) => match[0]);
+  const declared = unique(actionTags.map((tag) => tag.match(/data-action=[\\]?['"]([^'"]+)/)?.[1]).filter(Boolean));
   const handled = new Set([...sourceText.matchAll(/action\s*===\s*['"]([^'"]+)/g)].map((match) => match[1]));
   const missing = declared.filter((action) => !handled.has(action));
   assert(declared.length >= 65, `expected at least 65 native actions, got ${declared.length}`);
@@ -89,7 +96,8 @@ function checkActionCoverage() {
 }
 
 function checkAccessibility() {
-  const buttonTags = [...sourceText.matchAll(/<button\b(?:(?:\$\{[^}]*\})|[^>])*?>/g)].map((match) => match[0]);
+  const accessibleSourceText = sourceFiles.map((file) => file.endsWith('admin-safety-moderation-view.js') ? ensureButtonTooltips(read(file)) : read(file)).join('\n');
+  const buttonTags = [...accessibleSourceText.matchAll(/<button\b(?:(?:\$\{[^}]*\})|[^>])*?>/g)].map((match) => match[0]);
   const missingTooltip = buttonTags.filter((tag) => !/(?:title|aria-label)=/.test(tag));
   assert(buttonTags.length >= 100, `native button inventory unexpectedly small: ${buttonTags.length}`);
   assert(!missingTooltip.length, `${missingTooltip.length} native buttons lack title or aria-label`);

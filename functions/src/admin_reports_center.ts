@@ -265,6 +265,15 @@ export function buildReportStatusRequestFingerprint(input: ReportStatusUpdateReq
   });
 }
 
+function buildLegacyReportStatusRequestFingerprint(input: ReportStatusUpdateRequest): string {
+  return JSON.stringify({
+    source: input.source,
+    reportId: input.reportId,
+    expectedStatus: input.expectedStatus,
+    nextStatus: input.nextStatus,
+  });
+}
+
 export function buildReportStatusWritePatch(input: ReportStatusUpdateRequest, actorUid: string, nowMs: number): Row {
   const timestamp = new Date(nowMs).toISOString();
   return Object.freeze({
@@ -324,9 +333,54 @@ export function buildReportStatusAuditRecord(
   });
 }
 
-export function assertReportOperationReplay(operation: unknown, actorUid: string, requestFingerprint: string): void {
+interface LegacyReportOperationReplayProof {
+  readonly request: ReportStatusUpdateRequest;
+  readonly audit: unknown;
+}
+
+const LEGACY_OPERATION_ABSENT_FIELDS = ['source', 'reportId', 'expectedStatus', 'reason', 'requestId', 'confirmation'] as const;
+
+function isLegacyReportOperation(row: Row): boolean {
+  return LEGACY_OPERATION_ABSENT_FIELDS.every((field) => !Object.prototype.hasOwnProperty.call(row, field));
+}
+
+function legacyAuditMatchesRequest(audit: unknown, actorUid: string, input: ReportStatusUpdateRequest): boolean {
+  if (!isRecord(audit)) return false;
+  const entity = isRecord(audit.entity) ? audit.entity : {};
+  const before = isRecord(audit.before) ? audit.before : {};
+  const after = isRecord(audit.after) ? audit.after : {};
+  return audit.actorUid === actorUid
+    && audit.action === 'report.status.update'
+    && entity.collection === input.source
+    && entity.id === input.reportId
+    && before.status === input.expectedStatus
+    && after.status === input.nextStatus
+    && audit.reason === input.reason
+    && audit.requestId === input.requestId;
+}
+
+export function assertReportOperationReplay(
+  operation: unknown,
+  actorUid: string,
+  requestFingerprint: string,
+  legacyProof?: LegacyReportOperationReplayProof,
+): void {
   const row = isRecord(operation) ? operation : {};
-  if (row.actorUid !== actorUid || row.requestFingerprint !== requestFingerprint) throw new Error('idempotency_conflict');
+  if (row.actorUid !== actorUid) throw new Error('idempotency_conflict');
+  if (row.requestFingerprint === requestFingerprint) return;
+  if (!legacyProof || !isLegacyReportOperation(row)) throw new Error('idempotency_conflict');
+  const { request, audit } = legacyProof;
+  const expectedConfirmation = request.source === 'app_errors'
+    ? buildAppErrorStatusConfirmation(request.reportId, request.expectedStatus, request.nextStatus)
+    : '';
+  if (requestFingerprint !== buildReportStatusRequestFingerprint(request)
+    || row.requestFingerprint !== buildLegacyReportStatusRequestFingerprint(request)
+    || row.operationId !== request.idempotencyKey
+    || row.nextStatus !== request.nextStatus
+    || request.confirmation !== expectedConfirmation
+    || !legacyAuditMatchesRequest(audit, actorUid, request)) {
+    throw new Error('idempotency_conflict');
+  }
 }
 
 interface SourceFetchResult {
@@ -437,7 +491,16 @@ export const adminUpdateReportStatus = onCall(
       const [reportSnap, operationSnap] = await Promise.all([tx.get(reportRef), tx.get(operationRef)]);
       if (operationSnap.exists) {
         const operation = operationSnap.data() ?? {};
-        try { assertReportOperationReplay(operation, context.actorUid, fingerprint); }
+        let legacyProof: LegacyReportOperationReplayProof | undefined;
+        const legacyAuditId = cleanText(operation.auditId, 161);
+        if (operation.requestFingerprint !== fingerprint
+          && isLegacyReportOperation(operation)
+          && operation.requestFingerprint === buildLegacyReportStatusRequestFingerprint(input)
+          && TOKEN_RE.test(legacyAuditId)) {
+          const legacyAuditSnap = await tx.get(db.collection('admin_log').doc(legacyAuditId));
+          legacyProof = { request: input, audit: legacyAuditSnap.exists ? legacyAuditSnap.data() : undefined };
+        }
+        try { assertReportOperationReplay(operation, context.actorUid, fingerprint, legacyProof); }
         catch { throw new HttpsError('already-exists', 'idempotency_conflict'); }
         return { ok: true, replayed: true, status: String(operation.nextStatus ?? input.nextStatus), auditId: String(operation.auditId ?? '') };
       }

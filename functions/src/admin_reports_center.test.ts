@@ -135,6 +135,51 @@ describe('admin reports center contracts', () => {
     expect(() => assertReportOperationReplay({ actorUid: 'admin-1', requestFingerprint: fingerprint }, 'admin-1', buildReportStatusRequestFingerprint({ ...base, reason: 'Different reason' }))).toThrow('idempotency_conflict');
   });
 
+  test('replays a compatible legacy operation only when its audit proves the same meaningful request', () => {
+    const request = parseReportStatusUpdateRequest({
+      source: 'app_errors', reportId: 'app-error-legacy', expectedStatus: 'new', nextStatus: 'fixed',
+      reason: 'Verified before rollout', idempotencyKey: 'legacy-operation-1', requestId: 'legacy-request-1',
+      confirmation: buildAppErrorStatusConfirmation('app-error-legacy', 'new', 'fixed'),
+    });
+    const legacyOperation = {
+      operationId: request.idempotencyKey,
+      actorUid: 'admin-1',
+      requestFingerprint: JSON.stringify({
+        source: request.source,
+        reportId: request.reportId,
+        expectedStatus: request.expectedStatus,
+        nextStatus: request.nextStatus,
+      }),
+      nextStatus: request.nextStatus,
+      auditId: 'legacy-audit-1',
+    };
+    const legacyAudit = {
+      actorUid: 'admin-1',
+      action: 'report.status.update',
+      entity: { collection: request.source, id: request.reportId },
+      before: { status: request.expectedStatus },
+      after: { status: request.nextStatus },
+      reason: request.reason,
+      requestId: request.requestId,
+    };
+    expect(() => assertReportOperationReplay(legacyOperation, 'admin-1', buildReportStatusRequestFingerprint(request), { request, audit: legacyAudit })).not.toThrow();
+    for (const changedRequest of [
+      { ...request, reason: 'Changed reason' },
+      { ...request, requestId: 'changed-request-id' },
+      { ...request, idempotencyKey: 'changed-operation-id' },
+      { ...request, confirmation: 'CONFIRM app_errors/app-error-legacy new->known' },
+    ]) {
+      expect(() => assertReportOperationReplay(legacyOperation, 'admin-1', buildReportStatusRequestFingerprint(changedRequest), {
+        request: changedRequest,
+        audit: legacyAudit,
+      })).toThrow('idempotency_conflict');
+    }
+    expect(() => assertReportOperationReplay({ ...legacyOperation, source: request.source }, 'admin-1', buildReportStatusRequestFingerprint(request), {
+      request,
+      audit: legacyAudit,
+    })).toThrow('idempotency_conflict');
+  });
+
   test('constructs modern and legacy status metadata plus structured operation and audit records', () => {
     const input = parseReportStatusUpdateRequest({
       source: 'app_errors', reportId: 'app-error-4', expectedStatus: 'reviewed', nextStatus: 'fixed',

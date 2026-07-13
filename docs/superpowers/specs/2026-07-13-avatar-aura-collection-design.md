@@ -233,19 +233,17 @@ Runtime rules:
 
 ## Selector Performance
 
-The expanded catalog must not run every aura animation in the horizontal
-selector.
-
-Replace only the aura strip's horizontal `ScrollView` with a horizontal
-`FlatList` while preserving all existing avatar-selection functionality.
+The expanded catalog must preserve the current single vertical, virtualized
+`Reanimated.FlatList` studio and must not run every aura animation inside the
+three-column catalog.
 
 Requirements:
 
-- fixed 82 px item width with `getItemLayout`;
-- animate the large selected preview;
-- animate only the visible selector cells, normally 3–4 at once;
-- pause cells as soon as they leave the viewability set;
-- keep a clean static frame for paused cells and reduced-motion users;
+- keep the current three-column grid and compact card footprint;
+- use stable aura IDs as keys;
+- animate only the large selected hero preview;
+- keep a clean deterministic static frame for catalog cards and reduced-motion
+  users;
 - preserve selection, purchase, ownership, Plus upsell, locked-reason, and
   cloud-sync behavior;
 - no whole-screen spinner or geometry shift.

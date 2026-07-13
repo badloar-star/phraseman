@@ -148,9 +148,10 @@ Deployment therefore requires:
 
 1. focused app and Functions tests;
 2. production update gates and secret scan;
-3. deployment of only the changed season-reward Cloud Function surface when the
-   Firebase CLI supports an exact target;
-4. an EAS production update for the client bundle and new assets;
+3. an EAS production update for the client bundle and new assets;
+4. deployment of only the changed season-reward Cloud Function surface after
+   the client update is published and when the Firebase CLI supports an exact
+   target;
 5. post-deploy verification of function deployment and update publication.
 
 Deployment must stop rather than bypass a failing release gate, dirty-worktree

@@ -211,6 +211,9 @@ export async function buildWeeklyReviewBriefing(
   const deps = options.deps ?? DEFAULT_DEPS;
   const nowMs = deps.nowMs();
   const target = storageStudyTarget(options.studyTarget);
+  // Weekly Review V2 currently has a reviewed prompt/language contract for EN/FR only.
+  // Keep this normalization aligned with the callable's fail-closed input parser.
+  const reviewTarget: 'en' | 'fr' = target === 'fr' ? 'fr' : 'en';
   const [mistakesSettled, analyticsSettled, activitySettled, trainerSettled, resolvedSettled] = await Promise.allSettled([
     deps.loadMistakeEntries(options.studyTarget),
     deps.computeAnalytics(),
@@ -302,7 +305,7 @@ export async function buildWeeklyReviewBriefing(
   const briefing: WeeklyReviewBriefingV2 = {
     schemaVersion: WEEKLY_REVIEW_SCHEMA_VERSION,
     lang: options.lang,
-    studyTarget: target,
+    studyTarget: reviewTarget,
     mistakes: {
       last7: windows.last7,
       last30: windows.last30,

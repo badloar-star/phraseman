@@ -24,6 +24,7 @@ const { adminPreviewVipSurveyCampaign, adminApplyVipSurveyCampaign } = require('
 const { adminPreviewAlertsConfig, adminApplyAlertsConfig, adminPreviewAlertTest, adminQueueAlertTest } = require('./admin_alerts_control');
 const { adminPreviewManualAccess, adminApplyManualAccess } = require('./admin_manual_access');
 const { adminGetPlusControlWorkspace, adminPreviewLegacyPlusMigration, adminApplyLegacyPlusMigration } = require('./admin_plus_control');
+const { adminPreviewVoiceResearchMutation, adminApplyVoiceResearchMutation } = require('./admin_voice_research');
 const { dispatchTelegramAlert } = require('./admin_alerts');
 
 function makeDb(initial: Store = {}) {
@@ -120,6 +121,7 @@ function makeDb(initial: Store = {}) {
       create: (ref: any, value: Row) => write('create', ref, value),
       set: (ref: any, value: Row, options?: { merge?: boolean }) => write('set', ref, value, options),
       update: (ref: any, value: Row) => write('update', ref, value),
+      delete: (ref: any) => { delete store[ref._collection]?.[ref.id]; },
     }),
   };
   currentDb = db;
@@ -273,5 +275,33 @@ describe('admin application control callables', () => {
       .rejects.toMatchObject({ code: 'failed-precondition', message: 'plus_migration_candidate_changed' });
     expect(state.store.users.one?.progress.vip_active).toBeUndefined();
     expect(state.store.users.two?.progress.vip_active).toBeUndefined();
+  });
+
+  test('approves an idea atomically without shortening stronger VIP and replays once', async () => {
+    const strongerUntil = Date.now() + 500 * 86_400_000;
+    const state = makeDb({
+      user_ideas: { idea1: { uid: 'u1', status: 'pending', title: 'Offline lessons' } },
+      users: { u1: { progress: { vip_active: 'true', vip_plan: 'admin_vip', vip_until: String(strongerUntil), premium_rc_product_id: 'store-stays' } } },
+    });
+    const preview = await run(adminPreviewVoiceResearchMutation, request({ action: 'idea_decide', targetId: 'idea1', payload: { decision: 'approve', messageRu: 'Спасибо' }, reason: 'accepted roadmap item', requestId: 'voice-preview-1' }));
+    const command = { previewId: preview.previewId, confirmation: preview.confirmation, reason: 'accepted roadmap item', requestId: 'voice-apply-1', idempotencyKey: 'voice-op-1' };
+    await expect(run(adminApplyVoiceResearchMutation, request(command))).resolves.toMatchObject({ ok: true, action: 'idea_decide', replayed: false });
+    expect(state.store.user_ideas.idea1).toMatchObject({ status: 'approved', premiumGranted: true });
+    expect(state.store.users.u1?.progress).toMatchObject({ vip_until: String(strongerUntil), premium_rc_product_id: 'store-stays' });
+    expect(Object.values(state.store['users/u1/idea_inbox'] || {})).toHaveLength(1);
+    expect(Object.values(state.store.admin_log || {}).filter((row) => row?.action === 'voice_research.idea_decide')).toHaveLength(1);
+    await expect(run(adminApplyVoiceResearchMutation, request(command))).resolves.toMatchObject({ replayed: true });
+    expect(Object.values(state.store['users/u1/idea_inbox'] || {})).toHaveLength(1);
+  });
+
+  test('deletes only a survey config while retaining responses and stats', async () => {
+    const survey = { surveyId: 'study', enabled: true, title: { ru: 'Учёба' }, subtitle: { ru: 'Расскажите' }, rewardShards: 3, minDaysBetweenSurveys: 7, audience: { tier: 'any', minLessons: null, maxLessons: null, platforms: [] }, questions: [{ id: 'q1', type: 'text', text: { ru: 'Почему?' }, options: [] }], accentColor: '#22c55e', finalScreen: { title: { ru: 'Спасибо' }, subtitle: { ru: 'Готово' } }, createdAtMs: 1, updatedAtMs: 2, updatedBy: 'old' };
+    const state = makeDb({ shard_surveys: { study: survey }, shard_survey_stats: { study: { totalResponses: 5 } }, shard_survey_responses: { r1: { surveyId: 'study', uid: 'u1' } } });
+    const preview = await run(adminPreviewVoiceResearchMutation, request({ action: 'survey_delete', targetId: 'study', payload: {}, reason: 'archive completed survey', requestId: 'voice-preview-2' }));
+    await run(adminApplyVoiceResearchMutation, request({ previewId: preview.previewId, confirmation: preview.confirmation, reason: 'archive completed survey', requestId: 'voice-apply-2', idempotencyKey: 'voice-op-2' }));
+    expect(state.store.shard_surveys.study).toBeUndefined();
+    expect(state.store.shard_survey_stats.study).toEqual({ totalResponses: 5 });
+    expect(state.store.shard_survey_responses.r1).toEqual({ surveyId: 'study', uid: 'u1' });
+    expect(Object.values(state.store.admin_voice_research_history || {})).toHaveLength(1);
   });
 });

@@ -2,10 +2,12 @@ import { createHash } from 'crypto';
 import { gzipSync, gunzipSync } from 'zlib';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, resolveAdminRole, type AdminPermission } from './admin/permissions';
 import {
   buildCancellationSummary, buildCancellationTrendFromCounts, buildOnboardingSourceSummary, csvCell, filterIdeaRows,
-  projectCancellationRow, projectIdeaRow, projectSurveyResponse,
+  buildIdeaDecisionMutation, buildSurveyMutation, projectCancellationRow, projectIdeaRow, projectSurveyResponse,
+  type SurveyMutationAction,
 } from './admin_voice_research_core';
 
 if (admin.apps.length === 0) admin.initializeApp();
@@ -20,6 +22,7 @@ const SURVEYS_LIMIT = 200;
 const RESPONSES_LIMIT = 5_000;
 const ONBOARDING_LIMIT = 50_000;
 const CANCEL_LIMIT = 500;
+const PREVIEW_TTL_MS = 30 * 60 * 1000;
 type Row = Record<string, unknown>;
 type VoiceView = 'ideas' | 'ideas-decided' | 'surveys' | 'onboarding-sources' | 'cancel-surveys';
 
@@ -208,5 +211,85 @@ export const adminGetVoiceResearchWorkspace = onCall(
     }
     const offset = input.cursor?.offset || 0; const items = payload.items.slice(offset, offset + input.pageSize); const next = offset + items.length;
     return { definitionVersion: 'admin_voice_research_v1', generatedAtMs: payload.generatedAtMs, view: input.view, items, totalMatched: payload.items.length, nextCursor: next < payload.items.length ? encodeVoiceResearchCursor(snapshotId, next, input.scope) : '', snapshotCursor: encodeVoiceResearchCursor(snapshotId, 0, input.scope), summary: payload.summary, sources: payload.sources, csv: input.exportCsv ? exportRows(input.view, payload.items) : null, exportedCount: input.exportCsv ? payload.items.length : 0 };
+  },
+);
+
+type VoiceMutationAction = 'idea_decide' | SurveyMutationAction;
+
+function parseMutationInput(value: unknown) {
+  const data = record(value); const candidate = clean(data.action, 40) as VoiceMutationAction;
+  const allowed: VoiceMutationAction[] = ['idea_decide', 'survey_create', 'survey_update', 'survey_toggle', 'survey_delete', 'survey_restore'];
+  if (!allowed.includes(candidate)) throw new HttpsError('invalid-argument', 'voice_action_invalid');
+  const targetId = safeId(data.targetId, 180); const reason = clean(data.reason, 500); const requestId = safeId(data.requestId, 160); const payload = record(data.payload);
+  if (!targetId || !reason || !requestId) throw new HttpsError('invalid-argument', 'targetId, reason and requestId required');
+  return { action: candidate, targetId, reason, requestId, payload };
+}
+
+export const adminPreviewVoiceResearchMutation = onCall(
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 30, memory: '512MiB' },
+  async (request) => {
+    const input = parseMutationInput(request.data); const role = requireRole(request, 'users.research.write');
+    if (input.action === 'idea_decide' && input.payload.decision === 'approve' && !hasPermission(role, 'money.manual_access.write')) throw new HttpsError('permission-denied', 'Idea approval requires money.manual_access.write');
+    const db = admin.firestore(); const nowMs = Date.now(); let mutation: Row; let beforeFingerprint = ''; let userProgressFingerprint = '';
+    if (input.action === 'idea_decide') {
+      const ideaSnap = await db.collection('user_ideas').doc(input.targetId).get();
+      if (!ideaSnap.exists) throw new HttpsError('not-found', 'idea_not_found');
+      const idea: Row = { id: ideaSnap.id, ...record(ideaSnap.data()) }; const uid = clean(idea.uid, 180);
+      if (!uid) throw new HttpsError('failed-precondition', 'idea_missing_uid');
+      const userSnap = await db.collection('users').doc(uid).get(); const progress = record(record(userSnap.data()).progress);
+      try { mutation = buildIdeaDecisionMutation(idea, progress, input.payload, nowMs, clean(request.auth?.token?.email ?? request.auth?.uid, 180)) as unknown as Row; }
+      catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'idea_preview_failed'); }
+      beforeFingerprint = hash(idea); userProgressFingerprint = hash(progress);
+    } else {
+      const surveySnap = await db.collection('shard_surveys').doc(input.targetId).get(); const current = surveySnap.exists ? { surveyId: surveySnap.id, ...record(surveySnap.data()) } : null;
+      try { mutation = buildSurveyMutation(input.action, current, input.payload, nowMs, request.auth!.uid) as unknown as Row; }
+      catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'survey_preview_failed'); }
+      beforeFingerprint = hash(current);
+    }
+    const packet = { ...input, mutation, beforeFingerprint, userProgressFingerprint, effectiveAtMs: nowMs };
+    const fingerprint = hash(packet); const confirmation = `${input.action.toUpperCase()}/${input.targetId}/${fingerprint.slice(0, 12)}`;
+    const previewRef = db.collection('admin_voice_research_previews').doc();
+    await previewRef.create({ actorUid: request.auth!.uid, role, ...packet, fingerprint, confirmation, createdAtMs: nowMs, expiresAtMs: nowMs + PREVIEW_TTL_MS });
+    return { ok: true, previewId: previewRef.id, action: input.action, targetId: input.targetId, reason: input.reason, mutation, confirmation, fingerprint, expiresAtMs: nowMs + PREVIEW_TTL_MS };
+  },
+);
+
+export const adminApplyVoiceResearchMutation = onCall(
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 60, memory: '512MiB' },
+  async (request) => {
+    const role = requireRole(request, 'users.research.write'); const data = record(request.data);
+    const previewId = safeId(data.previewId, 180); const confirmation = clean(data.confirmation, 260); const reason = clean(data.reason, 500); const requestId = safeId(data.requestId, 160); const idempotencyKey = safeId(data.idempotencyKey, 180);
+    if (!previewId || !confirmation || !reason || !requestId || !idempotencyKey) throw new HttpsError('invalid-argument', 'previewId, confirmation, reason, requestId and idempotencyKey required');
+    const actorUid = request.auth!.uid; const db = admin.firestore(); const previewRef = db.collection('admin_voice_research_previews').doc(previewId); const operationRef = db.collection('admin_command_operations').doc(idempotencyKey); const requestFingerprint = hash({ previewId, confirmation });
+    const prior = await operationRef.get();
+    if (prior.exists) { const row = record(prior.data()); if (row.actorUid !== actorUid || row.requestFingerprint !== requestFingerprint) throw new HttpsError('already-exists', 'idempotency_conflict'); return { ok: true, action: clean(row.action, 40), targetId: clean(row.targetId, 180), replayed: true }; }
+    return db.runTransaction(async (tx) => {
+      const [operationSnap, previewSnap] = await Promise.all([tx.get(operationRef), tx.get(previewRef)]);
+      if (operationSnap.exists) { const row = record(operationSnap.data()); if (row.actorUid !== actorUid || row.requestFingerprint !== requestFingerprint) throw new HttpsError('already-exists', 'idempotency_conflict'); return { ok: true, action: clean(row.action, 40), targetId: clean(row.targetId, 180), replayed: true }; }
+      if (!previewSnap.exists) throw new HttpsError('not-found', 'voice_preview_not_found');
+      const preview = record(previewSnap.data()); const action = clean(preview.action, 40) as VoiceMutationAction; const targetId = safeId(preview.targetId, 180);
+      if (preview.actorUid !== actorUid || preview.confirmation !== confirmation || preview.reason !== reason || preview.consumedAtMs || finite(preview.expiresAtMs) <= Date.now()) throw new HttpsError('failed-precondition', 'voice_preview_invalid');
+      if (action === 'idea_decide' && record(preview.payload).decision === 'approve' && !hasPermission(role, 'money.manual_access.write')) throw new HttpsError('permission-denied', 'Idea approval requires money.manual_access.write');
+      const mutation = record(preview.mutation); const nowMs = Date.now();
+      if (action === 'idea_decide') {
+        const ideaRef = db.collection('user_ideas').doc(targetId); const ideaSnap = await tx.get(ideaRef); if (!ideaSnap.exists) throw new HttpsError('not-found', 'idea_not_found');
+        const idea: Row = { id: ideaSnap.id, ...record(ideaSnap.data()) }; if (hash(idea) !== preview.beforeFingerprint) throw new HttpsError('failed-precondition', 'voice_target_changed');
+        const uid = clean(mutation.uid, 180); const userRef = db.collection('users').doc(uid); const userSnap = await tx.get(userRef); const progress = record(record(userSnap.data()).progress);
+        if (hash(progress) !== preview.userProgressFingerprint) throw new HttpsError('failed-precondition', 'voice_user_access_changed');
+        tx.update(ideaRef, record(mutation.ideaPatch));
+        const progressPatch = record(mutation.progressPatch); if (Object.keys(progressPatch).length) tx.set(userRef, Object.fromEntries(Object.entries(progressPatch).map(([key, value]) => [`progress.${key}`, value])), { merge: true });
+        const inbox = record(mutation.inbox); const inboxId = safeId(inbox.id, 180); tx.create(userRef.collection('idea_inbox').doc(inboxId), Object.fromEntries(Object.entries(inbox).filter(([key]) => key !== 'id')));
+      } else {
+        const surveyRef = db.collection('shard_surveys').doc(targetId); const surveySnap = await tx.get(surveyRef); const current = surveySnap.exists ? { surveyId: surveySnap.id, ...record(surveySnap.data()) } : null;
+        if (hash(current) !== preview.beforeFingerprint) throw new HttpsError('failed-precondition', 'voice_target_changed');
+        const after = mutation.after == null ? null : record(mutation.after);
+        if (after) tx.set(surveyRef, after, { merge: false }); else tx.delete(surveyRef);
+      }
+      const historyRef = db.collection('admin_voice_research_history').doc(); const auditRef = db.collection('admin_log').doc();
+      tx.create(historyRef, { action, targetId, actorUid, role, beforeFingerprint: preview.beforeFingerprint, before: action === 'idea_decide' ? { status: 'pending' } : record(mutation.before), after: action === 'idea_decide' ? { decision: record(preview.payload).decision, nominalRewardUntilMs: mutation.nominalRewardUntilMs } : mutation.after ?? null, reason, requestId, createdAtMs: nowMs });
+      const audit = createAuditRecord({ action: `voice_research.${action}`, actorUid, role, entity: { collection: action === 'idea_decide' ? 'user_ideas' : 'shard_surveys', id: targetId }, reason, before: { fingerprint: preview.beforeFingerprint }, after: { action, targetId }, rollbackReference: `admin_voice_research_history/${historyRef.id}`, requestId, timestamp: new Date(nowMs).toISOString() });
+      tx.update(previewRef, { consumedAtMs: nowMs, consumedBy: actorUid, operationId: idempotencyKey }); tx.create(auditRef, { ...audit, operationId: idempotencyKey }); tx.create(operationRef, { actorUid, requestFingerprint, action, targetId, auditId: auditRef.id, historyId: historyRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      return { ok: true, action, targetId, replayed: false };
+    });
   },
 );

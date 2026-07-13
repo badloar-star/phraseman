@@ -2,6 +2,8 @@ import {
   buildCancellationSummary,
   buildCancellationTrendFromCounts,
   buildOnboardingSourceSummary,
+  buildIdeaDecisionMutation,
+  buildSurveyMutation,
   csvCell,
   filterIdeaRows,
   preserveIdeaRewardProgress,
@@ -85,6 +87,25 @@ describe('Admin Voice & Research core', () => {
     const row = projectSurveyResponse('r1', { uid: 'u1', authUid: 'provider-secret', surveyId: 's1', submittedAtMs: NOW, platform: 'android', appVersion: '1.2', answers: { q1: '=cmd', q2: ['a', 'b'] }, comment: '@danger' });
     expect(row).toEqual({ id: 'r1', uid: 'u1', surveyId: 's1', submittedAtMs: NOW, platform: 'android', appVersion: '1.2', answers: { q1: '=cmd', q2: ['a', 'b'] }, comment: '@danger' });
     expect(JSON.stringify(row)).not.toContain('provider-secret');
+  });
+
+  test('builds deterministic idea approval without reducing stronger access', () => {
+    const result = buildIdeaDecisionMutation({ id: 'idea-1', uid: 'u1', status: 'pending' }, { vip_active: 'true', vip_plan: 'admin_vip', vip_until: String(NOW + 500 * DAY) }, {
+      decision: 'approve', titleRu: 'Принято', titleUk: 'Прийнято', titleEs: 'Aprobada', messageRu: 'Спасибо', messageUk: 'Дякуємо', messageEs: 'Gracias',
+    }, NOW, 'owner@example.com');
+    expect(result.ideaPatch).toMatchObject({ status: 'approved', premiumGranted: true, premiumGrantUntilMs: NOW + 365 * DAY });
+    expect(result.progressPatch).toEqual({});
+    expect(result.inbox).toMatchObject({ id: 'idea-decision-idea-1', type: 'idea_decision', decision: 'approve', ideaId: 'idea-1', seen: false });
+    expect(() => buildIdeaDecisionMutation({ id: 'idea-1', uid: 'u1', status: 'approved' }, {}, { decision: 'reject' }, NOW, 'owner')).toThrow('already_decided');
+  });
+
+  test('normalizes survey create/toggle/delete/restore without touching response history', () => {
+    const draft = { surveyId: 'study_habits', enabled: false, title: { ru: 'Учёба' }, subtitle: { ru: 'Расскажите' }, rewardShards: 3, minDaysBetweenSurveys: 7, audience: { tier: 'any', minLessons: null, maxLessons: null, platforms: [] }, questions: [{ id: 'q1', type: 'text', text: { ru: 'Почему?' }, options: [] }], accentColor: '#22c55e', finalScreen: { title: { ru: 'Спасибо' }, subtitle: { ru: 'Готово' } } };
+    const created = buildSurveyMutation('survey_create', null, draft, NOW, 'owner');
+    expect(created.after).toMatchObject({ surveyId: 'study_habits', enabled: false, createdAtMs: NOW, updatedBy: 'owner' });
+    expect(buildSurveyMutation('survey_toggle', created.after, { enabled: true }, NOW + 1, 'owner').after).toMatchObject({ enabled: true, createdAtMs: NOW, updatedAtMs: NOW + 1 });
+    expect(buildSurveyMutation('survey_delete', created.after, {}, NOW + 2, 'owner')).toMatchObject({ after: null, preserveResponses: true });
+    expect(buildSurveyMutation('survey_restore', null, { survey: created.after }, NOW + 3, 'owner').after).toMatchObject({ surveyId: 'study_habits', createdAtMs: NOW });
   });
 
   test.each(['=1+1', '+cmd', '-2+3', '@SUM(A1:A2)', '  =1+1'])('neutralizes CSV formulas: %s', (value) => {

@@ -1,4 +1,5 @@
 import { isVipActive, parseProgressMs } from './premium_status';
+import { parseSurveyConfig, validateSurveyConfigForWrite, type ShardSurveyConfig } from './shard_survey_core';
 
 type Row = Record<string, unknown>;
 const DAY_MS = 86_400_000;
@@ -139,4 +140,66 @@ export function projectSurveyResponse(id: string, value: unknown) {
 export function csvCell(value: unknown): string {
   const raw = String(value ?? ''); const safe = /^[=+\-@]/.test(raw.trimStart()) ? `'${raw}` : raw;
   return `"${safe.replace(/"/g, '""')}"`;
+}
+
+type IdeaDecision = 'approve' | 'reject';
+interface IdeaDecisionInput {
+  decision?: unknown; titleRu?: unknown; titleUk?: unknown; titleEs?: unknown;
+  messageRu?: unknown; messageUk?: unknown; messageEs?: unknown;
+}
+
+export function buildIdeaDecisionMutation(ideaValue: unknown, progressValue: unknown, inputValue: IdeaDecisionInput, nowMs: number, actor: string) {
+  const idea = record(ideaValue); const id = text(idea.id, 180); const uid = text(idea.uid, 180); const status = lower(idea.status, 20) || 'pending';
+  if (!id || !uid) throw new Error('idea_identity_missing');
+  if (['approved', 'rejected'].includes(status)) throw new Error('already_decided');
+  const decision: IdeaDecision = inputValue.decision === 'approve' ? 'approve' : 'reject';
+  const reward = preserveIdeaRewardProgress(progressValue, nowMs);
+  const defaults = decision === 'approve' ? {
+    titleRu: 'Идея принята', titleUk: 'Ідею прийнято', titleEs: 'Idea aprobada',
+    messageRu: 'Спасибо! Идея принята в работу. В благодарность мы открываем полный доступ на год.',
+    messageUk: 'Дякуємо! Ідею прийнято в роботу. На знак подяки ми відкриваємо повний доступ на рік.',
+    messageEs: '¡Gracias! La idea ha sido aceptada. Como agradecimiento, abrimos el acceso completo durante un año.',
+  } : {
+    titleRu: 'Спасибо за идею', titleUk: 'Дякуємо за ідею', titleEs: 'Gracias por la idea',
+    messageRu: 'Спасибо за идею. Пока мы не берём её в работу, но будем рады новым предложениям.',
+    messageUk: 'Дякуємо за ідею. Поки ми не беремо її в роботу, але будемо раді новим пропозиціям.',
+    messageEs: 'Gracias por la idea. Por ahora no la desarrollaremos, pero estaremos encantados de recibir más propuestas.',
+  };
+  const texts = {
+    titleRu: text(inputValue.titleRu, 200) || defaults.titleRu, titleUk: text(inputValue.titleUk, 200) || defaults.titleUk, titleEs: text(inputValue.titleEs, 200) || defaults.titleEs,
+    messageRu: text(inputValue.messageRu, 2000) || defaults.messageRu, messageUk: text(inputValue.messageUk, 2000) || defaults.messageUk, messageEs: text(inputValue.messageEs, 2000) || defaults.messageEs,
+  };
+  const approved = decision === 'approve';
+  return Object.freeze({
+    uid, decision, nominalRewardUntilMs: reward.nominalRewardUntilMs,
+    ideaPatch: Object.freeze({ status: approved ? 'approved' : 'rejected', decidedAt: nowMs, decidedAtIso: new Date(nowMs).toISOString(), decidedBy: text(actor, 180), decisionTitleRu: texts.titleRu, decisionTitleUk: texts.titleUk, decisionTitleEs: texts.titleEs, decisionMessageRu: texts.messageRu, decisionMessageUk: texts.messageUk, decisionMessageEs: texts.messageEs, premiumGranted: approved, premiumGrantUntilMs: approved ? reward.nominalRewardUntilMs : 0 }),
+    progressPatch: approved ? reward.patch : Object.freeze({}),
+    inbox: Object.freeze({ id: `idea-decision-${id}`, type: 'idea_decision', decision, ideaId: id, titleRu: texts.titleRu, titleUk: texts.titleUk, titleEs: texts.titleEs, messageRu: texts.messageRu, messageUk: texts.messageUk, messageEs: texts.messageEs, createdAt: nowMs, seen: false }),
+  });
+}
+
+export type SurveyMutationAction = 'survey_create' | 'survey_update' | 'survey_toggle' | 'survey_delete' | 'survey_restore';
+
+export function buildSurveyMutation(action: SurveyMutationAction, currentValue: unknown, payloadValue: unknown, nowMs: number, actor: string) {
+  const current = currentValue ? parseSurveyConfig(currentValue) : null; const payload = record(payloadValue);
+  if (action === 'survey_delete') {
+    if (!current) throw new Error('survey_not_found');
+    return Object.freeze({ before: current, after: null, preserveResponses: true });
+  }
+  let candidate: unknown;
+  if (action === 'survey_create') {
+    if (current) throw new Error('survey_already_exists'); candidate = payload;
+  } else if (action === 'survey_restore') {
+    if (current) throw new Error('survey_already_exists'); candidate = payload.survey;
+  } else {
+    if (!current) throw new Error('survey_not_found');
+    candidate = action === 'survey_toggle' ? { ...current, enabled: payload.enabled === true } : { ...current, ...record(payload.survey ?? payload), surveyId: current.surveyId };
+  }
+  const errors = validateSurveyConfigForWrite(candidate);
+  if (errors.length) throw new Error(`invalid_survey:${errors.join(',')}`);
+  const parsed = parseSurveyConfig(candidate);
+  if (!parsed) throw new Error('invalid_survey:parse_failed');
+  const createdAtMs = current?.createdAtMs || parsed.createdAtMs || nowMs;
+  const after: ShardSurveyConfig = Object.freeze({ ...parsed, createdAtMs, updatedAtMs: nowMs, updatedBy: text(actor, 180) });
+  return Object.freeze({ before: current, after, preserveResponses: true });
 }

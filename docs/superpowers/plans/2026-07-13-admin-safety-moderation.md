@@ -22,7 +22,7 @@
 
 - [ ] **Step 2: Run the test and verify RED**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts`
   Expected: FAIL because `admin_safety_moderation_core` does not exist.
 
 - [ ] **Step 3: Implement explicit types and allowlist projectors**
@@ -43,7 +43,7 @@
 
 - [ ] **Step 7: Verify GREEN**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts`
   Expected: PASS with no warnings.
 
 ### Task 2: RBAC and immutable read-model snapshots
@@ -62,7 +62,7 @@
 
 - [ ] **Step 2: Run permission tests and verify RED**
 
-  Run: `cd functions && npm test -- --runInBand src/admin/permissions.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin/permissions.test.ts`
   Expected: FAIL because the moderation permissions are absent.
 
 - [ ] **Step 3: Implement the permission matrix**
@@ -87,7 +87,7 @@
 
 - [ ] **Step 8: Verify GREEN and build**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts src/admin_safety_moderation.test.ts src/admin/permissions.test.ts && npm run build`  
+  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts src/admin_safety_moderation.test.ts src/admin/permissions.test.ts && npm run build`
   Expected: PASS and TypeScript build exit 0.
 
 ### Task 3: Global ban enforcement core and reconciliation
@@ -104,7 +104,7 @@
 
 - [ ] **Step 2: Run and verify RED**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_global_ban_core.test.ts src/admin_user_profile.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin_global_ban_core.test.ts src/admin_user_profile.test.ts`
   Expected: FAIL because shared reconciliation is absent.
 
 - [ ] **Step 3: Implement pure reconciliation and transaction builders**
@@ -117,7 +117,7 @@
 
 - [ ] **Step 5: Verify GREEN**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_global_ban_core.test.ts src/admin_user_profile.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin_global_ban_core.test.ts src/admin_user_profile.test.ts`
   Expected: PASS.
 
 ### Task 4: Preview/apply/approval mutation workflow
@@ -157,7 +157,7 @@
 
 - [ ] **Step 8: Register exports and verify GREEN**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation.test.ts src/admin_global_ban_core.test.ts && npm run build`  
+  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation.test.ts src/admin_global_ban_core.test.ts && npm run build`
   Expected: PASS and build exit 0.
 
 ### Task 5: Close Report Center and Help Board bypasses
@@ -174,7 +174,7 @@
 
 - [ ] **Step 2: Run and verify RED**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_reports_center.test.ts src/help_board.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin_reports_center.test.ts src/help_board.test.ts`
   Expected: FAIL on both bypasses.
 
 - [ ] **Step 3: Implement fail-closed compatibility behavior**
@@ -183,7 +183,7 @@
 
 - [ ] **Step 4: Verify GREEN**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_reports_center.test.ts src/help_board.test.ts`  
+  Run: `cd functions && npm test -- --runInBand src/admin_reports_center.test.ts src/help_board.test.ts`
   Expected: PASS.
 
 ### Task 6: Native frontend state, view and controller
@@ -203,7 +203,7 @@
 
 - [ ] **Step 2: Run and verify RED**
 
-  Run: `npx jest --runTestsByPath tests/admin_v2_safety_moderation_contract.test.ts --runInBand`  
+  Run: `npx jest --runTestsByPath tests/admin_v2_safety_moderation_contract.test.ts --runInBand`
   Expected: FAIL because the modules do not exist.
 
 - [ ] **Step 3: Implement state module**
@@ -224,7 +224,7 @@
 
 - [ ] **Step 7: Verify GREEN and JS syntax**
 
-  Run: `npx jest --runTestsByPath tests/admin_v2_safety_moderation_contract.test.ts --runInBand && node --check admin/v2/scripts/admin-safety-moderation-state.js && node --check admin/v2/scripts/admin-safety-moderation-view.js && node --check admin/v2/scripts/admin-safety-moderation-controller.js`  
+  Run: `npx jest --runTestsByPath tests/admin_v2_safety_moderation_contract.test.ts --runInBand && node --check admin/v2/scripts/admin-safety-moderation-state.js && node --check admin/v2/scripts/admin-safety-moderation-view.js && node --check admin/v2/scripts/admin-safety-moderation-controller.js`
   Expected: PASS and all syntax checks exit 0.
 
 ### Task 7: Routing, capabilities and migration coverage
@@ -242,7 +242,7 @@
 
 - [ ] **Step 2: Run and verify RED**
 
-  Run: `npx jest --runTestsByPath tests/admin_v2_native_capability_routing.test.ts tests/admin_v2_migration_coverage.test.ts tests/admin_v2_complete_capability_registry.test.ts --runInBand`  
+  Run: `npx jest --runTestsByPath tests/admin_v2_native_capability_routing.test.ts tests/admin_v2_migration_coverage.test.ts tests/admin_v2_complete_capability_registry.test.ts --runInBand`
   Expected: FAIL with five fallback capabilities.
 
 - [ ] **Step 3: Implement aliases and native capability mappings**
@@ -251,7 +251,7 @@
 
 - [ ] **Step 4: Verify GREEN**
 
-  Run the same three Jest files.  
+  Run the same three Jest files.
   Expected: PASS with `59/36/23`.
 
 ### Task 8: Legacy static archive and direct-write removal
@@ -267,7 +267,7 @@
 
 - [ ] **Step 2: Run and verify RED**
 
-  Run: `npx jest --runTestsByPath tests/admin_legacy_safety_archive_contract.test.ts tests/admin_legacy_write_safety_contract.test.ts --runInBand`  
+  Run: `npx jest --runTestsByPath tests/admin_legacy_safety_archive_contract.test.ts tests/admin_legacy_write_safety_contract.test.ts --runInBand`
   Expected: FAIL while legacy loaders/mutations remain active.
 
 - [ ] **Step 3: Add the archive cutover block**
@@ -280,7 +280,7 @@
 
 - [ ] **Step 5: Verify GREEN and legacy audit**
 
-  Run: `npx jest --runTestsByPath tests/admin_legacy_safety_archive_contract.test.ts tests/admin_legacy_write_safety_contract.test.ts --runInBand && node scripts/admin-legacy-button-audit.mjs`  
+  Run: `npx jest --runTestsByPath tests/admin_legacy_safety_archive_contract.test.ts tests/admin_legacy_write_safety_contract.test.ts --runInBand && node scripts/admin-legacy-button-audit.mjs`
   Expected: target tabs have no actionable direct-write controls; unrelated legacy functionality remains unchanged.
 
 ### Task 9: Firestore rules and installed-app compatibility
@@ -297,7 +297,7 @@
 
 - [ ] **Step 2: Run and verify RED**
 
-  Run: `npx jest --runTestsByPath tests/firestore_rules_security.test.ts tests/admin_server_only_boundaries.test.ts tests/user_warning_check.test.ts --runInBand`  
+  Run: `npx jest --runTestsByPath tests/firestore_rules_security.test.ts tests/admin_server_only_boundaries.test.ts tests/user_warning_check.test.ts --runInBand`
   Expected: FAIL because warnings are broadly readable and migrated admin reads remain allowed.
 
 - [ ] **Step 3: Apply the narrow rules lockdown**
@@ -306,7 +306,7 @@
 
 - [ ] **Step 4: Verify GREEN**
 
-  Run the same three Jest files.  
+  Run the same three Jest files.
   Expected: PASS without breaking the mobile warning/ban/consent contract.
 
 ### Task 10: Focused integration, responsive UI and production evidence
@@ -317,12 +317,12 @@
 
 - [ ] **Step 1: Run focused backend integration**
 
-  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts src/admin_safety_moderation.test.ts src/admin_global_ban_core.test.ts src/admin_reports_center.test.ts src/admin_user_profile.test.ts src/help_board.test.ts && npm run build`  
+  Run: `cd functions && npm test -- --runInBand src/admin_safety_moderation_core.test.ts src/admin_safety_moderation.test.ts src/admin_global_ban_core.test.ts src/admin_reports_center.test.ts src/admin_user_profile.test.ts src/help_board.test.ts && npm run build`
   Expected: PASS and build exit 0.
 
 - [ ] **Step 2: Run focused frontend/rules contracts**
 
-  Run the Safety Center, routing, migration, archive, server-boundary and rules tests from Tasks 6–9 in one `--runInBand` command.  
+  Run the Safety Center, routing, migration, archive, server-boundary and rules tests from Tasks 6–9 in one `--runInBand` command.
   Expected: PASS with `59/36/23`.
 
 - [ ] **Step 3: Perform local authenticated visual smoke**
@@ -360,7 +360,7 @@
 
 - [ ] **Step 5: Deploy Admin hosting**
 
-  Run: `npm run hosting:admin`  
+  Run: `npm run hosting:admin`
   Expected: successful Firebase Hosting `admin` deploy.
 
 - [ ] **Step 6: Verify live UI before rules lockdown**

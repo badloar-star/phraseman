@@ -29,4 +29,3 @@ describe('legacy Safety & Moderation archive cutover', () => {
     expect(source).toContain("window.location.href = './v2/index.html#ban-list'");
   });
 });
-

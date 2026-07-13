@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
 import { formatLeagueChatUnreadBadge } from '../../app/league_chat_unread';
-import type { LeagueClubHeroModel, LeagueHubPrimaryAction } from '../../app/league_club_hub_model';
+import type { LeagueClubHeroModel } from '../../app/league_club_hub_model';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
@@ -17,14 +17,7 @@ export interface LeagueClubHeroProps {
   leagueIcon: React.ReactNode;
   lang: Lang;
   palette: LeagueHubPalette;
-  onPrimaryAction: (action: LeagueHubPrimaryAction) => void;
-}
-
-function primaryActionLabel(action: LeagueHubPrimaryAction, lang: Lang): string {
-  if (action === 'open_chat') return triLang(lang, { ru: 'Открыть чат', uk: 'Відкрити чат', es: 'Abrir chat', 'pt-BR': 'Abrir chat', vi: 'Mở trò chuyện', id: 'Buka chat', tr: 'Sohbeti aç', pl: 'Otwórz czat' });
-  if (action === 'claim_chest') return triLang(lang, { ru: 'Забрать награду', uk: 'Забрати нагороду', es: 'Recoger premio', 'pt-BR': 'Coletar prêmio', vi: 'Nhận phần thưởng', id: 'Ambil hadiah', tr: 'Ödülü al', pl: 'Odbierz nagrodę' });
-  if (action === 'help_club') return triLang(lang, { ru: 'Помочь клубу', uk: 'Допомогти клубу', es: 'Ayudar al club', 'pt-BR': 'Ajudar o clube', vi: 'Giúp câu lạc bộ', id: 'Bantu klub', tr: 'Kulübe yardım et', pl: 'Pomóż klubowi' });
-  return triLang(lang, { ru: 'Смотреть рейтинг', uk: 'Дивитися рейтинг', es: 'Ver clasificación', 'pt-BR': 'Ver ranking', vi: 'Xem xếp hạng', id: 'Lihat peringkat', tr: 'Sıralamayı gör', pl: 'Zobacz ranking' });
+  onOpenChat: () => void;
 }
 
 function LeagueClubHeroComponent({
@@ -35,10 +28,10 @@ function LeagueClubHeroComponent({
   leagueIcon,
   lang,
   palette,
-  onPrimaryAction,
+  onOpenChat,
 }: LeagueClubHeroProps) {
   const reduceMotion = useReduceMotion();
-  const actionLabel = primaryActionLabel(model.primaryAction, lang);
+  const actionLabel = triLang(lang, { ru: 'Чат Лиги', uk: 'Чат Ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat giải đấu', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' });
   const unreadBadge = formatLeagueChatUnreadBadge(model.unreadCount);
 
   return (
@@ -54,12 +47,6 @@ function LeagueClubHeroComponent({
           <Text style={[styles.eyebrow, { color: palette.muted }]}>{leagueTag}</Text>
           <Text style={[styles.title, { color: palette.text }]}>{leagueName}</Text>
         </View>
-        {model.unreadCount > 0 ? (
-          <View style={[styles.unreadPill, { backgroundColor: palette.accent }]}>
-            <Ionicons name="chatbubble" size={14} color={palette.accentText} />
-            <Text style={[styles.unreadText, { color: palette.accentText }]}>{unreadBadge}</Text>
-          </View>
-        ) : null}
       </View>
 
       <View style={styles.metricsRow}>
@@ -77,23 +64,17 @@ function LeagueClubHeroComponent({
         </View>
       </View>
 
-      {(model.boostLabel || model.crownHolderName) ? (
-        <View style={styles.liveRow}>
-          {model.boostLabel ? <View style={[styles.liveChip, { backgroundColor: palette.elevated }]}><Ionicons name="flash" size={15} color={palette.warning} /><Text style={[styles.liveText, { color: palette.text }]}>{model.boostLabel}</Text></View> : null}
-          {model.crownHolderName ? <View style={[styles.liveChip, { backgroundColor: palette.elevated }]}><Ionicons name="trophy" size={15} color={palette.warning} /><Text style={[styles.liveText, { color: palette.text }]}>{model.crownHolderName}</Text></View> : null}
-        </View>
-      ) : null}
-
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={actionLabel}
-        accessibilityHint={triLang(lang, { ru: 'Открывает главное действие клуба', uk: 'Відкриває головну дію клубу', es: 'Abre la acción principal del club', 'pt-BR': 'Abre a ação principal do clube', vi: 'Mở hành động chính của câu lạc bộ', id: 'Membuka aksi utama klub', tr: 'Kulübün ana eylemini açar', pl: 'Otwiera główne działanie klubu' })}
-        onPress={() => onPrimaryAction(model.primaryAction)}
+        accessibilityHint={triLang(lang, { ru: 'Открывает общий чат участников Лиги', uk: 'Відкриває спільний чат учасників Ліги', es: 'Abre el chat de la liga', 'pt-BR': 'Abre o chat da liga', vi: 'Mở chat giải đấu', id: 'Membuka chat liga', tr: 'Lig sohbetini açar', pl: 'Otwiera czat ligi' })}
+        onPress={onOpenChat}
         style={({ pressed }) => [styles.cta, { backgroundColor: palette.accent, opacity: pressed ? 0.86 : 1 }]}
-        testID="league-club-hero-primary-action"
+        testID="league-club-chat-action"
       >
+        <Ionicons name="chatbubbles" size={20} color={palette.accentText} />
         <Text style={[styles.ctaText, { color: palette.accentText }]}>{actionLabel}</Text>
-        <Ionicons name="arrow-forward" size={19} color={palette.accentText} />
+        {model.unreadCount > 0 ? <View testID="club-chat-unread-badge" style={[styles.ctaBadge, { backgroundColor: palette.accentText }]}><Text style={[styles.ctaBadgeText, { color: palette.accent }]}>{unreadBadge}</Text></View> : null}
       </Pressable>
     </Reanimated.View>
   );
@@ -102,22 +83,19 @@ function LeagueClubHeroComponent({
 export const LeagueClubHero = memo(LeagueClubHeroComponent);
 
 const styles = StyleSheet.create({
-  shell: { borderRadius: 26, padding: 18, overflow: 'hidden', gap: 16 },
+  shell: { borderRadius: 22, padding: 16, overflow: 'hidden', gap: 12 },
   colorOrb: { position: 'absolute', width: 180, height: 180, borderRadius: 90, opacity: 0.17, right: -72, top: -82 },
   headingRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  iconSlot: { width: 58, height: 58, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  iconSlot: { width: 66, height: 66, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   headingText: { flex: 1, minWidth: 0 },
   eyebrow: { fontSize: 12, fontWeight: '800', letterSpacing: 0.8, textTransform: 'uppercase' },
   title: { fontSize: 25, lineHeight: 30, fontWeight: '900' },
-  unreadPill: { minWidth: 44, height: 34, paddingHorizontal: 10, borderRadius: 17, flexDirection: 'row', gap: 5, alignItems: 'center', justifyContent: 'center' },
-  unreadText: { fontWeight: '900', fontSize: 13 },
   metricsRow: { flexDirection: 'row', gap: 8 },
   metric: { flex: 1, minWidth: 0 },
   metricValue: { fontSize: 17, fontWeight: '900' },
   metricLabel: { fontSize: 11, fontWeight: '700', marginTop: 2 },
-  liveRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  liveChip: { minHeight: 34, maxWidth: '100%', borderRadius: 17, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  liveText: { flexShrink: 1, fontSize: 12, fontWeight: '800' },
-  cta: { minHeight: 50, paddingHorizontal: 16, borderRadius: 17, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  cta: { minHeight: 48, paddingHorizontal: 16, borderRadius: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   ctaText: { fontSize: 16, fontWeight: '900' },
+  ctaBadge: { minWidth: 24, height: 24, borderRadius: 12, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center' },
+  ctaBadgeText: { fontSize: 11, fontWeight: '900' },
 });

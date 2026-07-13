@@ -1,7 +1,7 @@
 import type { GroupMember } from './league_engine';
 import type { LeagueGroupBoostState } from './league_group_boosts';
+import { leaguePublicName } from './league_public_name';
 
-export type LeagueHubPrimaryAction = 'open_chat' | 'claim_chest' | 'help_club' | 'view_rank';
 export type LeagueBonusMissionState = 'locked' | 'active' | 'almost_ready' | 'ready' | 'claimed';
 
 export interface LeagueClubHeroInput {
@@ -13,28 +13,17 @@ export interface LeagueClubHeroInput {
   unreadCount: number;
   chestReady: boolean;
   chestClaimed: boolean;
-  boostLabel?: string;
-  crownHolderName?: string;
 }
 
 export interface LeagueClubHeroModel extends LeagueClubHeroInput {
   bonusPercent: number;
-  primaryAction: LeagueHubPrimaryAction;
 }
 
 export function buildLeagueClubHeroModel(input: LeagueClubHeroInput): LeagueClubHeroModel {
   const bonusPercent = input.bonusGoal > 0
     ? Math.min(100, Math.max(0, Math.round((input.bonusProgress / input.bonusGoal) * 100)))
     : 0;
-  const primaryAction: LeagueHubPrimaryAction = input.unreadCount > 0
-    ? 'open_chat'
-    : input.chestReady && !input.chestClaimed
-      ? 'claim_chest'
-      : input.bonusGoal > input.bonusProgress
-        ? 'help_club'
-        : 'view_rank';
-
-  return { ...input, bonusPercent, primaryAction };
+  return { ...input, bonusPercent };
 }
 
 export interface LeagueBonusMissionInput {
@@ -87,6 +76,7 @@ export function buildLeagueBonusMissionModel(input: LeagueBonusMissionInput): Le
 export interface LeaguePodiumMember {
   place: 1 | 2 | 3;
   uid?: string;
+  botId?: string;
   name: string;
   points: number;
   avatar?: string;
@@ -101,7 +91,8 @@ export function buildLeaguePodium(members: GroupMember[]): LeaguePodiumMember[] 
     .slice(0, 3)
     .map((member, index) => ({
       uid: member.uid,
-      name: member.name,
+      botId: member.botId,
+      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
       points: member.points,
       avatar: member.avatar,
       frame: member.frame,

@@ -11,12 +11,14 @@ const CLUB_CHAT_SOURCES = [
 describe('league chat unread badge wiring', () => {
   it('shows the chat badge on the club league screen and clears it while chat is active', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'club_screen.tsx'), 'utf8');
+    const hero = fs.readFileSync(path.join(ROOT, 'components', 'league', 'LeagueClubHero.tsx'), 'utf8');
 
     expect(source).toContain('useLeagueChatUnread');
     expect(source).toContain('active: chatModalVisible');
     expect(source).toContain('testID="league-chat-fullscreen"');
-    expect(source).toContain('testID="club-chat-unread-badge"');
-    expect(source).toContain('formatLeagueChatUnreadBadge(leagueChatUnreadCount)');
+    expect(source).toContain('unreadCount: leagueChatUnreadCount');
+    expect(hero).toContain('testID="club-chat-unread-badge"');
+    expect(hero).toContain('formatLeagueChatUnreadBadge(model.unreadCount)');
   });
 
   it('shows the same unread count on the home league icon', () => {

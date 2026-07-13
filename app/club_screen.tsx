@@ -2,9 +2,8 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, TouchableOpacity, Modal, Animated, Easing, PanResponder, StyleSheet, type FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, Animated, Easing, type FlatList } from 'react-native';
 import { Image } from 'expo-image';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
@@ -77,15 +76,12 @@ import {
 import { shouldShowLeagueRace } from './league_race_visibility';
 import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants } from './league_open_cache_policy';
 import LeagueChatPanel from '../components/LeagueChatPanel';
-import { formatLeagueChatUnreadBadge } from './league_chat_unread';
 import { useLeagueChatUnread } from './use_league_chat_unread';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { oskolokImageForPackShards } from './oskolok';
-import { tabSwipeLock } from './tabSwipeLock';
-import { getLeagueSwipePreviewState, swipeLeaguePreview } from './league_swipe_preview';
 import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
 import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 import {
@@ -101,18 +97,14 @@ import {
   type LeagueGroupBoostState,
 } from './league_group_boosts';
 import { hasClubGiftFreeBoostFromLevel } from './club_boosts';
-import { getCachedLeagueChatMessagesSync, getCachedLeagueChatRoomSync } from './firestore_league_chat';
 import {
   buildLeagueBonusMissionModel,
   buildLeagueClubHeroModel,
   buildLeaguePodium,
-  type LeagueHubPrimaryAction,
   type LeaguePodiumMember,
 } from './league_club_hub_model';
-import { buildLeagueActivityEvents, type LeagueActivityEvent } from './league_activity_model';
+import { leaguePublicName } from './league_public_name';
 import { LeagueClubHero } from '../components/league/LeagueClubHero';
-import { LeagueQuickStats } from '../components/league/LeagueQuickStats';
-import { LeagueActivityPreview } from '../components/league/LeagueActivityPreview';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
 import { LeaguePodium } from '../components/league/LeaguePodium';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
@@ -127,12 +119,6 @@ const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
 const CLUB_REMOTE_REFRESH_MS = 45_000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
-const CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD = 54;
-const CLUB_LEAGUE_PREVIEW_CARD_RADIUS = 20;
-const CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO = 768 / 363;
-const CLUB_LEAGUE_PREVIEW_CARD_MAX_WIDTH = 640;
-const CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE = 104;
-const CLUB_LEAGUE_PREVIEW_ICON_SIZE = 96;
 
 /** Локальный календарный день — для «первый заход в лигу за день». */
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
@@ -287,48 +273,6 @@ function LeagueIconImageWithFallback({
   );
 }
 
-function LeagueBonusGiftImageWithFallback({
-  source,
-  color,
-  size,
-  opacity,
-  style,
-}: {
-  source?: any;
-  color: string;
-  size: number;
-  opacity: number;
-  style?: any;
-}) {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setLoaded(false);
-  }, [source]);
-
-  return (
-    <View pointerEvents="none" style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
-      {!loaded || !source ? (
-        <Ionicons
-          name="gift"
-          size={Math.max(18, Math.round(size * 0.48))}
-          color={color}
-          style={{ position: 'absolute', opacity: Math.max(0.26, opacity) }}
-        />
-      ) : null}
-      {source ? (
-        <Image
-          source={source}
-          contentFit="contain"
-          style={{ width: '100%', height: '100%', opacity }}
-          onLoad={() => setLoaded(true)}
-          onError={() => setLoaded(false)}
-        />
-      ) : null}
-    </View>
-  );
-}
-
 function LeagueIcon({
   league,
   size = 24,
@@ -430,7 +374,6 @@ export default function ClubScreen() {
   const initialLeagueState = initialLeagueStateRef.current;
 
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
-  const [previewLeagueId, setPreviewLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
   const [chatProfilePlayer, setChatProfile] = useState<UnifiedPlayerInfo | null>(null);
@@ -471,9 +414,8 @@ export default function ClubScreen() {
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
   const contentScrollRef = useRef<FlatList<GroupMember> | null>(null);
-  const bonusMissionOffsetRef = useRef(0);
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
-  const ROW_HEIGHT_CLUB = 84;
+  const ROW_HEIGHT_CLUB = 72;
   const myRowAnim = useRef(new Animated.Value(0)).current;
   const chatMetaRefreshAtRef = useRef(0);
 
@@ -881,45 +823,19 @@ export default function ClubScreen() {
   }, [chatModalVisible, leagueGroupMeta, loadData]);
 
   const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
-  const leaguePreviewState = getLeagueSwipePreviewState(myLeagueId, previewLeagueId);
-  const previewLeague = LEAGUES[leaguePreviewState.previewLeagueId] ?? myLeague;
-  const previewLeagueCardImage = (previewLeague as any).cardImageUri;
-
-  useEffect(() => {
-    setPreviewLeagueId(myLeagueId);
-  }, [myLeagueId]);
-
-  const animateLeaguePreviewSwipe = useCallback((direction: number) => {
-    setPreviewLeagueId((current) => swipeLeaguePreview(current, direction, LEAGUES.length));
-    void hapticTap();
-  }, []);
-
-  const leaguePreviewPanResponder = useMemo(() => PanResponder.create({
-    onMoveShouldSetPanResponder: (_, gestureState) => (
-      Math.abs(gestureState.dx) > 18 &&
-      Math.abs(gestureState.dx) > Math.abs(gestureState.dy) * 1.25
-    ),
-    onPanResponderGrant: () => {
-      tabSwipeLock.blocked = true;
-    },
-    onPanResponderRelease: (_, gestureState) => {
-      tabSwipeLock.blocked = false;
-      const shouldSwipe = Math.abs(gestureState.dx) > CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD || Math.abs(gestureState.vx) > 0.45;
-      if (shouldSwipe) {
-        animateLeaguePreviewSwipe(gestureState.dx < 0 ? 1 : -1);
-        return;
-      }
-    },
-    onPanResponderTerminate: () => {
-      tabSwipeLock.blocked = false;
-    },
-  }), [animateLeaguePreviewSwipe]);
 
   // useMemo: иначе массив пересоздаётся и пересортировывается на КАЖДЫЙ ре-рендер экрана
   // (смена profile/фокус/обновления), и следом заново прогоняется весь .map по ~30 строкам лиги.
   const sortedGroup = useMemo(
     () => (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points),
     [group],
+  );
+  const publicSortedGroup = useMemo(
+    () => sortedGroup.map((member) => ({
+      ...member,
+      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
+    })),
+    [sortedGroup],
   );
   const currentUserStreak = sortedGroup.find((p) => p.isMe)?.streak ?? null;
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
@@ -942,7 +858,6 @@ export default function ClubScreen() {
   const arenaChestBonus = Math.max(0, Math.floor(Number(arenaClubEvent?.totalPoints) || 0));
   const leagueChestGoal = getLeagueChestGoal(myLeagueId);
   const leagueChestProgress = leagueRaceVisible ? Math.min(leagueChestGoal, leagueBonusAdminActive ? leagueChestGoal : leagueRoomXp + arenaChestBonus) : 0;
-  const leagueChestPct = leagueChestGoal > 0 ? Math.min(100, Math.round((leagueChestProgress / leagueChestGoal) * 100)) : 0;
   const myLeagueRoomXp = Math.max(0, Math.floor(Number(sortedGroup.find((p) => p.isMe)?.points) || 0));
   const myLeagueChestContribution = myLeagueRoomXp + myArenaClubPoints;
   const leagueChestReady = leagueRaceVisible && (leagueBonusAdminActive || leagueChestProgress >= leagueChestGoal);
@@ -951,14 +866,14 @@ export default function ClubScreen() {
       ? arenaClubStableUid || sortedGroup.find((p) => p.isMe)?.uid
       : sortedGroup[0]?.uid
     : undefined;
-  const leagueCrownWinnerName = leagueRaceVisible && leagueChestReady
+  const rawLeagueCrownWinnerName = leagueRaceVisible && leagueChestReady
     ? leagueBonusAdminActive && leagueBonusAdminPreview?.crownWinner
       ? userName || sortedGroup.find((p) => p.isMe)?.name
       : sortedGroup[0]?.name
     : undefined;
-  const crownRaceTop = leagueRaceVisible ? sortedGroup.slice(0, 3) : [];
-  const leagueChestVisualAccent = leagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
-  const leagueChestVisualFill = leagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
+  const leagueCrownWinnerName = rawLeagueCrownWinnerName
+    ? leaguePublicName(rawLeagueCrownWinnerName, leagueCrownWinnerUid ?? rawLeagueCrownWinnerName)
+    : undefined;
 
   const claimLeagueChestReward = useCallback(async () => {
     if (!leagueRaceVisible || !leagueChestReady || leagueChestClaimed || leagueChestClaiming) return;
@@ -1167,7 +1082,7 @@ export default function ClubScreen() {
       startedAt: now,
       expiresAt: now + LEAGUE_GROUP_BOOST_DURATION_MS,
       buyerUid,
-      buyerName: (userName || me?.name || 'Player').trim() || 'Player',
+      buyerName: leaguePublicName(userName || me?.name, arenaClubStableUid || me?.uid || me?.botId || userName),
       buyerAvatar: myAvatarEmoji || me?.avatar || null,
       buyerFrame: myFrameId || me?.frame || null,
       buyerAura: myAuraId || me?.aura || null,
@@ -1252,7 +1167,7 @@ export default function ClubScreen() {
     void cacheLeagueGroupBoost(optimisticBoost);
     setGroupBoostLikeBusy(true);
     try {
-      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, userName);
+      const total = await likeLeagueGroupBoostBuyer(activeGroupBoost, leaguePublicName(userName, arenaClubStableUid || userName));
       setGroupBoostLikeTotal(total);
       const confirmedBoost = { ...activeGroupBoost, likeCount: total };
       setActiveGroupBoost(confirmedBoost);
@@ -1277,20 +1192,13 @@ export default function ClubScreen() {
     accentText: t.correctText,
     outline: t.border,
     positive: monoIcon(themeMode, '#34C759'),
+    negative: monoIcon(themeMode, '#FF5B6C'),
     warning: monoIcon(themeMode, '#FFD43B'),
   }), [t, themeMode]);
   const myLeagueRank = useMemo(() => {
     const index = sortedGroup.findIndex((member) => member.isMe);
     return index >= 0 ? index + 1 : 0;
   }, [sortedGroup]);
-  const cachedLeagueChatMessages = useMemo(() => {
-    // Both values are cache invalidation signals: unread changes when chat data arrives,
-    // while closing the modal exposes messages written during the full-screen session.
-    void chatModalVisible;
-    void leagueChatUnreadCount;
-    const room = getCachedLeagueChatRoomSync();
-    return room ? getCachedLeagueChatMessagesSync(room) : [];
-  }, [chatModalVisible, leagueChatUnreadCount]);
   const hubHeroModel = useMemo(() => buildLeagueClubHeroModel({
     rank: myLeagueRank,
     participantCount: sortedGroup.length,
@@ -1300,31 +1208,20 @@ export default function ClubScreen() {
     unreadCount: leagueChatUnreadCount,
     chestReady: leagueChestReady,
     chestClaimed: leagueChestClaimed,
-    boostLabel: activeGroupBoost ? `×${activeGroupBoost.multiplier} · ${groupBoostTimeLeft}` : undefined,
-    crownHolderName: leagueCrownWinnerName ?? sortedGroup[0]?.name,
-  }), [activeGroupBoost, groupBoostTimeLeft, leagueChatUnreadCount, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, leagueCrownWinnerName, myLeagueRank, myLeagueRoomXp, sortedGroup]);
+  }), [leagueChatUnreadCount, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueRank, myLeagueRoomXp, sortedGroup.length]);
   const hubBonusMissionModel = useMemo(() => buildLeagueBonusMissionModel({
     progress: leagueChestProgress,
     goal: leagueChestGoal,
     myContribution: myLeagueChestContribution,
     chestReady: leagueChestReady,
     chestClaimed: leagueChestClaimed,
-    contributors: sortedGroup,
-    boost: activeGroupBoost,
-  }), [activeGroupBoost, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueChestContribution, sortedGroup]);
-  const hubPodium = useMemo(() => buildLeaguePodium(sortedGroup), [sortedGroup]);
-  const hubActivityNow = Date.now();
-  const hubActivityEvents = useMemo(() => buildLeagueActivityEvents({
-    messages: cachedLeagueChatMessages,
-    rankDelta,
-    boost: activeGroupBoost,
-    crownHolder: sortedGroup[0] ? { uid: sortedGroup[0].uid, name: sortedGroup[0].name } : undefined,
-    bonusProgress: leagueChestProgress,
-    bonusGoal: leagueChestGoal,
-    chestReady: leagueChestReady,
-    now: hubActivityNow,
-    lang,
-  }), [activeGroupBoost, cachedLeagueChatMessages, hubActivityNow, lang, leagueChestGoal, leagueChestProgress, leagueChestReady, rankDelta, sortedGroup]);
+    contributors: publicSortedGroup,
+    boost: activeGroupBoost ? {
+      ...activeGroupBoost,
+      buyerName: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
+    } : null,
+  }), [activeGroupBoost, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueChestContribution, publicSortedGroup]);
+  const hubPodium = useMemo(() => buildLeaguePodium(publicSortedGroup), [publicSortedGroup]);
 
   const hasLeagueCrownForMember = useCallback((member: Pick<GroupMember, 'uid'>): boolean => {
     if (!member.uid) return false;
@@ -1339,7 +1236,7 @@ export default function ClubScreen() {
       : 0;
     const hasCrown = hasLeagueCrownForMember(member);
     setProfile({
-      name: member.name,
+      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
       points: member.isMe ? playerXP : (member.totalXp ?? member.points),
       totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
       isMe: member.isMe,
@@ -1364,6 +1261,25 @@ export default function ClubScreen() {
     });
   }, [hasLeagueCrownForMember, leagueCrownsByUid, myAuraId, myLeague.id, playerXP]);
 
+  const openActiveBoostBuyerProfile = useCallback(() => {
+    if (!activeGroupBoost) return;
+    setProfile({
+      name: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
+      points: activeGroupBoost.buyerTotalXp ?? 0,
+      totalXp: activeGroupBoost.buyerTotalXp ?? undefined,
+      isMe: activeGroupBoost.buyerUid === arenaClubStableUid,
+      leagueId: activeGroupBoost.leagueId || myLeague.id,
+      uid: activeGroupBoost.buyerUid,
+      avatar: activeGroupBoost.buyerAvatar ?? undefined,
+      frame: activeGroupBoost.buyerFrame ?? undefined,
+      aura: activeGroupBoost.buyerAura ?? undefined,
+      profileCardLevel: activeGroupBoost.buyerProfileCardLevel,
+      profileCardTheme: activeGroupBoost.buyerProfileCardTheme,
+      profileCardMotion: activeGroupBoost.buyerProfileCardMotion,
+      profileCardPublicFocus: activeGroupBoost.buyerProfileCardPublicFocus,
+    });
+  }, [activeGroupBoost, arenaClubStableUid, myLeague.id]);
+
   const renderLeagueMemberAvatar = useCallback((member: GroupMember, size: number) => {
     const rowXp = member.isMe ? playerXP : (member.totalXp ?? 0);
     const avatar = member.isMe
@@ -1382,13 +1298,14 @@ export default function ClubScreen() {
     const crownCount = p.uid
       ? Math.max(0, Math.floor(Number(leagueCrownsByUid[p.uid]?.crownCount) || 0))
       : 0;
+    const displayName = leaguePublicName(p.name, p.uid ?? p.botId ?? p.name);
     const name = hasLeagueCrownForMember(p)
-      ? <LeagueCrownName text={p.name} fontSize={f.body} count={Math.max(1, crownCount)} />
+      ? <LeagueCrownName text={displayName} fontSize={f.body} count={Math.max(1, crownCount)} />
       : p.isVip
-        ? <VipGreenUserName text={p.name} fontSize={f.body} />
+        ? <VipGreenUserName text={displayName} fontSize={f.body} />
         : p.isPremium
-          ? <PremiumGoldUserName text={p.name} fontSize={f.body} />
-          : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600' }}>{p.name}</Text>;
+          ? <PremiumGoldUserName text={displayName} fontSize={f.body} />
+          : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600' }}>{displayName}</Text>;
     return (
       <View style={{ minWidth: 0, maxWidth: '100%', overflow: 'hidden' }}>
         <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>{name}</View>
@@ -1400,41 +1317,6 @@ export default function ClubScreen() {
   const scrollToLeagueRank = useCallback(() => {
     contentScrollRef.current?.scrollToEnd({ animated: true });
   }, []);
-  const scrollToBonusMission = useCallback(() => {
-    contentScrollRef.current?.scrollToOffset({ offset: Math.max(0, bonusMissionOffsetRef.current - 16), animated: true });
-  }, []);
-  const handleHubPrimaryAction = useCallback((action: LeagueHubPrimaryAction) => {
-    void hapticTap();
-    if (action === 'open_chat') {
-      setChatModalVisible(true);
-      return;
-    }
-    if (action === 'claim_chest') {
-      void claimLeagueChestReward();
-      return;
-    }
-    if (action === 'help_club') {
-      scrollToBonusMission();
-      return;
-    }
-    scrollToLeagueRank();
-  }, [claimLeagueChestReward, scrollToBonusMission, scrollToLeagueRank]);
-  const handleHubActivityAction = useCallback((event: LeagueActivityEvent) => {
-    if (event.action === 'open_chat') {
-      setChatModalVisible(true);
-      return;
-    }
-    if (event.action === 'open_bonus') {
-      scrollToBonusMission();
-      return;
-    }
-    if (event.action === 'open_profile') {
-      const member = sortedGroup.find((candidate) => candidate.uid === event.authorUid || candidate.name === event.authorName);
-      if (member) openLeagueMemberProfile(member);
-      return;
-    }
-    scrollToLeagueRank();
-  }, [openLeagueMemberProfile, scrollToBonusMission, scrollToLeagueRank, sortedGroup]);
 
   const renderLeagueMember = useCallback(({ item, index }: { item: GroupMember; index: number }) => {
     const hasXpPromotion = leagueXpPromotionMode
@@ -1510,7 +1392,7 @@ export default function ClubScreen() {
       <BouncyWrap>
       <Reanimated.FlatList<GroupMember>
         ref={contentScrollRef as any}
-        data={leaguePreviewState.shouldShowLiveContent ? sortedGroup : []}
+        data={publicSortedGroup}
         keyExtractor={leagueMemberKeyExtractor}
         renderItem={renderLeagueMember}
         initialNumToRender={12}
@@ -1527,17 +1409,37 @@ export default function ClubScreen() {
           paddingHorizontal: 16,
           paddingTop: 16,
           paddingBottom: 16,
-          gap: 12,
         }}
         onScroll={onAnimatedScroll}
         scrollEventThrottle={16}
         ListHeaderComponent={(<>
 
+        <LeaguePodium
+          podium={hubPodium}
+          lang={lang}
+          palette={hubPalette}
+          renderAvatar={(member: LeaguePodiumMember, size: number) => {
+            const fullMember = publicSortedGroup.find((candidate) => (
+              (member.uid && candidate.uid === member.uid)
+              || (member.botId && candidate.botId === member.botId)
+            ));
+            return fullMember ? renderLeagueMemberAvatar(fullMember, size) : null;
+          }}
+          hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
+          onOpenProfile={(member: LeaguePodiumMember) => {
+            const fullMember = publicSortedGroup.find((candidate) => (
+              (member.uid && candidate.uid === member.uid)
+              || (member.botId && candidate.botId === member.botId)
+            ));
+            if (fullMember) openLeagueMemberProfile(fullMember);
+          }}
+        />
+
         {rankDelta && (
           <RankChangeBanner
             delta={rankDelta.delta}
-            passedName={rankDelta.passedName}
-            lostToName={rankDelta.lostToName}
+            passedName={rankDelta.passedName ? leaguePublicName(rankDelta.passedName, rankDelta.passedName) : undefined}
+            lostToName={rankDelta.lostToName ? leaguePublicName(rankDelta.lostToName, rankDelta.lostToName) : undefined}
             lang={lang}
             onClose={() => setRankDelta(null)}
           />
@@ -1565,628 +1467,60 @@ export default function ClubScreen() {
           </View>
         )}
 
-        {leaguePreviewState.shouldShowLiveContent && (
-          <View style={{ gap: 12 }}>
-            <LeagueClubHero
-              model={hubHeroModel}
-              leagueName={leagueNameForLang(myLeague, lang)}
-              leagueTag={triLang(lang, {
-                ru: 'Центр клуба', uk: 'Центр клубу', es: 'Centro del club', 'pt-BR': 'Central do clube',
-                vi: 'Trung tâm câu lạc bộ', id: 'Pusat klub', tr: 'Kulüp merkezi', pl: 'Centrum klubu',
-              })}
-              leagueColor={myLeague.color}
-              leagueIcon={<LeagueIcon league={myLeague} size={50} active alignContent={false} themeMode={themeMode} />}
-              lang={lang}
-              palette={hubPalette}
-              onPrimaryAction={handleHubPrimaryAction}
-            />
-            <LeagueQuickStats
-              palette={hubPalette}
-              items={[
-                {
-                  id: 'club-xp',
-                  label: triLang(lang, { ru: 'XP клуба', uk: 'XP клубу', es: 'XP del club', 'pt-BR': 'XP do clube', vi: 'XP câu lạc bộ', id: 'XP klub', tr: 'Kulüp XP', pl: 'XP klubu' }),
-                  value: leagueRoomXp.toLocaleString(),
-                  hint: triLang(lang, { ru: 'Показывает общий вклад участников', uk: 'Показує спільний внесок учасників', es: 'Muestra el aporte total', 'pt-BR': 'Mostra a contribuição total', vi: 'Hiển thị tổng đóng góp', id: 'Menampilkan total kontribusi', tr: 'Toplam katkıyı gösterir', pl: 'Pokazuje wspólny wkład' }),
-                  onPress: scrollToLeagueRank,
-                },
-                {
-                  id: 'my-rank',
-                  label: triLang(lang, { ru: 'Ваше место', uk: 'Ваше місце', es: 'Tu puesto', 'pt-BR': 'Sua posição', vi: 'Thứ hạng', id: 'Peringkatmu', tr: 'Sıran', pl: 'Twoje miejsce' }),
-                  value: myLeagueRank > 0 ? `#${myLeagueRank}` : '—',
-                  hint: triLang(lang, { ru: 'Переходит к рейтингу клуба', uk: 'Переходить до рейтингу клубу', es: 'Abre la clasificación', 'pt-BR': 'Abre o ranking', vi: 'Mở bảng xếp hạng', id: 'Membuka peringkat', tr: 'Sıralamayı açar', pl: 'Otwiera ranking' }),
-                  onPress: scrollToLeagueRank,
-                },
-                {
-                  id: 'my-streak',
-                  label: triLang(lang, { ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rentetan', tr: 'Seri', pl: 'Seria' }),
-                  value: currentUserStreak ? `${currentUserStreak} 🔥` : '—',
-                  hint: triLang(lang, { ru: 'Ваша текущая серия занятий', uk: 'Ваша поточна серія занять', es: 'Tu racha actual', 'pt-BR': 'Sua sequência atual', vi: 'Chuỗi hiện tại của bạn', id: 'Rentetan aktifmu', tr: 'Mevcut serin', pl: 'Twoja obecna seria' }),
-                  onPress: scrollToLeagueRank,
-                },
-              ]}
-            />
-            <LeagueActivityPreview
-              events={hubActivityEvents}
-              lang={lang}
-              palette={hubPalette}
-              now={hubActivityNow}
-              onAction={handleHubActivityAction}
-              onEmptyAction={() => setChatModalVisible(true)}
-            />
-            {leagueRaceVisible && (
-              <View onLayout={(event) => { bonusMissionOffsetRef.current = event.nativeEvent.layout.y; }}>
-                <LeagueBonusMission
-                  model={hubBonusMissionModel}
-                  lang={lang}
-                  palette={hubPalette}
-                  giftImage={leagueBonusGiftImage}
-                  renderContributorAvatar={renderLeagueMemberAvatar}
-                  onClaim={() => { void claimLeagueChestReward(); }}
-                  onBoost={activeGroupBoost ? handleLikeGroupBoostBuyer : handleBuyGroupBoost}
-                  onOpenRank={scrollToLeagueRank}
-                />
-              </View>
-            )}
-            <LeaguePodium
-              podium={hubPodium}
-              lang={lang}
-              palette={hubPalette}
-              renderAvatar={(member: LeaguePodiumMember, size: number) => {
-                const fullMember = sortedGroup.find((candidate) => candidate.uid === member.uid || candidate.name === member.name);
-                return fullMember ? renderLeagueMemberAvatar(fullMember, size) : null;
-              }}
-              hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
-              onOpenProfile={(member: LeaguePodiumMember) => {
-                const fullMember = sortedGroup.find((candidate) => candidate.uid === member.uid || candidate.name === member.name);
-                if (fullMember) openLeagueMemberProfile(fullMember);
-              }}
-            />
-          </View>
-        )}
-
-        <View
-          {...leaguePreviewPanResponder.panHandlers}
-        >
-        <View
-          style={{
-            width:'100%',
-            maxWidth:CLUB_LEAGUE_PREVIEW_CARD_MAX_WIDTH,
-            aspectRatio:CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO,
-            alignSelf:'center',
-            borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS,
-            borderWidth:0,
-            borderColor:leagueBonusPalette.border,
-            overflow:'hidden',
-            backgroundColor:leagueBonusPalette.modal.card[1],
-          }}
-        >
-          <LinearGradient
-            pointerEvents="none"
-            colors={[leagueBonusPalette.modal.card[0], leagueBonusPalette.modal.card[1], leagueBonusPalette.modal.card[2]]}
-            locations={leagueBonusPalette.modal.cardLocations}
-            start={{ x:0, y:0 }}
-            end={{ x:1, y:1 }}
-            style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
-          />
-          {previewLeagueCardImage ? (
-            <>
-              <Image
-                pointerEvents="none"
-                source={previewLeagueCardImage}
-                contentFit="cover"
-                transition={180}
-                style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
-              />
-              <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS, backgroundColor:themeMode === 'gold' ? 'rgba(36,23,6,0.22)' : 'rgba(0,0,0,0.18)' }]} />
-              <LinearGradient
-                pointerEvents="none"
-                colors={['rgba(0,0,0,0.02)', 'rgba(0,0,0,0.42)']}
-                locations={[0.42, 1]}
-                start={{ x:0.5, y:0 }}
-                end={{ x:0.5, y:1 }}
-                style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
-              />
-            </>
-          ) : (
-            <>
-              <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth: 0, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
-              <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
-            </>
-          )}
-          <View
-            testID="league-current-icon"
-            accessibilityLabel={leagueNameForLang(previewLeague, lang)}
-            style={[StyleSheet.absoluteFillObject, { alignItems:'center', justifyContent:'center', gap:6, paddingHorizontal:14, paddingVertical:10 }]}
-          >
-            <View style={{ width:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, height:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, alignItems:'center', justifyContent:'center' }}>
-              <LeagueIcon league={previewLeague} size={CLUB_LEAGUE_PREVIEW_ICON_SIZE} active alignContent={false} themeMode={themeMode} />
-            </View>
-            <Text
-              style={{ color:previewLeagueCardImage ? '#FFFFFF' : t.textPrimary, fontSize:Math.min(f.h2, 22), lineHeight:Math.max(24, Math.min(f.h2, 22) + 3), fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:50, textShadowColor:previewLeagueCardImage ? 'rgba(0,0,0,0.46)' : 'transparent', textShadowRadius:previewLeagueCardImage ? 9 : 0, textShadowOffset:{ width:0, height:previewLeagueCardImage ? 2 : 0 } }}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
-            >
-              {leagueNameForLang(previewLeague, lang)}
-            </Text>
-            {!!leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK) && (
-              <View style={{ maxWidth:'86%', paddingHorizontal:10, paddingVertical:4, borderRadius:999, backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.54)' : leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.24)' : leagueBonusPalette.modal.metaBorder }}>
-                <Text style={{ color:previewLeagueCardImage ? '#F8FAFC' : leagueBonusPalette.modal.eyebrow, fontSize:f.caption, fontWeight:'900' }} adjustsFontSizeToFit minimumFontScale={0.78}>
-                  {leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK)}
-                </Text>
-              </View>
-            )}
-          </View>
-          {leaguePreviewState.isPreviewingMyLeague && (
-          <TouchableOpacity
-            testID="league-chat-icon"
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Чат лиги',
-              uk: 'Чат ліги',
-              es: 'Chat de liga',
-              'pt-BR': 'Chat da liga',
-              vi: 'Chat liga',
-              id: 'Chat liga',
-              tr: 'Lig sohbeti',
-              pl: 'Czat ligi',
+        <View style={{ gap: 10 }}>
+          <LeagueClubHero
+            model={hubHeroModel}
+            leagueName={leagueNameForLang(myLeague, lang)}
+            leagueTag={triLang(lang, {
+              ru: 'Центр клуба', uk: 'Центр клубу', es: 'Centro del club', 'pt-BR': 'Central do clube',
+              vi: 'Trung tâm câu lạc bộ', id: 'Pusat klub', tr: 'Kulüp merkezi', pl: 'Centrum klubu',
             })}
-            activeOpacity={0.86}
-            onPress={() => {
+            leagueColor={myLeague.color}
+            leagueIcon={<LeagueIcon league={myLeague} size={58} active alignContent={false} themeMode={themeMode} />}
+            lang={lang}
+            palette={hubPalette}
+            onOpenChat={() => {
               setChatModalVisible(true);
               void hapticTap();
             }}
-            style={{ position:'absolute', top:12, right:12, width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.50)' : leagueBonusPalette.modal.metaBg, borderWidth: 0, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.22)' : leagueBonusPalette.modal.metaBorder }}
-          >
-            <Ionicons name="chatbubbles-outline" size={22} color={leagueBonusPalette.accent} />
-            {leagueChatUnreadCount > 0 && (
-              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:0, borderColor:previewLeagueCardImage ? '#0B0F14' : t.bgCard }}>
-                <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
-                  {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
-                </Text>
-              </View>
-            )}
-          </TouchableOpacity>
-          )}
-        </View>
-        <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', gap:5, marginTop:8, minHeight:10 }}>
-          {LEAGUES.map((league) => (
-            <View
-              key={league.id}
-              style={{
-                width: league.id === previewLeague.id ? 18 : 5,
-                height: 5,
-                borderRadius: 999,
-                backgroundColor: league.id === previewLeague.id ? leagueBonusPalette.accent : 'rgba(255,255,255,0.22)',
-                opacity: league.id === myLeague.id ? 1 : 0.72,
-              }}
-            />
-          ))}
-        </View>
-        </View>
-
-        {leaguePreviewState.shouldShowLiveContent && (
-        <View>
-        {leagueRaceVisible && (
-        <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:18, borderWidth: 0, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden', shadowColor:leagueChestVisualAccent, shadowOpacity:0.12, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:4 }}>
-          <LeagueBonusGiftImageWithFallback
-            source={leagueBonusGiftImage}
-            color={leagueChestVisualAccent}
-            size={136}
-            opacity={leagueChestReady ? 0.20 : 0.12}
-            style={{ position:'absolute', right:-24, top:-22, transform:[{ rotate:'-8deg' }] }}
           />
-          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12, minHeight:58 }}>
-            <View style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}>
-              <View style={{ width:58, height:58, borderRadius:29, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center', shadowColor:leagueChestVisualAccent, shadowOpacity:leagueChestReady ? 0.42 : 0.24, shadowRadius:14, shadowOffset:{ width:0, height:6 }, elevation:7 }}>
-                <LeagueBonusGiftImageWithFallback source={leagueBonusGiftImage} color={leagueChestVisualAccent} size={68} opacity={leagueChestReady ? 1 : 0.94} />
-              </View>
-              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900', flex:1 }}>
-                {triLang(lang, {
-                  ru: 'Бонус лиги',
-                  uk: 'Бонус ліги',
-                  es: 'Bono de liga',
-                  'pt-BR': "Bônus da liga",
-                  vi: "Thưởng giải đấu",
-                  id: "Bonus liga",
-                  tr: "Lig bonusu",
-                  pl: "Bonus ligi",
-                })}
-              </Text>
-            </View>
-            <View style={{ minWidth:44, minHeight:32, borderRadius:999, paddingHorizontal:10, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth: 0, borderColor:leagueBonusPalette.modal.metaBorder }}>
-            <Text style={{ color: leagueChestVisualAccent, fontSize:f.body, fontWeight:'900' }}>
-              {leagueChestPct}%
-            </Text>
-            </View>
-          </View>
-          <View style={{ height:12, borderRadius:7, overflow:'hidden', backgroundColor:leagueBonusPalette.track, borderWidth: 0, borderColor:leagueBonusPalette.trackBorder }}>
-            <LinearGradient colors={leagueChestVisualFill} start={{ x:0, y:0 }} end={{ x:1, y:0 }} style={{ height:'100%', width:`${leagueChestPct}%` as any, borderRadius:7 }} />
-          </View>
-          <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-            <Text style={{ color:leagueBonusPalette.textMuted, fontSize:f.caption, fontWeight:'900', flex:1 }}>
-              {leagueChestProgress.toLocaleString()} / {leagueChestGoal.toLocaleString()} XP
-            </Text>
-          </View>
-          <LinearGradient
-            testID="league-group-boost-card"
-            colors={activeGroupBoost ? ['rgba(255,91,108,0.24)', 'rgba(255,212,59,0.12)'] : ['rgba(255,255,255,0.055)', 'rgba(255,255,255,0.025)']}
-            start={{ x:0, y:0 }}
-            end={{ x:1, y:1 }}
-            style={{ borderRadius:14, borderWidth:0.5, borderColor:activeGroupBoost ? 'rgba(255,212,59,0.34)' : leagueBonusPalette.innerBorder, padding:10, gap:10 }}
-          >
-            <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-              <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
-                <Ionicons name={activeGroupBoost ? 'flash' : 'flash-outline'} size={19} color={monoIcon(themeMode, activeGroupBoost ? '#FFD43B' : leagueBonusPalette.accent)} />
-              </View>
-              <View style={{ flex:1, minWidth:0 }}>
-                <Text style={{ color:t.textPrimary, fontSize:f.caption, lineHeight:Math.max(15, f.caption + 3), fontWeight:'900' }}>
-                  {activeGroupBoost
-                    ? triLang(lang, {
-                      ru: 'Общий буст лиги ×2',
-                      uk: 'Спільний буст ліги ×2',
-                      es: 'Impulso de liga común ×2',
-                      'pt-BR': 'Impulso coletivo da liga ×2',
-                      vi: 'Tăng lực chung của giải đấu ×2',
-                      id: 'Boost liga bersama ×2',
-                      tr: 'Ortak lig desteği ×2',
-                      pl: 'Wspólny boost ligi ×2',
-                    })
-                    : triLang(lang, {
-                      ru: '×2 XP для всей лиги',
-                      uk: '×2 XP для всієї ліги',
-                      es: '×2 XP para toda la liga',
-                      'pt-BR': '×2 XP para toda a liga',
-                      vi: '×2 XP cho cả giải đấu',
-                      id: '×2 XP untuk seluruh liga',
-                      tr: 'Tüm lig için ×2 XP',
-                      pl: '×2 XP dla całej ligi',
-                    })}
-                </Text>
-                <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), lineHeight:Math.max(13, f.caption + 1), fontWeight:'700', marginTop:2 }}>
-                  {activeGroupBoost
-                    ? triLang(lang, {
-                      ru: `Осталось ${groupBoostTimeLeft || '...'}`,
-                      uk: `Залишилось ${groupBoostTimeLeft || '...'}`,
-                      es: `Quedan ${groupBoostTimeLeft || '...'}`,
-                      'pt-BR': `Restam ${groupBoostTimeLeft || '...'}`,
-                      vi: `Còn ${groupBoostTimeLeft || '...'}`,
-                      id: `Tersisa ${groupBoostTimeLeft || '...'}`,
-                      tr: `${groupBoostTimeLeft || '...'} kaldı`,
-                      pl: `Zostało ${groupBoostTimeLeft || '...'}`,
-                    })
-                    : triLang(lang, {
-                      ru: '3 часа для всех участников',
-                      uk: '3 години для всіх учасників',
-                      es: '3 horas para todos los participantes',
-                      'pt-BR': '3 horas para todos os participantes',
-                      vi: '3 giờ cho tất cả người tham gia',
-                      id: '3 jam untuk semua peserta',
-                      tr: 'Tüm katılımcılar için 3 saat',
-                      pl: '3 godziny dla wszystkich uczestników',
-                    })}
-                </Text>
-              </View>
-            </View>
-            <TouchableOpacity
-              testID="league-group-boost-buy"
-              activeOpacity={activeGroupBoost ? 1 : 0.86}
-              disabled={!!activeGroupBoost || groupBoostBuying}
-              onPress={() => { handleBuyGroupBoost(); }}
-              style={{
-                minHeight: 46,
-                width: '100%',
-                borderRadius: 13,
-                paddingHorizontal: 12,
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                gap: 7,
-                backgroundColor: activeGroupBoost ? 'rgba(255,255,255,0.08)' : t.accent,
-                borderWidth: 0,
-                borderColor: activeGroupBoost ? 'rgba(255,255,255,0.16)' : t.accent,
-                opacity: groupBoostBuying ? 0.7 : 1,
-              }}
-            >
-              <Text style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                {activeGroupBoost
-                  ? triLang(lang, {
-                    ru: 'Активен',
-                    uk: 'Активний',
-                    es: 'Activo',
-                    'pt-BR': 'Ativo',
-                    vi: 'Đang bật',
-                    id: 'Aktif',
-                    tr: 'Aktif',
-                    pl: 'Aktywny',
-                  })
-                  : (groupBoostBuying
-                    ? triLang(lang, {
-                      ru: 'Включаем...',
-                      uk: 'Вмикаємо...',
-                      es: 'Activando...',
-                      'pt-BR': 'Ativando...',
-                      vi: 'Đang bật...',
-                      id: 'Mengaktifkan...',
-                      tr: 'Açılıyor...',
-                      pl: 'Włączamy...',
-                    })
-                    : triLang(lang, {
-                      ru: 'Открыть',
-                      uk: 'Відкрити',
-                      es: 'Desbloquear',
-                      'pt-BR': 'Abrir',
-                      vi: 'Mở',
-                      id: 'Buka',
-                      tr: 'Aç',
-                      pl: 'Odblokuj',
-                    }))}
-              </Text>
-              {!activeGroupBoost && (
-                freeBoostGiftReady ? (
-                  <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                    {triLang(lang, {
-                      ru: '🎁 бесплатно',
-                      uk: '🎁 безкоштовно',
-                      es: '🎁 gratis',
-                      'pt-BR': '🎁 grátis',
-                      vi: '🎁 miễn phí',
-                      id: '🎁 gratis',
-                      tr: '🎁 ücretsiz',
-                      pl: '🎁 za darmo',
-                    })}
-                  </Text>
-                ) : (
-                  <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
-                    <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                      {LEAGUE_GROUP_BOOST_COST_SHARDS}
-                    </Text>
-                    <Image
-                      source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
-                      style={{ width:16, height:16 }}
-                      contentFit="contain"
-                    />
-                  </View>
-                )
-              )}
-            </TouchableOpacity>
-            {!!activeGroupBoost && (
-              <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-                <TouchableOpacity
-                  testID="league-group-boost-buyer"
-                  activeOpacity={0.76}
-                  onPress={() => setProfile({
-                    name: activeGroupBoost.buyerName,
-                    points: activeGroupBoost.buyerTotalXp ?? 0,
-                    totalXp: activeGroupBoost.buyerTotalXp ?? undefined,
-                    isMe: activeGroupBoost.buyerUid === arenaClubStableUid,
-                    leagueId: activeGroupBoost.leagueId || myLeague.id,
-                    uid: activeGroupBoost.buyerUid,
-                    avatar: activeGroupBoost.buyerAvatar ?? undefined,
-                    frame: activeGroupBoost.buyerFrame ?? undefined,
-                    aura: activeGroupBoost.buyerAura ?? undefined,
-                    profileCardLevel: activeGroupBoost.buyerProfileCardLevel,
-                    profileCardTheme: activeGroupBoost.buyerProfileCardTheme,
-                    profileCardMotion: activeGroupBoost.buyerProfileCardMotion,
-                    profileCardPublicFocus: activeGroupBoost.buyerProfileCardPublicFocus,
-                  })}
-                  style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}
-                >
-                  <AvatarView
-                    avatar={activeGroupBoost.buyerAvatar || String(getBestAvatarForLevel(getLevelFromXP(activeGroupBoost.buyerTotalXp ?? 0)))}
-                    totalXP={activeGroupBoost.buyerTotalXp ?? 0}
-                    size={34}
-                    auraId={activeGroupBoost.buyerAura ?? undefined}
-                  />
-                  <View style={{ flex:1, minWidth:0 }}>
-                    <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900' }}>
-                      {activeGroupBoost.buyerName}
-                    </Text>
-                    <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), fontWeight:'700' }}>
-                      {triLang(lang, {
-                        ru: 'Купил буст для лиги',
-                        uk: 'Купив буст для ліги',
-                        es: 'Compró un impulso para la liga',
-                        'pt-BR': 'Comprou um impulso para a liga',
-                        vi: 'Đã mua tăng lực cho giải đấu',
-                        id: 'Membeli boost untuk liga',
-                        tr: 'Lig için destek satın aldı',
-                        pl: 'Kupił boost dla ligi',
-                      })}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  testID="league-group-boost-like"
-                  activeOpacity={0.82}
-                  disabled={groupBoostLikeBusy || groupBoostLikedToday || activeGroupBoost.buyerUid === arenaClubStableUid}
-                  onPress={() => { void handleLikeGroupBoostBuyer(); }}
-                  style={{
-                    minHeight: 40,
-                    borderRadius: 12,
-                    paddingHorizontal: 10,
-                    flexDirection:'row',
-                    alignItems:'center',
-                    gap:6,
-                    backgroundColor: groupBoostLikedToday ? 'rgba(255,45,85,0.11)' : 'rgba(255,45,85,0.18)',
-                    borderWidth: 0,
-                    borderColor: groupBoostLikedToday ? 'rgba(255,45,85,0.20)' : 'rgba(255,45,85,0.38)',
-                    opacity: activeGroupBoost.buyerUid === arenaClubStableUid ? 0.55 : 1,
-                  }}
-                >
-                  <Ionicons name={groupBoostLikedToday ? 'heart' : 'heart-outline'} size={17} color={monoIcon(themeMode, '#FF5B7C')} />
-                  <Text style={{ color:monoIcon(themeMode, '#FF8FA3'), fontSize:f.caption, fontWeight:'900' }}>
-                    {Math.max(groupBoostLikeTotal, activeGroupBoost.likeCount)}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </LinearGradient>
-          {!!leagueCrownWinnerName && (
-            <View style={{ flexDirection:'row', alignItems:'center', gap:6, paddingTop:2 }}>
-              <Ionicons name="trophy-outline" size={15} color={leagueCrownAccent} />
-              <Text style={{ color:t.textSecond, fontSize:Math.max(10, f.caption - 1), fontWeight:'800', flex:1 }}>
-                {triLang(lang, {
-                  ru: `Корона: ${leagueCrownWinnerName}`,
-                  uk: `Корона: ${leagueCrownWinnerName}`,
-                  es: `Corona: ${leagueCrownWinnerName}`,
-                  'pt-BR': `Coroa: ${leagueCrownWinnerName}`,
-                  vi: `Vương miện: ${leagueCrownWinnerName}`,
-                  id: `Mahkota: ${leagueCrownWinnerName}`,
-                  tr: `Taç: ${leagueCrownWinnerName}`,
-                  pl: `Korona: ${leagueCrownWinnerName}`,
-                })}
-              </Text>
-            </View>
+          {leagueRaceVisible && (
+            <LeagueBonusMission
+              model={hubBonusMissionModel}
+              lang={lang}
+              palette={hubPalette}
+              giftImage={leagueBonusGiftImage}
+              renderContributorAvatar={renderLeagueMemberAvatar}
+              onClaim={() => { void claimLeagueChestReward(); }}
+              onBoost={handleBuyGroupBoost}
+              onOpenBoostBuyer={openActiveBoostBuyerProfile}
+              onLikeBoost={() => { void handleLikeGroupBoostBuyer(); }}
+              boostLiked={groupBoostLikedToday || activeGroupBoost?.buyerUid === arenaClubStableUid}
+              boostLikeBusy={groupBoostLikeBusy}
+              boostTimeLeft={groupBoostTimeLeft}
+              onOpenRank={scrollToLeagueRank}
+            />
           )}
-          {!leagueChestReady && crownRaceTop.length > 0 && (
-            <View style={{ backgroundColor:leagueBonusPalette.innerBg, borderRadius:12, borderWidth: 0, borderColor:leagueBonusPalette.innerBorder, padding:10, gap:8 }}>
-              <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:10 }}>
-                <View style={{ flexDirection:'row', alignItems:'center', gap:6, flex:1, minWidth:0 }}>
-                  <Ionicons name="trophy-outline" size={16} color={leagueCrownAccent} />
-                  <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900', flex:1 }}>
-                    {triLang(lang, {
-                      ru: 'Гонка за корону',
-                      uk: 'Перегони за корону',
-                      es: 'Carrera por la corona',
-                      'pt-BR': "Corrida pela coroa",
-                      vi: "Cuộc đua giành vương miện",
-                      id: "Perebutan mahkota",
-                      tr: "Taç yarışı",
-                      pl: "Wyścig po koronę",
-                    })}
-                  </Text>
-                </View>
-              </View>
-              <View style={{ gap:6 }}>
-                {crownRaceTop.map((p, idx) => {
-                  const points = Math.max(0, Math.floor(Number(p.points) || 0));
-                  return (
-                    <View key={p.uid || `${p.name}-${idx}`} style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
-                      <Text style={{ width:18, color:idx === 0 ? leagueCrownAccent : t.textMuted, fontSize:f.caption, fontWeight:'900' }}>
-                        {idx + 1}
-                      </Text>
-                      <Text style={{ color:p.isMe ? t.accent : t.textSecond, fontSize:f.caption, fontWeight:'900', flex:1 }}>
-                        {p.name}
-                      </Text>
-                      <Text style={{ color:t.textMuted, fontSize:f.caption, fontWeight:'800' }}>
-                        {points}
-                      </Text>
-                    </View>
-                  );
-                })}
-              </View>
-            </View>
-          )}
-          {leagueChestReady && (
-            <TouchableOpacity
-              activeOpacity={leagueChestClaimed ? 1 : 0.86}
-              disabled={leagueChestClaimed || leagueChestClaiming}
-              onPress={() => { void claimLeagueChestReward(); }}
-              style={{
-                borderRadius: 13,
-                minHeight: 48,
-                paddingHorizontal: 14,
-                paddingVertical: 12,
-                backgroundColor: leagueChestClaimed ? t.bgSurface : t.accent,
-                borderWidth: 0,
-                borderColor: leagueChestClaimed ? t.border : t.accent,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
-                opacity: leagueChestClaiming ? 0.72 : 1,
-              }}
-            >
-              <Ionicons
-                name={leagueChestClaimed ? 'checkmark-circle' : (leagueCrownWinnerUid === arenaClubStableUid ? 'trophy' : 'gift')}
-                size={19}
-                color={leagueChestClaimed ? t.textMuted : t.correctText}
-              />
-              <Text style={{ color: leagueChestClaimed ? t.textMuted : t.correctText, fontSize: f.body, fontWeight: '900' }}>
-                {leagueChestClaimed
-                  ? triLang(lang, {
-                    ru: 'Бонус получен',
-                    uk: 'Бонус отримано',
-                    es: 'Bono recibido',
-                    'pt-BR': "Bônus recebido",
-                    vi: "Đã nhận thưởng",
-                    id: "Bonus diterima",
-                    tr: "Bonus alındı",
-                    pl: "Bonus odebrany",
-                  })
-                  : leagueChestClaiming
-                    ? triLang(lang, {
-                      ru: 'Открываем...',
-                      uk: 'Відкриваємо...',
-                      es: 'Abriendo...',
-                      'pt-BR': "Abrindo...",
-                      vi: "Đang mở...",
-                      id: "Membuka...",
-                      tr: "Açılıyor...",
-                      pl: "Otwieranie...",
-                    })
-                    : leagueCrownWinnerUid === arenaClubStableUid
-                      ? triLang(lang, {
-                        ru: 'Забрать корону',
-                        uk: 'Забрати корону',
-                        es: 'Recoger la corona',
-                        'pt-BR': "Pegar coroa",
-                        vi: "Nhận vương miện",
-                        id: "Ambil mahkota",
-                        tr: "Tacı al",
-                        pl: "Odbierz koron?",
-                      })
-                      : triLang(lang, {
-                        ru: 'Забрать бонус лиги',
-                        uk: 'Забрати бонус ліги',
-                        es: 'Recoger bono de liga',
-                        'pt-BR': "Pegar bônus da liga",
-                        vi: "Nhận thưởng giải đấu",
-                        id: "Ambil bonus liga",
-                        tr: "Lig bonusunu al",
-                        pl: "Odbierz bonus ligi",
-                      })}
-              </Text>
-            </TouchableOpacity>
-          )}
-        </LinearGradient>
-        )}
-
-        <View style={{ marginTop: 8, marginBottom: 4, gap: 4 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
-            {triLang(lang, {
-              ru: 'Участники клуба',
-              uk: 'Учасники клубу',
-              es: 'Miembros del club',
-              'pt-BR': 'Membros do clube',
-              vi: 'Thành viên câu lạc bộ',
-              id: 'Anggota klub',
-              tr: 'Kulüp üyeleri',
-              pl: 'Członkowie klubu',
-            })}
-          </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
-            {sortedGroup.length.toLocaleString()} · {leagueRoomXp.toLocaleString()} XP
-          </Text>
-          {showEmptyParticipants ? (
-            <Text style={{ color: t.textGhost, fontSize: f.sub, paddingVertical: 16, textAlign: 'center' }}>
+          <View style={{ marginTop: 6, marginBottom: 2, gap: 3 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
               {triLang(lang, {
-                uk: 'Ще немає учасників',
-                ru: 'Пока нет участников',
-                es: 'Aún no hay participantes',
-                'pt-BR': 'Ainda não há participantes',
-                vi: 'Chưa có người tham gia',
-                id: 'Belum ada peserta',
-                tr: 'Henüz katılımcı yok',
-                pl: 'Nie ma jeszcze uczestników',
+                ru: 'Участники клуба', uk: 'Учасники клубу', es: 'Miembros del club', 'pt-BR': 'Membros do clube',
+                vi: 'Thành viên câu lạc bộ', id: 'Anggota klub', tr: 'Kulüp üyeleri', pl: 'Członkowie klubu',
               })}
             </Text>
-          ) : null}
+            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+              {publicSortedGroup.length.toLocaleString()} · {leagueRoomXp.toLocaleString()} XP
+            </Text>
+            {showEmptyParticipants ? (
+              <Text style={{ color: t.textGhost, fontSize: f.sub, paddingVertical: 16, textAlign: 'center' }}>
+                {triLang(lang, {
+                  uk: 'Ще немає учасників', ru: 'Пока нет участников', es: 'Aún no hay participantes', 'pt-BR': 'Ainda não há participantes',
+                  vi: 'Chưa có người tham gia', id: 'Belum ada peserta', tr: 'Henüz katılımcı yok', pl: 'Nie ma jeszcze uczestników',
+                })}
+              </Text>
+            ) : null}
+          </View>
         </View>
-        </View>
-        )}
-
         </>)}
       />
       </BouncyWrap>
@@ -2269,7 +1603,7 @@ export default function ClubScreen() {
                       Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) > Date.now();
                     const crownCount = Math.max(1, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0));
                     setChatProfile({
-                      name: member.name,
+                      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
                       points: member.isMe ? playerXP : (member.totalXp ?? member.points),
                       totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
                       isMe: member.isMe,
@@ -2295,7 +1629,7 @@ export default function ClubScreen() {
                     return;
                   }
                   setChatProfile({
-                    name: author.name,
+                    name: leaguePublicName(author.name, author.uid),
                     points: 0,
                     isMe: !!arenaClubStableUid && author.uid === arenaClubStableUid,
                     leagueId: myLeague.id,
@@ -2311,7 +1645,7 @@ export default function ClubScreen() {
         <UnifiedPlayerModal
           player={chatProfilePlayer}
           myInfo={{
-            name: userName,
+            name: leaguePublicName(userName, arenaClubStableUid || userName),
             avatar: myAvatarEmoji,
             frame: myFrameId,
             aura: myAuraId,
@@ -2326,7 +1660,7 @@ export default function ClubScreen() {
       <UnifiedPlayerModal
         player={profilePlayer}
         myInfo={{
-          name: userName,
+          name: leaguePublicName(userName, arenaClubStableUid || userName),
           avatar: myAvatarEmoji,
           frame: myFrameId,
           aura: myAuraId,

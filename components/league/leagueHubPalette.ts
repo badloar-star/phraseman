@@ -7,5 +7,6 @@ export interface LeagueHubPalette {
   accentText: string;
   outline: string;
   positive: string;
+  negative: string;
   warning: string;
 }

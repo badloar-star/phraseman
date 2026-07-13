@@ -12,7 +12,7 @@ const members: GroupMember[] = [
 ];
 
 describe('league club hub model', () => {
-  it('prioritizes unread chat, then a ready chest, then helping the club', () => {
+  it('calculates a bounded shared-goal percentage without selecting a duplicate CTA', () => {
     const base = {
       rank: 2,
       participantCount: 3,
@@ -26,19 +26,21 @@ describe('league club hub model', () => {
       unreadCount: 3,
       chestReady: true,
       chestClaimed: false,
-    }).primaryAction).toBe('open_chat');
+    }).bonusPercent).toBe(82);
     expect(buildLeagueClubHeroModel({
       ...base,
+      bonusProgress: 12000,
       unreadCount: 0,
       chestReady: true,
       chestClaimed: false,
-    }).primaryAction).toBe('claim_chest');
+    }).bonusPercent).toBe(100);
     expect(buildLeagueClubHeroModel({
       ...base,
+      bonusProgress: -100,
       unreadCount: 0,
       chestReady: false,
       chestClaimed: false,
-    }).primaryAction).toBe('help_club');
+    }).bonusPercent).toBe(0);
   });
 
   it('never promises a chest that was already claimed', () => {

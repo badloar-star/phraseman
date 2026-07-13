@@ -7,6 +7,7 @@ import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
 import type { GroupMember } from '../../app/league_engine';
 import type { LeagueBonusMissionModel } from '../../app/league_club_hub_model';
+import { leaguePublicName } from '../../app/league_public_name';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
@@ -18,6 +19,11 @@ interface LeagueBonusMissionProps {
   renderContributorAvatar: (member: GroupMember, size: number) => React.ReactNode;
   onClaim: () => void;
   onBoost: () => void;
+  onOpenBoostBuyer: () => void;
+  onLikeBoost: () => void;
+  boostLiked: boolean;
+  boostLikeBusy: boolean;
+  boostTimeLeft: string;
   onOpenRank: () => void;
 }
 
@@ -27,7 +33,7 @@ function missionMessage(model: LeagueBonusMissionModel, lang: Lang): string {
   return triLang(lang, { ru: `Осталось ${model.remainingXp.toLocaleString()} XP до сундука`, uk: `Залишилося ${model.remainingXp.toLocaleString()} XP до скрині`, es: `Faltan ${model.remainingXp.toLocaleString()} XP`, 'pt-BR': `Faltam ${model.remainingXp.toLocaleString()} XP`, vi: `Còn ${model.remainingXp.toLocaleString()} XP`, id: `Kurang ${model.remainingXp.toLocaleString()} XP`, tr: `${model.remainingXp.toLocaleString()} XP kaldı`, pl: `Zostało ${model.remainingXp.toLocaleString()} XP` });
 }
 
-function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenRank }: LeagueBonusMissionProps) {
+function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank }: LeagueBonusMissionProps) {
   const reduceMotion = useReduceMotion();
   const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
 
@@ -51,7 +57,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
       <Text style={[styles.message, { color: model.canClaim ? palette.accentText : palette.muted }]}>{missionMessage(model, lang)}</Text>
 
       <View style={styles.teamRow}>
-        <View style={styles.avatars}>{model.topContributors.map((member, index) => <View key={member.uid ?? member.botId ?? `${member.name}-${index}`} accessibilityLabel={`${member.name}, ${member.points} XP`} style={[styles.avatarSlot, { marginLeft: index === 0 ? 0 : -8, borderColor: model.canClaim ? palette.accent : palette.surface }]}>{renderContributorAvatar(member, 34)}</View>)}</View>
+        <View style={styles.avatars}>{model.topContributors.map((member, index) => <View key={member.uid ?? member.botId ?? `${member.name}-${index}`} accessibilityLabel={`${leaguePublicName(member.name, member.uid ?? member.botId ?? member.name)}, ${member.points} XP`} style={[styles.avatarSlot, { marginLeft: index === 0 ? 0 : -8, borderColor: model.canClaim ? palette.accent : palette.surface }]}>{renderContributorAvatar(member, 34)}</View>)}</View>
         <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Открыть рейтинг участников', uk: 'Відкрити рейтинг учасників', es: 'Abrir clasificación', 'pt-BR': 'Abrir ranking', vi: 'Mở bảng xếp hạng', id: 'Buka peringkat', tr: 'Sıralamayı aç', pl: 'Otwórz ranking' })} onPress={onOpenRank} style={styles.contribution}>
           <Text style={[styles.contributionLabel, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'Ваш вклад', uk: 'Ваш внесок', es: 'Tu aporte', 'pt-BR': 'Sua contribuição', vi: 'Đóng góp của bạn', id: 'Kontribusimu', tr: 'Katkın', pl: 'Twój wkład' })}</Text>
           <Text style={[styles.contributionValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.myContribution.toLocaleString()} XP</Text>
@@ -59,12 +65,32 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
       </View>
 
       {model.boost ? (
-        <Pressable accessibilityRole="button" accessibilityLabel={`${model.boost.buyerName}, ×${model.boost.multiplier}`} onPress={onBoost} style={[styles.boost, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.14)' : palette.elevated }]}>
+        <View testID="league-group-boost-card" style={[styles.boost, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.14)' : palette.elevated }]}>
           <Ionicons name="flash" size={18} color={model.canClaim ? palette.accentText : palette.warning} />
-          <Text style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.boost.buyerName} · ×{model.boost.multiplier}</Text>
-        </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={`${leaguePublicName(model.boost.buyerName, model.boost.buyerUid)}, ×${model.boost.multiplier}`}
+            onPress={onOpenBoostBuyer}
+            style={styles.boostBuyer}
+            testID="league-group-boost-buyer"
+          >
+            <Text numberOfLines={1} style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{leaguePublicName(model.boost.buyerName, model.boost.buyerUid)} · ×{model.boost.multiplier}</Text>
+            {boostTimeLeft ? <Text style={[styles.boostTime, { color: model.canClaim ? palette.accentText : palette.muted }]}>{boostTimeLeft}</Text> : null}
+          </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Поблагодарить за буст', uk: 'Подякувати за буст', es: 'Agradecer el boost', 'pt-BR': 'Agradecer o boost', vi: 'Cảm ơn lượt tăng tốc', id: 'Berterima kasih atas boost', tr: 'Boost için teşekkür et', pl: 'Podziękuj za boost' })}
+            disabled={boostLiked || boostLikeBusy}
+            onPress={onLikeBoost}
+            style={styles.boostLike}
+            testID="league-group-boost-like"
+          >
+            <Ionicons name={boostLiked ? 'heart' : 'heart-outline'} size={18} color={model.canClaim ? palette.accentText : palette.negative} />
+            <Text style={[styles.boostLikeText, { color: model.canClaim ? palette.accentText : palette.negative }]}>{model.boost.likeCount}</Text>
+          </Pressable>
+        </View>
       ) : (
-        <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Включить общий буст', uk: 'Увімкнути спільний буст', es: 'Activar boost común', 'pt-BR': 'Ativar boost comum', vi: 'Bật tăng tốc chung', id: 'Aktifkan boost bersama', tr: 'Ortak boost aç', pl: 'Włącz wspólny boost' })} onPress={onBoost} style={[styles.boost, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.14)' : palette.elevated }]}>
+        <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Включить общий буст', uk: 'Увімкнути спільний буст', es: 'Activar boost común', 'pt-BR': 'Ativar boost comum', vi: 'Bật tăng tốc chung', id: 'Aktifkan boost bersama', tr: 'Ortak boost aç', pl: 'Włącz wspólny boost' })} onPress={onBoost} style={[styles.boost, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.14)' : palette.elevated }]} testID="league-group-boost-buy">
           <Ionicons name="flash-outline" size={18} color={model.canClaim ? palette.accentText : palette.warning} />
           <Text style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'Ускорить весь клуб', uk: 'Прискорити весь клуб', es: 'Impulsar todo el club', 'pt-BR': 'Impulsionar todo o clube', vi: 'Tăng tốc cả câu lạc bộ', id: 'Percepat seluruh klub', tr: 'Tüm kulübü hızlandır', pl: 'Przyspiesz cały klub' })}</Text>
         </Pressable>
@@ -102,7 +128,11 @@ const styles = StyleSheet.create({
   contributionLabel: { fontSize: 11, fontWeight: '700' },
   contributionValue: { fontSize: 15, fontWeight: '900' },
   boost: { minHeight: 46, borderRadius: 15, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  boostBuyer: { flex: 1, minWidth: 0, minHeight: 44, justifyContent: 'center' },
   boostText: { flex: 1, minWidth: 0, fontSize: 13, fontWeight: '800' },
+  boostTime: { fontSize: 11, fontWeight: '700', marginTop: 2 },
+  boostLike: { minWidth: 44, minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
+  boostLikeText: { fontSize: 12, fontWeight: '900' },
   claim: { minHeight: 50, borderRadius: 17, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   claimText: { fontSize: 16, fontWeight: '900' },
 });

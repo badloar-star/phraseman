@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { leaguePublicName } from '../app/league_public_name';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
@@ -1035,10 +1036,11 @@ function LeagueChatPanel({
             // Тап по аватару/имени чужого автора открывает его карточку. Своё имя/аватар
             // и оптимистичные (ещё не отправленные) сообщения не кликабельны.
             const canOpenAuthor = !isMine && !localMessage && !!onAuthorPress && !!m.authorUid;
+            const displayAuthorName = leaguePublicName(m.authorName, m.authorUid || m.id);
             const openAuthor = () =>
               onAuthorPress?.({
                 uid: m.authorUid,
-                name: m.authorName,
+                name: displayAuthorName,
                 avatar: m.authorAvatar,
                 aura: m.authorAura,
               });
@@ -1100,12 +1102,12 @@ function LeagueChatPanel({
                         style={{ maxWidth: '70%' }}
                       >
                         <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
-                          {m.authorName}
+                          {displayAuthorName}
                         </Text>
                       </TouchableOpacity>
                     ) : (
                       <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900', maxWidth: '70%' }}>
-                        {isMine ? (m.authorName || 'You') : m.authorName}
+                        {isMine ? (displayAuthorName || 'You') : displayAuthorName}
                       </Text>
                     )}
                     <Text style={{ color: t.textGhost, fontSize: Math.max(10, f.caption - 1), fontWeight: '800' }}>· {timeLabelText}</Text>
@@ -1120,7 +1122,7 @@ function LeagueChatPanel({
                       <View style={{ width: 3, backgroundColor: t.accent }} />
                       <View style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 5, minWidth: 0 }}>
                         <Text numberOfLines={1} style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
-                          {m.replyToKind === 'system' ? 'Compass' : (m.replyToAuthorName || '')}
+                          {m.replyToKind === 'system' ? 'Compass' : leaguePublicName(m.replyToAuthorName, m.replyToAuthorUid || m.replyToMessageId)}
                         </Text>
                         <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700' }}>
                           {m.replyToText || ''}
@@ -1278,7 +1280,7 @@ function LeagueChatPanel({
               <Ionicons name="arrow-undo-outline" size={16} color={t.accent} />
               <View style={{ flex: 1, minWidth: 0, borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 8 }}>
                 <Text numberOfLines={1} style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
-                  {isSystemLeagueChatMessage(replyTarget) ? 'Compass' : replyTarget.authorName}
+                  {isSystemLeagueChatMessage(replyTarget) ? 'Compass' : leaguePublicName(replyTarget.authorName, replyTarget.authorUid || replyTarget.id)}
                 </Text>
                 <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700' }}>
                   {resolveLeagueChatText(replyTarget, lang)}

@@ -624,6 +624,7 @@ function verifiedGenerationInFlightKey(options: GenerateVerifiedStatsInsightsOpt
     normalizedVerifiedStudyTarget(options.studyTarget),
     options.lang,
     options.analysis.fingerprint,
+    ...VERIFIED_STATS_INSIGHT_BLOCKS.map((block) => options.analysis.blocks[block].id),
     options.force === true,
   ]);
 }

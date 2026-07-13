@@ -1,5 +1,5 @@
 import { pickPercentileLine } from '../app/paywall_percentile_line';
-import type { AllPercentiles } from '../app/leaderboard_stats';
+import { MIN_PERCENTILE_SAMPLE_XP, type AllPercentiles } from '../app/leaderboard_stats';
 
 function makePercentiles(over: Partial<AllPercentiles> = {}): AllPercentiles {
   return {
@@ -10,6 +10,14 @@ function makePercentiles(over: Partial<AllPercentiles> = {}): AllPercentiles {
     daily7timeMs: null,
     arenaXp: null,
     totalUsers: 1000,
+    sample: {
+      status: 'unavailable',
+      userTotalXp: 0,
+      minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
+      totalUsers: 0,
+      updatedAtMs: null,
+      isStale: false,
+    },
     ...over,
   };
 }

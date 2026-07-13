@@ -9,12 +9,21 @@ const loadPercentileDataMock = loadPercentileData as jest.MockedFunction<typeof 
 
 function withDaily7xp(daily7xp: number | null, totalUsers = 1000) {
   loadPercentileDataMock.mockResolvedValue({
+    userTotalXp: 0,
     myXp7: 0,
     myTime7ms: 0,
     percentiles: {
       xp: null, streak: null, weekXp: null,
       daily7xp, daily7timeMs: null, arenaXp: null, totalUsers,
-    } as any,
+      sample: {
+        status: 'unavailable',
+        userTotalXp: 0,
+        minimumSampleXp: 5000,
+        totalUsers: 0,
+        updatedAtMs: null,
+        isStale: false,
+      },
+    },
   });
 }
 

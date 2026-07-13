@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; connect-src 'none'; img-src data:; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'; frame-src 'none'">
+  <meta name="phraseman-source-sha256" content="585bc1c059630a64776ffba9b36dbeb4f96816abe74b019687ee766f8eac3528">
+  <meta name="phraseman-content-sha256" content="96b0115c876218cc424b34f6f7421d29999a1bc3316c80abb9232909ab4f8e78">
+  <title>Архив аудита 8 июня 2026</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080b12;color:#e5e7eb}
+    *{box-sizing:border-box}html{min-width:320px}body{margin:0;padding:20px;background:#080b12}#tab-changelog-0608{display:block!important;margin:0 auto}button[disabled]{pointer-events:none;opacity:.65}a{color:#bef264}
+    @media(max-width:640px){body{padding:12px}.cl-grid{grid-template-columns:1fr!important}.cl-card{padding:13px!important}}
+  </style>
+</head>
+<body data-static-archive="changelog-0608" data-source-sha256="585bc1c059630a64776ffba9b36dbeb4f96816abe74b019687ee766f8eac3528">
+<div id="tab-changelog-0608" class="reports-tab">
+  <div style="padding:4px 0 32px;max-width:1140px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#fafafa">Архив аудита — 8 июня 2026</h2>
+      <span style="background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">50+ коммитов за день</span>
+      <span style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Архивный ручной чеклист</span>
+    </div>
+    <p style="margin:0 0 8px;font-size:13px;color:#9ca3af;line-height:1.6">
+      Полный аудит: фичи, модалки, тосты, edge-cases, пейволы, аналитика — всё что может быть невидимо на главной.
+      Каждая карточка содержит конкретные сценарии воспроизведения.
+    </p>
+
+    <!-- helper styles scoped to changelog -->
+    <style>
+      .cl-section-title{font-size:12px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;margin:28px 0 10px}
+      .cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+      .cl-card{background:#0d1117;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+      .cl-card-head{display:flex;align-items:center;gap:8px}
+      .cl-card-title{font-size:13px;font-weight:800}
+      .cl-badge{margin-left:auto;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;white-space:nowrap}
+      .cl-desc{font-size:12px;color:#d1d5db;line-height:1.6}
+      .cl-checks{border-radius:8px;padding:10px 12px;font-size:12px;line-height:1.8}
+      .cl-checks b{display:block;margin-bottom:2px}
+      .cl-modal-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #1a1a2a;font-size:12px}
+      .cl-modal-row:last-child{border-bottom:none}
+      .cl-modal-tag{padding:1px 7px;border-radius:6px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:2px}
+      .cl-modal-info{color:#d1d5db;line-height:1.5}
+      .cl-modal-trigger{color:#6b7280;font-size:11px}
+    </style>
+
+    <!-- ═══════════════════════════════════════════════
+         СЕКЦИЯ 1 — МОДАЛКИ И ТОСТЫ (СКРЫТЫЙ UI)
+         ═══════════════════════════════════════════════ -->
+    <div class="cl-section-title">🔔 Модалки, тосты и скрытый UI — всё что не видно на главной</div>
+
+    <!-- РЕФЕРАЛ: модалки -->
+    <div class="cl-card" style="border:1px solid #1e3a2f">
+      <div class="cl-card-head">
+        <span style="font-size:18px">👥</span>
+        <span class="cl-card-title" style="color:#4ade80">Referral Plus — модалки и состояния</span>
+        <span class="cl-badge" style="background:#14532d;color:#4ade80">MERGED master</span>
+      </div>
+      <div style="border:1px solid #1a2a1a;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#14532d;color:#4ade80">MODAL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">ReferralAccessActivatedModal</b> — «N дней доступа открыто»
+            <div class="cl-modal-trigger">Триггер: claimReferralVipDays() → granted &gt; 0. Spring-анимация 💎, показывает кол-во дней и друзей.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#14532d;color:#4ade80">MODAL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">ReferralAccessEndedModal</b> — «Доступ можно открыть снова»
+            <div class="cl-modal-trigger">Триггер: vip_plan='referral' + vip_until &lt; now. Показывается ОДИН РАЗ через sticky-маркер в AsyncStorage. Кнопки: Пригласить / Открыть полный доступ → пейвол context='generic' source='referral_ended'.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1e3a5f;color:#93c5fd">CARD</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">ReferralExplainerCard</b> — в /friends после хедера
+            <div class="cl-modal-trigger">Скрыта если referral_enabled=false. Кнопка «Открыть N дней» видна ТОЛЬКО если claimableDays &gt; 0.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a1a0a;color:#fbbf24">BADGE</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">FriendRow статус-бейдж</b> — inline в строке друга
+            <div class="cl-modal-trigger">pending → «По твоему приглашению» · qualified → «Готов открыть доступ» · rewarded → «Доступ открыт»</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a1a1a;color:#f87171">FEEDBACK</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Inline feedback под карточкой</b>
+            <div class="cl-modal-trigger">cappedThisMonth=true → «Лимит на этот месяц достигнут». Ошибка CF → «Что-то пошло не так. Попробуй снова.»</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#0a1f14;border:1px solid #1a3a24;color:#86efac">
+        <b>Проверить руками:</b>
+        ✓ /friends → карточка видна, кнопка появляется только при claimable days &gt; 0<br>
+        ✓ claim → ReferralAccessActivatedModal с правильным числом дней<br>
+        ✓ Ждать истечения Plus (или expire в Testers) → ReferralAccessEndedModal 1 раз<br>
+        ✓ Закрыть и переоткрыть → модалка НЕ показывается снова<br>
+        ✓ referral_enabled=false в RC → карточка полностью скрыта
+      </div>
+    </div>
+
+    <!-- SPEAKING: модалки и статусы -->
+    <div class="cl-card" style="border:1px solid #1e2a3f">
+      <div class="cl-card-head">
+        <span style="font-size:18px">🎙️</span>
+        <span class="cl-card-title" style="color:#60a5fa">Speaking Mode — все статусы SpeakingPanel</span>
+        <span class="cl-badge" style="background:#1e3a5f;color:#60a5fa">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #1a2030;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a2a4a;color:#60a5fa">PAYWALL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Пейвол context='speaking'</b> — при тапе без Plus
+            <div class="cl-modal-trigger">В уроке (lesson1.tsx), квизе, тренере. Замок 🔒 на кнопке если !isPremium.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#0a1a0a;color:#4ade80">STATUS</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">idle</b> → «Нажми на микрофон и произнеси фразу»
+            <div class="cl-modal-trigger">Начальное состояние. Кнопка активна, фраза серая.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">STATUS</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">requesting</b> → «Готовимся слушать…»
+            <div class="cl-modal-trigger">Запрос прав микрофона. ActivityIndicator, кнопка disabled.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a0a;color:#f87171">STATUS</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">listening</b> → «Слушаю… говори» — эквалайзер АКТИВЕН
+            <div class="cl-modal-trigger">Микрофон красный, кнопка = «Остановить запись».</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#0a1a0a;color:#4ade80">STATUS ✅</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">passed (≥90%)</b> → «Отлично! Чисто сказано» + score «97% / 90%»
+            <div class="cl-modal-trigger">Зелёный текст, hapticSuccess(), кнопка «Сказать ещё раз».</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a1a0a;color:#fb923c">STATUS ❌</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">failed (&lt;90%)</b> → «Почти. Попробуй ещё раз» + score «45% / 90%»
+            <div class="cl-modal-trigger">Красный текст, hapticError(), retry-кнопка.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a0a;color:#f87171">STATUS 🔒</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">denied</b> → «Нужен доступ к микрофону. Включи в настройках»
+            <div class="cl-modal-trigger">Пользователь запретил микрофон. Кнопка disabled.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a2a;color:#818cf8">STATUS ⚠️</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">unavailable</b> → «Режим говорения недоступен на этом устройстве»
+            <div class="cl-modal-trigger">Нет expo-speech-recognition.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#0a1224;border:1px solid #1a2a4a;color:#93c5fd">
+        <b>Проверить руками:</b>
+        ✓ Урок → кнопка «Устно» с 🔒 если free → тап → пейвол speaking<br>
+        ✓ С Plus → SpeakingPanel открывается, эквалайзер живой при записи<br>
+        ✓ Произнести правильно → passed, зелёный, «97% / 90%», вибрация<br>
+        ✓ Произнести неправильно → failed, красный, retry<br>
+        ✓ Запретить микрофон → denied с инструкцией про настройки<br>
+        ✓ Квиз + тренер: SpeakingButton тоже есть в обоих<br>
+        ✓ iOS: recordingOptions.persist=true (нет ошибок в логах)
+      </div>
+    </div>
+
+    <!-- AI DIALOGUE: экраны и edge cases -->
+    <div class="cl-card" style="border:1px solid #2a1e3f">
+      <div class="cl-card-head">
+        <span style="font-size:18px">🤖</span>
+        <span class="cl-card-title" style="color:#c084fc">AI Dialogue Phase 0 — все экраны и edge cases</span>
+        <span class="cl-badge" style="background:#2a1a4a;color:#c084fc">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #2a1a3a;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a0a2a;color:#c084fc">SCREEN</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">ai_dialog_home</b> — меню сценариев
+            <div class="cl-modal-trigger">5 сценариев: coffee (ACTIVE), shop/hotel/airport/meeting (LOCKED). Лимит «Сегодня бесплатно: 1 разговор» если !premium.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a0a2a;color:#c084fc">SCREEN</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">ai_dialog_session</b> — сам диалог
+            <div class="cl-modal-trigger">Прогресс-бар N/8, подсказки-кнопки, sending spinner, анимация входа ответа (250ms). Завершение: «Отличный разговор! 🎉 Ты говорил N раз.»</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a1a4a;color:#a78bfa">PAYWALL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Пейвол context='dialog_limit'</b> — исчерпан дневной лимит
+            <div class="cl-modal-trigger">Триггер 1: вход в сессию при getFreeDialogsLeftToday()=0. Триггер 2: кнопка «Продолжить без лимита» после 8 обменов.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a0a;color:#f87171">ERROR</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Сетевая ошибка CF</b> → сообщение в чат «Связь прервалась. Попробуй ещё раз.»
+            <div class="cl-modal-trigger">No toast, no modal — ассистент сам говорит об ошибке. Пользователь может повторить.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1e2a1e;color:#4ade80">HOME CARD</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Карточка «Разговор с Тео» на home</b>
+            <div class="cl-modal-trigger">Видна ТОЛЬКО если isAiDialogEnabled()=true И studyTarget='en'. Если язык не английский — скрыта.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">ANALYTICS</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">10 событий воронки</b>
+            <div class="cl-modal-trigger">card_shown → card_tapped → started → message_sent → suggested_tapped → completed/abandoned → limit_hit → tts_used → translation_used → paywall_shown</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#150a24;border:1px solid #2a1a3a;color:#d8b4fe">
+        <b>Проверить руками:</b>
+        ✓ Home (studyTarget=en): карточка «Разговор с Тео» видна<br>
+        ✓ Home (studyTarget≠en): карточка СКРЫТА<br>
+        ✓ coffee сценарий: 8 обменов → «Отличный разговор!» + кнопка пейвола<br>
+        ✓ shop/hotel/airport/meeting: иконка замка, недоступны<br>
+        ✓ free: 1 диалог сегодня → второй тап → сразу пейвол dialog_limit<br>
+        ✓ Отключить WiFi на mid-dialog → в чате «Связь прервалась…»<br>
+        ✓ TTS кнопка 🔊 воспроизводит ответ ИИ
+      </div>
+    </div>
+
+    <!-- МОНЕТИЗАЦИЯ: пейволы, intro_ended, celebration -->
+    <div class="cl-card" style="border:1px solid #2a2a1e;grid-column:1/-1">
+      <div class="cl-card-head">
+        <span style="font-size:18px">💰</span>
+        <span class="cl-card-title" style="color:#fbbf24">Монетизация — пейволы, intro_ended, celebration, streak revive</span>
+        <span class="cl-badge" style="background:#3a2a0a;color:#fbbf24">MERGED integration</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;border:1px solid #2a2a1a;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a1a0a;color:#fb923c">MODAL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">PremiumCelebrationModal</b> — 5 сек золотая анимация
+            <div class="cl-modal-trigger">После IAP. Маркер premium_celebration_pending_v1. Стадии: Glow → Particles (16шт) → Crown 👑 → Shockwave → Locks раскрываются (стаггер) → Counter → CTA.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#0a2010;color:#4ade80">MODAL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">VipCelebrationModal</b> — та же анимация, зелёная палитра
+            <div class="cl-modal-trigger">После Plus-выдачи администратором. Маркер vip_celebration_pending_v1.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a0a2a;color:#c084fc">MODAL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">StreakReviveModal</b> — восстановить цепочку за осколки
+            <div class="cl-modal-trigger">0–24ч после потери стрика. Цена: 15 осколков (1 день) → 100 (100+ дней). Light-theme фикс: isLight из themeMode (было hardcoded false).</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a2a;color:#818cf8">MODAL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">EnergyRefillShardModal</b> — light-theme фикс
+            <div class="cl-modal-trigger">Раньше isLight=false (hardcoded). Теперь читает themeMode. Тест: minimalLight тема → модалка НЕ чёрная.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1e2a1e;color:#4ade80">PAYWALL ARCHIVE</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">premium_modal_v2 — удалённый экран, теперь только редирект</b>
+            <div class="cl-modal-trigger">Старый v2 больше не открывается даже прямой ссылкой. Любой заход переводится в активный диспетчер /premium_modal, который выбирает новые A/B/C.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">PERCENTILE</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Перцентильная строка на пейволе</b>
+            <div class="cl-modal-trigger">«Твой темп за неделю — в топ-35% учеников.» Показывается только если percentile ≥ 50%. Если данных нет — строка отсутствует (не ломает пейвол).</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#1a140a;border:1px solid #3a2a14;color:#fde68a">
+        <b>Проверить руками (Testers → Soft-monetization / Plus modals):</b>
+        ✓ «Plus celebration» (купленный) → 5-сек анимация gold, Crown, Locks раскрываются<br>
+        ✓ «Plus celebration» (админский) → та же анимация, но зелёная<br>
+        ✓ «Streak revive» → модалка с ценой в осколках, на light-theme не чёрная<br>
+        ✓ Пейвол v2: social proof ДО pricing, urgency таймер, savings badge −62%<br>
+        ✓ Перцентиль: при хорошем weekXp показывается, при нулевом — нет<br>
+        ✓ EnergyRefillShardModal на minimalLight теме: читаемый вид
+      </div>
+    </div>
+
+    <!-- BIZ-LOGIC и PUSH -->
+    <div class="cl-card" style="border:1px solid #3a1e1e">
+      <div class="cl-card-head">
+        <span style="font-size:18px">🔧</span>
+        <span class="cl-card-title" style="color:#f87171">Biz-Logic Fixes — невидимые баги</span>
+        <span class="cl-badge" style="background:#3a0a0a;color:#f87171">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #2a1a1a;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a0a;color:#f87171">PUSH</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Push при получении подарка от друга</b>
+            <div class="cl-modal-trigger">«🎁 Подарок от друга! [Имя] прислал тебе [подарок]». Отправляется ПОСЛЕ успешного commit транзакции. FCM-токен пишется в users/{id}.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a2a;color:#818cf8">FIX</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Refund → Plus деактивируется</b>
+            <div class="cl-modal-trigger">Раньше refund не снимал premium_active. Теперь RevenueCat webhook → onArenaSessionAborted очищает orphan.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a2a;color:#818cf8">FIX</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">getTodayKey → UTC (timezone-баг)</b>
+            <div class="cl-modal-trigger">Пользователи в UTC+X могли потерять daily streak при переходе дня по местному времени.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a0a;color:#f87171">SECURITY</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">IDOR friendSendGift закрыт</b>
+            <div class="cl-modal-trigger">Раньше можно было тратить осколки чужого пользователя. Теперь CF проверяет request.auth.uid.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#1a0a0a;border:1px solid #3a1a1a;color:#fca5a5">
+        <b>Проверить:</b>
+        ✓ Подарить другу → получатель получает push-уведомление<br>
+        ✓ Arena: прерванная сессия → матч не «висит» в Firestore<br>
+        ✓ Сменить timezone устройства → streak не сбрасывается неправильно
+      </div>
+    </div>
+
+    <!-- UX POLISH: haptics, bounce, scroll, a11y -->
+    <div class="cl-card" style="border:1px solid #2a1e2a">
+      <div class="cl-card-head">
+        <span style="font-size:18px">✨</span>
+        <span class="cl-card-title" style="color:#e879f9">UX Polish — haptics, BounceView, scroll, a11y, light-theme</span>
+        <span class="cl-badge" style="background:#2a0a2a;color:#e879f9">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #2a1a2a;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a0a2a;color:#c084fc">HAPTIC</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Haptic на КАЖДОМ шаге онбординга</b>
+            <div class="cl-modal-trigger">hapticTap() в goToStep(). ~40 переходов. Раньше вибрации не было вообще.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">BOUNCE</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">BounceView на 8 экранах без скролла</b>
+            <div class="cl-modal-trigger">Pan + spring, резинка при drag вверх/вниз. Исключения: Tinder-колода, FlashList, виджеты.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#0a1a2a;color:#38bdf8">SCROLL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Скролл как в Telegram</b>
+            <div class="cl-modal-trigger">decelerationRate='normal' глобально через applyScrollDefaults. Bounce включён везде.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a2a1a;color:#4ade80">A11Y</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">PressableScale + CustomSwitch — accessibility props</b>
+            <div class="cl-modal-trigger">accessibilityLabel, accessibilityRole, accessibilityState теперь форвардятся. VoiceOver/TalkBack корректно читает кнопки.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a2a1a;color:#e5e7eb">THEME</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Light theme фикс в 3 модалках</b>
+            <div class="cl-modal-trigger">EnergyRefillShardModal, StreakReviveModal, StatsPremiumBlur: isLight=false → читает themeMode='minimalLight'.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#150a15;border:1px solid #2a1a2a;color:#f0abfc">
+        <b>Проверить руками:</b>
+        ✓ Онбординг: каждый тап = вибрация (включая выбор цели, языка, аватара)<br>
+        ✓ Экран без скролла → потянуть вниз → резинка → отпустить → пружина<br>
+        ✓ Любой ScrollView → прокрутить до конца → overshooting bounce<br>
+        ✓ VoiceOver: кнопки называются, свитчи говорят on/off<br>
+        ✓ minimalLight тема → EnergyRefillShardModal и StreakReviveModal читаемы
+      </div>
+    </div>
+
+    <!-- REMOTE CONFIG -->
+    <div class="cl-card" style="border:1px solid #2a2a1e">
+      <div class="cl-card-head">
+        <span style="font-size:18px">⚙️</span>
+        <span class="cl-card-title" style="color:#fbbf24">Remote Config — флаги без релиза</span>
+        <span class="cl-badge" style="background:#3a2a0a;color:#fbbf24">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #2a2414;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">BOOL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">referral_enabled</b> — вся реферальная UI on/off
+            <div class="cl-modal-trigger">false → ReferralExplainerCard скрыта, модалки не показываются, клейм не работает.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">BOOL</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">speaking_enabled</b> — кнопка «Устно» on/off
+            <div class="cl-modal-trigger">false → SpeakingButton не рендерится в уроках/квизах/тренере.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a140a;color:#fb923c">NUM</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">free_lesson_limit, free_daily_quiz_limit, arena_daily_max</b>
+            <div class="cl-modal-trigger">Клиент подхватывает через onSnapshot без перезапуска.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a140a;color:#fb923c">NUM</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">paywall_v2_pct</b> — архивный флаг старого split v1/v2
+            <div class="cl-modal-trigger">Больше не управляет экраном оплаты. Активный пейвол выбирается через вкладку Paywall A/B: A, B или C.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#1a140a;border:1px solid #3a2a14;color:#fde68a">
+        <b>Проверить через таб Remote Config:</b>
+        ✓ referral_enabled=false → /friends: карточки нет<br>
+        ✓ speaking_enabled=false → в уроке: кнопки «Устно» нет<br>
+        ✓ free_lesson_limit=2 → 3-й урок заблокирован сразу<br>
+        ✓ Пустое поле → сохранить → значение = app default (не 0)
+        <button disabled aria-disabled="true" type="button" style="display:block;margin-top:8px;background:#3a2a0a;border:1px solid #fbbf24;color:#fbbf24;padding:5px 12px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700">→ Открыть Remote Config</button>
+      </div>
+    </div>
+
+    <!-- WIDGET -->
+    <div class="cl-card" style="border:1px solid #1e2a3f">
+      <div class="cl-card-head">
+        <span style="font-size:18px">🔲</span>
+        <span class="cl-card-title" style="color:#38bdf8">Widget «Фраза дня»</span>
+        <span class="cl-badge" style="background:#0a1e3a;color:#38bdf8">MERGED integration</span>
+      </div>
+      <div class="cl-desc">Android Glance + iOS WidgetKit. Изолированный AVD phraseman_widget, порт 8082.</div>
+      <div class="cl-checks" style="background:#0a1824;border:1px solid #1a2a3a;color:#7dd3fc">
+        <b>Проверить:</b>
+        ✓ Android: добавить виджет на home screen → фраза отображается<br>
+        ✓ iOS: виджет виден в галерее WidgetKit<br>
+        ✓ Следующий день → фраза сменилась<br>
+        ✓ Тап на виджет → открывает приложение (deep link)
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="cl-card" style="border:1px solid #3a1e2a">
+      <div class="cl-card-head">
+        <span style="font-size:18px">🔒</span>
+        <span class="cl-card-title" style="color:#fb7185">Security Fixes</span>
+        <span class="cl-badge" style="background:#3a0a1a;color:#fb7185">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #2a1a20;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a1a;color:#fb7185">IDOR</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">friendSendGift: CF проверяет request.auth.uid</b>
+            <div class="cl-modal-trigger">Раньше uid брался из body → IDOR. Теперь всегда из auth token.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#2a0a1a;color:#fb7185">RULES</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Firestore: progressHasNoPremiumWrites()</b>
+            <div class="cl-modal-trigger">Клиент не может записать premium_plan, premium_expiry и т.д. Ошибка: PERMISSION_DENIED.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a2a;color:#818cf8">ENV</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">OpenAI ключ из defineSecret</b>
+            <div class="cl-modal-trigger">Убран hardcode, ключ через Firebase Secret Manager.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#1a0a10;border:1px solid #3a1a20;color:#fda4af">
+        <b>Проверить:</b>
+        ✓ Попытка записать premium=true клиентом → PERMISSION_DENIED в логах<br>
+        ✓ friendSendGift с чужим uid в body → reject<br>
+        ✓ В CF коде нет строки с OpenAI ключом
+      </div>
+    </div>
+
+    <!-- CI / FONT / MULTILANG / DOCS -->
+    <div class="cl-card" style="border:1px solid #2a2a1e">
+      <div class="cl-card-head">
+        <span style="font-size:18px">🏗️</span>
+        <span class="cl-card-title" style="color:#facc15">CI / Font / Multilang / Docs</span>
+        <span class="cl-badge" style="background:#2a1e0a;color:#facc15">MERGED integration</span>
+      </div>
+      <div style="border:1px solid #2a2414;border-radius:8px;overflow:hidden">
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#1a1a0a;color:#fbbf24">FONT</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Android Font Patch — app/font_family_patch.ts</b>
+            <div class="cl-modal-trigger">Глобальный перехват Text.render. fontWeight → Inter-Bold. ~1910 мест. iOS не затронут.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#0a1818;color:#2dd4bf">LANG</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Multilang + LingMan смерженs</b>
+            <div class="cl-modal-trigger">Откат апрельского контента (уроки 25-32). Урок 32 wordsEn был 50× пустыми массивами.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#0a0a18;color:#818cf8">DOCS</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Аудит-документы + PHRASEMAN_BIBLE.md</b>
+            <div class="cl-modal-trigger">BUSINESS_LOGIC_AUDIT, CONTENT_AUDIT, DESIGN_AUDIT, SECURITY_AUDIT, PREMIUM_UI_GUIDE, AI-Dialogue UI-SPEC.</div>
+          </div>
+        </div>
+        <div class="cl-modal-row" style="padding:7px 10px">
+          <span class="cl-modal-tag" style="background:#14120a;color:#fbbf24">CI</span>
+          <div class="cl-modal-info">
+            <b style="color:#e5e7eb">Gitleaks + TapScale + большая чистка</b>
+            <div class="cl-modal-trigger">Secret scanning в CI. Убран мёртвый plan-runtime/audio код. tsc green.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cl-checks" style="background:#14120a;border:1px solid #2a2414;color:#fef08a">
+        <b>Проверить:</b>
+        ✓ Android: заголовки жирным Inter (не системный шрифт)<br>
+        ✓ Урок 32: wordsEn не пустые<br>
+        ✓ tsc: 0 ошибок (npx tsc --noEmit)
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         СЕКЦИЯ 2 — СТАТУС ВЕТОК
+         ═══════════════════════════════════════════════ -->
+    <div class="cl-section-title">📌 Статус веток на 2026-06-08</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;font-size:12px">
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #1a2a1a;border-radius:8px">
+        <span style="color:#4ade80">✅</span><div><div style="color:#e5e7eb;font-weight:700">feat/referral-vip</div><div style="color:#6b7280">merged → master (PR #3)</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #1a2030;border-radius:8px">
+        <span style="color:#60a5fa">🔀</span><div><div style="color:#e5e7eb;font-weight:700">feat/speaking-mode</div><div style="color:#6b7280">merged → integration/merge-all</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #2a1a3a;border-radius:8px">
+        <span style="color:#c084fc">🔀</span><div><div style="color:#e5e7eb;font-weight:700">feat/ai-dialogue-phase0</div><div style="color:#6b7280">merged → integration/merge-all</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #2a2414;border-radius:8px">
+        <span style="color:#fbbf24">🔀</span><div><div style="color:#e5e7eb;font-weight:700">Remote Config</div><div style="color:#6b7280">merged → integration/merge-all</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #1a2a2a;border-radius:8px">
+        <span style="color:#2dd4bf">🔀</span><div><div style="color:#e5e7eb;font-weight:700">feature/multilang</div><div style="color:#6b7280">merged → integration/merge-all</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #1a2a2a;border-radius:8px">
+        <span style="color:#2dd4bf">🔀</span><div><div style="color:#e5e7eb;font-weight:700">feature/lingman-montazher</div><div style="color:#6b7280">merged → integration/merge-all</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #2a1e0a;border-radius:8px">
+        <span style="color:#fb923c">⏳</span><div><div style="color:#e5e7eb;font-weight:700">integration/merge-all</div><div style="color:#6b7280">готова к merge → master</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -8,6 +8,9 @@ import { renderVoiceResearchCenter } from './admin-voice-research-view.js';
 import { createSafetyModerationController } from './admin-safety-moderation-controller.js';
 import { createSafetyModerationState } from './admin-safety-moderation-state.js';
 import { renderSafetyModerationCenter } from './admin-safety-moderation-view.js';
+import { buildAppErrorStatusConfirmation, createDiagnosticsController } from './admin-diagnostics-controller.js';
+import { createDiagnosticsState } from './admin-diagnostics-state.js';
+import { renderDiagnosticsWorkspace } from './admin-diagnostics-view.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -142,7 +145,7 @@ const state = {
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
   betaTesters: { state: 'idle', items: [], pending: null, error: '', truncated: false },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
-  reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} },
+  reports: { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {}, operationKeys: {} },
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
@@ -160,12 +163,14 @@ const state = {
   plusControl: { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' },
   voiceResearch: createVoiceResearchState(),
   safetyModeration: createSafetyModerationState(),
+  diagnostics: createDiagnosticsState(),
   manualAccess: { preview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
 let voiceResearchController = null;
 let safetyModerationController = null;
+let diagnosticsController = null;
 let initialized = false;
 let requestedUserHandled = false;
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
@@ -1282,7 +1287,8 @@ function renderDiagnostics() {
     operationalMetric('Ошибки приложения', metricValue(view.metrics.appErrors), 'за окно снимка', view.metrics.appErrors ? 'warning' : ''),
   ] : ['Источники в снимке', 'Ошибки источников', 'Ограниченные выборки', 'Ошибки приложения'].map((label) => operationalMetric(label, '—', view.stateLabel));
   const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить диагностику</button><a class="button" href="./migration.html" title="Открыть полный реестр переноса функций">Реестр переноса</a>`;
-  return `${pageHeader(PAGES.diagnostics, 'Диагностика', headerActions)}
+  const diagnosticsHeader = pageHeader(PAGES.diagnostics, 'Диагностика', headerActions);
+  const overview = `
     ${view.isPartial ? '<div class="notice warning"><strong>Диагностика частичная.</strong> Минимум один источник достиг лимита или вернул неполную выборку.</div>' : ''}
     ${view.state === 'stale' ? '<div class="notice warning"><strong>Диагностика устарела.</strong> Снимок старше 36 часов.</div>' : ''}
     <section class="metrics section">${metrics.join('')}</section>
@@ -1290,6 +1296,7 @@ function renderDiagnostics() {
     ${renderAuditLogPanel()}
     ${renderOpsLogPanel()}
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()} title="Загрузить текущие расходы и лимиты генерации">Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section></div>`;
+  return renderDiagnosticsWorkspace(state.diagnostics, { escapeHtml, can, pageHeader: diagnosticsHeader, overview });
 }
 
 function renderWebsiteInbox() {
@@ -2997,6 +3004,12 @@ async function updateReportStatus(target) {
   if (!globalThis.confirm(`Изменить статус «${reportStatusLabel(expectedStatus)}» на «${reportStatusLabel(nextStatus)}»?`)) return;
   const authGeneration = state.authGeneration;
   const requiredPermission = source === 'app_errors' ? 'diagnostics.status.write' : 'reports.status.write';
+  const operationScope = `${source}:${reportId}:${expectedStatus}:${nextStatus}:${reason}`;
+  const operation = state.reports.operationKeys?.[operationScope] || {
+    idempotencyKey: id('report-status'),
+    requestId: id('report-status-request'),
+  };
+  state.reports = { ...state.reports, operationKeys: { ...(state.reports.operationKeys || {}), [operationScope]: operation } };
   return runBusy(async () => {
     await actions.updateReportStatus({
       source,
@@ -3004,10 +3017,14 @@ async function updateReportStatus(target) {
       expectedStatus,
       nextStatus,
       reason,
-      idempotencyKey: id('report-status'),
-      requestId: id('report-status-request'),
+      idempotencyKey: operation.idempotencyKey,
+      requestId: operation.requestId,
+      ...(source === 'app_errors' ? { confirmation: buildAppErrorStatusConfirmation(reportId, expectedStatus, nextStatus) } : {}),
     });
     if (!authStillValid(authGeneration, requiredPermission)) return STALE_AUTH_RESULT;
+    const operationKeys = { ...(state.reports.operationKeys || {}) };
+    delete operationKeys[operationScope];
+    state.reports = { ...state.reports, operationKeys };
     const loaded = await loadReportQueue();
     return loaded === STALE_AUTH_RESULT ? STALE_AUTH_RESULT : true;
   }, 'Статус репорта изменён и записан в журнал.');
@@ -3231,6 +3248,28 @@ function getSafetyModerationController() {
   return safetyModerationController;
 }
 
+function getDiagnosticsController() {
+  if (!diagnosticsController) {
+    diagnosticsController = createDiagnosticsController({
+      getModel: () => state.diagnostics,
+      setModel: (value) => { state.diagnostics = value; },
+      actions: () => actions,
+      render: renderCurrentPage,
+      route: () => state.route,
+      authorized: () => state.authorized && can('diagnostics.read'),
+      message: setMessage,
+      errorMessage,
+      id,
+      download: (name, text, type = 'application/json;charset=utf-8') => downloadTextFile(name, text, type),
+      copy: async (text) => {
+        if (!navigator.clipboard?.writeText) throw new Error('Буфер обмена недоступен в этом браузере.');
+        await navigator.clipboard.writeText(text);
+      },
+    });
+  }
+  return diagnosticsController;
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
@@ -3238,6 +3277,7 @@ async function handleAction(action, target) {
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
   if (action.startsWith('voice-')) return getVoiceResearchController().handle(action, target);
   if (action.startsWith('safety-')) return getSafetyModerationController().handle(action, target);
+  if (action.startsWith('diagnostics-')) return getDiagnosticsController().handle(action, target);
   if (action === 'load-plus-control' || action === 'apply-plus-control-filter') {
     return runBusy(() => loadPlusControl(false), 'Plus Control Center пересчитан на сервере.');
   }
@@ -4316,7 +4356,7 @@ export function setAuthState(auth) {
     state.preview = null;
     state.message = '';
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
-    state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+    state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {}, operationKeys: {} };
     state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
     state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
     state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
@@ -4330,11 +4370,12 @@ export function setAuthState(auth) {
     state.betaTesters = { state: 'idle', items: [], pending: null, error: '', truncated: false };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
-  if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {} };
+  if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {}, operationKeys: {} };
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
   if (!state.authorized || (!can('application.config.write') && !can('money.read'))) state.paywallAb = { status: 'idle', workspace: null, draft: null, preview: null, rangeDays: 28, includeDev: false, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+  if (!state.authorized || !can('diagnostics.read')) state.diagnostics = createDiagnosticsState();
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, draft: null, editingId: '', cleanupPreview: null, operationKeys: {}, error: '' };
@@ -4363,6 +4404,7 @@ export function setAuthState(auth) {
   maybeLoadPlusControl();
   getVoiceResearchController().maybeLoad();
   getSafetyModerationController().maybeLoad();
+  getDiagnosticsController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
@@ -4372,6 +4414,7 @@ export function renderRoute(route, capabilityId = '') {
   state.selectedCapabilityId = capability && (capability.route === state.route || capability.nativeRoute === state.route) ? capability.id : '';
   if (state.route === 'voice-research') getVoiceResearchController().selectCapability(capability?.id || capabilityId);
   if (state.route === 'safety-moderation') getSafetyModerationController().selectCapability(capability?.id || capabilityId);
+  if (state.route === 'diagnostics') getDiagnosticsController().selectCapability(capability?.id || capabilityId);
   if (state.route === 'money' && ['premium', 'vip', 'plus-radar'].includes(capability?.id)) {
     const section = capability.id === 'plus-radar' ? 'radar' : capability.id;
     const view = section === 'radar' ? 'radar' : 'accounts';
@@ -4392,6 +4435,7 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadPlusControl();
   getVoiceResearchController().maybeLoad();
   getSafetyModerationController().maybeLoad();
+  getDiagnosticsController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
@@ -4413,6 +4457,10 @@ export function initAdminUi() {
     }
     if (event.target instanceof HTMLSelectElement && event.target.hasAttribute('data-safety-mobile-view')) {
       void getSafetyModerationController().selectMobileView(event.target.value);
+      return;
+    }
+    if (event.target instanceof HTMLSelectElement && event.target.hasAttribute('data-diagnostics-mobile-view')) {
+      void getDiagnosticsController().selectMobileView(event.target.value);
       return;
     }
     if (event.target instanceof HTMLInputElement && event.target.hasAttribute('data-safety-select')) {

@@ -143,6 +143,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const generateDailyBriefingCallable = httpsCallable(functionsUs, 'adminGenerateDailyDigest');
   const listReportQueueCallable = httpsCallable(functionsUs, 'adminListReportQueue');
   const updateReportStatusCallable = httpsCallable(functionsUs, 'adminUpdateReportStatus');
+  const listAppHealthCallable = httpsCallable(functionsUs, 'adminListAppHealth');
+  const listAppActivityCallable = httpsCallable(functionsUs, 'adminListAppActivity');
+  const getAppHealthDetailCallable = httpsCallable(functionsUs, 'adminGetAppHealthDetail');
+  const exportAppHealthCallable = httpsCallable(functionsUs, 'adminExportAppHealth');
+  const listDiagnosticsArchiveCallable = httpsCallable(functionsUs, 'adminListDiagnosticsArchive');
+  const getDiagnosticsArchiveDetailCallable = httpsCallable(functionsUs, 'adminGetDiagnosticsArchiveDetail');
   const draftReportReplyCallable = httpsCallable(functionsUs, 'adminDraftReportReply');
   const sendReportReplyCallable = httpsCallable(functionsUs, 'adminReplyToReport');
   const listAuditLogCallable = httpsCallable(functionsUs, 'adminListAuditLog');
@@ -272,6 +278,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
     generateDailyBriefing: async () => unwrap(await generateDailyBriefingCallable({})),
     listReportQueue: async (input) => unwrap(await listReportQueueCallable(input)),
     updateReportStatus: async (input) => unwrap(await updateReportStatusCallable(input)),
+    listAppHealth: async (input) => unwrap(await listAppHealthCallable(input)),
+    listAppActivity: async (input) => unwrap(await listAppActivityCallable(input)),
+    getAppHealthDetail: async (input) => unwrap(await getAppHealthDetailCallable(input)),
+    exportAppHealth: async (input) => unwrap(await exportAppHealthCallable(input)),
+    listDiagnosticsArchive: async (input) => unwrap(await listDiagnosticsArchiveCallable(input)),
+    getDiagnosticsArchiveDetail: async (input) => unwrap(await getDiagnosticsArchiveDetailCallable(input)),
     draftReportReply: async (input) => unwrap(await draftReportReplyCallable(input)),
     sendReportReply: async (input) => unwrap(await sendReportReplyCallable(input)),
     listAuditLog: async (input) => unwrap(await listAuditLogCallable(input)),

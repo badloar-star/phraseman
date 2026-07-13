@@ -103,6 +103,9 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   'promo-codes': 'money',
   audit: 'diagnostics',
   'ops-log': 'diagnostics',
+  'app-health': 'diagnostics',
+  'archive': 'diagnostics',
+  'changelog-0608': 'diagnostics',
 });
 
 const NATIVE_PAGE_HASHES = new Set([

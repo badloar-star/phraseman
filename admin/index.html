@@ -32876,7 +32876,7 @@
 
   let _archiveAll = [];
 
-  window.loadArchive = async function() {
+  window.loadArchive = async () => {
     window._archiveLoaded = true;
     const list = document.getElementById('ar-list');
     list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
@@ -33284,7 +33284,7 @@
   window._appHealthLastDoc = null;
   window._appHealthHasMore = false;
   const APPHEALTH_PAGE = 500;
-  window.loadAppHealth = async function(force = false, append = false) {
+  window.loadAppHealth = async (force = false, append = false) => {
     window._appHealthLoaded = true;
     const list = document.getElementById('ah-list');
     if (!append) list.innerHTML = '<div class="reports-empty">Loading App Health...</div>';
@@ -33326,7 +33326,7 @@
   };
   window.loadMoreAppHealth = function() { return loadAppHealth(false, true); };
 
-  window.loadAppActivity = async function(force = false) {
+  window.loadAppActivity = async (force = false) => {
     const list = document.getElementById('ah-activity-list');
     if (!list) return;
     if (!force && _appActivityAll.length && Date.now() - _appActivityLoadedAt < 60_000) {
@@ -33406,7 +33406,7 @@
     }).join('');
   };
 
-  window.markAppHealthStatus = async function(id, status) {
+  window.markAppHealthStatus = async (id, status) => {
     const ok = await showConfirmModal({ title: 'Изменить статус ошибки?', desc: `Запись ${id} получит статус ${status}.`, confirmLabel: 'Изменить статус' });
     if (!ok) return;
     try {
@@ -33461,7 +33461,7 @@
     return [...header, ...body].join('\n');
   }
 
-  window.copyAppHealthForAI = async function() {
+  window.copyAppHealthForAI = async () => {
     const rows = (_appHealthFiltered.length ? _appHealthFiltered : _appHealthAll).slice(0, 250);
     if (!rows.length) { showToast('No App Health rows to copy', 'warn'); return; }
     try {
@@ -33472,7 +33472,7 @@
     }
   };
 
-  window.copyAppHealthRaw = async function() {
+  window.copyAppHealthRaw = async () => {
     const rows = (_appHealthFiltered.length ? _appHealthFiltered : _appHealthAll).slice(0, 250);
     if (!rows.length) { showToast('No App Health rows to copy', 'warn'); return; }
     try {
@@ -40330,6 +40330,92 @@
     window.filterSafetyFlags = function filterSafetyFlagsArchive() { archiveNotice('sf-list', 'safety-flags'); };
     window.renderBanList = function renderBanListArchive() { archiveNotice('bl-list', 'ban-list'); };
   }
+})();
+</script>
+<script>
+/* Native Diagnostics cutover. Live reads and App Health status changes now use
+   protected Admin v2 callables. ?legacyArchive=1 preserves only inert markup. */
+(function installNativeDiagnosticsRedirects() {
+  var nativeTabs = new Set(['app-health', 'archive', 'changelog-0608']);
+  var archiveMode = new URLSearchParams(window.location.search).get('legacyArchive') === '1';
+  var initialTab = decodeURIComponent(String(window.location.hash || '').replace(/^#/, '').split(':').pop() || '');
+
+  function goToDiagnosticsV2(tab, replace) {
+    var target = './v2/index.html#' + encodeURIComponent(String(tab));
+    if (replace) window.location.replace(target);
+    else window.location.href = target;
+  }
+
+  function installSwitchRedirect() {
+    var originalSwitchTab = window.switchTab;
+    if (typeof originalSwitchTab !== 'function' || originalSwitchTab.__nativeDiagnosticsRedirect) return;
+    var wrapped = function switchTabDiagnosticsV2(tab, opts) {
+      if (nativeTabs.has(String(tab || ''))) {
+        goToDiagnosticsV2(tab, false);
+        return;
+      }
+      return originalSwitchTab.call(this, tab, opts);
+    };
+    wrapped.__nativeDiagnosticsRedirect = true;
+    window.switchTab = wrapped;
+  }
+
+  if (!archiveMode) {
+    if (nativeTabs.has(initialTab)) {
+      goToDiagnosticsV2(initialTab, true);
+      return;
+    }
+    installSwitchRedirect();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installSwitchRedirect, { once: true });
+    setTimeout(installSwitchRedirect, 0);
+    setTimeout(installSwitchRedirect, 1000);
+    return;
+  }
+
+  document.documentElement.setAttribute('data-diagnostics-archive', 'true');
+  var style = document.createElement('style');
+  style.textContent = '[data-diagnostics-archive="true"] #tab-app-health :is(button,input,textarea,select),[data-diagnostics-archive="true"] #tab-archive :is(button,input,textarea,select),[data-diagnostics-archive="true"] #tab-changelog-0608 :is(button,input,textarea,select){pointer-events:none!important;opacity:.58!important}';
+  document.head.appendChild(style);
+
+  var archiveNotice = (targetId, hash) => {
+    var target = document.getElementById(targetId);
+    if (target) target.innerHTML = '<div class="reports-empty"><strong>Архивный макет — без прямого доступа к данным.</strong><br>Живые данные доступны только через защищённую серверную проекцию в <a href="./v2/index.html#' + hash + '">Admin v2</a>.</div>';
+  };
+  var appHealthArchiveNotice = () => { archiveNotice('ah-list', 'app-health'); };
+  var appActivityArchiveNotice = () => { archiveNotice('ah-activity-list', 'app-health'); };
+  var reportsArchiveNotice = () => { archiveNotice('ar-list', 'archive'); };
+
+  window.loadAppHealth = async function loadAppHealthDiagnosticsArchive() { appHealthArchiveNotice(); };
+  window.loadAppActivity = async function loadAppActivityDiagnosticsArchive() { appActivityArchiveNotice(); };
+  window.loadArchive = async function loadArchiveDiagnosticsArchive() { reportsArchiveNotice(); };
+  window.markAppHealthStatus = function markAppHealthStatusDiagnosticsV2() { appHealthArchiveNotice(); };
+  window.copyAppHealthForAI = function copyAppHealthForAIDiagnosticsV2() { appHealthArchiveNotice(); };
+  window.copyAppHealthRaw = function copyAppHealthRawDiagnosticsV2() { appHealthArchiveNotice(); };
+
+  /* Deferred module scripts assign the old loaders after this classic script.
+     Accessor guards absorb those assignments before any initial tab load. */
+  var guardedEntryPoints = {
+    loadAppHealth: window.loadAppHealth,
+    loadAppActivity: window.loadAppActivity,
+    loadArchive: window.loadArchive,
+    markAppHealthStatus: window.markAppHealthStatus,
+    copyAppHealthForAI: window.copyAppHealthForAI,
+    copyAppHealthRaw: window.copyAppHealthRaw,
+  };
+  Object.keys(guardedEntryPoints).forEach((name) => {
+    try {
+      Object.defineProperty(window, name, {
+        configurable: true,
+        enumerable: true,
+        get: () => guardedEntryPoints[name],
+        set: () => {},
+      });
+    } catch (error) {
+      window[name] = guardedEntryPoints[name];
+    }
+  });
+  if (initialTab === 'app-health') appHealthArchiveNotice();
+  if (initialTab === 'archive') reportsArchiveNotice();
 })();
 </script>
 </body>

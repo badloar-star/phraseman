@@ -8,7 +8,7 @@ export interface StatsInsightObservation {
   id: string;
   block: StatsInsightBlockKey;
   priority: number;
-  facts: Array<string | number>;
+  facts: (string | number)[];
   allowedClaim: string;
   allowedAction: string | null;
   fallback: Record<Lang, string>;
@@ -64,7 +64,7 @@ export interface StatsInsightsSnapshot {
     arenaWins: number;
     daysActive: number;
   };
-  weakCategories: Array<{ label: string; pct: number }>;
+  weakCategories: { label: string; pct: number }[];
 }
 
 type Localized = Record<Lang, string>;
@@ -185,7 +185,7 @@ const candidate = (
   block: StatsInsightBlockKey,
   id: string,
   priority: number,
-  facts: Array<string | number>,
+  facts: (string | number)[],
   allowedClaim: string,
   allowedAction: string | null,
   fallback: Localized,

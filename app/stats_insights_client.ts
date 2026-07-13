@@ -42,7 +42,7 @@ export interface StatsInsightsBriefing {
   year: { activeDays: number; currentStreak: number; longestStreak: number; bestMonth: string; goalPct: number };
   percentiles: { totalXp: number | null; week: number | null; daily7: number | null };
   lifetime: { words: number; phrases: number; quizzes: number; arenaWins: number; daysActive: number };
-  weakCategories: Array<{ label: string; pct: number }>;
+  weakCategories: { label: string; pct: number }[];
 }
 
 export interface StatsInsightsStored {

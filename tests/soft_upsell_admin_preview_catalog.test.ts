@@ -1,7 +1,7 @@
 import { SOFT_UPSELL_ADMIN_PREVIEWS } from '../components/admin_panel/soft_upsell_preview_catalog';
 
 const EXPECTED = [
-  ['first_lesson', 'first_lesson_success', 1, 'personal_plan'],
+  ['first_lesson', 'first_lesson_success', 1, 'paywall'],
   ['free_lessons_complete', 'free_lessons_complete', 8, 'paywall'],
   ['weekly_review', 'weekly_review', 1, 'paywall'],
   ['second_ai_dialogue', 'dialog_repeat_success', 2, 'paywall'],
@@ -27,6 +27,7 @@ test('uses unique ids and complete visible copy for every preview', () => {
     expect(preview.adminLabel.trim()).not.toBe('');
     expect(preview.adminDescription.trim()).not.toBe('');
     expect(preview.title.trim()).not.toBe('');
+    expect(preview.proof.trim()).not.toBe('');
     expect(preview.body.trim()).not.toBe('');
     expect(preview.ctaLabel.trim()).not.toBe('');
     expect(preview.opportunity.milestoneId).toBe(
@@ -35,7 +36,8 @@ test('uses unique ids and complete visible copy for every preview', () => {
   }
 });
 
-test('keeps the first preview on personal plan and every other preview on Plus', () => {
-  expect(SOFT_UPSELL_ADMIN_PREVIEWS[0].ctaLabel).toBe('Построить мой путь');
-  expect(SOFT_UPSELL_ADMIN_PREVIEWS.slice(1).every(({ ctaLabel }) => ctaLabel === 'Открыть Plus')).toBe(true);
+test('uses context-led CTA copy while every scenario routes to the real paywall', () => {
+  expect(SOFT_UPSELL_ADMIN_PREVIEWS[0].ctaLabel).toBe('Продолжить с моим планом');
+  expect(SOFT_UPSELL_ADMIN_PREVIEWS.every(({ opportunity }) => opportunity.destination === 'paywall')).toBe(true);
+  expect(new Set(SOFT_UPSELL_ADMIN_PREVIEWS.map(({ ctaLabel }) => ctaLabel)).size).toBeGreaterThan(3);
 });

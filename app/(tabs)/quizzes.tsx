@@ -33,6 +33,7 @@ import {
 
 import AddToFlashcard from '../../components/AddToFlashcard';
 import ExplainReportButton from '../../components/ExplainReportButton';
+import LearningSemanticBlock from '../../components/LearningSemanticBlock';
 import SkeletonBlock from '../../components/SkeletonShimmer';
 import { useQuizExplain } from '../use_quiz_explain';
 import BonusXPCard from '../../components/BonusXPCard';
@@ -108,6 +109,7 @@ import {
   quizShareMessageLang,
 } from '../quizzes/results';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from '../quiz_target_gate';
+import { buildQuizExplanationBlocks } from '../explanation_presentation';
 import { quizNavLevelKey } from '../target_storage_keys';
 import { getPersonalPlanQuizCoverage, getPersonalPlanQuizPhrases, getPersonalPlanQuizTaskCopy } from '../personal_plan_quizzes';
 import { buildPersonalPlanQuizMistakeMeta } from '../personal_plan_quiz_mistake_adapter';
@@ -2622,49 +2624,8 @@ function QuizGame({
               const missingReadyExplanation = quizExplain.state === 'ready' && !aiExplanation;
               const unavailable = quizExplain.state === 'unavailable' || missingReadyExplanation;
               const loading = quizExplain.state === 'idle' || quizExplain.state === 'loading';
-              const isBusinessTheme = (themeMode === 'business' || themeMode === 'businessLight');
-              const headerColor = isBusinessTheme ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017');
-              const explainTextColor = isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary;
-              return (
-                <Animated.View style={{
-                  opacity: insertAnim,
-                  transform: [{ scale: insertScale }],
-                  backgroundColor: isBusinessTheme
-                    ? (correct ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)')
-                    : correct
-                    ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
-                    : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
-                  borderRadius: 14,
-                  padding: planQuizId ? 10 : 16,
-                  marginBottom: planQuizId ? 10 : 16,
-                  borderLeftWidth: 4,
-                  borderLeftColor: isBusinessTheme ? (correct ? '#FFFFFF' : '#9A9A9A') : correct ? '#1565C0' : '#F59E0B',
-                }}>
-                  <Text style={{ color: headerColor, fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
-                    {triLang(lang, {
-  ru: 'РАЗБОР',
-  uk: 'ПОЯСНЕННЯ',
-  es: 'EXPLICACIÓN',
-  "pt-BR": 'EXPLICAÇÃO',
-  vi: 'GIẢI THÍCH',
-  id: 'PENJELASAN',
-  tr: 'AÇIKLAMA',
-  pl: 'WYJAŚNIENIE',
-})}
-                  </Text>
-                  {loading ? (
-                    <View style={{ gap: 8 }}>
-                      <SkeletonBlock width="100%" height={14} borderRadius={7} />
-                      <SkeletonBlock width="92%" height={14} borderRadius={7} />
-                      <SkeletonBlock width="78%" height={14} borderRadius={7} />
-                    </View>
-                  ) : unavailable ? (
-                    <View style={{ gap: 10, alignItems: 'flex-start' }}>
-                      <Text
-                        numberOfLines={planQuizId ? 3 : undefined}
-                        style={{ color: explainTextColor, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
-                      >
-                        {triLang(lang, {
+              const retryColor = correct ? t.correct : t.accent;
+              const unavailableText = triLang(lang, {
   ru: 'Разбор не пришёл. Попробуй ещё раз.',
   uk: 'Пояснення не завантажилося. Спробуй ще раз.',
   es: 'No llegó la explicación. Inténtalo otra vez.',
@@ -2673,8 +2634,40 @@ function QuizGame({
   id: 'Penjelasan belum muncul. Coba lagi.',
   tr: 'Açıklama gelmedi. Tekrar dene.',
   pl: 'Wyjaśnienie się nie pojawiło. Spróbuj ponownie.',
-})}
-                      </Text>
+});
+              const explanationBlocks = buildQuizExplanationBlocks({
+                lang,
+                correct,
+                pickedAnswer: pickedOptionText,
+                correctAnswer: quizCorrectEn,
+                explanation: unavailable ? unavailableText : aiExplanation,
+              });
+              return (
+                <Animated.View style={{
+                  opacity: insertAnim,
+                  transform: [{ scale: insertScale }],
+                  backgroundColor: t.bgCard,
+                  borderRadius: 8,
+                  padding: planQuizId ? 8 : 10,
+                  marginBottom: planQuizId ? 10 : 16,
+                  borderWidth: 0,
+                  gap: 8,
+                }}>
+                  {loading ? (
+                    <View style={{ gap: 8 }}>
+                      <SkeletonBlock width="100%" height={14} borderRadius={7} />
+                      <SkeletonBlock width="92%" height={14} borderRadius={7} />
+                      <SkeletonBlock width="78%" height={14} borderRadius={7} />
+                    </View>
+                  ) : unavailable ? (
+                    <View style={{ gap: 10, alignItems: 'flex-start' }}>
+                      {explanationBlocks.map((block, blockIdx) => (
+                        <LearningSemanticBlock
+                          key={`${block.tone}-${blockIdx}`}
+                          block={block}
+                          compact={!!planQuizId}
+                        />
+                      ))}
                       <TouchableOpacity
                         testID="quiz-explain-retry-button"
                         activeOpacity={0.76}
@@ -2685,7 +2678,7 @@ function QuizGame({
                           borderColor: 'transparent',
                           borderRadius: 8,
                           borderWidth: 0,
-                          backgroundColor: glassFill(headerColor, 0.14),
+                          backgroundColor: glassFill(retryColor, 0.14),
                           flexDirection: 'row',
                           gap: 6,
                           minHeight: 34,
@@ -2693,8 +2686,8 @@ function QuizGame({
                           paddingVertical: 8,
                         }}
                       >
-                        <Ionicons name="refresh" size={16} color={headerColor} />
-                        <Text style={{ color: headerColor, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+                        <Ionicons name="refresh" size={16} color={retryColor} />
+                        <Text style={{ color: retryColor, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
                           {triLang(lang, {
   ru: 'Попробовать снова',
   uk: 'Спробувати знову',
@@ -2710,12 +2703,13 @@ function QuizGame({
                     </View>
                   ) : (
                     <>
-                      <Text
-                        numberOfLines={planQuizId ? 2 : undefined}
-                        style={{ color: explainTextColor, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
-                      >
-                        {aiExplanation}
-                      </Text>
+                      {explanationBlocks.map((block, blockIdx) => (
+                        <LearningSemanticBlock
+                          key={`${block.tone}-${blockIdx}`}
+                          block={block}
+                          compact={!!planQuizId}
+                        />
+                      ))}
                       {!planQuizId && (
                         <ExplainReportButton
                           kind="quiz"
@@ -2747,44 +2741,34 @@ function QuizGame({
                     : current.explanations;
             const explanation = explanationsArr[explanationIdx];
             if (!explanation) return null;
+            const pickedOptionText = chosen !== null ? current.choices[chosen] : (typedOk === true ? quizCorrectEn : '');
+            const explanationBlocks = buildQuizExplanationBlocks({
+              lang,
+              correct,
+              pickedAnswer: pickedOptionText,
+              correctAnswer: quizCorrectEn,
+              explanation,
+            });
             return (
               <Animated.View style={{
                 opacity: insertAnim,
                 transform: [{ scale: insertScale }],
-              backgroundColor: isCompassTheme
-                  ? COMPASS_RICH.charcoalRaised
-                  : (themeMode === 'business' || themeMode === 'businessLight')
-                  ? (correct ? t.correctBg : t.wrongBg)
-                  : correct
-                  ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
-                  : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
-                borderRadius: isCompassTheme ? 9 : 14,
-                padding: planQuizId ? 10 : 16,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 8 : 8,
+                padding: planQuizId ? 8 : 10,
                 marginBottom: planQuizId ? 10 : 16,
-                borderLeftWidth: 4,
-                borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : (themeMode === 'business' || themeMode === 'businessLight') ? (correct ? t.accent : t.textMuted) : correct ? '#1565C0' : '#F59E0B',
+                gap: 8,
                 borderWidth: 0,
                 borderColor: 'transparent',
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}>
-                <Text style={{ color: (themeMode === 'business' || themeMode === 'businessLight') ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
-                  {triLang(lang, {
-  ru: 'РАЗБОР',
-  uk: 'ПОЯСНЕННЯ',
-  es: 'EXPLICACIÓN',
-  "pt-BR": 'EXPLICAÇÃO',
-  vi: 'GIẢI THÍCH',
-  id: 'PENJELASAN',
-  tr: 'AÇIKLAMA',
-  pl: 'WYJAŚNIENIE',
-})}
-                </Text>
-                <Text
-                  numberOfLines={planQuizId ? 2 : undefined}
-                  style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
-                >
-                  {explanation}
-                </Text>
+                {explanationBlocks.map((block, blockIdx) => (
+                  <LearningSemanticBlock
+                    key={`${block.tone}-${blockIdx}`}
+                    block={block}
+                    compact={!!planQuizId}
+                  />
+                ))}
               </Animated.View>
             );
           })()}

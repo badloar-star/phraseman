@@ -40,13 +40,13 @@ import {
   resolveExplainDisplay,
   loadingLineForLang,
   asLang,
-  splitExplainParagraphs,
-  splitExplainSegments,
   type ExplainRequestStatus,
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
 import { useStudyTarget } from './StudyTargetContext';
+import LearningSemanticBlock from './LearningSemanticBlock';
+import { buildExplainSheetBlocks } from '../app/explanation_presentation';
 
 interface Props {
   visible: boolean;
@@ -79,6 +79,17 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
   const state = useExplainRequest({ phraseEn, phraseMeaning, lang: effLang, studyTarget }, visible);
   const display = resolveExplainDisplay(state, effLang, phraseMeaning);
   const explainFreeLimitReached = !state.loading && state.status === 'exhausted';
+  const semanticBlocks = React.useMemo(
+    () => buildExplainSheetBlocks({
+      lang: asLang(effLang),
+      phraseEn,
+      explanation: display.showSkeleton || explainFreeLimitReached ? '' : display.text,
+      degraded: display.degraded,
+    }),
+    [effLang, phraseEn, display.showSkeleton, display.text, display.degraded, explainFreeLimitReached],
+  );
+  const phraseBlock = semanticBlocks[0];
+  const bodyBlocks = phraseBlock ? semanticBlocks.slice(1) : semanticBlocks;
 
   // ── Слайд снизу + fade бэкдропа (legacy Animated, как в NoEnergyModal) ─────
   const translateY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
@@ -187,16 +198,11 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
             </Pressable>
           </View>
 
-          {/* Сама фраза */}
-          <View style={[styles.phraseBlock, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
-            <Text style={[styles.phraseText, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
-              {phraseEn}
-            </Text>
-          </View>
+          {phraseBlock ? (
+            <LearningSemanticBlock block={phraseBlock} style={styles.phraseBlock} />
+          ) : null}
 
-          {/* Тело: скелетон во время генерации, иначе абзацы с подсветкой английского.
-              Английские фрагменты ("am", "I am ready") красятся акцентом — текст «дышит»
-              и глаз сразу выхватывает, какие слова разбираются. */}
+          {/* Тело: скелетон во время генерации, иначе смысловые блоки без перекраски свободной латиницы. */}
           <ScrollView
             style={styles.bodyScroll}
             contentContainerStyle={styles.bodyScrollContent}
@@ -230,22 +236,11 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
               </View>
             ) : (
               <>
-                {splitExplainParagraphs(display.text).map((paragraph, pIdx) => (
-                  <Text
-                    key={`p-${pIdx}`}
-                    style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}
-                  >
-                    {splitExplainSegments(paragraph).map((seg, sIdx) => (
-                      seg.en ? (
-                        <Text key={`s-${sIdx}`} style={[styles.bodyEn, { color: t.accent }]}>
-                          {seg.text}
-                        </Text>
-                      ) : (
-                        <Text key={`s-${sIdx}`}>{seg.text}</Text>
-                      )
-                    ))}
-                  </Text>
-                ))}
+                <View style={styles.semanticBlocks}>
+                  {bodyBlocks.map((block, idx) => (
+                    <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
+                  ))}
+                </View>
                 {display.degraded ? (
                   <Pressable
                     onPress={() => {
@@ -354,15 +349,7 @@ const styles = StyleSheet.create({
     opacity: 0.78,
   },
   phraseBlock: {
-    borderRadius: 16,
-    borderWidth: 0,
-    paddingVertical: 13,
-    paddingHorizontal: 14,
     marginBottom: 12,
-  },
-  phraseText: {
-    fontWeight: '800',
-    lineHeight: 26,
   },
   bodyScroll: {
     maxHeight: 400,
@@ -370,13 +357,8 @@ const styles = StyleSheet.create({
   bodyScrollContent: {
     paddingBottom: 8,
   },
-  bodyText: {
-    fontWeight: '500',
-    lineHeight: 26,
-    marginBottom: 12,
-  },
-  bodyEn: {
-    fontWeight: '800',
+  semanticBlocks: {
+    gap: 8,
   },
   retryBtn: {
     alignSelf: 'center',

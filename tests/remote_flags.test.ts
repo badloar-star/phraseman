@@ -62,6 +62,7 @@ describe('remote_flags', () => {
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(true);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(false);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
       expect(isPaywallTimersEnabled()).toBe(true);
       expect(getStreakFreezeCostShards()).toBe(10);
@@ -75,6 +76,14 @@ describe('remote_flags', () => {
   });
 
   describe('snapshot override', () => {
+    it('treats weekly review V2 as a boolean kill-switch, not a client rollout bucket', () => {
+      applyRemoteConfigSnapshot({
+        bools: { weekly_review_ai_v2_enabled: true },
+        numbers: { weekly_review_ai_v2_enabled_rollout_pct: 0 },
+      });
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
+    });
+
     it('applies numeric overrides', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12, free_daily_quiz_limit: 10 } });
       expect(getFreeLessonLimit()).toBe(12);

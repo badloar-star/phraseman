@@ -2,9 +2,11 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Apply the approved compact-intro semantic card layout to every mistake breakdown and simple-explanation surface without changing requests, caches, limits, analytics, or navigation.
+**Goal:** Apply the approved compact-intro semantic card layout to mistake-breakdown and quiz-answer explanation surfaces without changing requests, caches, limits, analytics, or navigation.
 
-**Architecture:** A pure presentation adapter converts existing unstructured explanation text plus explicit user/target answers into ordered semantic blocks. A shared React Native primitive renders those blocks with theme-derived tonal backgrounds, a 4 px semantic stripe, neutral readable text, and no borders; existing lesson, sheet, quiz, dormant ELI5, and intro renderers consume it.
+> **2026-07-13 user correction:** `ExplainSheet` / «Простыми словами» is intentionally excluded from the semantic-cloud redesign. It should stay a simple explanatory sheet: phrase block plus plain paragraphs. Do not route it through `LearningSemanticBlock`, `buildSimpleExplanationBlocks`, or any “Почему / Запомни / Правильно” block scheme.
+
+**Architecture:** A pure presentation adapter converts existing unstructured explanation text plus explicit user/target answers into ordered semantic blocks. A shared React Native primitive renders those blocks with theme-derived tonal backgrounds, a 4 px semantic stripe, neutral readable text, and no borders; existing lesson mistake, quiz, dormant ELI5, and intro renderers consume it. `ExplainSheet` remains outside this adapter.
 
 **Tech Stack:** React Native, Expo, TypeScript, Jest/ts-jest, existing `ThemeContext`, `Ionicons`, existing localization helpers.
 
@@ -15,13 +17,13 @@
 - Create `app/explanation_presentation.ts`: pure block model, paragraph preservation, explicit remember-prefix handling, and conservative duplicate-target removal.
 - Create `components/LearningSemanticBlock.tsx`: shared borderless semantic surface and ordered block renderer.
 - Modify `components/AiMistakeCard.tsx`: replace green prose card with explicit user/why/correct blocks while preserving states and report/retry behavior.
-- Modify `components/ExplainSheet.tsx`: render the phrase and explanation paragraphs through the shared blocks; remove accent-colored free prose.
+- Preserve `components/ExplainSheet.tsx` as a plain simple-explanation sheet; add tests that it does not consume the shared semantic block renderer.
 - Modify `components/MistakeEli5Modal.tsx`: use the shared presentation for ready content without mounting the dormant modal anywhere.
 - Modify `app/(tabs)/quizzes.tsx`: use the same renderer for thematic AI and static quiz explanations.
 - Modify `app/lesson_intro_rich.tsx`: route existing rich intro lines through the common primitive with visual override values that preserve the current intro appearance.
 - Create `tests/explanation_presentation.test.ts`: unit tests for ordering, paragraphs, explicit labels, and duplicate protection.
 - Create `tests/semantic_explanation_ui_contract.test.ts`: source contracts for all surfaces, borderless styling, and theme-safe long text.
-- Modify `tests/explain_sheet.test.ts`: replace the obsolete accent-prose assertion with the semantic renderer contract.
+- Modify `tests/explain_sheet.test.ts`: keep the plain paragraph-rendering contract for `ExplainSheet` and guard it from semantic renderer drift.
 - Modify `tests/quiz_explain_ai_only_contract.test.ts`: keep AI-only behavior while asserting the new renderer integration.
 - Modify `tests/ai_mistake_explain_client_contract.test.ts`: assert semantic cards without changing the callable contract.
 
@@ -36,7 +38,7 @@
 ```ts
 import {
   buildMistakeExplanationBlocks,
-  buildSimpleExplanationBlocks,
+  buildQuizExplanationBlocks,
   stripDuplicateTargetTail,
 } from '../app/explanation_presentation';
 
@@ -85,13 +87,15 @@ describe('explanation presentation', () => {
     )).toBe('Похожий пример: They worked more slowly yesterday.');
   });
 
-  it('keeps simple-explanation paragraphs in their original order', () => {
-    expect(buildSimpleExplanationBlocks({
-      phrase: 'They work more slowly now.',
+  it('keeps quiz explanations semantic without touching ExplainSheet', () => {
+    expect(buildQuizExplanationBlocks({
+      lang: 'ru',
+      correct: false,
+      pickedAnswer: 'a slower car',
+      correctAnswer: 'They work more slowly now.',
       explanation: 'Сначала смысл.\n\nПотом деталь.',
-      labels,
     }).map((block) => block.text)).toEqual([
-      'They work more slowly now.',
+      'a slower car',
       'Сначала смысл.',
       'Потом деталь.',
     ]);
@@ -171,7 +175,7 @@ export function stripDuplicateTargetTail(explanation: string, targetAnswer?: str
 }
 ```
 
-Implement `buildMistakeExplanationBlocks` so it trims explicit answers, adds the wrong block only when `userAnswer` is non-empty, calls `stripDuplicateTargetTail`, preserves every remaining paragraph, recognizes only `^<rememberPrefix>\s*[:—-]\s*`, labels only the first normal explanation block as `labels.why`, and ends with the correct block when `targetAnswer` is non-empty. Implement `buildSimpleExplanationBlocks` as one accent phrase block when `phrase.trim()` is non-empty, followed by the untouched explanation paragraphs as insight blocks, with `labels.why` only on the first explanation block. Both builders assign stable ids from the block role and paragraph index.
+Implement `buildMistakeExplanationBlocks` so it trims explicit answers, adds the wrong block only when `userAnswer` is non-empty, calls `stripDuplicateTargetTail`, preserves every remaining paragraph, recognizes only `^<rememberPrefix>\s*[:—-]\s*`, labels only the first normal explanation block as `labels.why`, and ends with the correct block when `targetAnswer` is non-empty. Implement `buildQuizExplanationBlocks` for quiz explanations with the same semantic tones. Do not implement a builder for `ExplainSheet`; that sheet stays plain. Builders assign stable ids from the block role and paragraph index.
 
 - [ ] **Step 4: Run the adapter test and verify it passes**
 
@@ -294,7 +298,7 @@ git commit -m "feat: add borderless learning semantic blocks"
 
 - [ ] **Step 1: Extend the failing contract**
 
-Add assertions that `AiMistakeCard` imports and calls `buildMistakeExplanationBlocks`, renders `LearningSemanticBlock` for each ready block, uses `t.textPrimary` for block text, and has `borderWidth: 0`. Assert that `MistakeEli5Modal` imports `buildSimpleExplanationBlocks` and does not gain a new call site.
+Add assertions that `AiMistakeCard` imports and calls `buildMistakeExplanationBlocks`, renders `LearningSemanticBlock` for each ready block, uses `t.textPrimary` for block text, and has `borderWidth: 0`. Assert that `MistakeEli5Modal` uses the same mistake/breakdown presentation internally and does not gain a new call site.
 
 - [ ] **Step 2: Run the contract and verify it fails**
 
@@ -318,7 +322,7 @@ Keep loading, limit, error fallback, report, and retry branches unchanged. Remov
 
 - [ ] **Step 4: Wire the dormant `MistakeEli5Modal` ready branch**
 
-Use `buildSimpleExplanationBlocks` with `phrase: ''` so only explanation paragraphs render. Render the ready text through `LearningSemanticBlock`; keep the modal unreferenced and preserve loading/error/retry/close behavior.
+Use the shared mistake/breakdown presentation with no user answer so only explanation paragraphs render. Render the ready text through `LearningSemanticBlock`; keep the modal unreferenced and preserve loading/error/retry/close behavior.
 
 - [ ] **Step 5: Run the focused tests**
 
@@ -335,37 +339,27 @@ git add -- components/AiMistakeCard.tsx components/MistakeEli5Modal.tsx tests/ai
 git commit -m "feat: restyle lesson mistake explanations"
 ```
 
-### Task 4: Shared «Explain simply» sheet
+### Task 4: Explain simply sheet boundary
 
 **Files:**
 - Modify: `components/ExplainSheet.tsx`
 - Modify: `tests/explain_sheet.test.ts`
 
-- [ ] **Step 1: Replace the obsolete failing assertion**
+- [ ] **Step 1: Preserve the plain sheet contract**
 
-Update the body-rendering test to require `buildSimpleExplanationBlocks`, `LearningSemanticBlock`, and `color: t.textPrimary`. Assert the file no longer imports `splitExplainSegments` and no longer contains `bodyEn`.
+Update the body-rendering tests to require `splitExplainParagraphs(display.text)`, `splitExplainSegments`, and the existing `bodyEn` highlighting for English segments. Add a source contract that `ExplainSheet` does not import `LearningSemanticBlock` and does not call any semantic explanation builder.
 
-- [ ] **Step 2: Run the sheet test and verify the new assertion fails**
+- [ ] **Step 2: Run the sheet test and verify the boundary**
 
 ```powershell
 npx jest --runTestsByPath tests/explain_sheet.test.ts --no-cache --runInBand
 ```
 
-Expected: FAIL because `ExplainSheet` still renders accent-colored free prose.
+Expected after the correction: existing unrelated failures may remain, but the `ExplainSheet` body contract must assert plain paragraphs rather than semantic cards.
 
-- [ ] **Step 3: Implement the semantic sheet body**
+- [ ] **Step 3: Keep the sheet implementation plain**
 
-Keep `resolveExplainDisplay` and loading/limit/degraded branches. Memoize:
-
-```ts
-const explanationBlocks = buildSimpleExplanationBlocks({
-  phrase: phraseEn,
-  explanation: display.text,
-  labels: explanationLabels,
-});
-```
-
-Remove the standalone `phraseBlock` and render the phrase as the first accent block inside the existing scroll view. Render every free-prose block with `t.textPrimary`; make explicit phrase text bold. Keep `ExplainReportButton`, footer, close button, animation, analytics, credit callback, retry, and all existing `testID` values.
+Keep `resolveExplainDisplay`, loading/limit/degraded branches, the standalone phrase block, paragraph rendering, `ExplainReportButton`, footer, close button, animation, analytics, credit callback, retry, and all existing `testID` values. Do not add “Почему / Запомни / Правильно” semantic blocks to this surface.
 
 - [ ] **Step 4: Run sheet and request tests**
 
@@ -373,13 +367,13 @@ Remove the standalone `phraseBlock` and render the phrase as the first accent bl
 npx jest --runTestsByPath tests/explain_sheet.test.ts --no-cache --runInBand
 ```
 
-Expected: PASS; this file already covers `resolveExplainDisplay`, paragraph splitting, and the sheet source contract.
+Expected: any remaining failures must be unrelated baseline failures; the simple-sheet source contract should pass.
 
 - [ ] **Step 5: Commit the sheet**
 
 ```powershell
 git add -- components/ExplainSheet.tsx tests/explain_sheet.test.ts
-git commit -m "feat: restyle simple explanations"
+git commit -m "fix: keep simple explanations plain"
 ```
 
 ### Task 5: Thematic and static quiz explanations

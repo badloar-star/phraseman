@@ -36,6 +36,7 @@ import type { Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { useDevForceLowEnd } from '../hooks/dev_force_low_end';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { ConstellationMatchPlayer, ConstellationStar } from './types/constellations';
 import { allMapHexes, hexKey, parseHexKey, ringOf, type ConstellationRing, type Hex } from './constellations_hex';
 import { starName } from './constellation_star_names';

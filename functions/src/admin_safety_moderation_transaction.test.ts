@@ -122,6 +122,30 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect((await db.collection('admin_safety_moderation_history').doc(String(changed.historyId)).get()).data()).toMatchObject({ restoredBy: 'admin-one', restoreHistoryId: expect.any(String) });
   });
 
+  test('restores safety disposition fields exactly after a reviewed signal is undone', async () => {
+    const db = admin.firestore();
+    const flag = { uid: 'user-flag-restore', category: 'self_harm', userText: 'redacted test context', createdAtMs: 100 };
+    await db.collection('safety_flags').doc('flag-restore').set(flag);
+    const change = await previewThroughCallable({
+      action: 'safety_set_disposition', targetId: 'flag-restore', reason: 'Reviewed safety signal', requestId: 'preview-flag-change',
+      payload: { handled: true, disposition: 'false_positive', note: 'Checked context' },
+    });
+    const changed = await adminApplySafetyModerationMutation.run(request({
+      previewId: change.previewId, confirmation: change.preview.confirmation, reason: change.preview.reason,
+      requestId: 'apply-flag-change', idempotencyKey: 'operation-flag-change',
+    })) as unknown as Row;
+    const restore = await previewThroughCallable({
+      action: 'restore_operation', targetId: String(changed.historyId), reason: 'Undo safety disposition', requestId: 'preview-flag-restore', payload: { operationId: changed.historyId },
+    });
+    await adminApplySafetyModerationMutation.run(request({
+      previewId: restore.previewId, confirmation: restore.preview.confirmation, reason: restore.preview.reason,
+      requestId: 'apply-flag-restore', idempotencyKey: 'operation-flag-restore',
+    }));
+    const restored = (await db.collection('safety_flags').doc('flag-restore').get()).data();
+    expect(restored).toMatchObject(flag);
+    for (const field of ['handled', 'disposition', 'handlingNote', 'handledBy', 'handledAtMs', 'handledAt']) expect(restored).not.toHaveProperty(field);
+  });
+
   test('persists bulk progress in resumable chunks and completes idempotently', async () => {
     const db = admin.firestore();
     const targetIds = Array.from({ length: 205 }, (_, index) => `bulk-report-${index}`);

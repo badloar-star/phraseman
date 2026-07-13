@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
-import { createHash } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
@@ -69,6 +69,35 @@ const SUPPORTED_LANGS: SupportedLang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id',
 // The five stats cards we write notes for. Keep in sync with the client.
 const BLOCK_KEYS = ['balance', 'rhythm', 'year', 'percentiles', 'lifetime'] as const;
 type BlockKey = (typeof BLOCK_KEYS)[number];
+const VERIFIED_BLOCK_KEYS = ['week', 'longTerm', 'comparison', 'lifetime'] as const;
+type VerifiedBlockKey = (typeof VERIFIED_BLOCK_KEYS)[number];
+const VERIFIED_SCHEMA_VERSION = 2;
+const LEGACY_SCHEMA_VERSION = 1;
+const GENERATION_LEASE_MS = 2 * 60 * 1000;
+
+interface VerifiedObservation {
+  id: string;
+  block: VerifiedBlockKey;
+  priority: number;
+  facts: Array<string | number>;
+  allowedClaim: string;
+  allowedAction: string | null;
+}
+
+interface VerifiedAnalysis {
+  fingerprint: string;
+  generatedFromCompleteSnapshot: true;
+  blocks: Record<VerifiedBlockKey, VerifiedObservation>;
+}
+interface VerifiedRequest {
+  analysis: VerifiedAnalysis;
+  lang: SupportedLang;
+  studyTarget: 'en' | 'fr';
+}
+
+type VerifiedNotes = Record<VerifiedBlockKey, string>;
+type VerifiedObservationIds = Record<VerifiedBlockKey, string>;
+interface VerifiedResult { notes: VerifiedNotes; observationIds: VerifiedObservationIds }
 
 // ── Briefing shape (mirrors app/stats_insights_briefing.ts) ──────────────────
 
@@ -209,6 +238,83 @@ function sanitizeBriefing(raw: unknown): StatsInsightsBriefing {
     },
     weakCategories,
   };
+}
+
+function invalidAnalysis(): never {
+  throw new HttpsError('failed-precondition', 'stats_insights_invalid_analysis');
+}
+
+function isPlainRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function hasExactKeys(value: Record<string, unknown>, expected: readonly string[]): boolean {
+  const keys = Object.keys(value).sort();
+  return keys.length === expected.length && keys.every((key, index) => key === [...expected].sort()[index]);
+}
+
+function requiredBoundedString(value: unknown, max: number): string {
+  if (typeof value !== 'string') invalidAnalysis();
+  const clean = value.trim();
+  if (!clean || clean.length > max) invalidAnalysis();
+  return clean;
+}
+
+function sanitizeVerifiedAnalysis(raw: unknown): VerifiedAnalysis {
+  if (!isPlainRecord(raw) || !hasExactKeys(raw, ['fingerprint', 'generatedFromCompleteSnapshot', 'blocks'])) invalidAnalysis();
+  if (raw.generatedFromCompleteSnapshot !== true || !isPlainRecord(raw.blocks) || !hasExactKeys(raw.blocks, VERIFIED_BLOCK_KEYS)) invalidAnalysis();
+  const blocks = {} as Record<VerifiedBlockKey, VerifiedObservation>;
+  const observationIds = new Set<string>();
+  const normalizedClaims = new Set<string>();
+  for (const key of VERIFIED_BLOCK_KEYS) {
+    const value = raw.blocks[key];
+    if (!isPlainRecord(value) || !hasExactKeys(value, ['id', 'block', 'priority', 'facts', 'allowedClaim', 'allowedAction', 'fallback'])) invalidAnalysis();
+    if (value.block !== key || !Number.isSafeInteger(value.priority) || Number(value.priority) < -10000 || Number(value.priority) > 10000) invalidAnalysis();
+    if (!Array.isArray(value.facts) || value.facts.length > 12) invalidAnalysis();
+    const facts = value.facts.map((fact) => {
+      if (typeof fact === 'number') {
+        if (!Number.isFinite(fact) || Math.abs(fact) > 1_000_000_000) invalidAnalysis();
+        return fact;
+      }
+      return requiredBoundedString(fact, 160);
+    });
+    let allowedAction: string | null = null;
+    if (value.allowedAction !== null) allowedAction = requiredBoundedString(value.allowedAction, 500);
+    const id = requiredBoundedString(value.id, 128);
+    const allowedClaim = requiredBoundedString(value.allowedClaim, 1000);
+    const normalizedClaim = allowedClaim.toLocaleLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+    if (!id.startsWith(`${key}.`) || observationIds.has(id) || !normalizedClaim || normalizedClaims.has(normalizedClaim)) invalidAnalysis();
+    observationIds.add(id);
+    normalizedClaims.add(normalizedClaim);
+    blocks[key] = {
+      id,
+      block: key,
+      priority: Number(value.priority),
+      facts,
+      allowedClaim,
+      allowedAction,
+    };
+  }
+  return {
+    fingerprint: requiredBoundedString(raw.fingerprint, 128),
+    generatedFromCompleteSnapshot: true,
+    blocks,
+  };
+}
+
+function sanitizeVerifiedRequest(raw: unknown): VerifiedRequest {
+  if (!isPlainRecord(raw) || !hasExactKeys(raw, ['analysis', 'lang', 'studyTarget'])) invalidAnalysis();
+  if (typeof raw.lang !== 'string' || !SUPPORTED_LANGS.includes(raw.lang as SupportedLang)) invalidAnalysis();
+  if (raw.studyTarget !== 'en' && raw.studyTarget !== 'fr') invalidAnalysis();
+  return {
+    analysis: sanitizeVerifiedAnalysis(raw.analysis),
+    lang: raw.lang as SupportedLang,
+    studyTarget: raw.studyTarget,
+  };
+}
+
+function verifiedAnalysisHashForReplay(analysis: VerifiedAnalysis): string {
+  return createHash('sha256').update(JSON.stringify(analysis)).digest('hex');
 }
 
 /**
@@ -444,6 +550,146 @@ OUTPUT FORMAT — respond with STRICT JSON only, no markdown, matching exactly:
 Every value must be a non-empty string in ${langName}.`;
 }
 
+type GenerationSchemaVersion = 1 | 2;
+type GenerationDecision =
+  | { kind: 'reserve'; leaseToken: string; leaseExpiresAtMs: number }
+  | { kind: 'in_progress' }
+  | { kind: 'not_ready'; nextAllowedAtMs: number }
+  | { kind: 'replay'; result: StatsInsightsNotes | VerifiedResult; nextAllowedAtMs: number; model: string };
+
+function readStoredVerifiedResult(raw: unknown): VerifiedResult | null {
+  if (!isPlainRecord(raw) || !isPlainRecord(raw.notes) || !isPlainRecord(raw.observationIds)) return null;
+  const notes = {} as VerifiedNotes;
+  const observationIds = {} as VerifiedObservationIds;
+  for (const key of VERIFIED_BLOCK_KEYS) {
+    const note = text(raw.notes[key], MAX_NOTE_CHARS);
+    const id = text(raw.observationIds[key], 128);
+    if (!note || !id) return null;
+    notes[key] = note;
+    observationIds[key] = id;
+  }
+  return { notes, observationIds };
+}
+
+function decideStatsInsightsGeneration(
+  quotaData: Record<string, unknown>,
+  requestHash: string,
+  nowMs: number,
+  schemaVersion: GenerationSchemaVersion,
+  leaseToken: string,
+  lang?: SupportedLang,
+): GenerationDecision {
+  const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
+  if (Number.isFinite(nextAllowedAtMs) && nowMs < nextAllowedAtMs) {
+    const storedSchema = Number(quotaData.responseSchemaVersion ?? LEGACY_SCHEMA_VERSION);
+    const storedHash = text(quotaData.lastRequestHash ?? quotaData.lastBriefingHash, 128);
+    if (storedSchema === schemaVersion && storedHash === requestHash) {
+      const result = schemaVersion === VERIFIED_SCHEMA_VERSION
+        ? readStoredVerifiedResult(quotaData.lastResult)
+        : readStoredStatsInsightsNotes(quotaData.lastResult ?? quotaData.lastNotes, lang);
+      if (result) return {
+        kind: 'replay', result, nextAllowedAtMs,
+        model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
+      };
+    }
+    return { kind: 'not_ready', nextAllowedAtMs };
+  }
+  const activeLeaseToken = text(quotaData.generationLeaseToken, 128);
+  const leaseExpiresAtMs = Number(quotaData.generationLeaseExpiresAtMs ?? 0);
+  if (activeLeaseToken && Number.isFinite(leaseExpiresAtMs) && leaseExpiresAtMs > nowMs) return { kind: 'in_progress' };
+  return { kind: 'reserve', leaseToken, leaseExpiresAtMs: nowMs + GENERATION_LEASE_MS };
+}
+
+function buildLeaseCommitMutation(
+  quotaData: Record<string, unknown>,
+  leaseToken: string,
+  success: Record<string, unknown>,
+): Record<string, unknown> | null {
+  if (quotaData.generationLeaseToken !== leaseToken) return null;
+  return { ...success, generationLeaseToken: null, generationLeaseHash: null, generationLeaseExpiresAtMs: 0 };
+}
+
+function buildLeaseReleaseMutation(quotaData: Record<string, unknown>, leaseToken: string): Record<string, unknown> | null {
+  if (quotaData.generationLeaseToken !== leaseToken) return null;
+  return { generationLeaseToken: null, generationLeaseHash: null, generationLeaseExpiresAtMs: 0 };
+}
+
+async function reserveGenerationLease(
+  authUid: string,
+  stableUid: string,
+  requestHash: string,
+  schemaVersion: GenerationSchemaVersion,
+  lang?: SupportedLang,
+): Promise<{ ref: FirebaseFirestore.DocumentReference; leaseToken?: string; replay?: Extract<GenerationDecision, { kind: 'replay' }> }> {
+  const db = admin.firestore();
+  const now = Date.now();
+  const leaseToken = randomUUID();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
+  return db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const decision = decideStatsInsightsGeneration(data, requestHash, now, schemaVersion, leaseToken, lang);
+    if (decision.kind === 'replay') return { ref, replay: decision };
+    if (decision.kind === 'not_ready') throw new HttpsError('resource-exhausted', 'stats_insights_not_ready', { nextAllowedAtMs: decision.nextAllowedAtMs });
+    if (decision.kind === 'in_progress') throw new HttpsError('unavailable', 'stats_insights_in_progress');
+    tx.set(ref, {
+      authUid, stableUid,
+      generationLeaseToken: decision.leaseToken,
+      generationLeaseHash: requestHash,
+      generationLeaseSchemaVersion: schemaVersion,
+      generationLeaseExpiresAtMs: decision.leaseExpiresAtMs,
+      updatedAtMs: now,
+    }, { merge: true });
+    return { ref, leaseToken: decision.leaseToken };
+  });
+}
+
+async function releaseGenerationLease(ref: FirebaseFirestore.DocumentReference, leaseToken: string): Promise<void> {
+  const db = admin.firestore();
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const mutation = buildLeaseReleaseMutation(data, leaseToken);
+    if (mutation) tx.set(ref, { ...mutation, updatedAtMs: Date.now() }, { merge: true });
+  });
+}
+
+async function commitGenerationLease(
+  ref: FirebaseFirestore.DocumentReference,
+  leaseToken: string,
+  success: Record<string, unknown>,
+): Promise<number> {
+  const db = admin.firestore();
+  return db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const mutation = buildLeaseCommitMutation(data, leaseToken, success);
+    if (!mutation) throw new HttpsError('aborted', 'stats_insights_lease_lost');
+    tx.set(ref, { ...mutation, updatedAtMs: Date.now() }, { merge: true });
+    return Number(mutation.nextAllowedAtMs);
+  });
+}
+
+function buildVerifiedSystemPrompt(lang: SupportedLang, analysis: VerifiedAnalysis): string {
+  const langName = LANG_NAMES[lang];
+  const observations = VERIFIED_BLOCK_KEYS.map((key) => ({
+    block: key,
+    observationId: analysis.blocks[key].id,
+    facts: analysis.blocks[key].facts,
+    allowedClaim: analysis.blocks[key].allowedClaim,
+    allowedAction: analysis.blocks[key].allowedAction,
+  }));
+  return `You are a careful editor for learner-facing statistics notes.
+Write entirely in ${langName}, using an informal but respectful second person.
+For each block, only rephrase its supplied allowedClaim. Treat it as the complete truth.
+Do not infer from unavailable or below-floor data: rely solely on allowedClaim.
+Make no new calculations and add no facts or numbers. Every number must come from that block's facts.
+You may include at most one supplied allowedAction. Never invent an action.
+Do not repeat the same fact or advice across blocks. Keep each text non-empty and concise.
+Return strict JSON only, with no markdown and exactly this shape:
+{"week":{"observationId":"...","text":"..."},"longTerm":{"observationId":"...","text":"..."},"comparison":{"observationId":"...","text":"..."},"lifetime":{"observationId":"...","text":"..."}}
+Use each exact observationId supplied below.
+VERIFIED OBSERVATIONS:
+${JSON.stringify(observations)}`;
+}
+
 type StatsInsightsNotes = Record<BlockKey, string>;
 
 interface StatsInsightsResult {
@@ -485,6 +731,69 @@ function parseAndGuardResult(rawContent: string, lang?: SupportedLang): StatsIns
   return { notes };
 }
 
+function normalizedNumbers(value: string): number[] {
+  return (value.match(/[-+]?\d+(?:[.,]\d+)?\s*%?/g) ?? [])
+    .map((token) => Number(token.replace(/\s*%$/, '').replace(',', '.')))
+    .filter(Number.isFinite);
+}
+
+function verifiedTextUsesOnlyAllowedNumbers(note: string, facts: Array<string | number>): boolean {
+  const allowed = facts.flatMap((fact) => normalizedNumbers(String(fact)));
+  return normalizedNumbers(note).every((number) => allowed.some((candidate) => Math.abs(candidate - number) < 1e-9));
+}
+
+function normalizeDuplicateText(value: string): string[] {
+  return value.toLocaleLowerCase().normalize('NFKC').match(/[\p{L}\p{N}]+/gu) ?? [];
+}
+
+function hasDuplicateVerifiedNotes(notes: VerifiedNotes): boolean {
+  const values = VERIFIED_BLOCK_KEYS.map((key) => normalizeDuplicateText(notes[key]));
+  for (let left = 0; left < values.length; left += 1) {
+    for (let right = left + 1; right < values.length; right += 1) {
+      const a = new Set(values[left]);
+      const b = new Set(values[right]);
+      if (!a.size || !b.size) continue;
+      const overlap = [...a].filter((token) => b.has(token)).length;
+      if (overlap / Math.max(a.size, b.size) >= 0.8) return true;
+    }
+  }
+  return false;
+}
+
+function parseAndGuardVerifiedResult(rawContent: string, analysis: VerifiedAnalysis, lang: SupportedLang): VerifiedResult {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(rawContent);
+  } catch {
+    throw new HttpsError('unavailable', 'stats_insights_bad_json');
+  }
+  if (!isPlainRecord(parsed) || !hasExactKeys(parsed, VERIFIED_BLOCK_KEYS)) {
+    throw new HttpsError('unavailable', 'stats_insights_bad_shape');
+  }
+  const notes = {} as VerifiedNotes;
+  const observationIds = {} as VerifiedObservationIds;
+  for (const key of VERIFIED_BLOCK_KEYS) {
+    const entry = parsed[key];
+    if (!isPlainRecord(entry) || !hasExactKeys(entry, ['observationId', 'text'])) {
+      throw new HttpsError('unavailable', 'stats_insights_bad_shape');
+    }
+    if (entry.observationId !== analysis.blocks[key].id) {
+      throw new HttpsError('unavailable', 'stats_insights_observation_mismatch');
+    }
+    if (typeof entry.text !== 'string') throw new HttpsError('unavailable', 'stats_insights_empty');
+    const note = entry.text.trim();
+    if (!note || note.length > MAX_NOTE_CHARS) throw new HttpsError('unavailable', 'stats_insights_empty');
+    if (!verifiedTextUsesOnlyAllowedNumbers(note, analysis.blocks[key].facts)) {
+      throw new HttpsError('unavailable', 'stats_insights_unverified_number');
+    }
+    notes[key] = note;
+    observationIds[key] = analysis.blocks[key].id;
+  }
+  assertAiJsonTextFieldsLanguage({ texts: Object.values(notes), targetLang: lang, feature: 'stats_insights' });
+  if (hasDuplicateVerifiedNotes(notes)) throw new HttpsError('unavailable', 'stats_insights_duplicate');
+  return { notes, observationIds };
+}
+
 function guardLearnerFacingNote(key: BlockKey, note: string): string {
   if (!note) return '';
   const lower = note.toLocaleLowerCase();
@@ -497,6 +806,10 @@ function guardLearnerFacingNote(key: BlockKey, note: string): string {
     lower.includes('balance score');
   if (key === 'balance' && hasInternalBalancePhrase) return '';
   return note;
+}
+
+function assertPremiumStatsInsightsAccess(isPremium: boolean): void {
+  if (!isPremium) throw new HttpsError('permission-denied', 'stats_insights_premium_required');
 }
 
 // ── Callable ──────────────────────────────────────────────────────────────────
@@ -512,15 +825,17 @@ export const statsInsightsGenerate = onCall({
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   // Do NOT clamp the secret — project-scoped keys can be long; truncation breaks auth.
-  const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
-  if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
-
   const data = (request.data ?? {}) as Record<string, unknown>;
   // НЕ доверяем data.isPremium из тела — премиум резолвится на сервере ниже
   // (после resolveStableUidForAuth) из users/{stableUid}.progress.
-  const briefing = sanitizeBriefing(data.briefing);
+  const isVerified = data.analysis !== undefined;
+  const verifiedRequest = isVerified ? sanitizeVerifiedRequest(data) : null;
+  const verifiedAnalysis = verifiedRequest?.analysis ?? null;
+  const briefing = isVerified ? null : sanitizeBriefing(data.briefing);
+  const lang = verifiedRequest?.lang ?? briefing!.lang;
+  const studyTarget = verifiedRequest?.studyTarget ?? briefing!.studyTarget;
 
-  if (!hasEnoughSignal(briefing)) {
+  if (briefing && !hasEnoughSignal(briefing)) {
     throw new HttpsError('failed-precondition', 'stats_insights_insufficient_data');
   }
 
@@ -534,37 +849,40 @@ export const statsInsightsGenerate = onCall({
   // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
   // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
   const isPremium = await resolvePremiumAccess(db, stableUid);
+  assertPremiumStatsInsightsAccess(isPremium);
 
   // Replay/window check BEFORE rate, global budget, and the paid API call.
   // Same briefing retries get the cached server result; different briefing
   // remains gated until the window opens.
-  const briefingHash = briefingHashForReplay(briefing);
-  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);
-  if (replay) {
-    return {
-      ok: true,
-      notes: replay.notes,
-      nextAllowedAtMs: replay.nextAllowedAtMs,
-      model: replay.model,
-      idempotentReplay: true,
-    };
+  const schemaVersion: GenerationSchemaVersion = isVerified ? VERIFIED_SCHEMA_VERSION : LEGACY_SCHEMA_VERSION;
+  const requestHash = verifiedRequest
+    ? createHash('sha256').update(JSON.stringify(verifiedRequest)).digest('hex')
+    : briefingHashForReplay(briefing!);
+  const reservation = await reserveGenerationLease(authUid, stableUid, requestHash, schemaVersion, lang);
+  if (reservation.replay) {
+    if (isVerified) return { ok: true, ...(reservation.replay.result as VerifiedResult), nextAllowedAtMs: reservation.replay.nextAllowedAtMs, model: reservation.replay.model, idempotentReplay: true };
+    return { ok: true, notes: reservation.replay.result as StatsInsightsNotes, nextAllowedAtMs: reservation.replay.nextAllowedAtMs, model: reservation.replay.model, idempotentReplay: true };
   }
 
   // Limits BEFORE the paid call. Window is committed after a successful
   // generation so a provider failure does not lock the user out for the whole
   // window.
-  await enforceRateLimit(authUid, stableUid);
-  const budgetReservedAtMs = Date.now();
-  await enforceGlobalBudget(jobCfg.globalDailyCap);
-
-  const messages = [
-    { role: 'system' as const, content: buildSystemPrompt(briefing.lang) },
-    { role: 'user' as const, content: JSON.stringify(briefing) },
-  ];
-
-  let response: Awaited<ReturnType<typeof fetch>>;
+  const leaseToken = reservation.leaseToken!;
+  let budgetReservedAtMs: number | null = null;
+  let providerCharged = false;
+  let result: StatsInsightsResult | VerifiedResult;
+  let json: OpenAIChatResponse;
   try {
-    response = await fetch(OPENAI_CHAT_URL, {
+    await enforceRateLimit(authUid, stableUid);
+    const budgetAttemptAtMs = Date.now();
+    await enforceGlobalBudget(jobCfg.globalDailyCap, budgetAttemptAtMs);
+    budgetReservedAtMs = budgetAttemptAtMs;
+    const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
+    const messages = verifiedAnalysis
+      ? [{ role: 'system' as const, content: buildVerifiedSystemPrompt(lang, verifiedAnalysis) }, { role: 'user' as const, content: JSON.stringify(verifiedAnalysis) }]
+      : [{ role: 'system' as const, content: buildSystemPrompt(lang) }, { role: 'user' as const, content: JSON.stringify(briefing) }];
+    const response = await fetch(OPENAI_CHAT_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -578,36 +896,47 @@ export const statsInsightsGenerate = onCall({
         response_format: { type: 'json_object' },
       }),
     });
-  } catch (err) {
-    await refundGlobalBudget(jobCfg.globalDailyCap, budgetReservedAtMs)
-      .catch((refundErr) => console.error('stats_insights global budget refund failed', refundErr));
-    throw err;
+    if (!response.ok) {
+      const detail = await response.text().catch(() => '');
+      console.error('stats_insights chat failed', response.status, detail.slice(0, 500));
+      throw new HttpsError('unavailable', 'stats_insights_provider_failed');
+    }
+    providerCharged = true;
+    json = (await response.json()) as OpenAIChatResponse;
+    const content = text(json.choices?.[0]?.message?.content, 4000);
+    if (!content) throw new HttpsError('unavailable', 'stats_insights_empty_reply');
+    result = verifiedAnalysis ? parseAndGuardVerifiedResult(content, verifiedAnalysis, lang) : parseAndGuardResult(content, lang);
+  } catch (error) {
+    await releaseGenerationLease(reservation.ref, leaseToken)
+      .catch((releaseError) => console.error('stats_insights lease release failed', releaseError));
+    if (budgetReservedAtMs !== null && !providerCharged) {
+      await refundGlobalBudget(jobCfg.globalDailyCap, budgetReservedAtMs)
+        .catch((refundErr) => console.error('stats_insights global budget refund failed', refundErr));
+    }
+    throw error;
   }
 
-  if (!response.ok) {
-    const detail = await response.text().catch(() => '');
-    console.error('stats_insights chat failed', response.status, detail.slice(0, 500));
-    await refundGlobalBudget(jobCfg.globalDailyCap, budgetReservedAtMs)
-      .catch((refundErr) => console.error('stats_insights global budget refund failed', refundErr));
-    throw new HttpsError('unavailable', 'stats_insights_provider_failed');
+  const now = Date.now();
+  const nextAllowedAtMs = startOfNextWindow(now, PREMIUM_WINDOW_DAYS);
+  const success = verifiedAnalysis
+    ? { responseSchemaVersion: VERIFIED_SCHEMA_VERSION, lastRequestHash: requestHash, lastResult: result, lastModel: jobCfg.model, lastGeneratedAtMs: now, nextAllowedAtMs, isPremium: true }
+    : { responseSchemaVersion: LEGACY_SCHEMA_VERSION, lastRequestHash: requestHash, lastBriefingHash: requestHash, lastResult: result.notes, lastNotes: result.notes, lastModel: jobCfg.model, lastGeneratedAtMs: now, nextAllowedAtMs, isPremium: true };
+  try {
+    await commitGenerationLease(reservation.ref, leaseToken, success);
+  } catch (error) {
+    await releaseGenerationLease(reservation.ref, leaseToken)
+      .catch((releaseError) => console.error('stats_insights lease release after commit failure failed', releaseError));
+    throw error;
   }
-
-  const json = (await response.json()) as OpenAIChatResponse;
-  const content = text(json.choices?.[0]?.message?.content, 4000);
-  if (!content) throw new HttpsError('unavailable', 'stats_insights_empty_reply');
-
-  const result = parseAndGuardResult(content, briefing.lang);
 
   // Generation succeeded — NOW commit the window (so failures above never burn it).
-  const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium, briefingHash, result.notes, jobCfg.model);
-
   const usage = json.usage ?? {};
   await db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
     model: jobCfg.model,
-    lang: briefing.lang,
-    studyTarget: briefing.studyTarget,
+    lang,
+    studyTarget,
     promptTokens: Number(usage.prompt_tokens ?? 0),
     completionTokens: Number(usage.completion_tokens ?? 0),
     totalTokens: Number(usage.total_tokens ?? 0),
@@ -616,12 +945,9 @@ export const statsInsightsGenerate = onCall({
     createdAtMs: Date.now(),
   });
 
-  return {
-    ok: true,
-    notes: result.notes,
-    nextAllowedAtMs,
-    model: jobCfg.model,
-  };
+  return verifiedAnalysis
+    ? { ok: true, ...(result as VerifiedResult), nextAllowedAtMs, model: jobCfg.model }
+    : { ok: true, notes: result.notes, nextAllowedAtMs, model: jobCfg.model };
 });
 
 // Pure functions exposed for unit tests (convention: see weekly_review.ts).
@@ -633,5 +959,15 @@ export const __statsInsightsTestHooks = {
   briefingHashForReplay,
   decideStatsInsightsReplay,
   readStoredStatsInsightsNotes,
+  sanitizeVerifiedAnalysis,
+  sanitizeVerifiedRequest,
+  buildVerifiedSystemPrompt,
+  parseAndGuardVerifiedResult,
+  verifiedTextUsesOnlyAllowedNumbers,
+  hasDuplicateVerifiedNotes,
+  decideStatsInsightsGeneration,
+  buildLeaseCommitMutation,
+  buildLeaseReleaseMutation,
+  assertPremiumStatsInsightsAccess,
 };
-export type { StatsInsightsBriefing, StatsInsightsResult, StatsInsightsNotes, BlockKey };
+export type { StatsInsightsBriefing, StatsInsightsResult, StatsInsightsNotes, BlockKey, VerifiedAnalysis, VerifiedResult };

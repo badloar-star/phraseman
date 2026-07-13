@@ -469,6 +469,21 @@ export function weeklyReviewStorageKey(studyTarget?: RuntimeStudyTarget): string
   return scopedOrLegacyKey('weekly_review_v1', 'trainer_practice', studyTarget);
 }
 
+export function weeklyReviewV2StorageKey(
+  accountScope: string,
+  lang: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  const normalizedScope = String(accountScope ?? '').trim();
+  if (!normalizedScope) throw new Error('weekly_review_account_scope_required');
+  const normalizedLang = String(lang ?? '').trim() || 'ru';
+  return targetKey(
+    'trainer_practice',
+    storageStudyTarget(studyTarget),
+    `weekly_review_v2:${normalizedScope}:${normalizedLang}`,
+  );
+}
+
 export function statsInsightsStorageKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('stats_insights_v1', 'trainer_practice', studyTarget);
 }

@@ -38,7 +38,7 @@ export interface ProductAnalyticsMetricDefinition {
   readonly rowKinds: readonly string[];
 }
 
-interface ProductAnalyticsGovernanceData {
+export interface ProductAnalyticsGovernanceData {
   readonly schemaVersion: number;
   readonly fields: Readonly<Record<string, ProductAnalyticsFieldDefinition>>;
   readonly fieldSets: Readonly<Record<string, readonly string[]>>;
@@ -52,7 +52,8 @@ interface ProductAnalyticsGovernanceData {
   readonly metrics: readonly ProductAnalyticsMetricDefinition[];
 }
 
-const GOVERNANCE = governanceData as ProductAnalyticsGovernanceData;
+export const PRODUCT_ANALYTICS_GOVERNANCE = governanceData as ProductAnalyticsGovernanceData;
+const GOVERNANCE = PRODUCT_ANALYTICS_GOVERNANCE;
 
 export const PRODUCT_ANALYTICS_GOVERNANCE_VERSION = governanceData.schemaVersion;
 export const SOFT_UPSELL_CHAIN_EVENTS = Object.freeze(new Set(governanceData.softUpsellEvents));
@@ -130,8 +131,68 @@ export const PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES = [
 export type GovernedProductAnalyticsEventName =
   (typeof PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES)[number];
 
+export function validateProductAnalyticsGovernance(
+  governance: ProductAnalyticsGovernanceData,
+): string[] {
+  const errors: string[] = [];
+  const governedNames = new Set<string>();
+  const canonicalNames = new Set<string>();
+  const expectedCanonicalNames = new Set<string>(PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES);
+
+  for (const [fieldSetName, fields] of Object.entries(governance.fieldSets)) {
+    for (const field of fields) {
+      if (!governance.fields[field]) errors.push(`unknown_field:${fieldSetName}:${field}`);
+    }
+  }
+
+  for (const event of governance.events) {
+    canonicalNames.add(event.name);
+    for (const name of [event.name, ...(event.aliases ?? [])]) {
+      if (governedNames.has(name)) errors.push(`duplicate_event_name:${name}`);
+      governedNames.add(name);
+    }
+    if (!governance.fieldSets[event.fieldSet]) {
+      errors.push(`unknown_field_set:${event.name}:${event.fieldSet}`);
+    }
+    if (!expectedCanonicalNames.has(event.name)) {
+      errors.push(`dangling_governance_event:${event.name}`);
+    }
+  }
+
+  for (const eventName of PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES) {
+    if (!canonicalNames.has(eventName)) errors.push(`missing_governance_event:${eventName}`);
+  }
+
+  const metricIds = new Set<string>();
+  for (const metric of governance.metrics) {
+    if (metricIds.has(metric.id)) errors.push(`duplicate_metric_id:${metric.id}`);
+    metricIds.add(metric.id);
+    if (!/^[a-z][a-z0-9_.]+\.v[1-9][0-9]*$/.test(metric.id)) {
+      errors.push(`invalid_metric_id:${metric.id}`);
+    }
+    for (const eventName of metric.events) {
+      if (!canonicalNames.has(eventName)) {
+        errors.push(`unknown_metric_event:${metric.id}:${eventName}`);
+      }
+    }
+  }
+
+  return errors;
+}
+
+const governanceErrors = validateProductAnalyticsGovernance(GOVERNANCE);
+if (governanceErrors.length > 0) {
+  throw new Error(`Invalid product analytics governance: ${governanceErrors.join(',')}`);
+}
+
 export const PRODUCT_ANALYTICS_FIELD_REGISTRY = Object.freeze(GOVERNANCE.fields);
 export const PRODUCT_ANALYTICS_METRIC_REGISTRY = Object.freeze(GOVERNANCE.metrics);
+
+function resolveGovernedFieldSet(fieldSet: string, eventName: string): readonly string[] {
+  const fields = GOVERNANCE.fieldSets[fieldSet];
+  if (!fields) throw new Error(`Unknown governed field set: ${eventName}:${fieldSet}`);
+  return fields;
+}
 
 const metricIdsByEvent = new Map<string, string[]>();
 for (const metric of PRODUCT_ANALYTICS_METRIC_REGISTRY) {
@@ -149,7 +210,7 @@ export const PRODUCT_ANALYTICS_EVENT_CATALOG = Object.freeze(
     entity: event.entity,
     warehouse: event.warehouse,
     metricIds: Object.freeze([...(metricIdsByEvent.get(event.name) ?? [])]),
-    allowedFields: Object.freeze([...(GOVERNANCE.fieldSets[event.fieldSet] ?? [])]),
+    allowedFields: Object.freeze([...resolveGovernedFieldSet(event.fieldSet, event.name)]),
   })),
 );
 

@@ -2,6 +2,7 @@ import {
   PRODUCT_ANALYTICS_GOVERNANCE_VERSION,
   PRODUCT_ANALYTICS_FIELD_REGISTRY,
   PRODUCT_ANALYTICS_EVENT_CATALOG,
+  PRODUCT_ANALYTICS_GOVERNANCE,
   PRODUCT_ANALYTICS_METRIC_REGISTRY,
   PRODUCT_ANALYTICS_WAREHOUSE_EVENTS,
   canonicalProductAnalyticsEventName,
@@ -9,6 +10,7 @@ import {
   isGovernedSoftUpsellChainEvent,
   isValidGovernedSoftUpsellChainPayload,
   validateProductAnalyticsCatalog,
+  validateProductAnalyticsGovernance,
 } from '../app/product_analytics_event_catalog';
 import governance from '../app/product_analytics_governance.json';
 import type { AnalyticsEvent } from '../app/analytics';
@@ -54,6 +56,7 @@ describe('product analytics event catalog', () => {
 
   it('has unique names, aliases and metric ids with no free-form fields', () => {
     expect(validateProductAnalyticsCatalog(PRODUCT_ANALYTICS_EVENT_CATALOG)).toEqual([]);
+    expect(validateProductAnalyticsGovernance(PRODUCT_ANALYTICS_GOVERNANCE)).toEqual([]);
   });
 
   it('declares the product events consumed by the current warehouse query', () => {
@@ -137,22 +140,90 @@ describe('product analytics event catalog', () => {
     )));
     expect(new Set(metricIds).size).toBe(youtubeEvents.length);
 
-    for (const definition of definitions) {
-      expect(definition?.allowedFields).toEqual(expect.arrayContaining([
-        'schema_version',
-        'event_id',
-        'session_id',
-        'channel_id',
-        'source',
-        'platform',
-        'app_version',
-        'build_number',
-        'occurred_at_ms',
-      ]));
+    const commonFields = [
+      'schema_version', 'event_id', 'session_id', 'channel_id', 'source',
+      'platform', 'app_version', 'build_number', 'occurred_at_ms',
+    ];
+    const expectedFields = [
+      commonFields,
+      commonFields,
+      [...commonFields, 'video_id', 'video_title'],
+      [...commonFields, 'video_id'],
+      [...commonFields, 'video_id', 'playback_id'],
+      [...commonFields, 'video_id', 'playback_id', 'active_watch_ms', 'position_ms', 'duration_ms', 'max_position_permille'],
+      [...commonFields, 'video_id', 'playback_id', 'active_watch_ms', 'position_ms', 'duration_ms', 'max_position_permille', 'end_reason'],
+      [...commonFields, 'video_id'],
+      [...commonFields, 'video_id'],
+    ];
+    definitions.forEach((definition, index) => {
+      expect([...(definition?.allowedFields ?? [])].sort()).toEqual([...expectedFields[index]].sort());
       expect(definition?.allowedFields).not.toContain('product_session_id');
-    }
+    });
     expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.video_title.valueClass).toBe('bounded_text');
     expect(PRODUCT_ANALYTICS_METRIC_REGISTRY.filter(metric => metric.id.startsWith('youtube.')))
       .toHaveLength(youtubeEvents.length);
+  });
+
+  const mutableGovernance = () => JSON.parse(JSON.stringify(PRODUCT_ANALYTICS_GOVERNANCE));
+
+  it('rejects an event that references a missing field set', () => {
+    const governance = mutableGovernance();
+    governance.events[0].fieldSet = 'missing_set';
+    expect(validateProductAnalyticsGovernance(governance)).toContain(
+      'unknown_field_set:product_session_start:missing_set',
+    );
+  });
+
+  it('rejects duplicate canonical names and aliases', () => {
+    const duplicateName = mutableGovernance();
+    duplicateName.events[1].name = duplicateName.events[0].name;
+    expect(validateProductAnalyticsGovernance(duplicateName)).toContain(
+      'duplicate_event_name:product_session_start',
+    );
+
+    const duplicateAlias = mutableGovernance();
+    duplicateAlias.events[0].aliases = ['shared_alias'];
+    duplicateAlias.events[1].aliases = ['shared_alias'];
+    expect(validateProductAnalyticsGovernance(duplicateAlias)).toContain(
+      'duplicate_event_name:shared_alias',
+    );
+  });
+
+  it('rejects duplicate metric IDs', () => {
+    const governance = mutableGovernance();
+    governance.metrics[1].id = governance.metrics[0].id;
+    expect(validateProductAnalyticsGovernance(governance)).toContain(
+      `duplicate_metric_id:${governance.metrics[0].id}`,
+    );
+  });
+
+  it('rejects unknown fields inside field sets', () => {
+    const governance = mutableGovernance();
+    governance.fieldSets.youtube_common.push('raw_path');
+    expect(validateProductAnalyticsGovernance(governance)).toContain(
+      'unknown_field:youtube_common:raw_path',
+    );
+  });
+
+  it('rejects metrics that reference unknown events', () => {
+    const governance = mutableGovernance();
+    governance.metrics[0].events.push('unknown_event');
+    expect(validateProductAnalyticsGovernance(governance)).toContain(
+      'unknown_metric_event:sessions.lifecycle.v1:unknown_event',
+    );
+  });
+
+  it('rejects governance events that disagree with the canonical event list', () => {
+    const governance = mutableGovernance();
+    governance.events.pop();
+    governance.events.push({
+      name: 'dangling_event',
+      entity: 'event',
+      warehouse: 'product',
+      fieldSet: 'youtube_common',
+    });
+    const errors = validateProductAnalyticsGovernance(governance);
+    expect(errors).toContain('missing_governance_event:youtube_channel_open');
+    expect(errors).toContain('dangling_governance_event:dangling_event');
   });
 });

@@ -5,6 +5,7 @@ import {
 
 export const YOUTUBE_ANALYTICS_SCHEMA_VERSION = 1;
 export const MAX_YOUTUBE_PLAYBACK_MS = 86_400_000;
+export const MAX_YOUTUBE_PLAYER_MESSAGE_LENGTH = 512;
 
 type Platform = 'ios' | 'android';
 type PlaybackEndReason = 'ended' | 'screen_exit' | 'external_open' | 'error';
@@ -169,17 +170,38 @@ const sourceByEvent: Record<YoutubeAnalyticsEventName, readonly string[]> = {
   youtube_channel_open: ['catalog', 'player'],
 };
 
+const youtubeEventNames = new Set<string>(Object.keys(inputFieldsByEvent));
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value != null && typeof value === 'object' && !Array.isArray(value);
 }
 
 function requiredIdentifier(value: unknown, field: string, maxLength = 80): string {
   if (typeof value !== 'string') throw new Error(`Invalid ${field}`);
-  const normalized = value.trim();
-  if (!normalized || normalized.length > maxLength || !/^[A-Za-z0-9._:-]+$/.test(normalized)) {
+  if (
+    !value
+    || value !== value.trim()
+    || value.length > maxLength
+    || !/[A-Za-z0-9]/.test(value)
+    || !/^[A-Za-z0-9._:-]+$/.test(value)
+  ) {
     throw new Error(`Invalid ${field}`);
   }
-  return normalized;
+  return value;
+}
+
+function requiredYoutubeVideoId(value: unknown): string {
+  if (
+    typeof value !== 'string'
+    || !value
+    || value !== value.trim()
+    || value.length > 120
+    || !/[A-Za-z0-9]/.test(value)
+    || !/^[A-Za-z0-9_-]+$/.test(value)
+  ) {
+    throw new Error('Invalid videoId');
+  }
+  return value;
 }
 
 function requiredText(value: unknown, field: string, maxLength: number): string {
@@ -198,9 +220,18 @@ function boundedInteger(value: unknown, field: string, max: number): number {
 
 function normalizedVideoTitle(value: unknown): string {
   if (typeof value !== 'string') throw new Error('Invalid videoTitle');
-  const normalized = value.replace(/\s+/g, ' ').trim().slice(0, 100);
-  if (!normalized) throw new Error('Invalid videoTitle');
-  return normalized;
+  const normalized = value.replace(/\s+/g, ' ').trim();
+  const codePoints = Array.from(normalized);
+  if (
+    codePoints.length === 0
+    || codePoints.some(character => {
+      const codePoint = character.codePointAt(0) ?? 0;
+      return codePoint >= 0xD800 && codePoint <= 0xDFFF;
+    })
+  ) {
+    throw new Error('Invalid videoTitle');
+  }
+  return codePoints.slice(0, 100).join('');
 }
 
 function assertExactInputFields(input: Record<string, unknown>, eventName: YoutubeAnalyticsEventName): void {
@@ -213,13 +244,13 @@ export function buildYoutubeAnalyticsEvent(input: YoutubeAnalyticsEventInput): B
   const unsafeInput: unknown = input;
   if (!isRecord(unsafeInput)) throw new Error('Invalid YouTube analytics event');
   const eventName = unsafeInput.eventName;
-  if (
-    typeof eventName !== 'string'
-    || !PRODUCT_ANALYTICS_EVENT_CATALOG.some(event => event.name === eventName)
-  ) {
-    throw new Error('Invalid eventName');
+  if (typeof eventName !== 'string' || !youtubeEventNames.has(eventName)) {
+    throw new Error('unsupported_youtube_event');
   }
   const governedEventName = eventName as YoutubeAnalyticsEventName;
+  if (!PRODUCT_ANALYTICS_EVENT_CATALOG.some(event => event.name === governedEventName)) {
+    throw new Error('ungoverned_youtube_event');
+  }
   assertExactInputFields(unsafeInput, governedEventName);
   if (typeof unsafeInput.source !== 'string' || !sourceByEvent[governedEventName].includes(unsafeInput.source)) {
     throw new Error('Invalid source');
@@ -243,7 +274,7 @@ export function buildYoutubeAnalyticsEvent(input: YoutubeAnalyticsEventInput): B
     inputFieldsByEvent[governedEventName].includes('videoId')
     && !(governedEventName === 'youtube_channel_open' && unsafeInput.source === 'catalog')
   ) {
-    payload.video_id = requiredIdentifier(unsafeInput.videoId, 'videoId', 120);
+    payload.video_id = requiredYoutubeVideoId(unsafeInput.videoId);
   }
   if (governedEventName === 'youtube_video_select') {
     payload.video_title = normalizedVideoTitle(unsafeInput.videoTitle);
@@ -280,7 +311,7 @@ const playerStates = new Set([-1, 0, 1, 2, 3, 5]);
 const playerErrorCodes = new Set([2, 5, 100, 101, 150]);
 
 export function parseYoutubePlayerMessage(raw: unknown): YoutubePlayerMessage | null {
-  if (typeof raw !== 'string') return null;
+  if (typeof raw !== 'string' || raw.length > MAX_YOUTUBE_PLAYER_MESSAGE_LENGTH) return null;
   let parsed: unknown;
   try {
     parsed = JSON.parse(raw);

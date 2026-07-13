@@ -9,13 +9,22 @@ const DEFAULT_PAGE_SIZE = 50;
 const MAX_PAGE_SIZE = 100;
 const MAX_SOURCE_SCAN = 250;
 const TOKEN_RE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$/;
-const CURSOR_RE = /^[A-Za-z0-9_-]{1,500}$/;
+const CURSOR_RE = /^[A-Za-z0-9_-]{1,800}$/;
 const ARCHIVE_TYPES = ['all', 'user', 'error'] as const;
+const ARCHIVE_SOURCES = ['user_reports', 'error_reports'] as const;
 
 type Row = Record<string, unknown>;
 type ArchiveType = typeof ARCHIVE_TYPES[number];
 type ArchiveDetailType = Exclude<ArchiveType, 'all'>;
+type ArchiveSource = typeof ARCHIVE_SOURCES[number];
 type ArchiveState = 'ready' | 'empty' | 'truncated' | 'partial' | 'error';
+
+interface ArchiveCursorPosition {
+  readonly id: string;
+  readonly createdAtMs: number;
+}
+
+type ArchiveCursorPositions = Partial<Record<ArchiveSource, ArchiveCursorPosition>>;
 
 interface DiagnosticsActor {
   readonly actorUid: string;
@@ -37,6 +46,7 @@ export interface DiagnosticsArchiveSourceResult {
   readonly error: string;
   readonly cap?: number;
   readonly boundaryAtMs?: number;
+  readonly boundaryId?: string;
 }
 
 export interface DiagnosticsArchiveSourceHealth {
@@ -131,11 +141,20 @@ function escapeRegExp(value: string): string {
 }
 
 function identityValues(row: Row): string[] {
-  return [
+  return [...new Set([
     'uid', 'stableUid', 'authUid', 'userName', 'name', 'email',
     'reporterUid', 'reporterAuthUid', 'reporterName', 'reporterEmail',
     'reportedUid', 'reportedName', 'reportedEmail', 'reviewedBy',
-  ].map((key) => cleanText(row[key], 180)).filter((value) => value.length >= 3).sort((left, right) => right.length - left.length);
+  ].map((key) => cleanText(row[key], 180)).filter(Boolean))]
+    .sort((left, right) => right.length - left.length);
+}
+
+function redactIdentity(value: string, identity: string): string {
+  const escaped = escapeRegExp(identity);
+  const pattern = identity.length <= 2
+    ? new RegExp(`(?<![\\p{L}\\p{N}_])${escaped}(?![\\p{L}\\p{N}_])`, 'giu')
+    : new RegExp(escaped, 'gi');
+  return value.replace(pattern, '[REDACTED_USER]');
 }
 
 function safeText(value: unknown, max: number, row: Row, canReadUsers: boolean): string {
@@ -145,7 +164,7 @@ function safeText(value: unknown, max: number, row: Row, canReadUsers: boolean):
     .replace(/\b(api[_-]?key|access[_-]?token|refresh[_-]?token|password|secret|token)\s*[:=]\s*[^\s,;]+/gi, '$1=[REDACTED]');
   if (!canReadUsers) {
     output = output.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[REDACTED_EMAIL]');
-    for (const identity of identityValues(row)) output = output.replace(new RegExp(escapeRegExp(identity), 'gi'), '[REDACTED_USER]');
+    for (const identity of identityValues(row)) output = redactIdentity(output, identity);
   }
   return output.slice(0, max);
 }
@@ -270,7 +289,7 @@ export function mergeDiagnosticsArchiveRows(results: readonly DiagnosticsArchive
   const limit = Math.max(1, Math.min(MAX_PAGE_SIZE, Math.floor(pageSize) || DEFAULT_PAGE_SIZE));
   const available = results.flatMap((result) => result.rows).sort((left, right) => {
     const byDate = Number(right.createdAtMs || 0) - Number(left.createdAtMs || 0);
-    return byDate || cleanText(left.id, 160).localeCompare(cleanText(right.id, 160));
+    return byDate || cleanText(right.id, 160).localeCompare(cleanText(left.id, 160));
   });
   const items = available.slice(0, limit);
   const sourceHealth: DiagnosticsArchiveSourceHealth[] = results.map((result) => {
@@ -302,24 +321,65 @@ function cursorFilter(type: ArchiveType): string {
   return hash(`archive:${type}`, 20);
 }
 
-function encodeArchiveCursor(type: ArchiveType, id: string, createdAtMs: number): string {
-  const payload = { v: 1, kind: 'diagnostics_archive', type, id, createdAtMs, filter: cursorFilter(type) };
-  return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
+function archiveSource(type: ArchiveDetailType): ArchiveSource {
+  return type === 'user' ? 'user_reports' : 'error_reports';
 }
 
-function decodeArchiveCursor(cursor: string, type: ArchiveType): { id: string; createdAtMs: number } {
+function isArchiveSource(value: string): value is ArchiveSource {
+  return (ARCHIVE_SOURCES as readonly string[]).includes(value);
+}
+
+function assertExactKeys(value: Row, allowed: readonly string[]): void {
+  const keys = Object.keys(value);
+  if (keys.length !== allowed.length || keys.some((key) => !allowed.includes(key))) throw new Error('unexpected cursor keys');
+}
+
+function compactCursorPosition(value: ArchiveCursorPosition | undefined): readonly [number, string] | undefined {
+  if (!value) return undefined;
+  if (!TOKEN_RE.test(value.id) || !Number.isSafeInteger(value.createdAtMs) || value.createdAtMs < 0) {
+    throw new HttpsError('internal', 'archive cursor position is invalid');
+  }
+  return [value.createdAtMs, value.id] as const;
+}
+
+function encodeArchiveCursor(type: ArchiveType, positions: ArchiveCursorPositions): string {
+  const user = compactCursorPosition(positions.user_reports);
+  const error = compactCursorPosition(positions.error_reports);
+  const compactPositions: Row = {};
+  if (user) compactPositions.u = user;
+  if (error) compactPositions.e = error;
+  const payload = { v: 2, k: 'da', t: type, f: cursorFilter(type), p: compactPositions };
+  const cursor = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
+  if (!CURSOR_RE.test(cursor)) throw new HttpsError('internal', 'archive cursor is too large');
+  return cursor;
+}
+
+function decodeCursorPosition(value: unknown): ArchiveCursorPosition {
+  if (!Array.isArray(value) || value.length !== 2 || typeof value[0] !== 'number') throw new Error('invalid cursor position');
+  const createdAtMs = value[0];
+  const id = typeof value[1] === 'string' ? value[1] : '';
+  if (!TOKEN_RE.test(id) || !Number.isSafeInteger(createdAtMs) || createdAtMs < 0) throw new Error('invalid cursor position');
+  return Object.freeze({ id, createdAtMs });
+}
+
+function decodeArchiveCursor(cursor: string, type: ArchiveType): ArchiveCursorPositions {
   try {
     if (!CURSOR_RE.test(cursor)) throw new Error('invalid cursor characters');
     const decoded = Buffer.from(cursor, 'base64url').toString('utf8');
     const payload = JSON.parse(decoded) as Row;
     const canonical = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
-    const id = cleanText(payload.id, 160);
-    const createdAtMs = Number(payload.createdAtMs);
-    if (canonical !== cursor || payload.v !== 1 || payload.kind !== 'diagnostics_archive' || payload.type !== type
-      || payload.filter !== cursorFilter(type) || !TOKEN_RE.test(id) || !Number.isSafeInteger(createdAtMs) || createdAtMs < 0) {
-      throw new Error('invalid cursor payload');
-    }
-    return { id, createdAtMs };
+    if (canonical !== cursor || !isRecord(payload) || payload.v !== 2 || payload.k !== 'da' || payload.t !== type
+      || payload.f !== cursorFilter(type) || !isRecord(payload.p)) throw new Error('invalid cursor payload');
+    assertExactKeys(payload, ['v', 'k', 't', 'f', 'p']);
+    const compact = payload.p;
+    const compactKeys = Object.keys(compact);
+    if (!compactKeys.length || compactKeys.some((key) => key !== 'u' && key !== 'e')) throw new Error('invalid cursor sources');
+    const positions: ArchiveCursorPositions = {};
+    if (compact.u !== undefined) positions.user_reports = decodeCursorPosition(compact.u);
+    if (compact.e !== undefined) positions.error_reports = decodeCursorPosition(compact.e);
+    if ((type === 'user' && (!positions.user_reports || positions.error_reports))
+      || (type === 'error' && (!positions.error_reports || positions.user_reports))) throw new Error('cursor source mismatch');
+    return Object.freeze(positions);
   } catch {
     throw new HttpsError('invalid-argument', 'cursor is invalid');
   }
@@ -334,12 +394,21 @@ async function readArchiveSource(
   type: ArchiveDetailType,
   input: DiagnosticsArchiveListRequest,
   canReadUsers: boolean,
+  position?: ArchiveCursorPosition,
 ): Promise<DiagnosticsArchiveSourceResult> {
-  const source = type === 'user' ? 'user_reports' : 'error_reports';
+  const source = archiveSource(type);
   const scanSize = Math.min(MAX_SOURCE_SCAN, Math.max(input.pageSize * 5, input.pageSize + 1));
   try {
-    let query: FirebaseFirestore.Query = db.collection(source).orderBy('createdAtMs', 'desc');
-    if (input.cursor) query = query.startAfter(decodeArchiveCursor(input.cursor, input.type).createdAtMs);
+    const collection = db.collection(source);
+    let query: FirebaseFirestore.Query = collection.orderBy('createdAtMs', 'desc');
+    if (position) {
+      const cursorDoc = await collection.doc(position.id).get();
+      if (!cursorDoc.exists || millis(cursorDoc.data()?.createdAtMs) !== position.createdAtMs) {
+        throw new HttpsError('failed-precondition', 'archive cursor document is unavailable');
+      }
+      // A document snapshot preserves Firestore's implicit __name__ tiebreak without a new compound index.
+      query = query.startAfter(cursorDoc);
+    }
     const snapshot = await query.limit(scanSize + 1).get();
     const docs = snapshot.docs.slice(0, scanSize);
     const rows = docs
@@ -353,38 +422,75 @@ async function readArchiveSource(
       truncated: snapshot.size > scanSize,
       error: '',
       boundaryAtMs: docs.length ? millis(docs[docs.length - 1].data().createdAtMs) : 0,
+      boundaryId: docs.length ? docs[docs.length - 1].id : '',
     });
   } catch (error) {
     if (error instanceof HttpsError && error.code === 'invalid-argument') throw error;
-    return Object.freeze({ source, rows: [], scanned: 0, cap: scanSize, truncated: false, error: errorText(error), boundaryAtMs: 0 });
+    return Object.freeze({ source, rows: [], scanned: 0, cap: scanSize, truncated: false, error: errorText(error), boundaryAtMs: 0, boundaryId: '' });
   }
+}
+
+function rowCursorPosition(row: Row | undefined): ArchiveCursorPosition | undefined {
+  if (!row) return undefined;
+  const id = cleanText(row.id, 160);
+  const createdAtMs = Number(row.createdAtMs);
+  if (!TOKEN_RE.test(id) || !Number.isSafeInteger(createdAtMs) || createdAtMs < 0) return undefined;
+  return Object.freeze({ id, createdAtMs });
+}
+
+function nextArchiveCursorPositions(
+  previous: ArchiveCursorPositions,
+  results: readonly DiagnosticsArchiveSourceResult[],
+  returnedItems: readonly Row[],
+): ArchiveCursorPositions {
+  const next: ArchiveCursorPositions = { ...previous };
+  for (const result of results) {
+    if (!isArchiveSource(result.source) || result.error) continue;
+    const returned = returnedItems.filter((row) => row.source === result.source);
+    const returnedIds = new Set(returned.map((row) => cleanText(row.id, 160)));
+    const allMatchedRowsReturned = result.rows.every((row) => returnedIds.has(cleanText(row.id, 160)));
+    const boundary = rowCursorPosition({ id: result.boundaryId, createdAtMs: result.boundaryAtMs });
+    const safePosition = allMatchedRowsReturned && boundary
+      ? boundary
+      : rowCursorPosition(returned[returned.length - 1]);
+    if (safePosition) next[result.source] = safePosition;
+  }
+  return Object.freeze(next);
+}
+
+export async function listDiagnosticsArchiveRows(
+  db: FirebaseFirestore.Firestore,
+  input: DiagnosticsArchiveListRequest,
+  canReadUsers: boolean,
+): Promise<Row> {
+  const previousPositions: ArchiveCursorPositions = input.cursor ? decodeArchiveCursor(input.cursor, input.type) : Object.freeze({});
+  const types: ArchiveDetailType[] = input.type === 'all' ? ['user', 'error'] : [input.type];
+  const results = await Promise.all(types.map((type) => {
+    const source = archiveSource(type);
+    return readArchiveSource(db, type, input, canReadUsers, previousPositions[source]);
+  }));
+  const merged = mergeDiagnosticsArchiveRows(results, input.pageSize);
+  const nextPositions = nextArchiveCursorPositions(previousPositions, results, merged.items);
+  const hasNextPosition = Object.keys(nextPositions).length > 0;
+  return {
+    ok: merged.state !== 'error',
+    state: merged.state,
+    items: merged.items,
+    count: merged.items.length,
+    nextCursor: merged.truncated && hasNextPosition ? encodeArchiveCursor(input.type, nextPositions) : null,
+    truncated: merged.truncated,
+    partial: merged.partial,
+    sourceHealth: merged.sourceHealth,
+    fetchedAtMs: Date.now(),
+    error: merged.sourceHealth.filter((source) => source.error).map((source) => `${source.source}: ${source.error}`).join('; ').slice(0, 500),
+  };
 }
 
 export const adminListDiagnosticsArchive = onCall(
   { region: REGION, enforceAppCheck: true, timeoutSeconds: 20, memory: '512MiB' },
   async (request) => {
     const actor = requireDiagnosticsRead(request as { auth?: { uid?: string; token?: Row } });
-    const input = parseDiagnosticsArchiveListRequest(request.data);
-    if (input.cursor) decodeArchiveCursor(input.cursor, input.type);
-    const types: ArchiveDetailType[] = input.type === 'all' ? ['user', 'error'] : [input.type];
-    const results = await Promise.all(types.map((type) => readArchiveSource(admin.firestore(), type, input, actor.canReadUsers)));
-    const merged = mergeDiagnosticsArchiveRows(results, input.pageSize);
-    const lastItem = merged.items[merged.items.length - 1];
-    const boundaryAtMs = results.filter((result) => result.truncated).map((result) => result.boundaryAtMs || 0).filter(Boolean).sort((left, right) => right - left)[0] || 0;
-    const nextAtMs = merged.truncated ? Number(lastItem?.createdAtMs || boundaryAtMs) : 0;
-    const nextId = cleanText(lastItem?.id, 160) || 'boundary';
-    return {
-      ok: merged.state !== 'error',
-      state: merged.state,
-      items: merged.items,
-      count: merged.items.length,
-      nextCursor: nextAtMs ? encodeArchiveCursor(input.type, nextId, nextAtMs) : null,
-      truncated: merged.truncated,
-      partial: merged.partial,
-      sourceHealth: merged.sourceHealth,
-      fetchedAtMs: Date.now(),
-      error: merged.sourceHealth.filter((source) => source.error).map((source) => `${source.source}: ${source.error}`).join('; ').slice(0, 500),
-    };
+    return listDiagnosticsArchiveRows(admin.firestore(), parseDiagnosticsArchiveListRequest(request.data), actor.canReadUsers);
   },
 );
 

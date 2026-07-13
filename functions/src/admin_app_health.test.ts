@@ -8,6 +8,8 @@ import {
   decodeAppHealthCursor,
   encodeAppHealthCursor,
   groupAppHealthRows,
+  listAppActivityRows,
+  listAppHealthRows,
   parseAppActivityListRequest,
   parseAppHealthDetailRequest,
   parseAppHealthExportRequest,
@@ -16,6 +18,51 @@ import {
   projectAppHealthRow,
   summarizeAppHealth,
 } from './admin_app_health';
+
+type FakeDiagnosticsRow = { id: string; createdAtMs: number } & Record<string, unknown>;
+
+function fakeDiagnosticsDb(collectionRows: Record<string, FakeDiagnosticsRow[]>) {
+  class Query {
+    constructor(
+      private readonly collectionName: string,
+      private readonly cursorAtMs: number | null = null,
+      private readonly cursorId = '',
+      private readonly limitCount = Number.POSITIVE_INFINITY,
+    ) {}
+
+    orderBy() { return new Query(this.collectionName, this.cursorAtMs, this.cursorId, this.limitCount); }
+
+    startAfter(cursor: number | { id?: string; data?: () => Record<string, unknown> }, documentRef?: { id?: string }) {
+      if (typeof cursor === 'object') {
+        return new Query(this.collectionName, Number(cursor.data?.().createdAtMs || 0), String(cursor.id || ''), this.limitCount);
+      }
+      return new Query(this.collectionName, cursor, String(documentRef?.id || ''), this.limitCount);
+    }
+
+    limit(count: number) { return new Query(this.collectionName, this.cursorAtMs, this.cursorId, count); }
+
+    doc(id: string) {
+      const row = (collectionRows[this.collectionName] || []).find((item) => item.id === id);
+      return { id, get: async () => ({ id, exists: Boolean(row), data: () => row }) };
+    }
+
+    async get() {
+      let rows = [...(collectionRows[this.collectionName] || [])]
+        .sort((left, right) => right.createdAtMs - left.createdAtMs || right.id.localeCompare(left.id));
+      if (this.cursorAtMs !== null) {
+        rows = rows.filter((row) => row.createdAtMs < this.cursorAtMs!
+          || (row.createdAtMs === this.cursorAtMs && Boolean(this.cursorId) && row.id < this.cursorId));
+      }
+      const limited = rows.slice(0, this.limitCount);
+      return { size: limited.length, docs: limited.map((row) => ({ id: row.id, data: () => row })) };
+    }
+  }
+  return { collection: (name: string) => new Query(name) } as never;
+}
+
+function diagnosticsPage(value: unknown): { items: Array<Record<string, unknown>>; nextCursor: string | null } {
+  return value as { items: Array<Record<string, unknown>>; nextCursor: string | null };
+}
 
 describe('native diagnostics app health contracts', () => {
   test('accepts only closed periods, severities, statuses, formats and bounded inputs', () => {
@@ -65,6 +112,54 @@ describe('native diagnostics app health contracts', () => {
     const full = projectAppHealthRow('e1', raw, true, false);
     expect(full).toMatchObject({ user: { uid: 'stable-secret-uid', name: 'Alice Secret', email: 'alice@example.com' } });
     expect(JSON.stringify(full)).not.toContain('firebase-secret-uid');
+  });
+
+  test('redacts two-character and safe standalone one-character identities from every projected text surface', () => {
+    const health = projectAppHealthRow('e-short', {
+      uid: 'u-short', userName: 'Li', severity: 'warning', message: 'Li failed', stack: 'Li at player.ts',
+      context: 'Account Li', feature: 'app', deviceName: 'Li phone', tags: { operation: 'Li' }, createdAtMs: 100,
+    }, false, true);
+    const activity = projectAppActivityRow('a-short', {
+      uid: 'u-short', userName: 'Li', action: 'Li opened app', feature: 'app', screen: 'Li', result: 'info',
+      appState: 'Li', tags: { operation: 'Li' }, createdAtMs: 100,
+    }, false);
+    for (const projected of [health, activity]) expect(JSON.stringify(projected)).not.toContain('Li');
+
+    const oneCharacter = projectAppHealthRow('e-one', {
+      uid: 'u-one', userName: 'A', severity: 'warning', message: 'A fatal App error', createdAtMs: 100,
+    }, false, false);
+    expect(oneCharacter.message).toBe('[REDACTED_USER] fatal App error');
+  });
+
+  test('paginates app errors and activity deterministically across equal createdAtMs values', async () => {
+    const nowMs = 2_000_000_000_000;
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(nowMs);
+    try {
+      const equalAtMs = nowMs - 1_000;
+      const db = fakeDiagnosticsDb({
+        app_errors: ['e-3', 'e-2', 'e-1'].map((id) => ({ id, createdAtMs: equalAtMs, severity: 'warning', status: 'new', feature: 'app' })),
+        app_activity: ['a-3', 'a-2', 'a-1'].map((id) => ({ id, createdAtMs: equalAtMs, action: 'app:test', feature: 'app', result: 'info' })),
+      });
+      const healthIds: unknown[] = [];
+      let healthCursor = '';
+      for (let pageIndex = 0; pageIndex < 3; pageIndex += 1) {
+        const page = diagnosticsPage(await listAppHealthRows(db, parseAppHealthListRequest({ periodHours: 1, pageSize: 1, cursor: healthCursor }), false));
+        healthIds.push(page.items[0]?.id);
+        healthCursor = page.nextCursor || '';
+      }
+      expect(healthIds).toEqual(['e-3', 'e-2', 'e-1']);
+
+      const activityIds: unknown[] = [];
+      let activityCursor = '';
+      for (let pageIndex = 0; pageIndex < 3; pageIndex += 1) {
+        const page = diagnosticsPage(await listAppActivityRows(db, parseAppActivityListRequest({ periodHours: 1, pageSize: 1, cursor: activityCursor }), false));
+        activityIds.push(page.items[0]?.id);
+        activityCursor = page.nextCursor || '';
+      }
+      expect(activityIds).toEqual(['a-3', 'a-2', 'a-1']);
+    } finally {
+      nowSpy.mockRestore();
+    }
   });
 
   test('groups by fingerprint with context fallback and computes the required health thresholds', () => {
@@ -157,6 +252,7 @@ describe('native diagnostics app health contracts', () => {
     }
     expect(source).toContain("'diagnostics.read'");
     expect(source).toContain("hasPermission(role, 'users.read')");
+    expect(source).toContain('query = query.startAfter(cursorDoc)');
     expect(source).not.toMatch(/admin(?:Update|Set|Write)AppHealth\s*=\s*onCall/);
     expect(source).not.toMatch(/runTransaction|\b(?:tx|batch|documentRef|reportRef|ref)\.update\s*\(/);
   });

@@ -4,12 +4,66 @@ import { HttpsError } from 'firebase-functions/v2/https';
 import {
   deriveDiagnosticsArchiveState,
   isDiagnosticsArchiveStatus,
+  listDiagnosticsArchiveRows,
   mergeDiagnosticsArchiveRows,
   parseDiagnosticsArchiveDetailRequest,
   parseDiagnosticsArchiveListRequest,
   projectDiagnosticsArchiveDetail,
   projectDiagnosticsArchiveListRow,
 } from './admin_diagnostics_archive';
+
+type FakeArchiveRow = { id: string; createdAtMs: number; status: string } & Record<string, unknown>;
+
+function fakeArchiveDb(
+  collectionRows: Record<string, FakeArchiveRow[]>,
+  failReads: Partial<Record<string, number>> = {},
+) {
+  const remainingFailures = { ...failReads };
+  class Query {
+    constructor(
+      private readonly collectionName: string,
+      private readonly cursorAtMs: number | null = null,
+      private readonly cursorId = '',
+      private readonly limitCount = Number.POSITIVE_INFINITY,
+    ) {}
+
+    orderBy() { return new Query(this.collectionName, this.cursorAtMs, this.cursorId, this.limitCount); }
+
+    startAfter(cursor: number | { id?: string; data?: () => Record<string, unknown> }, documentRef?: { id?: string }) {
+      if (typeof cursor === 'object') {
+        return new Query(this.collectionName, Number(cursor.data?.().createdAtMs || 0), String(cursor.id || ''), this.limitCount);
+      }
+      return new Query(this.collectionName, cursor, String(documentRef?.id || ''), this.limitCount);
+    }
+
+    limit(count: number) { return new Query(this.collectionName, this.cursorAtMs, this.cursorId, count); }
+
+    doc(id: string) {
+      const row = (collectionRows[this.collectionName] || []).find((item) => item.id === id);
+      return { id, get: async () => ({ id, exists: Boolean(row), data: () => row }) };
+    }
+
+    async get() {
+      if (Number(remainingFailures[this.collectionName] || 0) > 0) {
+        remainingFailures[this.collectionName] = Number(remainingFailures[this.collectionName]) - 1;
+        throw new Error(`${this.collectionName}_temporarily_unavailable`);
+      }
+      let rows = [...(collectionRows[this.collectionName] || [])]
+        .sort((left, right) => right.createdAtMs - left.createdAtMs || right.id.localeCompare(left.id));
+      if (this.cursorAtMs !== null) {
+        rows = rows.filter((row) => row.createdAtMs < this.cursorAtMs!
+          || (row.createdAtMs === this.cursorAtMs && Boolean(this.cursorId) && row.id < this.cursorId));
+      }
+      const limited = rows.slice(0, this.limitCount);
+      return { size: limited.length, docs: limited.map((row) => ({ id: row.id, data: () => row })) };
+    }
+  }
+  return { collection: (name: string) => new Query(name) } as never;
+}
+
+function archivePage(value: unknown): { items: Array<Record<string, unknown>>; nextCursor: string | null } {
+  return value as { items: Array<Record<string, unknown>>; nextCursor: string | null };
+}
 
 describe('native diagnostics archive contracts', () => {
   test('accepts only closed types, strict ids/cursors and bounded list inputs', () => {
@@ -65,6 +119,68 @@ describe('native diagnostics archive contracts', () => {
     expect(JSON.stringify(detail)).not.toContain('accessToken');
   });
 
+  test('redacts a two-character identity from archive comment, learning and device fields', () => {
+    const detail = projectDiagnosticsArchiveDetail('error', 'r-short', {
+      status: 'fixed', uid: 'u-short', userName: 'Li', comment: 'Li reported this', dataText: 'Lesson for Li',
+      userAnswer: 'Li', copyText: 'Li copy', deviceModel: 'Li phone', deviceOS: 'Li OS', appVersion: 'Li', createdAtMs: 100,
+    }, false);
+    expect(JSON.stringify(detail)).not.toContain('Li');
+  });
+
+  test('uses independent source positions so a recovered archive source cannot lose newer rows', async () => {
+    const db = fakeArchiveDb({
+      user_reports: [
+        { id: 'u-300', createdAtMs: 300, status: 'archived' },
+        { id: 'u-200', createdAtMs: 200, status: 'banned' },
+      ],
+      error_reports: [
+        { id: 'e-500', createdAtMs: 500, status: 'fixed' },
+        { id: 'e-400', createdAtMs: 400, status: 'archived' },
+      ],
+    }, { error_reports: 1 });
+    const first = archivePage(await listDiagnosticsArchiveRows(db, parseDiagnosticsArchiveListRequest({ type: 'all', pageSize: 1 }), false));
+    expect(first.items.map((row) => row.id)).toEqual(['u-300']);
+    expect(first.nextCursor).toBeTruthy();
+
+    const recovered = archivePage(await listDiagnosticsArchiveRows(db, parseDiagnosticsArchiveListRequest({ type: 'all', pageSize: 1, cursor: first.nextCursor }), false));
+    expect(recovered.items.map((row) => row.id)).toEqual(['e-500']);
+  });
+
+  test('does not advance either archive source past matching rows excluded from the merged page', async () => {
+    const db = fakeArchiveDb({
+      user_reports: [
+        { id: 'u-450', createdAtMs: 450, status: 'archived' },
+        { id: 'u-350', createdAtMs: 350, status: 'banned' },
+      ],
+      error_reports: [
+        { id: 'e-500', createdAtMs: 500, status: 'fixed' },
+        { id: 'e-400', createdAtMs: 400, status: 'archived' },
+      ],
+    });
+    const ids: unknown[] = [];
+    let cursor = '';
+    for (let pageIndex = 0; pageIndex < 4; pageIndex += 1) {
+      const page = archivePage(await listDiagnosticsArchiveRows(db, parseDiagnosticsArchiveListRequest({ type: 'all', pageSize: 1, cursor }), false));
+      ids.push(page.items[0]?.id);
+      cursor = page.nextCursor || '';
+    }
+    expect(ids).toEqual(['e-500', 'u-450', 'e-400', 'u-350']);
+  });
+
+  test('paginates archive rows with equal createdAtMs without skipping document ids', async () => {
+    const db = fakeArchiveDb({
+      error_reports: ['e-3', 'e-2', 'e-1'].map((id) => ({ id, createdAtMs: 100, status: 'fixed' })),
+    });
+    const ids: unknown[] = [];
+    let cursor = '';
+    for (let pageIndex = 0; pageIndex < 3; pageIndex += 1) {
+      const page = archivePage(await listDiagnosticsArchiveRows(db, parseDiagnosticsArchiveListRequest({ type: 'error', pageSize: 1, cursor }), false));
+      ids.push(page.items[0]?.id);
+      cursor = page.nextCursor || '';
+    }
+    expect(ids).toEqual(['e-3', 'e-2', 'e-1']);
+  });
+
   test('merges sources in descending date order with truthful truncation and partial state', () => {
     const merged = mergeDiagnosticsArchiveRows([
       { source: 'user_reports', rows: [{ id: 'u1', createdAtMs: 200 }], scanned: 5, truncated: false, error: '' },
@@ -83,7 +199,7 @@ describe('native diagnostics archive contracts', () => {
     expect(deriveDiagnosticsArchiveState([{ source: 'error_reports', state: 'error', count: 0, scanned: 0, cap: 250, truncated: false, error: 'unavailable' }], 0, false)).toBe('error');
   });
 
-  test('declares two protected read-only callables and uses one-field bounded source scans', () => {
+  test('declares two protected read-only callables and uses snapshot cursors with the implicit document-id tiebreak', () => {
     const source = readFileSync(join(__dirname, 'admin_diagnostics_archive.ts'), 'utf8');
     for (const callable of ['adminListDiagnosticsArchive', 'adminGetDiagnosticsArchiveDetail']) {
       expect(source).toMatch(new RegExp(`${callable}\\s*=\\s*onCall\\([\\s\\S]{0,500}?region:\\s*REGION[\\s\\S]{0,500}?enforceAppCheck:\\s*true`));
@@ -91,6 +207,7 @@ describe('native diagnostics archive contracts', () => {
     expect(source).toContain("'diagnostics.read'");
     expect(source).toContain("hasPermission(role, 'users.read')");
     expect(source).toMatch(/orderBy\('createdAtMs',\s*'desc'\)/);
+    expect(source).toContain('query = query.startAfter(cursorDoc)');
     expect(source).not.toMatch(/\.where\s*\(/);
     expect(source).not.toMatch(/runTransaction|\b(?:tx|batch|documentRef|reportRef|ref)\.update\s*\(/);
   });

@@ -272,14 +272,22 @@ function millis(value: unknown): number {
 }
 
 function identityValues(row: Row): string[] {
-  return ['uid', 'stableUid', 'authUid', 'userName', 'name', 'email']
+  return [...new Set(['uid', 'stableUid', 'authUid', 'userName', 'name', 'email']
     .map((key) => cleanText(row[key], 180))
-    .filter((value) => value.length >= 3)
+    .filter(Boolean))]
     .sort((left, right) => right.length - left.length);
 }
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function redactIdentity(output: string, identity: string): string {
+  const escaped = escapeRegExp(identity);
+  const pattern = identity.length <= 2
+    ? new RegExp(`(?<![\\p{L}\\p{N}_])${escaped}(?![\\p{L}\\p{N}_])`, 'giu')
+    : new RegExp(escaped, 'gi');
+  return output.replace(pattern, '[REDACTED_USER]');
 }
 
 function safeText(value: unknown, max: number, row: Row, canReadUsers: boolean): string {
@@ -289,7 +297,7 @@ function safeText(value: unknown, max: number, row: Row, canReadUsers: boolean):
     .replace(/\b(api[_-]?key|access[_-]?token|refresh[_-]?token|password|secret|token)\s*[:=]\s*[^\s,;]+/gi, '$1=[REDACTED]');
   if (!canReadUsers) {
     output = output.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[REDACTED_EMAIL]');
-    for (const identity of identityValues(row)) output = output.replace(new RegExp(escapeRegExp(identity), 'gi'), '[REDACTED_USER]');
+    for (const identity of identityValues(row)) output = redactIdentity(output, identity);
   }
   return output.slice(0, max);
 }
@@ -549,13 +557,22 @@ function sourceHealth(
   return buildAppDiagnosticsSourceHealth(source, { state, count, scanned, cap, truncated, partial, error });
 }
 
-async function listAppHealthRows(db: FirebaseFirestore.Firestore, input: AppHealthListRequest, canReadUsers: boolean): Promise<Row> {
+export async function listAppHealthRows(db: FirebaseFirestore.Firestore, input: AppHealthListRequest, canReadUsers: boolean): Promise<Row> {
   const sinceMs = Date.now() - input.periodHours * 60 * 60 * 1000;
   const hasFilters = Boolean(input.severity !== 'all' || input.status !== 'all' || input.feature || input.query);
   const scanSize = hasFilters ? Math.min(MAX_SCAN_SIZE, Math.max(input.pageSize * 5, input.pageSize + 1)) : Math.min(MAX_SCAN_SIZE, input.pageSize + 1);
   try {
-    let query: FirebaseFirestore.Query = db.collection('app_errors').orderBy('createdAtMs', 'desc');
-    if (input.cursor) query = query.startAfter(decodeAppHealthCursor(input.cursor, input).createdAtMs);
+    const collection = db.collection('app_errors');
+    let query: FirebaseFirestore.Query = collection.orderBy('createdAtMs', 'desc');
+    if (input.cursor) {
+      const cursor = decodeAppHealthCursor(input.cursor, input);
+      const cursorDoc = await collection.doc(cursor.id).get();
+      if (!cursorDoc.exists || millis(cursorDoc.data()?.createdAtMs) !== cursor.createdAtMs) {
+        throw new HttpsError('failed-precondition', 'app health cursor document is unavailable');
+      }
+      // The snapshot carries Firestore's implicit __name__ tiebreak without a new compound index.
+      query = query.startAfter(cursorDoc);
+    }
     const snapshot = await query.limit(scanSize + 1).get();
     const docs = snapshot.docs.slice(0, scanSize);
     const projectedPairs = docs.map((doc) => {
@@ -605,13 +622,21 @@ async function listAppHealthRows(db: FirebaseFirestore.Firestore, input: AppHeal
   }
 }
 
-async function listAppActivityRows(db: FirebaseFirestore.Firestore, input: AppActivityListRequest, canReadUsers: boolean): Promise<Row> {
+export async function listAppActivityRows(db: FirebaseFirestore.Firestore, input: AppActivityListRequest, canReadUsers: boolean): Promise<Row> {
   const sinceMs = Date.now() - input.periodHours * 60 * 60 * 1000;
   const hasFilters = Boolean(input.result !== 'all' || input.feature || input.query);
   const scanSize = hasFilters ? Math.min(MAX_SCAN_SIZE, Math.max(input.pageSize * 5, input.pageSize + 1)) : Math.min(MAX_SCAN_SIZE, input.pageSize + 1);
   try {
-    let query: FirebaseFirestore.Query = db.collection('app_activity').orderBy('createdAtMs', 'desc');
-    if (input.cursor) query = query.startAfter(decodeActivityCursor(input.cursor, input).createdAtMs);
+    const collection = db.collection('app_activity');
+    let query: FirebaseFirestore.Query = collection.orderBy('createdAtMs', 'desc');
+    if (input.cursor) {
+      const cursor = decodeActivityCursor(input.cursor, input);
+      const cursorDoc = await collection.doc(cursor.id).get();
+      if (!cursorDoc.exists || millis(cursorDoc.data()?.createdAtMs) !== cursor.createdAtMs) {
+        throw new HttpsError('failed-precondition', 'app activity cursor document is unavailable');
+      }
+      query = query.startAfter(cursorDoc);
+    }
     const snapshot = await query.limit(scanSize + 1).get();
     const docs = snapshot.docs.slice(0, scanSize);
     const projected = docs.map((doc) => projectAppActivityRow(doc.id, doc.data() as Row, canReadUsers));

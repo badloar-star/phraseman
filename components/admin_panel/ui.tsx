@@ -55,6 +55,7 @@ export const CHAPTERS: { id: AdminChapterId; label: string; icon: string }[] = [
 /** Раздел → глава + ключевые слова для поиска (русские синонимы того, что внутри). */
 const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }> = {
   new_paywall_v2: { chapter: 'monetization', keywords: 'пейвол paywall v2 макет premium подписка' },
+  soft_upsell_previews: { chapter: 'monetization', keywords: 'мягкие пейволы soft upsell превью premium подписка первый урок недельный обзор серия тренировка ии диалог' },
   platform_ui_preview: { chapter: 'system', keywords: 'android ios платформа превью ui' },
   cosmetics_preview: { chapter: 'social', keywords: 'аватары ауры рамки косметика бюсты осколки' },
   account: { chapter: 'data', keywords: 'аккаунт xp без ограничений энергия достижения снять премиум mastery перепройти' },

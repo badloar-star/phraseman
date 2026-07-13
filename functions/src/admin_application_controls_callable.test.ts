@@ -294,7 +294,7 @@ describe('admin application control callables', () => {
     expect(Object.values(state.store['users/u1/idea_inbox'] || {})).toHaveLength(1);
   });
 
-  test('deletes only a survey config while retaining responses and stats', async () => {
+  test('deletes and restores only a survey config while retaining responses and stats', async () => {
     const survey = { surveyId: 'study', enabled: true, title: { ru: 'Учёба' }, subtitle: { ru: 'Расскажите' }, rewardShards: 3, minDaysBetweenSurveys: 7, audience: { tier: 'any', minLessons: null, maxLessons: null, platforms: [] }, questions: [{ id: 'q1', type: 'text', text: { ru: 'Почему?' }, options: [] }], accentColor: '#22c55e', finalScreen: { title: { ru: 'Спасибо' }, subtitle: { ru: 'Готово' } }, createdAtMs: 1, updatedAtMs: 2, updatedBy: 'old' };
     const state = makeDb({ shard_surveys: { study: survey }, shard_survey_stats: { study: { totalResponses: 5 } }, shard_survey_responses: { r1: { surveyId: 'study', uid: 'u1' } } });
     const preview = await run(adminPreviewVoiceResearchMutation, request({ action: 'survey_delete', targetId: 'study', payload: {}, reason: 'archive completed survey', requestId: 'voice-preview-2' }));
@@ -302,6 +302,13 @@ describe('admin application control callables', () => {
     expect(state.store.shard_surveys.study).toBeUndefined();
     expect(state.store.shard_survey_stats.study).toEqual({ totalResponses: 5 });
     expect(state.store.shard_survey_responses.r1).toEqual({ surveyId: 'study', uid: 'u1' });
-    expect(Object.values(state.store.admin_voice_research_history || {})).toHaveLength(1);
+    const history = Object.values(state.store.admin_voice_research_history || {});
+    expect(history).toHaveLength(1);
+    const restorePreview = await run(adminPreviewVoiceResearchMutation, request({ action: 'survey_restore', targetId: 'study', payload: { survey: history[0]?.before }, reason: 'restore archived survey configuration', requestId: 'voice-preview-restore' }));
+    await run(adminApplyVoiceResearchMutation, request({ previewId: restorePreview.previewId, confirmation: restorePreview.confirmation, reason: 'restore archived survey configuration', requestId: 'voice-apply-restore', idempotencyKey: 'voice-op-restore' }));
+    expect(state.store.shard_surveys.study).toMatchObject({ surveyId: 'study', title: { ru: 'Учёба' }, createdAtMs: 1 });
+    expect(state.store.shard_survey_stats.study).toEqual({ totalResponses: 5 });
+    expect(state.store.shard_survey_responses.r1).toEqual({ surveyId: 'study', uid: 'u1' });
+    expect(Object.values(state.store.admin_voice_research_history || {})).toHaveLength(2);
   });
 });

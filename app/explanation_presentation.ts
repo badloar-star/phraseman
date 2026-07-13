@@ -20,12 +20,6 @@ type MistakeBlocksInput = BlockInput & {
   targetAnswer?: string | null;
 };
 
-type ExplainSheetBlocksInput = BlockInput & {
-  phraseEn?: string | null;
-  explanation?: string | null;
-  degraded?: boolean;
-};
-
 type QuizBlocksInput = BlockInput & {
   correct: boolean;
   pickedAnswer?: string | null;
@@ -42,19 +36,7 @@ export function semanticToneAccent(tone: SemanticExplanationTone): 'wrong' | 'ac
   return 'accent';
 }
 
-export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTone, slot?: 'phrase' | 'picked'): string {
-  if (slot === 'phrase') {
-    return triLang(lang, {
-      ru: 'Фраза',
-      uk: 'Фраза',
-      es: 'Frase',
-      'pt-BR': 'Frase',
-      vi: 'Cụm từ',
-      id: 'Frasa',
-      tr: 'İfade',
-      pl: 'Fraza',
-    });
-  }
+export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTone, slot?: 'picked'): string {
   if (slot === 'picked') {
     return triLang(lang, {
       ru: 'Ответ',
@@ -179,22 +161,6 @@ export function buildMistakeExplanationBlocks(input: MistakeBlocksInput): Semant
   }
   if (targetAnswer) {
     blocks.push(block('correct', semanticExplanationTitle(input.lang, 'correct'), targetAnswer, true));
-  }
-
-  return blocks;
-}
-
-export function buildExplainSheetBlocks(input: ExplainSheetBlocksInput): SemanticExplanationBlock[] {
-  const phrase = clean(input.phraseEn);
-  const explanation = clean(input.explanation);
-  const blocks: SemanticExplanationBlock[] = [];
-
-  if (phrase) {
-    blocks.push(block('correct', semanticExplanationTitle(input.lang, 'correct', 'phrase'), phrase, true));
-  }
-  if (explanation) {
-    blocks.push(block('insight', semanticExplanationTitle(input.lang, 'insight'), explanation));
-    blocks.push(block('memory', semanticExplanationTitle(input.lang, 'memory'), semanticMemoryLine(input.lang, input.degraded)));
   }
 
   return blocks;

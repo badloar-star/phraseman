@@ -1,5 +1,4 @@
 import {
-  buildExplainSheetBlocks,
   buildMistakeExplanationBlocks,
   buildQuizExplanationBlocks,
   semanticToneAccent,
@@ -31,19 +30,6 @@ describe('semantic explanation presentation blocks', () => {
 
     expect(tones(blocks)).toEqual(['insight']);
     expect(blocks[0].text).toBe('Fallback explanation only.');
-  });
-
-  it('uses the same scheme for phrase explain sheets without highlighting free Latin prose as English', () => {
-    const blocks = buildExplainSheetBlocks({
-      lang: 'ru',
-      phraseEn: 'I am ready',
-      explanation: 'This is a full sentence in the server response.',
-    });
-
-    expect(tones(blocks)).toEqual(['correct', 'insight', 'memory']);
-    expect(blocks[0]).toMatchObject({ title: 'Фраза', text: 'I am ready' });
-    expect(blocks[1]).toMatchObject({ title: 'Почему' });
-    expect(blocks[1].emphasizeText).toBe(false);
   });
 
   it('keeps quiz explanations semantic for both wrong and correct answers', () => {

@@ -19,8 +19,13 @@ describe('streak stats verified hybrid insight wiring', () => {
 
   it('waits for explicit activity and percentile readiness and keys generation by the semantic fingerprint', () => {
     expect(source).toContain("useState<'loading' | 'ready' | 'unavailable'>('loading')");
-    expect(source).toContain("activity365Status !== 'ready'");
-    expect(source).toContain("percentilesStatus === 'loading'");
+    expect(source).toContain('activityStatus: activity365Status');
+    expect(source).toContain('percentilesStatus: percentilesStatus');
+    expect(source).toContain("const [lifetimeStatus, setLifetimeStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading')");
+    expect(source).toContain("setActivity365Status('loading')");
+    expect(source).toContain("setPercentilesStatus('loading')");
+    expect(source).toContain("setLifetimeStatus('loading')");
+    expect(source).toContain("lifetimeStatus: lifetimeStatus");
     expect(source).toContain('statsInsightAnalysis?.fingerprint');
     expect(source).not.toContain('eslint-disable-next-line react-hooks/exhaustive-deps');
   });
@@ -38,5 +43,10 @@ describe('streak stats verified hybrid insight wiring', () => {
 
   it('invalidates late activity/percentile completions when the screen loses focus', () => {
     expect(source).toContain('analyticsLoadRequestRef.current += 1');
+    expect(source).toContain('isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current)');
+    expect(source).toContain("setLifetimeStatus(cachedLifetimeForCycle ? 'ready' : 'unavailable')");
+    expect(source).not.toContain('setActivity365(null)');
+    expect(source).toContain('const devStatsCycleId = analyticsLoadRequestRef.current');
+    expect(source).toContain('isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current)');
   });
 });

@@ -40,6 +40,29 @@ export type BuildStatsInsightsSnapshotInput = {
   lifetime: LifetimeInput;
 };
 
+export type StatsInsightsLoadStatus = 'loading' | 'ready' | 'unavailable';
+
+export function isCurrentStatsInsightsLoadCycle(cycleId: number, currentCycleId: number): boolean {
+  return Number.isSafeInteger(cycleId) && cycleId === currentCycleId;
+}
+
+export function canBuildStatsInsightsSnapshotForCycle(input: {
+  cycleId: number;
+  currentCycleId: number;
+  activityStatus: StatsInsightsLoadStatus;
+  percentilesStatus: StatsInsightsLoadStatus;
+  lifetimeStatus: StatsInsightsLoadStatus;
+  hasActivity: boolean;
+  hasLifetime: boolean;
+}): boolean {
+  return isCurrentStatsInsightsLoadCycle(input.cycleId, input.currentCycleId)
+    && input.activityStatus === 'ready'
+    && input.percentilesStatus !== 'loading'
+    && input.lifetimeStatus === 'ready'
+    && input.hasActivity
+    && input.hasLifetime;
+}
+
 function addUtcDays(dateKey: string, amount: number): string {
   const [year, month, day] = dateKey.split('-').map(Number) as [number, number, number];
   return new Date(Date.UTC(year, month - 1, day + amount)).toISOString().slice(0, 10);

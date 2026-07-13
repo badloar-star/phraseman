@@ -5,6 +5,7 @@ import {
   assertModerationOperationReplay,
   assertSafetyApprovalCanBeApproved,
   assertSafetyApprovalForApply,
+  assertBanHistoryForUnban,
   buildSafetyModerationPreview,
   buildModerationAuditProjection,
   decodeSafetyModerationCursor,
@@ -12,9 +13,11 @@ import {
   packSafetyModerationSnapshot,
   parseSafetyModerationMutationInput,
   parseSafetyModerationRequest,
+  projectSafetyModerationApproval,
   safetyModerationAccessScope,
   requiredSafetyModerationMutationPermission,
   requiredSafetyModerationPermission,
+  resolveBanHistoryIdForUnban,
   unpackSafetyModerationSnapshot,
 } from './admin_safety_moderation';
 
@@ -95,7 +98,23 @@ describe('Admin Safety & Moderation read contract', () => {
   test('links new bans to their rollback history and uses that link for safe unban restore', () => {
     const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
     expect(source).toContain('banHistoryId: historyRef.id');
-    expect(source).toMatch(/input\.payload\.historyId \|\| ban\?\.banHistoryId/);
+    expect(source).toContain('resolveBanHistoryIdForUnban');
+  });
+
+  test('binds unban restore data to the same user and canonical ban history', () => {
+    expect(resolveBanHistoryIdForUnban({ banHistoryId: 'history-u1' }, '', 'u1')).toBe('history-u1');
+    expect(resolveBanHistoryIdForUnban({ banHistoryId: 'history-u1' }, 'history-u1', 'u1')).toBe('history-u1');
+    expect(() => resolveBanHistoryIdForUnban({ banHistoryId: 'history-u1' }, 'history-u2', 'u1')).toThrow('ban_history_mismatch');
+    expect(() => resolveBanHistoryIdForUnban({}, '', 'u1')).toThrow('ban_history_missing');
+    expect(() => assertBanHistoryForUnban({ action: 'user_ban', targetId: 'u2' }, 'u1')).toThrow('ban_history_target_mismatch');
+    expect(() => assertBanHistoryForUnban({ action: 'report_set_status', targetId: 'u1' }, 'u1')).toThrow('ban_history_target_mismatch');
+    expect(() => assertBanHistoryForUnban({ action: 'user_ban', targetId: 'u1' }, 'u1')).not.toThrow();
+  });
+
+  test('includes a source report in the authoritative ban CAS projection', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
+    expect(source).toMatch(/const sourceReport = sourceReportSnap[\s\S]*?projectUserReport[\s\S]*?sourceReport[,\s}]/);
+    expect(source).toContain('ban_source_report_uid_mismatch');
   });
 
   test('registers both read callables in the Functions entrypoint', () => {
@@ -138,6 +157,13 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(warning).toMatchObject({ requiresApproval: false, irreversible: true, rollbackPath: 'Warning delivery cannot be recalled by the current client protocol.' });
   });
 
+  test('uses order-independent fingerprints for CAS state objects', () => {
+    const input = parseSafetyModerationMutationInput({ action: 'report_set_status', targetId: 'r1', reason: 'Review', requestId: 'req-order', payload: { status: 'reviewed' } });
+    const first = buildSafetyModerationPreview(input, { a: 1, nested: { z: 2, b: 3 } }, 100, 'admin-1', 'admin');
+    const second = buildSafetyModerationPreview(input, { nested: { b: 3, z: 2 }, a: 1 }, 100, 'admin-1', 'admin');
+    expect(first.beforeFingerprint).toBe(second.beforeFingerprint);
+  });
+
   test('binds idempotent operation replay to both actor and request fingerprint', () => {
     expect(() => assertModerationOperationReplay({ actorUid: 'a1', requestFingerprint: 'f1' }, 'a1', 'f1')).not.toThrow();
     expect(() => assertModerationOperationReplay({ actorUid: 'a1', requestFingerprint: 'f1' }, 'a2', 'f1')).toThrow('idempotency_conflict');
@@ -157,14 +183,31 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(() => assertSafetyApprovalForApply({ ...approved, approvedBy: 'admin-1' }, preview, 'admin-1', 500)).toThrow('approval_mismatch');
   });
 
+  test('projects a reviewable second-administrator packet without exposing mutation payloads', () => {
+    const row = projectSafetyModerationApproval('approval-1', {
+      type: 'safety_moderation', status: 'pending', action: 'user_ban', targetId: 'u1',
+      requestedBy: 'admin-1', requestedAtMs: 100, expiresAtMs: 1_000,
+      reason: 'Confirmed abuse', risk: 'Creates a global account block.', fingerprint: 'abc123',
+      payload: { private: 'must not leak' },
+    }, 'admin-2', 500);
+    expect(row).toEqual({
+      approvalId: 'approval-1', action: 'user_ban', targetId: 'u1', requestedBy: 'admin-1',
+      requestedAtMs: 100, expiresAtMs: 1_000, reason: 'Confirmed abuse',
+      risk: 'Creates a global account block.', fingerprint: 'abc123', canApprove: true,
+    });
+    expect(projectSafetyModerationApproval('approval-1', { type: 'other', status: 'pending' }, 'admin-2', 500)).toBeNull();
+    expect(projectSafetyModerationApproval('approval-1', { type: 'safety_moderation', status: 'pending', expiresAtMs: 400 }, 'admin-2', 500)).toBeNull();
+  });
+
   test('registers strict preview and approval callables', () => {
     const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
-    for (const callable of ['adminPreviewSafetyModerationMutation', 'adminRequestSafetyModerationApproval', 'adminApproveSafetyModerationMutation']) {
+    for (const callable of ['adminPreviewSafetyModerationMutation', 'adminRequestSafetyModerationApproval', 'adminListSafetyModerationApprovals', 'adminApproveSafetyModerationMutation']) {
       expect(source).toMatch(new RegExp(`${callable}\\s*=\\s*onCall\\([\\s\\S]*?enforceAppCheck:\\s*true`));
     }
     const indexSource = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
     expect(indexSource).toContain('adminPreviewSafetyModerationMutation');
     expect(indexSource).toContain('adminRequestSafetyModerationApproval');
+    expect(indexSource).toContain('adminListSafetyModerationApprovals');
     expect(indexSource).toContain('adminApproveSafetyModerationMutation');
   });
 

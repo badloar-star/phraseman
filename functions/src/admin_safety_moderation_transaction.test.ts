@@ -2,7 +2,9 @@ import * as admin from 'firebase-admin';
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
   adminApplySafetyModerationMutation,
+  adminPreviewSafetyModerationMutation,
   buildSafetyModerationPreview,
+  captureExactFields,
   parseSafetyModerationMutationInput,
 } from './admin_safety_moderation';
 import { projectUserReport } from './admin_safety_moderation_core';
@@ -32,6 +34,20 @@ async function seedPreview(id: string, preview: Row): Promise<void> {
   await admin.firestore().collection('admin_safety_moderation_previews').doc(id).set(preview);
 }
 
+function reportBefore(id: string, value: Row): Row {
+  return {
+    ...projectUserReport(id, value),
+    mutableFields: captureExactFields(value, ['status', 'reviewedAtMs', 'reviewedAt', 'reviewedBy', 'archivedAt', 'warningId']),
+  };
+}
+
+async function previewThroughCallable(data: Row): Promise<{ previewId: string; preview: Row; response: Row }> {
+  const result = await adminPreviewSafetyModerationMutation.run(request(data)) as unknown as Row;
+  const previewId = String(result.previewId || '');
+  const preview = (await admin.firestore().collection('admin_safety_moderation_previews').doc(previewId).get()).data() as Row;
+  return { previewId, preview, response: result };
+}
+
 runIfEmulator('Admin Safety & Moderation transactional integration', () => {
   beforeEach(async () => clearFirestore());
   afterAll(async () => Promise.all(admin.apps.filter((app): app is admin.app.App => Boolean(app)).map((app) => app.delete())));
@@ -43,7 +59,7 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     const input = parseSafetyModerationMutationInput({
       action: 'report_set_status', targetId: 'report-one', reason: 'Reviewed evidence', requestId: 'request-one', payload: { status: 'archived' },
     });
-    const preview = buildSafetyModerationPreview(input, projectUserReport('report-one', report), Date.now(), 'admin-one', 'admin') as unknown as Row;
+    const preview = buildSafetyModerationPreview(input, reportBefore('report-one', report), Date.now(), 'admin-one', 'admin') as unknown as Row;
     await seedPreview('preview-one', preview);
     const data = { previewId: 'preview-one', confirmation: preview.confirmation, reason: preview.reason, requestId: 'apply-one', idempotencyKey: 'operation-one' };
 
@@ -64,7 +80,7 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     const input = parseSafetyModerationMutationInput({
       action: 'report_set_status', targetId: 'report-stale', reason: 'Reviewed evidence', requestId: 'request-stale', payload: { status: 'reviewed' },
     });
-    const preview = buildSafetyModerationPreview(input, projectUserReport('report-stale', report), Date.now(), 'admin-one', 'admin') as unknown as Row;
+    const preview = buildSafetyModerationPreview(input, reportBefore('report-stale', report), Date.now(), 'admin-one', 'admin') as unknown as Row;
     await seedPreview('preview-stale', preview);
     await db.collection('user_reports').doc('report-stale').update({ status: 'archived' });
 
@@ -76,6 +92,30 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect((await db.collection('admin_command_operations').get()).empty).toBe(true);
     expect((await db.collection('admin_log').get()).empty).toBe(true);
     expect((await db.collection('admin_safety_moderation_previews').doc('preview-stale').get()).data()).not.toHaveProperty('consumedAtMs');
+  });
+
+  test('restores report fields exactly, deleting timestamps that did not exist before', async () => {
+    const db = admin.firestore();
+    const report = { reportedUid: 'user-restore', reporterUid: 'reporter-one', reason: 'spam', status: 'new', createdAtMs: 100 };
+    await db.collection('user_reports').doc('report-restore').set(report);
+    const change = await previewThroughCallable({
+      action: 'report_set_status', targetId: 'report-restore', reason: 'Archive reviewed report', requestId: 'preview-restore-change', payload: { status: 'archived' },
+    });
+    const changed = await adminApplySafetyModerationMutation.run(request({
+      previewId: change.previewId, confirmation: change.preview.confirmation, reason: change.preview.reason,
+      requestId: 'apply-restore-change', idempotencyKey: 'operation-restore-change',
+    })) as unknown as Row;
+    const restore = await previewThroughCallable({
+      action: 'restore_operation', targetId: String(changed.historyId), reason: 'Undo mistaken archive', requestId: 'preview-restore-exact', payload: { operationId: changed.historyId },
+    });
+    await adminApplySafetyModerationMutation.run(request({
+      previewId: restore.previewId, confirmation: restore.preview.confirmation, reason: restore.preview.reason,
+      requestId: 'apply-restore-exact', idempotencyKey: 'operation-restore-exact',
+    }));
+
+    const restored = (await db.collection('user_reports').doc('report-restore').get()).data();
+    expect(restored).toMatchObject(report);
+    for (const field of ['reviewedAtMs', 'reviewedAt', 'reviewedBy', 'archivedAt', 'warningId']) expect(restored).not.toHaveProperty(field);
   });
 
   test('bans and unbans with separate approvals while restoring the captured leaderboard state', async () => {
@@ -93,7 +133,7 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
       action: 'user_ban', targetId: 'user-ban', reason: 'Confirmed abuse', requestId: 'request-ban',
       payload: { name: 'Alice', sourceReportId: 'report-ban', source: 'user_report' },
     });
-    const banBefore = { uid: 'user-ban', ban: null, usersBanned: false, leaderboard, chatRestricted: false, banHistory: null };
+    const banBefore = { uid: 'user-ban', ban: null, usersBanned: false, leaderboard, chatRestricted: false, banHistory: null, sourceReport: projectUserReport('report-ban', report) };
     const banPreview = buildSafetyModerationPreview(banInput, banBefore, Date.now(), 'admin-one', 'admin') as unknown as Row;
     await Promise.all([
       seedPreview('preview-ban', banPreview),
@@ -116,7 +156,7 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     const unbanInput = parseSafetyModerationMutationInput({
       action: 'user_unban', targetId: 'user-ban', reason: 'Appeal accepted', requestId: 'request-unban', payload: {},
     });
-    const unbanBefore = { uid: 'user-ban', ban: banDoc, usersBanned: true, leaderboard: null, chatRestricted: false, banHistory };
+    const unbanBefore = { uid: 'user-ban', ban: banDoc, usersBanned: true, leaderboard: null, chatRestricted: false, banHistory, sourceReport: null };
     const unbanPreview = buildSafetyModerationPreview(unbanInput, unbanBefore, Date.now(), 'admin-one', 'admin') as unknown as Row;
     await Promise.all([
       seedPreview('preview-unban', unbanPreview),
@@ -135,6 +175,68 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     expect((await db.collection('users').doc('user-ban').get()).data()).toMatchObject({ banned: false });
     expect((await db.collection('leaderboard').doc('user-ban').get()).data()).toEqual(leaderboard);
     expect((await db.collection('league_chat_bans').doc('user-ban').get()).exists).toBe(false);
+  });
+
+  test('rejects a ban when its source report changes after preview', async () => {
+    const db = admin.firestore();
+    const report = { reportedUid: 'user-source-cas', reportedName: 'Alice', reporterUid: 'reporter-one', reason: 'abuse', status: 'new', createdAtMs: 100 };
+    await Promise.all([
+      db.collection('users').doc('user-source-cas').set({ progress: { user_name: 'Alice' }, banned: false }),
+      db.collection('user_reports').doc('report-source-cas').set(report),
+    ]);
+    const input = parseSafetyModerationMutationInput({
+      action: 'user_ban', targetId: 'user-source-cas', reason: 'Confirmed abuse', requestId: 'request-source-cas',
+      payload: { name: 'Alice', sourceReportId: 'report-source-cas', source: 'user_report' },
+    });
+    const before = {
+      uid: 'user-source-cas', ban: null, usersBanned: false, leaderboard: null, chatRestricted: false,
+      banHistory: null, sourceReport: projectUserReport('report-source-cas', report),
+    };
+    const preview = buildSafetyModerationPreview(input, before, Date.now(), 'admin-one', 'admin') as unknown as Row;
+    await Promise.all([
+      seedPreview('preview-source-cas', preview),
+      db.collection('admin_approval_requests').doc('approval-source-cas').set({
+        type: 'safety_moderation', status: 'approved', requestedBy: 'admin-one', approvedBy: 'admin-two',
+        previewId: 'preview-source-cas', fingerprint: preview.fingerprint, expiresAtMs: preview.expiresAtMs,
+      }),
+      db.collection('user_reports').doc('report-source-cas').update({ status: 'reviewed' }),
+    ]);
+
+    await expect(adminApplySafetyModerationMutation.run(request({
+      previewId: 'preview-source-cas', approvalId: 'approval-source-cas', confirmation: preview.confirmation,
+      reason: preview.reason, requestId: 'apply-source-cas', idempotencyKey: 'operation-source-cas',
+    }))).rejects.toMatchObject({ code: 'failed-precondition', message: 'safety_target_changed' } satisfies Partial<HttpsError>);
+    expect((await db.collection('banned_users').doc('user-source-cas').get()).exists).toBe(false);
+  });
+
+  test('rejects unban when the linked history belongs to another user', async () => {
+    const db = admin.firestore();
+    const foreignHistory = { action: 'user_ban', targetId: 'user-other', after: { banWrites: { history: { leaderboardBefore: { uid: 'user-other', points: 999 } } } } };
+    const ban = { uid: 'user-history-cas', banHistoryId: 'history-other', reason: 'abuse' };
+    await Promise.all([
+      db.collection('users').doc('user-history-cas').set({ banned: true }),
+      db.collection('banned_users').doc('user-history-cas').set(ban),
+      db.collection('admin_safety_moderation_history').doc('history-other').set(foreignHistory),
+    ]);
+    const input = parseSafetyModerationMutationInput({
+      action: 'user_unban', targetId: 'user-history-cas', reason: 'Appeal accepted', requestId: 'request-history-cas', payload: { historyId: 'history-other' },
+    });
+    const before = { uid: 'user-history-cas', ban, usersBanned: true, leaderboard: null, chatRestricted: false, banHistory: foreignHistory, sourceReport: null };
+    const preview = buildSafetyModerationPreview(input, before, Date.now(), 'admin-one', 'admin') as unknown as Row;
+    await Promise.all([
+      seedPreview('preview-history-cas', preview),
+      db.collection('admin_approval_requests').doc('approval-history-cas').set({
+        type: 'safety_moderation', status: 'approved', requestedBy: 'admin-one', approvedBy: 'admin-two',
+        previewId: 'preview-history-cas', fingerprint: preview.fingerprint, expiresAtMs: preview.expiresAtMs,
+      }),
+    ]);
+
+    await expect(adminApplySafetyModerationMutation.run(request({
+      previewId: 'preview-history-cas', approvalId: 'approval-history-cas', confirmation: preview.confirmation,
+      reason: preview.reason, requestId: 'apply-history-cas', idempotencyKey: 'operation-history-cas',
+    }))).rejects.toMatchObject({ code: 'failed-precondition', message: 'ban_history_target_mismatch' } satisfies Partial<HttpsError>);
+    expect((await db.collection('banned_users').doc('user-history-cas').get()).exists).toBe(true);
+    expect((await db.collection('leaderboard').doc('user-history-cas').get()).exists).toBe(false);
   });
 
   test('reclaims a tombstoned nickname without inheriting the former owner identity', async () => {
@@ -158,7 +260,13 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
       oldNameOwnerUid: 'user-rename', newNameOwnerUid: 'deleted-user',
       leaderboard: { uid: 'user-rename', name: 'Old Name', nameLower: 'old name', points: 10 },
       publicProfile: { uid: 'user-rename', name: 'Old Name', nameLower: 'old name' },
-      report: projectUserReport('report-rename', report),
+      report: reportBefore('report-rename', report),
+      userProgressFields: captureExactFields(user.progress, ['user_name', 'user_name_lower']),
+      userIdentityFields: captureExactFields(user, ['updatedAt']),
+      oldNameIndex: captureExactFields({ uid: 'user-rename', authUid: 'auth-target', name: 'Old Name', nameLower: 'old name' }, ['uid', 'name', 'nameLower', 'authUid', 'identityHidden', 'updatedAt']),
+      newNameIndex: captureExactFields({ uid: 'deleted-user', authUid: 'deleted-auth', name: 'New Name', nameLower: 'new name', identityHidden: true }, ['uid', 'name', 'nameLower', 'authUid', 'identityHidden', 'updatedAt']),
+      leaderboardIdentityFields: captureExactFields({ uid: 'user-rename', name: 'Old Name', nameLower: 'old name', points: 10 }, ['name', 'nameLower', 'updatedAt']),
+      publicProfileIdentityFields: captureExactFields({ uid: 'user-rename', name: 'Old Name', nameLower: 'old name' }, ['uid', 'name', 'nameLower', 'updatedAt']),
     };
     const preview = buildSafetyModerationPreview(input, before, Date.now(), 'admin-one', 'admin') as unknown as Row;
     await Promise.all([
@@ -169,15 +277,39 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
       }),
     ]);
 
-    await adminApplySafetyModerationMutation.run(request({
+    const renamed = await adminApplySafetyModerationMutation.run(request({
       previewId: 'preview-rename', approvalId: 'approval-rename', confirmation: preview.confirmation, reason: preview.reason,
       requestId: 'apply-rename', idempotencyKey: 'operation-rename',
-    }));
+    })) as unknown as Row;
 
     const index = (await db.collection('name_index').doc('new name').get()).data();
     expect(index).toMatchObject({ uid: 'user-rename', authUid: 'auth-target', name: 'New Name', nameLower: 'new name' });
     expect(index).not.toHaveProperty('identityHidden');
     expect((await db.collection('name_index').doc('old name').get()).exists).toBe(false);
     expect((await db.collection('user_reports').doc('report-rename').get()).data()).toMatchObject({ status: 'reviewed' });
+
+    const restore = await previewThroughCallable({
+      action: 'restore_operation', targetId: String(renamed.historyId), reason: 'Undo mistaken rename', requestId: 'preview-rename-restore', payload: { operationId: renamed.historyId },
+    });
+    const renameHistory = (await db.collection('admin_safety_moderation_history').doc(String(renamed.historyId)).get()).data() as Row;
+    expect(((restore.response.before as Row).current as Row)).toEqual(renameHistory.after);
+    expect(restore.preview).toMatchObject({ requiresApproval: true });
+    await db.collection('admin_approval_requests').doc('approval-rename-restore').set({
+      type: 'safety_moderation', status: 'approved', requestedBy: 'admin-one', approvedBy: 'admin-two',
+      previewId: restore.previewId, fingerprint: restore.preview.fingerprint, expiresAtMs: restore.preview.expiresAtMs,
+    });
+    await adminApplySafetyModerationMutation.run(request({
+      previewId: restore.previewId, approvalId: 'approval-rename-restore', confirmation: restore.preview.confirmation,
+      reason: restore.preview.reason, requestId: 'apply-rename-restore', idempotencyKey: 'operation-rename-restore',
+    }));
+
+    expect((await db.collection('users').doc('user-rename').get()).data()).toMatchObject({ progress: { user_name: 'Old Name', user_name_lower: 'old name' } });
+    expect((await db.collection('leaderboard').doc('user-rename').get()).data()).toMatchObject({ name: 'Old Name', nameLower: 'old name', points: 10 });
+    expect((await db.collection('public_profiles').doc('user-rename').get()).data()).toMatchObject({ name: 'Old Name', nameLower: 'old name' });
+    expect((await db.collection('name_index').doc('old name').get()).data()).toMatchObject({ uid: 'user-rename', authUid: 'auth-target', name: 'Old Name' });
+    expect((await db.collection('name_index').doc('new name').get()).data()).toMatchObject({ uid: 'deleted-user', authUid: 'deleted-auth', identityHidden: true });
+    const restoredReport = (await db.collection('user_reports').doc('report-rename').get()).data();
+    expect(restoredReport).toMatchObject({ status: 'new' });
+    expect(restoredReport).not.toHaveProperty('reviewedAtMs');
   });
 });

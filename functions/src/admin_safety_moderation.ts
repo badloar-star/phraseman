@@ -34,6 +34,14 @@ const DEFINITION_VERSION = 'admin_safety_moderation_v1';
 const PREVIEW_TTL_MS = 30 * 60 * 1_000;
 
 type Row = Record<string, unknown>;
+type ExactFieldState = Record<string, Readonly<{ present: boolean; value?: unknown }>>;
+
+const REPORT_MUTABLE_FIELDS = ['status', 'reviewedAtMs', 'reviewedAt', 'reviewedBy', 'archivedAt', 'warningId'] as const;
+const SAFETY_MUTABLE_FIELDS = ['handled', 'disposition', 'handlingNote', 'handledBy', 'handledAtMs', 'handledAt'] as const;
+const NAME_INDEX_MUTABLE_FIELDS = ['uid', 'name', 'nameLower', 'authUid', 'identityHidden', 'updatedAt'] as const;
+const USER_IDENTITY_FIELDS = ['updatedAt'] as const;
+const LEADERBOARD_IDENTITY_FIELDS = ['name', 'nameLower', 'updatedAt'] as const;
+const PROFILE_IDENTITY_FIELDS = ['uid', 'name', 'nameLower', 'updatedAt'] as const;
 
 export interface SafetyModerationSnapshotPayload {
   definitionVersion: string;
@@ -61,8 +69,103 @@ function safeId(value: unknown, max = 180): string {
   return clean(value, max).replace(/[^a-zA-Z0-9_.:-]/g, '').replace(/^\.+/, '');
 }
 
+function stableSerialize(value: unknown): string {
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return `[${value.map((item) => stableSerialize(item === undefined ? null : item)).join(',')}]`;
+  if (value instanceof Date) return JSON.stringify(value.toISOString());
+  if (value && typeof value === 'object') {
+    const serializable = value as { toJSON?: () => unknown };
+    if (typeof serializable.toJSON === 'function') {
+      const jsonValue = serializable.toJSON();
+      if (jsonValue !== value) return stableSerialize(jsonValue);
+    }
+    const row = value as Row;
+    return `{${Object.keys(row).sort().filter((key) => row[key] !== undefined).map((key) => `${JSON.stringify(key)}:${stableSerialize(row[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value) ?? 'null';
+}
+
 function hash(value: unknown): string {
-  return createHash('sha256').update(JSON.stringify(value)).digest('hex');
+  return createHash('sha256').update(stableSerialize(value)).digest('hex');
+}
+
+export function captureExactFields(value: unknown, fields: readonly string[]): ExactFieldState {
+  const row = record(value);
+  return Object.freeze(Object.fromEntries(fields.map((field) => [field, Object.prototype.hasOwnProperty.call(row, field)
+    ? Object.freeze({ present: true, value: row[field] })
+    : Object.freeze({ present: false })])));
+}
+
+function patchExactFieldState(stateValue: unknown, patch: Row): ExactFieldState {
+  const state = record(stateValue);
+  return Object.freeze(Object.fromEntries(Object.keys(state).map((field) => {
+    if (Object.prototype.hasOwnProperty.call(patch, field)) return [field, Object.freeze({ present: true, value: patch[field] })];
+    const prior = record(state[field]);
+    return [field, Object.freeze(prior.present === true && Object.prototype.hasOwnProperty.call(prior, 'value')
+      ? { present: true, value: prior.value }
+      : { present: false })];
+  })));
+}
+
+export function restoreExactFieldPatch(stateValue: unknown): Row {
+  const state = record(stateValue);
+  return Object.fromEntries(Object.entries(state).map(([field, entryValue]) => {
+    const entry = record(entryValue);
+    return [field, entry.present === true ? entry.value : admin.firestore.FieldValue.delete()];
+  }));
+}
+
+function rawFromExactFieldState(stateValue: unknown): Row {
+  const state = record(stateValue);
+  return Object.fromEntries(Object.entries(state).flatMap(([field, entryValue]) => {
+    const entry = record(entryValue);
+    return entry.present === true ? [[field, entry.value]] : [];
+  }));
+}
+
+function reportMutationState(id: string, value: unknown): Row {
+  return { ...projectUserReport(id, value), mutableFields: captureExactFields(value, REPORT_MUTABLE_FIELDS) };
+}
+
+function safetyMutationState(id: string, value: unknown): Row {
+  return { ...projectSafetyFlagSummary(id, value), mutableFields: captureExactFields(value, SAFETY_MUTABLE_FIELDS) };
+}
+
+function withShallowPatch(value: unknown, patch: Row, deleteFields: readonly string[] = []): Row {
+  const next = { ...record(value), ...patch };
+  deleteFields.forEach((field) => delete next[field]);
+  return next;
+}
+
+function renameMutationState(input: {
+  uid: string;
+  user: unknown;
+  leaderboard: unknown | null;
+  publicProfile: unknown | null;
+  reportId: string;
+  report: unknown;
+  oldNameIndex: unknown | null;
+  newNameIndex: unknown | null;
+}): Row {
+  const user = record(input.user);
+  const progress = record(user.progress);
+  return {
+    uid: input.uid,
+    currentName: clean(progress.user_name, 32),
+    currentNameLower: clean(progress.user_name_lower ?? progress.user_name, 32).toLowerCase(),
+    authUid: clean(user.firebaseAuthUid ?? record(user.linkedAuth).providerUid, 180),
+    oldNameOwnerUid: input.oldNameIndex ? clean(record(input.oldNameIndex).uid, 180) : '',
+    newNameOwnerUid: input.newNameIndex ? clean(record(input.newNameIndex).uid, 180) : '',
+    leaderboard: input.leaderboard ? record(input.leaderboard) : null,
+    publicProfile: input.publicProfile ? record(input.publicProfile) : null,
+    report: reportMutationState(input.reportId, input.report),
+    userProgressFields: captureExactFields(progress, ['user_name', 'user_name_lower']),
+    userIdentityFields: captureExactFields(user, USER_IDENTITY_FIELDS),
+    oldNameIndex: input.oldNameIndex ? captureExactFields(input.oldNameIndex, NAME_INDEX_MUTABLE_FIELDS) : null,
+    newNameIndex: input.newNameIndex ? captureExactFields(input.newNameIndex, NAME_INDEX_MUTABLE_FIELDS) : null,
+    leaderboardIdentityFields: input.leaderboard ? captureExactFields(input.leaderboard, LEADERBOARD_IDENTITY_FIELDS) : null,
+    publicProfileIdentityFields: input.publicProfile ? captureExactFields(input.publicProfile, PROFILE_IDENTITY_FIELDS) : null,
+  };
 }
 
 function requestScope(value: unknown): string {
@@ -140,7 +243,9 @@ export function buildSafetyModerationPreview(
   actorUid: string,
   role: string,
 ) {
-  const requiresApproval = ['report_rename', 'user_ban', 'user_unban'].includes(input.action);
+  const restoredAction = input.action === 'restore_operation' ? clean(record(before).action, 40) : '';
+  const requiresApproval = ['report_rename', 'user_ban', 'user_unban'].includes(input.action)
+    || restoredAction === 'report_rename';
   const irreversible = input.action === 'report_warn';
   const beforeFingerprint = hash(before ?? null);
   const risk = input.action === 'user_ban'
@@ -149,6 +254,8 @@ export function buildSafetyModerationPreview(
       ? 'Removes a global account block; independent chat restrictions remain unchanged.'
       : input.action === 'report_rename'
         ? 'Changes the public identity across the canonical nickname projections.'
+        : restoredAction === 'report_rename'
+          ? 'Restores a previous public identity across all canonical nickname projections.'
         : irreversible
           ? 'Creates a warning that may already be delivered by installed clients.'
           : 'Changes moderation state for the exact previewed targets.';
@@ -188,6 +295,38 @@ export function assertSafetyApprovalForApply(approvalValue: unknown, previewValu
     || finite(approval.expiresAtMs) <= nowMs
     || finite(preview.expiresAtMs) <= nowMs
   ) throw new Error('approval_mismatch');
+}
+
+export function resolveBanHistoryIdForUnban(banValue: unknown, requestedHistoryId: unknown, targetId: string): string {
+  const canonicalHistoryId = safeId(record(banValue).banHistoryId, 180);
+  const requested = safeId(requestedHistoryId, 180);
+  if (!canonicalHistoryId) throw new Error('ban_history_missing');
+  if (requested && requested !== canonicalHistoryId) throw new Error('ban_history_mismatch');
+  if (!safeId(targetId, 180)) throw new Error('ban_history_target_mismatch');
+  return canonicalHistoryId;
+}
+
+export function assertBanHistoryForUnban(historyValue: unknown, targetId: string): void {
+  const history = record(historyValue);
+  if (history.action !== 'user_ban' || clean(history.targetId, 180) !== clean(targetId, 180)) throw new Error('ban_history_target_mismatch');
+}
+
+export function projectSafetyModerationApproval(id: string, value: unknown, actorUid: string, nowMs: number) {
+  const row = record(value);
+  if (row.type !== 'safety_moderation' || row.status !== 'pending' || finite(row.expiresAtMs) <= nowMs) return null;
+  const requestedBy = clean(row.requestedBy, 180);
+  return Object.freeze({
+    approvalId: safeId(id, 180),
+    action: clean(row.action, 40),
+    targetId: clean(row.targetId, 180),
+    requestedBy,
+    requestedAtMs: finite(row.requestedAtMs),
+    expiresAtMs: finite(row.expiresAtMs),
+    reason: clean(row.reason, 500),
+    risk: clean(row.risk, 1_000),
+    fingerprint: clean(row.fingerprint, 64),
+    canApprove: Boolean(requestedBy && requestedBy !== actorUid),
+  });
 }
 
 export function buildModerationAuditProjection(previewValue: unknown, targetCount: number) {
@@ -542,7 +681,12 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
     if (snaps.some((snap) => !snap.exists)) throw new HttpsError('not-found', 'bulk_safety_target_not_found');
     return { targets: snaps.map((snap) => projectSafetyFlagSummary(snap.id, snap.data())) };
   }
-  if (input.action === 'report_set_status' || input.action === 'report_warn') {
+  if (input.action === 'report_set_status') {
+    const snap = await db.collection('user_reports').doc(input.targetId).get();
+    if (!snap.exists) throw new HttpsError('not-found', 'user_report_not_found');
+    return reportMutationState(snap.id, snap.data());
+  }
+  if (input.action === 'report_warn') {
     const snap = await db.collection('user_reports').doc(input.targetId).get();
     if (!snap.exists) throw new HttpsError('not-found', 'user_report_not_found');
     return projectUserReport(snap.id, snap.data()) as unknown as Row;
@@ -550,7 +694,7 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
   if (input.action === 'safety_set_disposition') {
     const snap = await db.collection('safety_flags').doc(input.targetId).get();
     if (!snap.exists) throw new HttpsError('not-found', 'safety_flag_not_found');
-    return projectSafetyFlagSummary(snap.id, snap.data()) as unknown as Row;
+    return safetyMutationState(snap.id, snap.data());
   }
   if (input.action === 'report_rename') {
     const uid = clean(input.payload.uid, 180);
@@ -567,32 +711,41 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
     const progress = record(user.progress);
     const currentNameLower = clean(progress.user_name_lower ?? progress.user_name, 32).toLowerCase();
     const oldIndexSnap = currentNameLower ? await db.collection('name_index').doc(currentNameLower).get() : null;
-    return {
+    return renameMutationState({
       uid,
-      currentName: clean(progress.user_name, 32),
-      currentNameLower,
-      authUid: clean(user.firebaseAuthUid ?? record(user.linkedAuth).providerUid, 180),
-      oldNameOwnerUid: oldIndexSnap?.exists ? clean(oldIndexSnap.data()?.uid, 180) : '',
-      newNameOwnerUid: newIndexSnap.exists ? clean(newIndexSnap.data()?.uid, 180) : '',
-      leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null,
-      publicProfile: profileSnap.exists ? record(profileSnap.data()) : null,
-      report: projectUserReport(reportSnap.id, reportSnap.data()),
-    };
+      user: userSnap.data(),
+      leaderboard: leaderboardSnap.exists ? leaderboardSnap.data() : null,
+      publicProfile: profileSnap.exists ? profileSnap.data() : null,
+      reportId: reportSnap.id,
+      report: reportSnap.data(),
+      oldNameIndex: oldIndexSnap?.exists ? oldIndexSnap.data() : null,
+      newNameIndex: newIndexSnap.exists ? newIndexSnap.data() : null,
+    });
   }
   if (input.action === 'user_ban' || input.action === 'user_unban') {
-    const [banSnap, userSnap, leaderboardSnap, chatBanSnap] = await Promise.all([
+    const sourceReportId = input.action === 'user_ban' ? clean(input.payload.sourceReportId, 180) : '';
+    const [banSnap, userSnap, leaderboardSnap, chatBanSnap, sourceReportSnap] = await Promise.all([
       db.collection('banned_users').doc(input.targetId).get(),
       db.collection('users').doc(input.targetId).get(),
       db.collection('leaderboard').doc(input.targetId).get(),
       db.collection('league_chat_bans').doc(input.targetId).get(),
+      sourceReportId ? db.collection('user_reports').doc(sourceReportId).get() : Promise.resolve(null),
     ]);
     if (!userSnap.exists) throw new HttpsError('not-found', 'ban_user_not_found');
+    if (sourceReportId && !sourceReportSnap?.exists) throw new HttpsError('not-found', 'ban_source_report_not_found');
+    const sourceReport = sourceReportSnap?.exists ? projectUserReport(sourceReportSnap.id, sourceReportSnap.data()) : null;
+    if (sourceReport && clean(sourceReport.reportedUid, 180) !== input.targetId) throw new HttpsError('failed-precondition', 'ban_source_report_uid_mismatch');
     const ban = banSnap.exists ? record(banSnap.data()) : null;
     let banHistory: Row | null = null;
-    const historyId = clean(input.payload.historyId || ban?.banHistoryId, 180);
-    if (input.action === 'user_unban' && historyId) {
+    if (input.action === 'user_unban') {
+      let historyId = '';
+      try { historyId = resolveBanHistoryIdForUnban(ban, input.payload.historyId, input.targetId); }
+      catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'ban_history_invalid'); }
       const historySnap = await db.collection('admin_safety_moderation_history').doc(historyId).get();
-      if (historySnap.exists) banHistory = record(historySnap.data());
+      if (!historySnap.exists) throw new HttpsError('failed-precondition', 'ban_history_missing');
+      banHistory = record(historySnap.data());
+      try { assertBanHistoryForUnban(banHistory, input.targetId); }
+      catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'ban_history_invalid'); }
     }
     return {
       uid: input.targetId,
@@ -601,6 +754,7 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
       leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null,
       chatRestricted: chatBanSnap.exists,
       banHistory,
+      sourceReport,
     };
   }
   const operationId = clean(input.payload.operationId, 180) || input.targetId;
@@ -613,11 +767,27 @@ async function readMutationBefore(db: FirebaseFirestore.Firestore, input: Return
   if (sourceAction === 'report_set_status') {
     const snap = await db.collection('user_reports').doc(targetId).get();
     if (!snap.exists) throw new HttpsError('not-found', 'restore_target_not_found');
-    current = projectUserReport(snap.id, snap.data()) as unknown as Row;
+    current = reportMutationState(snap.id, snap.data());
   } else if (sourceAction === 'safety_set_disposition') {
     const snap = await db.collection('safety_flags').doc(targetId).get();
     if (!snap.exists) throw new HttpsError('not-found', 'restore_target_not_found');
-    current = projectSafetyFlagSummary(snap.id, snap.data()) as unknown as Row;
+    current = safetyMutationState(snap.id, snap.data());
+  } else if (sourceAction === 'report_rename') {
+    const originalBefore = record(history.before);
+    const originalAfter = record(history.after);
+    const uid = clean(originalBefore.uid, 180);
+    const oldNameLower = clean(originalBefore.currentNameLower, 32);
+    const newNameLower = clean(originalAfter.currentNameLower, 32);
+    const [userSnap, leaderboardSnap, profileSnap, reportSnap, oldIndexSnap, newIndexSnap] = await Promise.all([
+      db.collection('users').doc(uid).get(), db.collection('leaderboard').doc(uid).get(), db.collection('public_profiles').doc(uid).get(),
+      db.collection('user_reports').doc(targetId).get(), db.collection('name_index').doc(oldNameLower).get(), db.collection('name_index').doc(newNameLower).get(),
+    ]);
+    if (!userSnap.exists || !reportSnap.exists) throw new HttpsError('not-found', 'restore_target_not_found');
+    current = renameMutationState({
+      uid, user: userSnap.data(), leaderboard: leaderboardSnap.exists ? leaderboardSnap.data() : null,
+      publicProfile: profileSnap.exists ? profileSnap.data() : null, reportId: targetId, report: reportSnap.data(),
+      oldNameIndex: oldIndexSnap.exists ? oldIndexSnap.data() : null, newNameIndex: newIndexSnap.exists ? newIndexSnap.data() : null,
+    });
   } else throw new HttpsError('failed-precondition', 'restore_action_not_supported');
   return { id: historySnap.id, action: sourceAction, targetId, before: record(history.before), after: record(history.after), afterFingerprint: clean(history.afterFingerprint, 64), current };
 }
@@ -704,7 +874,8 @@ export const adminRequestSafetyModerationApproval = onCall(
         type: 'safety_moderation', status: 'pending', previewId: fields.previewId, requestedBy: actorUid,
         requestedAtMs: nowMs, expiresAtMs: Math.min(finite(preview.expiresAtMs), nowMs + PREVIEW_TTL_MS),
         action, targetId: clean(preview.targetId, 180), fingerprint: clean(preview.fingerprint, 64),
-        reason: clean(preview.reason, 500), previewRequestId: clean(preview.requestId, 160),
+        reason: clean(preview.reason, 500), risk: clean(preview.risk, 1_000),
+        previewRequestId: clean(preview.requestId, 160),
       };
       const audit = createAuditRecord({ action: 'safety_moderation.approval.request', actorUid, role, entity: { collection: 'admin_approval_requests', id: approvalRef.id }, reason: fields.reason, before: {}, after: { action, targetId: approval.targetId, fingerprint: approval.fingerprint }, requestId: fields.requestId, timestamp: new Date(nowMs).toISOString() });
       tx.create(approvalRef, approval);
@@ -712,6 +883,24 @@ export const adminRequestSafetyModerationApproval = onCall(
       tx.create(operationRef, { actorUid, requestFingerprint, approvalId: approvalRef.id, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
       return { ok: true, approvalId: approvalRef.id, replayed: false };
     });
+  },
+);
+
+export const adminListSafetyModerationApprovals = onCall(
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 30, memory: '256MiB' },
+  async (request) => {
+    requireRole(request, 'users.moderation.approve');
+    const actorUid = request.auth!.uid;
+    const nowMs = Date.now();
+    const snap = await admin.firestore().collection('admin_approval_requests')
+      .where('status', '==', 'pending')
+      .limit(100)
+      .get();
+    const items = snap.docs
+      .map((doc) => projectSafetyModerationApproval(doc.id, doc.data(), actorUid, nowMs))
+      .filter((item): item is NonNullable<typeof item> => Boolean(item))
+      .sort((a, b) => b.requestedAtMs - a.requestedAtMs);
+    return { ok: true, generatedAtMs: nowMs, items };
   },
 );
 
@@ -770,7 +959,12 @@ async function readMutationBeforeInTransaction(
     if (snaps.some((snap) => !snap.exists)) throw new HttpsError('not-found', 'bulk_safety_target_not_found');
     return { targets: snaps.map((snap) => projectSafetyFlagSummary(snap.id, snap.data())) };
   }
-  if (input.action === 'report_set_status' || input.action === 'report_warn') {
+  if (input.action === 'report_set_status') {
+    const snap = await tx.get(db.collection('user_reports').doc(input.targetId));
+    if (!snap.exists) throw new HttpsError('not-found', 'user_report_not_found');
+    return reportMutationState(snap.id, snap.data());
+  }
+  if (input.action === 'report_warn') {
     const snap = await tx.get(db.collection('user_reports').doc(input.targetId));
     if (!snap.exists) throw new HttpsError('not-found', 'user_report_not_found');
     return projectUserReport(snap.id, snap.data()) as unknown as Row;
@@ -778,7 +972,7 @@ async function readMutationBeforeInTransaction(
   if (input.action === 'safety_set_disposition') {
     const snap = await tx.get(db.collection('safety_flags').doc(input.targetId));
     if (!snap.exists) throw new HttpsError('not-found', 'safety_flag_not_found');
-    return projectSafetyFlagSummary(snap.id, snap.data()) as unknown as Row;
+    return safetyMutationState(snap.id, snap.data());
   }
   if (input.action === 'report_rename') {
     const uid = clean(input.payload.uid, 180);
@@ -793,15 +987,16 @@ async function readMutationBeforeInTransaction(
     const progress = record(user.progress);
     const currentNameLower = clean(progress.user_name_lower ?? progress.user_name, 32).toLowerCase();
     const oldIndexSnap = currentNameLower ? await tx.get(db.collection('name_index').doc(currentNameLower)) : null;
-    return {
-      uid, currentName: clean(progress.user_name, 32), currentNameLower,
-      authUid: clean(user.firebaseAuthUid ?? record(user.linkedAuth).providerUid, 180),
-      oldNameOwnerUid: oldIndexSnap?.exists ? clean(oldIndexSnap.data()?.uid, 180) : '',
-      newNameOwnerUid: newIndexSnap.exists ? clean(newIndexSnap.data()?.uid, 180) : '',
-      leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null,
-      publicProfile: profileSnap.exists ? record(profileSnap.data()) : null,
-      report: projectUserReport(reportSnap.id, reportSnap.data()),
-    };
+    return renameMutationState({
+      uid,
+      user: userSnap.data(),
+      leaderboard: leaderboardSnap.exists ? leaderboardSnap.data() : null,
+      publicProfile: profileSnap.exists ? profileSnap.data() : null,
+      reportId: reportSnap.id,
+      report: reportSnap.data(),
+      oldNameIndex: oldIndexSnap?.exists ? oldIndexSnap.data() : null,
+      newNameIndex: newIndexSnap.exists ? newIndexSnap.data() : null,
+    });
   }
   if (input.action === 'user_ban' || input.action === 'user_unban') {
     const refs = [
@@ -811,13 +1006,23 @@ async function readMutationBeforeInTransaction(
     const [banSnap, userSnap, leaderboardSnap, chatBanSnap] = await Promise.all(refs.map((ref) => tx.get(ref)));
     if (!userSnap.exists) throw new HttpsError('not-found', 'ban_user_not_found');
     const ban = banSnap.exists ? record(banSnap.data()) : null;
+    const sourceReportId = input.action === 'user_ban' ? clean(input.payload.sourceReportId, 180) : '';
+    const sourceReportSnap = sourceReportId ? await tx.get(db.collection('user_reports').doc(sourceReportId)) : null;
+    if (sourceReportId && !sourceReportSnap?.exists) throw new HttpsError('not-found', 'ban_source_report_not_found');
+    const sourceReport = sourceReportSnap?.exists ? projectUserReport(sourceReportSnap.id, sourceReportSnap.data()) : null;
+    if (sourceReport && clean(sourceReport.reportedUid, 180) !== input.targetId) throw new HttpsError('failed-precondition', 'ban_source_report_uid_mismatch');
     let banHistory: Row | null = null;
-    const historyId = clean(input.payload.historyId || ban?.banHistoryId, 180);
-    if (input.action === 'user_unban' && historyId) {
+    if (input.action === 'user_unban') {
+      let historyId = '';
+      try { historyId = resolveBanHistoryIdForUnban(ban, input.payload.historyId, input.targetId); }
+      catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'ban_history_invalid'); }
       const historySnap = await tx.get(db.collection('admin_safety_moderation_history').doc(historyId));
-      if (historySnap.exists) banHistory = record(historySnap.data());
+      if (!historySnap.exists) throw new HttpsError('failed-precondition', 'ban_history_missing');
+      banHistory = record(historySnap.data());
+      try { assertBanHistoryForUnban(banHistory, input.targetId); }
+      catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'ban_history_invalid'); }
     }
-    return { uid: input.targetId, ban, usersBanned: record(userSnap.data()).banned === true, leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null, chatRestricted: chatBanSnap.exists, banHistory };
+    return { uid: input.targetId, ban, usersBanned: record(userSnap.data()).banned === true, leaderboard: leaderboardSnap.exists ? record(leaderboardSnap.data()) : null, chatRestricted: chatBanSnap.exists, banHistory, sourceReport };
   }
   const historyId = clean(input.payload.operationId, 180) || input.targetId;
   const historySnap = await tx.get(db.collection('admin_safety_moderation_history').doc(historyId));
@@ -829,11 +1034,27 @@ async function readMutationBeforeInTransaction(
   if (sourceAction === 'report_set_status') {
     const snap = await tx.get(db.collection('user_reports').doc(targetId));
     if (!snap.exists) throw new HttpsError('not-found', 'restore_target_not_found');
-    current = projectUserReport(snap.id, snap.data()) as unknown as Row;
+    current = reportMutationState(snap.id, snap.data());
   } else if (sourceAction === 'safety_set_disposition') {
     const snap = await tx.get(db.collection('safety_flags').doc(targetId));
     if (!snap.exists) throw new HttpsError('not-found', 'restore_target_not_found');
-    current = projectSafetyFlagSummary(snap.id, snap.data()) as unknown as Row;
+    current = safetyMutationState(snap.id, snap.data());
+  } else if (sourceAction === 'report_rename') {
+    const originalBefore = record(history.before);
+    const originalAfter = record(history.after);
+    const uid = clean(originalBefore.uid, 180);
+    const oldNameLower = clean(originalBefore.currentNameLower, 32);
+    const newNameLower = clean(originalAfter.currentNameLower, 32);
+    const [userSnap, leaderboardSnap, profileSnap, reportSnap, oldIndexSnap, newIndexSnap] = await Promise.all([
+      tx.get(db.collection('users').doc(uid)), tx.get(db.collection('leaderboard').doc(uid)), tx.get(db.collection('public_profiles').doc(uid)),
+      tx.get(db.collection('user_reports').doc(targetId)), tx.get(db.collection('name_index').doc(oldNameLower)), tx.get(db.collection('name_index').doc(newNameLower)),
+    ]);
+    if (!userSnap.exists || !reportSnap.exists) throw new HttpsError('not-found', 'restore_target_not_found');
+    current = renameMutationState({
+      uid, user: userSnap.data(), leaderboard: leaderboardSnap.exists ? leaderboardSnap.data() : null,
+      publicProfile: profileSnap.exists ? profileSnap.data() : null, reportId: targetId, report: reportSnap.data(),
+      oldNameIndex: oldIndexSnap.exists ? oldIndexSnap.data() : null, newNameIndex: newIndexSnap.exists ? newIndexSnap.data() : null,
+    });
   } else throw new HttpsError('failed-precondition', 'restore_action_not_supported');
   return { id: historySnap.id, action: sourceAction, targetId, before: record(history.before), after: record(history.after), afterFingerprint: clean(history.afterFingerprint, 64), current };
 }
@@ -911,7 +1132,7 @@ export const adminApplySafetyModerationMutation = onCall(
         const patch: Row = { status, reviewedAtMs: nowMs, reviewedAt: new Date(nowMs).toISOString(), reviewedBy: actorUid };
         if (status === 'archived') patch.archivedAt = new Date(nowMs).toISOString();
         tx.update(db.collection('user_reports').doc(input.targetId), patch);
-        after = projectUserReport(input.targetId, { ...before, ...patch }) as unknown as Row;
+        after = { ...projectUserReport(input.targetId, { ...before, ...patch }), mutableFields: patchExactFieldState(before.mutableFields, patch) };
       } else if (action === 'report_archive_bulk') {
         const ids = payload.targetIds as string[];
         targetCount = ids.length;
@@ -928,7 +1149,7 @@ export const adminApplySafetyModerationMutation = onCall(
         const handled = payload.handled !== false;
         const patch = { handled, disposition: clean(payload.disposition, 80), handlingNote: clean(payload.note, 1_000), handledBy: actorUid, handledAtMs: nowMs, handledAt: new Date(nowMs).toISOString() };
         tx.update(db.collection('safety_flags').doc(input.targetId), patch);
-        after = projectSafetyFlagSummary(input.targetId, { ...before, ...patch }) as unknown as Row;
+        after = { ...projectSafetyFlagSummary(input.targetId, { ...before, ...patch }), mutableFields: patchExactFieldState(before.mutableFields, patch) };
       } else if (action === 'safety_handle_bulk') {
         const ids = payload.targetIds as string[];
         targetCount = ids.length;
@@ -953,8 +1174,47 @@ export const adminApplySafetyModerationMutation = onCall(
         tx.set(db.collection('users').doc(uid), { progress: { user_name: nickname.name, user_name_lower: nickname.nameLower }, updatedAt: nowMs }, { merge: true });
         if (before.leaderboard) tx.set(db.collection('leaderboard').doc(uid), { name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs }, { merge: true });
         if (before.publicProfile) tx.set(db.collection('public_profiles').doc(uid), { uid, name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs }, { merge: true });
-        tx.update(db.collection('user_reports').doc(input.targetId), { status: 'reviewed', reviewedAtMs: nowMs, reviewedAt: new Date(nowMs).toISOString(), reviewedBy: actorUid });
-        after = { uid, oldName: before.currentName, newName: nickname.name, newNameLower: nickname.nameLower, reportStatus: 'reviewed' };
+        const reportPatch = { status: 'reviewed', reviewedAtMs: nowMs, reviewedAt: new Date(nowMs).toISOString(), reviewedBy: actorUid };
+        tx.update(db.collection('user_reports').doc(input.targetId), reportPatch);
+        const previousOldIndex = before.oldNameIndex ? rawFromExactFieldState(before.oldNameIndex) : null;
+        const previousNewIndex = before.newNameIndex ? rawFromExactFieldState(before.newNameIndex) : null;
+        const newIndexAfter = withShallowPatch(previousNewIndex, {
+          uid, name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs,
+          ...(authUid ? { authUid } : {}),
+        }, authUid ? ['identityHidden'] : ['authUid', 'identityHidden']);
+        const oldIndexAfter = currentNameLower === nickname.nameLower
+          ? newIndexAfter
+          : currentNameLower && before.oldNameOwnerUid === uid
+            ? null
+            : previousOldIndex;
+        const reportBefore = record(before.report);
+        const reportAfter = withShallowPatch(
+          { ...reportBefore, ...rawFromExactFieldState(reportBefore.mutableFields) },
+          reportPatch,
+          ['mutableFields'],
+        );
+        const userAfter = {
+          firebaseAuthUid: authUid,
+          progress: { user_name: nickname.name, user_name_lower: nickname.nameLower },
+          ...rawFromExactFieldState(before.userIdentityFields),
+          updatedAt: nowMs,
+        };
+        const leaderboardAfter = before.leaderboard
+          ? withShallowPatch(before.leaderboard, { name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs })
+          : null;
+        const publicProfileAfter = before.publicProfile
+          ? withShallowPatch(before.publicProfile, { uid, name: nickname.name, nameLower: nickname.nameLower, updatedAt: nowMs })
+          : null;
+        after = renameMutationState({
+          uid,
+          user: userAfter,
+          leaderboard: leaderboardAfter,
+          publicProfile: publicProfileAfter,
+          reportId: input.targetId,
+          report: reportAfter,
+          oldNameIndex: oldIndexAfter,
+          newNameIndex: newIndexAfter,
+        });
       } else if (action === 'user_ban') {
         if (before.ban) throw new HttpsError('failed-precondition', 'user_already_banned');
         const writes = buildBanWrites({ uid: input.targetId, name: payload.name, reason: input.reason, actorUid, nowMs, leaderboardBefore: before.leaderboard, sourceReportId: payload.sourceReportId, source: payload.source });
@@ -978,9 +1238,30 @@ export const adminApplySafetyModerationMutation = onCall(
         if (hash(current) !== clean(history.afterFingerprint, 64)) throw new HttpsError('failed-precondition', 'restore_target_changed');
         const originalBefore = record(history.before);
         if (history.action === 'report_set_status') {
-          tx.update(db.collection('user_reports').doc(clean(history.targetId, 180)), { status: clean(originalBefore.status, 30), reviewedAtMs: finite(originalBefore.reviewedAtMs), reviewedAt: clean(originalBefore.reviewedAt, 80), reviewedBy: clean(originalBefore.reviewedBy, 180), archivedAt: clean(originalBefore.archivedAt, 80) });
+          tx.update(db.collection('user_reports').doc(clean(history.targetId, 180)), restoreExactFieldPatch(originalBefore.mutableFields));
         } else if (history.action === 'safety_set_disposition') {
-          tx.update(db.collection('safety_flags').doc(clean(history.targetId, 180)), { handled: originalBefore.handled === true, disposition: clean(originalBefore.disposition, 80), handlingNote: clean(originalBefore.handlingNote, 1_000), handledBy: clean(originalBefore.handledBy, 180), handledAtMs: finite(originalBefore.handledAtMs) });
+          tx.update(db.collection('safety_flags').doc(clean(history.targetId, 180)), restoreExactFieldPatch(originalBefore.mutableFields));
+        } else if (history.action === 'report_rename') {
+          const uid = clean(originalBefore.uid, 180);
+          const oldNameLower = clean(originalBefore.currentNameLower, 32);
+          const newNameLower = clean(record(history.after).currentNameLower, 32);
+          const progressPatch = restoreExactFieldPatch(originalBefore.userProgressFields);
+          const userPatch: Row = restoreExactFieldPatch(originalBefore.userIdentityFields);
+          Object.entries(progressPatch).forEach(([field, value]) => { userPatch[`progress.${field}`] = value; });
+          tx.update(db.collection('users').doc(uid), userPatch);
+          if (originalBefore.leaderboardIdentityFields) tx.set(db.collection('leaderboard').doc(uid), restoreExactFieldPatch(originalBefore.leaderboardIdentityFields), { merge: true });
+          if (originalBefore.publicProfileIdentityFields) tx.set(db.collection('public_profiles').doc(uid), restoreExactFieldPatch(originalBefore.publicProfileIdentityFields), { merge: true });
+          tx.update(db.collection('user_reports').doc(clean(history.targetId, 180)), restoreExactFieldPatch(record(originalBefore.report).mutableFields));
+          if (oldNameLower === newNameLower) {
+            const originalIndex = originalBefore.oldNameIndex || originalBefore.newNameIndex;
+            if (originalIndex) tx.set(db.collection('name_index').doc(oldNameLower), restoreExactFieldPatch(originalIndex), { merge: true });
+            else tx.delete(db.collection('name_index').doc(oldNameLower));
+          } else {
+            if (originalBefore.oldNameIndex) tx.set(db.collection('name_index').doc(oldNameLower), restoreExactFieldPatch(originalBefore.oldNameIndex), { merge: true });
+            else tx.delete(db.collection('name_index').doc(oldNameLower));
+            if (originalBefore.newNameIndex) tx.set(db.collection('name_index').doc(newNameLower), restoreExactFieldPatch(originalBefore.newNameIndex), { merge: true });
+            else tx.delete(db.collection('name_index').doc(newNameLower));
+          }
         }
         after = { restoredHistoryId: history.id, restoredAction: history.action, targetId: history.targetId };
       }

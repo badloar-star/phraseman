@@ -65,6 +65,50 @@ describe('lingman YouTube quality gate', () => {
     expect(player).toContain('testID="lingman-player-error"');
   });
 
+  it('wires governed events without route titles or direct analytics backends', () => {
+    const catalog = catalogSource();
+    const player = playerSource();
+    const button = buttonSource();
+    const combined = [catalog, player, button].join('\n');
+
+    expect(button).toContain("eventName: 'youtube_home_entry_click'");
+    expect(catalog).toContain("eventName: 'youtube_catalog_open'");
+    expect(catalog).toContain("eventName: 'youtube_video_select'");
+    expect(catalog).toContain("eventName: 'youtube_external_video_open'");
+    expect(catalog).toContain("eventName: 'youtube_channel_open'");
+    expect(player).toContain("eventName: 'youtube_player_ready'");
+    expect(player).toContain("eventName: 'youtube_playback_start'");
+    expect(player).toContain("eventName: 'youtube_playback_checkpoint'");
+    expect(player).toContain("eventName: 'youtube_playback_end'");
+    expect(combined).toContain('emitYoutubeAnalyticsEvent');
+    expect(combined).not.toMatch(/from ['"]\.\/analytics['"]/);
+    expect(combined).not.toMatch(/firebase|posthog|AsyncStorage/);
+    expect(catalog).not.toMatch(/params:\s*\{[^}]*title:/s);
+    expect(catalog).not.toMatch(/params:\s*\{[^}]*watchUrl:/s);
+    expect(player).not.toContain('useLocalSearchParams<{ id?: string; title?: string; watchUrl?: string }>');
+    const catalogExternal = catalog.match(/const openExternalVideo[\s\S]*?\n  \};/)?.[0] ?? '';
+    expect(catalogExternal.indexOf('emitYoutubeAnalyticsEvent')).toBeLessThan(catalogExternal.indexOf('Linking.openURL'));
+    const playerExternal = player.match(/const openExternal = \(\) => \{[\s\S]*?\n  \};/)?.[0] ?? '';
+    expect(playerExternal.indexOf("runtime.finish('external'")).toBeLessThan(playerExternal.indexOf('emitYoutubeAnalyticsEvent'));
+    expect(playerExternal.indexOf('emitYoutubeAnalyticsEvent')).toBeLessThan(playerExternal.indexOf('Linking.openURL'));
+  });
+
+  it('gates player polling by consent, focus, and AppState without native intervals', () => {
+    const player = playerSource();
+
+    expect(player).toContain('useIsScreenFocused()');
+    expect(player).toContain('subscribeAnalyticsConsent');
+    expect(player).toContain('getAnalyticsConsentState');
+    expect(player).toContain("AppState.addEventListener('change'");
+    expect(player).toContain('__phrasemanSetAnalyticsActive');
+    expect(player).toContain('injectedJavaScriptBeforeContentLoaded');
+    expect(player).toContain('onMessage');
+    expect(player).toContain('parseYoutubePlayerMessage');
+    expect(player).toContain("runtime.revokeConsent()");
+    expect(player).not.toContain('setInterval(');
+    expect(player).not.toMatch(/videoTitle\s*:|video_title\s*:/);
+  });
+
   it('normalizes malformed deep-link video IDs before building player HTML during render', () => {
     const player = playerSource();
 

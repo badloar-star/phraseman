@@ -1,6 +1,7 @@
 import {
   buildStatsInsightsSnapshot,
   canBuildStatsInsightsSnapshotForCycle,
+  finishStatsInsightsLoadCycle,
   isCurrentStatsInsightsLoadCycle,
 } from '../app/stats_insights_snapshot';
 
@@ -111,5 +112,33 @@ describe('buildStatsInsightsSnapshot', () => {
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, percentilesStatus: 'loading' })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, lifetimeStatus: 'loading' })).toBe(false);
     expect(canBuildStatsInsightsSnapshotForCycle({ ...ready, lifetimeStatus: 'unavailable' })).toBe(false);
+  });
+
+  it('does not apply a deferred cycle after blur or a newer focus wins', async () => {
+    const applied: number[] = [];
+    let currentCycleId = 1;
+    let resolveCycle1!: () => void;
+    const cycle1Work = new Promise<void>((resolve) => { resolveCycle1 = resolve; });
+    const cycle1 = finishStatsInsightsLoadCycle(1, cycle1Work, () => currentCycleId);
+
+    currentCycleId = 2;
+    const cycle2 = finishStatsInsightsLoadCycle(2, Promise.resolve(), () => currentCycleId);
+    const cycle2Token = await cycle2;
+    if (cycle2Token !== null) applied.push(cycle2Token);
+    expect(cycle2Token).toBe(2);
+    resolveCycle1();
+    const cycle1Token = await cycle1;
+    if (cycle1Token !== null) applied.push(cycle1Token);
+    expect(cycle1Token).toBeNull();
+    expect(applied).toEqual([2]);
+
+    let resolveBlurred!: () => void;
+    const blurred = finishStatsInsightsLoadCycle(2, new Promise<void>((resolve) => { resolveBlurred = resolve; }), () => currentCycleId);
+    currentCycleId = 3;
+    resolveBlurred();
+    const blurredToken = await blurred;
+    if (blurredToken !== null) applied.push(blurredToken);
+    expect(blurredToken).toBeNull();
+    expect(applied).toEqual([2]);
   });
 });

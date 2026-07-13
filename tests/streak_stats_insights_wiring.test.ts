@@ -46,7 +46,9 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toContain('isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current)');
     expect(source).toContain("setLifetimeStatus(cachedLifetimeForCycle ? 'ready' : 'unavailable')");
     expect(source).not.toContain('setActivity365(null)');
-    expect(source).toContain('const devStatsCycleId = analyticsLoadRequestRef.current');
+    expect(source).toContain('const devStatsCycleId = await loadAll()');
+    expect(source).toContain('if (devStatsCycleId === null)');
     expect(source).toContain('isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current)');
+    expect(source).toContain('return finishStatsInsightsLoadCycle(analyticsRequestId');
   });
 });

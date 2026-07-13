@@ -46,6 +46,15 @@ export function isCurrentStatsInsightsLoadCycle(cycleId: number, currentCycleId:
   return Number.isSafeInteger(cycleId) && cycleId === currentCycleId;
 }
 
+export async function finishStatsInsightsLoadCycle(
+  cycleId: number,
+  pending: Promise<unknown>,
+  getCurrentCycleId: () => number,
+): Promise<number | null> {
+  await pending;
+  return isCurrentStatsInsightsLoadCycle(cycleId, getCurrentCycleId()) ? cycleId : null;
+}
+
 export function canBuildStatsInsightsSnapshotForCycle(input: {
   cycleId: number;
   currentCycleId: number;

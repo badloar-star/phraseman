@@ -415,6 +415,32 @@ describe('stats_insights atomic lease decisions', () => {
     expect(decideStatsInsightsGeneration({ nextAllowedAtMs: 2000, lastBriefingHash: 'same', lastNotes: legacyNotes }, 'same', 1000, 1, 'lease').kind).toBe('replay');
   });
 
+  it('replays an exact stored v2 result unchanged', () => {
+    const decision = decideStatsInsightsGeneration({
+      nextAllowedAtMs: 2000,
+      lastRequestHash: 'same',
+      responseSchemaVersion: 2,
+      lastResult: v2Result,
+    }, 'same', 1000, 2, 'lease');
+    expect(decision.kind).toBe('replay');
+    if (decision.kind !== 'replay') throw new Error('expected replay');
+    expect(decision.result).toEqual(v2Result);
+  });
+
+  it.each([
+    ['outer result', { ...v2Result, extra: true }],
+    ['notes', { ...v2Result, notes: { ...v2Result.notes, extra: 'x' } }],
+    ['observation ids', { ...v2Result, observationIds: { ...v2Result.observationIds, extra: 'x' } }],
+  ])('rejects a stored v2 replay with extra keys in %s', (_label, lastResult) => {
+    const decision = decideStatsInsightsGeneration({
+      nextAllowedAtMs: 2000,
+      lastRequestHash: 'same',
+      responseSchemaVersion: 2,
+      lastResult,
+    }, 'same', 1000, 2, 'lease');
+    expect(decision).toEqual({ kind: 'not_ready', nextAllowedAtMs: 2000 });
+  });
+
   it('blocks active same or different leases and replaces expired leases', () => {
     for (const hash of ['same', 'different']) {
       expect(decideStatsInsightsGeneration({ generationLeaseToken: 'old', generationLeaseHash: hash, generationLeaseExpiresAtMs: 1500 }, 'new', 1000, 2, 'new-token')).toEqual({ kind: 'in_progress' });

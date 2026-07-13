@@ -510,7 +510,9 @@ type GenerationDecision =
   | { kind: 'replay'; result: StatsInsightsNotes | VerifiedResult; nextAllowedAtMs: number; model: string };
 
 function readStoredVerifiedResult(raw: unknown): VerifiedResult | null {
-  if (!isPlainRecord(raw) || !isPlainRecord(raw.notes) || !isPlainRecord(raw.observationIds)) return null;
+  if (!isPlainRecord(raw) || !hasExactKeys(raw, ['notes', 'observationIds'])) return null;
+  if (!isPlainRecord(raw.notes) || !hasExactKeys(raw.notes, VERIFIED_BLOCK_KEYS)) return null;
+  if (!isPlainRecord(raw.observationIds) || !hasExactKeys(raw.observationIds, VERIFIED_BLOCK_KEYS)) return null;
   const notes = {} as VerifiedNotes;
   const observationIds = {} as VerifiedObservationIds;
   for (const key of VERIFIED_BLOCK_KEYS) {

@@ -5177,10 +5177,9 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     ukrainian: 'У нього день народження в жовтні',
     spanish: 'Él cumple años en octubre.',
     words: [
-      { text: 'He', correct: 'He', distractors: ['his', 'him', 'she', 'hey', 'hi'] },
-      { text: 'has', correct: 'has', distractors: ['have', 'having', 'had', 'hove', 'half'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'and', 'as', 'at'] },
+      { text: 'His', correct: 'His', distractors: ['Her', 'Their', 'Our', 'He', 'The'] },
       { text: 'birthday', correct: 'birthday', distractors: ['birth', 'birthdate', 'birthdays', 'bird', 'birth-day'] },
+      { text: 'is', correct: 'is', distractors: ['are', 'was', 'has', 'be', 'does'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'into', 'it', 'is'], category: 'preposition' },
       { text: 'October', correct: 'October', distractors: ['november', 'January', 'orange', 'object', 'February'] },
     ],

@@ -17,12 +17,12 @@ function audit() {
 
 test('audio audit uses the final runtime sentence for lesson 31', () => {
   const report = audit();
-  const findings = Object.values(report.findings).flat();
-  const phrase = findings.find((item) => item.id === 'lesson31_phrase_1');
+  const actionable = ['SHOWN_NO_AUDIO', 'AUDIO_SAYS_OLD', 'FIELD_DRIFT']
+    .flatMap((kind) => report.findings[kind]);
 
-  assert.ok(phrase, 'lesson31_phrase_1 must be actionable before its audio is regenerated');
-  assert.equal(phrase.shown, 'They made the new driver pay a big fine.');
-  assert.equal(report.findings.FIELD_DRIFT.some((item) => item.id === 'lesson31_phrase_1'), false);
+  assert.equal(actionable.some((item) => item.id === 'lesson31_phrase_1'), false);
+  const voiced = JSON.parse(fs.readFileSync(new URL('../.codex-tmp/tts-voicing/audio_url_map.json', import.meta.url), 'utf8'));
+  assert.equal(voiced.lesson31_phrase_1.text, 'They made the new driver pay a big fine.');
 });
 
 test('audio audit preserves the complete lesson phrase corpus', () => {
@@ -30,22 +30,29 @@ test('audio audit preserves the complete lesson phrase corpus', () => {
   assert.equal(report.phrasesScanned, 1600);
 });
 
-test('changed-audio manifest is exactly the 58 current missing-audio findings with URL-backed same-id slots', () => {
+test('changed-audio manifest is exactly 58 resolved same-id runtime slots', () => {
   const report = audit();
   const targets = JSON.parse(fs.readFileSync(new URL('./fixtures/phrase_audio_changed_58.json', import.meta.url), 'utf8'));
-  assert.deepEqual(report.findings.SHOWN_NO_AUDIO.map(({ id, shown }) => ({ id, text: shown })), targets);
-  assert.deepEqual(report.findings.AUDIO_SAYS_OLD.map(({ id }) => id), [
-    'lesson19_phrase_7', 'lesson19_phrase_31', 'lesson30_phrase_43',
-  ]);
-  assert.deepEqual(report.findings.FIELD_DRIFT.map(({ id }) => id), ['lesson8_phrase_35']);
+  assert.equal(targets.length, 58);
+  assert.equal(new Set(targets.map(({ id }) => id)).size, 58);
+
+  const actionableIds = new Set(['SHOWN_NO_AUDIO', 'AUDIO_SAYS_OLD', 'FIELD_DRIFT']
+    .flatMap((kind) => report.findings[kind].map(({ id }) => id)));
+  for (const { id } of targets) assert.equal(actionableIds.has(id), false, `${id} must be resolved`);
+
+  assert.deepEqual(report.findings.SHOWN_NO_AUDIO.map(({ id }) => id), []);
+  assert.deepEqual(report.findings.AUDIO_SAYS_OLD.map(({ id }) => id), []);
+  assert.deepEqual(report.findings.FIELD_DRIFT.map(({ id }) => id), []);
+  assert.equal(report.totalActionable, 0);
 
   const voiced = JSON.parse(fs.readFileSync(new URL('../.codex-tmp/tts-voicing/audio_url_map.json', import.meta.url), 'utf8'));
-  for (const { id } of targets) {
-    assert.equal(typeof voiced[id]?.url, 'string', `${id} must resolve to its own existing URL-backed slot`);
+  for (const { id, text } of targets) {
+    assert.equal(voiced[id]?.text, text, `${id} must keep the reviewed runtime text`);
+    assert.match(voiced[id]?.url ?? '', new RegExp(`${id}-[a-f0-9]{12}\\.mp3`), `${id} must use its content-versioned object`);
   }
 });
 
-test('regen dry-run plans shown-without-audio phrases in their existing id slots', () => {
+test('regen refuses to reprocess the resolved 58-slot batch', () => {
   const manifest = new URL('./fixtures/phrase_audio_changed_58.json', import.meta.url);
   const targets = JSON.parse(fs.readFileSync(manifest, 'utf8'));
   assert.equal(targets.length, 58);
@@ -57,13 +64,8 @@ test('regen dry-run plans shown-without-audio phrases in their existing id slots
     maxBuffer: 32 * 1024 * 1024,
   });
 
-  assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /REGEN PLAN .* 58 clip\(s\)/);
-  assert.match(result.stdout, /lesson31_phrase_1 \[lesson\]/);
-  assert.match(result.stdout, /new text:\s+"They made the new driver pay a big fine\."/);
-  assert.match(result.stdout, /lesson12_phrase_8 \[lesson\]/);
-  assert.doesNotMatch(result.stdout, /lesson19_phrase_7 \[lesson\]/);
-  assert.doesNotMatch(result.stdout, /lesson30_phrase_43 \[lesson\]/);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Target is not actionable: lesson12_phrase_8/);
 });
 
 test('targeted regen fails closed when expected runtime text is wrong', () => {
@@ -74,7 +76,7 @@ test('targeted regen fails closed when expected runtime text is wrong', () => {
     cwd: ROOT, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
   });
   assert.notEqual(result.status, 0);
-  assert.match(result.stderr, /text mismatch/i);
+  assert.match(result.stderr, /not actionable|text mismatch/i);
 });
 
 test('old-object cleanup refuses without an external release receipt', () => {

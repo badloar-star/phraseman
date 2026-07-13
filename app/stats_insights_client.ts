@@ -26,6 +26,7 @@ const PREMIUM_WINDOW_DAYS = 3;
 const FREE_WINDOW_DAYS = 7;
 const FUNCTIONS_REGION = 'us-central1';
 const VERIFIED_NOTE_MAX_CHARS = 400;
+const VERIFIED_IN_FLIGHT_MAX = 32;
 
 /** Ключи блоков — синхронны с CF stats_insights.ts. */
 export const STATS_INSIGHT_BLOCKS = ['balance', 'rhythm', 'year', 'percentiles', 'lifetime'] as const;
@@ -370,6 +371,10 @@ function normalizedVerifiedStudyTarget(studyTarget?: RuntimeStudyTarget): string
   return storageStudyTarget(studyTarget);
 }
 
+function verifiedStatsInsightsStorageKey(studyTarget?: RuntimeStudyTarget): string {
+  return `${statsInsightsStorageKey(studyTarget)}:v2`;
+}
+
 function normalizeVerifiedNotes(raw: unknown): VerifiedStatsInsightsNotes | null {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
   const input = raw as Record<string, unknown>;
@@ -428,7 +433,7 @@ function asCachedVerifiedState(stored: VerifiedStatsInsightsStored): VerifiedSta
 
 async function loadVerifiedStored(studyTarget?: RuntimeStudyTarget): Promise<VerifiedStatsInsightsStored | null> {
   try {
-    const raw = await AsyncStorage.getItem(statsInsightsStorageKey(studyTarget));
+    const raw = await AsyncStorage.getItem(verifiedStatsInsightsStorageKey(studyTarget));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<VerifiedStatsInsightsStored>;
     if (parsed.schemaVersion !== 2) return null;
@@ -463,7 +468,7 @@ async function loadVerifiedStored(studyTarget?: RuntimeStudyTarget): Promise<Ver
 
 async function saveVerifiedStored(stored: VerifiedStatsInsightsStored, studyTarget?: RuntimeStudyTarget): Promise<void> {
   try {
-    await AsyncStorage.setItem(statsInsightsStorageKey(studyTarget), JSON.stringify(stored));
+    await AsyncStorage.setItem(verifiedStatsInsightsStorageKey(studyTarget), JSON.stringify(stored));
   } catch (err) {
     DebugLogger.error('stats_insights_client:save_v2', err, 'warning');
   }
@@ -530,7 +535,7 @@ function serverNextAllowedAtMs(error: unknown): number | null {
  * Calls the verified, budgeted Firebase function for Premium users. The server—not
  * `isPremium` from this client—authorizes access and owns the generation window.
  */
-export async function generateVerifiedStatsInsights(
+async function generateVerifiedStatsInsightsRequest(
   options: GenerateVerifiedStatsInsightsOptions,
 ): Promise<VerifiedStatsInsightsState> {
   if (!options.isPremium) return { kind: 'none' };
@@ -603,4 +608,41 @@ export async function generateVerifiedStatsInsights(
     }
     return { kind: 'fallback', code, notes: buildVerifiedFallbackNotes(options.analysis, options.lang) };
   }
+}
+
+const verifiedGenerationInFlight = new Map<string, Promise<VerifiedStatsInsightsState>>();
+
+function verifiedGenerationInFlightKey(options: GenerateVerifiedStatsInsightsOptions): string {
+  return JSON.stringify([
+    normalizedVerifiedStudyTarget(options.studyTarget),
+    options.lang,
+    options.analysis.fingerprint,
+    options.force === true,
+  ]);
+}
+
+export function generateVerifiedStatsInsights(
+  options: GenerateVerifiedStatsInsightsOptions,
+): Promise<VerifiedStatsInsightsState> {
+  if (!options.isPremium) return Promise.resolve({ kind: 'none' });
+
+  const key = verifiedGenerationInFlightKey(options);
+  const existing = verifiedGenerationInFlight.get(key);
+  if (existing) return existing;
+  if (verifiedGenerationInFlight.size >= VERIFIED_IN_FLIGHT_MAX) {
+    return generateVerifiedStatsInsightsRequest(options);
+  }
+
+  let tracked!: Promise<VerifiedStatsInsightsState>;
+  tracked = (async () => {
+    try {
+      return await generateVerifiedStatsInsightsRequest(options);
+    } finally {
+      if (verifiedGenerationInFlight.get(key) === tracked) {
+        verifiedGenerationInFlight.delete(key);
+      }
+    }
+  })();
+  verifiedGenerationInFlight.set(key, tracked);
+  return tracked;
 }

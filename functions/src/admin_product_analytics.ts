@@ -1,5 +1,5 @@
 import { BigQuery } from '@google-cloud/bigquery';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { CallableRequest, HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
@@ -1299,16 +1299,9 @@ export function isAnalyticsExportPendingError(error: unknown): boolean {
     || message.includes('not found: table');
 }
 
-export const adminProductAnalytics = onCall({
-  region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
-  // The bounded query is synchronous so the admin receives one internally
-  // consistent snapshot. Production execution is currently fast, but the
-  // ceiling must also tolerate growth of the daily GA4 export.
-  timeoutSeconds: 300,
-  memory: '1GiB',
-  maxInstances: 3,
-}, async (request) => {
+export async function handleAdminProductAnalytics(
+  request: CallableRequest<{ rangeDays?: unknown; platform?: unknown }>,
+) {
   if (!hasProductAnalyticsAuth(request.auth)) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
@@ -1505,4 +1498,15 @@ export const adminProductAnalytics = onCall({
   };
   cache.set(cacheKey, { expiresAtMs: Date.now() + CACHE_TTL_MS, value });
   return value;
-});
+}
+
+export const adminProductAnalytics = onCall({
+  region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK,
+  // The bounded query is synchronous so the admin receives one internally
+  // consistent snapshot. Production execution is currently fast, but the
+  // ceiling must also tolerate growth of the daily GA4 export.
+  timeoutSeconds: 300,
+  memory: '1GiB',
+  maxInstances: 3,
+}, handleAdminProductAnalytics);

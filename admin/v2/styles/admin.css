@@ -537,6 +537,17 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+.analytics-only :is(button, select, input, .button, .primary-nav a) {
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.analytics-only :is(.button, .primary-nav a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 .onboarding-step-row {
   align-items: center;
   border-bottom: 1px solid var(--border);

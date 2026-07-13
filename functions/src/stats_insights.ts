@@ -95,7 +95,7 @@ interface VerifiedAnalysis {
 interface VerifiedRequest {
   analysis: VerifiedAnalysis;
   lang: SupportedLang;
-  studyTarget: 'en' | 'fr';
+  studyTarget: string;
 }
 
 type VerifiedNotes = Record<VerifiedBlockKey, string>;
@@ -312,7 +312,7 @@ function sanitizeVerifiedAnalysis(raw: unknown, lang: SupportedLang): VerifiedAn
 function sanitizeVerifiedRequest(raw: unknown): VerifiedRequest {
   if (!isPlainRecord(raw) || !hasExactKeys(raw, ['analysis', 'lang', 'studyTarget'])) invalidAnalysis();
   if (typeof raw.lang !== 'string' || !SUPPORTED_LANGS.includes(raw.lang as SupportedLang)) invalidAnalysis();
-  if (raw.studyTarget !== 'en' && raw.studyTarget !== 'fr') invalidAnalysis();
+  if (typeof raw.studyTarget !== 'string' || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(raw.studyTarget)) invalidAnalysis();
   return {
     analysis: sanitizeVerifiedAnalysis(raw.analysis, raw.lang as SupportedLang),
     lang: raw.lang as SupportedLang,

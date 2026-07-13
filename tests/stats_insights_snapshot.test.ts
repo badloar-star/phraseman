@@ -49,7 +49,7 @@ describe('buildStatsInsightsSnapshot', () => {
     });
 
     expect(snapshot.week.dailyMinutes7).toEqual([5, 0, 10, 15, 0, 20, 20]);
-    expect(snapshot.studyTarget).toBe('en');
+    expect(snapshot.studyTarget).toBe('es');
     expect(snapshot.week.previousMinutes7).toBeNull();
     expect(snapshot.longTerm.previous30ActiveDays).toBeNull();
     expect(snapshot.longTerm.bestMonthLabel).toMatch(/2026/);

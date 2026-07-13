@@ -388,7 +388,12 @@ describe('buildStatsInsightAnalysis', () => {
     expect(() => buildStatsInsightAnalysis(input)).toThrow('stats_insights_incomplete_snapshot');
   });
 
-  test.each(['es', null, undefined])('rejects invalid runtime study target %p', (studyTarget) => {
+  test.each(['es', 'pt-BR'])('accepts a safe dynamic runtime study target %p', (studyTarget) => {
+    const input = snapshot({ studyTarget });
+    expect(() => buildStatsInsightAnalysis(input)).not.toThrow();
+  });
+
+  test.each([null, undefined, 'EN', '../en', 'en<script>'])('rejects invalid runtime study target %p', (studyTarget) => {
     const input = snapshot({ studyTarget: studyTarget as StatsInsightsSnapshot['studyTarget'] });
     expect(() => buildStatsInsightAnalysis(input)).toThrow('stats_insights_incomplete_snapshot');
   });

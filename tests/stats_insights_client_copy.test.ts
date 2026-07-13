@@ -65,7 +65,7 @@ function serverIds(a: StatsInsightAnalysis): Record<StatsInsightBlockKey, string
 
 async function seedVerifiedCache(
   a: StatsInsightAnalysis,
-  options: { lang?: 'ru' | 'uk'; studyTarget?: 'en' | 'fr'; nextAllowedAtMs?: number } = {},
+  options: { lang?: 'ru' | 'uk'; studyTarget?: string; nextAllowedAtMs?: number } = {},
 ): Promise<void> {
   const lang = options.lang ?? 'ru';
   const studyTarget = options.studyTarget ?? 'en';
@@ -227,13 +227,13 @@ describe('stats insights client copy', () => {
     });
 
     const first = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'es', nowMs: 10 });
-    const second = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', nowMs: 10 });
+    const second = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'es', nowMs: 10 });
     await Promise.resolve();
     release();
 
     const [firstState, secondState] = await Promise.all([first, second]);
     expect(mockCallable).toHaveBeenCalledTimes(1);
-    expect(mockCallable).toHaveBeenCalledWith({ analysis: a, lang: 'ru', studyTarget: 'en' });
+    expect(mockCallable).toHaveBeenCalledWith({ analysis: a, lang: 'ru', studyTarget: 'es' });
     expect(secondState).toEqual(firstState);
   });
 

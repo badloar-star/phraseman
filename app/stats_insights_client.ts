@@ -384,10 +384,10 @@ interface StatsInsightsGenerateResponse {
 interface StatsInsightsGenerateRequest {
   analysis: StatsInsightAnalysis;
   lang: Lang;
-  studyTarget: 'en' | 'fr';
+  studyTarget: string;
 }
 
-function normalizedVerifiedStudyTarget(studyTarget?: RuntimeStudyTarget): 'en' | 'fr' {
+function normalizedVerifiedStudyTarget(studyTarget?: RuntimeStudyTarget): string {
   return storageStudyTarget(studyTarget);
 }
 

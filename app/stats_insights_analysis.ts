@@ -1,6 +1,6 @@
 import type { Lang } from '../constants/i18n';
 import type { PercentileSampleMeta } from './leaderboard_stats';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import { isStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type StatsInsightBlockKey = 'week' | 'longTerm' | 'comparison' | 'lifetime';
 
@@ -112,7 +112,7 @@ const normalize = (input: StatsInsightsSnapshot) => {
   if (!(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as readonly unknown[]).includes(input.lang)) {
     return incompleteSnapshot();
   }
-  if (input.studyTarget !== 'en' && input.studyTarget !== 'fr') return incompleteSnapshot();
+  if (!isStudyTarget(input.studyTarget)) return incompleteSnapshot();
 
   const rawDays = input.week.dailyMinutes7;
   if (!Array.isArray(rawDays) || rawDays.length !== 7) return incompleteSnapshot();
@@ -136,7 +136,7 @@ const normalize = (input: StatsInsightsSnapshot) => {
 
   return {
     lang: input.lang,
-    studyTarget: shortText(input.studyTarget, 30),
+    studyTarget: input.studyTarget,
     week: {
       activeDays7: count(input.week.activeDays7, 7),
       minutes7: count(input.week.minutes7),

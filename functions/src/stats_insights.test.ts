@@ -266,9 +266,13 @@ describe('stats_insights verified analysis contract', () => {
 
   it('requires and preserves explicit v2 language and study target', () => {
     expect(sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'es', studyTarget: 'fr' })).toMatchObject({ lang: 'es', studyTarget: 'fr' });
+    expect(sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru', studyTarget: 'es' })).toMatchObject({ lang: 'ru', studyTarget: 'es' });
+    expect(sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru', studyTarget: 'pt-BR' })).toMatchObject({ lang: 'ru', studyTarget: 'pt-BR' });
     expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), studyTarget: 'en' })).toThrow('stats_insights_invalid_analysis');
     expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru' })).toThrow('stats_insights_invalid_analysis');
     expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'xx', studyTarget: 'en' })).toThrow('stats_insights_invalid_analysis');
+    expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru', studyTarget: '../en' })).toThrow('stats_insights_invalid_analysis');
+    expect(() => sanitizeVerifiedRequest({ analysis: verifiedAnalysis(), lang: 'ru', studyTarget: 'EN' })).toThrow('stats_insights_invalid_analysis');
   });
 
   it.each([

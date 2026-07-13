@@ -81,7 +81,7 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toMatch(/const snapshot = await refreshStatsCache\(studyTarget\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
     expect(source).toMatch(/const activeLeagueBoost = await loadActiveLeagueBoost\(\)\.catch\(\(\) => null\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
     expect(source).toMatch(/const activeLeagueGroupBoost = await getActiveLeagueGroupBoost\(\)\.catch\(\(\) => null\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
-    expect(source).toContain('isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))\n                setWeekLearned(counts)');
+    expect(source).toMatch(/if \(isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*setWeekLearned\(counts\)/);
   });
 
   it('invalidates a dev action before it can start a new load cycle after blur', () => {

@@ -50,6 +50,13 @@ describe('Admin v2 YouTube analytics contract', () => {
     expect(page).toContain('Путь до просмотра');
     expect(page).toContain('Сортировать по запускам');
     expect(page).toContain('Что мы можем измерить');
+    expect(page).toContain("'Нажали открыть видео'");
+    expect(page).toContain("renderMetric('Нажали открыть канал'");
+    expect(page).toContain('Они не подтверждают фактический переход, просмотр или подписку.');
+    expect(page).toContain('Переустановка приложения может создать новый анонимный экземпляр.');
+    expect(page).toContain('const primary = hasTitle ? row.title : row.videoId;');
+    expect(page).toContain('Название недоступно · канал');
+    expect(page).not.toContain("row.title || 'Видео без названия'");
     expect(page).not.toMatch(/[\u{1F300}-\u{1FAFF}]/u);
   });
 

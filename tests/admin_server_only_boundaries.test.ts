@@ -36,4 +36,26 @@ describe('admin server-only boundaries', () => {
     expect(rules.slice(start, end)).toMatch(/allow write:\s*if false/);
   });
 
+  it.each([
+    'admin_safety_moderation_snapshots',
+    'admin_safety_moderation_previews',
+    'admin_safety_moderation_history',
+  ])('keeps %s opaque behind permission-checked callables', (collectionName) => {
+    const matchBlock = `match /${collectionName}/{document=**}`;
+    const start = rules.indexOf(matchBlock);
+    const end = rules.indexOf('\n    }', start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(rules.slice(start, end)).toMatch(/allow read, write:\s*if false/);
+  });
+
+  it.each(['user_reports', 'safety_flags'])('keeps %s mutations server-only after admin v2 cutover', (collectionName) => {
+    const matchBlock = `match /${collectionName}/{docId}`;
+    const start = rules.indexOf(matchBlock);
+    const end = rules.indexOf('\n    }', start);
+    const block = rules.slice(start, end);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(block).toMatch(/allow read:\s*if isAdmin\(\)/);
+    expect(block).toMatch(/allow create, update, delete:\s*if false/);
+  });
+
 });

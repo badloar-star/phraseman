@@ -24,6 +24,14 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain("allow read: if isAdmin() && docId != 'support_inbox' && docId != 'alerts';");
   });
 
+  test('user warnings are readable only by their canonical owner, not every signed-in user', () => {
+    const block = rules.match(/match \/user_warnings\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('userDocOwnerMatchesAuth(resource.data.uid)');
+    expect(block![0]).not.toContain('allow read:   if request.auth != null;');
+    expect(block![0]).toContain('allow create, update, delete: if false;');
+  });
+
   test('users collection is restricted to owner/admin, including stableId auth mapping', () => {
     expect(rules).toContain('match /users/{userId} {');
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');

@@ -1,11 +1,13 @@
 import {
   InvalidYoutubeAnalyticsRequestError,
   aggregateYoutubeAnalytics,
+  buildYoutubeAnalyticsDryRunConfig,
   buildYoutubeAnalyticsSql,
   decodeYoutubeAnalyticsQueryRows,
   normalizeYoutubeAnalyticsRequest,
   validateBigQueryEventsTable,
   type YoutubeAnalyticsFixtureEvent,
+  type YoutubeAnalyticsFixtureParam,
 } from './admin_youtube_analytics_core';
 
 const DAY = 86_400_000_000;
@@ -41,6 +43,19 @@ function aggregate(events: YoutubeAnalyticsFixtureEvent[], filters: { platform?:
     generatedAtMicros: TO + 1,
     filters: { rangeDays: 7, platform: 'all', ...filters },
   });
+}
+
+function orderedParams(overrides: readonly YoutubeAnalyticsFixtureParam[] = []): YoutubeAnalyticsFixtureParam[] {
+  return [
+    { key: 'schema_version', int_value: 1 },
+    { key: 'event_id', string_value: `ordered-${sequence}` },
+    { key: 'session_id', string_value: 'session-1' },
+    { key: 'platform', string_value: 'android' },
+    { key: 'channel_id', string_value: 'channel-1' },
+    { key: 'video_id', string_value: 'video-1' },
+    { key: 'playback_id', string_value: 'playback-1' },
+    ...overrides,
+  ];
 }
 
 beforeEach(() => { sequence = 0; });
@@ -80,6 +95,44 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.quality.unknownSchema).toBe(1);
     expect(snapshot.quality.missingRequiredFields).toBe(1);
     expect(snapshot.quality.state).toBe('empty');
+  });
+
+  test('accepts schema version only from an integer GA4 value', () => {
+    const snapshot = aggregate([event('youtube_home_entry_click', FROM + 1, {
+      event_params: orderedParams([
+        { key: 'schema_version', string_value: '1' },
+      ]).filter((_, index) => index !== 0),
+    })]);
+    expect(snapshot.quality).toMatchObject({ acceptedEvents: 0, unknownSchema: 1, duplicateParameterKeys: 0 });
+  });
+
+  test.each([
+    ['event_id', 'youtube_home_entry_click'],
+    ['video_id', 'youtube_video_select'],
+    ['schema_version', 'youtube_home_entry_click'],
+  ] as const)('rejects duplicate required %s params once per event', (key, eventName) => {
+    const duplicate = key === 'schema_version'
+      ? { key, int_value: 1 }
+      : { key, string_value: `duplicate-${key}` };
+    const snapshot = aggregate([event(eventName, FROM + 1, { event_params: orderedParams([duplicate]) })]);
+    expect(snapshot.quality).toMatchObject({
+      totalEvents: 1, acceptedEvents: 0, duplicateParameterKeys: 1,
+      unknownSchema: 0, missingRequiredFields: 0,
+    });
+  });
+
+  test('counts an event with several duplicate required keys once and ignores irrelevant duplicate keys', () => {
+    const rejected = event('youtube_video_select', FROM + 1, { event_params: orderedParams([
+      { key: 'event_id', string_value: 'second-event-id' },
+      { key: 'video_id', string_value: 'second-video' },
+    ]) });
+    const accepted = event('youtube_home_entry_click', FROM + 2, { event_params: orderedParams([
+      { key: 'duration_ms', int_value: 10 },
+      { key: 'duration_ms', int_value: 20 },
+    ]) });
+    expect(aggregate([rejected, accepted]).quality).toMatchObject({
+      totalEvents: 2, acceptedEvents: 1, duplicateParameterKeys: 1,
+    });
   });
 
   test('normalizes padded identifiers and rejects whitespace-only or oversized required identifiers', () => {
@@ -460,7 +513,82 @@ describe('fixture aggregation behavioral oracle', () => {
     const json = JSON.stringify(aggregate([event('youtube_home_entry_click')]));
     ['user_pseudo_id', 'session_id', 'playback_id', 'event_id', 'raw'].forEach(forbidden => expect(json).not.toContain(forbidden));
   });
+
+  test('keeps a high-multiplicity session funnel nonmultiplicative', () => {
+    const rows: YoutubeAnalyticsFixtureEvent[] = [];
+    for (let index = 0; index < 40; index += 1) {
+      rows.push(event('youtube_home_entry_click', FROM + index));
+      rows.push(event('youtube_catalog_open', FROM + 100 + index));
+      rows.push(event('youtube_video_select', FROM + 200 + index));
+    }
+    rows.push(event('youtube_playback_start', FROM + 300));
+    rows.push(event('youtube_playback_checkpoint', FROM + 350, { active_watch_ms: 30, duration_ms: 100 }));
+    rows.push(event('youtube_playback_checkpoint', FROM + 400, { active_watch_ms: 80, duration_ms: 100 }));
+    const funnel = aggregate(rows).funnel;
+    expect(funnel.map(row => row.count)).toEqual([1, 1, 1, 1, 1, 1]);
+  });
+
+  test('lets a later attempt complete the funnel when the first attempt stalls', () => {
+    const rows = [
+      event('youtube_home_entry_click', FROM + 1),
+      event('youtube_catalog_open', FROM + 2),
+      event('youtube_video_select', FROM + 3),
+      event('youtube_playback_start', FROM + 4, { playback_id: 'stalled' }),
+      event('youtube_playback_start', FROM + 5, { playback_id: 'successful' }),
+      event('youtube_playback_checkpoint', FROM + 6, { playback_id: 'successful', active_watch_ms: 30, duration_ms: 100 }),
+      event('youtube_playback_checkpoint', FROM + 7, { playback_id: 'successful', active_watch_ms: 80, duration_ms: 100 }),
+    ];
+    expect(aggregate(rows).funnel.map(row => row.count)).toEqual([1, 1, 1, 1, 1, 1]);
+  });
 });
+
+function emptyDecoderRows(): Array<{ row_kind: string; payload_json: string }> {
+  return [
+    { row_kind: 'summary', payload_json: JSON.stringify({
+      homeClicks: 0, catalogOpens: 0, videoSelects: 0, playerReady: 0, playbackStarts: 0,
+      anonymousInstancesWithValidStart: 0, watchAttempts: 0, totalActiveWatchMs: 0,
+      averageActiveWatchMs: null, p50ActiveWatchMs: null, p90ActiveWatchMs: null,
+      completed25: 0, completed50: 0, completed75: 0, completed95: 0,
+      externalVideoOpens: 0, channelOpens: 0,
+    }) },
+    ...Array.from({ length: 7 }, (_, index) => ({ row_kind: 'trend', payload_json: JSON.stringify({
+      day: `2026-01-0${index + 1}`, homeClicks: 0, catalogOpens: 0, videoSelects: 0, playbackStarts: 0, activeWatchMs: 0,
+    }) })),
+    ...(['home', 'catalog', 'select', 'start', 'completed25', 'completed75'] as const).map(step => ({
+      row_kind: 'funnel', payload_json: JSON.stringify({ step, status: 'ready', count: 0, percentOfPrevious: null }),
+    })),
+    { row_kind: 'quality', payload_json: JSON.stringify({
+      state: 'empty', totalEvents: 0, acceptedEvents: 0, validationRatio: 0,
+      missingRequiredFields: 0, duplicates: 0, unknownSchema: 0, duplicateParameterKeys: 0,
+      rowsWithoutStart: 0, conflictingVideo: 0, conflictingChannel: 0, duplicateStartAttempts: 0,
+      invalidDurationAttempts: 0, unfinishedAttempts: 0, dataThroughMicros: null,
+    }) },
+  ];
+}
+
+function singleWatchDecoderRows(): Array<{ row_kind: string; payload_json: string }> {
+  const rows = emptyDecoderRows();
+  rows[0] = { row_kind: 'summary', payload_json: JSON.stringify({
+    ...JSON.parse(rows[0].payload_json), playbackStarts: 1, anonymousInstancesWithValidStart: 1,
+    watchAttempts: 1, totalActiveWatchMs: 100, averageActiveWatchMs: 100,
+    p50ActiveWatchMs: 100, p90ActiveWatchMs: 100,
+  }) };
+  rows[1] = { row_kind: 'trend', payload_json: JSON.stringify({
+    ...JSON.parse(rows[1].payload_json), playbackStarts: 1, activeWatchMs: 100,
+  }) };
+  rows.splice(rows.length - 1, 0, { row_kind: 'video', payload_json: JSON.stringify({
+    channelId: 'channel', videoId: 'video', title: null, videoSelects: 0, playbackStarts: 1,
+    anonymousInstances: 1, activeWatchMs: 100, averageActiveWatchMs: 100,
+    p50ActiveWatchMs: 100, p90ActiveWatchMs: 100,
+    completed25: 0, completed50: 0, completed75: 0, completed95: 0,
+  }) });
+  const qualityIndex = rows.length - 1;
+  rows[qualityIndex] = { row_kind: 'quality', payload_json: JSON.stringify({
+    ...JSON.parse(rows[qualityIndex].payload_json), state: 'ready', totalEvents: 1, acceptedEvents: 1,
+    validationRatio: 1, dataThroughMicros: FROM + 1,
+  }) };
+  return rows;
+}
 
 describe('BigQuery SQL semantic contract', () => {
   const builtQuery = () => buildYoutubeAnalyticsSql('project-1.analytics_123.events_*', {
@@ -519,18 +647,56 @@ describe('BigQuery SQL semantic contract', () => {
       .forEach(cte => expect(sql).toContain(`FROM ${cte}`));
   });
 
+  test('extracts governed params deterministically by offset without ANY_VALUE or schema string fallback', () => {
+    const sql = builtQuery().sql;
+    expect(sql).toContain('UNNEST(event_params) WITH OFFSET');
+    expect(sql).toContain('ORDER BY param_offset');
+    expect(sql).not.toContain('ANY_VALUE');
+    expect(sql).not.toMatch(/schema_version[\s\S]{0,200}value\.string_value/);
+    expect(sql).toContain('duplicate_parameter_keys');
+  });
+
+  test('uses staged funnel and one-pass grouped video metrics', () => {
+    const sql = builtQuery().sql;
+    ['home_sessions', 'catalog_sessions', 'funnel_session_counts', 'video_event_metrics',
+      'video_attempt_metrics', 'watch_with_percentiles', 'video_watch_metrics']
+      .forEach(stage => expect(sql).toContain(`${stage} AS`));
+    expect(sql).not.toMatch(/FROM video_keys[\s\S]*?\(SELECT[\s\S]*?WHERE [^)]*k\.channel_id/);
+    expect(sql).not.toContain('EXISTS(');
+    expect(sql).not.toMatch(/start_paths AS \([\s\S]*?QUALIFY ROW_NUMBER[\s\S]*?\), c25_paths AS/);
+    expect(sql).toContain('result_rows AS');
+    expect(sql).toContain('ORDER BY section_order,first_number,second_number,first_text,second_text');
+  });
+
+  test('exports a pure dry-run-ready BigQuery configuration with explicit parameter types', () => {
+    const config = buildYoutubeAnalyticsDryRunConfig('project-1.analytics_123.events_*', {
+      fromMicros: FROM, toMicros: TO, filters: { rangeDays: 7, platform: 'all' },
+    });
+    expect(config).toMatchObject({ useLegacySql: false, types: {
+      fromMicros: 'INT64', toMicros: 'INT64', fromSuffix: 'STRING', toSuffix: 'STRING',
+      platform: 'STRING', videoId: 'STRING', channelId: 'STRING',
+    } });
+    expect(config.query).toContain('WITH raw_param_rows AS');
+    expect(config.params.videoId).toBeNull();
+  });
+
   test('decodes a complete typed row contract and truncates the 201st video', () => {
     const rows: Array<{ row_kind: string; payload_json: string }> = [
       { row_kind: 'summary', payload_json: JSON.stringify({
-        homeClicks: 1, catalogOpens: 1, videoSelects: 1, playerReady: 1, playbackStarts: 1,
-        anonymousInstancesWithValidStart: 1, watchAttempts: 1, totalActiveWatchMs: 50,
+        homeClicks: 1, catalogOpens: 1, videoSelects: 0, playerReady: 0, playbackStarts: 201,
+        anonymousInstancesWithValidStart: 1, watchAttempts: 201, totalActiveWatchMs: 10_050,
         averageActiveWatchMs: 50, p50ActiveWatchMs: 50, p90ActiveWatchMs: 50,
-        completed25: 1, completed50: 1, completed75: 0, completed95: 0,
+        completed25: 201, completed50: 201, completed75: 0, completed95: 0,
         externalVideoOpens: 0, channelOpens: 0,
       }) },
-      { row_kind: 'trend', payload_json: JSON.stringify({ day: '2026-01-01', homeClicks: 1, catalogOpens: 1, videoSelects: 1, playbackStarts: 1, activeWatchMs: 50 }) },
+      ...Array.from({ length: 7 }, (_, index) => ({ row_kind: 'trend', payload_json: JSON.stringify({
+        day: `2026-01-0${index + 1}`, homeClicks: index === 0 ? 1 : 0, catalogOpens: index === 0 ? 1 : 0,
+        videoSelects: 0, playbackStarts: index === 0 ? 201 : 0, activeWatchMs: index === 0 ? 10_050 : 0,
+      }) })),
       ...(['home', 'catalog', 'select', 'start', 'completed25', 'completed75'] as const).map((step, index) => ({
-        row_kind: 'funnel', payload_json: JSON.stringify({ step, status: index < 2 ? 'not_applicable' : 'ready', count: index < 2 ? null : 1, percentOfPrevious: null }),
+        row_kind: 'funnel', payload_json: JSON.stringify({
+          step, status: 'ready', count: index < 2 ? 1 : 0, percentOfPrevious: index === 1 ? 1 : index === 2 ? 0 : null,
+        }),
       })),
       ...Array.from({ length: 201 }, (_, index) => ({ row_kind: 'video', payload_json: JSON.stringify({
         channelId: `c-${String(index).padStart(3, '0')}`, videoId: `v-${index}`, title: null,
@@ -539,15 +705,16 @@ describe('BigQuery SQL semantic contract', () => {
         completed25: 1, completed50: 1, completed75: 0, completed95: 0,
       }) })),
       { row_kind: 'quality', payload_json: JSON.stringify({
-        state: 'ready', totalEvents: 4, acceptedEvents: 4, validationRatio: 1,
+        state: 'ready', totalEvents: 402, acceptedEvents: 402, validationRatio: 1,
         missingRequiredFields: 0, duplicates: 0, unknownSchema: 0, rowsWithoutStart: 0,
+        duplicateParameterKeys: 0,
         conflictingVideo: 0, conflictingChannel: 0, duplicateStartAttempts: 0,
         invalidDurationAttempts: 0, unfinishedAttempts: 0, dataThroughMicros: TO - 1,
       }) },
     ];
     const snapshot = decodeYoutubeAnalyticsQueryRows(rows, {
       fromMicros: FROM, toMicros: TO, generatedAtMicros: TO + 1,
-      filters: { rangeDays: 7, platform: 'android', videoId: 'video-1' },
+      filters: { rangeDays: 7, platform: 'android' },
     });
     expect(snapshot.videos).toHaveLength(200);
     expect(snapshot.quality).toMatchObject({ videosTruncated: true, videoRowsReturned: 200 });
@@ -560,5 +727,90 @@ describe('BigQuery SQL semantic contract', () => {
       .toThrow(InvalidYoutubeAnalyticsRequestError);
     expect(() => decodeYoutubeAnalyticsQueryRows([{ row_kind: 'summary', payload_json: '{"homeClicks":-1}' }], context))
       .toThrow(InvalidYoutubeAnalyticsRequestError);
+  });
+
+  test('decoder rejects incomplete spines, additive drift, unknown keys, and oversized payloads', () => {
+    const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    const missingDay = emptyDecoderRows().filter((_, index) => index !== 2);
+    expect(() => decodeYoutubeAnalyticsQueryRows(missingDay, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const drift = emptyDecoderRows();
+    drift[1] = { ...drift[1], payload_json: JSON.stringify({ ...JSON.parse(drift[1].payload_json), homeClicks: 1 }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(drift, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const extra = emptyDecoderRows();
+    extra[0] = { ...extra[0], payload_json: JSON.stringify({ ...JSON.parse(extra[0].payload_json), surprise: 1 }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(extra, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const huge = emptyDecoderRows();
+    huge[0] = { ...huge[0], payload_json: JSON.stringify({ filler: 'x'.repeat(9000) }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(huge, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+  });
+
+  test('decoder rejects inconsistent funnel, summary, quality, metadata, and row envelopes', () => {
+    const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    const funnel = emptyDecoderRows();
+    funnel[9] = { ...funnel[9], payload_json: JSON.stringify({ step: 'catalog', status: 'ready', count: 0, percentOfPrevious: 0.5 }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(funnel, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const summary = emptyDecoderRows();
+    summary[0] = { ...summary[0], payload_json: JSON.stringify({ ...JSON.parse(summary[0].payload_json), completed95: 1 }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(summary, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const quality = emptyDecoderRows();
+    const qualityIndex = quality.length - 1;
+    quality[qualityIndex] = { ...quality[qualityIndex], payload_json: JSON.stringify({
+      ...JSON.parse(quality[qualityIndex].payload_json), validationRatio: 0.1,
+    }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(quality, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const impossibleQuality = emptyDecoderRows();
+    const impossibleIndex = impossibleQuality.length - 1;
+    impossibleQuality[impossibleIndex] = { ...impossibleQuality[impossibleIndex], payload_json: JSON.stringify({
+      ...JSON.parse(impossibleQuality[impossibleIndex].payload_json), duplicates: 1,
+    }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(impossibleQuality, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    expect(() => decodeYoutubeAnalyticsQueryRows(emptyDecoderRows(), { ...context, generatedAtMicros: -1 }))
+      .toThrow(InvalidYoutubeAnalyticsRequestError);
+    const envelope = emptyDecoderRows() as Array<{ row_kind: string; payload_json: string; extra?: boolean }>;
+    envelope[0].extra = true;
+    expect(() => decodeYoutubeAnalyticsQueryRows(envelope, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+  });
+
+  test('decoder rejects duplicate or unordered videos and unsafe Unicode/control text', () => {
+    const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    const video = (videoId: string, title: string | null = null) => ({ row_kind: 'video', payload_json: JSON.stringify({
+      channelId: 'channel', videoId, title, videoSelects: 0, playbackStarts: 0, anonymousInstances: 0,
+      activeWatchMs: 0, averageActiveWatchMs: null, p50ActiveWatchMs: null, p90ActiveWatchMs: null,
+      completed25: 0, completed50: 0, completed75: 0, completed95: 0,
+    }) });
+    const duplicate = emptyDecoderRows();
+    duplicate.splice(duplicate.length - 1, 0, video('same'), video('same'));
+    expect(() => decodeYoutubeAnalyticsQueryRows(duplicate, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const unordered = emptyDecoderRows();
+    unordered.splice(unordered.length - 1, 0, video('z'), video('a'));
+    expect(() => decodeYoutubeAnalyticsQueryRows(unordered, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const unsafe = emptyDecoderRows();
+    unsafe.splice(unsafe.length - 1, 0, video('safe', 'bad\u0000title'));
+    expect(() => decodeYoutubeAnalyticsQueryRows(unsafe, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const malformed = emptyDecoderRows();
+    malformed.splice(malformed.length - 1, 0, video('safe', '\uD800'));
+    expect(() => decodeYoutubeAnalyticsQueryRows(malformed, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+  });
+
+  test('decoder rejects percentile statistics above total or the per-attempt maximum', () => {
+    const context = { fromMicros: FROM, toMicros: TO, generatedAtMicros: TO, filters: { rangeDays: 7 as const, platform: 'all' as const } };
+    expect(() => decodeYoutubeAnalyticsQueryRows(singleWatchDecoderRows(), context)).not.toThrow();
+    const badSummary = singleWatchDecoderRows();
+    badSummary[0] = { ...badSummary[0], payload_json: JSON.stringify({
+      ...JSON.parse(badSummary[0].payload_json), p90ActiveWatchMs: 101,
+    }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(badSummary, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const badVideo = singleWatchDecoderRows();
+    const videoIndex = badVideo.findIndex(row => row.row_kind === 'video');
+    badVideo[videoIndex] = { ...badVideo[videoIndex], payload_json: JSON.stringify({
+      ...JSON.parse(badVideo[videoIndex].payload_json), p90ActiveWatchMs: 101,
+    }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(badVideo, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
+    const beyondCap = singleWatchDecoderRows();
+    beyondCap[0] = { ...beyondCap[0], payload_json: JSON.stringify({
+      ...JSON.parse(beyondCap[0].payload_json), totalActiveWatchMs: 86_400_001,
+      averageActiveWatchMs: 86_400_001, p50ActiveWatchMs: 86_400_001, p90ActiveWatchMs: 86_400_001,
+    }) };
+    expect(() => decodeYoutubeAnalyticsQueryRows(beyondCap, context)).toThrow(InvalidYoutubeAnalyticsRequestError);
   });
 });

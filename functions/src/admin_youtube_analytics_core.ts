@@ -82,6 +82,13 @@ export function validateBigQueryEventsTable(value: string): string {
   return value;
 }
 
+export interface YoutubeAnalyticsFixtureParam {
+  readonly key: unknown;
+  readonly string_value?: unknown;
+  readonly int_value?: unknown;
+  readonly double_value?: unknown;
+}
+
 export interface YoutubeAnalyticsFixtureEvent {
   readonly event_name: YoutubeAnalyticsEventName | string;
   readonly event_timestamp: unknown;
@@ -98,6 +105,8 @@ export interface YoutubeAnalyticsFixtureEvent {
   readonly duration_ms?: unknown;
   readonly position_ms?: unknown;
   readonly max_position_permille?: unknown;
+  /** Ordered GA4 params. When supplied, these are authoritative over flat fixture conveniences. */
+  readonly event_params?: readonly YoutubeAnalyticsFixtureParam[];
 }
 
 interface ValidEvent {
@@ -191,6 +200,7 @@ export interface YoutubeAnalyticsQuality {
   missingRequiredFields: number;
   duplicates: number;
   unknownSchema: number;
+  duplicateParameterKeys: number;
   rowsWithoutStart: number;
   conflictingVideo: number;
   conflictingChannel: number;
@@ -199,6 +209,50 @@ export interface YoutubeAnalyticsQuality {
   unfinishedAttempts: number;
   videosTruncated: boolean;
   videoRowsReturned: number;
+}
+
+const COMMON_GOVERNED_PARAMS = ['schema_version', 'event_id', 'session_id', 'platform', 'channel_id'] as const;
+
+function materializeFixtureEvent(source: YoutubeAnalyticsFixtureEvent): {
+  row: YoutubeAnalyticsFixtureEvent;
+  duplicateRequiredParameters: boolean;
+} {
+  if (!source.event_params) return { row: source, duplicateRequiredParameters: false };
+  const params = source.event_params;
+  const first = (key: string) => params.find(param => param.key === key);
+  const stringValue = (key: string) => first(key)?.string_value;
+  const intValue = (key: string) => first(key)?.int_value;
+  const required = new Set<string>(COMMON_GOVERNED_PARAMS);
+  if (VIDEO_EVENTS.has(source.event_name as YoutubeAnalyticsEventName)) required.add('video_id');
+  if (PLAYBACK_EVENTS.has(source.event_name as YoutubeAnalyticsEventName)) required.add('playback_id');
+  if (source.event_name === 'youtube_playback_checkpoint' || source.event_name === 'youtube_playback_end') {
+    required.add('active_watch_ms');
+  }
+  const counts = new Map<string, number>();
+  for (const param of params) {
+    if (typeof param.key === 'string') counts.set(param.key, (counts.get(param.key) ?? 0) + 1);
+  }
+  return {
+    row: {
+      event_name: source.event_name,
+      event_timestamp: source.event_timestamp,
+      user_pseudo_id: source.user_pseudo_id,
+      schema_version: intValue('schema_version'),
+      event_id: stringValue('event_id'),
+      session_id: stringValue('session_id'),
+      platform: stringValue('platform'),
+      channel_id: stringValue('channel_id'),
+      video_id: stringValue('video_id'),
+      video_title: stringValue('video_title'),
+      playback_id: stringValue('playback_id'),
+      active_watch_ms: intValue('active_watch_ms'),
+      duration_ms: intValue('duration_ms'),
+      position_ms: intValue('position_ms'),
+      max_position_permille: intValue('max_position_permille'),
+      event_params: params,
+    },
+    duplicateRequiredParameters: [...required].some(key => (counts.get(key) ?? 0) > 1),
+  };
 }
 
 export interface YoutubeAnalyticsSnapshot {
@@ -445,13 +499,14 @@ export function aggregateYoutubeAnalytics(
   const filters = normalizeYoutubeAnalyticsRequest(input.filters);
   const quality: YoutubeAnalyticsQuality = {
     state: 'empty', totalEvents: 0, acceptedEvents: 0, validationRatio: 0,
-    missingRequiredFields: 0, duplicates: 0, unknownSchema: 0, rowsWithoutStart: 0,
+    missingRequiredFields: 0, duplicates: 0, unknownSchema: 0, duplicateParameterKeys: 0, rowsWithoutStart: 0,
     conflictingVideo: 0, conflictingChannel: 0, duplicateStartAttempts: 0,
     invalidDurationAttempts: 0, unfinishedAttempts: 0, videosTruncated: false, videoRowsReturned: 0,
   };
   let dataThroughMicros: number | null = null;
   const validated: ValidEvent[] = [];
-  for (const row of rows) {
+  for (const source of rows) {
+    const { row, duplicateRequiredParameters } = materializeFixtureEvent(source);
     const at = integer(row.event_timestamp);
     if (!EVENT_SET.has(row.event_name) || at == null || at < input.fromMicros || at >= input.toMicros) continue;
     const rawInScope = (filters.platform === 'all' || row.platform === filters.platform)
@@ -461,6 +516,7 @@ export function aggregateYoutubeAnalytics(
       quality.totalEvents += 1;
       dataThroughMicros = Math.max(dataThroughMicros ?? at, at);
     }
+    if (duplicateRequiredParameters) { if (rawInScope) quality.duplicateParameterKeys += 1; continue; }
     if (row.schema_version !== 1) { if (rawInScope) quality.unknownSchema += 1; continue; }
     const valid = validBase(row);
     if (!valid) { if (rawInScope) quality.missingRequiredFields += 1; continue; }
@@ -562,7 +618,7 @@ export function aggregateYoutubeAnalytics(
   quality.videosTruncated = allVideos.length > 200;
   const videos = allVideos.slice(0, 200);
   quality.videoRowsReturned = videos.length;
-  const defects = quality.missingRequiredFields + quality.duplicates + quality.unknownSchema + quality.rowsWithoutStart
+  const defects = quality.missingRequiredFields + quality.duplicates + quality.unknownSchema + quality.duplicateParameterKeys + quality.rowsWithoutStart
     + quality.conflictingVideo + quality.conflictingChannel + quality.duplicateStartAttempts + quality.invalidDurationAttempts;
   quality.state = quality.acceptedEvents === 0 ? 'empty' : defects > 0 ? 'partial' : 'ready';
 
@@ -590,8 +646,16 @@ export interface YoutubeAnalyticsQueryParams {
   readonly channelId: string | null;
 }
 
+export interface YoutubeAnalyticsDryRunConfig {
+  readonly query: string;
+  readonly params: YoutubeAnalyticsQueryParams;
+  readonly types: Readonly<Record<keyof YoutubeAnalyticsQueryParams, 'INT64' | 'STRING'>>;
+  readonly useLegacySql: false;
+}
+
 function queryPayload(row: YoutubeAnalyticsQueryRow): Record<string, unknown> {
-  if (typeof row.payload_json !== 'string' || row.payload_json.length > 100_000) {
+  if (Object.keys(row as object).sort().join(',') !== 'payload_json,row_kind'
+    || typeof row.payload_json !== 'string' || Buffer.byteLength(row.payload_json, 'utf8') > 8192) {
     throw new InvalidYoutubeAnalyticsRequestError('Invalid YouTube analytics query payload');
   }
   try {
@@ -603,12 +667,18 @@ function queryPayload(row: YoutubeAnalyticsQueryRow): Record<string, unknown> {
   }
 }
 
+function exactPayloadKeys(payload: Record<string, unknown>, expected: readonly string[]): void {
+  const actual = Object.keys(payload).sort();
+  const wanted = [...expected].sort();
+  if (actual.length !== wanted.length || actual.some((key, index) => key !== wanted[index])) {
+    throw new InvalidYoutubeAnalyticsRequestError('Unexpected YouTube analytics payload fields');
+  }
+}
+
 function queryNumber(payload: Record<string, unknown>, field: string, nullable = false): number | null {
   const raw = payload[field];
   if (raw == null && nullable) return null;
-  const value = typeof raw === 'object' && raw && 'value' in raw
-    ? Number((raw as { value: unknown }).value)
-    : typeof raw === 'string' && /^\d+(?:\.\d+)?$/.test(raw) ? Number(raw) : raw;
+  const value = typeof raw === 'string' && /^\d+(?:\.\d+)?$/.test(raw) ? Number(raw) : raw;
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > Number.MAX_SAFE_INTEGER) {
     throw new InvalidYoutubeAnalyticsRequestError(`Invalid query field: ${field}`);
   }
@@ -624,7 +694,8 @@ function queryCount(payload: Record<string, unknown>, field: string): number {
 function queryText(payload: Record<string, unknown>, field: string, nullable = false, max = 256): string | null {
   const value = payload[field];
   if (value == null && nullable) return null;
-  if (typeof value !== 'string' || !value || [...value].length > max) {
+  if (typeof value !== 'string' || !value || value !== value.trim() || !isWellFormedUnicode(value)
+    || /[\p{Cc}\p{Cf}]/u.test(value) || [...value].length > max) {
     throw new InvalidYoutubeAnalyticsRequestError(`Invalid query field: ${field}`);
   }
   return value;
@@ -636,6 +707,7 @@ function decodeSummary(payload: Record<string, unknown>): YoutubeAnalyticsSummar
     'anonymousInstancesWithValidStart', 'watchAttempts', 'totalActiveWatchMs',
     'completed25', 'completed50', 'completed75', 'completed95', 'externalVideoOpens', 'channelOpens',
   ] as const;
+  exactPayloadKeys(payload, [...countFields, 'averageActiveWatchMs', 'p50ActiveWatchMs', 'p90ActiveWatchMs']);
   const counts = Object.fromEntries(countFields.map(field => [field, queryCount(payload, field)])) as unknown as Pick<YoutubeAnalyticsSummary, typeof countFields[number]>;
   return {
     ...counts,
@@ -646,6 +718,7 @@ function decodeSummary(payload: Record<string, unknown>): YoutubeAnalyticsSummar
 }
 
 function decodeTrend(payload: Record<string, unknown>): YoutubeAnalyticsTrendRow {
+  exactPayloadKeys(payload, ['day', 'homeClicks', 'catalogOpens', 'videoSelects', 'playbackStarts', 'activeWatchMs']);
   const day = queryText(payload, 'day') as string;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) throw new InvalidYoutubeAnalyticsRequestError('Invalid trend day');
   return {
@@ -661,6 +734,7 @@ function decodeTrend(payload: Record<string, unknown>): YoutubeAnalyticsTrendRow
 const FUNNEL_STEPS: YoutubeAnalyticsFunnelRow['step'][] = ['home', 'catalog', 'select', 'start', 'completed25', 'completed75'];
 
 function decodeFunnel(payload: Record<string, unknown>): YoutubeAnalyticsFunnelRow {
+  exactPayloadKeys(payload, ['step', 'status', 'count', 'percentOfPrevious']);
   const step = queryText(payload, 'step') as YoutubeAnalyticsFunnelRow['step'];
   const status = queryText(payload, 'status') as YoutubeAnalyticsFunnelRow['status'];
   if (!FUNNEL_STEPS.includes(step) || !['ready', 'not_applicable'].includes(status)) {
@@ -675,6 +749,9 @@ function decodeFunnel(payload: Record<string, unknown>): YoutubeAnalyticsFunnelR
 }
 
 function decodeVideo(payload: Record<string, unknown>): YoutubeAnalyticsVideoRow {
+  exactPayloadKeys(payload, ['channelId', 'videoId', 'title', 'videoSelects', 'playbackStarts', 'anonymousInstances',
+    'activeWatchMs', 'averageActiveWatchMs', 'p50ActiveWatchMs', 'p90ActiveWatchMs',
+    'completed25', 'completed50', 'completed75', 'completed95']);
   const title = queryText(payload, 'title', true, 100);
   return {
     channelId: queryText(payload, 'channelId') as string,
@@ -695,6 +772,9 @@ function decodeVideo(payload: Record<string, unknown>): YoutubeAnalyticsVideoRow
 }
 
 function decodeQuality(payload: Record<string, unknown>): YoutubeAnalyticsQuality & { dataThroughMicros: number | null } {
+  exactPayloadKeys(payload, ['state', 'totalEvents', 'acceptedEvents', 'validationRatio', 'missingRequiredFields',
+    'duplicates', 'unknownSchema', 'duplicateParameterKeys', 'rowsWithoutStart', 'conflictingVideo',
+    'conflictingChannel', 'duplicateStartAttempts', 'invalidDurationAttempts', 'unfinishedAttempts', 'dataThroughMicros']);
   const state = queryText(payload, 'state') as YoutubeAnalyticsQuality['state'];
   if (!['ready', 'empty', 'partial'].includes(state)) throw new InvalidYoutubeAnalyticsRequestError('Invalid quality state');
   const validationRatio = queryNumber(payload, 'validationRatio') as number;
@@ -707,6 +787,7 @@ function decodeQuality(payload: Record<string, unknown>): YoutubeAnalyticsQualit
     missingRequiredFields: queryCount(payload, 'missingRequiredFields'),
     duplicates: queryCount(payload, 'duplicates'),
     unknownSchema: queryCount(payload, 'unknownSchema'),
+    duplicateParameterKeys: queryCount(payload, 'duplicateParameterKeys'),
     rowsWithoutStart: queryCount(payload, 'rowsWithoutStart'),
     conflictingVideo: queryCount(payload, 'conflictingVideo'),
     conflictingChannel: queryCount(payload, 'conflictingChannel'),
@@ -719,6 +800,36 @@ function decodeQuality(payload: Record<string, unknown>): YoutubeAnalyticsQualit
   };
 }
 
+function nearlyEqual(left: number, right: number): boolean {
+  return Math.abs(left - right) <= 1e-9 * Math.max(1, Math.abs(left), Math.abs(right));
+}
+
+function assertWatchStatistics(
+  attempts: number,
+  total: number,
+  average: number | null,
+  p50: number | null,
+  p90: number | null,
+): void {
+  const statistics = [average, p50, p90];
+  if ((attempts === 0) !== statistics.every(value => value == null)
+    || (attempts === 0) !== (total === 0)
+    || total > attempts * MAX_METRIC_MS
+    || (attempts > 0 && (statistics.some(value => value == null)
+      || !nearlyEqual(average as number, total / attempts)
+      || statistics.some(value => (value as number) > MAX_METRIC_MS || (value as number) > total)
+      || (p50 as number) > (p90 as number)))) {
+    throw new InvalidYoutubeAnalyticsRequestError('Inconsistent watch statistics');
+  }
+}
+
+function expectedUtcDays(fromMicros: number, toMicros: number): string[] {
+  const days: string[] = [];
+  const first = Date.parse(`${utcDay(fromMicros)}T00:00:00.000Z`) * 1000;
+  for (let cursor = first; cursor < toMicros; cursor += 86_400_000_000) days.push(utcDay(cursor));
+  return days;
+}
+
 export function decodeYoutubeAnalyticsQueryRows(
   rows: readonly YoutubeAnalyticsQueryRow[],
   context: {
@@ -728,10 +839,11 @@ export function decodeYoutubeAnalyticsQueryRows(
     readonly filters: NormalizedYoutubeAnalyticsRequest;
   },
 ): YoutubeAnalyticsSnapshot {
-  if (!Number.isSafeInteger(context.fromMicros) || !Number.isSafeInteger(context.toMicros) || context.fromMicros >= context.toMicros) {
+  if (!Number.isSafeInteger(context.fromMicros) || !Number.isSafeInteger(context.toMicros)
+    || context.fromMicros < 0 || context.fromMicros >= context.toMicros) {
     throw new InvalidYoutubeAnalyticsRequestError('Invalid decoder window');
   }
-  if (!Number.isSafeInteger(context.generatedAtMicros) || context.generatedAtMicros < 0) {
+  if (!Number.isSafeInteger(context.generatedAtMicros) || context.generatedAtMicros < context.toMicros) {
     throw new InvalidYoutubeAnalyticsRequestError('Invalid decoder generation time');
   }
   const filters = normalizeYoutubeAnalyticsRequest(context.filters);
@@ -742,6 +854,9 @@ export function decodeYoutubeAnalyticsQueryRows(
   const funnel: YoutubeAnalyticsFunnelRow[] = [];
   const videos: YoutubeAnalyticsVideoRow[] = [];
   for (const row of rows) {
+    if (!row || typeof row !== 'object' || Array.isArray(row)) {
+      throw new InvalidYoutubeAnalyticsRequestError('Invalid YouTube analytics query row');
+    }
     if (!['summary', 'trend', 'funnel', 'video', 'quality'].includes(row.row_kind as string)) {
       throw new InvalidYoutubeAnalyticsRequestError('Unknown YouTube analytics row kind');
     }
@@ -758,24 +873,109 @@ export function decodeYoutubeAnalyticsQueryRows(
     }
   }
   if (!summary || !qualityWithData) throw new InvalidYoutubeAnalyticsRequestError('Incomplete YouTube analytics query result');
-  trend.sort((a, b) => codePointCompare(a.day, b.day));
-  funnel.sort((a, b) => FUNNEL_STEPS.indexOf(a.step) - FUNNEL_STEPS.indexOf(b.step));
+  const expectedDays = expectedUtcDays(context.fromMicros, context.toMicros);
+  if (trend.length !== expectedDays.length || trend.some((row, index) => row.day !== expectedDays[index])) {
+    throw new InvalidYoutubeAnalyticsRequestError('Incomplete or unordered trend rows');
+  }
+  if (trend.reduce((sum, row) => sum + row.homeClicks, 0) !== summary.homeClicks
+    || trend.reduce((sum, row) => sum + row.catalogOpens, 0) !== summary.catalogOpens
+    || trend.reduce((sum, row) => sum + row.videoSelects, 0) !== summary.videoSelects
+    || trend.reduce((sum, row) => sum + row.playbackStarts, 0) !== summary.playbackStarts
+    || trend.reduce((sum, row) => sum + row.activeWatchMs, 0) !== summary.totalActiveWatchMs) {
+    throw new InvalidYoutubeAnalyticsRequestError('Trend totals do not match summary');
+  }
   if (funnel.length !== FUNNEL_STEPS.length || new Set(funnel.map(row => row.step)).size !== FUNNEL_STEPS.length) {
     throw new InvalidYoutubeAnalyticsRequestError('Incomplete funnel rows');
   }
-  const applicableCounts = funnel.filter(row => row.status === 'ready').map(row => row.count as number);
-  if (applicableCounts.some((count, index) => index > 0 && count > applicableCounts[index - 1])) {
-    throw new InvalidYoutubeAnalyticsRequestError('Non-monotonic funnel rows');
+  if (funnel.some((row, index) => row.step !== FUNNEL_STEPS[index])) {
+    throw new InvalidYoutubeAnalyticsRequestError('Unordered funnel rows');
   }
-  videos.sort((a, b) => b.playbackStarts - a.playbackStarts || b.activeWatchMs - a.activeWatchMs
-    || codePointCompare(a.channelId, b.channelId) || codePointCompare(a.videoId, b.videoId));
+  let previousCount: number | null = null;
+  for (let index = 0; index < funnel.length; index += 1) {
+    const row = funnel[index];
+    const mustBeUnavailable = Boolean(filters.videoId) && index < 2;
+    if (mustBeUnavailable !== (row.status === 'not_applicable')
+      || (row.status === 'ready' && row.count == null)) {
+      throw new InvalidYoutubeAnalyticsRequestError('Invalid funnel applicability');
+    }
+    if (row.status === 'ready') {
+      if (previousCount != null && (row.count as number) > previousCount) {
+        throw new InvalidYoutubeAnalyticsRequestError('Non-monotonic funnel rows');
+      }
+      const expectedPercent = previousCount == null || previousCount === 0 ? null : (row.count as number) / previousCount;
+      if ((expectedPercent == null) !== (row.percentOfPrevious == null)
+        || (expectedPercent != null && !nearlyEqual(row.percentOfPrevious as number, expectedPercent))) {
+        throw new InvalidYoutubeAnalyticsRequestError('Inconsistent funnel percentage');
+      }
+      previousCount = row.count as number;
+    }
+  }
+  const funnelBounds = [summary.homeClicks, summary.catalogOpens, summary.videoSelects, summary.playbackStarts,
+    summary.completed25, summary.completed75];
+  if (funnel.some((row, index) => row.count != null && row.count > funnelBounds[index])) {
+    throw new InvalidYoutubeAnalyticsRequestError('Funnel exceeds summary');
+  }
+  const compareVideos = (a: YoutubeAnalyticsVideoRow, b: YoutubeAnalyticsVideoRow) => b.playbackStarts - a.playbackStarts
+    || b.activeWatchMs - a.activeWatchMs || codePointCompare(a.channelId, b.channelId) || codePointCompare(a.videoId, b.videoId);
+  if (videos.some((row, index) => index > 0 && compareVideos(videos[index - 1], row) > 0)) {
+    throw new InvalidYoutubeAnalyticsRequestError('Unordered video rows');
+  }
   if (videos.length > 201) throw new InvalidYoutubeAnalyticsRequestError('YouTube analytics video row limit exceeded');
+  const videoKeys = new Set(videos.map(row => tuple(row.channelId, row.videoId)));
+  if (videoKeys.size !== videos.length) throw new InvalidYoutubeAnalyticsRequestError('Duplicate video rows');
+  for (const video of videos) {
+    if (video.completed95 > video.completed75 || video.completed75 > video.completed50
+      || video.completed50 > video.completed25 || video.completed25 > video.playbackStarts
+      || video.anonymousInstances > video.playbackStarts) {
+      throw new InvalidYoutubeAnalyticsRequestError('Inconsistent video metrics');
+    }
+    const videoStats = [video.averageActiveWatchMs, video.p50ActiveWatchMs, video.p90ActiveWatchMs];
+    if ((video.activeWatchMs === 0) !== videoStats.every(value => value == null)
+      || (video.activeWatchMs > 0 && (videoStats.some(value => value == null)
+        || (video.p50ActiveWatchMs as number) > (video.p90ActiveWatchMs as number)
+        || videoStats.some(value => (value as number) > MAX_METRIC_MS || (value as number) > video.activeWatchMs)))) {
+      throw new InvalidYoutubeAnalyticsRequestError('Inconsistent video watch statistics');
+    }
+  }
   const videosTruncated = videos.length > 200;
   const boundedVideos = videos.slice(0, 200);
   const { dataThroughMicros, ...qualityBase } = qualityWithData;
-  if (qualityBase.acceptedEvents > qualityBase.totalEvents
-    || (dataThroughMicros != null && (dataThroughMicros < context.fromMicros || dataThroughMicros >= context.toMicros))) {
+  if (summary.completed95 > summary.completed75 || summary.completed75 > summary.completed50
+    || summary.completed50 > summary.completed25 || summary.completed25 > summary.watchAttempts
+    || summary.watchAttempts > summary.playbackStarts
+    || summary.anonymousInstancesWithValidStart > summary.playbackStarts) {
+    throw new InvalidYoutubeAnalyticsRequestError('Inconsistent summary thresholds');
+  }
+  assertWatchStatistics(summary.watchAttempts, summary.totalActiveWatchMs, summary.averageActiveWatchMs,
+    summary.p50ActiveWatchMs, summary.p90ActiveWatchMs);
+  const defects = qualityBase.missingRequiredFields + qualityBase.duplicates + qualityBase.unknownSchema
+    + qualityBase.duplicateParameterKeys + qualityBase.rowsWithoutStart + qualityBase.conflictingVideo
+    + qualityBase.conflictingChannel + qualityBase.duplicateStartAttempts + qualityBase.invalidDurationAttempts;
+  const expectedState: YoutubeAnalyticsQuality['state'] = qualityBase.acceptedEvents === 0
+    ? 'empty' : defects > 0 ? 'partial' : 'ready';
+  const boundedQualityCounters = [qualityBase.missingRequiredFields, qualityBase.duplicates, qualityBase.unknownSchema,
+    qualityBase.duplicateParameterKeys, qualityBase.rowsWithoutStart, qualityBase.conflictingVideo,
+    qualityBase.conflictingChannel, qualityBase.duplicateStartAttempts];
+  if (qualityBase.acceptedEvents > qualityBase.totalEvents || qualityBase.state !== expectedState
+    || qualityBase.missingRequiredFields + qualityBase.unknownSchema + qualityBase.duplicateParameterKeys > qualityBase.totalEvents
+    || boundedQualityCounters.some(value => value > qualityBase.totalEvents)
+    || qualityBase.invalidDurationAttempts > summary.playbackStarts || qualityBase.unfinishedAttempts > summary.playbackStarts
+    || !nearlyEqual(qualityBase.validationRatio, qualityBase.totalEvents ? qualityBase.acceptedEvents / qualityBase.totalEvents : 0)
+    || (qualityBase.totalEvents === 0) !== (dataThroughMicros == null)
+    || (dataThroughMicros != null && (dataThroughMicros < context.fromMicros || dataThroughMicros >= context.toMicros
+      || dataThroughMicros > context.generatedAtMicros))) {
     throw new InvalidYoutubeAnalyticsRequestError('Inconsistent quality row');
+  }
+  const sumVideo = (field: 'videoSelects' | 'playbackStarts' | 'activeWatchMs' | 'completed25' | 'completed50' | 'completed75' | 'completed95') =>
+    videos.reduce((sum, video) => sum + video[field], 0);
+  const videoPairs: Array<[ReturnType<typeof sumVideo>, number]> = [
+    [sumVideo('videoSelects'), summary.videoSelects], [sumVideo('playbackStarts'), summary.playbackStarts],
+    [sumVideo('activeWatchMs'), summary.totalActiveWatchMs], [sumVideo('completed25'), summary.completed25],
+    [sumVideo('completed50'), summary.completed50], [sumVideo('completed75'), summary.completed75],
+    [sumVideo('completed95'), summary.completed95],
+  ];
+  if (videoPairs.some(([actual, expected]) => videosTruncated ? actual > expected : actual !== expected)) {
+    throw new InvalidYoutubeAnalyticsRequestError('Video totals do not match summary');
   }
   return {
     filters,
@@ -817,30 +1017,46 @@ export function buildYoutubeAnalyticsSql(
     params,
     rowKinds: ['summary', 'trend', 'funnel', 'video', 'quality'],
     sql: `
-WITH raw_extracted AS (
-  SELECT event_name, event_timestamp, user_pseudo_id,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='event_id') event_id,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='session_id') session_id,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='platform') platform,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='channel_id') channel_id,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='video_id') video_id,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='video_title') video_title,
-    (SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='playback_id') playback_id,
-    COALESCE((SELECT ANY_VALUE(value.int_value) FROM UNNEST(event_params) WHERE key='schema_version'), SAFE_CAST((SELECT ANY_VALUE(value.string_value) FROM UNNEST(event_params) WHERE key='schema_version') AS INT64)) schema_version,
-    SAFE_CAST((SELECT ANY_VALUE(value.int_value) FROM UNNEST(event_params) WHERE key='active_watch_ms') AS FLOAT64) active_watch_ms,
-    SAFE_CAST((SELECT ANY_VALUE(value.int_value) FROM UNNEST(event_params) WHERE key='duration_ms') AS FLOAT64) duration_ms
+WITH raw_param_rows AS (
+  SELECT event_name,event_timestamp,user_pseudo_id,
+    (SELECT AS STRUCT
+      ARRAY_AGG(IF(key='event_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v event_id,
+      ARRAY_AGG(IF(key='session_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v session_id,
+      ARRAY_AGG(IF(key='platform',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v platform,
+      ARRAY_AGG(IF(key='channel_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v channel_id,
+      ARRAY_AGG(IF(key='video_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v video_id,
+      ARRAY_AGG(IF(key='video_title',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v video_title,
+      ARRAY_AGG(IF(key='playback_id',STRUCT(param_offset,value.string_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v playback_id,
+      ARRAY_AGG(IF(key='schema_version',STRUCT(param_offset,value.int_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v schema_version,
+      ARRAY_AGG(IF(key='active_watch_ms',STRUCT(param_offset,value.int_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v active_watch_ms,
+      ARRAY_AGG(IF(key='duration_ms',STRUCT(param_offset,value.int_value AS v),NULL) IGNORE NULLS ORDER BY param_offset LIMIT 1)[SAFE_OFFSET(0)].v duration_ms,
+      COUNTIF(key='schema_version') schema_version_count,COUNTIF(key='event_id') event_id_count,
+      COUNTIF(key='session_id') session_id_count,COUNTIF(key='platform') platform_count,
+      COUNTIF(key='channel_id') channel_id_count,COUNTIF(key='video_id') video_id_count,
+      COUNTIF(key='playback_id') playback_id_count,COUNTIF(key='active_watch_ms') active_watch_ms_count
+    FROM UNNEST(event_params) WITH OFFSET AS param_offset) params
   FROM \`${table}\`
   WHERE _TABLE_SUFFIX BETWEEN @fromSuffix AND @toSuffix
     AND event_timestamp >= @fromMicros AND event_timestamp < @toMicros
     AND event_name IN (${allowlist})
+), raw_extracted AS (
+  SELECT event_name,event_timestamp,user_pseudo_id,params.* FROM raw_param_rows
 ), normalized_window AS (
   SELECT event_name,event_timestamp,TRIM(user_pseudo_id) user_pseudo_id,TRIM(event_id) event_id,
     TRIM(session_id) session_id,platform,TRIM(channel_id) channel_id,TRIM(video_id) video_id,
     IF(CHAR_LENGTH(TRIM(video_title))<=4096,TRIM(video_title),'') video_title,
-    TRIM(playback_id) playback_id,schema_version,active_watch_ms,duration_ms
+    TRIM(playback_id) playback_id,schema_version,SAFE_CAST(active_watch_ms AS FLOAT64) active_watch_ms,
+    SAFE_CAST(duration_ms AS FLOAT64) duration_ms,schema_version_count,event_id_count,session_id_count,
+    platform_count,channel_id_count,video_id_count,playback_id_count,active_watch_ms_count
   FROM raw_extracted
 ), classified AS (
-  SELECT *, IFNULL(schema_version = 1,FALSE) AS known_schema,
+  SELECT *,
+    schema_version_count>1 OR event_id_count>1 OR session_id_count>1 OR platform_count>1 OR channel_id_count>1
+      OR (event_name IN ('youtube_video_select','youtube_player_ready','youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end','youtube_external_video_open') AND video_id_count>1)
+      OR (event_name IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end') AND playback_id_count>1)
+      OR (event_name IN ('youtube_playback_checkpoint','youtube_playback_end') AND active_watch_ms_count>1)
+      AS duplicate_parameter_keys,
+    IFNULL(schema_version = 1,FALSE) AS known_schema,
     event_id IS NOT NULL AND event_id!='' AND CHAR_LENGTH(event_id)<=256
       AND user_pseudo_id IS NOT NULL AND user_pseudo_id!='' AND CHAR_LENGTH(user_pseudo_id)<=256
       AND session_id IS NOT NULL AND session_id!='' AND CHAR_LENGTH(session_id)<=256
@@ -858,7 +1074,8 @@ WITH raw_extracted AS (
   WHERE (@videoId IS NULL OR video_id=@videoId)
     AND (@channelId IS NULL OR channel_id=@channelId)
 ), validated AS (
-  SELECT * EXCEPT(known_schema,required_valid) FROM platform_classified WHERE known_schema AND required_valid
+  SELECT * EXCEPT(known_schema,required_valid,duplicate_parameter_keys) FROM platform_classified
+  WHERE NOT duplicate_parameter_keys AND known_schema AND required_valid
 ), deduped AS (
   SELECT * EXCEPT(dedupe_rank) FROM (
     SELECT *, ROW_NUMBER() OVER(PARTITION BY event_id ORDER BY event_timestamp,event_name,user_pseudo_id,session_id,platform,
@@ -957,47 +1174,61 @@ WITH raw_extracted AS (
   SELECT DATE(TIMESTAMP_MICROS(start_at),'UTC') day,COUNT(*) playbackStarts,SUM(IFNULL(active_watch_ms,0)) activeWatchMs
   FROM attempt_rollup GROUP BY day
 ), trend_rows AS (
-  SELECT TO_JSON_STRING(STRUCT(FORMAT_DATE('%F',d.day) AS day,IFNULL(e.homeClicks,0) AS homeClicks,
+  SELECT FORMAT_DATE('%F',d.day) sort_day,
+    TO_JSON_STRING(STRUCT(FORMAT_DATE('%F',d.day) AS day,IFNULL(e.homeClicks,0) AS homeClicks,
     IFNULL(e.catalogOpens,0) AS catalogOpens,IFNULL(e.videoSelects,0) AS videoSelects,
     IFNULL(a.playbackStarts,0) AS playbackStarts,IFNULL(a.activeWatchMs,0) AS activeWatchMs)) payload_json
   FROM date_spine d LEFT JOIN event_daily e USING(day) LEFT JOIN attempt_daily a USING(day)
+), home_sessions AS (
+  SELECT user_pseudo_id,session_id,MIN(event_timestamp) home_at
+  FROM filtered_events WHERE event_name='youtube_home_entry_click' GROUP BY user_pseudo_id,session_id
+), catalog_sessions AS (
+  SELECT c.user_pseudo_id,c.session_id,MIN(c.event_timestamp) catalog_at
+  FROM filtered_events c JOIN home_sessions h USING(user_pseudo_id,session_id)
+  WHERE c.event_name='youtube_catalog_open' AND c.event_timestamp>h.home_at
+  GROUP BY c.user_pseudo_id,c.session_id
 ), select_paths AS (
-  SELECT DISTINCT s.user_pseudo_id,s.session_id,s.channel_id,s.video_id,s.event_timestamp select_at
-  FROM filtered_events s
-  WHERE s.event_name='youtube_video_select' AND (
-    @videoId IS NOT NULL OR EXISTS(
-      SELECT 1 FROM filtered_events h JOIN filtered_events c
-        ON c.user_pseudo_id=h.user_pseudo_id AND c.session_id=h.session_id AND c.event_timestamp>h.event_timestamp
-      WHERE h.user_pseudo_id=s.user_pseudo_id AND h.session_id=s.session_id
-        AND h.event_name='youtube_home_entry_click' AND c.event_name='youtube_catalog_open'
-        AND s.event_timestamp>c.event_timestamp))
+  SELECT s.user_pseudo_id,s.session_id,s.channel_id,s.video_id,MIN(s.event_timestamp) select_at
+  FROM filtered_events s LEFT JOIN catalog_sessions c USING(user_pseudo_id,session_id)
+  WHERE s.event_name='youtube_video_select'
+    AND (@videoId IS NOT NULL OR (c.catalog_at IS NOT NULL AND s.event_timestamp>c.catalog_at))
+  GROUP BY s.user_pseudo_id,s.session_id,s.channel_id,s.video_id
 ), start_paths AS (
-  SELECT DISTINCT p.*,a.playback_id,a.schema_version,a.start_at
+  SELECT p.*,a.playback_id,a.schema_version,a.start_at
   FROM select_paths p JOIN attempt_rollup a
     ON a.user_pseudo_id=p.user_pseudo_id AND a.session_id=p.session_id
     AND a.channel_id=p.channel_id AND a.video_id=p.video_id AND a.start_at>p.select_at
 ), c25_paths AS (
-  SELECT DISTINCT p.*,r.event_timestamp c25_at
+  SELECT p.user_pseudo_id,p.session_id,p.channel_id,p.video_id,p.playback_id,p.schema_version,p.start_at,
+    MIN(r.event_timestamp) c25_at
   FROM start_paths p JOIN scoped_owned_attempt_rows r USING(user_pseudo_id,playback_id,video_id,schema_version)
   JOIN attempt_rollup a USING(user_pseudo_id,playback_id,video_id,schema_version)
   WHERE a.duration_ms IS NOT NULL AND r.event_timestamp>p.start_at AND r.active_watch_ms>0
     AND LEAST(r.active_watch_ms,a.duration_ms)/a.duration_ms>=0.25
+  GROUP BY p.user_pseudo_id,p.session_id,p.channel_id,p.video_id,p.playback_id,p.schema_version,p.start_at
 ), c75_paths AS (
-  SELECT DISTINCT p.*,r.event_timestamp c75_at
+  SELECT p.user_pseudo_id,p.session_id,p.channel_id,p.video_id,p.playback_id,p.schema_version,
+    MIN(r.event_timestamp) c75_at
   FROM c25_paths p JOIN scoped_owned_attempt_rows r USING(user_pseudo_id,playback_id,video_id,schema_version)
   JOIN attempt_rollup a USING(user_pseudo_id,playback_id,video_id,schema_version)
   WHERE a.duration_ms IS NOT NULL AND r.event_timestamp>p.c25_at AND r.active_watch_ms>0
     AND LEAST(r.active_watch_ms,a.duration_ms)/a.duration_ms>=0.75
-), funnel_counts AS (
+  GROUP BY p.user_pseudo_id,p.session_id,p.channel_id,p.video_id,p.playback_id,p.schema_version
+), funnel_session_counts AS (
   SELECT
-    IF(@videoId IS NULL,(SELECT COUNT(DISTINCT CONCAT(LENGTH(user_pseudo_id),':',user_pseudo_id,LENGTH(session_id),':',session_id)) FROM filtered_events WHERE event_name='youtube_home_entry_click'),NULL) home_count,
-    IF(@videoId IS NULL,(SELECT COUNT(DISTINCT CONCAT(LENGTH(h.user_pseudo_id),':',h.user_pseudo_id,LENGTH(h.session_id),':',h.session_id)) FROM filtered_events h JOIN filtered_events c ON c.user_pseudo_id=h.user_pseudo_id AND c.session_id=h.session_id AND c.event_timestamp>h.event_timestamp WHERE h.event_name='youtube_home_entry_click' AND c.event_name='youtube_catalog_open'),NULL) catalog_count,
-    (SELECT COUNT(DISTINCT CONCAT(LENGTH(user_pseudo_id),':',user_pseudo_id,LENGTH(session_id),':',session_id)) FROM select_paths) select_count,
-    (SELECT COUNT(DISTINCT CONCAT(LENGTH(user_pseudo_id),':',user_pseudo_id,LENGTH(session_id),':',session_id)) FROM start_paths) start_count,
-    (SELECT COUNT(DISTINCT CONCAT(LENGTH(user_pseudo_id),':',user_pseudo_id,LENGTH(session_id),':',session_id)) FROM c25_paths) c25_count,
-    (SELECT COUNT(DISTINCT CONCAT(LENGTH(user_pseudo_id),':',user_pseudo_id,LENGTH(session_id),':',session_id)) FROM c75_paths) c75_count
+    (SELECT COUNT(*) FROM home_sessions) home_count,
+    (SELECT COUNT(*) FROM catalog_sessions) catalog_count,
+    (SELECT COUNT(*) FROM (SELECT DISTINCT user_pseudo_id,session_id FROM select_paths)) select_count,
+    (SELECT COUNT(*) FROM (SELECT DISTINCT user_pseudo_id,session_id FROM start_paths)) start_count,
+    (SELECT COUNT(*) FROM (SELECT DISTINCT user_pseudo_id,session_id FROM c25_paths)) c25_count,
+    (SELECT COUNT(*) FROM (SELECT DISTINCT user_pseudo_id,session_id FROM c75_paths)) c75_count
+), funnel_counts AS (
+  SELECT IF(@videoId IS NULL,home_count,NULL) home_count,IF(@videoId IS NULL,catalog_count,NULL) catalog_count,
+    select_count,start_count,c25_count,c75_count FROM funnel_session_counts
 ), funnel_rows AS (
-  SELECT TO_JSON_STRING(STRUCT(step,status,count,percentOfPrevious)) payload_json FROM funnel_counts,
+  SELECT CASE step WHEN 'home' THEN 0 WHEN 'catalog' THEN 1 WHEN 'select' THEN 2 WHEN 'start' THEN 3
+      WHEN 'completed25' THEN 4 ELSE 5 END funnel_ordinal,
+    TO_JSON_STRING(STRUCT(step,status,count,percentOfPrevious)) payload_json FROM funnel_counts,
   UNNEST([
     STRUCT('home' step,IF(@videoId IS NULL,'ready','not_applicable') status,home_count count,CAST(NULL AS FLOAT64) percentOfPrevious),
     STRUCT('catalog' AS step,IF(@videoId IS NULL,'ready','not_applicable') AS status,catalog_count AS count,SAFE_DIVIDE(catalog_count,home_count) AS percentOfPrevious),
@@ -1006,27 +1237,41 @@ WITH raw_extracted AS (
     STRUCT('completed25' AS step,'ready' AS status,c25_count AS count,SAFE_DIVIDE(c25_count,start_count) AS percentOfPrevious),
     STRUCT('completed75' AS step,'ready' AS status,c75_count AS count,SAFE_DIVIDE(c75_count,c25_count) AS percentOfPrevious)
   ])
+), video_event_metrics AS (
+  SELECT channel_id,video_id,COUNTIF(event_name='youtube_video_select') videoSelects
+  FROM filtered_events WHERE event_name='youtube_video_select' GROUP BY channel_id,video_id
+), video_attempt_metrics AS (
+  SELECT channel_id,video_id,COUNT(*) playback_starts,COUNT(DISTINCT user_pseudo_id) anonymousInstances
+  FROM attempt_rollup GROUP BY channel_id,video_id
+), watch_with_percentiles AS (
+  SELECT *,PERCENTILE_CONT(active_watch_ms,0.50) OVER(PARTITION BY channel_id,video_id) p50,
+    PERCENTILE_CONT(active_watch_ms,0.90) OVER(PARTITION BY channel_id,video_id) p90
+  FROM watch_attempts
+), video_watch_metrics AS (
+  SELECT channel_id,video_id,SUM(active_watch_ms) active_watch_ms,AVG(active_watch_ms) averageActiveWatchMs,
+    MAX(p50) p50ActiveWatchMs,MAX(p90) p90ActiveWatchMs,
+    COUNTIF(completion_ratio>=0.25) completed25,COUNTIF(completion_ratio>=0.50) completed50,
+    COUNTIF(completion_ratio>=0.75) completed75,COUNTIF(completion_ratio>=0.95) completed95
+  FROM watch_with_percentiles GROUP BY channel_id,video_id
 ), video_keys AS (
   SELECT DISTINCT channel_id,video_id FROM filtered_events WHERE event_name='youtube_video_select'
   UNION DISTINCT SELECT DISTINCT channel_id,video_id FROM attempt_rollup
 ), video_aggregates AS (
   SELECT k.channel_id,k.video_id,t.title,
-    (SELECT COUNT(*) FROM filtered_events e WHERE e.event_name='youtube_video_select' AND e.channel_id=k.channel_id AND e.video_id=k.video_id) videoSelects,
-    (SELECT COUNT(*) FROM attempt_rollup a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) playback_starts,
-    (SELECT COUNT(DISTINCT user_pseudo_id) FROM attempt_rollup a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) anonymousInstances,
-    (SELECT IFNULL(SUM(active_watch_ms),0) FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) active_watch_ms,
-    (SELECT AVG(active_watch_ms) FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) averageActiveWatchMs,
-    (SELECT DISTINCT PERCENTILE_CONT(active_watch_ms,0.50) OVER() FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id LIMIT 1) p50ActiveWatchMs,
-    (SELECT DISTINCT PERCENTILE_CONT(active_watch_ms,0.90) OVER() FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id LIMIT 1) p90ActiveWatchMs,
-    (SELECT COUNTIF(completion_ratio>=0.25) FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) completed25,
-    (SELECT COUNTIF(completion_ratio>=0.50) FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) completed50,
-    (SELECT COUNTIF(completion_ratio>=0.75) FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) completed75,
-    (SELECT COUNTIF(completion_ratio>=0.95) FROM watch_attempts a WHERE a.channel_id=k.channel_id AND a.video_id=k.video_id) completed95
+    IFNULL(e.videoSelects,0) videoSelects,IFNULL(a.playback_starts,0) playback_starts,
+    IFNULL(a.anonymousInstances,0) anonymousInstances,IFNULL(w.active_watch_ms,0) active_watch_ms,
+    w.averageActiveWatchMs,w.p50ActiveWatchMs,w.p90ActiveWatchMs,
+    IFNULL(w.completed25,0) completed25,IFNULL(w.completed50,0) completed50,
+    IFNULL(w.completed75,0) completed75,IFNULL(w.completed95,0) completed95
   FROM video_keys k LEFT JOIN latest_titles t USING(channel_id,video_id)
+  LEFT JOIN video_event_metrics e USING(channel_id,video_id)
+  LEFT JOIN video_attempt_metrics a USING(channel_id,video_id)
+  LEFT JOIN video_watch_metrics w USING(channel_id,video_id)
 ), video_rows AS (
       SELECT TO_JSON_STRING(STRUCT(channel_id AS channelId,video_id AS videoId,title,videoSelects,playback_starts AS playbackStarts,
         anonymousInstances,active_watch_ms AS activeWatchMs,averageActiveWatchMs,p50ActiveWatchMs,p90ActiveWatchMs,
-    completed25,completed50,completed75,completed95)) payload_json
+    completed25,completed50,completed75,completed95)) payload_json,
+    playback_starts,active_watch_ms,channel_id,video_id
   FROM video_aggregates
       ORDER BY playback_starts DESC, active_watch_ms DESC, channel_id ASC, video_id ASC
   LIMIT 201
@@ -1034,9 +1279,10 @@ WITH raw_extracted AS (
   SELECT
     (SELECT COUNT(*) FROM scoped_classified) totalEvents,
     (SELECT COUNT(*) FROM filtered_events WHERE event_name NOT IN ('youtube_playback_start','youtube_playback_checkpoint','youtube_playback_end'))+(SELECT COUNT(*) FROM scoped_owned_attempt_rows) acceptedEvents,
-    (SELECT COUNTIF(known_schema AND NOT required_valid) FROM scoped_classified) missingRequiredFields,
+    (SELECT COUNTIF(NOT duplicate_parameter_keys AND known_schema AND NOT required_valid) FROM scoped_classified) missingRequiredFields,
     (SELECT COUNT(*) FROM scoped_validated)-(SELECT COUNT(*) FROM scoped_deduped) duplicates,
-    (SELECT COUNTIF(NOT known_schema) FROM scoped_classified) unknownSchema,
+    (SELECT COUNTIF(NOT duplicate_parameter_keys AND NOT known_schema) FROM scoped_classified) unknownSchema,
+    (SELECT COUNTIF(duplicate_parameter_keys) FROM scoped_classified) duplicateParameterKeys,
     (SELECT COUNTIF(selected_scope AND start_count=0) FROM candidate_conflicts) rowsWithoutStart,
     (SELECT COUNTIF(selected_scope AND conflicting_video) FROM candidate_conflicts) conflictingVideo,
     (SELECT COUNTIF(selected_scope AND conflicting_channel) FROM candidate_conflicts) conflictingChannel,
@@ -1046,17 +1292,38 @@ WITH raw_extracted AS (
     (SELECT MAX(event_timestamp) FROM scoped_classified) dataThroughMicros
 ), quality_rows AS (
   SELECT TO_JSON_STRING(STRUCT(
-    IF(acceptedEvents=0,'empty',IF(missingRequiredFields+duplicates+unknownSchema+rowsWithoutStart+conflictingVideo+conflictingChannel+duplicateStartAttempts+invalidDurationAttempts>0,'partial','ready')) AS state,
+    IF(acceptedEvents=0,'empty',IF(missingRequiredFields+duplicates+unknownSchema+duplicateParameterKeys+rowsWithoutStart+conflictingVideo+conflictingChannel+duplicateStartAttempts+invalidDurationAttempts>0,'partial','ready')) AS state,
         totalEvents,acceptedEvents,IFNULL(SAFE_DIVIDE(acceptedEvents,totalEvents),0) AS validationRatio,
-    missingRequiredFields,duplicates,unknownSchema,rowsWithoutStart,conflictingVideo,conflictingChannel,
+    missingRequiredFields,duplicates,unknownSchema,duplicateParameterKeys,rowsWithoutStart,conflictingVideo,conflictingChannel,
     duplicateStartAttempts,invalidDurationAttempts,unfinishedAttempts,dataThroughMicros
   )) payload_json FROM quality_aggregate
+), result_rows AS (
+  SELECT 'summary' row_kind,payload_json,0 section_order,CAST(0 AS FLOAT64) first_number,
+    CAST(0 AS FLOAT64) second_number,'' first_text,'' second_text FROM summary_rows
+  UNION ALL SELECT 'trend',payload_json,1,0,0,sort_day,'' FROM trend_rows
+  UNION ALL SELECT 'funnel',payload_json,2,funnel_ordinal,0,'','' FROM funnel_rows
+  UNION ALL SELECT 'video',payload_json,3,-playback_starts,-active_watch_ms,channel_id,video_id FROM video_rows
+  UNION ALL SELECT 'quality',payload_json,4,0,0,'','' FROM quality_rows
 )
-SELECT 'summary' row_kind,payload_json FROM summary_rows
-UNION ALL SELECT 'trend',payload_json FROM trend_rows
-UNION ALL SELECT 'funnel',payload_json FROM funnel_rows
-UNION ALL SELECT 'video',payload_json FROM video_rows
-UNION ALL SELECT 'quality',payload_json FROM quality_rows
+SELECT row_kind,payload_json FROM result_rows
+ORDER BY section_order,first_number,second_number,first_text,second_text
 `,
+  };
+}
+
+/** Pure BigQuery job configuration; callers may add `dryRun: true` and location without changing query semantics. */
+export function buildYoutubeAnalyticsDryRunConfig(
+  eventsTable: string,
+  input: { readonly fromMicros: number; readonly toMicros: number; readonly filters: NormalizedYoutubeAnalyticsRequest },
+): YoutubeAnalyticsDryRunConfig {
+  const built = buildYoutubeAnalyticsSql(eventsTable, input);
+  return {
+    query: built.sql,
+    params: built.params,
+    types: {
+      fromMicros: 'INT64', toMicros: 'INT64', fromSuffix: 'STRING', toSuffix: 'STRING',
+      platform: 'STRING', videoId: 'STRING', channelId: 'STRING',
+    },
+    useLegacySql: false,
   };
 }

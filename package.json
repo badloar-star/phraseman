@@ -53,6 +53,7 @@
     "prepare": "node scripts/install-git-hooks.mjs",
     "scan:secrets": "node scripts/scan_secrets.mjs",
     "scan:secrets:staged": "node scripts/scan_secrets.mjs --staged",
+    "analytics:deploy:preflight": "node scripts/analytics_deploy_preflight.mjs",
     "test": "jest --testPathPattern=tests/ --no-cache",
     "test:watch": "jest --testPathPattern=tests/ --watch --no-cache",
     "test:coverage": "jest --testPathPattern=tests/ --coverage",

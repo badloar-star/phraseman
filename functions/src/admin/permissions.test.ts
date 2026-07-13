@@ -10,6 +10,10 @@ describe('verified callable admin permissions', () => {
 
   it('rejects a raw decoded-looking token that is not callable request.auth', () => {
     expect(hasVerifiedCallablePermission({ admin: true, adminRole: 'owner' }, 'money.read')).toBe(false);
+    expect(hasVerifiedCallablePermission({
+      uid: 'ordinary-user',
+      token: { admin: false, adminRole: 'owner' },
+    }, 'money.read')).toBe(false);
   });
 
   it('rejects missing uid, missing claims, and unauthorized roles', () => {

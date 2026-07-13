@@ -78,7 +78,8 @@ export function hasPermission(role: unknown, permission: AdminPermission): boole
 
 /**
  * Minimal shape of Firebase Functions' server-verified callable auth context.
- * Callers must pass `request.auth`, never a client header or request payload.
+ * The onCall SDK validates the Firebase ID token before populating request.auth;
+ * callers must pass `request.auth`, never a client header or request payload.
  */
 export interface VerifiedCallableAuth {
   uid: string;

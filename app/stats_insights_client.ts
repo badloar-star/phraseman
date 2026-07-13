@@ -495,12 +495,29 @@ function firebaseErrorDetails(error: unknown): Record<string, unknown> {
 }
 
 function verifiedErrorCode(error: unknown): VerifiedStatsInsightsErrorCode {
-  const raw = error && typeof error === 'object' ? String((error as { code?: unknown }).code ?? '') : '';
-  const detailsCode = String(firebaseErrorDetails(error).code ?? '');
-  if (detailsCode === 'insufficient_data') return 'insufficient_data';
-  if (detailsCode === 'not_ready' || raw.includes('failed-precondition')) return 'not_ready';
-  if (raw.includes('unavailable') || raw.includes('network') || raw.includes('deadline-exceeded')) return 'offline';
-  if (raw.includes('internal') || raw.includes('resource-exhausted')) return 'provider_failed';
+  const code = error && typeof error === 'object' ? String((error as { code?: unknown }).code ?? '') : '';
+  const message = error && typeof error === 'object' ? String((error as { message?: unknown }).message ?? '') : String(error ?? '');
+  let details = '';
+  try {
+    details = JSON.stringify(firebaseErrorDetails(error));
+  } catch {
+    details = '';
+  }
+  const signal = `${code} ${message} ${details}`.toLocaleLowerCase();
+
+  if (signal.includes('stats_insights_insufficient_data') || signal.includes('insufficient_data')) {
+    return 'insufficient_data';
+  }
+  if (signal.includes('stats_insights_not_ready') || signal.includes('not_ready')) return 'not_ready';
+  if (signal.includes('stats_insights_')) return 'provider_failed';
+  if (
+    signal.includes('unavailable') ||
+    signal.includes('network') ||
+    signal.includes('offline') ||
+    signal.includes('deadline-exceeded') ||
+    signal.includes('deadline exceeded') ||
+    signal.includes('timed out')
+  ) return 'offline';
   return 'unknown';
 }
 

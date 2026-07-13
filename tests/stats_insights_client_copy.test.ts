@@ -107,10 +107,13 @@ describe('stats insights client copy', () => {
     expect(mockCallable).not.toHaveBeenCalled();
   });
 
-  it.each([['unavailable', 'offline'], ['internal', 'provider_failed']])(
-    'returns current deterministic fallback for %s errors without writing a v2 success cache',
-    async (firebaseCode, expectedCode) => {
-      mockCallable.mockRejectedValue({ code: `functions/${firebaseCode}` });
+  it.each([
+    [{ code: 'functions/unavailable', message: 'stats_insights_provider_failed' }, 'provider_failed'],
+    [new Error('Network request failed while offline'), 'offline'],
+  ])(
+    'returns current deterministic fallback for realistic callable errors without writing a v2 success cache',
+    async (callableError, expectedCode) => {
+      mockCallable.mockRejectedValue(callableError);
       const a = analysis();
       const state = await generateVerifiedStatsInsights({ analysis: a, isPremium: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
       expect(state).toMatchObject({ kind: 'fallback', code: expectedCode, notes: serverNotes('fallback') });

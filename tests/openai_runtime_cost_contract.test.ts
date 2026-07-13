@@ -33,7 +33,7 @@ describe('OpenAI runtime cost controls', () => {
     expect(stats).toContain('nextAllowedAtMs');
     expect(stats).toContain('buildVerifiedFallbackNotes');
     expect(statsServer).toContain('resolvePremiumAccess');
-    expect(statsServer).toContain('replay');
+    expect(statsServer).toContain('readReplayOrAssertWindowOpen');
     expect(statsServer).toContain('enforceRateLimit');
     expect(statsServer).toContain('enforceGlobalBudget');
     expect(statsServer).toContain('commitWindow');

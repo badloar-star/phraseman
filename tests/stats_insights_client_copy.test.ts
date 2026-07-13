@@ -136,6 +136,38 @@ describe('stats insights client copy', () => {
     expect(mockCallable).toHaveBeenCalledTimes(1);
   });
 
+  it('keeps verified v2 cache isolated from legacy writes and legacy parsing', async () => {
+    const a = analysis();
+    mockCallable.mockResolvedValue({ data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } });
+    await generateVerifiedStatsInsights({ analysis: a, isPremium: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
+
+    expect((await getStatsInsightsState('en', 10, 'ru')).kind).toBe('none');
+    await generateStatsInsights({ briefing: briefing(), isPremium: true, nowMs: 20 });
+
+    const replay = await generateVerifiedStatsInsights({ analysis: a, isPremium: true, lang: 'ru', studyTarget: 'en', nowMs: 30 });
+    expect(replay).toMatchObject({ kind: 'cached', notes: serverNotes() });
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+  });
+
+  it('deduplicates concurrent identical verified generation calls', async () => {
+    const a = analysis();
+    let release!: () => void;
+    const pending = new Promise<void>((resolve) => { release = resolve; });
+    mockCallable.mockImplementation(async () => {
+      await pending;
+      return { data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } };
+    });
+
+    const first = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
+    const second = generateVerifiedStatsInsights({ analysis: a, isPremium: true, force: true, lang: 'ru', studyTarget: 'en', nowMs: 10 });
+    await Promise.resolve();
+    release();
+
+    const [firstState, secondState] = await Promise.all([first, second]);
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+    expect(secondState).toEqual(firstState);
+  });
+
   it('does not reuse a v2 cache for another language or target', async () => {
     const a = analysis();
     mockCallable.mockResolvedValue({ data: { ok: true, notes: serverNotes(), observationIds: serverIds(a), nextAllowedAtMs: 999, model: 'gpt-test' } });

@@ -30,12 +30,13 @@
 
 ## Проверки до релиза
 
-- Admin v2 regression: **40/40 suites, 169/169 tests passed**.
-- Functions focused regression: **10 suites passed, 102 tests passed, 12 emulator-only tests skipped**.
+- Admin v2 + legacy regression: **42/42 suites, 178/178 tests passed**.
+- Functions focused regression: **6/6 suites, 38/38 tests passed**.
+- Firestore transaction regression для Money, Content и Community: **3/3 suites, 26/26 tests passed**; Help Board отдельно — **14/14**, включая видимые, скрытые и удалённые темы/ответы.
 - Telegram VIP regression: отдельный TDD-тест подтверждает активный `vip_admin_override=true` и время выдачи.
 - TypeScript Functions build: passed.
 - JavaScript syntax: 13 затронутых Admin-модулей passed.
-- Migration board check: current, 471 legacy buttons, 1055 inventoried functions, 59 capabilities.
+- Migration board check: current, 471 legacy buttons, 1060 inventoried functions, 59 capabilities.
 - Legacy button audit: 0 missing functions, 0 writes without confirmation, 0 writes without audit.
 - Visible-text audit: 0 blocked findings.
 - Runtime-state audit: 0 blocked findings.
@@ -45,9 +46,16 @@
 
 ## Релиз
 
-Фактические команды deploy и production smoke добавляются в этот отчёт после Advisor approval и успешной публикации.
+- Финальный frontier review: **Advisor `DECISION: APPROVED`** для HEAD `78984f72c`.
+- Ветка `codex/admin-language-factory` опубликована в `origin`.
+- В `phraseman-ea0b3` точечно опубликованы **22 Functions**: 19 новых Admin Money/Content/Community callable и 3 обновлённых канонических moderation entrypoint (`communityModerateSubmission`, `communityAdminModeratePack`, `helpBoardAdminModerate`).
+- Unauthenticated read-only probes трёх workspace callable получили HTTP 400 без App Check/Auth; 404 и 5xx нет, боевые записи не выполнялись.
+- Firebase Hosting target **`admin`** опубликован: <https://phraseman-ea0b3.web.app>.
+- Production smoke: **PASS**, 59 capabilities, 59 native, 0 fallback, 0 failures, 0 warnings.
+- Временные Functions env-файлы и сгенерированный `functions/lib` после deploy удалены из worktree.
 
 ## Находки и предложения
 
 - После релиза провести ручной read-only smoke под реальной ролью администратора для Money, Content и Community; автоматический smoke не должен создавать боевые записи.
 - Отдельной задачей можно перевести оставшиеся 10 исторических английских терминов интерфейса, не смешивая локализацию с нативным cutover.
+- Общий pre-push TypeScript gate по-прежнему находит существовавший до Admin-пакета дефект `useReduceMotion` в `app/constellation_sky_map.tsx`; файл не менялся в этой ветке и требует отдельного исправления вне Admin-релиза.

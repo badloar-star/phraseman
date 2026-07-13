@@ -682,13 +682,23 @@ const purchaseInput = {
   ownedValue: true,
 };
 
-function makeDeps() {
+function makeMemoryStorage(seed: Record<string, string> = {}) {
+  const values = new Map(Object.entries(seed));
+  const api = {
+    multiSet: jest.fn(async (pairs: readonly (readonly [string, string])[]) => {
+      pairs.forEach(([key, value]) => values.set(key, value));
+    }),
+    multiRemove: jest.fn(async (keys: readonly string[]) => {
+      keys.forEach((key) => values.delete(key));
+    }),
+    getItem: jest.fn(async (key: string) => values.get(key) ?? null),
+  };
+  return { values, api };
+}
+
+function makeDeps(memory = makeMemoryStorage()) {
   return {
-    storage: {
-      multiSet: jest.fn().mockResolvedValue(undefined),
-      multiRemove: jest.fn().mockResolvedValue(undefined),
-      getItem: jest.fn().mockResolvedValue(null),
-    },
+    storage: memory.api,
     getShardsBalance: jest.fn().mockResolvedValue(100),
     spendShardsIdempotent: jest.fn().mockResolvedValue('applied'),
     getCurrentSnapshot: jest.fn().mockReturnValue(previousSnapshot),
@@ -746,11 +756,15 @@ it('never spends twice for a confirmed purchase', async () => {
 });
 
 it('keeps a charged intent and leaves profile unchanged when ownership write fails', async () => {
-  const deps = makeDeps();
-  deps.storage.multiSet
-    .mockResolvedValueOnce(undefined) // prepared intent
-    .mockResolvedValueOnce(undefined) // charged intent
-    .mockRejectedValueOnce(new Error('owned write failed'));
+  const memory = makeMemoryStorage();
+  const deps = makeDeps(memory);
+  const realMultiSet = memory.api.multiSet.getMockImplementation()!;
+  memory.api.multiSet.mockImplementation(async (pairs) => {
+    if (pairs.some(([key]) => key === 'avatar_aura_owned_v1')) {
+      throw new Error('owned write failed');
+    }
+    await realMultiSet(pairs);
+  });
 
   const prepared = await prepareCustomizationPurchase(purchaseInput, deps);
   await expect(resumeCustomizationPurchase(prepared, deps)).rejects.toThrow('owned write failed');
@@ -758,7 +772,15 @@ it('keeps a charged intent and leaves profile unchanged when ownership write fai
   expect(deps.spendShardsIdempotent).toHaveBeenCalledTimes(1);
   expect(deps.publishSnapshot).not.toHaveBeenCalled();
   expect(deps.syncCloud).not.toHaveBeenCalled();
-  expect(readPersistedIntent(deps)).resolves.toMatchObject({ phase: 'charged' });
+  expect(JSON.parse(memory.values.get('customization_purchase_intent_v1')!))
+    .toMatchObject({ phase: 'charged', opId: prepared.opId });
+
+  const restartedMemory = makeMemoryStorage(Object.fromEntries(memory.values));
+  const restartedDeps = makeDeps(restartedMemory);
+  await resumePersistedCustomizationPurchase(restartedDeps);
+  expect(restartedDeps.spendShardsIdempotent).not.toHaveBeenCalled();
+  expect(restartedMemory.values.get('avatar_aura_owned_v1')).toContain('aura-aurora');
+  expect(restartedMemory.values.has('customization_purchase_intent_v1')).toBe(false);
 });
 
 it('retries the same charged intent without a second debit, then grants ownership', async () => {

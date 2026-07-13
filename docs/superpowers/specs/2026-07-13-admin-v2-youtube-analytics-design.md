@@ -105,7 +105,7 @@ React Native принимает сообщения только ожидаемо
 
 Callable `adminYoutubeAnalytics`:
 
-- требует Firebase Auth admin claim и App Check;
+- требует Firebase Auth admin claim и следует существующей серверной политике `ENFORCE_APP_CHECK`; строгое App Check enforcement включается только после настройки и проверки App Check-провайдера для Admin web;
 - использует семантическое право `analytics.read`;
 - право получают `owner`, `admin` и `analyst`;
 - принимает период 7, 28 или 90 дней, платформу `all|ios|android`, необязательные `videoId` и `channelId`;

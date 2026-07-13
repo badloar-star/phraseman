@@ -123,7 +123,10 @@ async function readSurveys(db: FirebaseFirestore.Firestore, input: ReturnType<ty
     db.collection('shard_surveys').limit(SURVEYS_LIMIT + 1).get(),
     db.collection('admin_voice_research_history').orderBy('createdAtMs', 'desc').limit(500).get(),
   ]);
-  const surveys = configsSnap.docs.slice(0, SURVEYS_LIMIT).map((doc) => safeSurveyConfig(doc.id, doc.data()));
+  const configDocs = configsSnap.docs.slice(0, SURVEYS_LIMIT);
+  const allStatsSnaps = configDocs.length ? await db.getAll(...configDocs.map((doc) => db.collection('shard_survey_stats').doc(doc.id))) : [];
+  const totalsBySurvey = new Map(allStatsSnaps.map((snap) => [snap.id, finite(record(snap.data()).totalResponses)]));
+  const surveys: Row[] = configDocs.map((doc) => Object.freeze({ ...safeSurveyConfig(doc.id, doc.data()), totalResponses: totalsBySurvey.get(doc.id) ?? 0 }));
   const surveyIds = new Set(surveys.map((survey) => clean(survey.surveyId, 80)));
   const surveyHistory = historySnap.docs.map((doc) => {
     const row = record(doc.data()); const action = clean(row.action, 40); const targetId = safeId(row.targetId, 80);

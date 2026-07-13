@@ -391,12 +391,6 @@ export const adminDraftIdeaDecision = onCall(
       },
     });
 
-    // Диагностика: видно, дошёл ли тон до функции и какой длины (в Cloud Logs).
-    console.log('[draftIdeaDecision]', JSON.stringify({
-      ideaId, decision, lang: langCode,
-      toneLen: toneHint.length, tone: toneHint.slice(0, 200),
-    }));
-
     // Базовый промпт. Если задан тон — он идёт ПОСЛЕДНИМ сообщением (после payload),
     // максимально императивно: модель сильнее слушает последнее указание, а базовый
     // сценарий явно объявляется переопределяемым тоном.
@@ -441,7 +435,6 @@ export const adminDraftIdeaDecision = onCall(
     if (!raw) {
       throw new HttpsError('failed-precondition', 'ИИ вернул пустой ответ — сформулируй сообщение вручную.');
     }
-    if (toneHint) console.log('[draftIdeaDecision] raw ->', raw.slice(0, 400));
     let message = '';
     try {
       const parsed = JSON.parse(raw) as { message?: unknown };

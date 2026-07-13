@@ -40231,6 +40231,15 @@
     var style = document.createElement('style');
     style.textContent = '[data-voice-research-archive="true"] #tab-ideas :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-ideas-decided :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-surveys :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-onboarding-sources :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-cancel-surveys :is(button,input,textarea,select){pointer-events:none!important;opacity:.58!important}';
     document.head.appendChild(style);
+    var archiveNotice = function archiveNotice(targetId, hash) {
+      var target = document.getElementById(targetId);
+      if (target) target.innerHTML = '<div class="reports-empty"><strong>Архивный макет — без прямого доступа к данным.</strong><br>Живые данные доступны только через защищённую серверную проекцию в <a href="./v2/index.html#' + hash + '">новой админке</a>.</div>';
+    };
+    window.loadUserIdeas = async function loadUserIdeasArchive() { archiveNotice('idea-list', 'ideas'); };
+    window.loadDecidedIdeas = async function loadDecidedIdeasArchive() { archiveNotice('idea-decided-list', 'ideas-decided'); };
+    window.loadShardSurveys = async function loadShardSurveysArchive() { archiveNotice('ss-status', 'surveys'); };
+    window.loadOnboardingSources = async function loadOnboardingSourcesArchive() { archiveNotice('onboarding-source-status', 'onboarding-sources'); };
+    window.loadCancelSurveys = async function loadCancelSurveysArchive() { archiveNotice('cs-list', 'cancel-surveys'); };
   }
 })();
 </script>

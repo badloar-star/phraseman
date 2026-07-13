@@ -25,6 +25,11 @@ describe('Admin v2 Voice & Research Center', () => {
     expect(state).toContain('createVoiceResearchState');
     expect(view).toContain('voice-research-tabs');
     expect(view).toContain('snapshotCursor');
+    expect(view).toContain('voice-survey-reward');
+    expect(view).toContain('voice-survey-tier');
+    expect(view).toContain('surveyQuestionSummary');
+    expect(view).toContain('Проверить цену и регионы');
+    expect(view).toContain('AI-черновик принятия');
     expect(controller).toContain('previewVoiceResearchMutation');
     expect(controller).toContain('applyVoiceResearchMutation');
     expect(controller).toContain("preview('survey_create'");
@@ -36,7 +41,13 @@ describe('Admin v2 Voice & Research Center', () => {
     expect(ideaBackend).toContain("hasPermission(role, 'users.research.write')");
     expect(ideaBackend).toContain('enforceAppCheck: true');
     expect(ideaBackend).toContain('admin_voice_research_drafts');
+    expect(ideaBackend).not.toContain("console.log('[draftIdeaDecision]'");
+    expect(ideaBackend).not.toContain('raw ->');
     expect(read('firestore.rules')).toContain('match /admin_voice_research_drafts/{document=**} { allow read, write: if false; }');
+    const rules = read('firestore.rules');
+    for (const collection of ['subscription_cancel_surveys', 'user_ideas', 'shard_surveys', 'shard_survey_responses', 'shard_survey_stats']) {
+      expect(rules).toMatch(new RegExp(`match /${collection}/\\{[^}]+\\} \\{[\\s\\S]*?allow read(?:, create, update, delete)?,? ?(?:write)?:? if false;`));
+    }
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetVoiceResearchWorkspace')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminPreviewVoiceResearchMutation')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminApplyVoiceResearchMutation')");

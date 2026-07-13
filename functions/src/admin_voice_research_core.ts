@@ -126,8 +126,10 @@ export function preserveIdeaRewardProgress(value: unknown, nowMs: number = Date.
   }) });
 }
 
-function safeAnswer(value: unknown): string | string[] {
+function safeAnswer(value: unknown): string | string[] | Readonly<{ optionId: string; comment: string }> {
   if (Array.isArray(value)) return value.slice(0, 30).map((item) => text(item, 500));
+  const row = record(value);
+  if (Object.keys(row).length) return Object.freeze({ optionId: text(row.optionId, 80), comment: text(row.comment, 2000) });
   return text(value, 2000);
 }
 

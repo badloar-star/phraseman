@@ -300,7 +300,7 @@ describe('firestore.rules security baseline', () => {
     // Hardened: client create is now denied (was `request.auth != null`).
     // Diagnostics docs are written by Cloud Functions (Admin SDK), read by admin.
     expect(rules).toMatch(/match \/app_errors\/\{docId\} \{[\s\S]*?allow create: if false;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
-    expect(rules).toMatch(/match \/app_activity\/\{docId\} \{[\s\S]*?allow create: if false;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
+    expect(rules).toMatch(/match \/app_activity\/\{docId\} \{[\s\S]*?allow create: if false;[\s\S]*?allow read: if isAdmin\(\);[\s\S]*?allow update, delete: if false;/);
   });
 
   test('website checkout admin page can save prices and manage web orders only as admin', () => {

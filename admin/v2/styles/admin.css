@@ -378,6 +378,18 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
 .voice-idea-editor { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
 .voice-idea-editor > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--green); font-weight: 760; }
 .voice-locale-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.voice-recommendations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.voice-recommendations h3 { margin: 10px 0 5px; font-size: 15px; }
+.voice-recommendations p { margin: 0; color: var(--muted); line-height: 1.5; }
+.voice-decision-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 10px 0; color: var(--muted); font-size: 12px; }
+.voice-question-summaries { display: grid; gap: 10px; margin-bottom: 16px; }
+.voice-question-summary { display: grid; gap: 7px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-soft); }
+.voice-question-summary > div { display: grid; grid-template-columns: minmax(120px, .8fr) minmax(120px, 1fr) auto; gap: 8px; align-items: center; }
+.voice-question-summary progress { width: 100%; accent-color: var(--green); }
+.voice-survey-form { border-top: 1px solid var(--line); padding-top: 14px; }
+.voice-question-editors, .voice-option-editors { display: grid; gap: 12px; }
+.voice-survey-question-editor { display: grid; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-soft); }
+.voice-survey-option-editor { display: grid; grid-template-columns: minmax(130px, .5fr) repeat(2, minmax(160px, 1fr)); gap: 10px; align-items: end; padding: 10px; border-left: 3px solid var(--line); }
 
 @media (max-width: 1080px) {
   .admin-shell { grid-template-columns: 78px minmax(0, 1fr); }
@@ -414,7 +426,9 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .card-header > .actions .button, .page-header > .actions .button { max-width: 100%; white-space: normal; }
   .auth-status { max-width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .topbar-actions { min-width: 0; }
-  .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid, .voice-survey-layout, .voice-locale-grid { grid-template-columns: 1fr; }
+  .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid, .voice-survey-layout, .voice-locale-grid, .voice-recommendations { grid-template-columns: 1fr; }
+  .voice-question-summary > div { grid-template-columns: 1fr; }
+  .voice-survey-option-editor { grid-template-columns: 1fr; }
   .report-reply-grid .full { grid-column: auto; }
   .factory-steps { position: static; grid-template-columns: repeat(4, minmax(68px, 1fr)); overflow: auto; }
   .factory-step { display: flex; min-height: 48px; padding: 9px; }

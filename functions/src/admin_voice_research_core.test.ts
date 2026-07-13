@@ -84,8 +84,9 @@ describe('Admin Voice & Research core', () => {
   });
 
   test('projects survey answers without leaking auth identifiers', () => {
-    const row = projectSurveyResponse('r1', { uid: 'u1', authUid: 'provider-secret', surveyId: 's1', submittedAtMs: NOW, platform: 'android', appVersion: '1.2', answers: { q1: '=cmd', q2: ['a', 'b'] }, comment: '@danger' });
-    expect(row).toEqual({ id: 'r1', uid: 'u1', surveyId: 's1', submittedAtMs: NOW, platform: 'android', appVersion: '1.2', answers: { q1: '=cmd', q2: ['a', 'b'] }, comment: '@danger' });
+    const row = projectSurveyResponse('r1', { uid: 'u1', authUid: 'provider-secret', surveyId: 's1', submittedAtMs: NOW, platform: 'android', appVersion: '1.2', answers: { q1: { optionId: 'yes', comment: 'Because' }, q2: ['a', 'b'] }, comment: '@danger' });
+    expect(row).toEqual({ id: 'r1', uid: 'u1', surveyId: 's1', submittedAtMs: NOW, platform: 'android', appVersion: '1.2', answers: { q1: { optionId: 'yes', comment: 'Because' }, q2: ['a', 'b'] }, comment: '@danger' });
+    expect(JSON.stringify(row)).not.toContain('[object Object]');
     expect(JSON.stringify(row)).not.toContain('provider-secret');
   });
 

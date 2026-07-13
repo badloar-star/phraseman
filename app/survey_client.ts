@@ -170,31 +170,12 @@ export async function localizeRuStrings(ruFields: string[]): Promise<Record<stri
   return out;
 }
 
-/**
- * Список опросов + число ответов для админ-экрана. Читает Firestore напрямую
- * (как _admin_settings_testers): shard_surveys + shard_survey_stats. Никогда
- * не бросает — при ошибке вернёт [].
- */
+/** Список опросов для dev-экрана через ту же server-side safe projection, что Admin v2. */
 export async function adminListShardSurveys(): Promise<AdminSurveyRow[]> {
   if (!isSurveyCloudEnabled()) return [];
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const firestore = require('@react-native-firebase/firestore').default;
-    const db = firestore();
-    const [surveysSnap, statsSnap] = await Promise.all([
-      db.collection('shard_surveys').get(),
-      db.collection('shard_survey_stats').get(),
-    ]);
-    const stats: Record<string, number> = {};
-    statsSnap.forEach((d: { id: string; data: () => { totalResponses?: number } }) => {
-      stats[d.id] = Number(d.data()?.totalResponses ?? 0) || 0;
-    });
-    const rows: AdminSurveyRow[] = [];
-    surveysSnap.forEach((d: { id: string; data: () => Record<string, unknown> }) => {
-      const data = d.data() as unknown as ShardSurveyConfigInput;
-      rows.push({ ...data, surveyId: d.id, totalResponses: stats[d.id] ?? 0 });
-    });
-    return rows;
+    const result = await callFunction<Record<string, unknown>, { summary?: { surveys?: AdminSurveyRow[] } }>('adminGetVoiceResearchWorkspace', { view: 'surveys', filters: {}, pageSize: 10 });
+    return Array.isArray(result.summary?.surveys) ? result.summary.surveys : [];
   } catch {
     return [];
   }

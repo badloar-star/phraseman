@@ -4,7 +4,7 @@ export function createVoiceResearchState(view = 'ideas') {
   return {
     state: 'idle', view: VOICE_RESEARCH_VIEWS.includes(view) ? view : 'ideas', items: [], workspace: null,
     nextCursor: '', filters: { status: '', category: '', reason: '', query: '', rangeDays: 28, platform: 'all' },
-    selectedSurveyId: '', preview: null, draft: null, error: '', operationKeys: {},
+    selectedSurveyId: '', preview: null, draft: null, draftMode: null, error: '', operationKeys: {},
   };
 }
 

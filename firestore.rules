@@ -1269,12 +1269,12 @@ service cloud.firestore {
 
     match /app_activity/{docId} {
       allow create: if false;
-      allow read, update, delete: if isAdmin();
+      allow read: if isAdmin();
+      allow update, delete: if false;
     }
 
     match /subscription_cancel_surveys/{docId} {
-      allow create: if false;
-      allow read, update, delete: if isAdmin();
+      allow read, create, update, delete: if false;
     }
 
     match /website_contact_inbox/{docId} {
@@ -1351,8 +1351,7 @@ service cloud.firestore {
 
     // User ideas: created only via submitUserIdea (Admin SDK), moderated by admin.
     match /user_ideas/{docId} {
-      allow create: if false;
-      allow read, update, delete: if isAdmin();
+      allow read, create, update, delete: if false;
     }
 
     match /user_idea_rate_limits/{docId} {
@@ -1453,16 +1452,13 @@ service cloud.firestore {
     // обходит rules); прямой клиентский доступ запрещён. Админка читает конфиги/
     // ответы/агрегаты напрямую под isAdmin(). Rate-limits — только сервер.
     match /shard_surveys/{surveyId} {
-      allow read: if isAdmin();
-      allow write: if false;
+      allow read, write: if false;
     }
     match /shard_survey_responses/{docId} {
-      allow read: if isAdmin();
-      allow write: if false;
+      allow read, write: if false;
     }
     match /shard_survey_stats/{surveyId} {
-      allow read: if isAdmin();
-      allow write: if false;
+      allow read, write: if false;
     }
     match /shard_survey_rate_limits/{uid} {
       allow read, write: if false;

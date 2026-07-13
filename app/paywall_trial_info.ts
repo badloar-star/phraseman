@@ -63,7 +63,7 @@ export function getTrialInfo(
   const phase = product?.introPrice ?? product?.introductoryPrice;
   if (!phase || typeof phase !== 'object') return { hasTrial: false, days: null };
   const price = typeof phase.price === 'number' ? phase.price : null;
-  if (price !== null && price > 0) return { hasTrial: false, days: null };
+  if (price !== 0) return { hasTrial: false, days: null };
   const days = parsePhaseDays(phase);
   return days === 7 ? { hasTrial: true, days: 7 } : { hasTrial: false, days: null };
 }

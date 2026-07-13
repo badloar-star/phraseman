@@ -74,9 +74,10 @@ The first final review identified three release-blocking gaps. All three were co
 - an expired Plus cache now returns `plus_ready_to_generate` while the V2 flag is enabled, so opening the card starts the next daily review automatically;
 - paid-response token usage is read and persisted before structured-output validation, so `invalid_response` keeps the actual provider usage when the provider returned normal JSON;
 - weekly config clamps the daily cap to at least 1, and the reservation function independently rejects any non-positive cap instead of treating it as unlimited.
+- JSON primitives such as `null` are normalized to an empty provider object, so an HTTP 2xx paid response is still settled against billing/cap before being rejected as `invalid_response`.
 
 Fresh remediation checks:
 
 - weekly client: 10/10 passed;
-- Functions config, behavior, transaction and prompt-security suites: 47/47 passed;
+- Functions config, behavior, transaction and prompt-security suites: 48/48 passed;
 - strict Functions TypeScript compile to ignored temporary output: passed.

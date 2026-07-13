@@ -8,6 +8,7 @@ const {
   decideWeeklyReviewReplay,
   readStoredWeeklyReview,
   runWeeklyReviewPreflight,
+  asOpenAIChatResponse,
 } = __weeklyReviewTestHooks;
 
 function baseBriefing(): WeeklyReviewBriefing {
@@ -46,6 +47,15 @@ function validReview() {
     coverageNote: 'Использованы все доступные источники.',
   };
 }
+
+describe('weekly_review paid response normalization', () => {
+  it('normalizes JSON null and other primitives before billing and output validation', () => {
+    expect(asOpenAIChatResponse(null)).toEqual({});
+    expect(asOpenAIChatResponse('unexpected')).toEqual({});
+    expect(asOpenAIChatResponse([])).toEqual({});
+    expect(asOpenAIChatResponse({ usage: { total_tokens: 17 } })).toEqual({ usage: { total_tokens: 17 } });
+  });
+});
 
 describe('weekly_review parseAndGuardResult', () => {
   it('accepts a complete evidence-backed V2 result', () => {

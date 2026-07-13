@@ -176,6 +176,31 @@ describe('buildStatsInsightAnalysis', () => {
     },
   );
 
+  test('does not clamp an out-of-range previous 30-day period into a trend fact', () => {
+    const input = snapshot({
+      longTerm: { activeDays365: 40, currentStreak: 4, longestStreak: 12, bestMonthLabel: null, last30ActiveDays: 18, previous30ActiveDays: 31, goalPct: 30 },
+    });
+
+    const longTerm = buildStatsInsightAnalysis(input).blocks.longTerm;
+    expect(longTerm.id).not.toContain('trend');
+    expect(longTerm.allowedClaim).not.toMatch(/increase|decrease/i);
+    expect(longTerm.facts).not.toEqual(expect.arrayContaining([18, 30]));
+    expect(`${longTerm.facts.join(' ')} ${longTerm.fallback.ru}`).not.toContain('31');
+  });
+
+  test('does not clamp oversized previous weekly minutes into a trend fact', () => {
+    const oversizedPrevious = 1_000_000_001;
+    const input = snapshot({
+      week: { activeDays7: 4, minutes7: 80, xp7: 500, previousMinutes7: oversizedPrevious, bestDayLabel: null, dailyMinutes7: [10, 20, 20, 30, 0, 0, 0] },
+    });
+
+    const week = buildStatsInsightAnalysis(input).blocks.week;
+    expect(week.id).not.toContain('trend');
+    expect(week.allowedClaim).not.toMatch(/increase|decrease/i);
+    expect(week.facts).not.toContain(1_000_000_000);
+    expect(`${week.facts.join(' ')} ${week.fallback.ru}`).not.toContain(String(oversizedPrevious));
+  });
+
   test('returns the same fingerprint for the same semantic snapshot', () => {
     const first = buildStatsInsightAnalysis(snapshot());
     const reordered = JSON.parse(JSON.stringify(snapshot())) as StatsInsightsSnapshot;

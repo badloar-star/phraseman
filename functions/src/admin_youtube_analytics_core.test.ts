@@ -104,8 +104,10 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.summary.playbackStarts).toBe(0);
     expect(snapshot.quality.conflictingVideo).toBe(1);
     const filtered = aggregate(videoConflict, { videoId: 'video-1' });
-    expect(filtered.summary.playbackStarts).toBe(1);
-    expect(filtered.quality.conflictingVideo).toBe(0);
+    expect(filtered.summary.playbackStarts).toBe(0);
+    expect(filtered.quality.conflictingVideo).toBe(1);
+    const outside = aggregate(videoConflict, { videoId: 'video-3' });
+    expect(outside.quality).toMatchObject({ totalEvents: 0, conflictingVideo: 0 });
   });
 
   test('rejects a whole playback candidate for a channel conflict before attempt grouping', () => {
@@ -116,6 +118,11 @@ describe('fixture aggregation behavioral oracle', () => {
     const snapshot = aggregate(channelConflict);
     expect(snapshot.summary.playbackStarts).toBe(0);
     expect(snapshot.quality.conflictingChannel).toBe(1);
+    const filtered = aggregate(channelConflict, { channelId: 'channel-1' });
+    expect(filtered.summary.playbackStarts).toBe(0);
+    expect(filtered.quality.conflictingChannel).toBe(1);
+    const outside = aggregate(channelConflict, { channelId: 'channel-3' });
+    expect(outside.quality).toMatchObject({ totalEvents: 0, conflictingChannel: 0 });
   });
 
   test('rejects unsafe or reversed explicit microsecond windows', () => {
@@ -342,10 +349,12 @@ describe('fixture aggregation behavioral oracle', () => {
     expect(snapshot.funnel.find(row => row.step === 'completed75')?.count).toBe(1);
   });
 
-  test('applies platform before event-id dedupe in both fixture and SQL semantics', () => {
+  test('deduplicates before platform scoping in both fixture and SQL semantics', () => {
     const ios = event('youtube_home_entry_click', FROM + 1, { platform: 'ios', event_id: 'same-id' });
     const android = event('youtube_home_entry_click', FROM + 2, { platform: 'android', event_id: 'same-id' });
-    expect(aggregate([ios, android], { platform: 'android' }).summary.homeClicks).toBe(1);
+    const snapshot = aggregate([ios, android], { platform: 'android' });
+    expect(snapshot.summary.homeClicks).toBe(0);
+    expect(snapshot.quality).toMatchObject({ totalEvents: 1, duplicates: 1 });
   });
 
   test('takes latest nonempty select title for exact channel/video, caps Unicode safely, otherwise null', () => {
@@ -366,6 +375,22 @@ describe('fixture aggregation behavioral oracle', () => {
       event('youtube_video_select', FROM + 2, { video_title: '   ' }),
     ]);
     expect(snapshot.videos[0].title).toBe('Real title');
+  });
+
+  test('latest-title ties use Unicode code-point event-id order matching BigQuery', () => {
+    const at = FROM + 1;
+    const snapshot = aggregate([
+      event('youtube_video_select', at, { event_id: '\uE000', video_title: 'private-use title' }),
+      event('youtube_video_select', at, { event_id: '😀', video_title: 'emoji title' }),
+    ]);
+    expect(snapshot.videos[0].title).toBe('emoji title');
+  });
+
+  test('rejects malformed unpaired-surrogate identifiers before Unicode ordering', () => {
+    const snapshot = aggregate([
+      event('youtube_video_select', FROM + 1, { event_id: '\uD800', video_title: 'unsafe id' }),
+    ]);
+    expect(snapshot.quality).toMatchObject({ acceptedEvents: 0, missingRequiredFields: 1 });
   });
 
   test('dedupe tie-breaking is deterministic for payload-conflicting rows regardless of input order', () => {
@@ -435,7 +460,9 @@ describe('BigQuery SQL semantic contract', () => {
     expect(built.sql).toContain('CHAR_LENGTH(video_id)<=256');
     expect(built.sql).toContain("(@videoId IS NULL OR video_id=@videoId)");
     expect(built.sql).toContain("(@channelId IS NULL OR channel_id=@channelId)");
-    expect(built.sql).toMatch(/raw_scoped AS \([\s\S]*?WHERE \(@platform = 'all' OR platform = @platform\)[\s\S]*?AND \(@videoId IS NULL OR video_id=@videoId\)[\s\S]*?AND \(@channelId IS NULL OR channel_id=@channelId\)[\s\S]*?\), classified AS/);
+    expect(built.sql).toMatch(/classified AS \([\s\S]*?FROM normalized_window[\s\S]*?\), scoped_classified AS \([\s\S]*?WHERE \(@platform = 'all' OR platform = @platform\)[\s\S]*?AND \(@videoId IS NULL OR video_id=@videoId\)[\s\S]*?AND \(@channelId IS NULL OR channel_id=@channelId\)/);
+    expect(built.sql).toContain('selected_scope');
+    expect(built.sql).toContain("BigQuery's default binary ordering compares Unicode code points");
     expect(built.params).toEqual({
       fromMicros: FROM,
       toMicros: TO,

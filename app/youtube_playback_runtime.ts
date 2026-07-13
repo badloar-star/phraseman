@@ -77,6 +77,7 @@ interface AttemptState {
   durationMs: number;
   maxPositionMs: number;
   nextCheckpointMs: number;
+  isPlaying: boolean;
 }
 
 function boundedMetadata(value: number): number {
@@ -84,7 +85,6 @@ function boundedMetadata(value: number): number {
 }
 
 function boundedNow(value: number): number {
-  if (!Number.isFinite(value)) return 0;
   return Math.round(Math.min(Number.MAX_SAFE_INTEGER, Math.max(0, value)));
 }
 
@@ -101,8 +101,16 @@ export function createYoutubePlaybackRuntime(
   let consentGranted = false;
   let isForeground = true;
   let attempt: AttemptState | null = null;
+  let lastEffectiveNowMs = 0;
 
-  const currentTime = () => boundedNow(deps.now());
+  const readEffectiveTime = (): number | null => {
+    const reading = deps.now();
+    if (!Number.isFinite(reading)) return null;
+    const boundedReading = boundedNow(reading);
+    if (boundedReading < lastEffectiveNowMs) return null;
+    lastEffectiveNowMs = boundedReading;
+    return boundedReading;
+  };
 
   const clearAttempt = () => {
     attempt = null;
@@ -141,20 +149,24 @@ export function createYoutubePlaybackRuntime(
   };
 
   const flushActiveTime = (keepPlaying: boolean) => {
-    if (!attempt || attempt.activeSinceMs == null) return;
-    const occurredAtMs = currentTime();
-    const elapsedMs = Math.max(0, occurredAtMs - attempt.activeSinceMs);
-    attempt.activeWatchMs = Math.min(
-      MAX_YOUTUBE_PLAYBACK_MS,
-      attempt.activeWatchMs + elapsedMs,
-    );
-    attempt.activeSinceMs = keepPlaying ? occurredAtMs : null;
-    emitCheckpointIfDue(occurredAtMs);
+    if (!attempt || !attempt.isPlaying) return;
+    const occurredAtMs = readEffectiveTime();
+    if (occurredAtMs != null && attempt.activeSinceMs != null) {
+      attempt.activeWatchMs = Math.min(
+        MAX_YOUTUBE_PLAYBACK_MS,
+        attempt.activeWatchMs + (occurredAtMs - attempt.activeSinceMs),
+      );
+      emitCheckpointIfDue(occurredAtMs);
+    }
+    attempt.isPlaying = keepPlaying;
+    attempt.activeSinceMs = keepPlaying
+      ? occurredAtMs ?? attempt.activeSinceMs
+      : null;
   };
 
   const beginOrResume = () => {
     if (!consentGranted || !isForeground) return;
-    const occurredAtMs = currentTime();
+    const occurredAtMs = readEffectiveTime();
     if (!attempt) {
       attempt = {
         playbackId: deps.createId(),
@@ -164,16 +176,22 @@ export function createYoutubePlaybackRuntime(
         durationMs: 0,
         maxPositionMs: 0,
         nextCheckpointMs: YOUTUBE_ACTIVE_WATCH_CHECKPOINT_MS,
+        isPlaying: true,
       };
       deps.emit({
         kind: 'start',
         videoId: deps.videoId,
         playbackId: attempt.playbackId,
-        occurredAtMs,
+        occurredAtMs: occurredAtMs ?? lastEffectiveNowMs,
       });
       return;
     }
-    if (attempt.activeSinceMs == null) attempt.activeSinceMs = occurredAtMs;
+    if (!attempt.isPlaying) {
+      attempt.isPlaying = true;
+      attempt.activeSinceMs = occurredAtMs;
+    } else if (attempt.activeSinceMs == null && occurredAtMs != null) {
+      attempt.activeSinceMs = occurredAtMs;
+    }
   };
 
   const revokeConsent = () => {
@@ -209,7 +227,7 @@ export function createYoutubePlaybackRuntime(
     },
 
     tick(progress) {
-      if (!consentGranted || !attempt || attempt.activeSinceMs == null) return;
+      if (!consentGranted || !attempt || !attempt.isPlaying) return;
       updateProgress(progress);
       flushActiveTime(true);
     },
@@ -230,7 +248,7 @@ export function createYoutubePlaybackRuntime(
       updateProgress(progress);
       flushActiveTime(false);
       if (!attempt) return;
-      const occurredAtMs = currentTime();
+      const occurredAtMs = readEffectiveTime() ?? lastEffectiveNowMs;
       deps.emit({
         kind: 'end',
         videoId: deps.videoId,
@@ -256,7 +274,7 @@ export function createYoutubePlaybackRuntime(
       return {
         playbackId: attempt.playbackId,
         ...snapshotFields(attempt),
-        isPlaying: attempt.activeSinceMs != null,
+        isPlaying: attempt.isPlaying,
       };
     },
   };

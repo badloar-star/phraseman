@@ -20,6 +20,9 @@ function createHarness() {
     advance(ms: number) {
       nowMs += ms;
     },
+    setNow(value: number) {
+      nowMs = value;
+    },
   };
 }
 
@@ -247,4 +250,41 @@ describe('YouTube active-watch runtime', () => {
     h.runtime.handleState('playing');
     expect(h.events).toEqual([]);
   });
+
+  it('does not move its active baseline backward when the clock regresses', () => {
+    const h = createHarness();
+    h.setNow(1_000);
+    h.runtime.setConsent(true);
+    h.runtime.handleState('playing');
+    h.setNow(2_000);
+    h.runtime.tick();
+    h.setNow(1_500);
+    h.runtime.tick();
+    h.setNow(2_500);
+    h.runtime.finish('ended');
+
+    expect(h.events.find(event => event.kind === 'end')).toMatchObject({
+      activeWatchMs: 1_500,
+    });
+  });
+
+  it.each([Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])(
+    'ignores a non-finite active clock reading (%s) without losing its valid baseline',
+    invalidNow => {
+      const h = createHarness();
+      h.setNow(1_000);
+      h.runtime.setConsent(true);
+      h.runtime.handleState('playing');
+      h.setNow(2_000);
+      h.runtime.tick();
+      h.setNow(invalidNow);
+      h.runtime.tick();
+      h.setNow(3_000);
+      h.runtime.finish('ended');
+
+      expect(h.events.find(event => event.kind === 'end')).toMatchObject({
+        activeWatchMs: 2_000,
+      });
+    },
+  );
 });

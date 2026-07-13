@@ -14,7 +14,17 @@ export type YoutubeAnalyticsEmission = YoutubeAnalyticsEventInput extends infer 
   ? Event extends YoutubeAnalyticsEventInput ? Omit<Event, GeneratedContext> : never
   : never;
 
-let lastCatalogOpenKey: string | null = null;
+const YOUTUBE_CATALOG_DEDUPE_MAX_KEYS = 32;
+const catalogOpenKeys = new Map<string, true>();
+
+function rememberCatalogOpen(key: string): void {
+  catalogOpenKeys.set(key, true);
+  while (catalogOpenKeys.size > YOUTUBE_CATALOG_DEDUPE_MAX_KEYS) {
+    const oldestKey = catalogOpenKeys.keys().next().value as string | undefined;
+    if (oldestKey == null) break;
+    catalogOpenKeys.delete(oldestKey);
+  }
+}
 
 function validSessionId(value: string | null): value is string {
   return value != null
@@ -32,9 +42,9 @@ export function emitYoutubeAnalyticsEvent(event: YoutubeAnalyticsEmission): bool
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') return false;
 
   const catalogKey = event.eventName === 'youtube_catalog_open'
-    ? `${sessionId}:${event.channelId}`
+    ? JSON.stringify([sessionId, event.channelId])
     : null;
-  if (catalogKey && catalogKey === lastCatalogOpenKey) return false;
+  if (catalogKey && catalogOpenKeys.has(catalogKey)) return false;
 
   try {
     const built = buildYoutubeAnalyticsEvent({
@@ -46,7 +56,7 @@ export function emitYoutubeAnalyticsEvent(event: YoutubeAnalyticsEmission): bool
       buildNumber: Constants.nativeBuildVersion ?? 'unknown',
       occurredAtMs: Date.now(),
     } as YoutubeAnalyticsEventInput);
-    if (catalogKey) lastCatalogOpenKey = catalogKey;
+    if (catalogKey) rememberCatalogOpen(catalogKey);
     void trackEvent(built.eventName, built.payload).catch(() => undefined);
     return true;
   } catch {
@@ -55,7 +65,7 @@ export function emitYoutubeAnalyticsEvent(event: YoutubeAnalyticsEmission): bool
 }
 
 export function resetYoutubeCatalogOpenDedupeForTests(): void {
-  lastCatalogOpenKey = null;
+  catalogOpenKeys.clear();
 }
 
 export default function __RouteShim() { return null; }

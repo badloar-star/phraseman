@@ -2,6 +2,7 @@ import {
   clampProductAnalyticsDays,
   isAnalyticsExportPendingError,
   normalizeProductAnalyticsPlatform,
+  queryText,
 } from './admin_product_analytics';
 import fs from 'fs';
 import path from 'path';
@@ -29,6 +30,14 @@ describe('admin product analytics input contract', () => {
     expect(isAnalyticsExportPendingError({ code: 404, message: 'Not found: Dataset' })).toBe(true);
     expect(isAnalyticsExportPendingError({ message: 'Wildcard table does not match any table' })).toBe(true);
     expect(isAnalyticsExportPendingError({ code: 403, message: 'Access denied' })).toBe(false);
+  });
+
+  it('keeps the same event id distinct across production and test soft-upsell modes', () => {
+    const query = queryText('`project.dataset.events_*`');
+    const duplicatePartition = query.match(/ROW_NUMBER\(\) OVER \(PARTITION BY([\s\S]*?)ORDER BY event_timestamp\)/)?.[1];
+    expect(duplicatePartition).toContain("key = 'event_id'");
+    expect(duplicatePartition).toContain("key = 'soft_upsell_mode'");
+    expect(duplicatePartition).toContain("'__no_soft_upsell_mode__'");
   });
 });
 

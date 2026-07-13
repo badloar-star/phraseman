@@ -206,7 +206,7 @@ export default function LingmanVideoPlayerScreen() {
     const message = parseYoutubePlayerMessage(event.nativeEvent.data);
     if (!message) return;
     if (message.type === 'ready') {
-      if (validVideoId) runtime.emitPlayerEvent({ eventName: 'youtube_player_ready', source: 'player', channelId, videoId: validVideoId });
+      if (validVideoId) emitYoutubeAnalyticsEvent({ eventName: 'youtube_player_ready', source: 'player', channelId, videoId: validVideoId });
       return;
     }
     if (message.type === 'error') {
@@ -222,7 +222,7 @@ export default function LingmanVideoPlayerScreen() {
     hapticTap();
     runtime.finish('external', { positionMs: lastPositionMs.current, durationMs: lastDurationMs.current });
     runNonBlockingYoutubeAction(
-      () => validVideoId && runtime.emitPlayerEvent({ eventName: 'youtube_external_video_open', source: 'player', channelId, videoId: validVideoId }),
+      () => validVideoId && emitYoutubeAnalyticsEvent({ eventName: 'youtube_external_video_open', source: 'player', channelId, videoId: validVideoId }),
       () => Linking.openURL(externalUrl),
     );
   };
@@ -230,7 +230,7 @@ export default function LingmanVideoPlayerScreen() {
   const openChannel = () => {
     hapticTap();
     runNonBlockingYoutubeAction(
-      () => validVideoId && runtime.emitPlayerEvent({ eventName: 'youtube_channel_open', source: 'player', channelId, videoId: validVideoId }),
+      () => validVideoId && emitYoutubeAnalyticsEvent({ eventName: 'youtube_channel_open', source: 'player', channelId, videoId: validVideoId }),
       () => Linking.openURL(channelUrl),
     );
   };
@@ -317,6 +317,7 @@ export default function LingmanVideoPlayerScreen() {
           )}
         </View>
 
+        <View style={styles.playerActions}>
         <TouchableOpacity
           activeOpacity={0.84}
           onPress={openExternal}
@@ -330,11 +331,12 @@ export default function LingmanVideoPlayerScreen() {
           accessibilityLabel={copy.openChannel}
           activeOpacity={0.84}
           onPress={openChannel}
-          style={[styles.youtubeButton, styles.channelButton, { borderColor: chrome.quietButtonBorder, backgroundColor: chrome.quietButtonBg }]}
+          style={[styles.youtubeButton, { borderColor: chrome.quietButtonBorder, backgroundColor: chrome.quietButtonBg }]}
         >
           <Ionicons name="people-outline" size={19} color={t.textPrimary} />
           <Text style={[styles.youtubeButtonText, { color: t.textPrimary }]}>{copy.openChannel}</Text>
         </TouchableOpacity>
+        </View>
         </BounceView>
       </SafeAreaView>
     </ScreenGradient>
@@ -399,8 +401,9 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   youtubeButton: {
+    flex: 1,
+    minWidth: 148,
     minHeight: 48,
-    marginTop: 16,
     borderRadius: 16,
     borderWidth: 0,
     flexDirection: 'row',
@@ -412,8 +415,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '900',
   },
-  channelButton: {
-    marginTop: 10,
+  playerActions: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginTop: 12,
   },
   retryButton: {
     minHeight: 42,

@@ -1,5 +1,6 @@
 import {
   clearLingmanVideoTitleHandoff,
+  getLingmanVideoHandoffDebugSnapshotForTests,
   peekLingmanVideoHandoff,
   setLingmanVideoHandoff,
 } from '../app/lingman_video_title_handoff';
@@ -25,7 +26,10 @@ describe('bounded Lingman video title handoff', () => {
     expect(peekLingmanVideoHandoff('video_1', 1_002)).toBeNull();
     expect(peekLingmanVideoHandoff('video_2', 1_002)?.title).toBe('Second');
     setLingmanVideoHandoff({ videoId: 'video_3', channelId: 'channel_3', title: 'Third' }, 1_000);
+    const expiredSnapshot = getLingmanVideoHandoffDebugSnapshotForTests();
     expect(peekLingmanVideoHandoff('video_3', 1_000 + 60_001)).toBeNull();
+    expect(peekLingmanVideoHandoff('video_3', 1_000 + 60_002)).toBeNull();
+    expect(getLingmanVideoHandoffDebugSnapshotForTests()).toEqual(expiredSnapshot);
     setLingmanVideoHandoff({ videoId: 'video_4', channelId: 'channel_4', title: 'Fourth' }, 2_000);
     clearLingmanVideoTitleHandoff();
     expect(peekLingmanVideoHandoff('video_4', 2_001)).toBeNull();

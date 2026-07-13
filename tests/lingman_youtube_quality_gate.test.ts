@@ -91,8 +91,8 @@ describe('lingman YouTube quality gate', () => {
     const catalogExternal = catalog.match(/const openExternalVideo[\s\S]*?\n  \};/)?.[0] ?? '';
     expect(catalogExternal.indexOf('emitYoutubeAnalyticsEvent')).toBeLessThan(catalogExternal.indexOf('Linking.openURL'));
     const playerExternal = player.match(/const openExternal = \(\) => \{[\s\S]*?\n  \};/)?.[0] ?? '';
-    expect(playerExternal.indexOf("runtime.finish('external'")).toBeLessThan(playerExternal.indexOf('runtime.emitPlayerEvent'));
-    expect(playerExternal.indexOf('runtime.emitPlayerEvent')).toBeLessThan(playerExternal.indexOf('Linking.openURL'));
+    expect(playerExternal.indexOf("runtime.finish('external'")).toBeLessThan(playerExternal.indexOf('emitYoutubeAnalyticsEvent'));
+    expect(playerExternal.indexOf('emitYoutubeAnalyticsEvent')).toBeLessThan(playerExternal.indexOf('Linking.openURL'));
   });
 
   it('gates player polling by consent, focus, and AppState without native intervals', () => {
@@ -123,6 +123,9 @@ describe('lingman YouTube quality gate', () => {
     expect(player).toContain("eventName: 'youtube_channel_open', source: 'player', channelId, videoId: validVideoId");
     expect(player).toContain('accessibilityLabel={copy.openChannel}');
     expect(player).toContain('runNonBlockingYoutubeAction');
+    expect(player).toContain('style={styles.playerActions}');
+    expect(player).toMatch(/playerActions:\s*\{[\s\S]*?flexDirection:\s*'row'[\s\S]*?flexWrap:\s*'wrap'/);
+    expect(player).toMatch(/youtubeButton:\s*\{[\s\S]*?flex:\s*1[\s\S]*?minHeight:\s*48/);
     expect(player).not.toContain('consumeLingmanVideoTitle');
     expect(player).not.toContain('as \'ended\' | \'screen_exit\'');
   });

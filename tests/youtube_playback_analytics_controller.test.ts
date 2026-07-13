@@ -2,7 +2,6 @@ import {
   createYoutubePlaybackAnalyticsController,
   mapYoutubePlaybackEndReason,
 } from '../app/youtube_playback_analytics_controller';
-import { runNonBlockingYoutubeAction } from '../app/youtube_player_actions';
 
 function createHarness(initialActive: boolean, initialSession: string | null = 'session-A') {
   let now = 0;
@@ -58,6 +57,46 @@ describe('YouTube playback analytics controller', () => {
     expect(next.sent[0]?.sessionId).toBe('session-B');
   });
 
+  test('same controller pins a fresh session after terminal replay', () => {
+    const h = createHarness(true);
+    h.controller.setConsent(true);
+    h.controller.handleState('playing');
+    h.controller.finish('ended');
+    h.setSession('session-B');
+    h.controller.handleState('playing');
+    h.setNow(10_000);
+    h.controller.tick();
+    h.controller.finish('exit');
+    expect(h.sent.map(event => [event.eventName, event.sessionId])).toEqual([
+      ['youtube_playback_start', 'session-A'], ['youtube_playback_end', 'session-A'],
+      ['youtube_playback_start', 'session-B'], ['youtube_playback_checkpoint', 'session-B'],
+      ['youtube_playback_end', 'session-B'],
+    ]);
+  });
+
+  test('revoke clears attempt session so regrant and replay use the new global session', () => {
+    const h = createHarness(true);
+    h.controller.setConsent(true);
+    h.controller.handleState('playing');
+    h.controller.revokeConsent();
+    h.setSession('session-B');
+    h.controller.setConsent(true);
+    h.controller.handleState('playing');
+    h.controller.finish('exit');
+    expect(h.sent.map(event => [event.eventName, event.sessionId])).toEqual([
+      ['youtube_playback_start', 'session-A'], ['youtube_playback_start', 'session-B'],
+      ['youtube_playback_end', 'session-B'],
+    ]);
+  });
+
+  test('consent and ready-time under A do not pin before playback begins under B', () => {
+    const h = createHarness(true);
+    h.controller.setConsent(true);
+    h.setSession('session-B');
+    h.controller.handleState('playing');
+    expect(h.sent[0]?.sessionId).toBe('session-B');
+  });
+
   test('waits for a valid session and keeps explicit finish plus cleanup idempotent', () => {
     const h = createHarness(true, null);
     h.controller.setConsent(true);
@@ -79,18 +118,6 @@ describe('YouTube playback analytics controller', () => {
     h.controller.tick();
     h.controller.finish('exit');
     expect(h.sent.map(event => event.eventName)).toEqual(['youtube_playback_start']);
-  });
-
-  test('player channel action uses pinned exact context before linking', () => {
-    const h = createHarness(true);
-    h.controller.setConsent(true);
-    const order: string[] = [];
-    runNonBlockingYoutubeAction(
-      () => { order.push('analytics'); return h.controller.emitPlayerEvent({ eventName: 'youtube_channel_open', source: 'player', channelId: 'channel_A', videoId: 'video_1' }); },
-      () => { order.push('linking'); },
-    );
-    expect(order).toEqual(['analytics', 'linking']);
-    expect(h.sent).toEqual([{ eventName: 'youtube_channel_open', source: 'player', sessionId: 'session-A', channelId: 'channel_A', videoId: 'video_1' }]);
   });
 
   test('maps every runtime end reason exhaustively', () => {

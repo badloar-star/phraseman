@@ -523,6 +523,17 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .control-panel-workflow .actions { justify-content: flex-start; }
 }
 
+.native-operation-tabs { flex-wrap: wrap; }
+.mobile-view-select { display: none; min-height: 44px; width: 100%; }
+.source-health { max-height: 180px; overflow: auto; }
+.link-button { background: transparent; border: 0; color: var(--accent, #315efb); cursor: pointer; padding: 8px 0; text-align: left; }
+
+@media (max-width: 720px) {
+  .native-operation-tabs { display: none; }
+  .mobile-view-select { display: block; }
+  [data-money-mobile-view], [data-content-mobile-view], [data-community-mobile-view] { display: block; }
+}
+
 @media (max-width: 640px) {
   .diagnostics-tabs { display: none; }
   .diagnostics-mobile-view { display: grid; }

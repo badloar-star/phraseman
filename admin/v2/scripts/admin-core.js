@@ -11,6 +11,9 @@ import { renderSafetyModerationCenter } from './admin-safety-moderation-view.js'
 import { buildAppErrorStatusConfirmation, createDiagnosticsController } from './admin-diagnostics-controller.js';
 import { createDiagnosticsState } from './admin-diagnostics-state.js';
 import { renderDiagnosticsWorkspace } from './admin-diagnostics-view.js';
+import { createMoneyOperationsState } from './admin-money-operations-state.js';
+import { createMoneyOperationsController } from './admin-money-operations-controller.js';
+import { renderMoneyOperationsWorkspace } from './admin-money-operations-view.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -39,6 +42,7 @@ const PAGES = Object.freeze({
   application: { title: 'Приложение', description: 'Обновления, баннеры, технические работы и конфигурация приложения.' },
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
   money: { title: 'Деньги', description: 'Подписки, платежи, промокоды и подтверждённые показатели выручки.' },
+  'money-operations': { title: 'Операции с оплатами', description: 'Покупки UGC, возвраты провайдеров, рефералы, Telegram и веб-оплаты через серверный preview и одобрение.' },
   content: { title: 'Контент', description: 'Уроки, языковые пакеты и безопасная фабрика новых языков.' },
   community: { title: 'Комьюнити', description: 'Жалобы, пользовательский контент, чат и состояние Арены.' },
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
@@ -66,6 +70,14 @@ const ADMIN_ROLE_PERMISSIONS = Object.freeze({
   support: new Set(['users.read', 'users.moderation.read', 'users.research.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
   moderator: new Set(['users.read', 'users.moderation.read', 'users.moderation.safety.read', 'users.moderation.sensitive.read', 'users.moderation.write', 'users.research.read', 'reports.read', 'reports.status.write']),
 });
+
+for (const role of ['owner', 'admin']) {
+  for (const permission of ['money.export', 'money.refunds.write', 'money.payment_orders.write', 'money.payment_config.write', 'money.approve', 'content.reports.write', 'content.approve', 'community.read', 'community.help.read', 'community.help.write', 'community.chat.write', 'community.arena.write', 'community.arena.destructive', 'community.arena.economy.write', 'community.approve']) ADMIN_ROLE_PERMISSIONS[role].add(permission);
+}
+ADMIN_ROLE_PERMISSIONS.analyst.add('money.export');
+ADMIN_ROLE_PERMISSIONS.content_editor.add('content.reports.write');
+ADMIN_ROLE_PERMISSIONS.support.add('community.help.read');
+for (const permission of ['community.read', 'community.help.read', 'community.help.write', 'community.chat.write']) ADMIN_ROLE_PERMISSIONS.moderator.add(permission);
 
 const FACTORY_STEPS = Object.freeze([
   { id: 1, title: 'Язык и объём', subtitle: 'Направление и уроки' },
@@ -165,10 +177,12 @@ const state = {
   safetyModeration: createSafetyModerationState(),
   diagnostics: createDiagnosticsState(),
   manualAccess: { preview: null, operationKeys: {}, error: '' },
+  moneyOperations: createMoneyOperationsState(),
 };
 
 let actions = null;
 let voiceResearchController = null;
+let moneyOperationsController = null;
 let safetyModerationController = null;
 let diagnosticsController = null;
 let initialized = false;
@@ -1923,7 +1937,7 @@ function renderAlerts() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts, 'voice-research': () => renderVoiceResearchCenter(state.voiceResearch, { escapeHtml, can }), 'safety-moderation': () => renderSafetyModerationCenter(state.safetyModeration, { escapeHtml, can }) };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, 'money-operations': () => renderMoneyOperationsWorkspace(state.moneyOperations, { escapeHtml, can }), content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts, 'voice-research': () => renderVoiceResearchCenter(state.voiceResearch, { escapeHtml, can }), 'safety-moderation': () => renderSafetyModerationCenter(state.safetyModeration, { escapeHtml, can }) };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -3215,6 +3229,23 @@ function previewExpiredAppMessageCleanup() {
   return setMessage('Предпросмотр очистки готов. Проверьте количество перед удалением.', 'success');
 }
 
+function getMoneyOperationsController() {
+  if (!moneyOperationsController) {
+    moneyOperationsController = createMoneyOperationsController({
+      getModel: () => state.moneyOperations,
+      setModel: (value) => { state.moneyOperations = value; },
+      actions: () => actions,
+      render: renderCurrentPage,
+      route: () => state.route,
+      authorized: () => state.authorized && can('money.read'),
+      can,
+      message: setMessage,
+      errorMessage,
+    });
+  }
+  return moneyOperationsController;
+}
+
 function getVoiceResearchController() {
   if (!voiceResearchController) {
     voiceResearchController = createVoiceResearchController({
@@ -4255,6 +4286,12 @@ async function handleAction(action, target) {
 async function handleClick(event) {
   const target = event.target instanceof Element ? event.target.closest('button, a') : null;
   if (!target) return;
+  const moneyAction = target.getAttribute('data-money-action');
+  if (moneyAction) {
+    event.preventDefault();
+    await getMoneyOperationsController().handleAction(moneyAction, target);
+    return;
+  }
   const route = target.getAttribute('data-route');
   if (route) {
     event.preventDefault();
@@ -4336,6 +4373,7 @@ async function handleClick(event) {
 
 export function setAdminActions(nextActions) {
   actions = nextActions;
+  getMoneyOperationsController().maybeLoad();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
   maybeLoadEmailDirectory();
@@ -4378,6 +4416,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = { state: 'idle', items: [], sourceHealth: [], source: 'all', lane: '', rawStatus: '', uid: '', category: '', sinceDays: 7, nextCursor: '', error: '', replyDrafts: {}, operationKeys: {} };
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
+  if (!state.authorized || !can('money.read')) state.moneyOperations = createMoneyOperationsState();
   if (!state.authorized || (!can('application.config.write') && !can('money.read'))) state.paywallAb = { status: 'idle', workspace: null, draft: null, preview: null, rangeDays: 28, includeDev: false, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
@@ -4399,6 +4438,7 @@ export function setAuthState(auth) {
   if (!state.authorized || (!can('users.moderation.read') && !can('users.moderation.aggregate.read'))) state.safetyModeration = createSafetyModerationState();
   if (!state.authorized || !can('money.manual_access.write')) state.manualAccess = { preview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
+  getMoneyOperationsController().maybeLoad();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
   maybeLoadEmailDirectory();
@@ -4419,6 +4459,7 @@ export function renderRoute(route, capabilityId = '') {
   const capability = capabilityById(capabilityId);
   state.selectedCapabilityId = capability && (capability.route === state.route || capability.nativeRoute === state.route) ? capability.id : '';
   if (state.route === 'voice-research') getVoiceResearchController().selectCapability(capability?.id || capabilityId);
+  if (state.route === 'money-operations') getMoneyOperationsController().selectCapability(capability?.id || capabilityId || 'ugc-purchases');
   if (state.route === 'safety-moderation') getSafetyModerationController().selectCapability(capability?.id || capabilityId);
   if (state.route === 'diagnostics') getDiagnosticsController().selectCapability(capability?.id || capabilityId);
   if (state.route === 'money' && ['premium', 'vip', 'plus-radar'].includes(capability?.id)) {
@@ -4430,6 +4471,7 @@ export function renderRoute(route, capabilityId = '') {
     }
   }
   renderCurrentPage();
+  getMoneyOperationsController().maybeLoad();
   maybeLoadOperationalBriefing();
   maybeLoadSupportQueues();
   maybeLoadEmailDirectory();
@@ -4467,6 +4509,10 @@ export function initAdminUi() {
     }
     if (event.target instanceof HTMLSelectElement && event.target.hasAttribute('data-diagnostics-mobile-view')) {
       void getDiagnosticsController().selectMobileView(event.target.value);
+      return;
+    }
+    if (event.target instanceof HTMLSelectElement && event.target.hasAttribute('data-money-mobile-view')) {
+      void getMoneyOperationsController().selectCapability(event.target.value);
       return;
     }
     if (event.target instanceof HTMLInputElement && event.target.hasAttribute('data-safety-select')) {

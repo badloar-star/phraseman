@@ -119,6 +119,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const updateBetaTesterCallable = httpsCallable(functionsUs, 'adminUpdateBetaTester');
   const previewManualAccessCallable = httpsCallable(functionsUs, 'adminPreviewManualAccess');
   const applyManualAccessCallable = httpsCallable(functionsUs, 'adminApplyManualAccess');
+  const getMoneyOperationsWorkspaceCallable = httpsCallable(functionsUs, 'adminGetMoneyOperationsWorkspace');
+  const getMoneyOperationDetailCallable = httpsCallable(functionsUs, 'adminGetMoneyOperationDetail');
+  const previewMoneyMutationCallable = httpsCallable(functionsUs, 'adminPreviewMoneyMutation');
+  const requestMoneyApprovalCallable = httpsCallable(functionsUs, 'adminRequestMoneyApproval');
+  const approveMoneyMutationCallable = httpsCallable(functionsUs, 'adminApproveMoneyMutation');
+  const applyMoneyMutationCallable = httpsCallable(functionsUs, 'adminApplyMoneyMutation');
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
@@ -254,6 +260,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
     updateBetaTester: async (input) => unwrap(await updateBetaTesterCallable(input)),
     previewManualAccess: async (input) => unwrap(await previewManualAccessCallable(input)),
     applyManualAccess: async (input) => unwrap(await applyManualAccessCallable(input)),
+    getMoneyOperationsWorkspace: async (input) => unwrap(await getMoneyOperationsWorkspaceCallable(input)),
+    getMoneyOperationDetail: async (input) => unwrap(await getMoneyOperationDetailCallable(input)),
+    previewMoneyMutation: async (input) => unwrap(await previewMoneyMutationCallable(input)),
+    requestMoneyApproval: async (input) => unwrap(await requestMoneyApprovalCallable(input)),
+    approveMoneyMutation: async (input) => unwrap(await approveMoneyMutationCallable(input)),
+    applyMoneyMutation: async (input) => unwrap(await applyMoneyMutationCallable(input)),
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),

@@ -101,6 +101,11 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
   'promo-codes': 'money',
+  'ugc-purchases': 'money-operations',
+  refunds: 'money-operations',
+  referrals: 'money-operations',
+  'telegram-payments': 'money-operations',
+  'website-payments': 'money-operations',
   audit: 'diagnostics',
   'ops-log': 'diagnostics',
   'app-health': 'diagnostics',
@@ -110,7 +115,7 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
-  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research', 'safety-moderation',
+  'support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research', 'safety-moderation', 'money-operations',
 ]);
 
 const DIAGNOSTICS_NATIVE_VIEW_HASHES = new Set(['app-health', 'archive', 'changelog-0608']);

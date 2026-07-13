@@ -129,6 +129,54 @@ describe('admin permission matrix', () => {
     }
   });
 
+  it('separates Money inspection, export, mutations and approval', () => {
+    expect(hasPermission('analyst', 'money.read')).toBe(true);
+    expect(hasPermission('analyst', 'money.export')).toBe(true);
+    expect(hasPermission('analyst', 'money.refunds.write')).toBe(false);
+    expect(hasPermission('analyst', 'money.payment_orders.write')).toBe(false);
+    expect(hasPermission('analyst', 'money.payment_config.write')).toBe(false);
+    expect(hasPermission('analyst', 'money.approve')).toBe(false);
+
+    for (const role of ['owner', 'admin'] as const) {
+      expect(hasPermission(role, 'money.export')).toBe(true);
+      expect(hasPermission(role, 'money.refunds.write')).toBe(true);
+      expect(hasPermission(role, 'money.payment_orders.write')).toBe(true);
+      expect(hasPermission(role, 'money.payment_config.write')).toBe(true);
+      expect(hasPermission(role, 'money.approve')).toBe(true);
+    }
+  });
+
+  it('lets content editors process reports without publishing or approving', () => {
+    expect(hasPermission('content_editor', 'content.reports.write')).toBe(true);
+    expect(hasPermission('content_editor', 'content.publish')).toBe(false);
+    expect(hasPermission('content_editor', 'content.approve')).toBe(false);
+    expect(hasPermission('owner', 'content.approve')).toBe(true);
+    expect(hasPermission('admin', 'content.approve')).toBe(true);
+  });
+
+  it('separates Community help and chat moderation from Arena authority', () => {
+    expect(hasPermission('support', 'community.help.read')).toBe(true);
+    expect(hasPermission('support', 'community.help.write')).toBe(false);
+    expect(hasPermission('support', 'community.read')).toBe(false);
+
+    for (const permission of [
+      'community.read', 'community.help.read', 'community.help.write', 'community.chat.write',
+    ] as const) expect(hasPermission('moderator', permission)).toBe(true);
+
+    expect(hasPermission('moderator', 'community.arena.write')).toBe(false);
+    expect(hasPermission('moderator', 'community.arena.destructive')).toBe(false);
+    expect(hasPermission('moderator', 'community.arena.economy.write')).toBe(false);
+    expect(hasPermission('moderator', 'community.approve')).toBe(false);
+
+    for (const role of ['owner', 'admin'] as const) {
+      for (const permission of [
+        'community.read', 'community.help.read', 'community.help.write', 'community.chat.write',
+        'community.arena.write', 'community.arena.destructive',
+        'community.arena.economy.write', 'community.approve',
+      ] as const) expect(hasPermission(role, permission)).toBe(true);
+    }
+  });
+
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -151,6 +199,12 @@ describe('admin permission matrix', () => {
       'users.moderation.aggregate.read', 'users.moderation.export', 'users.moderation.write',
       'users.moderation.identity.write', 'users.moderation.ban.write', 'users.moderation.approve',
       'users.moderation.restore',
+      'money.export', 'money.refunds.write', 'money.payment_orders.write',
+      'money.payment_config.write', 'money.approve',
+      'content.reports.write', 'content.approve',
+      'community.read', 'community.help.read', 'community.help.write', 'community.chat.write',
+      'community.arena.write', 'community.arena.destructive',
+      'community.arena.economy.write', 'community.approve',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

@@ -4,6 +4,16 @@ import path from 'node:path';
 const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
 
 describe('admin server-only boundaries', () => {
+  it('keeps Admin v2 free of Firestore browser reads and writes', () => {
+    const scriptsDir = path.join(process.cwd(), 'admin/v2/scripts');
+    const scripts = fs.readdirSync(scriptsDir)
+      .filter((name) => name.endsWith('.js'))
+      .map((name) => fs.readFileSync(path.join(scriptsDir, name), 'utf8'))
+      .join('\n');
+    expect(scripts).not.toMatch(/firebase-firestore|from ['"]https:\/\/www\.gstatic\.com\/firebasejs\/[^'"]+\/firebase-firestore\.js/);
+    expect(scripts).not.toMatch(/\b(?:getDocs|setDoc|updateDoc|deleteDoc|writeBatch|runTransaction)\s*\(/);
+  });
+
   it('does not grant broad admin writes through the recursive catch-all', () => {
     const catchAllStart = rules.indexOf('match /{document=**}');
     expect(catchAllStart).toBeGreaterThanOrEqual(0);

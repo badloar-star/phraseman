@@ -187,7 +187,14 @@ function exportRows(view: VoiceView, rows: readonly Row[]): string {
 }
 
 async function cleanupSnapshots(db: FirebaseFirestore.Firestore) {
-  try { const expired = await db.collection('admin_voice_research_snapshots').where('expiresAtMs', '<=', Date.now()).limit(10).get(); await Promise.all(expired.docs.map((doc) => db.recursiveDelete(doc.ref))); } catch { /* best effort */ }
+  try {
+    const nowMs = Date.now();
+    const [snapshots, drafts] = await Promise.all([
+      db.collection('admin_voice_research_snapshots').where('expiresAtMs', '<=', nowMs).limit(10).get(),
+      db.collection('admin_voice_research_drafts').where('expiresAtMs', '<=', nowMs).limit(25).get(),
+    ]);
+    await Promise.all([...snapshots.docs.map((doc) => db.recursiveDelete(doc.ref)), ...drafts.docs.map((doc) => doc.ref.delete())]);
+  } catch { /* best effort */ }
 }
 
 async function persistSnapshot(db: FirebaseFirestore.Firestore, actorUid: string, scope: string, payload: VoiceSnapshotPayload): Promise<string> {

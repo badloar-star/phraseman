@@ -1193,6 +1193,7 @@ service cloud.firestore {
     match /admin_voice_research_snapshots/{document=**} { allow read, write: if false; }
     match /admin_voice_research_previews/{document=**} { allow read, write: if false; }
     match /admin_voice_research_history/{document=**} { allow read, write: if false; }
+    match /admin_voice_research_drafts/{document=**} { allow read, write: if false; }
 
     // Support correspondence and delivery state are exposed only through
     // permission-checked Cloud Functions. Even admins cannot bypass immutable

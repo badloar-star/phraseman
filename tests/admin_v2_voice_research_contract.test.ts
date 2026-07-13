@@ -31,6 +31,12 @@ describe('Admin v2 Voice & Research Center', () => {
     expect(controller).toContain("preview('survey_toggle'");
     expect(controller).toContain("preview('survey_restore'");
     expect(controller).toContain('draftIdeaDecision');
+    expect(controller).toContain("requestId: context.id('voice-idea-draft')");
+    const ideaBackend = read('functions/src/user_ideas.ts');
+    expect(ideaBackend).toContain("hasPermission(role, 'users.research.write')");
+    expect(ideaBackend).toContain('enforceAppCheck: true');
+    expect(ideaBackend).toContain('admin_voice_research_drafts');
+    expect(read('firestore.rules')).toContain('match /admin_voice_research_drafts/{document=**} { allow read, write: if false; }');
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetVoiceResearchWorkspace')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminPreviewVoiceResearchMutation')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminApplyVoiceResearchMutation')");

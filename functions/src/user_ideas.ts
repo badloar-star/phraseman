@@ -1,9 +1,12 @@
+import { createHash } from 'crypto';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { openAiChat } from './explain/explain_provider';
+import { createAuditRecord } from './admin/audit_contract';
+import { hasPermission, resolveAdminRole } from './admin/permissions';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -336,26 +339,35 @@ const IDEA_TONE_HINT_MAX = 600;
 export const adminDraftIdeaDecision = onCall(
   {
     region: REGION,
-    enforceAppCheck: ENFORCE_APP_CHECK_SENSITIVE,
+    enforceAppCheck: true,
     timeoutSeconds: 30,
     memory: '256MiB',
     maxInstances: 10,
     secrets: [OPENAI_API_KEY],
   },
   async (request) => {
-    if (!request.auth?.token?.admin) {
-      throw new HttpsError('permission-denied', 'Admin only');
-    }
+    const role = resolveAdminRole(request.auth?.token);
+    if (!request.auth?.uid || !role || !hasPermission(role, 'users.research.write')) throw new HttpsError('permission-denied', 'Role cannot draft idea decisions');
 
     const ideaId = text(request.data?.ideaId, 180);
     const decision = enumText(request.data?.decision, ['approve', 'reject'] as const, 'reject');
     const toneHint = text(request.data?.toneHint, IDEA_TONE_HINT_MAX);
-    if (!ideaId) throw new HttpsError('invalid-argument', 'ideaId_required');
+    const requestId = text(request.data?.requestId, 160).replace(/[^A-Za-z0-9._-]/g, '');
+    if (!ideaId || !requestId) throw new HttpsError('invalid-argument', 'ideaId_and_requestId_required');
+
+    const db = admin.firestore(); const actorUid = request.auth.uid;
+    const fingerprint = createHash('sha256').update(JSON.stringify({ actorUid, ideaId, decision, toneHint })).digest('hex');
+    const draftRef = db.collection('admin_voice_research_drafts').doc(`${actorUid.slice(0, 80)}-${requestId}`.slice(0, 240));
+    const cached = await draftRef.get();
+    if (cached.exists) {
+      const row = asRecord(cached.data());
+      if (row.fingerprint !== fingerprint) throw new HttpsError('already-exists', 'idea_draft_request_conflict');
+      return { ok: true, message: text(row.message, IDEA_DECISION_MSG_MAX), lang: text(row.lang, 16), replayed: true };
+    }
 
     const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
     if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
 
-    const db = admin.firestore();
     const snap = await db.collection(IDEAS_COLLECTION).doc(ideaId).get();
     if (!snap.exists) throw new HttpsError('not-found', 'idea_not_found');
     const idea = snap.data() as Record<string, unknown>;
@@ -445,6 +457,17 @@ export const adminDraftIdeaDecision = onCall(
       );
     }
 
-    return { ok: true, message, lang: langCode };
+    const nowMs = Date.now(); const auditRef = db.collection('admin_log').doc();
+    const audit = createAuditRecord({ action: 'voice_research.idea_draft', actorUid, role, entity: { collection: IDEAS_COLLECTION, id: ideaId }, reason: 'AI draft requested by an authorized administrator', before: {}, after: { decision, lang: langCode, toneHintProvided: Boolean(toneHint), outputLength: message.length }, rollbackReference: null, requestId, timestamp: new Date(nowMs).toISOString() });
+    const batch = db.batch();
+    batch.create(draftRef, { actorUid, role, ideaId, decision, fingerprint, message, lang: langCode, createdAtMs: nowMs, expiresAtMs: nowMs + 30 * 60 * 1000 });
+    batch.create(auditRef, audit);
+    try { await batch.commit(); }
+    catch {
+      const raced = await draftRef.get(); const row = asRecord(raced.data());
+      if (!raced.exists || row.fingerprint !== fingerprint) throw new HttpsError('aborted', 'idea_draft_idempotency_race');
+      return { ok: true, message: text(row.message, IDEA_DECISION_MSG_MAX), lang: text(row.lang, 16), replayed: true };
+    }
+    return { ok: true, message, lang: langCode, replayed: false };
   },
 );

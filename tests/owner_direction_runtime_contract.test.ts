@@ -873,11 +873,11 @@ describe('owner runtime direction contract', () => {
     expect(arenaBotServer).toContain('sessionId,');
     expect(arenaBotClient).toContain('idempotentReplay?: boolean;');
 
-    expect(weeklyReviewServer).toContain('lastBriefingHash: briefingHash');
-    expect(weeklyReviewServer).toContain('lastReview: review');
-    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);');
+    expect(weeklyReviewServer).toContain('lastBriefingHash: params.briefingHash');
+    expect(weeklyReviewServer).toContain('lastReview: params.review');
+    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(stableUid, briefingHash, briefing.lang);');
     expect(weeklyReviewServer).toContain('idempotentReplay: true');
-    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);')).toBeLessThan(
+    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(stableUid, briefingHash, briefing.lang);')).toBeLessThan(
       weeklyReviewServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
     );
 

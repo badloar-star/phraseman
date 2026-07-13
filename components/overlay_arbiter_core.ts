@@ -32,7 +32,8 @@ export type OverlayKey =
   | 'achievementToast'
   | 'dailyTaskRewardToast'
   | 'coachToast'
-  | 'actionToast';
+  | 'actionToast'
+  | 'softUpsell';
 
 export type WantsMap = Record<OverlayKey, boolean>;
 
@@ -79,6 +80,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
+  'softUpsell',
   // perfectWeekReward — недельный бонус («Идеальная неделя»). По требованию показывается
   // САМЫМ ПОСЛЕДНИМ: дожидается, пока закроются ВСЕ остальные окна (приветствие, обновление,
   // «что нового», компас, праздники, тосты) — и только тогда занимает слот. Награда уже
@@ -164,6 +166,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'boonActivated',
   'collectibleDrop',
   'achievementToast',
+  'softUpsell',
   // arenaRoomConfirm = ThemedChoiceModal = НАТИВНЫЙ <Modal> (как themedAlert). Без него
   // в этом списке передача слота из/в это окно шла без 360мс-зазора → на iOS present
   // поверх ещё закрывающегося нативного модала (напр. глобального update/introFullAccess
@@ -230,6 +233,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   dailyTaskRewardToast: false,
   coachToast: false,
   actionToast: false,
+  softUpsell: false,
 };
 
 export function resolveNextOverlay(

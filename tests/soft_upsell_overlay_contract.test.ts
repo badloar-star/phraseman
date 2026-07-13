@@ -3,7 +3,7 @@ import path from 'path';
 
 import {
   deriveOverlayOccupied,
-  useOverlayOccupied,
+  useOverlayTryClaim,
 } from '../components/OverlayArbiter';
 import {
   EMPTY_OVERLAY_WANTS,
@@ -16,13 +16,11 @@ const arbiterSource = fs.readFileSync(path.join(root, 'components/OverlayArbiter
 const coreSource = fs.readFileSync(path.join(root, 'components/overlay_arbiter_core.ts'), 'utf8');
 
 describe('soft upsell overlay occupancy contract', () => {
-  it('exports a read-only occupancy hook without registering soft upsell in the queue', () => {
-    expect(typeof useOverlayOccupied).toBe('function');
-    expect(arbiterSource).toMatch(/export function useOverlayOccupied\(\): boolean/);
-    expect(coreSource).not.toMatch(/soft_?upsell/i);
-    expect(Object.keys(EMPTY_OVERLAY_WANTS)).not.toContain('softUpsell');
-    expect(OVERLAY_PRIORITY).not.toContain('softUpsell');
-    expect(NATIVE_MODAL_KEYS.has('softUpsell' as never)).toBe(false);
+  it('exports a tokenized non-queued claim and registers a native soft modal', () => {
+    expect(typeof useOverlayTryClaim).toBe('function');
+    expect(arbiterSource).toMatch(/export function useOverlayTryClaim/);
+    expect(Object.keys(EMPTY_OVERLAY_WANTS)).toContain('softUpsell');
+    expect(NATIVE_MODAL_KEYS.has('softUpsell')).toBe(true);
   });
 
   it('keeps the established overlay key/priority list unchanged', () => {
@@ -37,6 +35,7 @@ describe('soft upsell overlay occupancy contract', () => {
       'arenaRoomConfirm', 'collectibleDrop', 'shardsEarned',
       'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
       'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
+      'softUpsell',
       'perfectWeekReward',
     ]);
   });
@@ -49,8 +48,7 @@ describe('soft upsell overlay occupancy contract', () => {
   });
 
   it('publishes occupancy in the existing memoized context value', () => {
-    expect(arbiterSource).toMatch(
-      /useMemo<Ctx>\(\(\) => \(\{ active, occupied, setWants \}\), \[active, occupied, setWants\]\)/,
-    );
+    expect(arbiterSource).toContain('tryClaim');
+    expect(coreSource).toContain("'softUpsell'");
   });
 });

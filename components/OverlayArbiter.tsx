@@ -61,8 +61,11 @@ type Ctx = {
   active: OverlayKey | null;
   occupied: boolean;
   setWants: (key: OverlayKey, wants: boolean) => void;
+  tryClaim: (key: 'softUpsell') => Promise<OverlayLease | null>;
   disabled?: boolean;
 };
+
+export type OverlayLease = Readonly<{ token: string; release: () => void }>;
 
 const OverlayArbiterContext = createContext<Ctx | null>(null);
 
@@ -76,6 +79,12 @@ export function deriveOverlayOccupied(
 export function OverlayArbiterProvider({ children }: { children: React.ReactNode }) {
   const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
   const [active, setActive] = useState<OverlayKey | null>(null);
+  const activeRef = useRef<OverlayKey | null>(null);
+  activeRef.current = active;
+  const wantsMapRef = useRef<WantsMap>(EMPTY_OVERLAY_WANTS);
+  wantsMapRef.current = wantsMap;
+  const leaseTokenRef = useRef<string | null>(null);
+  const leaseCounterRef = useRef(0);
 
   // Ключи, у которых сторож (H-ARBITER) принудительно отобрал слот, потому что владелец
   // завис (ownState застрял true). Пока ключ здесь, его `wants:true` ИГНОРИРУЕТСЯ — иначе
@@ -99,6 +108,29 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
     forciblyReleasedRef.current = nextForciblyReleased;
     if (!apply) return;
     setWantsMap((prev) => (prev[key] === wants ? prev : { ...prev, [key]: wants }));
+  }, []);
+
+  const tryClaim = useCallback(async (key: 'softUpsell'): Promise<OverlayLease | null> => {
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    if (activeRef.current !== null || handoffGapRef.current || leaseTokenRef.current !== null) return null;
+    if (Object.entries(wantsMapRef.current).some(([candidate, wants]) => candidate !== key && wants)) return null;
+    const token = `${key}:${++leaseCounterRef.current}`;
+    leaseTokenRef.current = token;
+    setWantsMap((current) => ({ ...current, [key]: true }));
+    setActive(key);
+    activeRef.current = key;
+    let released = false;
+    return Object.freeze({
+      token,
+      release: () => {
+        if (released || leaseTokenRef.current !== token) return;
+        released = true;
+        leaseTokenRef.current = null;
+        activeRef.current = null;
+        setWantsMap((current) => ({ ...current, [key]: false }));
+        setActive((current) => (current === key ? null : current));
+      },
+    });
   }, []);
 
   // Non-preemptive queue: the current owner keeps the slot until it releases it.
@@ -165,7 +197,7 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
   }, [active, wantsMap]);
 
   const occupied = deriveOverlayOccupied(active, handoffGapRef.current);
-  const value = useMemo<Ctx>(() => ({ active, occupied, setWants }), [active, occupied, setWants]);
+  const value = useMemo<Ctx>(() => ({ active, occupied, setWants, tryClaim }), [active, occupied, setWants, tryClaim]);
 
   return (
     <OverlayArbiterContext.Provider value={value}>
@@ -181,7 +213,13 @@ function useOverlayArbiter(): Ctx {
       // eslint-disable-next-line no-console
       console.warn('[OverlayArbiter] Provider не смонтирован — fail-soft, всегда пускаю');
     }
-    return { active: null, occupied: false, setWants: () => {}, disabled: true };
+    return {
+      active: null,
+      occupied: false,
+      setWants: () => {},
+      tryClaim: async () => ({ token: 'disabled', release: () => {} }),
+      disabled: true,
+    };
   }
   return ctx;
 }
@@ -214,6 +252,11 @@ export function useOverlayOccupied(): boolean {
   return useOverlayArbiter().occupied;
 }
 
+/** Opportunistic claim: never joins the regular overlay queue. */
+export function useOverlayTryClaim(): () => Promise<OverlayLease | null> {
+  const { tryClaim } = useOverlayArbiter();
+  return useCallback(() => tryClaim('softUpsell'), [tryClaim]);
+}
 /* expo-router route shim: не превращаем utility в роут при автодискавери */
 export default function __RouteShim() {
   return null;

@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
+import { LEAGUE_CHAT_ENABLED } from './league_chat_availability';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -79,6 +80,12 @@ export interface UserNotification {
   reportReply?: UserNotificationReportReply | null;
   read: boolean;
   createdAt: number;
+}
+
+export function isUserNotificationVisible(row: UserNotification): boolean {
+  if (!LEAGUE_CHAT_ENABLED && row.type === 'league_chat_reply') return false;
+  if (!LEAGUE_CHAT_ENABLED && row.nav?.kind === 'league_chat') return false;
+  return true;
 }
 
 const getFirestore = () => {

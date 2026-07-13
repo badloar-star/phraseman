@@ -2,11 +2,11 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, TouchableOpacity, Modal, Animated, Easing, type FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Animated, Easing, type FlatList } from 'react-native';
 import { Image } from 'expo-image';
 import { hapticTap } from '../hooks/use-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
@@ -75,8 +75,6 @@ import {
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
 import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants } from './league_open_cache_policy';
-import LeagueChatPanel from '../components/LeagueChatPanel';
-import { useLeagueChatUnread } from './use_league_chat_unread';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
@@ -99,12 +97,10 @@ import {
 import { hasClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
   buildLeagueBonusMissionModel,
-  buildLeagueClubHeroModel,
   buildLeaguePodium,
   type LeaguePodiumMember,
 } from './league_club_hub_model';
 import { leaguePublicName } from './league_public_name';
-import { LeagueClubHero } from '../components/league/LeagueClubHero';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
 import { LeaguePodium } from '../components/league/LeaguePodium';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
@@ -355,8 +351,6 @@ export default function ClubScreen() {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
-  // openChat=1 — открыть сразу чат лиги (кнопка чата в шапке главного экрана).
-  const { openChat: openChatParam } = useLocalSearchParams<{ openChat?: string }>();
   const { theme: t, f, themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -376,40 +370,12 @@ export default function ClubScreen() {
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
-  const [chatProfilePlayer, setChatProfile] = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
   const [myAuraId, setMyAuraId]           = useState('');
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
-  // Вход «сразу в чат» из шапки home (openChat=1): модалку чата нужно показать
-  // УЖЕ НА ПЕРВОМ кадре, иначе экран лиги под ней успевает мелькнуть. Поэтому
-  // начальное состояние читаем синхронно из параметра, а не через useEffect.
-  const openedDirectlyToChat = String(openChatParam ?? '') === '1';
-  const [chatModalVisible, setChatModalVisible] = useState(openedDirectlyToChat);
-  const openChatHandledRef = useRef(openedDirectlyToChat);
-  // true — чат открыт «в обход» прямо с главной. Тогда закрытие чата ведёт НАЗАД
-  // на главную, а не показывает экран лиги под модалкой.
-  const directChatFromHomeRef = useRef(openedDirectlyToChat);
-  useEffect(() => {
-    if (openChatHandledRef.current) return;
-    if (String(openChatParam ?? '') === '1') {
-      openChatHandledRef.current = true;
-      directChatFromHomeRef.current = true;
-      setChatModalVisible(true);
-    }
-  }, [openChatParam]);
-  // Единая точка закрытия чата: прямой вход с главной → возврат на главную;
-  // обычный вход (с экрана лиги) → просто скрыть модалку.
-  const closeChatModal = useCallback(() => {
-    setChatProfile(null);
-    setChatModalVisible(false);
-    if (directChatFromHomeRef.current) {
-      directChatFromHomeRef.current = false;
-      safeRouterBack(router, '/(tabs)/home' as any);
-    }
-  }, [router]);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
@@ -417,7 +383,6 @@ export default function ClubScreen() {
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
   const ROW_HEIGHT_CLUB = 72;
   const myRowAnim = useRef(new Animated.Value(0)).current;
-  const chatMetaRefreshAtRef = useRef(0);
 
   /** Подсказка про зону повышения: только первый раз за календарный день при открытии вкладки лиги. */
   const [leaguePromoHintVisible, setLeaguePromoHintVisible] = useState(false);
@@ -466,12 +431,6 @@ export default function ClubScreen() {
     });
     return () => sub.remove();
   }, []);
-  const leagueChatUnreadCount = useLeagueChatUnread({
-    initialRoom: leagueGroupMeta,
-    myUid: arenaClubStableUid,
-    active: chatModalVisible,
-  });
-
   useEffect(() => {
     let cancelled = false;
     let unsub: (() => void) | null = null;
@@ -798,29 +757,6 @@ export default function ClubScreen() {
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
   }, [activeGroupBoost?.expiresAt]);
-
-  useEffect(() => {
-    if (!chatModalVisible) return;
-    const now = Date.now();
-    if (now - chatMetaRefreshAtRef.current < 15_000) return;
-    chatMetaRefreshAtRef.current = now;
-    void resolveMyLeagueGroupMeta()
-      .then((meta) => {
-        if (isMountedRef.current && meta) {
-          setLeagueGroupMeta((cur) => (
-            cur && cur.weekId === meta.weekId && cur.groupId === meta.groupId && cur.leagueId === meta.leagueId
-              ? cur
-              : meta
-          ));
-          return;
-        }
-        if (isMountedRef.current) setLeagueGroupMeta(null);
-        void loadData({ forceRemote: true });
-      })
-      .catch(() => {
-        void loadData({ forceRemote: true });
-      });
-  }, [chatModalVisible, leagueGroupMeta, loadData]);
 
   const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
 
@@ -1195,20 +1131,6 @@ export default function ClubScreen() {
     negative: monoIcon(themeMode, '#FF5B6C'),
     warning: monoIcon(themeMode, '#FFD43B'),
   }), [t, themeMode]);
-  const myLeagueRank = useMemo(() => {
-    const index = sortedGroup.findIndex((member) => member.isMe);
-    return index >= 0 ? index + 1 : 0;
-  }, [sortedGroup]);
-  const hubHeroModel = useMemo(() => buildLeagueClubHeroModel({
-    rank: myLeagueRank,
-    participantCount: sortedGroup.length,
-    weeklyXp: myLeagueRoomXp,
-    bonusProgress: leagueChestProgress,
-    bonusGoal: leagueChestGoal,
-    unreadCount: leagueChatUnreadCount,
-    chestReady: leagueChestReady,
-    chestClaimed: leagueChestClaimed,
-  }), [leagueChatUnreadCount, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueRank, myLeagueRoomXp, sortedGroup.length]);
   const hubBonusMissionModel = useMemo(() => buildLeagueBonusMissionModel({
     progress: leagueChestProgress,
     goal: leagueChestGoal,
@@ -1414,6 +1336,28 @@ export default function ClubScreen() {
         scrollEventThrottle={16}
         ListHeaderComponent={(<>
 
+        {leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && (
+          <View
+            testID="league-xp-promotion-banner"
+            style={{
+              borderRadius: 14,
+              paddingHorizontal: 14,
+              paddingVertical: 11,
+              backgroundColor: 'rgba(52, 199, 89, 0.12)',
+              borderWidth: 0,
+              borderColor: 'rgba(52, 199, 89, 0.34)',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 9,
+            }}
+          >
+            <Ionicons name="trending-up" size={18} color={monoIcon(themeMode, '#34C759')} />
+            <Text style={{ color: t.textPrimary, fontSize: f.caption, lineHeight: Math.max(16, f.caption + 4), fontWeight: '800', flex: 1 }}>
+              {leagueXpPromotionBannerText(lang, leagueXpPromotionThreshold)}
+            </Text>
+          </View>
+        )}
+
         <LeaguePodium
           podium={hubPodium}
           lang={lang}
@@ -1445,45 +1389,7 @@ export default function ClubScreen() {
           />
         )}
 
-        {leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && (
-          <View
-            testID="league-xp-promotion-banner"
-            style={{
-              borderRadius: 14,
-              paddingHorizontal: 14,
-              paddingVertical: 11,
-              backgroundColor: 'rgba(52, 199, 89, 0.12)',
-              borderWidth: 0,
-              borderColor: 'rgba(52, 199, 89, 0.34)',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 9,
-            }}
-          >
-            <Ionicons name="trending-up" size={18} color={monoIcon(themeMode, '#34C759')} />
-            <Text style={{ color: t.textPrimary, fontSize: f.caption, lineHeight: Math.max(16, f.caption + 4), fontWeight: '800', flex: 1 }}>
-              {leagueXpPromotionBannerText(lang, leagueXpPromotionThreshold)}
-            </Text>
-          </View>
-        )}
-
         <View style={{ gap: 10 }}>
-          <LeagueClubHero
-            model={hubHeroModel}
-            leagueName={leagueNameForLang(myLeague, lang)}
-            leagueTag={triLang(lang, {
-              ru: 'Центр клуба', uk: 'Центр клубу', es: 'Centro del club', 'pt-BR': 'Central do clube',
-              vi: 'Trung tâm câu lạc bộ', id: 'Pusat klub', tr: 'Kulüp merkezi', pl: 'Centrum klubu',
-            })}
-            leagueColor={myLeague.color}
-            leagueIcon={<LeagueIcon league={myLeague} size={58} active alignContent={false} themeMode={themeMode} />}
-            lang={lang}
-            palette={hubPalette}
-            onOpenChat={() => {
-              setChatModalVisible(true);
-              void hapticTap();
-            }}
-          />
           {leagueRaceVisible && (
             <LeagueBonusMission
               model={hubBonusMissionModel}
@@ -1527,135 +1433,6 @@ export default function ClubScreen() {
       </Reanimated.View>
 
       </ContentWrap>
-
-      <Modal
-        visible={chatModalVisible}
-        // Прямой вход с главной (openChat=1): без анимации, чтобы экран лиги под
-        // слайдом не мелькал. Обычный вход с экрана лиги — привычный slide-up.
-        animationType={openedDirectlyToChat ? 'none' : 'slide'}
-        presentationStyle="fullScreen"
-        onRequestClose={closeChatModal}
-      >
-        <View
-          testID="league-chat-fullscreen"
-          style={{ flex:1, backgroundColor:t.bgCard }}
-        >
-          <View style={{ flex:1, backgroundColor:t.bgCard }}>
-            <View style={{ minHeight:64, paddingTop:insets.top + 8, paddingBottom:8, paddingHorizontal:12, flexDirection:'row', alignItems:'center', gap:10, borderBottomWidth:0.5, borderBottomColor:t.border, backgroundColor:t.bgCard }}>
-              <TapScale
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Назад',
-                  uk: 'Назад',
-                  es: 'Volver',
-                  'pt-BR': 'Voltar',
-                  vi: 'Quay lại',
-                  id: 'Kembali',
-                  tr: 'Geri',
-                  pl: 'Wstecz',
-                })}
-                hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
-                onPress={closeChatModal}
-                testID="league-chat-close"
-                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0, borderColor:t.border }}
-              >
-                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-              </TapScale>
-              <View style={{ flexDirection:'row', alignItems:'center', gap:10, flex:1, minWidth:0 }}>
-                <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth: 0, borderColor:leagueBonusPalette.modal.metaBorder }}>
-                  <Ionicons name="chatbubbles-outline" size={21} color={leagueBonusPalette.accent} />
-                </View>
-                <View style={{ flex:1, minWidth:0 }}>
-                  <Text style={{ color:t.textPrimary, fontSize:f.body, lineHeight:Math.round(f.body * 1.2), fontWeight:'900' }}>
-                {triLang(lang, {
-                  ru: 'Чат лиги',
-                  uk: 'Чат ліги',
-                  es: 'Chat de liga',
-                  'pt-BR': 'Chat da liga',
-                  vi: 'Chat liga',
-                  id: 'Chat liga',
-                  tr: 'Lig sohbeti',
-                  pl: 'Czat ligi',
-                })}
-                  </Text>
-                  <Text style={{ color:t.textMuted, fontSize:f.caption, lineHeight:Math.round(f.caption * 1.25), fontWeight:'800' }}>
-                    {leagueNameForLang(myLeague, lang)}
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <View style={{ flex:1, minHeight:0, backgroundColor:t.bgCard }}>
-              <LeagueChatPanel
-                initialRoom={leagueGroupMeta}
-                myUid={arenaClubStableUid}
-                myAvatar={myAvatarEmoji}
-                myAuraId={myAuraId}
-                myTotalXP={playerXP}
-                onToast={showLeagueToast}
-                onAuthorPress={(author) => {
-                  // Карточку открываем по данным из списка лиги (богаче: XP, рамка,
-                  // корона, premium/vip). Если автора нет в текущем списке — по тому,
-                  // что есть в самом сообщении чата.
-                  const member = group.find((p) => p.uid && p.uid === author.uid);
-                  if (member) {
-                    const hasCrown =
-                      Math.max(0, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0)) > 0 &&
-                      Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) > Date.now();
-                    const crownCount = Math.max(1, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0));
-                    setChatProfile({
-                      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
-                      points: member.isMe ? playerXP : (member.totalXp ?? member.points),
-                      totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
-                      isMe: member.isMe,
-                      leagueId: member.leagueId ?? myLeague.id,
-                      uid: member.uid,
-                      isPremium: member.isPremium ?? false,
-                      isVip: member.isVip ?? false,
-                      isLifetime: member.isLifetime ?? false,
-                      avatar: member.avatar ?? author.avatar,
-                      frame: member.frame,
-                      aura: member.isMe ? myAuraId : (member.aura ?? author.aura),
-                      streak: member.streak ?? null,
-                      weekXp: member.points,
-                      leagueCrownExpiresAt: hasCrown
-                        ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) || 0)
-                        : undefined,
-                      leagueCrownCount: hasCrown ? crownCount : undefined,
-                      profileCardLevel: member.profileCardLevel,
-                      profileCardTheme: member.profileCardTheme,
-                      profileCardMotion: member.profileCardMotion,
-                      profileCardPublicFocus: member.profileCardPublicFocus,
-                    });
-                    return;
-                  }
-                  setChatProfile({
-                    name: leaguePublicName(author.name, author.uid),
-                    points: 0,
-                    isMe: !!arenaClubStableUid && author.uid === arenaClubStableUid,
-                    leagueId: myLeague.id,
-                    uid: author.uid,
-                    avatar: author.avatar,
-                    aura: author.aura,
-                  });
-                }}
-              />
-            </View>
-          </View>
-        </View>
-        <UnifiedPlayerModal
-          player={chatProfilePlayer}
-          myInfo={{
-            name: leaguePublicName(userName, arenaClubStableUid || userName),
-            avatar: myAvatarEmoji,
-            frame: myFrameId,
-            aura: myAuraId,
-            totalXP: playerXP,
-            leagueId: myLeagueId,
-            streak: currentUserStreak,
-          }}
-          onClose={() => setChatProfile(null)}
-        />
-      </Modal>
 
       <UnifiedPlayerModal
         player={profilePlayer}

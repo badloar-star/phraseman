@@ -22,21 +22,18 @@ describe('help board product contract', () => {
     expect(inbox).not.toContain('LeagueChatPanel');
     expect(inbox).not.toContain("type MessagesHubTab = 'help' | 'league' | 'inbox'");
 
-    expect(chatHub).toContain("type CommunityHubTab = 'help' | 'league'");
-    expect(chatHub).toContain("const [tab, setTab] = useState<CommunityHubTab>('help')");
-    expect(chatHub).toMatch(/setTab\('help'\);\s*setVisible\(true\);/);
-    expect(chatHub).toContain('testID="home-league-chat-button"');
+    expect(chatHub).not.toContain("type CommunityHubTab = 'help' | 'league'");
+    expect(chatHub).not.toContain('setTab');
+    expect(chatHub).toContain('testID="home-help-board-button"');
     expect(chatHub).toContain('testID="community-chat-hub-fullscreen"');
     expect(chatHub).toContain('HelpBoardPanel');
-    expect(chatHub).toContain('LeagueChatPanel');
-    expect(chatHub).toContain("renderTab('help'");
-    expect(chatHub).toContain("renderTab('league'");
-    const helpTab = chatHub.indexOf("renderTab('help'");
-    const leagueTab = chatHub.indexOf("renderTab('league'");
-    expect(helpTab).toBeLessThan(leagueTab);
-    expect(chatHub).toContain("active: visible && tab === 'league'");
+    expect(chatHub).not.toContain('LeagueChatPanel');
+    expect(chatHub).not.toContain("renderTab('help'");
+    expect(chatHub).not.toContain("renderTab('league'");
+    expect(chatHub).not.toContain("active: visible && tab === 'league'");
+    expect(chatHub).not.toContain('home-community-chat-unread-badge');
     expect(chatHub).toContain('const topInset = Math.max(18, insets.top + 8)');
-    expect(chatHub).toContain('styles.headerTabs');
+    expect(chatHub).not.toContain('styles.headerTabs');
     expect(chatHub).not.toContain('styles.tabs');
     expect(chatHub).not.toContain('tabText');
   });
@@ -147,7 +144,7 @@ describe('help board product contract', () => {
   });
 
   it('adds dedicated Help Board controls to admin and moderation queue', () => {
-    const admin = read(path.join('admin', 'index.html'));
+    const admin = read(path.join('admin', 'legacy.html'));
 
     expect(admin).toContain("switchTab('help-board')");
     expect(admin).toContain('id="tab-help-board"');

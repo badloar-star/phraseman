@@ -8,6 +8,7 @@ import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 import { writeFriendEvent } from './firestore_friend_activity';
 import { DEV_MODE, IS_STORE_RELEASE } from './config';
+import { LEAGUE_CHAT_ENABLED } from './league_chat_availability';
 import {
   achievementStateKey,
   achievementLessonMarathonDayKey,
@@ -2554,10 +2555,12 @@ const backfillAchievementsFromLocalState = async (
   if (gifts >= 25) unlock('social_gift_25');
   if (gifts >= 100) unlock('social_gift_100');
 
-  const chat = await readStoredCounter('achievement_league_chat_message_count');
-  if (chat >= 10) unlock('league_chat_10');
-  if (chat >= 50) unlock('league_chat_50');
-  if (chat >= 100) unlock('league_chat_100');
+  if (LEAGUE_CHAT_ENABLED) {
+    const chat = await readStoredCounter('achievement_league_chat_message_count');
+    if (chat >= 10) unlock('league_chat_10');
+    if (chat >= 50) unlock('league_chat_50');
+    if (chat >= 100) unlock('league_chat_100');
+  }
 
   const perfectSessions = await readStoredCounter(trainerAchievementPerfectSessionCountKey(studyTarget));
   if (perfectSessions >= 10) unlock('trainer_perfect_10_sessions');
@@ -3032,6 +3035,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'league_chat_message': {
+        if (!LEAGUE_CHAT_ENABLED) break;
         const messages = await bumpStoredCounter('achievement_league_chat_message_count');
         if (messages >= 1) u('league_chat_first');
         if (messages >= 10) u('league_chat_10');

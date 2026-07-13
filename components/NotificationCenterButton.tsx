@@ -14,6 +14,7 @@ import { openCommunityHub } from '../app/community_hub_deeplink';
 import { claimReportReplyShardsOptimistically } from '../app/app_messages';
 import {
   countUnreadNotifications,
+  isUserNotificationVisible,
   markUserNotificationsRead,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
@@ -203,16 +204,17 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     };
   }, [homeFocusTick, identityRevision, isHomeTabActive, isScreenFocused]);
 
+  const visibleItems = useMemo(() => items.filter(isUserNotificationVisible), [items]);
   const unreadCount = countUnreadNotifications(
-    items.filter((row) => !markedReadIdsRef.current.has(row.id)),
+    visibleItems.filter((row) => !markedReadIdsRef.current.has(row.id)),
   );
   const combinedUnreadCount = teamUnreadCount + unreadCount;
-  const selected = useMemo(() => items.find((row) => row.id === selectedId) ?? null, [items, selectedId]);
+  const selected = useMemo(() => visibleItems.find((row) => row.id === selectedId) ?? null, [visibleItems, selectedId]);
 
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
   const open = useCallback(() => {
     setVisible(true);
-    const unreadIds = items
+    const unreadIds = visibleItems
       .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
       .map((row) => row.id);
     if (unreadIds.length) {
@@ -222,7 +224,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
       )));
       void markUserNotificationsRead(unreadIds);
     }
-  }, [items]);
+  }, [visibleItems]);
 
   const close = useCallback(() => {
     hapticTap();
@@ -264,10 +266,6 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     if (!nav) return;
     if (nav.kind === 'help_board' && nav.topicId) {
       openCommunityHub({ tab: 'help', topicId: nav.topicId, commentId: nav.commentId || undefined });
-      return;
-    }
-    if (nav.kind === 'league_chat' && nav.messageId) {
-      openCommunityHub({ tab: 'league', messageId: nav.messageId });
       return;
     }
     router.push('/(tabs)/friends' as any);
@@ -373,14 +371,14 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
               onDetailOpenChange={setTeamDetailOpen}
               notificationTargetRef={notificationTargetRef}
             />
-            {teamDetailOpen ? null : items.length === 0 && teamMessageCount === 0 ? (
+            {teamDetailOpen ? null : visibleItems.length === 0 && teamMessageCount === 0 ? (
               <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>
                 <Ionicons name="notifications-off-outline" size={40} color={t.textGhost} />
                 <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>
                   {copy.empty}
                 </Text>
               </View>
-            ) : items.map((row) => {
+            ) : visibleItems.map((row) => {
               const label = notificationLabel(row.type, lang as Lang);
               const rowTitle = row.type === 'report_reply'
                 ? (row.reportReply?.title || row.text || copy.reportReply)

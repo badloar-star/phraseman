@@ -32,6 +32,7 @@ import {
   achievementDescForLang,
   checkAchievements,
 } from './achievements';
+import { isLeagueChatAchievementVisible } from './league_chat_availability';
 import { getNearestLockedAchievements } from './achievement_nearest';
 import type { NearestAchievementItem } from './achievement_nearest';
 import { triLang, type Lang } from '../constants/i18n';
@@ -87,6 +88,10 @@ function getAchievementGridMetrics(screenW: number) {
   const shieldOuter = Math.max(62, rawOuter);
   const shieldW = Math.max(54, Math.min(safeW < 360 ? 90 : 112, shieldOuter - 4));
   return { cols, gap: GRID_GAP, shieldOuter, shieldW };
+}
+
+function isVisibleAchievement(a: Achievement, stateMap: Map<string, AchievementState>): boolean {
+  return isLeagueChatAchievementVisible(a.id, !!stateMap.get(a.id)?.unlockedAt);
 }
 
 type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
@@ -1900,13 +1905,16 @@ export default function AchievementsScreen() {
 
   const stateMap = useMemo(() => new Map(states.map(s => [s.id, s])), [states]);
   const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;
+  const visibleAchievementDefinitions = useMemo(() =>
+    ALL_ACHIEVEMENTS.filter(a => isVisibleAchievement(a, stateMap)),
+  [stateMap]);
   const nearestAchievements = useMemo(() =>
     getNearestLockedAchievements(
-      ALL_ACHIEVEMENTS,
+      visibleAchievementDefinitions,
       new Set(states.filter(s => s.unlockedAt !== null).map(s => s.id)),
       id => getAchievementProgress(id, stats),
     ),
-  [states, stats]);
+  [states, stats, visibleAchievementDefinitions]);
 
   const achievementSections = useMemo((): AchievementListSection[] => {
     const sections = CATEGORIES.flatMap(cat => {
@@ -1914,7 +1922,7 @@ export default function AchievementsScreen() {
       const catIcon = CAT_ICON[cat];
       const catIconImage = CAT_ICON_IMAGE[cat];
       const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
-      const allCatAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
+      const allCatAchs = visibleAchievementDefinitions.filter(a => a.category === cat);
       const catAchs = allCatAchs.filter(a => showAllAchievements || !!stateMap.get(a.id)?.unlockedAt);
       if (catAchs.length === 0) return [];
       const catUnlocked = allCatAchs.filter(a => !!stateMap.get(a.id)?.unlockedAt).length;
@@ -1935,14 +1943,14 @@ export default function AchievementsScreen() {
       };
     });
     return sections;
-  }, [gridMetrics.cols, lang, showAllAchievements, stateMap, themeMode]);
+  }, [gridMetrics.cols, lang, showAllAchievements, stateMap, themeMode, visibleAchievementDefinitions]);
 
   const handleToggle = useCallback((cat: string) => {
     setOpenCategory(prev => (prev === cat ? null : cat));
   }, []);
 
-  const unlockedCount = states.filter(s => s.unlockedAt !== null).length;
-  const totalCount = ALL_ACHIEVEMENTS.length;
+  const unlockedCount = visibleAchievementDefinitions.filter(a => !!stateMap.get(a.id)?.unlockedAt).length;
+  const totalCount = visibleAchievementDefinitions.length;
   const visibleCountLabel = showAllAchievements
     ? achievementCountPairLabel(unlockedCount, totalCount, lang)
     : achievementCountLabel(unlockedCount, lang);
@@ -2068,7 +2076,7 @@ export default function AchievementsScreen() {
       </ContentWrap>
 
       {/* Модальное окно */}
-      {selected && (
+      {selected && isVisibleAchievement(selected, stateMap) && (
         <AchievementModal
           achievement={selected}
           state={stateMap.get(selected.id)}

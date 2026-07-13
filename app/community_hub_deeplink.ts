@@ -1,30 +1,34 @@
 /**
- * Deep-link в хаб чатов (Help Board / чат лиги) из любого места приложения —
- * прежде всего из центра уведомлений на главной («X ответил на ваше сообщение»).
+ * Deep-link into the Help Board modal from anywhere in the app.
  *
- * Хаб — модалка внутри CommunityChatHubButton, роутером её не открыть, поэтому
- * лёгкий реестр слушателей: кнопка-хаб подписывается при монтировании, а если
- * ссылка пришла раньше (кнопка ещё не смонтирована) — она ждёт первого подписчика.
+ * The modal lives inside CommunityChatHubButton rather than Expo Router, so this
+ * small listener registry keeps early links until the button mounts.
  */
 
-export type CommunityHubDeepLink =
-  | { tab: 'help'; topicId: string; commentId?: string }
-  | { tab: 'league'; messageId: string };
+export type CommunityHubDeepLink = { tab: 'help'; topicId: string; commentId?: string };
 
 type Listener = (link: CommunityHubDeepLink) => void;
+type LegacyCommunityHubDeepLink = CommunityHubDeepLink | Record<string, unknown>;
 
 let pendingLink: CommunityHubDeepLink | null = null;
 const listeners = new Set<Listener>();
 
-/** Открыть хаб чатов на нужной вкладке и позиции. */
-export function openCommunityHub(link: CommunityHubDeepLink): void {
+export function openCommunityHub(link: LegacyCommunityHubDeepLink): void {
+  if (link.tab !== 'help') return;
+  const helpLink: CommunityHubDeepLink = {
+    tab: 'help',
+    topicId: String(link.topicId || ''),
+    commentId: typeof link.commentId === 'string' ? link.commentId : undefined,
+  };
+  if (!helpLink.topicId) return;
+
   if (listeners.size === 0) {
-    pendingLink = link;
+    pendingLink = helpLink;
     return;
   }
   listeners.forEach((listener) => {
     try {
-      listener(link);
+      listener(helpLink);
     } catch {}
   });
 }

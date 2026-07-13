@@ -108,8 +108,6 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
-import { formatLeagueChatUnreadBadge } from '../league_chat_unread';
-import { useLeagueChatUnread } from '../use_league_chat_unread';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
 import { themedToastChrome } from '../../constants/themedToastChrome';
@@ -824,7 +822,6 @@ export default function HomeScreen() {
         leaderName: string;
         leaderPoints: number;
     } | null>(() => hh?.homeLeagueChest ?? null);
-    const homeLeagueChatUnreadCount = useLeagueChatUnread({ active: false });
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
@@ -3427,26 +3424,6 @@ export default function HomeScreen() {
                             backgroundColor: tileIconBg,
                         }}>
                       {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
-                      {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
-                        testID="home-league-chat-unread-badge"
-                        style={{
-                            position: 'absolute',
-                            top: -7,
-                            right: -7,
-                            minWidth: 21,
-                            height: 21,
-                            paddingHorizontal: 6,
-                            borderRadius: 11,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#E9505F',
-                            borderWidth: 1.5,
-                            borderColor: tileIconBg,
-                        }}>
-                        <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>
-                          {formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}
-                        </Text>
-                      </View>) : null}
                     </View>
                     <Text style={{ color: t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
                       {item.label}
@@ -3465,26 +3442,6 @@ export default function HomeScreen() {
                       {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                       <View style={{ position: 'relative', height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}>
                         {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
-                        {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
-                          testID="home-league-chat-unread-badge"
-                          style={{
-                              position: 'absolute',
-                              top: -7,
-                              right: -7,
-                              minWidth: 21,
-                              height: 21,
-                              paddingHorizontal: 6,
-                              borderRadius: 11,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              backgroundColor: '#E9505F',
-                              borderWidth: 1.5,
-                              borderColor: t.bgCard,
-                          }}>
-                          <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>
-                            {formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}
-                          </Text>
-                        </View>) : null}
                       </View>
                       <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
                         {item.label}

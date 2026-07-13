@@ -3,35 +3,32 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '..');
 const CLUB_CHAT_SOURCES = [
-  path.join(ROOT, 'app', 'club_screen.tsx'),
   path.join(ROOT, 'components', 'LeagueChatPanel.tsx'),
   path.join(ROOT, 'app', 'use_league_chat_unread.ts'),
 ];
 
 describe('league chat unread badge wiring', () => {
-  it('shows the chat badge on the club league screen and clears it while chat is active', () => {
+  it('keeps league chat disabled out of the active club league screen', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'club_screen.tsx'), 'utf8');
-    const hero = fs.readFileSync(path.join(ROOT, 'components', 'league', 'LeagueClubHero.tsx'), 'utf8');
 
-    expect(source).toContain('useLeagueChatUnread');
-    expect(source).toContain('active: chatModalVisible');
-    expect(source).toContain('testID="league-chat-fullscreen"');
-    expect(source).toContain('unreadCount: leagueChatUnreadCount');
-    expect(hero).toContain('testID="club-chat-unread-badge"');
-    expect(hero).toContain('formatLeagueChatUnreadBadge(model.unreadCount)');
+    expect(source).not.toContain('useLeagueChatUnread');
+    expect(source).not.toContain('chatModalVisible');
+    expect(source).not.toContain('testID="league-chat-fullscreen"');
+    expect(source).not.toContain('leagueChatUnreadCount');
+    expect(source).not.toContain('club-chat-unread-badge');
   });
 
-  it('shows the same unread count on the home league icon', () => {
+  it('does not wire league chat unread counts into home or the community hub', () => {
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
     const chatHub = fs.readFileSync(path.join(ROOT, 'components', 'CommunityChatHubButton.tsx'), 'utf8');
 
-    expect(home).toContain('const homeLeagueChatUnreadCount = useLeagueChatUnread');
-    expect(home).toContain('testID="home-league-chat-unread-badge"');
-    expect(home).toContain('formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)');
-    expect(chatHub).toContain('const leagueUnreadCount = useLeagueChatUnread');
-    expect(chatHub).toContain("active: visible && tab === 'league'");
-    expect(chatHub).toContain('testID="home-community-chat-unread-badge"');
-    expect(chatHub).toContain('formatLeagueChatUnreadBadge(leagueUnreadCount)');
+    expect(home).not.toContain('useLeagueChatUnread');
+    expect(home).not.toContain('testID="home-league-chat-unread-badge"');
+    expect(home).not.toContain('formatLeagueChatUnreadBadge');
+    expect(chatHub).not.toContain('useLeagueChatUnread');
+    expect(chatHub).not.toContain("active: visible && tab === 'league'");
+    expect(chatHub).not.toContain('testID="home-community-chat-unread-badge"');
+    expect(chatHub).not.toContain('formatLeagueChatUnreadBadge');
   });
 
   it('keeps unread badges snapshot-only so home and club do not authorize or subscribe to live chat', () => {
@@ -52,8 +49,8 @@ describe('league chat unread badge wiring', () => {
 
     expect(combined).not.toContain(legacyRoomProp);
     expect(combined).not.toMatch(legacyRussianComment);
-    expect(combined).toContain('initialRoom: leagueGroupMeta');
-    expect(combined).toContain('initialRoom={leagueGroupMeta}');
+    expect(combined).not.toContain('initialRoom: leagueGroupMeta');
+    expect(combined).not.toContain('initialRoom={leagueGroupMeta}');
   });
 
   it('renders league chat as a flat Threads-style feed with inline reactions and a Compass AI post', () => {

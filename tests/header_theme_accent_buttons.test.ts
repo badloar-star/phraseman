@@ -16,10 +16,10 @@ describe('header accent buttons (vector icons)', () => {
   const chatHubSource = () => read(path.join('components', 'CommunityChatHubButton.tsx'));
   const homeSource = () => read(path.join('app', '(tabs)', 'home.tsx'));
 
-  test('video, notifications and league-chat buttons use vector Ionicons, not per-theme assets', () => {
+  test('video, notifications and Help Board buttons use vector Ionicons, not per-theme assets', () => {
     expect(videoSource()).toContain('play-circle-outline');
     expect(notificationSource()).toContain('notifications-outline');
-    expect(chatHubSource()).toContain('chatbubbles-outline');
+    expect(chatHubSource()).toContain('chatbubble-ellipses-outline');
   });
 
   test('no header button references the old per-theme image assets', () => {
@@ -49,11 +49,10 @@ describe('header accent buttons (vector icons)', () => {
     expect(token).toContain('HOME_NOTIFICATION_BADGE_COLOR');
     expect(videoSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
     expect(inboxSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
-    expect(chatHubSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
     expect(videoSource()).not.toContain('backgroundColor: chrome.accent');
   });
 
-  test('league-chat button remains separate while team messages move into notifications', () => {
+  test('Help Board button remains separate while team messages move into notifications', () => {
     const home = homeSource();
     const chatHub = chatHubSource();
 
@@ -61,15 +60,11 @@ describe('header accent buttons (vector icons)', () => {
     expect(home).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
     expect(notificationSource()).toContain('mode="notification-center"');
     expect(home).toContain('<CommunityChatHubButton />');
-    expect(chatHub).toContain('home-league-chat-button');
+    expect(chatHub).toContain('home-help-board-button');
     expect(chatHub).toContain('community-chat-hub-fullscreen');
-    expect(chatHub).toContain("renderTab('help'");
-    expect(chatHub).toContain("renderTab('league'");
-    const helpTab = chatHub.indexOf("renderTab('help'");
-    const leagueTab = chatHub.indexOf("renderTab('league'");
-    expect(helpTab).toBeGreaterThanOrEqual(0);
-    expect(leagueTab).toBeGreaterThanOrEqual(0);
-    expect(helpTab).toBeLessThan(leagueTab);
+    expect(chatHub).toContain('HelpBoardPanel');
+    expect(chatHub).not.toContain('LeagueChatPanel');
+    expect(chatHub).not.toContain("renderTab('league'");
     expect(chatHub).not.toContain("router.push('/league_screen?openChat=1')");
   });
 });

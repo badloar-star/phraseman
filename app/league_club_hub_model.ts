@@ -4,28 +4,6 @@ import { leaguePublicName } from './league_public_name';
 
 export type LeagueBonusMissionState = 'locked' | 'active' | 'almost_ready' | 'ready' | 'claimed';
 
-export interface LeagueClubHeroInput {
-  rank: number;
-  participantCount: number;
-  weeklyXp: number;
-  bonusProgress: number;
-  bonusGoal: number;
-  unreadCount: number;
-  chestReady: boolean;
-  chestClaimed: boolean;
-}
-
-export interface LeagueClubHeroModel extends LeagueClubHeroInput {
-  bonusPercent: number;
-}
-
-export function buildLeagueClubHeroModel(input: LeagueClubHeroInput): LeagueClubHeroModel {
-  const bonusPercent = input.bonusGoal > 0
-    ? Math.min(100, Math.max(0, Math.round((input.bonusProgress / input.bonusGoal) * 100)))
-    : 0;
-  return { ...input, bonusPercent };
-}
-
 export interface LeagueBonusMissionInput {
   progress: number;
   goal: number;

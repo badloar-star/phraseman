@@ -4,17 +4,14 @@ import path from 'node:path';
 const read = (file: string): string => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
 
 describe('league club hub composition', () => {
-  it('ships a compact club center with an explicit accessible chat action', () => {
-    const hero = read('components/league/LeagueClubHero.tsx');
-    const stats = read('components/league/LeagueQuickStats.tsx');
-    expect(hero).toContain('LeagueClubHeroModel');
-    expect(hero).toContain('accessibilityRole="button"');
-    expect(hero).toContain('accessibilityLabel');
-    expect(hero).toContain('testID="league-club-chat-action"');
-    expect(hero).toContain('formatLeagueChatUnreadBadge');
-    expect(hero).toContain('minHeight: 48');
-    expect(stats).toContain('testID="league-quick-stats"');
-    expect(stats).toContain("flexWrap: 'wrap'");
+  it('does not ship the removed club center or active league chat surface', () => {
+    const screen = read('app/club_screen.tsx');
+    expect(screen).not.toContain('LeagueClubHero');
+    expect(screen).not.toContain('LeagueChatPanel');
+    expect(screen).not.toContain('useLeagueChatUnread');
+    expect(screen).not.toContain('openChat');
+    expect(screen).not.toContain('league-club-chat-action');
+    expect(screen).not.toContain('club-chat-unread-badge');
   });
 
   it('keeps one team mission without an activity preview', () => {
@@ -41,7 +38,6 @@ describe('league club hub composition', () => {
 
   it('keeps motion finite and bright surfaces readable', () => {
     const files = [
-      'LeagueClubHero.tsx',
       'LeagueQuickStats.tsx',
       'LeagueBonusMission.tsx',
       'LeaguePodium.tsx',
@@ -58,10 +54,10 @@ describe('league club hub composition', () => {
   it('composes the hub from cached league state and virtualizes the member list', () => {
     const screen = read('app/club_screen.tsx');
     expect(screen).toContain('leaguePublicName');
-    expect(screen).toContain('<LeagueClubHero');
     expect(screen).toContain('<LeagueBonusMission');
     expect(screen).toContain('<LeaguePodium');
-    expect(screen.indexOf('<LeaguePodium')).toBeLessThan(screen.indexOf('<LeagueClubHero'));
+    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeGreaterThan(-1);
+    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeaguePodium'));
     expect(screen).not.toContain('<LeagueActivityPreview');
     expect(screen).not.toContain('leaguePreviewPanResponder');
     expect(screen).not.toContain('league-current-icon');

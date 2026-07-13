@@ -33,6 +33,7 @@ import {
 } from '../app/achievements';
 import { addShardsRaw } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
+import { isLeagueChatAchievementId, isLeagueChatAchievementVisible } from '../app/league_chat_availability';
 import { MAX_LEVEL } from '../constants/theme';
 import {
   achievementLessonPerfectPassesKey,
@@ -158,10 +159,25 @@ describe('achievements', () => {
     const source = fs.readFileSync(screenPath, 'utf8');
 
     expect(source).toContain('const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;');
-    expect(source).toContain('showAllAchievements || !!stateMap.get(a.id)?.unlockedAt');
+    expect(source).toContain('isVisibleAchievement(a, stateMap)');
     expect(source).toContain('testID="achievements-dev-show-all-toggle"');
     expect(source).toContain('if (catAchs.length === 0) return [];');
     expect(source).not.toContain('unlockedCount} / {total}');
+  });
+
+  it('keeps earned league chat achievements visible but hides locked ones while chat is disabled', () => {
+    expect(isLeagueChatAchievementVisible('league_chat_first', true)).toBe(true);
+    expect(isLeagueChatAchievementVisible('league_chat_10', false)).toBe(false);
+    expect(isLeagueChatAchievementVisible('league_top3_5', false)).toBe(true);
+  });
+
+  it('does not unlock new league chat achievements while league chat is disabled', async () => {
+    await checkAchievements({ type: 'league_chat_message' });
+    await AsyncStorage.setItem('achievement_league_chat_message_count', '100');
+    await checkAchievements({ type: 'backfill' });
+
+    const unlocked = await unlockedIds();
+    expect([...unlocked].filter(isLeagueChatAchievementId)).toEqual([]);
   });
 
   it('wires nearest locked achievements into the achievements screen header', () => {
@@ -370,7 +386,7 @@ describe('achievements', () => {
     }
 
     const unlocked = await unlockedIds();
-    const missing = idsOf(ALL_ACHIEVEMENTS).filter(id => !unlocked.has(id));
+    const missing = idsOf(ALL_ACHIEVEMENTS).filter(id => !unlocked.has(id) && !isLeagueChatAchievementId(id));
     expect(missing).toEqual([]);
   });
 

@@ -52,7 +52,7 @@ function numeric(value: unknown, fallback = 0): number {
  * Пользователь присылает креативную идею (4 графы: название, как работает, чем
  * поможет, категория). Пишем в коллекцию user_ideas со status='pending'.
  * Никаких наград при отправке — год полного доступа выдаёт АДМИН при одобрении
- * через adminDecideUserIdea. Паттерн — копия submitClientReport.
+ * через adminApplyVoiceResearchMutation после preview. Паттерн — копия submitClientReport.
  */
 export const submitUserIdea = onCall(
   {
@@ -207,6 +207,7 @@ function writeIdeaInbox(
  * reject → персональная модалка с объяснением (текст редактируется в админке).
  * Тексты модалки можно переопределить (titleRu/Uk, messageRu/Uk).
  */
+/** Fail-closed compatibility endpoint. All decisions use Voice Research preview/apply. */
 export const adminDecideUserIdea = onCall(
   {
     region: REGION,
@@ -219,6 +220,7 @@ export const adminDecideUserIdea = onCall(
     if (!request.auth?.token?.admin) {
       throw new HttpsError('permission-denied', 'Admin only');
     }
+    throw new HttpsError('failed-precondition', 'legacy_idea_decision_disabled_use_voice_research_preview');
 
     const ideaId = text(request.data?.ideaId, 180);
     const decision = enumText(request.data?.decision, ['approve', 'reject'] as const, 'reject');
@@ -227,7 +229,7 @@ export const adminDecideUserIdea = onCall(
     const db = admin.firestore();
     const ideaRef = db.collection(IDEAS_COLLECTION).doc(ideaId);
     const now = Date.now();
-    const adminEmail = text(request.auth.token.email, 160) || 'admin';
+    const adminEmail = text(request.auth!.token.email, 160) || 'admin';
 
     // Переопределённые тексты модалки (если админ их прислал), иначе дефолт по Библии.
     const def = defaultDecisionTexts(decision);
@@ -331,7 +333,7 @@ const IDEA_TONE_HINT_MAX = 600;
 /**
  * adminDraftIdeaDecision — ИИ-черновик текста модалки решения по идее.
  * Пишет текст СРАЗУ на языке пользователя (idea.lang), чтобы админу не нужно
- * было переводить. Админ может отредактировать перед отправкой в adminDecideUserIdea.
+ * было переводить. Админ может отредактировать перед Voice Research preview/apply.
  *
  * data: { ideaId: string; decision: 'approve' | 'reject' }
  * Возвращает: { ok: true, message: string, lang: string }

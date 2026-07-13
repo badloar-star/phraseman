@@ -11,7 +11,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
  * Открывается только под ENABLE_DEV_TOOLS; в проде вырезается стабом.
  */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -20,11 +20,12 @@ import { useTheme } from '../components/ThemeContext';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import {
   adminListShardSurveys,
-  adminWriteShardSurvey,
-  adminDeleteShardSurvey,
+  adminPreviewShardSurveyMutation,
+  adminApplyShardSurveyMutation,
   localizeRuStrings,
   type AdminSurveyRow,
   type ShardSurveyConfigInput,
+  type AdminSurveyMutationPreview,
 } from './survey_client';
 
 // Пресеты цвета плашки — «не такой как все» (обычные задания на bgCard).
@@ -35,6 +36,18 @@ type DraftQuestion = { id: string; type: 'single_choice' | 'text'; text: string;
 
 function makeQuestion(n: number): DraftQuestion {
   return { id: `q${n}`, type: 'single_choice', text: '', options: [{ id: 'opt1', label: '' }, { id: 'opt2', label: '' }] };
+}
+
+function confirmSurveyMutation(preview: AdminSurveyMutationPreview, destructive = false): Promise<boolean> {
+  return new Promise((resolve) => {
+    let settled = false; const finish = (value: boolean) => { if (!settled) { settled = true; resolve(value); } };
+    Alert.alert(
+      destructive ? 'Удалить конфигурацию опроса?' : 'Применить конфигурацию опроса?',
+      `Сервер подготовил неизменяемый preview. Ответы и статистика не удаляются.\n\nПодтверждение: ${preview.confirmation}`,
+      [{ text: 'Отмена', style: 'cancel', onPress: () => finish(false) }, { text: destructive ? 'Удалить конфигурацию' : 'Применить', style: destructive ? 'destructive' : 'default', onPress: () => finish(true) }],
+      { cancelable: true, onDismiss: () => finish(false) },
+    );
+  });
 }
 
 export default function AdminTasksLab() {
@@ -139,8 +152,11 @@ export default function AdminTasksLab() {
         finalScreen: { title: finalTitleL, subtitle: finalSubtitleL },
         questions: questionsL,
       };
-      setMsg('Сохраняю задание…');
-      await adminWriteShardSurvey(survey);
+      setMsg('Готовлю безопасный предпросмотр…');
+      const preview = await adminPreviewShardSurveyMutation({ action: 'survey_create', surveyId, survey, reason: 'Создание опроса из мобильного dev-редактора' });
+      if (!await confirmSurveyMutation(preview)) { setMsg('Создание отменено. Ничего не записано.'); return; }
+      setMsg('Применяю проверенную конфигурацию…');
+      await adminApplyShardSurveyMutation(preview);
       hapticSuccess();
       setMsg('Готово! Задание появится 4-й плашкой в «Вызовах дня».');
       // Сброс черновика.
@@ -153,11 +169,15 @@ export default function AdminTasksLab() {
     } finally {
       setCreating(false);
     }
-  }, [canCreate, creating, title, subtitle, finalTitle, finalSubtitle, questions, reward, accentColor, rows.length, refresh]);
+  }, [canCreate, creating, title, subtitle, finalTitle, finalSubtitle, questions, reward, accentColor, tier, rows, refresh]);
 
   const removeTask = useCallback(async (row: AdminSurveyRow) => {
     hapticTap(); setBusyId(row.surveyId); setMsg('');
-    try { await adminDeleteShardSurvey(row.surveyId); await refresh(); }
+    try {
+      const preview = await adminPreviewShardSurveyMutation({ action: 'survey_delete', surveyId: row.surveyId, reason: 'Удаление конфигурации из мобильного dev-редактора' });
+      if (!await confirmSurveyMutation(preview, true)) { setMsg('Удаление отменено. Ничего не изменено.'); return; }
+      await adminApplyShardSurveyMutation(preview); await refresh();
+    }
     catch (e) { setMsg('Ошибка: ' + String((e as { message?: string })?.message ?? e)); }
     finally { setBusyId(null); }
   }, [refresh]);

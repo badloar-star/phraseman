@@ -271,9 +271,8 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
 });
 
 // ────────────────────────────────────────────────────────────────────────────
-// adminWriteShardSurvey — создать/обновить конфиг опроса из админки.
-// Доступ: request.auth.token.admin === true (custom claim, как прочие
-// admin-callable проекта — см. admin_grant.ts, help_board.ts).
+// Fail-closed compatibility endpoint. Запись перенесена в Voice Research
+// preview/apply с permission, audit и идемпотентностью.
 // ────────────────────────────────────────────────────────────────────────────
 export const adminWriteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
@@ -281,6 +280,7 @@ export const adminWriteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request
   if (request.auth?.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'admin_required');
   }
+  throw new HttpsError('failed-precondition', 'legacy_survey_mutation_disabled_use_voice_research_preview');
   const db = admin.firestore();
 
   const errors = validateSurveyConfigForWrite(request.data?.survey);
@@ -289,7 +289,7 @@ export const adminWriteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request
   }
 
   // Прогоняем через parseSurveyConfig для нормализации формы хранения.
-  const parsed = parseSurveyConfig(request.data?.survey);
+  const parsed = parseSurveyConfig(request.data?.survey)!;
   if (!parsed) throw new HttpsError('invalid-argument', 'invalid_config:parse_failed');
 
   const nowMs = Date.now();
@@ -319,8 +319,8 @@ export const adminWriteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request
 });
 
 // ────────────────────────────────────────────────────────────────────────────
-// adminDeleteShardSurvey — удалить конфиг опроса (из админ-экрана).
-// Доступ: admin claim. Удаляет только конфиг; ответы/статы остаются (история).
+// Fail-closed compatibility endpoint. Удаление перенесено в Voice Research;
+// ответы и статистика по-прежнему сохраняются.
 // ────────────────────────────────────────────────────────────────────────────
 export const adminDeleteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
@@ -328,6 +328,7 @@ export const adminDeleteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (reques
   if (request.auth?.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'admin_required');
   }
+  throw new HttpsError('failed-precondition', 'legacy_survey_mutation_disabled_use_voice_research_preview');
   const surveyId = text(request.data?.surveyId, 80);
   if (!surveyId) throw new HttpsError('invalid-argument', 'survey_id_required');
   const db = admin.firestore();

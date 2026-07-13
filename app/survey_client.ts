@@ -77,7 +77,7 @@ export async function submitSurvey(data: {
 // Требует custom claim admin у пользователя (проверка на сервере). Доступно
 // только из dev-хаба (ENABLE_DEV_TOOLS), поэтому обычные юзеры сюда не попадают.
 
-/** Конфиг опроса в форме, которую принимает adminWriteShardSurvey. */
+/** Полная конфигурация опроса для защищённого preview/apply workflow. */
 export type ShardSurveyConfigInput = {
   surveyId: string;
   enabled: boolean;
@@ -88,34 +88,47 @@ export type ShardSurveyConfigInput = {
   audience?: { tier?: 'free' | 'premium' | 'any' };
   accentColor?: string;
   finalScreen?: { title?: Record<string, string>; subtitle?: Record<string, string> };
-  questions: Array<{
+  questions: {
     id: string;
     type: 'single_choice' | 'text';
     text: Record<string, string>;
-    options?: Array<{ id: string; label: Record<string, string> }>;
-  }>;
+    options?: { id: string; label: Record<string, string> }[];
+  }[];
 };
 
 export type AdminSurveyRow = ShardSurveyConfigInput & {
   totalResponses?: number;
 };
 
-export async function adminWriteShardSurvey(
-  survey: ShardSurveyConfigInput,
-): Promise<{ ok: boolean; surveyId: string }> {
-  return callFunction<{ survey: ShardSurveyConfigInput }, { ok: boolean; surveyId: string }>(
-    'adminWriteShardSurvey',
-    { survey },
-  );
+export type AdminSurveyMutationAction = 'survey_create' | 'survey_update' | 'survey_toggle' | 'survey_delete' | 'survey_restore';
+export type AdminSurveyMutationPreview = { ok: boolean; previewId: string; action: AdminSurveyMutationAction; targetId: string; reason: string; confirmation: string; fingerprint: string; mutation: Record<string, unknown> };
+
+function adminOperationId(prefix: string): string {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 }
 
-export async function adminDeleteShardSurvey(
-  surveyId: string,
-): Promise<{ ok: boolean; surveyId: string }> {
-  return callFunction<{ surveyId: string }, { ok: boolean; surveyId: string }>(
-    'adminDeleteShardSurvey',
-    { surveyId },
-  );
+export async function adminPreviewShardSurveyMutation(input: {
+  action: AdminSurveyMutationAction;
+  surveyId: string;
+  survey?: ShardSurveyConfigInput;
+  enabled?: boolean;
+  reason: string;
+}): Promise<AdminSurveyMutationPreview> {
+  const payload = input.action === 'survey_create' ? input.survey
+    : input.action === 'survey_delete' ? {}
+      : input.action === 'survey_toggle' ? { enabled: input.enabled === true }
+        : { survey: input.survey };
+  return callFunction<Record<string, unknown>, AdminSurveyMutationPreview>('adminPreviewVoiceResearchMutation', {
+    action: input.action, targetId: input.surveyId, payload, reason: input.reason,
+    requestId: adminOperationId('survey-preview'),
+  });
+}
+
+export async function adminApplyShardSurveyMutation(preview: AdminSurveyMutationPreview): Promise<{ ok: boolean; action: string; targetId: string; replayed: boolean }> {
+  return callFunction<Record<string, unknown>, { ok: boolean; action: string; targetId: string; replayed: boolean }>('adminApplyVoiceResearchMutation', {
+    previewId: preview.previewId, confirmation: preview.confirmation, reason: preview.reason,
+    requestId: adminOperationId('survey-apply'), idempotencyKey: `survey-${preview.fingerprint}`.slice(0, 180),
+  });
 }
 
 // ИИ-перевод русских строк на все языки приложения (reuse adminTranslateMessage).

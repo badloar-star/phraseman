@@ -245,48 +245,12 @@ describe('adminDecideUserIdea', () => {
     return ideaDocs()[0].id;
   }
 
-  test('approve grants exactly one year of premium and writes a congrats inbox modal', async () => {
+  test('fails closed for an admin and points to the preview/apply workflow', async () => {
     const ideaId = await seedIdea();
-    const res = await callDecide({ ideaId, decision: 'approve' });
-    expect(res).toMatchObject({ ok: true });
-
-    const user = docs.get('users/stable-user') as DocData;
-    const progress = user.progress as DocData;
-    expect(progress).toMatchObject({ vip_active: 'true', vip_plan: 'idea_reward', vip_admin_override: 'true' });
-    expect(Number(progress.vip_until)).toBe(NOW.getTime() + YEAR_MS);
-
-    const idea = ideaDocs()[0].data;
-    expect(idea).toMatchObject({ status: 'approved', premiumGranted: true });
-
-    const inbox = inboxDocs('stable-user');
-    expect(inbox).toHaveLength(1);
-    expect(inbox[0]).toMatchObject({ type: 'idea_decision', decision: 'approve', seen: false });
-    expect(String(inbox[0].titleRu)).toContain('принята');
-    expect(String(inbox[0].titleEs)).toContain('idea');
-    expect(String(inbox[0].messageEs)).toContain('Premium');
-  });
-
-  test('reject writes an explanation modal with admin custom text and grants no premium', async () => {
-    const ideaId = await seedIdea();
-    await callDecide({
-      ideaId,
-      decision: 'reject',
-      messageRu: 'Слишком похоже на существующее',
-      messageUk: 'Надто схоже',
-      messageEs: 'Se parece demasiado a algo existente',
-    });
-
-    const user = docs.get('users/stable-user') as DocData;
-    expect(user.progress).toBeUndefined();
-
-    expect(ideaDocs()[0].data).toMatchObject({ status: 'rejected', premiumGranted: false });
-    const inbox = inboxDocs('stable-user');
-    expect(inbox[0]).toMatchObject({
-      type: 'idea_decision',
-      decision: 'reject',
-      messageRu: 'Слишком похоже на существующее',
-      messageEs: 'Se parece demasiado a algo existente',
-    });
+    await expect(callDecide({ ideaId, decision: 'approve' })).rejects.toMatchObject({ code: 'failed-precondition', message: 'legacy_idea_decision_disabled_use_voice_research_preview' });
+    expect(ideaDocs()[0].data).toMatchObject({ status: 'pending' });
+    expect(docs.get('users/stable-user')?.progress).toBeUndefined();
+    expect(inboxDocs('stable-user')).toHaveLength(0);
   });
 
   test('refuses a non-admin caller', async () => {
@@ -295,9 +259,4 @@ describe('adminDecideUserIdea', () => {
     expect(ideaDocs()[0].data).toMatchObject({ status: 'pending' });
   });
 
-  test('refuses to decide an already-decided idea twice', async () => {
-    const ideaId = await seedIdea();
-    await callDecide({ ideaId, decision: 'approve' });
-    await expect(callDecide({ ideaId, decision: 'reject' })).rejects.toMatchObject({ code: 'failed-precondition' });
-  });
 });

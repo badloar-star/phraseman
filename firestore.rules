@@ -1026,7 +1026,7 @@ service cloud.firestore {
         allow read, write: if false;
       }
 
-      // Инбокс решений по идеям. Создаёт только сервер (adminDecideUserIdea, Admin SDK).
+      // Инбокс решений по идеям. Создаёт только защищённый Voice Research apply (Admin SDK).
       // Владелец читает свои решения (приложение показывает модалку на старте) и может
       // пометить seen — но не создавать/удалять и не подменять текст/решение.
       match /idea_inbox/{eventId} {

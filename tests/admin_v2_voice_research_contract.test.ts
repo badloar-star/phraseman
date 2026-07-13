@@ -60,4 +60,18 @@ describe('Admin v2 Voice & Research Center', () => {
     expect(legacy).toContain('data-voice-research-archive');
     expect(legacy).toContain('pointer-events:none!important');
   });
+
+  test('routes the in-app dev survey editor through preview and apply', () => {
+    const client = read('app/survey_client.ts');
+    const lab = read('app/_admin_tasks_lab.tsx');
+    expect(client).toContain("'adminPreviewVoiceResearchMutation'");
+    expect(client).toContain("'adminApplyVoiceResearchMutation'");
+    expect(client).not.toContain("'adminWriteShardSurvey'");
+    expect(client).not.toContain("'adminDeleteShardSurvey'");
+    expect(lab).toContain('confirmSurveyMutation');
+    expect(lab).toContain('adminPreviewShardSurveyMutation');
+    expect(lab).toContain('adminApplyShardSurveyMutation');
+    expect(read('functions/src/user_ideas.ts')).toContain('legacy_idea_decision_disabled_use_voice_research_preview');
+    expect(read('functions/src/shard_survey.ts')).toContain('legacy_survey_mutation_disabled_use_voice_research_preview');
+  });
 });

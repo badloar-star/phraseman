@@ -1,7 +1,7 @@
 # Soft upsell premium conversion — design specification
 
 **Date:** 2026-07-13
-**Status:** Awaiting final user review
+**Status:** Implemented and frontier-reviewed
 **Scope:** Native React Native soft-upsell UI, direct paywall navigation, deterministic attribution, Admin v2 funnel, isolated QA funnel
 
 ## 1. Objective

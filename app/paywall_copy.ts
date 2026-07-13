@@ -81,27 +81,27 @@ export type PaywallCopy = {
 };
 
 const COURSE_AFTER_LESSON3_COPY: PaywallCopy = {
-  titleRu: 'Открой весь текущий уровень',
-  titleUk: 'Відкрий весь поточний рівень',
-  titleEs: 'Abre todo tu nivel actual',
-  subtitleRu: 'A1 открыт бесплатно и проходится последовательно. Plus открывает весь текущий уровень: все уроки доступны сразу, без блокировок по результату. Следующие уровни открываются через экзамены.',
-  subtitleUk: 'A1 відкритий безкоштовно й проходиться послідовно. Plus відкриває весь поточний рівень: усі уроки доступні одразу, без блокувань за результатом. Наступні рівні відкриваються через екзамени.',
-  subtitleEs: 'A1 es gratis y se avanza paso a paso. Plus abre todo tu nivel actual: todas las lecciones disponibles al instante, sin bloqueos por resultado. Los siguientes niveles se abren con exámenes.',
+  titleRu: 'Открой полный доступ к Phraseman',
+  titleUk: 'Відкрий повний доступ до Phraseman',
+  titleEs: 'Obtén acceso completo a Phraseman',
+  subtitleRu: 'Plus открывает доступ ко всем урокам, безлимитную практику и все возможности Plus.',
+  subtitleUk: 'Plus відкриває доступ до всіх уроків, безлімітної практики та всіх можливостей Plus.',
+  subtitleEs: 'Plus te da acceso a todas las lecciones, práctica ilimitada y todas las funciones de Plus.',
 };
 const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
   title: {
-    'pt-BR': 'Abra todo o nível atual',
-    vi: 'Mở toàn bộ cấp hiện tại',
-    id: 'Buka seluruh level saat ini',
-    tr: 'Mevcut seviyeyi tamamen aç',
-    pl: 'Otwórz cały obecny poziom',
+    'pt-BR': 'Tenha acesso completo ao Phraseman',
+    vi: 'Mở toàn quyền truy cập Phraseman',
+    id: 'Buka akses penuh ke Phraseman',
+    tr: "Phraseman'a tam erişimi aç",
+    pl: 'Odblokuj pełny dostęp do Phraseman',
   },
   subtitle: {
-    'pt-BR': 'O A1 é grátis e avança passo a passo. Plus abre todo o nível atual: todas as lições disponíveis na hora, sem bloqueios por resultado. Os próximos níveis abrem por exames.',
-    vi: 'A1 miễn phí và mở từng bài theo tiến độ. Plus mở toàn bộ cấp hiện tại: mọi bài học có ngay, không bị khóa theo kết quả. Các cấp tiếp theo mở qua bài kiểm tra.',
-    id: 'A1 gratis dan dibuka bertahap. Plus membuka seluruh level saat ini: semua pelajaran langsung tersedia, tanpa kunci dari hasil. Level berikutnya dibuka lewat ujian.',
-    tr: 'A1 ücretsizdir ve adım adım açılır. Plus mevcut seviyenin tamamını açar: tüm dersler hemen erişilir, sonuç engeli yoktur. Sonraki seviyeler sınavlarla açılır.',
-    pl: 'A1 jest darmowy i odblokowuje się krok po kroku. Plus otwiera cały obecny poziom: wszystkie lekcje od razu, bez blokad za wynik. Kolejne poziomy otwierają się przez egzaminy.',
+    'pt-BR': 'O Plus dá acesso a todas as lições, prática ilimitada e todos os recursos Plus.',
+    vi: 'Plus cho bạn quyền truy cập vào tất cả bài học, luyện tập không giới hạn và mọi tính năng Plus.',
+    id: 'Plus memberi akses ke semua pelajaran, latihan tanpa batas, dan semua fitur Plus.',
+    tr: 'Plus, tüm derslere, sınırsız pratiğe ve tüm Plus özelliklerine erişim sağlar.',
+    pl: 'Plus zapewnia dostęp do wszystkich lekcji, nieograniczonej praktyki i wszystkich funkcji Plus.',
   },
 };
 
@@ -1071,9 +1071,9 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     { ru: 'День не обрывается на самом интересном', uk: 'День не обривається на найцікавішому', es: 'El día no se corta justo cuando empieza', 'pt-BR': 'O dia não para bem na melhor hora', vi: 'Buổi học không dừng đúng lúc đang vào guồng', id: 'Hari belajar tidak berhenti saat mulai seru', tr: 'Gün tam hızlanmışken kesilmez', pl: 'Dzień nie urywa się w najciekawszym momencie' },
   ],
   course_after_lesson3: [
-    { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante', 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
-    { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
-    { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes', 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
+    { ru: 'Доступ ко всем урокам', uk: 'Доступ до всіх уроків', es: 'Acceso a todas las lecciones', 'pt-BR': 'Acesso a todas as lições', vi: 'Truy cập tất cả bài học', id: 'Akses ke semua pelajaran', tr: 'Tüm derslere erişim', pl: 'Dostęp do wszystkich lekcji' },
+    { ru: 'Безлимитная практика без пауз', uk: 'Безлімітна практика без пауз', es: 'Práctica ilimitada sin pausas', 'pt-BR': 'Prática ilimitada sem pausas', vi: 'Luyện tập không giới hạn, không gián đoạn', id: 'Latihan tanpa batas dan tanpa jeda', tr: 'Sınırsız ve kesintisiz pratik', pl: 'Nieograniczona praktyka bez przerw' },
+    { ru: 'Все возможности Plus', uk: 'Усі можливості Plus', es: 'Todas las funciones de Plus', 'pt-BR': 'Todos os recursos Plus', vi: 'Mọi tính năng Plus', id: 'Semua fitur Plus', tr: 'Tüm Plus özellikleri', pl: 'Wszystkie funkcje Plus' },
   ],
   lesson_b1: [
     { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante', 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
@@ -1299,9 +1299,9 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Ritmo diário estável sem travar', vi: 'Nhịp học hằng ngày ổn định hơn', id: 'Ritme harian stabil tanpa terhenti', tr: 'Aksamadan istikrarlı günlük ritim', pl: 'Stabilny rytm dnia bez zrywów' },
   ],
   course_after_lesson3: [
-    { 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
-    { 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
-    { 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
+    { 'pt-BR': 'Acesso a todas as lições', vi: 'Truy cập tất cả bài học', id: 'Akses ke semua pelajaran', tr: 'Tüm derslere erişim', pl: 'Dostęp do wszystkich lekcji' },
+    { 'pt-BR': 'Prática ilimitada sem pausas', vi: 'Luyện tập không giới hạn, không gián đoạn', id: 'Latihan tanpa batas dan tanpa jeda', tr: 'Sınırsız ve kesintisiz pratik', pl: 'Nieograniczona praktyka bez przerw' },
+    { 'pt-BR': 'Todos os recursos Plus', vi: 'Mọi tính năng Plus', id: 'Semua fitur Plus', tr: 'Tüm Plus özellikleri', pl: 'Wszystkie funkcje Plus' },
   ],
   lesson_b1: [
     { 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },

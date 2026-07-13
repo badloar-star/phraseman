@@ -61,6 +61,33 @@ describe('paywall_copy — контракт покрытия premium-конте�
     expect(CONTEXT_BENEFITS_PLANNED[fresh]).not.toBe(CONTEXT_BENEFITS_PLANNED[legacy]);
   });
 
+  it('course_after_lesson3 promises full Plus access, not only the current level', () => {
+    const copy = getPaywallCopy('course_after_lesson3');
+
+    expect(copy.titleRu).toBe('Открой полный доступ к Phraseman');
+    expect(copy.subtitleRu).toBe(
+      'Plus открывает доступ ко всем урокам, безлимитную практику и все возможности Plus.',
+    );
+    expect(CONTEXT_BENEFITS.course_after_lesson3?.map((benefit) => benefit.ru)).toEqual([
+      'Доступ ко всем урокам',
+      'Безлимитная практика без пауз',
+      'Все возможности Plus',
+    ]);
+    expect(CONTEXT_BENEFITS_PLANNED.course_after_lesson3).toEqual([
+      { 'pt-BR': 'Acesso a todas as lições', vi: 'Truy cập tất cả bài học', id: 'Akses ke semua pelajaran', tr: 'Tüm derslere erişim', pl: 'Dostęp do wszystkich lekcji' },
+      { 'pt-BR': 'Prática ilimitada sem pausas', vi: 'Luyện tập không giới hạn, không gián đoạn', id: 'Latihan tanpa batas dan tanpa jeda', tr: 'Sınırsız ve kesintisiz pratik', pl: 'Nieograniczona praktyka bez przerw' },
+      { 'pt-BR': 'Todos os recursos Plus', vi: 'Mọi tính năng Plus', id: 'Semua fitur Plus', tr: 'Tüm Plus özellikleri', pl: 'Wszystkie funkcje Plus' },
+    ]);
+
+    const russianCopy = [
+      copy.titleRu,
+      copy.subtitleRu,
+      ...(CONTEXT_BENEFITS.course_after_lesson3?.map((benefit) => benefit.ru) ?? []),
+    ].join(' ');
+    expect(russianCopy).not.toContain('текущ');
+    expect(russianCopy).not.toContain('экзамен');
+  });
+
   it('новые paywall-контексты нормализуются в себя, а не в старый экран', () => {
     expect(normalizePremiumContext('lesson_b1')).toBe('lesson_b1');
     expect(normalizePremiumContext('ai_voice_input')).toBe('ai_voice_input');

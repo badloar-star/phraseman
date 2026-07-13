@@ -14268,7 +14268,21 @@
     provider: new ReCaptchaEnterpriseProvider('6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR'),
     isTokenAutoRefreshEnabled: true,
   });
-  await getToken(legacyAdminAppCheck, false);
+  let legacyAdminAppCheckWarmup = getToken(legacyAdminAppCheck, false).catch((error) => {
+    console.warn('Legacy admin App Check warm-up failed; protected actions will retry before sending.', error);
+    return null;
+  });
+  async function requireLegacyAdminAppCheckToken() {
+    const warmedToken = await legacyAdminAppCheckWarmup;
+    if (warmedToken) return warmedToken;
+    legacyAdminAppCheckWarmup = getToken(legacyAdminAppCheck, true).catch((error) => {
+      console.warn('Legacy admin App Check token is unavailable; protected action blocked.', error);
+      return null;
+    });
+    const retryToken = await legacyAdminAppCheckWarmup;
+    if (!retryToken) throw new Error('app_check_unavailable');
+    return retryToken;
+  }
   const db = getFirestore(app);
   const auth = getAuth(app);
   const functionsUs = getFunctions(app, 'us-central1');
@@ -14317,7 +14331,11 @@
   let _fnHelpBoardAdminModerate = null;
   function getHelpBoardAdminModerateCallable() {
     if (!_fnHelpBoardAdminModerate) {
-      _fnHelpBoardAdminModerate = httpsCallable(functionsUs, 'helpBoardAdminModerate');
+      const callable = httpsCallable(functionsUs, 'helpBoardAdminModerate');
+      _fnHelpBoardAdminModerate = async (payload) => {
+        await requireLegacyAdminAppCheckToken();
+        return callable(payload);
+      };
     }
     return _fnHelpBoardAdminModerate;
   }

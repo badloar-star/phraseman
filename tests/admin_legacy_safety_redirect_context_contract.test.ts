@@ -52,7 +52,7 @@ describe('legacy Safety & Moderation redirect context', () => {
   test('initializes App Check before authenticated Help Board moderation callables become available', () => {
     const appInit = source.indexOf('const app = initializeApp(');
     const appCheckInit = source.indexOf('const legacyAdminAppCheck = initializeAppCheck(app');
-    const tokenGate = source.indexOf('await getToken(legacyAdminAppCheck, false)');
+    const tokenWarmup = source.indexOf('legacyAdminAppCheckWarmup = getToken(legacyAdminAppCheck, false).catch');
     const functionsInit = source.indexOf("const functionsUs = getFunctions(app, 'us-central1')");
     const authGate = source.indexOf('onAuthStateChanged(auth, async (user) =>');
     const moderationCallable = source.indexOf("httpsCallable(functionsUs, 'helpBoardAdminModerate')");
@@ -60,9 +60,28 @@ describe('legacy Safety & Moderation redirect context', () => {
     expect(source).toContain('ReCaptchaEnterpriseProvider');
     expect(appInit).toBeGreaterThanOrEqual(0);
     expect(appCheckInit).toBeGreaterThan(appInit);
-    expect(tokenGate).toBeGreaterThan(appCheckInit);
-    expect(functionsInit).toBeGreaterThan(tokenGate);
+    expect(tokenWarmup).toBeGreaterThan(appCheckInit);
+    expect(functionsInit).toBeGreaterThan(tokenWarmup);
     expect(authGate).toBeGreaterThan(functionsInit);
     expect(moderationCallable).toBeGreaterThan(functionsInit);
+  });
+
+  test('keeps admin startup alive when token warm-up rejects and blocks only the protected action', () => {
+    const warmup = sourceBetween(
+      'let legacyAdminAppCheckWarmup = getToken(legacyAdminAppCheck, false)',
+      'const db = getFirestore(app);',
+    );
+    const callableFactory = sourceBetween(
+      'let _fnHelpBoardAdminModerate = null;',
+      'let _fnAdminReplyToReport = null;',
+    );
+
+    expect(warmup).toContain('.catch((error) =>');
+    expect(warmup).toContain('return null;');
+    expect(warmup).toContain('getToken(legacyAdminAppCheck, true).catch');
+    expect(warmup).toContain("throw new Error('app_check_unavailable')");
+    expect(warmup).not.toMatch(/(^|\n)\s*await getToken\(legacyAdminAppCheck, false\)/);
+    expect(callableFactory).toContain('await requireLegacyAdminAppCheckToken();');
+    expect(callableFactory).toContain('return callable(payload);');
   });
 });

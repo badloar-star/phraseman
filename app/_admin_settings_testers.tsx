@@ -196,6 +196,7 @@ import SystemModalsExtraSection from '../components/admin_panel/sections/SystemM
 import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
+import SoftUpsellPreviewSection from '../components/admin_panel/sections/SoftUpsellPreviewSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -4140,6 +4141,10 @@ export default function SettingsTestersFunctions() {
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
+          <SoftUpsellPreviewSection
+            open={openSection === 'soft_upsell_previews'}
+            onToggle={toggleSection}
+          />
           <VipSurveyExtraSection
             open={openSection === 'vip_survey_extra'}
             onToggle={toggleSection}

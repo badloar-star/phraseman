@@ -706,6 +706,8 @@ describe('BigQuery SQL semantic contract', () => {
     expect(sql).not.toMatch(/start_paths AS \([\s\S]*?QUALIFY ROW_NUMBER[\s\S]*?\), c25_paths AS/);
     expect(sql).toContain('result_rows AS');
     expect(sql).toContain('ORDER BY section_order,first_number,second_number,first_text,second_text');
+    expect(sql).toContain("STRUCT('home' AS step,IF(@videoId IS NULL,'ready','not_applicable') AS status,home_count AS count,CAST(NULL AS FLOAT64) AS percentOfPrevious)");
+    expect(sql).not.toMatch(/STRUCT\('[^']+'\s+(?!AS\s)[A-Za-z_]/);
     expect(sql).toContain('TO_CODE_POINTS(video_title)');
     expect(sql).toContain('code_point IN (1564,8206,8207,8234,8235,8236,8237,8238,8294,8295,8296,8297,65279)');
     expect(sql).not.toContain('code_point IN (8204,8205');

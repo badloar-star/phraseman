@@ -1258,7 +1258,7 @@ WITH raw_param_rows AS (
       WHEN 'completed25' THEN 4 ELSE 5 END funnel_ordinal,
     TO_JSON_STRING(STRUCT(step,status,count,percentOfPrevious)) payload_json FROM funnel_counts,
   UNNEST([
-    STRUCT('home' step,IF(@videoId IS NULL,'ready','not_applicable') status,home_count count,CAST(NULL AS FLOAT64) percentOfPrevious),
+    STRUCT('home' AS step,IF(@videoId IS NULL,'ready','not_applicable') AS status,home_count AS count,CAST(NULL AS FLOAT64) AS percentOfPrevious),
     STRUCT('catalog' AS step,IF(@videoId IS NULL,'ready','not_applicable') AS status,catalog_count AS count,SAFE_DIVIDE(catalog_count,home_count) AS percentOfPrevious),
     STRUCT('select' AS step,'ready' AS status,select_count AS count,IF(@videoId IS NULL,SAFE_DIVIDE(select_count,catalog_count),NULL) AS percentOfPrevious),
     STRUCT('start' AS step,'ready' AS status,start_count AS count,SAFE_DIVIDE(start_count,select_count) AS percentOfPrevious),

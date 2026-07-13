@@ -32,6 +32,8 @@ const CONSENTS_LIMIT = 8_000;
 const BANS_LIMIT = 1_000;
 const DEFINITION_VERSION = 'admin_safety_moderation_v1';
 const PREVIEW_TTL_MS = 30 * 60 * 1_000;
+const BULK_CHUNK_SIZE = 40;
+const BULK_CHUNKS_PER_CALL = 5;
 
 type Row = Record<string, unknown>;
 type ExactFieldState = Record<string, Readonly<{ present: boolean; value?: unknown }>>;
@@ -326,6 +328,28 @@ export function projectSafetyModerationApproval(id: string, value: unknown, acto
     risk: clean(row.risk, 1_000),
     fingerprint: clean(row.fingerprint, 64),
     canApprove: Boolean(requestedBy && requestedBy !== actorUid),
+  });
+}
+
+export function projectSafetyModerationHistory(id: string, value: unknown) {
+  const row = record(value);
+  const action = clean(row.action, 40);
+  const reversible = row.irreversible !== true && ['report_set_status', 'safety_set_disposition', 'report_rename'].includes(action);
+  return Object.freeze({
+    historyId: safeId(id, 180),
+    action,
+    targetId: clean(row.targetId, 180),
+    actorUid: clean(row.actorUid, 180),
+    reason: clean(row.reason, 500),
+    createdAtMs: finite(row.createdAtMs),
+    targetCount: finite(row.targetCount),
+    beforeFingerprint: clean(row.beforeFingerprint, 64),
+    afterFingerprint: clean(row.afterFingerprint, 64),
+    reversible,
+    canRestore: reversible && !row.restoredAtMs,
+    bulkManifestId: safeId(row.bulkManifestId, 180),
+    bulkStatus: clean(row.bulkStatus, 30),
+    processedCount: finite(row.processedCount),
   });
 }
 
@@ -904,6 +928,18 @@ export const adminListSafetyModerationApprovals = onCall(
   },
 );
 
+export const adminListSafetyModerationHistory = onCall(
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 30, memory: '256MiB' },
+  async (request) => {
+    requireRole(request, 'users.moderation.restore');
+    const snap = await admin.firestore().collection('admin_safety_moderation_history')
+      .orderBy('createdAtMs', 'desc')
+      .limit(100)
+      .get();
+    return { ok: true, generatedAtMs: Date.now(), items: snap.docs.map((doc) => projectSafetyModerationHistory(doc.id, doc.data())) };
+  },
+);
+
 export const adminApproveSafetyModerationMutation = onCall(
   { region: REGION, enforceAppCheck: true, timeoutSeconds: 30, memory: '256MiB' },
   async (request) => {
@@ -1085,6 +1121,83 @@ async function assertNoNicknameCollision(
   }
 }
 
+function projectBulkProgress(id: string, value: unknown): Row {
+  const row = record(value);
+  const targetCount = Array.isArray(row.targetIds) ? row.targetIds.length : finite(row.targetCount);
+  const processedCount = Math.min(targetCount, finite(row.cursor));
+  return {
+    manifestId: safeId(id, 180),
+    action: clean(row.action, 40),
+    status: clean(row.status, 30) || 'pending',
+    targetCount,
+    processedCount,
+    remainingCount: Math.max(0, targetCount - processedCount),
+    historyId: safeId(row.historyId, 180),
+    updatedAtMs: finite(row.updatedAtMs),
+  };
+}
+
+export async function processSafetyModerationBulkManifest(
+  db: FirebaseFirestore.Firestore,
+  manifestId: string,
+  actorUid: string,
+  maxChunks = BULK_CHUNKS_PER_CALL,
+): Promise<Row> {
+  const manifestRef = db.collection('admin_safety_moderation_bulk_operations').doc(safeId(manifestId, 180));
+  let progress: Row = {};
+  for (let chunkIndex = 0; chunkIndex < Math.max(1, Math.min(20, Math.floor(maxChunks))); chunkIndex += 1) {
+    progress = await db.runTransaction(async (tx) => {
+      const manifestSnap = await tx.get(manifestRef);
+      if (!manifestSnap.exists) throw new HttpsError('not-found', 'bulk_manifest_not_found');
+      const manifest = record(manifestSnap.data());
+      const status = clean(manifest.status, 30);
+      if (status === 'completed') return projectBulkProgress(manifestSnap.id, manifest);
+      if (!['pending', 'running'].includes(status)) throw new HttpsError('failed-precondition', 'bulk_manifest_not_resumable');
+      const action = clean(manifest.action, 40) as SafetyModerationMutationAction;
+      if (!['report_archive_bulk', 'safety_handle_bulk'].includes(action)) throw new HttpsError('failed-precondition', 'bulk_manifest_action_invalid');
+      const targetIds = (Array.isArray(manifest.targetIds) ? manifest.targetIds : []).map((id) => safeId(id, 180)).filter(Boolean);
+      const expectedTargets = (Array.isArray(manifest.expectedTargets) ? manifest.expectedTargets : []).map(record);
+      const cursor = finite(manifest.cursor);
+      if (targetIds.length !== expectedTargets.length || cursor > targetIds.length) throw new HttpsError('data-loss', 'bulk_manifest_corrupt');
+      const ids = targetIds.slice(cursor, cursor + BULK_CHUNK_SIZE);
+      if (!ids.length) {
+        const completed = { ...manifest, status: 'completed', cursor: targetIds.length, updatedAtMs: Date.now(), completedAtMs: Date.now() };
+        tx.update(manifestRef, { status: 'completed', cursor: targetIds.length, updatedAtMs: completed.updatedAtMs, completedAtMs: completed.completedAtMs });
+        return projectBulkProgress(manifestSnap.id, completed);
+      }
+      const collectionName = action === 'report_archive_bulk' ? 'user_reports' : 'safety_flags';
+      const refs = ids.map((id) => db.collection(collectionName).doc(id));
+      const snaps = await Promise.all(refs.map((ref) => tx.get(ref)));
+      if (snaps.some((snap) => !snap.exists)) throw new HttpsError('not-found', 'bulk_target_not_found');
+      snaps.forEach((snap, offset) => {
+        const current = action === 'report_archive_bulk'
+          ? projectUserReport(snap.id, snap.data())
+          : projectSafetyFlagSummary(snap.id, snap.data());
+        if (hash(current) !== hash(expectedTargets[cursor + offset])) throw new HttpsError('failed-precondition', 'bulk_target_changed');
+      });
+      const nowMs = Date.now();
+      const payload = record(manifest.payload);
+      refs.forEach((ref) => {
+        if (action === 'report_archive_bulk') {
+          tx.update(ref, { status: 'archived', reviewedAtMs: nowMs, reviewedAt: new Date(nowMs).toISOString(), reviewedBy: actorUid, archivedAt: new Date(nowMs).toISOString() });
+        } else {
+          tx.update(ref, { handled: true, disposition: clean(payload.disposition, 80), handlingNote: clean(payload.note, 1_000), handledBy: actorUid, handledAtMs: nowMs, handledAt: new Date(nowMs).toISOString() });
+        }
+      });
+      const nextCursor = cursor + ids.length;
+      const nextStatus = nextCursor >= targetIds.length ? 'completed' : 'running';
+      const update: Row = { status: nextStatus, cursor: nextCursor, processedCount: nextCursor, updatedAtMs: nowMs, lastProcessedBy: actorUid };
+      if (nextStatus === 'completed') update.completedAtMs = nowMs;
+      tx.update(manifestRef, update);
+      const historyId = safeId(manifest.historyId, 180);
+      if (historyId) tx.update(db.collection('admin_safety_moderation_history').doc(historyId), { bulkStatus: nextStatus, processedCount: nextCursor, updatedAtMs: nowMs, ...(nextStatus === 'completed' ? { completedAtMs: nowMs } : {}) });
+      return projectBulkProgress(manifestSnap.id, { ...manifest, ...update });
+    });
+    if (progress.status === 'completed') return progress;
+  }
+  return progress;
+}
+
 export const adminApplySafetyModerationMutation = onCall(
   { region: REGION, enforceAppCheck: true, timeoutSeconds: 120, memory: '1GiB' },
   async (request) => {
@@ -1097,13 +1210,14 @@ export const adminApplySafetyModerationMutation = onCall(
     const operationRef = db.collection('admin_command_operations').doc(fields.idempotencyKey);
     const auditRef = db.collection('admin_log').doc();
     const historyRef = db.collection('admin_safety_moderation_history').doc();
+    const bulkManifestRef = db.collection('admin_safety_moderation_bulk_operations').doc(`bulk-${historyRef.id}`);
     const requestFingerprint = hash({ type: 'safety_moderation_apply', previewId: fields.previewId, approvalId: fields.approvalId, confirmation: fields.confirmation });
-    return db.runTransaction(async (tx) => {
+    const result = await db.runTransaction(async (tx): Promise<Row> => {
       const [operationSnap, previewSnap] = await Promise.all([tx.get(operationRef), tx.get(previewRef)]);
       if (operationSnap.exists) {
         assertReplayOrHttps(operationSnap.data(), actorUid, requestFingerprint);
         const prior = record(operationSnap.data());
-        return { ok: true, action: prior.action, targetId: prior.targetId, historyId: prior.historyId, auditId: prior.auditId, replayed: true };
+        return { ok: true, action: prior.action, targetId: prior.targetId, historyId: prior.historyId, auditId: prior.auditId, bulkManifestId: prior.bulkManifestId, replayed: true };
       }
       if (!previewSnap.exists) throw new HttpsError('not-found', 'safety_preview_not_found');
       const preview = record(previewSnap.data());
@@ -1136,8 +1250,12 @@ export const adminApplySafetyModerationMutation = onCall(
       } else if (action === 'report_archive_bulk') {
         const ids = payload.targetIds as string[];
         targetCount = ids.length;
-        ids.forEach((id) => tx.update(db.collection('user_reports').doc(id), { status: 'archived', reviewedAtMs: nowMs, reviewedAt: new Date(nowMs).toISOString(), reviewedBy: actorUid, archivedAt: new Date(nowMs).toISOString() }));
-        after = { targetIds: ids, status: 'archived' };
+        tx.create(bulkManifestRef, {
+          type: 'safety_moderation_bulk', action, status: 'pending', actorUid, role, reason: fields.reason,
+          targetIds: ids, targetCount, cursor: 0, processedCount: 0, expectedTargets: record(before).targets,
+          payload, historyId: historyRef.id, previewId: fields.previewId, createdAtMs: nowMs, updatedAtMs: nowMs,
+        });
+        after = { bulkManifestId: bulkManifestRef.id, status: 'pending', processedCount: 0, targetCount };
       } else if (action === 'report_warn') {
         const uid = clean(payload.uid, 180);
         if (clean(before.reportedUid, 180) !== uid) throw new HttpsError('failed-precondition', 'warning_uid_mismatch');
@@ -1153,8 +1271,12 @@ export const adminApplySafetyModerationMutation = onCall(
       } else if (action === 'safety_handle_bulk') {
         const ids = payload.targetIds as string[];
         targetCount = ids.length;
-        ids.forEach((id) => tx.update(db.collection('safety_flags').doc(id), { handled: true, disposition: clean(payload.disposition, 80), handlingNote: clean(payload.note, 1_000), handledBy: actorUid, handledAtMs: nowMs, handledAt: new Date(nowMs).toISOString() }));
-        after = { targetIds: ids, handled: true, disposition: clean(payload.disposition, 80) };
+        tx.create(bulkManifestRef, {
+          type: 'safety_moderation_bulk', action, status: 'pending', actorUid, role, reason: fields.reason,
+          targetIds: ids, targetCount, cursor: 0, processedCount: 0, expectedTargets: record(before).targets,
+          payload, historyId: historyRef.id, previewId: fields.previewId, createdAtMs: nowMs, updatedAtMs: nowMs,
+        });
+        after = { bulkManifestId: bulkManifestRef.id, status: 'pending', processedCount: 0, targetCount };
       } else if (action === 'report_rename') {
         const uid = clean(payload.uid, 180);
         const nickname = normalizedAdminNickname(payload.newName);
@@ -1269,13 +1391,62 @@ export const adminApplySafetyModerationMutation = onCall(
       const afterFingerprint = hash(after);
       const auditProjection = buildModerationAuditProjection(preview, targetCount);
       const audit = createAuditRecord({ action: `safety_moderation.${action}`, actorUid, role, entity: { collection: 'admin_safety_moderation_history', id: historyRef.id }, reason: fields.reason, before: { fingerprint: preview.beforeFingerprint }, after: auditProjection, rollbackReference: preview.irreversible === true ? null : `admin_safety_moderation_history/${historyRef.id}`, requestId: fields.requestId, timestamp: new Date(nowMs).toISOString() });
-      tx.create(historyRef, { action, targetId: input.targetId, targetCount, actorUid, role, reason: fields.reason, requestId: fields.requestId, before, after, beforeFingerprint: preview.beforeFingerprint, afterFingerprint, irreversible: preview.irreversible === true, createdAtMs: nowMs, operationId: fields.idempotencyKey });
+      const bulkManifestId = ['report_archive_bulk', 'safety_handle_bulk'].includes(action) ? bulkManifestRef.id : '';
+      tx.create(historyRef, { action, targetId: input.targetId, targetCount, actorUid, role, reason: fields.reason, requestId: fields.requestId, before, after, beforeFingerprint: preview.beforeFingerprint, afterFingerprint, irreversible: preview.irreversible === true, createdAtMs: nowMs, operationId: fields.idempotencyKey, ...(bulkManifestId ? { bulkManifestId, bulkStatus: 'pending', processedCount: 0 } : {}) });
       tx.create(auditRef, { ...audit, operationId: fields.idempotencyKey });
       tx.update(previewRef, { consumedAtMs: nowMs, consumedBy: actorUid, operationId: fields.idempotencyKey });
       if (approvalRef) tx.update(approvalRef, { status: 'consumed', consumedAtMs: nowMs, consumedBy: actorUid });
-      tx.create(operationRef, { actorUid, requestFingerprint, action, targetId: input.targetId, targetCount, historyId: historyRef.id, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
-      return { ok: true, action, targetId: input.targetId, targetCount, historyId: historyRef.id, auditId: auditRef.id, replayed: false };
+      tx.create(operationRef, { actorUid, requestFingerprint, action, targetId: input.targetId, targetCount, historyId: historyRef.id, auditId: auditRef.id, ...(bulkManifestId ? { bulkManifestId } : {}), createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      return { ok: true, action, targetId: input.targetId, targetCount, historyId: historyRef.id, auditId: auditRef.id, bulkManifestId, replayed: false };
     });
+    if (result.bulkManifestId) {
+      const bulk = await processSafetyModerationBulkManifest(db, clean(result.bulkManifestId, 180), actorUid);
+      return { ...result, bulk };
+    }
+    return result;
+  },
+);
+
+export const adminResumeSafetyModerationBulk = onCall(
+  { region: REGION, enforceAppCheck: true, timeoutSeconds: 120, memory: '1GiB' },
+  async (request) => {
+    const fields = controlFields(request.data);
+    const manifestId = safeId(record(request.data).manifestId, 180);
+    if (!manifestId) throw new HttpsError('invalid-argument', 'manifestId required');
+    const actorUid = request.auth?.uid || '';
+    if (!actorUid) throw new HttpsError('permission-denied', 'Admin only');
+    const db = admin.firestore();
+    const manifestSnap = await db.collection('admin_safety_moderation_bulk_operations').doc(manifestId).get();
+    if (!manifestSnap.exists) throw new HttpsError('not-found', 'bulk_manifest_not_found');
+    const action = clean(manifestSnap.data()?.action, 40) as SafetyModerationMutationAction;
+    const role = requireRole(request, requiredSafetyModerationMutationPermission(action));
+    const operationRef = db.collection('admin_command_operations').doc(fields.idempotencyKey);
+    const requestFingerprint = hash({ type: 'safety_moderation_bulk_resume', manifestId });
+    const prior = await operationRef.get();
+    if (prior.exists) {
+      assertReplayOrHttps(prior.data(), actorUid, requestFingerprint);
+      const latest = await db.collection('admin_safety_moderation_bulk_operations').doc(manifestId).get();
+      return { ok: true, bulk: projectBulkProgress(manifestId, latest.data()), replayed: true };
+    }
+    const bulk = await processSafetyModerationBulkManifest(db, manifestId, actorUid);
+    const auditRef = db.collection('admin_log').doc();
+    const nowMs = Date.now();
+    const audit = createAuditRecord({
+      action: 'safety_moderation.bulk.resume', actorUid, role,
+      entity: { collection: 'admin_safety_moderation_bulk_operations', id: manifestId },
+      reason: fields.reason, before: {}, after: { action, status: bulk.status, processedCount: bulk.processedCount, targetCount: bulk.targetCount },
+      requestId: fields.requestId, timestamp: new Date(nowMs).toISOString(),
+    });
+    await db.runTransaction(async (tx) => {
+      const operationSnap = await tx.get(operationRef);
+      if (operationSnap.exists) {
+        assertReplayOrHttps(operationSnap.data(), actorUid, requestFingerprint);
+        return;
+      }
+      tx.create(auditRef, { ...audit, operationId: fields.idempotencyKey });
+      tx.create(operationRef, { actorUid, requestFingerprint, manifestId, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+    });
+    return { ok: true, bulk, replayed: false };
   },
 );
 

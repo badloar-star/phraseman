@@ -1230,6 +1230,10 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    match /admin_safety_moderation_bulk_operations/{document=**} {
+      allow read, write: if false;
+    }
+
     // Remote Config changelog — admin-only audit trail of config saves.
     match /remote_config_history/{docId} {
       allow read: if isAdmin();

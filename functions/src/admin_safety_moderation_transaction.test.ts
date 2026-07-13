@@ -3,6 +3,7 @@ import { HttpsError } from 'firebase-functions/v2/https';
 import {
   adminApplySafetyModerationMutation,
   adminPreviewSafetyModerationMutation,
+  adminResumeSafetyModerationBulk,
   buildSafetyModerationPreview,
   captureExactFields,
   parseSafetyModerationMutationInput,
@@ -116,6 +117,34 @@ runIfEmulator('Admin Safety & Moderation transactional integration', () => {
     const restored = (await db.collection('user_reports').doc('report-restore').get()).data();
     expect(restored).toMatchObject(report);
     for (const field of ['reviewedAtMs', 'reviewedAt', 'reviewedBy', 'archivedAt', 'warningId']) expect(restored).not.toHaveProperty(field);
+  });
+
+  test('persists bulk progress in resumable chunks and completes idempotently', async () => {
+    const db = admin.firestore();
+    const targetIds = Array.from({ length: 205 }, (_, index) => `bulk-report-${index}`);
+    const batch = db.batch();
+    targetIds.forEach((id, index) => batch.set(db.collection('user_reports').doc(id), {
+      reportedUid: `user-${index}`, reporterUid: 'reporter-bulk', reason: 'spam', status: 'new', createdAtMs: index + 1,
+    }));
+    await batch.commit();
+    const preview = await previewThroughCallable({
+      action: 'report_archive_bulk', targetId: 'bulk-selection', reason: 'Archive reviewed batch', requestId: 'preview-bulk', payload: { targetIds },
+    });
+    const applied = await adminApplySafetyModerationMutation.run(request({
+      previewId: preview.previewId, confirmation: preview.preview.confirmation, reason: preview.preview.reason,
+      requestId: 'apply-bulk', idempotencyKey: 'operation-bulk',
+    })) as unknown as Row;
+    expect(applied.bulk).toMatchObject({ status: 'running', targetCount: 205, processedCount: 200, remainingCount: 5 });
+    const manifestId = String(applied.bulkManifestId);
+    expect((await db.collection('admin_safety_moderation_bulk_operations').doc(manifestId).get()).data()).toMatchObject({ status: 'running', cursor: 200 });
+
+    const resumeData = { manifestId, reason: 'Finish reviewed batch', requestId: 'resume-bulk', idempotencyKey: 'operation-resume-bulk' };
+    const resumed = await adminResumeSafetyModerationBulk.run(request(resumeData)) as unknown as Row;
+    const replayed = await adminResumeSafetyModerationBulk.run(request(resumeData)) as unknown as Row;
+    expect(resumed.bulk).toMatchObject({ status: 'completed', processedCount: 205, remainingCount: 0 });
+    expect(replayed).toMatchObject({ replayed: true, bulk: { status: 'completed', processedCount: 205 } });
+    const archived = await db.collection('user_reports').where('status', '==', 'archived').get();
+    expect(archived.size).toBe(205);
   });
 
   test('bans and unbans with separate approvals while restoring the captured leaderboard state', async () => {

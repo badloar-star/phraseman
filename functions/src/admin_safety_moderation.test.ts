@@ -14,6 +14,7 @@ import {
   parseSafetyModerationMutationInput,
   parseSafetyModerationRequest,
   projectSafetyModerationApproval,
+  projectSafetyModerationHistory,
   safetyModerationAccessScope,
   requiredSafetyModerationMutationPermission,
   requiredSafetyModerationPermission,
@@ -199,15 +200,27 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(projectSafetyModerationApproval('approval-1', { type: 'safety_moderation', status: 'pending', expiresAtMs: 400 }, 'admin-2', 500)).toBeNull();
   });
 
+  test('projects a bounded history row with explicit restore and bulk progress state', () => {
+    expect(projectSafetyModerationHistory('history-1', {
+      action: 'report_rename', targetId: 'report-1', actorUid: 'admin-1', reason: 'Rename abuse',
+      createdAtMs: 100, targetCount: 1, beforeFingerprint: 'before', afterFingerprint: 'after',
+    })).toMatchObject({ historyId: 'history-1', reversible: true, canRestore: true });
+    expect(projectSafetyModerationHistory('history-bulk', {
+      action: 'report_archive_bulk', targetId: 'selection', actorUid: 'admin-1', createdAtMs: 100,
+      targetCount: 205, bulkManifestId: 'bulk-1', bulkStatus: 'running', processedCount: 200,
+    })).toMatchObject({ reversible: false, canRestore: false, bulkManifestId: 'bulk-1', bulkStatus: 'running', processedCount: 200 });
+  });
+
   test('registers strict preview and approval callables', () => {
     const source = fs.readFileSync(path.join(__dirname, 'admin_safety_moderation.ts'), 'utf8');
-    for (const callable of ['adminPreviewSafetyModerationMutation', 'adminRequestSafetyModerationApproval', 'adminListSafetyModerationApprovals', 'adminApproveSafetyModerationMutation']) {
+    for (const callable of ['adminPreviewSafetyModerationMutation', 'adminRequestSafetyModerationApproval', 'adminListSafetyModerationApprovals', 'adminListSafetyModerationHistory', 'adminApproveSafetyModerationMutation']) {
       expect(source).toMatch(new RegExp(`${callable}\\s*=\\s*onCall\\([\\s\\S]*?enforceAppCheck:\\s*true`));
     }
     const indexSource = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
     expect(indexSource).toContain('adminPreviewSafetyModerationMutation');
     expect(indexSource).toContain('adminRequestSafetyModerationApproval');
     expect(indexSource).toContain('adminListSafetyModerationApprovals');
+    expect(indexSource).toContain('adminListSafetyModerationHistory');
     expect(indexSource).toContain('adminApproveSafetyModerationMutation');
   });
 
@@ -227,5 +240,8 @@ describe('Admin Safety & Moderation read contract', () => {
     expect(source).toMatch(/adminApplySafetyModerationMutation[\s\S]*?runTransaction/);
     const indexSource = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
     expect(indexSource).toContain('adminApplySafetyModerationMutation');
+    expect(source).toMatch(/adminResumeSafetyModerationBulk\s*=\s*onCall\([\s\S]*?enforceAppCheck:\s*true/);
+    expect(source).toContain('admin_safety_moderation_bulk_operations');
+    expect(indexSource).toContain('adminResumeSafetyModerationBulk');
   });
 });

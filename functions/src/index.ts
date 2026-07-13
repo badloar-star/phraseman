@@ -1632,8 +1632,10 @@ export {
   adminPreviewSafetyModerationMutation,
   adminRequestSafetyModerationApproval,
   adminListSafetyModerationApprovals,
+  adminListSafetyModerationHistory,
   adminApproveSafetyModerationMutation,
   adminApplySafetyModerationMutation,
+  adminResumeSafetyModerationBulk,
 } from './admin_safety_moderation';
 export { adminPreviewManualAccess, adminApplyManualAccess } from './admin_manual_access';
 export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';

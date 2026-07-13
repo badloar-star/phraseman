@@ -189,6 +189,9 @@ WITH raw_base AS (
     ROW_NUMBER() OVER (PARTITION BY COALESCE(
       (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'event_id'),
       CONCAT(event_name, ':', user_pseudo_id, ':', CAST(event_timestamp AS STRING))
+    ), COALESCE(
+      (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_mode'),
+      '__no_soft_upsell_mode__'
     ) ORDER BY event_timestamp) AS duplicate_rank
   FROM ${table}
   WHERE _TABLE_SUFFIX BETWEEN @fromSuffix AND @toSuffix

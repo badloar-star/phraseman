@@ -5,6 +5,7 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, resolveAdminRole } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { vipRevokeProgressFields } from './vip_revoke';
+import { resolveCanonicalStableId } from './admin_user_profile';
 
 if (admin.apps.length === 0) admin.initializeApp();
 const REGION = 'us-central1';
@@ -21,6 +22,33 @@ function roleFor(request: { auth?: { token?: Row } }) {
   const role = resolveAdminRole(request.auth.token);
   if (!role || !hasPermission(role, 'money.manual_access.write')) throw new HttpsError('permission-denied', 'Role cannot manage Plus access');
   return role;
+}
+
+async function resolveManualAccessIdentity(
+  db: FirebaseFirestore.Firestore,
+  requestedUid: string,
+  read: (ref: FirebaseFirestore.DocumentReference) => Promise<FirebaseFirestore.DocumentSnapshot>,
+) {
+  const requestedRef = db.collection('users').doc(requestedUid);
+  const requestedSnap = await read(requestedRef);
+  if (!requestedSnap.exists) throw new HttpsError('not-found', 'user_not_found');
+  const requestedUser = record(requestedSnap.data());
+  const linkedAuth = record(requestedUser.linkedAuth);
+  const providerUid = clean(requestedUser.firebaseAuthUid || linkedAuth.providerUid, 160);
+  const authLinkSnap = providerUid ? await read(db.collection('auth_links').doc(providerUid)) : null;
+  const authLink = authLinkSnap?.exists ? record(authLinkSnap.data()) : null;
+  const authLinkStableId = clean(authLink?.stable_id ?? authLink?.stableUid, 160);
+  const candidateIds = [...new Set([requestedUid, providerUid, clean(requestedUser.canonicalStableId, 160), authLinkStableId].filter(Boolean))];
+  const candidateSnaps = await Promise.all(candidateIds.map((uid) => read(db.collection('users').doc(uid))));
+  const users = new Map(candidateSnaps.filter((snap) => snap.exists).map((snap) => [snap.id, record(snap.data())]));
+  const resolution = resolveCanonicalStableId({ requestedUid, user: requestedUser, authLink, existingUserIds: new Set(users.keys()) });
+  const canonicalUser = users.get(resolution.canonicalUid);
+  if (!canonicalUser) throw new HttpsError('failed-precondition', 'canonical_user_not_found');
+  const anchor = {
+    requestedUid, canonicalUid: resolution.canonicalUid, identityReason: resolution.reason,
+    providerUid: resolution.providerUid, authLinkStableId,
+  };
+  return { ...anchor, canonicalUser, identityFingerprint: hash(anchor) };
 }
 
 export function parseManualAccessInput(value: unknown) {
@@ -67,12 +95,9 @@ export const adminPreviewManualAccess = onCall({ region: REGION, enforceAppCheck
   try { input = parseManualAccessInput(request.data); } catch (error) { throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'invalid_manual_access'); }
   const data = record(request.data); const reason = clean(data.reason, 500); const requestId = clean(data.requestId, 160);
   if (!reason || !requestId) throw new HttpsError('invalid-argument', 'reason and requestId required');
-  const db = admin.firestore(); const userRef = db.collection('users').doc(input.uid); const userSnap = await userRef.get();
-  if (!userSnap.exists) throw new HttpsError('not-found', 'user_not_found');
-  const user = record(userSnap.data());
-  if (user.identityHidden === true && clean(user.canonicalStableId, 160) && clean(user.canonicalStableId, 160) !== input.uid) throw new HttpsError('failed-precondition', 'canonical_uid_required');
-  const effectiveAtMs = Date.now(); const before = accessProjection(record(user.progress)); const afterProgress = applyManualAccess(record(user.progress), input.action, input.months, effectiveAtMs); const after = accessProjection(afterProgress);
-  const packet = { ...input, reason, effectiveAtMs, before, after, beforeFingerprint: hash(before) }; const fingerprint = hash(packet); const confirmation = `PLUS_ACCESS/${input.action}/${input.uid}/${fingerprint.slice(0, 12)}`;
+  const db = admin.firestore(); const identity = await resolveManualAccessIdentity(db, input.uid, (ref) => ref.get());
+  const effectiveAtMs = Date.now(); const before = accessProjection(record(identity.canonicalUser.progress)); const afterProgress = applyManualAccess(record(identity.canonicalUser.progress), input.action, input.months, effectiveAtMs); const after = accessProjection(afterProgress);
+  const packet = { requestedUid: input.uid, uid: identity.canonicalUid, action: input.action, months: input.months, identityReason: identity.identityReason, identityFingerprint: identity.identityFingerprint, reason, effectiveAtMs, before, after, beforeFingerprint: hash(before) }; const fingerprint = hash(packet); const confirmation = `PLUS_ACCESS/${input.action}/${identity.canonicalUid}/${fingerprint.slice(0, 12)}`;
   const previewRef = db.collection('admin_manual_access_previews').doc();
   await previewRef.create({ actorUid: request.auth!.uid, requestId, ...packet, fingerprint, confirmation, createdAtMs: effectiveAtMs, expiresAtMs: effectiveAtMs + PREVIEW_TTL_MS });
   return { ok: true, previewId: previewRef.id, ...packet, fingerprint, confirmation, consequence: input.action === 'revoke' ? 'Revokes only admin VIP fields; store/RevenueCat fields are preserved.' : 'Grants admin VIP access.', expiresAtMs: effectiveAtMs + PREVIEW_TTL_MS };
@@ -90,9 +115,9 @@ export const adminApplyManualAccess = onCall({ region: REGION, enforceAppCheck: 
     if (!previewSnap.exists) throw new HttpsError('not-found', 'manual_access_preview_not_found');
     const preview = record(previewSnap.data());
     if (preview.actorUid !== actorUid || preview.confirmation !== confirmation || preview.reason !== reason || preview.consumedAtMs || Number(preview.expiresAtMs || 0) <= Date.now()) throw new HttpsError('failed-precondition', 'manual_access_preview_invalid');
-    const input = parseManualAccessInput(preview); const userRef = db.collection('users').doc(input.uid); const userSnap = await tx.get(userRef);
-    if (!userSnap.exists) throw new HttpsError('not-found', 'user_not_found');
-    const user = record(userSnap.data()); const progress = record(user.progress); const before = accessProjection(progress);
+    const identity = await resolveManualAccessIdentity(db, clean(preview.requestedUid || preview.uid, 160), (ref) => tx.get(ref));
+    if (identity.canonicalUid !== preview.uid || identity.identityFingerprint !== preview.identityFingerprint) throw new HttpsError('failed-precondition', 'manual_access_identity_changed');
+    const input = parseManualAccessInput(preview); const userRef = db.collection('users').doc(identity.canonicalUid); const progress = record(identity.canonicalUser.progress); const before = accessProjection(progress);
     if (hash(before) !== preview.beforeFingerprint) throw new HttpsError('failed-precondition', 'manual_access_changed_after_preview');
     const nextProgress = applyManualAccess(progress, input.action, input.months, Number(preview.effectiveAtMs)); const after = accessProjection(nextProgress); const nowMs = Date.now();
     const audit = createAuditRecord({ action: `manual_access.${input.action}`, actorUid, role, entity: { collection: 'users', id: input.uid }, reason, before, after, rollbackReference: `users/${input.uid}:vip_fields`, requestId, timestamp: new Date(nowMs).toISOString() });

@@ -163,4 +163,36 @@ describe('admin application control callables', () => {
     await run(adminApplyManualAccess, request({ previewId: revokePreview.previewId, confirmation: revokePreview.confirmation, reason: 'grant withdrawn', requestId: 'manual-apply-2', idempotencyKey: 'manual-op-2' }));
     expect(state.store.users['stable-1']?.progress).toMatchObject({ vip_active: 'false', vip_admin_override: 'false', premium_plan: 'yearly' });
   });
+
+  test('uses auth_links as the authoritative manual-access target instead of the requested local UID', async () => {
+    const state = makeDb({
+      users: {
+        local: { firebaseAuthUid: 'provider-1', progress: { vip_active: 'false' } },
+        canonical: { firebaseAuthUid: 'provider-1', progress: { vip_active: 'false' } },
+      },
+      auth_links: { 'provider-1': { stable_id: 'canonical' } },
+    });
+    const preview = await run(adminPreviewManualAccess, request({ uid: 'local', action: 'grant_forever', reason: 'identity linked grant', requestId: 'identity-preview-1' }));
+    expect(preview).toMatchObject({ requestedUid: 'local', uid: 'canonical', identityReason: 'auth_link' });
+    await run(adminApplyManualAccess, request({ previewId: preview.previewId, confirmation: preview.confirmation, reason: 'identity linked grant', requestId: 'identity-apply-1', idempotencyKey: 'identity-op-1' }));
+    expect(state.store.users.local?.progress.vip_active).toBe('false');
+    expect(state.store.users.canonical?.progress.vip_active).toBe('true');
+  });
+
+  test('blocks manual access when the auth_links canonical target changes after preview', async () => {
+    const state = makeDb({
+      users: {
+        local: { firebaseAuthUid: 'provider-2', progress: { vip_active: 'false' } },
+        'canonical-a': { firebaseAuthUid: 'provider-2', progress: { vip_active: 'false' } },
+        'canonical-b': { firebaseAuthUid: 'provider-2', progress: { vip_active: 'false' } },
+      },
+      auth_links: { 'provider-2': { stable_id: 'canonical-a' } },
+    });
+    const preview = await run(adminPreviewManualAccess, request({ uid: 'local', action: 'grant_forever', reason: 'identity race check', requestId: 'identity-preview-2' }));
+    state.store.auth_links['provider-2'] = { stable_id: 'canonical-b' };
+    await expect(run(adminApplyManualAccess, request({ previewId: preview.previewId, confirmation: preview.confirmation, reason: 'identity race check', requestId: 'identity-apply-2', idempotencyKey: 'identity-op-2' })))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'manual_access_identity_changed' });
+    expect(state.store.users['canonical-a']?.progress.vip_active).toBe('false');
+    expect(state.store.users['canonical-b']?.progress.vip_active).toBe('false');
+  });
 });

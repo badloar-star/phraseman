@@ -72,4 +72,20 @@ describe('Admin v2 read-only analytics workspace', () => {
     expect(monthly).toContain("hasVerifiedCallablePermission(auth, 'money.read')");
     expect(monthly).toContain("new HttpsError('permission-denied'");
   });
+
+  test('installs safe callable adapters before asynchronous Firebase startup', () => {
+    const app = read('admin/v2/scripts/admin-analytics-app.js');
+    const installIndex = app.indexOf('installUnavailableCallableAdapters();');
+    const firebaseBootIndex = app.indexOf('createAnalyticsAdminActions({ onAuth })');
+
+    expect(installIndex).toBeGreaterThan(-1);
+    expect(firebaseBootIndex).toBeGreaterThan(installIndex);
+    for (const callable of [
+      'callAdminProductAnalytics',
+      'callAdminSubscriptionAnalytics',
+      'callAdminMonthlyDecisionPack',
+    ]) {
+      expect(app).toContain(`globalThis.${callable} = unavailableCallable;`);
+    }
+  });
 });

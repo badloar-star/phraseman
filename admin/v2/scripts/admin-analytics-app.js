@@ -86,6 +86,17 @@ function installCallableAdapters() {
   globalThis.callAdminMonthlyDecisionPack = async (input) => ({ data: await actions.generateMonthlyDecisionPack(input) });
 }
 
+function installUnavailableCallableAdapters() {
+  const unavailableCallable = async () => {
+    const error = new Error('Сервис аналитики ещё запускается. Повторите через несколько секунд.');
+    error.code = 'unavailable';
+    throw error;
+  };
+  globalThis.callAdminProductAnalytics = unavailableCallable;
+  globalThis.callAdminSubscriptionAnalytics = unavailableCallable;
+  globalThis.callAdminMonthlyDecisionPack = unavailableCallable;
+}
+
 async function onAuth(nextAuthState) {
   authState = nextAuthState;
   renderAuth();
@@ -112,6 +123,7 @@ document.getElementById('auth-action')?.addEventListener('click', async () => {
   }
 });
 
+installUnavailableCallableAdapters();
 createAnalyticsAdminActions({ onAuth }).then((createdActions) => {
   actions = createdActions;
   installCallableAdapters();

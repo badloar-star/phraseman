@@ -34,7 +34,7 @@ describe('Admin v2 migration coverage', () => {
   it('reports capability migration truth without overstating action-level completion', () => {
     expect(board.source).toMatchObject({
       buttons: 471,
-      functions: 1019,
+      functions: 1021,
       legacyFiles: [
         'admin/index.html',
         'admin/testers.html',

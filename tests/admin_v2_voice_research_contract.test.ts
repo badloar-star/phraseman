@@ -51,4 +51,13 @@ describe('Admin v2 Voice & Research Center', () => {
     expect(source).toContain('error');
     expect(source).toContain('data-user-profile-uid');
   });
+
+  test('redirects legacy entry points while preserving a disabled emergency archive', () => {
+    const legacy = read('admin/index.html');
+    expect(legacy).toContain('installNativeVoiceResearchRedirects');
+    expect(legacy).toContain("legacyArchive') === '1'");
+    expect(legacy).toContain("'ideas', 'ideas-decided', 'surveys', 'onboarding-sources', 'cancel-surveys'");
+    expect(legacy).toContain('data-voice-research-archive');
+    expect(legacy).toContain('pointer-events:none!important');
+  });
 });

@@ -40206,5 +40206,33 @@
   };
 })();
 </script>
+<script>
+/* Voice & Research cutover. Default legacy entry points move to the protected
+   native workspace. ?legacyArchive=1 keeps an emergency comparison surface,
+   with every control disabled so it cannot mutate production data. */
+(function installNativeVoiceResearchRedirects() {
+  var nativeTabs = new Set(['ideas', 'ideas-decided', 'surveys', 'onboarding-sources', 'cancel-surveys']);
+  var archiveMode = new URLSearchParams(window.location.search).get('legacyArchive') === '1';
+  var originalSwitchTab = window.switchTab;
+  if (!archiveMode && typeof originalSwitchTab === 'function') {
+    window.switchTab = function switchTabVoiceResearchV2(tab, opts) {
+      if (nativeTabs.has(String(tab || ''))) {
+        window.location.href = './v2/index.html#' + encodeURIComponent(String(tab));
+        return;
+      }
+      return originalSwitchTab.call(this, tab, opts);
+    };
+    var initialTab = decodeURIComponent(String(window.location.hash || '').replace(/^#/, '').split(':').pop() || '');
+    if (nativeTabs.has(initialTab)) window.location.replace('./v2/index.html#' + encodeURIComponent(initialTab));
+    return;
+  }
+  if (archiveMode) {
+    document.documentElement.setAttribute('data-voice-research-archive', 'true');
+    var style = document.createElement('style');
+    style.textContent = '[data-voice-research-archive="true"] #tab-ideas :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-ideas-decided :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-surveys :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-onboarding-sources :is(button,input,textarea,select),[data-voice-research-archive="true"] #tab-cancel-surveys :is(button,input,textarea,select){pointer-events:none!important;opacity:.58!important}';
+    document.head.appendChild(style);
+  }
+})();
+</script>
 </body>
 </html>

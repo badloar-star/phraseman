@@ -12,6 +12,12 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
   banners: 'application',
   'remote-config': 'application',
   users: 'users',
+  'voice-research': 'voice-research',
+  ideas: 'voice-research',
+  'ideas-decided': 'voice-research',
+  surveys: 'voice-research',
+  'onboarding-sources': 'voice-research',
+  'cancel-surveys': 'voice-research',
   'daily-briefing': 'daily-briefing',
   'report-center': 'report-center',
   support: 'support',
@@ -39,7 +45,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
 });
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts']);
+const SUB_ROUTES = new Set(['support', 'emails', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel', 'explain-cache', 'compass', 'review-promo', 'alerts', 'voice-research']);
 
 function routeFromLocation() {
   const capabilityRoute = resolveCapabilityHash(globalThis.location.hash);

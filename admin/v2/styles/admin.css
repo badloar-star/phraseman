@@ -367,6 +367,17 @@ table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; }
 .mobile-only { display: none; }
+.voice-research-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.voice-source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-top: 14px; }
+.voice-source-grid small { display: block; margin-top: 5px; }
+.voice-survey-layout { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1.4fr); gap: 16px; align-items: start; }
+.voice-survey-select { width: 100%; text-align: left; cursor: pointer; }
+.voice-card { align-items: start; }
+.voice-card > div:first-child { min-width: 0; }
+.voice-card p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.voice-idea-editor { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.voice-idea-editor > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--green); font-weight: 760; }
+.voice-locale-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 
 @media (max-width: 1080px) {
   .admin-shell { grid-template-columns: 78px minmax(0, 1fr); }
@@ -403,7 +414,7 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .card-header > .actions .button, .page-header > .actions .button { max-width: 100%; white-space: normal; }
   .auth-status { max-width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .topbar-actions { min-width: 0; }
-  .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid { grid-template-columns: 1fr; }
+  .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid, .voice-survey-layout, .voice-locale-grid { grid-template-columns: 1fr; }
   .report-reply-grid .full { grid-column: auto; }
   .factory-steps { position: static; grid-template-columns: repeat(4, minmax(68px, 1fr)); overflow: auto; }
   .factory-step { display: flex; min-height: 48px; padding: 9px; }

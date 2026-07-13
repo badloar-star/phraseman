@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-13T00:40:34.717Z",
+  "generatedAt": "2026-07-13T03:43:07.598Z",
   "source": {
     "buttons": 471,
     "functions": 1019,
@@ -291,8 +291,8 @@
       "route": "users",
       "legacyTab": "ideas",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "voice-research",
       "inventory": {
         "buttons": 1,
         "functions": 0,
@@ -300,7 +300,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "ideas-decided",
@@ -308,8 +308,8 @@
       "route": "users",
       "legacyTab": "ideas-decided",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "voice-research",
       "inventory": {
         "buttons": 1,
         "functions": 0,
@@ -317,7 +317,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "surveys",
@@ -325,8 +325,8 @@
       "route": "users",
       "legacyTab": "surveys",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "voice-research",
       "inventory": {
         "buttons": 5,
         "functions": 0,
@@ -334,7 +334,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "onboarding-sources",
@@ -342,8 +342,8 @@
       "route": "users",
       "legacyTab": "onboarding-sources",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "voice-research",
       "inventory": {
         "buttons": 1,
         "functions": 0,
@@ -351,7 +351,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "safety-flags",
@@ -410,8 +410,8 @@
       "route": "users",
       "legacyTab": "cancel-surveys",
       "legacyPage": null,
-      "status": "fallback",
-      "nativeRoute": null,
+      "status": "guarded",
+      "nativeRoute": "voice-research",
       "inventory": {
         "buttons": 2,
         "functions": 0,
@@ -419,7 +419,7 @@
         "linkedWritesWithoutConfirm": 0,
         "linkedWritesWithoutAudit": 0
       },
-      "notes": "Функция доступна через встроенный старый интерфейс или отдельную ссылку до пофункционального переноса."
+      "notes": "Нативный экран использует серверную функцию с проверкой прав. Полнота переноса каждой операции проверяется отдельно."
     },
     {
       "capabilityId": "beta-testers",
@@ -30882,8 +30882,8 @@
       "total": 59,
       "inventory": 0,
       "ported": 0,
-      "fallback": 33,
-      "guarded": 26,
+      "fallback": 28,
+      "guarded": 31,
       "blocked": 0
     },
     "buttons": {

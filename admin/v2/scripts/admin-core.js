@@ -2,6 +2,9 @@ import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-cap
 import { completeAnalyticsLoad } from './admin-analytics-state.js';
 import { renderAdminAnalytics } from './admin-analytics-view.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
+import { createVoiceResearchController } from './admin-voice-research-controller.js';
+import { createVoiceResearchState } from './admin-voice-research-state.js';
+import { renderVoiceResearchCenter } from './admin-voice-research-view.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -44,16 +47,17 @@ const PAGES = Object.freeze({
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
   'asset-studio': { title: 'DALL-E Asset Studio', description: 'Генерация изображений и ассетов через безопасный серверный процесс «Создать → Проверить → Опубликовать».' },
   campaigns: { title: 'Кампании', description: 'Сообщения внутри приложения, аудитории, опросы и история откликов.' },
+  'voice-research': { title: 'Голос пользователей', description: 'Идеи, опросы, источники привлечения и причины отмены в одном рабочем месте.' },
 });
 
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  owner: new Set(['users.read', 'users.research.read', 'users.research.export', 'users.research.write', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
+  admin: new Set(['users.read', 'users.research.read', 'users.research.export', 'users.research.write', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'content.cache.read', 'content.cache.export', 'content.cache.reset', 'application.config.write', 'application.compass.read', 'application.compass.write', 'application.compass.approve', 'application.review_promo.read', 'application.review_promo.write', 'application.alerts.read', 'application.alerts.write', 'application.alerts.test', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', 'emails.directory.read', 'emails.directory.export', 'emails.directory.backfill', 'emails.campaigns.read', 'emails.campaigns.write', 'emails.campaigns.approve', 'emails.campaigns.cancel']),
   content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
+  analyst: new Set(['users.read', 'users.research.read', 'users.research.export', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
-  support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
-  moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
+  support: new Set(['users.read', 'users.research.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
+  moderator: new Set(['users.read', 'users.research.read', 'reports.read', 'reports.status.write']),
 });
 
 const FACTORY_STEPS = Object.freeze([
@@ -150,10 +154,12 @@ const state = {
   reviewPromo: { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' },
   alerts: { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' },
   plusControl: { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' },
+  voiceResearch: createVoiceResearchState(),
   manualAccess: { preview: null, operationKeys: {}, error: '' },
 };
 
 let actions = null;
+let voiceResearchController = null;
 let initialized = false;
 let requestedUserHandled = false;
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
@@ -1899,7 +1905,7 @@ function renderAlerts() {
 function renderCurrentPage() {
   const target = document.getElementById('app');
   if (!target) return;
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts };
+  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, emails: renderEmails, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'explain-cache': renderExplainCache, compass: renderCompass, 'review-promo': renderReviewPromo, alerts: renderAlerts, 'voice-research': () => renderVoiceResearchCenter(state.voiceResearch, { escapeHtml, can }) };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -3167,11 +3173,30 @@ function previewExpiredAppMessageCleanup() {
   return setMessage('Предпросмотр очистки готов. Проверьте количество перед удалением.', 'success');
 }
 
+function getVoiceResearchController() {
+  if (!voiceResearchController) {
+    voiceResearchController = createVoiceResearchController({
+      getModel: () => state.voiceResearch,
+      setModel: (value) => { state.voiceResearch = value; },
+      actions: () => actions,
+      render: renderCurrentPage,
+      route: () => state.route,
+      authorized: () => state.authorized && can('users.research.read'),
+      message: setMessage,
+      errorMessage,
+      id,
+      download: (name, text) => downloadTextFile(name, text, 'text/csv;charset=utf-8'),
+    });
+  }
+  return voiceResearchController;
+}
+
 async function handleAction(action, target) {
   if (!actions) return;
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action.startsWith('voice-')) return getVoiceResearchController().handle(action, target);
   if (action === 'load-plus-control' || action === 'apply-plus-control-filter') {
     return runBusy(() => loadPlusControl(false), 'Plus Control Center пересчитан на сервере.');
   }
@@ -4233,6 +4258,7 @@ export function setAdminActions(nextActions) {
   maybeLoadCompassWorkspace();
   maybeLoadReviewPromo();
   maybeLoadAlerts();
+  getVoiceResearchController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
@@ -4280,6 +4306,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('application.review_promo.read')) state.reviewPromo = { state: 'idle', workspace: null, responses: [], responseSummary: null, responseFilter: 'all', responseQuery: '', responseNextCursor: '', responseTruncated: false, preview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('application.alerts.read')) state.alerts = { state: 'idle', workspace: null, draft: null, preview: null, testPreview: null, operationKeys: {}, error: '' };
   if (!state.authorized || !can('money.read')) state.plusControl = { state: 'idle', section: 'premium', view: 'accounts', filter: 'premium', query: '', items: [], nextCursor: '', workspace: null, migrationPreview: null, operationKeys: {}, error: '' };
+  if (!state.authorized || !can('users.research.read')) state.voiceResearch = createVoiceResearchState();
   if (!state.authorized || !can('money.manual_access.write')) state.manualAccess = { preview: null, operationKeys: {}, error: '' };
   renderCurrentPage();
   maybeLoadOperationalBriefing();
@@ -4291,13 +4318,15 @@ export function setAuthState(auth) {
   maybeLoadReviewPromo();
   maybeLoadAlerts();
   maybeLoadPlusControl();
+  getVoiceResearchController().maybeLoad();
   maybeOpenRequestedUser();
 }
 
 export function renderRoute(route, capabilityId = '') {
   state.route = PAGES[route] ? route : 'overview';
   const capability = capabilityById(capabilityId);
-  state.selectedCapabilityId = capability?.route === state.route ? capability.id : '';
+  state.selectedCapabilityId = capability && (capability.route === state.route || capability.nativeRoute === state.route) ? capability.id : '';
+  if (state.route === 'voice-research') getVoiceResearchController().selectCapability(capability?.id || capabilityId);
   if (state.route === 'money' && ['premium', 'vip', 'plus-radar'].includes(capability?.id)) {
     const section = capability.id === 'plus-radar' ? 'radar' : capability.id;
     const view = section === 'radar' ? 'radar' : 'accounts';
@@ -4316,6 +4345,7 @@ export function renderRoute(route, capabilityId = '') {
   maybeLoadReviewPromo();
   maybeLoadAlerts();
   maybeLoadPlusControl();
+  getVoiceResearchController().maybeLoad();
   maybeOpenRequestedUser();
 }
 

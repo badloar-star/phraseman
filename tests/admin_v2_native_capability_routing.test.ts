@@ -23,11 +23,11 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly twenty-six proven native capabilities as guarded', () => {
+  test('marks exactly thirty-one proven native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
     expect(registry).toHaveLength(59);
-    expect(native).toHaveLength(26);
+    expect(native).toHaveLength(31);
     expect(native.map(({ id, nativeRoute }) => [id, nativeRoute])).toEqual(expect.arrayContaining([
       ['analytics', 'analytics'],
       ['alerts', 'alerts'],
@@ -44,6 +44,8 @@ describe('Admin v2 native capability routing', () => {
       ['emails', 'emails'],
       ['explain-cache', 'explain-cache'],
       ['gmail-support', 'support'],
+      ['ideas', 'voice-research'],
+      ['ideas-decided', 'voice-research'],
       ['openai-budget', 'diagnostics'],
       ['ops-log', 'diagnostics'],
       ['overview', 'overview'],
@@ -53,6 +55,9 @@ describe('Admin v2 native capability routing', () => {
       ['remote-config', 'application'],
       ['reports', 'report-center'],
       ['review-promo', 'review-promo'],
+      ['surveys', 'voice-research'],
+      ['onboarding-sources', 'voice-research'],
+      ['cancel-surveys', 'voice-research'],
       ['users', 'users'],
       ['website-inbox', 'support'],
     ]));

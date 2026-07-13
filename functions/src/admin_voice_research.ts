@@ -119,8 +119,18 @@ function safeSurveyConfig(id: string, value: unknown): Row {
 }
 
 async function readSurveys(db: FirebaseFirestore.Firestore, input: ReturnType<typeof parseVoiceResearchRequest>): Promise<VoiceSnapshotPayload> {
-  const configsSnap = await db.collection('shard_surveys').limit(SURVEYS_LIMIT + 1).get();
+  const [configsSnap, historySnap] = await Promise.all([
+    db.collection('shard_surveys').limit(SURVEYS_LIMIT + 1).get(),
+    db.collection('admin_voice_research_history').orderBy('createdAtMs', 'desc').limit(500).get(),
+  ]);
   const surveys = configsSnap.docs.slice(0, SURVEYS_LIMIT).map((doc) => safeSurveyConfig(doc.id, doc.data()));
+  const surveyIds = new Set(surveys.map((survey) => clean(survey.surveyId, 80)));
+  const surveyHistory = historySnap.docs.map((doc) => {
+    const row = record(doc.data()); const action = clean(row.action, 40); const targetId = safeId(row.targetId, 80);
+    if (!action.startsWith('survey_') || !targetId) return null;
+    return Object.freeze({ id: safeId(doc.id, 180), action, targetId, before: row.before ? safeSurveyConfig(targetId, row.before) : null, after: row.after ? safeSurveyConfig(targetId, row.after) : null, reason: clean(row.reason, 500), actorUid: clean(row.actorUid, 180), createdAtMs: finite(row.createdAtMs) });
+  }).filter((row): row is NonNullable<typeof row> => row !== null);
+  const deletedSurveys = surveyHistory.filter((row) => row.action === 'survey_delete' && !surveyIds.has(row.targetId)).filter((row, index, rows) => rows.findIndex((candidate) => candidate.targetId === row.targetId) === index);
   let items: Row[] = []; let stats: Row = {}; const sources: Row[] = [source('shard_surveys', Math.min(configsSnap.size, SURVEYS_LIMIT), SURVEYS_LIMIT, configsSnap.size > SURVEYS_LIMIT, 'Конфигурации опросов.')];
   if (input.selectedSurveyId) {
     const [statsSnap, responsesSnap] = await Promise.all([
@@ -133,7 +143,7 @@ async function readSurveys(db: FirebaseFirestore.Firestore, input: ReturnType<ty
     items = projected.filter((row) => !query || JSON.stringify(row).toLowerCase().includes(query)) as unknown as Row[];
     sources.push(source('shard_survey_responses', Math.min(responsesSnap.size, RESPONSES_LIMIT), RESPONSES_LIMIT, responsesSnap.size > RESPONSES_LIMIT, 'Лента ответов ограничена отдельно от сохранённой all-time статистики.'));
   }
-  return { generatedAtMs: Date.now(), view: input.view, items, summary: { surveys, selectedSurveyId: input.selectedSurveyId, stats }, sources };
+  return { generatedAtMs: Date.now(), view: input.view, items, summary: { surveys, selectedSurveyId: input.selectedSurveyId, stats, surveyHistory: input.selectedSurveyId ? surveyHistory.filter((row) => row.targetId === input.selectedSurveyId).slice(0, 30) : [], deletedSurveys }, sources };
 }
 
 async function readOnboarding(db: FirebaseFirestore.Firestore, input: ReturnType<typeof parseVoiceResearchRequest>): Promise<VoiceSnapshotPayload> {

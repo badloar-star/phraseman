@@ -94,6 +94,10 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const getPlusControlWorkspaceCallable = httpsCallable(functionsUs, 'adminGetPlusControlWorkspace');
   const previewLegacyPlusMigrationCallable = httpsCallable(functionsUs, 'adminPreviewLegacyPlusMigration');
   const applyLegacyPlusMigrationCallable = httpsCallable(functionsUs, 'adminApplyLegacyPlusMigration');
+  const getVoiceResearchWorkspaceCallable = httpsCallable(functionsUs, 'adminGetVoiceResearchWorkspace');
+  const previewVoiceResearchMutationCallable = httpsCallable(functionsUs, 'adminPreviewVoiceResearchMutation');
+  const applyVoiceResearchMutationCallable = httpsCallable(functionsUs, 'adminApplyVoiceResearchMutation');
+  const draftIdeaDecisionCallable = httpsCallable(functionsUs, 'adminDraftIdeaDecision');
   const websiteInboxListCallable = httpsCallable(functionsUs, 'adminWebsiteInboxList');
   const websiteInboxMarkReadCallable = httpsCallable(functionsUs, 'adminWebsiteInboxMarkRead');
   const listAssetJobsCallable = httpsCallable(functionsUs, 'adminListAssetJobs');
@@ -210,6 +214,10 @@ export async function createFirebaseAdminActions({ onAuth }) {
     getPlusControlWorkspace: async (input) => unwrap(await getPlusControlWorkspaceCallable(input)),
     previewLegacyPlusMigration: async (input) => unwrap(await previewLegacyPlusMigrationCallable(input)),
     applyLegacyPlusMigration: async (input) => unwrap(await applyLegacyPlusMigrationCallable(input)),
+    getVoiceResearchWorkspace: async (input) => unwrap(await getVoiceResearchWorkspaceCallable(input)),
+    previewVoiceResearchMutation: async (input) => unwrap(await previewVoiceResearchMutationCallable(input)),
+    applyVoiceResearchMutation: async (input) => unwrap(await applyVoiceResearchMutationCallable(input)),
+    draftIdeaDecision: async (input) => unwrap(await draftIdeaDecisionCallable(input)),
     listWebsiteInbox: async (input) => unwrap(await websiteInboxListCallable(input)),
     markWebsiteInboxRead: async (input) => unwrap(await websiteInboxMarkReadCallable(input)),
     listAssetJobs: async (input) => unwrap(await listAssetJobsCallable(input)),

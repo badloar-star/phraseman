@@ -222,6 +222,74 @@ describe('buildStatsInsightAnalysis', () => {
     expect(second.blocks.week.block).toBe('week');
   });
 
+  test('keeps the default highest-priority selection when no policy is supplied', () => {
+    const result = buildStatsInsightAnalysis(snapshot());
+
+    expect(result.blocks.week.id).toBe('week.minutes-trend-up');
+    expect(result.blocks.longTerm.id).toBe('longTerm.active-days-trend-up');
+    expect(result.blocks.comparison.id).toBe('comparison.verified-total-XP');
+    expect(result.blocks.lifetime.id).toBe('lifetime.weak-category');
+  });
+
+  test('recreates an earlier rotated selection from preferred observation ids', () => {
+    const input = snapshot();
+    const defaults = buildStatsInsightAnalysis(input);
+    const defaultIds = Object.values(defaults.blocks).map((block) => block.id);
+    const rotated = buildStatsInsightAnalysis(input, { previousObservationIds: defaultIds });
+    const rotatedIds = Object.values(rotated.blocks).map((block) => block.id);
+
+    const restored = buildStatsInsightAnalysis(input, { preferredObservationIds: rotatedIds });
+
+    expect(Object.values(restored.blocks).map((block) => block.id)).toEqual(rotatedIds);
+    expect(restored.fingerprint).toBe(rotated.fingerprint);
+  });
+
+  test('rotates at a new window when previous observation ids are supplied as options', () => {
+    const first = buildStatsInsightAnalysis(snapshot());
+    const second = buildStatsInsightAnalysis(snapshot(), {
+      previousObservationIds: [first.blocks.week.id],
+    });
+
+    expect(second.blocks.week.id).not.toBe(first.blocks.week.id);
+    expect(second.blocks.week.block).toBe('week');
+  });
+
+  test('falls back safely when preferred observation ids are stale or unavailable', () => {
+    const expected = buildStatsInsightAnalysis(snapshot());
+    const actual = buildStatsInsightAnalysis(snapshot(), {
+      preferredObservationIds: ['week.removed-candidate', 'lifetime.no-longer-valid'],
+    });
+
+    expect(actual).toEqual(expected);
+  });
+
+  test('does not use a preferred id from one block for another block', () => {
+    const input = snapshot();
+    const defaults = buildStatsInsightAnalysis(input);
+    const rotatedWeek = buildStatsInsightAnalysis(input, [defaults.blocks.week.id]).blocks.week;
+
+    const result = buildStatsInsightAnalysis(input, {
+      preferredObservationIds: [defaults.blocks.longTerm.id, rotatedWeek.id],
+    });
+
+    expect(result.blocks.week.id).toBe(rotatedWeek.id);
+    expect(result.blocks.longTerm.id).toBe(defaults.blocks.longTerm.id);
+    expect(result.blocks.week.block).toBe('week');
+    expect(result.blocks.longTerm.block).toBe('longTerm');
+  });
+
+  test('does not mutate selection policy arrays or options', () => {
+    const defaults = buildStatsInsightAnalysis(snapshot());
+    const preferredObservationIds = [defaults.blocks.week.id];
+    const previousObservationIds = [defaults.blocks.longTerm.id];
+    const policy = { preferredObservationIds, previousObservationIds };
+    const before = JSON.parse(JSON.stringify(policy));
+
+    buildStatsInsightAnalysis(snapshot(), policy);
+
+    expect(policy).toEqual(before);
+  });
+
   test('selects a direct lifetime milestone when no weak category is available', () => {
     const input = snapshot({
       lifetime: { words: 640, phrases: 120, quizzes: 30, arenaWins: 3, daysActive: 90 },

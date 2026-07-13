@@ -20,6 +20,11 @@ export interface StatsInsightAnalysis {
   generatedFromCompleteSnapshot: true;
 }
 
+export interface StatsInsightSelectionPolicy {
+  preferredObservationIds?: readonly string[];
+  previousObservationIds?: readonly string[];
+}
+
 /**
  * Complete, already joined stats input used by both deterministic fallback copy and
  * the later server request. `dailyMinutes7` is an array (rather than TypeScript's
@@ -494,9 +499,28 @@ const lifetimeCandidates = (s: Normalized): Candidate[] => {
   return result;
 };
 
-const choose = (candidates: Candidate[], previousIds: ReadonlySet<string>): Candidate => {
+const choose = (
+  candidates: Candidate[],
+  preferredIds: ReadonlySet<string>,
+  previousIds: ReadonlySet<string>,
+): Candidate => {
   const ranked = [...candidates].sort((a, b) => b.priority - a.priority || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const preferred = ranked.find((item) => preferredIds.has(item.id));
+  if (preferred) return preferred;
   return ranked.find((item) => !previousIds.has(item.id)) ?? ranked[0];
+};
+
+const selectionPolicy = (
+  value: readonly string[] | StatsInsightSelectionPolicy,
+): Required<StatsInsightSelectionPolicy> => {
+  if (Array.isArray(value)) {
+    return { preferredObservationIds: [], previousObservationIds: value };
+  }
+  const policy = value as StatsInsightSelectionPolicy;
+  return {
+    preferredObservationIds: policy.preferredObservationIds ?? [],
+    previousObservationIds: policy.previousObservationIds ?? [],
+  };
 };
 
 const stableFingerprint = (semantic: unknown): string => {
@@ -511,15 +535,17 @@ const stableFingerprint = (semantic: unknown): string => {
 
 export function buildStatsInsightAnalysis(
   snapshot: StatsInsightsSnapshot,
-  previousObservationIds: readonly string[] = [],
+  selection: readonly string[] | StatsInsightSelectionPolicy = [],
 ): StatsInsightAnalysis {
   const normalized = normalize(snapshot);
-  const previousIds = new Set(previousObservationIds);
+  const policy = selectionPolicy(selection);
+  const preferredIds = new Set(policy.preferredObservationIds);
+  const previousIds = new Set(policy.previousObservationIds);
   const blocks: StatsInsightAnalysis['blocks'] = {
-    week: choose(weekCandidates(normalized), previousIds),
-    longTerm: choose(longTermCandidates(normalized), previousIds),
-    comparison: choose(comparisonCandidates(normalized), previousIds),
-    lifetime: choose(lifetimeCandidates(normalized), previousIds),
+    week: choose(weekCandidates(normalized), preferredIds, previousIds),
+    longTerm: choose(longTermCandidates(normalized), preferredIds, previousIds),
+    comparison: choose(comparisonCandidates(normalized), preferredIds, previousIds),
+    lifetime: choose(lifetimeCandidates(normalized), preferredIds, previousIds),
   };
   const selectedIds = [blocks.week.id, blocks.longTerm.id, blocks.comparison.id, blocks.lifetime.id];
 

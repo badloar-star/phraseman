@@ -104,6 +104,25 @@ runIfEmulator('Admin Community Operations transactions', () => {
     expect((await db.collection('league_chat_messages').doc('admin-message-1').get()).data()).toMatchObject({ groupId: 'group-9', weekId: '2026-W29', leagueId: 4, authorUid: 'admin:admin-one', authorName: 'Phraseman Support', kind: 'user', text: 'Official league update', status: 'visible', reportCount: 0, adminAuthored: true, adminAuthoredBy: 'admin-one' });
   });
 
+  it('publishes an admin Help Board reply and updates the topic atomically', async () => {
+    const db = admin.firestore();
+    const topic = { boardKey: 'en:ru', targetLang: 'en', uiLang: 'ru', title: 'Question', text: 'Topic text', status: 'visible', commentCount: 2, lastActivityAt: 1000, updatedAt: 1000 };
+    const parent = { topicId: 'topic-reply-1', boardKey: 'en:ru', targetLang: 'en', uiLang: 'ru', text: 'Parent comment text', authorUid: 'help-user-2', authorName: 'Learner', status: 'visible', createdAt: 1200 };
+    await Promise.all([
+      db.collection('help_board_topics').doc('topic-reply-1').set(topic),
+      db.collection('help_board_comments').doc('parent-comment-1').set(parent),
+    ]);
+    const preview = await adminPreviewCommunityMutation.run(request({ action: 'help-admin-comment', targetId: 'admin-comment-1', reason: 'Publish an official reply in the existing topic', expectedVersion: 'missing', payload: { topicId: 'topic-reply-1', replyToCommentId: 'parent-comment-1', body: 'Official reply to the learner.', postAsName: 'Phraseman Support' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(preview, 'community-help-comment-1');
+    const replay = await adminApplyCommunityMutation.run(request({ previewId: preview.previewId, confirmation: preview.confirmation, idempotencyKey: 'community-help-comment-1' }, 'admin-one')) as unknown as Row;
+    expect(replay).toMatchObject({ replayed: true });
+    expect((await db.collection('help_board_comments').doc('admin-comment-1').get()).data()).toMatchObject({ schemaVersion: 1, policyVersion: 1, topicId: 'topic-reply-1', boardKey: 'en:ru', targetLang: 'en', uiLang: 'ru', text: 'Official reply to the learner.', authorUid: 'admin:admin-one', authorName: 'Phraseman Support', replyToCommentId: 'parent-comment-1', replyToAuthorUid: 'help-user-2', replyToAuthorName: 'Learner', replyToText: 'Parent comment text', replyToIsCompass: false, status: 'visible', helpfulScore: 0, reportCount: 0, adminAuthored: true, adminAuthoredBy: 'admin-one' });
+    const updatedTopic = (await db.collection('help_board_topics').doc('topic-reply-1').get()).data() as Row;
+    expect(updatedTopic.commentCount).toBe(3);
+    expect(Number(updatedTopic.lastActivityAt)).toBeGreaterThan(1000);
+    expect((await db.collection('admin_log').where('action', '==', 'community.help-admin-comment').get()).size).toBe(1);
+  });
+
   it('publishes community submissions from the unified moderator queue with the canonical inbox schema', async () => {
     const db = admin.firestore(); const queued = validSubmission(); await db.collection('community_pack_submissions').doc('queue-pack-1').set(queued);
     const preview = await adminPreviewCommunityMutation.run(request({ action: 'mod-queue-status', targetId: 'queue-pack-1', reason: 'Unified queue moderation completed', expectedVersion: documentVersion('queue-pack-1', queued), payload: { decision: 'approve', message: 'Queue approval' } }, 'admin-one')) as unknown as Row;

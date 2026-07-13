@@ -1432,6 +1432,54 @@ export function buildHelpBoardAdminTopic(params: {
   };
 }
 
+export function buildHelpBoardAdminComment(params: {
+  topicId: string;
+  topic: Record<string, unknown>;
+  text: unknown;
+  replyToCommentId?: string;
+  replyTo?: Record<string, unknown>;
+  postAsName?: unknown;
+  adminId: string;
+  adminAuthUid: string;
+  now: number;
+}): Record<string, unknown> {
+  const topicId = asText(params.topicId, 160);
+  const text = asText(params.text, MAX_COMMENT_LENGTH);
+  if (!topicId) throw new HttpsError('invalid-argument', 'topic_required');
+  if (text.length < 2) throw new HttpsError('invalid-argument', 'comment_too_short');
+  const replyToCommentId = asText(params.replyToCommentId, 160);
+  const replyTo = params.replyTo || {};
+  return {
+    schemaVersion: HELP_BOARD_SCHEMA_VERSION,
+    policyVersion: HELP_BOARD_POLICY_VERSION,
+    topicId,
+    boardKey: asText(params.topic.boardKey, 80),
+    targetLang: asText(params.topic.targetLang, 20),
+    uiLang: asText(params.topic.uiLang, 20),
+    text,
+    normalizedText: normalizeTermText(text),
+    authorUid: `admin:${asText(params.adminId, 160).toLowerCase()}`,
+    authorAuthUid: asText(params.adminAuthUid, 160),
+    authorName: asText(params.postAsName, 80) || 'Phraseman Support',
+    authorAvatar: '',
+    authorAura: '',
+    ...(replyToCommentId ? {
+      replyToCommentId,
+      replyToAuthorUid: asText(replyTo.authorUid, 160),
+      replyToAuthorName: asText(replyTo.authorName, 48),
+      replyToText: asText(replyTo.text, 140),
+      replyToIsCompass: replyTo.isCompass === true,
+    } : {}),
+    status: 'visible' satisfies HelpBoardStatus,
+    helpfulScore: 0,
+    reportCount: 0,
+    adminAuthored: true,
+    adminAuthoredBy: asText(params.adminId, 200),
+    createdAt: params.now,
+    updatedAt: params.now,
+  };
+}
+
 export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
   const token = request.auth?.token;
   const role = resolveAdminRole(token);

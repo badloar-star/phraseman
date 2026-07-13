@@ -9,9 +9,12 @@ import {
 } from './community_packs';
 import {
   buildHelpBoardAdminContentPatch,
+  buildHelpBoardAdminComment,
   buildHelpBoardAdminReportResolutionPatch,
   buildHelpBoardAdminRestrictionPatch,
   buildHelpBoardAdminTopic,
+  helpBoardBestScore,
+  helpBoardHotScore,
   type HelpBoardAdminContentAction,
   type HelpBoardAdminRestrictionAction,
 } from './help_board';
@@ -96,6 +99,7 @@ export function buildCommunityMutationPlan(action: string, _targetId: string, _b
     case 'help-queue-status': return { collection: 'help_board_moderation_queue', requiredPermission: 'community.help.write', consequence: 'Records the moderator decision for one Help Board review-queue item.' };
     case 'help-restriction': return { collection: 'help_board_restrictions', requiredPermission: 'community.help.write', consequence: 'Creates or removes a Help Board-only posting restriction.', allowMissing: true };
     case 'help-admin-post': return { collection: 'help_board_topics', requiredPermission: 'community.help.write', consequence: 'Creates an administrator Help Board topic.', allowMissing: true };
+    case 'help-admin-comment': return { collection: 'help_board_comments', requiredPermission: 'community.help.write', consequence: 'Publishes an administrator comment or reply and updates its Help Board topic.', allowMissing: true };
     case 'helpers-description': return { collection: 'remote_config', requiredPermission: 'community.help.write', consequence: 'Updates the public helpers-board description only.' };
     case 'league-chat-status': return { collection: 'league_chat_moderation_queue', requiredPermission: 'community.chat.write', consequence: 'Approves or rejects one queued league-chat message; global bans are not available here.' };
     case 'league-chat-report': return { collection: 'league_chat_reports', requiredPermission: 'community.chat.write', consequence: 'Resolves one league-chat report.' };
@@ -149,7 +153,7 @@ export const adminGetCommunityOperationDetail = onCall({ region: REGION, enforce
 
 export const adminPreviewCommunityMutation = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   const input = parseMutationEnvelope(request.data); const plan = planFor(input); const actor = requireNativePermission(request, plan.requiredPermission); let payload = input.payload;
-  if (['help-admin-post', 'league-chat-admin-message'].includes(input.action) && input.expectedVersion !== 'missing') {
+  if (['help-admin-post', 'help-admin-comment', 'league-chat-admin-message'].includes(input.action) && input.expectedVersion !== 'missing') {
     throw new HttpsError('invalid-argument', `${input.action} requires expectedVersion=missing`);
   }
   if (input.action === 'arena-placeholder-cleanup') {
@@ -168,7 +172,7 @@ export const adminApproveCommunityMutation = onCall({ region: REGION, enforceApp
   const { actorUid } = requireNativePermission(request, 'community.approve'); const data = asRecord(request.data); return approveNativeMutation(admin.firestore(), actorUid, cleanText(data.previewId, 160), cleanText(data.reason, 500));
 });
 
-const COMMUNITY_ACTIONS = new Set(['mod-queue-status', 'help-topic-status', 'help-comment-status', 'help-report-resolve', 'help-queue-status', 'help-restriction', 'help-admin-post', 'helpers-description', 'league-chat-status', 'league-chat-report', 'league-chat-message-status', 'league-chat-restriction', 'league-chat-admin-message', 'arena-profile-resync', 'arena-placeholder-cleanup', 'arena-wager-flag', 'arena-room-close', 'arena-room-delete', 'arena-session-finish']);
+const COMMUNITY_ACTIONS = new Set(['mod-queue-status', 'help-topic-status', 'help-comment-status', 'help-report-resolve', 'help-queue-status', 'help-restriction', 'help-admin-post', 'help-admin-comment', 'helpers-description', 'league-chat-status', 'league-chat-report', 'league-chat-message-status', 'league-chat-restriction', 'league-chat-admin-message', 'arena-profile-resync', 'arena-placeholder-cleanup', 'arena-wager-flag', 'arena-room-close', 'arena-room-delete', 'arena-session-finish']);
 export const adminApplyCommunityMutation = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   const actor = requireNativePermission(request, 'community.read'); const data = asRecord(request.data);
   return applyNativePatch({ db: admin.firestore(), packageId: 'community', ...actor, previewId: cleanText(data.previewId, 160), confirmation: cleanText(data.confirmation, 240), idempotencyKey: cleanText(data.idempotencyKey, 160), allowedActions: COMMUNITY_ACTIONS,
@@ -195,6 +199,27 @@ export const adminApplyCommunityMutation = onCall({ region: REGION, enforceAppCh
         return buildHelpBoardAdminRestrictionPatch({ uid: targetId, name: canonicalBefore.name, action: restriction, reason, sourceTargetType: 'admin', sourceTargetId: targetId, adminId: actor.actorUid, now: nowMs });
       }
       if (action === 'help-admin-post') return buildHelpBoardAdminTopic({ title: payload.title, text: payload.body || payload.text, targetLang: payload.targetLang, uiLang: payload.uiLang, postAsName: payload.postAsName, adminId: actor.actorUid, adminAuthUid: actor.actorUid, compassEnabled: payload.compassEnabled === true, now: nowMs });
+      if (action === 'help-admin-comment') {
+        const topicId = cleanText(payload.topicId, 160);
+        const replyToCommentId = cleanText(payload.replyToCommentId, 160);
+        if (!topicId) throw new HttpsError('invalid-argument', 'topic_required');
+        const topicRef = db.collection('help_board_topics').doc(topicId);
+        const replyRef = replyToCommentId ? db.collection('help_board_comments').doc(replyToCommentId) : null;
+        const [topicSnap, replySnap] = await Promise.all([tx.get(topicRef), replyRef ? tx.get(replyRef) : Promise.resolve(null)]);
+        if (!topicSnap.exists) throw new HttpsError('not-found', 'topic_not_found');
+        const topic = asRecord(topicSnap.data());
+        if (cleanText(topic.status, 40) !== 'visible') throw new HttpsError('failed-precondition', 'topic_not_visible');
+        let replyTo: NativeRow | undefined;
+        if (replyToCommentId) {
+          if (!replySnap?.exists) throw new HttpsError('not-found', 'reply_comment_not_found');
+          replyTo = asRecord(replySnap.data());
+          if (cleanText(replyTo.topicId, 160) !== topicId || cleanText(replyTo.status, 40) !== 'visible') throw new HttpsError('failed-precondition', 'reply_comment_not_visible_in_topic');
+        }
+        const nextCommentCount = Math.max(0, Number(topic.commentCount || 0)) + 1;
+        const nextTopicMeta = { helpfulScore: Number(topic.helpfulScore || 0), commentCount: nextCommentCount, reportCount: Number(topic.reportCount || 0), createdAt: Number(topic.createdAt || nowMs), lastActivityAt: nowMs };
+        tx.update(topicRef, { commentCount: admin.firestore.FieldValue.increment(1), lastActivityAt: nowMs, updatedAt: nowMs, hotScore: helpBoardHotScore(nextTopicMeta, nowMs), bestScore: helpBoardBestScore(nextTopicMeta) });
+        return buildHelpBoardAdminComment({ topicId, topic, text: payload.body || payload.text, replyToCommentId, replyTo, postAsName: payload.postAsName, adminId: actor.actorUid, adminAuthUid: actor.actorUid, now: nowMs });
+      }
       if (action === 'helpers-description') { return { texts: { ...asRecord(before.texts), top_helpers_description: cleanText(payload.description, 500) }, updatedAtIso: iso, updatedByUid: actor.actorUid }; }
       if (action === 'league-chat-status') {
         const status = cleanText(payload.status, 40);

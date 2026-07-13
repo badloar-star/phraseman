@@ -1,5 +1,6 @@
 import {
   buildCancellationSummary,
+  buildCancellationTrendFromCounts,
   buildOnboardingSourceSummary,
   csvCell,
   filterIdeaRows,
@@ -56,6 +57,16 @@ describe('Admin Voice & Research core', () => {
     expect(summary.byReason).toEqual({ technical_issues: 2, too_expensive: 2 });
     expect(summary.segments.price).toMatchObject({ count: 2, recentShare: 1, previousShare: 0, trend: 'up' });
     expect(summary.segments.technical).toMatchObject({ count: 2, recentShare: 0, previousShare: 1, trend: 'down' });
+  });
+
+  test('builds exact cancellation trends independently from the capped feed', () => {
+    const result = buildCancellationTrendFromCounts({
+      recentTotal: 100, previousTotal: 50,
+      recentByReason: { too_expensive: 30, technical_issues: 10 },
+      previousByReason: { too_expensive: 5, technical_issues: 20 },
+    });
+    expect(result.price).toMatchObject({ recentShare: 0.3, previousShare: 0.1, trend: 'up' });
+    expect(result.technical).toMatchObject({ recentShare: 0.1, previousShare: 0.4, trend: 'down' });
   });
 
   test('preserves lifetime and longer VIP while never returning Store field patches', () => {

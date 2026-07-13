@@ -1625,6 +1625,7 @@ export { adminGetCompassWorkspace, adminPreviewCompassChange, adminRequestCompas
 export { adminGetVipSurveyWorkspace, adminListVipSurveyResponses, adminPreviewVipSurveyCampaign, adminApplyVipSurveyCampaign } from './admin_vip_survey_control';
 export { adminGetAlertsWorkspace, adminPreviewAlertsConfig, adminApplyAlertsConfig, adminPreviewAlertTest, adminQueueAlertTest } from './admin_alerts_control';
 export { adminGetPlusControlWorkspace, adminPreviewLegacyPlusMigration, adminApplyLegacyPlusMigration } from './admin_plus_control';
+export { adminGetVoiceResearchWorkspace } from './admin_voice_research';
 export { adminPreviewManualAccess, adminApplyManualAccess } from './admin_manual_access';
 export { adminListEmailContacts, adminExportEmailContacts } from './admin_email_control';
 export {

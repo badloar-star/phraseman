@@ -99,6 +99,20 @@ export function buildCancellationSummary(rows: readonly CancellationProjection[]
   return Object.freeze({ total: rows.length, byReason: Object.freeze(byReason), segments: Object.freeze(segments) });
 }
 
+export function buildCancellationTrendFromCounts(input: {
+  recentTotal: number; previousTotal: number;
+  recentByReason: Readonly<Record<string, number>>; previousByReason: Readonly<Record<string, number>>;
+}) {
+  const specs = { price: ['too_expensive'], value: ['not_enough_value', 'not_using_enough'], technical: ['technical_issues'] } as const;
+  return Object.freeze(Object.fromEntries(Object.entries(specs).map(([key, reasons]) => {
+    const recentCount = (reasons as readonly string[]).reduce((sum, reason) => sum + finite(input.recentByReason[reason]), 0);
+    const previousCount = (reasons as readonly string[]).reduce((sum, reason) => sum + finite(input.previousByReason[reason]), 0);
+    const recentShare = input.recentTotal > 0 ? recentCount / input.recentTotal : null;
+    const previousShare = input.previousTotal > 0 ? previousCount / input.previousTotal : null;
+    return [key, Object.freeze({ recentCount, previousCount, recentShare, previousShare, trend: trend(recentShare, previousShare) })];
+  })));
+}
+
 export function preserveIdeaRewardProgress(value: unknown, nowMs: number = Date.now()) {
   const progress = record(value); const nominalRewardUntilMs = nowMs + YEAR_MS;
   const vipActive = isVipActive(progress, nowMs);

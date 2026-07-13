@@ -3,6 +3,9 @@ import { hasAdminRole, type AdminRole } from './roles';
 export type AdminPermission =
   | 'users.read'
   | 'users.write'
+  | 'users.research.read'
+  | 'users.research.export'
+  | 'users.research.write'
   | 'money.read'
   | 'money.manual_access.write'
   | 'content.read'
@@ -103,6 +106,7 @@ const APPLICATION_OPERATIONS_PERMISSIONS: readonly AdminPermission[] = [
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
+    'users.research.read', 'users.research.export', 'users.research.write',
     'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
     'diagnostics.read', 'community.moderate', 'admin.roles.write',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
@@ -113,6 +117,7 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
   ]),
   admin: new Set([
     'users.read', 'users.write', 'money.read', 'money.manual_access.write',
+    'users.research.read', 'users.research.export', 'users.research.write',
     'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
     'diagnostics.read', 'community.moderate',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
@@ -121,10 +126,10 @@ const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>
     ...CACHE_ADMIN_PERMISSIONS,
     ...APPLICATION_OPERATIONS_PERMISSIONS,
   ]),
-  support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
+  support: new Set(['users.read', 'users.research.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
   content_editor: new Set(['content.read', 'content.draft.write', 'content.cache.read', 'content.cache.export', 'application.compass.read']),
-  moderator: new Set(['users.read', 'community.moderate', 'reports.read', 'reports.status.write']),
-  analyst: new Set(['users.read', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
+  moderator: new Set(['users.read', 'users.research.read', 'community.moderate', 'reports.read', 'reports.status.write']),
+  analyst: new Set(['users.read', 'users.research.read', 'users.research.export', 'money.read', 'content.read', 'content.cache.read', 'application.compass.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
   developer: new Set(['content.read', 'content.cache.read', 'application.compass.read', 'diagnostics.read', 'briefing.read', 'diagnostics.status.write']),
 };
 

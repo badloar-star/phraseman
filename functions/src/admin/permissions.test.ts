@@ -84,6 +84,18 @@ describe('admin permission matrix', () => {
     }
   });
 
+  it('separates Voice research reading, export and mutation roles', () => {
+    for (const role of ['owner', 'admin', 'support', 'moderator', 'analyst'] as const) {
+      expect(hasPermission(role, 'users.research.read')).toBe(true);
+    }
+    expect(hasPermission('analyst', 'users.research.export')).toBe(true);
+    expect(hasPermission('support', 'users.research.export')).toBe(false);
+    expect(hasPermission('moderator', 'users.research.export')).toBe(false);
+    expect(hasPermission('owner', 'users.research.write')).toBe(true);
+    expect(hasPermission('admin', 'users.research.write')).toBe(true);
+    expect(hasPermission('analyst', 'users.research.write')).toBe(false);
+  });
+
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
       'users.read', 'users.write', 'money.read', 'money.manual_access.write',
@@ -101,6 +113,7 @@ describe('admin permission matrix', () => {
       'application.compass.read', 'application.compass.write', 'application.compass.approve',
       'application.review_promo.read', 'application.review_promo.write',
       'application.alerts.read', 'application.alerts.write', 'application.alerts.test',
+      'users.research.read', 'users.research.export', 'users.research.write',
     ];
     permissions.forEach(permission => expect(hasPermission('owner', permission)).toBe(true));
   });

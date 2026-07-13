@@ -226,6 +226,7 @@ export async function applyNativePatch(args: {
     before: NativeRow;
     canonicalBefore: NativeRow;
     payload: NativeRow;
+    reason: string;
     nowMs: number;
     db: FirebaseFirestore.Firestore;
     tx: FirebaseFirestore.Transaction;
@@ -258,7 +259,7 @@ export async function applyNativePatch(args: {
     if ((!targetSnap.exists && preview.allowMissing !== true) || currentVersion !== preview.expectedVersion) throw new HttpsError('failed-precondition', 'target_changed_after_preview');
     const canonicalBefore = targetSnap.exists ? asRecord(targetSnap.data()) : {};
     const before = targetSnap.exists ? asRecord(safeProjection(canonicalBefore)) : {};
-    const patch = await args.transform({ action, targetId, before, canonicalBefore, payload: asRecord(preview.payload), nowMs, db: args.db, tx });
+    const patch = await args.transform({ action, targetId, before, canonicalBefore, payload: asRecord(preview.payload), reason: cleanText(preview.reason, 500), nowMs, db: args.db, tx });
     const deleteTarget = patch.__deleteTarget === true; const projectedPatch = { ...asRecord(safeProjection(patch)) }; delete projectedPatch.__deleteTarget;
     const after = deleteTarget ? { deleted: true } : { ...before, ...projectedPatch };
     const auditRef = args.db.collection('admin_log').doc();

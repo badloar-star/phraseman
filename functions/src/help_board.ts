@@ -1317,6 +1317,121 @@ export function validateHelpBoardAdminAction(value: unknown): string {
   return action;
 }
 
+export type HelpBoardAdminContentAction = 'hide' | 'restore' | 'delete';
+export type HelpBoardAdminRestrictionAction = 'restrict' | 'clear';
+
+export function buildHelpBoardAdminContentPatch(params: {
+  targetType: HelpBoardTargetType;
+  action: HelpBoardAdminContentAction;
+  reason?: unknown;
+  adminId: string;
+  now: number;
+}): Record<string, unknown> {
+  const reason = asText(params.reason, MAX_REPORT_REASON_LENGTH);
+  if (params.targetType === 'compass') {
+    return {
+      compassStatus: params.action === 'hide' || params.action === 'delete' ? 'hidden' : 'ready',
+      compassModeratedAt: params.now,
+      compassModeratedBy: params.adminId,
+      ...(params.action === 'delete' ? { compassDeletedAt: params.now, compassDeleteReason: reason } : {}),
+      updatedAt: params.now,
+    };
+  }
+  return {
+    status: params.action === 'restore' ? 'visible' : params.action === 'delete' ? 'deleted' : 'hidden',
+    moderatedAt: params.now,
+    moderatedBy: params.adminId,
+    ...(params.action === 'delete' ? { deletedAt: params.now, deleteReason: reason } : {}),
+    updatedAt: params.now,
+  };
+}
+
+export function buildHelpBoardAdminReportResolutionPatch(adminId: string, now: number): Record<string, unknown> {
+  return { status: 'resolved', resolvedAt: now, resolvedBy: adminId, updatedAt: now };
+}
+
+export function buildHelpBoardAdminRestrictionPatch(params: {
+  uid: string;
+  name?: unknown;
+  action: HelpBoardAdminRestrictionAction;
+  reason?: unknown;
+  sourceTargetType?: unknown;
+  sourceTargetId?: unknown;
+  adminId: string;
+  now: number;
+}): Record<string, unknown> {
+  const restricted = params.action === 'restrict';
+  return {
+    uid: asText(params.uid, 160),
+    name: asText(params.name, 80),
+    status: restricted ? 'restricted' : 'cleared',
+    reason: asText(params.reason, MAX_REPORT_REASON_LENGTH),
+    source: 'help_board',
+    sourceTargetType: asText(params.sourceTargetType, 20),
+    sourceTargetId: asText(params.sourceTargetId, 160),
+    updatedAt: params.now,
+    updatedBy: params.adminId,
+    ...(restricted
+      ? { restrictedAt: params.now, restrictedBy: params.adminId, restrictedUntil: 0 }
+      : { clearedAt: params.now, clearedBy: params.adminId, restrictedUntil: 0 }),
+  };
+}
+
+export function buildHelpBoardAdminTopic(params: {
+  title: unknown;
+  text: unknown;
+  targetLang: unknown;
+  uiLang: unknown;
+  postAsName?: unknown;
+  adminId: string;
+  adminAuthUid: string;
+  compassEnabled?: boolean;
+  now: number;
+}): Record<string, unknown> {
+  const title = asText(params.title, MAX_TITLE_LENGTH);
+  const text = asText(params.text, MAX_TOPIC_TEXT_LENGTH);
+  if (title.length < 4) throw new HttpsError('invalid-argument', 'title_too_short');
+  if (text.length < 8) throw new HttpsError('invalid-argument', 'question_too_short');
+  const scope = normalizeHelpBoardScope(params.targetLang, params.uiLang);
+  const compassEnabled = params.compassEnabled === true;
+  const baseScore = helpBoardHotScore({ helpfulScore: 0, commentCount: 0, reportCount: 0, createdAt: params.now, lastActivityAt: params.now }, params.now);
+  return {
+    schemaVersion: HELP_BOARD_SCHEMA_VERSION,
+    policyVersion: HELP_BOARD_POLICY_VERSION,
+    boardKey: scope.boardKey,
+    targetLang: scope.targetLang,
+    uiLang: scope.uiLang,
+    title,
+    text,
+    normalizedText: normalizeTermText(`${title}\n${text}`),
+    authorUid: `admin:${asText(params.adminId, 160).toLowerCase()}`,
+    authorAuthUid: asText(params.adminAuthUid, 160),
+    authorName: asText(params.postAsName, 80) || 'Phraseman Support',
+    authorAvatar: '',
+    authorAura: '',
+    status: 'visible' satisfies HelpBoardStatus,
+    moderationCategories: [],
+    moderationReasons: [],
+    compassAnswer: '',
+    compassStatus: compassEnabled ? 'pending' : 'hidden',
+    compassAllowed: compassEnabled,
+    compassModel: '',
+    compassRejectReason: '',
+    compassRequestedAt: compassEnabled ? params.now : 0,
+    helpfulScore: 0,
+    compassHelpfulScore: 0,
+    commentCount: 0,
+    reportCount: 0,
+    hotScore: baseScore,
+    bestScore: 0,
+    adminAuthored: true,
+    adminAuthoredBy: asText(params.adminId, 200),
+    createdAt: params.now,
+    updatedAt: params.now,
+    lastActivityAt: params.now,
+  };
+}
+
 export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
   const token = request.auth?.token;
   const role = resolveAdminRole(token);
@@ -1331,12 +1446,7 @@ export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: 
 
   const now = Date.now();
   if (targetType === 'report' || action === 'resolve_report') {
-    await db.collection(HELP_BOARD_REPORTS).doc(targetId).set({
-      status: 'resolved',
-      resolvedAt: now,
-      resolvedBy: adminEmail,
-      updatedAt: now,
-    }, { merge: true });
+    await db.collection(HELP_BOARD_REPORTS).doc(targetId).set(buildHelpBoardAdminReportResolutionPatch(adminEmail, now), { merge: true });
     return { ok: true };
   }
 
@@ -1389,21 +1499,9 @@ export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: 
     const authorUid = asText(request.data?.authorUid || data.authorUid, 160);
     if (!authorUid) throw new HttpsError('invalid-argument', 'author_required');
     const authorName = asText(data.authorName || request.data?.authorName || '', 80);
-    const status = action === 'restrict_author' ? 'restricted' : 'cleared';
-    await db.collection(HELP_BOARD_RESTRICTIONS).doc(authorUid).set({
-      uid: authorUid,
-      name: authorName,
-      status,
-      reason,
-      source: 'help_board',
-      sourceTargetType: targetType,
-      sourceTargetId: targetId,
-      updatedAt: now,
-      updatedBy: adminEmail,
-      ...(action === 'restrict_author'
-        ? { restrictedAt: now, restrictedBy: adminEmail, restrictedUntil: 0 }
-        : { clearedAt: now, clearedBy: adminEmail, restrictedUntil: 0 }),
-    }, { merge: true });
+    const restrictionAction: HelpBoardAdminRestrictionAction = action === 'restrict_author' ? 'restrict' : 'clear';
+    const restrictionPatch = buildHelpBoardAdminRestrictionPatch({ uid: authorUid, name: authorName, action: restrictionAction, reason, sourceTargetType: targetType, sourceTargetId: targetId, adminId: adminEmail, now });
+    await db.collection(HELP_BOARD_RESTRICTIONS).doc(authorUid).set(restrictionPatch, { merge: true });
     if (snap.exists) {
       await ref.set({
         adminAction: action === 'restrict_author' ? 'author_topic_restricted' : 'author_topic_unrestricted',
@@ -1412,26 +1510,10 @@ export const helpBoardAdminModerate = onCall({ region: REGION, enforceAppCheck: 
         updatedAt: now,
       }, { merge: true });
     }
-    return { ok: true, authorUid, status };
+    return { ok: true, authorUid, status: restrictionPatch.status };
   }
 
-  if (targetType === 'compass') {
-    await ref.set({
-      compassStatus: action === 'hide' || action === 'delete' ? 'hidden' : 'ready',
-      compassModeratedAt: now,
-      compassModeratedBy: adminEmail,
-      ...(action === 'delete' ? { compassDeletedAt: now, compassDeleteReason: reason } : {}),
-      updatedAt: now,
-    }, { merge: true });
-    return { ok: true };
-  }
-  await ref.set({
-    status: action === 'restore' ? 'visible' : action === 'delete' ? 'deleted' : 'hidden',
-    moderatedAt: now,
-    moderatedBy: adminEmail,
-    ...(action === 'delete' ? { deletedAt: now, deleteReason: reason } : {}),
-    updatedAt: now,
-  }, { merge: true });
+  await ref.set(buildHelpBoardAdminContentPatch({ targetType: targetType as HelpBoardTargetType, action: action as HelpBoardAdminContentAction, reason, adminId: adminEmail, now }), { merge: true });
   return { ok: true };
 });
 

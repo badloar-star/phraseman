@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { adminApplyCommunityMutation, adminApproveCommunityMutation, adminPreviewCommunityMutation, adminRequestCommunityApproval, adminResumeCommunityBulk } from './admin_community_operations';
+import { adminApplyCommunityMutation, adminApproveCommunityMutation, adminGetCommunityOperationsWorkspace, adminPreviewCommunityMutation, adminRequestCommunityApproval, adminResumeCommunityBulk } from './admin_community_operations';
 import { documentVersion } from './admin_native_operations';
 
 const EMULATOR = process.env.FIRESTORE_EMULATOR_HOST; const PROJECT_ID = process.env.GCLOUD_PROJECT || 'phraseman-ea0b3'; const runIfEmulator = EMULATOR ? describe : describe.skip;
@@ -35,10 +35,73 @@ runIfEmulator('Admin Community Operations transactions', () => {
   });
 
   it('moderates Help Board and league chat without creating a global ban path', async () => {
-    const db = admin.firestore(); const topic = { status: 'open', title: 'Help' }; const queued = { status: 'pending', text: 'Message' }; await Promise.all([db.collection('help_board_topics').doc('topic-1').set(topic), db.collection('league_chat_moderation_queue').doc('message-1').set(queued)]);
-    const helpPreview = await adminPreviewCommunityMutation.run(request({ action: 'help-topic-status', targetId: 'topic-1', reason: 'Resolved answer verified', expectedVersion: documentVersion('topic-1', topic), payload: { status: 'resolved' } }, 'admin-one')) as unknown as Row; await approveAndApply(helpPreview, 'community-help-1');
+    const db = admin.firestore(); const topic = { status: 'visible', title: 'Help' }; const queued = { status: 'pending', text: 'Message' }; await Promise.all([db.collection('help_board_topics').doc('topic-1').set(topic), db.collection('league_chat_moderation_queue').doc('message-1').set(queued)]);
+    const helpPreview = await adminPreviewCommunityMutation.run(request({ action: 'help-topic-status', targetId: 'topic-1', reason: 'Hide after moderator review', expectedVersion: documentVersion('topic-1', topic), payload: { status: 'hidden' } }, 'admin-one')) as unknown as Row; await approveAndApply(helpPreview, 'community-help-1');
     const chatPreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-status', targetId: 'message-1', reason: 'Message reviewed against league rules', expectedVersion: documentVersion('message-1', queued), payload: { status: 'rejected' } }, 'admin-one')) as unknown as Row; await approveAndApply(chatPreview, 'community-chat-1');
-    expect((await db.collection('help_board_topics').doc('topic-1').get()).data()).toMatchObject({ status: 'resolved' }); expect((await db.collection('league_chat_moderation_queue').doc('message-1').get()).data()).toMatchObject({ status: 'rejected' }); expect((await db.collection('global_bans').get()).empty).toBe(true); expect((await db.collection('admin_log').get()).size).toBe(2);
+    expect((await db.collection('help_board_topics').doc('topic-1').get()).data()).toMatchObject({ status: 'hidden', moderatedBy: 'admin-one' }); expect((await db.collection('league_chat_moderation_queue').doc('message-1').get()).data()).toMatchObject({ status: 'rejected' }); expect((await db.collection('global_bans').get()).empty).toBe(true); expect((await db.collection('admin_log').get()).size).toBe(2);
+  });
+
+  it('loads the canonical Help Board moderation queue in the native workspace', async () => {
+    const db = admin.firestore();
+    await Promise.all([
+      db.collection('help_board_topics').doc('topic-visible').set({ status: 'visible', title: 'Visible topic' }),
+      db.collection('help_board_moderation_queue').doc('help-review-1').set({ targetType: 'topic', status: 'review', decision: 'pending', text: 'Needs review' }),
+    ]);
+    const workspace = await adminGetCommunityOperationsWorkspace.run(request({ capabilityId: 'help-board', limit: 20 }, 'admin-one')) as unknown as Row;
+    expect((workspace.sections as Row).help_board_moderation_queue).toEqual(expect.arrayContaining([expect.objectContaining({ id: 'help-review-1' })]));
+  });
+
+  it('writes canonical Help Board restrictions and visible admin topics', async () => {
+    const db = admin.firestore();
+    const restrictionPreview = await adminPreviewCommunityMutation.run(request({ action: 'help-restriction', targetId: 'help-user-1', reason: 'Repeated topic spam', expectedVersion: 'missing', payload: { restriction: 'restrict' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(restrictionPreview, 'community-help-restrict-1');
+    expect((await db.collection('help_board_restrictions').doc('help-user-1').get()).data()).toMatchObject({ uid: 'help-user-1', status: 'restricted', reason: 'Repeated topic spam', restrictedUntil: 0, updatedBy: 'admin-one' });
+
+    const topicPreview = await adminPreviewCommunityMutation.run(request({ action: 'help-admin-post', targetId: 'admin-topic-1', reason: 'Publish an official Help Board answer', expectedVersion: 'missing', payload: { title: 'Official answer', body: 'A complete public Help Board answer.', targetLang: 'en', uiLang: 'ru', postAsName: 'Phraseman Support', compassEnabled: false } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(topicPreview, 'community-help-post-1');
+    expect((await db.collection('help_board_topics').doc('admin-topic-1').get()).data()).toMatchObject({ schemaVersion: 1, policyVersion: 1, boardKey: 'en:ru', targetLang: 'en', uiLang: 'ru', title: 'Official answer', text: 'A complete public Help Board answer.', authorUid: 'admin:admin-one', authorName: 'Phraseman Support', status: 'visible', helpfulScore: 0, compassHelpfulScore: 0, commentCount: 0, reportCount: 0, bestScore: 0, adminAuthored: true, compassStatus: 'hidden' });
+  });
+
+  it('applies canonical league-chat mute, ban and clear states', async () => {
+    const db = admin.firestore();
+    const mutePreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-restriction', targetId: 'chat-user-1', reason: 'Flooding chat', expectedVersion: 'missing', payload: { restriction: 'mute', durationHours: 24 } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(mutePreview, 'community-chat-mute-1');
+    const muted = (await db.collection('league_chat_bans').doc('chat-user-1').get()).data() as Row;
+    expect(muted).toMatchObject({ uid: 'chat-user-1', status: 'muted', reason: 'Flooding chat', updatedBy: 'admin-one' });
+    expect(Number(muted.mutedUntil)).toBeGreaterThan(Date.now() + 23 * 60 * 60 * 1000);
+
+    const clearPreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-restriction', targetId: 'chat-user-1', reason: 'Restriction reviewed and cleared', expectedVersion: documentVersion('chat-user-1', muted), payload: { restriction: 'clear' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(clearPreview, 'community-chat-clear-1');
+    expect((await db.collection('league_chat_bans').doc('chat-user-1').get()).data()).toMatchObject({ status: 'cleared', mutedUntil: 0, clearedBy: 'admin-one' });
+
+    const banPreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-restriction', targetId: 'chat-user-2', reason: 'Repeated severe abuse', expectedVersion: 'missing', payload: { restriction: 'ban' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(banPreview, 'community-chat-ban-1');
+    expect((await db.collection('league_chat_bans').doc('chat-user-2').get()).data()).toMatchObject({ uid: 'chat-user-2', status: 'banned', mutedUntil: 0, updatedBy: 'admin-one' });
+  });
+
+  it('deletes and restores an existing visible league-chat message canonically', async () => {
+    const db = admin.firestore(); const message = { groupId: 'group-1', weekId: '2026-W29', leagueId: 3, authorUid: 'chat-author', text: 'Visible message', status: 'visible', createdAt: 12345 };
+    await db.collection('league_chat_messages').doc('visible-message-1').set(message);
+    const deletePreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-message-status', targetId: 'visible-message-1', reason: 'Moderator removed the message', expectedVersion: documentVersion('visible-message-1', message), payload: { status: 'deleted' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(deletePreview, 'community-chat-delete-1');
+    const deleted = (await db.collection('league_chat_messages').doc('visible-message-1').get()).data() as Row;
+    expect(deleted).toMatchObject({ status: 'deleted', deletedBy: 'admin-one' });
+
+    const restorePreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-message-status', targetId: 'visible-message-1', reason: 'Moderator restored the message', expectedVersion: documentVersion('visible-message-1', deleted), payload: { status: 'visible' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(restorePreview, 'community-chat-restore-1');
+    const restored = (await db.collection('league_chat_messages').doc('visible-message-1').get()).data() as Row;
+    expect(restored).toMatchObject({ status: 'visible', restoredBy: 'admin-one' });
+    expect(restored.deletedAt).toBeUndefined();
+  });
+
+  it('requires missing versions for admin posts and creates a canonical league-chat message', async () => {
+    const db = admin.firestore(); const existingTopic = { status: 'visible', title: 'Existing topic' };
+    await db.collection('help_board_topics').doc('existing-topic-1').set(existingTopic);
+    await expect(adminPreviewCommunityMutation.run(request({ action: 'help-admin-post', targetId: 'existing-topic-1', reason: 'Must not replace an existing topic', expectedVersion: documentVersion('existing-topic-1', existingTopic), payload: { title: 'Replacement', body: 'This must never overwrite the original.', targetLang: 'en', uiLang: 'ru' } }, 'admin-one'))).rejects.toMatchObject({ code: 'invalid-argument' });
+
+    const messagePreview = await adminPreviewCommunityMutation.run(request({ action: 'league-chat-admin-message', targetId: 'admin-message-1', reason: 'Publish an official league-room message', expectedVersion: 'missing', payload: { roomId: 'group-9', weekId: '2026-W29', leagueId: 4, text: 'Official league update', postAsName: 'Phraseman Support' } }, 'admin-one')) as unknown as Row;
+    await approveAndApply(messagePreview, 'community-chat-admin-message-1');
+    expect((await db.collection('league_chat_messages').doc('admin-message-1').get()).data()).toMatchObject({ groupId: 'group-9', weekId: '2026-W29', leagueId: 4, authorUid: 'admin:admin-one', authorName: 'Phraseman Support', kind: 'user', text: 'Official league update', status: 'visible', reportCount: 0, adminAuthored: true, adminAuthoredBy: 'admin-one' });
   });
 
   it('publishes community submissions from the unified moderator queue with the canonical inbox schema', async () => {

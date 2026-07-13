@@ -149,6 +149,75 @@ function readNumber(value: unknown): number {
   return Number.isFinite(n) ? n : 0;
 }
 
+export type LeagueChatAdminRestrictionAction = 'mute' | 'ban' | 'clear';
+export type LeagueChatAdminMessageAction = 'delete' | 'restore';
+
+export function buildLeagueChatAdminRestrictionPatch(params: {
+  uid: string;
+  action: LeagueChatAdminRestrictionAction;
+  reason?: unknown;
+  durationHours?: unknown;
+  adminId: string;
+  now: number;
+}): Record<string, unknown> {
+  const uid = sanitizeText(params.uid).slice(0, 160);
+  const reason = sanitizeText(params.reason).slice(0, MAX_REPORT_REASON_LENGTH);
+  if (!uid) throw new HttpsError('invalid-argument', 'uid_required');
+  if (params.action === 'mute') {
+    const durationHours = Math.max(1, Math.min(168, Math.trunc(readNumber(params.durationHours) || 24)));
+    return { uid, status: 'muted', reason, mutedUntil: params.now + durationHours * 60 * 60 * 1000, updatedAt: params.now, updatedBy: params.adminId };
+  }
+  if (params.action === 'ban') {
+    return { uid, status: 'banned', reason, mutedUntil: 0, updatedAt: params.now, updatedBy: params.adminId };
+  }
+  return { uid, status: 'cleared', reason, mutedUntil: 0, clearedAt: params.now, clearedBy: params.adminId, updatedAt: params.now, updatedBy: params.adminId };
+}
+
+export function buildLeagueChatAdminMessageModerationPatch(params: {
+  action: LeagueChatAdminMessageAction;
+  adminId: string;
+  now: number;
+}): Record<string, unknown> {
+  if (params.action === 'delete') {
+    return { status: 'deleted', deletedAt: params.now, deletedBy: params.adminId, updatedAt: params.now };
+  }
+  return { status: 'visible', restoredAt: params.now, restoredBy: params.adminId, deletedAt: admin.firestore.FieldValue.delete(), updatedAt: params.now };
+}
+
+export function buildLeagueChatAdminMessage(params: {
+  groupId: unknown;
+  weekId: unknown;
+  leagueId: unknown;
+  text: unknown;
+  postAsName?: unknown;
+  adminId: string;
+  now: number;
+}): Record<string, unknown> {
+  const groupId = sanitizeText(params.groupId).slice(0, 160);
+  const weekId = sanitizeText(params.weekId).slice(0, 80);
+  const text = sanitizeText(params.text).slice(0, MAX_MESSAGE_LENGTH);
+  const leagueId = Math.trunc(readNumber(params.leagueId));
+  if (!groupId || !weekId || leagueId <= 0 || !text) throw new HttpsError('invalid-argument', 'groupId, weekId, leagueId and text required');
+  return {
+    groupId,
+    weekId,
+    leagueId,
+    authorUid: `admin:${sanitizeText(params.adminId).slice(0, 160).toLowerCase()}`,
+    authorName: sanitizeText(params.postAsName).slice(0, 80) || 'Phraseman Support',
+    authorAvatar: '',
+    authorAura: '',
+    kind: 'user',
+    text,
+    normalizedText: normalize(text),
+    status: 'visible',
+    reportCount: 0,
+    adminAuthored: true,
+    adminAuthoredBy: params.adminId,
+    createdAt: params.now,
+    updatedAt: params.now,
+  };
+}
+
 async function assertActiveChatUser(
   db: FirebaseFirestore.Firestore,
   stableUid: string,

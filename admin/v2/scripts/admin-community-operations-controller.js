@@ -2,8 +2,8 @@ import { COMMUNITY_OPERATION_CAPABILITIES } from './admin-community-operations-s
 
 const PERMISSIONS = Object.freeze({
   'mod-queue-status': 'community.moderate',
-  'help-topic-status': 'community.help.write', 'help-comment-status': 'community.help.write', 'help-report-resolve': 'community.help.write', 'help-restriction': 'community.help.write', 'help-admin-post': 'community.help.write', 'helpers-description': 'community.help.write',
-  'league-chat-status': 'community.chat.write', 'league-chat-report': 'community.chat.write', 'league-chat-restriction': 'community.chat.write', 'league-chat-admin-message': 'community.chat.write',
+  'help-topic-status': 'community.help.write', 'help-comment-status': 'community.help.write', 'help-report-resolve': 'community.help.write', 'help-queue-status': 'community.help.write', 'help-restriction': 'community.help.write', 'help-admin-post': 'community.help.write', 'helpers-description': 'community.help.write',
+  'league-chat-status': 'community.chat.write', 'league-chat-report': 'community.chat.write', 'league-chat-message-status': 'community.chat.write', 'league-chat-restriction': 'community.chat.write', 'league-chat-admin-message': 'community.chat.write',
   'arena-profile-resync': 'community.arena.write', 'arena-placeholder-cleanup': 'community.arena.destructive', 'arena-wager-flag': 'community.arena.economy.write',
   'arena-room-close': 'community.arena.write', 'arena-room-delete': 'community.arena.destructive', 'arena-session-finish': 'community.arena.write',
 });
@@ -25,13 +25,16 @@ export function createCommunityOperationsController({ getModel, setModel, action
 
   function payload(action) {
     if (action === 'mod-queue-status') return { decision: value('community-status'), message: value('community-resolution') };
-    if (action === 'help-topic-status' || action === 'help-comment-status') return { status: value('community-status') };
+    if (action === 'help-topic-status' || action === 'help-comment-status') return { status: value('community-help-content-status') };
     if (action === 'help-report-resolve' || action === 'league-chat-report') return { resolution: value('community-resolution') };
-    if (action === 'help-restriction' || action === 'league-chat-restriction') return { active: checked('community-active'), reason: value('community-resolution') };
-    if (action === 'help-admin-post') return { title: value('community-title'), body: value('community-body') };
+    if (action === 'help-queue-status') return { decision: value('community-help-queue-decision') };
+    if (action === 'help-restriction') return { restriction: value('community-help-restriction') };
+    if (action === 'league-chat-restriction') return { restriction: value('community-chat-restriction'), durationHours: Number(value('community-duration-hours') || 24) };
+    if (action === 'help-admin-post') return { title: value('community-title'), body: value('community-body'), targetLang: value('community-target-lang'), uiLang: value('community-ui-lang'), postAsName: value('community-post-as-name'), compassEnabled: checked('community-compass-enabled') };
     if (action === 'helpers-description') return { description: value('community-description') };
-    if (action === 'league-chat-status') return { status: value('community-status') };
-    if (action === 'league-chat-admin-message') return { roomId: value('community-room-id'), text: value('community-body') };
+    if (action === 'league-chat-status') return { status: value('community-chat-decision') };
+    if (action === 'league-chat-message-status') return { status: value('community-chat-message-status') };
+    if (action === 'league-chat-admin-message') return { roomId: value('community-room-id'), weekId: value('community-week-id'), leagueId: Number(value('community-league-id')), text: value('community-body'), postAsName: value('community-post-as-name') };
     if (action === 'arena-wager-flag') return { enabled: checked('community-active') };
     if (action === 'arena-session-finish') return { reason: value('community-resolution') };
     return {};

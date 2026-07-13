@@ -593,7 +593,10 @@ export function buildLingmanEmbedHtml(videoId: string): string {
 
         function onStateChange(event) {
           var state = stateNames[event.data];
-          if (!state) return;
+          if (!state) {
+            stopPolling();
+            return;
+          }
           if (state === 'playing') {
             emitState(state);
             startPolling();

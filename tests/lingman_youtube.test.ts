@@ -252,6 +252,18 @@ describe('lingman_youtube', () => {
     expect(bridge.intervalCount).toBe(0);
   });
 
+  it.each([-1, 5])('immediately stops polling without emitting on unsupported state %s', (state) => {
+    const bridge = createBridgeHarness();
+    bridge.emitYoutubeState(1);
+    const messagesBeforeUnsupportedState = bridge.parsedMessages();
+    expect(bridge.intervalCount).toBe(1);
+
+    bridge.emitYoutubeState(state);
+
+    expect(bridge.intervalCount).toBe(0);
+    expect(bridge.parsedMessages()).toEqual(messagesBeforeUnsupportedState);
+  });
+
   it('keeps one interval and gates it by analytics activity, visibility, and playback state', () => {
     const bridge = createBridgeHarness();
 

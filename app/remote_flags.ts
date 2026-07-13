@@ -54,6 +54,7 @@ export type RemoteNumberKey =
   | 'streak_freeze_cost_shards';
 
 export type RemoteBoolKey =
+  | 'weekly_review_ai_v2_enabled'
   | 'soft_upsell_first_lesson_enabled'
   | 'soft_upsell_free_lessons_complete_enabled'
   | 'soft_upsell_weekly_review_enabled'
@@ -271,6 +272,8 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
+  // Global client kill-switch only. Server owns percentage rollout by canonical stableUid.
+  weekly_review_ai_v2_enabled: false,
   // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.
   soft_upsell_first_lesson_enabled: true,
   soft_upsell_free_lessons_complete_enabled: true,

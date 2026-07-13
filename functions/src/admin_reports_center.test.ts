@@ -1,6 +1,12 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
   assertReportOperationReplay,
+  assertReportStatusCas,
+  buildAppErrorStatusConfirmation,
+  buildReportStatusAuditRecord,
+  buildReportStatusOperationRecord,
+  buildReportStatusRequestFingerprint,
+  buildReportStatusWritePatch,
   canonicalReportLane,
   isAllowedReportTransition,
   matchesReportFilters,
@@ -80,6 +86,77 @@ describe('admin reports center contracts', () => {
       source: 'user_reports', reportId: 'r1', expectedStatus: 'new', nextStatus: 'reviewed',
       reason: 'Handled', idempotencyKey: 'op-user-report', requestId: 'req-user-report',
     })).toThrow('safety_moderation_required');
+  });
+
+  test('requires exact deterministic confirmation for app_errors without changing other sources', () => {
+    const confirmation = buildAppErrorStatusConfirmation('app-error-1', 'new', 'fixed');
+    expect(confirmation).toBe('CONFIRM app_errors/app-error-1 new->fixed');
+    expect(parseReportStatusUpdateRequest({
+      source: 'app_errors', reportId: 'app-error-1', expectedStatus: 'new', nextStatus: 'fixed',
+      reason: 'Verified in Android 2.4.0', idempotencyKey: 'app-error-op-1', requestId: 'request-app-error-1', confirmation,
+    })).toMatchObject({ source: 'app_errors', confirmation });
+    for (const invalidConfirmation of ['', `${confirmation} `, 'CONFIRM app_errors/app-error-1 new->known']) {
+      expect(() => parseReportStatusUpdateRequest({
+        source: 'app_errors', reportId: 'app-error-1', expectedStatus: 'new', nextStatus: 'fixed',
+        reason: 'Verified in Android 2.4.0', idempotencyKey: 'app-error-op-1', requestId: 'request-app-error-1', confirmation: invalidConfirmation,
+      })).toThrow(HttpsError);
+    }
+    expect(() => parseReportStatusUpdateRequest({
+      source: 'error_reports', reportId: 'r1', expectedStatus: 'fixed', nextStatus: 'open', reason: 'Reopened after regression',
+      idempotencyKey: 'report-op-reopen', requestId: 'request-reopen',
+    })).not.toThrow();
+  });
+
+  test('preserves fixed-to-open app error reopening with CAS-relevant confirmation', () => {
+    const confirmation = buildAppErrorStatusConfirmation('app-error-2', 'fixed', 'open');
+    expect(isAllowedReportTransition('app_errors', 'fixed', 'open')).toBe(true);
+    expect(parseReportStatusUpdateRequest({
+      source: 'app_errors', reportId: 'app-error-2', expectedStatus: 'fixed', nextStatus: 'open',
+      reason: 'Regression reproduced', idempotencyKey: 'app-error-reopen-1', requestId: 'request-app-error-reopen-1', confirmation,
+    })).toMatchObject({ expectedStatus: 'fixed', nextStatus: 'open', confirmation });
+    expect(assertReportStatusCas('app_errors', 'fixed', 'fixed', 'open')).toBe('fixed');
+    expect(() => assertReportStatusCas('app_errors', 'known', 'fixed', 'open')).toThrow(HttpsError);
+    try { assertReportStatusCas('app_errors', 'known', 'fixed', 'open'); } catch (error) {
+      expect((error as HttpsError).code).toBe('failed-precondition');
+    }
+  });
+
+  test('fingerprints every meaningful command field so changed idempotent payloads conflict', () => {
+    const base = parseReportStatusUpdateRequest({
+      source: 'app_errors', reportId: 'app-error-3', expectedStatus: 'new', nextStatus: 'known',
+      reason: 'Known upstream outage', idempotencyKey: 'app-error-known-1', requestId: 'request-known-1',
+      confirmation: buildAppErrorStatusConfirmation('app-error-3', 'new', 'known'),
+    });
+    const fingerprint = buildReportStatusRequestFingerprint(base);
+    expect(buildReportStatusRequestFingerprint({ ...base })).toBe(fingerprint);
+    expect(buildReportStatusRequestFingerprint({ ...base, reason: 'Different reason' })).not.toBe(fingerprint);
+    expect(buildReportStatusRequestFingerprint({ ...base, requestId: 'request-known-2' })).not.toBe(fingerprint);
+    expect(buildReportStatusRequestFingerprint({ ...base, confirmation: 'different' })).not.toBe(fingerprint);
+    expect(() => assertReportOperationReplay({ actorUid: 'admin-1', requestFingerprint: fingerprint }, 'admin-1', buildReportStatusRequestFingerprint({ ...base, reason: 'Different reason' }))).toThrow('idempotency_conflict');
+  });
+
+  test('constructs modern and legacy status metadata plus structured operation and audit records', () => {
+    const input = parseReportStatusUpdateRequest({
+      source: 'app_errors', reportId: 'app-error-4', expectedStatus: 'reviewed', nextStatus: 'fixed',
+      reason: 'Fixed by release 2.4.1', idempotencyKey: 'app-error-fixed-1', requestId: 'request-fixed-1',
+      confirmation: buildAppErrorStatusConfirmation('app-error-4', 'reviewed', 'fixed'),
+    });
+    const fingerprint = buildReportStatusRequestFingerprint(input);
+    expect(buildReportStatusWritePatch(input, 'admin-1', 1_000)).toEqual({
+      status: 'fixed', adminStatusUpdatedAtMs: 1_000, adminStatusUpdatedAt: new Date(1_000).toISOString(),
+      adminStatusUpdatedBy: 'admin-1', adminStatusReason: 'Fixed by release 2.4.1', adminStatusRequestId: 'request-fixed-1',
+      reviewedAt: new Date(1_000).toISOString(), reviewedBy: 'admin-1',
+    });
+    expect(buildReportStatusOperationRecord(input, 'admin-1', 'audit-1', fingerprint, 1_000)).toMatchObject({
+      operationId: 'app-error-fixed-1', actorUid: 'admin-1', requestFingerprint: fingerprint,
+      source: 'app_errors', reportId: 'app-error-4', expectedStatus: 'reviewed', nextStatus: 'fixed',
+      reason: 'Fixed by release 2.4.1', requestId: 'request-fixed-1', auditId: 'audit-1', createdAtMs: 1_000,
+    });
+    expect(buildReportStatusAuditRecord(input, 'admin-1', 'developer', 1_000)).toMatchObject({
+      action: 'report.status.update', actorUid: 'admin-1', role: 'developer',
+      entity: { collection: 'app_errors', id: 'app-error-4' }, before: { status: 'reviewed' }, after: { status: 'fixed' },
+      reason: 'Fixed by release 2.4.1', requestId: 'request-fixed-1', idempotencyKey: 'app-error-fixed-1',
+    });
   });
 
   test('binds report status idempotency to the actor as well as the request fingerprint', () => {

@@ -1616,6 +1616,8 @@ export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
 export { adminListBetaTesters, adminUpdateBetaTester } from './admin_beta_testers';
 export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminListAppHealth, adminListAppActivity, adminGetAppHealthDetail, adminExportAppHealth } from './admin_app_health';
+export { adminListDiagnosticsArchive, adminGetDiagnosticsArchiveDetail } from './admin_diagnostics_archive';
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
 export { adminTranslateMessage } from './admin_translate';

@@ -197,6 +197,17 @@ export function isAllowedReportTransition(source: ReportSource, from: unknown, t
   return (SOURCE_CONFIG[source].transitions[current] ?? []).includes(next);
 }
 
+export function assertReportStatusCas(source: ReportSource, current: unknown, expected: unknown, next: unknown): string {
+  const currentStatus = normalizedStatus(source, current);
+  const expectedStatus = normalizedStatus(source, expected);
+  const nextStatus = normalizedStatus(source, next);
+  if (currentStatus !== expectedStatus) throw new HttpsError('failed-precondition', `report status changed to ${currentStatus}`);
+  if (!isAllowedReportTransition(source, currentStatus, nextStatus)) {
+    throw new HttpsError('failed-precondition', 'report status transition is no longer allowed');
+  }
+  return currentStatus;
+}
+
 export interface ReportStatusUpdateRequest {
   readonly source: ReportSource;
   readonly reportId: string;
@@ -205,6 +216,16 @@ export interface ReportStatusUpdateRequest {
   readonly reason: string;
   readonly idempotencyKey: string;
   readonly requestId: string;
+  readonly confirmation: string;
+}
+
+const STATUS_RE = /^[a-z][a-z0-9_-]{0,39}$/;
+
+export function buildAppErrorStatusConfirmation(reportId: string, expectedStatus: string, nextStatus: string): string {
+  if (!TOKEN_RE.test(reportId) || !STATUS_RE.test(expectedStatus) || !STATUS_RE.test(nextStatus)) {
+    throw new HttpsError('invalid-argument', 'app error confirmation fields are invalid');
+  }
+  return `CONFIRM app_errors/${reportId} ${expectedStatus}->${nextStatus}`;
 }
 
 export function parseReportStatusUpdateRequest(data: unknown): ReportStatusUpdateRequest {
@@ -217,11 +238,90 @@ export function parseReportStatusUpdateRequest(data: unknown): ReportStatusUpdat
   const reason = cleanText(data.reason, 500);
   const idempotencyKey = cleanText(data.idempotencyKey, 161);
   const requestId = cleanText(data.requestId, 161);
+  if (data.confirmation !== undefined && typeof data.confirmation !== 'string') {
+    throw new HttpsError('invalid-argument', 'confirmation must be a string');
+  }
+  const confirmation = typeof data.confirmation === 'string' && data.confirmation.length <= 300 ? data.confirmation : '';
   if (!TOKEN_RE.test(reportId) || !TOKEN_RE.test(idempotencyKey) || !TOKEN_RE.test(requestId) || !expectedStatus || !nextStatus || !reason) {
     throw new HttpsError('invalid-argument', 'reportId, statuses, reason, idempotencyKey and requestId are required');
   }
   if (!isAllowedReportTransition(source, expectedStatus, nextStatus)) throw new HttpsError('invalid-argument', 'report status transition is not allowed');
-  return Object.freeze({ source, reportId, expectedStatus, nextStatus, reason, idempotencyKey, requestId });
+  if (source === 'app_errors' && confirmation !== buildAppErrorStatusConfirmation(reportId, expectedStatus, nextStatus)) {
+    throw new HttpsError('invalid-argument', 'exact app error confirmation is required');
+  }
+  return Object.freeze({ source, reportId, expectedStatus, nextStatus, reason, idempotencyKey, requestId, confirmation });
+}
+
+export function buildReportStatusRequestFingerprint(input: ReportStatusUpdateRequest): string {
+  return JSON.stringify({
+    source: input.source,
+    reportId: input.reportId,
+    expectedStatus: input.expectedStatus,
+    nextStatus: input.nextStatus,
+    reason: input.reason,
+    idempotencyKey: input.idempotencyKey,
+    requestId: input.requestId,
+    confirmation: input.confirmation,
+  });
+}
+
+export function buildReportStatusWritePatch(input: ReportStatusUpdateRequest, actorUid: string, nowMs: number): Row {
+  const timestamp = new Date(nowMs).toISOString();
+  return Object.freeze({
+    status: input.nextStatus,
+    adminStatusUpdatedAtMs: nowMs,
+    adminStatusUpdatedAt: timestamp,
+    adminStatusUpdatedBy: actorUid,
+    adminStatusReason: input.reason,
+    adminStatusRequestId: input.requestId,
+    reviewedAt: timestamp,
+    reviewedBy: actorUid,
+  });
+}
+
+export function buildReportStatusOperationRecord(
+  input: ReportStatusUpdateRequest,
+  actorUid: string,
+  auditId: string,
+  requestFingerprint: string,
+  nowMs: number,
+): Row {
+  return Object.freeze({
+    operationId: input.idempotencyKey,
+    actorUid,
+    requestFingerprint,
+    source: input.source,
+    reportId: input.reportId,
+    expectedStatus: input.expectedStatus,
+    nextStatus: input.nextStatus,
+    reason: input.reason,
+    requestId: input.requestId,
+    confirmation: input.confirmation || null,
+    auditId,
+    createdAtMs: nowMs,
+  });
+}
+
+export function buildReportStatusAuditRecord(
+  input: ReportStatusUpdateRequest,
+  actorUid: string,
+  role: AdminRole,
+  nowMs: number,
+): Row {
+  return Object.freeze({
+    ts: new Date(nowMs).toISOString(),
+    timestampMs: nowMs,
+    actorUid,
+    role,
+    action: 'report.status.update',
+    entity: Object.freeze({ collection: input.source, id: input.reportId }),
+    before: Object.freeze({ status: input.expectedStatus }),
+    after: Object.freeze({ status: input.nextStatus }),
+    reason: input.reason,
+    requestId: input.requestId,
+    idempotencyKey: input.idempotencyKey,
+    details: Object.freeze({ confirmation: input.confirmation || null }),
+  });
 }
 
 export function assertReportOperationReplay(operation: unknown, actorUid: string, requestFingerprint: string): void {
@@ -331,7 +431,7 @@ export const adminUpdateReportStatus = onCall(
     const reportRef = db.collection(input.source).doc(input.reportId);
     const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
     const auditRef = db.collection('admin_log').doc();
-    const fingerprint = JSON.stringify({ source: input.source, reportId: input.reportId, expectedStatus: input.expectedStatus, nextStatus: input.nextStatus });
+    const fingerprint = buildReportStatusRequestFingerprint(input);
     const nowMs = Date.now();
     return db.runTransaction(async (tx) => {
       const [reportSnap, operationSnap] = await Promise.all([tx.get(reportRef), tx.get(operationRef)]);
@@ -342,18 +442,12 @@ export const adminUpdateReportStatus = onCall(
         return { ok: true, replayed: true, status: String(operation.nextStatus ?? input.nextStatus), auditId: String(operation.auditId ?? '') };
       }
       if (!reportSnap.exists) throw new HttpsError('not-found', 'report not found');
-      const currentStatus = normalizedStatus(input.source, reportSnap.data()?.status);
-      if (currentStatus !== input.expectedStatus) throw new HttpsError('failed-precondition', `report status changed to ${currentStatus}`);
-      if (!isAllowedReportTransition(input.source, currentStatus, input.nextStatus)) throw new HttpsError('failed-precondition', 'report status transition is no longer allowed');
-      tx.update(reportRef, { status: input.nextStatus, adminStatusUpdatedAtMs: nowMs, adminStatusUpdatedBy: context.actorUid });
-      tx.create(auditRef, {
-        ts: new Date(nowMs).toISOString(), actorUid: context.actorUid, role: context.role,
-        action: 'report.status.update', entity: { collection: input.source, id: input.reportId },
-        before: { status: currentStatus }, after: { status: input.nextStatus }, reason: input.reason, requestId: input.requestId,
-      });
+      const currentStatus = assertReportStatusCas(input.source, reportSnap.data()?.status, input.expectedStatus, input.nextStatus);
+      tx.update(reportRef, buildReportStatusWritePatch(input, context.actorUid, nowMs));
+      tx.create(auditRef, buildReportStatusAuditRecord(input, context.actorUid, context.role, nowMs));
       tx.create(operationRef, {
-        operationId: input.idempotencyKey, actorUid: context.actorUid, requestFingerprint: fingerprint, nextStatus: input.nextStatus,
-        auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        ...buildReportStatusOperationRecord(input, context.actorUid, auditRef.id, fingerprint, nowMs),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
       return { ok: true, replayed: false, status: input.nextStatus, auditId: auditRef.id };
     });

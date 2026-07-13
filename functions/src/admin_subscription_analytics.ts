@@ -61,6 +61,13 @@ export async function handleAdminSubscriptionAnalytics(
   const rangeDays = clampSubscriptionAnalyticsDays(request.data?.rangeDays);
   const store = normalizeSubscriptionStore(request.data?.store);
   const productId = normalizeProductId(request.data?.productId);
+  console.info('admin_subscription_analytics authorized', {
+    role: String(request.auth?.token?.adminRole ?? 'unknown'),
+    rangeDays,
+    store,
+    productFilterApplied: Boolean(productId),
+    documentCap: DOCUMENT_CAP,
+  });
   const fromMs = Date.now() - rangeDays * 24 * 60 * 60 * 1000;
   // Per-invocation key preserves in-request deduplication without producing
   // stable identifiers that could be linked across exports or brute-forced.

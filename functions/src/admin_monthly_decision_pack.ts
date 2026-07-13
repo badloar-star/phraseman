@@ -10,7 +10,7 @@ import {
   type MonthlyReportingWindow,
 } from './monthly_decision_pack_core';
 import { loadDecisionPackAggregateInput } from './monthly_decision_pack_sources';
-import { createDecisionPackZip } from './monthly_decision_pack_zip';
+import { createDecisionPackZip, DECISION_PACK_ZIP_LIMIT_BYTES } from './monthly_decision_pack_zip';
 
 const REGION = 'us-central1';
 
@@ -69,6 +69,14 @@ export async function generateMonthlyDecisionPackResponse(
     if (error instanceof HttpsError) throw error;
     throw new HttpsError('invalid-argument', String((error as Error)?.message ?? 'invalid_reporting_window'));
   }
+  const callableAuth = auth && typeof auth === 'object' ? auth as { token?: Record<string, unknown> } : null;
+  console.info('admin_monthly_decision_pack authorized', {
+    role: String(callableAuth?.token?.adminRole ?? 'unknown'),
+    month: window.month,
+    timezone: window.timezone,
+    preliminary: window.preliminary,
+    maxInlineZipBytes: DECISION_PACK_ZIP_LIMIT_BYTES,
+  });
   const aggregateInput = await dependencies.load(window, generatedAtMs);
   let files: ReturnType<typeof buildMonthlyDecisionPackFiles>;
   try {

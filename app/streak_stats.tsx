@@ -2697,6 +2697,7 @@ export default function StreakStats() {
     const [lifetimeStatus, setLifetimeStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
     const [insightsLoadCycleId, setInsightsLoadCycleId] = useState(0);
     const analyticsLoadRequestRef = useRef(0);
+    const statsScreenFocusedRef = useRef(false);
     // Четыре заметки строятся из одних и тех же проверенных фактов в fallback и на сервере.
     const [aiNotes, setAiNotes] = useState<VerifiedStatsInsightsNotes | null>(null);
     const [aiNotesLoading, setAiNotesLoading] = useState(false);
@@ -2868,6 +2869,8 @@ export default function StreakStats() {
                 setLifetimeStats(cachedLifetimeForCycle);
         }
         catch { /* refresh below decides ready vs unavailable */ }
+        if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+            return null;
         const lifetimeRefresh = loadLifetimeProfileStats()
             .then((stats) => {
             if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
@@ -2892,14 +2895,20 @@ export default function StreakStats() {
             setLifetimeStatus(cachedLifetimeForCycle ? 'ready' : 'unavailable');
         });
         const snapshot = await refreshStatsCache(studyTarget);
+        if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+            return null;
         debugStatsRoute('loadAll:refreshStatsCache', { ok: !!snapshot });
-        if (snapshot && isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+        if (snapshot)
             applyStatsSnapshot(snapshot);
         const activeLeagueBoost = await loadActiveLeagueBoost().catch(() => null);
+        if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+            return null;
         debugStatsRoute('loadAll:leagueBoost', { ok: !!activeLeagueBoost });
         setLeagueBoostMultiplier(activeLeagueBoost?.multiplier ?? 1);
         setLeagueBoostExpiresAt(activeLeagueBoost?.expiresAt ?? 0);
         const activeLeagueGroupBoost = await getActiveLeagueGroupBoost().catch(() => null);
+        if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+            return null;
         debugStatsRoute('loadAll:leagueGroupBoost', { ok: !!activeLeagueGroupBoost });
         setLeagueGroupBoostMultiplier(activeLeagueGroupBoost?.multiplier ?? 1);
         setLeagueGroupBoostExpiresAt(activeLeagueGroupBoost?.expiresAt ?? 0);
@@ -2907,16 +2916,25 @@ export default function StreakStats() {
         if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
             return null;
         loadWeeklyLearnedCounts()
-            .then((counts) => setWeekLearned(counts))
-            .catch(() => setWeekLearned(null));
+            .then((counts) => {
+            if (isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+                setWeekLearned(counts);
+        })
+            .catch(() => {
+            if (isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
+                setWeekLearned(null);
+        });
         // Синк аналитики не блокирует первую геометрию экрана.
         void syncDailyAnalyticsIfNeeded();
         return finishStatsInsightsLoadCycle(analyticsRequestId, Promise.all([activityRefresh, percentilesRefresh]), () => analyticsLoadRequestRef.current);
     }, [applyStatsSnapshot, studyTarget]);
     // Reload data when screen regains focus (e.g. after tester functions).
     useFocusEffect(React.useCallback(() => {
+        statsScreenFocusedRef.current = true;
+        setDevLifetimeChartsBusy(false);
         void loadAll();
         return () => {
+            statsScreenFocusedRef.current = false;
             analyticsLoadRequestRef.current += 1;
             setInsightsLoadCycleId(-1);
         };
@@ -3008,14 +3026,19 @@ export default function StreakStats() {
         if (!ENABLE_DEV_TOOLS)
             return;
         hapticTap();
+        const devActionCycleId = analyticsLoadRequestRef.current;
+        let devStatsCycleIdForBusy: number | null = null;
         setDevLifetimeChartsBusy(true);
         try {
             const sums = await devRandomizeLifetimePathDailyMetrics(7);
+            if (!isCurrentStatsInsightsLoadCycle(devActionCycleId, analyticsLoadRequestRef.current))
+                return;
             setLifetimeChartSeed((s) => s + 1);
             setExpandedLifetimeKind(null);
             const devStatsCycleId = await loadAll();
             if (devStatsCycleId === null)
                 return;
+            devStatsCycleIdForBusy = devStatsCycleId;
             const base = await loadLifetimeProfileStats();
             if (!isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current))
                 return;
@@ -3024,6 +3047,8 @@ export default function StreakStats() {
             const byKind: Partial<Record<LifetimeTotalsChartKind, LifetimeChartDay[]>> = {};
             await Promise.all(LIFETIME_PATH_DEV_CHART_KINDS.map(async (k) => {
                 const series = await loadLifetimeTotalsChartDays(k, lang, REPORT_SCREENS_RUSSIAN_ONLY);
+                if (!isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current))
+                    return;
                 if (series)
                     byKind[k] = series;
             }));
@@ -3033,7 +3058,9 @@ export default function StreakStats() {
             setDevLifetimeAllCharts(true);
         }
         finally {
-            setDevLifetimeChartsBusy(false);
+            const devBusyCycleId = devStatsCycleIdForBusy ?? devActionCycleId;
+            if (statsScreenFocusedRef.current && isCurrentStatsInsightsLoadCycle(devBusyCycleId, analyticsLoadRequestRef.current))
+                setDevLifetimeChartsBusy(false);
         }
     }, [loadAll, lang]);
     useEffect(() => {

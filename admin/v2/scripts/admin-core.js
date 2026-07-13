@@ -1048,12 +1048,25 @@ function renderSupport() {
 }
 
 function renderDetailedAnalyticsWorkspace() {
-  return `<section id="product-analytics-panel" class="card section">
-    <div id="product-analytics-sessions"></div><div id="product-analytics-screens"></div>
-    <div id="product-analytics-lessons"></div><div id="product-analytics-learning-dropoff"></div>
-    <div id="product-analytics-conversion"></div><div id="product-analytics-retention"></div>
-    <div id="product-analytics-quality"></div></section>
-    <section id="subscription-analytics-panel" class="card section"><div id="subscription-analytics-content"></div></section>`;
+  return `<section id="product-analytics-panel" class="card section" aria-labelledby="product-analytics-title">
+    <div class="card-header analytics-detail-header"><div><h2 id="product-analytics-title">Экраны, сессии и уроки</h2><p>Детальная диагностика только по событиям пользователей, разрешивших аналитику. Установка приложения не равна уникальному человеку.</p></div><div class="analytics-detail-controls"><label for="product-analytics-range">Период</label><select id="product-analytics-range" title="За какой период показать события продукта"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><label for="product-analytics-platform">Платформа</label><select id="product-analytics-platform" title="Показывать все платформы или только одну"><option value="all">Все платформы</option><option value="ios">iOS</option><option value="android">Android</option></select><button class="button" type="button" onclick="loadProductAnalytics(true)" title="Обновить детальную аналитику продукта">Обновить данные</button></div></div>
+    <div class="notice warning">Ранние шаги до согласия на аналитику не отправляются. Последний наблюдаемый экран не доказывает закрытие или удаление приложения.</div>
+    <div id="product-analytics-status" class="analytics-detail-status" role="status">Данные загрузятся после проверки доступа.</div>
+    <div id="product-analytics-summary" class="an2-grid"><article class="an2-card"><div class="an2-kicker">Установки приложения</div><div class="an2-value" data-pa="instances">—</div><div class="an2-note">Не гарантированно уникальные люди.</div></article><article class="an2-card"><div class="an2-kicker">Сессии</div><div class="an2-value" data-pa="sessions">—</div></article><article class="an2-card"><div class="an2-kicker">Показы экранов</div><div class="an2-value" data-pa="views">—</div></article><article class="an2-card"><div class="an2-kicker">Нераспознанные экраны</div><div class="an2-value" data-pa="unknown">—</div></article></div>
+    <section id="product-analytics-sessions" class="analytics-detail-block"><h3>Сессии использования приложения</h3><div class="reports-empty">Ожидаем данные…</div></section>
+    <section class="analytics-detail-block"><h3>Последние наблюдаемые экраны</h3><div id="product-analytics-screens" class="table-scroll"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Завершение уроков и явные выходы</h3><div id="product-analytics-lessons" class="table-scroll"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>На каких фразах возникают трудности</h3><div id="product-analytics-learning-dropoff"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Путь от показа оплаты до покупки</h3><div id="product-analytics-conversion"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Мягкие Premium‑предложения</h3><p class="hint">Только точные цепочки по одному soft_upsell_impression_id. Production и ручные Test‑проверки никогда не смешиваются.</p><div id="product-analytics-soft-upsells" class="table-scroll"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Возврат на следующий, 7-й и 28-й день</h3><div id="product-analytics-retention"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Полнота и качество данных</h3><div id="product-analytics-quality" class="reports-empty">Ожидаем данные…</div></section>
+  </section>
+  <section id="subscription-analytics-panel" class="card section" aria-labelledby="subscription-analytics-title">
+    <div class="card-header analytics-detail-header"><div><h2 id="subscription-analytics-title">Подписки и платежные события</h2><p>Серверные события RevenueCat: покупки, продления, отключения продления, окончание доступа, проблемы со списанием и возвраты.</p></div><div class="analytics-detail-controls"><label for="subscription-analytics-range">Период</label><select id="subscription-analytics-range" title="За какой период показать серверные события"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><label for="subscription-analytics-store">Магазин</label><select id="subscription-analytics-store" title="Показывать все магазины или только один"><option value="all">Все магазины</option><option value="APP_STORE">App Store</option><option value="PLAY_STORE">Google Play</option><option value="STRIPE">Stripe</option></select><button class="button" type="button" onclick="loadSubscriptionAnalytics(true)" title="Обновить серверные события подписок">Обновить данные</button></div></div>
+    <div id="subscription-analytics-status" class="analytics-detail-status" role="status">Данные загрузятся после проверки доступа.</div>
+    <div id="subscription-analytics-content"><div class="reports-empty">Ожидаем серверные данные RevenueCat…</div></div>
+  </section>`;
 }
 
 function renderAnalytics() {

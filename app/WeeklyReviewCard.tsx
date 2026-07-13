@@ -32,6 +32,7 @@ import {
   type WeeklyReviewStored,
 } from './weekly_review_client';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { emitSoftUpsellTrigger, weeklyReviewCandidate } from './soft_upsell_trigger_adapters';
 
 interface WeeklyReviewCardProps {
   isPremium: boolean;
@@ -51,6 +52,17 @@ export default function WeeklyReviewCard({ active, isPremium, studyTarget, stabl
   const [state, setState] = useState<WeeklyReviewState | null>(null);
   const [busy, setBusy] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const emittedReviewRef = useRef(false);
+
+  useEffect(() => {
+    if (!expanded || state?.kind !== 'cached' || emittedReviewRef.current) return;
+    emittedReviewRef.current = true;
+    emitSoftUpsellTrigger(weeklyReviewCandidate({
+      completed: true,
+      studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+      hasPremiumAccess: isPremium,
+    }));
+  }, [expanded, isPremium, state?.kind, studyTarget]);
 
   const refreshState = useCallback(async () => {
     const next = await getWeeklyReviewState(studyTarget, lang);

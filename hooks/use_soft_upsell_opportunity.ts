@@ -39,6 +39,7 @@ type Result = {
   onImpression: () => Promise<void>;
   onDismiss: () => Promise<void>;
   onCta: () => Promise<boolean>;
+  onNavigationFailure: () => Promise<boolean>;
 };
 
 type BoundOpportunity = Readonly<{
@@ -71,6 +72,10 @@ async function attemptTwice(operation: () => Promise<void>): Promise<void> {
   try { await operation(); } catch { await operation(); }
 }
 
+function suppressionEventId(): string {
+  return `${Crypto.randomUUID()}:suppressed`.slice(0, 80);
+}
+
 export function useSoftUpsellOpportunity({
   candidates, accountScope, studyTarget, hasPremiumAccess, mode = 'production',
 }: Input): Result {
@@ -94,6 +99,7 @@ export function useSoftUpsellOpportunity({
   const [bound, setBound] = useState<BoundOpportunity | null>(null);
   const boundRef = useRef<BoundOpportunity | null>(null);
   const outcomeRef = useRef<'cta' | 'dismiss' | null>(null);
+  const navigationHandoffRef = useRef<BoundOpportunity | null>(null);
   const impressionDoneRef = useRef(new Set<string>());
   const impressionInFlightRef = useRef(new Map<string, Promise<void>>());
 
@@ -123,6 +129,7 @@ export function useSoftUpsellOpportunity({
           context: CONTEXT_BY_TRIGGER[candidate.trigger], trigger: candidate.trigger, studyTarget,
           overlayOccupied: false, schemaVersion: 1, triggerValue: candidate.value,
           suppressionReason: decision.reason,
+          event_id: suppressionEventId(),
         });
         return;
       }
@@ -133,6 +140,7 @@ export function useSoftUpsellOpportunity({
           context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget,
           overlayOccupied: true, schemaVersion: 1, triggerValue: decision.opportunity.value,
           suppressionReason: 'overlay_occupied',
+          event_id: suppressionEventId(),
         });
         return;
       }
@@ -143,6 +151,7 @@ export function useSoftUpsellOpportunity({
           context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget,
           overlayOccupied: false, schemaVersion: 1, triggerValue: decision.opportunity.value,
           suppressionReason: 'session_cap',
+          event_id: suppressionEventId(),
         });
         return;
       }
@@ -238,12 +247,29 @@ export function useSoftUpsellOpportunity({
     const current = boundRef.current;
     if (!isCurrent(current) || outcomeRef.current !== null) return false;
     outcomeRef.current = 'cta';
+    navigationHandoffRef.current = current;
     releaseAndHide(current);
     void trackSoftUpsellEvent('soft_upsell_cta', {
       ...payload(current, 'cta'), destination: 'paywall',
     } as never).catch(() => undefined);
     return true;
   }, [isCurrent, payload, releaseAndHide]);
+
+  const onNavigationFailure = useCallback(async () => {
+    const previous = navigationHandoffRef.current;
+    if (!previous || !isCurrent(previous) || outcomeRef.current !== 'cta') return false;
+    const freshLease = await tryClaimOverlay();
+    if (!freshLease || !isCurrent(previous)) {
+      freshLease?.release();
+      return false;
+    }
+    const retry = { ...previous, lease: freshLease };
+    navigationHandoffRef.current = null;
+    outcomeRef.current = null;
+    boundRef.current = retry;
+    setBound(retry);
+    return true;
+  }, [isCurrent, tryClaimOverlay]);
 
   const visibleBound = bound?.identityKey === currentIdentity ? bound : null;
   return {
@@ -252,5 +278,6 @@ export function useSoftUpsellOpportunity({
     onImpression,
     onDismiss,
     onCta,
+    onNavigationFailure,
   };
 }

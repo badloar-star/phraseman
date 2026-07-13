@@ -33,6 +33,7 @@ import {
   type SoftUpsellSuppressionReason,
   type SoftUpsellTrigger,
 } from './soft_upsell_core';
+import { createSoftUpsellAttribution } from './soft_upsell_attribution';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
@@ -136,6 +137,7 @@ export type AnalyticsEvent =
   | 'paywall_exit_offer_accepted' // exit-intent: юзер согласился попробовать триал
   | 'paywall_exit_offer_declined' // exit-intent: юзер отказался и закрыл
   | 'purchase_started'            // нажат CTA, открывается диалог стора
+  | 'purchase_pending'
   | 'purchase_completed'
   | 'purchase_failed'
   | 'purchase_cancelled'
@@ -299,24 +301,32 @@ type SoftUpsellNoOutcomeFields = {
   destination?: never;
   suppressionReason?: never;
 };
+type SoftUpsellChainFields = {
+  soft_upsell_impression_id: string;
+  soft_upsell_trigger: SoftUpsellTrigger;
+  soft_upsell_context: SoftUpsellContext;
+  soft_upsell_mode: 'production' | 'test';
+  event_id: string;
+};
 export type SoftUpsellAnalyticsPayloadByEvent = {
-  soft_upsell_eligible: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields;
+  soft_upsell_eligible: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields & SoftUpsellChainFields;
   soft_upsell_impression: SoftUpsellAnalyticsBase & {
     destination: SoftUpsellDestination;
     suppressionReason?: never;
-  };
+  } & SoftUpsellChainFields;
   soft_upsell_cta: SoftUpsellAnalyticsBase & {
     destination: SoftUpsellDestination;
     suppressionReason?: never;
-  };
-  soft_upsell_dismiss: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields;
+  } & SoftUpsellChainFields;
+  soft_upsell_dismiss: SoftUpsellAnalyticsBase & SoftUpsellNoOutcomeFields & SoftUpsellChainFields;
   soft_upsell_suppressed: SoftUpsellAnalyticsBase & {
     destination?: never;
     suppressionReason: SoftUpsellSuppressionReason;
+    event_id: string;
   };
 };
 
-const SOFT_UPSELL_DESTINATIONS: readonly SoftUpsellDestination[] = ['personal_plan', 'paywall'];
+const SOFT_UPSELL_DESTINATIONS: readonly SoftUpsellDestination[] = ['paywall'];
 const SOFT_UPSELL_SUPPRESSION_REASONS: readonly SoftUpsellSuppressionReason[] = [
   'no_candidate', 'premium', 'disabled', 'overlay_occupied', 'session_cap',
   'global_cooldown', 'context_cooldown', 'milestone_consumed', 'invalid_trigger_value',
@@ -329,6 +339,11 @@ export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEven
   const candidate = payload as SoftUpsellAnalyticsBase & {
     destination?: unknown;
     suppressionReason?: unknown;
+    soft_upsell_impression_id?: unknown;
+    soft_upsell_trigger?: unknown;
+    soft_upsell_context?: unknown;
+    soft_upsell_mode?: unknown;
+    event_id?: unknown;
   };
   if (!SOFT_UPSELL_ANALYTICS_EVENTS.includes(event)) return;
   if (!SOFT_UPSELL_CONTEXTS.includes(candidate?.context)) return;
@@ -344,7 +359,31 @@ export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEven
 
   if (event === 'soft_upsell_suppressed') {
     if (!SOFT_UPSELL_SUPPRESSION_REASONS.includes(candidate.suppressionReason as SoftUpsellSuppressionReason)) return;
+    const eventId = String(candidate.event_id ?? '');
+    if (!eventId || eventId.length > 80) return;
   } else if (candidate.suppressionReason != null) return;
+
+  let chain: SoftUpsellChainFields | null = null;
+  if (event !== 'soft_upsell_suppressed') {
+    try {
+      const attribution = createSoftUpsellAttribution({
+        impressionId: String(candidate.soft_upsell_impression_id ?? ''),
+        trigger: candidate.soft_upsell_trigger as SoftUpsellTrigger,
+        context: candidate.soft_upsell_context as SoftUpsellContext,
+        mode: candidate.soft_upsell_mode as 'production' | 'test',
+      });
+      if (attribution.trigger !== candidate.trigger || attribution.context !== candidate.context) return;
+      const eventId = String(candidate.event_id ?? '');
+      if (!eventId || eventId.length > 80) return;
+      chain = {
+        soft_upsell_impression_id: attribution.impressionId,
+        soft_upsell_trigger: attribution.trigger,
+        soft_upsell_context: attribution.context,
+        soft_upsell_mode: attribution.mode,
+        event_id: eventId,
+      };
+    } catch { return; }
+  }
 
   const props: Record<string, string | number | boolean> = {
     context: candidate.context,
@@ -357,7 +396,9 @@ export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEven
   if (destinationAllowed) props.destination = candidate.destination as SoftUpsellDestination;
   if (event === 'soft_upsell_suppressed') {
     props.suppressionReason = candidate.suppressionReason as SoftUpsellSuppressionReason;
+    props.event_id = String(candidate.event_id);
   }
+  if (chain) Object.assign(props, chain);
   await trackEvent(event, props);
 }
 

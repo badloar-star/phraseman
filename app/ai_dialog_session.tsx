@@ -73,6 +73,8 @@ import {
   markFreeDialogUsed,
 } from './dialogs_limit_session';
 import { markDialogCompleted } from './dialogs_progress';
+import { aiDialogueCandidate, emitSoftUpsellTrigger } from './soft_upsell_trigger_adapters';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { trackEvent } from './analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
@@ -657,6 +659,23 @@ export default function AiDialogSession() {
     [scenario.id, lang],
   );
 
+  const softUpsellCompletionScenarioRef = useRef<string | null>(null);
+  const recordSuccessfulDialogCompletion = useCallback(() => {
+    if (softUpsellCompletionScenarioRef.current === scenario.id) return;
+    softUpsellCompletionScenarioRef.current = scenario.id;
+    const completionAccountToken = captureAccountGeneration();
+    void markDialogCompleted(scenario.id).then((result) => {
+      if (!isCurrentAccountGeneration(completionAccountToken)) return;
+      emitSoftUpsellTrigger(aiDialogueCandidate({
+        successful: true,
+        completedLifetime: result.completedLifetime,
+        newlyCompleted: result.newlyCompleted,
+        studyTarget,
+        hasPremiumAccess,
+      }));
+    });
+  }, [hasPremiumAccess, scenario.id, studyTarget]);
+
   // Применяет turnState из ответа сервера: настроение, выполненные цели, исход.
   // При терминальном исходе сохраняем реакцию персонажа + советы и завершаем
   // диалог (модал-вердикт). Битый/пустой turnState → нейтральный, диалог идёт.
@@ -682,13 +701,13 @@ export default function AiDialogSession() {
         // заглохший диалог не помечаем — иначе юзер не вернётся переиграть, а в
         // списке провал выглядел бы как «Пройдено».
         if (ts.outcome === 'success') {
-          void markDialogCompleted(scenario.id);
+          recordSuccessfulDialogCompletion();
         }
         // XP начисляем при любом исходе (больше за успех, меньше за провал/заглох).
         void awardDialogXp(ts.outcome);
       }
     },
-    [gameEnabled, scenario.id, awardDialogXp],
+    [gameEnabled, scenario.id, awardDialogXp, recordSuccessfulDialogCompletion],
   );
 
   // Игровые поля для запроса (под-цели в формате сервера + темперамент).
@@ -952,9 +971,10 @@ export default function AiDialogSession() {
     void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
     // Локально помечаем сценарий пройденным — список диалогов покажет «Пройдено»
     // и сдвинет блок «Продолжить» на следующий сценарий. Идемпотентно + best-effort.
-    void markDialogCompleted(scenario.id);
+    if (gameEnabled) void markDialogCompleted(scenario.id);
+    else recordSuccessfulDialogCompletion();
     // Бесплатный диалог уже отмечен использованным на первой реплике — здесь не дублируем.
-  }, [ended, scenario.id, userExchanges]);
+  }, [ended, gameEnabled, recordSuccessfulDialogCompletion, scenario.id, userExchanges]);
 
   // Диалог завершён → один раз запрашиваем финальный разбор фраз ученика.
   // Транскрипт шлём без [[...]]-маркеров: тьютору-ревьюеру они только мешают.

@@ -43,11 +43,13 @@ import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
+import { parseSoftUpsellAttribution, softUpsellAnalyticsParams } from './soft_upsell_attribution';
 
 const VARIANT = 'A' as const;
 
 export default function PaywallA() {
-  const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string }>();
+  const params = useLocalSearchParams<Record<string, string | string[]>>();
+  const [softAttribution] = useState(() => parseSoftUpsellAttribution(params));
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
@@ -58,7 +60,7 @@ export default function PaywallA() {
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
   const insets = useStableSafeAreaInsets();
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
+  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, softAttribution });
   const sticky = useStickyCta();
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
@@ -78,9 +80,9 @@ export default function PaywallA() {
   };
 
   useEffect(() => {
-    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT });
+    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...softUpsellAnalyticsParams(softAttribution, 'paywall_shown') } as never);
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
-  }, [ctx, source]);
+  }, [ctx, softAttribution, source]);
 
   useEffect(() => {
     let dead = false;

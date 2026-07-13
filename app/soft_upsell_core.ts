@@ -1,3 +1,5 @@
+import type { StudyTargetLang } from './study_target_lang_dev';
+
 export const SOFT_UPSELL_TRIGGERS = [
   'first_lesson',
   'free_lessons_complete',
@@ -18,8 +20,8 @@ export const SOFT_UPSELL_CONTEXTS = [
 
 export type SoftUpsellTrigger = (typeof SOFT_UPSELL_TRIGGERS)[number];
 export type SoftUpsellContext = (typeof SOFT_UPSELL_CONTEXTS)[number];
-export type SoftUpsellStudyTarget = 'en' | 'fr';
-export type SoftUpsellDestination = 'personal_plan' | 'paywall';
+export type SoftUpsellStudyTarget = StudyTargetLang;
+export type SoftUpsellDestination = 'paywall';
 
 export type SoftUpsellSuppressionReason =
   | 'no_candidate'
@@ -77,7 +79,7 @@ const OPPORTUNITY_BY_TRIGGER: Record<
   SoftUpsellTrigger,
   Pick<SoftUpsellOpportunity, 'context' | 'destination'>
 > = {
-  first_lesson: { context: 'first_lesson_success', destination: 'personal_plan' },
+  first_lesson: { context: 'first_lesson_success', destination: 'paywall' },
   free_lessons_complete: { context: 'free_lessons_complete', destination: 'paywall' },
   weekly_review: { context: 'weekly_review', destination: 'paywall' },
   second_ai_dialogue: { context: 'dialog_repeat_success', destination: 'paywall' },

@@ -54,7 +54,7 @@ describe('soft upsell policy', () => {
   });
 
   test.each([
-    ['first_lesson', 1, 'first_lesson_success', 'personal_plan'],
+    ['first_lesson', 1, 'first_lesson_success', 'paywall'],
     ['free_lessons_complete', 8, 'free_lessons_complete', 'paywall'],
     ['weekly_review', 1, 'weekly_review', 'paywall'],
     ['second_ai_dialogue', 2, 'dialog_repeat_success', 'paywall'],

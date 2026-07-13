@@ -38,15 +38,17 @@ export async function isDialogCompleted(scenarioId: string): Promise<boolean> {
  * не мутируем прочитанный. Эмитит `dialogs_progress_changed`, чтобы открытый
  * список диалогов мгновенно перерисовал состояния.
  */
-export async function markDialogCompleted(scenarioId: string): Promise<void> {
-  if (!scenarioId) return;
+export async function markDialogCompleted(scenarioId: string): Promise<{ newlyCompleted: boolean; completedLifetime: number }> {
+  if (!scenarioId) return { newlyCompleted: false, completedLifetime: 0 };
   try {
     const current = await getCompletedDialogIds();
-    if (current.has(scenarioId)) return;
+    if (current.has(scenarioId)) return { newlyCompleted: false, completedLifetime: current.size };
     const next = [...current, scenarioId];
     await AsyncStorage.setItem(DIALOGS_COMPLETED_KEY, JSON.stringify(next));
     emitAppEvent('dialogs_progress_changed', undefined);
+    return { newlyCompleted: true, completedLifetime: next.length };
   } catch {
     // best-effort: при сбое записи диалог просто покажется «новым» в следующий раз
+    return { newlyCompleted: false, completedLifetime: 0 };
   }
 }

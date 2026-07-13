@@ -150,6 +150,31 @@ describe('useSoftUpsellOpportunity', () => {
     finish();
   });
 
+  it('reclaims a fresh overlay lease after navigation failure without changing the direct-chain id', async () => {
+    const firstRelease = jest.fn();
+    const retryRelease = jest.fn();
+    tryClaim
+      .mockResolvedValueOnce({ token: 'lease-first', release: firstRelease })
+      .mockResolvedValueOnce({ token: 'lease-retry', release: retryRelease });
+    const hook = await renderHook(() => useSoftUpsellOpportunity({
+      candidates: [candidate], accountScope: 'nav-retry', studyTarget: 'en', hasPremiumAccess: false,
+    }));
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    const originalId = hook.result.current.attribution?.impressionId;
+
+    await act(async () => { await hook.result.current.onCta(); });
+    expect(firstRelease).toHaveBeenCalledTimes(1);
+    expect(hook.result.current.opportunity).toBeNull();
+
+    let restored = false;
+    await act(async () => { restored = await hook.result.current.onNavigationFailure(); });
+    expect(restored).toBe(true);
+    expect(tryClaim).toHaveBeenCalledTimes(2);
+    expect(retryRelease).not.toHaveBeenCalled();
+    expect(hook.result.current.opportunity?.trigger).toBe('first_lesson');
+    expect(hook.result.current.attribution?.impressionId).toBe(originalId);
+  });
+
   it('reports session cap after another eligible hook has claimed', async () => {
     const first = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(first.result.current.opportunity).not.toBeNull());

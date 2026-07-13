@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "directAttribution": {
+    "joinKey": ["soft_upsell_mode", "soft_upsell_impression_id"],
+    "forbidFallbackAttribution": ["user_id", "session_id", "time_window"]
+  },
+  "softUpsellEvents": [
+    "soft_upsell_eligible",
+    "soft_upsell_impression",
+    "soft_upsell_cta",
+    "soft_upsell_dismiss",
+    "paywall_shown",
+    "paywall_plan_select",
+    "paywall_cta_click",
+    "paywall_close",
+    "purchase_started",
+    "purchase_pending",
+    "purchase_completed",
+    "purchase_failed",
+    "purchase_cancelled",
+    "trial_started"
+  ],
+  "requiredChainFields": [
+    "soft_upsell_impression_id",
+    "soft_upsell_trigger",
+    "soft_upsell_context",
+    "soft_upsell_mode",
+    "event_id"
+  ],
+  "modes": ["production", "test"]
+}

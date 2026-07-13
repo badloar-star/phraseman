@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import TapScale from '../components/TapScale';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,13 @@ import { useLang } from '../components/LangContext';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang } from '../constants/i18n';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { usePremium } from '../components/PremiumContext';
+import {
+  emitSoftUpsellTrigger,
+  recordSuccessfulTraining,
+  repeatedTrainingCandidate,
+} from './soft_upsell_trigger_adapters';
 
 type TrainerReportQueue = 'words' | 'phrases' | 'arena';
 
@@ -32,10 +39,27 @@ export default function TrainerSessionReport({
   const isCompassTheme = false;
   const reportAccent = isCompassTheme ? COMPASS_RICH.champagne : accent;
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const { hasPremiumAccess } = usePremium();
   const attempted = Math.max(total, correct + wrong);
   const isEmpty = attempted === 0;
   const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
   const perfect = attempted > 0 && wrong === 0;
+  const completionRecordedRef = useRef(false);
+  useEffect(() => {
+    if (completionRecordedRef.current || attempted < 5 || correct / attempted < 0.7) return;
+    completionRecordedRef.current = true;
+    const target = studyTarget;
+    void recordSuccessfulTraining(target).then((result) => {
+      emitSoftUpsellTrigger(repeatedTrainingCandidate({
+        successful: true,
+        completedLifetime: result.completedLifetime,
+        newlyCompleted: result.newlyCompleted,
+        studyTarget: target,
+        hasPremiumAccess,
+      }));
+    });
+  }, [attempted, correct, hasPremiumAccess, studyTarget, wrong]);
   const title = isEmpty
     ? triLang(lang, {
       ru: 'Очередь чистая',

@@ -47,6 +47,12 @@ WITH raw_base AS (
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'event_id') AS event_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'lesson_attempt_id') AS lesson_attempt_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'paywall_impression_id') AS paywall_impression_id,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_impression_id') AS soft_upsell_impression_id,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_trigger') AS soft_upsell_trigger,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_context') AS soft_upsell_context,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'soft_upsell_mode') AS soft_upsell_mode,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'activation_type') AS activation_type,
+    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'reason') AS close_reason,
     COALESCE(
       (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'session_id'),
       (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'product_session_id')
@@ -129,6 +135,8 @@ WITH raw_base AS (
       'paywall_continue_free', 'paywall_close', 'premium_purchased',
       'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_failed',
       'purchase_cancelled', 'trial_started',
+      'purchase_pending',
+      'soft_upsell_eligible', 'soft_upsell_impression', 'soft_upsell_cta', 'soft_upsell_dismiss',
       'paywall_inventory_resolved',
       'paywall_exit_offer_shown', 'paywall_exit_offer_accepted', 'paywall_exit_offer_declined',
       'exit_trial_offer_shown', 'exit_trial_offer_accepted', 'exit_trial_offer_declined'
@@ -550,6 +558,105 @@ retention_summary_row AS (
   )) AS payload
   FROM cohort_return_flags
 ),
+soft_chain_events AS (
+  SELECT * FROM base
+  WHERE soft_upsell_impression_id IS NOT NULL
+    AND soft_upsell_mode IN ('production', 'test')
+    AND ((soft_upsell_trigger = 'first_lesson' AND soft_upsell_context = 'first_lesson_success')
+      OR (soft_upsell_trigger = 'free_lessons_complete' AND soft_upsell_context = 'free_lessons_complete')
+      OR (soft_upsell_trigger = 'weekly_review' AND soft_upsell_context = 'weekly_review')
+      OR (soft_upsell_trigger = 'second_ai_dialogue' AND soft_upsell_context = 'dialog_repeat_success')
+      OR (soft_upsell_trigger = 'streak_milestone' AND soft_upsell_context = 'streak_milestone')
+      OR (soft_upsell_trigger = 'repeated_training' AND soft_upsell_context = 'trainer_repeat_success'))
+),
+valid_soft_chain_ids AS (
+  SELECT soft_upsell_impression_id AS impression_id
+  FROM base
+  WHERE soft_upsell_impression_id IS NOT NULL
+  GROUP BY impression_id
+  HAVING COUNTIF(soft_upsell_mode IN ('production', 'test')) = COUNT(*)
+    AND COUNTIF((soft_upsell_trigger = 'first_lesson' AND soft_upsell_context = 'first_lesson_success')
+      OR (soft_upsell_trigger = 'free_lessons_complete' AND soft_upsell_context = 'free_lessons_complete')
+      OR (soft_upsell_trigger = 'weekly_review' AND soft_upsell_context = 'weekly_review')
+      OR (soft_upsell_trigger = 'second_ai_dialogue' AND soft_upsell_context = 'dialog_repeat_success')
+      OR (soft_upsell_trigger = 'streak_milestone' AND soft_upsell_context = 'streak_milestone')
+      OR (soft_upsell_trigger = 'repeated_training' AND soft_upsell_context = 'trainer_repeat_success')) = COUNT(*)
+    AND COUNT(DISTINCT soft_upsell_mode) = 1
+    AND COUNT(DISTINCT CONCAT(soft_upsell_trigger, '|', soft_upsell_context)) = 1
+),
+soft_chain_facts AS (
+  SELECT
+    soft_upsell_mode AS mode,
+    soft_upsell_trigger AS trigger,
+    soft_upsell_impression_id AS impression_id,
+    COUNTIF(event_name = 'soft_upsell_impression') > 0 AS impressed,
+    COUNTIF(event_name = 'soft_upsell_cta') > 0 AS soft_cta,
+    COUNTIF(event_name = 'soft_upsell_dismiss') > 0 AS dismissed,
+    COUNTIF(event_name = 'paywall_shown') > 0 AS paywall_shown,
+    COUNTIF(event_name = 'paywall_cta_click') > 0 AS paywall_cta,
+    COUNTIF(event_name = 'purchase_started') > 0 AS purchase_started,
+    COUNTIF(event_name = 'purchase_pending') > 0 AS purchase_pending,
+    COUNTIF(event_name = 'purchase_completed') > 0 AS purchased,
+    COUNTIF(event_name = 'trial_started') > 0 AS trial_started,
+    COUNTIF(event_name = 'purchase_completed' AND activation_type = 'paid') > 0 AS paid_activation,
+    COUNTIF(event_name = 'purchase_failed') > 0 AS failed,
+    COUNTIF(event_name = 'purchase_cancelled') > 0 AS cancelled,
+    COUNTIF(event_name = 'paywall_close' AND close_reason = 'close') > 0 AS closed,
+    COUNTIF((event_name = 'paywall_close' AND close_reason = 'continue_free') OR event_name = 'paywall_continue_free') > 0 AS continued_free,
+    MIN(IF(event_name = 'soft_upsell_impression', event_timestamp, NULL)) AS impression_at,
+    MIN(IF(event_name = 'soft_upsell_cta', event_timestamp, NULL)) AS soft_cta_at,
+    MIN(IF(event_name IN ('purchase_completed', 'purchase_pending', 'purchase_failed', 'purchase_cancelled'), event_timestamp, NULL)) AS purchase_result_at
+  FROM soft_chain_events
+  INNER JOIN valid_soft_chain_ids ON impression_id = soft_upsell_impression_id
+  GROUP BY mode, trigger, impression_id
+),
+soft_rows AS (
+  SELECT 'soft_upsell' AS row_kind, TO_JSON_STRING(STRUCT(
+    mode,
+    trigger,
+    COUNTIF(impressed) AS impressions,
+    COUNTIF(soft_cta) AS soft_cta_clicks,
+    COUNTIF(dismissed) AS dismissals,
+    COUNTIF(paywall_shown) AS paywall_shows,
+    COUNTIF(paywall_cta) AS paywall_cta_clicks,
+    COUNTIF(purchase_started) AS purchase_starts,
+    COUNTIF(purchase_pending) AS pending_purchases,
+    COUNTIF(purchased) AS purchases,
+    COUNTIF(trial_started) AS trials,
+    COUNTIF(paid_activation) AS paid_activations,
+    COUNTIF(failed) AS failures,
+    COUNTIF(cancelled) AS cancellations,
+    COUNTIF(closed) AS closes,
+    COUNTIF(continued_free) AS continue_free,
+    SAFE_DIVIDE(COUNTIF(soft_cta), COUNTIF(impressed)) AS soft_cta_rate,
+    SAFE_DIVIDE(COUNTIF(dismissed), COUNTIF(impressed)) AS dismiss_rate,
+    SAFE_DIVIDE(COUNTIF(paywall_shown), COUNTIF(impressed)) AS paywall_show_rate,
+    SAFE_DIVIDE(COUNTIF(trial_started), COUNTIF(impressed)) AS trial_rate,
+    SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(impressed)) AS purchase_rate,
+    SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(soft_cta)) AS cta_to_purchase_rate,
+    APPROX_QUANTILES(IF(soft_cta_at >= impression_at, (soft_cta_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_cta_ms,
+    APPROX_QUANTILES(IF(purchase_result_at >= impression_at, (purchase_result_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_result_ms
+  )) AS payload
+  FROM soft_chain_facts
+  GROUP BY mode, trigger
+),
+soft_quality_row AS (
+  SELECT 'soft_quality' AS row_kind, TO_JSON_STRING(STRUCT(
+    (SELECT COUNT(*) FROM (
+      SELECT soft_upsell_impression_id FROM base
+      WHERE soft_upsell_impression_id IS NOT NULL
+      GROUP BY soft_upsell_impression_id
+      HAVING COUNT(DISTINCT soft_upsell_mode) > 1
+        OR COUNT(DISTINCT CONCAT(IFNULL(soft_upsell_trigger, ''), '|', IFNULL(soft_upsell_context, ''))) > 1
+    )) AS conflicting_chain_ids,
+    (SELECT COUNT(DISTINCT soft_upsell_impression_id) FROM base WHERE soft_upsell_impression_id IS NOT NULL)
+      - (SELECT COUNT(*) FROM valid_soft_chain_ids) AS rejected_chain_ids,
+    COUNTIF(soft_cta AND NOT impressed) AS cta_without_impression,
+    COUNTIF(paywall_shown AND NOT soft_cta) AS paywall_without_soft_cta,
+    COUNTIF((purchased OR purchase_pending OR failed OR cancelled) AND NOT purchase_started) AS outcome_without_purchase_start,
+    COUNTIF(impressed AND NOT soft_cta AND NOT dismissed) AS partial_open_chains
+  )) AS payload FROM soft_chain_facts
+),
 quality_row AS (
   SELECT 'quality' AS row_kind, TO_JSON_STRING(STRUCT(
     COUNTIF(event_name = 'product_screen_view') AS screen_views,
@@ -560,6 +667,8 @@ quality_row AS (
     ) AS unknown_screen_rate,
     COUNTIF(STARTS_WITH(event_name, 'product_') AND event_id IS NULL) AS missing_event_ids,
     COUNTIF(STARTS_WITH(event_name, 'product_') AND session_id IS NULL) AS missing_session_ids,
+    COUNTIF((STARTS_WITH(event_name, 'soft_upsell_') OR soft_upsell_impression_id IS NOT NULL) AND event_id IS NULL) AS missing_soft_event_ids,
+    COUNTIF(soft_upsell_impression_id IS NOT NULL AND soft_upsell_mode NOT IN ('production', 'test')) AS invalid_soft_modes,
     (SELECT COUNTIF(duplicate_rank > 1) FROM raw_base WHERE STARTS_WITH(event_name, 'product_')) AS duplicate_events,
     (SELECT COUNTIF(STARTS_WITH(event_name, 'product_') AND IFNULL(schema_version, -1) != 1) FROM raw_base) AS invalid_schema_events,
     COUNT(DISTINCT IF(event_name = 'product_session_start', session_id, NULL)) AS sessions,
@@ -582,6 +691,8 @@ UNION ALL SELECT * FROM session_summary_row
 UNION ALL SELECT * FROM session_bucket_rows
 UNION ALL SELECT * FROM session_entry_rows
 UNION ALL SELECT * FROM session_last_rows
+UNION ALL SELECT * FROM soft_rows
+UNION ALL SELECT * FROM soft_quality_row
 `;
 }
 
@@ -639,10 +750,14 @@ export const adminProductAnalytics = onCall({
   const sessionBuckets: Record<string, unknown>[] = [];
   const sessionEntryScreens: Record<string, unknown>[] = [];
   const sessionLastScreens: Record<string, unknown>[] = [];
+  const softUpsells: Record<'production' | 'test', Record<string, unknown>[]> = { production: [], test: [] };
   let sessionSummary: Record<string, unknown> = {};
   let learningSummary: Record<string, unknown> = {};
   let retentionSummary: Record<string, unknown> = {};
-  let quality: Record<string, unknown> = {};
+  let softQuality: Record<string, unknown> = {};
+  let quality: Record<string, unknown> = exportPending
+    ? { export_status: 'waiting_for_first_daily_export' }
+    : {};
   for (const row of rows) {
     const payload = parsePayload(row);
     if (!payload) continue;
@@ -661,6 +776,10 @@ export const adminProductAnalytics = onCall({
     else if (row.row_kind === 'session_bucket') sessionBuckets.push(payload);
     else if (row.row_kind === 'session_entry') sessionEntryScreens.push(payload);
     else if (row.row_kind === 'session_last') sessionLastScreens.push(payload);
+    else if (row.row_kind === 'soft_upsell' && (payload.mode === 'production' || payload.mode === 'test')) {
+      softUpsells[payload.mode].push(payload);
+    }
+    else if (row.row_kind === 'soft_quality') softQuality = payload;
   }
   screens.sort((a, b) => Number(b.views ?? 0) - Number(a.views ?? 0));
   lessons.sort((a, b) => Number(a.lesson_id ?? 0) - Number(b.lesson_id ?? 0));
@@ -708,6 +827,11 @@ export const adminProductAnalytics = onCall({
       buckets: sessionBuckets,
       entryScreens: sessionEntryScreens.sort((a, b) => Number(b.sessions ?? 0) - Number(a.sessions ?? 0)),
       lastObservedScreens: sessionLastScreens.sort((a, b) => Number(b.sessions ?? 0) - Number(a.sessions ?? 0)),
+    },
+    softUpsells: {
+      production: softUpsells.production.sort((a, b) => Number(b.impressions ?? 0) - Number(a.impressions ?? 0)),
+      test: softUpsells.test.sort((a, b) => Number(b.impressions ?? 0) - Number(a.impressions ?? 0)),
+      quality: { ...softQuality, attribution: 'exact_impression_id_only', production_test_isolated: true },
     },
     quality,
   };

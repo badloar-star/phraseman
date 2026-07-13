@@ -41,7 +41,8 @@
     const screensEl = document.getElementById('product-analytics-screens');
     const lessonsEl = document.getElementById('product-analytics-lessons');
     const qualityEl = document.getElementById('product-analytics-quality');
-    if (!status || !screensEl || !lessonsEl || !qualityEl) return;
+    const softUpsellsEl = document.getElementById('product-analytics-soft-upsells');
+    if (!status || !screensEl || !lessonsEl || !qualityEl || !softUpsellsEl) return;
     if (typeof window.callAdminProductAnalytics !== 'function') {
       status.textContent = 'Сервис аналитики ещё запускается. Нажмите «Обновить данные» через несколько секунд.';
       return;
@@ -58,6 +59,7 @@
       const quality = data.quality || {};
       const screens = Array.isArray(data.screens) ? data.screens : [];
       const lessons = Array.isArray(data.lessons) ? data.lessons : [];
+      const softUpsells = data.softUpsells || {};
 
       setSummary('instances', number(quality.consented_app_instances));
       setSummary('sessions', number(quality.sessions));
@@ -81,9 +83,70 @@
         ['Доля завершений', 'Какая доля начатых уроков была завершена.'],
         ['Средняя фраза выхода', 'Средняя позиция фразы, на которой пользователь явно вышел.'],
       ], lessons.map((row) => [number(row.lesson_id), number(row.starts), number(row.completes), number(row.abandons), percent(row.completion_rate), number(row.avg_abandon_phrase)]));
+      const softHeaders = [
+        ['Триггер', 'Точная причина показа мягкого предложения.'],
+        ['Показы', 'Уникальные soft_upsell_impression_id с фактическим показом.'],
+        ['Клик soft CTA', 'Нажатия основной кнопки в мягком предложении.'],
+        ['Закрыли', 'Цепочки, в которых пользователь выбрал «Не сейчас» или закрыл предложение.'],
+        ['Открылся paywall', 'Цепочки, в которых paywall действительно смонтировался.'],
+        ['CTA paywall', 'Цепочки с нажатием кнопки покупки на paywall.'],
+        ['Старт магазина', 'Цепочки, дошедшие до системного окна магазина.'],
+        ['Ожидает', 'Покупка отправлена на подтверждение, но entitlement ещё не активен.'],
+        ['Trial', 'Подтверждённый годовой семидневный trial.'],
+        ['Оплачено', 'Подтверждённая платная подписка или lifetime без trial.'],
+        ['Всего покупок', 'Подтверждённая активация trial или платной подписки.'],
+        ['Конверсия', 'Покупки / фактические показы soft upsell.'],
+      ];
+      const renderSoftMode = (title, mode, warning) => {
+        const rows = Array.isArray(softUpsells[mode]) ? softUpsells[mode] : [];
+        return '<h4 style="margin:16px 0 8px">' + esc(title) + '</h4>' +
+          (warning ? '<div class="notice warning">' + esc(warning) + '</div>' : '') +
+          table(softHeaders, rows.map((row) => [
+            row.trigger, number(row.impressions), number(row.soft_cta_clicks) + ' · ' + percent(row.soft_cta_rate),
+            number(row.dismissals) + ' · ' + percent(row.dismiss_rate),
+            number(row.paywall_shows), number(row.paywall_cta_clicks), number(row.purchase_starts),
+            number(row.pending_purchases), number(row.trials), number(row.paid_activations),
+            number(row.purchases), percent(row.purchase_rate),
+          ]));
+      };
+      softUpsellsEl.innerHTML = renderSoftMode('Production', 'production', '') +
+        renderSoftMode('Test', 'test', 'Ручные проверки из админки. Эти данные не входят в Production funnel.');
+      const softDiagnosticsHeaders = [
+        ['Триггер', 'Точная причина показа мягкого предложения.'],
+        ['Закрыли paywall', 'Обычное закрытие paywall.'],
+        ['Остались бесплатно', 'Явный выбор продолжить бесплатно.'],
+        ['Ошибка', 'Классифицированный отказ магазина или инфраструктуры.'],
+        ['Отмена', 'Пользователь отменил системный диалог покупки.'],
+        ['Trial / показы', 'Подтверждённые годовые trial / фактические показы.'],
+        ['Покупки / soft CTA', 'Подтверждённые активации / нажатия soft CTA.'],
+        ['До soft CTA', 'Медианное время от фактического показа до soft CTA.'],
+        ['До результата', 'Медианное время от фактического показа до результата магазина.'],
+      ];
+      const renderSoftDiagnostics = (title, mode) => {
+        const rows = Array.isArray(softUpsells[mode]) ? softUpsells[mode] : [];
+        return '<h5 style="margin:12px 0 6px">' + esc(title) + ': причины потерь и скорость решения</h5>' +
+          table(softDiagnosticsHeaders, rows.map((row) => [
+            row.trigger, number(row.closes), number(row.continue_free), number(row.failures), number(row.cancellations),
+            percent(row.trial_rate), percent(row.cta_to_purchase_rate),
+            duration(row.median_impression_to_cta_ms), duration(row.median_impression_to_result_ms),
+          ]));
+      };
+      const softQuality = softUpsells.quality || {};
+      softUpsellsEl.innerHTML += renderSoftDiagnostics('Production', 'production') +
+        renderSoftDiagnostics('Test', 'test') +
+        '<p class="hint">RevenueCat остаётся источником истины по оплате; эта таблица показывает только согласованную in-app атрибуцию.</p>' +
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px">' +
+        language.explain('Отклонено цепочек: ' + number(softQuality.rejected_chain_ids), 'ID с неполными, неверными или конфликтующими trigger/context/mode исключены целиком.', 'div') +
+        language.explain('Конфликтующих ID: ' + number(softQuality.conflicting_chain_ids), 'Один ID сообщил разные режимы или метаданные; такая цепочка не считается.', 'div') +
+        language.explain('CTA без показа: ' + number(softQuality.cta_without_impression), 'Soft CTA есть, но фактический impression не зафиксирован.', 'div') +
+        language.explain('Paywall без soft CTA: ' + number(softQuality.paywall_without_soft_cta), 'Paywall получил ID цепочки без предшествующего soft CTA.', 'div') +
+        language.explain('Результат без старта: ' + number(softQuality.outcome_without_purchase_start), 'Результат магазина есть, но purchase_started отсутствует.', 'div') +
+        language.explain('Незавершённые цепочки: ' + number(softQuality.partial_open_chains), 'Показ зафиксирован, но пока нет ни CTA, ни закрытия.', 'div') + '</div>';
       qualityEl.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px">' +
         language.explain('Нераспознанные экраны: ' + number(quality.unknown_screen_views), 'События просмотра, название экрана которых отсутствует в текущем справочнике.', 'div') +
         language.explain('Без номера события: ' + number(quality.missing_event_ids), 'События без уникального номера; их сложнее защитить от повторного подсчёта.', 'div') +
+        language.explain('Soft-цепочки без event_id: ' + number(quality.missing_soft_event_ids), 'Такие события не входят в точную коммерческую воронку, пока их нельзя надёжно дедуплицировать.', 'div') +
+        language.explain('Неверный режим soft-цепочки: ' + number(quality.invalid_soft_modes), 'Допустимы только Production или Test; неизвестные режимы исключаются.', 'div') +
         language.explain('Без номера сессии: ' + number(quality.missing_session_ids), 'События, которые нельзя надёжно объединить в одну сессию.', 'div') +
         language.explain('Повторные события: ' + number(quality.duplicate_events), 'Повторы с одинаковым номером события, исключённые из чистого подсчёта.', 'div') +
         language.explain('Неверный формат: ' + number(quality.invalid_schema_events), 'События, структура которых не соответствует ожидаемому формату.', 'div') +

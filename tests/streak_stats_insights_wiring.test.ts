@@ -27,6 +27,8 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toContain("setLifetimeStatus('loading')");
     expect(source).toContain("lifetimeStatus: lifetimeStatus");
     expect(source).toContain('statsInsightAnalysis?.fingerprint');
+    expect(source).toContain('completedInsightsLoadCycleId');
+    expect(source).toContain('completedCycleId: completedInsightsLoadCycleId');
     expect(source).not.toContain('eslint-disable-next-line react-hooks/exhaustive-deps');
   });
 
@@ -41,6 +43,19 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toContain("if (!isPremium && block !== 'week')");
   });
 
+  it('binds notes to the exact fingerprint without ordinary observation rotation', () => {
+    expect(source).toContain('notesForStatsInsightsFingerprint(statsInsightAnalysis?.fingerprint ?? null, aiNotesState)');
+    expect(source).toContain('const requestFingerprint = statsInsightAnalysis.fingerprint');
+    expect(source).not.toContain('previousObservationIdsRef');
+    expect(source).toContain('buildStatsInsightAnalysis(statsInsightsSnapshot)');
+  });
+
+  it('keeps the resolved comparison card mounted during background loading', () => {
+    expect(source).toContain('const [hasResolvedPercentiles, setHasResolvedPercentiles] = useState(false)');
+    expect(source).toContain('shouldRenderStatsComparison(hasResolvedPercentiles)');
+    expect(source).not.toContain("if (percentilesStatus === 'loading')\n                return null");
+  });
+
   it('invalidates late activity/percentile completions when the screen loses focus', () => {
     expect(source).toContain('analyticsLoadRequestRef.current += 1');
     expect(source).toContain('isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current)');
@@ -49,7 +64,7 @@ describe('streak stats verified hybrid insight wiring', () => {
     expect(source).toContain('const devStatsCycleId = await loadAll()');
     expect(source).toContain('if (devStatsCycleId === null)');
     expect(source).toContain('isCurrentStatsInsightsLoadCycle(devStatsCycleId, analyticsLoadRequestRef.current)');
-    expect(source).toContain('return finishStatsInsightsLoadCycle(analyticsRequestId');
+    expect(source).toContain('const completedCycleId = await finishStatsInsightsLoadCycle(analyticsRequestId');
     expect(source).toMatch(/const snapshot = await refreshStatsCache\(studyTarget\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
     expect(source).toMatch(/const activeLeagueBoost = await loadActiveLeagueBoost\(\)\.catch\(\(\) => null\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);
     expect(source).toMatch(/const activeLeagueGroupBoost = await getActiveLeagueGroupBoost\(\)\.catch\(\(\) => null\);\s*if \(!isCurrentStatsInsightsLoadCycle\(analyticsRequestId, analyticsLoadRequestRef\.current\)\)\s*return null;/);

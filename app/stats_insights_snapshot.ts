@@ -58,6 +58,7 @@ export async function finishStatsInsightsLoadCycle(
 export function canBuildStatsInsightsSnapshotForCycle(input: {
   cycleId: number;
   currentCycleId: number;
+  completedCycleId: number;
   activityStatus: StatsInsightsLoadStatus;
   percentilesStatus: StatsInsightsLoadStatus;
   lifetimeStatus: StatsInsightsLoadStatus;
@@ -65,11 +66,23 @@ export function canBuildStatsInsightsSnapshotForCycle(input: {
   hasLifetime: boolean;
 }): boolean {
   return isCurrentStatsInsightsLoadCycle(input.cycleId, input.currentCycleId)
+    && input.completedCycleId === input.cycleId
     && input.activityStatus === 'ready'
     && input.percentilesStatus !== 'loading'
     && input.lifetimeStatus === 'ready'
     && input.hasActivity
     && input.hasLifetime;
+}
+
+export function notesForStatsInsightsFingerprint<T>(
+  currentFingerprint: string | null,
+  state: { fingerprint: string; notes: T } | null,
+): T | null {
+  return currentFingerprint !== null && state?.fingerprint === currentFingerprint ? state.notes : null;
+}
+
+export function shouldRenderStatsComparison(hasResolvedPercentiles: boolean): boolean {
+  return hasResolvedPercentiles;
 }
 
 function addUtcDays(dateKey: string, amount: number): string {

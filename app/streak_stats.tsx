@@ -63,7 +63,7 @@ import { StatCountUpText } from '../components/stats/StatCountUpText';
 import { AiBlockNote } from '../components/stats/AiBlockNote';
 import { getVerifiedStatsInsightsState, generateVerifiedStatsInsights, buildVerifiedFallbackNotes, type VerifiedStatsInsightsNotes } from './stats_insights_client';
 import { buildStatsInsightAnalysis, type StatsInsightBlockKey } from './stats_insights_analysis';
-import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, finishStatsInsightsLoadCycle, isCurrentStatsInsightsLoadCycle } from './stats_insights_snapshot';
+import { buildStatsInsightsSnapshot, canBuildStatsInsightsSnapshotForCycle, finishStatsInsightsLoadCycle, isCurrentStatsInsightsLoadCycle, notesForStatsInsightsFingerprint, shouldRenderStatsComparison } from './stats_insights_snapshot';
 import { loadActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
@@ -2696,12 +2696,13 @@ export default function StreakStats() {
     const [percentilesStatus, setPercentilesStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
     const [lifetimeStatus, setLifetimeStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
     const [insightsLoadCycleId, setInsightsLoadCycleId] = useState(0);
+    const [completedInsightsLoadCycleId, setCompletedInsightsLoadCycleId] = useState(-1);
+    const [hasResolvedPercentiles, setHasResolvedPercentiles] = useState(false);
     const analyticsLoadRequestRef = useRef(0);
     const statsScreenFocusedRef = useRef(false);
     // Четыре заметки строятся из одних и тех же проверенных фактов в fallback и на сервере.
-    const [aiNotes, setAiNotes] = useState<VerifiedStatsInsightsNotes | null>(null);
+    const [aiNotesState, setAiNotesState] = useState<{ fingerprint: string; notes: VerifiedStatsInsightsNotes } | null>(null);
     const [aiNotesLoading, setAiNotesLoading] = useState(false);
-    const previousObservationIdsRef = useRef<string[]>([]);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
     // Слова/фразы за 7 дней — для строки прогресса в «Твоей неделе».
     const [weekLearned, setWeekLearned] = useState<{ words7: number; phrases7: number } | null>(null);
@@ -2810,6 +2811,7 @@ export default function StreakStats() {
     const loadAll = React.useCallback(async (): Promise<number | null> => {
         const analyticsRequestId = ++analyticsLoadRequestRef.current;
         setInsightsLoadCycleId(analyticsRequestId);
+        setCompletedInsightsLoadCycleId(-1);
         setActivity365Status('loading');
         setPercentilesStatus('loading');
         setLifetimeStatus('loading');
@@ -2835,6 +2837,7 @@ export default function StreakStats() {
             setMyTime7ms(t7);
             setPercentiles(p);
             setPercentilesStatus(p.sample.status === 'unavailable' ? 'unavailable' : 'ready');
+            setHasResolvedPercentiles(true);
         })
             .catch((error) => {
             debugStatsRoute('loadAll:percentilesError', String(error));
@@ -2850,6 +2853,7 @@ export default function StreakStats() {
                 sample: { ...current.sample, status: 'unavailable', isStale: false },
             }));
             setPercentilesStatus('unavailable');
+            setHasResolvedPercentiles(true);
         });
         debugStatsRoute('loadAll:start');
         await hydrateStatsCacheFromStorage();
@@ -2915,7 +2919,7 @@ export default function StreakStats() {
         await lifetimeRefresh;
         if (!isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
             return null;
-        loadWeeklyLearnedCounts()
+        const weeklyLearnedRefresh = loadWeeklyLearnedCounts()
             .then((counts) => {
             if (isCurrentStatsInsightsLoadCycle(analyticsRequestId, analyticsLoadRequestRef.current))
                 setWeekLearned(counts);
@@ -2926,7 +2930,10 @@ export default function StreakStats() {
         });
         // Синк аналитики не блокирует первую геометрию экрана.
         void syncDailyAnalyticsIfNeeded();
-        return finishStatsInsightsLoadCycle(analyticsRequestId, Promise.all([activityRefresh, percentilesRefresh]), () => analyticsLoadRequestRef.current);
+        const completedCycleId = await finishStatsInsightsLoadCycle(analyticsRequestId, Promise.all([activityRefresh, percentilesRefresh, weeklyLearnedRefresh]), () => analyticsLoadRequestRef.current);
+        if (completedCycleId !== null && isCurrentStatsInsightsLoadCycle(completedCycleId, analyticsLoadRequestRef.current))
+            setCompletedInsightsLoadCycleId(completedCycleId);
+        return completedCycleId;
     }, [applyStatsSnapshot, studyTarget]);
     // Reload data when screen regains focus (e.g. after tester functions).
     useFocusEffect(React.useCallback(() => {
@@ -2937,6 +2944,7 @@ export default function StreakStats() {
             statsScreenFocusedRef.current = false;
             analyticsLoadRequestRef.current += 1;
             setInsightsLoadCycleId(-1);
+            setCompletedInsightsLoadCycleId(-1);
         };
     }, [loadAll]));
     // ── Проверенный гибридный разбор ─────────────────────────────────────────
@@ -2944,6 +2952,7 @@ export default function StreakStats() {
         if (!canBuildStatsInsightsSnapshotForCycle({
             cycleId: insightsLoadCycleId,
             currentCycleId: analyticsLoadRequestRef.current,
+            completedCycleId: completedInsightsLoadCycleId,
             activityStatus: activity365Status,
             percentilesStatus: percentilesStatus,
             lifetimeStatus: lifetimeStatus,
@@ -2969,10 +2978,11 @@ export default function StreakStats() {
             percentiles,
             lifetime: lifetimeStats,
         });
-    }, [activity365, activity365Status, allTimeDays, coachMetrics, insightsLoadCycleId, lang, lifetimeStats, lifetimeStatus, percentiles, percentilesStatus, studyTarget]);
+    }, [activity365, activity365Status, allTimeDays, coachMetrics, completedInsightsLoadCycleId, insightsLoadCycleId, lang, lifetimeStats, lifetimeStatus, percentiles, percentilesStatus, studyTarget]);
     const statsInsightAnalysis = useMemo(() => statsInsightsSnapshot
-        ? buildStatsInsightAnalysis(statsInsightsSnapshot, previousObservationIdsRef.current)
+        ? buildStatsInsightAnalysis(statsInsightsSnapshot)
         : null, [statsInsightsSnapshot]);
+    const visibleAiNotes = notesForStatsInsightsFingerprint(statsInsightAnalysis?.fingerprint ?? null, aiNotesState);
     React.useEffect(() => {
         if (!statsInsightAnalysis) {
             setAiNotesLoading(false);
@@ -2980,16 +2990,13 @@ export default function StreakStats() {
         }
         let cancelled = false;
         void (async () => {
+            const requestFingerprint = statsInsightAnalysis.fingerprint;
             const options = { analysis: statsInsightAnalysis, lang, studyTarget };
             const cached = await getVerifiedStatsInsightsState(options);
             if (cancelled)
                 return;
             if (cached.kind === 'cached') {
-                setAiNotes(cached.notes);
-                previousObservationIdsRef.current = Object.values(cached.observationIds);
-            }
-            else {
-                setAiNotes(null);
+                setAiNotesState({ fingerprint: requestFingerprint, notes: cached.notes });
             }
             if (!isPremium) {
                 setAiNotesLoading(false);
@@ -3005,14 +3012,13 @@ export default function StreakStats() {
                 if (cancelled)
                     return;
                 if (generated.kind === 'cached') {
-                    setAiNotes(generated.notes);
-                    previousObservationIdsRef.current = Object.values(generated.observationIds);
+                    setAiNotesState({ fingerprint: requestFingerprint, notes: generated.notes });
                 }
                 else if (generated.kind === 'fallback') {
-                    setAiNotes(generated.notes);
+                    setAiNotesState({ fingerprint: requestFingerprint, notes: generated.notes });
                 }
                 else if (generated.kind === 'insufficient_data') {
-                    setAiNotes(buildVerifiedFallbackNotes(statsInsightAnalysis, lang));
+                    setAiNotesState({ fingerprint: requestFingerprint, notes: buildVerifiedFallbackNotes(statsInsightAnalysis, lang) });
                 }
             }
             finally {
@@ -3241,7 +3247,7 @@ export default function StreakStats() {
     };
     // Заметка Компаса под связанной карточкой; free получает один тизер на пейвол.
     const renderAiNote = (block: StatsInsightBlockKey, tone: StatsChromeTone) => {
-        const note = aiNotes?.[block];
+        const note = visibleAiNotes?.[block];
         if (!isPremium && block !== 'week')
             return null;
         if (isPremium && !note && !aiNotesLoading) {
@@ -3709,7 +3715,7 @@ export default function StreakStats() {
 
         {/* Перцентили — единый блок: горизонтальные дорожки «ты обходишь N%». */}
         {(() => {
-            if (percentilesStatus === 'loading')
+            if (!shouldRenderStatsComparison(hasResolvedPercentiles))
                 return null;
             const pItems: {
                 icon: keyof typeof Ionicons.glyphMap;

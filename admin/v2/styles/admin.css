@@ -423,6 +423,9 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
 .diagnostics-tabs button:hover { background: var(--surface); color: var(--ink); }
 .diagnostics-tabs button.active { background: var(--lime); color: var(--lime-ink); box-shadow: 0 1px 2px rgba(7, 17, 10, .12); }
 .diagnostics-workspace .button.small { min-width: 44px; min-height: 44px; }
+.diagnostics-workspace [data-tooltip]::after { content: none; }
+.diagnostics-workspace [data-tooltip]:hover::after,
+.diagnostics-workspace [data-tooltip]:focus-visible::after { content: attr(data-tooltip); }
 .diagnostics-mobile-view { display: none; }
 .diagnostics-source-health { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .diagnostics-kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); }
@@ -434,11 +437,14 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
 .diagnostics-table td > small { margin-top: 4px; color: var(--muted); line-height: 1.45; }
 .diagnostics-table [data-tooltip]::after,
 .diagnostics-filter-actions [data-tooltip]::after,
+.diagnostics-workspace .actions.end [data-tooltip]::after,
 [data-action="diagnostics-load-activity"][data-tooltip]::after { right: 0; left: auto; transform: translate(0, 4px); }
 .diagnostics-table [data-tooltip]:hover::after,
 .diagnostics-table [data-tooltip]:focus-visible::after,
 .diagnostics-filter-actions [data-tooltip]:hover::after,
 .diagnostics-filter-actions [data-tooltip]:focus-visible::after,
+.diagnostics-workspace .actions.end [data-tooltip]:hover::after,
+.diagnostics-workspace .actions.end [data-tooltip]:focus-visible::after,
 [data-action="diagnostics-load-activity"][data-tooltip]:hover::after,
 [data-action="diagnostics-load-activity"][data-tooltip]:focus-visible::after { transform: translate(0, 0); }
 .diagnostics-status-actions { min-width: min(350px, 65vw); margin-top: 8px; }

@@ -1,29 +1,158 @@
-import governance from '../app/product_analytics_governance.json';
 import {
   PRODUCT_ANALYTICS_GOVERNANCE_VERSION,
+  PRODUCT_ANALYTICS_FIELD_REGISTRY,
+  PRODUCT_ANALYTICS_EVENT_CATALOG,
+  PRODUCT_ANALYTICS_METRIC_REGISTRY,
+  PRODUCT_ANALYTICS_WAREHOUSE_EVENTS,
+  canonicalProductAnalyticsEventName,
   governedSoftUpsellJoinKey,
   isGovernedSoftUpsellChainEvent,
   isValidGovernedSoftUpsellChainPayload,
+  validateProductAnalyticsCatalog,
 } from '../app/product_analytics_event_catalog';
+import governance from '../app/product_analytics_governance.json';
+import type { AnalyticsEvent } from '../app/analytics';
 
-test('governance enforces exact direct attribution and Production/Test isolation', () => {
-  expect(PRODUCT_ANALYTICS_GOVERNANCE_VERSION).toBe(1);
-  expect(governedSoftUpsellJoinKey()).toEqual(['soft_upsell_mode', 'soft_upsell_impression_id']);
-  expect(governance.directAttribution.forbidFallbackAttribution).toEqual(['user_id', 'session_id', 'time_window']);
-  expect(isGovernedSoftUpsellChainEvent('purchase_completed')).toBe(true);
-  expect(isGovernedSoftUpsellChainEvent('paywall_continue_free')).toBe(true);
-  expect(isGovernedSoftUpsellChainEvent('subscription_restored')).toBe(false);
-});
+const youtubeEvents = [
+  'youtube_home_entry_click',
+  'youtube_catalog_open',
+  'youtube_video_select',
+  'youtube_player_ready',
+  'youtube_playback_start',
+  'youtube_playback_checkpoint',
+  'youtube_playback_end',
+  'youtube_external_video_open',
+  'youtube_channel_open',
+] as const;
 
-test('runtime governance rejects partial or non-catalogued exact-chain payloads', () => {
-  const exact = {
-    soft_upsell_mode: 'production',
-    soft_upsell_impression_id: 'chain_12345678',
-    soft_upsell_trigger: 'weekly_review',
-    soft_upsell_context: 'weekly_review',
-    event_id: 'chain_12345678:paywall_shown',
-  };
-  expect(isValidGovernedSoftUpsellChainPayload('paywall_shown', exact)).toBe(true);
-  expect(isValidGovernedSoftUpsellChainPayload('paywall_shown', { ...exact, event_id: undefined })).toBe(false);
-  expect(isValidGovernedSoftUpsellChainPayload('subscription_restored', exact)).toBe(false);
+describe('product analytics event catalog', () => {
+  it('preserves exact soft-upsell attribution governance', () => {
+    expect(PRODUCT_ANALYTICS_GOVERNANCE_VERSION).toBe(1);
+    expect(governedSoftUpsellJoinKey()).toEqual(['soft_upsell_mode', 'soft_upsell_impression_id']);
+    expect(governance.directAttribution.forbidFallbackAttribution).toEqual(['user_id', 'session_id', 'time_window']);
+    expect(isGovernedSoftUpsellChainEvent('purchase_completed')).toBe(true);
+    expect(isGovernedSoftUpsellChainEvent('subscription_restored')).toBe(false);
+  });
+
+  it('keeps runtime soft-upsell governance strict after adding YouTube events', () => {
+    const exact = {
+      soft_upsell_mode: 'production',
+      soft_upsell_impression_id: 'chain_12345678',
+      soft_upsell_trigger: 'weekly_review',
+      soft_upsell_context: 'weekly_review',
+      event_id: 'chain_12345678:paywall_shown',
+    };
+    expect(isValidGovernedSoftUpsellChainPayload('paywall_shown', exact)).toBe(true);
+    expect(isValidGovernedSoftUpsellChainPayload('paywall_shown', { ...exact, event_id: undefined })).toBe(false);
+    expect(isValidGovernedSoftUpsellChainPayload('subscription_restored', exact)).toBe(false);
+  });
+
+  it('normalizes the legacy lesson abandon spelling to the warehouse name', () => {
+    expect(canonicalProductAnalyticsEventName('lesson_abandon')).toBe('lesson_abandoned');
+    expect(canonicalProductAnalyticsEventName('lesson_abandoned')).toBe('lesson_abandoned');
+  });
+
+  it('has unique names, aliases and metric ids with no free-form fields', () => {
+    expect(validateProductAnalyticsCatalog(PRODUCT_ANALYTICS_EVENT_CATALOG)).toEqual([]);
+  });
+
+  it('declares the product events consumed by the current warehouse query', () => {
+    expect([...PRODUCT_ANALYTICS_WAREHOUSE_EVENTS].sort()).toEqual([
+      'exit_trial_offer_accepted',
+      'exit_trial_offer_declined',
+      'exit_trial_offer_shown',
+      'lesson_abandoned',
+      'lesson_answer',
+      'onboarding_complete',
+      'lesson_complete',
+      'lesson_start',
+      'paywall_close',
+      'paywall_continue_free',
+      'paywall_cta_click',
+      'paywall_exit_offer_accepted',
+      'paywall_exit_offer_declined',
+      'paywall_exit_offer_shown',
+      'paywall_inventory_resolved',
+      'paywall_plan_select',
+      'paywall_shown',
+      'paywall_view',
+      'premium_purchased',
+      'product_screen_leave',
+      'product_screen_view',
+      'product_session_background',
+      'product_session_resume',
+      'product_session_start',
+      'purchase_cancelled',
+      'purchase_completed',
+      'purchase_failed',
+      'purchase_started',
+      'trial_started',
+      ...youtubeEvents,
+    ].sort());
+  });
+
+  it('uses centrally classified safe fields and includes terminal lesson duration', () => {
+    const complete = PRODUCT_ANALYTICS_EVENT_CATALOG.find(event => event.name === 'lesson_complete');
+    const abandoned = PRODUCT_ANALYTICS_EVENT_CATALOG.find(event => event.name === 'lesson_abandoned');
+
+    expect(complete?.allowedFields).toContain('elapsed_ms');
+    expect(abandoned?.allowedFields).toContain('elapsed_ms');
+    expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.error.valueClass).toBe('enum_code');
+    expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.error.description.toLowerCase()).toContain('normalized');
+  });
+
+  it('rejects fields outside the centrally reviewed registry', () => {
+    expect(validateProductAnalyticsCatalog([{
+      name: 'unsafe_event',
+      entity: 'event',
+      warehouse: 'telemetry_only',
+      metricIds: [],
+      allowedFields: ['user_name', 'raw_answer', 'prompt_text', 'stack'],
+    }])).toEqual([
+      'unknown_field:unsafe_event:user_name',
+      'unknown_field:unsafe_event:raw_answer',
+      'unknown_field:unsafe_event:prompt_text',
+      'unknown_field:unsafe_event:stack',
+    ]);
+  });
+
+  it('exposes the canonical warehouse spelling through the public analytics type', () => {
+    const event: AnalyticsEvent = 'lesson_abandoned';
+    expect(event).toBe('lesson_abandoned');
+  });
+
+  it('governs all YouTube events with exact fields and unique metric ids', () => {
+    const definitions = youtubeEvents.map(name => (
+      PRODUCT_ANALYTICS_EVENT_CATALOG.find(event => event.name === name)
+    ));
+    const metricIds = definitions.flatMap(definition => definition?.metricIds ?? []);
+
+    expect(definitions.every(Boolean)).toBe(true);
+    expect(definitions.every(definition => definition?.warehouse === 'product')).toBe(true);
+    expect(definitions.slice(0, 4).every(definition => definition?.entity === 'event')).toBe(true);
+    expect(definitions.slice(4, 7).every(definition => definition?.entity === 'attempt')).toBe(true);
+    expect(definitions.slice(7).every(definition => definition?.entity === 'event')).toBe(true);
+    expect(metricIds).toEqual(youtubeEvents.map(name => (
+      `${name.replace(/^youtube_/, 'youtube.').replaceAll('_', '.')}.v1`
+    )));
+    expect(new Set(metricIds).size).toBe(youtubeEvents.length);
+
+    for (const definition of definitions) {
+      expect(definition?.allowedFields).toEqual(expect.arrayContaining([
+        'schema_version',
+        'event_id',
+        'session_id',
+        'channel_id',
+        'source',
+        'platform',
+        'app_version',
+        'build_number',
+        'occurred_at_ms',
+      ]));
+      expect(definition?.allowedFields).not.toContain('product_session_id');
+    }
+    expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.video_title.valueClass).toBe('bounded_text');
+    expect(PRODUCT_ANALYTICS_METRIC_REGISTRY.filter(metric => metric.id.startsWith('youtube.')))
+      .toHaveLength(youtubeEvents.length);
+  });
 });

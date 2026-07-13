@@ -49,9 +49,9 @@ interface LeaderboardStatsLoadResult {
 
 let _memCache: LeaderboardStatsCacheEntry | null = null;
 
-function hasFiniteThresholds(value: unknown, allowEmpty = false): value is number[] {
+function hasFiniteThresholds(value: unknown): value is number[] {
   return Array.isArray(value)
-    && (allowEmpty || value.length > 0)
+    && value.length === 99
     && value.every((threshold, index) => typeof threshold === 'number'
       && Number.isFinite(threshold)
       && threshold >= 0
@@ -63,7 +63,8 @@ function isValidLeaderboardStats(value: unknown): value is GlobalLeaderboardStat
   const stats = value as Partial<GlobalLeaderboardStats>;
   return typeof stats.totalUsers === 'number'
     && Number.isFinite(stats.totalUsers)
-    && stats.totalUsers > 0
+    && Number.isInteger(stats.totalUsers)
+    && stats.totalUsers >= 0
     && typeof stats.updatedAt === 'number'
     && Number.isFinite(stats.updatedAt)
     && stats.updatedAt > 0
@@ -76,7 +77,7 @@ function isValidLeaderboardStats(value: unknown): value is GlobalLeaderboardStat
     && hasFiniteThresholds(stats.weekXpThresholds)
     && hasFiniteThresholds(stats.daily7xpThresholds)
     && hasFiniteThresholds(stats.daily7timeMsThresholds)
-    && hasFiniteThresholds(stats.arenaXpThresholds, true);
+    && hasFiniteThresholds(stats.arenaXpThresholds);
 }
 
 function isValidCacheEntry(value: unknown): value is LeaderboardStatsCacheEntry {
@@ -193,7 +194,7 @@ export function invalidateLeaderboardStatsCache(): void {
 export function lookupPercentile(thresholds: number[], myValue: number): number | null {
   if (!thresholds || thresholds.length === 0 || myValue <= 0) return null;
   let result = 0;
-  for (let i = 0; i < thresholds.length; i++) {
+  for (let i = 0; i < Math.min(thresholds.length, 99); i++) {
     if (myValue > (thresholds[i] ?? 0)) result = i + 1;
     else break;
   }
@@ -268,7 +269,8 @@ export async function computeAllPercentiles(opts: {
 
   const stats = loaded.data;
   const minimumSampleXp = percentileSampleXpFloor(stats);
-  const isInAppSample = opts.myXp >= minimumSampleXp;
+  const hasAppWideSample = stats.totalUsers > 0;
+  const isInAppSample = hasAppWideSample && opts.myXp >= minimumSampleXp;
 
   return {
     xp: isInAppSample ? lookupPercentile(stats.xpThresholds, opts.myXp) : null,
@@ -279,7 +281,11 @@ export async function computeAllPercentiles(opts: {
     arenaXp: lookupPercentile(stats.arenaXpThresholds, opts.myArenaXp),
     totalUsers: stats.totalUsers,
     sample: {
-      status: isInAppSample ? 'available' : 'below_sample_floor',
+      status: !hasAppWideSample
+        ? 'unavailable'
+        : isInAppSample
+          ? 'available'
+          : 'below_sample_floor',
       userTotalXp: opts.myXp,
       minimumSampleXp,
       totalUsers: stats.totalUsers,

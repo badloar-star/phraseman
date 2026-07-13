@@ -55,10 +55,12 @@ describe('loadPercentileData weekly XP', () => {
     ]);
 
     const { loadPercentileData } = require('../app/daily_analytics_sync');
-    await loadPercentileData();
+    const result = await loadPercentileData();
 
     expect(computeAllPercentiles).toHaveBeenCalledWith(expect.objectContaining({
+      myXp: 6000,
       myWeekXp: 0,
     }));
+    expect(result.userTotalXp).toBe(6000);
   });
 });

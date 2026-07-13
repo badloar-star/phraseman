@@ -18,7 +18,8 @@ describe('Home runtime animation ownership', () => {
     expect(trainer).toContain('const trainerRuntimeActive = useRuntimeActive()');
     expect(trainer).toContain('<WeeklyReviewCard active={trainerRuntimeActive}');
     expect(weekly).toContain('active: boolean');
-    expect(weekly).toContain('if (!active || reduceMotion)');
-    expect(weekly).toContain('<WeeklyCompassIcon active={active}');
+    expect(weekly).toContain("if (!active || reduceMotion || state?.status !== 'fresh')");
+    expect(weekly).toContain('Animated.timing(sweep');
+    expect(weekly).not.toContain('Animated.loop');
   });
 });

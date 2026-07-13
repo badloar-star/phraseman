@@ -8,6 +8,14 @@ const computeAllPercentiles = jest.fn(async (opts) => ({
   daily7timeMs: null,
   arenaXp: null,
   totalUsers: 0,
+  sample: {
+    status: 'unavailable',
+    userTotalXp: 0,
+    minimumSampleXp: 5000,
+    totalUsers: 0,
+    updatedAtMs: null,
+    isStale: false,
+  },
 }));
 
 jest.mock('../app/leaderboard_stats', () => ({

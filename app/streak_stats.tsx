@@ -44,7 +44,7 @@ import { oskolokImageForPackShards } from './oskolok';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { formatLeagueGroupBoostTimeLeft, getActiveLeagueGroupBoost } from './league_group_boosts';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
-import { type AllPercentiles } from './leaderboard_stats';
+import { MIN_PERCENTILE_SAMPLE_XP, type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, readLifetimeProfileStatsCache, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { loadAchievementStates } from './achievements';
@@ -2669,7 +2669,23 @@ export default function StreakStats() {
     const [detailsOpen, setDetailsOpen] = useState(false);
     const today = toDateStr(new Date());
     const [lifetimeStats, setLifetimeStats] = useState<LifetimeProfileStats | null>(null);
-    const [percentiles, setPercentiles] = useState<AllPercentiles>({ xp: null, streak: null, weekXp: null, daily7xp: null, daily7timeMs: null, arenaXp: null, totalUsers: 0 });
+    const [percentiles, setPercentiles] = useState<AllPercentiles>({
+        xp: null,
+        streak: null,
+        weekXp: null,
+        daily7xp: null,
+        daily7timeMs: null,
+        arenaXp: null,
+        totalUsers: 0,
+        sample: {
+            status: 'unavailable',
+            userTotalXp: 0,
+            minimumSampleXp: MIN_PERCENTILE_SAMPLE_XP,
+            totalUsers: 0,
+            updatedAtMs: null,
+            isStale: false,
+        },
+    });
     const [myXp7, setMyXp7] = useState(0);
     const [myTime7ms, setMyTime7ms] = useState(0);
     // ИИ-микротексты под блоками (premium, ленивая генерация — см. stats_insights_client).

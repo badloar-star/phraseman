@@ -50,6 +50,7 @@ import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
 import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+import { TODAY_ACCOUNT_STORAGE_KEYS } from '../lib/today/storage_keys';
 import {
   activeRecallItemsKey,
   achievementStateKey,
@@ -643,6 +644,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
     ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
     ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
+    ...TODAY_ACCOUNT_STORAGE_KEYS,
     ...localOnlyTargetKeys,
   ]));
 }
@@ -699,6 +701,7 @@ export type StableAuthLinkEnsureResult = {
   stableUid: string | null;
   authUid: string | null;
   source: 'disabled' | 'cache' | 'callable' | 'unavailable';
+  failure?: 'stable_id_mismatch' | 'unavailable';
 };
 
 export type StableAuthLinkMetadata = {
@@ -1537,7 +1540,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   const stableId = String(stableIdRaw || '').trim();
   const authUid = await waitForFirebaseAuthUid();
   if (!stableId || !authUid) {
-    return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+    return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'unavailable' };
   }
 
   const key = `${stableId}:${authUid}`;
@@ -1553,7 +1556,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
     try {
       const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
       if (!appCheckReady) {
-        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'unavailable' };
       }
       const fn = callable<
         { stableId: string; linkMetadata?: StableAuthLinkMetadata },
@@ -1574,10 +1577,16 @@ export async function ensureStableAuthLinkForStableIdDetailed(
         stableUid: ok ? actualStableUid : null,
         authUid: actualAuthUid,
         source: 'callable',
+        ...(ok ? {} : { failure: 'unavailable' as const }),
       };
     } catch (error) {
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
-      return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+      const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
+      const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
+      const failure = message.includes('stable_id_mismatch') && code.includes('permission-denied')
+        ? 'stable_id_mismatch' as const
+        : 'unavailable' as const;
+      return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure };
     } finally {
       stableAuthLinkPromise = null;
     }

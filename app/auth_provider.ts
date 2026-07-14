@@ -418,6 +418,45 @@ async function readAccountDeletePendingAuth(providerUidRaw: string): Promise<Acc
   }
 }
 
+async function clearAccountDeletePendingAuth(): Promise<void> {
+  await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(() => {});
+}
+
+async function restoreAnonymousIdentityAfterPendingDelete(localStableId: string): Promise<void> {
+  try {
+    await signOutCurrentProvider();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] account-delete-pending signOut failed', e);
+    try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+  }
+
+  let activeStableId: string | null = null;
+  try {
+    activeStableId = await ensureAnonUser();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] account-delete-pending ensureAnonUser failed', e);
+  }
+  if (!activeStableId) return;
+
+  const repaired = await ensureStableAuthLinkForStableIdDetailed(localStableId).catch(() => null);
+  if (repaired?.ok) {
+    logAuthEvent('auth_account_delete_pending_identity_repaired');
+    return;
+  }
+  if (repaired?.failure !== 'stable_id_mismatch') return;
+
+  // The provider sign-in replaced the anonymous Firebase session, so the new
+  // anonymous uid cannot safely claim the old stable id without ownership proof.
+  // Rotate only the identity anchor; local progress remains intact and will sync
+  // under the new stable id instead of leaving social/league calls permission-denied.
+  await clearStableId();
+  const rotatedStableId = await ensureAnonUser();
+  if (!rotatedStableId) return;
+  beginAccountGeneration(rotatedStableId);
+  await ensureStableAuthLinkForStableIdDetailed(rotatedStableId).catch(() => null);
+  logAuthEvent('auth_account_delete_pending_identity_rotated');
+}
+
 function coerceFirebaseMetaTime(raw: unknown, defaultTime: number): number {
   if (raw == null) return defaultTime;
   if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
@@ -850,6 +889,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
   }
 
   await anonPreparation;
+  const preProviderStableId = await getStableId();
 
   // 2. Связать credential с аккаунтом через Firebase.
   //
@@ -870,7 +910,6 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
   let firebaseProviderUid: string;
   let firebaseEmail: string | null = cred.email;
   let firebaseDisplayName: string | null = cred.displayName;
-  let linkedInPlace = false; // true → анонимный uid сохранён (link), merge не нужен
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const authMod = require('@react-native-firebase/auth');
@@ -882,7 +921,15 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
           : authMod.default.AppleAuthProvider.credential(cred.idToken);
 
     const anonUser = auth.currentUser;
-    const canTryLink = Boolean(anonUser?.isAnonymous && typeof anonUser?.linkWithCredential === 'function');
+    // Apple authorization codes are one-time credentials. If linkWithCredential
+    // reports a conflict, reusing the same Apple credential for sign-in produces
+    // "Duplicate credential received". Apple therefore uses the safe server-link
+    // path directly; Google can still preserve the anonymous uid in place.
+    const canTryLink = Boolean(
+      provider !== 'apple' &&
+      anonUser?.isAnonymous &&
+      typeof anonUser?.linkWithCredential === 'function'
+    );
 
     let userCredential: any = null;
     if (canTryLink) {
@@ -891,7 +938,6 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         // here used to start signInWithCredential while the timed-out link could
         // still complete in the background, racing two identity mutations.
         userCredential = await anonUser.linkWithCredential(credential);
-        linkedInPlace = true;
         logAuthEvent('auth_signin_linked_in_place', { provider });
       } catch (linkErr: any) {
         const linkCode = String(linkErr?.code ?? '');
@@ -911,19 +957,20 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
         }
         // Apple: при конфликте credential может быть одноразовым — у нас всё равно есть
         // свежий credential из этого же sign-in, переиспользуем его для signInWithCredential.
-        const preSignInStableId = await getStableId();
-        // A fresh device has nothing worth merging. Avoid a server ownership stamp
-        // and the expensive merge path just because onboarding created a local name.
-        if (await hasMeaningfulLocalAccountData()) {
-          await stampAnonOwnershipBeforeSignIn(preSignInStableId);
-        }
+        await stampAnonOwnershipBeforeSignIn(preProviderStableId);
         userCredential = await auth.signInWithCredential(credential);
       }
     } else {
+      await stampAnonOwnershipBeforeSignIn(preProviderStableId);
       userCredential = await auth.signInWithCredential(credential);
     }
 
     const fbUser = userCredential?.user ?? auth.currentUser;
+    if (typeof fbUser?.getIdToken === 'function') {
+      // linkWithCredential may leave the cached callable token carrying the old
+      // anonymous sign_in_provider claim. Force refresh before authEnsureStableLink.
+      await fbUser.getIdToken(true);
+    }
     firebaseProviderUid = fbUser?.uid ?? '';
     if (!firebaseEmail) firebaseEmail = fbUser?.email ?? null;
     if (!firebaseDisplayName) firebaseDisplayName = fbUser?.displayName ?? null;
@@ -943,29 +990,26 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
   if (pendingDelete) {
     const ageMs = Math.max(0, Date.now() - pendingDelete.createdAt);
     logAuthEvent('auth_signin_blocked_account_delete_pending', { provider, ageMs });
+    let deletionCompleted = false;
     try {
       const ack = await enqueueCloudDeletion(pendingDelete.stableId);
       logAuthEvent('auth_account_delete_enqueue_retry', { provider, status: ack.status });
+      deletionCompleted = ack.status === 'completed';
     } catch (e) {
       if (__DEV__) console.warn('[auth_provider] account-delete-pending enqueue retry failed', e);
       logAuthEvent('auth_account_delete_enqueue_retry_failed', { provider });
     }
-    try {
-      await signOutCurrentProvider();
-    } catch (e) {
-      if (__DEV__) console.warn('[auth_provider] account-delete-pending signOut failed', e);
-      try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+    if (deletionCompleted) {
+      await clearAccountDeletePendingAuth();
+      logAuthEvent('auth_account_delete_pending_lock_cleared', { provider });
+    } else {
+      await restoreAnonymousIdentityAfterPendingDelete(preProviderStableId);
+      return { result: 'error', error: 'account_delete_pending' };
     }
-    try {
-      await ensureAnonUser();
-    } catch (e) {
-      if (__DEV__) console.warn('[auth_provider] account-delete-pending ensureAnonUser failed', e);
-    }
-    return { result: 'error', error: 'account_delete_pending' };
   }
 
   // 3. Lookup auth_links → link OR auto-merge by XP
-  const localStableId = await getStableId();
+  let localStableId = await getStableId();
   const now = Date.now();
   const devicePlatform: 'ios' | 'android' | 'web' =
     Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web';
@@ -1008,10 +1052,8 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
   // (≈1.4с) истекает → ensureStableAuthLinkForStableId возвращает false → весь
   // вход прерывался с Critical-алертом. Операция идемпотентна и самолечится —
   // не сдаёмся с первой попытки, ретраим с нарастающей паузой.
-  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<StableAuthLinkEnsureResult | null> => {
-    const result = await ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata);
-    return result.ok && result.stableUid ? result : null;
-  };
+  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<StableAuthLinkEnsureResult> =>
+    ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata);
 
   if (remoteStableId) {
     // Provider is already linked to another stable_id. This is the normal
@@ -1019,7 +1061,7 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
     // stable_id first: authEnsureStableLink correctly rejects that as
     // stable_id_mismatch because auth_links/{providerUid} points to remoteStableId.
     const linkedRemote = await ensureStableAuthLinkWithRetry(remoteStableId);
-    if (!linkedRemote?.stableUid) {
+    if (!linkedRemote.ok || !linkedRemote.stableUid) {
       captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
       return { result: 'error', error: 'auth_link_failed' };
     }
@@ -1029,8 +1071,25 @@ async function runSignInWithProvider(provider: AuthProviderId): Promise<SignInRe
       mergedFromStableId: localStableId,
     };
   } else {
-    const linkedLocal = await ensureStableAuthLinkWithRetry(localStableId);
-    if (!linkedLocal?.stableUid) {
+    let linkedLocal = await ensureStableAuthLinkWithRetry(localStableId);
+    if (!linkedLocal.ok && linkedLocal.failure === 'stable_id_mismatch') {
+      // A previous interrupted provider switch can leave local progress under a
+      // stable id owned by an obsolete anonymous Firebase uid. That identity
+      // cannot be reclaimed safely, so rotate only the anchor and keep the local
+      // progress. This restores league/social access without merging foreign data.
+      try {
+        await quiesceSyncBeforeStableIdSwap();
+        invalidateAccountGeneration();
+        await clearStableId();
+        localStableId = await getStableId();
+        beginAccountGeneration(localStableId);
+        linkedLocal = await ensureStableAuthLinkWithRetry(localStableId);
+        if (linkedLocal.ok) logAuthEvent('auth_signin_stale_identity_rotated', { provider });
+      } catch (e) {
+        if (__DEV__) console.warn('[auth_provider] stale stable id rotation failed', e);
+      }
+    }
+    if (!linkedLocal.ok || !linkedLocal.stableUid) {
       captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
       return { result: 'error', error: 'auth_link_failed' };
     }

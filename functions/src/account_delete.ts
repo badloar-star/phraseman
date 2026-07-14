@@ -466,11 +466,29 @@ async function deleteCollectionGroupMatches(
     const q = db.collectionGroup(spec.collectionGroup).where(spec.field, spec.op, spec.value);
     await deleteQuery(q, ctx, stats);
   }
-  for (const spec of accountDeleteCollectionGroupDocumentIdPlan(stableUid, authUid)) {
-    const q = db
-      .collectionGroup(spec.collectionGroup)
-      .where(admin.firestore.FieldPath.documentId(), '==', spec.value);
-    await deleteQuery(q, ctx, stats);
+  await deleteCrossUserDocumentIdMatches(db, stableUid, authUid, ctx, stats);
+}
+
+async function deleteCrossUserDocumentIdMatches(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  authUid: string,
+  ctx: DeleteContext,
+  stats: DeleteStats,
+): Promise<void> {
+  const plan = accountDeleteCollectionGroupDocumentIdPlan(stableUid, authUid);
+  const userRefs = await db.collection('users').listDocuments();
+  const concurrency = 20;
+  for (let offset = 0; offset < userRefs.length; offset += concurrency) {
+    await Promise.all(userRefs.slice(offset, offset + concurrency).map(async (userRef) => {
+      const refs = plan.map((spec) => userRef.collection(spec.collectionGroup).doc(spec.value));
+      stats.queriesRun += 1;
+      const snapshots = await db.getAll(...refs);
+      for (const snapshot of snapshots) {
+        if (snapshot.exists) await deleteDocTree(ctx, snapshot.ref);
+      }
+    }));
+    if (typeof ctx.writer.flush === 'function') await ctx.writer.flush();
   }
 }
 
@@ -536,26 +554,35 @@ async function removeFromFriendGiftDailyLimits(
   stats: DeleteStats,
 ): Promise<void> {
   const recipientPath = new admin.firestore.FieldPath('recipients', stableUid);
-  for (;;) {
-    stats.queriesRun += 1;
-    const snap = await db
-      .collectionGroup('friend_gift_daily_limits')
-      .where(recipientPath, '>', 0)
-      .limit(DELETE_BATCH_LIMIT)
-      .get();
-    if (snap.empty) return;
-    const batch = db.batch();
-    for (const doc of snap.docs) {
-      batch.update(
-        doc.ref,
-        recipientPath,
-        admin.firestore.FieldValue.delete(),
-        'updatedAt',
-        Date.now(),
-      );
-      stats.docsUpdated += 1;
-    }
-    await batch.commit();
+  // `recipients.<stableUid>` is a dynamic map path. Firestore cannot cover every
+  // possible uid with one collection-group index, so query each fixed sender
+  // subcollection instead. Collection-scoped map-field indexes are automatic.
+  const senderRefs = await db.collection('users').listDocuments();
+  const concurrency = 20;
+  for (let offset = 0; offset < senderRefs.length; offset += concurrency) {
+    await Promise.all(senderRefs.slice(offset, offset + concurrency).map(async (senderRef) => {
+      for (;;) {
+        stats.queriesRun += 1;
+        const snap = await senderRef
+          .collection('friend_gift_daily_limits')
+          .where(recipientPath, '>', 0)
+          .limit(DELETE_BATCH_LIMIT)
+          .get();
+        if (snap.empty) return;
+        const batch = db.batch();
+        for (const doc of snap.docs) {
+          batch.update(
+            doc.ref,
+            recipientPath,
+            admin.firestore.FieldValue.delete(),
+            'updatedAt',
+            Date.now(),
+          );
+          stats.docsUpdated += 1;
+        }
+        await batch.commit();
+      }
+    }));
   }
 }
 
@@ -747,6 +774,8 @@ export const __accountDeleteTestHooks = {
   COLLECTION_GROUP_DOCUMENT_ID_SPECS,
   resolveStableUidForDelete,
   enqueueForAuthenticatedAccount,
+  removeFromFriendGiftDailyLimits,
+  deleteCrossUserDocumentIdMatches,
   deleteQuery,
   ACCOUNT_DELETE_OPTIONS,
 };

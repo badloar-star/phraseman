@@ -57,10 +57,24 @@ jest.mock(
   { virtual: true },
 );
 
+const appleSignInImpl = jest.fn<Promise<any>, any[]>(async () => ({
+  identityToken: 'fake-apple-id-token',
+  email: 'apple@example.com',
+  fullName: { givenName: 'Apple', familyName: 'User' },
+}));
+jest.mock(
+  'expo-apple-authentication',
+  () => ({
+    AppleAuthenticationScope: { FULL_NAME: 0, EMAIL: 1 },
+    signInAsync: (...args: unknown[]) => appleSignInImpl(...(args as [])),
+  }),
+  { virtual: true },
+);
+
 // ── cloud_sync: the sign-in flow leans on many exports. Make link "succeed"
 //    on the LOCAL stable id so the outcome is created_new/linked_existing (the
 //    simple happy path that still exercises link-first). ──
-const ensureStableAuthLinkForStableIdDetailed = jest.fn(async (stableId: string) => ({
+const ensureStableAuthLinkForStableIdDetailed = jest.fn<Promise<any>, [string, any?]>(async (stableId: string) => ({
   ok: true,
   stableUid: stableId, // same → linked_existing / created_new branch
   source: 'server',
@@ -73,9 +87,10 @@ const quiesceSyncBeforeStableIdSwap = jest.fn(async () => {});
 const quiesceCloudSyncForAccountTransition = jest.fn(async () => true);
 const enqueueCloudDeletion = jest.fn(async () => ({ ok: true as const, jobId: 'job-1', status: 'queued' as const, created: true }));
 const wipeLocalAccountData = jest.fn(async () => {});
+const ensureAnonUser = jest.fn(async () => mockStableId);
 jest.mock('../app/cloud_sync', () => ({
   SYNC_KEYS: ['user_total_xp', 'streak_count', 'unlocked_lessons', 'unlocked_lessons::fr', 'user_name', 'custom_flashcards_v2'],
-  ensureAnonUser: jest.fn(async () => {}),
+  ensureAnonUser: (...a: unknown[]) => (ensureAnonUser as any)(...a),
   waitForAnonAuth: jest.fn(async () => true),
   syncToCloud: (...a: unknown[]) => (syncToCloud as any)(...a),
   restoreFromCloud: (...a: unknown[]) => (restoreFromCloud as any)(...a),
@@ -93,11 +108,12 @@ jest.mock('../app/cloud_sync', () => ({
 }));
 
 let mockStableId = 'local-stable-id';
+const clearStableId = jest.fn(async () => { mockStableId = 'rotated-stable-id'; });
 jest.mock('../app/stable_id', () => {
   return {
     getStableId: jest.fn(async () => mockStableId),
     setStableId: jest.fn(async (v: string) => { mockStableId = v; }),
-    clearStableId: jest.fn(async () => {}),
+    clearStableId: (...a: unknown[]) => (clearStableId as any)(...a),
     peekStableId: jest.fn(() => mockStableId),
   };
 });
@@ -163,7 +179,12 @@ beforeEach(() => {
   (globalThis as any).__DEV__ = false;
   authFactory.__resetTestState();
   mockStableId = 'local-stable-id';
-  ensureStableAuthLinkForStableIdDetailed.mockClear();
+  ensureStableAuthLinkForStableIdDetailed.mockReset();
+  ensureStableAuthLinkForStableIdDetailed.mockImplementation(async (stableId: string) => ({
+    ok: true,
+    stableUid: stableId,
+    source: 'server',
+  }));
   restoreFromCloud.mockReset();
   restoreFromCloud.mockResolvedValue(undefined);
   restoreFromCloudDetailed.mockReset();
@@ -176,11 +197,19 @@ beforeEach(() => {
   quiesceCloudSyncForAccountTransition.mockClear();
   enqueueCloudDeletion.mockClear();
   wipeLocalAccountData.mockClear();
+  ensureAnonUser.mockClear();
+  clearStableId.mockClear();
   mockLoadShardsFromCloud.mockReset();
   mockLoadShardsFromCloud.mockResolvedValue(undefined);
   require('@react-native-async-storage/async-storage').__reset();
   googleSignInImpl.mockClear();
   googleSignInImpl.mockResolvedValue({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } });
+  appleSignInImpl.mockClear();
+  appleSignInImpl.mockResolvedValue({
+    identityToken: 'fake-apple-id-token',
+    email: 'apple@example.com',
+    fullName: { givenName: 'Apple', familyName: 'User' },
+  });
 });
 
 function loadAuthProvider(initialStorage?: Record<string, string>): typeof import('../app/auth_provider') {
@@ -225,6 +254,125 @@ test('falls back to signInWithCredential ONLY on a link-conflict error, and in t
   expect(authState.calls.indexOf('link')).toBeLessThan(authState.calls.indexOf('signin'));
   expect(['created_new', 'linked_existing']).toContain((res as any).result);
   expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
+});
+
+test('stamps anonymous ownership even when an empty account must fall back to provider sign-in', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result.result).not.toBe('error');
+  expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
+});
+
+test('Apple sign-in does not consume the one-time credential in linkWithCredential before provider sign-in', async () => {
+  let consumedByLink = false;
+  authState.linkImpl = async () => {
+    consumedByLink = true;
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  authState.signInImpl = async () => {
+    if (consumedByLink) {
+      const err: any = new Error('Duplicate credential received. Please try again with a new credential.');
+      err.code = 'auth/unknown';
+      throw err;
+    }
+    authState.isAnonymous = false;
+    return { user: authFactory().currentUser };
+  };
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('apple');
+
+  expect(result.result).not.toBe('error');
+  expect(authState.calls).not.toContain('link');
+  expect(authState.calls).toContain('signin');
+});
+
+test('refreshes the Firebase token after credential mutation before calling the stable-link server', async () => {
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result.result).not.toBe('error');
+  expect(authState.calls).toContain('token-refresh');
+  expect(authState.calls.indexOf('token-refresh')).toBeLessThan(
+    authState.calls.indexOf('signin') >= 0 ? authState.calls.indexOf('signin') + 1 : authState.calls.length,
+  );
+});
+
+test('pending provider deletion repairs or rotates the anonymous stable id before returning to the app', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  ensureStableAuthLinkForStableIdDetailed
+    .mockResolvedValueOnce({
+      ok: false,
+      requestedStableId: 'local-stable-id',
+      stableUid: null,
+      authUid: 'anon-uid-1',
+      source: 'unavailable',
+      failure: 'stable_id_mismatch',
+    })
+    .mockResolvedValueOnce({
+      ok: true,
+      requestedStableId: 'rotated-stable-id',
+      stableUid: 'rotated-stable-id',
+      authUid: 'anon-uid-1',
+      source: 'callable',
+    });
+  const now = Date.now();
+  const { signInWithProvider } = loadAuthProvider({
+    account_delete_pending_auth_v1: JSON.stringify({
+      providerUid: 'provider-uid-1',
+      stableId: 'deleted-stable-id',
+      createdAt: now - 60_000,
+      expiresAt: now + 60_000,
+    }),
+  });
+
+  const result = await signInWithProvider('google');
+
+  expect(result).toEqual({ result: 'error', error: 'account_delete_pending' });
+  expect(ensureStableAuthLinkForStableIdDetailed).toHaveBeenNthCalledWith(1, 'local-stable-id');
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(ensureStableAuthLinkForStableIdDetailed).toHaveBeenNthCalledWith(2, 'rotated-stable-id');
+});
+
+test('provider sign-in rotates a stale local stable id instead of returning auth_link_failed', async () => {
+  ensureStableAuthLinkForStableIdDetailed
+    .mockResolvedValueOnce({
+      ok: false,
+      requestedStableId: 'local-stable-id',
+      stableUid: null,
+      authUid: 'provider-uid-1',
+      source: 'unavailable',
+      failure: 'stable_id_mismatch',
+    })
+    .mockResolvedValueOnce({
+      ok: true,
+      requestedStableId: 'rotated-stable-id',
+      stableUid: 'rotated-stable-id',
+      authUid: 'provider-uid-1',
+      source: 'callable',
+    });
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result.result).not.toBe('error');
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
+  expect(ensureStableAuthLinkForStableIdDetailed.mock.calls[0][0]).toBe('local-stable-id');
+  expect(ensureStableAuthLinkForStableIdDetailed.mock.calls[1][0]).toBe('rotated-stable-id');
 });
 
 test('same-stable-id sign-in resolves before non-critical cloud hydration finishes', async () => {

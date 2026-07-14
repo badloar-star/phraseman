@@ -6,6 +6,8 @@ const {
   accountDeleteCollectionGroupDocumentIdPlan,
   resolveStableUidForDelete,
   enqueueForAuthenticatedAccount,
+  removeFromFriendGiftDailyLimits,
+  deleteCrossUserDocumentIdMatches,
 } = __accountDeleteTestHooks;
 
 function makeDbStub(opts: {
@@ -218,6 +220,97 @@ describe('accountDelete stable id resolver', () => {
 });
 
 describe('accountDelete query deletion safety', () => {
+  it('deletes reverse friend documents through concrete user paths', async () => {
+    const refs: Record<string, { path: string }> = {};
+    const userRef = {
+      collection: jest.fn((collection: string) => ({
+        doc: (id: string) => {
+          const ref = { path: `users/peer/${collection}/${id}` };
+          refs[ref.path] = ref;
+          return ref;
+        },
+      })),
+    };
+    const listDocuments = jest.fn(async () => [userRef]);
+    const recursiveDelete = jest.fn(async () => {});
+    const getAll = jest.fn(async (...docRefs: { path: string }[]) => docRefs.map((ref, index) => ({
+      exists: index === 0,
+      ref,
+    })));
+    const db = {
+      collection: jest.fn((name: string) => {
+        expect(name).toBe('users');
+        return { listDocuments };
+      }),
+      collectionGroup: jest.fn(() => {
+        throw new Error('document-id collection-group query must not be used');
+      }),
+      getAll,
+      recursiveDelete,
+    };
+    const writer = { flush: jest.fn(async () => {}) };
+    const ctx = {
+      db,
+      writer,
+      seen: new Set<string>(),
+      runId: 'test',
+      stableUidHash: 'stable',
+      authUidHash: 'auth',
+      startedAtMs: 0,
+      lastProgressLogDocs: 0,
+      writerClosed: false,
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await deleteCrossUserDocumentIdMatches(db as any, 'stable-123', 'auth-456', ctx as any, stats);
+
+    expect(listDocuments).toHaveBeenCalledTimes(1);
+    expect(getAll).toHaveBeenCalledTimes(1);
+    expect(getAll.mock.calls[0]).toHaveLength(4);
+    expect(recursiveDelete).toHaveBeenCalledTimes(1);
+    expect(writer.flush).toHaveBeenCalledTimes(1);
+    expect(db.collectionGroup).not.toHaveBeenCalled();
+    expect(stats.queriesRun).toBe(1);
+  });
+
+  it('cleans dynamic gift-recipient keys with collection-scoped queries', async () => {
+    const recipientRef = { path: 'users/sender/friend_gift_daily_limits/2026-07-14' };
+    let reads = 0;
+    const get = jest.fn(async () => {
+      reads += 1;
+      return reads === 1 ? { empty: false, docs: [{ ref: recipientRef }] } : { empty: true, docs: [] };
+    });
+    const limit = jest.fn(() => ({ get }));
+    const where = jest.fn(() => ({ limit }));
+    const dailyLimits = { where };
+    const senderRef = { collection: jest.fn(() => dailyLimits) };
+    const listDocuments = jest.fn(async () => [senderRef]);
+    const update = jest.fn();
+    const commit = jest.fn(async () => {});
+    const db = {
+      collection: jest.fn((name: string) => {
+        expect(name).toBe('users');
+        return { listDocuments };
+      }),
+      collectionGroup: jest.fn(() => {
+        throw new Error('collection-group query must not be used for dynamic recipient keys');
+      }),
+      batch: jest.fn(() => ({ update, commit })),
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await removeFromFriendGiftDailyLimits(db as any, 'recipient-stable', stats);
+
+    expect(listDocuments).toHaveBeenCalledTimes(1);
+    expect(senderRef.collection).toHaveBeenCalledWith('friend_gift_daily_limits');
+    expect(where).toHaveBeenCalledTimes(2);
+    expect(update).toHaveBeenCalledTimes(1);
+    expect(commit).toHaveBeenCalledTimes(1);
+    expect(db.collectionGroup).not.toHaveBeenCalled();
+    expect(stats.docsUpdated).toBe(1);
+    expect(stats.queriesRun).toBe(2);
+  });
+
   it('returns when all query docs were already scheduled by another delete stage', async () => {
     const ref = { path: 'stuck/doc' };
     const query = {

@@ -67,7 +67,7 @@ describe('auth provider stable-id linking', () => {
   });
 
   test('server-discovered provider link wins when client link lookup missed it', () => {
-    expect(source).toContain('const linkedLocal = await ensureStableAuthLinkWithRetry(localStableId)');
+    expect(source).toContain('let linkedLocal = await ensureStableAuthLinkWithRetry(localStableId)');
     expect(source).toContain('if (linkedLocal.stableUid !== localStableId)');
     expect(source).toContain('remoteStableId: linkedLocal.stableUid');
     expect(cloudSyncSource).toContain('export async function ensureStableAuthLinkForStableIdDetailed');
@@ -104,7 +104,7 @@ describe('auth provider stable-id linking', () => {
     // апгрейда анонима. Должна быть ветка link + деградация к sign-in при конфликте.
     expect(signInSource).toContain('anonUser.linkWithCredential(');
     expect(signInSource).toContain('anonUser?.isAnonymous');
-    expect(signInSource).toContain('linkedInPlace = true');
+    expect(signInSource).toContain("logAuthEvent('auth_signin_linked_in_place'");
     // Деградация к signInWithCredential при «провайдер уже привязан к другому аккаунту».
     expect(signInSource).toContain("'auth/credential-already-in-use'");
     // Реальный вызов link пробуется ПЕРЕД безусловным signInWithCredential.
@@ -188,12 +188,19 @@ describe('auth provider stable-id linking', () => {
     expect(pendingDeleteSource).toContain("logAuthEvent('auth_signin_blocked_account_delete_pending'");
     expect(pendingDeleteSource).toContain('await enqueueCloudDeletion(pendingDelete.stableId)');
     expect(pendingDeleteSource.indexOf('await enqueueCloudDeletion(pendingDelete.stableId)')).toBeLessThan(
-      pendingDeleteSource.indexOf('await signOutCurrentProvider()'),
+      pendingDeleteSource.indexOf('await restoreAnonymousIdentityAfterPendingDelete(preProviderStableId)'),
     );
-    expect(pendingDeleteSource).toContain('await signOutCurrentProvider()');
-    expect(pendingDeleteSource).toContain('await ensureAnonUser()');
+    expect(pendingDeleteSource).toContain('await restoreAnonymousIdentityAfterPendingDelete(preProviderStableId)');
     expect(pendingDeleteSource).toContain("return { result: 'error', error: 'account_delete_pending' }");
     expect(pendingDeleteSource).not.toContain('captureAuthSignInFailure');
+
+    const recoveryStart = source.indexOf('async function restoreAnonymousIdentityAfterPendingDelete');
+    const recoveryEnd = source.indexOf('function coerceFirebaseMetaTime', recoveryStart);
+    const recoverySource = source.slice(recoveryStart, recoveryEnd);
+    expect(recoverySource).toContain('await signOutCurrentProvider()');
+    expect(recoverySource).toContain('await ensureAnonUser()');
+    expect(recoverySource).toContain("repaired?.failure !== 'stable_id_mismatch'");
+    expect(recoverySource).toContain('await clearStableId()');
   });
 
   test('missing Apple Android service id is returned to UI without critical crash logging', () => {
@@ -268,13 +275,19 @@ describe('auth provider stable-id linking', () => {
     // The claim must be stamped while still anonymous — signInWithCredential
     // destroys the anonymous session, so the server can only verify ownership of
     // the local anonymous account if the claim was written beforehand.
-    const stampIdx = signInSource.indexOf('await stampAnonOwnershipBeforeSignIn(preSignInStableId)');
+    const stampIdx = signInSource.indexOf('await stampAnonOwnershipBeforeSignIn(preProviderStableId)');
     const credentialIdx = signInSource.indexOf('await auth.signInWithCredential(credential)');
     expect(stampIdx).toBeGreaterThan(0);
     expect(credentialIdx).toBeGreaterThan(0);
     expect(stampIdx).toBeLessThan(credentialIdx); // stamp happens first
     expect(signInSource.indexOf('await anonUser.linkWithCredential(credential)')).toBeLessThan(stampIdx);
     expect(source).toContain("httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership')");
+  });
+
+  test('Apple avoids linkWithCredential because its authorization credential is one-time', () => {
+    expect(signInSource).toContain("provider !== 'apple'");
+    expect(signInSource).toContain('await stampAnonOwnershipBeforeSignIn(preProviderStableId)');
+    expect(signInSource).toContain('await auth.signInWithCredential(credential)');
   });
 
   test('remote stable-id swap clears the premium cache so the previous account status is not shown', () => {

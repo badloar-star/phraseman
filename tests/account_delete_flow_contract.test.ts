@@ -8,6 +8,13 @@ describe('account deletion rebuilt flow contract', () => {
   const timeoutSource = fs.readFileSync(path.join(root, 'app', 'account_delete_timeout.ts'), 'utf8');
   const modalSource = fs.readFileSync(path.join(root, 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8');
   const functionSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete.ts'), 'utf8');
+  const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+    fieldOverrides?: {
+      collectionGroup?: string;
+      fieldPath?: string;
+      indexes?: { order?: string; queryScope?: string }[];
+    }[];
+  };
 
   it('durably enqueues deletion before provider sign-out and still exits locally', () => {
     const start = authProvider.indexOf('export async function deleteAccountAndWipe');
@@ -46,12 +53,17 @@ describe('account deletion rebuilt flow contract', () => {
   it('retries a pending deletion while provider auth is current and before identity lookup', () => {
     const pending = authProvider.indexOf('if (pendingDelete) {');
     const retry = authProvider.indexOf('await enqueueCloudDeletion(pendingDelete.stableId)', pending);
-    const signOut = authProvider.indexOf('await signOutCurrentProvider()', pending);
+    const restoreAnonymous = authProvider.indexOf('await restoreAnonymousIdentityAfterPendingDelete(preProviderStableId)', pending);
     const linkLookup = authProvider.indexOf("db.collection('auth_links')", pending);
+    const recoveryStart = authProvider.indexOf('async function restoreAnonymousIdentityAfterPendingDelete');
+    const recoveryEnd = authProvider.indexOf('function coerceFirebaseMetaTime', recoveryStart);
+    const recoverySource = authProvider.slice(recoveryStart, recoveryEnd);
 
     expect(retry).toBeGreaterThan(pending);
-    expect(retry).toBeLessThan(signOut);
-    expect(signOut).toBeLessThan(linkLookup);
+    expect(retry).toBeLessThan(restoreAnonymous);
+    expect(restoreAnonymous).toBeLessThan(linkLookup);
+    expect(recoverySource).toContain('await signOutCurrentProvider()');
+    expect(recoverySource).toContain('await ensureAnonUser()');
   });
 
   it('keeps callable timeout longer than the backend function timeout', () => {
@@ -98,14 +110,46 @@ describe('account deletion rebuilt flow contract', () => {
     ].forEach((needle) => expect(functionSource).toContain(needle));
     expect(functionSource).toContain("collectionGroup: 'friends'");
     expect(functionSource).toContain("collectionGroup: 'friend_requests'");
-    expect(functionSource).toContain('FieldPath.documentId()');
+    expect(functionSource).toContain('deleteCrossUserDocumentIdMatches');
+    expect(functionSource).not.toContain('.where(admin.firestore.FieldPath.documentId()');
     expect(functionSource).toContain('deleteArenaSessionsAndMatchHistory');
     expect(functionSource).toContain("collectionGroup('match_history').where('sessionId'");
     expect(functionSource).toContain('anonymizeActivityLikeStats');
     expect(functionSource).toContain("collectionGroup('activity_like_stats')");
     expect(functionSource).toContain('removeFromFriendGiftDailyLimits');
-    expect(functionSource).toContain("collectionGroup('friend_gift_daily_limits')");
+    expect(functionSource).toContain("collection('users').listDocuments()");
+    expect(functionSource).toContain("collection('friend_gift_daily_limits')");
+    expect(functionSource).not.toContain("collectionGroup('friend_gift_daily_limits')");
     expect(functionSource).toContain('removeFromArenaClubEvents');
     expect(functionSource).toContain('ctx.writer.flush');
+  });
+
+  it('declares collection-group indexes for every filtered account-deletion cleanup query', () => {
+    const expected = [
+      ['messages', 'authorUid'],
+      ['messages', 'authorStableUid'],
+      ['reactions', 'userId'],
+      ['poll_votes', 'userId'],
+      ['activity_likes_received', 'fromUid'],
+      ['friend_activity_like_daily_limits', 'targetUid'],
+      ['friend_gifts_received', 'fromUid'],
+      ['friend_gifts_sent', 'toUid'],
+      ['friend_gift_history', 'peerUid'],
+      ['shard_rewards', 'fromUid'],
+      ['shard_log', 'targetUid'],
+      ['my_events', 'payload.fromUid'],
+      ['my_events', 'payload.targetUid'],
+      ['boosts', 'activatedBy'],
+      ['match_history', 'sessionId'],
+      ['activity_like_stats', 'lastFromUid'],
+    ];
+
+    for (const [collectionGroup, fieldPath] of expected) {
+      const override = firestoreIndexes.fieldOverrides?.find(
+        (candidate) => candidate.collectionGroup === collectionGroup && candidate.fieldPath === fieldPath,
+      );
+      expect(override).toBeDefined();
+      expect(override?.indexes).toContainEqual({ order: 'ASCENDING', queryScope: 'COLLECTION_GROUP' });
+    }
   });
 });

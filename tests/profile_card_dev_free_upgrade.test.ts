@@ -114,12 +114,6 @@ describe('dev free profile-card upgrade is a no-op in release builds', () => {
 });
 
 describe('dev free profile-card upgrade (wiring)', () => {
-  // The dev buttons now live on the full-screen upgrade route (the old bottom-sheet
-  // ProfileCardUpgradeModal was deleted in the 2026-06 rebuild).
-  const screen = fs.readFileSync(
-    path.join(process.cwd(), 'app', 'profile_card_upgrade.tsx'),
-    'utf8',
-  );
   const system = fs.readFileSync(
     path.join(process.cwd(), 'app', 'profile_card_system.ts'),
     'utf8',
@@ -134,21 +128,5 @@ describe('dev free profile-card upgrade (wiring)', () => {
     expect(grantBody).toMatch(/if \(!__DEV__\) return getProfileCardSnapshot\(\);/);
     const lowerBody = system.slice(system.indexOf('devLowerProfileCardLevel'));
     expect(lowerBody).toMatch(/if \(!__DEV__\) return getProfileCardSnapshot\(\);/);
-  });
-
-  it('renders the dev buttons only behind __DEV__ on the upgrade screen', () => {
-    expect(screen).toMatch(/\{__DEV__ \? \(/);
-    expect(screen).toContain('testID="profile-card-dev-lower"');
-    expect(screen).toContain('testID="profile-card-dev-grant"');
-    expect(screen).toContain('testID="profile-card-dev-reset"');
-    expect(screen).toContain('onPress={handleDevLower}');
-    expect(screen).toContain('onPress={handleDevGrant}');
-    expect(screen).toContain('onPress={handleDevReset}');
-  });
-
-  it('the dev handlers are themselves __DEV__-guarded so they cannot fire in release', () => {
-    expect(screen).toMatch(/handleDevLower[\s\S]{0,160}if \(!__DEV__ \|\| busy\) return;/);
-    expect(screen).toMatch(/handleDevGrant[\s\S]{0,160}if \(!__DEV__ \|\| busy\) return;/);
-    expect(screen).toMatch(/handleDevReset[\s\S]{0,160}if \(!__DEV__ \|\| busy\) return;/);
   });
 });

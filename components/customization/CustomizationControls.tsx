@@ -40,30 +40,25 @@ export function OwnershipFilters({ value, onChange, allLabel, mineLabel }: {
 }
 
 export function CustomizationOverflowMenu({
-  onOpenProfileCard, onResetLevelAvatar, profileCardLabel, levelAvatarLabel, showLevelAvatar,
+  onResetLevelAvatar, levelAvatarLabel, showLevelAvatar,
 }: {
-  onOpenProfileCard: () => void; onResetLevelAvatar: () => void; profileCardLabel: string; levelAvatarLabel: string; showLevelAvatar: boolean;
+  onResetLevelAvatar: () => void; levelAvatarLabel: string; showLevelAvatar: boolean;
 }) {
   const { theme: t } = useTheme();
   const [open, setOpen] = useState(false);
+  if (!showLevelAvatar) return <View style={styles.menuButton} />;
   return (
     <>
-      <TapScale onPress={() => setOpen(true)} style={[styles.menuButton, { backgroundColor: t.bgSurface }]} accessibilityRole="button" accessibilityLabel={profileCardLabel}>
+      <TapScale onPress={() => setOpen(true)} style={[styles.menuButton, { backgroundColor: t.bgSurface }]} accessibilityRole="button" accessibilityLabel={levelAvatarLabel}>
         <Ionicons name="ellipsis-horizontal" size={22} color={t.textPrimary} />
       </TapScale>
       <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
         <Pressable style={styles.backdrop} onPress={() => setOpen(false)}>
           <View style={[styles.menu, { backgroundColor: t.bgCard }]}>
-            <Pressable accessibilityRole="button" style={styles.menuRow} onPress={() => { setOpen(false); onOpenProfileCard(); }}>
-              <Ionicons name="id-card-outline" size={20} color={t.textPrimary} />
-              <Text style={[styles.menuText, { color: t.textPrimary }]}>{profileCardLabel}</Text>
+            <Pressable accessibilityRole="button" style={styles.menuRow} onPress={() => { setOpen(false); onResetLevelAvatar(); }}>
+              <Ionicons name="refresh-outline" size={20} color={t.textPrimary} />
+              <Text style={[styles.menuText, { color: t.textPrimary }]}>{levelAvatarLabel}</Text>
             </Pressable>
-            {showLevelAvatar ? (
-              <Pressable accessibilityRole="button" style={styles.menuRow} onPress={() => { setOpen(false); onResetLevelAvatar(); }}>
-                <Ionicons name="refresh-outline" size={20} color={t.textPrimary} />
-                <Text style={[styles.menuText, { color: t.textPrimary }]}>{levelAvatarLabel}</Text>
-              </Pressable>
-            ) : null}
           </View>
         </Pressable>
       </Modal>

@@ -3029,43 +3029,6 @@
       }
     },
     {
-      "file": "app/profile_card_upgrade.tsx",
-      "ownerName": "ProfileCardUpgradeScreen",
-      "ownerPath": "ProfileCardUpgradeScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "ScrollView",
-        "View",
-        "View",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "3308454c2af330090cc28d378c18ab28a69eff331e32a7678d28b826f13f3583",
-      "count": 4,
-      "lineHints": [
-        442,
-        443,
-        459,
-        460
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/(tabs)/friends.tsx",
       "ownerName": "FriendsTabScreen",
       "ownerPath": "FriendsTabScreen",
@@ -8201,34 +8164,6 @@
       }
     },
     {
-      "file": "app/profile_card_upgrade.tsx",
-      "ownerName": "miniRow",
-      "ownerPath": "ProfileCardUpgradeScreen>miniRow",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a0edea2e02b2b322eee231ea581a91d9aab6be5524a6a5e9b58d742c27f51a65",
-      "count": 2,
-      "lineHints": [
-        346,
-        349
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards_collection.tsx",
       "ownerName": "FlashcardsScreen",
       "ownerPath": "FlashcardsScreen",
@@ -9086,39 +9021,6 @@
       "count": 1,
       "lineHints": [
         203
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/profile_card_upgrade.tsx",
-      "ownerName": "ProfileCardUpgradeScreen",
-      "ownerPath": "ProfileCardUpgradeScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "ScrollView",
-        "View",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "b2769be76ae4ce1f20d61ce5d40b33dbc6bd2e885c3e32529ed66a70344d0422",
-      "count": 1,
-      "lineHints": [
-        483
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

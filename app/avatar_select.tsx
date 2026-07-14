@@ -125,7 +125,7 @@ const RU_STUDIO_COPY = {
   title: 'Студия образа', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
   apply: 'Применить образ', applied: 'Образ применён', purchased: 'Добавлено в коллекцию', buy: 'Купить', buyApply: 'Купить и применить', plus: 'Открыть Plus',
   reward: 'Награда Арены', owned: 'В коллекции', selected: 'Выбрано', noAura: 'Без ауры', levelAvatar: 'Аватар уровня', resetLevelAvatar: 'Вернуть аватар уровня',
-  levelAvatarEnabled: 'Аватар уровня включён', profileCard: 'Карточка профиля', editAvatar: 'Настроить аватар', applyStyle: 'Выбрать оформление', dark: 'Тёмное', light: 'Светлое',
+  levelAvatarEnabled: 'Аватар уровня включён', editAvatar: 'Настроить аватар', applyStyle: 'Выбрать оформление', dark: 'Тёмное', light: 'Светлое',
   cancel: 'Отмена', confirm: 'Подтвердить', purchaseTitle: 'Подтвердить покупку', purchaseError: 'Не удалось завершить покупку. Попробуй ещё раз.',
   applyError: 'Образ не применился. Попробуй ещё раз.', arenaHint: 'Эту награду можно заработать в Арене',
 };
@@ -137,7 +137,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Студія образу', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
     apply: 'Застосувати образ', applied: 'Образ застосовано', purchased: 'Додано до колекції', buy: 'Купити', buyApply: 'Купити й застосувати', plus: 'Відкрити Plus',
     reward: 'Нагорода Арени', owned: 'У колекції', selected: 'Вибрано', noAura: 'Без аури', levelAvatar: 'Аватар рівня', resetLevelAvatar: 'Повернути аватар рівня',
-    levelAvatarEnabled: 'Аватар рівня ввімкнено', profileCard: 'Картка профілю', editAvatar: 'Налаштувати аватар', applyStyle: 'Обрати оформлення', dark: 'Темне', light: 'Світле',
+    levelAvatarEnabled: 'Аватар рівня ввімкнено', editAvatar: 'Налаштувати аватар', applyStyle: 'Обрати оформлення', dark: 'Темне', light: 'Світле',
     cancel: 'Скасувати', confirm: 'Підтвердити', purchaseTitle: 'Підтвердити покупку', purchaseError: 'Не вдалося завершити покупку. Спробуй ще раз.',
     applyError: 'Образ не застосовано. Спробуй ще раз.', arenaHint: 'Цю нагороду можна заробити на Арені',
   },
@@ -145,7 +145,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Estudio de estilo', preview: 'Vista previa', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Míos', catalog: 'Catálogo',
     apply: 'Aplicar estilo', applied: 'Estilo aplicado', purchased: 'Añadido a la colección', buy: 'Comprar', buyApply: 'Comprar y aplicar', plus: 'Abrir Plus',
     reward: 'Recompensa de Arena', owned: 'En la colección', selected: 'Seleccionado', noAura: 'Sin aura', levelAvatar: 'Avatar de nivel', resetLevelAvatar: 'Volver al avatar de nivel',
-    levelAvatarEnabled: 'Avatar de nivel restaurado', profileCard: 'Tarjeta de perfil', editAvatar: 'Personalizar avatar', applyStyle: 'Elegir estilo', dark: 'Oscuro', light: 'Claro',
+    levelAvatarEnabled: 'Avatar de nivel restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Elegir estilo', dark: 'Oscuro', light: 'Claro',
     cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Confirmar compra', purchaseError: 'No se pudo completar la compra. Inténtalo de nuevo.',
     applyError: 'No se pudo aplicar el estilo. Inténtalo de nuevo.', arenaHint: 'Consigue esta recompensa en la Arena',
   },
@@ -153,7 +153,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Estúdio de estilo', preview: 'Prévia do visual', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Meus', catalog: 'Catálogo',
     apply: 'Aplicar visual', applied: 'Visual aplicado', purchased: 'Adicionado à coleção', buy: 'Comprar', buyApply: 'Comprar e aplicar', plus: 'Abrir Plus',
     reward: 'Recompensa da Arena', owned: 'Na coleção', selected: 'Selecionado', noAura: 'Sem aura', levelAvatar: 'Avatar de nível', resetLevelAvatar: 'Restaurar avatar de nível',
-    levelAvatarEnabled: 'Avatar de nível restaurado', profileCard: 'Cartão de perfil', editAvatar: 'Personalizar avatar', applyStyle: 'Escolher estilo', dark: 'Escuro', light: 'Claro',
+    levelAvatarEnabled: 'Avatar de nível restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Escolher estilo', dark: 'Escuro', light: 'Claro',
     cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Confirmar compra', purchaseError: 'Não foi possível concluir a compra. Tente novamente.',
     applyError: 'Não foi possível aplicar o visual. Tente novamente.', arenaHint: 'Ganhe esta recompensa na Arena',
   },
@@ -161,7 +161,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Xưởng phong cách', preview: 'Xem trước diện mạo', avatars: 'Avatar', auras: 'Hào quang', all: 'Tất cả', mine: 'Của tôi', catalog: 'Danh mục',
     apply: 'Áp dụng diện mạo', applied: 'Đã áp dụng diện mạo', purchased: 'Đã thêm vào bộ sưu tập', buy: 'Mua', buyApply: 'Mua và áp dụng', plus: 'Mở Plus',
     reward: 'Phần thưởng Đấu trường', owned: 'Trong bộ sưu tập', selected: 'Đã chọn', noAura: 'Không hào quang', levelAvatar: 'Avatar theo cấp', resetLevelAvatar: 'Khôi phục avatar theo cấp',
-    levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', profileCard: 'Thẻ hồ sơ', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Chọn phong cách', dark: 'Tối', light: 'Sáng',
+    levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Chọn phong cách', dark: 'Tối', light: 'Sáng',
     cancel: 'Hủy', confirm: 'Xác nhận', purchaseTitle: 'Xác nhận mua', purchaseError: 'Không thể hoàn tất giao dịch. Hãy thử lại.',
     applyError: 'Không thể áp dụng diện mạo. Hãy thử lại.', arenaHint: 'Nhận phần thưởng này trong Đấu trường',
   },
@@ -169,7 +169,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Studio Gaya', preview: 'Pratinjau tampilan', avatars: 'Avatar', auras: 'Aura', all: 'Semua', mine: 'Milik saya', catalog: 'Katalog',
     apply: 'Terapkan tampilan', applied: 'Tampilan diterapkan', purchased: 'Ditambahkan ke koleksi', buy: 'Beli', buyApply: 'Beli dan terapkan', plus: 'Buka Plus',
     reward: 'Hadiah Arena', owned: 'Dalam koleksi', selected: 'Dipilih', noAura: 'Tanpa aura', levelAvatar: 'Avatar level', resetLevelAvatar: 'Kembalikan avatar level',
-    levelAvatarEnabled: 'Avatar level dipulihkan', profileCard: 'Kartu profil', editAvatar: 'Sesuaikan avatar', applyStyle: 'Pilih gaya', dark: 'Gelap', light: 'Terang',
+    levelAvatarEnabled: 'Avatar level dipulihkan', editAvatar: 'Sesuaikan avatar', applyStyle: 'Pilih gaya', dark: 'Gelap', light: 'Terang',
     cancel: 'Batal', confirm: 'Konfirmasi', purchaseTitle: 'Konfirmasi pembelian', purchaseError: 'Pembelian tidak dapat diselesaikan. Coba lagi.',
     applyError: 'Tampilan tidak dapat diterapkan. Coba lagi.', arenaHint: 'Dapatkan hadiah ini di Arena',
   },
@@ -177,7 +177,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Stil Stüdyosu', preview: 'Görünüm önizlemesi', avatars: 'Avatarlar', auras: 'Auralar', all: 'Tümü', mine: 'Benimkiler', catalog: 'Katalog',
     apply: 'Görünümü uygula', applied: 'Görünüm uygulandı', purchased: 'Koleksiyona eklendi', buy: 'Satın al', buyApply: 'Satın al ve uygula', plus: "Plus'ı aç",
     reward: 'Arena ödülü', owned: 'Koleksiyonda', selected: 'Seçildi', noAura: 'Aurasız', levelAvatar: 'Seviye avatarı', resetLevelAvatar: 'Seviye avatarına dön',
-    levelAvatarEnabled: 'Seviye avatarı geri yüklendi', profileCard: 'Profil kartı', editAvatar: 'Avatarı özelleştir', applyStyle: 'Stili seç', dark: 'Koyu', light: 'Açık',
+    levelAvatarEnabled: 'Seviye avatarı geri yüklendi', editAvatar: 'Avatarı özelleştir', applyStyle: 'Stili seç', dark: 'Koyu', light: 'Açık',
     cancel: 'İptal', confirm: 'Onayla', purchaseTitle: 'Satın almayı onayla', purchaseError: 'Satın alma tamamlanamadı. Tekrar dene.',
     applyError: 'Görünüm uygulanamadı. Tekrar dene.', arenaHint: "Bu ödülü Arena'da kazan",
   },
@@ -185,7 +185,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Studio stylu', preview: 'Podgląd wyglądu', avatars: 'Awatary', auras: 'Aury', all: 'Wszystkie', mine: 'Moje', catalog: 'Katalog',
     apply: 'Zastosuj wygląd', applied: 'Wygląd zastosowany', purchased: 'Dodano do kolekcji', buy: 'Kup', buyApply: 'Kup i zastosuj', plus: 'Otwórz Plus',
     reward: 'Nagroda Areny', owned: 'W kolekcji', selected: 'Wybrano', noAura: 'Bez aury', levelAvatar: 'Awatar poziomu', resetLevelAvatar: 'Przywróć awatar poziomu',
-    levelAvatarEnabled: 'Przywrócono awatar poziomu', profileCard: 'Karta profilu', editAvatar: 'Dostosuj awatar', applyStyle: 'Wybierz styl', dark: 'Ciemne', light: 'Jasne',
+    levelAvatarEnabled: 'Przywrócono awatar poziomu', editAvatar: 'Dostosuj awatar', applyStyle: 'Wybierz styl', dark: 'Ciemne', light: 'Jasne',
     cancel: 'Anuluj', confirm: 'Potwierdź', purchaseTitle: 'Potwierdź zakup', purchaseError: 'Nie udało się dokończyć zakupu. Spróbuj ponownie.',
     applyError: 'Nie udało się zastosować wyglądu. Spróbuj ponownie.', arenaHint: 'Zdobądź tę nagrodę na Arenie',
   },
@@ -647,9 +647,7 @@ export default function AvatarSelect() {
         </Pressable>
         <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
         <CustomizationOverflowMenu
-          onOpenProfileCard={() => router.push('/profile_card_upgrade')}
           onResetLevelAvatar={handleResetLevelAvatar}
-          profileCardLabel={copy.profileCard}
           levelAvatarLabel={copy.resetLevelAvatar}
           showLevelAvatar={parseCustomAvatarValue(confirmed.activeAvatar) !== null}
         />

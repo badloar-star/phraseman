@@ -107,7 +107,6 @@ describe('owner runtime direction contract', () => {
       'app/lesson1.tsx': 2,
       'app/lesson_complete.tsx': 1,
       'app/premium_revenuecat_state.ts': 1,
-      'app/profile_card_upgrade.tsx': 1,
       // Покупка уровня карточки прямо из модала профиля (превью-на-месте, 2026-07-05):
       // смена вида публичная — бейдж в списках должен обновиться немедленно.
       'components/PlayerProfileModal.tsx': 1,
@@ -131,7 +130,7 @@ describe('owner runtime direction contract', () => {
 
   it('keeps non-critical avatar cosmetic sync deferred and profile-card purchase sync immediate', () => {
     const avatarSource = read('app/avatar_select.tsx');
-    const profileCardSource = read('app/profile_card_upgrade.tsx');
+    const profileCardSource = read('components/PlayerProfileModal.tsx');
 
     expect(avatarSource).toContain('const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
     expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
@@ -141,8 +140,8 @@ describe('owner runtime direction contract', () => {
 
     expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
     expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\(\);/g) ?? []).length).toBe(2);
-    expect(profileCardSource).not.toContain("syncProfileCardDisplayToCloud('deferred')");
+    expect((profileCardSource.match(/syncToCloud\(\{ forceNow: true \}\)/g) ?? []).length).toBe(1);
+    expect(profileCardSource).not.toContain('syncToCloud({ deferMs:');
   });
 
   it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
@@ -1049,14 +1048,11 @@ describe('owner runtime direction contract', () => {
   });
 
   it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {
-    const profileUpgrade = read('app/profile_card_upgrade.tsx');
+    const profileUpgrade = read('components/PlayerProfileModal.tsx');
     const dailyTasks = read('app/daily_tasks_screen.tsx');
 
-    expect(profileUpgrade).toContain('upgradeProfileCardLevel()');
-    expect(profileUpgrade).toContain('testID="profile-card-upgrade-submit"');
-    // 2026-07-05: лестница из 5 уровней — CTA дополнительно заперта на уже купленных
-    // и ещё не доступных уровнях, но busy-гейт (visibly pending) остаётся первым.
-    expect(profileUpgrade).toContain('disabled={busy || isOwned || isLockedAhead || !isNextPurchasable}');
+    expect(profileUpgrade).toContain('const result = await upgradeProfileCardLevel();');
+    expect(profileUpgrade).toContain('disabled={upgradeBusy}');
     expect(profileUpgrade).toContain('<ActivityIndicator size="small" color="#1A1205" />');
 
     expect(dailyTasks).toContain('rerollDailyTask(target.id, studyTarget)');

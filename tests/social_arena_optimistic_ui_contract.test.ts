@@ -52,9 +52,10 @@ describe('social and arena optimistic UI contracts', () => {
     expect(reportUser).toContain('setDone(true)');
     expect(reportUser).toContain("emitAppEvent('action_toast'");
 
-    const profileCard = read('app/profile_card_upgrade.tsx');
-    expect(profileCard).toContain('const previousSnapshot = snapshot');
-    expect(profileCard).toContain('setSnapshot(previousSnapshot)');
+    // Profile-card purchase is server-authoritative: update the visible card only after success.
+    const profileCard = read('components/PlayerProfileModal.tsx');
+    expect(profileCard).toContain('const result = await upgradeProfileCardLevel();');
+    expect(profileCard).toContain('if (result.ok === true)');
 
     const avatar = read('app/avatar_select.tsx');
     expect(avatar).toContain('let appliedOptimistic = false');

@@ -177,7 +177,7 @@ describe('Firebase cost controls', () => {
 
   it('defers non-critical avatar cosmetics while profile-card Pro purchase syncs immediately', () => {
     const avatarSource = read('app/avatar_select.tsx');
-    const profileCardSource = read('app/profile_card_upgrade.tsx');
+    const profileCardSource = read('components/PlayerProfileModal.tsx');
 
     expect(avatarSource).toContain('AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
     expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
@@ -186,8 +186,8 @@ describe('Firebase cost controls', () => {
 
     expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
     expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\(\);/g) ?? []).length).toBe(2);
-    expect(profileCardSource).not.toContain("syncProfileCardDisplayToCloud('deferred')");
+    expect((profileCardSource.match(/syncToCloud\(\{ forceNow: true \}\)/g) ?? []).length).toBe(1);
+    expect(profileCardSource).not.toContain('syncToCloud({ deferMs:');
   });
 
   it('updates percentile stats daily and keeps full-scan friend/premium cron cadence modest', () => {

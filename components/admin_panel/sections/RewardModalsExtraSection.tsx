@@ -1,7 +1,6 @@
 // Секция QA-панели: наградные модалки, которых не было в панели до редизайна
 // 2026-06. Все превью — с мок-данными, без реальных начислений.
 import React, { useState } from 'react';
-import { useRouter } from 'expo-router';
 import ReleaseWaveBonusModal from '../../ReleaseWaveBonusModal';
 import ShardRewardModal, { type ShardReward } from '../../ShardRewardModal';
 import EnergyRefillShardModal from '../../EnergyRefillShardModal';
@@ -38,7 +37,6 @@ interface Props {
 }
 
 export default function RewardModalsExtraSection({ open, onToggle }: Props) {
-  const router = useRouter();
   const [releaseWaveVisible, setReleaseWaveVisible] = useState(false);
   const [shardRewards, setShardRewards] = useState<ShardReward[] | null>(null);
   const [energyRefillVisible, setEnergyRefillVisible] = useState(false);
@@ -48,7 +46,7 @@ export default function RewardModalsExtraSection({ open, onToggle }: Props) {
       id="reward_modals_extra"
       icon="diamond-outline"
       title="Наградные модалки (остальные)"
-      badge={4 + SHARD_REWARD_PRESETS.length - 1}
+      badge={SHARD_REWARD_PRESETS.length + 2}
       open={open}
       onToggle={onToggle}
     >
@@ -78,14 +76,6 @@ export default function RewardModalsExtraSection({ open, onToggle }: Props) {
         sub="Покупка энергии за осколки (долгий тап по индикатору энергии в проде). Читает реальный баланс."
         onPress={() => setEnergyRefillVisible(true)}
       />
-      <ButtonRow
-        testID="admin-extra-profile-card-upgrade"
-        icon="id-card-outline"
-        label="Карточка профиля (экран)"
-        sub="Полноэкранный одношаговый Pro-апгрейд карточки. Открывает реальный экран."
-        onPress={() => router.push('/profile_card_upgrade' as any)}
-      />
-
       <ReleaseWaveBonusModal
         visible={releaseWaveVisible}
         onClose={() => setReleaseWaveVisible(false)}

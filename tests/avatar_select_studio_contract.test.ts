@@ -28,12 +28,12 @@ describe('avatar customization studio structure', () => {
     expect(controls).toContain('t.correctText');
   });
 
-  it('keeps reset and profile-card entry without level avatars in the catalog', () => {
+  it('keeps level-avatar reset without restoring the retired profile-card route', () => {
     const screen = readProjectFile('app', 'avatar_select.tsx');
     const controls = readProjectFile('components', 'customization', 'CustomizationControls.tsx');
     expect(screen).toContain('Вернуть аватар уровня');
-    expect(controls).toContain('onOpenProfileCard');
-    expect(screen).toContain("router.push('/profile_card_upgrade')");
+    expect(controls).not.toContain('onOpenProfileCard');
+    expect(screen).not.toContain("router.push('/profile_card_upgrade')");
     expect(screen).toContain('resetToLevelAvatar');
   });
 

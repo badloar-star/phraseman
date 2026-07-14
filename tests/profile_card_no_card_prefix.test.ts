@@ -35,10 +35,9 @@ describe('profile card label has no "CARD" prefix', () => {
 
   const read = (rel: string) => fs.readFileSync(path.join(process.cwd(), rel), 'utf8');
 
-  it('the badge, upgrade screen and profile modal carry no literal "CARD " label', () => {
+  it('the badge and profile modal carry no literal "CARD " label', () => {
     expect(read('components/ProfileCardBadge.tsx')).not.toMatch(/CARD \{/);
     expect(read('components/ProfileCardBadge.tsx')).not.toMatch(/['"`]CARD /);
-    expect(read('app/profile_card_upgrade.tsx')).not.toMatch(/CARD \$\{/);
     expect(read('components/PlayerProfileModal.tsx')).not.toMatch(/CARD \$\{/);
     expect(read('app/avatar_select.tsx')).not.toMatch(/· CARD /);
   });

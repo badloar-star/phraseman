@@ -111,7 +111,8 @@ export const ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK = true;
  * живой эффект и свой новый блок информации (см. app/profile_card_system.ts).
  *
  * Выключать — только осознанным решением владельца: менять на false вместе с
- * tests/profile_card_upgrade_dev_gate.test.ts (контракт фиксирует `= true`).
+ * tests/profile_card_upgrade_dev_gate.test.ts (контракт фиксирует `= true`). Улучшение
+ * выполняется внутри PlayerProfileModal; отдельного маршрута для карточки больше нет.
  */
 export const ENABLE_PROFILE_CARD = true;
 

@@ -1,149 +1,160 @@
-# Avatar Aura Visual Remediation Design
+# Phraseman Avatar Aura Visual Remediation Design
 
 Date: 2026-07-14
-Status: Draft approved for documentation by user
+Status: Draft for user review
 Owner: Codex remediation pass
 
 ## Why This Exists
 
-The previous aura work landed in the wrong shape:
+The previous aura implementation landed in the wrong shape. It was prepared on
+an old release branch, not on the current LAN Metro app, and the visual system
+collapsed too many auras into shared generic presets. The result looked like old
+shop rings with color swaps instead of level rewards that feel worth years of
+XP.
 
-- it was developed on an old release-based branch instead of the current LAN Metro app;
-- it made a broad catalog before the core visual language was approved;
-- several effects shared the same generic rotating/ring logic, so they did not match the original requirement;
-- tests covered data contracts more than visual identity.
+This remediation replaces that direction with the original product intent:
+every level aura after 50 is a distinct, carefully composed visual scene. No
+cheap spinning rings, no orbiting dots, no copied preset with a new palette.
 
-The recovered original direction is the source of truth:
+The current app in `C:\appsprojects\phraseman` is the integration base. The old
+divergent release worktree is a reference only and must not be merged wholesale.
+No OTA deployment is part of this remediation until the user explicitly asks for
+release again.
 
-> Auras must not be cheap spinners. Each one must be unique, carefully thought out, and feel like something worth years of XP. Do not do all of them at once; invent one idea, execute it beautifully, and only then move on.
+## Non-Negotiable Visual Rules
 
-This document replaces the broad "ship every aura together" direction for the immediate recovery work. The first implementation scope is level 52 only.
+- Level 51 Flame stays unchanged and remains the quality benchmark.
+- Only one new level aura is implemented and visually approved at a time.
+- Each aura gets a dedicated renderer or dedicated visual composition. Shared
+  lifecycle helpers are fine; shared generic aura identities are not.
+- No "spinner" language in the final result: no rotating decorative ring as the
+  main idea, no orbiting dots, no random particles, no confetti, no fireworks.
+- The static frame must already look intentional before animation starts.
+- Animation uses transform and opacity where possible and stays inside the
+  existing avatar slot geometry.
+- Catalog cards render deterministic static frames. Only the selected hero
+  preview may animate.
+- Reduced-motion users receive a designed still frame, not an invisible aura.
+- All effects must stay readable at avatar sizes 44, 54, and 82 px.
+- Dark and light surfaces must both preserve contrast and the avatar shape.
 
-## Current-App Constraint
+## Scope For The First Repair Pass
 
-All work happens against the current `C:\appsprojects\phraseman` app used by LAN Metro. The old aura worktree and old release branch are reference material only.
+The first implementation pass covers only Level 52.
 
-Do not cherry-pick or merge the old aura branch wholesale. It diverged from the current app and can regress screens, navigation, rewards, and styling. Only small, reviewed ideas may be manually ported if they still fit the current code.
+Stable ID: `aura-storm-52`
+Name: `Грозовой фронт`
+Unlock: level 52
+Acquisition: level reward, not purchasable
 
-No OTA, EAS update, Firebase Functions deploy, hosting deploy, or production release is part of this remediation step.
+Level 52 is the first proof that the new direction is real. Level 53 and beyond
+must wait until Level 52 is visible in the current app and accepted by the user.
 
-## Visual Principles
+## Level 52 Design: Storm Front
 
-Level auras are prestige collectibles, not decorative loading rings.
+Storm Front should feel like pressure gathering around the badge before a
+lightning break. It is not "blue rings". It is a compressed storm cell around a
+hexagonal avatar.
 
-Every level aura must have:
+The composition has four visual parts:
 
-- a unique silhouette that is recognizable in a still frame;
-- motion that expresses the aura's concept, not a reused circular spin;
-- no orbiting dots, confetti, fireworks, generic particle systems, or random emitters;
-- no "same effect, different color" construction;
-- no catalogue-wide animation loops;
-- no layout growth, clipping, or neighboring-card movement;
-- an intentional reduced-motion/static frame;
-- readable contrast on both dark and light app surfaces.
+1. Pressure veil: a dark blue translucent atmospheric mass behind the avatar,
+   slightly wider on one side so the silhouette is not mechanically symmetric.
+2. Electric fracture: one bright cyan-white broken path that hugs the top-left
+   and right edge, shaped like tension cracking through glass.
+3. Secondary charge: a shorter blue-violet discharge on the lower opposite edge,
+   thinner and dimmer so it supports the main fracture.
+4. Inner weather glow: a restrained cold pulse just inside the aura boundary,
+   timed like air pressure breathing rather than a circular loader.
 
-Level 51 Flame stays as the quality benchmark and is not redesigned in this pass.
+Motion is slow and tense:
 
-## Scope For The First Pass
+- the veil swells subtly and leans, as if pressure is moving behind the avatar;
+- the main fracture flickers by opacity and tiny transform offsets, not by
+  spinning;
+- the secondary charge answers on an offset beat;
+- the whole aura never completes a visible circular rotation.
 
-Implement only level 52:
+The representative static frame shows the main fracture already alive, the veil
+behind it, and the secondary charge visible but quieter.
 
-- stable ID: `aura-storm-52`;
-- name: Storm Front / Грозовой фронт;
-- unlock: level 52;
-- acquisition: level reward, not purchasable;
-- visual family: storm pressure and controlled electric discharge.
+## Architecture Direction
 
-Levels 53-60 remain planned but should not be implemented until level 52 has been visually checked and approved.
+Keep the public `AvatarAura` usage intact for existing avatar surfaces. Add only
+the smallest structure needed to make visual identity explicit.
 
-## Storm Front Design
+The target boundary:
 
-Storm Front should feel like pressure building around the avatar before a clean electric split.
+```text
+AvatarAura
+  runtime gate, reduced-motion, shared phase
+    -> dedicated effect renderer for the selected aura
+```
 
-Static silhouette:
+The renderer for Storm Front may reuse small primitives such as an animated
+`View`, `Svg`, `Path`, gradient, interpolation, or palette helper. It must not
+be defined as "generic arcs plus colors" where future auras become data-only
+copies.
 
-- a compressed dark-blue/cyan pressure veil behind the avatar;
-- two broken lightning paths that sit diagonally across opposite sides;
-- one asymmetric rim that feels charged, not perfectly circular.
-
-Motion:
-
-- slow pressure breathing in the veil;
-- short controlled electric flashes on the two lightning paths;
-- a slight shear/tilt shift that suggests storm wind;
-- no full 360-degree rotating rings;
-- no dot sparks, no particle spray, no random per-frame positions.
-
-Palette:
-
-- deep navy pressure base;
-- cyan-blue electric body;
-- near-white blue only as a narrow flash accent;
-- no warm colors.
-
-The UI/UX rationale from the design-system pass is "immersive interactive experience" with a vibrant premium collectible style, but constrained for React Native mobile performance. That means the selected hero preview can feel alive, while catalog cards must stay deterministic and quiet.
-
-## Rendering Architecture
-
-Keep `AvatarView`'s public API unchanged.
-
-`AvatarAura` remains the lifecycle owner:
-
-- it resolves the aura definition;
-- owns one shared `Animated.Value` phase;
-- gates animation by screen focus, app foreground state, `animate={false}`, and size thresholds;
-- resets or stops animation when inactive.
-
-Storm Front should be implemented as a dedicated renderer path, not as another preset in a generic `arcs/waves/pulse` system. Reusable primitives are allowed only when they do not erase the effect's identity. For example, a helper for a static clipped layer is fine; a generic "ring preset with colors" is not enough for a level aura.
-
-The renderer must animate only transform and opacity. It must not animate layout dimensions, SVG path data, blur radius, or random values every frame.
+If a registry exists, it should map `aura-storm-52` or its effect key to a named
+Storm Front renderer. The name should make the visual concept obvious in code.
 
 ## Data And Ownership
 
-Add level 52 metadata only when implementation begins:
+The remediation must preserve current app behavior:
 
-- exactly one aura unlocks at level 52;
-- it is not purchasable for shards;
-- unknown legacy IDs still normalize safely;
-- existing Plus, Nimbus, Arena, season, shop, and explicit "no aura" behavior stays intact.
+- existing owned aura storage keys stay unchanged;
+- explicit no-aura selection stays available;
+- Plus, VIP/admin, Nimbus, season, Arena, gift, and shop auras are not removed;
+- unknown legacy aura IDs continue to fall back safely;
+- level 52 ownership/unlock logic must be deterministic and non-purchasable.
 
-If the current catalog lacks an explicit acquisition field, the implementation may introduce the smallest helper needed to distinguish level rewards from shop and reward-only auras. It must not rewrite unrelated reward systems in this first pass.
+If the current app lacks the newer acquisition helpers from the abandoned branch,
+bring over only the narrow helper/data changes needed for Level 52. Do not port
+old release UI wholesale.
 
-## Selector Behavior
+## Performance And Runtime
 
-The avatar studio must remain the current app's selector, not the old isolated branch's screen.
+Storm Front must follow the app performance rules:
 
-Requirements:
+- no animation loop while the screen is blurred or app is backgrounded;
+- no offscreen catalog cell animation;
+- no layout size animation;
+- no growing module-level caches;
+- no full-screen loading state or geometry jump;
+- no new dependency such as Skia, Lottie, video, shader, or particle engine for
+  this pass.
 
-- the selected hero preview may animate Storm Front;
-- grid/catalog cards render Storm Front in a deliberate static frame;
-- offscreen cards do not run decorative loops;
-- existing purchase, selection, ownership, locked reason, and Plus fallback behavior remain unchanged.
+React Native Animated, Reanimated already present in the project, SVG already
+present in the project, and existing gradient utilities are acceptable if they
+match local patterns.
 
 ## Verification
 
-Focused checks for the first pass:
+Before calling the first pass done, verify:
 
-- source contract proving level 52 metadata exists and is not shop-purchasable;
-- contract or source check proving Storm Front does not use a full rotating 360-degree ring path;
-- existing aura runtime/freeze guards still pass or are not weakened;
-- manual LAN Metro visual check in the current app at small card size and selected hero size;
-- dark and light surface spot check if the current preview path supports both.
+- a focused contract proves Level 52 exists with the stable ID, unlock level,
+  and non-purchasable category;
+- a focused contract proves Storm Front uses its dedicated renderer path rather
+  than the generic old preset identity;
+- existing avatar selector behavior still keeps no-aura, shop auras, Plus/VIP,
+  and owned selection intact;
+- reduced-motion/static mode renders a visible Storm Front frame;
+- current LAN Metro app, not the old release app, is the visual target;
+- screenshots or direct device verification cover the selected hero preview and
+  catalog card at least in dark mode.
 
-Visual acceptance for Storm Front:
+## Out Of Scope For This Pass
 
-- it is immediately distinguishable from Flame, Plus, Nimbus, and shop auras;
-- it reads as storm/electric pressure, not a blue spinner;
-- it remains attractive when static;
-- it does not clip the avatar or resize the grid/card;
-- it is good enough to use as the quality bar before designing level 53.
+- Implementing levels 53-60 in the same batch.
+- Deploying OTA or Firebase Functions.
+- Replacing Level 51 Flame.
+- Redesigning the full avatar studio.
+- Removing old shop auras, Plus auras, Nimbus, season auras, or Arena rewards.
+- Adding raster assets for aura effects.
 
-## Non-Goals
+## User Approval Gate
 
-- Implementing levels 53-60 in the same pass.
-- Deploying OTA or Firebase changes.
-- Replacing level 51 Flame.
-- Rebuilding the whole avatar studio.
-- Adding Skia, Lottie, video, raster aura assets, or new native dependencies.
-- Removing existing shop, Plus, Nimbus, Arena, season, gift, or legacy aura behavior.
-
+After this spec is accepted, the implementation plan starts with Level 52 only.
+The next aura does not begin until Storm Front is visible in the current app and
+the user approves the direction.

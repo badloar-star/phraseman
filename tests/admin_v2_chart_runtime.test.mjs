@@ -291,7 +291,8 @@ test('keeps null time-series values, category ISO labels and comparison styling'
   assert.deepEqual(current.data, [1, null, 3]);
   assert.equal(current.spanGaps, false);
   assert.equal(current.tension, 0.28);
-  assert.equal(current.pointRadius, 0);
+  assert.equal(current.pointRadius, 2.5);
+  assert.equal(current.fill, true);
   assert.ok(current.pointHoverRadius > 0);
   assert.deepEqual(current.borderDash, []);
   assert.equal(current.metricId, 'purchases');
@@ -305,13 +306,81 @@ test('keeps null time-series values, category ISO labels and comparison styling'
   assert.equal(chart.options.maintainAspectRatio, false);
   assert.equal(chart.options.scales.x.type, 'category');
   assert.equal(chart.options.scales.y.beginAtZero, true);
-  assert.equal(chart.options.scales.y.min, 0);
-  assert.equal(chart.options.scales.y.max, 6);
+  assert.equal(Object.hasOwn(chart.options.scales.y, 'min'), false);
+  assert.equal(Object.hasOwn(chart.options.scales.y, 'max'), false);
   assert.equal('adapters' in chart.options.scales.x, false);
   assert.equal(chart.options.plugins.zoom.pan.mode, 'x');
   assert.equal(chart.options.plugins.zoom.zoom.wheel.enabled, true);
   assert.equal(chart.options.plugins.zoom.zoom.pinch.enabled, true);
   assert.equal(chart.options.plugins.zoom.zoom.mode, 'x');
+});
+
+test('matches the legacy single-metric graph, auto-scale and compact hover tooltip', () => {
+  const first = timeSeriesDescriptor({ comparisonEnabled: false }).series[0];
+  const descriptor = timeSeriesDescriptor({
+    comparisonEnabled: false,
+    series: [
+      {
+        ...first,
+        metricId: 'paywall.shown.v1',
+        label: 'Показы предложения',
+        points: first.points.map((point, index) => ({ ...point, value: [0, 57, 4][index] })),
+        previousPoints: null,
+      },
+      {
+        ...first,
+        metricId: 'paywall.trial_started.v1',
+        label: 'Сигналы пробного периода',
+        color: '#D97706',
+        points: first.points.map((point, index) => ({ ...point, value: [0, 3, 1][index] })),
+        previousPoints: null,
+      },
+    ],
+  });
+  const host = createHost();
+  const { chart } = mountTimeSeriesChart(host, descriptor, FakeChart);
+  const [shown, trials] = chart.data.datasets;
+  const [shownTab, trialsTab] = host.querySelectorAll('button');
+  const callbacks = chart.options.plugins.tooltip.callbacks;
+
+  assert.equal(shown.hidden, false);
+  assert.equal(trials.hidden, true);
+  assert.equal(shown.fill, true);
+  assert.equal(shown.pointRadius, 2.5);
+  assert.equal(Object.hasOwn(chart.options.scales.y, 'min'), false);
+  assert.equal(Object.hasOwn(chart.options.scales.y, 'max'), false);
+  assert.deepEqual(chart.activeElements, []);
+  assert.deepEqual(chart.tooltipActiveElements, []);
+
+  assert.equal(host.querySelector('[data-chart-legend]').getAttribute('role'), 'tablist');
+  assert.equal(shownTab.getAttribute('role'), 'tab');
+  assert.equal(shownTab.getAttribute('aria-selected'), 'true');
+  assert.equal(trialsTab.getAttribute('aria-selected'), 'false');
+
+  assert.match(callbacks.title([{ label: '2026-07-14' }]), /14.*июл/i);
+  assert.equal(
+    callbacks.label({ dataset: shown, parsed: { y: 4 } }),
+    'Показы предложения: 4 шт.',
+  );
+  assert.equal('afterBody' in callbacks, false);
+  assert.doesNotMatch(callbacks.label({ dataset: shown, parsed: { y: 4 } }), /Источник|Определение/);
+
+  trialsTab.click();
+  assert.equal(shown.hidden, true);
+  assert.equal(trials.hidden, false);
+  assert.equal(shownTab.getAttribute('aria-selected'), 'false');
+  assert.equal(trialsTab.getAttribute('aria-selected'), 'true');
+  assert.match(host.querySelector('[data-chart-summary]').textContent, /Сигналы пробного периода.*4 шт\./);
+});
+
+test('keeps the verbose keyboard announcement visually hidden instead of overlaying the chart', () => {
+  const css = fs.readFileSync(new URL('../admin/v2/styles/admin.css', import.meta.url), 'utf8');
+  const liveRule = css.match(/\.admin-chart__live\s*\{([^}]*)\}/)?.[1] || '';
+
+  assert.match(liveRule, /position:\s*absolute/);
+  assert.match(liveRule, /width:\s*1px/);
+  assert.match(liveRule, /height:\s*1px/);
+  assert.match(liveRule, /overflow:\s*hidden/);
 });
 
 test('rejects mixed time-series units and unsafe descriptor containers', () => {
@@ -393,24 +462,30 @@ test('uses one exact Russian formatter for live inspection and tooltips', () => 
 
   const host = createHost();
   const { chart } = mountTimeSeriesChart(host, descriptor, FakeChart);
-  const tooltipItems = chart.data.datasets.map((dataset) => ({ dataset, dataIndex: 0 }));
   const tooltipCallbacks = chart.options.plugins.tooltip.callbacks;
-  const tooltip = tooltipCallbacks.afterBody(tooltipItems);
+  const hoverItem = {
+    label: '2026-07-14',
+    dataset: chart.data.datasets[0],
+    dataIndex: 0,
+    parsed: { y: 12 },
+  };
+  const tooltip = tooltipCallbacks.label(hoverItem);
   const canvas = host.querySelector('canvas');
   const event = keyEvent('ArrowRight');
   canvas.dispatchEvent(event);
 
-  assert.deepEqual(tooltipCallbacks.title(tooltipItems), []);
-  assert.deepEqual(tooltipItems.map((item) => tooltipCallbacks.label(item)), [[], []]);
-  assert.equal(tooltip, expected);
+  assert.match(tooltipCallbacks.title([hoverItem]), /14.*2026/);
+  assert.equal(tooltip, `${descriptor.series[0].label}: 12 шт.`);
+  assert.equal('afterBody' in tooltipCallbacks, false);
   assert.equal(host.querySelector('[data-chart-live]').textContent, expected);
   assert.equal(tooltip.match(/Покупки:/g)?.length, 1);
   assert.doesNotMatch(tooltip, /2026-07-14/);
+  assert.doesNotMatch(tooltip, /RevenueCat/);
   assert.equal(event.defaultPrevented, true);
   assert.doesNotMatch(expected, /0[.,]0\s*%/);
 });
 
-test('tooltip keeps every series when Chart.js omits a null current item', () => {
+test('keyboard inspection keeps null and comparison detail for the selected metric', () => {
   const base = timeSeriesDescriptor().series[0];
   const descriptor = timeSeriesDescriptor({
     series: [
@@ -433,25 +508,23 @@ test('tooltip keeps every series when Chart.js omits a null current item', () =>
   const host = createHost();
   const { chart } = mountTimeSeriesChart(host, descriptor, FakeChart);
   const callbacks = chart.options.plugins.tooltip.callbacks;
-  const incompleteItems = [
-    { dataset: chart.data.datasets[1], dataIndex: 0 },
-    { dataset: chart.data.datasets[2], dataIndex: 0 },
-  ];
-  const expected = formatInspectionText(descriptor, { kind: 'time-series', bucketIndex: 0 });
-  const tooltip = callbacks.afterBody(incompleteItems);
+  const expected = formatInspectionText(descriptor, {
+    kind: 'time-series', metricId: 'series-a', bucketIndex: 0,
+  });
+  const tooltip = callbacks.label({
+    dataset: chart.data.datasets[0], dataIndex: 0, parsed: { y: null },
+  });
 
   host.querySelector('canvas').dispatchEvent(keyEvent('ArrowRight'));
-  assert.equal(tooltip, expected);
+  assert.notEqual(tooltip, expected);
   assert.equal(host.querySelector('[data-chart-live]').textContent, expected);
   assert.match(tooltip, /Серия A: —/);
-  assert.match(tooltip, /Серия A:[\s\S]*Предыдущий период[\s\S]*7 шт\./);
-  assert.match(tooltip, /Серия B: 5 шт\./);
-  assert.equal(callbacks.afterBody([]), '');
-  assert.equal(callbacks.afterBody([{ dataset: chart.data.datasets[0], dataIndex: null }]), '');
-  assert.equal(callbacks.afterBody([{ dataset: chart.data.datasets[0], dataIndex: 99 }]), '');
+  assert.match(expected, /Серия A:[\s\S]*Предыдущий период[\s\S]*7 шт\./);
+  assert.doesNotMatch(tooltip, /Серия B/);
+  assert.equal('afterBody' in callbacks, false);
 });
 
-test('tooltip and live inspection share legend visibility without losing null series', () => {
+test('metric tabs select exactly one series and clear stale tooltip state', () => {
   const base = timeSeriesDescriptor().series[0];
   const descriptor = timeSeriesDescriptor({
     series: [
@@ -473,38 +546,26 @@ test('tooltip and live inspection share legend visibility without losing null se
   });
   const host = createHost();
   const { chart } = mountTimeSeriesChart(host, descriptor, FakeChart);
-  const callbacks = chart.options.plugins.tooltip.callbacks;
-  const incompleteItems = [
-    { dataset: chart.data.datasets[1], dataIndex: 0 },
-    { dataset: chart.data.datasets[2], dataIndex: 0 },
-  ];
   const [seriesAButton, seriesBButton] = host.querySelectorAll('button');
   const live = host.querySelector('[data-chart-live]');
 
-  seriesAButton.click();
-  const withoutA = callbacks.afterBody(incompleteItems);
-  assert.equal(withoutA, live.textContent);
-  assert.doesNotMatch(withoutA, /Серия A/);
-  assert.match(withoutA, /Серия B: 5 шт\./);
-  assert.equal(seriesAButton.getAttribute('aria-pressed'), 'false');
-
-  seriesAButton.click();
-  const withAAgain = callbacks.afterBody(incompleteItems);
-  assert.equal(withAAgain, live.textContent);
-  assert.match(withAAgain, /Серия A: —/);
-  assert.match(withAAgain, /Серия A:[\s\S]*Предыдущий период[\s\S]*7 шт\./);
-  assert.match(withAAgain, /Серия B: 5 шт\./);
-  assert.equal(seriesAButton.getAttribute('aria-pressed'), 'true');
-
-  seriesAButton.click();
+  assert.equal(seriesAButton.getAttribute('aria-selected'), 'true');
+  assert.equal(seriesBButton.getAttribute('aria-selected'), 'false');
+  assert.equal(chart.data.datasets[0].hidden, false);
+  assert.equal(chart.data.datasets[2].hidden, true);
   seriesBButton.click();
-  assert.equal(live.textContent, 'Нет видимых рядов данных.');
-  assert.equal(callbacks.afterBody(incompleteItems), 'Нет видимых рядов данных.');
   assert.deepEqual(chart.activeElements, []);
   assert.deepEqual(chart.tooltipActiveElements, []);
-  seriesAButton.click();
-  assert.deepEqual(chart.activeElements, [{ datasetIndex: 0, index: 0 }]);
-  assert.match(live.textContent, /Серия A: —/);
+  assert.equal(chart.data.datasets[0].hidden, true);
+  assert.equal(chart.data.datasets[1].hidden, true);
+  assert.equal(chart.data.datasets[2].hidden, false);
+  assert.equal(chart.data.datasets[3].hidden, false);
+  assert.equal(seriesAButton.getAttribute('aria-selected'), 'false');
+  assert.equal(seriesBButton.getAttribute('aria-selected'), 'true');
+  assert.match(live.textContent, /Серия B/);
+  host.querySelector('canvas').dispatchEvent(keyEvent('ArrowRight'));
+  assert.match(live.textContent, /Серия B: 5 шт\./);
+  assert.doesNotMatch(live.textContent, /Серия A/);
 });
 
 test('formats deterministic Russian week ranges in UTC', () => {
@@ -564,7 +625,7 @@ test('makes the canvas keyboard inspectable, clamps buckets and resets zoom', ()
   assert.equal(handle.chart.resetZoomCalls, 3);
 });
 
-test('legend buttons toggle current and paired comparison datasets locally', () => {
+test('metric tab keeps its current and comparison datasets selected locally', () => {
   const toggles = [];
   const descriptor = timeSeriesDescriptor({
     onToggleSeries: (metricId, visible) => toggles.push([metricId, visible]),
@@ -582,19 +643,20 @@ test('legend buttons toggle current and paired comparison datasets locally', () 
 
     assert.equal(host.querySelectorAll('button').length, 1);
     assert.equal(button.type, 'button');
-    assert.equal(button.getAttribute('aria-pressed'), 'true');
+    assert.equal(button.getAttribute('role'), 'tab');
+    assert.equal(button.getAttribute('aria-selected'), 'true');
     assert.equal(button.textContent, 'Покупки');
     assert.match(button.className, /admin-chart__legend-button/);
 
     button.click();
-    assert.equal(chart.data.datasets[0].hidden, true);
-    assert.equal(chart.data.datasets[1].hidden, true);
-    assert.equal(button.getAttribute('aria-pressed'), 'false');
+    assert.equal(chart.data.datasets[0].hidden, false);
+    assert.equal(chart.data.datasets[1].hidden, false);
+    assert.equal(button.getAttribute('aria-selected'), 'true');
     button.click();
     assert.equal(chart.data.datasets[0].hidden, false);
     assert.equal(chart.data.datasets[1].hidden, false);
-    assert.equal(button.getAttribute('aria-pressed'), 'true');
-    assert.deepEqual(toggles, [['purchases', false], ['purchases', true]]);
+    assert.equal(button.getAttribute('aria-selected'), 'true');
+    assert.deepEqual(toggles, []);
     assert.equal(chart.updateCalls.length, 2);
     assert.equal(fetchCalls, 0);
   } finally {
@@ -1218,13 +1280,13 @@ test('requires every metric to share the same previous bucket shape', () => {
   }), FakeChart), /previous|align|shape|null|series/i);
 });
 
-test('gives chart tables captions, row headers and grouped legends', () => {
+test('gives chart tables captions, row headers and accessible selectors', () => {
   const lineHost = createHost();
   const barHost = createHost();
   mountTimeSeriesChart(lineHost, timeSeriesDescriptor(), FakeChart);
   mountBarChart(barHost, barDescriptor(), FakeChart);
 
-  assert.equal(lineHost.querySelector('[data-chart-legend]').getAttribute('role'), 'group');
+  assert.equal(lineHost.querySelector('[data-chart-legend]').getAttribute('role'), 'tablist');
   assert.equal(barHost.querySelector('[data-chart-legend]').getAttribute('role'), 'group');
   assert.equal(lineHost.querySelector('caption').textContent, 'Покупки по дням');
   assert.equal(barHost.querySelector('caption').textContent, 'Покупки по тарифам');
@@ -1244,7 +1306,7 @@ test('gives line and bar legend buttons focus-visible tooltip text', () => {
 
   assert.equal(
     lineButton.getAttribute('data-tooltip'),
-    'Показать или скрыть ряд «Покупки»',
+    'Показать на графике показатель «Покупки»',
   );
   assert.equal(
     barButton.getAttribute('data-tooltip'),

@@ -312,17 +312,19 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .analytics-source-scope, .analytics-filter-scope { max-width: 65ch; margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
 .analytics-source-scope:focus-visible, .analytics-filter-scope:focus-visible { outline: 3px solid rgba(109, 127, 242, 0.45); outline-offset: 3px; border-radius: 4px; }
 
-.analytics-chart-frame, .analytics-trends-chart-host, .overview-payment-chart-frame { position: relative; min-width: 0; min-height: 20rem; max-width: 100%; overflow: hidden; border-radius: 9px; }
-.analytics-trends-chart-host > .analytics-empty { min-height: 20rem; padding: 16px; border: 1px dashed var(--line-strong); border-radius: 9px; background: var(--surface-soft); }
-.admin-chart { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; min-height: 20rem; max-width: 100%; transition: opacity 180ms ease, background-color 180ms ease; }
+.analytics-chart-frame, .analytics-trends-chart-host, .overview-payment-chart-frame { position: relative; min-width: 0; min-height: 0; max-width: 100%; overflow: hidden; border-radius: 9px; }
+.analytics-trends-chart-host > .analytics-empty { min-height: 14.375rem; padding: 16px; border: 1px dashed var(--line-strong); border-radius: 9px; background: var(--surface-soft); }
+.admin-chart { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; min-height: 0; max-width: 100%; transition: opacity 180ms ease, background-color 180ms ease; }
 .admin-chart__title { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.4; }
 .admin-chart__legend, .analytics-trends-series-toggles { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }
 .analytics-trends-series-toggles .button.small { min-height: 44px; }
 .admin-chart__legend-button { display: inline-flex; align-items: center; justify-content: center; min-width: 0; min-height: 44px; padding: 7px 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); cursor: pointer; font-size: 12px; font-weight: 700; overflow-wrap: anywhere; transition: border-color 150ms ease, background-color 150ms ease; }
-.admin-chart__legend-button:hover, .admin-chart__legend-button[aria-pressed="false"] { border-color: var(--line-strong); background: var(--surface-soft); }
-.analytics-chart-canvas, .admin-chart__canvas { display: block; width: 100% !important; max-width: 100%; height: 20rem !important; min-height: 20rem; border-radius: 8px; transition: opacity 180ms ease; }
+.admin-chart__legend-button:hover { border-color: var(--line-strong); background: var(--surface-soft); }
+.admin-chart__legend-button[aria-selected="true"] { border-color: var(--focus); background: color-mix(in srgb, var(--focus) 12%, var(--surface)); }
+.admin-chart__summary { min-height: 1.5em; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.analytics-chart-canvas, .admin-chart__canvas { display: block; width: 100% !important; max-width: 100%; height: 14.375rem !important; min-height: 14.375rem; border-radius: 8px; transition: opacity 180ms ease; }
 .admin-chart__canvas:focus-visible { outline: 3px solid rgba(109, 127, 242, 0.55); outline-offset: 2px; }
-.admin-chart__live { min-height: 1.5em; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.admin-chart__live { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 .admin-chart__table-details { display: block; margin-top: 2px; }
 .admin-chart__table-details summary { display: inline-flex; align-items: center; min-height: 44px; color: var(--info); cursor: pointer; font-size: 13px; font-weight: 700; }
 .admin-chart__table { min-width: 700px; background: var(--surface); }
@@ -358,7 +360,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .overview-payment-headline-label-skeleton { width: 68%; height: 10px; }
 .overview-payment-headline > .overview-payment-headline-value-skeleton { width: 42%; height: 28px; margin: 15px 0 12px; }
 .overview-payment-headline-note-skeleton { width: 82%; height: 10px; }
-.overview-payment-chart-skeleton { width: 100%; height: 20rem; min-height: 20rem; border-radius: 9px; }
+.overview-payment-chart-skeleton { width: 100%; height: 14.375rem; min-height: 14.375rem; border-radius: 9px; }
 .overview-payment-funnel-label-skeleton { width: 78%; height: 10px; }
 .overview-payment-funnel-note-skeleton { width: 92%; height: 9px; }
 .overview-payment-funnel-value-skeleton { width: 54px; height: 12px; margin-left: auto; }
@@ -644,9 +646,9 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
 }
 
 @media (max-width: 768px) {
-  .analytics-chart-frame, .analytics-trends-chart-host, .overview-payment-chart-frame { min-height: 17rem; }
-  .analytics-chart-canvas, .admin-chart__canvas { height: 17rem !important; min-height: 17rem; }
-  .analytics-trends-chart-host > .analytics-empty, .overview-payment-chart-skeleton { height: 17rem; min-height: 17rem; }
+  .analytics-chart-frame, .analytics-trends-chart-host, .overview-payment-chart-frame { min-height: 0; }
+  .analytics-chart-canvas, .admin-chart__canvas { height: 14.375rem !important; min-height: 14.375rem; }
+  .analytics-trends-chart-host > .analytics-empty, .overview-payment-chart-skeleton { height: 14.375rem; min-height: 14.375rem; }
   .analytics-filter-grid, .analytics-trends-filter-grid { grid-template-columns: 1fr; }
   .analytics-trend-toolbar, .analytics-trends-toolbar { align-items: stretch; }
   .analytics-trend-toolbar .card-header, .analytics-trends-toolbar .card-header { display: block; }

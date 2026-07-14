@@ -901,7 +901,7 @@ test('uses only the restrained analytics palette for default and optional descri
   assert.ok(trendsViewModule, 'paywall analytics renderer module must exist');
   if (!trendsViewModule) return;
   const approvedPalette = [
-    '#3B82F6', '#8B5CF6', '#0D9488', '#6366F1',
+    '#3B82F6', '#8B5CF6', '#D97706', '#16A34A',
     '#0284C7', '#A855F7', '#0891B2', '#4F7FEA',
   ];
   const semanticStatusColors = new Set(['#B45309', '#BE123C', '#4D7C0F']);
@@ -973,7 +973,7 @@ test('keeps every actual descriptor color at 3:1 contrast on supported chart sur
   assert.deepEqual(failures, []);
 });
 
-test('renders a safe stable Overview payment summary with exactly three count series', () => {
+test('renders a safe stable Overview payment summary with the four legacy funnel series', () => {
   assert.ok(trendsViewModule, 'paywall analytics renderer module must exist');
   if (!trendsViewModule) return;
   const html = trendsViewModule.renderOverviewPaymentSummary(paywallViewModel());
@@ -989,12 +989,34 @@ test('renders a safe stable Overview payment summary with exactly three count se
     descriptors[0].descriptor.series.map((series) => series.metricId),
     [
       'paywall.shown.v1',
-      'store.confirmed_trial_start.v1',
-      'store.initial_purchase.v1',
+      'paywall.cta_click.v1',
+      'paywall.trial_started.v1',
+      'paywall.purchase_completed.v1',
     ],
   );
   assert.ok(descriptors[0].descriptor.series.every((series) => series.unit === 'count'));
   assert.doesNotMatch(JSON.stringify(descriptors), /revenue\.gross_usd_micros\.v1/);
+});
+
+test('uses the four legacy paywall funnel tabs on the Overview chart', () => {
+  assert.ok(trendsViewModule, 'paywall analytics renderer module must exist');
+  if (!trendsViewModule) return;
+  const descriptors = trendsViewModule.createOverviewPaymentChartDescriptors(paywallViewModel());
+
+  assert.equal(descriptors.length, 1);
+  assert.deepEqual(
+    descriptors[0].descriptor.series.map((series) => series.metricId),
+    [
+      'paywall.shown.v1',
+      'paywall.cta_click.v1',
+      'paywall.trial_started.v1',
+      'paywall.purchase_completed.v1',
+    ],
+  );
+  assert.deepEqual(
+    descriptors[0].descriptor.series.map((series) => series.color),
+    ['#3B82F6', '#8B5CF6', '#D97706', '#16A34A'],
+  );
 });
 
 test('renders the cold Overview payment load with final-shape accessible skeletons', () => {

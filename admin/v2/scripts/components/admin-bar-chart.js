@@ -117,6 +117,9 @@ export function mountBarChart(host, descriptor, chartFactory = globalThis.Chart)
   const normalized = validateBarChartDescriptor(descriptor);
   destroyAdminChartConflicts(normalized.id, host);
   const scaffold = createAdminChartScaffold(host, normalized);
+  scaffold.legend.setAttribute('role', 'group');
+  scaffold.legend.setAttribute('aria-label', 'Категории данных');
+  scaffold.summary.remove();
   scaffold.root.appendChild(buildBarTable(normalized, host.ownerDocument));
   const originalValues = normalized.rows.map((row) => row.value);
   const visibleRowIds = new Set(normalized.rows.map((row) => row.id));

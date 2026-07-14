@@ -615,10 +615,11 @@ describe('Admin v2 paywall analytics category contract', () => {
       .map((match) => match[1]);
     expect(countMetricIds).toEqual([
       'paywall.shown.v1',
-      'store.confirmed_trial_start.v1',
-      'store.initial_purchase.v1',
+      'paywall.cta_click.v1',
+      'paywall.trial_started.v1',
+      'paywall.purchase_completed.v1',
     ]);
-    expect(countMetricIds).toHaveLength(3);
+    expect(countMetricIds).toHaveLength(4);
     expect(countMetricIds).not.toContain('revenue.gross_usd_micros.v1');
     expect(renderer).toContain("series.unit === 'count'");
     expect(renderer).toContain('formatAdminChartValue');
@@ -788,8 +789,8 @@ describe('Admin v2 paywall analytics category contract', () => {
     }
 
     expect(cssRuleBody(css, '.analytics-chart-frame')).toMatch(/position\s*:\s*relative/);
-    expect(cssRuleBody(css, '.analytics-chart-frame')).toMatch(/min-height\s*:\s*20rem/);
-    expect(cssRuleBody(css, '.analytics-chart-canvas')).toMatch(/(?:min-)?height\s*:\s*20rem/);
+    expect(cssRuleBody(css, '.analytics-chart-frame')).toMatch(/min-height\s*:\s*0/);
+    expect(cssRuleBody(css, '.analytics-chart-canvas')).toMatch(/height\s*:\s*14\.375rem/);
     expect(cssRuleBody(css, '.analytics-filter-grid')).toMatch(/repeat\(auto-fit,\s*minmax\(/);
     expect(cssRuleBody(css, '.analytics-trends-chart-host')).toMatch(/max-width\s*:\s*100%/);
     expect(cssRuleBody(css, '.analytics-semantic-funnel > li > span')).toMatch(/background\s*:\s*var\(--lime\)/);
@@ -808,7 +809,7 @@ describe('Admin v2 paywall analytics category contract', () => {
     expect(phone).toContain('.analytics-trends-chart-host');
     expect(phone).toMatch(/overflow-x\s*:\s*(?:auto|hidden)/);
     expect(tablet).toContain('.analytics-chart-frame');
-    expect(tablet).toMatch(/(?:min-)?height\s*:\s*17rem/);
+    expect(tablet).toMatch(/height\s*:\s*14\.375rem/);
     expect(tablet).toContain('.analytics-trend-toolbar');
     expect(compactDesktop).toContain('.overview-payment-detail-grid');
     expect(compactDesktop).toContain('.analytics-trends-breakdown-grid');

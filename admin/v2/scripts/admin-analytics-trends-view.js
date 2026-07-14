@@ -14,8 +14,9 @@ export const PAYWALL_DEFAULT_VISIBLE_METRIC_IDS = Object.freeze([
 
 const OVERVIEW_COUNT_METRIC_IDS = Object.freeze([
   'paywall.shown.v1',
-  'store.confirmed_trial_start.v1',
-  'store.initial_purchase.v1',
+  'paywall.cta_click.v1',
+  'paywall.trial_started.v1',
+  'paywall.purchase_completed.v1',
 ]);
 const OVERVIEW_SOURCE_KEYS = Object.freeze([
   'paywall',
@@ -25,7 +26,7 @@ const OVERVIEW_SOURCE_KEYS = Object.freeze([
 const OVERVIEW_GROSS_REVENUE_METRIC_ID = 'revenue.gross_usd_micros.v1';
 
 const ANALYTICS_SERIES_COLORS = Object.freeze([
-  '#3B82F6', '#8B5CF6', '#0D9488', '#6366F1',
+  '#3B82F6', '#8B5CF6', '#D97706', '#16A34A',
   '#0284C7', '#A855F7', '#0891B2', '#4F7FEA',
 ]);
 const SOURCE_LABELS = Object.freeze({
@@ -379,7 +380,7 @@ export function createOverviewPaymentChartDescriptors(model) {
   const countSeries = OVERVIEW_COUNT_METRIC_IDS
     .map((metricId) => overviewSeriesByMetricId(model, metricId))
     .filter((series) => series && series.unit === 'count')
-    .slice(0, 3);
+    .slice(0, 4);
   const entry = timeSeriesEntry(
     'overview-payment-count-chart',
     'overview-payment-count-trend',
@@ -535,7 +536,7 @@ export function renderOverviewPaymentSummary(model) {
       <div class="overview-payment-status">${renderOverviewPaymentState(model)}</div>
       ${coldLoading ? renderOverviewHeadlineSkeletons() : renderOverviewHeadlineMetrics(model)}
       <div class="overview-payment-detail-grid">
-        <section aria-labelledby="overview-payment-trend-title"><h3 id="overview-payment-trend-title">Сигналы и подтверждения</h3><p>Только количество событий; денежные значения не используют эту шкалу.</p>${renderOverviewPaymentChartHost(mountedHostIds, coldLoading, loading ? 'Готовим график количества событий…' : 'Данных для графика количества событий пока нет.')}</section>
+        <section aria-labelledby="overview-payment-trend-title"><h3 id="overview-payment-trend-title">Поведенческая воронка по дням</h3><p>Показы, нажатия, сигналы пробного периода и покупки из приложения. Подтверждения магазина показаны отдельно выше.</p>${renderOverviewPaymentChartHost(mountedHostIds, coldLoading, loading ? 'Готовим график количества событий…' : 'Данных для графика количества событий пока нет.')}</section>
         <section aria-labelledby="overview-payment-funnel-title"><h3 id="overview-payment-funnel-title">Компактная поведенческая воронка</h3><p>События приложения не считаются подтверждением магазина.</p>${coldLoading ? renderOverviewFunnelSkeleton() : renderSemanticFunnel(model)}</section>
       </div>
       <section class="overview-payment-health" aria-labelledby="overview-payment-health-title"><h3 id="overview-payment-health-title">Состояние источников оплаты</h3>${coldLoading ? renderOverviewSourceSkeletons() : renderSourceHealth(model)}</section>

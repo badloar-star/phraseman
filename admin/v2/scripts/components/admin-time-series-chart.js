@@ -20,6 +20,13 @@ const ruDate = new Intl.DateTimeFormat('ru-RU', {
   year: 'numeric',
   timeZone: 'UTC',
 });
+const ruTooltipDate = new Intl.DateTimeFormat('ru-RU', {
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
 const ruNumber = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 });
 const ruPercent = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
 const ruUsd = new Intl.NumberFormat('ru-RU', {
@@ -338,6 +345,11 @@ function formatDate(iso) {
   return normalizeSpaces(ruDate.format(parseIsoDate(iso)));
 }
 
+function formatTooltipDate(iso, granularity) {
+  if (granularity === 'week') return formatWeek(iso);
+  return normalizeSpaces(ruTooltipDate.format(parseIsoDate(iso)));
+}
+
 function dateParts(iso) {
   return Object.fromEntries(ruDate.formatToParts(parseIsoDate(iso)).map((part) => [part.type, part.value]));
 }
@@ -458,10 +470,15 @@ export function createAdminChartScaffold(host, descriptor) {
   const legend = document.createElement('div');
   legend.className = 'admin-chart__legend';
   legend.setAttribute('data-chart-legend', '');
-  legend.setAttribute('role', 'group');
-  legend.setAttribute('aria-label', 'Ряды данных');
+  legend.setAttribute('role', 'tablist');
+  legend.setAttribute('aria-label', 'Показатель графика');
+  const summary = document.createElement('p');
+  summary.className = 'admin-chart__summary';
+  summary.setAttribute('data-chart-summary', '');
   const canvas = document.createElement('canvas');
   canvas.className = 'admin-chart__canvas';
+  canvas.id = `${descriptor.id}-canvas`;
+  canvas.setAttribute('id', canvas.id);
   canvas.tabIndex = 0;
   canvas.setAttribute('tabindex', '0');
   canvas.setAttribute('role', 'img');
@@ -471,9 +488,9 @@ export function createAdminChartScaffold(host, descriptor) {
   live.setAttribute('data-chart-live', '');
   live.setAttribute('aria-live', 'polite');
   live.setAttribute('aria-atomic', 'true');
-  root.append(heading, legend, canvas, live);
+  root.append(heading, legend, summary, canvas, live);
   host.appendChild(root);
-  return { root, legend, canvas, live };
+  return { root, legend, summary, canvas, live };
 }
 
 export function createAdminChartTable(document, captionText, headers, rows) {
@@ -616,21 +633,43 @@ function buildTimeSeriesTable(descriptor, document) {
   ], rows);
 }
 
-function createTimeSeriesDatasets(descriptor) {
+function colorWithAlpha(color, alpha) {
+  const match = /^#([0-9A-Fa-f]{6})$/.exec(color);
+  if (!match) return color;
+  const value = Number.parseInt(match[1], 16);
+  return `rgba(${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}, ${alpha})`;
+}
+
+function createSeriesFill(canvas, color) {
+  try {
+    const context = canvas.getContext('2d');
+    const gradient = context.createLinearGradient(0, 0, 0, canvas.height || 230);
+    gradient.addColorStop(0, colorWithAlpha(color, 0.28));
+    gradient.addColorStop(1, colorWithAlpha(color, 0));
+    return gradient;
+  } catch {
+    return colorWithAlpha(color, 0.18);
+  }
+}
+
+function createTimeSeriesDatasets(descriptor, canvas) {
   const datasets = [];
   descriptor.series.forEach((series, index) => {
     const color = series.color || ADMIN_CHART_COLORS[index % ADMIN_CHART_COLORS.length];
     const common = {
       metricId: series.metricId,
       borderColor: color,
-      backgroundColor: color,
+      backgroundColor: createSeriesFill(canvas, color),
       borderWidth: 2,
-      fill: false,
+      fill: true,
       spanGaps: false,
       tension: 0.28,
-      pointRadius: 0,
+      pointRadius: 2.5,
       pointHoverRadius: 5,
       pointHitRadius: 12,
+      pointBackgroundColor: 'rgba(13, 15, 23, 0.96)',
+      pointBorderColor: color,
+      pointHoverBackgroundColor: color,
     };
     datasets.push({
       ...common,
@@ -638,7 +677,7 @@ function createTimeSeriesDatasets(descriptor) {
       period: 'current',
       borderDash: [],
       data: series.points.map((point) => point.value),
-      hidden: false,
+      hidden: index !== 0,
     });
     if (series.previousPoints !== null) {
       datasets.push({
@@ -647,7 +686,7 @@ function createTimeSeriesDatasets(descriptor) {
         period: 'previous',
         borderDash: [6, 4],
         data: series.points.map((_, pointIndex) => series.previousPoints[pointIndex]?.value ?? null),
-        hidden: !descriptor.comparisonEnabled,
+        hidden: index !== 0 || !descriptor.comparisonEnabled,
       });
     }
   });
@@ -668,15 +707,14 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
   const scaffold = createAdminChartScaffold(host, normalized);
   const table = buildTimeSeriesTable(normalized, host.ownerDocument);
   scaffold.root.appendChild(table);
-  const datasets = createTimeSeriesDatasets(normalized);
-  const stableYScale = adminChartValueScale(datasets.flatMap((dataset) => dataset.data));
-  const visibleMetricIds = new Set(normalized.series.map((series) => series.metricId));
+  const datasets = createTimeSeriesDatasets(normalized, scaffold.canvas);
+  let activeMetricId = normalized.series[0].metricId;
   const formatVisibleInspection = (bucketIndex) => {
-    if (!visibleMetricIds.size) return 'Нет видимых рядов данных.';
-    const metricIds = normalized.series
-      .filter((series) => visibleMetricIds.has(series.metricId))
-      .map((series) => series.metricId);
-    return formatInspectionText(normalized, { kind: 'time-series', metricIds, bucketIndex });
+    return formatInspectionText(normalized, {
+      kind: 'time-series',
+      metricId: activeMetricId,
+      bucketIndex,
+    });
   };
   const config = {
     type: 'line',
@@ -688,29 +726,59 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
       responsive: true,
       maintainAspectRatio: false,
       animation: adminChartAnimation(),
-      interaction: { intersect: false, mode: 'index' },
+      interaction: { mode: 'index', intersect: false },
       scales: {
-        x: { type: 'category' },
+        x: {
+          type: 'category',
+          grid: { color: 'rgba(107, 114, 128, 0.16)' },
+          ticks: {
+            color: '#6B7280',
+            font: { size: 10 },
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 8,
+            callback(value) {
+              const raw = this.getLabelForValue(value);
+              return typeof raw === 'string' ? raw.slice(5) : raw;
+            },
+          },
+        },
         y: {
-          ...stableYScale,
-          ticks: { callback: (value) => formatAdminChartTick(value, normalized.series[0].unit) },
+          beginAtZero: true,
+          grid: { color: 'rgba(107, 114, 128, 0.16)' },
+          ticks: {
+            color: '#6B7280',
+            font: { size: 10 },
+            ...(normalized.series[0].unit === 'count' ? { precision: 0 } : {}),
+            callback: (value) => formatAdminChartTick(value, normalized.series[0].unit),
+          },
         },
       },
       plugins: {
         legend: { display: false },
         tooltip: {
+          backgroundColor: '#0B0E16',
+          borderColor: '#2A2F40',
+          borderWidth: 1,
+          titleColor: '#F1F5F9',
+          bodyColor: '#CBD5E1',
+          padding: 10,
           displayColors: false,
           callbacks: {
-            title: () => [],
-            label: () => [],
-            afterBody: (items) => {
-              const first = items.find((item) => (
-                Number.isInteger(item.dataIndex)
-                && item.dataIndex >= 0
-                && item.dataIndex < normalized.series[0].points.length
-              ));
-              if (!first) return '';
-              return formatVisibleInspection(first.dataIndex);
+            title: (items) => {
+              const iso = String(items?.[0]?.label ?? '');
+              return /^\d{4}-\d{2}-\d{2}$/.test(iso)
+                ? formatTooltipDate(iso, normalized.granularity)
+                : iso;
+            },
+            label: (item) => {
+              const dataset = item?.dataset || {};
+              const series = normalized.series.find((entry) => entry.metricId === dataset.metricId);
+              if (!series) return '';
+              const value = typeof item?.parsed?.y === 'number'
+                ? item.parsed.y
+                : dataset.data?.[item?.dataIndex] ?? null;
+              return `${dataset.label || series.label}: ${formatAdminChartValue(value, series.unit)}`;
             },
           },
         },
@@ -719,8 +787,10 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
           zoom: {
             wheel: { enabled: true },
             pinch: { enabled: true },
+            drag: { enabled: false },
             mode: 'x',
           },
+          limits: { x: { minRange: 3 } },
         },
       },
     },
@@ -736,6 +806,7 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
 
   const cleanup = [];
   let activeBucket = 0;
+  const metricButtons = new Map();
   const visibleCurrentDatasets = () => chart.data.datasets
     .map((dataset, datasetIndex) => ({ dataset, datasetIndex }))
     .filter(({ dataset }) => dataset.period === 'current' && dataset.hidden !== true);
@@ -756,6 +827,43 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
     }
     scaffold.live.textContent = formatVisibleInspection(activeBucket);
   };
+  const clearInspection = () => {
+    if (typeof chart.setActiveElements === 'function') chart.setActiveElements([]);
+    if (typeof chart.tooltip?.setActiveElements === 'function') {
+      chart.tooltip.setActiveElements([], { x: 0, y: 0 });
+    }
+  };
+  const updateSummary = () => {
+    const series = normalized.series.find((item) => item.metricId === activeMetricId);
+    if (!series) return;
+    const total = series.points.reduce((sum, point) => (
+      typeof point.value === 'number' && Number.isFinite(point.value) ? sum + point.value : sum
+    ), 0);
+    scaffold.summary.textContent = `${series.label} — итого за период: ${formatAdminChartValue(total, series.unit)}`;
+    scaffold.live.textContent = `Выбран показатель «${series.label}». Используйте стрелки влево и вправо на графике, чтобы услышать точные значения по датам.`;
+  };
+  const selectMetric = (metricId, updateChart = true) => {
+    activeMetricId = metricId;
+    activeBucket = 0;
+    for (const dataset of chart.data.datasets) {
+      const selected = dataset.metricId === metricId;
+      dataset.hidden = dataset.period === 'previous'
+        ? (!selected || !normalized.comparisonEnabled)
+        : !selected;
+    }
+    for (const [buttonMetricId, button] of metricButtons) {
+      const selected = buttonMetricId === metricId;
+      button.setAttribute('aria-selected', String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      button.setAttribute('tabindex', String(button.tabIndex));
+    }
+    clearInspection();
+    updateSummary();
+    if (updateChart) {
+      if (typeof chart.resetZoom === 'function') chart.resetZoom();
+      if (typeof chart.update === 'function') chart.update();
+    }
+  };
   const onKeyDown = (event) => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
     event.preventDefault();
@@ -770,37 +878,41 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
   scaffold.canvas.addEventListener('keydown', onKeyDown);
   cleanup.push(() => scaffold.canvas.removeEventListener('keydown', onKeyDown));
 
-  normalized.series.forEach((series) => {
+  normalized.series.forEach((series, seriesIndex) => {
     const button = host.ownerDocument.createElement('button');
     button.type = 'button';
     button.setAttribute('type', 'button');
     button.className = 'admin-chart__legend-button';
     button.setAttribute('data-metric-id', series.metricId);
-    button.setAttribute('aria-pressed', 'true');
-    const tooltipText = `Показать или скрыть ряд «${series.label}»`;
+    button.setAttribute('role', 'tab');
+    button.setAttribute('aria-controls', scaffold.canvas.id);
+    button.setAttribute('aria-selected', String(seriesIndex === 0));
+    button.tabIndex = seriesIndex === 0 ? 0 : -1;
+    button.setAttribute('tabindex', String(button.tabIndex));
+    const tooltipText = `Показать на графике показатель «${series.label}»`;
     button.setAttribute('title', tooltipText);
     button.setAttribute('data-tooltip', tooltipText);
     button.textContent = series.label;
     const onClick = () => {
-      const current = chart.data.datasets.find((dataset) => (
-        dataset.metricId === series.metricId && dataset.period === 'current'
-      ));
-      const visible = current?.hidden === true;
-      for (const dataset of chart.data.datasets) {
-        if (dataset.metricId !== series.metricId) continue;
-        dataset.hidden = dataset.period === 'previous' ? (!visible || !normalized.comparisonEnabled) : !visible;
-      }
-      if (visible) visibleMetricIds.add(series.metricId);
-      else visibleMetricIds.delete(series.metricId);
-      button.setAttribute('aria-pressed', String(visible));
-      inspect();
-      if (typeof chart.update === 'function') chart.update();
-      normalized.onToggleSeries?.(series.metricId, visible);
+      selectMetric(series.metricId);
+    };
+    const onTabKeyDown = (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      const offset = event.key === 'ArrowRight' ? 1 : -1;
+      const nextIndex = (seriesIndex + offset + normalized.series.length) % normalized.series.length;
+      const nextSeries = normalized.series[nextIndex];
+      selectMetric(nextSeries.metricId);
+      const nextButton = metricButtons.get(nextSeries.metricId);
+      if (typeof nextButton?.focus === 'function') nextButton.focus();
     };
     button.addEventListener('click', onClick);
+    button.addEventListener('keydown', onTabKeyDown);
     cleanup.push(() => button.removeEventListener('click', onClick));
+    cleanup.push(() => button.removeEventListener('keydown', onTabKeyDown));
+    metricButtons.set(series.metricId, button);
     scaffold.legend.appendChild(button);
   });
-  inspect();
+  selectMetric(activeMetricId, false);
   return registerAdminChart({ id: normalized.id, host, root: scaffold.root, chart, cleanup });
 }

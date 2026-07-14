@@ -211,6 +211,39 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .topbar-actions { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 13px; }
 .topbar-actions a { color: var(--muted); text-decoration: none; }
 .topbar-actions a:hover { color: var(--ink); text-decoration: underline; }
+.topbar-actions .legacy-admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--warning);
+  border-radius: 10px;
+  background: var(--warning-soft);
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 750;
+  text-decoration: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+.topbar-actions .legacy-admin-link:hover {
+  border-color: color-mix(in srgb, var(--warning) 72%, var(--ink));
+  background: color-mix(in srgb, var(--warning-soft) 88%, var(--surface));
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(23, 32, 51, 0.1);
+}
+.topbar-actions .legacy-admin-link svg { width: 18px; height: 18px; }
+.topbar-actions .legacy-admin-link[data-tooltip]::after {
+  top: calc(100% + 8px);
+  bottom: auto;
+  right: 0;
+  left: auto;
+  transform: translateY(4px);
+}
+.topbar-actions .legacy-admin-link[data-tooltip]:hover::after,
+.topbar-actions .legacy-admin-link[data-tooltip]:focus-visible::after { transform: translateY(0); }
 .topbar-settings-link { font-weight: 760; }
 .auth-status { padding-left: 14px; border-left: 1px solid var(--line); }
 .auth-status button { min-height: 34px; }
@@ -670,6 +703,8 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .topbar { padding: 0 15px; }
   .breadcrumbs { display: none; }
   .topbar-actions a { display: none; }
+  .topbar-actions .legacy-admin-link { display: inline-flex; width: 44px; padding: 0; }
+  .legacy-admin-link-label { display: none; }
   .page { padding: 22px 15px; }
   .page-header { display: block; }
   .page-header > .actions { margin-top: 15px; }

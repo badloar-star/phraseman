@@ -5,7 +5,7 @@ import {
 import type { PurchaseCustomizationInput } from '../app/customization_purchase_intent';
 
 const purchaseInput: PurchaseCustomizationInput = {
-  target: 'aura', itemId: 'aura-aurora', cost: 35,
+  target: 'aura', itemId: 'aura-aurora', cost: 50,
   spendReason: 'avatar_aura', mode: 'buy-only', ownedValue: true,
 };
 

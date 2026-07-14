@@ -144,23 +144,20 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
   /** Отклонить матч (по таймауту ИЛИ по свайпу): тихо помечаем handled,
    *  отменяем поиск и шлём decline на сервер (если это реальный матч). */
   const declineMatch = useCallback(() => {
-    void (async () => {
-      const sid = sessionId;
-      const uid = userId;
-      if (
-        sid && uid && CLOUD_SYNC_ENABLED
-        && !sid.startsWith('bot_')
-        && !sid.startsWith('preview_match_')
-        && !sid.startsWith('dev_test')
-      ) {
-        await setSessionLobbyChoice(sid, uid, 'decline').catch(() => {});
-      }
-      markMatchHandled();
-      clearAcceptSchedule();
-      slideOut();
-      await cancelSearching();
-      await resumeSearchAfterLobbyAbort();
-    })();
+    const sid = sessionId;
+    const uid = userId;
+    markMatchHandled();
+    clearAcceptSchedule();
+    slideOut();
+    void cancelSearching().then(() => resumeSearchAfterLobbyAbort());
+    if (
+      sid && uid && CLOUD_SYNC_ENABLED
+      && !sid.startsWith('bot_')
+      && !sid.startsWith('preview_match_')
+      && !sid.startsWith('dev_test')
+    ) {
+      void setSessionLobbyChoice(sid, uid, 'decline').catch(() => {});
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId, userId, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort]);
 

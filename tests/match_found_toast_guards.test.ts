@@ -47,3 +47,25 @@ describe('MatchFoundToast z-index', () => {
     expect(zIndex).toBeLessThan(9998);
   });
 });
+
+describe('MatchFoundToast swipe dismissal', () => {
+  it('dismisses locally before the best-effort server decline', () => {
+    const src = readFileSync(
+      join(__dirname, '..', 'components', 'MatchFoundToast.tsx'),
+      'utf8',
+    );
+    const declineMatch = src.match(
+      /const declineMatch = useCallback\(\(\) => \{([\s\S]*?)\n  \}, \[sessionId/,
+    )?.[1];
+
+    expect(declineMatch).toBeTruthy();
+    expect(declineMatch).not.toContain('await setSessionLobbyChoice');
+    expect(declineMatch).toContain('void setSessionLobbyChoice');
+    expect(declineMatch!.indexOf('markMatchHandled();')).toBeLessThan(
+      declineMatch!.indexOf('setSessionLobbyChoice('),
+    );
+    expect(declineMatch!.indexOf('cancelSearching()')).toBeLessThan(
+      declineMatch!.indexOf('setSessionLobbyChoice('),
+    );
+  });
+});

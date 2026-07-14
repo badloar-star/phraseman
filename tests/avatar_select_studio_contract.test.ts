@@ -50,4 +50,21 @@ describe('avatar customization studio structure', () => {
     expect(screen).toContain('onChange={handleFilterChange}');
     expect(screen).not.toContain('key={`${activeTab}-${filter}`}');
   });
+
+  it('uses confirmed selections for ownership instead of granting previewed items for free', () => {
+    const screen = readProjectFile('app', 'avatar_select.tsx');
+    const avatarCatalogCall = screen.slice(
+      screen.indexOf('const avatarItems = useMemo'),
+      screen.indexOf('const auraItems = useMemo'),
+    );
+    const auraCatalogCall = screen.slice(
+      screen.indexOf('const auraItems = useMemo'),
+      screen.indexOf('const catalogItems = useMemo'),
+    );
+
+    expect(avatarCatalogCall).toContain('activeAvatar: confirmed.activeAvatar');
+    expect(avatarCatalogCall).not.toContain('activeAvatar: previewAvatarValue');
+    expect(auraCatalogCall).toContain('activeAuraId: confirmed.storedAuraSelection');
+    expect(auraCatalogCall).not.toContain('activeAuraId: previewStoredAuraSelection');
+  });
 });

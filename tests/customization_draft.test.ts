@@ -27,17 +27,17 @@ describe('resolveCustomizationAction', () => {
   it('buys and applies one shard blocker', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
-      avatarAvailability: { kind: 'shards', cost: 50 },
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'purchase', cost: 50 });
+      avatarAvailability: { kind: 'shards', cost: 35 },
+    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'purchase', cost: 35 });
   });
 
   it('resolves two shard blockers one at a time from active tab', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
       activeTab: 'auras',
-      avatarAvailability: { kind: 'shards', cost: 50 },
-      auraAvailability: { kind: 'shards', cost: 35 },
-    })).toEqual({ kind: 'buy-only', target: 'aura', purchaseKind: 'purchase', cost: 35 });
+      avatarAvailability: { kind: 'shards', cost: 35 },
+      auraAvailability: { kind: 'shards', cost: 50 },
+    })).toEqual({ kind: 'buy-only', target: 'aura', purchaseKind: 'purchase', cost: 50 });
   });
 
   it('does not partially apply a level blocker', () => {

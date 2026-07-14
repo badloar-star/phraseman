@@ -432,16 +432,16 @@ export default function AvatarSelect() {
   const avatarItems = useMemo(() => buildAvatarCatalog({
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
-    activeAvatar: previewAvatarValue,
-  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, previewAvatarValue]);
+    activeAvatar: confirmed.activeAvatar,
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar]);
   const auraItems = useMemo(() => buildAuraCatalog({
     activeAvatar: previewAvatarValue,
-    activeAuraId: previewStoredAuraSelection,
+    activeAuraId: confirmed.storedAuraSelection,
     level: confirmed.level,
     ownedAuras: confirmed.ownedAuras,
     isPremium,
     isVip,
-  }), [previewAvatarValue, previewStoredAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip]);
+  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip]);
   const catalogItems = useMemo(
     () => filterCatalog(activeTab === 'avatars' ? avatarItems : auraItems, filter),
     [activeTab, avatarItems, auraItems, filter],

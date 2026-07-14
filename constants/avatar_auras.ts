@@ -3,7 +3,7 @@ export {
   AVATAR_AURA_OWNED_KEY,
   USER_AVATAR_AURA_KEY,
 } from './customization_storage_keys';
-export const AVATAR_AURA_BUY_COST = 35;
+export const AVATAR_AURA_BUY_COST = 50;
 export const NO_AVATAR_AURA_ID = 'none';
 export const PREMIUM_AVATAR_AURA_ID = 'aura-premium';
 export const VIP_AVATAR_AURA_ID = 'aura-vip';

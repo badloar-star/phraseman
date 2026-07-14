@@ -402,13 +402,18 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           ? DEV_QUICK_MATCH_MS
           : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
     const preservedBotDeadline = options?.preserveBotFallbackDeadlineAt;
+    // Returning from an unaccepted match keeps the original overall search timeout,
+    // but the next bot wait must start now. Using the preserved t0 here makes the
+    // freshly calculated deadline already expired and immediately shows the same
+    // "match found" state again.
+    const botFallbackBaseAt = usePreserved ? now : t0;
     const botFallbackDeadlineAt = preservedBotDeadline === null
       ? null
       : typeof preservedBotDeadline === 'number' && preservedBotDeadline > 0
         ? preservedBotDeadline
         : selectedBotDelay === null
           ? null
-          : t0 + selectedBotDelay;
+          : botFallbackBaseAt + selectedBotDelay;
 
     const rankIndex = rankToIndex(rankTier, rankLevel as (typeof RANK_LEVELS)[number]);
     const entry: MatchmakingEntry = {

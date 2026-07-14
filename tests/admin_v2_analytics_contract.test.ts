@@ -12,7 +12,7 @@ describe('Admin v2 trustworthy analytics contract', () => {
   const css = read('admin/v2/styles/admin.css');
 
   test('renders the native analytics snapshot instead of raw JSON or legacy analytics', () => {
-    expect(core).toContain("import { renderAdminAnalytics } from './admin-analytics-view.js'");
+    expect(core).toMatch(/import\s*\{[^}]*\brenderAdminAnalytics\b[^}]*\}\s*from '\.\/admin-analytics-view\.js';/);
     expect(core).not.toContain('JSON.stringify(snapshot, null, 2)');
     expect(view).toContain('Активные доступы');
     expect(view).toContain('События магазина');
@@ -23,6 +23,7 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain('Подписки магазина');
     expect(view).not.toContain('>Admin grant<');
     expect(view).not.toContain('../../admin/index.html');
+    expect(view).toContain('renderPaywallAnalyticsCategory');
   });
 
   test('has one primary refresh action, a labeled bounded period and accessible status', () => {
@@ -46,6 +47,8 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain("model.status === 'partial'");
     expect(view).toContain("model.status === 'empty'");
     expect(view).toContain("model.status === 'error'");
+    expect(core).toContain('analyticsTrends: createAnalyticsTrendScopesState()');
+    expect(core).toContain('snapshot: state.analytics.snapshot');
   });
 
   test('mirrors the backend money.read permission and existing callable', () => {
@@ -54,6 +57,7 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(core).toContain("analyst: new Set(['users.read', 'money.read'");
     expect(core).toContain("disabledWhenUnauthorized('money.read')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot')");
+    expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsTrends')");
     expect(core).toContain("if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' }");
   });
 

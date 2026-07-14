@@ -7,6 +7,7 @@ import {
   applySeasonRatingDelta, seasonIdForDate, rankIndex, type MatchOutcome,
 } from './arena_season';
 import { resolveArenaSeasonConfig } from './arena_season_config';
+import { applyArenaTimingEvent, ARENA_TIMING_COLLECTION, ARENA_TIMING_ROLLUP_COLLECTION, arenaTimingDocumentId, arenaTimingRollupDocumentId } from './content_factory/arena_timing_observability';
 
 admin.initializeApp();
 
@@ -828,12 +829,13 @@ export const onAnswerSubmitted = functions.firestore.onDocumentUpdated(
     const prevCount = (before.answers as unknown[]).length;
     const nextCount = (after.answers as unknown[]).length;
     if (nextCount <= prevCount) return;
-    const lastAnswer = (after.answers as { questionId: string; answer?: string | null; timeMs?: number; serverScored?: boolean }[])[nextCount - 1];
+    const lastAnswer = (after.answers as { questionId: string; answer?: string | null; timeMs?: number; deviceClass?: string; serverScored?: boolean }[])[nextCount - 1];
     if (!lastAnswer?.questionId) return;
 
     const playerRef = event.data!.after.ref;
     const db = admin.firestore();
     const sessionId = after.sessionId as string;
+    const eventRecordedAtMs = event.data?.after.updateTime?.toMillis();
 
     await db.runTransaction(async (tx) => {
       const playerSnap = await tx.get(playerRef);
@@ -843,6 +845,7 @@ export const onAnswerSubmitted = functions.firestore.onDocumentUpdated(
           questionId: string;
           answer?: string | null;
           timeMs?: number;
+          deviceClass?: string;
           serverScored?: boolean;
           isCorrect?: boolean;
           points?: number;
@@ -870,9 +873,11 @@ export const onAnswerSubmitted = functions.firestore.onDocumentUpdated(
       }
       const hasAnyCorrectBefore = previousAnswers.some((a) => a?.isCorrect);
 
+      const sessionSnap = await tx.get(db.collection('arena_sessions').doc(sessionId));
       const questionSnap = await tx.get(db.collection('arena_questions').doc(lastAnswer.questionId));
       const correct = questionSnap.exists ? (questionSnap.data()?.correct as string | undefined) : undefined;
       if (!correct) return;
+      const hasStableEventTime = Number.isFinite(eventRecordedAtMs) && Number(eventRecordedAtMs) > 0; const timingNowMs = hasStableEventTime ? Number(eventRecordedAtMs) : Date.now(); const questionStartedAt = Number(sessionSnap.data()?.questionStartedAt); const hasServerStart = hasStableEventTime && Number.isFinite(questionStartedAt) && questionStartedAt > 0 && questionStartedAt <= timingNowMs; const observedTimeMs = hasServerStart ? timingNowMs - questionStartedAt : typeof pending.timeMs === 'number' ? pending.timeMs : 0; const timingIdentity = { questionId: lastAnswer.questionId, difficulty: questionSnap.data()?.difficulty, deviceClass: pending.deviceClass, nowMs: timingNowMs }; const timingRef = db.collection(ARENA_TIMING_COLLECTION).doc(arenaTimingDocumentId(timingIdentity)); const timingRollupRef = db.collection(ARENA_TIMING_ROLLUP_COLLECTION).doc(arenaTimingRollupDocumentId(timingIdentity)); const [timingSnap, timingRollupSnap] = await Promise.all([tx.get(timingRef), tx.get(timingRollupRef)]);
 
       const { isCorrect, points, bonus } = calculateArenaPoints(
         (pending.answer ?? null) as string | null,
@@ -892,10 +897,15 @@ export const onAnswerSubmitted = functions.firestore.onDocumentUpdated(
         serverScored: true,
       };
 
+      const timingAggregate = applyArenaTimingEvent(timingSnap.exists ? timingSnap.data() : null, { questionId: lastAnswer.questionId, difficulty: questionSnap.data()?.difficulty, deviceClass: pending.deviceClass, timeMs: observedTimeMs, timingSource: hasServerStart ? 'server_observed' : 'client_bounded', isCorrect, timedOut: pending.answer == null, nowMs: timingNowMs });
+      const timingRollup = applyArenaTimingEvent(timingRollupSnap.exists ? timingRollupSnap.data() : null, { questionId: '__all__', difficulty: questionSnap.data()?.difficulty, deviceClass: pending.deviceClass, timeMs: observedTimeMs, timingSource: hasServerStart ? 'server_observed' : 'client_bounded', isCorrect, timedOut: pending.answer == null, nowMs: timingNowMs });
+
       tx.update(playerRef, {
         answers,
         score: admin.firestore.FieldValue.increment(points),
       });
+      tx.set(timingRef, timingAggregate);
+      tx.set(timingRollupRef, timingRollup);
     });
 
     await onPlayerAnswered(sessionId, lastAnswer.questionId);
@@ -1479,7 +1489,9 @@ export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoC
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { adminProductAnalytics } from './admin_product_analytics';
 export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
+export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
+export { adminGetAnalyticsTrends } from './admin_analytics_trends';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
 export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminListAuditLog } from './admin_audit_log';
@@ -1493,8 +1505,12 @@ export {
   adminDeleteAppMessage,
   adminCleanupExpiredAppMessages,
 } from './admin_app_messages';
-export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
-export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
+export { adminCreateContentGenerationJob, adminListContentFactoryJobs, adminUpdateArenaConvergenceConfig } from './admin_content_factory';
+export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
+export { adminCreateContentStageBulkPlan } from './admin_content_stage_bulk';
+export { adminEditContentStageArtifact } from './admin_content_stage_edits';
+export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
+export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics, adminGetArenaConvergenceStatus } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';

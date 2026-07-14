@@ -1,3 +1,51 @@
+import { renderPaywallAnalyticsCategory } from './admin-analytics-trends-view.js';
+
+const LEGACY_ANALYTICS_WORKSPACE_IDS = Object.freeze([
+  'monthly-decision-pack-panel',
+  'product-analytics-panel',
+  'subscription-analytics-panel',
+]);
+
+export function captureLegacyAnalyticsWorkspaces(root) {
+  if (!root || typeof root.querySelector !== 'function') return [];
+  return LEGACY_ANALYTICS_WORKSPACE_IDS.map((id) => ({
+    id,
+    node: root.querySelector(`#${id}`),
+  })).filter((entry) => entry.node);
+}
+
+export function restoreLegacyAnalyticsWorkspaces(root, workspaces) {
+  if (!root || typeof root.querySelector !== 'function' || !Array.isArray(workspaces)) return 0;
+  let restored = 0;
+  for (const workspace of workspaces) {
+    if (!LEGACY_ANALYTICS_WORKSPACE_IDS.includes(workspace?.id) || !workspace?.node) continue;
+    const placeholder = root.querySelector(`#${workspace.id}`);
+    if (!placeholder || placeholder === workspace.node) continue;
+    if (typeof placeholder.replaceWith === 'function') placeholder.replaceWith(workspace.node);
+    else if (placeholder.parentNode?.replaceChild) placeholder.parentNode.replaceChild(workspace.node, placeholder);
+    else continue;
+    restored += 1;
+  }
+  return restored;
+}
+
+export async function settleIndependentAnalyticsRefreshes(snapshotOperation, trendOperation) {
+  return Promise.allSettled([
+    Promise.resolve().then(snapshotOperation),
+    Promise.resolve().then(trendOperation),
+  ]);
+}
+
+export function classifyAnalyticsRefreshResults(results, staleResult, authChanged = false) {
+  if (authChanged || results.some((result) => (
+    result.status === 'fulfilled' && result.value === staleResult
+  ))) return 'stale';
+  const failures = results.filter((result) => result.status === 'rejected').length;
+  if (failures === 0) return 'success';
+  if (failures === results.length) return 'failed';
+  return 'partial';
+}
+
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -35,6 +83,13 @@ function sourceTone(state) {
 
 function sourceLabel(state) {
   return ({ ready: 'Готов', empty: 'Пусто', partial: 'Неполно', error: 'Ошибка' })[state] || 'Не загружен';
+}
+
+function sourceCompleteness(source) {
+  if (source?.state === 'error' || source?.state === 'unavailable') return 'Неизвестно';
+  if (source?.truncated === true) return 'Достигнут лимит';
+  if (source?.truncated === false) return 'Лимит не достигнут';
+  return 'Неизвестно';
 }
 
 function metric(label, value, note, available = true) {
@@ -122,7 +177,7 @@ function sourceSection(snapshot) {
     revenuecat_shard_transactions: 'RevenueCat: шарды', paywall_funnel: 'Воронка оплаты',
   };
   const rows = Object.entries(snapshot?.sources || {});
-      return `<section class="card section" aria-labelledby="analytics-source-title"><div class="card-header"><div><h2 id="analytics-source-title">Качество источников</h2><p>Полнота и свежесть проверяются отдельно. Усечённый источник нельзя считать точным.</p></div></div><div class="card-body"><div class="analytics-source-grid">${rows.map(([key, source]) => `<article><div><strong>${escapeHtml(labels[key] || 'Неизвестный источник данных')}</strong><span class="badge ${sourceTone(source?.state)}">${escapeHtml(sourceLabel(source?.state))}</span></div>${labels[key] ? '' : `<small class="muted">Технический ключ: <code>${escapeHtml(key)}</code></small>`}<dl><dt>Строк</dt><dd>${escapeHtml(number(source?.count))}</dd><dt>Данные до</dt><dd>${escapeHtml(dateTime(source?.latestAtMs))}</dd><dt>Полнота</dt><dd>${source?.truncated ? 'Достигнут лимит' : 'Лимит не достигнут'}</dd>${source?.errorCode ? `<dt>Код ошибки</dt><dd><code>${escapeHtml(source.errorCode)}</code></dd>` : ''}</dl></article>`).join('')}</div></div></section>`;
+      return `<section class="card section" aria-labelledby="analytics-source-title"><div class="card-header"><div><h2 id="analytics-source-title">Качество источников</h2><p>Полнота и свежесть проверяются отдельно. Усечённый источник нельзя считать точным.</p></div></div><div class="card-body"><div class="analytics-source-grid">${rows.map(([key, source]) => `<article><div><strong>${escapeHtml(labels[key] || 'Неизвестный источник данных')}</strong><span class="badge ${sourceTone(source?.state)}">${escapeHtml(sourceLabel(source?.state))}</span></div>${labels[key] ? '' : `<small class="muted">Технический ключ: <code>${escapeHtml(key)}</code></small>`}<dl><dt>Строк</dt><dd>${escapeHtml(number(source?.count))}</dd><dt>Данные до</dt><dd>${escapeHtml(dateTime(source?.latestAtMs))}</dd><dt>Полнота</dt><dd>${escapeHtml(sourceCompleteness(source))}</dd>${source?.errorCode ? `<dt>Код ошибки</dt><dd><code>${escapeHtml(source.errorCode)}</code></dd>` : ''}</dl></article>`).join('')}</div></div></section>`;
 }
 
 export function renderAdminAnalytics(model) {
@@ -130,7 +185,16 @@ export function renderAdminAnalytics(model) {
   const loading = model.status === 'loading';
   const controlsDisabled = Boolean(model.controlsDisabled || !model.authorized || model.busy || loading);
   const snapshot = model.snapshot;
+  const paywallCategory = renderPaywallAnalyticsCategory({
+    ...(model.analyticsTrends || {}),
+    authorized: model.authorized,
+    controlsDisabled: model.controlsDisabled,
+    busy: model.busy,
+    draft: model.analyticsTrendsDraft,
+    onToggleSeries: model.onToggleAnalyticsSeries,
+  });
   return `<header class="page-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Серверные показатели с отдельным состоянием каждого источника и честными определениями.</p></div><div class="analytics-toolbar"><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
     <div class="analytics-status" aria-live="polite">${stateNotice(model)}${snapshot ? `<small>Снимок: ${escapeHtml(dateTime(snapshot.generatedAtMs))} · период ${escapeHtml(snapshot.rangeDays)} дней · ${escapeHtml(snapshot.definitionVersion || '')}</small>` : ''}</div>
-    ${snapshot ? `${accessSection(snapshot)}${storeSection(snapshot)}${funnelSection(snapshot)}${activitySection(snapshot)}${sourceSection(snapshot)}` : skeletonMetrics()}`;
+    ${snapshot ? `${accessSection(snapshot)}${storeSection(snapshot)}${funnelSection(snapshot)}${activitySection(snapshot)}${sourceSection(snapshot)}` : skeletonMetrics()}
+    ${paywallCategory}`;
 }

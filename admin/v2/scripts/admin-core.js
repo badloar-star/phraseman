@@ -1,8 +1,37 @@
 import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
 import { completeAnalyticsLoad } from './admin-analytics-state.js';
-import { renderAdminAnalytics } from './admin-analytics-view.js';
+import {
+  captureLegacyAnalyticsWorkspaces,
+  classifyAnalyticsRefreshResults,
+  renderAdminAnalytics,
+  restoreLegacyAnalyticsWorkspaces,
+  settleIndependentAnalyticsRefreshes,
+} from './admin-analytics-view.js';
+import {
+  beginTrendLoad,
+  completeTrendLoad,
+  createAnalyticsTrendScopesState,
+  defaultTrendRequest,
+  failTrendLoad,
+  lookupTrendCache,
+  normalizeClientTrendRequest,
+  toggleVisibleSeries,
+} from './admin-analytics-trends-state.js';
+import {
+  PAYWALL_DEFAULT_VISIBLE_METRIC_IDS,
+  createOverviewPaymentChartDescriptors,
+  createPaywallAnalyticsChartDescriptors,
+  mountPaywallAnalyticsChartsWhenCurrent,
+  renderOverviewPaymentSummary,
+  resetAllAdminChartZoom,
+  updatePaywallAnalyticsLiveRegion,
+} from './admin-analytics-trends-view.js';
+import { destroyAdminChart, destroyAdminCharts } from './components/admin-time-series-chart.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 import { specificGuidanceForControl } from './admin-guidance.js';
+import { renderContentGeneratorShell } from './content-factory/renderers.js';
+import { createContentFactoryState } from './content-factory/state.js';
+import { loadApprovedDependencies, loadContentCapabilities, loadContentStagesPage, readContentStageForm as readStudioStageForm } from './content-factory/controller.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -240,6 +269,20 @@ function defaultReportState(settings = DEFAULT_ADMIN_UI_SETTINGS) {
 
 const initialAdminUiSettings = loadAdminUiSettings();
 
+function defaultAnalyticsTrendsDraft() {
+  return {
+    preset: '28',
+    granularity: 'day',
+    comparePrevious: false,
+    context: '',
+    variant: '',
+    plan: '',
+    store: '',
+    productId: '',
+    platform: '',
+  };
+}
+
 const state = {
   route: 'overview',
   authorized: false,
@@ -258,9 +301,12 @@ const state = {
   detail: null,
   preview: null,
   workspace: null,
+  contentStages: createContentFactoryState(),
   generation: null,
   support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
   analytics: { status: 'idle', snapshot: null, error: '' },
+  analyticsTrends: createAnalyticsTrendScopesState(),
+  analyticsTrendsDraft: defaultAnalyticsTrendsDraft(),
   budget: null,
   selectedCapabilityId: '',
   remoteConfig: null,
@@ -276,10 +322,15 @@ const state = {
 };
 
 let actions = null;
+let actionsReady = false;
 let initialized = false;
 let reportFilterTimer = 0;
 let reportRequestId = 0;
 let adminAutoRefreshTimer = 0;
+let adminInteractionSeen = false;
+let lastCriticalSoundSignature = '';
+let renderGeneration = 0;
+const analyticsTrendRequestGeneration = { overview: 0, paywall: 0 };
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
 
 export function escapeHtml(value) {
@@ -296,12 +347,47 @@ function errorMessage(error) {
   return message.replace(/^FirebaseError:\s*/i, '').replace(/^functions\//i, '');
 }
 
+function shouldShowGlobalMessage(message, kind = 'info') {
+  if (!message) return false;
+  if (!state.adminSettings.quietMode) return true;
+  return ['danger', 'warning', 'success'].includes(String(kind));
+}
+
+function playCriticalAlertSound(kind = 'info') {
+  if (!state.adminSettings.criticalAlertSound || !adminInteractionSeen || String(kind) !== 'danger') return;
+  const AudioContextConstructor = globalThis.AudioContext || globalThis.webkitAudioContext;
+  if (!AudioContextConstructor) return;
+  try {
+    const audio = new AudioContextConstructor();
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.value = 720;
+    gain.gain.setValueAtTime(0.0001, audio.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.08, audio.currentTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + 0.26);
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+    oscillator.start();
+    oscillator.stop(audio.currentTime + 0.28);
+    oscillator.addEventListener?.('ended', () => audio.close?.());
+  } catch {
+    // Browsers may block audio without a fresh gesture; the setting must fail safely.
+  }
+}
+
 function setMessage(message, kind = 'info') {
   state.message = message;
   state.messageKind = kind;
+  const criticalSoundSignature = `${kind}:${message}`;
+  if (criticalSoundSignature !== lastCriticalSoundSignature) {
+    playCriticalAlertSound(kind);
+    if (String(kind) === 'danger') lastCriticalSoundSignature = criticalSoundSignature;
+  }
+  if (String(kind) !== 'danger') lastCriticalSoundSignature = '';
   const баннер = document.getElementById('global-message');
   if (!баннер) return;
-  баннер.hidden = !message;
+  баннер.hidden = !shouldShowGlobalMessage(message, kind);
   баннер.textContent = message;
   баннер.className = `global-message ${kind}`;
 }
@@ -377,6 +463,7 @@ function renderAdminSettings() {
         ${settingsCheckbox('admin-setting-importantAlertsOnly', 'На главной показывать только важные алерты', settings.importantAlertsOnly, 'Скрывать тихие информационные сигналы на обзорной странице')}
         ${settingsCheckbox('admin-setting-rememberSectionFilters', 'Запоминать последние фильтры разделов', settings.rememberSectionFilters, 'Оставлять выбранные фильтры при возврате в раздел')}
         ${settingsCheckbox('admin-setting-expandedAdvancedActions', 'Расширенные действия раскрыты по умолчанию', settings.expandedAdvancedActions, 'Показывать дополнительные действия без ручного раскрытия')}
+        <details class="settings-advanced-disclosure"${settings.expandedAdvancedActions ? ' open' : ''}><summary>Предпросмотр расширенного блока</summary><p>Такие блоки в очередях и инструментах будут сразу раскрыты, если настройка включена.</p></details>
       </div></section>
       <section id="settings-reports" class="card settings-panel" data-admin-settings-panel="reports" tabindex="-1"><div class="card-header"><div><h2>Центр репортов</h2><p>Дефолты очереди, чтобы открытые обращения сразу были выше шума.</p></div></div><div class="card-body fields">
         ${settingsSelect('admin-setting-defaultSinceDays', 'Период по умолчанию', settings.defaultSinceDays, [[1, '24 часа'], [7, '7 дней'], [30, '30 дней'], [90, '90 дней']], 'Выбрать период, который центр репортов ставит при первом открытии')}
@@ -395,6 +482,7 @@ function renderAdminSettings() {
         ${settingsCheckbox('admin-setting-strongProductionWarning', 'Production-предупреждение показывать ярче', settings.strongProductionWarning, 'Сильнее выделять рабочее окружение, где действия влияют на пользователей')}
         ${settingsCheckbox('admin-setting-requireReasonForStatus', 'Требовать причину при смене статуса', settings.requireReasonForStatus, 'Не давать менять статус репорта без понятной причины')}
         ${settingsCheckbox('admin-setting-collapseDangerousActions', 'Опасные действия держать свернутыми', settings.collapseDangerousActions, 'Скрывать destructive-действия до явного раскрытия')}
+        <details class="settings-danger-disclosure"${settings.collapseDangerousActions ? '' : ' open'}><summary>Опасные действия</summary><p>Функции не удаляются и не прячутся навсегда: они остаются доступны после явного раскрытия.</p></details>
       </div></section>
     </div>`;
 }
@@ -411,12 +499,37 @@ function authStillValid(authGeneration, permission) {
   return authGeneration === state.authGeneration && can(permission);
 }
 
+function navCounterForRoute(route) {
+  if (!state.adminSettings.sidebarCounters) return '';
+  let value = 0;
+  let label = '';
+  if (route === 'overview') {
+    const view = buildOperationalSnapshot(state.briefing);
+    value = Number(view?.metrics?.criticalSignals || 0) + Number(view?.metrics?.queueSignals24h || 0);
+    label = 'сигналы в обзоре';
+  } else if (route === 'users') {
+    value = (Array.isArray(state.reports.items) ? state.reports.items : []).filter((item) => ['open', 'escalated'].includes(String(item.lane))).length;
+    label = 'открытые репорты';
+  } else if (route === 'diagnostics') {
+    value = Number(state.ops.kpis?.errors || 0) || (Array.isArray(state.ops.sourceHealth) ? state.ops.sourceHealth.filter((source) => source.state === 'error').length : 0);
+    label = 'ошибки диагностики';
+  } else if (route === 'money') {
+    value = Array.isArray(state.promo.redemptions) ? state.promo.redemptions.length : 0;
+    label = 'активации промокодов';
+  } else if (route === 'application') {
+    value = Array.isArray(state.campaigns.items) ? state.campaigns.items.filter((item) => item.active === true).length : 0;
+    label = 'активные кампании';
+  }
+  if (!value) return '';
+  return `<span class="nav-counter" aria-label="${escapeHtml(label)}">${value > 99 ? '99+' : escapeHtml(value)}</span>`;
+}
+
 function renderNavigation() {
   const nav = document.getElementById('primary-nav');
   if (!nav) return;
   const parentRoutes = { campaigns: 'application' };
   const activeRoute = parentRoutes[state.route] || state.route;
-  nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${activeRoute === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span></button>`).join('');
+  nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${activeRoute === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span>${navCounterForRoute(section.route)}</button>`).join('');
   const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
   const page = PAGES[state.route] ?? PAGES.overview;
   const breadcrumbs = document.getElementById('breadcrumbs');
@@ -469,6 +582,12 @@ function renderOverviewOperationalState(view) {
   return `${notice}<section class="metrics section">${metrics.join('')}</section>`;
 }
 
+function filterOverviewDecisionRows(rows) {
+  if (!state.adminSettings.importantAlertsOnly) return { visibleRows: rows, hiddenCount: 0 };
+  const visibleRows = rows.filter((row) => row[4] === 'danger');
+  return { visibleRows, hiddenCount: rows.length - visibleRows.length };
+}
+
 function renderOverviewDecisions(view) {
   if (!view.hasData) return emptyState(view.state === 'loading' ? 'Ожидаю сохранённый снимок.' : 'Нет подтверждённых данных для списка решений.');
   const rows = [];
@@ -479,7 +598,9 @@ function renderOverviewDecisions(view) {
   if (view.metrics.sourceTruncated > 0) rows.push(['Ограниченные выборки', `${view.metrics.sourceTruncated} источников вернули неполную выборку`, '#diagnostics', 'Проверить полноту', 'warning']);
   if (view.hasUnknownMetrics) rows.push(['Неизвестные показатели', 'Часть полей отсутствует в сохранённом снимке, поэтому админка не подставляет нули.', '#diagnostics', 'Проверить источники', 'warning']);
   if (!rows.length) return emptyState(view.state === 'ready' ? 'По подтверждённому снимку отслеживаемых приоритетов нет.' : 'Подтверждённых приоритетов нет, но снимок неполный или устарел.');
-  return `<div class="data-list">${rows.map(([title, detail, href, action, kind]) => `<div class="list-row"><div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div><a class="button small ${kind === 'danger' ? '' : 'ghost'}" href="${href}" title="${escapeHtml(action)}">${escapeHtml(action)}</a></div>`).join('')}</div>`;
+  const { visibleRows, hiddenCount } = filterOverviewDecisionRows(rows);
+  if (!visibleRows.length) return `${emptyState('Включён режим только важных алертов: критических сигналов сейчас нет.')}<div class="notice section">${hiddenCount} менее срочных сигналов скрыто настройкой.</div>`;
+  return `<div class="data-list">${visibleRows.map(([title, detail, href, action, kind]) => `<div class="list-row"><div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div><a class="button small ${kind === 'danger' ? '' : 'ghost'}" href="${href}" title="${escapeHtml(action)}">${escapeHtml(action)}</a></div>`).join('')}</div>${hiddenCount ? `<div class="notice section">${hiddenCount} менее срочных сигналов скрыто режимом важных алертов.</div>` : ''}`;
 }
 
 const CONTROL_PANEL_WORKFLOWS = Object.freeze([
@@ -507,6 +628,7 @@ function renderOverview() {
   const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить снимок</button><a class="button" href="#daily-briefing" title="Открыть подробный ежедневный брифинг">Подробный брифинг</a><a class="button" href="#diagnostics" title="Открыть диагностику источников">Диагностика</a>`;
   return `${pageHeader(PAGES.overview, 'Управление сегодня', headerActions)}
     ${renderOverviewOperationalState(view)}
+    ${renderOverviewPaymentSummary(overviewAnalyticsModel())}
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>
     <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
 }
@@ -1019,7 +1141,9 @@ function renderFactoryPublish() {
 function renderContent() {
   const panel = state.factoryStep === 1 ? renderFactoryCreate() : state.factoryStep === 2 ? renderFactoryGeneration() : state.factoryStep === 3 ? renderFactoryReview() : renderFactoryPublish();
   return `${pageHeader(PAGES.content, 'Фабрика языков', '<a class="button" href="../../admin/index.html#content" title="Открыть существующие инструменты контента">Текущие инструменты</a>')}
-    <div class="factory-layout">${renderFactorySteps()}${panel}</div>`;
+    ${renderContentGeneratorShell({ ...state.contentStages, stages: state.contentStages.items, canWrite: can('content.draft.write'), canPublish: can('content.publish') })}
+    <details class="section"><summary>Совместимый генератор полного языкового пакета</summary>
+    <div class="factory-layout">${renderFactorySteps()}${panel}</div></details>`;
 }
 
 function renderCommunity() {
@@ -1253,7 +1377,17 @@ function renderSupport() {
 }
 
 function renderDetailedAnalyticsWorkspace() {
-  return `<section id="product-analytics-panel" class="card section" aria-labelledby="product-analytics-title">
+  return `<section id="monthly-decision-pack-panel" class="card section" aria-labelledby="monthly-decision-pack-title">
+    <div class="card-header analytics-detail-header"><div><h2 id="monthly-decision-pack-title">Ежемесячный пакет решений</h2><p>Безопасная агрегированная выгрузка за календарный месяц и отдельный базовый период из 12 предыдущих полных месяцев. Сырые события, тексты и идентификаторы пользователей не включаются.</p></div></div>
+    <div class="analytics-detail-controls">
+      <label for="monthly-decision-pack-month">Месяц</label><input id="monthly-decision-pack-month" type="month" title="По умолчанию используется последний полностью завершённый календарный месяц">
+      <label for="monthly-decision-pack-timezone">Часовой пояс</label><select id="monthly-decision-pack-timezone" title="Границы календарного месяца считаются в выбранном часовом поясе"><option value="UTC">UTC</option><option value="Europe/Dublin" selected>Europe/Dublin</option><option value="America/Los_Angeles">America/Los_Angeles</option></select>
+      <button id="monthly-decision-pack-download" class="button primary" type="button" onclick="generateMonthlyDecisionPack()" title="Сформировать на сервере и скачать агрегированный ZIP">Сформировать и скачать ZIP</button>
+    </div>
+    <div id="monthly-decision-pack-status" class="analytics-detail-status" role="status">По умолчанию будет выбран последний завершённый месяц.</div>
+    <div id="monthly-decision-pack-preview" class="reports-empty">После формирования здесь появятся полнота источников, ограничения и список файлов.</div>
+  </section>
+  <section id="product-analytics-panel" class="card section" aria-labelledby="product-analytics-title">
     <div class="card-header analytics-detail-header"><div><h2 id="product-analytics-title">Экраны, сессии и уроки</h2><p>Детальная диагностика только по событиям пользователей, разрешивших аналитику. Установка приложения не равна уникальному человеку.</p></div><div class="analytics-detail-controls"><label for="product-analytics-range">Период</label><select id="product-analytics-range" title="За какой период показать события продукта"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><label for="product-analytics-platform">Платформа</label><select id="product-analytics-platform" title="Показывать все платформы или только одну"><option value="all">Все платформы</option><option value="ios">iOS</option><option value="android">Android</option></select><button class="button" type="button" onclick="loadProductAnalytics(true)" title="Обновить детальную аналитику продукта">Обновить данные</button></div></div>
     <div class="notice warning">Ранние шаги до согласия на аналитику не отправляются. Последний наблюдаемый экран не доказывает закрытие или удаление приложения.</div>
     <div id="product-analytics-status" class="analytics-detail-status" role="status">Данные загрузятся после проверки доступа.</div>
@@ -1262,24 +1396,244 @@ function renderDetailedAnalyticsWorkspace() {
     <section class="analytics-detail-block"><h3>Последние наблюдаемые экраны</h3><div id="product-analytics-screens" class="table-scroll"><div class="reports-empty">Ожидаем данные…</div></div></section>
     <section class="analytics-detail-block"><h3>Завершение уроков и явные выходы</h3><div id="product-analytics-lessons" class="table-scroll"><div class="reports-empty">Ожидаем данные…</div></div></section>
     <section class="analytics-detail-block"><h3>На каких фразах возникают трудности</h3><div id="product-analytics-learning-dropoff"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Результаты обучения и отложенное вспоминание</h3><p class="analytics-detail-copy">Только успешно сохранённые ответы SRS и агрегаты по экземплярам приложения, давшим согласие на аналитику. Тексты фраз и ответов не выгружаются.</p><div id="product-analytics-learning-outcomes"><div class="reports-empty">Ожидаем данные…</div></div></section>
     <section class="analytics-detail-block"><h3>Путь от показа оплаты до покупки</h3><div id="product-analytics-conversion"><div class="reports-empty">Ожидаем данные…</div></div></section>
-    <section class="analytics-detail-block"><h3>Возврат на следующий, 7-й и 28-й день</h3><div id="product-analytics-retention"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Активация, каналы и удержание</h3><p class="analytics-detail-copy">Путь от первого измеримого касания до обучения и возврата. Старый расчёт по первому событию внутри окна сохранён в диагностике.</p><div id="product-analytics-retention"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Эксперименты</h3><p class="analytics-detail-copy">Только фактически отрисованные варианты с governed passport. Старый split v3 не считается причинным экспериментом.</p><div id="product-analytics-experiments"><div class="reports-empty">Ожидаем данные…</div></div></section>
+    <section class="analytics-detail-block"><h3>Версии и надёжность</h3><p class="analytics-detail-copy">Принятие версии и нормализованные сбои без текста ошибок. Недоступные Crashlytics-показатели обозначаются явно.</p><div id="product-analytics-reliability"><div class="reports-empty">Ожидаем данные…</div></div></section>
     <section class="analytics-detail-block"><h3>Полнота и качество данных</h3><div id="product-analytics-quality" class="reports-empty">Ожидаем данные…</div></section>
   </section>
   <section id="subscription-analytics-panel" class="card section" aria-labelledby="subscription-analytics-title">
-    <div class="card-header analytics-detail-header"><div><h2 id="subscription-analytics-title">Подписки и платежные события</h2><p>Серверные события RevenueCat: покупки, продления, отключения продления, окончание доступа, проблемы со списанием и возвраты.</p></div><div class="analytics-detail-controls"><label for="subscription-analytics-range">Период</label><select id="subscription-analytics-range" title="За какой период показать серверные события"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option></select><label for="subscription-analytics-store">Магазин</label><select id="subscription-analytics-store" title="Показывать все магазины или только один"><option value="all">Все магазины</option><option value="APP_STORE">App Store</option><option value="PLAY_STORE">Google Play</option><option value="STRIPE">Stripe</option></select><button class="button" type="button" onclick="loadSubscriptionAnalytics(true)" title="Обновить серверные события подписок">Обновить данные</button></div></div>
+    <div class="card-header analytics-detail-header"><div><h2 id="subscription-analytics-title">Подписки и платежные события</h2><p>Серверные события RevenueCat: покупки, продления, отключения продления, окончание доступа, проблемы со списанием и возвраты.</p></div><div class="analytics-detail-controls"><label for="subscription-analytics-range">Период</label><select id="subscription-analytics-range" title="За какой период показать серверные события"><option value="7">7 дней</option><option value="28" selected>28 дней</option><option value="90">90 дней</option><option value="365">365 дней</option></select><label for="subscription-analytics-store">Магазин</label><select id="subscription-analytics-store" title="Показывать все магазины или только один"><option value="all">Все магазины</option><option value="APP_STORE">App Store</option><option value="PLAY_STORE">Google Play</option><option value="STRIPE">Stripe</option></select><button class="button" type="button" onclick="loadSubscriptionAnalytics(true)" title="Обновить серверные события подписок">Обновить данные</button></div></div>
     <div id="subscription-analytics-status" class="analytics-detail-status" role="status">Данные загрузятся после проверки доступа.</div>
     <div id="subscription-analytics-content"><div class="reports-empty">Ожидаем серверные данные RevenueCat…</div></div>
   </section>`;
 }
 
-function renderAnalytics() {
-  const summary = renderAdminAnalytics({
-    ...state.analytics,
-    rangeDays: state.analytics.snapshot?.rangeDays ?? 28,
+function replaceAnalyticsTrendScope(scope, nextScopeState) {
+  state.analyticsTrends = Object.freeze({
+    ...state.analyticsTrends,
+    [scope]: nextScopeState,
+  });
+}
+
+function analyticsTrendScopeState(scope) {
+  return scope === 'overview' ? state.analyticsTrends.overview : state.analyticsTrends.paywall;
+}
+
+function nextAnalyticsTrendRequestGeneration(scope) {
+  if (scope === 'overview') {
+    analyticsTrendRequestGeneration.overview += 1;
+    return analyticsTrendRequestGeneration.overview;
+  }
+  analyticsTrendRequestGeneration.paywall += 1;
+  return analyticsTrendRequestGeneration.paywall;
+}
+
+function isCurrentAnalyticsTrendRequest(scope, generation) {
+  return scope === 'overview'
+    ? generation === analyticsTrendRequestGeneration.overview
+    : generation === analyticsTrendRequestGeneration.paywall;
+}
+
+function seedPaywallSeriesVisibility(trendState) {
+  let next = trendState;
+  const series = Array.isArray(trendState?.data?.sections?.behavioralPaywall?.series)
+    ? trendState.data.sections.behavioralPaywall.series
+    : [];
+  for (const item of series) {
+    const metricId = String(item?.metricId || '');
+    if (
+      metricId
+      && !PAYWALL_DEFAULT_VISIBLE_METRIC_IDS.includes(metricId)
+      && !Object.prototype.hasOwnProperty.call(next.visibleSeries, metricId)
+    ) {
+      next = toggleVisibleSeries(next, metricId);
+    }
+  }
+  return next;
+}
+
+function paywallAnalyticsModel() {
+  return {
+    ...state.analyticsTrends.paywall,
     authorized: can('money.read'),
     controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
     busy: state.busy,
+    draft: state.analyticsTrendsDraft,
+    onToggleSeries: (metricId, visible) => {
+      replaceAnalyticsTrendScope(
+        'paywall',
+        toggleVisibleSeries(state.analyticsTrends.paywall, metricId),
+      );
+      document.querySelectorAll('[data-action="toggle-analytics-series"]').forEach((control) => {
+        if (control.getAttribute('data-metric-id') === metricId) {
+          control.setAttribute('aria-pressed', String(visible));
+        }
+      });
+    },
+  };
+}
+
+function overviewAnalyticsModel() {
+  return {
+    ...state.analyticsTrends.overview,
+    authorized: can('money.read'),
+    busy: state.busy,
+  };
+}
+
+function boundedControlValue(id, maximum) {
+  const element = document.getElementById(id);
+  return element && 'value' in element
+    ? String(element.value ?? '').trim().slice(0, maximum)
+    : undefined;
+}
+
+function readAnalyticsTrendsDraft() {
+  const current = state.analyticsTrendsDraft;
+  const compare = document.getElementById('analytics-trends-compare');
+  return {
+    ...current,
+    preset: boundedControlValue('analytics-trends-preset', 10) ?? current.preset,
+    fromDate: boundedControlValue('analytics-trends-from', 10) ?? current.fromDate,
+    toDate: boundedControlValue('analytics-trends-to', 10) ?? current.toDate,
+    granularity: boundedControlValue('analytics-trends-granularity', 8) ?? current.granularity,
+    comparePrevious: compare && 'checked' in compare ? compare.checked === true : current.comparePrevious,
+    context: boundedControlValue('analytics-trends-context', 40) ?? current.context,
+    variant: boundedControlValue('analytics-trends-variant', 1) ?? current.variant,
+    plan: boundedControlValue('analytics-trends-plan', 16) ?? current.plan,
+    store: boundedControlValue('analytics-trends-store', 20) ?? current.store,
+    productId: boundedControlValue('analytics-trends-product', 120) ?? current.productId,
+    platform: boundedControlValue('analytics-trends-platform', 10) ?? current.platform,
+  };
+}
+
+function updateAnalyticsTrendsDraftFromControls() {
+  state.analyticsTrendsDraft = readAnalyticsTrendsDraft();
+  return state.analyticsTrendsDraft;
+}
+
+function isExactUtcDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return false;
+  const parsed = Date.parse(`${value}T00:00:00.000Z`);
+  return Number.isFinite(parsed) && new Date(parsed).toISOString().slice(0, 10) === value;
+}
+
+function analyticsTrendInputFromControls(scope = 'paywall') {
+  const draft = updateAnalyticsTrendsDraftFromControls();
+  const filters = {};
+  if (draft.context) filters.context = draft.context;
+  if (draft.variant) filters.variant = draft.variant;
+  if (draft.plan) filters.plan = draft.plan;
+  if (draft.store) filters.store = draft.store;
+  if (draft.productId) filters.productId = draft.productId;
+  if (draft.platform) filters.platform = draft.platform;
+  const base = {
+    scope,
+    granularity: draft.granularity,
+    comparePrevious: draft.comparePrevious,
+    filters,
+  };
+  if (draft.preset === 'custom') {
+    if (!isExactUtcDate(draft.fromDate)
+      || !isExactUtcDate(draft.toDate)
+      || draft.fromDate > draft.toDate) {
+      throw new TypeError('Для своего периода укажите корректные даты начала и окончания.');
+    }
+    return normalizeClientTrendRequest({
+      ...base,
+      fromDate: draft.fromDate,
+      toDate: draft.toDate,
+    }, scope);
+  }
+  return normalizeClientTrendRequest({
+    ...base,
+    presetDays: Number(draft.preset),
+  }, scope);
+}
+
+function beginAnalyticsTrendRequest(scope, input, { force = false } = {}) {
+  const request = normalizeClientTrendRequest(input, scope);
+  const generation = nextAnalyticsTrendRequestGeneration(scope);
+  const authGeneration = state.authGeneration;
+  const current = analyticsTrendScopeState(scope);
+  if (!force) {
+    const cached = lookupTrendCache(current, request);
+    if (cached.hit) {
+      replaceAnalyticsTrendScope(scope, cached.state);
+      return { scope, request, generation, authGeneration, cached: true };
+    }
+  }
+  replaceAnalyticsTrendScope(scope, beginTrendLoad(current, request));
+  return { scope, request, generation, authGeneration, cached: false };
+}
+
+async function completeAnalyticsTrendRequest(token) {
+  if (token.cached) return analyticsTrendScopeState(token.scope).data;
+  const input = token.request;
+  try {
+    const response = await actions.loadAnalyticsTrends(input);
+    if (
+      !authStillValid(token.authGeneration, 'money.read')
+      || !isCurrentAnalyticsTrendRequest(token.scope, token.generation)
+    ) return STALE_AUTH_RESULT;
+    let completed = completeTrendLoad(
+      analyticsTrendScopeState(token.scope),
+      response,
+      token.request,
+    );
+    if (token.scope === 'paywall') completed = seedPaywallSeriesVisibility(completed);
+    replaceAnalyticsTrendScope(token.scope, completed);
+    return response;
+  } catch (error) {
+    if (
+      authStillValid(token.authGeneration, 'money.read')
+      && isCurrentAnalyticsTrendRequest(token.scope, token.generation)
+    ) {
+      replaceAnalyticsTrendScope(
+        token.scope,
+        failTrendLoad(analyticsTrendScopeState(token.scope), error),
+      );
+    }
+    throw error;
+  }
+}
+
+function maybeLoadOverviewAnalyticsTrends() {
+  if (
+    !actionsReady
+    || state.route !== 'overview'
+    || !state.authorized
+    || !can('money.read')
+    || state.analyticsTrends.overview.status === 'loading'
+  ) return;
+  const input = defaultTrendRequest('overview');
+  const token = beginAnalyticsTrendRequest('overview', input, { force: false });
+  if (token.cached) return;
+  renderCurrentPage();
+  void completeAnalyticsTrendRequest(token)
+    .catch(() => {})
+    .finally(() => {
+      if (
+        state.route === 'overview'
+        && authStillValid(token.authGeneration, 'money.read')
+        && isCurrentAnalyticsTrendRequest('overview', token.generation)
+      ) renderCurrentPage();
+    });
+}
+
+function renderAnalytics() {
+  const trendModel = paywallAnalyticsModel();
+  const summary = renderAdminAnalytics({
+    ...state.analytics,
+    rangeDays: state.analytics.snapshot?.rangeDays ?? state.analytics.rangeDays ?? 28,
+    authorized: can('money.read'),
+    controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
+    busy: state.busy,
+    analyticsTrends: trendModel,
+    analyticsTrendsDraft: state.analyticsTrendsDraft,
+    onToggleAnalyticsSeries: trendModel.onToggleSeries,
   });
   return `${summary}${can('money.read') ? renderDetailedAnalyticsWorkspace() : ''}`;
 }
@@ -1481,9 +1835,24 @@ function reportSortKey(item) {
   return `${laneOrder[item.lane] ?? 9}:${item.source || 'zz'}:${9999999999999 - Number(item.createdAtMs || 0)}`;
 }
 
+function shouldHideArchivedReport(item) {
+  if (!state.adminSettings.hideArchivedByDefault) return false;
+  const explicitArchiveFilter = String(state.reports.rawStatus || '').trim();
+  if (explicitArchiveFilter) return false;
+  const rawStatus = String(item?.rawStatus || '').toLowerCase();
+  return rawStatus === 'archived' || rawStatus === 'archive';
+}
+
+function dangerousActionDisclosure(innerHtml, label = 'Опасные или legacy-действия') {
+  if (!state.adminSettings.collapseDangerousActions) return innerHtml;
+  return `<details class="settings-danger-disclosure report-danger-disclosure"><summary>${escapeHtml(label)}</summary><div class="actions">${innerHtml}</div></details>`;
+}
+
 function renderReportQueue() {
   const reports = state.reports;
-  const items = (Array.isArray(reports.items) ? [...reports.items] : []).sort((left, right) => reportSortKey(left).localeCompare(reportSortKey(right)));
+  const rawItems = Array.isArray(reports.items) ? reports.items : [];
+  const hiddenArchivedCount = rawItems.filter(shouldHideArchivedReport).length;
+  const items = rawItems.filter((item) => !shouldHideArchivedReport(item)).sort((left, right) => reportSortKey(left).localeCompare(reportSortKey(right)));
   const canChange = (item) => item.source === 'app_errors' ? can('diagnostics.status.write') : can('reports.status.write');
   const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => `<option value="${value}"${reports.source === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
   const laneOptions = `<option value="">Все состояния</option>${Object.entries(REPORT_LANE_LABELS).map(([value, label]) => `<option value="${value}"${reports.lane === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}`;
@@ -1501,7 +1870,7 @@ function renderReportQueue() {
       <div class="report-auto-refresh" role="status" aria-live="polite"><span class="badge ${reports.state === 'loading' ? 'warning' : 'success'}">${reports.state === 'loading' ? 'Обновляется…' : 'Автообновление включено'}</span><button class="button small ghost" data-action="load-report-queue" type="button"${disabledWhenUnauthorized('reports.read')} title="Обновить очередь вручную">Обновить сейчас</button></div>
     </div></div></section>
     ${health.length ? `<section class="report-health section" aria-label="Состояние источников">${health.map((source) => `<span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}" title="${escapeHtml(source.error || '')}">${escapeHtml(REPORT_SOURCE_LABELS[source.source] || 'Неизвестный источник')} · ${escapeHtml(operationalStateLabel(source.state))} · ${Number(source.count || 0)}</span>`).join('')}</section>` : ''}
-    <section class="card section"><div class="card-header"><div><h2>Рабочая очередь</h2><p>${reports.state === 'idle' ? 'Выберите фильтры и загрузите данные.' : `Показано ${items.length} записей.`}</p></div><span class="badge ${badgeClass(reports.state)}">${escapeHtml(operationalStateLabel(reports.state))}</span></div><div class="card-body">
+    <section class="card section"><div class="card-header"><div><h2>Рабочая очередь</h2><p>${reports.state === 'idle' ? 'Выберите фильтры и загрузите данные.' : `Показано ${items.length} записей.${hiddenArchivedCount ? ` Архив скрыт настройкой: ${hiddenArchivedCount}.` : ''}`}</p></div><span class="badge ${badgeClass(reports.state)}">${escapeHtml(operationalStateLabel(reports.state))}</span></div><div class="card-body">
       ${reports.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю репорты из выбранных источников…</span></div>' : !items.length ? emptyState(reports.state === 'idle' ? 'Очередь ещё не загружена.' : ['partial', 'truncated'].includes(reports.state) ? 'В просмотренной части совпадений нет; источник ограничен, поэтому это не означает, что репортов нет вообще.' : 'По выбранным фильтрам репортов нет.') : `<div class="report-list">${items.map((item) => {
         const users = item.users || {};
         const context = item.context || {};
@@ -1516,7 +1885,7 @@ function renderReportQueue() {
           ${userButtons ? `<div class="actions report-users">${userButtons}</div>` : ''}
           <div class="report-context">${Object.entries(context).filter(([, value]) => value).map(([key, value]) => `<span><b>${escapeHtml(contextFieldLabel(key))}:</b> ${escapeHtml(value)}</span>`).join('')}</div>
           ${canChange(item) && transitions.length ? `<div class="report-status-controls"><div class="field"><label for="${escapeHtml(reasonId)}">Причина изменения статуса</label><input id="${escapeHtml(reasonId)}" maxlength="500"${state.adminSettings.requireReasonForStatus ? ' required' : ''} placeholder="Что проверено и почему меняется статус"></div><div class="actions">${transitions.map((next) => `<button class="button small" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-current-status="${escapeHtml(item.rawStatus)}" data-report-next-status="${escapeHtml(next)}" data-report-reason-id="${escapeHtml(reasonId)}" type="button" title="Изменить статус с обязательным аудитом">${escapeHtml(reportStatusLabel(next))}</button>`).join('')}</div></div>` : ''}
-          ${replySupported && (can('reports.reply.draft') || can('reports.reply.send')) ? `<details class="report-reply"><summary>Ответить пользователю</summary><div class="report-reply-grid">
+          ${replySupported && (can('reports.reply.draft') || can('reports.reply.send')) ? `<details class="report-reply settings-advanced-disclosure"${state.adminSettings.expandedAdvancedActions ? ' open' : ''}><summary>Ответить пользователю</summary><div class="report-reply-grid">
             <div class="field"><label for="${replyId}-verdict">Результат проверки</label><select id="${replyId}-verdict"><option value="confirmed">Подтверждено</option><option value="rejected">Не подтвердилось</option></select></div>
             <div class="field"><label for="${replyId}-lang">Язык ответа</label><input id="${replyId}-lang" value="ru" maxlength="8"></div>
             <div class="field full"><label for="${replyId}-note">Что исправлено или почему отклонено</label><input id="${replyId}-note" maxlength="600" placeholder="Короткая фактическая заметка для черновика"></div>
@@ -1526,14 +1895,20 @@ function renderReportQueue() {
             <div class="field"><label for="${replyId}-shards">Награда осколками</label><input id="${replyId}-shards" type="number" min="0" max="100" value="0"></div>
             <div class="actions end"><button class="button primary" data-action="send-report-reply" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-reply-id="${escapeHtml(replyId)}" type="button"${disabledWhenUnauthorized('reports.reply.send')} title="Отправить только владельцу исходного репорта">Проверить и отправить</button></div>
           </div></details>` : ''}
-          <footer><a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.source === 'app_errors' ? 'app-health' : 'reports')}" target="_blank" rel="noopener" title="Открыть расширенный рабочий модуль">Расширенные действия</a></footer></article>`;
+          <footer>${dangerousActionDisclosure(`<a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.source === 'app_errors' ? 'app-health' : 'reports')}" target="_blank" rel="noopener" title="Открыть расширенный рабочий модуль">Расширенные действия</a>`, 'Расширенные действия')}</footer></article>`;
       }).join('')}</div>${reports.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-report-next" type="button" title="Загрузить следующую страницу этого источника">Показать ещё</button></div>' : ''}`}
     </div></section>`;
 }
 
 function renderCurrentPage() {
+  renderGeneration += 1;
+  destroyAdminCharts();
+  const capturedRenderGeneration = renderGeneration;
   const target = document.getElementById('app');
   if (!target) return;
+  const legacyAnalyticsWorkspaces = state.route === 'analytics'
+    ? captureLegacyAnalyticsWorkspaces(target)
+    : [];
   const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
@@ -1541,6 +1916,9 @@ function renderCurrentPage() {
   } else {
     const page = (renderers[state.route] ?? renderOverview)();
     target.innerHTML = `${page}${ADMIN_SECTIONS.some((section) => section.route === state.route) ? renderCapabilityHub(state.route) : ''}`;
+  }
+  if (state.route === 'analytics') {
+    restoreLegacyAnalyticsWorkspaces(target, legacyAnalyticsWorkspaces);
   }
   target.querySelectorAll('a[href^="../../admin/index.html"]').forEach((link) => {
     const href = link.getAttribute('href') || '';
@@ -1552,9 +1930,33 @@ function renderCurrentPage() {
   setMessage(state.message, state.messageKind);
   scheduleAdminAutoRefresh();
   if (state.route === 'analytics' && state.authorized) {
+    const descriptors = createPaywallAnalyticsChartDescriptors(paywallAnalyticsModel());
     queueMicrotask(() => {
-      globalThis.loadProductAnalytics?.();
-      globalThis.loadSubscriptionAnalytics?.();
+      if (capturedRenderGeneration !== renderGeneration || state.route !== 'analytics') return;
+      try {
+        mountPaywallAnalyticsChartsWhenCurrent(
+          target,
+          descriptors,
+          () => capturedRenderGeneration === renderGeneration && state.route === 'analytics',
+        );
+      } finally {
+        globalThis.loadProductAnalytics?.();
+        globalThis.loadSubscriptionAnalytics?.();
+        globalThis.initializeMonthlyDecisionPack?.();
+      }
+    });
+  }
+  if (state.route === 'overview' && can('money.read')) {
+    const descriptors = createOverviewPaymentChartDescriptors(overviewAnalyticsModel());
+    queueMicrotask(() => {
+      if (capturedRenderGeneration !== renderGeneration || state.route !== 'overview') return;
+      mountPaywallAnalyticsChartsWhenCurrent(
+        target,
+        descriptors,
+        () => capturedRenderGeneration === renderGeneration
+          && state.route === 'overview'
+          && can('money.read'),
+      );
     });
   }
 }
@@ -2169,6 +2571,59 @@ async function runGeneration() {
   await loadJobDetail(state.selectedJobId);
 }
 
+function readContentStageForm() {
+  return readStudioStageForm({ model: state.contentStages, makeId: id });
+}
+
+async function loadContentStages(requestId = state.contentStages.requestId, append = false) {
+  state.contentStages = await loadContentStagesPage({ actions, model: state.contentStages, requestId, append });
+}
+
+async function ensureContentCapabilities() {
+  if (state.contentStages.capabilitiesState === 'ready' || state.contentStages.capabilitiesState === 'loading') return;
+  state.contentStages = { ...state.contentStages, capabilitiesState: 'loading' };
+  try { state.contentStages = await loadContentCapabilities({ actions, model: state.contentStages }); }
+  catch (error) { state.contentStages = { ...state.contentStages, capabilitiesState: 'error', capabilitiesError: errorMessage(error) }; }
+}
+
+async function loadContentFactoryReadiness() {
+  state.contentStages = { ...state.contentStages, readiness: { state: 'loading', metrics: null, error: '' } };
+  renderCurrentPage();
+  try {
+    const result = await actions.getFactoryRolloutMetrics();
+    state.contentStages = { ...state.contentStages, readiness: { state: 'ready', metrics: result?.metrics ?? null, error: '' } };
+  } catch (error) {
+    state.contentStages = { ...state.contentStages, readiness: { state: 'error', metrics: null, error: errorMessage(error) } };
+  }
+}
+
+async function loadArenaConvergence() {
+  state.contentStages = { ...state.contentStages, arenaConvergence: { ...state.contentStages.arenaConvergence, state: 'loading', error: '' } };
+  renderCurrentPage();
+  try {
+    const result = await actions.getArenaConvergenceStatus({ limit: 500 });
+    state.contentStages = { ...state.contentStages, arenaConvergence: { state: 'ready', arena: result?.arena ?? null, metrics: result?.metrics ?? null, timing: result?.timing ?? null, groups: Array.isArray(result?.groups) ? result.groups : [], isPartial: result?.isPartial === true, historyIsPartial: result?.historyIsPartial === true, nextCursor: result?.nextCursor ?? null, error: '' } };
+  } catch (error) {
+    state.contentStages = { ...state.contentStages, arenaConvergence: { ...state.contentStages.arenaConvergence, state: 'error', error: errorMessage(error) } };
+  }
+}
+
+async function updateArenaConvergence(mode) {
+  const current = state.contentStages.arenaConvergence?.arena;
+  if (!current) await loadArenaConvergence();
+  const arena = state.contentStages.arenaConvergence?.arena;
+  if (!arena) throw new Error('Сначала загрузите текущий режим Arena.');
+  const requiredLocalePairs = Array.isArray(arena.requiredLocalePairs) ? [...arena.requiredLocalePairs] : [];
+  if (mode === 'shadow') {
+    const studyTarget = String(document.getElementById('content-stage-target')?.value ?? state.contentStages.studyTarget ?? '').trim();
+    const sourceLocale = String(document.getElementById('content-stage-source')?.value ?? state.contentStages.sourceLocale ?? '').trim();
+    if (!/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(sourceLocale)) throw new Error('Укажите изучаемый язык и язык объяснений перед включением Arena shadow.');
+    requiredLocalePairs.push(`${studyTarget}:${sourceLocale}`);
+  }
+  await actions.updateArenaConvergenceConfig({ mode, expectedRevision: Number(arena.revision), requiredLocalePairs: [...new Set(requiredLocalePairs)].sort(), disabledReason: mode === 'legacy' ? 'operator_kill_switch' : '', requestId: id('arena-convergence') });
+  await loadArenaConvergence();
+}
+
 async function retryFactoryUnit(unitId) {
   const unit = (state.detail?.units ?? []).find((item) => String(item.id ?? item.unitId) === String(unitId));
   if (!unit) throw new Error('Операция генерации не найдена.');
@@ -2338,6 +2793,16 @@ function parseAdminSettingValue(target) {
   return target instanceof HTMLInputElement || target instanceof HTMLSelectElement ? target.value : '';
 }
 
+function resetEphemeralSectionFilters(nextRoute = state.route) {
+  const route = String(nextRoute || state.route);
+  if (route === 'report-center') state.reports = { ...defaultReportState(state.adminSettings), replyDrafts: state.reports.replyDrafts };
+  if (route === 'diagnostics') {
+    state.audit = { ...state.audit, action: '', query: '', sinceDays: 7, nextCursor: '' };
+    state.ops = { ...state.ops, source: '', type: '', query: '' };
+  }
+  if (route === 'support') state.support = { ...state.support, filter: 'new' };
+}
+
 function handleAdminSettingsChange(event) {
   const target = event.target;
   if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
@@ -2346,6 +2811,7 @@ function handleAdminSettingsChange(event) {
   state.adminSettings = normalizeAdminUiSettings({ ...state.adminSettings, [key]: parseAdminSettingValue(target) });
   applyAdminUiSettings(state.adminSettings);
   if (key.startsWith('default') || key === 'hideArchivedByDefault') state.reports = { ...defaultReportState(state.adminSettings), replyDrafts: state.reports.replyDrafts };
+  if (key === 'rememberSectionFilters' && state.adminSettings.rememberSectionFilters === false) resetEphemeralSectionFilters(state.route);
   renderCurrentPage();
 }
 
@@ -2835,6 +3301,66 @@ async function handleAction(action, target) {
     }, 'Конфигурация опубликована и записана в журнал.');
   }
   if (action === 'load-factory-jobs') return runBusy(async () => { await loadJobs(); state.factoryStep = 2; }, 'Черновики загружены.');
+  if (action === 'load-content-stages') return runBusy(() => loadContentStages(), 'Очередь независимых стадий обновлена.');
+  if (action === 'load-more-content-stages') return runBusy(() => loadContentStages(state.contentStages.requestId, true), 'Следующая страница стадий загружена.');
+  if (action === 'load-content-readiness') return runBusy(loadContentFactoryReadiness, 'Метрики готовности обновлены. Deployment не выполнялся.');
+  if (action === 'load-arena-convergence') return runBusy(loadArenaConvergence, 'Режим и shadow-доказательства Arena обновлены.');
+  if (action === 'enable-arena-shadow') return runBusy(() => updateArenaConvergence('shadow'), 'Arena shadow включён. Генератор остался legacy.');
+  if (action === 'stop-arena-convergence') return runBusy(() => updateArenaConvergence('legacy'), 'Новые задания Arena немедленно возвращены в legacy.');
+  if (action === 'load-content-dependencies' || action === 'load-more-content-dependencies') {
+    const studyTarget = String(document.getElementById('content-studio-target')?.value || '').trim();
+    const sourceLocale = String(document.getElementById('content-studio-source')?.value || '').trim();
+    const scopeId = String(document.getElementById('content-studio-scope')?.value || '').trim();
+    if (!state.contentStages.requestId) throw new Error('Сначала укажите или создайте request, к которому относится одобренная основа.');
+    return runBusy(async () => {
+    state.contentStages = { ...state.contentStages, studyTarget, sourceLocale, scopeId, dependenciesState: 'loading', dependenciesError: '' };
+    renderCurrentPage();
+    try { state.contentStages = await loadApprovedDependencies({ actions, model: state.contentStages, consumerKind: state.contentStages.kind, scopeId, append: action === 'load-more-content-dependencies' }); }
+    catch (error) { state.contentStages = { ...state.contentStages, dependenciesState: 'error', dependenciesError: errorMessage(error) }; throw error; }
+    }, 'Одобренные основы загружены.');
+  }
+  if (action === 'apply-content-filters') {
+    const filters = { ...state.contentStages.filters, requestId: String(document.getElementById('content-filter-request')?.value || '').trim(), kind: String(document.getElementById('content-filter-kind')?.value || ''), state: String(document.getElementById('content-filter-state')?.value || ''), scopeId: String(document.getElementById('content-filter-scope')?.value || ''), studyTarget: String(document.getElementById('content-filter-target')?.value || ''), sourceLocale: String(document.getElementById('content-filter-source')?.value || '') };
+    return runBusy(async () => {
+    state.contentStages = { ...state.contentStages, filters, requestId: filters.requestId || state.contentStages.requestId };
+    await loadContentStages(filters.requestId || state.contentStages.requestId, false);
+    }, 'Фильтры очереди применены.');
+  }
+  if (action === 'create-content-bulk') {
+    const kinds = [...document.querySelectorAll('[data-studio-kind]:checked')].map((input) => String(input.value));
+    const studyTarget = String(document.getElementById('content-studio-target')?.value || '').trim(); const sourceLocale = String(document.getElementById('content-studio-source')?.value || '').trim(); const cefr = String(document.getElementById('content-studio-cefr')?.value || '').trim(); const objective = String(document.getElementById('content-studio-objective')?.value || '').trim();
+    const start = Number(document.getElementById('content-range-start')?.value || 0); const end = Number(document.getElementById('content-range-end')?.value || 0);
+    if (!kinds.length || !objective || !Number.isInteger(start) || !Number.isInteger(end) || start < 1 || end < start || end > 32) return setMessage('Проверьте разделы, учебную цель и диапазон 1–32.', 'warning');
+    const requestId = state.contentStages.requestId || id('content-stages');
+    return runBusy(async () => {
+      const result = await actions.createContentStageBulkPlan({ requestId, idempotencyKey: id('content-bulk'), studyTarget, sourceLocale, cefr, objective, kinds, lessonRange: { start, end }, dependencyPolicy: 'approved_only' });
+      state.contentStages = { ...state.contentStages, requestId, studyTarget, sourceLocale, cefr, objective, selectedKinds: kinds, rangeStart: start, rangeEnd: end, bulkResult: result };
+      await loadContentStages(requestId, false);
+    }, 'Серверный план диапазона создан. Публикация не выполнялась.');
+  }
+  if (action === 'create-content-edit') {
+    const preview = state.contentStages.preview;
+    const baseStageId = String(preview?.stage?.stageId || preview?.stage?.id || '');
+    const expectedBaseReviewFingerprint = String(preview?.reviewFingerprint || '');
+    const reason = String(document.getElementById('content-artifact-edit-reason')?.value || '').trim();
+    let artifact;
+    try { artifact = JSON.parse(String(document.getElementById('content-artifact-edit-json')?.value || '')); } catch { return setMessage('Исправленный JSON содержит синтаксическую ошибку.', 'warning'); }
+    if (reason.length < 5) return setMessage('Опишите причину исправления.', 'warning');
+    return runBusy(async () => {
+      const result = await actions.editContentStageArtifact({ baseStageId, expectedBaseReviewFingerprint, idempotencyKey: id('content-edit'), reason, artifact });
+      state.contentStages = { ...state.contentStages, editDraft: JSON.stringify(artifact, null, 2), editReason: reason, editResult: result };
+      await loadContentStages(state.contentStages.requestId, false);
+    }, 'Новая редакция создана как отдельный черновик. Исходная версия не изменена.');
+  }
+  if (action === 'create-content-stage') {
+    let input;
+    try { input = readContentStageForm(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
+    return runBusy(async () => {
+      state.contentStages = { ...state.contentStages, requestId: input.requestId, kind: input.kind, studyTarget: input.studyTarget, sourceLocale: input.sourceLocale, cefr: input.cefr, objective: input.objective, scopeId: input.scopeId, count: input.count, prerequisiteStageIds: input.prerequisiteStageIds.join(', ') };
+      await actions.createContentStage(input);
+      await loadContentStages(input.requestId);
+    }, 'Независимая стадия создана. Генерация ещё не запущена.');
+  }
   if (action === 'back-to-factory-jobs') { state.detail = null; state.preview = null; renderCurrentPage(); return; }
   if (action === 'create-factory-job') {
     let input;
@@ -2957,19 +3483,107 @@ async function handleAction(action, target) {
       applySupportListResult(await actions.loadSupport({ limit: 500 }));
     }, sent ? 'Доставка подтверждена вручную.' : 'Подтверждено: письмо не отправлено, можно подготовить новую операцию.');
   }
+  if (action === 'reset-analytics-zoom') {
+    const resetCount = resetAllAdminChartZoom();
+    updatePaywallAnalyticsLiveRegion(
+      document,
+      resetCount > 0 ? 'Масштаб всех графиков сброшен.' : 'Графики для сброса масштаба не найдены.',
+    );
+    return;
+  }
+  if (action === 'toggle-analytics-series') {
+    const metricId = String(target.getAttribute('data-metric-id') || '');
+    try {
+      const next = toggleVisibleSeries(state.analyticsTrends.paywall, metricId);
+      replaceAnalyticsTrendScope(
+        'paywall',
+        next,
+      );
+      const visible = next.visibleSeries[metricId] !== false;
+      target.setAttribute('aria-pressed', String(visible));
+      const behavioral = createPaywallAnalyticsChartDescriptors(paywallAnalyticsModel())
+        .find((entry) => entry.descriptor.id === 'paywall-behavioral-trend');
+      if (behavioral) {
+        mountPaywallAnalyticsChartsWhenCurrent(
+          document,
+          [behavioral],
+          () => state.route === 'analytics' && can('money.read'),
+        );
+      } else {
+        destroyAdminChart('paywall-behavioral-trend');
+        const host = document.getElementById('analytics-trends-behavioral-chart');
+        if (host) host.innerHTML = '<div class="analytics-empty">Поведенческие линии не выбраны.</div>';
+      }
+    } catch {
+      setMessage('Не удалось изменить видимость линии: небезопасный идентификатор.', 'warning');
+    }
+    return;
+  }
+  if (action === 'load-analytics-trends') {
+    let input;
+    try {
+      input = { ...analyticsTrendInputFromControls('paywall'), scope: 'paywall' };
+    } catch (error) {
+      setMessage(errorMessage(error), 'warning');
+      return;
+    }
+    const token = beginAnalyticsTrendRequest('paywall', input, { force: true });
+    return runBusy(async () => {
+      const result = await completeAnalyticsTrendRequest(token);
+      if (result !== STALE_AUTH_RESULT) setMessage('Графики paywall обновлены.', 'success');
+      return result;
+    });
+  }
   if (action === 'load-analytics') {
     const rangeDays = Number(document.getElementById('analytics-range')?.value ?? 28);
+    const snapshotAuthGeneration = state.authGeneration;
+    let trendOperation;
+    try {
+      const trendInput = { ...analyticsTrendInputFromControls('paywall'), scope: 'paywall' };
+      const trendToken = beginAnalyticsTrendRequest('paywall', trendInput, { force: true });
+      trendOperation = () => completeAnalyticsTrendRequest(trendToken);
+    } catch (error) {
+      if (authStillValid(snapshotAuthGeneration, 'money.read')) {
+        replaceAnalyticsTrendScope(
+          'paywall',
+          failTrendLoad(state.analyticsTrends.paywall, error),
+        );
+      }
+      trendOperation = async () => { throw error; };
+    }
     state.analytics = { status: 'loading', snapshot: state.analytics.snapshot, error: '', rangeDays };
     return runBusy(async () => {
-      try {
-        const snapshot = await actions.loadAnalytics({ rangeDays });
-        state.analytics = completeAnalyticsLoad(state.analytics, snapshot, rangeDays);
-        if (state.analytics.status === 'error') throw new Error(state.analytics.error);
-      } catch (error) {
-        state.analytics = { status: 'error', snapshot: state.analytics.snapshot, error: errorMessage(error), rangeDays };
-        throw error;
-      }
-    }, 'Аналитика загружена.');
+      const results = await settleIndependentAnalyticsRefreshes(
+        async () => {
+          try {
+            const snapshot = await actions.loadAnalytics({ rangeDays });
+            if (!authStillValid(snapshotAuthGeneration, 'money.read')) return STALE_AUTH_RESULT;
+            state.analytics = completeAnalyticsLoad(state.analytics, snapshot, rangeDays);
+            if (state.analytics.status === 'error') throw new Error(state.analytics.error);
+            return snapshot;
+          } catch (error) {
+            if (authStillValid(snapshotAuthGeneration, 'money.read')) {
+              state.analytics = {
+                status: 'error', snapshot: state.analytics.snapshot,
+                error: errorMessage(error), rangeDays,
+              };
+            }
+            throw error;
+          }
+        },
+        trendOperation,
+      );
+      const outcome = classifyAnalyticsRefreshResults(
+        results,
+        STALE_AUTH_RESULT,
+        snapshotAuthGeneration !== state.authGeneration,
+      );
+      if (outcome === 'stale') return results;
+      if (outcome === 'success') setMessage('Снимок и графики аналитики обновлены.', 'success');
+      else if (outcome === 'partial') setMessage('Один источник аналитики не обновился; другой и последние успешные данные сохранены.', 'warning');
+      else setMessage('Снимок и графики не обновились; последние успешные данные сохранены.', 'danger');
+      return results;
+    });
   }
   if (action === 'load-asset-jobs') return runBusy(loadAssetJobs, 'Очередь ассетов загружена.');
   if (action === 'create-asset-job') {
@@ -3006,6 +3620,7 @@ async function handleAction(action, target) {
 }
 
 async function handleClick(event) {
+  adminInteractionSeen = true;
   const target = event.target instanceof Element ? event.target.closest('button, a') : null;
   if (!target) return;
   const route = target.getAttribute('data-route');
@@ -3013,6 +3628,27 @@ async function handleClick(event) {
     event.preventDefault();
     globalThis.location.hash = route;
     document.body.classList.remove('nav-open');
+    return;
+  }
+  const contentMode = target.getAttribute('data-content-create-mode');
+  if (contentMode) {
+    state.contentStages = { ...state.contentStages, mode: contentMode === 'range' ? 'range' : 'single', selectedKinds: contentMode === 'range' ? ['lesson_outline'] : [state.contentStages.kind || 'lesson_outline'], dependencies: [], selectedDependencyIds: [] };
+    renderCurrentPage();
+    return;
+  }
+  const studioKind = target.getAttribute('data-studio-kind');
+  if (studioKind) {
+    if (state.contentStages.mode === 'range') {
+      const selectedKinds = [...document.querySelectorAll('[data-studio-kind]:checked')].map((input) => String(input.value));
+      state.contentStages = { ...state.contentStages, selectedKinds };
+    } else state.contentStages = { ...state.contentStages, kind: studioKind, selectedKinds: [studioKind], dependencies: [], selectedDependencyIds: [] };
+    renderCurrentPage();
+    return;
+  }
+  const dependencyId = target.getAttribute('data-content-dependency-id');
+  if (dependencyId) {
+    const selectedDependencyIds = [...document.querySelectorAll('[data-content-dependency-id]:checked')].map((input) => String(input.getAttribute('data-content-dependency-id')));
+    state.contentStages = { ...state.contentStages, selectedDependencyIds };
     return;
   }
   const settingsTarget = target.getAttribute('data-settings-target');
@@ -3031,6 +3667,117 @@ async function handleClick(event) {
   }
   const jobId = target.getAttribute('data-select-job');
   if (jobId) return runBusy(async () => { await loadJobDetail(jobId); state.factoryStep = 2; }, 'Черновик открыт.');
+  const generatorId = target.getAttribute('data-select-content-generator');
+  if (generatorId) {
+    state.contentStages = { ...state.contentStages, selectedGenerator: generatorId, kind: String(target.getAttribute('data-default-stage-kind') || 'lesson_outline'), count: 1 };
+    renderCurrentPage();
+    return;
+  }
+  const derivedLessonKind = target.getAttribute('data-create-derived-lesson-stage');
+  const prerequisiteLessonStageId = target.getAttribute('data-prerequisite-stage-id');
+  if (derivedLessonKind && prerequisiteLessonStageId) return runBusy(async () => {
+    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === prerequisiteLessonStageId);
+    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'lesson_phrases') throw new Error('Сначала одобрите фразы выбранного урока.');
+    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === derivedLessonKind && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
+    const revision = Math.max(0, ...existingRevisions) + 1;
+    await actions.createContentStage({ requestId: sourceStage.requestId, kind: derivedLessonKind, studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 1, revision, prerequisiteStageIds: [prerequisiteLessonStageId] });
+    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, selectedGenerator: 'lessons', kind: derivedLessonKind, count: 1, revision };
+    await loadContentStages(sourceStage.requestId);
+  }, 'Отдельная стадия создана из одобренных фраз.');
+  const questionBatchKind = target.getAttribute('data-create-question-batch');
+  const prerequisiteTopicStageId = target.getAttribute('data-prerequisite-stage-id');
+  if (questionBatchKind && prerequisiteTopicStageId) return runBusy(async () => {
+    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === prerequisiteTopicStageId);
+    const expectedTopicKind = questionBatchKind === 'quiz_questions' ? 'quiz_topic' : 'challenge_topic';
+    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== expectedTopicKind) throw new Error('Сначала одобрите выбранную тему.');
+    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === questionBatchKind && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
+    const revision = Math.max(0, ...existingRevisions) + 1;
+    await actions.createContentStage({ requestId: sourceStage.requestId, kind: questionBatchKind, studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 10, revision, prerequisiteStageIds: [prerequisiteTopicStageId] });
+    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, kind: questionBatchKind, count: 10, revision };
+    await loadContentStages(sourceStage.requestId);
+  }, 'Новая независимая пачка из 10 вопросов создана.');
+  const flashcardBatchKind = target.getAttribute('data-create-flashcard-batch');
+  const prerequisitePackIdeaStageId = target.getAttribute('data-prerequisite-stage-id');
+  if (flashcardBatchKind && prerequisitePackIdeaStageId) return runBusy(async () => {
+    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === prerequisitePackIdeaStageId);
+    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'flashcard_pack_idea') throw new Error('Сначала одобрите идею пака.');
+    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === 'flashcard_items' && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
+    const revision = Math.max(0, ...existingRevisions) + 1;
+    await actions.createContentStage({ requestId: sourceStage.requestId, kind: 'flashcard_items', studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 10, revision, prerequisiteStageIds: [prerequisitePackIdeaStageId] });
+    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, selectedGenerator: 'flashcards', kind: 'flashcard_items', count: 10, revision };
+    await loadContentStages(sourceStage.requestId);
+  }, 'Новая независимая пачка из 10 карточек создана.');
+  const arenaBatchKind = target.getAttribute('data-create-arena-batch');
+  const prerequisiteArenaTopicStageId = target.getAttribute('data-prerequisite-stage-id');
+  if (arenaBatchKind && prerequisiteArenaTopicStageId) return runBusy(async () => {
+    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === prerequisiteArenaTopicStageId);
+    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'arena_topic') throw new Error('Сначала одобрите тему Арены.');
+    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === 'arena_questions' && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
+    const revision = Math.max(0, ...existingRevisions) + 1;
+    await actions.createContentStage({ requestId: sourceStage.requestId, kind: 'arena_questions', studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 10, revision, prerequisiteStageIds: [prerequisiteArenaTopicStageId] });
+    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, selectedGenerator: 'arena', kind: 'arena_questions', count: 10, revision };
+    await loadContentStages(sourceStage.requestId);
+  }, 'Новая независимая пачка из 10 вопросов Арены создана.');
+  const replacementKind = target.getAttribute('data-create-question-replacement');
+  const replacementBatchStageId = target.getAttribute('data-batch-stage-id');
+  const replacementForQuestionId = target.getAttribute('data-question-id');
+  if (replacementKind && replacementBatchStageId && replacementForQuestionId) return runBusy(async () => {
+    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === replacementBatchStageId);
+    const expectedBatchKind = replacementKind === 'quiz_question_replacement' ? 'quiz_questions' : 'challenge_questions';
+    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== expectedBatchKind) throw new Error('Заменять вопрос можно только в одобренной пачке.');
+    if (!/^[A-Za-z0-9._-]{1,160}$/.test(replacementForQuestionId)) throw new Error('У вопроса небезопасный идентификатор.');
+    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === replacementKind && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
+    const revision = Math.max(0, ...existingRevisions) + 1;
+    const scopeId = String(sourceStage.scopeId || 'topic');
+    await actions.createContentStage({ requestId: sourceStage.requestId, kind: replacementKind, studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId, count: 1, revision, prerequisiteStageIds: [replacementBatchStageId], replacementForQuestionId });
+    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, kind: replacementKind, count: 1, revision, preview: null };
+    await loadContentStages(sourceStage.requestId);
+  }, 'Создана независимая замена одного вопроса.');
+  const flashcardReplacementKind = target.getAttribute('data-create-flashcard-replacement');
+  const flashcardBatchStageId = target.getAttribute('data-batch-stage-id');
+  const replacementForCardId = target.getAttribute('data-card-id');
+  if (flashcardReplacementKind && flashcardBatchStageId && replacementForCardId) return runBusy(async () => {
+    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === flashcardBatchStageId);
+    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'flashcard_items') throw new Error('Заменять карточку можно только в одобренной пачке.');
+    if (!/^[A-Za-z0-9._-]{1,160}$/.test(replacementForCardId)) throw new Error('У карточки небезопасный идентификатор.');
+    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === flashcardReplacementKind && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
+    const revision = Math.max(0, ...existingRevisions) + 1;
+    await actions.createContentStage({ requestId: sourceStage.requestId, kind: flashcardReplacementKind, studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 1, revision, prerequisiteStageIds: [flashcardBatchStageId], replacementForCardId });
+    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, selectedGenerator: 'flashcards', kind: flashcardReplacementKind, count: 1, revision, preview: null };
+    await loadContentStages(sourceStage.requestId);
+  }, 'Создана независимая замена одной карточки.');
+  const controlStageId = target.getAttribute('data-stage-id');
+  const controlStageAction = target.getAttribute('data-control-content-stage');
+  if (controlStageId && controlStageAction) return runBusy(async () => {
+    await actions.controlContentStage({ stageId: controlStageId, action: controlStageAction });
+    await loadContentStages();
+  }, 'Состояние стадии обновлено.');
+  const runStageId = target.getAttribute('data-run-content-stage');
+  if (runStageId) return runBusy(async () => {
+    try {
+      await actions.runContentStage({ stageId: runStageId });
+    } finally {
+      await loadContentStages();
+    }
+  }, 'Стадия выполнена. Откройте результат для проверки.');
+  const previewStageId = target.getAttribute('data-preview-content-stage');
+  if (previewStageId) return runBusy(async () => {
+    const preview = await actions.previewContentStage({ stageId: previewStageId });
+    state.contentStages = { ...state.contentStages, preview };
+  }, 'Результат стадии и квитанция качества загружены.');
+  const reviewStageId = target.getAttribute('data-stage-id');
+  const reviewStageStatus = target.getAttribute('data-review-content-stage');
+  if (reviewStageId && reviewStageStatus) {
+    const reason = String(document.getElementById('content-stage-review-reason')?.value ?? '').trim();
+    if (reason.length < 5) return setMessage('Добавьте комментарий: что именно проверено.', 'warning');
+    const expectedReviewFingerprint = state.contentStages.preview?.stage?.id === reviewStageId ? String(state.contentStages.preview?.reviewFingerprint ?? '') : '';
+    if (!/^[a-f0-9]{64}$/i.test(expectedReviewFingerprint)) return setMessage('Сначала заново откройте результат этой стадии. Одобрение привязано к точной версии данных.', 'warning');
+    return runBusy(async () => {
+      await actions.reviewContentStage({ stageId: reviewStageId, status: reviewStageStatus, reason, expectedReviewFingerprint });
+      state.contentStages = { ...state.contentStages, preview: null };
+      await loadContentStages();
+    }, reviewStageStatus === 'approved' ? 'Стадия одобрена. Зависимые операции теперь доступны.' : 'Стадия отклонена.');
+  }
   const assetJobId = target.getAttribute('data-select-asset-job');
   if (assetJobId) {
     state.assetStudio.selectedJobId = assetJobId;
@@ -3092,7 +3839,10 @@ async function handleClick(event) {
 
 export function setAdminActions(nextActions) {
   actions = nextActions;
+  actionsReady = true;
+  if (state.authorized && state.route === 'content' && can('content.read') && ['idle', 'error'].includes(state.contentStages.capabilitiesState)) { state.contentStages = { ...state.contentStages, capabilitiesState: 'idle' }; void ensureContentCapabilities().then(renderCurrentPage); }
   maybeLoadOperationalBriefing();
+  maybeLoadOverviewAnalyticsTrends();
 }
 
 export function setAuthState(auth) {
@@ -3119,22 +3869,57 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('reports.read')) state.reports = defaultReportState(state.adminSettings);
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
+  if (!state.authorized || !can('money.read')) state.analyticsTrends = createAnalyticsTrendScopesState();
+  if (!state.authorized || !can('money.read')) state.analyticsTrendsDraft = defaultAnalyticsTrendsDraft();
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
   renderCurrentPage();
+  if (actionsReady && state.authorized && state.route === 'content' && can('content.read') && state.contentStages.capabilitiesState === 'idle') void ensureContentCapabilities().then(renderCurrentPage);
   maybeLoadOperationalBriefing();
+  maybeLoadOverviewAnalyticsTrends();
 }
 
 export function renderRoute(route, capabilityId = '') {
   const requestedRoute = route === 'overview' && !globalThis.location.hash && PAGES[state.adminSettings.startPage] ? state.adminSettings.startPage : route;
+  const previousRoute = state.route;
   state.route = PAGES[requestedRoute] ? requestedRoute : 'overview';
+  if (!state.adminSettings.rememberSectionFilters && previousRoute !== state.route) resetEphemeralSectionFilters(state.route);
   const capability = capabilityById(capabilityId);
   state.selectedCapabilityId = capability?.route === state.route && !capability.nativeRoute ? capability.id : '';
   renderCurrentPage();
+  if (actionsReady && state.route === 'content' && state.authorized && can('content.read') && state.contentStages.capabilitiesState === 'idle') {
+    void ensureContentCapabilities().then(renderCurrentPage);
+  }
   maybeLoadOperationalBriefing();
+  maybeLoadOverviewAnalyticsTrends();
+}
+
+function handleContentStudioInput(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement) || target.id !== 'content-dependency-search') return;
+  const query = target.value.trim().toLocaleLowerCase();
+  document.querySelectorAll('.dependency-option').forEach((option) => { option.hidden = Boolean(query) && !String(option.textContent || '').toLocaleLowerCase().includes(query); });
+}
+
+function handleAnalyticsTrendsControlChange(event) {
+  const id = String(event.target?.id || '');
+  if (!id.startsWith('analytics-trends-')) return;
+  updateAnalyticsTrendsDraftFromControls();
+}
+
+function handleContentStudioChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  const studioKind = target.getAttribute('data-studio-kind');
+  if (studioKind) {
+    if (state.contentStages.mode === 'range') state.contentStages = { ...state.contentStages, selectedKinds: [...document.querySelectorAll('[data-studio-kind]:checked')].map((input) => String(input.value)) };
+    else { state.contentStages = { ...state.contentStages, kind: studioKind, selectedKinds: [studioKind], dependencies: [], selectedDependencyIds: [] }; renderCurrentPage(); }
+    return;
+  }
+  if (target.hasAttribute('data-content-dependency-id')) state.contentStages = { ...state.contentStages, selectedDependencyIds: [...document.querySelectorAll('[data-content-dependency-id]:checked')].map((input) => String(input.getAttribute('data-content-dependency-id'))) };
 }
 
 export function initAdminUi() {
@@ -3144,8 +3929,12 @@ export function initAdminUi() {
   document.addEventListener('click', handleClick);
   document.addEventListener('change', handleReportFilterChange);
   document.addEventListener('change', handleAdminSettingsChange);
+  document.addEventListener('change', handleContentStudioChange);
+  document.addEventListener('change', handleAnalyticsTrendsControlChange);
   document.addEventListener('input', handleReportFilterInput);
   document.addEventListener('input', handleAdminSettingsChange);
+  document.addEventListener('input', handleContentStudioInput);
+  document.addEventListener('input', handleAnalyticsTrendsControlChange);
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && event.target instanceof HTMLInputElement && event.target.id === 'user-search') {
       event.preventDefault();

@@ -164,7 +164,7 @@ export function buildLocalWeeklyReview(briefing: WeeklyReviewBriefingV2): Weekly
       expectedOutcome: recommendation.label,
     }] : [],
     confidence: briefing.coverage.failed === 0 ? 'medium' : 'low',
-    coverageNote: localCopy(briefing.lang as Lang, 'Это краткий локальный снимок до нового AI-разбора.', 'Це короткий локальний знімок до нового AI-розбору.', 'Es una vista local breve antes del nuevo análisis con IA.', 'This is a brief local snapshot before the next AI review.'),
+    coverageNote: localCopy(briefing.lang as Lang, 'Это краткий локальный снимок до следующего обновления рекомендаций.', 'Це короткий локальний знімок до наступного оновлення рекомендацій.', 'Es una vista local breve antes de la próxima actualización de recomendaciones.', 'This is a brief local snapshot before the next recommendation update.'),
   };
 }
 

@@ -23,7 +23,6 @@ import { ENABLE_DEV_TOOLS } from './config';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import PlusBadge from '../components/PlusBadge';
 import { type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
-import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import WeeklyReviewCard from './WeeklyReviewCard';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import type { ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
@@ -856,7 +855,7 @@ function TrainerScreenInner() {
         })}
 
             {/* ── Аналитика ошибок inline ── */}
-            <StatsPremiumBlur isPremium={hasPremium} context="patterns">
+            {hasPremium ? (
             <View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderWidth: 0, borderRadius: trainerRadius }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.analyticsHeader}>
@@ -894,7 +893,7 @@ function TrainerScreenInner() {
                   </TouchableOpacity>
                 </View>
 
-                <WeeklyReviewCard active={trainerRuntimeActive} isPremium={hasPremium} studyTarget={studyTarget} stableLayout embedded />
+                <WeeklyReviewCard active={trainerRuntimeActive} isPremium={true} studyTarget={studyTarget} stableLayout embedded />
 
                 {/* Вкладки */}
                 <View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
@@ -1012,7 +1011,9 @@ function TrainerScreenInner() {
                       </View>))}
                   </View>)}
               </View>
-            </StatsPremiumBlur>
+            ) : (
+              <WeeklyReviewCard active={trainerRuntimeActive} isPremium={false} studyTarget={studyTarget} stableLayout />
+            )}
 
             {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44', borderRadius: isCompassTheme ? 9 : 14 }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={9} quiet physical /> : null}

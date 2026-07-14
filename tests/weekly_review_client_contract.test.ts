@@ -13,10 +13,12 @@ describe('weekly review client contract', () => {
     expect(serverSource).toContain('weekly_review_plus_required');
   });
 
-  it('renders collapsed by default and expands only after a tap', () => {
-    expect(cardSource).toContain('const [expanded, setExpanded] = useState(false)');
-    expect(cardSource).toContain('setExpanded((value) => !value)');
-    expect(cardSource).toContain('{expanded ? (');
+  it('renders the full Plus review without a disclosure control', () => {
+    expect(cardSource).toContain('<PlusReview');
+    expect(cardSource).toContain('review.patterns.map');
+    expect(cardSource).toContain('review.plan.map');
+    expect(cardSource).not.toContain('const [expanded, setExpanded] = useState(false)');
+    expect(cardSource).not.toContain('accessibilityState={{ expanded }}');
   });
 
   it('does not show a next-review countdown footer', () => {
@@ -32,12 +34,11 @@ describe('weekly review client contract', () => {
 
   it('brands the weekly guidance as Compass instead of an error analysis', () => {
     expect(cardSource).toContain("import { weeklyCompassIconSource } from '../constants/weeklyCompassIcons'");
-    expect(cardSource).toContain('Animated.timing(sweep');
     expect(cardSource).not.toContain('Animated.loop(');
     expect(cardSource).not.toContain('name="compass-outline"');
     expect(cardSource).not.toContain('AI REHBER');
     expect(cardSource).toContain('copy.title');
-    expect(cardSource).toContain('copy.aiBadge');
     expect(cardSource).toContain('copy.updating');
+    expect(cardSource).not.toContain('copy.aiBadge');
   });
 });

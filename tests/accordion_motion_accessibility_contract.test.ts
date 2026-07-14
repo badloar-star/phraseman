@@ -18,9 +18,10 @@ describe('accordion motion contract', () => {
     expect(icon).toContain('importantForAccessibility="no-hide-descendants"');
   });
 
-  test('an owner exposes expanded state on its controlling surface', () => {
+  test('the weekly review is full content rather than another accordion', () => {
     const owner = fs.readFileSync(path.join(root, 'app', 'WeeklyReviewCard.tsx'), 'utf8');
-    expect(owner).toContain('accessibilityState={{ expanded }}');
-    expect(owner).toContain("name={expanded ? 'chevron-up' : 'chevron-down'}");
+    expect(owner).not.toContain('accessibilityState={{ expanded }}');
+    expect(owner).not.toContain("name={expanded ? 'chevron-up' : 'chevron-down'}");
+    expect(owner).toContain('review.patterns.map');
   });
 });

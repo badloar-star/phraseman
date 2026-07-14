@@ -5,25 +5,26 @@ const card = fs.readFileSync(path.join(__dirname, '../app/WeeklyReviewCard.tsx')
 const copy = fs.readFileSync(path.join(__dirname, '../app/weekly_review_copy.ts'), 'utf8');
 
 describe('WeeklyReviewCard V2 states', () => {
-  it('always reserves geometry and renders the neutral snapshot strip', () => {
+  it('keeps stable Plus loading geometry without delaying the Free teaser', () => {
     expect(card).toContain('<LoadingCard');
-    expect(card).toContain('<SnapshotStrip snapshot={state.snapshot}');
-    expect(card).toContain('minHeight: 270');
-    expect(card).toContain('progressCurrent');
-    expect(card).toContain('sourceCoverage.ready');
+    expect(card).toContain('if (!isPremium) {');
+    expect(card.indexOf('if (!isPremium) {')).toBeLessThan(card.indexOf('if (!state) return <LoadingCard'));
   });
 
-  it('shows Free value without passing any review text into the Free offer', () => {
-    expect(card).toContain('!isPremium ? (');
-    expect(card).toContain('<FreeOffer copy={copy}');
-    expect(card).not.toContain('<FreeOffer review=');
+  it('renders Free as one paywall-opening value surface without AI controls or metrics', () => {
+    expect(card).toContain('<FreeReviewTeaser');
+    expect(card).toContain('onPress={onPaywall}');
+    expect(card).toContain('accessibilityRole="button"');
+    expect(card).toContain('minHeight: 96');
     expect(card).toContain("context: 'weekly_review'");
-    expect(copy).toContain('закономерности в практике');
-    expect(copy).toContain('пошаговый план');
-    expect(copy).toContain('точные упражнения из твоей практики');
+    expect(copy).toContain('Персональный разбор практики');
+    expect(copy).toContain('Покажет, какие ошибки повторяются и что повторить первым.');
+    expect(card).not.toContain('copy.aiBadge');
+    expect(card).not.toContain('copy.values');
+    expect(card).not.toContain('copy.cta');
   });
 
-  it('renders every structured Plus section and routes only verified actions', () => {
+  it('renders every structured Plus section immediately and routes only verified actions', () => {
     expect(card).toContain('review.headline');
     expect(card).toContain('review.summary');
     expect(card).toContain('review.patterns.map');
@@ -33,24 +34,25 @@ describe('WeeklyReviewCard V2 states', () => {
     expect(card).toContain('routeForWeeklyReviewAction(actionKind, recommendationId)');
     expect(card).toContain("actionKind === 'repeat_due_words' && recommendationId === 'due:words'");
     expect(card).toContain("actionKind === 'open_personal_training' && recommendationId.startsWith('diagnosis:')");
+    expect(card).not.toContain('accessibilityState={{ expanded }}');
+    expect(card).not.toContain('setExpanded((value) => !value)');
   });
 
-  it('uses dark foreground on lime and accessible 44px+ controls', () => {
-    expect(card).toContain("foreground={t.correctText ?? '#07110A'}");
-    expect(card).toContain('color={foreground}');
+  it('uses dark foreground on lime and accessible touch geometry', () => {
+    expect(card).toContain("accentText={t.correctText ?? '#07110A'}");
+    expect(card).toContain('color={accentText}');
     expect(card).toContain('accessibilityRole="button"');
     expect(card).toContain('accessibilityLabel=');
-    expect(card).toContain('accessibilityState={{ expanded }}');
-    expect(card).toContain('minHeight: 50');
-    expect(card).toContain('minHeight: 46');
+    expect(card).toContain('minHeight: 96');
+    expect(card).toContain('minHeight: 52');
   });
 
-  it('uses one-shot transform/opacity animation with focus and reduced-motion gates', () => {
-    expect(card).toContain('if (!active || reduceMotion || state?.status !== \'fresh\')');
-    expect(card).toContain('Animated.timing(sweep');
-    expect(card).toContain('duration: 260');
+  it('does not add a decorative sweep or a square embedded surface', () => {
+    expect(card).not.toContain('Animated.timing(sweep');
     expect(card).not.toContain('Animated.loop');
     expect(card).not.toContain('withRepeat(');
-    expect(card).toContain('transform: [{ translateX: sweepX }');
+    expect(card).not.toContain('radius={embedded ? 0 : 22}');
+    expect(card).not.toContain('<TonalSurface');
+    expect(card).toContain('if (embedded)');
   });
 });

@@ -2,8 +2,8 @@
 
 **Последнее обновление:** 2026-07-15, Europe/Dublin  
 **Статус цели:** active  
-**Текущая стадия:** планирование и нормативные спецификации завершены; реализация начата с security inventory; umbrella Phase 00 ещё не закрыта полностью  
-**Точный следующий крупный шаг:** закрыть замечание о незакреплённом Firebase CLI отдельным focused commit, повторить 351 + 60 security gates, затем выполнить umbrella Phase 01 / Task 1.1 — identity и versioning; после него строго 1.1A → 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3  
+**Текущая стадия:** планирование и нормативные спецификации завершены; Content Studio Task 0 и его Firebase CLI reproducibility follow-up закрыты локальными коммитами и проверены; начинается umbrella Phase 01
+**Точный следующий крупный шаг:** выполнить umbrella Phase 01 / Task 1.1 — identity и versioning; после него строго 1.1A → 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3
 **Назначение файла:** это живой центр управления между сессиями. Он не заменяет подробные спецификации и TDD-планы, а сообщает следующей сессии, что прочитать, что уже доказано, что не сделано и какой именно шаг выполнять дальше.
 
 ---
@@ -81,7 +81,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 
 | Фаза | Содержание и точный порядок | Gate / результат | Статус на 2026-07-15 |
 |---|---|---|---|
-| 00 | Security inventory, legacy direct-access classification, удаление broad-admin OR bypass, server-only V2 paths, canonical Body/Record/hash boundary | Emulator deny для будущих authoring paths; legacy compatibility; одинаковые canonical bytes/hash | **В работе.** Content Studio Task 0 закоммичен локально и зелёный; canonical artifact contracts ещё не реализованы; Firebase CLI не закреплён |
+| 00 | Security inventory, legacy direct-access classification, удаление broad-admin OR bypass, server-only V2 paths, canonical Body/Record/hash boundary | Emulator deny для будущих authoring paths; legacy compatibility; одинаковые canonical bytes/hash | **Security slice закрыт.** Content Studio Task 0 и reproducible local CLI зелёные; canonical artifact contracts продолжаются в Phase 01 |
 | 01 | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3 | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate | Не начато; ближайший код — umbrella Task 1.1 |
 | 02 | 2.1 pure reducer/gate policy → 2.2 Content Studio Task 4 → 2.3 account store/outbox → 2.4 server event → 2.5 Access Boost callable → 2.6 rules/emulator | Idempotent local-first progress; performance/access/evidence physically separated; offline/restart safe | Не начато |
 | 03 | 3.0 competitor reference-evidence pack + owner UI approval → 3.1 registry → 3.2 ActivityScaffold → 3.3 six shells → 3.4 thin routes/resume | One registry, one scaffold, six accessible shells; UI evidence approved before production work | Заблокировано до Task 5A/reference pack |
@@ -103,7 +103,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 
 | Task | Что создаётся | Зависимость / interlock | Статус |
 |---|---|---|---|
-| 0 | Direct-access inventory, explicit Firestore allows/denies, emulator matrix | До любых новых authoring collections/callables | **Локальный commit готов; один P2 follow-up открыт** |
+| 0 | Direct-access inventory, explicit Firestore allows/denies, emulator matrix | До любых новых authoring collections/callables | **Закрыто локально:** Task 0 + exact local CLI, 351 emulator и 61 root/static guards зелёные |
 | 1 | Shared authoring contracts, canonical JSON/hash, eight-entry DecisionRegistry | Umbrella Phase 01; выполнять только после GREEN umbrella Tasks 1.1–1.4 | Следующий внутри Content Studio после 1.1–1.4 |
 | 2 | Code-owned capability catalog и app-support manifests | После Task 1; umbrella Phase 01 | Не начато |
 | 3 | Immutable ModeTemplate versions, clone/deprecate/localization | После Task 2; umbrella Phase 01 | Не начато |
@@ -126,7 +126,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 ### 2.4 Точный ближайший исполнимый маршрут
 
 1. Подтвердить, что 14-path canonical package уже tracked в pilot worktree: docs-only commit source `0b94c9749`, cherry-pick commit `a09f57da2`; `git ls-files --error-unmatch ...` должен вернуть все 14 paths.
-2. Исправить воспроизводимость Task 0 отдельным focused change: закрепить `firebase-tools@15.15.0`, подтвердить вызов локального binary и повторить 351 emulator + 60 static tests.
+2. **Выполнено:** воспроизводимость Task 0 закрыта focused commits `abce49e1f` + `fd450e763`; exact local `firebase-tools@15.23.0`, clean `npm ci`, 351 emulator и 61 combined root/static tests подтверждены.
 3. Не смешивать с этим восстановление общего Functions build: девять текущих TypeScript ошибок доказанно существовали в parent commit; для них нужен отдельный baseline-fix task/commit.
 4. Выполнить umbrella Phase 01 / Task 1.1 test-first: identity grammar и schema versions без React/Firebase imports.
 5. Затем выполнить в утверждённом порядке 1.1A DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend conformance mirror.
@@ -308,6 +308,8 @@ Checkpoint — не восемнадцатая family и не отдельный
 - Branch: `codex/learning-v2-pilot`
 - Branch tip: этот файл сам входит в последующий handover commit, поэтому не хранит невозможный self-referential HEAD; следующая сессия обязана выполнить `git rev-parse HEAD` и записать результат в датированный session snapshot.
 - Task 0 implementation commit: `ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a`
+- Firebase CLI reproducibility commit: `abce49e1fb52fc5356cb0a0996f60fa4934b19d7`
+- Firebase CLI security-pin follow-up: `fd450e763d94b19b1bfcc995d797899fae3f3c9c`
 - Canonical docs/handover persistence commit in pilot: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
 - Source docs-only commit in main: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`
 - Parent/common base: `96d2568fbbe958a96e3c68156a7bcf1abce5d3a0`
@@ -326,8 +328,8 @@ Checkpoint — не восемнадцатая family и не отдельный
 | `firestore.rules` | Удалён global `isAdmin()` catch-all; сохранены минимальные explicit legacy operations; добавлены 18 explicit V2 deny roots и финальная deny boundary |
 | `functions/jest.config.js` | Emulator-only тест исключён из обычного Functions Jest discovery |
 | `functions/jest.emulator.config.js` | Dedicated config выбирает только emulator suite |
-| `functions/package.json` | Добавлена dedicated emulator-команда и testing dependencies; остаётся вопрос о `firebase-tools` |
-| `functions/package-lock.json` | Lock новых test dependencies |
+| `functions/package.json` | Dedicated emulator-команда и exact dev-only `firebase-tools@15.23.0` |
+| `functions/package-lock.json` | Воспроизводимое дерево testing dependencies и локального Firebase CLI |
 | `functions/src/content_studio/emulator/v2_authoring_rules.emulator.test.ts` | 32 server-only collections × operations, 78 legacy namespaces, nested/dynamic cases, matchmaking exception |
 | `tests/firestore_rules_security.test.ts` | Semantic rules guards против broad recursive, sibling/wrapper OR, duplicate/generic wildcard и formatting bypass |
 
@@ -349,9 +351,12 @@ npm --prefix functions run test:emulator:v2-authoring-rules
 
 npx jest --runTestsByPath tests/firestore_rules_security.test.ts --no-cache --runInBand
 # PASS: 1 suite, 60/60 tests
+
+npx jest --runTestsByPath tests/functions_firebase_cli_reproducibility_contract.test.ts tests/firestore_rules_security.test.ts --no-cache --runInBand
+# PASS: 2 suites, 61/61 tests
 ```
 
-Default Functions Jest discovery содержит 123 test paths и не подхватывает emulator suite. Dedicated config обнаруживает ровно один emulator suite. `PERMISSION_DENIED` warnings внутри emulator output ожидаемы для `assertFails`.
+Default Functions Jest discovery содержит 123 test paths и не подхватывает emulator suite. Dedicated config обнаруживает ровно один emulator suite. `PERMISSION_DENIED` warnings внутри emulator output ожидаемы для `assertFails`. Clean `npm ci` завершился exit 0, а `functions/node_modules/.bin/firebase.cmd --version` вернул `15.23.0`.
 
 ### 6.4 Что Task 0 не делал
 
@@ -369,22 +374,26 @@ Default Functions Jest discovery содержит 123 test paths и не под�
 - Первая compatibility-гипотеза для `matchmaking_queue` была слишком широкой: admin-get чужого документа неожиданно проходил. Матрица показала, что сохранять нужно только реально используемые update/delete/list операции; arbitrary get остался deny.
 - Два параллельных emulator run временно столкнулись на порту `8080`. Проверка процессов подтвердила test-process contention, а не дефект rules; повторный одиночный запуск прошёл 351/351 и не оставил listener/log process.
 - Full Functions compile остаётся RED по девяти pre-existing ошибкам. Сравнение parent/HEAD доказало, что Task 0 их не создавал; их нельзя «исправить» добавлением случайных untracked main-файлов без отдельного provenance audit.
-- Независимый review не нашёл новой функциональной регрессии в rules/test isolation, но последующий reproducibility audit открыл P2: `firebase` CLI берётся из глобального окружения. Поэтому Task 0 отмечен как локально функционально зелёный, но не полностью handoff-ready.
+- Независимый review не нашёл новой функциональной регрессии в rules/test isolation. Последующий reproducibility audit открыл P2: `firebase` CLI брался из глобального окружения. P2 закрыт двумя focused commits: первый закрепил обнаруженную `15.15.0`, второй test-first обновил pin до latest `15.23.0` после security review; оба раза повторены clean install, local binary и security gates.
 
 ---
 
 ## 7. Незакрытые замечания, blockers и честные ограничения
 
-### 7.1 P2: Firebase CLI не закреплён
+### 7.1 Закрытый P2 и ограниченное security-исключение Firebase CLI
 
-`functions/package.json` запускает команду `firebase`, но `firebase-tools` не присутствует в `devDependencies`. Локальный проход использовал глобальный:
+Исходный дефект закрыт: `functions/package.json`, lockfile и root contract закрепляют exact `firebase-tools@15.23.0`; npm script разрешает binary из `functions/node_modules/.bin`, clean `npm ci` и локальная версия проверены. RED первого контракта был `Expected 15.15.0 / Received undefined`; RED security follow-up — `Expected 15.23.0 / Received 15.15.0`. Финальные gates: emulator `351/351`, reproducibility + static `61/61`.
 
-```text
-C:\Users\badlo\AppData\Roaming\npm\firebase.ps1
-firebase-tools 15.15.0
-```
+Остаётся **time-bounded P2 security exception**:
 
-На чистой машине/CI после одного `npm ci --prefix functions` тест может упасть с `firebase: command not found`. Нельзя называть Task 0 полностью handoff-ready, пока это не исправлено и не проверено чистым resolution path.
+- scope: только devDependency Firebase CLI и local rules-emulator workflow; пакет не импортируется production Functions runtime и не входит в мобильный клиент;
+- exact pin: latest на момент проверки `15.23.0`, с поддержкой Node 20/22/24;
+- известный остаток: `npm audit` всё ещё агрегирует moderate transitive paths через `@google-cloud/pubsub`/`@opentelemetry/core` и `gaxios`/`uuid`; общий репозиторный Functions audit остаётся `19` (`1 low / 15 moderate / 3 high`) и включает отдельные pre-existing production dependencies;
+- npm предлагает semver-major downgrade Firebase CLI до `14.23.0`, а не безопасное обновление latest; автоматически применять его нельзя;
+- owner: `build/security`;
+- review-by: **2026-08-15** или раньше при новом `firebase-tools` release/advisory;
+- follow-up: отдельная dependency-security задача должна перепроверить latest CLI и разнести dev-only и production advisory paths; не смешивать её с Learning V2 contracts;
+- запрещено запускать `npm audit fix`, менять major/downgрейдить CLI или обновлять lock «для очистки отчёта» без повторных clean `npm ci`, local version, emulator `351/351` и root/static `61/61` gates.
 
 ### 7.2 Общий Functions build красный по pre-existing причинам
 
@@ -497,22 +506,22 @@ npx jest --runTestsByPath tests/learning_v2_identity_contract.test.ts --no-cache
 Ожидаемый RED: tests загружаются, но validators/schema registry отсутствуют.  
 Ожидаемый GREEN: suite PASS; documented identity grammar одинаково пригодна для client fixtures, Admin preview и backend tests.
 
-### 8.5 Immediate prerequisite: закрепить Firebase CLI
+### 8.5 Выполненный prerequisite: воспроизводимый Firebase CLI
 
-В pilot worktree выполнить отдельным focused change:
+Prerequisite закрыт commits `abce49e1f` и `fd450e763`. Фактически выполненные команды:
 
 ```powershell
 Push-Location functions
-npm install --save-dev --save-exact firebase-tools@15.15.0
+npm install --save-dev --save-exact firebase-tools@15.23.0
 git diff -- package.json package-lock.json
 npm ci
 .\node_modules\.bin\firebase.cmd --version
 npm run test:emulator:v2-authoring-rules
 Pop-Location
-npx jest --runTestsByPath tests/firestore_rules_security.test.ts --no-cache --runInBand
+npx jest --runTestsByPath tests/functions_firebase_cli_reproducibility_contract.test.ts tests/firestore_rules_security.test.ts --no-cache --runInBand
 ```
 
-Ожидается: diff содержит только exact devDependency/lock изменения, `npm ci` с нуля восстанавливает dependency tree, local binary печатает `15.15.0`, emulator suite даёт 351/351, static suite — 60/60. Перед изменением проверить текущий `functions/package.json`, потому что в грязном main этот файл имеет несвязанные изменения; работать в pilot worktree. Если `npm ci` падает, reproducibility task остаётся RED и к Task 1.1 переходить нельзя.
+Получено: diff содержит manifest/lock/focused contract, `npm ci` с нуля восстанавливает dependency tree, local binary печатает `15.23.0`, emulator suite даёт 351/351, combined root suites — 61/61. Остаточное dev-only audit-исключение и запрет автоматического downgrade описаны в §7.1; они не блокируют pure Task 1.1.
 
 ### 8.6 Следующие contract tasks до Content Studio
 
@@ -653,8 +662,9 @@ docs/v2/HANDOVER.md, docs/v2/README.md и оба плана 2026-07-14. Не м�
 C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot, branch codex/learning-v2-pilot,
 Определи текущий HEAD через git rev-parse HEAD; обязательная история содержит Task 0
 ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a и canonical package a09f57da2d2442d114202bb3d52bf58abe917bb1.
-Канонические 14 paths уже tracked. Сначала закрой P2 firebase-tools, затем выполни
-umbrella Phase 01 / Task 1.1 строго test-first: identity grammar и schema versions без
+Канонические 14 paths уже tracked. Firebase CLI P2 закрыт commits abce49e1f + fd450e763;
+не меняй pin без 351+61 gates. Выполни umbrella Phase 01 / Task 1.1 строго test-first:
+identity grammar и schema versions без
 React/Firebase. Затем выполняй 1.1A → 1.2 → 1.3 → 1.4 и только после них dedicated
 Content Studio Tasks 1–3. Не начинай UI и не удаляй legacy. После каждого GREEN и
 независимой проверки обновляй мастер-хендовер всеми файлами, командами, counts,
@@ -673,8 +683,8 @@ commit и exact dependency-aware next task.
 - performance/access/purchased access/evidence физически разделены;
 - Admin authoring only over code-owned kernels and immutable exact refs;
 - Task 0 security commit существует только локально в отдельном clean worktree;
-- 351 emulator и 60 static tests зелёные;
-- firebase-tools pin и baseline Functions build остаются открыты;
+- 351 emulator и 61 combined reproducibility/static tests зелёные;
+- firebase-tools pin закрыт на latest exact `15.23.0`; time-bounded dev-only audit exception описан в §7.1; общий baseline Functions build остаётся открытым;
 - все 11 V2 docs, оба плана и AGENTS protocol сохранены docs-only commit и присутствуют в clean pilot worktree;
 - exact next implementation — umbrella Phase 01 / Task 1.1 identity and versioning; Content Studio Task 1 идёт только после 1.1A–1.4;
 - UI, mass generation, production rollout и legacy retirement сейчас запрещены порядком зависимостей.

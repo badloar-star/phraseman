@@ -179,6 +179,35 @@ Branches `youtube-final-integration`, `youtube-analytics-integration-result`, `s
 7. Сформировать archive manifest и доказать, что studio, gradients, daily first tap, weekly/lessons/league/paywall assets реально попали в EAS archive.
 8. Поднять version/build до `1.5.62 (102)`, запустить Android+iOS одновременно; iOS autosubmit выполнять только из проверенного build ID.
 
+## Результат интеграции после аудита
+
+Каноническая ветка нового релиза: `codex/release-integrated-build-20260715`. Она создана из safety snapshot актуального мобильного workspace, а не из ошибочной release-ветки `1.5.61`.
+
+В интеграцию включены и повторно проверены:
+
+- auth/stable-link/account-delete контракты без клиентских Firestore-записей identity;
+- очистка account-local TTL лиги при смене аккаунта;
+- чтение, отметка и удаление Help Board уведомлений через подтверждённую server-side связь `auth_links`;
+- fallback YouTube на известный канал при невалидном/пустом Remote Config feed и полный governed playback analytics;
+- название `Студия`, отсутствие подписи предпросмотра и shard-цена для всех видимых некупленных аватаров и аур;
+- новые глобальные theme/cinema градиенты;
+- адаптивная высота заданий дня, полный текст, визуальная реакция на удержание и навигация с первого нажатия;
+- lessons 1–32 remediation, phrase-audio guards, weekly/soft-upsell/paywall интеграция и verified stats insights;
+- точная soft-upsell аналитика по ключу `(mode, impression_id)` без смешивания production/test;
+- privacy-safe агрегаты времени ответа Арены без UID/session identity.
+
+Дополнительно найден и устранён второй дефект исходных веток: один soft-upsell commit ссылался на отсутствующие SQL CTE/переменные, а `functions/src/index.ts` экспортировал незакоммиченные Content Factory модули. Полная реализация soft-upsell восстановлена из завершённой параллельной ветки; несуществующие Content Factory экспорты исключены из этого релизного контура. Admin V2/Content Factory не публикуются вместе с мобильным релизом.
+
+Проверки после интеграции:
+
+- критический auth/account/league/Help Board/YouTube/customization контур: 18 suites, 238 tests;
+- stats UI/client: 9 suites, 101 test; сервер verified insights: 44 tests;
+- daily tasks render: 34 tests; Studio/paid cosmetics/theme/daily contracts также зелёные;
+- Cloud Functions TypeScript: без ошибок; функции analytics/stats/arena: 57 tests;
+- mobile-only strict TypeScript: без ошибок.
+
+Публикация Firestore rules, точечный deploy `statsInsightsGenerate`, version/build bump и EAS build IDs фиксируются отдельным финальным дополнением после фактического выполнения.
+
 ## Безопасность
 
 - `functions/.env.phraseman-ea0b3` отслеживается Git и сейчас изменён. Секреты не должны находиться в tracked env-файле; содержимое в этот отчёт не копировалось.

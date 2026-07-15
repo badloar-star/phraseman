@@ -1073,6 +1073,140 @@ daily_kpi_rows AS (
   FROM base
   GROUP BY local_date
 ),
+soft_chain_events AS (
+  SELECT * FROM base
+  WHERE soft_upsell_impression_id IS NOT NULL
+    AND soft_upsell_mode IN ('production', 'test')
+    AND ((soft_upsell_trigger = 'first_lesson' AND soft_upsell_context = 'first_lesson_success')
+      OR (soft_upsell_trigger = 'free_lessons_complete' AND soft_upsell_context = 'free_lessons_complete')
+      OR (soft_upsell_trigger = 'weekly_review' AND soft_upsell_context = 'weekly_review')
+      OR (soft_upsell_trigger = 'second_ai_dialogue' AND soft_upsell_context = 'dialog_repeat_success')
+      OR (soft_upsell_trigger = 'streak_milestone' AND soft_upsell_context = 'streak_milestone')
+      OR (soft_upsell_trigger = 'repeated_training' AND soft_upsell_context = 'trainer_repeat_success'))
+),
+valid_soft_chains AS (
+  SELECT soft_upsell_mode AS mode, soft_upsell_impression_id AS impression_id
+  FROM base
+  WHERE soft_upsell_impression_id IS NOT NULL
+  GROUP BY mode, impression_id
+  HAVING mode IN ('production', 'test')
+    AND COUNTIF((soft_upsell_trigger = 'first_lesson' AND soft_upsell_context = 'first_lesson_success')
+      OR (soft_upsell_trigger = 'free_lessons_complete' AND soft_upsell_context = 'free_lessons_complete')
+      OR (soft_upsell_trigger = 'weekly_review' AND soft_upsell_context = 'weekly_review')
+      OR (soft_upsell_trigger = 'second_ai_dialogue' AND soft_upsell_context = 'dialog_repeat_success')
+      OR (soft_upsell_trigger = 'streak_milestone' AND soft_upsell_context = 'streak_milestone')
+      OR (soft_upsell_trigger = 'repeated_training' AND soft_upsell_context = 'trainer_repeat_success')) = COUNT(*)
+    AND COUNT(DISTINCT CONCAT(soft_upsell_trigger, '|', soft_upsell_context)) = 1
+),
+soft_chain_facts AS (
+  SELECT
+    soft_upsell_mode AS mode,
+    soft_upsell_trigger AS trigger,
+    soft_upsell_impression_id AS impression_id,
+    COUNTIF(event_name = 'soft_upsell_eligible') > 0 AS eligible,
+    COUNTIF(event_name = 'soft_upsell_impression') > 0 AS impressed,
+    COUNTIF(event_name = 'soft_upsell_cta') > 0 AS soft_cta,
+    COUNTIF(event_name = 'soft_upsell_dismiss') > 0 AS dismissed,
+    COUNTIF(event_name = 'paywall_shown') > 0 AS paywall_shown,
+    COUNTIF(event_name = 'paywall_cta_click') > 0 AS paywall_cta,
+    COUNTIF(event_name = 'purchase_started') > 0 AS purchase_started,
+    COUNTIF(event_name = 'purchase_pending') > 0 AS purchase_pending,
+    COUNTIF(event_name = 'purchase_completed') > 0 AS purchased,
+    COUNTIF(event_name = 'trial_started') > 0 AS trial_started,
+    COUNTIF(event_name = 'purchase_completed' AND activation_type = 'paid') > 0 AS paid_activation,
+    COUNTIF(event_name = 'paywall_plan_select' AND paywall_plan = 'monthly') > 0 AS selected_monthly,
+    COUNTIF(event_name = 'paywall_plan_select' AND paywall_plan = 'yearly') > 0 AS selected_yearly,
+    COUNTIF(event_name = 'paywall_plan_select' AND paywall_plan = 'lifetime') > 0 AS selected_lifetime,
+    COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'monthly') > 0 AS monthly_activation,
+    COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'yearly') > 0 AS yearly_activation,
+    COUNTIF(event_name = 'purchase_completed' AND paywall_plan = 'lifetime') > 0 AS lifetime_activation,
+    COUNTIF(event_name = 'purchase_failed') > 0 AS failed,
+    COUNTIF(event_name = 'purchase_cancelled') > 0 AS cancelled,
+    COUNTIF(event_name = 'paywall_close' AND close_reason = 'close') > 0 AS closed,
+    COUNTIF((event_name = 'paywall_close' AND close_reason = 'continue_free') OR event_name = 'paywall_continue_free') > 0 AS continued_free,
+    MIN(IF(event_name = 'soft_upsell_impression', event_timestamp, NULL)) AS impression_at,
+    MIN(IF(event_name = 'soft_upsell_cta', event_timestamp, NULL)) AS soft_cta_at,
+    MIN(IF(event_name IN ('purchase_completed', 'purchase_pending', 'purchase_failed', 'purchase_cancelled'), event_timestamp, NULL)) AS purchase_result_at
+  FROM soft_chain_events
+  INNER JOIN valid_soft_chains valid
+    ON valid.mode = soft_upsell_mode AND valid.impression_id = soft_upsell_impression_id
+  GROUP BY mode, trigger, impression_id
+),
+soft_eligibility_aggregates AS (
+  SELECT
+    soft_upsell_mode AS mode,
+    soft_upsell_trigger AS trigger,
+    COUNT(*) AS eligible_events,
+    COUNT(DISTINCT user_pseudo_id) AS eligible_app_instances
+  FROM soft_chain_events
+  INNER JOIN valid_soft_chains valid
+    ON valid.mode = soft_upsell_mode AND valid.impression_id = soft_upsell_impression_id
+  WHERE event_name = 'soft_upsell_eligible'
+  GROUP BY mode, trigger
+),
+soft_rows AS (
+  SELECT 'soft_upsell' AS row_kind, TO_JSON_STRING(STRUCT(
+    mode,
+    trigger,
+    COUNTIF(eligible) AS eligible_chains,
+    IFNULL(ANY_VALUE(eligibility.eligible_events), 0) AS eligible_events,
+    IFNULL(ANY_VALUE(eligibility.eligible_app_instances), 0) AS eligible_app_instances,
+    COUNTIF(impressed) AS impressions,
+    COUNTIF(soft_cta) AS soft_cta_clicks,
+    COUNTIF(dismissed) AS dismissals,
+    COUNTIF(paywall_shown) AS paywall_shows,
+    COUNTIF(paywall_cta) AS paywall_cta_clicks,
+    COUNTIF(purchase_started) AS purchase_starts,
+    COUNTIF(purchase_pending) AS pending_purchases,
+    COUNTIF(purchased) AS purchases,
+    COUNTIF(trial_started) AS trials,
+    COUNTIF(paid_activation) AS paid_activations,
+    COUNTIF(selected_monthly) AS monthly_selections,
+    COUNTIF(selected_yearly) AS yearly_selections,
+    COUNTIF(selected_lifetime) AS lifetime_selections,
+    COUNTIF(monthly_activation) AS monthly_activations,
+    COUNTIF(yearly_activation) AS yearly_activations,
+    COUNTIF(lifetime_activation) AS lifetime_activations,
+    COUNTIF(failed) AS failures,
+    COUNTIF(cancelled) AS cancellations,
+    COUNTIF(closed) AS closes,
+    COUNTIF(continued_free) AS continue_free,
+    SAFE_DIVIDE(COUNTIF(soft_cta), COUNTIF(impressed)) AS soft_cta_rate,
+    SAFE_DIVIDE(COUNTIF(impressed), COUNTIF(eligible)) AS eligible_to_impression_rate,
+    SAFE_DIVIDE(COUNTIF(dismissed), COUNTIF(impressed)) AS dismiss_rate,
+    SAFE_DIVIDE(COUNTIF(paywall_shown), COUNTIF(impressed)) AS paywall_show_rate,
+    SAFE_DIVIDE(COUNTIF(paywall_shown), COUNTIF(soft_cta)) AS paywall_reach_rate,
+    SAFE_DIVIDE(COUNTIF(trial_started), COUNTIF(impressed)) AS trial_rate,
+    SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(impressed)) AS purchase_rate,
+    SAFE_DIVIDE(COUNTIF(purchased), COUNTIF(soft_cta)) AS cta_to_purchase_rate,
+    SAFE_DIVIDE(COUNTIF(closed), COUNTIF(paywall_shown)) AS paywall_close_rate,
+    SAFE_DIVIDE(COUNTIF(continued_free), COUNTIF(paywall_shown)) AS continue_free_rate,
+    APPROX_QUANTILES(IF(soft_cta_at >= impression_at, (soft_cta_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_cta_ms,
+    APPROX_QUANTILES(IF(purchase_result_at >= impression_at, (purchase_result_at - impression_at) / 1000, NULL), 100)[SAFE_OFFSET(50)] AS median_impression_to_result_ms
+  )) AS payload
+  FROM soft_chain_facts
+  LEFT JOIN soft_eligibility_aggregates eligibility USING (mode, trigger)
+  GROUP BY mode, trigger
+),
+soft_quality_row AS (
+  SELECT 'soft_quality' AS row_kind, TO_JSON_STRING(STRUCT(
+    (SELECT COUNT(*) FROM (
+      SELECT soft_upsell_mode, soft_upsell_impression_id FROM base
+      WHERE soft_upsell_impression_id IS NOT NULL
+      GROUP BY soft_upsell_mode, soft_upsell_impression_id
+      HAVING COUNT(DISTINCT CONCAT(IFNULL(soft_upsell_trigger, ''), '|', IFNULL(soft_upsell_context, ''))) > 1
+    )) AS conflicting_chain_ids,
+    (SELECT COUNT(*) FROM (
+      SELECT soft_upsell_mode, soft_upsell_impression_id FROM base
+      WHERE soft_upsell_impression_id IS NOT NULL
+      GROUP BY soft_upsell_mode, soft_upsell_impression_id
+    )) - (SELECT COUNT(*) FROM valid_soft_chains) AS rejected_chain_ids,
+    COUNTIF(soft_cta AND NOT impressed) AS cta_without_impression,
+    COUNTIF(paywall_shown AND NOT soft_cta) AS paywall_without_soft_cta,
+    COUNTIF((purchased OR purchase_pending OR failed OR cancelled) AND NOT purchase_started) AS outcome_without_purchase_start,
+    COUNTIF(impressed AND NOT soft_cta AND NOT dismissed) AS partial_open_chains
+  )) AS payload FROM soft_chain_facts
+),
 quality_row AS (
   SELECT 'quality' AS row_kind, TO_JSON_STRING(STRUCT(
     COUNTIF(event_name = 'product_screen_view') AS screen_views,
@@ -1083,6 +1217,8 @@ quality_row AS (
     ) AS unknown_screen_rate,
     COUNTIF((STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND event_id IS NULL) AS missing_event_ids,
     COUNTIF((STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND session_id IS NULL) AS missing_session_ids,
+    COUNTIF((STARTS_WITH(event_name, 'soft_upsell_') OR soft_upsell_impression_id IS NOT NULL) AND event_id IS NULL) AS missing_soft_event_ids,
+    COUNTIF(soft_upsell_impression_id IS NOT NULL AND soft_upsell_mode NOT IN ('production', 'test')) AS invalid_soft_modes,
     (SELECT COUNTIF(duplicate_rank > 1) FROM raw_base WHERE STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AS duplicate_events,
     (SELECT COUNTIF((STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND IFNULL(schema_version, -1) != 1) FROM raw_base) AS invalid_schema_events,
     COUNT(DISTINCT IF(event_name = 'product_session_start', session_id, NULL)) AS sessions,
@@ -1340,6 +1476,7 @@ export const adminProductAnalytics = onCall({
   const experimentExposures: Record<string, unknown>[] = [];
   const releaseAdoption: Record<string, unknown>[] = [];
   const operationFailures: Record<string, unknown>[] = [];
+  const softUpsells: Record<'production' | 'test', Record<string, unknown>[]> = { production: [], test: [] };
   let sessionSummary: Record<string, unknown> = {};
   let learningSummary: Record<string, unknown> = {};
   let retentionSummary: Record<string, unknown> = {};
@@ -1347,6 +1484,7 @@ export const adminProductAnalytics = onCall({
   let activationSummary: Record<string, unknown> = {};
   let reviewSummary: Record<string, unknown> = {};
   let reviewSessionSummary: Record<string, unknown> = {};
+  let softQuality: Record<string, unknown> = {};
   let quality: Record<string, unknown> = exportPending
     ? { export_status: 'waiting_for_first_daily_export' }
     : {};
@@ -1491,6 +1629,11 @@ export const adminProductAnalytics = onCall({
       anrRate: 'unavailable_no_crashlytics_aggregate_export',
       nativeColdStart: 'unavailable_no_native_performance_export',
       automaticHealthyStatus: false,
+    },
+    softUpsells: {
+      production: softUpsells.production.sort((a, b) => Number(b.impressions ?? 0) - Number(a.impressions ?? 0)),
+      test: softUpsells.test.sort((a, b) => Number(b.impressions ?? 0) - Number(a.impressions ?? 0)),
+      quality: { ...softQuality, attribution: 'exact_mode_and_impression_id', production_test_isolated: true },
     },
     quality,
   };

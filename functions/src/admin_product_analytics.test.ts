@@ -1,4 +1,5 @@
 import {
+  buildProductAnalyticsAggregateQuery,
   buildProductAnalyticsPurchaseFailureQuery,
   clampProductAnalyticsDays,
   isAnalyticsExportPendingError,
@@ -48,7 +49,7 @@ describe('admin product analytics input contract', () => {
   });
 
   it('keeps the same event id distinct across production and test soft-upsell modes', () => {
-    const query = queryText('`project.dataset.events_*`');
+    const query = buildProductAnalyticsAggregateQuery('`project.dataset.events_*`');
     const duplicatePartition = query.match(/ROW_NUMBER\(\) OVER \(PARTITION BY([\s\S]*?)ORDER BY event_timestamp\)/)?.[1];
     expect(duplicatePartition).toContain("key = 'event_id'");
     expect(duplicatePartition).toContain("key = 'soft_upsell_mode'");

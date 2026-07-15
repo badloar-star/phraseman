@@ -111,9 +111,13 @@ describe('OpenAI runtime cost controls', () => {
 
     expect(premiumDialog).toContain('process.env.OPENAI_DIALOG_MODEL');
     expect(premiumDialog).toContain('resolveConfiguredDialogModel');
-    expect(premiumDialog).toContain('const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);');
     expect(premiumDialog).toContain('resolveConfiguredDialogQuota');
-    expect(premiumDialog).toContain('const dialogQuota = await resolveConfiguredDialogQuota(db);');
+    expect(premiumDialog).toMatch(
+      /const \[dialogModel, dialogQuota,[\s\S]*?\] = await Promise\.all\(\[[\s\S]*?resolveConfiguredDialogModel\(db, process\.env\.OPENAI_DIALOG_MODEL\),[\s\S]*?resolveConfiguredDialogQuota\(db\),[\s\S]*?\]\);/,
+    );
+    expect(premiumDialog.indexOf('resolveConfiguredDialogQuota(db)')).toBeLessThan(
+      premiumDialog.indexOf('await fetch(OPENAI_CHAT_URL'),
+    );
     expect(premiumDialog).toContain('dialogQuota.freeDailyReplies');
     expect(premiumDialog).toContain('dialogQuota.premiumDailyReplies');
     expect(premiumDialog).toContain('model: dialogModel');
@@ -176,23 +180,14 @@ describe('OpenAI runtime cost controls', () => {
     expect(read('tools/generate_chains_unique_explanations.py')).not.toContain('OPENAI_TTS_API_KEY');
   });
 
-  test('admin v2 has a read-only OpenAI budget dashboard backed by billing collections', () => {
-    const adminHtml = read('admin/index.html');
+  test('admin v2 has a read-only OpenAI budget loader backed by all billing collections', () => {
     const adminFirebase = read('admin/v2/scripts/admin-firebase.js');
     const adminCore = read('admin/v2/scripts/admin-core.js');
     const adminRouter = read('admin/v2/scripts/admin-router.js');
-    const legacyAdmin = read('admin/legacy/index.html');
     const budgetFn = read('functions/src/openai_budget_dashboard.ts');
 
     expect(adminRouter).toContain("'openai-budget': 'diagnostics'");
     expect(adminCore).toContain("'load-openai-budget'");
-    expect(adminHtml).toContain('id="openAiBudgetTitle"');
-    expect(adminHtml).toContain('data-action="load-openai-budget"');
-    expect(adminHtml).toContain('id="openAiBudgetKpis"');
-    expect(adminHtml).toContain('id="openAiBudgetFeatureList"');
-    expect(adminHtml).toContain('id="openAiBudgetModelList"');
-    expect(adminHtml).toContain('id="openAiBudgetContractList"');
-    expect(adminHtml).toContain('OpenAI estimated month');
     expect(adminFirebase).toContain("const functionsUs = getFunctions(app, 'us-central1')");
     expect(adminFirebase).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
     expect(adminFirebase).toContain('function loadOpenAiBudgetDashboard');
@@ -206,9 +201,6 @@ describe('OpenAI runtime cost controls', () => {
     expect(adminFirebase).not.toContain('collection(db, "weekly_review_billing"');
     expect(adminFirebase).not.toContain("collection(db, 'stats_insights_billing'");
     expect(adminFirebase).not.toContain('collection(db, "stats_insights_billing"');
-    expect(legacyAdmin).toContain('id="tab-openai-budget"');
-    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
-    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
     expect(budgetFn).toContain("request.auth?.token?.admin");
     // Дашборд должен покрывать ВСЕ billing-коллекции проекта (раньше было 4 из 11,
     // из-за чего суммарная цифра недосчитывала >60% трат). Проверяем каждую.

@@ -1,0 +1,212 @@
+import { createHash } from 'node:crypto';
+
+export const ARENA_TIMING_COLLECTION = 'arena_timing_daily';
+export const ARENA_TIMING_ROLLUP_COLLECTION = 'arena_timing_daily_rollups';
+export const ARENA_AUTHORITATIVE_QUESTION_TIMEOUT_MS = 40_000;
+export const ARENA_TIMING_MIN_SAMPLE = 200;
+export const ARENA_TIMING_BUCKETS_MS = Object.freeze([1_000, 2_000, 3_000, 5_000, 8_000, 12_000, 20_000, 40_000]);
+
+export type ArenaDifficulty = 'easy' | 'medium' | 'hard' | 'unknown';
+export type ArenaDeviceClass = 'phone' | 'tablet' | 'web' | 'unknown';
+
+function normalizeDifficulty(value: unknown): ArenaDifficulty {
+  return ['easy', 'medium', 'hard'].includes(String(value))
+    ? String(value) as ArenaDifficulty
+    : 'unknown';
+}
+
+function normalizeDeviceClass(value: unknown): ArenaDeviceClass {
+  return ['phone', 'tablet', 'web'].includes(String(value))
+    ? String(value) as ArenaDeviceClass
+    : 'unknown';
+}
+
+function dayForTimestamp(nowMs: number): string {
+  return new Date(nowMs).toISOString().slice(0, 10);
+}
+
+export function arenaTimingItemHash(questionId: string): string {
+  return createHash('sha256').update(questionId).digest('hex');
+}
+
+export function arenaTimingDocumentId(input: {
+  questionId: string;
+  difficulty: unknown;
+  deviceClass: unknown;
+  nowMs: number;
+}): string {
+  return [
+    dayForTimestamp(input.nowMs),
+    arenaTimingItemHash(input.questionId).slice(0, 32),
+    normalizeDifficulty(input.difficulty),
+    normalizeDeviceClass(input.deviceClass),
+  ].join('_');
+}
+
+export function arenaTimingRollupDocumentId(input: {
+  questionId: string;
+  difficulty: unknown;
+  deviceClass: unknown;
+  nowMs: number;
+}): string {
+  const shard = Number.parseInt(arenaTimingItemHash(input.questionId).slice(0, 2), 16) % 2;
+  return `${dayForTimestamp(input.nowMs)}_${normalizeDifficulty(input.difficulty)}_${normalizeDeviceClass(input.deviceClass)}_s${shard}`;
+}
+
+export interface ArenaTimingAggregate {
+  readonly schemaVersion: 'arena-timing-v1';
+  readonly day: string;
+  readonly itemHash: string;
+  readonly difficulty: ArenaDifficulty;
+  readonly deviceClass: ArenaDeviceClass;
+  readonly sampleCount: number;
+  readonly serverObservedCount: number;
+  readonly deviceAttributedCount: number;
+  readonly correctCount: number;
+  readonly wrongCount: number;
+  readonly timeoutCount: number;
+  readonly totalTimeMs: number;
+  readonly histogram: Readonly<Record<string, number>>;
+  readonly updatedAtMs: number;
+}
+
+export function applyArenaTimingEvent(
+  current: unknown,
+  event: {
+    questionId: string;
+    difficulty: unknown;
+    deviceClass: unknown;
+    timeMs: number;
+    timingSource?: 'server_observed' | 'client_bounded';
+    isCorrect: boolean;
+    timedOut: boolean;
+    nowMs: number;
+  },
+): ArenaTimingAggregate {
+  if (!event.questionId || !Number.isFinite(event.timeMs)) {
+    throw new Error('arena_timing_event_invalid');
+  }
+
+  const prior = current && typeof current === 'object'
+    ? current as Partial<ArenaTimingAggregate>
+    : {};
+  const normalizedTime = Math.max(
+    0,
+    Math.min(ARENA_AUTHORITATIVE_QUESTION_TIMEOUT_MS, Math.round(event.timeMs)),
+  );
+  const bucket = ARENA_TIMING_BUCKETS_MS.find((limit) => normalizedTime <= limit)
+    ?? ARENA_AUTHORITATIVE_QUESTION_TIMEOUT_MS;
+  const histogram = { ...(prior.histogram ?? {}) };
+  histogram[String(bucket)] = Number(histogram[String(bucket)] ?? 0) + 1;
+  const deviceClass = normalizeDeviceClass(event.deviceClass);
+
+  return Object.freeze({
+    schemaVersion: 'arena-timing-v1',
+    day: dayForTimestamp(event.nowMs),
+    itemHash: arenaTimingItemHash(event.questionId),
+    difficulty: normalizeDifficulty(event.difficulty),
+    deviceClass,
+    sampleCount: Number(prior.sampleCount ?? 0) + 1,
+    serverObservedCount: Number(prior.serverObservedCount ?? 0) + (event.timingSource === 'client_bounded' ? 0 : 1),
+    deviceAttributedCount: Number(prior.deviceAttributedCount ?? 0) + (deviceClass === 'unknown' ? 0 : 1),
+    correctCount: Number(prior.correctCount ?? 0) + (event.isCorrect ? 1 : 0),
+    wrongCount: Number(prior.wrongCount ?? 0) + (!event.isCorrect && !event.timedOut ? 1 : 0),
+    timeoutCount: Number(prior.timeoutCount ?? 0) + (event.timedOut ? 1 : 0),
+    totalTimeMs: Number(prior.totalTimeMs ?? 0) + normalizedTime,
+    histogram: Object.freeze(histogram),
+    updatedAtMs: event.nowMs,
+  });
+}
+
+function percentile(
+  histogram: Readonly<Record<string, number>>,
+  sampleCount: number,
+  target: number,
+): number {
+  if (sampleCount < 1) return 0;
+  const rank = Math.ceil(sampleCount * target);
+  let seen = 0;
+  for (const bucket of ARENA_TIMING_BUCKETS_MS) {
+    seen += Number(histogram[String(bucket)] ?? 0);
+    if (seen >= rank) return bucket;
+  }
+  return ARENA_AUTHORITATIVE_QUESTION_TIMEOUT_MS;
+}
+
+function summarizeGroup(values: readonly ArenaTimingAggregate[]) {
+  const histogram: Record<string, number> = {};
+  let sampleCount = 0;
+  let serverObservedCount = 0;
+  let deviceAttributedCount = 0;
+  let correctCount = 0;
+  let wrongCount = 0;
+  let timeoutCount = 0;
+  let totalTimeMs = 0;
+
+  for (const value of values) {
+    sampleCount += value.sampleCount;
+    serverObservedCount += Number(value.serverObservedCount ?? 0);
+    deviceAttributedCount += Number(value.deviceAttributedCount ?? 0);
+    correctCount += value.correctCount;
+    wrongCount += value.wrongCount;
+    timeoutCount += value.timeoutCount;
+    totalTimeMs += value.totalTimeMs;
+    for (const [key, count] of Object.entries(value.histogram)) {
+      histogram[key] = (histogram[key] ?? 0) + Number(count);
+    }
+  }
+
+  const serverObservedRate = sampleCount ? serverObservedCount / sampleCount : 0;
+  const deviceAttributionRate = sampleCount ? deviceAttributedCount / sampleCount : 0;
+  return Object.freeze({
+    sampleCount,
+    serverObservedRate,
+    deviceAttributionRate,
+    p50Ms: percentile(histogram, sampleCount, 0.5),
+    p95Ms: percentile(histogram, sampleCount, 0.95),
+    averageMs: sampleCount ? Math.round(totalTimeMs / sampleCount) : 0,
+    timeoutRate: sampleCount ? timeoutCount / sampleCount : 0,
+    wrongAnswerRate: sampleCount ? wrongCount / sampleCount : 0,
+    correctRate: sampleCount ? correctCount / sampleCount : 0,
+    recommendationEligible: sampleCount >= ARENA_TIMING_MIN_SAMPLE && serverObservedRate >= 0.95,
+    minimumSample: ARENA_TIMING_MIN_SAMPLE,
+    histogram: Object.freeze(histogram),
+  });
+}
+
+export function summarizeArenaTiming(values: readonly ArenaTimingAggregate[], isPartial = false) {
+  const groups = new Map<string, ArenaTimingAggregate[]>();
+  for (const value of values) {
+    const key = `${value.difficulty}:${value.deviceClass}`;
+    groups.set(key, [...(groups.get(key) ?? []), value]);
+  }
+
+  const summary = summarizeGroup(values);
+  const deviceAttributionComplete = summary.deviceAttributionRate === 1;
+  return Object.freeze({
+    schemaVersion: 'arena-timing-summary-v1',
+    authoritativeQuestionTimeoutMs: ARENA_AUTHORITATIVE_QUESTION_TIMEOUT_MS,
+    automaticRuntimeChangeAllowed: false,
+    isPartial,
+    deviceAttributionComplete,
+    ...summary,
+    recommendationEligible: summary.recommendationEligible && !isPartial,
+    groups: Object.freeze(
+      [...groups.entries()]
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, rows]) => {
+          const group = summarizeGroup(rows);
+          return Object.freeze({
+            key,
+            difficulty: rows[0].difficulty,
+            deviceClass: rows[0].deviceClass,
+            ...group,
+            deviceRecommendationEligible: rows[0].deviceClass !== 'unknown'
+              && deviceAttributionComplete
+              && group.recommendationEligible
+              && !isPartial,
+          });
+        }),
+    ),
+  });
+}

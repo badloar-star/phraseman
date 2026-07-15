@@ -11,6 +11,13 @@ jest.mock('@expo/vector-icons', () => ({
     return <MockText {...props} testID={`ionicon-${name}`}>{name}</MockText>;
   },
 }));
+jest.mock('@expo/vector-icons/Ionicons', () => ({
+  __esModule: true,
+  default: ({ name, ...props }: { name: string }) => {
+    const { Text: MockText } = require('react-native');
+    return <MockText {...props} testID={`ionicon-${name}`}>{name}</MockText>;
+  },
+}));
 jest.mock('expo-image', () => ({
   Image: (props: any) => {
     const { Image: MockImage } = require('react-native');
@@ -55,9 +62,9 @@ jest.mock('../components/text-integrity/use_text_integrity_probe', () => ({
 }));
 let mockReduceMotionEnabled = true;
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => mockReduceMotionEnabled }));
-const mockOskolokImageForPackShards = jest.fn(() => ({ uri: 'survey-shard' }));
+const mockOskolokImageForPackShards = jest.fn((_reward: number, _themeMode: string) => ({ uri: 'survey-shard' }));
 jest.mock('../app/oskolok', () => ({
-  oskolokImageForPackShards: (...args: unknown[]) => mockOskolokImageForPackShards(...args),
+  oskolokImageForPackShards: (reward: number, themeMode: string) => mockOskolokImageForPackShards(reward, themeMode),
 }));
 
 import SurveyTaskCard from '../components/SurveyTaskCard';
@@ -178,8 +185,8 @@ test.each(['optimistic-reward', 'reconciled'] as const)(
 
 test('optimistic to reconciled rerender does not replay the entrance animation', async () => {
   mockReduceMotionEnabled = false;
-  const animation = { start: jest.fn(), stop: jest.fn() };
-  const timing = jest.spyOn(Animated, 'timing').mockReturnValue(animation as ReturnType<typeof Animated.timing>);
+  const animation = { start: jest.fn(), stop: jest.fn(), reset: jest.fn() };
+  const timing = jest.spyOn(Animated, 'timing').mockReturnValue(animation as unknown as ReturnType<typeof Animated.timing>);
   const props = {
     reward: 3,
     title: 'Dziękujemy',

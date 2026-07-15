@@ -1489,7 +1489,6 @@ export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoC
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { adminProductAnalytics } from './admin_product_analytics';
 export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
-export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminGetAnalyticsTrends } from './admin_analytics_trends';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
@@ -1505,12 +1504,8 @@ export {
   adminDeleteAppMessage,
   adminCleanupExpiredAppMessages,
 } from './admin_app_messages';
-export { adminCreateContentGenerationJob, adminListContentFactoryJobs, adminUpdateArenaConvergenceConfig } from './admin_content_factory';
-export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
-export { adminCreateContentStageBulkPlan } from './admin_content_stage_bulk';
-export { adminEditContentStageArtifact } from './admin_content_stage_edits';
-export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
-export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics, adminGetArenaConvergenceStatus } from './admin_content_factory_read';
+export { adminCreateContentGenerationJob, adminListContentFactoryJobs } from './admin_content_factory';
+export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';

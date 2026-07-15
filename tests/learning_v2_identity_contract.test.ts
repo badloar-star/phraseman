@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import ts from 'typescript';
 
 import {
   V2_IDENTITY_ERROR_CODES,
@@ -375,16 +376,99 @@ describe('Learning V2 schema version registry', () => {
   });
 });
 
-test('identity contracts stay pure and do not import React or Firebase', () => {
-  const contractsDirectory = path.join(process.cwd(), 'modules', 'learning-v2', 'contracts');
-  const source = ['identities.ts', 'schema_versions.ts']
-    .map((fileName) => fs.readFileSync(path.join(contractsDirectory, fileName), 'utf8'))
-    .join('\n');
+const collectModuleSpecifiers = (source: string): string[] => {
+  const sourceFile = ts.createSourceFile(
+    'learning-v2-purity-fixture.ts',
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS,
+  );
+  const moduleSpecifiers: string[] = [];
 
-  expect(source).not.toMatch(
-    /(?:from\s+|require\s*\(\s*)['"](?:react(?:[-/][^'"]*)?|@react-native[^'"]*)['"]/,
-  );
-  expect(source).not.toMatch(
-    /(?:from\s+|require\s*\(\s*)['"](?:firebase[^'"]*|@firebase[^'"]*|@react-native-firebase[^'"]*)['"]/,
-  );
+  const collectStringLiteral = (node: ts.Node | undefined): void => {
+    if (node && ts.isStringLiteralLike(node)) moduleSpecifiers.push(node.text);
+  };
+
+  const visit = (node: ts.Node): void => {
+    if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
+      collectStringLiteral(node.moduleSpecifier);
+    } else if (
+      ts.isImportEqualsDeclaration(node) &&
+      ts.isExternalModuleReference(node.moduleReference)
+    ) {
+      collectStringLiteral(node.moduleReference.expression);
+    } else if (ts.isCallExpression(node)) {
+      const callee = node.expression;
+      const isDynamicImport = callee.kind === ts.SyntaxKind.ImportKeyword;
+      const isRequire = ts.isIdentifier(callee) && callee.text === 'require';
+      const isRequireResolve =
+        ts.isPropertyAccessExpression(callee) &&
+        ts.isIdentifier(callee.expression) &&
+        callee.expression.text === 'require' &&
+        callee.name.text === 'resolve';
+      const isModuleRequire =
+        ts.isPropertyAccessExpression(callee) &&
+        ts.isIdentifier(callee.expression) &&
+        callee.expression.text === 'module' &&
+        callee.name.text === 'require';
+
+      if (isDynamicImport || isRequire || isRequireResolve || isModuleRequire) {
+        collectStringLiteral(node.arguments[0]);
+      }
+    }
+
+    ts.forEachChild(node, visit);
+  };
+
+  visit(sourceFile);
+  return moduleSpecifiers;
+};
+
+const isForbiddenLearningV2Module = (moduleSpecifier: string): boolean =>
+  moduleSpecifier === 'react' ||
+  moduleSpecifier.startsWith('react/') ||
+  moduleSpecifier.startsWith('react-') ||
+  moduleSpecifier === 'firebase' ||
+  moduleSpecifier.startsWith('firebase/') ||
+  moduleSpecifier.startsWith('firebase-') ||
+  moduleSpecifier.startsWith('@firebase/') ||
+  moduleSpecifier.startsWith('@react-native-firebase/');
+
+const hasForbiddenLearningV2Dependency = (source: string): boolean =>
+  collectModuleSpecifiers(source).some(isForbiddenLearningV2Module);
+
+describe('Learning V2 contract dependency purity guard', () => {
+  test.each([
+    ['import declaration', "import React from 'react';"],
+    ['side-effect import', "import 'firebase/app';"],
+    ['re-export declaration', "export * from /* boundary */ 'react/jsx-runtime';"],
+    ['import-equals external module', "import admin = require /* boundary */ ('firebase-admin');"],
+    ['dynamic import', "void import('firebase/functions');"],
+    ['require call', "const firestore = require('@firebase/firestore');"],
+    ['require.resolve call', "const adminPath = require.resolve('firebase-admin');"],
+    ['module.require call', "module.require('@react-native-firebase/firestore');"],
+  ])('detects a forbidden dependency in %s syntax', (_label, source) => {
+    expect(hasForbiddenLearningV2Dependency(source)).toBe(true);
+  });
+
+  test('does not flag benign internal module specifiers', () => {
+    const source = [
+      "import { parseCourseId } from './identities';",
+      "export * from '../shared/contracts';",
+      "void import('@/modules/local-runtime');",
+      "const adapter = require('@internal/firebase-adapter');",
+    ].join('\n');
+
+    expect(hasForbiddenLearningV2Dependency(source)).toBe(false);
+  });
+
+  test('keeps the actual identity contracts free of React and Firebase dependencies', () => {
+    const contractsDirectory = path.join(process.cwd(), 'modules', 'learning-v2', 'contracts');
+    const source = ['identities.ts', 'schema_versions.ts']
+      .map((fileName) => fs.readFileSync(path.join(contractsDirectory, fileName), 'utf8'))
+      .join('\n');
+
+    expect(hasForbiddenLearningV2Dependency(source)).toBe(false);
+  });
 });

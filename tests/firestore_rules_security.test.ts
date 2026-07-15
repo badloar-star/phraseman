@@ -12,6 +12,415 @@ import path from 'path';
 
 const rulesPath = path.join(process.cwd(), 'firestore.rules');
 
+const CONTENT_STUDIO_DIRECT_DENY_COLLECTIONS = [
+  'content_mode_templates',
+  'content_mode_template_draft_revisions',
+  'content_mode_template_versions',
+  'content_mode_template_lifecycle',
+  'content_season_drafts',
+  'content_season_revisions',
+  'content_season_lifecycle',
+  'content_episode_drafts',
+  'content_episode_revisions',
+  'content_episode_lifecycle',
+  'content_studio_review_queue',
+  'content_studio_localization_units',
+  'content_studio_review_receipts',
+  'content_studio_validation_receipts',
+  'content_studio_waivers',
+  'content_studio_preview_sessions',
+  'content_studio_preview_receipts',
+  'content_app_support_manifests',
+] as const;
+
+const CONTENT_STUDIO_CATCH_ALL_ONLY_COLLECTIONS = [
+  'content_factory_stages',
+  'content_factory_correction_events',
+  'content_factory_artifact_orphans',
+  'content_factory_releases',
+  'content_factory_catalog',
+  'content_factory_catalog_releases',
+  'content_factory_release_history',
+  'admin_command_operations',
+  'content_factory_jobs',
+  'content_factory_job_units',
+  'content_factory_job_reviews',
+  'content_factory_source_registry',
+  'content_factory_daily_budget',
+  'content_factory_budget_reservations',
+] as const;
+
+interface RootMatchBlock {
+  readonly pattern: string;
+  readonly normalizedPattern: string;
+  readonly block: string;
+  readonly index: number;
+}
+
+interface MatchDeclaration {
+  readonly pattern: string;
+  readonly index: number;
+  readonly depth: number;
+  readonly openingBraceIndex: number;
+}
+
+const EXPECTED_RECURSIVE_SUFFIX_RULES = new Map([
+  ['{**}/app_message_states/{*}', 'allow list: if isAdmin();'],
+  ['{**}/promo_redemptions/{*}', 'allow list: if isAdmin();'],
+]);
+const SEMANTIC_DOCUMENTS_CONTAINER_PATTERN = 'databases/{*}/documents';
+
+function normalizeCaptureNames(pattern: string): string {
+  return pattern
+    .replace(/\{[A-Za-z_][A-Za-z0-9_]*=\*\*\}/g, '{**}')
+    .replace(/\{[A-Za-z_][A-Za-z0-9_]*\}/g, '{*}');
+}
+
+function semanticDocumentsContainers(
+  declarations: readonly MatchDeclaration[],
+): MatchDeclaration[] {
+  return declarations.filter(
+    (declaration) =>
+      normalizeCaptureNames(declaration.pattern) === SEMANTIC_DOCUMENTS_CONTAINER_PATTERN,
+  );
+}
+
+function serviceLevelMatchDeclarations(
+  declarations: readonly MatchDeclaration[],
+): MatchDeclaration[] {
+  if (declarations.length === 0) return [];
+  const serviceLevelDepth = Math.min(...declarations.map((declaration) => declaration.depth));
+  return declarations.filter((declaration) => declaration.depth === serviceLevelDepth);
+}
+
+function maskCommentsAndStrings(source: string): string {
+  return source.replace(
+    /'(?:\\[\s\S]|[^'\\])*'|"(?:\\[\s\S]|[^"\\])*"|\/\/[^\r\n]*|\/\*[\s\S]*?\*\//g,
+    (token) => token.replace(/[^\r\n]/g, ' '),
+  );
+}
+
+function isRulesWhitespace(character: string | undefined): boolean {
+  return character !== undefined && /\s/.test(character);
+}
+
+function isRulesIdentifierCharacter(character: string | undefined): boolean {
+  return character !== undefined && /[A-Za-z0-9_]/.test(character);
+}
+
+function isRulesIdentifierStartCharacter(character: string | undefined): boolean {
+  return character !== undefined && /[A-Za-z_]/.test(character);
+}
+
+function skipRulesWhitespace(source: string, startIndex: number): number {
+  let index = startIndex;
+  while (isRulesWhitespace(source[index])) index += 1;
+  return index;
+}
+
+function captureAt(
+  structuralSource: string,
+  openingBraceIndex: number,
+): { readonly pattern: string; readonly endIndex: number } | null {
+  let cursor = skipRulesWhitespace(structuralSource, openingBraceIndex + 1);
+  if (!isRulesIdentifierStartCharacter(structuralSource[cursor])) return null;
+
+  const identifierStart = cursor;
+  cursor += 1;
+  while (isRulesIdentifierCharacter(structuralSource[cursor])) cursor += 1;
+  const identifier = structuralSource.slice(identifierStart, cursor);
+  cursor = skipRulesWhitespace(structuralSource, cursor);
+
+  if (structuralSource[cursor] === '}') {
+    return { pattern: `{${identifier}}`, endIndex: cursor + 1 };
+  }
+  if (structuralSource[cursor] !== '=') return null;
+
+  cursor = skipRulesWhitespace(structuralSource, cursor + 1);
+  if (structuralSource[cursor] !== '*' || structuralSource[cursor + 1] !== '*') return null;
+  cursor = skipRulesWhitespace(structuralSource, cursor + 2);
+  if (structuralSource[cursor] !== '}') return null;
+
+  return { pattern: `{${identifier}=**}`, endIndex: cursor + 1 };
+}
+
+function matchPathAt(
+  structuralSource: string,
+  leadingSlashIndex: number,
+): { readonly pattern: string; readonly openingBraceIndex: number } | null {
+  const segments: string[] = [];
+  let cursor = leadingSlashIndex + 1;
+
+  while (cursor < structuralSource.length) {
+    cursor = skipRulesWhitespace(structuralSource, cursor);
+    if (structuralSource[cursor] === '{') {
+      const capture = captureAt(structuralSource, cursor);
+      if (!capture) return null;
+      segments.push(capture.pattern);
+      cursor = capture.endIndex;
+    } else {
+      const segmentStart = cursor;
+      while (
+        cursor < structuralSource.length
+        && !isRulesWhitespace(structuralSource[cursor])
+        && !['/', '{', '}'].includes(structuralSource[cursor])
+      ) {
+        cursor += 1;
+      }
+      if (cursor === segmentStart) return null;
+      segments.push(structuralSource.slice(segmentStart, cursor));
+    }
+
+    cursor = skipRulesWhitespace(structuralSource, cursor);
+    if (structuralSource[cursor] === '/') {
+      cursor += 1;
+      continue;
+    }
+    if (structuralSource[cursor] === '{') {
+      return {
+        pattern: segments.join('/'),
+        openingBraceIndex: cursor,
+      };
+    }
+    return null;
+  }
+
+  return null;
+}
+
+function matchDeclarationAt(
+  structuralSource: string,
+  index: number,
+  depth: number,
+): MatchDeclaration | null {
+  const keyword = 'match';
+  if (!structuralSource.startsWith(keyword, index)) return null;
+  if (isRulesIdentifierCharacter(structuralSource[index - 1])) return null;
+
+  let cursor = index + keyword.length;
+  if (!isRulesWhitespace(structuralSource[cursor])) return null;
+  cursor = skipRulesWhitespace(structuralSource, cursor);
+  if (structuralSource[cursor] !== '/') return null;
+
+  const path = matchPathAt(structuralSource, cursor);
+  if (!path) return null;
+  return {
+    pattern: path.pattern,
+    index,
+    depth,
+    openingBraceIndex: path.openingBraceIndex,
+  };
+}
+
+function parseMatchDeclarations(structuralSource: string): MatchDeclaration[] {
+  const declarations: MatchDeclaration[] = [];
+  let depth = 0;
+
+  for (let index = 0; index < structuralSource.length; index += 1) {
+    const declaration = matchDeclarationAt(structuralSource, index, depth);
+    if (declaration) declarations.push(declaration);
+
+    if (structuralSource[index] === '{') depth += 1;
+    if (structuralSource[index] === '}') depth -= 1;
+  }
+
+  return declarations;
+}
+
+function matchBlockEnd(structuralSource: string, openingBraceIndex: number): number {
+  let depth = 0;
+
+  for (let index = openingBraceIndex; index < structuralSource.length; index += 1) {
+    if (structuralSource[index] === '{') depth += 1;
+    if (structuralSource[index] === '}') {
+      depth -= 1;
+      if (depth === 0) return index + 1;
+    }
+  }
+
+  return structuralSource.length;
+}
+
+function rootMatchBlocks(source: string): RootMatchBlock[] {
+  const structuralSource = maskCommentsAndStrings(source);
+  const declarations = parseMatchDeclarations(structuralSource);
+  const serviceLevelMatches = serviceLevelMatchDeclarations(declarations);
+  const documentsMatches = semanticDocumentsContainers(serviceLevelMatches);
+
+  return documentsMatches.flatMap((documentsMatch) => {
+    const documentsBlockEnd = matchBlockEnd(
+      structuralSource,
+      documentsMatch.openingBraceIndex,
+    );
+    const rootDepth = documentsMatch.depth + 1;
+
+    return declarations
+      .filter(
+        (declaration) =>
+          declaration.depth === rootDepth
+          && declaration.index > documentsMatch.openingBraceIndex
+          && declaration.index < documentsBlockEnd,
+      )
+      .map((declaration) => {
+        const end = matchBlockEnd(structuralSource, declaration.openingBraceIndex);
+
+        return {
+          pattern: declaration.pattern,
+          normalizedPattern: normalizeCaptureNames(declaration.pattern),
+          block: source.slice(declaration.index, end),
+          index: declaration.index,
+        };
+      });
+  });
+}
+
+function rootRecursiveMatchBlocks(source: string): RootMatchBlock[] {
+  return rootMatchBlocks(source).filter((match) => /\{[^{}\/=]+=\*\*\}/.test(match.pattern));
+}
+
+function canonicalAllowStatement(statement: string): string {
+  return maskCommentsAndStrings(statement).replace(/\s+/g, '');
+}
+
+function canonicalAllowStatements(block: string): string[] {
+  const structuralBlock = maskCommentsAndStrings(block);
+  return [...structuralBlock.matchAll(/\ballow\b[\s\S]*?;/g)].map((match) =>
+    canonicalAllowStatement(match[0]),
+  );
+}
+
+function hasOnlyAllowStatement(block: string, expectedAllow: string): boolean {
+  return canonicalAllowStatements(block).join('|') === canonicalAllowStatement(expectedAllow);
+}
+
+function isCanonicalNonRecursiveCapture(segment: string): boolean {
+  if (segment[0] !== '{' || segment[segment.length - 1] !== '}') return false;
+  const identifier = segment.slice(1, -1);
+  if (!isRulesIdentifierStartCharacter(identifier[0])) return false;
+  return [...identifier.slice(1)].every((character) =>
+    isRulesIdentifierCharacter(character),
+  );
+}
+
+function contentStudioRootGuardErrors(rootMatches: RootMatchBlock[]): string[] {
+  const errors: string[] = [];
+
+  for (const collection of CONTENT_STUDIO_DIRECT_DENY_COLLECTIONS) {
+    const matches = rootMatches.filter(
+      (match) => match.pattern.split('/')[0] === collection,
+    );
+    if (matches.length !== 1) {
+      errors.push(
+        `Expected exactly one direct deny root match for ${collection}, found ${matches.length}.`,
+      );
+      continue;
+    }
+
+    const [match] = matches;
+    const segments = match.pattern.split('/');
+    if (
+      segments.length !== 2
+      || segments[0] !== collection
+      || !isCanonicalNonRecursiveCapture(segments[1])
+    ) {
+      errors.push(
+        `Direct deny root match for ${collection} must have semantic shape ${collection}/{capture}.`,
+      );
+    }
+    if (!hasOnlyAllowStatement(match.block, 'allow read, write: if false;')) {
+      errors.push(
+        `Direct deny root match for ${collection} must contain only allow read, write: if false;.`,
+      );
+    }
+  }
+
+  for (const collection of CONTENT_STUDIO_CATCH_ALL_ONLY_COLLECTIONS) {
+    const matches = rootMatches.filter(
+      (match) => match.pattern.split('/')[0] === collection,
+    );
+    if (matches.length !== 0) {
+      errors.push(
+        `Expected no root match for catch-all-only ${collection}, found ${matches.length}.`,
+      );
+    }
+  }
+
+  return errors;
+}
+
+function rootAccessGuardErrors(source: string): string[] {
+  const errors: string[] = [];
+  const structuralSource = maskCommentsAndStrings(source);
+  const declarations = parseMatchDeclarations(structuralSource);
+  const serviceLevelMatches = serviceLevelMatchDeclarations(declarations);
+  const documentsMatches = semanticDocumentsContainers(serviceLevelMatches);
+
+  if (documentsMatches.length !== 1) {
+    errors.push(
+      `Expected exactly one semantic documents container, found ${documentsMatches.length}.`,
+    );
+  }
+  if (serviceLevelMatches.length !== 1) {
+    errors.push(
+      `Expected semantic documents container to be the only match declaration at service-level depth, found ${serviceLevelMatches.length}.`,
+    );
+  } else if (
+    documentsMatches.length !== 1
+    || serviceLevelMatches[0].index !== documentsMatches[0].index
+  ) {
+    errors.push('The only service-level match must be the semantic documents container.');
+  }
+
+  const rootMatches = rootMatchBlocks(source);
+  const recursiveMatches = rootMatches.filter((match) =>
+    /\{[^{}\/=]+=\*\*\}/.test(match.pattern),
+  );
+  const allowedPatterns = new Set(['{**}', ...EXPECTED_RECURSIVE_SUFFIX_RULES.keys()]);
+
+  const rootLeadingCaptureMatches = rootMatches.filter((match) => match.pattern.startsWith('{'));
+  for (const match of rootLeadingCaptureMatches) {
+    if (!allowedPatterns.has(match.normalizedPattern)) {
+      errors.push(`Unexpected root-leading capture pattern: ${match.normalizedPattern}.`);
+    }
+  }
+
+  const pathWideMatches = recursiveMatches.filter(
+    (match) => match.normalizedPattern === '{**}',
+  );
+  if (pathWideMatches.length !== 1) {
+    errors.push(
+      `Expected exactly one path-wide recursive wildcard, found ${pathWideMatches.length}.`,
+    );
+  } else {
+    const [pathWide] = pathWideMatches;
+    if (!hasOnlyAllowStatement(pathWide.block, 'allow read, write: if false;')) {
+      errors.push('Path-wide recursive wildcard must contain only the deny-all allow line.');
+    }
+    if (pathWide.block.includes('isAdmin()') || pathWide.block.includes('request.auth')) {
+      errors.push('Path-wide recursive wildcard must not contain admin/auth grants.');
+    }
+  }
+
+  for (const [pattern, expectedAllow] of EXPECTED_RECURSIVE_SUFFIX_RULES) {
+    const matches = recursiveMatches.filter((match) => match.normalizedPattern === pattern);
+    if (matches.length !== 1) {
+      errors.push(`Expected exactly one recursive suffix ${pattern}, found ${matches.length}.`);
+      continue;
+    }
+    if (!hasOnlyAllowStatement(matches[0].block, expectedAllow)) {
+      errors.push(`${pattern} must contain only: ${expectedAllow}`);
+    }
+  }
+
+  errors.push(...contentStudioRootGuardErrors(rootMatches));
+
+  if (rootMatches[rootMatches.length - 1]?.normalizedPattern !== '{**}') {
+    errors.push('The deny-only path-wide recursive wildcard must be the final root match.');
+  }
+
+  return errors;
+}
+
 describe('firestore.rules security baseline', () => {
   const rules = readFileSync(rulesPath, 'utf8');
 
@@ -73,7 +482,7 @@ describe('firestore.rules security baseline', () => {
     expect(rules).not.toContain('allow delete: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
     // update тоже НЕ должен получать missing-doc послабление (создание идёт через
     // allow create + newUserDocOwnerMatchesAuth, который требует firebaseAuthUid==auth.uid).
-    expect(rules).not.toMatch(/allow update:[\s\S]*?userDocMissing\(userId\)/);
+    expect(rules).not.toMatch(/allow update:[^;]*userDocMissing\(userId\)/);
   });
 
   // ── Paywall-bypass guard (premium/VIP self-grant) ────────────────────────
@@ -266,7 +675,10 @@ describe('firestore.rules security baseline', () => {
   test('card_packs marketplace exposes only published metadata to clients', () => {
     const cardPacksBlock = rules.match(/match \/card_packs\/\{packId\} \{[\s\S]*?\n    \}/);
     expect(cardPacksBlock).not.toBeNull();
-    expect(cardPacksBlock![0]).toContain("allow read: if resource.data.status == 'published';");
+    expect(cardPacksBlock![0]).toContain(
+      "allow read: if isAdmin() || resource.data.status == 'published';",
+    );
+    expect(cardPacksBlock![0]).toContain("resource.data.status == 'published'");
     expect(cardPacksBlock![0]).toContain('allow create, update, delete: if isAdmin();');
     expect(cardPacksBlock![0]).not.toContain('allow write: if request.auth != null;');
   });
@@ -291,8 +703,334 @@ describe('firestore.rules security baseline', () => {
   });
 
   test('catch-all rule is deny-all', () => {
-    expect(rules).toContain('match /{document=**} {');
-    expect(rules).toContain('allow read, write: if false;');
+    expect(rootAccessGuardErrors(rules)).toEqual([]);
+  });
+
+  test('root access guard rejects overlapping root blocks regardless of formatting', () => {
+    const finalCatchAll = '    match /{document=**} {';
+    const broadBlocks = [
+      ...['  ', '      ', '\t'].map((indentation) => [
+        `${indentation}match /{any=**} {`,
+        `${indentation}  allow read, write: if isAdmin();`,
+        `${indentation}}`,
+      ].join('\n')),
+      [
+        '  match /{any=**}',
+        '  {',
+        '    allow read, write: if isAdmin();',
+        '  }',
+      ].join('\n'),
+      '  match /{any=**} { allow read, write: if isAdmin(); }',
+      '  match / {any=**} { allow read, write: if isAdmin(); }',
+      '  match /{ any = ** } { allow read, write: if isAdmin(); }',
+      [
+        '  match /{',
+        '    any',
+        '    =',
+        '    **',
+        '  } { allow read, write: if isAdmin(); }',
+      ].join('\n'),
+      '  match / /* after slash */ {any=**} { allow read, write: if isAdmin(); }',
+      [
+        '  match / // after slash',
+        '  {any=**} { allow read, write: if isAdmin(); }',
+      ].join('\n'),
+      '  match /{ /* before id */ any /* before equals */ = /* before stars */ ** /* before close */ } { allow read, write: if isAdmin(); }',
+      [
+        '  match /{',
+        '    // before id',
+        '    any // after id',
+        '    = // after equals',
+        '    ** // after stars',
+        '  } { allow read, write: if isAdmin(); }',
+      ].join('\n'),
+    ];
+
+    for (const broadBlock of broadBlocks) {
+      const injectedBroadRule = `${broadBlock}\n\n${finalCatchAll}`;
+      const mutatedRules = rules.replace(finalCatchAll, injectedBroadRule);
+
+      expect(mutatedRules).not.toBe(rules);
+      expect(rootAccessGuardErrors(mutatedRules)).toContain(
+        'Expected exactly one path-wide recursive wildcard, found 2.',
+      );
+    }
+
+    const documentsContainer = '  match /databases/{database}/documents {';
+    const serviceLevelBypasses = [
+      {
+        replacement: [
+          '  match /databases/{database}/documents/{doc=**} {',
+          '    allow read, write: if request.auth != null;',
+          '  }',
+          '',
+          documentsContainer,
+        ].join('\n'),
+        expectedErrors: [
+          'Expected semantic documents container to be the only match declaration at service-level depth, found 2.',
+        ],
+      },
+      {
+        replacement: [
+          '  match /databases/{db}/documents {',
+          '    match /{doc=**} { allow read, write: if request.auth != null; }',
+          '  }',
+          '',
+          documentsContainer,
+        ].join('\n'),
+        expectedErrors: [
+          'Expected exactly one semantic documents container, found 2.',
+          'Expected exactly one path-wide recursive wildcard, found 2.',
+        ],
+      },
+    ];
+    const serviceLevelBypassResults = serviceLevelBypasses.map(
+      ({ replacement, expectedErrors }) => {
+        const mutatedRules = rules.replace(documentsContainer, replacement);
+        return {
+          changed: mutatedRules !== rules,
+          errors: rootAccessGuardErrors(mutatedRules),
+          expectedErrors,
+        };
+      },
+    );
+    const wrapperOpenedRules = rules.replace(
+      documentsContainer,
+      [
+        '  match /databases/{outerDatabase}/documents/{collection}/{doc} {',
+        '    allow read, write: if request.auth != null;',
+        '    match /databases/{database}/documents {',
+      ].join('\n'),
+    );
+    const wrapperBypassRules = wrapperOpenedRules.replace(
+      /(\r?\n  })(\r?\n})(\s*)$/,
+      (_match, documentsClose: string, serviceClose: string, trailing: string) => {
+        const newline = documentsClose.startsWith('\r\n') ? '\r\n' : '\n';
+        return `${documentsClose}${newline}  }${serviceClose}${trailing}`;
+      },
+    );
+    const nestedDocumentsLookalike = [
+      '    match /databases/{tenantId}/documents {',
+      '      match /{doc=**} { allow read, write: if false; }',
+      '    }',
+      '',
+      finalCatchAll,
+    ].join('\n');
+    const safeNestedLookalikeRules = rules.replace(
+      finalCatchAll,
+      nestedDocumentsLookalike,
+    );
+
+    const safelyRenamedSuffixCaptures = rules
+      .replace(
+        'match /{path=**}/app_message_states/{messageId} {',
+        'match /{path=**}/app_message_states/{stateId} {',
+      )
+      .replace(
+        'match /{path=**}/promo_redemptions/{code} {',
+        'match /{path=**}/promo_redemptions/{redemptionId} {',
+      );
+    const safeAllowFormatterResults = [
+      'allow read , write : if false ;',
+      'allow read,write:if false;',
+    ].map((formattedAllow) => {
+      const formattedRules = rules.replace(
+        /(match \/content_mode_templates\/\{docId\} \{\s*)allow read, write: if false;/,
+        `$1${formattedAllow}`,
+      );
+      return {
+        changed: formattedRules !== rules,
+        errors: rootAccessGuardErrors(formattedRules),
+      };
+    });
+    const safeSuffixFormatterRules = rules.replace(
+      /(match \/\{path=\*\*\}\/app_message_states\/\{messageId\} \{\s*)allow list: if isAdmin\(\);/,
+      '$1allow list : if isAdmin ( ) ;',
+    );
+
+    expect({
+      serviceLevelBypassResults,
+      wrapperBypassResult: {
+        changed: wrapperBypassRules !== rules,
+        errors: rootAccessGuardErrors(wrapperBypassRules),
+      },
+      safeNestedLookalikeResult: {
+        changed: safeNestedLookalikeRules !== rules,
+        errors: rootAccessGuardErrors(safeNestedLookalikeRules),
+      },
+      safeRenameChanged:
+        safelyRenamedSuffixCaptures.includes('app_message_states/{stateId}')
+        && safelyRenamedSuffixCaptures.includes('promo_redemptions/{redemptionId}'),
+      safeRenameErrors: rootAccessGuardErrors(safelyRenamedSuffixCaptures),
+      safeAllowFormatterResults,
+      safeSuffixFormatterResult: {
+        changed: safeSuffixFormatterRules !== rules,
+        errors: rootAccessGuardErrors(safeSuffixFormatterRules),
+      },
+    }).toEqual({
+      serviceLevelBypassResults: serviceLevelBypasses.map(({ expectedErrors }) => ({
+        changed: true,
+        errors: expect.arrayContaining(expectedErrors),
+        expectedErrors,
+      })),
+      wrapperBypassResult: {
+        changed: true,
+        errors: expect.arrayContaining([
+          'The only service-level match must be the semantic documents container.',
+        ]),
+      },
+      safeNestedLookalikeResult: { changed: true, errors: [] },
+      safeRenameChanged: true,
+      safeRenameErrors: [],
+      safeAllowFormatterResults: [
+        { changed: true, errors: [] },
+        { changed: true, errors: [] },
+      ],
+      safeSuffixFormatterResult: { changed: true, errors: [] },
+    });
+
+    const nonRecursiveRootWildcard =
+      '  match /{collection}/{doc} { allow read, write: if isAdmin(); }';
+    const rulesWithNonRecursiveRootWildcard = rules.replace(
+      finalCatchAll,
+      `${nonRecursiveRootWildcard}\n\n${finalCatchAll}`,
+    );
+
+    expect(rootAccessGuardErrors(rulesWithNonRecursiveRootWildcard)).toContain(
+      'Unexpected root-leading capture pattern: {*}/{*}.',
+    );
+
+    const maskedDecoys = [
+      '    // match /{any=**} { allow read, write: if isAdmin(); }',
+      '    /* match /{any=**} { allow read, write: if isAdmin(); } */',
+      '    function recursiveWildcardDecoy() {',
+      "      return 'match /{any=**} { allow read, write: if isAdmin(); }';",
+      '    }',
+      '',
+      finalCatchAll,
+    ].join('\n');
+    const rulesWithMaskedDecoys = rules.replace(finalCatchAll, maskedDecoys);
+
+    expect(rulesWithMaskedDecoys).not.toBe(rules);
+    expect(rootAccessGuardErrors(rulesWithMaskedDecoys)).toEqual([]);
+  });
+
+  test('Learning V2 Content Studio collections have exact deny-only blocks before catch-all', () => {
+    const serverOnlyCollections = [
+      ...CONTENT_STUDIO_DIRECT_DENY_COLLECTIONS,
+      ...CONTENT_STUDIO_CATCH_ALL_ONLY_COLLECTIONS,
+    ];
+    expect(serverOnlyCollections).toHaveLength(32);
+    expect(new Set(serverOnlyCollections).size).toBe(32);
+    expect(contentStudioRootGuardErrors(rootMatchBlocks(rules))).toEqual([]);
+
+    const finalCatchAll = '    match /{document=**} {';
+    const overlapCases = [
+      {
+        block:
+          '    match /content_episode_drafts/{anything} { allow read, write: if isAdmin(); }',
+        expected:
+          'Expected exactly one direct deny root match for content_episode_drafts, found 2.',
+      },
+      {
+        block: '    match /content_factory_jobs/{id} { allow read, write: if isAdmin(); }',
+        expected:
+          'Expected no root match for catch-all-only content_factory_jobs, found 1.',
+      },
+    ];
+    const overlapErrors = overlapCases.map(({ block }) => {
+      const mutatedRules = rules.replace(finalCatchAll, `${block}\n\n${finalCatchAll}`);
+      return rootAccessGuardErrors(mutatedRules);
+    });
+
+    expect(overlapErrors).toEqual(
+      overlapCases.map(({ expected }) => expect.arrayContaining([expected])),
+    );
+  });
+
+  test('legacy catch-all-only browser operations have minimal explicit admin rules', () => {
+    const expectedBlocks = [
+      ['admin_digest_runs', 'runId', 'allow list: if isAdmin();'],
+      ['admin_digests', 'dayKey', 'allow get: if isAdmin();'],
+      ['support_inbox', 'messageId', 'allow list: if isAdmin();'],
+      ['admin_push_jobs', 'jobId', 'allow list, create: if isAdmin();'],
+      ['revenuecat_premium_events', 'eventId', 'allow list: if isAdmin();'],
+      ['revenuecat_shard_transactions', 'transactionId', 'allow list: if isAdmin();'],
+      ['users_dedup_archive', 'userId', 'allow create, update: if isAdmin();'],
+    ] as const;
+
+    for (const [collection, documentId, permission] of expectedBlocks) {
+      const block = rules.match(
+        new RegExp(`match /${collection}/\\{${documentId}\\} \\{[\\s\\S]*?\\n    \\}`),
+      );
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain(permission);
+      expect(block![0].match(/\ballow\b/g)).toHaveLength(1);
+    }
+
+    for (const collection of ['adminContentDrafts', 'adminContentRollbacks']) {
+      const block = rules.match(
+        new RegExp(`match /${collection}/fr/quiz/\\{version\\} \\{[\\s\\S]*?\\n    \\}`),
+      );
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow create, update: if isAdmin();');
+      expect(block![0].match(/\ballow\b/g)).toHaveLength(1);
+    }
+
+    for (const collection of ['app_message_states', 'promo_redemptions']) {
+      const block = rules.match(
+        new RegExp(`match /\\{path=\\*\\*\\}/${collection}/\\{[^}]+\\} \\{[\\s\\S]*?\\n    \\}`),
+      );
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow list: if isAdmin();');
+      expect(block![0].match(/\ballow\b/g)).toHaveLength(1);
+    }
+
+    expect(rules).toMatch(
+      /match \/app_message_states\/\{messageId\} \{[\s\S]*?allow read, create, update, delete: if userDocOwnerMatchesAuth\(userId\);/,
+    );
+    expect(rules).toMatch(
+      /match \/promo_redemptions\/\{code\} \{[\s\S]*?allow read: if userDocOwnerMatchesAuth\(userId\);/,
+    );
+  });
+
+  test('legacy operations formerly masked by catch-all remain explicit without broadening users', () => {
+    const cardPacks = rules.match(/match \/card_packs\/\{packId\} \{[\s\S]*?\n    \}/);
+    expect(cardPacks).not.toBeNull();
+    expect(cardPacks![0]).toContain(
+      "allow read: if isAdmin() || resource.data.status == 'published';",
+    );
+
+    const arenaProfiles = rules.match(/match \/arena_profiles\/\{userId\} \{[\s\S]*?\n    \}/);
+    expect(arenaProfiles).not.toBeNull();
+    expect(arenaProfiles![0]).toContain('allow update, delete: if isAdmin();');
+    expect(arenaProfiles![0]).toContain('allow create: if false;');
+
+    const errorReports = rules.match(/match \/error_reports\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(errorReports).not.toBeNull();
+    expect(errorReports![0]).toContain('allow create: if isAdmin();');
+    expect(errorReports![0]).toContain('allow read, update, delete: if isAdmin();');
+
+    const referrals = rules.match(/match \/referral_attributions\/\{id\} \{[\s\S]*?\n    \}/);
+    expect(referrals).not.toBeNull();
+    expect(referrals![0]).toContain('allow update: if isAdmin();');
+    expect(referrals![0]).toContain('allow create, delete: if false;');
+
+    const arenaSessions = rules.match(/match \/arena_sessions\/\{sessionId\} \{[\s\S]*?\n    \}/);
+    expect(arenaSessions).not.toBeNull();
+    expect(arenaSessions![0]).toContain('allow update: if isAdmin();');
+    expect(arenaSessions![0]).toContain('resource.data.playerIds.hasAny([request.auth.uid])');
+
+    const arenaRooms = rules.match(/match \/arena_rooms\/\{roomId\} \{[\s\S]*?\n    \}/);
+    expect(arenaRooms).not.toBeNull();
+    expect(arenaRooms![0]).toContain('allow delete: if isAdmin();');
+    expect(arenaRooms![0]).toContain('request.resource.data.hostId == request.auth.uid');
+
+    const matchmaking = rules.match(/match \/matchmaking_queue\/\{entryId\} \{[\s\S]*?\n    \}/);
+    expect(matchmaking).not.toBeNull();
+    expect(matchmaking![0]).toContain('allow list, delete: if isAdmin();');
+    expect(matchmaking![0]).not.toContain('allow read, delete: if isAdmin();');
+    expect(matchmaking![0]).toContain('resource.data.userId == request.auth.uid');
   });
 
   test('app diagnostics collections are server/admin-write only with admin read', () => {
@@ -487,10 +1225,11 @@ describe('firestore.rules friend system (Phase 1)', () => {
   });
 
   test('catch-all is still the last match block (D-09 regression guard)', () => {
-    const matches = [...rules.matchAll(/match \/[^\s]+ \{/g)];
+    const matches = rootMatchBlocks(rules);
     const lastMatch = matches[matches.length - 1];
     expect(lastMatch).toBeDefined();
-    expect(lastMatch![0]).toContain('match /{document=**}');
+    expect(lastMatch.normalizedPattern).toBe('{**}');
+    expect(rootAccessGuardErrors(rules)).toEqual([]);
   });
 
   test('existing rules untouched — users, leaderboard, banned_users, auth_links blocks still present', () => {
@@ -561,8 +1300,11 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
   });
 
   test('explain blocks sit at ROOT level, before the deny-all catch-all', () => {
-    const catchAllIdx = rules.indexOf('match /{document=**} {');
-    expect(catchAllIdx).toBeGreaterThan(-1);
+    const pathWideMatches = rootRecursiveMatchBlocks(rules).filter(
+      (match) => match.normalizedPattern === '{**}',
+    );
+    expect(pathWideMatches).toHaveLength(1);
+    const catchAllIdx = pathWideMatches[0].index;
     for (const collection of [
       'phrase_explanations',
       ...SERVER_ONLY_EXPLAIN_COLLECTIONS,

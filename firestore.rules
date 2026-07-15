@@ -1048,7 +1048,8 @@ service cloud.firestore {
     // Прямой клиентский read закрыт; запись — только Admin SDK (referralApply/referralClaimVipReward).
     match /referral_attributions/{id} {
       allow read: if isAdmin();
-      allow write: if false;
+      allow update: if isAdmin();
+      allow create, delete: if false;
     }
 
     // â”€â”€ User data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1148,7 +1149,8 @@ service cloud.firestore {
       // Профиль арены (rank.tier/stars, xp, displayName) пишет ТОЛЬКО Cloud Function (Admin SDK):
       // matchmaking.ts / arena_hill.ts / compute_leaderboard_stats.ts. Клиент сюда не пишет вообще
       // (проверено: ни одного setDoc('arena_profiles') в app/). Открытая запись = накрутка ранга/XP.
-      allow write: if false;
+      allow update, delete: if isAdmin();
+      allow create: if false;
 
       // Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ Ð¼Ð°Ñ‚Ñ‡ÐµÐ¹: Ð¿Ð¸ÑˆÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Cloud Function (Admin); ÐºÐ»Ð¸ÐµÐ½Ñ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡Ð¸Ñ‚Ð°ÐµÑ‚.
       // Ð‘ÐµÐ· Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ match Ð¿Ð¾Ð´ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ñ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ Ð·Ð°Ð¿Ñ€ÐµÑ‰ÐµÐ½Ð° â†’ ÑÐºÑ€Ð°Ð½ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð° Ð¿Ð°Ð´Ð°Ð» Ñ PERMISSION_DENIED.
@@ -1217,7 +1219,7 @@ service cloud.firestore {
     // Legacy/bundled flashcard marketplace metadata. Clients query only
     // published packs; writes stay server/admin-only.
     match /card_packs/{packId} {
-      allow read: if resource.data.status == 'published';
+      allow read: if isAdmin() || resource.data.status == 'published';
       allow create, update, delete: if isAdmin();
     }
 
@@ -1277,7 +1279,7 @@ service cloud.firestore {
 
     // â”€â”€ Error reports (Ð±Ð°Ð³-Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /error_reports/{docId} {
-      allow create: if false;
+      allow create: if isAdmin();
       allow read, update, delete: if isAdmin();
     }
 
@@ -1474,6 +1476,7 @@ service cloud.firestore {
     // â”€â”€ Arena sessions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /arena_sessions/{sessionId} {
       allow read: if request.auth != null;
+      allow update: if isAdmin();
       // ÐšÐ»Ñ–Ñ”Ð½Ñ‚: Ñ„Ð¾Ñ€Ñ„ÐµÐ¹Ñ‚ (finished + forfeitedBy) ÑÐº Ñ€Ð°Ð½Ñ–ÑˆÐµ; Ð¿Ð¾Ð»Ñ pre-match Ð¾Ð½Ð¾Ð²Ð»ÑŽÑ” Ð»Ð¸ÑˆÐµ CF.
       // Ð ÐµÐ²Ð°Ð½Ñˆ: ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸Ðº Ð¼Ð°Ñ‚Ñ‡Ð° Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² rematchOffer (status â€” Ñ‚Ð¾Ð»ÑŒÐºÐ¾ client-side accept/decline/cancel/expired,
       // ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ pending Ñ‚Ð¾Ð¶Ðµ Ð´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ð¾).
@@ -1513,6 +1516,7 @@ service cloud.firestore {
         )
         && request.resource.data.diff(resource.data).affectedKeys()
            .hasOnly(['guestId', 'guestName', 'status', 'sessionId']);
+      allow delete: if isAdmin();
     }
 
     // â”€â”€ Arena invites (legacy friend-invite docs) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1570,6 +1574,7 @@ service cloud.firestore {
         && resource.data.userId == request.auth.uid
         && matchmakingQueueDocOk(entryId);
       allow delete: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow list, delete: if isAdmin();
     }
 
     match /arena_questions/{qId} {
@@ -2087,8 +2092,105 @@ service cloud.firestore {
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Legacy browser-admin compatibility. These rules mirror only operations
+    // that admin/legacy.html performs directly; do not replace them with a
+    // recursive or prefix-wide admin grant.
+    match /admin_digest_runs/{runId} {
+      allow list: if isAdmin();
+    }
+    match /admin_digests/{dayKey} {
+      allow get: if isAdmin();
+    }
+    match /support_inbox/{messageId} {
+      allow list: if isAdmin();
+    }
+    match /admin_push_jobs/{jobId} {
+      allow list, create: if isAdmin();
+    }
+    match /revenuecat_premium_events/{eventId} {
+      allow list: if isAdmin();
+    }
+    match /revenuecat_shard_transactions/{transactionId} {
+      allow list: if isAdmin();
+    }
+    match /users_dedup_archive/{userId} {
+      allow create, update: if isAdmin();
+    }
+    match /adminContentDrafts/fr/quiz/{version} {
+      allow create, update: if isAdmin();
+    }
+    match /adminContentRollbacks/fr/quiz/{version} {
+      allow create, update: if isAdmin();
+    }
+
+    // Legacy admin collection-group queries need a collection-group match;
+    // the nested users/{userId}/... rules continue to govern document writes.
+    match /{path=**}/app_message_states/{messageId} {
+      allow list: if isAdmin();
+    }
+    match /{path=**}/promo_redemptions/{code} {
+      allow list: if isAdmin();
+    }
+
+    // Learning V2 Content Studio authoring state is callable/Admin-SDK only.
+    // Firestore allow expressions are OR-combined across overlapping matches,
+    // so these exact deny blocks rely on the final catch-all also being deny-only.
+    match /content_mode_templates/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_draft_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_versions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_drafts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_drafts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_review_queue/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_localization_units/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_review_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_validation_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_waivers/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_preview_sessions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_preview_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_app_support_manifests/{docId} {
+      allow read, write: if false;
+    }
+
     match /{document=**} {
-      allow read, write: if isAdmin();
       allow read, write: if false;
     }
   }

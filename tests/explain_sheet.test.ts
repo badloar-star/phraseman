@@ -57,6 +57,20 @@ const baseState: ExplainRequestState = {
 };
 
 describe('useExplainRequest: resolveExplainDisplay (чистая логика тела шторки)', () => {
+  it('keeps callable failures as retryable errors instead of successful explanations', () => {
+    const src = read(path.join(APP_DIR, 'explain_phrase_request.ts'));
+    const catchStart = src.indexOf('} catch (error) {');
+    const catchEnd = src.indexOf('// req раскладываем', catchStart);
+    const catchBlock = src.slice(catchStart, catchEnd);
+
+    expect(catchStart).toBeGreaterThan(-1);
+    expect(catchEnd).toBeGreaterThan(catchStart);
+    expect(catchBlock).toContain("status: 'error'");
+    expect(catchBlock).toContain('error: true');
+    expect(catchBlock).not.toContain("status: 'ok'");
+    expect(catchBlock).not.toContain('aiErrorToast');
+  });
+
   it('reuses only successful resolved explanations for instant reopen', () => {
     expect(canReuseExplainRequestState({
       ...baseState,

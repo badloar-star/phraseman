@@ -6,7 +6,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
-import { aiErrorToast, aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
+import { aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
 import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 
@@ -28,41 +28,6 @@ type AiMistakeCardProps = {
   userAnswer?: string;
 };
 
-function buildLocalMistakeFallback(lang: Lang, targetAnswer?: string, userAnswer?: string): string {
-  const intro = triLang(lang, {
-    ru: 'Сравни ответы:',
-    uk: 'Порівняй відповіді:',
-    es: 'Compara las respuestas:',
-    'pt-BR': 'Compare as respostas:',
-    vi: 'So sánh các câu trả lời:',
-    id: 'Bandingkan jawabannya:',
-    tr: 'Yanıtları karşılaştır:',
-    pl: 'Porównaj odpowiedzi:',
-  });
-  const yourAnswerLabel = triLang(lang, {
-    ru: 'Твой ответ',
-    uk: 'Твоя відповідь',
-    es: 'Tu respuesta',
-    'pt-BR': 'Sua resposta',
-    vi: 'Câu trả lời của bạn',
-    id: 'Jawabanmu',
-    tr: 'Yanıtın',
-    pl: 'Twoja odpowiedź',
-  });
-  const correctAnswerLabel = triLang(lang, {
-    ru: 'Правильно',
-    uk: 'Правильно',
-    es: 'Correcto',
-    'pt-BR': 'Correto',
-    vi: 'Đáp án đúng',
-    id: 'Jawaban benar',
-    tr: 'Doğru cevap',
-    pl: 'Poprawnie',
-  });
-
-  return `${intro}\n${yourAnswerLabel}: ${userAnswer?.trim() || '-'}\n${correctAnswerLabel}: ${targetAnswer?.trim() || '-'}`;
-}
-
 export default function AiMistakeCard({
   lang,
   state,
@@ -81,11 +46,6 @@ export default function AiMistakeCard({
     () => (state === 'limit' ? aiPersonalLimitToast(lang) : null),
     [state, lang],
   );
-  const errorCopy = React.useMemo(
-    () => (state === 'error' ? aiErrorToast(lang) : null),
-    [state, lang],
-  );
-
   const title = triLang(lang, {
     ru: 'Разбор промаха',
     uk: 'Розбір промаху',
@@ -103,13 +63,16 @@ export default function AiMistakeCard({
     if (state === 'ready' && explanation) return explanation;
     if (state === 'limit') return '';
     if (state === 'error') {
-      // Готовый текст от хука (напр. глобальный бюджет ИИ иссяк) имеет приоритет;
-      // иначе — забавная плашка обычной ошибки.
-      if (explanation) return explanation;
-      if (targetAnswer?.trim() || userAnswer?.trim()) {
-        return buildLocalMistakeFallback(lang, targetAnswer, userAnswer);
-      }
-      if (errorCopy) return `${errorCopy.title}\n${errorCopy.message}`;
+      return triLang(lang, {
+        ru: 'Не удалось загрузить разбор. Это не готовое объяснение — попробуй ещё раз.',
+        uk: 'Не вдалося завантажити розбір. Це не готове пояснення — спробуй ще раз.',
+        es: 'No se pudo cargar el análisis. Esto no es una explicación completa; inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível carregar a análise. Isto não é uma explicação pronta; tente novamente.',
+        vi: 'Không thể tải phần phân tích. Đây chưa phải lời giải thích hoàn chỉnh — hãy thử lại.',
+        id: 'Analisis tidak dapat dimuat. Ini bukan penjelasan lengkap — coba lagi.',
+        tr: 'Analiz yüklenemedi. Bu tamamlanmış bir açıklama değil — tekrar dene.',
+        pl: 'Nie udało się wczytać analizy. To nie jest gotowe wyjaśnienie — spróbuj ponownie.',
+      });
     }
     return triLang(lang, {
       ru: 'Разбираю именно твой ответ: где сбилось и как сказать правильно.',

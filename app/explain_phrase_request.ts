@@ -22,14 +22,6 @@ import {
 } from './explain_phrase_client';
 import { triLang, type Lang } from '../constants/i18n';
 import { SOURCE_LOCALES } from './source_locales';
-import {
-  aiOffline,
-  isAiOfflineError,
-  aiOfflineToast,
-  aiErrorToast,
-  aiGlobalBudgetToast,
-  isAiGlobalBudgetError,
-} from './ai_kill_switch_copy';
 
 /**
  * Сузить произвольную строку языка до Lang для triLang (контракт клиента — string,
@@ -257,21 +249,14 @@ export function useExplainRequest(
       setState(nextState);
     } catch (error) {
       if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
-      // Ручной вызов — вместо сухой ошибки показываем забавную плашку прямо в
-      // листе разбора (статус 'ok', чтобы UI отрисовал текст как обычный ответ).
-      // Рубильник, исчерпание глобального бюджета ИИ и прочие сбои — свои наборы.
-      const copy =
-        aiOffline() || isAiOfflineError(error)
-          ? aiOfflineToast(req.lang, 'explain')
-          : isAiGlobalBudgetError(error)
-            ? aiGlobalBudgetToast(req.lang)
-            : aiErrorToast(req.lang);
+      // Сервер не вернул объяснение. Не выдаём аварийный текст за учебный ответ:
+      // resolveExplainDisplay покажет честное локализованное состояние и retry.
       setState({
         loading: false,
-        text: `${copy.title}\n\n${copy.message}`,
-        status: 'ok',
+        text: '',
+        status: 'error',
         fromCache: false,
-        error: false,
+        error: true,
       });
     }
     // req раскладываем по полям: иначе новый объект-литерал на каждый рендер

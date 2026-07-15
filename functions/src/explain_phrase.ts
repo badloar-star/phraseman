@@ -108,6 +108,7 @@ export const explainPhrase = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '512MiB',
+  minInstances: 1,
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request): Promise<ExplainResponse> => {

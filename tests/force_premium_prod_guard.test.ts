@@ -15,6 +15,7 @@ import path from 'path';
  */
 
 const CONFIG_PATH = path.join(__dirname, '..', 'app', 'config.ts');
+const PREMIUM_GUARD_PATH = path.join(__dirname, '..', 'app', 'premium_guard.ts');
 
 function getExportedForcePremiumExpression(source: string): string | null {
   // Берём правую часть `export const FORCE_PREMIUM = <...>;` (может занимать
@@ -25,6 +26,12 @@ function getExportedForcePremiumExpression(source: string): string | null {
 
 describe('FORCE_PREMIUM production guard', () => {
   const source = fs.readFileSync(CONFIG_PATH, 'utf8');
+  const premiumGuardSource = fs.readFileSync(PREMIUM_GUARD_PATH, 'utf8');
+
+  it('does not grant ordinary Metro sessions a client-only Premium entitlement', () => {
+    expect(source).toMatch(/const\s+FORCE_PREMIUM_DEV_INTENT\s*=\s*false\s*;/);
+    expect(premiumGuardSource).not.toContain('if (isDevRuntime && !IS_STORE_RELEASE) return cacheReal(true);');
+  });
 
   it('exports FORCE_PREMIUM exactly once', () => {
     const count = (source.match(/export\s+const\s+FORCE_PREMIUM\b/g) ?? []).length;

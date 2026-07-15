@@ -185,8 +185,8 @@ describe('friendLookupUser — finds players across all storage paths', () => {
     expect(res).toEqual({ ok: true, user: null });
   });
 
-  it('still searches when the searcher identity cannot be resolved (cold start)', async () => {
-    // The reader-identity resolver may reject on cold start; the search must not throw.
+  it('does not resolve the searcher identity before an authenticated public lookup', async () => {
+    // The target lookup needs request.auth, not a second identity-resolution chain.
     (resolveStableUidForAuth as jest.Mock).mockRejectedValueOnce(new Error('stable_id_required'));
     makeDbStub({
       name_index: { roma: { uid: 'u-roma', name: 'Roma', nameLower: 'roma' } },
@@ -194,5 +194,6 @@ describe('friendLookupUser — finds players across all storage paths', () => {
     });
     const res: any = await run(friendLookupUser, { query: 'Roma' }, 'fresh-auth');
     expect(res.user).toMatchObject({ uid: 'u-roma', name: 'Roma' });
+    expect(resolveStableUidForAuth).not.toHaveBeenCalled();
   });
 });

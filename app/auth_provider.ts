@@ -351,21 +351,14 @@ export async function isAppleSignInAvailable(): Promise<boolean> {
 
 /**
  * Доступен ли Google Sign-In на текущем устройстве.
- * Требует EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID и установленный Google Play Services (Android).
+ * Проверяет только наличие встроенного модуля и Web Client ID. На Android
+ * Play Services проверяются после нажатия (с системным диалогом обновления) в
+ * runGoogleNativeSignIn: временный сбой preflight не должен убирать все точки входа.
  */
 export async function isGoogleSignInAvailable(): Promise<boolean> {
   const mod = getGoogleSignin();
   if (!mod) return false;
   if (!process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID) return false;
-  if (Platform.OS === 'android') {
-    try {
-      configureGoogleSignin();
-      const has = await mod.GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: false });
-      return !!has;
-    } catch {
-      return false;
-    }
-  }
   return true;
 }
 

@@ -189,7 +189,7 @@ export default function AiDialogSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
   // Доступ к фиче «ИИ-диалоги» с учётом «Пульта»: true → пейвол не показываем
   // (фича переведена в «Фри»). Серверный isPremium ниже остаётся СЫРЫМ premium —
   // «Фри» снимает замок, но НЕ выдаёт премиум-квоту реплик.
@@ -213,10 +213,10 @@ export default function AiDialogSession() {
   );
 
   useEffect(() => {
-    if (!aiDialogGateOpen || dialogAccess) return;
+    if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-  }, [aiDialogGateOpen, dialogAccess, router]);
+  }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
@@ -342,6 +342,7 @@ export default function AiDialogSession() {
         return;
       }
       if (action === 'noop') return;
+      if (!accessResolved) return;
       // action === 'fetch': новая реплика, нужен серверный вызов.
 
       const clean = stripMarkers(rawText);
@@ -379,7 +380,7 @@ export default function AiDialogSession() {
         setTranslatingIdx(null);
       }
     },
-    [flipped, translations, translatingIdx, translateUsed, lang, scenario.id],
+    [accessResolved, flipped, translations, translatingIdx, translateUsed, lang, scenario.id, studyTarget],
   );
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
@@ -391,6 +392,7 @@ export default function AiDialogSession() {
 
   const startVoiceInput = useCallback(async () => {
     if (sending || ended || voiceInputStatus === 'requesting') return;
+    if (!accessResolved) return;
     const generation = ++voiceInputGenerationRef.current;
     hapticTap();
     // Глушим играющий ответ-TTS перед стартом микрофона: иначе он течёт в
@@ -585,6 +587,7 @@ export default function AiDialogSession() {
       if (voiceInputMountedRef.current) setVoiceInputStatus('error');
     }
   }, [
+    accessResolved,
     cleanupVoiceInputListeners,
     clearRecognizerWatchdog,
     ended,
@@ -754,6 +757,7 @@ export default function AiDialogSession() {
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || sending || ended) return;
+      if (!accessResolved) return;
       hapticTap();
 
       if (!dialogAccess) {
@@ -804,7 +808,7 @@ export default function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router, lang, gameRequestFields, applyTurnState, speakAiReply],
+    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState, speakAiReply],
   );
   sendVoiceTextRef.current = (text: string) => {
     void send(text);
@@ -893,6 +897,7 @@ export default function AiDialogSession() {
     if (sending || ended) return;
     const trimmed = lastSentTextRef.current.trim();
     if (!trimmed) return;
+    if (!accessResolved) return;
     hapticTap();
     if (!dialogAccess) {
       void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_retry' });
@@ -934,7 +939,7 @@ export default function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario, router, lang, gameRequestFields, applyTurnState, speakAiReply]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState, speakAiReply]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -970,7 +975,7 @@ export default function AiDialogSession() {
   // Диалог завершён → один раз запрашиваем финальный разбор фраз ученика.
   // Транскрипт шлём без [[...]]-маркеров: тьютору-ревьюеру они только мешают.
   useEffect(() => {
-    if (!ended || userExchanges <= 0 || reviewRequestedRef.current) return;
+    if (!accessResolved || !ended || userExchanges <= 0 || reviewRequestedRef.current) return;
     reviewRequestedRef.current = true;
     setReviewStatus('loading');
     const transcript: DialogChatTurn[] = messages.map((m) => ({
@@ -998,7 +1003,7 @@ export default function AiDialogSession() {
         setReviewStatus('error');
         void trackEvent('ai_dialog_review_failed', { scenarioId: scenario.id });
       });
-  }, [ended, userExchanges, messages, scenario, lang]);
+  }, [accessResolved, ended, userExchanges, messages, scenario, lang, studyTarget]);
 
   useEffect(() => {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
@@ -2022,6 +2027,7 @@ export default function AiDialogSession() {
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
                   <TouchableOpacity
                     onPress={() => {
+                      if (!accessResolved) return;
                       hapticTap();
                       void trackEvent('paywall_shown', { context: 'dialog_analysis', source: 'dialog_analysis' });
                       router.push({
@@ -2350,6 +2356,7 @@ export default function AiDialogSession() {
                 {!hasPremiumAccess && (
                   <TouchableOpacity
                     onPress={() => {
+                      if (!accessResolved) return;
                       hapticTap();
                       router.push({
                         pathname: '/premium_modal',
@@ -2444,6 +2451,7 @@ export default function AiDialogSession() {
               {speechModule && (
                 <TouchableOpacity
                   onPress={() => {
+                    if (!accessResolved) return;
                     hapticTap();
                     if (!hasPremiumAccess) {
                       void trackEvent('paywall_shown', {

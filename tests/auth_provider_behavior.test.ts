@@ -44,12 +44,13 @@ jest.mock('expo-web-browser', () => ({
 
 // ── Native Google sign-in: return a fake credential with an idToken. ──
 const googleSignInImpl = jest.fn<Promise<any>, any[]>(async () => ({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } }));
+const googleHasPlayServicesImpl = jest.fn<Promise<boolean>, any[]>(async () => true);
 jest.mock(
   '@react-native-google-signin/google-signin',
   () => ({
     GoogleSignin: {
       configure: jest.fn(),
-      hasPlayServices: jest.fn(async () => true),
+      hasPlayServices: (...args: unknown[]) => googleHasPlayServicesImpl(...(args as [])),
       signIn: (...args: unknown[]) => googleSignInImpl(...(args as [])),
       signOut: jest.fn(async () => {}),
     },
@@ -204,6 +205,9 @@ beforeEach(() => {
   require('@react-native-async-storage/async-storage').__reset();
   googleSignInImpl.mockClear();
   googleSignInImpl.mockResolvedValue({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } });
+  googleHasPlayServicesImpl.mockClear();
+  googleHasPlayServicesImpl.mockResolvedValue(true);
+  require('react-native').Platform.OS = 'ios';
   appleSignInImpl.mockClear();
   appleSignInImpl.mockResolvedValue({
     identityToken: 'fake-apple-id-token',
@@ -223,6 +227,15 @@ function loadAuthProvider(initialStorage?: Record<string, string>): typeof impor
   });
   return mod;
 }
+
+test('keeps Google sign-in visible when Android Play Services preflight is temporarily unavailable', async () => {
+  require('react-native').Platform.OS = 'android';
+  googleHasPlayServicesImpl.mockResolvedValueOnce(false);
+  const { isGoogleSignInAvailable } = loadAuthProvider();
+
+  await expect(isGoogleSignInAvailable()).resolves.toBe(true);
+  expect(googleHasPlayServicesImpl).not.toHaveBeenCalled();
+});
 
 test('boot identity reconciliation swaps a persisted provider session to the server canonical stable id', async () => {
   authState.isAnonymous = false;

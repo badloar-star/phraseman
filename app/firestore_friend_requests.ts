@@ -1,6 +1,7 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink, ensureStableAuthLinkForStableId } from './cloud_sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAuthUserId } from './user_id_policy';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -109,6 +110,84 @@ async function ensureFriendsStableAuthLink(
     logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), { action, ...tags });
   }
   return ok;
+}
+
+export const FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS = 15_000;
+export const FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS = 60_000;
+
+let friendRequestViewerAuthLinkInFlight: {
+  scopeKey: string;
+  promise: Promise<boolean>;
+} | null = null;
+let friendRequestViewerAuthLinkSuccess: {
+  scopeKey: string;
+  expiresAt: number;
+} | null = null;
+
+function friendRequestViewerAuthScopeKey(stableId: string): string {
+  return `${stableId}:${String(getAuthUserId() ?? '').trim()}`;
+}
+
+function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> {
+  const scopeKey = friendRequestViewerAuthScopeKey(stableId);
+  const now = Date.now();
+  if (
+    friendRequestViewerAuthLinkSuccess?.scopeKey === scopeKey
+    && friendRequestViewerAuthLinkSuccess.expiresAt > now
+  ) {
+    return Promise.resolve(true);
+  }
+  // The cache holds one account/auth pair only. Entering another identity or
+  // reaching the TTL immediately evicts the old success instead of leaking it.
+  friendRequestViewerAuthLinkSuccess = null;
+
+  if (friendRequestViewerAuthLinkInFlight?.scopeKey === scopeKey) {
+    return friendRequestViewerAuthLinkInFlight.promise;
+  }
+
+  let sharedPromise!: Promise<boolean>;
+  const bounded = new Promise<boolean>((resolve) => {
+    let settled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const finish = (ok: boolean) => {
+      if (settled) return;
+      settled = true;
+      if (timer) clearTimeout(timer);
+      resolve(ok);
+    };
+
+    timer = setTimeout(() => finish(false), FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS);
+    void Promise.resolve()
+      .then(() => ensureStableAuthLinkForStableId(stableId))
+      .then(ok => finish(ok === true), () => finish(false));
+  });
+
+  sharedPromise = bounded
+    .then(ok => {
+      if (ok && friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
+        friendRequestViewerAuthLinkSuccess = {
+          // Cache the identity pair that actually started this link. If Firebase
+          // Auth changes while the callable is in flight, its late success must
+          // not authorize listeners for the new auth UID.
+          scopeKey,
+          expiresAt: Date.now() + FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS,
+        };
+      } else if (!ok) {
+        logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), {
+          action: 'ensure_friend_auth_link',
+          myUid: stableId,
+        });
+      }
+      return ok;
+    })
+    .finally(() => {
+      if (friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
+        friendRequestViewerAuthLinkInFlight = null;
+      }
+    });
+
+  friendRequestViewerAuthLinkInFlight = { scopeKey, promise: sharedPromise };
+  return sharedPromise;
 }
 
 // ── sendFriendRequest ──────────────────────────────────────────────────────
@@ -380,10 +459,19 @@ export async function deleteFriend(friendUid: string): Promise<void> {
  * разрешило читать входящие заявки (auth.uid часто ≠ stableId).
  * Вызывать перед подпиской на friend_requests и при фокусе вкладки «Друзья».
  */
-export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
-  const myUid = await ensureAnonUser();
-  if (!myUid) return;
-  await ensureFriendsStableAuthLink('ensure_friend_auth_link', { myUid });
+// true means Firestore security can accept the live listeners. On false the
+// screen must retain its SWR cache and skip listeners instead of provoking permission-denied.
+export async function ensureFriendRequestViewerAuthLink(stableId?: string): Promise<boolean> {
+  let myUid = String(stableId ?? '').trim();
+  if (!myUid) {
+    try {
+      myUid = String(await ensureAnonUser() ?? '').trim();
+    } catch {
+      return false;
+    }
+  }
+  if (!myUid) return false;
+  return prepareFriendRequestViewerAuthLink(myUid);
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────
@@ -416,14 +504,10 @@ export function subscribeToFriends(
         callback([], { fromCache: true });
         return;
       }
+      const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
+      if (cancelled || !authLinkReady) return;
       const db = getFirestore();
       if (!db) {
-        callback([], { fromCache: true });
-        return;
-      }
-      const authLinked = await ensureFriendsStableAuthLink('subscribe_friends', { myUid });
-      if (cancelled) return;
-      if (!authLinked) {
         callback([], { fromCache: true });
         return;
       }
@@ -483,14 +567,10 @@ export function subscribeToIncomingRequests(
         callback([]);
         return;
       }
+      const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
+      if (cancelled || !authLinkReady) return;
       const db = getFirestore();
       if (!db) {
-        callback([]);
-        return;
-      }
-      const authLinked = await ensureFriendsStableAuthLink('subscribe_incoming_requests', { myUid });
-      if (cancelled) return;
-      if (!authLinked) {
         callback([]);
         return;
       }

@@ -35,6 +35,8 @@ interface PremiumContextValue {
   isPremium: boolean;
   isVip: boolean;
   hasPremiumAccess: boolean;
+  /** True after the first local/cloud entitlement check has completed. */
+  accessResolved: boolean;
   isIntroFullAccess: boolean;
   introFullAccessEndsAt: number | null;
   /**
@@ -51,6 +53,7 @@ const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
   isVip: false,
   hasPremiumAccess: false,
+  accessResolved: false,
   isIntroFullAccess: false,
   introFullAccessEndsAt: null,
   trialEligible: false,
@@ -138,6 +141,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [hasPremiumAccess, setHasPremiumAccess] = useState(
     () => FORCE_PREMIUM || snapshotPremiumActive() || snapshotVipActive(),
   );
+  const [accessResolved, setAccessResolved] = useState(false);
   const [isIntroFullAccess, setIsIntroFullAccess] = useState(false);
   const [introFullAccessEndsAt, setIntroFullAccessEndsAt] = useState<number | null>(null);
   const [trialEligible, setTrialEligible] = useState(false);
@@ -208,7 +212,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   }, [reloadTrialEligible]);
   const reload = useCallback(async () => {
     reloadRunnerRef.current ??= createCoalescedAsyncRunner(runReload);
-    await reloadRunnerRef.current();
+    try {
+      await reloadRunnerRef.current();
+    } finally {
+      // A false entitlement is actionable only after we have checked both the
+      // local cache and the cloud-backed fallback at least once. Direct-entry
+      // premium screens use this to avoid a first-frame paywall redirect.
+      setAccessResolved(true);
+    }
   }, [runReload]);
 
   const runReloadAfterCloudRefresh = useCallback(async () => {
@@ -232,6 +243,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // Login/merge can swap the canonical stable_id; restart the admin-grant listener on the new users/{stable_id}.
   useEffect(() => {
     const sub = onAppEvent('auth_provider_linked', () => {
+      setAccessResolved(false);
       vipSnapshotStateRef.current = null;
       setPremiumListenerRevision((v) => v + 1);
       void reloadAfterCloudRefresh();
@@ -473,6 +485,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setIsPremium(false);
       setIsVip(false);
       setHasPremiumAccess(false);
+      setAccessResolved(true);
       setIsIntroFullAccess(false);
       setIntroFullAccessEndsAt(null);
       setTrialEligible(false);
@@ -511,8 +524,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // во все usePremium()-потребители по всему приложению (home, arena, inbox, friends…),
   // умножая работу на каждом тике premium/VIP.
   const contextValue = useMemo<PremiumContextValue>(
-    () => ({ isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
-    [isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
+    () => ({ isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
+    [isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
   );
 
   return (

@@ -54,6 +54,19 @@ describe('admin premium delivery contract', () => {
     expect(reloadBody).toContain('getVerifiedVipStatus().catch');
   });
 
+  it('does not redirect a direct AI-dialog entry before entitlement resolution finishes', () => {
+    const dialogSession = fs.readFileSync(path.join(process.cwd(), 'app', 'ai_dialog_session.tsx'), 'utf8');
+    const redirectStart = dialogSession.indexOf("source: 'ai_dialog_direct_entry'");
+    const redirectEffect = dialogSession.slice(Math.max(0, redirectStart - 260), redirectStart + 260);
+
+    expect(premiumContext).toContain('accessResolved: boolean;');
+    expect(premiumContext).toContain('const [accessResolved, setAccessResolved] = useState(false);');
+    expect(premiumContext).toContain('setAccessResolved(true);');
+    expect(dialogSession).toContain('const { hasPremiumAccess, accessResolved } = usePremium();');
+    expect(redirectEffect).toContain('if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;');
+    expect(redirectEffect).toContain('[accessResolved, aiDialogGateOpen, dialogAccess, router]');
+  });
+
   it('restarts the VIP listener after provider login or stable-id merge', () => {
     expect(premiumContext).toContain("onAppEvent('auth_provider_linked'");
     expect(premiumContext).toContain('setPremiumListenerRevision');

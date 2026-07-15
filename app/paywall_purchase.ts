@@ -101,6 +101,31 @@ function showPurchasePendingAlert(lang: Lang): void {
   );
 }
 
+function showDevPurchasePreviewAlert(lang: Lang): void {
+  Alert.alert(
+    triLang(lang, {
+      ru: 'Предпросмотр покупки',
+      uk: 'Попередній перегляд покупки',
+      es: 'Vista previa de compra',
+      'pt-BR': 'Prévia da compra',
+      vi: 'Xem trước giao dịch mua',
+      id: 'Pratinjau pembelian',
+      tr: 'Satın alma önizlemesi',
+      pl: 'Podgląd zakupu',
+    }),
+    triLang(lang, {
+      ru: 'Покупка не запускалась: в обычной dev-сборке магазин отключён. Проверь реальную покупку в сборке с подключённым магазином или включи доступ через явный QA-инструмент.',
+      uk: 'Покупка не запускалася: у звичайній dev-збірці магазин вимкнений. Перевір реальну покупку у збірці з підключеним магазином або ввімкни доступ через окремий QA-інструмент.',
+      es: 'La compra no se inició: la tienda está desactivada en la compilación de desarrollo normal. Prueba una compra real en una compilación conectada a la tienda o activa el acceso con una herramienta de QA explícita.',
+      'pt-BR': 'A compra não foi iniciada: a loja fica desativada na compilação de desenvolvimento comum. Teste uma compra real em uma compilação conectada à loja ou ative o acesso com uma ferramenta explícita de QA.',
+      vi: 'Giao dịch mua chưa được bắt đầu: cửa hàng bị tắt trong bản dev thông thường. Hãy thử giao dịch thật trong bản có kết nối cửa hàng hoặc bật quyền truy cập bằng công cụ QA riêng.',
+      id: 'Pembelian tidak dimulai: toko dinonaktifkan pada build dev biasa. Uji pembelian nyata pada build yang terhubung ke toko atau aktifkan akses melalui alat QA khusus.',
+      tr: 'Satın alma başlatılmadı: normal geliştirme derlemesinde mağaza kapalıdır. Gerçek satın almayı mağazaya bağlı bir derlemede test et veya erişimi açık bir QA aracıyla etkinleştir.',
+      pl: 'Zakup nie został rozpoczęty: sklep jest wyłączony w zwykłej wersji deweloperskiej. Sprawdź prawdziwy zakup w kompilacji połączonej ze sklepem albo włącz dostęp za pomocą jawnego narzędzia QA.',
+    }),
+  );
+}
+
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
   // (?![a-zа-яёіїєґ]) вместо \b: ASCII-\b не срабатывает после кириллицы
@@ -373,11 +398,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     }
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
     if (DEV_IAP_BYPASS) {
-      if (context === 'personal_plan') {
-        await finishPersonalPlanActivationFlow();
-        return;
-      }
-      dismissPaywallModal(router);
+      showDevPurchasePreviewAlert(lang);
       return;
     }
     const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;

@@ -33,6 +33,7 @@ jest.mock('@react-native-firebase/functions', () => ({
 beforeEach(() => {
   jest.useRealTimers();
   jest.clearAllMocks();
+  mockFriendLookupCallable.mockReset();
   mockGetCanonicalUserId.mockResolvedValue('stable-me');
   mockEnsureAnonUser.mockResolvedValue('stable-me');
   mockEnsureStableAuthLinkForStableId.mockResolvedValue(true);
@@ -68,14 +69,26 @@ test('lookupUserByNickname uses the fast name-index callable with a bounded time
   });
 
   expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);
-  expect(mockEnsureStableAuthLinkForStableId).toHaveBeenCalledWith('stable-me');
+  expect(mockEnsureStableAuthLinkForStableId).not.toHaveBeenCalled();
   expect(mockHttpsCallableFactory).toHaveBeenCalledWith('friendLookupUser', {
     timeout: FRIEND_NAME_LOOKUP_CALLABLE_MS,
   });
   expect(mockFriendLookupCallable).toHaveBeenCalledWith({ stableId: 'stable-me', query: 'Roma' });
 });
 
-test('lookupUserByNickname returns instead of spinning forever when the callable hangs', async () => {
+test('lookupUserByNickname does not gate the authenticated read on a separate auth-link callable', async () => {
+  mockEnsureStableAuthLinkForStableId.mockRejectedValueOnce(new Error('cold auth-link callable'));
+  const { lookupUserByNickname } = require('../app/firestore_friends');
+
+  await expect(lookupUserByNickname('Roma')).resolves.toMatchObject({
+    uid: 'target-user',
+    source: 'name_index',
+  });
+  expect(mockEnsureStableAuthLinkForStableId).not.toHaveBeenCalled();
+  expect(mockFriendLookupCallable).toHaveBeenCalledTimes(1);
+});
+
+test('lookupUserByNickname reports unavailable instead of false not-found when the callable hangs', async () => {
   jest.useFakeTimers();
   mockFriendLookupCallable.mockImplementation(() => new Promise(() => {}));
   const {
@@ -84,22 +97,89 @@ test('lookupUserByNickname returns instead of spinning forever when the callable
   } = require('../app/firestore_friends');
 
   const pending = lookupUserByNickname('Roma');
-  await jest.advanceTimersByTimeAsync(FRIEND_NAME_LOOKUP_CALLABLE_MS + 20);
+  const assertion = expect(pending).rejects.toThrow('friend_lookup_unavailable');
+  await jest.advanceTimersByTimeAsync((FRIEND_NAME_LOOKUP_CALLABLE_MS * 2) + 40);
 
-  await expect(pending).resolves.toBeNull();
+  await assertion;
 });
 
-test('lookupUserByNickname does not call the network when auth preparation hangs', async () => {
+test('lookupUserByNickname accepts a cold response after the former 2.5 second cutoff', async () => {
   jest.useFakeTimers();
-  mockEnsureAnonUser.mockImplementation(() => new Promise(() => {}));
-  const {
-    lookupUserByNickname,
-    FRIEND_NAME_LOOKUP_AUTH_MS,
-  } = require('../app/firestore_friends');
+  mockFriendLookupCallable.mockImplementation(() => new Promise((resolve) => {
+    setTimeout(() => resolve({
+      data: {
+        ok: true,
+        user: {
+          uid: 'target-user',
+          source: 'name_index',
+          name: 'OlgaZ',
+          totalXp: 2400,
+          level: 9,
+          avatar: 'avatar_9',
+          frame: 'frame_9',
+          aura: '',
+          isPremium: false,
+        },
+      },
+    }), 3_000);
+  }));
+  const { lookupUserByNickname } = require('../app/firestore_friends');
+
+  const pending = lookupUserByNickname('OlgaZ');
+  await jest.advanceTimersByTimeAsync(3_000);
+
+  await expect(pending).resolves.toEqual({
+    uid: 'target-user',
+    source: 'name_index',
+    name: 'OlgaZ',
+    profile: {
+      name: 'OlgaZ',
+      totalXp: 2400,
+      level: 9,
+      avatar: 'avatar_9',
+      frame: 'frame_9',
+      aura: '',
+      isPremium: false,
+    },
+  });
+});
+
+test('lookupUserByNickname lets the bounded auth bootstrap finish past the former 1.2 second cutoff', async () => {
+  jest.useFakeTimers();
+  mockEnsureAnonUser.mockImplementation(() => new Promise((resolve) => {
+    setTimeout(() => resolve('stable-me'), 1_500);
+  }));
+  const { lookupUserByNickname } = require('../app/firestore_friends');
 
   const pending = lookupUserByNickname('Roma');
-  await jest.advanceTimersByTimeAsync(FRIEND_NAME_LOOKUP_AUTH_MS + 20);
+  await jest.advanceTimersByTimeAsync(1_500);
 
-  await expect(pending).resolves.toBeNull();
-  expect(mockFriendLookupCallable).not.toHaveBeenCalled();
+  await expect(pending).resolves.toMatchObject({ uid: 'target-user' });
+  expect(mockFriendLookupCallable).toHaveBeenCalledTimes(1);
+});
+
+test('lookupUserByNickname retries one transient callable failure within the first search action', async () => {
+  mockFriendLookupCallable
+    .mockRejectedValueOnce(new Error('functions/unavailable'))
+    .mockResolvedValueOnce({
+      data: {
+        ok: true,
+        user: { uid: 'target-user', source: 'name_index', name: 'OlgaZ' },
+      },
+    });
+  const { lookupUserByNickname } = require('../app/firestore_friends');
+
+  await expect(lookupUserByNickname('OlgaZ')).resolves.toMatchObject({
+    uid: 'target-user',
+    name: 'OlgaZ',
+  });
+  expect(mockFriendLookupCallable).toHaveBeenCalledTimes(2);
+});
+
+test('lookupUserByNickname reports unavailable instead of not-found after persistent callable failure', async () => {
+  mockFriendLookupCallable.mockRejectedValue(new Error('functions/unavailable'));
+  const { lookupUserByNickname } = require('../app/firestore_friends');
+
+  await expect(lookupUserByNickname('OlgaZ')).rejects.toThrow('friend_lookup_unavailable');
+  expect(mockFriendLookupCallable).toHaveBeenCalledTimes(2);
 });

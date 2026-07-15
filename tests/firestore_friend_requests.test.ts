@@ -12,7 +12,6 @@ import type {
   SendRequestResult,
   FriendEntry,
   FriendRequestEntry,
-  SubscribeFriendsSnapshotMeta,
 } from '../app/firestore_friend_requests';
 
 // ── In-memory Firestore state ──────────────────────────────────────────────
@@ -21,6 +20,10 @@ let canonicalUidOverride: string | null = 'my-uid-111';
 let authUidOverride: string | null = 'auth-uid-999';
 let stableAuthLinkCalls: number;
 let stableAuthLinkResult: boolean;
+let stableAuthLinkImplementation: () => Promise<boolean>;
+let stableAuthLinkForStableIdCalls: number;
+let stableAuthLinkForStableIdImplementation: (stableId: string) => Promise<boolean>;
+let liveSnapshotListenerCalls: number;
 
 // Simulate a batch that collects operations and commits them atomically.
 const createFakeBatch = () => {
@@ -85,6 +88,7 @@ const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
   doc: (id: string) => buildFakeRef(`${colPath}/${id}`),
   where: (field: string, _op: string, val: unknown) => ({
     onSnapshot: (cb: (snap: FakeSnapshot) => void) => {
+      liveSnapshotListenerCalls += 1;
       // Synchronously deliver matching docs.
       const docs: Array<{ id: string; data: () => Record<string, unknown> }> = [];
       for (const [key, data] of mockDocs.entries()) {
@@ -100,6 +104,7 @@ const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
     },
   }),
   onSnapshot: (cb: (snap: FakeSnapshot) => void) => {
+    liveSnapshotListenerCalls += 1;
     const docs: Array<{ id: string; data: () => Record<string, unknown> }> = [];
     for (const [key, data] of mockDocs.entries()) {
       if (key.startsWith(colPath + '/')) {
@@ -128,9 +133,13 @@ jest.mock('../app/user_id_policy', () => ({
 }));
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: jest.fn(async () => canonicalUidOverride),
-  ensureStableAuthLink: jest.fn(async () => {
+  ensureStableAuthLink: jest.fn(() => {
     stableAuthLinkCalls += 1;
-    return stableAuthLinkResult;
+    return stableAuthLinkImplementation();
+  }),
+  ensureStableAuthLinkForStableId: jest.fn((stableId: string) => {
+    stableAuthLinkForStableIdCalls += 1;
+    return stableAuthLinkForStableIdImplementation(stableId);
   }),
 }));
 jest.mock('@react-native-firebase/firestore', () => ({
@@ -144,6 +153,10 @@ beforeEach(() => {
   authUidOverride = 'auth-uid-999';
   stableAuthLinkCalls = 0;
   stableAuthLinkResult = true;
+  stableAuthLinkImplementation = async () => stableAuthLinkResult;
+  stableAuthLinkForStableIdCalls = 0;
+  stableAuthLinkForStableIdImplementation = async () => stableAuthLinkResult;
+  liveSnapshotListenerCalls = 0;
   require('@react-native-async-storage/async-storage').__reset?.();
 
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
@@ -153,9 +166,13 @@ beforeEach(() => {
   }));
   jest.mock('../app/cloud_sync', () => ({
     ensureAnonUser: jest.fn(async () => canonicalUidOverride),
-    ensureStableAuthLink: jest.fn(async () => {
+    ensureStableAuthLink: jest.fn(() => {
       stableAuthLinkCalls += 1;
-      return stableAuthLinkResult;
+      return stableAuthLinkImplementation();
+    }),
+    ensureStableAuthLinkForStableId: jest.fn((stableId: string) => {
+      stableAuthLinkForStableIdCalls += 1;
+      return stableAuthLinkForStableIdImplementation(stableId);
     }),
   }));
   jest.mock('@react-native-firebase/firestore', () => ({
@@ -295,13 +312,153 @@ test('X02: deleteFriend also deletes reverse users/friendUid/friends/myUid', asy
 
 test('V01: ensureFriendRequestViewerAuthLink uses the stable auth callable helper', async () => {
   const { ensureFriendRequestViewerAuthLink } = require('../app/firestore_friend_requests');
-  await ensureFriendRequestViewerAuthLink();
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
 
-  expect(stableAuthLinkCalls).toBe(1);
+  expect(stableAuthLinkCalls).toBe(0);
+  expect(stableAuthLinkForStableIdCalls).toBe(1);
   expect(mockDocs.has('users/my-uid-111')).toBe(false);
 });
 
+test('V02: concurrent viewer auth-link preparation shares one in-flight request', async () => {
+  let finish!: (value: boolean) => void;
+  stableAuthLinkForStableIdImplementation = () => new Promise(resolve => { finish = resolve; });
+  const { ensureFriendRequestViewerAuthLink } = require('../app/firestore_friend_requests');
+
+  const first = ensureFriendRequestViewerAuthLink('my-uid-111');
+  const second = ensureFriendRequestViewerAuthLink('my-uid-111');
+  await Promise.resolve();
+
+  expect(stableAuthLinkForStableIdCalls).toBe(1);
+  finish(true);
+  await expect(Promise.all([first, second])).resolves.toEqual([true, true]);
+});
+
+test('V02a: a successful viewer auth-link preflight is reused within a bounded TTL', async () => {
+  const now = jest.spyOn(Date, 'now').mockReturnValue(10_000);
+  const {
+    ensureFriendRequestViewerAuthLink,
+    FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS,
+  } = require('../app/firestore_friend_requests');
+
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
+  now.mockReturnValue(10_000 + FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS - 1);
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
+  expect(stableAuthLinkForStableIdCalls).toBe(1);
+
+  now.mockReturnValue(10_000 + FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS + 1);
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
+  expect(stableAuthLinkForStableIdCalls).toBe(2);
+  now.mockRestore();
+});
+
+test('V02b: viewer auth-link preparation never shares a result across accounts', async () => {
+  const finishByStableId = new Map<string, (value: boolean) => void>();
+  let implementationCalls = 0;
+  stableAuthLinkForStableIdImplementation = stableId => {
+    implementationCalls += 1;
+    if (implementationCalls > 2) return Promise.resolve(true);
+    return new Promise(resolve => { finishByStableId.set(stableId, resolve); });
+  };
+  const { ensureFriendRequestViewerAuthLink } = require('../app/firestore_friend_requests');
+
+  const oldAccount = ensureFriendRequestViewerAuthLink('old-stable-id');
+  const newAccount = ensureFriendRequestViewerAuthLink('new-stable-id');
+  await Promise.resolve();
+  await Promise.resolve();
+
+  expect(stableAuthLinkForStableIdCalls).toBe(2);
+  finishByStableId.get('new-stable-id')?.(true);
+  await expect(newAccount).resolves.toBe(true);
+  finishByStableId.get('old-stable-id')?.(true);
+  await expect(oldAccount).resolves.toBe(true);
+
+  await expect(ensureFriendRequestViewerAuthLink('new-stable-id')).resolves.toBe(true);
+  expect(stableAuthLinkForStableIdCalls).toBe(2);
+});
+
+test('V02c: a late success is cached only for the auth UID that started it', async () => {
+  let finish!: (value: boolean) => void;
+  stableAuthLinkForStableIdImplementation = () => new Promise(resolve => { finish = resolve; });
+  const { ensureFriendRequestViewerAuthLink } = require('../app/firestore_friend_requests');
+
+  const oldAuthAttempt = ensureFriendRequestViewerAuthLink('my-uid-111');
+  await Promise.resolve();
+  await Promise.resolve();
+  authUidOverride = 'auth-uid-new';
+  finish(true);
+  await expect(oldAuthAttempt).resolves.toBe(true);
+
+  stableAuthLinkForStableIdImplementation = async () => true;
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
+  expect(stableAuthLinkForStableIdCalls).toBe(2);
+});
+
+test('V03: viewer auth-link preparation returns false when linking fails', async () => {
+  stableAuthLinkResult = false;
+  const { ensureFriendRequestViewerAuthLink } = require('../app/firestore_friend_requests');
+
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(false);
+});
+
+test('V04: viewer auth-link preparation has one bounded total wait', async () => {
+  jest.useFakeTimers();
+  stableAuthLinkForStableIdImplementation = () => new Promise(() => {});
+  const {
+    ensureFriendRequestViewerAuthLink,
+    FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS,
+  } = require('../app/firestore_friend_requests');
+
+  const result = Promise.race([
+    ensureFriendRequestViewerAuthLink('my-uid-111'),
+    new Promise(resolve => setTimeout(() => resolve('test_timeout'), 15_001)),
+  ]);
+  await jest.advanceTimersByTimeAsync(15_001);
+
+  expect(FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS).toBe(15_000);
+  await expect(result).resolves.toBe(false);
+  jest.useRealTimers();
+});
+
 // ── subscriptions tests ────────────────────────────────────────────────────
+
+test('S00: exported live subscriptions do not open Firestore listeners until auth linking succeeds', async () => {
+  let finish!: (value: boolean) => void;
+  stableAuthLinkForStableIdImplementation = () => new Promise(resolve => { finish = resolve; });
+  const {
+    subscribeToFriends,
+    subscribeToIncomingRequests,
+  } = require('../app/firestore_friend_requests');
+
+  const unsubFriends = subscribeToFriends(() => {});
+  const unsubRequests = subscribeToIncomingRequests(() => {});
+  for (let i = 0; i < 6; i += 1) await Promise.resolve();
+
+  expect(stableAuthLinkForStableIdCalls).toBe(1);
+  expect(liveSnapshotListenerCalls).toBe(0);
+  finish(false);
+  for (let i = 0; i < 6; i += 1) await Promise.resolve();
+  expect(liveSnapshotListenerCalls).toBe(0);
+  unsubFriends();
+  unsubRequests();
+});
+
+test('S00b: successful preflight lets both subscriptions reuse the success cache', async () => {
+  const {
+    ensureFriendRequestViewerAuthLink,
+    subscribeToFriends,
+    subscribeToIncomingRequests,
+  } = require('../app/firestore_friend_requests');
+
+  await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
+  const unsubFriends = subscribeToFriends(() => {});
+  const unsubRequests = subscribeToIncomingRequests(() => {});
+  for (let i = 0; i < 8; i += 1) await Promise.resolve();
+
+  expect(stableAuthLinkForStableIdCalls).toBe(1);
+  expect(liveSnapshotListenerCalls).toBe(2);
+  unsubFriends();
+  unsubRequests();
+});
 
 test('S01: subscribeToFriends calls callback with FriendEntry array and returns unsubscribe fn', async () => {
   mockDocs.set('users/my-uid-111/friends/friend-uid-555', { createdAt: 800 });
@@ -345,32 +502,4 @@ test('S02: subscribeToIncomingRequests filters by status pending and returns uns
   expect(pendingEntry?.fromName).toBe('Roma Prime');
   // Accepted request must NOT appear.
   expect(entries.find(r => r.fromUid === 'req-uid-777')).toBeUndefined();
-});
-
-test('S03: subscribeToFriends does not open Firestore when the stable auth link is unavailable', async () => {
-  stableAuthLinkResult = false;
-  mockDocs.set('users/my-uid-111/friends/friend-uid-555', { createdAt: 800 });
-  const { subscribeToFriends } = require('../app/firestore_friend_requests');
-
-  const received = await new Promise<{ friends: FriendEntry[]; fromCache: boolean }>(resolve => {
-    subscribeToFriends((friends: FriendEntry[], meta?: SubscribeFriendsSnapshotMeta) => {
-      resolve({ friends, fromCache: meta?.fromCache === true });
-    });
-  });
-
-  expect(stableAuthLinkCalls).toBe(1);
-  expect(received).toEqual({ friends: [], fromCache: true });
-});
-
-test('S04: subscribeToIncomingRequests does not open Firestore when the stable auth link is unavailable', async () => {
-  stableAuthLinkResult = false;
-  mockDocs.set('users/my-uid-111/friend_requests/req-uid-666', { status: 'pending', createdAt: 900 });
-  const { subscribeToIncomingRequests } = require('../app/firestore_friend_requests');
-
-  const received = await new Promise<FriendRequestEntry[]>(resolve => {
-    subscribeToIncomingRequests(resolve);
-  });
-
-  expect(stableAuthLinkCalls).toBe(1);
-  expect(received).toEqual([]);
 });

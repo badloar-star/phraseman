@@ -4,6 +4,20 @@ import path from 'path';
 describe('new paywalls activate Premium locally after RevenueCat success', () => {
   const sharedHook = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
 
+  it('keeps the dev preview open and explains that no store purchase was started', () => {
+    const purchaseStart = sharedHook.indexOf('const handlePurchase = useCallback');
+    const packageSelection = sharedHook.indexOf("const pkg = selected === 'lifetime'", purchaseStart);
+    expect(purchaseStart).toBeGreaterThan(-1);
+    expect(packageSelection).toBeGreaterThan(purchaseStart);
+
+    const devPreviewBranch = sharedHook.slice(purchaseStart, packageSelection);
+    expect(devPreviewBranch).toContain('showDevPurchasePreviewAlert(lang)');
+    expect(devPreviewBranch).not.toContain('dismissPaywallModal(router)');
+    expect(devPreviewBranch).not.toContain('finishPersonalPlanActivationFlow()');
+    expect(sharedHook).toContain('Покупка не запускалась');
+    expect(sharedHook).toContain('сборке с подключённым магазином');
+  });
+
   it('shared A/B/C purchase hook persists CustomerInfo metadata and emits activation', () => {
     const purchaseStart = sharedHook.indexOf('const handlePurchase = useCallback');
     const restoreStart = sharedHook.indexOf('const handleRestore = useCallback');

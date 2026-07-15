@@ -8,8 +8,8 @@
 //   • кнопка Phraseman Pro (lifetimeAvailable=false без пакета lifetime).
 //
 // Эти строки — ТОЛЬКО для отображения в dev. В реальную покупку они НЕ уходят:
-// в dev покупка идёт по ветке DEV_IAP_BYPASS в usePaywallPurchase (Purchases API
-// не вызывается). В стор-сборке (DEV_IAP_BYPASS=false) этот модуль не используется
+// в dev ветка DEV_IAP_BYPASS в usePaywallPurchase показывает честное preview-сообщение,
+// не закрывает paywall и не вызывает Purchases API. В стор-сборке (DEV_IAP_BYPASS=false) этот модуль не используется
 // вовсе — там и цены, и пакет lifetime приходят из RevenueCat как обычно.
 // ════════════════════════════════════════════════════════════════════════════
 import type { PurchasesPackage } from 'react-native-purchases';
@@ -35,7 +35,7 @@ export const DEV_PREVIEW_LIFETIME_PRICE = '€99';
 /**
  * Фейковый lifetime-пакет для dev-превью. Достаточно полей, которые читает UI и
  * хук (identifier, priceString, price, pricePerMonth=null — lifetime разовый).
- * Реальную покупку он не запускает: в dev срабатывает ветка DEV_IAP_BYPASS.
+ * Реальную покупку он не запускает: в dev срабатывает preview-ветка DEV_IAP_BYPASS.
  */
 export const DEV_PREVIEW_LIFETIME_PACKAGE = {
   identifier: '$rc_lifetime',

@@ -43,7 +43,7 @@ test('returns true when tester_no_limits is enabled', async () => {
   expect(getCustomerInfo).not.toHaveBeenCalled();
 });
 
-test('tester_no_premium overrides __DEV__ default (strip premium in dev)', async () => {
+test('tester_no_premium remains the explicit QA kill switch in dev', async () => {
   (globalThis as any).__DEV__ = true;
   asyncStore.tester_no_premium = 'true';
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
@@ -52,12 +52,15 @@ test('tester_no_premium overrides __DEV__ default (strip premium in dev)', async
   expect(getCustomerInfo).not.toHaveBeenCalled();
 });
 
-test('__DEV__ without tester_no_premium is treated as premium', async () => {
+test('__DEV__ does not preserve a stale premium_active flag without a store plan', async () => {
   (globalThis as any).__DEV__ = true;
+  asyncStore.premium_active = 'true';
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
-  expect(result).toBe(true);
-  expect(getCustomerInfo).not.toHaveBeenCalled();
+  expect(result).toBe(false);
+  expect(asyncStore.premium_active).toBe('false');
+  // Initial verification plus the existing post-cloud-refresh recheck.
+  expect(getCustomerInfo).toHaveBeenCalledTimes(2);
 });
 
 test('admin override gives VIP access without making real Premium active', async () => {

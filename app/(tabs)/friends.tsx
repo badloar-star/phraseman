@@ -2097,11 +2097,12 @@ export default function FriendsTabScreen() {
   /** Локальный кеш профилей с TTL — инициализируется из модульного peekProfilesCache() (переживает ремаунты). */
   const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache());
 
-  const syncMyInviteCode = useCallback(async () => {
+  const syncMyInviteCode = useCallback(async (isCancelled: () => boolean = () => false) => {
+    const stopped = () => !mountedRef.current || isCancelled();
     // Retry up to 5 times with 3s delay — Auth may not be ready immediately on cold launch.
     for (let attempt = 0; attempt < 5; attempt++) {
       const code = await ensureMyInviteCodeForFriends('');
-      if (!mountedRef.current) return;
+      if (stopped()) return;
       if (code) {
         setMyCode(code);
         setFriendCodeLoadError(false);
@@ -2109,10 +2110,10 @@ export default function FriendsTabScreen() {
       }
       if (attempt < 4) {
         await new Promise(resolve => setTimeout(resolve, 3000));
-        if (!mountedRef.current) return;
+        if (stopped()) return;
       }
     }
-    setFriendCodeLoadError(true);
+    if (!stopped()) setFriendCodeLoadError(true);
   }, []);
 
   const retryFriendCode = useCallback(() => {
@@ -2123,18 +2124,31 @@ export default function FriendsTabScreen() {
 
   // ── My code + my data ──────────────────────────────────────────────────────
 
-  // Предзагрузка при премаунте (задумано): данные готовы ДО того как юзер откроет таб.
+  // mountedRef живёт весь маунт экрана; табы не размонтируются при переключении.
   useEffect(() => {
     mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
+  // Локальный кеш остаётся частью премаунта: он даёт первый кадр без сети.
+  useEffect(() => {
     void readCachedMyInviteCodeForFriends().then(cached => {
       if (mountedRef.current && cached) setMyCode(prev => prev ?? cached);
     });
-    void syncMyInviteCode();
+  }, []);
+
+  // Сетевое обслуживание стартует только для видимого таба. Иначе фоновый
+  // премаунт запускал retry кода, профиль и Firestore cleanup, а их ответы продолжали
+  // будить тяжёлое дерево friends после ухода на соседний таб.
+  useEffect(() => {
+    if (!friendsTabVisible) return;
+    let cancelled = false;
+    void syncMyInviteCode(() => cancelled);
     const task = InteractionManager.runAfterInteractions(() => {
-      void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
+      void fetchMyProfile().then(p => { if (!cancelled && mountedRef.current && p) setMyProfile(p); });
       // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
       void startFriendsTabSwrPrime().then(() => {
-        if (!mountedRef.current) return;
+        if (cancelled || !mountedRef.current) return;
         const fresh = peekProfilesCache();
         profilesCacheRef.current = { ...fresh };
         setProfiles(prev => {
@@ -2147,8 +2161,8 @@ export default function FriendsTabScreen() {
       });
       void cleanupStaleFriendData();
     });
-    return () => { mountedRef.current = false; task.cancel(); };
-  }, [syncMyInviteCode]);
+    return () => { cancelled = true; task.cancel(); };
+  }, [friendsTabVisible, syncMyInviteCode]);
 
   const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {
@@ -2204,7 +2218,6 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     if (!friendsTabVisible) return;
     const cancelled = { current: false };
-    void ensureFriendRequestViewerAuthLink();
     void startFriendsTabSwrPrime();
     void pollIncomingFriendGifts(cancelled);
     void refreshFriendQuest(cancelled);
@@ -2309,8 +2322,8 @@ export default function FriendsTabScreen() {
       const uid = await ensureAnonUser();
       if (!uid || cancelled) return;
 
-      await ensureFriendRequestViewerAuthLink();
-      if (cancelled) return;
+      const authLinkReady = await ensureFriendRequestViewerAuthLink(uid);
+      if (!authLinkReady || cancelled) return;
 
       unsubFriends = subscribeToFriends((data, meta) => {
         if (cancelled) return;

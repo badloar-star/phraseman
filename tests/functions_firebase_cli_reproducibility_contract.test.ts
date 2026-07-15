@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '..');
-const FIREBASE_TOOLS_VERSION = '15.15.0';
+const FIREBASE_TOOLS_VERSION = '15.23.0';
 
 type PackageJson = {
   devDependencies?: Record<string, string>;

@@ -771,7 +771,7 @@ export default function DialogsTabContent({
             }}
           >
             <ActivityIndicator size="small" color={accent} />
-            <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }} numberOfLines={1}>
+            <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
               {accessLoadingText}
             </Text>
           </View>

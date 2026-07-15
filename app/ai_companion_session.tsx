@@ -256,7 +256,7 @@ export default function AiCompanionSession() {
               style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}
             >
               <ActivityIndicator size="small" color={t.accent} />
-              <Text style={{ fontWeight: '700', color: t.textSecond, fontSize: f.sub }} numberOfLines={1}>
+              <Text style={{ fontWeight: '700', color: t.textSecond, fontSize: f.sub }}>
                 {accessLoadingText}
               </Text>
             </View>

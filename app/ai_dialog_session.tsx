@@ -1451,7 +1451,6 @@ export default function AiDialogSession() {
                   // заголовок, чтобы шапка не была пустой.
                   <Text
                     style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
-                    numberOfLines={1}
                   >
                     {dialogScenarioTitle(scenario, lang)}
                   </Text>

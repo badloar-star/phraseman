@@ -2,6 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { CustomerInfo } from 'react-native-purchases';
 import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
+import { activeRevenueCatPremiumEntitlement } from './revenuecat_premium_access';
+
+export {
+  customerInfoConfirmsProductAccess,
+  revenueCatCustomerInfoHasPremiumAccess,
+} from './revenuecat_premium_access';
 
 export type PremiumStorePlan = 'monthly' | 'yearly' | 'lifetime';
 
@@ -15,11 +21,6 @@ export type RevenueCatPremiumMetadata = {
 
 function clean(raw: unknown): string {
   return String(raw ?? '').trim();
-}
-
-function activePremiumEntitlement(info: CustomerInfo | null | undefined): any | null {
-  const active = info?.entitlements?.active ?? {};
-  return (active as Record<string, any>).premium ?? Object.values(active as Record<string, any>)[0] ?? null;
 }
 
 export function inferPremiumPlanFromProductId(
@@ -60,7 +61,7 @@ export function revenueCatPremiumMetadata(
   info: CustomerInfo | null | undefined,
   defaultProductId?: string | null,
 ): RevenueCatPremiumMetadata {
-  const ent = activePremiumEntitlement(info);
+  const ent = activeRevenueCatPremiumEntitlement(info);
   const productId =
     clean(defaultProductId) ||
     clean(ent?.productIdentifier) ||
@@ -90,7 +91,7 @@ export function revenueCatPremiumMetadata(
  * Немое место №2: предупредить юзера обновить способ оплаты.
  */
 export function revenueCatBillingIssueAtMs(info: CustomerInfo | null | undefined): number | null {
-  const ent = activePremiumEntitlement(info);
+  const ent = activeRevenueCatPremiumEntitlement(info);
   const ms = ent?.billingIssueDetectedAtMillis;
   if (typeof ms === 'number' && Number.isFinite(ms) && ms > 0) return ms;
   return null;
@@ -100,6 +101,7 @@ export async function persistStorePremiumLocally(
   plan: PremiumStorePlan,
   metadata: RevenueCatPremiumMetadata = {},
   isCurrent: () => boolean = () => true,
+  syncCloud: boolean = true,
 ): Promise<boolean> {
   const now = Date.now();
   const pairs: [string, string][] = [
@@ -127,7 +129,7 @@ export async function persistStorePremiumLocally(
   if (!isCurrent()) return false;
   invalidatePremiumCache();
   if (!isCurrent()) return false;
-  await syncToCloud({ forceNow: true }).catch(() => {});
+  if (syncCloud) await syncToCloud({ forceNow: true }).catch(() => {});
   return isCurrent();
 }
 

@@ -9,9 +9,15 @@ describe('RevenueCat identity bootstrap', () => {
     jest.doMock('../app/shards_shop_cache', () => ({
       prefetchShardsShopOfferings: jest.fn(async () => undefined),
     }));
+    jest.doMock('../app/account_generation', () => ({
+      captureAccountGeneration: jest.fn(() => ({ generation: 1, stableId, phase: 'active' })),
+      isCurrentAccountGeneration: jest.fn(() => true),
+      withAccountTransitionLock: jest.fn(async (work: () => Promise<unknown>) => work()),
+    }));
     jest.doMock('../app/premium_revenuecat_state', () => ({
       inferPremiumPlanFromProductId: jest.fn(() => 'yearly'),
       persistStorePremiumLocally: jest.fn(async () => undefined),
+      revenueCatCustomerInfoHasPremiumAccess: jest.fn((info: any) => !!info?.entitlements?.active?.premium),
       revenueCatPremiumMetadata: jest.fn(() => ({})),
     }));
     return {
@@ -67,6 +73,20 @@ describe('RevenueCat identity bootstrap', () => {
     await expect(revenueCat.syncRevenueCatIdentity()).resolves.toBe(false);
 
     expect(purchases.logIn).toHaveBeenCalledWith('stable-123');
+  });
+
+  it('does not apply startup CustomerInfo when RevenueCat identity is not ready', async () => {
+    const { revenueCat, purchases } = await loadSubject();
+    purchases.isConfigured.mockResolvedValue(true);
+    purchases.getAppUserID.mockResolvedValue('$RCAnonymousID:stuck-user');
+    purchases.logIn.mockResolvedValue({
+      customerInfo: { entitlements: { active: {} }, activeSubscriptions: [] },
+      created: false,
+    });
+
+    await revenueCat.initRevenueCat();
+
+    expect(purchases.getCustomerInfo).not.toHaveBeenCalled();
   });
 
   it('does not log into a stale account when generation changes during identity lookup', async () => {

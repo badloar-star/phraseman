@@ -244,9 +244,9 @@ export function PersonalizationProofCard({
 
 // ── что даёт Plus: один тезис сверху, ниже 4 сильные выгоды ──────────────────
 // Тексты сверены с реальными лимитами в коде (см. ниже), без «тумана» и неправды:
-//   • Квизы: лимит 3/день ЛЮБОЙ сложности (quiz_daily_limit.ts: FREE_DAILY_QUIZ_LIMIT=3).
+//   • Квизы: лимит 1/день ЛЮБОЙ сложности (quiz_daily_limit.ts: FREE_DAILY_QUIZ_LIMIT=1).
 //     НЕ «только Easy» — все уровни блокируются единым дневным лимитом, не сложностью.
-//   • Уроки: free = 1–8 (monetization_policy.ts: FREE_LESSON_LIMIT=8). Правда.
+//   • Уроки: free = 1–3 (monetization_policy.ts: FREE_LESSON_LIMIT=3). Правда.
 //   • Энергия free: +1 за ~10 мин. Произношение/диалоги/тренер: закрыты/пробные.
 type LocCell = Record<Lang, string>;
 
@@ -336,14 +336,14 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         pl: 'Co będzie po okresie próbnym?',
       }),
       a: triLang(lang, {
-        ru: `${trialDays} дн. всё открыто бесплатно. За день до конца пришлём пуш. Отменишь — деньги не спишутся. Не отменишь — ${priceLine}.`,
-        uk: `${trialDays} дн. усе відкрито безкоштовно. За день до кінця надішлемо пуш. Скасуєш — гроші не спишуться. Не скасуєш — ${priceLine}.`,
-        es: `${trialDays} días todo gratis. Un día antes te avisamos. Si cancelas, no se cobra nada. Si no, ${priceLine}.`,
-        'pt-BR': `${trialDays} dias com tudo liberado grátis. Um dia antes, enviaremos um aviso. Se cancelar, nada é cobrado. Se não, ${priceLine}.`,
-        vi: `${trialDays} ngày mở tất cả miễn phí. Trước khi kết thúc một ngày, chúng tôi sẽ gửi nhắc nhở. Hủy thì không bị trừ tiền. Không hủy thì ${priceLine}.`,
-        id: `${trialDays} hari semua terbuka gratis. Sehari sebelum berakhir, kami kirim notifikasi. Kalau dibatalkan, tidak ada tagihan. Kalau tidak, ${priceLine}.`,
-        tr: `${trialDays} gün boyunca her şey ücretsiz açık. Bitmeden bir gün önce bildirim göndeririz. İptal edersen ücret alınmaz. Etmezsen ${priceLine}.`,
-        pl: `${trialDays} dni wszystko jest otwarte za darmo. Dzień przed końcem wyślemy powiadomienie. Anulujesz — nic nie pobierzemy. Nie anulujesz — ${priceLine}.`,
+        ru: `${trialDays} дн. всё открыто бесплатно. Если уведомления разрешены, напомним перед окончанием. Отменишь — деньги не спишутся. Не отменишь — ${priceLine}.`,
+        uk: `${trialDays} дн. усе відкрито безкоштовно. Якщо сповіщення дозволені, нагадаємо перед завершенням. Скасуєш — гроші не спишуться. Не скасуєш — ${priceLine}.`,
+        es: `${trialDays} días con todo abierto gratis. Si permites notificaciones, te recordaremos antes del final. Si cancelas, no se cobra nada. Si no, ${priceLine}.`,
+        'pt-BR': `${trialDays} dias com tudo liberado grátis. Se as notificações estiverem permitidas, lembraremos antes do fim. Se cancelar, nada é cobrado. Se não, ${priceLine}.`,
+        vi: `${trialDays} ngày mở tất cả miễn phí. Nếu bạn cho phép thông báo, chúng tôi sẽ nhắc trước khi kết thúc. Hủy thì không bị trừ tiền. Không hủy thì ${priceLine}.`,
+        id: `${trialDays} hari semua terbuka gratis. Jika notifikasi diizinkan, kami akan mengingatkan sebelum berakhir. Kalau dibatalkan, tidak ada tagihan. Kalau tidak, ${priceLine}.`,
+        tr: `${trialDays} gün boyunca her şey ücretsiz açık. Bildirimlere izin verirsen bitmeden önce hatırlatırız. İptal edersen ücret alınmaz. Etmezsen ${priceLine}.`,
+        pl: `${trialDays} dni wszystko jest otwarte za darmo. Jeśli powiadomienia są dozwolone, przypomnimy przed końcem. Anulujesz — nic nie pobierzemy. Nie anulujesz — ${priceLine}.`,
       }),
     }] : []),
     {
@@ -380,14 +380,14 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         pl: 'Co zawiera Plus?',
       }),
       a: triLang(lang, {
-        ru: 'Уроки после бесплатного порога и все уровни, энергия без ожидания, квизы без free-лимита 3/день, больше 20 карточек, AI-диалоги и сценарии уровней, устный ввод с оценкой фразы, умный тренер слабых мест, личный план, расширенная статистика, безлимитные матчи Арены, заморозка серии, Plus-темы и Plus-аура профиля.',
-        uk: 'Уроки після безкоштовного порога й усі рівні, енергія без очікування, квізи без free-ліміту 3/день, понад 20 карток, AI-діалоги й сценарії рівнів, усне введення з оцінкою фрази, розумний тренер слабких місць, особистий план, розширена статистика, безлімітні матчі Арени, заморозка серії, Plus-теми й Plus-аура профілю.',
-        es: 'Lecciones tras el tramo gratis y todos los niveles, energía sin esperas, quizzes sin el límite gratis de 3/día, más de 20 tarjetas, diálogos IA y escenarios por nivel, voz con evaluación de frase, entrenador de puntos débiles, plan personal, estadísticas avanzadas, duelos ilimitados de Arena, protección de racha, temas Plus y aura Plus de perfil.',
-        'pt-BR': 'Lições após a faixa grátis e todos os níveis, energia sem espera, quizzes sem o limite grátis de 3/dia, mais de 20 cartões, diálogos com IA e cenários por nível, voz com avaliação da frase, treino de pontos fracos, plano pessoal, estatísticas avançadas, duelos ilimitados na Arena, proteção de sequência, temas Plus e aura Plus no perfil.',
-        vi: 'Bài học sau phần miễn phí và mọi cấp độ, năng lượng không phải chờ, quiz không còn giới hạn miễn phí 3/ngày, hơn 20 thẻ, hội thoại AI và kịch bản theo cấp độ, nói bằng giọng với đánh giá câu, luyện điểm yếu, kế hoạch cá nhân, thống kê nâng cao, trận Arena không giới hạn, bảo vệ chuỗi, chủ đề Plus và hào quang hồ sơ Plus.',
-        id: 'Pelajaran setelah batas gratis dan semua level, energi tanpa menunggu, kuis tanpa batas gratis 3/hari, lebih dari 20 kartu, dialog AI dan skenario level, input suara dengan penilaian frasa, pelatih titik lemah, rencana pribadi, statistik lanjutan, duel Arena tanpa batas, pelindung streak, tema Plus, dan aura profil Plus.',
-        tr: 'Ücretsiz eşikten sonraki dersler ve tüm seviyeler, beklemesiz enerji, günde 3 ücretsiz quiz sınırı olmadan quizler, 20’den fazla kart, AI diyalogları ve seviye senaryoları, cümle puanlayan sesli giriş, zayıf nokta antrenörü, kişisel plan, gelişmiş istatistik, sınırsız Arena maçları, seri dondurma, Plus temaları ve Plus profil aurası.',
-        pl: 'Lekcje po darmowym progu i wszystkie poziomy, energia bez czekania, quizy bez limitu free 3/dzień, ponad 20 fiszek, dialogi AI i scenariusze poziomów, mówienie z oceną frazy, trener słabych miejsc, plan osobisty, rozszerzone statystyki, nielimitowane pojedynki Areny, ochrona serii, motywy Plus i aura profilu Plus.',
+        ru: 'Уроки после бесплатного порога и все уровни, энергия без ожидания, квизы без free-лимита 1/день, больше 20 карточек, AI-диалоги и сценарии уровней, устный ввод с оценкой фразы, умный тренер слабых мест, личный план, расширенная статистика, безлимитные матчи Арены, заморозка серии, Plus-темы и Plus-аура профиля.',
+        uk: 'Уроки після безкоштовного порога й усі рівні, енергія без очікування, квізи без free-ліміту 1/день, понад 20 карток, AI-діалоги й сценарії рівнів, усне введення з оцінкою фрази, розумний тренер слабких місць, особистий план, розширена статистика, безлімітні матчі Арени, заморозка серії, Plus-теми й Plus-аура профілю.',
+        es: 'Lecciones tras el tramo gratis y todos los niveles, energía sin esperas, quizzes sin el límite gratis de 1/día, más de 20 tarjetas, diálogos IA y escenarios por nivel, voz con evaluación de frase, entrenador de puntos débiles, plan personal, estadísticas avanzadas, duelos ilimitados de Arena, protección de racha, temas Plus y aura Plus de perfil.',
+        'pt-BR': 'Lições após a faixa grátis e todos os níveis, energia sem espera, quizzes sem o limite grátis de 1/dia, mais de 20 cartões, diálogos com IA e cenários por nível, voz com avaliação da frase, treino de pontos fracos, plano pessoal, estatísticas avançadas, duelos ilimitados na Arena, proteção de sequência, temas Plus e aura Plus no perfil.',
+        vi: 'Bài học sau phần miễn phí và mọi cấp độ, năng lượng không phải chờ, quiz không còn giới hạn miễn phí 1/ngày, hơn 20 thẻ, hội thoại AI và kịch bản theo cấp độ, nói bằng giọng với đánh giá câu, luyện điểm yếu, kế hoạch cá nhân, thống kê nâng cao, trận Arena không giới hạn, bảo vệ chuỗi, chủ đề Plus và hào quang hồ sơ Plus.',
+        id: 'Pelajaran setelah batas gratis dan semua level, energi tanpa menunggu, kuis tanpa batas gratis 1/hari, lebih dari 20 kartu, dialog AI dan skenario level, input suara dengan penilaian frasa, pelatih titik lemah, rencana pribadi, statistik lanjutan, duel Arena tanpa batas, pelindung streak, tema Plus, dan aura profil Plus.',
+        tr: 'Ücretsiz eşikten sonraki dersler ve tüm seviyeler, beklemesiz enerji, günde 1 ücretsiz quiz sınırı olmadan quizler, 20’den fazla kart, AI diyalogları ve seviye senaryoları, cümle puanlayan sesli giriş, zayıf nokta antrenörü, kişisel plan, gelişmiş istatistik, sınırsız Arena maçları, seri dondurma, Plus temaları ve Plus profil aurası.',
+        pl: 'Lekcje po darmowym progu i wszystkie poziomy, energia bez czekania, quizy bez limitu free 1/dzień, ponad 20 fiszek, dialogi AI i scenariusze poziomów, mówienie z oceną frazy, trener słabych miejsc, plan osobisty, rozszerzone statystyki, nielimitowane pojedynki Areny, ochrona serii, motywy Plus i aura profilu Plus.',
       }),
     },
   ];

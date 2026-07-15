@@ -299,26 +299,20 @@ describe('getTrainerModeCounts', () => {
 });
 
 describe('trainer — free session limit', () => {
-  // Дефолт = 2 бесплатные сессии/день (remote_flags, FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT).
-  it('starts with 2 sessions available', async () => {
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(2);
-  });
-
-  it('returns 1 left after one session marked used today', async () => {
-    const today = new Date().toISOString().split('T')[0];
-    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: today, count: 1 });
+  // Дефолт = 1 бесплатная сессия/день (remote_flags, FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT).
+  it('starts with 1 session available', async () => {
     await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
   });
 
-  it('returns 0 after both sessions used today', async () => {
+  it('returns 0 after the session is marked used today', async () => {
     const today = new Date().toISOString().split('T')[0];
-    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: today, count: 2 });
+    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: today, count: 1 });
     await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
   });
 
-  it('resets to 2 on a new day', async () => {
-    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: '2000-01-01', count: 2 });
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(2);
+  it('resets to 1 on a new day', async () => {
+    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: '2000-01-01', count: 1 });
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
   });
 
   it('requires a reserved entry for non-premium direct session access', async () => {
@@ -329,21 +323,15 @@ describe('trainer — free session limit', () => {
   it('does not spend the free session while only reserving navigation', async () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(2);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
   });
 
-  it('consumes reserved free entries and marks the daily sessions used', async () => {
+  it('consumes the reserved free entry and blocks the next reservation', async () => {
     mockStorage.tester_no_premium = 'true';
-    // Первая сессия
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(2);
-    await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(true);
     await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
-    // Вторая (последняя бесплатная) сессия
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(true);
     await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
-    // Третья — уже заблокирована
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(false);
   });
 
@@ -351,8 +339,8 @@ describe('trainer — free session limit', () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
     await expect(consumeTrainerSessionEntry('/trainer_phrases_session')).resolves.toBe(false);
-    // Неверный маршрут не списывает сессию — остаётся полный дневной лимит (2).
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(2);
+    // Неверный маршрут не списывает сессию — остаётся полный дневной лимит (1).
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
   });
 });
 

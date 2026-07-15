@@ -30,8 +30,10 @@ jest.mock('../app/remote_flags', () => ({
   isPaywallTimersEnabled: jest.fn(() => false),
 }));
 jest.mock('../app/premium_revenuecat_state', () => ({
+  customerInfoConfirmsProductAccess: jest.fn(() => false),
   inferPremiumPlanFromProductId: jest.fn(() => 'monthly'),
   persistStorePremiumLocally: jest.fn(async () => {}),
+  revenueCatCustomerInfoHasPremiumAccess: jest.fn(() => false),
   revenueCatPremiumMetadata: jest.fn(() => ({ productId: '' })),
 }));
 jest.mock('../app/paywall_pricing', () => ({

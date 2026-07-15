@@ -51,10 +51,16 @@ describe('remote_flags', () => {
 
   describe('defaults', () => {
     it('returns hardcoded defaults before any snapshot', () => {
-      expect(getFreeLessonLimit()).toBe(8);
-      expect(getRemoteNumber('free_daily_quiz_limit')).toBe(3);
+      expect(getFreeLessonLimit()).toBe(3);
+      expect(getRemoteNumber('free_daily_quiz_limit')).toBe(1);
       expect(getRemoteNumber('arena_daily_max')).toBe(1);
       expect(getRemoteNumber('max_energy')).toBe(5);
+      expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(10 * 60 * 1000);
+      expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
+      expect(getRemoteNumber('free_trainer_sessions_per_day')).toBe(1);
+      expect(getRemoteNumber('trainer_ab_a_pct')).toBe(0);
+      expect(getRemoteNumber('trainer_ab_b_pct')).toBe(0);
+      expect(getRemoteNumber('trainer_ab_c_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_quiz_pct')).toBe(0);
@@ -120,9 +126,14 @@ describe('remote_flags', () => {
     it('clamps out-of-range values to bounds', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 999, max_energy: 0, paywall_v2_pct: 250, league_xp_promotion_threshold: 0 } });
       expect(getFreeLessonLimit()).toBe(32);
-      expect(getRemoteNumber('max_energy')).toBe(1);
+      expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1);
+    });
+
+    it('keeps the runtime energy base fixed at five', () => {
+      applyRemoteConfigSnapshot({ numbers: { max_energy: 7 } });
+      expect(getRemoteNumber('max_energy')).toBe(5);
     });
 
     it('ignores wrong-typed values (keeps default)', () => {
@@ -130,7 +141,7 @@ describe('remote_flags', () => {
         numbers: { free_lesson_limit: 'lots' as unknown as number },
         bools: { league_xp_promotion_enabled: 'yes' as unknown as boolean },
       });
-      expect(getFreeLessonLimit()).toBe(8);
+      expect(getFreeLessonLimit()).toBe(3);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
     });
 
@@ -138,7 +149,7 @@ describe('remote_flags', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12 } });
       expect(getFreeLessonLimit()).toBe(12);
       applyRemoteConfigSnapshot({ numbers: { arena_daily_max: 9 } });
-      expect(getFreeLessonLimit()).toBe(8);
+      expect(getFreeLessonLimit()).toBe(3);
       expect(getRemoteNumber('arena_daily_max')).toBe(9);
     });
   });

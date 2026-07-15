@@ -10370,7 +10370,7 @@
       </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">🎁</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — новый юзер после онбординга получает 72ч полного доступа и приветственный модал. Выкл → новые юзеры больше НЕ получают ни подарок, ни модал (у всех живьём, без релиза). Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — новые пользователи не получают автоматический подарок. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-intro_full_access_enabled" class="cp-toggle" onchange="saveControlPanelBool('intro_full_access_enabled', this.checked)" disabled/><span id="cp-bool-label-intro_full_access_enabled" class="cp-bool-chip">…</span></label>
       </div>
     </div>
@@ -29347,16 +29347,16 @@
   // ── Remote Config ─────────────────────────────────────────────────────────
   // Mirror of app/remote_flags.ts defaults+bounds. Keep in sync.
   const RC_NUMBER_FIELDS = [
-    { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 8, min: 1, max: 32 },
-    { key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 3, min: 0, max: 999 },
+    { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3, min: 1, max: 32 },
+    { key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 1, min: 0, max: 999 },
     { key: 'arena_daily_max', label: 'Free: матчей арены в день', def: 5, min: 0, max: 999 },
     { key: 'arena_shard_refill_cost', label: 'Арена: цена докупки (осколки)', def: 5, min: 0, max: 9999 },
     { key: 'arena_shard_refill_slots', label: 'Арена: слотов за докупку', def: 5, min: 0, max: 999 },
-    { key: 'max_energy', label: 'Макс. энергии', def: 5, min: 1, max: 99 },
+    { key: 'max_energy', label: 'База энергии (до уровня 50)', def: 5, min: 5, max: 5 },
     { key: 'energy_recovery_interval_ms', label: 'Восст. энергии (мс)', def: 600000, min: 10000, max: 86400000 },
-    { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 2, min: 0, max: 99 },
+    { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 1, min: 0, max: 99 },
     { key: 'trainer_ab_a_pct', label: 'A/B тренер: группа A %', def: 0, min: 0, max: 100 },
-    { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 100, min: 0, max: 100 },
+    { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 0, min: 0, max: 100 },
     { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
@@ -29498,7 +29498,7 @@
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
     { key: 'paywall_reviews_enabled',  label: 'Пейволы: отзывы учеников',        def: true,  hint: 'Вкл по умолчанию. Выкл → секция «Что говорят ученики» пропадает на всех пейволах A/B/C у всех живьём, без релиза. Ничего не ломается — блок просто исчезает. Вкл возвращает.' },
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
-    { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: true,  hint: 'Вкл по умолчанию (kill-switch). Выкл → новые юзеры после онбординга больше НЕ получают 72ч полного доступа и приветственный модал (у всех живьём, без релиза). Уже выданные подарки не отбираются — активные докатывают свои часы. Включение возвращает подарок будущим новичкам.' },
+    { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false, hint: 'Выкл по умолчанию. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки не отбираются — активные докатывают свои часы.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
@@ -30610,11 +30610,11 @@
 
   // Числовые лимиты бесплатного тарифа. min/max — в синхроне с NUMBER_BOUNDS.
   const CP_PREMIUM_LIMITS = [
-    { key: 'free_lesson_limit',             label: 'Бесплатных уроков (порог N)',   def: 8,   min: 1,  max: 32,  hint: 'Первые N уроков бесплатны.' },
-    { key: 'free_daily_quiz_limit',         label: 'Квизов в день (free)',          def: 3,   min: 0,  max: 999, hint: 'Бесплатных квизов в сутки.' },
-    { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день (free)',  def: 2,   min: 0,  max: 99,  hint: 'Бесплатных сессий тренажёра в сутки.' },
+    { key: 'free_lesson_limit',             label: 'Бесплатных уроков (порог N)',   def: 3,   min: 1,  max: 32,  hint: 'Первые N уроков бесплатны.' },
+    { key: 'free_daily_quiz_limit',         label: 'Квизов в день (free)',          def: 1,   min: 0,  max: 999, hint: 'Бесплатных квизов в сутки.' },
+    { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день (free)',  def: 1,   min: 0,  max: 99,  hint: 'Бесплатных сессий тренажёра в сутки.' },
     { key: 'arena_daily_max',               label: 'Матчей арены/день',             def: 5,   min: 0,  max: 999, hint: 'Матчей арены в сутки.' },
-    { key: 'max_energy',                    label: 'Максимум энергии',              def: 5,   min: 1,  max: 99,  hint: 'Размер шкалы энергии.' },
+    { key: 'max_energy',                    label: 'База энергии до уровня 50',      def: 5,   min: 5,  max: 5,   hint: 'Фиксированная база 5; на уровне 50 добавляется один слот.' },
   ];
 
   // Локальное состояние редактора уроков (Set id уроков-исключений).
@@ -30644,8 +30644,8 @@
     if (_cpPremPremiumExtra.has(id)) return false;      // премиум-исключение
     if (_cpPremFreeExtra.has(id)) return true;          // фри-исключение
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    return id <= (Number.isFinite(thr) ? thr : 8);
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    return id <= (Number.isFinite(thr) ? thr : 3);
   }
 
   function cpPremRenderFeatureToggle(key, premium) {
@@ -30709,9 +30709,9 @@
     const box = document.getElementById('cp-prem-lessons');
     if (!box) return;
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
     const thrLbl = document.getElementById('cp-prem-lesson-threshold');
-    if (thrLbl) thrLbl.textContent = Number.isFinite(thr) ? thr : 8;
+    if (thrLbl) thrLbl.textContent = Number.isFinite(thr) ? thr : 3;
     let html = '';
     for (let id = 1; id <= CP_LESSON_COUNT; id++) {
       const free = cpPremLessonIsFree(id);
@@ -30729,8 +30729,8 @@
   window.cpPremToggleLesson = function(id) {
     const free = cpPremLessonIsFree(id);
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    const baseFree = Number.isFinite(thr) ? id <= thr : id <= 8;
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    const baseFree = Number.isFinite(thr) ? id <= thr : id <= 3;
     _cpPremFreeExtra.delete(id);
     _cpPremPremiumExtra.delete(id);
     if (free) {
@@ -30747,16 +30747,16 @@
     _cpPremPremiumExtra.clear();
     _cpPremFreeExtra.clear();
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (!(Number.isFinite(thr) ? id <= thr : id <= 8)) _cpPremFreeExtra.add(id); }
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (!(Number.isFinite(thr) ? id <= thr : id <= 3)) _cpPremFreeExtra.add(id); }
     cpPremRenderLessons();
   };
   window.cpPremLessonsAllPremium = function() {
     _cpPremFreeExtra.clear();
     _cpPremPremiumExtra.clear();
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (Number.isFinite(thr) ? id <= thr : id <= 8) _cpPremPremiumExtra.add(id); }
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (Number.isFinite(thr) ? id <= thr : id <= 3) _cpPremPremiumExtra.add(id); }
     cpPremRenderLessons();
   };
   window.cpPremLessonsResetThreshold = function() {

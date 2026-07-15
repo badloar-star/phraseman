@@ -4,6 +4,7 @@ import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
 import { isLoyaltyGiftActive } from './loyalty_gift';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
+import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 const RC_TIMEOUT_MS = 8000;
@@ -103,9 +104,6 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   // Тестер «Снять премиум» должен срезать только dev-default premium,
   // но не VIP-доступ, который считается отдельно.
   if (noPremium === 'true') return cacheReal(false);
-  // Dev builds are premium by default — вимикається лише прапорцем tester_no_premium вище
-  if (isDevRuntime && !IS_STORE_RELEASE) return cacheReal(true);
-
   // Return cached result if still fresh
   if (_cachedRealResult !== null && Date.now() - _realCacheTime < CACHE_TTL_MS) {
     return _cachedRealResult;
@@ -136,10 +134,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
       ]);
       if (info) {
-        const activeSubscriptions = (info as any).activeSubscriptions;
-        const rcActive =
-          Object.keys((info as any).entitlements?.active ?? {}).length > 0 ||
-          (Array.isArray(activeSubscriptions) && activeSubscriptions.length > 0);
+        const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
 
         if (rcActive) {
           await AsyncStorage.multiSet([
@@ -187,7 +182,15 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     return cacheReal(false);
   }
   if (legacyAdminGrant) return cacheReal(false);
-  if (!storePlan) return cacheReal(false);
+  if (!storePlan) {
+    // Старые dev-сборки безусловно писали premium_active=true. Без очистки этот
+    // флаг снова попадал в синхронный startup snapshot на каждом холодном запуске
+    // и на короткое время расходился с серверным entitlement.
+    if (isDevRuntime && active === 'true') {
+      await AsyncStorage.setItem('premium_active', 'false');
+    }
+    return cacheReal(false);
+  }
   // КРИТИЧНО (защита от ложной потери оплаченного премиума): сюда мы попадаем, когда
   // RevenueCat НЕ ОТВЕТИЛ (таймаут 8с или исключение) — в Expo Go или при сбое сети.
   // Это НЕ то же самое, что «RC сказал: не премиум» (та ветка выше, строки ~149-160).

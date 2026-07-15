@@ -8,7 +8,7 @@ import { isFeaturePremiumGated } from './feature_gates';
 /** Default free-lesson limit. Runtime checks use the remote-tunable value via
  *  getFreeLessonLimit(); this constant is the build-time fallback for static
  *  callers and is kept in sync with remote_flags' default. */
-export const FREE_LESSON_LIMIT = 8;
+export const FREE_LESSON_LIMIT = 3;
 export const BRONZE_UNLOCK_SCORE = 2.5;
 
 export type LessonAccessState =

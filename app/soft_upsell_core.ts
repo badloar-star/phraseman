@@ -102,7 +102,9 @@ function selectCandidate(candidates: readonly SoftUpsellCandidate[]): SoftUpsell
 function hasValidValue(candidate: SoftUpsellCandidate): boolean {
   switch (candidate.trigger) {
     case 'first_lesson': return candidate.value === 1;
-    case 'free_lessons_complete': return candidate.value === 8;
+    case 'free_lessons_complete': return Number.isInteger(candidate.value)
+      && candidate.value >= 1
+      && candidate.value <= 32;
     case 'second_ai_dialogue': return candidate.value === 2;
     case 'weekly_review':
     case 'repeated_training': return candidate.value === 1;

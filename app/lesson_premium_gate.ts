@@ -5,6 +5,7 @@ import { isLessonUnlockedByEarnedProgress, isLessonUnlockedByPremiumCourse } fro
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 
 export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
 
@@ -48,6 +49,7 @@ export function openLessonPremiumPaywall(
   openPremiumPaywall(router, {
     context: lessonPaywallContext(lessonId),
     lessons_done: Math.max(0, lessonId - 1),
+    ...lessonPurchaseContinuationParams(lessonId),
   }, 'replace');
 }
 

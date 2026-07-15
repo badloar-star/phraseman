@@ -45,13 +45,10 @@ export async function startIntroFullAccessAfterOnboarding(
   nowMs: number = Date.now(),
   lang: Lang = 'ru',
 ): Promise<void> {
-  // Kill-switch из «Пульта»: когда админ выключил приветственный подарок, новые
-  // юзеры НЕ получают ни 72ч доступа, ни модал. Гейт стоит здесь — в точке ВЫДАЧИ,
-  // поэтому уже выданные подарки не отбираются (их стор заполнен, они докатывают
-  // свои часы). Стор не пишем → getIntroFullAccessState вернёт active:false и
-  // welcomeUnseen:false, значит приветственный модал тоже не покажется.
-  if (!isIntroFullAccessEnabled()) return;
-
+  // Kill-switch из «Пульта» блокирует только НОВУЮ выдачу. Уже выданный подарок
+  // сначала ищем локально и в облаке, чтобы не отобрать остаток доступа после
+  // переустановки. Новому юзеру при выключенном флаге стор не заполняем, поэтому
+  // приветственный и финальный модалы не появятся.
   // Подарок выдаётся РОВНО ОДИН РАЗ за всю жизнь установки: если отметка о старте
   // уже есть (даже если 72ч давно истекли) — повторно не выдаём. Для проверки в
   // разработке отметку стирает кнопка «Онбординг — просмотреть повторно» в админке
@@ -81,6 +78,10 @@ export async function startIntroFullAccessAfterOnboarding(
     }
     return;
   }
+
+  // The kill-switch blocks only a NEW grant. The one-time cloud guard above must still run so
+  // an already granted gift survives reinstall / cleared AsyncStorage without being reissued.
+  if (!isIntroFullAccessEnabled()) return;
 
   const endsAt = nowMs + INTRO_FULL_ACCESS_DURATION_MS;
 

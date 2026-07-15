@@ -41,6 +41,9 @@ import { lessonSupportContentAvailableForTarget } from './lesson_support_target_
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import type { TrainerSessionRoute } from './trainer_session';
+import { startReservedTrainerSession } from './trainer_session_navigation';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { useScreen } from '../hooks/use-screen';
@@ -1702,6 +1705,7 @@ function jsonEqualQuiet<T>(a: T, b: T): boolean {
 }
 export default function DailyTasksScreen() {
     const router = useRouter();
+    const trainerSessionStartLockRef = useRef(false);
     const { theme: t, f, themeMode } = useTheme();
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const isGoldTheme = themeMode === 'gold';
@@ -2356,7 +2360,7 @@ export default function DailyTasksScreen() {
             }
             router.push(route);
         };
-        const openTrainerOrFrenchGate = (route: any) => {
+        const openTrainerOrFrenchGate = async (route: '/trainer' | TrainerSessionRoute) => {
             if (!trainerSessionContentAvailableForTarget(studyTarget)) {
                 const copy = frenchTrainerGateCopy(lang);
                 emitAppEvent('action_toast', {
@@ -2368,7 +2372,17 @@ export default function DailyTasksScreen() {
                 router.replace('/(tabs)/lessons' as any);
                 return;
             }
-            router.push(route);
+            if (route === '/trainer') {
+                router.push(route);
+                return;
+            }
+            await startReservedTrainerSession({
+                route,
+                router,
+                studyTarget,
+                premiumAccess: getVerifiedPremiumStatus,
+                lock: trainerSessionStartLockRef,
+            });
         };
         const openFlashcardsOrFrenchGate = () => {
             if (!flashcardsSourceGatedContentAvailableForTarget(storageStudyTarget(studyTarget), 'system_cards')) {
@@ -2460,17 +2474,17 @@ export default function DailyTasksScreen() {
             case 'recall_session':
             case 'recall_answers':
             case 'recall_perfect':
-                openTrainerOrFrenchGate('/trainer');
+                await openTrainerOrFrenchGate('/trainer');
                 break;
             case 'trainer_words':
                 // Сразу в сессию слов — только она засчитывает trainer_words (лимит сессия проверяет сама).
-                openTrainerOrFrenchGate('/trainer_words_session');
+                await openTrainerOrFrenchGate('/trainer_words_session');
                 break;
             case 'trainer_phrases':
-                openTrainerOrFrenchGate('/trainer_phrases_session');
+                await openTrainerOrFrenchGate('/trainer_phrases_session');
                 break;
             case 'trainer_arena':
-                openTrainerOrFrenchGate('/trainer_arena_session');
+                await openTrainerOrFrenchGate('/trainer_arena_session');
                 break;
             case 'daily_phrase_read':
             case 'daily_phrase_save':

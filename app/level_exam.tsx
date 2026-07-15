@@ -38,6 +38,7 @@ import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { usePremium } from '../components/PremiumContext';
 import { lessonPaywallContext } from './monetization_policy';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { levelExamKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
@@ -976,11 +977,13 @@ export default function LevelExam() {
                 onPress={() => {
                   hapticTap();
                   if (accessBlockKind === 'premium') {
+                    const firstLessonForLevel = getFirstLessonForLevel(lvl as CourseLevel);
                     router.push({
                       pathname: '/premium_modal',
                       params: {
-                        context: lessonPaywallContext(getFirstLessonForLevel(lvl as CourseLevel)),
+                        context: lessonPaywallContext(firstLessonForLevel),
                         lessons_done: '0',
+                        ...lessonPurchaseContinuationParams(firstLessonForLevel),
                       },
                     } as any);
                   } else {

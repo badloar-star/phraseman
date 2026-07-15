@@ -38,6 +38,8 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
 import type { ThemeMode } from '../constants/theme';
 import { safeRouterBack } from './navigation_back';
+import { startReservedTrainerSession } from './trainer_session_navigation';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import ErrorBoundary from '../components/ErrorBoundary';
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session';
 type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
@@ -571,6 +573,7 @@ function TrainerScreenInner() {
     const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
     const prefetchedPractice = getCachedTrainerPracticeSnapshot(studyTarget, sourceLocale);
     const initialDataReadyRef = useRef(prefetchedPractice != null);
+    const trainerSessionStartLockRef = useRef(false);
     const [dashboard, setDashboard] = useState<TrainerDashboard>(() => prefetchedPractice?.dashboard ?? EMPTY_TRAINER_DASHBOARD);
     const [initialDataReady, setInitialDataReady] = useState(() => initialDataReadyRef.current);
     const [loadError, setLoadError] = useState(false);
@@ -633,7 +636,16 @@ function TrainerScreenInner() {
         hapticTap();
         router.push({ pathname: '/premium_modal', params: { context } } as any);
     }, [router]);
-    const startSmartMix = useCallback(() => {
+    const openTrainerSession = useCallback(async (route: RoutePath) => {
+        await startReservedTrainerSession({
+            route,
+            router,
+            studyTarget,
+            premiumAccess: () => hasPremium ? Promise.resolve(true) : getVerifiedPremiumStatus(),
+            lock: trainerSessionStartLockRef,
+        });
+    }, [hasPremium, router, studyTarget]);
+    const startSmartMix = useCallback(async () => {
         hapticTap();
         if (total <= 0)
             return;
@@ -643,15 +655,15 @@ function TrainerScreenInner() {
         const section = SECTIONS.find(item => item.queue === targetQueue);
         if (!section)
             return;
-        router.push(section.route as any);
-    }, [dashboard, router, total]);
+        await openTrainerSession(section.route);
+    }, [dashboard, openTrainerSession, total]);
     const startQueue = useCallback(async (section: SectionInfo) => {
         const count = dashboard?.due[section.queue] ?? 0;
         hapticTap();
         if (count <= 0)
             return;
-        router.push(section.route as any);
-    }, [dashboard, router]);
+        await openTrainerSession(section.route);
+    }, [dashboard, openTrainerSession]);
     const startPracticeOption = useCallback(async (option: PracticeOption) => {
         const recommendedQueue = dashboard.nextQueue && option.queues.includes(dashboard.nextQueue) && (dashboard.due[dashboard.nextQueue] ?? 0) > 0
             ? dashboard.nextQueue

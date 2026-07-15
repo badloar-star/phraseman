@@ -4,6 +4,7 @@ import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
 import { isLoyaltyGiftActive } from './loyalty_gift';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
+import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 const RC_TIMEOUT_MS = 8000;
@@ -133,10 +134,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
       ]);
       if (info) {
-        const activeSubscriptions = (info as any).activeSubscriptions;
-        const rcActive =
-          Object.keys((info as any).entitlements?.active ?? {}).length > 0 ||
-          (Array.isArray(activeSubscriptions) && activeSubscriptions.length > 0);
+        const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
 
         if (rcActive) {
           await AsyncStorage.multiSet([

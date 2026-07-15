@@ -262,7 +262,7 @@ const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
 const leagueBonusAvailableReservedThisSession = new Set<string>();
-const LOYALTY_UPDATE_MODAL_ENABLED = true;
+const LOYALTY_UPDATE_MODAL_ENABLED = false;
 const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
 const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
@@ -1213,7 +1213,7 @@ function GlobalLevelUpHandler() {
                 </Text>
               </View>
 
-              {[10, 20, 30, 40, 50].includes(currentLevel) && (
+              {currentLevel === 50 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : '#1A3A2A', borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', borderWidth: 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : '#34D399' }}>
                   <Ionicons name="flash" size={15} color={USE_ELITE_LEVEL_UP_MODAL ? '#F6C85F' : '#34D399'} />
                   <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.textSecond : '#34D399', fontWeight: '800', fontSize: f.body, textAlign: 'center', flexShrink: 1 }}>
@@ -2393,6 +2393,7 @@ function AppContent() {
   const loyaltyEndedActiveRef = useRef(false);
 
   const checkLoyaltyGiftFlow = useCallback(async () => {
+    if (!LOYALTY_UPDATE_MODAL_ENABLED) return;
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
     // Премиум/VIP: подарок не выдаём, но текст обновления показываем — один раз,
     // без блока подарка и без кнопки получения (variant 'announce').
@@ -2432,6 +2433,7 @@ function AppContent() {
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, introFullAccessModal, loyaltyGiftModal, isBanned, ready]);
 
   useEffect(() => {
+    if (!LOYALTY_UPDATE_MODAL_ENABLED) return undefined;
     void checkLoyaltyGiftFlow();
     const loyaltySub = onAppEvent('loyalty_gift_changed', () => {
       void checkLoyaltyGiftFlow();

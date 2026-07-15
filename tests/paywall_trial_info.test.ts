@@ -10,20 +10,51 @@ describe('paywall_trial_info — getTrialInfo', () => {
     expect(getTrialInfo(undefined)).toEqual({ hasTrial: false, days: null });
   });
 
-  it('не показывает non-7 intro как обещанный trial', () => {
+  it('показывает подтверждённый трёхдневный trial', () => {
     const info = getTrialInfo(pkg({ introPrice: { price: 0, periodNumberOfUnits: 3, periodUnit: 'DAY' } }));
+    expect(info).toEqual({ hasTrial: true, days: 3 });
+  });
+
+  it('recognizes the selected Android default option with a three-day free phase', () => {
+    const info = getTrialInfo(pkg({
+      defaultOption: {
+        freePhase: {
+          billingPeriod: { unit: 'DAY', value: 3, iso8601: 'P3D' },
+        },
+      },
+    }));
+    expect(info).toEqual({ hasTrial: true, days: 3 });
+  });
+
+  it('does not frame a seven-day Android free phase as the current three-day trial', () => {
+    const info = getTrialInfo(pkg({
+      defaultOption: { freePhase: { billingPeriod: 'P1W' } },
+    }));
     expect(info).toEqual({ hasTrial: false, days: null });
   });
 
-  it('неделя → 7 дней', () => {
+  it('does not treat a paid Android intro phase as a free trial', () => {
+    const info = getTrialInfo(pkg({
+      defaultOption: {
+        freePhase: null,
+        introPhase: {
+          billingPeriod: { unit: 'DAY', value: 3, iso8601: 'P3D' },
+          price: { amountMicros: 990000 },
+        },
+      },
+    }));
+    expect(info).toEqual({ hasTrial: false, days: null });
+  });
+
+  it('не показывает недельную intro-фазу как трёхдневный trial', () => {
     expect(getTrialInfo(pkg({ introPrice: { price: 0, periodNumberOfUnits: 1, periodUnit: 'WEEK' } })))
-      .toEqual({ hasTrial: true, days: 7 });
+      .toEqual({ hasTrial: false, days: null });
   });
 
   it('месячный и lifetime планы не получают trial framing даже с бесплатной фазой', () => {
-    const weekly = pkg({ introductoryPrice: { price: 0, period: 'P1W' } });
-    expect(getTrialInfo(weekly, 'monthly')).toEqual({ hasTrial: false, days: null });
-    expect(getTrialInfo(weekly, 'lifetime')).toEqual({ hasTrial: false, days: null });
+    const threeDays = pkg({ introductoryPrice: { price: 0, period: 'P3D' } });
+    expect(getTrialInfo(threeDays, 'monthly')).toEqual({ hasTrial: false, days: null });
+    expect(getTrialInfo(threeDays, 'lifetime')).toEqual({ hasTrial: false, days: null });
   });
 
   it('платная intro-фаза (price>0) НЕ триал', () => {
@@ -44,7 +75,7 @@ describe('paywall_trial_info — getTrialInfo', () => {
 
 describe('paywall_trial_info — trialDaysOrDefault', () => {
   it('возвращает дни если известны', () => {
-    expect(trialDaysOrDefault({ hasTrial: true, days: 7 })).toBe(7);
+    expect(trialDaysOrDefault({ hasTrial: true, days: 3 })).toBe(3);
   });
   it('не подменяет неизвестную длительность fallback-значением', () => {
     expect(trialDaysOrDefault({ hasTrial: true, days: null })).toBeNull();

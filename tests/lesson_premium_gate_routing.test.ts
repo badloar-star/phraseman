@@ -56,6 +56,8 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
     expect(arg.pathname).toBe('/paywall_a');
     expect(arg.params.context).toBe('lesson_9');
     expect(arg.params.lessons_done).toBe('8');
+    expect(arg.params.resume_kind).toBe('course_lesson');
+    expect(arg.params.resume_lesson_id).toBe('9');
     expect(mockMarkReplace).toHaveBeenCalledTimes(1);
     expect(mockMarkReplace.mock.invocationCallOrder[0]).toBeLessThan(router.replace.mock.invocationCallOrder[0]);
   });

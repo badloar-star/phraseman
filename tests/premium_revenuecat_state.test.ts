@@ -6,9 +6,12 @@ import {
   withAccountTransitionLock,
 } from '../app/account_generation';
 import {
+  customerInfoConfirmsProductAccess,
   inferPremiumPlanFromCustomerInfo,
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
+  persistStorePremiumLocallyWithinAccountLock,
+  revenueCatCustomerInfoHasPremiumAccess,
   revenueCatPremiumMetadata,
 } from '../app/premium_revenuecat_state';
 
@@ -68,6 +71,44 @@ describe('premium RevenueCat state sync', () => {
       store: 'APP_STORE',
       expiryMs: 1770000000000,
     });
+  });
+
+  it('confirms only the product returned for the selected purchase package', () => {
+    const info = {
+      entitlements: {
+        active: {
+          other: { productIdentifier: 'unrelated_active_product' },
+          premium: { productIdentifier: 'phraseman_yearly' },
+        },
+      },
+      activeSubscriptions: ['unrelated_subscription'],
+    } as any;
+
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_yearly')).toBe(true);
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_monthly')).toBe(false);
+    expect(customerInfoConfirmsProductAccess(info, '')).toBe(false);
+  });
+
+  it('unlocks generic Premium access only for the canonical premium entitlement', () => {
+    expect(revenueCatCustomerInfoHasPremiumAccess({
+      entitlements: { active: { other: { productIdentifier: 'unrelated_product' } } },
+      activeSubscriptions: ['unrelated_product'],
+    } as any)).toBe(false);
+
+    expect(revenueCatCustomerInfoHasPremiumAccess({
+      entitlements: { active: { premium: { productIdentifier: 'phraseman_yearly' } } },
+      activeSubscriptions: [],
+    } as any)).toBe(true);
+  });
+
+  it('also confirms an exact active subscription id when entitlement details are absent', () => {
+    const info = {
+      entitlements: { active: {} },
+      activeSubscriptions: ['phraseman_monthly'],
+    } as any;
+
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_monthly')).toBe(true);
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_yearly')).toBe(false);
   });
 
   it('persists premium locally and immediately forces cloud sync', async () => {
@@ -145,5 +186,23 @@ describe('premium RevenueCat state sync', () => {
     await persistence;
     await transition;
     expect(transitionEntered).toBe(true);
+  });
+
+  it('can skip the unrelated full cloud sync on the immediate purchase path', async () => {
+    await persistStorePremiumLocally('yearly', {}, () => true, false);
+
+    expect(syncToCloud).not.toHaveBeenCalled();
+    expect(markPremiumStoreSeenNow).toHaveBeenCalledTimes(1);
+    expect(invalidatePremiumCache).toHaveBeenCalledTimes(1);
+  });
+
+  it('completes the explicit pre-locked path without nesting the account mutex', async () => {
+    await withAccountTransitionLock(
+      () => persistStorePremiumLocallyWithinAccountLock('yearly', {}, () => true, false),
+    );
+
+    expect(markPremiumStoreSeenNow).toHaveBeenCalledTimes(1);
+    expect(invalidatePremiumCache).toHaveBeenCalledTimes(1);
+    expect(syncToCloud).not.toHaveBeenCalled();
   });
 });

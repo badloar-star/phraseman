@@ -43,19 +43,23 @@ describe('premium and VIP producers stay scoped to the account that started them
     );
 
     expect(source).toContain('withAccountTransitionLock');
-    expect(source).toContain('markPremiumCelebrationForCurrentAccount');
+    expect(source).toContain('persistStorePremiumLocallyWithinAccountLock');
     expect(personalPlan).toContain('isCurrent: () => boolean');
-    expect(personalPlan).toContain('withAccountTransitionLock(async () => {');
-    expect(purchase).toContain('if (!purchaseAccountIsCurrent()) return;');
-    expect(purchase).toContain('markPremiumCelebrationForCurrentAccount(');
-    expect(purchase).toContain('finishPersonalPlanActivationFlow(purchaseAccountIsCurrent)');
-    expect(restore.indexOf('const restoreAccountToken = captureAccountGeneration()')).toBeLessThan(
-      restore.indexOf('await initRevenueCat()'),
+    expect(personalPlan).toContain('if (!isCurrent()) return false;');
+    expect(purchase.indexOf('const operationAccount = captureAccountGeneration()')).toBeLessThan(
+      purchase.indexOf('await initRevenueCat(isOperationAccountCurrent)'),
     );
-    expect(restore).toContain('const restoreAccountIsCurrent = () => isCurrentAccountGeneration(restoreAccountToken);');
-    expect(restore).toContain('persistStorePremiumLocally(plan, metadata, restoreAccountIsCurrent)');
-    expect(restore).toContain('markPremiumCelebrationForCurrentAccount(');
-    expect(restore).toContain('finishPersonalPlanActivationFlow(restoreAccountIsCurrent)');
+    expect(purchase).toContain('const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);');
+    expect(purchase).toContain('persistStorePremiumLocallyWithinAccountLock(');
+    expect(purchase).toContain("await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium')");
+    expect(purchase).toContain('() => finishPersonalPlanActivationFlow(isOperationAccountCurrent)');
+    expect(restore.indexOf('const operationAccount = captureAccountGeneration()')).toBeLessThan(
+      restore.indexOf('await initRevenueCat(isOperationAccountCurrent)'),
+    );
+    expect(restore).toContain('const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);');
+    expect(restore).toContain('persistStorePremiumLocallyWithinAccountLock(');
+    expect(restore).toContain("await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium')");
+    expect(restore).toContain('() => finishPersonalPlanActivationFlow(isOperationAccountCurrent)');
   });
 
   it('drops a manage-subscription purchase result after an account switch', () => {

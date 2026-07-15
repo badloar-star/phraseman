@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import sharp from 'sharp';
 
 const root = path.resolve(__dirname, '..');
 
@@ -95,42 +94,11 @@ describe('lingman YouTube quality gate', () => {
     expect(catalog).toContain('testID="lingman-videos-fallback-notice"');
   });
 
-  it('ships transparent message-scale themed YouTube icons', async () => {
-    const assetDir = path.join(root, 'assets/images/lingman');
-    const messageDir = path.join(root, 'assets/images/messages');
-    const assetPairs = [
-      ['youtube-dark.webp', 'message-forest.webp'],
-      ['youtube-gold.webp', 'message-gold.webp'],
-      ['youtube-coral.webp', 'message-coral.webp'],
-      ['youtube-minimalDark.webp', 'message-minimal-dark.webp'],
-    ];
+  it('uses theme-colored native video icons without shipping dead per-theme raster assets', () => {
+    const combined = [catalogSource(), playerSource(), buttonSource()].join('\n');
 
-    async function alphaStats(assetPath: string) {
-      const image = sharp(assetPath);
-      const metadata = await image.metadata();
-      const stats = await image.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-      const alphaValues = [];
-      for (let index = 3; index < stats.data.length; index += 4) alphaValues.push(stats.data[index]);
-      const transparentPixels = alphaValues.filter((value) => value === 0).length;
-      const visiblePixels = alphaValues.filter((value) => value > 0).length;
-
-      return {
-        metadata,
-        transparentRatio: transparentPixels / alphaValues.length,
-        visibleRatio: visiblePixels / alphaValues.length,
-      };
-    }
-
-    for (const [assetName, messageAssetName] of assetPairs) {
-      const icon = await alphaStats(path.join(assetDir, assetName));
-      const messageIcon = await alphaStats(path.join(messageDir, messageAssetName));
-
-      expect(icon.metadata.width).toBe(320);
-      expect(icon.metadata.height).toBe(224);
-      expect(icon.metadata.hasAlpha).toBe(true);
-      expect(icon.transparentRatio).toBeGreaterThan(0.43);
-      expect(icon.visibleRatio).toBeGreaterThan(messageIcon.visibleRatio - 0.04);
-      expect(icon.visibleRatio).toBeLessThan(messageIcon.visibleRatio + 0.1);
-    }
+    expect(combined).toContain('<Ionicons');
+    expect(combined).toContain('color={chrome.accent}');
+    expect(combined).not.toContain("require('../assets/images/lingman/");
   });
 });

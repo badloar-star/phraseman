@@ -13,15 +13,14 @@ describe('avatar aura selection', () => {
     expect(getEffectiveAvatarAuraId(NO_AVATAR_AURA_ID, true)).toBeUndefined();
   });
 
-  it('still falls back to premium aura when no explicit choice exists', () => {
-    expect(getEffectiveAvatarAuraId('', true)).toBe(PREMIUM_AVATAR_AURA_ID);
-    expect(getEffectiveAvatarAuraId(null, true)).toBe(PREMIUM_AVATAR_AURA_ID);
+  it('does not grant an aura from Plus status without an explicit paid or owned selection', () => {
+    expect(getEffectiveAvatarAuraId('', true)).toBeUndefined();
+    expect(getEffectiveAvatarAuraId(null, true)).toBeUndefined();
   });
 
-  it('uses Premium aura above VIP aura when both statuses are active', () => {
-    expect(getEffectiveAvatarAuraId('', true, true)).toBe(PREMIUM_AVATAR_AURA_ID);
-    expect(getEffectiveAvatarAuraId(null, true, true)).toBe(PREMIUM_AVATAR_AURA_ID);
-    expect(getEffectiveAvatarAuraId('', false, true)).toBe(VIP_AVATAR_AURA_ID);
+  it('keeps explicitly selected status auras independent of current entitlement', () => {
+    expect(getEffectiveAvatarAuraId(PREMIUM_AVATAR_AURA_ID, false, false)).toBe(PREMIUM_AVATAR_AURA_ID);
+    expect(getEffectiveAvatarAuraId(VIP_AVATAR_AURA_ID, false, false)).toBe(VIP_AVATAR_AURA_ID);
   });
 
   it('presents paid and admin-granted Plus aura variants under the same user-facing label', () => {

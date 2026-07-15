@@ -37,7 +37,9 @@ describe('Lingman snapshot cache', () => {
     expect(source).toContain('const visibleLoading = loading || loadedKey !== currentRenderKey');
     expect(source).toContain('patchLingmanUnread(captureAccountGeneration(), channel.channelId, nextUnread)');
     expect(source).toContain('if (isLingmanSnapshotRequestCurrent(request))');
-    expect(source).toContain('setCachedSnapshot(committed?.value ?? next)');
+    expect(source).toContain('const visibleSnapshot = committed?.value ?? next');
+    expect(source).toContain('setCachedSnapshot(visibleSnapshot)');
+    expect(source).toContain('setChannel(visibleSnapshot.channel ?? activeChannel)');
   });
 
   it('late refresh cannot increase unread after local mark-seen mutation', () => {

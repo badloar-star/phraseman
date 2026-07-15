@@ -1,5 +1,6 @@
 import {
   buildLingmanEmbedHtml,
+  fetchYoutubeFeedWithFallback,
   LINGMAN_CHANNEL_HANDLE,
   LINGMAN_CHANNEL_ID,
   LINGMAN_CHANNEL_URL,
@@ -28,6 +29,36 @@ function makeVideo(id: string): LingmanYoutubeVideo {
 }
 
 describe('lingman_youtube', () => {
+  it('falls back to the default PHRASEMAN feed when a remote channel override is unavailable', async () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+      <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+        <entry>
+          <yt:videoId>fallback001</yt:videoId>
+          <title>Fallback lesson</title>
+          <published>2026-07-15T00:00:00+00:00</published>
+          <updated>2026-07-15T00:00:00+00:00</updated>
+          <media:group><media:description>Full lesson.</media:description></media:group>
+        </entry>
+      </feed>`;
+    const fetcher = jest.fn()
+      .mockResolvedValueOnce({ ok: false, status: 404, text: async () => '' })
+      .mockResolvedValueOnce({ ok: true, status: 200, text: async () => xml });
+
+    const result = await fetchYoutubeFeedWithFallback({
+      channelId: 'UCIr8fwZjbDtcUlQ-IKIbndg',
+      displayName: 'Unavailable override',
+      handle: '@unavailable',
+      url: 'https://www.youtube.com/@unavailable/videos',
+      isOverride: true,
+    }, fetcher);
+
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    expect(fetcher.mock.calls[0][0]).toContain('channel_id=UCIr8fwZjbDtcUlQ-IKIbndg');
+    expect(fetcher.mock.calls[1][0]).toContain(`channel_id=${LINGMAN_CHANNEL_ID}`);
+    expect(result.channel.isOverride).toBe(false);
+    expect(result.videos.map((video) => video.id)).toEqual(['fallback001']);
+  });
+
   it('points the catalog feed and channel button to the PHRASEMAN English channel', () => {
     expect(LINGMAN_CHANNEL_ID).toBe('UCNNVZbMkh4jrW6uluaaJTwA');
     expect(LINGMAN_CHANNEL_HANDLE).toBe('@PhrasemanENGLISH');

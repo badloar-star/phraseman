@@ -1,7 +1,6 @@
 import {
   AVATAR_AURA_BUY_COST,
   AVATAR_AURAS,
-  ARENA_PASS_AURA_PREFIX,
   NO_AVATAR_AURA_ID,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
@@ -112,29 +111,9 @@ function auraAvailability(
   aura: AvatarAuraDef,
   input: BuildAuraCatalogInput,
 ): { isOwned: boolean; availability: CatalogAvailability } {
-  const plusAura = aura.premiumOnly === true || aura.vipOnly === true;
-  const hasPlusAuraAccess = input.isPremium || input.isVip;
-  if (plusAura && !hasPlusAuraAccess) {
-    return { isOwned: false, availability: { kind: 'plus' } };
-  }
-  const unlockedByLevel = aura.unlockLevel !== undefined && input.level >= aura.unlockLevel;
   const isOwned = !!input.ownedAuras[aura.id]
-    || input.activeAuraId === aura.id
-    || (plusAura && hasPlusAuraAccess)
-    || unlockedByLevel;
+    || input.activeAuraId === aura.id;
   if (isOwned) return { isOwned: true, availability: { kind: 'owned' } };
-  if (aura.rewardOnly) {
-    return {
-      isOwned: false,
-      availability: {
-        kind: 'reward',
-        source: aura.id.startsWith(ARENA_PASS_AURA_PREFIX) || aura.id.startsWith('aura-season') ? 'arena' : 'gift',
-      },
-    };
-  }
-  if (aura.unlockLevel !== undefined) {
-    return { isOwned: false, availability: { kind: 'level', level: aura.unlockLevel } };
-  }
   return { isOwned: false, availability: { kind: 'shards', cost: AVATAR_AURA_BUY_COST } };
 }
 

@@ -14,6 +14,9 @@ describe('meaningful local account data', () => {
   it('wipes account-scoped Today recommendation history', () => {
     expect(accountLocalDataKeysForToday('2026-07-12')).toContain('today_recommendation_history_v1');
   });
+  it('wipes the league remote-refresh throttle during account transitions', () => {
+    expect(accountLocalDataKeysForToday('2026-07-12')).toContain('club_remote_refresh_at_v2');
+  });
   it('rejects empty/default representations', () => {
     ['', '0', 'false', 'null', '[]', '{}'].forEach((value) => {
       expect(isMeaningfulStoredAccountValue(value)).toBe(false);

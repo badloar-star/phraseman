@@ -44,8 +44,9 @@ export type AvatarAuraDef = {
   vipOnly?: boolean;
   unlockLevel?: number;
   /**
-   * Аура выдаётся ТОЛЬКО как награда (сезоны Арены / Боевой пропуск) и не продаётся
-   * за осколки. На экране выбора показывается без цены, тап не ведёт к покупке.
+   * Legacy-маркер источника награды. Эти ауры по-прежнему могут выдаваться Ареной,
+   * боевым пропуском или админом; единая политика покупки находится в
+   * customization_catalog и назначает цену каждой ещё не принадлежащей ауре.
    */
   rewardOnly?: boolean;
   effect?: AvatarAuraEffect;
@@ -108,8 +109,8 @@ export function isAvatarAuraUnlockedByLevel(aura: AvatarAuraDef, level: number):
   return aura.unlockLevel !== undefined && level >= aura.unlockLevel;
 }
 
-export function getEffectiveAvatarAuraId(id?: string | null, isPremium?: boolean, isVip?: boolean): string | undefined {
+export function getEffectiveAvatarAuraId(id?: string | null, _isPremium?: boolean, _isVip?: boolean): string | undefined {
   const aura = normalizeAvatarAuraId(id);
   if (aura === NO_AVATAR_AURA_ID) return undefined;
-  return aura || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : undefined);
+  return aura;
 }

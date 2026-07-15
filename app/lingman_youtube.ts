@@ -24,6 +24,8 @@ export type LingmanYoutubeSnapshot = {
   latestVideoId: string | null;
   unreadCount: number;
   fetchedAtMs: number;
+  /** Channel that actually supplied the feed after any safe fallback. */
+  channel?: ActiveYoutubeChannel;
   error?: string;
 };
 
@@ -51,6 +53,16 @@ export type ActiveYoutubeChannel = {
   /** true, если канал переопределён из «Пульта» (а не дефолт). */
   isOverride: boolean;
 };
+
+function getDefaultYoutubeChannel(): ActiveYoutubeChannel {
+  return {
+    channelId: LINGMAN_CHANNEL_ID,
+    displayName: LINGMAN_CHANNEL_DISPLAY_NAME,
+    handle: LINGMAN_CHANNEL_HANDLE,
+    url: LINGMAN_CHANNEL_URL,
+    isOverride: false,
+  };
+}
 
 /**
  * Извлекает валидный YouTube channelId (UC + 22 символа base64url) из любого
@@ -91,13 +103,7 @@ export function parseYoutubeHandle(raw: string | null | undefined): string {
 export function getActiveYoutubeChannel(): ActiveYoutubeChannel {
   const overrideId = parseYoutubeChannelId(getYoutubeChannelIdOverride());
   if (!overrideId) {
-    return {
-      channelId: LINGMAN_CHANNEL_ID,
-      displayName: LINGMAN_CHANNEL_DISPLAY_NAME,
-      handle: LINGMAN_CHANNEL_HANDLE,
-      url: LINGMAN_CHANNEL_URL,
-      isOverride: false,
-    };
+    return getDefaultYoutubeChannel();
   }
   const handleRaw = parseYoutubeHandle(getYoutubeChannelHandleOverride());
   const handle = handleRaw ? `@${handleRaw}` : '';
@@ -116,8 +122,7 @@ export function getActiveYoutubeChannel(): ActiveYoutubeChannel {
 }
 
 /** RSS-фид активного канала. */
-function getActiveFeedUrl(): string {
-  const { channelId } = getActiveYoutubeChannel();
+function getFeedUrl(channelId: string): string {
   return `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
 }
 const STORAGE_LAST_SEEN_ID = 'lingman_youtube_last_seen_video_id_v2';
@@ -428,28 +433,73 @@ async function cacheSuccessfulVideos(videos: LingmanYoutubeVideo[]): Promise<voi
   }
 }
 
-export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {
+type YoutubeFeedResponse = {
+  ok: boolean;
+  status: number;
+  text: () => Promise<string>;
+};
+
+type YoutubeFeedFetcher = (
+  url: string,
+  init: { headers: { Accept: string }; signal?: AbortSignal },
+) => Promise<YoutubeFeedResponse>;
+
+export type YoutubeFeedResult = {
+  videos: LingmanYoutubeVideo[];
+  channel: ActiveYoutubeChannel;
+};
+
+async function fetchYoutubeFeedOnce(
+  channel: ActiveYoutubeChannel,
+  fetcher: YoutubeFeedFetcher,
+  signal?: AbortSignal,
+): Promise<YoutubeFeedResult> {
+  const response = await fetcher(getFeedUrl(channel.channelId), {
+    headers: {
+      Accept: 'application/atom+xml, application/xml, text/xml',
+    },
+    signal,
+  });
+  if (!response.ok) {
+    throw new Error(`YouTube feed failed: ${response.status}`);
+  }
+  const xml = await response.text();
+  const videos = parseLingmanYoutubeFeed(xml);
+  if (!videos.length) {
+    throw new Error('YouTube feed returned no videos');
+  }
+  return { videos, channel };
+}
+
+/**
+ * A bad Remote Config channel id must not break the catalog for every user.
+ * Retry the known PHRASEMAN feed before treating the device as offline.
+ */
+export async function fetchYoutubeFeedWithFallback(
+  activeChannel: ActiveYoutubeChannel,
+  fetcher: YoutubeFeedFetcher = (url, init) => fetch(url, init),
+  signal?: AbortSignal,
+): Promise<YoutubeFeedResult> {
+  try {
+    return await fetchYoutubeFeedOnce(activeChannel, fetcher, signal);
+  } catch (overrideError) {
+    if (!activeChannel.isOverride) throw overrideError;
+    return fetchYoutubeFeedOnce(getDefaultYoutubeChannel(), fetcher, signal);
+  }
+}
+
+async function fetchActiveYoutubeFeed(): Promise<YoutubeFeedResult> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), LINGMAN_FEED_TIMEOUT_MS);
   try {
-    const response = await fetch(getActiveFeedUrl(), {
-      headers: {
-        Accept: 'application/atom+xml, application/xml, text/xml',
-      },
-      signal: controller.signal,
-    });
-    if (!response.ok) {
-      throw new Error(`YouTube feed failed: ${response.status}`);
-    }
-    const xml = await response.text();
-    const videos = parseLingmanYoutubeFeed(xml);
-    if (!videos.length) {
-      throw new Error('YouTube feed returned no videos');
-    }
-    return videos;
+    return await fetchYoutubeFeedWithFallback(getActiveYoutubeChannel(), undefined, controller.signal);
   } finally {
     clearTimeout(timeout);
   }
+}
+
+export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {
+  return (await fetchActiveYoutubeFeed()).videos;
 }
 
 export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapshot> {
@@ -464,7 +514,8 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
   const pinned = getPinnedFeedVideos();
 
   try {
-    const feed = await fetchLingmanYoutubeVideos();
+    const resolvedFeed = await fetchActiveYoutubeFeed();
+    const feed = resolvedFeed.videos;
     void cacheSuccessfulVideos(feed);
     const videos = mergePinnedVideos(pinned, feed);
     const latestVideoId = videos[0]?.id ?? null;
@@ -473,6 +524,7 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       latestVideoId,
       unreadCount: getLingmanYoutubeUnreadCount(videos, lastSeenId),
       fetchedAtMs: Date.now(),
+      channel: resolvedFeed.channel,
     };
   } catch (error) {
     // Встроенный fallback-список — это видео PHRASEMAN. Показываем его только когда

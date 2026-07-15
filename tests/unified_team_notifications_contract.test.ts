@@ -12,7 +12,7 @@ describe('unified team notification center', () => {
     expect(source).toContain('notificationTargetRef={notificationTargetRef}');
     expect(source).toContain('key={identityRevision}');
     expect(source).toContain('onDetailOpenChange={setTeamDetailOpen}');
-    expect(source).toContain('teamDetailOpen ? null : items.length === 0');
-    expect(source.indexOf('mode="notification-center"')).toBeLessThan(source.indexOf('items.map((row)'));
+    expect(source).toContain('teamDetailOpen ? null : visibleItems.length === 0');
+    expect(source.indexOf('mode="notification-center"')).toBeLessThan(source.indexOf('visibleItems.map((row)'));
   });
 });

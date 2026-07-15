@@ -34,7 +34,7 @@ describe('Ауры Боевого пропуска Арены', () => {
     }
   });
 
-  it('ауры пропуска помечены rewardOnly (нельзя купить за осколки)', () => {
+  it('ауры пропуска сохраняют rewardOnly как legacy-маркер источника награды', () => {
     for (const id of ARENA_PASS_AURA_IDS) {
       expect(getAvatarAuraById(id)!.rewardOnly).toBe(true);
     }
@@ -55,14 +55,12 @@ describe('Ауры Боевого пропуска Арены', () => {
     expect(RENDERED_EFFECTS).toContain(getAvatarAuraById('aura-season-champion')!.effect);
   });
 
-  it('сезонные ауры aura-season / aura-season-champion помечены rewardOnly (нельзя купить)', () => {
+  it('сезонные ауры сохраняют rewardOnly как legacy-маркер источника награды', () => {
     expect(getAvatarAuraById('aura-season')!.rewardOnly).toBe(true);
     expect(getAvatarAuraById('aura-season-champion')!.rewardOnly).toBe(true);
   });
 
-  it('ни одна rewardOnly-аура не имеет цены за осколки (rewardOnly взаимоисключает покупку)', () => {
-    // Инвариант: rewardOnly-ауры не должны одновременно открываться по уровню —
-    // иначе UI показал бы и «Ур. N», и логика покупки разошлась бы с задумкой.
+  it('legacy reward-маркеры не конфликтуют с level/Plus unlock-метаданными', () => {
     for (const aura of AVATAR_AURAS.filter((a) => a.rewardOnly)) {
       expect(aura.unlockLevel).toBeUndefined();
       expect(aura.premiumOnly).toBeFalsy();

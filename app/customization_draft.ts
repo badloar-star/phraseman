@@ -1,8 +1,4 @@
-import {
-  NO_AVATAR_AURA_ID,
-  PREMIUM_AVATAR_AURA_ID,
-  VIP_AVATAR_AURA_ID,
-} from '../constants/avatar_auras';
+import { NO_AVATAR_AURA_ID } from '../constants/avatar_auras';
 import { CUSTOM_AVATAR_RESTYLE_COST, parseCustomAvatarValue } from '../constants/custom_avatars';
 import type { CatalogAvailability } from './customization_catalog';
 
@@ -33,15 +29,11 @@ export type CustomizationAction =
 
 export function resolveEffectivePreviewAuraId(
   storedAuraSelection: string | null,
-  isPremium: boolean,
-  isVip: boolean,
+  _isPremium: boolean,
+  _isVip: boolean,
 ): string | null {
   if (storedAuraSelection === NO_AVATAR_AURA_ID) return null;
-  if ((storedAuraSelection === PREMIUM_AVATAR_AURA_ID || storedAuraSelection === VIP_AVATAR_AURA_ID)
-    && !isPremium && !isVip) return null;
   if (storedAuraSelection) return storedAuraSelection;
-  if (isPremium) return PREMIUM_AVATAR_AURA_ID;
-  if (isVip) return VIP_AVATAR_AURA_ID;
   return null;
 }
 

@@ -89,12 +89,12 @@ describe('resolveCustomizationAction', () => {
   });
 
   it.each([
-    [null, true, false, 'aura-premium'],
-    [null, false, true, 'aura-vip'],
+    [null, true, false, null],
+    [null, false, true, null],
     ['none', true, true, null],
     ['aura-aurora', true, true, 'aura-aurora'],
-    ['aura-premium', false, false, null],
-    ['aura-vip', false, false, null],
+    ['aura-premium', false, false, 'aura-premium'],
+    ['aura-vip', false, false, 'aura-vip'],
   ] as const)('keeps stored %s distinct from effective fallback', (stored, premium, vip, effective) => {
     expect(resolveEffectivePreviewAuraId(stored, premium, vip)).toBe(effective);
   });

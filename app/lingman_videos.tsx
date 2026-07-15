@@ -164,6 +164,7 @@ export default function LingmanVideosScreen() {
     if (warm) {
       setLoadedKey(requestKey);
       setCachedSnapshot(warm.value);
+      setChannel(warm.value.channel ?? activeChannel);
     }
     if (warm?.isFresh && mode !== 'refresh') { setLoading(false); return; }
     try {
@@ -171,7 +172,9 @@ export default function LingmanVideosScreen() {
       if (commitLingmanSnapshot(request, next)) {
         const committed = readLingmanSnapshot(token, activeChannel.channelId);
         setLoadedKey(requestKey);
-        setCachedSnapshot(committed?.value ?? next);
+        const visibleSnapshot = committed?.value ?? next;
+        setCachedSnapshot(visibleSnapshot);
+        setChannel(visibleSnapshot.channel ?? activeChannel);
       }
     } catch {
       // Keep the last successful catalog visible.

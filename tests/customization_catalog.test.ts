@@ -48,30 +48,31 @@ describe('customization catalog', () => {
     expect(item?.availability).toEqual({ kind: 'shards', cost: 50 });
   });
 
-  it.each([
-    ['aura-premium', 'plus'],
-    ['aura-flame-51', 'level'],
-    ['aura-season', 'reward'],
-    ['aura-aurora', 'shards'],
-  ] as const)('classifies %s as %s', (id, expected) => {
-    expect(buildAuraCatalog(baseContext).find((item) => item.id === id)?.availability.kind).toBe(expected);
+  it('prices every unowned visible avatar and aura instead of unlocking cosmetics through level, Plus, or rewards', () => {
+    const avatars = buildAvatarCatalog({ ownedAvatars: {}, giftedAvatarId: null, activeAvatar: '1' });
+    const auras = buildAuraCatalog(baseContext).filter((item) => item.kind === 'aura');
+
+    expect(avatars.length).toBeGreaterThan(0);
+    expect(auras.length).toBeGreaterThan(0);
+    expect(avatars.every((item) => item.availability.kind === 'shards')).toBe(true);
+    expect(auras.every((item) => item.availability.kind === 'shards')).toBe(true);
   });
 
   it.each([
     ['paid Plus', { isPremium: true, isVip: false }],
     ['admin-granted Plus', { isPremium: false, isVip: true }],
-  ])('unlocks every Plus aura for %s', (_label, access) => {
+  ])('does not grant unowned aura cosmetics from %s access alone', (_label, access) => {
     const plusItems = buildAuraCatalog({ ...baseContext, ...access })
       .filter((item) => item.kind === 'aura' && (item.aura.premiumOnly || item.aura.vipOnly));
 
     expect(plusItems).toHaveLength(2);
-    expect(plusItems.every((item) => item.isOwned && item.availability.kind === 'owned')).toBe(true);
+    expect(plusItems.every((item) => !item.isOwned && item.availability.kind === 'shards')).toBe(true);
   });
 
-  it.each(['aura-premium', 'aura-vip'])('re-locks expired active Plus aura %s', (activeAuraId) => {
+  it.each(['aura-premium', 'aura-vip'])('grandfathers an already active status aura %s', (activeAuraId) => {
     const item = buildAuraCatalog({ ...baseContext, activeAuraId })
       .find((candidate) => candidate.id === activeAuraId);
-    expect(item).toMatchObject({ isOwned: false, availability: { kind: 'plus' } });
+    expect(item).toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
   });
 
   it('mine contains only owned/access-granted items plus none aura', () => {

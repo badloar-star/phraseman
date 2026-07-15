@@ -1204,13 +1204,17 @@ service cloud.firestore {
     // Единый центр событий (колокольчик на главной): пишут только cloud functions.
     // Владелец читает, помечает прочитанным (только read/readAt/updatedAt) и удаляет.
     match /users/{userId}/notifications/{notificationId} {
-      allow read: if canonicalUserMatchesAuth(userId);
+      // Use the same ownership proof as user_messages/app_message_states. During
+      // provider relink firebaseAuthUid can lag behind the authoritative
+      // auth_links anchor; rejecting that valid anchor made the client silently
+      // render an empty Help Board inbox for the whole account.
+      allow read: if userDocOwnerMatchesAuth(userId);
       allow create: if isAdmin();
       allow update: if isAdmin() || (
-        canonicalUserMatchesAuth(userId)
+        userDocOwnerMatchesAuth(userId)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt', 'updatedAt'])
       );
-      allow delete: if isAdmin() || canonicalUserMatchesAuth(userId);
+      allow delete: if isAdmin() || userDocOwnerMatchesAuth(userId);
     }
 
     // â”€â”€ Banned users â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

@@ -37,8 +37,8 @@ describe('customization purchase validation', () => {
     expect(validateCustomizationPurchase(intent({ cost: 1 }), noPlus)).toBe(false);
   });
 
-  it.each(['aura-season', 'aura-premium'])('rejects non-purchasable aura %s', (itemId) => {
-    expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(false);
+  it.each(['aura-season', 'aura-premium', 'aura-flame-51'])('accepts every catalog aura at the canonical price: %s', (itemId) => {
+    expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(true);
   });
 
   it('rejects an unowned gift-only avatar target', () => {
@@ -51,7 +51,7 @@ describe('customization purchase validation', () => {
     }), noPlus)).toBe(false);
   });
 
-  it('does not apply a locked Plus half after access expires', () => {
+  it('preserves an already active status aura while buying a separate avatar', () => {
     const staleApply = intent({
       target: 'avatar',
       itemId: 'custom-gen-41',
@@ -70,6 +70,6 @@ describe('customization purchase validation', () => {
       snapshot: { ...snapshot, storedAuraSelection: 'aura-premium' },
       isPremium: false,
       isVip: false,
-    })).toBe(false);
+    })).toBe(true);
   });
 });

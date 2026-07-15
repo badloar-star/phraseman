@@ -245,6 +245,14 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('allow update, delete: if false;');
   });
 
+  test('notification center accepts the same canonical ownership proofs as other user inboxes', () => {
+    const block = rules.match(/match \/users\/\{userId\}\/notifications\/\{notificationId\} \{[\s\S]*?\n    \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('allow read: if userDocOwnerMatchesAuth(userId);');
+    expect(block![0]).toContain('userDocOwnerMatchesAuth(userId)');
+    expect(block![0]).not.toContain('canonicalUserMatchesAuth(userId)');
+  });
+
   test('leaderboard writes are restricted to admin callables while owners can delete', () => {
     const leaderboardBlock = rules.match(/match \/leaderboard\/\{userId\} \{[\s\S]*?\n    \}/);
     expect(leaderboardBlock).not.toBeNull();

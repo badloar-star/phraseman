@@ -621,6 +621,10 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'leaderboard_cache_v1',
     'last_known_league_rank',
     'league_result_pending',
+    // Device-local throttle for the league Firestore refresh. It must never
+    // survive an account switch: a fresh account has no league cache and an
+    // old timestamp would make club_screen return before its first fetch.
+    'club_remote_refresh_at_v2',
     'week_leaderboard',
     // Прочее account-level
     'last_active_date',

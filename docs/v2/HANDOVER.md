@@ -306,7 +306,7 @@ Checkpoint — не восемнадцатая family и не отдельный
 
 - Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`
 - Branch: `codex/learning-v2-pilot`
-- Current HEAD: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
+- Branch tip: этот файл сам входит в последующий handover commit, поэтому не хранит невозможный self-referential HEAD; следующая сессия обязана выполнить `git rev-parse HEAD` и записать результат в датированный session snapshot.
 - Task 0 implementation commit: `ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a`
 - Canonical docs/handover persistence commit in pilot: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
 - Source docs-only commit in main: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`
@@ -649,7 +649,8 @@ Dedicated Task 1 считается завершённым только если
 docs/v2/HANDOVER.md, docs/v2/README.md и оба плана 2026-07-14. Не меняй грязный main.
 Проверь два checkout и сохрани чужие изменения. Текущий код: worktree
 C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot, branch codex/learning-v2-pilot,
-HEAD a09f57da2d2442d114202bb3d52bf58abe917bb1; Task 0 commit ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a.
+Определи текущий HEAD через git rev-parse HEAD; обязательная история содержит Task 0
+ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a и canonical package a09f57da2d2442d114202bb3d52bf58abe917bb1.
 Канонические 14 paths уже tracked. Сначала закрой P2 firebase-tools, затем выполни
 umbrella Phase 01 / Task 1.1 строго test-first: identity grammar и schema versions без
 React/Firebase. Затем выполняй 1.1A → 1.2 → 1.3 → 1.4 и только после них dedicated

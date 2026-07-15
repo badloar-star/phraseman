@@ -342,6 +342,8 @@ export type V2DecisionEntry =
       settings: {
         accessBoostPriceShards: number;
         maxBoostsPerGate: number;
+        maxBoostsPerChapter: number;
+        maxBoostsPerSeason: number;
         eligibleDeficit: NumericRange;
         recoveryImpressionCount: number;
         quoteTtlSeconds: number;
@@ -390,6 +392,21 @@ export interface ResolvedDecisionRegistry {
 ```
 
 `DecisionRegistryBody` не содержит собственного hash/object/timestamp. Для accepted pair `record.ref.id === body.registryId`, `record.ref.version === body.version`, `record.ref.contentHash === contentHash(body)` и `record.object.contentHash === record.ref.contentHash`; object path имеет вид `content-studio/decision-registries/<sha256(registryId)>/v<version>/<contentHash>.json`. Registry обязан содержать ровно восемь keys, каждый map key равен `entry.decisionId`, ranges конечны и `min <= max`, fractions находятся в `[0,1]`, ordinal/milestone arrays уникальны и возрастают, а производные totals/curves арифметически согласованы. `HYP-V2-007.settings.delayedWindowPolicyId` — стабильный allowlisted ID exact D+3…D+7 policy: каждый episode `learningDesign.delayedWindowPolicyId` и каждый delayed `V2ReviewLink.windowPolicyId` обязан byte-for-byte совпасть с ним. Unknown/missing setting, body/ref/record/object mismatch, произвольный window ID или mutable latest lookup возвращает non-waivable blocker.
+
+`HYP-V2-006` хранит три независимых лимита: на одни ворота, одну главу и весь сезон. Chapter/season caps нельзя выводить из `maxBoostsPerGate`: в главе несколько ворот, а сезонный лимит является отдельной money-adjacent политикой. Стартовые значения — цена `3`, caps `3/3/12`, deficit `1..3`, два recovery-показа и quote TTL `300` секунд. Эта поправка внесена до публикации первого registry artifact, поэтому schema остаётся `v2-decision-registry-body.v1`; ни одного ранее опубликованного `v1` body/hash для миграции нет.
+
+Стартовый pilot registry version 1 использует следующие явно недоказанные `PRODUCT_HYPOTHESIS`, чтобы fixture и первый internal release не скрывали решения в коде:
+
+- `HYP-V2-001`: 32 эпизода, 4 главы по 8, checkpoints `8/16/24/32`, 8–9 видимых nodes и `12..18` минут для обычного эпизода; checkpoint/review duration сюда не входит;
+- `HYP-V2-002`: `8..10` новых phrase frames, `12..18` semantic slots, `0..1` нового source-locale sound contrast, `3..10` target voice turns и максимум 2 обязательных learning retries;
+- `HYP-V2-003`: completion `0.70`, independent mastery `0.80`, provisional checkpoint cutoffs `ep-08/ep-16/ep-24/ep-32 = 0.80`;
+- `HYP-V2-004`: 3 stars/slot, 8 gate-eligible slots, 24/episode, 768/season;
+- `HYP-V2-005`: exact documented two-loop tuple, 32-entry local curve, E2–E32 cumulative curve и season target 500 из документа 05;
+- `HYP-V2-006`: цена/caps/eligibility/recovery/TTL из предыдущего абзаца;
+- `HYP-V2-007`: `dts-7.d3-d7.v1`, assessable days `3..7`, post-season review days `1/7/21`, provisional success policy `dts-7.independent-transfer-success.v1`;
+- `HYP-V2-008`: только internal-safe milestone `0% / 0 hours / 0 assignments`. Ненулевой rollout запрещён, пока experiment passport не зафиксирует baseline, MDE, alpha/power и рассчитанный sample; затем выпускается новая immutable registry version.
+
+Generic validator проверяет shape, арифметику, допустимые ranges/IDs и внутреннюю согласованность, но не зашивает эти pilot values как вечные константы. Synthetic valid fixture с другими согласованными значениями обязан проходить; изменение живого pilot setting создаёт новую registry version/hash. README default `6–10 active chunks + 4–8 узнаваемых слов` не подменяет поля `newPhraseFrames/newSemanticSlots`: для них источник — подробный curriculum contract документа 03.
 
 Shared fixture `tests/fixtures/learning-v2/content-studio/decision-registry.v1.json` проходит один golden/conformance corpus в client и Functions. Оба runtime recompute-ят body hash, проверяют exact eight-entry schema и возвращают одинаковые ordered issue codes; release tests дополнительно доказывают byte-identical ref в SeasonRevision, bundle provenance и manifest.
 

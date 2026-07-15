@@ -558,8 +558,9 @@ Task 1.1 уже создал стабильные ID/version boundaries. Сле�
 - `HYP-V2-001`: season/chapter/episode/checkpoint shape арифметически согласован.
 - `HYP-V2-004`: `maxStarsPerEpisode = maxStarsPerSlot × gateEligibleSlotsPerEpisode`, а `maxStarsPerSeason = maxStarsPerEpisode × seasonEpisodeCount`.
 - `HYP-V2-005`: required loop tuple exact `['encounter_build','near_transfer']`; local/cumulative curve ordinals unique/increasing, values reachable/nondecreasing и согласованы с season/star budget; стартовый corpus отражает documented 32-episode curve и target 500.
+- `HYP-V2-006`: четыре независимых economy-значения `accessBoostPriceShards/maxBoostsPerGate/maxBoostsPerChapter/maxBoostsPerSeason`; старт `3/3/3/12`, deficit `1..3`, два recovery-показа и quote TTL 300 секунд. Chapter/season caps никогда не выводятся из gate cap.
 - `HYP-V2-007`: только allowlisted exact `delayedWindowPolicyId='dts-7.d3-d7.v1'`, assessable D+3…D+7, unique increasing post-season cadence и stable success-policy ID; произвольный window ID — non-waivable blocker.
-- `HYP-V2-008`: milestones unique/increasing, finite, с разрешёнными percentages и meaningful observation/assignment minima.
+- `HYP-V2-008`: milestones unique/increasing, finite, с разрешёнными percentages и meaningful observation/assignment minima. Живой version 1 содержит только internal-safe `0%/0h/0 assignments`; любое ненулевое значение требует новой registry version после baseline/MDE/alpha/power/sample решения.
 - Все issue codes стабильны, детерминированно отсортированы и одинаковы в двух runtime. Resolver не читает mutable latest и не принимает сокращённые/fake hashes.
 
 ### 8.4 Test-first порядок Task 1.1A
@@ -574,6 +575,14 @@ Task 1.1 уже создал стабильные ID/version boundaries. Сле�
 8. Запустить `git diff --check`, focused type/tests, staged secret scan, независимый spec review, затем отдельный quality review; каждый P0–P2 исправить test-first и re-review.
 9. Commit только пять файлов с subject `feat: add immutable V2 DecisionRegistry`.
 10. Обновить этот хендовер RED/GREEN/counts/commits/findings и только затем начать Task 1.2.
+
+### 8.4.1 Нормативная поправка перед RED
+
+Cross-document audit обнаружил, что документ 05 требовал Access Boost caps `3/3/12` на gate/chapter/season, документ 07 относил все caps к `HYP-V2-006`, а первоначальная schema 08 сериализовала только `maxBoostsPerGate`. До первого опубликованного artifact в schema 08 добавлены `maxBoostsPerChapter` и `maxBoostsPerSeason`; версия `v1` сохранена, потому что опубликованного несовместимого body/hash не существует. Оба execution plan обновлены тем же invariant.
+
+Pilot version 1 фиксирует `PRODUCT_HYPOTHESIS`, а не универсальные нормы: HYP002 использует frames `8..10`, slots `12..18`, sound contrasts `0..1`, voice turns `3..10`, retries `2`; HYP003 — `0.70/0.80` и provisional checkpoint cutoffs `ep-08/16/24/32 = 0.80`; HYP007 — `dts-7.independent-transfer-success.v1`; HYP008 — только 0% internal milestone. Generic validator обязан принять согласованный nonbaseline corpus и не hardcode-ить эти числа. `targetEpisodeMinutes=12..18` относится только к обычным эпизодам, не к checkpoint/review duration.
+
+Canonical/hash seam на Task 1.1A осознанно provisional: root/mobile не импортирует Node crypto, Functions использует Node SHA-256, оба runtime независимо вычисляют те же bytes/hash по одному corpus. Из-за `functions/tsconfig` нельзя deployably импортировать root `modules/**` без отдельной package/build boundary; dedicated Content Studio Task 1 извлекает canonical contract в общий buildable package/adapters без изменения fixture, public behavior или уже вычисленных hashes.
 
 ### 8.5 Точные Task 1.1A gates
 

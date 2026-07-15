@@ -47,6 +47,7 @@ import {
 import { getHomeMenuImages } from '../home_menu_icons';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LessonsV2TabContent from '../../components/LessonsV2TabContent';
+import { peekCurrentExamBestPct } from '../exam_best_pct_overlay';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 /**
@@ -587,7 +588,10 @@ const LessonCard = React.memo(function LessonCard({
 });
 
 // ── Главный компонент ─────────────────────────────────────────────────────────
-export default function LessonsTab() {
+type LessonsTabProps = { overlayIdentityEpoch?: number };
+
+export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch = 0 }: LessonsTabProps = {}) {
+    void _overlayIdentityEpoch;
     const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     const insets = useStableSafeAreaInsets();
@@ -615,6 +619,7 @@ export default function LessonsTab() {
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
     const [passCounts, setPassCounts] = useState<number[]>(() => boot?.passCounts ?? new Array(32).fill(0));
     const [examBestPcts, setExamBestPcts] = useState<Record<string, number>>(() => boot?.examBestPcts ?? {});
+    const examBestPctTargetRef = useRef(lessonCacheTarget);
     const [examPassCounts, setExamPassCounts] = useState<Record<string, number>>(() => boot?.examPassCounts ?? {});
     // persistedUnlocked — это список уроков, ранее открытых через unlockLesson()
     // (после прохождения предыдущего на ★2.5+, покупки премиума, сдачи зачёта).
@@ -699,6 +704,7 @@ export default function LessonsTab() {
             const snapshot = await entry.promise;
             if (!mountedRef.current || entry.target !== lessonCacheTargetRef.current)
                 return;
+            examBestPctTargetRef.current = entry.target;
             setNoLimits(snapshot.noLimits);
             setPersistedUnlocked(snapshot.persistedUnlocked);
             setScores(snapshot.scores);
@@ -1021,7 +1027,13 @@ export default function LessonsTab() {
                 const prevExamLevel = getPreviousCourseLevel(examLevel);
                 const result = examResults[lvl];
                 const isB2 = lvl === 'B2';
-                const examMedal = getExamMedalTier(examBestPcts[lvl] ?? 0);
+                const currentTargetStateBestPct = examBestPctTargetRef.current === lessonCacheTarget
+                    ? (examBestPcts[lvl] ?? 0)
+                    : 0;
+                const overlayBestPct = studyTarget === 'en' || studyTarget === 'fr'
+                    ? peekCurrentExamBestPct(studyTarget, examLevel)
+                    : 0;
+                const examMedal = getExamMedalTier(Math.max(currentTargetStateBestPct, overlayBestPct));
                 const examPass = examPassCounts[lvl] ?? 0;
                 const examDots = getEarnedDots(examMedal, examPass);
                 const label = triLang(lang, {

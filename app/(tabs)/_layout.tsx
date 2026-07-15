@@ -19,7 +19,14 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import HomeScreen       from './home';
 import TodayScreen from '../../components/today/TodayScreen';
-import { captureAccountGeneration, subscribeAccountGeneration } from '../account_generation';
+import {
+  captureAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
+import {
+  setExamBestPctTabActivity,
+} from '../exam_best_pct_overlay';
 import { resetTodayRuntimeMemory } from '../../lib/today/runtime_reset';
 import {
   logicalTabToPhysicalPage,
@@ -47,7 +54,8 @@ function withAlpha(color: string, alpha: number): string {
   return `rgba(${r},${g},${b},${a})`;
 }
 
-type TabScreenComponent = React.ComponentType;
+type TabScreenProps = { overlayIdentityEpoch?: number };
+type TabScreenComponent = React.ComponentType<TabScreenProps>;
 type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
@@ -96,11 +104,19 @@ function prewarmDeferredTabScreen(idx: number): boolean {
   }
 }
 
-function DeferredTabScreen({ shouldLoad, loadScreen }: { shouldLoad: boolean; loadScreen: () => TabScreenComponent }) {
+function DeferredTabScreen({
+  shouldLoad,
+  loadScreen,
+  screenProps,
+}: {
+  shouldLoad: boolean;
+  loadScreen: () => TabScreenComponent;
+  screenProps?: TabScreenProps;
+}) {
   const { theme: t } = useTheme();
   const Screen = shouldLoad ? loadScreen() : null;
   if (!Screen) return <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
-  return <Screen />;
+  return <Screen {...screenProps} />;
 }
 
 /**
@@ -161,6 +177,109 @@ function TodayPaneBoundary({ freezeWanted }: { freezeWanted: boolean }) {
 
   const scopeSafetyKey = `${accountSafetyKey}|${studyTarget}|${lang}|${clockSafetyKey}`;
   return <TabPane key={scopeSafetyKey} freezeWanted={freezeWanted}><TodayScreen /></TabPane>;
+}
+
+type LessonsPrivacyState = Readonly<{
+  epoch: number;
+  phase: AccountGenerationToken['phase'];
+  failClosed: boolean;
+}>;
+
+function LessonsPaneBoundary({
+  freezeWanted,
+  shouldLoad,
+  isActive,
+}: {
+  freezeWanted: boolean;
+  shouldLoad: boolean;
+  isActive: boolean;
+}) {
+  const { theme: t } = useTheme();
+  const renderToken = useRef(captureAccountGeneration()).current;
+  const previousTokenRef = useRef(renderToken);
+  const activatedEpochRef = useRef(0);
+  const [privacy, setPrivacy] = useState<LessonsPrivacyState>({
+    epoch: 0,
+    phase: renderToken.phase,
+    failClosed: false,
+  });
+
+  useLayoutEffect(() => {
+    const failClosed = () => setPrivacy((previous) => ({
+      epoch: previous.epoch + 1,
+      phase: 'transitioning',
+      failClosed: true,
+    }));
+    const reconcile = (next: AccountGenerationToken) => {
+      try {
+        const previous = previousTokenRef.current;
+        previousTokenRef.current = next;
+        const initialAdoption = previous.phase === 'uninitialized' && next.phase === 'active';
+        const sameActiveOwner = previous.phase === 'active'
+          && next.phase === 'active'
+          && previous.stableId === next.stableId;
+        if (initialAdoption || sameActiveOwner) return;
+        if (
+          previous.generation === next.generation
+          && previous.phase === next.phase
+          && previous.stableId === next.stableId
+        ) return;
+        setPrivacy((current) => ({
+          epoch: current.epoch + 1,
+          phase: next.phase,
+          failClosed: current.failClosed,
+        }));
+      } catch {
+        failClosed();
+      }
+    };
+
+    try {
+      const subscription = subscribeAccountGeneration(reconcile);
+      reconcile(captureAccountGeneration());
+      return () => subscription.remove();
+    } catch {
+      failClosed();
+      return undefined;
+    }
+  }, [renderToken]);
+
+  if (isActive && privacy.phase === 'active' && !privacy.failClosed) {
+    activatedEpochRef.current = privacy.epoch;
+  }
+  const coverLessons = privacy.failClosed
+    || privacy.phase === 'transitioning'
+    || activatedEpochRef.current < privacy.epoch;
+
+  return (
+    <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary }]} collapsable={false}>
+      <View
+        style={s.lessonsPaneContent}
+        accessibilityElementsHidden={coverLessons}
+        importantForAccessibility={coverLessons ? 'no-hide-descendants' : 'auto'}
+        pointerEvents={coverLessons ? 'none' : 'auto'}
+      >
+        <TabPane freezeWanted={freezeWanted}>
+          <DeferredTabScreen
+            shouldLoad={shouldLoad}
+            loadScreen={loadLessonsScreen}
+            screenProps={{ overlayIdentityEpoch: privacy.epoch }}
+          />
+        </TabPane>
+      </View>
+      {coverLessons ? (
+        <View
+          style={[StyleSheet.absoluteFillObject, { backgroundColor: t.bgPrimary }]}
+          pointerEvents="auto"
+          accessible={false}
+        />
+      ) : null}
+    </View>
+  );
+}
+
+function markExamBestPctTabActivity(idx: number): void {
+  setExamBestPctTabActivity(idx === 0 ? 'safe_home' : 'unsafe');
 }
 
 type TabDef = {
@@ -647,6 +766,12 @@ export default function TabLayout() {
   const backgroundPremountTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   /** Пока router.replace ещё не обновил pathname, useLayoutEffect не должен откатить вкладку по старому URL. */
   const pendingTabIdxRef = useRef<number | null>(null);
+  const initialExamBestPctTabIdxRef = useRef(tabIdxFromRouter(pathname, segments) ?? activeIdxRef.current);
+
+  useLayoutEffect(() => {
+    markExamBestPctTabActivity(initialExamBestPctTabIdxRef.current);
+    return () => setExamBestPctTabActivity('unknown');
+  }, []);
 
   const scheduleMount = useCallback((idx: number) => {
     if (idx < 0 || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
@@ -681,6 +806,7 @@ export default function TabLayout() {
     }
     if (pendingTabIdxRef.current !== null) {
       const hold = pendingTabIdxRef.current;
+      markExamBestPctTabActivity(hold);
       if (!visitedTabsRef.current.has(hold)) {
         setVisitedTabs((prev) => addVisitedTab(prev, hold));
       }
@@ -696,6 +822,7 @@ export default function TabLayout() {
       return;
     }
     if (fromRouter !== null) {
+      markExamBestPctTabActivity(fromRouter);
       if (!visitedTabsRef.current.has(fromRouter)) {
         setVisitedTabs((prev) => addVisitedTab(prev, fromRouter));
       }
@@ -754,6 +881,7 @@ export default function TabLayout() {
    *  а реальный activeIdx/URL переключаются после UI-thread анимации. */
   const handleSwipeStart = useCallback((physicalIdx: number) => {
     const idx = physicalPageToLogicalTab(physicalIdx);
+    setExamBestPctTabActivity('unsafe');
     setVisualIdx(idx);
     if (physicalIdx === 0 || idx === activeIdxRef.current) return;
     rememberVisitedTab(idx);
@@ -781,6 +909,7 @@ export default function TabLayout() {
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((idx: number) => {
+    markExamBestPctTabActivity(idx);
     setVisualIdx(idx);
     const physical = logicalTabToPhysicalPage(idx);
     setPhysicalPageIdx(physical);
@@ -797,6 +926,7 @@ export default function TabLayout() {
     const wasToday = physicalPageIdxRef.current === 0;
     physicalPageIdxRef.current = physical;
     const idx = physicalPageToLogicalTab(physical);
+    markExamBestPctTabActivity(idx);
     setPhysicalPageIdx(physical);
     setVisualIdx(idx);
     if (physical === 0) {
@@ -838,7 +968,14 @@ export default function TabLayout() {
     return [
       <TodayPaneBoundary key="today" freezeWanted={Math.abs(physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE} />,
       show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
-      show(1) ? <TabPane key="index" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadLessonsScreen} /></TabPane> : placeholder('ph-index'),
+      show(1) ? (
+        <LessonsPaneBoundary
+          key="index"
+          freezeWanted={freezeWanted(1)}
+          shouldLoad={shouldLoad(1)}
+          isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
+        />
+      ) : placeholder('ph-index'),
       show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabPane> : placeholder('ph-arena'),
       show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
       show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
@@ -861,6 +998,14 @@ const s = StyleSheet.create({
   deferredTabPlaceholder: {
     flex: 1,
     backgroundColor: 'transparent',
+  },
+  lessonsPaneBoundary: {
+    flex: 1,
+    minHeight: 0,
+  },
+  lessonsPaneContent: {
+    flex: 1,
+    minHeight: 0,
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },

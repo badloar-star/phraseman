@@ -3365,7 +3365,6 @@ export default function StreakStats() {
         </TapScale>
         <Text
           style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }}
-          numberOfLines={1}
         >
           {triLang(lang, {
             ru: 'Твои результаты',
@@ -3394,7 +3393,7 @@ export default function StreakStats() {
             router.push('/achievements_screen' as any);
         }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap') }}>
           <Ionicons name="trophy-outline" size={19} color={t.textSecond}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }}>
             {triLang(lang, {
             ru: ruAchievementRewardPhrase(achievementCount),
             uk: ukAchievementRewardPhrase(achievementCount),
@@ -3421,7 +3420,7 @@ export default function StreakStats() {
             router.push('/level_gifts_inventory' as any);
         }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.washStrong : statsSoftBg(themeMode, 'multipliers', 'strong')) : (isGoldTheme ? GOLD_RICH.blackPiano : statsSoftBg(themeMode, 'multipliers', 'quiet')), borderWidth: 0 }}>
           <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers')) : t.textMuted}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }}>
             {triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),
@@ -3967,7 +3966,7 @@ export default function StreakStats() {
                                     fontSize: 7,
                                     fontWeight: '700',
                                     textAlign: 'center',
-                                }} numberOfLines={1}>
+                                }}>
                               {ptsLabel}
                             </Text>
                           </View>
@@ -3982,7 +3981,7 @@ export default function StreakStats() {
                                     color: isToday ? t.textPrimary : t.textMuted,
                                     fontSize: 8, fontWeight: isToday ? '800' : '400',
                                     lineHeight: 11,
-                                }} numberOfLines={1}>{d.shortLabel}</Text>
+                                }}>{d.shortLabel}</Text>
                           <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
                         </View>);
                         })
@@ -4000,7 +3999,7 @@ export default function StreakStats() {
                                     fontSize: 7,
                                     fontWeight: '700',
                                     textAlign: 'center',
-                                }} numberOfLines={1}>
+                                }}>
                               {timeLabel}
                             </Text>
                           </View>
@@ -4015,7 +4014,7 @@ export default function StreakStats() {
                                     color: isToday ? t.textPrimary : t.textMuted,
                                     fontSize: 8, fontWeight: isToday ? '800' : '400',
                                     lineHeight: 11,
-                                }} numberOfLines={1}>{d.shortLabel}</Text>
+                                }}>{d.shortLabel}</Text>
                           <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
                         </View>);
                         })}

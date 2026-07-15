@@ -1861,13 +1861,13 @@ export default function DuelResultsScreen() {
                   style={[styles.leaderboardRow, { borderTopColor: t.border }, isMe && { backgroundColor: t.accentBg }]}
                 >
                   <Text style={styles.medal}>{medal}</Text>
-                  <Text style={[styles.playerName, { color: isMe ? t.accent : t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
+                  <Text style={[styles.playerName, { color: isMe ? t.accent : t.textPrimary, fontSize: f.body }]}>
                     {run.userName}
                   </Text>
                   <View style={styles.leaderboardScoreCol}>
                     <Text style={[styles.playerFinalScore, { color: t.textPrimary, fontSize: f.body }]}>{run.score}</Text>
                     {run.total > 0 && (
-                      <Text style={[{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }]} numberOfLines={1}>
+                      <Text style={[{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }]}>
                         {run.correct}/{run.total} ✓
                       </Text>
                     )}
@@ -1923,7 +1923,7 @@ export default function DuelResultsScreen() {
                   <Text style={[styles.playerName, {
                     color: isMe ? t.accent : t.textPrimary,
                     fontSize: f.body,
-                  }]} numberOfLines={1}>
+                  }]}>
                     {p.displayName ?? (isMe ? triLang(lang, {
                       ru: 'Я',
                       uk: 'Я',
@@ -1959,7 +1959,6 @@ export default function DuelResultsScreen() {
                       return (
                         <Text
                           style={[{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }]}
-                          numberOfLines={1}
                         >
                           {correct}/{total} ✓
                         </Text>
@@ -2017,7 +2016,7 @@ export default function DuelResultsScreen() {
               </Text>
               <View style={styles.breakdown}>
                 <View style={styles.breakdownRow}>
-                  <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
+                  <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]}>
                     {triLang(lang, {
                       ru: '✓ Правильных ответов',
                       uk: '✓ Правильних відповідей',
@@ -2033,7 +2032,7 @@ export default function DuelResultsScreen() {
                 </View>
                 {bSpeed > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]}>
                       {triLang(lang, {
                         ru: '⚡ Бонус за скорость',
                         uk: '⚡ Бонус за швидкість',
@@ -2050,7 +2049,7 @@ export default function DuelResultsScreen() {
                 )}
                 {bFirst > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]}>
                       {triLang(lang, {
                         ru: '🎯 Первый правильный',
                         uk: '🎯 Перша правильна',
@@ -2067,7 +2066,7 @@ export default function DuelResultsScreen() {
                 )}
                 {bStreak > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]}>
                       {triLang(lang, {
                         ru: '🔥 Серия подряд',
                         uk: '🔥 Серія поспіль',
@@ -2084,7 +2083,7 @@ export default function DuelResultsScreen() {
                 )}
                 {bOutspeed > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]}>
                       {triLang(lang, {
                         ru: '💥 Быстрый ответ (≤10с)',
                         uk: '💥 Швидка відповідь (≤10 с)',

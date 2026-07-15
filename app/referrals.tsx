@@ -333,7 +333,7 @@ export default function ReferralsScreen() {
             <Ionicons name={claimable ? 'sparkles-outline' : 'person-outline'} size={22} color={claimable ? t.accent : t.textMuted} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900' }}>
               {displayName}
             </Text>
             <Text style={{ color: claimable ? t.accent : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '800', marginTop: 2 }}>
@@ -453,7 +453,7 @@ export default function ReferralsScreen() {
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <Ionicons name="gift-outline" size={18} color={t.accent} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900', flex: 1 }} numberOfLines={2}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900', flex: 1 }}>
                   {L('Твой код для друзей', 'Твій код для друзів', 'Tu código para amigos', 'Seu código para amigos', 'Mã của bạn cho bạn bè', 'Kode untuk temanmu', 'Arkadaşların için kodun', 'Twój kod dla znajomych')}
                 </Text>
               </View>

@@ -912,7 +912,7 @@ function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: bo
             >
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
             </TouchableOpacity>
-            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>
+            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flex: 1, textAlign: 'center', marginHorizontal: 8 }}>
               {monthGrid.month ? `${monthName(monthGrid.month, lang)} ${monthGrid.year}` : '-'}
             </Text>
             <TouchableOpacity

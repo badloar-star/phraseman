@@ -74,7 +74,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
             style={styles.boostBuyer}
             testID="league-group-boost-buyer"
           >
-            <Text numberOfLines={1} style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{leaguePublicName(model.boost.buyerName, model.boost.buyerUid)} · ×{model.boost.multiplier}</Text>
+            <Text style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{leaguePublicName(model.boost.buyerName, model.boost.buyerUid)} · ×{model.boost.multiplier}</Text>
             {boostTimeLeft ? <Text style={[styles.boostTime, { color: model.canClaim ? palette.accentText : palette.muted }]}>{boostTimeLeft}</Text> : null}
           </Pressable>
           <Pressable

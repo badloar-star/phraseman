@@ -71,8 +71,6 @@ function CommunityChatHubButton() {
                 <Ionicons name="close" size={22} color={t.textPrimary} />
               </TouchableOpacity>
               <Text
-                allowFontScaling={false}
-                numberOfLines={1}
                 style={[styles.headerTitle, { color: t.textPrimary }]}
               >
                 {copy.title}

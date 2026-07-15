@@ -171,7 +171,7 @@ export default function AiLimitUpsellCard({
           ]}
         >
           <Ionicons name="lock-open-outline" size={17} color={t.correctText} />
-          <Text style={[styles.ctaLabel, { color: t.correctText, fontSize: f.label }]} numberOfLines={1}>
+          <Text style={[styles.ctaLabel, { color: t.correctText, fontSize: f.label }]}>
             {ctaLabel}
           </Text>
         </Pressable>

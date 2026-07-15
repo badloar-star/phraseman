@@ -1298,9 +1298,6 @@ export default function ClubScreen() {
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TapScale>
         <Text
-          numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={0.72}
           style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}
         >
           {leagueNameForLang(myLeague, lang)}

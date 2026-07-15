@@ -965,7 +965,7 @@ function TrainerScreenInner() {
                 {hasAnalyticsMistakes && analyticsTab === 'lessons' && (<View style={{ gap: 6 }}>
                     {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderWidth: 0, borderRadius: isCompassTheme ? 8 : 12 }]}>
                         {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
-                        <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1}>{stat.pct}%</Text>
+                        <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]}>{stat.pct}%</Text>
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                             {triLang(lang, {
@@ -979,7 +979,7 @@ function TrainerScreenInner() {
                         pl: "Lek.",
                     })} {stat.lessonId}
                           </Text>
-                          <Text style={{ color: t.textPrimary, fontSize: f.caption }} numberOfLines={1}>
+                          <Text style={{ color: t.textPrimary, fontSize: f.caption }}>
                             {trainerAnalyticsLessonTitle(stat, lang, studyTarget)}
                           </Text>
                           <View style={styles.miniProgressBg}>
@@ -995,7 +995,7 @@ function TrainerScreenInner() {
                           <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>×{count}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                          <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>{phrase}</Text>
+                          <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600' }}>{phrase}</Text>
                           <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
                             {triLang(lang, {
                         ru: 'Урок',

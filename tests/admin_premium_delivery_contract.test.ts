@@ -14,13 +14,16 @@ describe('admin premium delivery contract', () => {
   );
   const authIdentityFn = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'auth_identity.ts'), 'utf8');
 
-  it('links stable users to Firebase auth before reading admin premium from Firestore', () => {
+  it('verifies the canonical server auth link before reading admin premium from Firestore', () => {
     const restoreStart = cloudSync.indexOf('export async function restoreAndMigrateFromCloud');
     const getUserDoc = cloudSync.indexOf("db.collection('users').doc(uid).get()", restoreStart);
-    const linkCall = cloudSync.indexOf('ensureStableAuthLinkForStableId(uid)', restoreStart);
+    const linkCall = cloudSync.indexOf('ensureStableAuthLinkForStableIdDetailed(uid)', restoreStart);
+    const canonicalGuard = cloudSync.indexOf('linked.stableUid !== uid', linkCall);
 
     expect(restoreStart).toBeGreaterThan(-1);
     expect(linkCall).toBeGreaterThan(restoreStart);
+    expect(canonicalGuard).toBeGreaterThan(linkCall);
+    expect(canonicalGuard).toBeLessThan(getUserDoc);
     expect(linkCall).toBeLessThan(getUserDoc);
   });
 
@@ -114,7 +117,7 @@ describe('admin premium delivery contract', () => {
 
   it('preserves provider-linked ownership without allowing unknown auth mismatches', () => {
     expect(authIdentityFn).toContain('const hasProviderLink');
-    expect(authIdentityFn).toContain('if (linkedAuthUid === authUid) return;');
+    expect(authIdentityFn).toContain('if (!canonicalLinkConflicts && linkedAuthUid === authUid) return;');
     expect(authIdentityFn).not.toContain('if (!hasProviderLink) return;');
     expect(authIdentityFn).toContain("throw new HttpsError('permission-denied', 'stable_id_mismatch')");
   });

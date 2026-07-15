@@ -376,17 +376,16 @@ describe('analytics.ts: новые события зарегистрирован
   });
 });
 
-describe('DailyPhraseCard.tsx: кнопка вшита за флагом с верными пропами', () => {
+describe('DailyPhraseCard.tsx: мини-квиз не запускает AI-объяснение', () => {
   const src = read(path.join(COMPONENTS_DIR, 'DailyPhraseCard.tsx'));
 
-  it('импортирует и рендерит ExplainButton', () => {
-    expect(src).toContain("import ExplainButton from './ExplainButton'");
-    expect(src).toContain('<ExplainButton');
+  it('не импортирует и не рендерит ExplainButton внутри daily phrase quest', () => {
+    expect(src).not.toContain("import ExplainButton from './ExplainButton'");
+    expect(src).not.toContain('<ExplainButton');
   });
 
-  it('передаёт phraseEn=phrase.english и phraseMeaning=phraseCopy.meaning || phrase.meaning', () => {
-    expect(src).toMatch(/phraseEn=\{phrase\.english\}/);
-    expect(src).toMatch(/phraseMeaning=\{phraseCopy\.meaning \|\| phrase\.meaning\}/);
-    expect(src).toMatch(/lang=\{lang\}/);
+  it('не передаёт содержимое фразы в AI-триггер до или после ответа', () => {
+    expect(src).not.toMatch(/phraseEn=\{phrase\.english\}/);
+    expect(src).not.toMatch(/phraseMeaning=\{phraseCopy\.meaning \|\| phrase\.meaning\}/);
   });
 });

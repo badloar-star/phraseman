@@ -3,7 +3,7 @@ import path from 'path';
 
 const read = (p: string) => fs.readFileSync(path.join(__dirname, '..', p), 'utf8');
 
-describe('ai dialog Plus-only gate contract', () => {
+describe('ai dialog Plus-only client with bounded legacy server fallback', () => {
   const scenario = read('app/ai_dialog_session.tsx');
   const companion = read('app/ai_companion_session.tsx');
   const limit = read('app/dialogs_limit_session.ts');
@@ -12,7 +12,7 @@ describe('ai dialog Plus-only gate contract', () => {
   const lessons = read('app/(tabs)/lessons.tsx');
   const server = read('functions/src/premium_dialog.ts');
 
-  it('keeps the legacy allowance at zero so old clients cannot advertise a trial', () => {
+  it('keeps the client allowance at zero so current builds do not advertise a trial', () => {
     expect(flags).toContain('FREE_DIALOGS_LIFETIME_DEFAULT = 0');
     expect(limit).toContain('getFreeDialogsLifetime');
     expect(limit).toContain('getFreeDialogsUsed');
@@ -23,7 +23,7 @@ describe('ai dialog Plus-only gate contract', () => {
     expect(limit).not.toContain('todayKey');
   });
 
-  it('both session screens require effective Dialogs access before the first reply', () => {
+  it('both current session screens require effective Dialogs access before the first reply', () => {
     for (const src of [scenario, companion]) {
       expect(src).toContain("const dialogAccess = useFeatureAccess('ai_dialog')");
       expect(src).toContain('if (!dialogAccess)');
@@ -61,16 +61,13 @@ describe('ai dialog Plus-only gate contract', () => {
     expect(lessons).not.toContain(' free`');
   });
 
-  it('server rejects non-premium calls while the premium gate is enabled', () => {
-    expect(server).toContain("throw new HttpsError('permission-denied', 'dialog_plus_required')");
-    expect(server).not.toContain('enforceLifetimeFreeDialog');
-    expect(server).not.toContain('releaseLifetimeFreeDialog');
-  });
-
-  it('logs privacy-safe identity fingerprints when the server cannot see Plus', () => {
-    expect(server).toContain('function identityFingerprint(value: string): string');
-    expect(server).toContain('authUidHash: identityFingerprint(authUid)');
-    expect(server).toContain('stableUidHash: identityFingerprint(stableUid)');
-    expect(server).not.toContain("authUid,\n      stableUid,");
+  it('keeps old installed clients bounded to two lifetime dialogs and rolls back provider failures', () => {
+    expect(server).toContain('const FREE_DIALOGS_LIFETIME = 2');
+    expect(server).toContain('const FREE_DIALOG_MAX_USER_TURNS = 6');
+    expect(server).toContain('enforceLifetimeFreeDialog');
+    expect(server).toContain('releaseLifetimeFreeDialog');
+    expect(server).toContain('if (used >= FREE_DIALOGS_LIFETIME)');
+    expect(server).toContain("throw new HttpsError('resource-exhausted', 'dialog_free_limit')");
+    expect(server).toContain('freeTurnCharged');
   });
 });

@@ -49,6 +49,20 @@ describe('PremiumContext VIP event contract', () => {
     expect(caughtCallCount).toBe(callCount);
   });
 
+  it('does not reuse a pre-event entitlement reload after an unscoped access event', () => {
+    const start = source.indexOf('const refreshEntitlementsFromUnscopedEvent');
+    const end = source.indexOf('// Purchase events trigger', start);
+    const body = source.slice(start, end);
+
+    expect(body).toContain('accessResolvedRef.current = false');
+    expect(body).toContain('setAccessResolved(false)');
+    expect(body).toContain('cancelReloadRetryWait()');
+    expect(body).toContain('const olderReload = reloadInFlightPromiseRef.current');
+    expect(body).toContain('await olderReload.catch(() => false)');
+    expect(body.indexOf('invalidatePremiumCache()')).toBeGreaterThan(body.indexOf('await olderReload.catch(() => false)'));
+    expect(body.indexOf('const completed = await reloadForCurrentAccount();')).toBeGreaterThan(body.indexOf('invalidatePremiumCache()'));
+  });
+
   it('clears in-memory entitlement state immediately when account deletion completes locally', () => {
     const start = source.indexOf("onAppEvent('account_deleted'");
     expect(start).toBeGreaterThan(-1);

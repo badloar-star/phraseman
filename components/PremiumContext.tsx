@@ -853,8 +853,18 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     );
     if (!eventIsCurrent()) return;
 
-    invalidatePremiumCache();
+    // Entitlement events are account-unscoped hints. Keep paid gates unresolved
+    // while any older check drains, then force one fresh check for this account.
+    // Otherwise a pre-event in-flight reload can commit stale Free state and be
+    // incorrectly reused by reloadForCurrentAccount().
+    accessResolvedRef.current = false;
+    setAccessResolved(false);
+    cancelReloadRetryWait();
     void (async () => {
+      const olderReload = reloadInFlightPromiseRef.current;
+      if (olderReload) await olderReload.catch(() => false);
+      if (!eventIsCurrent()) return;
+      invalidatePremiumCache();
       const completed = await reloadForCurrentAccount();
       if (!completed || !eventIsCurrent()) return;
       afterVerifiedRefresh?.();
@@ -874,7 +884,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         }).catch(() => {});
       });
     })().catch(() => {});
-  }, [reloadForCurrentAccount]);
+  }, [cancelReloadRetryWait, reloadForCurrentAccount]);
 
   // Purchase events trigger an immediate verified read for the active account.
   useEffect(() => {

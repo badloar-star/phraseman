@@ -104,7 +104,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 | Task | Что создаётся | Зависимость / interlock | Статус |
 |---|---|---|---|
 | 0 | Direct-access inventory, explicit Firestore allows/denies, emulator matrix | До любых новых authoring collections/callables | **Локальный commit готов; один P2 follow-up открыт** |
-| 1 | Shared authoring contracts, canonical JSON/hash, eight-entry DecisionRegistry | Umbrella Phase 00/01; следующий крупный task | **Следующий** |
+| 1 | Shared authoring contracts, canonical JSON/hash, eight-entry DecisionRegistry | Umbrella Phase 01; выполнять только после GREEN umbrella Tasks 1.1–1.4 | Следующий внутри Content Studio после 1.1–1.4 |
 | 2 | Code-owned capability catalog и app-support manifests | После Task 1; umbrella Phase 01 | Не начато |
 | 3 | Immutable ModeTemplate versions, clone/deprecate/localization | После Task 2; umbrella Phase 01 | Не начато |
 | 4 | ActivityInstance, EpisodeDraft/graph, SeasonDraft/revisions | Только после единой green gate policy из Phase 02 | Не начато |
@@ -413,7 +413,7 @@ firebase-tools 15.15.0
 
 `functions/src/index.ts` идентичен в parent и Task 0 HEAD, а перечисленные modules отсутствуют в обоих деревьях. Это не regression Task 0. В сильно грязном основном checkout часть этих файлов существует untracked; нельзя просто копировать их без аудита происхождения.
 
-### 7.3 Канон пока не сохранён Git
+### 7.3 Канон сохранён Git; исторический риск закрыт и должен перепроверяться
 
 На pre-persistence аудите README + `00`–`08` (десять исходных V2-файлов), новый `HANDOVER.md` и оба плана 2026-07-14 имели статус `??` в основном checkout. В pilot worktree их не было вообще. Риск закрыт отдельным docs-only commit `0b94c974938f0e157dec45b1c4031bd1c89dd90c`, содержащим ровно 14 paths: `AGENTS.md`, 11 Markdown-файлов `docs/v2` и два плана 2026-07-14. Он перенесён в pilot-ветку как `a09f57da2d2442d114202bb3d52bf58abe917bb1`. Следующая сессия всё равно должна подтвердить наличие через команды ниже, а не доверять тексту:
 
@@ -504,13 +504,15 @@ npx jest --runTestsByPath tests/learning_v2_identity_contract.test.ts --no-cache
 ```powershell
 Push-Location functions
 npm install --save-dev --save-exact firebase-tools@15.15.0
+git diff -- package.json package-lock.json
+npm ci
 .\node_modules\.bin\firebase.cmd --version
 npm run test:emulator:v2-authoring-rules
 Pop-Location
 npx jest --runTestsByPath tests/firestore_rules_security.test.ts --no-cache --runInBand
 ```
 
-Ожидается: local binary печатает `15.15.0`, lockfile содержит exact dependency, emulator suite даёт 351/351, static suite — 60/60. Перед изменением проверить текущий `functions/package.json`, потому что в грязном main этот файл имеет несвязанные изменения; работать в pilot worktree.
+Ожидается: diff содержит только exact devDependency/lock изменения, `npm ci` с нуля восстанавливает dependency tree, local binary печатает `15.15.0`, emulator suite даёт 351/351, static suite — 60/60. Перед изменением проверить текущий `functions/package.json`, потому что в грязном main этот файл имеет несвязанные изменения; работать в pilot worktree. Если `npm ci` падает, reproducibility task остаётся RED и к Task 1.1 переходить нельзя.
 
 ### 8.6 Следующие contract tasks до Content Studio
 

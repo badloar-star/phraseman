@@ -139,6 +139,7 @@ export interface PaywallPurchaseArgs {
   source: string;
   lang: Lang;
   impression?: PaywallAnalyticsImpression;
+  softAttribution?: SoftUpsellAttribution | null;
   /**
    * DEV/QA: форс «триал-режима» из тест-меню (_force_trial_ui=1). В Metro стора
    * нет (DEV_IAP_BYPASS) → trialDays обычно null, и триал-зависимое (trust-бейдж
@@ -148,10 +149,13 @@ export interface PaywallPurchaseArgs {
   forceTrialUI?: boolean;
 }
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, impression: suppliedImpression }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, impression: suppliedImpression, softAttribution }: PaywallPurchaseArgs) {
   const router = useRouter();
   const { reload: reloadEnergy } = useEnergy();
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
+  const softAttributionRef = useRef<SoftUpsellAttribution | null>(softAttribution ?? null);
+  const softAttributionAccountTokenRef = useRef(softAttribution ? captureAccountGeneration() : null);
+  const purchaseAttemptRef = useRef(0);
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
   const [packages, setPackages] = useState<PremiumPackages>({});
   const [loading, setLoading] = useState(false);
@@ -306,8 +310,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const selectPlan = useCallback((plan: PaywallPlan) => {
     hapticTap();
     setSelected(plan);
-    void trackEvent('paywall_plan_select', { context, source, plan, paywall: variant, ...paywallImpressionParams(impression) });
-  }, [context, impression, source, variant]);
+    void trackEvent('paywall_plan_select', {
+      context,
+      source,
+      plan,
+      paywall: variant,
+      ...paywallImpressionParams(impression),
+      ...softUpsellAnalyticsParams(currentSoftAttribution(), `plan_${plan}`),
+    } as never);
+  }, [context, currentSoftAttribution, impression, source, variant]);
 
   // ── покупка ────────────────────────────────────────────────────────────────
   const finishPersonalPlanActivationFlow = useCallback(async () => {
@@ -346,7 +357,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const purchaseAccountIsCurrent = () => isCurrentAccountGeneration(purchaseAccountToken);
     const purchaseSoftAttribution = currentSoftAttribution();
     hapticTap();
-    void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
+    void trackEvent('paywall_cta_click', {
+      context,
+      source,
+      plan: selected,
+      paywall: variant,
+      ...paywallImpressionParams(impression),
+      ...softUpsellAnalyticsParams(purchaseSoftAttribution, 'paywall_cta'),
+    } as never);
     if (source === 'afterwin_levelup' || context === 'level_up') {
       void trackEvent('afterwin_upsell_cta', { source: 'level_up', plan: selected, paywall: variant });
       void import('./firebase').then(({ logAfterWinUpsellCta }) =>
@@ -366,7 +384,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     if (!pkg || purchasing || restoring) return;
     const purchaseAttempt = ++purchaseAttemptRef.current;
     setPurchasing(true);
-    void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
+    void trackEvent('purchase_started', {
+      context,
+      source,
+      plan: selected,
+      product_id: pkg.product.identifier,
+      paywall: variant,
+      purchase_attempt: purchaseAttempt,
+      ...paywallImpressionParams(impression),
+      ...softUpsellAnalyticsParams(purchaseSoftAttribution, `purchase_started_${purchaseAttempt}`),
+    } as never);
     try {
       await initRevenueCat();
       if (!(await syncRevenueCatIdentity())) {
@@ -392,7 +419,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
           }),
         );
-        void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync', ...paywallImpressionParams(impression) });
+        void trackEvent('purchase_failed', {
+          context,
+          plan: selected,
+          paywall: variant,
+          error: 'identity_sync',
+          purchase_attempt: purchaseAttempt,
+          ...paywallImpressionParams(impression),
+          ...softUpsellAnalyticsParams(purchaseAccountIsCurrent() ? purchaseSoftAttribution : null, `purchase_failed_${purchaseAttempt}`),
+        } as never);
         return;
       }
       if (!purchaseAccountIsCurrent()) return;
@@ -408,8 +443,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         void trackEvent('purchase_pending' as never, {
           context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           error: 'no_active_entitlement_after_purchase',
+          purchase_attempt: purchaseAttempt,
           ...paywallImpressionParams(impression),
-        });
+          ...softUpsellAnalyticsParams(purchaseAccountIsCurrent() ? purchaseSoftAttribution : null, `purchase_pending_${purchaseAttempt}`),
+        } as never);
+        softAttributionRef.current = null;
         showPurchasePendingAlert(lang);
         return;
       }
@@ -425,10 +463,30 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         emitAppEvent('premium_activated');
         void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
       }
-      void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
+      const confirmedTrial = activationType === 'trial';
+      void trackEvent('purchase_completed', {
+        context,
+        source,
+        plan: selected,
+        product_id: pkg.product.identifier,
+        with_trial: confirmedTrial,
+        activation_type: confirmedTrial ? 'trial' : 'paid',
+        purchase_attempt: purchaseAttempt,
+        paywall: variant,
+        ...paywallImpressionParams(impression),
+        ...softUpsellAnalyticsParams(currentSoftAttribution, `purchase_completed_${purchaseAttempt}`),
+      } as never);
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected });
-      if (pkgTrial.hasTrial) {
-        void trackEvent('trial_started', { context, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
+      if (confirmedTrial) {
+        void trackEvent('trial_started', {
+          context,
+          plan: selected,
+          product_id: pkg.product.identifier,
+          purchase_attempt: purchaseAttempt,
+          paywall: variant,
+          ...paywallImpressionParams(impression),
+          ...softUpsellAnalyticsParams(currentSoftAttribution, `trial_started_${purchaseAttempt}`),
+        } as never);
         logPaywallFunnel('trial_started', { variant, context, plan: selected });
         // Момент Blinkist: триал только что начался — просим разрешение и реально
         // ставим напоминание за день до списания. Обещание таймлайна = правда.
@@ -489,7 +547,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     } catch (err: unknown) {
       const errCode = String((err as { code?: unknown })?.code ?? '');
       if ((err as { userCancelled?: boolean })?.userCancelled) {
-        void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
+        void trackEvent('purchase_cancelled', {
+          context,
+          plan: selected,
+          purchase_attempt: purchaseAttempt,
+          paywall: variant,
+          ...paywallImpressionParams(impression),
+          ...softUpsellAnalyticsParams(purchaseAccountIsCurrent() ? purchaseSoftAttribution : null, `purchase_cancelled_${purchaseAttempt}`),
+        } as never);
         logPaywallFunnel('purchase_cancelled', { variant, context, plan: selected });
       } else if (errCode === PURCHASES_ERROR_CODE.PAYMENT_PENDING_ERROR) {
         // Ask to Buy / 3-D Secure: оплата ушла на подтверждение. Раньше эта
@@ -498,15 +563,20 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         void trackEvent('purchase_pending' as never, {
           context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           error: 'payment_pending',
+          purchase_attempt: purchaseAttempt,
           ...paywallImpressionParams(impression),
-        });
+          ...softUpsellAnalyticsParams(purchaseAccountIsCurrent() ? purchaseSoftAttribution : null, `purchase_pending_${purchaseAttempt}`),
+        } as never);
+        softAttributionRef.current = null;
         showPurchasePendingAlert(lang);
       } else {
         void trackEvent('purchase_failed', {
           context, plan: selected, paywall: variant,
           error: purchaseErrorCategory(err),
+          purchase_attempt: purchaseAttempt,
           ...paywallImpressionParams(impression),
-        });
+          ...softUpsellAnalyticsParams(purchaseAccountIsCurrent() ? purchaseSoftAttribution : null, `purchase_failed_${purchaseAttempt}`),
+        } as never);
         logPaywallFunnel('purchase_failed', { variant, context, plan: selected });
         Alert.alert(
           triLang(lang, {
@@ -534,7 +604,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     } finally {
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow, impression]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow, impression, currentSoftAttribution]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
@@ -655,7 +725,25 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
   const doClose = useCallback((reason: 'close' | 'continue_free') => {
-    void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...paywallImpressionParams(impression) });
+    const attribution = currentSoftAttribution();
+    void trackEvent('paywall_close', {
+      context,
+      source,
+      paywall: variant,
+      reason,
+      ...paywallImpressionParams(impression),
+      ...softUpsellAnalyticsParams(attribution, 'paywall_close'),
+    } as never);
+    if (reason === 'continue_free') {
+      void trackEvent('paywall_continue_free', {
+        context,
+        source,
+        paywall: variant,
+        ...paywallImpressionParams(impression),
+        ...softUpsellAnalyticsParams(attribution, 'paywall_continue_free'),
+      } as never);
+    }
+    softAttributionRef.current = null;
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
     // Онбординг: закрытие пейвола (без покупки) НЕ выкидывает на home, а возвращает
@@ -683,7 +771,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       return;
     }
     dismissPaywallModal(router);
-  }, [router, context, source, variant, selected, lang, impression]);
+  }, [router, context, source, variant, selected, lang, impression, currentSoftAttribution]);
 
   // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в
   // сторе реально есть годовой семидневный trial, мягко предлагаем попробовать

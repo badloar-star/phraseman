@@ -67,7 +67,7 @@ export default function PaywallC() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, impression: analyticsImpression });
+  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, impression: analyticsImpression, softAttribution });
   const sticky = useStickyCta();
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
@@ -111,10 +111,10 @@ export default function PaywallC() {
   };
 
   useEffect(() => {
-    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...paywallImpressionParams(analyticsImpression) });
+    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...paywallImpressionParams(analyticsImpression), ...softUpsellAnalyticsParams(softAttribution, 'paywall_shown') } as never);
     void trackPaywallExperimentExposure(VARIANT, analyticsImpression.id);
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
-  }, [analyticsImpression, ctx, source]);
+  }, [analyticsImpression, ctx, softAttribution, source]);
 
   useEffect(() => {
     let dead = false;

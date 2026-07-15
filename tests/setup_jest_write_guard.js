@@ -5,6 +5,7 @@ const path = require('path');
 
 const ALLOW_SOURCE_WRITES_ENV = 'PHRASEMAN_ALLOW_SOURCE_WRITES';
 
+(function installJestSourceWriteGuard() {
 if (process.env[ALLOW_SOURCE_WRITES_ENV] === '1') {
   return;
 }
@@ -118,3 +119,4 @@ if (fs.promises) {
   fs.promises.copyFile = wrapCopyOrRename('promises.copyFile', fs.promises.copyFile);
   fs.promises.rename = wrapCopyOrRename('promises.rename', fs.promises.rename);
 }
+})();

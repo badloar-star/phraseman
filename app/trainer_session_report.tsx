@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import DuoPressable from '../components/DuoPressable';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -8,6 +8,13 @@ import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang } from '../constants/i18n';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { buttonForegroundForBackground } from '../constants/color_contrast';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { usePremium } from '../components/PremiumContext';
+import {
+  emitSoftUpsellTrigger,
+  recordSuccessfulTraining,
+  repeatedTrainingCandidate,
+} from './soft_upsell_trigger_adapters';
 
 type TrainerReportQueue = 'words' | 'phrases' | 'arena';
 
@@ -45,8 +52,9 @@ export default function TrainerSessionReport({
   const completionRecordedRef = useRef(false);
   useEffect(() => {
     if (completionRecordedRef.current || attempted < 5 || correct / attempted < 0.7) return;
+    const target = studyTarget === 'fr' ? 'fr' : studyTarget === 'en' ? 'en' : null;
+    if (!target) return;
     completionRecordedRef.current = true;
-    const target = studyTarget;
     void recordSuccessfulTraining(target).then((result) => {
       emitSoftUpsellTrigger(repeatedTrainingCandidate({
         successful: true,

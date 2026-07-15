@@ -33,7 +33,11 @@ import {
   type SoftUpsellSuppressionReason,
   type SoftUpsellTrigger,
 } from './soft_upsell_core';
-import type { GovernedProductAnalyticsEventName } from './product_analytics_event_catalog';
+import { createSoftUpsellAttribution } from './soft_upsell_attribution';
+import {
+  isValidGovernedSoftUpsellChainPayload,
+  type GovernedProductAnalyticsEventName,
+} from './product_analytics_event_catalog';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.

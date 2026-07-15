@@ -1498,12 +1498,15 @@ export default function HomeScreen() {
             if (streakVal)
                 setStreak(currentStreakNum);
             const lastStreakShown = parseInt(lastStreakShownRaw || '0') || 0;
-            emitSoftUpsellTrigger(streakCandidate({
-                previous: lastStreakShown,
-                current: currentStreakNum,
-                studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
-                hasPremiumAccess,
-            }));
+            const softUpsellTarget = studyTarget === 'fr' ? 'fr' : studyTarget === 'en' ? 'en' : null;
+            if (softUpsellTarget) {
+                emitSoftUpsellTrigger(streakCandidate({
+                    previous: lastStreakShown,
+                    current: currentStreakNum,
+                    studyTarget: softUpsellTarget,
+                    hasPremiumAccess,
+                }));
+            }
             if (currentStreakNum > 0 && currentStreakNum !== lastStreakShown) {
                 await AsyncStorage.setItem('streak_last_shown', String(currentStreakNum));
                 if (lastStreakShown > 0 && currentStreakNum > lastStreakShown) {

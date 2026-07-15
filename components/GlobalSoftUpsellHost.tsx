@@ -23,6 +23,7 @@ export default function GlobalSoftUpsellHost() {
   const { studyTarget } = useStudyTarget();
   const [envelope, setEnvelope] = useState<SoftUpsellTriggerEnvelope | null>(null);
   const [accountToken, setAccountToken] = useState(() => captureAccountGeneration());
+  const softUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : studyTarget === 'en' ? 'en' : null;
 
   useEffect(() => subscribeSoftUpsellTriggers((next) => {
     if (isCurrentAccountGeneration(next.accountToken)) setEnvelope(next);
@@ -40,7 +41,7 @@ export default function GlobalSoftUpsellHost() {
   const flow = useSoftUpsellOpportunity({
     candidates,
     accountScope,
-    studyTarget,
+    studyTarget: softUpsellStudyTarget,
     hasPremiumAccess,
   });
   const copy = flow.opportunity
@@ -55,6 +56,7 @@ export default function GlobalSoftUpsellHost() {
   return (
     <SoftContextualUpsellCard
       visible
+      presentation="modal"
       proof={copy.proof}
       title={copy.title}
       body={copy.body}

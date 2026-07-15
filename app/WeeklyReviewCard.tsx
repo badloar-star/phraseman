@@ -52,6 +52,7 @@ export default function WeeklyReviewCard({ active, isPremium, studyTarget, stabl
   const copy = useMemo(() => weeklyReviewCopy(lang), [lang]);
   const [state, setState] = useState<WeeklyReviewState | null>(null);
   const lastImpressionKey = useRef('');
+  const lastSoftUpsellKey = useRef('');
 
   const load = useCallback(async () => {
     const initial = await getWeeklyReviewState({ lang, studyTarget, isPremium });
@@ -78,6 +79,20 @@ export default function WeeklyReviewCard({ active, isPremium, studyTarget, stabl
       result_source: resultSourceForState(state),
       schema_version: 'weekly-review-v2',
     });
+  }, [active, isPremium, state, studyTarget]);
+
+  useEffect(() => {
+    if (!active || isPremium || state?.status !== 'free_eligible') return;
+    const target = studyTarget === 'fr' ? 'fr' : studyTarget === 'en' || studyTarget == null ? 'en' : null;
+    if (!target) return;
+    const key = `${captureAccountGeneration().generation}:${target}:${state.snapshot.signalCount}`;
+    if (lastSoftUpsellKey.current === key) return;
+    lastSoftUpsellKey.current = key;
+    emitSoftUpsellTrigger(weeklyReviewCandidate({
+      completed: true,
+      studyTarget: target,
+      hasPremiumAccess: false,
+    }));
   }, [active, isPremium, state, studyTarget]);
 
   const onPaywall = useCallback(() => {

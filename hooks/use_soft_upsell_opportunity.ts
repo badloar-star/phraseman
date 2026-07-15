@@ -28,7 +28,7 @@ import { useOverlayTryClaim, type OverlayLease } from '../components/OverlayArbi
 type Input = {
   candidates: readonly SoftUpsellCandidate[];
   accountScope: string;
-  studyTarget: SoftUpsellStudyTarget;
+  studyTarget: SoftUpsellStudyTarget | null;
   hasPremiumAccess: boolean;
   mode?: SoftUpsellMode;
 };
@@ -60,8 +60,8 @@ const TRIGGER_PRIORITY: Record<SoftUpsellCandidate['trigger'], number> = {
   streak_milestone: 3, first_lesson: 2, repeated_training: 1,
 };
 
-function identityKey(accountScope: string, studyTarget: SoftUpsellStudyTarget): string {
-  return `${studyTarget}:${accountScope}`;
+function identityKey(accountScope: string, studyTarget: SoftUpsellStudyTarget | null): string {
+  return `${studyTarget ?? 'unsupported'}:${accountScope}`;
 }
 
 function signature(candidates: readonly SoftUpsellCandidate[]): string {
@@ -83,7 +83,9 @@ export function useSoftUpsellOpportunity({
   const currentIdentityRef = useRef(currentIdentity);
   currentIdentityRef.current = currentIdentity;
   const tryClaimOverlay = useOverlayTryClaim();
-  const targetCandidates = candidates.filter((candidate) => candidate.studyTarget === studyTarget);
+  const targetCandidates = studyTarget
+    ? candidates.filter((candidate) => candidate.studyTarget === studyTarget)
+    : [];
   const candidateSignature = signature(targetCandidates);
   const stableCandidatesRef = useRef<{ signature: string; value: SoftUpsellCandidate[] } | null>(null);
   if (stableCandidatesRef.current?.signature !== candidateSignature) {
@@ -110,7 +112,9 @@ export function useSoftUpsellOpportunity({
       boundRef.current = null;
       setBound(null);
       outcomeRef.current = null;
-      const persisted = await readSoftUpsellState(accountScope, studyTarget);
+      if (!studyTarget) return;
+      const activeStudyTarget = studyTarget;
+      const persisted = await readSoftUpsellState(accountScope, activeStudyTarget);
       if (!active) return;
       const decision = decideSoftUpsell({
         candidates: stableCandidates,
@@ -126,7 +130,7 @@ export function useSoftUpsellOpportunity({
       const candidate = stableCandidates[0];
       if (decision.status === 'suppressed') {
         if (candidate) void trackSoftUpsellEvent('soft_upsell_suppressed', {
-          context: CONTEXT_BY_TRIGGER[candidate.trigger], trigger: candidate.trigger, studyTarget,
+          context: CONTEXT_BY_TRIGGER[candidate.trigger], trigger: candidate.trigger, studyTarget: activeStudyTarget,
           overlayOccupied: false, schemaVersion: 1, triggerValue: candidate.value,
           suppressionReason: decision.reason,
           event_id: suppressionEventId(),
@@ -137,18 +141,18 @@ export function useSoftUpsellOpportunity({
       if (!active) { lease?.release(); return; }
       if (!lease) {
         void trackSoftUpsellEvent('soft_upsell_suppressed', {
-          context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget,
+          context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget: activeStudyTarget,
           overlayOccupied: true, schemaVersion: 1, triggerValue: decision.opportunity.value,
           suppressionReason: 'overlay_occupied',
           event_id: suppressionEventId(),
         });
         return;
       }
-      const sessionClaimed = mode === 'test' || await claimSoftUpsell({ accountScope, studyTarget, canClaim: () => active });
+      const sessionClaimed = mode === 'test' || await claimSoftUpsell({ accountScope, studyTarget: activeStudyTarget, canClaim: () => active });
       if (!active || !sessionClaimed) {
         lease.release();
         if (active) void trackSoftUpsellEvent('soft_upsell_suppressed', {
-          context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget,
+          context: decision.opportunity.context, trigger: decision.opportunity.trigger, studyTarget: activeStudyTarget,
           overlayOccupied: false, schemaVersion: 1, triggerValue: decision.opportunity.value,
           suppressionReason: 'session_cap',
           event_id: suppressionEventId(),
@@ -164,7 +168,7 @@ export function useSoftUpsellOpportunity({
       boundRef.current = next;
       setBound(next);
       void trackSoftUpsellEvent('soft_upsell_eligible', {
-        context: next.item.context, trigger: next.item.trigger, studyTarget, overlayOccupied: false,
+        context: next.item.context, trigger: next.item.trigger, studyTarget: activeStudyTarget, overlayOccupied: false,
         schemaVersion: 1, triggerValue: next.item.value,
         soft_upsell_impression_id: attribution.impressionId,
         soft_upsell_trigger: attribution.trigger,
@@ -201,6 +205,7 @@ export function useSoftUpsellOpportunity({
   }), []);
 
   const onImpression = useCallback(async () => {
+    if (!studyTarget) return;
     const current = boundRef.current;
     if (!isCurrent(current)) return;
     const key = current.attribution.impressionId;
@@ -230,6 +235,7 @@ export function useSoftUpsellOpportunity({
   }, []);
 
   const onDismiss = useCallback(async () => {
+    if (!studyTarget) return;
     const current = boundRef.current;
     if (!isCurrent(current) || outcomeRef.current !== null) return;
     outcomeRef.current = 'dismiss';

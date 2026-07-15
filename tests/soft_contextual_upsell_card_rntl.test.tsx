@@ -24,6 +24,7 @@ jest.mock('react-native-reanimated', () => {
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 12, left: 0 }) }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
+jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: 'Ionicons' }));
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ f: { body: 17, caption: 14, label: 16 } }) }));
 
 import type SoftContextualUpsellCardType from '../components/SoftContextualUpsellCard';
@@ -46,6 +47,7 @@ function card(overrides: Partial<React.ComponentProps<typeof SoftContextualUpsel
   return (
     <SoftContextualUpsellCard
       visible
+      presentation="modal"
       proof="ТВОЯ НЕДЕЛЯ В ЦИФРАХ"
       title="Неделя уже показала результат"
       body="Plus построит один понятный персональный маршрут."

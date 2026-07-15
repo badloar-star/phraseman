@@ -3,6 +3,7 @@ import {
   PRODUCT_ANALYTICS_EVENT_CATALOG,
   PRODUCT_ANALYTICS_WAREHOUSE_EVENTS,
   canonicalProductAnalyticsEventName,
+  isValidGovernedSoftUpsellChainPayload,
   validateProductAnalyticsCatalog,
 } from '../app/product_analytics_event_catalog';
 import type { AnalyticsEvent } from '../app/analytics';

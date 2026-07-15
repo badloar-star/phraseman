@@ -39,6 +39,13 @@ export interface ProductAnalyticsMetricDefinition {
 
 interface ProductAnalyticsGovernanceData {
   readonly schemaVersion: number;
+  readonly directAttribution: {
+    readonly joinKey: readonly string[];
+    readonly forbidFallbackAttribution: readonly string[];
+  };
+  readonly softUpsellEvents: readonly string[];
+  readonly requiredChainFields: readonly string[];
+  readonly modes: readonly ('production' | 'test')[];
   readonly fields: Readonly<Record<string, ProductAnalyticsFieldDefinition>>;
   readonly fieldSets: Readonly<Record<string, readonly string[]>>;
   readonly events: readonly {
@@ -96,6 +103,17 @@ export type GovernedProductAnalyticsEventName =
 
 export const PRODUCT_ANALYTICS_FIELD_REGISTRY = Object.freeze(GOVERNANCE.fields);
 export const PRODUCT_ANALYTICS_METRIC_REGISTRY = Object.freeze(GOVERNANCE.metrics);
+export const PRODUCT_ANALYTICS_GOVERNANCE_VERSION = GOVERNANCE.schemaVersion;
+export const SOFT_UPSELL_CHAIN_EVENTS = Object.freeze(new Set(GOVERNANCE.softUpsellEvents));
+export const SOFT_UPSELL_REQUIRED_CHAIN_FIELDS = Object.freeze([...GOVERNANCE.requiredChainFields]);
+
+export function isGovernedSoftUpsellChainEvent(event: string): boolean {
+  return SOFT_UPSELL_CHAIN_EVENTS.has(event);
+}
+
+export function governedSoftUpsellJoinKey(): readonly string[] {
+  return GOVERNANCE.directAttribution.joinKey;
+}
 
 const metricIdsByEvent = new Map<string, string[]>();
 for (const metric of PRODUCT_ANALYTICS_METRIC_REGISTRY) {
@@ -162,18 +180,18 @@ export function isValidGovernedSoftUpsellChainPayload(
   event: string,
   props: Record<string, unknown>,
 ): boolean {
-  const hasChainField = governance.directAttribution.joinKey.some((field) => props[field] != null)
+  const hasChainField = GOVERNANCE.directAttribution.joinKey.some((field) => props[field] != null)
     || props.soft_upsell_trigger != null
     || props.soft_upsell_context != null;
   if (!hasChainField) return true;
   if (!isGovernedSoftUpsellChainEvent(event)) return false;
-  if (!governance.requiredChainFields.every((field) => typeof props[field] === 'string' && props[field] !== '')) {
+  if (!GOVERNANCE.requiredChainFields.every((field) => typeof props[field] === 'string' && props[field] !== '')) {
     return false;
   }
   const mode = props.soft_upsell_mode;
   const impressionId = props.soft_upsell_impression_id;
   const eventId = props.event_id;
-  return governance.modes.includes(mode as 'production' | 'test')
+  return GOVERNANCE.modes.includes(mode as 'production' | 'test')
     && typeof impressionId === 'string' && /^[A-Za-z0-9][A-Za-z0-9_-]{7,79}$/.test(impressionId)
     && typeof eventId === 'string' && eventId.length <= 80;
 }

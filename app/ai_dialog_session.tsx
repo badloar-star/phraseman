@@ -668,11 +668,13 @@ export default function AiDialogSession() {
     const completionAccountToken = captureAccountGeneration();
     void markDialogCompleted(scenario.id).then((result) => {
       if (!isCurrentAccountGeneration(completionAccountToken)) return;
+      const softUpsellTarget = studyTarget === 'fr' ? 'fr' : studyTarget === 'en' ? 'en' : null;
+      if (!softUpsellTarget) return;
       emitSoftUpsellTrigger(aiDialogueCandidate({
         successful: true,
         completedLifetime: result.completedLifetime,
         newlyCompleted: result.newlyCompleted,
-        studyTarget,
+        studyTarget: softUpsellTarget,
         hasPremiumAccess,
       }));
     });

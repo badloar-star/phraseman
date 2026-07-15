@@ -17,10 +17,13 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'auth_provider_linked @ app/(tabs)/settings.tsx',
   'auth_provider_linked @ components/SaveProgressBanner.tsx',
   'energy_reload @ components/EnergyContext.tsx',
+  'intro_full_access_changed @ app/(tabs)/settings.tsx',
+  'loyalty_gift_changed @ app/(tabs)/settings.tsx',
   'premium_access_changed @ app/(tabs)/settings.tsx',
   'premium_access_changed @ components/EnergyContext.tsx',
   'premium_activated @ components/EnergyContext.tsx',
   'premium_deactivated @ components/EnergyContext.tsx',
+  'remote_config_changed @ app/(tabs)/settings.tsx',
   'shards_earned @ app/(tabs)/home.tsx',
   'vip_activated @ app/(tabs)/settings.tsx',
   'vip_activated @ components/EnergyContext.tsx',
@@ -31,6 +34,10 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
 ]);
 
 const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
+  // Reserved welcome slot is documented in overlay_arbiter_core but has no mounted host yet.
+  'onboardingWelcome',
+  // GlobalSoftUpsellHost uses the opportunistic tryClaim lease instead of useOverlayVisible.
+  'softUpsell',
   // Current runtime path converts shards_earned -> action_toast in GlobalShardsEarnedHost.
   // Keep this key documented until an owner approves removal from overlay_arbiter_core.
   'shardsEarned',

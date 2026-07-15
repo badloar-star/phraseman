@@ -60,8 +60,8 @@ export const TESTFLIGHT_DEV_TOOLS = process.env.EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS
 /** true только в реальном dev-рантайме Metro (не preview, не стор). */
 const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 
-// true  = премиум включён для всех по умолчанию (тестовая сборка для тестеров)
-// false = обычный флоу RevenueCat
+// true  = явный локальный UI-preview Premium (серверные AI-функции его не принимают)
+// false = обычный флоу RevenueCat, в том числе в стандартной dev-сборке
 //
 // ⚠️ ПРЕДОХРАНИТЕЛЬ: даже если кто-то впишет здесь «голый» true, итог
 // принудительно гасится в стор-сборке (&& !IS_STORE_RELEASE). Поэтому Premium
@@ -69,7 +69,7 @@ const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 // История: 1d659478 (08.06) случайно увёз сюда `= true` («TEMP dev-check») в
 // большом cleanup-коммите. Тест tests/force_premium_prod_guard.test.ts держит
 // этот инвариант. Для локального теста премиума меняй ТОЛЬКО левый операнд.
-const FORCE_PREMIUM_DEV_INTENT = true;
+const FORCE_PREMIUM_DEV_INTENT = false;
 export const FORCE_PREMIUM = FORCE_PREMIUM_DEV_INTENT && IS_DEV_RUNTIME && !IS_STORE_RELEASE;
 
 // ── Синхронизация прогресса с Firebase ───────────────────────────────────────
@@ -117,7 +117,8 @@ export const ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK = true;
 export const ENABLE_PROFILE_CARD = true;
 
 /**
- * Мгновенный «премиум» / dev-осколки без Google Play (см. premium_modal, shards_shop).
+ * Dev-preview paywall / dev-осколки без Google Play (см. paywall_purchase, shards_shop).
+ * Для Premium этот флаг только отключает реальный магазин: entitlement он не выдаёт.
  * false в EAS production при EXPO_PUBLIC_STORE_RELEASE=1, даже если в коде DEV_MODE=true.
  */
 export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;

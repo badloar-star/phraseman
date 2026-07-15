@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
 import { buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { openPremiumPaywall } from '../paywall_navigation';
+import { lessonPurchaseContinuationParams } from '../paywall_lesson_continuation';
 import { useTabNav } from '../TabContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -819,6 +820,7 @@ export default function LessonsTab() {
         openPremiumPaywall(router, {
             context: lessonPaywallContext(lessonNum),
             lessons_done: doneSoFar,
+            ...lessonPurchaseContinuationParams(lessonNum),
         });
     }, [router, scores]);
     // ── Render ────────────────────────────────────────────────────────────────
@@ -1395,6 +1397,7 @@ export default function LessonsTab() {
                         openPremiumPaywall(router, {
                             context: lessonPaywallContext(gateModal.lessonNum),
                             lessons_done: doneSoFar,
+                            ...lessonPurchaseContinuationParams(gateModal.lessonNum),
                         });
                     },
                 },

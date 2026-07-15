@@ -8,10 +8,16 @@ import { getCanonicalUserId } from './user_id_policy';
 import {
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
+  revenueCatCustomerInfoHasPremiumAccess,
   revenueCatPremiumMetadata,
   type PremiumStorePlan,
 } from './premium_revenuecat_state';
 import { invalidatePremiumCache } from './premium_guard';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 // Мгновенная доставка премиума: RevenueCat шлёт CustomerInfo при покупке/RENEWAL/
 // восстановлении. Без слушателя клиент узнаёт о продлении только через 5-мин кэш или
@@ -137,12 +143,12 @@ function configureRevenueCatLogging(): void {
  * - Таймаут 8 секунд на getCustomerInfo().
  * - Логирует ошибки, не блокирует запуск приложения.
  */
-export async function initRevenueCat(): Promise<void> {
+export async function initRevenueCat(isCurrent?: () => boolean): Promise<void> {
   if (!configurePromise) {
     configurePromise = _doInit();
   }
   await configurePromise;
-  await syncRevenueCatIdentity();
+  await syncRevenueCatIdentity(isCurrent);
 }
 
 function isRevenueCatAnonymousId(raw: unknown): boolean {
@@ -150,15 +156,11 @@ function isRevenueCatAnonymousId(raw: unknown): boolean {
   return id.startsWith('$RCAnonymousID:') || id.startsWith('$RCA');
 }
 
-function customerInfoHasActivePremium(info: unknown): boolean {
-  const customerInfo = info as { entitlements?: { active?: Record<string, unknown> }; activeSubscriptions?: unknown[] } | null | undefined;
-  return (
-    Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0 ||
-    (Array.isArray(customerInfo?.activeSubscriptions) && customerInfo.activeSubscriptions.length > 0)
+export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): Promise<boolean> {
+  const syncAccount = captureAccountGeneration();
+  const isCurrent = () => (
+    (callerIsCurrent?.() ?? true) && isCurrentAccountGeneration(syncAccount)
   );
-}
-
-export async function syncRevenueCatIdentity(isCurrent: () => boolean = () => true): Promise<boolean> {
   if (IS_EXPO_GO) return false;
   if (!(await Purchases.isConfigured().catch(() => false))) return false;
   if (!isCurrent()) return false;
@@ -179,7 +181,6 @@ export async function syncRevenueCatIdentity(isCurrent: () => boolean = () => tr
     if (!isCurrent()) return false;
     const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
     if (!isCurrent()) {
-      void syncRevenueCatIdentity().catch(() => false);
       return false;
     }
     loginCustomerInfo = (loginResult as { customerInfo?: unknown } | null)?.customerInfo ?? null;
@@ -193,16 +194,18 @@ export async function syncRevenueCatIdentity(isCurrent: () => boolean = () => tr
   await Purchases.setAttributes(attributes).catch(() => {});
   if (!isCurrent()) return false;
 
-  if (customerInfoHasActivePremium(loginCustomerInfo)) {
+  if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo as any)) {
     const metadata = revenueCatPremiumMetadata(loginCustomerInfo as any);
     const plan = inferPremiumPlanFromProductId(
       metadata.productId ?? (loginCustomerInfo as { activeSubscriptions?: string[] } | null)?.activeSubscriptions?.[0],
       'monthly',
     );
     if (!isCurrent()) return false;
-    const persisted = await persistStorePremiumLocally(plan, metadata, isCurrent);
+    const persisted = await withAccountTransitionLock(async () => {
+      if (!isCurrent()) return false;
+      return persistStorePremiumLocally(plan, metadata, isCurrent, false);
+    });
     if (!persisted || !isCurrent()) {
-      void syncRevenueCatIdentity().catch(() => false);
       return false;
     }
   }
@@ -226,28 +229,47 @@ export async function syncRevenueCatIdentity(isCurrent: () => boolean = () => tr
  * с grace-окнами, чтобы не отобрать оплаченное из-за гонки). Тестерский kill-switch
  * tester_no_premium уважаем — не воскрешаем премиум.
  */
-async function applyPushedCustomerInfo(info: unknown): Promise<void> {
+async function applyPushedCustomerInfo(
+  info: unknown,
+  isCurrent: () => boolean,
+): Promise<void> {
   try {
+    if (!isCurrent()) return;
     const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
-    if (noPremium === 'true') return;
-    const entitlementsActive = Object.keys((info as any)?.entitlements?.active ?? {}).length > 0;
+    if (!isCurrent() || noPremium === 'true') return;
     const subs = (info as any)?.activeSubscriptions;
-    const isActive = entitlementsActive || (Array.isArray(subs) && subs.length > 0);
-    if (isActive) {
+    if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
       const metadata = revenueCatPremiumMetadata(info as any);
       // Не понижаем уже сохранённый lifetime до monthly при пуш-апдейте без productId:
       // lifetime (non-consumable) RC может прислать без productId в активных подписках,
       // а inferPremiumPlanFromProductId без сигнала вернёт дефолт 'monthly'.
       const existingPlan = String(await AsyncStorage.getItem('premium_plan').catch(() => '') ?? '').trim().toLowerCase();
+      if (!isCurrent()) return;
       const inferred = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
       const plan = existingPlan === 'lifetime' && inferred === 'monthly' ? 'lifetime' : inferred;
-      await persistStorePremiumLocally(plan, metadata); // внутри invalidatePremiumCache + RC_LAST_SEEN
+      await persistStorePremiumLocally(plan, metadata, isCurrent, false); // внутри invalidatePremiumCache + RC_LAST_SEEN
     } else {
+      if (!isCurrent()) return;
       invalidatePremiumCache();
     }
   } catch (e) {
     if (__DEV__) console.warn('[RevenueCat] applyPushedCustomerInfo error:', e);
   }
+}
+
+async function readCurrentRevenueCatCustomerInfo(
+  isCurrent: () => boolean,
+): Promise<unknown | null> {
+  if (!isCurrent()) return null;
+  const canonicalUserId = await getCanonicalUserId().catch(() => null);
+  if (!isCurrent() || !canonicalUserId) return null;
+  const appUserIdBefore = await Purchases.getAppUserID().catch(() => '');
+  if (!isCurrent() || appUserIdBefore !== canonicalUserId) return null;
+  const currentInfo = await Purchases.getCustomerInfo().catch(() => null);
+  if (!isCurrent() || !currentInfo) return null;
+  const appUserIdAfter = await Purchases.getAppUserID().catch(() => '');
+  if (!isCurrent() || appUserIdAfter !== canonicalUserId) return null;
+  return currentInfo;
 }
 
 async function _doInit(): Promise<void> {
@@ -272,12 +294,24 @@ async function _doInit(): Promise<void> {
       // cached id, then logIn(stable_id) below links/transfers it correctly.
       Purchases.configure({ apiKey: RC_API_KEY });
     }
-    await syncRevenueCatIdentity();
+    const initAccount = captureAccountGeneration();
+    const isInitAccountCurrent = () => isCurrentAccountGeneration(initAccount);
+    const identityReady = await syncRevenueCatIdentity(isInitAccountCurrent);
     // Мгновенная доставка: подхватываем покупки/RENEWAL без ожидания 5-мин кэша/рестарта.
     if (!_customerInfoListenerAttached) {
       _customerInfoListenerAttached = true;
       try {
-        Purchases.addCustomerInfoUpdateListener((info) => { void applyPushedCustomerInfo(info); });
+        Purchases.addCustomerInfoUpdateListener(() => {
+          const eventAccount = captureAccountGeneration();
+          const isEventAccountCurrent = () => isCurrentAccountGeneration(eventAccount);
+          void (async () => {
+            const currentInfo = await readCurrentRevenueCatCustomerInfo(isEventAccountCurrent);
+            if (!currentInfo || !isEventAccountCurrent()) return;
+            await withAccountTransitionLock(
+              () => applyPushedCustomerInfo(currentInfo, isEventAccountCurrent),
+            );
+          })();
+        });
       } catch (e) {
         _customerInfoListenerAttached = false;
         if (__DEV__) console.warn('[RevenueCat] addCustomerInfoUpdateListener failed:', e);
@@ -288,17 +322,17 @@ async function _doInit(): Promise<void> {
       return;
     }
     void prefetchShardsShopOfferings().catch(() => {});
+    if (!identityReady || !isInitAccountCurrent()) return;
 
     const info = await Promise.race([
       Purchases.getCustomerInfo(),
       new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
     ]);
 
-    if (info) {
-      const isActive =
-        Object.keys((info as any).entitlements.active).length > 0 ||
-        (info as any).activeSubscriptions.length > 0;
-      if (isActive) {
+    if (info && isInitAccountCurrent()) {
+      await withAccountTransitionLock(async () => {
+      if (!isInitAccountCurrent()) return;
+      if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
         // Тестер «Снять премиум» — не перезаписывать локальное «без премиума» флагом из RC
         const pairs = await AsyncStorage.multiGet([
           'tester_no_premium',
@@ -310,6 +344,7 @@ async function _doInit(): Promise<void> {
           'vip_plan',
           'vip_admin_grant_at',
         ]);
+        if (!isInitAccountCurrent()) return;
         const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
         const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
         const existingPlan = String(pairs.find(p => p[0] === 'premium_plan')?.[1] ?? '').trim();
@@ -338,6 +373,7 @@ async function _doInit(): Promise<void> {
               ['vip_admin_grant_at', grantAt],
               ['admin_premium_override', 'false'],
             ]);
+            if (!isInitAccountCurrent()) return;
           }
           const existingStorePlan =
             !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly' || existingPlan === 'lifetime')
@@ -347,9 +383,10 @@ async function _doInit(): Promise<void> {
             metadata.productId ?? (info as any).activeSubscriptions?.[0],
             'monthly',
           );
-          await persistStorePremiumLocally(plan, metadata);
+          await persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false);
         }
       }
+      });
     }
   } catch (e) {
     if (__DEV__) console.warn('[RevenueCat] init error:', e);

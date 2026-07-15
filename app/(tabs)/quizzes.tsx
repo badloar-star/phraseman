@@ -98,11 +98,11 @@ import {
 import { getQuizCompletionMedalSource } from '../quizzes/medal_assets';
 import {
   consumeFreeDailyQuizStart,
-  FREE_DAILY_QUIZ_LIMIT,
   getFreeDailyQuizState,
   hasFreeDailyQuizzesLeft,
   type QuizDailyLimitState,
 } from '../quiz_daily_limit';
+import { getFreeDailyQuizLimit } from '../remote_flags';
 import {
   buildQuizShareMessage,
   getQuizShareRank,
@@ -897,12 +897,9 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
   const [showLevelNoEnergy, setShowLevelNoEnergy] = useState(false);
   const [showNoQuestions, setShowNoQuestions] = useState(false);
   const [showSourceGate, setShowSourceGate] = useState(false);
-  const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>({
-    date: '',
-    count: 0,
-    limit: FREE_DAILY_QUIZ_LIMIT,
-    left: FREE_DAILY_QUIZ_LIMIT,
-    exhausted: false,
+  const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>(() => {
+    const limit = getFreeDailyQuizLimit();
+    return { date: '', count: 0, limit, left: limit, exhausted: limit <= 0 };
   });
   const startInFlightRef = useRef(false);
   const startInFlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

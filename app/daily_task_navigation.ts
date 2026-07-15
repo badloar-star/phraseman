@@ -12,6 +12,9 @@ import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_g
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import type { TrainerSessionRoute } from './trainer_session';
+import { startReservedTrainerSession } from './trainer_session_navigation';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { lastOpenedLessonKey, quizNavLevelKey, storageStudyTarget } from './target_storage_keys';
@@ -21,6 +24,8 @@ type DailyTaskRouter = {
   push: (route: any) => void;
   replace: (route: any) => void;
 };
+
+const dailyTaskTrainerSessionLock = { current: false };
 
 type NavigateDailyTaskInput = {
   lang: Lang;
@@ -102,7 +107,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     router.push(route);
   };
 
-  const openTrainerOrFrenchGate = (route: any) => {
+  const openTrainerOrFrenchGate = async (route: '/trainer' | TrainerSessionRoute) => {
     if (!trainerSessionContentAvailableForTarget(studyTarget)) {
       const copy = frenchTrainerGateCopy(lang);
       emitAppEvent('action_toast', {
@@ -114,7 +119,17 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       router.replace('/(tabs)/lessons' as any);
       return;
     }
-    router.push(route);
+    if (route === '/trainer') {
+      router.push(route);
+      return;
+    }
+    await startReservedTrainerSession({
+      route,
+      router,
+      studyTarget,
+      premiumAccess: getVerifiedPremiumStatus,
+      lock: dailyTaskTrainerSessionLock,
+    });
   };
 
   const openFlashcardsOrFrenchGate = () => {
@@ -206,16 +221,16 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'recall_session':
     case 'recall_answers':
     case 'recall_perfect':
-      openTrainerOrFrenchGate('/trainer');
+      await openTrainerOrFrenchGate('/trainer');
       break;
     case 'trainer_words':
-      openTrainerOrFrenchGate('/trainer_words_session');
+      await openTrainerOrFrenchGate('/trainer_words_session');
       break;
     case 'trainer_phrases':
-      openTrainerOrFrenchGate('/trainer_phrases_session');
+      await openTrainerOrFrenchGate('/trainer_phrases_session');
       break;
     case 'trainer_arena':
-      openTrainerOrFrenchGate('/trainer_arena_session');
+      await openTrainerOrFrenchGate('/trainer_arena_session');
       break;
     case 'daily_phrase_read':
     case 'daily_phrase_save':

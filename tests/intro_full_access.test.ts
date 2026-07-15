@@ -27,8 +27,21 @@ jest.mock('../app/remote_flags', () => ({
   isIntroFullAccessEnabled: () => remoteFlags.introFullAccessEnabled,
 }));
 
+const mockReadGiftAccessFromCloud = jest.fn(async () => null as {
+  grantedAtMs: number | null;
+  endsAtMs: number | null;
+} | null);
+const mockPersistGiftAccessOnCloud = jest.fn(async () => {});
+jest.mock('../app/gift_access_cloud', () => ({
+  readGiftAccessFromCloud: mockReadGiftAccessFromCloud,
+  persistGiftAccessOnCloud: mockPersistGiftAccessOnCloud,
+}));
+
 beforeEach(() => {
   jest.resetModules();
+  mockReadGiftAccessFromCloud.mockReset();
+  mockReadGiftAccessFromCloud.mockResolvedValue(null);
+  mockPersistGiftAccessOnCloud.mockClear();
   Object.keys(asyncStore).forEach((key) => delete asyncStore[key]);
   remoteFlags.introFullAccessEnabled = true;
 });
@@ -151,6 +164,27 @@ describe('intro full access gift', () => {
       expiredUnseen: false,
     });
     await expect(access.shouldShowIntroFullAccessWelcome(now + 60_000)).resolves.toBe(false);
+    expect(mockReadGiftAccessFromCloud).toHaveBeenCalledTimes(1);
+    expect(mockPersistGiftAccessOnCloud).not.toHaveBeenCalled();
+  });
+
+  it('restores an existing cloud gift after reinstall even when new grants are switched off', async () => {
+    remoteFlags.introFullAccessEnabled = false;
+    const access = require('../app/intro_full_access');
+    const now = Date.UTC(2026, 5, 6, 10, 0, 0);
+    const grantedAtMs = now - 60 * 60 * 1000;
+    const endsAtMs = now + 71 * 60 * 60 * 1000;
+    mockReadGiftAccessFromCloud.mockResolvedValueOnce({ grantedAtMs, endsAtMs });
+
+    await access.startIntroFullAccessAfterOnboarding(now);
+
+    await expect(access.getIntroFullAccessState(now + 60_000)).resolves.toMatchObject({
+      active: true,
+      startedAt: grantedAtMs,
+      endsAt: endsAtMs,
+      welcomeUnseen: false,
+    });
+    expect(mockPersistGiftAccessOnCloud).not.toHaveBeenCalled();
   });
 
   it('does not revoke a gift already granted while the switch was on', async () => {

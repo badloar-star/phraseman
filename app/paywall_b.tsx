@@ -18,6 +18,7 @@ import { type Lang } from '../constants/i18n';
 import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP, applyWinBackCopy, applyWinBackPlannedCopy } from './paywall_copy';
 import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
+import { parseResumeLessonId } from './paywall_lesson_continuation';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
 import { trackPaywallExperimentExposure } from './analytics_experiments';
@@ -48,12 +49,20 @@ import { parseSoftUpsellAttribution, softUpsellAnalyticsParams } from './soft_up
 
 const VARIANT = 'B' as const;
 
+type PaywallRouteParams = Record<string, string | string[]> & {
+  resume_kind?: string;
+  resume_lesson_id?: string;
+};
+
 export default function PaywallB() {
-  const params = useLocalSearchParams<Record<string, string | string[]>>();
+  const params = useLocalSearchParams<PaywallRouteParams>();
   const [softAttribution] = useState(() => parseSoftUpsellAttribution(params));
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
+  const resumeLessonId = params.resume_kind === 'course_lesson'
+    ? parseResumeLessonId(params.resume_lesson_id)
+    : null;
   const isOnboarding = source === 'onboarding_plan';
   // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
@@ -63,7 +72,16 @@ export default function PaywallB() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, impression: analyticsImpression, softAttribution });
+  const p = usePaywallPurchase({
+    variant: VARIANT,
+    context: ctx,
+    source,
+    lang: lang as Lang,
+    forceTrialUI,
+    resumeLessonId,
+    impression: analyticsImpression,
+    softAttribution,
+  });
   const sticky = useStickyCta();
 
   const [tags, setTags] = useState<PersonalizedTag[]>([]);

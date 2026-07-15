@@ -31,7 +31,8 @@ describe('personal plan setup prefill + pending-queue persistence (3 related fix
   });
 
   it('FIX 3: setup screen reads saved onboarding answers and the pending activation queue on mount', () => {
-    expect(setupSource).toContain("import { readPendingPersonalPlanActivation } from './personal_plan_activation'");
+    expect(setupSource).toContain('readPendingPersonalPlanActivation');
+    expect(setupSource).toContain("from './personal_plan_activation'");
     expect(setupSource).toContain("'onboarding_plan_goal'");
     expect(setupSource).toContain("'onboarding_plan_level'");
     expect(setupSource).toContain("'onboarding_plan_minutes'");
@@ -63,7 +64,10 @@ describe('personal plan setup prefill + pending-queue persistence (3 related fix
   it('FIX 3: does not weaken the premium gate on activation', () => {
     expect(setupSource).toContain('if (!canActivatePlan({ hasPremiumAccess })) {');
     const idx = setupSource.indexOf('if (!canActivatePlan({ hasPremiumAccess })) {');
-    const block = setupSource.slice(idx, idx + 200);
+    const block = setupSource.slice(idx, idx + 500);
+    expect(block).toContain('await queuePendingPersonalPlanActivation({');
+    expect(block).toContain('planId,');
+    expect(block).toContain('minutesPerDay: selectedMinutes,');
     expect(block).toContain("pathname: '/premium_modal'");
   });
 });

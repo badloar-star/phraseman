@@ -20,9 +20,9 @@ const DEFINITIONS: readonly Omit<SoftUpsellAdminPreview, 'proof' | 'title' | 'bo
     opportunity: { trigger: 'first_lesson', value: 1, studyTarget: 'en', context: 'first_lesson_success', destination: 'paywall', milestoneId: 'first_lesson:1:en' },
   },
   {
-    id: 'free-lessons-complete', icon: 'school-outline', adminLabel: 'После восьмого бесплатного урока',
-    adminDescription: 'Бесплатный старт завершён → полный маршрут',
-    opportunity: { trigger: 'free_lessons_complete', value: 8, studyTarget: 'en', context: 'free_lessons_complete', destination: 'paywall', milestoneId: 'free_lessons_complete:8:en' },
+    id: 'free-lessons-complete', icon: 'school-outline', adminLabel: 'После третьего бесплатного урока',
+    adminDescription: 'Бесплатная часть завершена → Plus',
+    opportunity: { trigger: 'free_lessons_complete', value: 3, studyTarget: 'en', context: 'free_lessons_complete', destination: 'paywall', milestoneId: 'free_lessons_complete:3:en' },
   },
   {
     id: 'weekly-review', icon: 'analytics-outline', adminLabel: 'После недельного обзора',

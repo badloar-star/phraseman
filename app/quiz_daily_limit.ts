@@ -4,7 +4,7 @@ import { getFreeDailyQuizLimit } from './remote_flags';
 const KEY = 'quiz_daily_free_limit_v1';
 
 /** Build-time default; runtime uses the remote-tunable getFreeDailyQuizLimit(). */
-export const FREE_DAILY_QUIZ_LIMIT = 3;
+export const FREE_DAILY_QUIZ_LIMIT = 1;
 
 export type QuizDailyLimitState = {
   date: string;

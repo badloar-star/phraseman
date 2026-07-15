@@ -643,23 +643,15 @@ export const getXPProgress = (totalXP: number) => {
 
 /**
  * Максимальная энергия в зависимости от уровня.
- * Каждые 10 уровней даётся +1 слот энергии (базовые 5).
+ * Пять слотов доступны до 49 уровня; на 50 уровне открывается один дополнительный слот.
  */
-export const getMaxEnergyForLevel = (level: number): number => {
-  if (level >= 50) return 10;
-  if (level >= 40) return 9;
-  if (level >= 30) return 8;
-  if (level >= 20) return 7;
-  if (level >= 10) return 6;
-  return 5;
+export const getMaxEnergyForLevel = (level: number, baseEnergy: number = 5): number => {
+  const safeBase = Number.isFinite(baseEnergy) ? Math.max(1, Math.floor(baseEnergy)) : 5;
+  return safeBase + (level >= 50 ? 1 : 0);
 };
 
 /** Уровень на котором откроется следующий слот энергии (null если уже максимум) */
 export const getNextEnergyUnlockLevel = (level: number): number | null => {
-  if (level < 10) return 10;
-  if (level < 20) return 20;
-  if (level < 30) return 30;
-  if (level < 40) return 40;
   if (level < 50) return 50;
   return null;
 };

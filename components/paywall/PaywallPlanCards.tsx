@@ -5,7 +5,7 @@
 // SAVE-бейджи +64–72% в кейсах RevenueCat. Никаких выдуманных зачёркиваний.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../SafeLinearGradient';
@@ -27,8 +27,8 @@ interface Props {
   trialDays: number | null;
   loading: boolean;
   disabled?: boolean;
-  /** Цена lifetime из стора (priceString). Показываем третью карточку Phraseman Pro
-   *  ТОЛЬКО когда lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
+  /** Цена разовой покупки из стора. Раскрытие Phraseman Pro доступно только когда
+   *  lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
 }
@@ -40,6 +40,8 @@ export default function PaywallPlanCards({
   lifetimePrice, lifetimeAvailable,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
+  const [showLifetimeOffer, setShowLifetimeOffer] = React.useState(false);
+  const lifetimeOfferExpanded = showLifetimeOffer || selected === 'lifetime';
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
@@ -100,6 +102,9 @@ export default function PaywallPlanCards({
     ] as [string, string, string];
     return (
       <TouchableOpacity
+        accessibilityRole="radio"
+        accessibilityLabel={`${name} ${price}`.trim()}
+        accessibilityState={{ selected: sel, disabled: !!disabled }}
         activeOpacity={0.72}
         disabled={disabled}
         onPress={() => onSelect(plan)}
@@ -153,6 +158,32 @@ export default function PaywallPlanCards({
     );
   };
 
+  const lifetimeOfferTitle = triLang(lang, {
+    ru: 'Дополнительное предложение',
+    uk: 'Додаткова пропозиція',
+    es: 'Oferta adicional',
+    'pt-BR': 'Oferta adicional',
+    vi: 'Ưu đãi khác',
+    id: 'Penawaran tambahan',
+    tr: 'Ek teklif',
+    pl: 'Dodatkowa oferta',
+  });
+  const lifetimeOfferSubtitle = triLang(lang, {
+    ru: 'Phraseman Pro · разовая покупка',
+    uk: 'Phraseman Pro · разова покупка',
+    es: 'Phraseman Pro · compra única',
+    'pt-BR': 'Phraseman Pro · compra única',
+    vi: 'Phraseman Pro · mua một lần',
+    id: 'Phraseman Pro · pembelian sekali',
+    tr: 'Phraseman Pro · tek seferlik satın alma',
+    pl: 'Phraseman Pro · zakup jednorazowy',
+  });
+  const toggleLifetimeOffer = () => {
+    const nextExpanded = !lifetimeOfferExpanded;
+    if (!nextExpanded && selected === 'lifetime') onSelect('yearly');
+    setShowLifetimeOffer(nextExpanded);
+  };
+
   return (
     <View style={S.wrap}>
       {renderCard(
@@ -189,7 +220,33 @@ export default function PaywallPlanCards({
         null,
         null,
       )}
-      {lifetimeAvailable && renderCard(
+      {lifetimeAvailable && (
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={lifetimeOfferTitle}
+          accessibilityHint={lifetimeOfferSubtitle}
+          accessibilityState={{ expanded: lifetimeOfferExpanded, disabled: !!disabled }}
+          disabled={disabled}
+          hitSlop={4}
+          onPress={toggleLifetimeOffer}
+          style={({ pressed }) => [
+            S.offerToggle,
+            { backgroundColor: cardBg },
+            pressed && !disabled ? S.offerTogglePressed : null,
+          ]}
+        >
+          <View style={S.offerToggleCopy}>
+            <Text style={[S.offerToggleTitle, { color: textPrimary }]}>{lifetimeOfferTitle}</Text>
+            <Text style={[S.offerToggleSubtitle, { color: textMuted }]}>{lifetimeOfferSubtitle}</Text>
+          </View>
+          <Ionicons
+            name={lifetimeOfferExpanded ? 'chevron-up' : 'chevron-down'}
+            size={20}
+            color={textMuted}
+          />
+        </Pressable>
+      )}
+      {lifetimeAvailable && lifetimeOfferExpanded && renderCard(
         'lifetime',
         'Phraseman Pro',
         lifetimePrice || '',
@@ -227,4 +284,18 @@ const S = StyleSheet.create({
   price: { flexShrink: 1, fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
   per: { fontSize: 13, fontWeight: '700' },
   sub: { marginTop: 7, fontSize: 13, lineHeight: 18 },
+  offerToggle: {
+    minHeight: 48,
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  offerTogglePressed: { opacity: 0.72 },
+  offerToggleCopy: { flex: 1, minWidth: 0 },
+  offerToggleTitle: { fontSize: 14.5, lineHeight: 19, fontWeight: '800' },
+  offerToggleSubtitle: { marginTop: 2, fontSize: 12.5, lineHeight: 17, fontWeight: '600' },
 });

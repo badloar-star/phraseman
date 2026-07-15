@@ -765,19 +765,20 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // Вспышка плитки при тапе слова: { word, correct } — зелёная если верно, красная если нет.
+  // Вспышка плитки при тапе слова привязана к конкретной опции и шагу фразы.
   // Чёткий визуальный отклик «выбрано/верно/неверно» (раньше плитка никак не реагировала).
-  const [flashWord, setFlashWord] = useState<{ word: string; correct: boolean } | null>(null);
+  const [flashWord, setFlashWord] = useState<{ optionKey: string; correct: boolean } | null>(null);
   const flashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const triggerWordFlash = useCallback((word: string, correct: boolean) => {
+  const triggerWordFlash = useCallback((optionKey: string, correct: boolean) => {
     if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
-    setFlashWord({ word, correct });
+    setFlashWord({ optionKey, correct });
     flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
   }, []);
   useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
-  // Тап «в полёте»: пока ждём отложенный handleWordPress (170мс на показ вспышки),
-  // игнорируем повторные тапы — при синхронном варианте банк пересобирался сразу
-  // и второй тап по старым плиткам был физически невозможен.
+  // Пока ждём отложенный handleWordPress (170 мс на показ вспышки),
+  // блокируем и логику, и нативный press-отклик всего банка. Иначе быстрый второй тап
+  // визуально нажимает другую плитку, хотя её onPress затем отбрасывается защитой через ref.
+  const [wordDispatchPending, setWordDispatchPending] = useState(false);
   const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
@@ -801,6 +802,7 @@ const LessonContent = React.memo(function LessonContent({
       ? contrExpanded[0]
       : null;
     return shuffled.map((word, i) => {
+      const optionKey = `${phraseEnterKey}:${phraseWordIdx}:${i}:${word}`;
       const strippedRaw = stripMarkers(word);
       const stripped = strippedRaw.toLowerCase();
       // ВАЖНО: подлинно правильное слово (currentCorrectWord) считаем верным в ЛЮБОМ
@@ -826,6 +828,7 @@ const LessonContent = React.memo(function LessonContent({
         return strippedRaw === 'I' ? 'I' : strippedRaw.toLowerCase();
       })();
       return {
+        optionKey,
         word,
         index: i,
         isCorrectOption,
@@ -833,7 +836,7 @@ const LessonContent = React.memo(function LessonContent({
         displayText,
       };
     });
-  }, [shuffled, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
+  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -1336,10 +1339,10 @@ const LessonContent = React.memo(function LessonContent({
             style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {wordOptionItems.map(({ word, index: i, isCorrectOption, shouldShowHint, displayText }) => {
+              {wordOptionItems.map(({ optionKey, word, index: i, isCorrectOption, shouldShowHint, displayText }) => {
                 return (
                   <Animated.View
-                    key={`${phrase?.id ?? 'phrase'}-${phraseWordIdx}-${word}-${i}`}
+                    key={optionKey}
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
@@ -1348,7 +1351,7 @@ const LessonContent = React.memo(function LessonContent({
                     {(() => {
                       // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
                       // фирменный цвет на любой тап). Объём — через DuoPressable (3D-кромка).
-                      const isFlashing = flashWord?.word === word;
+                      const isFlashing = flashWord?.optionKey === optionKey;
                       return (
                     <DuoPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
@@ -1356,6 +1359,7 @@ const LessonContent = React.memo(function LessonContent({
                       edgeColor={isFlashing ? t.accent : (false ? t.border : 'rgba(0,0,0,0.30)')}
                       pressedExternally={isFlashing}
                       withHaptic={false}
+                      disabled={wordDispatchPending}
                       style={{
                         width: '100%',
                         backgroundColor: isFlashing ? t.accent : t.bgCard,
@@ -1378,10 +1382,12 @@ const LessonContent = React.memo(function LessonContent({
                           // размонтируется; задержка 170мс < окна вспышки 260мс держит
                           // акцент+объём (pressedExternally) видимыми на нажатой плитке.
                           if (wordDispatchTimerRef.current) return;
-                          triggerWordFlash(word, isCorrectOption);
+                          setWordDispatchPending(true);
+                          triggerWordFlash(optionKey, isCorrectOption);
                           wordDispatchTimerRef.current = setTimeout(() => {
                             wordDispatchTimerRef.current = null;
                             handleWordPress(word);
+                            setWordDispatchPending(false);
                           }, 170);
                         }
                         // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука

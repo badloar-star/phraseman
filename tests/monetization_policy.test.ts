@@ -8,32 +8,32 @@ import {
 } from '../app/monetization_policy';
 
 describe('monetization_policy', () => {
-  it('keeps the whole A1 level in the free tier', () => {
-    expect(FREE_LESSON_LIMIT).toBe(8);
+  it('keeps exactly the first three lessons in the free tier', () => {
+    expect(FREE_LESSON_LIMIT).toBe(3);
     expect(isFreeLesson(1)).toBe(true);
-    expect(isFreeLesson(8)).toBe(true);
-    expect(isFreeLesson(9)).toBe(false);
-    expect(requiresPremiumForLesson(8)).toBe(false);
-    expect(requiresPremiumForLesson(9)).toBe(true);
+    expect(isFreeLesson(3)).toBe(true);
+    expect(isFreeLesson(4)).toBe(false);
+    expect(requiresPremiumForLesson(3)).toBe(false);
+    expect(requiresPremiumForLesson(4)).toBe(true);
   });
 
   it('keeps free A1 lessons behind the normal bronze progression gate', () => {
     expect(resolveLessonAccess({
-      lessonId: 4,
+      lessonId: 3,
       unlocked: false,
       isPremium: false,
     })).toBe('progress_required');
 
     expect(resolveLessonAccess({
-      lessonId: 4,
+      lessonId: 3,
       unlocked: true,
       isPremium: false,
     })).toBe('available');
   });
 
-  it('blocks lesson 9+ for non-premium even when progression unlocked it', () => {
+  it('blocks lesson 4+ for non-premium even when progression unlocked it', () => {
     expect(resolveLessonAccess({
-      lessonId: 9,
+      lessonId: 4,
       unlocked: true,
       isPremium: false,
     })).toBe('premium_required');
@@ -57,17 +57,17 @@ describe('monetization_policy', () => {
     ]);
 
     expect(buildSequentialFreeLessonUnlocks({
-      scores: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 5],
+      scores: [2.5, 2.5, 5],
       lessonCount: 10,
     })).toEqual([
       true,
       true,
       true,
-      true,
-      true,
-      true,
-      true,
-      true,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
     ]);
@@ -93,18 +93,18 @@ describe('monetization_policy', () => {
   });
 
   it('uses a course-level paywall context after the free sample', () => {
-    expect(lessonPaywallContext(9)).toBe('course_after_lesson3');
+    expect(lessonPaywallContext(4)).toBe('course_after_lesson3');
   });
 
   it('lets premium users keep normal progression gates after A1', () => {
     expect(resolveLessonAccess({
-      lessonId: 9,
+      lessonId: 4,
       unlocked: true,
       isPremium: true,
     })).toBe('available');
 
     expect(resolveLessonAccess({
-      lessonId: 9,
+      lessonId: 4,
       unlocked: false,
       isPremium: true,
     })).toBe('progress_required');

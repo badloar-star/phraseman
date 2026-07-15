@@ -15,7 +15,7 @@ describe('quiz_daily_limit', () => {
     jest.useRealTimers();
   });
 
-  it('allows exactly three free quizzes per day', async () => {
+  it('allows exactly one free quiz per day', async () => {
     const {
       FREE_DAILY_QUIZ_LIMIT,
       getFreeDailyQuizState,
@@ -23,26 +23,22 @@ describe('quiz_daily_limit', () => {
       incrementFreeDailyQuizCount,
     } = await import('../app/quiz_daily_limit');
 
-    expect(FREE_DAILY_QUIZ_LIMIT).toBe(3);
-    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 0, left: 3, exhausted: false });
+    expect(FREE_DAILY_QUIZ_LIMIT).toBe(1);
+    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 0, left: 1, exhausted: false });
 
     await incrementFreeDailyQuizCount();
-    await incrementFreeDailyQuizCount();
-    await expect(hasFreeDailyQuizzesLeft()).resolves.toBe(true);
-
-    await incrementFreeDailyQuizCount();
-    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 3, left: 0, exhausted: true });
+    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 1, left: 0, exhausted: true });
     await expect(hasFreeDailyQuizzesLeft()).resolves.toBe(false);
   });
 
   it('resets the free quiz counter on a new day', async () => {
-    mockStorage.quiz_daily_free_limit_v1 = JSON.stringify({ date: '2026-05-14', count: 3 });
+    mockStorage.quiz_daily_free_limit_v1 = JSON.stringify({ date: '2026-05-14', count: 1 });
     const { getFreeDailyQuizState } = await import('../app/quiz_daily_limit');
 
     await expect(getFreeDailyQuizState()).resolves.toMatchObject({
       date: '2026-05-15',
       count: 0,
-      left: 3,
+      left: 1,
       exhausted: false,
     });
   });
@@ -52,18 +48,18 @@ describe('quiz_daily_limit', () => {
 
     await expect(consumeFreeDailyQuizStart()).resolves.toMatchObject({
       count: 1,
-      left: 2,
-      exhausted: false,
+      left: 0,
+      exhausted: true,
     });
-    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 1, left: 2 });
+    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 1, left: 0 });
   });
 
   it('does not consume beyond the daily free quiz limit', async () => {
     const today = new Date().toISOString().slice(0, 10);
-    mockStorage.quiz_daily_free_limit_v1 = JSON.stringify({ date: today, count: 3 });
+    mockStorage.quiz_daily_free_limit_v1 = JSON.stringify({ date: today, count: 1 });
     const { consumeFreeDailyQuizStart, getFreeDailyQuizState } = await import('../app/quiz_daily_limit');
 
     await expect(consumeFreeDailyQuizStart()).resolves.toBeNull();
-    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 3, left: 0, exhausted: true });
+    await expect(getFreeDailyQuizState()).resolves.toMatchObject({ count: 1, left: 0, exhausted: true });
   });
 });

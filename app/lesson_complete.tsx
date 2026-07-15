@@ -43,6 +43,8 @@ import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { getFreeLessonLimit } from './remote_flags';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import type { SoftUpsellCandidate, SoftUpsellStudyTarget } from './soft_upsell_core';
 import { selectSoftUpsellCopy } from './soft_upsell_copy';
@@ -114,14 +116,14 @@ const LESSON_SOFT_UPSELL_COPY = {
 } satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 const FREE_LIMIT_SOFT_UPSELL_COPY = {
-  ru: { title: '8 бесплатных уроков пройдено', body: 'Ты дошёл до границы бесплатного курса. Plus откроет следующие уроки и весь маршрут.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
-  uk: { title: '8 безкоштовних уроків пройдено', body: 'Ти дістався межі безкоштовного курсу. Plus відкриє наступні уроки й увесь маршрут.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
-  es: { title: '8 lecciones gratis completadas', body: 'Has llegado al límite del curso gratuito. Plus abre las siguientes lecciones y toda la ruta.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
-  'pt-BR': { title: '8 lições grátis concluídas', body: 'Você chegou ao limite do curso gratuito. O Plus libera as próximas lições e toda a rota.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
-  vi: { title: 'Đã hoàn thành 8 bài miễn phí', body: 'Bạn đã đến giới hạn khóa học miễn phí. Plus mở các bài tiếp theo và toàn bộ lộ trình.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
-  id: { title: '8 pelajaran gratis selesai', body: 'Kamu telah mencapai batas kursus gratis. Plus membuka pelajaran berikutnya dan seluruh jalur.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
-  tr: { title: '8 ücretsiz ders tamamlandı', body: 'Ücretsiz kurs sınırına ulaştın. Plus sonraki dersleri ve tüm yolu açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
-  pl: { title: 'Ukończono 8 darmowych lekcji', body: 'To koniec darmowej części kursu. Plus otwiera kolejne lekcje i całą ścieżkę.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
+  ru: { title: '3 бесплатных урока пройдено', body: 'Ты дошёл до границы бесплатного курса. Plus откроет следующие уроки и весь маршрут.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
+  uk: { title: '3 безкоштовні уроки пройдено', body: 'Ти дістався межі безкоштовного курсу. Plus відкриє наступні уроки й увесь маршрут.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
+  es: { title: '3 lecciones gratis completadas', body: 'Has llegado al límite del curso gratuito. Plus abre las siguientes lecciones y toda la ruta.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
+  'pt-BR': { title: '3 lições grátis concluídas', body: 'Você chegou ao limite do curso gratuito. O Plus libera as próximas lições e toda a rota.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
+  vi: { title: 'Đã hoàn thành 3 bài miễn phí', body: 'Bạn đã đến giới hạn khóa học miễn phí. Plus mở các bài tiếp theo và toàn bộ lộ trình.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
+  id: { title: '3 pelajaran gratis selesai', body: 'Kamu telah mencapai batas kursus gratis. Plus membuka pelajaran berikutnya dan seluruh jalur.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
+  tr: { title: '3 ücretsiz ders tamamlandı', body: 'Ücretsiz kurs sınırına ulaştın. Plus sonraki dersleri ve tüm yolu açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
+  pl: { title: 'Ukończono 3 darmowe lekcje', body: 'To koniec darmowej części kursu. Plus otwiera kolejne lekcje i całą ścieżkę.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
 } satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onClose }: {
@@ -599,9 +601,10 @@ export default function LessonComplete() {
             context: attribution.context,
             source: 'soft_upsell',
             ...softUpsellRouteParams(attribution),
+            ...lessonPurchaseContinuationParams(lessonId + 1),
           },
         } as any),
-  }), [router, softUpsell.attribution, softUpsell.onCta]);
+  }), [lessonId, router, softUpsell.attribution, softUpsell.onCta]);
   const handleSoftUpsellCta = useCallback(() => {
     if (!softUpsell.opportunity) return Promise.resolve();
     return runSoftUpsellCta(softUpsell.opportunity.trigger);
@@ -757,6 +760,7 @@ export default function LessonComplete() {
         current: softUpsellIdentityRef.current,
         mounted: softUpsellMountedRef.current,
         accountGenerationCurrent: isCurrentAccountGeneration(grantAccountToken),
+        freeLessonLimit: getFreeLessonLimit(),
       });
       if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
       if (firstBonus.status === 'granted') {
@@ -1325,6 +1329,7 @@ export default function LessonComplete() {
                     params: {
                       context: lessonPaywallContext(premiumBannerNextLesson.current),
                       lessons_done: String(lessonId),
+                      ...lessonPurchaseContinuationParams(premiumBannerNextLesson.current),
                     },
                   } as any);
                 }}

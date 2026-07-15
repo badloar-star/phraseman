@@ -2,8 +2,8 @@
 
 **Последнее обновление:** 2026-07-15, Europe/Dublin  
 **Статус цели:** active  
-**Текущая стадия:** планирование и нормативные спецификации завершены; Content Studio Task 0, Firebase CLI reproducibility и umbrella Phase 01 / Task 1.1 identity/versioning закрыты локальными коммитами и независимо проверены
-**Точный следующий крупный шаг:** выполнить umbrella Phase 01 / Task 1.1A — immutable DecisionRegistry; после него строго 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3
+**Текущая стадия:** планирование и нормативные спецификации завершены; Content Studio Task 0, Firebase CLI reproducibility, umbrella Phase 01 / Task 1.1 identity/versioning и Task 1.1A immutable DecisionRegistry закрыты отдельными локальными коммитами, узкими тестами и двумя независимыми финальными PASS-аудитами
+**Точный следующий крупный шаг:** выполнить umbrella Phase 01 / Task 1.2 — canonical activity/episode/curriculum contracts; после него строго 1.3 evidence/result → 1.4 backend mirror и только затем dedicated Content Studio Tasks 1–3
 **Назначение файла:** это живой центр управления между сессиями. Он не заменяет подробные спецификации и TDD-планы, а сообщает следующей сессии, что прочитать, что уже доказано, что не сделано и какой именно шаг выполнять дальше.
 
 ---
@@ -82,7 +82,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 | Фаза | Содержание и точный порядок | Gate / результат | Статус на 2026-07-15 |
 |---|---|---|---|
 | 00 | Security inventory, legacy direct-access classification, удаление broad-admin OR bypass, server-only V2 paths, canonical Body/Record/hash boundary | Emulator deny для будущих authoring paths; legacy compatibility; одинаковые canonical bytes/hash | **Security slice закрыт.** Content Studio Task 0 и reproducible local CLI зелёные; canonical artifact contracts продолжаются в Phase 01 |
-| 01 | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3 | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate | **В работе:** Task 1.1 закрыт; ближайший код — Task 1.1A DecisionRegistry |
+| 01 | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3 | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate | **В работе:** Tasks 1.1 и 1.1A закрыты; ближайший код — Task 1.2 contracts |
 | 02 | 2.1 pure reducer/gate policy → 2.2 Content Studio Task 4 → 2.3 account store/outbox → 2.4 server event → 2.5 Access Boost callable → 2.6 rules/emulator | Idempotent local-first progress; performance/access/evidence physically separated; offline/restart safe | Не начато |
 | 03 | 3.0 competitor reference-evidence pack + owner UI approval → 3.1 registry → 3.2 ActivityScaffold → 3.3 six shells → 3.4 thin routes/resume | One registry, one scaffold, six accessible shells; UI evidence approved before production work | Заблокировано до Task 5A/reference pack |
 | 04 | 4.1 capture state machine → 4.2 scorer boundary → 4.2A calibration/privacy gates → 4.3 accessible capture UI → 4.4 device matrix | Voice never deadlocks; scorer claims match measured construct; fallback/privacy/device gates pass | Не начато |
@@ -129,9 +129,10 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 2. **Выполнено:** воспроизводимость Task 0 закрыта focused commits `abce49e1f` + `fd450e763`; exact local `firebase-tools@15.23.0`, clean `npm ci`, 351 emulator и 61 combined root/static tests подтверждены.
 3. Не смешивать с этим восстановление общего Functions build: девять текущих TypeScript ошибок доказанно существовали в parent commit; для них нужен отдельный baseline-fix task/commit.
 4. **Выполнено:** umbrella Phase 01 / Task 1.1 реализован test-first commits `77cf617af` + `362b65e7a`: identity grammar, семь branded ID, release-scoped activity uniqueness и fail-closed schema versions без React/Firebase imports.
-5. **Точный следующий код:** выполнить 1.1A DecisionRegistry, затем 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend conformance mirror.
-6. Только после этого выполнять dedicated Content Studio Tasks 1–3. Task 1 импортирует canonical episode/evidence types и не должен создавать их shadow/reduced copies.
-7. После каждого numbered task обновлять этот хендовер точным commit, RED/GREEN выводом, файлами, findings и следующим зависимым шагом.
+5. **Выполнено:** Task 1.1A immutable DecisionRegistry закрыт policy commit `fac37e8da` и implementation commit `a4245ccc1`; shared corpus, portable client SHA, Functions Node crypto, immutable exact refs и fail-closed validation дали финальные `87/87 + 86/86`.
+6. **Точный следующий код:** выполнить 1.2 activity/episode/curriculum contracts, затем 1.3 evidence/result → 1.4 backend conformance mirror.
+7. Только после этого выполнять dedicated Content Studio Tasks 1–3. Task 1 импортирует canonical episode/evidence types и не должен создавать их shadow/reduced copies.
+8. После каждого numbered task обновлять этот хендовер точным commit, RED/GREEN выводом, файлами, findings и следующим зависимым шагом.
 
 ---
 
@@ -312,15 +313,17 @@ Checkpoint — не восемнадцатая family и не отдельный
 - Firebase CLI security-pin follow-up: `fd450e763d94b19b1bfcc995d797899fae3f3c9c`
 - Task 1.1 identity/versioning implementation: `77cf617afb4a33e75a830dfc9d78d133e4f928c2`
 - Task 1.1 purity-guard quality fix: `362b65e7af4ea0b1db34f13007686f4e6e91d180`
+- DecisionRegistry normative policy amendment: `fac37e8da6c68653ca03034b2306461c2431ed83`
+- Task 1.1A immutable DecisionRegistry: `a4245ccc1693a45711a41e678c5660a339755b17`
 - Canonical docs/handover persistence commit in pilot: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
 - Source docs-only commit in main: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`
 - Parent/common base: `96d2568fbbe958a96e3c68156a7bcf1abce5d3a0`
-- Commit subject: `security: isolate Content Studio authoring paths`
+- Последний implementation commit subject: `feat: add immutable V2 DecisionRegistry`
 - Состояние после свежей проверки: чистое.
 - Upstream/remote branch: отсутствует.
 - Deploy: не выполнялся.
 - Push: не выполнялся.
-- Task 0 не входит в основной checkout.
+- Task 0/1.1/1.1A остаются в изолированной pilot-ветке и не переносились в основной checkout.
 
 ### 6.2 Что изменено в commit
 
@@ -431,6 +434,100 @@ Final GREEN после TypeScript AST guard: 47/47, 1 suite.
 
 AST guard теперь обнаруживает static/from и side-effect imports, export-from, import-equals, dynamic `import()`, `require`, `require.resolve` и `module.require`; блокирует React/Firebase package families и не срабатывает на benign internal imports. Spec review дал PASS. Первый quality review запросил этот P2 fix; post-fix review дал APPROVED, P0–P2 не осталось. `git diff --check`, targeted TypeScript brand check и staged secret scan прошли. Свежий root rerun 2026-07-15: `47/47 PASS`; Jest напечатал общий force-exit warning без test failure. Push/deploy не выполнялись.
 
+### 6.7 Phase 01 / Task 1.1A immutable DecisionRegistry
+
+Task закрыт двумя последовательными коммитами:
+
+- `fac37e8da6c68653ca03034b2306461c2431ed83` — `docs: complete V2 decision registry policy`; синхронизировал spec 08 и оба execution plan до первого опубликованного registry artifact;
+- `a4245ccc1693a45711a41e678c5660a339755b17` — `feat: add immutable V2 DecisionRegistry`; содержит ровно пять implementation/test paths и не включает этот хендовер.
+
+Ровно пять файлов implementation commit:
+
+| Файл | Назначение и важные границы |
+|---|---|
+| `modules/learning-v2/policies/decision_registry.ts` | Shared/mobile readonly types, strict validator/resolver, canonical JSON v1, portable pure-JavaScript SHA-256 и content-addressed object-path formula; Node `crypto` запрещён purity test-ом |
+| `functions/src/content_studio/decision_registry.ts` | Поведенчески идентичный Functions validator/resolver; отличается только использованием `createHash('sha256')`, потому что deployable Functions `tsconfig` не может импортировать root `modules/**` |
+| `tests/fixtures/learning-v2/content-studio/decision-registry.v1.json` | Один shared conformance corpus: baseline v1, согласованные nonbaseline v2 и calibrated v3, named invalid mutations, runtime-invalid canonical values и frozen ordered issue expectations |
+| `tests/learning_v2_decision_registry.test.ts` | Root/mobile corpus, canonical/hash/path, fail-closed validation, issue metadata, Unicode/array boundaries и Node-crypto purity guard |
+| `functions/src/content_studio/decision_registry.test.ts` | Тот же corpus и те же assertions в Functions runtime; отличается только fixture/import path и отсутствием mobile-only purity test |
+
+Нормативная policy-поправка до code commit зафиксировала:
+
+- `HYP-V2-006` сериализует независимые `maxBoostsPerGate`, `maxBoostsPerChapter`, `maxBoostsPerSeason`; baseline `3/3/12`, price `3`, deficit `1..3`, recovery `2`, quote TTL `300`;
+- `HYP-V2-008` version 1 допускает только один internal milestone `0% / 0h / 0 assignments`; ненулевой rollout требует новой immutable registry version;
+- `HYP-V2-002`: frames `8..10`, semantic slots `12..18`, sound contrasts `0..1`, voice turns `3..10`, retries `2`;
+- `HYP-V2-003`: completion `0.70`, independent mastery `0.80`, provisional checkpoint cutoffs `ep-08/16/24/32 = 0.80`;
+- `HYP-V2-007`: exact success policy `dts-7.independent-transfer-success.v1` и window `dts-7.d3-d7.v1`;
+- ordinary `targetEpisodeMinutes=12..18` не задаёт duration checkpoint/review episodes;
+- эти значения остаются `PRODUCT_HYPOTHESIS`, а generic validator принимает другие согласованные immutable versions.
+
+Pinned corpus facts:
+
+- schema: `decision-registry-conformance-corpus.v1`;
+- golden canonical JSON: `{"schemaVersion":"hash-golden-vector.v1","value":"Phraseman V2","version":1}`;
+- golden SHA-256: `12ac7b1d9d7c2c06fc88a1b99abfc42f1c21fa48dc8e6c9cea88c639c1291160`, UTF-8 bytes `76`;
+- registry-id SHA-256: `82912547a29a8e9bb7e8cc7459709d91d409c9af9e689233515b28060c0ea79f`;
+- baseline v1 body SHA/bytes: `1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a` / `4488`;
+- nonbaseline v2 body SHA/bytes: `bfd7e0df2483a713580ed5f5b355ce84301fcbe02355a8a91db4182211d5fb37` / `3007`;
+- calibrated v3 body SHA/bytes: `cf8ea91a451ca2530c92403ef1e1996ccdab0c12e5196518a9a45f5ef56ac577` / `4611`;
+- baseline содержит documented local E1–E32 curve, cumulative E2–E32 access curve и season target `500`.
+
+Финальный контракт фактически проверяет:
+
+- body schema/id/version и ровно восемь decisions `HYP-V2-001..008`; key равен `decisionId`, unknown/missing fields fail closed;
+- body не содержит self-hash/object/time/lifecycle/receipt metadata;
+- exact immutable record ref, lowercase 64-hex body hash, object hash/path/generation/byteSize и normalized millisecond ISO timestamp;
+- mutable `latest` запрещён; integrity не проверяется каскадом после уже найденной semantic/structural ошибки;
+- canonical strings обязаны быть NFC и без lone surrogates; non-JSON values, non-finite, `-0`, sparse/subclass/accessor/non-enumerable arrays, cycles, `Date`, `Map`, function, symbol и BigInt отклоняются;
+- integers обязаны быть safe integers; huge chapter count не создаёт giant `Array.from` и не вызывает RangeError/OOM;
+- exact checkpoint IDs следуют HYP001 ordinals; star totals, local/cumulative curves и все три boost caps согласованы и достижимы;
+- rollout percentages/minima возрастают; non-object milestone fail closed; version 1 остаётся exact internal-only;
+- issue order детерминирован code-rank + raw UTF-16 path, duplicate same-code issues не теряются; каждый issue и thrown validation error содержит `severity:'blocking'`, `waivable:false`.
+
+Полная TDD/аудит-хронология:
+
+1. Initial RED: оба test files не компилировались с `TS2307`, потому что два runtime modules ещё отсутствовали.
+2. Первый минимальный GREEN: root `55/55`, Functions `54/54`.
+3. Первый independent spec/quality audit вернул NOT PASS. Были добавлены adversarial shared cases; один ранний root run дал `9 failed / 60 passed`. Functions также дал множественный RED по metadata/taxonomy/safe integers/huge count/rollout/date/dedupe; точный первый Functions count не сохранялся надёжно и здесь намеренно не выдумывается.
+4. Исправлены exact checkpoint IDs, nondecreasing curves, three-cap reachability, rollout minima, blocker metadata, canonical error mapping, safe allocation, safe integers, millisecond dates, deterministic duplicate-preserving sort, strict arrays, fail-open `null` ranges/evidence/record, issue taxonomy, Unicode byte-length и owner bounds.
+5. Промежуточные gates росли до root `82/82`, затем root `85/85` и Functions `84/84` после последних input/body/record type cases.
+6. Post-fix reviewer воспроизвёл P1: `rolloutMilestones:[null]` проходил semantic validation. Shared `invalid.008.milestone_type` сначала дал root `1 failed / 85 passed` и Functions `1 failed / 84 passed`, затем explicit `decision_registry_setting_invalid`; GREEN стал `86/86 + 85/85`.
+7. Финальный spec reviewer воспроизвёл P1: registry version 1 разрешал добавить `1%`. Shared `invalid.008.v1_nonzero_rollout` сначала дал root `1 failed / 86 passed` и Functions `1 failed / 85 passed`; version-specific exact `0/0/0` invariant дал финальный GREEN `87/87 + 86/86`.
+8. Оба независимых post-fix re-review дали `PASS`; оставшихся P0–P2 не найдено. Один reviewer дополнительно сравнил validation sections byte-for-byte и проверил canonical/SHA parity на 1000 случайных JSON values и пяти boundary strings.
+
+Точные финальные команды и доказательства:
+
+```powershell
+npx jest --runTestsByPath tests/learning_v2_decision_registry.test.ts --no-cache --runInBand --silent
+# PASS: 1 suite, 87/87
+
+Push-Location functions
+npx jest --runTestsByPath src/content_studio/decision_registry.test.ts --no-cache --runInBand --silent
+Pop-Location
+# PASS: 1 suite, 86/86
+
+git diff --cached --check
+# PASS, no output
+
+npm run scan:secrets:staged
+# PASS, exit 0
+```
+
+Root Jest продолжает печатать общий `Force exiting Jest` warning, но suite имеет exit 0 и `87/87`; это не скрывалось и не трактовалось как test failure. Broad root suite и полный Functions build не запускались: правила проекта требуют узкие gates, а общий Functions build уже имеет девять доказанно pre-existing ошибок из §7.2.
+
+Неудачная попытка и восстановление:
+
+- при сведении двух runtime implementations одна попытка передала весь source через ограниченный shell-output channel; output был усечён, в Functions file попал marker truncation, и focused suite немедленно обнаружил это как `58 failed / 26 passed`;
+- повреждённая версия не коммитилась и не использовалась как evidence; Functions source был заново собран через безопасные 100-line chunks с `apply_patch`, после чего diff доказал, что реализации отличаются только SHA backend;
+- это не следует повторять: большие source files нельзя переносить через один ограниченный tool-output. Для будущего extraction создать buildable shared package/adapters отдельной задачей, сохранив fixture/hashes/public behavior.
+
+Факты против выводов:
+
+- **Фактически проверено:** два runtime corpus, exact hashes/bytes/paths, all named invalid/runtime cases, parity, staged whitespace/secret gates, exact five-file commit, два независимых финальных PASS.
+- **Выведено из архитектуры, но ещё не production-проверено:** будущий Content Studio сможет переиспользовать эти refs без изменения hash после extraction; это обязан доказать dedicated Task 1.
+- **Не проверялось и не заявляется готовым:** Firestore persistence/callables, Admin UI, production deploy, real-device lesson loading, Episode/Season refs и rollout cohorts.
+- Project OpenAI API не использовался. Push, deploy, release и изменения production data не выполнялись.
+
 ---
 
 ## 7. Незакрытые замечания, blockers и честные ограничения
@@ -488,12 +585,12 @@ git status --short --branch
 
 Ожидается: первая команда печатает все 14 paths и имеет exit 0; вторая не показывает эти документы как untracked/modified.
 
-Основной checkout на момент свежего аудита:
+Основной checkout на момент свежего аудита 2026-07-15:
 
 - path: `C:\appsprojects\phraseman`;
 - branch: `codex/release-integrated-20260715`;
-- HEAD после docs-only persistence: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`;
-- snapshot 2026-07-15 после docs-only persistence: `git status --porcelain=v1 -uall` показал 673 entries — 135 tracked и 538 untracked; main изменяется параллельно, поэтому это диагностический снимок, а не постоянный счётчик;
+- HEAD: `f324651b7709535e5bc951ff905f620dffb44fe5`;
+- свежий `git status --short` снова показал множество чужих tracked/generated/untracked изменений в Admin, Functions build output, app, docs и конфигурации; старый снимок 673 entries больше не использовать как текущий счётчик, потому что main изменяется параллельно;
 - из Task 0 paths пересекается `functions/package.json`, поэтому blind cherry-pick опасен.
 
 Никакие чужие/пользовательские изменения не удалять, не reset-ить и не перезаписывать. Canonical docs уже перенесены отдельным commit; дальнейший V2-код вести в pilot worktree и не собирать в него случайные dirty-main файлы.
@@ -517,7 +614,7 @@ git status --short --branch
 
 ### 7.6 Product defaults ещё не owner decisions
 
-README содержит безопасные defaults для vertical map, видимости 32 titles, tap-to-talk, qualitative pronunciation feedback, Club placement, AI optionality, 6–10 chunks и KPI delayed transfer. Они позволяют писать contracts, но перед UI polish/rollout нужен immutable decision log/registry. Все `HYP-V2-001..008` пока `PRODUCT_HYPOTHESIS / unvalidated`.
+README содержит безопасные defaults для vertical map, видимости 32 titles, tap-to-talk, qualitative pronunciation feedback, Club placement, AI optionality, 6–10 chunks и KPI delayed transfer. Machine-readable DecisionRegistry v1 теперь существует и все `HYP-V2-001..008` маркированы `PRODUCT_HYPOTHESIS / unvalidated`; это не превращает гипотезы в доказанные нормы. Перед UI polish/rollout всё ещё нужны calibration/experiment receipts и новые immutable registry versions.
 
 ### 7.7 Старые документы не помечены superseded
 
@@ -525,13 +622,13 @@ README содержит безопасные defaults для vertical map, ви�
 
 ---
 
-## 8. Exact next task — Phase 01 / Task 1.1A immutable DecisionRegistry
+## 8. Выполненная Task 1.1A — immutable DecisionRegistry и её исходный execution contract
 
 ### 8.1 Почему именно Task 1.1A
 
-Task 1.1 уже создал стабильные ID/version boundaries. Следующий dependency — единственный immutable machine-readable источник всех числовых решений `HYP-V2-001..008`. Без него Task 1.2 не может pin-ить delayed-window policy, season shape или gate/star settings, а dedicated Content Studio Task 1 не может безопасно разрешать exact version/hash. Порядок остаётся:
+Task 1.1 создал стабильные ID/version boundaries. Task 1.1A добавила единственный immutable machine-readable источник всех числовых решений `HYP-V2-001..008`, без которого Task 1.2 не мог pin-ить delayed-window policy, season shape или gate/star settings. Исторический execution contract ниже сохраняется как доказуемая инструкция и acceptance record. Порядок теперь:
 
-`Task 1.1A DecisionRegistry → Task 1.2 activity/episode/curriculum → Task 1.3 evidence/result → Task 1.4 Functions mirror → dedicated Content Studio Tasks 1–3`.
+`Task 1.1A DecisionRegistry (DONE) → Task 1.2 activity/episode/curriculum (NEXT) → Task 1.3 evidence/result → Task 1.4 Functions mirror → dedicated Content Studio Tasks 1–3`.
 
 ### 8.2 Ровно пять файлов Task 1.1A
 
@@ -734,11 +831,15 @@ C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot, branch codex/learnin
 Определи текущий HEAD через git rev-parse HEAD; обязательная история содержит Task 0
 ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a, canonical package a09f57da2d2442d114202bb3d52bf58abe917bb1,
 identity contracts 77cf617afb4a33e75a830dfc9d78d133e4f928c2 и purity fix 362b65e7af4ea0b1db34f13007686f4e6e91d180.
+DecisionRegistry policy amendment fac37e8da6c68653ca03034b2306461c2431ed83 и
+Task 1.1A implementation a4245ccc1693a45711a41e678c5660a339755b17 также обязательны.
 Канонические 14 paths уже tracked. Firebase CLI P2 закрыт commits abce49e1f + fd450e763;
-не меняй pin без 351+61 gates. Task 1.1 закрыт и даёт 47/47. Выполни umbrella
-Phase 01 / Task 1.1A строго test-first: один immutable eight-entry DecisionRegistry,
-shared client/Functions corpus, canonical bytes/hash, exact ref/object path и no latest.
-Затем выполняй 1.2 → 1.3 → 1.4 и только после них dedicated
+не меняй pin без 351+61 gates. Task 1.1 даёт 47/47, Task 1.1A — 87/87 root
+и 86/86 Functions, два финальных review PASS. Выполни umbrella Phase 01 / Task 1.2
+строго test-first: activity.ts, episode.ts, curriculum.ts, validation.ts, valid E1 и invalid
+fixtures, один episode contract test. Не создавай Functions mirror раньше Task 1.4 и не
+дублируй evidence types, которые Task 1.3 обязан импортировать. Затем выполняй
+1.3 → 1.4 и только после них dedicated
 Content Studio Tasks 1–3. Не начинай UI и не удаляй legacy. После каждого GREEN и
 независимой проверки обновляй мастер-хендовер всеми файлами, командами, counts,
 commit и exact dependency-aware next task.
@@ -759,6 +860,220 @@ commit и exact dependency-aware next task.
 - 351 emulator и 61 combined reproducibility/static tests зелёные;
 - firebase-tools pin закрыт на latest exact `15.23.0`; time-bounded dev-only audit exception описан в §7.1; общий baseline Functions build остаётся открытым;
 - Task 1.1 identity/versioning закрыт commits `77cf617af` + `362b65e7a`; behavioral RED `35/3`, quality RED `5/42`, final `47/47`, spec PASS и quality APPROVED;
+- Task 1.1A DecisionRegistry закрыт commits `fac37e8da` + `a4245ccc1`; первоначальный GREEN `55/54`, расширенные adversarial RED/исправления, финальный GREEN `87/87 root + 86/86 Functions`, два post-fix review PASS;
 - все 11 V2 docs, оба плана и AGENTS protocol сохранены docs-only commit и присутствуют в clean pilot worktree;
-- exact next implementation — umbrella Phase 01 / Task 1.1A immutable DecisionRegistry; Content Studio Task 1 идёт только после 1.2–1.4;
+- exact next implementation — umbrella Phase 01 / Task 1.2 activity/episode/curriculum contracts; Content Studio Task 1 идёт только после 1.2–1.4;
 - UI, mass generation, production rollout и legacy retirement сейчас запрещены порядком зависимостей.
+
+---
+
+## 12. Exact next task — Phase 01 / Task 1.2 activity, episode и curriculum contracts
+
+### 12.1 Почему следующий шаг именно Task 1.2
+
+Identity/version grammar и exact immutable DecisionRegistry уже существуют. Следующий dependency — один canonical runtime contract для Activity, Episode graph и Curriculum/Season, который свяжет стабильные IDs с учебной архитектурой E1–E32. Без него:
+
+- Task 1.3 не может привязать attempt/evidence к exact node/objective/skill/phase/target tuples;
+- Task 1.4 не может зеркалировать client corpus в Functions;
+- dedicated Content Studio Task 1 не может импортировать canonical Episode/DelayedProbe/Checkpoint types и начнёт создавать опасные shadow copies;
+- progress/gate reducer Phase 02 не будет знать, какие loops, star slots, checkpoint requirements и accessibility routes действительно опубликованы.
+
+Dependency order нельзя менять:
+
+`1.1 identity (DONE) → 1.1A DecisionRegistry (DONE) → 1.2 Activity/Episode/Curriculum (NEXT) → 1.3 Attempt/Evidence/Delayed Results → 1.4 Functions conformance mirror → 1.5 dedicated Content Studio Tasks 1–3`.
+
+Task 1.2 — pure contract slice. Она не создаёт экран, renderer, scorer, Firestore path, Cloud Function, Admin form, generator stage, progress reducer или реальные 32 episode payloads.
+
+### 12.2 Обязательное чтение до первого изменения
+
+Следующая сессия должна полностью прочитать:
+
+1. корневой `AGENTS.md` и этот хендовер;
+2. `docs/v2/README.md`;
+3. `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md`, минимум Phase 01 и полностью Task 1.2, но лучше весь план;
+4. `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md`, минимум contract/import interlocks Tasks 1–4;
+5. `docs/v2/03-learning-architecture-and-curriculum.md` как curriculum/E1–E32 authority;
+6. `docs/v2/04-activity-catalog-and-storyboards.md` для family/shell boundaries без начала UI;
+7. `docs/v2/05-stars-progress-and-mastery.md` для loops/star/access/checkpoint separation;
+8. `docs/v2/06-runtime-content-admin-and-release.md` для canonical activity/episode/evidence/delayed definitions;
+9. `docs/v2/08-admin-content-studio-and-mode-authoring.md` только для будущих import/identity boundaries; не реализовывать Studio сейчас.
+
+Если эти документы расходятся, применять priority из §0. Старые Speaking Club/experimental Lessons V2 specs не могут ослабить canonical V2.
+
+### 12.3 Ровно семь плановых файлов
+
+Создать:
+
+- `modules/learning-v2/contracts/activity.ts`;
+- `modules/learning-v2/contracts/episode.ts`;
+- `modules/learning-v2/contracts/curriculum.ts`;
+- `modules/learning-v2/contracts/validation.ts`;
+- `tests/fixtures/learning-v2/episode-01.valid.json`;
+- `tests/fixtures/learning-v2/episode.invalid.json`;
+- `tests/learning_v2_episode_contract.test.ts`.
+
+Не создавать в Task 1.2:
+
+- `functions/src/learning_v2/contracts.ts` или Functions tests — это Task 1.4;
+- `evidence.ts`, `attempt.ts`, `activity_result.ts`, `delayed_probe.ts` — это Task 1.3;
+- Content Studio `content_studio.ts`, ModeTemplate, repositories, Firestore rules/callables или Admin UI — это последующие Tasks;
+- второй canonical JSON/SHA algorithm. Если нужен hash delayed-probe body/ref, переиспользовать уже зафиксированные bytes/hash semantics Task 1.1A и не менять их golden vectors;
+- real lesson content beyond минимального E1 conformance fixture;
+- legacy adapters, Challenges migration или Speaking Club UI.
+
+Если реализация объективно требует восьмой файл или изменение existing identity/schema registry, остановиться и доказать dependency по plan/spec до расширения scope; не делать скрытую правку.
+
+### 12.4 Canonical Activity contract
+
+`activity.ts` должен задать readonly, discriminated, JSON-safe contracts как минимум для:
+
+- exact schema/type/version и distinct stable `activityId`, `nodeId`, `skillId`, `phraseId`/semantic-slot refs;
+- canonical `V2ActivityInstance` boundary: `activityId`, `progressCompatibilityKey`, family, `activityTypeKey`, exact `kernelVersion`, exact `PublishedModeTemplateRef {templateId,version,contentHash}`, `payloadSchemaVersion`, `estimatedSeconds`, content-unit IDs, capabilities/tags и payload;
+- renderer является частью code-owned kernel, а не удалённой policy. Resolved template/kernel compatibility chain обязана pin-ить ровно пять hash-addressed policy refs `evidence | scoring | progress | reward | recovery`; missing/mismatched kind/key/version/hash fail closed;
+- prompt/media/input requirements и deterministic scripted/offline fallback capabilities;
+- target skill/phrase/semantic-slot IDs;
+- content-only Activity definition отдельно от graph-owned route/reward/phase fields;
+- bounded voice/network capability declarations без заявления acoustic evidence из transcript-only scorer;
+- no lifecycle/status, no star award, no gate flag и no graph edges внутри content-only Activity.
+
+Не создавать shadow `ActivityInstance` authoring record из spec 08: Task 1.2 определяет runtime contract, а authoring aggregate появится после canonical imports в dedicated Content Studio.
+
+### 12.5 Canonical Episode contract
+
+`episode.ts` и `validation.ts` должны выразить и проверять:
+
+- episode identity, ordinal/chapter, localized can-do objective, scenario, phrase frames, semantic slots, sound/grammar load и asset refs;
+- directed acyclic graph с node count внутри resolved `HYP-V2-001.visibleNodeCount` для ordinary episode (baseline v1: `8–9`) и deterministic checkpoint blueprint (текущий pilot: `9` nodes), ровно один entry и один capstone, reachability всех required nodes, отсутствие dangling edges/dead ends;
+- graph node владеет `requiredForCore`, `gateEligible`, `voiceEvidenceOptional`, phase, fallback/alternate, star slot и evidence/context declarations; Activity content этими полями не владеет;
+- phases: `encounter_build | near_transfer | independent_probe | optional_review`; delayed probe остаётся scheduler-owned и не является graph node;
+- ровно два access-required loops: `encounter_build` и immediate `near_transfer`;
+- ordinary independent probe находится только в `assessmentNodes.independentProbeNodeIds`, не входит в required loops и не блокирует ordinary access;
+- chapter checkpoint — единственное явное исключение: independent-only pass condition может быть required на границе E8→E9, E16→E17, E24→E25; E32 задаёт final checkpoint status;
+- число unique gate-eligible performance-star slots и cap на slot обязаны совпадать с exact resolved `HYP-V2-004` выбранной registry version (baseline v1: `8 × 3`); alternate/fallback nodes разделяют исходный `starSlotId` и не создают новый slot. `gateEligible` ортогонален learning phase: нельзя объявлять independent/optional node starless только из-за phase. Starless node типом имеет `maxStars:0` и не имеет `starSlotId`; scheduler-owned delayed probe вообще не является graph node;
+- `V2NodeEvidenceDeclaration` использует collision-free exact tuple `nodeId + objectiveId + skillId + construct + phase + targetKind + targetId`; declaration phase совпадает с node и `LearningPedagogicalContextContract.phase`;
+- context contract ограничивает support/hints и pin-ит immutable context/prompt; optional review не создаёт assessed declarations;
+- `EpisodeLearningDesign`: primary outcome, objectives, acyclic prerequisite exposure/outcome edges, support plan, code-owned fade/escalation refs, independent probe ref, content-hashed delayed probe ref и exact delayed-window policy ID;
+- mastery requirements versioned по objective/construct/phase/validity/outcome/max support; performance stars, completion и voice-turn count не являются evidence;
+- hash-free delayed-probe definition body + exact content-hashed ref + resolved pair; scheduler-only `probeNodeId` отсутствует в graph, loops, star slots и checkpoint, а activity/template/context/declarations совпадают byte-for-byte;
+- review links discriminated: `optional_review` либо scheduler-owned `delayed_probe`; nominal D+1/D+7/D+21 cadence не подменяет pinned assessable D+3…D+7 window;
+- `V2CheckpointContract`: requirements только `independent_probe`, exact declared evidence tuples, unique assessment node set, exact objective-set equality, critical semantic-slot/constraint coverage, deterministic alternates, targeted repair/reassessment; delayed tuples запрещены;
+- checkpoint не вводит новый required skill, phrase/lexicon, grammar distinction, semantic slot или critical constraint: всё required checkpoint material обязано быть подмножеством ранее опубликованного taught/exposed curriculum scope;
+- accessibility routes достигают core completion и всех access-required performance-star slots без ложного evidence claim;
+- core route остаётся достижим без voice-specific star и без обязательной сети/AI;
+- max two new grammar distinctions и phrase-load bounds из curriculum authority;
+- all referenced IDs/assets resolve; unknown/missing fields fail closed.
+
+Task 1.2 может определить declaration/context/checkpoint/delayed-ref shapes, необходимые Episode contract. Task 1.3 обязан импортировать их и добавить attempt/evidence materialization; он не должен объявлять второй несовместимый tuple или delayed-probe shape.
+
+### 12.6 Canonical Curriculum contract
+
+`curriculum.ts` должен закрепить scope-dependent season projection:
+
+- `vertical_slice` содержит только E1 и используется для lab/staging contract fixture;
+- `chapter_internal` содержит E1–E8 и checkpoint E8 для internal staging;
+- только `full_season` содержит все 32 episodes, четыре главы по восемь и checkpoints E8/E16/E24/E32; production-ready validation обязана отклонять два меньших scope;
+- stable episode refs и checkpoint ordinals обязаны точно соответствовать выбранному scope, без hole/duplicate/out-of-scope ref;
+- immutable exact `decisionRegistryRef {id,version,contentHash}`; validator обязан resolve-ить pair через Task 1.1A и fail closed при missing ID/version/hash/object mismatch;
+- все используемые HYP settings разрешаются из exact pinned body, не из mutable latest и не из free-form number;
+- prerequisite/outcome progression и chapter boundaries без cycle/orphan episode;
+- ordinary episode vs checkpoint semantics; 12–18 minutes applies only ordinary episodes;
+- locale/capability/asset closure как requirements, но без генерации переводов или media;
+- no production release pointer, activation state, receipts или mutable lifecycle в curriculum body.
+
+Valid fixture должен представлять реальный минимальный E1 contract из canonical curriculum, а не абстрактный игрушечный graph. Его season/curriculum envelope имеет scope `vertical_slice`, exact E1 ref и exact DecisionRegistry pin; он не обязан притворяться `full_season`. Отдельные validation cases обязаны доказать `vertical_slice=E1`, `chapter_internal=E1…E8 + E8 checkpoint` и `full_season=32/4×8 + E8/E16/E24/E32`.
+
+### 12.7 Обязательный test-first порядок
+
+1. Проверить clean pilot HEAD и наличие commits `77cf617af`, `362b65e7a`, `fac37e8da`, `a4245ccc1`.
+2. Прочитать документы §12.2 и выписать invariant matrix: identity, graph, phases/loops, evidence declaration, delayed ref, checkpoint, accessibility, curriculum/registry pin.
+3. Сначала создать `episode-01.valid.json` и named invalid corpus в `episode.invalid.json`; hashes/refs должны быть настоящими, не `abc` и не shortened placeholders.
+4. Написать `tests/learning_v2_episode_contract.test.ts`, который импортирует ещё отсутствующие modules и проверяет stable ordered machine issue codes.
+5. Запустить focused suite и сохранить RED. Допустим initial `TS2307`, но acceptance RED должен быть behavioral после minimal typed stubs, а не broken Jest config/fixture path.
+6. Реализовать минимальные readonly types и strict parsers без React, React Native, Expo, Firebase, Admin или Functions imports.
+7. В strict parser отклонять unknown/omitted fields до hash; не sanitize/strip input. Сортировка issues должна быть deterministic и duplicate-preserving.
+8. Реализовать cross-contract graph/checkpoint/delayed/curriculum invariants только после базовой structural validity, чтобы malformed subtree не вызывал cascade, throw, giant allocation или fail-open.
+9. Добавлять каждый найденный reviewer defect сначала в shared invalid fixture, подтверждать RED, затем исправлять.
+10. Запустить focused GREEN, `git diff --check`, staged secret scan, независимый spec review и независимый quality/adversarial review.
+11. Исправить все P0–P2 test-first и получить post-fix PASS.
+12. Commit только Task 1.2 scope с рекомендуемым subject `feat: define Learning V2 episode contracts`.
+13. Обновить этот хендовер exact RED/GREEN counts, commit, files, failed attempts/findings и полным Task 1.3 handoff.
+
+### 12.8 Минимальная обязательная invalid matrix
+
+Общий fixture/test должен покрыть как минимум:
+
+- unknown/missing schema/body/activity/node/edge/loop/assessment field;
+- wrong branded ID kind, duplicate activity/node/star-slot/tuple IDs, missing referenced ID/asset;
+- graph cycle, second entry/capstone, unreachable required node, dangling edge и dead end;
+- Activity content, который незаконно содержит phase/gate/star/edge/lifecycle implementation;
+- phase mismatch между node/declaration/context; optional review с assessed declaration;
+- missing/extra/duplicate required loop, independent probe inside ordinary required loop, delayed probe inside graph/gate/star/checkpoint;
+- graph node count не совпадает с resolved ordinary/checkpoint contract; число unique gate-eligible slots, per-slot cap или derived totals не совпадают с resolved `HYP-V2-004` (baseline `8 × 3`); fallback/alternate mint-ит новый slot; starless node имеет ненулевой max/slot; либо graph ошибочно выводит eligibility только из phase;
+- core/access-star route, доступный только через unsupported voice/network path;
+- checkpoint requirement не independent, undeclared tuple, node-set/objective-set mismatch, missing critical slot/constraint, invalid alternate/repair route или новый required skill/phrase/grammar/semantic-slot/constraint, которого не было в taught/exposed scope;
+- delayed ref hash mismatch, string/latest ref, orphan activity/template/context/declaration, reused graph node ID;
+- prerequisite cycle, production outcome without exposure, invalid support fade/escalation ref;
+- more than two new grammar distinctions и phrase-load overflow;
+- scope cardinality mismatch (`vertical_slice` не E1, `chapter_internal` не E1–E8/E8, `full_season` не 32/4×8), wrong checkpoint ordinal, duplicate/missing/out-of-scope episode, mutable/latest DecisionRegistry ref или registry hash mismatch;
+- Episode/review-link schema, которое содержит result/materialization fields или объявляет performance star/voice turn/completion источником mastery/evidence;
+- D+1/D+7/D+21 review link, который сам сериализует durable-success/outcome/evidence claim. Terminal window resolution и `not_assessed_for_window` проверяются только в Task 1.3.
+
+Каждый invalid case должен ожидать stable issue code; cases с двумя одинаковыми code на разных paths обязаны сохранять оба issues и deterministic path order.
+
+### 12.9 Точный focused gate
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts --no-cache --runInBand
+git diff --check
+
+git add -- modules/learning-v2/contracts/activity.ts modules/learning-v2/contracts/episode.ts modules/learning-v2/contracts/curriculum.ts modules/learning-v2/contracts/validation.ts tests/fixtures/learning-v2/episode-01.valid.json tests/fixtures/learning-v2/episode.invalid.json tests/learning_v2_episode_contract.test.ts
+git diff --cached --name-only
+git diff --cached --check
+npm run scan:secrets:staged
+```
+
+Functions suite в Task 1.2 не добавлять. После Task 1.3, Task 1.4 создаст `functions/src/learning_v2/contracts.ts` и общий client/Functions conformance gate.
+
+### 12.10 Definition of Done Task 1.2
+
+Task завершён только если:
+
+- valid E1 fixture принят как exact `vertical_slice`; separate cases доказывают `chapter_internal` и `full_season=32/4×8`, все с exact DecisionRegistry ref;
+- invalid corpus даёт stable deterministic issues без throw/fail-open/cascade;
+- graph acyclic/reachable, one entry/capstone, two loops и independent/delayed separation доказаны тестами;
+- checkpoint/declaration/context/delayed-ref set equality, critical coverage и no-new-required-material invariant доказаны;
+- accessibility/offline route достигает core и access-star slots;
+- node count соответствует resolved ordinary/checkpoint contract; star-slot count/cap/totals соответствуют exact resolved `HYP-V2-004` (baseline v1 `8 × 3`), fallback делит slot, а starless union означает `maxStars:0` без `starSlotId` независимо от phase;
+- Episode schema не содержит evidence/result materialization и не объявляет stars/completion/voice-turn count источником mastery; actual materialization/outside-window semantics остаются Task 1.3;
+- source files остаются pure и не импортируют UI/Firebase/Functions;
+- independent spec и adversarial review имеют PASS без P0–P2;
+- commit содержит только согласованный scope, push/deploy не выполняются без отдельной команды;
+- хендовер обновлён и следующий шаг назван `Task 1.3 evidence and result contracts`, не Content Studio UI.
+
+### 12.11 Точные первые команды следующей сессии
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+git -C C:\appsprojects\phraseman status --short --branch
+git status --short --branch
+git rev-parse HEAD
+git log -6 --oneline
+git show --stat --oneline a4245ccc1693a45711a41e678c5660a339755b17
+git ls-files --error-unmatch AGENTS.md docs/v2/HANDOVER.md docs/v2/README.md docs/v2/00-research-and-skill-audit.md docs/v2/01-current-state-audit.md docs/v2/02-competitor-and-learning-evidence.md docs/v2/03-learning-architecture-and-curriculum.md docs/v2/04-activity-catalog-and-storyboards.md docs/v2/05-stars-progress-and-mastery.md docs/v2/06-runtime-content-admin-and-release.md docs/v2/07-migration-analytics-testing.md docs/v2/08-admin-content-studio-and-mode-authoring.md docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+
+Get-Content -Raw -Encoding UTF8 AGENTS.md
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Get-Content -Raw -Encoding UTF8 docs/v2/03-learning-architecture-and-curriculum.md
+Get-Content -Raw -Encoding UTF8 docs/v2/04-activity-catalog-and-storyboards.md
+Get-Content -Raw -Encoding UTF8 docs/v2/05-stars-progress-and-mastery.md
+Get-Content -Raw -Encoding UTF8 docs/v2/06-runtime-content-admin-and-release.md
+Get-Content -Raw -Encoding UTF8 docs/v2/08-admin-content-studio-and-mode-authoring.md
+
+rg -n "Task 1.2|V2Activity|Episode|V2CheckpointContract|V2DelayedProbe|LearningPedagogicalContextContract|decisionRegistryRef" docs/v2 docs/superpowers/plans modules/learning-v2 tests -g "!docs/reports/**"
+```
+
+Ожидаемый стартовый Git-state после handover commit: branch `codex/learning-v2-pilot`, clean worktree, no upstream, история содержит `a4245ccc1` и последующий docs-only handover commit. Основной checkout `C:\appsprojects\phraseman` остаётся грязным и не должен меняться.

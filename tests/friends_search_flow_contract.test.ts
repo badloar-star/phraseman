@@ -36,3 +36,10 @@ test('Best-effort stale-friend cleanup is cancelled on blur and rate-limited per
   expect(friendRequestsSource).toContain('friendsRef.startAfter(previousCursor).limit(20)');
   expect(friendRequestsSource).toContain('rememberFriendCleanupCursor(');
 });
+
+test('Friends listener recovery has a finite retry budget between lifecycle signals', () => {
+  expect(source).toContain('const FRIENDS_LISTENER_RETRY_DELAYS_MS = [1500, 4000, 10_000] as const;');
+  expect(source).toContain('if (retryAttempt >= FRIENDS_LISTENER_RETRY_DELAYS_MS.length) return;');
+  expect(source).toContain('const delay = FRIENDS_LISTENER_RETRY_DELAYS_MS[retryAttempt];');
+  expect(source).toContain('retryAttempt = 0;\n        requestAttach();');
+});

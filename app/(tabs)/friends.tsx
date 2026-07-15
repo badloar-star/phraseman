@@ -2438,7 +2438,8 @@ export default function FriendsTabScreen() {
 
     const scheduleRetry = () => {
       if (cancelled || retryTimer || !retryEligible) return;
-      const delay = FRIENDS_LISTENER_RETRY_DELAYS_MS[Math.min(retryAttempt, FRIENDS_LISTENER_RETRY_DELAYS_MS.length - 1)];
+      if (retryAttempt >= FRIENDS_LISTENER_RETRY_DELAYS_MS.length) return;
+      const delay = FRIENDS_LISTENER_RETRY_DELAYS_MS[retryAttempt];
       retryAttempt += 1;
       retryTimer = setTimeout(() => {
         retryTimer = null;
@@ -2559,7 +2560,10 @@ export default function FriendsTabScreen() {
 
     requestAttach(true);
     const unsubscribeNet = subscribeNetStatus((online) => {
-      if (online) requestAttach();
+      if (online) {
+        retryAttempt = 0;
+        requestAttach();
+      }
     });
     let unsubscribeAuth: (() => void) | undefined;
     try {
@@ -2570,6 +2574,7 @@ export default function FriendsTabScreen() {
         const nextAuthUid = user?.uid ?? null;
         if (nextAuthUid === observedAuthUid) return;
         observedAuthUid = nextAuthUid;
+        retryAttempt = 0;
         requestAttach(true);
       });
     } catch { /* Firebase Auth unavailable */ }

@@ -1503,7 +1503,12 @@ export async function ensureAnonUser(): Promise<string | null> {
   if (!CLOUD_SYNC_ENABLED) return null;
   // Всегда используем canonical stable ID как ключ users/*
   const stableId = await getCanonicalUserId();
+  const auth = getAuth();
   await ensureAnonAuthReady();
+  // Never let a stable id escape as "ready" while native Firebase Auth has no
+  // authenticated principal. Otherwise callers immediately issue Firestore
+  // reads/writes that can only end in permission-denied.
+  if (!auth?.currentUser) return null;
   return stableId;
 }
 
@@ -1558,10 +1563,10 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   stableAuthLinkKey = promiseKey;
   stableAuthLinkPromise = (async () => {
     try {
-      const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
-      if (!appCheckReady) {
-        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'unavailable' };
-      }
+      // Warm attestation first, but do not suppress the identity callable when
+      // local attestation is unavailable. The server remains authoritative and
+      // decides whether App Check is enforced for this deployment.
+      await initFirebaseAppCheckIfAvailable().catch(() => false);
       const fn = callable<
         { stableId: string; linkMetadata?: StableAuthLinkMetadata },
         { ok: boolean; stableUid: string; authUid: string }
@@ -2464,8 +2469,16 @@ async function applyRestoreFromUserDoc(
  * Один get users/{uid}: миграция «пустое облако» + мерж прогресса.
  * Снижает чтения Firestore по сравнению с restoreFromCloud + migrateLocalProgressToCloud.
  */
-export type CloudRestoreResult = 'restored' | 'not_found' | 'failed';
+export type CloudRestoreResult = 'restored' | 'not_found' | 'auth_unavailable' | 'permission_denied' | 'failed';
 type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean };
+
+function classifyCloudRestoreFailure(error: unknown): Extract<CloudRestoreResult, 'permission_denied' | 'failed'> {
+  const row = error as { code?: unknown; message?: unknown } | null;
+  const detail = `${String(row?.code ?? '')} ${String(row?.message ?? error ?? '')}`.toLowerCase();
+  return detail.includes('permission-denied') || detail.includes('permission_denied')
+    ? 'permission_denied'
+    : 'failed';
+}
 
 function completedCloudRestoreAttempt(applied: boolean): CloudRestoreAttempt {
   return { status: 'restored', applied };
@@ -2480,13 +2493,16 @@ async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): P
   const db = getFirestore();
   if (!db) return { status: 'failed', applied: false };
   const uid = await ensureAnonUser();
-  if (!uid) return { status: 'failed', applied: false };
+  if (!uid) return { status: 'auth_unavailable', applied: false };
   beginInitialAccountGeneration(uid);
   const accountGeneration = captureAccountGeneration();
   const isCurrent = () => isCurrentAccountGeneration(accountGeneration, uid);
   if (!isCurrent()) return { status: 'failed', applied: false };
   try {
-    await ensureStableAuthLinkForStableId(uid).catch(() => false);
+    const linked = await ensureStableAuthLinkForStableIdDetailed(uid).catch(() => null);
+    if (!linked?.ok || !linked.stableUid || linked.stableUid !== uid) {
+      return { status: 'auth_unavailable', applied: false };
+    }
     if (!isCurrent()) return { status: 'failed', applied: false };
     const doc = await withTimeout<any>(
       db.collection('users').doc(uid).get(),
@@ -2514,8 +2530,8 @@ async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): P
     ));
     if (!isCurrent()) return { status: 'failed', applied: false };
     return completedCloudRestoreAttempt(applied);
-  } catch {
-    return { status: 'failed', applied: false };
+  } catch (error) {
+    return { status: classifyCloudRestoreFailure(error), applied: false };
   }
 }
 
@@ -2532,6 +2548,7 @@ export async function restoreFromCloudDetailed(): Promise<CloudRestoreResult> {
 }
 
 export const __cloudSyncTestHooks = {
+  classifyCloudRestoreFailure,
   completedCloudRestoreAttempt,
   applyRestoreFromUserDoc,
   mergeLessonRestoreValue,

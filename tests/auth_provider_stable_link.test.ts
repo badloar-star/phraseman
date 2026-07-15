@@ -9,14 +9,23 @@ describe('auth provider stable-id linking', () => {
   const source = readFileSync(authProviderPath, 'utf8');
   const cloudSyncSource = readFileSync(cloudSyncPath, 'utf8');
   const registrationPromptSource = readFileSync(registrationPromptPath, 'utf8');
-  it('does not call stable-link repair while App Check is unavailable', () => {
+  it('warms App Check but still calls the auth-link server when local attestation is unavailable', () => {
     const start = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableIdDetailed');
     const end = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableId(', start);
     const body = cloudSyncSource.slice(start, end);
 
-    expect(body).toContain('const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false)');
-    expect(body).toContain('if (!appCheckReady)');
-    expect(body.indexOf('if (!appCheckReady)')).toBeLessThan(body.indexOf("'authEnsureStableLink'"));
+    expect(body).toContain('await initFirebaseAppCheckIfAvailable().catch(() => false)');
+    expect(body).not.toContain('if (!appCheckReady)');
+    expect(body.indexOf('initFirebaseAppCheckIfAvailable')).toBeLessThan(body.indexOf("'authEnsureStableLink'"));
+  });
+
+  it('does not return a stable id while native Firebase Auth is still unavailable', () => {
+    const start = cloudSyncSource.indexOf('export async function ensureAnonUser');
+    const end = cloudSyncSource.indexOf('async function waitForFirebaseAuthUid', start);
+    const body = cloudSyncSource.slice(start, end);
+
+    expect(body).toContain('const auth = getAuth()');
+    expect(body).toContain('if (!auth?.currentUser) return null');
   });
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
@@ -215,11 +224,13 @@ describe('auth provider stable-id linking', () => {
 
   test('background auth restore distinguishes transport failure from a missing cloud document', () => {
     expect(source).toContain('restoreFromCloudDetailed,');
-    expect(source).toContain("let restoreResult: 'restored' | 'not_found' | 'failed' = 'failed'");
-    expect(source).toContain("restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()");
+    expect(source).toContain("let restoreResult: CloudRestoreResult = 'failed'");
+    expect(source).toContain("(restoreResult === 'restored' || restoreResult === 'not_found') && await hasMeaningfulLocalAccountData()");
     expect(source).toContain("restoreResult === 'restored'");
-    expect(cloudSyncSource).toContain("export type CloudRestoreResult = 'restored' | 'not_found' | 'failed'");
+    expect(cloudSyncSource).toContain("export type CloudRestoreResult = 'restored' | 'not_found' | 'auth_unavailable' | 'permission_denied' | 'failed'");
     expect(cloudSyncSource).toContain("type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean }");
+    expect(cloudSyncSource).toContain('ensureStableAuthLinkForStableIdDetailed(uid)');
+    expect(cloudSyncSource).toContain('linked.stableUid !== uid');
     expect(cloudSyncSource).toContain('return completedCloudRestoreAttempt(applied)');
     expect(cloudSyncSource).toContain('return (await restoreAndMigrateFromCloudResult(true)).applied');
     expect(cloudSyncSource).toContain('return (await restoreAndMigrateFromCloudResult(false)).status');

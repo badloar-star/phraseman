@@ -45,6 +45,7 @@ import {
   ensureStableAuthLinkForStableIdDetailed,
   mergeStableAccountsViaServer,
   saveAccountSwitchEmergencyBackup,
+  type CloudRestoreResult,
   type StableAuthLinkMetadata,
   type StableAuthLinkEnsureResult,
 } from './cloud_sync';
@@ -157,6 +158,56 @@ const getAuth = () => {
     return null;
   }
 };
+
+export type BootAuthIdentityResult = 'ready' | 'swapped' | 'unavailable';
+
+/**
+ * Reconciles a Firebase session restored by the native SDK with the local
+ * stable id before any boot-time Firestore reads begin. A provider identity
+ * already anchored by the server is authoritative; local account state is
+ * wiped before installing that canonical id so data from two accounts cannot
+ * be observed or uploaded under one another.
+ */
+export async function reconcileAuthIdentityForBoot(): Promise<BootAuthIdentityResult> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return 'ready';
+
+  const currentUser = getAuth()?.currentUser;
+  if (!currentUser) return 'unavailable';
+
+  const localStableId = await getStableId().catch(() => null);
+  if (!localStableId) return 'unavailable';
+
+  const linked = await ensureStableAuthLinkForStableIdDetailed(localStableId).catch(() => null);
+  if (!linked?.ok || !linked.stableUid) return 'unavailable';
+  if (linked.stableUid === localStableId) return 'ready';
+
+  // An anonymous session must never silently adopt a different account. Only
+  // a persisted Google/Apple session can prove that the remote anchor wins.
+  if (currentUser.isAnonymous) return 'unavailable';
+
+  let generationInvalidated = false;
+  try {
+    await quiesceSyncBeforeStableIdSwap();
+    invalidateAccountGeneration();
+    generationInvalidated = true;
+    await wipeLocalAccountData();
+    await setStableId(linked.stableUid);
+    beginAccountGeneration(linked.stableUid);
+    generationInvalidated = false;
+    invalidatePremiumCache();
+    logAuthEvent('auth_boot_identity_reconciled', {
+      from: localStableId.slice(0, 8),
+      to: linked.stableUid.slice(0, 8),
+    });
+    return 'swapped';
+  } catch (error) {
+    if (generationInvalidated) {
+      beginAccountGeneration(await getStableId().catch(() => null));
+    }
+    if (__DEV__) console.warn('[auth_provider] boot identity reconciliation failed', error);
+    return 'unavailable';
+  }
+}
 
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
@@ -1294,7 +1345,7 @@ function scheduleSameStablePostAuthRefresh(stage: 'linked_restore' | 'created_re
     beginAccountGeneration(stableId);
     const generation = captureAccountGeneration();
     const isCurrent = () => isCurrentAccountGeneration(generation, stableId);
-    let restoreResult: 'restored' | 'not_found' | 'failed' = 'failed';
+    let restoreResult: CloudRestoreResult = 'failed';
     try {
       restoreResult = await withTimeout(restoreFromCloudDetailed(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage);
     } catch (e) {
@@ -1309,7 +1360,7 @@ function scheduleSameStablePostAuthRefresh(stage: 'linked_restore' | 'created_re
     if (!isCurrent()) return;
     await syncRevenueCatAfterAuthLink(isCurrent);
     if (!isCurrent()) return;
-    if (restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()) {
+    if ((restoreResult === 'restored' || restoreResult === 'not_found') && await hasMeaningfulLocalAccountData()) {
       if (!isCurrent()) return;
       await syncToCloud({ forceNow: true }).catch(() => {});
     } else if (__DEV__) {

@@ -145,6 +145,7 @@ import {
   rewardModalPanelColors,
   rewardModalSoftSurface,
 } from '../components/RewardModalBackdrop';
+
 import {
   checkLeagueBonusAvailability,
   buildLeagueBonusSeenKey,
@@ -175,6 +176,13 @@ import {
 } from './loyalty_gift';
 import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
+
+async function restoreCloudProfileForBoot() {
+  const { reconcileAuthIdentityForBoot } = await import('./auth_provider');
+  const identityResult = await reconcileAuthIdentityForBoot();
+  if (identityResult === 'unavailable') return 'auth_unavailable' as const;
+  return restoreFromCloudDetailed();
+}
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -1922,7 +1930,7 @@ function AppContent() {
       const bootCoordinator = createBootCloudRestoreCoordinator({
         restore: async () => {
           await ensureAnonUser();
-          return restoreFromCloudDetailed();
+          return restoreCloudProfileForBoot();
         },
         hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
         onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -2069,7 +2077,7 @@ function AppContent() {
           restore: async () => {
             await appCheckWarmup;
             await ensureAnonUser();
-            return restoreFromCloudDetailed();
+            return restoreCloudProfileForBoot();
           },
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),

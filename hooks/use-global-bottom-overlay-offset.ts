@@ -45,7 +45,8 @@ export function isMainTabSurfacePath(pathname: string | null | undefined): boole
  */
 export function useGlobalBottomOverlayOffset(): number {
   const pathname = usePathname();
-  const segments = useSegments();
+  // Collapse Expo Router's generated route-tuple union to its runtime shape.
+  const segments = useSegments() as readonly string[];
   const { tabBarHeight, bottomInset } = useScreen();
 
   return useMemo(() => {

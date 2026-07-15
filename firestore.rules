@@ -27,7 +27,9 @@ service cloud.firestore {
     }
 
     function canonicalUserMatchesAuth(stableUid) {
-      return stableUserMatchesAuth(stableUid);
+      return isOwner(stableUid)
+        || stableUserMatchesAuth(stableUid)
+        || authLinkMapsToUser(stableUid);
     }
 
     function userDocOwnerMatchesAuth(userId) {

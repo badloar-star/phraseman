@@ -7,4 +7,11 @@ describe('cloud restore result contract', () => {
       applied: false,
     });
   });
+
+  test('Firestore permission failures are not mislabeled as transport failures', () => {
+    expect(__cloudSyncTestHooks.classifyCloudRestoreFailure({ code: 'firestore/permission-denied' }))
+      .toBe('permission_denied');
+    expect(__cloudSyncTestHooks.classifyCloudRestoreFailure(new Error('network request failed')))
+      .toBe('failed');
+  });
 });

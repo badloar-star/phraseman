@@ -408,7 +408,7 @@ export function subscribeToFriends(
   let unsubscribe: (() => void) | null = null;
 
   ensureAnonUser()
-    .then(myUid => {
+    .then(async myUid => {
       if (cancelled) return;
       if (!myUid) {
         // Auth ещё не готов (холодный старт/сеть) — это НЕ «друзей нет». fromCache:true,
@@ -418,6 +418,12 @@ export function subscribeToFriends(
       }
       const db = getFirestore();
       if (!db) {
+        callback([], { fromCache: true });
+        return;
+      }
+      const authLinked = await ensureFriendsStableAuthLink('subscribe_friends', { myUid });
+      if (cancelled) return;
+      if (!authLinked) {
         callback([], { fromCache: true });
         return;
       }
@@ -471,7 +477,7 @@ export function subscribeToIncomingRequests(
   let unsubscribe: (() => void) | null = null;
 
   ensureAnonUser()
-    .then(myUid => {
+    .then(async myUid => {
       if (cancelled) return;
       if (!myUid) {
         callback([]);
@@ -479,6 +485,12 @@ export function subscribeToIncomingRequests(
       }
       const db = getFirestore();
       if (!db) {
+        callback([]);
+        return;
+      }
+      const authLinked = await ensureFriendsStableAuthLink('subscribe_incoming_requests', { myUid });
+      if (cancelled) return;
+      if (!authLinked) {
         callback([]);
         return;
       }

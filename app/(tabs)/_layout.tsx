@@ -615,7 +615,10 @@ export default function TabLayout() {
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();
   const pathname = usePathname();
-  const segments = useSegments();
+  // Expo Router exposes every generated route as a giant tuple union. Keeping
+  // that union inside hook dependency arrays can exceed TypeScript's
+  // representational limit; runtime values are simply path segments.
+  const segments = useSegments() as readonly string[];
   const [activeIdx, setActiveIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
   const [visualIdx, setVisualIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
   const [physicalPageIdx, setPhysicalPageIdx] = useState<PhysicalPageIndex>(() => logicalTabToPhysicalPage(tabIdxFromRouter(pathname, segments) ?? 0));

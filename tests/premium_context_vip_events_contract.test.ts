@@ -39,6 +39,16 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain("onAppEvent('loyalty_gift_changed'");
   });
 
+  it('handles every fire-and-forget public profile write rejection', () => {
+    const fireAndForgetLines = source
+      .split(/\r?\n/)
+      .filter((line) => line.includes('void syncPublicProfileSnapshot('));
+    expect(fireAndForgetLines.length).toBeGreaterThan(0);
+    for (const line of fireAndForgetLines) {
+      expect(line).toContain('.catch(() => {})');
+    }
+  });
+
   it('clears in-memory entitlement state immediately when account deletion completes locally', () => {
     const start = source.indexOf("onAppEvent('account_deleted'");
     expect(start).toBeGreaterThan(-1);

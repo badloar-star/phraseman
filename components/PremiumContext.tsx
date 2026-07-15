@@ -330,7 +330,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
                 setHasPremiumAccess(true);
                 emitAppEvent('vip_activated');
                 emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});
               } else {
                 const premiumNow = isPremiumRef.current;
                 setIsVip(false);
@@ -338,7 +338,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
                 void reloadTrialEligible();
                 emitAppEvent('vip_deactivated');
                 emitAppEvent('premium_access_changed', { active: premiumNow, source: premiumNow ? 'premium' : 'none' });
-                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium: premiumNow });
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium: premiumNow }).catch(() => {});
               }
             })();
           },
@@ -427,7 +427,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
       void reload();
       emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip }).catch(() => {});
     });
     return () => sub.remove();
   }, [reload]);
@@ -441,7 +441,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setTrialEligible(false);
       invalidatePremiumCache();
       void reload();
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});
     });
     const onDeactivated = onAppEvent('vip_deactivated', () => {
       setIsVip(false);
@@ -449,7 +449,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       invalidatePremiumCache();
       void reloadTrialEligible();
       void reload();
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium }).catch(() => {});
     });
     return () => {
       onActivated.remove();
@@ -502,7 +502,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         .catch(() => {});
       void reload();
       emitAppEvent('premium_access_changed', { active: isVip, source: isVip ? 'vip' : 'none' });
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: false, isVip });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: false, isVip }).catch(() => {});
     });
     return () => sub.remove();
   }, [isVip, reload]);

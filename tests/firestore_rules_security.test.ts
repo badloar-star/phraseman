@@ -245,6 +245,12 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('allow update, delete: if false;');
   });
 
+  test('canonical identity accepts direct auth uid or the server-owned auth link before a user doc exists', () => {
+    expect(rules).toMatch(
+      /function canonicalUserMatchesAuth\(stableUid\) \{[\s\S]*?isOwner\(stableUid\)[\s\S]*?stableUserMatchesAuth\(stableUid\)[\s\S]*?authLinkMapsToUser\(stableUid\)/,
+    );
+  });
+
   test('notification center accepts the same canonical ownership proofs as other user inboxes', () => {
     const block = rules.match(/match \/users\/\{userId\}\/notifications\/\{notificationId\} \{[\s\S]*?\n    \}/);
     expect(block).not.toBeNull();

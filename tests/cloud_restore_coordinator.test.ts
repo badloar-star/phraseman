@@ -5,7 +5,7 @@ describe('boot cloud restore coordinator', () => {
     ['restored', true, true, true],
     ['restored', false, true, false],
     ['not_found', true, false, true],
-    ['not_found', false, false, false],
+    ['not_found', false, false, true],
     ['failed', true, false, false],
     ['failed', false, false, false],
   ] as const)(

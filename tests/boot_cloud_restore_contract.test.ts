@@ -28,6 +28,20 @@ describe('boot cloud restore integration contract', () => {
     expect(layout).not.toContain("try { emitAppEvent('cloud_profile_hydrated');");
   });
 
+  it('reconciles a persisted provider identity before either boot restore path', () => {
+    expect(layout).toContain('async function restoreCloudProfileForBoot()');
+    expect(layout).toContain('reconcileAuthIdentityForBoot');
+    expect(layout.match(/return restoreCloudProfileForBoot\(\);/g)).toHaveLength(2);
+    expect(layout.match(/return restoreFromCloudDetailed\(\);/g)).toHaveLength(1);
+  });
+
+  it('does not label authentication or permission failures as an internet outage', () => {
+    expect(cloudSync).toContain("'auth_unavailable'");
+    expect(cloudSync).toContain("'permission_denied'");
+    expect(layout).toContain("bootRestoreOutcome.status === 'failed'");
+    expect(layout).not.toContain("bootRestoreOutcome.status !== 'restored'");
+  });
+
   it('does not stage level-up rewards while restoring historical cloud XP', () => {
     expect(cloudSync).not.toContain('level_up_reward_reconciler');
     expect(cloudSync).not.toContain('reconcileLevelUpRewards');

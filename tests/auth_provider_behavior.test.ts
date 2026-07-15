@@ -224,6 +224,45 @@ function loadAuthProvider(initialStorage?: Record<string, string>): typeof impor
   return mod;
 }
 
+test('boot identity reconciliation swaps a persisted provider session to the server canonical stable id', async () => {
+  authState.isAnonymous = false;
+  ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    requestedStableId: 'local-stable-id',
+    stableUid: 'remote-stable-id',
+    authUid: 'provider-uid-1',
+    source: 'callable',
+  });
+  const provider = loadAuthProvider() as typeof import('../app/auth_provider') & {
+    reconcileAuthIdentityForBoot?: () => Promise<string>;
+  };
+
+  expect(typeof provider.reconcileAuthIdentityForBoot).toBe('function');
+  const result = await provider.reconcileAuthIdentityForBoot!();
+
+  expect(result).toBe('swapped');
+  expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(mockStableId).toBe('remote-stable-id');
+});
+
+test('boot identity reconciliation never lets an anonymous session adopt another stable id', async () => {
+  authState.isAnonymous = true;
+  ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    requestedStableId: 'local-stable-id',
+    stableUid: 'remote-stable-id',
+    authUid: 'anon-uid-1',
+    source: 'callable',
+  });
+  const { reconcileAuthIdentityForBoot } = loadAuthProvider();
+
+  await expect(reconcileAuthIdentityForBoot()).resolves.toBe('unavailable');
+  expect(quiesceSyncBeforeStableIdSwap).not.toHaveBeenCalled();
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(mockStableId).toBe('local-stable-id');
+});
+
 test('sign-in over an anonymous user tries linkWithCredential FIRST (does not destroy the anon uid)', async () => {
   const { signInWithProvider } = loadAuthProvider();
   const res = await signInWithProvider('google');

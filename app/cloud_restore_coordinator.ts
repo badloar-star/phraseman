@@ -33,7 +33,10 @@ export function createBootCloudRestoreCoordinator(deps: BootCloudRestoreDependen
       return {
         status,
         hasLocalAccountData,
-        shouldSync: status !== 'failed' && hasLocalAccountData,
+        // A confirmed missing document is safe to initialize even when the
+        // account has no learning progress yet. Social/public-profile rules
+        // need the owner anchor before their first subscription/write.
+        shouldSync: status === 'not_found' || (status === 'restored' && hasLocalAccountData),
       };
     })();
     return inFlight;

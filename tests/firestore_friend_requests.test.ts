@@ -12,6 +12,7 @@ import type {
   SendRequestResult,
   FriendEntry,
   FriendRequestEntry,
+  SubscribeFriendsSnapshotMeta,
 } from '../app/firestore_friend_requests';
 
 // ── In-memory Firestore state ──────────────────────────────────────────────
@@ -344,4 +345,32 @@ test('S02: subscribeToIncomingRequests filters by status pending and returns uns
   expect(pendingEntry?.fromName).toBe('Roma Prime');
   // Accepted request must NOT appear.
   expect(entries.find(r => r.fromUid === 'req-uid-777')).toBeUndefined();
+});
+
+test('S03: subscribeToFriends does not open Firestore when the stable auth link is unavailable', async () => {
+  stableAuthLinkResult = false;
+  mockDocs.set('users/my-uid-111/friends/friend-uid-555', { createdAt: 800 });
+  const { subscribeToFriends } = require('../app/firestore_friend_requests');
+
+  const received = await new Promise<{ friends: FriendEntry[]; fromCache: boolean }>(resolve => {
+    subscribeToFriends((friends: FriendEntry[], meta?: SubscribeFriendsSnapshotMeta) => {
+      resolve({ friends, fromCache: meta?.fromCache === true });
+    });
+  });
+
+  expect(stableAuthLinkCalls).toBe(1);
+  expect(received).toEqual({ friends: [], fromCache: true });
+});
+
+test('S04: subscribeToIncomingRequests does not open Firestore when the stable auth link is unavailable', async () => {
+  stableAuthLinkResult = false;
+  mockDocs.set('users/my-uid-111/friend_requests/req-uid-666', { status: 'pending', createdAt: 900 });
+  const { subscribeToIncomingRequests } = require('../app/firestore_friend_requests');
+
+  const received = await new Promise<FriendRequestEntry[]>(resolve => {
+    subscribeToIncomingRequests(resolve);
+  });
+
+  expect(stableAuthLinkCalls).toBe(1);
+  expect(received).toEqual([]);
 });

@@ -2,7 +2,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useTheme, getVolumetricShadow } from '../ThemeContext';

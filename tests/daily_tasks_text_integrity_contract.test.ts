@@ -28,3 +28,12 @@ test('screen retains every live task capability after removing duplicate rendere
     expect(screen).toContain(token);
   }
 });
+
+test('task capsule preserves the card vertical padding for multiline copy', () => {
+  const component = fs.readFileSync(componentPath, 'utf8');
+  const taskCapsuleStyle = screen.match(/taskCapsuleCard:\s*\{([\s\S]*?)\n\s*\},/)?.[1];
+
+  expect(component).toMatch(/card:\s*\{[^}]*paddingVertical:\s*12/);
+  expect(taskCapsuleStyle).toBeDefined();
+  expect(taskCapsuleStyle).not.toMatch(/paddingVertical:/);
+});

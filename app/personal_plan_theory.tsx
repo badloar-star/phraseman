@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import { useTheme } from '../components/ThemeContext';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { safeRouterBack } from './navigation_back';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getBundledCompatibilityPlanContentTheoryDay } from './plan_content_readiness';

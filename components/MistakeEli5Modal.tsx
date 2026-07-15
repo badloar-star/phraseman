@@ -19,7 +19,7 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import SkeletonBlock from './SkeletonShimmer';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
@@ -29,6 +29,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
+import TonalSurface from './TonalSurface';
 
 export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -144,6 +145,7 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
             },
           ]}
         >
+          <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
           <LinearGradient
             colors={[`${t.accent}1F`, 'transparent']}
             start={{ x: 0.5, y: 0 }}

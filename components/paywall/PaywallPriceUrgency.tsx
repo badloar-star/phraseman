@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { getUrgencyState, formatCountdown, type UrgencyState } from '../../app/paywall_urgency';

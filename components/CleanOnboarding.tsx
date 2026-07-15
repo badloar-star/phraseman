@@ -22,7 +22,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LinearGradient } from './SafeLinearGradient';
@@ -83,43 +83,43 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 
-const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.png');
+const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 const ONBOARDING_ASSETS = {
-  sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.png'),
-  sourceStore: require('../assets/images/flow_clean_202607/source_store.png'),
-  sourceSocial: require('../assets/images/flow_clean_202607/source_social.png'),
-  sourceYoutube: require('../assets/images/flow_clean_202607/source_youtube.png'),
-  sourceGoogle: require('../assets/images/flow_clean_202607/source_google.png'),
-  sourceFriends: require('../assets/images/flow_clean_202607/source_friends.png'),
-  sourceOther: require('../assets/images/flow_clean_202607/source_other.png'),
+  sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.webp'),
+  sourceStore: require('../assets/images/flow_clean_202607/source_store.webp'),
+  sourceSocial: require('../assets/images/flow_clean_202607/source_social.webp'),
+  sourceYoutube: require('../assets/images/flow_clean_202607/source_youtube.webp'),
+  sourceGoogle: require('../assets/images/flow_clean_202607/source_google.webp'),
+  sourceFriends: require('../assets/images/flow_clean_202607/source_friends.webp'),
+  sourceOther: require('../assets/images/flow_clean_202607/source_other.webp'),
   languageEn: require('../assets/images/language_flags/language_en.webp'),
   languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
-  levelA0: require('../assets/images/flow_clean_202607/level_a0.png'),
-  levelA1: require('../assets/images/flow_clean_202607/level_a1.png'),
-  levelA2: require('../assets/images/flow_clean_202607/level_a2.png'),
-  levelB1: require('../assets/images/flow_clean_202607/level_b1.png'),
-  levelB2: require('../assets/images/flow_clean_202607/level_b2.png'),
-  goalSeries: require('../assets/images/flow_clean_202607/goal_series.png'),
-  goalEveryday: require('../assets/images/flow_clean_202607/goal_everyday.png'),
-  goalTravel: require('../assets/images/flow_clean_202607/goal_travel.png'),
-  goalWords: require('../assets/images/flow_clean_202607/goal_words.png'),
-  goalMind: require('../assets/images/flow_clean_202607/goal_mind.png'),
-  minutes5: require('../assets/images/flow_clean_202607/minutes_5.png'),
-  minutes10: require('../assets/images/flow_clean_202607/minutes_10.png'),
-  minutes15: require('../assets/images/flow_clean_202607/minutes_15.png'),
-  minutes20: require('../assets/images/flow_clean_202607/minutes_20.png'),
-  introCompass: require('../assets/images/flow_clean_202607/intro_compass.png'),
-  notifications: require('../assets/images/flow_clean_202607/notifications.png'),
-  planResult: require('../assets/images/flow_clean_202607/plan_result.png'),
-  startPlus: require('../assets/images/flow_clean_202607/start_plus.png'),
-  startFree: require('../assets/images/flow_clean_202607/start_free.png'),
-  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.png'),
-  benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.png'),
-  benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.png'),
-  benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.png'),
-  paywallYearly: require('../assets/images/flow_clean_202607/paywall_yearly.png'),
-  paywallMonthly: require('../assets/images/flow_clean_202607/paywall_monthly.png'),
-  paywallLifetime: require('../assets/images/flow_clean_202607/paywall_lifetime.png'),
+  levelA0: require('../assets/images/flow_clean_202607/level_a0.webp'),
+  levelA1: require('../assets/images/flow_clean_202607/level_a1.webp'),
+  levelA2: require('../assets/images/flow_clean_202607/level_a2.webp'),
+  levelB1: require('../assets/images/flow_clean_202607/level_b1.webp'),
+  levelB2: require('../assets/images/flow_clean_202607/level_b2.webp'),
+  goalSeries: require('../assets/images/flow_clean_202607/goal_series.webp'),
+  goalEveryday: require('../assets/images/flow_clean_202607/goal_everyday.webp'),
+  goalTravel: require('../assets/images/flow_clean_202607/goal_travel.webp'),
+  goalWords: require('../assets/images/flow_clean_202607/goal_words.webp'),
+  goalMind: require('../assets/images/flow_clean_202607/goal_mind.webp'),
+  minutes5: require('../assets/images/flow_clean_202607/minutes_5.webp'),
+  minutes10: require('../assets/images/flow_clean_202607/minutes_10.webp'),
+  minutes15: require('../assets/images/flow_clean_202607/minutes_15.webp'),
+  minutes20: require('../assets/images/flow_clean_202607/minutes_20.webp'),
+  introCompass: require('../assets/images/flow_clean_202607/intro_compass.webp'),
+  notifications: require('../assets/images/flow_clean_202607/notifications.webp'),
+  planResult: require('../assets/images/flow_clean_202607/plan_result.webp'),
+  startPlus: require('../assets/images/flow_clean_202607/start_plus.webp'),
+  startFree: require('../assets/images/flow_clean_202607/start_free.webp'),
+  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.webp'),
+  benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.webp'),
+  benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.webp'),
+  benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.webp'),
+  paywallYearly: require('../assets/images/flow_clean_202607/paywall_yearly.webp'),
+  paywallMonthly: require('../assets/images/flow_clean_202607/paywall_monthly.webp'),
+  paywallLifetime: require('../assets/images/flow_clean_202607/paywall_lifetime.webp'),
 };
 
 export type OnboardingProps = {
@@ -1356,28 +1356,30 @@ function CleanOnboarding({
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
+      await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE).catch(() => null);
+      if (analyticsAllowed) {
+        await setAnalyticsConsent('granted').catch(() => null);
+        if (source) {
+          trackOnboarding('onboarding_source_select', {
+            source,
+            consented: true,
+          });
+        }
+        trackOnboarding('onboarding_complete', {
+          goal: selectedGoal,
+          level: selectedLevel,
+          minutes: selectedMinutes,
+          target: studyTarget,
+          plusSelected,
+        });
+      } else {
+        await setAnalyticsConsent('denied').catch(() => null);
+      }
       onDone();
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
-      void (async () => {
-        await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE).catch(() => null);
-        await setAnalyticsConsent(analyticsAllowed ? 'granted' : 'denied').catch(() => null);
-        await recordConsentToCloud().catch(() => null);
-      })();
+      void recordConsentToCloud().catch(() => null);
       void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
-      if (analyticsAllowed && source) {
-        trackOnboarding('onboarding_source_select', {
-          source,
-          consented: true,
-        });
-      }
-      trackOnboarding('onboarding_complete', {
-        goal: selectedGoal,
-        level: selectedLevel,
-        minutes: selectedMinutes,
-        target: studyTarget,
-        plusSelected,
-      });
     } finally {
       finishingRef.current = false;
     }

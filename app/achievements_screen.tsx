@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image as ExpoImage } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
@@ -1765,7 +1765,7 @@ const AccordionSection = memo(function AccordionSection({
   revealLockedDetails,
   themeMode,
 }: AccordionSectionProps) {
-  const sectionSurfaceColors = isOpen
+  const sectionSurfaceColors: readonly [string, string, string] = isOpen
     ? [section.color + '24', t.bgCard, t.bgSurface]
     : [section.color + '14', glassFill(t.bgSurface, 0.72), t.bgSurface];
   return (

@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import type { SurveyDailyChallengeSnapshot } from '../app/survey_daily_challenge_model';
 import { DailyTaskCard } from './daily-tasks/DailyTaskCard';

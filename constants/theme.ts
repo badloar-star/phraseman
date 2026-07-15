@@ -7,10 +7,10 @@ import { CINEMA, cinemaAlpha, type CinemaPalette } from './cinemaThemes';
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
-  bgPrimary:   '#07100A',
-  bgCard:      '#152019',
-  bgSurface:   '#1D2D23',
-  bgSurface2:  '#253630',
+  bgPrimary:   '#030604',
+  bgCard:      '#101710',
+  bgSurface:   '#17241A',
+  bgSurface2:  '#203028',
   // Текст
   textPrimary: '#F0F7F2',
   textOnCard:  '#F0F7F2',   // = textPrimary (тёмный фон и карточки одного типа)
@@ -49,9 +49,9 @@ export const DARK = {
   cardShadow:  'rgba(0,0,0,0.55)',
   glow:        'rgba(71,200,112,0.32)',
   // Градиент карточки — усиленный контраст (светлее слева-сверху, темнее справа-снизу)
-  cardGradient: ['#1F2E24', '#070F0A'] as [string, string],
+  cardGradient: ['#2B4A32', '#070B08'] as [string, string],
   // Градиент фона экрана (сверху → снизу)
-  bgGradient: ['#07120B', '#010201'] as [string, string],
+  bgGradient: ['#050B06', '#010101'] as [string, string],
 };
 
 export const GOLD = {
@@ -88,15 +88,15 @@ export const GOLD = {
   cardShadow:  'rgba(0,0,0,0.78)',
   glow:        GOLD_RICH.bronzeWash,
   cardGradient: [GOLD_GRADIENTS.premiumPanel[0], GOLD_GRADIENTS.premiumPanel[2]] as [string, string],
-  bgGradient: ['#151005', '#010101'] as [string, string],
+  bgGradient: ['#0D0A04', '#010101'] as [string, string],
 };
 
 export const CORAL = {
   // Coral / Finance Dark: soft rose screen background with warm cocoa surfaces.
-  bgPrimary:   '#1C1113',
-  bgCard:      '#21181B',
-  bgSurface:   '#2D2024',
-  bgSurface2:  '#3A2A2E',
+  bgPrimary:   '#090405',
+  bgCard:      '#171013',
+  bgSurface:   '#22171B',
+  bgSurface2:  '#302126',
   textPrimary: '#FFFFFF',
   textOnCard:  '#FFFFFF',
   textSecond:  '#FF6464',
@@ -124,8 +124,8 @@ export const CORAL = {
   btnShadow:   '#6A1A2A',
   cardShadow:  'rgba(0,0,0,0.60)',
   glow:        'rgba(255,100,100,0.22)',
-  cardGradient: ['#2E2226', '#0B0708'] as [string, string],
-  bgGradient: ['#17090C', '#010101'] as [string, string],
+  cardGradient: ['#3A242B', '#070304'] as [string, string],
+  bgGradient: ['#0E0507', '#010101'] as [string, string],
 };
 
 // ─── LIGHT OCEAN ─────────────────────────────────────────────────────────────
@@ -224,10 +224,10 @@ export const LIGHT_SAKURA = {
 // ─── MODERN MINIMAL (Apple-like) ─────────────────────────────────────────────
 // Neutral grayscale, generous whitespace, rounded cards, subtle contrast.
 export const MINIMAL_DARK = {
-  bgPrimary:   '#121212',
-  bgCard:      '#232428',
-  bgSurface:   '#2D2F34',
-  bgSurface2:  '#363940',
+  bgPrimary:   '#08090C',
+  bgCard:      '#15171C',
+  bgSurface:   '#1D2027',
+  bgSurface2:  '#282C35',
   textPrimary: '#F5F5F5',
   textOnCard:  '#F5F5F5',
   textSecond:  '#6EA8FF',
@@ -255,8 +255,8 @@ export const MINIMAL_DARK = {
   btnShadow:   'rgba(0,0,0,0.45)',
   cardShadow:  'rgba(0,0,0,0.42)',
   glow:        'rgba(110,168,255,0.16)',
-  cardGradient: ['#31343B', '#23262C'] as [string, string],
-  bgGradient: ['#111318', '#010102'] as [string, string],
+  cardGradient: ['#29384A', '#080A0F'] as [string, string],
+  bgGradient: ['#0B0D12', '#010102'] as [string, string],
 };
 
 // ─── «ЧЁРНОЕ КИНО» (midnight/ember/aurora/volt) ──────────────────────────────

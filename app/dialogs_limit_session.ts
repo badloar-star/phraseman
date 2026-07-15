@@ -15,8 +15,10 @@ function parseStoredCount(raw: string | null): number {
 
 export async function getFreeDialogsUsed(): Promise<number> {
   try {
+    const limit = getFreeDialogsLifetime();
+    if (limit <= 0) return 0;
     const stored = await AsyncStorage.getItem(FREE_DIALOG_USED_KEY);
-    if (stored != null) return Math.min(getFreeDialogsLifetime(), parseStoredCount(stored));
+    if (stored != null) return Math.min(limit, parseStoredCount(stored));
 
     // Migration from the previous one-free-dialog boolean. Users who already
     // spent that attempt keep one spent dialog, and still receive the second

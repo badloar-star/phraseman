@@ -165,6 +165,7 @@ describe('Gustav French curriculum contract', () => {
     expect(source).toContain("frenchLessonSupportGateCopy('lesson_hint', lang, lessonId)");
     expect(source).toContain('const frenchHintCopy = frenchHintBlocked ?');
     expect(source).toContain('frenchHintCopy ? (');
+    expect(source).toContain('TonalSurface');
     expect(source).toContain(': hint.render(t, lang, f)');
   });
 

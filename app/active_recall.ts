@@ -32,6 +32,15 @@ import { getTopMistakePhraseDetails, logMistake, type MistakeTokenMeta } from '.
 import { isCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { activeRecallItemsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { srsReviewContentAvailableForTarget } from './trainer_target_gate';
+import {
+  classifyActualDelay,
+  classifyDueStatus,
+  deriveMasteryTransition,
+  type ActualDelayBucket,
+  type LearningMasteryState,
+  type LearningMasteryTransition,
+  type ReviewDueStatus,
+} from './learning_review_analytics';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -39,6 +48,8 @@ import { srsReviewContentAvailableForTarget } from './trainer_target_gate';
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam';
 
 export interface RecallItem {
+  /** Random local identifier used for privacy-safe longitudinal analytics. */
+  analyticsItemId?: string;
   /** Неправильно введённая/пропущенная фраза (английская часть) */
   phrase:        string;
   /** Правильный перевод/вариант — русский */
@@ -73,6 +84,28 @@ export interface RecallItem {
   lastReviewed:  number;
   /** Unix timestamp (мс) — когда показать следующий раз */
   nextDue:       number;
+  /** Evidence state based only on observed delayed recall, never on a scheduled interval. */
+  masteryState?: LearningMasteryState;
+  masteredAtMs?: number;
+  durableMasteredAtMs?: number;
+  lastLapsedAtMs?: number;
+}
+
+export interface ReviewTransition {
+  analyticsItemId: string;
+  lessonId: number;
+  source: MistakeSource;
+  correct: boolean;
+  reviewedAtMs: number;
+  actualDelayBucket: ActualDelayBucket;
+  dueStatus: ReviewDueStatus;
+  previousRepetitions: number;
+  nextRepetitions: number;
+  previousIntervalDays: number;
+  nextIntervalDays: number;
+  previousMasteryState: LearningMasteryState;
+  nextMasteryState: LearningMasteryState;
+  masteryTransition: LearningMasteryTransition;
 }
 
 // ─── Константы ───────────────────────────────────────────────────────────────
@@ -88,6 +121,38 @@ export const SESSION_LIMIT = 7;
 const MAX_ITEMS = 300;
 /** Фраза не показывалась N дней → авто-удаление (пользователь всё равно забыл) */
 const AUTO_DELETE_DAYS = 60;
+
+const recallStorageTails = new Map<string, Promise<void>>();
+
+function recallStorageQueueKey(studyTarget?: RuntimeStudyTarget): string {
+  return activeRecallItemsKey(studyTarget);
+}
+
+async function withRecallStorageLock<T>(
+  studyTarget: RuntimeStudyTarget | undefined,
+  operation: () => Promise<T>,
+): Promise<T> {
+  const key = recallStorageQueueKey(studyTarget);
+  const previous = recallStorageTails.get(key) ?? Promise.resolve();
+  let release!: () => void;
+  const gate = new Promise<void>((resolve) => { release = resolve; });
+  const tail = previous.catch(() => {}).then(() => gate);
+  recallStorageTails.set(key, tail);
+  await previous.catch(() => {});
+  try {
+    return await operation();
+  } finally {
+    release();
+    if (recallStorageTails.get(key) === tail) recallStorageTails.delete(key);
+  }
+}
+
+function makeAnalyticsItemId(): string {
+  const runtimeCrypto = globalThis.crypto as { randomUUID?: () => string } | undefined;
+  const uuid = runtimeCrypto?.randomUUID?.();
+  if (uuid) return uuid;
+  return `ri_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 12)}_${Math.random().toString(36).slice(2, 8)}`;
+}
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
 
@@ -128,7 +193,11 @@ function applyRecallMistakeMeta(
 function mergeDuplicateRecallItems(a: RecallItem, b: RecallItem): RecallItem {
   const newer = a.lastReviewed >= b.lastReviewed ? a : b;
   const older = newer === a ? b : a;
+  const analyticsItemId = [a.analyticsItemId, b.analyticsItemId]
+    .filter((value): value is string => Boolean(value))
+    .sort()[0] ?? makeAnalyticsItemId();
   return {
+    analyticsItemId,
     phrase: newer.phrase,
     correctAnswer: newer.correctAnswer || older.correctAnswer,
     correctAnswerUK: newer.correctAnswerUK ?? older.correctAnswerUK,
@@ -146,6 +215,10 @@ function mergeDuplicateRecallItems(a: RecallItem, b: RecallItem): RecallItem {
     createdAt: Math.min(a.createdAt, b.createdAt),
     lastReviewed: Math.max(a.lastReviewed, b.lastReviewed),
     nextDue: Math.min(a.nextDue, b.nextDue),
+    masteryState: newer.masteryState ?? older.masteryState,
+    masteredAtMs: newer.masteredAtMs ?? older.masteredAtMs,
+    durableMasteredAtMs: newer.durableMasteredAtMs ?? older.durableMasteredAtMs,
+    lastLapsedAtMs: newer.lastLapsedAtMs ?? older.lastLapsedAtMs,
   };
 }
 
@@ -194,19 +267,27 @@ const PHRASE_CORRECTIONS: Record<string, string> = {
 
 // ─── Загрузка / сохранение ───────────────────────────────────────────────────
 
-async function loadItems(studyTarget?: RuntimeStudyTarget): Promise<RecallItem[]> {
+async function loadItemsUnlocked(studyTarget?: RuntimeStudyTarget): Promise<{ items: RecallItem[]; changed: boolean }> {
   try {
     const raw = await AsyncStorage.getItem(activeRecallItemsKey(studyTarget));
-    if (!raw) return [];
+    if (!raw) return { items: [], changed: false };
     const items = JSON.parse(raw) as RecallItem[];
     return applyCorrections(items, studyTarget);
   } catch {
-    return [];
+    return { items: [], changed: false };
   }
 }
 
+async function loadItems(studyTarget?: RuntimeStudyTarget): Promise<RecallItem[]> {
+  return withRecallStorageLock(studyTarget, async () => {
+    const normalized = await loadItemsUnlocked(studyTarget);
+    if (normalized.changed) await saveItems(normalized.items, studyTarget);
+    return normalized.items;
+  });
+}
+
 /** Исправляет устаревшие фразы в хранилище (однократно при загрузке). */
-function applyCorrections(items: RecallItem[], studyTarget?: RuntimeStudyTarget): RecallItem[] {
+function applyCorrections(items: RecallItem[], studyTarget?: RuntimeStudyTarget): { items: RecallItem[]; changed: boolean } {
   let changed = false;
   const applyEnglishCorrections = storageStudyTarget(studyTarget) !== 'fr';
 
@@ -242,10 +323,17 @@ function applyCorrections(items: RecallItem[], studyTarget?: RuntimeStudyTarget)
   }
 
   const fixed = Array.from(byPhrase.values());
-  if (changed) {
-    AsyncStorage.setItem(activeRecallItemsKey(studyTarget), JSON.stringify(fixed)).catch(() => {});
+  const usedIds = new Set<string>();
+  for (const item of fixed) {
+    let analyticsItemId = item.analyticsItemId?.trim();
+    if (!analyticsItemId || usedIds.has(analyticsItemId)) {
+      analyticsItemId = makeAnalyticsItemId();
+      item.analyticsItemId = analyticsItemId;
+      changed = true;
+    }
+    usedIds.add(analyticsItemId);
   }
-  return fixed;
+  return { items: fixed, changed };
 }
 
 async function saveItems(items: RecallItem[], studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -277,7 +365,8 @@ export async function recordMistake(
   meta?:            MistakeTokenMeta,
   studyTarget?:     RuntimeStudyTarget,
 ): Promise<void> {
-  const raw = await loadItems(studyTarget);
+  return withRecallStorageLock(studyTarget, async () => {
+  const { items: raw } = await loadItemsUnlocked(studyTarget);
 
   const phraseKey = recallPhraseKey(phrase);
   const mistakeMeta = resolveRecallMistakeMeta(phraseKey, meta);
@@ -296,6 +385,7 @@ export async function recordMistake(
   const existing = items.find(i => i.phrase === phraseKey);
 
   if (existing) {
+    const wasMastered = existing.masteryState === 'mastered' || existing.masteryState === 'durable_mastered';
     // Фраза уже есть — увеличиваем счётчик, снижаем easeFactor, сбрасываем интервал
     existing.errorCount  += 1;
     existing.repetitions  = 0;
@@ -305,6 +395,10 @@ export async function recordMistake(
       existing.easeFactor - 0.2,
     );
     existing.lastReviewed = Date.now();
+    if (wasMastered) {
+      existing.masteryState = 'learning';
+      existing.lastLapsedAtMs = existing.lastReviewed;
+    }
     // Актуализируем подсказки и урок/источник
     if (correctAnswer) existing.correctAnswer = correctAnswer;
     if (correctAnswerUK) existing.correctAnswerUK = correctAnswerUK;
@@ -317,6 +411,7 @@ export async function recordMistake(
   } else {
     // Новая фраза
     const newItem: RecallItem = {
+      analyticsItemId: makeAnalyticsItemId(),
       phrase: phraseKey,
       correctAnswer,
       correctAnswerUK,
@@ -336,6 +431,7 @@ export async function recordMistake(
   }
 
   await saveItems(items, studyTarget);
+  });
 }
 
 /** Режимы Тренера — влияют на фильтрацию/сортировку getTrainerItems. */
@@ -368,7 +464,9 @@ export async function getDueItems(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<RecallItem[]> {
   if (!srsReviewContentAvailableForTarget(studyTarget)) return [];
-  const items = await loadItems(studyTarget);
+  return withRecallStorageLock(studyTarget, async () => {
+  const normalized = await loadItemsUnlocked(studyTarget);
+  const items = normalized.items;
   const endOfToday = endOfTodayMs();
   const commit = options?.commitSessionOverflow === true;
 
@@ -388,9 +486,12 @@ export async function getDueItems(
       }
     }
     await saveItems(items, studyTarget);
+  } else if (normalized.changed) {
+    await saveItems(items, studyTarget);
   }
 
   return selected;
+  });
 }
 
 const FRESH_WINDOW_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней
@@ -576,52 +677,79 @@ export async function markReviewed(
   gotCorrect:  boolean,
   meta?:       MistakeTokenMeta,
   studyTarget?: RuntimeStudyTarget,
-): Promise<void> {
-  const items = await loadItems(studyTarget);
-  const item  = items.find(i => i.phrase === phrase);
-  if (!item) return;
+): Promise<ReviewTransition | undefined> {
+  const transition = await withRecallStorageLock(studyTarget, async () => {
+    const { items } = await loadItemsUnlocked(studyTarget);
+    const item = items.find(i => i.phrase === phrase);
+    if (!item) return undefined;
 
-  const quality = gotCorrect ? GOOD_QUALITY : 0; // SM-2: 0–5
-  item.lastReviewed = Date.now();
+    const reviewedAtMs = Date.now();
+    const previousLastReviewed = item.lastReviewed;
+    const previousNextDue = item.nextDue;
+    const previousRepetitions = item.repetitions;
+    const previousIntervalDays = item.interval;
+    const actualDelayBucket = classifyActualDelay(reviewedAtMs - previousLastReviewed);
+    const dueStatus = classifyDueStatus(reviewedAtMs - previousNextDue);
+    const mastery = deriveMasteryTransition({
+      previousState: item.masteryState,
+      correct: gotCorrect,
+      actualDelayBucket,
+    });
+    const quality = gotCorrect ? GOOD_QUALITY : 0;
+    item.lastReviewed = reviewedAtMs;
 
-  if (gotCorrect) {
-    // SM-2: повышаем repetitions и пересчитываем интервал
-    item.repetitions += 1;
+    if (gotCorrect) {
+      item.repetitions += 1;
+      if (item.repetitions === 1) item.interval = 1;
+      else if (item.repetitions === 2) item.interval = 3;
+      else item.interval = Math.round(item.interval * item.easeFactor);
 
-    if (item.repetitions === 1) {
-      item.interval = 1;
-    } else if (item.repetitions === 2) {
-      item.interval = 3;
+      const q = quality;
+      item.easeFactor = Math.min(
+        MAX_EASE_FACTOR,
+        Math.max(
+          MIN_EASE_FACTOR,
+          item.easeFactor + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02),
+        ),
+      );
     } else {
-      item.interval = Math.round(item.interval * item.easeFactor);
+      item.repetitions = 0;
+      item.interval = 1;
+      item.easeFactor = Math.max(MIN_EASE_FACTOR, item.easeFactor - 0.2);
+      item.errorCount += 1;
+      applyRecallMistakeMeta(item, resolveRecallMistakeMeta(item.phrase, meta));
     }
 
-    // Обновляем easeFactor: EF' = EF + (0.1 − (5−q)×(0.08+(5−q)×0.02))
-    // При quality=3 это +0 (нейтрально)
-    const q = quality;
-    item.easeFactor = Math.min(
-      MAX_EASE_FACTOR,
-      Math.max(
-        MIN_EASE_FACTOR,
-        item.easeFactor + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02),
-      ),
-    );
-  } else {
-    // Неправильно — сброс
-    item.repetitions  = 0;
-    item.interval     = 1;
-    item.easeFactor   = Math.max(MIN_EASE_FACTOR, item.easeFactor - 0.2);
-    item.errorCount  += 1;
-    applyRecallMistakeMeta(item, resolveRecallMistakeMeta(item.phrase, meta));
-  }
+    item.nextDue = reviewedAtMs + item.interval * MS_PER_DAY;
+    item.masteryState = mastery.nextState;
+    if (mastery.transition === 'mastered' && !item.masteredAtMs) item.masteredAtMs = reviewedAtMs;
+    if (mastery.transition === 'durable_mastered' && !item.durableMasteredAtMs) item.durableMasteredAtMs = reviewedAtMs;
+    if (mastery.transition === 'lapsed') item.lastLapsedAtMs = reviewedAtMs;
+    await saveItems(items, studyTarget);
 
-  item.nextDue = daysFromNow(item.interval);
-  await saveItems(items, studyTarget);
+    return {
+      analyticsItemId: item.analyticsItemId!,
+      lessonId: item.lessonId,
+      source: item.source ?? 'lesson',
+      correct: gotCorrect,
+      reviewedAtMs,
+      actualDelayBucket,
+      dueStatus,
+      previousRepetitions,
+      nextRepetitions: item.repetitions,
+      previousIntervalDays,
+      nextIntervalDays: item.interval,
+      previousMasteryState: mastery.previousState,
+      nextMasteryState: mastery.nextState,
+      masteryTransition: mastery.transition,
+    } satisfies ReviewTransition;
+  });
 
-  if (gotCorrect) {
+  if (gotCorrect && transition) {
     const { checkAchievements } = await import('./achievements');
     void checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget });
   }
+  return transition;
 }
 
 /**
@@ -636,9 +764,11 @@ export async function getAllItems(studyTarget?: RuntimeStudyTarget): Promise<Rec
  * решил, что уже хорошо её знает).
  */
 export async function removeItem(phrase: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
-  const items  = await loadItems(studyTarget);
-  const filtered = items.filter(i => i.phrase !== phrase);
-  await saveItems(filtered, studyTarget);
+  await withRecallStorageLock(studyTarget, async () => {
+    const { items } = await loadItemsUnlocked(studyTarget);
+    const filtered = items.filter(i => i.phrase !== phrase);
+    await saveItems(filtered, studyTarget);
+  });
 }
 
 /**
@@ -646,7 +776,7 @@ export async function removeItem(phrase: string, studyTarget?: RuntimeStudyTarge
  * ОСТОРОЖНО: необратимо.
  */
 export async function clearAllItems(studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await AsyncStorage.removeItem(activeRecallItemsKey(studyTarget));
+  await withRecallStorageLock(studyTarget, () => AsyncStorage.removeItem(activeRecallItemsKey(studyTarget)));
 }
 
 /**
@@ -825,11 +955,13 @@ export async function seedAdminTestReviewSession(studyTarget?: RuntimeStudyTarge
     return false;
   }
 
-  const existing = await loadItems(studyTarget);
+  return withRecallStorageLock(studyTarget, async () => {
+  const { items: existing } = await loadItemsUnlocked(studyTarget);
   const rest = existing.filter(i => i.lessonId !== ADMIN_BENCH_LESSON_ID);
   const t0 = todayStart() - 1; // наступило «сегодня» для getDueItems
   const now = Date.now();
   const seeded: RecallItem[] = ADMIN_TEST_BENCH.map(t => ({
+    analyticsItemId: makeAnalyticsItemId(),
     phrase: t.phrase,
     correctAnswer: t.correctAnswer,
     correctAnswerUK: t.correctAnswerUK,
@@ -845,6 +977,7 @@ export async function seedAdminTestReviewSession(studyTarget?: RuntimeStudyTarge
   }));
   await saveItems([...rest, ...seeded], studyTarget);
   return true;
+  });
 }
 
 // ─── Хелпер для интеграции с lesson1.tsx (вызывается при checkAnswer) ────────

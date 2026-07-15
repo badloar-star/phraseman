@@ -28,6 +28,20 @@ describe('Admin v2 subscription lifecycle contract', () => {
     expect(module).not.toContain('удаление приложения вызвало');
   });
 
+  it('renders server-confirmed money, mature subscription-chain cohorts and honest unavailable states', () => {
+    const module = read('admin/v2/scripts/pages/subscription-analytics.js');
+    expect(module).toContain('Подтверждённая gross-выручка');
+    expect(module).toContain('Оценочные поступления');
+    expect(module).toContain('Финальные поступления магазина не импортированы');
+    expect(module).toContain('ARPU недоступен');
+    expect(module).toContain('LTV цепочки подписки');
+    expect(module).toContain('Зрелые цепочки');
+    expect(module).toContain('truncated_not_decision_grade');
+    expect(module).toContain('revenue.leftTruncatedChains');
+    expect(module).toContain('исключены из продлений и LTV');
+    expect(module).not.toContain('customer LTV');
+  });
+
   it('uses an admin callable rather than direct Firestore reads', () => {
     const module = read('admin/v2/scripts/pages/subscription-analytics.js');
     const html = read('admin/v2/scripts/admin-firebase.js');

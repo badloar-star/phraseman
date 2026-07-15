@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import TapScale from '../components/TapScale';
@@ -20,6 +20,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { applyManualReferralCode, type ReferralApplyStatus } from './referral_bootstrap';
 import { safeRouterBack } from './navigation_back';
+import TonalSurface from '../components/TonalSurface';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -223,11 +224,10 @@ export default function ReferralCodeEntryScreen() {
               </Text>
             </View>
 
-            <View
+            <TonalSurface
+              radius={20}
               style={{
-                borderRadius: 20,
                 padding: 18,
-                backgroundColor: t.bgCard,
                 gap: 14,
               }}
             >
@@ -310,7 +310,7 @@ export default function ReferralCodeEntryScreen() {
                   {feedback.text}
                 </Text>
               )}
-            </View>
+            </TonalSurface>
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>

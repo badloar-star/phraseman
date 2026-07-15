@@ -85,4 +85,18 @@ describe('admin v2 daily briefing and report center', () => {
     expect(sendBlock.indexOf('await actions.sendReportReply')).toBeLessThan(sendBlock.indexOf("authStillValid(authGeneration, 'reports.reply.send')"));
     expect(sendBlock.indexOf("authStillValid(authGeneration, 'reports.reply.send')")).toBeLessThan(sendBlock.indexOf('delete nextDrafts'));
   });
+
+  it('rerenders the report center after accepting a successful background response', () => {
+    const loadBlock = core.slice(core.indexOf('async function loadReportQueue'), core.indexOf('function scheduleAdminAutoRefresh'));
+    const acceptedResult = loadBlock.indexOf('state.reports = {', loadBlock.indexOf('const result = await actions.listReportQueue'));
+
+    expect(acceptedResult).toBeGreaterThan(-1);
+    expect(loadBlock.indexOf('renderCurrentPage();', acceptedResult)).toBeGreaterThan(acceptedResult);
+  });
+
+  it('does not schedule a second report refresh while one is loading', () => {
+    const scheduleBlock = core.slice(core.indexOf('function scheduleAdminAutoRefresh'), core.indexOf('function assertFactoryWorkspaceCoverage'));
+
+    expect(scheduleBlock).toContain("state.reports.state === 'loading'");
+  });
 });

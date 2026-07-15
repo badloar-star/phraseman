@@ -47,6 +47,20 @@ describe('Admin v2 product analytics contract', () => {
     expect(html).toContain('Установка приложения не равна уникальному человеку');
   });
 
+  it('renders true first-touch retention and activation beside the preserved observed-window diagnostic', () => {
+    const product = read('admin/v2/scripts/pages/product-analytics.js');
+    const retention = read('admin/v2/scripts/pages/retention-diagnostics.js');
+    expect(product).toContain('data.trueRetention');
+    expect(product).toContain('data.observedReturn');
+    expect(product).toContain('data.activation');
+    expect(product).toContain('data.acquisition');
+    expect(retention).toContain('const RETENTION_DAYS = [1, 7, 14, 30]');
+    expect(retention).toContain("['rolling_d' + day + '_rate']");
+    expect(retention).toContain('first_touch_coverage_rate');
+    expect(retention).toContain('observedData');
+    expect(retention).toContain('<details');
+  });
+
   it('exports an admin-only aggregate callable', () => {
     const callable = read('functions/src/admin_product_analytics.ts');
     const index = read('functions/src/index.ts');

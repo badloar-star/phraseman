@@ -1,5 +1,6 @@
 /**
- * Вытаскивает контент раздела «Теория» из app/lesson_help.tsx (объект THEORY + renderLesson1TheoryEs).
+ * Вытаскивает контент раздела «Теория» из лениво загружаемого модуля данных
+ * app/lesson_help_theory_data.tsx (объект THEORY + renderLesson1TheoryEs).
  * Не трогает интро-слайды урока.
  */
 import fs from "node:fs";
@@ -9,7 +10,7 @@ import ts from "typescript";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const LESSON_HELP = path.join(root, "app", "lesson_help.tsx");
+const LESSON_HELP = path.join(root, "app", "lesson_help_theory_data.tsx");
 
 function exprToSerializable(e: ts.Expression): unknown {
   if (ts.isStringLiteral(e) || ts.isNoSubstitutionTemplateLiteral(e)) {
@@ -227,7 +228,7 @@ export function extractTheoryHelpFromSourceFile(
 export function extractTheoryHelpFromDisk(): Record<string, unknown> {
   const text = fs.readFileSync(LESSON_HELP, "utf8");
   const sf = ts.createSourceFile(
-    "lesson_help.tsx",
+    "lesson_help_theory_data.tsx",
     text,
     ts.ScriptTarget.Latest,
     true,

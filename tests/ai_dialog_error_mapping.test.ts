@@ -17,11 +17,12 @@ import {
 } from '../app/ai_dialog_client';
 
 describe('ai dialog callable error mapping', () => {
-  it('maps server free quota to a quota message instead of a network failure', () => {
-    const error = { code: 'functions/resource-exhausted', message: 'dialog_free_limit' };
+  it('maps the server Plus gate to a paywall message instead of a network failure', () => {
+    const error = { code: 'functions/permission-denied', message: 'dialog_plus_required' };
 
     expect(classifyPremiumDialogError(error)).toBe('free_limit');
-    expect(getPremiumDialogErrorMessage(error)).toContain('Пробный диалог');
+    expect(getPremiumDialogErrorMessage(error)).toContain('Plus');
+    expect(getPremiumDialogErrorMessage(error)).not.toContain('Пробный диалог');
   });
 
   it('does not show free quota copy when local Premium is active', () => {
@@ -48,10 +49,10 @@ describe('ai dialog callable error mapping', () => {
   });
 
   it('serves planned locale error messages without falling back to Russian', () => {
-    const freeLimit = { code: 'functions/resource-exhausted', message: 'dialog_free_limit' };
+    const freeLimit = { code: 'functions/permission-denied', message: 'dialog_plus_required' };
     const network = new Error('network request failed');
 
-    expect(getPremiumDialogErrorMessage(freeLimit, { lang: 'pt-BR' })).toContain('diálogo grátis');
+    expect(getPremiumDialogErrorMessage(freeLimit, { lang: 'pt-BR' })).toContain('Plus');
     expect(getPremiumDialogErrorMessage(freeLimit, { hasPremiumAccess: true, lang: 'vi' }))
       .toContain('máy chủ chưa nhận ra quyền này');
     // network теперь показывает забавную (рандомную) плашку из aiErrorToast.

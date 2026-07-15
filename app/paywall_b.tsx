@@ -20,6 +20,7 @@ import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
+import { trackPaywallExperimentExposure } from './analytics_experiments';
 import { createPaywallAnalyticsImpression, paywallImpressionParams } from './paywall_analytics_impression';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
@@ -81,6 +82,7 @@ export default function PaywallB() {
 
   useEffect(() => {
     void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...paywallImpressionParams(analyticsImpression) });
+    void trackPaywallExperimentExposure(VARIANT, analyticsImpression.id);
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
   }, [analyticsImpression, ctx, source]);
 

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Pressable, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import { Image, type ImageSource } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
 import type { GroupMember } from '../../app/league_engine';

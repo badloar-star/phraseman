@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
@@ -3223,6 +3223,7 @@ export default function LessonScreen() {
           [{ type: 'lesson_complete', increment: 1 }],
           { studyTarget: studyTargetRef.current },
         ).catch(() => {});
+        void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
         try {

@@ -18,6 +18,7 @@ const MIN_ACTIVE_MS = 60_000;
 const MAX_DAY_ROWS = 500;
 
 export type StatsDailyMetric =
+  | 'lessons_completed'
   | 'words_learned'
   | 'flashcards_saved'
   | 'phrases_learned'
@@ -30,6 +31,7 @@ export type StatsDailyMetric =
   | 'shards_spent';
 
 const METRICS_LIST: StatsDailyMetric[] = [
+  'lessons_completed',
   'words_learned',
   'flashcards_saved',
   'phrases_learned',
@@ -291,6 +293,7 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
     const store = parseStore(raw);
     for (const day of dates) {
       const row: Required<DayRow> = {
+        lessons_completed: randIntInclusive(0, 3),
         words_learned: randIntInclusive(0, 45),
         flashcards_saved: randIntInclusive(0, 14),
         phrases_learned: randIntInclusive(0, 60),

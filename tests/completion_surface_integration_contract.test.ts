@@ -23,4 +23,13 @@ describe('visible-result surface integration', () => {
     expect(source).toContain('arenaNextStepCopy(lang, isWinner, serverResultConfirmed)');
     expect(source).toContain("outcome: isWinner ? 'success' : isDraw ? 'neutral' : 'defeat'");
   });
+
+  test('quiz result keeps non-gold action cards on the shared tonal surface while preserving gold bevels', () => {
+    const source = read('app/quizzes/result_view.tsx');
+
+    expect(source).toContain('TonalSurface');
+    expect(source).toContain('!isGoldTheme && <TonalSurface');
+    expect(source).toContain('GoldBevel');
+    expect(source).toContain('GOLD_GRADIENTS');
+  });
 });

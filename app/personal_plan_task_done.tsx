@@ -1,7 +1,7 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import BounceView from '../components/BounceView';

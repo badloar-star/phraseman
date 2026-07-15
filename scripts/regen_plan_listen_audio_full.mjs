@@ -35,6 +35,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { writePlanRuntimeAudioCompact } from './write_plan_runtime_audio_compact.mjs';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
@@ -252,7 +254,9 @@ function detectModulesExport() {
   // 3) rewrite registries
   const nAssets = writeRegistry(targets);
   const nModules = writeModules(targets);
+  const compact = writePlanRuntimeAudioCompact();
   console.log(`Registry assets written: ${nAssets}`);
   console.log(`Modules entries written: ${nModules}`);
+  console.log(`Compact runtime index written: ${compact.bytes} bytes`);
   console.log('Done. Run the listening tests next.');
 })();

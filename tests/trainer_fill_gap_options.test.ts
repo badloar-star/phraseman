@@ -125,7 +125,31 @@ describe('buildTrainerFillGapOptions', () => {
       shuffle: false,
     });
 
-    expect(options).toEqual(['Could', 'can', 'will', 'would']);
+    expect(options).toEqual(['Could', 'Can', 'Will', 'Would']);
+  });
+
+  it('uses the same initial-letter case for every option when the answer starts a sentence', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'Could',
+      phrase: 'Could you help me please',
+      category: 'modal',
+      shuffle: false,
+    });
+
+    expect(options).toEqual(['Could', 'Can', 'Will', 'Would']);
+    expect(options.every((option) => option[0] === option[0]?.toUpperCase())).toBe(true);
+  });
+
+  it('does not let capitalized source distractors reveal a lowercase answer', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'you',
+      phrase: 'Could you help me please',
+      category: 'pronoun',
+      sourceDistractors: ['They', 'He', 'We'],
+      shuffle: false,
+    });
+
+    expect(options).toEqual(['you', 'they', 'he', 'we']);
   });
 
   it('prefers phrase-authored distractors over generic same-category fillers', () => {

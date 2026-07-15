@@ -26,7 +26,7 @@ import {
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import firestore from '@react-native-firebase/firestore';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';

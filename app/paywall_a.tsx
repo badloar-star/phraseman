@@ -13,7 +13,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import * as Crypto from 'expo-crypto';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
@@ -26,6 +26,7 @@ import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
+import { trackPaywallExperimentExposure } from './analytics_experiments';
 import { createPaywallAnalyticsImpression, paywallImpressionParams } from './paywall_analytics_impression';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
@@ -82,6 +83,7 @@ export default function PaywallA() {
 
   useEffect(() => {
     void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...paywallImpressionParams(analyticsImpression) });
+    void trackPaywallExperimentExposure(VARIANT, analyticsImpression.id);
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
   }, [analyticsImpression, ctx, source]);
 

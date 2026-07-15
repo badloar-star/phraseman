@@ -26,6 +26,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, peekStableId } from './stable_id';
+import {
+  normalizeExperimentPassport,
+  type ExperimentAssignmentQuality,
+  type ExperimentPassport,
+} from './analytics_experiments';
 
 export type PaywallAbVariant = 'A' | 'B' | 'C';
 
@@ -36,6 +41,8 @@ export interface PaywallAbConfig {
   salt: string;
   ratingX10: number;
   ratingsCount: number;
+  experimentPassport?: ExperimentPassport | null;
+  measurementStatus?: 'legacy_unmeasured' | 'governed';
 }
 
 const CONFIG_DOC_COLLECTION = 'remote_config';
@@ -52,11 +59,14 @@ const DEFAULT_CONFIG: PaywallAbConfig = {
   salt: 'v3',
   ratingX10: 0,
   ratingsCount: 0,
+  experimentPassport: null,
+  measurementStatus: 'legacy_unmeasured',
 };
 
 let _config: PaywallAbConfig = { ...DEFAULT_CONFIG };
 let _loadedOnce = false;
 let _refreshInFlight: Promise<void> | null = null;
+let _lastAssignment: { experimentId: string; variant: PaywallAbVariant; quality: ExperimentAssignmentQuality } | null = null;
 
 function clampPct(raw: unknown): number {
   const n = typeof raw === 'number' && Number.isFinite(raw) ? raw : 0;
@@ -65,6 +75,7 @@ function clampPct(raw: unknown): number {
 
 function sanitizeConfig(raw: unknown): PaywallAbConfig {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const passport = normalizeExperimentPassport(r.experiment_passport ?? r.experimentPassport);
   const cfg: PaywallAbConfig = {
     aPct: clampPct(r.a_pct),
     bPct: clampPct(r.b_pct),
@@ -75,6 +86,8 @@ function sanitizeConfig(raw: unknown): PaywallAbConfig {
       typeof r.ratings_count === 'number' && Number.isFinite(r.ratings_count) && r.ratings_count >= 0
         ? Math.floor(r.ratings_count)
         : 0,
+    experimentPassport: passport,
+    measurementStatus: passport ? 'governed' : 'legacy_unmeasured',
   };
   // Если админ ввёл суммарно >100 — пропорционально ужимаем.
   const sum = cfg.aPct + cfg.bPct + cfg.cPct;
@@ -82,6 +95,14 @@ function sanitizeConfig(raw: unknown): PaywallAbConfig {
     cfg.aPct = Math.floor((cfg.aPct * 100) / sum);
     cfg.bPct = Math.floor((cfg.bPct * 100) / sum);
     cfg.cPct = Math.floor((cfg.cPct * 100) / sum);
+  }
+  if (cfg.experimentPassport) {
+    const allocation = cfg.experimentPassport.allocation;
+    if (allocation.A !== cfg.aPct || allocation.B !== cfg.bPct || allocation.C !== cfg.cPct
+      || cfg.experimentPassport.assignmentSalt !== cfg.salt) {
+      cfg.experimentPassport = null;
+      cfg.measurementStatus = 'legacy_unmeasured';
+    }
   }
   return cfg;
 }
@@ -154,6 +175,7 @@ async function refreshPaywallAbConfigFromNetwork(): Promise<void> {
         void AsyncStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({
           a_pct: _config.aPct, b_pct: _config.bPct, c_pct: _config.cPct,
           salt: _config.salt, rating_x10: _config.ratingX10, ratings_count: _config.ratingsCount,
+          experiment_passport: _config.experimentPassport,
         })).catch(() => {});
       }
     } catch {
@@ -219,8 +241,11 @@ export async function resolvePaywallAbVariant(): Promise<{ variant: PaywallAbVar
   refreshPaywallAbConfigInBackground();
   // Подчищаем ключ старого Math.random-эксперимента, чтобы не путал при отладке.
   void AsyncStorage.removeItem(LEGACY_VARIANT_KEY).catch(() => {});
-  const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
-  return { variant: pickVariantFromUnit(unit, cfg), stableId };
+  const experimentId = cfg.experimentPassport?.experimentId;
+  const unit = hashToUnit(experimentId ? `${stableId}:${experimentId}:${cfg.salt}` : `${stableId}:paywall_ab:${cfg.salt}`);
+  const variant = pickVariantFromUnit(unit, cfg);
+  if (experimentId) _lastAssignment = { experimentId, variant, quality: 'frozen' };
+  return { variant, stableId };
 }
 
 /**
@@ -233,8 +258,30 @@ export function resolvePaywallAbVariantSync(): { variant: PaywallAbVariant; stab
   const cfg = _config;
   refreshPaywallAbConfigInBackground();
   const stableId = peekStableId() ?? 'pending';
-  const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
-  return { variant: pickVariantFromUnit(unit, cfg), stableId };
+  const experimentId = cfg.experimentPassport?.experimentId;
+  const unit = hashToUnit(experimentId ? `${stableId}:${experimentId}:${cfg.salt}` : `${stableId}:paywall_ab:${cfg.salt}`);
+  const variant = pickVariantFromUnit(unit, cfg);
+  if (experimentId) {
+    _lastAssignment = {
+      experimentId,
+      variant,
+      // Warehouse field: assignment_quality. Pending fallback is never causal.
+      quality: stableId === 'pending' ? 'pending_fallback' : 'frozen',
+    };
+  }
+  return { variant, stableId };
+}
+
+export function getPaywallExperimentMeasurementContext(variant: PaywallAbVariant): {
+  passport: ExperimentPassport;
+  assignmentQuality: ExperimentAssignmentQuality;
+} | null {
+  const passport = _config.experimentPassport;
+  if (!passport || passport.status !== 'running' || !_lastAssignment
+    || _lastAssignment.experimentId !== passport.experimentId || _lastAssignment.variant !== variant) return null;
+  const now = Date.now();
+  if (now < Date.parse(passport.startUtc) || now >= Date.parse(passport.endUtc)) return null;
+  return { passport, assignmentQuality: _lastAssignment.quality };
 }
 
 /** Рейтинг для соцстроки: null = не показывать (нет подтверждённого числа). */
@@ -253,6 +300,7 @@ export function __setPaywallAbConfigForTest(raw: unknown): PaywallAbConfig {
 export function __resetPaywallAbForTest(): void {
   _config = { ...DEFAULT_CONFIG };
   _loadedOnce = false;
+  _lastAssignment = null;
 }
 
 /* expo-router route shim. */

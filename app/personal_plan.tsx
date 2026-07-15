@@ -6,7 +6,7 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import Svg, { Circle, Defs, LinearGradient as SvgGradient, Stop } from 'react-native-svg';
 import { LinearGradient } from '../components/SafeLinearGradient';

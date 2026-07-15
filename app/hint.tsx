@@ -3,13 +3,14 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { T, type Lang, triLang } from '../constants/i18n';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import TonalSurface from '../components/TonalSurface';
 import {
   frenchLessonSupportGateCopy,
   lessonSupportContentAvailableForTarget,
@@ -1545,7 +1546,7 @@ export default function HintScreen() {
       </View>
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {frenchHintCopy ? (
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 0, borderColor: t.border, padding: 18, gap: 12 }}>
+          <TonalSurface radius={16} style={{ borderWidth: 0, borderColor: t.border, padding: 18, gap: 12 }}>
             <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="shield-checkmark-outline" size={30} color={t.textSecond} />
             </View>
@@ -1555,7 +1556,7 @@ export default function HintScreen() {
             <Text style={{ color: t.textSecond, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
               {frenchHintCopy.body}
             </Text>
-          </View>
+          </TonalSurface>
         ) : hint.render(t, lang, f)}
         <TouchableOpacity
           style={{ backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', marginTop: 8 }}

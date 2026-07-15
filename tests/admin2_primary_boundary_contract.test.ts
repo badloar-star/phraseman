@@ -11,6 +11,10 @@ describe('Admin 2 primary boundary', () => {
 
     expect(shell).toContain('src="/v2/scripts/admin-router.js"');
     expect(shell).toContain('href="/v2/styles/admin.css"');
+    expect(shell).toContain('id="primary-nav"');
+    expect(shell).toContain('aria-label="Основная навигация"');
+    expect(shell).not.toContain('class="analytics-only"');
+    expect(shell).not.toContain('src="/v2/scripts/admin-analytics-app.js"');
     const sectionStart = core.indexOf('export const ADMIN_SECTIONS');
     const sectionEnd = core.indexOf(']);', sectionStart);
     const sections = core.slice(sectionStart, sectionEnd);

@@ -14,8 +14,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, type ViewStyle, type TextStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
+import TonalSurface from '../TonalSurface';
 import { compassShadow } from '../../constants/compassTheme';
 
 /**
@@ -213,14 +214,15 @@ export function SettingsGroup({
   const groupDivider = dividerColor ?? groupBorder;
 
   return (
-    <View
+    <TonalSurface
+      radius={12}
+      backgroundColor={groupSurface}
       style={[
         {
           marginHorizontal: SETTINGS_GROUP_MARGIN,
           marginTop: marginTop ?? 0,
           marginBottom: marginBottom ?? 0,
           borderRadius: 12,
-          backgroundColor: groupSurface,
           borderWidth: 0,
           borderColor: groupBorder,
           overflow: 'hidden',
@@ -243,7 +245,7 @@ export function SettingsGroup({
           {child}
         </View>
       ))}
-    </View>
+    </TonalSurface>
   );
 }
 

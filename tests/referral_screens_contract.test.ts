@@ -141,12 +141,14 @@ describe('referral 7 plus 7 screen contract', () => {
 
     expect(referrals).toContain('testID="screen-referrals"');
     expect(referrals).toContain('glassFill(t.bgSurface, 0.46)');
+    expect(referrals).toContain('TonalSurface');
     expect(referrals).toContain('testID="referrals-my-code-card"');
     expect(referrals).not.toMatch(/borderWidth:\s*0,\s*borderColor:/);
     expect(referrals).not.toContain('BlurView');
     expect(referrals).not.toContain('backdropFilter');
 
     expect(entry).toContain('testID="screen-referral-code-entry"');
+    expect(entry).toContain('TonalSurface');
     expect(entry).toContain('testID="referral-code-input"');
     expect(entry).toContain('testID="referral-code-submit"');
     expect(entry).not.toMatch(/borderWidth:\s*0,\s*borderColor:/);

@@ -5,7 +5,7 @@
 // дожидаясь реального сообщения. Не зависит от инбокса и реальных сообщений.
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMessageReceivedCue } from '../hooks/use-message-received-cue';
 
 const ENV_W = 88;

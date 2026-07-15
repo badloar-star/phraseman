@@ -64,6 +64,12 @@ export interface CardItem {
   isSystem: boolean;
   source?: string;
   sourceId?: string;
+  /** Additive rich community/content-factory schema. Legacy clients ignore these fields. */
+  richSchemaVersion?: 1;
+  exampleTarget?: string;
+  exampleSource?: string;
+  note?: string;
+  sourceReferences?: string[];
   // Rich details — present on marketplace pack cards only
   literalRu?: string;
   literalUk?: string;

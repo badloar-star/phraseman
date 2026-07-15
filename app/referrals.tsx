@@ -11,7 +11,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -31,6 +31,7 @@ import { isReferralCloudEnabled } from './referral_cloud';
 import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
 import { safeRouterBack } from './navigation_back';
 import { glassFill } from '../components/GlassSurface';
+import TonalSurface from '../components/TonalSurface';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import {
@@ -316,16 +317,15 @@ export default function ReferralsScreen() {
     const displayName = inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy'));
 
     return (
-      <View
+      <TonalSurface
         key={`${invite.refereeStableId}-${index}`}
         testID={`referrals-row-${invite.refereeStableId || index}`}
+        radius={18}
+        tone={claimable ? 'raised' : 'subtle'}
+        backgroundColor={claimable ? `${t.accent}22` : glassFill(t.bgSurface, 0.46)}
         style={{
-          borderRadius: 18,
           padding: 14,
           gap: 12,
-          ...(claimable
-            ? { backgroundColor: `${t.accent}22` }
-            : { backgroundColor: glassFill(t.bgSurface, 0.46) }),
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
@@ -363,7 +363,7 @@ export default function ReferralsScreen() {
             {buttonText}
           </Text>
         </TouchableOpacity>
-      </View>
+      </TonalSurface>
     );
   };
 
@@ -397,7 +397,7 @@ export default function ReferralsScreen() {
             </Text>
           </View>
 
-          <View style={{ borderRadius: 20, padding: 18, backgroundColor: glassFill(t.bgSurface, 0.46), gap: 10 }}>
+          <TonalSurface radius={20} tone="raised" backgroundColor={glassFill(t.bgSurface, 0.46)} style={{ padding: 18, gap: 10 }}>
             <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
               <Ionicons name="people-outline" size={24} color={t.accent} />
             </View>
@@ -416,7 +416,7 @@ export default function ReferralsScreen() {
                 'Tutaj pojawią się znajomi, których zaprosisz. Gdy zainstalują aplikację, wpiszą twój kod i skończą pierwszą lekcję, Plus będzie do odebrania.',
               )}
             </Text>
-          </View>
+          </TonalSurface>
 
           {referralEnabled && (
             <TouchableOpacity
@@ -446,9 +446,10 @@ export default function ReferralsScreen() {
           )}
 
           {referralEnabled && referralCode ? (
-            <View
+            <TonalSurface
               testID="referrals-my-code-card"
-              style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, gap: 12 }}
+              radius={20}
+              style={{ padding: 18, gap: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <Ionicons name="gift-outline" size={18} color={t.accent} />
@@ -480,7 +481,7 @@ export default function ReferralsScreen() {
                     : L('Копировать', 'Копіювати', 'Copiar', 'Copiar', 'Sao chép', 'Salin', 'Kopyala', 'Kopiuj')}
                 </Text>
               </TouchableOpacity>
-            </View>
+            </TonalSurface>
           ) : null}
 
           {message && (

@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { useAudio } from '../hooks/use-audio';
 import { syncWidgetData } from '../app/widget_bridge';
@@ -44,6 +44,7 @@ import AddToFlashcard from './AddToFlashcard';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
+import TonalSurface from './TonalSurface';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -526,6 +527,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               { transform: [{ translateX: shakeAnim }] },
             ]}
           >
+            <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
             {questAnswered && selectedQuestCorrect && !questPreviouslyAnswered && (
               <Animated.View
                 pointerEvents="none"
@@ -608,7 +610,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               showsVerticalScrollIndicator={false}
             >
               {!questAnswered && (
-                <View style={[styles.questBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.questBlock, { borderColor: t.border }]}>
                   <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
                     {triLang(lang, {
                       ru: 'Что это значит?',
@@ -648,7 +650,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                         </Pressable>
                       ))}
                   </View>
-                </View>
+                </TonalSurface>
               )}
 
               {showQuestExplanation && (
@@ -688,23 +690,23 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                       </Text>
                     </Animated.View>
                   )}
-                  <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelLiteral}
                     </Text>
                     <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
                       {phraseCopy.literal}
                     </Text>
-                  </View>
+                  </TonalSurface>
 
-                  <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelMeaning}
                     </Text>
                     <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
                       {phraseCopy.meaning}
                     </Text>
-                  </View>
+                  </TonalSurface>
 
                   <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
                     {phraseCopy.text}

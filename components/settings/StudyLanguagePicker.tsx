@@ -10,7 +10,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from '../../app/config';
 import { openPremiumPaywall } from '../../app/paywall_navigation';

@@ -58,7 +58,7 @@ function makeDeps(overrides: Partial<WeeklyReviewClientDependencies> = {}) {
     isCurrentGeneration: () => true,
     requestCallable: jest.fn(async () => callableResult),
     now: () => 1000,
-    aiEnabled: () => false,
+    aiEnabled: () => true,
     ...overrides,
   };
   return { deps, storage, values };
@@ -81,11 +81,21 @@ describe('weekly review client tier and callable boundary', () => {
     expect(storage.getItem).not.toHaveBeenCalled();
   });
 
-  it('returns a local Plus fallback while V2 is default-off', async () => {
+  it('calls the Plus callable by default instead of showing a local fallback', async () => {
     const { deps } = makeDeps();
     const state = await generateWeeklyReview({ lang: 'ru', isPremium: true }, deps);
+    expect(state.status).toBe('fresh');
+    expect(state.status === 'fresh' && state.review).toEqual(review);
+    expect(deps.requestCallable).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fabricate a Plus review when the AI kill switch is off', async () => {
+    const { deps } = makeDeps({ aiEnabled: () => false });
+    const state = await generateWeeklyReview({ lang: 'ru', isPremium: true }, deps);
+    const runtimeState = state as typeof state & { review?: WeeklyReviewV2; fallback?: WeeklyReviewV2 };
     expect(state.status).toBe('plus_ready_to_generate');
-    expect(state.status === 'plus_ready_to_generate' && state.fallback?.schemaVersion).toBe(WEEKLY_REVIEW_SCHEMA_VERSION);
+    expect(runtimeState.review).toBeUndefined();
+    expect(runtimeState.fallback).toBeUndefined();
     expect(deps.requestCallable).not.toHaveBeenCalled();
   });
 
@@ -143,6 +153,13 @@ describe('weekly review client account-scoped cache', () => {
     expect(cooldown.status).toBe('cooldown');
   });
 
+  it('does not show a generated-looking fallback on provider errors without cache', async () => {
+    const { deps } = makeDeps({ requestCallable: jest.fn(async () => { throw new Error('provider failed'); }) });
+    const state = await generateWeeklyReview({ lang: 'ru', isPremium: true }, deps);
+    expect(state.status).toBe('error');
+    expect(state.status === 'error' && state.review).toBeUndefined();
+  });
+
   it('keeps cached content when the server reports not-ready', async () => {
     const { deps, storage } = makeDeps({ requestCallable: jest.fn(async () => { throw new Error('weekly_review_not_ready'); }) });
     storage.getItem.mockResolvedValue(JSON.stringify(storedEnvelope(500)));
@@ -157,8 +174,10 @@ describe('weekly review client account-scoped cache', () => {
 
     const state = await getWeeklyReviewState({ lang: 'ru', isPremium: true }, deps);
 
+    const runtimeState = state as typeof state & { review?: WeeklyReviewV2; fallback?: WeeklyReviewV2 };
     expect(state.status).toBe('plus_ready_to_generate');
-    expect(state.status === 'plus_ready_to_generate' && state.fallback).toEqual(review);
+    expect(runtimeState.review).toEqual(review);
+    expect(runtimeState.fallback).toBeUndefined();
     expect(deps.requestCallable).not.toHaveBeenCalled();
   });
 

@@ -26,7 +26,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -34,6 +34,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { callSubmitExplainReport } from '../app/explain_phrase_client';
 import { asLang } from '../app/explain_phrase_request';
+import TonalSurface from './TonalSurface';
 
 interface Props {
   /**
@@ -202,6 +203,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, choices, l
               ]}
               onPress={(e) => e.stopPropagation()}
             >
+              <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
               <Text style={[styles.formTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
                 {triLang(uiLang, {
                   ru: 'Что именно непонятно?',
@@ -329,6 +331,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     borderWidth: 0,
+    overflow: 'hidden',
     padding: 20,
     gap: 10,
   },

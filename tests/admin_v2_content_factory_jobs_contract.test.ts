@@ -35,4 +35,15 @@ describe('Language Factory job visibility', () => {
     expect(admin).toContain('Черновик готов; для публикационной проверки нужны урок, квиз, карточки и Арена.');
     expect(admin).toContain('allReady && releaseCandidate');
   });
+
+  test('exposes callable-only independent stage operations', () => {
+    const index = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
+    const firebase = fs.readFileSync(path.join(root, 'admin', 'v2', 'scripts', 'admin-firebase.js'), 'utf8');
+    for (const callable of ['adminCreateContentStage', 'adminControlContentStage', 'adminListContentStages', 'adminListContentStageDependencies', 'adminGetContentStageCapabilities', 'adminCreateContentStageBulkPlan', 'adminEditContentStageArtifact', 'adminRunContentStage', 'adminPreviewContentStage', 'adminReviewContentStage']) {
+      expect(index).toContain(callable);
+      expect(firebase).toContain(`httpsCallable(functionsUs, '${callable}')`);
+    }
+    expect(firebase).not.toContain("collection(db, 'content_factory_stages')");
+    expect(fs.readFileSync(path.join(root, 'admin', 'v2', 'scripts', 'admin-core.js'), 'utf8')).toContain('expectedReviewFingerprint');
+  });
 });

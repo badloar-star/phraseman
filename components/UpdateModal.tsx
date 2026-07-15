@@ -86,7 +86,7 @@ const TEXTS = {
 } as const;
 
 const pickUpdateText = (lang: string) => TEXTS[lang as keyof typeof TEXTS] ?? TEXTS.ru;
-const PREMIUM_UPDATE_EMBLEM = require('../assets/images/update_modal/update-modal-premium-emblem.png');
+const PREMIUM_UPDATE_EMBLEM = require('../assets/images/update_modal/update-modal-premium-emblem.webp');
 
 type UpdateModalPalette = {
   frame: [string, string, string];

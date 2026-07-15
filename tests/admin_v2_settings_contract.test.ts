@@ -60,6 +60,29 @@ describe('Admin v2 page settings', () => {
     expect(core).toContain("data-action=\"reset-admin-settings\"");
   });
 
+  test('wires every non-visual setting into real runtime behavior', () => {
+    expect(core).toContain('filterOverviewDecisionRows');
+    expect(core).toContain('importantAlertsOnly');
+    expect(core).toContain('resetEphemeralSectionFilters');
+    expect(core).toContain('rememberSectionFilters');
+    expect(core).toContain('scheduleAdminAutoRefresh');
+    expect(core).toContain('playCriticalAlertSound');
+    expect(core).toContain('criticalAlertSound');
+    expect(core).toContain('navCounterForRoute');
+    expect(core).toContain('sidebarCounters');
+    expect(core).toContain('settings-advanced-disclosure');
+    expect(core).toContain('expandedAdvancedActions');
+    expect(core).toContain('settings-danger-disclosure');
+    expect(core).toContain('collapseDangerousActions');
+    expect(core).toContain('explicitArchiveFilter');
+    expect(core).toContain('shouldShowGlobalMessage');
+    expect(core).toContain('quietMode');
+    expect(styles).toContain('.nav-counter');
+    expect(styles).toContain('.settings-danger-disclosure');
+    expect(styles).toContain('.settings-advanced-disclosure');
+    expect(styles).toContain('[data-admin-density="compact"] .page');
+  });
+
   test('adds dark mode, accent presets, and settings layout styles', () => {
     expect(styles).toContain('[data-admin-theme="dark"]');
     expect(styles).toContain('[data-admin-accent="blue"]');

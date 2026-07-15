@@ -1,7 +1,7 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useState } from 'react';
 import { Alert, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -60,6 +60,16 @@ function CommunityChatHubButton() {
         <ScreenGradient forceFullBleed>
           <View testID="community-chat-hub-fullscreen" style={[styles.screen, { backgroundColor: 'transparent', paddingTop: topInset }]}>
             <View style={styles.header}>
+              <TouchableOpacity
+                activeOpacity={0.76}
+                accessibilityRole="button"
+                accessibilityLabel={copy.close}
+                hitSlop={8}
+                onPress={close}
+                style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+              >
+                <Ionicons name="close" size={22} color={t.textPrimary} />
+              </TouchableOpacity>
               <Text
                 allowFontScaling={false}
                 numberOfLines={1}
@@ -67,15 +77,6 @@ function CommunityChatHubButton() {
               >
                 {copy.title}
               </Text>
-              <TouchableOpacity
-                activeOpacity={0.76}
-                accessibilityRole="button"
-                accessibilityLabel={copy.close}
-                onPress={close}
-                style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
-              >
-                <Ionicons name="close" size={22} color={t.textPrimary} />
-              </TouchableOpacity>
             </View>
 
             <View style={styles.content}>

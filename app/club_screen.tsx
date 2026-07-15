@@ -7,7 +7,7 @@ import { Image } from 'expo-image';
 import { hapticTap } from '../hooks/use-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -1297,17 +1297,13 @@ export default function ClubScreen() {
         >
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TapScale>
-        <Text style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}>
-          {triLang(lang, {
-            ru: 'Лига недели',
-            uk: 'Ліга тижня',
-            es: 'Liga de la semana',
-            'pt-BR': "Liga da semana",
-            vi: "Giải đấu tuần này",
-            id: "Liga minggu ini",
-            tr: "Haftanın ligi",
-            pl: "Liga tygodnia",
-          })}
+        <Text
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.72}
+          style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}
+        >
+          {leagueNameForLang(myLeague, lang)}
         </Text>
       </View>
 
@@ -1362,6 +1358,7 @@ export default function ClubScreen() {
           podium={hubPodium}
           lang={lang}
           palette={hubPalette}
+          leagueIcon={<LeagueIcon league={myLeague} size={50} active alignContent={false} themeMode={themeMode} />}
           renderAvatar={(member: LeaguePodiumMember, size: number) => {
             const fullMember = publicSortedGroup.find((candidate) => (
               (member.uid && candidate.uid === member.uid)

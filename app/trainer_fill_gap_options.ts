@@ -302,6 +302,23 @@ function shuffleOptions(options: string[], shouldShuffle: boolean): string[] {
   return shouldShuffle ? [...options].sort(() => Math.random() - 0.5) : options;
 }
 
+function alignOptionInitialCase(options: readonly string[], correctWord: string): string[] {
+  const first = correctWord[0];
+  if (!first) return [...options];
+  const hasLetterCase = first.toLocaleLowerCase() !== first.toLocaleUpperCase();
+  if (!hasLetterCase) return [...options];
+
+  const useUppercase = first === first.toLocaleUpperCase();
+  return options.map((option) => {
+    const optionFirst = option[0];
+    if (!optionFirst) return option;
+    const alignedFirst = useUppercase
+      ? optionFirst.toLocaleUpperCase()
+      : optionFirst.toLocaleLowerCase();
+    return `${alignedFirst}${option.slice(1)}`;
+  });
+}
+
 export function buildTrainerFillGapOptions({
   correctWord,
   phrase,
@@ -332,7 +349,8 @@ export function buildTrainerFillGapOptions({
   );
 
   if (distractors.length === 0) return [correct];
-  return shuffleOptions([correct, ...distractors], shuffle);
+  const caseAlignedOptions = alignOptionInitialCase([correct, ...distractors], correct);
+  return shuffleOptions(caseAlignedOptions, shuffle);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

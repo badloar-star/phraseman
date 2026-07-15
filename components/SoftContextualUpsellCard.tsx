@@ -1,8 +1,9 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { SoftUpsellOpportunity } from '../app/soft_upsell_core';
+import TonalSurface from './TonalSurface';
 import { useTheme } from './ThemeContext';
 
 type Props = {
@@ -38,11 +39,12 @@ export default function SoftContextualUpsellCard({
   }, [onImpression]);
 
   return (
-    <View
+    <TonalSurface
       testID="soft-upsell-card"
       accessibilityLabel={`${title}. ${body}`}
       onLayout={handleLayout}
-      style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}
+      radius={16}
+      style={styles.card}
     >
       <View style={styles.headingRow}>
         <Ionicons name="sparkles-outline" size={22} color={t.textPrimary} />
@@ -71,12 +73,12 @@ export default function SoftContextualUpsellCard({
           <Ionicons name="arrow-forward" size={19} color={t.correctText} />
         </Pressable>
       </View>
-    </View>
+    </TonalSurface>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: 16, borderWidth: 1, gap: 10, padding: 16 },
+  card: { borderRadius: 16, borderWidth: 0, gap: 10, padding: 16 },
   headingRow: { alignItems: 'center', flexDirection: 'row', gap: 9 },
   title: { flex: 1, fontWeight: '800' },
   body: { lineHeight: 20 },

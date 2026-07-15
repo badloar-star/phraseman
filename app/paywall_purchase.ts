@@ -49,6 +49,7 @@ import {
 } from './paywall_dev_preview';
 import { trackEvent } from './analytics';
 import { createPaywallAnalyticsImpression, paywallImpressionParams, type PaywallAnalyticsImpression } from './paywall_analytics_impression';
+import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
@@ -212,7 +213,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           result = await attempt();
         }
       }
-      if (!deadRef.dead && !result.ok) setOfferingsFailed(true);
+      if (!deadRef.dead && !result.ok) {
+        setOfferingsFailed(true);
+        trackProductOperationFailure('paywall', 'offerings_load', 'store_unavailable', true);
+      }
       if (!deadRef.dead && emitInitialResolution && claimInitialInventoryResolution(inventoryResolutionEmittedRef.current)) {
         const inventory = classifyPaywallInventory({
           monthly: !!result.resolvedPackages.monthly,

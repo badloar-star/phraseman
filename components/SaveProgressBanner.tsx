@@ -25,7 +25,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, DeviceEventEmitter, Easing, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { CLOUD_SYNC_ENABLED } from '../app/config';
 import { getLinkedAuthInfo } from '../app/auth_provider';
 import { useTheme } from './ThemeContext';

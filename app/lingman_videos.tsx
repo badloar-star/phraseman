@@ -11,7 +11,7 @@ import {
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';

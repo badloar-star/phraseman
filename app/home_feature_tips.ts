@@ -13,7 +13,7 @@
  * homeFeatureTipText сознательно подставляет RU во все языки.
  */
 import type { ComponentProps } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 
 export const HOME_FEATURE_TIPS_INDEX_KEY = 'home_feature_tips_index_v1';

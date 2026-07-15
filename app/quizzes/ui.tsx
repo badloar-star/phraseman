@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Text } from 'react-native';
 import { streakMultiplier } from '../hall_of_fame_utils';

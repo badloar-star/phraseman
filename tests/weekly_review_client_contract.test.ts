@@ -9,6 +9,8 @@ describe('weekly review client contract', () => {
   it('Free never calls AI and Plus uses the server-owned rolling 24h window', () => {
     expect(clientSource).toContain("if (!options.isPremium) return { status: 'free_eligible', snapshot }");
     expect(clientSource).toContain("'weeklyReviewGenerate'");
+    expect(clientSource).not.toContain('buildLocalWeeklyReview');
+    expect(clientSource).not.toContain('local_fallback');
     expect(serverSource).toContain('const PLUS_WINDOW_MS = DAY_MS');
     expect(serverSource).toContain('weekly_review_plus_required');
   });
@@ -23,6 +25,10 @@ describe('weekly review client contract', () => {
 
   it('does not show a next-review countdown footer', () => {
     expect(cardSource).not.toContain('nextReviewCopy(');
+  });
+
+  it('does not render the internal coverage note in the user-facing card', () => {
+    expect(cardSource).not.toContain('review.coverageNote');
   });
 
   it('does not truncate AI plan actions', () => {

@@ -9,7 +9,7 @@ describe('avatar customization studio structure', () => {
     const hero = readProjectFile('components', 'customization', 'CustomizationHero.tsx');
     expect(hero).toContain('themeAccent');
     expect(hero).toContain('animateAura={props.motionEnabled && !reduceMotion}');
-    expect(hero).toContain('previewLabel');
+    expect(hero).not.toContain('previewLabel');
   });
 
   it('uses one vertical virtualized list with the studio in its header', () => {
@@ -43,11 +43,23 @@ describe('avatar customization studio structure', () => {
     expect(screen).toContain("target === 'avatar' && !current.ownedAvatars[itemId]");
   });
 
-  it('emits toast payloads and keeps catalog position when filtering', () => {
+  it('keeps the studio compact with only avatar and aura tabs', () => {
+    const screen = readProjectFile('app', 'avatar_select.tsx');
+    const hero = readProjectFile('components', 'customization', 'CustomizationHero.tsx');
+    expect(screen).toContain("title: 'Студия'");
+    expect(screen).not.toContain("title: 'Студия образа'");
+    expect(screen).toContain("const heroHeight = Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52)))");
+    expect(screen).not.toContain('OwnershipFilters');
+    expect(screen).not.toContain('filterCatalog(');
+    expect(screen).not.toContain('const handleFilterChange = useCallback');
+    expect(hero).not.toContain('styles.preview');
+  });
+
+  it('emits toast payloads and keeps catalog position when switching tabs', () => {
     const screen = readProjectFile('app', 'avatar_select.tsx');
     expect(screen).toContain("emitAppEvent('action_toast', actionToastTri(");
-    expect(screen).toContain('const handleFilterChange = useCallback');
-    expect(screen).toContain('onChange={handleFilterChange}');
+    expect(screen).toContain('const scrollToCatalog = useCallback');
+    expect(screen).toContain('onChange={handleTabChange}');
     expect(screen).not.toContain('key={`${activeTab}-${filter}`}');
   });
 

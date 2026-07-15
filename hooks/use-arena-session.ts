@@ -5,6 +5,7 @@ import {
   subscribeSession,
   subscribeSessionPlayers,
   submitAnswer,
+  arenaDeviceClass,
   touchSessionPlayerPresence,
   setSessionLobbyChoice,
 } from '../app/services/arena_db';
@@ -345,7 +346,7 @@ export function useArenaSession(
     if (hasAnsweredRef.current) return;
     hasAnsweredRef.current = true;
     setHasAnswered(true);
-    submitAnswer(sid, uid, qid, null, sessionRef.current?.questionTimeoutMs ?? 0).catch(() => {});
+    submitAnswer(sid, uid, qid, null, sessionRef.current?.questionTimeoutMs ?? 0, arenaDeviceClass()).catch(() => {});
   };
 
   useEffect(() => {
@@ -381,7 +382,7 @@ export function useArenaSession(
     setHasAnswered(true);
     // Keep the visible timer ticking while we wait for the opponent/reveal.
     try {
-      await submitAnswer(sessionId, userId, questionId, answer, timeMs);
+      await submitAnswer(sessionId, userId, questionId, answer, timeMs, arenaDeviceClass());
     } catch (e) {
       // Rollback local lock so user can retry when network/rules fail.
       setMyAnswer(null);

@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { monoIcon } from '../../constants/monoIcon';

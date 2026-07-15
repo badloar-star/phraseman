@@ -53,7 +53,7 @@ describe('remote_flags', () => {
     it('returns hardcoded defaults before any snapshot', () => {
       expect(getFreeLessonLimit()).toBe(8);
       expect(getRemoteNumber('free_daily_quiz_limit')).toBe(3);
-      expect(getRemoteNumber('arena_daily_max')).toBe(5);
+      expect(getRemoteNumber('arena_daily_max')).toBe(1);
       expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
@@ -62,7 +62,7 @@ describe('remote_flags', () => {
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(true);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
-      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(false);
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
       expect(isPaywallTimersEnabled()).toBe(true);
       expect(getStreakFreezeCostShards()).toBe(10);
@@ -82,13 +82,15 @@ describe('remote_flags', () => {
         numbers: { weekly_review_ai_v2_enabled_rollout_pct: 0 },
       });
       expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
+      applyRemoteConfigSnapshot({ bools: { weekly_review_ai_v2_enabled: false } });
+      expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(false);
     });
 
     it('applies numeric overrides', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12, free_daily_quiz_limit: 10 } });
       expect(getFreeLessonLimit()).toBe(12);
       expect(getRemoteNumber('free_daily_quiz_limit')).toBe(10);
-      expect(getRemoteNumber('arena_daily_max')).toBe(5);
+      expect(getRemoteNumber('arena_daily_max')).toBe(1);
     });
 
     it('applies boolean overrides', () => {

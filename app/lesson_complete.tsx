@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -44,7 +44,7 @@ import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
-import type { SoftUpsellCandidate } from './soft_upsell_core';
+import type { SoftUpsellCandidate, SoftUpsellStudyTarget } from './soft_upsell_core';
 import {
   candidateAfterLessonGrant,
   createLessonSoftUpsellCtaHandler,
@@ -514,9 +514,12 @@ export default function LessonComplete() {
   const { theme: t, f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
   const { hasPremiumAccess } = usePremium();
   const [softUpsellAccountToken, setSoftUpsellAccountToken] = useState(() => captureAccountGeneration());
-  const softUpsellAccountScope = lessonSoftUpsellPersistenceScope(softUpsellAccountToken);
+  const softUpsellAccountScope = studyTarget === 'es'
+    ? ''
+    : lessonSoftUpsellPersistenceScope(softUpsellAccountToken);
   const isCompassTheme = false;
   const params = useLocalSearchParams<{
     id: string;
@@ -558,13 +561,13 @@ export default function LessonComplete() {
     accountScope: softUpsellAccountScope,
     generation: softUpsellAccountToken.generation,
     lessonId,
-    studyTarget,
+    studyTarget: softUpsellStudyTarget,
   });
   softUpsellIdentityRef.current = {
     accountScope: softUpsellAccountScope,
     generation: softUpsellAccountToken.generation,
     lessonId,
-    studyTarget,
+    studyTarget: softUpsellStudyTarget,
   };
   const repeatOpeningRef = useRef(false);
   const premiumBannerAnim = useRef(new Animated.Value(0)).current;
@@ -572,7 +575,7 @@ export default function LessonComplete() {
   const softUpsell = useSoftUpsellOpportunity({
     candidates: softUpsellAccountScope ? softUpsellCandidates : [],
     accountScope: softUpsellAccountScope,
-    studyTarget,
+    studyTarget: softUpsellStudyTarget,
     hasPremiumAccess,
   });
   const softUpsellCopy = softUpsell.opportunity?.trigger === 'free_lessons_complete'
@@ -724,10 +727,10 @@ export default function LessonComplete() {
   const grantBonus = useCallback(async () => {
       const grantAccountToken = captureAccountGeneration();
       const capturedSoftUpsellIdentity: LessonSoftUpsellIdentity = {
-        accountScope: lessonSoftUpsellPersistenceScope(grantAccountToken),
+        accountScope: studyTarget === 'es' ? '' : lessonSoftUpsellPersistenceScope(grantAccountToken),
         generation: grantAccountToken.generation,
         lessonId,
-        studyTarget,
+        studyTarget: softUpsellStudyTarget,
       };
       const suppress = { suppressEarnEvent: true } as const;
       const shardKeys: ShardSource[] = [];

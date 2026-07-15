@@ -244,7 +244,7 @@ export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 2;
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 8,
   free_daily_quiz_limit: 3,
-  arena_daily_max: 5,
+  arena_daily_max: 1,
   arena_shard_refill_cost: 5,
   arena_shard_refill_slots: 5,
   max_energy: 5,
@@ -273,7 +273,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Global client kill-switch only. Server owns percentage rollout by canonical stableUid.
-  weekly_review_ai_v2_enabled: false,
+  weekly_review_ai_v2_enabled: true,
   // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.
   soft_upsell_first_lesson_enabled: true,
   soft_upsell_free_lessons_complete_enabled: true,

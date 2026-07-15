@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
 import type { LeaguePodiumMember } from '../../app/league_club_hub_model';
@@ -12,12 +12,13 @@ interface LeaguePodiumProps {
   podium: readonly LeaguePodiumMember[];
   lang: Lang;
   palette: LeagueHubPalette;
+  leagueIcon: React.ReactNode;
   renderAvatar: (member: LeaguePodiumMember, size: number) => React.ReactNode;
   hasCrown: (uid?: string) => boolean;
   onOpenProfile: (member: LeaguePodiumMember) => void;
 }
 
-function LeaguePodiumComponent({ podium, lang, palette, renderAvatar, hasCrown, onOpenProfile }: LeaguePodiumProps) {
+function LeaguePodiumComponent({ podium, lang, palette, leagueIcon, renderAvatar, hasCrown, onOpenProfile }: LeaguePodiumProps) {
   const reduceMotion = useReduceMotion();
   const byPlace = new Map(podium.map((member) => [member.place, member]));
   const orderedPodium = [byPlace.get(2), byPlace.get(1), byPlace.get(3)].filter((member): member is LeaguePodiumMember => Boolean(member));
@@ -27,11 +28,18 @@ function LeaguePodiumComponent({ podium, lang, palette, renderAvatar, hasCrown, 
   return (
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(160).duration(260)} style={[styles.shell, { backgroundColor: palette.surface }]} testID="league-podium">
       <View style={styles.heading}>
-        <View>
+        <View style={styles.headingCopy}>
           <Text style={[styles.title, { color: palette.text }]}>{triLang(lang, { ru: 'Гонка за корону', uk: 'Гонка за корону', es: 'Carrera por la corona', 'pt-BR': 'Corrida pela coroa', vi: 'Cuộc đua vương miện', id: 'Perebutan mahkota', tr: 'Taç yarışı', pl: 'Wyścig po koronę' })}</Text>
           <Text style={[styles.subtitle, { color: palette.muted }]}>{triLang(lang, { ru: 'Лидеры этой недели', uk: 'Лідери цього тижня', es: 'Líderes de esta semana', 'pt-BR': 'Líderes desta semana', vi: 'Dẫn đầu tuần này', id: 'Pemimpin minggu ini', tr: 'Bu haftanın liderleri', pl: 'Liderzy tego tygodnia' })}</Text>
         </View>
-        <Ionicons name="trophy" size={24} color={palette.warning} />
+        <View
+          style={styles.leagueIconSlot}
+          testID="league-current-heraldry"
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          {leagueIcon}
+        </View>
       </View>
 
       <View style={styles.podiumRow}>
@@ -68,6 +76,8 @@ export const LeaguePodium = memo(LeaguePodiumComponent);
 const styles = StyleSheet.create({
   shell: { borderRadius: 24, padding: 16, gap: 17 },
   heading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  headingCopy: { flex: 1, minWidth: 0, paddingRight: 12 },
+  leagueIconSlot: { width: 52, height: 52, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   title: { fontSize: 19, fontWeight: '900' },
   subtitle: { fontSize: 12, fontWeight: '600', marginTop: 2 },
   podiumRow: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', gap: 8, minHeight: 154 },

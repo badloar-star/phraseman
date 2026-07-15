@@ -1,12 +1,13 @@
 import React from 'react';
-import TapScale from '../components/TapScale';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import DuoPressable from '../components/DuoPressable';
+import { StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang } from '../constants/i18n';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { buttonForegroundForBackground } from '../constants/color_contrast';
 
 type TrainerReportQueue = 'words' | 'phrases' | 'arena';
 
@@ -28,9 +29,12 @@ export default function TrainerSessionReport({
   onDone,
   onPracticeMore,
 }: TrainerSessionReportProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const isCompassTheme = false;
   const reportAccent = isCompassTheme ? COMPASS_RICH.champagne : accent;
+  const primaryTextColor = isCompassTheme
+    ? COMPASS_RICH.textDark
+    : buttonForegroundForBackground(accent);
   const { lang } = useLang();
   const attempted = Math.max(total, correct + wrong);
   const isEmpty = attempted === 0;
@@ -131,7 +135,7 @@ export default function TrainerSessionReport({
 
       <View style={styles.actions}>
         {onPracticeMore && !isEmpty ? (
-          <TapScale scaleTo={0.96} onPress={onPracticeMore} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '22', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+          <DuoPressable onPress={onPracticeMore} wrapStyle={styles.actionButtonWrap} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '22', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
             {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
             <Text style={{ color: reportAccent, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
@@ -145,11 +149,11 @@ export default function TrainerSessionReport({
                 pl: 'Jeszcze słabe',
               })}
             </Text>
-          </TapScale>
+          </DuoPressable>
         ) : null}
-        <TapScale scaleTo={0.96} onPress={onDone} style={[styles.primaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+        <DuoPressable onPress={onDone} wrapStyle={styles.actionButtonWrap} style={[styles.primaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
           {isCompassTheme ? <CompassDepthSurface radius={9} cream /> : null}
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : '#fff', fontSize: f.sub, fontWeight: '900' }}>
+          <Text style={{ color: primaryTextColor, fontSize: f.sub, fontWeight: '900' }}>
             {triLang(lang, {
               ru: 'Готово',
               uk: 'Готово',
@@ -161,14 +165,14 @@ export default function TrainerSessionReport({
               pl: 'Gotowe',
             })}
           </Text>
-        </TapScale>
+        </DuoPressable>
       </View>
     </View>
   );
 }
 
 function Metric({ label, value, color }: { label: string; value: string; color: string }) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const isCompassTheme = false;
   return (
     <View style={[styles.metric, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 9 : 14, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
@@ -218,8 +222,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
   },
+  actionButtonWrap: { flex: 1 },
   primaryBtn: {
-    flex: 1,
     minHeight: 52,
     borderRadius: 16,
     alignItems: 'center',
@@ -227,7 +231,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
   },
   secondaryBtn: {
-    flex: 1,
     minHeight: 52,
     borderRadius: 16,
     alignItems: 'center',

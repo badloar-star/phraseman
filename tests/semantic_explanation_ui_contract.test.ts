@@ -40,4 +40,10 @@ describe('semantic explanation UI contract', () => {
     expect(aiCard).not.toContain('BilingualMistakeText');
     expect(eli5).not.toContain('BilingualMistakeText');
   });
+
+  it('uses the shared tonal surface for explanation sheets without changing their semantic body rendering', () => {
+    expect(read('components/ExplainSheet.tsx')).toContain('TonalSurface');
+    expect(read('components/MistakeEli5Modal.tsx')).toContain('TonalSurface');
+    expect(read('components/ExplainReportButton.tsx')).toContain('TonalSurface');
+  });
 });

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { triLang, type Lang } from '../constants/i18n';
+import type { Lang } from '../constants/i18n';
 import { accountScopeKey } from './account_scope_key';
 import {
   captureAccountGeneration,
@@ -39,7 +39,7 @@ export type WeeklyReviewState =
   | { status: 'hydrating'; snapshot: WeeklyReviewSnapshot }
   | { status: 'insufficient'; snapshot: WeeklyReviewSnapshot }
   | { status: 'free_eligible'; snapshot: WeeklyReviewSnapshot }
-  | { status: 'plus_ready_to_generate'; snapshot: WeeklyReviewSnapshot; fallback?: WeeklyReviewV2 }
+  | { status: 'plus_ready_to_generate'; snapshot: WeeklyReviewSnapshot; review?: WeeklyReviewV2 }
   | { status: 'generating'; snapshot: WeeklyReviewSnapshot; review?: WeeklyReviewV2 }
   | { status: 'fresh' | 'cached' | 'cooldown'; snapshot: WeeklyReviewSnapshot; review: WeeklyReviewV2; nextAllowedAtMs: number }
   | { status: 'offline' | 'error'; snapshot: WeeklyReviewSnapshot; review?: WeeklyReviewV2; errorCode: WeeklyReviewErrorCode };
@@ -127,44 +127,6 @@ function normalizeCallableResult(raw: unknown): WeeklyReviewCallableResult {
     nextAllowedAtMs,
     model: String(data.model ?? ''),
     ...(data.idempotentReplay ? { idempotentReplay: true } : {}),
-  };
-}
-
-function localCopy(lang: Lang, ru: string, uk: string, es: string, fallback: string): string {
-  return triLang(lang, { ru, uk, es, 'pt-BR': fallback, vi: fallback, id: fallback, tr: fallback, pl: fallback });
-}
-
-/** Evidence-backed Plus fallback. It is never returned to Free users. */
-export function buildLocalWeeklyReview(briefing: WeeklyReviewBriefingV2): WeeklyReviewV2 {
-  const weak = briefing.mistakes.weakCategories[0];
-  const evidenceRef = Object.keys(briefing.evidenceRegistry)[0] ?? 'coverage.ready';
-  const recommendation = briefing.recommendations[0];
-  return {
-    schemaVersion: WEEKLY_REVIEW_SCHEMA_VERSION,
-    headline: localCopy(briefing.lang as Lang, 'Сигнал уже виден', 'Сигнал уже видно', 'La señal ya está clara', 'Your learning signal is ready'),
-    summary: weak
-      ? localCopy(briefing.lang as Lang, `Главный фокус сейчас — ${weak.label}.`, `Головний фокус зараз — ${weak.label}.`, `El foco principal ahora es ${weak.label}.`, `The current focus is ${weak.label}.`)
-      : localCopy(briefing.lang as Lang, 'Данных достаточно для следующего точного шага.', 'Даних достатньо для наступного точного кроку.', 'Hay datos suficientes para el siguiente paso.', 'There is enough data for one focused next step.'),
-    patterns: weak ? [{
-      title: weak.label,
-      explanation: localCopy(briefing.lang as Lang, 'Эта зона чаще появляется в собранных сигналах.', 'Ця зона частіше з’являється у зібраних сигналах.', 'Esta zona aparece con más frecuencia.', 'This area appears more often in the collected signals.'),
-      evidenceRefs: [evidenceRef],
-    }] : [],
-    improvements: [],
-    priorities: weak ? [{
-      title: weak.label,
-      reason: localCopy(briefing.lang as Lang, 'Короткое повторение даст самый понятный следующий шаг.', 'Коротке повторення дасть найзрозуміліший наступний крок.', 'Un repaso corto ofrece el siguiente paso más claro.', 'A short review gives the clearest next step.'),
-      evidenceRefs: [evidenceRef],
-    }] : [],
-    plan: recommendation ? [{
-      order: 1,
-      actionKind: recommendation.actionKind,
-      recommendationId: recommendation.recommendationId,
-      evidenceRefs: [evidenceRef],
-      expectedOutcome: recommendation.label,
-    }] : [],
-    confidence: briefing.coverage.failed === 0 ? 'medium' : 'low',
-    coverageNote: localCopy(briefing.lang as Lang, 'Это краткий локальный снимок до следующего обновления рекомендаций.', 'Це короткий локальний знімок до наступного оновлення рекомендацій.', 'Es una vista local breve antes de la próxima actualización de recomendaciones.', 'This is a brief local snapshot before the next recommendation update.'),
   };
 }
 
@@ -284,16 +246,15 @@ export async function generateWeeklyReview(
     return { status: 'cooldown', snapshot, review: stored.review, nextAllowedAtMs: stored.nextAllowedAtMs };
   }
 
-  const fallback = stored?.review ?? buildLocalWeeklyReview(briefingResult.briefing);
   const aiV2Enabled = options.aiV2Enabled ?? deps.aiEnabled();
   if (options.allowGenerate === false) {
-    if (aiV2Enabled) return { status: 'plus_ready_to_generate', snapshot, fallback };
+    if (aiV2Enabled) return { status: 'plus_ready_to_generate', snapshot, ...(stored ? { review: stored.review } : {}) };
     if (stored) return { status: 'cached', snapshot, review: stored.review, nextAllowedAtMs: stored.nextAllowedAtMs };
-    return { status: 'plus_ready_to_generate', snapshot, fallback };
+    return { status: 'plus_ready_to_generate', snapshot };
   }
   if (!aiV2Enabled) {
     if (stored) return { status: 'cached', snapshot, review: stored.review, nextAllowedAtMs: stored.nextAllowedAtMs };
-    return { status: 'plus_ready_to_generate', snapshot, fallback };
+    return { status: 'plus_ready_to_generate', snapshot };
   }
 
   try {
@@ -330,7 +291,7 @@ export async function generateWeeklyReview(
     return {
       status: code === 'offline' ? 'offline' : 'error',
       snapshot,
-      review: stored?.review ?? fallback,
+      ...(stored ? { review: stored.review } : {}),
       errorCode: code,
     };
   }

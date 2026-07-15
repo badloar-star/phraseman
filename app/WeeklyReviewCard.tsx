@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import PlusBadge from '../components/PlusBadge';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -56,7 +56,7 @@ export default function WeeklyReviewCard({ active, isPremium, studyTarget, stabl
     const initial = await getWeeklyReviewState({ lang, studyTarget, isPremium });
     setState(initial);
     if (!active || !isPremium || initial.status !== 'plus_ready_to_generate') return;
-    setState({ status: 'generating', snapshot: initial.snapshot, review: initial.fallback });
+    setState({ status: 'generating', snapshot: initial.snapshot, review: initial.review });
     const generated = await generateWeeklyReview({ lang, studyTarget, isPremium });
     setState(generated);
   }, [active, isPremium, lang, studyTarget]);
@@ -166,14 +166,14 @@ export default function WeeklyReviewCard({ active, isPremium, studyTarget, stabl
 function reviewFromState(state: WeeklyReviewState): WeeklyReviewV2 | undefined {
   if (state.status === 'fresh' || state.status === 'cached' || state.status === 'cooldown') return state.review;
   if (state.status === 'generating' || state.status === 'offline' || state.status === 'error') return state.review;
-  if (state.status === 'plus_ready_to_generate') return state.fallback;
+  if (state.status === 'plus_ready_to_generate') return state.review;
   return undefined;
 }
 
-function resultSourceForState(state: WeeklyReviewState): 'none' | 'local_fallback' | 'cache' | 'provider' {
+function resultSourceForState(state: WeeklyReviewState): 'none' | 'cache' | 'provider' {
   if (state.status === 'fresh') return 'provider';
   if (state.status === 'cached' || state.status === 'cooldown') return 'cache';
-  if (state.status === 'plus_ready_to_generate' && state.fallback) return 'local_fallback';
+  if (state.status === 'plus_ready_to_generate' && state.review) return 'cache';
   if ((state.status === 'offline' || state.status === 'error' || state.status === 'generating') && state.review) return 'cache';
   return 'none';
 }
@@ -274,7 +274,6 @@ function PlusReview({ review, copy, onAction, textColor, mutedColor, accent, acc
             ))}
           </View>
         ) : null}
-        <Text style={[styles.coverage, { color: mutedColor }]}>{review.coverageNote}</Text>
       </View>
     </View>
   );
@@ -331,5 +330,5 @@ const styles = StyleSheet.create({
   details: { gap: 17, paddingTop: 4 }, section: { gap: 9 }, sectionTitle: { fontSize: 13, fontWeight: '900', letterSpacing: 0.5, textTransform: 'uppercase' },
   insightRow: { flexDirection: 'row', gap: 9 }, insightDot: { width: 6, height: 6, borderRadius: 99, marginTop: 7 }, insightCopy: { flex: 1, gap: 3 }, insightTitle: { fontSize: 15, lineHeight: 21, fontWeight: '800' }, insightBody: { fontSize: 14, lineHeight: 21 },
   planButton: { minHeight: 52, borderRadius: 15, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 10 }, orderDot: { width: 25, height: 25, borderRadius: 99, alignItems: 'center', justifyContent: 'center' }, orderText: { fontSize: 12, fontWeight: '900' }, planText: { flex: 1, fontSize: 14, lineHeight: 19, fontWeight: '900' },
-  coverage: { fontSize: 12, lineHeight: 17, fontWeight: '600' }, loadingGeometry: { gap: 12 },
+  loadingGeometry: { gap: 12 },
 });

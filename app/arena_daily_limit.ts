@@ -6,7 +6,7 @@ const KEY = 'arena_daily_limit_v1';
 const BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const BONUS_ONCE_KEY_PREFIX = 'arena_daily_gift_bonus_once_';
 /** Build-time defaults; runtime uses remote-tunable getters below. */
-export const ARENA_DAILY_MAX = 5;
+export const ARENA_DAILY_MAX = 1;
 /** Покупка слотов рейтинг-матчей за осколки (модалка лимита арены). */
 export const ARENA_MATCHES_SHARD_REFILL_COST = 5;
 export const ARENA_MATCHES_SHARD_REFILL_SLOTS = 5;
@@ -55,7 +55,7 @@ async function readGiftExtra(): Promise<number> {
   }
 }
 
-/** Сегодняшний максимум рейтинг-матчей: база 5 + бонус из подарка (напр. +5) */
+/** Сегодняшний максимум рейтинг-матчей: база 1 + бонус из подарка (напр. +5) */
 export async function getDailyArenaMaxToday(): Promise<number> {
   return getArenaDailyMax() + (await readGiftExtra());
 }

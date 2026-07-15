@@ -9,27 +9,22 @@ import {
   markFreeDialogUsed,
 } from '../app/dialogs_limit_session';
 
-describe('dialogs_limit_session (lifetime free dialog counter)', () => {
+describe('dialogs_limit_session (legacy lifetime free dialog counter)', () => {
   beforeEach(async () => {
     await AsyncStorage.removeItem(FREE_DIALOG_USED_KEY);
     await AsyncStorage.removeItem(FREE_DIALOG_LEGACY_USED_KEY);
   });
 
-  it('starts with two free dialogs available by default', async () => {
+  it('starts with no free dialogs while Dialogs is Plus-only', async () => {
     expect(await getFreeDialogsUsed()).toBe(0);
-    expect(await getFreeDialogsLeft()).toBe(2);
-    expect(await hasUsedFreeDialog()).toBe(false);
-    expect(await hasFreeDialogLeft()).toBe(true);
+    expect(await getFreeDialogsLeft()).toBe(0);
+    expect(await hasUsedFreeDialog()).toBe(true);
+    expect(await hasFreeDialogLeft()).toBe(false);
   });
 
-  it('consumes free dialogs one by one', async () => {
+  it('does not recreate a free allowance when old code marks usage', async () => {
     await markFreeDialogUsed();
-    expect(await getFreeDialogsUsed()).toBe(1);
-    expect(await getFreeDialogsLeft()).toBe(1);
-    expect(await hasFreeDialogLeft()).toBe(true);
-
-    await markFreeDialogUsed();
-    expect(await getFreeDialogsUsed()).toBe(2);
+    expect(await getFreeDialogsUsed()).toBe(0);
     expect(await getFreeDialogsLeft()).toBe(0);
     expect(await hasUsedFreeDialog()).toBe(true);
     expect(await hasFreeDialogLeft()).toBe(false);
@@ -39,14 +34,14 @@ describe('dialogs_limit_session (lifetime free dialog counter)', () => {
     await markFreeDialogUsed();
     await markFreeDialogUsed();
     await markFreeDialogUsed();
-    expect(await AsyncStorage.getItem(FREE_DIALOG_USED_KEY)).toBe('2');
+    expect(await AsyncStorage.getItem(FREE_DIALOG_USED_KEY)).toBe('0');
     expect(await getFreeDialogsLeft()).toBe(0);
   });
 
-  it('migrates the old boolean flag as one spent dialog', async () => {
+  it('does not restore access from the old boolean flag', async () => {
     await AsyncStorage.setItem(FREE_DIALOG_LEGACY_USED_KEY, '1');
-    expect(await getFreeDialogsUsed()).toBe(1);
-    expect(await getFreeDialogsLeft()).toBe(1);
-    expect(await hasFreeDialogLeft()).toBe(true);
+    expect(await getFreeDialogsUsed()).toBe(0);
+    expect(await getFreeDialogsLeft()).toBe(0);
+    expect(await hasFreeDialogLeft()).toBe(false);
   });
 });

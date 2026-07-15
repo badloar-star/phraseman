@@ -7,7 +7,7 @@
  */
 import React, { memo } from 'react';
 import { Image, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';

@@ -9,11 +9,13 @@ jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable',
   StyleSheet: {
     create: (styles: unknown) => styles,
+    absoluteFillObject: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
     flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style,
   },
 }));
+jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
-jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { bgCard: '#fff', border: '#ddd', textPrimary: '#111', textMuted: '#555', accent: '#b7ff00', correctText: '#07110A' }, f: { body: 16, caption: 13, label: 15 } }) }));
+jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { bgCard: '#fff', bgSurface: '#eee', cardGradient: ['#fff', '#ddd'], border: '#ddd', textPrimary: '#111', textMuted: '#555', accent: '#b7ff00', correctText: '#07110A' }, f: { body: 16, caption: 13, label: 15 }, isFlat: false }) }));
 
 const opportunity = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const, context: 'first_lesson_success' as const, destination: 'personal_plan' as const, milestoneId: 'first_lesson:1:en' };
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -45,6 +47,7 @@ it('is inline, accessible, and reports a visible layout once', async () => {
 it('has no modal, portal, router, emoji, or animation and enforces touch/contrast tokens', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'components/SoftContextualUpsellCard.tsx'), 'utf8');
   expect(source).not.toMatch(/Modal|Portal|expo-router|useRouter|Animated|[\u{1F300}-\u{1FAFF}]/u);
+  expect(source).toMatch(/TonalSurface/);
   expect(source).toMatch(/minHeight:\s*44/);
   expect(source).toMatch(/minWidth:\s*44/);
   expect(source).toMatch(/t\.correctText/);

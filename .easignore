@@ -27,6 +27,7 @@ graphify-out/
 .expo/
 .codex-tmp/
 .codex-logs/
+.worktrees/
 .dev-screens/
 .ruflo/
 .agents/
@@ -138,3 +139,39 @@ assets/audio/personal-plans-runtime/
 # (removed from app.json assetPatternsToBeBundled; CollectibleArt uses URLs + SVG
 # fallback). ~71 MB saved from every EAS upload archive.
 assets/images/collectibles/dalli/
+
+# Non-runtime authoring, diagnostics, and local test artifacts
+content/
+.shots/
+.eas-logs/
+test-results/
+assets/arena_questions_*.json
+assets/images/flow_clean_202607/*.png
+
+# Additional tracked legacy artwork with zero runtime references (bundle audit 2026-07-14)
+assets/images/league_bonus/gold-theme-card.webp
+assets/images/levels/professor.webp
+assets/images/levels/legenda.webp
+assets/images/levels/energy.webp
+assets/images/levels/erudit.webp
+assets/images/levels/GIFT PREMIUM.webp
+assets/images/levels/GIFT_PREMIUM.webp
+assets/images/levels/absolut.webp
+assets/images/levels/NEGOTIATOR.webp
+assets/images/levels/OSKOLOK.webp
+assets/images/level_gifts/gold-premium.webp
+assets/images/level_gifts/coral-premium.webp
+assets/images/level_gifts/dark-premium.webp
+assets/images/level_gifts/minimalDark-premium.webp
+assets/images/level_gifts/gold-epic.webp
+assets/images/level_gifts/dark-epic.webp
+assets/images/level_gifts/coral-epic.webp
+assets/images/level_gifts/minimalDark-epic.webp
+assets/images/level_gifts/gold-rare.webp
+assets/images/level_gifts/coral-rare.webp
+assets/images/level_gifts/dark-rare.webp
+assets/images/level_gifts/minimalDark-rare.webp
+assets/images/level_gifts/gold-common.webp
+assets/images/level_gifts/coral-common.webp
+assets/images/level_gifts/dark-common.webp
+assets/images/level_gifts/minimalDark-common.webp

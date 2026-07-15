@@ -3,7 +3,7 @@ import Reanimated from 'react-native-reanimated';
 import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { Image } from 'expo-image';
 import TapScale from '../components/TapScale';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
@@ -395,6 +395,7 @@ const optionSubtitle = (option: PracticeOption, lang: Lang): string => {
 const EMPTY_TRAINER_DASHBOARD: TrainerDashboard = {
     due: { words: 0, phrases: 0, arena: 0 },
     totalDue: 0,
+    overdue: 0,
     totalTracked: 0,
     active: 0,
     future: 0,

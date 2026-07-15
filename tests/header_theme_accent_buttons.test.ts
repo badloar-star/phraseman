@@ -67,4 +67,20 @@ describe('header accent buttons (vector icons)', () => {
     expect(chatHub).not.toContain("renderTab('league'");
     expect(chatHub).not.toContain("router.push('/league_screen?openChat=1')");
   });
+
+  test('Help Board fullscreen keeps its close control in the left corner', () => {
+    const chatHub = chatHubSource();
+    const headerStart = chatHub.indexOf('<View style={styles.header}>');
+    const contentStart = chatHub.indexOf('<View style={styles.content}>');
+    const header = chatHub.slice(headerStart, contentStart);
+
+    expect(headerStart).toBeGreaterThanOrEqual(0);
+    expect(contentStart).toBeGreaterThan(headerStart);
+    expect(header).toContain('accessibilityLabel={copy.close}');
+    expect(header).toContain('style={[styles.headerTitle');
+    expect(header).toContain('hitSlop={8}');
+    expect(header.indexOf('accessibilityLabel={copy.close}')).toBeLessThan(
+      header.indexOf('style={[styles.headerTitle'),
+    );
+  });
 });

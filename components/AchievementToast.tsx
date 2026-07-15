@@ -5,7 +5,7 @@ import {
 import { LinearGradient } from './SafeLinearGradient';
 import TapScale from './TapScale';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image as ExpoImage } from 'expo-image';
 import { useAchievement } from './AchievementContext';
 import { useTheme } from './ThemeContext';

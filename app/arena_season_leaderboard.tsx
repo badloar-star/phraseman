@@ -8,7 +8,7 @@ import { Pressable, Text, View } from 'react-native';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import AvatarView from '../components/AvatarView';

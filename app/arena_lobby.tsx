@@ -7,7 +7,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView,
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';

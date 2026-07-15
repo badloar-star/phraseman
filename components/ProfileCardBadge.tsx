@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Text, View, ViewStyle } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { ENABLE_PROFILE_CARD } from '../app/config';
 import { useLang } from './LangContext';
 import { resolveProfileCardDisplay } from '../app/profile_card_system';

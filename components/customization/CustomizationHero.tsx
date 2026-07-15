@@ -13,7 +13,6 @@ export interface CustomizationHeroProps {
   themeAccent: string;
   motionEnabled: boolean;
   minHeight: number;
-  previewLabel: string;
 }
 
 const hex = /^#([0-9a-f]{6})$/i;
@@ -50,7 +49,6 @@ export const CustomizationHero = React.memo(function CustomizationHero(props: Cu
       style={[styles.hero, { minHeight: props.minHeight, borderColor: withAlpha(props.themeAccent, '55') }]}
     >
       <ConstellationOrbits accent={colors.glow} />
-      <Text style={styles.preview}>{props.previewLabel}</Text>
       <View style={[styles.avatarHalo, { shadowColor: props.themeAccent }]}>
         <AvatarView
           avatar={props.avatarValue}
@@ -77,7 +75,6 @@ const styles = StyleSheet.create({
   star: { position: 'absolute', width: 5, height: 5, borderRadius: 3, shadowOpacity: 0.9, shadowRadius: 8 },
   starOne: { left: '18%', top: '28%' }, starTwo: { right: '16%', top: '39%' }, starThree: { left: '28%', bottom: '25%' },
   avatarHalo: { shadowOpacity: 0.65, shadowRadius: 34, shadowOffset: { width: 0, height: 0 }, elevation: 10 },
-  preview: { position: 'absolute', top: 24, color: 'rgba(255,255,255,0.72)', fontSize: 12, fontWeight: '800', letterSpacing: 1.6, textTransform: 'uppercase' },
-  name: { marginTop: 24, color: '#FFFFFF', fontSize: 25, lineHeight: 31, fontWeight: '900', textAlign: 'center' },
+  name: { marginTop: 18, color: '#FFFFFF', fontSize: 25, lineHeight: 31, fontWeight: '900', textAlign: 'center' },
   meta: { marginTop: 8, color: 'rgba(255,255,255,0.68)', fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
 });

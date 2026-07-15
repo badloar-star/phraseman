@@ -10,7 +10,7 @@ import {
   type ViewStyle, type StyleProp,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 
 import { useTheme } from '../ThemeContext';

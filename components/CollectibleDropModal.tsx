@@ -3,7 +3,7 @@
 // готовые ярусы GiftOpenEffects; legendary получает premium-ярус.
 import React, { useEffect, useMemo } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import CollectibleArt from './CollectibleArt';
 import { GiftOpenBurst, type GiftAnimTier } from './GiftOpenEffects';
 import HoloFoilCard from './HoloFoilCard';

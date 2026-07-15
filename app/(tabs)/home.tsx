@@ -11,7 +11,7 @@ import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
@@ -312,21 +312,6 @@ function parseStoredStreak(raw: string | null): number {
         return 0;
     }
 }
-function formatHomeCompactXpValue(value: number, compactFrom = 10_000): string {
-    const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
-    if (n < compactFrom)
-        return String(n);
-    const thousands = n / 1000;
-    if (n < 100_000) {
-        const truncated = Math.floor(thousands * 10) / 10;
-        return `${Number.isInteger(truncated) ? truncated.toFixed(0) : truncated.toFixed(1)}K`;
-    }
-    return `${Math.floor(thousands)}K`;
-}
-function formatHomeXpProgressLabel(xpInLevel: number, xpNeeded: number): string {
-    const compactFrom = Math.max(xpInLevel, xpNeeded) >= 10_000 ? 1_000 : 10_000;
-    return `${formatHomeCompactXpValue(xpInLevel, compactFrom)} / ${formatHomeCompactXpValue(xpNeeded, compactFrom)} XP`;
-}
 type HomeMenuIconAlign = {
     x: number;
     y: number;
@@ -509,8 +494,9 @@ export default function HomeScreen() {
     const topFadeScroll = useTopFadeScroll();
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
-    const { goToTab, activeIdx, focusTick } = useTabNav();
-    const homeRuntimeActive = useRuntimeActive(activeIdx === 0);
+    const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
+    const isHomeOwner = runtimeOwnerId === 'home';
+    const homeRuntimeActive = useRuntimeActive(isHomeOwner);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -1296,7 +1282,7 @@ export default function HomeScreen() {
         });
     }, []);
     useEffect(() => {
-        if (activeIdx !== 0) return;
+        if (!isHomeOwner) return;
         if (homeRefreshTimerRef.current) {
             clearTimeout(homeRefreshTimerRef.current);
             homeRefreshTimerRef.current = null;
@@ -1317,7 +1303,7 @@ export default function HomeScreen() {
                 homeRefreshTimerRef.current = null;
             }
         };
-    }, [activeIdx, focusTick, studyTarget, lang, refreshDailyTaskSummary]);
+    }, [focusTick, isHomeOwner, studyTarget, lang, refreshDailyTaskSummary]);
     useEffect(() => {
         let cancelled = false;
         void ensureAnonUser()
@@ -1413,10 +1399,10 @@ export default function HomeScreen() {
         };
     }, [homeStatsReady, focusTick, homeRuntimeActive, statsHintPulseAnim]);
     useEffect(() => {
-        if (homeStatsReady && activeIdx === 0) {
+        if (homeStatsReady && isHomeOwner) {
             emitAppEvent('app_first_content_ready');
         }
-    }, [homeStatsReady, activeIdx]);
+    }, [homeStatsReady, isHomeOwner]);
     const loadData = async () => {
         if (loadingRef.current) {
             needsReloadRef.current = true;
@@ -2177,7 +2163,7 @@ export default function HomeScreen() {
     </>);
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
-        const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
+        const { level, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
         const homeQuickRowPad = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16;
         const homeQuickRowGap = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10;
@@ -2292,7 +2278,6 @@ export default function HomeScreen() {
         ];
         const visibleActivityQuickItems = activityQuickItems;
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
-        const homeXpProgressLabel = formatHomeXpProgressLabel(xpInLevel, xpNeeded);
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
@@ -2422,12 +2407,6 @@ export default function HomeScreen() {
                     </View>
                   </View>
 
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 10 }}>
-                    <Text style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 14 : 16, fontWeight: '900', lineHeight: eliteStatsCompact ? 18 : 20 }} numberOfLines={1}>
-                      {homeXpProgressLabel}
-                    </Text>
-                  </View>
-
                   <View style={{
                     height: 12,
                     borderRadius: 999,
@@ -2542,7 +2521,7 @@ export default function HomeScreen() {
                 )}
                 <LingmanVideosButton />
                 <CommunityChatHubButton />
-                <NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />
+                <NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -2632,12 +2611,11 @@ export default function HomeScreen() {
                   </View>
 
                   <View style={{ marginBottom: 15 }}>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 7 }}>
-                      <Text style={{ color: t.textMuted, fontSize: eliteMetaFontSize, fontWeight: '800' }}>{homeXpProgressLabel}</Text>
-                      {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
+                      {totalXPMulti > 1.0 && (<View style={{ alignItems: 'flex-end', marginBottom: 7 }}>
+                          <View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
                             <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
-                          </View>)}
-                    </View>
+                          </View>
+                        </View>)}
                     <View style={{
                     height: 12,
                     borderRadius: 8,
@@ -2772,12 +2750,11 @@ export default function HomeScreen() {
                 <View style={{ height: 9, backgroundColor: t.bgSurface, borderRadius: 5, overflow: 'hidden' }}>
                   <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.progressMetal : [isLightTheme ? t.accent : t.gold, isLightTheme ? t.accent : t.gold]} locations={undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${Math.min(100, Math.round(progress * 100))}%` as any, height: '100%', borderRadius: 5 }}/>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{homeXpProgressLabel}</Text>
-                  {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
+                {totalXPMulti > 1.0 && (<View style={{ alignItems: 'flex-end', marginTop: 5 }}>
+                    <View style={{ backgroundColor: t.gold, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
                       <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
-                    </View>)}
-                </View>
+                    </View>
+                  </View>)}
               </View>
 
               {/* МИНИ-БЕЙДЖ XP-ПЕРЦЕНТИЛЯ */}

@@ -14,7 +14,7 @@ const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) a
 import TapScale from '../../components/TapScale';
 import DuoPressable from '../../components/DuoPressable';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { glassFill } from '../../components/GlassSurface';
 import { useLang } from '../../components/LangContext';

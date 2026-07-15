@@ -17,13 +17,34 @@ jest.mock('expo-image', () => ({
     return <MockImage {...props} />;
   },
 }));
+jest.mock('expo-linear-gradient', () => ({
+  LinearGradient: ({ children, ...props }: any) => {
+    const { View: MockView } = require('react-native');
+    return <MockView {...props}>{children}</MockView>;
+  },
+}));
 jest.mock('expo-router', () => ({ usePathname: () => '/daily-tasks' }));
 jest.mock('../components/TapScale', () => {
   const { Pressable: MockPressable } = require('react-native');
   return ({ children, ...props }: any) => <MockPressable {...props}>{children}</MockPressable>;
 });
 jest.mock('../components/ThemeContext', () => ({
-  useTheme: () => ({ theme: { bgCard: '#111' }, f: { body: 16, label: 14 }, themeMode: 'dark' }),
+  useTheme: () => ({
+    theme: {
+      bgCard: '#111',
+      bgSurface: '#181818',
+      cardGradient: ['#222', '#050505'],
+      accent: '#9cff00',
+      correctText: '#07110A',
+      textPrimary: '#fff',
+      textMuted: '#ddd',
+      wrong: '#ff5c5c',
+      wrongBg: 'rgba(255,92,92,0.14)',
+    },
+    f: { h2: 22, body: 16, label: 14 },
+    themeMode: 'dark',
+    isFlat: false,
+  }),
 }));
 jest.mock('../constants/theme', () => ({
   screenTextOnGradient: () => ({ primary: '#fff', muted: '#ddd', second: '#fff', ghost: '#222' }),

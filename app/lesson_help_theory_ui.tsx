@@ -7,7 +7,7 @@
 //
 // Эти компоненты — маленькие и статически импортируются и экраном, и модулем
 // данных: сам по себе этот файл не тянет мегабайты контента.
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo, useRef, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
 import { useTheme } from '../components/ThemeContext';

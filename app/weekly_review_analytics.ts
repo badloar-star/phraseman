@@ -13,7 +13,7 @@ export type WeeklyReviewAnalyticsEvent =
 type Tier = 'free' | 'plus';
 type StudyTarget = 'en' | 'fr';
 type SignalBucket = '0' | '1_3' | '4_7' | '8_plus';
-type ResultSource = 'none' | 'local_fallback' | 'cache' | 'replay' | 'provider';
+type ResultSource = 'none' | 'cache' | 'replay' | 'provider';
 type ErrorCode = 'offline' | 'not_ready' | 'app_check_unavailable' | 'provider_failed' | 'unknown';
 type LatencyBucket = 'under_1s' | '1_3s' | '3_10s' | '10s_plus';
 
@@ -40,7 +40,7 @@ const EVENTS = new Set<WeeklyReviewAnalyticsEvent>([
 const TIERS = new Set<Tier>(['free', 'plus']);
 const TARGETS = new Set<StudyTarget>(['en', 'fr']);
 const SIGNALS = new Set<SignalBucket>(['0', '1_3', '4_7', '8_plus']);
-const SOURCES = new Set<ResultSource>(['none', 'local_fallback', 'cache', 'replay', 'provider']);
+const SOURCES = new Set<ResultSource>(['none', 'cache', 'replay', 'provider']);
 const ERRORS = new Set<ErrorCode>(['offline', 'not_ready', 'app_check_unavailable', 'provider_failed', 'unknown']);
 const LATENCIES = new Set<LatencyBucket>(['under_1s', '1_3s', '3_10s', '10s_plus']);
 const ACTIONS = new Set<WeeklyReviewActionKind>([

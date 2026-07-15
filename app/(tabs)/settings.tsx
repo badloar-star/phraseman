@@ -15,7 +15,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../components/ThemeContext';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';

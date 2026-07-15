@@ -12,7 +12,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { AHA_THEME } from './aha_theme';
 import type { AhaBeat } from './aha_types';
 
-const COMPASS_LOGO = require('../../assets/images/onboarding_icon_cutout.png');
+const COMPASS_LOGO = require('../../assets/images/onboarding_icon_cutout.webp');
 
 export interface AhaPrimaryButtonProps {
   label: string;

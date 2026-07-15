@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import TapScale from '../components/TapScale';
@@ -25,6 +25,7 @@ import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
+import TonalSurface from '../components/TonalSurface';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -248,7 +249,7 @@ export default function PromoCodeEntryScreen() {
               </Text>
             </View>
 
-            <View style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, gap: 14 }}>
+            <TonalSurface radius={20} style={{ padding: 18, gap: 14 }}>
               <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
                 <Ionicons name="gift-outline" size={24} color={t.accent} />
               </View>
@@ -315,7 +316,7 @@ export default function PromoCodeEntryScreen() {
                   {feedback.text}
                 </Text>
               )}
-            </View>
+            </TonalSurface>
           </ScrollView>
         </KeyboardAvoidingView>
         <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} />

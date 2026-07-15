@@ -9,7 +9,7 @@
  */
 import React, { memo, useCallback } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';

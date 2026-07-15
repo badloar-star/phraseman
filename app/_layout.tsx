@@ -4,7 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
 import { setAudioModeAsync } from 'expo-audio';
@@ -153,7 +153,7 @@ import {
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
-import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
+import { APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
@@ -354,7 +354,7 @@ function buildNavigationPathSignature(
 
 const SPLASH_GLYPH_SIZE = 176;
 const SPLASH_WORDMARK_WIDTH = 232;
-const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.png («Phraseman»)
+const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.webp («Phraseman»)
 const SPLASH_WORDMARK_HEIGHT = Math.round(SPLASH_WORDMARK_WIDTH * SPLASH_WORDMARK_RATIO);
 const SPLASH_SHINE_WIDTH = Math.round(SPLASH_WORDMARK_WIDTH * 0.45);
 
@@ -433,7 +433,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
     <View pointerEvents="none" style={styles.startupSplashAnimatedRoot}>
       <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphScale }] }}>
         <Image
-          source={require('../assets/images/splash-glyph.png')}
+          source={require('../assets/images/splash-glyph.webp')}
           contentFit="contain"
           style={{ width: SPLASH_GLYPH_SIZE, height: SPLASH_GLYPH_SIZE }}
         />
@@ -449,7 +449,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
         }}
       >
         <Image
-          source={require('../assets/images/splash-wordmark.png')}
+          source={require('../assets/images/splash-wordmark.webp')}
           contentFit="contain"
           style={{ width: '100%', height: '100%' }}
         />
@@ -458,7 +458,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
           style={StyleSheet.absoluteFill}
           maskElement={
             <Image
-              source={require('../assets/images/splash-wordmark.png')}
+              source={require('../assets/images/splash-wordmark.webp')}
               contentFit="contain"
               style={{ width: '100%', height: '100%' }}
             />
@@ -3082,8 +3082,12 @@ const styles = StyleSheet.create({
 
 export default function RootLayout() {
   // Fonts are embedded through the expo-font config plugin in native builds.
-  // Keep this as an Expo Go/dev fallback, but do not block the first app frame on it.
-  useFonts(APP_FONT_ASSETS);
+  // Expo Go still needs runtime assets. Literal __DEV__ lets production Metro
+  // remove typography_dev_fonts and avoids embedding the same TTF files twice.
+  const devFontAssets = typeof __DEV__ !== 'undefined' && __DEV__
+    ? (require('./typography_dev_fonts') as typeof import('./typography_dev_fonts')).DEV_FONT_ASSETS
+    : {};
+  useFonts(devFontAssets);
 
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>

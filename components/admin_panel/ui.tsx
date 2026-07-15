@@ -6,7 +6,7 @@
 // app/_admin_settings_testers.tsx и его секций — в прод-бандл не попадает
 // (гейт settings_testers.tsx отсекает весь граф через __DEV__).
 // ════════════════════════════════════════════════════════════════════════════
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Alert, Switch, Text, TouchableOpacity, View } from 'react-native';
 import AccordionChevronIonicons from '../AccordionChevronIonicons';

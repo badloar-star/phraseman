@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
+import { statsDailyBreakdownKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export const ACTIVITY_365_GOAL_KEY = 'activity_365_goal_v1';
 export const STATS_DAILY_BREAKDOWN_KEY = 'stats_daily_breakdown_v1';
@@ -88,6 +89,7 @@ export type Activity365Analytics = {
 };
 
 type DailyBreakdownRow = Partial<{
+  lessons_completed: number;
   words_learned: number;
   flashcards_saved: number;
   phrases_learned: number;
@@ -188,7 +190,7 @@ function metricsForRow(row: DailyBreakdownRow | undefined): Activity365Day['metr
   const planTasksCompleted = n(row?.plan_tasks_completed);
   const arena = n(row?.arena_wins) + n(row?.arena_losses);
   return {
-    lessons: wordsLearned + phrasesLearned,
+    lessons: n(row?.lessons_completed),
     quizzes: n(row?.quizzes_completed),
     review: flashcardsSaved + dailyTasksClaimed,
     arena,
@@ -581,26 +583,31 @@ export function computeActivity365Analytics(params: {
 }
 
 const ANALYTICS_CACHE_TTL_MS = 60_000; // 1 min — avoids recompute on every tab focus
-let _analyticsCache: { result: Activity365Analytics; expiresAt: number } | null = null;
-let _analyticsInFlight: Promise<Activity365Analytics> | null = null;
+const ANALYTICS_CACHE_MAX_TARGETS = 4;
+const _analyticsCache = new Map<string, { result: Activity365Analytics; expiresAt: number }>();
+const _analyticsInFlight = new Map<string, Promise<Activity365Analytics>>();
 
 export function invalidateActivity365Cache(): void {
-  _analyticsCache = null;
+  _analyticsCache.clear();
 }
 
-export async function loadActivity365Analytics(): Promise<Activity365Analytics> {
+export async function loadActivity365Analytics(studyTarget?: RuntimeStudyTarget): Promise<Activity365Analytics> {
   const now = Date.now();
-  if (_analyticsCache && now < _analyticsCache.expiresAt) {
-    return _analyticsCache.result;
+  const target = storageStudyTarget(studyTarget);
+  const cached = _analyticsCache.get(target);
+  if (cached && now < cached.expiresAt) {
+    return cached.result;
   }
-  if (_analyticsInFlight) return _analyticsInFlight;
+  if (cached) _analyticsCache.delete(target);
+  const pending = _analyticsInFlight.get(target);
+  if (pending) return pending;
 
-  _analyticsInFlight = (async () => {
+  const request = (async () => {
     try {
       const [statsRaw, fgDaily, breakdownRaw, goalRaw] = await Promise.all([
         AsyncStorage.getItem('daily_stats'),
         getForegroundDailyMsMap(),
-        AsyncStorage.getItem(STATS_DAILY_BREAKDOWN_KEY),
+        AsyncStorage.getItem(statsDailyBreakdownKey(target)),
         AsyncStorage.getItem(ACTIVITY_365_GOAL_KEY),
       ]);
       const goalChosen = [100, 180, 365].includes(Number(goalRaw));
@@ -612,14 +619,21 @@ export async function loadActivity365Analytics(): Promise<Activity365Analytics> 
         goal,
         goalChosen,
       });
-      _analyticsCache = { result, expiresAt: Date.now() + ANALYTICS_CACHE_TTL_MS };
+      _analyticsCache.delete(target);
+      _analyticsCache.set(target, { result, expiresAt: Date.now() + ANALYTICS_CACHE_TTL_MS });
+      while (_analyticsCache.size > ANALYTICS_CACHE_MAX_TARGETS) {
+        const oldest = _analyticsCache.keys().next().value;
+        if (!oldest) break;
+        _analyticsCache.delete(oldest);
+      }
       return result;
     } finally {
-      _analyticsInFlight = null;
+      _analyticsInFlight.delete(target);
     }
   })();
 
-  return _analyticsInFlight;
+  _analyticsInFlight.set(target, request);
+  return request;
 }
 
 function rand(min: number, max: number): number {

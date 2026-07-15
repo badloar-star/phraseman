@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
 import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -22,6 +22,7 @@ import { monoIcon } from '../../constants/monoIcon';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import ProgressProofBlock from '../../components/feedback/ProgressProofBlock';
 import { buildProgressCompletionModel } from '../completion/progress_completion_model';
+import TonalSurface from '../../components/TonalSurface';
 
 type Props = {
   phrases: QuizPhrase[];
@@ -162,6 +163,7 @@ export default function QuizResultView({
               end={{ x: 1, y: 1 }}
               style={[{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border, padding: 14, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 28, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
             >
+              {!isGoldTheme && <TonalSurface pointerEvents="none" radius={14} tone="raised" style={StyleSheet.absoluteFillObject} />}
               {isGoldTheme && <GoldBevel radius={14} intensity="normal" />}
               <LevelBadge level={lv} size={40} />
               <View style={{ flex: 1 }}>
@@ -199,6 +201,7 @@ export default function QuizResultView({
                 style={{ width: '100%', borderWidth: isGoldTheme ? 1 : 1.5, borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : '#F87171', padding: 18, borderRadius: 14, alignItems: 'center', marginBottom: 12, backgroundColor: t.bgCard, overflow: 'hidden' }}
                 onPress={() => onReviewMistakes(wrongPhrases)}
               >
+                {!isGoldTheme && <TonalSurface pointerEvents="none" radius={14} tone="raised" style={StyleSheet.absoluteFillObject} />}
                 {isGoldTheme && (
                   <>
                     <LinearGradient colors={GOLD_GRADIENTS.raisedTile} locations={GOLD_SURFACE_LOCATIONS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
@@ -224,6 +227,7 @@ export default function QuizResultView({
               style={{ width: '100%', borderWidth: isGoldTheme ? 1 : 1.5, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : accentColor, padding: 18, borderRadius: 14, alignItems: 'center', marginBottom: 12, backgroundColor: t.bgCard, overflow: 'hidden' }}
               onPress={onRestart}
             >
+              {!isGoldTheme && <TonalSurface pointerEvents="none" radius={14} tone="raised" style={StyleSheet.absoluteFillObject} />}
               {isGoldTheme && (
                 <>
                   <LinearGradient colors={GOLD_GRADIENTS.selectedTile} locations={GOLD_SURFACE_LOCATIONS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />

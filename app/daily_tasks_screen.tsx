@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -33,7 +33,6 @@ import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
-import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
 import { lastOpenedLessonKey, quizNavLevelKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
@@ -1774,9 +1773,6 @@ export default function DailyTasksScreen() {
     const [rerollBusyId, setRerollBusyId] = useState<string | null>(null);
     /** Антидребезг клейма: свежий getTodayTasksSafe + registerXP не дают второго тапа «в никуда». */
     const [claimBusyId, setClaimBusyId] = useState<string | null>(null);
-    const [expandedTaskId, setExpandedTaskId] = useState<string | null>(null);
-    const [readyToNavigateTaskId, setReadyToNavigateTaskId] = useState<string | null>(null);
-    const expandedTaskAnim = useRef(new Animated.Value(0)).current;
     const [trioClaimBusy, setTrioClaimBusy] = useState(false);
     const xpAnim = useRef(new Animated.Value(0)).current;
     const claimAnims = useRef<Record<string, Animated.Value>>({});
@@ -1820,18 +1816,6 @@ export default function DailyTasksScreen() {
         });
         return () => { appSub.remove(); stop(); };
     }, [premiumPulse, premiumSparkle, screenFocused]);
-    useEffect(() => {
-        setReadyToNavigateTaskId(null);
-        Animated.timing(expandedTaskAnim, {
-            toValue: expandedTaskId ? 1 : 0,
-            duration: expandedTaskId ? 240 : 170,
-            useNativeDriver: false,
-        }).start(({ finished }) => {
-            if (finished && expandedTaskId) {
-                setReadyToNavigateTaskId(expandedTaskId);
-            }
-        });
-    }, [expandedTaskAnim, expandedTaskId]);
     // Инициализируем анимации при изменении tasks (useEffect, не в теле рендера)
     useEffect(() => {
         (tasks ?? []).forEach(task => {
@@ -2030,15 +2014,12 @@ export default function DailyTasksScreen() {
         }
     }, [rerollConfirm, rerollBusyId, refreshTasksAndProgress, router, studyTarget]);
     useFocusEffect(useCallback(() => {
-        setExpandedTaskId(null);
-        setReadyToNavigateTaskId(null);
-        expandedTaskAnim.setValue(0);
         // Показываем скелетоны только если ещё нет загруженных заданий: при первом
         // входе/холодном старте — да; при возврате на экран с уже готовым списком
         // не мигаем (список перерисуется тихо).
         setLoadingTasks((prev) => (tasks.length === 0 ? true : prev));
         refreshTasksAndProgress();
-    }, [expandedTaskAnim, refreshTasksAndProgress, tasks.length]));
+    }, [refreshTasksAndProgress, tasks.length]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); });
         return () => sub.remove();
@@ -2523,14 +2504,6 @@ export default function DailyTasksScreen() {
     };
     // Сортировка: готово к награде → в процессе → завершено
     const handleTaskCardPress = (task: DailyTask) => {
-        const intent = getDailyTaskCardPressIntent(readyToNavigateTaskId, task.id);
-        if (intent === 'expand') {
-            hapticTap();
-            expandedTaskAnim.setValue(0);
-            setReadyToNavigateTaskId(null);
-            setExpandedTaskId(task.id);
-            return;
-        }
         hapticTap();
         void handleTaskNav(task);
     };
@@ -2736,7 +2709,6 @@ export default function DailyTasksScreen() {
                 titleTextProps={{ style: [dailyTaskStyles.taskCapsuleTitle, { fontSize: f.body + 2 }] }}
                 descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
                 iconStyle={{ backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }}
-                emphasized={expandedTaskId === task.id}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
                 icon={<Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" />}
                 background={<>
@@ -2926,7 +2898,6 @@ const dailyTaskStyles = StyleSheet.create({
         minHeight: 92,
         borderRadius: 22,
         paddingHorizontal: 22,
-        paddingVertical: 0,
         justifyContent: 'flex-start',
     },
     taskCapsuleFill: {

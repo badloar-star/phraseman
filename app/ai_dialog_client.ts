@@ -91,7 +91,7 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
   const text = `${code} ${message}`;
 
-  if (text.includes('dialog_free_limit')) return 'free_limit';
+  if (text.includes('dialog_free_limit') || text.includes('dialog_plus_required')) return 'free_limit';
   if (text.includes('dialog_premium_cap')) return 'premium_limit';
   // Глобальный бюджет ИИ иссяк (на всех сразу) — сервер шлёт resource-exhausted
   // с сообщением 'explain_global_budget'. ВАЖНО: проверяем ДО общего
@@ -132,14 +132,14 @@ export function getPremiumDialogErrorMessage(
         });
       }
       return triLang(lang, {
-        ru: 'Пробный диалог уже пройден. Открой все диалоги — полный доступ.',
-        uk: 'Пробний діалог уже пройдено. Відкрий усі діалоги — повний доступ.',
-        es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Plus.',
-        'pt-BR': 'Você já usou o diálogo grátis. Desbloqueie todos os diálogos com Plus.',
-        vi: 'Bạn đã dùng cuộc đối thoại miễn phí. Mở tất cả cuộc đối thoại với Plus.',
-        id: 'Dialog gratis sudah digunakan. Buka semua dialog dengan Plus.',
-        tr: 'Ücretsiz diyaloğu zaten kullandın. Plus ile tüm diyalogları aç.',
-        pl: 'Darmowy dialog został już wykorzystany. Otwórz wszystkie dialogi z Plus.',
+        ru: 'Диалоги входят в Plus. Открой Plus, чтобы начать разговор.',
+        uk: 'Діалоги входять у Plus. Відкрий Plus, щоб почати розмову.',
+        es: 'Los diálogos están incluidos en Plus. Abre Plus para empezar a hablar.',
+        'pt-BR': 'Os diálogos estão incluídos no Plus. Abra o Plus para começar a conversar.',
+        vi: 'Đối thoại thuộc gói Plus. Mở Plus để bắt đầu trò chuyện.',
+        id: 'Dialog termasuk dalam Plus. Buka Plus untuk mulai berbicara.',
+        tr: 'Diyaloglar Plus kapsamındadır. Konuşmaya başlamak için Plus’ı aç.',
+        pl: 'Dialogi są dostępne w Plus. Otwórz Plus, aby zacząć rozmowę.',
       });
     case 'premium_limit':
       return triLang(lang, {

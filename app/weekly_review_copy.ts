@@ -1,6 +1,12 @@
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 
-const L = (lang: Lang, values: Parameters<typeof triLang>[1]): string => triLang(lang, values);
+type WeeklyReviewCopyValues = {
+  ru: string;
+  uk: string;
+  es: string;
+} & Record<PlannedInterfaceLang, string>;
+
+const L = (lang: Lang, values: WeeklyReviewCopyValues): string => triLang(lang, values);
 
 export function weeklyReviewCopy(lang: Lang) {
   return {

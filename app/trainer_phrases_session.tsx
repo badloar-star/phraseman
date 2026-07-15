@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import TapScale from '../components/TapScale';
 import ReportErrorButton from '../components/ReportErrorButton';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';

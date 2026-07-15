@@ -1,4 +1,4 @@
-﻿import { Ionicons } from '@expo/vector-icons';
+﻿import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import { useCorrectSound } from '../../hooks/use-correct-sound';

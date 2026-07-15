@@ -66,6 +66,21 @@ describe('league club hub composition', () => {
     expect(screen).not.toContain('subscribeLeagueChatMessages');
   });
 
+  it('shows active league identity in the header and podium art', () => {
+    const screen = read('app/club_screen.tsx');
+    const podium = read('components/league/LeaguePodium.tsx');
+
+    expect(screen).toContain('{leagueNameForLang(myLeague, lang)}');
+    expect(screen).not.toContain('Liga de la semana');
+    expect(screen).toContain('leagueIcon={<LeagueIcon');
+    expect(screen).toContain('league={myLeague}');
+    expect(screen).toContain('alignContent={false}');
+    expect(podium).toContain('leagueIcon: React.ReactNode');
+    expect(podium).toContain('testID="league-current-heraldry"');
+    expect(podium).not.toContain('<Ionicons name="trophy" size={24}');
+    expect(podium).toContain('<Ionicons name="trophy" size={12}');
+  });
+
   it('keeps promotion direction without the textual transition pill', () => {
     const row = read('components/league/LeagueLeaderboardRow.tsx');
     expect(row).toContain("'arrow-up'");

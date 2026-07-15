@@ -47,7 +47,6 @@ export type DailyTaskCardProps = {
   descriptionTextProps?: TextProps;
   iconStyle?: StyleProp<ViewStyle>;
   variant?: 'task' | 'bonus';
-  emphasized?: boolean;
 };
 
 function CardAction({ testID, action, onReflow, variant }: { testID: string; action: DailyCardAction; onReflow: () => void; variant?: 'task' | 'bonus' }) {
@@ -89,7 +88,7 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
   const [stacked, setStacked] = useState(false);
   const requestStack = useCallback(() => setStacked(true), []);
   return (
-    <View testID={props.testID} style={[styles.card, props.variant === 'bonus' && styles.bonusCard, { backgroundColor: props.surfaceColor, borderColor: props.emphasized ? props.accentColor : props.borderColor }, props.outerStyle]}>
+    <View testID={props.testID} style={[styles.card, props.variant === 'bonus' && styles.bonusCard, { backgroundColor: props.surfaceColor, borderColor: props.borderColor }, props.outerStyle]}>
       {props.background}
       <Pressable
         testID={`${props.testID}-pressable`}
@@ -97,7 +96,7 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
         accessibilityLabel={props.onPress ? `${props.title}. ${props.description}` : undefined}
         disabled={!props.onPress}
         onPress={props.onPress}
-        style={styles.pressable}
+        style={({ pressed }) => [styles.pressable, pressed && styles.pressablePressed]}
       >
         <View testID={`${props.testID}-content`} style={[styles.content, props.variant === 'bonus' && styles.bonusContent, stacked && styles.contentStacked]}>
           <View testID={`${props.testID}-icon`} style={[styles.icon, props.variant === 'bonus' && styles.bonusIcon, { borderColor: props.accentColor }, props.iconStyle]}>{props.icon}</View>
@@ -131,6 +130,7 @@ const styles = StyleSheet.create({
   card: { minHeight: 92, borderWidth: 0, borderRadius: 22, overflow: 'hidden', paddingHorizontal: 22, paddingVertical: 12, gap: 8 },
   bonusCard: { minHeight: 0, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 9, gap: 0 },
   pressable: { minWidth: 0, flexGrow: 1, justifyContent: 'center' },
+  pressablePressed: { opacity: 0.86, transform: [{ scale: 0.985 }] },
   progressLayer: StyleSheet.absoluteFillObject,
   content: { flexDirection: 'row', alignItems: 'center', gap: 14, minWidth: 0, minHeight: 66 },
   bonusContent: { gap: 10, minHeight: 0 },

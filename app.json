@@ -3,7 +3,7 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.55",
+    "version": "1.5.60",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -16,7 +16,8 @@
       "checkAutomatically": "ON_ERROR_RECOVERY",
       "fallbackToCacheTimeout": 0,
       "assetPatternsToBeBundled": [
-        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/*",
+        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf",
+        "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf",
         "assets/fonts/*.ttf",
         "assets/images/achievement_categories/*",
         "assets/images/arena_actions/*",
@@ -69,7 +70,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 98,
+      "versionCode": 100,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -112,6 +113,7 @@
         "android.permission.ACCESS_ADSERVICES_AD_ID",
         "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
         "android.permission.ACCESS_ADSERVICES_TOPICS",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.SYSTEM_ALERT_WINDOW"
@@ -120,7 +122,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "98",
+      "buildNumber": "100",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -152,15 +154,30 @@
                   {
                     "path": "./assets/fonts/Inter-Regular.ttf",
                     "weight": 400
-                  },
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Inter-SemiBold",
+                "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Inter-SemiBold.ttf",
                     "weight": 600
-                  },
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Inter-Bold",
+                "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Inter-Bold.ttf",
                     "weight": 700
-                  },
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Inter-Black",
+                "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Inter-Black.ttf",
                     "weight": 900
@@ -238,6 +255,7 @@
       "./plugins/withAndroidDevCleartext",
       "./plugins/withAndroidDevServer127",
       "./plugins/withAndroidDevClientAutoMetro",
+      "./plugins/withProductionAndroidBundleHygiene",
       "./plugins/withAndroidSplashWindowBackground",
       "./plugins/withIosFirebaseEarlyConfigure",
       "./plugins/withAndroidDailyPhraseWidget",

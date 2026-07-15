@@ -51,6 +51,17 @@ describe('weekly review analytics', () => {
     expect(JSON.stringify(logEvent.mock.calls)).not.toMatch(/private|socket|learner phrase|raw error/i);
   });
 
+  it('does not accept the removed local fallback result source', () => {
+    trackWeeklyReviewEvent('weekly_review_impression', {
+      tier: 'plus',
+      result_source: 'local_fallback',
+    } as never);
+
+    expect(logEvent).toHaveBeenCalledWith('weekly_review_impression', {
+      tier: 'plus',
+    });
+  });
+
   it('ignores unknown events at runtime', () => {
     trackWeeklyReviewEvent('weekly_review_private_dump' as never, { tier: 'plus' });
     expect(logEvent).not.toHaveBeenCalled();

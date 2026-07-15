@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
-import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { Pressable, PressableProps, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import Reanimated, {
   interpolate,
   useAnimatedStyle,
@@ -27,9 +27,9 @@ interface Props extends PassthroughPressableProps {
   wrapStyle?: StyleProp<ViewStyle>;
   children: React.ReactNode;
   disabled?: boolean;
-  /** Цвет «3D-кромки» (тень снизу). По умолчанию — затемнённый фон кнопки. */
+  /** @deprecated Сохранено для совместимости. Декоративная кромка больше не рисуется. */
   edgeColor?: string;
-  /** Высота 3D-кромки в покое (px). Default 6. */
+  /** @deprecated Сохранено для совместимости. Нажатие больше не меняет геометрию. */
   edgeHeight?: number;
   /** Градиент поверхности (для градиентных CTA). Если задан — рисуется LinearGradient под children. */
   gradientColors?: readonly string[];
@@ -54,12 +54,9 @@ interface Props extends PassthroughPressableProps {
 }
 
 /**
- * Duolingo-style 3D-кнопка: при нажатии «вдавливается» в свою цветную кромку.
- *
- * Кромку рисуем отдельным View ПОД поверхностью; передавай фон/радиус/паддинги
- * кнопки через `style` (как у обычной кнопки). Если в style приходит opacity,
- * переносим её на wrapper, чтобы тёмная кромка не просвечивала прямоугольником
- * внутри полупрозрачной поверхности.
+ * Кнопка с коротким press-откликом без декоративной обводки и сдвига геометрии.
+ * Если в style приходит opacity, переносим её на wrapper, чтобы сохранить
+ * disabled-состояние отдельно от анимированной прозрачности поверхности.
  */
 function DuoPressable({
   onPress,
@@ -68,8 +65,8 @@ function DuoPressable({
   wrapStyle,
   children,
   disabled,
-  edgeColor,
-  edgeHeight = 6,
+  edgeColor: _edgeColor,
+  edgeHeight: _edgeHeight = 6,
   gradientColors,
   gradientStart = { x: 0, y: 0 },
   gradientEnd = { x: 1, y: 1 },
@@ -105,38 +102,15 @@ function DuoPressable({
     return restStyle;
   }, [flattenedSurfaceStyle, style, surfaceOpacity]);
 
-  // Лицо опускается вниз на высоту кромки при нажатии — «оседает» на кромку.
-  // Кромка НЕ двигается (это нижний слой), лицо её накрывает. Тени сверху нет.
-  // Глубина = max(реальный press, внешнее удержание) — depressed остаётся на
-  // время вспышки, даже когда палец уже отпущен.
+  // Короткое сжатие и снижение прозрачности дают понятный press-state, но не
+  // создают цветную «обводку» и не двигают соседний контент.
   const surfaceStyle = useAnimatedStyle(() => {
     const depth = Math.max(press.value, held.value);
-    return { transform: [{ translateY: interpolate(depth, [0, 1], [0, edgeHeight]) }] };
+    return {
+      transform: [{ scale: interpolate(depth, [0, 1], [1, 0.97]) }],
+      opacity: interpolate(depth, [0, 1], [1, 0.88]),
+    };
   });
-
-  const edgeRadiusStyle = useMemo<ViewStyle | null>(() => {
-    const flat = StyleSheet.flatten(style) as ViewStyle | undefined;
-    if (!flat) return null;
-    const RADIUS_KEYS = [
-      'borderRadius',
-      'borderTopLeftRadius',
-      'borderTopRightRadius',
-      'borderBottomLeftRadius',
-      'borderBottomRightRadius',
-      'borderTopStartRadius',
-      'borderTopEndRadius',
-      'borderBottomStartRadius',
-      'borderBottomEndRadius',
-    ] as const;
-    let out: ViewStyle | null = null;
-    for (const k of RADIUS_KEYS) {
-      const v = (flat as Record<string, unknown>)[k];
-      if (typeof v === 'number' || typeof v === 'string') {
-        (out ??= {} as ViewStyle)[k] = v as never;
-      }
-    }
-    return out;
-  }, [style]);
 
   return (
     <Pressable
@@ -149,20 +123,8 @@ function DuoPressable({
       unstable_pressDelay={delayPressIn}
       disabled={disabled}
       accessibilityState={mergeAccessibilityDisabled(rest.accessibilityState, disabled)}
-      style={[styles.wrap, { paddingBottom: edgeHeight }, surfaceOpacityStyle, wrapStyle]}
+      style={[styles.wrap, surfaceOpacityStyle, wrapStyle]}
     >
-      {/* Кромка — нижний слой, стоит на месте. Видна полоской снизу (top сдвинут
-          на edgeHeight, так что верх кромки совпадает с верхом лица в покое). */}
-      <View
-        pointerEvents="none"
-        style={[
-          styles.edge,
-          { top: edgeHeight },
-          edgeRadiusStyle,
-          edgeColor ? { backgroundColor: edgeColor } : styles.edgeDefault,
-        ]}
-      />
-      {/* Лицо — обычный поток, при нажатии съезжает вниз на edgeHeight. */}
       <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, surfaceStyle]}>
         {gradientColors ? (
           <LinearGradient
@@ -185,18 +147,6 @@ const styles = StyleSheet.create({
   wrap: {
     alignSelf: 'stretch',
     position: 'relative',
-  },
-  edge: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    borderRadius: 16,
-  },
-  edgeDefault: {
-    // По умолчанию полупрозрачная тёмная кромка — работает на любом фоне кнопки.
-    backgroundColor: 'rgba(0,0,0,0.28)',
   },
   surface: {
     alignItems: 'center',

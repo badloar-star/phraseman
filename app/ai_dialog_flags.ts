@@ -6,17 +6,11 @@
  */
 
 /**
- * Сколько ПОЛНЫХ бесплатных диалогов получает не-premium за ВСЮ жизнь аккаунта.
- * Было ровно 1 (одна попытка — слишком мало, чтобы «влюбиться» в фичу); подняли
- * до 2, чтобы дать почувствовать ценность до пейвола. Реплики ВНУТРИ диалога
- * по-прежнему без лимита.
- *
- * СЕРВЕР — источник правды: functions/src/premium_dialog.ts → enforceLifetimeFreeDialog()
- * считает потраченные бесплатные диалоги (freeDialogCount) и сравнивает с тем же
- * лимитом. Это число и серверный лимит ДОЛЖНЫ совпадать — иначе клиент покажет
- * «ещё есть», а сервер откажет (или наоборот). Меняешь тут — меняй и там.
+ * Legacy-совместимость старых клиентов. Диалоги теперь целиком входят в Plus,
+ * поэтому бесплатных пожизненных попыток нет. Сервер независимо проверяет Plus
+ * до вызова AI-провайдера, а этот ноль не даёт старому локальному UX показать trial.
  */
-export const FREE_DIALOGS_LIFETIME_DEFAULT = 2;
+export const FREE_DIALOGS_LIFETIME_DEFAULT = 0;
 
 function boolFromEnv(name: string): boolean | undefined {
   const raw = name === 'EXPO_PUBLIC_AI_DIALOG_ENABLED' ? process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED : undefined;

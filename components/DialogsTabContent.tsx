@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -14,7 +14,6 @@ import {
 
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
 import { isScenarioLevelUnlocked, reachedCourseLevel } from '../app/ai_dialog_level_lock';
-import { getFreeDialogsLeft } from '../app/dialogs_limit_session';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
   DIALOG_SCENARIO_GROUPS,
@@ -35,7 +34,7 @@ import { triLang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { useLang } from './LangContext';
-import { usePremium } from './PremiumContext';
+import { useFeatureAccess } from './PremiumContext';
 import PlusBadge from './PlusBadge';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -72,7 +71,7 @@ export default function DialogsTabContent({
 }: DialogsTabContentProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const { hasPremiumAccess } = usePremium();
+  const dialogAccess = useFeatureAccess('ai_dialog');
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const impressionFiredRef = useRef(false);
@@ -139,21 +138,8 @@ export default function DialogsTabContent({
   }, [trackImpression]);
 
   const reachedLevel = useMemo(() => reachedCourseLevel(unlockedLessons), [unlockedLessons]);
-  const hasLockedCourseLevels = !hasPremiumAccess && reachedLevel !== 'B2';
+  const hasLockedCourseLevels = !dialogAccess;
   const accent = t.accent;
-
-  // Остался ли пожизненный бесплатный пробный диалог (общий на все режимы).
-  const [freeDialogsLeft, setFreeDialogsLeft] = useState(2);
-  const refreshFreeDialogLeft = useCallback(() => {
-    void getFreeDialogsLeft().then(setFreeDialogsLeft).catch(() => {});
-  }, []);
-  useEffect(() => {
-    refreshFreeDialogLeft();
-    // xp_changed стреляет после каждого диалога — используем как сигнал, что
-    // пробный диалог мог быть только что потрачен, и обновляем подсказку.
-    const sub = onAppEvent('xp_changed', refreshFreeDialogLeft);
-    return () => sub.remove();
-  }, [refreshFreeDialogLeft]);
 
   const openCourseScenario = useCallback(
     (scenario: DialogScenario) => {
@@ -162,7 +148,18 @@ export default function DialogsTabContent({
         Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
         return;
       }
-      const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, hasPremiumAccess);
+      if (!dialogAccess) {
+        void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
+          scenarioId: scenario.id,
+          cefr: scenario.cefr,
+          reachedLevel,
+          reason: 'plus_required',
+        });
+        void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit' });
+        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+        return;
+      }
+      const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
       if (!unlocked) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
@@ -175,7 +172,7 @@ export default function DialogsTabContent({
       }
       router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
     },
-    [aiDialogGateOpen, frenchGateCopy, reachedLevel, hasPremiumAccess, router],
+    [aiDialogGateOpen, dialogAccess, frenchGateCopy, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
@@ -183,6 +180,15 @@ export default function DialogsTabContent({
       hapticTap();
       if (!aiDialogGateOpen) {
         Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
+        return;
+      }
+      if (!dialogAccess) {
+        void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
+          scenarioId: scenario.id,
+          reason: 'plus_required',
+        });
+        void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit' });
+        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
         return;
       }
       const requiredLevel = scenario.requiredAccountLevel ?? 1;
@@ -219,7 +225,7 @@ export default function DialogsTabContent({
       }
       router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
     },
-    [accountLevel, aiDialogGateOpen, frenchGateCopy, lang, router],
+    [accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, router],
   );
 
   // ── View-model для активной вкладки ───────────────────────────────────────
@@ -230,30 +236,35 @@ export default function DialogsTabContent({
     () =>
       DIALOG_SCENARIO_GROUPS.map((group) => {
         const scenarios = getScenariosByCategory(group.category).map<ScenarioVM>((scenario) => {
-          const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, hasPremiumAccess);
+          const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
           const done = completedIds.has(scenario.id);
-          const status: ScenarioStatus = !unlocked ? 'locked' : done ? 'done' : 'available';
+          const status: ScenarioStatus = !dialogAccess || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
             scenario,
             status,
             levelChip: scenario.cefr,
-            lockedText: triLang(lang, {
-              ru: `Откроется на уровне ${scenario.cefr} — или сразу с Plus`,
-              uk: `Відкриється на рівні ${scenario.cefr} — або одразу з Plus`,
-              es: `Se abre en el nivel ${scenario.cefr} — o ya con Plus`,
-              'pt-BR': `Abre no nível ${scenario.cefr} — ou agora com Plus`,
-              vi: `Mở ở cấp ${scenario.cefr} — hoặc mở ngay với Plus`,
-              id: `Terbuka di level ${scenario.cefr} — atau langsung dengan Plus`,
-              tr: `${scenario.cefr} seviyesinde açılır — ya da Plus ile hemen`,
-              pl: `Otwiera się na poziomie ${scenario.cefr} — albo od razu z Plus`,
-            }),
+            lockedText: !dialogAccess
+              ? triLang(lang, {
+                  ru: 'Входит в Plus', uk: 'Входить у Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+                  vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
+                })
+              : triLang(lang, {
+                  ru: `Откроется на уровне ${scenario.cefr}`,
+                  uk: `Відкриється на рівні ${scenario.cefr}`,
+                  es: `Se abre en el nivel ${scenario.cefr}`,
+                  'pt-BR': `Abre no nível ${scenario.cefr}`,
+                  vi: `Mở ở cấp ${scenario.cefr}`,
+                  id: `Terbuka di level ${scenario.cefr}`,
+                  tr: `${scenario.cefr} seviyesinde açılır`,
+                  pl: `Otwiera się na poziomie ${scenario.cefr}`,
+                }),
             onPress: () => openCourseScenario(scenario),
           };
         });
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scenarios, doneCount };
       }),
-    [reachedLevel, hasPremiumAccess, completedIds, lang, openCourseScenario],
+    [reachedLevel, dialogAccess, completedIds, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
@@ -262,7 +273,7 @@ export default function DialogsTabContent({
         const requiredLevel = scenario.requiredAccountLevel ?? 1;
         const unlocked = accountLevel >= requiredLevel;
         const done = completedIds.has(scenario.id);
-        const status: ScenarioStatus = !unlocked ? 'locked' : done ? 'done' : 'available';
+        const status: ScenarioStatus = !dialogAccess || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
           scenario,
           status,
@@ -276,20 +287,25 @@ export default function DialogsTabContent({
             tr: `sv. ${requiredLevel}`,
             pl: `poz. ${requiredLevel}`,
           }),
-          lockedText: triLang(lang, {
-            ru: `Откроется на уровне аккаунта ${requiredLevel}`,
-            uk: `Відкриється на рівні акаунта ${requiredLevel}`,
-            es: `Se abre en el nivel de cuenta ${requiredLevel}`,
-            'pt-BR': `Abre no nível de conta ${requiredLevel}`,
-            vi: `Mở ở cấp tài khoản ${requiredLevel}`,
-            id: `Terbuka di level akun ${requiredLevel}`,
-            tr: `Hesap seviyesi ${requiredLevel} olunca açılır`,
-            pl: `Otwiera się na poziomie konta ${requiredLevel}`,
-          }),
+          lockedText: !dialogAccess
+            ? triLang(lang, {
+                ru: 'Входит в Plus', uk: 'Входить у Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+                vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
+              })
+            : triLang(lang, {
+                ru: `Откроется на уровне аккаунта ${requiredLevel}`,
+                uk: `Відкриється на рівні акаунта ${requiredLevel}`,
+                es: `Se abre en el nivel de cuenta ${requiredLevel}`,
+                'pt-BR': `Abre no nível de conta ${requiredLevel}`,
+                vi: `Mở ở cấp tài khoản ${requiredLevel}`,
+                id: `Terbuka di level akun ${requiredLevel}`,
+                tr: `Hesap seviyesi ${requiredLevel} olunca açılır`,
+                pl: `Otwiera się na poziomie konta ${requiredLevel}`,
+              }),
           onPress: () => openChallengeScenario(scenario),
         };
       }),
-    [accountLevel, completedIds, lang, openChallengeScenario],
+    [accountLevel, completedIds, dialogAccess, lang, openChallengeScenario],
   );
 
   // Блок «Продолжить»: первый доступный незавершённый сценарий активной вкладки.
@@ -309,12 +325,11 @@ export default function DialogsTabContent({
     const { scenario, status, levelChip, lockedText } = vm;
     const locked = status === 'locked';
     const done = status === 'done';
-    const plusLocked = locked && tab === 'lessons' && !hasPremiumAccess;
+    const plusLocked = locked && !dialogAccess;
     return (
       <TouchableOpacity
         key={scenario.id}
         accessibilityRole="button"
-        accessibilityState={{ disabled: locked }}
         accessibilityLabel={
           locked
             ? triLang(lang, {
@@ -737,9 +752,9 @@ export default function DialogsTabContent({
                 backgroundColor: activeTab ? accent : 'transparent',
               }}
             >
-              <Ionicons name={seg.icon} size={16} color={activeTab ? '#fff' : t.textSecond} />
+              <Ionicons name={seg.icon} size={16} color={activeTab ? t.correctText : t.textSecond} />
               <Text
-                style={{ color: activeTab ? '#fff' : t.textSecond, fontSize: f.sub, fontWeight: '900' }}
+                style={{ color: activeTab ? t.correctText : t.textSecond, fontSize: f.sub, fontWeight: '900' }}
                 numberOfLines={1}
               >
                 {seg.label}
@@ -881,14 +896,14 @@ export default function DialogsTabContent({
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }} numberOfLines={2}>
               {triLang(lang, {
-                ru: 'Открой больше диалогов по урокам',
-                uk: 'Відкрий більше діалогів за уроками',
-                es: 'Abre más diálogos por lecciones',
-                'pt-BR': 'Abra mais diálogos por lições',
-                vi: 'Mở thêm đối thoại theo bài học',
-                id: 'Buka lebih banyak dialog per pelajaran',
-                tr: 'Derslere göre daha fazla diyalog aç',
-                pl: 'Otwórz więcej dialogów według lekcji',
+                ru: 'Все диалоги входят в Plus',
+                uk: 'Усі діалоги входять у Plus',
+                es: 'Todos los diálogos están en Plus',
+                'pt-BR': 'Todos os diálogos estão no Plus',
+                vi: 'Tất cả đối thoại đều có trong Plus',
+                id: 'Semua dialog termasuk Plus',
+                tr: 'Tüm diyaloglar Plus’a dahil',
+                pl: 'Wszystkie dialogi są w Plus',
               })}
             </Text>
             <Text
@@ -897,60 +912,19 @@ export default function DialogsTabContent({
               maxFontSizeMultiplier={1.15}
             >
               {triLang(lang, {
-                ru: 'Проходи курс — уровни открываются сами. Или открой все сразу с Plus.',
-                uk: 'Проходь курс — рівні відкриваються самі. Або відкрий усі одразу з Plus.',
-                es: 'Avanza en el curso y los niveles se abren solos. O ábrelos todos con Plus.',
-                'pt-BR': 'Avance no curso — os níveis abrem sozinhos. Ou abra todos de uma vez com Plus.',
-                vi: 'Học tiếp khóa học — các cấp sẽ tự mở. Hoặc mở tất cả ngay với Plus.',
-                id: 'Ikuti kursus — level akan terbuka sendiri. Atau buka semuanya sekaligus dengan Plus.',
-                tr: 'Kursa devam et — seviyeler kendiliğinden açılır. Ya da hepsini Plus ile hemen aç.',
-                pl: 'Przechodź kurs — poziomy otwierają się same. Albo otwórz wszystkie od razu z Plus.',
+                ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',
+                uk: 'Відкрий сценарії за уроками й життєві ситуації для розмовної практики.',
+                es: 'Abre escenarios de lecciones y situaciones reales para practicar conversación.',
+                'pt-BR': 'Abra cenários de lições e situações reais para praticar conversação.',
+                vi: 'Mở các kịch bản bài học và tình huống thực tế để luyện hội thoại.',
+                id: 'Buka skenario pelajaran dan situasi nyata untuk latihan percakapan.',
+                tr: 'Konuşma pratiği için ders senaryolarını ve gerçek durumları aç.',
+                pl: 'Otwórz scenariusze lekcji i sytuacje z życia do ćwiczenia rozmowy.',
               })}
             </Text>
           </View>
           <Ionicons name="chevron-forward" size={18} color={t.textSecond} />
         </TouchableOpacity>
-      )}
-
-      {!hasPremiumAccess && (
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 6,
-            paddingTop: 16,
-            paddingHorizontal: 18,
-          }}
-        >
-          <Ionicons name="gift-outline" size={14} color={freeDialogsLeft > 0 ? accent : t.textMuted} />
-          <Text
-            style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', flexShrink: 1 }}
-            maxFontSizeMultiplier={1.2}
-          >
-            {freeDialogsLeft > 0
-              ? triLang(lang, {
-                  ru: `Бесплатных диалогов осталось: ${freeDialogsLeft} — дальше Plus`,
-                  uk: `Безкоштовних діалогів залишилось: ${freeDialogsLeft} — далі Plus`,
-                  es: `Diálogos gratis restantes: ${freeDialogsLeft} — luego Plus`,
-                  'pt-BR': `Diálogos grátis restantes: ${freeDialogsLeft} — depois Plus`,
-                  vi: `Đối thoại miễn phí còn lại: ${freeDialogsLeft} — sau đó Plus`,
-                  id: `Sisa dialog gratis: ${freeDialogsLeft} — lalu Plus`,
-                  tr: `Kalan ücretsiz diyalog: ${freeDialogsLeft} — sonrası Plus`,
-                  pl: `Pozostałe darmowe dialogi: ${freeDialogsLeft} — potem Plus`,
-                })
-              : triLang(lang, {
-                  ru: 'Пробный диалог использован · дальше Plus',
-                  uk: 'Пробний діалог використано · далі Plus',
-                  es: 'Diálogo de prueba usado · luego Plus',
-                  'pt-BR': 'Diálogo de teste usado · depois Plus',
-                  vi: 'Đã dùng đối thoại thử · tiếp theo là Plus',
-                  id: 'Dialog percobaan sudah digunakan · selanjutnya Plus',
-                  tr: 'Deneme diyaloğu kullanıldı · sonrası Plus',
-                  pl: 'Dialog próbny wykorzystany · dalej Plus',
-                })}
-          </Text>
-        </View>
       )}
     </Animated.ScrollView>
   );

@@ -608,13 +608,20 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     })();
   };
 
-  useEffect(() => {
+  const handleApplyPreview = (openAvatar = false) => {
     if (presentationMode !== 'apply' || !visible || !f2pGift || !premGift) return;
     if (directApplyStartedRef.current) return;
     const accountToken = openingAccountTokenRef.current;
     if (!accountToken || !isCurrentOpening(accountToken)) return;
     directApplyStartedRef.current = true;
     setClaimNowBusy(true);
+    void hapticSuccess();
+    onClose(true);
+    if (openAvatar) {
+      setTimeout(() => {
+        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
+      }, 80);
+    }
     const f2pResultP = applyGift(f2pGift, userName, energy, maxEnergy, setEnergyFn, {
       isPremium: true,
       studyTarget,
@@ -635,18 +642,6 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     }).finally(() => {
       if (isCurrentOpening(accountToken)) setClaimNowBusy(false);
     });
-    // The ref above makes this operation idempotent for one modal opening.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [presentationMode, visible, f2pGift, premGift, userName, energy, maxEnergy, studyTarget]);
-
-  const closeAppliedResult = (openAvatar = false) => {
-    onClose(true);
-    if (openAvatar) {
-      setTimeout(() => {
-        const accountToken = openingAccountTokenRef.current;
-        if (accountToken && isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
-      }, 80);
-    }
   };
 
   if (!visible || !f2pGift || !premGift) return null;
@@ -678,12 +673,12 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     : 'rgba(0,0,0,0.78)';
 
   const onRequestCloseModal = () => {
+    if (presentationMode === 'apply') {
+      onClose(false);
+      return;
+    }
     if (!applyModeCanClose && claimNowBusy) return;
     if (opened.size === 2 && f2pGift && premGift) {
-      if (presentationMode === 'apply') {
-        onClose(true);
-        return;
-      }
       void handleDone();
       return;
     }
@@ -751,9 +746,12 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
               accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               activeOpacity={0.76}
               onPress={() => {
+                if (presentationMode === 'apply') {
+                  onClose(false);
+                  return;
+                }
                 if (opened.size === 2) {
-                  if (presentationMode === 'apply') closeAppliedResult();
-                  else void handleDone();
+                  void handleDone();
                 }
                 else void handleSkip();
               }}
@@ -948,10 +946,10 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       testID="level-gift-dual-open-avatar"
                       activeOpacity={0.86}
                       onPress={() => {
-                        if (presentationMode === 'apply') closeAppliedResult(true);
+                        if (presentationMode === 'apply') handleApplyPreview(true);
                         else void (storesOnly ? handleUseNow(true) : handleDone(true));
                       }}
-                      disabled={presentationMode === 'apply' ? false : claimNowBusy}
+                      disabled={claimNowBusy}
                       style={{
                           backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface,
                           borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
@@ -971,9 +969,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                   <TouchableOpacity
                     testID="level-gift-dual-claim"
                     activeOpacity={0.88}
-                    disabled={presentationMode === 'apply' ? false : claimNowBusy}
+                    disabled={claimNowBusy}
                     onPress={() => {
-                      if (presentationMode === 'apply') closeAppliedResult();
+                      if (presentationMode === 'apply') handleApplyPreview();
                       else void (storesOnly ? handleUseNow() : handleDone());
                     }}
                     style={{
@@ -1010,7 +1008,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       )}
                       <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonText : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
                         {presentationMode === 'apply'
-                          ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
+                          ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
                           : storesOnly
                           ? triLang(lang, { ru: claimNowBusy ? 'Применяем...' : 'Использовать сейчас', uk: claimNowBusy ? 'Застосовуємо...' : 'Використати зараз', es: claimNowBusy ? 'Aplicando...' : 'Usar ahora', 'pt-BR': claimNowBusy ? 'Aplicando...' : 'Usar agora', vi: claimNowBusy ? 'Đang áp dụng...' : 'Dùng ngay', id: claimNowBusy ? 'Menerapkan...' : 'Gunakan sekarang', tr: claimNowBusy ? 'Uygulanıyor...' : 'Şimdi kullan', pl: claimNowBusy ? 'Stosowanie...' : 'Użyj teraz' })
                           : triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}

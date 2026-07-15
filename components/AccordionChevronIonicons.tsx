@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Animated } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useAccordionChevronStyle, type AccordionChevronMode } from '../hooks/useAccordionFaqStyle';
 

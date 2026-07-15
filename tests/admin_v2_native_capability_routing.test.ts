@@ -74,6 +74,12 @@ describe('Admin v2 native capability routing', () => {
     expect(resolveCapabilityHash('#overview:overview')).toEqual({ resolved: true, route: 'overview', capabilityId: 'overview' });
   });
 
+  test('keeps standalone analytics bookmarks inside the full native analytics page', () => {
+    for (const hash of ['#product', '#/product', '#subscriptions', '#/subscriptions', '#monthly', '#/monthly']) {
+      expect(resolveCapabilityHash(hash)).toEqual({ resolved: true, route: 'analytics', capabilityId: '' });
+    }
+  });
+
   test('renders a native Control Panel hub for the old pult groups', () => {
     const router = read('admin/v2/scripts/admin-router.js');
     const core = read('admin/v2/scripts/admin-core.js');

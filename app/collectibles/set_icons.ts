@@ -3,7 +3,7 @@
 // cloud…). Здесь сопоставляем его реальному имени из набора Ionicons, чтобы
 // экран коллекции мог нарисовать иконку рядом с названием сета.
 import type React from 'react';
-import type { Ionicons } from '@expo/vector-icons';
+import type Ionicons from '@expo/vector-icons/Ionicons';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 

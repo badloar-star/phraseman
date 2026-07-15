@@ -5,7 +5,11 @@ import {
   chargeArenaEntry,
   reserveArenaGameEntry,
 } from '../app/arena_access_gate';
-import { ARENA_DAILY_MAX, getDailyArenaCount } from '../app/arena_daily_limit';
+import {
+  ARENA_DAILY_MAX,
+  getDailyArenaCount,
+  getDailyArenaMaxToday,
+} from '../app/arena_daily_limit';
 import { logEvent } from '../app/firebase';
 
 jest.mock('@react-native-async-storage/async-storage');
@@ -30,6 +34,11 @@ beforeEach(() => {
 });
 
 describe('arena_access_gate', () => {
+  it('gives a free user one ranked ticket per day by default', async () => {
+    expect(ARENA_DAILY_MAX).toBe(1);
+    await expect(getDailyArenaMaxToday()).resolves.toBe(1);
+  });
+
   it('blocks non-premium ranked entry when daily plays are exhausted', async () => {
     const today = new Date().toISOString().slice(0, 10);
     mockStorage.arena_daily_limit_v1 = JSON.stringify({ date: today, count: ARENA_DAILY_MAX });

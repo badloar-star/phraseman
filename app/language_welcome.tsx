@@ -37,7 +37,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRootNavigationState, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
@@ -111,19 +111,19 @@ type ChoiceOption = {
 
 /** Те же id, что PersonalPlanSetupGoal в онбординге — план читает их напрямую. */
 const GOAL_OPTIONS: ChoiceOption[] = [
-  { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline', asset: require('../assets/images/flow_clean_202607/goal_series.png') },
-  { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline', asset: require('../assets/images/flow_clean_202607/goal_everyday.png') },
-  { id: 'travel', ru: 'Путешествовать', uk: 'Подорожувати', icon: 'airplane-outline', asset: require('../assets/images/flow_clean_202607/goal_travel.png') },
-  { id: 'words', ru: 'Нужные фразы каждый день', uk: 'Потрібні фрази щодня', icon: 'cube-outline', asset: require('../assets/images/flow_clean_202607/goal_words.png') },
-  { id: 'mind', ru: 'Учиться для себя', uk: 'Вчитися для себе', icon: 'school-outline', asset: require('../assets/images/flow_clean_202607/goal_mind.png') },
+  { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline', asset: require('../assets/images/flow_clean_202607/goal_series.webp') },
+  { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline', asset: require('../assets/images/flow_clean_202607/goal_everyday.webp') },
+  { id: 'travel', ru: 'Путешествовать', uk: 'Подорожувати', icon: 'airplane-outline', asset: require('../assets/images/flow_clean_202607/goal_travel.webp') },
+  { id: 'words', ru: 'Нужные фразы каждый день', uk: 'Потрібні фрази щодня', icon: 'cube-outline', asset: require('../assets/images/flow_clean_202607/goal_words.webp') },
+  { id: 'mind', ru: 'Учиться для себя', uk: 'Вчитися для себе', icon: 'school-outline', asset: require('../assets/images/flow_clean_202607/goal_mind.webp') },
 ];
 
 const LEVEL_OPTIONS: ChoiceOption[] = [
-  { id: 'a0', ru: 'Начинаю с нуля', uk: 'Починаю з нуля', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a0.png') },
-  { id: 'a1', ru: 'Знаю отдельные слова', uk: 'Знаю окремі слова', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a1.png') },
-  { id: 'a2', ru: 'Могу поддержать простой разговор', uk: 'Можу підтримати просту розмову', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a2.png') },
-  { id: 'b1', ru: 'Говорю на знакомые темы', uk: 'Розмовляю на знайомі теми', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_b1.png') },
-  { id: 'b2', ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_b2.png') },
+  { id: 'a0', ru: 'Начинаю с нуля', uk: 'Починаю з нуля', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a0.webp') },
+  { id: 'a1', ru: 'Знаю отдельные слова', uk: 'Знаю окремі слова', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a1.webp') },
+  { id: 'a2', ru: 'Могу поддержать простой разговор', uk: 'Можу підтримати просту розмову', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a2.webp') },
+  { id: 'b1', ru: 'Говорю на знакомые темы', uk: 'Розмовляю на знайомі теми', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_b1.webp') },
+  { id: 'b2', ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_b2.webp') },
 ];
 
 export default function LanguageWelcomeScreen() {

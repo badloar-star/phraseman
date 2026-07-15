@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
@@ -7,6 +7,7 @@ import { oskolokImageForPackShards } from '../../app/oskolok';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import TonalSurface from '../TonalSurface';
 import { FlowText } from '../text-integrity/FlowText';
 
 export type SurveyRewardPanelPhase = 'optimistic-reward' | 'reconciled' | 'retryable-error';
@@ -76,10 +77,12 @@ export default function SurveyRewardPanel({
       };
 
   return (
-    <View
+    <TonalSurface
       testID="survey-reward-panel"
       accessibilityLiveRegion="polite"
-      style={[styles.panel, { backgroundColor: t.bgCard, borderColor: isError ? t.wrong : '#B98CFF' }]}
+      radius={24}
+      tone={isError ? 'subtle' : 'raised'}
+      style={styles.panel}
     >
       <Animated.View testID="survey-reward-motion" style={[styles.motion, motionStyle]}>
         <View style={[styles.iconHalo, { backgroundColor: isError ? t.wrongBg : '#493466' }]}>
@@ -139,7 +142,7 @@ export default function SurveyRewardPanel({
               style={({ pressed }) => [styles.action, styles.retry, { borderColor: t.wrong, opacity: retryDisabled ? 0.45 : pressed ? 0.78 : 1 }]}
             >
               <Ionicons name="refresh" size={20} color={t.textPrimary} accessibilityElementsHidden />
-              <FlowText provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
+              <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
                 {labels.retry}
               </FlowText>
             </Pressable>
@@ -152,7 +155,7 @@ export default function SurveyRewardPanel({
                 style={({ pressed }) => [styles.action, { opacity: pressed ? 0.78 : 1 }]}
               >
                 <Ionicons name="arrow-back" size={20} color={t.textPrimary} accessibilityElementsHidden />
-                <FlowText provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
+                <FlowText testID="survey-back-label" provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>
                   {labels.back}
                 </FlowText>
               </Pressable>
@@ -167,13 +170,13 @@ export default function SurveyRewardPanel({
             android_ripple={{ color: 'rgba(7,17,10,0.16)' }}
             style={({ pressed }) => [styles.action, { backgroundColor: t.accent, opacity: pressed ? 0.82 : 1 }]}
           >
-            <FlowText provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>
+            <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>
               {labels.done}
             </FlowText>
           </Pressable>
         )}
       </Animated.View>
-    </View>
+    </TonalSurface>
   );
 }
 

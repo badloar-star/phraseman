@@ -25,7 +25,7 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import SkeletonBlock from './SkeletonShimmer';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
@@ -47,6 +47,7 @@ import {
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
 import { useStudyTarget } from './StudyTargetContext';
+import TonalSurface from './TonalSurface';
 
 interface Props {
   visible: boolean;
@@ -160,6 +161,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
             },
           ]}
         >
+          <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
           <LinearGradient
             colors={[`${t.accent}1F`, 'transparent']}
             start={{ x: 0.5, y: 0 }}

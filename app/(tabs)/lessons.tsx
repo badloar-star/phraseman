@@ -4,11 +4,11 @@ import { Image } from 'expo-image';
 import Svg, { Path } from 'react-native-svg';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
-import { usePremium } from '../../components/PremiumContext';
+import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
 import { buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { openPremiumPaywall } from '../paywall_navigation';
 import { useTabNav } from '../TabContext';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
@@ -31,7 +31,7 @@ import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import EnergyBar from '../../components/EnergyBar';
 import DialogsTabContent from '../../components/DialogsTabContent';
 import PlusBadge from '../../components/PlusBadge';
-import { isAiDialogEnabled, getFreeDialogsLifetime } from '../ai_dialog_flags';
+import { isAiDialogEnabled } from '../ai_dialog_flags';
 import { readPersonalPlanState } from '../personal_plan_state';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
@@ -610,6 +610,7 @@ export default function LessonsTab() {
     const boot = lessonsUiSessionCacheByTarget[lessonCacheTarget] ?? getLessonsTabInitialState(studyTarget);
     const [noLimits, setNoLimits] = useState(() => boot?.noLimits ?? false);
     const { hasPremiumAccess: isPremium } = usePremium();
+    const dialogAccess = useFeatureAccess('ai_dialog');
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
     const [passCounts, setPassCounts] = useState<number[]>(() => boot?.passCounts ?? new Array(32).fill(0));
@@ -632,7 +633,6 @@ export default function LessonsTab() {
     const lessonsTabVisible = activeIdx === 1;
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
-    const freeDialogsLifetime = getFreeDialogsLifetime();
     const [page, setPage] = useState<'lessons' | 'dialogs' | 'v2'>('lessons');
     const openLearningRoute = useCallback(() => {
         hapticTap();
@@ -877,10 +877,8 @@ export default function LessonsTab() {
               accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               fontSize={f.body}
               themeMode={themeMode}
-              badge={!isPremium}
-              badgeColor={isGoldTheme ? GOLD_RICH.champagne : t.accent}
-              badgeTextColor={isGoldTheme ? (t.textOnGold ?? '#2A2410') : t.correctText}
-              badgeLabel={`${freeDialogsLifetime} free`}
+              plusBadge={!dialogAccess}
+              plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
               onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
             />
             ) : null}

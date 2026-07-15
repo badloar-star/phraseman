@@ -25,7 +25,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -45,7 +45,6 @@ import {
 } from './ai_dialog_client';
 import { buildCompanionMemory } from './ai_companion_memory';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
-import { hasFreeDialogLeft, markFreeDialogUsed } from './dialogs_limit_session';
 import { safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
 import { triLang } from '../constants/i18n';
@@ -72,6 +71,12 @@ export default function AiCompanionSession() {
   const { speak } = useAudio();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
+
+  useEffect(() => {
+    if (!aiDialogGateOpen || dialogAccess) return;
+    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_direct_entry' });
+    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+  }, [aiDialogGateOpen, dialogAccess, router]);
 
   // Приветствие собеседника присутствует с первого кадра (ленивый инициализатор),
   // а не ставится эффектом — иначе при гонке/двойном маунте первой реплики нет.
@@ -121,17 +126,11 @@ export default function AiCompanionSession() {
       if (!trimmed || sending) return;
       hapticTap();
 
-      // Первый ход не-premium: тратит ЕДИНСТВЕННЫЙ пожизненный бесплатный диалог
-      // (общий со сценариями и ситуациями). Потрачен — полный замок.
-      if (messages.length <= 1 && !dialogAccess) {
-        if (!(await hasFreeDialogLeft())) {
-          void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion' });
-          void trackEvent('paywall_shown', { context: 'dialog_limit' });
-          router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-          return;
-        }
-        // Списываем на первой реплике (не при открытии). Сервер ставит тот же флаг.
-        void markFreeDialogUsed();
+      if (!dialogAccess) {
+        void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion', reason: 'plus_required' });
+        void trackEvent('paywall_shown', { context: 'dialog_limit' });
+        router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+        return;
       }
 
       const exchangeIndex = userTurns + 1;
@@ -236,48 +235,8 @@ export default function AiCompanionSession() {
               pl: 'Swobodna rozmowa',
             })}
           </Text>
-          {/* Правый угол: пробная-плашка (если есть) + флаг «Сообщить об ошибке». */}
+          {/* Правый угол: флаг «Сообщить об ошибке». */}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            {/* Пробный бесплатный диалог — без счётчика реплик, он один. */}
-            {!hasPremiumAccess ? (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 4,
-                  minHeight: 28,
-                  backgroundColor: t.bgCard,
-                  borderWidth: 0,
-                  borderColor: t.border,
-                  borderRadius: 11,
-                  paddingHorizontal: 9,
-                }}
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Пробный бесплатный диалог',
-                  uk: 'Пробний безкоштовний діалог',
-                  es: 'Diálogo de prueba gratis',
-                  'pt-BR': 'Diálogo grátis de teste',
-                  vi: 'Cuộc đối thoại dùng thử miễn phí',
-                  id: 'Dialog uji coba gratis',
-                  tr: 'Ücretsiz deneme diyaloğu',
-                  pl: 'Darmowy dialog próbny',
-                })}
-              >
-                <Ionicons name="gift-outline" size={13} color={t.accent} />
-                <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
-                  {triLang(lang, {
-                    ru: 'проба',
-                    uk: 'проба',
-                    es: 'prueba',
-                    'pt-BR': 'teste',
-                    vi: 'thử',
-                    id: 'coba',
-                    tr: 'deneme',
-                    pl: 'próba',
-                  })}
-                </Text>
-              </View>
-            ) : null}
             <ReportErrorButton
               screen="ai_companion"
               dataId={`ai_companion_${companionId ?? 'unknown'}`}

@@ -1,13 +1,35 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   activity365MonthGridCells,
   activity365ObservedMonthKeys,
   activity365NextStepKind,
   computeActivity365Analytics,
+  invalidateActivity365Cache,
   levelForFilter,
+  loadActivity365Analytics,
   valueForFilter,
 } from '../app/activity_365_analytics';
+import { statsDailyBreakdownKey } from '../app/target_storage_keys';
 
 describe('activity 365 analytics', () => {
+  beforeEach(() => {
+    (AsyncStorage as any).__reset?.();
+    invalidateActivity365Cache();
+  });
+
+  it('keeps cached daily lesson totals isolated by study target', async () => {
+    const today = new Date().toISOString().slice(0, 10);
+    await AsyncStorage.multiSet([
+      [statsDailyBreakdownKey('en'), JSON.stringify({ [today]: { lessons_completed: 1 } })],
+      [statsDailyBreakdownKey('fr'), JSON.stringify({ [today]: { lessons_completed: 3 } })],
+    ]);
+
+    const english = await loadActivity365Analytics('en');
+    const french = await loadActivity365Analytics('fr');
+
+    expect(english.days.find(day => day.date === today)?.metrics.lessons).toBe(1);
+    expect(french.days.find(day => day.date === today)?.metrics.lessons).toBe(3);
+  });
   it('computes streaks, months, score and goal forecast from deterministic data', () => {
     const statsMap: Record<string, { points: number }> = {};
     const fgDaily: Record<string, number> = {};
@@ -131,6 +153,21 @@ describe('activity 365 analytics', () => {
     expect(analytics.activeDays).toBe(1);
     expect(analytics.goal.activeDays).toBe(1);
     expect(analytics.goal.remainingDays).toBe(99);
+  });
+
+  it('counts completed lessons directly instead of treating learned phrases as lessons', () => {
+    const analytics = computeActivity365Analytics({
+      statsMap: {},
+      fgDaily: {},
+      breakdown: {
+        '2026-05-21': { lessons_completed: 2, words_learned: 8, phrases_learned: 12 },
+      },
+      goal: 180,
+      now: new Date('2026-05-21T12:00:00Z'),
+    });
+
+    const today = analytics.days.find(day => day.date === '2026-05-21')!;
+    expect(today.metrics.lessons).toBe(2);
   });
 
   it('uses a softer build-week next step after the warmup phase', () => {

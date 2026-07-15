@@ -8,7 +8,7 @@ import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import TapScale from '../components/TapScale';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import ProgressProofBlock from '../components/feedback/ProgressProofBlock';
 import { buildProgressCompletionModel } from './completion/progress_completion_model';
 import { arenaNextStepCopy } from './completion/progress_completion_copy';
@@ -235,7 +235,11 @@ export default function DuelResultsScreen() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
-  const arenaLeaderboardSurface = [t.accent + '12', glassFill(t.bgSurface, 0.72), t.bgCard];
+  const arenaLeaderboardSurface: readonly [string, string, string] = [
+    t.accent + '12',
+    glassFill(t.bgSurface, 0.72),
+    t.bgCard,
+  ];
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const arenaShardAccent = '#A78BFA';
   const arenaLossAccent = '#F87171';

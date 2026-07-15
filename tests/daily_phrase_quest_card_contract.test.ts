@@ -56,6 +56,14 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).not.toContain('<ExplainButton');
   });
 
+  it('uses tonal surfaces for the modal sheet internals without replacing the themed daily plaque chrome', () => {
+    expect(source).toContain('TonalSurface');
+    expect(source).toContain('dailyPhraseChromeFor(themeMode)');
+    expect(source).toContain('radius={24} tone="raised"');
+    expect(source).toContain('radius={18} tone="subtle"');
+    expect(source).toContain('radius={16} tone="subtle"');
+  });
+
   it('hides the meaning on the home plaque until the quest is answered', () => {
     // The homeAdditional plaque must gate the translation behind cardQuestAnswered
     // so the daily quiz keeps its "guess the meaning" point.

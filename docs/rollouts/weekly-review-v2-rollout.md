@@ -1,14 +1,15 @@
 # Weekly Review V2 — controlled rollout
 
-This runbook documents a future operator-approved rollout. It does not authorize deployment or production enablement.
+This runbook documents the Weekly Review V2 rollout and rollback controls.
 
-## Initial safe state
+## Default enabled state
 
-- Server `aiV2Enabled=false`.
-- Server `rolloutPct=0`.
-- Client Remote Config `weekly_review_ai_v2_enabled=false`.
+- Server `aiV2Enabled=true`.
+- Server `rolloutPct=100`.
+- Client Remote Config `weekly_review_ai_v2_enabled=true`.
 - Free continues to show only the local practice snapshot and Plus CTA.
-- Plus continues to use its local/cached fallback without a provider request.
+- Plus requests `weeklyReviewGenerate` when enough data is ready.
+- Plus may show an account-scoped cached provider result, but does not fabricate a local review.
 
 ## Targeted deployment
 
@@ -18,13 +19,13 @@ After explicit production approval, deploy only the weekly review callable and i
 firebase deploy --only functions:weeklyReviewGenerate,functions:openAiJobsConfig
 ```
 
-Deploy while all V2 switches are still off. Do not use a broad Functions deploy for this rollout.
+Do not use a broad Functions deploy for this rollout.
 
 ## Enablement order
 
-1. Verify a tester build with mocked Free, local fallback, fresh, replay/cooldown and offline/error states.
+1. Verify a tester build with mocked Free, no-review, cached, fresh, replay/cooldown and offline/error states.
 2. Confirm current privacy policy and store disclosures cover the exact computed learning data sent to the provider.
-3. Set server `aiV2Enabled=true` with a small internal stable bucket in `rolloutPct`.
+3. Set server `aiV2Enabled=true` and `rolloutPct=100`, or a smaller bucket for an operator-approved staged rollout.
 4. Turn the client boolean `weekly_review_ai_v2_enabled=true`. It is a global kill switch only; do not add a second client percentage rollout.
 5. Perform one real request from an entitled tester account.
 6. Repeat the same briefing inside 24 hours and verify replay/cooldown without new provider billing.
@@ -67,8 +68,8 @@ Disable either switch immediately:
 1. client `weekly_review_ai_v2_enabled=false`, or
 2. server `aiV2Enabled=false` / `rolloutPct=0`.
 
-The local snapshot, account-scoped cache and Plus fallback continue to work. Do not delete quota, billing or cache data during rollback; preserve it for idempotency and investigation.
+The local snapshot and account-scoped provider cache continue to work, but no local Plus review is fabricated. Do not delete quota, billing or cache data during rollback; preserve it for idempotency and investigation.
 
 ## Explicit stop point
 
-Do not deploy, enable flags, invoke the live provider, or change production configuration without separate user/operator approval.
+Do not invoke the live provider from Codex. Production enablement still uses the existing server and client kill switches, and any deploy/config change must be intentional and auditable.

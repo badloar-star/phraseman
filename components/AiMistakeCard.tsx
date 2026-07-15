@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import SkeletonBlock from './SkeletonShimmer';
@@ -132,7 +132,7 @@ export default function AiMistakeCard({
   return (
     <View
       testID="ai-mistake-card"
-      style={[styles.card, { backgroundColor: t.bgCard }]}
+      style={styles.card}
     >
       <View style={styles.header}>
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
@@ -211,10 +211,9 @@ export default function AiMistakeCard({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 8,
-    borderWidth: 0,
+    alignSelf: 'stretch',
     gap: 10,
-    padding: 12,
+    width: '100%',
   },
   header: {
     alignItems: 'center',
@@ -238,7 +237,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   semanticBlocks: {
+    alignSelf: 'stretch',
     gap: 8,
+    width: '100%',
   },
   reportRow: {
     alignItems: 'flex-start',

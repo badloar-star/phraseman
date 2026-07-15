@@ -9,7 +9,7 @@
 // Только для DEV/админ-сборки: весь граф отсекается гейтом settings_testers.tsx.
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   AccordionSection,
   AdminHint,

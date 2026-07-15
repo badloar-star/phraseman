@@ -7,7 +7,7 @@ import {
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';

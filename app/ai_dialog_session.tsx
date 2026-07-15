@@ -13,7 +13,7 @@ import {
   Platform,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
@@ -68,10 +68,6 @@ import {
   shouldShowTranslateButton,
   translateRemaining as computeTranslateRemaining,
 } from './dialog_translate_limit';
-import {
-  hasFreeDialogLeft,
-  markFreeDialogUsed,
-} from './dialogs_limit_session';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -213,6 +209,12 @@ export default function AiDialogSession() {
     },
     [params.scenarioId, params.lessonId],
   );
+
+  useEffect(() => {
+    if (!aiDialogGateOpen || dialogAccess) return;
+    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
+    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+  }, [aiDialogGateOpen, dialogAccess, router]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
@@ -733,21 +735,11 @@ export default function AiDialogSession() {
       if (!trimmed || sending || ended) return;
       hapticTap();
 
-      // Является ли этот ход тем самым первым ходом, что тратит единственный
-      // пожизненный бесплатный диалог. Списание — ТОЛЬКО после успешного ответа
-      // (см. ниже), чтобы сбой сети не сжигал бесплатную попытку.
-      let consumesFreeDialog = false;
-
-      // Первый ход не-premium: тратит ЕДИНСТВЕННЫЙ пожизненный бесплатный диалог.
-      // Если он уже потрачен — полный замок (никаких «реплик в день»).
-      if (userExchanges === 0 && !dialogAccess) {
-        if (!(await hasFreeDialogLeft())) {
-          void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id });
-          void trackEvent('paywall_shown', { context: 'dialog_limit' });
-          router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-          return;
-        }
-        consumesFreeDialog = true;
+      if (!dialogAccess) {
+        void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'plus_required' });
+        void trackEvent('paywall_shown', { context: 'dialog_limit' });
+        router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+        return;
       }
 
       const exchangeIndex = userExchanges + 1;
@@ -781,9 +773,6 @@ export default function AiDialogSession() {
         speakAiReply(res.assistantMessage);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyTurnState(res.turnState);
-        // Бесплатный диалог списываем ТОЛЬКО здесь — после успешного ответа ИИ.
-        // Сервер ставит тот же пожизненный флаг; это мгновенный локальный UX-замок.
-        if (consumesFreeDialog) void markFreeDialogUsed();
       } catch (error) {
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
@@ -884,15 +873,16 @@ export default function AiDialogSession() {
     const trimmed = lastSentTextRef.current.trim();
     if (!trimmed) return;
     hapticTap();
+    if (!dialogAccess) {
+      void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_retry' });
+      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+      return;
+    }
     void trackEvent('ai_dialog_retry', { scenarioId: scenario.id });
 
     // История БЕЗ последней реплики пользователя (она уже в messages, передаём как userText).
     const priorMessages = messages.slice(0, -1);
     const history: DialogChatTurn[] = priorMessages.map((m) => ({ role: m.role, content: m.text }));
-
-    // Списываем бесплатный диалог только при успехе первого хода (как в send).
-    const consumesFreeDialog =
-      !dialogAccess && messages.filter((m) => m.role === 'user').length === 1;
 
     setLastErrorMessage('');
     setLastErrorKind(null);
@@ -916,7 +906,6 @@ export default function AiDialogSession() {
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
       speakAiReply(res.assistantMessage);
       applyTurnState(res.turnState);
-      if (consumesFreeDialog) void markFreeDialogUsed();
     } catch (error) {
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
       setLastErrorKind(classifyPremiumDialogError(error));
@@ -924,7 +913,7 @@ export default function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario, lang, gameRequestFields, applyTurnState, speakAiReply]);
+  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario, router, lang, gameRequestFields, applyTurnState, speakAiReply]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -1513,38 +1502,6 @@ export default function AiDialogSession() {
             }}
           />
         </View>
-
-        {/* Пробный бесплатный диалог — короткая плашка-«подарок». */}
-        {!hasPremiumAccess && (
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 5,
-              marginHorizontal: 16,
-              marginTop: 8,
-              alignSelf: 'flex-start',
-              backgroundColor: t.bgCard,
-              borderRadius: 11,
-              paddingHorizontal: 9,
-              paddingVertical: 4,
-            }}
-          >
-            <Ionicons name="gift-outline" size={13} color={t.accent} />
-            <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Пробный диалог — бесплатно',
-                uk: 'Пробний діалог — безкоштовно',
-                es: 'Diálogo de prueba — gratis',
-                'pt-BR': 'Diálogo de teste — grátis',
-                vi: 'Đối thoại dùng thử — miễn phí',
-                id: 'Dialog uji coba — gratis',
-                tr: 'Deneme diyaloğu — ücretsiz',
-                pl: 'Dialog próbny — gratis',
-              })}
-            </Text>
-          </View>
-        )}
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}

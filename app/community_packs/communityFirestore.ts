@@ -169,6 +169,11 @@ export type CommunityPackEditorSnapshot = {
       tr?: string;
       pl?: string;
     };
+    richSchemaVersion?: 1;
+    exampleTarget?: string;
+    exampleSource?: string;
+    note?: string;
+    sourceReferences?: string[];
   }[];
 };
 
@@ -203,6 +208,11 @@ export async function fetchCommunityPackForAuthorEdit(
           tr: String((c.sourceLocales as Record<string, unknown> | undefined)?.tr ?? '').trim() || undefined,
           pl: String((c.sourceLocales as Record<string, unknown> | undefined)?.pl ?? '').trim() || undefined,
         },
+        richSchemaVersion: Number(c.richSchemaVersion) === 1 ? 1 as const : undefined,
+        exampleTarget: String(c.exampleTarget ?? '').trim() || undefined,
+        exampleSource: String(c.exampleSource ?? '').trim() || undefined,
+        note: String(c.note ?? '').trim() || undefined,
+        sourceReferences: Array.isArray(c.sourceReferences) ? c.sourceReferences.map(String).map((value) => value.trim()).filter(Boolean) : undefined,
       };
     });
     return {
@@ -232,6 +242,11 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
     const es = String(c.es ?? '').trim();
     /** У `CommunityPackCardPayload` третя колонка — нотатка/опис (редактор), не український переклад фрази. */
     const descriptionNote = String(c.uk ?? '').trim();
+    const richSchemaVersion = Number(c.richSchemaVersion) === 1 ? 1 as const : undefined;
+    const exampleTarget = String(c.exampleTarget ?? c.exampleEn ?? '').trim();
+    const exampleSource = String(c.exampleSource ?? c.exampleRu ?? '').trim();
+    const note = String(c.note ?? c.description ?? descriptionNote).trim();
+    const sourceReferences = Array.isArray(c.sourceReferences) ? c.sourceReferences.map(String).map((value) => value.trim()).filter(Boolean) : [];
     const sourceLocales = {
       'pt-BR': String((c.sourceLocales as Record<string, unknown> | undefined)?.['pt-BR'] ?? '').trim() || undefined,
       vi: String((c.sourceLocales as Record<string, unknown> | undefined)?.vi ?? '').trim() || undefined,
@@ -245,11 +260,18 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
       id: `${packId}_${id}`,
       en,
       sourceLocales,
-      description: descriptionNote || undefined,
+      description: note || undefined,
       categoryId: 'custom',
       isSystem: true,
       source: 'lesson',
       sourceId: `DEV:${packId}`,
+      richSchemaVersion,
+      exampleTarget: exampleTarget || undefined,
+      exampleSource: exampleSource || undefined,
+      note: note || undefined,
+      sourceReferences: sourceReferences.length ? sourceReferences : undefined,
+      exampleEn: exampleTarget || undefined,
+      exampleRu: exampleSource || undefined,
     } as CardItem;
     item.ru = ru;
     item.uk = ru;

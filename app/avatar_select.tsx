@@ -17,7 +17,7 @@ import {
   type AppStateStatus,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import Reanimated from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
@@ -51,9 +51,7 @@ import { getLevelFromXP } from '../constants/theme';
 import {
   buildAuraCatalog,
   buildAvatarCatalog,
-  filterCatalog,
   type CatalogAvailability,
-  type CatalogFilter,
   type CustomizationCatalogItem,
 } from './customization_catalog';
 import {
@@ -110,7 +108,6 @@ import {
   CustomizationActionBar,
   CustomizationOverflowMenu,
   CustomizationTabs,
-  OwnershipFilters,
 } from '../components/customization/CustomizationControls';
 import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
@@ -122,7 +119,7 @@ const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
 const REVALIDATE_TTL_MS = 30_000;
 
 const RU_STUDIO_COPY = {
-  title: 'Студия образа', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
+  title: 'Студия', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
   apply: 'Применить образ', applied: 'Образ применён', purchased: 'Добавлено в коллекцию', buy: 'Купить', buyApply: 'Купить и применить', plus: 'Открыть Plus',
   reward: 'Награда Арены', owned: 'В коллекции', selected: 'Выбрано', noAura: 'Без ауры', levelAvatar: 'Аватар уровня', resetLevelAvatar: 'Вернуть аватар уровня',
   levelAvatarEnabled: 'Аватар уровня включён', editAvatar: 'Настроить аватар', applyStyle: 'Выбрать оформление', dark: 'Тёмное', light: 'Светлое',
@@ -134,7 +131,7 @@ type StudioCopy = { [K in keyof typeof RU_STUDIO_COPY]: string };
 const STUDIO_COPY: Record<Lang, StudioCopy> = {
   ru: RU_STUDIO_COPY,
   uk: {
-    title: 'Студія образу', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
+    title: 'Студія', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
     apply: 'Застосувати образ', applied: 'Образ застосовано', purchased: 'Додано до колекції', buy: 'Купити', buyApply: 'Купити й застосувати', plus: 'Відкрити Plus',
     reward: 'Нагорода Арени', owned: 'У колекції', selected: 'Вибрано', noAura: 'Без аури', levelAvatar: 'Аватар рівня', resetLevelAvatar: 'Повернути аватар рівня',
     levelAvatarEnabled: 'Аватар рівня ввімкнено', editAvatar: 'Налаштувати аватар', applyStyle: 'Обрати оформлення', dark: 'Темне', light: 'Світле',
@@ -142,7 +139,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     applyError: 'Образ не застосовано. Спробуй ще раз.', arenaHint: 'Цю нагороду можна заробити на Арені',
   },
   es: {
-    title: 'Estudio de estilo', preview: 'Vista previa', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Míos', catalog: 'Catálogo',
+    title: 'Estudio', preview: 'Vista previa', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Míos', catalog: 'Catálogo',
     apply: 'Aplicar estilo', applied: 'Estilo aplicado', purchased: 'Añadido a la colección', buy: 'Comprar', buyApply: 'Comprar y aplicar', plus: 'Abrir Plus',
     reward: 'Recompensa de Arena', owned: 'En la colección', selected: 'Seleccionado', noAura: 'Sin aura', levelAvatar: 'Avatar de nivel', resetLevelAvatar: 'Volver al avatar de nivel',
     levelAvatarEnabled: 'Avatar de nivel restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Elegir estilo', dark: 'Oscuro', light: 'Claro',
@@ -150,7 +147,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     applyError: 'No se pudo aplicar el estilo. Inténtalo de nuevo.', arenaHint: 'Consigue esta recompensa en la Arena',
   },
   'pt-BR': {
-    title: 'Estúdio de estilo', preview: 'Prévia do visual', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Meus', catalog: 'Catálogo',
+    title: 'Estúdio', preview: 'Prévia do visual', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Meus', catalog: 'Catálogo',
     apply: 'Aplicar visual', applied: 'Visual aplicado', purchased: 'Adicionado à coleção', buy: 'Comprar', buyApply: 'Comprar e aplicar', plus: 'Abrir Plus',
     reward: 'Recompensa da Arena', owned: 'Na coleção', selected: 'Selecionado', noAura: 'Sem aura', levelAvatar: 'Avatar de nível', resetLevelAvatar: 'Restaurar avatar de nível',
     levelAvatarEnabled: 'Avatar de nível restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Escolher estilo', dark: 'Escuro', light: 'Claro',
@@ -158,7 +155,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     applyError: 'Não foi possível aplicar o visual. Tente novamente.', arenaHint: 'Ganhe esta recompensa na Arena',
   },
   vi: {
-    title: 'Xưởng phong cách', preview: 'Xem trước diện mạo', avatars: 'Avatar', auras: 'Hào quang', all: 'Tất cả', mine: 'Của tôi', catalog: 'Danh mục',
+    title: 'Studio', preview: 'Xem trước diện mạo', avatars: 'Avatar', auras: 'Hào quang', all: 'Tất cả', mine: 'Của tôi', catalog: 'Danh mục',
     apply: 'Áp dụng diện mạo', applied: 'Đã áp dụng diện mạo', purchased: 'Đã thêm vào bộ sưu tập', buy: 'Mua', buyApply: 'Mua và áp dụng', plus: 'Mở Plus',
     reward: 'Phần thưởng Đấu trường', owned: 'Trong bộ sưu tập', selected: 'Đã chọn', noAura: 'Không hào quang', levelAvatar: 'Avatar theo cấp', resetLevelAvatar: 'Khôi phục avatar theo cấp',
     levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Chọn phong cách', dark: 'Tối', light: 'Sáng',
@@ -166,7 +163,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     applyError: 'Không thể áp dụng diện mạo. Hãy thử lại.', arenaHint: 'Nhận phần thưởng này trong Đấu trường',
   },
   id: {
-    title: 'Studio Gaya', preview: 'Pratinjau tampilan', avatars: 'Avatar', auras: 'Aura', all: 'Semua', mine: 'Milik saya', catalog: 'Katalog',
+    title: 'Studio', preview: 'Pratinjau tampilan', avatars: 'Avatar', auras: 'Aura', all: 'Semua', mine: 'Milik saya', catalog: 'Katalog',
     apply: 'Terapkan tampilan', applied: 'Tampilan diterapkan', purchased: 'Ditambahkan ke koleksi', buy: 'Beli', buyApply: 'Beli dan terapkan', plus: 'Buka Plus',
     reward: 'Hadiah Arena', owned: 'Dalam koleksi', selected: 'Dipilih', noAura: 'Tanpa aura', levelAvatar: 'Avatar level', resetLevelAvatar: 'Kembalikan avatar level',
     levelAvatarEnabled: 'Avatar level dipulihkan', editAvatar: 'Sesuaikan avatar', applyStyle: 'Pilih gaya', dark: 'Gelap', light: 'Terang',
@@ -174,7 +171,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     applyError: 'Tampilan tidak dapat diterapkan. Coba lagi.', arenaHint: 'Dapatkan hadiah ini di Arena',
   },
   tr: {
-    title: 'Stil Stüdyosu', preview: 'Görünüm önizlemesi', avatars: 'Avatarlar', auras: 'Auralar', all: 'Tümü', mine: 'Benimkiler', catalog: 'Katalog',
+    title: 'Stüdyo', preview: 'Görünüm önizlemesi', avatars: 'Avatarlar', auras: 'Auralar', all: 'Tümü', mine: 'Benimkiler', catalog: 'Katalog',
     apply: 'Görünümü uygula', applied: 'Görünüm uygulandı', purchased: 'Koleksiyona eklendi', buy: 'Satın al', buyApply: 'Satın al ve uygula', plus: "Plus'ı aç",
     reward: 'Arena ödülü', owned: 'Koleksiyonda', selected: 'Seçildi', noAura: 'Aurasız', levelAvatar: 'Seviye avatarı', resetLevelAvatar: 'Seviye avatarına dön',
     levelAvatarEnabled: 'Seviye avatarı geri yüklendi', editAvatar: 'Avatarı özelleştir', applyStyle: 'Stili seç', dark: 'Koyu', light: 'Açık',
@@ -182,7 +179,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     applyError: 'Görünüm uygulanamadı. Tekrar dene.', arenaHint: "Bu ödülü Arena'da kazan",
   },
   pl: {
-    title: 'Studio stylu', preview: 'Podgląd wyglądu', avatars: 'Awatary', auras: 'Aury', all: 'Wszystkie', mine: 'Moje', catalog: 'Katalog',
+    title: 'Studio', preview: 'Podgląd wyglądu', avatars: 'Awatary', auras: 'Aury', all: 'Wszystkie', mine: 'Moje', catalog: 'Katalog',
     apply: 'Zastosuj wygląd', applied: 'Wygląd zastosowany', purchased: 'Dodano do kolekcji', buy: 'Kup', buyApply: 'Kup i zastosuj', plus: 'Otwórz Plus',
     reward: 'Nagroda Areny', owned: 'W kolekcji', selected: 'Wybrano', noAura: 'Bez aury', levelAvatar: 'Awatar poziomu', resetLevelAvatar: 'Przywróć awatar poziomu',
     levelAvatarEnabled: 'Przywrócono awatar poziomu', editAvatar: 'Dostosuj awatar', applyStyle: 'Wybierz styl', dark: 'Ciemne', light: 'Jasne',
@@ -321,7 +318,6 @@ export default function AvatarSelect() {
   const [previewAvatarValue, setPreviewAvatarValue] = useState(initialCustomization.previewAvatarValue);
   const [previewStoredAuraSelection, setPreviewStoredAuraSelection] = useState(initialCustomization.previewStoredAuraSelection);
   const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
-  const [filter, setFilter] = useState<CatalogFilter>('all');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
   const [editorGradientId, setEditorGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
@@ -443,8 +439,8 @@ export default function AvatarSelect() {
     isVip,
   }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip]);
   const catalogItems = useMemo(
-    () => filterCatalog(activeTab === 'avatars' ? avatarItems : auraItems, filter),
-    [activeTab, avatarItems, auraItems, filter],
+    () => activeTab === 'avatars' ? avatarItems : auraItems,
+    [activeTab, avatarItems, auraItems],
   );
 
   const selectedAvatar = parseCustomAvatarValue(previewAvatarValue);
@@ -611,15 +607,14 @@ export default function AvatarSelect() {
     setPreviewStoredAuraSelection(item.kind === 'none-aura' ? NO_AVATAR_AURA_ID : item.auraId);
   }, [catalogItems]);
 
+  const scrollToCatalog = useCallback(() => {
+    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52))), animated: false }));
+  }, []);
+
   const handleTabChange = useCallback((tab: CustomizationTab) => {
     setActiveTab(tab);
-    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: Math.max(420, Dimensions.get('window').height - insets.top - 92), animated: false }));
-  }, [insets.top]);
-
-  const handleFilterChange = useCallback((nextFilter: CatalogFilter) => {
-    setFilter(nextFilter);
-    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: Math.max(420, Dimensions.get('window').height - insets.top - 92), animated: false }));
-  }, [insets.top]);
+    scrollToCatalog();
+  }, [scrollToCatalog]);
 
   const renderCatalogItem = useCallback(({ item }: { item: CustomizationCatalogItem }) => {
     const selected = item.kind === 'custom-avatar'
@@ -638,7 +633,7 @@ export default function AvatarSelect() {
     );
   }, [selectedAvatar?.avatarId, previewStoredAuraSelection, lang, copy, selectCatalogItem]);
 
-  const heroHeight = Math.max(420, Dimensions.get('window').height - insets.top - 92);
+  const heroHeight = Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52)));
   const listHeader = useMemo(() => (
     <View>
       <View style={[styles.topBar, { paddingTop: insets.top + 8 }]}>
@@ -661,19 +656,12 @@ export default function AvatarSelect() {
         themeAccent={t.accent}
         motionEnabled={focused && appState === 'active'}
         minHeight={heroHeight}
-        previewLabel={copy.preview}
       />
       <View style={styles.controls}>
         <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
-        <View style={styles.filterRow}>
-          <Text style={[styles.catalogTitle, { color: t.textPrimary }]}>{copy.catalog}</Text>
-          <View style={styles.filterBox}>
-            <OwnershipFilters value={filter} onChange={handleFilterChange} allLabel={copy.all} mineLabel={copy.mine} />
-          </View>
-        </View>
       </View>
     </View>
-  ), [insets.top, lang, router, t, copy, handleResetLevelAvatar, confirmed.activeAvatar, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, previewAuraLabel, focused, appState, heroHeight, activeTab, handleTabChange, filter, handleFilterChange]);
+  ), [insets.top, lang, router, t, copy, handleResetLevelAvatar, confirmed.activeAvatar, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, previewAuraLabel, focused, appState, heroHeight, activeTab, handleTabChange]);
 
   const purchaseMessage = purchaseState.pending
     ? `${purchaseState.pending.cost} ${localized(lang, { ru: 'осколков будут списаны после подтверждения.', uk: 'уламків буде списано після підтвердження.', es: 'fragmentos se descontarán tras confirmar.', 'pt-BR': 'fragmentos serão descontados após a confirmação.', vi: 'mảnh sẽ được trừ sau khi xác nhận.', id: 'shard akan dipotong setelah konfirmasi.', tr: 'parça onaydan sonra düşülecek.', pl: 'odłamków zostanie odjętych po potwierdzeniu.' })}`
@@ -742,9 +730,6 @@ const styles = StyleSheet.create({
   iconButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '900', textAlign: 'center' },
   controls: { paddingHorizontal: GRID_PAD, paddingTop: 18, paddingBottom: 12, gap: 14 },
-  filterRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  catalogTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '900' },
-  filterBox: { width: 190 },
   row: { paddingHorizontal: GRID_PAD, gap: GRID_GAP, marginBottom: GRID_GAP },
   cell: { flex: 1, maxWidth: `${100 / 3}%` as any },
 });

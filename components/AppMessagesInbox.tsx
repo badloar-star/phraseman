@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMessageReceivedCue } from '../hooks/use-message-received-cue';
 import { useIsFocused } from '@react-navigation/native';
 import { useLang } from './LangContext';

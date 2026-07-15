@@ -5,7 +5,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // цветные и тапаются в полноэкранную деталку (как «Фраза дня»). Вход — из
 // раздела карточек («Коллекция», рядом с «Тренировать»/«Слушать»). Выдача — только сервер
 // (collectiblesClaimDrop), этот экран лишь читает локальную копию инвентаря.
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {

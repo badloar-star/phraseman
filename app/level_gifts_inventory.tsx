@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -370,14 +370,14 @@ export default function LevelGiftsInventoryScreen() {
                         >
                           <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }}>
                             {triLang(lang, {
-                              ru: 'Применить',
-                              uk: 'Застосувати',
-                              es: 'Aplicar',
-                              'pt-BR': 'Usar',
-                              vi: 'Dùng',
-                              id: 'Pakai',
-                              tr: 'Kullan',
-                              pl: 'Użyj',
+                              ru: 'Посмотреть',
+                              uk: 'Переглянути',
+                              es: 'Ver',
+                              'pt-BR': 'Ver',
+                              vi: 'Xem',
+                              id: 'Lihat',
+                              tr: 'Görüntüle',
+                              pl: 'Zobacz',
                             })}
                           </Text>
                         </TouchableOpacity>

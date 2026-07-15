@@ -201,13 +201,13 @@ function LevelGiftModal({
           if (accountToken && isCurrentOpening(accountToken)) setGift(rolledGift);
         })();
       }
-      fadeReveal.setValue(0);
+      fadeReveal.setValue(presentationMode === 'apply' ? 1 : 0);
       scaleAnim.setValue(1);
       shakeAnim.setValue(0);
       floatAnim.setValue(0);
       rockAnim.setValue(0);
       lidLift.setValue(0);
-      orbRise.setValue(0);
+      orbRise.setValue(presentationMode === 'apply' ? 1 : 0);
       modalEntrance.setValue(0);
       modalGlow.setValue(0);
       Animated.spring(modalEntrance, {
@@ -225,7 +225,7 @@ function LevelGiftModal({
       );
       glowLoop.current.start();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, modalEntrance, modalGlow, studyTarget]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, modalEntrance, modalGlow, presentationMode, studyTarget]);
 
   useEffect(() => {
     if (!visible || !gift) {
@@ -361,18 +361,12 @@ function LevelGiftModal({
     });
   };
 
-  useEffect(() => {
-    if (!visible || presentationMode !== 'apply' || !gift || phase !== 'box') return;
-    handleTap(true);
-    // handleTap intentionally runs once per phase transition; adding its render-local identity would retrigger this effect.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, presentationMode, gift, phase]);
-
   const handleSkip = async () => {
     const accountToken = openingAccountTokenRef.current;
     if (!accountToken || !isCurrentOpening(accountToken)) return;
     if (presentationMode === 'apply') {
-      onClose(true);
+      if (phase === 'opening') return;
+      onClose(phase === 'reveal');
       return;
     }
     if (!gift) { onClose(false); return; }
@@ -392,6 +386,10 @@ function LevelGiftModal({
     setChoiceBusy(true);
     setGift(chosen);
     void hapticSuccess();
+    if (presentationMode === 'apply' && phase === 'box') {
+      setChoiceBusy(false);
+      return;
+    }
     if (storesOnly) {
       void saveUnclaimedGift(level, chosen, accountToken).catch(() => {});
       if (!isCurrentOpening(accountToken)) return;
@@ -458,7 +456,9 @@ function LevelGiftModal({
     }
   };
 
-  if (!visible || !gift || (presentationMode === 'apply' && phase !== 'reveal')) return null;
+  const previewingStoredGift = presentationMode === 'apply' && phase === 'box';
+
+  if (!visible || !gift) return null;
 
   const rarity      = gift.rarity;
   const palette     = paletteForRarity(rarity);
@@ -567,9 +567,9 @@ function LevelGiftModal({
             {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
-          {phase !== 'reveal' ? (
+          {phase !== 'reveal' && !previewingStoredGift ? (
             <>
-              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={handleTap} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
+              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={() => handleTap()} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
                 <GiftBox3D
                   palette={palette}
                   size={LEVEL_GIFT_STAGE_SIZE}
@@ -871,7 +871,7 @@ function LevelGiftModal({
                 </View>
               )}
 
-              {!storesOnly && isCosmeticGiftId(gift?.id) && (
+              {!storesOnly && !previewingStoredGift && isCosmeticGiftId(gift?.id) && (
                 <TouchableOpacity
                   testID="level-gift-open-avatar"
                   activeOpacity={0.85}
@@ -900,6 +900,10 @@ function LevelGiftModal({
                 activeOpacity={0.85}
                 onPress={() => {
                   void hapticSuccess();
+                  if (previewingStoredGift) {
+                    handleTap(true);
+                    return;
+                  }
                   closeForCurrentOpening(!storesOnly);
                 }}
                 style={{
@@ -926,7 +930,9 @@ function LevelGiftModal({
                 {/* верхний блик на кнопке */}
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
                 <Text style={{ color: palette.buttonInk, fontSize: f.bodyLg, fontWeight: '900' }}>
-                  {presentationMode === 'apply'
+                  {presentationMode === 'apply' && phase === 'box'
+                    ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
+                    : presentationMode === 'apply'
                     ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
                     : storesOnly
                     ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })

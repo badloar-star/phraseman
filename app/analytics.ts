@@ -33,16 +33,19 @@ import {
   type SoftUpsellSuppressionReason,
   type SoftUpsellTrigger,
 } from './soft_upsell_core';
+import type { GovernedProductAnalyticsEventName } from './product_analytics_event_catalog';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  | GovernedProductAnalyticsEventName
   // Consent-gated product navigation/session analytics (schema v1).
   | 'product_session_start'
   | 'product_session_resume'
   | 'product_session_background'
   | 'product_screen_view'
   | 'product_screen_leave'
+  | 'product_operation_failure'
   | 'soft_upsell_eligible'
   | 'soft_upsell_impression'
   | 'soft_upsell_cta'
@@ -132,6 +135,7 @@ export type AnalyticsEvent =
   | 'loyalty_gift_ended_cta'      // нажата «Открыть полный доступ» после истечения
   | 'loyalty_gift_ended_dismiss'  // «Продолжить бесплатно» после истечения
   | 'paywall_shown'
+  | 'experiment_exposure'
   | 'paywall_personalization_tag_shown'
   | 'paywall_plan_select'
   | 'paywall_cta_click'

@@ -6,8 +6,16 @@ import {
 import { isArenaDuelReactionEmoji } from '../../constants/arena_duel_reaction_emojis';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import type { AuthoritativeSearchState } from '../arena_matchmaking_control_clock';
+import { Dimensions, Platform } from 'react-native';
 
 const MATCHMAKING_META_POLL_MS = 30 * 1000;
+
+export function arenaDeviceClass(): 'phone' | 'tablet' | 'web' | 'unknown' {
+  if (Platform.OS === 'web') return 'web';
+  const width = Number(Dimensions.get('window')?.width ?? 0);
+  if (!Number.isFinite(width) || width <= 0) return 'unknown';
+  return width >= 768 ? 'tablet' : 'phone';
+}
 
 // ─── Коллекции ────────────────────────────────────────────────────────────────
 //
@@ -153,7 +161,8 @@ export async function submitAnswer(
   playerId: string,
   questionId: string,
   answer: string | null,
-  timeMs: number
+  timeMs: number,
+  deviceClass: 'phone' | 'tablet' | 'web' | 'unknown' = 'unknown',
 ): Promise<void> {
   const firestore = getFirestoreModule();
   if (!firestore) throw new Error('firebase_unavailable');
@@ -164,6 +173,7 @@ export async function submitAnswer(
       answer,
       isCorrect: false, // Cloud Function пересчитает
       timeMs,
+      deviceClass,
       points: 0,
     }),
     lastSeen: Date.now(),

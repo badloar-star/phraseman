@@ -66,6 +66,7 @@ import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TR
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications } from './achievements';
 import { ensureAnonUser, ensureStableAuthLink, restoreFromCloudDetailed, syncToCloud } from './cloud_sync';
+import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
@@ -1366,6 +1367,17 @@ function AppContent() {
   const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const coldExamBestPctRestoreOptions = useMemo(() => ({
+    canPublishExamBestPctOverlay: () => {
+      const currentPath = pathnameRef.current;
+      const safeHomePath = currentPath === '/' || currentPath === '/home' || currentPath === '/(tabs)/home';
+      return AppState.currentState === 'active'
+        && safeHomePath
+        && isExamBestPctColdRestoreTabSafe();
+    },
+  }), []);
   const globalSearchParams = useGlobalSearchParams();
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
@@ -1921,7 +1933,7 @@ function AppContent() {
       const bootCoordinator = createBootCloudRestoreCoordinator({
         restore: async () => {
           await ensureAnonUser();
-          return restoreFromCloudDetailed();
+          return restoreFromCloudDetailed(coldExamBestPctRestoreOptions);
         },
         hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
         onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -2068,7 +2080,7 @@ function AppContent() {
           restore: async () => {
             await appCheckWarmup;
             await ensureAnonUser();
-            return restoreFromCloudDetailed();
+            return restoreFromCloudDetailed(coldExamBestPctRestoreOptions);
           },
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -2226,7 +2238,7 @@ function AppContent() {
       subDelete.remove();
       remoteConfigUnsub?.();
     };
-  }, [flushPending]);
+  }, [coldExamBestPctRestoreOptions, flushPending]);
 
   useEffect(() => {
     const sub = onAppEvent('notif_permission_nudge', async ({ missedDays }) => {

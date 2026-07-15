@@ -3,7 +3,7 @@
 **Последнее обновление:** 2026-07-15, Europe/Dublin  
 **Статус цели:** active  
 **Текущая стадия:** планирование и нормативные спецификации завершены; реализация начата с security inventory; umbrella Phase 00 ещё не закрыта полностью  
-**Точный следующий крупный шаг:** после сохранения канонических документов в V2-ветке и закрытия замечания о незакреплённом Firebase CLI выполнить umbrella Phase 01 / Task 1.1 — identity и versioning; затем строго 1.1A → 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3  
+**Точный следующий крупный шаг:** закрыть замечание о незакреплённом Firebase CLI отдельным focused commit, повторить 351 + 60 security gates, затем выполнить umbrella Phase 01 / Task 1.1 — identity и versioning; после него строго 1.1A → 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3  
 **Назначение файла:** это живой центр управления между сессиями. Он не заменяет подробные спецификации и TDD-планы, а сообщает следующей сессии, что прочитать, что уже доказано, что не сделано и какой именно шаг выполнять дальше.
 
 ---
@@ -125,7 +125,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 
 ### 2.4 Точный ближайший исполнимый маршрут
 
-1. Сохранить и интегрировать канонические V2-документы в отдельный V2-worktree/ветку; этот файл должен физически присутствовать в исполняемой ветке, а не только в грязном checkout.
+1. Подтвердить, что 14-path canonical package уже tracked в pilot worktree: docs-only commit source `0b94c9749`, cherry-pick commit `a09f57da2`; `git ls-files --error-unmatch ...` должен вернуть все 14 paths.
 2. Исправить воспроизводимость Task 0 отдельным focused change: закрепить `firebase-tools@15.15.0`, подтвердить вызов локального binary и повторить 351 emulator + 60 static tests.
 3. Не смешивать с этим восстановление общего Functions build: девять текущих TypeScript ошибок доказанно существовали в parent commit; для них нужен отдельный baseline-fix task/commit.
 4. Выполнить umbrella Phase 01 / Task 1.1 test-first: identity grammar и schema versions без React/Firebase imports.
@@ -306,7 +306,10 @@ Checkpoint — не восемнадцатая family и не отдельный
 
 - Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`
 - Branch: `codex/learning-v2-pilot`
-- HEAD: `ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a`
+- Current HEAD: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
+- Task 0 implementation commit: `ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a`
+- Canonical docs/handover persistence commit in pilot: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
+- Source docs-only commit in main: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`
 - Parent/common base: `96d2568fbbe958a96e3c68156a7bcf1abce5d3a0`
 - Commit subject: `security: isolate Content Studio authoring paths`
 - Состояние после свежей проверки: чистое.
@@ -412,7 +415,7 @@ firebase-tools 15.15.0
 
 ### 7.3 Канон пока не сохранён Git
 
-На pre-persistence аудите README + `00`–`08` (десять исходных V2-файлов), новый `HANDOVER.md` и оба плана 2026-07-14 имели статус `??` в основном checkout. В pilot worktree их не было вообще. Текущая сессия закрывает этот риск отдельным docs-only commit, содержащим ровно 14 paths: `AGENTS.md`, 11 Markdown-файлов `docs/v2` и два плана 2026-07-14; затем этот commit переносится в pilot-ветку. Следующая сессия должна подтвердить наличие через команды ниже, а не доверять тексту:
+На pre-persistence аудите README + `00`–`08` (десять исходных V2-файлов), новый `HANDOVER.md` и оба плана 2026-07-14 имели статус `??` в основном checkout. В pilot worktree их не было вообще. Риск закрыт отдельным docs-only commit `0b94c974938f0e157dec45b1c4031bd1c89dd90c`, содержащим ровно 14 paths: `AGENTS.md`, 11 Markdown-файлов `docs/v2` и два плана 2026-07-14. Он перенесён в pilot-ветку как `a09f57da2d2442d114202bb3d52bf58abe917bb1`. Следующая сессия всё равно должна подтвердить наличие через команды ниже, а не доверять тексту:
 
 ```powershell
 git ls-files --error-unmatch AGENTS.md docs/v2/HANDOVER.md docs/v2/README.md docs/v2/00-research-and-skill-audit.md docs/v2/01-current-state-audit.md docs/v2/02-competitor-and-learning-evidence.md docs/v2/03-learning-architecture-and-curriculum.md docs/v2/04-activity-catalog-and-storyboards.md docs/v2/05-stars-progress-and-mastery.md docs/v2/06-runtime-content-admin-and-release.md docs/v2/07-migration-analytics-testing.md docs/v2/08-admin-content-studio-and-mode-authoring.md docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
@@ -425,11 +428,11 @@ git status --short --branch
 
 - path: `C:\appsprojects\phraseman`;
 - branch: `codex/release-integrated-20260715`;
-- HEAD: `2fba5482837225d9c697b31140f4f2748e984707`;
-- snapshot 2026-07-15 перед docs-only persistence: `git status --porcelain=v1 -uall` показал 627 entries — 136 tracked и 491 untracked; это диагностический снимок, а не постоянный счётчик;
+- HEAD после docs-only persistence: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`;
+- snapshot 2026-07-15 после docs-only persistence: `git status --porcelain=v1 -uall` показал 673 entries — 135 tracked и 538 untracked; main изменяется параллельно, поэтому это диагностический снимок, а не постоянный счётчик;
 - из Task 0 paths пересекается `functions/package.json`, поэтому blind cherry-pick опасен.
 
-Никакие чужие/пользовательские изменения не удалять, не reset-ить и не перезаписывать. Сначала создать точную integration strategy или docs-only commit в безопасной ветке.
+Никакие чужие/пользовательские изменения не удалять, не reset-ить и не перезаписывать. Canonical docs уже перенесены отдельным commit; дальнейший V2-код вести в pilot worktree и не собирать в него случайные dirty-main файлы.
 
 ### 7.4 Отдельный V2 milestone/workstream не создан
 
@@ -646,8 +649,8 @@ Dedicated Task 1 считается завершённым только если
 docs/v2/HANDOVER.md, docs/v2/README.md и оба плана 2026-07-14. Не меняй грязный main.
 Проверь два checkout и сохрани чужие изменения. Текущий код: worktree
 C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot, branch codex/learning-v2-pilot,
-HEAD ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a. Сначала закрой P2 firebase-tools и
-безопасно перенеси канонические untracked V2 docs в исполняемую ветку. Затем выполни
+HEAD a09f57da2d2442d114202bb3d52bf58abe917bb1; Task 0 commit ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a.
+Канонические 14 paths уже tracked. Сначала закрой P2 firebase-tools, затем выполни
 umbrella Phase 01 / Task 1.1 строго test-first: identity grammar и schema versions без
 React/Firebase. Затем выполняй 1.1A → 1.2 → 1.3 → 1.4 и только после них dedicated
 Content Studio Tasks 1–3. Не начинай UI и не удаляй legacy. После каждого GREEN и
@@ -669,6 +672,6 @@ commit и exact dependency-aware next task.
 - Task 0 security commit существует только локально в отдельном clean worktree;
 - 351 emulator и 60 static tests зелёные;
 - firebase-tools pin и baseline Functions build остаются открыты;
-- все V2 docs/plans пока untracked в грязном main и отсутствуют в pilot worktree;
+- все 11 V2 docs, оба плана и AGENTS protocol сохранены docs-only commit и присутствуют в clean pilot worktree;
 - exact next implementation — umbrella Phase 01 / Task 1.1 identity and versioning; Content Studio Task 1 идёт только после 1.1A–1.4;
 - UI, mass generation, production rollout и legacy retirement сейчас запрещены порядком зависимостей.

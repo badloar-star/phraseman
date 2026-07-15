@@ -43,6 +43,10 @@ import {
   withRestoreApplicationLock,
 } from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
+import {
+  extractExamBestPctOverlay,
+  publishExamBestPctOverlay,
+} from './exam_best_pct_overlay';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
 import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation';
@@ -2024,6 +2028,7 @@ async function doSyncToCloud(): Promise<void> {
 async function applyRestoreFromUserDoc(
   doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
   isCurrent: () => boolean = () => true,
+  afterLegacyRestore?: (root: Record<string, unknown>) => void,
 ): Promise<boolean> {
   const assertCurrent = () => {
     if (!isCurrent()) throw new Error('stale_account_generation');
@@ -2031,6 +2036,10 @@ async function applyRestoreFromUserDoc(
   assertCurrent();
   if (!doc.exists) return false;
   const root = doc.data() ?? {};
+  const completeRestore = (applied: boolean): boolean => {
+    try { afterLegacyRestore?.(root); } catch { /* visual overlay must never alter restore */ }
+    return applied;
+  };
   const progressServerAuthoritative = root.progressServerAuthoritative === true;
   if (root.created_at) {
     assertCurrent();
@@ -2212,7 +2221,16 @@ async function applyRestoreFromUserDoc(
         await AsyncStorage.multiGet(['weekly_xp', 'weekly_xp_period_start', 'week_points', 'week_points_v2']),
       ) as Record<string, string | null>;
       assertCurrent();
-      stickyPairs.push(...buildStickyServerProgressPairs(cloudData, new Date(), false, localWeeklyData));
+      stickyPairs.push(...buildStickyServerProgressPairs(cloudData, new Date(), false, localWeeklyData)
+        .filter(([key]) => key !== 'streak_count' && key !== 'last_active_date' && key !== 'streak_last_date'));
+      const localStreakNormalized = localStreakRaw == null ? null : String(parseProgressInt(localStreakRaw));
+      if (String(mergedStreak.streak) !== localStreakNormalized && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {
+        stickyPairs.push(['streak_count', String(mergedStreak.streak)]);
+      }
+      if (mergedStreak.lastActive && mergedStreak.lastActive !== localLastActiveRaw) {
+        stickyPairs.push(['last_active_date', mergedStreak.lastActive]);
+        stickyPairs.push(['streak_last_date', mergedStreak.lastActive]);
+      }
     }
     const cloudLoginBonus = cloudData['login_bonus_v1'];
     const localLoginBonus = await AsyncStorage.getItem('login_bonus_v1');
@@ -2333,9 +2351,9 @@ async function applyRestoreFromUserDoc(
       assertCurrent();
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
       assertCurrent();
-      return true;
+      return completeRestore(true);
     }
-    return false;
+    return completeRestore(false);
   }
 
   const pairs: [string, string][] = [];
@@ -2462,7 +2480,7 @@ async function applyRestoreFromUserDoc(
   assertCurrent();
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
   assertCurrent();
-  return true;
+  return completeRestore(true);
 }
 
 /**
@@ -2471,6 +2489,28 @@ async function applyRestoreFromUserDoc(
  */
 export type CloudRestoreResult = 'restored' | 'not_found' | 'auth_unavailable' | 'permission_denied' | 'failed';
 type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean };
+export type CloudRestoreOptions = Readonly<{
+  canPublishExamBestPctOverlay?: () => boolean;
+}>;
+
+function tryPublishExamBestPctOverlay(
+  root: Record<string, unknown>,
+  stableId: string,
+  isCurrent: () => boolean,
+  canPublish: (() => boolean) | undefined,
+): void {
+  try {
+    if (!canPublish || !isCurrent() || !canPublish()) return;
+    if (root.progressServerAuthoritative !== true) return;
+    const progress = root.progress;
+    if (!progress || typeof progress !== 'object' || Array.isArray(progress)) return;
+    const values = extractExamBestPctOverlay(progress as Record<string, unknown>);
+    if (Object.keys(values).length === 0 || !isCurrent() || !canPublish()) return;
+    publishExamBestPctOverlay(stableId, values);
+  } catch {
+    /* legacy restore remains authoritative if the render-only overlay rejects input */
+  }
+}
 
 function classifyCloudRestoreFailure(error: unknown): Extract<CloudRestoreResult, 'permission_denied' | 'failed'> {
   const row = error as { code?: unknown; message?: unknown } | null;
@@ -2488,7 +2528,10 @@ export async function restoreAndMigrateFromCloud(): Promise<boolean> {
   return (await restoreAndMigrateFromCloudResult(true)).applied;
 }
 
-async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): Promise<CloudRestoreAttempt> {
+async function restoreAndMigrateFromCloudResult(
+  syncMissingDocument: boolean,
+  options: CloudRestoreOptions = {},
+): Promise<CloudRestoreAttempt> {
   if (!CLOUD_SYNC_ENABLED) return { status: 'failed', applied: false };
   const db = getFirestore();
   if (!db) return { status: 'failed', applied: false };
@@ -2526,7 +2569,14 @@ async function restoreAndMigrateFromCloudResult(syncMissingDocument: boolean): P
     }
     if (!isCurrent()) return { status: 'failed', applied: false };
     const applied = await withRestoreApplicationLock(() => (
-      applyRestoreFromUserDoc(doc, isCurrent)
+      applyRestoreFromUserDoc(doc, isCurrent, options.canPublishExamBestPctOverlay
+        ? (root) => tryPublishExamBestPctOverlay(
+          root,
+          uid,
+          isCurrent,
+          options.canPublishExamBestPctOverlay,
+        )
+        : undefined)
     ));
     if (!isCurrent()) return { status: 'failed', applied: false };
     return completedCloudRestoreAttempt(applied);
@@ -2543,8 +2593,11 @@ export async function restoreFromCloud(): Promise<boolean> {
 }
 
 /** Auth-safe restore result: distinguishes an empty account from a transport failure. */
-export async function restoreFromCloudDetailed(): Promise<CloudRestoreResult> {
-  return (await restoreAndMigrateFromCloudResult(false)).status;
+export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}): Promise<CloudRestoreResult> {
+  if (!options.canPublishExamBestPctOverlay) {
+    return (await restoreAndMigrateFromCloudResult(false)).status;
+  }
+  return (await restoreAndMigrateFromCloudResult(false, options)).status;
 }
 
 export const __cloudSyncTestHooks = {

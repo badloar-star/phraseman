@@ -29,10 +29,10 @@ describe('boot cloud restore integration contract', () => {
   });
 
   it('reconciles a persisted provider identity before either boot restore path', () => {
-    expect(layout).toContain('async function restoreCloudProfileForBoot()');
+    expect(layout).toContain('async function restoreCloudProfileForBoot(options: CloudRestoreOptions = {})');
     expect(layout).toContain('reconcileAuthIdentityForBoot');
-    expect(layout.match(/return restoreCloudProfileForBoot\(\);/g)).toHaveLength(2);
-    expect(layout.match(/return restoreFromCloudDetailed\(\);/g)).toHaveLength(1);
+    expect(layout.match(/return restoreCloudProfileForBoot\(coldExamBestPctRestoreOptions\);/g)).toHaveLength(2);
+    expect(layout.match(/return restoreFromCloudDetailed\(options\);/g)).toHaveLength(1);
   });
 
   it('does not label authentication or permission failures as an internet outage', () => {

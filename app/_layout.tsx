@@ -65,7 +65,14 @@ import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications } from './achievements';
-import { ensureAnonUser, ensureStableAuthLink, restoreFromCloudDetailed, syncToCloud } from './cloud_sync';
+import {
+  ensureAnonUser,
+  ensureStableAuthLink,
+  restoreFromCloudDetailed,
+  syncToCloud,
+  type CloudRestoreOptions,
+} from './cloud_sync';
+import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
@@ -177,11 +184,11 @@ import {
 import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
-async function restoreCloudProfileForBoot() {
+async function restoreCloudProfileForBoot(options: CloudRestoreOptions = {}) {
   const { reconcileAuthIdentityForBoot } = await import('./auth_provider');
   const identityResult = await reconcileAuthIdentityForBoot();
   if (identityResult === 'unavailable') return 'auth_unavailable' as const;
-  return restoreFromCloudDetailed();
+  return restoreFromCloudDetailed(options);
 }
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
@@ -1375,6 +1382,17 @@ function AppContent() {
   const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const coldExamBestPctRestoreOptions = useMemo(() => ({
+    canPublishExamBestPctOverlay: () => {
+      const currentPath = pathnameRef.current;
+      const safeHomePath = currentPath === '/' || currentPath === '/home' || currentPath === '/(tabs)/home';
+      return AppState.currentState === 'active'
+        && safeHomePath
+        && isExamBestPctColdRestoreTabSafe();
+    },
+  }), []);
   const globalSearchParams = useGlobalSearchParams();
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
@@ -1930,7 +1948,7 @@ function AppContent() {
       const bootCoordinator = createBootCloudRestoreCoordinator({
         restore: async () => {
           await ensureAnonUser();
-          return restoreCloudProfileForBoot();
+          return restoreCloudProfileForBoot(coldExamBestPctRestoreOptions);
         },
         hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
         onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -2077,7 +2095,7 @@ function AppContent() {
           restore: async () => {
             await appCheckWarmup;
             await ensureAnonUser();
-            return restoreCloudProfileForBoot();
+            return restoreCloudProfileForBoot(coldExamBestPctRestoreOptions);
           },
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -2235,7 +2253,7 @@ function AppContent() {
       subDelete.remove();
       remoteConfigUnsub?.();
     };
-  }, [flushPending]);
+  }, [coldExamBestPctRestoreOptions, flushPending]);
 
   useEffect(() => {
     const sub = onAppEvent('notif_permission_nudge', async ({ missedDays }) => {

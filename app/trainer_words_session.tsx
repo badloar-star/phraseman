@@ -105,6 +105,7 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
   const { lang } = useLang();
   const isCompassTheme = false;
   const position = useRef(new Animated.ValueXY()).current;
+  const swipeInProgressRef = useRef(false);
 
   const rotate = position.x.interpolate({
     inputRange: [-SCREEN_W / 2, 0, SCREEN_W / 2],
@@ -133,6 +134,8 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
   isTopRef.current = isTop;
 
   const swipeOut = useCallback((dir: 'right' | 'left') => {
+    if (!isTopRef.current || swipeInProgressRef.current) return;
+    swipeInProgressRef.current = true;
     const toX = dir === 'right' ? SCREEN_W * 1.5 : -SCREEN_W * 1.5;
     const answeredCorrectly = (dir === 'right') === cardRef.current.isCorrectTranslation;
     if (answeredCorrectly) hapticSuccess(); else hapticError();
@@ -151,7 +154,7 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
 
   const panResponder = useRef(
     PanResponder.create({
-      onStartShouldSetPanResponder: () => isTopRef.current,
+      onStartShouldSetPanResponder: () => isTopRef.current && !swipeInProgressRef.current,
       onPanResponderMove: (_, g) => {
         position.setValue({ x: g.dx, y: g.dy * 0.2 });
       },

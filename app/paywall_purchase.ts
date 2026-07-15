@@ -54,7 +54,11 @@ import { claimInitialInventoryResolution, classifyPaywallInventory } from './pay
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { softUpsellAnalyticsParams, type SoftUpsellAttribution } from './soft_upsell_attribution';
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
 import { invalidatePremiumCache } from './premium_guard';
@@ -66,6 +70,20 @@ import { classifyPurchaseActivation } from './paywall_purchase_outcomes';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
+
+async function markPremiumCelebrationForCurrentAccount(
+  plan: PaywallPlan,
+  isCurrent: () => boolean,
+  onActivated: () => void,
+): Promise<boolean> {
+  return withAccountTransitionLock(async () => {
+    if (!isCurrent()) return false;
+    await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
+    if (!isCurrent()) return false;
+    onActivated();
+    return isCurrent();
+  });
+}
 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
@@ -346,35 +364,46 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [context, currentSoftAttribution, impression, source, variant]);
 
   // ── покупка ────────────────────────────────────────────────────────────────
-  const finishPersonalPlanActivationFlow = useCallback(async () => {
-    await activatePendingPersonalPlanAfterPremium();
-    invalidatePremiumCache();
-    await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
-    emitAppEvent('premium_activated');
-    void reloadEnergy().catch(() => {});
+  const finishPersonalPlanActivationFlow = useCallback(async (isCurrent: () => boolean): Promise<boolean> => {
+    return withAccountTransitionLock(async () => {
+      if (!isCurrent()) return false;
+      await activatePendingPersonalPlanAfterPremium();
+      if (!isCurrent()) return false;
+      invalidatePremiumCache();
+      await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
+      if (!isCurrent()) return false;
+      emitAppEvent('premium_activated');
+      void reloadEnergy().catch(() => {});
 
-    try {
-      const pendingNickname = await AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
-      if (pendingNickname === '1') {
-        await AsyncStorage.multiSet([
-          ['onboarding_step', 'name'],
-          [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-        ]);
-        await AsyncStorage.removeItem('onboarding_done');
+      try {
+        const pendingNickname = await AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
+        if (!isCurrent()) return false;
+        if (pendingNickname === '1') {
+          await AsyncStorage.multiSet([
+            ['onboarding_step', 'name'],
+            [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+          ]);
+          if (!isCurrent()) return false;
+          await AsyncStorage.removeItem('onboarding_done');
+          if (!isCurrent()) return false;
         // Возврат в онбординг на шаг «Имя»: слушатель _layout синхронно поднимает
         // непрозрачный оверлей. Намеренно НЕ навигируем на «Главную» — иначе кадр с
         // home + монтаж тяжёлого экрана (см. handleClose ниже).
-        emitAppEvent('personal_plan_onboarding_nickname_ready');
-        return;
+          emitAppEvent('personal_plan_onboarding_nickname_ready');
+          return isCurrent();
+        }
+      } catch {
+        if (!isCurrent()) return false;
+        // Fall through to the deterministic thank-you route.
       }
-    } catch {
-      // Fall through to the deterministic thank-you route.
-    }
 
     // markNextNavigationAsReplace: the stack top is the paywall. Replace it so
     // back from the auth prompt host or the plan never returns to paywall.
-    markNextNavigationAsReplace();
-    router.replace('/personal_plan_thank_you' as any);
+      if (!isCurrent()) return false;
+      markNextNavigationAsReplace();
+      router.replace('/personal_plan_thank_you' as any);
+      return isCurrent();
+    });
   }, [reloadEnergy, router]);
 
   const handlePurchase = useCallback(async () => {
@@ -457,6 +486,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
       // deferred-исход / аномалия sandbox без этой проверки давали локальный
       // «премиум», которого нет на сервере, — доступ потом «отваливался».
+      if (!purchaseAccountIsCurrent()) return;
       const activationType = classifyPurchaseActivation(customerInfo, selected, pkg.product.identifier);
       if (activationType === 'pending') {
         // error-тег вместо отдельного имени события: тип AnalyticsEvent живёт в
@@ -477,11 +507,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       const persistedForCurrentAccount = await persistStorePremiumLocally(
         confirmedPlan, metadata, purchaseAccountIsCurrent,
       );
+      if (!persistedForCurrentAccount || !purchaseAccountIsCurrent()) return;
       const currentSoftAttribution = purchaseAccountIsCurrent() ? purchaseSoftAttribution : null;
-      if (persistedForCurrentAccount && context !== 'personal_plan') {
+      if (context !== 'personal_plan') {
         // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
-        await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
-        emitAppEvent('premium_activated');
+        const celebrationPersisted = await markPremiumCelebrationForCurrentAccount(
+          confirmedPlan,
+          purchaseAccountIsCurrent,
+          () => emitAppEvent('premium_activated'),
+        );
+        if (!celebrationPersisted || !purchaseAccountIsCurrent()) return;
         void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
       }
       const confirmedTrial = activationType === 'trial';
@@ -553,7 +588,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       softAttributionRef.current = null;
       if (!persistedForCurrentAccount || !purchaseAccountIsCurrent()) return;
       if (context === 'personal_plan') {
-        await finishPersonalPlanActivationFlow();
+        await finishPersonalPlanActivationFlow(purchaseAccountIsCurrent);
         return;
       }
       if (purchaseSoftAttribution?.context === 'first_lesson_success') {
@@ -632,10 +667,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     softAttributionRef.current = null;
     hapticTap();
     if (DEV_IAP_BYPASS || restoring || purchasing) return;
+    const restoreAccountToken = captureAccountGeneration();
+    const restoreAccountIsCurrent = () => isCurrentAccountGeneration(restoreAccountToken);
     setRestoring(true);
     try {
       await initRevenueCat();
-      if (!(await syncRevenueCatIdentity())) {
+      if (!restoreAccountIsCurrent()) return;
+      const identitySynced = await syncRevenueCatIdentity();
+      if (!restoreAccountIsCurrent()) return;
+      if (!identitySynced) {
         Alert.alert(
           triLang(lang, {
             ru: 'Ошибка подключения',
@@ -661,6 +701,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       const info = await Purchases.restorePurchases();
+      if (!restoreAccountIsCurrent()) return;
       const activeSubscriptions = info.activeSubscriptions ?? [];
       const hasActiveEntitlement = Object.keys(info.entitlements.active).length > 0;
       // Entitlements — авторитетный источник; activeSubscriptions используем только
@@ -676,22 +717,29 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           : activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly'
           : 'monthly';
         const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
-        await persistStorePremiumLocally(plan, metadata);
+        const persistedForCurrentAccount = await persistStorePremiumLocally(plan, metadata, restoreAccountIsCurrent);
+        if (!persistedForCurrentAccount || !restoreAccountIsCurrent()) return;
         if (context !== 'personal_plan') {
           // То же празднование, что при покупке: без него после переустановки
           // юзер не понимал, что доступ вернулся, и порой оформлял заново.
-          await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
-          emitAppEvent('premium_activated');
+          const celebrationPersisted = await markPremiumCelebrationForCurrentAccount(
+            plan,
+            restoreAccountIsCurrent,
+            () => emitAppEvent('premium_activated'),
+          );
+          if (!celebrationPersisted || !restoreAccountIsCurrent()) return;
           void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
         }
         void trackEvent('subscription_restored', { context, paywall: variant });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (context === 'personal_plan') {
-          await finishPersonalPlanActivationFlow();
+          await finishPersonalPlanActivationFlow(restoreAccountIsCurrent);
           return;
         }
+        if (!restoreAccountIsCurrent()) return;
         dismissPaywallModal(router);
       } else {
+        if (!restoreAccountIsCurrent()) return;
         Alert.alert(
           triLang(lang, {
             ru: 'Покупки не найдены',
@@ -716,6 +764,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         );
       }
     } catch {
+      if (!restoreAccountIsCurrent()) return;
       Alert.alert(
         triLang(lang, {
           ru: 'Ошибка',

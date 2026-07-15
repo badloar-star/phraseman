@@ -95,10 +95,10 @@ export const REFERRAL_CODE_INDEX_COLLECTION = 'referral_codes';
 
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
 const FUNCTIONS_REGION = 'us-central1';
-// friendLookupUser has a 15 s server budget and may need a cold start plus the
-// legacy-name fallback queries. The former 2.5 s client cutoff converted valid
-// late responses into a false "not found" result.
-export const FRIEND_NAME_LOOKUP_CALLABLE_MS = 12_000;
+// friendLookupUser has a 15 s server budget. Leave transport/cold-start margin
+// beyond it so an automatic retry never overlaps a still-running invocation.
+// The former 2.5 s cutoff converted valid cold responses into false misses.
+export const FRIEND_NAME_LOOKUP_CALLABLE_MS = 20_000;
 const FRIEND_NAME_LOOKUP_ATTEMPTS = 2;
 
 function friendLookupUnavailable(cause?: unknown): Error {
@@ -134,6 +134,36 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | undefined>
         clearTimeout(t);
         resolve(undefined);
       });
+  });
+}
+
+type FriendLookupAttempt<T> =
+  | { kind: 'value'; value: T }
+  | { kind: 'error'; cause: unknown }
+  | { kind: 'timeout' };
+
+function withFriendLookupAttempt<T>(promise: Promise<T>, ms: number): Promise<FriendLookupAttempt<T>> {
+  return new Promise((resolve) => {
+    let done = false;
+    const timer = setTimeout(() => {
+      if (done) return;
+      done = true;
+      resolve({ kind: 'timeout' });
+    }, ms);
+    promise.then(
+      (value) => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        resolve({ kind: 'value', value });
+      },
+      (cause) => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        resolve({ kind: 'error', cause });
+      },
+    );
   });
 }
 
@@ -348,8 +378,10 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
         if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'referral_code' };
       }
     }
-  } catch {
-    /* Best-effort: referral_codes может быть недоступен (правила/сеть) — не роняем поиск. */
+  } catch (cause) {
+    // A failed referral-index read cannot prove that the visible invite code is
+    // absent. Surface a retryable lookup error instead of a false "not found".
+    throw friendLookupUnavailable(cause);
   }
 
   return null;
@@ -383,13 +415,25 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
         } | null;
       }
     >('friendLookupUser', { timeout: FRIEND_NAME_LOOKUP_CALLABLE_MS });
+    let lastCause: unknown;
     for (let attempt = 0; attempt < FRIEND_NAME_LOOKUP_ATTEMPTS; attempt += 1) {
       // A scale-to-zero cold start can fail the transport once even though the
       // authenticated read is valid. Retry inside the same user action so the
       // user does not have to press Search a second time.
       // eslint-disable-next-line no-await-in-loop
-      const res = await withTimeout(fn({ stableId, query: normalized }), FRIEND_NAME_LOOKUP_CALLABLE_MS);
-      if (!res) continue;
+      const result = await withFriendLookupAttempt(
+        fn({ stableId, query: normalized }),
+        FRIEND_NAME_LOOKUP_CALLABLE_MS,
+      );
+      // This deadline already outlives the server's 15 s budget. Starting a
+      // second invocation here would duplicate reads while transport state is
+      // unknown; only explicit transient rejections get the same-action retry.
+      if (result.kind === 'timeout') throw friendLookupUnavailable(lastCause);
+      if (result.kind === 'error') {
+        lastCause = result.cause;
+        continue;
+      }
+      const res = result.value;
       const data = res.data;
       const u = data?.user;
       const uid = u?.uid;
@@ -413,7 +457,7 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
       };
       return { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}), profile };
     }
-    throw friendLookupUnavailable();
+    throw friendLookupUnavailable(lastCause);
   } catch (cause) {
     if (cause instanceof Error && cause.message === 'friend_lookup_unavailable') throw cause;
     throw friendLookupUnavailable(cause);

@@ -146,13 +146,31 @@ export function isVipActive(progress: ProgressLike, now: number = Date.now()): b
  * Подарок 72ч (новичку «intro_full_access» или лояльности «loyalty_gift»):
  * раньше доступ давался ТОЛЬКО на клиенте через AsyncStorage → сервер о подарке
  * не знал, ИИ-функции отказывали платным фичам подаренного премиума. Теперь клиент
- * при выдаче пишет *_until_ms в users/{uid}.progress, и сервер их учитывает.
+ * при выдаче пишет связанную пару *_granted_at_ms / *_until_ms в progress.
+ * Одна дата окончания не является доказательством настоящей 72-часовой выдачи.
  */
+const MAX_GIFT_ACCESS_WINDOW_MS = 72 * 60 * 60 * 1000;
+
+function isValidGiftAccessWindow(grantedAt: unknown, until: unknown, now: number): boolean {
+  const grantedAtMs = parseProgressMs(grantedAt);
+  const untilMs = parseProgressMs(until);
+  return grantedAtMs > 0
+    && grantedAtMs <= now
+    && untilMs > now
+    && untilMs - grantedAtMs <= MAX_GIFT_ACCESS_WINDOW_MS;
+}
+
 export function isGiftAccessActive(progress: ProgressLike, now: number = Date.now()): boolean {
   const data = progress ?? {};
-  const introUntil = parseProgressMs(data.intro_access_until_ms);
-  const loyaltyUntil = parseProgressMs(data.loyalty_gift_until_ms);
-  return introUntil > now || loyaltyUntil > now;
+  return isValidGiftAccessWindow(
+    data.intro_access_granted_at_ms,
+    data.intro_access_until_ms,
+    now,
+  ) || isValidGiftAccessWindow(
+    data.loyalty_gift_granted_at_ms,
+    data.loyalty_gift_until_ms,
+    now,
+  );
 }
 
 const VIP_ENTITLEMENT_KEYS = [
@@ -185,6 +203,171 @@ function userDocOwnedByAuth(data: FirebaseFirestore.DocumentData, authUid: strin
     && cleanStr((linkedAuth as { providerUid?: unknown }).providerUid) === authUid;
 }
 
+function isServerCanonicalizedAlias(data: FirebaseFirestore.DocumentData): boolean {
+  return data.identityHidden === true
+    && (
+      parseProgressMs(data.identityMergedAt) > 0
+      || parseProgressMs(data.identityCanonicalizedAt) > 0
+    );
+}
+
+function hasServerAliasRecoveryEvidence(data: FirebaseFirestore.DocumentData): boolean {
+  return parseProgressMs(data.identityMergedAt) > 0
+    || parseProgressMs(data.identityCanonicalizedAt) > 0
+    || parseProgressMs(data.identityCleanupAt) > 0;
+}
+
+interface OwnedUserRecord {
+  id: string;
+  data: FirebaseFirestore.DocumentData;
+}
+
+interface OwnedPremiumAuthority {
+  primary: OwnedUserRecord | null;
+  providerFallbackRecords: OwnedUserRecord[];
+}
+
+type OwnedUserRecordReader = (id: string) => Promise<OwnedUserRecord | null>;
+
+async function readUserRecord(
+  db: FirebaseFirestore.Firestore,
+  id: string,
+): Promise<OwnedUserRecord | null> {
+  const snap = await db.collection('users').doc(id).get().catch(() => null);
+  if (!snap?.exists) return null;
+  return { id, data: snap.data() ?? {} };
+}
+
+/**
+ * Resolves at most three server-canonicalized alias hops. Every target must
+ * independently belong to the same Firebase identity; existence alone is
+ * never authority. The depth cap also bounds Firestore cost for corrupted
+ * or cyclic historical data.
+ */
+async function resolveOwnedCanonicalCandidate(
+  db: FirebaseFirestore.Firestore,
+  candidateId: string,
+  authUid: string,
+  authLinkedStableId: string,
+  readRecord: OwnedUserRecordReader = (id) => readUserRecord(db, id),
+): Promise<OwnedUserRecord | null> {
+  let currentId = cleanStr(candidateId);
+  const seen = new Set<string>();
+
+  for (let depth = 0; currentId && depth < 3; depth += 1) {
+    if (seen.has(currentId)) return null;
+    seen.add(currentId);
+
+    const record = await readRecord(currentId);
+    if (!record) return null;
+    const owned = currentId === authUid
+      || currentId === authLinkedStableId
+      || userDocOwnedByAuth(record.data, authUid);
+    if (!owned) return null;
+    if (record.data.identityHidden !== true) return record;
+    if (!isServerCanonicalizedAlias(record.data)) return null;
+
+    const nextId = cleanStr(record.data.canonicalStableId);
+    if (!nextId || nextId === currentId) return null;
+    currentId = nextId;
+  }
+
+  return null;
+}
+
+async function resolveOwnedPremiumAuthorityUncached(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  authUid: string,
+): Promise<OwnedPremiumAuthority> {
+  const linkSnap = await db.collection('auth_links').doc(authUid).get().catch(() => null);
+  const authLinkedStableId = cleanStr(linkSnap?.data()?.stable_id);
+  const recordReads = new Map<string, Promise<OwnedUserRecord | null>>();
+  const readRecord: OwnedUserRecordReader = (id) => {
+    const existing = recordReads.get(id);
+    if (existing) return existing;
+    const read = readUserRecord(db, id);
+    recordReads.set(id, read);
+    return read;
+  };
+
+  const candidates = [
+    { id: authLinkedStableId, linkProof: authLinkedStableId },
+    { id: cleanStr(stableUid), linkProof: '' },
+    { id: authUid, linkProof: '' },
+  ];
+  const checked = new Set<string>();
+  for (const candidate of candidates) {
+    const candidateId = cleanStr(candidate.id);
+    if (!candidateId) continue;
+    if (checked.has(candidateId)) continue;
+    checked.add(candidateId);
+    const primary = await resolveOwnedCanonicalCandidate(
+      db,
+      candidateId,
+      authUid,
+      candidate.linkProof,
+      readRecord,
+    );
+    if (primary) return { primary, providerFallbackRecords: [] };
+  }
+
+  // This is a recovery path only: a real direct authority, including a free or
+  // revoked canonical record, must win over every provider-owned sibling.
+  return {
+    primary: null,
+    providerFallbackRecords: await readOwnedVisibleProviderRecords(db, authUid),
+  };
+}
+
+const ownedAuthorityInFlight = new WeakMap<
+  FirebaseFirestore.Firestore,
+  Map<string, Promise<OwnedPremiumAuthority>>
+>();
+
+function resolveOwnedPremiumAuthority(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  authUid: string,
+): Promise<OwnedPremiumAuthority> {
+  let byIdentity = ownedAuthorityInFlight.get(db);
+  if (!byIdentity) {
+    byIdentity = new Map<string, Promise<OwnedPremiumAuthority>>();
+    ownedAuthorityInFlight.set(db, byIdentity);
+  }
+
+  const key = JSON.stringify([cleanStr(stableUid), authUid]);
+  const existing = byIdentity.get(key);
+  if (existing) return existing;
+
+  const pending = resolveOwnedPremiumAuthorityUncached(db, stableUid, authUid);
+  byIdentity.set(key, pending);
+  const cleanup = () => {
+    if (byIdentity?.get(key) !== pending) return;
+    byIdentity.delete(key);
+    if (byIdentity.size === 0) ownedAuthorityInFlight.delete(db);
+  };
+  void pending.then(cleanup, cleanup);
+  return pending;
+}
+
+async function readOwnedVisibleProviderRecords(
+  db: FirebaseFirestore.Firestore,
+  authUid: string,
+): Promise<OwnedUserRecord[]> {
+  const byAuth = await db.collection('users')
+    .where('firebaseAuthUid', '==', authUid)
+    .limit(5)
+    .get()
+    .catch(() => null);
+
+  return (byAuth?.docs ?? []).flatMap((doc) => {
+    const data = doc.data() ?? {};
+    if (data.identityHidden === true || !userDocOwnedByAuth(data, authUid)) return [];
+    return [{ id: doc.id, data }];
+  });
+}
+
 /**
  * Narrow fallback for a historical admin-grant delivery bug.
  *
@@ -195,11 +378,11 @@ function userDocOwnedByAuth(data: FirebaseFirestore.DocumentData, authUid: strin
  * capped lookup was full, and accept it only when Firebase ownership still ties
  * the hidden alias to the currently authenticated user.
  */
-async function resolveOwnedHiddenAliasAccess(
+async function resolveOwnedHiddenAliasMatch(
   db: FirebaseFirestore.Firestore,
   canonicalStableUid: string,
   authUid: string,
-  now: number,
+  predicate: (progress: Record<string, unknown>) => boolean,
 ): Promise<boolean> {
   const aliases = await db.collection('users')
     .where('canonicalStableId', '==', canonicalStableUid)
@@ -209,10 +392,10 @@ async function resolveOwnedHiddenAliasAccess(
 
   return aliases?.docs?.some((doc) => {
     const data = doc.data() ?? {};
-    if (data.identityHidden !== true) return false;
+    if (!isServerCanonicalizedAlias(data)) return false;
     if (cleanStr(data.canonicalStableId) !== canonicalStableUid) return false;
     if (!userDocOwnedByAuth(data, authUid)) return false;
-    return isPremiumAccessActive((data.progress ?? {}) as Record<string, unknown>, now);
+    return predicate((data.progress ?? {}) as Record<string, unknown>);
   }) ?? false;
 }
 
@@ -234,86 +417,44 @@ export async function resolvePremiumAccess(
   now: number = Date.now(),
   authUid?: string,
 ): Promise<boolean> {
-  const candidates = new Set<string>();
-  let authLinkedStableId = '';
-  let providerLookupMayBeTruncated = false;
-  const add = (value: unknown) => {
-    const id = cleanStr(value);
-    if (id) candidates.add(id);
-  };
-
-  add(stableUid);
-  add(authUid);
-
-  if (authUid) {
-    const [linkSnap, byAuth] = await Promise.all([
-      db.collection('auth_links').doc(authUid).get().catch(() => null),
-      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
-    ]);
-    authLinkedStableId = cleanStr(linkSnap?.data()?.stable_id);
-    add(authLinkedStableId);
-    byAuth?.docs?.forEach((doc) => add(doc.id));
-    providerLookupMayBeTruncated = (byAuth?.docs?.length ?? 0) >= 5;
+  if (!authUid) {
+    const direct = await readUserRecord(db, cleanStr(stableUid));
+    if (!direct || direct.data.identityHidden === true) return false;
+    return isPremiumAccessActive(
+      (direct.data.progress ?? {}) as Record<string, unknown>,
+      now,
+    );
   }
 
-  const checked = new Set<string>();
-  let stableUidOwnedByAuth = authLinkedStableId === stableUid;
-  let stableUidIsCanonical = false;
-  let stableUidHasVipEntitlementShape = false;
-  let observedOwnedHiddenAliasAccess = false;
-  for (;;) {
-    const ids = [...candidates].filter((id) => !checked.has(id));
-    if (ids.length === 0) break;
-    let premiumActive = false;
-    await Promise.all(ids.map(async (id) => {
-      checked.add(id);
-      const snap = await db.collection('users').doc(id).get().catch(() => null);
-      if (!snap?.exists) return;
-      const data = snap.data() ?? {};
-      if (id === stableUid) {
-        stableUidOwnedByAuth ||= Boolean(authUid && userDocOwnedByAuth(data, authUid));
-        stableUidIsCanonical = data.identityHidden !== true;
-        stableUidHasVipEntitlementShape = hasVipEntitlementShape(
-          (data.progress ?? {}) as Record<string, unknown>,
-        );
-      }
-      add(data.canonicalStableId);
-      const progress = (data.progress ?? {}) as Record<string, unknown>;
-      if (
-        authUid
-        && data.identityHidden === true
-        && cleanStr(data.canonicalStableId) === stableUid
-        && userDocOwnedByAuth(data, authUid)
-        && isPremiumAccessActive(progress, now)
-      ) {
-        observedOwnedHiddenAliasAccess = true;
-      }
-      // Hidden identities are aliases, not entitlement authorities. Reading
-      // their progress directly can resurrect a stale grant after the canonical
-      // account was explicitly revoked. The guarded reverse-alias fallback
-      // below is the only path that may inherit from one.
-      if (data.identityHidden !== true && isPremiumAccessActive(progress, now)) {
-        premiumActive = true;
-      }
-    }));
-    if (premiumActive) return true;
+  const authority = await resolveOwnedPremiumAuthority(db, stableUid, authUid);
+  const primary = authority.primary;
+  if (primary) {
+    const progress = (primary.data.progress ?? {}) as Record<string, unknown>;
+    // Any explicit canonical entitlement block (active, expired, or revoked)
+    // is final. A sibling must never resurrect a revoked canonical account.
+    if (hasVipEntitlementShape(progress)) return isPremiumAccessActive(progress, now);
+    if (isPremiumAccessActive(progress, now)) return true;
   }
 
-  // A canonical revoke/expiry marker is authoritative: never resurrect it from
-  // stale aliases. The reverse lookup is only for the missing-transfer shape
-  // seen in production (canonical has no VIP block at all).
-  if (
-    authUid
-    && stableUidOwnedByAuth
-    && stableUidIsCanonical
-    && !stableUidHasVipEntitlementShape
-  ) {
-    if (observedOwnedHiddenAliasAccess) return true;
-    if (!providerLookupMayBeTruncated) return false;
-    return resolveOwnedHiddenAliasAccess(db, stableUid, authUid, now);
+  for (const record of authority.providerFallbackRecords) {
+    const progress = (record.data.progress ?? {}) as Record<string, unknown>;
+    if (isPremiumAccessActive(progress, now)) return true;
   }
 
-  return false;
+  if (!primary) return false;
+  const primaryProgress = (primary.data.progress ?? {}) as Record<string, unknown>;
+  if (hasVipEntitlementShape(primaryProgress)) return false;
+  if (!hasServerAliasRecoveryEvidence(primary.data)) return false;
+
+  // Narrow recovery for a server-migrated hidden alias whose admin/VIP grant
+  // predates transfer. Gift and store fields on aliases are intentionally not
+  // accepted, and ordinary canonical accounts never pay for this query.
+  return resolveOwnedHiddenAliasMatch(
+    db,
+    primary.id,
+    authUid,
+    (progress) => isVipActive(progress, now),
+  );
 }
 
 /**
@@ -339,42 +480,33 @@ export async function resolveIsLifetimePlan(
   now: number = Date.now(),
   authUid?: string,
 ): Promise<boolean> {
-  const candidates = new Set<string>();
-  const add = (value: unknown) => {
-    const id = cleanStr(value);
-    if (id) candidates.add(id);
-  };
-
-  add(stableUid);
-  add(authUid);
-
-  if (authUid) {
-    const [linkSnap, byAuth] = await Promise.all([
-      db.collection('auth_links').doc(authUid).get().catch(() => null),
-      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
-    ]);
-    add(linkSnap?.data()?.stable_id);
-    byAuth?.docs?.forEach((doc) => add(doc.id));
+  if (!authUid) {
+    const direct = await readUserRecord(db, cleanStr(stableUid));
+    if (!direct || direct.data.identityHidden === true) return false;
+    return isLifetimePlanActive(
+      (direct.data.progress ?? {}) as Record<string, unknown>,
+      now,
+    );
   }
 
-  const checked = new Set<string>();
-  for (;;) {
-    const ids = [...candidates].filter((id) => !checked.has(id));
-    if (ids.length === 0) break;
-    let lifetimeActive = false;
-    await Promise.all(ids.map(async (id) => {
-      checked.add(id);
-      const snap = await db.collection('users').doc(id).get().catch(() => null);
-      if (!snap?.exists) return;
-      const data = snap.data() ?? {};
-      add(data.canonicalStableId);
-      const progress = (data.progress ?? {}) as Record<string, unknown>;
-      if (isLifetimePlanActive(progress, now)) {
-        lifetimeActive = true;
-      }
-    }));
-    if (lifetimeActive) return true;
+  const authority = await resolveOwnedPremiumAuthority(db, stableUid, authUid);
+  const primary = authority.primary;
+  if (primary) {
+    const progress = (primary.data.progress ?? {}) as Record<string, unknown>;
+    // premium_plan on the canonical document is authoritative even when it is
+    // monthly, expired, or otherwise not a current lifetime purchase.
+    if (Object.prototype.hasOwnProperty.call(progress, 'premium_plan')) {
+      return isLifetimePlanActive(progress, now);
+    }
   }
 
+  for (const record of authority.providerFallbackRecords) {
+    const progress = (record.data.progress ?? {}) as Record<string, unknown>;
+    if (isLifetimePlanActive(progress, now)) return true;
+  }
+
+  // Store purchases are transferred by the server merge itself. Reading a
+  // hidden alias here would let stale or client-written store fields restore
+  // lifetime status after the canonical record became authoritative.
   return false;
 }

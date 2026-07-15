@@ -128,6 +128,7 @@ let mockDocs: Map<string, Record<string, unknown>>;
 let mockBannedUids: Set<string>;
 let canonicalUidOverride: string | null = 'test-uid-abc';
 let transactionCollisionCodes: Set<string>;
+let mockReadFailurePaths: Set<string>;
 let mockFriendEnsureMyCode: jest.Mock;
 
 const buildFakeRef = (collection: string, docId: string) => ({
@@ -153,6 +154,7 @@ const buildFakeDb = () => ({
         ...ref,
         get: async () => {
           const key = `${col}/${docId}`;
+          if (mockReadFailurePaths.has(key)) throw new Error(`read unavailable: ${key}`);
           const data = mockDocs.get(key);
           return {
             exists: data !== undefined,
@@ -258,6 +260,7 @@ beforeEach(() => {
   mockDocs = new Map();
   mockBannedUids = new Set();
   transactionCollisionCodes = new Set();
+  mockReadFailurePaths = new Set();
   canonicalUidOverride = 'test-uid-abc';
   require('@react-native-async-storage/async-storage').__reset?.();
 
@@ -405,6 +408,13 @@ test('Test E2: lookupUserByFriendCode resolves a REFERRAL code to its owner when
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('XYZL2A');
   expect(result).toEqual({ uid: 'ref-owner-stable', source: 'referral_code' });
+});
+
+test('Test E2b: lookupUserByFriendCode reports unavailable when referral lookup cannot confirm a miss', async () => {
+  mockReadFailurePaths.add('referral_codes/ABC234');
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+
+  await expect(lookupUserByFriendCode('ABC234')).rejects.toThrow('friend_lookup_unavailable');
 });
 
 test('Test E3: lookupUserByFriendCode falls back to users progress.friend_code when index was not backfilled', async () => {

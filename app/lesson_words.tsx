@@ -2651,7 +2651,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     applyLearnedCount(rebuilt.learnedCnt);
   }, [allDone, validQueue.length, learnedCnt, words, lang]);
 
-  const handleChoice = async (opt: string) => {
+  const handleChoice = async (opt: string, optionKey: string) => {
     if (locked.current || chosen !== null || !current) return;
     // Блокируем если энергия кончилась
     if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0) {
@@ -2660,6 +2660,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     }
     sessionTouchedRef.current = true;
     locked.current = true;
+    flash(optionKey);
 
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
@@ -3042,6 +3043,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       {/* Варианты ответов — 2 колонки */}
       <View style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', gap:10, paddingBottom:16 }}>
         {current.options.map((opt, i) => {
+          const optionKey = `${current.word.en}:${current.roundIndex}:${i}:${opt}`;
           const isCorrect  = isLessonWordOptionCorrect(opt, current.correctOption);
           const isSelected = opt === chosen;
           const hasStatusIcon = chosen !== null && (isCorrect || isSelected);
@@ -3052,16 +3054,16 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             if (isCorrect)       { bg = t.correctBg; borderColor = t.correct; tc = t.correct; bw = 1.5; }
             else if (isSelected) { bg = t.wrongBg;   borderColor = t.wrong;   tc = t.wrong;   bw = 1.5; }
           }
-          const on = flashKey === `${i}`;
+          const on = flashKey === optionKey;
           return (
-            <DuoPressable key={i}
+            <DuoPressable key={optionKey}
               testID={isCorrect ? 'lesson-words-option-correct' : `lesson-words-option-${i}`}
               edgeHeight={5}
               withHaptic={false}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}
               style={{ minHeight:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: 0, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
-              onPress={() => { if (chosen !== null) return; flash(`${i}`); handleChoice(opt); }}
+              onPress={() => { void handleChoice(opt, optionKey); }}
               disabled={chosen !== null}
             >
               {chosen !== null && isCorrect && (

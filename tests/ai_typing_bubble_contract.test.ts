@@ -9,8 +9,15 @@ describe('ai typing bubble contract', () => {
   it('uses the custom typing bubble in both AI chat screens', () => {
     for (const source of [scenarioSource, companionSource]) {
       expect(source).toContain("import AiTypingBubble from '../components/AiTypingBubble';");
-      expect(source).toContain('<AiTypingBubble');
-      expect(source).not.toContain('ActivityIndicator');
+      const bubbleAt = source.indexOf('<AiTypingBubble');
+      const typingStart = source.lastIndexOf('{sending && (', bubbleAt);
+      const typingEnd = source.indexOf('/>', bubbleAt);
+      expect(bubbleAt).toBeGreaterThan(-1);
+      expect(typingStart).toBeGreaterThan(-1);
+      expect(typingEnd).toBeGreaterThan(bubbleAt);
+      const typingRegion = source.slice(typingStart, typingEnd + 2);
+      expect(typingRegion).toContain('<AiTypingBubble');
+      expect(typingRegion).not.toContain('<ActivityIndicator');
     }
   });
 

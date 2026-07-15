@@ -768,7 +768,10 @@ export async function hasLeagueChestPendingClaim(params: {
   return (await AsyncStorage.getItem(localPendingClaimKey(myUid, params.weekId, params.groupId)).catch(() => null)) === '1';
 }
 
-export async function fetchActiveLeagueCrowns(uids: string[]): Promise<Record<string, LeagueCrown>> {
+export async function fetchActiveLeagueCrowns(
+  uids: string[],
+  options?: { shouldAbort?: () => boolean },
+): Promise<Record<string, LeagueCrown>> {
   const db = getDb();
   if (!db || uids.length === 0) return {};
   const unique = Array.from(new Set(uids.filter(Boolean)));
@@ -776,6 +779,7 @@ export async function fetchActiveLeagueCrowns(uids: string[]): Promise<Record<st
   const docCountByUid: Record<string, number> = {};
   const storedCountByUid: Record<string, number> = {};
   for (let i = 0; i < unique.length; i += 10) {
+    if (options?.shouldAbort?.()) break;
     const part = unique.slice(i, i + 10);
     try {
       const snap = await db.collection(CROWNS_COL).where('uid', 'in', part).get();

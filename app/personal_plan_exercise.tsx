@@ -1722,12 +1722,15 @@ export default function PersonalPlanExerciseScreen() {
   const [selected, setSelected] = useState<string | null>(null);
   const [lastResult, setLastResult] = useState<'correct' | 'wrong' | null>(null);
   const [saving, setSaving] = useState(false);
+  const savingRef = useRef(false);
   const [completed, setCompleted] = useState(false);
   // Идёт авто-переход на следующее задание (replace) — подавляем финал-модал дня,
   // чтобы он не мелькнул между завершением и навигацией.
   const [advancing, setAdvancing] = useState(false);
+  const advancingRef = useRef(false);
   const [typedAnswer, setTypedAnswer] = useState('');
   const [buildWords, setBuildWords] = useState<string[]>([]);
+  const buildWordsRef = useRef<string[]>([]);
   const [recallItems, setRecallItems] = useState<PersonalPlanPhraseRecallItem[]>([]);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [pronunciationScoring, setPronunciationScoring] = useState(false);
@@ -1735,6 +1738,16 @@ export default function PersonalPlanExerciseScreen() {
   // a free in-plan exercise is never a dead end — the user can still advance.
   const [pronunciationBlocked, setPronunciationBlocked] = useState<PronunciationBlock>(null);
   const { flashKey, flash } = useWordFlash();
+  const beginSaving = useCallback(() => {
+    if (savingRef.current) return false;
+    savingRef.current = true;
+    setSaving(true);
+    return true;
+  }, []);
+  const endSaving = useCallback(() => {
+    savingRef.current = false;
+    setSaving(false);
+  }, []);
   const isMissingWordMode = rendererType === 'plan_missing_word';
   const isChoiceMode = rendererType === 'plan_choose_natural_phrase';
   const isListeningMode = rendererType === 'plan_listen_choose';
@@ -1837,10 +1850,13 @@ export default function PersonalPlanExerciseScreen() {
     setCorrectIds([]);
     setSelected(null);
     setLastResult(null);
+    savingRef.current = false;
     setSaving(false);
     setCompleted(false);
+    advancingRef.current = false;
     setAdvancing(false);
     setTypedAnswer('');
+    buildWordsRef.current = [];
     setBuildWords([]);
     setPronunciationScore(null);
     setPronunciationScoring(false);
@@ -2041,14 +2057,15 @@ export default function PersonalPlanExerciseScreen() {
     ) : null
   ) : null;
 
-  const submit = async (answer: string) => {
-    if (!item || !session || saving || done) return;
+  const submit = async (answer: string, optionKey: string) => {
+    if (!item || !session || savingRef.current || saving || done) return;
     if (!('correctAnswer' in item)) return;
     const isCorrect = answer === item.correctAnswer;
     // Первая попытка на этом item уже записана как 'wrong' — доклик в правильный
     // вариант правит только экран (звук/переход), но не пишет вторую попытку.
     const alreadyRecorded = lastResult === 'wrong';
-    setSaving(true);
+    if (!beginSaving()) return;
+    if (isCorrect) flash(optionKey);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
     // Хаптик ошибки даёт сама плитка (warning-хаптик + shake на каждый неверный
@@ -2076,14 +2093,14 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       setCorrectIds((current) => current.includes(item.id) ? current : [...current, item.id]);
     }
-    setSaving(false);
+    endSaving();
   };
 
   const submitListenBuild = async () => {
-    if (!item || !session || saving || done || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
-    const answer = buildWords.join(' ');
+    if (!item || !session || savingRef.current || saving || done || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
+    const answer = buildWordsRef.current.join(' ');
     const isCorrect = normalizePlanAnswer(answer) === normalizePlanAnswer(item.correctAnswer);
-    setSaving(true);
+    if (!beginSaving()) return;
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
     if (isCorrect) {
@@ -2107,18 +2124,18 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       setCorrectIds((current) => current.includes(item.id) ? current : [...current, item.id]);
     }
-    setSaving(false);
+    endSaving();
   };
 
   const submitRecall = async () => {
-    if (!item || !session || saving || done || !isRecallMode || !('targetText' in item)) return;
+    if (!item || !session || savingRef.current || saving || done || !isRecallMode || !('targetText' in item)) return;
     const evaluation = evaluateRecallAnswer(
       typedAnswer,
       item.targetText,
       'alternatives' in item ? item.alternatives : undefined,
     );
     const isCorrect = evaluation.ok;
-    setSaving(true);
+    if (!beginSaving()) return;
     setSelected(typedAnswer.trim());
     setLastResult(isCorrect ? 'correct' : 'wrong');
     if (isCorrect) {
@@ -2142,13 +2159,15 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       setCorrectIds((current) => current.includes(item.id) ? current : [...current, item.id]);
     }
-    setSaving(false);
+    endSaving();
   };
 
   // Завершение всего задания: отметить выполненным, начислить XP, стереть resume
   // и СРАЗУ открыть следующее задание дня (без модала «Задание закрыто»). Если
   // следующего нет — оставляем экран, чтобы показался финал дня (done-плашка).
   const finishTaskAndAdvance = async (practicedPhraseIds: string[]) => {
+    if (advancingRef.current) return;
+    advancingRef.current = true;
     // Подавляем финал-модал дня на время вычисления/перехода — иначе он мелькнёт.
     setAdvancing(true);
 
@@ -2195,6 +2214,7 @@ export default function PersonalPlanExerciseScreen() {
       return;
     }
     // Заданий дня больше нет — показываем финал дня на этом экране.
+    advancingRef.current = false;
     setAdvancing(false);
     setCompleted(true);
   };
@@ -2204,6 +2224,7 @@ export default function PersonalPlanExerciseScreen() {
     if (lastResult === 'wrong') {
       setSelected(null);
       setTypedAnswer('');
+      buildWordsRef.current = [];
       setBuildWords([]);
       setLastResult(null);
       return;
@@ -2213,6 +2234,7 @@ export default function PersonalPlanExerciseScreen() {
     const nextIndex = index + 1;
     setSelected(null);
     setTypedAnswer('');
+    buildWordsRef.current = [];
     setBuildWords([]);
     setPronunciationScore(null);
     setLastResult(null);
@@ -2228,7 +2250,7 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   const completePronunciation = async () => {
-    if (!item || !session || saving || done || !('targetText' in item)) return;
+    if (!item || !session || savingRef.current || saving || done || !('targetText' in item)) return;
     // Normal path: completion is gated on a real on-device score that reached the
     // pass threshold. Escape hatch: when speech genuinely can't run here (no
     // recognizer on the device, or the user declined mic access), we let the
@@ -2237,7 +2259,7 @@ export default function PersonalPlanExerciseScreen() {
     const speechBlocked = pronunciationBlocked != null;
     const scored = pronunciationScore;
     if (!speechBlocked && (!scored || !scored.passed)) return;
-    setSaving(true);
+    if (!beginSaving()) return;
     // ВАЖНО: НЕ играем здесь playCorrect() повторно. Звук «правильно» уже
     // прозвучал в момент оценки (PlanPronunciationRecorder.finishAttempt при
     // result.passed). Дубль на этом «Готово/дальше»-переходе давал двойной звук:
@@ -2276,12 +2298,12 @@ export default function PersonalPlanExerciseScreen() {
       setPronunciationScore(null);
       // Пошагово сохраняем позицию: выход посреди задания вернёт на этот вопрос.
       void savePlanTaskProgress(planInstanceId, planTaskId, { index: nextIndex, correctIds: nextCorrectIds });
-      setSaving(false);
+      endSaving();
       return;
     }
 
     await finishTaskAndAdvance(nextCorrectIds);
-    setSaving(false);
+    endSaving();
   };
 
   return (
@@ -2410,8 +2432,13 @@ export default function PersonalPlanExerciseScreen() {
                       accessibilityLabel={`Убрать слово: ${word}`}
                       disabled={Boolean(lastResult) || saving}
                       onPress={() => {
+                        if (savingRef.current || lastResult) return;
+                        const liveBuildWords = buildWordsRef.current;
+                        if (liveBuildWords[wordIndex] !== word) return;
+                        const nextBuildWords = liveBuildWords.filter((_, index) => index !== wordIndex);
+                        buildWordsRef.current = nextBuildWords;
                         hapticTap();
-                        setBuildWords((current) => current.filter((_, index) => index !== wordIndex));
+                        setBuildWords(nextBuildWords);
                       }}
                       style={[styles.listenBuildAnswerChip, { backgroundColor: t.bgSurface2 }]}
                     >
@@ -2428,11 +2455,11 @@ export default function PersonalPlanExerciseScreen() {
                   const usedCount = buildWords.filter((value) => value === word).length;
                   const availableCount = item.wordOptions.filter((value) => value === word).length;
                   const disabled = Boolean(lastResult) || saving || usedCount >= availableCount || buildWords.length >= item.targetWords.length;
-                  const tileKey = `${wordIndex}`;
-                  const on = flashKey === tileKey;
+                  const optionKey = `${item.id}:listen-build:${wordIndex}:${word}`;
+                  const on = flashKey === optionKey;
                   return (
                     <DuoPressable
-                      key={`${word}:${wordIndex}`}
+                      key={optionKey}
                       accessibilityLabel={`Добавить слово: ${word}`}
                       withHaptic={false}
                       disabled={disabled}
@@ -2448,9 +2475,15 @@ export default function PersonalPlanExerciseScreen() {
                         },
                       ]}
                       onPress={() => {
-                        flash(tileKey);
+                        if (savingRef.current || lastResult) return;
+                        const liveBuildWords = buildWordsRef.current;
+                        const liveUsedCount = liveBuildWords.filter((value) => value === word).length;
+                        if (liveUsedCount >= availableCount || liveBuildWords.length >= item.targetWords.length) return;
+                        const nextBuildWords = [...liveBuildWords, word];
+                        buildWordsRef.current = nextBuildWords;
+                        flash(optionKey);
                         requestAnimationFrame(() => { void hapticTap(); });
-                        setBuildWords((current) => [...current, word]);
+                        setBuildWords(nextBuildWords);
                       }}
                     >
                       <Text style={[styles.wordTileText, { color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontWeight: on ? '700' : '700' }]}>{word}</Text>
@@ -2466,7 +2499,12 @@ export default function PersonalPlanExerciseScreen() {
                     accessibilityRole="button"
                     accessibilityLabel="Убрать последнее слово"
                     disabled={buildWords.length === 0 || saving}
-                    onPress={() => setBuildWords((current) => current.slice(0, -1))}
+                    onPress={() => {
+                      if (savingRef.current || lastResult) return;
+                      const nextBuildWords = buildWordsRef.current.slice(0, -1);
+                      buildWordsRef.current = nextBuildWords;
+                      setBuildWords(nextBuildWords);
+                    }}
                     style={[styles.secondaryButton, { backgroundColor: t.bgCard }]}
                   >
                     <Text style={[styles.secondaryButtonText, { color: buildWords.length > 0 ? t.textPrimary : t.textMuted }]}>Назад</Text>
@@ -2633,13 +2671,14 @@ export default function PersonalPlanExerciseScreen() {
               )}
 
               <View style={useGridOptions ? styles.optionsGrid : styles.options}>
-                {choiceOptions.map((option: string) => {
+                {choiceOptions.map((option: string, optionIndex: number) => {
                   const isCorrect = option === currentCorrectAnswer;
+                  const optionKey = `${item.id}:choice:${optionIndex}:${option}`;
                   // Верную плитку подсвечиваем зелёным (как в макете «привычка»).
                   // Неверную НЕ красим — фидбэк ошибки = shake + хаптик (как в
                   // онбординге). Красная подсветка неверного варианта убрана.
                   const isRight = lastResult === 'correct' && selected === option && isCorrect;
-                  const on = flashKey === option;
+                  const on = flashKey === optionKey;
                   const borderColor = isRight
                     ? t.correct
                     : on
@@ -2657,14 +2696,14 @@ export default function PersonalPlanExerciseScreen() {
                     : t.textPrimary;
                   return (
                     <PlanChoiceTile
-                      key={option}
+                      key={optionKey}
                       option={option}
                       isRight={isCorrect}
                       // Блокируем всё только когда ответ уже закрыт верно. До этого
                       // все плитки кликабельны — неверную можно тапнуть (тряхнётся),
                       // и тут же выбрать правильную на месте.
                       disabled={lastResult === 'correct' || saving}
-                      showPressed={on}
+                      showPressed={flashKey === optionKey}
                       accent={accent}
                       bgColor={bgColor}
                       borderColor={borderColor}
@@ -2672,11 +2711,10 @@ export default function PersonalPlanExerciseScreen() {
                       borderWidth={isRight || on ? 1.5 : 0}
                       useGridOptions={useGridOptions}
                       onCorrect={() => {
-                        flash(option);
-                        void submit(option);
+                        void submit(option, optionKey);
                       }}
                       onWrong={() => {
-                        void submit(option);
+                        void submit(option, optionKey);
                       }}
                       styles={styles}
                     />

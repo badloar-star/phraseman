@@ -23,6 +23,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -52,6 +53,7 @@ import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_
 
 const DEFAULT_CEFR = 'A2';
 const LOCAL_COMPANION_GREETING = 'Let\'s practice in English! What did you do today?';
+const ACCESS_LOADING_FEEDBACK_DELAY_MS = 300;
 // Свободный разговор — единственный (singleton) компаньон «Компас»; стабильный id для репортов.
 const companionId = 'compass';
 
@@ -71,6 +73,26 @@ export default function AiCompanionSession() {
   const { speak } = useAudio();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
+  const accessLoadingText = triLang(lang, {
+    ru: 'Проверяем доступ…',
+    uk: 'Перевіряємо доступ…',
+    es: 'Comprobando acceso…',
+    'pt-BR': 'Verificando acesso…',
+    vi: 'Đang kiểm tra quyền truy cập…',
+    id: 'Memeriksa akses…',
+    tr: 'Erişim kontrol ediliyor…',
+    pl: 'Sprawdzanie dostępu…',
+  });
+  const [showAccessLoading, setShowAccessLoading] = useState(false);
+
+  useEffect(() => {
+    if (accessResolved) {
+      setShowAccessLoading(false);
+      return;
+    }
+    const timeoutId = setTimeout(() => setShowAccessLoading(true), ACCESS_LOADING_FEEDBACK_DELAY_MS);
+    return () => clearTimeout(timeoutId);
+  }, [accessResolved]);
 
   useEffect(() => {
     if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
@@ -224,18 +246,34 @@ export default function AiCompanionSession() {
           <TouchableOpacity onPress={onBack} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }} numberOfLines={1}>
-            {triLang(lang, {
-              ru: 'Свободный разговор',
-              uk: 'Вільна розмова',
-              es: 'Conversación libre',
-              'pt-BR': 'Conversa livre',
-              vi: 'Trò chuyện tự do',
-              id: 'Percakapan bebas',
-              tr: 'Serbest sohbet',
-              pl: 'Swobodna rozmowa',
-            })}
-          </Text>
+          {showAccessLoading ? (
+            <View
+              accessible
+              accessibilityRole="progressbar"
+              accessibilityState={{ busy: true }}
+              accessibilityLabel={accessLoadingText}
+              accessibilityLiveRegion="polite"
+              style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+            >
+              <ActivityIndicator size="small" color={t.accent} />
+              <Text style={{ fontWeight: '700', color: t.textSecond, fontSize: f.sub }} numberOfLines={1}>
+                {accessLoadingText}
+              </Text>
+            </View>
+          ) : (
+            <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }} numberOfLines={1}>
+              {triLang(lang, {
+                ru: 'Свободный разговор',
+                uk: 'Вільна розмова',
+                es: 'Conversación libre',
+                'pt-BR': 'Conversa livre',
+                vi: 'Trò chuyện tự do',
+                id: 'Percakapan bebas',
+                tr: 'Serbest sohbet',
+                pl: 'Swobodna rozmowa',
+              })}
+            </Text>
+          )}
           {/* Правый угол: флаг «Сообщить об ошибке». */}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <ReportErrorButton
@@ -467,7 +505,7 @@ export default function AiCompanionSession() {
                 pl: 'Zapytaj o frazę albo postęp',
               })}
               placeholderTextColor={t.textMuted}
-              editable={!sending}
+              editable={accessResolved && !sending}
               onSubmitEditing={() => send(input)}
               style={{
                 flex: 1,
@@ -479,23 +517,41 @@ export default function AiCompanionSession() {
                 paddingVertical: 12,
                 color: t.textPrimary,
                 fontSize: f.body,
+                opacity: accessResolved ? 1 : 0.6,
               }}
               maxFontSizeMultiplier={1.2}
             />
             <TouchableOpacity
               onPress={() => send(input)}
-              disabled={!input.trim() || sending}
+              disabled={!accessResolved || !input.trim() || sending}
               activeOpacity={0.82}
+              accessibilityRole="button"
+              accessibilityLabel={showAccessLoading ? accessLoadingText : triLang(lang, {
+                ru: 'Отправить',
+                uk: 'Надіслати',
+                es: 'Enviar',
+                'pt-BR': 'Enviar',
+                vi: 'Gửi',
+                id: 'Kirim',
+                tr: 'Gönder',
+                pl: 'Wyślij',
+              })}
+              accessibilityState={{ disabled: !accessResolved || !input.trim() || sending, busy: !accessResolved || sending }}
               style={{
                 borderRadius: 16,
-                paddingVertical: 12,
-                paddingHorizontal: 18,
+                width: 48,
+                height: 44,
                 alignItems: 'center',
-                backgroundColor: input.trim() && !sending ? t.accent : t.bgSurface,
-                opacity: input.trim() && !sending ? 1 : 0.5,
+                justifyContent: 'center',
+                backgroundColor: accessResolved && input.trim() && !sending ? t.accent : t.bgSurface,
+                opacity: accessResolved && input.trim() && !sending ? 1 : 0.5,
               }}
             >
-              <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>→</Text>
+              {showAccessLoading ? (
+                <ActivityIndicator size="small" color={t.textSecond} />
+              ) : (
+                <Text style={{ color: accessResolved && input.trim() && !sending ? t.correctText : t.textMuted, fontWeight: '800', fontSize: f.body }}>→</Text>
+              )}
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

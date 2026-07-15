@@ -7,6 +7,7 @@ import {
   Animated,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  ActivityIndicator,
   Text,
   TouchableOpacity,
   View,
@@ -40,6 +41,7 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
 const CARD_RADIUS = 16;
+const ACCESS_LOADING_FEEDBACK_DELAY_MS = 300;
 
 // Статус карточки сценария — кодирует и подачу, и доступность.
 type ScenarioStatus = 'done' | 'available' | 'locked';
@@ -78,6 +80,26 @@ export default function DialogsTabContent({
   const impressionFiredRef = useRef(false);
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
+  const accessLoadingText = triLang(lang, {
+    ru: 'Проверяем доступ…',
+    uk: 'Перевіряємо доступ…',
+    es: 'Comprobando acceso…',
+    'pt-BR': 'Verificando acesso…',
+    vi: 'Đang kiểm tra quyền truy cập…',
+    id: 'Memeriksa akses…',
+    tr: 'Erişim kontrol ediliyor…',
+    pl: 'Sprawdzanie dostępu…',
+  });
+  const [showAccessLoading, setShowAccessLoading] = useState(false);
+
+  useEffect(() => {
+    if (accessResolved) {
+      setShowAccessLoading(false);
+      return;
+    }
+    const timeoutId = setTimeout(() => setShowAccessLoading(true), ACCESS_LOADING_FEEDBACK_DELAY_MS);
+    return () => clearTimeout(timeoutId);
+  }, [accessResolved]);
 
   // Две вкладки внутри Диалогов: «Уроки» (сценарии по уровню курса A1→B2) и
   // «Ситуации» (сложные сцены по уровню аккаунта). По запросу пользователя они
@@ -333,6 +355,8 @@ export default function DialogsTabContent({
       <TouchableOpacity
         key={scenario.id}
         accessibilityRole="button"
+        disabled={!accessResolved}
+        accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}
         accessibilityLabel={
           locked
             ? triLang(lang, {
@@ -371,7 +395,7 @@ export default function DialogsTabContent({
           paddingVertical: 11,
           flexDirection: 'row',
           alignItems: 'center',
-          opacity: locked ? 0.5 : 1,
+          opacity: !accessResolved || locked ? 0.5 : 1,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: locked ? 0 : 0.08,
@@ -565,6 +589,8 @@ export default function DialogsTabContent({
         </Text>
         <TouchableOpacity
           accessibilityRole="button"
+          disabled={!accessResolved}
+          accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}
           accessibilityLabel={triLang(lang, {
             ru: `Продолжить: ${dialogScenarioTitle(scenario, lang)}`,
             uk: `Продовжити: ${dialogScenarioTitle(scenario, lang)}`,
@@ -592,6 +618,7 @@ export default function DialogsTabContent({
             shadowOpacity: 0.18,
             shadowRadius: 8,
             elevation: 3,
+            opacity: accessResolved ? 1 : 0.55,
           }}
         >
           <View
@@ -727,7 +754,28 @@ export default function DialogsTabContent({
           gap: 4,
         }}
       >
-        {([
+        {showAccessLoading ? (
+          <View
+            accessible
+            accessibilityRole="progressbar"
+            accessibilityState={{ busy: true }}
+            accessibilityLabel={accessLoadingText}
+            accessibilityLiveRegion="polite"
+            style={{
+              flex: 1,
+              minHeight: 36,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+            }}
+          >
+            <ActivityIndicator size="small" color={accent} />
+            <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }} numberOfLines={1}>
+              {accessLoadingText}
+            </Text>
+          </View>
+        ) : ([
           { key: 'lessons' as const, label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }), icon: 'school-outline' as const },
           { key: 'situations' as const, label: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }), icon: 'flame-outline' as const },
         ]).map((seg) => {
@@ -855,6 +903,8 @@ export default function DialogsTabContent({
       {tab === 'lessons' && hasLockedCourseLevels && (
         <TouchableOpacity
           accessibilityRole="button"
+          disabled={!accessResolved}
+          accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}
           accessibilityLabel={triLang(lang, {
             ru: 'Открыть все уровни диалогов с Plus',
             uk: 'Відкрити всі рівні діалогів з Plus',
@@ -883,6 +933,7 @@ export default function DialogsTabContent({
             flexDirection: 'row',
             alignItems: 'center',
             gap: 11,
+            opacity: accessResolved ? 1 : 0.55,
           }}
         >
           <View

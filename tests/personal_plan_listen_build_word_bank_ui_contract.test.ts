@@ -13,7 +13,10 @@ describe('personal plan listen-build word bank UI contract', () => {
     expect(source).toContain('styles.wordBank');
     expect(source).toContain('styles.wordTile');
     expect(source).toContain("flexWrap: 'wrap'");
-    expect(source).toContain('setBuildWords((current) => current.filter((_, index) => index !== wordIndex))');
+    expect(source).toContain('const liveBuildWords = buildWordsRef.current');
+    expect(source).toContain('const nextBuildWords = liveBuildWords.filter((_, index) => index !== wordIndex)');
+    expect(source).toContain('buildWordsRef.current = nextBuildWords');
+    expect(source).toContain('setBuildWords(nextBuildWords)');
   });
 });
 

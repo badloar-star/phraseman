@@ -139,29 +139,48 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const selectedRef = useRef<WordBankTile[]>([]);
+  const bankSlotsRef = useRef<Set<number> | null>(null);
+  if (bankSlotsRef.current === null) {
+    bankSlotsRef.current = new Set(bank.map(tile => tile.slot));
+  }
+  const feedbackRef = useRef<'none' | 'correct' | 'wrong'>('none');
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
   const correctTokens = tokenizeRecallPhrase(item.key);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
 
-  const tapBank = (tile: WordBankTile) => {
-    if (feedback !== 'none') return;
-    setSelected(s => [...s, tile]);
+  const tapBank = (tile: WordBankTile, tileKey: string) => {
+    const liveBankSlots = bankSlotsRef.current;
+    if (feedbackRef.current !== 'none' || !liveBankSlots?.has(tile.slot)) return;
+    liveBankSlots.delete(tile.slot);
+    const nextSelected = [...selectedRef.current, tile];
+    selectedRef.current = nextSelected;
+    flash(tileKey);
+    requestAnimationFrame(() => { void hapticTap(); });
+    setSelected(nextSelected);
     setBank(b => b.filter(t => t.slot !== tile.slot));
   };
 
   const tapSelected = (tile: WordBankTile) => {
-    if (feedback !== 'none') return;
+    const liveBankSlots = bankSlotsRef.current;
+    if (feedbackRef.current !== 'none' || !liveBankSlots || !selectedRef.current.some(selectedTile => selectedTile.slot === tile.slot)) return;
+    liveBankSlots.add(tile.slot);
+    const nextSelected = selectedRef.current.filter(t => t.slot !== tile.slot);
+    selectedRef.current = nextSelected;
     setBank(b => [...b, tile].sort((a, b) => a.slot - b.slot));
-    setSelected(s => s.filter(t => t.slot !== tile.slot));
+    setSelected(nextSelected);
   };
 
   const check = () => {
-    if (selected.length !== correctTokens.length) return;
-    const userAnswer = selected.map(t => t.text).join(' ').toLowerCase();
+    if (feedbackRef.current !== 'none') return;
+    const liveSelected = selectedRef.current;
+    if (liveSelected.length !== correctTokens.length) return;
+    const userAnswer = liveSelected.map(t => t.text).join(' ').toLowerCase();
     const correct = correctTokens.join(' ').toLowerCase();
     const isOk = userAnswer === correct;
+    feedbackRef.current = isOk ? 'correct' : 'wrong';
     setFeedback(isOk ? 'correct' : 'wrong');
     if (isOk) {
       hapticSuccess();
@@ -176,9 +195,13 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         Animated.timing(shakeAnim, { toValue: 0, duration: 60, useNativeDriver: true }),
       ]).start();
       setTimeout(() => {
+        const nextBank = shuffleWordBankTiles(item.key);
+        feedbackRef.current = 'none';
+        selectedRef.current = [];
+        bankSlotsRef.current = new Set(nextBank.map(tile => tile.slot));
         setFeedback('none');
         setSelected([]);
-        setBank(shuffleWordBankTiles(item.key));
+        setBank(nextBank);
         onResult(false);
       }, 1200);
     }
@@ -246,11 +269,11 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
       {/* Банк слов */}
       <View style={styles.tilesRow}>
         {bank.map(tile => {
-          const tileKey = `${tile.slot}`;
+          const tileKey = `${item.key}:word-bank:${tile.slot}:${tile.text}`;
           const on = flashKey === tileKey;
           return (
             <DuoPressable
-              key={tile.slot}
+              key={tileKey}
               withHaptic={false}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
@@ -265,11 +288,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                 },
               ]}
-              onPress={() => {
-                flash(tileKey);
-                requestAnimationFrame(() => { void hapticTap(); });
-                tapBank(tile);
-              }}
+              onPress={() => { tapBank(tile, tileKey); }}
             >
               {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
               <Text style={[styles.tileText, { color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
@@ -318,10 +337,14 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         variant="pill"
         onPass={({ score }) => {
           void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
-          if (feedback !== 'none') return; // карточка уже оценена — не вмешиваемся
+          if (feedbackRef.current !== 'none') return; // карточка уже оценена — не вмешиваемся
           // Заполняем поле ответа каноническими словами (как setSelectedWords в уроке)
           // и очищаем банк, чтобы ручная сборка не конфликтовала с подставленным ответом.
-          setSelected(correctTokens.map((text, slot) => ({ slot, text })));
+          const spokenSelection = correctTokens.map((text, slot) => ({ slot, text }));
+          selectedRef.current = spokenSelection;
+          bankSlotsRef.current?.clear();
+          feedbackRef.current = 'correct';
+          setSelected(spokenSelection);
           setBank([]);
           // Верный устный ответ = правильная фраза, поэтому засчитываем сразу, не
           // дожидаясь асинхронного selected (иначе check() прочитал бы старое состояние).
@@ -361,12 +384,15 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   }));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const feedbackRef = useRef<'none' | 'correct' | 'wrong'>('none');
 
   const phraseWithGap = item.key.replace(new RegExp(`\\b${errorWord}\\b`, 'i'), '___');
 
-  const pick = (opt: string) => {
-    if (feedback !== 'none') return;
+  const pick = (opt: string, optionKey: string) => {
+    if (feedbackRef.current !== 'none') return;
     const isOk = opt.toLowerCase() === errorWord.toLowerCase();
+    feedbackRef.current = isOk ? 'correct' : 'wrong';
+    flash(optionKey);
     setChosen(opt);
     setFeedback(isOk ? 'correct' : 'wrong');
     if (isOk) {
@@ -376,6 +402,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
     } else {
       hapticError();
       setTimeout(() => {
+        feedbackRef.current = 'none';
         setChosen(null);
         setFeedback('none');
         onResult(false);
@@ -411,9 +438,10 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
       {/* Варианты */}
       <View style={{ gap: 10 }}>
         {options.map(opt => {
+          const optionKey = `${item.key}:fill-gap:${opt}`;
           const isChosen = chosen === opt;
           const isCorrect = opt.toLowerCase() === errorWord.toLowerCase();
-          const on = flashKey === opt;
+          const on = flashKey === optionKey;
           let bg = on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard);
           let bc = on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border);
           let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
@@ -424,7 +452,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
           if (feedback !== 'none' && !isChosen && !isCorrect) opacity = 0.58;
           return (
             <DuoPressable
-              key={opt}
+              key={optionKey}
               withHaptic={false}
               disabled={feedback !== 'none'}
               edgeHeight={5}
@@ -442,10 +470,9 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
                 },
               ]}
               onPress={() => {
-                flash(opt);
                 // Результат (success/error) даёт pick — отдельный tap убран,
                 // иначе складывается с сильным сигналом в один удар.
-                pick(opt);
+                pick(opt, optionKey);
               }}
             >
               {isCompassTheme ? <CompassDepthSurface radius={9} selected={feedback !== 'none' && (isChosen || isCorrect)} quiet={feedback === 'none'} /> : null}

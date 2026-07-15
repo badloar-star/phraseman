@@ -22,9 +22,12 @@ describe('friends tab visibility runtime guard', () => {
     expect(visibilityGuard).toBeGreaterThanOrEqual(0);
     expect(visibilityGuard).toBeLessThan(heavyEffect.indexOf('void syncMyInviteCode(() => cancelled);'));
     expect(visibilityGuard).toBeLessThan(heavyEffect.indexOf('void fetchMyProfile()'));
-    expect(visibilityGuard).toBeLessThan(heavyEffect.indexOf('void cleanupStaleFriendData();'));
+    expect(visibilityGuard).toBeLessThan(heavyEffect.indexOf('void cleanupStaleFriendData(() => cancelled);'));
     expect(heavyEffect).toContain('let cancelled = false;');
     expect(heavyEffect).toContain('void syncMyInviteCode(() => cancelled);');
+    expect(heavyEffect).toContain('InteractionManager.runAfterInteractions');
+    expect(heavyEffect).toContain('void cleanupStaleFriendData(() => cancelled);');
+    expect(heavyEffect).toContain('if (cleanupTimer) clearTimeout(cleanupTimer);');
     expect(heavyEffect).toContain('cancelled = true;');
   });
 });

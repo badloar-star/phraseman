@@ -282,6 +282,126 @@ describe('resolveStableUidForAuth', () => {
     });
   });
 
+  it('rejects a poisoned hidden auth-link anchor before repairing the foreign canonical user', async () => {
+    const { db, store, sets } = makeDbStub({
+      auth_links: {
+        'attacker-auth': { stable_id: 'attacker-hidden' },
+      },
+      users: {
+        'attacker-hidden': {
+          firebaseAuthUid: 'attacker-auth',
+          linkedAuth: { providerUid: 'attacker-auth' },
+          identityHidden: true,
+          canonicalStableId: 'victim-stable',
+        },
+        'victim-stable': {
+          firebaseAuthUid: 'victim-auth',
+          linkedAuth: { providerUid: 'victim-auth' },
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'attacker-auth')).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+    expect(sets.filter((write) => write.path === 'users/victim-stable')).toEqual([]);
+    expect(store.users['victim-stable']).toMatchObject({
+      firebaseAuthUid: 'victim-auth',
+      linkedAuth: { providerUid: 'victim-auth' },
+    });
+  });
+
+  it('follows a hidden auth-link anchor when the canonical user has matching provider ownership', async () => {
+    const { db } = makeDbStub({
+      auth_links: {
+        'google-auth-1': { stable_id: 'hidden-stable' },
+      },
+      users: {
+        'hidden-stable': {
+          firebaseAuthUid: 'google-auth-1',
+          identityHidden: true,
+          canonicalStableId: 'canonical-stable',
+        },
+        'canonical-stable': {
+          firebaseAuthUid: 'old-anon-auth',
+          linkedAuth: { providerUid: 'google-auth-1' },
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'google-auth-1')).resolves.toBe('canonical-stable');
+  });
+
+  it('keeps the direct auth user when its hidden pointer targets a foreign canonical user', async () => {
+    const { db, sets } = makeDbStub({
+      users: {
+        'attacker-auth': {
+          identityHidden: true,
+          canonicalStableId: 'victim-stable',
+        },
+        'victim-stable': {
+          firebaseAuthUid: 'victim-auth',
+          linkedAuth: { providerUid: 'victim-auth' },
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'attacker-auth')).resolves.toBe('attacker-auth');
+    expect(sets.filter((write) => write.path === 'users/victim-stable')).toEqual([]);
+  });
+
+  it('does not let an ordinary direct auth document suppress an existing provider stable user', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'google-auth-1': { progress: { user_total_xp: '1' } },
+        'provider-stable': {
+          firebaseAuthUid: 'google-auth-1',
+          linkedAuth: { providerUid: 'google-auth-1' },
+          progress: { user_total_xp: '500' },
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'google-auth-1')).resolves.toBe('provider-stable');
+  });
+
+  it('keeps a provider-owned alias when its hidden pointer targets a foreign canonical user', async () => {
+    const { db, sets } = makeDbStub({
+      users: {
+        'attacker-stable': {
+          firebaseAuthUid: 'attacker-auth',
+          identityHidden: true,
+          canonicalStableId: 'victim-stable',
+        },
+        'victim-stable': {
+          firebaseAuthUid: 'victim-auth',
+          linkedAuth: { providerUid: 'victim-auth' },
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'attacker-auth')).resolves.toBe('attacker-stable');
+    expect(sets.filter((write) => write.path === 'users/victim-stable')).toEqual([]);
+  });
+
+  it('still resolves a provider-query alias to a canonical user owned by the same auth uid', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'hidden-stable': {
+          firebaseAuthUid: 'google-auth-1',
+          identityHidden: true,
+          canonicalStableId: 'canonical-stable',
+        },
+        'canonical-stable': {
+          firebaseAuthUid: 'google-auth-1',
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'google-auth-1')).resolves.toBe('canonical-stable');
+  });
+
   it('chooses a stable id by deterministic identity ranking across multiple linked user docs', async () => {
     const { db } = makeDbStub({
       users: {

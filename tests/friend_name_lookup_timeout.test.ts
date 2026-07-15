@@ -98,9 +98,10 @@ test('lookupUserByNickname reports unavailable instead of false not-found when t
 
   const pending = lookupUserByNickname('Roma');
   const assertion = expect(pending).rejects.toThrow('friend_lookup_unavailable');
-  await jest.advanceTimersByTimeAsync((FRIEND_NAME_LOOKUP_CALLABLE_MS * 2) + 40);
+  await jest.advanceTimersByTimeAsync(FRIEND_NAME_LOOKUP_CALLABLE_MS + 40);
 
   await assertion;
+  expect(mockFriendLookupCallable).toHaveBeenCalledTimes(1);
 });
 
 test('lookupUserByNickname accepts a cold response after the former 2.5 second cutoff', async () => {

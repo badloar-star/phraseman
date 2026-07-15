@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
@@ -46,16 +46,19 @@ export default function ThreeTileChoice({
         : null,
   );
   const [showWhy, setShowWhy] = useState(() => initialProgress?.showWhy === true);
+  const solvedRef = useRef(
+    initialProgress?.status === 'solved' || initialProgress?.picked === data.answer,
+  );
   const isCorrect = picked === data.answer;
 
   useEffect(() => {
-    setPicked(
-      typeof initialProgress?.picked === 'string'
-        ? initialProgress.picked
-        : initialProgress?.status === 'solved'
-          ? data.answer
-          : null,
-    );
+    const nextPicked = typeof initialProgress?.picked === 'string'
+      ? initialProgress.picked
+      : initialProgress?.status === 'solved'
+        ? data.answer
+        : null;
+    solvedRef.current = nextPicked === data.answer;
+    setPicked(nextPicked);
     setShowWhy(initialProgress?.showWhy === true);
   }, [initialProgress, data.answer]);
 
@@ -73,8 +76,9 @@ export default function ThreeTileChoice({
 
   const pick = useCallback(
     (opt: string) => {
-      if (isCorrect) return;
+      if (solvedRef.current) return;
       if (opt === data.answer) {
+        solvedRef.current = true;
         setPicked(opt);
         hapticSuccess();
         onProgressChange?.({ type: 'choice', status: 'solved', picked: opt, showWhy });
@@ -85,7 +89,7 @@ export default function ThreeTileChoice({
         setTimeout(() => setPicked((p) => (p === opt ? null : p)), 900);
       }
     },
-    [data.answer, isCorrect, onProgressChange, onSolved, showWhy],
+    [data.answer, onProgressChange, onSolved, showWhy],
   );
 
   const why = introText(data.why, lang);

@@ -1,7 +1,16 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLink, ensureStableAuthLinkForStableId } from './cloud_sync';
+import {
+  ensureAnonUser,
+  ensureStableAuthLinkForStableIdDetailed,
+  type StableAuthLinkEnsureResult,
+} from './cloud_sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAuthUserId } from './user_id_policy';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -101,41 +110,90 @@ async function readMyFriendRequestDisplayName(
   return readUserDisplayNameFromFirestore(db, myUid);
 }
 
-async function ensureFriendsStableAuthLink(
+async function resolveFriendsCanonicalUid(
+  requestedStableId: string,
   action: string,
   tags: Record<string, string | number | boolean | null | undefined> = {},
-): Promise<boolean> {
-  const ok = await ensureStableAuthLink();
-  if (!ok) {
+): Promise<string | null> {
+  const accountToken = captureAccountGeneration();
+  const result = await prepareFriendRequestViewerAuthLink(requestedStableId);
+  if (!isViewerAuthProofCurrent(result, requestedStableId, accountToken)) {
     logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), { action, ...tags });
+    return null;
   }
-  return ok;
+  return result.stableUid;
 }
 
 export const FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS = 15_000;
 export const FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS = 60_000;
+export const FRIEND_CLEANUP_TTL_MS = 6 * 60 * 60_000;
+const FRIEND_CLEANUP_ACCOUNT_CACHE_MAX = 2;
 
 let friendRequestViewerAuthLinkInFlight: {
   scopeKey: string;
-  promise: Promise<boolean>;
+  promise: Promise<StableAuthLinkEnsureResult | null>;
 } | null = null;
 let friendRequestViewerAuthLinkSuccess: {
   scopeKey: string;
   expiresAt: number;
+  result: StableAuthLinkEnsureResult;
 } | null = null;
+const friendCleanupCompletedAtByUid = new Map<string, number>();
+const friendCleanupCursorByUid = new Map<string, unknown>();
+
+function rememberFriendCleanup(uid: string, completedAt: number): void {
+  friendCleanupCompletedAtByUid.delete(uid);
+  friendCleanupCompletedAtByUid.set(uid, completedAt);
+  while (friendCleanupCompletedAtByUid.size > FRIEND_CLEANUP_ACCOUNT_CACHE_MAX) {
+    const oldest = friendCleanupCompletedAtByUid.keys().next().value as string | undefined;
+    if (!oldest) break;
+    friendCleanupCompletedAtByUid.delete(oldest);
+  }
+}
+
+function rememberFriendCleanupCursor(uid: string, cursor: unknown | null): void {
+  friendCleanupCursorByUid.delete(uid);
+  if (cursor) friendCleanupCursorByUid.set(uid, cursor);
+  while (friendCleanupCursorByUid.size > FRIEND_CLEANUP_ACCOUNT_CACHE_MAX) {
+    const oldest = friendCleanupCursorByUid.keys().next().value as string | undefined;
+    if (!oldest) break;
+    friendCleanupCursorByUid.delete(oldest);
+  }
+}
 
 function friendRequestViewerAuthScopeKey(stableId: string): string {
   return `${stableId}:${String(getAuthUserId() ?? '').trim()}`;
 }
 
-function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> {
+function isAuthLinkResultForScope(
+  result: StableAuthLinkEnsureResult | null,
+  stableId: string,
+  authUid: string,
+): result is StableAuthLinkEnsureResult {
+  if (!result?.ok || result.requestedStableId !== stableId || !result.stableUid) return false;
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
+  return authUid.length > 0 && result.authUid === authUid;
+}
+
+function isViewerAuthProofCurrent(
+  result: StableAuthLinkEnsureResult | null,
+  stableId: string,
+  token: AccountGenerationToken,
+): result is StableAuthLinkEnsureResult {
+  const currentAuthUid = String(getAuthUserId() ?? '').trim();
+  return isCurrentAccountGeneration(token, stableId)
+    && isAuthLinkResultForScope(result, stableId, currentAuthUid);
+}
+
+function prepareFriendRequestViewerAuthLink(stableId: string): Promise<StableAuthLinkEnsureResult | null> {
   const scopeKey = friendRequestViewerAuthScopeKey(stableId);
+  const authUid = String(getAuthUserId() ?? '').trim();
   const now = Date.now();
   if (
     friendRequestViewerAuthLinkSuccess?.scopeKey === scopeKey
     && friendRequestViewerAuthLinkSuccess.expiresAt > now
   ) {
-    return Promise.resolve(true);
+    return Promise.resolve(friendRequestViewerAuthLinkSuccess.result);
   }
   // The cache holds one account/auth pair only. Entering another identity or
   // reaching the TTL immediately evicts the old success instead of leaking it.
@@ -145,40 +203,42 @@ function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> 
     return friendRequestViewerAuthLinkInFlight.promise;
   }
 
-  let sharedPromise!: Promise<boolean>;
-  const bounded = new Promise<boolean>((resolve) => {
+  let sharedPromise!: Promise<StableAuthLinkEnsureResult | null>;
+  const bounded = new Promise<StableAuthLinkEnsureResult | null>((resolve) => {
     let settled = false;
     let timer: ReturnType<typeof setTimeout> | null = null;
-    const finish = (ok: boolean) => {
+    const finish = (result: StableAuthLinkEnsureResult | null) => {
       if (settled) return;
       settled = true;
       if (timer) clearTimeout(timer);
-      resolve(ok);
+      resolve(result);
     };
 
-    timer = setTimeout(() => finish(false), FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS);
+    timer = setTimeout(() => finish(null), FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS);
     void Promise.resolve()
-      .then(() => ensureStableAuthLinkForStableId(stableId))
-      .then(ok => finish(ok === true), () => finish(false));
+      .then(() => ensureStableAuthLinkForStableIdDetailed(stableId))
+      .then(finish, () => finish(null));
   });
 
   sharedPromise = bounded
-    .then(ok => {
-      if (ok && friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
+    .then(result => {
+      const valid = isAuthLinkResultForScope(result, stableId, authUid);
+      if (valid && friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
         friendRequestViewerAuthLinkSuccess = {
           // Cache the identity pair that actually started this link. If Firebase
           // Auth changes while the callable is in flight, its late success must
           // not authorize listeners for the new auth UID.
           scopeKey,
           expiresAt: Date.now() + FRIEND_REQUEST_VIEWER_AUTH_LINK_SUCCESS_TTL_MS,
+          result,
         };
-      } else if (!ok) {
+      } else if (!valid) {
         logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), {
           action: 'ensure_friend_auth_link',
           myUid: stableId,
         });
       }
-      return ok;
+      return valid ? result : null;
     })
     .finally(() => {
       if (friendRequestViewerAuthLinkInFlight?.promise === sharedPromise) {
@@ -202,8 +262,8 @@ function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> 
  * Writes: users/{toUid}/friend_requests/{myUid} = { status: 'pending', createdAt, fromName? }
  */
 export async function sendFriendRequest(toUid: string): Promise<SendRequestResult> {
-  const myUid = await ensureAnonUser();
-  if (!myUid) {
+  const requestedMyUid = await ensureAnonUser();
+  if (!requestedMyUid) {
     logFriendsHealth('friends:send_request_no_canonical_uid', new Error('canonical uid unavailable'), {
       action: 'send_friend_request',
       targetUid: toUid,
@@ -211,7 +271,13 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
     return 'error';
   }
 
-  if (toUid === myUid) return 'self';
+  const myUid = await resolveFriendsCanonicalUid(requestedMyUid, 'send_friend_request', {
+    requestedMyUid,
+    targetUid: toUid,
+  });
+  if (!myUid) return 'error';
+
+  if (toUid === myUid || toUid === requestedMyUid) return 'self';
 
   const db = getFirestore();
   if (!db) {
@@ -224,9 +290,6 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
 
   try {
     const senderNamePromise = readMyFriendRequestDisplayName(myUid, db);
-    // Auth must be linked before Firestore writes — security rules check firebaseAuthUid.
-    const authLinked = await ensureFriendsStableAuthLink('send_friend_request', { myUid, targetUid: toUid });
-    if (!authLinked) return 'error';
     // Читаем friends и request параллельно — быстрее.
     const [friendsSnap, reqSnap] = await Promise.all([
       db.collection('users').doc(myUid).collection('friends').doc(toUid).get(),
@@ -302,8 +365,8 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
  * Security rules validate the reverse write against the existing pending request.
  */
 export async function acceptFriendRequest(fromUid: string): Promise<void> {
-  const myUid = await ensureAnonUser();
-  if (!myUid) {
+  const requestedMyUid = await ensureAnonUser();
+  if (!requestedMyUid) {
     const err = new Error('acceptFriendRequest: canonical UID unavailable');
     logFriendsHealth('friends:accept_request_no_canonical_uid', err, { action: 'accept_friend_request', fromUid });
     throw err;
@@ -312,12 +375,19 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   const db = getFirestore();
   if (!db) {
     const err = new Error('acceptFriendRequest: Firestore unavailable');
-    logFriendsHealth('friends:accept_request_firestore_unavailable', err, { action: 'accept_friend_request', myUid, fromUid });
+    logFriendsHealth('friends:accept_request_firestore_unavailable', err, {
+      action: 'accept_friend_request',
+      requestedMyUid,
+      fromUid,
+    });
     throw err;
   }
 
-  const authLinked = await ensureFriendsStableAuthLink('accept_friend_request', { myUid, fromUid });
-  if (!authLinked) {
+  const myUid = await resolveFriendsCanonicalUid(requestedMyUid, 'accept_friend_request', {
+    requestedMyUid,
+    fromUid,
+  });
+  if (!myUid) {
     throw new Error('acceptFriendRequest: stable auth link unavailable');
   }
 
@@ -371,8 +441,8 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
  * avoids stale declined docs that would block future re-requests.
  */
 export async function declineFriendRequest(fromUid: string): Promise<void> {
-  const myUid = await ensureAnonUser();
-  if (!myUid) {
+  const requestedMyUid = await ensureAnonUser();
+  if (!requestedMyUid) {
     logFriendsHealth('friends:decline_request_no_canonical_uid', new Error('canonical uid unavailable'), {
       action: 'decline_friend_request',
       fromUid,
@@ -384,11 +454,17 @@ export async function declineFriendRequest(fromUid: string): Promise<void> {
   if (!db) {
     logFriendsHealth('friends:decline_request_firestore_unavailable', new Error('Firestore unavailable'), {
       action: 'decline_friend_request',
-      myUid,
+      requestedMyUid,
       fromUid,
     });
     return;
   }
+
+  const myUid = await resolveFriendsCanonicalUid(requestedMyUid, 'decline_friend_request', {
+    requestedMyUid,
+    fromUid,
+  });
+  if (!myUid) return;
 
   try {
     await db
@@ -411,8 +487,8 @@ export async function declineFriendRequest(fromUid: string): Promise<void> {
  * Deletes users/{myUid}/friends/{friendUid} AND users/{friendUid}/friends/{myUid}.
  */
 export async function deleteFriend(friendUid: string): Promise<void> {
-  const myUid = await ensureAnonUser();
-  if (!myUid) {
+  const requestedMyUid = await ensureAnonUser();
+  if (!requestedMyUid) {
     logFriendsHealth('friends:delete_friend_no_canonical_uid', new Error('canonical uid unavailable'), {
       action: 'delete_friend',
       friendUid,
@@ -424,11 +500,17 @@ export async function deleteFriend(friendUid: string): Promise<void> {
   if (!db) {
     logFriendsHealth('friends:delete_friend_firestore_unavailable', new Error('Firestore unavailable'), {
       action: 'delete_friend',
-      myUid,
+      requestedMyUid,
       friendUid,
     });
     return;
   }
+
+  const myUid = await resolveFriendsCanonicalUid(requestedMyUid, 'delete_friend', {
+    requestedMyUid,
+    friendUid,
+  });
+  if (!myUid) return;
 
   const batch = db.batch();
 
@@ -471,13 +553,15 @@ export async function ensureFriendRequestViewerAuthLink(stableId?: string): Prom
     }
   }
   if (!myUid) return false;
-  return prepareFriendRequestViewerAuthLink(myUid);
+  const result = await prepareFriendRequestViewerAuthLink(myUid);
+  return isAuthLinkResultForScope(result, myUid, String(getAuthUserId() ?? '').trim());
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────
 
 /** Второй аргумент `subscribeToFriends`: снимок с устройства до ответа сервера (`fromCache: true`). */
 export type SubscribeFriendsSnapshotMeta = { fromCache: boolean };
+export type FriendSubscriptionSetupState = 'ready' | 'preflight_failed';
 
 /**
  * Real-time listener for the current user\'s friends collection.
@@ -491,6 +575,7 @@ export type SubscribeFriendsSnapshotMeta = { fromCache: boolean };
 export function subscribeToFriends(
   callback: (friends: FriendEntry[], meta?: SubscribeFriendsSnapshotMeta) => void,
   onError?: (err: Error) => void,
+  onSetupState?: (state: FriendSubscriptionSetupState) => void,
 ): () => void {
   let cancelled = false;
   let unsubscribe: (() => void) | null = null;
@@ -502,25 +587,42 @@ export function subscribeToFriends(
         // Auth ещё не готов (холодный старт/сеть) — это НЕ «друзей нет». fromCache:true,
         // чтобы вызывающий не принял пустоту за серверную правду и не стёр показанный список.
         callback([], { fromCache: true });
+        onSetupState?.('preflight_failed');
         return;
       }
-      const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
-      if (cancelled || !authLinkReady) return;
+      const accountToken = captureAccountGeneration();
+      const authLinkProof = await prepareFriendRequestViewerAuthLink(myUid);
+      if (cancelled) return;
+      if (!isViewerAuthProofCurrent(authLinkProof, myUid, accountToken)) {
+        onSetupState?.('preflight_failed');
+        return;
+      }
       const db = getFirestore();
       if (!db) {
         callback([], { fromCache: true });
+        onSetupState?.('preflight_failed');
         return;
       }
-      unsubscribe = db
+      // The callable is authoritative for merges. It may resolve the current
+      // local id to another canonical users/{uid}; the requested id, Firebase
+      // auth uid and account generation were all verified above.
+      const listenerStableUid = authLinkProof.stableUid;
+      const friendsRef = db
         .collection('users')
-        .doc(myUid)
-        .collection('friends')
-        .onSnapshot(
+        .doc(listenerStableUid)
+        .collection('friends');
+      // Identity is checked again directly before opening the native listener.
+      if (cancelled) return;
+      if (!isViewerAuthProofCurrent(authLinkProof, myUid, accountToken)) {
+        onSetupState?.('preflight_failed');
+        return;
+      }
+      unsubscribe = friendsRef.onSnapshot(
           (snap: {
             docs: Array<{ id: string; data: () => Record<string, unknown> }>;
             metadata?: { fromCache?: boolean };
           }) => {
-            if (cancelled) return;
+            if (cancelled || !isCurrentAccountGeneration(accountToken, myUid)) return;
             const fromCache = snap.metadata?.fromCache === true;
             const friends: FriendEntry[] = snap.docs.map(doc => ({
               displayName: cleanFriendRequestDisplayName(doc.data().displayName) || undefined,
@@ -534,8 +636,10 @@ export function subscribeToFriends(
             onError?.(err);
           },
         );
+      onSetupState?.('ready');
     })
     .catch((err: unknown) => {
+      onSetupState?.('preflight_failed');
       logFriendsHealth('friends:subscribe_friends_setup_failed', err, { action: 'subscribe_friends' });
       onError?.(err instanceof Error ? err : new Error(String(err)));
     });
@@ -556,6 +660,7 @@ export function subscribeToFriends(
 export function subscribeToIncomingRequests(
   callback: (requests: FriendRequestEntry[]) => void,
   onError?: (err: Error) => void,
+  onSetupState?: (state: FriendSubscriptionSetupState) => void,
 ): () => void {
   let cancelled = false;
   let unsubscribe: (() => void) | null = null;
@@ -564,24 +669,36 @@ export function subscribeToIncomingRequests(
     .then(async myUid => {
       if (cancelled) return;
       if (!myUid) {
-        callback([]);
+        onSetupState?.('preflight_failed');
         return;
       }
-      const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
-      if (cancelled || !authLinkReady) return;
+      const accountToken = captureAccountGeneration();
+      const authLinkProof = await prepareFriendRequestViewerAuthLink(myUid);
+      if (cancelled) return;
+      if (!isViewerAuthProofCurrent(authLinkProof, myUid, accountToken)) {
+        onSetupState?.('preflight_failed');
+        return;
+      }
       const db = getFirestore();
       if (!db) {
-        callback([]);
+        onSetupState?.('preflight_failed');
         return;
       }
-      unsubscribe = db
+      const listenerStableUid = authLinkProof.stableUid;
+      const pendingRequestsQuery = db
         .collection('users')
-        .doc(myUid)
+        .doc(listenerStableUid)
         .collection('friend_requests')
-        .where('status', '==', 'pending')
-        .onSnapshot(
+        .where('status', '==', 'pending');
+      // Identity is checked again directly before opening the native listener.
+      if (cancelled) return;
+      if (!isViewerAuthProofCurrent(authLinkProof, myUid, accountToken)) {
+        onSetupState?.('preflight_failed');
+        return;
+      }
+      unsubscribe = pendingRequestsQuery.onSnapshot(
           (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
-            if (cancelled) return;
+            if (cancelled || !isCurrentAccountGeneration(accountToken, myUid)) return;
             const requests: FriendRequestEntry[] = snap.docs
               .map(doc => {
                 const data = doc.data();
@@ -604,8 +721,10 @@ export function subscribeToIncomingRequests(
             onError?.(err);
           },
         );
+      onSetupState?.('ready');
     })
     .catch((err: unknown) => {
+      onSetupState?.('preflight_failed');
       logFriendsHealth('friends:subscribe_incoming_requests_setup_failed', err, { action: 'subscribe_incoming_requests' });
       onError?.(err instanceof Error ? err : new Error(String(err)));
     });
@@ -622,15 +741,32 @@ export function subscribeToIncomingRequests(
  * Удаляет мусорные данные которые могли остаться после неполных операций:
  * - accepted request-документы (должны были удалиться при acceptFriendRequest)
  * - Односторонние friends-документы (должны были удалиться при deleteFriend)
- * Вызывается один раз при открытии вкладки. Fire-and-forget.
+ * Запрашивается при открытии вкладки, но успешно выполняется не чаще одного
+ * раза за FRIEND_CLEANUP_TTL_MS для каждого аккаунта и прекращается при blur.
  */
-export async function cleanupStaleFriendData(): Promise<void> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+export async function cleanupStaleFriendData(shouldAbort?: () => boolean): Promise<void> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || shouldAbort?.()) return;
+  let cleanupUid = '';
+  let cleanupStartedAt = 0;
+  let completed = false;
   try {
-    const myUid = await ensureAnonUser();
-    if (!myUid) return;
+    const requestedMyUid = await ensureAnonUser();
+    if (!requestedMyUid || shouldAbort?.()) return;
     const db = getFirestore();
     if (!db) return;
+    const myUid = await resolveFriendsCanonicalUid(requestedMyUid, 'cleanup_stale_friend_data', {
+      requestedMyUid,
+    });
+    if (!myUid || shouldAbort?.()) return;
+
+    const now = Date.now();
+    const lastCompletedAt = friendCleanupCompletedAtByUid.get(myUid) ?? 0;
+    if (now - lastCompletedAt < FRIEND_CLEANUP_TTL_MS) return;
+    cleanupUid = myUid;
+    cleanupStartedAt = now;
+    // The timestamp also acts as a tiny in-process lease, so rapid tab re-entry
+    // cannot start two copies of the same best-effort cleanup.
+    rememberFriendCleanup(myUid, cleanupStartedAt);
 
     const batch = db.batch();
     let batchCount = 0;
@@ -638,7 +774,11 @@ export async function cleanupStaleFriendData(): Promise<void> {
 
     // 1. Удаляем accepted request-документы (мусор от accept без cleanup).
     const reqSnap = await db
-      .collection('users').doc(myUid).collection('friend_requests').get();
+      .collection('users').doc(myUid).collection('friend_requests')
+      .where('status', '==', 'accepted')
+      .limit(50)
+      .get();
+    if (shouldAbort?.()) return;
     for (const doc of reqSnap.docs as Array<{ id: string; data: () => Record<string, unknown>; ref: unknown }>) {
       if (batchCount >= BATCH_MAX) break;
       const st = doc.data().status as string | undefined;
@@ -649,29 +789,50 @@ export async function cleanupStaleFriendData(): Promise<void> {
     }
 
     // 2. Проверяем односторонние friends-документы (есть у меня, нет у друга).
-    // Лимит до 20 reverse-reads за один запуск — защита от N reads при большом списке.
-    const friendsSnap = await db
-      .collection('users').doc(myUid).collection('friends').get();
+    // Не больше трёх запросов одновременно; между пачками учитываем уход с таба.
+    const friendsRef = db.collection('users').doc(myUid).collection('friends');
+    const previousCursor = friendCleanupCursorByUid.get(myUid);
+    let friendsSnap = await (previousCursor
+      ? friendsRef.startAfter(previousCursor).limit(20)
+      : friendsRef.limit(20)
+    ).get();
+    // The previous page may now end past the collection after deletes. Wrap to
+    // the first bounded page immediately instead of spending a whole TTL pass.
+    if (previousCursor && friendsSnap.docs.length === 0) {
+      friendsSnap = await friendsRef.limit(20).get();
+    }
+    if (shouldAbort?.()) return;
     const friendDocs = friendsSnap.docs as Array<{ id: string; ref: unknown }>;
     const toCheck = friendDocs.slice(0, 20);
-    const reverseSnaps = await Promise.all(
-      toCheck.map(doc =>
-        db.collection('users').doc(doc.id).collection('friends').doc(myUid).get(),
-      ),
-    );
-    for (let i = 0; i < toCheck.length; i++) {
-      if (batchCount >= BATCH_MAX) break;
-      if (!reverseSnaps[i].exists) {
-        batch.delete(toCheck[i].ref);
-        batchCount++;
+    for (let offset = 0; offset < toCheck.length; offset += 3) {
+      if (shouldAbort?.()) return;
+      const part = toCheck.slice(offset, offset + 3);
+      const reverseSnaps = await Promise.all(
+        part.map(doc => db.collection('users').doc(doc.id).collection('friends').doc(myUid).get()),
+      );
+      for (let i = 0; i < part.length; i++) {
+        if (batchCount >= BATCH_MAX) break;
+        if (!reverseSnaps[i].exists) {
+          batch.delete(part[i].ref);
+          batchCount++;
+        }
       }
     }
 
-    if (batchCount > 0) {
-      await batch.commit();
-    }
+    if (shouldAbort?.()) return;
+    if (batchCount > 0) await batch.commit();
+    rememberFriendCleanupCursor(
+      myUid,
+      friendDocs.length === 20 ? friendDocs[friendDocs.length - 1] : null,
+    );
+    completed = true;
   } catch {
     /* ignore — cleanup is best-effort */
+  } finally {
+    // A failed or cancelled pass must remain retryable on the next focus.
+    if (!completed && cleanupUid && friendCleanupCompletedAtByUid.get(cleanupUid) === cleanupStartedAt) {
+      friendCleanupCompletedAtByUid.delete(cleanupUid);
+    }
   }
 }
 

@@ -36,7 +36,7 @@ async function enforceFreeDailyGenCap(
   authUid: string,
   stableUid: string,
 ): Promise<void> {
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
   if (isPremium) return;
   await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP);
 }

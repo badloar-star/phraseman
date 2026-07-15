@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { CustomerInfo } from 'react-native-purchases';
 import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
+import { withAccountTransitionLock } from './account_generation';
 
 export type PremiumStorePlan = 'monthly' | 'yearly' | 'lifetime';
 
@@ -120,15 +121,17 @@ export async function persistStorePremiumLocally(
     pairs.push(['premium_rc_purchased_at_ms', String(Math.max(0, Math.floor(metadata.purchasedMs)))]);
   }
 
-  if (!isCurrent()) return false;
-  await AsyncStorage.multiSet(pairs);
-  if (!isCurrent()) return false;
-  await markPremiumStoreSeenNow();
-  if (!isCurrent()) return false;
-  invalidatePremiumCache();
-  if (!isCurrent()) return false;
-  await syncToCloud({ forceNow: true }).catch(() => {});
-  return isCurrent();
+  return withAccountTransitionLock(async () => {
+    if (!isCurrent()) return false;
+    await AsyncStorage.multiSet(pairs);
+    if (!isCurrent()) return false;
+    await markPremiumStoreSeenNow();
+    if (!isCurrent()) return false;
+    invalidatePremiumCache();
+    if (!isCurrent()) return false;
+    await syncToCloud({ forceNow: true }).catch(() => {});
+    return isCurrent();
+  });
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

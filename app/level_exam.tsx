@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import DuoPressable from '../components/DuoPressable';
@@ -557,6 +557,9 @@ export default function LevelExam() {
   const [exitExamConfirm, setExitExamConfirm] = useState(false);
   // Блокировка двойного тапа по «Начать тест» (H12): второй тап не должен повторно списать энергию.
   const [examStarting, setExamStarting] = useState(false);
+  const examStartingRef = useRef(false);
+  const answerLockedRef = useRef(false);
+  const questionAdvanceRef = useRef(false);
   const [accessState, setAccessState] = useState<'checking' | 'allowed' | 'blocked'>('checking');
   const [blockedText, setBlockedText] = useState('');
   const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
@@ -564,6 +567,15 @@ export default function LevelExam() {
   // Премиум/тестер обходят списание внутри spendAmount (isUnlimited).
   const { isUnlimited: energyUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
+
+  useEffect(() => {
+    if ((phase === 'intro' || phase === 'result') && !examStarting) examStartingRef.current = false;
+  }, [phase, examStarting]);
+
+  useEffect(() => {
+    answerLockedRef.current = false;
+    questionAdvanceRef.current = false;
+  }, [idx]);
 
   const englishQuestions = useMemo(() => {
     if (frenchExamBlocked) return [];
@@ -596,6 +608,8 @@ export default function LevelExam() {
   }, [frenchExamBlocked, frenchExamSourceLocale, isFrenchExam, lvl]);
 
   useEffect(() => {
+    answerLockedRef.current = false;
+    questionAdvanceRef.current = false;
     setIdx(0);
     setChoices(new Array(questions.length).fill(null));
     setShowAnswer(false);
@@ -718,7 +732,7 @@ export default function LevelExam() {
   const chosen = choices[idx] ?? null;
 
   const startExam = useCallback(async () => {
-    if (examStarting) return; // двойной тап — игнор
+    if (examStartingRef.current || examStarting) return; // двойной тап — игнор
     if (frenchExamBlocked) {
       void trackFeatureBlocked('level_exam', 'start', 'exam_content_gate_disabled', { level: lvl, studyTarget }, 'level_exam');
       return;
@@ -731,6 +745,8 @@ export default function LevelExam() {
       }, 'level_exam');
       return;
     }
+    let transitionedToExam = false;
+    examStartingRef.current = true;
     setExamStarting(true);
     try {
       // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
@@ -750,17 +766,23 @@ export default function LevelExam() {
       void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
       setChoices(new Array(questions.length).fill(null));
       setIdx(0);
+      answerLockedRef.current = false;
+      questionAdvanceRef.current = false;
       setShowAnswer(false);
       setPhase('quiz');
+      transitionedToExam = true;
     } finally {
+      if (!transitionedToExam) examStartingRef.current = false;
       setExamStarting(false);
     }
   }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
 
   const { flashKey, flash } = useWordFlash();
 
-  const handlePick = (ci: number) => {
-    if (chosen !== null) return;
+  const handlePick = (ci: number, optionKey: string) => {
+    if (answerLockedRef.current || chosen !== null) return;
+    answerLockedRef.current = true;
+    flash(optionKey);
     // Результат ответа: успех на верном, ошибка на неверном
     // (раньше был общий tap без сигнала результата).
     if (q && ci === q.correct) void hapticSuccess(); else void hapticError();
@@ -804,9 +826,11 @@ export default function LevelExam() {
   };
 
   const goNext = () => {
+    if (questionAdvanceRef.current) return;
+    questionAdvanceRef.current = true;
     setShowAnswer(false);
     if (idx + 1 < total) setIdx(i => i + 1);
-    else finishExam();
+    else void finishExam();
   };
 
   const finishExam = async () => {
@@ -1641,7 +1665,8 @@ export default function LevelExam() {
           {/* Варианты ответов */}
           <View style={{ gap: 10 }}>
             {(q.opts ?? []).map((opt, ci) => {
-              const on = flashKey === `${ci}`;
+              const optionKey = `${lvl}:${idx}:${q.lessonNum}:${ci}:${opt}`;
+              const on = flashKey === optionKey;
               const isChosen  = chosen === ci;
               const isOptCorrect = ci === q.correct;
               let bg = on ? t.accent : t.bgCard;
@@ -1652,12 +1677,12 @@ export default function LevelExam() {
               if (!on && showAnswer && isChosen && !isOptCorrect) { bg = '#3A1A1A'; border = t.wrong; textColor = t.wrong; signalBorder = true; }
               return (
                 <DuoPressable
-                  key={ci}
+                  key={optionKey}
                   edgeHeight={5}
                   withHaptic={false}
                   edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
                   style={{ backgroundColor: bg, borderRadius: 14, borderWidth: 0, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
-                  onPress={() => { flash(`${ci}`); handlePick(ci); }}
+                  onPress={() => { handlePick(ci, optionKey); }}
                   disabled={chosen !== null}
                 >
                   <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>

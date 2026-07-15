@@ -89,6 +89,7 @@ import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 
 const RECOMMENDED_EXCHANGES = 8;
+const ACCESS_LOADING_FEEDBACK_DELAY_MS = 300;
 // 'unavailable' — устройство/движок реально не умеет распознавание (жёсткий отказ).
 // 'error' — транзиентный сбой (движок дал error/nomatch без текста, start() кинул):
 // стоит предложить «Повторить», а не пугать «недоступно на этом устройстве».
@@ -201,6 +202,26 @@ export default function AiDialogSession() {
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
+  const accessLoadingText = triLang(lang, {
+    ru: 'Проверяем доступ…',
+    uk: 'Перевіряємо доступ…',
+    es: 'Comprobando acceso…',
+    'pt-BR': 'Verificando acesso…',
+    vi: 'Đang kiểm tra quyền truy cập…',
+    id: 'Memeriksa akses…',
+    tr: 'Erişim kontrol ediliyor…',
+    pl: 'Sprawdzanie dostępu…',
+  });
+  const [showAccessLoading, setShowAccessLoading] = useState(false);
+
+  useEffect(() => {
+    if (accessResolved) {
+      setShowAccessLoading(false);
+      return;
+    }
+    const timeoutId = setTimeout(() => setShowAccessLoading(true), ACCESS_LOADING_FEEDBACK_DELAY_MS);
+    return () => clearTimeout(timeoutId);
+  }, [accessResolved]);
 
   const scenario = useMemo(
     () => {
@@ -1390,37 +1411,53 @@ export default function AiDialogSession() {
           </View>
 
           <View style={{ flex: 1, minWidth: 0 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              {/* Смайл настроения собеседника (игровой режим): 😄🙂😐😟😠 без цифр.
-                  Это и есть «лицо» собеседника в шапке. */}
-              {gameEnabled && !ended ? (
-                <Text
-                  accessibilityLabel={triLang(lang, {
-                    ru: 'Настроение собеседника',
-                    uk: 'Настрій співрозмовника',
-                    es: 'Ánimo del interlocutor',
-                    'pt-BR': 'Humor do interlocutor',
-                    vi: 'Tâm trạng người kia',
-                    id: 'Suasana hati lawan bicara',
-                    tr: 'Karşıdakinin ruh hâli',
-                    pl: 'Nastrój rozmówcy',
-                  })}
-                  style={{ fontSize: f.body }}
-                >
-                  {moodToFace(mood)}
+            {showAccessLoading ? (
+              <View
+                accessible
+                accessibilityRole="progressbar"
+                accessibilityState={{ busy: true }}
+                accessibilityLabel={accessLoadingText}
+                accessibilityLiveRegion="polite"
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+              >
+                <ActivityIndicator size="small" color={t.accent} />
+                <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800', flexShrink: 1 }} numberOfLines={1}>
+                  {accessLoadingText}
                 </Text>
-              ) : (
-                // Имя/место убраны по просьбе (усечённое «М.» не помогало). Когда
-                // смайла нет (не игра или диалог завершён) — короткий нейтральный
-                // заголовок, чтобы шапка не была пустой.
-                <Text
-                  style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
-                  numberOfLines={1}
-                >
-                  {dialogScenarioTitle(scenario, lang)}
-                </Text>
-              )}
-            </View>
+              </View>
+            ) : (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                {/* Смайл настроения собеседника (игровой режим): 😄🙂😐😟😠 без цифр.
+                    Это и есть «лицо» собеседника в шапке. */}
+                {gameEnabled && !ended ? (
+                  <Text
+                    accessibilityLabel={triLang(lang, {
+                      ru: 'Настроение собеседника',
+                      uk: 'Настрій співрозмовника',
+                      es: 'Ánimo del interlocutor',
+                      'pt-BR': 'Humor do interlocutor',
+                      vi: 'Tâm trạng người kia',
+                      id: 'Suasana hati lawan bicara',
+                      tr: 'Karşıdakinin ruh hâli',
+                      pl: 'Nastrój rozmówcy',
+                    })}
+                    style={{ fontSize: f.body }}
+                  >
+                    {moodToFace(mood)}
+                  </Text>
+                ) : (
+                  // Имя/место убраны по просьбе (усечённое «М.» не помогало). Когда
+                  // смайла нет (не игра или диалог завершён) — короткий нейтральный
+                  // заголовок, чтобы шапка не была пустой.
+                  <Text
+                    style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
+                    numberOfLines={1}
+                  >
+                    {dialogScenarioTitle(scenario, lang)}
+                  </Text>
+                )}
+              </View>
+            )}
             {/* Вторая строка с местом сцены («в ресторане» и т.п.) и имя собеседника
                 убраны по просьбе: и так понятно, что открываем; длинное место/имя
                 уходило в «...». В игре в шапке остаётся только лицо-настроение. */}
@@ -1756,9 +1793,10 @@ export default function AiDialogSession() {
                           return (
                             <TouchableOpacity
                               onPress={() => void toggleTranslation(i, m.text)}
-                              disabled={translatingIdx != null}
+                              disabled={!accessResolved || translatingIdx != null}
                               activeOpacity={0.7}
                               accessibilityRole="button"
+                              accessibilityState={{ disabled: !accessResolved || translatingIdx != null, busy: !accessResolved || translatingIdx != null }}
                               accessibilityLabel={triLang(lang, {
                                 ru: 'Не получилось перевести. Перевести снова',
                                 uk: 'Не вдалося перекласти. Перекласти знову',
@@ -1775,6 +1813,7 @@ export default function AiDialogSession() {
                                 gap: 5,
                                 marginTop: 8,
                                 alignSelf: 'flex-start',
+                                opacity: accessResolved && translatingIdx == null ? 1 : 0.55,
                               }}
                             >
                               <Ionicons name="refresh" size={14} color={t.textMuted} />
@@ -1817,9 +1856,10 @@ export default function AiDialogSession() {
                         return (
                           <TouchableOpacity
                             onPress={() => void toggleTranslation(i, m.text)}
-                            disabled={translatingIdx != null}
+                            disabled={!accessResolved || translatingIdx != null}
                             activeOpacity={0.7}
                             accessibilityRole="button"
+                            accessibilityState={{ disabled: !accessResolved || translatingIdx != null, busy: !accessResolved || translatingIdx != null }}
                             accessibilityLabel={label}
                             style={{
                               flexDirection: 'row',
@@ -1827,6 +1867,7 @@ export default function AiDialogSession() {
                               gap: 5,
                               marginTop: 8,
                               alignSelf: 'flex-start',
+                              opacity: accessResolved && translatingIdx == null ? 1 : 0.55,
                             }}
                           >
                             <Ionicons
@@ -1897,9 +1938,11 @@ export default function AiDialogSession() {
                 {canRetryLastError && (
                   <TouchableOpacity
                     onPress={() => void retryLastSend()}
+                    disabled={!accessResolved || sending}
                     activeOpacity={0.82}
                     accessibilityRole="button"
                     accessibilityLabel={dialogRetryLabel(lang)}
+                    accessibilityState={{ disabled: !accessResolved || sending, busy: !accessResolved || sending }}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
@@ -1909,6 +1952,7 @@ export default function AiDialogSession() {
                       paddingHorizontal: 16,
                       paddingVertical: 8,
                       backgroundColor: t.accent,
+                      opacity: accessResolved && !sending ? 1 : 0.55,
                     }}
                   >
                     <Ionicons name="refresh" size={16} color={t.correctText} />
@@ -2035,13 +2079,17 @@ export default function AiDialogSession() {
                         params: { context: 'dialog_analysis', source: 'dialog_analysis' },
                       } as never);
                     }}
+                    disabled={!accessResolved}
                     activeOpacity={0.84}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}
                     style={{
                       flex: 1,
                       borderRadius: 14,
                       paddingVertical: 13,
                       alignItems: 'center',
                       backgroundColor: t.accent,
+                      opacity: accessResolved ? 1 : 0.55,
                     }}
                   >
                     <Text style={{ color: t.correctText, fontWeight: '900', fontSize: f.body }}>
@@ -2363,13 +2411,17 @@ export default function AiDialogSession() {
                         params: { context: 'dialog_limit' },
                       } as never);
                     }}
+                    disabled={!accessResolved}
                     activeOpacity={0.82}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}
                     style={{
                       borderRadius: 16,
                       paddingVertical: 14,
                       alignItems: 'center',
                       marginTop: 14,
                       backgroundColor: t.accent,
+                      opacity: accessResolved ? 1 : 0.55,
                     }}
                   >
                     <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
@@ -2490,8 +2542,9 @@ export default function AiDialogSession() {
                     });
                   }}
                   activeOpacity={0.8}
+                  disabled={!accessResolved}
                   accessibilityRole="switch"
-                  accessibilityState={{ checked: conversationMode }}
+                  accessibilityState={{ checked: conversationMode, disabled: !accessResolved, busy: !accessResolved }}
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -2504,6 +2557,7 @@ export default function AiDialogSession() {
                     borderWidth: conversationMode ? 1 : 0,
                     borderColor: conversationMode ? t.accent : 'transparent',
                     backgroundColor: conversationMode ? t.accent : t.bgSurface,
+                    opacity: accessResolved ? 1 : 0.55,
                   }}
                 >
                   <Ionicons
@@ -2573,7 +2627,7 @@ export default function AiDialogSession() {
                   pl: 'Napisz odpowiedź…',
                 })}
                 placeholderTextColor={t.textMuted}
-                editable={!sending}
+                editable={accessResolved && !sending}
                 multiline
                 // iOS: Enter = «Отправить» (returnKeyType), blurOnSubmit=false держит
                 // клавиатуру открытой после отправки. Android multiline трактует Enter
@@ -2590,6 +2644,7 @@ export default function AiDialogSession() {
                   color: t.textPrimary,
                   fontSize: f.body,
                   maxHeight: 120,
+                  opacity: accessResolved ? 1 : 0.6,
                 }}
                 maxFontSizeMultiplier={1.2}
               />
@@ -2598,12 +2653,12 @@ export default function AiDialogSession() {
                 // press-out стоп. Разговорный режим дополнительно авто-отправляет.
                 onPressIn={handleMicPressIn}
                 onPressOut={handleMicPressOut}
-                disabled={sending || aiSpeaking || voiceInputStatus === 'finishing'}
+                disabled={!accessResolved || sending || aiSpeaking || voiceInputStatus === 'finishing'}
                 activeOpacity={0.82}
                 accessibilityRole="button"
                 accessibilityState={{
-                  disabled: sending || aiSpeaking || voiceInputStatus === 'finishing',
-                  busy: voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing',
+                  disabled: !accessResolved || sending || aiSpeaking || voiceInputStatus === 'finishing',
+                  busy: !accessResolved || voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing',
                 }}
                 accessibilityLabel={
                   triLang(lang, {
@@ -2626,7 +2681,7 @@ export default function AiDialogSession() {
                   backgroundColor: voiceInputStatus === 'listening' ? t.accent : t.bgSurface,
                   borderWidth: 0,
                   borderColor: 'transparent',
-                  opacity: sending || voiceInputStatus === 'finishing' ? 0.55 : 1,
+                  opacity: !accessResolved || sending || voiceInputStatus === 'finishing' ? 0.55 : 1,
                   position: 'relative',
                 }}
               >
@@ -2659,7 +2714,7 @@ export default function AiDialogSession() {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => send(input)}
-                disabled={!input.trim() || sending}
+                disabled={!accessResolved || !input.trim() || sending}
                 activeOpacity={0.82}
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, {
@@ -2672,26 +2727,31 @@ export default function AiDialogSession() {
                   tr: 'Gönder',
                   pl: 'Wyślij',
                 })}
+                accessibilityState={{ disabled: !accessResolved || !input.trim() || sending, busy: !accessResolved || sending }}
                 style={{
                   width: 44,
                   height: 44,
                   borderRadius: 22,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: input.trim() && !sending ? t.accent : t.bgSurface,
-                  opacity: input.trim() && !sending ? 1 : 0.5,
+                  backgroundColor: accessResolved && input.trim() && !sending ? t.accent : t.bgSurface,
+                  opacity: accessResolved && input.trim() && !sending ? 1 : 0.5,
                   shadowColor: t.shadowDark,
-                  shadowOpacity: input.trim() && !sending ? 0.3 : 0,
+                  shadowOpacity: accessResolved && input.trim() && !sending ? 0.3 : 0,
                   shadowRadius: 6,
                   shadowOffset: { width: 0, height: 2 },
-                  elevation: input.trim() && !sending ? 3 : 0,
+                  elevation: accessResolved && input.trim() && !sending ? 3 : 0,
                 }}
               >
-                <Ionicons
-                  name="arrow-up"
-                  size={22}
-                  color={input.trim() && !sending ? t.correctText : t.textMuted}
-                />
+                {showAccessLoading ? (
+                  <ActivityIndicator size="small" color={t.textSecond} />
+                ) : (
+                  <Ionicons
+                    name="arrow-up"
+                    size={22}
+                    color={accessResolved && input.trim() && !sending ? t.correctText : t.textMuted}
+                  />
+                )}
               </TouchableOpacity>
               </View>
               {voiceInputHint ? (
@@ -2733,7 +2793,10 @@ export default function AiDialogSession() {
                     <TouchableOpacity
                       accessibilityRole="button"
                       onPress={() => void startVoiceInput()}
+                      disabled={!accessResolved}
+                      accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                      style={{ opacity: accessResolved ? 1 : 0.55 }}
                     >
                       <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900' }}>
                         {triLang(lang, {

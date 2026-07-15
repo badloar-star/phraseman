@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, useEffect } from 'react';
+import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
@@ -90,15 +90,23 @@ export default function WordBankBuilder({
     typeof initialProgress?.wrongSlot === 'number' ? initialProgress.wrongSlot : null,
   );
   const [misses, setMisses] = useState(() => initialProgress?.misses ?? 0);
+  const slotsRef = useRef(slots);
+  const usedIdsRef = useRef(usedIds);
+  const statusRef = useRef(status);
 
   const prompt = introText(data.prompt, lang);
   const allFilled = slots.every((s) => s !== null);
 
   useEffect(() => {
     const nextSlots = slotsFromProgress(initialProgress, answer.length) ?? answer.map(() => null);
+    const nextUsedIds = usedIdsFromSlots(nextSlots);
+    const nextStatus = statusFromProgress(initialProgress);
+    slotsRef.current = nextSlots;
+    usedIdsRef.current = nextUsedIds;
+    statusRef.current = nextStatus;
     setSlots(nextSlots);
-    setUsedIds(usedIdsFromSlots(nextSlots));
-    setStatus(statusFromProgress(initialProgress));
+    setUsedIds(nextUsedIds);
+    setStatus(nextStatus);
     setWrongSlot(typeof initialProgress?.wrongSlot === 'number' ? initialProgress.wrongSlot : null);
     setMisses(initialProgress?.misses ?? 0);
   }, [initialProgress, answer]);
@@ -117,59 +125,72 @@ export default function WordBankBuilder({
 
   const pickWord = useCallback(
     (bw: BankWord) => {
-      if (usedIds.has(bw.id) || status === 'solved') return;
-      const emptyIdx = slots.findIndex((s) => s === null);
+      if (usedIdsRef.current.has(bw.id) || statusRef.current === 'solved') return;
+      const liveSlots = slotsRef.current;
+      const emptyIdx = liveSlots.findIndex((s) => s === null);
       if (emptyIdx === -1) return;
-      const next = [...slots];
+      const next = [...liveSlots];
       next[emptyIdx] = { word: bw.word, bankId: bw.id };
+      const nextUsedIds = new Set(usedIdsRef.current);
+      nextUsedIds.add(bw.id);
+      slotsRef.current = next;
+      usedIdsRef.current = nextUsedIds;
+      statusRef.current = 'idle';
       setSlots(next);
-      setUsedIds(new Set([...usedIds, bw.id]));
+      setUsedIds(nextUsedIds);
       setStatus('idle');
       setWrongSlot(null);
       persist(next, 'idle');
     },
-    [slots, usedIds, status, persist],
+    [persist],
   );
 
   const popSlot = useCallback(
     (idx: number) => {
-      if (status === 'solved') return;
-      const slot = slots[idx];
+      if (statusRef.current === 'solved') return;
+      const liveSlots = slotsRef.current;
+      const slot = liveSlots[idx];
       if (!slot) return;
-      const next = [...slots];
+      const next = [...liveSlots];
       next[idx] = null;
-      setSlots(next);
-      const u = new Set(usedIds);
+      const u = new Set(usedIdsRef.current);
       u.delete(slot.bankId);
+      slotsRef.current = next;
+      usedIdsRef.current = u;
+      statusRef.current = 'idle';
+      setSlots(next);
       setUsedIds(u);
       setStatus('idle');
       setWrongSlot(null);
       persist(next, 'idle');
     },
-    [slots, usedIds, status, persist],
+    [persist],
   );
 
   const check = useCallback(() => {
-    if (!allFilled) return;
-    const assembled = slots.map((s) => s!.word);
+    const liveSlots = slotsRef.current;
+    if (statusRef.current === 'solved' || !liveSlots.every((slot) => slot !== null)) return;
+    const assembled = liveSlots.map((s) => s!.word);
     const ok = assembled.every((w, i) => w === answer[i]);
     if (ok) {
+      statusRef.current = 'solved';
       setStatus('solved');
       hapticSuccess();
-      persist(slots, 'solved');
+      persist(liveSlots, 'solved');
       onSolved?.();
     } else {
       const idx = assembled.findIndex((w, i) => w !== answer[i]);
+      statusRef.current = 'wrong';
       setWrongSlot(idx);
       setStatus('wrong');
       hapticError();
       setMisses((m) => {
         const nextMisses = m + 1;
-        persist(slots, 'wrong', { misses: nextMisses, wrongSlot: idx });
+        persist(liveSlots, 'wrong', { misses: nextMisses, wrongSlot: idx });
         return nextMisses;
       });
     }
-  }, [allFilled, slots, answer, onSolved, persist]);
+  }, [answer, onSolved, persist]);
 
   // Подсветка правильного слова в банке после 2 промахов (escalating hint).
   const hintWord = misses >= 2 && wrongSlot != null ? answer[wrongSlot] : null;

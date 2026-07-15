@@ -47,8 +47,9 @@ import {
   normalizeProfileCardTheme,
 } from '../profile_card_system';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
+import { isValidInviteCodeLookup } from '../friend_code';
+import { ensureMyInviteCodeForFriends, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
+import { resolveFriendSearch } from '../friend_search_resolver';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -56,7 +57,6 @@ import {
   deleteFriend,
   subscribeToFriends,
   subscribeToIncomingRequests,
-  ensureFriendRequestViewerAuthLink,
   cleanupStaleFriendData,
   type FriendEntry,
   type FriendRequestEntry,
@@ -70,12 +70,11 @@ import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import {
   startFriendsTabSwrPrime,
   peekFriendsTabSwrWarm,
-  memoryUpsertFriendsTabSwr,
   peekProfilesCache,
   pruneFriendsProfileCache,
   upsertProfilesCache,
-  FRIENDS_TAB_SWR_CACHE_KEY,
-  FRIEND_PROFILES_CACHE_KEY,
+  persistFriendsProfilesForAccount,
+  persistFriendsTabSwrForAccount,
   type FriendsProfileCacheEntry,
 } from '../friends_tab_swr_warm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -128,6 +127,13 @@ import {
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
 import { useAppSnapshotSelector } from '../app_snapshot_store';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
+import { subscribeNetStatus } from '../net_status';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -154,9 +160,11 @@ interface FriendProfile {
   leagueCrownCount?: number;
 }
 
-const PROFILE_TTL_MS = 30 * 1000;
+const PROFILE_TTL_MS = 60 * 1000;
 const FRIENDS_REFERRAL_REFRESH_TTL_MS = 15 * 60 * 1000;
 const FRIENDS_QUEST_REFRESH_TTL_MS = 2 * 60 * 1000;
+const FRIENDS_CLEANUP_DEFER_MS = 1_200;
+const FRIENDS_LISTENER_RETRY_DELAYS_MS = [1500, 4000, 10_000] as const;
 
 type ProfileCacheEntry = FriendsProfileCacheEntry;
 
@@ -241,13 +249,12 @@ function friendGiftAccent(giftId: FriendGiftId | string, t: any): string {
   return t.accent;
 }
 
-async function writeProfilesCache(cache: Record<string, ProfileCacheEntry>, retainUids: readonly string[] = []): Promise<void> {
-  try {
-    await AsyncStorage.setItem(
-      FRIEND_PROFILES_CACHE_KEY,
-      JSON.stringify(pruneFriendsProfileCache(cache, Date.now(), retainUids)),
-    );
-  } catch { /* ignore */ }
+async function writeProfilesCache(
+  accountToken: AccountGenerationToken,
+  cache: Record<string, ProfileCacheEntry>,
+  retainUids: readonly string[] = [],
+): Promise<void> {
+  await persistFriendsProfilesForAccount(accountToken, cache, retainUids).catch(() => false);
 }
 
 // ── Firestore accessor ────────────────────────────────────────────────────────
@@ -480,18 +487,24 @@ function profileFromArenaDoc(uid: string, data: Record<string, unknown>): Friend
   });
 }
 
-async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfile | null> {
+async function fetchFriendProfileFromFirestore(
+  uid: string,
+  shouldAbort?: () => boolean,
+): Promise<FriendProfile | null> {
   try {
+    if (shouldAbort?.()) return null;
     const db = getDb();
     if (!db) return null;
     let profile: FriendProfile | null = null;
 
     const leaderboardSnap = await db.collection('leaderboard').doc(uid).get();
+    if (shouldAbort?.()) return profile;
     if (leaderboardSnap.exists) {
       profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(uid, leaderboardSnap.data() ?? {}));
     }
     if (!profile || profile.totalXp <= 0) {
       const byAuthSnap = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
+      if (shouldAbort?.()) return profile;
       const byAuthDoc = byAuthSnap.docs?.[0];
       if (byAuthDoc) {
         profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(byAuthDoc.id, byAuthDoc.data() ?? {}));
@@ -500,6 +513,7 @@ async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfi
 
     if (!profile || profile.totalXp <= 0) {
       const arenaByStableSnap = await db.collection('arena_profiles').where('mirrorStableId', '==', uid).limit(1).get();
+      if (shouldAbort?.()) return profile;
       const arenaByStableDoc = arenaByStableSnap.docs?.[0];
       if (arenaByStableDoc) {
         profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaByStableDoc.data() ?? {}));
@@ -508,6 +522,7 @@ async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfi
 
     if (!profile || profile.totalXp <= 0) {
       const arenaSnap = await db.collection('arena_profiles').doc(uid).get();
+      if (shouldAbort?.()) return profile;
       if (arenaSnap.exists) {
         profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaSnap.data() ?? {}));
       }
@@ -532,11 +547,13 @@ async function mapWithConcurrency<T, R>(
   items: readonly T[],
   limit: number,
   fn: (item: T, index: number) => Promise<R>,
-): Promise<R[]> {
-  const result = new Array<R>(items.length);
+  shouldStop?: () => boolean,
+): Promise<Array<R | undefined>> {
+  const result = new Array<R | undefined>(items.length);
   let cursor = 0;
   const worker = async (): Promise<void> => {
     while (cursor < items.length) {
+      if (shouldStop?.()) return;
       const index = cursor++;
       result[index] = await fn(items[index], index);
     }
@@ -552,6 +569,8 @@ async function mapWithConcurrency<T, R>(
 async function loadProfiles(
   uids: string[],
   existingCache: Record<string, ProfileCacheEntry>,
+  accountToken: AccountGenerationToken,
+  shouldAbort: () => boolean,
 ): Promise<{ fresh: Record<string, FriendProfile>; updatedCache: Record<string, ProfileCacheEntry> }> {
   const now = Date.now();
   const result: Record<string, FriendProfile> = {};
@@ -569,10 +588,24 @@ async function loadProfiles(
   }
 
   if (toFetch.length > 0) {
-    await ensureAnonUser();
-    const fetched = await mapWithConcurrency(toFetch, 6, (uid) => fetchFriendProfileFromFirestore(uid));
-    const fetchedProfiles = fetched.filter((p): p is FriendProfile => p !== null);
-    const crownMap = await fetchActiveLeagueCrowns(fetchedProfiles.map((p) => p.uid));
+    if (shouldAbort() || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+      return { fresh: result, updatedCache };
+    }
+    const profileOwnerUid = await ensureAnonUser();
+    if (profileOwnerUid !== accountToken.stableId) {
+      return { fresh: result, updatedCache };
+    }
+    const fetched = await mapWithConcurrency(
+      toFetch,
+      3,
+      (uid) => fetchFriendProfileFromFirestore(uid, shouldAbort),
+      shouldAbort,
+    );
+    if (shouldAbort() || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+      return { fresh: result, updatedCache };
+    }
+    const fetchedProfiles = fetched.filter((p): p is FriendProfile => p != null);
+    const crownMap = await fetchActiveLeagueCrowns(fetchedProfiles.map((p) => p.uid), { shouldAbort });
     const newEntries: Record<string, ProfileCacheEntry> = {};
     for (let i = 0; i < toFetch.length; i++) {
       const profile = fetched[i];
@@ -589,12 +622,12 @@ async function loadProfiles(
         newEntries[toFetch[i]] = entry;
       }
     }
-    if (Object.keys(newEntries).length > 0) upsertProfilesCache(newEntries);
+    if (Object.keys(newEntries).length > 0) upsertProfilesCache(newEntries, accountToken);
   }
 
   const prunedCache = pruneFriendsProfileCache(updatedCache, now, uids);
   if (toFetch.length > 0 || Object.keys(prunedCache).length !== Object.keys(updatedCache).length) {
-    void writeProfilesCache(prunedCache, uids);
+    void writeProfilesCache(accountToken, prunedCache, uids);
   }
 
   return { fresh: result, updatedCache: prunedCache };
@@ -1951,15 +1984,42 @@ export default function FriendsTabScreen() {
   /** РЕФЕРАЛЬНЫЙ код (referral_codes) — отдельный от friend-кода (myCode). Для «Пригласить». */
   const [referralCode, setReferralCode] = useState<string | null>(null);
   const referralEnabled = isReferralCloudEnabled();
-  const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
-  const referralLastRefreshAtRef = useRef(0);
+  const referralRefreshInFlightRef = useRef<{
+    generation: number;
+    stableId: string | null;
+    task: Promise<void>;
+  } | null>(null);
+  const referralLastRefreshAtRef = useRef<{
+    generation: number;
+    stableId: string | null;
+    at: number;
+  } | null>(null);
 
   const refreshReferralState = useCallback(async (options: { force?: boolean } = {}) => {
     if (!isReferralCloudEnabled()) return;
+    const capturedAccount = captureAccountGeneration();
+    const isCapturedAccountCurrent = () => (
+      isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)
+    );
+    if (!isCapturedAccountCurrent()) return;
     const now = Date.now();
-    if (!options.force && now - referralLastRefreshAtRef.current < FRIENDS_REFERRAL_REFRESH_TTL_MS) return;
-    if (referralRefreshInFlightRef.current) return referralRefreshInFlightRef.current;
-    referralLastRefreshAtRef.current = now;
+    const lastRefresh = referralLastRefreshAtRef.current;
+    if (
+      !options.force
+      && lastRefresh?.generation === capturedAccount.generation
+      && lastRefresh.stableId === capturedAccount.stableId
+      && now - lastRefresh.at < FRIENDS_REFERRAL_REFRESH_TTL_MS
+    ) return;
+    const existing = referralRefreshInFlightRef.current;
+    if (
+      existing?.generation === capturedAccount.generation
+      && existing.stableId === capturedAccount.stableId
+    ) return existing.task;
+    referralLastRefreshAtRef.current = {
+      generation: capturedAccount.generation,
+      stableId: capturedAccount.stableId,
+      at: now,
+    };
     const task = (async () => {
     // Реферальный код (ensure на сервере). Без него «Пригласить» делилась бы friend-кодом,
     // которого нет в referral_codes → друг получал «код не найден» и наград не было (C1).
@@ -1970,10 +2030,13 @@ export default function FriendsTabScreen() {
         await generateReferralCode(myProfile?.name ?? 'User');
         rc = await getReferralCode();
       }
-      if (rc && rc.trim().length >= 4) setReferralCode(rc.trim().toUpperCase());
+      if (rc && rc.trim().length >= 4 && isCapturedAccountCurrent()) {
+        setReferralCode(rc.trim().toUpperCase());
+      }
     } catch { /* нет auth_links / сети — добьём ретраем ниже (useEffect) */ }
+    if (!isCapturedAccountCurrent()) return;
     const state = await getClaimableReferralState({ force: options.force });
-    if (state.ok) {
+    if (state.ok && isCapturedAccountCurrent()) {
       setReferralInvites(prev => referralInvitesKey(prev) === referralInvitesKey(state.invites) ? prev : state.invites);
     }
 
@@ -1984,13 +2047,21 @@ export default function FriendsTabScreen() {
       const plan = pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '';
       const until = Number(pairs.find(p => p[0] === 'vip_until')?.[1] ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
-      if (show) setAccessEndedOpen(true);
+      if (show && isCapturedAccountCurrent()) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }
     })();
-    referralRefreshInFlightRef.current = task.finally(() => {
-      referralRefreshInFlightRef.current = null;
+    const entry = {
+      generation: capturedAccount.generation,
+      stableId: capturedAccount.stableId,
+      task: Promise.resolve() as Promise<void>,
+    };
+    entry.task = task.finally(() => {
+      if (referralRefreshInFlightRef.current === entry) {
+        referralRefreshInFlightRef.current = null;
+      }
     });
-    return referralRefreshInFlightRef.current;
+    referralRefreshInFlightRef.current = entry;
+    return entry.task;
   }, [myProfile?.name]);
 
   /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
@@ -2025,24 +2096,30 @@ export default function FriendsTabScreen() {
 
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const [accountToken, setAccountToken] = useState<AccountGenerationToken>(() => captureAccountGeneration());
   const friendsSnapshot = useAppSnapshotSelector((snapshot) => snapshot.friends);
-  const warmFriendsSnapshot = peekFriendsTabSwrWarm();
-  const [friends, setFriends] = useState<FriendEntry[]>(() => warmFriendsSnapshot?.friends ?? friendsSnapshot?.friends ?? []);
-  const [requests, setRequests] = useState<FriendRequestEntry[]>(() => warmFriendsSnapshot?.requests ?? friendsSnapshot?.requests ?? []);
+  const scopedFriendsSnapshot = friendsSnapshot?.canonicalUid === accountToken.stableId
+    && isCurrentAccountGeneration(accountToken, accountToken.stableId)
+    ? friendsSnapshot
+    : null;
+  const scopedSnapshotFriends = scopedFriendsSnapshot ? friendsSnapshot?.friends : undefined;
+  const warmFriendsSnapshot = peekFriendsTabSwrWarm(accountToken);
+  const [friends, setFriends] = useState<FriendEntry[]>(() => warmFriendsSnapshot?.friends ?? scopedSnapshotFriends ?? []);
+  const [requests, setRequests] = useState<FriendRequestEntry[]>(() => warmFriendsSnapshot?.requests ?? scopedFriendsSnapshot?.requests ?? []);
   const [profiles, setProfiles] = useState<Record<string, FriendProfile>>(() => {
     // Модульный кеш переживает ремаунты — показываем мгновенно без async.
-    const modCache = peekProfilesCache();
+    const modCache = peekProfilesCache(accountToken);
     const base: Record<string, FriendProfile> = {};
     for (const [uid, e] of Object.entries(modCache)) base[uid] = e.profile as FriendProfile;
     // Дополняем warm SWR profiles если modCache пустой (первый старт).
-    const w = peekFriendsTabSwrWarm();
+    const w = peekFriendsTabSwrWarm(accountToken);
     if (w?.profiles) {
       for (const [uid, p] of Object.entries(w.profiles)) {
         if (!base[uid]) base[uid] = p as FriendProfile;
       }
     }
-    if (friendsSnapshot?.profiles) {
-      for (const [uid, p] of Object.entries(friendsSnapshot.profiles)) {
+    if (scopedFriendsSnapshot?.profiles) {
+      for (const [uid, p] of Object.entries(scopedFriendsSnapshot.profiles)) {
         if (!base[uid]) base[uid] = p as FriendProfile;
       }
     }
@@ -2050,13 +2127,13 @@ export default function FriendsTabScreen() {
   });
 
   useEffect(() => {
-    if (!friendsSnapshot) return;
-    setFriends(prev => prev.length > 0 ? prev : friendsSnapshot.friends);
-    setRequests(prev => prev.length > 0 ? prev : friendsSnapshot.requests);
+    if (!scopedFriendsSnapshot) return;
+    setFriends(prev => prev.length > 0 ? prev : scopedFriendsSnapshot.friends);
+    setRequests(prev => prev.length > 0 ? prev : scopedFriendsSnapshot.requests);
     setProfiles(prev => {
       let changed = false;
       const next = { ...prev };
-      for (const [uid, profile] of Object.entries(friendsSnapshot.profiles)) {
+      for (const [uid, profile] of Object.entries(scopedFriendsSnapshot.profiles)) {
         if (!next[uid]) {
           next[uid] = profile as FriendProfile;
           changed = true;
@@ -2064,7 +2141,7 @@ export default function FriendsTabScreen() {
       }
       return changed ? next : prev;
     });
-  }, [friendsSnapshot]);
+  }, [scopedFriendsSnapshot]);
 
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
@@ -2095,7 +2172,60 @@ export default function FriendsTabScreen() {
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
   const swrHadFriendsRef = useRef(false);
   /** Локальный кеш профилей с TTL — инициализируется из модульного peekProfilesCache() (переживает ремаунты). */
-  const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache());
+  const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache(accountToken));
+
+  useEffect(() => {
+    const applyAccountToken = (nextToken: AccountGenerationToken) => {
+      setMyCode(null);
+      setFriendCodeLoadError(false);
+      setMyProfile(null);
+      setReferralInvites([]);
+      setAccessEndedOpen(false);
+      setReferralCode(null);
+      setCodeInput('');
+      setIsSearching(false);
+      setFoundUser(null);
+      setSearchError(null);
+      setIsAdding(false);
+      setAddFeedback(null);
+      setSelectedPlayer(null);
+      setDeleteTarget(null);
+      setGiftTarget(null);
+      setGiftBalance(0);
+      setGiftBusyId(null);
+      setSentGiftReceipt(null);
+      setIncomingGiftModal(null);
+      setActiveFriendQuest(null);
+      setFriendQuestStarted(null);
+      setPendingFriendQuestStarted(null);
+      setFriendQuestCompleted(null);
+      setFriendQuestBusy(false);
+      modalWedgeGuardRef.current = false;
+      sentGiftReceiptNativeVisibleRef.current = false;
+      referralRefreshInFlightRef.current = null;
+      referralLastRefreshAtRef.current = null;
+      setAccountToken(nextToken);
+      const warm = peekFriendsTabSwrWarm(nextToken);
+      const cachedProfiles = peekProfilesCache(nextToken);
+      setFriends(warm?.friends ?? []);
+      setRequests(warm?.requests ?? []);
+      const nextProfiles: Record<string, FriendProfile> = {};
+      for (const [uid, entry] of Object.entries(cachedProfiles)) {
+        nextProfiles[uid] = entry.profile as FriendProfile;
+      }
+      for (const [uid, profile] of Object.entries(warm?.profiles ?? {})) {
+        if (!nextProfiles[uid]) nextProfiles[uid] = profile as FriendProfile;
+      }
+      profilesCacheRef.current = { ...cachedProfiles };
+      swrHadFriendsRef.current = (warm?.friends.length ?? 0) > 0;
+      setProfiles(nextProfiles);
+    };
+    const subscription = subscribeAccountGeneration(applyAccountToken);
+    // Close the render→effect gap: an account transition may finish after the
+    // state initializer but before this subscription is attached.
+    applyAccountToken(captureAccountGeneration());
+    return subscription.remove;
+  }, []);
 
   const syncMyInviteCode = useCallback(async (isCancelled: () => boolean = () => false) => {
     const stopped = () => !mountedRef.current || isCancelled();
@@ -2143,13 +2273,15 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     if (!friendsTabVisible) return;
     let cancelled = false;
+    let cleanupTimer: ReturnType<typeof setTimeout> | null = null;
     void syncMyInviteCode(() => cancelled);
     const task = InteractionManager.runAfterInteractions(() => {
       void fetchMyProfile().then(p => { if (!cancelled && mountedRef.current && p) setMyProfile(p); });
       // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
-      void startFriendsTabSwrPrime().then(() => {
-        if (cancelled || !mountedRef.current) return;
-        const fresh = peekProfilesCache();
+      const capturedAccount = accountToken;
+      void startFriendsTabSwrPrime(capturedAccount).then(() => {
+        if (cancelled || !mountedRef.current || !isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)) return;
+        const fresh = peekProfilesCache(capturedAccount);
         profilesCacheRef.current = { ...fresh };
         setProfiles(prev => {
           const next = { ...prev };
@@ -2159,10 +2291,17 @@ export default function FriendsTabScreen() {
           return next;
         });
       });
-      void cleanupStaleFriendData();
+      cleanupTimer = setTimeout(() => {
+        cleanupTimer = null;
+        void cleanupStaleFriendData(() => cancelled);
+      }, FRIENDS_CLEANUP_DEFER_MS);
     });
-    return () => { cancelled = true; task.cancel(); };
-  }, [friendsTabVisible, syncMyInviteCode]);
+    return () => {
+      cancelled = true;
+      task.cancel();
+      if (cleanupTimer) clearTimeout(cleanupTimer);
+    };
+  }, [friendsTabVisible, syncMyInviteCode, accountToken]);
 
   const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {
@@ -2218,12 +2357,12 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     if (!friendsTabVisible) return;
     const cancelled = { current: false };
-    void startFriendsTabSwrPrime();
+    void startFriendsTabSwrPrime(accountToken);
     void pollIncomingFriendGifts(cancelled);
     void refreshFriendQuest(cancelled);
     void refreshReferralState();
     return () => { cancelled.current = true; };
-  }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
+  }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState, accountToken]);
 
   // Реф-код один раз создаётся и НАВСЕГДА закрепляется за аккаунтом в AsyncStorage
   // (REFERRAL_KEY) — поэтому при каждом монтировании/возврате на вкладку читаем его
@@ -2232,13 +2371,19 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     if (!referralEnabled) return;
     let cancelled = false;
+    const capturedAccount = accountToken;
     void getReferralCode().then(rc => {
-      if (!cancelled && rc && rc.trim().length >= 4) {
+      if (
+        !cancelled
+        && isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)
+        && rc
+        && rc.trim().length >= 4
+      ) {
         setReferralCode(prev => prev ?? rc.trim().toUpperCase());
       }
     }).catch(() => { /* нет кеша — сетевой ретрай ниже добьёт первую генерацию */ });
     return () => { cancelled = true; };
-  }, [referralEnabled]);
+  }, [referralEnabled, accountToken]);
 
   // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
   // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
@@ -2247,6 +2392,7 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     if (!referralEnabled || referralCode) return;
     let cancelled = false;
+    const capturedAccount = accountToken;
     let attempt = 0;
     const tick = async () => {
       if (cancelled) return;
@@ -2254,7 +2400,12 @@ export default function FriendsTabScreen() {
       try {
         await generateReferralCode(myProfile?.name ?? 'User');
         const rc = await getReferralCode();
-        if (!cancelled && rc && rc.trim().length >= 4) {
+        if (
+          !cancelled
+          && isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)
+          && rc
+          && rc.trim().length >= 4
+        ) {
           setReferralCode(rc.trim().toUpperCase());
           return;
         }
@@ -2265,7 +2416,7 @@ export default function FriendsTabScreen() {
     };
     let timer = setTimeout(() => { void tick(); }, 1500);
     return () => { cancelled = true; clearTimeout(timer); };
-  }, [referralEnabled, referralCode, myProfile?.name]);
+  }, [referralEnabled, referralCode, myProfile?.name, accountToken]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
   // ──
@@ -2275,26 +2426,72 @@ export default function FriendsTabScreen() {
     let cancelled = false;
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
+    let attachVersion = 0;
+    let attachInProgress = false;
+    let setupRemaining = 0;
+    let pendingRetrySignal = false;
+    let pendingForceAttach = false;
+    let retryEligible = false;
+    let requestAttach: (force?: boolean) => void = () => {};
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    let retryAttempt = 0;
 
-    void (async () => {
-      await startFriendsTabSwrPrime();
-      if (cancelled) return;
+    const scheduleRetry = () => {
+      if (cancelled || retryTimer || !retryEligible) return;
+      const delay = FRIENDS_LISTENER_RETRY_DELAYS_MS[Math.min(retryAttempt, FRIENDS_LISTENER_RETRY_DELAYS_MS.length - 1)];
+      retryAttempt += 1;
+      retryTimer = setTimeout(() => {
+        retryTimer = null;
+        requestAttach();
+      }, delay);
+    };
 
-      let canonical: string | null = null;
-      try {
-        canonical = await getCanonicalUserId();
-      } catch {
-        canonical = null;
+    const completeAttachAttempt = (version: number) => {
+      if (cancelled || version !== attachVersion) return;
+      attachInProgress = false;
+      setupRemaining = 0;
+      const force = pendingForceAttach;
+      const shouldRetry = pendingRetrySignal && (force || retryEligible);
+      pendingRetrySignal = false;
+      pendingForceAttach = false;
+      if (!retryEligible) retryAttempt = 0;
+      if (shouldRetry) requestAttach(force);
+      else scheduleRetry();
+    };
+
+    const attach = async () => {
+      const version = ++attachVersion;
+      attachInProgress = true;
+      retryEligible = false;
+      if (retryTimer) {
+        clearTimeout(retryTimer);
+        retryTimer = null;
       }
-      if (cancelled) return;
+      const capturedAccount = accountToken;
+      unsubFriends();
+      unsubRequests();
+      unsubFriends = () => {};
+      unsubRequests = () => {};
+      if (!isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)) {
+        attachInProgress = false;
+        return;
+      }
+
+      await startFriendsTabSwrPrime(capturedAccount);
+      if (cancelled || version !== attachVersion) return;
+      if (!isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)) {
+        attachInProgress = false;
+        return;
+      }
+      const canonical = capturedAccount.stableId;
 
       // После prime модульный кеш уже заполнен — не читаем диск снова (async лишний раунд).
-      const profilesCache = peekProfilesCache();
+      const profilesCache = peekProfilesCache(capturedAccount);
       profilesCacheRef.current = { ...profilesCache };
 
-      const w = peekFriendsTabSwrWarm();
+      const w = peekFriendsTabSwrWarm(capturedAccount);
 
-      if (canonical && w && w.canonicalUid === canonical) {
+      if (canonical && w?.canonicalUid === canonical) {
         swrHadFriendsRef.current = w.friends.length > 0;
         setFriends(w.friends);
         if (w.friends.length > 0) {
@@ -2312,61 +2509,91 @@ export default function FriendsTabScreen() {
           if (e?.profile) merged[uid] = e.profile as FriendProfile;
         }
         if (Object.keys(merged).length > 0) setProfiles(merged);
-      } else if (canonical && w && w.canonicalUid !== canonical) {
+      } else if (canonical) {
         setFriends([]);
         setRequests([]);
         setProfiles({});
         swrHadFriendsRef.current = false;
       }
 
-      const uid = await ensureAnonUser();
-      if (!uid || cancelled) return;
-
-      const authLinkReady = await ensureFriendRequestViewerAuthLink(uid);
-      if (!authLinkReady || cancelled) return;
-
+      if (cancelled || version !== attachVersion) return;
+      setupRemaining = 2;
+      const onSetupState = (state: 'ready' | 'preflight_failed') => {
+        if (cancelled || version !== attachVersion) return;
+        if (state === 'preflight_failed') retryEligible = true;
+        setupRemaining = Math.max(0, setupRemaining - 1);
+        if (setupRemaining === 0) completeAttachAttempt(version);
+      };
+      const markRetryEligible = () => {
+        if (cancelled || version !== attachVersion) return;
+        retryEligible = true;
+        if (!attachInProgress) scheduleRetry();
+      };
       unsubFriends = subscribeToFriends((data, meta) => {
-        if (cancelled) return;
+        if (cancelled || version !== attachVersion) return;
         const fromCache = meta?.fromCache === true;
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
         setFriends(data);
         if (data.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
         }
-      });
+      }, markRetryEligible, onSetupState);
 
       unsubRequests = subscribeToIncomingRequests(
-        data => { if (!cancelled) setRequests(data); },
-        () => {},
+        data => { if (!cancelled && version === attachVersion) setRequests(data); },
+        markRetryEligible,
+        onSetupState,
       );
-    })();
+    };
+
+    requestAttach = (force = false) => {
+      if (cancelled) return;
+      if (attachInProgress) {
+        pendingRetrySignal = true;
+        if (force) pendingForceAttach = true;
+        return;
+      }
+      if (!force && !retryEligible) return;
+      void attach();
+    };
+
+    requestAttach(true);
+    const unsubscribeNet = subscribeNetStatus((online) => {
+      if (online) requestAttach();
+    });
+    let unsubscribeAuth: (() => void) | undefined;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const auth = require('@react-native-firebase/auth').default;
+      let observedAuthUid = auth().currentUser?.uid ?? null;
+      unsubscribeAuth = auth().onAuthStateChanged((user: { uid?: string } | null) => {
+        const nextAuthUid = user?.uid ?? null;
+        if (nextAuthUid === observedAuthUid) return;
+        observedAuthUid = nextAuthUid;
+        requestAttach(true);
+      });
+    } catch { /* Firebase Auth unavailable */ }
 
     return () => {
       cancelled = true;
+      attachVersion += 1;
+      if (retryTimer) clearTimeout(retryTimer);
+      unsubscribeNet();
+      unsubscribeAuth?.();
       unsubFriends();
       unsubRequests();
     };
-  }, [friendsTabVisible]);
+  }, [friendsTabVisible, focusTick, accountToken.generation, accountToken]);
 
   useEffect(() => {
+    const capturedAccount = accountToken;
     const timer = setTimeout(() => {
-      void (async () => {
-        try {
-          const uid = await getCanonicalUserId();
-          if (!uid) return;
-          // Сохраняем только friends+requests — профили хранятся в отдельном кеше с TTL.
-          await AsyncStorage.setItem(
-            FRIENDS_TAB_SWR_CACHE_KEY,
-            JSON.stringify({ canonicalUid: uid, friends, requests, savedAt: Date.now() }),
-          );
-          memoryUpsertFriendsTabSwr(uid, friends, requests);
-        } catch {
-          /* ignore */
-        }
-      })();
+      if (!isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)) return;
+      // Profiles use their own TTL cache; this snapshot only owns edges and requests.
+      void persistFriendsTabSwrForAccount(capturedAccount, friends, requests);
     }, 450);
     return () => clearTimeout(timer);
-  }, [friends, requests]);
+  }, [friends, requests, accountToken]);
 
   // ── Profile loading ────────────────────────────────────────────────────────
 
@@ -2374,18 +2601,29 @@ export default function FriendsTabScreen() {
     const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
     if (!friendsTabVisible || uids.length === 0) return;
     let cancelled = false;
-    void (async () => {
-      // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
-      const { fresh, updatedCache } = await loadProfiles(uids, profilesCacheRef.current);
-      if (cancelled) return;
-      profilesCacheRef.current = updatedCache;
-      setProfiles(prev => {
-        const next = { ...prev, ...fresh };
-        return next;
-      });
-    })();
-    return () => { cancelled = true; };
-  }, [friends, requests, friendsTabVisible, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
+    const capturedAccount = accountToken;
+    const profileWarmTask = InteractionManager.runAfterInteractions(() => {
+      void (async () => {
+        // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
+        const { fresh, updatedCache } = await loadProfiles(
+          uids,
+          profilesCacheRef.current,
+          capturedAccount,
+          () => cancelled,
+        );
+        if (cancelled || !isCurrentAccountGeneration(capturedAccount, capturedAccount.stableId)) return;
+        profilesCacheRef.current = updatedCache;
+        setProfiles(prev => {
+          const next = { ...prev, ...fresh };
+          return next;
+        });
+      })();
+    });
+    return () => {
+      cancelled = true;
+      profileWarmTask.cancel();
+    };
+  }, [friends, requests, friendsTabVisible, focusTick, accountToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Cleanup ────────────────────────────────────────────────────────────────
 
@@ -2404,6 +2642,11 @@ export default function FriendsTabScreen() {
   const handleSearch = useCallback(async () => {
     const query = getFriendSearchQuery(codeInput);
     if (!isFriendSearchReady(query) || isSearching) return;
+    const capturedSearchAccount = accountToken;
+    const searchStillCurrent = () => (
+      isCurrentAccountGeneration(capturedSearchAccount, capturedSearchAccount.stableId)
+    );
+    if (!searchStillCurrent()) return;
     hapticTap();
     Keyboard.dismiss();
     setIsSearching(true);
@@ -2411,13 +2654,13 @@ export default function FriendsTabScreen() {
     setSearchError(null);
     try {
       const isCode = isFriendCodeQuery(query);
-      const codeUpper = normalizeInviteCodeInput(query);
       await trackActivity('friends:search_start', {
         feature: 'friends',
         screen: 'friends',
         result: 'start',
         tags: { queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
       });
+      if (!searchStillCurrent()) return;
       if (!isCode) {
         const localProfile = findLocalFriendProfileByName(query, profiles, friends, requests);
         if (localProfile) {
@@ -2431,21 +2674,34 @@ export default function FriendsTabScreen() {
           return;
         }
       }
-      const result = isCode ? await lookupUserByFriendCode(codeUpper) : await lookupUserByNickname(query);
-      if (!result) {
+      const resolution = await resolveFriendSearch(query, myCode);
+      if (!searchStillCurrent()) return;
+      if (resolution.kind === 'self_code') {
+        await trackActivity('friends:search_result', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'blocked',
+          tags: { reason: 'self_code' },
+        });
+        if (!searchStillCurrent()) return;
+        setSearchError(randomSelfFriendCodeMessage(L));
+        return;
+      }
+      if (resolution.kind === 'not_found') {
         await trackActivity('friends:search_result', {
           feature: 'friends',
           screen: 'friends',
           result: 'blocked',
           tags: { reason: 'not_found', queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
         });
+        if (!searchStillCurrent()) return;
         setSearchError(L('Пользователь с таким кодом или ником не найден', 'Користувача з таким кодом або ніком не знайдено', 'No se encontró usuario con ese código o nick', 'Nenhum usuário encontrado com esse código ou nick', 'Không tìm thấy người dùng với mã hoặc tên này', 'Pengguna dengan kode atau nama ini tidak ditemukan', 'Bu kod veya adla kullanıcı bulunamadı', 'Nie znaleziono użytkownika z tym kodem lub nickiem'));
         return;
       }
-      const myUid = await ensureAnonUser();
-      const isSelf =
-        (isCode && myCode != null && codeUpper === myCode.toUpperCase()) ||
-        (myUid != null && result.uid === myUid);
+      const { result, queryType: resolvedQueryType } = resolution;
+      const myUid = accountToken.stableId ?? await ensureAnonUser();
+      if (!searchStillCurrent()) return;
+      const isSelf = myUid != null && result.uid === myUid;
       if (isSelf) {
         await trackActivity('friends:search_result', {
           feature: 'friends',
@@ -2453,14 +2709,16 @@ export default function FriendsTabScreen() {
           result: 'blocked',
           tags: { reason: 'self_code', targetUid: result.uid },
         });
+        if (!searchStillCurrent()) return;
         setSearchError(randomSelfFriendCodeMessage(L));
         return;
       }
-      const fetched = await fetchFriendProfileFromFirestore(result.uid);
+      const lookupProfile = friendProfileFromLookup(result.uid, result.profile);
+      const fetched = lookupProfile ? null : await fetchFriendProfileFromFirestore(result.uid);
+      if (!searchStillCurrent()) return;
       // Серверный профиль (из users.progress) — ПЕРВИЧНЫЙ источник имени/уровня/аватара.
       // Объединяем с leaderboard/arena: серверный имеет приоритет (mergePublicFriendProfiles
       // берёт запись с бОльшим totalXp как primary). Так карточка не показывает прочерк/ур.1.
-      const lookupProfile = friendProfileFromLookup(result.uid, result.profile);
       const merged = mergePublicFriendProfiles(fetched, lookupProfile) ?? lookupProfile ?? fetched;
       const displayProfile = profileWithLookupDisplayName(result.uid, merged, result.name || result.profile?.name);
       if (!displayProfile) {
@@ -2470,6 +2728,7 @@ export default function FriendsTabScreen() {
           result: 'blocked',
           tags: { reason: 'profile_unavailable', targetUid: result.uid },
         });
+        if (!searchStillCurrent()) return;
         setSearchError(L(
           'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
           'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
@@ -2487,9 +2746,10 @@ export default function FriendsTabScreen() {
         feature: 'friends',
         screen: 'friends',
         result: 'success',
-        tags: { targetUid: result.uid, profileLoaded: true, queryType: isCode ? 'code' : 'nickname' },
+        tags: { targetUid: result.uid, profileLoaded: true, queryType: resolvedQueryType },
       });
     } catch (e) {
+      if (!searchStillCurrent()) return;
       void import('../app_health')
         .then(({ logAppWarning }) =>
           logAppWarning('friends:search_failed', e, {
@@ -2506,11 +2766,12 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { queryLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
+      if (!searchStillCurrent()) return;
       setSearchError(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
-      setIsSearching(false);
+      if (searchStillCurrent()) setIsSearching(false);
     }
-  }, [L, codeInput, isSearching, myCode, profiles, friends, requests]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [L, codeInput, isSearching, myCode, profiles, friends, requests, accountToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleAddFound = useCallback(async () => {
     if (!foundUser || isAdding) return;

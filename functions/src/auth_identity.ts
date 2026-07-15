@@ -191,13 +191,22 @@ function collectStableIdentityCandidates(
   authUid: string,
 ): Map<string, StableIdentityCandidate> {
   const out = new Map<string, StableIdentityCandidate>();
+  const dataById = new Map<string, FirebaseFirestore.DocumentData>();
+  for (const doc of docs) dataById.set(doc.id, doc.data() ?? {});
+
   for (const doc of docs) {
-    const data = doc.data() ?? {};
+    const data = dataById.get(doc.id) ?? {};
     const canonicalStableId = normalizeStableId(data.canonicalStableId);
     const hidden = data.identityHidden === true;
+    const canonicalData = canonicalStableId ? dataById.get(canonicalStableId) : undefined;
+    const followsOwnedCanonical =
+      hidden &&
+      canonicalStableId.length > 0 &&
+      canonicalStableId !== doc.id &&
+      canonicalTargetOwnedByAuth(canonicalStableId, canonicalData, authUid);
     const linkedAuth = data.linkedAuth as { providerUid?: unknown } | undefined;
     const candidate: StableIdentityCandidate = {
-      id: hidden && canonicalStableId ? canonicalStableId : doc.id,
+      id: followsOwnedCanonical ? canonicalStableId : doc.id,
       hidden,
       hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
       xp: readProgressXp(data),
@@ -234,6 +243,23 @@ async function findStableUidForProviderAuth(
   return pickBestStableIdentityCandidate(candidatesById.values());
 }
 
+function userDocumentOwnedByAuth(
+  data: FirebaseFirestore.DocumentData,
+  authUid: string,
+): boolean {
+  if (normalizeStableId(data.firebaseAuthUid) === authUid) return true;
+  const linkedAuth = data.linkedAuth as { providerUid?: unknown } | undefined;
+  return normalizeStableId(linkedAuth?.providerUid) === authUid;
+}
+
+function canonicalTargetOwnedByAuth(
+  canonicalStableId: string,
+  canonicalData: FirebaseFirestore.DocumentData | undefined,
+  authUid: string,
+): boolean {
+  return canonicalStableId === authUid || Boolean(canonicalData && userDocumentOwnedByAuth(canonicalData, authUid));
+}
+
 async function findLiveAuthLinkAnchor(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -247,7 +273,13 @@ async function findLiveAuthLinkAnchor(
   const canonicalStableId = normalizeStableId(anchoredUserData.canonicalStableId);
   if (anchoredUserData.identityHidden === true && canonicalStableId && canonicalStableId !== anchoredStableId) {
     const canonicalSnap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
-    if (canonicalSnap?.exists) return canonicalStableId;
+    if (canonicalSnap?.exists) {
+      const canonicalData = canonicalSnap.data() ?? {};
+      if (canonicalTargetOwnedByAuth(canonicalStableId, canonicalData, authUid)) {
+        return canonicalStableId;
+      }
+      throw new HttpsError('permission-denied', 'stable_id_mismatch');
+    }
   }
   return anchoredStableId;
 }
@@ -867,7 +899,10 @@ export async function resolveStableUidForAuth(
     const requestedUserData = direct.data() || {};
     const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
     if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== authUid) {
-      return canonicalStableId;
+      const canonicalSnap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
+      const canonicalData = canonicalSnap?.exists ? canonicalSnap.data() ?? {} : undefined;
+      if (canonicalTargetOwnedByAuth(canonicalStableId, canonicalData, authUid)) return canonicalStableId;
+      return authUid;
     }
   }
 

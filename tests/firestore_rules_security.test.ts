@@ -443,7 +443,9 @@ describe('firestore.rules security baseline', () => {
     // (e.g. hasNoShardWrites()), so match the owner + premium-guard prefix instead of
     // pinning the exact (and growing) full line.
     expect(rules).toContain('allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
-    expect(rules).toContain('allow delete: if userDocOwnerMatchesAuth(userId);');
+    expect(rules).toMatch(
+      /allow delete:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&\s*userDocGiftHistoryAllowsDelete\(\)/,
+    );
     expect(rules).toMatch(
       /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
     );
@@ -460,6 +462,23 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(
       /function newDocHasNoPremiumWrites\(\) \{[\s\S]*?\.get\('progress', \{\}\)[\s\S]*?\.keys\(\)\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
     );
+    expect(rules).toContain('function hasNoIdentityAuthorityWrites() {');
+    expect(rules).toContain('function newDocHasNoIdentityAuthorityWrites() {');
+    expect(rules).toMatch(
+      /allow update:[\s\S]*?hasNoIdentityAuthorityWrites\(\)[\s\S]*?hasNoProgressAuthorityMarkerWrites\(\)/,
+    );
+    expect(rules).toMatch(
+      /allow create:[\s\S]*?newDocHasNoIdentityAuthorityWrites\(\)[\s\S]*?newDocHasNoProgressAuthorityMarkerWrites\(\)/,
+    );
+    for (const field of [
+      'identityHidden',
+      'canonicalStableId',
+      'duplicateOfStableId',
+      'identityMergedAt',
+      'identityCanonicalizedAt',
+    ]) {
+      expect(rules).toContain(`'${field}'`);
+    }
   });
 
   // ── Missing-doc read guard (1.5.41 sign-in transaction fix, R1) ──────────
@@ -552,6 +571,39 @@ describe('firestore.rules security baseline', () => {
     ),
   ] as const;
 
+  function compactServerOwnedProgressKeysFromRules(): string[] {
+    const builderBlock = rules.match(
+      /function blockedServerOwnedProgressKeys\(\) \{[\s\S]*?\n    \}/,
+    );
+    if (!builderBlock) throw new Error('blockedServerOwnedProgressKeys() is missing');
+
+    const idsByVariable = new Map(
+      [...builderBlock[0].matchAll(/let (\w+) = '([^']+)';/g)]
+        .map((match) => [match[1], match[2]] as const),
+    );
+    const returnStart = builderBlock[0].indexOf('return [');
+    const fixedListEnd = builderBlock[0].indexOf(']', returnStart);
+    if (returnStart < 0 || fixedListEnd < 0) {
+      throw new Error('blockedServerOwnedProgressKeys() fixed list is malformed');
+    }
+
+    const expanded = [...builderBlock[0]
+      .slice(returnStart, fixedListEnd + 1)
+      .matchAll(/'([^']+)'/g)]
+      .map((match) => match[1]);
+
+    const patternCalls = [...builderBlock[0].matchAll(
+      /serverProgressKeysForIds\((\w+), '([^']*)', '([^']*)'\)/g,
+    )];
+    for (const [, idsVariable, prefix, suffix] of patternCalls) {
+      const ids = idsByVariable.get(idsVariable);
+      if (!ids) throw new Error(`Missing id manifest: ${idsVariable}`);
+      expanded.push(...ids.split(',').map((id) => `${prefix}${id}${suffix}`));
+    }
+
+    return expanded;
+  }
+
   test('users update rule is gated on progressHasNoPremiumWrites() (paywall self-grant guard)', () => {
     // The guard must be wired into the update rule, not merely defined.
     // We assert the gate is PRESENT in the users update rule rather than pinning the
@@ -561,9 +613,10 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(
       /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
     );
-    // It must inspect the diff of the progress map's affected keys.
+    // It must inspect the diff of the progress map's affected keys and feed the
+    // result to both the premium and compact server-owned manifests.
     expect(rules).toMatch(
-      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\.get\('progress', \{\}\)[\s\S]*?\.diff\(resource\.data\.get\('progress', \{\}\)\)[\s\S]*?\.affectedKeys\(\)[\s\S]*?\.hasAny\(\[/,
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?newProgress\.diff\(oldProgress\)\.affectedKeys\(\)[\s\S]*?affectedProgressKeys\.hasAny\(blockedPremiumProgressKeys\(\)\)[\s\S]*?affectedProgressKeys\.hasAny\(blockedServerOwnedProgressKeys\(\)\)/,
     );
   });
 
@@ -594,24 +647,32 @@ describe('firestore.rules security baseline', () => {
   });
 
   test('premium guards block every server-owned progress key', () => {
-    // The blocked keys now live in two functions: server-authoritative XP/streak/lesson
-    // keys stay inside progressHasNoPremiumWrites(), while always-blocked keys (e.g.
-    // collectibles) were lifted into blockedPremiumProgressKeys() so create+update share
-    // them. A key is safe if it appears in EITHER block. Check the union.
-    const updateGuard = rules.match(
-      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\n    \}/,
-    );
+    // Patterned lesson/exam fields are expanded from compact id manifests to stay
+    // below Firestore's 1,000-expression limit. Always-blocked keys such as
+    // collectibles remain shared with the create guard.
+    const compactKeys = compactServerOwnedProgressKeysFromRules();
     const sharedList = rules.match(
       /function blockedPremiumProgressKeys\(\) \{[\s\S]*?\n    \}/,
     );
-    expect(updateGuard).not.toBeNull();
     expect(sharedList).not.toBeNull();
-    const blockedAnywhere = updateGuard![0] + sharedList![0];
+    const sharedKeys = [...sharedList![0].matchAll(/'([^']+)'/g)]
+      .map((match) => match[1]);
+    const blockedAnywhere = new Set([...compactKeys, ...sharedKeys]);
     for (const key of SERVER_OWNED_PROGRESS_KEYS) {
       // During server-authoritative progress cutover, clients must not be able
       // to overwrite XP, streaks, lessons, exams, or collectibles directly.
-      expect(blockedAnywhere).toContain(`'${key}'`);
+      expect(blockedAnywhere.has(key)).toBe(true);
     }
+
+    const expectedCompactKeys = SERVER_OWNED_PROGRESS_KEYS.filter(
+      (key) => !['collectibles_owned_v1', 'collectibles_state_v1'].includes(key),
+    );
+    expect(compactKeys).toHaveLength(802);
+    expect(new Set(compactKeys).size).toBe(802);
+    expect(new Set(compactKeys)).toEqual(new Set(expectedCompactKeys));
+    expect(rules).toContain("ids.replace(',', suffix + ',' + prefix)");
+    expect(rules).toContain(".split(',')");
+    expect(rules).not.toContain('legacyProgressHasNoPremiumWrites');
   });
 
   test('cloud_sync filters representative server-owned progress keys blocked by rules', () => {
@@ -627,9 +688,13 @@ describe('firestore.rules security baseline', () => {
       'shard_survey_last_at_ms',
     ];
 
-    for (const key of representativeKeys) {
-      expect(rules).toContain(`'${key}'`);
-    }
+    const blockedByRules = new Set(compactServerOwnedProgressKeysFromRules());
+    expect(
+      representativeKeys
+        .filter((key) => key !== 'shard_survey_last_at_ms')
+        .filter((key) => !blockedByRules.has(key)),
+    ).toEqual([]);
+    expect(rules).toContain("'shard_survey_last_at_ms'");
     expect(cloudSync).toMatch(
       /lesson_progress_v2::fr::\(\?:\\d\+\|lesson\\d\+_\(\?:best_score\|pass_count\|progress\|cellIndex\)\|unlocked_lessons\)/,
     );
@@ -644,7 +709,103 @@ describe('firestore.rules security baseline', () => {
   test('progressHasNoPremiumWrites() preserves the deliberate admin escape hatch', () => {
     // Admin (custom claim) keeps manual VIP grant/revoke via the web SDK.
     expect(rules).toMatch(
-      /function progressHasNoPremiumWrites\(\) \{\s*return isAdmin\(\)/,
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?return isAdmin\(\)/,
+    );
+  });
+
+  test('gift grants are one-time immutable pairs on user create and update', () => {
+    const allGiftFields = [
+      'intro_access_granted_at_ms',
+      'intro_access_until_ms',
+      'loyalty_gift_granted_at_ms',
+      'loyalty_gift_until_ms',
+    ] as const;
+
+    expect(rules).toContain('function giftGrantPairUpdateIsSafe(');
+    expect(rules).toContain('function giftAccessWritesAreSafe() {');
+    expect(rules).toContain('function newDocHasOnlyValidGiftAccessWrites() {');
+    expect(rules).toMatch(
+      /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)[\s\S]*?giftAccessWritesAreSafe\(\)/,
+    );
+    expect(rules).toMatch(
+      /allow create:\s*if\s+newUserDocOwnerMatchesAuth\(userId\)[\s\S]*?newDocHasOnlyValidGiftAccessWrites\(\)/,
+    );
+
+    const giftFieldsBlock = rules.match(
+      /function giftGrantFields\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(giftFieldsBlock).not.toBeNull();
+    for (const field of allGiftFields) {
+      expect(giftFieldsBlock![0]).toContain(`'${field}'`);
+    }
+
+    const pairUpdateBlock = rules.match(
+      /function giftGrantPairUpdateIsSafe\([\s\S]*?\n    \}/,
+    );
+    expect(pairUpdateBlock).not.toBeNull();
+    // Untouched legacy gift fields must not block unrelated progress writes.
+    expect(pairUpdateBlock![0]).toMatch(/!affectedKeys\.hasAny\(pairFields\)/);
+    // Any actual gift write must create both fields together and only when neither
+    // member of that pair existed before. That makes later replace/extend/remove fail.
+    expect(pairUpdateBlock![0]).toMatch(/affectedKeys\.hasAll\(pairFields\)/);
+    expect(pairUpdateBlock![0]).toMatch(/!oldProgress\.keys\(\)\.hasAny\(pairFields\)/);
+    expect(pairUpdateBlock![0]).toMatch(/newProgress\.keys\(\)\.hasAll\(pairFields\)/);
+  });
+
+  test('gift persistence has a narrow update path within the Rules expression budget', () => {
+    // Keep the legal gift write on a small self-contained allow branch that cannot
+    // carry unrelated progress/top-level mutations. Its entitlement invariants stay
+    // independent from future growth of the general user-progress guard.
+    const giftOnlyBlock = rules.match(
+      /function giftAccessOnlyUpdateIsSafe\(userId\) \{[\s\S]*?\n    \}/,
+    );
+    expect(giftOnlyBlock).not.toBeNull();
+    expect(giftOnlyBlock![0]).toMatch(
+      /request\.resource\.data\.diff\(resource\.data\)\.affectedKeys\(\)/,
+    );
+    expect(giftOnlyBlock![0]).toMatch(
+      /topLevelAffectedKeys\.hasOnly\(\['progress', 'updatedAt'\]\)/,
+    );
+    expect(giftOnlyBlock![0]).toMatch(
+      /newProgress\.diff\(oldProgress\)\.affectedKeys\(\)/,
+    );
+    expect(giftOnlyBlock![0]).toMatch(
+      /progressAffectedKeys\.hasOnly\(giftGrantFields\(\)\)/,
+    );
+    expect(giftOnlyBlock![0]).toMatch(
+      /progressAffectedKeys\.hasAny\(giftGrantFields\(\)\)/,
+    );
+    expect(giftOnlyBlock![0]).toContain('giftAccessWritesAreSafe()');
+    expect(rules).toContain('allow update: if giftAccessOnlyUpdateIsSafe(userId);');
+  });
+
+  test('gift pair values are numeric strings near request.time and last at most 72 hours', () => {
+    const valueGuard = rules.match(
+      /function giftGrantPairIsValid\([\s\S]*?\n    \}/,
+    );
+    const windowGuard = rules.match(
+      /function giftGrantPairHasValidWindow\([\s\S]*?\n    \}/,
+    );
+    expect(valueGuard).not.toBeNull();
+    expect(windowGuard).not.toBeNull();
+    expect(valueGuard![0]).toContain('is string');
+    expect(valueGuard![0]).toContain("matches('^[0-9]{13}$')");
+    expect(windowGuard![0]).toContain('int(progress[grantedAtKey])');
+    expect(windowGuard![0]).toContain('int(progress[untilKey])');
+    expect(windowGuard![0]).toContain('request.time.toMillis()');
+    expect(windowGuard![0]).toMatch(/grantedAtMs >= requestTimeMs - 10 \* 60 \* 1000/);
+    expect(windowGuard![0]).toMatch(/grantedAtMs <= requestTimeMs \+ 10 \* 60 \* 1000/);
+    expect(windowGuard![0]).toMatch(/untilMs > grantedAtMs/);
+    expect(windowGuard![0]).toMatch(/untilMs - grantedAtMs <= 72 \* 60 \* 60 \* 1000/);
+  });
+
+  test('a client cannot delete a user document that contains gift history', () => {
+    expect(rules).toContain('function userDocGiftHistoryAllowsDelete() {');
+    expect(rules).toMatch(
+      /function userDocGiftHistoryAllowsDelete\(\) \{[\s\S]*?resource\.data\.get\('progress', \{\}\)[\s\S]*?\.keys\(\)\.hasAny\(giftGrantFields\(\)\)/,
+    );
+    expect(rules).toMatch(
+      /allow delete:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&\s*userDocGiftHistoryAllowsDelete\(\)/,
     );
   });
 

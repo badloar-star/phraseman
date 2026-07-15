@@ -4,6 +4,18 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 
 const NAME_INDEX = 'name_index';
 
+async function requiredLookupRead<T>(work: Promise<T>): Promise<T> {
+  try {
+    return await work;
+  } catch (error) {
+    console.warn(JSON.stringify({
+      event: 'friend_lookup_firestore_unavailable',
+      code: String((error as { code?: unknown })?.code ?? 'unknown').slice(0, 80),
+    }));
+    throw new HttpsError('unavailable', 'friend_lookup_unavailable');
+  }
+}
+
 function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
 }
@@ -31,6 +43,11 @@ interface LookupProfile {
   isPremium: boolean;
 }
 
+type VisibleLookupTarget = {
+  uid: string;
+  userData: FirebaseFirestore.DocumentData;
+};
+
 function readLookupProfile(userData: FirebaseFirestore.DocumentData | undefined): LookupProfile {
   const p = (userData?.progress ?? {}) as FirebaseFirestore.DocumentData;
   const num = (v: unknown): number => {
@@ -57,11 +74,11 @@ async function loadVisibleTarget(
 ): Promise<FirebaseFirestore.DocumentData | null> {
   const cleanUid = sanitizeString(uid, 180);
   if (!cleanUid) return null;
-  const [userSnap, bannedSnap] = await Promise.all([
-    db.collection('users').doc(cleanUid).get().catch(() => null),
-    db.collection('banned_users').doc(cleanUid).get().catch(() => null),
-  ]);
-  if (bannedSnap?.exists || !userSnap?.exists) return null;
+  const [userSnap, bannedSnap] = await requiredLookupRead(Promise.all([
+    db.collection('users').doc(cleanUid).get(),
+    db.collection('banned_users').doc(cleanUid).get(),
+  ]));
+  if (bannedSnap.exists || !userSnap.exists) return null;
   const data = userSnap.data() ?? {};
   if (data.identityHidden === true || data.banned === true) return null;
   return data;
@@ -76,11 +93,11 @@ async function loadVisibleTarget(
  * как «не найден». Возвращаем uid ПЕРВОГО живого владельца имени (точное совпадение
  * nameLower). Порядок запросов повторяет проверку занятости имени.
  */
-async function resolveUidByLegacyName(
+async function resolveTargetByLegacyName(
   db: FirebaseFirestore.Firestore,
   name: string,
   nameLower: string,
-): Promise<string | null> {
+): Promise<VisibleLookupTarget | null> {
   const queries = [
     db.collection('users').where('progress.user_name_lower', '==', nameLower).limit(5),
     db.collection('leaderboard').where('nameLower', '==', nameLower).limit(5),
@@ -88,11 +105,12 @@ async function resolveUidByLegacyName(
   ];
   for (const query of queries) {
     // eslint-disable-next-line no-await-in-loop
-    const snap = await query.get().catch(() => null);
-    for (const doc of snap?.docs ?? []) {
+    const snap = await requiredLookupRead(query.get());
+    for (const doc of snap.docs ?? []) {
       const candidate = sanitizeString(doc.id, 180);
       // eslint-disable-next-line no-await-in-loop
-      if (candidate && (await loadVisibleTarget(db, candidate))) return candidate;
+      const userData = candidate ? await loadVisibleTarget(db, candidate) : null;
+      if (userData) return { uid: candidate, userData };
     }
   }
   return null;
@@ -105,24 +123,24 @@ async function resolveUidByLegacyName(
  * первого живого юзера, чей ник НАЧИНАЕТСЯ на введённое. Не трогаем, если prefix
  * слишком короткий — иначе половина базы попадёт под совпадение.
  */
-async function resolveUidByNamePrefix(
+async function resolveTargetByNamePrefix(
   db: FirebaseFirestore.Firestore,
   prefixLower: string,
-): Promise<string | null> {
+): Promise<VisibleLookupTarget | null> {
   if (prefixLower.length < 2) return null;
   const end = `${prefixLower}`;
-  const snap = await db
+  const snap = await requiredLookupRead(db
     .collection('users')
     .where('progress.user_name_lower', '>=', prefixLower)
     .where('progress.user_name_lower', '<', end)
     .orderBy('progress.user_name_lower')
     .limit(10)
-    .get()
-    .catch(() => null);
-  for (const doc of snap?.docs ?? []) {
+    .get());
+  for (const doc of snap.docs ?? []) {
     const candidate = sanitizeString(doc.id, 180);
     // eslint-disable-next-line no-await-in-loop
-    if (candidate && (await loadVisibleTarget(db, candidate))) return candidate;
+    const userData = candidate ? await loadVisibleTarget(db, candidate) : null;
+    if (userData) return { uid: candidate, userData };
   }
   return null;
 }
@@ -195,7 +213,7 @@ export const friendLookupUser = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
   }
 
   // 1) Быстрый путь: точный лукап в name_index.
-  const idxSnap = await db.collection(NAME_INDEX).doc(nameLower).get();
+  const idxSnap = await requiredLookupRead(db.collection(NAME_INDEX).doc(nameLower).get());
   const idx = idxSnap.data();
   const idxUid = sanitizeString(idx?.uid, 180);
   if (idxSnap.exists && !nameIndexDocIsHidden(idx) && idxUid) {
@@ -210,23 +228,22 @@ export const friendLookupUser = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
 
   // 2) Запасной путь: точное совпадение имени в старых источниках (для аккаунтов вне
   //    name_index). При попадании — самолечим индекс, чтобы дальше был быстрый путь.
-  const legacyUid = await resolveUidByLegacyName(db, name, nameLower);
-  if (legacyUid) {
-    const userData = await loadVisibleTarget(db, legacyUid);
-    if (userData) {
-      await backfillNameIndex(db, nameLower, legacyUid, readLookupProfile(userData).name || name);
-      return { ok: true, user: buildUserResponse(legacyUid, userData, name) };
-    }
+  const legacyTarget = await resolveTargetByLegacyName(db, name, nameLower);
+  if (legacyTarget) {
+    await backfillNameIndex(
+      db,
+      nameLower,
+      legacyTarget.uid,
+      readLookupProfile(legacyTarget.userData).name || name,
+    );
+    return { ok: true, user: buildUserResponse(legacyTarget.uid, legacyTarget.userData, name) };
   }
 
   // 3) Префиксный путь: «Vitalii» → «Vitalii Virchyk». Индекс не самолечим (ключ там
   //    полное имя, а не введённый префикс).
-  const prefixUid = await resolveUidByNamePrefix(db, nameLower);
-  if (prefixUid) {
-    const userData = await loadVisibleTarget(db, prefixUid);
-    if (userData) {
-      return { ok: true, user: buildUserResponse(prefixUid, userData, name) };
-    }
+  const prefixTarget = await resolveTargetByNamePrefix(db, nameLower);
+  if (prefixTarget) {
+    return { ok: true, user: buildUserResponse(prefixTarget.uid, prefixTarget.userData, name) };
   }
 
   return { ok: true, user: null };

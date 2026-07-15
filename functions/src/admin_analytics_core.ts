@@ -1,4 +1,6 @@
-export const ANALYTICS_DEFINITION_VERSION = 'admin_v2_trustworthy_v1';
+import { isGiftAccessActive } from './premium_status';
+
+export const ANALYTICS_DEFINITION_VERSION = 'admin_v2_trustworthy_v2';
 export const REVENUECAT_GRACE_MS = 72 * 60 * 60 * 1000;
 
 export type AccessKind =
@@ -102,11 +104,6 @@ function storeActive(progress: Record<string, unknown>, plan: string, nowMs: num
   return rcExpiry > 0 && rcExpiry + REVENUECAT_GRACE_MS >= nowMs;
 }
 
-function giftActive(progress: Record<string, unknown>, nowMs: number): boolean {
-  return millis(progress.intro_access_until_ms) > nowMs
-    || millis(progress.loyalty_gift_until_ms) > nowMs;
-}
-
 function adminGrantActive(progress: Record<string, unknown>, plan: string, nowMs: number): boolean {
   const override = lower(progress.admin_premium_override);
   const grant = override === 'true' || (plan === 'admin_grant' && override !== 'false');
@@ -146,7 +143,7 @@ export function classifyActiveAccess(row: AnalyticsUserRow, nowMs: number = Date
     if (plan === 'lifetime') return { kind: 'store_lifetime', storeBacked: true, activeTrial: false };
     return { kind: 'store_subscription', storeBacked: true, activeTrial: false };
   }
-  if (giftActive(progress, nowMs)) return { kind: 'gift', storeBacked: false, activeTrial: false };
+  if (isGiftAccessActive(progress, nowMs)) return { kind: 'gift', storeBacked: false, activeTrial: false };
   if (adminGrantActive(progress, plan, nowMs)) return { kind: 'admin_grant', storeBacked: false, activeTrial: false };
   if (vipActive(progress, nowMs)) return { kind: 'vip', storeBacked: false, activeTrial: false };
   if (manualAccessActive(progress, plan, nowMs)) return { kind: 'manual_or_unknown', storeBacked: false, activeTrial: false };

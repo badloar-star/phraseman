@@ -23,7 +23,19 @@ let stableAuthLinkResult: boolean;
 let stableAuthLinkImplementation: () => Promise<boolean>;
 let stableAuthLinkForStableIdCalls: number;
 let stableAuthLinkForStableIdImplementation: (stableId: string) => Promise<boolean>;
+type DetailedAuthLinkResult = {
+  ok: boolean;
+  requestedStableId: string;
+  stableUid: string | null;
+  authUid: string | null;
+  source: 'callable' | 'cache' | 'unavailable';
+  failure?: 'stable_id_mismatch' | 'unavailable';
+};
+let stableAuthLinkDetailedCalls: number;
+let stableAuthLinkDetailedImplementation: (stableId: string) => Promise<DetailedAuthLinkResult>;
 let liveSnapshotListenerCalls: number;
+let liveSnapshotListenerPaths: string[];
+let firestoreDbAvailable: boolean;
 
 // Simulate a batch that collects operations and commits them atomically.
 const createFakeBatch = () => {
@@ -53,16 +65,24 @@ interface FakeRef {
 interface FakeCollectionRef {
   doc: (id: string) => FakeRef;
   where: (field: string, op: string, val: unknown) => FakeQueryRef;
+  limit: (count: number) => FakeQueryRef;
+  startAfter: (cursor: { id: string } | string) => FakeQueryRef;
+  get: () => Promise<FakeSnapshot>;
   onSnapshot: (cb: (snap: FakeSnapshot) => void, errCb?: (e: Error) => void) => () => void;
 }
 
 interface FakeQueryRef {
+  where: (field: string, op: string, val: unknown) => FakeQueryRef;
+  limit: (count: number) => FakeQueryRef;
+  startAfter: (cursor: { id: string } | string) => FakeQueryRef;
+  get: () => Promise<FakeSnapshot>;
   onSnapshot: (cb: (snap: FakeSnapshot) => void, errCb?: (e: Error) => void) => () => void;
 }
 
 interface FakeSnapshot {
-  docs: Array<{ id: string; data: () => Record<string, unknown> }>;
+  docs: Array<{ id: string; data: () => Record<string, unknown>; ref: FakeRef }>;
   metadata?: { fromCache: boolean };
+  size: number;
 }
 
 const buildFakeRef = (path: string): FakeRef => ({
@@ -84,39 +104,51 @@ const buildFakeRef = (path: string): FakeRef => ({
   },
 });
 
-const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
-  doc: (id: string) => buildFakeRef(`${colPath}/${id}`),
-  where: (field: string, _op: string, val: unknown) => ({
+type FakeFilter = { field: string; value: unknown };
+
+const buildFakeQuery = (
+  colPath: string,
+  filters: FakeFilter[] = [],
+  maxCount: number | null = null,
+  afterId: string | null = null,
+): FakeQueryRef => {
+  const snapshot = (): FakeSnapshot => {
+    const docs = Array.from(mockDocs.entries())
+      .filter(([key, data]) => {
+        if (!key.startsWith(colPath + '/')) return false;
+        const docId = key.slice(colPath.length + 1);
+        return !docId.includes('/')
+          && (!afterId || docId > afterId)
+          && filters.every(({ field, value }) => data[field] === value);
+      })
+      .map(([key, data]) => {
+        const id = key.slice(colPath.length + 1);
+        return { id, data: () => data, ref: buildFakeRef(key) };
+      })
+      .sort((a, b) => a.id.localeCompare(b.id))
+      .slice(0, maxCount ?? undefined);
+    return { docs, metadata: { fromCache: false }, size: docs.length };
+  };
+
+  return {
+    where: (field: string, _op: string, value: unknown) =>
+      buildFakeQuery(colPath, [...filters, { field, value }], maxCount, afterId),
+    limit: (count: number) => buildFakeQuery(colPath, filters, count, afterId),
+    startAfter: (cursor: { id: string } | string) =>
+      buildFakeQuery(colPath, filters, maxCount, typeof cursor === 'string' ? cursor : cursor.id),
+    get: async () => snapshot(),
     onSnapshot: (cb: (snap: FakeSnapshot) => void) => {
       liveSnapshotListenerCalls += 1;
-      // Synchronously deliver matching docs.
-      const docs: Array<{ id: string; data: () => Record<string, unknown> }> = [];
-      for (const [key, data] of mockDocs.entries()) {
-        if (key.startsWith(colPath + '/')) {
-          const docId = key.slice(colPath.length + 1);
-          if (!docId.includes('/') && data[field] === val) {
-            docs.push({ id: docId, data: () => data });
-          }
-        }
-      }
-      cb({ docs, metadata: { fromCache: false } });
+      liveSnapshotListenerPaths.push(colPath);
+      cb(snapshot());
       return () => {};
     },
-  }),
-  onSnapshot: (cb: (snap: FakeSnapshot) => void) => {
-    liveSnapshotListenerCalls += 1;
-    const docs: Array<{ id: string; data: () => Record<string, unknown> }> = [];
-    for (const [key, data] of mockDocs.entries()) {
-      if (key.startsWith(colPath + '/')) {
-        const docId = key.slice(colPath.length + 1);
-        if (!docId.includes('/')) {
-          docs.push({ id: docId, data: () => data });
-        }
-      }
-    }
-    cb({ docs, metadata: { fromCache: false } });
-    return () => {};
-  },
+  };
+};
+
+const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
+  doc: (id: string) => buildFakeRef(`${colPath}/${id}`),
+  ...buildFakeQuery(colPath),
 });
 
 const buildFakeDb = () => ({
@@ -141,9 +173,13 @@ jest.mock('../app/cloud_sync', () => ({
     stableAuthLinkForStableIdCalls += 1;
     return stableAuthLinkForStableIdImplementation(stableId);
   }),
+  ensureStableAuthLinkForStableIdDetailed: jest.fn((stableId: string) => {
+    stableAuthLinkDetailedCalls += 1;
+    return stableAuthLinkDetailedImplementation(stableId);
+  }),
 }));
 jest.mock('@react-native-firebase/firestore', () => ({
-  default: jest.fn(() => buildFakeDb()),
+  default: jest.fn(() => firestoreDbAvailable ? buildFakeDb() : null),
 }));
 
 beforeEach(() => {
@@ -156,7 +192,23 @@ beforeEach(() => {
   stableAuthLinkImplementation = async () => stableAuthLinkResult;
   stableAuthLinkForStableIdCalls = 0;
   stableAuthLinkForStableIdImplementation = async () => stableAuthLinkResult;
+  stableAuthLinkDetailedCalls = 0;
+  stableAuthLinkDetailedImplementation = async (stableId: string) => {
+    stableAuthLinkForStableIdCalls += 1;
+    const authUidAtStart = authUidOverride;
+    const ok = await stableAuthLinkForStableIdImplementation(stableId);
+    return {
+      ok,
+      requestedStableId: stableId,
+      stableUid: ok ? stableId : null,
+      authUid: authUidAtStart,
+      source: ok ? 'callable' : 'unavailable',
+      ...(ok ? {} : { failure: 'unavailable' as const }),
+    };
+  };
   liveSnapshotListenerCalls = 0;
+  liveSnapshotListenerPaths = [];
+  firestoreDbAvailable = true;
   require('@react-native-async-storage/async-storage').__reset?.();
 
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
@@ -174,10 +226,17 @@ beforeEach(() => {
       stableAuthLinkForStableIdCalls += 1;
       return stableAuthLinkForStableIdImplementation(stableId);
     }),
+    ensureStableAuthLinkForStableIdDetailed: jest.fn((stableId: string) => {
+      stableAuthLinkDetailedCalls += 1;
+      return stableAuthLinkDetailedImplementation(stableId);
+    }),
   }));
   jest.mock('@react-native-firebase/firestore', () => ({
-    default: jest.fn(() => buildFakeDb()),
+    default: jest.fn(() => firestoreDbAvailable ? buildFakeDb() : null),
   }));
+  const generation = require('../app/account_generation');
+  generation.__resetAccountGenerationForTests();
+  generation.beginAccountGeneration('my-uid-111');
 });
 
 // ── sendFriendRequest tests ────────────────────────────────────────────────
@@ -226,13 +285,29 @@ test('R04c: sendFriendRequest includes the sender display name for the recipient
   expect(doc?.fromName).toBe('Roma Prime');
 });
 
-test('R04b: sendFriendRequest links stable auth through callable, not direct user doc write', async () => {
+test('R04b: sendFriendRequest resolves stable auth through the scoped callable, not a direct user write', async () => {
   const { sendFriendRequest } = require('../app/firestore_friend_requests');
   const result: SendRequestResult = await sendFriendRequest('target-uid-222');
 
   expect(result).toBe('sent');
-  expect(stableAuthLinkCalls).toBe(1);
+  expect(stableAuthLinkCalls).toBe(0);
+  expect(stableAuthLinkDetailedCalls).toBe(1);
   expect(mockDocs.has('users/my-uid-111')).toBe(false);
+});
+
+test('R04d: sendFriendRequest writes from the server-canonical stable uid after an account merge', async () => {
+  stableAuthLinkDetailedImplementation = async stableId => ({
+    ok: true,
+    requestedStableId: stableId,
+    stableUid: 'server-canonical-uid',
+    authUid: authUidOverride,
+    source: 'callable',
+  });
+  const { sendFriendRequest } = require('../app/firestore_friend_requests');
+
+  await expect(sendFriendRequest('target-uid-222')).resolves.toBe('sent');
+  expect(mockDocs.has('users/target-uid-222/friend_requests/server-canonical-uid')).toBe(true);
+  expect(mockDocs.has('users/target-uid-222/friend_requests/my-uid-111')).toBe(false);
 });
 
 test('R05: sendFriendRequest returns error when getCanonicalUserId returns null', async () => {
@@ -274,13 +349,31 @@ test('A03: acceptFriendRequest creates reverse users/fromUid/friends/myUid entry
   expect(typeof reverseDoc?.createdAt).toBe('number');
 });
 
-test('A04: acceptFriendRequest links stable auth through callable before batch writes', async () => {
+test('A04: acceptFriendRequest resolves stable auth through the scoped callable before batch writes', async () => {
   mockDocs.set('users/my-uid-111/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
   const { acceptFriendRequest } = require('../app/firestore_friend_requests');
   await acceptFriendRequest('from-uid-333');
 
-  expect(stableAuthLinkCalls).toBe(1);
+  expect(stableAuthLinkCalls).toBe(0);
+  expect(stableAuthLinkDetailedCalls).toBe(1);
   expect(mockDocs.has('users/my-uid-111')).toBe(false);
+});
+
+test('A05: acceptFriendRequest mutates the server-canonical account after an account merge', async () => {
+  stableAuthLinkDetailedImplementation = async stableId => ({
+    ok: true,
+    requestedStableId: stableId,
+    stableUid: 'server-canonical-uid',
+    authUid: authUidOverride,
+    source: 'callable',
+  });
+  mockDocs.set('users/server-canonical-uid/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
+  const { acceptFriendRequest } = require('../app/firestore_friend_requests');
+
+  await acceptFriendRequest('from-uid-333');
+  expect(mockDocs.has('users/server-canonical-uid/friends/from-uid-333')).toBe(true);
+  expect(mockDocs.has('users/from-uid-333/friends/server-canonical-uid')).toBe(true);
+  expect(mockDocs.has('users/server-canonical-uid/friend_requests/from-uid-333')).toBe(false);
 });
 
 // ── declineFriendRequest tests ─────────────────────────────────────────────
@@ -290,6 +383,21 @@ test('D01: declineFriendRequest DELETES users/myUid/friend_requests/fromUid doc'
   const { declineFriendRequest } = require('../app/firestore_friend_requests');
   await declineFriendRequest('from-uid-333');
   expect(mockDocs.has('users/my-uid-111/friend_requests/from-uid-333')).toBe(false);
+});
+
+test('D02: declineFriendRequest deletes from the server-canonical account after an account merge', async () => {
+  stableAuthLinkDetailedImplementation = async stableId => ({
+    ok: true,
+    requestedStableId: stableId,
+    stableUid: 'server-canonical-uid',
+    authUid: authUidOverride,
+    source: 'callable',
+  });
+  mockDocs.set('users/server-canonical-uid/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
+  const { declineFriendRequest } = require('../app/firestore_friend_requests');
+
+  await declineFriendRequest('from-uid-333');
+  expect(mockDocs.has('users/server-canonical-uid/friend_requests/from-uid-333')).toBe(false);
 });
 
 // ── deleteFriend tests ─────────────────────────────────────────────────────
@@ -308,6 +416,23 @@ test('X02: deleteFriend also deletes reverse users/friendUid/friends/myUid', asy
   const { deleteFriend } = require('../app/firestore_friend_requests');
   await deleteFriend('friend-uid-444');
   expect(mockDocs.has('users/friend-uid-444/friends/my-uid-111')).toBe(false);
+});
+
+test('X03: deleteFriend removes both edges for the server-canonical account after a merge', async () => {
+  stableAuthLinkDetailedImplementation = async stableId => ({
+    ok: true,
+    requestedStableId: stableId,
+    stableUid: 'server-canonical-uid',
+    authUid: authUidOverride,
+    source: 'callable',
+  });
+  mockDocs.set('users/server-canonical-uid/friends/friend-uid-444', { createdAt: 700 });
+  mockDocs.set('users/friend-uid-444/friends/server-canonical-uid', { createdAt: 700 });
+  const { deleteFriend } = require('../app/firestore_friend_requests');
+
+  await deleteFriend('friend-uid-444');
+  expect(mockDocs.has('users/server-canonical-uid/friends/friend-uid-444')).toBe(false);
+  expect(mockDocs.has('users/friend-uid-444/friends/server-canonical-uid')).toBe(false);
 });
 
 test('V01: ensureFriendRequestViewerAuthLink uses the stable auth callable helper', async () => {
@@ -386,7 +511,7 @@ test('V02c: a late success is cached only for the auth UID that started it', asy
   await Promise.resolve();
   authUidOverride = 'auth-uid-new';
   finish(true);
-  await expect(oldAuthAttempt).resolves.toBe(true);
+  await expect(oldAuthAttempt).resolves.toBe(false);
 
   stableAuthLinkForStableIdImplementation = async () => true;
   await expect(ensureFriendRequestViewerAuthLink('my-uid-111')).resolves.toBe(true);
@@ -460,6 +585,125 @@ test('S00b: successful preflight lets both subscriptions reuse the success cache
   unsubRequests();
 });
 
+test('S00c: a server-canonical stable uid opens the listener on the canonical document', async () => {
+  stableAuthLinkDetailedImplementation = async stableId => ({
+    ok: true,
+    requestedStableId: stableId,
+    stableUid: 'another-stable-uid',
+    authUid: authUidOverride,
+    source: 'callable',
+  });
+  const { beginAccountGeneration } = require('../app/account_generation');
+  beginAccountGeneration('my-uid-111');
+  const { subscribeToFriends } = require('../app/firestore_friend_requests');
+
+  const unsubscribe = subscribeToFriends(() => {});
+  // Detailed preflight has an async callable + bounded wrapper + account check.
+  // Drain the whole chain so this assertion does not race the listener open.
+  for (let i = 0; i < 16; i += 1) await Promise.resolve();
+
+  expect(stableAuthLinkDetailedCalls).toBe(1);
+  expect(liveSnapshotListenerCalls).toBe(1);
+  expect(liveSnapshotListenerPaths).toEqual(['users/another-stable-uid/friends']);
+  unsubscribe();
+});
+
+test('S00c2: a detailed preflight for another requested account never opens a listener', async () => {
+  stableAuthLinkDetailedImplementation = async () => ({
+    ok: true,
+    requestedStableId: 'another-requested-account',
+    stableUid: 'another-stable-uid',
+    authUid: authUidOverride,
+    source: 'callable',
+  });
+  const { beginAccountGeneration } = require('../app/account_generation');
+  beginAccountGeneration('my-uid-111');
+  const { subscribeToFriends } = require('../app/firestore_friend_requests');
+
+  const unsubscribe = subscribeToFriends(() => {});
+  for (let i = 0; i < 16; i += 1) await Promise.resolve();
+
+  expect(stableAuthLinkDetailedCalls).toBe(1);
+  expect(liveSnapshotListenerCalls).toBe(0);
+  unsubscribe();
+});
+
+test('S00d: auth switching while detailed preflight is pending prevents the old listener', async () => {
+  let finish!: (value: DetailedAuthLinkResult) => void;
+  stableAuthLinkDetailedImplementation = () => new Promise(resolve => { finish = resolve; });
+  const { beginAccountGeneration } = require('../app/account_generation');
+  beginAccountGeneration('my-uid-111');
+  const { subscribeToFriends } = require('../app/firestore_friend_requests');
+
+  const unsubscribe = subscribeToFriends(() => {});
+  for (let i = 0; i < 4; i += 1) await Promise.resolve();
+  authUidOverride = 'auth-uid-new';
+  finish({
+    ok: true,
+    requestedStableId: 'my-uid-111',
+    stableUid: 'my-uid-111',
+    authUid: 'auth-uid-999',
+    source: 'callable',
+  });
+  for (let i = 0; i < 16; i += 1) await Promise.resolve();
+
+  expect(liveSnapshotListenerCalls).toBe(0);
+  unsubscribe();
+});
+
+test('S00e: account generation switching while preflight is pending prevents the old listener', async () => {
+  let finish!: (value: DetailedAuthLinkResult) => void;
+  stableAuthLinkDetailedImplementation = () => new Promise(resolve => { finish = resolve; });
+  const { beginAccountGeneration } = require('../app/account_generation');
+  beginAccountGeneration('my-uid-111');
+  const { subscribeToIncomingRequests } = require('../app/firestore_friend_requests');
+
+  const unsubscribe = subscribeToIncomingRequests(() => {});
+  for (let i = 0; i < 4; i += 1) await Promise.resolve();
+  beginAccountGeneration('new-stable-uid');
+  finish({
+    ok: true,
+    requestedStableId: 'my-uid-111',
+    stableUid: 'my-uid-111',
+    authUid: 'auth-uid-999',
+    source: 'callable',
+  });
+  for (let i = 0; i < 16; i += 1) await Promise.resolve();
+
+  expect(liveSnapshotListenerCalls).toBe(0);
+  unsubscribe();
+});
+
+test('S00f: missing auth uid reports preflight failure without erasing cached incoming requests', async () => {
+  canonicalUidOverride = null;
+  const { subscribeToIncomingRequests } = require('../app/firestore_friend_requests');
+  const onRequests = jest.fn();
+  const onSetupState = jest.fn();
+
+  const unsubscribe = subscribeToIncomingRequests(onRequests, undefined, onSetupState);
+  for (let i = 0; i < 8; i += 1) await Promise.resolve();
+
+  expect(onRequests).not.toHaveBeenCalled();
+  expect(onSetupState).toHaveBeenCalledWith('preflight_failed');
+  expect(liveSnapshotListenerCalls).toBe(0);
+  unsubscribe();
+});
+
+test('S00g: unavailable Firestore reports preflight failure without erasing cached incoming requests', async () => {
+  firestoreDbAvailable = false;
+  const { subscribeToIncomingRequests } = require('../app/firestore_friend_requests');
+  const onRequests = jest.fn();
+  const onSetupState = jest.fn();
+
+  const unsubscribe = subscribeToIncomingRequests(onRequests, undefined, onSetupState);
+  for (let i = 0; i < 16; i += 1) await Promise.resolve();
+
+  expect(onRequests).not.toHaveBeenCalled();
+  expect(onSetupState).toHaveBeenCalledWith('preflight_failed');
+  expect(liveSnapshotListenerCalls).toBe(0);
+  unsubscribe();
+});
+
 test('S01: subscribeToFriends calls callback with FriendEntry array and returns unsubscribe fn', async () => {
   mockDocs.set('users/my-uid-111/friends/friend-uid-555', { createdAt: 800 });
   const { subscribeToFriends } = require('../app/firestore_friend_requests');
@@ -502,4 +746,32 @@ test('S02: subscribeToIncomingRequests filters by status pending and returns uns
   expect(pendingEntry?.fromName).toBe('Roma Prime');
   // Accepted request must NOT appear.
   expect(entries.find(r => r.fromUid === 'req-uid-777')).toBeUndefined();
+});
+
+test('C01: stale-friend cleanup rotates its bounded page beyond the first 20 friends', async () => {
+  jest.useFakeTimers();
+  jest.setSystemTime(new Date('2026-07-15T12:00:00.000Z'));
+  try {
+    for (let index = 1; index <= 21; index += 1) {
+      const friendUid = `friend-${String(index).padStart(3, '0')}`;
+      mockDocs.set(`users/my-uid-111/friends/${friendUid}`, { createdAt: index });
+      if (index <= 20) {
+        mockDocs.set(`users/${friendUid}/friends/my-uid-111`, { createdAt: index });
+      }
+    }
+    const {
+      cleanupStaleFriendData,
+      FRIEND_CLEANUP_TTL_MS,
+    } = require('../app/firestore_friend_requests');
+
+    await cleanupStaleFriendData();
+    expect(mockDocs.has('users/my-uid-111/friends/friend-021')).toBe(true);
+
+    jest.advanceTimersByTime(FRIEND_CLEANUP_TTL_MS + 1);
+    await cleanupStaleFriendData();
+
+    expect(mockDocs.has('users/my-uid-111/friends/friend-021')).toBe(false);
+  } finally {
+    jest.useRealTimers();
+  }
 });

@@ -2,6 +2,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { syncToCloud } from '../app/cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from '../app/premium_guard';
 import {
+  __resetAccountGenerationForTests,
+  withAccountTransitionLock,
+} from '../app/account_generation';
+import {
   inferPremiumPlanFromCustomerInfo,
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
@@ -19,6 +23,7 @@ jest.mock('../app/premium_guard', () => ({
 
 describe('premium RevenueCat state sync', () => {
   beforeEach(() => {
+    __resetAccountGenerationForTests();
     (AsyncStorage as any).__reset?.();
     jest.clearAllMocks();
   });
@@ -99,13 +104,16 @@ describe('premium RevenueCat state sync', () => {
 
   it('stops premium side effects when generation changes during local persistence', async () => {
     let release!: () => void;
+    let signalWriteStarted!: () => void;
+    const writeStarted = new Promise<void>((resolve) => { signalWriteStarted = resolve; });
     let current = true;
-    (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(() => (
-      new Promise<void>((resolve) => { release = resolve; })
-    ));
+    (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(() => {
+      signalWriteStarted();
+      return new Promise<void>((resolve) => { release = resolve; });
+    });
 
     const pending = persistStorePremiumLocally('yearly', {}, () => current);
-    await Promise.resolve();
+    await writeStarted;
     current = false;
     release();
     await pending;
@@ -113,5 +121,29 @@ describe('premium RevenueCat state sync', () => {
     expect(markPremiumStoreSeenNow).not.toHaveBeenCalled();
     expect(invalidatePremiumCache).not.toHaveBeenCalled();
     expect(syncToCloud).not.toHaveBeenCalled();
+  });
+
+  it('serializes premium persistence with account wipe/hydration work', async () => {
+    let releaseWrite!: () => void;
+    let signalWriteStarted!: () => void;
+    const writeStarted = new Promise<void>((resolve) => { signalWriteStarted = resolve; });
+    let transitionEntered = false;
+    (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(() => {
+      signalWriteStarted();
+      return new Promise<void>((resolve) => { releaseWrite = resolve; });
+    });
+
+    const persistence = persistStorePremiumLocally('yearly');
+    await writeStarted;
+    const transition = withAccountTransitionLock(async () => {
+      transitionEntered = true;
+    });
+    await Promise.resolve();
+
+    expect(transitionEntered).toBe(false);
+    releaseWrite();
+    await persistence;
+    await transition;
+    expect(transitionEntered).toBe(true);
   });
 });

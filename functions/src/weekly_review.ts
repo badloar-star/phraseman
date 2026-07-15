@@ -819,7 +819,11 @@ interface WeeklyReviewPreflightDependencies {
   requireAuth: (authUid: string | undefined) => string;
   sanitize: (raw: unknown) => WeeklyReviewBriefing;
   resolveStableUid: (db: FirebaseFirestore.Firestore, authUid: string) => Promise<string>;
-  resolvePremium: (db: FirebaseFirestore.Firestore, stableUid: string) => Promise<boolean>;
+  resolvePremium: (
+    db: FirebaseFirestore.Firestore,
+    stableUid: string,
+    authUid: string,
+  ) => Promise<boolean>;
   rejectFree: () => never;
 }
 
@@ -832,7 +836,9 @@ async function runWeeklyReviewPreflight(
     },
     sanitize: sanitizeBriefing,
     resolveStableUid: resolveStableUidForAuth,
-    resolvePremium: resolvePremiumAccess,
+    resolvePremium: (db, stableUid, authUid) => (
+      resolvePremiumAccess(db, stableUid, Date.now(), authUid)
+    ),
     rejectFree: () => { throw new HttpsError('permission-denied', 'weekly_review_plus_required'); },
   },
 ): Promise<{ authUid: string; stableUid: string; briefing: WeeklyReviewBriefing }> {
@@ -842,7 +848,7 @@ async function runWeeklyReviewPreflight(
     throw new HttpsError('failed-precondition', 'weekly_review_insufficient_data');
   }
   const stableUid = await dependencies.resolveStableUid(input.db, authUid);
-  const isPremium = await dependencies.resolvePremium(input.db, stableUid);
+  const isPremium = await dependencies.resolvePremium(input.db, stableUid, authUid);
   if (!isPremium) dependencies.rejectFree();
   return { authUid, stableUid, briefing };
 }

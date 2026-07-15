@@ -738,7 +738,8 @@ export default function ReviewScreen() {
   // Состояние текущей карточки (без плиточной сборки)
   const [mode, setMode]           = useState<ReviewMode>('word_bank');
   const [bankTiles, setBankTiles] = useState<WordBankTile[]>([]);
-  const [nextSlot, setNextSlot]   = useState(0);
+  const nextSlotRef = useRef(0);
+  const bankTileSlotsRef = useRef<Set<number>>(new Set());
   const [meaningOptions, setMeaningOptions] = useState<string[]>([]);
   const [typeText, setTypeText]   = useState('');
   // Ref to the recall-type input, so we can auto-focus it the moment a typing
@@ -806,6 +807,8 @@ export default function ReviewScreen() {
   const loadCard = useCallback((item: RecallItem, itemIndex: number, poolItems: RecallItem[]) => {
     checkingRef.current = false;
     reviewAttemptIdRef.current = makeReviewAttemptId();
+    nextSlotRef.current = 0;
+    bankTileSlotsRef.current.clear();
     const nextMode = pickReviewMode(params.trainerMode, itemIndex, item.phrase);
     setMode(nextMode);
     setPickedChoice(null);
@@ -813,8 +816,9 @@ export default function ReviewScreen() {
     const poolTrans = poolItems.map(it => recallTranslationHint(it, lang, studyTarget));
     const correctTrans = recallTranslationHint(item, lang, studyTarget);
     if (nextMode === 'word_bank') {
-      setBankTiles(shuffleWordBankTiles(item.phrase));
-      setNextSlot(0);
+      const nextBankTiles = shuffleWordBankTiles(item.phrase);
+      bankTileSlotsRef.current = new Set(nextBankTiles.map(tile => tile.slot));
+      setBankTiles(nextBankTiles);
       setMeaningOptions([]);
     } else if (nextMode === 'meaning_match') {
       setBankTiles([]);
@@ -994,7 +998,7 @@ export default function ReviewScreen() {
     if (!ok) {
       const reviewPhrase = tokenizeRecallPhrase(item.phrase).join(' ');
       const interactionTokenMeta: MistakeTokenMeta | undefined = mode === 'word_bank'
-        ? resolveSlotMistake(reviewPhrase, nextSlot, userPick ?? undefined)
+        ? resolveSlotMistake(reviewPhrase, nextSlotRef.current, userPick ?? undefined)
         : mode === 'recall_type'
           ? resolvePhraseMistakeToken(englishRecallSurface(item.phrase), userPick)
           : undefined;
@@ -1112,41 +1116,48 @@ export default function ReviewScreen() {
       ).catch(() => {});
     }
 
-  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode, studyTarget, playCorrect, speakAnswer]);
+  }, [items, index, lang, mode, resultAnim, trainerMode, studyTarget, playCorrect, speakAnswer]);
 
-  const onWordBankTap = useCallback((tile: WordBankTile) => {
-    if (status !== 'playing' || burning) return;
+  const onWordBankTap = useCallback((tile: WordBankTile, optionKey: string) => {
+    if (checkingRef.current || status !== 'playing' || burning) return;
+    if (!bankTileSlotsRef.current.has(tile.slot)) return;
     if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
     const item = items[index];
     if (!item) return;
     const n = tokenizeRecallPhrase(item.phrase).length;
-    if (tile.slot !== nextSlot) {
+    const liveNextSlot = nextSlotRef.current;
+    if (tile.slot !== liveNextSlot) {
       // Неверная плитка → finishCard сам даст error. Лишний tap убран,
       // иначе складывается с error в один сильный удар.
+      flash(optionKey);
       finishCard(false, tile.text);
       return;
     }
-    if (nextSlot + 1 >= n) {
+    if (liveNextSlot + 1 >= n) {
       // Последняя верная плитка → finishCard даст success. Tap не нужен.
+      flash(optionKey);
       finishCard(true, null);
     } else {
       // Промежуточная верная плитка — это раскладка, лёгкий tap уместен.
+      bankTileSlotsRef.current.delete(tile.slot);
+      nextSlotRef.current = liveNextSlot + 1;
+      flash(optionKey);
       hapticTap();
-      setNextSlot(s => s + 1);
       setBankTiles(prev => prev.filter(t => t.slot !== tile.slot));
     }
-  }, [status, burning, items, index, nextSlot, finishCard]);
+  }, [status, burning, items, index, finishCard, flash]);
 
-  const onMeaningPick = useCallback((choice: string) => {
-    if (status !== 'playing' || burning) return;
+  const onMeaningPick = useCallback((choice: string, optionKey: string) => {
+    if (checkingRef.current || status !== 'playing' || burning) return;
     if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
     const item = items[index];
     if (!item) return;
     const correct = recallTranslationHint(item, lang, studyTarget);
     const ok = meaningChoiceIsCorrect(choice, correct);
     // Результат (success/error) идёт из finishCard — лишний tap убран.
+    flash(optionKey);
     finishCard(ok, choice);
-  }, [status, burning, items, index, lang, studyTarget, finishCard]);
+  }, [status, burning, items, index, lang, studyTarget, finishCard, flash]);
 
   const onSubmitTyped = useCallback(() => {
     if (status !== 'playing' || burning || mode !== 'recall_type') return;
@@ -1757,14 +1768,15 @@ export default function ReviewScreen() {
           {mode === 'word_bank' && bankTiles.length > 0 && (
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: isPlanPracticeTask ? 6 : 10, marginBottom: isPlanPracticeTask ? 8 : 16, justifyContent: 'center' }}>
               {bankTiles.map(tile => {
-                const on = flashKey === `wb-${tile.slot}`;
+                const optionKey = `${reviewAttemptIdRef.current}:wb:${tile.slot}:${tile.text}`;
+                const on = flashKey === optionKey;
                 return (
                 <DuoPressable
-                  key={`wb-${tile.slot}`}
+                  key={optionKey}
                   edgeHeight={5}
                   withHaptic={false}
                   edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
-                  onPress={() => { flash(`wb-${tile.slot}`); onWordBankTap(tile); }}
+                  onPress={() => { onWordBankTap(tile, optionKey); }}
                   disabled={status !== 'playing'}
                   style={{
                     backgroundColor: on ? t.accent : t.bgCard,
@@ -1789,14 +1801,15 @@ export default function ReviewScreen() {
             <View style={{ gap: isPlanPracticeTask ? 7 : 10, marginBottom: isPlanPracticeTask ? 8 : 16 }}>
               {meaningOptions.map((opt, j) => {
                 const st = mcOptionStyle(opt);
-                const on = flashKey === `mm-${j}`;
+                const optionKey = `${reviewAttemptIdRef.current}:meaning:${j}:${opt}`;
+                const on = flashKey === optionKey;
                 return (
                   <DuoPressable
-                    key={`mean-${j}-${opt.slice(0, 20)}`}
+                    key={optionKey}
                     edgeHeight={5}
                     withHaptic={false}
                     edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
-                    onPress={() => { flash(`mm-${j}`); onMeaningPick(opt); }}
+                    onPress={() => { onMeaningPick(opt, optionKey); }}
                     disabled={status !== 'playing'}
                     style={{
                       backgroundColor: on ? t.accent : st.bg,

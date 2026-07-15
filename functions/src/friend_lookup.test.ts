@@ -16,6 +16,10 @@ export {}; // изолируем область видимости файла (�
 
 type DocData = Record<string, unknown>;
 type Store = Record<string, Record<string, DocData | undefined>>;
+type DbFailures = {
+  docReads?: string[];
+  queries?: string[];
+};
 
 let currentDb: any = null;
 
@@ -45,7 +49,8 @@ function readField(data: DocData, path: string): unknown {
   return cur;
 }
 
-function makeDbStub(initial: Store = {}) {
+function makeDbStub(initial: Store = {}, failures: DbFailures = {}) {
+  const docReadCounts: Record<string, number> = {};
   const store: Store = {
     users: { ...(initial.users ?? {}) },
     banned_users: { ...(initial.banned_users ?? {}) },
@@ -70,6 +75,9 @@ function makeDbStub(initial: Store = {}) {
       orderBy: () => api,
       limit: (n: number) => ({
         get: async () => {
+          const firstFilter = filters[0];
+          const queryKey = firstFilter ? `${name}:${firstFilter.field}:${firstFilter.op}` : name;
+          if (failures.queries?.includes(queryKey)) throw new Error(`firestore_query_failed:${queryKey}`);
           let rows = Object.entries(store[name] ?? {}).filter(([, d]) => !!d) as [string, DocData][];
           for (const f of filters) {
             rows = rows.filter(([, d]) => {
@@ -97,7 +105,12 @@ function makeDbStub(initial: Store = {}) {
   const db: any = {
     collection: (name: string) => ({
       doc: (id: string) => ({
-        get: async () => snapFor(id, store[name]?.[id]),
+        get: async () => {
+          const docPath = `${name}/${id}`;
+          docReadCounts[docPath] = (docReadCounts[docPath] ?? 0) + 1;
+          if (failures.docReads?.includes(docPath)) throw new Error(`firestore_read_failed:${docPath}`);
+          return snapFor(id, store[name]?.[id]);
+        },
         set: async (data: DocData, opts?: { merge?: boolean }) => {
           store[name] = store[name] ?? {};
           store[name][id] = opts?.merge ? { ...(store[name][id] ?? {}), ...data } : { ...data };
@@ -108,7 +121,7 @@ function makeDbStub(initial: Store = {}) {
   };
 
   currentDb = db;
-  return { db, store };
+  return { db, store, docReadCounts };
 }
 
 function run(fn: any, data: DocData, authUid: string | null) {
@@ -143,7 +156,7 @@ describe('friendLookupUser — finds players across all storage paths', () => {
   });
 
   it('finds a legacy user who is NOT in name_index (via users.progress) and self-heals the index', async () => {
-    const { store } = makeDbStub({
+    const { store, docReadCounts } = makeDbStub({
       users: { 'u-old': VISIBLE('Olga') },
       // name_index intentionally empty — the old bug returned "not found" here.
     });
@@ -151,6 +164,8 @@ describe('friendLookupUser — finds players across all storage paths', () => {
     expect(res.user).toMatchObject({ uid: 'u-old', name: 'Olga' });
     // Self-heal: the index now has the entry so next search hits the fast path.
     expect(store.name_index['olga']).toMatchObject({ uid: 'u-old', nameLower: 'olga' });
+    expect(docReadCounts['users/u-old']).toBe(1);
+    expect(docReadCounts['banned_users/u-old']).toBe(1);
   });
 
   it('finds a legacy user present only in leaderboard', async () => {
@@ -163,11 +178,13 @@ describe('friendLookupUser — finds players across all storage paths', () => {
   });
 
   it('finds a user by name prefix ("Vitalii" → "Vitalii Virchyk")', async () => {
-    makeDbStub({
+    const { docReadCounts } = makeDbStub({
       users: { 'u-vit': VISIBLE('Vitalii Virchyk') },
     });
     const res: any = await run(friendLookupUser, { query: 'Vitalii' }, 'searcher-auth');
     expect(res.user).toMatchObject({ uid: 'u-vit', name: 'Vitalii Virchyk' });
+    expect(docReadCounts['users/u-vit']).toBe(1);
+    expect(docReadCounts['banned_users/u-vit']).toBe(1);
   });
 
   it('does not return banned or hidden targets', async () => {
@@ -183,6 +200,52 @@ describe('friendLookupUser — finds players across all storage paths', () => {
     makeDbStub({ users: { 'u-x': VISIBLE('Someone') } });
     const res: any = await run(friendLookupUser, { query: 'Nobody' }, 'searcher-auth');
     expect(res).toEqual({ ok: true, user: null });
+  });
+
+  it('does not turn a users document read failure into a not-found response', async () => {
+    makeDbStub(
+      {
+        name_index: { roma: { uid: 'u-roma', name: 'Roma', nameLower: 'roma' } },
+        users: { 'u-roma': VISIBLE('Roma') },
+      },
+      { docReads: ['users/u-roma'] },
+    );
+
+    await expect(run(friendLookupUser, { query: 'Roma' }, 'searcher-auth'))
+      .rejects.toMatchObject({ code: 'unavailable', message: 'friend_lookup_unavailable' });
+  });
+
+  it('fails closed when the banned_users status cannot be read', async () => {
+    makeDbStub(
+      {
+        name_index: { roma: { uid: 'u-roma', name: 'Roma', nameLower: 'roma' } },
+        users: { 'u-roma': VISIBLE('Roma') },
+      },
+      { docReads: ['banned_users/u-roma'] },
+    );
+
+    await expect(run(friendLookupUser, { query: 'Roma' }, 'searcher-auth'))
+      .rejects.toMatchObject({ code: 'unavailable', message: 'friend_lookup_unavailable' });
+  });
+
+  it('does not turn a legacy exact-name query failure into a not-found response', async () => {
+    makeDbStub(
+      {},
+      { queries: ['users:progress.user_name_lower:=='] },
+    );
+
+    await expect(run(friendLookupUser, { query: 'Olga' }, 'searcher-auth'))
+      .rejects.toMatchObject({ code: 'unavailable', message: 'friend_lookup_unavailable' });
+  });
+
+  it('does not turn a prefix query failure into a not-found response', async () => {
+    makeDbStub(
+      {},
+      { queries: ['users:progress.user_name_lower:>='] },
+    );
+
+    await expect(run(friendLookupUser, { query: 'Vitalii' }, 'searcher-auth'))
+      .rejects.toMatchObject({ code: 'unavailable', message: 'friend_lookup_unavailable' });
   });
 
   it('does not resolve the searcher identity before an authenticated public lookup', async () => {

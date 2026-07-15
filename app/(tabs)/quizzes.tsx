@@ -1733,6 +1733,7 @@ function QuizGame({
 
   // ── Таймер на вопрос — работает даже при смене вкладки ──────────────────
   const answeredRef = useRef(false);
+  const questionTransitionRef = useRef(false);
   useEffect(() => {
     if (done || reviewing || phrases.length === 0) return;
     answeredRef.current = false;
@@ -1822,6 +1823,9 @@ function QuizGame({
   }, [done, score, results, phrases.length, lang, reviewing, studyTarget, level]);
 
   const current = reviewing ? reviewQ[rIdx] : (idx < phrases.length ? phrases[idx] : undefined);
+  const activeQuestionIdentity = current?.questionId
+    ?? `${current?.lessonNum ?? 'unknown'}:${current?.answer ?? current?.ru ?? 'unknown'}`;
+  const activeQuestionKey = `${reviewing ? `review:${rIdx}` : `main:${idx}`}:${activeQuestionIdentity}`;
 
   // ИИ-разбор ТЕМАТИЧЕСКОГО квиза (Кухня/Дом/…). Изолировано: для квизов легко/средне/сложно
   // (thematicCategoryId отсутствует) хук неактивен и используются статичные разборы.
@@ -2079,6 +2083,9 @@ function QuizGame({
     const autoDelay = level === 'hard' ? 8000 : level === 'medium' ? 6000 : 4000;
 
     const doNext = () => {
+      if (questionTransitionRef.current) return;
+      questionTransitionRef.current = true;
+      answeredRef.current = false;
       Animated.timing(fadeAnim, { toValue:0, duration:MOTION_DURATION.fast, useNativeDriver:true }).start(() => {
         if (!reviewing) {
           if (idx + 1 >= phrases.length) {
@@ -2096,7 +2103,9 @@ function QuizGame({
           }
         }
         setChosen(null); setTyped(''); setTypedOk(null);
-        Animated.timing(fadeAnim, { toValue:1, duration:MOTION_DURATION.fast, useNativeDriver:true }).start();
+        Animated.timing(fadeAnim, { toValue:1, duration:MOTION_DURATION.fast, useNativeDriver:true }).start(() => {
+          questionTransitionRef.current = false;
+        });
       });
     };
 
@@ -2111,8 +2120,8 @@ function QuizGame({
     // autoAdvance выключен ИЛИ ответ неверный — ждём тапа (обработается в handleTap)
   };
 
-  const handleChoice = (ci: number) => {
-    if (chosen !== null) return;
+  const handleChoice = (ci: number, optionKey: string) => {
+    if (answeredRef.current || chosen !== null) return;
     if (!current) return;
     // Блокируем ответ если энергия закончилась
     if (currentEnergyRef.current === 0 && !testerEnergyDisabledRef.current) {
@@ -2120,6 +2129,7 @@ function QuizGame({
       return;
     }
     answeredRef.current = true;
+    flash(optionKey);
     if (timerRef.current) clearInterval(timerRef.current);
     setChosen(ci);
     playInsertAnim();
@@ -2127,7 +2137,7 @@ function QuizGame({
   };
 
   const handleTyped = () => {
-    if (typedOk !== null) return;
+    if (answeredRef.current || typedOk !== null) return;
     // Блокируем ответ если энергия закончилась
     if (currentEnergyRef.current === 0 && !testerEnergyDisabledRef.current) {
       showEnergyEmptyFeedbackRef.current();
@@ -2404,6 +2414,8 @@ function QuizGame({
   // Переход к следующему вопросу (тап по экрану или кнопка "Далее")
   const handleTap = () => {
     if (chosen === null && typedOk === null) return;
+    if (questionTransitionRef.current) return;
+    questionTransitionRef.current = true;
     stopAudio(); // ещё не ответили
     // Отменяем авто-таймер если был запланирован
     if (autoAdvanceTimerRef.current) {
@@ -2429,8 +2441,11 @@ function QuizGame({
           setReviewQ(nq); setRIdx(i => i >= nq.length ? 0 : i);
         }
       }
+      answeredRef.current = false;
       setChosen(null); setTyped(''); setTypedOk(null);
-      Animated.timing(fadeAnim, { toValue:1, duration:MOTION_DURATION.fast, useNativeDriver:true }).start();
+      Animated.timing(fadeAnim, { toValue:1, duration:MOTION_DURATION.fast, useNativeDriver:true }).start(() => {
+        questionTransitionRef.current = false;
+      });
     });
   };
 
@@ -2853,10 +2868,11 @@ function QuizGame({
             chosen === null && (
               <View style={{ gap: planQuizId ? 8 : 10 }}>
                 {(current.choices || []).map((ch, ci) => {
-                  const on = flashKey === `${ci}`;
+                  const optionKey = `${quizAttemptIdRef.current}:${activeQuestionKey}:${ci}:${ch}`;
+                  const on = flashKey === optionKey;
                   return (
                   <DuoPressable
-                    key={ci}
+                    key={optionKey}
                     edgeHeight={5}
                     withHaptic={false}
                     edgeColor={on ? t.accent : (isCompassTheme ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.30)')}
@@ -2869,7 +2885,7 @@ function QuizGame({
                       minHeight: planQuizId ? 52 : undefined,
                       overflow: isCompassTheme ? 'hidden' : 'visible',
                     }, isCompassTheme && compassShadow(1)]}
-                    onPress={() => { flash(`${ci}`); handleChoice(ci); }}
+                    onPress={() => { handleChoice(ci, optionKey); }}
                   >
                     {isCompassTheme && !on ? <CompassDepthSurface radius={9} quiet /> : null}
                     <Text

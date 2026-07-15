@@ -28,9 +28,9 @@ describe('trainer phrases speaking auto-fill contract', () => {
 
   it('fills the assembled answer from the canonical tokens on a correct voice answer', () => {
     // Раскладываем правильные слова по ячейкам (аналог setSelectedWords в уроке).
-    expect(onPassBody).toContain(
-      'setSelected(correctTokens.map((text, slot) => ({ slot, text })))',
-    );
+    expect(onPassBody).toContain('const spokenSelection = correctTokens.map((text, slot) => ({ slot, text }))');
+    expect(onPassBody).toContain('selectedRef.current = spokenSelection');
+    expect(onPassBody).toContain('setSelected(spokenSelection)');
     // И очищаем банк, чтобы ручная сборка не конфликтовала с подставленным ответом.
     expect(onPassBody).toContain('setBank([])');
   });
@@ -41,6 +41,7 @@ describe('trainer phrases speaking auto-fill contract', () => {
   });
 
   it('does not overwrite an already-graded card', () => {
-    expect(onPassBody).toContain("if (feedback !== 'none') return");
+    expect(onPassBody).toContain("if (feedbackRef.current !== 'none') return");
+    expect(onPassBody).toContain("feedbackRef.current = 'correct'");
   });
 });

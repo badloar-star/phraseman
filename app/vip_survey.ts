@@ -16,6 +16,12 @@ import {
   type VipSurveyAnswers,
 } from './vip_survey_content';
 import { readSavedDevCredential, signInWithDevEmailCredential } from './vip_survey_dev_auth';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 const FUNCTIONS_REGION = 'us-central1';
 let vipCallableAuthPromise: Promise<string> | null = null;
@@ -142,7 +148,15 @@ async function ensureFirebaseAuthUidForVipCallable(): Promise<string> {
   return vipCallableAuthPromise;
 }
 
-async function persistVipResult(result: SubmitVipSurveyResponse): Promise<void> {
+function vipSurveyAccountChanged(): Error {
+  return new Error('vip_survey_account_changed');
+}
+
+async function persistVipResult(
+  result: SubmitVipSurveyResponse,
+  accountToken: AccountGenerationToken,
+  stableId: string,
+): Promise<boolean> {
   const grantAt = String(result.grantAt || Date.now());
   const vipUntilMs = Number(result.vipUntil || 0);
   const active = vipUntilMs <= 0 || vipUntilMs > Date.now();
@@ -154,22 +168,43 @@ async function persistVipResult(result: SubmitVipSurveyResponse): Promise<void> 
     ['vip_admin_override', 'true'],
     ['vip_admin_grant_at', grantAt],
   ];
-  await AsyncStorage.multiSet(storagePairs);
-  invalidatePremiumCache();
-  if (active && !result.alreadyGranted) {
-    await markVipCelebrationPending(grantAt);
-  }
-  if (active) {
-    emitAppEvent('vip_activated');
-  } else {
-    emitAppEvent('vip_deactivated');
-  }
-  emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' });
-  void syncPublicProfileSnapshot({
-    reason: 'entitlement_change',
-    isVip: active,
-    isPremium: active,
+  const isCurrent = () => isCurrentAccountGeneration(accountToken, stableId);
+  const persisted = await withAccountTransitionLock(async () => {
+    if (!isCurrent()) return false;
+    await AsyncStorage.multiSet(storagePairs);
+    if (!isCurrent()) return false;
+    invalidatePremiumCache();
+
+    if (active && !result.alreadyGranted) {
+      if (!isCurrent()) return false;
+      await markVipCelebrationPending(grantAt);
+      if (!isCurrent()) return false;
+    }
+
+    if (!isCurrent()) return false;
+    if (active) {
+      emitAppEvent('vip_activated');
+    } else {
+      emitAppEvent('vip_deactivated');
+    }
+    if (!isCurrent()) return false;
+    emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' });
+    return isCurrent();
+  });
+  if (!persisted || !isCurrent()) return false;
+
+  // Keep the public-profile refresh non-blocking, but serialize its local cache
+  // writes with account wipe/hydration and re-check identity on both sides.
+  void withAccountTransitionLock(async () => {
+    if (!isCurrent()) return;
+    await syncPublicProfileSnapshot({
+      reason: 'entitlement_change',
+      isVip: active,
+      isPremium: active,
+    }).catch(() => {});
+    if (!isCurrent()) return;
   }).catch(() => {});
+  return isCurrent();
 }
 
 export async function submitVipSurveyFromApp(params: {
@@ -182,16 +217,24 @@ export async function submitVipSurveyFromApp(params: {
     throw new Error('cloud_unavailable');
   }
 
+  const accountToken = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(accountToken)) throw vipSurveyAccountChanged();
+
   const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+  if (!isCurrentAccountGeneration(accountToken)) throw vipSurveyAccountChanged();
   if (hasPremiumAccess) {
     throw new Error('vip_survey_free_tier_required');
   }
 
   await ensureFirebaseAuthUidForVipCallable();
+  if (!isCurrentAccountGeneration(accountToken)) throw vipSurveyAccountChanged();
   const stableId = await ensureAnonUser();
   if (!stableId) throw new Error('user_unavailable');
+  if (!isCurrentAccountGeneration(accountToken, stableId)) throw vipSurveyAccountChanged();
   await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  if (!isCurrentAccountGeneration(accountToken, stableId)) throw vipSurveyAccountChanged();
   await initFirebaseAppCheckIfAvailable().catch(() => {});
+  if (!isCurrentAccountGeneration(accountToken, stableId)) throw vipSurveyAccountChanged();
 
   const fn = callable<SubmitVipSurveyRequest, SubmitVipSurveyResponse>('submitVipSurvey');
   const payload: SubmitVipSurveyRequest = {
@@ -203,8 +246,11 @@ export async function submitVipSurveyFromApp(params: {
     storeOpened: !!params.storeOpened,
     platform: Platform.OS,
   };
+  if (!isCurrentAccountGeneration(accountToken, stableId)) throw vipSurveyAccountChanged();
   const result = (await fn(payload)).data;
-  await persistVipResult(result);
+  if (!isCurrentAccountGeneration(accountToken, stableId)) throw vipSurveyAccountChanged();
+  if (String(result.uid || '').trim() !== stableId) throw new Error('vip_survey_owner_mismatch');
+  if (!await persistVipResult(result, accountToken, stableId)) throw vipSurveyAccountChanged();
   return result;
 }
 

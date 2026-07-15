@@ -41,6 +41,7 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { emitAppEvent } from './events';
 import { invalidatePremiumCache } from './premium_guard';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 
 type ManageSubscriptionCopy = {
   ru: string;
@@ -206,17 +207,21 @@ export default function ManageSubscription() {
   // ── смена плана: месячный → годовой (DEFERRED-проплейшн на Android) ──────────
   const handleChangePlan = useCallback(async () => {
     if (changing || !yearlyPkg) return;
+    const accountToken = captureAccountGeneration();
+    const accountIsCurrent = () => isCurrentAccountGeneration(accountToken);
     hapticTap();
     void logChangePlanStarted('monthly', 'yearly');
     void trackEvent('change_plan_started', { from: 'monthly', to: 'yearly' });
     setChanging(true);
     try {
       const latestInfo = await Purchases.getCustomerInfo();
+      if (!accountIsCurrent()) return;
       setInfo(latestInfo);
       const latestPlan = inferPremiumPlanFromCustomerInfo(latestInfo, fallbackPlan);
       if (latestPlan && latestPlan !== 'monthly') {
         const latestMeta = revenueCatPremiumMetadata(latestInfo);
-        await persistStorePremiumLocally(latestPlan, latestMeta);
+        const persistedForCurrentAccount = await persistStorePremiumLocally(latestPlan, latestMeta, accountIsCurrent);
+        if (!persistedForCurrentAccount || !accountIsCurrent()) return;
         invalidatePremiumCache();
         emitAppEvent('premium_activated');
         void trackEvent('change_plan_completed', { from: 'monthly', to: latestPlan });
@@ -230,13 +235,16 @@ export default function ManageSubscription() {
         ? { googleProductChangeInfo: { oldProductIdentifier: metadata.productId ?? '', prorationMode: PRORATION_MODE.DEFERRED } }
         : undefined;
       const { customerInfo } = await Purchases.purchasePackage(yearlyPkg, opts as any);
+      if (!accountIsCurrent()) return;
       const meta = revenueCatPremiumMetadata(customerInfo, yearlyPkg.product.identifier);
-      await persistStorePremiumLocally('yearly', meta);
+      const persistedForCurrentAccount = await persistStorePremiumLocally('yearly', meta, accountIsCurrent);
+      if (!persistedForCurrentAccount || !accountIsCurrent()) return;
       invalidatePremiumCache();
       emitAppEvent('premium_activated');
       void trackEvent('change_plan_completed', { from: 'monthly', to: 'yearly' });
       setInfo(customerInfo);
     } catch (err: unknown) {
+      if (!accountIsCurrent()) return;
       if (!(err as { userCancelled?: boolean })?.userCancelled) {
         void trackEvent('change_plan_failed', { from: 'monthly', to: 'yearly' });
       }

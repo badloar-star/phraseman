@@ -26,6 +26,12 @@ import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
 import TonalSurface from '../components/TonalSurface';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -138,19 +144,22 @@ async function persistRedeemedPromoAccess(params: {
   rewardKind: 'days' | 'lifetime' | undefined;
   vipUntilMs: number | undefined;
   grantAtMs: number | undefined;
-}): Promise<string> {
+}, accountToken: AccountGenerationToken): Promise<string | null> {
   const grantAt = String(params.grantAtMs && params.grantAtMs > 0 ? params.grantAtMs : Date.now());
   const vipUntil = String(Math.max(0, Math.floor(Number(params.vipUntilMs ?? 0))));
-  await AsyncStorage.multiSet([
-    ['vip_active', 'true'],
-    ['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo'],
-    ['vip_from', grantAt],
-    ['vip_until', vipUntil],
-    ['vip_admin_override', 'true'],
-    ['vip_admin_grant_at', grantAt],
-    ['promo_vip_last_code', params.code],
-  ]).catch(() => {});
-  return grantAt;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return null;
+    await AsyncStorage.multiSet([
+      ['vip_active', 'true'],
+      ['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo'],
+      ['vip_from', grantAt],
+      ['vip_until', vipUntil],
+      ['vip_admin_override', 'true'],
+      ['vip_admin_grant_at', grantAt],
+      ['promo_vip_last_code', params.code],
+    ]).catch(() => {});
+    return isCurrentAccountGeneration(accountToken) ? grantAt : null;
+  });
 }
 
 export default function PromoCodeEntryScreen() {
@@ -175,11 +184,13 @@ export default function PromoCodeEntryScreen() {
   const canSubmit = inputValid && !busy;
 
   const runRedeem = useCallback(async (rawCode: string) => {
+    const accountToken = captureAccountGeneration();
     hapticTap();
     setBusy(true);
     setFeedback(null);
     try {
       const res = await redeemPromoCode(rawCode);
+      if (!isCurrentAccountGeneration(accountToken)) return;
       setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
       if (res.status === 'redeemed') {
         const marker = await persistRedeemedPromoAccess({
@@ -187,13 +198,20 @@ export default function PromoCodeEntryScreen() {
           rewardKind: res.rewardKind,
           vipUntilMs: res.vipUntilMs,
           grantAtMs: res.grantAtMs,
-        });
-        setCelebrationMarker(marker);
+        }, accountToken);
+        if (!marker) return;
+        await withAccountTransitionLock(async () => {
+          if (!isCurrentAccountGeneration(accountToken)) return;
+          setCelebrationMarker(marker);
         // VIP обновился на сервере — сбрасываем кэш и оповещаем приложение.
-        invalidatePremiumCache();
-        emitAppEvent('vip_activated');
-        emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-        setCelebrationVisible(true);
+          invalidatePremiumCache();
+          if (!isCurrentAccountGeneration(accountToken)) return;
+          emitAppEvent('vip_activated');
+          if (!isCurrentAccountGeneration(accountToken)) return;
+          emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+          if (!isCurrentAccountGeneration(accountToken)) return;
+          setCelebrationVisible(true);
+        });
       }
     } finally {
       setBusy(false);

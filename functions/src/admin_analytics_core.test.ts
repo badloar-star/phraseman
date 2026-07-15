@@ -1,4 +1,5 @@
 import {
+  ANALYTICS_DEFINITION_VERSION,
   aggregateActiveAccess,
   aggregateFunnelSignals,
   aggregateRevenueCatPeriod,
@@ -15,6 +16,10 @@ function user(progress: Record<string, unknown>, extra: Partial<AnalyticsUserRow
 }
 
 describe('admin analytics active access definitions', () => {
+  test('identifies the bounded gift-window definition', () => {
+    expect(ANALYTICS_DEFINITION_VERSION).toBe('admin_v2_trustworthy_v2');
+  });
+
   test('classifies an active RevenueCat subscription as store-backed', () => {
     expect(classifyActiveAccess(user({
       premium_plan: 'yearly',
@@ -64,10 +69,27 @@ describe('admin analytics active access definitions', () => {
   });
 
   test('separates gift, admin grant, vip and stale manual access', () => {
-    expect(classifyActiveAccess(user({ intro_access_until_ms: String(NOW + DAY) }), NOW)?.kind).toBe('gift');
+    expect(classifyActiveAccess(user({
+      intro_access_granted_at_ms: String(NOW),
+      intro_access_until_ms: String(NOW + DAY),
+    }), NOW)?.kind).toBe('gift');
     expect(classifyActiveAccess(user({ premium_plan: 'admin_grant', admin_premium_override: 'true' }), NOW)?.kind).toBe('admin_grant');
     expect(classifyActiveAccess(user({ vip_plan: 'referral_vip', vip_active: 'true', vip_until: String(NOW + DAY) }), NOW)?.kind).toBe('vip');
     expect(classifyActiveAccess(user({ premium_plan: 'yearly', premium_expiry: '0' }), NOW)?.kind).toBe('manual_or_unknown');
+  });
+
+  test('requires a matching bounded grant window before classifying gift access', () => {
+    expect(classifyActiveAccess(user({
+      intro_access_until_ms: String(NOW + DAY),
+    }), NOW)).toBeNull();
+    expect(classifyActiveAccess(user({
+      loyalty_gift_granted_at_ms: String(NOW),
+      loyalty_gift_until_ms: String(NOW + 4 * DAY),
+    }), NOW)).toBeNull();
+    expect(classifyActiveAccess(user({
+      intro_access_granted_at_ms: String(NOW),
+      loyalty_gift_until_ms: String(NOW + DAY),
+    }), NOW)).toBeNull();
   });
 
   test('honours revocation, expiry, hidden identities and store priority over vip', () => {
@@ -87,7 +109,10 @@ describe('admin analytics active access definitions', () => {
     const result = aggregateActiveAccess([
       user({ premium_plan: 'monthly', premium_rc_product_id: 'monthly', premium_rc_expiry_ms: String(NOW + DAY) }, { id: 'store' }),
       user({ vip_plan: 'vip', vip_active: 'true' }, { id: 'vip' }),
-      user({ loyalty_gift_until_ms: String(NOW + DAY) }, { id: 'gift' }),
+      user({
+        loyalty_gift_granted_at_ms: String(NOW),
+        loyalty_gift_until_ms: String(NOW + DAY),
+      }, { id: 'gift' }),
       user({}, { id: 'free' }),
     ], NOW);
     expect(result.activeAccessTotal).toBe(3);

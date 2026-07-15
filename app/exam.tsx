@@ -448,11 +448,16 @@ export default function ExamScreen() {
   const [noEnergy, setNoEnergy] = useState(false);
   // Блокировка двойного тапа по «Начать тест»: спендим энергию ровно один раз, см. H12.
   const [examStarting, setExamStarting] = useState(false);
+  const examStartingRef = useRef(false);
   const certificateSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
 
   const [phase, setPhase]           = useState<Phase>('intro');
   const phaseBackRef = useRef<Phase>('intro');
   phaseBackRef.current = phase;
+
+  useEffect(() => {
+    if ((phase === 'intro' || phase === 'result') && !examStarting) examStartingRef.current = false;
+  }, [phase, examStarting]);
 
   // Android: системный «Назад» посреди идущего экзамена раньше мгновенно
   // уносил с экрана — часовая попытка терялась без единого вопроса.
@@ -644,7 +649,8 @@ export default function ExamScreen() {
 
   const { flashKey, flash } = useWordFlash();
 
-  const handleAnswer = (ci: number) => {
+  const handleAnswer = (ci: number, optionKey: string) => {
+    flash(optionKey);
     setChoices(prev => { const n=[...prev]; n[idx]=ci; return n; });
   };
 
@@ -670,7 +676,7 @@ export default function ExamScreen() {
   };
 
   const startExam = async () => {
-    if (examStarting) return; // двойной тап → второй вызов игнорируем
+    if (examStartingRef.current || examStarting) return; // двойной тап → второй вызов игнорируем
     if (frenchExamBlocked) {
       void trackFeatureBlocked('exam', 'start', 'exam_content_gate_disabled', { studyTarget }, 'exam');
       return;
@@ -682,6 +688,8 @@ export default function ExamScreen() {
       }, 'exam');
       return;
     }
+    let transitionedToExam = false;
+    examStartingRef.current = true;
     setExamStarting(true);
     try {
       examAttemptIdRef.current = makeExamAttemptId();
@@ -704,9 +712,11 @@ export default function ExamScreen() {
       setFlagged(Array(questions.length).fill(false));
       setTotalTimeLeft(TOTAL_EXAM_SECONDS);
       setPhase('countdown');
+      transitionedToExam = true;
     } finally {
-      // Сбрасываем не сразу — даём React закоммитить переход фазы; при failure
-      // тоже сбрасываем чтобы кнопку можно было нажать снова.
+      // При успешном старте ref остаётся закрытым до ухода с intro-экрана;
+      // при failure освобождаем кнопку сразу, чтобы запуск можно было повторить.
+      if (!transitionedToExam) examStartingRef.current = false;
       setExamStarting(false);
     }
   };
@@ -1653,19 +1663,20 @@ export default function ExamScreen() {
         <ClozeGapText text={q.q} style={{color:sx.primary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}} />
 
         {(q.opts ?? []).map((opt,ci)=>{
-          const on = flashKey === `${ci}`;
+          const optionKey = `${examAttemptIdRef.current}:${idx}:${q.lessonNum}:${ci}:${opt}`;
+          const on = flashKey === optionKey;
           let bg = on ? t.accent : t.bgCard;
           let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
           if(chosen===ci && !on){ bg=t.bgSurface; }
           return(
             <DuoPressable
-              key={ci}
+              key={optionKey}
               edgeHeight={5}
               withHaptic={false}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               wrapStyle={{ marginBottom: 10 }}
               style={{backgroundColor:bg,borderRadius:14,padding:16}}
-              onPress={()=>{ flash(`${ci}`); handleAnswer(ci); }}
+              onPress={()=>{ handleAnswer(ci, optionKey); }}
             >
               <Text style={{color:tc,fontSize:f.body,fontWeight: on ? '700' : '500'}}>{opt}</Text>
             </DuoPressable>

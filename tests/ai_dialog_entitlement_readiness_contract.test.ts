@@ -18,6 +18,17 @@ function expectResolutionGuardBefore(body: string, laterMarker: string): void {
   expect(later).toBeGreaterThan(guard);
 }
 
+function expectDelayedAccessFeedback(source: string): void {
+  expect(source).toContain('const ACCESS_LOADING_FEEDBACK_DELAY_MS = 300;');
+  expect(source).toContain('const [showAccessLoading, setShowAccessLoading] = useState(false);');
+  expect(source).toContain(
+    'setTimeout(() => setShowAccessLoading(true), ACCESS_LOADING_FEEDBACK_DELAY_MS)',
+  );
+  expect(source).toContain("ru: 'Проверяем доступ…'");
+  expect(source).toContain('accessibilityRole="progressbar"');
+  expect(source).toContain('accessibilityLiveRegion="polite"');
+}
+
 describe('AI-dialog entitlement readiness contract', () => {
   const scenario = read('app/ai_dialog_session.tsx');
   const companion = read('app/ai_companion_session.tsx');
@@ -116,5 +127,30 @@ describe('AI-dialog entitlement readiness contract', () => {
 
     const upsellPaywall = catalogue.slice(catalogue.lastIndexOf('onPress={() => {', catalogue.indexOf("context: 'dialog_locked_level'", 8000)));
     expectResolutionGuardBefore(upsellPaywall, "pathname: '/premium_modal'");
+  });
+
+  it('shows delayed inline feedback and disables unresolved dialogue actions', () => {
+    expectDelayedAccessFeedback(scenario);
+    expectDelayedAccessFeedback(companion);
+    expectDelayedAccessFeedback(catalogue);
+
+    expect(companion).toContain('editable={accessResolved && !sending}');
+    expect(companion).toContain('disabled={!accessResolved || !input.trim() || sending}');
+    expect(companion).toContain(
+      'accessibilityState={{ disabled: !accessResolved || !input.trim() || sending, busy: !accessResolved || sending }}',
+    );
+
+    expect(scenario).toContain('editable={accessResolved && !sending}');
+    expect(scenario).toContain('disabled={!accessResolved || !input.trim() || sending}');
+    expect(scenario).toContain(
+      "disabled={!accessResolved || sending || aiSpeaking || voiceInputStatus === 'finishing'}",
+    );
+    expect(scenario).toContain(
+      'accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}',
+    );
+
+    expect(catalogue).toContain('showAccessLoading ? (');
+    expect(catalogue).toContain('accessibilityState={{ disabled: !accessResolved, busy: !accessResolved }}');
+    expect((catalogue.match(/disabled=\{!accessResolved\}/g) ?? []).length).toBeGreaterThanOrEqual(3);
   });
 });

@@ -2,8 +2,8 @@
 
 **Последнее обновление:** 2026-07-15, Europe/Dublin  
 **Статус цели:** active  
-**Текущая стадия:** планирование и нормативные спецификации завершены; Content Studio Task 0 и его Firebase CLI reproducibility follow-up закрыты локальными коммитами и проверены; начинается umbrella Phase 01
-**Точный следующий крупный шаг:** выполнить umbrella Phase 01 / Task 1.1 — identity и versioning; после него строго 1.1A → 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3
+**Текущая стадия:** планирование и нормативные спецификации завершены; Content Studio Task 0, Firebase CLI reproducibility и umbrella Phase 01 / Task 1.1 identity/versioning закрыты локальными коммитами и независимо проверены
+**Точный следующий крупный шаг:** выполнить umbrella Phase 01 / Task 1.1A — immutable DecisionRegistry; после него строго 1.2 → 1.3 → 1.4 и только после появления canonical episode/evidence contracts переходить к dedicated Content Studio Tasks 1–3
 **Назначение файла:** это живой центр управления между сессиями. Он не заменяет подробные спецификации и TDD-планы, а сообщает следующей сессии, что прочитать, что уже доказано, что не сделано и какой именно шаг выполнять дальше.
 
 ---
@@ -82,7 +82,7 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 | Фаза | Содержание и точный порядок | Gate / результат | Статус на 2026-07-15 |
 |---|---|---|---|
 | 00 | Security inventory, legacy direct-access classification, удаление broad-admin OR bypass, server-only V2 paths, canonical Body/Record/hash boundary | Emulator deny для будущих authoring paths; legacy compatibility; одинаковые canonical bytes/hash | **Security slice закрыт.** Content Studio Task 0 и reproducible local CLI зелёные; canonical artifact contracts продолжаются в Phase 01 |
-| 01 | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3 | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate | Не начато; ближайший код — umbrella Task 1.1 |
+| 01 | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3 | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate | **В работе:** Task 1.1 закрыт; ближайший код — Task 1.1A DecisionRegistry |
 | 02 | 2.1 pure reducer/gate policy → 2.2 Content Studio Task 4 → 2.3 account store/outbox → 2.4 server event → 2.5 Access Boost callable → 2.6 rules/emulator | Idempotent local-first progress; performance/access/evidence physically separated; offline/restart safe | Не начато |
 | 03 | 3.0 competitor reference-evidence pack + owner UI approval → 3.1 registry → 3.2 ActivityScaffold → 3.3 six shells → 3.4 thin routes/resume | One registry, one scaffold, six accessible shells; UI evidence approved before production work | Заблокировано до Task 5A/reference pack |
 | 04 | 4.1 capture state machine → 4.2 scorer boundary → 4.2A calibration/privacy gates → 4.3 accessible capture UI → 4.4 device matrix | Voice never deadlocks; scorer claims match measured construct; fallback/privacy/device gates pass | Не начато |
@@ -128,8 +128,8 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 1. Подтвердить, что 14-path canonical package уже tracked в pilot worktree: docs-only commit source `0b94c9749`, cherry-pick commit `a09f57da2`; `git ls-files --error-unmatch ...` должен вернуть все 14 paths.
 2. **Выполнено:** воспроизводимость Task 0 закрыта focused commits `abce49e1f` + `fd450e763`; exact local `firebase-tools@15.23.0`, clean `npm ci`, 351 emulator и 61 combined root/static tests подтверждены.
 3. Не смешивать с этим восстановление общего Functions build: девять текущих TypeScript ошибок доказанно существовали в parent commit; для них нужен отдельный baseline-fix task/commit.
-4. Выполнить umbrella Phase 01 / Task 1.1 test-first: identity grammar и schema versions без React/Firebase imports.
-5. Затем выполнить в утверждённом порядке 1.1A DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend conformance mirror.
+4. **Выполнено:** umbrella Phase 01 / Task 1.1 реализован test-first commits `77cf617af` + `362b65e7a`: identity grammar, семь branded ID, release-scoped activity uniqueness и fail-closed schema versions без React/Firebase imports.
+5. **Точный следующий код:** выполнить 1.1A DecisionRegistry, затем 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend conformance mirror.
 6. Только после этого выполнять dedicated Content Studio Tasks 1–3. Task 1 импортирует canonical episode/evidence types и не должен создавать их shadow/reduced copies.
 7. После каждого numbered task обновлять этот хендовер точным commit, RED/GREEN выводом, файлами, findings и следующим зависимым шагом.
 
@@ -310,6 +310,8 @@ Checkpoint — не восемнадцатая family и не отдельный
 - Task 0 implementation commit: `ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a`
 - Firebase CLI reproducibility commit: `abce49e1fb52fc5356cb0a0996f60fa4934b19d7`
 - Firebase CLI security-pin follow-up: `fd450e763d94b19b1bfcc995d797899fae3f3c9c`
+- Task 1.1 identity/versioning implementation: `77cf617afb4a33e75a830dfc9d78d133e4f928c2`
+- Task 1.1 purity-guard quality fix: `362b65e7af4ea0b1db34f13007686f4e6e91d180`
 - Canonical docs/handover persistence commit in pilot: `a09f57da2d2442d114202bb3d52bf58abe917bb1`
 - Source docs-only commit in main: `0b94c974938f0e157dec45b1c4031bd1c89dd90c`
 - Parent/common base: `96d2568fbbe958a96e3c68156a7bcf1abce5d3a0`
@@ -375,6 +377,59 @@ Default Functions Jest discovery содержит 123 test paths и не под�
 - Два параллельных emulator run временно столкнулись на порту `8080`. Проверка процессов подтвердила test-process contention, а не дефект rules; повторный одиночный запуск прошёл 351/351 и не оставил listener/log process.
 - Full Functions compile остаётся RED по девяти pre-existing ошибкам. Сравнение parent/HEAD доказало, что Task 0 их не создавал; их нельзя «исправить» добавлением случайных untracked main-файлов без отдельного provenance audit.
 - Независимый review не нашёл новой функциональной регрессии в rules/test isolation. Последующий reproducibility audit открыл P2: `firebase` CLI брался из глобального окружения. P2 закрыт двумя focused commits: первый закрепил обнаруженную `15.15.0`, второй test-first обновил pin до latest `15.23.0` после security review; оба раза повторены clean install, local binary и security gates.
+
+### 6.6 Phase 01 / Task 1.1 identity и versioning
+
+Task закрыт двумя отдельными коммитами:
+
+- `77cf617afb4a33e75a830dfc9d78d133e4f928c2` — `feat: define Learning V2 identity contracts`;
+- `362b65e7af4ea0b1db34f13007686f4e6e91d180` — `test: harden Learning V2 purity guard`.
+
+Созданы ровно три плановых файла:
+
+| Файл | Назначение |
+|---|---|
+| `modules/learning-v2/contracts/identities.ts` | Exact ID grammar, семь distinct branded types, `is*`/`parse*`, stable error codes и release-scoped activity duplicate assertion |
+| `modules/learning-v2/contracts/schema_versions.ts` | Code-owned per-kind allowlist девяти поддержанных V2 schema versions и fail-closed parser |
+| `tests/learning_v2_identity_contract.test.ts` | Runtime boundaries, compile-time brand guards, localization/release invariants, schema conformance и AST purity guard |
+
+Канонический ID-контракт:
+
+- один exact allowlist `^[A-Za-z0-9._-]{1,160}$` для `courseId`, `seasonId`, `episodeId`, `nodeId`, `activityId`, `skillId`, `releaseId`;
+- исходная строка не trim-ится, не lower-case-ится и не Unicode-normalize-ится; сравнение case-sensitive и byte-for-byte;
+- лексика общая, но TypeScript brands разные: `NodeId` нельзя присвоить `ActivityId`;
+- обязательные префиксы, lowercase-only и запрет leading/repeated punctuation намеренно не добавлены: это было бы уже несовместимым правилом сверх нормативного server allowlist;
+- `activityId` обязан быть уникален внутри одного release, но та же stable identity разрешена по одному разу в разных releases;
+- `skillId` не принимает release как parser input и не переименовывается при смене release;
+- title/translation не входят в identity и не могут её менять.
+
+Поддержанный schema registry по entity kind:
+
+| Kind | Exact accepted version |
+|---|---|
+| `modeTemplateRuntime` | `v2-mode-template.v1` |
+| `delayedProbeDefinition` | `v2-delayed-probe-definition.v1` |
+| `attemptBody` | `v2-attempt-body.v1` |
+| `attemptRef` | `v2-attempt-ref.v1` |
+| `attemptEnvelope` | `v2-attempt-envelope.v1` |
+| `delayedAttemptCandidate` | `v2-delayed-attempt-candidate.v1` |
+| `delayedAttemptAck` | `v2-delayed-attempt-ack.v2` |
+| `publishedSeason` | `v2-season.v1` |
+| `lessonBundle` | `lesson-bundle.v2` |
+
+Лексически корректная неизвестная версия и известная версия другого kind отклоняются. `CourseRelease` намеренно не включён: в legacy есть несогласованность `course-release.v1` против `course-release-v1`, которую нельзя молча канонизировать этим task. При появлении второй поддержанной версии одного kind single-current-value map нужно расширить отдельным immutable supported-versions registry, не меняя старую identity.
+
+TDD evidence:
+
+```text
+Initial import RED: TS2307 для ещё отсутствующих modules; не использован как acceptance RED.
+Behavioral RED после минимальных typed stubs: 35 failed / 3 passed.
+First GREEN: 38/38.
+Quality P2 RED для пропущенных import syntaxes: 5 failed / 42 passed.
+Final GREEN после TypeScript AST guard: 47/47, 1 suite.
+```
+
+AST guard теперь обнаруживает static/from и side-effect imports, export-from, import-equals, dynamic `import()`, `require`, `require.resolve` и `module.require`; блокирует React/Firebase package families и не срабатывает на benign internal imports. Spec review дал PASS. Первый quality review запросил этот P2 fix; post-fix review дал APPROVED, P0–P2 не осталось. `git diff --check`, targeted TypeScript brand check и staged secret scan прошли. Свежий root rerun 2026-07-15: `47/47 PASS`; Jest напечатал общий force-exit warning без test failure. Push/deploy не выполнялись.
 
 ---
 
@@ -470,67 +525,74 @@ README содержит безопасные defaults для vertical map, ви�
 
 ---
 
-## 8. Exact next task — Phase 01 / Task 1.1 identity and versioning
+## 8. Exact next task — Phase 01 / Task 1.1A immutable DecisionRegistry
 
-### 8.1 Почему именно Task 1.1
+### 8.1 Почему именно Task 1.1A
 
-Dedicated Content Studio Task 1 использует canonical episode, checkpoint, evidence, delayed-probe, template-ref и voice-governance contracts. По umbrella-плану эти основания создаются в Tasks 1.1–1.4. Начать Content Studio Task 1 раньше означало бы либо broken imports, либо запрещённые shadow/reduced copies. Поэтому точный порядок зависимостей такой:
+Task 1.1 уже создал стабильные ID/version boundaries. Следующий dependency — единственный immutable machine-readable источник всех числовых решений `HYP-V2-001..008`. Без него Task 1.2 не может pin-ить delayed-window policy, season shape или gate/star settings, а dedicated Content Studio Task 1 не может безопасно разрешать exact version/hash. Порядок остаётся:
 
-`Task 1.1 identity/versioning → Task 1.1A DecisionRegistry → Task 1.2 activity/episode/curriculum → Task 1.3 evidence/result → Task 1.4 Functions mirror → dedicated Content Studio Tasks 1–3`.
+`Task 1.1A DecisionRegistry → Task 1.2 activity/episode/curriculum → Task 1.3 evidence/result → Task 1.4 Functions mirror → dedicated Content Studio Tasks 1–3`.
 
-### 8.2 Файлы точного следующего task
+### 8.2 Ровно пять файлов Task 1.1A
 
-- `modules/learning-v2/contracts/identities.ts`
-- `modules/learning-v2/contracts/schema_versions.ts`
-- `tests/learning_v2_identity_contract.test.ts`
+- `modules/learning-v2/policies/decision_registry.ts`;
+- `functions/src/content_studio/decision_registry.ts`;
+- `tests/fixtures/learning-v2/content-studio/decision-registry.v1.json`;
+- `tests/learning_v2_decision_registry.test.ts`;
+- `functions/src/content_studio/decision_registry.test.ts`.
 
-### 8.3 Test-first порядок Task 1.1
+Не создавать пока `content_studio.ts`, Episode/Evidence shadow types, Admin UI, Firestore persistence или mutable `latest` document. Dedicated canonical-json/contracts files относятся к последующему Content Studio Task 1. Если Task 1.1A вынужден временно держать portable canonical serializer/hasher внутри двух перечисленных modules, bytes и public behavior обязаны быть зафиксированы shared corpus; later extraction не имеет права менять hash. Shared/mobile module не должен импортировать Node-only `crypto`.
 
-1. Прочитать umbrella Phase 01 / Task 1.1 и identity/version references в specs 06/08.
-2. Написать failing tests для допустимых `courseId`, `seasonId`, `episodeId`, `nodeId`, `activityId`, `skillId`, `releaseId`.
-3. Зафиксировать, что identity не зависит от текста или локализации.
-4. Зафиксировать уникальность `activityId` внутри release.
-5. Зафиксировать reject неизвестной schema version.
-6. Зафиксировать, что новый release не переименовывает stable `skillId`.
-7. Запустить тест и сохранить настоящий RED из-за отсутствующих validators, а не из-за config/import failure.
-8. Реализовать pure branded-string validators и schema-version registry без React/Firebase imports.
-9. Повторить focused test, `git diff --check` и независимый review.
-10. Обновить этот хендовер и только затем переходить к Task 1.1A.
+### 8.3 Exact contract, который должен стать GREEN
 
-### 8.4 Точная команда Task 1.1 gate
+- `DecisionRegistryBody` имеет schema `v2-decision-registry-body.v1`, literal `registryId='phraseman-v2-product-decisions'`, positive integer `version` и ровно восемь keyed entries `HYP-V2-001..008` с discriminated settings из spec 08 §6.2.
+- Каждый map key равен `entry.decisionId`; unknown/missing decision, setting или field отклоняется strict parser-ом. Parser не удаляет неизвестные поля перед hash.
+- Body не содержит собственного `contentHash`, object metadata, timestamp, lifecycle или receipt backrefs.
+- `DecisionRegistryRecord` имеет schema `v2-decision-registry-record.v1`, exact `VersionRef`, `ImmutableObjectRef` и ISO `createdAt`; mutable `latest`, string-only ref и numeric browser fields запрещены.
+- Accepted pair требует `record.ref.id === body.registryId`, `record.ref.version === body.version`, `record.ref.contentHash === hashCanonicalBody(body) === record.object.contentHash`.
+- `record.object.objectPath` имеет exact content-addressed форму `content-studio/decision-registries/<sha256(registryId)>/v<version>/<contentHash>.json`; hash — 64 lowercase hex, generation непустой, byte size positive integer.
+- Canonical JSON использует JCS/RFC 8785 key ordering/number serialization, UTF-8 без BOM/whitespace, сохраняет array order и отклоняет non-NFC strings, `undefined`, sparse arrays, non-finite, `-0`, `Date`, `Map`, functions, symbols и BigInt.
+- Client и Functions читают один JSON corpus, получают одинаковые canonical bytes/SHA-256, accepted fixture IDs и ordered issue-code arrays. Нельзя импортировать root/mobile code из Functions или Functions code из client для искусственного «совпадения».
+- Numeric ranges конечны и `min <= max`; counts/caps/versions/ordinals/days/hours/assignments — целые в допустимом неотрицательном/положительном диапазоне; fractions/cutoffs — `[0,1]`.
+- Ordinal, day и rollout milestone arrays уникальны и строго возрастают. Rollout percent допускает только `0|1|5|10|25|50|100`.
+- `HYP-V2-001`: season/chapter/episode/checkpoint shape арифметически согласован.
+- `HYP-V2-004`: `maxStarsPerEpisode = maxStarsPerSlot × gateEligibleSlotsPerEpisode`, а `maxStarsPerSeason = maxStarsPerEpisode × seasonEpisodeCount`.
+- `HYP-V2-005`: required loop tuple exact `['encounter_build','near_transfer']`; local/cumulative curve ordinals unique/increasing, values reachable/nondecreasing и согласованы с season/star budget; стартовый corpus отражает documented 32-episode curve и target 500.
+- `HYP-V2-007`: только allowlisted exact `delayedWindowPolicyId='dts-7.d3-d7.v1'`, assessable D+3…D+7, unique increasing post-season cadence и stable success-policy ID; произвольный window ID — non-waivable blocker.
+- `HYP-V2-008`: milestones unique/increasing, finite, с разрешёнными percentages и meaningful observation/assignment minima.
+- Все issue codes стабильны, детерминированно отсортированы и одинаковы в двух runtime. Resolver не читает mutable latest и не принимает сокращённые/fake hashes.
+
+### 8.4 Test-first порядок Task 1.1A
+
+1. Полностью прочитать umbrella Task 1.1A, spec 08 §6–6.2 и governance defaults в docs 03/05/07; не выводить settings из старого legacy UI.
+2. Сначала создать shared JSON corpus: один valid resolved pair плюс именованные invalid cases/expected ordered issue codes. Все hashes — 64 lowercase hex; valid hash должен быть рассчитан из exact canonical body, не записан произвольной заглушкой.
+3. Написать root и Functions tests, которые независимо читают один fixture, сравнивают accepted IDs, issue arrays, canonical bytes/hash и exact object path.
+4. В RED обязательно покрыть: missing/extra decision, map-key mismatch, unknown/missing setting/field, non-finite/range/fraction, duplicate/unsorted ordinal и milestone, derived star/season/gate mismatch, self-hash/body metadata, ref id/version/hash mismatch, object hash/path mismatch, malformed generation/byteSize/time и forbidden latest resolution.
+5. Запустить обе suites и сохранить behavioral RED из-за отсутствующего resolver/validator, а не broken config или два разных fixture formats.
+6. Реализовать exact readonly types, strict parsers, canonical bytes/hash, deterministic issue ordering и resolved-pair validation отдельно в client и Functions.
+7. Повторить shared corpus в обоих runtime и доказать одинаковые accepted fixture IDs, issue-code arrays и golden hash.
+8. Запустить `git diff --check`, focused type/tests, staged secret scan, независимый spec review, затем отдельный quality review; каждый P0–P2 исправить test-first и re-review.
+9. Commit только пять файлов с subject `feat: add immutable V2 DecisionRegistry`.
+10. Обновить этот хендовер RED/GREEN/counts/commits/findings и только затем начать Task 1.2.
+
+### 8.5 Точные Task 1.1A gates
 
 ```powershell
-npx jest --runTestsByPath tests/learning_v2_identity_contract.test.ts --no-cache --runInBand
-```
-
-Ожидаемый RED: tests загружаются, но validators/schema registry отсутствуют.  
-Ожидаемый GREEN: suite PASS; documented identity grammar одинаково пригодна для client fixtures, Admin preview и backend tests.
-
-### 8.5 Выполненный prerequisite: воспроизводимый Firebase CLI
-
-Prerequisite закрыт commits `abce49e1f` и `fd450e763`. Фактически выполненные команды:
-
-```powershell
+npx jest --runTestsByPath tests/learning_v2_decision_registry.test.ts --no-cache --runInBand
 Push-Location functions
-npm install --save-dev --save-exact firebase-tools@15.23.0
-git diff -- package.json package-lock.json
-npm ci
-.\node_modules\.bin\firebase.cmd --version
-npm run test:emulator:v2-authoring-rules
+npx jest --runTestsByPath src/content_studio/decision_registry.test.ts --no-cache --runInBand
 Pop-Location
-npx jest --runTestsByPath tests/functions_firebase_cli_reproducibility_contract.test.ts tests/firestore_rules_security.test.ts --no-cache --runInBand
 ```
 
-Получено: diff содержит manifest/lock/focused contract, `npm ci` с нуля восстанавливает dependency tree, local binary печатает `15.23.0`, emulator suite даёт 351/351, combined root suites — 61/61. Остаточное dev-only audit-исключение и запрет автоматического downgrade описаны в §7.1; они не блокируют pure Task 1.1.
+Ожидаемый GREEN: обе suites проходят один shared corpus, дают byte-identical canonical body/hash, одинаковые ordered issue codes и fail-closed отклоняют mutable/latest или hash/object mismatch.
 
 ### 8.6 Следующие contract tasks до Content Studio
 
-- **1.1A:** immutable all-eight DecisionRegistry body/record/ref/object и shared client/Functions corpus.
 - **1.2:** canonical activity, episode, curriculum, checkpoint, independent/delayed-probe and graph contracts.
 - **1.3:** attempt, result, evidence, non-assessment, cardinality and delayed materialization contracts.
 - **1.4:** thin Functions parser/mirror over the same fixtures and stable issue codes.
 
-Только после GREEN этих задач начинается следующий блок.
+Только после GREEN этих задач начинается dedicated Content Studio block.
 
 ### 8.7 Будущий dedicated Content Studio Task 1
 
@@ -661,11 +723,13 @@ docs/v2/HANDOVER.md, docs/v2/README.md и оба плана 2026-07-14. Не м�
 Проверь два checkout и сохрани чужие изменения. Текущий код: worktree
 C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot, branch codex/learning-v2-pilot,
 Определи текущий HEAD через git rev-parse HEAD; обязательная история содержит Task 0
-ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a и canonical package a09f57da2d2442d114202bb3d52bf58abe917bb1.
+ec8ebed296a8d61e27a8ede1eae9510f8fcbae3a, canonical package a09f57da2d2442d114202bb3d52bf58abe917bb1,
+identity contracts 77cf617afb4a33e75a830dfc9d78d133e4f928c2 и purity fix 362b65e7af4ea0b1db34f13007686f4e6e91d180.
 Канонические 14 paths уже tracked. Firebase CLI P2 закрыт commits abce49e1f + fd450e763;
-не меняй pin без 351+61 gates. Выполни umbrella Phase 01 / Task 1.1 строго test-first:
-identity grammar и schema versions без
-React/Firebase. Затем выполняй 1.1A → 1.2 → 1.3 → 1.4 и только после них dedicated
+не меняй pin без 351+61 gates. Task 1.1 закрыт и даёт 47/47. Выполни umbrella
+Phase 01 / Task 1.1A строго test-first: один immutable eight-entry DecisionRegistry,
+shared client/Functions corpus, canonical bytes/hash, exact ref/object path и no latest.
+Затем выполняй 1.2 → 1.3 → 1.4 и только после них dedicated
 Content Studio Tasks 1–3. Не начинай UI и не удаляй legacy. После каждого GREEN и
 независимой проверки обновляй мастер-хендовер всеми файлами, командами, counts,
 commit и exact dependency-aware next task.
@@ -685,6 +749,7 @@ commit и exact dependency-aware next task.
 - Task 0 security commit существует только локально в отдельном clean worktree;
 - 351 emulator и 61 combined reproducibility/static tests зелёные;
 - firebase-tools pin закрыт на latest exact `15.23.0`; time-bounded dev-only audit exception описан в §7.1; общий baseline Functions build остаётся открытым;
+- Task 1.1 identity/versioning закрыт commits `77cf617af` + `362b65e7a`; behavioral RED `35/3`, quality RED `5/42`, final `47/47`, spec PASS и quality APPROVED;
 - все 11 V2 docs, оба плана и AGENTS protocol сохранены docs-only commit и присутствуют в clean pilot worktree;
-- exact next implementation — umbrella Phase 01 / Task 1.1 identity and versioning; Content Studio Task 1 идёт только после 1.1A–1.4;
+- exact next implementation — umbrella Phase 01 / Task 1.1A immutable DecisionRegistry; Content Studio Task 1 идёт только после 1.2–1.4;
 - UI, mass generation, production rollout и legacy retirement сейчас запрещены порядком зависимостей.

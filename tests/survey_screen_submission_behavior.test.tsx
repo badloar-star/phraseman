@@ -5,12 +5,12 @@ import { act, fireEvent, render } from '@testing-library/react-native';
 jest.unmock('react-native');
 
 const mockBack = jest.fn();
-const mockSubmitSurvey = jest.fn();
-const mockReplaceBalance = jest.fn(() => Promise.resolve());
-const mockMarkDone = jest.fn(() => Promise.resolve());
-const mockBeginCache = jest.fn(() => 17);
-const mockCommitCache = jest.fn();
-const mockEmit = jest.fn();
+const mockSubmitSurvey = jest.fn<Promise<unknown>, unknown[]>();
+const mockReplaceBalance = jest.fn<Promise<unknown>, unknown[]>(async () => undefined);
+const mockMarkDone = jest.fn<Promise<unknown>, unknown[]>(async () => undefined);
+const mockBeginCache = jest.fn<number, unknown[]>(() => 17);
+const mockCommitCache = jest.fn<boolean, unknown[]>();
+const mockEmit = jest.fn<void, unknown[]>();
 const mockClearPrimed = jest.fn();
 
 jest.mock('expo-router', () => ({
@@ -72,6 +72,10 @@ jest.mock('react-native-safe-area-context', () => {
 jest.mock('@expo/vector-icons', () => {
   const { Text: MockText } = require('react-native');
   return { Ionicons: ({ name }: any) => <MockText>{name}</MockText> };
+});
+jest.mock('@expo/vector-icons/Ionicons', () => {
+  const { Text: MockText } = require('react-native');
+  return ({ name }: any) => <MockText>{name}</MockText>;
 });
 jest.mock('../components/survey/SurveyRewardPanel', () => {
   const { Pressable: MockPressable, Text: MockText, View: MockView } = require('react-native');
@@ -305,7 +309,8 @@ test('failure preserves the answer, retry is monotonic, and only reconciliation 
   expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
   await fireEvent.press(view.getByTestId('retry'));
   expect(mockSubmitSurvey).toHaveBeenCalledTimes(2);
-  expect(mockSubmitSurvey.mock.calls[1][0].answers).toEqual({ q1: { comment: 'kept answer' } });
+  expect((mockSubmitSurvey.mock.calls[1][0] as { answers: Record<string, unknown> }).answers)
+    .toEqual({ q1: { comment: 'kept answer' } });
   expect(timeoutSpy).not.toHaveBeenCalledWith(expect.any(Function), 1400);
 
   await act(async () => {

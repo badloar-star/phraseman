@@ -16,6 +16,7 @@
   ],
   "exclude": [
     "functions",
+    "tests/e2e",
     "docs/reports",
     "subscription-recovery",
     "tmp",

@@ -5,6 +5,17 @@ import fs from 'node:fs';
 
 const ROOT = new URL('../', import.meta.url);
 
+const normalizeAudioKey = (text) => String(text).trim().toLowerCase().replace(/\s+/g, ' ');
+
+function runtimeAudioMap() {
+  const source = fs.readFileSync(new URL('../app/phrase_audio_url_map.generated.ts', import.meta.url), 'utf8');
+  const entries = new Map();
+  for (const match of source.matchAll(/^\s*"((?:[^"\\]|\\.)*)":\s*"(https[^"]+)"/gm)) {
+    entries.set(normalizeAudioKey(JSON.parse(`"${match[1]}"`)), match[2]);
+  }
+  return entries;
+}
+
 function audit() {
   const result = spawnSync('node', ['scripts/audit_phrase_audio_sync.mjs', '--json'], {
     cwd: ROOT,
@@ -21,8 +32,9 @@ test('audio audit uses the final runtime sentence for lesson 31', () => {
     .flatMap((kind) => report.findings[kind]);
 
   assert.equal(actionable.some((item) => item.id === 'lesson31_phrase_1'), false);
-  const voiced = JSON.parse(fs.readFileSync(new URL('../.codex-tmp/tts-voicing/audio_url_map.json', import.meta.url), 'utf8'));
-  assert.equal(voiced.lesson31_phrase_1.text, 'They made the new driver pay a big fine.');
+  const runtimeMap = runtimeAudioMap();
+  const url = runtimeMap.get(normalizeAudioKey('They made the new driver pay a big fine.'));
+  assert.match(url ?? '', /lesson31_phrase_1-[a-f0-9]{12}\.mp3/);
 });
 
 test('audio audit preserves the complete lesson phrase corpus', () => {
@@ -45,10 +57,10 @@ test('changed-audio manifest is exactly 58 resolved same-id runtime slots', () =
   assert.deepEqual(report.findings.FIELD_DRIFT.map(({ id }) => id), []);
   assert.equal(report.totalActionable, 0);
 
-  const voiced = JSON.parse(fs.readFileSync(new URL('../.codex-tmp/tts-voicing/audio_url_map.json', import.meta.url), 'utf8'));
+  const runtimeMap = runtimeAudioMap();
   for (const { id, text } of targets) {
-    assert.equal(voiced[id]?.text, text, `${id} must keep the reviewed runtime text`);
-    assert.match(voiced[id]?.url ?? '', new RegExp(`${id}-[a-f0-9]{12}\\.mp3`), `${id} must use its content-versioned object`);
+    const url = runtimeMap.get(normalizeAudioKey(text));
+    assert.match(url ?? '', new RegExp(`${id}-[a-f0-9]{12}\\.mp3`), `${id} must use its content-versioned object`);
   }
 });
 

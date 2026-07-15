@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
+jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: () => null }));
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ id: '11' }),
   useRouter: () => ({ back: jest.fn(), replace: jest.fn() }),
@@ -9,6 +10,18 @@ jest.mock('expo-router', () => ({
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: ({ children }: any) => children }));
 jest.mock('../components/AddToFlashcard', () => () => null);
 jest.mock('../components/ContentWrap', () => ({ children }: any) => children);
+jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
+jest.mock('../components/feedback/VictoryBurst', () => () => null);
+jest.mock('../app/feedback/feedback_kit', () => ({
+  __esModule: true,
+  default: {
+    combo: jest.fn(),
+    comboBreak: jest.fn(),
+    correct: jest.fn(),
+    tap: jest.fn(),
+    wrong: jest.fn(),
+  },
+}));
 jest.mock('../components/LangContext', () => ({
   useLang: () => ({ lang: 'ru', s: { words: {} } }),
 }));

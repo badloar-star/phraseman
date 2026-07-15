@@ -87,7 +87,7 @@ describe('report reply user messages', () => {
     expect(snapshot.unreadCount).toBe(1);
   });
 
-  it('filters every dismissed team message kind', () => {
+  it('filters an explicitly removed team message with a current visibility revision', () => {
     const news = normalizeAppMessage('news1', {
       kind: 'message',
       active: true,
@@ -114,6 +114,7 @@ describe('report reply user messages', () => {
       reaction: null,
       pollOptionId: null,
       updatedAtMs: now,
+      visibilityRevision: now,
     }], now);
 
     expect(snapshot.messages.map((message) => message.id)).toEqual(['poll1']);

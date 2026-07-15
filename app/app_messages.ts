@@ -777,7 +777,12 @@ export function mergeAppMessagesWithStates(
   const merged = messages
     .filter((message) => {
       const state = stateByMessage.get(message.id);
-      const hiddenByUserState = !!state?.dismissedAtMs;
+      // Before permanent removal shipped, regular message states could already contain
+      // dismissedAtMs. Only visibilityRevision proves that a current client explicitly
+      // removed the message; VIP survey dismissal has always meant "do not show again".
+      const hiddenByUserState = !!state?.dismissedAtMs && (
+        message.kind === 'vip_survey' || (state.visibilityRevision ?? 0) > 0
+      );
       return !hiddenByUserState && isAppMessageVisible(message, nowMs);
     })
     .sort((a, b) => (b.priority - a.priority) || (b.createdAtMs - a.createdAtMs))

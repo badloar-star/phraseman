@@ -4,6 +4,7 @@ import path from 'path';
 describe('admin VIP survey preview', () => {
   const root = process.cwd();
   const screen = fs.readFileSync(path.join(root, 'app', '_admin_settings_testers.tsx'), 'utf8');
+  const scenarios = fs.readFileSync(path.join(root, 'components', 'admin_panel', 'sections', 'ScenariosSection.tsx'), 'utf8');
   const inbox = fs.readFileSync(path.join(root, 'components', 'AppMessagesInbox.tsx'), 'utf8');
   const modal = fs.readFileSync(path.join(root, 'components', 'VipSurveyModal.tsx'), 'utf8');
   const reviewPrompt = fs.readFileSync(path.join(root, 'components', 'VipSurveyReviewPromptModal.tsx'), 'utf8');
@@ -11,13 +12,15 @@ describe('admin VIP survey preview', () => {
   const surveyClient = fs.readFileSync(path.join(root, 'app', 'vip_survey.ts'), 'utf8');
   const surveyDevAuth = fs.readFileSync(path.join(root, 'app', 'vip_survey_dev_auth.ts'), 'utf8');
   const appMessages = fs.readFileSync(path.join(root, 'app', 'app_messages.ts'), 'utf8');
-  const admin = fs.readFileSync(path.join(root, 'admin', 'index.html'), 'utf8');
+  const admin = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
   const maestro = fs.readFileSync(path.join(root, 'maestro', 'flows', 'dev_only', 'vip_survey_e2e.yaml'), 'utf8');
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
   it('seeds a local-only inbox notification and returns the admin to Home', () => {
-    expect(screen).toContain('admin-preview-vip-survey-notification');
+    expect(screen).toContain('<ScenariosSection');
+    expect(screen).toContain('onSeedVipSurvey={() => { void showVipSurveyNotificationPreview(); }}');
+    expect(scenarios).toContain('testID="admin-scenario-inbox-flow"');
     expect(screen).toContain('seedLocalVipSurveyTestMessage');
     expect(screen).toContain('vipSurveyPreviewBusyRef');
     expect(screen).toContain('navigateHomeAfterVipSurveySeed');
@@ -25,8 +28,8 @@ describe('admin VIP survey preview', () => {
     expect(screen).toContain('nav.dismissAll');
     expect(screen).toContain("router.replace('/(tabs)/home'");
     expect(screen).not.toContain("nav.navigate('/(tabs)/home'");
-    expect(screen).toContain('Завершение опроса отправляет реальные ответы в админку');
-    expect(appMessages).toContain('AsyncStorage.setItem(LOCAL_APP_MESSAGES_KEY');
+    expect(scenarios).toContain('Завершение опроса отправляет реальные ответы в админку');
+    expect(appMessages).toContain('appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX, ownerUid)');
     expect(appMessages).toContain('admin_test_vip_survey_');
     expect(appMessages).toContain("if (message.kind === 'vip_survey') return !hasPremiumAccess");
     expect(appMessages).toContain("audience: 'free'");
@@ -86,6 +89,8 @@ describe('admin VIP survey preview', () => {
     const persistStart = surveyClient.indexOf('async function persistVipResult');
     const persistBody = surveyClient.slice(persistStart, surveyClient.indexOf('export async function submitVipSurveyFromApp', persistStart));
     expect(persistBody).not.toContain('tester_no_premium');
+    expect(persistBody).toContain('}).catch(() => {});');
+    expect(screen).toContain("void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});");
     expect(surveyClient).toMatch(/if \(active\) \{\r?\n\s*emitAppEvent\('vip_activated'\);/);
     expect(surveyClient).toContain("emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' })");
     expect(reviewPrompt).toContain('Твой Plus активирован');
@@ -110,7 +115,7 @@ describe('admin VIP survey preview', () => {
     expect(finishBody).toContain('submitVipSurveyFromApp');
     expect(maestro).toContain('visible: "Админ панель"');
     expect(maestro).not.toContain('id: "screen-settings-testers"');
-    expect(maestro).toContain('admin-preview-vip-survey-notification');
+    expect(maestro).toContain('admin-scenario-inbox-flow');
     expect(maestro).toContain('vip-survey-comment-one_thing_week');
     expect(maestro).not.toContain('hideKeyboard');
     expect(maestro).toContain('vip-survey-review-write');

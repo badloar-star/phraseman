@@ -15,7 +15,8 @@ describe('help board product contract', () => {
     const home = read(path.join('app', '(tabs)', 'home.tsx'));
 
     expect(home).not.toContain('<AppMessagesInbox />');
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
+    expect(home).toContain("const isHomeOwner = runtimeOwnerId === 'home';");
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
     expect(notifications).toContain('mode="notification-center"');
     expect(home).toContain('<CommunityChatHubButton />');
     expect(inbox).not.toContain('HelpBoardPanel');

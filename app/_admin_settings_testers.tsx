@@ -194,6 +194,7 @@ import {
 import RewardModalsExtraSection from '../components/admin_panel/sections/RewardModalsExtraSection';
 import SystemModalsExtraSection from '../components/admin_panel/sections/SystemModalsExtraSection';
 import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
+import ScenariosSection from '../components/admin_panel/sections/ScenariosSection';
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
 import SoftUpsellPreviewSection from '../components/admin_panel/sections/SoftUpsellPreviewSection';
@@ -1112,7 +1113,7 @@ export default function SettingsTestersFunctions() {
       await markVipCelebrationPending(grantAt);
       emitAppEvent('vip_activated');
       emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});
 
       const uid = await ensureAnonUser().catch(() => null);
       if (uid) {
@@ -4114,6 +4115,13 @@ export default function SettingsTestersFunctions() {
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
+          <ScenariosSection
+            open={openSection === 'scenarios_conflicts'}
+            onToggle={toggleSection}
+            onSeedGlobalLevelUp={triggerGlobalLevelUp}
+            onGoHome={navigateHomeAfterVipSurveySeed}
+            onSeedVipSurvey={() => { void showVipSurveyNotificationPreview(); }}
+          />
           <SoftUpsellPreviewSection
             open={openSection === 'soft_upsell_previews'}
             onToggle={toggleSection}

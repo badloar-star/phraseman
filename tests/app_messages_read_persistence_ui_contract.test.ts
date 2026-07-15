@@ -50,4 +50,14 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).not.toContain('ActivityIndicator');
     expect(inboxSource).not.toContain('disabled={claiming}');
   });
+
+  it('contains every fire-and-forget inbox write rejection', () => {
+    const persistenceCalls = inboxSource
+      .split(/\r?\n/)
+      .filter((line) => /void (markAppMessageRead|setAppMessageReaction|setAppMessagePollVote)\(/.test(line));
+    expect(persistenceCalls.length).toBeGreaterThan(0);
+    for (const line of persistenceCalls) {
+      expect(line).toContain('.catch(() => {})');
+    }
+  });
 });

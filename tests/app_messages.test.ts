@@ -12,6 +12,7 @@ import {
   pickAppMessageText,
   seedLocalVipSurveyTestMessage,
 } from '../app/app_messages';
+import { getCanonicalUserId } from '../app/user_id_policy';
 
 describe('app_messages', () => {
   const now = Date.UTC(2026, 4, 16, 12, 0, 0);
@@ -259,8 +260,10 @@ describe('app_messages', () => {
 
   it('seeds an admin VIP survey test as a local-only inbox message', async () => {
     const id = await seedLocalVipSurveyTestMessage(now);
-    const rawMessages = await AsyncStorage.getItem('app_messages_local_preview_v1');
-    const rawStates = await AsyncStorage.getItem('app_message_local_preview_states_v1');
+    const ownerUid = await getCanonicalUserId();
+    const ownerKey = encodeURIComponent(String(ownerUid));
+    const rawMessages = await AsyncStorage.getItem(`app_messages_local_preview_v2:${ownerKey}`);
+    const rawStates = await AsyncStorage.getItem(`app_message_local_preview_states_v2:${ownerKey}`);
     const messages = JSON.parse(rawMessages || '[]');
     const states = JSON.parse(rawStates || '[]');
 

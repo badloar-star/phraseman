@@ -50,6 +50,7 @@ import VipCelebrationModal from './VipCelebrationModal';
 import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
+import { FlowText } from './text-integrity';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000;
@@ -452,7 +453,7 @@ function AppMessagesInbox({
     if (!selected || !selected.unread) return;
     setMessages((prev) => prev.map((m) => (m.id === selected.id ? { ...m, unread: false, readAtMs: Date.now() } : m)));
     setUnreadCount((prev) => Math.max(0, prev - 1));
-    void markAppMessageRead(selected.id);
+    void markAppMessageRead(selected.id).catch(() => {});
   }, [selected]);
 
   useEffect(() => () => {
@@ -516,7 +517,7 @@ function AppMessagesInbox({
     const next = selected.reaction === reaction ? null : reaction;
     setMessages((prev) => prev.map((m) => (m.id === selected.id ? { ...m, reaction: next } : m)));
     hapticTap();
-    void setAppMessageReaction(selected.id, next);
+    void setAppMessageReaction(selected.id, next).catch(() => {});
   };
 
   const voteOnSelectedPoll = (optionId: string) => {
@@ -542,7 +543,7 @@ function AppMessagesInbox({
       }),
     );
     hapticTap();
-    void setAppMessagePollVote(selected.id, optionId);
+    void setAppMessagePollVote(selected.id, optionId).catch(() => {});
   };
 
   // Local UI overlay: hide the CTA immediately; persistence is handled in the background.
@@ -576,7 +577,7 @@ function AppMessagesInbox({
     if (message.unread) {
       setMessages((prev) => prev.map((m) => (m.id === message.id ? { ...m, unread: false, readAtMs: Date.now() } : m)));
       setUnreadCount((prev) => Math.max(0, prev - 1));
-      void markAppMessageRead(message.id);
+      void markAppMessageRead(message.id).catch(() => {});
     }
     setSelectedId(null);
     setVisible(false);
@@ -674,11 +675,23 @@ function AppMessagesInbox({
               >
                 {message.unread ? <View pointerEvents="none" style={styles.embeddedUnreadDot} /> : null}
                 <View style={styles.embeddedCopy}>
-                  <Text numberOfLines={2} style={[styles.embeddedTitle, { color: message.unread ? chrome.text : chrome.muted }]}>
+                  <FlowText
+                    testID={`notification-center-team-title-${message.id}`}
+                    provenance="external"
+                    integrityText={text.title}
+                    style={[styles.embeddedTitle, { color: message.unread ? chrome.text : chrome.muted }]}
+                  >
                     {text.title}
-                  </Text>
+                  </FlowText>
                   {preview ? (
-                    <Text numberOfLines={2} style={[styles.embeddedPreview, { color: chrome.muted }]}>{preview}</Text>
+                    <FlowText
+                      testID={`notification-center-team-preview-${message.id}`}
+                      provenance="external"
+                      integrityText={preview}
+                      style={[styles.embeddedPreview, { color: chrome.muted }]}
+                    >
+                      {preview}
+                    </FlowText>
                   ) : null}
                   <Text style={[styles.embeddedDate, { color: chrome.soft }]}>{formatMessageDate(message.createdAtMs)}</Text>
                 </View>

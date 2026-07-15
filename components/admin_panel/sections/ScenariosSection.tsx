@@ -153,7 +153,7 @@ export default function ScenariosSection({ open, onToggle, onSeedGlobalLevelUp, 
         testID="admin-scenario-inbox-flow"
         icon="mail-unread-outline"
         label="Inbox: опрос → празднование (вложенные Modal)"
-        sub="Засев VIP-survey в inbox и переход на главную — открой конверт и пройди до конца"
+        sub="Засев Plus-опроса в inbox и переход на главную. Завершение опроса отправляет реальные ответы в админку и активирует Plus."
         onPress={onSeedVipSurvey}
       />
 

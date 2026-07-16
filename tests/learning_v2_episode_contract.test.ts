@@ -366,6 +366,29 @@ const checkpointContext = {
         },
       },
     },
+    {
+      nodeId: "cp.alt01",
+      declaration: {
+        objectiveId: "objective.introduce-self",
+        skillId: "skill.origin",
+        construct: "semantic",
+        phase: "independent_probe",
+        target: { targetKind: "semantic_slot", targetId: "slot.origin" },
+      },
+    },
+    {
+      nodeId: "cp.alt02",
+      declaration: {
+        objectiveId: "objective.introduce-self",
+        skillId: "skill.polite-close",
+        construct: "interaction",
+        phase: "independent_probe",
+        target: {
+          targetKind: "critical_constraint",
+          targetId: "constraint.polite-close",
+        },
+      },
+    },
   ],
   taughtScope: {
     skillIds: ["skill.origin", "skill.polite-close"],
@@ -2807,7 +2830,23 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
     ).toEqual([
       {
         code: "checkpoint_alternate_invalid",
-        path: "$.checkpoint.deterministicAlternateRoutes",
+        path: "$.checkpoint.deterministicAlternateRoutes[1].alternateNodeId",
+      },
+    ]);
+  });
+
+  test("rejects an alternate declaration with a non-equivalent evidence tuple", () => {
+    const checkpoint = clone(validCheckpoint) as JsonRecord;
+    const context = clone(checkpointContext) as JsonRecord;
+    const declarations = context.declarations as JsonRecord[];
+    const alternate = declarations.find((entry) => entry.nodeId === "cp.alt01");
+    (alternate?.declaration as JsonRecord).skillId = "skill.other";
+    expect(
+      issueSummary(validateV2CheckpointContract(checkpoint, context)),
+    ).toEqual([
+      {
+        code: "checkpoint_alternate_invalid",
+        path: "$.checkpoint.deterministicAlternateRoutes[0].alternateNodeId",
       },
     ]);
   });

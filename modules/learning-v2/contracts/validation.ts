@@ -5974,6 +5974,31 @@ const validateCheckpointInternal = (
         issue("checkpoint_alternate_invalid", `${routePath}.alternateNodeId`),
       ]);
     }
+    const primaryDeclaration = context.declarations.find(
+      (entry) => entry.nodeId === String(route.primaryNodeId),
+    )?.declaration as JsonObject | undefined;
+    const alternateDeclaration = context.declarations.find(
+      (entry) => entry.nodeId === String(route.alternateNodeId),
+    )?.declaration as JsonObject | undefined;
+    const declarationTuple = (declaration: JsonObject | undefined) =>
+      declaration &&
+      JSON.stringify({
+        objectiveId: declaration.objectiveId,
+        skillId: declaration.skillId,
+        construct: declaration.construct,
+        phase: declaration.phase,
+        target: declaration.target,
+      });
+    if (
+      !primaryDeclaration ||
+      !alternateDeclaration ||
+      declarationTuple(primaryDeclaration) !==
+        declarationTuple(alternateDeclaration)
+    ) {
+      return fail([
+        issue("checkpoint_alternate_invalid", `${routePath}.alternateNodeId`),
+      ]);
+    }
   }
   const alternatePrimaryIds = checkpoint.deterministicAlternateRoutes.map(
     (route) => String(route.primaryNodeId),

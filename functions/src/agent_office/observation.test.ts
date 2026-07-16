@@ -8,6 +8,7 @@ import {
 describe('Agent Office W2 observation adapters', () => {
   test.each([
     ['complete', { state: 'ready', count: 4, truncated: false }, 'ready', false],
+    ['empty', { state: 'empty', count: 0, truncated: false }, 'empty', false],
     ['partial', { state: 'partial', count: 4, truncated: false }, 'partial', true],
     ['error', { state: 'error', count: 0, truncated: false }, 'error', true],
     ['truncated', { state: 'ready', count: 100, truncated: true }, 'truncated', true],
@@ -17,18 +18,52 @@ describe('Agent Office W2 observation adapters', () => {
     });
   });
 
+  test.each([
+    [{ state: 'ready', count: -1 }, 'negative count'],
+    [{ state: 'empty', count: '0' }, 'non-numeric count'],
+    [{ state: 'ready' }, 'missing count'],
+    [{ state: 'ready', count: 1, truncated: 'false' }, 'invalid truncated flag'],
+    [{ state: 'unknown', count: 1 }, 'unknown state'],
+  ])('fails closed for %s source receipt', (input, _name) => {
+    const health = normalizeSourceHealth('reports', input, 2_000);
+    expect(health.insufficientEvidence).toBe(true);
+    expect(health.state).toBe('error');
+  });
+
   test('deduplicates reports into a bounded redacted incident sample', () => {
-    const incidents = deduplicateReportIncidents([
-      { source: 'error_reports', reportId: 'r1', category: 'audio', screen: 'lesson', summary: 'Email a@b.com or +353 871234567' },
-      { source: 'error_reports', reportId: 'r2', category: 'audio', screen: 'lesson', summary: 'Sound stops after one word' },
-      { source: 'error_reports', reportId: 'r3', category: 'audio', screen: 'lesson', summary: 'Third reproduction detail' },
-      { source: 'error_reports', reportId: 'r4', category: 'audio', screen: 'lesson', summary: 'Fourth reproduction detail' },
+    const result = deduplicateReportIncidents([
+      { source: 'error_reports', sourceRef: `reports:sha256:${'a'.repeat(64)}`, category: 'audio', screen: 'lesson', summary: 'Email a@b.com or +353 871234567' },
+      { source: 'error_reports', sourceRef: `reports:sha256:${'b'.repeat(64)}`, category: 'audio', screen: 'lesson', summary: 'Sound stops after one word' },
+      { source: 'error_reports', sourceRef: `reports:sha256:${'c'.repeat(64)}`, category: 'audio', screen: 'lesson', summary: 'Third reproduction detail' },
+      { source: 'error_reports', sourceRef: `reports:sha256:${'d'.repeat(64)}`, category: 'audio', screen: 'lesson', summary: 'Fourth reproduction detail' },
     ], 3);
+    const { incidents } = result;
 
     expect(incidents).toHaveLength(1);
     expect(incidents[0]).toMatchObject({ source: 'error_reports', category: 'audio', screen: 'lesson', count: 4 });
     expect(incidents[0].evidence).toHaveLength(3);
-    expect(JSON.stringify(incidents)).not.toMatch(/a@b\.com|353 871234567|r1|Sound stops after one word/);
+    expect(JSON.stringify(incidents)).not.toMatch(/a@b\.com|353 871234567|Sound stops after one word/);
+    expect(result).toMatchObject({ truncated: false, insufficientEvidence: false });
+  });
+
+  test('drops unsafe references and replaces unsafe metadata before grouping', () => {
+    const result = deduplicateReportIncidents([{
+      source: 'attacker@example.com', sourceRef: 'report-id-user-123', category: 'user@example.com', screen: '+353 871234567', summary: 'raw report body',
+    }]);
+
+    expect(result.incidents[0]).toMatchObject({ source: 'unknown_reports', category: 'other', screen: 'unknown_screen', count: 1, evidence: [] });
+    expect(JSON.stringify(result)).not.toMatch(/attacker@example.com|user@example.com|353 871234567|report-id-user-123|raw report body/);
+  });
+
+  test('bounds report rows, groups and total evidence with explicit insufficient truncation', () => {
+    const result = deduplicateReportIncidents(Array.from({ length: 101 }, (_value, index) => ({
+      source: 'error_reports', sourceRef: `reports:sha256:${index.toString(16).padStart(64, 'a')}`,
+      category: index % 2 ? 'audio' : 'bug', screen: index % 2 ? 'lesson' : 'home', summary: 'ignored',
+    })), 5);
+
+    expect(result).toMatchObject({ truncated: true, insufficientEvidence: true });
+    expect(result.incidents.length).toBeLessThanOrEqual(20);
+    expect(result.incidents.reduce((sum, incident) => sum + incident.evidence.length, 0)).toBeLessThanOrEqual(20);
   });
 
   test('creates cases only for the bounded deterministic allowlist and blocks incomplete evidence', () => {
@@ -39,13 +74,26 @@ describe('Agent Office W2 observation adapters', () => {
         normalizeSourceHealth('reports', { state: 'truncated', count: 100, truncated: true }, 2_000),
       ],
       analytics: { state: 'partial', qualityIncomplete: true },
-      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 3, evidence: [] }],
-      audit: { state: 'ready' },
+      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 3, evidence: [], truncated: false, insufficientEvidence: false }],
+      audit: { state: 'ready', count: 1 },
     });
 
     expect(cases.map((item) => item.signal)).toEqual(['analytics_incomplete', 'report_incident']);
     expect(cases[0]).toMatchObject({ status: 'insufficient_data', insufficientEvidence: true });
     expect(cases.every((item) => item.actionType === 'analysis_prepare')).toBe(true);
+  });
+
+  test('propagates incomplete analytics, audit and report receipts to every incident case', () => {
+    const cases = createObservationCases({
+      observedAtMs: 2_000,
+      sourceHealth: [normalizeSourceHealth('reports', { state: 'ready', count: -1 }, 2_000)],
+      analytics: { state: 'ready', qualityIncomplete: false, count: 1 },
+      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 2, evidence: [], truncated: false, insufficientEvidence: false }],
+      audit: { state: 'error', count: 0 },
+    });
+
+    expect(cases.find((item) => item.signal === 'report_incident')).toMatchObject({ status: 'insufficient_data', insufficientEvidence: true });
+    expect(cases.find((item) => item.signal === 'audit_error')).toBeDefined();
   });
 
   test('builds a zero-cost daily digest with freshness and at most one observation recommendation', () => {

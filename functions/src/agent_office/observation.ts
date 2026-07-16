@@ -28,7 +28,7 @@ export interface ReportIncident {
   readonly droppedEvidenceCount: number;
 }
 
-type RawSourceHealth = Readonly<{ state?: unknown; count?: unknown; truncated?: unknown }>;
+type RawSourceHealth = Readonly<{ state?: unknown; count?: unknown; truncated?: unknown; observedAtMs?: unknown }>;
 type RawReport = Readonly<{ source?: unknown; sourceRef?: unknown; category?: unknown; screen?: unknown; summary?: unknown }>;
 type RawObservationSourceHealth = RawSourceHealth & Readonly<{ source?: unknown }>;
 type RawObservationRow = Readonly<{ source?: unknown; category?: unknown; screen?: unknown }>;
@@ -62,10 +62,14 @@ function sourceState(input: RawSourceHealth): ObservationSourceState {
 /** Converts existing callable health contracts without inferring zero from unavailable data. */
 export function normalizeSourceHealth(source: string, input: RawSourceHealth, observedAtMs: number): ObservationSourceHealth {
   const state = sourceState(input);
+  const sourceObservedAtMs = typeof input.observedAtMs === 'number'
+    && Number.isSafeInteger(input.observedAtMs) && input.observedAtMs >= 0
+    ? input.observedAtMs
+    : observedAtMs;
   return Object.freeze({
     source: text(source, 'unknown_source', 80),
     state,
-    observedAtMs,
+    observedAtMs: sourceObservedAtMs,
     insufficientEvidence: !hasSufficientReceipt(input),
   });
 }
@@ -241,7 +245,10 @@ export function observeAgentOffice(value: unknown): Readonly<{
   const inputKeysValid = hasExactKeys(input, ['observedAtMs', 'sourceHealth', 'rows']);
   const receiptsValid = rawHealth.length === EXPECTED_OBSERVATION_SOURCES.length
     && rawHealth.every((candidate) => isRecord(candidate)
-      && hasExactKeys(candidate, ['source', 'state', 'count', 'truncated']));
+      && hasExactKeys(candidate, ['source', 'state', 'count', 'truncated', 'observedAtMs'])
+      && typeof candidate.observedAtMs === 'number'
+      && Number.isSafeInteger(candidate.observedAtMs)
+      && candidate.observedAtMs >= 0);
   const sourceHealth = Object.freeze(EXPECTED_OBSERVATION_SOURCES.map((source) => {
     const matches = rawHealth.filter((candidate): candidate is RawObservationSourceHealth =>
       isRecord(candidate) && candidate.source === source);

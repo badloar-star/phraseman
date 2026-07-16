@@ -183,6 +183,30 @@ describe('Agent Office trusted internal source adapters', () => {
     expect(serialized).not.toContain('private-data-id');
   });
 
+  test('passes distinct validated source timestamps through to the runner receipt', async () => {
+    const adapters = requireAdapters();
+    if (!adapters) return;
+    const repo = repository();
+    const analytics = completeAnalytics();
+    const reports = completeReports();
+    const audit = completeAudit();
+    analytics.generatedAtMs = 2_700;
+    reports.fetchedAtMs = 2_800;
+    audit.fetchedAtMs = 2_900;
+
+    const result = await adapters.runAgentOfficeObservationFromInternalSources(
+      repo,
+      collectors({ analytics, reports, audit }),
+      () => 3_000,
+    );
+
+    expect(result.receipt.sourceHealth).toEqual([
+      { source: 'analytics', state: 'ready', observedAtMs: 2_700 },
+      { source: 'reports', state: 'ready', observedAtMs: 2_800 },
+      { source: 'audit', state: 'empty', observedAtMs: 2_900 },
+    ]);
+  });
+
   test('accepts the report center complete-empty shape and derives an empty receipt', async () => {
     const adapters = requireAdapters();
     if (!adapters) return;
@@ -202,7 +226,7 @@ describe('Agent Office trusted internal source adapters', () => {
     expect(result.receipt).toMatchObject({
       outcome: 'no_action',
       reason: 'no_observation',
-      sourceHealth: expect.arrayContaining([{ source: 'reports', state: 'empty', observedAtMs: 3_000 }]),
+      sourceHealth: expect.arrayContaining([{ source: 'reports', state: 'empty', observedAtMs: 2_000 }]),
     });
   });
 
@@ -252,14 +276,21 @@ describe('Agent Office trusted internal source adapters', () => {
     const adapters = requireAdapters();
     if (!adapters) return;
     const repo = repository();
-    const fixture = source === 'analytics' ? completeAnalytics() : source === 'reports' ? completeReports() : completeAudit();
-    fixture[source === 'analytics' ? 'generatedAtMs' : 'fetchedAtMs'] = sourceTimestampMs;
+    const analytics = completeAnalytics();
+    const reports = completeReports();
+    const audit = completeAudit();
+    analytics.generatedAtMs = source === 'analytics' ? sourceTimestampMs : nowMs;
+    reports.fetchedAtMs = source === 'reports' ? sourceTimestampMs : nowMs;
+    audit.fetchedAtMs = source === 'audit' ? sourceTimestampMs : nowMs;
 
     await expect(adapters.runAgentOfficeObservationFromInternalSources(
       repo,
-      collectors({ [source]: fixture }),
+      collectors({ analytics, reports, audit }),
       () => nowMs,
-    )).rejects.toMatchObject({ code: 'failed-precondition' });
+    )).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: expect.stringContaining(`Agent Office ${source} source receipt is unsafe`),
+    });
     expect(repo.transactionCalls).toBe(0);
   });
 

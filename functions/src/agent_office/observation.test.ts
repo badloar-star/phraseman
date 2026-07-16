@@ -3,6 +3,7 @@ import {
   createObservationCases,
   deduplicateReportIncidents,
   normalizeSourceHealth,
+  observeAgentOffice,
 } from './observation';
 
 describe('Agent Office W2 observation adapters', () => {
@@ -30,6 +31,25 @@ describe('Agent Office W2 observation adapters', () => {
     const health = normalizeSourceHealth('reports', input, 2_000);
     expect(health.insufficientEvidence).toBe(true);
     expect(health.state).toBe('error');
+  });
+
+  test('preserves exact per-source observation timestamps at the runner boundary', () => {
+    const observation = observeAgentOffice({
+      observedAtMs: 5_000,
+      sourceHealth: [
+        { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 4_700 },
+        { source: 'reports', state: 'empty', count: 0, truncated: false, observedAtMs: 4_800 },
+        { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 4_900 },
+      ],
+      rows: [],
+    });
+
+    expect(observation.sourceHealth).toEqual([
+      { source: 'analytics', state: 'ready', observedAtMs: 4_700, insufficientEvidence: false },
+      { source: 'reports', state: 'empty', observedAtMs: 4_800, insufficientEvidence: false },
+      { source: 'audit', state: 'empty', observedAtMs: 4_900, insufficientEvidence: false },
+    ]);
+    expect(observation.evidenceSufficient).toBe(true);
   });
 
   test('deduplicates reports into a bounded redacted incident sample', () => {

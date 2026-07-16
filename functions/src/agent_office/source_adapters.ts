@@ -282,7 +282,10 @@ export async function runAgentOfficeObservationFromInternalSources(
   const validatedSources = Object.freeze([analytics, reports, audit]);
   const input = Object.freeze({
     observedAtMs,
-    sourceHealth: Object.freeze(validatedSources.map((source) => source.receipt)),
+    sourceHealth: Object.freeze(validatedSources.map((source) => Object.freeze({
+      ...source.receipt,
+      observedAtMs: source.sourceObservedAtMs,
+    }))),
     rows: reports.rows,
   });
   return runAgentOfficeObservation(repository, input, () => observedAtMs);

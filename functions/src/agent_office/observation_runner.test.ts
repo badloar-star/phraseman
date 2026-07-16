@@ -85,9 +85,9 @@ function sufficientInput(): Record<string, unknown> {
   return {
     observedAtMs: 2_000,
     sourceHealth: [
-      { source: 'analytics', state: 'ready', count: 1, truncated: false },
-      { source: 'reports', state: 'ready', count: 3, truncated: false },
-      { source: 'audit', state: 'empty', count: 0, truncated: false },
+      { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 1_700 },
+      { source: 'reports', state: 'ready', count: 3, truncated: false, observedAtMs: 1_800 },
+      { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 1_900 },
     ],
     rows: [
       { source: 'error_reports', category: 'audio', screen: 'lesson' },
@@ -136,6 +136,21 @@ describe('Agent Office internal observation runner', () => {
     const serialized = JSON.stringify(result.receipt);
     expect(serialized.length).toBeLessThan(2_000);
     expect(serialized).not.toMatch(/owner-sensitive-uid|sourceRef|actorUid|userId|reportId|idempotency|raw report/i);
+  });
+
+  test('persists distinct validated source timestamps exactly in the immutable receipt', async () => {
+    const runner = requireRunner();
+    if (!runner) return;
+    const repository = new MemoryRepository();
+    repository.seed('agent_office_control/global', VALID_CONTROL);
+
+    const result = await runner.runAgentOfficeObservation(repository, sufficientInput(), () => 3_000);
+
+    expect(result.receipt.sourceHealth).toEqual([
+      { source: 'analytics', state: 'ready', observedAtMs: 1_700 },
+      { source: 'reports', state: 'ready', observedAtMs: 1_800 },
+      { source: 'audit', state: 'empty', observedAtMs: 1_900 },
+    ]);
   });
 
   test.each([

@@ -84,6 +84,7 @@ const isNonEmpty = (value: unknown): value is string =>
 const isHash = (value: unknown): value is string =>
   typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
 const exactKeys = (value: Record<string, unknown>, keys: readonly string[]) =>
+  Object.keys(value).length === keys.length &&
   Object.keys(value).every((key) => keys.includes(key));
 const isRef = (value: unknown, keys: readonly string[]): boolean =>
   isRecord(value) &&
@@ -123,6 +124,27 @@ const validAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
   value.schemaVersion === "v2-attempt-ref.v1" &&
   isNonEmpty(value.opId) &&
   isHash(value.attemptBodyHash);
+const sameAttempt = (
+  left: CanonicalAttemptRef,
+  right: CanonicalAttemptRef,
+): boolean =>
+  left.schemaVersion === right.schemaVersion &&
+  left.opId === right.opId &&
+  left.attemptBodyHash === right.attemptBodyHash;
+const validExpectedKeys = (keys: readonly string[]): boolean =>
+  keys.every((key) => isTupleKey(key)) && new Set(keys).size === keys.length;
+const validResolutionSemantics = (
+  resolution: DelayedTerminalResolution,
+  mode: "inside" | "outside" | "system",
+): boolean =>
+  mode === "inside"
+    ? (resolution.sourceCandidateDisposition === "assessed_candidate" &&
+        resolution.terminalDisposition === "assessed") ||
+      (resolution.sourceCandidateDisposition === "non_assessment_candidate" &&
+        resolution.terminalDisposition === "non_assessment")
+    : mode === "outside"
+      ? resolution.terminalDisposition === "not_assessed_for_window"
+      : resolution.terminalDisposition === "not_assessed_system";
 
 export const buildTimingReceiptRef = (
   body: V2DelayedProbeTimingReceiptBody,
@@ -141,6 +163,7 @@ export const validateTimingReceipt = (
   body: V2DelayedProbeTimingReceiptBody,
   ref: V2DelayedProbeTimingReceiptRef,
   candidateTupleKeys: readonly string[],
+  candidateAttemptRef: CanonicalAttemptRef,
 ): { readonly ok: boolean } => {
   const valid =
     isRecord(body) &&
@@ -167,7 +190,16 @@ export const validateTimingReceipt = (
     (body.assessmentTiming === "inside_pinned_window" ||
       body.assessmentTiming === "outside_pinned_window") &&
     isNonEmpty(body.windowPolicyId) &&
+    validAttemptRef(candidateAttemptRef) &&
+    sameAttempt(body.attemptRef, candidateAttemptRef) &&
+    validExpectedKeys(candidateTupleKeys) &&
     validResolutions(body.terminalTupleResolutions) &&
+    body.terminalTupleResolutions.every((resolution) =>
+      validResolutionSemantics(
+        resolution,
+        body.assessmentTiming === "inside_pinned_window" ? "inside" : "outside",
+      ),
+    ) &&
     body.terminalTupleResolutions.length === candidateTupleKeys.length &&
     candidateTupleKeys.every((key) =>
       body.terminalTupleResolutions.some(
@@ -187,6 +219,7 @@ export const validateFailureReceipt = (
   body: V2DelayedProbeFailureReceiptBody,
   ref: V2DelayedProbeFailureReceiptRef,
   candidateTupleKeys: readonly string[],
+  candidateAttemptRef: CanonicalAttemptRef,
 ): { readonly ok: boolean } => {
   const decision = body.decision;
   const base =
@@ -208,6 +241,9 @@ export const validateFailureReceipt = (
     isRef(body.claimedAssignmentRef, ["assignmentId", "contentHash"]) &&
     isRef(body.claimedLaunchReceiptRef, ["launchId", "contentHash"]) &&
     isNonEmpty(body.rejectedAtServer) &&
+    validAttemptRef(candidateAttemptRef) &&
+    sameAttempt(body.attemptRef, candidateAttemptRef) &&
+    validExpectedKeys(candidateTupleKeys) &&
     isRecord(decision);
   const decisionOk =
     base && decision.kind === "protocol_rejection"
@@ -233,6 +269,9 @@ export const validateFailureReceipt = (
             "server_timing_unavailable",
           ].includes(String(decision.reasonCode)) &&
           validResolutions(decision.terminalTupleResolutions) &&
+          decision.terminalTupleResolutions.every((resolution) =>
+            validResolutionSemantics(resolution, "system"),
+          ) &&
           decision.terminalTupleResolutions.length ===
             candidateTupleKeys.length &&
           candidateTupleKeys.every((key) =>

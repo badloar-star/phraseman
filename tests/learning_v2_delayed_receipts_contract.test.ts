@@ -38,12 +38,15 @@ describe("Learning V2 delayed receipt contracts", () => {
       terminalTupleResolutions: resolutions,
     };
     const ref = buildTimingReceiptRef(body);
-    expect(validateTimingReceipt(body, ref, keys)).toEqual({ ok: true });
+    expect(validateTimingReceipt(body, ref, keys, attemptRef)).toEqual({
+      ok: true,
+    });
     expect(
       validateTimingReceipt(
         { ...body, terminalTupleResolutions: resolutions.slice(0, 1) },
         ref,
         keys,
+        attemptRef,
       ),
     ).toEqual({ ok: false });
     expect(
@@ -51,6 +54,7 @@ describe("Learning V2 delayed receipt contracts", () => {
         body,
         { ...ref, contentHash: "0".repeat(64) },
         keys,
+        attemptRef,
       ),
     ).toEqual({ ok: false });
   });
@@ -70,10 +74,14 @@ describe("Learning V2 delayed receipt contracts", () => {
       rejectedAtServer: "2026-07-16T00:00:00.000Z",
     };
     const protocolRef = buildFailureReceiptRef(protocolBody);
-    expect(validateFailureReceipt(protocolBody, protocolRef, [])).toEqual({
+    expect(
+      validateFailureReceipt(protocolBody, protocolRef, [], attemptRef),
+    ).toEqual({
       ok: true,
     });
-    expect(validateFailureReceipt(protocolBody, protocolRef, keys)).toEqual({
+    expect(
+      validateFailureReceipt(protocolBody, protocolRef, keys, attemptRef),
+    ).toEqual({
       ok: true,
     });
 
@@ -90,7 +98,9 @@ describe("Learning V2 delayed receipt contracts", () => {
       },
     };
     const systemRef = buildFailureReceiptRef(systemBody);
-    expect(validateFailureReceipt(systemBody, systemRef, keys)).toEqual({
+    expect(
+      validateFailureReceipt(systemBody, systemRef, keys, attemptRef),
+    ).toEqual({
       ok: true,
     });
     expect(
@@ -101,6 +111,7 @@ describe("Learning V2 delayed receipt contracts", () => {
         },
         systemRef,
         keys,
+        attemptRef,
       ),
     ).toEqual({ ok: false });
   });

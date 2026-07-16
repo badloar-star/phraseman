@@ -60,6 +60,8 @@ export type V2ContractValidationResult<Value> =
   | { readonly ok: false; readonly issues: readonly V2ContractIssue[] };
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
+const CODE_OWNED_FADE_RULE_IDS = new Set(["fade.model-to-partial.v1"]);
+const CODE_OWNED_ESCALATION_RULE_IDS = new Set(["escalate.targeted-repair.v1"]);
 const POLICY_KINDS = [
   "evidence",
   "scoring",
@@ -4852,10 +4854,26 @@ const validateDelayedAndLearning = (
         ),
       ];
     }
+    if (!CODE_OWNED_FADE_RULE_IDS.has(String(support.fadeRuleId))) {
+      return [
+        issue(
+          "support_rule_untrusted",
+          `$.episode.learningDesign.supportPlan[${index}].fadeRuleId`,
+        ),
+      ];
+    }
     if (!escalationIds.includes(String(support.escalationRuleId))) {
       return [
         issue(
           "support_rule_missing",
+          `$.episode.learningDesign.supportPlan[${index}].escalationRuleId`,
+        ),
+      ];
+    }
+    if (!CODE_OWNED_ESCALATION_RULE_IDS.has(String(support.escalationRuleId))) {
+      return [
+        issue(
+          "support_rule_untrusted",
           `$.episode.learningDesign.supportPlan[${index}].escalationRuleId`,
         ),
       ];

@@ -1940,6 +1940,26 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("does not trust attacker-controlled support rule catalogs", () => {
+    const candidate = clone(validFixture);
+    const dependencies = candidate.dependencies as JsonRecord;
+    (dependencies.fadeRuleIds as unknown[]).push("fade.attacker.v1");
+    (dependencies.escalationRuleIds as unknown[]).push("escalate.attacker.v1");
+    const support = (
+      (candidate.episode as JsonRecord).learningDesign as JsonRecord
+    ).supportPlan as JsonRecord[];
+    support[0].fadeRuleId = "fade.attacker.v1";
+    support[0].escalationRuleId = "escalate.attacker.v1";
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "support_rule_untrusted",
+        path: "$.episode.learningDesign.supportPlan[0].fadeRuleId",
+      },
+    ]);
+  });
+
   test("fails closed on cyclic and hostile nested input without throwing", () => {
     const cyclic = clone(validFixture);
     const cyclicPolicy = (

@@ -1682,3 +1682,10 @@ Evidence remains **4 suites / 15 tests PASS**, strict ES2022 TypeScript and Pret
 Evidence: focused matrix **4 suites / 16 tests PASS**; targeted strict TypeScript and Prettier **PASS**. Fresh spec/red-team adjudication is still required before commit; the worktree remains intentionally uncommitted and Admin artifacts remain untracked/untouched.
 
 **Exact next executable task:** obtain fresh independent reviews of the current files. If no P1 remains, commit Task 2.1 as one bounded change and update the phase table; otherwise address only the reproducing finding.
+## 12.62 Task 2.1 committed — transition to Task 2.2
+
+Commit `f59dfc4f7` (`feat(v2): add pure progress and checkpoint projections`) contains only the five pure progress modules, four focused test files, and this handover. Fresh spec and adversarial reviews report **no P0/P1**. Verification at commit boundary: **4 suites / 16 tests PASS**, strict targeted TypeScript **PASS**, Prettier **PASS**, `git diff --check` **PASS**. Remaining P2 hygiene items are recorded, not silently treated as resolved: canonical route IDs, typed projection refs, derived-only gate wrapper, catalog-aware standalone access derivation, exact evidence selector policy/version, and schema alignment.
+
+Admin transfer artifacts remain untracked and are intentionally excluded from this commit. The V2 worktree remains `codex/learning-v2-pilot`; legacy behavior remains preserved.
+
+**Exact next executable task:** begin approved Phase 02 / Task 2.2 Content Studio authoring contracts: create `season_draft.ts`, `episode_draft.ts`, `episode_graph.ts`, Functions repositories and focused tests. Reuse `gate_policy.ts` as the single threshold source; do not copy its formulas. Acceptance: ActivityInstance is separate from EpisodeGraphNode routing/reward fields; clone remaps graph IDs; scopes are exactly `vertical_slice`, `chapter_internal`, `full_season`; stale refs and production scope gates fail closed. Start with RED and do not touch Admin UI in this writer session.

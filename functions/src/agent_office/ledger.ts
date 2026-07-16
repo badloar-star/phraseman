@@ -35,6 +35,11 @@ import {
   projectAgentRecommendation,
   projectAgentTask,
 } from './projection';
+import {
+  parseAgentTelegramApprovalToken,
+  telegramApprovalTokenPath,
+  type AgentTelegramDecisionGuard,
+} from './telegram_contracts';
 
 export interface AgentOfficeDocument {
   readonly id: string;
@@ -357,8 +362,26 @@ export class AgentOfficeLedger {
   }
 
   async decideRecommendation(auth: AgentOfficeAuth | null | undefined, value: unknown) {
+    return this.decideRecommendationInternal(auth, value);
+  }
+
+  async decideTelegramRecommendation(
+    auth: AgentOfficeAuth | null | undefined,
+    value: unknown,
+    guard: AgentTelegramDecisionGuard,
+  ) {
+    return this.decideRecommendationInternal(auth, value, guard);
+  }
+
+  private async decideRecommendationInternal(
+    auth: AgentOfficeAuth | null | undefined,
+    value: unknown,
+    telegramGuard?: AgentTelegramDecisionGuard,
+  ) {
     const actor = requireAgentOfficeOwner(auth);
     const input = parseDecisionInput(value);
+    const guardedToken = telegramGuard ? parseAgentTelegramApprovalToken(telegramGuard.token) : null;
+    const guardedUpdateIdHash = telegramGuard ? parseHash(telegramGuard.updateIdHash, 'Telegram updateIdHash') : null;
     const approvalId = approvalDocumentId(input.caseId, input.recommendationId, input.recommendationRevision);
     const idempotencyKeyHash = keyHash(actor.actorUid, input.idempotencyKey);
     const payloadHash = decisionPayloadHash(actor.actorUid, input);
@@ -367,13 +390,52 @@ export class AgentOfficeLedger {
     const approvalPath = `agent_approvals/${approvalId}`;
     const casePath = `agent_cases/${input.caseId}`;
     const recommendationPath = `agent_recommendations/${input.caseId}__r${input.recommendationRevision}`;
+    const controlPath = 'agent_office_control/global';
+    const tokenPath = guardedToken ? telegramApprovalTokenPath(guardedToken.tokenIdHash) : null;
     return this.repository.runTransaction(async (transaction) => {
+      const controlDocument = guardedToken ? await transaction.get(controlPath) : null;
+      const tokenDocument = tokenPath ? await transaction.get(tokenPath) : null;
       const replayAuditDocument = await transaction.get(auditPath);
       const caseDocument = await transaction.get(casePath);
       const recommendationDocument = await transaction.get(recommendationPath);
       const approvalDocument = await transaction.get(approvalPath);
+      const nowMs = this.now();
+
+      let persistedToken: ReturnType<typeof parseAgentTelegramApprovalToken> | null = null;
+      if (guardedToken) {
+        if (!guardedUpdateIdHash || !controlDocument || !tokenDocument || !tokenPath) {
+          throw new HttpsError('failed-precondition', 'Telegram approval guard is unavailable');
+        }
+        const control = parseAgentOfficeControl(controlDocument.data);
+        if (control.killSwitchEnabled) throw new HttpsError('failed-precondition', 'Agent Office kill switch is enabled');
+        if (control.revision !== guardedToken.controlRevision) throw new HttpsError('failed-precondition', 'stale Telegram control revision');
+        persistedToken = parseAgentTelegramApprovalToken(tokenDocument.data);
+        if (JSON.stringify(persistedToken) !== JSON.stringify(guardedToken)) {
+          throw new HttpsError('failed-precondition', 'Telegram approval token binding mismatch');
+        }
+        if (persistedToken.ownerUid !== actor.actorUid
+          || persistedToken.caseId !== input.caseId
+          || persistedToken.expectedCaseRevision !== input.expectedCaseRevision
+          || persistedToken.recommendationId !== input.recommendationId
+          || persistedToken.recommendationRevision !== input.recommendationRevision
+          || persistedToken.recommendationContentHash !== input.recommendationContentHash
+          || (persistedToken.permittedVerb === 'authorize' ? 'approve' : 'decline') !== input.decision) {
+          throw new HttpsError('failed-precondition', 'Telegram approval token scope mismatch');
+        }
+        if (persistedToken.issuedAtMs > nowMs || persistedToken.validUntilMs <= nowMs) {
+          throw new HttpsError('failed-precondition', 'Telegram approval token expired');
+        }
+        if (persistedToken.status === 'revoked') throw new HttpsError('failed-precondition', 'Telegram approval token is revoked');
+        if (persistedToken.status === 'consumed'
+          && (persistedToken.consumedUpdateIdHash !== guardedUpdateIdHash || persistedToken.consumedApprovalId !== approvalId)) {
+          throw new HttpsError('failed-precondition', 'Telegram approval token replay mismatch');
+        }
+      }
 
       if (replayAuditDocument) {
+        if (persistedToken && persistedToken.status !== 'consumed') {
+          throw new HttpsError('data-loss', 'Telegram approval token consumption is missing');
+        }
         const replayAudit = parseAgentAuditEvent(replayAuditDocument.data);
         if (replayAudit.eventType !== 'recommendation_decided' || replayAudit.payloadHash !== payloadHash) {
           throw new HttpsError('failed-precondition', 'idempotency key conflict');
@@ -407,8 +469,10 @@ export class AgentOfficeLedger {
         throw new HttpsError('failed-precondition', 'recommendation canonical contentHash mismatch');
       }
       if (recommendation.scope !== AGENT_OFFICE_SCOPE) throw new HttpsError('failed-precondition', 'recommendation scope is not prepare_only');
-      const nowMs = this.now();
       if (recommendation.validUntilMs <= nowMs) throw new HttpsError('failed-precondition', 'recommendation expired');
+      if (persistedToken && persistedToken.status !== 'active') {
+        throw new HttpsError('failed-precondition', 'Telegram approval token already consumed');
+      }
 
       const nextStatus = input.decision === 'approve' ? 'approved' : 'cancelled';
       assertAgentCaseTransition(agentCase.status, nextStatus);
@@ -451,6 +515,14 @@ export class AgentOfficeLedger {
       transaction.create(approvalPath, approval as unknown as Record<string, unknown>);
       transaction.create(auditPath, audit as unknown as Record<string, unknown>);
       transaction.update(casePath, { status: nextStatus, revision: nextCaseRevision, updatedAtMs: nowMs });
+      if (tokenPath && guardedUpdateIdHash) {
+        transaction.update(tokenPath, {
+          status: 'consumed',
+          consumedAtMs: nowMs,
+          consumedApprovalId: approvalId,
+          consumedUpdateIdHash: guardedUpdateIdHash,
+        });
+      }
       return decisionResult(approval, false);
     });
   }

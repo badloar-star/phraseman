@@ -1689,3 +1689,49 @@ Commit `f59dfc4f7` (`feat(v2): add pure progress and checkpoint projections`) co
 Admin transfer artifacts remain untracked and are intentionally excluded from this commit. The V2 worktree remains `codex/learning-v2-pilot`; legacy behavior remains preserved.
 
 **Exact next executable task:** begin approved Phase 02 / Task 2.2 Content Studio authoring contracts: create `season_draft.ts`, `episode_draft.ts`, `episode_graph.ts`, Functions repositories and focused tests. Reuse `gate_policy.ts` as the single threshold source; do not copy its formulas. Acceptance: ActivityInstance is separate from EpisodeGraphNode routing/reward fields; clone remaps graph IDs; scopes are exactly `vertical_slice`, `chapter_internal`, `full_season`; stale refs and production scope gates fail closed. Start with RED and do not touch Admin UI in this writer session.
+
+## 12.63 Task 2.2 authoring contracts — GREEN bounded slice, review pending
+
+The current isolated V2 worktree contains a RED-first implementation for the bounded authoring slice. Added pure graph operations (`add/remove/connect/disconnect`, DAG/reachability and activity/graph separation checks), episode draft creation/mutation/clone with optimistic revision/fingerprint checks, graph-ID remapping and clone provenance, and season draft operations for the three approved scopes. Season gate materialization imports the existing `modules/learning-v2/progress/gate_policy.ts`; it does not copy threshold formulas. Added in-memory Functions repositories with stale-head rejection and focused repository tests, plus the full-season contract fixture. No Admin file was changed; the two Admin transfer artifacts remain untracked and excluded.
+
+RED evidence: before the implementation, both root authoring suites failed with module-not-found for the missing authoring modules. GREEN evidence after implementation and hardening: root **2 suites / 4 tests PASS**; Functions **2 suites / 2 tests PASS**; strict targeted TypeScript over all five implementation modules **PASS**; Prettier and `git diff --check` **PASS**. The Functions project-wide TypeScript command still reports pre-existing unrelated missing-module/export errors in `functions/src/index.ts`; it is not evidence for this bounded slice and was not modified.
+
+This slice is **partial until fresh reviews finish**. Known review focus is canonical Episode field/validator parity, exact immutable DecisionRegistry body/hash verification, complete season topology/release references, clone remapping of all nested graph-owned references, and production repository persistence beyond the in-memory seam. No commit has been made yet.
+
+**Exact next executable task:** consume the fresh spec and adversarial review results. If a P1 remains, add only its reproducing RED/GREEN test and fix; otherwise run the final focused matrix, commit only the Task 2.2 authoring/repository/fixture/test files, and record the commit plus exact next Task 2.3 in this handover. Admin files remain excluded.
+
+## 12.64 Task 2.2 hostile hardening — focused GREEN, not accepted as complete
+
+The current slice added hostile regressions and fixes for canonical gate equality, full-season composition/checkpoints, production scope validation, non-empty DecisionRegistry resolution, optional authoritative EpisodeRevision resolver, ActivityInstance graph-field separation, graph fallback/evidence phase checks, exact eight-slot checks when the canonical star contract is present, required-loop/assessment/delayed-probe separation, mutator identity immutability, repository hash recomputation, and recursive clone reference remapping. Fresh red-team/spec review now reports no P0, and the focused matrix is green: root **2 suites / 4 tests PASS**, Functions **2 suites / 2 tests PASS**, strict targeted TypeScript **PASS**, Prettier **PASS**, `git diff --check` **PASS**.
+
+This remains **not accepted as a completed Task 2.2**. Open P1 findings are explicit: the Functions layer is still an in-memory adapter rather than the production Firestore atomic body/record/head repository with auth/ownership and default-deny write boundary; production eligibility does not resolve every pinned EpisodeRevision artifact and full canonical Episode contract; EpisodeDraft/Graph fields still need the complete strict canonical aggregate (voice/localization/delayed/checkpoint/policy refs rather than optional unknowns); and clone/reference remapping needs typed canonical ownership rather than heuristic fallback. No commit has been made for this slice. Admin transfer artifacts remain untracked and excluded.
+
+**Exact next executable task:** write RED tests for the first remaining P1 cluster—authoritative EpisodeRevision resolver plus production repository transaction/ownership—and implement the smallest injected Firestore transaction seam that recomputes body/hash/object identity and fails closed on stale or unauthorized writes. Then run fresh reviews again before any Task 2.2 commit. Do not begin Task 2.3 or modify Admin until this acceptance gate closes.
+
+## 12.65 Transaction seam RED/GREEN — still partial
+
+Added `authoring_transaction_repository.ts` and its focused test as the first server-side seam: an injected transaction store now checks owner identity, draft identity, optimistic revision/fingerprint, validates the candidate body, and recomputes the immutable body hash/fingerprint before compare-and-set. This is intentionally an adapter boundary, not a claim that Firebase production wiring is complete. Focused repository test and strict TypeScript for the new seam pass. The Task 2.2 acceptance remains open until an actual Functions Firestore implementation, authoritative EpisodeRevision resolver, and complete canonical Episode aggregate are wired and reviewed.
+
+**Exact next executable task:** add the corresponding SeasonDraft transaction adapter and authoritative immutable EpisodeRevision lookup contract, then run hostile tests proving hash-conflict, stale-head, owner, missing-artifact, and production full-season rejection. Keep Admin artifacts excluded.
+
+## 12.66 Authoritative EpisodeRevision and Season transaction seam — GREEN adapter, production wiring pending
+
+Added `episode_revision_resolver.ts` with exact metadata comparison plus body-hash and immutable object-generation checks, and `season_authoring_transaction_repository.ts` with owner boundary, optimistic CAS, exact EpisodeRevision resolution, body/record hash recomputation, and mandatory DecisionRegistry resolution for `full_season`. Added hostile tests for missing artifacts, exact artifacts, owner/stale behavior, and record-hash poisoning.
+
+Verification: Functions focused matrix **3 suites / 3 tests PASS**; root authoring matrix **2 suites / 4 tests PASS**; strict targeted TypeScript for the new resolver/transaction seam **PASS**; Prettier and diff checks **PASS**. The implementation is still an injected transaction adapter, not yet wired to the project’s real Firestore callable, storage generation reads, auth roles, security rules, or canonical Episode validator. Therefore Task 2.2 remains partial and no commit is claimed.
+
+**Exact next executable task:** bind the adapter to the real Functions callable/repository and Firestore rules after inspecting the existing content-studio storage/auth conventions; add RED tests for callable ownership, default-deny direct writes, immutable Storage generation, DecisionRegistry body resolution, and full canonical Episode validation. Admin UI remains out of this writer session.
+
+## 12.68 Bounded authoring/transaction slice — ready for limited commit
+
+The pure authoring plus injected transaction slice is now internally green and independently red-team-reviewed with no P0/P1 for that bounded scope. It is ready to be committed separately from the still-open production/canonical work. Evidence at this boundary: root **2 suites / 4 tests PASS**, Functions **4 suites / 5 tests PASS**, strict targeted TypeScript **PASS**, Prettier **PASS**, `git diff --check` **PASS**. This does **not** close the umbrella Task 2.2 acceptance: the next production callable, real Firestore/Admin SDK repository, canonical Episode aggregate validator, and typed immutable Storage object binding remain open.
+
+**Exact next executable task after the bounded commit:** write RED tests for `adminSaveV2EpisodeDraft`/`adminSaveV2SeasonDraft` callable authorization, direct-write denial, transaction replay/conflict, and full canonical Episode/DecisionRegistry resolution; then wire the real callable/export without touching Admin UI.
+
+## 12.67 Resolver hardening and server-owned boundary evidence
+
+The immutable EpisodeRevision artifact contract now includes the fetched body and immutable Storage generation; the resolver recomputes `hashCanonicalBody(artifact.body)` and rejects metadata-only or hash-poisoned artifacts. The Season transaction adapter now requires a resolvable DecisionRegistry for `full_season` saves and resolves all pinned EpisodeRevision refs before compare-and-set. Existing `firestore.rules` already has explicit `allow read, write: if false` blocks for the V2 authoring/revision/lifecycle/review collections; the emulator contract lists these server-only collections.
+
+Fresh focused verification after this hardening: root **2 suites / 4 tests PASS**; Functions authoring/transaction matrix **4 suites / 5 tests PASS**; strict targeted TypeScript **PASS**. This still does not prove production callable wiring, Storage generation reads, or full canonical Episode validation, so Task 2.2 remains partial and uncommitted.
+
+**Exact next executable task:** inspect and connect the real Functions callable/export and Storage/Admin SDK transaction path, reusing the existing server-only Firestore rules; add the callable and emulator RED tests before implementation. Do not touch Admin UI artifacts in this session.

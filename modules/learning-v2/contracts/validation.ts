@@ -3056,6 +3056,16 @@ const validateEpisodeDeepShape = (
       return [issue("field_type_invalid", path)];
     }
   }
+  if (
+    !episode.accessibilityRoutes.some((route) => route.routeKind === "primary")
+  ) {
+    return [
+      issue(
+        "accessibility_primary_route_missing",
+        "$.episode.accessibilityRoutes",
+      ),
+    ];
+  }
   return [];
 };
 

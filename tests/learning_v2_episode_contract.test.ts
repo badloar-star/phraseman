@@ -2864,6 +2864,22 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
     ]);
   });
 
+  test("requires a primary accessibility route", () => {
+    const candidate = clone(validFixture);
+    for (const route of (candidate.episode as JsonRecord)
+      .accessibilityRoutes as JsonRecord[]) {
+      route.routeKind = "accessibility";
+    }
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "accessibility_primary_route_missing",
+        path: "$.episode.accessibilityRoutes",
+      },
+    ]);
+  });
+
   test.each([
     [
       "requiredSemanticSlotIds",

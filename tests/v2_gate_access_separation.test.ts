@@ -5,6 +5,7 @@ describe('V2 access and mastery separation', () => {
     alreadyUnlocked: false,
     grandfathered: false,
     requiredLoopsComplete: true,
+    capabilityFallbackComplete: true,
     priorEpisodePerformanceEarned: 18,
     localMinimum: 14,
     cumulativeAccessEarned: 10,
@@ -34,6 +35,13 @@ describe('V2 access and mastery separation', () => {
         purchasedAccessAppliedToThisGate: 99,
       }),
     ).toEqual({ allowed: false, reason: 'required_loops' });
+    expect(
+      evaluateV2Gate({
+        ...base,
+        capabilityFallbackComplete: false,
+        purchasedAccessAppliedToThisGate: 99,
+      }),
+    ).toEqual({ allowed: false, reason: 'capability_fallback' });
     expect(
       evaluateV2Gate({
         ...base,

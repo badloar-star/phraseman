@@ -21,6 +21,7 @@ export interface GateInput {
   readonly alreadyUnlocked: boolean;
   readonly grandfathered: boolean;
   readonly requiredLoopsComplete: boolean;
+  readonly capabilityFallbackComplete: boolean;
   readonly priorEpisodePerformanceEarned: number;
   readonly localMinimum: number;
   readonly cumulativeAccessEarned: number;
@@ -38,7 +39,12 @@ export type GateEvaluation =
   | { readonly allowed: true; readonly basis: 'grandfathered' | 'earned' | 'earned_plus_boost' }
   | {
       readonly allowed: false;
-      readonly reason: 'required_loops' | 'local_performance' | 'checkpoint' | 'cumulative_access';
+      readonly reason:
+        | 'required_loops'
+        | 'capability_fallback'
+        | 'local_performance'
+        | 'checkpoint'
+        | 'cumulative_access';
     };
 
 const isIntegerInRange = (value: number, min: number, max: number): boolean =>
@@ -58,6 +64,7 @@ const assertGateInput = (input: GateInput): void => {
     throw new Error('gate_input_invalid');
   }
   if (typeof input.requiredLoopsComplete !== 'boolean') throw new Error('gate_input_invalid');
+  if (typeof input.capabilityFallbackComplete !== 'boolean') throw new Error('gate_input_invalid');
   if (!['not_required', 'passed', 'failed', 'incomplete', 'needs_work'].includes(input.checkpointDecision)) {
     throw new Error('gate_input_invalid');
   }
@@ -112,6 +119,7 @@ export const evaluateV2Gate = (input: GateInput): GateEvaluation => {
     return { allowed: true, basis: 'grandfathered' };
   }
   if (!input.requiredLoopsComplete) return { allowed: false, reason: 'required_loops' };
+  if (!input.capabilityFallbackComplete) return { allowed: false, reason: 'capability_fallback' };
   if (input.priorEpisodePerformanceEarned < input.localMinimum) {
     return { allowed: false, reason: 'local_performance' };
   }

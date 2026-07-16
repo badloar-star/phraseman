@@ -87,6 +87,20 @@ describe('V2 access purchase transaction adapter', () => {
     const repo = new MemoryRepository(); seed(repo);
     await expect(finalizeV2AccessPurchase(repo, policy, { ...input, accountGeneration: 2 })).rejects.toThrow('binding_mismatch');
     repo.values.set('users:user-1', { stableId: 'user-1', accountGeneration: 1, shards: 1 });
-    await expect(finalizeV2AccessPurchase(repo, policy, { ...input, operationId: 'operation-2' })).rejects.toThrow('insufficient_balance');
+    await expect(finalizeV2AccessPurchase(repo, policy, {
+      ...input,
+      operationId: 'operation-2',
+      request: { ...input.request, opId: 'operation-2' },
+    })).rejects.toThrow('insufficient_balance');
+  });
+
+  it('rejects an operation/request id mismatch before reading money state', async () => {
+    const repo = new MemoryRepository(); seed(repo);
+    await expect(
+      finalizeV2AccessPurchase(repo, policy, {
+        ...input,
+        request: { ...input.request, opId: 'different-operation' },
+      }),
+    ).rejects.toThrow('identity_invalid');
   });
 });

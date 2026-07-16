@@ -99,6 +99,7 @@ export async function finalizeV2AccessPurchase(
     !/^[a-f0-9]{64}$/.test(input.fingerprint) ||
     input.stableId.length === 0 ||
     input.request.stableId !== input.stableId ||
+    input.request.opId !== input.operationId ||
     !Number.isSafeInteger(input.accountGeneration) ||
     input.accountGeneration < 1 ||
     !Number.isSafeInteger(input.nowMs)

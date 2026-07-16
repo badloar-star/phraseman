@@ -3,6 +3,8 @@ import {
   buildLearningNonAssessmentRef,
   validateLearningEvidenceRef,
   validateLearningNonAssessmentRef,
+  validateLearningEvidenceBody,
+  validateLearningNonAssessmentBody,
 } from "../modules/learning-v2/contracts/evidence";
 import {
   buildCanonicalAttemptRef,
@@ -42,6 +44,23 @@ describe("Learning V2 evidence materialization contracts", () => {
       sourceAttempt,
       policyId: "policy-1",
       policyVersion: 1,
+      provenance: {
+        phase: "near_transfer" as const,
+        support: { hintsUsed: 0 },
+        context: { contextId: "ctx-1" },
+        prompt: { promptId: "prompt-1" },
+      },
+      route: {
+        kind: "non_voice" as const,
+        input: {
+          source: "keyboard" as const,
+          runtimeEvidenceRef: {
+            runtimeEvidenceHash: "a".repeat(64),
+            sourceAttempt,
+          },
+        },
+      },
+      timing: { occurredAt: "2026-07-16T00:00:00.000Z" },
     };
     const nonAssessment = {
       schemaVersion: "learning-non-assessment-body.v1" as const,
@@ -63,6 +82,10 @@ describe("Learning V2 evidence materialization contracts", () => {
     ).toEqual({ ok: true });
     expect(evidence).not.toHaveProperty("evidenceBodyHash");
     expect(nonAssessment).not.toHaveProperty("nonAssessmentBodyHash");
+    expect(validateLearningEvidenceBody(evidence)).toEqual({ ok: true });
+    expect(validateLearningNonAssessmentBody(nonAssessment)).toEqual({
+      ok: true,
+    });
   });
 
   test("joins bodies and refs in a non-hashed attempt envelope with exact basis", () => {
@@ -75,6 +98,23 @@ describe("Learning V2 evidence materialization contracts", () => {
       sourceAttempt,
       policyId: "policy-1",
       policyVersion: 1,
+      provenance: {
+        phase: "near_transfer" as const,
+        support: { hintsUsed: 0 },
+        context: { contextId: "ctx-1" },
+        prompt: { promptId: "prompt-1" },
+      },
+      route: {
+        kind: "non_voice" as const,
+        input: {
+          source: "keyboard" as const,
+          runtimeEvidenceRef: {
+            runtimeEvidenceHash: "a".repeat(64),
+            sourceAttempt,
+          },
+        },
+      },
+      timing: { occurredAt: "2026-07-16T00:00:00.000Z" },
     };
     const event = buildV2AttemptEvent({
       attemptBody,
@@ -94,5 +134,45 @@ describe("Learning V2 evidence materialization contracts", () => {
         },
       }),
     ).toThrow("attempt_event_canonical_ref_mismatch");
+  });
+
+  test("fails closed for unknown fields and invalid assessed phase/timing", () => {
+    const evidence = {
+      schemaVersion: "learning-evidence-body.v1" as const,
+      observationId: "observation-2",
+      ...tuple,
+      assessmentStatus: "assessed" as const,
+      outcome: "success" as const,
+      sourceAttempt,
+      policyId: "policy-1",
+      policyVersion: 1,
+      provenance: {
+        phase: "delayed_probe" as const,
+        support: { hintsUsed: 0 },
+        context: { contextId: "ctx-1" },
+        prompt: { promptId: "prompt-1" },
+      },
+      route: {
+        kind: "non_voice" as const,
+        input: {
+          source: "keyboard" as const,
+          runtimeEvidenceRef: {
+            runtimeEvidenceHash: "a".repeat(64),
+            sourceAttempt,
+          },
+        },
+      },
+      timing: { occurredAt: "2026-07-16T00:00:00.000Z" },
+    };
+    expect(validateLearningEvidenceBody(evidence)).toEqual({ ok: false });
+    expect(
+      validateLearningNonAssessmentBody({
+        ...evidence,
+        schemaVersion: "learning-non-assessment-body.v1",
+        nonAssessmentId: "na-2",
+        assessmentStatus: "not_assessed_for_window",
+        reasonCode: "outside_pinned_assessment_window",
+      }),
+    ).toEqual({ ok: false });
   });
 });

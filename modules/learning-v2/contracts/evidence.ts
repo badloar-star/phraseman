@@ -33,6 +33,53 @@ export interface LearningEvidenceTupleIdentity {
 
 export type LearningEvidenceTupleKey = `letk1.${string}`;
 
+export type LearningPedagogicalProvenance =
+  | {
+      readonly phase: "encounter_build" | "near_transfer";
+      readonly support: { readonly hintsUsed: number };
+      readonly context: { readonly contextId: string };
+      readonly prompt: { readonly promptId: string };
+    }
+  | {
+      readonly phase: "independent_probe" | "delayed_probe";
+      readonly support: { readonly hintsUsed: 0 };
+      readonly context: { readonly contextId: string };
+      readonly prompt: { readonly promptId: string };
+    };
+export type LearningAssessedRoute =
+  | {
+      readonly kind: "non_voice";
+      readonly input: {
+        readonly source:
+          | "tap"
+          | "word_bank"
+          | "keyboard"
+          | "accessibility_alternative";
+        readonly runtimeEvidenceRef: {
+          readonly runtimeEvidenceHash: string;
+          readonly sourceAttempt: CanonicalAttemptRef;
+        };
+      };
+    }
+  | {
+      readonly kind: "voice";
+      readonly input: {
+        readonly source: "microphone";
+        readonly runtimeEvidenceRef: {
+          readonly runtimeEvidenceHash: string;
+          readonly sourceAttempt: CanonicalAttemptRef;
+        };
+      };
+    };
+export type LearningAssessedTiming =
+  | { readonly occurredAt: string }
+  | {
+      readonly occurredAtServer: string;
+      readonly assignmentRef: string;
+      readonly launchReceiptRef: string;
+      readonly timingReceiptRef: string;
+    };
+
 export interface LearningEvidenceBody extends LearningEvidenceTupleIdentity {
   readonly schemaVersion: "learning-evidence-body.v1";
   readonly observationId: string;
@@ -41,6 +88,9 @@ export interface LearningEvidenceBody extends LearningEvidenceTupleIdentity {
   readonly sourceAttempt: CanonicalAttemptRef;
   readonly policyId: string;
   readonly policyVersion: number;
+  readonly provenance: LearningPedagogicalProvenance;
+  readonly route: LearningAssessedRoute;
+  readonly timing: LearningAssessedTiming;
 }
 
 export interface LearningNonAssessmentBody extends LearningEvidenceTupleIdentity {
@@ -78,6 +128,69 @@ export type LearningMaterializationRef =
   | LearningEvidenceRef
   | LearningNonAssessmentRef;
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+const isAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
+  isRecord(value) &&
+  value.schemaVersion === "v2-attempt-ref.v1" &&
+  typeof value.opId === "string" &&
+  /^[a-f0-9]{64}$/.test(String(value.attemptBodyHash));
+export const validateLearningEvidenceBody = (
+  value: unknown,
+): { readonly ok: boolean } => {
+  if (
+    !isRecord(value) ||
+    value.schemaVersion !== "learning-evidence-body.v1" ||
+    "evidenceBodyHash" in value ||
+    !isAttemptRef(value.sourceAttempt) ||
+    !isRecord(value.provenance) ||
+    !isRecord(value.route) ||
+    !isRecord(value.timing)
+  )
+    return { ok: false };
+  const phase = value.provenance.phase;
+  const hints = isRecord(value.provenance.support)
+    ? value.provenance.support.hintsUsed
+    : undefined;
+  const runtime = isRecord(value.route.input)
+    ? value.route.input.runtimeEvidenceRef
+    : undefined;
+  const delayed = phase === "delayed_probe";
+  return {
+    ok:
+      typeof phase === "string" &&
+      typeof hints === "number" &&
+      (!delayed ||
+        (hints === 0 &&
+          "occurredAtServer" in value.timing &&
+          "timingReceiptRef" in value.timing)) &&
+      isRecord(runtime) &&
+      isRecord(runtime.sourceAttempt) &&
+      runtime.sourceAttempt.attemptBodyHash ===
+        value.sourceAttempt.attemptBodyHash,
+  };
+};
+export const validateLearningNonAssessmentBody = (
+  value: unknown,
+): { readonly ok: boolean } => {
+  if (
+    !isRecord(value) ||
+    value.schemaVersion !== "learning-non-assessment-body.v1" ||
+    "nonAssessmentBodyHash" in value ||
+    !isAttemptRef(value.sourceAttempt) ||
+    typeof value.reasonCode !== "string"
+  )
+    return { ok: false };
+  if (value.phase !== "delayed_probe")
+    return { ok: value.assessmentStatus !== "not_assessed_for_window" };
+  return {
+    ok:
+      value.assessmentStatus !== "not_assessed_for_window" ||
+      (typeof value.assignmentRef === "string" &&
+        typeof value.timingReceiptRef === "string"),
+  };
+};
+
 const canonicalAttemptRefEqual = (
   left: CanonicalAttemptRef,
   right: CanonicalAttemptRef,
@@ -88,21 +201,29 @@ const canonicalAttemptRefEqual = (
 
 export const buildLearningEvidenceRef = (
   body: LearningEvidenceBody,
-): LearningEvidenceRef => ({
-  observationId: body.observationId,
-  evidenceBodyHash: hashCanonicalBody(body),
-  tupleKey: buildLearningEvidenceTupleKey(body),
-  sourceAttempt: body.sourceAttempt,
-});
+): LearningEvidenceRef => {
+  if (!validateLearningEvidenceBody(body).ok)
+    throw new Error("learning_evidence_body_invalid");
+  return {
+    observationId: body.observationId,
+    evidenceBodyHash: hashCanonicalBody(body),
+    tupleKey: buildLearningEvidenceTupleKey(body),
+    sourceAttempt: body.sourceAttempt,
+  };
+};
 
 export const buildLearningNonAssessmentRef = (
   body: LearningNonAssessmentBody,
-): LearningNonAssessmentRef => ({
-  nonAssessmentId: body.nonAssessmentId,
-  nonAssessmentBodyHash: hashCanonicalBody(body),
-  tupleKey: buildLearningEvidenceTupleKey(body),
-  sourceAttempt: body.sourceAttempt,
-});
+): LearningNonAssessmentRef => {
+  if (!validateLearningNonAssessmentBody(body).ok)
+    throw new Error("learning_non_assessment_body_invalid");
+  return {
+    nonAssessmentId: body.nonAssessmentId,
+    nonAssessmentBodyHash: hashCanonicalBody(body),
+    tupleKey: buildLearningEvidenceTupleKey(body),
+    sourceAttempt: body.sourceAttempt,
+  };
+};
 
 export const validateLearningMaterialization = (
   body: LearningEvidenceBody | LearningNonAssessmentBody,

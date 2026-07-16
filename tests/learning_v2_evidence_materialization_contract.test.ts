@@ -175,4 +175,71 @@ describe("Learning V2 evidence materialization contracts", () => {
       }),
     ).toEqual({ ok: false });
   });
+
+  test("binds route, phase, timing, and terminal non-assessment semantics", () => {
+    const base = {
+      schemaVersion: "learning-evidence-body.v1" as const,
+      observationId: "observation-3",
+      ...tuple,
+      assessmentStatus: "assessed" as const,
+      outcome: "success" as const,
+      sourceAttempt,
+      policyId: "policy-1",
+      policyVersion: 1,
+      provenance: {
+        phase: "near_transfer" as const,
+        support: { hintsUsed: 0 },
+        context: { contextId: "ctx-1" },
+        prompt: { promptId: "prompt-1" },
+      },
+      route: {
+        kind: "non_voice" as const,
+        input: {
+          source: "keyboard" as const,
+          runtimeEvidenceRef: {
+            runtimeEvidenceHash: "a".repeat(64),
+            sourceAttempt,
+          },
+        },
+      },
+      timing: { occurredAt: "2026-07-16T00:00:00.000Z" },
+    };
+    expect(
+      validateLearningEvidenceBody({
+        ...base,
+        construct: "spoken",
+      }),
+    ).toEqual({ ok: false });
+    expect(
+      validateLearningEvidenceBody({
+        ...base,
+        route: {
+          ...base.route,
+          input: {
+            ...base.route.input,
+            runtimeEvidenceRef: {
+              ...base.route.input.runtimeEvidenceRef,
+              runtimeEvidenceHash: "not-a-hash",
+            },
+          },
+        },
+      }),
+    ).toEqual({ ok: false });
+    const ref = buildLearningEvidenceRef(base);
+    expect(
+      validateLearningEvidenceRef({ ...base, outcome: "needs_work" }, ref),
+    ).toEqual({ ok: false });
+    expect(
+      validateLearningNonAssessmentBody({
+        schemaVersion: "learning-non-assessment-body.v1",
+        nonAssessmentId: "na-system",
+        ...tuple,
+        phase: "delayed_probe",
+        sourceAttempt,
+        occurredAt: "2026-07-16T00:00:00.000Z",
+        assessmentStatus: "not_assessed_system",
+        reasonCode: "technical_failure",
+      }),
+    ).toEqual({ ok: false });
+  });
 });

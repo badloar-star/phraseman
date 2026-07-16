@@ -130,22 +130,90 @@ export type LearningMaterializationRef =
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
+const hasOnlyKeys = (
+  value: Record<string, unknown>,
+  keys: readonly string[],
+): boolean => Object.keys(value).every((key) => keys.includes(key));
 const isAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
   isRecord(value) &&
+  hasOnlyKeys(value, ["schemaVersion", "opId", "attemptBodyHash"]) &&
   value.schemaVersion === "v2-attempt-ref.v1" &&
   typeof value.opId === "string" &&
+  value.opId.length > 0 &&
   /^[a-f0-9]{64}$/.test(String(value.attemptBodyHash));
+const isHash = (value: unknown): value is string =>
+  typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+const isNonEmptyString = (value: unknown): value is string =>
+  typeof value === "string" && value.length > 0;
+const isPhase = (value: unknown): value is LearningEvidencePhase =>
+  value === "encounter_build" ||
+  value === "near_transfer" ||
+  value === "independent_probe" ||
+  value === "delayed_probe";
+const isConstruct = (value: unknown): value is LearningConstruct =>
+  value === "semantic" ||
+  value === "listening" ||
+  value === "recall" ||
+  value === "spoken" ||
+  value === "interaction";
+const isTargetKind = (value: unknown): value is LearningAssessmentTargetKind =>
+  value === "objective" ||
+  value === "semantic_slot" ||
+  value === "critical_constraint";
+const isTupleIdentity = (value: Record<string, unknown>): boolean =>
+  ["nodeId", "objectiveId", "skillId", "targetId"].every((key) =>
+    isNonEmptyString(value[key]),
+  ) &&
+  isConstruct(value.construct) &&
+  isPhase(value.phase) &&
+  isTargetKind(value.targetKind);
+const sameAttemptRef = (left: unknown, right: CanonicalAttemptRef): boolean =>
+  isAttemptRef(left) &&
+  left.schemaVersion === right.schemaVersion &&
+  left.opId === right.opId &&
+  left.attemptBodyHash === right.attemptBodyHash;
 export const validateLearningEvidenceBody = (
   value: unknown,
 ): { readonly ok: boolean } => {
   if (
     !isRecord(value) ||
+    !hasOnlyKeys(value, [
+      "schemaVersion",
+      "observationId",
+      "nodeId",
+      "objectiveId",
+      "skillId",
+      "construct",
+      "phase",
+      "targetKind",
+      "targetId",
+      "assessmentStatus",
+      "outcome",
+      "sourceAttempt",
+      "policyId",
+      "policyVersion",
+      "provenance",
+      "route",
+      "timing",
+    ]) ||
     value.schemaVersion !== "learning-evidence-body.v1" ||
     "evidenceBodyHash" in value ||
     !isAttemptRef(value.sourceAttempt) ||
     !isRecord(value.provenance) ||
     !isRecord(value.route) ||
     !isRecord(value.timing)
+  )
+    return { ok: false };
+  if (
+    !isTupleIdentity(value) ||
+    value.assessmentStatus !== "assessed" ||
+    (value.outcome !== "success" && value.outcome !== "needs_work") ||
+    !isNonEmptyString(value.observationId) ||
+    !isNonEmptyString(value.policyId) ||
+    typeof value.policyVersion !== "number" ||
+    !Number.isInteger(value.policyVersion) ||
+    value.policyVersion < 1 ||
+    !isAttemptRef(value.sourceAttempt)
   )
     return { ok: false };
   const phase = value.provenance.phase;
@@ -156,18 +224,62 @@ export const validateLearningEvidenceBody = (
     ? value.route.input.runtimeEvidenceRef
     : undefined;
   const delayed = phase === "delayed_probe";
+  const provenanceOk =
+    isRecord(value.provenance) &&
+    hasOnlyKeys(value.provenance, ["phase", "support", "context", "prompt"]) &&
+    phase === value.phase &&
+    isPhase(phase) &&
+    isRecord(value.provenance.support) &&
+    hasOnlyKeys(value.provenance.support, ["hintsUsed"]) &&
+    typeof hints === "number" &&
+    Number.isInteger(hints) &&
+    hints >= 0 &&
+    (phase === "independent_probe" || phase === "delayed_probe"
+      ? hints === 0
+      : true) &&
+    isRecord(value.provenance.context) &&
+    hasOnlyKeys(value.provenance.context, ["contextId"]) &&
+    isNonEmptyString(value.provenance.context.contextId) &&
+    isRecord(value.provenance.prompt) &&
+    hasOnlyKeys(value.provenance.prompt, ["promptId"]) &&
+    isNonEmptyString(value.provenance.prompt.promptId);
+  const routeOk =
+    isRecord(value.route) &&
+    hasOnlyKeys(value.route, ["kind", "input"]) &&
+    isRecord(value.route.input) &&
+    hasOnlyKeys(value.route.input, ["source", "runtimeEvidenceRef"]) &&
+    isRecord(runtime) &&
+    hasOnlyKeys(runtime, ["runtimeEvidenceHash", "sourceAttempt"]) &&
+    isHash(runtime.runtimeEvidenceHash) &&
+    sameAttemptRef(runtime.sourceAttempt, value.sourceAttempt) &&
+    ((value.route.kind === "voice" &&
+      value.route.input.source === "microphone") ||
+      (value.route.kind === "non_voice" &&
+        ["tap", "word_bank", "keyboard", "accessibility_alternative"].includes(
+          String(value.route.input.source),
+        ) &&
+        value.construct !== "spoken"));
+  const timingOk =
+    isRecord(value.timing) &&
+    (delayed
+      ? hasOnlyKeys(value.timing, [
+          "occurredAtServer",
+          "assignmentRef",
+          "launchReceiptRef",
+          "timingReceiptRef",
+        ]) &&
+        [
+          "occurredAtServer",
+          "assignmentRef",
+          "launchReceiptRef",
+          "timingReceiptRef",
+        ].every((key) =>
+          isNonEmptyString((value.timing as Record<string, unknown>)[key]),
+        )
+      : hasOnlyKeys(value.timing, ["occurredAt"]) &&
+        isNonEmptyString(value.timing.occurredAt));
   return {
-    ok:
-      typeof phase === "string" &&
-      typeof hints === "number" &&
-      (!delayed ||
-        (hints === 0 &&
-          "occurredAtServer" in value.timing &&
-          "timingReceiptRef" in value.timing)) &&
-      isRecord(runtime) &&
-      isRecord(runtime.sourceAttempt) &&
-      runtime.sourceAttempt.attemptBodyHash ===
-        value.sourceAttempt.attemptBodyHash,
+    ok: provenanceOk && routeOk && timingOk,
   };
 };
 export const validateLearningNonAssessmentBody = (
@@ -175,20 +287,75 @@ export const validateLearningNonAssessmentBody = (
 ): { readonly ok: boolean } => {
   if (
     !isRecord(value) ||
+    !hasOnlyKeys(value, [
+      "schemaVersion",
+      "nonAssessmentId",
+      "nodeId",
+      "objectiveId",
+      "skillId",
+      "construct",
+      "phase",
+      "targetKind",
+      "targetId",
+      "sourceAttempt",
+      "occurredAt",
+      "assessmentStatus",
+      "reasonCode",
+      "assignmentRef",
+      "launchReceiptRef",
+      "timingReceiptRef",
+      "failureReceiptRef",
+    ]) ||
     value.schemaVersion !== "learning-non-assessment-body.v1" ||
     "nonAssessmentBodyHash" in value ||
     !isAttemptRef(value.sourceAttempt) ||
-    typeof value.reasonCode !== "string"
+    typeof value.reasonCode !== "string" ||
+    !isTupleIdentity(value) ||
+    !isNonEmptyString(value.nonAssessmentId) ||
+    !isNonEmptyString(value.occurredAt)
   )
     return { ok: false };
-  if (value.phase !== "delayed_probe")
-    return { ok: value.assessmentStatus !== "not_assessed_for_window" };
-  return {
-    ok:
-      value.assessmentStatus !== "not_assessed_for_window" ||
-      (typeof value.assignmentRef === "string" &&
-        typeof value.timingReceiptRef === "string"),
-  };
+  const delayed = value.phase === "delayed_probe";
+  if (!delayed && value.assessmentStatus === "not_assessed_for_window")
+    return { ok: false };
+  if (value.assessmentStatus === "not_assessed_for_window")
+    return {
+      ok:
+        value.reasonCode === "outside_pinned_assessment_window" &&
+        isNonEmptyString(value.assignmentRef) &&
+        isNonEmptyString(value.launchReceiptRef) &&
+        isNonEmptyString(value.timingReceiptRef),
+    };
+  if (value.assessmentStatus === "not_assessed_system")
+    return {
+      ok:
+        delayed &&
+        [
+          "assignment_missing",
+          "assignment_stale",
+          "launch_missing",
+          "launch_expired",
+          "server_timing_unavailable",
+        ].includes(value.reasonCode) &&
+        isNonEmptyString(value.failureReceiptRef),
+    };
+  if (value.assessmentStatus === "not_assessed_accessibility")
+    return {
+      ok: [
+        "accessibility_route_does_not_measure_construct",
+        "microphone_unavailable",
+      ].includes(value.reasonCode),
+    };
+  if (value.assessmentStatus === "invalid")
+    return {
+      ok: [
+        "uncertain_measurement",
+        "invalid_audio_or_system",
+        "technical_failure",
+        "support_or_hint_contract_violated",
+      ].includes(value.reasonCode),
+    };
+  return { ok: false };
 };
 
 const canonicalAttemptRefEqual = (
@@ -229,6 +396,11 @@ export const validateLearningMaterialization = (
   body: LearningEvidenceBody | LearningNonAssessmentBody,
   ref: LearningMaterializationRef,
 ): { readonly ok: boolean } => {
+  const bodyValid =
+    body.schemaVersion === "learning-evidence-body.v1"
+      ? validateLearningEvidenceBody(body).ok
+      : validateLearningNonAssessmentBody(body).ok;
+  if (!bodyValid) return { ok: false };
   const tupleKey = buildLearningEvidenceTupleKey(body);
   if (!canonicalAttemptRefEqual(body.sourceAttempt, ref.sourceAttempt)) {
     return { ok: false };

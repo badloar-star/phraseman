@@ -19,7 +19,7 @@ export const normalizeV2AccessPurchaseInput = (
   if (!record(data)) throw new HttpsError('invalid-argument', 'access_input_invalid');
   const operationId = text(data.operationId);
   const stableId = text(data.stableId);
-  const accountGeneration = Number(data.accountGeneration);
+  const accountGeneration = typeof data.accountGeneration === 'number' ? data.accountGeneration : NaN;
   const request: V2AccessPurchaseRequest = {
     opId: text(data.opId),
     quoteId: text(data.quoteId),
@@ -28,7 +28,8 @@ export const normalizeV2AccessPurchaseInput = (
     gateId: text(data.gateId),
     releaseId: text(data.releaseId),
     policyVersion: text(data.policyVersion),
-    expectedCostShards: Number(data.expectedCostShards),
+    expectedCostShards:
+      typeof data.expectedCostShards === 'number' ? data.expectedCostShards : NaN,
   };
   if (
     !/^[A-Za-z0-9._-]{8,160}$/.test(operationId) ||

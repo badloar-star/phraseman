@@ -7,6 +7,7 @@ import {
   type V2AccessPurchaseRequest,
   type V2AccessQuote,
 } from '../../modules/learning-v2/contracts/access_quote';
+import type { Firestore, Transaction, UpdateData } from 'firebase-admin/firestore';
 
 export interface V2AccessGateRecord {
   readonly stableId: string;
@@ -60,6 +61,26 @@ export interface V2AccessPurchaseTransaction {
 export interface V2AccessPurchaseRepository {
   runTransaction<T>(fn: (transaction: V2AccessPurchaseTransaction) => Promise<T>): Promise<T>;
 }
+
+export const firestoreV2AccessPath = (key: string): string => {
+  if (key.startsWith('learning-v2:access-operation:')) {
+    const suffix = key.slice('learning-v2:access-operation:'.length).replace(/:/g, '_');
+    return `learning_v2_receipt_operations/${suffix}`;
+  }
+  if (key.startsWith('learning-v2:access-quote:')) {
+    return `learning_v2_access_quotes/${key.slice('learning-v2:access-quote:'.length)}`;
+  }
+  if (key.startsWith('learning-v2:access-gate:')) {
+    const suffix = key.slice('learning-v2:access-gate:'.length).replace(/:/g, '__');
+    return `learning_v2_gate_receipts/${suffix}`;
+  }
+  if (key.startsWith('learning-v2:access-receipt:')) {
+    const suffix = key.slice('learning-v2:access-receipt:'.length).replace(/:/g, '_');
+    return `learning_v2_access_ledger/${suffix}`;
+  }
+  if (key.startsWith('users:')) return `users/${key.slice('users:'.length)}`;
+  throw new Error('access_firestore_key_invalid');
+};
 
 export interface FinalizeV2AccessPurchaseInput {
   readonly operationId: string;
@@ -202,3 +223,22 @@ export async function finalizeV2AccessPurchase(
     return { replayed: false, receipt };
   });
 }
+
+export const makeFirestoreV2AccessRepository = (
+  db: Firestore,
+): V2AccessPurchaseRepository => ({
+  runTransaction: <T>(fn: (transaction: V2AccessPurchaseTransaction) => Promise<T>) =>
+    db.runTransaction(async (transaction: Transaction) =>
+      fn({
+        get: async <R>(key: string) => {
+          const snapshot = await transaction.get(db.doc(firestoreV2AccessPath(key)));
+          return {
+            exists: snapshot.exists,
+            data: snapshot.exists ? (snapshot.data() as R) : undefined,
+          };
+        },
+        create: (key: string, value: unknown) => transaction.create(db.doc(firestoreV2AccessPath(key)), value),
+        update: (key: string, value: unknown) => transaction.update(db.doc(firestoreV2AccessPath(key)), value as UpdateData<Record<string, unknown>>),
+      }),
+    ),
+});

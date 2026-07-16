@@ -22,7 +22,9 @@ describe('V2 access callable boundary', () => {
     ['operation id', { operationId: 'x' }],
     ['operation binding', { opId: 'different-operation' }],
     ['generation', { accountGeneration: 0 }],
+    ['generation type', { accountGeneration: '2' }],
     ['cost', { expectedCostShards: -1 }],
+    ['cost type', { expectedCostShards: '6' }],
     ['quote id', { quoteId: '../quote' }],
   ])('rejects malformed %s', (_label, patch) => {
     expect(() => normalizeV2AccessPurchaseInput({ ...valid, ...patch })).toThrow(HttpsError);

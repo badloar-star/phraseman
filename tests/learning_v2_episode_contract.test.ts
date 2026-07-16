@@ -2038,6 +2038,24 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("rejects support plans outside the matching encounter-node bounds", () => {
+    const candidate = clone(validFixture);
+    const episode = candidate.episode as JsonRecord;
+    const node = ((episode.graph as JsonRecord).nodes as JsonRecord[])[0];
+    (
+      (node.pedagogicalContextContract as JsonRecord)
+        .allowedSupportLevels as string[]
+    ).splice(0, 1);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "support_plan_invalid",
+        path: "$.episode.learningDesign.supportPlan[0].initialSupport",
+      },
+    ]);
+  });
+
   test("does not trust attacker-controlled support rule catalogs", () => {
     const candidate = clone(validFixture);
     const dependencies = candidate.dependencies as JsonRecord;

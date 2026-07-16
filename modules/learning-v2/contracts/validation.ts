@@ -4080,6 +4080,44 @@ const validateLearningReferences = (
       issue("support_plan_invalid", "$.episode.learningDesign.supportPlan"),
     ];
   }
+  for (let index = 0; index < supportPlan.length; index += 1) {
+    const support = supportPlan[index];
+    const objectiveId = String(support.objectiveId);
+    const encounterNodes = nodes.filter(
+      (node) =>
+        node.phase === "encounter_build" &&
+        (node.evidenceDeclarations as JsonObject[]).some(
+          (declaration) => declaration.objectiveId === objectiveId,
+        ),
+    );
+    const initialSupport = String(support.initialSupport);
+    const supportedInitialValues = [
+      "none",
+      "visual_only",
+      "partial_cue",
+      "model",
+      "full_text",
+    ];
+    if (
+      supportedInitialValues.includes(initialSupport) &&
+      encounterNodes.length > 0 &&
+      encounterNodes.some(
+        (node) =>
+          !isPlainObject(node.pedagogicalContextContract) ||
+          !(
+            (node.pedagogicalContextContract as JsonObject)
+              .allowedSupportLevels as string[]
+          ).includes(initialSupport),
+      )
+    ) {
+      return [
+        issue(
+          "support_plan_invalid",
+          `$.episode.learningDesign.supportPlan[${index}].initialSupport`,
+        ),
+      ];
+    }
+  }
 
   const prerequisiteEdges = learningDesign.prerequisiteEdges as JsonObject[];
   const adjacency = new Map<string, string[]>();

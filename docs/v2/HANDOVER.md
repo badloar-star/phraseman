@@ -79,47 +79,47 @@ git -C C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot log -3 --oneli
 
 ### 2.2 Полный umbrella-маршрут 00–14
 
-| Фаза | Содержание и точный порядок | Gate / результат | Статус на 2026-07-15 |
-|---|---|---|---|
-| 00 | Security inventory, legacy direct-access classification, удаление broad-admin OR bypass, server-only V2 paths, canonical Body/Record/hash boundary | Emulator deny для будущих authoring paths; legacy compatibility; одинаковые canonical bytes/hash | **Security slice закрыт.** Content Studio Task 0 и reproducible local CLI зелёные; canonical artifact contracts продолжаются в Phase 01 |
-| 01 | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3 | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate | **В работе:** Tasks 1.1 и 1.1A закрыты; ближайший код — Task 1.2 contracts |
-| 02 | 2.1 pure reducer/gate policy → 2.2 Content Studio Task 4 → 2.3 account store/outbox → 2.4 server event → 2.5 Access Boost callable → 2.6 rules/emulator | Idempotent local-first progress; performance/access/evidence physically separated; offline/restart safe | Не начато |
-| 03 | 3.0 competitor reference-evidence pack + owner UI approval → 3.1 registry → 3.2 ActivityScaffold → 3.3 six shells → 3.4 thin routes/resume | One registry, one scaffold, six accessible shells; UI evidence approved before production work | Заблокировано до Task 5A/reference pack |
-| 04 | 4.1 capture state machine → 4.2 scorer boundary → 4.2A calibration/privacy gates → 4.3 accessible capture UI → 4.4 device matrix | Voice never deadlocks; scorer claims match measured construct; fallback/privacy/device gates pass | Не начато |
-| 05 | 5.1 Visual Discovery + Listen & Choose → 5.2 Phrase Builder → 5.3 Repeat + Quick Response → 5.4 Scripted Dialogue → 5.5 legacy adapters | P0 learning loop runs through shared contracts; old modes adapt without duplication | Не начато |
-| 06 | 6.1 V2 stages/validators → 6.2 Admin Content Studio → 6.3 lesson-bundle seam → 6.4 loader/cache → 6.5 Content Studio Tasks 14–15 | E1 authored, previewed, sealed, activated and rolled back in lab/staging; production E1 release must still fail | Не начато |
-| 07 | 7.1 E1 fixture through real loader → 7.2 real map state → 7.3 completion/stars/resume → 7.4 analytics | Один полный пользовательский vertical slice проходит offline/restart/fallback | Не начато |
-| 08 | 8.1 P1 modes → 8.2 E1–E8 generation/approval → 8.3 deterministic E8 checkpoint → 8.4 dogfood | Chapter 1 готов для закрытого пилота; scoring/UX/generator исправлены по данным | Не начато |
-| 09 | 9.1 Club evidence split → 9.1A consent/copy/eligibility → 9.1B one server egress → 9.1C verified deletion/legal hold → 9.2 Club adapter → 9.3 fallback → 9.4 review scheduler | Club — capstone, not teacher; network voice governed; scripted fallback and shared review work | Не начато |
-| 10 | 10.1 placement → 10.2 E16/E24/E32 checkpoints → 10.3 Challenges side-node adapter → 10.4 migration rehearsal | Existing progress preserved; placement/checkpoints deterministic; no forced legacy deletion | Не начато |
-| 11 | 11.1 chapter-by-chapter generation → 11.2 whole-season QA → 11.3 non-English seam proof | Все 32 graphs pass schema/content/localization/release gates; один второй язык proves seam | Не начато |
-| 12 | 12.1 governed events → 12.2 learning projections → 12.3 experiment passports → 12.4 operational alerts | Completion, independent evidence, delayed evidence, voice health and economy measurable without false causal claims | Не начато |
-| 13 | 13.1 manifests/cohorts → 13.2 performance → 13.3 accessibility/devices → 13.4 rollback drills → 13.5 R0–R5 ramp | Dogfood → closed cohorts → candidate default; stop/rollback gates and delayed windows mature | Не начато |
-| 14 | Explicit owner decision: keep both, make V2 default with fallback, migrate Challenges, or retire specifically named legacy surfaces | No deletion without parity, data and separate explicit approval | Не начато; намеренно последнее |
+| Фаза | Содержание и точный порядок                                                                                                                                                   | Gate / результат                                                                                                    | Статус на 2026-07-15                                                                                                                    |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 00   | Security inventory, legacy direct-access classification, удаление broad-admin OR bypass, server-only V2 paths, canonical Body/Record/hash boundary                            | Emulator deny для будущих authoring paths; legacy compatibility; одинаковые canonical bytes/hash                    | **Security slice закрыт.** Content Studio Task 0 и reproducible local CLI зелёные; canonical artifact contracts продолжаются в Phase 01 |
+| 01   | 1.1 identity/versioning → 1.1A immutable DecisionRegistry → 1.2 activity/episode/curriculum → 1.3 evidence/result → 1.4 backend mirror → 1.5 Content Studio Tasks 1–3         | Shared client/Functions corpus, stable issue codes, no shadow contracts, 17 families, immutable ModeTemplate        | **В работе:** Tasks 1.1 и 1.1A закрыты; ближайший код — Task 1.2 contracts                                                              |
+| 02   | 2.1 pure reducer/gate policy → 2.2 Content Studio Task 4 → 2.3 account store/outbox → 2.4 server event → 2.5 Access Boost callable → 2.6 rules/emulator                       | Idempotent local-first progress; performance/access/evidence physically separated; offline/restart safe             | Не начато                                                                                                                               |
+| 03   | 3.0 competitor reference-evidence pack + owner UI approval → 3.1 registry → 3.2 ActivityScaffold → 3.3 six shells → 3.4 thin routes/resume                                    | One registry, one scaffold, six accessible shells; UI evidence approved before production work                      | Заблокировано до Task 5A/reference pack                                                                                                 |
+| 04   | 4.1 capture state machine → 4.2 scorer boundary → 4.2A calibration/privacy gates → 4.3 accessible capture UI → 4.4 device matrix                                              | Voice never deadlocks; scorer claims match measured construct; fallback/privacy/device gates pass                   | Не начато                                                                                                                               |
+| 05   | 5.1 Visual Discovery + Listen & Choose → 5.2 Phrase Builder → 5.3 Repeat + Quick Response → 5.4 Scripted Dialogue → 5.5 legacy adapters                                       | P0 learning loop runs through shared contracts; old modes adapt without duplication                                 | Не начато                                                                                                                               |
+| 06   | 6.1 V2 stages/validators → 6.2 Admin Content Studio → 6.3 lesson-bundle seam → 6.4 loader/cache → 6.5 Content Studio Tasks 14–15                                              | E1 authored, previewed, sealed, activated and rolled back in lab/staging; production E1 release must still fail     | Не начато                                                                                                                               |
+| 07   | 7.1 E1 fixture through real loader → 7.2 real map state → 7.3 completion/stars/resume → 7.4 analytics                                                                         | Один полный пользовательский vertical slice проходит offline/restart/fallback                                       | Не начато                                                                                                                               |
+| 08   | 8.1 P1 modes → 8.2 E1–E8 generation/approval → 8.3 deterministic E8 checkpoint → 8.4 dogfood                                                                                  | Chapter 1 готов для закрытого пилота; scoring/UX/generator исправлены по данным                                     | Не начато                                                                                                                               |
+| 09   | 9.1 Club evidence split → 9.1A consent/copy/eligibility → 9.1B one server egress → 9.1C verified deletion/legal hold → 9.2 Club adapter → 9.3 fallback → 9.4 review scheduler | Club — capstone, not teacher; network voice governed; scripted fallback and shared review work                      | Не начато                                                                                                                               |
+| 10   | 10.1 placement → 10.2 E16/E24/E32 checkpoints → 10.3 Challenges side-node adapter → 10.4 migration rehearsal                                                                  | Existing progress preserved; placement/checkpoints deterministic; no forced legacy deletion                         | Не начато                                                                                                                               |
+| 11   | 11.1 chapter-by-chapter generation → 11.2 whole-season QA → 11.3 non-English seam proof                                                                                       | Все 32 graphs pass schema/content/localization/release gates; один второй язык proves seam                          | Не начато                                                                                                                               |
+| 12   | 12.1 governed events → 12.2 learning projections → 12.3 experiment passports → 12.4 operational alerts                                                                        | Completion, independent evidence, delayed evidence, voice health and economy measurable without false causal claims | Не начато                                                                                                                               |
+| 13   | 13.1 manifests/cohorts → 13.2 performance → 13.3 accessibility/devices → 13.4 rollback drills → 13.5 R0–R5 ramp                                                               | Dogfood → closed cohorts → candidate default; stop/rollback gates and delayed windows mature                        | Не начато                                                                                                                               |
+| 14   | Explicit owner decision: keep both, make V2 default with fallback, migrate Challenges, or retire specifically named legacy surfaces                                           | No deletion without parity, data and separate explicit approval                                                     | Не начато; намеренно последнее                                                                                                          |
 
 Каждую фазу перед кодом нужно детализировать отдельным GSD phase plan, не стирая текущую `.planning`: она относится к другому milestone. V2 должен получить отдельный milestone/workstream.
 
 ### 2.3 Полный вложенный маршрут Content Studio 0–15
 
-| Task | Что создаётся | Зависимость / interlock | Статус |
-|---|---|---|---|
-| 0 | Direct-access inventory, explicit Firestore allows/denies, emulator matrix | До любых новых authoring collections/callables | **Закрыто локально:** Task 0 + exact local CLI, 351 emulator и 61 root/static guards зелёные |
-| 1 | Shared authoring contracts, canonical JSON/hash, eight-entry DecisionRegistry | Umbrella Phase 01; выполнять только после GREEN umbrella Tasks 1.1–1.4 | Следующий внутри Content Studio после 1.1–1.4 |
-| 2 | Code-owned capability catalog и app-support manifests | После Task 1; umbrella Phase 01 | Не начато |
-| 3 | Immutable ModeTemplate versions, clone/deprecate/localization | После Task 2; umbrella Phase 01 | Не начато |
-| 4 | ActivityInstance, EpisodeDraft/graph, SeasonDraft/revisions | Только после единой green gate policy из Phase 02 | Не начато |
-| 5 | Callables, roles, permissions, indexes, Storage, audit, optimistic concurrency | До Admin UI | Не начато |
-| 5A | Competitor evidence ledger, screenshots/contact sheets, original wireframes, owner approval | Обязательный gate до Phase 03/production UI | Не начато |
-| 6 | Admin IA и shared wizard shell | Читать Admin UI Bible; после 5A | Не начато |
-| 7 | Mode Library wizard | После 1–6 | Не начато |
-| 8 | Episode Builder, graph editor и season workspace | После Task 4/permissions/shell | Не начато |
-| 9 | PreviewEnvelope Body/Record и real-device Preview Lab | Нельзя подменять mock preview | Не начато |
-| 10 | Validation receipts, review projections и revision-bound waivers | Receipts append-only, no record backrefs | Не начато |
-| 11 | Translator workflow для templates/episodes | Workflow metadata вне hashable content bodies | Не начато |
-| 12 | V2 13-stage generation DAG | Делегировать существующему stage engine, не создавать второй queue | Не начато |
-| 13 | `lesson-bundle.v2`, sealing, activation, rollback | Immutable/content-addressed releases | Не начато |
-| 14 | E1 author-to-device end-to-end gate | Lab/staging only | Не начато |
-| 15 | Content Studio infrastructure rollout controls | Это не product cohort rollout Phase 13 | Не начато |
+| Task | Что создаётся                                                                               | Зависимость / interlock                                                | Статус                                                                                       |
+| ---- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| 0    | Direct-access inventory, explicit Firestore allows/denies, emulator matrix                  | До любых новых authoring collections/callables                         | **Закрыто локально:** Task 0 + exact local CLI, 351 emulator и 61 root/static guards зелёные |
+| 1    | Shared authoring contracts, canonical JSON/hash, eight-entry DecisionRegistry               | Umbrella Phase 01; выполнять только после GREEN umbrella Tasks 1.1–1.4 | Следующий внутри Content Studio после 1.1–1.4                                                |
+| 2    | Code-owned capability catalog и app-support manifests                                       | После Task 1; umbrella Phase 01                                        | Не начато                                                                                    |
+| 3    | Immutable ModeTemplate versions, clone/deprecate/localization                               | После Task 2; umbrella Phase 01                                        | Не начато                                                                                    |
+| 4    | ActivityInstance, EpisodeDraft/graph, SeasonDraft/revisions                                 | Только после единой green gate policy из Phase 02                      | Не начато                                                                                    |
+| 5    | Callables, roles, permissions, indexes, Storage, audit, optimistic concurrency              | До Admin UI                                                            | Не начато                                                                                    |
+| 5A   | Competitor evidence ledger, screenshots/contact sheets, original wireframes, owner approval | Обязательный gate до Phase 03/production UI                            | Не начато                                                                                    |
+| 6    | Admin IA и shared wizard shell                                                              | Читать Admin UI Bible; после 5A                                        | Не начато                                                                                    |
+| 7    | Mode Library wizard                                                                         | После 1–6                                                              | Не начато                                                                                    |
+| 8    | Episode Builder, graph editor и season workspace                                            | После Task 4/permissions/shell                                         | Не начато                                                                                    |
+| 9    | PreviewEnvelope Body/Record и real-device Preview Lab                                       | Нельзя подменять mock preview                                          | Не начато                                                                                    |
+| 10   | Validation receipts, review projections и revision-bound waivers                            | Receipts append-only, no record backrefs                               | Не начато                                                                                    |
+| 11   | Translator workflow для templates/episodes                                                  | Workflow metadata вне hashable content bodies                          | Не начато                                                                                    |
+| 12   | V2 13-stage generation DAG                                                                  | Делегировать существующему stage engine, не создавать второй queue     | Не начато                                                                                    |
+| 13   | `lesson-bundle.v2`, sealing, activation, rollback                                           | Immutable/content-addressed releases                                   | Не начато                                                                                    |
+| 14   | E1 author-to-device end-to-end gate                                                         | Lab/staging only                                                       | Не начато                                                                                    |
+| 15   | Content Studio infrastructure rollout controls                                              | Это не product cohort rollout Phase 13                                 | Не начато                                                                                    |
 
 Точный код и тесты каждого Task находятся в `2026-07-14-phraseman-v2-content-studio.md`. Не заменять их пересказом из таблицы.
 
@@ -269,22 +269,22 @@ Checkpoint — не восемнадцатая family и не отдельный
 
 ## 5. Карта документов и обязательный порядок чтения
 
-| Путь | Роль | Когда читать |
-|---|---|---|
-| `docs/v2/HANDOVER.md` | Текущее состояние, exact next step, ветки, проверки, риски | В начале и конце каждой V2-сессии |
-| `docs/v2/README.md` | Главный продуктовый индекс и утверждённая архитектура | Всегда перед работой |
-| `docs/v2/00-research-and-skill-audit.md` | Provenance research/skills; не runtime authority | Перед новым research/design решением |
-| `docs/v2/01-current-state-audit.md` | Что реально уже есть: legacy, Lessons V2 prototype, plans, voice, Club, generators | Перед интеграцией/миграцией |
-| `docs/v2/02-competitor-and-learning-evidence.md` | Rosetta/Duolingo/ELSA/EWA, learning evidence, P0/P1/P2 и UI reference protocol | Перед выбором activity/UI pattern |
-| `docs/v2/03-learning-architecture-and-curriculum.md` | Учебный source of truth и E1–E32 | Для contracts/content/episode work |
-| `docs/v2/04-activity-catalog-and-storyboards.md` | ActivityScaffold, six shells, voice shell, 14 storyboards, states/motion/accessibility | Перед UI/runtime activity work |
-| `docs/v2/05-stars-progress-and-mastery.md` | Нормативные stars/access/evidence/gates/offline contracts | Для progress, economy, purchase и gates |
-| `docs/v2/06-runtime-content-admin-and-release.md` | Нормативные runtime/evidence/voice/release/loader contracts | Для client/backend/release work |
-| `docs/v2/07-migration-analytics-testing.md` | Adapter-first migration, flags, events, experiments, test matrix и rollback | Для rollout/telemetry/migration |
-| `docs/v2/08-admin-content-studio-and-mode-authoring.md` | Одобренная нормативная Content Studio spec и единственная machine schema DecisionRegistry | Для любого authoring/Admin/generator work |
-| `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md` | Umbrella GSD/TDD implementation plan | Всегда; читать текущую фазу полностью |
-| `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md` | Вложенный точный TDD-план генератора/Studio | Всегда при Task 0–15 |
-| `docs/design/ADMIN_UI_BIBLE.md` | Единственный UI source of truth для Admin | Перед изменением Admin UI/navigation |
+| Путь                                                               | Роль                                                                                      | Когда читать                              |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `docs/v2/HANDOVER.md`                                              | Текущее состояние, exact next step, ветки, проверки, риски                                | В начале и конце каждой V2-сессии         |
+| `docs/v2/README.md`                                                | Главный продуктовый индекс и утверждённая архитектура                                     | Всегда перед работой                      |
+| `docs/v2/00-research-and-skill-audit.md`                           | Provenance research/skills; не runtime authority                                          | Перед новым research/design решением      |
+| `docs/v2/01-current-state-audit.md`                                | Что реально уже есть: legacy, Lessons V2 prototype, plans, voice, Club, generators        | Перед интеграцией/миграцией               |
+| `docs/v2/02-competitor-and-learning-evidence.md`                   | Rosetta/Duolingo/ELSA/EWA, learning evidence, P0/P1/P2 и UI reference protocol            | Перед выбором activity/UI pattern         |
+| `docs/v2/03-learning-architecture-and-curriculum.md`               | Учебный source of truth и E1–E32                                                          | Для contracts/content/episode work        |
+| `docs/v2/04-activity-catalog-and-storyboards.md`                   | ActivityScaffold, six shells, voice shell, 14 storyboards, states/motion/accessibility    | Перед UI/runtime activity work            |
+| `docs/v2/05-stars-progress-and-mastery.md`                         | Нормативные stars/access/evidence/gates/offline contracts                                 | Для progress, economy, purchase и gates   |
+| `docs/v2/06-runtime-content-admin-and-release.md`                  | Нормативные runtime/evidence/voice/release/loader contracts                               | Для client/backend/release work           |
+| `docs/v2/07-migration-analytics-testing.md`                        | Adapter-first migration, flags, events, experiments, test matrix и rollback               | Для rollout/telemetry/migration           |
+| `docs/v2/08-admin-content-studio-and-mode-authoring.md`            | Одобренная нормативная Content Studio spec и единственная machine schema DecisionRegistry | Для любого authoring/Admin/generator work |
+| `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md`   | Umbrella GSD/TDD implementation plan                                                      | Всегда; читать текущую фазу полностью     |
+| `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md` | Вложенный точный TDD-план генератора/Studio                                               | Всегда при Task 0–15                      |
+| `docs/design/ADMIN_UI_BIBLE.md`                                    | Единственный UI source of truth для Admin                                                 | Перед изменением Admin UI/navigation      |
 
 ### Смежные документы, которые нельзя принять за канон
 
@@ -327,16 +327,16 @@ Checkpoint — не восемнадцатая family и не отдельный
 
 ### 6.2 Что изменено в commit
 
-| Файл | Фактическое назначение |
-|---|---|
-| `docs/reports/learning-v2/content-studio-direct-access-inventory.md` | 241-строчная инвентаризация legacy namespaces, V2/server-only paths, RED/GREEN, compatibility и deploy limits |
-| `firestore.rules` | Удалён global `isAdmin()` catch-all; сохранены минимальные explicit legacy operations; добавлены 18 explicit V2 deny roots и финальная deny boundary |
-| `functions/jest.config.js` | Emulator-only тест исключён из обычного Functions Jest discovery |
-| `functions/jest.emulator.config.js` | Dedicated config выбирает только emulator suite |
-| `functions/package.json` | Dedicated emulator-команда и exact dev-only `firebase-tools@15.23.0` |
-| `functions/package-lock.json` | Воспроизводимое дерево testing dependencies и локального Firebase CLI |
-| `functions/src/content_studio/emulator/v2_authoring_rules.emulator.test.ts` | 32 server-only collections × operations, 78 legacy namespaces, nested/dynamic cases, matchmaking exception |
-| `tests/firestore_rules_security.test.ts` | Semantic rules guards против broad recursive, sibling/wrapper OR, duplicate/generic wildcard и formatting bypass |
+| Файл                                                                        | Фактическое назначение                                                                                                                               |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `docs/reports/learning-v2/content-studio-direct-access-inventory.md`        | 241-строчная инвентаризация legacy namespaces, V2/server-only paths, RED/GREEN, compatibility и deploy limits                                        |
+| `firestore.rules`                                                           | Удалён global `isAdmin()` catch-all; сохранены минимальные explicit legacy operations; добавлены 18 explicit V2 deny roots и финальная deny boundary |
+| `functions/jest.config.js`                                                  | Emulator-only тест исключён из обычного Functions Jest discovery                                                                                     |
+| `functions/jest.emulator.config.js`                                         | Dedicated config выбирает только emulator suite                                                                                                      |
+| `functions/package.json`                                                    | Dedicated emulator-команда и exact dev-only `firebase-tools@15.23.0`                                                                                 |
+| `functions/package-lock.json`                                               | Воспроизводимое дерево testing dependencies и локального Firebase CLI                                                                                |
+| `functions/src/content_studio/emulator/v2_authoring_rules.emulator.test.ts` | 32 server-only collections × operations, 78 legacy namespaces, nested/dynamic cases, matchmaking exception                                           |
+| `tests/firestore_rules_security.test.ts`                                    | Semantic rules guards против broad recursive, sibling/wrapper OR, duplicate/generic wildcard и formatting bypass                                     |
 
 Commit содержит 8 файлов, 2611 добавлений и 17 удалений.
 
@@ -400,16 +400,16 @@ npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts --no-cache 
 
 ### Статус фаз и задач
 
-| Область | Статус | Доказательство / примечание |
-|---|---|---|
-| Phase 00–01 identity, DecisionRegistry, episode/evidence/runtime contracts | Частично завершено / bounded slices green | История коммитов и focused suites в предыдущих секциях handover; full V2 acceptance ещё не заявлен |
-| Delayed probe receipts/runtime and Firestore ownership | Завершён bounded pure/runtime slice | `d59efb9fd` и предыдущие commits; root 6 suites/33 tests, Functions 2 suites/8 tests, emulator 2 suites/6 tests green |
-| Phase 02 performance/access stars | Начат; pure projection slice завершён | `da95faca5`: best-per-slot delta, 8 slots/24 cap, pilot curve, local minima, scoped boost gate semantics |
-| Progress reducer/outbox/server economy/purchase/refund | Не начато | Следующий основной workstream |
-| Shared activity/voice runtime, P0 modes, Speaking Club/dialogs | Не начато в этой bounded slice | Legacy не менялся |
-| 32-episode content/curriculum delivery | Не начато | Contracts существуют, content authoring/delivery ещё впереди |
-| Admin Content Studio transfer/generator | Отдельная сессия владельца | Не изменять и не включать в этот worktree |
-| Rollout, analytics, Phase 14 legacy decision | Не начато | Требуют предыдущих фаз и gates |
+| Область                                                                    | Статус                                    | Доказательство / примечание                                                                                           |
+| -------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Phase 00–01 identity, DecisionRegistry, episode/evidence/runtime contracts | Частично завершено / bounded slices green | История коммитов и focused suites в предыдущих секциях handover; full V2 acceptance ещё не заявлен                    |
+| Delayed probe receipts/runtime and Firestore ownership                     | Завершён bounded pure/runtime slice       | `d59efb9fd` и предыдущие commits; root 6 suites/33 tests, Functions 2 suites/8 tests, emulator 2 suites/6 tests green |
+| Phase 02 performance/access stars                                          | Начат; pure projection slice завершён     | `da95faca5`: best-per-slot delta, 8 slots/24 cap, pilot curve, local minima, scoped boost gate semantics              |
+| Progress reducer/outbox/server economy/purchase/refund                     | Не начато                                 | Следующий основной workstream                                                                                         |
+| Shared activity/voice runtime, P0 modes, Speaking Club/dialogs             | Не начато в этой bounded slice            | Legacy не менялся                                                                                                     |
+| 32-episode content/curriculum delivery                                     | Не начато                                 | Contracts существуют, content authoring/delivery ещё впереди                                                          |
+| Admin Content Studio transfer/generator                                    | Отдельная сессия владельца                | Не изменять и не включать в этот worktree                                                                             |
+| Rollout, analytics, Phase 14 legacy decision                               | Не начато                                 | Требуют предыдущих фаз и gates                                                                                        |
 
 ### Что изменено
 
@@ -887,11 +887,11 @@ Task закрыт двумя отдельными коммитами:
 
 Созданы ровно три плановых файла:
 
-| Файл | Назначение |
-|---|---|
-| `modules/learning-v2/contracts/identities.ts` | Exact ID grammar, семь distinct branded types, `is*`/`parse*`, stable error codes и release-scoped activity duplicate assertion |
-| `modules/learning-v2/contracts/schema_versions.ts` | Code-owned per-kind allowlist девяти поддержанных V2 schema versions и fail-closed parser |
-| `tests/learning_v2_identity_contract.test.ts` | Runtime boundaries, compile-time brand guards, localization/release invariants, schema conformance и AST purity guard |
+| Файл                                               | Назначение                                                                                                                      |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `modules/learning-v2/contracts/identities.ts`      | Exact ID grammar, семь distinct branded types, `is*`/`parse*`, stable error codes и release-scoped activity duplicate assertion |
+| `modules/learning-v2/contracts/schema_versions.ts` | Code-owned per-kind allowlist девяти поддержанных V2 schema versions и fail-closed parser                                       |
+| `tests/learning_v2_identity_contract.test.ts`      | Runtime boundaries, compile-time brand guards, localization/release invariants, schema conformance и AST purity guard           |
 
 Канонический ID-контракт:
 
@@ -905,17 +905,17 @@ Task закрыт двумя отдельными коммитами:
 
 Поддержанный schema registry по entity kind:
 
-| Kind | Exact accepted version |
-|---|---|
-| `modeTemplateRuntime` | `v2-mode-template.v1` |
-| `delayedProbeDefinition` | `v2-delayed-probe-definition.v1` |
-| `attemptBody` | `v2-attempt-body.v1` |
-| `attemptRef` | `v2-attempt-ref.v1` |
-| `attemptEnvelope` | `v2-attempt-envelope.v1` |
+| Kind                      | Exact accepted version            |
+| ------------------------- | --------------------------------- |
+| `modeTemplateRuntime`     | `v2-mode-template.v1`             |
+| `delayedProbeDefinition`  | `v2-delayed-probe-definition.v1`  |
+| `attemptBody`             | `v2-attempt-body.v1`              |
+| `attemptRef`              | `v2-attempt-ref.v1`               |
+| `attemptEnvelope`         | `v2-attempt-envelope.v1`          |
 | `delayedAttemptCandidate` | `v2-delayed-attempt-candidate.v1` |
-| `delayedAttemptAck` | `v2-delayed-attempt-ack.v2` |
-| `publishedSeason` | `v2-season.v1` |
-| `lessonBundle` | `lesson-bundle.v2` |
+| `delayedAttemptAck`       | `v2-delayed-attempt-ack.v2`       |
+| `publishedSeason`         | `v2-season.v1`                    |
+| `lessonBundle`            | `lesson-bundle.v2`                |
 
 Лексически корректная неизвестная версия и известная версия другого kind отклоняются. `CourseRelease` намеренно не включён: в legacy есть несогласованность `course-release.v1` против `course-release-v1`, которую нельзя молча канонизировать этим task. При появлении второй поддержанной версии одного kind single-current-value map нужно расширить отдельным immutable supported-versions registry, не меняя старую identity.
 
@@ -940,13 +940,13 @@ Task закрыт двумя последовательными коммитам
 
 Ровно пять файлов implementation commit:
 
-| Файл | Назначение и важные границы |
-|---|---|
-| `modules/learning-v2/policies/decision_registry.ts` | Shared/mobile readonly types, strict validator/resolver, canonical JSON v1, portable pure-JavaScript SHA-256 и content-addressed object-path formula; Node `crypto` запрещён purity test-ом |
-| `functions/src/content_studio/decision_registry.ts` | Поведенчески идентичный Functions validator/resolver; отличается только использованием `createHash('sha256')`, потому что deployable Functions `tsconfig` не может импортировать root `modules/**` |
-| `tests/fixtures/learning-v2/content-studio/decision-registry.v1.json` | Один shared conformance corpus: baseline v1, согласованные nonbaseline v2 и calibrated v3, named invalid mutations, runtime-invalid canonical values и frozen ordered issue expectations |
-| `tests/learning_v2_decision_registry.test.ts` | Root/mobile corpus, canonical/hash/path, fail-closed validation, issue metadata, Unicode/array boundaries и Node-crypto purity guard |
-| `functions/src/content_studio/decision_registry.test.ts` | Тот же corpus и те же assertions в Functions runtime; отличается только fixture/import path и отсутствием mobile-only purity test |
+| Файл                                                                  | Назначение и важные границы                                                                                                                                                                        |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modules/learning-v2/policies/decision_registry.ts`                   | Shared/mobile readonly types, strict validator/resolver, canonical JSON v1, portable pure-JavaScript SHA-256 и content-addressed object-path formula; Node `crypto` запрещён purity test-ом        |
+| `functions/src/content_studio/decision_registry.ts`                   | Поведенчески идентичный Functions validator/resolver; отличается только использованием `createHash('sha256')`, потому что deployable Functions `tsconfig` не может импортировать root `modules/**` |
+| `tests/fixtures/learning-v2/content-studio/decision-registry.v1.json` | Один shared conformance corpus: baseline v1, согласованные nonbaseline v2 и calibrated v3, named invalid mutations, runtime-invalid canonical values и frozen ordered issue expectations           |
+| `tests/learning_v2_decision_registry.test.ts`                         | Root/mobile corpus, canonical/hash/path, fail-closed validation, issue metadata, Unicode/array boundaries и Node-crypto purity guard                                                               |
+| `functions/src/content_studio/decision_registry.test.ts`              | Тот же corpus и те же assertions в Functions runtime; отличается только fixture/import path и отсутствием mobile-only purity test                                                                  |
 
 Нормативная policy-поправка до code commit зафиксировала:
 
@@ -1629,6 +1629,7 @@ git status --short --branch
 git log -3 --oneline
 npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts --no-cache --runInBand
 ```
+
 ## 12.55 Production access purchase callable
 
 The production seam is now wired in the V2 worktree (Admin remains owned by another session). `functions/src/learning_v2_access_production_callable.ts` exposes `finalizeLearningV2AccessPurchase` with Firebase App Check enforcement, authenticates before parsing, reads the user-scoped gate receipt, requires its pinned DecisionRegistry reference, downloads the content-addressed artifact from Storage, resolves the exact pinned access policy, and delegates the authoritative purchase to the Firestore transaction adapter. The adapter re-checks the same registry reference inside the transaction to close the gate/policy TOCTOU window. `functions/src/index.ts` exports the callable.
@@ -1638,6 +1639,7 @@ The callable boundary maps expected domain failures to stable HTTPS errors, pres
 Evidence: production/callable matrix **4 suites / 21 tests PASS**; targeted strict TypeScript for production callable, callable orchestration, and adapter **PASS**. The prior Firestore emulator purchase matrix remains **1 suite / 3 tests PASS**. Full Functions build is still not a valid V2 gate because the repository has unrelated pre-existing Admin missing-module/duplicate-export errors; Admin files were not touched here.
 
 **Exact next executable task:** run a fresh independent red-team/spec adjudication of this production callable slice. If no P1/P2 remains, commit the callable wiring and begin the Phase 02 progress-snapshot/outbox reducer slice. Acceptance: snapshot/outbox state is account-scoped and idempotent, replay-safe, offline/local-first compatible, and covered by RED/GREEN tests; do not alter Admin or remove legacy behavior.
+
 ## 12.56 Phase 02 Task 2.1 pure progress contracts — partial, uncommitted
 
 The next V2 implementation slice has started in the isolated worktree; Admin remains outside scope. Added pure modules under `modules/learning-v2/progress/`: `progress_types.ts`, `progress_reducer.ts`, `gate_policy.ts`, `learning_evidence_policy.ts`, and `checkpoint_projection.ts`, plus focused root tests for reducer, gate policy, checkpoint projection, and evidence-policy branch handling.
@@ -1647,6 +1649,7 @@ The current bounded behavior now proves: best-performance stars are monotonic 0�
 Evidence: RED was first reproduced by the missing progress modules and then by TypeScript/union errors during implementation. Current GREEN matrix is **4 suites / 13 tests PASS**; strict targeted TypeScript with ES2022 target is **PASS**. No commit has been made for this slice because the fresh spec review still has open acceptance findings around full body↔ref materialization binding, checkpoint index wiring to the pinned Episode contract, complete declared-node/loop outcome semantics, and the exact persisted snapshot schema. These are explicitly partial, not completed.
 
 **Exact next executable task:** close the remaining Task 2.1 P1 findings test-first: require validated body/ref materialization tokens (not shape-only refs), wire checkpoint projection through the pinned contract and bounded snapshot index, validate declared node/outcome/loop semantics, and add replay/conflict/per-episode catalog regression cases. Then run a fresh spec review and adversarial review before any commit. Do not start Task 2.2 or touch Admin until Task 2.1 receives PASS.
+
 ## 12.57 Task 2.1 adversarial checkpoint — still partial
 
 The bounded Task 2.1 slice was hardened after review: reducer context now binds expected account/season, canonical attempt refs are strict own-key/hash shapes, processed attempt identities no longer evict old tombstones (the reducer fails closed when the bounded local index is full), and a `passed` checkpoint mutation requires an evidence ref. Focused GREEN remains **4 suites / 13 tests PASS** and strict targeted TypeScript remains **PASS**.
@@ -1654,6 +1657,7 @@ The bounded Task 2.1 slice was hardened after review: reducer context now binds 
 Fresh adversarial review still returns **NOT PASS** for Task 2.1 acceptance. Open P1/P2 items are explicit: snapshot validation must fully validate checkpoint/gate maps and key↔ref binding; body↔materialization-ref validation must be based on an immutable body/ref token rather than shape-only data; checkpoint writes must be produced only by a complete pinned checkpoint projection (critical tuple sets, declared repair/alternate routes, delayed/outside-window/no-record handling); node outcomes still need declared-node/activity/compatibility/result-policy binding; and all bounded indexes require exact cardinality contracts. No commit is allowed for this slice until those findings are closed and independently reviewed.
 
 **Exact next executable task:** add the immutable evidence/checkpoint materialization token and pinned Episode/Checkpoint context to the reducer, validate all existing snapshot maps before reduction, reject forged node/checkpoint projections, and add adversarial RED tests for cross-account scope, forged pass, malformed refs, key mismatch, replay conflict and index overflow. Then run fresh spec and red-team reviews before committing Task 2.1.
+
 ## 12.58 Task 2.1 ledger/snapshot separation hardening
 
 The replay identity index was removed from `ProgressSnapshot` after review because the canonical first-frame snapshot must stay bounded and cannot become a second attempt-history source of truth. `ProgressReducerContext` now receives the account-scoped durable attempt index (outbox/cloud ledger seam), while each reduction returns an `attemptLedgerEntry` for the caller to persist atomically. This removes the previous 256-attempt hard stop from the snapshot path. The reducer also validates persisted checkpoint/gate maps, key↔tuple binding, account/season scope, node catalog identity, and requires an assessed-success evidence binding for a `passed` checkpoint.
@@ -1661,6 +1665,7 @@ The replay identity index was removed from `ProgressSnapshot` after review becau
 Focused GREEN remains **4 suites / 15 tests PASS**; strict targeted TypeScript and Prettier are **PASS**. The slice is still not committed: the remaining review gate is full pinned CheckpointContract/loop semantics and a fresh independent adjudication of the body/ref token boundary. Admin files remain untouched.
 
 **Exact next executable task:** make the reducer context consume the full immutable Episode/Checkpoint contract (critical tuple set, exact assessment node/objective set, repair/reassessment and equivalent alternate routes), derive required-loop completion from declared node outcomes, add RED tests for persisted node/checkpoint poisoning and tuple mismatch, then obtain fresh spec and red-team PASS before the Task 2.1 commit.
+
 ## 12.59 Pinned checkpoint context and durable replay seam
 
 The reducer no longer stores attempt replay history in the first-frame snapshot. Replay identity is supplied by the durable account-scoped context ledger, and the pure result returns the ledger entry for atomic outbox/cloud persistence. The reducer context now requires a pinned checkpoint contract with exact tuple, critical, repair, and alternate sets; checkpoint writes reject unknown/critical/repair/alternate mismatches. `passed` additionally requires an assessed-success binding.
@@ -1668,6 +1673,7 @@ The reducer no longer stores attempt replay history in the first-frame snapshot.
 Evidence: **4 suites / 15 tests PASS**, strict targeted TypeScript and Prettier **PASS**. The Task 2.1 slice remains uncommitted pending fresh independent review. Remaining expected review focus is exact full Episode contract parity (including loop-node derivation and restore-time membership validation) and the final immutable body/ref proof.
 
 **Exact next executable task:** run fresh spec and adversarial reviews against the entire current Task 2.1 slice. If both report no P1, commit only the progress modules/tests/handover; otherwise add only reproducing RED/GREEN fixes. Admin files remain excluded.
+
 ## 12.60 Full checkpoint projection contract and loop derivation
 
 `projectCheckpointEvidence` now requires a full pinned contract rather than accepting an empty/default contract. Requirements must explicitly declare `independent_probe`, assessment node, objective, and critical semantic-slot/constraint membership; tuple/node/objective sets are compared exactly. The reducer context likewise requires exact checkpoint tuple/critical/repair/alternate sets. A pure `deriveRequiredLoopsComplete` projection now derives encounter-build and near-transfer loop completion from accepted declared node outcomes instead of trusting a caller boolean.
@@ -1675,6 +1681,7 @@ Evidence: **4 suites / 15 tests PASS**, strict targeted TypeScript and Prettier 
 Evidence remains **4 suites / 15 tests PASS**, strict ES2022 TypeScript and Prettier **PASS**. The Task 2.1 slice is still uncommitted until a fresh review confirms that checkpoint non-assessment/delayed branches and persisted node/checkpoint maps are fail-closed under the full pinned contract.
 
 **Exact next executable task:** run the fresh spec and adversarial reviews now; if a P1 remains, add only its reproducing RED/GREEN case. If both PASS, perform the bounded Task 2.1 commit and begin Task 2.2 authoring contracts.
+
 ## 12.61 Restore-poisoning closure for required loops
 
 `deriveRequiredLoopsComplete` now fail-closes on account/season mismatch, validates the restored snapshot, checks every required node against the pinned node catalog, requires a strict full outcome shape, and requires the node's canonical attempt ref/hash to exist in the durable account-scoped attempt ledger. A forged restored `CORRECT` outcome without a matching ledger entry therefore cannot satisfy the required-loop gate. The checkpoint reducer also distinguishes assessed refs from non-assessment refs and validates branch-specific body hashes.
@@ -1682,6 +1689,7 @@ Evidence remains **4 suites / 15 tests PASS**, strict ES2022 TypeScript and Pret
 Evidence: focused matrix **4 suites / 16 tests PASS**; targeted strict TypeScript and Prettier **PASS**. Fresh spec/red-team adjudication is still required before commit; the worktree remains intentionally uncommitted and Admin artifacts remain untracked/untouched.
 
 **Exact next executable task:** obtain fresh independent reviews of the current files. If no P1 remains, commit Task 2.1 as one bounded change and update the phase table; otherwise address only the reproducing finding.
+
 ## 12.62 Task 2.1 committed — transition to Task 2.2
 
 Commit `f59dfc4f7` (`feat(v2): add pure progress and checkpoint projections`) contains only the five pure progress modules, four focused test files, and this handover. Fresh spec and adversarial reviews report **no P0/P1**. Verification at commit boundary: **4 suites / 16 tests PASS**, strict targeted TypeScript **PASS**, Prettier **PASS**, `git diff --check` **PASS**. Remaining P2 hygiene items are recorded, not silently treated as resolved: canonical route IDs, typed projection refs, derived-only gate wrapper, catalog-aware standalone access derivation, exact evidence selector policy/version, and schema alignment.
@@ -1751,6 +1759,22 @@ Added `firestore_authoring_store.ts` with explicit V2 draft/revision/DecisionReg
 This is still an implementation slice, not a release claim. The next required evidence is emulator-backed direct-write denial and callable invocation with real Firestore documents, including exact immutable object generation and full canonical Episode/DecisionRegistry fixtures. Existing project-wide Functions `tsc` remains contaminated by unrelated pre-existing missing exports/modules in `functions/src/index.ts`; the new files compile in the targeted strict gate.
 
 **Exact next executable task:** add emulator RED/GREEN coverage for the two exported callables and real server-only collections, then strengthen canonical Episode body validation and object-path/generation pinning before release review.
+
+## 12.72 Firestore authoring security evidence
+
+The existing emulator contract was executed through the project script `npm run test:emulator:v2-authoring-rules`: **1 suite / 351 tests PASS**. This includes direct admin get/list/create/update/delete denial across the V2 server-only authoring, revision, lifecycle, review, localization, preview, and manifest collections while preserving the legacy admin inventory. The new callable/path adapters and exports also pass their focused tests and targeted strict TypeScript checks.
+
+The emulator result proves Firestore rules, not callable lifecycle correctness. Remaining open work is canonical Episode body validation, exact Storage object path/generation pinning, callable invocation against seeded emulator documents, and release/review lifecycle receipts. No Admin UI files were changed.
+
+**Exact next executable task:** add callable-level emulator/integration tests with seeded immutable EpisodeRevision and DecisionRegistry documents, then make the resolver validate the canonical Episode contract before allowing a full-season save.
+
+## 12.73 Production resolver canonical Episode gate
+
+Added the shared `validateV2EpisodeContract` entry point, which enforces the canonical Episode top-level key set, schema version, required collection/object shapes, and the existing deep Episode contract rules. The Firestore immutable-revision resolver now supplies this validator to the season transaction boundary; a hash-matching arbitrary body is rejected with `season_episode_body_contract_invalid`. Focused evidence: Functions **3 suites / 5 tests PASS** and targeted strict TypeScript **PASS**. The validator has direct regression coverage for unknown fields and missing canonical structure.
+
+This remains a partial Task 2.2 slice: the resolver still needs explicit Storage object-path/generation binding (not only a non-empty generation), seeded emulator invocation of both exported callables, and release/review receipt coverage. Injected test resolvers without `validateBody` remain compatible for bounded legacy tests; production Firestore wiring is fail-closed through the canonical validator.
+
+**Exact next executable task:** create a callable integration harness against seeded emulator documents, assert auth/App Check/owner/CAS behavior through the exported endpoints, and add explicit immutable object-path + generation equality to the EpisodeRevision artifact contract.
 
 ## 12.67 Resolver hardening and server-owned boundary evidence
 

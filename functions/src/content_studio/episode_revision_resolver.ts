@@ -7,10 +7,13 @@ export interface ImmutableEpisodeRevisionArtifact extends ApprovedEpisodeRevisio
   readonly objectGeneration: string;
 }
 
+export type ImmutableEpisodeBodyValidator = (body: unknown) => boolean;
+
 export interface ImmutableEpisodeRevisionResolver {
   resolve(
     ref: ApprovedEpisodeRevision,
   ): Promise<ImmutableEpisodeRevisionArtifact | undefined>;
+  readonly validateBody?: ImmutableEpisodeBodyValidator;
 }
 
 export async function assertExactImmutableEpisodeRevision(
@@ -33,5 +36,9 @@ export async function assertExactImmutableEpisodeRevision(
     !artifact.objectGeneration
   )
     throw new Error("season_episode_revision_not_approved_or_stale");
+  const bodyValidation = resolver.validateBody;
+  if (!bodyValidation) return artifact;
+  if (!bodyValidation(artifact.body))
+    throw new Error("season_episode_body_contract_invalid");
   return artifact;
 }

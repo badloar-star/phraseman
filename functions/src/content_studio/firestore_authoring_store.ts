@@ -8,6 +8,7 @@ import type {
   ImmutableEpisodeRevisionResolver,
 } from "./episode_revision_resolver";
 import type { DecisionRegistryResolver } from "./season_authoring_transaction_repository";
+import { validateV2EpisodeContract } from "../../../modules/learning-v2/contracts/validation";
 
 export const episodeDraftDocumentPath = (draftId: string): string =>
   `content_episode_drafts/${draftId}`;
@@ -128,6 +129,7 @@ export function createFirestoreEpisodeRevisionResolver(
   db: admin.firestore.Firestore,
 ): ImmutableEpisodeRevisionResolver {
   return {
+    validateBody: (body) => validateV2EpisodeContract(body).ok,
     resolve: async (ref) => {
       const snap = await db
         .doc(episodeRevisionDocumentPath(ref.episodeId, ref.revision))

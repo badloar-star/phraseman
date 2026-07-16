@@ -6566,3 +6566,57 @@ export const validateV2CheckpointContract = (
     validateCheckpointInternal(inputSnapshot.value, contextSnapshot.value),
   );
 };
+
+/** Validate an immutable Episode body without requiring a full package wrapper. */
+export const validateV2EpisodeContract = (
+  input: unknown,
+): V2ContractValidationResult<V2EpisodeContract> => {
+  const snapshot = snapshotCanonicalJsonInput(input, "$.episode");
+  if (snapshot.ok === false) return fail([snapshot.issue]);
+  return safely(() => {
+    if (!isPlainObject(snapshot.value)) {
+      return fail([issue("field_type_invalid", "$.episode")]);
+    }
+    const exactIssues = exactObjectIssues(
+      snapshot.value,
+      EPISODE_KEYS.filter((key) => key !== "checkpointContract"),
+      ["checkpointContract"],
+      "$.episode",
+    );
+    if (exactIssues.length > 0) return fail(exactIssues);
+    if (snapshot.value.schemaVersion !== "v2-episode-contract.v1") {
+      return fail([issue("schema_version_invalid", "$.episode.schemaVersion")]);
+    }
+    for (const key of [
+      "phraseFrames",
+      "semanticSlots",
+      "criticalConstraints",
+      "activities",
+      "starSlots",
+      "delayedProbeDefinitions",
+      "reviewLinks",
+      "accessibilityRoutes",
+    ]) {
+      if (!Array.isArray(snapshot.value[key])) {
+        return fail([issue("field_type_invalid", `$.episode.${key}`)]);
+      }
+    }
+    for (const key of [
+      "scenario",
+      "graph",
+      "requiredLoops",
+      "assessmentNodes",
+      "capstoneContract",
+      "learningDesign",
+      "masteryContract",
+    ]) {
+      if (!isPlainObject(snapshot.value[key])) {
+        return fail([issue("field_type_invalid", `$.episode.${key}`)]);
+      }
+    }
+    const issues = validateEpisodeDeepShape(snapshot.value);
+    return issues.length > 0
+      ? fail(issues)
+      : pass(snapshot.value as unknown as V2EpisodeContract);
+  });
+};

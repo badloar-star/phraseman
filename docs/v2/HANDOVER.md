@@ -1744,6 +1744,14 @@ This is only the callable foundation; concrete `adminSaveV2EpisodeDraft`/`adminS
 
 **Exact next executable task:** create the real Firestore-backed dependency factory, export both named callables through `functions/src/index.ts`, and add emulator RED tests for direct-write denial, owner/auth claims, stale CAS, immutable object generation, and DecisionRegistry/Episode resolution.
 
+## 12.71 Firestore-backed callable wiring — implementation slice
+
+Added `firestore_authoring_store.ts` with explicit V2 draft/revision/DecisionRegistry paths, Admin SDK transaction adapters, immutable EpisodeRevision resolver, and DecisionRegistry resolver. Added `admin_content_studio_callables.ts` and exported `adminSaveV2EpisodeDraft`/`adminSaveV2SeasonDraft` from `functions/src/index.ts`. Both endpoints enforce App Check, require admin `content.draft.write`, parse the mutation envelope, and perform server-side CAS through the Firestore adapters. Focused tests cover storage paths, callable exports, auth parser, and transaction seams; standalone strict TypeScript checks pass.
+
+This is still an implementation slice, not a release claim. The next required evidence is emulator-backed direct-write denial and callable invocation with real Firestore documents, including exact immutable object generation and full canonical Episode/DecisionRegistry fixtures. Existing project-wide Functions `tsc` remains contaminated by unrelated pre-existing missing exports/modules in `functions/src/index.ts`; the new files compile in the targeted strict gate.
+
+**Exact next executable task:** add emulator RED/GREEN coverage for the two exported callables and real server-only collections, then strengthen canonical Episode body validation and object-path/generation pinning before release review.
+
 ## 12.67 Resolver hardening and server-owned boundary evidence
 
 The immutable EpisodeRevision artifact contract now includes the fetched body and immutable Storage generation; the resolver recomputes `hashCanonicalBody(artifact.body)` and rejects metadata-only or hash-poisoned artifacts. The Season transaction adapter now requires a resolvable DecisionRegistry for `full_season` saves and resolves all pinned EpisodeRevision refs before compare-and-set. Existing `firestore.rules` already has explicit `allow read, write: if false` blocks for the V2 authoring/revision/lifecycle/review collections; the emulator contract lists these server-only collections.

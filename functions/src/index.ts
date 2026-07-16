@@ -1512,6 +1512,7 @@ export { adminEditContentStageArtifact } from './admin_content_stage_edits';
 export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
 export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics, adminGetArenaConvergenceStatus } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
+export { adminSaveV2EpisodeDraft, adminSaveV2SeasonDraft } from './admin_content_studio_callables';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';

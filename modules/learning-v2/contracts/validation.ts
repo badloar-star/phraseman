@@ -3018,6 +3018,11 @@ const validateEpisodeDeepShape = (
   if (!isRecordArray(episode.accessibilityRoutes)) {
     return [issue("field_type_invalid", "$.episode.accessibilityRoutes")];
   }
+  if (episode.accessibilityRoutes.length === 0) {
+    return [
+      issue("accessibility_route_missing", "$.episode.accessibilityRoutes"),
+    ];
+  }
   for (let index = 0; index < episode.accessibilityRoutes.length; index += 1) {
     const route = episode.accessibilityRoutes[index];
     const path = `$.episode.accessibilityRoutes[${index}]`;

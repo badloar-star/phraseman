@@ -2678,6 +2678,19 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       },
     ]);
   });
+
+  test("requires at least one accessibility route with the offline core path", () => {
+    const candidate = clone(validFixture);
+    (candidate.episode as JsonRecord).accessibilityRoutes = [];
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "accessibility_route_missing",
+        path: "$.episode.accessibilityRoutes",
+      },
+    ]);
+  });
 });
 
 describe("Learning V2 Task 1.2 — compile and purity boundaries", () => {

@@ -153,6 +153,39 @@ describe("Learning V2 delayed Firestore transaction persistence", () => {
       );
       expect(receiptSnapshot.exists()).toBe(true);
       expect(receiptSnapshot.data()?.ref.contentHash).toMatch(/^[a-f0-9]{64}$/);
+
+      const mismatch = await finalizeDelayedCandidate(repository, {
+        ...input,
+        operationId: "emulator-mismatch-operation",
+        fingerprint: "e".repeat(64),
+        probeRef: { ...probeRef, contentHash: "f".repeat(64) },
+        timingReceiptId: "timing-emulator-mismatch",
+        failureReceiptId: "failure-emulator-mismatch",
+      });
+      expect(mismatch.receipt.kind).toBe("failure");
+      if (mismatch.receipt.kind === "failure") {
+        expect(mismatch.receipt.body.decision.kind).toBe("protocol_rejection");
+      }
+
+      const concurrentInput = {
+        ...input,
+        operationId: "emulator-concurrent-operation",
+        fingerprint: "f".repeat(64),
+        timingReceiptId: "timing-emulator-concurrent",
+        failureReceiptId: "failure-emulator-concurrent",
+      };
+      const concurrent = await Promise.all([
+        finalizeDelayedCandidate(repository, concurrentInput),
+        finalizeDelayedCandidate(repository, concurrentInput),
+      ]);
+      expect(concurrent.map((result) => result.replayed).sort()).toEqual([
+        false,
+        true,
+      ]);
+      const concurrentReceipt = await getDoc(
+        doc(db, "learning_v2_timing_receipts", "timing-emulator-concurrent"),
+      );
+      expect(concurrentReceipt.exists()).toBe(true);
     });
   });
 });

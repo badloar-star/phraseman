@@ -8,6 +8,7 @@ import {
 import type { V2NodeEvidenceDeclaration } from "../modules/learning-v2/contracts/episode";
 import type { V2CurriculumProjection } from "../modules/learning-v2/contracts/curriculum";
 import { parseSkillId } from "../modules/learning-v2/contracts/identities";
+import { buildLearningEvidenceTupleKey } from "../modules/learning-v2/contracts/evidence";
 import {
   validateV2CheckpointContract,
   validateV2CurriculumProjection,
@@ -451,7 +452,15 @@ const validCheckpoint = {
       alternateNodeId: "cp.alt01",
       assessedObjectiveIds: ["objective.introduce-self"],
       evidenceTupleKeys: [
-        'letk1.["cp.n01","objective.introduce-self","skill.origin","semantic","independent_probe","semantic_slot","slot.origin"]',
+        buildLearningEvidenceTupleKey({
+          nodeId: "cp.n01",
+          objectiveId: "objective.introduce-self",
+          skillId: "skill.origin",
+          construct: "semantic",
+          phase: "independent_probe",
+          targetKind: "semantic_slot",
+          targetId: "slot.origin",
+        }),
       ],
       aiIndependent: true,
       voiceEvidenceEquivalent: false,
@@ -461,7 +470,15 @@ const validCheckpoint = {
       alternateNodeId: "cp.alt02",
       assessedObjectiveIds: ["objective.introduce-self"],
       evidenceTupleKeys: [
-        'letk1.["cp.n02","objective.introduce-self","skill.polite-close","interaction","independent_probe","critical_constraint","constraint.polite-close"]',
+        buildLearningEvidenceTupleKey({
+          nodeId: "cp.n02",
+          objectiveId: "objective.introduce-self",
+          skillId: "skill.polite-close",
+          construct: "interaction",
+          phase: "independent_probe",
+          targetKind: "critical_constraint",
+          targetId: "constraint.polite-close",
+        }),
       ],
       aiIndependent: true,
       voiceEvidenceEquivalent: false,
@@ -3050,6 +3067,101 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
     expect(
       issueSummary(validateV2LearningPackage(candidate, validationContext)),
     ).toEqual([{ code: "capstone_fallback_invalid", path: expectedPath }]);
+  });
+
+  const installCapstoneAlternate = (candidate: JsonRecord): JsonRecord => {
+    const episode = candidate.episode as JsonRecord;
+    const graph = episode.graph as JsonRecord;
+    const nodes = graph.nodes as JsonRecord[];
+    const activities = episode.activities as JsonRecord[];
+    const primary = nodes.find((node) => node.nodeId === "ep01.n08");
+    const primaryActivity = activities.find(
+      (activity) => activity.activityId === "ep01.a08",
+    );
+    const alternate = nodes.find((node) => node.nodeId === "ep01.n07");
+    const alternateActivity = activities.find(
+      (activity) => activity.activityId === "ep01.a07",
+    );
+    if (!primary || !primaryActivity || !alternate || !alternateActivity)
+      throw new Error("fixture_capstone_alternate_missing");
+
+    alternate.evidenceDeclarations = clone(primary.evidenceDeclarations);
+    Object.assign(alternateActivity, clone(primaryActivity), {
+      activityId: "ep01.a07",
+    });
+    (graph.edges as JsonRecord[]).push({
+      edgeId: "edge.06-07-fallback",
+      fromNodeId: "ep01.n06",
+      toNodeId: "ep01.n07",
+      condition: "fallback_selected",
+    });
+    ((episode.capstoneContract as JsonRecord)
+      .deterministicAlternateNodeIds as string[]) = ["ep01.n07"];
+    return alternateActivity;
+  };
+
+  test.each([
+    [
+      "requires deterministic scripting",
+      (fallback: JsonRecord) => {
+        fallback.deterministicScripted = false;
+      },
+    ],
+    [
+      "requires offline capability",
+      (fallback: JsonRecord) => {
+        fallback.offline = "not_supported";
+      },
+    ],
+    [
+      "requires a non-voice core equivalent",
+      (fallback: JsonRecord) => {
+        fallback.nonVoiceCoreEquivalent = false;
+      },
+    ],
+  ] as const)("capstone alternate %s", (_label, mutate) => {
+    const candidate = clone(validFixture);
+    const alternateActivity = installCapstoneAlternate(candidate);
+    mutate(
+      (alternateActivity.requirements as JsonRecord).fallback as JsonRecord,
+    );
+    setEpisodeContentHash(candidate);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "capstone_fallback_invalid",
+        path: "$.episode.capstoneContract.deterministicAlternateNodeIds[0]",
+      },
+    ]);
+  });
+
+  test("rejects a delayed accessibility alternate activity that is not bound", () => {
+    const candidate = clone(validFixture);
+    const definition = (
+      (candidate.episode as JsonRecord).delayedProbeDefinitions as JsonRecord[]
+    )[0];
+    (definition.body as JsonRecord).accessibilityAlternateActivityId =
+      "ep01.a-missing";
+    (definition.ref as JsonRecord).contentHash = hashCanonicalBody(
+      definition.body,
+    );
+    (candidate.episode as JsonRecord).learningDesign = {
+      ...((candidate.episode as JsonRecord).learningDesign as JsonRecord),
+      delayedProbeRef: clone(definition.ref),
+    };
+    (
+      (candidate.episode as JsonRecord).reviewLinks as JsonRecord[]
+    )[0].probeRef = clone(definition.ref);
+    setEpisodeContentHash(candidate);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "delayed_probe_accessibility_alternate_invalid",
+        path: "$.episode.delayedProbeDefinitions[0].body.accessibilityAlternateActivityId",
+      },
+    ]);
   });
 });
 

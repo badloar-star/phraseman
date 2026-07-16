@@ -5,6 +5,7 @@ import {
 } from "./activity";
 import type { V2CurriculumProjection } from "./curriculum";
 import type { V2CheckpointContract, V2EpisodeContract } from "./episode";
+import { buildLearningEvidenceTupleKey } from "./evidence";
 import { V2_IDENTITY_REGEX } from "./identities";
 import {
   canonicalJsonV1,
@@ -4144,6 +4145,9 @@ const validateLearningReferences = (
             String((declaration.target as JsonObject).targetId),
           )
       : [];
+    const alternateFallback = isPlainObject(alternateActivity?.requirements)
+      ? alternateActivity.requirements.fallback
+      : undefined;
     const hasReachableFallbackBranch = capstoneEdges.some(
       (edge) =>
         edge.condition === "fallback_selected" &&
@@ -4161,6 +4165,10 @@ const validateLearningReferences = (
       alternateNode.gateEligible !== primaryNode.gateEligible ||
       !hasReachableFallbackBranch ||
       !reaches(alternateNodeId, primaryNodeId) ||
+      !isPlainObject(alternateFallback) ||
+      alternateFallback.deterministicScripted !== true ||
+      alternateFallback.offline === "not_supported" ||
+      alternateFallback.nonVoiceCoreEquivalent !== true ||
       !isStringArray(alternateSlotIds) ||
       requiredCapstoneSlots.some(
         (slotId) => !alternateSlotIds.includes(slotId),
@@ -5001,6 +5009,29 @@ const validateDelayedAndLearning = (
           `${definitionPath}.body.activityBinding`,
         ),
       ];
+    }
+    if (hasOwn(body, "accessibilityAlternateActivityId")) {
+      const alternateActivity = activities.find(
+        (candidate) =>
+          candidate.activityId === body.accessibilityAlternateActivityId,
+      );
+      const alternateFallback = isPlainObject(alternateActivity?.requirements)
+        ? alternateActivity.requirements.fallback
+        : undefined;
+      if (
+        !alternateActivity ||
+        !isPlainObject(alternateFallback) ||
+        alternateFallback.deterministicScripted !== true ||
+        alternateFallback.offline === "not_supported" ||
+        alternateFallback.nonVoiceCoreEquivalent !== true
+      ) {
+        return [
+          issue(
+            "delayed_probe_accessibility_alternate_invalid",
+            `${definitionPath}.body.accessibilityAlternateActivityId`,
+          ),
+        ];
+      }
     }
     if (
       body.targetEpisodeId !== episode.episodeId ||
@@ -6196,17 +6227,28 @@ const validateCheckpointInternal = (
         routeRequirements.map((requirement) => String(requirement.objectiveId)),
       ),
     ];
-    const expectedEvidenceTupleKeys = routeRequirements.map(
-      (requirement) =>
-        `letk1.${canonicalJsonV1([
-          String(requirement.assessmentNodeId),
-          String(requirement.objectiveId),
-          String(requirement.skillId),
-          String(requirement.construct),
-          String(requirement.phase),
-          String((requirement.target as JsonObject).targetKind),
-          String((requirement.target as JsonObject).targetId),
-        ])}`,
+    const expectedEvidenceTupleKeys = routeRequirements.map((requirement) =>
+      buildLearningEvidenceTupleKey({
+        nodeId: String(requirement.assessmentNodeId),
+        objectiveId: String(requirement.objectiveId),
+        skillId: String(requirement.skillId),
+        construct: String(requirement.construct) as
+          | "semantic"
+          | "listening"
+          | "recall"
+          | "spoken"
+          | "interaction",
+        phase: String(requirement.phase) as
+          | "encounter_build"
+          | "near_transfer"
+          | "independent_probe"
+          | "delayed_probe",
+        targetKind: String((requirement.target as JsonObject).targetKind) as
+          | "objective"
+          | "semantic_slot"
+          | "critical_constraint",
+        targetId: String((requirement.target as JsonObject).targetId),
+      }),
     );
     if (
       !isStringArray(route.assessedObjectiveIds) ||

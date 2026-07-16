@@ -84,6 +84,37 @@ describe("Learning V2 attempt hash chain", () => {
     ).toEqual({ ok: false });
   });
 
+  test("rejects unknown top-level and nested canonical body fields", () => {
+    expect(() =>
+      sanitizeAttemptBody({ ...validGraphBody, debug: true }),
+    ).toThrow("attempt_body_invalid");
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validGraphBody,
+        evidence: { hintsUsed: 0, debug: true },
+      }),
+    ).toThrow("attempt_body_invalid");
+  });
+
+  test("deep-freezes canonical bodies and sanitizes canonical-ref input", () => {
+    const body = sanitizeAttemptBody({
+      ...validGraphBody,
+      evidence: { hintsUsed: 0 },
+    });
+    const ref = buildCanonicalAttemptRef(body);
+    expect(Object.isFrozen(body.evidence)).toBe(true);
+    expect(() => {
+      (body.evidence as { hintsUsed: number }).hintsUsed = 1;
+    }).toThrow();
+    expect(buildCanonicalAttemptRef(body)).toEqual(ref);
+    expect(() =>
+      buildCanonicalAttemptRef({
+        ...validGraphBody,
+        canonicalAttemptRef: { forbidden: true },
+      } as unknown as ReturnType<typeof sanitizeAttemptBody>),
+    ).toThrow("attempt_body_post_hash_field_forbidden");
+  });
+
   test("accepts only client candidates in a delayed attempt body", () => {
     expect(sanitizeAttemptBody(validDelayedBody)).toMatchObject({
       attemptSurface: { kind: "scheduled_delayed_probe" },

@@ -86,6 +86,26 @@ const delayedServerOwnedKeys = [
   "serverResolutionRef",
   "timingReceiptRef",
 ] as const;
+const graphBodyKeys = [
+  "schemaVersion",
+  "opId",
+  "attemptSurface",
+  "outcome",
+  "evidence",
+  "provenance",
+  "inputBinding",
+  "learningTupleDispositions",
+] as const;
+const delayedBodyKeys = [
+  "schemaVersion",
+  "opId",
+  "attemptSurface",
+  "outcome",
+  "evidence",
+  "provenance",
+  "inputBinding",
+  "delayedCandidates",
+] as const;
 
 const isRecord = (value: unknown): value is Readonly<Record<string, unknown>> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -96,7 +116,7 @@ const hasOneOf = <T extends readonly string[]>(
 ): value is T[number] => typeof value === "string" && allowed.includes(value);
 
 const isValidEvidence = (value: unknown): value is V2AttemptEvidence =>
-  isRecord(value) &&
+  hasOnlyKeys(value, ["hintsUsed"]) &&
   typeof value.hintsUsed === "number" &&
   Number.isInteger(value.hintsUsed) &&
   value.hintsUsed >= 0;
@@ -106,6 +126,26 @@ const hasForbiddenOwnKey = (
   keys: readonly string[],
 ): boolean =>
   keys.some((key) => Object.prototype.hasOwnProperty.call(value, key));
+
+const hasOnlyKeys = (
+  value: unknown,
+  allowed: readonly string[],
+): value is Readonly<Record<string, unknown>> =>
+  isRecord(value) && Object.keys(value).every((key) => allowed.includes(key));
+
+const cloneAndDeepFreeze = (value: unknown): unknown => {
+  if (Array.isArray(value))
+    return Object.freeze(value.map((entry) => cloneAndDeepFreeze(entry)));
+  if (!isRecord(value)) return value;
+  return Object.freeze(
+    Object.fromEntries(
+      Object.entries(value).map(([key, entry]) => [
+        key,
+        cloneAndDeepFreeze(entry),
+      ]),
+    ),
+  );
+};
 
 const hasForbiddenKeyRecursively = (
   value: unknown,
@@ -126,7 +166,7 @@ const hasForbiddenKeyRecursively = (
 const isNonEmptyString = (value: unknown): value is string =>
   typeof value === "string" && value.trim().length > 0;
 
-const isValidLearningTupleIdentity = (
+const hasValidLearningTupleFields = (
   value: unknown,
   requiredPhase?: "delayed_probe",
 ): value is LearningEvidenceTupleIdentity =>
@@ -155,11 +195,35 @@ const isValidLearningTupleIdentity = (
   ] as const) &&
   isNonEmptyString(value.targetId);
 
+const isValidLearningTupleIdentity = (
+  value: unknown,
+  requiredPhase?: "delayed_probe",
+): value is LearningEvidenceTupleIdentity =>
+  hasOnlyKeys(value, [
+    "nodeId",
+    "objectiveId",
+    "skillId",
+    "construct",
+    "phase",
+    "targetKind",
+    "targetId",
+  ]) && hasValidLearningTupleFields(value, requiredPhase);
+
 const isValidGraphTupleDisposition = (
   value: unknown,
 ): value is V2GraphTupleDisposition =>
-  isRecord(value) &&
-  isValidLearningTupleIdentity(value) &&
+  hasOnlyKeys(value, [
+    "nodeId",
+    "objectiveId",
+    "skillId",
+    "construct",
+    "phase",
+    "targetKind",
+    "targetId",
+    "terminalDisposition",
+    "reasonCode",
+  ]) &&
+  hasValidLearningTupleFields(value) &&
   hasOneOf(value.terminalDisposition, [
     "assessed_candidate",
     "non_assessment_candidate",
@@ -170,10 +234,15 @@ const isValidGraphTupleDisposition = (
 const isValidDelayedCandidate = (
   value: unknown,
 ): value is V2DelayedClientCandidate =>
-  isRecord(value) &&
+  hasOnlyKeys(value, [
+    "candidateId",
+    "binding",
+    "candidateOutcome",
+    "candidateEvidence",
+  ]) &&
   isNonEmptyString(value.candidateId) &&
   isValidLearningTupleIdentity(value.binding, "delayed_probe") &&
-  isRecord(value.candidateOutcome) &&
+  hasOnlyKeys(value.candidateOutcome, ["resultCode"]) &&
   hasOneOf(value.candidateOutcome.resultCode, v2AttemptResultCodes) &&
   isValidEvidence(value.candidateEvidence);
 
@@ -196,22 +265,22 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
     input.schemaVersion !== "v2-attempt-body.v1" ||
     typeof input.opId !== "string" ||
     input.opId.trim().length === 0 ||
-    !isRecord(surface) ||
+    !hasOnlyKeys(surface, ["kind"]) ||
     !hasOneOf(surface.kind, [
       "episode_graph_node",
       "scheduled_delayed_probe",
     ] as const) ||
-    !isRecord(outcome) ||
+    !hasOnlyKeys(outcome, ["resultCode"]) ||
     !hasOneOf(outcome.resultCode, v2AttemptResultCodes) ||
     !isValidEvidence(evidence) ||
-    !isRecord(provenance) ||
+    !hasOnlyKeys(provenance, ["phase"]) ||
     !hasOneOf(provenance.phase, [
       "encounter_build",
       "near_transfer",
       "independent_probe",
       "delayed_probe",
     ] as const) ||
-    !isRecord(inputBinding) ||
+    !hasOnlyKeys(inputBinding, ["source"]) ||
     !hasOneOf(inputBinding.source, [
       "keyboard",
       "tap",
@@ -227,6 +296,9 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
     if (provenance.phase === "delayed_probe") {
       throw new Error("attempt_body_surface_phase_mismatch");
     }
+    if (!hasOnlyKeys(input, graphBodyKeys)) {
+      throw new Error("attempt_body_invalid");
+    }
     if (
       Object.prototype.hasOwnProperty.call(input, "delayedCandidates") ||
       !Array.isArray(input.learningTupleDispositions) ||
@@ -237,7 +309,7 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
     ) {
       throw new Error("attempt_body_graph_dispositions_invalid");
     }
-    return Object.freeze({ ...input }) as unknown as V2GraphAttemptEventBody;
+    return cloneAndDeepFreeze(input) as V2GraphAttemptEventBody;
   }
 
   if (provenance.phase !== "delayed_probe") {
@@ -252,6 +324,9 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
       ))
   ) {
     throw new Error("attempt_body_delayed_server_field_forbidden");
+  }
+  if (!hasOnlyKeys(input, delayedBodyKeys)) {
+    throw new Error("attempt_body_invalid");
   }
   if (
     !Array.isArray(input.delayedCandidates) ||
@@ -275,16 +350,19 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
   ) {
     throw new Error("attempt_body_delayed_candidate_duplicate");
   }
-  return Object.freeze({ ...input }) as unknown as V2DelayedAttemptEventBody;
+  return cloneAndDeepFreeze(input) as V2DelayedAttemptEventBody;
 };
 
 export const buildCanonicalAttemptRef = (
-  body: V2AttemptEventBody,
-): CanonicalAttemptRef => ({
-  schemaVersion: "v2-attempt-ref.v1",
-  opId: body.opId,
-  attemptBodyHash: hashCanonicalBody(body),
-});
+  body: unknown,
+): CanonicalAttemptRef => {
+  const canonicalBody = sanitizeAttemptBody(body);
+  return {
+    schemaVersion: "v2-attempt-ref.v1",
+    opId: canonicalBody.opId,
+    attemptBodyHash: hashCanonicalBody(canonicalBody),
+  };
+};
 
 /** Verifies that a ref is the exact canonical hash of a hash-free body. */
 export const validateCanonicalAttemptRef = (

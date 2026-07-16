@@ -1538,3 +1538,4 @@ export { webLeadCapture, webLeadNudgeCron } from './web_leads';
 
 // Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
 export { finalizeLearningV2DelayedCandidate } from './learning_v2_delayed_callable';
+export { finalizeLearningV2AccessPurchase } from './learning_v2_access_production_callable';

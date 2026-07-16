@@ -27,6 +27,7 @@ export interface V2AccessGateRecord {
   readonly purchasedForChapter: number;
   readonly purchasedForSeason: number;
   readonly unlocked: boolean;
+  readonly decisionRegistryRef?: { readonly id: string; readonly version: number; readonly contentHash: string };
 }
 
 export interface V2AccessAccountRecord {
@@ -99,6 +100,7 @@ export interface FinalizeV2AccessPurchaseInput {
   readonly accountGeneration: number;
   readonly request: V2AccessPurchaseRequest;
   readonly nowMs: number;
+  readonly decisionRegistryRef?: { readonly id: string; readonly version: number; readonly contentHash: string };
 }
 
 const operationKey = (stableId: string, operationId: string): string =>
@@ -175,12 +177,21 @@ export async function finalizeV2AccessPurchase(
     ) {
       throw new Error('access_purchase_binding_mismatch');
     }
+    if (
+      input.decisionRegistryRef &&
+      (!gate.decisionRegistryRef ||
+        gate.decisionRegistryRef.id !== input.decisionRegistryRef.id ||
+        gate.decisionRegistryRef.version !== input.decisionRegistryRef.version ||
+        gate.decisionRegistryRef.contentHash !== input.decisionRegistryRef.contentHash)
+    ) {
+      throw new Error('access_decision_registry_mismatch');
+    }
     if (gate.unlocked) throw new Error('access_gate_already_unlocked');
     if (!Number.isSafeInteger(account.shards) || account.shards < 0) {
       throw new Error('access_account_balance_invalid');
     }
     const quoteValidation = validateAccessQuoteForPurchase(quote, input.request, input.nowMs);
-    if (!quoteValidation.valid) throw new Error(`access_${quoteValidation.reason}`);
+    if (quoteValidation.valid === false) throw new Error(`access_${quoteValidation.reason}`);
     const eligibility = evaluateAccessBoostEligibility(
       {
         requiredLoopsComplete: gate.requiredLoopsComplete,
@@ -197,7 +208,7 @@ export async function finalizeV2AccessPurchase(
       },
       policy,
     );
-    if (!eligibility.eligible) throw new Error(`access_${eligibility.reason}`);
+    if (eligibility.eligible === false) throw new Error(`access_${eligibility.reason}`);
     if (eligibility.totalCostShards !== quote.totalCostShards) {
       throw new Error('access_quote_policy_mismatch');
     }

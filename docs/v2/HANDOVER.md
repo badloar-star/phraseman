@@ -361,6 +361,503 @@ npx jest --runTestsByPath tests/functions_firebase_cli_reproducibility_contract.
 # PASS: 2 suites, 61/61 tests
 ```
 
+## 12.21 ORBIT Admin Acceleration — 2026-07-16
+
+User intent: ускорить перенос админки в V2 без разрушения legacy. Запущены две реальные read-only сессии: Sol High `019f6ae1-792f-7440-9a49-233d6714f2f2` (migration audit) и Luna Medium `019f6ae1-94d3-73a1-a733-b18524b2b531` (first-slice inventory). Writer направлен в существующий V2 worktree через Terra Medium `019f6ad2-b4a5-7193-b007-019798331930`.
+
+Verified audit result: fastest safe slice is one lesson-stage Content Studio path only: server capability read, single-stage create, generation/retry, bounded cursor-paginated list, immutable preview, manual approve/reject. Reuse `admin/v2/scripts/admin-core.js`, `admin/v2/scripts/pages/content-generator.js`, `admin/v2/scripts/content-factory/{controller,state,stage-renderers}.js`, `admin/v2/scripts/admin-firebase.js`, `functions/src/admin_content_stages.ts`, `functions/src/content_stage_worker.ts`, and callable exports. Exclude bulk/range, Arena, flashcards, Challenge, release sealing/activation/rollback, runtime consumer migration, and legacy deletion/redirect changes.
+
+Evidence: Admin Content Studio/UI contracts 26 passed; backend-focused suites 108 passed; inspected Admin modules pass `node --check`. Known unrelated baseline remains `tests/admin_v2_migration_coverage.test.ts`: expected 441 legacy buttons, received 400. Do not alter legacy behavior to hide that mismatch. Main checkout `C:\\appsprojects\\phraseman` is dirty and read-only; V2 worktree remains the only writer worktree. No deploy or production write performed.
+
+Exact next executable task: Terra must run the named focused Admin/UI and Functions suites first, add RED only for a real missing contract, implement only the single-stage draft/preview/review seam, run GREEN plus syntax/diff/secret checks, and make one bounded commit or report no-op. After that, Luna verifies and Sol High reviews. Rollback is additive feature-flag/navigation fallback to legacy; no destructive data migration.
+
+## 12.14 — Task 1.2C scheduler/prerequisite hardening (2026-07-16)
+
+Mission: continue the global Orbit V2 plan by closing independently reproduced release-time contract gaps before Task 1.3. This slice remains partial; runtime, stars economy, 32-episode content, voice modes, Speaking Club, Admin Content Studio, rollout, and Phase 14 legacy decision are not complete.
+
+Completed in commit `870e39a04`: delayed scheduler IDs now use one namespace across graph/assessment/loops/stars/checkpoints/delayed probes; checkpoint alternate nodes cannot alias primaries or duplicate another alternate; outcome prerequisites must resolve to a published episode and local objective; locale tags are non-empty; capability keys are non-empty and unique. RED/GREEN adversarial tests cover the changes.
+
+Verification: focused Jest `289/289` PASS; strict focused TypeScript `tsc` PASS; Prettier PASS; `git diff --check` PASS; staged secret scan PASS. Only validation/test files were committed. Handover is intentionally uncommitted; no push/deploy/release performed; legacy behavior preserved.
+
+Independent spec/red-team reviews remain NOT PASS. Open items: exact checkpoint nine-node package coverage, alternate evidence-tuple equivalence, deep locale closure, capability/platform closure, capstone fallback reachability, support-bound enforcement, and required primary accessibility route. Do not mark Task 1.2C complete.
+
+Exact next executable task: add RED tests for checkpoint alternate tuple equivalence and checkpoint package node-count rejection (8/10 nodes), implement minimal validator fixes, run focused Jest/strict tsc/Prettier/diff/secret gates, update this handover, and request fresh independent reviews before Task 1.3.
+
+Startup:
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+git status --short --branch
+git log -5 --oneline
+npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts --no-cache --runInBand
+```
+
+## 12.42 ORBIT V2 execution update — Phase 02 star/access pure projection slice
+
+### Миссия одним абзацем
+
+Продолжить утверждённый Learning V2 до полного пилота из 32 эпизодов: после canonical episode/evidence/runtime-контрактов построить честный progress/star/access слой, затем voice/runtime, curriculum, Speaking Club, Content Studio delivery, rollout и release gates, сохраняя legacy до отдельного решения Phase 14. Перенос админки выполняется другой сессией; этот worktree не меняет Admin implementation, navigation или generator.
+
+### Статус фаз и задач
+
+| Область | Статус | Доказательство / примечание |
+|---|---|---|
+| Phase 00–01 identity, DecisionRegistry, episode/evidence/runtime contracts | Частично завершено / bounded slices green | История коммитов и focused suites в предыдущих секциях handover; full V2 acceptance ещё не заявлен |
+| Delayed probe receipts/runtime and Firestore ownership | Завершён bounded pure/runtime slice | `d59efb9fd` и предыдущие commits; root 6 suites/33 tests, Functions 2 suites/8 tests, emulator 2 suites/6 tests green |
+| Phase 02 performance/access stars | Начат; pure projection slice завершён | `da95faca5`: best-per-slot delta, 8 slots/24 cap, pilot curve, local minima, scoped boost gate semantics |
+| Progress reducer/outbox/server economy/purchase/refund | Не начато | Следующий основной workstream |
+| Shared activity/voice runtime, P0 modes, Speaking Club/dialogs | Не начато в этой bounded slice | Legacy не менялся |
+| 32-episode content/curriculum delivery | Не начато | Contracts существуют, content authoring/delivery ещё впереди |
+| Admin Content Studio transfer/generator | Отдельная сессия владельца | Не изменять и не включать в этот worktree |
+| Rollout, analytics, Phase 14 legacy decision | Не начато | Требуют предыдущих фаз и gates |
+
+### Что изменено
+
+- `modules/learning-v2/contracts/stars.ts` — pure TypeScript projection: `applyBestPerformanceStars`, `sumBestPerformanceStars`, `cumulativeAccessRequirement`, `localPerformanceMinimum`, `evaluateV2Gate`; purchased access может влиять только на gate после loops/local performance/checkpoint.
+- `tests/v2_star_best_semantics.test.ts` — RED/GREEN best-per-slot, positive delta, 8×3 cap and invalid-input cases.
+- `tests/v2_gate_curve.test.ts` — published episode 2–32 cumulative curve and chapter minima.
+- `tests/v2_gate_access_separation.test.ts` — earned vs earned-plus-boost and proof that boost cannot replace required loops, local performance or checkpoint.
+- `docs/v2/HANDOVER.md` — this living handover update; intentionally remains uncommitted.
+- Preserved unrelated untracked Admin artifacts: `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`; neither is part of this task.
+
+### RED/GREEN and verification
+
+- RED: before implementation, all three new suites failed because `modules/learning-v2/contracts/stars.ts` did not exist.
+- GREEN: `npx jest --runTestsByPath tests/v2_star_best_semantics.test.ts tests/v2_gate_curve.test.ts tests/v2_gate_access_separation.test.ts --no-cache --runInBand` → **3 suites / 9 tests PASS**.
+- Strict targeted TypeScript: `npx tsc --noEmit --target ES2020 --module commonjs --moduleResolution node --strict --esModuleInterop --skipLibCheck modules/learning-v2/contracts/stars.ts tests/v2_star_best_semantics.test.ts tests/v2_gate_curve.test.ts tests/v2_gate_access_separation.test.ts` → PASS.
+- Commit: `da95faca5` (`feat(v2): add pure star and gate projections`). No push/deploy.
+- Full Functions build remains red only on pre-existing unrelated Admin imports/exports documented earlier; no Admin workaround was applied.
+- Fresh adversarial review requested from `task12_final_redteam_adjudication`; result must be recorded before treating this bounded slice as fully adjudicated.
+
+### Нормативные инварианты, которые сохранены
+
+`performanceStarsEarned` и derived `accessStarsEarned` не являются `LearningEvidence` или mastery. Access Boost не создаёт evidence, voice claim, checkpoint pass, achievement или league result. Already-open/grandfathered gates remain open. Legacy behavior remains untouched. No client clock, Firestore, UI, Admin or OpenAI API was added.
+
+### Точный следующий исполняемый шаг
+
+**Task 2.1 — RED/GREEN progress projection contract.**
+
+Files to inspect first: `docs/v2/05-stars-progress-and-mastery.md` §§3.4, 5.5, 6.3–7.3, existing `modules/learning-v2/contracts/activity_result.ts`, `modules/learning-v2/contracts/evidence.ts`, and current V2 tests. Then add a pure progress contract (no UI/Firebase) covering stable `starSlotId` best-result replacement, derived access total, monotonic unlocked gates, account-scoped snapshot shape, and exclusion of purchased access from performance/evidence/mastery projections.
+
+Acceptance criteria:
+
+1. hostile RED tests fail before implementation and cover duplicate/replay, lower-score replay, slot identity change, purchased boost leakage, negative/overflow values and already-open gate monotonicity;
+2. GREEN implementation is pure, bounded, integer-validated, and has no Admin/legacy deletion or new independent write source for `accessStarsEarned`;
+3. focused Jest, strict targeted `tsc`, diff check and fresh adversarial review pass;
+4. update this handover with exact counts, commit, findings, and next task before moving to server economy/outbox.
+
+Startup commands for the next session:
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+git status --short --branch
+git log -5 --oneline
+npx jest --runTestsByPath tests/v2_star_best_semantics.test.ts tests/v2_gate_curve.test.ts tests/v2_gate_access_separation.test.ts --no-cache --runInBand
+Get-Content -Raw -Encoding UTF8 docs/v2/05-stars-progress-and-mastery.md
+```
+
+## 12.43 Star/access adversarial adjudication and bounded repair
+
+Fresh read-only red-team review completed for the star/access slice. Initial result was `PASS` for the core separation with two P2 specification gaps. The capability-fallback gap is now closed in `198b85f0c` (`fix(v2): require capability fallback for gates`): `GateInput` explicitly carries `capabilityFallbackComplete`, and a purchased boost cannot bypass it. Focused matrix remains **3 suites / 9 tests PASS** plus strict targeted TypeScript PASS.
+
+The second P2 is intentionally not hidden: HYP-V2-006 purchase eligibility, quote TTL, deficit `1..3`, gate/chapter/season caps, double-block recovery impression and server-authoritative spend belong to the next server-economy contract, not this pure evaluator. Until that contract exists, arbitrary `purchasedAccessAppliedToThisGate` must never be wired directly to a client or callable. The partial-progress `sumBestPerformanceStars` behavior (0–8 slots) is retained because progress snapshots may be incomplete; published episode exact-eight validation remains the Episode/Content Studio gate.
+
+Current bounded evidence: `da95faca5` plus `198b85f0c`; no Admin files changed, no deployment/push. The full global objective remains active and this slice is not a Phase 02 completion claim.
+
+## 12.44 Phase 02 Access Boost policy slice
+
+Добавлен отдельный pure-контракт `modules/learning-v2/contracts/access_boost.ts` в коммите `19d7094cc` (`feat(v2): add access boost eligibility policy`). Он не списывает shards и не открывает gate: только проверяет условия, которые quote/purchase transaction обязана повторно проверить на сервере. Проверяются loops, capability fallback, local performance, checkpoint, минимум двух честных блокировок, recovery review impression, server quote, deficit `1..3`, gate/chapter/season caps и полная стоимость по immutable policy.
+
+RED/GREEN: отсутствующий модуль дал подтверждённый RED; после реализации `npx jest --runTestsByPath tests/v2_access_boost_policy.test.ts --no-cache --runInBand` → **1 suite / 10 tests PASS**; strict targeted `tsc` → PASS. `Admin` implementation не изменялась. Adversarial review запрошен отдельно; до его результата slice считается provisional, а не завершением Phase 02.
+
+Точный следующий шаг после review: добавить pure quote-envelope contract (`quoteId`, stable/account binding, release/policy pin, expiry, deficit, cost) и RED/GREEN на stale quote, policy mismatch, owner mismatch и expected-cost mismatch; затем только после этого переходить к Functions transaction adapter. Общий `shardsApplyDelta` не использовать как authority покупки.
+
+## 12.45 Access Boost hardening and quote envelope
+
+Red-team review выявил P1 type-confusion и cumulative-counter gaps в Access Boost policy. Они закрыты в `790007e66` (`fix(v2): harden access boost policy inputs`): все boolean flags проверяются как boolean, counters обязаны сохранять `gate ≤ chapter ≤ season`, policy и итоговая стоимость ограничены safe integers. Focused policy suite теперь **1/12 tests PASS**, strict targeted `tsc` PASS.
+
+Затем создан pure quote-binding контракт в `df3de6986` (`feat(v2): add access quote binding contract`): `validateAccessQuoteForPurchase` проверяет exact quote/owner/season/gate/release/policy/cost binding, arithmetic `deficit × unitPrice`, safe integers и expiry до любого server spend. RED отсутствующего модуля был закрыт GREEN: **1 suite / 7 tests PASS**, strict targeted `tsc` PASS. Quote не резервирует и не списывает shards; это остаётся server transaction responsibility. Admin implementation не менялась.
+
+Открытый bounded risk: quote contract пока pure и не заменяет authoritative Functions transaction, App Check/Auth, idempotency, balance check, Firestore transaction или immutable policy lookup. Следующий исполняемый шаг — RED/GREEN Functions adapter/callable с transaction replay/collision, stale quote, owner/account-generation, insufficient balance, exact policy and single gate receipt; перед ним повторно прочитать §6.2–6.4 и связанные identity/account invariants.
+
+## 12.46 Functions transaction adapter for Access Boost
+
+В `808f062ee` добавлен `functions/src/learning_v2_access_adapter.ts` и его focused test. Адаптер выполняет pure repository transaction: проверяет operation identity/fingerprint/account generation, загружает authoritative quote, gate и account, повторно валидирует quote и HYP-V2-006 policy, проверяет баланс, атомарно обновляет shards и gate counters, создаёт receipt/operation и возвращает тот же receipt при replay. Несовпадение fingerprint, owner/release/policy/generation, stale quote и insufficient balance отклоняются до записи. Это Functions-domain adapter, не Admin UI и не общий `shardsApplyDelta`.
+
+Параллельно закрыты P2 quote findings в `access_quote.ts`: forged deficit `>3`, отрицательное время, whitespace-only IDs и `null` runtime input теперь fail-closed. Evidence: `npm test -- --runInBand src/learning_v2_access_adapter.test.ts` → **1 suite / 4 tests PASS**; root quote+policy matrix → **2 suites / 20 tests PASS**; targeted strict TypeScript для adapter и pure quote/policy → PASS. No deploy/push.
+
+Ограничение: callable export, Auth/App Check, real Firestore emulator, immutable DecisionRegistry lookup and refund operation ещё не сделаны. Следующий exact task — RED/GREEN callable wrapper + Firestore emulator transaction tests, затем independent adversarial review; Admin transfer remains owned by the other session.
+
+Дополнительный repair `3692e7b72` привязал `request.opId` к server operation id до чтения денежных данных. После исправления adapter matrix: **1 suite / 5 tests PASS**, targeted strict TypeScript PASS. Это закрывает возможность повторно использовать один transaction envelope с другим operation id.
+
+## 12.47 Callable boundary and adversarial adapter repairs
+
+Свежий adversarial review адаптера нашёл два P1 и один P2. Они закрыты в `14385d965` (`feat(v2): add access callable boundary and hardening`):
+
+- уже открытый gate теперь отклоняется до списания (`access_gate_already_unlocked`);
+- authoritative `account.shards` и `balanceAfter` обязаны быть safe non-negative integers;
+- malformed stable identity и отрицательное server time fail-closed;
+- добавлен `functions/src/learning_v2_access_callable.ts` с RED/GREEN-нормализацией входа и точным auth UID binding; production export ещё не подключён, пока не выбран immutable policy registry read path.
+
+Evidence: Functions matrix `2 suites / 13 tests PASS` (`learning_v2_access_adapter`, `learning_v2_access_callable`), strict targeted TypeScript PASS. Admin implementation не менялась. Следующий шаг: подключить callable к реальному Firestore repository и immutable `DecisionRegistry` policy document, затем emulator-тесты concurrent purchase/replay/insufficient balance/stale quote.
+
+## 12.48 Firestore repository seam and strict callable numbers
+
+В `78eadd2a2` добавлен whitelisted Firestore seam: `firestoreV2AccessPath` разрешает только V2 operations/quotes/gates/ledger и `users/{stableId}`, а `makeFirestoreV2AccessRepository` адаптирует настоящий Firestore transaction к pure adapter. Callable normalizer больше не приводит строки/boolean к числам: `accountGeneration` и `expectedCostShards` принимаются только как safe number. После этого Functions matrix: **2 suites / 15 tests PASS**, strict targeted TypeScript PASS.
+
+Открыто только подключение к immutable DecisionRegistry и реальный callable export/emulator; Admin transfer по-прежнему принадлежит другой сессии.
+
+## 12.49 Immutable Access Boost policy projection
+
+Коммит `bee4423cb` добавил `accessBoostPolicyFromRegistry` и focused test. Цена, gate/chapter/season caps, eligible deficit, recovery impression и quote TTL теперь извлекаются из exact `HYP-V2-006` immutable registry body/ref; version/hash binding проверяется до использования. Fixture-based RED/GREEN: **1 suite / 2 tests PASS**, strict TypeScript (ES2022) PASS. Это устраняет риск скрытой числовой policy в callable; Firestore resolver ещё должен загрузить и валидировать этот exact artifact без mutable `latest`.
+
+## 12.50 Server pinned DecisionRegistry resolver
+
+Коммит `9ee60d374` добавил `functions/src/learning_v2_decision_registry_resolver.ts`. Resolver получает только exact `{id, version, contentHash}`, строит content-addressed object path `content-studio/decision-registries/<sha256(id)>/v<version>/<hash>.json`, загружает artifact через injected storage seam, прогоняет общий strict `resolveDecisionRegistry`, сверяет body/record/ref и возвращает Access Boost policy. Mutable `latest`, hash mismatch, malformed artifact и missing object fail-closed.
+
+Evidence: **1 suite / 2 tests PASS**, strict targeted TypeScript (ES2022) PASS. Adversarial review запрошен. Следующий шаг — связать этот resolver с published season/gate record и callable, затем emulator transaction tests; Admin transfer остаётся в другой сессии.
+
+## 12.51 Firestore emulator proof for Access Boost transaction
+
+Коммит `f74d8ff24` добавил `functions/src/content_studio/emulator/v2_access_purchase_runtime.emulator.test.ts` и адаптировал Firestore seam к server/client transaction APIs (`create/update` для Admin SDK, `set` fallback для rules-unit Firestore). Реальный Firestore emulator теперь доказывает:
+
+- первый purchase атомарно списывает 6 shards, открывает только scoped gate и создаёт ledger receipt;
+- повтор того же `opId` возвращает тот же receipt и не списывает повторно;
+- insufficient balance не пишет gate, receipt, operation или новый баланс.
+
+Evidence: emulator command на `demo-phraseman-rules` → **1 suite / 2 tests PASS**; strict targeted TypeScript ES2022 → PASS. Это первый реальный persistence gate для Phase 02; production callable export и concurrent transaction race test всё ещё впереди.
+
+## 12.52 Concurrent Firestore purchase proof
+
+Коммит `a24c6bb98` добавил concurrent emulator case. Два одинаковых transaction вызова с одним `opId` дают ровно один non-replayed purchase и один replay; итоговый balance уменьшается один раз. Обновлённая команда emulator: **1 suite / 3 tests PASS** (persistence/replay, insufficient balance with no partial writes, concurrent one-spend). Production callable и immutable registry resolver ещё не wired into deployed export.
+
+## 12.53 Path-safety and user-scoped ledger repair
+
+Fresh adversarial review нашёл P1/P2 в Firestore seam: прямой adapter мог пропустить `/`, пустые или malformed path segments, а ledger/gate были top-level вместо нормативных `users/{stableUid}/v2_access_ledger/{opId}` и `users/{stableUid}/v2_gate_receipts/{season__gate}`. Коммит `dea426be4` закрывает оба пункта: whitelist теперь проверяет каждый segment, operation/gate/ledger стали user-scoped, quote остаётся отдельным server collection, emulator seed/assertions обновлены.
+
+Resolver errors также нормализованы: missing download → `artifact_unavailable`, invalid JSON/registry → `artifact_invalid`, malformed ref → `ref_invalid`. Evidence: Firestore emulator **1 suite / 3 tests PASS**, strict targeted TypeScript PASS. Production callable export и policy loading из published gate record остаются следующим шагом.
+
+После path-safety repair unit fixtures были выровнены на user-scoped gate key в `0abddeac9`. Adapter + resolver Functions matrix теперь **2 suites / 8 tests PASS**, strict TypeScript PASS; emulator остаётся **1 suite / 3 tests PASS**. В worktree намеренно остаются только handover и два чужих untracked Admin-аудит артефакта.
+
+## 12.54 Callable orchestration boundary
+
+Коммит `1fd5cbe32` добавил `executeV2AccessPurchaseCallable` и `createV2AccessPurchaseCallable`: auth UID проверяется до server time/policy resolution; strict normalized input хэшируется server-side; policy приходит только через injected resolver; затем вызывается transaction adapter и возвращается authoritative receipt/replay. Это orchestration seam, а не клиентская write-команда и не общий shards delta.
+
+Evidence: Functions callable suite **1 suite / 10 tests PASS**, targeted strict TypeScript PASS. Factory ещё не экспортирована как production function, потому что ей требуется wired resolver опубликованного season/gate registry ref; это следующий integration task, не завершение Phase 02.
+
+## 12.28 ORBIT V2 execution update — evidence materialization hardening
+
+**Scope boundary:** Admin transfer is owned by a separate session. This slice changed no Admin files, no Functions, no runtime UI, and no deployment state.
+
+**Completed commit:** `bce395fe7` (`fix(v2): harden evidence materialization validation`) on `codex/learning-v2-pilot` in `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`.
+
+**What changed:** `modules/learning-v2/contracts/evidence.ts` now validates exact body keys, tuple identity, phase/provenance equality, support bounds, construct-to-route compatibility, strict runtime evidence hashes, full canonical source-attempt equality, server-attested delayed timing receipts, and terminal non-assessment reason/receipt branches. Materialization now validates the body before recomputing its canonical hash. `tests/learning_v2_evidence_materialization_contract.test.ts` adds hostile route/hash/tamper/system-receipt cases.
+
+**RED/GREEN and verification:** focused evidence suite is `4/4`; combined attempt-hash, attempt-cardinality, delayed-probe, and evidence suites are `4 suites / 24 tests`, all green. Strict focused TypeScript compilation, Prettier, and `git diff --check` passed. The only remaining worktree changes are the intentionally uncommitted handover plus separate historical Admin manifest/RED test; they must not be staged here.
+
+**Reviewer status:** the previous independent review’s P1 findings for evidence validation are addressed in this bounded slice. A fresh independent review is still required before declaring Task 1.3 complete.
+
+**Exact next executable task:** run a fresh spec/adversarial review of `bce395fe7`; if PASS, implement the next pure Task 1.3 contract in `modules/learning-v2/contracts/delayed_probe.ts` and its focused test only. Acceptance: terminal delayed receipt branches are exhaustive, candidate-to-resolution cardinality and source binding are exact, protocol rejection cannot emit learning refs, and the four focused suites remain green. Do not touch Admin or start runtime/Functions until evidence and delayed terminal contracts are independently adjudicated.
+
+## 12.29 ORBIT V2 execution update — evidence adjudication follow-ups and envelope gate
+
+The independent review of `bce395fe7` was **NOT PASS** and identified exact ref-schema validation and irrelevant receipt-field leakage. Those findings were closed in `18af9f405` (`fix(v2): close evidence ref schema branches`): evidence/non-assessment refs now reject unknown keys and require strict IDs, tuple keys, hashes, and canonical attempt refs; terminal non-assessment branches reject receipt fields belonging to another branch.
+
+The next pure delayed slice is committed as `2d99f767e` (`fix(v2): harden delayed terminal resolution`). Client candidates now reject terminal/server-owned fields, invalid tuple keys, duplicate tuple keys, and terminal dispositions; resolution is exhaustive for inside-window, outside-window, system-failure, and preserves `no_record` without creating a learning result. Invalid windows fail closed. Focused evidence + delayed suites: `2/2 suites, 6/6 tests`; strict TypeScript and Prettier passed.
+
+Envelope integrity follow-up is committed as `dc210c63a` (`fix(v2): validate attempt envelope materialization refs`). `validateAttemptEventEnvelope` now rejects unknown envelope/ref keys, malformed refs, mismatched source attempts, duplicate tuple keys, and invalid materialization basis kinds; builder applies the same ref/basis gate. The same focused suites remain green.
+
+**Open review limitations:** receipt references are still opaque non-empty IDs because the current pure contract has no receipt-body/hash input; binding them to immutable receipt bodies belongs to the next runtime/Functions contract and must not be silently claimed here. Provenance context/prompt binding to published Episode declarations also remains a runtime/content-resolution concern, not proven by these pure validators.
+
+**Exact next executable task:** obtain fresh independent spec/adversarial review of commits `18af9f405`, `2d99f767e`, and `dc210c63a` together. If no P1/P2 remains in the pure contract boundary, implement the server-owned delayed timing/failure receipt contract with exact resolution cardinality, candidate hash binding, protocol-rejection/no-learning-ref invariant, and receipt-body hash validation. Admin remains a separate session and must not be edited here.
+
+## 12.30 ORBIT V2 execution update — receipt contracts and envelope basis binding
+
+The fresh adversarial review found one P1 in the envelope validator: basis kind was not bound to graph versus delayed attempt surface. This is closed in `26e86946b` (`fix(v2): bind envelope basis to attempt surface`); validator now rejects graph attempts with delayed basis, delayed attempts with graph basis, and graph basis refs that differ from envelope attempt ref. Ref and basis allow-list checks were tightened as part of the same bounded fix.
+
+Server-owned receipt contracts are now added in `6e801d21e` (`feat(v2): add delayed receipt hash contracts`), with `modules/learning-v2/contracts/delayed_receipts.ts` and focused tests. Timing and failure receipt bodies have canonical content-hash refs, strict body/ref schemas, exact candidate tuple cardinality, immutable attempt/assignment/launch/probe references, inside/outside/system terminal resolution branches, and protocol rejection with no resolution table. Focused receipt + evidence suites: `2 suites / 6 tests`, strict TypeScript and Prettier pass.
+
+**Known limitations:** the receipt contract validates ref shape and canonical body hash but does not yet resolve assignment/launch/probe bodies against published Episode content or account-generation state. That belongs to the runtime/Functions integration phase. Delayed candidate validator still needs alignment with the full canonical `attemptBody + attemptRef` candidate envelope and expected declaration set; do not claim delayed runtime complete.
+
+**Exact next executable task:** update delayed candidate validation to the normative `V2DelayedAttemptCandidate{attemptBody,attemptRef}` shape, bind its delayed candidate tuples to the server receipt’s exact declared set, and add RED/GREEN tests for unknown tuple, candidate hash mismatch, and one-to-one resolution. Then request fresh independent spec/adversarial review across all Task 1.3 pure contracts. Admin remains separate and untouched.
+
+## 12.31 ORBIT V2 execution update — canonical delayed candidate envelope
+
+The delayed candidate slice is now committed as `c71814c1b` (`fix(v2): align delayed candidates with canonical attempts`). `validateDelayedAttemptCandidate` accepts only the normative `{schemaVersion, attemptBody, attemptRef}` envelope, sanitizes and verifies the scheduled-delayed attempt body/ref hash, derives canonical tuple keys from exact candidate bindings, enforces zero hints and unique candidate tuples, and can compare against an expected server declaration set. Terminal resolution derives disposition from candidate outcome and preserves `no_record`; it cannot accept client terminal receipts or arbitrary tuple strings.
+
+RED/GREEN coverage now includes canonical candidate shape, forbidden receipt fields, attempt-hash mismatch, unknown expected tuple, and outside-window mapping. Combined pure Task 1.3 suites: `5 suites / 27 tests`, all green; strict TypeScript, Prettier, and diff-check passed.
+
+**Exact next executable task:** request fresh independent spec/adversarial review of `18af9f405`, `2d99f767e`, `dc210c63a`, `26e86946b`, `6e801d21e`, and `c71814c1b`. If PASS, begin the runtime/Functions delayed receipt integration: validate assignment/launch/probe/account-generation bindings against published content, create immutable timing/failure receipt records, and ensure finalized envelopes can only materialize refs from exact receipt resolutions. Admin remains a separate session.
+
+## 12.32 ORBIT V2 execution update — receipt semantics and server adjudicator
+
+The latest adversarial review found P1 receipt semantic gaps: timing receipts could claim the wrong terminal disposition for their window, system failure receipts could contain assessed outcomes, and validators did not bind receipt attempts to the candidate ref. These are closed in `adbbf37ed` (`fix(v2): bind delayed receipt semantics`): exact ref schemas now use exact key counts, expected tuple keys must be unique/canonical, receipt attempt refs must equal the candidate attempt ref, and inside/outside/system terminal dispositions are enforced.
+
+The first server-owned pure adjudicator is committed as `9e5ae36a3` (`feat(v2): add delayed runtime adjudicator`). `adjudicateDelayedCandidate` validates the canonical delayed candidate against the expected declaration set, emits hash-pinned timing receipts for inside/outside windows, emits system-failure receipts with non-skipped system resolutions, and emits protocol-rejection receipts with no resolution table. Focused receipt/runtime suites: `2 suites / 4 tests`; strict TypeScript and Prettier passed.
+
+**Boundary:** this is a pure server decision module, not yet a deployed callable or Firestore transaction. Assignment/launch/probe/account-generation/content binding still must be performed by the Functions integration layer before calling this adjudicator.
+
+**Exact next executable task:** request fresh spec/adversarial review of `adbbf37ed` and `9e5ae36a3`, then add a Functions-side adapter with transaction/idempotency semantics: load immutable assignment/launch/probe records, compare canonical refs and account generation, call the adjudicator exactly once per candidate, persist immutable receipt body/ref, and reject replay/mismatch without learning refs. Admin remains separate.
+
+## 12.33 ORBIT V2 execution update — Functions delayed receipt adapter
+
+Functions adapter is committed as `b3a99770a` (`feat(v2): add functions delayed receipt adapter`) in `functions/src/learning_v2_delayed_adapter.ts`. It uses a transaction-shaped repository interface to load immutable assignment/launch records, compare stable identity/account generation/canonical refs/probe refs, select system or protocol failure on missing/mismatch, call the pure adjudicator, persist the immutable receipt and idempotency operation atomically, replay the same fingerprint safely, and reject an operation replay with a different fingerprint.
+
+Focused adapter tests: `3/3 PASS`. Targeted Functions TypeScript compilation of the adapter: PASS. Full Functions build remains red on pre-existing unrelated Admin imports/exports (`arena_timing_observability`, `admin_monthly_decision_pack`, `admin_content_stages`, etc.); no Admin files were changed to mask that failure. Generated `functions/lib/functions` and `functions/lib/modules` output was removed and not committed.
+
+**Boundary:** adapter is not yet exported as a callable from `functions/src/index.ts`, and Firestore production collection/security-rule/index wiring is still pending. This is intentional until the pure/runtime review passes.
+
+**Exact next executable task:** fresh independent review of `adbbf37ed`, `9e5ae36a3`, and `b3a99770a`; then wire the adapter to the real callable with auth/account-generation checks, Firestore transaction implementation, collection paths, security rules, and emulator tests. Admin transfer remains another session.
+
+## 12.34 ORBIT V2 execution update — callable and server-window wiring
+
+`f7b30f272` (`feat(v2): expose delayed receipt callable`) adds `functions/src/learning_v2_delayed_callable.ts`, exports `finalizeLearningV2DelayedCandidate` from `functions/src/index.ts`, and adds callable input tests. The callable requires auth, binds `stableId` to the authenticated UID, computes the idempotency fingerprint server-side, uses server time for `acceptedAtServer`/window classification, and maps the transaction adapter to Firestore collection paths. The adapter now derives inside/outside/system/launch-expired decisions from immutable assignment/launch window data when `nowMs` is present; caller-provided timing decisions are not trusted in that path.
+
+Targeted Functions tests: `2 suites / 6 tests`, all green. Targeted strict TypeScript for callable/adapter: PASS. Full Functions build remains blocked by pre-existing missing Admin imports/exports and was not “fixed” by changing Admin code.
+
+**Remaining production gates:** Firestore rules/indexes for `learning_v2_assignments`, `learning_v2_launches`, receipt collections and operation documents; emulator transaction/replay tests; callable deployment smoke test; assignment body/content hash and account-generation resolver integration. These are now the next runtime phase, not complete claims.
+
+**Exact next executable task:** independent adversarial review of `adbbf37ed`, `9e5ae36a3`, `b3a99770a`, and `f7b30f272`; then add the narrow Firestore security/rules contract and emulator-like transaction tests, preserving legacy paths. Admin remains a different session.
+
+## 12.35 ORBIT V2 execution update — Firestore ownership gate and fail-closed binding
+
+Review residual P2s were closed in `c5718eb19` (`fix(v2): fail closed delayed binding and rules`). The Functions adapter now validates operation/fingerprint/stable/account identity before constructing an idempotency key and fails closed when the immutable assignment binding is unavailable instead of trusting caller-supplied expected tuple keys.
+
+`firestore.rules` now has explicit deny-only blocks for `learning_v2_assignments`, `learning_v2_launches`, `learning_v2_timing_receipts`, `learning_v2_failure_receipts`, and `learning_v2_receipt_operations`; clients must use the callable and Admin SDK writes remain server-side. Static rules contract: `6/6 PASS`. Functions adapter + callable tests: `2 suites / 6 tests PASS`; targeted strict TypeScript and diff-check pass.
+
+**Remaining runtime gates:** real Firestore emulator transaction tests, production assignment/content-hash resolver, composite indexes if query paths require them, and deployment smoke test. Full Functions build remains independently red on pre-existing Admin imports/exports; no Admin changes were made.
+
+**Exact next executable task:** add emulator-backed (or repository-equivalent concurrency) tests for two simultaneous finalizations, receipt-create collision, replay after receipt persistence, and protocol mismatch; then perform fresh adversarial review of `c5718eb19` and callable wiring. Admin remains a separate session.
+
+## 12.36 ORBIT V2 execution update — transaction collision/replay coverage
+
+`6ba9998aa` (`test(v2): cover delayed transaction collisions`) adds adapter concurrency contracts: two simultaneous finalizations cannot duplicate a receipt, the transaction collision is surfaced for the non-retrying fake repository, and a completed receipt remains replayable. Combined callable/adapter tests: `2 suites / 8 tests PASS`; targeted strict TypeScript passes.
+
+This harness deliberately models the repository boundary; production Firestore transaction retry behavior still requires emulator verification. No Admin files were changed.
+
+**Exact next executable task:** run the real Firestore emulator rules/transaction suite (or add the project’s existing emulator harness) for assignment/launch ownership, receipt immutability, operation replay, concurrent finalization and mismatch rejection. Then request fresh adversarial review of `c5718eb19` and `6ba9998aa` before moving to stars/access and runtime learning projection.
+
+## 12.37 ORBIT V2 execution update — Firestore emulator ownership proof
+
+`16e051741` (`test(v2): verify delayed firestore ownership`) adds an emulator-backed rules test for all five delayed collections. Authenticated client get/list/create operations are denied for assignments, launches, timing receipts, failure receipts, and receipt operations. Command executed successfully:
+
+`npx firebase emulators:exec --config ../firebase.json --only firestore --project demo-phraseman-rules --log-verbosity QUIET "npx jest --config jest.emulator.config.js --runTestsByPath src/content_studio/emulator/v2_delayed_rules.emulator.test.ts --no-cache --runInBand"`
+
+Result: `1 suite / 5 tests PASS`; Firestore emulator started and shut down cleanly. Permission-denied warnings are expected evidence for the negative assertions.
+
+**Remaining emulator/runtime gap:** this test proves direct client ownership denial only. It does not yet seed Admin SDK assignment/launch documents or invoke the callable against the emulator for transaction/replay/receipt persistence. Those are the next runtime tests; no Admin implementation was changed.
+
+**Exact next executable task:** build an emulator-backed callable smoke harness that seeds immutable assignment/launch records with Admin SDK, invokes `finalizeLearningV2DelayedCandidate` twice, asserts one receipt and replay, checks mismatch rejection and receipt immutability, then run a fresh adversarial review. Admin remains another session.
+
+## 12.38 ORBIT V2 execution update — Firestore transaction persistence
+
+`7e23202db` (`test(v2): verify delayed firestore persistence`) adds an emulator-backed transaction test using rules-disabled server context to seed immutable assignment/launch records, run the actual `DelayedReceiptRepository` against Firestore transactions, finalize twice, verify first-write/replay behavior, and inspect the persisted timing receipt content hash.
+
+Command and result: `firebase emulators:exec` with Firestore and the focused Jest path completed successfully; `1 suite / 1 test PASS`. Combined delayed rules + persistence emulator evidence is now `2 suites / 6 tests PASS` across the two emulator commands. This is persistence/adapter proof; the deployed callable network path still requires a Functions emulator build that is currently blocked by unrelated missing Admin source modules.
+
+**Remaining runtime gates:** callable network smoke, assignment/probe content-hash resolver, receipt immutability update rejection, concurrent Firestore transaction retry, and release integration. No Admin implementation was changed.
+
+**Exact next executable task:** extend the emulator persistence test with receipt update rejection, mismatched assignment/probe rejection, and concurrent finalization; then run fresh adversarial review before starting stars/access projection. Admin remains a separate session.
+
+## 12.39 ORBIT V2 execution update — emulator mismatch and concurrency
+
+`459cfd43b` (`test(v2): cover emulator mismatch and concurrency`) extends the real Firestore emulator persistence test. It now asserts a probe content-hash mismatch produces a protocol-rejection receipt, two concurrent finalizations of the same operation converge through Firestore transaction retry to one non-replayed result plus one replay, and only one concurrent timing receipt exists.
+
+Emulator command completed successfully: `1 suite / 1 test PASS` (the test contains seed, replay, mismatch, concurrency and receipt persistence assertions). Rules ownership emulator remains `1 suite / 5 tests PASS`.
+
+**Remaining runtime gates:** callable network smoke, explicit client update/delete immutability assertions for receipts, assignment/probe content-hash resolver against published Episode content, and release integration. Admin remains another session.
+
+**Exact next executable task:** add authenticated emulator assertions that receipt update/delete and operation reads/writes fail, then run the full bounded V2 contract + Functions + emulator matrix and request fresh adversarial review before beginning stars/access projection.
+
+## 12.40 ORBIT V2 execution update — Firestore immutability rules
+
+`d59efb9fd` (`test(v2): prove delayed firestore immutability`) extends the emulator rules test from read/list/create to update/delete for every delayed server-owned collection. The command completed successfully with `1 suite / 5 tests PASS`; permission-denied warnings are expected negative evidence. The runtime persistence emulator remains green with seed, replay, mismatch, concurrency, and hash assertions.
+
+**Exact next executable task:** run the bounded matrix (pure contracts, Functions adapter/callable, rules static contract, rules emulator, persistence emulator), capture counts, and request a fresh adversarial review of the complete delayed runtime slice before moving to stars/access projection. Admin remains separate.
+
+## 12.41 ORBIT V2 execution update — bounded delayed runtime matrix
+
+Bounded matrix completed on current HEAD:
+
+- root pure/rules contracts: `6 suites / 33 tests PASS`;
+- Functions adapter/callable: `2 suites / 8 tests PASS`;
+- Firestore emulator rules + persistence: `2 suites / 6 tests PASS`.
+
+The combined emulator command used the real Firestore emulator and completed successfully. No Admin files were changed. This proves the delayed runtime boundary (canonical candidate → server adjudication → transaction persistence/replay → client-denied collections) but does not prove callable network deployment or content resolver integration.
+
+**Exact next executable task:** request fresh adversarial/spec review of the complete delayed slice and then begin the next approved V2 phase: stars/access projection contract, ensuring delayed/system/protocol branches cannot award mastery or durable stars and legacy reward paths remain intact.
+
+## 12.26 ORBIT V2 execution update — Task 1.3 attempt boundary
+
+Admin transfer is explicitly out of scope for this session and remains owned by a separate session. The V2 worktree is `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch `codex/learning-v2-pilot`, HEAD `de291288f` (`fix(v2): harden canonical attempt body`). Main checkout remains untouched.
+
+Task 1.3 bounded slice completed in commit `de291288f`. Only `modules/learning-v2/contracts/attempt.ts` and `tests/learning_v2_attempt_hash_chain.test.ts` changed in that commit. It adds fail-closed rejection of post-hash fields (`learningEvidenceRefs`, `learningNonAssessmentRefs`, `attemptBodyHash`, `canonicalAttemptRef`), typed attempt outcome/evidence/provenance/input binding, graph/delayed discriminated surfaces, and canonical body/ref conformance using the exact canonical body hash.
+
+Verification: focused Jest `3 suites / 8 tests passed`; strict ES2022 TypeScript passed; Prettier check passed; `git diff --check` passed. The working tree still intentionally contains only the pre-existing dirty `docs/v2/HANDOVER.md` plus untracked Admin audit artifacts; do not stage those Admin files.
+
+Task 1.3 is still **partial**, not complete. Remaining pure-contract work: strengthen graph disposition enum/duplicate/cardinality and provenance semantics; implement typed evidence/result bodies and non-hashed event envelope; separate delayed client candidate from immutable server terminal receipt with exhaustive validation, protocol rejection, exact 1:1 resolution and materialization refs. Runtime, Functions, Admin and deployment remain not started in this session.
+
+Exact next executable task: add RED tests for graph disposition/provenance/cardinality and delayed terminal receipt separation, then implement only the pure contract modules/tests, run focused Jest, strict ES2022 `tsc`, Prettier, and diff-check, obtain independent spec/adversarial review, and update this handover before the next bounded commit.
+
+## 12.27 ORBIT V2 execution update — Task 1.3 delayed/graph separation
+
+Bounded commit `c515d4fd7` (`fix(v2): separate delayed attempt candidates`) is complete. Only `modules/learning-v2/contracts/attempt.ts` and `tests/learning_v2_attempt_hash_chain.test.ts` changed. Delayed attempts now have a separate typed `V2DelayedAttemptEventBody` with client-only candidates; graph attempts retain tuple dispositions. Delayed server-owned fields and terminal dispositions are rejected, graph/delayed provenance phases are checked, and operation IDs/hint counts receive fail-closed validation.
+
+Verification: focused Jest `3 suites / 11 tests passed`; strict ES2022 TypeScript, Prettier, and `git diff --check` passed. Admin/runtime/Functions remain untouched. Dirty handover and untracked Admin audit artifacts remain intentionally outside commits.
+
+This slice is still provisional pending independent review. Task 1.3 remains partial: graph tuple declaration semantics, typed evidence/result bodies, non-hashed event envelope, delayed immutable terminal receipt, exact 1:1 resolution/materialization, and full exact-body conformance are still open. Do not start runtime, Functions, Admin implementation, or deployment until those pure contracts pass independent review.
+
+Independent Luna review: **NOT PASS**. The surface/phase split is accepted, but a P1 remains: delayed candidates lack canonical learning-tuple identity/binding, so exhaustive candidate-to-declaration and later 1:1 resolution cannot be proven. Graph disposition runtime shape/cardinality/uniqueness and nested forbidden-field rejection are also open (P2/P1 boundary-hardening). Exact next task is the bounded tuple-binding and recursive fail-closed validation slice, followed by fresh independent review.
+
+Bounded commit `17bfd8d7f` (`fix(v2): bind delayed candidates to evidence tuples`) implements that next slice. It adds canonical delayed candidate tuple binding, strict tuple/disposition validation with duplicate/cardinality rejection, and recursive rejection of nested learning refs/self-hash fields. Focused verification remains green at `3 suites / 14 tests`, with strict ES2022 TypeScript, Prettier, and diff-check passing. Independent review is pending; Task 1.3 remains partial until that gate and the remaining evidence/result/receipt contracts are closed.
+
+Independent Luna review: **NOT PASS**. The binding and graph-shape gaps are closed, but delayed candidate IDs/tuple bindings are not yet unique (P1). Direct-call hardening for `validateGraphTupleDispositions`, nested delayed server-owned fields, and deep immutability remain P2. Exact next task: reject duplicate delayed IDs/tuple keys and harden the direct graph validator with RED/GREEN tests.
+
+Bounded commit `91a4c4dd2` (`fix(v2): harden attempt tuple uniqueness`) is complete. It rejects duplicate delayed candidate IDs and tuple keys, makes direct graph disposition validation return fail-closed results for malformed/duplicate input, and recursively blocks delayed server-owned fields. Focused verification: `3 suites / 17 tests`, strict ES2022 TypeScript, Prettier, and diff-check all pass. Independent review is pending; Task 1.3 remains partial.
+
+Independent Luna review: **NOT PASS**, but no P1 remains. Remaining P2: `validateGraphTupleDispositions` accepts arbitrary result codes and allows `skipped_by_learner` reason on non-`SKIPPED` outcomes. Exact next task is to close these allowlist/semantic combinations with RED/GREEN; deep immutability and runtime sanitization inside `buildCanonicalAttemptRef` remain explicitly tracked omissions.
+
+Bounded commit `81a4a2c11` (`fix(v2): validate graph disposition outcomes`) is complete. It centralizes the V2 result-code allowlist and rejects `skipped_by_learner` outside `SKIPPED`. Verification: `3 suites / 18 tests`, strict ES2022 TypeScript, Prettier, and diff-check pass. The attempt ref builder was intentionally not expanded in this slice; runtime sanitization/deep immutability remain open.
+
+Independent Luna review: **NOT PASS**, with no P1. Remaining P2 are strict exact-schema rejection of unknown fields, deep immutability after canonicalization, and runtime validation inside `buildCanonicalAttemptRef` itself. Exact next task: close these three body/hash-boundary properties with RED/GREEN before moving to evidence/result/receipt contracts.
+
+Bounded commit `05c1bf3ae` (`fix(v2): freeze canonical attempt bodies`) closes that boundary in the pure contract layer: exact allowlists reject unknown body/nested fields, canonical bodies are cloned and deeply frozen, and `buildCanonicalAttemptRef` sanitizes raw input before hashing. Focused verification: `3 suites / 20 tests`, strict ES2022 TypeScript, Prettier, and diff-check pass. Independent final review is pending.
+
+Independent Luna final review: **PASS**, with no P1/P2 in the bounded attempt-contract scope. Task 1.3 attempt-body/hash boundary is now adjudicated and may proceed. Next executable task is the pure evidence/result/materialization contract slice: typed `LearningEvidenceBody` and `LearningNonAssessmentBody` refs/bases plus the non-hashed `V2AttemptEvent` join envelope; delayed terminal receipt remains separate. Runtime, Functions and Admin remain out of scope.
+
+Bounded commit `ffc98cf0b` (`feat(v2): add evidence materialization contracts`) adds typed evidence/non-assessment bodies, separate body hashes/refs, exact source-attempt/tuple materialization validation, and a non-hashed attempt-event envelope validator. Focused verification: 4 suites / 23 tests, strict ES2022 TypeScript, Prettier and diff-check pass. Independent review is pending; this slice is provisional and does not implement delayed terminal receipts or runtime materializers.
+
+Independent Luna review: **NOT PASS** with P1 findings. The baseline bodies lack typed pedagogical provenance/timing/input-route restrictions; non-assessment branches are not phase-specific; ref builders and envelope validation are not fail-closed enough and do not enforce ref/cardinality/basis invariants. Exact next task is a pure contract hardening slice for discriminated body validation and component-level envelope/ref/cardinality checks. Runtime, Functions and Admin remain out of scope.
+
+Bounded commit `2acade5e0` (`fix(v2): harden evidence envelope contracts`) adds the envelope builder, exact attempt/basis matching, ref hash/tuple uniqueness checks, and typed ref validators. Focused verification: 4 suites / 22 tests, strict ES2022 TypeScript, Prettier and diff-check pass. Independent review is pending; phase-specific body validation and delayed receipt contracts remain open.
+
+Independent Luna review: **NOT PASS**, P1 remains. Evidence/non-assessment bodies still lack phase-specific provenance/timing/input-route contracts and runtime body validation; refs are hashed without validating body conformance; envelope validation cannot prove body↔ref correspondence or delayed receipt branch conformance. Next exact task: add discriminated provenance/timing validators and make ref builders fail-closed before hashing. Runtime/Functions/Admin remain out of scope.
+
+Bounded commit `6fed66264` (`fix(v2): validate evidence provenance branches`) adds phase/provenance/route/timing fields, body validators, and fail-closed ref-builder guards. Focused evidence suite: 3 tests pass; strict TypeScript and Prettier pass. Independent review is pending; envelope body/ref proof and delayed receipt-specific branches remain open.
+
+Independent Luna review: **NOT PASS**, P1 remains. Validators are still permissive on phase/construct/route/timing, delayed receipt branches, exact source-attempt equality, unknown keys, and materialization re-validation. Exact next task is the fail-closed validator hardening slice; no runtime, Functions or Admin changes.
+
+## 12.24 ORBIT V2 execution update — Task 1.2C fallback/accessibility closure
+
+Эта сессия не переносит Admin Content Studio: перенос админки выполняется отдельной пользовательской сессией. В текущем V2 worktree изменены только Episode/Validation contracts и их focused tests.
+
+Mission: закрыть P1 из свежего независимого ревью — capstone fallback должен быть deterministic/scripted, offline-capable и non-voice core-equivalent; delayed accessibility alternate должен разрешаться в существующую безопасную activity; checkpoint evidence tuple key должен строиться единственным canonical builder.
+
+Authoritative result: commit `67bb32af0` (`fix(v2): enforce fallback and delayed accessibility contracts`) в `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch `codex/learning-v2-pilot`. Изменены только `modules/learning-v2/contracts/validation.ts` и `tests/learning_v2_episode_contract.test.ts`; Admin/runtime не затронуты.
+
+RED/GREEN evidence:
+
+- RED: hostile cases воспроизводили отсутствие capstone capability checks, отсутствие delayed accessibility binding validation и ручную tuple serialization.
+- GREEN: `npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts tests/learning_v2_evidence_contract.test.ts --no-cache --runInBand` — **314/314 passed**.
+- `npx prettier --check modules/learning-v2/contracts/validation.ts tests/learning_v2_episode_contract.test.ts` — PASS.
+- `git diff --check` — PASS.
+- Полный focused Task 1.2C corpus ранее проходил `310/310`; свежий bounded slice расширил его до 314 тестов.
+
+Remaining independent-review P2: platform support-manifest/minAppVersion closure remains deferred to release/manifest work; no fresh independent PASS was obtained after this commit. Task 1.2C therefore remains provisional until a new spec/adversarial review confirms the P1 closure and classifies the remaining P2.
+
+Exact next executable task: run a fresh read-only spec reviewer and adversarial reviewer against commit `67bb32af0`, then either record PASS and start Task 1.3 evidence/result contracts or record exact remaining P1/P2 and add the next bounded RED/GREEN slice. Do not touch Admin in this session.
+
+Startup commands:
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+git status --short --branch
+git rev-parse HEAD
+npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts tests/learning_v2_evidence_contract.test.ts --no-cache --runInBand
+```
+
+## 12.25 ORBIT V2 execution update — capability/semantic adversarial repair
+
+Fresh adversarial review after `67bb32af0` identified two P1 gaps: self-declared fallback flags could mask voice/network-required capabilities, and delayed accessibility alternates were not proven non-aliasing or semantically/evidence equivalent. These are now addressed in bounded commit `63a61cd12` (`fix(v2): validate fallback capability equivalence`).
+
+Changed production/test scope: only `modules/learning-v2/contracts/validation.ts` and `tests/learning_v2_episode_contract.test.ts`; no Admin, runtime, Firebase, or docs were included in the commit. The validator now rejects capstone and delayed accessibility alternates with required microphone, speech recognition, or network capability; rejects delayed self-alias; compares semantic targets and evidence declarations with the delayed primary; and retains a positive equivalent-alternate path.
+
+Evidence: RED `306 passed / 8 failed`; GREEN episode `314/314`; episode+evidence `323/323`; strict focused TypeScript passed with ES2022 target/lib (ES2020 failure is the pre-existing `Array.prototype.at` baseline); Prettier and `git diff --check` passed. The commit is bounded and present at HEAD `63a61cd12`.
+
+Adjudication status: the earlier independent Luna review was PASS for Task 1.2C with P2s (platform support manifest/minAppVersion, delayed semantic equivalence, locale allowlist). A final Sol adversarial review of `63a61cd12` was requested but had not yet returned at handover time. Therefore Task 1.2C is **provisional, not complete**, and Task 1.3 must wait for that final PASS or another independent review confirming no P1.
+
+Exact next executable task: obtain a read-only adversarial PASS against `63a61cd12`; if PASS, begin Task 1.3 evidence/result contracts with RED/GREEN and keep platform support-manifest/minAppVersion as an explicit later release-boundary P2. Do not modify Admin in this session.
+
+Post-commit Luna adjudication returned `NOT PASS` only for a remaining **P2**: delayed accessibility equivalence currently compares skill/phrase/semantic targets and declaration membership, but not exact objective IDs, critical-constraint coverage, or full declaration shape/cardinality. Capability rejection and self-alias rejection both PASS. Focused local verification independently confirms `323/323` tests, Prettier, and diff-check. Keep Task 1.3 paused until this P2 is either closed with an explicit contract or formally deferred by the Task 1.2C owner; do not silently treat the provisional slice as complete.
+
+The P2 parity repair is now committed as `e4c5ad516` (`fix(v2): enforce delayed alternate evidence parity`). It adds RED cases for objective/critical/evidence-shape mismatch, then compares the delayed definition with the graph evidence node bound to the alternate activity. Final gates before commit: episode suite `317/317`, combined episode+evidence focused `326` tests, strict ES2022 TypeScript, and `git diff --check` all passed. Only `validation.ts` and `tests/learning_v2_episode_contract.test.ts` were committed; Admin/runtime/docs remained outside the code commit.
+
+Exact next executable task: obtain final independent PASS against `e4c5ad516`; if PASS, mark Task 1.2C complete/provisionally release-ready with platform support-manifest/minAppVersion as explicit later P2, then begin Task 1.3 evidence/result contracts. If NOT PASS, record the exact bounded finding and continue RED/GREEN. Do not touch Admin in this session.
+
+Final adjudication: Luna read-only review returned **PASS** for `e4c5ad516`. It confirms exact objective parity, critical-constraint coverage, canonical evidence declaration signature/cardinality parity, self-alias rejection, and unsafe capability rejection. No P1/P2 remain in the requested Task 1.2C scope. Task 1.2C is complete; platform support-manifest/minAppVersion remains an explicit later release-boundary P2. Next executable task is Task 1.3 evidence/result contracts. Admin remains owned by a separate session.
+
+Task 1.3 is now in progress in the same V2 worktree. Initial bounded slice is limited to pure contract modules `attempt.ts`, `activity_result.ts`, `delayed_probe.ts`, and `evidence.ts` as needed, plus focused hash-chain/cardinality/delayed tests. Runtime, Functions, Admin, and release wiring are intentionally deferred until this contract slice is independently verified.
+
+Task 1.3 bounded commit `5fdeb9971` (`feat(v2): add attempt and delayed contract boundary`) is now present. It adds pure `attempt.ts`, `activity_result.ts`, and `delayed_probe.ts` contracts plus three focused suites. RED was confirmed on missing contracts; GREEN is 3/3 suites and 3/3 tests. Strict ES2022 contract TypeScript, Prettier, and `git diff --check` passed. The slice intentionally does not yet implement the full normative input/evaluator/provenance model, canonical runtime-evidence binding, complete delayed terminal receipts, or client/Functions conformance.
+
+Exact next executable task: consume the independent review of `5fdeb9971`, then extend Task 1.3 with those omitted normative fields and materialization boundaries test-first. Do not start runtime/Functions/Admin wiring until the pure contract corpus is complete and independently PASS.
+
+## 12.22 ORBIT Admin Acceleration — 2026-07-16
+
+User intent: ускорить перенос админки в V2 без разрушения legacy. Real worker receipts: Sol High `019f6ae1-792f-7440-9a49-233d6714f2f2` (migration audit), Luna Medium `019f6ae1-94d3-73a1-a733-b18524b2b531` (first-slice inventory), Terra Medium `019f6ad2-b4a5-7193-b007-019798331930` (single writer, implementation pending).
+
+Verified safe first slice: one lesson-stage Content Studio path only — capability read, single-stage create, generation/retry, bounded cursor-paginated list, immutable preview, manual approve/reject. Reuse existing admin V2 pages/controllers and `functions/src/admin_content_stages.ts` / `content_stage_worker.ts`. Exclude bulk/range, Arena, flashcards, Challenge, release sealing/activation/rollback, runtime migration, and legacy deletion or redirect changes.
+
+Evidence: Admin/UI contracts 26 passed; backend-focused suites 108 passed; inspected Admin modules passed `node --check`. Known unrelated baseline: migration inventory expects 441 legacy buttons but detects 400; do not change legacy behavior to hide it. Main checkout is dirty/read-only; V2 worktree is the only writer; no deploy or production write.
+
+Exact next task: Terra runs focused Admin/UI and Functions suites, adds RED only for a real missing contract, implements only the single-stage draft/preview/review seam, runs GREEN plus syntax/diff/secret checks, and makes one bounded commit or reports no-op. Then Luna verifies and Sol High reviews. Rollback remains additive feature-flag/navigation fallback to legacy; no destructive migration.
+
+## 12.23 Admin acceleration blocker (2026-07-16)
+
+Terra Medium completed the requested bounded writer audit with no code change. The V2 worktree does not contain the reusable Content Studio foundation files required for the first slice: `admin/v2/scripts/pages/content-generator.js`, `admin/v2/scripts/content-factory/{controller,state,stage-renderers}.js`, `functions/src/admin_content_stages.ts`, and `functions/src/content_stage_worker.ts`. They exist only on another history branch, so creating a parallel implementation would violate the reuse boundary. Focused migration coverage passed 6/6 in this worktree; the previously reported 441/400 mismatch was not reproduced here. The audit board check is blocked by missing ignored input `.codex-tmp/admin-audit/legacy-buttons.json`.
+
+Exact next task: Sol High must identify the exact foundation commit(s) and dependency closure on the source branch, with a read-only cherry-pick packet. No cherry-pick is allowed until file scope, conflicts, tests, and legacy preservation are independently verified.
+
+The resulting provenance packet is preserved in `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md`. It records `5781aa82`, `43ba949e`, `445ccaac`, and `0dd8149f`, their scopes, dependency closure, exclusion rules, focused first slice, and rollback. The packet concludes that no direct cherry-pick is safe; the next writer must perform a surgical extraction with RED/GREEN contracts.
+
+Terra then added `tests/admin_v2_lesson_stage_transfer_contract.test.ts` as a RED guard. The measured source closure is 71 files (66 backend + 5 UI), or 73 including surgical `admin-core.js`/`admin-firebase.js` integration, and it reaches excluded Arena/flashcard/quiz-release modules. The 20-file limit was exceeded, so no code was copied and no pseudo-foundation was committed. Exact next task: design a new code-owned generic stage boundary with an explicit exclusion test, then implement that boundary in a separate bounded slice.
+
+RED evidence: `npx jest --runTestsByPath tests/admin_v2_lesson_stage_transfer_contract.test.ts --no-cache --runInBand` fails at the missing `admin/v2/scripts/pages/content-generator.js`, as intended. This RED test remains an uncommitted guard; no GREEN implementation exists yet.
+
+Sol High design result: replace the 71-file snapshot closure with a code-owned operational kernel capped at 18 files. The kernel knows only immutable object refs, execution state, review and audit; it registers one adapter, `lesson_draft_v1`. The adapter may use existing generation/artifact primitives but must not import Arena, flashcard, quiz/challenge, release, runtime, or define Episode/Evidence/star/mastery types. Review uses `content.review` (not `content.publish`), maker-checker, revision/idempotency, immutable retry artifacts, and legacy fallback. Terra has been assigned the bounded RED/GREEN implementation; if the 18-file cap is exceeded, it must stop without a pseudo-foundation.
+
+## 12.15 — checkpoint evidence tuple closure (2026-07-16)
+
+Commit `3c12cf5ef` adds declaration-level equivalence checks between every checkpoint primary and deterministic alternate evidence tuple. The test context now publishes alternate declarations, and a mismatched alternate skill/construct/target is rejected. Focused Jest is `290/290`; strict focused `tsc`, Prettier, diff check, and staged secret scan pass. No push/deploy/release; handover remains uncommitted.
+
+The next exact task is still checkpoint package node-count RED/GREEN (8/10 must fail, 9 must pass), followed by fresh independent spec/red-team review. Task 1.2C remains partial and the global Orbit V2 goal remains active.
+
+## 12.17 — checkpoint nine-node blueprint (2026-07-16)
+
+Commit `f989fc8e5` moves the checkpoint node-count rule to the package boundary and requires exactly nine graph nodes for every checkpoint ordinal. A RED package mutation with eight nodes now fails before deeper checkpoint traversal; the valid vertical slice remains green. Focused Jest: `292/292`; strict focused tsc, Prettier, diff check, and staged secret scan: PASS. No push/deploy/release; handover remains uncommitted.
+
+Next executable task: run fresh independent spec/red-team review of the complete Task 1.2C slice. If no P1/P2 remains, begin Task 1.3 evidence/result contracts; otherwise add only the reproducing RED/GREEN fixes and update this handover.
+
+## 12.18 — locale, exposure, capability, and visible-checkpoint closure (2026-07-16)
+
+Commit `4bbe9fcd3` adds exact locale-set validation across learner-visible Episode localized values, requires exposure before same-episode assessed prerequisite outcomes, and hardens the fixture identity to a coherent single-locale E1 slice for the new closure test. Commit `bbc982db2` requires checkpoint nodes to be nine visible nodes (not merely nine total) and requires curriculum capability keys to exactly match capabilities used by episode and delayed activities.
+
+Focused Jest is now `295/295`; strict focused tsc, Prettier, diff check, and staged secret scan pass. Fresh spec/red-team audits still identify support-plan bounds, canonical checkpoint `evidenceTupleKeys`, and capstone fallback reachability as remaining gaps. No push/deploy/release; handover remains uncommitted.
+
+Exact next executable task: add RED/GREEN support-plan-to-node-bound validation and canonical checkpoint tuple-key validation, then request fresh review again before Task 1.3. Task 1.2C and the global Orbit V2 goal remain active.
+
+## 12.19 — support bounds and canonical checkpoint keys (2026-07-16)
+
+Commit `562e211e1` validates each objective support plan against matching encounter-node `allowedSupportLevels`, with a RED mutation proving an unsupported initial model is rejected. Commit `a702a9992` derives checkpoint alternate `evidenceTupleKeys` from the exact seven-field declaration tuple and rejects arbitrary attacker keys. Focused Jest: `297/297`; strict focused tsc, Prettier, diff check, and staged secret scan: PASS.
+
+Task 1.2C is now ready for another independent adjudication. Remaining medium concerns include capstone deterministic fallback reachability/one-to-one semantics and production-grade capability manifest/platform intersection. No push/deploy/release; handover remains uncommitted. If fresh audit is clean, next task is Task 1.3 evidence/result contracts.
+
+## 12.20 — first real ORBIT worker and Task 1.3 evidence identity slice (2026-07-16)
+
+The user explicitly authorized user-visible model workers. Routing receipts: Terra Medium `019f6ad2-b4a5-7193-b007-019798331930`, Luna Medium `019f6ad2-ed4a-7220-bc0b-603bf568e77c`, and Sol High `019f6ad3-58f5-7d92-8255-54f344217ee0`. Generic collaboration agents are not treated as model switches.
+
+Terra produced bounded commit `c7447063864e01ea6b5b8c107f7efbad60c021e3` (`feat: add V2 evidence tuple identity`). Only `modules/learning-v2/contracts/evidence.ts` and `tests/learning_v2_evidence_contract.test.ts` changed. The module defines the seven-field identity and sole `letk1.` JCS/base64url builder, without attempt envelopes, learning refs, materialization, backend, or UI.
+
+Worker RED: missing module (`TS2307`). Worker GREEN: 9/9. Root verification: combined Episode + Evidence Jest `306/306` PASS; strict focused TypeScript PASS; Prettier PASS; diff check PASS. Full root TypeScript remains a pre-existing unrelated baseline failure. Handover is the only dirty tracked file; no push/deploy/production mutation.
+
+Exact next task: complete Sol High review, then continue Task 1.3 with Terra’s next bounded slice (`attempt.ts` pre-hash `V2AttemptEventBody`/`CanonicalAttemptRef` boundary and hash-chain tests), keeping materialization/backend out of that slice.
+
+## 12.16 — primary accessibility route closure (2026-07-16)
+
+Commit `3b31b60dd` requires every episode accessibility route set to contain an explicit `routeKind: "primary"`; an accessibility-only set now fails closed. Focused Jest is `291/291`; strict focused tsc, Prettier, diff check, and staged secret scan pass. No push/deploy/release. Handover remains uncommitted.
+
+Exact next task remains checkpoint node-count RED/GREEN and fresh spec/red-team review. Task 1.2C and the global Orbit V2 goal are still active.
+
 Default Functions Jest discovery содержит 123 test paths и не подхватывает emulator suite. Dedicated config обнаруживает ровно один emulator suite. `PERMISSION_DENIED` warnings внутри emulator output ожидаемы для `assertFails`. Clean `npm ci` завершился exit 0, а `functions/node_modules/.bin/firebase.cmd --version` вернул `15.23.0`.
 
 ### 6.4 Что Task 0 не делал
@@ -619,6 +1116,14 @@ README содержит безопасные defaults для vertical map, ви�
 ### 7.7 Старые документы не помечены superseded
 
 Без banners будущая сессия может ошибочно выбрать 8–16 episodes, 32 отдельные Club missions, hold-to-talk, 90% transcript threshold или старый R10B authoring UI. До массовой работы стоит добавить scope/supersession banners без удаления истории.
+
+### 7.8 Монетизация и энергия — owner discussion 2026-07-15, V2-решение ещё не принято
+
+Для legacy-режима владелец подтвердил два продуктовых требования: отдельный бесплатный 72-часовой `intro_full_access` нужно отключить, при этом магазинный trial остаётся трёхдневным; успешная покупка должна вернуть пользователя точно в заблокированный урок, сразу восстановить полный запас энергии и открыть выбранный план. Обсуждаемый, но ещё не реализованный free-envelope: три сильных бесплатных урока вместо восьми, один квиз и одна тренировка в день. Порог уроков, связанный paywall copy, soft-upsell trigger и Remote Config должны меняться одной согласованной версией, потому что сейчас часть legacy copy/trigger всё ещё предполагает восемь уроков.
+
+По legacy energy рабочая рекомендация для отдельного решения: не наказывать ошибки более длинным cooldown одновременно с ужесточением free-envelope; сначала оставить восстановление `+1 / 10 минут`, а затем отдельно проверить вариант `20 минут`. Рост максимального запаса предлагается ограничить значениями `5` до уровня 49 и `6` с уровня 50, не отнимая уже заработанные слоты у существующих пользователей без отдельного migration/owner decision. Это пока продуктовая рекомендация, а не утверждённый V2 contract или изменение конфигурации.
+
+Для Learning V2 текущий канон по-прежнему требует, чтобы E1–E32 были завершаемы без покупки, а прогресс определялся stars/gates/evidence. Обсуждаемая альтернатива — отдельный коммерческий `content_access_gate` (например, E1–E3 free, E4–E32 Plus), который не заменяет mastery/checkpoint/evidence. Legacy energy не предлагается тратить внутри core V2 episodes и тем более за ошибки: иначе возникает двойной барьер `commercial access + learning gate`. Альтернатива конфликтует с действующим каноном и не может попасть в код, DecisionRegistry или rollout без явного owner approval и согласованного обновления нормативных документов. Exact next implementation task остаётся Task 1.2; эта дискуссия его не расширяет и production UI/config не меняет.
 
 ---
 
@@ -1077,3 +1582,59 @@ rg -n "Task 1.2|V2Activity|Episode|V2CheckpointContract|V2DelayedProbe|LearningP
 ```
 
 Ожидаемый стартовый Git-state после handover commit: branch `codex/learning-v2-pilot`, clean worktree, no upstream, история содержит `a4245ccc1` и последующий docs-only handover commit. Основной checkout `C:\appsprojects\phraseman` остаётся грязным и не должен меняться.
+
+## 12.13 ORBIT V2 execution update — Task 1.2C progress
+
+После `4e0f7ff79` выполнены ещё два bounded repair commit: `8c9dba1de` (`fix: close V2 curriculum material and asset contracts`) и `dda897faf` (`fix: validate V2 prerequisite support states`). Focused contract suite теперь `271/271`; strict focused TypeScript, Prettier, diff-check и staged secret scan проходят. Добавлены exact closure текущего episode ref против material полей Episode, exact asset closure, запрет неизвестных prerequisite `kind`/`requiredState` и неподдерживаемого `initialSupport`.
+
+Глобальная цель ORBIT V2 остаётся активной. Task 1.2C всё ещё partial: независимый аудит продолжает требовать exact locale coverage, code-owned support refs, objective/construct coverage между independent и delayed probes, delayed binding/schedule closure, checkpoint blueprint/evidence tuple equivalence, accessibility route completeness и capstone closure. Следующий executable slice — добавить RED/GREEN на эти оставшиеся P1, затем свежий Spec Reviewer и Adversarial Reviewer; только после PASS переходить к Task 1.3.
+
+Дополнительно закрыт code-owned support slice в `1cf2eaebd` (`fix: enforce code-owned V2 support rules`): неизвестные prerequisite states, unsupported initial support и attacker-controlled fade/escalation IDs теперь блокируются. Focused suite: `272/272`; strict focused `tsc`, Prettier, diff-check и staged secret scan: PASS.
+
+Закрыт также independent/delayed coverage slice в `acd9627b3` (`fix: align V2 independent and delayed coverage`): objective+construct coverage этих двух probe surfaces теперь обязана совпадать; focused suite: `273/273`, остальные узкие проверки PASS.
+
+Закрыт delayed schedule slice в `bdd4a9536` (`fix: close V2 delayed probe schedule`): delayed probe обязан иметь ровно одну review link, target episode должен совпадать, а missing/duplicate schedule теперь fail-closed. Focused suite: `276/276`; strict focused `tsc`, Prettier, diff-check и staged secret scan: PASS.
+
+Закрыт checkpoint route-membership slice в `bd3a9f161` (`fix: close V2 checkpoint route membership`): primary/alternate/reassessment nodes, поставляющие checkpoint evidence, теперь обязаны присутствовать в `assessmentNodes.independentProbeNodeIds` с соответствующей фазой. Focused suite: `277/277`; strict focused `tsc`, Prettier, diff-check и staged secret scan: PASS.
+
+Закрыт accessibility core-route slice в `6b6f52beb` (`fix: require V2 accessibility core route`): пустой список accessibility routes теперь блокируется как `accessibility_route_missing`; valid E1 сохраняет offline/core route. Focused suite: `278/278`; strict focused `tsc`, Prettier, diff-check и staged secret scan: PASS.
+
+Закрыт capstone closure slice в `7d63e1f2a` (`fix: enforce V2 capstone closure`): required semantic slots, critical constraints и primary capstone node теперь проверяются exact-set against episode/graph contracts. Добавлены RED-кейсы на неполный slot set и неверный primary node. Focused suite: `280/280`; strict focused `tsc`, Prettier, diff-check и staged secret scan: PASS.
+
+Закрыт curriculum locale slice в `880f27625` (`fix: validate V2 curriculum locale closure`): study target и learner source locale теперь непустые и типизированные, `requiredLocales` не может быть пустым/дублированным и обязан включать обе identity locale. Focused suite: `283/283`; strict focused `tsc`, Prettier, diff-check и staged secret scan: PASS.
+
+## 12.12 ORBIT V2 execution update — Task 1.2 contract commit
+
+**Фактическое состояние:** Task 1.2 закоммичен в `4e0f7ff79` (`feat: define Learning V2 episode contracts`) в worktree `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch `codex/learning-v2-pilot`, после базового commit `127ae1b9e`. В commit попали ровно семь Task 1.2 файлов: четыре pure contract modules, два JSON fixture/corpus файла, один focused Jest contract. `docs/v2/HANDOVER.md` остаётся незакоммиченным документом в worktree и не включался в Task 1.2 commit.
+
+**Mission:** закрепить канонический Episode/Curriculum/Activity/Validation contract для E1, со строгими hash/graph/checkpoint/delayed/curriculum границами, а затем перейти к Task 1.3 evidence/result contracts. Legacy, Functions, Admin UI, runtime rollout и Content Studio UI не менялись.
+
+**RED/GREEN evidence:** исходный focused corpus был `263/263`. Гарданизация добавила RED для дублированных chapter IDs, duplicate prerequisite episode IDs и duplicate delayed-probe definitions; каждый кейс демонстрировал fail-open до правки. После минимальных проверок итоговый focused Jest: `266/266`; strict focused `tsc`: PASS; Prettier check: PASS; `git diff --cached --check`: PASS; `npm run scan:secrets:staged`: PASS.
+
+**Independent audit findings retained for next repair slice:**
+
+- P1: checkpoint `introducedMaterial` может ввести новый required material; нужен RED/GREEN на exact checkpoint closure.
+- P1: curriculum asset/capability/material closure проверяет только missing dependencies, но не exact equality/coverage; locale/identity closure также неполная.
+- P1: prerequisite DAG/exposure не покрывает same-episode outcome edges; support refs доверяют attacker-controlled dependency IDs; independent/delayed objective coverage не связана.
+- P1: delayed ref не замыкается ровно в одно полное определение и не проверяет полную binding/schedule/coverage closure; scheduler namespace нужно расширить за пределы graph nodes.
+- P1: checkpoint 9-node blueprint, alternate evidence tuple equivalence, accessibility route completeness и exact capstone closure не подтверждены полностью.
+
+**Exact next executable task:** Task 1.2C — close the remaining audited P1 contract gaps test-first. Start by adding RED cases for checkpoint material/asset-capability-material equality/locale closure and prerequisite support ownership; then repair only `modules/learning-v2/contracts/validation.ts` and the focused fixture/test corpus. Acceptance: all new hostile cases fail before repair and pass after repair; existing `266/266` remains green; strict focused `tsc`, Prettier, diff boundary, and secret scan stay green; fresh spec and adversarial review report no P1/P2 in the bounded slice. Do not start Task 1.3, Functions, Admin, deployment, or Content Studio UI until this slice is adjudicated.
+
+**Startup commands:**
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+git status --short --branch
+git log -3 --oneline
+npx jest --runTestsByPath tests/learning_v2_episode_contract.test.ts --no-cache --runInBand
+```
+## 12.55 Production access purchase callable
+
+The production seam is now wired in the V2 worktree (Admin remains owned by another session). `functions/src/learning_v2_access_production_callable.ts` exposes `finalizeLearningV2AccessPurchase` with Firebase App Check enforcement, authenticates before parsing, reads the user-scoped gate receipt, requires its pinned DecisionRegistry reference, downloads the content-addressed artifact from Storage, resolves the exact pinned access policy, and delegates the authoritative purchase to the Firestore transaction adapter. The adapter re-checks the same registry reference inside the transaction to close the gate/policy TOCTOU window. `functions/src/index.ts` exports the callable.
+
+The callable boundary maps expected domain failures to stable HTTPS errors, preserves idempotent replay receipts, and keeps all user/account/path validation server-side. A TypeScript narrowing fix made the adapter compile under the repository's strict configuration without changing behavior.
+
+Evidence: production/callable matrix **4 suites / 21 tests PASS**; targeted strict TypeScript for production callable, callable orchestration, and adapter **PASS**. The prior Firestore emulator purchase matrix remains **1 suite / 3 tests PASS**. Full Functions build is still not a valid V2 gate because the repository has unrelated pre-existing Admin missing-module/duplicate-export errors; Admin files were not touched here.
+
+**Exact next executable task:** run a fresh independent red-team/spec adjudication of this production callable slice. If no P1/P2 remains, commit the callable wiring and begin the Phase 02 progress-snapshot/outbox reducer slice. Acceptance: snapshot/outbox state is account-scoped and idempotent, replay-safe, offline/local-first compatible, and covered by RED/GREEN tests; do not alter Admin or remove legacy behavior.

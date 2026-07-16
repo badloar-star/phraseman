@@ -59,4 +59,11 @@ describe('V2 access callable boundary', () => {
     expect(result).toBeInstanceOf(Error);
     expect(calls).toContain('policy');
   });
+
+  it('rejects unauthenticated requests before parsing malformed payloads', async () => {
+    await expect(executeV2AccessPurchaseCallable({ data: null } as any, {
+      repository: {} as any,
+      resolvePolicy: async () => ({ unitPriceShards: 3, maxPurchasedPerGate: 3, maxPurchasedPerChapter: 3, maxPurchasedPerSeason: 12 }),
+    })).rejects.toThrow('auth_required');
+  });
 });

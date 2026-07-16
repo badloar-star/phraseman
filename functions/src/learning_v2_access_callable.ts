@@ -74,12 +74,14 @@ export interface V2AccessCallableDependencies {
     input: NormalizedV2AccessCallableInput,
   ) => Promise<AccessBoostPolicy>;
   readonly nowMs?: () => number;
+  readonly decisionRegistryRef?: { readonly id: string; readonly version: number; readonly contentHash: string };
 }
 
 export async function executeV2AccessPurchaseCallable(
   request: CallableRequest<unknown>,
   dependencies: V2AccessCallableDependencies,
 ): Promise<{ readonly ok: true; readonly replayed: boolean; readonly receipt: unknown }> {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const input = normalizeV2AccessPurchaseInput(request.data);
   assertV2AccessStableIdentity(input, request.auth?.uid);
   const nowMs = dependencies.nowMs?.() ?? Date.now();
@@ -94,12 +96,28 @@ export async function executeV2AccessPurchaseCallable(
     accountGeneration: input.accountGeneration,
     request: input.request,
     nowMs,
+    decisionRegistryRef: dependencies.decisionRegistryRef,
   };
-  const result = await finalizeV2AccessPurchase(dependencies.repository, policy, adapterInput);
-  return { ok: true, replayed: result.replayed, receipt: result.receipt };
+  try {
+    const result = await finalizeV2AccessPurchase(dependencies.repository, policy, adapterInput);
+    return { ok: true, replayed: result.replayed, receipt: result.receipt };
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : 'access_purchase_failed';
+    const code = reason.includes('insufficient_balance')
+      ? 'resource-exhausted'
+      : reason.includes('replay_mismatch')
+        ? 'already-exists'
+        : reason.includes('binding') || reason.includes('identity') || reason.includes('quote_') ||
+            reason.includes('already_unlocked') || reason.includes('decision_registry') ||
+            reason.includes('required_') || reason.includes('capability_') || reason.includes('local_') ||
+            reason.includes('checkpoint') || reason.includes('deficit_')
+          ? 'failed-precondition'
+          : 'internal';
+    throw new HttpsError(code, 'access_purchase_rejected');
+  }
 }
 
 export const createV2AccessPurchaseCallable = (
   dependencies: V2AccessCallableDependencies,
-) => onCall(async (request: CallableRequest<unknown>) =>
+) => onCall({ enforceAppCheck: true }, async (request: CallableRequest<unknown>) =>
   executeV2AccessPurchaseCallable(request, dependencies));

@@ -1960,6 +1960,31 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("requires independent and delayed probes to cover the same objective and construct", () => {
+    const candidate = clone(validFixture);
+    const episode = candidate.episode as JsonRecord;
+    const definition = (episode.delayedProbeDefinitions as JsonRecord[])[0];
+    const body = definition.body as JsonRecord;
+    (body.evidenceDeclarations as JsonRecord[])[0].construct = "interaction";
+    (definition.ref as JsonRecord).contentHash = hashCanonicalBody(body);
+    (episode.learningDesign as JsonRecord).delayedProbeRef = clone(
+      definition.ref,
+    );
+    for (const link of episode.reviewLinks as JsonRecord[]) {
+      if (link.scheduleKind === "delayed_probe")
+        link.probeRef = clone(definition.ref);
+    }
+    setEpisodeContentHash(candidate);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "probe_coverage_mismatch",
+        path: "$.episode.delayedProbeDefinitions[0].body.evidenceDeclarations",
+      },
+    ]);
+  });
+
   test("fails closed on cyclic and hostile nested input without throwing", () => {
     const cyclic = clone(validFixture);
     const cyclicPolicy = (

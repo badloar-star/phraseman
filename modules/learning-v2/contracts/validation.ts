@@ -4044,6 +4044,31 @@ const validateLearningReferences = (
     (definition) =>
       (definition.body as JsonObject).evidenceDeclarations as JsonObject[],
   );
+  const independentCoverage = new Set(
+    graphDeclarations
+      .filter((declaration) => declaration.phase === "independent_probe")
+      .map(
+        (declaration) =>
+          `${String(declaration.objectiveId)}\u0000${String(declaration.construct)}`,
+      ),
+  );
+  const delayedCoverage = new Set(
+    delayedDeclarations.map(
+      (declaration) =>
+        `${String(declaration.objectiveId)}\u0000${String(declaration.construct)}`,
+    ),
+  );
+  if (
+    independentCoverage.size !== delayedCoverage.size ||
+    [...independentCoverage].some((key) => !delayedCoverage.has(key))
+  ) {
+    return [
+      issue(
+        "probe_coverage_mismatch",
+        "$.episode.delayedProbeDefinitions[0].body.evidenceDeclarations",
+      ),
+    ];
+  }
   const measurableDeclarations = [...graphDeclarations, ...delayedDeclarations];
   const masteryRequirements = mastery.requirements as JsonObject[];
   for (let index = 0; index < masteryRequirements.length; index += 1) {

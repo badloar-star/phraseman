@@ -4733,6 +4733,20 @@ const validateDelayedAndLearning = (
     return [issue("field_type_invalid", "$.episode.reviewLinks")];
   const delayedSettings = decisionSettings(registry, "HYP-V2-007");
   const expectedWindow = delayedSettings?.delayedWindowPolicyId;
+  const delayedScheduleIndexes = episode.reviewLinks
+    .map((link, index) => (link.scheduleKind === "delayed_probe" ? index : -1))
+    .filter((index) => index >= 0);
+  if (delayedScheduleIndexes.length === 0) {
+    return [issue("delayed_probe_schedule_missing", "$.episode.reviewLinks")];
+  }
+  if (delayedScheduleIndexes.length > 1) {
+    return [
+      issue(
+        "delayed_probe_schedule_ambiguous",
+        `$.episode.reviewLinks[${delayedScheduleIndexes[1]}]`,
+      ),
+    ];
+  }
   for (let index = 0; index < episode.reviewLinks.length; index += 1) {
     const link = episode.reviewLinks[index];
     const linkPath = `$.episode.reviewLinks[${index}]`;
@@ -4745,6 +4759,9 @@ const validateDelayedAndLearning = (
         return [issue("review_link_invalid", linkPath)];
       }
     } else if (link.scheduleKind === "delayed_probe") {
+      if (link.targetEpisodeId !== episode.episodeId) {
+        return [issue("review_link_invalid", `${linkPath}.targetEpisodeId`)];
+      }
       if (!["d_plus_1", "d_plus_7", "d_plus_21"].includes(String(link.delay))) {
         return [issue("review_link_invalid", `${linkPath}.delay`)];
       }

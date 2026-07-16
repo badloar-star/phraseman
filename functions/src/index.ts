@@ -1535,3 +1535,6 @@ export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture
 
 // ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
 export { webLeadCapture, webLeadNudgeCron } from './web_leads';
+
+// Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
+export { finalizeLearningV2DelayedCandidate } from './learning_v2_delayed_callable';

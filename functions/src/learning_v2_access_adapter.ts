@@ -63,22 +63,32 @@ export interface V2AccessPurchaseRepository {
 }
 
 export const firestoreV2AccessPath = (key: string): string => {
+  const safeSegment = (value: string): boolean => /^[A-Za-z0-9._-]{1,160}$/.test(value) && value !== '.' && value !== '..';
   if (key.startsWith('learning-v2:access-operation:')) {
-    const suffix = key.slice('learning-v2:access-operation:'.length).replace(/:/g, '_');
-    return `learning_v2_receipt_operations/${suffix}`;
+    const parts = key.slice('learning-v2:access-operation:'.length).split(':');
+    if (parts.length !== 2 || parts.some((part) => !safeSegment(part))) throw new Error('access_firestore_key_invalid');
+    return `users/${parts[0]}/v2_access_operations/${parts[1]}`;
   }
   if (key.startsWith('learning-v2:access-quote:')) {
-    return `learning_v2_access_quotes/${key.slice('learning-v2:access-quote:'.length)}`;
+    const quoteId = key.slice('learning-v2:access-quote:'.length);
+    if (!safeSegment(quoteId)) throw new Error('access_firestore_key_invalid');
+    return `learning_v2_access_quotes/${quoteId}`;
   }
   if (key.startsWith('learning-v2:access-gate:')) {
-    const suffix = key.slice('learning-v2:access-gate:'.length).replace(/:/g, '__');
-    return `learning_v2_gate_receipts/${suffix}`;
+    const parts = key.slice('learning-v2:access-gate:'.length).split(':');
+    if (parts.length !== 3 || parts.some((part) => !safeSegment(part))) throw new Error('access_firestore_key_invalid');
+    return `users/${parts[0]}/v2_gate_receipts/${parts[1]}__${parts[2]}`;
   }
   if (key.startsWith('learning-v2:access-receipt:')) {
-    const suffix = key.slice('learning-v2:access-receipt:'.length).replace(/:/g, '_');
-    return `learning_v2_access_ledger/${suffix}`;
+    const parts = key.slice('learning-v2:access-receipt:'.length).split(':');
+    if (parts.length !== 2 || parts.some((part) => !safeSegment(part))) throw new Error('access_firestore_key_invalid');
+    return `users/${parts[0]}/v2_access_ledger/${parts[1]}`;
   }
-  if (key.startsWith('users:')) return `users/${key.slice('users:'.length)}`;
+  if (key.startsWith('users:')) {
+    const userId = key.slice('users:'.length);
+    if (!safeSegment(userId)) throw new Error('access_firestore_key_invalid');
+    return `users/${userId}`;
+  }
   throw new Error('access_firestore_key_invalid');
 };
 
@@ -94,8 +104,8 @@ export interface FinalizeV2AccessPurchaseInput {
 const operationKey = (stableId: string, operationId: string): string =>
   `learning-v2:access-operation:${stableId}:${operationId}`;
 const quoteKey = (quoteId: string): string => `learning-v2:access-quote:${quoteId}`;
-const gateKey = (seasonId: string, gateId: string): string =>
-  `learning-v2:access-gate:${seasonId}:${gateId}`;
+const gateKey = (stableId: string, seasonId: string, gateId: string): string =>
+  `learning-v2:access-gate:${stableId}:${seasonId}:${gateId}`;
 const accountKey = (stableId: string): string => `users:${stableId}`;
 const receiptKey = (stableId: string, operationId: string): string =>
   `learning-v2:access-receipt:${stableId}:${operationId}`;
@@ -143,7 +153,7 @@ export async function finalizeV2AccessPurchase(
 
     const [quoteDocument, gateDocument, accountDocument] = await Promise.all([
       transaction.get<V2AccessQuote>(quoteKey(input.request.quoteId)),
-      transaction.get<V2AccessGateRecord>(gateKey(input.request.seasonId, input.request.gateId)),
+      transaction.get<V2AccessGateRecord>(gateKey(input.stableId, input.request.seasonId, input.request.gateId)),
       transaction.get<V2AccessAccountRecord>(accountKey(input.stableId)),
     ]);
     const quote = quoteDocument.data;
@@ -207,7 +217,7 @@ export async function finalizeV2AccessPurchase(
       basis: 'earned_plus_boost',
     };
     transaction.update(accountKey(input.stableId), { shards: balanceAfter });
-    transaction.update(gateKey(input.request.seasonId, input.request.gateId), {
+    transaction.update(gateKey(input.stableId, input.request.seasonId, input.request.gateId), {
       purchasedForGate: gate.purchasedForGate + eligibility.accessStarsToApply,
       purchasedForChapter: gate.purchasedForChapter + eligibility.accessStarsToApply,
       purchasedForSeason: gate.purchasedForSeason + eligibility.accessStarsToApply,

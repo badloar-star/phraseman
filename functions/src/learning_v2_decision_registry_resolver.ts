@@ -39,7 +39,7 @@ export async function resolvePinnedV2AccessPolicy(
   if (
     !isRecord(ref) ||
     typeof ref.id !== 'string' ||
-    ref.id.trim().length === 0 ||
+    !/^[A-Za-z0-9._-]{1,160}$/.test(ref.id) ||
     !Number.isSafeInteger(ref.version) ||
     ref.version < 1 ||
     !/^[a-f0-9]{64}$/.test(ref.contentHash)
@@ -47,13 +47,24 @@ export async function resolvePinnedV2AccessPolicy(
     throw new Error('decision_registry_ref_invalid');
   }
   const objectPath = decisionRegistryObjectPath(ref.id, ref.version, ref.contentHash);
-  let artifact: unknown;
+  let downloaded: Uint8Array | string | Record<string, unknown>;
   try {
-    artifact = decodeArtifact(await store.download(objectPath));
+    downloaded = await store.download(objectPath);
   } catch {
     throw new Error('decision_registry_artifact_unavailable');
   }
-  const registry = resolveDecisionRegistry(artifact);
+  let artifact: unknown;
+  try {
+    artifact = decodeArtifact(downloaded);
+  } catch {
+    throw new Error('decision_registry_artifact_invalid');
+  }
+  let registry: ResolvedDecisionRegistry;
+  try {
+    registry = resolveDecisionRegistry(artifact);
+  } catch {
+    throw new Error('decision_registry_artifact_invalid');
+  }
   if (
     registry.record.ref.id !== ref.id ||
     registry.record.ref.version !== ref.version ||

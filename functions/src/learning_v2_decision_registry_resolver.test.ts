@@ -36,5 +36,7 @@ describe('server pinned DecisionRegistry resolver', () => {
     await expect(resolvePinnedV2AccessPolicy(mismatched, ref)).rejects.toThrow();
     const unavailable: DecisionRegistryArtifactStore = { download: async () => { throw new Error('missing'); } };
     await expect(resolvePinnedV2AccessPolicy(unavailable, ref)).rejects.toThrow('artifact_unavailable');
+    await expect(resolvePinnedV2AccessPolicy(new Store('{bad json'), ref)).rejects.toThrow('artifact_invalid');
+    await expect(resolvePinnedV2AccessPolicy(new Store(corpus.baseline), { ...ref, id: 'bad id' })).rejects.toThrow('ref_invalid');
   });
 });

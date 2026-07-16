@@ -42,7 +42,7 @@ async function seed(db: ReturnType<RulesTestEnvironment['authenticatedContext']>
     policyVersion: 'gate-policy-v1', releaseId: 'release-emulator-1', expiresAtMs: 2_000,
     earnedDeficit: 2, accessStarsToApply: 2, unitPriceShards: 3, totalCostShards: 6,
   });
-  await setDoc(doc(db, 'learning_v2_gate_receipts', 'season-emulator-1__gate-2'), {
+  await setDoc(doc(db, 'users', 'uid-access-emulator', 'v2_gate_receipts', 'season-emulator-1__gate-2'), {
     stableId: 'uid-access-emulator', accountGeneration: 4, seasonId: 'season-emulator-1', gateId: 'gate-2',
     releaseId: 'release-emulator-1', policyVersion: 'gate-policy-v1', requiredLoopsComplete: true,
     capabilityFallbackComplete: true, localPerformanceComplete: true, checkpointComplete: true,
@@ -74,7 +74,7 @@ describe('Learning V2 Access Boost Firestore transaction', () => {
       expect(first.replayed).toBe(false);
       expect(second).toEqual({ replayed: true, receipt: first.receipt });
       expect((await getDoc(doc(db, 'users', 'uid-access-emulator'))).data()?.shards).toBe(4);
-      expect((await getDoc(doc(db, 'learning_v2_access_ledger', 'uid-access-emulator_emulator-operation-1'))).exists()).toBe(true);
+      expect((await getDoc(doc(db, 'users', 'uid-access-emulator', 'v2_access_ledger', 'emulator-operation-1'))).exists()).toBe(true);
     });
   });
 
@@ -91,7 +91,7 @@ describe('Learning V2 Access Boost Firestore transaction', () => {
         request: { ...baseInput.request, opId: 'emulator-operation-2' },
       })).rejects.toThrow('insufficient_balance');
       expect((await getDoc(doc(db, 'users', 'uid-access-emulator'))).data()?.shards).toBe(1);
-      expect((await getDoc(doc(db, 'learning_v2_access_ledger', 'uid-access-emulator_emulator-operation-2'))).exists()).toBe(false);
+      expect((await getDoc(doc(db, 'users', 'uid-access-emulator', 'v2_access_ledger', 'emulator-operation-2'))).exists()).toBe(false);
     });
   });
 

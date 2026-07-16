@@ -2472,6 +2472,20 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("requires curriculum capability requirements to equal used activity capabilities", () => {
+    const candidate = clone(validFixture);
+    const curriculum = candidate.curriculum as JsonRecord;
+    (curriculum.requiredCapabilityKeys as string[]).pop();
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "curriculum_capability_missing",
+        path: "$.curriculum.requiredCapabilityKeys",
+      },
+    ]);
+  });
+
   test("rejects non-finite JSON numbers before semantic validation", () => {
     const candidate = clone(validFixture);
     (

@@ -5626,10 +5626,46 @@ const validateLearningPackageInternal = (
       ),
     ),
   );
+  const templatesById = new Map(
+    (dependencies.templates as JsonObject[]).map((template) => [
+      String((template.templateRef as JsonObject).templateId),
+      template,
+    ]),
+  );
+  const usedCapabilityKeys = new Set<string>();
+  for (const activity of episode.activities as JsonObject[]) {
+    const template = templatesById.get(
+      String((activity.templateRef as JsonObject).templateId),
+    );
+    if (template) {
+      usedCapabilityKeys.add(
+        String(
+          ((template.body as JsonObject).kernel as JsonObject).activityTypeKey,
+        ),
+      );
+    }
+  }
+  for (const definition of episode.delayedProbeDefinitions as JsonObject[]) {
+    const binding = (definition.body as JsonObject)
+      .activityBinding as JsonObject;
+    const template = templatesById.get(
+      String((binding.templateRef as JsonObject).templateId),
+    );
+    if (template) {
+      usedCapabilityKeys.add(
+        String(
+          ((template.body as JsonObject).kernel as JsonObject).activityTypeKey,
+        ),
+      );
+    }
+  }
   if (
     (curriculum.requiredCapabilityKeys as string[]).some(
       (key) => !resolvedCapabilityKeys.has(key),
-    )
+    ) ||
+    !sameStringSet(curriculum.requiredCapabilityKeys as string[], [
+      ...usedCapabilityKeys,
+    ])
   ) {
     return fail([
       issue(

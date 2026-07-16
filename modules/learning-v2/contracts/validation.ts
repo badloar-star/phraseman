@@ -3916,6 +3916,51 @@ const validateLearningReferences = (
         ),
       ];
   }
+  const expectedCapstoneSlots = (episode.semanticSlots as JsonObject[])
+    .filter((slot) => slot.requiredInCapstone === true)
+    .map((slot) => String(slot.semanticSlotId));
+  if (
+    !sameStringSet(
+      capstone.requiredSemanticSlotIds as string[],
+      expectedCapstoneSlots,
+    )
+  ) {
+    return [
+      issue(
+        "capstone_reference_invalid",
+        "$.episode.capstoneContract.requiredSemanticSlotIds",
+      ),
+    ];
+  }
+  const expectedCriticalConstraints = (
+    episode.criticalConstraints as JsonObject[]
+  ).map((constraint) => String(constraint.criticalConstraintId));
+  if (
+    !sameStringSet(
+      capstone.criticalConstraintIds as string[],
+      expectedCriticalConstraints,
+    )
+  ) {
+    return [
+      issue(
+        "capstone_reference_invalid",
+        "$.episode.capstoneContract.criticalConstraintIds",
+      ),
+    ];
+  }
+  const graphForCapstone = episode.graph as JsonObject;
+  if (
+    !sameStringSet(capstone.primaryNodeIds as string[], [
+      String(graphForCapstone.capstoneNodeId),
+    ])
+  ) {
+    return [
+      issue(
+        "capstone_reference_invalid",
+        "$.episode.capstoneContract.primaryNodeIds",
+      ),
+    ];
+  }
 
   const learningDesign = episode.learningDesign as JsonObject;
   const designObjectives = learningDesign.objectiveIds as string[];

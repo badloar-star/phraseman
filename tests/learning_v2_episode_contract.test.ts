@@ -2691,6 +2691,30 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       },
     ]);
   });
+
+  test.each([
+    [
+      "requiredSemanticSlotIds",
+      [],
+      "$.episode.capstoneContract.requiredSemanticSlotIds",
+    ],
+    [
+      "primaryNodeIds",
+      ["ep01.n07"],
+      "$.episode.capstoneContract.primaryNodeIds",
+    ],
+  ] as const)(
+    "requires exact capstone closure for %s",
+    (field, value, expectedPath) => {
+      const candidate = clone(validFixture);
+      ((candidate.episode as JsonRecord).capstoneContract as JsonRecord)[
+        field
+      ] = value;
+      expect(
+        issueSummary(validateV2LearningPackage(candidate, validationContext)),
+      ).toEqual([{ code: "capstone_reference_invalid", path: expectedPath }]);
+    },
+  );
 });
 
 describe("Learning V2 Task 1.2 — compile and purity boundaries", () => {

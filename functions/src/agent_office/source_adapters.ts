@@ -11,6 +11,11 @@ type CompleteReceipt = Readonly<{
   count: number;
 }>;
 
+type AdaptedSourceReceipt<Source extends 'analytics' | 'reports' | 'audit'> = Readonly<{
+  receipt: Readonly<{ source: Source; state: CompleteSourceState; count: number; truncated: false }>;
+  sourceObservedAtMs: number;
+}>;
+
 export interface AgentOfficeInternalSourceCollectors {
   readonly collectAnalytics: () => Promise<unknown>;
   readonly collectReports: () => Promise<unknown>;
@@ -18,6 +23,8 @@ export interface AgentOfficeInternalSourceCollectors {
 }
 
 const MAX_SOURCE_ROWS = 100;
+const MAX_SOURCE_AGE_MS = 15 * 60 * 1_000;
+const MAX_SOURCE_FUTURE_SKEW_MS = 60 * 1_000;
 
 // These names mirror the existing, inspected server source contracts. This module
 // intentionally provides no live Firestore reader: callers must inject trusted,
@@ -83,6 +90,28 @@ function explicitTimestamp(value: unknown, source: 'analytics' | 'reports' | 'au
   return value;
 }
 
+function requireFreshSourceTimestamp(
+  value: unknown,
+  source: 'analytics' | 'reports' | 'audit',
+  nowMs: number,
+): number {
+  const sourceObservedAtMs = explicitTimestamp(value, source);
+  if (sourceObservedAtMs > nowMs && sourceObservedAtMs - nowMs > MAX_SOURCE_FUTURE_SKEW_MS) {
+    unsafe(source, 'source timestamp exceeds future skew');
+  }
+  if (sourceObservedAtMs <= nowMs && nowMs - sourceObservedAtMs > MAX_SOURCE_AGE_MS) {
+    unsafe(source, 'source timestamp is stale');
+  }
+  return sourceObservedAtMs;
+}
+
+function requireNoErrorMarkers(value: Record<string, unknown>, source: 'analytics' | 'reports' | 'audit'): void {
+  for (const field of ['error', 'errorCode'] as const) {
+    const marker = value[field];
+    if (marker !== undefined && marker !== null && marker !== '') unsafe(source, 'complete receipt has an error marker');
+  }
+}
+
 function completeReceipt(
   value: unknown,
   source: 'analytics' | 'reports' | 'audit',
@@ -91,6 +120,7 @@ function completeReceipt(
   const receipt = sourceRecord(value, source);
   if (expectedSource !== undefined && receipt.source !== expectedSource) unsafe(source, 'source name mismatch');
   if (receipt.state !== 'ready' && receipt.state !== 'empty') unsafe(source, 'source is not complete');
+  requireNoErrorMarkers(receipt, source);
   const count = explicitCount(receipt.count, source);
   if (receipt.truncated !== false) unsafe(source, 'source is truncated or lacks an explicit truncation receipt');
   if ((receipt.state === 'empty') !== (count === 0)) unsafe(source, 'state and count disagree');
@@ -112,9 +142,10 @@ function validateAggregateState(value: unknown, count: number, source: 'analytic
   return expected;
 }
 
-function adaptAnalytics(value: unknown): Readonly<{ source: 'analytics'; state: CompleteSourceState; count: number; truncated: false }> {
+function adaptAnalytics(value: unknown, nowMs: number): AdaptedSourceReceipt<'analytics'> {
   const snapshot = sourceRecord(value, 'analytics');
-  explicitTimestamp(snapshot.generatedAtMs, 'analytics');
+  requireNoErrorMarkers(snapshot, 'analytics');
+  const sourceObservedAtMs = requireFreshSourceTimestamp(snapshot.generatedAtMs, 'analytics', nowMs);
   const sources = sourceRecord(snapshot.sources, 'analytics');
   const sourceKeys = Object.keys(sources).sort();
   const expectedKeys = [...ANALYTICS_SOURCE_NAMES].sort();
@@ -125,10 +156,14 @@ function adaptAnalytics(value: unknown): Readonly<{ source: 'analytics'; state: 
   const count = checkedTotal(receipts.map((receipt) => receipt.count), 'analytics');
   const state = validateAggregateState(snapshot.state, count, 'analytics');
   const quality = sourceRecord(snapshot.quality, 'analytics');
+  requireNoErrorMarkers(quality, 'analytics');
   if (quality.incomplete !== false || !Array.isArray(quality.errorCodes) || quality.errorCodes.length !== 0) {
     unsafe('analytics', 'quality receipt is incomplete');
   }
-  return Object.freeze({ source: 'analytics', state, count, truncated: false });
+  return Object.freeze({
+    receipt: Object.freeze({ source: 'analytics', state, count, truncated: false }),
+    sourceObservedAtMs,
+  });
 }
 
 function exactNamedReceipts(
@@ -171,12 +206,14 @@ function adaptReportRows(value: unknown): readonly Readonly<{ source: SafeReport
   }));
 }
 
-function adaptReports(value: unknown): Readonly<{
+function adaptReports(value: unknown, nowMs: number): AdaptedSourceReceipt<'reports'> & Readonly<{
   receipt: Readonly<{ source: 'reports'; state: CompleteSourceState; count: number; truncated: false }>;
   rows: readonly Readonly<{ source: SafeReportSource; category: string; screen: string }>[];
 }> {
   const queue = sourceRecord(value, 'reports');
-  explicitTimestamp(queue.fetchedAtMs, 'reports');
+  if (queue.ok !== true) unsafe('reports', 'explicit success receipt required');
+  requireNoErrorMarkers(queue, 'reports');
+  const sourceObservedAtMs = requireFreshSourceTimestamp(queue.fetchedAtMs, 'reports', nowMs);
   const rows = adaptReportRows(queue.items);
   const count = explicitCount(queue.count, 'reports');
   if (count !== rows.length) unsafe('reports', 'count does not match bounded rows');
@@ -188,20 +225,26 @@ function adaptReports(value: unknown): Readonly<{
   const state: CompleteSourceState = count === 0 ? 'empty' : 'ready';
   return Object.freeze({
     receipt: Object.freeze({ source: 'reports', state, count, truncated: false }),
+    sourceObservedAtMs,
     rows,
   });
 }
 
-function adaptAudit(value: unknown): Readonly<{ source: 'audit'; state: CompleteSourceState; count: number; truncated: false }> {
+function adaptAudit(value: unknown, nowMs: number): AdaptedSourceReceipt<'audit'> {
   const audit = sourceRecord(value, 'audit');
-  explicitTimestamp(audit.fetchedAtMs, 'audit');
+  if (audit.ok !== true) unsafe('audit', 'explicit success receipt required');
+  requireNoErrorMarkers(audit, 'audit');
+  const sourceObservedAtMs = requireFreshSourceTimestamp(audit.fetchedAtMs, 'audit', nowMs);
   if (!Array.isArray(audit.items) || audit.items.length > MAX_SOURCE_ROWS) unsafe('audit', 'bounded rows required');
   const count = explicitCount(audit.count, 'audit');
   if (count !== audit.items.length) unsafe('audit', 'count does not match bounded rows');
   const health = exactNamedReceipts(audit.sourceHealth, ['admin_log'], 'audit');
   if (health[0].count !== count) unsafe('audit', 'source count disagrees');
   const state = validateAggregateState(audit.state, count, 'audit');
-  return Object.freeze({ source: 'audit', state, count, truncated: false });
+  return Object.freeze({
+    receipt: Object.freeze({ source: 'audit', state, count, truncated: false }),
+    sourceObservedAtMs,
+  });
 }
 
 function requireCollectors(value: AgentOfficeInternalSourceCollectors): void {
@@ -233,12 +276,13 @@ export async function runAgentOfficeObservationFromInternalSources(
   } catch {
     unsafe('collectors', 'source collection failed');
   }
-  const analytics = adaptAnalytics(collected[0]);
-  const reports = adaptReports(collected[1]);
-  const audit = adaptAudit(collected[2]);
+  const analytics = adaptAnalytics(collected[0], observedAtMs);
+  const reports = adaptReports(collected[1], observedAtMs);
+  const audit = adaptAudit(collected[2], observedAtMs);
+  const validatedSources = Object.freeze([analytics, reports, audit]);
   const input = Object.freeze({
     observedAtMs,
-    sourceHealth: Object.freeze([analytics, reports.receipt, audit]),
+    sourceHealth: Object.freeze(validatedSources.map((source) => source.receipt)),
     rows: reports.rows,
   });
   return runAgentOfficeObservation(repository, input, () => observedAtMs);

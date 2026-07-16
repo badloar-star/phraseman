@@ -118,6 +118,7 @@ function completeReports(): Record<string, unknown> {
     context: { screen: 'lesson', dataId: `private-data-id-${index}` },
   }));
   return {
+    ok: true,
     state: 'ready',
     items,
     count: items.length,
@@ -134,6 +135,7 @@ function completeReports(): Record<string, unknown> {
 
 function completeAudit(): Record<string, unknown> {
   return {
+    ok: true,
     state: 'empty',
     items: [],
     count: 0,
@@ -236,6 +238,75 @@ describe('Agent Office trusted internal source adapters', () => {
 
     await expect(adapters.runAgentOfficeObservationFromInternalSources(repo, collectors({ reports }), () => 3_000))
       .rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(repo.transactionCalls).toBe(0);
+  });
+
+  test.each([
+    ['stale analytics', 'analytics', 2_000, 902_001],
+    ['stale reports', 'reports', 2_000, 902_001],
+    ['stale audit', 'audit', 2_000, 902_001],
+    ['future analytics', 'analytics', 63_001, 2_000],
+    ['future reports', 'reports', 63_001, 2_000],
+    ['future audit', 'audit', 63_001, 2_000],
+  ] as const)('rejects %s before opening the runner transaction', async (_label, source, sourceTimestampMs, nowMs) => {
+    const adapters = requireAdapters();
+    if (!adapters) return;
+    const repo = repository();
+    const fixture = source === 'analytics' ? completeAnalytics() : source === 'reports' ? completeReports() : completeAudit();
+    fixture[source === 'analytics' ? 'generatedAtMs' : 'fetchedAtMs'] = sourceTimestampMs;
+
+    await expect(adapters.runAgentOfficeObservationFromInternalSources(
+      repo,
+      collectors({ [source]: fixture }),
+      () => nowMs,
+    )).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(repo.transactionCalls).toBe(0);
+  });
+
+  test.each([
+    ['analytics', () => {
+      const fixture = completeAnalytics();
+      const sources = fixture.sources as Record<string, Record<string, unknown>>;
+      sources.users.errorCode = 'users_read_failed_private@example.com';
+      return fixture;
+    }],
+    ['reports', () => {
+      const fixture = completeReports();
+      const sourceHealth = fixture.sourceHealth as Record<string, unknown>[];
+      sourceHealth[0].error = 'report_read_failed_private@example.com';
+      return fixture;
+    }],
+    ['audit', () => {
+      const fixture = completeAudit();
+      const sourceHealth = fixture.sourceHealth as Record<string, unknown>[];
+      sourceHealth[0].error = 'audit_read_failed_private@example.com';
+      return fixture;
+    }],
+  ] as const)('rejects contradictory nested %s error markers without leaking them', async (source, fixture) => {
+    const adapters = requireAdapters();
+    if (!adapters) return;
+    const repo = repository();
+
+    await expect(adapters.runAgentOfficeObservationFromInternalSources(
+      repo,
+      collectors({ [source]: fixture() }),
+      () => 3_000,
+    )).rejects.toMatchObject({ code: 'failed-precondition', message: expect.not.stringContaining('@example.com') });
+    expect(repo.transactionCalls).toBe(0);
+  });
+
+  test.each(['reports', 'audit'] as const)('requires ok true from the existing %s source shape', async (source) => {
+    const adapters = requireAdapters();
+    if (!adapters) return;
+    const repo = repository();
+    const fixture = source === 'reports' ? completeReports() : completeAudit();
+    fixture.ok = false;
+
+    await expect(adapters.runAgentOfficeObservationFromInternalSources(
+      repo,
+      collectors({ [source]: fixture }),
+      () => 3_000,
+    )).rejects.toMatchObject({ code: 'failed-precondition' });
     expect(repo.transactionCalls).toBe(0);
   });
 

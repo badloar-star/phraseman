@@ -3711,7 +3711,10 @@ const validateEpisodePackageBoundary = (
     if (
       !isPlainObject(episode.graph) ||
       !isRecordArray((episode.graph as JsonObject).nodes) ||
-      ((episode.graph as JsonObject).nodes as JsonObject[]).length !== 9
+      ((episode.graph as JsonObject).nodes as JsonObject[]).length !== 9 ||
+      ((episode.graph as JsonObject).nodes as JsonObject[]).filter(
+        (node) => node.visible === true,
+      ).length !== 9
     ) {
       return [
         issue("checkpoint_node_count_policy_mismatch", "$.episode.graph.nodes"),
@@ -3744,6 +3747,38 @@ const validateEpisodePackageBoundary = (
     }
   }
   return [];
+};
+
+const collectLocalizedValueSets = (
+  value: unknown,
+  path: string,
+  output: Array<{ readonly path: string; readonly locales: readonly string[] }>,
+): void => {
+  if (Array.isArray(value)) {
+    if (
+      value.length > 0 &&
+      value.every(
+        (entry) =>
+          isPlainObject(entry) &&
+          isNonEmptyString(entry.locale) &&
+          typeof entry.value === "string",
+      )
+    ) {
+      output.push({
+        path,
+        locales: value.map((entry) => String((entry as JsonObject).locale)),
+      });
+    }
+    value.forEach((entry, index) =>
+      collectLocalizedValueSets(entry, `${path}[${index}]`, output),
+    );
+    return;
+  }
+  if (isPlainObject(value)) {
+    for (const [key, entry] of Object.entries(value)) {
+      collectLocalizedValueSets(entry, `${path}.${key}`, output);
+    }
+  }
 };
 
 const detectDirectedCycle = (
@@ -4988,18 +5023,15 @@ const validateDelayedAndLearning = (
         ),
       ];
     }
-    if (
-      edge.requiredState === "independent_evidence" &&
-      source.sourceEpisodeId !== episode.episodeId
-    ) {
+    if (edge.requiredState !== "exposed") {
       const hasExposure = prerequisiteEdges.some(
         (candidate) =>
           isPlainObject(candidate.from) &&
           candidate.from.sourceEpisodeId === source.sourceEpisodeId &&
+          candidate.from.kind === source.kind &&
           candidate.from.id === source.id &&
           candidate.toObjectiveId === edge.toObjectiveId &&
-          (candidate.requiredState === "exposed" ||
-            candidate.requiredState === "supported_success"),
+          candidate.requiredState === "exposed",
       );
       if (!hasExposure) {
         return [
@@ -5416,6 +5448,22 @@ const validateLearningPackageInternal = (
     registry,
   );
   if (!curriculumResult.ok) return fail(curriculumResult.issues);
+
+  const requiredLocales = (root.curriculum as JsonObject)
+    .requiredLocales as string[];
+  const localizedValueSets: Array<{
+    readonly path: string;
+    readonly locales: readonly string[];
+  }> = [];
+  collectLocalizedValueSets(root.episode, "$.episode", localizedValueSets);
+  for (const localized of localizedValueSets) {
+    if (
+      uniqueSecondIndex(localized.locales) >= 0 ||
+      !sameStringSet([...localized.locales], requiredLocales)
+    ) {
+      return fail([issue("curriculum_locale_closure_invalid", localized.path)]);
+    }
+  }
 
   const learningDesign = episode.learningDesign as JsonObject;
   const objectiveIds = new Set(

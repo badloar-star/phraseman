@@ -3107,8 +3107,8 @@
       "contentHash": "1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a"
     },
     "studyTarget": "en",
-    "learnerSourceLocale": "ru",
-    "requiredLocales": ["en", "ru"],
+    "learnerSourceLocale": "en",
+    "requiredLocales": ["en"],
     "chapters": [
       { "chapterId": "chapter-01", "ordinal": 1, "episodeIds": ["ep-01"] }
     ],

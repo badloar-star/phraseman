@@ -2013,6 +2013,31 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("requires exposure before same-episode assessed prerequisite outcomes", () => {
+    const candidate = clone(validFixture);
+    const design = (candidate.episode as JsonRecord)
+      .learningDesign as JsonRecord;
+    design.prerequisiteEdges = [
+      {
+        from: {
+          kind: "outcome",
+          id: "outcome.ep01.introduction",
+          sourceEpisodeId: "ep-01",
+        },
+        toObjectiveId: "objective.introduce-self",
+        requiredState: "supported_success",
+      },
+    ];
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "prerequisite_exposure_missing",
+        path: "$.episode.learningDesign.prerequisiteEdges[0]",
+      },
+    ]);
+  });
+
   test("does not trust attacker-controlled support rule catalogs", () => {
     const candidate = clone(validFixture);
     const dependencies = candidate.dependencies as JsonRecord;
@@ -2624,6 +2649,20 @@ describe("Learning V2 Task 1.2 — scope-dependent curriculum", () => {
       {
         code: "curriculum_locale_closure_invalid",
         path: "$.curriculum.requiredLocales",
+      },
+    ]);
+  });
+
+  test("requires every learner-visible localized field to match requiredLocales", () => {
+    const candidate = clone(validFixture);
+    const curriculum = candidate.curriculum as JsonRecord;
+    curriculum.requiredLocales = ["en", "ru"];
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "curriculum_locale_closure_invalid",
+        path: "$.episode.title",
       },
     ]);
   });

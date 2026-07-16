@@ -41,15 +41,22 @@ interface V2AttemptEventBodyBase {
   readonly provenance: V2AttemptProvenance;
   readonly inputBinding: V2AttemptInputBinding;
 }
+export type V2GraphAttemptEventBody = V2AttemptEventBodyBase & {
+  readonly attemptSurface: { readonly kind: "episode_graph_node" };
+  readonly learningTupleDispositions: readonly V2GraphTupleDisposition[];
+};
+export interface V2DelayedClientCandidate {
+  readonly candidateId: string;
+  readonly candidateOutcome: V2AttemptOutcome;
+  readonly candidateEvidence: V2AttemptEvidence;
+}
+export type V2DelayedAttemptEventBody = V2AttemptEventBodyBase & {
+  readonly attemptSurface: { readonly kind: "scheduled_delayed_probe" };
+  readonly delayedCandidates: readonly V2DelayedClientCandidate[];
+};
 export type V2AttemptEventBody =
-  | (V2AttemptEventBodyBase & {
-      readonly attemptSurface: { readonly kind: "episode_graph_node" };
-      readonly learningTupleDispositions: readonly V2GraphTupleDisposition[];
-    })
-  | (V2AttemptEventBodyBase & {
-      readonly attemptSurface: { readonly kind: "scheduled_delayed_probe" };
-      readonly learningTupleDispositions: readonly V2GraphTupleDisposition[];
-    });
+  | V2GraphAttemptEventBody
+  | V2DelayedAttemptEventBody;
 export interface CanonicalAttemptRef {
   readonly schemaVersion: "v2-attempt-ref.v1";
   readonly opId: string;
@@ -69,6 +76,14 @@ const postHashAttemptBodyKeys = [
   "attemptBodyHash",
   "canonicalAttemptRef",
 ] as const;
+const delayedServerOwnedKeys = [
+  "learningTupleDispositions",
+  "terminalDisposition",
+  "terminalResolution",
+  "serverResolution",
+  "serverResolutionRef",
+  "timingReceiptRef",
+] as const;
 
 const isRecord = (value: unknown): value is Readonly<Record<string, unknown>> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -78,17 +93,45 @@ const hasOneOf = <T extends readonly string[]>(
   allowed: T,
 ): value is T[number] => typeof value === "string" && allowed.includes(value);
 
+const isValidEvidence = (value: unknown): value is V2AttemptEvidence =>
+  isRecord(value) &&
+  typeof value.hintsUsed === "number" &&
+  Number.isInteger(value.hintsUsed) &&
+  value.hintsUsed >= 0;
+
+const hasForbiddenOwnKey = (
+  value: Readonly<Record<string, unknown>>,
+  keys: readonly string[],
+): boolean =>
+  keys.some((key) => Object.prototype.hasOwnProperty.call(value, key));
+
+const isValidDelayedCandidate = (
+  value: unknown,
+): value is V2DelayedClientCandidate =>
+  isRecord(value) &&
+  !hasForbiddenOwnKey(value, delayedServerOwnedKeys) &&
+  typeof value.candidateId === "string" &&
+  value.candidateId.trim().length > 0 &&
+  isRecord(value.candidateOutcome) &&
+  hasOneOf(value.candidateOutcome.resultCode, [
+    "CORRECT",
+    "WRONG",
+    "COMPLETED",
+    "SKIPPED",
+    "PASS_CONFIDENT",
+    "NEEDS_WORK_CONFIDENT",
+    "UNCERTAIN",
+    "INVALID_AUDIO_OR_SYSTEM",
+  ] as const) &&
+  isValidEvidence(value.candidateEvidence);
+
 /**
  * Accepts only the hash-free canonical body.  Post-hash chain fields belong to
  * a later materialization envelope and are never silently removed here.
  */
 export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
   if (!isRecord(input)) throw new Error("attempt_body_invalid");
-  if (
-    postHashAttemptBodyKeys.some((key) =>
-      Object.prototype.hasOwnProperty.call(input, key),
-    )
-  ) {
+  if (hasForbiddenOwnKey(input, postHashAttemptBodyKeys)) {
     throw new Error("attempt_body_post_hash_field_forbidden");
   }
 
@@ -100,6 +143,7 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
   if (
     input.schemaVersion !== "v2-attempt-body.v1" ||
     typeof input.opId !== "string" ||
+    input.opId.trim().length === 0 ||
     !isRecord(surface) ||
     !hasOneOf(surface.kind, [
       "episode_graph_node",
@@ -116,8 +160,7 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
       "UNCERTAIN",
       "INVALID_AUDIO_OR_SYSTEM",
     ] as const) ||
-    !isRecord(evidence) ||
-    typeof evidence.hintsUsed !== "number" ||
+    !isValidEvidence(evidence) ||
     !isRecord(provenance) ||
     !hasOneOf(provenance.phase, [
       "encounter_build",
@@ -132,12 +175,35 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
       "word_bank",
       "microphone",
       "accessibility_alternative",
-    ] as const) ||
-    !Array.isArray(input.learningTupleDispositions)
+    ] as const)
   ) {
     throw new Error("attempt_body_invalid");
   }
-  return Object.freeze({ ...input }) as unknown as V2AttemptEventBody;
+
+  if (surface.kind === "episode_graph_node") {
+    if (provenance.phase === "delayed_probe") {
+      throw new Error("attempt_body_surface_phase_mismatch");
+    }
+    if (
+      Object.prototype.hasOwnProperty.call(input, "delayedCandidates") ||
+      !Array.isArray(input.learningTupleDispositions)
+    ) {
+      throw new Error("attempt_body_invalid");
+    }
+    return Object.freeze({ ...input }) as unknown as V2GraphAttemptEventBody;
+  }
+
+  if (provenance.phase !== "delayed_probe") {
+    throw new Error("attempt_body_surface_phase_mismatch");
+  }
+  if (
+    hasForbiddenOwnKey(input, delayedServerOwnedKeys) ||
+    !Array.isArray(input.delayedCandidates) ||
+    !input.delayedCandidates.every(isValidDelayedCandidate)
+  ) {
+    throw new Error("attempt_body_delayed_server_field_forbidden");
+  }
+  return Object.freeze({ ...input }) as unknown as V2DelayedAttemptEventBody;
 };
 
 export const buildCanonicalAttemptRef = (

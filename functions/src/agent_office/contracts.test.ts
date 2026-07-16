@@ -18,6 +18,7 @@ import {
 } from './projection';
 
 const HASH = 'a'.repeat(64);
+const SAFE_SOURCE_REF = `cohort:sha256:${'d'.repeat(64)}`;
 
 function validCase() {
   return {
@@ -28,7 +29,7 @@ function validCase() {
     summary: 'Retention signal for a redacted cohort.',
     sourceHealth: [{ source: 'analytics', state: 'ready', observedAtMs: 2_000_000_000_000 }],
     confidence: { score: 0.82, basis: 'complete cohort window', insufficientEvidence: false },
-    sourceRefs: [{ source: 'analytics', ref: 'cohort:opaque-123' }],
+    sourceRefs: [{ source: 'analytics', ref: SAFE_SOURCE_REF }],
     currentRecommendation: { recommendationId: 'rec-1', revision: 2, contentHash: HASH },
     createdAtMs: 1_999_999_000_000,
     updatedAtMs: 2_000_000_000_000,
@@ -43,7 +44,7 @@ function validRecommendation() {
     caseId: 'case-1',
     revision: 2,
     contentHash: HASH,
-    evidence: [{ summary: 'D7 retention changed.', sourceRef: 'cohort:opaque-123', observedAtMs: 2_000_000_000_000 }],
+    evidence: [{ summary: 'D7 retention changed.', sourceRef: SAFE_SOURCE_REF, observedAtMs: 2_000_000_000_000 }],
     risk: { level: 'low', summary: 'Preparation is isolated and reversible.' },
     cost: { currency: 'EUR', estimatedMinor: 0, summary: 'No external spend.' },
     rollback: { possible: true, plan: 'Discard the prepared branch.' },
@@ -64,6 +65,14 @@ describe('Agent Office immutable contracts', () => {
     expect(() => parseAgentCase({ ...validCase(), rawEmailBody: 'private@example.com' })).toThrow('unknown field');
     expect(() => parseAgentRecommendation({ ...validRecommendation(), scope: 'execute' })).toThrow('scope');
     expect(() => parseAgentRecommendation({ ...validRecommendation(), contentHash: 'short' })).toThrow('contentHash');
+    expect(() => parseAgentCase({
+      ...validCase(),
+      sourceRefs: [{ source: 'analytics', ref: '353871234567' }],
+    })).toThrow('opaque');
+    expect(() => parseAgentRecommendation({
+      ...validRecommendation(),
+      evidence: [{ summary: 'D7 retention changed.', sourceRef: 'private@example.com', observedAtMs: 2_000_000_000_000 }],
+    })).toThrow('opaque');
   });
 
   test('allows only declared monotonic case transitions', () => {
@@ -159,25 +168,37 @@ describe('Agent Office safe projections', () => {
       ownerEmail: 'owner@example.com',
       rawBody: 'private payload',
       summary: 'Contact private@example.com or +353 87 123 4567.',
+      confidence: { score: 0.82, basis: 'Owner private@example.com called +353 87 123 4567.', insufficientEvidence: false },
+      sourceRefs: [
+        { source: 'analytics', ref: SAFE_SOURCE_REF },
+        { source: 'analytics', ref: 'private@example.com' },
+        { source: 'analytics', ref: '353871234567' },
+      ],
     });
     expect(projectedCase).not.toHaveProperty('ownerEmail');
     expect(projectedCase).not.toHaveProperty('rawBody');
     expect(JSON.stringify(projectedCase)).not.toContain('private@example.com');
     expect(JSON.stringify(projectedCase)).not.toContain('123 4567');
+    expect(projectedCase.sourceRefs).toEqual([{ source: 'analytics', ref: SAFE_SOURCE_REF }]);
 
     const projectedRecommendation = projectAgentRecommendation('rec-1', {
       ...validRecommendation(),
       prompt: 'malicious raw prompt',
       evidence: [{
         summary: 'User private@example.com reported +353 87 123 4567.',
-        sourceRef: 'cohort:opaque-123',
+        sourceRef: '353871234567',
         observedAtMs: 2_000_000_000_000,
         rawPayload: 'secret',
       }],
+      risk: { level: 'low', summary: 'Risk owner private@example.com +353 87 123 4567.' },
+      cost: { currency: 'EUR', estimatedMinor: 0, summary: 'Cost owner private@example.com +353 87 123 4567.' },
+      rollback: { possible: true, plan: 'Call private@example.com at +353 87 123 4567.' },
     });
     expect(projectedRecommendation).not.toHaveProperty('prompt');
     expect(JSON.stringify(projectedRecommendation)).not.toContain('private@example.com');
+    expect(JSON.stringify(projectedRecommendation)).not.toContain('123 4567');
     expect(JSON.stringify(projectedRecommendation)).not.toContain('rawPayload');
+    expect(projectedRecommendation.evidence[0].sourceRef).toBeNull();
   });
 
   test('never exposes task internals or audit owner identifiers', () => {

@@ -174,8 +174,12 @@ function identifier(value: unknown, label: string): string {
 
 function opaqueRef(value: unknown, label: string): string {
   const result = text(value, label, 240);
-  if (!/^[A-Za-z0-9][A-Za-z0-9._:/-]*$/.test(result)) invalid(`${label} must be opaque`);
+  if (!isSafeOpaqueRef(result)) invalid(`${label} must be opaque`);
   return result;
+}
+
+export function isSafeOpaqueRef(value: unknown): value is string {
+  return typeof value === 'string' && /^[a-z][a-z0-9_]{1,31}:sha256:[a-f0-9]{64}$/.test(value);
 }
 
 function integer(value: unknown, label: string, minimum = 0): number {
@@ -200,6 +204,24 @@ function literal<T extends string>(value: unknown, values: readonly T[], label: 
 
 export function sha256(value: string): string {
   return createHash('sha256').update(value, 'utf8').digest('hex');
+}
+
+function canonicalJson(value: unknown): string {
+  if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
+  if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  if (isRecord(value)) {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(',')}}`;
+  }
+  invalid('canonical recommendation content contains a non-JSON value');
+}
+
+export function agentRecommendationContentHash(recommendation: AgentRecommendation): string {
+  const { contentHash: _declaredHash, ...content } = recommendation;
+  return sha256(canonicalJson(content));
 }
 
 function hash(value: unknown, label: string): string {

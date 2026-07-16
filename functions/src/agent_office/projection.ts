@@ -1,4 +1,5 @@
 import {
+  isSafeOpaqueRef,
   parseAgentAuditEvent,
   parseAgentCase,
   parseAgentOfficeControl,
@@ -12,6 +13,15 @@ import {
 } from './contracts';
 
 type Row = Record<string, unknown>;
+const REDACTED_OPAQUE_REF = `redacted:sha256:${'0'.repeat(64)}`;
+
+export type SafeAgentRecommendation = Omit<AgentRecommendation, 'evidence'> & Readonly<{
+  evidence: readonly Readonly<{
+    summary: string;
+    sourceRef: string | null;
+    observedAtMs: number;
+  }>[];
+}>;
 
 function redactText(value: unknown): unknown {
   if (typeof value !== 'string') return value;
@@ -21,6 +31,7 @@ function redactText(value: unknown): unknown {
 }
 
 export function projectAgentCase(id: string, raw: Row): AgentCase {
+  const confidence = raw.confidence as Row;
   return parseAgentCase({
     schemaVersion: raw.schemaVersion,
     caseId: raw.caseId ?? id,
@@ -31,10 +42,14 @@ export function projectAgentCase(id: string, raw: Row): AgentCase {
       const value = item as Row;
       return { source: value.source, state: value.state, observedAtMs: value.observedAtMs };
     }) : raw.sourceHealth,
-    confidence: raw.confidence,
-    sourceRefs: Array.isArray(raw.sourceRefs) ? raw.sourceRefs.map((item) => {
+    confidence: {
+      score: confidence?.score,
+      basis: redactText(confidence?.basis),
+      insufficientEvidence: confidence?.insufficientEvidence,
+    },
+    sourceRefs: Array.isArray(raw.sourceRefs) ? raw.sourceRefs.flatMap((item) => {
       const value = item as Row;
-      return { source: value.source, ref: value.ref };
+      return isSafeOpaqueRef(value.ref) ? [{ source: value.source, ref: value.ref }] : [];
     }) : raw.sourceRefs,
     currentRecommendation: raw.currentRecommendation,
     createdAtMs: raw.createdAtMs,
@@ -43,19 +58,29 @@ export function projectAgentCase(id: string, raw: Row): AgentCase {
   });
 }
 
-export function projectAgentRecommendation(id: string, raw: Row): AgentRecommendation {
+export function projectAgentRecommendation(id: string, raw: Row): SafeAgentRecommendation {
   const risk = raw.risk as Row;
   const cost = raw.cost as Row;
   const rollback = raw.rollback as Row;
-  return parseAgentRecommendation({
+  const safeSourceRefs = Array.isArray(raw.evidence)
+    ? raw.evidence.map((item) => {
+      const value = item as Row;
+      return isSafeOpaqueRef(value.sourceRef) ? value.sourceRef : null;
+    })
+    : [];
+  const parsed = parseAgentRecommendation({
     schemaVersion: raw.schemaVersion,
     recommendationId: raw.recommendationId ?? id,
     caseId: raw.caseId,
     revision: raw.revision,
     contentHash: raw.contentHash,
-    evidence: Array.isArray(raw.evidence) ? raw.evidence.map((item) => {
+    evidence: Array.isArray(raw.evidence) ? raw.evidence.map((item, index) => {
       const value = item as Row;
-      return { summary: redactText(value.summary), sourceRef: value.sourceRef, observedAtMs: value.observedAtMs };
+      return {
+        summary: redactText(value.summary),
+        sourceRef: safeSourceRefs[index] ?? REDACTED_OPAQUE_REF,
+        observedAtMs: value.observedAtMs,
+      };
     }) : raw.evidence,
     risk: { level: risk?.level, summary: redactText(risk?.summary) },
     cost: { currency: cost?.currency, estimatedMinor: cost?.estimatedMinor, summary: redactText(cost?.summary) },
@@ -64,6 +89,13 @@ export function projectAgentRecommendation(id: string, raw: Row): AgentRecommend
     scope: raw.scope,
     validUntilMs: raw.validUntilMs,
     createdAtMs: raw.createdAtMs,
+  });
+  return Object.freeze({
+    ...parsed,
+    evidence: Object.freeze(parsed.evidence.map((item, index) => Object.freeze({
+      ...item,
+      sourceRef: safeSourceRefs[index] ?? null,
+    }))),
   });
 }
 

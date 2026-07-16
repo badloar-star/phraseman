@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
 import { AGENT_OFFICE_SCHEMA_VERSION, approvalDocumentId } from './contracts';
 import {
@@ -9,12 +10,31 @@ import {
 } from './ledger';
 
 const HASH = 'a'.repeat(64);
+const SAFE_SOURCE_REF = `cohort:sha256:${'d'.repeat(64)}`;
 const OWNER = { uid: 'owner-uid', token: { admin: true, adminRole: 'owner' } };
+
+function canonicalJson(value: unknown): string {
+  if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
+  if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  if (typeof value === 'object') {
+    const row = value as Record<string, unknown>;
+    return `{${Object.keys(row).sort().map((key) => `${JSON.stringify(key)}:${canonicalJson(row[key])}`).join(',')}}`;
+  }
+  throw new Error('non-canonical test value');
+}
+
+function recommendationContentHash(value: Record<string, unknown>): string {
+  const { contentHash: _declaredHash, ...content } = value;
+  return createHash('sha256').update(canonicalJson(content), 'utf8').digest('hex');
+}
 
 class MemoryRepository implements AgentOfficeRepository {
   readonly documents = new Map<string, AgentOfficeDocument>();
   readonly writes: Array<{ operation: 'create' | 'update' | 'set'; path: string }> = [];
   transactionCount = 0;
+  retryNextTransaction = false;
+  onRetry: (() => void) | null = null;
 
   seed(path: string, data: Record<string, unknown>) {
     this.documents.set(path, { id: path.split('/').at(-1) || '', data: structuredClone(data) });
@@ -38,35 +58,59 @@ class MemoryRepository implements AgentOfficeRepository {
 
   async runTransaction<T>(body: (transaction: AgentOfficeTransaction) => Promise<T>): Promise<T> {
     this.transactionCount += 1;
-    const staged = new Map(this.documents);
-    const pendingWrites: Array<{ operation: 'create' | 'update' | 'set'; path: string }> = [];
-    const transaction: AgentOfficeTransaction = {
-      get: async (path) => staged.get(path) ?? null,
-      create: (path, data) => {
-        if (staged.has(path)) throw new HttpsError('already-exists', 'document already exists');
-        staged.set(path, { id: path.split('/').at(-1) || '', data: structuredClone(data) });
-        pendingWrites.push({ operation: 'create', path });
-      },
-      update: (path, data) => {
-        const current = staged.get(path);
-        if (!current) throw new HttpsError('not-found', 'document missing');
-        staged.set(path, { ...current, data: { ...current.data, ...structuredClone(data) } });
-        pendingWrites.push({ operation: 'update', path });
-      },
-      set: (path, data) => {
-        staged.set(path, { id: path.split('/').at(-1) || '', data: structuredClone(data) });
-        pendingWrites.push({ operation: 'set', path });
-      },
-    };
-    const result = await body(transaction);
-    this.documents.clear();
-    staged.forEach((value, key) => this.documents.set(key, value));
-    this.writes.push(...pendingWrites);
-    return result;
+    const attempts = this.retryNextTransaction ? 2 : 1;
+    this.retryNextTransaction = false;
+    for (let attempt = 0; attempt < attempts; attempt += 1) {
+      const staged = new Map(this.documents);
+      const pendingWrites: Array<{ operation: 'create' | 'update' | 'set'; path: string }> = [];
+      const transaction: AgentOfficeTransaction = {
+        get: async (path) => staged.get(path) ?? null,
+        create: (path, data) => {
+          if (staged.has(path)) throw new HttpsError('already-exists', 'document already exists');
+          staged.set(path, { id: path.split('/').at(-1) || '', data: structuredClone(data) });
+          pendingWrites.push({ operation: 'create', path });
+        },
+        update: (path, data) => {
+          const current = staged.get(path);
+          if (!current) throw new HttpsError('not-found', 'document missing');
+          staged.set(path, { ...current, data: { ...current.data, ...structuredClone(data) } });
+          pendingWrites.push({ operation: 'update', path });
+        },
+        set: (path, data) => {
+          staged.set(path, { id: path.split('/').at(-1) || '', data: structuredClone(data) });
+          pendingWrites.push({ operation: 'set', path });
+        },
+      };
+      const result = await body(transaction);
+      if (attempt + 1 < attempts) {
+        this.onRetry?.();
+        continue;
+      }
+      this.documents.clear();
+      staged.forEach((value, key) => this.documents.set(key, value));
+      this.writes.push(...pendingWrites);
+      return result;
+    }
+    throw new Error('unreachable transaction attempt');
   }
 }
 
 function seedDecision(repo: MemoryRepository, nowMs = 2_000_000_000_000) {
+  const recommendation = {
+    schemaVersion: 1,
+    recommendationId: 'rec-1',
+    caseId: 'case-1',
+    revision: 2,
+    evidence: [{ summary: 'Bounded evidence.', sourceRef: SAFE_SOURCE_REF, observedAtMs: nowMs - 1000 }],
+    risk: { level: 'low', summary: 'Preparation only.' },
+    cost: { currency: 'EUR', estimatedMinor: 0, summary: 'No spend.' },
+    rollback: { possible: true, plan: 'Discard prepared branch.' },
+    actionType: 'code_change_prepare',
+    scope: 'prepare_only',
+    validUntilMs: nowMs + 100_000,
+    createdAtMs: nowMs - 1000,
+  };
+  const contentHash = recommendationContentHash(recommendation);
   repo.seed('agent_cases/case-1', {
     schemaVersion: 1,
     caseId: 'case-1',
@@ -75,28 +119,30 @@ function seedDecision(repo: MemoryRepository, nowMs = 2_000_000_000_000) {
     summary: 'Redacted case summary.',
     sourceHealth: [{ source: 'analytics', state: 'ready', observedAtMs: nowMs - 1000 }],
     confidence: { score: 0.8, basis: 'complete window', insufficientEvidence: false },
-    sourceRefs: [{ source: 'analytics', ref: 'cohort:opaque-123' }],
-    currentRecommendation: { recommendationId: 'rec-1', revision: 2, contentHash: HASH },
+    sourceRefs: [{ source: 'analytics', ref: SAFE_SOURCE_REF }],
+    currentRecommendation: { recommendationId: 'rec-1', revision: 2, contentHash },
     createdAtMs: nowMs - 10_000,
     updatedAtMs: nowMs - 1_000,
     retentionUntilMs: nowMs + 10_000_000,
   });
-  repo.seed('agent_recommendations/case-1__r2', {
-    schemaVersion: 1,
-    recommendationId: 'rec-1',
-    caseId: 'case-1',
-    revision: 2,
-    contentHash: HASH,
-    evidence: [{ summary: 'Bounded evidence.', sourceRef: 'cohort:opaque-123', observedAtMs: nowMs - 1000 }],
-    risk: { level: 'low', summary: 'Preparation only.' },
-    cost: { currency: 'EUR', estimatedMinor: 0, summary: 'No spend.' },
-    rollback: { possible: true, plan: 'Discard prepared branch.' },
-    actionType: 'code_change_prepare',
-    scope: 'prepare_only',
-    validUntilMs: nowMs + 100_000,
-    createdAtMs: nowMs - 1000,
-  });
+  repo.seed('agent_recommendations/case-1__r2', { ...recommendation, contentHash });
+  return contentHash;
 }
+
+const DEFAULT_RECOMMENDATION_HASH = recommendationContentHash({
+  schemaVersion: 1,
+  recommendationId: 'rec-1',
+  caseId: 'case-1',
+  revision: 2,
+  evidence: [{ summary: 'Bounded evidence.', sourceRef: SAFE_SOURCE_REF, observedAtMs: 1_999_999_999_000 }],
+  risk: { level: 'low', summary: 'Preparation only.' },
+  cost: { currency: 'EUR', estimatedMinor: 0, summary: 'No spend.' },
+  rollback: { possible: true, plan: 'Discard prepared branch.' },
+  actionType: 'code_change_prepare',
+  scope: 'prepare_only',
+  validUntilMs: 2_000_000_100_000,
+  createdAtMs: 1_999_999_999_000,
+});
 
 function decisionInput(overrides: Record<string, unknown> = {}) {
   return {
@@ -104,7 +150,7 @@ function decisionInput(overrides: Record<string, unknown> = {}) {
     expectedCaseRevision: 3,
     recommendationId: 'rec-1',
     recommendationRevision: 2,
-    recommendationContentHash: HASH,
+    recommendationContentHash: DEFAULT_RECOMMENDATION_HASH,
     decision: 'approve',
     reason: 'Prepare the isolated change.',
     idempotencyKey: 'decision-key-12345678',
@@ -126,7 +172,7 @@ describe('Agent Office owner decision transaction', () => {
       decision: 'approve',
       ownerUid: 'owner-uid',
       recommendationRevision: 2,
-      recommendationContentHash: HASH,
+      recommendationContentHash: DEFAULT_RECOMMENDATION_HASH,
       caseRevisionBefore: 3,
       caseRevisionAfter: 4,
       scope: 'prepare_only',
@@ -172,7 +218,45 @@ describe('Agent Office owner decision transaction', () => {
     const recommendation = repo.documents.get('agent_recommendations/case-1__r2');
     if (!recommendation) throw new Error('fixture missing');
     recommendation.data.validUntilMs = 1_999_999_999_999;
+    recommendation.data.contentHash = recommendationContentHash(recommendation.data);
+    const agentCase = repo.documents.get('agent_cases/case-1');
+    if (!agentCase) throw new Error('case fixture missing');
+    agentCase.data.currentRecommendation = {
+      recommendationId: 'rec-1',
+      revision: 2,
+      contentHash: recommendation.data.contentHash,
+    };
     const ledger = new AgentOfficeLedger(repo, () => 2_000_000_000_000);
+
+    await expect(ledger.decideRecommendation(OWNER, decisionInput({
+      recommendationContentHash: recommendation.data.contentHash,
+    }))).rejects.toThrow('recommendation expired');
+    expect(repo.writes).toHaveLength(0);
+  });
+
+  test('rejects content mutated without updating the declared canonical hash', async () => {
+    const repo = new MemoryRepository();
+    seedDecision(repo);
+    const recommendation = repo.documents.get('agent_recommendations/case-1__r2');
+    if (!recommendation) throw new Error('fixture missing');
+    recommendation.data.evidence = [{
+      summary: 'Mutated evidence with the old declared hash.',
+      sourceRef: SAFE_SOURCE_REF,
+      observedAtMs: 1_999_999_999_000,
+    }];
+    const ledger = new AgentOfficeLedger(repo, () => 2_000_000_000_000);
+
+    await expect(ledger.decideRecommendation(OWNER, decisionInput())).rejects.toThrow('canonical contentHash mismatch');
+    expect(repo.writes).toHaveLength(0);
+  });
+
+  test('samples time again when Firestore retries across the recommendation deadline', async () => {
+    const repo = new MemoryRepository();
+    seedDecision(repo);
+    repo.retryNextTransaction = true;
+    let nowMs = 2_000_000_099_999;
+    repo.onRetry = () => { nowMs = 2_000_000_100_000; };
+    const ledger = new AgentOfficeLedger(repo, () => nowMs);
 
     await expect(ledger.decideRecommendation(OWNER, decisionInput())).rejects.toThrow('recommendation expired');
     expect(repo.writes).toHaveLength(0);
@@ -277,7 +361,7 @@ describe('Agent Office global kill switch', () => {
       idempotencyKey: 'control-key-old-1234',
     };
     const first = await ledger.setKillSwitch(OWNER, firstInput);
-    await ledger.setKillSwitch(OWNER, {
+    const current = await ledger.setKillSwitch(OWNER, {
       enabled: false,
       expectedRevision: 1,
       reason: 'Owner explicitly resumes observation.',
@@ -285,7 +369,12 @@ describe('Agent Office global kill switch', () => {
     });
     const writeCount = repo.writes.length;
 
-    await expect(ledger.setKillSwitch(OWNER, firstInput)).resolves.toEqual({ ...first, idempotent: true });
+    await expect(ledger.setKillSwitch(OWNER, firstInput)).resolves.toEqual({
+      ok: true,
+      idempotent: true,
+      operation: { revision: 1, killSwitchEnabled: true },
+      control: current.control,
+    });
     expect(repo.writes).toHaveLength(writeCount);
   });
 });

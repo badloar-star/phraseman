@@ -4,6 +4,7 @@ import { requireAgentOfficeOwner, requireAgentOfficeReader, type AgentOfficeAuth
 import {
   AGENT_OFFICE_SCHEMA_VERSION,
   AGENT_OFFICE_SCOPE,
+  agentRecommendationContentHash,
   approvalDocumentId,
   assertAgentCaseTransition,
   assertExactKeys,
@@ -237,8 +238,32 @@ function controlResult(control: AgentOfficeControl, idempotent: boolean) {
   return Object.freeze({
     ok: true as const,
     idempotent,
+    operation: Object.freeze({ revision: control.revision, killSwitchEnabled: control.killSwitchEnabled }),
     control: projectAgentOfficeControl(control as unknown as Record<string, unknown>),
   });
+}
+
+function currentControlProjection(document: AgentOfficeDocument | null) {
+  if (!document) {
+    return Object.freeze({
+      controlId: 'global' as const,
+      killSwitchEnabled: true,
+      revision: 0,
+      state: 'missing_fail_closed' as const,
+      lastChangedAtMs: null,
+    });
+  }
+  try {
+    return projectAgentOfficeControl(document.data);
+  } catch {
+    return Object.freeze({
+      controlId: 'global' as const,
+      killSwitchEnabled: true,
+      revision: 0,
+      state: 'invalid_fail_closed' as const,
+      lastChangedAtMs: null,
+    });
+  }
 }
 
 export class AgentOfficeLedger {
@@ -342,8 +367,6 @@ export class AgentOfficeLedger {
     const approvalPath = `agent_approvals/${approvalId}`;
     const casePath = `agent_cases/${input.caseId}`;
     const recommendationPath = `agent_recommendations/${input.caseId}__r${input.recommendationRevision}`;
-    const nowMs = this.now();
-
     return this.repository.runTransaction(async (transaction) => {
       const replayAuditDocument = await transaction.get(auditPath);
       const caseDocument = await transaction.get(casePath);
@@ -380,7 +403,11 @@ export class AgentOfficeLedger {
         throw new HttpsError('failed-precondition', 'recommendation identity mismatch');
       }
       if (recommendation.contentHash !== input.recommendationContentHash) throw new HttpsError('failed-precondition', 'recommendation contentHash mismatch');
+      if (recommendation.contentHash !== agentRecommendationContentHash(recommendation)) {
+        throw new HttpsError('failed-precondition', 'recommendation canonical contentHash mismatch');
+      }
       if (recommendation.scope !== AGENT_OFFICE_SCOPE) throw new HttpsError('failed-precondition', 'recommendation scope is not prepare_only');
+      const nowMs = this.now();
       if (recommendation.validUntilMs <= nowMs) throw new HttpsError('failed-precondition', 'recommendation expired');
 
       const nextStatus = input.decision === 'approve' ? 'approved' : 'cancelled';
@@ -431,20 +458,7 @@ export class AgentOfficeLedger {
   async getControl(auth: AgentOfficeAuth | null | undefined) {
     requireAgentOfficeReader(auth, 'briefing.read');
     const document = await this.repository.get('agent_office_control/global');
-    if (!document) {
-      return Object.freeze({
-        ok: true as const,
-        control: Object.freeze({ controlId: 'global' as const, killSwitchEnabled: true, revision: 0, state: 'missing_fail_closed' as const, lastChangedAtMs: null }),
-      });
-    }
-    try {
-      return Object.freeze({ ok: true as const, control: projectAgentOfficeControl(document.data) });
-    } catch {
-      return Object.freeze({
-        ok: true as const,
-        control: Object.freeze({ controlId: 'global' as const, killSwitchEnabled: true, revision: 0, state: 'invalid_fail_closed' as const, lastChangedAtMs: null }),
-      });
-    }
+    return Object.freeze({ ok: true as const, control: currentControlProjection(document) });
   }
 
   async setKillSwitch(auth: AgentOfficeAuth | null | undefined, value: unknown) {
@@ -469,13 +483,11 @@ export class AgentOfficeLedger {
         return Object.freeze({
           ok: true as const,
           idempotent: true,
-          control: Object.freeze({
-            controlId: 'global' as const,
-            killSwitchEnabled: replayAudit.killSwitchEnabled,
+          operation: Object.freeze({
             revision: replayAudit.controlRevision,
-            state: 'ready' as const,
-            lastChangedAtMs: replayAudit.occurredAtMs,
+            killSwitchEnabled: replayAudit.killSwitchEnabled,
           }),
+          control: currentControlProjection(controlDocument),
         });
       }
 

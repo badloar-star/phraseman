@@ -237,8 +237,26 @@ export const makeFirestoreV2AccessRepository = (
             data: snapshot.exists ? (snapshot.data() as R) : undefined,
           };
         },
-        create: (key: string, value: unknown) => transaction.create(db.doc(firestoreV2AccessPath(key)), value),
-        update: (key: string, value: unknown) => transaction.update(db.doc(firestoreV2AccessPath(key)), value as UpdateData<Record<string, unknown>>),
+        create: (key: string, value: unknown) => {
+          const ref = db.doc(firestoreV2AccessPath(key));
+          const candidate = transaction as unknown as {
+            create?: (document: unknown, data: unknown) => void;
+            set?: (document: unknown, data: unknown) => void;
+          };
+          if (candidate.create) candidate.create(ref, value);
+          else if (candidate.set) candidate.set(ref, value);
+          else throw new Error('access_firestore_create_unavailable');
+        },
+        update: (key: string, value: unknown) => {
+          const ref = db.doc(firestoreV2AccessPath(key));
+          const candidate = transaction as unknown as {
+            update?: (document: unknown, data: UpdateData<Record<string, unknown>>) => void;
+            set?: (document: unknown, data: unknown, options?: { merge?: boolean }) => void;
+          };
+          if (candidate.update) candidate.update(ref, value as UpdateData<Record<string, unknown>>);
+          else if (candidate.set) candidate.set(ref, value, { merge: true });
+          else throw new Error('access_firestore_update_unavailable');
+        },
       }),
     ),
 });

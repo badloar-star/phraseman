@@ -2661,6 +2661,23 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       },
     ]);
   });
+
+  test("requires alternate and reassessment nodes to be published as independent probes", () => {
+    const checkpoint = clone(validCheckpoint) as JsonRecord;
+    const context = clone(checkpointContext) as JsonRecord;
+    (context.independentProbeNodeIds as unknown[]).splice(
+      (context.independentProbeNodeIds as unknown[]).indexOf("cp.alt01"),
+      1,
+    );
+    expect(
+      issueSummary(validateV2CheckpointContract(checkpoint, context)),
+    ).toEqual([
+      {
+        code: "checkpoint_alternate_invalid",
+        path: "$.checkpoint.deterministicAlternateRoutes[0].alternateNodeId",
+      },
+    ]);
+  });
 });
 
 describe("Learning V2 Task 1.2 — compile and purity boundaries", () => {

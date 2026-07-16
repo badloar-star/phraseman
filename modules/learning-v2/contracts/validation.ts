@@ -5811,7 +5811,10 @@ const validateCheckpointInternal = (
     }
     if (
       context.nodePhases[String(route.primaryNodeId)] !== "independent_probe" ||
-      context.nodePhases[String(route.alternateNodeId)] !== "independent_probe"
+      context.nodePhases[String(route.alternateNodeId)] !==
+        "independent_probe" ||
+      !context.independentProbeNodeIds.includes(String(route.primaryNodeId)) ||
+      !context.independentProbeNodeIds.includes(String(route.alternateNodeId))
     ) {
       return fail([
         issue("checkpoint_alternate_invalid", `${routePath}.alternateNodeId`),
@@ -5888,7 +5891,10 @@ const validateCheckpointInternal = (
     if (
       context.nodePhases[String(route.repairNodeId)] !== "near_transfer" ||
       context.nodePhases[String(route.reassessmentNodeId)] !==
-        "independent_probe"
+        "independent_probe" ||
+      !context.independentProbeNodeIds.includes(
+        String(route.reassessmentNodeId),
+      )
     ) {
       return fail([
         issue(

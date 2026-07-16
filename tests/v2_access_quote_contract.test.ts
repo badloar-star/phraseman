@@ -56,4 +56,13 @@ describe('V2 access quote binding', () => {
       validateAccessQuoteForPurchase({ ...quote, totalCostShards: 5 }, request, 1_000),
     ).toEqual({ valid: false, reason: 'quote_invalid' });
   });
+
+  it('rejects forged over-cap quotes, negative time, whitespace IDs and null runtime input', () => {
+    expect(
+      validateAccessQuoteForPurchase({ ...quote, earnedDeficit: 4, accessStarsToApply: 4, totalCostShards: 12 }, request, 1_000),
+    ).toEqual({ valid: false, reason: 'quote_invalid' });
+    expect(validateAccessQuoteForPurchase(quote, request, -1)).toEqual({ valid: false, reason: 'quote_invalid' });
+    expect(validateAccessQuoteForPurchase({ ...quote, gateId: '   ' }, request, 1_000)).toEqual({ valid: false, reason: 'quote_invalid' });
+    expect(validateAccessQuoteForPurchase(null as unknown as V2AccessQuote, request, 1_000)).toEqual({ valid: false, reason: 'quote_invalid' });
+  });
 });

@@ -29,7 +29,7 @@ export type AccessQuoteValidation =
   | { readonly valid: true }
   | { readonly valid: false; readonly reason: 'quote_invalid' | 'quote_expired' | 'binding_mismatch' };
 
-const nonEmpty = (value: string): boolean => typeof value === 'string' && value.length > 0;
+const nonEmpty = (value: string): boolean => typeof value === 'string' && value.trim().length > 0;
 const safeNonNegative = (value: number): boolean => Number.isSafeInteger(value) && value >= 0;
 
 export const validateAccessQuoteForPurchase = (
@@ -37,6 +37,12 @@ export const validateAccessQuoteForPurchase = (
   request: V2AccessPurchaseRequest,
   nowMs: number,
 ): AccessQuoteValidation => {
+  if (
+    quote === null || typeof quote !== 'object' ||
+    request === null || typeof request !== 'object'
+  ) {
+    return { valid: false, reason: 'quote_invalid' };
+  }
   const quoteStrings = [
     quote.quoteId,
     quote.stableId,
@@ -58,10 +64,12 @@ export const validateAccessQuoteForPurchase = (
     quoteStrings.some((value) => !nonEmpty(value)) ||
     requestStrings.some((value) => !nonEmpty(value)) ||
     !Number.isSafeInteger(nowMs) ||
+    nowMs < 0 ||
     !Number.isSafeInteger(quote.expiresAtMs) ||
     quote.expiresAtMs <= 0 ||
     !safeNonNegative(quote.earnedDeficit) ||
     quote.earnedDeficit < 1 ||
+    quote.earnedDeficit > 3 ||
     quote.accessStarsToApply !== quote.earnedDeficit ||
     !Number.isSafeInteger(quote.unitPriceShards) ||
     quote.unitPriceShards < 1 ||

@@ -35,7 +35,6 @@ export type AppEventMap = {
   league_local_state_updated: undefined;
   league_crown_updated: { uid: string; expiresAt: number; crownCount?: number };
   /** Непрочитанные сообщения чата лиги изменились — обновить badge на главной/в клубе. */
-  league_chat_unread_changed: { roomKey: string; unreadCount: number };
   /** Локальное dev/admin inbox-сообщение изменилось — перечитать inbox без Firestore. */
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */

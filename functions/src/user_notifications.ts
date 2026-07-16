@@ -21,10 +21,6 @@ export type UserNotificationType =
   | 'activity_like'
   | 'friend_gift_received'
   | 'friend_gift_thanks'
-  | 'help_board_comment'
-  | 'help_board_reply'
-  | 'help_board_like'
-  | 'league_chat_reply'
   | 'report_reply';
 
 export interface UserNotificationInput {

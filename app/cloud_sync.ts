@@ -96,6 +96,8 @@ import {
   lessonBestScoreKey,
   lessonBonusHintsKey,
   lessonBonusGrantedKey,
+  legacyFreeLessonCapKey,
+  legacyFreeLessonMigrationKey,
   lessonIntroShownKey,
   lessonIrregularShardsGrantedKey,
   lessonListeningProgressKey,
@@ -138,6 +140,12 @@ import {
   userStatsKey,
   statsDailyBreakdownKey,
 } from './target_storage_keys';
+import {
+  LEGACY_FREE_LESSON_MIGRATION_COMPLETE,
+  LEGACY_FREE_LESSON_MIN,
+  migrateLegacyFreeLessonAccessForAllTargets,
+  normalizeLegacyFreeLessonCap,
+} from './legacy_free_lesson_access';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -166,6 +174,8 @@ const GRAMMAR_HINT_STORAGE_IDS = ['grammar_hint_articles', 'grammar_hint_some_an
 
 export const FRENCH_TARGET_SYNC_KEYS = [
   unlockedLessonsKey('fr'),
+  legacyFreeLessonCapKey('fr'),
+  legacyFreeLessonMigrationKey('fr'),
   premiumCourseLevelKey('fr'),
   lessonUnlockRepairKey('fr'),
   lastOpenedLessonKey('fr'),
@@ -360,6 +370,8 @@ export const SYNC_KEYS = [
   'language_profile_v1::en',
   'language_profile_v1::fr',
   'unlocked_lessons',
+  legacyFreeLessonCapKey('en'),
+  legacyFreeLessonMigrationKey('en'),
   'flashcards',
   'flashcards_v1',
   'achievements_state',
@@ -384,7 +396,6 @@ export const SYNC_KEYS = [
   'achievement_shards_spent_total',
   'achievement_energy_refill_count',
   'achievement_league_boost_count',
-  'achievement_league_chat_message_count',
   'achievement_gift_sent_count',
   'achievement_arena_win_count',
   'achievement_arena_win_streak',
@@ -1039,6 +1050,10 @@ export function shouldSyncPremiumProgressField(
 const LESSON_RESTORE_MERGE_KEYS = [
   'unlocked_lessons',
   unlockedLessonsKey('fr'),
+  legacyFreeLessonCapKey('en'),
+  legacyFreeLessonMigrationKey('en'),
+  legacyFreeLessonCapKey('fr'),
+  legacyFreeLessonMigrationKey('fr'),
   ...Array.from({ length: 32 }, (_, i) => {
     const lessonId = i + 1;
     return [
@@ -1063,6 +1078,14 @@ const RESTORE_MERGE_KEY_SET = new Set<string>([
   ...LESSON_RESTORE_MERGE_KEYS,
   ...LEVEL_EXAM_RESTORE_MERGE_KEYS,
 ]);
+const LEGACY_FREE_LESSON_CAP_RESTORE_KEYS = new Set<string>([
+  legacyFreeLessonCapKey('en'),
+  legacyFreeLessonCapKey('fr'),
+]);
+const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
+  legacyFreeLessonMigrationKey('en'),
+  legacyFreeLessonMigrationKey('fr'),
+]);
 
 // #10 multi-device: strictly-additive lifetime counters (bumpStoredCounter only
 // ever increases them). On restore they take the max of cloud/local so a
@@ -1086,7 +1109,6 @@ export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'achievement_energy_refill_count',
   'achievement_gift_sent_count',
   'achievement_league_boost_count',
-  'achievement_league_chat_message_count',
   'achievement_shards_spent_total',
   'shards_arena_wins_total',
   'shards_lifetime_earned_v1',
@@ -1244,6 +1266,20 @@ function mergeLessonRestoreValue(
   cloudValue: string,
   localValue: string | null | undefined,
 ): string {
+  if (LEGACY_FREE_LESSON_CAP_RESTORE_KEYS.has(key)) {
+    const cloudCap = normalizeLegacyFreeLessonCap(cloudValue);
+    const localCap = normalizeLegacyFreeLessonCap(localValue);
+    if (cloudCap === null && localCap === null) return String(LEGACY_FREE_LESSON_MIN);
+    if (cloudCap === null) return String(localCap);
+    if (localCap === null) return String(cloudCap);
+    return String(Math.max(cloudCap, localCap));
+  }
+  if (LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS.has(key)) {
+    return cloudValue === LEGACY_FREE_LESSON_MIGRATION_COMPLETE ||
+      localValue === LEGACY_FREE_LESSON_MIGRATION_COMPLETE
+      ? LEGACY_FREE_LESSON_MIGRATION_COMPLETE
+      : cloudValue;
+  }
   // #10 multi-device: strictly-additive lifetime counters take the max so a
   // concurrent push of a lower value on another device can't lose progress.
   // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
@@ -2498,8 +2534,18 @@ function completedCloudRestoreAttempt(applied: boolean): CloudRestoreAttempt {
   return { status: 'restored', applied };
 }
 
+async function completeLegacyLessonMigrationAfterRestore(
+  attempt: CloudRestoreAttempt,
+): Promise<CloudRestoreAttempt> {
+  await migrateLegacyFreeLessonAccessForAllTargets(attempt.status).catch(() => {});
+  return attempt;
+}
+
 export async function restoreAndMigrateFromCloud(): Promise<boolean> {
-  return (await restoreAndMigrateFromCloudResult(true)).applied;
+  const attempt = await completeLegacyLessonMigrationAfterRestore(
+    await restoreAndMigrateFromCloudResult(true),
+  );
+  return attempt.applied;
 }
 
 async function restoreAndMigrateFromCloudResult(
@@ -2565,10 +2611,10 @@ export async function restoreFromCloud(): Promise<boolean> {
 
 /** Auth-safe restore result: distinguishes an empty account from a transport failure. */
 export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}): Promise<CloudRestoreResult> {
-  if (!options.canPublishExamBestPctOverlay) {
-    return (await restoreAndMigrateFromCloudResult(false)).status;
-  }
-  return (await restoreAndMigrateFromCloudResult(false, options)).status;
+  const attempt = await completeLegacyLessonMigrationAfterRestore(
+    await restoreAndMigrateFromCloudResult(false, options),
+  );
+  return attempt.status;
 }
 
 export const __cloudSyncTestHooks = {

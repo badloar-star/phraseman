@@ -60,7 +60,7 @@ describe('home social notification center', () => {
     const home = read(path.join('app', '(tabs)', 'home.tsx'));
     const notifications = read(path.join('app', 'user_notifications.ts'));
 
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
     expect(button).toContain('isHomeTabActive: boolean;');
     expect(button).toContain('homeFocusTick: number;');
     expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 30_000');
@@ -80,29 +80,12 @@ describe('home social notification center', () => {
     expect(refreshEffect).not.toContain('onSnapshot(');
   });
 
-  it('emits likes, help-board comments/replies, and league-chat replies into the bell stream', () => {
+  it('emits active likes through the shared notification model', () => {
     const friendLikes = read(path.join('functions', 'src', 'friend_activity_likes.ts'));
-    const helpBoard = read(path.join('functions', 'src', 'help_board.ts'));
-    const leagueChat = read(path.join('functions', 'src', 'league_chat.ts'));
     const notificationTypes = read(path.join('functions', 'src', 'user_notifications.ts'));
-
     expect(notificationTypes).toContain("| 'activity_like'");
-    expect(notificationTypes).toContain("| 'help_board_comment'");
-    expect(notificationTypes).toContain("| 'help_board_reply'");
-    expect(notificationTypes).toContain("| 'help_board_like'");
-    expect(notificationTypes).toContain("| 'league_chat_reply'");
 
     expect(friendLikes).toContain('userNotificationRef(db, targetStableId');
     expect(friendLikes).toContain("type: 'activity_like'");
-
-    expect(helpBoard).toContain('userNotificationRef(db, replyAuthorUid)');
-    expect(helpBoard).toContain("type: 'help_board_reply'");
-    expect(helpBoard).toContain('userNotificationRef(db, topicAuthorUid)');
-    expect(helpBoard).toContain("type: 'help_board_comment'");
-    expect(helpBoard).toContain('userNotificationRef(db, likedAuthorUid');
-    expect(helpBoard).toContain("type: 'help_board_like'");
-
-    expect(leagueChat).toContain('userNotificationRef(db, replyTo.authorUid)');
-    expect(leagueChat).toContain("type: 'league_chat_reply'");
   });
 });

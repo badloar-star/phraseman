@@ -33,7 +33,6 @@ import {
 } from '../app/achievements';
 import { addShardsRaw } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
-import { isLeagueChatAchievementId, isLeagueChatAchievementVisible } from '../app/league_chat_availability';
 import { MAX_LEVEL } from '../constants/theme';
 import {
   achievementLessonPerfectPassesKey,
@@ -165,21 +164,6 @@ describe('achievements', () => {
     expect(source).not.toContain('unlockedCount} / {total}');
   });
 
-  it('keeps earned league chat achievements visible but hides locked ones while chat is disabled', () => {
-    expect(isLeagueChatAchievementVisible('league_chat_first', true)).toBe(true);
-    expect(isLeagueChatAchievementVisible('league_chat_10', false)).toBe(false);
-    expect(isLeagueChatAchievementVisible('league_top3_5', false)).toBe(true);
-  });
-
-  it('does not unlock new league chat achievements while league chat is disabled', async () => {
-    await checkAchievements({ type: 'league_chat_message' });
-    await AsyncStorage.setItem('achievement_league_chat_message_count', '100');
-    await checkAchievements({ type: 'backfill' });
-
-    const unlocked = await unlockedIds();
-    expect([...unlocked].filter(isLeagueChatAchievementId)).toEqual([]);
-  });
-
   it('wires nearest locked achievements into the achievements screen header', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
@@ -300,9 +284,6 @@ describe('achievements', () => {
       await checkAchievements({ type: 'gift_sent' });
     }
     await checkAchievements({ type: 'achievement_liked', likeTotal: 100 });
-    for (let i = 0; i < 100; i += 1) {
-      await checkAchievements({ type: 'league_chat_message' });
-    }
     for (let i = 0; i < 10; i += 1) {
       await checkAchievements({ type: 'achievement_shared' });
     }
@@ -386,7 +367,7 @@ describe('achievements', () => {
     }
 
     const unlocked = await unlockedIds();
-    const missing = idsOf(ALL_ACHIEVEMENTS).filter(id => !unlocked.has(id) && !isLeagueChatAchievementId(id));
+    const missing = idsOf(ALL_ACHIEVEMENTS).filter(id => !unlocked.has(id));
     expect(missing).toEqual([]);
   });
 

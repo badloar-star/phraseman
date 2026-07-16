@@ -48,7 +48,6 @@ const HELPERS_AVATAR_SIZE = 52;
 const HELPERS_ACCENT = '#F59E0B';
 
 function boardTitle(lang: string): string {
-  // Название единое для всех языков (как «Help Board») — бренд раздела.
   return triLang(lang as never, {
     ru: 'Топ хелперов', uk: 'Топ хелперів', es: 'Top Helpers', 'pt-BR': 'Top Helpers',
     vi: 'Top Helpers', id: 'Top Helpers', tr: 'Top Helpers', pl: 'Top Helpers',

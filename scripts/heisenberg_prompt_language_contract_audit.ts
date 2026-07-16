@@ -9,8 +9,7 @@
  *     generation prompt is WRITTEN in).
  *  2. functions/src/ai_language_contract.ts → AiOutputLang (the union type gating every AI output
  *     language check across the app).
- *  3. Server user-facing copy maps in re_engage_push.ts / premium_expiry_reminder.ts /
- *     compass_chat_content.ts (Record<locale, text> style maps for push/chat copy).
+ *  3. Server user-facing copy maps in re_engage_push.ts and premium_expiry_reminder.ts.
  *
  * A forgotten locale in any of these silently falls back to Russian for that user — this script
  * turns that into a loud, listed finding instead of a silent runtime fallback.
@@ -89,7 +88,6 @@ const AI_LANGUAGE_CONTRACT_FILE = path.join('functions', 'src', 'ai_language_con
 const SERVER_COPY_FILES = [
   path.join('functions', 'src', 're_engage_push.ts'),
   path.join('functions', 'src', 'premium_expiry_reminder.ts'),
-  path.join('functions', 'src', 'compass_chat_content.ts'),
 ];
 
 /** Minimum number of active-locale keys an object literal must have before we treat it as a
@@ -257,7 +255,7 @@ function auditAiLanguageContract(repoRoot: string, activeLocales: readonly strin
   return { file, status: findings.length ? 'HOLD' : 'PASS', checked: 1, findings };
 }
 
-// ── Section 3: server copy maps in re_engage_push / premium_expiry_reminder / compass_chat ─────
+// ── Section 3: server copy maps in re_engage_push / premium_expiry_reminder ───────────────────
 function auditServerCopyMaps(repoRoot: string, activeLocales: readonly string[]): SectionResult {
   const findings: PromptLanguageFinding[] = [];
   let checked = 0;
@@ -483,7 +481,7 @@ function renderMarkdown(report: PromptLanguageContractAuditReport): string {
     '',
     `- explain_prompts.ts (PROMPT_LANGUAGES): ${report.sections.explainPrompts.status}`,
     `- ai_language_contract.ts (AiOutputLang): ${report.sections.aiLanguageContract.status}`,
-    `- Server copy maps (re_engage_push / premium_expiry_reminder / compass_chat_content): ${report.sections.serverCopyMaps.status}`,
+    `- Server copy maps (re_engage_push / premium_expiry_reminder): ${report.sections.serverCopyMaps.status}`,
     '',
     '## By file',
     '',

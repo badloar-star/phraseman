@@ -773,210 +773,6 @@
     .report-meta-row { display: flex; align-items: center; margin-top: 4px; }
     .report-comment { font-size: 13px; color: #aaa; margin: 4px 0; padding: 6px 10px; background: #1e1e2e; border-radius: 8px; border-left: 3px solid #4a4a7a; }
 
-    /* ── League chat thread viewer (Telegram-style) ───────────────────────── */
-    #lc-thread-overlay { display: none; position: fixed; inset: 0; z-index: 10050; }
-    #lc-thread-overlay.lc-thread-open { display: block; }
-    #lc-thread-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.86); backdrop-filter: blur(6px); cursor: pointer; }
-    #lc-thread-panel {
-      position: absolute; top: 0; right: 0; bottom: 0;
-      width: min(560px, 100vw);
-      display: flex; flex-direction: column;
-      background: #0e0f17; border-left: 1px solid #2a2a3a; box-shadow: -8px 0 40px #000a;
-    }
-    .lc-thread-head { flex-shrink: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 14px 18px; border-bottom: 1px solid #23232f; background: #12121b; }
-    .lc-thread-head .lc-th-title { font-size: 16px; font-weight: 700; color: #f4f4f5; line-height: 1.3; }
-    .lc-thread-head .lc-th-sub { font-size: 12px; color: #8b8b9a; margin-top: 3px; word-break: break-all; }
-    .lc-thread-head .lc-th-stats { font-size: 11px; color: #6b7280; margin-top: 6px; }
-    .lc-thread-close { background: #23232f; border: none; color: #9a9aa8; border-radius: 7px; padding: 6px 11px; cursor: pointer; font-size: 16px; line-height: 1; flex-shrink: 0; }
-    .lc-thread-close:hover { color: #fff; background: #2f2f3d; }
-    .lc-thread-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 18px 16px 28px; display: flex; flex-direction: column; gap: 2px; background: linear-gradient(180deg, #0e0f17 0%, #0c0d14 100%); }
-    .lc-thread-daysep { align-self: center; margin: 12px 0 8px; padding: 3px 12px; font-size: 11px; font-weight: 600; color: #9aa0b0; background: #1a1b27; border-radius: 999px; }
-    .lc-msg-row { display: flex; gap: 9px; max-width: 86%; margin-top: 8px; }
-    .lc-msg-row.lc-grouped { margin-top: 2px; }
-    .lc-msg-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; background: #2a2a3a; object-fit: cover; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #cbd5e1; align-self: flex-end; overflow: hidden; }
-    .lc-msg-row.lc-grouped .lc-msg-avatar { visibility: hidden; }
-    .lc-bubble-wrap { display: flex; flex-direction: column; min-width: 0; }
-    .lc-msg-author { font-size: 12px; font-weight: 700; color: #a5b4fc; margin: 0 0 3px 2px; }
-    .lc-bubble {
-      position: relative;
-      background: #1c1e2b; color: #e8e8ee;
-      border-radius: 14px 14px 14px 4px;
-      padding: 8px 12px 6px; font-size: 14px; line-height: 1.42;
-      word-break: break-word; white-space: pre-wrap;
-      box-shadow: 0 1px 2px #0004;
-    }
-    .lc-msg-row.lc-deleted .lc-bubble { background: #2a1414; border: 1px dashed #6b2a2a; color: #d8a0a0; }
-    .lc-msg-row.lc-queued .lc-bubble { background: #211d10; border: 1px dashed #6b5a1a; color: #e8d9a0; }
-    .lc-msg-row.lc-focus .lc-bubble { box-shadow: 0 0 0 2px #6c47ff, 0 0 18px #6c47ff66; animation: lcFocusPulse 1.6s ease-out; }
-    @keyframes lcFocusPulse { 0% { box-shadow: 0 0 0 3px #a78bfa, 0 0 26px #a78bfa99; } 100% { box-shadow: 0 0 0 2px #6c47ff, 0 0 18px #6c47ff44; } }
-    .lc-bubble-meta { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-size: 10px; color: #7e8494; }
-    .lc-bubble-status { font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
-    .lc-bubble-status.s-deleted { color: #f87171; }
-    .lc-bubble-status.s-queued { color: #fbbf24; }
-    .lc-bubble-status.s-visible { color: #4ade80; }
-    .lc-bubble-reports { color: #fb923c; font-weight: 700; }
-    .lc-bubble-actions { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-    .lc-bubble-actions button { background: #23232f; border: 1px solid #34344a; color: #c9c9d4; border-radius: 7px; padding: 3px 9px; font-size: 11px; cursor: pointer; }
-    .lc-bubble-actions button:hover { filter: brightness(1.18); }
-    .lc-bubble-actions button.lc-act-del { background: #3a1a1a; border-color: #5a2a2a; color: #f87171; }
-    .lc-bubble-actions button.lc-act-mute { background: #2a2410; border-color: #5a4a1a; color: #fbbf24; }
-    .lc-bubble-actions button.lc-act-ban { background: #3a1a1a; border-color: #5a2a2a; color: #f87171; }
-    .lc-thread-empty { margin: auto; color: #666; font-size: 14px; text-align: center; padding: 40px; }
-    .lc-thread-loading { margin: auto; color: #888; font-size: 14px; padding: 40px; }
-    .lc-row-clickable { cursor: pointer; }
-    .lc-row-clickable:hover { background: #161620 !important; }
-
-    /* ── League chat rooms as forum cards ─────────────────────────────────── */
-    .lc-room-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 4px 2px; }
-    .lc-room-card { background: #14161f; border: 1px solid #262838; border-radius: 12px; padding: 12px 14px; cursor: pointer; transition: border-color .12s, transform .12s; }
-    .lc-room-card:hover { border-color: #4338ca; transform: translateY(-1px); }
-    .lc-rc-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
-    .lc-rc-league { font-size: 14px; font-weight: 800; color: #f4f4f5; }
-    .lc-rc-count { font-size: 12px; color: #a5b4fc; background: #1e2030; padding: 1px 8px; border-radius: 999px; }
-    .lc-rc-last { font-size: 13px; color: #b9b9c6; line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 18px; }
-    .lc-rc-foot { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #7e8494; flex-wrap: wrap; }
-    .lc-rc-week { padding: 1px 7px; border-radius: 999px; background: #1e2030; }
-    /* Composer identity row inside the LC thread modal */
-    .lct-identity-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
-    .lct-radio { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #c9c9d4; cursor: pointer; }
-    .lct-radio input { accent-color: #6c47ff; }
-
-    /* ── Help Board thread viewer (user-facing forum look) ────────────────── */
-    #hbt-overlay { display: none; position: fixed; inset: 0; z-index: 10050; }
-    #hbt-overlay.hbt-open { display: block; }
-    #hbt-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.86); backdrop-filter: blur(6px); cursor: pointer; }
-    #hbt-panel {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: min(720px, 94vw); height: min(88vh, 900px);
-      background: #0c0d14; border: 1px solid #23232f; border-radius: 16px;
-      display: flex; flex-direction: column; overflow: hidden;
-      box-shadow: 0 24px 80px #000a;
-    }
-    .hbt-head { flex-shrink: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 14px 18px; border-bottom: 1px solid #23232f; background: #12121b; }
-    .hbt-head .hbt-title { font-size: 16px; font-weight: 800; color: #f4f4f5; line-height: 1.3; }
-    .hbt-head .hbt-sub { font-size: 12px; color: #8b8b9a; margin-top: 3px; word-break: break-all; }
-    .hbt-head .hbt-stats { font-size: 11px; color: #6b7280; margin-top: 6px; }
-    .hbt-close { background: #23232f; border: none; color: #9a9aa8; border-radius: 7px; padding: 6px 11px; cursor: pointer; font-size: 16px; line-height: 1; flex-shrink: 0; }
-    .hbt-close:hover { color: #fff; background: #2f2f3d; }
-    .hbt-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(180deg, #0e0f17 0%, #0c0d14 100%); }
-
-    /* Topic (OP) card — the question at the top of the thread */
-    .hbt-op { background: #14161f; border: 1px solid #262838; border-radius: 14px; padding: 14px 16px; }
-    .hbt-op.hbt-hidden-item { background: #2a1414; border: 1px dashed #6b2a2a; }
-    .hbt-op-title { font-size: 17px; font-weight: 800; color: #f4f4f5; line-height: 1.3; margin: 0 0 8px; }
-    .hbt-op-body { font-size: 14px; line-height: 1.5; color: #dcdce4; white-space: pre-wrap; word-break: break-word; }
-    .hbt-byline { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .hbt-avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; background: #2a2a3a; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #cbd5e1; overflow: hidden; }
-    .hbt-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .hbt-byname { font-size: 13px; font-weight: 700; color: #a5b4fc; }
-    .hbt-bymeta { font-size: 11px; color: #7e8494; margin-top: 1px; }
-    .hbt-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 1px 7px; border-radius: 999px; }
-    .hbt-badge.b-visible { color: #4ade80; background: #12301f; }
-    .hbt-badge.b-hidden { color: #f87171; background: #301414; }
-    .hbt-badge.b-deleted { color: #f87171; background: #301414; }
-    .hbt-badge.b-admin { color: #fbbf24; background: #2a2410; }
-
-    /* Compass answer block — the assistant's reply, styled distinct */
-    .hbt-compass { border: 1px solid #2f2a52; background: #16142400; background: linear-gradient(180deg, #191634 0%, #14122a 100%); border-radius: 14px; padding: 12px 14px; }
-    .hbt-compass.hbt-hidden-item { opacity: 0.6; border-style: dashed; }
-    .hbt-compass-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-    .hbt-compass-glyph { width: 26px; height: 26px; border-radius: 8px; background: radial-gradient(circle at 30% 30%, #a78bfa, #6c47ff); display: flex; align-items: center; justify-content: center; font-size: 14px; }
-    .hbt-compass-name { font-size: 13px; font-weight: 800; color: #c4b5fd; }
-    .hbt-compass-body { font-size: 14px; line-height: 1.5; color: #e5e2f5; white-space: pre-wrap; word-break: break-word; }
-
-    /* Comments — bubble list */
-    .hbt-comment { display: flex; gap: 9px; }
-    .hbt-comment.hbt-hidden-item .hbt-bubble { background: #2a1414; border: 1px dashed #6b2a2a; color: #d8a0a0; }
-    .hbt-cwrap { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-    .hbt-cbyline { display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
-    .hbt-bubble { position: relative; background: #1c1e2b; color: #e8e8ee; border-radius: 4px 14px 14px 14px; padding: 8px 12px 6px; font-size: 14px; line-height: 1.45; word-break: break-word; white-space: pre-wrap; box-shadow: 0 1px 2px #0004; }
-    .hbt-reply-quote { border-left: 3px solid #6c47ff; padding: 2px 8px; margin: 0 0 6px; background: #ffffff08; border-radius: 4px; font-size: 12px; color: #b9b9c6; }
-    .hbt-reply-quote .hbt-rq-name { color: #a5b4fc; font-weight: 700; display: block; }
-    .hbt-item-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 10px; color: #7e8494; flex-wrap: wrap; }
-    .hbt-item-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-    .hbt-item-actions button { background: #23232f; border: 1px solid #34344a; color: #c9c9d4; border-radius: 7px; padding: 3px 10px; font-size: 11px; cursor: pointer; }
-    .hbt-item-actions button:hover { filter: brightness(1.18); }
-    .hbt-item-actions button.hbt-danger { background: #3a1a1a; border-color: #5a2a2a; color: #f87171; }
-    .hbt-empty { margin: auto; color: #666; font-size: 14px; text-align: center; padding: 40px; }
-    .hbt-loading { margin: auto; color: #888; font-size: 14px; padding: 40px; }
-
-    /* Composer docked at the bottom of the thread */
-    .hbt-composer { flex-shrink: 0; border-top: 1px solid #23232f; background: #12121b; padding: 10px 14px; }
-    .hbt-composer .hbt-reply-target { font-size: 11px; color: #a5b4fc; margin-bottom: 6px; display: none; align-items: center; gap: 8px; }
-    .hbt-composer .hbt-reply-target.on { display: flex; }
-    .hbt-composer .hbt-reply-target button { background: none; border: none; color: #f87171; cursor: pointer; font-size: 12px; padding: 0; }
-    .hbt-composer-row { display: flex; gap: 8px; align-items: flex-end; }
-    .hbt-composer textarea { flex: 1; resize: vertical; min-height: 40px; max-height: 160px; background: #1a1b27; border: 1px solid #2a2a3a; border-radius: 10px; color: #e8e8ee; padding: 9px 12px; font-size: 14px; line-height: 1.4; font-family: inherit; }
-    .hbt-composer textarea:focus { outline: none; border-color: #6c47ff; }
-    .hbt-send { background: #4338ca; border: 1px solid #6366f1; color: #fff; border-radius: 10px; padding: 9px 18px; font-weight: 700; cursor: pointer; font-size: 14px; flex-shrink: 0; }
-    .hbt-send:hover { filter: brightness(1.1); }
-    .hbt-send:disabled { opacity: 0.5; cursor: default; }
-    .hbt-as-hint { font-size: 11px; color: #7e8494; margin-top: 6px; }
-    .hbt-as-hint b { color: #fbbf24; }
-
-    /* "Post as" identity field in the toolbar */
-    .hb-identity { display: inline-flex; align-items: center; gap: 6px; background: #1a1b27; border: 1px solid #3a2f10; border-radius: 8px; padding: 3px 8px; }
-    .hb-identity label { font-size: 11px; color: #fbbf24; white-space: nowrap; }
-    .hb-identity input { background: #12121b; border: 1px solid #2a2a3a; border-radius: 6px; color: #f4f4f5; padding: 4px 8px; font-size: 13px; min-width: 130px; }
-
-    /* New-topic composer overlay (shares the thread look) */
-    #hbc-overlay { display: none; position: fixed; inset: 0; z-index: 10060; }
-    #hbc-overlay.hbc-open { display: block; }
-    #hbc-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.86); backdrop-filter: blur(6px); cursor: pointer; }
-    #hbc-panel {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: min(640px, 94vw); max-height: 92vh;
-      background: #0c0d14; border: 1px solid #23232f; border-radius: 16px;
-      display: flex; flex-direction: column; overflow: hidden;
-      box-shadow: 0 24px 80px #000a;
-    }
-    #hbc-panel select, #hbc-panel input[type=text] { background: #1a1b27; border: 1px solid #2a2a3a; border-radius: 8px; color: #e8e8ee; padding: 8px 10px; font-size: 14px; }
-
-    /* Topic cards grid for the "Threads" filter */
-    .hb-topic-card { background: #14161f; border: 1px solid #262838; border-radius: 12px; padding: 12px 14px; cursor: pointer; transition: border-color .12s, transform .12s; }
-    .hb-topic-card:hover { border-color: #4338ca; transform: translateY(-1px); }
-    .hb-topic-card.hb-tc-hidden { background: #221414; border-color: #5a2a2a; }
-    .hb-tc-title { font-size: 15px; font-weight: 800; color: #f4f4f5; margin: 0 0 4px; line-height: 1.3; }
-    .hb-tc-body { font-size: 13px; color: #b9b9c6; line-height: 1.4; margin: 0 0 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .hb-tc-foot { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #7e8494; flex-wrap: wrap; }
-    .hb-tc-chip { padding: 1px 7px; border-radius: 999px; background: #1e2030; }
-
-    /* ── Cmd-K global command palette ─────────────────────────────────────── */
-    #cmdk-overlay { display: none; position: fixed; inset: 0; z-index: 10100; }
-    #cmdk-overlay.cmdk-open { display: block; }
-    #cmdk-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.72); backdrop-filter: blur(4px); }
-    #cmdk-box {
-      position: absolute; top: 12vh; left: 50%; transform: translateX(-50%);
-      width: min(620px, 92vw);
-      background: #14141d; border: 1px solid #2e2e40; border-radius: 14px;
-      box-shadow: 0 24px 70px #000b; overflow: hidden;
-      display: flex; flex-direction: column;
-    }
-    #cmdk-input {
-      border: none; outline: none; background: transparent;
-      color: #f4f4f5; font-size: 17px; padding: 18px 20px;
-      border-bottom: 1px solid #23232f;
-    }
-    #cmdk-input::placeholder { color: #6b7280; }
-    #cmdk-results { max-height: 52vh; overflow-y: auto; padding: 6px; }
-    .cmdk-item {
-      display: flex; align-items: center; gap: 11px;
-      padding: 9px 13px; border-radius: 9px; cursor: pointer;
-      font-size: 14px; color: #d4d4dc;
-    }
-    .cmdk-item.cmdk-active { background: #25253a; }
-    .cmdk-item:hover { background: #1e1e2e; }
-    .cmdk-item-icon { width: 24px; text-align: center; font-size: 15px; flex-shrink: 0; }
-    .cmdk-item-main { min-width: 0; flex: 1; }
-    .cmdk-item-title { color: #f4f4f5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cmdk-item-sub { font-size: 11px; color: #7e8494; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: ui-monospace, monospace; }
-    .cmdk-item-kind { font-size: 10px; color: #8b8b9a; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; padding: 2px 7px; background: #1e1e2e; border-radius: 5px; }
-    .cmdk-item mark { background: #6c47ff44; color: #c4b5fd; border-radius: 2px; padding: 0 1px; }
-    .cmdk-section { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.6px; padding: 10px 13px 4px; }
-    .cmdk-empty { padding: 26px 16px; text-align: center; color: #6b7280; font-size: 13px; }
-    #cmdk-hint { padding: 9px 16px; border-top: 1px solid #23232f; font-size: 11px; color: #6b7280; }
-    .lc-date-input { background:#1a1a24; border:1px solid #2a2a3a; border-radius:6px; color:#cbd5e1; padding:4px 8px; font-size:12px; color-scheme:dark; }
-    .lc-date-input::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
 
     /* ── User 360: collapsible accordion sections ─────────────────────────── */
     .u360-summary {
@@ -1488,6 +1284,40 @@
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
+    }
+    .admin-v2-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 18px;
+      border: 1px solid #3b82f6;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #ffffff !important;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.24);
+      transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .admin-v2-link:hover {
+      background: #1d4ed8;
+      border-color: #60a5fa;
+      color: #ffffff !important;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.32);
+    }
+    .admin-v2-link:focus-visible {
+      outline: 3px solid #38bdf8;
+      outline-offset: 3px;
+    }
+    .admin-v2-link svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
     }
     body[data-admin-skin="onboarding"] #uid-lookup {
       min-height: 32px;
@@ -3151,438 +2981,6 @@
     }
     body[data-admin-skin="onboarding"] #tab-daily-phrases,
     body[data-admin-skin="onboarding"] #tab-clubs,
-    body[data-admin-skin="onboarding"] #tab-league-chat {
-      max-width: 1220px;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases > .reports-toolbar:first-child,
-    body[data-admin-skin="onboarding"] #tab-clubs > .reports-toolbar:first-child,
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-topbar {
-      position: sticky;
-      top: 64px;
-      z-index: 20;
-      margin: 0 0 14px;
-      padding: 12px;
-      background: #111318 !important;
-      border: 1px solid var(--admin-border) !important;
-      border-radius: 8px !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases > p,
-    body[data-admin-skin="onboarding"] #tab-clubs > p {
-      margin: 0 0 14px !important;
-      padding: 12px 14px !important;
-      max-width: none !important;
-      border: 1px solid var(--admin-border);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.035);
-      color: var(--admin-muted) !important;
-    }
-    body[data-admin-skin="onboarding"] #dp-summary {
-      padding: 0 0 14px !important;
-    }
-    body[data-admin-skin="onboarding"] #clubs-wrap {
-      padding: 0 0 24px !important;
-      gap: 12px !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .table-wrap,
-    body[data-admin-skin="onboarding"] #tab-clubs > div[style*="padding:0 24px 36px"],
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-shell {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases table,
-    body[data-admin-skin="onboarding"] #tab-league-chat table {
-      border: 1px solid var(--admin-border) !important;
-      border-radius: 8px !important;
-      overflow: hidden;
-      background: #16181f !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases th,
-    body[data-admin-skin="onboarding"] #tab-daily-phrases td,
-    body[data-admin-skin="onboarding"] #tab-league-chat th,
-    body[data-admin-skin="onboarding"] #tab-league-chat td {
-      border-color: var(--admin-border) !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .daily-phrase-row {
-      cursor: default;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .daily-phrase-row[draggable="true"] {
-      cursor: grab;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-drag-cell,
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-row-muted {
-      color: var(--admin-muted);
-      font-size: 11px;
-      line-height: 1.45;
-      white-space: normal;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-pill {
-      border: 1px solid var(--admin-border);
-      border-radius: 999px;
-      color: var(--admin-muted);
-      display: inline-flex;
-      font-size: 11px;
-      font-weight: 750;
-      padding: 3px 9px;
-      white-space: nowrap;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-pill.is-today,
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-pill.is-future {
-      color: var(--admin-text);
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-pill.is-draft {
-      color: #e5d2a6;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-pill.is-disabled,
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .dp-pill.is-past {
-      color: var(--admin-muted);
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases td button {
-      margin: 2px 4px 2px 0 !important;
-      min-height: 30px !important;
-      padding: 5px 10px !important;
-      font-size: 12px !important;
-    }
-    body[data-admin-skin="onboarding"] #league-chest-archive {
-      padding: 0 0 32px !important;
-    }
-    body[data-admin-skin="onboarding"] #clubs-left,
-    body[data-admin-skin="onboarding"] #clubs-right,
-    body[data-admin-skin="onboarding"] #league-chest-archive,
-    body[data-admin-skin="onboarding"] #tab-daily-phrases .reports-empty {
-      background: #16181f !important;
-      border: 1px solid var(--admin-border) !important;
-      border-radius: 8px !important;
-      color: var(--admin-muted) !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-panel-title {
-      margin: 0 0 8px;
-      color: var(--admin-muted);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-clean-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid var(--admin-border);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #16181f;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-clean-table th,
-    body[data-admin-skin="onboarding"] #tab-clubs .club-clean-table td {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--admin-border);
-      color: var(--admin-muted);
-      font-size: 12px;
-      vertical-align: top;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-clean-table th {
-      color: var(--admin-faint);
-      font-size: 11px;
-      font-weight: 800;
-      text-align: left;
-      text-transform: uppercase;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-league-row,
-    body[data-admin-skin="onboarding"] #tab-clubs .club-group-row {
-      cursor: pointer;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-league-row.is-selected,
-    body[data-admin-skin="onboarding"] #tab-clubs .club-group-row.is-selected {
-      background: rgba(255,255,255,0.065);
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-name {
-      color: var(--admin-text);
-      font-weight: 750;
-      line-height: 1.3;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-meta {
-      color: var(--admin-faint);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 11px;
-      line-height: 1.4;
-      overflow-wrap: anywhere;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-count-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 28px;
-      min-height: 24px;
-      padding: 3px 9px;
-      border: 1px solid var(--admin-border);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--admin-text);
-      font-size: 11px;
-      font-weight: 800;
-    }
-    body[data-admin-skin="onboarding"] #tab-clubs .club-action-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: flex-start;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-kpi,
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-modebar,
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-table-card {
-      border-radius: 8px !important;
-      border-color: var(--admin-border) !important;
-      background: #16181f !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-table-card:hover {
-      border-color: var(--admin-border-strong) !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-mode-btn.active {
-      background: rgba(255,255,255,0.10) !important;
-      color: var(--admin-text) !important;
-      border-color: var(--admin-border-strong) !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-count-pill {
-      background: rgba(255,255,255,0.07) !important;
-      color: var(--admin-text) !important;
-      border-color: var(--admin-border) !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-status-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 24px;
-      padding: 3px 9px;
-      border: 1px solid var(--admin-border);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--admin-text);
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-row-main {
-      color: var(--admin-text);
-      font-weight: 750;
-      line-height: 1.3;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-row-meta {
-      color: var(--admin-faint);
-      font-size: 11px;
-      line-height: 1.4;
-      overflow-wrap: anywhere;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-message-text,
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-reason-text {
-      max-width: 420px;
-      color: var(--admin-muted);
-      line-height: 1.45;
-      white-space: normal;
-      overflow-wrap: anywhere;
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-reason-text {
-      max-width: 260px;
-      color: var(--admin-faint);
-    }
-    body[data-admin-skin="onboarding"] #tab-league-chat .lc-action-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      min-width: 180px;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases button,
-    body[data-admin-skin="onboarding"] #tab-clubs button,
-    body[data-admin-skin="onboarding"] #tab-league-chat button {
-      min-height: 30px;
-      border-radius: 7px !important;
-      border-color: var(--admin-border) !important;
-      background: rgba(255,255,255,0.065) !important;
-      color: var(--admin-text) !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases button:hover,
-    body[data-admin-skin="onboarding"] #tab-clubs button:hover,
-    body[data-admin-skin="onboarding"] #tab-league-chat button:hover {
-      background: rgba(255,255,255,0.10) !important;
-      border-color: var(--admin-border-strong) !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks,
-    body[data-admin-skin="onboarding"] #tab-arena-live,
-    body[data-admin-skin="onboarding"] #tab-arena-bets,
-    body[data-admin-skin="onboarding"] #tab-arena-rooms,
-    body[data-admin-skin="onboarding"] #tab-referrals,
-    body[data-admin-skin="onboarding"] #tab-push-notify {
-      max-width: 1220px;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks > .reports-toolbar:first-child,
-    body[data-admin-skin="onboarding"] #tab-arena-live > .reports-toolbar:first-child,
-    body[data-admin-skin="onboarding"] #tab-arena-rooms > .reports-toolbar:first-child,
-    body[data-admin-skin="onboarding"] #tab-referrals > .reports-toolbar:first-child {
-      position: sticky;
-      top: 64px;
-      z-index: 20;
-      margin: 0 0 14px;
-      padding: 12px;
-      background: #111318 !important;
-      border-color: var(--admin-border) !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-live > p,
-    body[data-admin-skin="onboarding"] #tab-arena-rooms > p,
-    body[data-admin-skin="onboarding"] #tab-referrals > p,
-    body[data-admin-skin="onboarding"] #tab-arena-ranks > p {
-      margin: 0 0 14px !important;
-      padding: 12px 14px !important;
-      max-width: none !important;
-      border: 1px solid var(--admin-border);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.035);
-      color: var(--admin-muted) !important;
-    }
-    body[data-admin-skin="onboarding"] #ar-summary,
-    body[data-admin-skin="onboarding"] #arr-summary,
-    body[data-admin-skin="onboarding"] #al-summary,
-    body[data-admin-skin="onboarding"] #ref-summary-stats {
-      padding: 0 0 14px !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks .table-wrap,
-    body[data-admin-skin="onboarding"] #tab-referrals .table-wrap,
-    body[data-admin-skin="onboarding"] #al-content,
-    body[data-admin-skin="onboarding"] #ar-content,
-    body[data-admin-skin="onboarding"] #ref-aggregates {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks table,
-    body[data-admin-skin="onboarding"] #tab-referrals table {
-      border: 1px solid var(--admin-border) !important;
-      border-radius: 8px !important;
-      overflow: hidden;
-      background: #16181f !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks th,
-    body[data-admin-skin="onboarding"] #tab-arena-ranks td,
-    body[data-admin-skin="onboarding"] #tab-referrals th,
-    body[data-admin-skin="onboarding"] #tab-referrals td {
-      border-color: var(--admin-border) !important;
-    }
-    body[data-admin-skin="onboarding"] #al-content,
-    body[data-admin-skin="onboarding"] #ar-content,
-    body[data-admin-skin="onboarding"] #ref-aggregates,
-    body[data-admin-skin="onboarding"] #push-jobs-list {
-      display: grid;
-      gap: 10px;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-live .report-card,
-    body[data-admin-skin="onboarding"] #tab-arena-rooms .report-card,
-    body[data-admin-skin="onboarding"] #tab-referrals .report-card,
-    body[data-admin-skin="onboarding"] #push-jobs-list .report-card,
-    body[data-admin-skin="onboarding"] #al-content > div,
-    body[data-admin-skin="onboarding"] #ar-content > div,
-    body[data-admin-skin="onboarding"] #ref-aggregates > div {
-      border-radius: 8px !important;
-      border-color: var(--admin-border) !important;
-      background: #16181f !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets > div:first-child,
-    body[data-admin-skin="onboarding"] #tab-arena-bets > div:first-child > div,
-    body[data-admin-skin="onboarding"] #tab-push-notify > div:first-child,
-    body[data-admin-skin="onboarding"] #tab-push-notify > div:nth-child(2),
-    body[data-admin-skin="onboarding"] #push-panel-uid,
-    body[data-admin-skin="onboarding"] #push-panel-segment,
-    body[data-admin-skin="onboarding"] #push-panel-reactivate,
-    body[data-admin-skin="onboarding"] #push-panel-scheduled {
-      border: 1px solid var(--admin-border) !important;
-      border-radius: 8px !important;
-      background: #16181f !important;
-      box-shadow: none !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets > div:first-child,
-    body[data-admin-skin="onboarding"] #tab-push-notify > div:first-child,
-    body[data-admin-skin="onboarding"] #tab-push-notify > div:nth-child(2) {
-      padding: 16px !important;
-      max-width: none !important;
-    }
-    body[data-admin-skin="onboarding"] #push-panel-uid,
-    body[data-admin-skin="onboarding"] #push-panel-segment,
-    body[data-admin-skin="onboarding"] #push-panel-reactivate,
-    body[data-admin-skin="onboarding"] #push-panel-scheduled {
-      padding: 14px !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-push-notify .tab-title {
-      margin: 0 0 4px !important;
-      color: var(--admin-text) !important;
-      text-shadow: none !important;
-      letter-spacing: 0 !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-push-notify .tab-desc,
-    body[data-admin-skin="onboarding"] #ase-wager-status {
-      color: var(--admin-muted) !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets .arena-bets-shell {
-      padding: 24px !important;
-      display: grid !important;
-      grid-template-columns: minmax(280px, 560px) !important;
-      gap: 14px !important;
-      max-width: 720px !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets .arena-bets-card {
-      padding: 18px !important;
-      border: 1px solid var(--admin-border) !important;
-      border-radius: 8px !important;
-      background: #16181f !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets .arena-bets-title {
-      color: var(--admin-text) !important;
-      font-size: 16px !important;
-      font-weight: 800 !important;
-      letter-spacing: 0 !important;
-      margin-bottom: 6px !important;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets .arena-bets-desc {
-      color: var(--admin-muted);
-      font-size: 13px;
-      line-height: 1.45;
-      margin-bottom: 14px;
-      max-width: 560px;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-bets .arena-bets-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    body[data-admin-skin="onboarding"] #ase-wager-status {
-      display: inline-flex;
-      align-items: center;
-      min-height: 26px;
-      padding: 4px 10px;
-      border: 1px solid var(--admin-border);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      font-size: 12px !important;
-      font-weight: 700;
-    }
-    body[data-admin-skin="onboarding"] #ase-wager-status[data-state="enabled"] {
-      color: var(--admin-text) !important;
-      border-color: var(--admin-border-strong);
-      background: rgba(255,255,255,0.07);
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks .arena-rank-place {
-      color: var(--admin-muted);
-      font-weight: 800;
-      text-align: center;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks .arena-rank-user {
-      min-width: 180px;
-    }
-    body[data-admin-skin="onboarding"] #tab-arena-ranks .arena-rank-name {
-      color: var(--admin-text);
-      font-weight: 700;
-      line-height: 1.25;
-    }
     body[data-admin-skin="onboarding"] #tab-arena-ranks .arena-rank-uid,
     body[data-admin-skin="onboarding"] #tab-arena-ranks .arena-rank-muted {
       color: var(--admin-faint);
@@ -4814,6 +4212,7 @@
       }
       #uid-lookup-dropdown { width: 100% !important; left: 0; right: 0; }
       .header-right > button { flex: 0 0 auto; }
+      .admin-v2-link { flex: 1 1 100%; width: 100%; }
 
       /* ── .tabs → off-canvas drawer (reuses search + grouped list + actives) ──
          Override BOTH the base flex bar and the onboarding fixed-sidebar/relative
@@ -9564,7 +8963,6 @@
         'card-packs': 'community',
         'daily-phrases': 'community',
         clubs: 'arena',
-        'league-chat': 'arena',
         'arena-ranks': 'arena',
         'arena-live': 'arena',
         'arena-bets': 'arena',
@@ -9715,113 +9113,6 @@
 <!-- TOAST CONTAINER -->
 <div id="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<div id="lc-thread-overlay" aria-hidden="true">
-  <div id="lc-thread-backdrop" title="Закрыть" data-i18n-es="Cerrar"></div>
-  <div id="lc-thread-panel" role="dialog" aria-modal="true" aria-label="League chat thread">
-    <div class="lc-thread-head">
-      <div style="min-width:0">
-        <div class="lc-th-title" id="lc-thread-title">—</div>
-        <div class="lc-th-sub" id="lc-thread-sub"></div>
-        <div class="lc-th-stats" id="lc-thread-stats"></div>
-      </div>
-      <button type="button" class="lc-thread-close" id="lc-thread-close" title="Закрыть" aria-label="Закрыть">✕</button>
-    </div>
-    <div class="lc-thread-scroll" id="lc-thread-scroll"></div>
-    <div class="hbt-composer" id="lct-composer">
-      <div class="lct-identity-row">
-        <label class="lct-radio"><input type="radio" name="lct-as" value="system" checked onchange="lctOnIdentityChange()"> 🧭 От системы («Compass»)</label>
-        <label class="lct-radio"><input type="radio" name="lct-as" value="named" onchange="lctOnIdentityChange()"> 👤 Под именем:</label>
-        <input type="text" id="lct-as-name" maxlength="48" placeholder="напр. Максим" disabled oninput="lctSaveName(this.value)" style="background:#12121b;border:1px solid #2a2a3a;border-radius:6px;color:#f4f4f5;padding:4px 8px;font-size:13px;min-width:120px">
-      </div>
-      <div class="hbt-composer-row">
-        <textarea id="lct-input" placeholder="Написать в чат лиги…" rows="1"></textarea>
-        <button type="button" class="hbt-send" id="lct-send">Отправить</button>
-      </div>
-      <div class="hbt-as-hint" id="lct-hint">Сообщение уйдёт в эту комнату лиги от «Compass».</div>
-    </div>
-  </div>
-</div>
-
-<!-- HELP BOARD thread viewer — reads a topic + Compass + comments like a real user, with a docked composer to reply as admin -->
-<div id="hbt-overlay" aria-hidden="true">
-  <div id="hbt-backdrop" title="Закрыть"></div>
-  <div id="hbt-panel" role="dialog" aria-modal="true" aria-label="Help Board thread">
-    <div class="hbt-head">
-      <div style="min-width:0">
-        <div class="hbt-title" id="hbt-title">—</div>
-        <div class="hbt-sub" id="hbt-sub"></div>
-        <div class="hbt-stats" id="hbt-stats"></div>
-      </div>
-      <button type="button" class="hbt-close" id="hbt-close" title="Закрыть" aria-label="Закрыть">✕</button>
-    </div>
-    <div class="hbt-scroll" id="hbt-scroll"></div>
-    <div class="hbt-composer" id="hbt-composer">
-      <div class="hbt-reply-target" id="hbt-reply-target">
-        <span id="hbt-reply-target-text"></span>
-        <button type="button" id="hbt-reply-cancel" title="Отменить ответ">✕ отменить ответ</button>
-      </div>
-      <div class="hbt-composer-row">
-        <textarea id="hbt-input" placeholder="Написать комментарий…" rows="1"></textarea>
-        <button type="button" class="hbt-send" id="hbt-send">Отправить</button>
-      </div>
-      <div class="hbt-as-hint">Публикуется от имени: <b id="hbt-as-name">—</b> · измени имя в поле «Пишу как» на панели.</div>
-    </div>
-  </div>
-</div>
-
-<!-- HELP BOARD new-topic composer -->
-<div id="hbc-overlay" aria-hidden="true">
-  <div id="hbc-backdrop" title="Закрыть"></div>
-  <div id="hbc-panel" role="dialog" aria-modal="true" aria-label="New Help Board topic">
-    <div class="hbt-head">
-      <div style="min-width:0">
-        <div class="hbt-title">Новая тема на Help Board</div>
-        <div class="hbt-sub">Публикуется от имени: <b id="hbc-as-name" style="color:#fbbf24">—</b></div>
-      </div>
-      <button type="button" class="hbt-close" id="hbc-close" title="Закрыть" aria-label="Закрыть">✕</button>
-    </div>
-    <div style="padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto">
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <div style="flex:1;min-width:150px">
-          <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Язык изучения</label>
-          <select id="hbc-target" style="width:100%">
-            <option value="en">English (en)</option>
-            <option value="fr">French (fr)</option>
-          </select>
-        </div>
-        <div style="flex:1;min-width:150px">
-          <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Язык интерфейса</label>
-          <select id="hbc-ui" style="width:100%">
-            <option value="ru">ru</option>
-            <option value="uk">uk</option>
-            <option value="es">es</option>
-            <option value="pt-BR">pt-BR</option>
-            <option value="vi">vi</option>
-            <option value="id">id</option>
-            <option value="tr">tr</option>
-            <option value="pl">pl</option>
-            <option value="en">en</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Заголовок темы</label>
-        <input type="text" id="hbc-title" maxlength="120" placeholder="Коротко о чём вопрос" style="width:100%;box-sizing:border-box">
-      </div>
-      <div>
-        <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Текст</label>
-        <textarea id="hbc-text" maxlength="2200" rows="6" placeholder="Разверни вопрос или мысль…" style="width:100%;box-sizing:border-box;resize:vertical;background:#1a1b27;border:1px solid #2a2a3a;border-radius:10px;color:#e8e8ee;padding:10px 12px;font-size:14px;font-family:inherit;line-height:1.45"></textarea>
-      </div>
-      <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:#c4b5fd;cursor:pointer">
-        <input type="checkbox" id="hbc-compass" checked> Дать Компасу ответить на эту тему (авто-генерация)
-      </label>
-      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px">
-        <button type="button" id="hbc-cancel" style="background:#23232f;border:1px solid #34344a;color:#c9c9d4;border-radius:9px;padding:9px 16px;cursor:pointer">Отмена</button>
-        <button type="button" class="hbt-send" id="hbc-submit">Создать тему</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- APP MESSAGE engagement panel: reads, reactions, poll breakdown for one message -->
 <div id="ame-overlay" aria-hidden="true">
@@ -9880,6 +9171,10 @@
     </div>
     <button type="button" onclick="document.getElementById('help-modal-overlay').style.display='flex'" title="Справка — что делает каждая кнопка" style="background:rgba(108,71,255,0.18);border:1px solid rgba(108,71,255,0.4);color:#c4b5fd;font-weight:800;font-size:15px;padding:5px 13px;line-height:1">❓</button>
     <button type="button" onclick="adminSignOut()" style="background:#2a2a3a;color:#888" data-i18n-es="Salir">Sign out</button>
+    <a class="admin-v2-link" href="/v2/" target="_blank" rel="noopener" aria-label="Открыть новую админку Admin 2" title="Открыть новую админку Admin 2. Старая админка останется доступна в этой вкладке.">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+      <span>Открыть новую админку</span>
+    </a>
   </div>
 </header>
 
@@ -10129,15 +9424,6 @@
     </div>
 
     <div class="h-sec">
-      <div class="h-sec-title">League chat</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Модерация чата лиг: сообщения на проверке, жалобы, автоматически заблокированные сообщения, список ограниченных пользователей.</div>
-      <div class="h-btn-list">
-        <div class="h-btn"><div class="h-btn-name">↻ Обновить</div><div class="h-btn-desc">Перезагружает список сообщений.</div></div>
-        <div class="h-btn"><div class="h-btn-name">На проверке / Жалобы / Все комнаты / Сообщения / Архив / Автоблок / Ограничения</div><div class="h-btn-desc">Режимы просмотра чата. Переключают, что именно показывается: сообщения на одобрении, жалобы, все комнаты лиг, история сообщений, архив, автоматически заблокированное, пользователи с ограничениями.</div></div>
-      </div>
-    </div>
-
-    <div class="h-sec">
       <div class="h-sec-title">Arena - Top</div>
       <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Топ-рейтинг игроков арены — таблица лидеров по победам и очкам.</div>
     </div>
@@ -10237,7 +9523,6 @@
   <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('review-promo')">Plus survey</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
-  <div class="tab" onclick="switchTab('help-board')" data-i18n-es="Help Board">Help Board</div>
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
@@ -10252,7 +9537,6 @@
   <div class="tab" onclick="switchTab('daily-phrases')" data-i18n-es="Frases del día">Daily phrases</div>
   <div class="tab" onclick="switchTab('french-quizzes')" title="French quiz pack preview, draft publish, and rollback workflow">French quizzes</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
-  <div class="tab" onclick="switchTab('league-chat')" data-i18n-es="Chat de ligas">League chat</div>
   <div class="tab" onclick="switchTab('arena-ranks')" data-i18n-es="Arena - Top">Arena - Top</div>
   <div class="tab" onclick="switchTab('arena-live')" data-i18n-es="Arena - Live">Arena - Live</div>
   <div class="tab" onclick="switchTab('arena-bets')" data-i18n-es="Apuestas Arena">Arena bets</div>
@@ -10370,7 +9654,7 @@
       </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">🎁</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — новый юзер после онбординга получает 72ч полного доступа и приветственный модал. Выкл → новые юзеры больше НЕ получают ни подарок, ни модал (у всех живьём, без релиза). Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — новые пользователи не получают автоматический подарок. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-intro_full_access_enabled" class="cp-toggle" onchange="saveControlPanelBool('intro_full_access_enabled', this.checked)" disabled/><span id="cp-bool-label-intro_full_access_enabled" class="cp-bool-chip">…</span></label>
       </div>
     </div>
@@ -10780,7 +10064,7 @@
     <div class="admin-overview-card">
       <div class="admin-overview-kicker">Moderation</div>
       <div class="admin-overview-value" id="overview-moderation-state">Queues</div>
-      <div class="admin-overview-note">Reports, user reports, ban list, and league chat.</div>
+      <div class="admin-overview-note">Reports, user reports, and ban list.</div>
     </div>
     <div class="admin-overview-card">
       <div class="admin-overview-kicker">Delivery</div>
@@ -10872,153 +10156,6 @@
   </section>
 </div>
 
-<!-- LEAGUE CHAT MODERATION TAB -->
-<div id="tab-league-chat" class="users-tab">
-  <div class="lc-shell">
-    <div class="lc-topbar">
-      <div>
-        <div class="lc-title" data-i18n-es="Chats de ligas">Чаты лиг</div>
-        <div class="lc-subtitle" data-i18n-es="Moderación de mensajes, reportes, salas por semana, archivo y restricciones de usuarios.">Модерация сообщений, жалобы, комнаты по неделям, архив и ограничения пользователей.</div>
-      </div>
-      <div class="lc-actions">
-        <button onclick="loadLeagueChatAdmin(true)" data-i18n-es="↻ Actualizar">↻ Обновить</button>
-      </div>
-    </div>
-
-    <div class="lc-kpis">
-      <div class="lc-kpi"><div class="label" data-i18n-es="En revisión">На проверке</div><div class="value" id="lc-kpi-queue">—</div><div class="hint" data-i18n-es="moderación pendiente">pending moderation</div></div>
-      <div class="lc-kpi"><div class="label" data-i18n-es="Reportes">Жалобы</div><div class="value" id="lc-kpi-reports">—</div><div class="hint" data-i18n-es="cola de reportes">reports queue</div></div>
-      <div class="lc-kpi"><div class="label" data-i18n-es="Salas">Комнаты</div><div class="value" id="lc-kpi-rooms">—</div><div class="hint" data-i18n-es="grupos de liga">league groups</div></div>
-      <div class="lc-kpi"><div class="label" data-i18n-es="Mensajes">Сообщения</div><div class="value" id="lc-kpi-messages">—</div><div class="hint" data-i18n-es="muestra cargada">loaded sample</div></div>
-      <div class="lc-kpi"><div class="label" data-i18n-es="Archivo">Архив</div><div class="value" id="lc-kpi-archive">—</div><div class="hint" data-i18n-es="semanas anteriores">past weeks</div></div>
-      <div class="lc-kpi"><div class="label" data-i18n-es="Restricciones">Ограничения</div><div class="value" id="lc-kpi-bans">—</div><div class="hint" data-i18n-es="silenciar / ban">mute / ban</div></div>
-    </div>
-
-    <select id="lc-filter" onchange="renderLeagueChatAdmin()" style="display:none">
-      <option value="rooms" data-i18n-es="Todas las salas">Все комнаты</option>
-      <option value="queue" data-i18n-es="En revisión">На проверке</option>
-      <option value="blocked" data-i18n-es="Autobloqueo">Автоблок</option>
-      <option value="reports" data-i18n-es="Reportes">Жалобы</option>
-      <option value="messages" data-i18n-es="Mensajes activos">Активные сообщения</option>
-      <option value="archive" data-i18n-es="Archivo de chats">Архив чатов</option>
-      <option value="bans" data-i18n-es="Restricciones">Ограничения</option>
-    </select>
-
-    <div class="lc-modebar">
-      <button type="button" class="lc-mode-btn active" data-lc-mode="rooms" onclick="leagueChatSetMode('rooms')" data-i18n-es="Salas (chats)">💬 Комнаты (чаты)</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="queue" onclick="leagueChatSetMode('queue')" data-i18n-es="En revisión">На проверке</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="reports" onclick="leagueChatSetMode('reports')" data-i18n-es="Reportes">Жалобы</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="messages" onclick="leagueChatSetMode('messages')" data-i18n-es="Mensajes">Сообщения</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="archive" onclick="leagueChatSetMode('archive')" data-i18n-es="Archivo">Архив</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="blocked" onclick="leagueChatSetMode('blocked')" data-i18n-es="Autobloqueo">Автоблок</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="bans" onclick="leagueChatSetMode('bans')" data-i18n-es="Restricciones">Ограничения</button>
-    </div>
-
-    <div class="lc-filterbar">
-      <div class="lc-field">
-        <label data-i18n-es="Semana">Неделя</label>
-        <input type="text" id="lc-week" placeholder="current / all / 2026-W20" oninput="renderLeagueChatAdmin()">
-      </div>
-      <div class="lc-field">
-        <label data-i18n-es="Buscar">Поиск</label>
-        <input type="text" id="lc-search" placeholder="Текст, UID, имя, groupId" data-i18n-es="Texto, UID, nombre, groupId" oninput="renderLeagueChatAdmin()">
-      </div>
-      <span id="lc-count" class="lc-count-pill">—</span>
-    </div>
-
-    <div class="lc-table-card">
-      <div class="table-wrap">
-        <table>
-          <thead id="lc-head">
-            <tr>
-              <th data-i18n-es="Hora">Время</th>
-              <th data-i18n-es="Estado">Статус</th>
-              <th data-i18n-es="Autor">Автор</th>
-              <th data-i18n-es="Liga / semana">Лига / неделя</th>
-              <th data-i18n-es="Mensaje">Сообщение</th>
-              <th data-i18n-es="Razones">Причины</th>
-              <th data-i18n-es="Acciones">Действия</th>
-            </tr>
-          </thead>
-          <tbody id="lc-body">
-            <tr><td colspan="7" style="text-align:center;color:#666;padding:40px" data-i18n-es="Abre la pestaña para cargar la moderación de chats.">Открой вкладку, чтобы загрузить модерацию чатов.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- HELP BOARD ADMIN TAB -->
-<div id="tab-help-board" class="reports-tab">
-  <div style="padding:4px 0 12px;max-width:1080px">
-    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Help Board</h2>
-    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
-      Separate Q&A boards by study language and interface/community language. Review topics, comments, Compass answers, reports, moderation queue, and AI billing traces.
-    </p>
-  </div>
-  <div class="stats" style="margin-bottom:14px">
-    <div class="stat-card"><div class="label">Topics</div><div class="value" id="hb-kpi-topics">-</div></div>
-    <div class="stat-card"><div class="label">Comments</div><div class="value" id="hb-kpi-comments">-</div></div>
-    <div class="stat-card"><div class="label">Reports</div><div class="value" id="hb-kpi-reports">-</div></div>
-    <div class="stat-card"><div class="label">Queue</div><div class="value" id="hb-kpi-queue">-</div></div>
-    <div class="stat-card"><div class="label">Compass tokens</div><div class="value" id="hb-kpi-tokens">-</div></div>
-  </div>
-  <div class="reports-toolbar">
-    <button type="button" onclick="loadHelpBoardAdmin(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">Refresh</button>
-    <button type="button" onclick="helpBoardOpenComposer()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;font-weight:700">✍ New topic</button>
-    <span class="hb-identity">
-      <label for="hb-post-as">Пишу как</label>
-      <input type="text" id="hb-post-as" maxlength="48" placeholder="напр. Максим" oninput="helpBoardSetPostAs(this.value)">
-    </span>
-    <select id="hb-target" onchange="renderHelpBoardAdmin()">
-      <option value="">All study langs</option>
-      <option value="en">English</option>
-      <option value="fr">French</option>
-    </select>
-    <select id="hb-ui" onchange="renderHelpBoardAdmin()">
-      <option value="">All UI langs</option>
-      <option value="ru">ru</option>
-      <option value="uk">uk</option>
-      <option value="es">es</option>
-      <option value="pt-BR">pt-BR</option>
-      <option value="vi">vi</option>
-      <option value="id">id</option>
-      <option value="tr">tr</option>
-      <option value="pl">pl</option>
-      <option value="en">en</option>
-    </select>
-    <select id="hb-filter" onchange="renderHelpBoardAdmin()">
-      <option value="threads">💬 Threads (forum view)</option>
-      <option value="reports">Reports</option>
-      <option value="queue">Moderation queue</option>
-      <option value="topics">Topics</option>
-      <option value="comments">Comments</option>
-      <option value="restrictions">Topic restrictions</option>
-      <option value="billing">Compass billing</option>
-    </select>
-    <input type="text" id="hb-search" placeholder="Search text, title, UID, board" oninput="renderHelpBoardAdmin()" style="min-width:220px">
-    <span class="reports-count" id="hb-count">-</span>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead id="hb-head">
-        <tr>
-          <th>Time</th>
-          <th>Status</th>
-          <th>Board</th>
-          <th>Author</th>
-          <th>Content</th>
-          <th>Signals</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="hb-body">
-        <tr><td colspan="7" style="text-align:center;color:#666;padding:40px">Open the tab to load Help Board moderation.</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
 
 <!-- UNIFIED MODERATION QUEUE -->
 <div id="tab-mod-queue" class="reports-tab">
@@ -11036,8 +10173,6 @@
       <option value="content">Content-репорты</option>
       <option value="user">Жалобы на юзеров</option>
       <option value="ugc">UGC-паки</option>
-      <option value="chat">Чат лиг</option>
-      <option value="help_board">Help Board</option>
     </select>
     <span class="reports-count" id="mq-count"></span>
   </div>
@@ -14292,13 +13427,6 @@
     }
     return _fnOpenAiJobsConfig;
   }
-  let _fnHelpBoardAdminModerate = null;
-  function getHelpBoardAdminModerateCallable() {
-    if (!_fnHelpBoardAdminModerate) {
-      _fnHelpBoardAdminModerate = httpsCallable(functionsUs, 'helpBoardAdminModerate');
-    }
-    return _fnHelpBoardAdminModerate;
-  }
   let _fnAdminReplyToReport = null;
   function getAdminReplyToReportCallable() {
     if (!_fnAdminReplyToReport) {
@@ -14395,7 +13523,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -19000,7 +18128,7 @@
   // ── User 360: lazy-loaded history/reputation sections ─────────────────────
   // Query a root collection filtered by a UID field, tolerant of a missing
   // composite index (falls back to no orderBy + client sort). Mirrors the shape
-  // of loadArenaServerResults / the league-chat thread loader.
+  // of loadArenaServerResults.
   async function u360Query(collName, field, uid, sortField, max) {
     const lim = max || 25;
     try {
@@ -19069,8 +18197,7 @@
           <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">Транзакции осколков (${shards.length})</div>
           ${u360List(shards, r => `<div class="u360-list-item"><div class="u360-li-top"><span>${escapeHtml(r.type || '—')} ${r.amount != null ? '· ' + escapeHtml(String(r.amount)) : ''}</span><span style="color:#7e8494">${escapeHtml(fdate(r.createdAt))}</span></div></div>`, 'Нет транзакций')}`;
       } else if (kind === 'social') {
-        const [msgs, buys, sells, refByMe, refMe] = await Promise.all([
-          u360Query('league_chat_messages', 'authorUid', uid, 'createdAt', 15).catch(() => []),
+        const [buys, sells, refByMe, refMe] = await Promise.all([
           u360Query('community_pack_purchases', 'buyerStableId', uid, 'createdAt', 15).catch(() => []),
           u360Query('community_pack_purchases', 'sellerStableId', uid, 'createdAt', 15).catch(() => []),
           u360Query('referral_attributions', 'referrerStableId', uid, 'createdAt', 25).catch(() => []),
@@ -19078,9 +18205,7 @@
         ]);
         const invitedBy = refMe && refMe.exists() ? (refMe.data().referrerStableId || '—') : null;
         bodyEl.innerHTML = `
-          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:2px 0 5px">Сообщения в чате лиг (${msgs.length})</div>
-          ${u360List(msgs, r => `<div class="u360-list-item"><div class="u360-li-top"><span style="flex:1;min-width:0">${escapeHtml(String(r.text || r.messageText || '—').slice(0, 90))}</span>${u360Pill(r.status || 'visible')}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))}${r.groupId ? ` · <a href="#" onclick="event.preventDefault();leagueChatOpenThread('${escapeHtml(String(r.groupId))}','${escapeHtml(String(r.id))}')" style="color:#818cf8">тред</a>` : ''}</div></div>`, 'Сообщений нет')}
-          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">UGC: купил ${buys.length} · продал ${sells.length}</div>
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:2px 0 5px">UGC: купил ${buys.length} · продал ${sells.length}</div>
           ${u360List(buys.slice(0, 8), r => `<div class="u360-list-item"><div class="u360-li-top"><span>🛒 ${escapeHtml(r.packId || r.packTitle || '—')}</span>${u360Pill(r.status || 'completed')}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))} · ${escapeHtml(String(r.priceShards ?? r.price ?? '—'))} 💎</div></div>`, 'Покупок нет')}
           <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">Рефералы</div>
           ${invitedBy ? `<div class="u360-list-item">Приглашён: <span style="font-family:monospace">${escapeHtml(String(invitedBy))}</span></div>` : ''}
@@ -19197,8 +18322,6 @@
     document.getElementById('tab-ops-log').classList.toggle('active',tab==='ops-log');
     document.getElementById('tab-community-packs').classList.toggle('active',tab==='community-packs');
     document.getElementById('tab-clubs').classList.toggle('active',tab==='clubs');
-    const leagueChatTab = document.getElementById('tab-league-chat');
-    if (leagueChatTab) leagueChatTab.classList.toggle('active', tab === 'league-chat');
     const arRanksTab = document.getElementById('tab-arena-ranks');
     if (arRanksTab) arRanksTab.classList.toggle('active', tab === 'arena-ranks');
     const refTab = document.getElementById('tab-referrals');
@@ -19343,9 +18466,6 @@
     if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
       void window.loadClubsData(false);
     }
-    if (tab === 'league-chat' && !window._leagueChatLoaded && typeof window.loadLeagueChatAdmin === 'function') {
-      void window.loadLeagueChatAdmin(false);
-    }
     if (tab === 'arena-ranks' && !window._arenaRanksLoaded && typeof window.loadArenaRanksData === 'function') {
       void window.loadArenaRanksData(false);
     }
@@ -19378,9 +18498,6 @@
     }
     if (tab === 'app-messages' && !window._appMessagesLoaded && typeof window.loadAppMessages === 'function') {
       void window.loadAppMessages(false);
-    }
-    if (tab === 'help-board' && !window._helpBoardLoaded && typeof window.loadHelpBoardAdmin === 'function') {
-      void window.loadHelpBoardAdmin(false);
     }
     if (tab === 'helpers-board' && typeof window.loadHelpersBoard === 'function') {
       void window.loadHelpersBoard();
@@ -20773,7 +19890,6 @@
     'cancel-surveys': 'Cancel surveys',
     'review-promo': 'Plus survey',
     'app-messages': 'Messages',
-    'help-board': 'Help Board',
     'remote-config': 'Remote Config',
     'paywall-ab': 'Paywall A/B',
     alerts: 'Alerts',
@@ -20787,7 +19903,6 @@
     'daily-phrases': 'Daily phrases',
     'french-quizzes': 'French quizzes',
     clubs: 'Clubs',
-    'league-chat': 'League chat',
     'arena-ranks': 'Arena - Top',
     'arena-live': 'Arena - Live',
     'arena-bets': 'Arena bets',
@@ -20862,7 +19977,6 @@
     'review-promo': 'clipboard',
     referrals: 'rotate',
     'app-messages': 'message',
-    'help-board': 'message',
     'ugc-purchases': 'wallet',
     refunds: 'rotate',
     'community-packs': 'package',
@@ -20871,7 +19985,6 @@
     'french-quizzes': 'clipboard',
     'push-notify': 'bell',
     clubs: 'trophy',
-    'league-chat': 'message',
     'arena-ranks': 'trophy',
     'arena-live': 'activity',
     'arena-bets': 'target',
@@ -20939,7 +20052,6 @@
     'review-promo': 'revenue',
     referrals: 'revenue',
     'app-messages': 'community',
-    'help-board': 'community',
     'ugc-purchases': 'community',
     refunds: 'revenue',
     'community-packs': 'community',
@@ -20947,7 +20059,6 @@
     'french-quizzes': 'community',
     'push-notify': 'community',
     clubs: 'arena',
-    'league-chat': 'arena',
     'arena-ranks': 'arena',
     'arena-live': 'arena',
     'arena-bets': 'arena',
@@ -21413,1792 +20524,6 @@
     }
   };
 
-  window._leagueChatLoaded = false;
-  window._leagueChatCache = { queue: [], blocked: [], reports: [], messages: [], archive: [], rooms: [], bans: [] };
-
-  function lcDate(v) {
-    const n = Number(v || 0);
-    return n ? new Date(n).toLocaleString(ADMIN_DATE_LOCALE) : '—';
-  }
-  function lcText(row) { return row.text || row.messageText || ''; }
-  // Служебное сообщение (сгенерировано системой/Компасом, а не человеком).
-  // Дублирует канонический классификатор из app/league_chat_system.ts
-  // (isSystemLeagueChatMessage): kind==='system' или зарезервированный uid.
-  function lcIsSystemMessage(m) {
-    return m && (m.kind === 'system' || m.authorUid === '__league_system__');
-  }
-  function lcSetKpi(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = String(value ?? '—');
-  }
-  function lcRenderSummary() {
-    const c = window._leagueChatCache || {};
-    lcSetKpi('lc-kpi-queue', (c.queue || []).length);
-    lcSetKpi('lc-kpi-reports', (c.reports || []).filter(r => (r.status || 'new') !== 'resolved').length);
-    lcSetKpi('lc-kpi-rooms', (c.rooms || []).length);
-    lcSetKpi('lc-kpi-messages', (c.messages || []).length);
-    lcSetKpi('lc-kpi-archive', (c.archive || []).length);
-    lcSetKpi('lc-kpi-bans', (c.bans || []).filter(r => r.status !== 'cleared').length);
-  }
-  function lcRenderModeButtons(mode) {
-    document.querySelectorAll('.lc-mode-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-lc-mode') === mode);
-    });
-  }
-  function lcRenderHeaders(mode) {
-    const head = document.getElementById('lc-head');
-    if (!head) return;
-    const headers = mode === 'rooms'
-      ? ['Последняя активность', 'Сообщения', 'Комната', 'Лига / неделя', 'Последнее сообщение', 'Сводка', 'Действия']
-      : mode === 'bans'
-        ? ['Обновлено', 'Статус', 'UID', 'Срок', 'Причина', 'Кто изменил', 'Действия']
-        : mode === 'reports'
-          ? ['Время', 'Статус', 'Автор сообщения', 'Лига / неделя', 'Жалоба / сообщение', 'Причина', 'Действия']
-          : ['Время', 'Статус', 'Автор', 'Лига / неделя', 'Сообщение', 'Причины', 'Действия'];
-    head.innerHTML = '<tr>' + headers.map(h => `<th>${escapeHtml(h)}</th>`).join('') + '</tr>';
-  }
-  window.leagueChatSetMode = function(mode) {
-    const allowed = new Set(['queue', 'blocked', 'reports', 'rooms', 'messages', 'archive', 'bans']);
-    const next = allowed.has(mode) ? mode : 'queue';
-    const filter = document.getElementById('lc-filter');
-    if (filter) filter.value = next;
-    lcRenderModeButtons(next);
-    renderLeagueChatAdmin();
-  };
-  function lcCurrentWeekId() {
-    try { return typeof adminGetWeekId === 'function' ? adminGetWeekId() : ''; } catch (_) { return ''; }
-  }
-  function lcWeekFilterValue() {
-    const raw = (document.getElementById('lc-week')?.value || '').trim();
-    if (!raw || raw.toLowerCase() === 'current') return lcCurrentWeekId();
-    if (raw.toLowerCase() === 'all' || raw === '*') return '';
-    return raw;
-  }
-  function lcMatchesSearch(r, search) {
-    if (!search) return true;
-    return [r.id, r.groupId, r.weekId, r.authorUid, r.authorName, r.uid, r.status, r.decision, lcText(r)]
-      .map(x => String(x || '').toLowerCase())
-      .some(x => x.includes(search));
-  }
-  async function loadLeagueChatCollection(name, sortField='createdAt', max=300) {
-    const snap = await getDocs(query(collection(db, name), orderBy(sortField, 'desc'), limit(max)));
-    return snap.docs.map(d => ({ id: d.id, _collection: name, ...(d.data() || {}) }));
-  }
-  async function loadLeagueChatGroups() {
-    const snap = await getDocs(query(collection(db, 'league_groups'), limit(600)));
-    return snap.docs.map(d => {
-      const data = d.data() || {};
-      const members = data.members && typeof data.members === 'object' ? data.members : {};
-      return {
-        id: d.id,
-        _collection: 'league_groups',
-        groupId: d.id,
-        weekId: data.weekId != null ? String(data.weekId) : '',
-        leagueId: Number(data.leagueId || 0),
-        memberCount: Number(data.memberCount || Object.keys(members).length || 0),
-        members,
-        createdAt: data.createdAt || data.updatedAt || 0,
-        updatedAt: data.updatedAt || data.createdAt || 0,
-      };
-    });
-  }
-  function lcBuildRooms(groups, messages) {
-    const byRoom = new Map();
-    groups.forEach(g => byRoom.set(g.groupId, { ...g, messageCount: 0, visibleCount: 0, deletedCount: 0, reportCount: 0, lastMessageAt: 0, lastText: '' }));
-    messages.forEach(m => {
-      const gid = String(m.groupId || '');
-      if (!gid) return;
-      // Сообщения Компаса/системы не показываем в карточках комнат: считаем
-      // и превьюим только реальные сообщения людей.
-      if (lcIsSystemMessage(m)) return;
-      const row = byRoom.get(gid) || { id: gid, groupId: gid, weekId: String(m.weekId || ''), leagueId: m.leagueId, memberCount: 0, messageCount: 0, visibleCount: 0, deletedCount: 0, reportCount: 0, lastMessageAt: 0, lastText: '' };
-      row.messageCount += 1;
-      row.humanCount = Number(row.humanCount || 0) + 1;
-      if (m.status === 'visible') row.visibleCount += 1;
-      if (m.status === 'deleted') row.deletedCount += 1;
-      row.reportCount += Number(m.reportCount || 0);
-      const t = Number(m.createdAt || 0);
-      if (t > Number(row.lastMessageAt || 0)) {
-        row.lastMessageAt = t;
-        row.lastText = lcText(m);
-        row.lastAuthor = m.authorName || m.authorUid || '';
-      }
-      byRoom.set(gid, row);
-    });
-    // Убираем пустые комнаты (нет ни одного человеческого сообщения) —
-    // никаких карточек «Сообщений пока нет».
-    return Array.from(byRoom.values())
-      .filter(r => Number(r.humanCount || 0) > 0)
-      .sort((a, b) => Number(b.lastMessageAt || b.updatedAt || 0) - Number(a.lastMessageAt || a.updatedAt || 0));
-  }
-  window.loadLeagueChatAdmin = async function(force=false) {
-    if (window._leagueChatLoaded && !force) { renderLeagueChatAdmin(); return; }
-    const body = document.getElementById('lc-body');
-    if (body) body.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#888;padding:40px">Загрузка...</td></tr>';
-    try {
-      const [queueAll, reports, messages, groups, bans] = await Promise.all([
-        loadLeagueChatCollection('league_chat_moderation_queue', 'createdAt', 300),
-        loadLeagueChatCollection('league_chat_reports', 'createdAt', 300),
-        loadLeagueChatCollection('league_chat_messages', 'createdAt', 600),
-        loadLeagueChatGroups(),
-        loadLeagueChatCollection('league_chat_bans', 'updatedAt', 300).catch(() => []),
-      ]);
-      const currentWeek = lcCurrentWeekId();
-      // Вкладки Messages/Archive/Rooms показывают живую переписку — сообщения
-      // Компаса/системы из них убираем, оставляем только сообщения людей.
-      // (Rooms всё равно строит превью по людям через lcBuildRooms.)
-      const humanMessages = messages.filter(r => !lcIsSystemMessage(r));
-      window._leagueChatCache = {
-        queue: queueAll.filter(r => r.status === 'review' || r.decision === 'pending'),
-        blocked: queueAll.filter(r => r.status === 'blocked' || r.decision === 'auto_blocked'),
-        reports,
-        messages: humanMessages,
-        archive: humanMessages.filter(r => currentWeek && String(r.weekId || '') !== currentWeek),
-        rooms: lcBuildRooms(groups, messages),
-        bans,
-      };
-      window._leagueChatLoaded = true;
-      renderLeagueChatAdmin();
-    } catch (e) {
-      if (body) body.innerHTML = `<tr><td colspan="7" style="color:#f87171;padding:30px">Ошибка загрузки: ${escapeHtml(e.message || String(e))}</td></tr>`;
-    }
-  };
-  window.renderLeagueChatAdmin = function() {
-    const mode = document.getElementById('lc-filter')?.value || 'queue';
-    lcRenderSummary();
-    lcRenderModeButtons(mode);
-    lcRenderHeaders(mode);
-    const search = (document.getElementById('lc-search')?.value || '').trim().toLowerCase();
-    const rawWeekFilter = (document.getElementById('lc-week')?.value || '').trim();
-    const weekFilter = (mode === 'bans' || (mode === 'archive' && !rawWeekFilter)) ? '' : lcWeekFilterValue();
-    const rows = (window._leagueChatCache?.[mode] || []).filter(r => (!weekFilter || String(r.weekId || '') === weekFilter) && lcMatchesSearch(r, search));
-    const count = document.getElementById('lc-count');
-    if (count) count.textContent = `${rows.length} записей`;
-    const body = document.getElementById('lc-body');
-    if (!body) return;
-    if (!rows.length) {
-      body.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#666;padding:40px">Пусто</td></tr>';
-      return;
-    }
-    if (mode === 'rooms') {
-      body.innerHTML = rows.map(r => {
-        const groupArg = JSON.stringify(String(r.groupId || r.id || ''));
-        return `<tr>
-        <td>${escapeHtml(lcDate(r.lastMessageAt || r.updatedAt || r.createdAt))}</td>
-        <td><span class="level-badge">${escapeHtml(String(r.messageCount || 0))} msg</span></td>
-        <td><div class="name">${escapeHtml(r.groupId || r.id || '—')}</div><div class="uid-small">${escapeHtml(String(r.memberCount || 0))} members</div></td>
-        <td><div>${escapeHtml(String(r.leagueId ?? '—'))}</div><div class="uid-small">${escapeHtml(r.weekId || '—')}</div><div class="uid-small">last: ${escapeHtml(String(r.lastAuthor || '—'))}</div></td>
-        <td style="white-space:normal;max-width:420px;line-height:1.45">${escapeHtml(r.lastText || '—')}</td>
-        <td style="white-space:normal;max-width:260px;color:#aaa">visible ${Number(r.visibleCount || 0)} · deleted ${Number(r.deletedCount || 0)} · reports ${Number(r.reportCount || 0)}</td>
-        <td><button onclick='leagueChatOpenRoom(${groupArg})'>Открыть чат</button></td>
-      </tr>`;
-      }).join('');
-      return;
-    }
-    if (mode === 'bans') {
-      body.innerHTML = rows.map(r => {
-        const uid = String(r.uid || r.id || '');
-        const uidArg = JSON.stringify(uid);
-        const mutedUntil = Number(r.mutedUntil || 0);
-        const status = r.status === 'muted' && mutedUntil && mutedUntil < Date.now() ? 'muted_expired' : (r.status || 'restricted');
-        return `<tr>
-        <td>${escapeHtml(lcDate(r.updatedAt || r.createdAt || mutedUntil))}</td>
-        <td><span class="level-badge">${escapeHtml(status)}</span></td>
-        <td><div class="name">${escapeHtml(uid)}</div><div class="uid-small">${escapeHtml(r.updatedBy || '—')}</div></td>
-        <td><div>—</div><div class="uid-small">until ${escapeHtml(mutedUntil ? lcDate(mutedUntil) : 'forever')}</div></td>
-        <td style="white-space:normal;max-width:420px;line-height:1.45">${escapeHtml(r.reason || '—')}</td>
-        <td style="white-space:normal;max-width:260px;color:#aaa">${escapeHtml(r.createdBy || '')}</td>
-        <td><button onclick='leagueChatUnrestrictUser(${uidArg})'>Снять</button></td>
-      </tr>`;
-      }).join('');
-      return;
-    }
-    body.innerHTML = rows.map(r => {
-      const isQueue = r._collection === 'league_chat_moderation_queue';
-      const isReport = r._collection === 'league_chat_reports';
-      const reasons = [...(r.moderationCategories || []), ...(r.moderationReasons || []), r.reason || ''].filter(Boolean).join(', ');
-      const uidArg = JSON.stringify(String(r.authorUid || ''));
-      const idArg = JSON.stringify(String(r.id || ''));
-      const msgArg = JSON.stringify(String(r.messageId || ''));
-      const modActions = r.authorUid
-        ? ` <button onclick='leagueChatMuteUser(${uidArg})' style="background:#2a2410;border-color:#5a4a1a;color:#fbbf24">Mute 24h</button> <button onclick='leagueChatBanUser(${uidArg})' style="background:#3a1a1a;border-color:#5a2a2a;color:#f87171">Chat-ban</button>`
-        : '';
-      const messageActions = r.status === 'deleted'
-        ? `<button onclick='leagueChatRestoreMessage(${idArg})'>Restore</button>${modActions}`
-        : `<button onclick='leagueChatDeleteMessage(${idArg})' style="background:#3a1a1a;border-color:#5a2a2a;color:#f87171">Удалить</button>${modActions}`;
-      const actions = isQueue
-        ? `<button onclick='leagueChatApprove(${idArg})'>Разрешить</button> <button onclick='leagueChatReject(${idArg})' style="background:#3a1a1a;border-color:#5a2a2a;color:#f87171">Отклонить</button>${modActions}`
-        : isReport
-          ? `<button onclick='leagueChatDeleteMessage(${msgArg})' style="background:#3a1a1a;border-color:#5a2a2a;color:#f87171">Удалить</button> <button onclick='leagueChatResolveReport(${idArg})'>Закрыть</button>${modActions}`
-          : messageActions;
-      return `<tr>
-        <td>${escapeHtml(lcDate(r.createdAt))}</td>
-        <td><span class="level-badge">${escapeHtml(r.status || r.decision || 'new')}</span></td>
-        <td><div class="name">${escapeHtml(r.authorName || '—')}</div><div class="uid-small">${escapeHtml(r.authorUid || '—')}</div></td>
-        <td><div>${escapeHtml(String(r.leagueId ?? '—'))}</div><div class="uid-small">${escapeHtml(r.weekId || '—')}</div><div class="uid-small">${escapeHtml(r.groupId || '—')}</div></td>
-        <td style="white-space:normal;max-width:420px;line-height:1.45">${escapeHtml(lcText(r))}</td>
-        <td style="white-space:normal;max-width:260px;color:#aaa">${escapeHtml(reasons || '—')}</td>
-        <td>${actions}</td>
-      </tr>`;
-    }).join('');
-  };
-  window.leagueChatApprove = async function(id) {
-    const row = (window._leagueChatCache.queue || []).find(r => r.id === id);
-    if (!row) return;
-    await addDoc(collection(db, 'league_chat_messages'), {
-      groupId: row.groupId, weekId: row.weekId, leagueId: row.leagueId,
-      authorUid: row.authorUid, authorName: row.authorName, authorAvatar: row.authorAvatar || '',
-      text: row.text, status: 'visible', reportCount: 0,
-      createdAt: row.createdAt || Date.now(), updatedAt: Date.now(), approvedFromQueueId: id,
-    });
-    await updateDoc(doc(db, 'league_chat_moderation_queue', id), { decision: 'approved', status: 'approved', decidedAt: Date.now() });
-    logAction('league_chat_approve', id, { groupId: row.groupId, authorUid: row.authorUid });
-    showToast('Сообщение опубликовано');
-    window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
-  };
-  window.leagueChatReject = async function(id) {
-    await updateDoc(doc(db, 'league_chat_moderation_queue', id), { decision: 'rejected', status: 'rejected', decidedAt: Date.now() });
-    logAction('league_chat_reject', id);
-    showToast('Сообщение отклонено');
-    window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
-  };
-  window.leagueChatDeleteMessage = async function(id) {
-    if (!id) return;
-    await updateDoc(doc(db, 'league_chat_messages', id), { status: 'deleted', deletedAt: Date.now() });
-    logAction('league_chat_delete_message', id);
-    showToast('Сообщение скрыто');
-    window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
-  };
-  window.leagueChatRestoreMessage = async function(id) {
-    if (!id) return;
-    await updateDoc(doc(db, 'league_chat_messages', id), { status: 'visible', restoredAt: Date.now(), deletedAt: deleteField() });
-    logAction('league_chat_restore_message', id);
-    showToast('Сообщение восстановлено');
-    window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
-  };
-  window.leagueChatOpenRoom = function(groupId) {
-    // Open the full Telegram-style thread overlay for this room.
-    leagueChatOpenThread(groupId, '');
-  };
-  window.leagueChatResolveReport = async function(id) {
-    await updateDoc(doc(db, 'league_chat_reports', id), { status: 'resolved', resolvedAt: Date.now() });
-    logAction('league_chat_resolve_report', id);
-    showToast('Жалоба закрыта');
-    window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
-  };
-  window.leagueChatMuteUser = async function(uid) {
-    if (!uid) return;
-    const reason = await showInputModal({ title: 'Chat mute 24h', desc: `UID: ${uid}`, confirmLabel: 'Mute', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Флуд', 'Неприемлемый контент', 'Ссылки/мошенничество'] });
-    if (reason === null || reason === false) return;
-    const now = Date.now();
-    await setDoc(doc(db, 'league_chat_bans', uid), {
-      uid, status: 'muted', reason: reason || '', mutedUntil: now + 24 * 60 * 60 * 1000,
-      updatedAt: now, updatedBy: adminEmail,
-    }, { merge: true });
-    logAction('league_chat_mute_user', uid, { hours: 24, reason: reason || '' });
-    showToast('Chat mute applied');
-  };
-  window.leagueChatBanUser = async function(uid) {
-    if (!uid) return;
-    const reason = await showInputModal({ title: 'Permanent chat-ban', desc: `UID: ${uid}`, confirmLabel: 'Chat-ban', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Мошенничество', 'Повторные нарушения', 'Неприемлемый контент'] });
-    if (reason === null || reason === false) return;
-    const now = Date.now();
-    await setDoc(doc(db, 'league_chat_bans', uid), {
-      uid, status: 'banned', reason: reason || '', mutedUntil: 0,
-      updatedAt: now, updatedBy: adminEmail,
-    }, { merge: true });
-    logAction('league_chat_ban_user', uid, { reason: reason || '' });
-    showToast('Chat-ban applied');
-  };
-  window.leagueChatUnrestrictUser = async function(uid) {
-    if (!uid) return;
-    await updateDoc(doc(db, 'league_chat_bans', uid), {
-      status: 'cleared',
-      mutedUntil: 0,
-      clearedAt: Date.now(),
-      clearedBy: adminEmail,
-    });
-    logAction('league_chat_unrestrict_user', uid);
-    showToast('Chat restriction cleared');
-    window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
-  };
-
-  // ── League chat thread viewer (Telegram-style read-through) ───────────────
-  window._lcThread = { groupId: '', focusId: '', messages: [], loading: false };
-
-  function lcInitials(name, uid) {
-    const s = String(name || '').trim();
-    if (s) {
-      const parts = s.split(/\s+/).filter(Boolean);
-      const a = parts[0] ? parts[0][0] : '';
-      const b = parts.length > 1 ? parts[parts.length - 1][0] : '';
-      return (a + b).toUpperCase() || a.toUpperCase();
-    }
-    const u = String(uid || '').trim();
-    return u ? u.slice(0, 2).toUpperCase() : '?';
-  }
-  function lcAvatarHtml(m) {
-    const url = m.authorAvatar || '';
-    if (url && /^https?:\/\//i.test(url)) {
-      return `<div class="lc-msg-avatar"><img src="${escapeHtml(url)}" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()"></div>`;
-    }
-    return `<div class="lc-msg-avatar">${escapeHtml(lcInitials(m.authorName, m.authorUid))}</div>`;
-  }
-  function lcStatusOf(m) {
-    if (m.status === 'deleted') return 'deleted';
-    if (m.status === 'review' || m.decision === 'pending') return 'queued';
-    return 'visible';
-  }
-  function lcDayKey(ts) {
-    const n = Number(ts || 0);
-    if (!n) return '—';
-    try { return new Date(n).toLocaleDateString(ADMIN_DATE_LOCALE, { day: '2-digit', month: 'short', year: 'numeric' }); }
-    catch (_) { return new Date(n).toDateString(); }
-  }
-  function lcTimeOf(ts) {
-    const n = Number(ts || 0);
-    if (!n) return '';
-    try { return new Date(n).toLocaleTimeString(ADMIN_DATE_LOCALE, { hour: '2-digit', minute: '2-digit' }); }
-    catch (_) { return ''; }
-  }
-  window.leagueChatCloseThread = function() {
-    const ov = document.getElementById('lc-thread-overlay');
-    if (ov) { ov.classList.remove('lc-thread-open'); ov.setAttribute('aria-hidden', 'true'); }
-    window._lcThread = { groupId: '', focusId: '', messages: [], loading: false, weekId: '', leagueId: 0 };
-  };
-
-  // ── Admin composer: post a message into a league room ─────────────────────
-  const LCT_POST_AS_KEY = 'lct_admin_post_as';
-  function lctAdminEmail() { return (auth && auth.currentUser && auth.currentUser.email) || 'admin'; }
-  function lctIsNamed() { return document.querySelector('input[name="lct-as"]:checked')?.value === 'named'; }
-  function lctPostAsName() {
-    const v = String(document.getElementById('lct-as-name')?.value || '').trim();
-    if (v) return v;
-    const email = lctAdminEmail();
-    return email.includes('@') ? email.split('@')[0] : email;
-  }
-  window.lctSaveName = function lctSaveName(v) { localStorage.setItem(LCT_POST_AS_KEY, String(v || '').slice(0, 48)); lctUpdateHint(); };
-  window.lctOnIdentityChange = function lctOnIdentityChange() {
-    const named = lctIsNamed();
-    const nameInput = document.getElementById('lct-as-name');
-    if (nameInput) nameInput.disabled = !named;
-    if (named && nameInput && !nameInput.value) nameInput.value = String(localStorage.getItem(LCT_POST_AS_KEY) || '');
-    lctUpdateHint();
-    if (named) nameInput?.focus();
-  };
-  function lctUpdateHint() {
-    const hint = document.getElementById('lct-hint');
-    if (!hint) return;
-    hint.innerHTML = lctIsNamed()
-      ? `Сообщение уйдёт в комнату от имени «<b>${escapeHtml(lctPostAsName())}</b>».`
-      : 'Сообщение уйдёт в эту комнату лиги от «Compass».';
-  }
-  function lctResetComposer() {
-    const input = document.getElementById('lct-input');
-    if (input) input.value = '';
-    const nameInput = document.getElementById('lct-as-name');
-    if (nameInput && !nameInput.value) nameInput.value = String(localStorage.getItem(LCT_POST_AS_KEY) || '');
-    lctUpdateHint();
-  }
-  window.leagueChatSendAdminMessage = async function leagueChatSendAdminMessage() {
-    const t = window._lcThread || {};
-    const gid = String(t.groupId || '');
-    if (!gid) return;
-    const input = document.getElementById('lct-input');
-    const sendBtn = document.getElementById('lct-send');
-    const text = String(input?.value || '').trim();
-    if (!text) return;
-    if (text.length > 500) { showToast('Слишком длинно (макс. 500)'); return; }
-    const named = lctIsNamed();
-    const now = Date.now();
-    if (sendBtn) sendBtn.disabled = true;
-    try {
-      const ref = doc(collection(db, 'league_chat_messages'));
-      const msg = {
-        groupId: gid,
-        weekId: String(t.weekId || ''),
-        leagueId: Number(t.leagueId || 0),
-        authorUid: named ? ('admin:' + lctAdminEmail().toLowerCase()) : '__league_system__',
-        authorName: named ? lctPostAsName() : 'Compass',
-        authorAvatar: '',
-        authorAura: '',
-        kind: named ? 'user' : 'system',
-        ...(named ? {} : { systemType: 'announcement' }),
-        text,
-        status: 'visible',
-        reportCount: 0,
-        adminAuthored: true,
-        adminAuthoredBy: lctAdminEmail(),
-        createdAt: now,
-        updatedAt: now,
-      };
-      await setDoc(ref, msg);
-      logAction('league_chat_admin_message', gid, { messageId: ref.id, as: named ? msg.authorName : 'system' });
-      if (input) input.value = '';
-      // Optimistic append so it shows immediately.
-      window._lcThread.messages = [...(t.messages || []), { id: ref.id, _collection: 'league_chat_messages', ...msg }];
-      lcRenderThread();
-      window._leagueChatLoaded = false; // table cache stale
-      showToast(named ? ('Отправлено как «' + msg.authorName + '»') : 'Отправлено от Compass');
-    } catch (e) {
-      showToast('Ошибка: ' + (e && e.message ? e.message : String(e)));
-    } finally {
-      if (sendBtn) sendBtn.disabled = false;
-    }
-  };
-  window.leagueChatOpenThread = async function(groupId, focusMsgId) {
-    const gid = String(groupId || '');
-    if (!gid) { showToast('Нет groupId у сообщения'); return; }
-    const ov = document.getElementById('lc-thread-overlay');
-    const scroll = document.getElementById('lc-thread-scroll');
-    const titleEl = document.getElementById('lc-thread-title');
-    const subEl = document.getElementById('lc-thread-sub');
-    const statsEl = document.getElementById('lc-thread-stats');
-    if (!ov || !scroll) return;
-    // Capture room meta (week/league) so the admin composer can post into this room.
-    const room = (window._leagueChatCache?.rooms || []).find(r => String(r.groupId || r.id) === gid);
-    const weekId = room ? String(room.weekId || '') : '';
-    const leagueId = room ? Number(room.leagueId || 0) : 0;
-    window._lcThread = { groupId: gid, focusId: String(focusMsgId || ''), messages: [], loading: true, weekId, leagueId };
-    if (titleEl) titleEl.textContent = 'Тред комнаты';
-    if (subEl) subEl.textContent = gid;
-    if (statsEl) statsEl.textContent = '';
-    scroll.innerHTML = '<div class="lc-thread-loading">Загрузка треда…</div>';
-    ov.classList.add('lc-thread-open');
-    ov.setAttribute('aria-hidden', 'false');
-    lctResetComposer();
-    try {
-      // Pull the FULL thread for this room from Firestore, not the truncated sample.
-      const snap = await getDocs(query(
-        collection(db, 'league_chat_messages'),
-        where('groupId', '==', gid),
-        orderBy('createdAt', 'asc'),
-        limit(1000),
-      ));
-      const messages = snap.docs.map(d => ({ id: d.id, _collection: 'league_chat_messages', ...(d.data() || {}) }));
-      if (window._lcThread.groupId !== gid) return; // overlay changed/closed while loading
-      // Backfill room meta from messages if it wasn't in the rooms cache.
-      if ((!window._lcThread.weekId || !window._lcThread.leagueId) && messages.length) {
-        const m0 = messages.find(m => m.weekId != null || m.leagueId != null) || messages[0];
-        if (!window._lcThread.weekId) window._lcThread.weekId = String(m0.weekId || '');
-        if (!window._lcThread.leagueId) window._lcThread.leagueId = Number(m0.leagueId || 0);
-      }
-      window._lcThread.messages = messages;
-      window._lcThread.loading = false;
-      lcRenderThread();
-    } catch (e) {
-      if (window._lcThread.groupId !== gid) return;
-      // Missing composite index or other error → fall back to local cache filtered by group.
-      const cached = (window._leagueChatCache?.messages || []).filter(m => String(m.groupId || '') === gid)
-        .sort((a, b) => Number(a.createdAt || 0) - Number(b.createdAt || 0));
-      window._lcThread.messages = cached;
-      window._lcThread.loading = false;
-      lcRenderThread(e && e.message ? String(e.message) : '');
-    }
-  };
-  function lcRenderThread(warnMsg) {
-    const t = window._lcThread || {};
-    const scroll = document.getElementById('lc-thread-scroll');
-    const titleEl = document.getElementById('lc-thread-title');
-    const subEl = document.getElementById('lc-thread-sub');
-    const statsEl = document.getElementById('lc-thread-stats');
-    if (!scroll) return;
-    const msgs = t.messages || [];
-    const room = (window._leagueChatCache?.rooms || []).find(r => String(r.groupId || r.id) === t.groupId);
-    if (titleEl) titleEl.textContent = room ? `Лига ${room.leagueId ?? '—'} · ${room.weekId || '—'}` : 'Тред комнаты';
-    if (subEl) subEl.textContent = t.groupId + (room && room.memberCount ? ` · ${room.memberCount} участников` : '');
-    if (statsEl) {
-      const visible = msgs.filter(m => lcStatusOf(m) === 'visible').length;
-      const deleted = msgs.filter(m => lcStatusOf(m) === 'deleted').length;
-      statsEl.textContent = `${msgs.length} сообщений · visible ${visible} · deleted ${deleted}` + (warnMsg ? ` · ⚠ из кэша (${warnMsg})` : '');
-    }
-    if (!msgs.length) {
-      scroll.innerHTML = '<div class="lc-thread-empty">В этом треде пока нет сообщений.</div>';
-      return;
-    }
-    let html = '';
-    let lastDay = '';
-    let lastAuthor = '';
-    let lastTs = 0;
-    msgs.forEach(m => {
-      const day = lcDayKey(m.createdAt);
-      if (day !== lastDay) {
-        html += `<div class="lc-thread-daysep">${escapeHtml(day)}</div>`;
-        lastDay = day;
-        lastAuthor = '';
-      }
-      const author = String(m.authorUid || m.authorName || '');
-      const grouped = author && author === lastAuthor && (Number(m.createdAt || 0) - lastTs) < 5 * 60 * 1000;
-      lastAuthor = author;
-      lastTs = Number(m.createdAt || 0);
-      const status = lcStatusOf(m);
-      const rowCls = ['lc-msg-row', grouped ? 'lc-grouped' : '', status === 'deleted' ? 'lc-deleted' : '', status === 'queued' ? 'lc-queued' : '', String(m.id) === String(t.focusId) ? 'lc-focus' : ''].filter(Boolean).join(' ');
-      const idArg = JSON.stringify(String(m.id || ''));
-      const uidArg = JSON.stringify(String(m.authorUid || ''));
-      const reports = Number(m.reportCount || 0);
-      const modBtns = status === 'deleted'
-        ? `<button onclick='leagueChatThreadAction("restore", ${idArg})'>Восстановить</button>`
-        : `<button class="lc-act-del" onclick='leagueChatThreadAction("delete", ${idArg})'>Удалить</button>`;
-      const userBtns = m.authorUid
-        ? `<button class="lc-act-mute" onclick='leagueChatMuteUser(${uidArg})'>Mute 24h</button><button class="lc-act-ban" onclick='leagueChatBanUser(${uidArg})'>Ban</button>`
-        : '';
-      html += `<div class="${rowCls}" id="lc-thread-msg-${escapeHtml(String(m.id || ''))}">
-        ${lcAvatarHtml(m)}
-        <div class="lc-bubble-wrap">
-          ${grouped ? '' : `<div class="lc-msg-author">${escapeHtml(m.authorName || m.authorUid || 'Аноним')}</div>`}
-          <div class="lc-bubble">${escapeHtml(lcText(m) || '—')}
-            <div class="lc-bubble-meta">
-              <span>${escapeHtml(lcTimeOf(m.createdAt))}</span>
-              <span class="lc-bubble-status s-${status}">${status === 'visible' ? 'видно' : status === 'deleted' ? 'удалено' : 'в очереди'}</span>
-              ${reports ? `<span class="lc-bubble-reports">⚑ ${reports}</span>` : ''}
-            </div>
-            <div class="lc-bubble-actions">${modBtns}${userBtns}</div>
-          </div>
-        </div>
-      </div>`;
-    });
-    scroll.innerHTML = html;
-    // Scroll to the focused message if present, else to the bottom (latest).
-    const focusEl = t.focusId ? document.getElementById('lc-thread-msg-' + t.focusId) : null;
-    if (focusEl) focusEl.scrollIntoView({ block: 'center' });
-    else scroll.scrollTop = scroll.scrollHeight;
-  }
-  // In-thread moderation: mutate one message, refresh the thread + invalidate the tab cache.
-  window.leagueChatThreadAction = async function(kind, id) {
-    if (!id) return;
-    try {
-      if (kind === 'delete') {
-        await updateDoc(doc(db, 'league_chat_messages', id), { status: 'deleted', deletedAt: Date.now() });
-        logAction('league_chat_delete_message', id, { from: 'thread' });
-        showToast('Сообщение скрыто');
-      } else if (kind === 'restore') {
-        await updateDoc(doc(db, 'league_chat_messages', id), { status: 'visible', restoredAt: Date.now(), deletedAt: deleteField() });
-        logAction('league_chat_restore_message', id, { from: 'thread' });
-        showToast('Сообщение восстановлено');
-      } else { return; }
-    } catch (e) {
-      showToast('Ошибка: ' + (e && e.message ? e.message : String(e)));
-      return;
-    }
-    // Update the in-memory thread copy so the bubble re-renders without a full reload.
-    const msgs = window._lcThread.messages || [];
-    const idx = msgs.findIndex(m => String(m.id) === String(id));
-    if (idx >= 0) {
-      const next = { ...msgs[idx] };
-      if (kind === 'delete') { next.status = 'deleted'; next.deletedAt = Date.now(); }
-      else { next.status = 'visible'; delete next.deletedAt; }
-      window._lcThread.messages = [...msgs.slice(0, idx), next, ...msgs.slice(idx + 1)];
-    }
-    lcRenderThread();
-    window._leagueChatLoaded = false; // table data is now stale; refresh lazily next time the tab loads
-  };
-
-  // ── Cmd-K global command palette ──────────────────────────────────────────
-  // Human-readable labels for tab navigation results (keys must be in ADMIN_TAB_KEYS).
-  const CMDK_TAB_LABELS = {
-    'openai-budget': 'OpenAI budget',
-    'control-panel': '🎛 Пульт управления',
-    'overview': '📊 Overview', 'analytics': '📈 Analytics', 'onboarding-sources': '📣 Откуда узнали (онбординг)', 'app-health': '🩺 App Health',
-    'users': '👥 Users', 'reports': '🐞 Content reports', 'emails': 'Emails', 'website-inbox': '✉️ Support (site)',
-    'user-reports': '🚩 User reports', 'safety-flags': '🆘 Safety', 'age-consent': '🔞 Age & consent',
-    'explain-reports': '💡 Explain reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Plus',
-    'vip': '💚 Plus', 'plus-radar': 'Plus Radar', 'cancel-surveys': '📉 Cancel surveys', 'review-promo': '📝 Plus survey',
-    'referrals': '🔗 Referrals', 'app-messages': '💬 Messages', 'ugc-purchases': '🛒 UGC purchases',
-    'community-packs': '🧩 Community', 'card-packs': '🃏 Card packs', 'daily-phrases': '📅 Daily phrases', 'french-quizzes': 'French quizzes',
-    'push-notify': '🔔 Push', 'clubs': '🏆 Clubs', 'league-chat': '💬 League chat',
-    'arena-ranks': '🥇 Arena — Top', 'arena-live': '🔴 Arena — Live', 'arena-bets': '🎲 Arena bets',
-    'arena-rooms': '🚪 Rooms', 'archive': '📦 Archive', 'audit': '📜 Audit log',
-    'ops-log': '🧾 Ops log', 'remote-config': '🎛️ Remote Config', 'alerts': '🔔 Alerts',
-    'changelog-0608': 'Audit archive',
-  };
-  let _cmdkActiveIndex = 0;
-  let _cmdkItems = [];
-  function cmdkEscapeReg(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-  function cmdkHighlight(text, q) {
-    const safe = escapeHtml(String(text || ''));
-    if (!q) return safe;
-    try {
-      return safe.replace(new RegExp('(' + cmdkEscapeReg(escapeHtml(q)) + ')', 'ig'), '<mark>$1</mark>');
-    } catch (_) { return safe; }
-  }
-  function cmdkBuildItems(rawQuery) {
-    const q = String(rawQuery || '').trim().toLowerCase();
-    const items = [];
-    // 1) Tab navigation
-    const tabKeys = (typeof ADMIN_TAB_KEYS !== 'undefined' ? ADMIN_TAB_KEYS : Object.keys(CMDK_TAB_LABELS));
-    for (const key of tabKeys) {
-      const label = CMDK_TAB_LABELS[key] || key;
-      if (!q || key.includes(q) || label.toLowerCase().includes(q)) {
-        items.push({ kind: 'tab', icon: label.split(' ')[0] || '▸', title: label.replace(/^\S+\s/, ''), sub: '#' + key, action: () => switchTab(key) });
-      }
-    }
-    // 2) Users (only when there is a query, to avoid dumping the whole list)
-    if (q) {
-      const users = Array.isArray(window._users) ? window._users : [];
-      let matched = 0;
-      for (const u of users) {
-        const email = (u.linkedAuth && u.linkedAuth.email) || '';
-        const hay = [u.uid, u.name, email].map(x => String(x || '').toLowerCase());
-        if (hay.some(x => x.includes(q))) {
-          items.push({
-            kind: 'user',
-            icon: '👤',
-            title: u.name || '(без имени)',
-            sub: (email ? email + ' · ' : '') + String(u.uid || '').slice(0, 18),
-            action: () => { switchTab('users'); if (typeof openDetail === 'function') openDetail(u.uid); },
-          });
-          if (++matched >= 8) break;
-        }
-      }
-      if (!matched && users.length === 0) {
-        items.push({ kind: 'hint', icon: '⏳', title: 'Открой вкладку Users чтобы искать по людям', sub: 'клик загрузит базу', action: () => switchTab('users') });
-      }
-      // 3) Direct UID (looks like an id, not found in loaded list)
-      const looksLikeUid = rawQuery.trim().length >= 18 && !/\s/.test(rawQuery.trim());
-      if (looksLikeUid && !items.some(it => it.kind === 'user')) {
-        const uid = rawQuery.trim();
-        items.push({ kind: 'uid', icon: '🆔', title: 'Открыть профиль по UID', sub: uid, action: () => { if (typeof openUserByUid === 'function') openUserByUid(uid); else { switchTab('users'); if (typeof openDetail === 'function') openDetail(uid); } } });
-      }
-    }
-    return items;
-  }
-  function cmdkRender() {
-    const q = document.getElementById('cmdk-input')?.value || '';
-    _cmdkItems = cmdkBuildItems(q);
-    if (_cmdkActiveIndex >= _cmdkItems.length) _cmdkActiveIndex = Math.max(0, _cmdkItems.length - 1);
-    const box = document.getElementById('cmdk-results');
-    if (!box) return;
-    if (!_cmdkItems.length) { box.innerHTML = '<div class="cmdk-empty">Ничего не найдено</div>'; return; }
-    box.innerHTML = _cmdkItems.map((it, i) => `
-      <div class="cmdk-item ${i === _cmdkActiveIndex ? 'cmdk-active' : ''}" data-idx="${i}">
-        <span class="cmdk-item-icon">${escapeHtml(it.icon)}</span>
-        <div class="cmdk-item-main">
-          <div class="cmdk-item-title">${cmdkHighlight(it.title, q)}</div>
-          ${it.sub ? `<div class="cmdk-item-sub">${cmdkHighlight(it.sub, q)}</div>` : ''}
-        </div>
-        <span class="cmdk-item-kind">${escapeHtml(it.kind)}</span>
-      </div>`).join('');
-    box.querySelectorAll('.cmdk-item').forEach(el => {
-      el.addEventListener('click', () => { _cmdkActiveIndex = Number(el.dataset.idx); cmdkChoose(); });
-      el.addEventListener('mousemove', () => { const i = Number(el.dataset.idx); if (i !== _cmdkActiveIndex) { _cmdkActiveIndex = i; cmdkPaintActive(); } });
-    });
-  }
-  function cmdkPaintActive() {
-    document.querySelectorAll('#cmdk-results .cmdk-item').forEach(el => {
-      el.classList.toggle('cmdk-active', Number(el.dataset.idx) === _cmdkActiveIndex);
-    });
-    const active = document.querySelector('#cmdk-results .cmdk-item.cmdk-active');
-    if (active) active.scrollIntoView({ block: 'nearest' });
-  }
-  function cmdkChoose() {
-    const it = _cmdkItems[_cmdkActiveIndex];
-    if (!it) return;
-    cmdkClose();
-    try { it.action(); } catch (e) { showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err'); }
-  }
-  window.cmdkOpen = function() {
-    const ov = document.getElementById('cmdk-overlay');
-    const input = document.getElementById('cmdk-input');
-    if (!ov || !input) return;
-    ov.classList.add('cmdk-open');
-    ov.setAttribute('aria-hidden', 'false');
-    input.value = '';
-    _cmdkActiveIndex = 0;
-    cmdkRender();
-    setTimeout(() => input.focus(), 0);
-  };
-  window.cmdkClose = function() {
-    const ov = document.getElementById('cmdk-overlay');
-    if (ov) { ov.classList.remove('cmdk-open'); ov.setAttribute('aria-hidden', 'true'); }
-  };
-  function cmdkWire() {
-    if (window._cmdkWired) return;
-    const ov = document.getElementById('cmdk-overlay');
-    const input = document.getElementById('cmdk-input');
-    const backdrop = document.getElementById('cmdk-backdrop');
-    if (!ov || !input) return;
-    window._cmdkWired = true;
-    backdrop?.addEventListener('click', () => cmdkClose());
-    input.addEventListener('input', () => { _cmdkActiveIndex = 0; cmdkRender(); });
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown') { e.preventDefault(); _cmdkActiveIndex = Math.min(_cmdkItems.length - 1, _cmdkActiveIndex + 1); cmdkPaintActive(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); _cmdkActiveIndex = Math.max(0, _cmdkActiveIndex - 1); cmdkPaintActive(); }
-      else if (e.key === 'Enter') { e.preventDefault(); cmdkChoose(); }
-      else if (e.key === 'Escape') { e.preventDefault(); cmdkClose(); }
-    });
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
-        e.preventDefault();
-        const isOpen = ov.classList.contains('cmdk-open');
-        if (isOpen) cmdkClose(); else cmdkOpen();
-      }
-    });
-  }
-  // Wire on load (palette is global, available from any tab).
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cmdkWire);
-  else cmdkWire();
-
-  function applyCleanLeagueChatChrome() {
-    const tab = document.getElementById('tab-league-chat');
-    if (!tab) return;
-    const title = tab.querySelector('.lc-title');
-    if (title) title.textContent = 'League chat';
-    const subtitle = tab.querySelector('.lc-subtitle');
-    if (subtitle) subtitle.textContent = 'Moderation queue, reports, rooms, active messages, archive, and user restrictions.';
-    const refresh = tab.querySelector('.lc-actions button');
-    if (refresh) {
-      refresh.textContent = 'Refresh';
-      refresh.setAttribute('data-i18n-es', 'Refresh');
-    }
-    const kpiLabels = [
-      ['lc-kpi-queue', 'Review queue', 'pending moderation'],
-      ['lc-kpi-reports', 'Reports', 'unresolved reports'],
-      ['lc-kpi-rooms', 'Rooms', 'league groups'],
-      ['lc-kpi-messages', 'Messages', 'loaded sample'],
-      ['lc-kpi-archive', 'Archive', 'past weeks'],
-      ['lc-kpi-bans', 'Restrictions', 'mute and ban list'],
-    ];
-    kpiLabels.forEach(([id, label, hint]) => {
-      const card = document.getElementById(id)?.closest('.lc-kpi');
-      if (!card) return;
-      const labelEl = card.querySelector('.label');
-      const hintEl = card.querySelector('.hint');
-      if (labelEl) labelEl.textContent = label;
-      if (hintEl) hintEl.textContent = hint;
-    });
-    const modeLabels = {
-      queue: 'Review queue',
-      reports: 'Reports',
-      rooms: 'Rooms',
-      messages: 'Messages',
-      archive: 'Archive',
-      blocked: 'Auto-blocked',
-      bans: 'Restrictions',
-    };
-    Object.entries(modeLabels).forEach(([mode, label]) => {
-      const option = document.querySelector(`#lc-filter option[value="${mode}"]`);
-      if (option) option.textContent = label;
-      const btn = document.querySelector(`.lc-mode-btn[data-lc-mode="${mode}"]`);
-      if (btn) btn.textContent = label;
-    });
-    const labels = tab.querySelectorAll('.lc-field label');
-    if (labels[0]) labels[0].textContent = 'Week';
-    if (labels[1]) labels[1].textContent = 'Search';
-    const search = document.getElementById('lc-search');
-    if (search) {
-      search.placeholder = 'Text, UID, name, groupId';
-      search.setAttribute('data-i18n-es', 'Text, UID, name, groupId');
-    }
-  }
-
-  function lcCleanHeaders(mode) {
-    const head = document.getElementById('lc-head');
-    if (!head) return;
-    if (mode === 'rooms') { head.innerHTML = ''; return; } // cards view: no column headers
-    const headers = mode === 'bans'
-        ? ['Updated', 'Status', 'UID', 'Term', 'Reason', 'Changed by', 'Actions']
-        : mode === 'reports'
-          ? ['Time', 'Status', 'Message author', 'League / week', 'Report / message', 'Reason', 'Actions']
-          : ['Time', 'Status', 'Author', 'League / week', 'Message', 'Reasons', 'Actions'];
-    head.innerHTML = '<tr>' + headers.map(h => `<th>${escapeHtml(h)}</th>`).join('') + '</tr>';
-  }
-
-  function lcActionButton(label, onclick, extraClass = '') {
-    return `<button type="button" class="${escapeHtml(extraClass)}" onclick='${onclick}'>${escapeHtml(label)}</button>`;
-  }
-
-  function lcModerationButtons(row) {
-    const uid = String(row.authorUid || '');
-    if (!uid) return '';
-    const uidArg = JSON.stringify(uid);
-    return `${lcActionButton('Mute 24h', `leagueChatMuteUser(${uidArg})`, 'lc-muted-action')} ${lcActionButton('Chat-ban', `leagueChatBanUser(${uidArg})`, 'lc-ban-action')}`;
-  }
-
-  function lcWireThreadOverlay() {
-    if (window._lcThreadWired) return;
-    const ov = document.getElementById('lc-thread-overlay');
-    const backdrop = document.getElementById('lc-thread-backdrop');
-    const closeBtn = document.getElementById('lc-thread-close');
-    if (!ov) return;
-    window._lcThreadWired = true;
-    if (backdrop) backdrop.addEventListener('click', () => leagueChatCloseThread());
-    if (closeBtn) closeBtn.addEventListener('click', () => leagueChatCloseThread());
-    const sendBtn = document.getElementById('lct-send');
-    if (sendBtn) sendBtn.addEventListener('click', () => leagueChatSendAdminMessage());
-    const input = document.getElementById('lct-input');
-    if (input) input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); leagueChatSendAdminMessage(); }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && ov.classList.contains('lc-thread-open')) leagueChatCloseThread();
-    });
-  }
-
-  window.loadLeagueChatAdmin = async function loadLeagueChatAdmin(force = false) {
-    applyCleanLeagueChatChrome();
-    lcWireThreadOverlay();
-    if (window._leagueChatLoaded && !force) {
-      renderLeagueChatAdmin();
-      return;
-    }
-    const body = document.getElementById('lc-body');
-    if (body) body.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px">Loading league chat...</td></tr>';
-    try {
-      const [queueAll, reports, messages, groups, bans] = await Promise.all([
-        loadLeagueChatCollection('league_chat_moderation_queue', 'createdAt', 300),
-        loadLeagueChatCollection('league_chat_reports', 'createdAt', 300),
-        loadLeagueChatCollection('league_chat_messages', 'createdAt', 600),
-        loadLeagueChatGroups(),
-        loadLeagueChatCollection('league_chat_bans', 'updatedAt', 300).catch(() => []),
-      ]);
-      const currentWeek = lcCurrentWeekId();
-      // Вкладки Messages/Archive/Rooms показывают живую переписку — сообщения
-      // Компаса/системы из них убираем, оставляем только сообщения людей.
-      // (Rooms всё равно строит превью по людям через lcBuildRooms.)
-      const humanMessages = messages.filter(r => !lcIsSystemMessage(r));
-      window._leagueChatCache = {
-        queue: queueAll.filter(r => r.status === 'review' || r.decision === 'pending'),
-        blocked: queueAll.filter(r => r.status === 'blocked' || r.decision === 'auto_blocked'),
-        reports,
-        messages: humanMessages,
-        archive: humanMessages.filter(r => currentWeek && String(r.weekId || '') !== currentWeek),
-        rooms: lcBuildRooms(groups, messages),
-        bans,
-      };
-      window._leagueChatLoaded = true;
-      renderLeagueChatAdmin();
-      showToast('League chat loaded');
-    } catch (error) {
-      if (body) body.innerHTML = `<tr><td colspan="7" style="color:#f87171;padding:30px">League chat load failed: ${escapeHtml(error.message || String(error))}</td></tr>`;
-    }
-  };
-
-  window.renderLeagueChatAdmin = function renderLeagueChatAdmin() {
-    applyCleanLeagueChatChrome();
-    const mode = document.getElementById('lc-filter')?.value || 'rooms';
-    lcRenderSummary();
-    lcRenderModeButtons(mode);
-    lcCleanHeaders(mode);
-    const search = (document.getElementById('lc-search')?.value || '').trim().toLowerCase();
-    const rawWeekFilter = (document.getElementById('lc-week')?.value || '').trim();
-    const weekFilter = (mode === 'bans' || (mode === 'archive' && !rawWeekFilter)) ? '' : lcWeekFilterValue();
-    const rows = (window._leagueChatCache?.[mode] || []).filter(r => (!weekFilter || String(r.weekId || '') === weekFilter) && lcMatchesSearch(r, search));
-    const count = document.getElementById('lc-count');
-    if (count) count.textContent = `${rows.length} rows`;
-    const body = document.getElementById('lc-body');
-    if (!body) return;
-    if (!rows.length) {
-      body.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px">No ${escapeHtml(mode)} rows for this filter.</td></tr>`;
-      return;
-    }
-    if (mode === 'rooms') {
-      // Forum view: each league room is a card; click opens the full chat thread.
-      const cards = rows.map((r) => {
-        const groupArg = JSON.stringify(String(r.groupId || r.id || ''));
-        const reports = Number(r.reportCount || 0);
-        return `<div class="lc-room-card" onclick='leagueChatOpenThread(${groupArg}, "")'>
-          <div class="lc-rc-head">
-            <div class="lc-rc-league">🏆 Лига ${escapeHtml(String(r.leagueId ?? '—'))}</div>
-            <span class="lc-rc-count">💬 ${Number(r.messageCount || 0)}</span>
-          </div>
-          <div class="lc-rc-last">${escapeHtml(r.lastText || 'Сообщений пока нет')}</div>
-          <div class="lc-rc-foot">
-            <span>${escapeHtml(String(r.memberCount || 0))} 👤</span>
-            <span>👁 ${Number(r.visibleCount || 0)}</span>
-            <span>🗑 ${Number(r.deletedCount || 0)}</span>
-            ${reports ? `<span style="color:#fb923c">⚑ ${reports}</span>` : ''}
-            <span class="lc-rc-week">${escapeHtml(r.weekId || '—')}</span>
-            <span style="margin-left:auto">${escapeHtml(lcDate(r.lastMessageAt || r.updatedAt || r.createdAt))}</span>
-          </div>
-        </div>`;
-      }).join('');
-      body.innerHTML = `<tr><td style="padding:0;border:none"><div class="lc-room-grid">${cards}</div></td></tr>`;
-      return;
-    }
-    if (mode === 'bans') {
-      body.innerHTML = rows.map((r) => {
-        const uid = String(r.uid || r.id || '');
-        const uidArg = JSON.stringify(uid);
-        const mutedUntil = Number(r.mutedUntil || 0);
-        const status = r.status === 'muted' && mutedUntil && mutedUntil < Date.now() ? 'muted_expired' : (r.status || 'restricted');
-        return `<tr>
-          <td>${escapeHtml(lcDate(r.updatedAt || r.createdAt || mutedUntil))}</td>
-          <td><span class="lc-status-pill">${escapeHtml(status)}</span></td>
-          <td><div class="lc-row-main">${escapeHtml(uid)}</div><div class="lc-row-meta">${escapeHtml(r.updatedBy || '-')}</div></td>
-          <td><div class="lc-row-main">${escapeHtml(mutedUntil ? lcDate(mutedUntil) : 'forever')}</div></td>
-          <td><div class="lc-message-text">${escapeHtml(r.reason || '-')}</div></td>
-          <td><div class="lc-reason-text">${escapeHtml(r.createdBy || '-')}</div></td>
-          <td><div class="lc-action-stack">${lcActionButton('Clear restriction', `leagueChatUnrestrictUser(${uidArg})`)}</div></td>
-        </tr>`;
-      }).join('');
-      return;
-    }
-    body.innerHTML = rows.map((r) => {
-      const isQueue = r._collection === 'league_chat_moderation_queue';
-      const isReport = r._collection === 'league_chat_reports';
-      const reasons = [...(r.moderationCategories || []), ...(r.moderationReasons || []), r.reason || ''].filter(Boolean).join(', ');
-      const idArg = JSON.stringify(String(r.id || ''));
-      const msgArg = JSON.stringify(String(r.messageId || r.id || ''));
-      const baseActions = isQueue
-        ? `${lcActionButton('Approve', `leagueChatApprove(${idArg})`)} ${lcActionButton('Reject', `leagueChatReject(${idArg})`, 'lc-reject-action')}`
-        : isReport
-          ? `${lcActionButton('Delete message', `leagueChatDeleteMessage(${msgArg})`, 'lc-delete-action')} ${lcActionButton('Resolve report', `leagueChatResolveReport(${idArg})`)}`
-          : r.status === 'deleted'
-            ? lcActionButton('Restore', `leagueChatRestoreMessage(${idArg})`)
-            : lcActionButton('Delete message', `leagueChatDeleteMessage(${idArg})`, 'lc-delete-action');
-      // Click anywhere on the row (except a button) to open the full thread for this
-      // room, scrolled to this message. Reports point at messageId; messages/archive at id.
-      const groupId = String(r.groupId || '');
-      const focusId = isReport ? String(r.messageId || '') : (isQueue ? '' : String(r.id || ''));
-      const rowAttrs = groupId
-        ? ` class="lc-row-clickable" title="Открыть тред" onclick='if(!event.target.closest("button")) leagueChatOpenThread(${JSON.stringify(groupId)}, ${JSON.stringify(focusId)})'`
-        : '';
-      return `<tr${rowAttrs}>
-        <td>${escapeHtml(lcDate(r.createdAt))}</td>
-        <td><span class="lc-status-pill">${escapeHtml(r.status || r.decision || 'new')}</span></td>
-        <td><div class="lc-row-main">${escapeHtml(r.authorName || '-')}</div><div class="lc-row-meta">${escapeHtml(r.authorUid || '-')}</div></td>
-        <td><div class="lc-row-main">${escapeHtml(String(r.leagueId ?? '-'))}</div><div class="lc-row-meta">${escapeHtml(r.weekId || '-')}</div><div class="lc-row-meta">${escapeHtml(r.groupId || '-')}</div></td>
-        <td><div class="lc-message-text">${escapeHtml(lcText(r) || '-')}</div></td>
-        <td><div class="lc-reason-text">${escapeHtml(reasons || '-')}</div></td>
-        <td><div class="lc-action-stack">${baseActions} ${lcModerationButtons(r)}</div></td>
-      </tr>`;
-    }).join('');
-  };
-
-  window._helpBoardCache = { topics: [], comments: [], reports: [], queue: [], restrictions: [], billing: [] };
-
-  function hbDate(v) {
-    const raw = v && typeof v.toMillis === 'function' ? v.toMillis() : (v && typeof v.seconds === 'number' ? v.seconds * 1000 : v);
-    const n = Number(raw || 0);
-    if (!n) return '-';
-    try { return new Date(n).toLocaleString(ADMIN_DATE_LOCALE, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); }
-    catch (_) { return new Date(n).toISOString(); }
-  }
-
-  async function hbLoadCollection(name, orderField, maxRows) {
-    const snap = await getDocs(query(collection(db, name), orderBy(orderField, 'desc'), limit(maxRows)));
-    return snap.docs.map(d => ({ id: d.id, _collection: name, ...(d.data() || {}) }));
-  }
-
-  function hbBoard(row) {
-    return String(row.boardKey || `${row.targetLang || '-'}:${row.uiLang || '-'}`);
-  }
-
-  function hbText(row) {
-    return [
-      row.title,
-      row.text,
-      row.compassAnswer,
-      row.reason,
-      row.rejectReason,
-      row.normalizedText,
-    ].filter(Boolean).join(' | ');
-  }
-
-  function hbMatches(row, search, targetLang, uiLang) {
-    if (targetLang && String(row.targetLang || '') !== targetLang) return false;
-    if (uiLang && String(row.uiLang || '') !== uiLang) return false;
-    if (!search) return true;
-    return [
-      row.id,
-      row.topicId,
-      row.targetId,
-      row.uid,
-      row.authorUid,
-      row.reporterUid,
-      hbBoard(row),
-      hbText(row),
-      ...(row.moderationCategories || []),
-      ...(row.moderationReasons || []),
-    ].join(' ').toLowerCase().includes(search);
-  }
-
-  function hbSetText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = String(text);
-  }
-
-  function hbRenderKpis() {
-    const c = window._helpBoardCache || {};
-    const openReports = (c.reports || []).filter(r => String(r.status || 'new') !== 'resolved').length;
-    const openQueue = (c.queue || []).filter(r => !['approved','rejected','resolved'].includes(String(r.decision || r.status || ''))).length;
-    const tokens = (c.billing || []).reduce((sum, r) => sum
-      + Number(r.promptTokens || 0)
-      + Number(r.completionTokens || 0)
-      + Number(r.judgePromptTokens || 0)
-      + Number(r.judgeCompletionTokens || 0), 0);
-    hbSetText('hb-kpi-topics', (c.topics || []).length);
-    hbSetText('hb-kpi-comments', (c.comments || []).length);
-    hbSetText('hb-kpi-reports', openReports);
-    hbSetText('hb-kpi-queue', openQueue);
-    hbSetText('hb-kpi-tokens', tokens);
-  }
-
-  function hbHeaders(mode) {
-    const head = document.getElementById('hb-head');
-    if (!head) return;
-    const headers = mode === 'billing'
-      ? ['Time', 'Status', 'Board', 'UID', 'Model', 'Tokens', 'Topic']
-      : ['Time', 'Status', 'Board', 'Author', 'Content', 'Signals', 'Actions'];
-    head.innerHTML = '<tr>' + headers.map(h => `<th>${escapeHtml(h)}</th>`).join('') + '</tr>';
-  }
-
-  function hbAction(label, fnCall, danger = false) {
-    return `<button type="button" onclick='${fnCall}' style="${danger ? 'background:#3a1a1a;border-color:#5a2a2a;color:#f87171' : ''}">${escapeHtml(label)}</button>`;
-  }
-
-  function hbModerationActions(row, mode) {
-    const idArg = JSON.stringify(String(row.id || ''));
-    if (mode === 'billing') return '';
-    if (mode === 'queue') {
-      return [
-        hbAction('Mark approved', `helpBoardQueueDecision(${idArg}, "approved")`),
-        hbAction('Reject', `helpBoardQueueDecision(${idArg}, "rejected")`, true),
-      ].join(' ');
-    }
-    if (mode === 'restrictions') {
-      const uid = String(row.uid || row.authorUid || '');
-      const uidArg = JSON.stringify(uid);
-      return uid ? [
-        hbAction('Allow topics', `helpBoardUnrestrictAuthor(${uidArg})`),
-        hbAction('Ban author', `helpBoardBanAuthor(${uidArg}, "topic", ${idArg})`, true),
-      ].join(' ') : '';
-    }
-    if (mode === 'reports') {
-      const targetType = String(row.targetType || 'topic');
-      const targetId = String(row.targetId || row.topicId || '');
-      const authorUid = String(row.authorUid || '');
-      const typeArg = JSON.stringify(targetType);
-      const targetArg = JSON.stringify(targetId);
-      const authorArg = JSON.stringify(authorUid);
-      return [
-        targetId ? hbAction(targetType === 'compass' ? 'Hide Compass' : 'Hide target', `helpBoardModerate(${typeArg}, ${targetArg}, "hide")`, true) : '',
-        targetId ? hbAction(targetType === 'compass' ? 'Delete Compass' : 'Delete target', `helpBoardModerate(${typeArg}, ${targetArg}, "delete")`, true) : '',
-        authorUid && targetId ? hbAction('Restrict topics', `helpBoardRestrictAuthor(${authorArg}, ${typeArg}, ${targetArg})`, true) : '',
-        authorUid && targetId ? hbAction('Ban author', `helpBoardBanAuthor(${authorArg}, ${typeArg}, ${targetArg})`, true) : '',
-        hbAction('Resolve', `helpBoardResolveReport(${idArg})`),
-      ].filter(Boolean).join(' ');
-    }
-    const type = mode === 'comments' ? 'comment' : 'topic';
-    const typeArg = JSON.stringify(type);
-    const authorUid = String(row.authorUid || '');
-    const authorArg = JSON.stringify(authorUid);
-    const status = String(row.status || 'visible');
-    const action = status === 'hidden' ? 'restore' : 'hide';
-    const label = status === 'hidden' ? 'Restore' : 'Hide';
-    const actions = [hbAction(label, `helpBoardModerate(${typeArg}, ${idArg}, "${action}")`, action === 'hide')];
-    if (status !== 'deleted') {
-      actions.push(hbAction(type === 'topic' ? 'Delete topic' : 'Delete comment', `helpBoardModerate(${typeArg}, ${idArg}, "delete")`, true));
-    }
-    if (authorUid) {
-      actions.push(hbAction('Restrict topics', `helpBoardRestrictAuthor(${authorArg}, ${typeArg}, ${idArg})`, true));
-      actions.push(hbAction('Ban author', `helpBoardBanAuthor(${authorArg}, ${typeArg}, ${idArg})`, true));
-    }
-    if (mode === 'topics') {
-      const compassHidden = String(row.compassStatus || '') === 'hidden';
-      actions.push(hbAction(compassHidden ? 'Restore Compass' : 'Hide Compass', `helpBoardModerate("compass", ${idArg}, "${compassHidden ? 'restore' : 'hide'}")`, !compassHidden));
-    }
-    return actions.join(' ');
-  }
-
-  window.loadHelpBoardAdmin = async function loadHelpBoardAdmin(force = false) {
-    hbWireThreadOverlay();
-    hbSyncPostAsField();
-    if (window._helpBoardLoaded && !force) {
-      renderHelpBoardAdmin();
-      return;
-    }
-    const body = document.getElementById('hb-body');
-    if (body) body.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px">Loading Help Board...</td></tr>';
-    try {
-      const [topics, comments, reports, queueRows, restrictions, billing] = await Promise.all([
-        hbLoadCollection('help_board_topics', 'createdAt', 500),
-        hbLoadCollection('help_board_comments', 'createdAt', 500),
-        hbLoadCollection('help_board_reports', 'createdAt', 500),
-        hbLoadCollection('help_board_moderation_queue', 'createdAt', 500),
-        hbLoadCollection('help_board_restrictions', 'updatedAt', 500).catch(() => []),
-        hbLoadCollection('help_board_compass_billing', 'createdAtMs', 500).catch(() => []),
-      ]);
-      window._helpBoardCache = { topics, comments, reports, queue: queueRows, restrictions, billing };
-      window._helpBoardLoaded = true;
-      renderHelpBoardAdmin();
-      showToast('Help Board loaded');
-    } catch (error) {
-      if (body) body.innerHTML = `<tr><td colspan="7" style="color:#f87171;padding:30px">Help Board load failed: ${escapeHtml(error.message || String(error))}</td></tr>`;
-    }
-  };
-
-  window.renderHelpBoardAdmin = function renderHelpBoardAdmin() {
-    const mode = document.getElementById('hb-filter')?.value || 'threads';
-    const targetLang = document.getElementById('hb-target')?.value || '';
-    const uiLang = document.getElementById('hb-ui')?.value || '';
-    const search = String(document.getElementById('hb-search')?.value || '').trim().toLowerCase();
-    hbRenderKpis();
-    // Forum view: render topics as clickable cards, each opens the full thread.
-    if (mode === 'threads') {
-      hbRenderThreadsList(search, targetLang, uiLang);
-      return;
-    }
-    hbHeaders(mode);
-    const rows = (window._helpBoardCache?.[mode] || [])
-      .filter(r => hbMatches(r, search, targetLang, uiLang));
-    const count = document.getElementById('hb-count');
-    if (count) count.textContent = `${rows.length} rows`;
-    const body = document.getElementById('hb-body');
-    if (!body) return;
-    if (!rows.length) {
-      body.innerHTML = `<tr><td colspan="${mode === 'billing' ? 7 : 7}" style="text-align:center;padding:40px">No Help Board rows for this filter.</td></tr>`;
-      return;
-    }
-    if (mode === 'billing') {
-      body.innerHTML = rows.map((r) => {
-        const tokens = Number(r.promptTokens || 0) + Number(r.completionTokens || 0) + Number(r.judgePromptTokens || 0) + Number(r.judgeCompletionTokens || 0);
-        return `<tr>
-          <td>${escapeHtml(hbDate(r.createdAtMs || r.createdAt))}</td>
-          <td><span class="level-badge">${escapeHtml(r.status || '-')}</span></td>
-          <td>${escapeHtml(hbBoard(r))}</td>
-          <td><div class="uid-small">${escapeHtml(r.uid || r.authUid || '-')}</div></td>
-          <td>${escapeHtml(r.model || '-')}</td>
-          <td>${escapeHtml(String(tokens))}</td>
-          <td><div class="uid-small">${escapeHtml(r.topicId || '-')}</div><div>${escapeHtml(r.rejectReason || '')}</div></td>
-        </tr>`;
-      }).join('');
-      return;
-    }
-    body.innerHTML = rows.map((r) => {
-      const signals = [
-        `score ${Number(r.helpfulScore || r.compassHelpfulScore || 0)}`,
-        `comments ${Number(r.commentCount || 0)}`,
-        `reports ${Number(r.reportCount || 0)}`,
-        ...(r.moderationCategories || []),
-        ...(r.moderationReasons || []),
-      ].filter(Boolean).join(' · ');
-      return `<tr>
-        <td>${escapeHtml(hbDate(r.createdAt || r.updatedAt))}</td>
-        <td><span class="level-badge">${escapeHtml(r.status || r.decision || 'new')}</span></td>
-        <td><div>${escapeHtml(hbBoard(r))}</div><div class="uid-small">${escapeHtml(r.topicId || r.targetId || r.id)}</div></td>
-        <td><div class="name">${escapeHtml(r.authorName || r.name || '-')}</div><div class="uid-small">${escapeHtml(r.authorUid || r.uid || '-')}</div></td>
-        <td style="white-space:normal;max-width:460px;line-height:1.45">${escapeHtml(hbText(r) || '-')}</td>
-        <td style="white-space:normal;max-width:280px;color:#aaa">${escapeHtml(signals || '-')}</td>
-        <td><div style="display:flex;gap:6px;flex-wrap:wrap">${hbModerationActions(r, mode)}</div></td>
-      </tr>`;
-    }).join('');
-  };
-
-  window.helpBoardModerate = async function helpBoardModerate(targetType, targetId, action) {
-    const type = String(targetType || '');
-    const id = String(targetId || '');
-    const nextAction = String(action || '');
-    if (!id || !['topic','comment','compass'].includes(type) || !['hide','restore','delete'].includes(nextAction)) return;
-    let reason = '';
-    if (nextAction === 'delete') {
-      const ok = await showConfirmModal({
-        title: `Delete Help Board ${type}?`,
-        desc: `This keeps an archive trail by marking the item deleted. ID: ${id}`,
-        confirmLabel: 'Delete',
-        danger: true,
-      });
-      if (!ok) return;
-      const input = await showInputModal({ title: 'Delete reason', desc: `Optional note for ${type}/${id}`, confirmLabel: 'Delete', danger: true, allowEmpty: true });
-      if (input === null || input === false) return;
-      reason = String(input || '');
-    }
-    const fn = getHelpBoardAdminModerateCallable();
-    await fn({ targetType: type, targetId: id, action: nextAction, reason });
-    logAction('help_board_moderate', id, { targetType: type, action: nextAction });
-    window._helpBoardLoaded = false;
-    await loadHelpBoardAdmin(true);
-  };
-
-  window.helpBoardResolveReport = async function helpBoardResolveReport(id) {
-    const reportId = String(id || '');
-    if (!reportId) return;
-    const fn = getHelpBoardAdminModerateCallable();
-    await fn({ targetType: 'report', targetId: reportId, action: 'resolve_report' });
-    logAction('help_board_resolve_report', reportId);
-    window._helpBoardLoaded = false;
-    await loadHelpBoardAdmin(true);
-  };
-
-  window.helpBoardBanAuthor = async function helpBoardBanAuthor(authorUid, targetType, targetId) {
-    const uid = String(authorUid || '');
-    const type = String(targetType || '');
-    const id = String(targetId || '');
-    if (!uid || !id || !['topic','comment','compass'].includes(type)) return;
-    const reason = await showInputModal({
-      title: 'Ban Help Board author',
-      desc: `UID: ${uid}\nSource: ${type}/${id}\nThis also blocks league chat via league_chat_bans.`,
-      confirmLabel: 'Ban author',
-      danger: true,
-      allowEmpty: true,
-      presets: ['Spam / ads', 'Insults', 'Unsafe content', 'Repeated violations', 'External contacts'],
-    });
-    if (reason === null || reason === false) return;
-    const ok = await showConfirmModal({
-      title: 'Ban author?',
-      desc: `UID: ${uid}\nReason: ${reason || '-'}\nWrites banned_users + users.banned + league_chat_bans.`,
-      confirmLabel: 'Ban',
-      danger: true,
-    });
-    if (!ok) return;
-    const fn = getHelpBoardAdminModerateCallable();
-    await fn({ targetType: type, targetId: id, action: 'ban_author', authorUid: uid, reason: String(reason || '') });
-    logAction('help_board_ban_author', uid, { targetType: type, targetId: id, reason: String(reason || '') });
-    window._helpBoardLoaded = false;
-    await loadHelpBoardAdmin(true);
-  };
-
-  window.helpBoardRestrictAuthor = async function helpBoardRestrictAuthor(authorUid, targetType, targetId) {
-    const uid = String(authorUid || '');
-    const type = String(targetType || '');
-    const id = String(targetId || '');
-    if (!uid || !id || !['topic','comment','compass'].includes(type)) return;
-    const reason = await showInputModal({
-      title: 'Restrict Help Board topics',
-      desc: `UID: ${uid}\nSource: ${type}/${id}\nThis only blocks creating new Help Board topics. Comments, app access, and league chat are not banned.`,
-      confirmLabel: 'Restrict topics',
-      danger: true,
-      allowEmpty: true,
-      presets: ['Spam topics', 'Low-quality repeats', 'Unsafe topics', 'Moderation abuse', 'External contacts'],
-    });
-    if (reason === null || reason === false) return;
-    const ok = await showConfirmModal({
-      title: 'Restrict topic creation?',
-      desc: `UID: ${uid}\nReason: ${reason || '-'}\nWrites help_board_restrictions only.`,
-      confirmLabel: 'Restrict topics',
-      danger: true,
-    });
-    if (!ok) return;
-    const fn = getHelpBoardAdminModerateCallable();
-    await fn({ targetType: type, targetId: id, action: 'restrict_author', authorUid: uid, reason: String(reason || '') });
-    logAction('help_board_restrict_author', uid, { targetType: type, targetId: id, reason: String(reason || '') });
-    window._helpBoardLoaded = false;
-    await loadHelpBoardAdmin(true);
-  };
-
-  window.helpBoardUnrestrictAuthor = async function helpBoardUnrestrictAuthor(authorUid) {
-    const uid = String(authorUid || '');
-    if (!uid) return;
-    const ok = await showConfirmModal({
-      title: 'Allow topic creation?',
-      desc: `UID: ${uid}\nThe user will be able to create Help Board topics again.`,
-      confirmLabel: 'Allow topics',
-      danger: false,
-    });
-    if (!ok) return;
-    const fn = getHelpBoardAdminModerateCallable();
-    await fn({ targetType: 'topic', targetId: uid, action: 'unrestrict_author', authorUid: uid, reason: 'restriction cleared from admin' });
-    logAction('help_board_unrestrict_author', uid);
-    window._helpBoardLoaded = false;
-    await loadHelpBoardAdmin(true);
-  };
-
-  window.helpBoardQueueDecision = async function helpBoardQueueDecision(id, decision) {
-    const queueId = String(id || '');
-    const next = String(decision || '');
-    if (!queueId || !['approved','rejected'].includes(next)) return;
-    await updateDoc(doc(db, 'help_board_moderation_queue', queueId), {
-      decision: next,
-      status: next,
-      decidedAt: Date.now(),
-      decidedBy: adminEmail,
-      updatedAt: Date.now(),
-    });
-    logAction('help_board_queue_decision', queueId, { decision: next });
-    window._helpBoardLoaded = false;
-    await loadHelpBoardAdmin(true);
-  };
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // HELP BOARD — forum view + admin participation (create topics, post comments)
-  // Admin custom claim already grants direct create/update on help_board_* per
-  // firestore.rules, so these write to Firestore directly (like queueDecision).
-  // ═══════════════════════════════════════════════════════════════════════════
-  const HB_POST_AS_KEY = 'hb_admin_post_as';
-  const HB_TOPICS = 'help_board_topics';
-  const HB_COMMENTS = 'help_board_comments';
-  window._hbThread = { topicId: '', topic: null, comments: [], loading: false, replyTo: null };
-
-  function hbAdminEmail() {
-    return (auth && auth.currentUser && auth.currentUser.email) || 'admin';
-  }
-  // The display name every admin post is authored under. Editable in the toolbar.
-  function hbPostAsName() {
-    const stored = String(localStorage.getItem(HB_POST_AS_KEY) || '').trim();
-    if (stored) return stored;
-    const email = hbAdminEmail();
-    return email.includes('@') ? email.split('@')[0] : email;
-  }
-  // Stable synthetic author identity so all admin posts share one moderatable UID
-  // without ever colliding with a real user's stable_id.
-  function hbAdminAuthorUid() {
-    return 'admin:' + hbAdminEmail().toLowerCase();
-  }
-  window.helpBoardSetPostAs = function helpBoardSetPostAs(value) {
-    const v = String(value || '').slice(0, 48);
-    localStorage.setItem(HB_POST_AS_KEY, v);
-    const a1 = document.getElementById('hbt-as-name');
-    const a2 = document.getElementById('hbc-as-name');
-    const shown = v.trim() || hbPostAsName();
-    if (a1) a1.textContent = shown;
-    if (a2) a2.textContent = shown;
-  };
-  function hbSyncPostAsField() {
-    const input = document.getElementById('hb-post-as');
-    if (input && !input.value) {
-      const stored = String(localStorage.getItem(HB_POST_AS_KEY) || '');
-      if (stored) input.value = stored;
-    }
-    helpBoardSetPostAs(input ? input.value : '');
-  }
-
-  function hbInitials(name, uid) {
-    const s = String(name || '').trim();
-    if (s) {
-      const parts = s.split(/\s+/).filter(Boolean);
-      const a = parts[0] ? parts[0][0] : '';
-      const b = parts.length > 1 ? parts[parts.length - 1][0] : '';
-      return (a + b).toUpperCase() || a.toUpperCase();
-    }
-    const u = String(uid || '').trim();
-    return u ? u.slice(0, 2).toUpperCase() : '?';
-  }
-  function hbAvatarHtml(name, uid, url) {
-    if (url && /^https?:\/\//i.test(url)) {
-      return `<div class="hbt-avatar"><img src="${escapeHtml(url)}" alt="" onerror="this.remove()"></div>`;
-    }
-    return `<div class="hbt-avatar">${escapeHtml(hbInitials(name, uid))}</div>`;
-  }
-  function hbTime(ts) {
-    const raw = ts && typeof ts.toMillis === 'function' ? ts.toMillis() : (ts && typeof ts.seconds === 'number' ? ts.seconds * 1000 : ts);
-    const n = Number(raw || 0);
-    if (!n) return '';
-    try { return new Date(n).toLocaleString(ADMIN_DATE_LOCALE, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); }
-    catch (_) { return ''; }
-  }
-  function hbItemStatus(row) {
-    const s = String(row.status || 'visible');
-    if (s === 'deleted') return 'deleted';
-    if (s === 'hidden' || s === 'blocked' || s === 'review') return 'hidden';
-    return 'visible';
-  }
-
-  // ── Forum list: topics as cards ────────────────────────────────────────────
-  function hbRenderThreadsList(search, targetLang, uiLang) {
-    const head = document.getElementById('hb-head');
-    if (head) head.innerHTML = ''; // cards view has no column headers
-    const body = document.getElementById('hb-body');
-    const count = document.getElementById('hb-count');
-    if (!body) return;
-    const topics = (window._helpBoardCache?.topics || [])
-      .filter(r => hbMatches(r, search, targetLang, uiLang))
-      .slice()
-      .sort((a, b) => Number(b.lastActivityAt || b.createdAt || 0) - Number(a.lastActivityAt || a.createdAt || 0));
-    if (count) count.textContent = `${topics.length} topics`;
-    if (!topics.length) {
-      body.innerHTML = `<tr><td style="padding:30px;text-align:center;color:#666">Тем пока нет. Нажми «✍ New topic», чтобы создать первую.</td></tr>`;
-      return;
-    }
-    const cards = topics.map((t) => {
-      const idArg = JSON.stringify(String(t.id || ''));
-      const hidden = hbItemStatus(t) !== 'visible';
-      const compassReady = String(t.compassStatus || '') === 'ready' && String(t.compassAnswer || '').trim();
-      return `<div class="hb-topic-card ${hidden ? 'hb-tc-hidden' : ''}" onclick='helpBoardOpenThread(${idArg})'>
-        <div class="hb-tc-title">${escapeHtml(t.title || '(без заголовка)')}</div>
-        <div class="hb-tc-body">${escapeHtml(t.text || '')}</div>
-        <div class="hb-tc-foot">
-          <span class="hbt-badge ${hidden ? 'b-hidden' : 'b-visible'}">${hidden ? 'скрыто' : 'видно'}</span>
-          <span class="hb-tc-chip">${escapeHtml(hbBoard(t))}</span>
-          <span>👤 ${escapeHtml(t.authorName || '—')}</span>
-          <span>💬 ${Number(t.commentCount || 0)}</span>
-          <span>⚑ ${Number(t.reportCount || 0)}</span>
-          ${compassReady ? '<span style="color:#c4b5fd">🧭 Компас ответил</span>' : ''}
-          <span>${escapeHtml(hbTime(t.lastActivityAt || t.createdAt))}</span>
-        </div>
-      </div>`;
-    }).join('');
-    // Drop the card grid into a single full-width cell so it lives inside the table shell.
-    body.innerHTML = `<tr><td style="padding:0;border:none"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:4px 2px">${cards}</div></td></tr>`;
-  }
-
-  // ── Thread modal ───────────────────────────────────────────────────────────
-  function hbWireThreadOverlay() {
-    if (window._hbThreadWired) return;
-    window._hbThreadWired = true;
-    const bind = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
-    bind('hbt-backdrop', helpBoardCloseThread);
-    bind('hbt-close', helpBoardCloseThread);
-    bind('hbt-reply-cancel', () => hbSetReplyTarget(null));
-    bind('hbt-send', helpBoardSubmitComment);
-    bind('hbc-backdrop', helpBoardCloseComposer);
-    bind('hbc-close', helpBoardCloseComposer);
-    bind('hbc-cancel', helpBoardCloseComposer);
-    bind('hbc-submit', helpBoardSubmitTopic);
-    const input = document.getElementById('hbt-input');
-    if (input) {
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); helpBoardSubmitComment(); }
-      });
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-      const hbc = document.getElementById('hbc-overlay');
-      const hbt = document.getElementById('hbt-overlay');
-      if (hbc && hbc.classList.contains('hbc-open')) helpBoardCloseComposer();
-      else if (hbt && hbt.classList.contains('hbt-open')) helpBoardCloseThread();
-    });
-  }
-
-  window.helpBoardCloseThread = function helpBoardCloseThread() {
-    const ov = document.getElementById('hbt-overlay');
-    if (ov) { ov.classList.remove('hbt-open'); ov.setAttribute('aria-hidden', 'true'); }
-    window._hbThread = { topicId: '', topic: null, comments: [], loading: false, replyTo: null };
-  };
-
-  window.helpBoardOpenThread = async function helpBoardOpenThread(topicId) {
-    const tid = String(topicId || '');
-    if (!tid) return;
-    hbWireThreadOverlay();
-    hbSyncPostAsField();
-    const ov = document.getElementById('hbt-overlay');
-    const scroll = document.getElementById('hbt-scroll');
-    if (!ov || !scroll) return;
-    window._hbThread = { topicId: tid, topic: null, comments: [], loading: true, replyTo: null };
-    hbSetReplyTarget(null);
-    document.getElementById('hbt-title').textContent = 'Загрузка темы…';
-    document.getElementById('hbt-sub').textContent = tid;
-    document.getElementById('hbt-stats').textContent = '';
-    scroll.innerHTML = '<div class="hbt-loading">Загрузка треда…</div>';
-    ov.classList.add('hbt-open');
-    ov.setAttribute('aria-hidden', 'false');
-    try {
-      const topicSnap = await getDoc(doc(db, HB_TOPICS, tid));
-      if (window._hbThread.topicId !== tid) return;
-      if (!topicSnap.exists()) { scroll.innerHTML = '<div class="hbt-empty">Тема не найдена (возможно, удалена).</div>'; return; }
-      const topic = { id: topicSnap.id, ...(topicSnap.data() || {}) };
-      let comments = [];
-      try {
-        const cs = await getDocs(query(collection(db, HB_COMMENTS), where('topicId', '==', tid), orderBy('createdAt', 'asc'), limit(500)));
-        comments = cs.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
-      } catch (e) {
-        // Composite index missing → fall back to the already-loaded comments cache.
-        comments = (window._helpBoardCache?.comments || [])
-          .filter(c => String(c.topicId || '') === tid)
-          .sort((a, b) => Number(a.createdAt || 0) - Number(b.createdAt || 0));
-      }
-      if (window._hbThread.topicId !== tid) return;
-      window._hbThread.topic = topic;
-      window._hbThread.comments = comments;
-      window._hbThread.loading = false;
-      hbRenderThread();
-    } catch (e) {
-      if (window._hbThread.topicId !== tid) return;
-      scroll.innerHTML = `<div class="hbt-empty">Ошибка загрузки: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
-    }
-  };
-
-  function hbItemActions(kind, row) {
-    // kind: 'topic' | 'comment' | 'compass'
-    const idArg = JSON.stringify(String(row.id || ''));
-    const authorUid = String(row.authorUid || '');
-    const authorArg = JSON.stringify(authorUid);
-    const btns = [];
-    if (kind === 'compass') {
-      const hidden = String(row.compassStatus || '') === 'hidden';
-      btns.push(`<button class="hbt-danger" onclick='helpBoardModerate("compass", ${idArg}, "${hidden ? 'restore' : 'hide'}")'>${hidden ? 'Показать Компас' : 'Скрыть Компас'}</button>`);
-      return btns.join('');
-    }
-    const type = kind === 'comment' ? 'comment' : 'topic';
-    const typeArg = JSON.stringify(type);
-    const status = hbItemStatus(row);
-    if (status === 'hidden') btns.push(`<button onclick='helpBoardModerate(${typeArg}, ${idArg}, "restore")'>Показать</button>`);
-    else btns.push(`<button class="hbt-danger" onclick='helpBoardModerate(${typeArg}, ${idArg}, "hide")'>Скрыть</button>`);
-    if (status !== 'deleted') btns.push(`<button class="hbt-danger" onclick='helpBoardModerate(${typeArg}, ${idArg}, "delete")'>Удалить</button>`);
-    // Don't offer restrict/ban on our own admin posts.
-    if (authorUid && !authorUid.startsWith('admin:')) {
-      if (type === 'topic') btns.push(`<button class="hbt-danger" onclick='helpBoardRestrictAuthor(${authorArg}, ${typeArg}, ${idArg})'>Запретить темы</button>`);
-      btns.push(`<button class="hbt-danger" onclick='helpBoardBanAuthor(${authorArg}, ${typeArg}, ${idArg})'>Бан автора</button>`);
-    }
-    return btns.join('');
-  }
-
-  function hbRenderThread() {
-    const t = window._hbThread || {};
-    const topic = t.topic;
-    const scroll = document.getElementById('hbt-scroll');
-    if (!scroll || !topic) return;
-    const comments = t.comments || [];
-    const visibleComments = comments.filter(c => hbItemStatus(c) === 'visible').length;
-    document.getElementById('hbt-title').textContent = topic.title || '(без заголовка)';
-    document.getElementById('hbt-sub').textContent = `${hbBoard(topic)} · ${topic.id}`;
-    document.getElementById('hbt-stats').textContent = `${comments.length} комм. · видно ${visibleComments} · ⚑ ${Number(topic.reportCount || 0)} · score ${Number(topic.helpfulScore || 0)}`;
-
-    const opStatus = hbItemStatus(topic);
-    const opBadge = `<span class="hbt-badge b-${opStatus}">${opStatus === 'visible' ? 'видно' : opStatus === 'deleted' ? 'удалено' : 'скрыто'}</span>`;
-    const isAdminOp = String(topic.authorUid || '').startsWith('admin:');
-    let html = `<div class="hbt-op ${opStatus !== 'visible' ? 'hbt-hidden-item' : ''}">
-      <div class="hbt-byline">
-        ${hbAvatarHtml(topic.authorName, topic.authorUid, topic.authorAvatar)}
-        <div style="min-width:0">
-          <div class="hbt-byname">${escapeHtml(topic.authorName || 'Аноним')} ${isAdminOp ? '<span class="hbt-badge b-admin">admin</span>' : ''}</div>
-          <div class="hbt-bymeta">${escapeHtml(hbTime(topic.createdAt))} · <span style="opacity:.7">${escapeHtml(String(topic.authorUid || ''))}</span></div>
-        </div>
-        ${opBadge}
-      </div>
-      <div class="hbt-op-title">${escapeHtml(topic.title || '')}</div>
-      <div class="hbt-op-body">${escapeHtml(topic.text || '')}</div>
-      <div class="hbt-item-actions">${hbItemActions('topic', topic)}</div>
-    </div>`;
-
-    // Compass answer, if present, rendered as a distinct assistant block.
-    const compassAnswer = String(topic.compassAnswer || '').trim();
-    const compassStatus = String(topic.compassStatus || '');
-    if (compassAnswer) {
-      const cHidden = compassStatus === 'hidden';
-      html += `<div class="hbt-compass ${cHidden ? 'hbt-hidden-item' : ''}">
-        <div class="hbt-compass-head">
-          <div class="hbt-compass-glyph">🧭</div>
-          <div class="hbt-compass-name">Компас ${cHidden ? '<span class="hbt-badge b-hidden">скрыт</span>' : ''}</div>
-        </div>
-        <div class="hbt-compass-body">${escapeHtml(compassAnswer)}</div>
-        <div class="hbt-item-actions">${hbItemActions('compass', topic)}</div>
-      </div>`;
-    } else if (compassStatus && compassStatus !== 'ready') {
-      html += `<div class="hbt-compass" style="opacity:.7"><div class="hbt-compass-head"><div class="hbt-compass-glyph">🧭</div><div class="hbt-compass-name">Компас</div></div><div class="hbt-compass-body" style="color:#9a94c6">Статус ответа: ${escapeHtml(compassStatus)}${Number(topic.compassRetryCount||0)?` · попыток ${Number(topic.compassRetryCount)}`:''}</div></div>`;
-    }
-
-    // Comments
-    if (!comments.length) {
-      html += '<div style="text-align:center;color:#666;font-size:13px;padding:8px">Комментариев пока нет — будь первым.</div>';
-    } else {
-      comments.forEach((c) => {
-        const cStatus = hbItemStatus(c);
-        const isAdmin = String(c.authorUid || '').startsWith('admin:');
-        const idArg = JSON.stringify(String(c.id || ''));
-        const nameArg = JSON.stringify(String(c.authorName || ''));
-        const replyQuote = c.replyToCommentId
-          ? `<div class="hbt-reply-quote"><span class="hbt-rq-name">${escapeHtml(c.replyToAuthorName || (c.replyToIsCompass ? 'Компас' : 'Аноним'))}</span>${escapeHtml(String(c.replyToText || '').slice(0, 140))}</div>`
-          : '';
-        html += `<div class="hbt-comment ${cStatus !== 'visible' ? 'hbt-hidden-item' : ''}">
-          ${hbAvatarHtml(c.authorName, c.authorUid, c.authorAvatar)}
-          <div class="hbt-cwrap">
-            <div class="hbt-cbyline">
-              <span class="hbt-byname">${escapeHtml(c.authorName || 'Аноним')}</span>
-              ${isAdmin ? '<span class="hbt-badge b-admin">admin</span>' : ''}
-              ${cStatus !== 'visible' ? `<span class="hbt-badge b-${cStatus}">${cStatus === 'deleted' ? 'удалено' : 'скрыто'}</span>` : ''}
-            </div>
-            <div class="hbt-bubble">
-              ${replyQuote}${escapeHtml(c.text || '—')}
-              <div class="hbt-item-meta">
-                <span>${escapeHtml(hbTime(c.createdAt))}</span>
-                ${Number(c.reportCount || 0) ? `<span style="color:#fb923c">⚑ ${Number(c.reportCount)}</span>` : ''}
-                <button style="background:none;border:none;color:#818cf8;cursor:pointer;font-size:11px;padding:0" onclick='hbSetReplyTarget({ id: ${idArg}, name: ${nameArg} })'>↩ ответить</button>
-              </div>
-              <div class="hbt-item-actions">${hbItemActions('comment', c)}</div>
-            </div>
-          </div>
-        </div>`;
-      });
-    }
-    scroll.innerHTML = html;
-    scroll.scrollTop = scroll.scrollHeight;
-    // Композер всегда доступен админу (даже для скрытой/удалённой темы — админ модерирует).
-    const composer = document.getElementById('hbt-composer');
-    if (composer) composer.style.display = '';
-    const input = document.getElementById('hbt-input');
-    if (input) input.placeholder = opStatus === 'visible'
-      ? 'Написать комментарий…'
-      : `Тема ${opStatus === 'deleted' ? 'удалена' : 'скрыта'} — комментарий всё равно уйдёт в тред`;
-  }
-
-  window.hbSetReplyTarget = function hbSetReplyTarget(target) {
-    window._hbThread.replyTo = target && target.id ? { id: String(target.id), name: String(target.name || '') } : null;
-    const box = document.getElementById('hbt-reply-target');
-    const txt = document.getElementById('hbt-reply-target-text');
-    if (box && txt) {
-      if (window._hbThread.replyTo) {
-        txt.textContent = `Ответ для: ${window._hbThread.replyTo.name || 'комментария'}`;
-        box.classList.add('on');
-      } else {
-        box.classList.remove('on');
-      }
-    }
-    const input = document.getElementById('hbt-input');
-    if (input && window._hbThread.replyTo) input.focus();
-  };
-
-  // ── Post a comment as admin (direct Firestore write, mirrors helpBoardAddComment) ──
-  window.helpBoardSubmitComment = async function helpBoardSubmitComment() {
-    const t = window._hbThread || {};
-    const topic = t.topic;
-    if (!topic) return;
-    const input = document.getElementById('hbt-input');
-    const sendBtn = document.getElementById('hbt-send');
-    const text = String(input?.value || '').trim();
-    if (!text) return;
-    if (text.length > 900) { showToast('Комментарий слишком длинный (макс. 900)'); return; }
-    const name = hbPostAsName();
-    const authorUid = hbAdminAuthorUid();
-    const now = Date.now();
-    if (sendBtn) sendBtn.disabled = true;
-    try {
-      const commentRef = doc(collection(db, HB_COMMENTS));
-      const topicRef = doc(db, HB_TOPICS, topic.id);
-      const replyTo = t.replyTo;
-      let replyFields = {};
-      if (replyTo && replyTo.id) {
-        const rc = (t.comments || []).find(c => String(c.id) === String(replyTo.id));
-        replyFields = {
-          replyToCommentId: replyTo.id,
-          replyToAuthorUid: String(rc?.authorUid || ''),
-          replyToAuthorName: String(rc?.authorName || replyTo.name || ''),
-          replyToText: String(rc?.text || '').slice(0, 140),
-          replyToIsCompass: rc?.isCompass === true,
-        };
-      }
-      const commentDoc = {
-        schemaVersion: 1,
-        policyVersion: 1,
-        topicId: topic.id,
-        boardKey: topic.boardKey || '',
-        targetLang: topic.targetLang || '',
-        uiLang: topic.uiLang || '',
-        text,
-        normalizedText: text.toLowerCase(),
-        authorUid,
-        authorAuthUid: auth.currentUser?.uid || '',
-        authorName: name,
-        authorAvatar: '',
-        authorAura: '',
-        ...replyFields,
-        status: 'visible',
-        helpfulScore: 0,
-        reportCount: 0,
-        adminAuthored: true,
-        adminAuthoredBy: hbAdminEmail(),
-        createdAt: now,
-        updatedAt: now,
-      };
-      await runTransaction(db, async (tx) => {
-        tx.set(commentRef, commentDoc);
-        tx.update(topicRef, {
-          commentCount: increment(1),
-          lastActivityAt: now,
-          updatedAt: now,
-        });
-      });
-      logAction('help_board_admin_comment', topic.id, { commentId: commentRef.id, as: name });
-      if (input) input.value = '';
-      hbSetReplyTarget(null);
-      // Optimistic local update so the new comment shows instantly.
-      window._hbThread.comments = [...(t.comments || []), { id: commentRef.id, ...commentDoc }];
-      window._hbThread.topic = { ...topic, commentCount: Number(topic.commentCount || 0) + 1, lastActivityAt: now };
-      hbRenderThread();
-      window._helpBoardLoaded = false; // table cache now stale
-      showToast('Комментарий опубликован как «' + name + '»');
-    } catch (e) {
-      showToast('Ошибка: ' + (e && e.message ? e.message : String(e)));
-    } finally {
-      if (sendBtn) sendBtn.disabled = false;
-    }
-  };
-
-  // ── New-topic composer ─────────────────────────────────────────────────────
-  window.helpBoardOpenComposer = function helpBoardOpenComposer() {
-    hbWireThreadOverlay();
-    hbSyncPostAsField();
-    const ov = document.getElementById('hbc-overlay');
-    if (!ov) return;
-    document.getElementById('hbc-title') && (document.getElementById('hbc-title').value = '');
-    document.getElementById('hbc-text') && (document.getElementById('hbc-text').value = '');
-    const cb = document.getElementById('hbc-compass'); if (cb) cb.checked = true;
-    // Prefill board selectors from the current toolbar filters when set.
-    const curTarget = document.getElementById('hb-target')?.value;
-    const curUi = document.getElementById('hb-ui')?.value;
-    if (curTarget) { const s = document.getElementById('hbc-target'); if (s) s.value = curTarget; }
-    if (curUi) { const s = document.getElementById('hbc-ui'); if (s) s.value = curUi; }
-    ov.classList.add('hbc-open');
-    ov.setAttribute('aria-hidden', 'false');
-    setTimeout(() => document.getElementById('hbc-title')?.focus(), 30);
-  };
-  window.helpBoardCloseComposer = function helpBoardCloseComposer() {
-    const ov = document.getElementById('hbc-overlay');
-    if (ov) { ov.classList.remove('hbc-open'); ov.setAttribute('aria-hidden', 'true'); }
-  };
-
-  window.helpBoardSubmitTopic = async function helpBoardSubmitTopic() {
-    const title = String(document.getElementById('hbc-title')?.value || '').trim();
-    const text = String(document.getElementById('hbc-text')?.value || '').trim();
-    const targetLang = String(document.getElementById('hbc-target')?.value || 'en');
-    const uiLang = String(document.getElementById('hbc-ui')?.value || 'ru');
-    const letCompass = !!document.getElementById('hbc-compass')?.checked;
-    if (title.length < 4) { showToast('Заголовок слишком короткий (мин. 4)'); return; }
-    if (text.length < 8) { showToast('Текст слишком короткий (мин. 8)'); return; }
-    if (title.length > 120) { showToast('Заголовок слишком длинный (макс. 120)'); return; }
-    if (text.length > 2200) { showToast('Текст слишком длинный (макс. 2200)'); return; }
-    const name = hbPostAsName();
-    const authorUid = hbAdminAuthorUid();
-    const boardKey = `${targetLang}:${uiLang}`;
-    const now = Date.now();
-    // Seed hot/best scores with the same formula the backend uses for a fresh topic,
-    // so admin topics sort correctly under the app's "hot" tab instead of sitting at 0.
-    const freshHot = Number((1 / Math.pow(1 + 2, 0.82)).toFixed(6)); // helpful=0,comments=0,reports=0,age≈1h
-    const submitBtn = document.getElementById('hbc-submit');
-    if (submitBtn) submitBtn.disabled = true;
-    try {
-      const ref = doc(collection(db, HB_TOPICS));
-      const topicDoc = {
-        schemaVersion: 1,
-        policyVersion: 1,
-        boardKey,
-        targetLang,
-        uiLang,
-        title,
-        text,
-        normalizedText: `${title}\n${text}`.toLowerCase(),
-        authorUid,
-        authorAuthUid: auth.currentUser?.uid || '',
-        authorName: name,
-        authorAvatar: '',
-        authorAura: '',
-        status: 'visible',
-        moderationCategories: [],
-        moderationReasons: [],
-        compassAnswer: '',
-        // Checked → 'pending' fires the helpBoardGenerateCompassForTopic onCreate
-        // trigger and Compass answers automatically. Unchecked → never generate.
-        compassStatus: letCompass ? 'pending' : 'hidden',
-        compassModel: '',
-        compassRejectReason: '',
-        compassRequestedAt: letCompass ? now : 0,
-        helpfulScore: 0,
-        compassHelpfulScore: 0,
-        commentCount: 0,
-        reportCount: 0,
-        hotScore: freshHot,
-        bestScore: 0,
-        adminAuthored: true,
-        adminAuthoredBy: hbAdminEmail(),
-        createdAt: now,
-        updatedAt: now,
-        lastActivityAt: now,
-      };
-      await setDoc(ref, topicDoc);
-      logAction('help_board_admin_topic', ref.id, { as: name, board: boardKey, compass: letCompass });
-      helpBoardCloseComposer();
-      showToast('Тема создана как «' + name + '»');
-      // Refresh the tab so the new topic appears, then open its thread.
-      window._helpBoardLoaded = false;
-      await loadHelpBoardAdmin(true);
-      const filter = document.getElementById('hb-filter');
-      if (filter && filter.value !== 'threads') { filter.value = 'threads'; renderHelpBoardAdmin(); }
-      helpBoardOpenThread(ref.id);
-    } catch (e) {
-      showToast('Ошибка создания темы: ' + (e && e.message ? e.message : String(e)));
-    } finally {
-      if (submitBtn) submitBtn.disabled = false;
-    }
-  };
 
   let _communitySubmissionsCache = [];
   let _communityActivePacksCache = [];
@@ -25852,39 +23177,6 @@
         jump: () => { switchTab('community-packs'); },
       });
     }
-    // 4) League chat moderation queue + reports
-    const lc = window._leagueChatCache || {};
-    for (const r of (lc.queue || [])) {
-      items.push({
-        source: 'chat', icon: '💬', sourceLabel: 'Чат',
-        title: String(r.text || r.messageText || '—').slice(0, 90),
-        sub: `автор ${r.authorName || r.authorUid || '—'}`,
-        date: r.createdAt ? new Date(r.createdAt).toISOString() : '', raw: r,
-        jump: () => { switchTab('league-chat'); },
-      });
-    }
-    // 5) Help Board moderation queue + open reports
-    const hb = window._helpBoardCache || {};
-    for (const r of (hb.queue || [])) {
-      if (['approved','rejected','resolved'].includes(String(r.decision || r.status || ''))) continue;
-      items.push({
-        source: 'help_board', icon: 'H', sourceLabel: 'Help Board',
-        title: String(r.title || r.text || r.normalizedText || '-').slice(0, 90),
-        sub: `${r.boardKey || `${r.targetLang || '-'}:${r.uiLang || '-'}`} · author ${r.authorUid || '-'}`,
-        date: r.createdAt ? new Date(r.createdAt).toISOString() : '', raw: r,
-        jump: () => { switchTab('help-board'); },
-      });
-    }
-    for (const r of (hb.reports || [])) {
-      if (String(r.status || 'new') === 'resolved') continue;
-      items.push({
-        source: 'help_board', icon: 'H', sourceLabel: 'Help Board',
-        title: String(r.reason || r.targetType || '-').slice(0, 90),
-        sub: `${r.boardKey || `${r.targetLang || '-'}:${r.uiLang || '-'}`} · target ${r.targetId || r.topicId || '-'}`,
-        date: r.createdAt ? new Date(r.createdAt).toISOString() : '', raw: r,
-        jump: () => { switchTab('help-board'); },
-      });
-    }
     // Sort: newest first.
     items.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     return items;
@@ -25897,7 +23189,7 @@
     let items = mqBuildItems();
     const srcFilter = document.getElementById('mq-source')?.value || '';
     if (summary) {
-      const bySource = { content: 0, user: 0, ugc: 0, chat: 0, help_board: 0 };
+      const bySource = { content: 0, user: 0, ugc: 0 };
       for (const it of items) { bySource[it.source] = (bySource[it.source] || 0) + 1; }
       const card = (l, v, c) => `<div class="stat-card"><div class="label">${l}</div><div class="value" style="color:${c || '#fff'}">${v}</div></div>`;
       summary.innerHTML = [
@@ -25905,8 +23197,6 @@
         card('Content', bySource.content),
         card('Жалобы', bySource.user),
         card('UGC', bySource.ugc),
-        card('Чат', bySource.chat),
-        card('Help Board', bySource.help_board),
       ].join('');
     }
     if (srcFilter) items = items.filter(it => it.source === srcFilter);
@@ -25915,7 +23205,7 @@
     window._mqItems = items;
     list.innerHTML = items.slice(0, 300).map((it, i) => {
       const when = String(it.date || '').replace('T', ' ').slice(0, 16);
-      const srcColor = { content: '#38bdf8', user: '#fbbf24', ugc: '#a78bfa', chat: '#4ade80' }[it.source] || '#888';
+      const srcColor = { content: '#38bdf8', user: '#fbbf24', ugc: '#a78bfa' }[it.source] || '#888';
       return `<div class="report-card">
         <div class="rc-left" style="min-width:0;flex:1">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
@@ -25944,8 +23234,6 @@
     const jobs = [];
     if (force || !window._reportsLoaded) { if (typeof loadReports === 'function') jobs.push(loadReports()); }
     if (force || !window._userReportsLoaded) { if (typeof loadUserReports === 'function') jobs.push(Promise.resolve(loadUserReports())); }
-    if (force || !window._leagueChatLoaded) { if (typeof loadLeagueChatAdmin === 'function') jobs.push(Promise.resolve(loadLeagueChatAdmin(force)).catch(() => {})); }
-    if (force || !window._helpBoardLoaded) { if (typeof loadHelpBoardAdmin === 'function') jobs.push(Promise.resolve(loadHelpBoardAdmin(force)).catch(() => {})); }
     if (typeof loadCommunitySubmissions === 'function') { jobs.push(Promise.resolve(loadCommunitySubmissions()).catch(() => {})); }
     try { await Promise.all(jobs); } catch (_) {}
     renderModQueue();
@@ -27498,14 +24786,92 @@
     }
   };
 
+  function supportRequestToken(prefix) {
+    const randomPart = window.crypto?.randomUUID?.()
+      || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+    return `${prefix}-${randomPart}`.slice(0, 120);
+  }
+
+  function supportPreparedReplyPreview(prepared) {
+    const items = Array.isArray(prepared?.items) ? prepared.items : [prepared];
+    const header = items.length > 1 ? `Писем в пакете: ${items.length}` : 'Проверьте точный ответ перед отправкой.';
+    const bodies = items.map((item, index) => {
+      const payload = item?.payload || {};
+      const itemHeader = items.length > 1 ? `Письмо ${index + 1} из ${items.length}` : 'Ответ';
+      return `${itemHeader}\nКому: ${String(payload.to || '—')}\nТема: ${String(payload.subject || '—')}\n\n${String(payload.finalText || '')}`;
+    });
+    const expiresAt = prepared?.confirmationExpiresAt
+      ? `\n\nПодтверждение действительно до: ${new Date(prepared.confirmationExpiresAt).toLocaleString('ru-RU')}`
+      : '';
+    return `${header}\n\n${bodies.join('\n\n────────────────────\n\n')}${expiresAt}`;
+  }
+
+  async function showSupportReplyConfirmation(prepared) {
+    const desc = supportPreparedReplyPreview(prepared);
+    const descEl = document.getElementById('ucmodal-desc');
+    const previousStyle = descEl ? {
+      whiteSpace: descEl.style.whiteSpace,
+      maxHeight: descEl.style.maxHeight,
+      overflowY: descEl.style.overflowY,
+      textAlign: descEl.style.textAlign,
+    } : null;
+    if (descEl) {
+      descEl.style.whiteSpace = 'pre-wrap';
+      descEl.style.maxHeight = '55vh';
+      descEl.style.overflowY = 'auto';
+      descEl.style.textAlign = 'left';
+    }
+    try {
+      if (typeof showConfirmModal === 'function') {
+        return await showConfirmModal({
+          title: Array.isArray(prepared?.items) ? 'Подтвердить пакет писем?' : 'Подтвердить отправку?',
+          desc,
+          confirmLabel: Array.isArray(prepared?.items) ? 'Отправить пакет' : 'Отправить ответ',
+        });
+      }
+      return window.confirm(desc);
+    } finally {
+      if (descEl && previousStyle) Object.assign(descEl.style, previousStyle);
+    }
+  }
+
   window.supportSendOne = async function(id) {
     const ta = document.getElementById('gsi-draft-' + id);
     const replyText = ta ? ta.value.trim() : '';
     if (!replyText) { showToast('Черновик пуст — сначала сгенерируй или впиши ответ', 'warn'); return; }
-    if (!confirm('Отправить ответ этому пользователю?')) return;
+    const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
     try {
-      await supportCallable('adminSupportSendReply')({ messageDocId: id, replyText });
-      showToast('✅ Ответ отправлен', 'ok');
+      const prepareResult = await supportCallable('adminSupportPrepareReply')({
+        messageDocId: id,
+        replyText,
+        expectedDraftRevision: Number(item?.draftRevision ?? 0),
+        idempotencyKey: supportRequestToken('legacy-support-prepare'),
+        requestId: supportRequestToken('legacy-support-prepare-request'),
+      });
+      const prepared = prepareResult?.data || {};
+      const confirmed = await showSupportReplyConfirmation(prepared);
+      if (!confirmed) {
+        await supportCallable('adminSupportCancelReply')({
+          operationId: prepared.operationId,
+          confirmationNonce: prepared.confirmationNonce,
+          requestId: supportRequestToken('legacy-support-cancel'),
+        });
+        showToast('Отправка отменена', 'warn');
+        return;
+      }
+      const dispatchResult = await supportCallable('adminSupportDispatchReply')({
+        operationId: prepared.operationId,
+        confirmationNonce: prepared.confirmationNonce,
+        payloadHash: prepared.payloadHash,
+      });
+      const dispatched = dispatchResult?.data || {};
+      if (dispatched.state === 'accepted') {
+        showToast('Ответ принят Gmail и отмечен как отправленный', 'ok');
+      } else if (dispatched.state === 'delivery_unknown') {
+        showToast('Статус доставки неизвестен. Повтор заблокирован — проверьте папку «Отправленные»', 'warn');
+      } else {
+        showToast(`Письмо не отправлено. Состояние операции: ${dispatched.state || 'неизвестно'}`, 'warn');
+      }
     } catch (e) {
       showToast('Не удалось отправить: ' + (e.message || e.code || e), 'err');
     } finally {
@@ -27514,11 +24880,36 @@
   };
 
   window.supportSendAllDrafts = async function() {
-    if (!confirm('Отправить все готовые черновики по новым письмам?')) return;
     try {
-      const res = await supportCallable('adminSupportSendReply')({});
-      const d = res?.data || {};
-      showToast(`✅ Отправлено: ${d.sent || 0}${d.failed ? `, с ошибкой: ${d.failed}` : ''}`, d.failed ? 'warn' : 'ok');
+      const prepareResult = await supportCallable('adminSupportPrepareReplyBatch')({
+        limit: 200,
+        idempotencyKey: supportRequestToken('legacy-support-batch'),
+        requestId: supportRequestToken('legacy-support-batch-request'),
+      });
+      const prepared = prepareResult?.data || {};
+      const confirmed = await showSupportReplyConfirmation(prepared);
+      if (!confirmed) {
+        await supportCallable('adminSupportCancelReplyBatch')({
+          batchId: prepared.batchId,
+          confirmationNonce: prepared.confirmationNonce,
+          requestId: supportRequestToken('legacy-support-batch-cancel'),
+        });
+        showToast('Пакет отменён', 'warn');
+        return;
+      }
+      const dispatchResult = await supportCallable('adminSupportDispatchReplyBatch')({
+        batchId: prepared.batchId,
+        confirmationNonce: prepared.confirmationNonce,
+        manifestHash: prepared.manifestHash,
+      });
+      const dispatched = dispatchResult?.data || {};
+      if (dispatched.state === 'accepted') {
+        showToast(`Gmail принял писем: ${Number(dispatched.accepted || 0)}`, 'ok');
+      } else if (dispatched.state === 'attention_required') {
+        showToast(`Нужна проверка: принято ${Number(dispatched.accepted || 0)}, статус неизвестен у ${Number(dispatched.attention || 0)}, не начато ${Number(dispatched.pending || 0)}`, 'warn');
+      } else {
+        showToast(`Пакет завершён частично: принято ${Number(dispatched.accepted || 0)}, не отправлено ${Number(dispatched.failed || 0)}`, 'warn');
+      }
     } catch (e) {
       showToast('Не удалось: ' + (e.message || e.code || e), 'err');
     } finally {
@@ -29347,16 +26738,16 @@
   // ── Remote Config ─────────────────────────────────────────────────────────
   // Mirror of app/remote_flags.ts defaults+bounds. Keep in sync.
   const RC_NUMBER_FIELDS = [
-    { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 8, min: 1, max: 32 },
-    { key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 3, min: 0, max: 999 },
-    { key: 'arena_daily_max', label: 'Free: матчей арены в день', def: 5, min: 0, max: 999 },
+    { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3, min: 1, max: 32 },
+    { key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 1, min: 0, max: 999 },
+    { key: 'arena_daily_max', label: 'Free: матчей арены в день', def: 1, min: 0, max: 999 },
     { key: 'arena_shard_refill_cost', label: 'Арена: цена докупки (осколки)', def: 5, min: 0, max: 9999 },
     { key: 'arena_shard_refill_slots', label: 'Арена: слотов за докупку', def: 5, min: 0, max: 999 },
-    { key: 'max_energy', label: 'Макс. энергии', def: 5, min: 1, max: 99 },
+    { key: 'max_energy', label: 'База энергии (до уровня 50)', def: 5, min: 5, max: 5 },
     { key: 'energy_recovery_interval_ms', label: 'Восст. энергии (мс)', def: 600000, min: 10000, max: 86400000 },
-    { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 2, min: 0, max: 99 },
+    { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 1, min: 0, max: 99 },
     { key: 'trainer_ab_a_pct', label: 'A/B тренер: группа A %', def: 0, min: 0, max: 100 },
-    { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 100, min: 0, max: 100 },
+    { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 0, min: 0, max: 100 },
     { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
@@ -29498,7 +26889,7 @@
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
     { key: 'paywall_reviews_enabled',  label: 'Пейволы: отзывы учеников',        def: true,  hint: 'Вкл по умолчанию. Выкл → секция «Что говорят ученики» пропадает на всех пейволах A/B/C у всех живьём, без релиза. Ничего не ломается — блок просто исчезает. Вкл возвращает.' },
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
-    { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: true,  hint: 'Вкл по умолчанию (kill-switch). Выкл → новые юзеры после онбординга больше НЕ получают 72ч полного доступа и приветственный модал (у всех живьём, без релиза). Уже выданные подарки не отбираются — активные докатывают свои часы. Включение возвращает подарок будущим новичкам.' },
+    { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false, hint: 'Выкл по умолчанию. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки не отбираются — активные докатывают свои часы.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
@@ -30610,11 +28001,11 @@
 
   // Числовые лимиты бесплатного тарифа. min/max — в синхроне с NUMBER_BOUNDS.
   const CP_PREMIUM_LIMITS = [
-    { key: 'free_lesson_limit',             label: 'Бесплатных уроков (порог N)',   def: 8,   min: 1,  max: 32,  hint: 'Первые N уроков бесплатны.' },
-    { key: 'free_daily_quiz_limit',         label: 'Квизов в день (free)',          def: 3,   min: 0,  max: 999, hint: 'Бесплатных квизов в сутки.' },
-    { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день (free)',  def: 2,   min: 0,  max: 99,  hint: 'Бесплатных сессий тренажёра в сутки.' },
-    { key: 'arena_daily_max',               label: 'Матчей арены/день',             def: 5,   min: 0,  max: 999, hint: 'Матчей арены в сутки.' },
-    { key: 'max_energy',                    label: 'Максимум энергии',              def: 5,   min: 1,  max: 99,  hint: 'Размер шкалы энергии.' },
+    { key: 'free_lesson_limit',             label: 'Бесплатных уроков (порог N)',   def: 3,   min: 1,  max: 32,  hint: 'Первые N уроков бесплатны.' },
+    { key: 'free_daily_quiz_limit',         label: 'Квизов в день (free)',          def: 1,   min: 0,  max: 999, hint: 'Бесплатных квизов в сутки.' },
+    { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день (free)',  def: 1,   min: 0,  max: 99,  hint: 'Бесплатных сессий тренажёра в сутки.' },
+    { key: 'arena_daily_max',               label: 'Матчей арены/день',             def: 1,   min: 0,  max: 999, hint: 'Один бесплатный матч арены в сутки.' },
+    { key: 'max_energy',                    label: 'База энергии до уровня 50',      def: 5,   min: 5,  max: 5,   hint: 'Фиксированная база 5; на уровне 50 добавляется один слот.' },
   ];
 
   // Локальное состояние редактора уроков (Set id уроков-исключений).
@@ -30644,8 +28035,8 @@
     if (_cpPremPremiumExtra.has(id)) return false;      // премиум-исключение
     if (_cpPremFreeExtra.has(id)) return true;          // фри-исключение
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    return id <= (Number.isFinite(thr) ? thr : 8);
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    return id <= (Number.isFinite(thr) ? thr : 3);
   }
 
   function cpPremRenderFeatureToggle(key, premium) {
@@ -30709,9 +28100,9 @@
     const box = document.getElementById('cp-prem-lessons');
     if (!box) return;
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
     const thrLbl = document.getElementById('cp-prem-lesson-threshold');
-    if (thrLbl) thrLbl.textContent = Number.isFinite(thr) ? thr : 8;
+    if (thrLbl) thrLbl.textContent = Number.isFinite(thr) ? thr : 3;
     let html = '';
     for (let id = 1; id <= CP_LESSON_COUNT; id++) {
       const free = cpPremLessonIsFree(id);
@@ -30729,8 +28120,8 @@
   window.cpPremToggleLesson = function(id) {
     const free = cpPremLessonIsFree(id);
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    const baseFree = Number.isFinite(thr) ? id <= thr : id <= 8;
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    const baseFree = Number.isFinite(thr) ? id <= thr : id <= 3;
     _cpPremFreeExtra.delete(id);
     _cpPremPremiumExtra.delete(id);
     if (free) {
@@ -30747,16 +28138,16 @@
     _cpPremPremiumExtra.clear();
     _cpPremFreeExtra.clear();
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (!(Number.isFinite(thr) ? id <= thr : id <= 8)) _cpPremFreeExtra.add(id); }
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (!(Number.isFinite(thr) ? id <= thr : id <= 3)) _cpPremFreeExtra.add(id); }
     cpPremRenderLessons();
   };
   window.cpPremLessonsAllPremium = function() {
     _cpPremFreeExtra.clear();
     _cpPremPremiumExtra.clear();
     const thrEl = document.getElementById('cp-prem-num-free_lesson_limit');
-    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 8;
-    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (Number.isFinite(thr) ? id <= thr : id <= 8) _cpPremPremiumExtra.add(id); }
+    const thr = thrEl && thrEl.value !== '' ? Number(thrEl.value) : 3;
+    for (let id = 1; id <= CP_LESSON_COUNT; id++) { if (Number.isFinite(thr) ? id <= thr : id <= 3) _cpPremPremiumExtra.add(id); }
     cpPremRenderLessons();
   };
   window.cpPremLessonsResetThreshold = function() {
@@ -34427,7 +31818,6 @@
     'ops-log': 'opsLog',
     'community-packs': 'community',
     'card-packs': 'cardPacks',
-    'league-chat': 'leagueChat',
     'arena-ranks': 'arenaRanks',
     'arena-live': 'arenaLive',
     referrals: 'referrals',
@@ -34472,7 +31862,6 @@
     adminApplyTabBadge('reports', c.reports || 0, '#fbbf24', '#000');
     adminApplyTabBadge('website-inbox', c.websiteInbox || 0, '#38bdf8', '#0f0f13');
     adminApplyTabBadge('community-packs', c.community || 0, '#fbbf24', '#000');
-    adminApplyTabBadge('league-chat', c.leagueChat || 0, '#38bdf8', '#0f0f13');
     adminApplyTabBadge('ban-list', c.banList || 0, '#f87171', '#fff');
     adminApplyTabBadge('ugc-purchases', c.ugcPurchases || 0, '#34d399', '#000');
     adminApplyTabBadge('audit', c.audit || 0, '#c084fc', '#0f0f13');
@@ -34525,8 +31914,6 @@
           appHealthNew,
           appHealthReviewed,
           pushNotify,
-          leagueChatQueue,
-          leagueChatReports,
         ] = await Promise.all([
           adminCount('user_reports_new', query(collection(db, 'user_reports'), where('status', '==', 'new'))),
           adminCount('error_reports_total', query(collection(db, 'error_reports'), limit(999))),
@@ -34576,8 +31963,6 @@
           ms('push-notify') > 0
             ? adminCount('push_jobs_new', query(collection(db, 'admin_push_jobs'), where('createdAt', '>', iso('push-notify'))))
             : adminCount('push_jobs', query(collection(db, 'admin_push_jobs'), limit(999))),
-          adminCount('league_chat_queue_review', query(collection(db, 'league_chat_moderation_queue'), where('status', '==', 'review'))),
-          adminCount('league_chat_reports_new', query(collection(db, 'league_chat_reports'), where('status', '==', 'new'))),
         ]);
 
         const usersSample = window._users && window._users.length
@@ -34594,7 +31979,6 @@
           reports: Math.max(0, reportsTotal - reportsFixed - reportsArchived),
           websiteInbox,
           community: cprNew + cpPending,
-          leagueChat: leagueChatQueue + leagueChatReports,
           banList,
           ugcPurchases,
           audit,
@@ -34727,14 +32111,67 @@
   // ══════════════════════════════════════════════════════════════════════════
   // Опросы за осколки (shard-survey): сводка, лента, редактор, CSV.
   // Читает shard_surveys / shard_survey_stats / shard_survey_responses.
-  // Пишет конфиг через callable adminWriteShardSurvey.
+  // Все изменения проходят через защищённые Voice Research preview/apply.
   // ══════════════════════════════════════════════════════════════════════════
-  let _fnWriteShardSurvey = null;
-  function getWriteShardSurveyFn() {
-    if (!_fnWriteShardSurvey && typeof httpsCallable === 'function' && functionsUs) {
-      _fnWriteShardSurvey = httpsCallable(functionsUs, 'adminWriteShardSurvey');
+  let _fnPreviewShardSurveyMutation = null;
+  let _fnApplyShardSurveyMutation = null;
+  function getPreviewShardSurveyMutationFn() {
+    if (!_fnPreviewShardSurveyMutation && typeof httpsCallable === 'function' && functionsUs) {
+      _fnPreviewShardSurveyMutation = httpsCallable(functionsUs, 'adminPreviewVoiceResearchMutation');
     }
-    return _fnWriteShardSurvey;
+    return _fnPreviewShardSurveyMutation;
+  }
+  function getApplyShardSurveyMutationFn() {
+    if (!_fnApplyShardSurveyMutation && typeof httpsCallable === 'function' && functionsUs) {
+      _fnApplyShardSurveyMutation = httpsCallable(functionsUs, 'adminApplyVoiceResearchMutation');
+    }
+    return _fnApplyShardSurveyMutation;
+  }
+  function ssAdminOperationId(prefix) {
+    const suffix = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+    return `${prefix}-${suffix}`.replace(/[^a-zA-Z0-9_.:-]/g, '').slice(0, 160);
+  }
+  async function ssPreviewAndApplySurveyMutation(action, targetId, payload, reason, danger = false) {
+    const previewFn = getPreviewShardSurveyMutationFn();
+    const applyFn = getApplyShardSurveyMutationFn();
+    if (!previewFn || !applyFn) throw new Error('Защищённые callable недоступны.');
+
+    const previewResult = await previewFn({
+      action,
+      targetId,
+      payload,
+      reason,
+      requestId: ssAdminOperationId('survey-preview'),
+    });
+    const preview = previewResult && previewResult.data ? previewResult.data : previewResult;
+    if (!preview || !preview.previewId || !preview.confirmation || !preview.fingerprint) {
+      throw new Error('Сервер вернул неполный предпросмотр. Изменения не применены.');
+    }
+
+    const enabledAfter = action === 'survey_toggle' ? payload && payload.enabled === true : null;
+    const title = action === 'survey_create'
+      ? 'Создать опрос?'
+      : action === 'survey_toggle'
+        ? (enabledAfter ? 'Включить показ опроса?' : 'Выключить показ опроса?')
+        : 'Сохранить изменения опроса?';
+    const confirmed = await showConfirmModal({
+      title,
+      desc: `Сервер подготовил безопасный предпросмотр для ${targetId}. Ответы и статистика не изменятся. Код предпросмотра: ${preview.confirmation}`,
+      confirmLabel: action === 'survey_toggle' ? (enabledAfter ? 'Включить показ' : 'Выключить показ') : 'Применить изменения',
+      danger,
+    });
+    if (!confirmed) return null;
+
+    const applyResult = await applyFn({
+      previewId: preview.previewId,
+      confirmation: preview.confirmation,
+      reason: preview.reason || reason,
+      requestId: ssAdminOperationId('survey-apply'),
+      idempotencyKey: `survey-${preview.fingerprint}`.slice(0, 180),
+    });
+    return applyResult && applyResult.data ? applyResult.data : applyResult;
   }
 
   const SS_LANGS = ['ru','uk','es','pt-BR','vi','id','tr','pl'];
@@ -34930,12 +32367,27 @@
   window.toggleShardSurveyEnabled = async function toggleShardSurveyEnabled() {
     const survey = _ssSurveys.find((s) => s.surveyId === _ssCurrentId);
     if (!survey) return;
-    const fn = getWriteShardSurveyFn();
-    if (!fn) { alert('Callable недоступна.'); return; }
+    const statusEl = document.getElementById('ss-status');
+    const enabled = !survey.enabled;
     try {
-      await fn({ survey: { ...survey, enabled: !survey.enabled } });
+      if (statusEl) statusEl.textContent = 'Готовлю безопасный предпросмотр…';
+      const applied = await ssPreviewAndApplySurveyMutation(
+        'survey_toggle',
+        survey.surveyId,
+        { enabled },
+        enabled ? 'Включение показа опроса через legacy-админку' : 'Выключение показа опроса через legacy-админку',
+        !enabled,
+      );
+      if (!applied) {
+        if (statusEl) statusEl.textContent = 'Изменение отменено. Ничего не применено.';
+        return;
+      }
       await window.loadShardSurveys();
-    } catch (e) { alert('Ошибка: ' + (e && e.message ? e.message : e)); }
+    } catch (e) {
+      const message = 'Ошибка: ' + (e && e.message ? e.message : e);
+      if (statusEl) statusEl.textContent = message;
+      else alert(message);
+    }
   };
 
   // ── Редактор ──────────────────────────────────────────────────────────────
@@ -35354,8 +32806,6 @@
   };
 
   window.saveShardSurvey = async function saveShardSurvey() {
-    const fn = getWriteShardSurveyFn();
-    if (!fn) { ssSetEditorStatus('Callable недоступна.', 'err'); return; }
     const survey = ssPreparedSurveyForSave();
     const errors = ssValidateSurveyDraft(survey);
     if (errors.length) {
@@ -35363,8 +32813,17 @@
       return;
     }
     try {
-      ssSetEditorStatus('Сохранение…');
-      await fn({ survey });
+      const action = _ssEditingIsNew ? 'survey_create' : 'survey_update';
+      const payload = action === 'survey_create' ? survey : { survey };
+      const reason = _ssEditingIsNew
+        ? 'Создание опроса через legacy-редактор'
+        : 'Редактирование опроса через legacy-редактор';
+      ssSetEditorStatus('Готовлю безопасный предпросмотр…');
+      const applied = await ssPreviewAndApplySurveyMutation(action, survey.surveyId, payload, reason);
+      if (!applied) {
+        ssSetEditorStatus('Сохранение отменено. Ничего не изменено.');
+        return;
+      }
       ssSetEditorStatus('Сохранено.');
       window.closeShardSurveyEditor();
       await window.loadShardSurveys();

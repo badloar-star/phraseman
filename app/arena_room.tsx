@@ -1,11 +1,9 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Text, TextInput, TouchableOpacity, View, ScrollView,
-  Modal, KeyboardAvoidingView, Platform, Clipboard, Animated,
+  Text, TextInput, TouchableOpacity, View, Clipboard, Animated,
 } from 'react-native';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
@@ -22,7 +20,7 @@ import type { ThemeMode } from '../constants/theme';
 import { monoIcon, isBusinessMode } from '../constants/monoIcon';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { emitAppEvent } from './events';
-import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   createArenaLiveRoom,
   getArenaLiveRoom,
@@ -30,17 +28,14 @@ import {
   subscribeArenaRoomRuns,
   subscribeArenaRoomMembers,
   subscribeArenaRoomDoc,
-  subscribeArenaRoomChat,
   joinArenaRoom,
   leaveArenaRoom,
   setArenaRoomReady,
   kickArenaRoomMember,
   closeArenaRoom,
-  sendArenaRoomChatMessage,
   type ArenaLiveRoom,
   type ArenaRoomRun,
   type ArenaRoomMember,
-  type ArenaRoomChatMessage,
 } from './services/arena_rooms_live';
 import { reserveArenaGameEntry } from './arena_access_gate';
 import { safeRouterBack } from './navigation_back';
@@ -51,10 +46,6 @@ type ArenaRoomConfirmDialog = {
   confirmLabel: string;
   cancelLabel: string;
   onConfirm: () => void;
-};
-
-type OptimisticArenaRoomChatMessage = ArenaRoomChatMessage & {
-  localStatus?: 'sending' | 'failed';
 };
 
 function cleanCode(code: string): string {
@@ -154,33 +145,6 @@ function MemberRow({
   );
 }
 
-// ─── Компонент сообщения чата ─────────────────────────────────────────────────
-function ChatBubble({ msg, isMe, t, f }: { msg: OptimisticArenaRoomChatMessage; isMe: boolean; t: any; f: any }) {
-  const time = new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const metaText = msg.localStatus === 'sending' ? '...' : msg.localStatus === 'failed' ? '!' : time;
-  return (
-    <View style={{ marginBottom: 8, alignItems: isMe ? 'flex-end' : 'flex-start', opacity: msg.localStatus === 'sending' ? 0.78 : 1 }}>
-      {!isMe && (
-        <Text style={{ color: t.textMuted, fontSize: f.caption - 2, marginBottom: 2, marginLeft: 4 }}>
-          {msg.authorName}
-        </Text>
-      )}
-      <View style={{
-        maxWidth: '80%', borderRadius: 14,
-        backgroundColor: isMe ? t.accent : t.bgCard,
-        paddingHorizontal: 12, paddingVertical: 8,
-        borderBottomRightRadius: isMe ? 4 : 14,
-        borderBottomLeftRadius: isMe ? 14 : 4,
-      }}>
-        <Text style={{ color: isMe ? t.correctText : t.textPrimary, fontSize: f.body }}>{msg.text}</Text>
-        <Text style={{ color: isMe ? t.correctText : t.textGhost, opacity: isMe ? 0.6 : 1, fontSize: f.caption - 2, marginTop: 2, alignSelf: 'flex-end' }}>
-          {metaText}
-        </Text>
-      </View>
-    </View>
-  );
-}
-
 // ─── Главный экран ────────────────────────────────────────────────────────────
 export default function ArenaRoomScreen() {
   const router = useRouter();
@@ -201,41 +165,21 @@ export default function ArenaRoomScreen() {
   const [room, setRoom] = useState<ArenaLiveRoom | null>(null);
   const [members, setMembers] = useState<ArenaRoomMember[]>([]);
   const [runs, setRuns] = useState<ArenaRoomRun[]>([]);
-  const [chatMessages, setChatMessages] = useState<ArenaRoomChatMessage[]>([]);
-  const [optimisticChatMessages, setOptimisticChatMessages] = useState<OptimisticArenaRoomChatMessage[]>([]);
-  const [unreadChat, setUnreadChat] = useState(0);
-  const [showChat, setShowChat] = useState(false);
   const [confirmDialog, setConfirmDialog] = useState<ArenaRoomConfirmDialog | null>(null);
   const confirmDialogVisible = useOverlayVisible('arenaRoomConfirm', confirmDialog != null);
-  const [chatInput, setChatInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [loadingRoom, setLoadingRoom] = useState(false);
   const [myUid, setMyUid] = useState<string | null>(null);
   const [myReady, setMyReady] = useState(false);
   const [readyBusy, setReadyBusy] = useState(false);
-  const [chatSending, setChatSending] = useState(false);
 
   const codeCopiedRef = useRef(false);
   const joinedRef = useRef(false);
-  const lastReadChatCount = useRef(0);
-  const chatListRef = useRef<FlashListRef<OptimisticArenaRoomChatMessage>>(null);
 
   const roomCode = room?.code ?? cleanCode(codeInput);
   const sortedRuns = useMemo(() => [...runs].sort((a, b) => b.score - a.score), [runs]);
 
   const meIsHost = !!(myUid && room && room.ownerUid === myUid);
-  const myMember = members.find(m => m.authUid === myUid);
-  const visibleChatMessages = useMemo<OptimisticArenaRoomChatMessage[]>(() => {
-    const unresolvedOptimistic = optimisticChatMessages.filter((optimistic) => {
-      if (optimistic.localStatus === 'failed') return true;
-      return !chatMessages.some(serverMessage =>
-        serverMessage.authorUid === optimistic.authorUid
-        && serverMessage.text === optimistic.text
-        && Math.abs(serverMessage.createdAt - optimistic.createdAt) <= 30_000,
-      );
-    });
-    return [...chatMessages, ...unresolvedOptimistic].sort((a, b) => a.createdAt - b.createdAt);
-  }, [chatMessages, optimisticChatMessages]);
   const allReady = members.length > 0 && members.every(m => m.ready);
   const canStart = meIsHost && allReady && members.length >= 2;
 
@@ -294,33 +238,6 @@ export default function ArenaRoomScreen() {
     return subscribeArenaRoomRuns(room.code, setRuns);
   }, [room?.code]);
 
-  // Подписка на чат
-  useEffect(() => {
-    if (!room?.code) { setChatMessages([]); setOptimisticChatMessages([]); return; }
-    return subscribeArenaRoomChat(room.code, (msgs) => {
-      setChatMessages(msgs);
-      setOptimisticChatMessages(prev => prev.filter(optimistic =>
-        optimistic.localStatus === 'failed'
-        || !msgs.some(serverMessage =>
-          serverMessage.authorUid === optimistic.authorUid
-          && serverMessage.text === optimistic.text
-          && Math.abs(serverMessage.createdAt - optimistic.createdAt) <= 30_000,
-        ),
-      ));
-      if (!showChat) {
-        const newCount = msgs.length - lastReadChatCount.current;
-        if (newCount > 0) setUnreadChat(prev => prev + newCount);
-        lastReadChatCount.current = msgs.length;
-      } else {
-        lastReadChatCount.current = msgs.length;
-      }
-      // Скролл вниз при открытом чате
-      if (showChat) {
-        setTimeout(() => chatListRef.current?.scrollToEnd({ animated: true }), 100);
-      }
-    });
-  }, [room?.code, showChat]);
-
   // Вход в комнату после загрузки
   useEffect(() => {
     if (!room?.code || !myUid || joinedRef.current) return;
@@ -335,7 +252,6 @@ export default function ArenaRoomScreen() {
     return () => {
       if (room?.code) leaveArenaRoom(room.code);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
   const loadRoom = useCallback(async (code: string) => {
@@ -543,56 +459,6 @@ export default function ArenaRoomScreen() {
     }
   }, [room?.code]);
 
-  const handleOpenChat = useCallback(() => {
-    // Не открываем чат, пока на экране висит подтверждение (выход/кик). Чат —
-    // нативный pageSheet-<Modal>, confirm — нативный fade-<Modal>; два present
-    // одновременно на iOS ломают стек модалок (фриз / одно окно само пропадает).
-    if (confirmDialog) return;
-    hapticTap();
-    setUnreadChat(0);
-    lastReadChatCount.current = chatMessages.length;
-    setShowChat(true);
-    setTimeout(() => chatListRef.current?.scrollToEnd({ animated: false }), 150);
-  }, [chatMessages.length, confirmDialog]);
-
-  const handleSendChat = useCallback(async () => {
-    const text = chatInput.trim();
-    if (!text || !room?.code || chatSending) return;
-    hapticTap();
-    const createdAt = Date.now();
-    const optimisticId = `local-${createdAt}-${Math.random().toString(36).slice(2, 8)}`;
-    const optimisticMessage: OptimisticArenaRoomChatMessage = {
-      id: optimisticId,
-      code: room.code,
-      authorUid: myUid ?? 'local',
-      authorName: myMember?.userName ?? 'You',
-      text,
-      createdAt,
-      status: 'visible',
-      localStatus: 'sending',
-    };
-    setChatInput('');
-    setOptimisticChatMessages(prev => [...prev, optimisticMessage]);
-    setTimeout(() => chatListRef.current?.scrollToEnd({ animated: true }), 50);
-    setChatSending(true);
-    try {
-      await sendArenaRoomChatMessage(room.code, text);
-    } catch {
-      setOptimisticChatMessages(prev => prev.map(message =>
-        message.id === optimisticId ? { ...message, localStatus: 'failed' } : message,
-      ));
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Сообщение не дошло. Проверь сеть и повтори.',
-        messageUk: 'Не вдалося надіслати повідомлення',
-        messageEs: 'No se pudo enviar el mensaje',
-      });
-      setChatInput(text);
-    } finally {
-      setChatSending(false);
-    }
-  }, [chatInput, room?.code, chatSending, myMember?.userName, myUid]);
-
   const myRun = myUid ? sortedRuns.find(r => r.userId === myUid) : undefined;
   const myRank = myRun ? sortedRuns.indexOf(myRun) + 1 : null;
 
@@ -647,19 +513,6 @@ export default function ArenaRoomScreen() {
             )}
           </View>
           {/* Кнопка чата — только в комнате */}
-          {room && (
-            <TapScale
-              onPress={handleOpenChat}
-              style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}
-            >
-              <Ionicons name="chatbubble-ellipses-outline" size={20} color={unreadChat > 0 ? t.accent : t.textMuted} />
-              {unreadChat > 0 && (
-                <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, backgroundColor: '#EF4444', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
-                  <Text style={{ color: '#fff', fontSize: 9, fontWeight: '900' }}>{unreadChat > 99 ? '99+' : unreadChat}</Text>
-                </View>
-              )}
-            </TapScale>
-          )}
         </View>
 
         {/* Блок ввода кода + создание — только до открытия комнаты */}
@@ -1130,101 +983,6 @@ export default function ArenaRoomScreen() {
       </Animated.ScrollView>
       </BouncyWrap>
 
-      {/* ─── Модалка чата ─────────────────────────────────────────────────────── */}
-      <Modal visible={showChat && !confirmDialog} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShowChat(false)}>
-        <ScreenGradient artBackdrop="arenaMatch">
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
-          {/* Шапка чата */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, paddingTop: 20, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
-              {triLang(lang, {
-                ru: 'Чат комнаты',
-                uk: 'Чат кімнати',
-                es: 'Chat de sala',
-                'pt-BR': "Chat da sala",
-                vi: "Chat phòng",
-                id: "Chat room",
-                tr: "Oda sohbeti",
-                pl: "Czat pokoju",
-              })}
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}> {room?.code}</Text>
-            </Text>
-            <TapScale onPress={() => setShowChat(false)} style={{ padding: 4 }}>
-              <Ionicons name="close" size={24} color={t.textPrimary} />
-            </TapScale>
-          </View>
-
-          {/* Сообщения */}
-          <FlashList
-            ref={chatListRef}
-            data={visibleChatMessages}
-            keyExtractor={item => item.id}
-            contentContainerStyle={{ padding: 16, paddingBottom: 8 }}
-            ListEmptyComponent={
-              <View style={{ alignItems: 'center', marginTop: 40 }}>
-                <Ionicons name="chatbubbles-outline" size={40} color={t.textGhost} />
-                <Text style={{ color: t.textGhost, marginTop: 8 }}>
-                  {triLang(lang, {
-                    ru: 'Нет сообщений. Начни чат!',
-                    uk: 'Немає повідомлень. Починай чат!',
-                    es: "Sin mensajes. ¡Empieza el chat!",
-                    'pt-BR': "Sem mensagens. Comece o chat!",
-                    vi: "Chưa có tin nhắn. Bắt đầu trò chuyện!",
-                    id: "Belum ada pesan. Mulai chat!",
-                    tr: "Mesaj yok. Sohbeti başlat!",
-                    pl: "Brak wiadomości. Zacznij czat!",
-                  })}
-                </Text>
-              </View>
-            }
-            renderItem={({ item }) => (
-              <ChatBubble msg={item} isMe={item.authorUid === myUid} t={t} f={f} />
-            )}
-            onContentSizeChange={() => chatListRef.current?.scrollToEnd({ animated: true })}
-          />
-
-          {/* Поле ввода */}
-          <View style={{ flexDirection: 'row', alignItems: 'flex-end', padding: 12, paddingBottom: 20, gap: 8, borderTopWidth: 0.5, borderTopColor: t.border }}>
-            <TextInput
-              accessibilityLabel={triLang(lang, {
-                ru: 'Сообщение в чат',
-                uk: 'Повідомлення в чат',
-                es: 'Mensaje de chat',
-                'pt-BR': 'Mensagem de chat',
-                vi: 'Tin nhắn chat',
-                id: 'Pesan obrolan',
-                tr: 'Sohbet mesajı',
-                pl: 'Wiadomość na czacie',
-              })}
-              value={chatInput}
-              onChangeText={setChatInput}
-              placeholder={triLang(lang, {
-                ru: 'Написать сообщение…',
-                uk: 'Написати повідомлення…',
-                es: 'Escribe un mensaje…',
-                'pt-BR': "Escreva uma mensagem…",
-                vi: "Nhập tin nhắn…",
-                id: "Tulis pesan…",
-                tr: "Mesaj yaz…",
-                pl: "Napisz wiadomość…",
-              })}
-              placeholderTextColor={t.textGhost}
-              multiline
-              maxLength={300}
-              style={{ flex: 1, borderRadius: 20, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 14, paddingVertical: 10, fontSize: f.body, maxHeight: 100 }}
-              onSubmitEditing={handleSendChat}
-            />
-            <TapScale
-              onPress={handleSendChat}
-              disabled={!chatInput.trim() || chatSending}
-              style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: chatInput.trim() ? t.accent : t.bgSurface, alignItems: 'center', justifyContent: 'center' }}
-            >
-              <Ionicons name="send" size={18} color={chatInput.trim() ? t.correctText : t.textMuted} />
-            </TapScale>
-          </View>
-        </KeyboardAvoidingView>
-        </ScreenGradient>
-      </Modal>
       <ThemedChoiceModal
         visible={confirmDialogVisible}
         title={confirmDialog?.title ?? ''}

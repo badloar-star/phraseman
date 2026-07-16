@@ -49,10 +49,8 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'full-content-control', route: 'content', label: 'Полный контроль контента', description: 'Серверный и встроенный контент, подстановки и даты.', legacyPage: 'full.html' },
 
   { id: 'mod-queue', route: 'community', label: 'Очередь модерации', description: 'Пользовательский контент, ожидающий решения.', legacyTab: 'mod-queue' },
-  { id: 'help-board', route: 'community', label: 'Доска помощи', description: 'Запросы сообщества и ответы помощников.', legacyTab: 'help-board' },
   { id: 'helpers-board', route: 'community', label: 'Топ помощников', description: 'Лидеры помощи и подтверждённые ответы.', legacyTab: 'helpers-board' },
   { id: 'clubs', route: 'community', label: 'Клубы и лиги', description: 'Клубы, участники и управление лигами.', legacyTab: 'clubs' },
-  { id: 'league-chat', route: 'community', label: 'Чат лиг', description: 'Сообщения, ответы и модерация чата.', legacyTab: 'league-chat' },
   { id: 'arena-ranks', route: 'community', label: 'Рейтинг Арены', description: 'Лидеры и ранги Арены.', legacyTab: 'arena-ranks' },
   { id: 'arena-live', route: 'community', label: 'Арена в реальном времени', description: 'Активные матчи и состояние очередей.', legacyTab: 'arena-live' },
   { id: 'arena-bets', route: 'community', label: 'Ставки Арены', description: 'Ставки, статусы и спорные случаи.', legacyTab: 'arena-bets' },
@@ -86,6 +84,12 @@ const NATIVE_PAGE_HASHES = new Set([
   'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns', 'control-panel',
 ]);
 
+const ANALYTICS_BOOKMARK_HASHES = new Set([
+  'product', '/product',
+  'subscriptions', '/subscriptions',
+  'monthly', '/monthly',
+]);
+
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {
   const nativeRoute = NATIVE_CAPABILITY_ROUTES[capability.id] ?? '';
   return Object.freeze({
@@ -107,6 +111,9 @@ export function resolveCapabilityHash(rawHash) {
   const encoded = String(rawHash ?? '').replace(/^#/, '').trim();
   let requested = encoded;
   try { requested = decodeURIComponent(encoded); } catch { /* Keep malformed input fail-closed. */ }
+  if (ANALYTICS_BOOKMARK_HASHES.has(requested)) {
+    return { resolved: true, route: 'analytics', capabilityId: '' };
+  }
   const [requestedRoute, requestedCapabilityId = ''] = requested.split(':');
   if (!requestedCapabilityId && NATIVE_PAGE_HASHES.has(requestedRoute)) {
     return { resolved: false, route: requestedRoute, capabilityId: '' };

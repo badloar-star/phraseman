@@ -96,8 +96,6 @@ function inboxText(lang: Lang) {
     pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
     pollSelected: triLang(lang, { ru: 'Ваш выбор', uk: 'Ваш вибір', es: 'Tu eleccion', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihan Anda', tr: 'Seçiminiz', pl: 'Twój wybór' }),
     pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', es: 'Resultados despues de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
-    helpBoard: triLang(lang, { ru: 'Help Board', uk: 'Help Board', es: 'Help Board', 'pt-BR': 'Help Board', vi: 'Help Board', id: 'Help Board', tr: 'Help Board', pl: 'Help Board' }),
-    leagueChat: triLang(lang, { ru: 'Чат лиги', uk: 'Чат ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat liga', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' }),
     inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
     claimShards: (n: number) => triLang(lang, {

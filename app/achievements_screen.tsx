@@ -32,7 +32,6 @@ import {
   achievementDescForLang,
   checkAchievements,
 } from './achievements';
-import { isLeagueChatAchievementVisible } from './league_chat_availability';
 import { getNearestLockedAchievements } from './achievement_nearest';
 import type { NearestAchievementItem } from './achievement_nearest';
 import { triLang, type Lang } from '../constants/i18n';
@@ -90,8 +89,8 @@ function getAchievementGridMetrics(screenW: number) {
   return { cols, gap: GRID_GAP, shieldOuter, shieldW };
 }
 
-function isVisibleAchievement(a: Achievement, stateMap: Map<string, AchievementState>): boolean {
-  return isLeagueChatAchievementVisible(a.id, !!stateMap.get(a.id)?.unlockedAt);
+function isVisibleAchievement(_a: Achievement, _stateMap: Map<string, AchievementState>): boolean {
+  return true;
 }
 
 type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
@@ -130,7 +129,6 @@ interface AchievementStats {
   leagueChampion: number;
   leagueDiamondWeeks: number;
   giftsSent: number;
-  leagueChatMessages: number;
   trainerPerfectSessions: number;
   packsOwned: number;
   shareCount: number;
@@ -170,7 +168,6 @@ const emptyAchievementStats = (): AchievementStats => ({
   leagueChampion: 0,
   leagueDiamondWeeks: 0,
   giftsSent: 0,
-  leagueChatMessages: 0,
   trainerPerfectSessions: 0,
   packsOwned: 0,
   shareCount: 0,
@@ -287,7 +284,7 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       quizSessionsRaw, quizHardRaw, quizHardPerfectRaw, quizPerfectStreakRaw, comboBestRaw,
       dailyAllStreakRaw, dailyNoRerollRaw, dailyPhraseReadsRaw, dailyPhraseSavesRaw,
       flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
-      leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw, chatRaw,
+       leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw,
       trainerPerfectRaw, packStorageRows, shareRaw,
       weeklyRaw, weeklyPeakRaw,
     ] = await Promise.all([
@@ -316,7 +313,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       AsyncStorage.getItem('achievement_league_champion_count'),
       AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
       AsyncStorage.getItem('achievement_gift_sent_count'),
-      AsyncStorage.getItem('achievement_league_chat_message_count'),
       readTrainerPerfectSessionsAcrossTargets(),
       AsyncStorage.multiGet(
         ACHIEVEMENT_PROGRESS_TARGETS.flatMap((studyTarget) => [
@@ -446,7 +442,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       leagueChampion: parseInt(leagueChampionRaw || '0') || 0,
       leagueDiamondWeeks: readJsonStreak(leagueDiamondWeeksRaw),
       giftsSent: parseInt(giftsRaw || '0') || 0,
-      leagueChatMessages: parseInt(chatRaw || '0') || 0,
       trainerPerfectSessions: parseInt(trainerPerfectRaw || '0') || 0,
       packsOwned: packSet.size,
       shareCount: parseInt(shareRaw || '0') || 0,
@@ -547,9 +542,6 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   if (id === 'social_gift_10') return [Math.min(stats.giftsSent, 10), 10];
   if (id === 'social_gift_25') return [Math.min(stats.giftsSent, 25), 25];
   if (id === 'social_gift_100') return [Math.min(stats.giftsSent, 100), 100];
-  if (id === 'league_chat_10') return [Math.min(stats.leagueChatMessages, 10), 10];
-  if (id === 'league_chat_50') return [Math.min(stats.leagueChatMessages, 50), 50];
-  if (id === 'league_chat_100') return [Math.min(stats.leagueChatMessages, 100), 100];
   if (id === 'trainer_perfect_10_sessions') return [Math.min(stats.trainerPerfectSessions, 10), 10];
   if (id === 'trainer_perfect_50_sessions') return [Math.min(stats.trainerPerfectSessions, 50), 50];
   if (id === 'pack_5_purchased') return [Math.min(stats.packsOwned, 5), 5];
@@ -707,8 +699,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   social_gift_10:                   require('../assets/images/achievements/social_gift_10.webp'),
   social_like_received:             require('../assets/images/achievements/social_like_received.webp'),
   social_likes_5:                   require('../assets/images/achievements/social_likes_5.webp'),
-  league_chat_first:                require('../assets/images/achievements/league_chat_first.webp'),
-  league_chat_10:                   require('../assets/images/achievements/league_chat_10.webp'),
   arena_streak_5:                   require('../assets/images/achievements/arena_streak_5.webp'),
   arena_streak_10:                  require('../assets/images/achievements/arena_streak_10.webp'),
   arena_duel_friend:                require('../assets/images/achievements/arena_duel_friend.webp'),
@@ -806,8 +796,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   social_gift_100:                  require('../assets/images/achievements/social_gift_100.webp'),
   social_likes_25:                  require('../assets/images/achievements/social_likes_25.webp'),
   social_likes_100:                 require('../assets/images/achievements/social_likes_100.webp'),
-  league_chat_50:                   require('../assets/images/achievements/league_chat_50.webp'),
-  league_chat_100:                  require('../assets/images/achievements/league_chat_100.webp'),
   trainer_1000_correct:             require('../assets/images/achievements/trainer_1000_correct.webp'),
   trainer_2500_correct:             require('../assets/images/achievements/trainer_2500_correct.webp'),
   trainer_10000_correct:            require('../assets/images/achievements/trainer_10000_correct.webp'),
@@ -909,8 +897,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   league_boost_x3:    'flash',
   social_gift_10:     'gift',
   social_likes_5:     'heart',
-  league_chat_first:  'chatbubble',
-  league_chat_10:     'chatbubbles',
   trainer_7_days:     'calendar',
   trainer_500_correct: 'barbell',
   trainer_perfect_session: 'checkmark-done-circle',

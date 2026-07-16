@@ -79,7 +79,6 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'arena_room_runs', field: 'stableUid', values: 'stable' },
   { collection: 'arena_room_members', field: 'authUid', values: 'auth' },
   { collection: 'arena_room_members', field: 'stableUid', values: 'stable' },
-  { collection: 'arena_room_chat_rate', field: 'authUid', values: 'auth' },
   { collection: 'arena_pulse_events', field: 'authUid', values: 'auth' },
   { collection: 'arena_pulse_events', field: 'stableUid', values: 'stable' },
   { collection: 'arena_ghost_challenges', field: 'ownerUid', values: 'auth' },
@@ -91,30 +90,6 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'arena_hill_thrones', field: 'championAuthUid', values: 'auth' },
   { collection: 'arena_club_contributions', field: 'arenaUid', values: 'auth' },
   { collection: 'arena_club_contributions', field: 'stableUid', values: 'stable' },
-  { collection: 'league_chat_messages', field: 'authorUid', values: 'stable' },
-  { collection: 'league_chat_messages', field: 'authUid', values: 'auth' },
-  { collection: 'league_chat_messages', field: 'authorAuthUid', values: 'auth' },
-  { collection: 'league_chat_moderation_queue', field: 'authorUid', values: 'stable' },
-  { collection: 'league_chat_moderation_queue', field: 'authUid', values: 'auth' },
-  { collection: 'league_chat_moderation_queue', field: 'authorAuthUid', values: 'auth' },
-  { collection: 'league_chat_reports', field: 'authorUid', values: 'stable' },
-  { collection: 'league_chat_reports', field: 'reporterUid', values: 'stable' },
-  { collection: 'league_chat_reports', field: 'reporterAuthUid', values: 'auth' },
-  { collection: 'league_chat_bans', field: 'authUid', values: 'auth' },
-  { collection: 'help_board_topics', field: 'authorUid', values: 'stable' },
-  { collection: 'help_board_topics', field: 'authorAuthUid', values: 'auth' },
-  { collection: 'help_board_comments', field: 'authorUid', values: 'stable' },
-  { collection: 'help_board_comments', field: 'authorAuthUid', values: 'auth' },
-  { collection: 'help_board_reports', field: 'authorUid', values: 'stable' },
-  { collection: 'help_board_reports', field: 'reporterUid', values: 'stable' },
-  { collection: 'help_board_reports', field: 'reporterAuthUid', values: 'auth' },
-  { collection: 'help_board_votes', field: 'stableUid', values: 'stable' },
-  { collection: 'help_board_votes', field: 'authUid', values: 'auth' },
-  { collection: 'help_board_restrictions', field: 'uid', values: 'stable' },
-  { collection: 'help_board_compass_billing', field: 'uid', values: 'stable' },
-  { collection: 'help_board_compass_billing', field: 'authUid', values: 'auth' },
-  { collection: 'help_board_moderation_queue', field: 'authorUid', values: 'stable' },
-  { collection: 'help_board_moderation_queue', field: 'authorAuthUid', values: 'auth' },
   { collection: 'user_reports', field: 'reportedUid', values: 'both' },
   { collection: 'user_reports', field: 'reporterUid', values: 'both' },
   { collection: 'community_pack_reports', field: 'authorStableId', values: 'stable' },
@@ -407,16 +382,10 @@ async function deleteDirectDocs(
   const ids = Array.from(new Set([stableUid, authUid].filter(Boolean)));
   const directCollections = [
     'users',
+    'public_profiles',
     'leaderboard',
     'arena_profiles',
     'matchmaking_queue',
-    'arena_room_chat_rate',
-    'league_chat_rate_limits',
-    'league_chat_report_rate_limits',
-    'league_chat_bans',
-    'league_chat_members',
-    'help_board_rate_limits',
-    'help_board_restrictions',
     'shard_survey_rate_limits',
     'user_consents',
     'referral_owners',
@@ -748,11 +717,33 @@ export const accountDeleteEnqueue = onCall({
   maxInstances: 80,
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  return enqueueForAuthenticatedAccount(
+  const result = await enqueueForAuthenticatedAccount(
     admin.firestore(),
     request.auth.uid,
     request.data?.stableId,
   );
+  const hardening = Promise.allSettled([
+    admin.auth().updateUser(request.auth.uid, { disabled: true }),
+    admin.auth().revokeRefreshTokens(request.auth.uid),
+  ]).then((outcomes) => {
+    const failures = outcomes.filter((outcome) => outcome.status === 'rejected').length;
+    if (failures > 0) {
+      console.warn(JSON.stringify({
+        event: 'account_delete_auth_hardening_partial_failure',
+        failures,
+      }));
+    }
+  });
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+  await Promise.race([
+    hardening,
+    new Promise<void>((resolve) => {
+      timeout = setTimeout(resolve, 2_000);
+    }),
+  ]).finally(() => {
+    if (timeout) clearTimeout(timeout);
+  });
+  return result;
 });
 
 export const accountDeleteMine = onCall(ACCOUNT_DELETE_OPTIONS, async (request) => {

@@ -18,7 +18,7 @@ const routeMap = {
   users: 'users', reports: 'users', support: 'users', 'user-reports': 'users', 'beta-testers': 'users', testers: 'users',
   revenue: 'money', 'paywall-ab': 'money', premium: 'money', vip: 'money', 'plus-radar': 'money', 'promo-codes': 'money', refunds: 'money', referrals: 'money', 'telegram-premium': 'money', 'openai-budget': 'money', analytics: 'money',
   content: 'content', lessons: 'content', phrases: 'content', translations: 'content', quizzes: 'content', cards: 'content', 'daily-phrases': 'content', 'community-packs': 'content', 'french-quizzes': 'content',
-  community: 'community', arena: 'community', chat: 'community', clubs: 'community', league: 'community', 'help-board': 'community', ugc: 'community',
+  community: 'community', arena: 'community', clubs: 'community', league: 'community', ugc: 'community',
   diagnostics: 'diagnostics', 'app-health': 'diagnostics', 'audit-log': 'diagnostics', ops: 'diagnostics', 'ops-log': 'diagnostics', archive: 'diagnostics', changelog: 'diagnostics', 'advanced-tools': 'diagnostics', system: 'diagnostics',
 };
 const routes = ['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics'];

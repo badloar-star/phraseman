@@ -8,6 +8,8 @@ describe('account deletion rebuilt flow contract', () => {
   const timeoutSource = fs.readFileSync(path.join(root, 'app', 'account_delete_timeout.ts'), 'utf8');
   const modalSource = fs.readFileSync(path.join(root, 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8');
   const functionSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete.ts'), 'utf8');
+  const functionJobSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete_job.ts'), 'utf8');
+  const rootLayoutSource = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
   const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
     fieldOverrides?: {
       collectionGroup?: string;
@@ -26,7 +28,7 @@ describe('account deletion rebuilt flow contract', () => {
     expect(enqueue).toBeLessThan(signOut);
     expect(signOut).toBeLessThan(wipe);
     expect(authProvider.slice(start, wipe)).toContain("logAuthEvent('auth_account_delete_enqueue_failed'");
-    expect(authProvider.slice(start, wipe)).not.toContain("return { ok: false, reason: 'cloud_delete_failed' }");
+    expect(authProvider).toContain("reason: 'cloud_delete_not_enqueued'");
   });
 
   it('blocks immediate same-provider re-login until background deletion is settled', () => {
@@ -79,9 +81,27 @@ describe('account deletion rebuilt flow contract', () => {
     expect(indexSource).toContain('exports.accountDeleteWorker = accountDeleteWorker;');
   });
 
-  it('shows immediate-account-exit copy while server deletion continues in the background', () => {
+  it('atomically publishes an auth-scoped deletion marker for other signed-in devices', () => {
+    expect(functionJobSource).toContain("ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers'");
+    expect(functionJobSource).toContain('const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid)');
+    expect(functionJobSource).toContain('tx.set(authMarkerRef');
+  });
+
+  it('disables provider auth immediately after the durable deletion request is accepted', () => {
+    expect(functionSource).toContain("updateUser(request.auth.uid, { disabled: true })");
+    expect(functionSource).toContain('revokeRefreshTokens(request.auth.uid)');
+  });
+
+  it('starts a root cross-device deletion monitor', () => {
+    expect(rootLayoutSource).toContain('startRemoteAccountDeletionMonitor');
+    expect(rootLayoutSource).toContain('handleAccountDeletedOnAnotherDevice');
+  });
+
+  it('does not claim server cleanup before the durable deletion request is confirmed', () => {
     expect(modalSource).toContain('Аккаунт удаляется');
-    expect(modalSource).toContain('Серверная очистка продолжится в фоне');
+    expect(modalSource).toContain('Отправляем серверу запрос на удаление данных');
+    expect(modalSource).toContain('Сервер не подтвердил получение запроса');
+    expect(modalSource).not.toContain('Серверная очистка продолжится в фоне');
     expect(modalSource).not.toContain('Профиль сброшен');
     expect(modalSource).not.toContain('res.cloudDeleted');
   });
@@ -90,8 +110,6 @@ describe('account deletion rebuilt flow contract', () => {
     [
       "{ collection: 'arena_rooms', field: 'hostId', values: 'auth' }",
       "{ collection: 'arena_rooms', field: 'guestId', values: 'auth' }",
-      "{ collection: 'league_chat_messages', field: 'authorAuthUid', values: 'auth' }",
-      "{ collection: 'league_chat_moderation_queue', field: 'authorAuthUid', values: 'auth' }",
       "{ collection: 'error_reports', field: 'uid', values: 'stable' }",
       "{ collection: 'review_promo_claims', field: 'uid', values: 'stable' }",
       "{ collection: 'vip_survey_responses', field: 'uid', values: 'stable' }",
@@ -121,6 +139,7 @@ describe('account deletion rebuilt flow contract', () => {
     expect(functionSource).toContain("collection('friend_gift_daily_limits')");
     expect(functionSource).not.toContain("collectionGroup('friend_gift_daily_limits')");
     expect(functionSource).toContain('removeFromArenaClubEvents');
+    expect(functionSource).toContain("'public_profiles'");
     expect(functionSource).toContain('ctx.writer.flush');
   });
 

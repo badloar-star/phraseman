@@ -453,14 +453,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     nameEs: 'Cinco señales',
     descEs: 'Recibe 5 me gusta de amigos en tus logros.',
   },
-  league_chat_first: {
-    nameEs: 'Voz de liga',
-    descEs: 'Envía tu primer mensaje en el chat de liga.',
-  },
-  league_chat_10: {
-    nameEs: 'Canal del equipo',
-    descEs: 'Envía 10 mensajes en el chat de liga.',
-  },
   arena_streak_5: {
     nameEs: 'Máquina de victorias',
     descEs: 'Gana 5 combates seguidos en la Arena.',
@@ -618,8 +610,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   social_gift_100: { nameEs: '100 regalos', descEs: 'Envía 100 regalos a tus amigos.' },
   social_likes_25: { nameEs: '25 likes', descEs: 'Recibe 25 likes de amigos en tus logros.' },
   social_likes_100: { nameEs: '100 likes', descEs: 'Recibe 100 likes de amigos en tus logros.' },
-  league_chat_50: { nameEs: '50 mensajes de liga', descEs: 'Envía 50 mensajes en el chat de liga.' },
-  league_chat_100: { nameEs: '100 mensajes de liga', descEs: 'Envía 100 mensajes en el chat de liga.' },
   trainer_1000_correct: { nameEs: '1000 exactas', descEs: 'Consigue 1000 respuestas correctas en entrenamientos.' },
   trainer_2500_correct: { nameEs: '2500 exactas', descEs: 'Consigue 2500 respuestas correctas en entrenamientos.' },
   trainer_10000_correct: { nameEs: '10000 exactas', descEs: 'Consigue 10000 respuestas correctas en entrenamientos.' },

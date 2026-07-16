@@ -44,17 +44,6 @@ export type ArenaRoomMember = {
   joinedAt: number;
 };
 
-export type ArenaRoomChatMessage = {
-  id: string;
-  code: string;
-  authorUid: string;
-  authorName: string;
-  authorAvatar?: string;
-  text: string;
-  createdAt: number;
-  status: 'visible' | 'blocked';
-};
-
 const FALLBACK_ROOM_QUESTIONS: ArenaQuestion[] = [
   {
     id: 'room_fallback_1',
@@ -287,23 +276,6 @@ export function subscribeArenaRoomDoc(
   );
 }
 
-export function subscribeArenaRoomChat(
-  code: string,
-  cb: (messages: ArenaRoomChatMessage[]) => void,
-): () => void {
-  const db = getDb();
-  const roomCode = cleanCode(code);
-  if (!db || !roomCode) { cb([]); return () => {}; }
-  return db.collection('arena_room_chat').doc(roomCode).collection('messages')
-    .where('status', '==', 'visible')
-    .orderBy('createdAt', 'asc')
-    .limitToLast(80)
-    .onSnapshot(
-      (snap: any) => cb(snap.docs.map((d: any) => ({ id: d.id, ...(d.data() as Omit<ArenaRoomChatMessage, 'id'>) }))),
-      () => cb([]),
-    );
-}
-
 // ─── Вызовы Cloud Functions ───────────────────────────────────────────────────
 
 export async function joinArenaRoom(params: { code: string; userName: string; userAvatar?: string }): Promise<void> {
@@ -341,12 +313,6 @@ export async function closeArenaRoom(code: string): Promise<void> {
   await fn({ code: cleanCode(code) });
 }
 
-export async function sendArenaRoomChatMessage(code: string, text: string): Promise<void> {
-  const db = getDb();
-  if (!db) return;
-  const fn = callable<{ code: string; text: string }, { ok: boolean }>('arenaRoomChatSend');
-  await fn({ code: cleanCode(code), text: text.slice(0, 300) });
-}
 
 export async function shareArenaLiveRoom(room: ArenaLiveRoom, lang: string): Promise<void> {
   const url = Linking.createURL('arena_room', { queryParams: { code: room.code } });

@@ -3,7 +3,6 @@ import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { LEAGUE_CHAT_ENABLED } from './league_chat_availability';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -24,26 +23,7 @@ export type UserNotificationType =
   | 'activity_like'
   | 'friend_gift_received'
   | 'friend_gift_thanks'
-  | 'help_board_comment'
-  | 'help_board_reply'
-  | 'help_board_like'
-  | 'league_chat_reply'
   | 'report_reply';
-
-export interface UserNotificationNavHelpBoard {
-  kind: 'help_board';
-  topicId: string;
-  commentId?: string;
-  boardKey?: string;
-}
-
-export interface UserNotificationNavLeagueChat {
-  kind: 'league_chat';
-  groupId: string;
-  weekId: string;
-  leagueId: number;
-  messageId: string;
-}
 
 export interface UserNotificationNavFriends {
   kind: 'friends';
@@ -55,8 +35,6 @@ export interface UserNotificationNavReportReply {
 }
 
 export type UserNotificationNav =
-  | UserNotificationNavHelpBoard
-  | UserNotificationNavLeagueChat
   | UserNotificationNavFriends
   | UserNotificationNavReportReply;
 
@@ -83,9 +61,7 @@ export interface UserNotification {
 }
 
 export function isUserNotificationVisible(row: UserNotification): boolean {
-  if (!LEAGUE_CHAT_ENABLED && row.type === 'league_chat_reply') return false;
-  if (!LEAGUE_CHAT_ENABLED && row.nav?.kind === 'league_chat') return false;
-  return true;
+  return Boolean(row);
 }
 
 const getFirestore = () => {

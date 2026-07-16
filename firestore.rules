@@ -4,7 +4,9 @@ service cloud.firestore {
 
     // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function isOwner(uid) {
-      return request.auth != null && request.auth.uid == uid;
+      return request.auth != null
+        && request.auth.uid == uid
+        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid));
     }
 
     function isAdmin() {
@@ -15,6 +17,7 @@ service cloud.firestore {
 
     function stableUserMatchesAuth(stableUid) {
       return request.auth != null
+        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
         && exists(/databases/$(database)/documents/users/$(stableUid))
         && get(/databases/$(database)/documents/users/$(stableUid)).data.keys().hasAny(['firebaseAuthUid'])
         && get(/databases/$(database)/documents/users/$(stableUid)).data.firebaseAuthUid == request.auth.uid;
@@ -22,6 +25,7 @@ service cloud.firestore {
 
     function authLinkMapsToUser(userId) {
       return request.auth != null
+        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
         && exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))
         && get(/databases/$(database)/documents/auth_links/$(request.auth.uid)).data.stable_id == userId;
     }
@@ -48,12 +52,17 @@ service cloud.firestore {
     // закрыты (эта ветка ложна, если документ существует).
     function userDocMissing(userId) {
       return request.auth != null
+        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
         && !exists(/databases/$(database)/documents/users/$(userId));
     }
 
     function accountDeletionNotPending(userId) {
       return isAdmin()
-        || !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId));
+        || (
+          request.auth != null
+          && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
+          && !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId))
+        );
     }
 
     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
@@ -1017,6 +1026,7 @@ service cloud.firestore {
         || isOwner(userId)
         || (
           request.auth != null
+          && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
           && request.resource.data.keys().hasAny(['firebaseAuthUid'])
           && request.resource.data.firebaseAuthUid is string
           && request.resource.data.firebaseAuthUid == request.auth.uid
@@ -1058,6 +1068,11 @@ service cloud.firestore {
     // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
     match /account_deletion_tombstones/{userId} {
       allow read, write: if false;
+    }
+
+    match /account_deletion_auth_markers/{authUid} {
+      allow read: if request.auth != null && request.auth.uid == authUid;
+      allow write: if false;
     }
 
     match /users/{userId} {
@@ -1669,90 +1684,15 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
-    // League chat UGC: live weekly room messages, moderation queue, reports.
-    match /league_chat_messages/{messageId} {
-      // Член комнаты (есть запись в league_chat_members/{uid}/rooms/{groupId}).
-      function isLeagueChatRoomMember() {
-        return request.auth != null
-          && exists(/databases/$(database)/documents/league_chat_members/$(request.auth.uid)/rooms/$(resource.data.groupId));
-      }
-      allow read: if isAdmin() || isLeagueChatRoomMember();
-      allow create: if isAdmin();
-      // Участник комнаты может менять ТОЛЬКО агрегаты вовлечения (счётчики реакций
-      // и голосов опроса) + updatedAt. Текст/статус/автор/модерация — неприкосновенны.
-      // Значения меняются через increment(±1) на клиенте; объём злоупотребления
-      // ограничен (счётчик ±1 за тап, троттлинг на клиенте).
-      allow update: if isAdmin()
-        || (
-          isLeagueChatRoomMember()
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions', 'pollVotes', 'updatedAt'])
-        );
-      allow delete: if isAdmin();
-    }
-
-    match /league_chat_moderation_queue/{itemId} {
-      allow create: if false;
-      allow read, update, delete: if isAdmin();
-    }
-
-    match /league_chat_reports/{reportId} {
-      allow create: if false;
-      allow read, update, delete: if isAdmin();
-    }
-
-    match /league_chat_bans/{userId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
-    match /league_chat_members/{authUid}/rooms/{groupId} {
-      allow read: if isAdmin() || (request.auth != null && request.auth.uid == authUid);
-      allow create, update, delete: if false;
-    }
-
-    // Help Board UGC: public Q&A boards partitioned by study language + UI/community language.
-    // Clients read only visible topics/comments. Creation, votes, reports, moderation,
-    // Compass billing, and rate limits go through Cloud Functions/Admin SDK.
-    match /help_board_topics/{topicId} {
-      allow read: if request.auth != null && (isAdmin() || resource.data.status == 'visible');
-      allow create, update, delete: if isAdmin();
-    }
-
-    match /help_board_comments/{commentId} {
-      allow read: if request.auth != null && (isAdmin() || resource.data.status == 'visible');
-      allow create, update, delete: if isAdmin();
-    }
-
-    match /help_board_votes/{voteId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
-    match /help_board_reports/{reportId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
-    match /help_board_moderation_queue/{itemId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
-    match /help_board_rate_limits/{userId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
-    match /help_board_restrictions/{userId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
-    match /help_board_compass_billing/{entryId} {
-      allow read, create, update, delete: if isAdmin();
-    }
-
     // â”€â”€ Auth links (Google/Apple â†’ stable_id mapping) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Doc id = providerUid (Google sub / Apple sub).
     // Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð»Ð¾Ð³Ð¸Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¾Ð¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ: query auth_links/{providerUid}
     // Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ stable_id Ð¸ Ð¿Ð¾Ð´Ñ‚ÑÐ½ÑƒÑ‚ÑŒ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑ.
     match /auth_links/{providerUid} {
       function ownsAuthLinkDoc() {
-        return request.auth != null && request.auth.uid == providerUid;
+        return request.auth != null
+          && request.auth.uid == providerUid
+          && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid));
       }
 
       function stableIdOwnedByThisAuth(stableId) {
@@ -1930,26 +1870,6 @@ service cloud.firestore {
       // enumerating room codes (IDOR). Client query already filters code+active.
       allow read: if isAdmin() || (request.auth != null
         && exists(/databases/$(database)/documents/arena_room_members/$(resource.data.code + '_' + request.auth.uid)));
-      allow create, update, delete: if isAdmin();
-    }
-
-    // ── Arena room chat ────────────────────────────────────────────────────────
-    // Сообщения пишет только Cloud Function (после rate-limit + фильтрации).
-    // Клиент читает только видимые сообщения (status==visible) своей комнаты.
-    match /arena_room_chat/{roomCode}/messages/{msgId} {
-      // Read scoped to VISIBLE messages for members of THIS room (member doc id is
-      // `${roomCode}_${authUid}`). Previously any signed-in user could read every
-      // room's chat — including moderation-hidden messages — by guessing room codes
-      // (IDOR). The client query already filters status=='visible'.
-      allow read: if isAdmin() || (request.auth != null
-        && resource.data.status == 'visible'
-        && exists(/databases/$(database)/documents/arena_room_members/$(roomCode + '_' + request.auth.uid)));
-      allow create, update, delete: if isAdmin();
-    }
-
-    // Rate-limit счётчики чата комнаты — только CF.
-    match /arena_room_chat_rate/{authUid} {
-      allow read: if request.auth != null && request.auth.uid == authUid;
       allow create, update, delete: if isAdmin();
     }
 

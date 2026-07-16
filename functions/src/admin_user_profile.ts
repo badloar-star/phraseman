@@ -421,7 +421,7 @@ export const adminGetUserProfile = onCall(
     const canonicalUser = users.get(identity.canonicalUid) ?? requestedUser;
     const uid = identity.canonicalUid;
 
-    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, chatMessages, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
+    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
       db.collection('leaderboard').doc(uid).get().catch(() => null),
       db.collection('arena_profiles').doc(uid).get().catch(() => null),
       db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
@@ -431,7 +431,6 @@ export const adminGetUserProfile = onCall(
       readRecentByField(db, 'user_reports', 'reporterUid', uid),
       readRecentByField(db, 'revenuecat_premium_events', 'uid', uid, 'eventTimestampMs'),
       readRecentByField(db, 'revenuecat_shard_transactions', 'uid', uid),
-      readRecentByField(db, 'league_chat_messages', 'authorUid', uid),
       readRecentByField(db, 'community_pack_purchases', 'buyerStableId', uid),
       readRecentByField(db, 'community_pack_purchases', 'sellerStableId', uid),
       readRecentByField(db, 'referral_attributions', 'referrerStableId', uid),
@@ -458,7 +457,6 @@ export const adminGetUserProfile = onCall(
       reportsBy: adapterSource('user_reports_by', reportsBy, ['id', 'reportedUid', 'reportedName', 'reason', 'category', 'status', 'createdAt'], ['reportedName', 'reason', 'category', 'status']),
       premiumEvents: adapterSource('revenuecat_premium_events', premiumEvents, ['id', 'eventType', 'type', 'productId', 'periodType', 'price', 'currency', 'createdAt', 'eventTimestampMs'], ['eventType', 'type', 'productId', 'periodType', 'currency']),
       shardTransactions: adapterSource('revenuecat_shard_transactions', shardTransactions, ['id', 'type', 'amount', 'productId', 'createdAt'], ['type', 'productId']),
-      chatMessages: adapterSource('league_chat_messages', chatMessages, ['id', 'groupId', 'text', 'messageText', 'status', 'createdAt'], ['groupId', 'text', 'messageText', 'status']),
       ugcBuys: adapterSource('community_pack_purchases_buyer', ugcBuys, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
       ugcSells: adapterSource('community_pack_purchases_seller', ugcSells, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
       referrals: adapterSource('referral_attributions', referralsBy, ['id', 'status', 'createdAt', 'qualifiedAt', 'rewardedAt'], ['status']),
@@ -480,7 +478,7 @@ export const adminGetUserProfile = onCall(
         learning,
         competition: { leaderboard: sources.leaderboard, arena: sources.arena, percentileStats: sources.percentileStats },
         money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, referrals: sources.referrals, invitedBy: sources.invitedBy },
-        community: { chatMessages: sources.chatMessages, ugcBuys: sources.ugcBuys, ugcSells: sources.ugcSells },
+        community: { ugcBuys: sources.ugcBuys, ugcSells: sources.ugcSells },
         moderation: { errorReports: sources.errorReports, reportsAgainst: sources.reportsAgainst, reportsBy: sources.reportsBy },
         diagnostics: { sourceStates: sources },
       },

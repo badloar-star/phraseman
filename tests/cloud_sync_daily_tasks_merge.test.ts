@@ -250,7 +250,6 @@ describe('streak cloud restore safety', () => {
       'achievement_flashcards_flip_count',
       'achievement_shards_spent_total',
       'achievement_league_boost_count',
-      'achievement_league_chat_message_count',
       'achievement_all_daily_streak_v1',
       'flashcards_v1',
     ]));

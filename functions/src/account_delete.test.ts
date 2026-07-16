@@ -88,13 +88,6 @@ describe('accountDelete query plan', () => {
     expect(keys.has('subscription_cancel_surveys.uid.==.stable-123')).toBe(true);
     expect(keys.has('community_packs.authorStableId.==.stable-123')).toBe(true);
     expect(keys.has('community_pack_purchases.buyerStableId.==.stable-123')).toBe(true);
-    expect(keys.has('league_chat_messages.authorUid.==.stable-123')).toBe(true);
-    expect(keys.has('help_board_topics.authorUid.==.stable-123')).toBe(true);
-    expect(keys.has('help_board_comments.authorUid.==.stable-123')).toBe(true);
-    expect(keys.has('help_board_reports.reporterUid.==.stable-123')).toBe(true);
-    expect(keys.has('help_board_votes.stableUid.==.stable-123')).toBe(true);
-    expect(keys.has('help_board_restrictions.uid.==.stable-123')).toBe(true);
-    expect(keys.has('help_board_compass_billing.uid.==.stable-123')).toBe(true);
     expect(keys.has('user_reports.reporterUid.==.stable-123')).toBe(true);
     expect(keys.has('revenuecat_premium_events.candidates.array-contains.stable-123')).toBe(true);
   });
@@ -109,12 +102,6 @@ describe('accountDelete query plan', () => {
     expect(keys.has('arena_sessions.playerIds.array-contains.auth-456')).toBe(true);
     expect(keys.has('arena_invites.fromUid.==.auth-456')).toBe(true);
     expect(keys.has('arena_room_members.authUid.==.auth-456')).toBe(true);
-    expect(keys.has('league_chat_messages.authorAuthUid.==.auth-456')).toBe(true);
-    expect(keys.has('league_chat_reports.reporterAuthUid.==.auth-456')).toBe(true);
-    expect(keys.has('help_board_topics.authorAuthUid.==.auth-456')).toBe(true);
-    expect(keys.has('help_board_comments.authorAuthUid.==.auth-456')).toBe(true);
-    expect(keys.has('help_board_reports.reporterAuthUid.==.auth-456')).toBe(true);
-    expect(keys.has('help_board_votes.authUid.==.auth-456')).toBe(true);
   });
 
   it('covers newer account-linked Firestore collections', () => {

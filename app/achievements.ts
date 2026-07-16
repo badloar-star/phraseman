@@ -8,7 +8,6 @@ import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 import { writeFriendEvent } from './firestore_friend_activity';
 import { DEV_MODE, IS_STORE_RELEASE } from './config';
-import { LEAGUE_CHAT_ENABLED } from './league_chat_availability';
 import {
   achievementStateKey,
   achievementLessonMarathonDayKey,
@@ -1652,17 +1651,6 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     nameRu:'Пять отметок', nameUk:'П\'ять відміток',
     descRu:'Получи 5 лайков от друзей на свои достижения.', descUk:'Отримай 5 лайків від друзів на свої досягнення.',
   },
-  {
-    id:'league_chat_first', icon:'💬', category:'special', xp:50,
-    nameRu:'Голос в лиге', nameUk:'Голос у лізі',
-    descRu:'Отправь первое сообщение в чате своей лиги.', descUk:'Надішли перше повідомлення в чаті своєї ліги.',
-  },
-  {
-    id:'league_chat_10', icon:'🗨️', category:'special', xp:160,
-    nameRu:'Командный эфир', nameUk:'Командний ефір',
-    descRu:'Отправь 10 сообщений в чате лиги.', descUk:'Надішли 10 повідомлень у чаті ліги.',
-  },
-
   // ── Арена (расширение) ────────────────────────────────────────────────────
   {
     id:'arena_streak_5', icon:'🔥', category:'special', xp:200,
@@ -1866,8 +1854,6 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   { id:'social_gift_100', icon:'💝', category:'special', xp:1500, nameRu:'100 подарков', nameUk:'100 подарунків', descRu:'Отправь 100 подарков друзьям.', descUk:'Надішли 100 подарунків друзям.', secret:true },
   { id:'social_likes_25', icon:'❤️', category:'special', xp:450, nameRu:'25 лайков', nameUk:'25 лайків', descRu:'Получи 25 лайков от друзей на свои достижения.', descUk:'Отримай 25 лайків від друзів на свої досягнення.', secret:true },
   { id:'social_likes_100', icon:'💗', category:'special', xp:1200, nameRu:'100 лайков', nameUk:'100 лайків', descRu:'Получи 100 лайков от друзей на свои достижения.', descUk:'Отримай 100 лайків від друзів на свої досягнення.', secret:true },
-  { id:'league_chat_50', icon:'💬', category:'special', xp:450, nameRu:'50 сообщений в лиге', nameUk:'50 повідомлень у лізі', descRu:'Отправь 50 сообщений в чате лиги.', descUk:'Надішли 50 повідомлень у чаті ліги.', secret:true },
-  { id:'league_chat_100', icon:'🗨️', category:'special', xp:850, nameRu:'100 сообщений в лиге', nameUk:'100 повідомлень у лізі', descRu:'Отправь 100 сообщений в чате лиги.', descUk:'Надішли 100 повідомлень у чаті ліги.', secret:true },
   { id:'trainer_1000_correct', icon:'🧠', category:'special', xp:1000, nameRu:'1000 точных', nameUk:'1000 точних', descRu:'1000 правильных ответов в тренировках. Память уже не та — она лучше.', descUk:'1000 правильних відповідей загалом у тренуваннях.', secret:true },
   { id:'trainer_2500_correct', icon:'🏋️', category:'special', xp:1800, nameRu:'2500 точных', nameUk:'2500 точних', descRu:'2500 правильных ответов. Эти слова уже часть тебя.', descUk:'2500 правильних відповідей загалом у тренуваннях.', secret:true },
   { id:'trainer_10000_correct', icon:'👑', category:'special', xp:4500, nameRu:'10000 точных', nameUk:'10000 точних', descRu:'10 000 правильных ответов в тренировках. Это уже энциклопедия.', descUk:'10000 правильних відповідей загалом у тренуваннях.', secret:true },
@@ -2555,13 +2541,6 @@ const backfillAchievementsFromLocalState = async (
   if (gifts >= 25) unlock('social_gift_25');
   if (gifts >= 100) unlock('social_gift_100');
 
-  if (LEAGUE_CHAT_ENABLED) {
-    const chat = await readStoredCounter('achievement_league_chat_message_count');
-    if (chat >= 10) unlock('league_chat_10');
-    if (chat >= 50) unlock('league_chat_50');
-    if (chat >= 100) unlock('league_chat_100');
-  }
-
   const perfectSessions = await readStoredCounter(trainerAchievementPerfectSessionCountKey(studyTarget));
   if (perfectSessions >= 10) unlock('trainer_perfect_10_sessions');
   if (perfectSessions >= 50) unlock('trainer_perfect_50_sessions');
@@ -2607,7 +2586,6 @@ export type AchievementEvent =
   | { type: 'friend_added';   totalFriends: number }
   | { type: 'gift_sent' }
   | { type: 'achievement_liked'; likeTotal?: number }
-  | { type: 'league_chat_message' }
   | { type: 'arena_win_streak'; streak: number }
   | { type: 'arena_duel_friend_win' }
   | { type: 'arena_wager_win'; count?: number }
@@ -3034,15 +3012,6 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if ((event.likeTotal ?? 0) >= 100) u('social_likes_100');
         break;
       }
-      case 'league_chat_message': {
-        if (!LEAGUE_CHAT_ENABLED) break;
-        const messages = await bumpStoredCounter('achievement_league_chat_message_count');
-        if (messages >= 1) u('league_chat_first');
-        if (messages >= 10) u('league_chat_10');
-        if (messages >= 50) u('league_chat_50');
-        if (messages >= 100) u('league_chat_100');
-        break;
-      }
       case 'arena_win_streak': {
         const ws = event.streak;
         if (ws >= 5)  u('arena_streak_5');
@@ -3303,7 +3272,6 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     // Новые счётчики для новых достижений
     ['achievement_all_daily_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
     ['achievement_gift_sent_count', '10'],
-    ['achievement_league_chat_message_count', '10'],
     ['achievement_league_boost_count', '5'],
     ['achievement_energy_refill_count', '5'],
     ['achievement_shards_spent_total', '100'],

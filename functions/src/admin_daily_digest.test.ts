@@ -27,8 +27,6 @@ const EMPTY_ROWS: DigestSourceRows = {
     explainReports: [],
     websiteInbox: [],
     supportInbox: [],
-    helpBoard: [],
-    leagueModeration: [],
   },
   community: {
     referrals: [],

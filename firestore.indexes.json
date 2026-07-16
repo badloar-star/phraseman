@@ -163,166 +163,6 @@
       ]
     },
     {
-      "collectionGroup": "league_chat_messages",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "groupId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "weekId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_topics",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "boardKey",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "hotScore",
-          "order": "DESCENDING"
-        },
-        {
-          "fieldPath": "lastActivityAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_topics",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "boardKey",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_topics",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "boardKey",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "commentCount",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_topics",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "boardKey",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "bestScore",
-          "order": "DESCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_comments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "topicId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_comments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "topicId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "helpfulScore",
-          "order": "DESCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "help_board_reports",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "daily_phrases",
       "queryScope": "COLLECTION",
       "fields": [
@@ -421,20 +261,6 @@
       ]
     },
     {
-      "collectionGroup": "league_chat_messages",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "authorUid",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "createdAt",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "community_pack_purchases",
       "queryScope": "COLLECTION",
       "fields": [
@@ -475,6 +301,52 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "content_factory_stages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "requestId", "order": "ASCENDING" },
+        { "fieldPath": "studyTarget", "order": "ASCENDING" },
+        { "fieldPath": "sourceLocale", "order": "ASCENDING" },
+        { "fieldPath": "state", "order": "ASCENDING" },
+        { "fieldPath": "kind", "order": "ASCENDING" },
+        { "fieldPath": "__name__", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "content_factory_stages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "requestId", "order": "ASCENDING" },
+        { "fieldPath": "studyTarget", "order": "ASCENDING" },
+        { "fieldPath": "sourceLocale", "order": "ASCENDING" },
+        { "fieldPath": "state", "order": "ASCENDING" },
+        { "fieldPath": "kind", "order": "ASCENDING" },
+        { "fieldPath": "scopeId", "order": "ASCENDING" },
+        { "fieldPath": "__name__", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "content_factory_job_units",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "surface", "order": "ASCENDING" },
+        { "fieldPath": "engineRequested", "order": "ASCENDING" },
+        { "fieldPath": "configRevision", "order": "ASCENDING" },
+        { "fieldPath": "comparatorVersion", "order": "ASCENDING" },
+        { "fieldPath": "__name__", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "content_factory_surface_comparisons",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "surface", "order": "ASCENDING" },
+        { "fieldPath": "comparatorVersion", "order": "ASCENDING" },
+        { "fieldPath": "configRevision", "order": "ASCENDING" },
+        { "fieldPath": "__name__", "order": "ASCENDING" }
+      ]
     }
   ],
   "fieldOverrides": [
@@ -501,6 +373,86 @@
           "queryScope": "COLLECTION_GROUP"
         }
       ]
+    },
+    {
+      "collectionGroup": "messages",
+      "fieldPath": "authorUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "messages",
+      "fieldPath": "authorStableUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "reactions",
+      "fieldPath": "userId",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "poll_votes",
+      "fieldPath": "userId",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "activity_likes_received",
+      "fieldPath": "fromUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "friend_activity_like_daily_limits",
+      "fieldPath": "targetUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "friend_gifts_received",
+      "fieldPath": "fromUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "friend_gifts_sent",
+      "fieldPath": "toUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "friend_gift_history",
+      "fieldPath": "peerUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "shard_rewards",
+      "fieldPath": "fromUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "shard_log",
+      "fieldPath": "targetUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "my_events",
+      "fieldPath": "payload.fromUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "my_events",
+      "fieldPath": "payload.targetUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "boosts",
+      "fieldPath": "activatedBy",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "match_history",
+      "fieldPath": "sessionId",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
+    },
+    {
+      "collectionGroup": "activity_like_stats",
+      "fieldPath": "lastFromUid",
+      "indexes": [{ "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }]
     }
   ]
 }

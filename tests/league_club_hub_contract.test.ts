@@ -4,16 +4,6 @@ import path from 'node:path';
 const read = (file: string): string => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
 
 describe('league club hub composition', () => {
-  it('does not ship the removed club center or active league chat surface', () => {
-    const screen = read('app/club_screen.tsx');
-    expect(screen).not.toContain('LeagueClubHero');
-    expect(screen).not.toContain('LeagueChatPanel');
-    expect(screen).not.toContain('useLeagueChatUnread');
-    expect(screen).not.toContain('openChat');
-    expect(screen).not.toContain('league-club-chat-action');
-    expect(screen).not.toContain('club-chat-unread-badge');
-  });
-
   it('keeps one team mission without an activity preview', () => {
     const mission = read('components/league/LeagueBonusMission.tsx');
     expect(mission).toContain('testID="league-bonus-mission"');
@@ -63,7 +53,6 @@ describe('league club hub composition', () => {
     expect(screen).not.toContain('league-current-icon');
     expect(screen).toContain('<Reanimated.FlatList');
     expect(screen).toContain('keyExtractor={leagueMemberKeyExtractor}');
-    expect(screen).not.toContain('subscribeLeagueChatMessages');
   });
 
   it('shows active league identity in the header and podium art', () => {
@@ -94,11 +83,9 @@ describe('league club hub composition', () => {
     const screen = read('app/club_screen.tsx');
     const row = read('components/league/LeagueLeaderboardRow.tsx');
     const mission = read('components/league/LeagueBonusMission.tsx');
-    const chat = read('components/LeagueChatPanel.tsx');
     expect(screen).toContain('data={publicSortedGroup}');
     expect(screen).toContain('name: leaguePublicName(member.name');
     expect(row).toContain('const displayName = leaguePublicName');
     expect(mission).toContain('leaguePublicName(model.boost.buyerName');
-    expect(chat).toContain('const displayAuthorName = leaguePublicName');
   });
 });

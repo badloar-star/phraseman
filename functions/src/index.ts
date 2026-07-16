@@ -38,8 +38,6 @@ const { processLobbyAfterChoice } = require('./arena_pregame') as {
   processLobbyAfterChoice: (sessionId: string) => Promise<void>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage, leagueChatDeleteMessage } = require('./league_chat');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identity');
@@ -94,7 +92,6 @@ const {
   arenaRoomSetReady,
   arenaRoomKick,
   arenaRoomClose,
-  arenaRoomChatSend,
 } = require('./arena_rooms');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
@@ -131,18 +128,6 @@ const { explainChoice } = require('./explain_choice');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainQuiz } = require('./explain_quiz');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  helpBoardCreateTopic,
-  helpBoardAddComment,
-  helpBoardVote,
-  helpBoardReport,
-  helpBoardDeleteMyTopic,
-  helpBoardDeleteCompassAnswer,
-  helpBoardAdminModerate,
-  helpBoardGenerateCompassForTopic,
-  helpBoardCompassRetryCron,
-} = require('./help_board');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitExplainReport } = require('./explain/explain_reports');
@@ -163,8 +148,6 @@ const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require(
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   notifyOnFriendRequestCreated,
   notifyOnFriendAccepted,
@@ -183,10 +166,6 @@ const {
   adminAlertOnConfigWritten,
 } = require('./admin_alerts');
 
-exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
-exports.leagueChatSendMessage = leagueChatSendMessage;
-exports.leagueChatReportMessage = leagueChatReportMessage;
-exports.leagueChatDeleteMessage = leagueChatDeleteMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
@@ -228,7 +207,6 @@ exports.arenaRoomLeave = arenaRoomLeave;
 exports.arenaRoomSetReady = arenaRoomSetReady;
 exports.arenaRoomKick = arenaRoomKick;
 exports.arenaRoomClose = arenaRoomClose;
-exports.arenaRoomChatSend = arenaRoomChatSend;
 exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
@@ -253,15 +231,6 @@ exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.explainQuiz = explainQuiz;
-exports.helpBoardCreateTopic = helpBoardCreateTopic;
-exports.helpBoardAddComment = helpBoardAddComment;
-exports.helpBoardVote = helpBoardVote;
-exports.helpBoardReport = helpBoardReport;
-exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
-exports.helpBoardDeleteCompassAnswer = helpBoardDeleteCompassAnswer;
-exports.helpBoardAdminModerate = helpBoardAdminModerate;
-exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
-exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
 exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
 exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
 exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
@@ -291,8 +260,6 @@ exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
-exports.compassChatDailyCron = compassChatDailyCron;
-exports.compassChatRunNow = compassChatRunNow;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
@@ -1493,7 +1460,7 @@ export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminGetAnalyticsTrends } from './admin_analytics_trends';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
-export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminExportReportDocuments, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';

@@ -44,7 +44,6 @@ export type RemoteNumberKey =
   | 'league_sync_force_interval_ms'
   | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
-  | 'league_chat_auth_ttl_ms'
   | 'arena_sr_win'
   | 'arena_sr_loss'
   | 'arena_sr_bot_win'
@@ -239,19 +238,19 @@ export type RemoteTextKey =
  * baseline without resolving Remote Config (e.g. trainer_session.ts fallback).
  * Kept in sync with DEFAULT_NUMBERS.free_trainer_sessions_per_day below.
  */
-export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 2;
+export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 1;
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
-  free_lesson_limit: 8,
-  free_daily_quiz_limit: 3,
+  free_lesson_limit: 3,
+  free_daily_quiz_limit: 1,
   arena_daily_max: 1,
   arena_shard_refill_cost: 5,
   arena_shard_refill_slots: 5,
   max_energy: 5,
   energy_recovery_interval_ms: 10 * 60 * 1000,
-  free_trainer_sessions_per_day: 2,
+  free_trainer_sessions_per_day: 1,
   trainer_ab_a_pct: 0,
-  trainer_ab_b_pct: 100,
+  trainer_ab_b_pct: 0,
   trainer_ab_c_pct: 0,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
@@ -263,7 +262,6 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
   league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
-  league_chat_auth_ttl_ms: 7 * 24 * 60 * 60 * 1000,
   arena_sr_win: 25,
   arena_sr_loss: 20,
   arena_sr_bot_win: 12,
@@ -384,11 +382,11 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
   // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
   top_helpers_enabled: true,
-  // Подарок «3 дня полного доступа» новым юзерам: дефолт TRUE = kill-switch
-  // (новые получают подарок и модал как сейчас). Админ ставит false в «Пульте» →
+  // Подарок «3 дня полного доступа» новым юзерам: безопасный дефолт false.
+  // Админ может явно включить его в «Пульте»; при false
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
   // Уже выданные подарки не отбираются (гейт только в точке выдачи).
-  intro_full_access_enabled: true,
+  intro_full_access_enabled: false,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -438,7 +436,8 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   arena_daily_max: { min: 0, max: 999 },
   arena_shard_refill_cost: { min: 0, max: 9999 },
   arena_shard_refill_slots: { min: 0, max: 999 },
-  max_energy: { min: 1, max: 99 },
+  // Product invariant: base capacity is exactly 5; level 50 adds the sixth slot.
+  max_energy: { min: 5, max: 5 },
   energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
   free_trainer_sessions_per_day: { min: 0, max: 99 },
   trainer_ab_a_pct: { min: 0, max: 100 },
@@ -454,7 +453,6 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
-  league_chat_auth_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
   arena_sr_win: { min: 0, max: 999 },
   arena_sr_loss: { min: 0, max: 999 },
   arena_sr_bot_win: { min: 0, max: 999 },
@@ -650,7 +648,6 @@ export const getLeagueSyncMinIntervalMs = () => getRemoteNumber('league_sync_min
 export const getLeagueSyncForceIntervalMs = () => getRemoteNumber('league_sync_force_interval_ms');
 export const getLeagueStartupRegistrationIntervalMs = () => getRemoteNumber('league_startup_registration_interval_ms');
 export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_ms');
-export const getLeagueChatAuthTtlMs = () => getRemoteNumber('league_chat_auth_ttl_ms');
 export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
 export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
 export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
@@ -935,17 +932,17 @@ export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_en
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
 export const isLeagueRealtimeMembersEnabled = () => getRemoteBool('league_realtime_members_enabled');
-/** Кнопка Phraseman Pro (lifetime) показывается на пейволах. Дефолт false. */
+/** Phraseman Pro показывается как раскрываемая разовая покупка. Дефолт true. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
 /** Борд «Топ хелперов» в настройках (топ-репортёры багов). Дефолт true — kill-switch. */
 export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
 /**
- * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт true =
- * kill-switch (новые получают подарок как сейчас). false (из «Пульта») → новые
- * юзеры больше не получают ни подарок, ни приветственный модал; уже выданные
- * подарки не отбираются. Гейт применяется в app/intro_full_access.ts (точка выдачи).
+ * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт false:
+ * новые юзеры не получают ни подарок, ни приветственный модал. Включение из
+ * «Пульта» действует только на будущие выдачи; уже выданные подарки не отбираются.
+ * Гейт применяется в app/intro_full_access.ts (точка выдачи).
  */
 export const isIntroFullAccessEnabled = () => getRemoteBool('intro_full_access_enabled');
 

@@ -6080,6 +6080,18 @@ const validateCheckpointInternal = (
         routeRequirements.map((requirement) => String(requirement.objectiveId)),
       ),
     ];
+    const expectedEvidenceTupleKeys = routeRequirements.map(
+      (requirement) =>
+        `letk1.${canonicalJsonV1([
+          String(requirement.assessmentNodeId),
+          String(requirement.objectiveId),
+          String(requirement.skillId),
+          String(requirement.construct),
+          String(requirement.phase),
+          String((requirement.target as JsonObject).targetKind),
+          String((requirement.target as JsonObject).targetId),
+        ])}`,
+    );
     if (
       !isStringArray(route.assessedObjectiveIds) ||
       route.assessedObjectiveIds.length === 0 ||
@@ -6097,7 +6109,8 @@ const validateCheckpointInternal = (
       !isStringArray(route.evidenceTupleKeys) ||
       route.evidenceTupleKeys.length === 0 ||
       uniqueSecondIndex(route.evidenceTupleKeys) >= 0 ||
-      route.evidenceTupleKeys.some((key) => key.length === 0)
+      route.evidenceTupleKeys.some((key) => key.length === 0) ||
+      !sameStringSet(route.evidenceTupleKeys, expectedEvidenceTupleKeys)
     ) {
       return fail([
         issue("checkpoint_alternate_invalid", `${routePath}.evidenceTupleKeys`),

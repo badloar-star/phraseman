@@ -450,7 +450,9 @@ const validCheckpoint = {
       primaryNodeId: "cp.n01",
       alternateNodeId: "cp.alt01",
       assessedObjectiveIds: ["objective.introduce-self"],
-      evidenceTupleKeys: ["letk1.synthetic-slot"],
+      evidenceTupleKeys: [
+        'letk1.["cp.n01","objective.introduce-self","skill.origin","semantic","independent_probe","semantic_slot","slot.origin"]',
+      ],
       aiIndependent: true,
       voiceEvidenceEquivalent: false,
     },
@@ -458,7 +460,9 @@ const validCheckpoint = {
       primaryNodeId: "cp.n02",
       alternateNodeId: "cp.alt02",
       assessedObjectiveIds: ["objective.introduce-self"],
-      evidenceTupleKeys: ["letk1.synthetic-constraint"],
+      evidenceTupleKeys: [
+        'letk1.["cp.n02","objective.introduce-self","skill.polite-close","interaction","independent_probe","critical_constraint","constraint.polite-close"]',
+      ],
       aiIndependent: true,
       voiceEvidenceEquivalent: false,
     },
@@ -2943,6 +2947,22 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       {
         code: "checkpoint_alternate_invalid",
         path: "$.checkpoint.deterministicAlternateRoutes[0].alternateNodeId",
+      },
+    ]);
+  });
+
+  test("rejects a non-canonical checkpoint evidence tuple key", () => {
+    const checkpoint = clone(validCheckpoint) as JsonRecord;
+    (
+      (checkpoint.deterministicAlternateRoutes as JsonRecord[])[0]
+        .evidenceTupleKeys as string[]
+    )[0] = "attacker.unrelated";
+    expect(
+      issueSummary(validateV2CheckpointContract(checkpoint, checkpointContext)),
+    ).toEqual([
+      {
+        code: "checkpoint_alternate_invalid",
+        path: "$.checkpoint.deterministicAlternateRoutes[0].evidenceTupleKeys",
       },
     ]);
   });

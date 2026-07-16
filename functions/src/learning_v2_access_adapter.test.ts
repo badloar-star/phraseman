@@ -103,4 +103,15 @@ describe('V2 access purchase transaction adapter', () => {
       }),
     ).rejects.toThrow('identity_invalid');
   });
+
+  it('rejects an already-unlocked gate and malformed authoritative balance', async () => {
+    const unlocked = new MemoryRepository(); seed(unlocked);
+    unlocked.values.set('learning-v2:access-gate:season-1:gate-2', {
+      ...(unlocked.values.get('learning-v2:access-gate:season-1:gate-2') as object), unlocked: true,
+    });
+    await expect(finalizeV2AccessPurchase(unlocked, policy, input)).rejects.toThrow('already_unlocked');
+    const malformed = new MemoryRepository(); seed(malformed);
+    malformed.values.set('users:user-1', { stableId: 'user-1', accountGeneration: 1, shards: Number.NaN });
+    await expect(finalizeV2AccessPurchase(malformed, policy, input)).rejects.toThrow('balance_invalid');
+  });
 });

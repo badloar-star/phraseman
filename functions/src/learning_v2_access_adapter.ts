@@ -97,12 +97,14 @@ export async function finalizeV2AccessPurchase(
   if (
     !/^[A-Za-z0-9._-]{8,160}$/.test(input.operationId) ||
     !/^[a-f0-9]{64}$/.test(input.fingerprint) ||
+    typeof input.stableId !== 'string' ||
     input.stableId.length === 0 ||
     input.request.stableId !== input.stableId ||
     input.request.opId !== input.operationId ||
     !Number.isSafeInteger(input.accountGeneration) ||
     input.accountGeneration < 1 ||
-    !Number.isSafeInteger(input.nowMs)
+    !Number.isSafeInteger(input.nowMs) ||
+    input.nowMs < 0
   ) {
     throw new Error('access_purchase_identity_invalid');
   }
@@ -142,6 +144,10 @@ export async function finalizeV2AccessPurchase(
     ) {
       throw new Error('access_purchase_binding_mismatch');
     }
+    if (gate.unlocked) throw new Error('access_gate_already_unlocked');
+    if (!Number.isSafeInteger(account.shards) || account.shards < 0) {
+      throw new Error('access_account_balance_invalid');
+    }
     const quoteValidation = validateAccessQuoteForPurchase(quote, input.request, input.nowMs);
     if (!quoteValidation.valid) throw new Error(`access_${quoteValidation.reason}`);
     const eligibility = evaluateAccessBoostEligibility(
@@ -166,6 +172,9 @@ export async function finalizeV2AccessPurchase(
     }
     if (account.shards < eligibility.totalCostShards) throw new Error('access_insufficient_balance');
     const balanceAfter = account.shards - eligibility.totalCostShards;
+    if (!Number.isSafeInteger(balanceAfter) || balanceAfter < 0) {
+      throw new Error('access_account_balance_invalid');
+    }
     const receipt: V2AccessPurchaseReceipt = {
       opId: input.operationId,
       stableId: input.stableId,

@@ -68,4 +68,25 @@ describe('V2 Access Boost policy', () => {
       evaluateAccessBoostEligibility({ ...base, purchasedForSeason: 11 }, policy),
     ).toEqual({ eligible: false, reason: 'deficit_exceeds_cap' });
   });
+
+  it('rejects type-confused booleans and inconsistent cumulative counters', () => {
+    expect(
+      evaluateAccessBoostEligibility(
+        { ...base, requiredLoopsComplete: 'false' as unknown as boolean },
+        policy,
+      ),
+    ).toEqual({ eligible: false, reason: 'policy_invalid' });
+    expect(
+      evaluateAccessBoostEligibility({ ...base, purchasedForGate: 2, purchasedForChapter: 0 }, policy),
+    ).toEqual({ eligible: false, reason: 'deficit_exceeds_cap' });
+  });
+
+  it('rejects unsafe policy integers', () => {
+    expect(
+      evaluateAccessBoostEligibility(base, {
+        ...policy,
+        unitPriceShards: Number.MAX_SAFE_INTEGER + 1,
+      }),
+    ).toEqual({ eligible: false, reason: 'policy_invalid' });
+  });
 });

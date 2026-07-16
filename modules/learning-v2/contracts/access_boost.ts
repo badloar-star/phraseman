@@ -40,12 +40,13 @@ export type AccessBoostEligibility =
 
 const positiveInteger = (value: number): boolean => Number.isInteger(value) && value > 0;
 const nonNegativeInteger = (value: number): boolean => Number.isInteger(value) && value >= 0;
+const safePositiveInteger = (value: number): boolean => positiveInteger(value) && Number.isSafeInteger(value);
 
 const validPolicy = (policy: AccessBoostPolicy): boolean =>
-  positiveInteger(policy.unitPriceShards) &&
-  positiveInteger(policy.maxPurchasedPerGate) &&
-  positiveInteger(policy.maxPurchasedPerChapter) &&
-  positiveInteger(policy.maxPurchasedPerSeason) &&
+  safePositiveInteger(policy.unitPriceShards) &&
+  safePositiveInteger(policy.maxPurchasedPerGate) &&
+  safePositiveInteger(policy.maxPurchasedPerChapter) &&
+  safePositiveInteger(policy.maxPurchasedPerSeason) &&
   policy.maxPurchasedPerGate <= policy.maxPurchasedPerChapter &&
   policy.maxPurchasedPerChapter <= policy.maxPurchasedPerSeason;
 
@@ -54,6 +55,15 @@ export const evaluateAccessBoostEligibility = (
   policy: AccessBoostPolicy,
 ): AccessBoostEligibility => {
   if (!validPolicy(policy)) return { eligible: false, reason: 'policy_invalid' };
+  if (
+    typeof input.requiredLoopsComplete !== 'boolean' ||
+    typeof input.capabilityFallbackComplete !== 'boolean' ||
+    typeof input.localPerformanceComplete !== 'boolean' ||
+    typeof input.checkpointComplete !== 'boolean' ||
+    typeof input.serverQuoteAvailable !== 'boolean'
+  ) {
+    return { eligible: false, reason: 'policy_invalid' };
+  }
   if (
     !input.requiredLoopsComplete ||
     !input.capabilityFallbackComplete ||
@@ -82,6 +92,12 @@ export const evaluateAccessBoostEligibility = (
   ) {
     return { eligible: false, reason: 'deficit_exceeds_cap' };
   }
+  if (
+    input.purchasedForGate > input.purchasedForChapter ||
+    input.purchasedForChapter > input.purchasedForSeason
+  ) {
+    return { eligible: false, reason: 'deficit_exceeds_cap' };
+  }
   const remainingGate = policy.maxPurchasedPerGate - input.purchasedForGate;
   const remainingChapter = policy.maxPurchasedPerChapter - input.purchasedForChapter;
   const remainingSeason = policy.maxPurchasedPerSeason - input.purchasedForSeason;
@@ -93,9 +109,13 @@ export const evaluateAccessBoostEligibility = (
   ) {
     return { eligible: false, reason: 'deficit_exceeds_cap' };
   }
+  const totalCostShards = input.earnedDeficit * policy.unitPriceShards;
+  if (!Number.isSafeInteger(totalCostShards)) {
+    return { eligible: false, reason: 'policy_invalid' };
+  }
   return {
     eligible: true,
     accessStarsToApply: input.earnedDeficit,
-    totalCostShards: input.earnedDeficit * policy.unitPriceShards,
+    totalCostShards,
   };
 };

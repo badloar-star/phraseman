@@ -1472,6 +1472,7 @@ export {
   agentOfficeListRecommendations,
   agentOfficeListTasks,
   agentOfficeSetKillSwitch,
+  agentOfficeTelegramWebhook,
 } from './agent_office';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export {

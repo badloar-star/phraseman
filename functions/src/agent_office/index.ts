@@ -9,6 +9,12 @@ export {
   agentOfficeSetKillSwitch,
 } from './callables';
 
+export {
+  AGENT_OFFICE_TELEGRAM_CONFIG,
+  AGENT_OFFICE_TELEGRAM_ENABLED,
+  agentOfficeTelegramWebhook,
+} from './telegram_webhook';
+
 export type {
   AgentApproval,
   AgentAuditEvent,

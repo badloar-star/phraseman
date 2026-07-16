@@ -142,6 +142,15 @@ describe("Learning V2 evidence materialization contracts", () => {
         ],
       }),
     ).toEqual({ ok: false });
+    expect(
+      validateAttemptEventEnvelope({
+        ...event,
+        materializationBasis: {
+          kind: "delayed_timing_receipt",
+          timingReceiptRef: "timing-1",
+        },
+      }),
+    ).toEqual({ ok: false });
     expect(() =>
       buildV2AttemptEvent({
         ...event,

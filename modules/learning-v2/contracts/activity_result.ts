@@ -46,13 +46,14 @@ export interface V2AttemptEvent {
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
+const exactKeys = (value: Record<string, unknown>, keys: readonly string[]) =>
+  Object.keys(value).length === keys.length &&
+  Object.keys(value).every((key) => keys.includes(key));
 const isHash = (value: unknown): value is string =>
   typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
 const isAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
   isRecord(value) &&
-  Object.keys(value).every((key) =>
-    ["schemaVersion", "opId", "attemptBodyHash"].includes(key),
-  ) &&
+  exactKeys(value, ["schemaVersion", "opId", "attemptBodyHash"]) &&
   value.schemaVersion === "v2-attempt-ref.v1" &&
   typeof value.opId === "string" &&
   value.opId.length > 0 &&
@@ -64,11 +65,12 @@ const sameAttempt = (left: unknown, right: CanonicalAttemptRef): boolean =>
   left.attemptBodyHash === right.attemptBodyHash;
 const isEvidenceRef = (value: unknown): value is LearningEvidenceRef =>
   isRecord(value) &&
-  Object.keys(value).every((key) =>
-    ["observationId", "evidenceBodyHash", "tupleKey", "sourceAttempt"].includes(
-      key,
-    ),
-  ) &&
+  exactKeys(value, [
+    "observationId",
+    "evidenceBodyHash",
+    "tupleKey",
+    "sourceAttempt",
+  ]) &&
   typeof value.observationId === "string" &&
   value.observationId.length > 0 &&
   isHash(value.evidenceBodyHash) &&
@@ -79,14 +81,12 @@ const isNonAssessmentRef = (
   value: unknown,
 ): value is LearningNonAssessmentRef =>
   isRecord(value) &&
-  Object.keys(value).every((key) =>
-    [
-      "nonAssessmentId",
-      "nonAssessmentBodyHash",
-      "tupleKey",
-      "sourceAttempt",
-    ].includes(key),
-  ) &&
+  exactKeys(value, [
+    "nonAssessmentId",
+    "nonAssessmentBodyHash",
+    "tupleKey",
+    "sourceAttempt",
+  ]) &&
   typeof value.nonAssessmentId === "string" &&
   value.nonAssessmentId.length > 0 &&
   isHash(value.nonAssessmentBodyHash) &&
@@ -134,6 +134,20 @@ export const validateAttemptEventEnvelope = (
   ) {
     return { ok: false };
   }
+  const graph =
+    isRecord(candidate.attemptBody) &&
+    isRecord(candidate.attemptBody.attemptSurface) &&
+    candidate.attemptBody.attemptSurface.kind === "episode_graph_node";
+  if (
+    (graph && candidate.materializationBasis.kind !== "graph_attempt_body") ||
+    (!graph && candidate.materializationBasis.kind === "graph_attempt_body") ||
+    (candidate.materializationBasis.kind === "graph_attempt_body" &&
+      !sameAttempt(
+        candidate.materializationBasis.sourceAttempt,
+        candidate.attemptRef!,
+      ))
+  )
+    return { ok: false };
   const refs = [
     ...candidate.learningEvidenceRefs,
     ...candidate.learningNonAssessmentRefs,

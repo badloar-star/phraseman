@@ -5069,6 +5069,57 @@ const validateDelayedAndLearning = (
                 String(declaration.target.targetId),
               )),
         );
+      const alternateEvidenceDeclarations = nodes
+        .filter((node) => node.activityId === alternateActivity?.activityId)
+        .flatMap((node) =>
+          isRecordArray(node.evidenceDeclarations)
+            ? node.evidenceDeclarations
+            : [],
+        );
+      const evidenceSignature = (declaration: JsonObject): string =>
+        canonicalJsonV1({
+          objectiveId: declaration.objectiveId,
+          skillId: declaration.skillId,
+          construct: declaration.construct,
+          target: declaration.target,
+        });
+      const declarationsEquivalent =
+        isRecordArray(body.evidenceDeclarations) &&
+        body.evidenceDeclarations.every(isPlainObject) &&
+        alternateEvidenceDeclarations.every(isPlainObject) &&
+        sameValue(
+          body.evidenceDeclarations
+            .map((declaration) => evidenceSignature(declaration as JsonObject))
+            .sort(),
+          alternateEvidenceDeclarations
+            .map((declaration) => evidenceSignature(declaration as JsonObject))
+            .sort(),
+        );
+      const delayedObjectiveIds = isRecordArray(body.evidenceDeclarations)
+        ? body.evidenceDeclarations.map((declaration) =>
+            isPlainObject(declaration) ? String(declaration.objectiveId) : "",
+          )
+        : [];
+      const alternateObjectiveIds = alternateEvidenceDeclarations.map(
+        (declaration) =>
+          isPlainObject(declaration) ? String(declaration.objectiveId) : "",
+      );
+      const criticalConstraintIds = (declarations: readonly unknown[]) =>
+        declarations.flatMap((declaration) =>
+          isPlainObject(declaration) &&
+          isPlainObject(declaration.target) &&
+          declaration.target.targetKind === "critical_constraint"
+            ? [String(declaration.target.targetId)]
+            : [],
+        );
+      const criticalCoverageEquivalent = sameStringSet(
+        criticalConstraintIds(
+          isRecordArray(body.evidenceDeclarations)
+            ? body.evidenceDeclarations
+            : [],
+        ),
+        criticalConstraintIds(alternateEvidenceDeclarations),
+      );
       if (
         !alternateActivity ||
         alternateActivity.activityId === activity.activityId ||
@@ -5080,7 +5131,10 @@ const validateDelayedAndLearning = (
         alternateCapabilities.microphone === "required" ||
         alternateCapabilities.speechRecognition === "required" ||
         alternateCapabilities.network === "required" ||
-        !evidenceEquivalent
+        !evidenceEquivalent ||
+        !declarationsEquivalent ||
+        !sameStringSet(delayedObjectiveIds, alternateObjectiveIds) ||
+        !criticalCoverageEquivalent
       ) {
         return [
           issue(

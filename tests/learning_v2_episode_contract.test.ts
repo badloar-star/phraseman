@@ -3225,6 +3225,30 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
     return definition.body as JsonRecord;
   };
 
+  const installDistinctDelayedEvidenceAlternate = (
+    candidate: JsonRecord,
+  ): JsonRecord => {
+    const episode = candidate.episode as JsonRecord;
+    const definition = (episode.delayedProbeDefinitions as JsonRecord[])[0];
+    const body = definition.body as JsonRecord;
+    const activities = episode.activities as JsonRecord[];
+    const primary = activities.find((entry) => entry.activityId === "ep01.a10");
+    const alternate = activities.find(
+      (entry) => entry.activityId === "ep01.a07",
+    );
+    const node = ((episode.graph as JsonRecord).nodes as JsonRecord[]).find(
+      (entry) => entry.activityId === "ep01.a07",
+    );
+    if (!primary || !alternate || !node)
+      throw new Error("fixture_delayed_evidence_alternate_missing");
+    Object.assign(alternate, clone(primary), { activityId: "ep01.a07" });
+    node.evidenceDeclarations = (body.evidenceDeclarations as JsonRecord[]).map(
+      (declaration) => ({ ...clone(declaration), phase: node.phase }),
+    );
+    body.accessibilityAlternateActivityId = "ep01.a07";
+    return node;
+  };
+
   test("accepts a distinct delayed accessibility alternate with equivalent targets", () => {
     const candidate = clone(validFixture);
     repinDelayedDefinition(candidate);
@@ -3276,6 +3300,57 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
         ).find((entry) => entry.activityId === "ep01.a09");
         if (!activity) throw new Error("fixture_delayed_alternate_missing");
         (activity.targets as JsonRecord).semanticSlotIds = [];
+      },
+    ],
+    [
+      "missing alternate objective evidence",
+      (candidate: JsonRecord) => {
+        const node = installDistinctDelayedEvidenceAlternate(candidate);
+        node.evidenceDeclarations = [];
+      },
+    ],
+    [
+      "missing critical-constraint evidence",
+      (candidate: JsonRecord) => {
+        installDistinctDelayedEvidenceAlternate(candidate);
+        const definition = (
+          (candidate.episode as JsonRecord)
+            .delayedProbeDefinitions as JsonRecord[]
+        )[0];
+        const delayedDeclarations = (definition.body as JsonRecord)
+          .evidenceDeclarations as JsonRecord[];
+        delayedDeclarations[0] = {
+          ...delayedDeclarations[0],
+          target: {
+            targetKind: "critical_constraint",
+            targetId: "constraint.polite-close",
+          },
+        };
+        const primaryNode = (
+          ((candidate.episode as JsonRecord).graph as JsonRecord)
+            .nodes as JsonRecord[]
+        ).find((entry) => entry.activityId === "ep01.a09");
+        if (!primaryNode)
+          throw new Error("fixture_delayed_primary_node_missing");
+        (
+          (primaryNode.evidenceDeclarations as JsonRecord[])[0] as JsonRecord
+        ).target = {
+          targetKind: "critical_constraint",
+          targetId: "constraint.polite-close",
+        };
+      },
+    ],
+    [
+      "different evidence form and cardinality",
+      (candidate: JsonRecord) => {
+        const node = installDistinctDelayedEvidenceAlternate(candidate);
+        (node.evidenceDeclarations as JsonRecord[]).push({
+          ...(clone(
+            (node.evidenceDeclarations as JsonRecord[])[0],
+          ) as JsonRecord),
+          construct: "semantic",
+          target: { targetKind: "semantic_slot", targetId: "slot.origin" },
+        });
       },
     ],
   ] as const)(

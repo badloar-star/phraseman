@@ -10,7 +10,10 @@ import {
   buildCanonicalAttemptRef,
   sanitizeAttemptBody,
 } from "../modules/learning-v2/contracts/attempt";
-import { buildV2AttemptEvent } from "../modules/learning-v2/contracts/activity_result";
+import {
+  buildV2AttemptEvent,
+  validateAttemptEventEnvelope,
+} from "../modules/learning-v2/contracts/activity_result";
 
 const attemptBody = sanitizeAttemptBody({
   schemaVersion: "v2-attempt-body.v1",
@@ -131,6 +134,14 @@ describe("Learning V2 evidence materialization contracts", () => {
     });
     expect(event).not.toHaveProperty("attemptEventHash");
     expect(event.learningEvidenceRefs).toHaveLength(1);
+    expect(
+      validateAttemptEventEnvelope({
+        ...event,
+        learningEvidenceRefs: [
+          { ...event.learningEvidenceRefs[0], evil: true },
+        ],
+      }),
+    ).toEqual({ ok: false });
     expect(() =>
       buildV2AttemptEvent({
         ...event,

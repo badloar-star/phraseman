@@ -44,20 +44,107 @@ export interface V2AttemptEvent {
   readonly materializationBasis: V2AttemptMaterializationBasis;
 }
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+const isHash = (value: unknown): value is string =>
+  typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+const isAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
+  isRecord(value) &&
+  Object.keys(value).every((key) =>
+    ["schemaVersion", "opId", "attemptBodyHash"].includes(key),
+  ) &&
+  value.schemaVersion === "v2-attempt-ref.v1" &&
+  typeof value.opId === "string" &&
+  value.opId.length > 0 &&
+  isHash(value.attemptBodyHash);
+const sameAttempt = (left: unknown, right: CanonicalAttemptRef): boolean =>
+  isAttemptRef(left) &&
+  left.schemaVersion === right.schemaVersion &&
+  left.opId === right.opId &&
+  left.attemptBodyHash === right.attemptBodyHash;
+const isEvidenceRef = (value: unknown): value is LearningEvidenceRef =>
+  isRecord(value) &&
+  Object.keys(value).every((key) =>
+    ["observationId", "evidenceBodyHash", "tupleKey", "sourceAttempt"].includes(
+      key,
+    ),
+  ) &&
+  typeof value.observationId === "string" &&
+  value.observationId.length > 0 &&
+  isHash(value.evidenceBodyHash) &&
+  typeof value.tupleKey === "string" &&
+  /^letk1\.[A-Za-z0-9_-]+$/.test(value.tupleKey) &&
+  isAttemptRef(value.sourceAttempt);
+const isNonAssessmentRef = (
+  value: unknown,
+): value is LearningNonAssessmentRef =>
+  isRecord(value) &&
+  Object.keys(value).every((key) =>
+    [
+      "nonAssessmentId",
+      "nonAssessmentBodyHash",
+      "tupleKey",
+      "sourceAttempt",
+    ].includes(key),
+  ) &&
+  typeof value.nonAssessmentId === "string" &&
+  value.nonAssessmentId.length > 0 &&
+  isHash(value.nonAssessmentBodyHash) &&
+  typeof value.tupleKey === "string" &&
+  /^letk1\.[A-Za-z0-9_-]+$/.test(value.tupleKey) &&
+  isAttemptRef(value.sourceAttempt);
+const isBasis = (value: unknown): value is V2AttemptMaterializationBasis => {
+  if (!isRecord(value)) return false;
+  if (value.kind === "graph_attempt_body")
+    return isAttemptRef(value.sourceAttempt);
+  return (
+    (value.kind === "delayed_timing_receipt" &&
+      typeof value.timingReceiptRef === "string" &&
+      value.timingReceiptRef.length > 0) ||
+    (value.kind === "delayed_system_failure_receipt" &&
+      typeof value.failureReceiptRef === "string" &&
+      value.failureReceiptRef.length > 0)
+  );
+};
+
 export const validateAttemptEventEnvelope = (
   event: unknown,
 ): { readonly ok: boolean } => {
   if (typeof event !== "object" || event === null) return { ok: false };
   const candidate = event as Partial<V2AttemptEvent>;
   if (
+    !isRecord(event) ||
+    !Object.keys(event).every((key) =>
+      [
+        "schemaVersion",
+        "attemptBody",
+        "attemptRef",
+        "learningEvidenceRefs",
+        "learningNonAssessmentRefs",
+        "materializationBasis",
+      ].includes(key),
+    ) ||
     candidate.schemaVersion !== "v2-attempt-envelope.v1" ||
     !Array.isArray(candidate.learningEvidenceRefs) ||
     !Array.isArray(candidate.learningNonAssessmentRefs) ||
-    candidate.materializationBasis === undefined ||
-    Object.prototype.hasOwnProperty.call(candidate, "eventHash")
+    !isBasis(candidate.materializationBasis) ||
+    !isAttemptRef(candidate.attemptRef) ||
+    candidate.learningEvidenceRefs.some((ref) => !isEvidenceRef(ref)) ||
+    candidate.learningNonAssessmentRefs.some((ref) => !isNonAssessmentRef(ref))
   ) {
     return { ok: false };
   }
+  const refs = [
+    ...candidate.learningEvidenceRefs,
+    ...candidate.learningNonAssessmentRefs,
+  ];
+  if (
+    refs.some(
+      (ref) => !sameAttempt(ref.sourceAttempt, candidate.attemptRef!),
+    ) ||
+    new Set(refs.map((ref) => ref.tupleKey)).size !== refs.length
+  )
+    return { ok: false };
   return validateCanonicalAttemptRef(
     candidate.attemptBody,
     candidate.attemptRef!,
@@ -77,6 +164,12 @@ export const buildV2AttemptEvent = (input: {
   ) {
     throw new Error("attempt_event_canonical_ref_mismatch");
   }
+  if (
+    input.learningEvidenceRefs.some((ref) => !isEvidenceRef(ref)) ||
+    input.learningNonAssessmentRefs.some((ref) => !isNonAssessmentRef(ref)) ||
+    !isBasis(input.materializationBasis)
+  )
+    throw new Error("attempt_event_materialization_ref_invalid");
   const graph = input.attemptBody.attemptSurface.kind === "episode_graph_node";
   if (
     (graph && input.materializationBasis.kind !== "graph_attempt_body") ||

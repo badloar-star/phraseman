@@ -4148,6 +4148,9 @@ const validateLearningReferences = (
     const alternateFallback = isPlainObject(alternateActivity?.requirements)
       ? alternateActivity.requirements.fallback
       : undefined;
+    const alternateCapabilities = isPlainObject(alternateActivity?.capabilities)
+      ? alternateActivity.capabilities
+      : undefined;
     const hasReachableFallbackBranch = capstoneEdges.some(
       (edge) =>
         edge.condition === "fallback_selected" &&
@@ -4169,6 +4172,10 @@ const validateLearningReferences = (
       alternateFallback.deterministicScripted !== true ||
       alternateFallback.offline === "not_supported" ||
       alternateFallback.nonVoiceCoreEquivalent !== true ||
+      !isPlainObject(alternateCapabilities) ||
+      alternateCapabilities.microphone === "required" ||
+      alternateCapabilities.speechRecognition === "required" ||
+      alternateCapabilities.network === "required" ||
       !isStringArray(alternateSlotIds) ||
       requiredCapstoneSlots.some(
         (slotId) => !alternateSlotIds.includes(slotId),
@@ -5018,12 +5025,62 @@ const validateDelayedAndLearning = (
       const alternateFallback = isPlainObject(alternateActivity?.requirements)
         ? alternateActivity.requirements.fallback
         : undefined;
+      const primaryTargets = isPlainObject(activity.targets)
+        ? activity.targets
+        : undefined;
+      const alternateTargets = isPlainObject(alternateActivity?.targets)
+        ? alternateActivity.targets
+        : undefined;
+      const alternateCapabilities = isPlainObject(
+        alternateActivity?.capabilities,
+      )
+        ? alternateActivity.capabilities
+        : undefined;
+      const targetsEquivalent =
+        isPlainObject(primaryTargets) &&
+        isPlainObject(alternateTargets) &&
+        isStringArray(primaryTargets.skillIds) &&
+        isStringArray(primaryTargets.phraseFrameIds) &&
+        isStringArray(primaryTargets.semanticSlotIds) &&
+        isStringArray(alternateTargets.skillIds) &&
+        isStringArray(alternateTargets.phraseFrameIds) &&
+        isStringArray(alternateTargets.semanticSlotIds) &&
+        sameStringSet(primaryTargets.skillIds, alternateTargets.skillIds) &&
+        sameStringSet(
+          primaryTargets.phraseFrameIds,
+          alternateTargets.phraseFrameIds,
+        ) &&
+        sameStringSet(
+          primaryTargets.semanticSlotIds,
+          alternateTargets.semanticSlotIds,
+        );
+      const evidenceEquivalent =
+        targetsEquivalent &&
+        isRecordArray(body.evidenceDeclarations) &&
+        body.evidenceDeclarations.every(
+          (declaration) =>
+            isPlainObject(declaration) &&
+            (alternateTargets.skillIds as string[]).includes(
+              String(declaration.skillId),
+            ) &&
+            (!isPlainObject(declaration.target) ||
+              declaration.target.targetKind !== "semantic_slot" ||
+              (alternateTargets.semanticSlotIds as string[]).includes(
+                String(declaration.target.targetId),
+              )),
+        );
       if (
         !alternateActivity ||
+        alternateActivity.activityId === activity.activityId ||
         !isPlainObject(alternateFallback) ||
         alternateFallback.deterministicScripted !== true ||
         alternateFallback.offline === "not_supported" ||
-        alternateFallback.nonVoiceCoreEquivalent !== true
+        alternateFallback.nonVoiceCoreEquivalent !== true ||
+        !isPlainObject(alternateCapabilities) ||
+        alternateCapabilities.microphone === "required" ||
+        alternateCapabilities.speechRecognition === "required" ||
+        alternateCapabilities.network === "required" ||
+        !evidenceEquivalent
       ) {
         return [
           issue(

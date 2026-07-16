@@ -43,10 +43,31 @@ type InvalidCorpus = {
 const readJson = <T>(...segments: readonly string[]): T =>
   JSON.parse(fs.readFileSync(path.join(__dirname, ...segments), "utf8")) as T;
 
-const validFixture = readJson<JsonRecord>(
-  "fixtures",
-  "learning-v2",
-  "episode-01.valid.json",
+function withBoundDelayedAccessibilityAlternate(
+  fixture: JsonRecord,
+): JsonRecord {
+  const candidate = JSON.parse(JSON.stringify(fixture)) as JsonRecord;
+  const episode = candidate.episode as JsonRecord;
+  const definition = (episode.delayedProbeDefinitions as JsonRecord[])[0];
+  const body = definition.body as JsonRecord;
+  body.accessibilityAlternateActivityId = "ep01.a09";
+  (definition.ref as JsonRecord).contentHash = hashCanonicalBody(body);
+  (episode.learningDesign as JsonRecord).delayedProbeRef = JSON.parse(
+    JSON.stringify(definition.ref),
+  );
+  (episode.reviewLinks as JsonRecord[])[0].probeRef = JSON.parse(
+    JSON.stringify(definition.ref),
+  );
+  const episodeRef = (
+    (candidate.curriculum as JsonRecord).episodeRefs as JsonRecord[]
+  ).find((ref) => ref.episodeId === episode.episodeId);
+  if (!episodeRef) throw new Error("test_fixture_episode_ref_missing");
+  episodeRef.contentHash = hashCanonicalBody(episode);
+  return candidate;
+}
+
+const validFixture = withBoundDelayedAccessibilityAlternate(
+  readJson<JsonRecord>("fixtures", "learning-v2", "episode-01.valid.json"),
 );
 const invalidCorpus = readJson<InvalidCorpus>(
   "fixtures",
@@ -3135,6 +3156,144 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       },
     ]);
   });
+
+  const setActivityCapability = (
+    candidate: JsonRecord,
+    activityId: string,
+    capability: "microphone" | "speechRecognition" | "network",
+    value: string,
+  ): void => {
+    const dependencies = candidate.dependencies as JsonRecord;
+    const activities = (candidate.episode as JsonRecord)
+      .activities as JsonRecord[];
+    const activity = activities.find(
+      (entry) => entry.activityId === activityId,
+    );
+    const templates = dependencies.templates as JsonRecord[];
+    const templateIndex = templates.findIndex(
+      (template) =>
+        JSON.stringify(template.templateRef) ===
+        JSON.stringify(activity?.templateRef),
+    );
+    if (!activity || templateIndex < 0)
+      throw new Error("fixture_activity_template_missing");
+    const templateRef = JSON.stringify(activity.templateRef);
+    for (const candidateActivity of activities) {
+      if (JSON.stringify(candidateActivity.templateRef) === templateRef)
+        (candidateActivity.capabilities as JsonRecord)[capability] = value;
+    }
+    (
+      (templates[templateIndex].body as JsonRecord)
+        .capabilityContract as JsonRecord
+    )[capability] = value;
+    repinTemplateAndCascade(candidate, templateIndex);
+  };
+
+  test.each([
+    ["microphone", "required"],
+    ["speechRecognition", "required"],
+    ["network", "required"],
+  ] as const)(
+    "rejects capstone alternate capability %s=%s despite safe fallback flags",
+    (capability, value) => {
+      const candidate = clone(validFixture);
+      installCapstoneAlternate(candidate);
+      setActivityCapability(candidate, "ep01.a07", capability, value);
+      setEpisodeContentHash(candidate);
+      expect(
+        issueSummary(validateV2LearningPackage(candidate, validationContext)),
+      ).toEqual([
+        {
+          code: "capstone_fallback_invalid",
+          path: "$.episode.capstoneContract.deterministicAlternateNodeIds[0]",
+        },
+      ]);
+    },
+  );
+
+  const repinDelayedDefinition = (candidate: JsonRecord): JsonRecord => {
+    const episode = candidate.episode as JsonRecord;
+    const definition = (episode.delayedProbeDefinitions as JsonRecord[])[0];
+    (definition.ref as JsonRecord).contentHash = hashCanonicalBody(
+      definition.body,
+    );
+    (episode.learningDesign as JsonRecord).delayedProbeRef = clone(
+      definition.ref,
+    );
+    (episode.reviewLinks as JsonRecord[])[0].probeRef = clone(definition.ref);
+    setEpisodeContentHash(candidate);
+    return definition.body as JsonRecord;
+  };
+
+  test("accepts a distinct delayed accessibility alternate with equivalent targets", () => {
+    const candidate = clone(validFixture);
+    repinDelayedDefinition(candidate);
+    expect(validateV2LearningPackage(candidate, validationContext).ok).toBe(
+      true,
+    );
+  });
+
+  test.each([
+    [
+      "self-alias",
+      (candidate: JsonRecord) => {
+        const definition = (
+          (candidate.episode as JsonRecord)
+            .delayedProbeDefinitions as JsonRecord[]
+        )[0];
+        (definition.body as JsonRecord).accessibilityAlternateActivityId =
+          "ep01.a10";
+      },
+    ],
+    [
+      "required microphone",
+      (candidate: JsonRecord) => {
+        setActivityCapability(candidate, "ep01.a09", "microphone", "required");
+      },
+    ],
+    [
+      "required speech recognition",
+      (candidate: JsonRecord) => {
+        setActivityCapability(
+          candidate,
+          "ep01.a09",
+          "speechRecognition",
+          "required",
+        );
+      },
+    ],
+    [
+      "required network",
+      (candidate: JsonRecord) => {
+        setActivityCapability(candidate, "ep01.a09", "network", "required");
+      },
+    ],
+    [
+      "non-equivalent semantic targets",
+      (candidate: JsonRecord) => {
+        const activity = (
+          (candidate.episode as JsonRecord).activities as JsonRecord[]
+        ).find((entry) => entry.activityId === "ep01.a09");
+        if (!activity) throw new Error("fixture_delayed_alternate_missing");
+        (activity.targets as JsonRecord).semanticSlotIds = [];
+      },
+    ],
+  ] as const)(
+    "rejects delayed accessibility alternate with %s",
+    (_label, mutate) => {
+      const candidate = clone(validFixture);
+      mutate(candidate);
+      repinDelayedDefinition(candidate);
+      expect(
+        issueSummary(validateV2LearningPackage(candidate, validationContext)),
+      ).toEqual([
+        {
+          code: "delayed_probe_accessibility_alternate_invalid",
+          path: "$.episode.delayedProbeDefinitions[0].body.accessibilityAlternateActivityId",
+        },
+      ]);
+    },
+  );
 
   test("rejects a delayed accessibility alternate activity that is not bound", () => {
     const candidate = clone(validFixture);

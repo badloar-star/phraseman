@@ -1,4 +1,4 @@
-import { isSafeOpaqueRef } from './contracts';
+import { isRecord, isSafeOpaqueRef } from './contracts';
 
 export type ObservationSourceState = 'ready' | 'empty' | 'partial' | 'error' | 'truncated';
 
@@ -30,6 +30,8 @@ export interface ReportIncident {
 
 type RawSourceHealth = Readonly<{ state?: unknown; count?: unknown; truncated?: unknown }>;
 type RawReport = Readonly<{ source?: unknown; sourceRef?: unknown; category?: unknown; screen?: unknown; summary?: unknown }>;
+type RawObservationSourceHealth = RawSourceHealth & Readonly<{ source?: unknown }>;
+type RawObservationRow = Readonly<{ source?: unknown; category?: unknown; screen?: unknown }>;
 
 const MAX_REPORT_ROWS = 100;
 const MAX_REPORT_GROUPS = 20;
@@ -37,6 +39,7 @@ const MAX_TOTAL_EVIDENCE = 20;
 const SAFE_REPORT_SOURCES = new Set(['error_reports', 'user_reports', 'community_pack_reports', 'explain_report_entries', 'app_errors']);
 const SAFE_REPORT_CATEGORIES = new Set(['audio', 'bug', 'content', 'crash', 'other', 'payment', 'safety', 'spam', 'typo', 'unknown']);
 const SAFE_REPORT_SCREENS = new Set(['home', 'lesson', 'profile', 'quiz', 'settings', 'unknown_screen']);
+const EXPECTED_OBSERVATION_SOURCES = ['analytics', 'reports', 'audit'] as const;
 
 function text(value: unknown, fallback: string, max: number): string {
   return typeof value === 'string' && value.trim() ? value.trim().slice(0, max) : fallback;
@@ -172,4 +175,108 @@ export function buildDailyObservationDigest(input: Readonly<{
     cost: Object.freeze({ currency: 'EUR', estimatedMinor: 0, summary: 'No model or external calls.' }),
     recommendation,
   });
+}
+
+function hasExactKeys(value: Record<string, unknown>, keys: readonly string[]): boolean {
+  return Object.keys(value).length === keys.length && keys.every((key) => Object.prototype.hasOwnProperty.call(value, key));
+}
+
+function sanitizedIncidents(value: unknown): Readonly<{
+  incidents: readonly ReportIncident[];
+  valid: boolean;
+  rowCount: number;
+}> {
+  if (!Array.isArray(value) || value.length > MAX_REPORT_ROWS) {
+    return Object.freeze({ incidents: Object.freeze([]), valid: false, rowCount: Array.isArray(value) ? value.length : 0 });
+  }
+  const groups = new Map<string, { source: string; category: string; screen: string; count: number }>();
+  let valid = true;
+  for (const candidate of value) {
+    if (!isRecord(candidate) || !hasExactKeys(candidate, ['source', 'category', 'screen'])) {
+      valid = false;
+      continue;
+    }
+    const row = candidate as RawObservationRow;
+    if (typeof row.source !== 'string' || !SAFE_REPORT_SOURCES.has(row.source)
+      || typeof row.category !== 'string' || !SAFE_REPORT_CATEGORIES.has(row.category)
+      || typeof row.screen !== 'string' || !SAFE_REPORT_SCREENS.has(row.screen)) {
+      valid = false;
+      continue;
+    }
+    const key = `${row.source}\u0000${row.category}\u0000${row.screen}`;
+    const current = groups.get(key);
+    if (!current && groups.size >= MAX_REPORT_GROUPS) {
+      valid = false;
+      continue;
+    }
+    groups.set(key, current
+      ? { ...current, count: current.count + 1 }
+      : { source: row.source, category: row.category, screen: row.screen, count: 1 });
+  }
+  const incidents = Object.freeze([...groups.values()]
+    .sort((left, right) => right.count - left.count || left.source.localeCompare(right.source))
+    .map((group) => Object.freeze({
+      ...group,
+      evidence: Object.freeze([]),
+      truncated: !valid,
+      insufficientEvidence: !valid,
+      droppedEvidenceCount: valid ? 0 : 1,
+    })));
+  return Object.freeze({ incidents, valid, rowCount: value.length });
+}
+
+/** Pure boundary over sanitized server-provided receipts and metadata-only report rows. */
+export function observeAgentOffice(value: unknown): Readonly<{
+  observedAtMs: number;
+  sourceHealth: readonly ObservationSourceHealth[];
+  cases: readonly ObservationCase[];
+  digest: ReturnType<typeof buildDailyObservationDigest>;
+  evidenceSufficient: boolean;
+}> {
+  const input = isRecord(value) ? value : {};
+  const observedAtValid = typeof input.observedAtMs === 'number'
+    && Number.isSafeInteger(input.observedAtMs) && input.observedAtMs >= 0;
+  const observedAtMs = observedAtValid ? input.observedAtMs as number : 0;
+  const rawHealth = Array.isArray(input.sourceHealth) ? input.sourceHealth : [];
+  const inputKeysValid = hasExactKeys(input, ['observedAtMs', 'sourceHealth', 'rows']);
+  const receiptsValid = rawHealth.length === EXPECTED_OBSERVATION_SOURCES.length
+    && rawHealth.every((candidate) => isRecord(candidate)
+      && hasExactKeys(candidate, ['source', 'state', 'count', 'truncated']));
+  const sourceHealth = Object.freeze(EXPECTED_OBSERVATION_SOURCES.map((source) => {
+    const matches = rawHealth.filter((candidate): candidate is RawObservationSourceHealth =>
+      isRecord(candidate) && candidate.source === source);
+    const receipt = matches.length === 1 ? matches[0] : { state: 'error', count: 0, truncated: false };
+    return normalizeSourceHealth(source, receipt, observedAtMs);
+  }));
+  const rows = sanitizedIncidents(input.rows);
+  const reportsReceipt = rawHealth.find((candidate): candidate is RawObservationSourceHealth =>
+    isRecord(candidate) && candidate.source === 'reports');
+  const reportsCountMatches = reportsReceipt?.count === rows.rowCount;
+  const shapeValid = inputKeysValid && observedAtValid && receiptsValid && rows.valid && reportsCountMatches;
+  const analytics = sourceHealth.find((source) => source.source === 'analytics');
+  const audit = sourceHealth.find((source) => source.source === 'audit');
+  const initialCases = createObservationCases({
+    observedAtMs,
+    sourceHealth,
+    analytics: {
+      state: analytics?.state ?? 'error',
+      qualityIncomplete: !analytics || analytics.insufficientEvidence,
+      count: rawHealth.find((candidate) => isRecord(candidate) && candidate.source === 'analytics')?.count,
+      truncated: rawHealth.find((candidate) => isRecord(candidate) && candidate.source === 'analytics')?.truncated,
+    },
+    incidents: rows.incidents,
+    audit: {
+      state: audit?.state ?? 'error',
+      count: rawHealth.find((candidate) => isRecord(candidate) && candidate.source === 'audit')?.count,
+      truncated: rawHealth.find((candidate) => isRecord(candidate) && candidate.source === 'audit')?.truncated,
+    },
+  });
+  const cases = shapeValid ? initialCases : Object.freeze(initialCases.map((item) => Object.freeze({
+    ...item,
+    status: 'insufficient_data' as const,
+    insufficientEvidence: true,
+  })));
+  const evidenceSufficient = shapeValid && sourceHealth.every((source) => !source.insufficientEvidence);
+  const digest = buildDailyObservationDigest({ generatedAtMs: observedAtMs, sourceHealth, cases });
+  return Object.freeze({ observedAtMs, sourceHealth, cases, digest, evidenceSufficient });
 }

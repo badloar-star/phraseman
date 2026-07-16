@@ -1,13 +1,22 @@
+import {
+  buildLearningEvidenceTupleKey,
+  type LearningEvidenceTupleIdentity,
+} from "./evidence";
+import {
+  sanitizeAttemptBody,
+  validateCanonicalAttemptRef,
+  type CanonicalAttemptRef,
+  type V2DelayedAttemptEventBody,
+} from "./attempt";
+
 export type V2DelayedTerminalWindow =
   | "inside_pinned_window"
   | "outside_pinned_window"
   | "system_failure";
-
 type DelayedCandidateDisposition =
   | "assessed_candidate"
   | "non_assessment_candidate"
   | "no_record";
-
 type DelayedTerminalDisposition =
   | "assessed"
   | "non_assessment"
@@ -17,46 +26,85 @@ type DelayedTerminalDisposition =
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
-
+const exactKeys = (value: Record<string, unknown>, keys: readonly string[]) =>
+  Object.keys(value).length === keys.length &&
+  Object.keys(value).every((key) => keys.includes(key));
 const isTupleKey = (value: unknown): value is string =>
   typeof value === "string" && /^letk1\.[A-Za-z0-9_-]+$/.test(value);
-
-const isCandidateDisposition = (
-  value: unknown,
-): value is DelayedCandidateDisposition =>
-  value === "assessed_candidate" ||
-  value === "non_assessment_candidate" ||
-  value === "no_record";
-
 const isTerminalWindow = (value: unknown): value is V2DelayedTerminalWindow =>
   value === "inside_pinned_window" ||
   value === "outside_pinned_window" ||
   value === "system_failure";
+const isAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
+  isRecord(value) &&
+  exactKeys(value, ["schemaVersion", "opId", "attemptBodyHash"]) &&
+  value.schemaVersion === "v2-attempt-ref.v1" &&
+  typeof value.opId === "string" &&
+  value.opId.length > 0 &&
+  typeof value.attemptBodyHash === "string" &&
+  /^[a-f0-9]{64}$/.test(value.attemptBodyHash);
+
+const candidateDisposition = (
+  body: V2DelayedAttemptEventBody["delayedCandidates"][number],
+): DelayedCandidateDisposition => {
+  if (body.candidateOutcome.resultCode === "SKIPPED") return "no_record";
+  if (
+    body.candidateOutcome.resultCode === "UNCERTAIN" ||
+    body.candidateOutcome.resultCode === "INVALID_AUDIO_OR_SYSTEM"
+  )
+    return "non_assessment_candidate";
+  return "assessed_candidate";
+};
+
+const readCandidateBody = (
+  candidate: Readonly<Record<string, unknown>>,
+): {
+  readonly body: V2DelayedAttemptEventBody;
+  readonly ref: CanonicalAttemptRef;
+} | null => {
+  if (
+    !exactKeys(candidate, ["schemaVersion", "attemptBody", "attemptRef"]) ||
+    candidate.schemaVersion !== "v2-delayed-attempt-candidate.v1" ||
+    !isAttemptRef(candidate.attemptRef)
+  )
+    return null;
+  try {
+    const body = sanitizeAttemptBody(candidate.attemptBody);
+    if (body.attemptSurface.kind !== "scheduled_delayed_probe") return null;
+    if (!validateCanonicalAttemptRef(body, candidate.attemptRef).ok)
+      return null;
+    return {
+      body: body as V2DelayedAttemptEventBody,
+      ref: candidate.attemptRef,
+    };
+  } catch {
+    return null;
+  }
+};
 
 export const validateDelayedAttemptCandidate = (
   candidate: Readonly<Record<string, unknown>>,
+  expectedTupleKeys?: readonly string[],
 ): { readonly ok: boolean } => {
-  if (
-    candidate.schemaVersion !== "v2-delayed-attempt-candidate.v1" ||
-    !Array.isArray(candidate.learningTupleDispositions) ||
-    "timingReceiptRef" in candidate ||
-    "terminalTupleResolutions" in candidate ||
-    "terminalResolution" in candidate ||
-    "assessmentTiming" in candidate
-  )
-    return { ok: false };
-
+  const parsed = readCandidateBody(candidate);
+  if (!parsed) return { ok: false };
   const seen = new Set<string>();
-  for (const entry of candidate.learningTupleDispositions) {
+  for (const entry of parsed.body.delayedCandidates) {
+    const tupleKey = buildLearningEvidenceTupleKey(entry.binding);
     if (
-      !isRecord(entry) ||
-      !isTupleKey(entry.tupleKey) ||
-      seen.has(entry.tupleKey) ||
-      !isCandidateDisposition(entry.terminalDisposition)
+      !isTupleKey(tupleKey) ||
+      seen.has(tupleKey) ||
+      entry.candidateEvidence.hintsUsed !== 0
     )
       return { ok: false };
-    seen.add(entry.tupleKey);
+    seen.add(tupleKey);
   }
+  if (
+    expectedTupleKeys &&
+    (expectedTupleKeys.length !== seen.size ||
+      expectedTupleKeys.some((key) => !seen.has(key)))
+  )
+    return { ok: false };
   return { ok: true };
 };
 
@@ -73,23 +121,25 @@ const resolveDisposition = (
 export const resolveDelayedTerminal = (
   candidate: Readonly<Record<string, unknown>>,
   window: V2DelayedTerminalWindow,
+  expectedTupleKeys?: readonly string[],
 ) => {
+  const parsed = readCandidateBody(candidate);
   if (
     !isTerminalWindow(window) ||
-    !validateDelayedAttemptCandidate(candidate).ok
+    !parsed ||
+    !validateDelayedAttemptCandidate(candidate, expectedTupleKeys).ok
   )
     return { ok: false as const, resolutions: [] as const };
-
-  const resolutions = (
-    candidate.learningTupleDispositions as readonly Record<string, unknown>[]
-  ).map((entry) => ({
-    tupleKey: entry.tupleKey as string,
-    sourceCandidateDisposition:
-      entry.terminalDisposition as DelayedCandidateDisposition,
-    terminalDisposition: resolveDisposition(
-      entry.terminalDisposition as DelayedCandidateDisposition,
-      window,
-    ),
-  }));
+  const resolutions = parsed.body.delayedCandidates.map((entry) => {
+    const sourceCandidateDisposition = candidateDisposition(entry);
+    return {
+      tupleKey: buildLearningEvidenceTupleKey(entry.binding),
+      sourceCandidateDisposition,
+      terminalDisposition: resolveDisposition(
+        sourceCandidateDisposition,
+        window,
+      ),
+    };
+  });
   return { ok: true as const, resolutions };
 };

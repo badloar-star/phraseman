@@ -1,69 +1,89 @@
 import {
+  buildCanonicalAttemptRef,
+  sanitizeAttemptBody,
+} from "../modules/learning-v2/contracts/attempt";
+import {
+  buildLearningEvidenceTupleKey,
+  type LearningEvidenceTupleIdentity,
+} from "../modules/learning-v2/contracts/evidence";
+import {
   resolveDelayedTerminal,
   validateDelayedAttemptCandidate,
 } from "../modules/learning-v2/contracts/delayed_probe";
 
+const binding: LearningEvidenceTupleIdentity = {
+  nodeId: "probe-node-1",
+  objectiveId: "objective-1",
+  skillId: "skill-1",
+  construct: "semantic",
+  phase: "delayed_probe",
+  targetKind: "objective",
+  targetId: "objective-1",
+};
+const candidateBody = sanitizeAttemptBody({
+  schemaVersion: "v2-attempt-body.v1",
+  opId: "delayed-candidate-1",
+  attemptSurface: { kind: "scheduled_delayed_probe" },
+  outcome: { resultCode: "CORRECT" },
+  evidence: { hintsUsed: 0 },
+  provenance: { phase: "delayed_probe" },
+  inputBinding: { source: "keyboard" },
+  delayedCandidates: [
+    {
+      candidateId: "candidate-1",
+      binding,
+      candidateOutcome: { resultCode: "CORRECT" },
+      candidateEvidence: { hintsUsed: 0 },
+    },
+  ],
+});
+const candidate = {
+  schemaVersion: "v2-delayed-attempt-candidate.v1" as const,
+  attemptBody: candidateBody,
+  attemptRef: buildCanonicalAttemptRef(candidateBody),
+};
+const tupleKey = buildLearningEvidenceTupleKey(binding);
+
 describe("Learning V2 delayed probe contract", () => {
-  test("keeps client candidates separate from server terminal resolution", () => {
-    const candidate = {
-      schemaVersion: "v2-delayed-attempt-candidate.v1",
-      learningTupleDispositions: [
-        { tupleKey: "letk1.x", terminalDisposition: "assessed_candidate" },
-      ],
-    };
-    expect(validateDelayedAttemptCandidate(candidate).ok).toBe(true);
+  test("keeps canonical client candidate separate from server terminal resolution", () => {
+    expect(validateDelayedAttemptCandidate(candidate, [tupleKey]).ok).toBe(
+      true,
+    );
     expect(
       validateDelayedAttemptCandidate({
         ...candidate,
-        timingReceiptRef: { forbidden: true },
+        timingReceiptRef: "forbidden",
       }).ok,
     ).toBe(false);
     expect(
-      resolveDelayedTerminal(candidate, "outside_pinned_window").resolutions[0]
-        .terminalDisposition,
-    ).toBe("not_assessed_for_window");
-    expect(
-      resolveDelayedTerminal(candidate, "outside_pinned_window").resolutions[0]
-        .sourceCandidateDisposition,
-    ).toBe("assessed_candidate");
+      resolveDelayedTerminal(candidate, "outside_pinned_window", [tupleKey]),
+    ).toMatchObject({
+      ok: true,
+      resolutions: [
+        {
+          tupleKey,
+          sourceCandidateDisposition: "assessed_candidate",
+          terminalDisposition: "not_assessed_for_window",
+        },
+      ],
+    });
   });
 
-  test("rejects duplicate or terminal client dispositions and preserves no-record", () => {
-    const candidate = {
-      schemaVersion: "v2-delayed-attempt-candidate.v1",
-      learningTupleDispositions: [
-        { tupleKey: "letk1.x", terminalDisposition: "no_record" },
-      ],
-    };
-    expect(validateDelayedAttemptCandidate(candidate).ok).toBe(true);
+  test("rejects candidate hash mismatch and unknown expected tuple", () => {
     expect(
-      resolveDelayedTerminal(candidate, "system_failure").resolutions,
-    ).toEqual([
-      {
-        tupleKey: "letk1.x",
-        sourceCandidateDisposition: "no_record",
-        terminalDisposition: "no_record",
-      },
-    ]);
-    expect(
-      validateDelayedAttemptCandidate({
-        ...candidate,
-        learningTupleDispositions: [
-          { tupleKey: "letk1.x", terminalDisposition: "assessed_candidate" },
-          { tupleKey: "letk1.x", terminalDisposition: "no_record" },
-        ],
-      }).ok,
+      validateDelayedAttemptCandidate(
+        {
+          ...candidate,
+          attemptRef: {
+            ...candidate.attemptRef,
+            attemptBodyHash: "0".repeat(64),
+          },
+        },
+        [tupleKey],
+      ).ok,
     ).toBe(false);
     expect(
-      validateDelayedAttemptCandidate({
-        ...candidate,
-        learningTupleDispositions: [
-          { tupleKey: "letk1.x", terminalDisposition: "not_assessed_system" },
-        ],
-      }).ok,
+      validateDelayedAttemptCandidate(candidate, ["letk1.unknown"]).ok,
     ).toBe(false);
-    expect(resolveDelayedTerminal(candidate, "bad_window" as never).ok).toBe(
-      false,
-    );
   });
 });

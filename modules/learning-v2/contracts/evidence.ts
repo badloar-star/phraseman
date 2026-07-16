@@ -1,4 +1,6 @@
 import { canonicalJsonV1 } from "../policies/decision_registry";
+import { hashCanonicalBody } from "../policies/decision_registry";
+import type { CanonicalAttemptRef } from "./attempt";
 
 export type LearningConstruct =
   | "semantic"
@@ -30,6 +32,102 @@ export interface LearningEvidenceTupleIdentity {
 }
 
 export type LearningEvidenceTupleKey = `letk1.${string}`;
+
+export interface LearningEvidenceBody extends LearningEvidenceTupleIdentity {
+  readonly schemaVersion: "learning-evidence-body.v1";
+  readonly observationId: string;
+  readonly assessmentStatus: "assessed";
+  readonly outcome: "success" | "needs_work";
+  readonly sourceAttempt: CanonicalAttemptRef;
+  readonly policyId: string;
+  readonly policyVersion: number;
+}
+
+export interface LearningNonAssessmentBody extends LearningEvidenceTupleIdentity {
+  readonly schemaVersion: "learning-non-assessment-body.v1";
+  readonly nonAssessmentId: string;
+  readonly sourceAttempt: CanonicalAttemptRef;
+  readonly occurredAt: string;
+  readonly assessmentStatus:
+    | "not_assessed_accessibility"
+    | "not_assessed_system"
+    | "not_assessed_for_window"
+    | "invalid";
+  readonly reasonCode: string;
+  readonly assignmentRef?: string;
+  readonly launchReceiptRef?: string;
+  readonly timingReceiptRef?: string;
+  readonly failureReceiptRef?: string;
+}
+
+export interface LearningEvidenceRef {
+  readonly observationId: string;
+  readonly evidenceBodyHash: string;
+  readonly tupleKey: LearningEvidenceTupleKey;
+  readonly sourceAttempt: CanonicalAttemptRef;
+}
+
+export interface LearningNonAssessmentRef {
+  readonly nonAssessmentId: string;
+  readonly nonAssessmentBodyHash: string;
+  readonly tupleKey: LearningEvidenceTupleKey;
+  readonly sourceAttempt: CanonicalAttemptRef;
+}
+
+export type LearningMaterializationRef =
+  | LearningEvidenceRef
+  | LearningNonAssessmentRef;
+
+const canonicalAttemptRefEqual = (
+  left: CanonicalAttemptRef,
+  right: CanonicalAttemptRef,
+): boolean =>
+  left.schemaVersion === right.schemaVersion &&
+  left.opId === right.opId &&
+  left.attemptBodyHash === right.attemptBodyHash;
+
+export const buildLearningEvidenceRef = (
+  body: LearningEvidenceBody,
+): LearningEvidenceRef => ({
+  observationId: body.observationId,
+  evidenceBodyHash: hashCanonicalBody(body),
+  tupleKey: buildLearningEvidenceTupleKey(body),
+  sourceAttempt: body.sourceAttempt,
+});
+
+export const buildLearningNonAssessmentRef = (
+  body: LearningNonAssessmentBody,
+): LearningNonAssessmentRef => ({
+  nonAssessmentId: body.nonAssessmentId,
+  nonAssessmentBodyHash: hashCanonicalBody(body),
+  tupleKey: buildLearningEvidenceTupleKey(body),
+  sourceAttempt: body.sourceAttempt,
+});
+
+export const validateLearningMaterialization = (
+  body: LearningEvidenceBody | LearningNonAssessmentBody,
+  ref: LearningMaterializationRef,
+): { readonly ok: boolean } => {
+  const tupleKey = buildLearningEvidenceTupleKey(body);
+  if (!canonicalAttemptRefEqual(body.sourceAttempt, ref.sourceAttempt)) {
+    return { ok: false };
+  }
+  if (ref.tupleKey !== tupleKey) return { ok: false };
+  if (body.schemaVersion === "learning-evidence-body.v1") {
+    return {
+      ok:
+        "observationId" in ref &&
+        ref.observationId === body.observationId &&
+        ref.evidenceBodyHash === hashCanonicalBody(body),
+    };
+  }
+  return {
+    ok:
+      "nonAssessmentId" in ref &&
+      ref.nonAssessmentId === body.nonAssessmentId &&
+      ref.nonAssessmentBodyHash === hashCanonicalBody(body),
+  };
+};
 
 const utf8Bytes = (value: string): number[] => {
   const bytes: number[] = [];

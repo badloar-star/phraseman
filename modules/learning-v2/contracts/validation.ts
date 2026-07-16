@@ -3708,6 +3708,15 @@ const validateEpisodePackageBoundary = (
     ];
   }
   if (episode.episodeKind === "checkpoint") {
+    if (
+      !isPlainObject(episode.graph) ||
+      !isRecordArray((episode.graph as JsonObject).nodes) ||
+      ((episode.graph as JsonObject).nodes as JsonObject[]).length !== 9
+    ) {
+      return [
+        issue("checkpoint_node_count_policy_mismatch", "$.episode.graph.nodes"),
+      ];
+    }
     if (![8, 16, 24, 32].includes(Number(episode.ordinal))) {
       return [issue("checkpoint_ordinal_invalid", "$.episode.ordinal")];
     }

@@ -1939,6 +1939,31 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("rejects a checkpoint package whose graph does not contain exactly nine nodes", () => {
+    const candidate = clone(validFixture);
+    const episode = candidate.episode as JsonRecord;
+    const curriculum = candidate.curriculum as JsonRecord;
+    const ref = (curriculum.episodeRefs as JsonRecord[]).find(
+      (entry) => entry.episodeId === episode.episodeId,
+    ) as JsonRecord;
+    episode.episodeKind = "checkpoint";
+    episode.ordinal = 8;
+    episode.checkpointContract = {};
+    ref.episodeKind = "checkpoint";
+    ref.ordinal = 8;
+    (episode.graph as JsonRecord).nodes = (
+      (episode.graph as JsonRecord).nodes as JsonRecord[]
+    ).slice(0, 8);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "checkpoint_node_count_policy_mismatch",
+        path: "$.episode.graph.nodes",
+      },
+    ]);
+  });
+
   test.each([
     [
       "kind",

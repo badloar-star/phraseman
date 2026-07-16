@@ -1728,6 +1728,14 @@ The pure authoring plus injected transaction slice is now internally green and i
 
 **Exact next executable task after the bounded commit:** write RED tests for `adminSaveV2EpisodeDraft`/`adminSaveV2SeasonDraft` callable authorization, direct-write denial, transaction replay/conflict, and full canonical Episode/DecisionRegistry resolution; then wire the real callable/export without touching Admin UI.
 
+## 12.69 Bounded authoring seam committed
+
+Commit `2169adecb` (`feat(v2): add bounded season and episode authoring seam`) contains the pure graph/episode/season authoring modules, focused root/Functions tests, injected episode/season transaction adapters, immutable EpisodeRevision resolver seam, fixture, and this handover. Commit boundary evidence: root **2 suites / 4 tests PASS**, Functions **4 suites / 5 tests PASS**, strict targeted TypeScript **PASS**, Prettier **PASS**, `git diff --check` **PASS**. Admin transfer artifacts remain untracked and excluded.
+
+The commit is intentionally bounded/partial. It does not claim full Task 2.2: real callable/export and Admin SDK wiring, canonical Episode aggregate validation, typed Storage object path/generation pinning, and release/review lifecycle remain open.
+
+**Exact next executable task:** write RED tests for callable authorization and lifecycle (`adminSaveV2EpisodeDraft`, `adminSaveV2SeasonDraft`), direct Firestore-write denial, transaction replay/conflict, canonical Episode/DecisionRegistry resolution, then implement/export the real Functions boundary. Preserve legacy and do not modify Admin UI in this writer session.
+
 ## 12.67 Resolver hardening and server-owned boundary evidence
 
 The immutable EpisodeRevision artifact contract now includes the fetched body and immutable Storage generation; the resolver recomputes `hashCanonicalBody(artifact.body)` and rejects metadata-only or hash-poisoned artifacts. The Season transaction adapter now requires a resolvable DecisionRegistry for `full_season` saves and resolves all pinned EpisodeRevision refs before compare-and-set. Existing `firestore.rules` already has explicit `allow read, write: if false` blocks for the V2 authoring/revision/lifecycle/review collections; the emulator contract lists these server-only collections.

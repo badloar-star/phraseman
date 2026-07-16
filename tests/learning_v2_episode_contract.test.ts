@@ -2187,6 +2187,39 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     },
   );
 
+  test("requires the current episode ref to publish the exact material closure", () => {
+    const candidate = clone(validFixture) as JsonRecord;
+    const episode = candidate.episode as JsonRecord;
+    const refs = (candidate.curriculum as JsonRecord)
+      .episodeRefs as JsonRecord[];
+    const currentRef = refs.find(
+      (entry) => entry.episodeId === episode.episodeId,
+    );
+    if (!currentRef) throw new Error("test_fixture_episode_ref_missing");
+    (currentRef.introducedMaterial as JsonRecord).skillIds = [];
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "curriculum_material_closure_invalid",
+        path: "$.curriculum.episodeRefs[0].introducedMaterial.skillIds",
+      },
+    ]);
+  });
+
+  test("requires curriculum asset requirements to equal the episode asset closure", () => {
+    const candidate = clone(validFixture) as JsonRecord;
+    (candidate.curriculum as JsonRecord).requiredAssetIds = [];
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "curriculum_asset_closure_invalid",
+        path: "$.curriculum.requiredAssetIds",
+      },
+    ]);
+  });
+
   test("rejects non-finite JSON numbers before semantic validation", () => {
     const candidate = clone(validFixture);
     (

@@ -5242,6 +5242,48 @@ const validateLearningPackageInternal = (
 
   const dependencies = root.dependencies as JsonObject;
   const curriculum = root.curriculum as JsonObject;
+  const currentRefIndex = (curriculum.episodeRefs as JsonObject[]).findIndex(
+    (candidate) => candidate.episodeId === episode.episodeId,
+  );
+  const currentRef =
+    currentRefIndex >= 0
+      ? (curriculum.episodeRefs as JsonObject[])[currentRefIndex]
+      : undefined;
+  if (!currentRef) {
+    return fail([
+      issue("curriculum_episode_ref_missing", "$.curriculum.episodeRefs"),
+    ]);
+  }
+  const episodeMaterial: Record<string, string[]> = {
+    skillIds: isStringArray(episode.skillIds) ? episode.skillIds : [],
+    phraseFrameIds: isRecordArray(episode.phraseFrames)
+      ? episode.phraseFrames.map((frame) => String(frame.phraseFrameId))
+      : [],
+    grammarDistinctionIds: isStringArray(episode.grammarDistinctionIds)
+      ? episode.grammarDistinctionIds
+      : [],
+    semanticSlotIds: isRecordArray(episode.semanticSlots)
+      ? episode.semanticSlots.map((slot) => String(slot.semanticSlotId))
+      : [],
+    criticalConstraintIds: isRecordArray(episode.criticalConstraints)
+      ? episode.criticalConstraints.map((constraint) =>
+          String(constraint.criticalConstraintId),
+        )
+      : [],
+  };
+  const introducedMaterial = currentRef.introducedMaterial as JsonObject;
+  for (const key of materialKeys) {
+    if (
+      !sameStringSet(introducedMaterial[key] as string[], episodeMaterial[key])
+    ) {
+      return fail([
+        issue(
+          "curriculum_material_closure_invalid",
+          `$.curriculum.episodeRefs[${currentRefIndex}].introducedMaterial.${key}`,
+        ),
+      ]);
+    }
+  }
   const dependencyAssetIds = new Set(dependencies.assetIds as string[]);
   if (
     (curriculum.requiredAssetIds as string[]).some(
@@ -5250,6 +5292,19 @@ const validateLearningPackageInternal = (
   ) {
     return fail([
       issue("curriculum_asset_missing", "$.curriculum.requiredAssetIds"),
+    ]);
+  }
+  const episodeAssetIds = isStringArray(episode.assetIds)
+    ? episode.assetIds
+    : [];
+  if (
+    !sameStringSet(curriculum.requiredAssetIds as string[], episodeAssetIds)
+  ) {
+    return fail([
+      issue(
+        "curriculum_asset_closure_invalid",
+        "$.curriculum.requiredAssetIds",
+      ),
     ]);
   }
   const resolvedCapabilityKeys = new Set(

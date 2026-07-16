@@ -69,6 +69,7 @@ function resolveFieldValue(existing: unknown, value: unknown): unknown {
   if (value && typeof value === 'object' && (value as { __op?: unknown }).__op === 'serverTimestamp') {
     return 1_779_000_000_000;
   }
+  if (value && typeof value === 'object' && (value as { __op?: unknown }).__op === 'delete') return undefined;
   return value;
 }
 
@@ -158,6 +159,7 @@ function buildDb() {
       get: (ref: FakeRef) => Promise<FakeSnap>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
       update: (ref: FakeRef, data: DocData) => void;
+      delete: (ref: FakeRef) => void;
     }) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const tx = {
@@ -168,6 +170,7 @@ function buildDb() {
         update: (ref: FakeRef, data: DocData) => {
           writes.push(() => applyData(ref.path, data, { merge: true }));
         },
+        delete: (ref: FakeRef) => { writes.push(() => mockDocs.delete(ref.path)); },
       };
       const result = await fn(tx);
       writes.forEach((write) => write());
@@ -201,6 +204,7 @@ jest.mock('firebase-admin', () => {
   (firestore as unknown as { FieldValue: Record<string, unknown> }).FieldValue = {
     increment: (by: number) => ({ __op: 'increment', by }),
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
+    delete: () => ({ __op: 'delete' }),
   };
   return { firestore };
 });
@@ -385,5 +389,24 @@ describe('community pack callable ownership', () => {
       eventIds: ['event-1'],
     }, 'auth-victim')).resolves.toEqual({ ok: true });
     expect(mockDocs.get('users/victim/community_seller_inbox/event-1')?.seen).toBe(true);
+  });
+});
+
+describe('community pack semantic registry synchronization', () => {
+  test('publishes and removes locale-partitioned memberships in the same moderation flow', async () => {
+    const payload: { cards: Array<Record<string, unknown>> } & Record<string, unknown> = submissionPayload();
+    payload.cards[0] = { ...payload.cards[0], richSchemaVersion: 1, exampleTarget: 'Example target', exampleSource: 'Пример', note: 'Usage note', sourceReferences: ['lesson:1:p1', 'exemplar:e1'] };
+    mockDocs.set('community_pack_submissions/sub-1', { status: 'pending', authorStableId: 'author', payload });
+    const mod = require('./community_packs');
+    await mod.communityModerateSubmission({ auth: { token: { admin: true } }, data: { submissionId: 'sub-1', action: 'approve' } });
+    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'published', cardCount: 10 });
+    expect((mockDocs.get('community_packs/sub-1')?.cards as DocData[])[0]).toMatchObject({ richSchemaVersion: 1, exampleTarget: 'Example target', exampleSource: 'Пример', note: 'Usage note', sourceReferences: ['lesson:1:p1', 'exemplar:e1'] });
+    const registryAfterPublish = [...mockDocs.entries()].filter(([key]) => key.startsWith('content_factory_flashcard_semantic_keys/'));
+    expect(registryAfterPublish).toHaveLength(20);
+    expect(registryAfterPublish.map(([, value]) => value.partitionKey)).toEqual(expect.arrayContaining(['community_flashcards:en:ru', 'community_flashcards:en:es']));
+
+    await mod.communityAdminModeratePack({ auth: { token: { admin: true } }, data: { packId: 'sub-1', action: 'remove' } });
+    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'admin_removed' });
+    expect([...mockDocs.keys()].filter((key) => key.startsWith('content_factory_flashcard_semantic_keys/'))).toHaveLength(0);
   });
 });

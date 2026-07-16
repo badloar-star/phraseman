@@ -20,6 +20,9 @@ export interface IndexedCourseUnit {
   readonly objectPath: string;
   readonly contentHash: string;
   readonly objectGeneration: string;
+  readonly engineResolved: 'legacy' | 'stage';
+  readonly configRevision: number;
+  readonly comparatorVersion: string;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -57,9 +60,13 @@ export function resolveIndexedCourseUnits(index: unknown, request: CourseSurface
     const lessonId = Number(value.lessonId);
     const expectedPath = `course-releases/${request.releaseId}/${request.surface}/${lessonId}.json`;
     if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > 100 || typeof value.objectPath !== 'string' || value.objectPath !== expectedPath || typeof value.contentHash !== 'string' || !HASH_RE.test(value.contentHash) || typeof value.objectGeneration !== 'string' || !value.objectGeneration.trim()) throw new Error('course_surface_index_invalid');
+    const engineResolved = value.engineResolved === undefined ? 'legacy' : String(value.engineResolved);
+    const configRevision = value.configRevision === undefined ? 0 : Number(value.configRevision);
+    const comparatorVersion = value.comparatorVersion === undefined ? '' : String(value.comparatorVersion);
+    if (!['legacy', 'stage'].includes(engineResolved) || !Number.isSafeInteger(configRevision) || configRevision < 0 || (engineResolved === 'stage' && comparatorVersion !== 'arena-parity-v1')) throw new Error('course_surface_index_engine_provenance_invalid');
     if (seen.has(lessonId)) throw new Error('course_surface_index_duplicate_lesson');
     seen.add(lessonId);
-    units.push(Object.freeze({ lessonId, objectPath: value.objectPath, contentHash: value.contentHash, objectGeneration: value.objectGeneration }));
+    units.push(Object.freeze({ lessonId, objectPath: value.objectPath, contentHash: value.contentHash, objectGeneration: value.objectGeneration, engineResolved: engineResolved as 'legacy' | 'stage', configRevision, comparatorVersion }));
   }
   return Object.freeze(units.sort((a, b) => a.lessonId - b.lessonId));
 }

@@ -11,6 +11,15 @@ describe('account deletion tombstone contract', () => {
     expect(jobSource).toContain('tx.set(tombstoneRef');
   });
 
+  it('atomically creates an auth-scoped marker that only the same signed-in uid can read', () => {
+    expect(jobSource).toContain("export const ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers'");
+    expect(jobSource).toContain('const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid)');
+    expect(jobSource).toContain('tx.set(authMarkerRef');
+    expect(rules).toContain('match /account_deletion_auth_markers/{authUid} {');
+    expect(rules).toContain('allow read: if request.auth != null && request.auth.uid == authUid;');
+    expect(rules).toContain('allow write: if false;');
+  });
+
   it('blocks client recreation and updates of a tombstoned user document', () => {
     expect(rules).toContain('function accountDeletionNotPending(userId) {');
     expect(rules).toContain('account_deletion_tombstones/$(userId)');

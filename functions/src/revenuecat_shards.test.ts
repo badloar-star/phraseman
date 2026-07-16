@@ -34,6 +34,22 @@ describe('RevenueCat webhook premium matching', () => {
     expect(source).not.toContain('progressPatch.cancelReason');
     expect(source).not.toContain('progressPatch.expirationReason');
   });
+
+  it('stores normalized optional financial truth without changing entitlement fields', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+    for (const field of [
+      'price_in_purchased_currency?: number',
+      'tax_percentage?: number',
+      'commission_percentage?: number',
+      'renewal_number?: number',
+      'is_trial_conversion?: boolean',
+      '...normalizeRevenueCatFinancials(event)',
+      'billingCadence: classifyRevenueCatBillingCadence(event)',
+    ]) expect(source).toContain(field);
+    expect(source).toContain('const progressPatch: Record<string, string>');
+    expect(source).not.toContain('progressPatch.grossUsdMicros');
+    expect(source).not.toContain('progressPatch.estimatedProceedsUsdMicros');
+  });
   it('accepts explicit premium entitlement events', () => {
     expect(looksLikePremiumSubscription({
       type: 'INITIAL_PURCHASE',

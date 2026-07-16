@@ -5,20 +5,25 @@ import { assertCourseRelease } from './course_release_contract';
 import { parseHashedJsonBytes, resolveIndexedCourseUnits } from './release_surface_delivery';
 import { courseCatalogId } from '../language_release';
 
-type SurfaceEntry = { readonly lessonId: number; readonly payload: unknown };
+type SurfaceEntry = { readonly lessonId: number; readonly engineResolved?: 'legacy' | 'stage'; readonly payload: unknown };
 
 export interface ReleaseArenaQuestion {
   readonly id: string;
   readonly level: 'A1' | 'A2' | 'B1' | 'B2';
-  readonly type: 'translate';
+  readonly type: 'translate' | 'fill' | 'choose' | 'audio' | 'complete_phrasal' | 'translate_meaning' | 'fill_blank' | 'find_error' | 'choose_phrasal';
+  readonly task?: string;
   readonly question: string;
   readonly options: readonly [string, string, string, string];
   readonly correct: string;
+  readonly correctIndex?: number;
   readonly rule: string;
   readonly source: string;
   readonly releaseId: string;
   readonly studyTarget: string;
   readonly learnerSourceLocale: string;
+  readonly expectedAnswerTimeMs?: number;
+  readonly sourceReferences?: readonly string[];
+  readonly rand: number;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -43,25 +48,36 @@ export function arenaQuestionsFromCourseSurfaceEntries(
     if (!Number.isInteger(entry.lessonId) || entry.lessonId < 1 || entry.lessonId > 100 || seenLessons.has(entry.lessonId) || !isRecord(entry.payload) || Number(entry.payload.lessonId) !== entry.lessonId || entry.payload.surface !== 'arena' || !Array.isArray(entry.payload.items) || entry.payload.items.length < 1) throw new Error('arena_release_payload_invalid');
     seenLessons.add(entry.lessonId);
     return entry.payload.items.map((item): ReleaseArenaQuestion => {
-      if (!isRecord(item) || typeof item.id !== 'string' || !item.id.trim() || typeof item.prompt !== 'string' || !item.prompt.trim() || typeof item.answer !== 'string' || !item.answer.trim() || !Array.isArray(item.options) || item.options.length !== 4 || item.options.some((option) => typeof option !== 'string' || !option.trim())) throw new Error('arena_release_payload_invalid');
+      if (!isRecord(item) || typeof item.id !== 'string' || !item.id.trim() || !Array.isArray(item.options) || item.options.length !== 4 || item.options.some((option) => typeof option !== 'string' || !option.trim())) throw new Error('arena_release_payload_invalid');
       const sourceId = item.id.trim();
       const options = item.options.map((option) => String(option).trim()) as [string, string, string, string];
-      const answer = item.answer.trim();
-      if (seenIds.has(sourceId) || new Set(options).size !== 4 || options.filter((option) => option === answer).length !== 1) throw new Error('arena_release_payload_invalid');
+      const structured = typeof item.question === 'string' || typeof item.correct === 'string';
+      if (entry.engineResolved === 'stage' && !structured) throw new Error('arena_release_engine_payload_mismatch');
+      const question = String(structured ? item.question ?? '' : item.prompt ?? '').trim();
+      const answer = String(structured ? item.correct ?? '' : item.answer ?? '').trim();
+      const correctIndex = structured ? Number(item.correctIndex) : options.indexOf(answer);
+      if (!question || !answer || seenIds.has(sourceId) || new Set(options).size !== 4 || options.filter((option) => option === answer).length !== 1 || !Number.isInteger(correctIndex) || correctIndex < 0 || correctIndex > 3 || options[correctIndex] !== answer) throw new Error('arena_release_payload_invalid');
+      if (structured && (item.level !== levelForLesson(entry.lessonId) || typeof item.task !== 'string' || !item.task.trim() || typeof item.rule !== 'string' || !item.rule.trim() || !Number.isSafeInteger(item.expectedAnswerTimeMs) || Number(item.expectedAnswerTimeMs) < 2000 || Number(item.expectedAnswerTimeMs) > 12000 || !Array.isArray(item.sourceReferences))) throw new Error('arena_release_payload_invalid');
+      const sourceReferences = structured && Array.isArray(item.sourceReferences) ? Object.freeze(item.sourceReferences.map(String)) : undefined;
       seenIds.add(sourceId);
       const id = `cr_${createHash('sha256').update(`${identity.courseReleaseId}:${sourceId}`).digest('hex').slice(0, 40)}`;
+      const rand = Number.parseInt(createHash('sha256').update(`${identity.courseReleaseId}:${sourceId}:rand`).digest('hex').slice(0, 12), 16) / 0x1000000000000;
       return Object.freeze({
         id,
         level: levelForLesson(entry.lessonId),
-        type: 'translate',
-        question: item.prompt.trim(),
+        type: structured ? String(item.type) as ReleaseArenaQuestion['type'] : 'translate',
+        ...(structured ? { task: String(item.task).trim() } : {}),
+        question,
         options: Object.freeze(options) as unknown as [string, string, string, string],
         correct: answer,
-        rule: '',
+        ...(structured ? { correctIndex } : {}),
+        rule: structured ? String(item.rule).trim() : '',
         source: `course_release:${identity.courseReleaseId}`,
         releaseId: identity.courseReleaseId,
         studyTarget: identity.studyTarget,
         learnerSourceLocale: identity.learnerSourceLocale,
+        ...(structured ? { expectedAnswerTimeMs: Number(item.expectedAnswerTimeMs), sourceReferences } : {}),
+        rand,
       });
     });
   });
@@ -90,7 +106,7 @@ async function loadActiveReleaseQuestions(identity: ArenaCourseIdentity): Promis
   const units = resolveIndexedCourseUnits(index, { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, surface: 'arena' });
   const entries: SurfaceEntry[] = [];
   for (let offset = 0; offset < units.length; offset += 8) {
-    entries.push(...await Promise.all(units.slice(offset, offset + 8).map(async (unit) => ({ lessonId: unit.lessonId, payload: await readImmutableJson(unit.objectPath, unit.contentHash, unit.objectGeneration) }))));
+    entries.push(...await Promise.all(units.slice(offset, offset + 8).map(async (unit) => ({ lessonId: unit.lessonId, engineResolved: unit.engineResolved, payload: await readImmutableJson(unit.objectPath, unit.contentHash, unit.objectGeneration) }))));
   }
   return arenaQuestionsFromCourseSurfaceEntries(identity, entries);
 }

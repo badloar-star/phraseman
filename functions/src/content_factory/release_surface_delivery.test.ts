@@ -17,7 +17,7 @@ describe('course release surface delivery', () => {
 
   it('resolves only a byte-addressed unit from the exact release index', () => {
     const unit = resolveIndexedCourseUnit({ releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', units: [{ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2' }] }, { releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', lessonId: 2 });
-    expect(unit).toEqual({ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2' });
+    expect(unit).toEqual({ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2', engineResolved: 'legacy', configRevision: 0, comparatorVersion: '' });
   });
 
   it('resolves a complete surface bundle in lesson order without losing identity', () => {
@@ -30,6 +30,18 @@ describe('course release surface delivery', () => {
       ],
     }, request);
     expect(units.map((unit) => unit.lessonId)).toEqual([1, 2]);
+  });
+
+  it('pins index reads to stored engine provenance and defaults old entries to legacy', () => {
+    const request = parseCourseSurfaceBundleRequest({ studyTarget: 'en', learnerSourceLocale: 'ru', releaseId: 'en-ru-r1', surface: 'arena' });
+    const units = resolveIndexedCourseUnits({ ...request, units: [
+      { lessonId: 1, objectPath: 'course-releases/en-ru-r1/arena/1.json', contentHash: hash, objectGeneration: 'g1' },
+      { lessonId: 2, objectPath: 'course-releases/en-ru-r1/arena/2.json', contentHash: hash, objectGeneration: 'g2', engineResolved: 'stage', configRevision: 4, comparatorVersion: 'arena-parity-v1' },
+    ] }, request);
+    expect(units).toEqual([
+      expect.objectContaining({ lessonId: 1, engineResolved: 'legacy', configRevision: 0 }),
+      expect.objectContaining({ lessonId: 2, engineResolved: 'stage', configRevision: 4, comparatorVersion: 'arena-parity-v1' }),
+    ]);
   });
 
   it('rejects mixed identity, duplicate lesson entries and unsafe paths', () => {

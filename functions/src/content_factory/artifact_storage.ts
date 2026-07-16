@@ -73,6 +73,8 @@ export interface ImmutableObjectReceipt {
   readonly contentHash: string;
   readonly objectGeneration: string;
   readonly byteSize: number;
+  readonly referenceState: 'pending_commit';
+  readonly finalizationKey: string;
 }
 
 export async function writeImmutableObject(bucket: ArtifactBucketLike, objectPath: string, payload: unknown): Promise<ImmutableObjectReceipt> {
@@ -84,5 +86,6 @@ export async function writeImmutableObject(bucket: ArtifactBucketLike, objectPat
   const { metadata } = await saveOrReplay(file, bytes, contentHash);
   const objectGeneration = String(metadata.generation ?? '').trim();
   if (!objectGeneration) throw new Error('artifact_generation_missing');
-  return Object.freeze({ objectPath, contentHash, objectGeneration, byteSize: Number(metadata.size ?? bytes.byteLength) });
+  const finalizationKey = createHash('sha256').update(`${objectPath}\n${objectGeneration}\n${contentHash}`).digest('hex');
+  return Object.freeze({ objectPath, contentHash, objectGeneration, byteSize: Number(metadata.size ?? bytes.byteLength), referenceState: 'pending_commit' as const, finalizationKey });
 }

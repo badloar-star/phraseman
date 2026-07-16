@@ -4,8 +4,10 @@ import {
   isAllowedReportTransition,
   matchesReportFilters,
   parseReportListRequest,
+  parseReportExportRequest,
   parseReportStatusUpdateRequest,
   projectReportRow,
+  serializeReportDocument,
 } from './admin_reports_center';
 
 describe('admin reports center contracts', () => {
@@ -49,6 +51,36 @@ describe('admin reports center contracts', () => {
     });
     expect(JSON.stringify(row)).not.toContain('secret');
     expect(JSON.stringify(row)).not.toContain('token');
+  });
+
+  test('accepts only an ordered bounded list of export references', () => {
+    expect(parseReportExportRequest({ reports: [
+      { source: 'error_reports', id: 'error-2' },
+      { source: 'user_reports', id: 'user-1' },
+    ] })).toEqual({ reports: [
+      { source: 'error_reports', id: 'error-2' },
+      { source: 'user_reports', id: 'user-1' },
+    ] });
+    expect(() => parseReportExportRequest({ reports: [] })).toThrow(HttpsError);
+    expect(() => parseReportExportRequest({ reports: [{ source: 'unknown', id: 'report-1' }] })).toThrow(HttpsError);
+    expect(() => parseReportExportRequest({ reports: [{ source: 'error_reports', id: '../escape' }] })).toThrow(HttpsError);
+    expect(() => parseReportExportRequest({ reports: Array.from({ length: 101 }, (_, index) => ({ source: 'error_reports', id: `r-${index}` })) })).toThrow(HttpsError);
+  });
+
+  test('serializes the complete report document without truncating user text', () => {
+    const longComment = 'длинный комментарий '.repeat(800);
+    const serialized = serializeReportDocument({
+      copyText: 'полный текст для разбора',
+      comment: longComment,
+      userLanguage: 'ru',
+      nested: { userAnswer: 'answer', values: [1, true, null] },
+    });
+    expect(serialized).toEqual({
+      copyText: 'полный текст для разбора',
+      comment: longComment,
+      userLanguage: 'ru',
+      nested: { userAnswer: 'answer', values: [1, true, null] },
+    });
   });
 
   test('preserves the community pack author link used by current report documents', () => {

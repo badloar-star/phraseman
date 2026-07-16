@@ -28,7 +28,8 @@ export interface OpenAiChatParams {
   maxTokens: number;
   temperature: number;
   /** Optional response_format passthrough (gpt-4o-mini supports json_object). */
-  responseFormat?: { type: 'json_object' | 'text' };
+  responseFormat?: { type: 'json_object' | 'text' } | { type: 'json_schema'; json_schema: { name: string; strict: boolean; schema: Readonly<Record<string, unknown>> } };
+  beforeRequest?: (attempt: number) => Promise<void>;
 }
 
 export interface OpenAiChatResult {
@@ -72,7 +73,7 @@ function isRetryableFetchError(error: unknown): boolean {
  * status + a truncated body (same shape as premium_dialog) — never leaks the full provider body.
  */
 export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatResult> {
-  const { apiKey, model, messages, maxTokens, temperature, responseFormat } = params;
+  const { apiKey, model, messages, maxTokens, temperature, responseFormat, beforeRequest } = params;
 
   const body: Record<string, unknown> = {
     model,
@@ -85,6 +86,7 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
   let response: Response | null = null;
   let lastError: unknown = null;
   for (let attempt = 1; attempt <= OPENAI_CHAT_MAX_ATTEMPTS; attempt += 1) {
+    await beforeRequest?.(attempt);
     try {
       response = await fetch(OPENAI_CHAT_URL, {
         method: 'POST',

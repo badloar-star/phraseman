@@ -29,8 +29,8 @@ import {
 import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { aiGloballyDisabled } from './remote_gates';
-import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
-import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
+import { validateExplainInput, sanitizeExplanationOutput, wrongScriptRatio } from './explain/explain_gates';
+import { buildExplainPrompt, buildJudgeOutputLanguageSample, resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
@@ -108,6 +108,7 @@ export const explainPhrase = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '512MiB',
+  minInstances: 1,
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request): Promise<ExplainResponse> => {
@@ -216,6 +217,7 @@ export const explainPhrase = onCall({
 
   // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
   const sanitized = sanitizeExplanationOutput(gen.text);
+  const judgeLanguageSample = buildJudgeOutputLanguageSample(sanitized);
   const judgeText = sanitized;
   const verdict = await judgeExplanation({ text: judgeText, phraseEn, lang, apiKey, studyTarget });
 
@@ -249,6 +251,8 @@ export const explainPhrase = onCall({
     genCompletionTokens: gen.completionTokens,
     judgePromptTokens: verdict.promptTokens,
     judgeCompletionTokens: verdict.completionTokens,
+    judgeWrongScriptRatio: wrongScriptRatio(sanitized, lang),
+    judgeMaskedStudyFragments: judgeLanguageSample.maskedFragmentCount,
     verdict: verdict.reason,
     published: verdict.ok,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),

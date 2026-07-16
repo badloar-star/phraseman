@@ -275,7 +275,7 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
 // ────────────────────────────────────────────────────────────────────────────
 // adminWriteShardSurvey — создать/обновить конфиг опроса из админки.
 // Доступ: request.auth.token.admin === true (custom claim, как прочие
-// admin-callable проекта — см. admin_grant.ts, help_board.ts).
+  // admin-callable проекта — см. admin_grant.ts).
 // ────────────────────────────────────────────────────────────────────────────
 export const adminWriteShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;

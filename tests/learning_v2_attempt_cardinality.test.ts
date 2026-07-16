@@ -39,4 +39,32 @@ describe("Learning V2 attempt cardinality", () => {
       ).ok,
     ).toBe(true);
   });
+
+  test("fails closed for malformed and duplicate direct validator input", () => {
+    const assessed = {
+      ...declaration,
+      terminalDisposition: "assessed_candidate",
+    } as const;
+    expect(
+      validateGraphTupleDispositions(
+        [declaration, declaration],
+        [assessed],
+        "CORRECT",
+      ).ok,
+    ).toBe(false);
+    expect(
+      validateGraphTupleDispositions(
+        [declaration],
+        [{}] as unknown as readonly (typeof assessed)[],
+        "CORRECT",
+      ).ok,
+    ).toBe(false);
+    expect(
+      validateGraphTupleDispositions(
+        [declaration],
+        [assessed, assessed],
+        "CORRECT",
+      ).ok,
+    ).toBe(false);
+  });
 });

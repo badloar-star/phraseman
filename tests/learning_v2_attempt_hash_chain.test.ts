@@ -195,4 +195,46 @@ describe("Learning V2 attempt hash chain", () => {
       }),
     ).toThrow("attempt_body_post_hash_field_forbidden");
   });
+
+  test("rejects duplicate delayed candidate ids and bindings", () => {
+    const candidate = validDelayedBody.delayedCandidates[0];
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validDelayedBody,
+        delayedCandidates: [
+          candidate,
+          {
+            ...candidate,
+            binding: { ...candidate.binding, targetId: "other-target" },
+          },
+        ],
+      }),
+    ).toThrow("attempt_body_delayed_candidate_duplicate");
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validDelayedBody,
+        delayedCandidates: [
+          { ...candidate, candidateId: "candidate-2" },
+          candidate,
+        ],
+      }),
+    ).toThrow("attempt_body_delayed_candidate_duplicate");
+  });
+
+  test("rejects recursively nested delayed server-owned fields", () => {
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validDelayedBody,
+        delayedCandidates: [
+          {
+            ...validDelayedBody.delayedCandidates[0],
+            candidateEvidence: {
+              hintsUsed: 0,
+              serverResolution: { terminalDisposition: "assessed_candidate" },
+            },
+          },
+        ],
+      }),
+    ).toThrow("attempt_body_delayed_server_field_forbidden");
+  });
 });

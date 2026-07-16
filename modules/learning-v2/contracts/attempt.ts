@@ -263,10 +263,9 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
   if (
     hasForbiddenOwnKey(input, delayedServerOwnedKeys) ||
     (Array.isArray(input.delayedCandidates) &&
-      input.delayedCandidates.some(
-        (candidate) =>
-          isRecord(candidate) &&
-          hasForbiddenOwnKey(candidate, delayedServerOwnedKeys),
+      hasForbiddenKeyRecursively(
+        input.delayedCandidates,
+        delayedServerOwnedKeys,
       ))
   ) {
     throw new Error("attempt_body_delayed_server_field_forbidden");
@@ -276,6 +275,22 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
     !input.delayedCandidates.every(isValidDelayedCandidate)
   ) {
     throw new Error("attempt_body_delayed_candidate_invalid");
+  }
+  const candidates =
+    input.delayedCandidates as readonly V2DelayedClientCandidate[];
+  const candidateIds = new Set(
+    candidates.map((candidate) => candidate.candidateId),
+  );
+  const bindingKeys = new Set(
+    candidates.map((candidate) =>
+      buildLearningEvidenceTupleKey(candidate.binding),
+    ),
+  );
+  if (
+    candidateIds.size !== candidates.length ||
+    bindingKeys.size !== candidates.length
+  ) {
+    throw new Error("attempt_body_delayed_candidate_duplicate");
   }
   return Object.freeze({ ...input }) as unknown as V2DelayedAttemptEventBody;
 };
@@ -311,8 +326,24 @@ export const validateGraphTupleDispositions = (
   dispositions: readonly V2GraphTupleDisposition[],
   resultCode: string,
 ): { readonly ok: boolean } => {
-  const expected = declarations.map(buildLearningEvidenceTupleKey).sort();
-  const actual = dispositions.map(buildLearningEvidenceTupleKey).sort();
+  const declarationEntries = declarations as readonly unknown[];
+  const dispositionEntries = dispositions as readonly unknown[];
+  if (
+    !Array.isArray(declarationEntries) ||
+    !Array.isArray(dispositionEntries) ||
+    !declarationEntries.every((entry) => isValidLearningTupleIdentity(entry)) ||
+    !dispositionEntries.every(isValidGraphTupleDisposition)
+  ) {
+    return { ok: false };
+  }
+  const expected = declarationEntries.map(buildLearningEvidenceTupleKey).sort();
+  const actual = dispositionEntries.map(buildLearningEvidenceTupleKey).sort();
+  if (
+    new Set(expected).size !== expected.length ||
+    new Set(actual).size !== actual.length
+  ) {
+    return { ok: false };
+  }
   const exact =
     expected.length === actual.length &&
     expected.every((key, index) => key === actual[index]);

@@ -26,6 +26,15 @@ describe("Learning V2 attempt hash chain", () => {
     delayedCandidates: [
       {
         candidateId: "candidate-1",
+        binding: {
+          nodeId: "delayed-node-1",
+          objectiveId: "objective-1",
+          skillId: "skill-1",
+          construct: "recall",
+          phase: "delayed_probe",
+          targetKind: "objective",
+          targetId: "objective-1",
+        },
         candidateOutcome: { resultCode: "CORRECT" },
         candidateEvidence: { hintsUsed: 0 },
       },
@@ -123,5 +132,67 @@ describe("Learning V2 attempt hash chain", () => {
     expect(() =>
       sanitizeAttemptBody({ ...validGraphBody, evidence: { hintsUsed: 0.5 } }),
     ).toThrow("attempt_body_invalid");
+  });
+
+  test("requires a canonical delayed candidate binding", () => {
+    const candidate = validDelayedBody.delayedCandidates[0];
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validDelayedBody,
+        delayedCandidates: [
+          { ...candidate, binding: { ...candidate.binding, objectiveId: "" } },
+        ],
+      }),
+    ).toThrow("attempt_body_delayed_candidate_invalid");
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validDelayedBody,
+        delayedCandidates: [
+          {
+            ...candidate,
+            binding: { ...candidate.binding, phase: "near_transfer" },
+          },
+        ],
+      }),
+    ).toThrow("attempt_body_delayed_candidate_invalid");
+  });
+
+  test("rejects malformed or duplicate graph tuple dispositions", () => {
+    const disposition = {
+      nodeId: "graph-node-1",
+      objectiveId: "objective-1",
+      skillId: "skill-1",
+      construct: "semantic",
+      phase: "near_transfer",
+      targetKind: "objective",
+      targetId: "objective-1",
+      terminalDisposition: "assessed_candidate",
+    } as const;
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validGraphBody,
+        learningTupleDispositions: [disposition, disposition],
+      }),
+    ).toThrow("attempt_body_graph_dispositions_invalid");
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validGraphBody,
+        learningTupleDispositions: [{}],
+      }),
+    ).toThrow("attempt_body_graph_dispositions_invalid");
+  });
+
+  test("rejects nested post-hash fields in delayed candidates", () => {
+    expect(() =>
+      sanitizeAttemptBody({
+        ...validDelayedBody,
+        delayedCandidates: [
+          {
+            ...validDelayedBody.delayedCandidates[0],
+            attemptBodyHash: "forbidden",
+          },
+        ],
+      }),
+    ).toThrow("attempt_body_post_hash_field_forbidden");
   });
 });

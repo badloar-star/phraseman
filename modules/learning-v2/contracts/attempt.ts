@@ -47,6 +47,7 @@ export type V2GraphAttemptEventBody = V2AttemptEventBodyBase & {
 };
 export interface V2DelayedClientCandidate {
   readonly candidateId: string;
+  readonly binding: LearningEvidenceTupleIdentity;
   readonly candidateOutcome: V2AttemptOutcome;
   readonly candidateEvidence: V2AttemptEvidence;
 }
@@ -105,13 +106,72 @@ const hasForbiddenOwnKey = (
 ): boolean =>
   keys.some((key) => Object.prototype.hasOwnProperty.call(value, key));
 
+const hasForbiddenKeyRecursively = (
+  value: unknown,
+  keys: readonly string[],
+  seen = new WeakSet<object>(),
+): boolean => {
+  if (Array.isArray(value))
+    return value.some((entry) => hasForbiddenKeyRecursively(entry, keys, seen));
+  if (!isRecord(value)) return false;
+  if (seen.has(value)) return false;
+  seen.add(value);
+  return Object.entries(value).some(
+    ([key, entry]) =>
+      keys.includes(key) || hasForbiddenKeyRecursively(entry, keys, seen),
+  );
+};
+
+const isNonEmptyString = (value: unknown): value is string =>
+  typeof value === "string" && value.trim().length > 0;
+
+const isValidLearningTupleIdentity = (
+  value: unknown,
+  requiredPhase?: "delayed_probe",
+): value is LearningEvidenceTupleIdentity =>
+  isRecord(value) &&
+  isNonEmptyString(value.nodeId) &&
+  isNonEmptyString(value.objectiveId) &&
+  isNonEmptyString(value.skillId) &&
+  hasOneOf(value.construct, [
+    "semantic",
+    "listening",
+    "recall",
+    "spoken",
+    "interaction",
+  ] as const) &&
+  hasOneOf(value.phase, [
+    "encounter_build",
+    "near_transfer",
+    "independent_probe",
+    "delayed_probe",
+  ] as const) &&
+  (requiredPhase === undefined || value.phase === requiredPhase) &&
+  hasOneOf(value.targetKind, [
+    "objective",
+    "semantic_slot",
+    "critical_constraint",
+  ] as const) &&
+  isNonEmptyString(value.targetId);
+
+const isValidGraphTupleDisposition = (
+  value: unknown,
+): value is V2GraphTupleDisposition =>
+  isRecord(value) &&
+  isValidLearningTupleIdentity(value) &&
+  hasOneOf(value.terminalDisposition, [
+    "assessed_candidate",
+    "non_assessment_candidate",
+    "no_record",
+  ] as const) &&
+  (value.reasonCode === undefined || value.reasonCode === "skipped_by_learner");
+
 const isValidDelayedCandidate = (
   value: unknown,
 ): value is V2DelayedClientCandidate =>
   isRecord(value) &&
-  !hasForbiddenOwnKey(value, delayedServerOwnedKeys) &&
-  typeof value.candidateId === "string" &&
-  value.candidateId.trim().length > 0 &&
+  isNonEmptyString(value.candidateId) &&
+  isValidLearningTupleIdentity(value.binding, "delayed_probe") &&
   isRecord(value.candidateOutcome) &&
   hasOneOf(value.candidateOutcome.resultCode, [
     "CORRECT",
@@ -131,7 +191,7 @@ const isValidDelayedCandidate = (
  */
 export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
   if (!isRecord(input)) throw new Error("attempt_body_invalid");
-  if (hasForbiddenOwnKey(input, postHashAttemptBodyKeys)) {
+  if (hasForbiddenKeyRecursively(input, postHashAttemptBodyKeys)) {
     throw new Error("attempt_body_post_hash_field_forbidden");
   }
 
@@ -186,9 +246,13 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
     }
     if (
       Object.prototype.hasOwnProperty.call(input, "delayedCandidates") ||
-      !Array.isArray(input.learningTupleDispositions)
+      !Array.isArray(input.learningTupleDispositions) ||
+      !input.learningTupleDispositions.every(isValidGraphTupleDisposition) ||
+      new Set(
+        input.learningTupleDispositions.map(buildLearningEvidenceTupleKey),
+      ).size !== input.learningTupleDispositions.length
     ) {
-      throw new Error("attempt_body_invalid");
+      throw new Error("attempt_body_graph_dispositions_invalid");
     }
     return Object.freeze({ ...input }) as unknown as V2GraphAttemptEventBody;
   }
@@ -198,10 +262,20 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
   }
   if (
     hasForbiddenOwnKey(input, delayedServerOwnedKeys) ||
+    (Array.isArray(input.delayedCandidates) &&
+      input.delayedCandidates.some(
+        (candidate) =>
+          isRecord(candidate) &&
+          hasForbiddenOwnKey(candidate, delayedServerOwnedKeys),
+      ))
+  ) {
+    throw new Error("attempt_body_delayed_server_field_forbidden");
+  }
+  if (
     !Array.isArray(input.delayedCandidates) ||
     !input.delayedCandidates.every(isValidDelayedCandidate)
   ) {
-    throw new Error("attempt_body_delayed_server_field_forbidden");
+    throw new Error("attempt_body_delayed_candidate_invalid");
   }
   return Object.freeze({ ...input }) as unknown as V2DelayedAttemptEventBody;
 };

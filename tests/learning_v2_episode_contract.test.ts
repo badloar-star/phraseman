@@ -1891,6 +1891,31 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test("rejects an outcome prerequisite whose source episode is unpublished", () => {
+    const candidate = clone(validFixture);
+    const design = (candidate.episode as JsonRecord)
+      .learningDesign as JsonRecord;
+    design.prerequisiteEdges = [
+      {
+        from: {
+          kind: "outcome",
+          id: "outcome.ghost",
+          sourceEpisodeId: "ep-99",
+        },
+        toObjectiveId: "objective.introduce-self",
+        requiredState: "exposed",
+      },
+    ];
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "prerequisite_reference_missing",
+        path: "$.episode.learningDesign.prerequisiteEdges[0]",
+      },
+    ]);
+  });
+
   test.each([
     [
       "kind",
@@ -1981,6 +2006,28 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
       {
         code: "probe_coverage_mismatch",
         path: "$.episode.delayedProbeDefinitions[0].body.evidenceDeclarations",
+      },
+    ]);
+  });
+
+  test("rejects delayed probe scheduler namespace collisions", () => {
+    const candidate = clone(validFixture);
+    const episode = candidate.episode as JsonRecord;
+    const definitions = episode.delayedProbeDefinitions as JsonRecord[];
+    const duplicate = clone(definitions[0]);
+    const body = duplicate.body as JsonRecord;
+    const ref = duplicate.ref as JsonRecord;
+    ref.probeId = "probe.delayed.duplicate";
+    body.probeId = "probe.delayed.duplicate";
+    ref.contentHash = hashCanonicalBody(body);
+    definitions.push(duplicate);
+    setEpisodeContentHash(candidate);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "delayed_probe_namespace_invalid",
+        path: "$.episode.delayedProbeDefinitions[1].body.probeNodeId",
       },
     ]);
   });
@@ -2518,6 +2565,37 @@ describe("Learning V2 Task 1.2 — scope-dependent curriculum", () => {
     },
   );
 
+  test("rejects empty required locale tags", () => {
+    const curriculum = buildCurriculum("chapter_internal");
+    (curriculum.requiredLocales as string[]).push("");
+    expect(
+      issueSummary(
+        validateV2CurriculumProjection(curriculum, validationContext),
+      ),
+    ).toEqual([
+      {
+        code: "curriculum_locale_closure_invalid",
+        path: "$.curriculum.requiredLocales",
+      },
+    ]);
+  });
+
+  test("rejects duplicate capability keys", () => {
+    const curriculum = buildCurriculum("chapter_internal");
+    const capabilityKeys = curriculum.requiredCapabilityKeys as string[];
+    capabilityKeys.push(capabilityKeys[0]);
+    expect(
+      issueSummary(
+        validateV2CurriculumProjection(curriculum, validationContext),
+      ),
+    ).toEqual([
+      {
+        code: "curriculum_capability_closure_invalid",
+        path: "$.curriculum.requiredCapabilityKeys",
+      },
+    ]);
+  });
+
   test("rejects duplicate chapter identities even when membership is rewritten consistently", () => {
     const curriculum = buildCurriculum("full_season");
     const chapters = curriculum.chapters as JsonRecord[];
@@ -2702,6 +2780,34 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       {
         code: "checkpoint_alternate_invalid",
         path: "$.checkpoint.deterministicAlternateRoutes[0].alternateNodeId",
+      },
+    ]);
+  });
+
+  test("rejects an alternate route that aliases its primary node", () => {
+    const checkpoint = clone(validCheckpoint) as JsonRecord;
+    const route = (checkpoint.deterministicAlternateRoutes as JsonRecord[])[0];
+    route.alternateNodeId = route.primaryNodeId;
+    expect(
+      issueSummary(validateV2CheckpointContract(checkpoint, checkpointContext)),
+    ).toEqual([
+      {
+        code: "checkpoint_alternate_invalid",
+        path: "$.checkpoint.deterministicAlternateRoutes[0].alternateNodeId",
+      },
+    ]);
+  });
+
+  test("rejects duplicate deterministic alternate nodes", () => {
+    const checkpoint = clone(validCheckpoint) as JsonRecord;
+    const routes = checkpoint.deterministicAlternateRoutes as JsonRecord[];
+    routes[1].alternateNodeId = routes[0].alternateNodeId;
+    expect(
+      issueSummary(validateV2CheckpointContract(checkpoint, checkpointContext)),
+    ).toEqual([
+      {
+        code: "checkpoint_alternate_invalid",
+        path: "$.checkpoint.deterministicAlternateRoutes",
       },
     ]);
   });

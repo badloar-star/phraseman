@@ -3102,6 +3102,7 @@ const validateCurriculumDeepShape = (
   }
   if (
     curriculum.requiredLocales.length === 0 ||
+    curriculum.requiredLocales.some((locale) => !isNonEmptyString(locale)) ||
     uniqueSecondIndex(curriculum.requiredLocales) >= 0 ||
     !curriculum.requiredLocales.includes(String(curriculum.studyTarget)) ||
     !curriculum.requiredLocales.includes(String(curriculum.learnerSourceLocale))
@@ -3110,6 +3111,17 @@ const validateCurriculumDeepShape = (
       issue(
         "curriculum_locale_closure_invalid",
         "$.curriculum.requiredLocales",
+      ),
+    ];
+  }
+  if (
+    curriculum.requiredCapabilityKeys.some((key) => !isNonEmptyString(key)) ||
+    uniqueSecondIndex(curriculum.requiredCapabilityKeys) >= 0
+  ) {
+    return [
+      issue(
+        "curriculum_capability_closure_invalid",
+        "$.curriculum.requiredCapabilityKeys",
       ),
     ];
   }
@@ -4417,6 +4429,11 @@ const validateEpisodePolicyLimits = (
   }
   const graph = episode.graph as JsonObject;
   const nodes = graph.nodes as JsonObject[];
+  if (episode.episodeKind === "checkpoint" && nodes.length !== 9) {
+    return [
+      issue("checkpoint_node_count_policy_mismatch", "$.episode.graph.nodes"),
+    ];
+  }
   if (episode.episodeKind === "ordinary") {
     const visibleCount = nodes.filter((node) => node.visible === true).length;
     if (!rangeContains(nodeSettings.visibleNodeCount, visibleCount)) {
@@ -4666,7 +4683,35 @@ const validateDelayedAndLearning = (
 ): readonly V2ContractIssue[] => {
   const graph = episode.graph as JsonObject;
   const nodes = graph.nodes as JsonObject[];
-  const graphNodeIds = new Set(nodes.map((node) => node.nodeId));
+  const graphNodeIds = new Set(nodes.map((node) => String(node.nodeId)));
+  const schedulerNamespaceIds = new Set<string>(graphNodeIds);
+  for (const nodeId of (episode.assessmentNodes as JsonObject)
+    .independentProbeNodeIds as string[])
+    schedulerNamespaceIds.add(nodeId);
+  for (const nodeId of (episode.assessmentNodes as JsonObject)
+    .optionalReviewNodeIds as string[])
+    schedulerNamespaceIds.add(nodeId);
+  for (const slot of episode.starSlots as JsonObject[])
+    schedulerNamespaceIds.add(String(slot.starSlotId));
+  for (const loopId of [
+    ...((episode.requiredLoops as JsonObject)
+      .encounterBuildNodeIds as string[]),
+    ...((episode.requiredLoops as JsonObject).nearTransferNodeIds as string[]),
+  ])
+    schedulerNamespaceIds.add(loopId);
+  const checkpoint = episode.checkpointContract;
+  if (isPlainObject(checkpoint)) {
+    for (const nodeId of (checkpoint.assessmentNodeIds as
+      | string[]
+      | undefined) ?? [])
+      schedulerNamespaceIds.add(nodeId);
+    for (const route of (checkpoint.deterministicAlternateRoutes as
+      | JsonObject[]
+      | undefined) ?? []) {
+      schedulerNamespaceIds.add(String(route.primaryNodeId));
+      schedulerNamespaceIds.add(String(route.alternateNodeId));
+    }
+  }
   const activities = episode.activities as JsonObject[];
   if (
     !isRecordArray(episode.delayedProbeDefinitions) ||
@@ -4715,7 +4760,7 @@ const validateDelayedAndLearning = (
       ];
     }
     delayedProbeIds.add(String(ref.probeId));
-    if (graphNodeIds.has(body.probeNodeId)) {
+    if (schedulerNamespaceIds.has(String(body.probeNodeId))) {
       return [
         issue(
           "delayed_probe_namespace_invalid",
@@ -4723,6 +4768,7 @@ const validateDelayedAndLearning = (
         ),
       ];
     }
+    schedulerNamespaceIds.add(String(body.probeNodeId));
     if (!isPlainObject(body.activityBinding)) {
       return [
         issue(
@@ -5352,6 +5398,30 @@ const validateLearningPackageInternal = (
   );
   if (!curriculumResult.ok) return fail(curriculumResult.issues);
 
+  const learningDesign = episode.learningDesign as JsonObject;
+  const objectiveIds = new Set(
+    (learningDesign.objectiveIds as string[]).map(String),
+  );
+  const curriculumRefs = (root.curriculum as JsonObject)
+    .episodeRefs as JsonObject[];
+  const publishedEpisodeIds = new Set(
+    curriculumRefs.map((ref) => String(ref.episodeId)),
+  );
+  const prerequisiteEdges = learningDesign.prerequisiteEdges as JsonObject[];
+  for (let index = 0; index < prerequisiteEdges.length; index += 1) {
+    const source = prerequisiteEdges[index].from as JsonObject;
+    if (source.kind !== "outcome") continue;
+    const path = `$.episode.learningDesign.prerequisiteEdges[${index}]`;
+    if (
+      !isNonEmptyString(source.id) ||
+      !isNonEmptyString(source.sourceEpisodeId) ||
+      !publishedEpisodeIds.has(String(source.sourceEpisodeId)) ||
+      !objectiveIds.has(String(prerequisiteEdges[index].toObjectiveId))
+    ) {
+      return fail([issue("prerequisite_reference_missing", path)]);
+    }
+  }
+
   if (episode.episodeKind === "checkpoint") {
     const graph = episode.graph as JsonObject;
     const nodes = graph.nodes as JsonObject[];
@@ -5894,6 +5964,7 @@ const validateCheckpointInternal = (
     }
     if (
       context.nodePhases[String(route.primaryNodeId)] !== "independent_probe" ||
+      String(route.alternateNodeId) === String(route.primaryNodeId) ||
       context.nodePhases[String(route.alternateNodeId)] !==
         "independent_probe" ||
       !context.independentProbeNodeIds.includes(String(route.primaryNodeId)) ||
@@ -5907,8 +5978,12 @@ const validateCheckpointInternal = (
   const alternatePrimaryIds = checkpoint.deterministicAlternateRoutes.map(
     (route) => String(route.primaryNodeId),
   );
+  const alternateNodeIds = checkpoint.deterministicAlternateRoutes.map(
+    (route) => String(route.alternateNodeId),
+  );
   if (
     uniqueSecondIndex(alternatePrimaryIds) >= 0 ||
+    uniqueSecondIndex(alternateNodeIds) >= 0 ||
     !sameStringSet(
       alternatePrimaryIds,
       checkpoint.assessmentNodeIds as string[],

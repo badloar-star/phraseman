@@ -1,103 +1,98 @@
 import {
   buildLearningEvidenceRef,
   buildLearningNonAssessmentRef,
-  validateLearningMaterialization,
-  type LearningEvidenceBody,
-  type LearningNonAssessmentBody,
+  validateLearningEvidenceRef,
+  validateLearningNonAssessmentRef,
 } from "../modules/learning-v2/contracts/evidence";
 import {
-  validateAttemptEventEnvelope,
-  type V2AttemptEvent,
-} from "../modules/learning-v2/contracts/activity_result";
-import { buildCanonicalAttemptRef } from "../modules/learning-v2/contracts/attempt";
+  buildCanonicalAttemptRef,
+  sanitizeAttemptBody,
+} from "../modules/learning-v2/contracts/attempt";
+import { buildV2AttemptEvent } from "../modules/learning-v2/contracts/activity_result";
 
-const attemptRef = {
-  schemaVersion: "v2-attempt-ref.v1",
-  opId: "op-1",
-  attemptBodyHash: "a".repeat(64),
-} as const;
-
+const attemptBody = sanitizeAttemptBody({
+  schemaVersion: "v2-attempt-body.v1",
+  opId: "op-materialization-1",
+  attemptSurface: { kind: "episode_graph_node" },
+  outcome: { resultCode: "CORRECT" },
+  evidence: { hintsUsed: 0 },
+  provenance: { phase: "near_transfer" },
+  inputBinding: { source: "keyboard" },
+  learningTupleDispositions: [],
+});
+const sourceAttempt = buildCanonicalAttemptRef(attemptBody);
 const tuple = {
   nodeId: "node-1",
   objectiveId: "objective-1",
   skillId: "skill-1",
-  construct: "semantic",
-  phase: "near_transfer",
-  targetKind: "objective",
+  construct: "semantic" as const,
+  phase: "near_transfer" as const,
+  targetKind: "objective" as const,
   targetId: "objective-1",
-} as const;
+};
 
-const evidenceBody = {
-  schemaVersion: "learning-evidence-body.v1",
-  observationId: "observation-1",
-  assessmentStatus: "assessed",
-  outcome: "success",
-  sourceAttempt: attemptRef,
-  policyId: "policy-v1",
-  policyVersion: 1,
-  ...tuple,
-} as const satisfies LearningEvidenceBody;
-
-const nonAssessmentBody = {
-  schemaVersion: "learning-non-assessment-body.v1",
-  nonAssessmentId: "non-assessment-1",
-  sourceAttempt: attemptRef,
-  occurredAt: "2026-07-16T00:00:00.000Z",
-  assessmentStatus: "not_assessed_system",
-  reasonCode: "system_unavailable",
-  ...tuple,
-} as const satisfies LearningNonAssessmentBody;
-
-describe("Learning V2 evidence/materialization contracts", () => {
-  test("builds refs from hash-free bodies and preserves source attempt/tuple", () => {
-    const evidenceRef = buildLearningEvidenceRef(evidenceBody);
-    const nonAssessmentRef = buildLearningNonAssessmentRef(nonAssessmentBody);
-    expect(evidenceRef.sourceAttempt).toEqual(attemptRef);
-    expect(nonAssessmentRef.sourceAttempt).toEqual(attemptRef);
-    expect(evidenceRef.tupleKey).toMatch(/^letk1\./);
-    expect(nonAssessmentRef.tupleKey).toBe(evidenceRef.tupleKey);
-    expect(evidenceRef.evidenceBodyHash).toMatch(/^[a-f0-9]{64}$/);
-    expect(nonAssessmentRef.nonAssessmentBodyHash).toMatch(/^[a-f0-9]{64}$/);
-  });
-
-  test("rejects a ref whose source attempt or tuple does not match its body", () => {
-    const ref = buildLearningEvidenceRef(evidenceBody);
-    expect(
-      validateLearningMaterialization(evidenceBody, {
-        ...ref,
-        sourceAttempt: { ...attemptRef, opId: "different-op" },
-      }),
-    ).toEqual({ ok: false });
-    expect(
-      validateLearningMaterialization(evidenceBody, {
-        ...ref,
-        tupleKey: "letk1.invalid",
-      }),
-    ).toEqual({ ok: false });
-  });
-
-  test("keeps the ledger envelope non-hashed and validates its attempt component", () => {
-    const attemptBody = {
-      schemaVersion: "v2-attempt-body.v1",
-      opId: "op-1",
-      attemptSurface: { kind: "episode_graph_node" },
-      outcome: { resultCode: "CORRECT" },
-      evidence: { hintsUsed: 0 },
-      provenance: { phase: "near_transfer" },
-      inputBinding: { source: "keyboard" },
-      learningTupleDispositions: [],
-    } as const;
-    const event: V2AttemptEvent = {
-      schemaVersion: "v2-attempt-envelope.v1",
-      attemptBody,
-      attemptRef: buildCanonicalAttemptRef(attemptBody),
-      learningEvidenceRefs: [],
-      learningNonAssessmentRefs: [],
-      materializationBasis: { kind: "graph_attempt_body" },
+describe("Learning V2 evidence materialization contracts", () => {
+  test("hashes evidence and non-assessment bodies separately from their refs", () => {
+    const evidence = {
+      schemaVersion: "learning-evidence-body.v1" as const,
+      observationId: "observation-1",
+      ...tuple,
+      assessmentStatus: "assessed" as const,
+      outcome: "success" as const,
+      sourceAttempt,
+      policyId: "policy-1",
+      policyVersion: 1,
     };
-    expect(validateAttemptEventEnvelope(event)).toEqual({ ok: true });
+    const nonAssessment = {
+      schemaVersion: "learning-non-assessment-body.v1" as const,
+      nonAssessmentId: "non-assessment-1",
+      ...tuple,
+      assessmentStatus: "not_assessed_accessibility" as const,
+      reasonCode: "microphone_unavailable",
+      sourceAttempt,
+      occurredAt: "2026-07-16T00:00:00.000Z",
+    };
+    const evidenceRef = buildLearningEvidenceRef(evidence);
+    const nonAssessmentRef = buildLearningNonAssessmentRef(nonAssessment);
+
+    expect(validateLearningEvidenceRef(evidence, evidenceRef)).toEqual({
+      ok: true,
+    });
     expect(
-      validateAttemptEventEnvelope({ ...event, eventHash: "forbidden" }),
-    ).toEqual({ ok: false });
+      validateLearningNonAssessmentRef(nonAssessment, nonAssessmentRef),
+    ).toEqual({ ok: true });
+    expect(evidence).not.toHaveProperty("evidenceBodyHash");
+    expect(nonAssessment).not.toHaveProperty("nonAssessmentBodyHash");
+  });
+
+  test("joins bodies and refs in a non-hashed attempt envelope with exact basis", () => {
+    const evidence = {
+      schemaVersion: "learning-evidence-body.v1" as const,
+      observationId: "observation-1",
+      ...tuple,
+      assessmentStatus: "assessed" as const,
+      outcome: "success" as const,
+      sourceAttempt,
+      policyId: "policy-1",
+      policyVersion: 1,
+    };
+    const event = buildV2AttemptEvent({
+      attemptBody,
+      canonicalAttemptRef: sourceAttempt,
+      materializationBasis: { kind: "graph_attempt_body", sourceAttempt },
+      learningEvidenceRefs: [buildLearningEvidenceRef(evidence)],
+      learningNonAssessmentRefs: [],
+    });
+    expect(event).not.toHaveProperty("attemptEventHash");
+    expect(event.learningEvidenceRefs).toHaveLength(1);
+    expect(() =>
+      buildV2AttemptEvent({
+        ...event,
+        canonicalAttemptRef: {
+          ...sourceAttempt,
+          attemptBodyHash: "0".repeat(64),
+        },
+      }),
+    ).toThrow("attempt_event_canonical_ref_mismatch");
   });
 });

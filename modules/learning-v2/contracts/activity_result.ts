@@ -21,7 +21,10 @@ export interface V2ActivityResult {
 }
 
 export type V2AttemptMaterializationBasis =
-  | { readonly kind: "graph_attempt_body" }
+  | {
+      readonly kind: "graph_attempt_body";
+      readonly sourceAttempt: CanonicalAttemptRef;
+    }
   | {
       readonly kind: "delayed_timing_receipt";
       readonly timingReceiptRef: string;
@@ -59,4 +62,62 @@ export const validateAttemptEventEnvelope = (
     candidate.attemptBody,
     candidate.attemptRef!,
   );
+};
+
+export const buildV2AttemptEvent = (input: {
+  readonly attemptBody: V2AttemptEventBody;
+  readonly canonicalAttemptRef: CanonicalAttemptRef;
+  readonly learningEvidenceRefs: readonly LearningEvidenceRef[];
+  readonly learningNonAssessmentRefs: readonly LearningNonAssessmentRef[];
+  readonly materializationBasis: V2AttemptMaterializationBasis;
+}): V2AttemptEvent => {
+  if (
+    !validateCanonicalAttemptRef(input.attemptBody, input.canonicalAttemptRef)
+      .ok
+  ) {
+    throw new Error("attempt_event_canonical_ref_mismatch");
+  }
+  const graph = input.attemptBody.attemptSurface.kind === "episode_graph_node";
+  if (
+    (graph && input.materializationBasis.kind !== "graph_attempt_body") ||
+    (!graph && input.materializationBasis.kind === "graph_attempt_body") ||
+    (input.materializationBasis.kind === "graph_attempt_body" &&
+      (input.materializationBasis.sourceAttempt.opId !==
+        input.canonicalAttemptRef.opId ||
+        input.materializationBasis.sourceAttempt.attemptBodyHash !==
+          input.canonicalAttemptRef.attemptBodyHash))
+  ) {
+    throw new Error("attempt_event_materialization_basis_mismatch");
+  }
+  const refs = [
+    ...input.learningEvidenceRefs,
+    ...input.learningNonAssessmentRefs,
+  ];
+  if (
+    refs.some(
+      (ref) =>
+        ref.sourceAttempt.schemaVersion !==
+          input.canonicalAttemptRef.schemaVersion ||
+        ref.sourceAttempt.opId !== input.canonicalAttemptRef.opId ||
+        ref.sourceAttempt.attemptBodyHash !==
+          input.canonicalAttemptRef.attemptBodyHash ||
+        !/^letk1\./.test(ref.tupleKey) ||
+        ("evidenceBodyHash" in ref
+          ? !/^[a-f0-9]{64}$/.test(ref.evidenceBodyHash)
+          : !/^[a-f0-9]{64}$/.test(ref.nonAssessmentBodyHash)),
+    ) ||
+    new Set(refs.map((ref) => ref.tupleKey)).size !== refs.length
+  ) {
+    throw new Error("attempt_event_materialization_ref_invalid");
+  }
+  return Object.freeze({
+    schemaVersion: "v2-attempt-envelope.v1",
+    attemptBody: input.attemptBody,
+    attemptRef: input.canonicalAttemptRef,
+    learningEvidenceRefs: Object.freeze([...input.learningEvidenceRefs]),
+    learningNonAssessmentRefs: Object.freeze([
+      ...input.learningNonAssessmentRefs,
+    ]),
+    materializationBasis: input.materializationBasis,
+  });
 };

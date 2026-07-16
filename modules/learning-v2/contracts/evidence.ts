@@ -129,6 +129,16 @@ export const validateLearningMaterialization = (
   };
 };
 
+export const validateLearningEvidenceRef = (
+  body: LearningEvidenceBody,
+  ref: LearningEvidenceRef,
+): { readonly ok: boolean } => validateLearningMaterialization(body, ref);
+
+export const validateLearningNonAssessmentRef = (
+  body: LearningNonAssessmentBody,
+  ref: LearningNonAssessmentRef,
+): { readonly ok: boolean } => validateLearningMaterialization(body, ref);
+
 const utf8Bytes = (value: string): number[] => {
   const bytes: number[] = [];
 

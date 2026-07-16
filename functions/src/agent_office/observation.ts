@@ -25,6 +25,7 @@ export interface ReportIncident {
   readonly evidence: readonly { readonly sourceRef: string; readonly summary: string }[];
   readonly truncated: boolean;
   readonly insufficientEvidence: boolean;
+  readonly droppedEvidenceCount: number;
 }
 
 type RawSourceHealth = Readonly<{ state?: unknown; count?: unknown; truncated?: unknown }>;
@@ -44,7 +45,8 @@ function text(value: unknown, fallback: string, max: number): string {
 function hasSufficientReceipt(input: RawSourceHealth): boolean {
   return (input.state === 'ready' || input.state === 'empty')
     && typeof input.count === 'number' && Number.isSafeInteger(input.count) && input.count >= 0
-    && (input.truncated === undefined || input.truncated === false);
+    && input.truncated === false
+    && (input.state !== 'empty' || input.count === 0);
 }
 
 function sourceState(input: RawSourceHealth): ObservationSourceState {
@@ -74,12 +76,18 @@ export function deduplicateReportIncidents(reports: readonly RawReport[], maxEvi
   incidents: readonly ReportIncident[];
   truncated: boolean;
   insufficientEvidence: boolean;
+  droppedEvidenceCount: number;
 }> {
-  const groups = new Map<string, { source: string; category: string; screen: string; count: number; evidence: ReportIncident['evidence'][number][] }>();
+  const groups = new Map<string, { source: string; category: string; screen: string; count: number; evidence: ReportIncident['evidence'][number][]; droppedEvidenceCount: number }>();
   const bounded = Math.max(0, Math.min(5, Math.floor(maxEvidence), MAX_TOTAL_EVIDENCE));
   let totalEvidence = 0;
   let truncated = reports.length > MAX_REPORT_ROWS;
+  let droppedEvidenceCount = Math.max(0, reports.length - MAX_REPORT_ROWS);
   for (const row of reports.slice(0, MAX_REPORT_ROWS)) {
+    if (!isSafeOpaqueRef(row.sourceRef)) {
+      droppedEvidenceCount += 1;
+      continue;
+    }
     const source = safeMetadata(row.source, SAFE_REPORT_SOURCES, 'unknown_reports');
     const category = safeMetadata(row.category, SAFE_REPORT_CATEGORIES, 'other');
     const screen = safeMetadata(row.screen, SAFE_REPORT_SCREENS, 'unknown_screen');
@@ -88,38 +96,44 @@ export function deduplicateReportIncidents(reports: readonly RawReport[], maxEvi
     if (!group) {
       if (groups.size >= MAX_REPORT_GROUPS) {
         truncated = true;
+        droppedEvidenceCount += 1;
         continue;
       }
-      group = { source, category, screen, count: 0, evidence: [] };
+      group = { source, category, screen, count: 0, evidence: [], droppedEvidenceCount: 0 };
     }
     group.count += 1;
-    if (group.evidence.length < bounded && totalEvidence < MAX_TOTAL_EVIDENCE && isSafeOpaqueRef(row.sourceRef)) {
+    if (group.evidence.length < bounded && totalEvidence < MAX_TOTAL_EVIDENCE) {
       group.evidence.push(Object.freeze({
         sourceRef: row.sourceRef,
         // Never carry a report body into the Agent Office collection or digest.
         summary: 'Redacted report metadata sample.',
       }));
       totalEvidence += 1;
+    } else {
+      truncated = true;
+      droppedEvidenceCount += 1;
+      group.droppedEvidenceCount += 1;
     }
     groups.set(key, group);
   }
-  const insufficientEvidence = truncated;
+  const insufficientEvidence = droppedEvidenceCount > 0;
   const incidents = Object.freeze([...groups.values()]
     .sort((left, right) => right.count - left.count || left.source.localeCompare(right.source))
-    .map((group) => Object.freeze({ ...group, evidence: Object.freeze(group.evidence), truncated, insufficientEvidence })));
-  return Object.freeze({ incidents, truncated, insufficientEvidence });
+    .map((group) => Object.freeze({ ...group, evidence: Object.freeze(group.evidence), truncated, insufficientEvidence, droppedEvidenceCount: group.droppedEvidenceCount })));
+  return Object.freeze({ incidents, truncated, insufficientEvidence, droppedEvidenceCount });
 }
 
 export function createObservationCases(input: Readonly<{
   observedAtMs: number;
   sourceHealth: readonly ObservationSourceHealth[];
-  analytics: Readonly<{ state: string; qualityIncomplete: boolean; count?: unknown }>;
+  analytics: Readonly<{ state: string; qualityIncomplete: boolean; count?: unknown; truncated?: unknown }>;
   incidents: readonly ReportIncident[];
-  audit: Readonly<{ state: string; count?: unknown }>;
+  audit: Readonly<{ state: string; count?: unknown; truncated?: unknown }>;
 }>): readonly ObservationCase[] {
   const analyticsInsufficient = input.analytics.qualityIncomplete || !hasSufficientReceipt(input.analytics);
   const auditInsufficient = !hasSufficientReceipt(input.audit);
-  const incomplete = analyticsInsufficient || auditInsufficient || input.sourceHealth.some((source) => source.insufficientEvidence) || input.incidents.some((incident) => incident.insufficientEvidence);
+  const expectedReceiptsPresent = ['analytics', 'reports', 'audit'].every((source) => input.sourceHealth.some((health) => health.source === source && !health.insufficientEvidence));
+  const incomplete = !expectedReceiptsPresent || analyticsInsufficient || auditInsufficient || input.sourceHealth.some((source) => source.insufficientEvidence) || input.incidents.some((incident) => incident.insufficientEvidence);
   const cases: ObservationCase[] = [];
   if (analyticsInsufficient) {
     cases.push(Object.freeze({ signal: 'analytics_incomplete', status: 'insufficient_data', insufficientEvidence: true, summary: 'Analytics source is incomplete; observe again before drawing a conclusion.', actionType: 'analysis_prepare' }));

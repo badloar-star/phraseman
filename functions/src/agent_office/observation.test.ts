@@ -20,7 +20,9 @@ describe('Agent Office W2 observation adapters', () => {
 
   test.each([
     [{ state: 'ready', count: -1 }, 'negative count'],
+    [{ state: 'empty', count: 1, truncated: false }, 'non-zero empty count'],
     [{ state: 'empty', count: '0' }, 'non-numeric count'],
+    [{ state: 'ready', count: 1 }, 'missing explicit truncated flag'],
     [{ state: 'ready' }, 'missing count'],
     [{ state: 'ready', count: 1, truncated: 'false' }, 'invalid truncated flag'],
     [{ state: 'unknown', count: 1 }, 'unknown state'],
@@ -43,7 +45,7 @@ describe('Agent Office W2 observation adapters', () => {
     expect(incidents[0]).toMatchObject({ source: 'error_reports', category: 'audio', screen: 'lesson', count: 4 });
     expect(incidents[0].evidence).toHaveLength(3);
     expect(JSON.stringify(incidents)).not.toMatch(/a@b\.com|353 871234567|Sound stops after one word/);
-    expect(result).toMatchObject({ truncated: false, insufficientEvidence: false });
+    expect(result).toMatchObject({ truncated: true, insufficientEvidence: true, droppedEvidenceCount: 1 });
   });
 
   test('drops unsafe references and replaces unsafe metadata before grouping', () => {
@@ -51,8 +53,19 @@ describe('Agent Office W2 observation adapters', () => {
       source: 'attacker@example.com', sourceRef: 'report-id-user-123', category: 'user@example.com', screen: '+353 871234567', summary: 'raw report body',
     }]);
 
-    expect(result.incidents[0]).toMatchObject({ source: 'unknown_reports', category: 'other', screen: 'unknown_screen', count: 1, evidence: [] });
+    expect(result.incidents).toEqual([]);
+    expect(result).toMatchObject({ insufficientEvidence: true, droppedEvidenceCount: 1 });
     expect(JSON.stringify(result)).not.toMatch(/attacker@example.com|user@example.com|353 871234567|report-id-user-123|raw report body/);
+  });
+
+  test('excludes invalid references from an incident count and marks the remaining incident insufficient', () => {
+    const result = deduplicateReportIncidents([
+      { source: 'error_reports', sourceRef: `reports:sha256:${'a'.repeat(64)}`, category: 'audio', screen: 'lesson' },
+      { source: 'error_reports', sourceRef: 'raw-user-id-123', category: 'audio', screen: 'lesson' },
+    ]);
+
+    expect(result).toMatchObject({ insufficientEvidence: true, droppedEvidenceCount: 1 });
+    expect(result.incidents[0]).toMatchObject({ count: 1, insufficientEvidence: true });
   });
 
   test('bounds report rows, groups and total evidence with explicit insufficient truncation', () => {
@@ -61,7 +74,7 @@ describe('Agent Office W2 observation adapters', () => {
       category: index % 2 ? 'audio' : 'bug', screen: index % 2 ? 'lesson' : 'home', summary: 'ignored',
     })), 5);
 
-    expect(result).toMatchObject({ truncated: true, insufficientEvidence: true });
+    expect(result).toMatchObject({ truncated: true, insufficientEvidence: true, droppedEvidenceCount: 91 });
     expect(result.incidents.length).toBeLessThanOrEqual(20);
     expect(result.incidents.reduce((sum, incident) => sum + incident.evidence.length, 0)).toBeLessThanOrEqual(20);
   });
@@ -74,8 +87,8 @@ describe('Agent Office W2 observation adapters', () => {
         normalizeSourceHealth('reports', { state: 'truncated', count: 100, truncated: true }, 2_000),
       ],
       analytics: { state: 'partial', qualityIncomplete: true },
-      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 3, evidence: [], truncated: false, insufficientEvidence: false }],
-      audit: { state: 'ready', count: 1 },
+      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 3, evidence: [], truncated: false, insufficientEvidence: false, droppedEvidenceCount: 0 }],
+      audit: { state: 'ready', count: 1, truncated: false },
     });
 
     expect(cases.map((item) => item.signal)).toEqual(['analytics_incomplete', 'report_incident']);
@@ -88,12 +101,37 @@ describe('Agent Office W2 observation adapters', () => {
       observedAtMs: 2_000,
       sourceHealth: [normalizeSourceHealth('reports', { state: 'ready', count: -1 }, 2_000)],
       analytics: { state: 'ready', qualityIncomplete: false, count: 1 },
-      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 2, evidence: [], truncated: false, insufficientEvidence: false }],
+      incidents: [{ source: 'error_reports', category: 'audio', screen: 'lesson', count: 2, evidence: [], truncated: false, insufficientEvidence: false, droppedEvidenceCount: 0 }],
       audit: { state: 'error', count: 0 },
     });
 
     expect(cases.find((item) => item.signal === 'report_incident')).toMatchObject({ status: 'insufficient_data', insufficientEvidence: true });
     expect(cases.find((item) => item.signal === 'audit_error')).toBeDefined();
+  });
+
+  test('requires all expected explicit source receipts before an incident can be observed', () => {
+    const incident = { source: 'error_reports', category: 'audio', screen: 'lesson', count: 2, evidence: [], truncated: false, insufficientEvidence: false, droppedEvidenceCount: 0 };
+    const complete = createObservationCases({
+      observedAtMs: 2_000,
+      sourceHealth: [
+        normalizeSourceHealth('analytics', { state: 'ready', count: 1, truncated: false }, 2_000),
+        normalizeSourceHealth('reports', { state: 'ready', count: 2, truncated: false }, 2_000),
+        normalizeSourceHealth('audit', { state: 'empty', count: 0, truncated: false }, 2_000),
+      ],
+      analytics: { state: 'ready', qualityIncomplete: false, count: 1, truncated: false },
+      incidents: [incident],
+      audit: { state: 'empty', count: 0, truncated: false },
+    });
+    const missing = createObservationCases({
+      observedAtMs: 2_000,
+      sourceHealth: [],
+      analytics: { state: 'ready', qualityIncomplete: false, count: 1, truncated: false },
+      incidents: [incident],
+      audit: { state: 'empty', count: 0, truncated: false },
+    });
+
+    expect(complete.find((item) => item.signal === 'report_incident')).toMatchObject({ status: 'observed', insufficientEvidence: false });
+    expect(missing.find((item) => item.signal === 'report_incident')).toMatchObject({ status: 'insufficient_data', insufficientEvidence: true });
   });
 
   test('builds a zero-cost daily digest with freshness and at most one observation recommendation', () => {

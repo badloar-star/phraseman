@@ -52,7 +52,7 @@ const quote: V2AccessQuote = {
 };
 const seed = (repo: MemoryRepository) => {
   repo.values.set('learning-v2:access-quote:quote-1', quote);
-  repo.values.set('learning-v2:access-gate:season-1:gate-2', {
+  repo.values.set('learning-v2:access-gate:user-1:season-1:gate-2', {
     stableId: 'user-1', accountGeneration: 1, seasonId: 'season-1', gateId: 'gate-2', releaseId: 'release-1', policyVersion: 'gate-policy-v1',
     requiredLoopsComplete: true, capabilityFallbackComplete: true, localPerformanceComplete: true, checkpointComplete: true,
     honestBlockCount: 2, recoveryReviewImpressionCount: 1, earnedDeficit: 2, purchasedForGate: 0, purchasedForChapter: 0, purchasedForSeason: 0, unlocked: false,
@@ -66,7 +66,7 @@ describe('V2 access purchase transaction adapter', () => {
     const result = await finalizeV2AccessPurchase(repo, policy, input);
     expect(result).toEqual({ replayed: false, receipt: expect.objectContaining({ shardsSpent: 6, accessStarsApplied: 2 }) });
     expect(repo.values.get('users:user-1')).toMatchObject({ shards: 4 });
-    expect(repo.values.get('learning-v2:access-gate:season-1:gate-2')).toMatchObject({ unlocked: true, earnedDeficit: 0 });
+    expect(repo.values.get('learning-v2:access-gate:user-1:season-1:gate-2')).toMatchObject({ unlocked: true, earnedDeficit: 0 });
   });
 
   it('replays the same operation without spending twice', async () => {
@@ -106,8 +106,8 @@ describe('V2 access purchase transaction adapter', () => {
 
   it('rejects an already-unlocked gate and malformed authoritative balance', async () => {
     const unlocked = new MemoryRepository(); seed(unlocked);
-    unlocked.values.set('learning-v2:access-gate:season-1:gate-2', {
-      ...(unlocked.values.get('learning-v2:access-gate:season-1:gate-2') as object), unlocked: true,
+    unlocked.values.set('learning-v2:access-gate:user-1:season-1:gate-2', {
+      ...(unlocked.values.get('learning-v2:access-gate:user-1:season-1:gate-2') as object), unlocked: true,
     });
     await expect(finalizeV2AccessPurchase(unlocked, policy, input)).rejects.toThrow('already_unlocked');
     const malformed = new MemoryRepository(); seed(malformed);

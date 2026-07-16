@@ -1736,6 +1736,14 @@ The commit is intentionally bounded/partial. It does not claim full Task 2.2: re
 
 **Exact next executable task:** write RED tests for callable authorization and lifecycle (`adminSaveV2EpisodeDraft`, `adminSaveV2SeasonDraft`), direct Firestore-write denial, transaction replay/conflict, canonical Episode/DecisionRegistry resolution, then implement/export the real Functions boundary. Preserve legacy and do not modify Admin UI in this writer session.
 
+## 12.70 Callable boundary RED/GREEN foundation
+
+Added `admin_content_studio_authoring.ts` with strict mutation-envelope parsing, `content.draft.write` role enforcement, authorization-before-repository handling, and a callable factory that applies the existing region/App Check policy. Focused tests cover malformed envelopes, unauthorised roles, dependency non-invocation on denial, and successful forwarding. Verification: **1 Functions suite / 3 tests PASS**, strict targeted TypeScript **PASS**, Prettier/diff checks **PASS**.
+
+This is only the callable foundation; concrete `adminSaveV2EpisodeDraft`/`adminSaveV2SeasonDraft` exports are not wired yet because their real Firestore/Admin SDK repositories and canonical Episode resolver still need to be connected. Admin UI remains untouched.
+
+**Exact next executable task:** create the real Firestore-backed dependency factory, export both named callables through `functions/src/index.ts`, and add emulator RED tests for direct-write denial, owner/auth claims, stale CAS, immutable object generation, and DecisionRegistry/Episode resolution.
+
 ## 12.67 Resolver hardening and server-owned boundary evidence
 
 The immutable EpisodeRevision artifact contract now includes the fetched body and immutable Storage generation; the resolver recomputes `hashCanonicalBody(artifact.body)` and rejects metadata-only or hash-poisoned artifacts. The Season transaction adapter now requires a resolvable DecisionRegistry for `full_season` saves and resolves all pinned EpisodeRevision refs before compare-and-set. Existing `firestore.rules` already has explicit `allow read, write: if false` blocks for the V2 authoring/revision/lifecycle/review collections; the emulator contract lists these server-only collections.

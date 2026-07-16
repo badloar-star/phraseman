@@ -4776,6 +4776,26 @@ const validateDelayedAndLearning = (
     const edge = prerequisiteEdges[index];
     if (!isPlainObject(edge.from)) continue;
     const source = edge.from;
+    if (!["objective", "outcome"].includes(String(source.kind))) {
+      return [
+        issue(
+          "field_value_invalid",
+          `$.episode.learningDesign.prerequisiteEdges[${index}].from.kind`,
+        ),
+      ];
+    }
+    if (
+      !["exposed", "supported_success", "independent_evidence"].includes(
+        String(edge.requiredState),
+      )
+    ) {
+      return [
+        issue(
+          "field_value_invalid",
+          `$.episode.learningDesign.prerequisiteEdges[${index}].requiredState`,
+        ),
+      ];
+    }
     if (
       edge.requiredState === "independent_evidence" &&
       source.sourceEpisodeId !== episode.episodeId
@@ -4812,6 +4832,18 @@ const validateDelayedAndLearning = (
     : [];
   for (let index = 0; index < learningDesign.supportPlan.length; index += 1) {
     const support = learningDesign.supportPlan[index];
+    if (
+      !["model", "full_text", "partial_cue", "visual_only", "none"].includes(
+        String(support.initialSupport),
+      )
+    ) {
+      return [
+        issue(
+          "field_value_invalid",
+          `$.episode.learningDesign.supportPlan[${index}].initialSupport`,
+        ),
+      ];
+    }
     if (!fadeIds.includes(String(support.fadeRuleId))) {
       return [
         issue(

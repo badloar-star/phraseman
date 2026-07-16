@@ -1891,6 +1891,55 @@ describe("Learning V2 Task 1.2 — post-GREEN adversarial contract boundary", ()
     ]);
   });
 
+  test.each([
+    [
+      "kind",
+      "magic",
+      "$.episode.learningDesign.prerequisiteEdges[0].from.kind",
+    ],
+    [
+      "requiredState",
+      "mastered",
+      "$.episode.learningDesign.prerequisiteEdges[0].requiredState",
+    ],
+  ] as const)(
+    "rejects unsupported prerequisite %s",
+    (field, value, expectedPath) => {
+      const candidate = clone(validFixture);
+      const edge = (
+        (candidate.episode as JsonRecord).learningDesign as JsonRecord
+      ).prerequisiteEdges as JsonRecord[];
+      edge.push({
+        from: {
+          kind: field === "kind" ? value : "objective",
+          id: "objective.introduce-self",
+          sourceEpisodeId: "ep-00",
+        },
+        toObjectiveId: "objective.introduce-self",
+        requiredState: field === "requiredState" ? value : "exposed",
+      });
+      expect(
+        issueSummary(validateV2LearningPackage(candidate, validationContext)),
+      ).toEqual([{ code: "field_value_invalid", path: expectedPath }]);
+    },
+  );
+
+  test("rejects unsupported initial support modes", () => {
+    const candidate = clone(validFixture);
+    const support = (
+      (candidate.episode as JsonRecord).learningDesign as JsonRecord
+    ).supportPlan as JsonRecord[];
+    support[0].initialSupport = "unlimited_answer_key";
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([
+      {
+        code: "field_value_invalid",
+        path: "$.episode.learningDesign.supportPlan[0].initialSupport",
+      },
+    ]);
+  });
+
   test("fails closed on cyclic and hostile nested input without throwing", () => {
     const cyclic = clone(validFixture);
     const cyclicPolicy = (

@@ -78,6 +78,12 @@ describe("Learning V2 evidence materialization contracts", () => {
       ok: true,
     });
     expect(
+      validateLearningEvidenceRef(evidence, {
+        ...evidenceRef,
+        evil: true,
+      } as typeof evidenceRef),
+    ).toEqual({ ok: false });
+    expect(
       validateLearningNonAssessmentRef(nonAssessment, nonAssessmentRef),
     ).toEqual({ ok: true });
     expect(evidence).not.toHaveProperty("evidenceBodyHash");
@@ -172,6 +178,20 @@ describe("Learning V2 evidence materialization contracts", () => {
         nonAssessmentId: "na-2",
         assessmentStatus: "not_assessed_for_window",
         reasonCode: "outside_pinned_assessment_window",
+      }),
+    ).toEqual({ ok: false });
+    expect(
+      validateLearningNonAssessmentBody({
+        schemaVersion: "learning-non-assessment-body.v1",
+        nonAssessmentId: "na-system-2",
+        ...tuple,
+        phase: "delayed_probe",
+        sourceAttempt,
+        occurredAt: "2026-07-16T00:00:00.000Z",
+        assessmentStatus: "not_assessed_system",
+        reasonCode: "assignment_missing",
+        failureReceiptRef: "failure-1",
+        assignmentRef: "must-not-be-present",
       }),
     ).toEqual({ ok: false });
   });

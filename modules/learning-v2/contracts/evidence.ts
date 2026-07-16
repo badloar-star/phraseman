@@ -143,6 +143,8 @@ const isAttemptRef = (value: unknown): value is CanonicalAttemptRef =>
   /^[a-f0-9]{64}$/.test(String(value.attemptBodyHash));
 const isHash = (value: unknown): value is string =>
   typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+const isTupleKey = (value: unknown): value is LearningEvidenceTupleKey =>
+  typeof value === "string" && /^letk1\.[A-Za-z0-9_-]+$/.test(value);
 const isNonEmptyString = (value: unknown): value is string =>
   typeof value === "string" && value.length > 0;
 const isPhase = (value: unknown): value is LearningEvidencePhase =>
@@ -324,7 +326,8 @@ export const validateLearningNonAssessmentBody = (
         value.reasonCode === "outside_pinned_assessment_window" &&
         isNonEmptyString(value.assignmentRef) &&
         isNonEmptyString(value.launchReceiptRef) &&
-        isNonEmptyString(value.timingReceiptRef),
+        isNonEmptyString(value.timingReceiptRef) &&
+        value.failureReceiptRef === undefined,
     };
   if (value.assessmentStatus === "not_assessed_system")
     return {
@@ -337,23 +340,36 @@ export const validateLearningNonAssessmentBody = (
           "launch_expired",
           "server_timing_unavailable",
         ].includes(value.reasonCode) &&
-        isNonEmptyString(value.failureReceiptRef),
+        isNonEmptyString(value.failureReceiptRef) &&
+        value.assignmentRef === undefined &&
+        value.launchReceiptRef === undefined &&
+        value.timingReceiptRef === undefined,
     };
   if (value.assessmentStatus === "not_assessed_accessibility")
     return {
-      ok: [
-        "accessibility_route_does_not_measure_construct",
-        "microphone_unavailable",
-      ].includes(value.reasonCode),
+      ok:
+        [
+          "accessibility_route_does_not_measure_construct",
+          "microphone_unavailable",
+        ].includes(value.reasonCode) &&
+        value.assignmentRef === undefined &&
+        value.launchReceiptRef === undefined &&
+        value.timingReceiptRef === undefined &&
+        value.failureReceiptRef === undefined,
     };
   if (value.assessmentStatus === "invalid")
     return {
-      ok: [
-        "uncertain_measurement",
-        "invalid_audio_or_system",
-        "technical_failure",
-        "support_or_hint_contract_violated",
-      ].includes(value.reasonCode),
+      ok:
+        [
+          "uncertain_measurement",
+          "invalid_audio_or_system",
+          "technical_failure",
+          "support_or_hint_contract_violated",
+        ].includes(value.reasonCode) &&
+        value.assignmentRef === undefined &&
+        value.launchReceiptRef === undefined &&
+        value.timingReceiptRef === undefined &&
+        value.failureReceiptRef === undefined,
     };
   return { ok: false };
 };
@@ -365,6 +381,34 @@ const canonicalAttemptRefEqual = (
   left.schemaVersion === right.schemaVersion &&
   left.opId === right.opId &&
   left.attemptBodyHash === right.attemptBodyHash;
+
+const validateEvidenceRefShape = (ref: LearningEvidenceRef): boolean =>
+  isRecord(ref) &&
+  hasOnlyKeys(ref, [
+    "observationId",
+    "evidenceBodyHash",
+    "tupleKey",
+    "sourceAttempt",
+  ]) &&
+  isNonEmptyString(ref.observationId) &&
+  isHash(ref.evidenceBodyHash) &&
+  isTupleKey(ref.tupleKey) &&
+  isAttemptRef(ref.sourceAttempt);
+
+const validateNonAssessmentRefShape = (
+  ref: LearningNonAssessmentRef,
+): boolean =>
+  isRecord(ref) &&
+  hasOnlyKeys(ref, [
+    "nonAssessmentId",
+    "nonAssessmentBodyHash",
+    "tupleKey",
+    "sourceAttempt",
+  ]) &&
+  isNonEmptyString(ref.nonAssessmentId) &&
+  isHash(ref.nonAssessmentBodyHash) &&
+  isTupleKey(ref.tupleKey) &&
+  isAttemptRef(ref.sourceAttempt);
 
 export const buildLearningEvidenceRef = (
   body: LearningEvidenceBody,
@@ -401,6 +445,12 @@ export const validateLearningMaterialization = (
       ? validateLearningEvidenceBody(body).ok
       : validateLearningNonAssessmentBody(body).ok;
   if (!bodyValid) return { ok: false };
+  if (
+    body.schemaVersion === "learning-evidence-body.v1"
+      ? !validateEvidenceRefShape(ref as LearningEvidenceRef)
+      : !validateNonAssessmentRefShape(ref as LearningNonAssessmentRef)
+  )
+    return { ok: false };
   const tupleKey = buildLearningEvidenceTupleKey(body);
   if (!canonicalAttemptRefEqual(body.sourceAttempt, ref.sourceAttempt)) {
     return { ok: false };

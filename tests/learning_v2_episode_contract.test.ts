@@ -2491,6 +2491,33 @@ describe("Learning V2 Task 1.2 — scope-dependent curriculum", () => {
     ]);
   });
 
+  test.each([
+    ["studyTarget", "", "field_value_invalid", "$.curriculum.studyTarget"],
+    [
+      "learnerSourceLocale",
+      42,
+      "field_type_invalid",
+      "$.curriculum.learnerSourceLocale",
+    ],
+    [
+      "requiredLocales",
+      [],
+      "curriculum_locale_closure_invalid",
+      "$.curriculum.requiredLocales",
+    ],
+  ] as const)(
+    "requires valid curriculum locale identity: %s",
+    (field, value, code, expectedPath) => {
+      const curriculum = buildCurriculum("chapter_internal");
+      (curriculum as JsonRecord)[field] = value;
+      expect(
+        issueSummary(
+          validateV2CurriculumProjection(curriculum, validationContext),
+        ),
+      ).toEqual([{ code, path: expectedPath }]);
+    },
+  );
+
   test("rejects duplicate chapter identities even when membership is rewritten consistently", () => {
     const curriculum = buildCurriculum("full_season");
     const chapters = curriculum.chapters as JsonRecord[];

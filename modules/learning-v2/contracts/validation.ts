@@ -3080,6 +3080,39 @@ const validateCurriculumDeepShape = (
   ) {
     return [issue("field_type_invalid", "$.curriculum")];
   }
+  if (!isNonEmptyString(curriculum.studyTarget)) {
+    return [
+      issue(
+        typeof curriculum.studyTarget === "string"
+          ? "field_value_invalid"
+          : "field_type_invalid",
+        "$.curriculum.studyTarget",
+      ),
+    ];
+  }
+  if (!isNonEmptyString(curriculum.learnerSourceLocale)) {
+    return [
+      issue(
+        typeof curriculum.learnerSourceLocale === "string"
+          ? "field_value_invalid"
+          : "field_type_invalid",
+        "$.curriculum.learnerSourceLocale",
+      ),
+    ];
+  }
+  if (
+    curriculum.requiredLocales.length === 0 ||
+    uniqueSecondIndex(curriculum.requiredLocales) >= 0 ||
+    !curriculum.requiredLocales.includes(String(curriculum.studyTarget)) ||
+    !curriculum.requiredLocales.includes(String(curriculum.learnerSourceLocale))
+  ) {
+    return [
+      issue(
+        "curriculum_locale_closure_invalid",
+        "$.curriculum.requiredLocales",
+      ),
+    ];
+  }
   if (!isRecordArray(curriculum.chapters))
     return [issue("field_type_invalid", "$.curriculum.chapters")];
   for (let index = 0; index < curriculum.chapters.length; index += 1) {

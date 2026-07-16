@@ -15,6 +15,7 @@ const SERVER_ONLY_COLLECTIONS = [
   'agent_audit_events',
   'agent_office_control',
   'agent_telegram_tokens',
+  'agent_observation_receipts',
 ] as const;
 
 describe('Agent Office Firestore client denial contract', () => {

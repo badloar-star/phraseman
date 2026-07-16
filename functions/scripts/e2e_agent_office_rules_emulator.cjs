@@ -1,5 +1,5 @@
 /**
- * Semantic Firestore Rules gate for the seven server-only Agent Office roots.
+ * Semantic Firestore Rules gate for the eight server-only Agent Office roots.
  *
  * Usage:
  *   firebase emulators:exec --only firestore --project demo-agent-office \
@@ -28,6 +28,7 @@ const AGENT_OFFICE_ROOTS = Object.freeze([
   'agent_audit_events',
   'agent_office_control',
   'agent_telegram_tokens',
+  'agent_observation_receipts',
 ]);
 
 function base64UrlJson(value) {
@@ -144,7 +145,7 @@ async function main() {
   }
 
   console.log(`PASS: ${checks}/${checks} semantic Agent Office rule checks returned PERMISSION_DENIED.`);
-  console.log('Covered 7 roots, direct+nested documents, read+write, anonymous+admin-shaped clients.');
+  console.log('Covered 8 roots, direct+nested documents, read+write, anonymous+admin-shaped clients.');
 }
 
 main().catch((error) => {

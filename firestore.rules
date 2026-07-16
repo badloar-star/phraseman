@@ -2030,6 +2030,9 @@ service cloud.firestore {
     match /agent_telegram_tokens/{document=**} {
       allow read, write: if false;
     }
+    match /agent_observation_receipts/{document=**} {
+      allow read, write: if false;
+    }
 
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
@@ -2039,7 +2042,8 @@ service cloud.firestore {
         && collection != 'agent_tasks'
         && collection != 'agent_audit_events'
         && collection != 'agent_office_control'
-        && collection != 'agent_telegram_tokens';
+        && collection != 'agent_telegram_tokens'
+        && collection != 'agent_observation_receipts';
       allow read, write: if false;
     }
   }

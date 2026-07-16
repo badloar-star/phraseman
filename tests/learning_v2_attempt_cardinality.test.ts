@@ -67,4 +67,26 @@ describe("Learning V2 attempt cardinality", () => {
       ).ok,
     ).toBe(false);
   });
+
+  test("allowlists result codes and reserves skipped reasons for skipped attempts", () => {
+    const assessedWithSkippedReason = {
+      ...declaration,
+      terminalDisposition: "assessed_candidate",
+      reasonCode: "skipped_by_learner",
+    } as const;
+    expect(
+      validateGraphTupleDispositions(
+        [declaration],
+        [assessedWithSkippedReason],
+        "CORRECT",
+      ).ok,
+    ).toBe(false);
+    expect(
+      validateGraphTupleDispositions(
+        [declaration],
+        [{ ...declaration, terminalDisposition: "assessed_candidate" }],
+        "NOT_A_V2_RESULT",
+      ).ok,
+    ).toBe(false);
+  });
 });

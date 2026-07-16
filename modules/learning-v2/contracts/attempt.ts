@@ -4,17 +4,18 @@ import {
 } from "./evidence";
 import { hashCanonicalBody } from "../policies/decision_registry";
 
-export type V2AttemptOutcome = {
-  readonly resultCode:
-    | "CORRECT"
-    | "WRONG"
-    | "COMPLETED"
-    | "SKIPPED"
-    | "PASS_CONFIDENT"
-    | "NEEDS_WORK_CONFIDENT"
-    | "UNCERTAIN"
-    | "INVALID_AUDIO_OR_SYSTEM";
-};
+const v2AttemptResultCodes = [
+  "CORRECT",
+  "WRONG",
+  "COMPLETED",
+  "SKIPPED",
+  "PASS_CONFIDENT",
+  "NEEDS_WORK_CONFIDENT",
+  "UNCERTAIN",
+  "INVALID_AUDIO_OR_SYSTEM",
+] as const;
+export type V2AttemptResultCode = (typeof v2AttemptResultCodes)[number];
+export type V2AttemptOutcome = { readonly resultCode: V2AttemptResultCode };
 export interface V2AttemptEvidence {
   readonly hintsUsed: number;
 }
@@ -173,16 +174,7 @@ const isValidDelayedCandidate = (
   isNonEmptyString(value.candidateId) &&
   isValidLearningTupleIdentity(value.binding, "delayed_probe") &&
   isRecord(value.candidateOutcome) &&
-  hasOneOf(value.candidateOutcome.resultCode, [
-    "CORRECT",
-    "WRONG",
-    "COMPLETED",
-    "SKIPPED",
-    "PASS_CONFIDENT",
-    "NEEDS_WORK_CONFIDENT",
-    "UNCERTAIN",
-    "INVALID_AUDIO_OR_SYSTEM",
-  ] as const) &&
+  hasOneOf(value.candidateOutcome.resultCode, v2AttemptResultCodes) &&
   isValidEvidence(value.candidateEvidence);
 
 /**
@@ -210,16 +202,7 @@ export const sanitizeAttemptBody = (input: unknown): V2AttemptEventBody => {
       "scheduled_delayed_probe",
     ] as const) ||
     !isRecord(outcome) ||
-    !hasOneOf(outcome.resultCode, [
-      "CORRECT",
-      "WRONG",
-      "COMPLETED",
-      "SKIPPED",
-      "PASS_CONFIDENT",
-      "NEEDS_WORK_CONFIDENT",
-      "UNCERTAIN",
-      "INVALID_AUDIO_OR_SYSTEM",
-    ] as const) ||
+    !hasOneOf(outcome.resultCode, v2AttemptResultCodes) ||
     !isValidEvidence(evidence) ||
     !isRecord(provenance) ||
     !hasOneOf(provenance.phase, [
@@ -331,6 +314,7 @@ export const validateGraphTupleDispositions = (
   if (
     !Array.isArray(declarationEntries) ||
     !Array.isArray(dispositionEntries) ||
+    !hasOneOf(resultCode, v2AttemptResultCodes) ||
     !declarationEntries.every((entry) => isValidLearningTupleIdentity(entry)) ||
     !dispositionEntries.every(isValidGraphTupleDisposition)
   ) {
@@ -355,7 +339,8 @@ export const validateGraphTupleDispositions = (
         skipped
           ? entry.terminalDisposition === "no_record" &&
             entry.reasonCode === "skipped_by_learner"
-          : entry.terminalDisposition !== "no_record",
+          : entry.terminalDisposition !== "no_record" &&
+            entry.reasonCode === undefined,
       ),
   };
 };

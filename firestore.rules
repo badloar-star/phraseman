@@ -2190,6 +2190,25 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Learning V2 delayed evidence is server-owned. Clients must use the
+    // callable; direct reads/writes would bypass assignment, timing and
+    // idempotency checks. Admin SDK writes are unaffected by these rules.
+    match /learning_v2_assignments/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_launches/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_timing_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_failure_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_receipt_operations/{docId} {
+      allow read, write: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

@@ -65,7 +65,7 @@ function repository(seed: Record<string, unknown>): DelayedReceiptRepository {
 
 const input = (overrides: Record<string, unknown> = {}) => ({
   operationId: "operation-1",
-  fingerprint: "fingerprint-1",
+  fingerprint: "d".repeat(64),
   stableId: "stable-1",
   accountGeneration: 3,
   candidate,
@@ -117,21 +117,20 @@ describe("Learning V2 delayed Functions adapter", () => {
     const repo = repository(records);
     await finalizeDelayedCandidate(repo, input());
     await expect(
-      finalizeDelayedCandidate(repo, input({ fingerprint: "different" })),
+      finalizeDelayedCandidate(repo, input({ fingerprint: "e".repeat(64) })),
     ).rejects.toThrow("delayed_operation_replay_mismatch");
   });
 
-  test("turns missing assignment into a system receipt using the supplied declaration set", async () => {
+  test("fails closed when assignment binding is unavailable", async () => {
     const repo = repository({});
-    const result = await finalizeDelayedCandidate(
-      repo,
-      input({
-        serverDecision: { kind: "timed", window: "inside_pinned_window" },
-      }),
-    );
-    expect(result.receipt.kind).toBe("failure");
-    if (result.receipt.kind === "failure")
-      expect(result.receipt.body.decision.kind).toBe("system_non_assessment");
+    await expect(
+      finalizeDelayedCandidate(
+        repo,
+        input({
+          serverDecision: { kind: "timed", window: "inside_pinned_window" },
+        }),
+      ),
+    ).rejects.toThrow("delayed_assignment_binding_unavailable");
   });
 
   test("uses server window classification instead of the caller decision", async () => {

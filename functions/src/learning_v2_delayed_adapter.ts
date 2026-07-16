@@ -130,6 +130,14 @@ export async function finalizeDelayedCandidate(
   readonly replayed: boolean;
   readonly receipt: DelayedRuntimeReceipt;
 }> {
+  if (
+    !/^[A-Za-z0-9._-]{1,160}$/.test(input.operationId) ||
+    !/^[a-f0-9]{64}$/.test(input.fingerprint) ||
+    input.stableId.length === 0 ||
+    !Number.isSafeInteger(input.accountGeneration) ||
+    input.accountGeneration < 1
+  )
+    throw new Error("delayed_operation_identity_invalid");
   return repository.runTransaction(async (transaction) => {
     const operationDocument = await transaction.get<DelayedReceiptOperation>(
       operationKey(input),
@@ -151,7 +159,7 @@ export async function finalizeDelayedCandidate(
     const assignment = assignmentDocument.data;
     const launch = launchDocument.data;
     if (!assignmentDocument.exists || !assignment) {
-      decision = { kind: "system_failure", reasonCode: "assignment_missing" };
+      throw new Error("delayed_assignment_binding_unavailable");
     } else if (!launchDocument.exists || !launch) {
       decision = { kind: "system_failure", reasonCode: "launch_missing" };
     } else if (

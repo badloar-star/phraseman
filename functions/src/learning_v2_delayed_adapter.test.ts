@@ -148,4 +148,33 @@ describe("Learning V2 delayed Functions adapter", () => {
         "outside_pinned_window",
       );
   });
+
+  test("surfaces a transaction collision instead of duplicating a receipt", async () => {
+    const repo = repository(records);
+    const results = await Promise.allSettled([
+      finalizeDelayedCandidate(repo, input()),
+      finalizeDelayedCandidate(repo, input()),
+    ]);
+    expect(
+      results.filter((result) => result.status === "fulfilled"),
+    ).toHaveLength(1);
+    expect(
+      results.filter((result) => result.status === "rejected"),
+    ).toHaveLength(1);
+    expect(
+      (
+        results.find(
+          (result) => result.status === "rejected",
+        ) as PromiseRejectedResult
+      ).reason.message,
+    ).toBe("already_exists");
+  });
+
+  test("receipt persistence remains replayable after a completed first attempt", async () => {
+    const repo = repository(records);
+    const first = await finalizeDelayedCandidate(repo, input());
+    expect(first.replayed).toBe(false);
+    const replay = await finalizeDelayedCandidate(repo, input());
+    expect(replay).toMatchObject({ replayed: true, receipt: first.receipt });
+  });
 });

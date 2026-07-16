@@ -1,6 +1,14 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 
 import type { V2AccessPurchaseRequest } from '../../modules/learning-v2/contracts/access_quote';
+import { hashCanonicalBody } from '../../modules/learning-v2/policies/decision_registry';
+import {
+  finalizeV2AccessPurchase,
+  type FinalizeV2AccessPurchaseInput,
+  type V2AccessPurchaseRepository,
+} from './learning_v2_access_adapter';
+import type { AccessBoostPolicy } from '../../modules/learning-v2/contracts/access_boost';
+import { onCall, type CallableRequest } from 'firebase-functions/v2/https';
 
 const record = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -59,3 +67,39 @@ export const assertV2AccessStableIdentity = (
     throw new HttpsError('permission-denied', 'stable_identity_mismatch');
   }
 };
+
+export interface V2AccessCallableDependencies {
+  readonly repository: V2AccessPurchaseRepository;
+  readonly resolvePolicy: (
+    input: NormalizedV2AccessCallableInput,
+  ) => Promise<AccessBoostPolicy>;
+  readonly nowMs?: () => number;
+}
+
+export async function executeV2AccessPurchaseCallable(
+  request: CallableRequest<unknown>,
+  dependencies: V2AccessCallableDependencies,
+): Promise<{ readonly ok: true; readonly replayed: boolean; readonly receipt: unknown }> {
+  const input = normalizeV2AccessPurchaseInput(request.data);
+  assertV2AccessStableIdentity(input, request.auth?.uid);
+  const nowMs = dependencies.nowMs?.() ?? Date.now();
+  if (!Number.isSafeInteger(nowMs) || nowMs < 0) {
+    throw new HttpsError('failed-precondition', 'server_time_invalid');
+  }
+  const policy = await dependencies.resolvePolicy(input);
+  const adapterInput: FinalizeV2AccessPurchaseInput = {
+    operationId: input.operationId,
+    fingerprint: hashCanonicalBody(input),
+    stableId: input.stableId,
+    accountGeneration: input.accountGeneration,
+    request: input.request,
+    nowMs,
+  };
+  const result = await finalizeV2AccessPurchase(dependencies.repository, policy, adapterInput);
+  return { ok: true, replayed: result.replayed, receipt: result.receipt };
+}
+
+export const createV2AccessPurchaseCallable = (
+  dependencies: V2AccessCallableDependencies,
+) => onCall(async (request: CallableRequest<unknown>) =>
+  executeV2AccessPurchaseCallable(request, dependencies));

@@ -1,6 +1,7 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
   assertV2AccessStableIdentity,
+  executeV2AccessPurchaseCallable,
   normalizeV2AccessPurchaseInput,
 } from './learning_v2_access_callable';
 
@@ -35,5 +36,27 @@ describe('V2 access callable boundary', () => {
     expect(() => assertV2AccessStableIdentity(normalized, undefined)).toThrow('auth_required');
     expect(() => assertV2AccessStableIdentity(normalized, 'user-2')).toThrow('stable_identity_mismatch');
     expect(() => assertV2AccessStableIdentity(normalized, 'user-1')).not.toThrow();
+  });
+
+  it('orchestrates auth, server policy resolution and the transaction adapter', async () => {
+    const calls: unknown[] = [];
+    const result = await executeV2AccessPurchaseCallable(
+      { data: valid, auth: { uid: 'user-1' } } as any,
+      {
+        repository: {
+          runTransaction: async (fn) => fn({
+            get: async () => ({ exists: false }),
+            create: (key, value) => calls.push(['create', key, value]),
+            update: (key, value) => calls.push(['update', key, value]),
+          }),
+        },
+        resolvePolicy: async () => {
+          calls.push('policy');
+          return { unitPriceShards: 3, maxPurchasedPerGate: 3, maxPurchasedPerChapter: 3, maxPurchasedPerSeason: 12 };
+        },
+      },
+    ).catch((error) => error);
+    expect(result).toBeInstanceOf(Error);
+    expect(calls).toContain('policy');
   });
 });

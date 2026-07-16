@@ -3019,6 +3019,38 @@ describe("Learning V2 Task 1.2 — independent-only checkpoint declaration", () 
       ).toEqual([{ code: "capstone_reference_invalid", path: expectedPath }]);
     },
   );
+
+  test.each([
+    [
+      "rejects an ordinary encounter node as a capstone fallback",
+      ["ep01.n01"],
+      "$.episode.capstoneContract.deterministicAlternateNodeIds[0]",
+    ],
+    [
+      "rejects a capstone fallback that aliases its primary node",
+      ["ep01.n08"],
+      "$.episode.capstoneContract.deterministicAlternateNodeIds[0]",
+    ],
+    [
+      "rejects duplicate capstone fallback nodes",
+      ["ep01.n07", "ep01.n07"],
+      "$.episode.capstoneContract.deterministicAlternateNodeIds[1]",
+    ],
+    [
+      "rejects an alternate without a reachable fallback branch",
+      ["ep01.n09"],
+      "$.episode.capstoneContract.deterministicAlternateNodeIds[0]",
+    ],
+  ] as const)("%s", (_label, deterministicAlternateNodeIds, expectedPath) => {
+    const candidate = clone(validFixture);
+    (
+      (candidate.episode as JsonRecord).capstoneContract as JsonRecord
+    ).deterministicAlternateNodeIds = deterministicAlternateNodeIds;
+    setEpisodeContentHash(candidate);
+    expect(
+      issueSummary(validateV2LearningPackage(candidate, validationContext)),
+    ).toEqual([{ code: "capstone_fallback_invalid", path: expectedPath }]);
+  });
 });
 
 describe("Learning V2 Task 1.2 — compile and purity boundaries", () => {

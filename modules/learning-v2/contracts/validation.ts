@@ -4060,6 +4060,122 @@ const validateLearningReferences = (
       ),
     ];
   }
+  const capstonePrimaryNodeIds = capstone.primaryNodeIds as string[];
+  const capstoneAlternateNodeIds =
+    capstone.deterministicAlternateNodeIds as string[];
+  const duplicateCapstoneAlternateIndex = uniqueSecondIndex(
+    capstoneAlternateNodeIds,
+  );
+  if (duplicateCapstoneAlternateIndex >= 0) {
+    return [
+      issue(
+        "capstone_fallback_invalid",
+        `$.episode.capstoneContract.deterministicAlternateNodeIds[${duplicateCapstoneAlternateIndex}]`,
+      ),
+    ];
+  }
+  if (
+    capstoneAlternateNodeIds.length !== 0 &&
+    capstoneAlternateNodeIds.length !== capstonePrimaryNodeIds.length
+  ) {
+    return [
+      issue(
+        "capstone_fallback_invalid",
+        `$.episode.capstoneContract.deterministicAlternateNodeIds[${capstonePrimaryNodeIds.length}]`,
+      ),
+    ];
+  }
+
+  const nodesById = new Map(nodes.map((node) => [String(node.nodeId), node]));
+  const capstoneEdges = graphForCapstone.edges as JsonObject[];
+  const activitiesById = new Map(
+    (episode.activities as JsonObject[]).map((activity) => [
+      String(activity.activityId),
+      activity,
+    ]),
+  );
+  const graphOutgoing = new Map<string, string[]>();
+  for (const node of nodes) graphOutgoing.set(String(node.nodeId), []);
+  for (const edge of capstoneEdges) {
+    graphOutgoing.get(String(edge.fromNodeId))?.push(String(edge.toNodeId));
+  }
+  const reaches = (fromNodeId: string, targetNodeId: string): boolean => {
+    const visited = new Set<string>();
+    const pending = [fromNodeId];
+    while (pending.length > 0) {
+      const nodeId = pending.pop() as string;
+      if (nodeId === targetNodeId) return true;
+      if (visited.has(nodeId)) continue;
+      visited.add(nodeId);
+      pending.push(...(graphOutgoing.get(nodeId) ?? []));
+    }
+    return false;
+  };
+  const requiredCapstoneSlots = capstone.requiredSemanticSlotIds as string[];
+  for (let index = 0; index < capstoneAlternateNodeIds.length; index += 1) {
+    const alternateNodeId = capstoneAlternateNodeIds[index];
+    const primaryNodeId = capstonePrimaryNodeIds[index];
+    const fallbackPath = `$.episode.capstoneContract.deterministicAlternateNodeIds[${index}]`;
+    const alternateNode = nodesById.get(alternateNodeId);
+    const primaryNode = nodesById.get(primaryNodeId);
+    const alternateActivity = alternateNode
+      ? activitiesById.get(String(alternateNode.activityId))
+      : undefined;
+    const alternateTargets = alternateActivity?.targets as
+      | JsonObject
+      | undefined;
+    const alternateSlotIds = alternateTargets?.semanticSlotIds as
+      | string[]
+      | undefined;
+    const alternateDeclarations = alternateNode?.evidenceDeclarations;
+    const alternateObjectiveIds = isRecordArray(alternateDeclarations)
+      ? alternateDeclarations.map((declaration) =>
+          String(declaration.objectiveId),
+        )
+      : [];
+    const alternateCriticalConstraintIds = isRecordArray(alternateDeclarations)
+      ? alternateDeclarations
+          .filter(
+            (declaration) =>
+              isPlainObject(declaration.target) &&
+              declaration.target.targetKind === "critical_constraint",
+          )
+          .map((declaration) =>
+            String((declaration.target as JsonObject).targetId),
+          )
+      : [];
+    const hasReachableFallbackBranch = capstoneEdges.some(
+      (edge) =>
+        edge.condition === "fallback_selected" &&
+        String(edge.toNodeId) === alternateNodeId &&
+        reaches(String(graph.startNodeId), String(edge.fromNodeId)),
+    );
+    if (
+      alternateNodeId === primaryNodeId ||
+      capstonePrimaryNodeIds.includes(alternateNodeId) ||
+      !alternateNode ||
+      !primaryNode ||
+      alternateNode.phase !== primaryNode.phase ||
+      alternateNode.requiredForCore !== primaryNode.requiredForCore ||
+      alternateNode.visible !== primaryNode.visible ||
+      alternateNode.gateEligible !== primaryNode.gateEligible ||
+      !hasReachableFallbackBranch ||
+      !reaches(alternateNodeId, primaryNodeId) ||
+      !isStringArray(alternateSlotIds) ||
+      requiredCapstoneSlots.some(
+        (slotId) => !alternateSlotIds.includes(slotId),
+      ) ||
+      (capstone.objectiveIds as string[]).some(
+        (objectiveId) => !alternateObjectiveIds.includes(objectiveId),
+      ) ||
+      (capstone.criticalConstraintIds as string[]).some(
+        (constraintId) =>
+          !alternateCriticalConstraintIds.includes(constraintId),
+      )
+    ) {
+      return [issue("capstone_fallback_invalid", fallbackPath)];
+    }
+  }
 
   const learningDesign = episode.learningDesign as JsonObject;
   const designObjectives = learningDesign.objectiveIds as string[];

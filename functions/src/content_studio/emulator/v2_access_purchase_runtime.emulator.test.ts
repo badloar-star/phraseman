@@ -94,4 +94,25 @@ describe('Learning V2 Access Boost Firestore transaction', () => {
       expect((await getDoc(doc(db, 'learning_v2_access_ledger', 'uid-access-emulator_emulator-operation-2'))).exists()).toBe(false);
     });
   });
+
+  test('concurrent identical purchases produce one spend and one replay', async () => {
+    await environment.withSecurityRulesDisabled(async (context) => {
+      const db = context.firestore();
+      await seed(db);
+      const repository = makeFirestoreV2AccessRepository(db as never);
+      const concurrentInput = {
+        ...baseInput,
+        operationId: 'emulator-concurrent-1',
+        fingerprint: 'c'.repeat(64),
+        request: { ...baseInput.request, opId: 'emulator-concurrent-1' },
+      };
+      const results = await Promise.all([
+        finalizeV2AccessPurchase(repository, policy, concurrentInput),
+        finalizeV2AccessPurchase(repository, policy, concurrentInput),
+      ]);
+      expect(results.filter((result) => !result.replayed)).toHaveLength(1);
+      expect(results.filter((result) => result.replayed)).toHaveLength(1);
+      expect((await getDoc(doc(db, 'users', 'uid-access-emulator'))).data()?.shards).toBe(4);
+    });
+  });
 });

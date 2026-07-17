@@ -1,4 +1,4 @@
-﻿import * as admin from 'firebase-admin';
+import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
 import { calculateArenaPoints } from './arena_scoring';
 import { getLevelFromXP } from './xp_levels';

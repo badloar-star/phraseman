@@ -335,6 +335,13 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'status', 'sessionId']);");
   });
 
+  test('arena_questions runtime pool is client-readable but never client-writable', () => {
+    const arenaQuestionsBlock = rules.match(/match \/arena_questions\/\{qId\} \{[\s\S]*?\n    \}/);
+    expect(arenaQuestionsBlock).not.toBeNull();
+    expect(arenaQuestionsBlock![0]).toContain('allow read:  if request.auth != null;');
+    expect(arenaQuestionsBlock![0]).toContain('allow write: if false;');
+  });
+
   test('arena_invites allows only status updates from participants', () => {
     expect(rules).toContain('match /arena_invites/{inviteId} {');
     expect(rules).toContain(".hasOnly(['status']);");

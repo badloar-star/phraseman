@@ -19,7 +19,8 @@ export interface CourseReleaseSealInput {
 export function buildCourseRelease(input: CourseReleaseSealInput, now = new Date().toISOString()): CourseRelease {
   const complete = CANONICAL_RELEASE_SURFACES.every((surface) => input.unitStates[surface] === 'succeeded');
   if (!complete || input.reviewStatus !== 'approved' || !input.reviewerId.trim()) throw new Error('course_release_not_sealable');
-  return assertCourseRelease({
+  const artifacts = Object.freeze(Object.fromEntries(CANONICAL_RELEASE_SURFACES.map((surface) => [surface, Object.freeze({ ...input.artifacts[surface] })])) as unknown as Readonly<Record<CanonicalReleaseSurface, CourseReleaseArtifact>>);
+  const release = assertCourseRelease({
     releaseId: input.releaseId,
     studyTarget: input.studyTarget,
     learnerSourceLocale: input.learnerSourceLocale,
@@ -30,6 +31,7 @@ export function buildCourseRelease(input: CourseReleaseSealInput, now = new Date
     contentVersion: input.contentVersion,
     createdAt: now,
     minAppVersion: input.minAppVersion,
-    artifacts: input.artifacts,
+    artifacts,
   });
+  return Object.freeze(release);
 }

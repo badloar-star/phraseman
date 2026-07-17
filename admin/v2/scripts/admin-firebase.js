@@ -89,6 +89,11 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const sendReportReplyCallable = httpsCallable(functionsUs, 'adminReplyToReport');
   const listAuditLogCallable = httpsCallable(functionsUs, 'adminListAuditLog');
   const listOpsLogCallable = httpsCallable(functionsUs, 'adminListOpsLog');
+  const agentOfficeListCasesCallable = httpsCallable(functionsUs, 'agentOfficeListCases');
+  const agentOfficeGetCaseCallable = httpsCallable(functionsUs, 'agentOfficeGetCase');
+  const agentOfficeListRecommendationsCallable = httpsCallable(functionsUs, 'agentOfficeListRecommendations');
+  const agentOfficeDecideRecommendationCallable = httpsCallable(functionsUs, 'agentOfficeDecideRecommendation');
+  const agentOfficeListAuditEventsCallable = httpsCallable(functionsUs, 'agentOfficeListAuditEvents');
 
   async function loadOpenAiBudgetDashboard() {
     const result = await openAiBudgetCallable({ rangeDays: 30 });
@@ -174,5 +179,10 @@ export async function createFirebaseAdminActions({ onAuth }) {
     sendReportReply: async (input) => unwrap(await sendReportReplyCallable(input)),
     listAuditLog: async (input) => unwrap(await listAuditLogCallable(input)),
     listOpsLog: async (input) => unwrap(await listOpsLogCallable(input)),
+    listAgentOfficeCases: async (input) => unwrap(await agentOfficeListCasesCallable(input)),
+    getAgentOfficeCase: async (input) => unwrap(await agentOfficeGetCaseCallable(input)),
+    listAgentOfficeRecommendations: async (input) => unwrap(await agentOfficeListRecommendationsCallable(input)),
+    decideAgentOfficeRecommendation: async (input) => unwrap(await agentOfficeDecideRecommendationCallable(input)),
+    listAgentOfficeAuditEvents: async (input) => unwrap(await agentOfficeListAuditEventsCallable(input)),
   });
 }

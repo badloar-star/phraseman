@@ -216,12 +216,15 @@ export async function onQuestionTimeout(
       .some(a => a.questionId === questionId);
 
     if (!alreadyAnswered) {
+      const previousAnswers = Array.isArray(p.answers) ? p.answers as Array<{ deviceClass?: string }> : [];
+      const deviceClass = [...previousAnswers].reverse().map((answer) => answer.deviceClass).find((value) => ['phone', 'tablet', 'web'].includes(String(value))) ?? 'unknown';
       batch.update(docRef, {
         answers: admin.firestore.FieldValue.arrayUnion({
           questionId,
           answer: null,
           isCorrect: false,
           timeMs: session.questionTimeoutMs,
+          deviceClass,
           points: 0,
         }),
       });

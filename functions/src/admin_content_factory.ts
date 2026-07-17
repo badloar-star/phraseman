@@ -8,9 +8,12 @@ import { splitGenerationJob, type GenerationUnit } from './content_factory/job_s
 import { inspectSourceRegistryCoverage, parseSourceRegistryReference, sourceRegistryDocId, validateSourceRegistry, type SourceRegistry } from './content_factory/source_registry';
 import { CANONICAL_RELEASE_SURFACES } from './content_factory/course_release_contract';
 import { generationPlanFingerprint } from './content_factory/generation_plan';
+import { resolveArenaEnginePolicy } from './content_factory/surface_convergence_policy';
+import { updateArenaConvergenceConfig } from './content_factory/surface_convergence_repository';
 
 const REGION = 'us-central1';
 const SURFACES: readonly FactorySurface[] = ['lessons', 'vocabulary', 'drills', 'quizzes', 'cards', 'arena_questions'];
+export const SUPPORTED_CONTENT_FACTORY_STUDY_TARGETS = Object.freeze(['en', 'fr'] as const);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -50,7 +53,7 @@ export function parseContentFactoryJobRequest(data: unknown): ContentFactoryJobR
   if (Object.values(result).some((value) => typeof value === 'string' && !value)) {
     throw new HttpsError('invalid-argument', 'project, language, locale, operation and blueprint are required');
   }
-  if (!/^[A-Za-z0-9._-]{1,160}$/.test(result.projectId) || !/^[A-Za-z0-9._-]{1,160}$/.test(result.idempotencyKey) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(result.studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(result.sourceLocale) || new Set(lessonIds).size !== lessonIds.length) {
+  if (!/^[A-Za-z0-9._-]{1,160}$/.test(result.projectId) || !/^[A-Za-z0-9._-]{1,160}$/.test(result.idempotencyKey) || !(SUPPORTED_CONTENT_FACTORY_STUDY_TARGETS as readonly string[]).includes(result.studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(result.sourceLocale) || new Set(lessonIds).size !== lessonIds.length) {
     throw new HttpsError('invalid-argument', 'invalid content factory identity or duplicate lesson');
   }
   try { parseSourceRegistryReference(result.blueprintVersion); } catch { throw new HttpsError('invalid-argument', 'blueprintVersion must be blueprintId:version'); }
@@ -59,7 +62,7 @@ export function parseContentFactoryJobRequest(data: unknown): ContentFactoryJobR
 
 export interface ContentFactoryJobPlan {
   readonly job: ReturnType<typeof createGenerationJob> & { readonly learnerSourceLocale: string; readonly releaseCandidate: boolean };
-  readonly units: readonly GenerationUnit[];
+  readonly units: readonly (GenerationUnit & { readonly engineRequested?: string; readonly engineResolved?: string; readonly configRevision?: number; readonly comparatorVersion?: string })[];
 }
 
 export function assertContentFactorySourceCoverage(registry: SourceRegistry, lessonIds: readonly number[]): void {
@@ -75,8 +78,8 @@ export function storedGenerationPlanFingerprint(value: Record<string, unknown>):
   return generationPlanFingerprint(value.lessonIds.map(Number), value.surfaces.map(String) as FactorySurface[]);
 }
 
-export function buildContentFactoryJobPlan(input: ContentFactoryJobRequest, actorUid: string, now = new Date().toISOString()): ContentFactoryJobPlan {
-  const units = splitGenerationJob({ jobId: input.idempotencyKey, studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, lessonIds: input.lessonIds, surfaces: input.surfaces });
+export function buildContentFactoryJobPlan(input: ContentFactoryJobRequest, actorUid: string, now = new Date().toISOString(), arenaRoutingForUnit?: (unitId: string) => { readonly engineRequested: string; readonly engineResolved: string; readonly configRevision: number; readonly comparatorVersion: string }): ContentFactoryJobPlan {
+  const units = splitGenerationJob({ jobId: input.idempotencyKey, studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, lessonIds: input.lessonIds, surfaces: input.surfaces }).map((unit) => unit.surface === 'arena' && arenaRoutingForUnit ? Object.freeze({ ...unit, ...arenaRoutingForUnit(unit.unitId) }) : unit);
   const base = createGenerationJob({ ...input, requestedBy: actorUid, now });
   const plannedSurfaces = new Set(units.map((unit) => unit.surface));
   const releaseCandidate = CANONICAL_RELEASE_SURFACES.every((surface) => plannedSurfaces.has(surface));
@@ -99,13 +102,19 @@ export const adminCreateContentGenerationJob = onCall(
     const input = parseContentFactoryJobRequest(request.data);
       const db = admin.firestore();
       const sourceReference = parseSourceRegistryReference(input.blueprintVersion);
-      const registrySnap = await db.collection('content_factory_source_registry').doc(sourceRegistryDocId(sourceReference.blueprintId, sourceReference.version)).get();
+      const [registrySnap, convergenceConfigSnap] = await Promise.all([
+        db.collection('content_factory_source_registry').doc(sourceRegistryDocId(sourceReference.blueprintId, sourceReference.version)).get(),
+        db.collection('content_factory_config').doc('surface_convergence').get(),
+      ]);
       if (!registrySnap.exists) throw new HttpsError('not-found', 'source_registry_not_found');
       const registry = registrySnap.data() as SourceRegistry;
       const registryValidation = validateSourceRegistry(registry);
       if (!registryValidation.ok) throw new HttpsError('failed-precondition', 'source_registry_invalid', { errors: registryValidation.errors });
       assertContentFactorySourceCoverage(registry, input.lessonIds);
-      const plan = buildContentFactoryJobPlan(input, actorUid);
+      const plan = buildContentFactoryJobPlan(input, actorUid, new Date().toISOString(), (unitId) => {
+        const resolved = resolveArenaEnginePolicy({ config: convergenceConfigSnap.exists ? convergenceConfigSnap.data() : undefined, unit: { id: unitId, isNew: true, engineRequested: convergenceConfigSnap.data()?.arena?.mode ?? 'legacy' } });
+        return { engineRequested: resolved.engineRequested, engineResolved: resolved.engineResolved, configRevision: resolved.configRevision, comparatorVersion: resolved.comparatorVersion };
+      });
       const job = plan.job;
       const jobRef = db.collection('content_factory_jobs').doc(job.idempotencyKey);
     return db.runTransaction(async (tx) => {
@@ -126,11 +135,29 @@ export const adminCreateContentGenerationJob = onCall(
         entity: { collection: 'content_factory_jobs', id: job.idempotencyKey },
         reason: 'Language Factory generation job created',
         requestId: String(request.data && isRecord(request.data) ? request.data.requestId ?? '' : ''),
+        before: null,
+        after: { state: job.state, plannedUnitCount: plan.units.length },
         timestamp: new Date().toISOString(),
         operationId: job.idempotencyKey,
       });
       return { ok: true, jobId: job.idempotencyKey, state: job.state, replayed: false };
     });
+  },
+);
+
+export const adminUpdateArenaConvergenceConfig = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+    const role = roleFromToken(request.auth.token as Record<string, unknown>);
+    if (!role || !hasPermission(role, 'content.publish')) throw new HttpsError('permission-denied', 'Role cannot change Arena routing');
+    const mode = String(request.data?.mode ?? '');
+    const expectedRevision = Number(request.data?.expectedRevision);
+    const disabledReason = String(request.data?.disabledReason ?? '').trim();
+    const requiredLocalePairs = Array.isArray(request.data?.requiredLocalePairs) ? request.data.requiredLocalePairs.map(String) : [];
+    if (!['legacy', 'shadow'].includes(mode) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 0 || (mode === 'legacy' && !disabledReason) || (mode === 'shadow' && requiredLocalePairs.length === 0)) throw new HttpsError('invalid-argument', 'arena_convergence_update_invalid');
+    try { return await updateArenaConvergenceConfig(admin.firestore(), { expectedRevision, mode: mode as 'legacy' | 'shadow', actorUid: request.auth.uid, role, requiredLocalePairs: mode === 'shadow' ? requiredLocalePairs : undefined, disabledReason, requestId: String(request.data?.requestId ?? ''), nowIso: new Date().toISOString(), serverTimestamp: admin.firestore.FieldValue.serverTimestamp() }); }
+    catch (error) { throw new HttpsError('aborted', error instanceof Error ? error.message : 'surface_convergence_update_failed'); }
   },
 );
 

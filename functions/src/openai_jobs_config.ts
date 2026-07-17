@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support' | 'content_factory' | 'image_assets';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'content_factory', 'image_assets'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -47,7 +47,7 @@ interface JobDefaults {
   rolloutPct?: number;
 }
 const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
-  weekly: { model: 'gpt-4o-mini', globalDailyCap: 500, aiV2Enabled: false, rolloutPct: 0 },
+  weekly: { model: 'gpt-4o-mini', globalDailyCap: 500, aiV2Enabled: true, rolloutPct: 100 },
   stats: { model: 'gpt-4o-mini', globalDailyCap: 5000 },
   explain: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   dialog: { model: 'gpt-4.1-nano', globalDailyCap: 0 },
@@ -57,7 +57,6 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Тематические квизы: батч-«разбор» 1-на-вопрос (вопросов мало, повторяются между учениками) →
   // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
   quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
-  help_board: { model: 'gpt-4.1-nano', globalDailyCap: 1000 },
   // Дайджест для владельца: раз в сутки, один вызов на весь проект. Кап символический
   // (несколько ручных перегенераций в день максимум). Модель поумнее — сводка должна
   // осмысленно расставлять приоритеты, а не просто пересчитывать.
@@ -119,7 +118,9 @@ function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | unde
     globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap, job === 'weekly' ? 1 : 0),
     // enabled по умолчанию TRUE (kill-switch семантика): фича работает, выключается вручную.
     enabled: d?.enabled === false ? false : true,
-    aiV2Enabled: job === 'weekly' && d?.aiV2Enabled === true,
+    aiV2Enabled: job === 'weekly'
+      ? (d?.aiV2Enabled == null ? def.aiV2Enabled === true : d.aiV2Enabled === true)
+      : false,
     rolloutPct: job === 'weekly' ? normalizeRolloutPct(d?.rolloutPct, def.rolloutPct ?? 0) : 0,
   };
 }
@@ -178,6 +179,9 @@ export async function resolveJobConfig(
     return jobFromData(job, snap.data());
   } catch (e) {
     console.warn('resolveJobConfig failed, using fallback', job, e);
+    if (job === 'weekly') {
+      return { ...jobFromData(job, undefined), aiV2Enabled: false, rolloutPct: 0 };
+    }
     return jobFromData(job, undefined);
   }
 }

@@ -6,6 +6,12 @@ import { hasPermission } from './admin/permissions';
 import { CANONICAL_RELEASE_SURFACES, type CanonicalReleaseSurface } from './content_factory/course_release_contract';
 import { parseHashedJsonBytes } from './content_factory/release_surface_delivery';
 import { courseCatalogId } from './language_release';
+import { deriveContentFactoryRolloutMetricsFromDocuments } from './content_factory/rollout_metrics';
+import { CONTENT_FACTORY_BUDGET_COLLECTION } from './content_factory/content_factory_budget';
+import { resolveJobConfig } from './openai_jobs_config';
+import { groupArenaConvergenceReceipts, summarizeArenaConvergenceReceipts } from './content_factory/arena_shadow_convergence';
+import { defaultSurfaceConvergenceConfig } from './content_factory/surface_convergence_policy';
+import { ARENA_TIMING_ROLLUP_COLLECTION, summarizeArenaTiming, type ArenaTimingAggregate } from './content_factory/arena_timing_observability';
 
 const REGION = 'us-central1';
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
@@ -168,23 +174,70 @@ export const adminGetContentFactoryWorkspace = onCall(
     requireContentReader(request as { auth?: { token?: Record<string, unknown> } });
     const input = parseContentFactoryWorkspaceRequest(request.data);
     const db = admin.firestore();
+    const workspaceQuery = (collection: string): admin.firestore.Query => {
+      let query: admin.firestore.Query = db.collection(collection);
+      if (input.studyTarget) query = query.where('studyTarget', '==', input.studyTarget);
+      if (input.learnerSourceLocale) query = query.where('learnerSourceLocale', '==', input.learnerSourceLocale);
+      return query;
+    };
     const [catalogsSnap, releasesSnap, historySnap, registriesSnap] = await Promise.all([
-      db.collection('content_factory_catalog').limit(input.limit).get(),
-      db.collection('content_factory_releases').limit(input.limit).get(),
-      db.collection('content_factory_release_history').limit(input.limit).get(),
+      workspaceQuery('content_factory_catalog').limit(input.limit).get(),
+      workspaceQuery('content_factory_releases').limit(input.limit).get(),
+      workspaceQuery('content_factory_release_history').limit(input.limit).get(),
       db.collection('content_factory_source_registry').limit(input.limit).get(),
     ]);
-    const matchesIdentity = (item: ReadDocument): boolean => (
-      (!input.studyTarget || item.studyTarget === input.studyTarget)
-      && (!input.learnerSourceLocale || item.learnerSourceLocale === input.learnerSourceLocale || item.sourceLocale === input.learnerSourceLocale)
-    );
     const sortNewest = (items: ReadDocument[]): ReadDocument[] => items.sort((left, right) => String(right.timestamp ?? right.createdAt ?? right.sealedAt ?? '').localeCompare(String(left.timestamp ?? left.createdAt ?? left.sealedAt ?? '')));
     return {
       ok: true,
-      catalogs: catalogsSnap.docs.map(withId).filter(matchesIdentity),
-      releases: sortNewest(releasesSnap.docs.map(withId).filter(matchesIdentity)),
-      history: sortNewest(historySnap.docs.map(withId).filter(matchesIdentity)),
+      catalogs: catalogsSnap.docs.map(withId),
+      releases: sortNewest(releasesSnap.docs.map(withId)),
+      history: sortNewest(historySnap.docs.map(withId)),
       sourceRegistries: registriesSnap.docs.map(withId),
     };
+  },
+);
+
+export const adminGetContentFactoryRolloutMetrics = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requireContentReader(request as { auth?: { token?: Record<string, unknown> } });
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const day = new Date(nowMs).toISOString().slice(0, 10);
+    const [stagesSnap, unitsSnap, jobsSnap, budgetSnap, jobConfig] = await Promise.all([
+      db.collection('content_factory_stages').orderBy('updatedAt', 'desc').limit(101).get(),
+      db.collection('content_factory_job_units').orderBy('startedAtMs', 'desc').limit(101).get(),
+      db.collection('content_factory_jobs').orderBy('createdAt', 'desc').limit(101).get(),
+      db.collection(CONTENT_FACTORY_BUDGET_COLLECTION).doc(day).get(),
+      resolveJobConfig(db, 'content_factory'),
+    ]);
+    const reservedUnits = Number(budgetSnap.data()?.generationCount ?? 0);
+    const stageDocs = stagesSnap.docs.slice(0, 100).map(withId);
+    const unitDocs = unitsSnap.docs.slice(0, 100).map(withId);
+    const jobDocs = jobsSnap.docs.slice(0, 100).map(withId);
+    return { ok: true, metrics: deriveContentFactoryRolloutMetricsFromDocuments({ nowMs, stageDocs, unitDocs, jobDocs, truncation: { stages: stagesSnap.size > 100, units: unitsSnap.size > 100, jobs: jobsSnap.size > 100 }, budgetCapUnits: jobConfig.globalDailyCap, budgetReservedUnits: Number.isSafeInteger(reservedUnits) && reservedUnits >= 0 ? reservedUnits : 0 }) };
+  },
+);
+
+export const adminGetArenaConvergenceStatus = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requireContentReader(request as { auth?: { token?: Record<string, unknown> } });
+    const requestedLimit = Number(request.data?.limit ?? 100); const limit = Number.isSafeInteger(requestedLimit) ? Math.max(1, Math.min(500, requestedLimit)) : 100;
+    const cursor = String(request.data?.cursor ?? '').trim();
+    if (cursor && !/^[a-f0-9]{64}$/.test(cursor)) throw new HttpsError('invalid-argument', 'arena_convergence_cursor_invalid');
+    const db = admin.firestore(); const configRef = db.collection('content_factory_config').doc('surface_convergence');
+    const configSnapshot = await configRef.get(); const config = configSnapshot.exists ? configSnapshot.data() ?? defaultSurfaceConvergenceConfig() : defaultSurfaceConvergenceConfig(); const arena = isRecord(config.arena) ? config.arena : defaultSurfaceConvergenceConfig().arena;
+    let currentReceiptsQuery: admin.firestore.Query = db.collection('content_factory_surface_comparisons').where('surface', '==', 'arena').where('comparatorVersion', '==', String(arena.comparatorVersion)).where('configRevision', '==', Number(arena.revision)).orderBy(admin.firestore.FieldPath.documentId()).limit(limit + 1);
+    if (cursor) currentReceiptsQuery = currentReceiptsQuery.startAfter(cursor);
+    const historyLimit = 100; const historyQuery = db.collection('content_factory_surface_comparisons').where('surface', '==', 'arena').orderBy(admin.firestore.FieldPath.documentId()).limit(historyLimit + 1);
+    const currentUnitsQuery = db.collection('content_factory_job_units').where('surface', '==', 'arena').where('engineRequested', '==', 'shadow').where('configRevision', '==', Number(arena.revision)).where('comparatorVersion', '==', String(arena.comparatorVersion)).limit(501);
+    const timingFromDay = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10); const timingQuery = db.collection(ARENA_TIMING_ROLLUP_COLLECTION).where('day', '>=', timingFromDay).orderBy('day').limit(1001);
+    const [receiptsSnapshot, historySnapshot, arenaUnitsSnapshot, timingSnapshot] = await Promise.all([currentReceiptsQuery.get(), historyQuery.get(), currentUnitsQuery.get(), timingQuery.get()]);
+    const docs = receiptsSnapshot.docs.slice(0, limit); const receiptValues = docs.map((doc) => doc.data()); const expectedUnits = arenaUnitsSnapshot.docs.slice(0, 500).map((doc) => doc.data()); const expectedShadowUnitCount = expectedUnits.length; const expectedLocalePairs = Array.isArray(arena.requiredLocalePairs) ? arena.requiredLocalePairs.map(String) : []; const isPartial = receiptsSnapshot.size > limit || arenaUnitsSnapshot.size > 500;
+    const metrics = summarizeArenaConvergenceReceipts(receiptValues, { limit, expectedComparatorVersion: String(arena.comparatorVersion), expectedConfigRevision: Number(arena.revision), expectedShadowUnitCount, isPartial, expectedLocalePairs });
+    const historyValues = historySnapshot.docs.slice(0, historyLimit).map((doc) => doc.data()); const groups = groupArenaConvergenceReceipts(historyValues, historyLimit).map((group) => ({ comparatorVersion: group.comparatorVersion, configRevision: group.configRevision, metrics: summarizeArenaConvergenceReceipts(group.receipts, { limit: historyLimit, expectedComparatorVersion: group.comparatorVersion, expectedConfigRevision: group.configRevision, isPartial: historySnapshot.size > historyLimit }) }));
+    const timingIsPartial = timingSnapshot.size > 1000; const timing = summarizeArenaTiming(timingSnapshot.docs.slice(0, 1000).map((doc) => doc.data() as ArenaTimingAggregate), timingIsPartial);
+    return { ok: true, arena, metrics, groups, timing, isPartial, historyIsPartial: historySnapshot.size > historyLimit, nextCursor: receiptsSnapshot.size > limit ? docs.at(-1)?.id ?? null : null, samples: { receipts: docs.length, expectedShadowUnits: expectedShadowUnitCount, unitScanTruncated: arenaUnitsSnapshot.size > 500, timingAggregates: Math.min(timingSnapshot.size, 1000), timingScanTruncated: timingIsPartial } };
   },
 );

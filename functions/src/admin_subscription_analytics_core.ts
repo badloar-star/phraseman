@@ -13,6 +13,17 @@ export interface SubscriptionAnalyticsRow {
   createdAtMs?: unknown;
   cancelReason?: unknown;
   expirationReason?: unknown;
+  expirationAtMs?: unknown;
+  billingCadence?: unknown;
+  grossUsdMicros?: unknown;
+  grossPurchasedCurrencyMicros?: unknown;
+  purchasedCurrency?: unknown;
+  taxRatePpm?: unknown;
+  commissionRatePpm?: unknown;
+  estimatedProceedsUsdMicros?: unknown;
+  financialCoverage?: unknown;
+  renewalNumber?: unknown;
+  isTrialConversion?: unknown;
 }
 
 interface BreakdownRow { id: string; events: number }

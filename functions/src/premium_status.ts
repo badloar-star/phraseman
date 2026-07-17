@@ -155,6 +155,67 @@ export function isGiftAccessActive(progress: ProgressLike, now: number = Date.no
   return introUntil > now || loyaltyUntil > now;
 }
 
+const VIP_ENTITLEMENT_KEYS = [
+  'vip_active',
+  'vip_plan',
+  'vip_from',
+  'vip_until',
+  'vip_expiry',
+  'vip_admin_override',
+  'vip_admin_grant_at',
+  'vip_grant_at',
+  // Legacy admin grants used premium_* fields. Their presence on the
+  // canonical record (including an explicit revoke) is just as authoritative
+  // as a vip_* block and must prevent stale alias inheritance.
+  'admin_premium_override',
+  'premium_plan',
+  'premium_expiry',
+] as const;
+
+function hasVipEntitlementShape(progress: ProgressLike): boolean {
+  const data = progress ?? {};
+  return VIP_ENTITLEMENT_KEYS.some((key) => Object.prototype.hasOwnProperty.call(data, key));
+}
+
+function userDocOwnedByAuth(data: FirebaseFirestore.DocumentData, authUid: string): boolean {
+  if (cleanStr(data.firebaseAuthUid) === authUid) return true;
+  const linkedAuth = data.linkedAuth;
+  return linkedAuth != null
+    && typeof linkedAuth === 'object'
+    && cleanStr((linkedAuth as { providerUid?: unknown }).providerUid) === authUid;
+}
+
+/**
+ * Narrow fallback for a historical admin-grant delivery bug.
+ *
+ * Before admin writes were canonicalized, VIP could be written to a hidden
+ * users/{alias} after auth_links had already moved to users/{canonical}. The
+ * normal provider lookup is intentionally capped, so an account with many old
+ * identities can omit that alias. Query the exact reverse pointer only when the
+ * capped lookup was full, and accept it only when Firebase ownership still ties
+ * the hidden alias to the currently authenticated user.
+ */
+async function resolveOwnedHiddenAliasAccess(
+  db: FirebaseFirestore.Firestore,
+  canonicalStableUid: string,
+  authUid: string,
+  now: number,
+): Promise<boolean> {
+  const aliases = await db.collection('users')
+    .where('canonicalStableId', '==', canonicalStableUid)
+    .limit(20)
+    .get()
+    .catch(() => null);
+
+  return aliases?.docs?.some((doc) => {
+    const data = doc.data() ?? {};
+    if (data.identityHidden !== true) return false;
+    if (cleanStr(data.canonicalStableId) !== canonicalStableUid) return false;
+    if (!userDocOwnedByAuth(data, authUid)) return false;
+    return isPremiumAccessActive((data.progress ?? {}) as Record<string, unknown>, now);
+  }) ?? false;
+}
+
 /** TRUE если у пользователя сейчас активен ЛЮБОЙ премиум-доступ (store / admin / VIP / подарок 72ч). */
 export function isPremiumAccessActive(progress: ProgressLike, now: number = Date.now()): boolean {
   return isStorePremiumActive(progress, now)
@@ -174,6 +235,8 @@ export async function resolvePremiumAccess(
   authUid?: string,
 ): Promise<boolean> {
   const candidates = new Set<string>();
+  let authLinkedStableId = '';
+  let providerLookupMayBeTruncated = false;
   const add = (value: unknown) => {
     const id = cleanStr(value);
     if (id) candidates.add(id);
@@ -187,11 +250,17 @@ export async function resolvePremiumAccess(
       db.collection('auth_links').doc(authUid).get().catch(() => null),
       db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
     ]);
-    add(linkSnap?.data()?.stable_id);
+    authLinkedStableId = cleanStr(linkSnap?.data()?.stable_id);
+    add(authLinkedStableId);
     byAuth?.docs?.forEach((doc) => add(doc.id));
+    providerLookupMayBeTruncated = (byAuth?.docs?.length ?? 0) >= 5;
   }
 
   const checked = new Set<string>();
+  let stableUidOwnedByAuth = authLinkedStableId === stableUid;
+  let stableUidIsCanonical = false;
+  let stableUidHasVipEntitlementShape = false;
+  let observedOwnedHiddenAliasAccess = false;
   for (;;) {
     const ids = [...candidates].filter((id) => !checked.has(id));
     if (ids.length === 0) break;
@@ -201,13 +270,47 @@ export async function resolvePremiumAccess(
       const snap = await db.collection('users').doc(id).get().catch(() => null);
       if (!snap?.exists) return;
       const data = snap.data() ?? {};
+      if (id === stableUid) {
+        stableUidOwnedByAuth ||= Boolean(authUid && userDocOwnedByAuth(data, authUid));
+        stableUidIsCanonical = data.identityHidden !== true;
+        stableUidHasVipEntitlementShape = hasVipEntitlementShape(
+          (data.progress ?? {}) as Record<string, unknown>,
+        );
+      }
       add(data.canonicalStableId);
       const progress = (data.progress ?? {}) as Record<string, unknown>;
-      if (isPremiumAccessActive(progress, now)) {
+      if (
+        authUid
+        && data.identityHidden === true
+        && cleanStr(data.canonicalStableId) === stableUid
+        && userDocOwnedByAuth(data, authUid)
+        && isPremiumAccessActive(progress, now)
+      ) {
+        observedOwnedHiddenAliasAccess = true;
+      }
+      // Hidden identities are aliases, not entitlement authorities. Reading
+      // their progress directly can resurrect a stale grant after the canonical
+      // account was explicitly revoked. The guarded reverse-alias fallback
+      // below is the only path that may inherit from one.
+      if (data.identityHidden !== true && isPremiumAccessActive(progress, now)) {
         premiumActive = true;
       }
     }));
     if (premiumActive) return true;
+  }
+
+  // A canonical revoke/expiry marker is authoritative: never resurrect it from
+  // stale aliases. The reverse lookup is only for the missing-transfer shape
+  // seen in production (canonical has no VIP block at all).
+  if (
+    authUid
+    && stableUidOwnedByAuth
+    && stableUidIsCanonical
+    && !stableUidHasVipEntitlementShape
+  ) {
+    if (observedOwnedHiddenAliasAccess) return true;
+    if (!providerLookupMayBeTruncated) return false;
+    return resolveOwnedHiddenAliasAccess(db, stableUid, authUid, now);
   }
 
   return false;

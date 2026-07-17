@@ -2,7 +2,12 @@ import * as admin from 'firebase-admin';
 import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { executeAccountDeletion } from './account_delete';
-import { ACCOUNT_DELETE_JOBS, ACCOUNT_DELETE_TOMBSTONES, processAccountDeletionJob } from './account_delete_job';
+import {
+  ACCOUNT_DELETE_AUTH_MARKERS,
+  ACCOUNT_DELETE_JOBS,
+  ACCOUNT_DELETE_TOMBSTONES,
+  processAccountDeletionJob,
+} from './account_delete_job';
 
 export const ACCOUNT_DELETE_WORKER_OPTIONS = {
   document: `${ACCOUNT_DELETE_JOBS}/{jobId}`,
@@ -36,11 +41,12 @@ export async function sweepAccountDeletionJobs(
   nowMs = Date.now(),
 ): Promise<void> {
   const jobs = db.collection(ACCOUNT_DELETE_JOBS);
-  const [due, stranded, expired, expiredTombstones] = await Promise.all([
+  const [due, stranded, expired, expiredTombstones, expiredAuthMarkers] = await Promise.all([
     jobs.where('nextAttemptAtMs', '<=', nowMs).limit(20).get(),
     jobs.where('leaseUntilMs', '<=', nowMs).limit(20).get(),
     jobs.where('retentionUntilMs', '<=', nowMs).limit(50).get(),
     db.collection(ACCOUNT_DELETE_TOMBSTONES).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
+    db.collection(ACCOUNT_DELETE_AUTH_MARKERS).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
   ]);
 
   const expiredIds = new Set(expired.docs.map((doc) => doc.id));
@@ -61,7 +67,8 @@ export async function sweepAccountDeletionJobs(
   }
   for (const doc of expired.docs) batch.delete(doc.ref);
   for (const doc of expiredTombstones.docs) batch.delete(doc.ref);
-  if (recoverable.size + expired.size + expiredTombstones.size > 0) await batch.commit();
+  for (const doc of expiredAuthMarkers.docs) batch.delete(doc.ref);
+  if (recoverable.size + expired.size + expiredTombstones.size + expiredAuthMarkers.size > 0) await batch.commit();
 }
 
 export const accountDeleteRetryCron = onSchedule(

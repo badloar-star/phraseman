@@ -22,6 +22,8 @@ jest.mock('firebase-functions/params', () => ({
 }));
 
 jest.mock('firebase-admin', () => ({
+  apps: [],
+  initializeApp: jest.fn(),
   firestore: jest.fn(),
 }));
 

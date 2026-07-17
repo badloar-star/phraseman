@@ -7,6 +7,8 @@ import { hasAdminRole, type AdminRole } from './admin/roles';
 const REGION = 'us-central1';
 const MAX_LIST_LIMIT = 100;
 const MAX_FILTER_SCAN_LIMIT = 500;
+const MAX_EXPORT_REFERENCES = 100;
+const MAX_EXPORT_RESPONSE_BYTES = 4_000_000;
 const DEFAULT_LIST_LIMIT = 50;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
@@ -130,6 +132,66 @@ export function parseReportListRequest(data: unknown): ReportListRequest {
   if (source === 'all' && cursor) throw new HttpsError('invalid-argument', 'cursor requires a specific source');
   if (cursor && (rawStatus || lane || uid || category || reportId)) throw new HttpsError('invalid-argument', 'cursor cannot be combined with report filters');
   return Object.freeze({ source, rawStatus, lane, uid, category, reportId, sinceDays, limit, cursor });
+}
+
+export interface ReportExportReference {
+  readonly source: ReportSource;
+  readonly id: string;
+}
+
+export interface ReportExportRequest {
+  readonly reports: readonly ReportExportReference[];
+}
+
+export function parseReportExportRequest(data: unknown): ReportExportRequest {
+  const input = isRecord(data) ? data : {};
+  if (!Array.isArray(input.reports) || input.reports.length < 1 || input.reports.length > MAX_EXPORT_REFERENCES) {
+    throw new HttpsError('invalid-argument', `reports must contain 1..${MAX_EXPORT_REFERENCES} references`);
+  }
+  const seen = new Set<string>();
+  const reports = input.reports.map((value) => {
+    if (!isRecord(value)) throw new HttpsError('invalid-argument', 'report reference must be an object');
+    const source = parseSource(value.source, false) as ReportSource;
+    const id = cleanText(value.id, 161);
+    if (!TOKEN_RE.test(id)) throw new HttpsError('invalid-argument', 'report id is invalid');
+    const key = `${source}:${id}`;
+    if (seen.has(key)) throw new HttpsError('invalid-argument', 'duplicate report reference');
+    seen.add(key);
+    return Object.freeze({ source, id });
+  });
+  return Object.freeze({ reports: Object.freeze(reports) });
+}
+
+function jsonSafeValue(value: unknown, seen: WeakSet<object>, depth: number): unknown {
+  if (depth > 40) throw new HttpsError('failed-precondition', 'report document is nested too deeply');
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value === 'bigint') return value.toString();
+  if (value instanceof Date) return value.toISOString();
+  if (Array.isArray(value)) return value.map((entry) => jsonSafeValue(entry, seen, depth + 1));
+  if (!isRecord(value)) return null;
+  if (seen.has(value)) throw new HttpsError('failed-precondition', 'report document contains a cycle');
+  seen.add(value);
+  try {
+    if (typeof value.toJSON === 'function') {
+      const jsonValue = (value.toJSON as () => unknown)();
+      if (jsonValue !== value) return jsonSafeValue(jsonValue, seen, depth + 1);
+    }
+    const output: Row = {};
+    for (const [key, entry] of Object.entries(value)) {
+      if (entry === undefined || typeof entry === 'function' || typeof entry === 'symbol') continue;
+      output[key] = jsonSafeValue(entry, seen, depth + 1);
+    }
+    return output;
+  } finally {
+    seen.delete(value);
+  }
+}
+
+export function serializeReportDocument(row: Row): Row {
+  const serialized = jsonSafeValue(row, new WeakSet<object>(), 0);
+  if (!isRecord(serialized)) throw new HttpsError('failed-precondition', 'report document is not an object');
+  return serialized;
 }
 
 function normalizedStatus(source: ReportSource, status: unknown): string {
@@ -314,6 +376,31 @@ export const adminListReportQueue = onCall(
       nextCursor: input.source === 'all' ? null : results[0]?.nextCursor ?? null,
       fetchedAtMs: Date.now(),
     };
+  },
+);
+
+export const adminExportReportDocuments = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 20, memory: '512MiB' },
+  async (request) => {
+    const context = requireReportPermission(request as { auth?: { uid?: string; token?: Row } }, 'reports.read');
+    const input = parseReportExportRequest(request.data);
+    if (input.reports.some(({ source }) => source === 'app_errors') && !hasPermission(context.role, 'diagnostics.read')) {
+      throw new HttpsError('permission-denied', 'Role cannot export app errors');
+    }
+    const db = admin.firestore();
+    const snapshots = await db.getAll(...input.reports.map(({ source, id }) => db.collection(SOURCE_CONFIG[source].collection).doc(id)));
+    const missing = input.reports.filter((_, index) => !snapshots[index]?.exists);
+    if (missing.length) throw new HttpsError('failed-precondition', `${missing.length} report document(s) changed or disappeared; refresh the queue`);
+    const documents = input.reports.map(({ source, id }, index) => ({
+      source,
+      id,
+      document: serializeReportDocument((snapshots[index]?.data() ?? {}) as Row),
+    }));
+    const response = { ok: true, documents };
+    if (Buffer.byteLength(JSON.stringify(response), 'utf8') > MAX_EXPORT_RESPONSE_BYTES) {
+      throw new HttpsError('resource-exhausted', 'report export chunk is too large; narrow the filters and try again');
+    }
+    return response;
   },
 );
 

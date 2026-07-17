@@ -23,11 +23,11 @@ function fakeDb(doc: Record<string, unknown> | undefined) {
 }
 
 describe('openai_jobs_config — weekly V2 configuration', () => {
-  it('ships fail-closed with a positive global budget', () => {
+  it('ships weekly review enabled with a positive global budget', () => {
     expect(__openAiJobsConfigTestHooks.jobFromData('weekly', undefined)).toMatchObject({
       enabled: true,
-      aiV2Enabled: false,
-      rolloutPct: 0,
+      aiV2Enabled: true,
+      rolloutPct: 100,
       globalDailyCap: 500,
     });
   });
@@ -35,6 +35,12 @@ describe('openai_jobs_config — weekly V2 configuration', () => {
   it('clamps rollout percentage to 0..100', () => {
     expect(__openAiJobsConfigTestHooks.jobFromData('weekly', { weekly: { rolloutPct: -3 } }).rolloutPct).toBe(0);
     expect(__openAiJobsConfigTestHooks.jobFromData('weekly', { weekly: { rolloutPct: 145 } }).rolloutPct).toBe(100);
+  });
+
+  it('honours explicit weekly AI kill-switch fields over enabled defaults', () => {
+    expect(__openAiJobsConfigTestHooks.jobFromData('weekly', {
+      weekly: { aiV2Enabled: false, rolloutPct: 0 },
+    })).toMatchObject({ aiV2Enabled: false, rolloutPct: 0 });
   });
 
   it('keeps V2 fields during a partial admin update', () => {
@@ -67,11 +73,9 @@ describe('openai_jobs_config — resolveJobConfig', () => {
     const stats = await resolveJobConfig(db, 'stats');
     expect(stats).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 5000, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
     const weekly = await resolveJobConfig(db, 'weekly');
-    expect(weekly).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 500, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
+    expect(weekly).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 500, enabled: true, aiV2Enabled: true, rolloutPct: 100 });
     const explain = await resolveJobConfig(db, 'explain');
     expect(explain).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 3000, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
-    const helpBoard = await resolveJobConfig(db, 'help_board');
-    expect(helpBoard).toEqual({ model: 'gpt-4.1-nano', globalDailyCap: 1000, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
   });
 
   it('reads per-job overrides from doc', async () => {

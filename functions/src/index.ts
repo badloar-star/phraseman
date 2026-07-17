@@ -1463,6 +1463,17 @@ export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
 export { adminExportReportDocuments, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
+export {
+  agentOfficeDecideRecommendation,
+  agentOfficeGetCase,
+  agentOfficeGetControl,
+  agentOfficeListAuditEvents,
+  agentOfficeListCases,
+  agentOfficeListRecommendations,
+  agentOfficeListTasks,
+  agentOfficeSetKillSwitch,
+  agentOfficeTelegramWebhook,
+} from './agent_office';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export {
   adminListAppMessages,

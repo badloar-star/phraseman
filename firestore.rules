@@ -2007,8 +2007,43 @@ service cloud.firestore {
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    match /{document=**} {
-      allow read, write: if isAdmin();
+    // Agent Office is a server-owned control ledger. Canonical records are
+    // reachable only through role-checked Cloud Functions using Admin SDK.
+    match /agent_cases/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_recommendations/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_approvals/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_tasks/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_audit_events/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_office_control/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_telegram_tokens/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_observation_receipts/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /{collection}/{document=**} {
+      allow read, write: if isAdmin()
+        && collection != 'agent_cases'
+        && collection != 'agent_recommendations'
+        && collection != 'agent_approvals'
+        && collection != 'agent_tasks'
+        && collection != 'agent_audit_events'
+        && collection != 'agent_office_control'
+        && collection != 'agent_telegram_tokens'
+        && collection != 'agent_observation_receipts';
       allow read, write: if false;
     }
   }

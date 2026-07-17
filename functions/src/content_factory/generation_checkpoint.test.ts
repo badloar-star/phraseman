@@ -4,6 +4,7 @@ describe('generation unit checkpoint', () => {
   it('replays a completed unit and resumes a validated generated payload', () => {
     expect(chooseGenerationCheckpointAction({ state: 'succeeded' }, 10_000)).toEqual({ action: 'replay' });
     expect(chooseGenerationCheckpointAction({ state: 'generated', generatedPayload: { lessonId: 1 }, qaReceipt: { status: 'passed' } }, 10_000)).toEqual({ action: 'resume', payload: { lessonId: 1 }, qaReceipt: { status: 'passed' } });
+    expect(chooseGenerationCheckpointAction({ state: 'failed', generatedPayload: { lessonId: 1 }, qaReceipt: { status: 'passed' } }, 10_000)).toEqual({ action: 'resume', payload: { lessonId: 1 }, qaReceipt: { status: 'passed' } });
   });
 
   it('blocks a concurrent live lease but recovers a stale lease', () => {

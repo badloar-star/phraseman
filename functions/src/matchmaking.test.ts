@@ -189,6 +189,35 @@ describe('matchmaking cost controls', () => {
   });
 });
 
+describe('ranked Arena runtime-pool transaction contract', () => {
+  test('uses only the active en/ru level pool and commits player history with the session', () => {
+    const source = readFileSync(path.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
+    expect(source).toContain(".where('studyTarget', '==', 'en')");
+    expect(source).toContain(".where('learnerSourceLocale', '==', 'ru')");
+    expect(source).toContain(".where('availability', '==', 'active')");
+    expect(source).toContain("db.collection('arena_question_history').doc(player.userId)");
+    expect(source).toContain('mergeArenaQuestionHistory(previous, selection.ids)');
+    expect(source).toContain('selectArenaPoolQuestions(rows');
+  });
+
+  test('has no legacy initial-match selector that can bypass runtime pool history', () => {
+    const source = readFileSync(path.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
+    expect(source).not.toMatch(/async function pickQuestions\s*\(/);
+    expect(source).not.toContain('pickQuestions(questionLevel');
+  });
+
+  test('tie-break selection fails closed to the active en/ru runtime pool', () => {
+    const source = readFileSync(path.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
+    const start = source.indexOf('export async function pickOneQuestionExcluding');
+    const end = source.indexOf('// ─── Trusted rank', start);
+    const tieBreakSelector = source.slice(start, end);
+    expect(tieBreakSelector).toContain(".where('studyTarget', '==', 'en')");
+    expect(tieBreakSelector).toContain(".where('learnerSourceLocale', '==', 'ru')");
+    expect(tieBreakSelector).toContain(".where('availability', '==', 'active')");
+    expect(tieBreakSelector).toContain(".where('level', '==', level)");
+  });
+});
+
 // ─── Content-dedup of arena questions ─────────────────────────────────────────
 // Регрессия бага «в разборе вопросов Арены 3–7 одинаковые»: банк arena_questions
 // содержит документы с разными id и полностью одинаковым содержанием. Выбор вопросов
@@ -248,9 +277,9 @@ describe('arena question content dedup', () => {
     expect(dedupByContentMirror(docs).map((d) => d.id)).toEqual(['x1', 'x2']);
   });
 
-  test('pickQuestions in source actually dedups by content before slicing', () => {
+  test('tie-break selection actually dedups by content before choosing', () => {
     const source = readFileSync(path.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
-    // dedup применяется в пути выбора и в тай-брейке
+    // dedup применяется в тай-брейке
     expect(source).toContain('dedupByContent');
     expect(source).toContain('questionContentKey');
     // ключ включает options (иначе схлопнул бы разные задания с одним текстом)

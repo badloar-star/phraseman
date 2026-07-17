@@ -437,59 +437,6 @@ function dedupByContent(
   return out;
 }
 
-async function pickQuestions(level: string, count: number): Promise<string[]> {
-  // Assign a random float [0,1) to each question at upload time (field: rand).
-  // We pick a random pivot and fetch count*4 docs starting from it;
-  // if not enough, wrap around from 0. This gives uniform random coverage
-  // across the full question bank instead of always returning the first N docs.
-  const pivot = Math.random();
-
-  const [snapA, snapB] = await Promise.all([
-    db.collection('arena_questions')
-      .where('level', '==', level)
-      .where('rand', '>=', pivot)
-      .orderBy('rand')
-      .limit(count * 4)
-      .get(),
-    db.collection('arena_questions')
-      .where('level', '==', level)
-      .where('rand', '<', pivot)
-      .orderBy('rand')
-      .limit(count * 4)
-      .get(),
-  ]);
-
-  let docs: { id: string; data: () => Record<string, unknown> }[] = [
-    ...snapA.docs,
-    ...snapB.docs,
-  ];
-
-  // Страховка: документы БЕЗ поля `rand` Firestore не возвращает в rand-запросе
-  // (исторически так было у всего банка A1 → bronze-матчи падали). Если набралось
-  // меньше нужного — добираем простым запросом по level без rand-фильтра.
-  // Backfill rand (scripts/backfill_rand_a1_firestore.mjs) устраняет саму причину.
-  // Дедуп по content-ключу ниже гарантирует, что merge двух наборов не создаст повтор.
-  if (docs.length < count * 2) {
-    const plain = await db.collection('arena_questions')
-      .where('level', '==', level)
-      .limit(count * 4)
-      .get();
-    docs = [...docs, ...plain.docs];
-  }
-
-  // Дедуп по СМЫСЛУ вопроса — фикс «одинаковые вопросы 3–7 в разборе матча».
-  const uniqueIds = dedupByContent(docs).map(d => d.id);
-
-  const out = shuffleArray(uniqueIds).slice(0, count);
-  if (out.length < count) {
-    console.error(
-      `pickQuestions: insufficient unique ids for level=${level} need=${count} got=${out.length}`,
-    );
-    throw new Error(`Insufficient arena_questions for level ${level} (need ${count}, got ${out.length})`);
-  }
-  return out;
-}
-
 /**
  * Один додатковий id для тай-брейку (нічия після основних 10 питань).
  * Повертає null, якщо в банку не знайшлося варіанта поза exclude.
@@ -499,13 +446,19 @@ export async function pickOneQuestionExcluding(level: string, exclude: Set<strin
   const limit = 48;
   const [snapA, snapB] = await Promise.all([
     db.collection('arena_questions')
+      .where('studyTarget', '==', 'en')
+      .where('learnerSourceLocale', '==', 'ru')
       .where('level', '==', level)
+      .where('availability', '==', 'active')
       .where('rand', '>=', pivot)
       .orderBy('rand')
       .limit(limit)
       .get(),
     db.collection('arena_questions')
+      .where('studyTarget', '==', 'en')
+      .where('learnerSourceLocale', '==', 'ru')
       .where('level', '==', level)
+      .where('availability', '==', 'active')
       .where('rand', '<', pivot)
       .orderBy('rand')
       .limit(limit)

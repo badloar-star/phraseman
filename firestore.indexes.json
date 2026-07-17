@@ -117,6 +117,75 @@
       ]
     },
     {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "level", "order": "ASCENDING" },
+        { "fieldPath": "rand", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "level", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "availability", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "topicArtifactId", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "level", "order": "ASCENDING" },
+        { "fieldPath": "availability", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "level", "order": "ASCENDING" },
+        { "fieldPath": "topicArtifactId", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "availability", "order": "ASCENDING" },
+        { "fieldPath": "topicArtifactId", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "arena_questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "level", "order": "ASCENDING" },
+        { "fieldPath": "availability", "order": "ASCENDING" },
+        { "fieldPath": "topicArtifactId", "order": "ASCENDING" },
+        { "fieldPath": "publishedAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "leaderboard",
       "queryScope": "COLLECTION",
       "fields": [
